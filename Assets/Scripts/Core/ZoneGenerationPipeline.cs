@@ -62,7 +62,6 @@ namespace CavesOfOoo.Core
         public static ZoneGenerationPipeline CreateCavePipeline(PopulationTable popTable = null)
         {
             var pipeline = new ZoneGenerationPipeline();
-            pipeline.AddBuilder(new BorderBuilder());
             pipeline.AddBuilder(new CaveBuilder());
             pipeline.AddBuilder(new ConnectivityBuilder());
             if (popTable != null)

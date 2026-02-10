@@ -69,5 +69,48 @@ namespace CavesOfOoo.Data
                 }
             };
         }
+
+        public static PopulationTable DesertTier1()
+        {
+            return new PopulationTable
+            {
+                Name = "DesertTier1",
+                Entries = new List<PopulationEntry>
+                {
+                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "SnapjawScavenger", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Rock", Weight = 4, MinCount = 2, MaxCount = 6 },
+                }
+            };
+        }
+
+        public static PopulationTable JungleTier1()
+        {
+            return new PopulationTable
+            {
+                Name = "JungleTier1",
+                Entries = new List<PopulationEntry>
+                {
+                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = 4, MinCount = 2, MaxCount = 4 },
+                    new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 2, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "Dagger", Weight = 2, MinCount = 1, MaxCount = 2 },
+                }
+            };
+        }
+
+        public static PopulationTable RuinsTier1()
+        {
+            return new PopulationTable
+            {
+                Name = "RuinsTier1",
+                Entries = new List<PopulationEntry>
+                {
+                    new PopulationEntry { BlueprintName = "SnapjawScavenger", Weight = 3, MinCount = 2, MaxCount = 4 },
+                    new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 2, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "LeatherArmor", Weight = 1, MinCount = 0, MaxCount = 1 },
+                }
+            };
+        }
     }
 }

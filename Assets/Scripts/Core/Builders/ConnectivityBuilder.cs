@@ -5,13 +5,13 @@ using CavesOfOoo.Data;
 namespace CavesOfOoo.Core
 {
     /// <summary>
-    /// Ensures all open areas of the cave are reachable from each other.
-    /// Simplified port of Qud's ForceConnections builder.
-    ///
-    /// Algorithm:
+    /// Ensures all open areas of the zone are reachable and that zone edges
+    /// have passable cells for zone transitions.
+    /// Port of Qud's ForceConnections builder:
     /// 1. Flood-fill from first passable cell to find reachable area
-    /// 2. Find disconnected passable regions
-    /// 3. Carve corridors between them (greedy walk + path widening)
+    /// 2. Carve corridors to connect disconnected passable regions
+    /// 3. Ensure at least one passable cell on each zone edge, connected
+    ///    to the main area (like Qud's CaveNorthMouth/SouthMouth/etc.)
     ///
     /// Priority: LATE (3000) -- after terrain, before population.
     /// </summary>
@@ -36,26 +36,103 @@ namespace CavesOfOoo.Core
             // Flood fill to find the main reachable region
             var reachable = FloodFill(zone, startX, startY);
 
-            // Find all unreachable passable cells, grouped by region
+            // Connect all disconnected passable regions
             while (true)
             {
-                // Find an unreachable passable cell
                 int ux = -1, uy = -1;
                 for (int x = 0; x < Zone.Width && ux < 0; x++)
                     for (int y = 0; y < Zone.Height && ux < 0; y++)
                         if (!reachable[x, y] && zone.GetCell(x, y).IsPassable())
                         { ux = x; uy = y; }
 
-                if (ux < 0) break; // All passable cells are reachable
+                if (ux < 0) break;
 
-                // Carve a path from the unreachable cell toward the reachable area
                 CarvePath(zone, factory, rng, reachable, ux, uy);
-
-                // Re-flood from the original start to update reachability
                 reachable = FloodFill(zone, startX, startY);
             }
 
+            // Ensure passable edge cells for zone transitions (like Qud's ForceConnections)
+            EnsureEdgeConnectivity(zone, factory, rng, reachable, startX, startY);
+
             return true;
+        }
+
+        /// <summary>
+        /// Ensure at least one passable cell on each zone edge, connected to the main area.
+        /// Like Qud's CaveNorthMouth/SouthMouth/EastMouth/WestMouth + ForceConnections.
+        /// </summary>
+        private void EnsureEdgeConnectivity(Zone zone, EntityFactory factory, System.Random rng,
+            bool[,] reachable, int mainX, int mainY)
+        {
+            // For each edge, pick a connection point and carve to it if needed
+            // North edge (y=0): pick random x
+            CarveToEdge(zone, factory, rng, reachable, rng.Next(2, Zone.Width - 2), 0);
+            reachable = FloodFill(zone, mainX, mainY);
+
+            // South edge (y=Height-1)
+            CarveToEdge(zone, factory, rng, reachable, rng.Next(2, Zone.Width - 2), Zone.Height - 1);
+            reachable = FloodFill(zone, mainX, mainY);
+
+            // West edge (x=0)
+            CarveToEdge(zone, factory, rng, reachable, 0, rng.Next(2, Zone.Height - 2));
+            reachable = FloodFill(zone, mainX, mainY);
+
+            // East edge (x=Width-1)
+            CarveToEdge(zone, factory, rng, reachable, Zone.Width - 1, rng.Next(2, Zone.Height - 2));
+        }
+
+        /// <summary>
+        /// Ensure a specific edge cell is passable and connected to the main area.
+        /// If the edge cell is a wall, clear it. Then carve from the nearest
+        /// reachable cell to the edge cell.
+        /// </summary>
+        private void CarveToEdge(Zone zone, EntityFactory factory, System.Random rng,
+            bool[,] reachable, int edgeX, int edgeY)
+        {
+            // Make the edge cell passable
+            ClearAndFloor(zone, factory, edgeX, edgeY);
+
+            // If already reachable, done
+            if (reachable[edgeX, edgeY]) return;
+
+            // Find nearest reachable cell
+            int targetX = -1, targetY = -1;
+            int bestDist = int.MaxValue;
+            for (int x = 0; x < Zone.Width; x++)
+            {
+                for (int y = 0; y < Zone.Height; y++)
+                {
+                    if (!reachable[x, y]) continue;
+                    int dist = Math.Abs(x - edgeX) + Math.Abs(y - edgeY);
+                    if (dist < bestDist)
+                    {
+                        bestDist = dist;
+                        targetX = x;
+                        targetY = y;
+                    }
+                }
+            }
+
+            if (targetX < 0) return;
+
+            // Carve from edge toward reachable area
+            int cx = edgeX, cy = edgeY;
+            int maxSteps = Zone.Width + Zone.Height;
+            for (int step = 0; step < maxSteps; step++)
+            {
+                if (reachable[cx, cy]) break;
+                ClearAndFloor(zone, factory, cx, cy);
+
+                int ddx = targetX - cx;
+                int ddy = targetY - cy;
+                if (Math.Abs(ddx) > Math.Abs(ddy) || (Math.Abs(ddx) == Math.Abs(ddy) && rng.Next(2) == 0))
+                    cx += ddx > 0 ? 1 : -1;
+                else
+                    cy += ddy > 0 ? 1 : -1;
+
+                cx = Math.Max(0, Math.Min(cx, Zone.Width - 1));
+                cy = Math.Max(0, Math.Min(cy, Zone.Height - 1));
+            }
         }
 
         /// <summary>
@@ -98,7 +175,6 @@ namespace CavesOfOoo.Core
 
         /// <summary>
         /// Carve a corridor from an unreachable cell toward the nearest reachable cell.
-        /// Greedy walk toward target, clearing walls along the way.
         /// </summary>
         private void CarvePath(Zone zone, EntityFactory factory, System.Random rng,
             bool[,] reachable, int fromX, int fromY)
@@ -127,53 +203,42 @@ namespace CavesOfOoo.Core
             // Walk from source toward target, clearing walls
             int cx = fromX;
             int cy = fromY;
-            int maxSteps = Zone.Width + Zone.Height; // safety limit
+            int maxSteps = Zone.Width + Zone.Height;
 
             for (int step = 0; step < maxSteps; step++)
             {
-                if (reachable[cx, cy]) break; // Reached the main region
+                if (reachable[cx, cy]) break;
 
                 ClearAndFloor(zone, factory, cx, cy);
 
                 // Widen path for natural look (Qud does this at 75% chance)
-                if (WidenPaths)
+                if (WidenPaths && rng.Next(100) < 75)
                 {
-                    if (rng.Next(100) < 75)
-                    {
-                        // Clear an adjacent cell perpendicular to travel direction
-                        int dx = targetX - cx;
-                        int dy = targetY - cy;
+                    int dx = targetX - cx;
+                    int dy = targetY - cy;
+                    int px, py;
+                    if (Math.Abs(dx) > Math.Abs(dy))
+                    { px = 0; py = rng.Next(2) == 0 ? -1 : 1; }
+                    else
+                    { px = rng.Next(2) == 0 ? -1 : 1; py = 0; }
 
-                        // Perpendicular direction
-                        int px, py;
-                        if (Math.Abs(dx) > Math.Abs(dy))
-                        { px = 0; py = rng.Next(2) == 0 ? -1 : 1; }
-                        else
-                        { px = rng.Next(2) == 0 ? -1 : 1; py = 0; }
-
-                        int wx = cx + px;
-                        int wy = cy + py;
-                        if (zone.InBounds(wx, wy) && wx > 0 && wx < Zone.Width - 1 &&
-                            wy > 0 && wy < Zone.Height - 1)
-                        {
-                            ClearAndFloor(zone, factory, wx, wy);
-                        }
-                    }
+                    int wx = cx + px;
+                    int wy = cy + py;
+                    if (zone.InBounds(wx, wy))
+                        ClearAndFloor(zone, factory, wx, wy);
                 }
 
                 // Step toward target
                 int ddx = targetX - cx;
                 int ddy = targetY - cy;
 
-                // Prefer the longer axis, with some randomness
                 if (Math.Abs(ddx) > Math.Abs(ddy) || (Math.Abs(ddx) == Math.Abs(ddy) && rng.Next(2) == 0))
                     cx += ddx > 0 ? 1 : -1;
                 else
                     cy += ddy > 0 ? 1 : -1;
 
-                // Stay in bounds (inside border)
-                cx = Math.Max(1, Math.Min(cx, Zone.Width - 2));
-                cy = Math.Max(1, Math.Min(cy, Zone.Height - 2));
+                cx = Math.Max(0, Math.Min(cx, Zone.Width - 1));
+                cy = Math.Max(0, Math.Min(cy, Zone.Height - 1));
             }
         }
 
@@ -182,7 +247,7 @@ namespace CavesOfOoo.Core
             var cell = zone.GetCell(x, y);
             if (cell == null) return;
 
-            // Remove wall entities
+            // Remove wall/solid entities
             for (int i = cell.Objects.Count - 1; i >= 0; i--)
             {
                 if (cell.Objects[i].HasTag("Wall") || cell.Objects[i].HasTag("Solid"))

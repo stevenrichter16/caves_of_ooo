@@ -1,37 +1,32 @@
-using System.Collections.Generic;
 using CavesOfOoo.Data;
 
 namespace CavesOfOoo.Core
 {
     /// <summary>
-    /// Generates cave terrain using cellular automata + noise.
-    /// Faithful to Qud's Cave builder:
-    /// 1. Fill zone with walls
-    /// 2. Run CellularAutomata
-    /// 3. Overlay noise field -- cells where CA is open OR noise less than threshold are cleared
-    /// 4. Place floor/rubble entities in open cells
-    ///
-    /// Priority: NORMAL (2000) -- after borders, before connectivity.
+    /// Generates jungle terrain: dense vegetation with organic clearings.
+    /// Uses cellular automata like CaveBuilder but with lower seed chance
+    /// for more open space. Green palette.
+    /// Priority: NORMAL (2000) — after borders, before connectivity.
     /// </summary>
-    public class CaveBuilder : IZoneBuilder
+    public class JungleBuilder : IZoneBuilder
     {
-        public string Name => "CaveBuilder";
+        public string Name => "JungleBuilder";
         public int Priority => 2000;
 
-        public int SeedChance = 55;
+        public string GrassBlueprint = "Grass";
+        public string VineWallBlueprint = "VineWall";
+        public string TreeBlueprint = "Tree";
+        public int SeedChance = 48;
         public int CAPasses = 2;
         public float NoiseThreshold = 0.47f;
-        public bool UseNoise = true;
-        public string WallBlueprint = "Wall";
-        public string FloorBlueprint = "Floor";
-        public string RubbleBlueprint = "Rubble";
+        public float TreeChance = 0.10f;
 
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
         {
-            // 1. Fill entire zone with walls
+            // 1. Fill interior with vine walls
             FillWithWalls(zone, factory);
 
-            // 2. Generate cellular automata
+            // 2. Generate cellular automata (lower seed = more open)
             var ca = new CellularAutomata(Zone.Width, Zone.Height);
             ca.SeedChance = SeedChance;
             ca.SeedBorders = true;
@@ -40,24 +35,29 @@ namespace CavesOfOoo.Core
             ca.Generate(rng);
 
             // 3. Generate noise field
-            float[,] noise = null;
-            if (UseNoise)
-                noise = SimpleNoise.GenerateField(Zone.Width, Zone.Height, rng);
+            var noise = SimpleNoise.GenerateField(Zone.Width, Zone.Height, rng);
 
             // 4. Carve open spaces
-            // Faithful to Qud: if CA cell is open OR noise <= threshold, clear
             // Qud has no border walls — CA SeedBorders creates natural wall tendency near edges
             for (int x = 0; x < Zone.Width; x++)
             {
                 for (int y = 0; y < Zone.Height; y++)
                 {
                     bool caOpen = ca.IsOpen(x, y);
-                    bool noiseOpen = noise != null && noise[x, y] <= NoiseThreshold;
+                    bool noiseOpen = noise[x, y] <= NoiseThreshold;
 
                     if (caOpen || noiseOpen)
                     {
                         ClearWalls(zone, x, y);
-                        PlaceFloorOrRubble(zone, factory, rng, x, y);
+                        PlaceGrass(zone, factory, x, y);
+
+                        // Scatter trees in some open cells
+                        if (rng.NextDouble() < TreeChance)
+                        {
+                            var tree = factory.CreateEntity(TreeBlueprint);
+                            if (tree != null)
+                                zone.AddEntity(tree, x, y);
+                        }
                     }
                 }
             }
@@ -71,11 +71,10 @@ namespace CavesOfOoo.Core
             {
                 for (int y = 0; y < Zone.Height; y++)
                 {
-                    // Skip if the cell already has a wall (e.g., from BorderBuilder)
                     var cell = zone.GetCell(x, y);
                     if (cell.IsWall()) continue;
 
-                    Entity wall = factory.CreateEntity(WallBlueprint);
+                    var wall = factory.CreateEntity(VineWallBlueprint);
                     if (wall != null)
                         zone.AddEntity(wall, x, y);
                 }
@@ -86,8 +85,6 @@ namespace CavesOfOoo.Core
         {
             var cell = zone.GetCell(x, y);
             if (cell == null) return;
-
-            // Remove all wall entities from this cell
             for (int i = cell.Objects.Count - 1; i >= 0; i--)
             {
                 if (cell.Objects[i].HasTag("Wall"))
@@ -95,20 +92,15 @@ namespace CavesOfOoo.Core
             }
         }
 
-        private void PlaceFloorOrRubble(Zone zone, EntityFactory factory, System.Random rng, int x, int y)
+        private void PlaceGrass(Zone zone, EntityFactory factory, int x, int y)
         {
-            int roll = rng.Next(100);
-            string blueprint;
-            if (roll < 80)
-                blueprint = FloorBlueprint;
-            else if (roll < 95)
-                blueprint = RubbleBlueprint;
-            else
-                return; // 5% empty
-
-            Entity terrain = factory.CreateEntity(blueprint);
-            if (terrain != null)
-                zone.AddEntity(terrain, x, y);
+            int roll = (int)(System.Math.Abs(x * 31 + y * 17) % 100);
+            if (roll < 95)
+            {
+                var grass = factory.CreateEntity(GrassBlueprint);
+                if (grass != null)
+                    zone.AddEntity(grass, x, y);
+            }
         }
     }
 }

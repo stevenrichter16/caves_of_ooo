@@ -23,7 +23,9 @@
     {
       "Name": "MeleeWeapon",
       "Inherits": "Item",
-      "Parts": [],
+      "Parts": [
+        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }] }
+      ],
       "Stats": [],
       "Tags": [
         { "Key": "MeleeWeapon", "Value": "" }
@@ -38,19 +40,15 @@
           { "Key": "RenderString", "Value": "/" },
           { "Key": "ColorString", "Value": "&c" },
           { "Key": "RenderLayer", "Value": "5" }
-        ]}
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "4" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "MaxStrengthBonus", "Value": "3" }] }
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 5, "Min": 0, "Max": 5 }
       ],
       "Tags": [
         { "Key": "Tier", "Value": "1" }
-      ],
-      "Props": [
-        { "Key": "DamageDice", "Value": "1d4" }
-      ],
-      "IntProps": [
-        { "Key": "PenetrationBonus", "Value": 1 }
       ]
     },
     {
@@ -58,7 +56,11 @@
       "Inherits": "PhysicalObject",
       "Parts": [
         { "Name": "Render", "Params": [{ "Key": "RenderLayer", "Value": "10" }] },
-        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] }
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d2" }] },
+        { "Name": "Armor", "Params": [] },
+        { "Name": "Inventory", "Params": [{ "Key": "MaxWeight", "Value": "150" }] },
+        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "10" }, { "Key": "Wanders", "Value": "true" }, { "Key": "WandersRandomly", "Value": "true" }] }
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 1, "Min": 0, "Max": 999 },
@@ -82,7 +84,9 @@
           { "Key": "DisplayName", "Value": "snapjaw" },
           { "Key": "RenderString", "Value": "s" },
           { "Key": "ColorString", "Value": "&w" }
-        ]}
+        ]},
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4" }, { "Key": "PenBonus", "Value": "1" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "1" }] }
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 },
@@ -104,10 +108,15 @@
           { "Key": "RenderString", "Value": "@" },
           { "Key": "ColorString", "Value": "&Y" },
           { "Key": "RenderLayer", "Value": "20" }
-        ]}
+        ]},
+        { "Name": "ActivatedAbilities", "Params": [] },
+        { "Name": "Mutations", "Params": [{ "Key": "StartingMutations", "Value": "FlamingHandsMutation:1" }] }
       ],
       "Stats": [
-        { "Name": "Hitpoints", "Value": 20, "Min": 0, "Max": 20 }
+        { "Name": "Hitpoints", "Value": 20, "Min": 0, "Max": 20 },
+        { "Name": "Strength", "Value": 18 },
+        { "Name": "Agility", "Value": 18 },
+        { "Name": "Toughness", "Value": 18 }
       ],
       "Tags": [
         { "Key": "Player", "Value": "" }
@@ -193,7 +202,8 @@
           { "Key": "DisplayName", "Value": "snapjaw scavenger" },
           { "Key": "RenderString", "Value": "s" },
           { "Key": "ColorString", "Value": "&r" }
-        ]}
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "1" }] }
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 20, "Min": 0, "Max": 20 },
@@ -211,7 +221,10 @@
           { "Key": "DisplayName", "Value": "snapjaw hunter" },
           { "Key": "RenderString", "Value": "s" },
           { "Key": "ColorString", "Value": "&R" }
-        ]}
+        ]},
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6" }, { "Key": "PenBonus", "Value": "2" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "3" }] },
+        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "15" }] }
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 25, "Min": 0, "Max": 25 },
@@ -223,6 +236,170 @@
       ]
     },
     {
+      "Name": "ArmorItem",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Body" }] },
+        { "Name": "Armor", "Params": [] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Armor", "Value": "" }
+      ]
+    },
+    {
+      "Name": "LeatherArmor",
+      "Inherits": "ArmorItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "leather armor" },
+          { "Key": "RenderString", "Value": "[" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "15" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "-1" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "ChainMail",
+      "Inherits": "ArmorItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "chain mail" },
+          { "Key": "RenderString", "Value": "[" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "25" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "5" }, { "Key": "DV", "Value": "-2" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 25, "Min": 0, "Max": 25 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "Sand",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "sand" },
+          { "Key": "RenderString", "Value": "." },
+          { "Key": "ColorString", "Value": "&W" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "SandstoneWall",
+      "Inherits": "Wall",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "sandstone wall" },
+          { "Key": "RenderString", "Value": "#" },
+          { "Key": "ColorString", "Value": "&W" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "Rock",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "rock" },
+          { "Key": "RenderString", "Value": "o" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Solid", "Value": "" }
+      ]
+    },
+    {
+      "Name": "Grass",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "grass" },
+          { "Key": "RenderString", "Value": "." },
+          { "Key": "ColorString", "Value": "&g" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "VineWall",
+      "Inherits": "Wall",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "vine wall" },
+          { "Key": "RenderString", "Value": "#" },
+          { "Key": "ColorString", "Value": "&G" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "Tree",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "tree" },
+          { "Key": "RenderString", "Value": "T" },
+          { "Key": "ColorString", "Value": "&G" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Solid", "Value": "" }
+      ]
+    },
+    {
+      "Name": "StoneFloor",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "stone floor" },
+          { "Key": "RenderString", "Value": "." },
+          { "Key": "ColorString", "Value": "&y" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "StoneWall",
+      "Inherits": "Wall",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "stone wall" },
+          { "Key": "RenderString", "Value": "#" },
+          { "Key": "ColorString", "Value": "&w" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "LongSword",
       "Inherits": "MeleeWeapon",
       "Parts": [
@@ -231,19 +408,15 @@
           { "Key": "RenderString", "Value": "/" },
           { "Key": "ColorString", "Value": "&y" },
           { "Key": "RenderLayer", "Value": "5" }
-        ]}
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "8" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8" }, { "Key": "PenBonus", "Value": "2" }] }
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 }
       ],
       "Tags": [
         { "Key": "Tier", "Value": "2" }
-      ],
-      "Props": [
-        { "Key": "DamageDice", "Value": "1d8" }
-      ],
-      "IntProps": [
-        { "Key": "PenetrationBonus", "Value": 2 }
       ]
     }
   ]

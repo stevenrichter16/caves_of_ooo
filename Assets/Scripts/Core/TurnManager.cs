@@ -148,6 +148,9 @@ namespace CavesOfOoo.Core
         /// </summary>
         public void EndTurn(Entity actor)
         {
+            // Fire EndTurn event so parts can react (cooldown ticking, regeneration, etc.)
+            actor.FireEvent(GameEvent.New("EndTurn"));
+
             SpendEnergy(actor);
             CurrentActor = null;
             WaitingForInput = false;

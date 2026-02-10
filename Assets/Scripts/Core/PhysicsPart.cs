@@ -24,6 +24,18 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool Takeable = false;
 
+        /// <summary>
+        /// Back-reference: which entity's inventory this item is in.
+        /// Null if on the ground or equipped. Mirrors Qud's Physics.InInventory.
+        /// </summary>
+        public Entity InInventory = null;
+
+        /// <summary>
+        /// Back-reference: which entity this item is equipped on.
+        /// Null if in inventory or on the ground. Mirrors Qud's Physics.Equipped.
+        /// </summary>
+        public Entity Equipped = null;
+
         public override void Initialize()
         {
             if (ParentEntity != null && ParentEntity.HasTag("Solid"))

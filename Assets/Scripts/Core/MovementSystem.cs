@@ -28,6 +28,57 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// Extended move attempt that also returns what blocked movement.
+        /// Returns (moved, blockedBy) where blockedBy is the entity that blocked, or null.
+        /// </summary>
+        public static (bool moved, Entity blockedBy) TryMoveEx(Entity entity, Zone zone, int dx, int dy)
+        {
+            var currentCell = zone.GetEntityCell(entity);
+            if (currentCell == null) return (false, null);
+
+            int newX = currentCell.X + dx;
+            int newY = currentCell.Y + dy;
+
+            if (!zone.InBounds(newX, newY)) return (false, null);
+
+            var targetCell = zone.GetCell(newX, newY);
+            if (targetCell == null) return (false, null);
+
+            // Fire BeforeMove event
+            var beforeMove = GameEvent.New("BeforeMove");
+            beforeMove.SetParameter("Actor", (object)entity);
+            beforeMove.SetParameter("TargetCell", (object)targetCell);
+            beforeMove.SetParameter("SourceCell", (object)currentCell);
+            beforeMove.SetParameter("DX", dx);
+            beforeMove.SetParameter("DY", dy);
+
+            bool allowed = entity.FireEvent(beforeMove);
+            if (!allowed)
+            {
+                // Check if something blocked us
+                var blocker = beforeMove.GetParameter<Entity>("BlockedBy");
+                return (false, blocker);
+            }
+
+            // Perform the move
+            int oldX = currentCell.X;
+            int oldY = currentCell.Y;
+            zone.MoveEntity(entity, newX, newY);
+
+            // Fire AfterMove event
+            var afterMove = GameEvent.New("AfterMove");
+            afterMove.SetParameter("Actor", (object)entity);
+            afterMove.SetParameter("Cell", (object)targetCell);
+            afterMove.SetParameter("OldX", oldX);
+            afterMove.SetParameter("OldY", oldY);
+            afterMove.SetParameter("NewX", newX);
+            afterMove.SetParameter("NewY", newY);
+            entity.FireEvent(afterMove);
+
+            return (true, null);
+        }
+
+        /// <summary>
         /// Attempt to move an entity to a specific cell.
         /// Returns true if the move succeeded, false if blocked or out of bounds.
         /// </summary>

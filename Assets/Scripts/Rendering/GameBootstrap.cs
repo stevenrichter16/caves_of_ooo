@@ -17,13 +17,19 @@ namespace CavesOfOoo
         public ZoneRenderer ZoneRenderer;
 
         private EntityFactory _factory;
-        private ZoneManager _zoneManager;
+        private OverworldZoneManager _zoneManager;
         private Zone _zone;
         private TurnManager _turnManager;
         private Entity _player;
 
         private void Start()
         {
+            // Initialize faction relationships
+            FactionManager.Initialize();
+
+            // Wire combat messages to Unity console
+            MessageLog.OnMessage = msg => Debug.Log($"[Combat] {msg}");
+
             // Load blueprints
             _factory = new EntityFactory();
             TextAsset blueprintAsset = Resources.Load<TextAsset>("Blueprints/Objects");
@@ -37,9 +43,9 @@ namespace CavesOfOoo
                 return;
             }
 
-            // Create zone manager and generate a cave zone
-            _zoneManager = new ZoneManager(_factory);
-            _zone = _zoneManager.GetZone("CaveLevel_1");
+            // Create zone manager and generate starting zone
+            _zoneManager = new OverworldZoneManager(_factory);
+            _zone = _zoneManager.GetZone("Overworld.5.5");
             _zoneManager.SetActiveZone(_zone);
 
             if (_zone == null)
@@ -66,6 +72,19 @@ namespace CavesOfOoo
                 Debug.LogError("GameBootstrap: ZoneRenderer not assigned!");
             }
 
+            // Wire up camera follow on the main camera
+            var cam = Camera.main;
+            CameraFollow cameraFollow = null;
+            if (cam != null)
+            {
+                cameraFollow = cam.GetComponent<CameraFollow>();
+                if (cameraFollow == null)
+                    cameraFollow = cam.gameObject.AddComponent<CameraFollow>();
+                cameraFollow.Player = _player;
+                cameraFollow.CurrentZone = _zone;
+                cameraFollow.SnapToPlayer();
+            }
+
             // Wire up input handler
             var inputHandler = GetComponent<InputHandler>();
             if (inputHandler == null)
@@ -74,6 +93,9 @@ namespace CavesOfOoo
             inputHandler.CurrentZone = _zone;
             inputHandler.TurnManager = _turnManager;
             inputHandler.ZoneRenderer = ZoneRenderer;
+            inputHandler.ZoneManager = _zoneManager;
+            inputHandler.WorldMap = _zoneManager.WorldMap;
+            inputHandler.CameraFollow = cameraFollow;
 
             // Start the turn loop
             _turnManager.ProcessUntilPlayerTurn();
@@ -123,6 +145,14 @@ namespace CavesOfOoo
             foreach (var creature in creatures)
             {
                 _turnManager.AddEntity(creature);
+
+                // Wire BrainPart with zone and RNG so AI can function
+                var brain = creature.GetPart<BrainPart>();
+                if (brain != null)
+                {
+                    brain.CurrentZone = _zone;
+                    brain.Rng = new System.Random();
+                }
             }
             Debug.Log($"GameBootstrap: Registered {creatures.Count} creatures for turns");
         }

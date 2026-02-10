@@ -419,22 +419,29 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void FullPipeline_BordersAreSolid()
+        public void FullPipeline_EdgesHavePassableCells()
         {
+            // Like Qud: no border walls, but ConnectivityBuilder ensures
+            // at least one passable cell on each edge for zone transitions
             var zone = new Zone("test");
             var pipeline = ZoneGenerationPipeline.CreateCavePipeline();
             pipeline.Generate(zone, _factory, new System.Random(42));
 
+            bool hasNorth = false, hasSouth = false, hasEast = false, hasWest = false;
             for (int x = 0; x < Zone.Width; x++)
             {
-                Assert.IsTrue(zone.GetCell(x, 0).IsSolid(), $"Top border at ({x},0)");
-                Assert.IsTrue(zone.GetCell(x, Zone.Height - 1).IsSolid(), $"Bottom border at ({x},{Zone.Height - 1})");
+                if (zone.GetCell(x, 0).IsPassable()) hasNorth = true;
+                if (zone.GetCell(x, Zone.Height - 1).IsPassable()) hasSouth = true;
             }
             for (int y = 0; y < Zone.Height; y++)
             {
-                Assert.IsTrue(zone.GetCell(0, y).IsSolid(), $"Left border at (0,{y})");
-                Assert.IsTrue(zone.GetCell(Zone.Width - 1, y).IsSolid(), $"Right border at ({Zone.Width - 1},{y})");
+                if (zone.GetCell(0, y).IsPassable()) hasWest = true;
+                if (zone.GetCell(Zone.Width - 1, y).IsPassable()) hasEast = true;
             }
+            Assert.IsTrue(hasNorth, "North edge should have at least one passable cell");
+            Assert.IsTrue(hasSouth, "South edge should have at least one passable cell");
+            Assert.IsTrue(hasEast, "East edge should have at least one passable cell");
+            Assert.IsTrue(hasWest, "West edge should have at least one passable cell");
         }
 
         // ========================
