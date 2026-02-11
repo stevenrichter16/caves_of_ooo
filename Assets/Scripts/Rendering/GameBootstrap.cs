@@ -27,6 +27,9 @@ namespace CavesOfOoo
             // Initialize faction relationships
             FactionManager.Initialize();
 
+            // Load mutation metadata definitions (Qud-style registry).
+            MutationRegistry.EnsureInitialized();
+
             // Wire combat messages to Unity console
             MessageLog.OnMessage = msg => Debug.Log($"[Combat] {msg}");
 

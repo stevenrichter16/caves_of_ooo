@@ -6,7 +6,8 @@ namespace CavesOfOoo.Rendering
     /// <summary>
     /// MonoBehaviour that converts player key presses into game commands.
     /// Supports WASD, arrow keys, numpad (8-directional), vi keys,
-    /// item pickup (G/comma), and ability activation (1-5 + direction).
+    /// item pickup (G/comma), ability activation (1-5 + direction),
+    /// and debug mutation grant (F6).
     /// This is the input boundary — the only place Unity input touches the simulation.
     /// </summary>
     public class InputHandler : MonoBehaviour
@@ -82,6 +83,14 @@ namespace CavesOfOoo.Rendering
             if (_inputState == InputState.AwaitingDirection)
             {
                 HandleAwaitingDirection();
+                return;
+            }
+
+            // Debug: grant a random mutation from the current mutate pool.
+            if (Input.GetKeyDown(KeyCode.F6))
+            {
+                TryDebugGrantRandomMutation();
+                _lastMoveTime = Time.time;
                 return;
             }
 
@@ -210,6 +219,68 @@ namespace CavesOfOoo.Rendering
             TurnManager.ProcessUntilPlayerTurn();
             if (ZoneRenderer != null)
                 ZoneRenderer.MarkDirty();
+        }
+
+        /// <summary>
+        /// Debug utility: grant one random valid mutation to the player and log details.
+        /// </summary>
+        private void TryDebugGrantRandomMutation()
+        {
+            var mutations = PlayerEntity.GetPart<MutationsPart>();
+            if (mutations == null)
+            {
+                Debug.LogWarning("[Mutations/Debug] F6 pressed, but player has no MutationsPart.");
+                return;
+            }
+
+            var pool = mutations.GetMutatePool();
+            Debug.Log($"[Mutations/Debug] F6 pressed. Pool size: {pool.Count}. Current mutations: {GetMutationListSummary(mutations)}");
+
+            var granted = mutations.RandomlyMutate(_combatRng);
+            if (granted == null)
+            {
+                Debug.LogWarning("[Mutations/Debug] No mutation granted. Pool may be empty or all options may be blocked by exclusions/ownership.");
+                return;
+            }
+
+            var grantedPart = mutations.GetMutation(granted.ClassName);
+            int level = grantedPart?.Level ?? 0;
+            bool affectsBody = grantedPart?.AffectsBodyParts ?? false;
+            bool generatesEquipment = grantedPart?.GeneratesEquipment ?? false;
+
+            Debug.Log(
+                "[Mutations/Debug] Granted mutation: " +
+                $"{granted.DisplayName} ({granted.ClassName}), " +
+                $"Level={level}, Category={granted.Category}, Cost={granted.Cost}, " +
+                $"AffectsBodyParts={affectsBody}, GeneratesEquipment={generatesEquipment}");
+
+            Debug.Log(
+                "[Mutations/Debug] Post-grant state: " +
+                $"Mutations={GetMutationListSummary(mutations)} | " +
+                $"GeneratedEquipmentTracked={mutations.MutationGeneratedEquipment.Count}");
+
+            if (ZoneRenderer != null)
+                ZoneRenderer.MarkDirty();
+        }
+
+        private static string GetMutationListSummary(MutationsPart mutations)
+        {
+            if (mutations == null || mutations.MutationList.Count == 0)
+                return "(none)";
+
+            string summary = "";
+            for (int i = 0; i < mutations.MutationList.Count; i++)
+            {
+                BaseMutation mutation = mutations.MutationList[i];
+                if (mutation == null)
+                    continue;
+
+                if (summary.Length > 0)
+                    summary += ", ";
+                summary += mutation.DisplayName + " L" + mutation.Level;
+            }
+
+            return string.IsNullOrEmpty(summary) ? "(none)" : summary;
         }
 
         /// <summary>

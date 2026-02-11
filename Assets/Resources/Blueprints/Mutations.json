@@ -1,0 +1,118 @@
+{
+  "Categories": [
+    {
+      "Name": "Physical",
+      "DisplayName": "Physical"
+    },
+    {
+      "Name": "Mental",
+      "DisplayName": "Mental"
+    },
+    {
+      "Name": "PhysicalDefects",
+      "DisplayName": "Physical Defects"
+    },
+    {
+      "Name": "MentalDefects",
+      "DisplayName": "Mental Defects"
+    },
+    {
+      "Name": "Morphotypes",
+      "DisplayName": "Morphotypes"
+    }
+  ],
+  "Mutations": [
+    {
+      "Name": "FlamingHands",
+      "ClassName": "FlamingHandsMutation",
+      "DisplayName": "Flaming Hands",
+      "Category": "Physical",
+      "Cost": 4,
+      "MaxLevel": 10,
+      "Defect": false,
+      "Ranked": false,
+      "Exclusions": []
+    },
+    {
+      "Name": "Regeneration",
+      "ClassName": "RegenerationMutation",
+      "DisplayName": "Regeneration",
+      "Category": "Physical",
+      "Cost": 4,
+      "MaxLevel": 10,
+      "Defect": false,
+      "Ranked": false,
+      "Exclusions": []
+    },
+    {
+      "Name": "ExtraArmPrototype",
+      "ClassName": "ExtraArmPrototypeMutation",
+      "DisplayName": "Extra Arm (Prototype)",
+      "Category": "Physical",
+      "Cost": 4,
+      "MaxLevel": 10,
+      "Defect": false,
+      "Ranked": false,
+      "Exclusions": []
+    },
+    {
+      "Name": "Telepathy",
+      "ClassName": "TelepathyMutation",
+      "DisplayName": "Telepathy",
+      "Category": "Mental",
+      "Cost": 4,
+      "MaxLevel": 10,
+      "Defect": false,
+      "Ranked": false,
+      "Exclusions": []
+    },
+    {
+      "Name": "Esper",
+      "ClassName": "EsperMutation",
+      "DisplayName": "Esper",
+      "Category": "Morphotypes",
+      "Cost": 1,
+      "MaxLevel": 1,
+      "Defect": false,
+      "Ranked": false,
+      "ExcludeFromPool": true,
+      "Exclusions": ["Chimera", "ChimeraMutation"]
+    },
+    {
+      "Name": "Chimera",
+      "ClassName": "ChimeraMutation",
+      "DisplayName": "Chimera",
+      "Category": "Morphotypes",
+      "Cost": 1,
+      "MaxLevel": 1,
+      "Defect": false,
+      "Ranked": false,
+      "ExcludeFromPool": true,
+      "Exclusions": ["Esper", "EsperMutation"]
+    },
+    {
+      "Name": "IrritableGenome",
+      "ClassName": "IrritableGenomeMutation",
+      "DisplayName": "Irritable Genome",
+      "Category": "MentalDefects",
+      "Cost": 1,
+      "MaxLevel": 1,
+      "Defect": true,
+      "Ranked": false,
+      "ExcludeFromPool": true,
+      "Exclusions": []
+    },
+    {
+      "Name": "UnstableGenome",
+      "ClassName": "UnstableGenomeMutation",
+      "DisplayName": "Unstable Genome",
+      "Category": "Mental",
+      "Cost": 1,
+      "MaxLevel": 10,
+      "Defect": false,
+      "Ranked": true,
+      "ExcludeFromPool": true,
+      "Exclusions": []
+    }
+  ]
+}

@@ -106,7 +106,63 @@ namespace CavesOfOoo.Core
         public void SetStatValue(string name, int value)
         {
             if (Statistics.TryGetValue(name, out Stat stat))
+            {
+                int oldValue = stat.Value;
                 stat.Value = value;
+                int newValue = stat.Value;
+
+                if (newValue != oldValue)
+                {
+                    var statChanged = GameEvent.New("StatChanged");
+                    statChanged.SetParameter("Stat", name);
+                    statChanged.SetParameter("OldValue", oldValue);
+                    statChanged.SetParameter("NewValue", newValue);
+                    FireEvent(statChanged);
+                }
+            }
+        }
+
+        // --- MP Economy ---
+
+        /// <summary>
+        /// Qud-style check: entities can only gain mutation points if they have an MP stat.
+        /// </summary>
+        public bool CanGainMP()
+        {
+            return Statistics.ContainsKey("MP");
+        }
+
+        /// <summary>
+        /// Gain mutation points by increasing MP.BaseValue and firing GainedMP.
+        /// </summary>
+        public bool GainMP(int amount)
+        {
+            if (Statistics.TryGetValue("MP", out Stat stat))
+            {
+                stat.BaseValue += amount;
+                FireEvent(GameEvent.New("GainedMP", "Amount", amount));
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Spend mutation points by increasing MP.Penalty and firing UsedMP with context.
+        /// </summary>
+        public bool UseMP(int amount, string context = "default")
+        {
+            if (Statistics.TryGetValue("MP", out Stat stat))
+            {
+                stat.Penalty += amount;
+                var usedMP = GameEvent.New("UsedMP");
+                usedMP.SetParameter("Amount", amount);
+                usedMP.SetParameter("Context", context ?? "default");
+                FireEvent(usedMP);
+                return true;
+            }
+
+            return false;
         }
 
         // --- Tag Access ---
@@ -142,6 +198,50 @@ namespace CavesOfOoo.Core
             if (IntProperties.TryGetValue(name, out int value))
                 return value;
             return defaultValue;
+        }
+
+        public void SetIntProperty(string name, int value, bool removeIfZero = false)
+        {
+            int oldValue = GetIntProperty(name, 0);
+
+            if (removeIfZero && value == 0)
+            {
+                IntProperties.Remove(name);
+            }
+            else
+            {
+                IntProperties[name] = value;
+            }
+
+            int newValue = GetIntProperty(name, 0);
+            if (newValue != oldValue)
+            {
+                var changed = GameEvent.New("IntPropertyChanged");
+                changed.SetParameter("Name", name);
+                changed.SetParameter("OldValue", oldValue);
+                changed.SetParameter("NewValue", newValue);
+                FireEvent(changed);
+            }
+        }
+
+        public int ModIntProperty(string name, int delta, bool removeIfZero = false)
+        {
+            int value = GetIntProperty(name, 0) + delta;
+            SetIntProperty(name, value, removeIfZero);
+            return value;
+        }
+
+        public void RemoveIntProperty(string name)
+        {
+            int oldValue = GetIntProperty(name, 0);
+            if (IntProperties.Remove(name))
+            {
+                var changed = GameEvent.New("IntPropertyChanged");
+                changed.SetParameter("Name", name);
+                changed.SetParameter("OldValue", oldValue);
+                changed.SetParameter("NewValue", 0);
+                FireEvent(changed);
+            }
         }
 
         // --- Event System ---
