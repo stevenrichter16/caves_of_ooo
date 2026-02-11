@@ -970,6 +970,299 @@ Shows:
 
 ---
 
+## Butcherable Cybernetics — Harvesting Implants from Corpses
+
+When True Kin NPCs die, their corpses may contain extractable cybernetic implants. The `CyberneticsButcherableCybernetic` part enables this recovery mechanic.
+
+### Source: `XRL.World.Parts/CyberneticsButcherableCybernetic.cs`
+
+```csharp
+public class CyberneticsButcherableCybernetic : IPart
+{
+    public int BaseSuccessChance = 80;  // 80% base success rate
+    public List<GameObject> Cybernetics;  // Stored implant objects
+}
+```
+
+### Requirements
+- Player must have the `CookingAndGathering_Butchery` skill
+- Corpse must be visible and not a hologram
+- Not in combat (auto-butcher checks for nearby hostiles)
+
+### Butchering Algorithm
+
+```
+1. For each cybernetic implant stored on corpse:
+   a. Roll BaseSuccessChance (80%)
+   b. SUCCESS: Extract implant, add to player inventory or drop on ground
+      → "You butcher [implant] from [corpse]."
+   c. FAILURE: Implant is destroyed in the extraction process
+      → "You rip [implant] out of [corpse], but destroy it in the process."
+2. Destroy the corpse object after extraction
+3. Costs 1000 energy (one turn)
+```
+
+### Sound Effect
+Extraction plays `"Sounds/Interact/sfx_interact_cyberneticImplant_butcher"`.
+
+### Auto-Butcher Integration
+When the Butchery toggle is enabled, auto-butchering occurs via `ObjectEnteringCellEvent` — the player automatically attempts extraction when walking over eligible corpses (same combat-check rules as regular auto-butchering).
+
+---
+
+## Medassist Module — Detailed Implementation
+
+The Medassist Module (`CyberneticsMedassistModule`) is one of the most complex cybernetic implants, implementing an autonomous medical injection system.
+
+### Source: `XRL.World.Parts/CyberneticsMedassistModule.cs`
+
+```csharp
+public class CyberneticsMedassistModule : IPoweredPart
+{
+    public int TonicCapacity = 8;  // Maximum loaded tonics
+    // Toggleable activated ability
+    // Responds to BeforeApplyDamage on implantee
+}
+```
+
+### Tonic Loading System
+
+The module has its own **internal Inventory** that stores up to 8 injectable tonics:
+
+| Action | Command | Description |
+|--------|---------|-------------|
+| Load single tonic | `LoadTonic` | Load from context menu on a tonic in player inventory |
+| Load via picker | `LoadTonics` | Opens item picker showing all compatible tonics |
+| Eject all tonics | `EjectTonics` | Returns all loaded tonics to player inventory |
+
+**Loading Rules:**
+- Only accepts items with the `Tonic` part
+- Rejects tonics with `Eat = true` (oral tonics)
+- Cannot exceed `TonicCapacity` (8)
+
+### Auto-Injection AI
+
+On each turn tick AND on `BeforeApplyDamage`, the module evaluates:
+
+```
+1. Check: module enabled (toggled on), not broken/rusted/EMPed
+2. Check: implantee has room for another tonic effect (under tonic capacity)
+3. Score each loaded tonic via GetUtilityScoreEvent
+4. Select highest-scoring tonic (must be > 0)
+5. Inject: fire ApplyingTonic → ApplyTonic events
+6. Destroy consumed tonic
+7. Message: "Your [module] injects you with [tonic]."
+```
+
+The **utility scoring** system considers the implantee's current state and incoming damage to decide which tonic is most needed. This allows it to, for example, inject a healing tonic when taking heavy damage or a salve tonic when poisoned.
+
+### Phase-Awareness
+
+The Medassist Module is **phase-aware**: if an injection shifts the implantee's phase (e.g., via a phase tonic), and the incoming damage no longer matches the new phase, the damage is negated entirely.
+
+---
+
+## Anatomy-Modifying Implants — Deep Dive
+
+Several implants physically alter the creature's body part tree. These are among the most complex cybernetics implementations.
+
+### Motorized Treads (`CyberneticsMotorizedTreads`)
+
+**Source:** `XRL.World.Parts/CyberneticsMotorizedTreads.cs`
+
+On implant:
+1. **Saves** all original body part properties (Name, Description, DependsOn, Laterality, Mobility, Integral, Plural, Mass, Category)
+2. **Converts** the target body part to `"lower body"` (Category 6, integral, non-mobile)
+3. **Adds** two new `"Tread"` body parts as children (both integral, Category 6)
+4. Triggers `WantToReequip()` to handle equipment changes
+5. **Blocks dismemberment** of the implanted body part via `BeforeDismemberEvent`
+
+On unimplant:
+1. **Removes** added Tread parts by their manager ID
+2. **Restores** all saved original properties
+3. Triggers `WantToReequip()`
+
+Uses a dual manager ID system:
+- `AdditionsManagerID` = `"{objectID}::MotorizedTreads::Add"` — tracks added parts
+- `ChangesManagerID` = `"{objectID}::MotorizedTreads::Change"` — tracks modified parts
+
+### Gun Rack (`CyberneticsGunRack`)
+
+**Source:** `XRL.World.Parts/CyberneticsGunRack.cs`
+
+On implant:
+1. Adds two `"Hardpoint"` body parts to the body root (Category 6, integral)
+2. Hardpoints accept `"Missile Weapon"` equipment type
+3. Positioned before Hands/Feet/Roots/Thrown Weapon in body order
+4. Triggers `WantToReequip()`
+
+### Grafted Mirror Arm (`CyberneticsGraftedMirrorArm`)
+
+**Source:** `XRL.World.Parts/CyberneticsGraftedMirrorArm.cs`
+
+On implant:
+1. Adds one `"Thrown Weapon"` body part to the body root
+2. Positioned after existing "Thrown Weapon" parts
+3. Enables carrying an additional thrown weapon
+
+All anatomy-modifying implants use **manager IDs** for clean removal — when unimplanted, parts are removed by manager ID string, ensuring only the parts added by that specific implant are affected (even if dismembered).
+
+---
+
+## Compute Power Event — Full API Reference
+
+The `GetAvailableComputePowerEvent` is the central scaling system for cybernetics.
+
+### Source: `XRL.World/GetAvailableComputePowerEvent.cs`
+
+```csharp
+[GameEvent(Cascade = 3, Cache = Cache.Singleton)]
+public class GetAvailableComputePowerEvent : SingletonEvent<GetAvailableComputePowerEvent>
+{
+    public GameObject Actor;
+    public int Amount;  // Aggregated compute power
+}
+```
+
+### Query Methods
+
+```csharp
+// Get total compute power for an actor
+static int GetFor(GameObject Actor)
+
+// Get total compute power for an active part (sums across all subjects)
+static int GetFor(IActivePart Part)
+```
+
+### Scaling Overloads (Complete Set)
+
+**AdjustUp — Increase values with compute power:**
+```csharp
+// Integer scaling
+static int AdjustUp(GameObject Actor, int Amount)
+// → Amount × (100 + CP) / 100
+
+static int AdjustUp(GameObject Actor, int Amount, float Factor)
+// → Amount × (100 + CP × Factor) / 100
+
+// Float scaling
+static float AdjustUp(GameObject Actor, float Amount)
+static float AdjustUp(GameObject Actor, float Amount, float Factor)
+
+// IActivePart variants (same math, resolves actor from part)
+static int AdjustUp(IActivePart Part, int Amount)
+static int AdjustUp(IActivePart Part, int Amount, float Factor)
+static float AdjustUp(IActivePart Part, float Amount)
+static float AdjustUp(IActivePart Part, float Amount, float Factor)
+```
+
+**AdjustDown — Decrease cooldowns/costs with compute power:**
+```csharp
+// Integer scaling with floor
+static int AdjustDown(GameObject Actor, int Amount, int FloorDivisor = 2)
+// → max(Amount × (100 - CP) / 100, Amount / FloorDivisor)
+
+static int AdjustDown(GameObject Actor, int Amount, float Factor, int FloorDivisor = 2)
+// → max(Amount × (100 - CP × Factor) / 100, Amount / FloorDivisor)
+
+// Float scaling with floor
+static float AdjustDown(GameObject Actor, float Amount, int FloorDivisor = 2)
+static float AdjustDown(GameObject Actor, float Amount, float Factor, int FloorDivisor = 2)
+
+// IActivePart variants
+static int AdjustDown(IActivePart Part, int Amount, int FloorDivisor = 2)
+static int AdjustDown(IActivePart Part, int Amount, float Factor, int FloorDivisor = 2)
+static float AdjustDown(IActivePart Part, float Amount, float FloorDivisor = 2)
+static float AdjustDown(IActivePart Part, float Amount, float Factor, float FloorDivisor = 2)
+```
+
+The `Factor` parameter allows implants to scale at different rates with compute power. For example, `Factor = 0.5` means the implant only benefits from half the compute power.
+
+### Palladium Electrodeposits — Bonus Intelligence
+
+```csharp
+// CyberneticsPalladiumElectrodeposits.HandleEvent(ImplantedEvent)
+if (E.Part?.Type == "Head")
+{
+    StatShifter.SetStatShift(E.Implantee, "Intelligence", 2, baseValue: true);
+}
+```
+
+Palladium Electrodeposits provides +2 Intelligence **only when installed in the Head slot**. It provides +20 compute power regardless of slot.
+
+---
+
+## Reactive Cranial Plating — Event Blocking Pattern
+
+The `CyberneticsReactiveCranialPlating` demonstrates a key cybernetics design pattern: **event registration on the implantee**.
+
+```csharp
+// On implant: register to intercept events on the creature, not the implant object
+E.Implantee.RegisterPartEvent(this, "CanApplyDazed");
+E.Implantee.RegisterPartEvent(this, "ApplyDazed");
+E.Implantee.RegisterPartEvent(this, "CanApplyStun");
+E.Implantee.RegisterPartEvent(this, "ApplyStun");
+
+// On unimplant: clean up by unregistering
+E.Implantee.UnregisterPartEvent(this, "CanApplyDazed");
+// ... etc
+
+// Event handler: return false to block the event entirely
+public override bool FireEvent(Event E)
+{
+    if (E.ID == "CanApplyDazed" || E.ID == "ApplyDazed" ||
+        E.ID == "CanApplyStun" || E.ID == "ApplyStun")
+        return false;  // Block stun and daze completely
+    return base.FireEvent(E);
+}
+```
+
+This pattern is used by many cybernetics that need to intercept events on their host creature rather than on themselves. The `RegisterPartEvent` / `UnregisterPartEvent` pair ensures clean lifecycle management.
+
+---
+
+## Inflatable Axons — Compute Power Scaling Example
+
+A detailed example of how compute power scales a cybernetic ability:
+
+```csharp
+// Base values
+public int Bonus = 40;    // +40 quickness
+public int Duration = 10;  // 10 turns
+
+// On activation:
+int num3 = GetAvailableComputePowerEvent.GetFor(E.Actor);
+if (num3 != 0)
+{
+    Duration = Duration * (100 + num3) / 100;   // Scale duration up
+    Bonus = Bonus * (100 + num3) / 100;          // Scale bonus up
+}
+E.Actor.ApplyEffect(new AxonsInflated(Duration, Bonus, ParentObject));
+E.Actor.CooldownActivatedAbility(ActivatedAbilityID, 100);  // Fixed 100-turn cooldown
+```
+
+With 20 compute power: `Bonus = 40 × 120/100 = 48`, `Duration = 10 × 120/100 = 12`
+With 40 compute power: `Bonus = 40 × 140/100 = 56`, `Duration = 10 × 140/100 = 14`
+
+After the boost expires, the implantee suffers -10 quickness for 10 turns (sluggish penalty, not shown in the compute power scaling — fixed penalty regardless of CP).
+
+---
+
+## NoteReducedLicensePoints — Discount Implants
+
+Some implants have reduced license point costs compared to normal. The `NoteReducedLicensePoints` part adds a descriptive note:
+
+```csharp
+public class NoteReducedLicensePoints : IPart
+{
+    public int Amount;  // How many fewer license points
+    // Appends to description:
+    // "[This implant] costs [Amount] fewer license points than usual to install."
+}
+```
+
+---
+
 ## Summary: Complete Cybernetics Flow
 
 ```
