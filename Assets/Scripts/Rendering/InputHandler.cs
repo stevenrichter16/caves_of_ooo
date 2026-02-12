@@ -94,6 +94,14 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // Debug: dump body part tree to console.
+            if (Input.GetKeyDown(KeyCode.F7))
+            {
+                TryDebugDumpBodyParts();
+                _lastMoveTime = Time.time;
+                return;
+            }
+
             int dx = 0, dy = 0;
 
             // Check movement keys
@@ -263,6 +271,79 @@ namespace CavesOfOoo.Rendering
                 ZoneRenderer.MarkDirty();
         }
 
+        /// <summary>
+        /// Debug utility: dump the player's full body part tree to the console.
+        /// Press F7 in-game to inspect anatomy, equipped items, and dismemberment status.
+        /// </summary>
+        private void TryDebugDumpBodyParts()
+        {
+            var body = PlayerEntity.GetPart<Body>();
+            if (body == null)
+            {
+                Debug.Log("[Body/Debug] F7 pressed, but player has no Body part.");
+                return;
+            }
+
+            var root = body.GetBody();
+            if (root == null)
+            {
+                Debug.Log("[Body/Debug] F7 pressed, but body tree is not initialized.");
+                return;
+            }
+
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine("[Body/Debug] === Body Part Tree ===");
+            DumpBodyPartTree(sb, root, 0);
+
+            var dismembered = body.DismemberedParts;
+            if (dismembered.Count > 0)
+            {
+                sb.AppendLine($"  --- Dismembered ({dismembered.Count}) ---");
+                for (int i = 0; i < dismembered.Count; i++)
+                {
+                    var dp = dismembered[i];
+                    sb.AppendLine($"    [{dp.Part.Type}] {dp.Part.GetDisplayName()} (was on part #{dp.ParentPartID})");
+                }
+            }
+
+            var allParts = body.GetParts();
+            int hands = 0, arms = 0, equipped = 0;
+            for (int i = 0; i < allParts.Count; i++)
+            {
+                if (allParts[i].Type == "Hand") hands++;
+                if (allParts[i].Type == "Arm") arms++;
+                if (allParts[i]._Equipped != null && allParts[i].FirstSlotForEquipped) equipped++;
+            }
+            sb.AppendLine($"  --- Summary: {allParts.Count} parts, {arms} arms, {hands} hands, {equipped} items equipped ---");
+
+            Debug.Log(sb.ToString());
+        }
+
+        private void DumpBodyPartTree(System.Text.StringBuilder sb, CavesOfOoo.Core.Anatomy.BodyPart part, int depth)
+        {
+            string indent = new string(' ', depth * 2);
+            string laterality = part.GetLaterality() != 0
+                ? $" [{CavesOfOoo.Core.Anatomy.Laterality.GetAdjective(part.GetLaterality())}]"
+                : "";
+            string equip = "";
+            if (part._Equipped != null)
+                equip = $" <- {part._Equipped.GetDisplayName()}{(part.FirstSlotForEquipped ? "" : " (secondary slot)")}";
+            string flags = "";
+            if (part.Primary || part.DefaultPrimary) flags += " *primary*";
+            if (part.Mortal) flags += " *mortal*";
+            if (part.Appendage) flags += " appendage";
+            if (part.Abstract) flags += " abstract";
+            if (part.Dynamic) flags += " dynamic";
+
+            sb.AppendLine($"  {indent}{part.Type}: \"{part.GetDisplayName()}\"{laterality}{flags}{equip}");
+
+            if (part.Parts != null)
+            {
+                for (int i = 0; i < part.Parts.Count; i++)
+                    DumpBodyPartTree(sb, part.Parts[i], depth + 1);
+            }
+        }
+
         private static string GetMutationListSummary(MutationsPart mutations)
         {
             if (mutations == null || mutations.MutationList.Count == 0)
@@ -299,12 +380,26 @@ namespace CavesOfOoo.Rendering
             var item = items[0];
             if (InventorySystem.Pickup(PlayerEntity, item, CurrentZone))
             {
-                // Auto-equip if the item has an EquippablePart and the slot is empty
+                // Auto-equip if the item has an EquippablePart and a slot is free
                 var equippable = item.GetPart<EquippablePart>();
                 if (equippable != null)
                 {
-                    var inv = PlayerEntity.GetPart<InventoryPart>();
-                    if (inv != null && inv.GetEquipped(equippable.Slot) == null)
+                    var body = PlayerEntity.GetPart<Body>();
+                    bool hasFreeSlot = false;
+                    if (body != null)
+                    {
+                        // Body-part-aware: check if there's a free body part of the right type
+                        var freeSlot = body.FindFreeSlot(equippable.GetSlotArray()[0].Trim());
+                        hasFreeSlot = freeSlot != null;
+                    }
+                    else
+                    {
+                        // Legacy: check string-keyed slot
+                        var inv = PlayerEntity.GetPart<InventoryPart>();
+                        hasFreeSlot = inv != null && inv.GetEquipped(equippable.Slot) == null;
+                    }
+
+                    if (hasFreeSlot)
                     {
                         InventorySystem.Equip(PlayerEntity, item);
                     }

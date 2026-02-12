@@ -22,88 +22,118 @@ namespace CavesOfOoo
         private TurnManager _turnManager;
         private Entity _player;
 
+        private void Awake()
+        {
+            Debug.Log("[Bootstrap] Awake called");
+        }
+
         private void Start()
         {
-            // Initialize faction relationships
+            Debug.Log("[Bootstrap] Start called");
+            try
+            {
+                DoStart();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[Bootstrap] FATAL exception during Start:\n{ex}");
+            }
+        }
+
+        private void DoStart()
+        {
+            Debug.Log("[Bootstrap] Step 1/9: Initializing factions...");
             FactionManager.Initialize();
 
-            // Load mutation metadata definitions (Qud-style registry).
+            Debug.Log("[Bootstrap] Step 2/9: Initializing mutations...");
             MutationRegistry.EnsureInitialized();
 
             // Wire combat messages to Unity console
             MessageLog.OnMessage = msg => Debug.Log($"[Combat] {msg}");
 
-            // Load blueprints
+            Debug.Log("[Bootstrap] Step 3/9: Creating EntityFactory...");
             _factory = new EntityFactory();
+
+            Debug.Log("[Bootstrap] Step 4/9: Loading blueprints...");
             TextAsset blueprintAsset = Resources.Load<TextAsset>("Blueprints/Objects");
-            if (blueprintAsset != null)
+            if (blueprintAsset == null)
             {
-                _factory.LoadBlueprints(blueprintAsset.text);
-            }
-            else
-            {
-                Debug.LogError("GameBootstrap: Could not load Blueprints/Objects.json");
+                Debug.LogError("[Bootstrap] FAILED: Could not load Blueprints/Objects.json from Resources");
                 return;
             }
+            _factory.LoadBlueprints(blueprintAsset.text);
+            Debug.Log($"[Bootstrap] Loaded {_factory.Blueprints.Count} blueprints");
 
-            // Create zone manager and generate starting zone
+            Debug.Log("[Bootstrap] Step 5/9: Generating starting zone...");
             _zoneManager = new OverworldZoneManager(_factory);
             _zone = _zoneManager.GetZone("Overworld.5.5");
             _zoneManager.SetActiveZone(_zone);
-
             if (_zone == null)
             {
-                Debug.LogError("GameBootstrap: Failed to generate zone");
+                Debug.LogError("[Bootstrap] FAILED: Zone generation returned null");
                 return;
             }
+            Debug.Log($"[Bootstrap] Zone generated: {_zone.EntityCount} entities");
 
-            // Place player in a passable cell near center
+            Debug.Log("[Bootstrap] Step 6/9: Creating player...");
             _player = _factory.CreateEntity("Player");
+            if (_player == null)
+            {
+                Debug.LogError("[Bootstrap] FAILED: Player entity creation returned null");
+                return;
+            }
+            var playerBody = _player.GetPart<Body>();
+            Debug.Log($"[Bootstrap] Player created. Has Body part: {playerBody != null}, Body initialized: {playerBody?.GetBody() != null}");
             PlacePlayerInOpenCell();
 
-            // Set up turn manager
+            Debug.Log("[Bootstrap] Step 7/9: Setting up turns...");
             _turnManager = new TurnManager();
             RegisterCreaturesForTurns();
 
-            // Wire up the renderer
+            Debug.Log("[Bootstrap] Step 8/9: Wiring renderer...");
             if (ZoneRenderer != null)
             {
                 ZoneRenderer.SetZone(_zone);
+                Debug.Log("[Bootstrap] ZoneRenderer wired successfully");
             }
             else
             {
-                Debug.LogError("GameBootstrap: ZoneRenderer not assigned!");
+                Debug.LogError("[Bootstrap] FAILED: ZoneRenderer not assigned in Inspector!");
             }
 
             // Wire up camera follow on the main camera
             var cam = Camera.main;
-            CameraFollow cameraFollow = null;
-            if (cam != null)
+            if (cam == null)
             {
-                cameraFollow = cam.GetComponent<CameraFollow>();
+                Debug.LogError("[Bootstrap] FAILED: Camera.main is null (no camera tagged MainCamera)");
+            }
+            else
+            {
+                var cameraFollow = cam.GetComponent<CameraFollow>();
                 if (cameraFollow == null)
                     cameraFollow = cam.gameObject.AddComponent<CameraFollow>();
                 cameraFollow.Player = _player;
                 cameraFollow.CurrentZone = _zone;
                 cameraFollow.SnapToPlayer();
-            }
 
-            // Wire up input handler
-            var inputHandler = GetComponent<InputHandler>();
-            if (inputHandler == null)
-                inputHandler = gameObject.AddComponent<InputHandler>();
-            inputHandler.PlayerEntity = _player;
-            inputHandler.CurrentZone = _zone;
-            inputHandler.TurnManager = _turnManager;
-            inputHandler.ZoneRenderer = ZoneRenderer;
-            inputHandler.ZoneManager = _zoneManager;
-            inputHandler.WorldMap = _zoneManager.WorldMap;
-            inputHandler.CameraFollow = cameraFollow;
+                // Wire up input handler
+                Debug.Log("[Bootstrap] Step 9/9: Wiring input...");
+                var inputHandler = GetComponent<InputHandler>();
+                if (inputHandler == null)
+                    inputHandler = gameObject.AddComponent<InputHandler>();
+                inputHandler.PlayerEntity = _player;
+                inputHandler.CurrentZone = _zone;
+                inputHandler.TurnManager = _turnManager;
+                inputHandler.ZoneRenderer = ZoneRenderer;
+                inputHandler.ZoneManager = _zoneManager;
+                inputHandler.WorldMap = _zoneManager.WorldMap;
+                inputHandler.CameraFollow = cameraFollow;
+            }
 
             // Start the turn loop
             _turnManager.ProcessUntilPlayerTurn();
 
-            Debug.Log($"GameBootstrap: Zone created with {_zone.EntityCount} entities. Use WASD/arrows to move.");
+            Debug.Log($"[Bootstrap] DONE. Zone has {_zone.EntityCount} entities. WASD/arrows to move.");
         }
 
         /// <summary>

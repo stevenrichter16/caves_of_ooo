@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Anatomy;
 using UnityEngine;
 
 namespace CavesOfOoo.Data
@@ -134,6 +135,9 @@ namespace CavesOfOoo.Data
                 entity.AddPart(part);
             }
 
+            // Initialize body anatomy if Body part has an Anatomy parameter
+            InitializeAnatomy(entity);
+
             // Fire creation event
             entity.FireEvent(GameEvent.New("ObjectCreated"));
 
@@ -213,6 +217,53 @@ namespace CavesOfOoo.Data
         {
             Blueprints.TryGetValue(name, out Blueprint bp);
             return bp;
+        }
+
+        /// <summary>
+        /// If the entity has a Body part, initialize its anatomy from the
+        /// Anatomy property (e.g. "Humanoid", "Quadruped", "Insectoid", "Simple").
+        /// The Body part can declare this via blueprint parameter "Anatomy".
+        /// </summary>
+        private void InitializeAnatomy(Entity entity)
+        {
+            var body = entity.GetPart<Body>();
+            if (body == null) return;
+            if (body.GetBody() != null) return; // already initialized
+
+            // Check for Anatomy property on the entity or infer from blueprint
+            string anatomy = entity.GetProperty("Anatomy", null);
+
+            // Default to Humanoid if no anatomy specified
+            if (string.IsNullOrEmpty(anatomy))
+                anatomy = "Humanoid";
+
+            int category = BodyPartCategory.ANIMAL;
+            string catStr = entity.GetProperty("BodyCategory", null);
+            if (!string.IsNullOrEmpty(catStr))
+            {
+                int code = BodyPartCategory.GetCode(catStr);
+                if (code > 0) category = code;
+            }
+
+            BodyPart root;
+            switch (anatomy)
+            {
+                case "Quadruped":
+                    root = AnatomyFactory.CreateQuadruped(category);
+                    break;
+                case "Insectoid":
+                    root = AnatomyFactory.CreateInsectoid(category);
+                    break;
+                case "Simple":
+                    root = AnatomyFactory.CreateSimple(category);
+                    break;
+                case "Humanoid":
+                default:
+                    root = AnatomyFactory.CreateHumanoid(category);
+                    break;
+            }
+
+            body.SetBody(root);
         }
     }
 }
