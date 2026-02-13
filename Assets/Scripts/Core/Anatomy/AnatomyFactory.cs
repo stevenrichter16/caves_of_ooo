@@ -60,6 +60,7 @@ namespace CavesOfOoo.Core.Anatomy
             {
                 Mortal = true,
                 Contact = true,
+                TargetWeight = 30,
             });
 
             // Head: mortal appendage. Losing head = decapitation death.
@@ -68,6 +69,7 @@ namespace CavesOfOoo.Core.Anatomy
                 Mortal = true,
                 Appendage = true,
                 Contact = true,
+                TargetWeight = 5,
             });
 
             // Face: non-appendage slot on head (masks, visors).
@@ -87,21 +89,28 @@ namespace CavesOfOoo.Core.Anatomy
             {
                 Appendage = true,
                 Contact = true,
+                TargetWeight = 10,
             });
 
             // Hand: appendage for holding weapons/shields. Depends on arm.
+            // DefaultBehavior = "DefaultFist" gives unarmed creatures a natural punch.
             Register(new BodyPartType("Hand")
             {
                 Appendage = true,
                 Contact = true,
+                DefaultBehavior = "DefaultFist",
+                TargetWeight = 5,
             });
 
             // Hands: abstract two-hand slot for two-handed weapons. Requires a Hand.
+            // ImpliedBy/ImpliedPer: each Hand implies one Hands slot (for dynamic additions).
             Register(new BodyPartType("Hands")
             {
                 Abstract = true,
                 Plural = true,
                 RequiresType = "Hand",
+                ImpliedBy = "Hand",
+                ImpliedPer = 1,
             });
 
             // Feet: appendage with mobility value. Losing feet = movement penalty.
@@ -111,6 +120,7 @@ namespace CavesOfOoo.Core.Anatomy
                 Contact = true,
                 Plural = true,
                 Mobility = 2,
+                TargetWeight = 10,
             });
 
             // Tail: optional appendage for tail-bearing creatures.
@@ -118,6 +128,7 @@ namespace CavesOfOoo.Core.Anatomy
             {
                 Appendage = true,
                 Contact = true,
+                TargetWeight = 5,
             });
 
             // Thrown Weapon: abstract slot for throwable items. Always present.

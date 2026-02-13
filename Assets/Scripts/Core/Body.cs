@@ -182,7 +182,11 @@ namespace CavesOfOoo.Core
         /// 5. Check unsupported part cascade
         /// 6. Recalculate mobility
         /// </summary>
-        public bool Dismember(BodyPart part)
+        /// <summary>
+        /// Dismember a body part: detach it and its subtree, track for regeneration.
+        /// If a zone is provided, drops a severed limb item at the creature's position.
+        /// </summary>
+        public bool Dismember(BodyPart part, Zone zone = null)
         {
             if (part == null || _body == null) return false;
             if (part == _body) return false; // Can't dismember root
@@ -194,8 +198,8 @@ namespace CavesOfOoo.Core
             if (ParentEntity != null && !ParentEntity.FireEvent(beforeEvent))
                 return false;
 
-            // Unequip everything on this part and children
-            UnequipSubtree(part);
+            // Unequip everything on this part and children — drop to ground if zone provided
+            UnequipSubtree(part, zone);
 
             // Detach from parent
             var parent = part.ParentPart;
@@ -212,10 +216,19 @@ namespace CavesOfOoo.Core
                 });
             }
 
+            // Create and drop severed limb entity
+            Entity limbEntity = null;
+            if (zone != null && ParentEntity != null && !part.Abstract)
+            {
+                limbEntity = CreateSeveredLimb(part, zone);
+            }
+
             // Post event
             var afterEvent = GameEvent.New("AfterDismember");
             afterEvent.SetParameter("Part", (object)part);
             afterEvent.SetParameter("Mortal", part.Mortal);
+            if (limbEntity != null)
+                afterEvent.SetParameter("SeveredLimbEntity", (object)limbEntity);
             ParentEntity?.FireEvent(afterEvent);
 
             // Log
@@ -227,7 +240,27 @@ namespace CavesOfOoo.Core
             CheckUnsupportedPartLoss();
             UpdateMobilityPenalty();
 
+            // Mortal part loss → death
+            if (part.Mortal && ParentEntity != null && zone != null)
+            {
+                CombatSystem.HandleDeath(ParentEntity, null, zone);
+            }
+
             return true;
+        }
+
+        /// <summary>
+        /// Create a severed limb item entity and place it at the creature's position.
+        /// </summary>
+        private Entity CreateSeveredLimb(BodyPart part, Zone zone)
+        {
+            var limbEntity = SeveredLimbFactory.Create(part);
+            var pos = zone.GetEntityPosition(ParentEntity);
+            if (pos.x >= 0 && pos.y >= 0)
+            {
+                zone.AddEntity(limbEntity, pos.x, pos.y);
+            }
+            return limbEntity;
         }
 
         // --- Regeneration ---
@@ -464,8 +497,167 @@ namespace CavesOfOoo.Core
 
             CheckUnsupportedPartLoss();
             CheckPartRecovery();
+            CheckImpliedParts();
             _body.RecalculateFirstEquipped();
+            RegenerateDefaultEquipment();
             UpdateMobilityPenalty();
+        }
+
+        /// <summary>
+        /// Ensure all body parts with a DefaultBehaviorBlueprint have their
+        /// _DefaultBehavior entity populated. Creates natural weapon entities
+        /// from known blueprint names via NaturalWeaponFactory.
+        /// Mirrors Qud's Body.RegenerateDefaultEquipment.
+        /// </summary>
+        public void RegenerateDefaultEquipment()
+        {
+            if (_body == null) return;
+            var parts = GetParts();
+            for (int i = 0; i < parts.Count; i++)
+            {
+                var part = parts[i];
+                if (!string.IsNullOrEmpty(part.DefaultBehaviorBlueprint))
+                {
+                    if (part._DefaultBehavior == null)
+                    {
+                        part._DefaultBehavior = NaturalWeaponFactory.Create(part.DefaultBehaviorBlueprint);
+                    }
+                }
+                else
+                {
+                    if (part._DefaultBehavior != null)
+                    {
+                        part._DefaultBehavior = null;
+                        part.FirstSlotForDefaultBehavior = false;
+                    }
+                }
+            }
+            _body.RecalculateFirstDefaultBehavior();
+        }
+
+        // --- Implied Parts ---
+
+        private const string IMPLIED_MANAGER_PREFIX = "Implied:";
+
+        /// <summary>
+        /// Check all body part types with ImpliedBy set. If the count of implied parts
+        /// is wrong, add or remove dynamic implied parts. Only manages parts tagged with
+        /// the "Implied:{Type}" manager ID; never touches native/manually-created parts.
+        /// Mirrors Qud's Body.CheckImpliedParts.
+        /// </summary>
+        public void CheckImpliedParts()
+        {
+            if (_body == null) return;
+
+            var types = AnatomyFactory.GetTypes();
+            bool changed = false;
+
+            foreach (var kvp in types)
+            {
+                var bpt = kvp.Value;
+                if (string.IsNullOrEmpty(bpt.ImpliedBy)) continue;
+
+                int impliedPer = bpt.ImpliedPer ?? 1;
+                if (impliedPer <= 0) continue;
+
+                string impliedType = bpt.Type;
+                string implyingType = bpt.ImpliedBy;
+                string managerID = IMPLIED_MANAGER_PREFIX + impliedType;
+
+                // Count implying parts (e.g., how many Hands exist)
+                int implyingCount = _body.CountParts(implyingType);
+
+                // Expected total count of implied parts
+                int expectedCount = implyingCount / impliedPer;
+
+                // Count existing implied parts: native vs dynamic
+                var allImplied = _body.GetPartsByType(impliedType);
+                int existingDynamic = 0;
+                int existingNative = 0;
+                for (int i = 0; i < allImplied.Count; i++)
+                {
+                    if (allImplied[i].Manager == managerID)
+                        existingDynamic++;
+                    else
+                        existingNative++;
+                }
+
+                // How many dynamic implied parts are needed beyond native ones?
+                int needed = expectedCount - existingNative;
+                if (needed < 0) needed = 0;
+
+                if (existingDynamic < needed)
+                {
+                    // Add missing implied parts
+                    var implyingParts = _body.GetPartsByType(implyingType);
+                    int toAdd = needed - existingDynamic;
+                    for (int j = 0; j < toAdd; j++)
+                    {
+                        BodyPart attachParent = FindImpliedAttachPoint(implyingParts, impliedType, managerID);
+                        if (attachParent == null)
+                            attachParent = _body;
+
+                        var newPart = AnatomyFactory.CreatePart(impliedType);
+
+                        // Inherit laterality from the implying part whose parent we're attaching to
+                        for (int k = 0; k < implyingParts.Count; k++)
+                        {
+                            if (implyingParts[k].ParentPart == attachParent)
+                            {
+                                newPart.SetLaterality(implyingParts[k].GetLaterality());
+                                break;
+                            }
+                        }
+
+                        AddPartByManager(managerID, attachParent, newPart);
+                        changed = true;
+                    }
+                }
+                else if (existingDynamic > needed)
+                {
+                    // Remove excess dynamic implied parts
+                    int toRemove = existingDynamic - needed;
+                    for (int i = allImplied.Count - 1; i >= 0 && toRemove > 0; i--)
+                    {
+                        if (allImplied[i].Manager == managerID)
+                        {
+                            allImplied[i].ParentPart?.RemovePart(allImplied[i]);
+                            toRemove--;
+                            changed = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Find the best parent to attach an implied part to.
+        /// Returns the parent of an implying part that doesn't already have
+        /// a dynamic implied sibling from the same manager.
+        /// </summary>
+        private BodyPart FindImpliedAttachPoint(List<BodyPart> implyingParts, string impliedType, string managerID)
+        {
+            for (int i = 0; i < implyingParts.Count; i++)
+            {
+                var parent = implyingParts[i].ParentPart;
+                if (parent == null) continue;
+
+                bool hasExisting = false;
+                if (parent.Parts != null)
+                {
+                    for (int j = 0; j < parent.Parts.Count; j++)
+                    {
+                        if (parent.Parts[j].Type == impliedType && parent.Parts[j].Manager == managerID)
+                        {
+                            hasExisting = true;
+                            break;
+                        }
+                    }
+                }
+                if (!hasExisting)
+                    return parent;
+            }
+            return null;
         }
 
         // --- Equipment integration ---
@@ -561,38 +753,60 @@ namespace CavesOfOoo.Core
             }
         }
 
-        private void UnequipSubtree(BodyPart part)
+        private void UnequipSubtree(BodyPart part, Zone zone = null)
         {
             if (part._Equipped != null)
             {
-                var inventory = ParentEntity?.GetPart<InventoryPart>();
-                if (inventory != null)
+                var item = part._Equipped;
+                part.ClearEquipped();
+
+                // Clear from any other body parts sharing this item
+                ClearEquipmentFromAllParts(item);
+
+                var physics = item.GetPart<PhysicsPart>();
+
+                // Drop to ground if zone is available (dismemberment), otherwise move to inventory
+                if (zone != null && ParentEntity != null)
                 {
-                    // Move equipped item back to carried inventory
-                    var item = part._Equipped;
-                    part.ClearEquipped();
-
-                    // Clear from any other body parts sharing this item
-                    ClearEquipmentFromAllParts(item);
-
-                    var physics = item.GetPart<PhysicsPart>();
                     if (physics != null)
                     {
                         physics.Equipped = null;
-                        physics.InInventory = ParentEntity;
+                        physics.InInventory = null;
                     }
-                    inventory.Objects.Add(item);
+
+                    // Remove from inventory if present
+                    var inventory = ParentEntity.GetPart<InventoryPart>();
+                    if (inventory != null)
+                        inventory.Objects.Remove(item);
+
+                    var pos = zone.GetEntityPosition(ParentEntity);
+                    if (pos.x >= 0 && pos.y >= 0)
+                    {
+                        zone.AddEntity(item, pos.x, pos.y);
+                        string itemName = item.GetDisplayName();
+                        string entityName = ParentEntity.GetDisplayName();
+                        MessageLog.Add($"{entityName}'s {itemName} falls to the ground!");
+                    }
                 }
                 else
                 {
-                    part.ClearEquipped();
+                    var inventory = ParentEntity?.GetPart<InventoryPart>();
+                    if (inventory != null)
+                    {
+                        if (physics != null)
+                        {
+                            physics.Equipped = null;
+                            physics.InInventory = ParentEntity;
+                        }
+                        inventory.Objects.Add(item);
+                    }
                 }
             }
 
             if (part.Parts != null)
             {
                 for (int i = 0; i < part.Parts.Count; i++)
-                    UnequipSubtree(part.Parts[i]);
+                    UnequipSubtree(part.Parts[i], zone);
             }
         }
 

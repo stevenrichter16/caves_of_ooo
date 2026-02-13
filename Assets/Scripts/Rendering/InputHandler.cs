@@ -7,7 +7,7 @@ namespace CavesOfOoo.Rendering
     /// MonoBehaviour that converts player key presses into game commands.
     /// Supports WASD, arrow keys, numpad (8-directional), vi keys,
     /// item pickup (G/comma), ability activation (1-5 + direction),
-    /// and debug mutation grant (F6).
+    /// and debug keys: F6 (grant mutation), F7 (dump body parts), F8 (dismember limb).
     /// This is the input boundary — the only place Unity input touches the simulation.
     /// </summary>
     public class InputHandler : MonoBehaviour
@@ -98,6 +98,14 @@ namespace CavesOfOoo.Rendering
             if (Input.GetKeyDown(KeyCode.F7))
             {
                 TryDebugDumpBodyParts();
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            // Debug: dismember a random non-mortal appendage.
+            if (Input.GetKeyDown(KeyCode.F8))
+            {
+                TryDebugDismember();
                 _lastMoveTime = Time.time;
                 return;
             }
@@ -319,6 +327,58 @@ namespace CavesOfOoo.Rendering
             Debug.Log(sb.ToString());
         }
 
+        /// <summary>
+        /// Debug utility: dismember a random non-mortal appendage from the player.
+        /// Press F8 in-game to test severed limb creation and body part loss.
+        /// </summary>
+        private void TryDebugDismember()
+        {
+            var body = PlayerEntity.GetPart<Body>();
+            if (body == null)
+            {
+                Debug.Log("[Body/Debug] F8 pressed, but player has no Body part.");
+                return;
+            }
+
+            var parts = body.GetParts();
+            CavesOfOoo.Core.Anatomy.BodyPart target = null;
+
+            // Find the first non-mortal, non-abstract appendage to dismember
+            for (int i = 0; i < parts.Count; i++)
+            {
+                var p = parts[i];
+                if (!p.Mortal && !p.Abstract && p.Appendage)
+                {
+                    target = p;
+                    break;
+                }
+            }
+
+            if (target == null)
+            {
+                Debug.Log("[Body/Debug] F8: No non-mortal appendage left to dismember!");
+                return;
+            }
+
+            Debug.Log($"[Body/Debug] F8: Dismembering \"{target.GetDisplayName()}\" ({target.Type})...");
+
+            bool success = body.Dismember(target, CurrentZone);
+
+            if (success)
+            {
+                body.UpdateBodyParts();
+                Debug.Log($"[Body/Debug] F8: Successfully dismembered \"{target.GetDisplayName()}\". Severed limb placed in zone.");
+                Debug.Log("[Body/Debug] F8: Press F7 to inspect updated body tree.");
+            }
+            else
+            {
+                Debug.Log($"[Body/Debug] F8: Dismember failed for \"{target.GetDisplayName()}\".");
+            }
+
+            if (ZoneRenderer != null)
+                ZoneRenderer.MarkDirty();
+        }
+
         private void DumpBodyPartTree(System.Text.StringBuilder sb, CavesOfOoo.Core.Anatomy.BodyPart part, int depth)
         {
             string indent = new string(' ', depth * 2);
@@ -328,14 +388,22 @@ namespace CavesOfOoo.Rendering
             string equip = "";
             if (part._Equipped != null)
                 equip = $" <- {part._Equipped.GetDisplayName()}{(part.FirstSlotForEquipped ? "" : " (secondary slot)")}";
+            string defaultBehavior = "";
+            if (part._DefaultBehavior != null)
+            {
+                var wpn = part._DefaultBehavior.GetPart<CavesOfOoo.Core.MeleeWeaponPart>();
+                string dmg = wpn != null ? $" {wpn.BaseDamage}" : "";
+                defaultBehavior = $" (natural: {part._DefaultBehavior.GetDisplayName()}{dmg})";
+            }
             string flags = "";
             if (part.Primary || part.DefaultPrimary) flags += " *primary*";
             if (part.Mortal) flags += " *mortal*";
             if (part.Appendage) flags += " appendage";
             if (part.Abstract) flags += " abstract";
             if (part.Dynamic) flags += " dynamic";
+            if (!string.IsNullOrEmpty(part.Manager)) flags += $" mgr={part.Manager}";
 
-            sb.AppendLine($"  {indent}{part.Type}: \"{part.GetDisplayName()}\"{laterality}{flags}{equip}");
+            sb.AppendLine($"  {indent}{part.Type}: \"{part.GetDisplayName()}\"{laterality}{flags}{equip}{defaultBehavior}");
 
             if (part.Parts != null)
             {

@@ -26,6 +26,7 @@ namespace CavesOfOoo.Core.Anatomy
         public int? ImpliedPer;
         public int? RequiresLaterality;
         public int? Mobility;
+        public int? TargetWeight;
 
         public bool? Appendage;
         public bool? Integral;
@@ -60,6 +61,7 @@ namespace CavesOfOoo.Core.Anatomy
             ImpliedPer = baseType.ImpliedPer;
             RequiresLaterality = baseType.RequiresLaterality;
             Mobility = baseType.Mobility;
+            TargetWeight = baseType.TargetWeight;
             Appendage = baseType.Appendage;
             Integral = baseType.Integral;
             Abstract = baseType.Abstract;
@@ -111,6 +113,8 @@ namespace CavesOfOoo.Core.Anatomy
                 part.Contact = Contact.Value;
             if (IgnorePosition.HasValue)
                 part.IgnorePosition = IgnorePosition.Value;
+            if (TargetWeight.HasValue)
+                part.TargetWeight = TargetWeight.Value;
         }
     }
 }

@@ -131,18 +131,26 @@ namespace CavesOfOoo.Core
                 return;
             }
 
-            // Penetration
+            // Select hit location on defender
+            BodyPart hitPart = null;
+            Body defenderBody = defender.GetPart<Body>();
+            if (defenderBody != null)
+                hitPart = SelectHitLocation(defenderBody, rng);
+
+            string partDesc = hitPart != null ? $" in the {hitPart.GetDisplayName()}" : "";
+
+            // Penetration — per-part AV when hit location is known
             int strMod = StatUtils.GetModifier(attacker, statName);
             if (maxStrBonus >= 0 && strMod > maxStrBonus)
                 strMod = maxStrBonus;
             int pv = strMod + penBonus;
-            int av = GetAV(defender);
+            int av = hitPart != null ? GetPartAV(defender, hitPart) : GetAV(defender);
 
             int penetrations = RollPenetrations(pv, av, rng);
 
             if (penetrations == 0)
             {
-                MessageLog.Add($"{attackerName} hits {defenderName} but fails to penetrate!");
+                MessageLog.Add($"{attackerName} hits {defenderName}{partDesc} but fails to penetrate!");
                 return;
             }
 
@@ -153,7 +161,7 @@ namespace CavesOfOoo.Core
 
             if (totalDamage <= 0)
             {
-                MessageLog.Add($"{attackerName} hits {defenderName} but deals no damage!");
+                MessageLog.Add($"{attackerName} hits {defenderName}{partDesc} but deals no damage!");
                 return;
             }
 
@@ -162,7 +170,13 @@ namespace CavesOfOoo.Core
 
             int remainingHP = defender.GetStatValue("Hitpoints", 0);
             if (remainingHP > 0)
-                MessageLog.Add($"{attackerName} hits {defenderName} for {totalDamage} damage! ({remainingHP} HP remaining)");
+            {
+                MessageLog.Add($"{attackerName} hits {defenderName}{partDesc} for {totalDamage} damage! ({remainingHP} HP remaining)");
+
+                // Check for combat dismemberment (only on survivors)
+                if (hitPart != null)
+                    CheckCombatDismemberment(defender, defenderBody, hitPart, totalDamage, zone, rng);
+            }
         }
 
         /// <summary>
@@ -175,23 +189,42 @@ namespace CavesOfOoo.Core
             var result = new List<WeaponSlot>();
             var parts = body.GetParts();
 
-            // Find weapons in Hand body parts
+            // Find weapons in Hand body parts.
+            // Equipped weapons take priority; fall back to DefaultBehavior (natural weapons).
             for (int i = 0; i < parts.Count; i++)
             {
                 var part = parts[i];
                 if (part.Type != "Hand") continue;
-                if (part._Equipped == null) continue;
-                if (!part.FirstSlotForEquipped) continue;
 
-                var wpn = part._Equipped.GetPart<MeleeWeaponPart>();
-                if (wpn != null)
+                // Check equipped weapon first
+                if (part._Equipped != null && part.FirstSlotForEquipped)
                 {
-                    result.Add(new WeaponSlot
+                    var wpn = part._Equipped.GetPart<MeleeWeaponPart>();
+                    if (wpn != null)
                     {
-                        Weapon = wpn,
-                        BodyPart = part,
-                        IsPrimary = part.Primary || part.DefaultPrimary
-                    });
+                        result.Add(new WeaponSlot
+                        {
+                            Weapon = wpn,
+                            BodyPart = part,
+                            IsPrimary = part.Primary || part.DefaultPrimary
+                        });
+                        continue;
+                    }
+                }
+
+                // Fall back to default behavior (natural weapon)
+                if (part._DefaultBehavior != null && part.FirstSlotForDefaultBehavior)
+                {
+                    var wpn = part._DefaultBehavior.GetPart<MeleeWeaponPart>();
+                    if (wpn != null)
+                    {
+                        result.Add(new WeaponSlot
+                        {
+                            Weapon = wpn,
+                            BodyPart = part,
+                            IsPrimary = part.Primary || part.DefaultPrimary
+                        });
+                    }
                 }
             }
 
@@ -362,6 +395,103 @@ namespace CavesOfOoo.Core
 
             if (zone != null)
                 zone.RemoveEntity(target);
+        }
+
+        // --- Body Part Targeting ---
+
+        /// <summary>
+        /// Damage must exceed this fraction of max HP to have any dismemberment chance.
+        /// </summary>
+        public const float DISMEMBER_DAMAGE_THRESHOLD = 0.25f;
+
+        /// <summary>
+        /// Base percentage chance for dismemberment when threshold is met.
+        /// </summary>
+        public const int DISMEMBER_BASE_CHANCE = 5;
+
+        /// <summary>
+        /// Select a random body part to be hit, weighted by TargetWeight.
+        /// Excludes abstract parts and parts with TargetWeight &lt;= 0.
+        /// Returns null if no valid targets (fallback to global AV).
+        /// </summary>
+        public static BodyPart SelectHitLocation(Body body, Random rng)
+        {
+            var parts = body.GetParts();
+            int totalWeight = 0;
+
+            for (int i = 0; i < parts.Count; i++)
+            {
+                if (parts[i].Abstract) continue;
+                if (parts[i].TargetWeight <= 0) continue;
+                totalWeight += parts[i].TargetWeight;
+            }
+
+            if (totalWeight <= 0) return null;
+
+            int roll = rng.Next(totalWeight);
+            int cumulative = 0;
+
+            for (int i = 0; i < parts.Count; i++)
+            {
+                if (parts[i].Abstract) continue;
+                if (parts[i].TargetWeight <= 0) continue;
+                cumulative += parts[i].TargetWeight;
+                if (roll < cumulative)
+                    return parts[i];
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Get Armor Value for a specific body part hit.
+        /// Checks armor equipped on that body part plus the entity's natural armor.
+        /// </summary>
+        public static int GetPartAV(Entity entity, BodyPart hitPart)
+        {
+            int av = 0;
+
+            if (hitPart._Equipped != null)
+            {
+                var armor = hitPart._Equipped.GetPart<ArmorPart>();
+                if (armor != null)
+                    av += armor.AV;
+            }
+
+            // Natural armor always applies
+            var naturalArmor = entity.GetPart<ArmorPart>();
+            if (naturalArmor != null)
+                av += naturalArmor.AV;
+
+            return av;
+        }
+
+        /// <summary>
+        /// Check if a combat hit should sever the struck body part.
+        /// Only triggers on severable appendages. Chance scales with damage.
+        /// </summary>
+        private static void CheckCombatDismemberment(Entity defender, Body body,
+            BodyPart hitPart, int damage, Zone zone, Random rng)
+        {
+            if (!hitPart.IsSeverable()) return;
+
+            float threshold = DISMEMBER_DAMAGE_THRESHOLD;
+            if (hitPart.Mortal)
+                threshold *= 2.0f;
+
+            int maxHP = defender.GetStat("Hitpoints")?.Max ?? 1;
+            float damageRatio = (float)damage / maxHP;
+            if (damageRatio < threshold) return;
+
+            float excessRatio = damageRatio - threshold;
+            int chance = DISMEMBER_BASE_CHANCE + (int)(excessRatio * 50);
+            chance = Math.Min(chance, 50);
+
+            int roll = rng.Next(100);
+            if (roll < chance)
+            {
+                body.Dismember(hitPart, zone);
+            }
         }
 
         /// <summary>

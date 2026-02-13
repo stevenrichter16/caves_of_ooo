@@ -59,6 +59,7 @@ namespace CavesOfOoo.Core.Anatomy
         public int _Laterality;
         public int RequiresLaterality = Laterality.ANY;
         public int Mobility;
+        public int TargetWeight;
         public int Flags = FLAG_CONTACT; // Contact is default on in Qud
         public int Position = -1;
 
@@ -678,6 +679,33 @@ namespace CavesOfOoo.Core.Anatomy
             }
         }
 
+        /// <summary>
+        /// Recalculate FirstSlotForDefaultBehavior across all parts sharing the same default behavior.
+        /// Mirrors RecalculateFirstEquipped but for the _DefaultBehavior channel.
+        /// </summary>
+        public void RecalculateFirstDefaultBehavior()
+        {
+            var seen = new HashSet<Entity>();
+            RecalculateFirstDefaultBehaviorInternal(seen);
+        }
+
+        private void RecalculateFirstDefaultBehaviorInternal(HashSet<Entity> seen)
+        {
+            if (_DefaultBehavior != null)
+            {
+                FirstSlotForDefaultBehavior = seen.Add(_DefaultBehavior);
+            }
+            else
+            {
+                FirstSlotForDefaultBehavior = false;
+            }
+            if (Parts != null)
+            {
+                for (int i = 0; i < Parts.Count; i++)
+                    Parts[i].RecalculateFirstDefaultBehaviorInternal(seen);
+            }
+        }
+
         // --- Clone ---
 
         /// <summary>
@@ -701,6 +729,7 @@ namespace CavesOfOoo.Core.Anatomy
                 _Laterality = _Laterality,
                 RequiresLaterality = RequiresLaterality,
                 Mobility = Mobility,
+                TargetWeight = TargetWeight,
                 Flags = Flags,
                 Position = Position,
                 DefaultBehaviorBlueprint = DefaultBehaviorBlueprint,

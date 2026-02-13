@@ -85,6 +85,7 @@ namespace CavesOfOoo
             var playerBody = _player.GetPart<Body>();
             Debug.Log($"[Bootstrap] Player created. Has Body part: {playerBody != null}, Body initialized: {playerBody?.GetBody() != null}");
             PlacePlayerInOpenCell();
+            SpawnDebugWeaponNearPlayer();
 
             Debug.Log("[Bootstrap] Step 7/9: Setting up turns...");
             _turnManager = new TurnManager();
@@ -134,6 +135,36 @@ namespace CavesOfOoo
             _turnManager.ProcessUntilPlayerTurn();
 
             Debug.Log($"[Bootstrap] DONE. Zone has {_zone.EntityCount} entities. WASD/arrows to move.");
+        }
+
+        /// <summary>
+        /// Debug: spawn a weapon next to the player so equipment-drop-on-dismember can be tested.
+        /// </summary>
+        private void SpawnDebugWeaponNearPlayer()
+        {
+            var pos = _zone.GetEntityPosition(_player);
+            if (pos.x < 0) return;
+
+            // Try adjacent cells for an open spot
+            int[] dx = { 1, -1, 0, 0, 1, -1, 1, -1 };
+            int[] dy = { 0, 0, 1, -1, 1, -1, -1, 1 };
+            for (int i = 0; i < dx.Length; i++)
+            {
+                int nx = pos.x + dx[i];
+                int ny = pos.y + dy[i];
+                if (!_zone.InBounds(nx, ny)) continue;
+                var cell = _zone.GetCell(nx, ny);
+                if (cell != null && cell.IsPassable())
+                {
+                    var weapon = _factory.CreateEntity("Dagger");
+                    if (weapon != null)
+                    {
+                        _zone.AddEntity(weapon, nx, ny);
+                        Debug.Log($"[Bootstrap] Debug: Spawned {weapon.GetDisplayName()} at ({nx},{ny}) near player");
+                    }
+                    return;
+                }
+            }
         }
 
         /// <summary>
