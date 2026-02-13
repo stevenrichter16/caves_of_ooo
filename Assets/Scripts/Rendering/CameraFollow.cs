@@ -38,10 +38,13 @@ namespace CavesOfOoo.Rendering
             transform.position = new Vector3(centerX, centerY, transform.position.z);
 
             // Set orthographic size to fit the entire zone on screen
-            // Need to fit both dimensions: pick whichever requires a larger size
             float sizeForHeight = Zone.Height * 0.5f;
             float sizeForWidth = Zone.Width * 0.5f / _camera.aspect;
             _camera.orthographicSize = Mathf.Max(sizeForHeight, sizeForWidth);
+
+            // Match camera background to game background so letterbox
+            // bands blend invisibly with the tilemap
+            _camera.backgroundColor = new Color(0.05f, 0.05f, 0.05f);
         }
     }
 }

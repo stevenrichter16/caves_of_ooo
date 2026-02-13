@@ -30,12 +30,30 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public bool Paused;
 
+        /// <summary>
+        /// Number of message log lines shown at the bottom of the screen.
+        /// </summary>
+        public int MessageLineCount = 3;
+
         private Tilemap _tilemap;
+        private Tilemap _msgTilemap;
         private bool _dirty = true;
+        private int _lastMessageCount = -1;
 
         private void Awake()
         {
             _tilemap = GetComponent<Tilemap>();
+
+            // Create a separate tilemap for messages with narrow half-width cells
+            var msgGridObj = new GameObject("MessageGrid");
+            var msgGrid = msgGridObj.AddComponent<Grid>();
+            msgGrid.cellSize = new Vector3(0.5f, 1f, 0f);
+
+            var msgTmObj = new GameObject("MessageTilemap");
+            msgTmObj.transform.SetParent(msgGridObj.transform);
+            _msgTilemap = msgTmObj.AddComponent<Tilemap>();
+            var msgRenderer = msgTmObj.AddComponent<TilemapRenderer>();
+            msgRenderer.sortingOrder = 1; // render above game world
         }
 
         /// <summary>
@@ -59,10 +77,21 @@ namespace CavesOfOoo.Rendering
         private void LateUpdate()
         {
             if (Paused) return;
+
+            // Re-render messages if new ones arrived (even without a full dirty)
+            bool newMessages = MessageLog.Count != _lastMessageCount;
+
             if (_dirty && CurrentZone != null)
             {
                 RenderZone();
+                RenderMessages();
                 _dirty = false;
+                _lastMessageCount = MessageLog.Count;
+            }
+            else if (newMessages)
+            {
+                RenderMessages();
+                _lastMessageCount = MessageLog.Count;
             }
         }
 
@@ -121,6 +150,63 @@ namespace CavesOfOoo.Rendering
             // Parse and apply color
             Color color = QudColorParser.Parse(render.ColorString);
             _tilemap.SetColor(tilePos, color);
+        }
+
+        /// <summary>
+        /// Render recent messages at the bottom of the visible screen
+        /// using the narrow-text message tilemap.
+        /// </summary>
+        private void RenderMessages()
+        {
+            if (_msgTilemap == null || MessageLineCount <= 0) return;
+
+            _msgTilemap.ClearAllTiles();
+
+            var recent = MessageLog.GetRecent(MessageLineCount);
+            if (recent.Count == 0) return;
+
+            // The message tilemap has 0.5×1.0 cells, so tileY maps 1:1 to world Y.
+            // Find the bottom tile row of the visible screen.
+            int bottomTileY = 0;
+            var cam = Camera.main;
+            if (cam != null)
+                bottomTileY = Mathf.CeilToInt(cam.transform.position.y - cam.orthographicSize + 0.5f);
+
+            // Render newest message at screen bottom, older ones above with spacer rows
+            for (int i = 0; i < MessageLineCount; i++)
+            {
+                int tileY = bottomTileY + (i * 2);
+                int msgIndex = recent.Count - 1 - i;
+
+                if (msgIndex >= 0)
+                {
+                    Color color = i == 0 ? QudColorParser.White : QudColorParser.Gray;
+                    DrawMsgText(0, tileY, recent[msgIndex], color);
+                }
+            }
+        }
+
+        private void DrawMsgText(int x, int tileY, string text, Color color)
+        {
+            if (text == null) return;
+            // Message tilemap cells are 0.5 wide, so we can fit more chars across screen
+            int maxChars = Zone.Width * 2; // 160 columns at half-width
+            int len = text.Length;
+            if (len > maxChars) len = maxChars;
+
+            for (int i = 0; i < len; i++)
+            {
+                char c = text[i];
+                if (c == ' ') continue;
+
+                var tile = CP437TilesetGenerator.GetTextTile(c);
+                if (tile == null) continue;
+
+                var pos = new Vector3Int(x + i, tileY, 0);
+                _msgTilemap.SetTile(pos, tile);
+                _msgTilemap.SetTileFlags(pos, TileFlags.None);
+                _msgTilemap.SetColor(pos, color);
+            }
         }
 
         /// <summary>
