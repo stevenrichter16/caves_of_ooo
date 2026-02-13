@@ -58,7 +58,6 @@
         { "Name": "Render", "Params": [{ "Key": "RenderLayer", "Value": "10" }] },
         { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
         { "Name": "Body", "Params": [] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d2" }] },
         { "Name": "Armor", "Params": [] },
         { "Name": "Inventory", "Params": [{ "Key": "MaxWeight", "Value": "150" }] },
         { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "10" }, { "Key": "Wanders", "Value": "true" }, { "Key": "WandersRandomly", "Value": "true" }] }
@@ -86,7 +85,6 @@
           { "Key": "RenderString", "Value": "s" },
           { "Key": "ColorString", "Value": "&w" }
         ]},
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4" }, { "Key": "PenBonus", "Value": "1" }] },
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "1" }] }
       ],
       "Stats": [
@@ -98,7 +96,8 @@
       "Tags": [
         { "Key": "Faction", "Value": "Snapjaws" },
         { "Key": "Tier", "Value": "1" }
-      ]
+      ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "SnapjawClaw" }]
     },
     {
       "Name": "Player",
@@ -223,7 +222,6 @@
           { "Key": "RenderString", "Value": "s" },
           { "Key": "ColorString", "Value": "&R" }
         ]},
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6" }, { "Key": "PenBonus", "Value": "2" }] },
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "3" }] },
         { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "15" }] }
       ],
@@ -234,7 +232,8 @@
       ],
       "Tags": [
         { "Key": "Tier", "Value": "2" }
-      ]
+      ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "SnapjawHunterClaw" }]
     },
     {
       "Name": "ArmorItem",

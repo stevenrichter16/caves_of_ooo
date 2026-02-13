@@ -71,7 +71,11 @@ namespace CavesOfOoo.Core
                     break; // Target already dead
 
                 bool isPrimary = weapons[i].IsPrimary;
-                PerformSingleAttack(attacker, defender, weapons[i].Weapon, isPrimary, zone, rng);
+                string weaponName = weapons[i].Weapon?.ParentEntity?.GetDisplayName()
+                    ?? weapons[i].Weapon?.BaseDamage ?? "fist";
+                string handName = weapons[i].BodyPart?.GetDisplayName() ?? "hand";
+                string sourceDesc = $"[{handName}: {weaponName}]";
+                PerformSingleAttack(attacker, defender, weapons[i].Weapon, isPrimary, zone, rng, sourceDesc);
             }
 
             return true;
@@ -102,7 +106,8 @@ namespace CavesOfOoo.Core
         /// Perform a single melee attack with one weapon.
         /// </summary>
         private static void PerformSingleAttack(Entity attacker, Entity defender,
-            MeleeWeaponPart weapon, bool isPrimary, Zone zone, Random rng)
+            MeleeWeaponPart weapon, bool isPrimary, Zone zone, Random rng,
+            string attackSourceDesc = null)
         {
             string damageDice = weapon?.BaseDamage ?? "1d2";
             int hitBonus = weapon?.HitBonus ?? 0;
@@ -116,6 +121,7 @@ namespace CavesOfOoo.Core
 
             string attackerName = attacker.GetDisplayName();
             string defenderName = defender.GetDisplayName();
+            string srcTag = attackSourceDesc != null ? $" {attackSourceDesc}" : "";
 
             // Hit roll: 1d20 + AgilityMod + HitBonus vs DV
             int hitRoll = DiceRoller.Roll(20, rng);
@@ -127,7 +133,7 @@ namespace CavesOfOoo.Core
 
             if (!naturalTwenty && totalHit < dv)
             {
-                MessageLog.Add($"{attackerName} misses {defenderName}!");
+                MessageLog.Add($"{attackerName}{srcTag} misses {defenderName}!");
                 return;
             }
 
@@ -150,7 +156,7 @@ namespace CavesOfOoo.Core
 
             if (penetrations == 0)
             {
-                MessageLog.Add($"{attackerName} hits {defenderName}{partDesc} but fails to penetrate!");
+                MessageLog.Add($"{attackerName}{srcTag} hits {defenderName}{partDesc} but fails to penetrate!");
                 return;
             }
 
@@ -161,7 +167,7 @@ namespace CavesOfOoo.Core
 
             if (totalDamage <= 0)
             {
-                MessageLog.Add($"{attackerName} hits {defenderName}{partDesc} but deals no damage!");
+                MessageLog.Add($"{attackerName}{srcTag} hits {defenderName}{partDesc} but deals no damage!");
                 return;
             }
 
@@ -171,7 +177,7 @@ namespace CavesOfOoo.Core
             int remainingHP = defender.GetStatValue("Hitpoints", 0);
             if (remainingHP > 0)
             {
-                MessageLog.Add($"{attackerName} hits {defenderName}{partDesc} for {totalDamage} damage! ({remainingHP} HP remaining)");
+                MessageLog.Add($"{attackerName}{srcTag} hits {defenderName}{partDesc} for {totalDamage} damage! ({remainingHP} HP remaining)");
 
                 // Check for combat dismemberment (only on survivors)
                 if (hitPart != null)

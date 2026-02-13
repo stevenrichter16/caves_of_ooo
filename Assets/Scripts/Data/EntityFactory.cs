@@ -264,6 +264,18 @@ namespace CavesOfOoo.Data
             }
 
             body.SetBody(root);
+
+            // Override natural weapon if specified (e.g. "DefaultClaw" for 1d4)
+            string naturalWeapon = entity.GetProperty("NaturalWeapon", null);
+            if (!string.IsNullOrEmpty(naturalWeapon))
+            {
+                var parts = root.GetParts();
+                for (int i = 0; i < parts.Count; i++)
+                {
+                    if (parts[i].Type == "Hand" && !string.IsNullOrEmpty(parts[i].DefaultBehaviorBlueprint))
+                        parts[i].DefaultBehaviorBlueprint = naturalWeapon;
+                }
+            }
         }
     }
 }

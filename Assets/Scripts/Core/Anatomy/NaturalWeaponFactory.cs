@@ -21,6 +21,10 @@ namespace CavesOfOoo.Core.Anatomy
                     return CreateWeapon("claw", "1d4", 0, "&r");
                 case "DefaultTendril":
                     return CreateWeapon("tendril", "1d3", 0, "&g");
+                case "SnapjawClaw":
+                    return CreateWeapon("claw", "1d4", 1, "&w");
+                case "SnapjawHunterClaw":
+                    return CreateWeapon("claw", "1d6", 2, "&w");
                 default:
                     return CreateWeapon(blueprintName, "1d2", 0, "&y");
             }
