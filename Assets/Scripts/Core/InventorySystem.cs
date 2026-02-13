@@ -60,6 +60,9 @@ namespace CavesOfOoo.Core
 
             MessageLog.Add($"{actor.GetDisplayName()} picks up {item.GetDisplayName()}.");
 
+            // Auto-equip if slot is free
+            AutoEquip(actor, item);
+
             // Fire AfterPickup
             var afterPickup = GameEvent.New("AfterPickup");
             afterPickup.SetParameter("Actor", (object)actor);
@@ -114,6 +117,35 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// Drop a partial stack from inventory onto the zone floor.
+        /// Splits the stack and drops the specified count.
+        /// </summary>
+        public static bool DropPartial(Entity actor, Entity item, int count, Zone zone)
+        {
+            if (actor == null || item == null || zone == null) return false;
+            if (count <= 0) return false;
+
+            var stacker = item.GetPart<StackerPart>();
+            if (stacker == null) return Drop(actor, item, zone);
+            if (count >= stacker.StackCount) return Drop(actor, item, zone);
+
+            var inventory = actor.GetPart<InventoryPart>();
+            if (inventory == null) return false;
+
+            // Split off the requested count
+            var split = stacker.SplitStack(count);
+            if (split == null) return false;
+
+            // Place split stack in zone at actor's position
+            var cell = zone.GetEntityCell(actor);
+            if (cell != null)
+                zone.AddEntity(split, cell.X, cell.Y);
+
+            MessageLog.Add($"{actor.GetDisplayName()} drops {split.GetDisplayName()}.");
+            return true;
+        }
+
+        /// <summary>
         /// Equip an item from the actor's inventory.
         /// Body-part-aware: when actor has Body, queries body parts for valid slots.
         /// Falls back to legacy slot system otherwise.
@@ -133,6 +165,15 @@ namespace CavesOfOoo.Core
 
             var equippable = item.GetPart<EquippablePart>();
             if (equippable == null) return false;
+
+            // If stacked, split off one item to equip
+            var stacker = item.GetPart<StackerPart>();
+            if (stacker != null && stacker.StackCount > 1)
+            {
+                item = stacker.RemoveOne();
+                equippable = item.GetPart<EquippablePart>();
+                // Original stack stays in inventory; we equip the clone
+            }
 
             var body = actor.GetPart<Body>();
 
@@ -285,6 +326,272 @@ namespace CavesOfOoo.Core
             return result;
         }
 
+        // --- Auto-Equip ---
+
+        /// <summary>
+        /// Auto-equip an item if it has an EquippablePart and the target slot is free.
+        /// Only equips into empty slots — never displaces existing equipment.
+        /// Mirrors Qud's auto-equip on pickup behavior.
+        /// </summary>
+        public static bool AutoEquip(Entity actor, Entity item)
+        {
+            if (actor == null || item == null) return false;
+
+            var equippable = item.GetPart<EquippablePart>();
+            if (equippable == null) return false;
+
+            // Don't auto-equip stacked items (stacks stay in inventory)
+            var stacker = item.GetPart<StackerPart>();
+            if (stacker != null && stacker.StackCount > 1) return false;
+
+            var body = actor.GetPart<Body>();
+
+            if (body != null)
+                return AutoEquipBodyPartAware(actor, item, equippable, body);
+            else
+                return AutoEquipLegacy(actor, item, equippable);
+        }
+
+        private static bool AutoEquipBodyPartAware(Entity actor, Entity item,
+            EquippablePart equippable, Body body)
+        {
+            string[] slotTypes = equippable.GetSlotArray();
+
+            // Check that ALL required slots are free
+            var freeSlots = new List<BodyPart>();
+            for (int i = 0; i < slotTypes.Length; i++)
+            {
+                string slotType = slotTypes[i].Trim();
+                var candidates = body.GetEquippableSlots(slotType);
+
+                BodyPart freeSlot = null;
+                for (int j = 0; j < candidates.Count; j++)
+                {
+                    if (candidates[j]._Equipped == null && !freeSlots.Contains(candidates[j]))
+                    {
+                        freeSlot = candidates[j];
+                        break;
+                    }
+                }
+
+                if (freeSlot == null)
+                    return false; // No free slot for this requirement
+
+                freeSlots.Add(freeSlot);
+            }
+
+            // All slots free — equip
+            return Equip(actor, item);
+        }
+
+        private static bool AutoEquipLegacy(Entity actor, Entity item,
+            EquippablePart equippable)
+        {
+            var inventory = actor.GetPart<InventoryPart>();
+            if (inventory == null) return false;
+
+            // Only auto-equip if the slot is empty
+            if (inventory.GetEquipped(equippable.Slot) != null)
+                return false;
+
+            return Equip(actor, item);
+        }
+
+        // --- Containers ---
+
+        /// <summary>
+        /// Find all containers at the actor's current cell (chests, corpses, etc.).
+        /// </summary>
+        public static List<Entity> GetContainersAtFeet(Entity actor, Zone zone)
+        {
+            var result = new List<Entity>();
+            if (actor == null || zone == null) return result;
+
+            var cell = zone.GetEntityCell(actor);
+            if (cell == null) return result;
+
+            for (int i = 0; i < cell.Objects.Count; i++)
+            {
+                var obj = cell.Objects[i];
+                if (obj == actor) continue;
+                if (obj.GetPart<ContainerPart>() != null)
+                    result.Add(obj);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Take a specific item from a container into the actor's inventory.
+        /// </summary>
+        public static bool TakeFromContainer(Entity actor, Entity container, Entity item)
+        {
+            if (actor == null || container == null || item == null) return false;
+
+            var containerPart = container.GetPart<ContainerPart>();
+            if (containerPart == null) return false;
+
+            var inventory = actor.GetPart<InventoryPart>();
+            if (inventory == null) return false;
+
+            if (containerPart.Locked)
+            {
+                MessageLog.Add($"The {container.GetDisplayName()} is locked.");
+                return false;
+            }
+
+            if (!containerPart.RemoveItem(item)) return false;
+
+            if (!inventory.AddObject(item))
+            {
+                // Too heavy — put it back
+                containerPart.AddItem(item);
+                MessageLog.Add($"You can't carry {item.GetDisplayName()}: too heavy!");
+                return false;
+            }
+
+            MessageLog.Add($"You take {item.GetDisplayName()} from the {container.GetDisplayName()}.");
+            return true;
+        }
+
+        /// <summary>
+        /// Take all items from a container into the actor's inventory.
+        /// Returns the number of items successfully taken.
+        /// </summary>
+        public static int TakeAllFromContainer(Entity actor, Entity container)
+        {
+            if (actor == null || container == null) return 0;
+
+            var containerPart = container.GetPart<ContainerPart>();
+            if (containerPart == null) return 0;
+
+            var inventory = actor.GetPart<InventoryPart>();
+            if (inventory == null) return 0;
+
+            if (containerPart.Locked)
+            {
+                MessageLog.Add($"The {container.GetDisplayName()} is locked.");
+                return 0;
+            }
+
+            int taken = 0;
+            var items = new List<Entity>(containerPart.Contents);
+            for (int i = 0; i < items.Count; i++)
+            {
+                var item = items[i];
+                if (!containerPart.RemoveItem(item)) continue;
+
+                if (!inventory.AddObject(item))
+                {
+                    containerPart.AddItem(item);
+                    MessageLog.Add($"You can't carry {item.GetDisplayName()}: too heavy!");
+                    break;
+                }
+
+                MessageLog.Add($"You take {item.GetDisplayName()} from the {container.GetDisplayName()}.");
+                taken++;
+            }
+            return taken;
+        }
+
+        /// <summary>
+        /// Put an item from the actor's inventory into a container.
+        /// </summary>
+        public static bool PutInContainer(Entity actor, Entity container, Entity item)
+        {
+            if (actor == null || container == null || item == null) return false;
+
+            var containerPart = container.GetPart<ContainerPart>();
+            if (containerPart == null) return false;
+
+            var inventory = actor.GetPart<InventoryPart>();
+            if (inventory == null) return false;
+
+            if (containerPart.Locked)
+            {
+                MessageLog.Add($"The {container.GetDisplayName()} is locked.");
+                return false;
+            }
+
+            // If equipped, unequip first
+            if (IsEquipped(actor, item))
+            {
+                if (!UnequipItem(actor, item))
+                    return false;
+            }
+
+            if (!inventory.RemoveObject(item)) return false;
+
+            if (!containerPart.AddItem(item))
+            {
+                // Container full — put item back
+                inventory.AddObject(item);
+                MessageLog.Add($"The {container.GetDisplayName()} is full.");
+                return false;
+            }
+
+            MessageLog.Add($"You put {item.GetDisplayName()} {containerPart.Preposition} the {container.GetDisplayName()}.");
+            return true;
+        }
+
+        // --- Item Actions ---
+
+        /// <summary>
+        /// Get available inventory actions for an item.
+        /// Fires GetInventoryActions event on the item; parts respond by adding actions.
+        /// Mirrors Qud's GetInventoryActionsEvent flow.
+        /// </summary>
+        public static List<InventoryAction> GetActions(Entity actor, Entity item)
+        {
+            var actionList = new InventoryActionList();
+            var e = GameEvent.New("GetInventoryActions");
+            e.SetParameter("Actions", (object)actionList);
+            e.SetParameter("Actor", (object)actor);
+            item.FireEvent(e);
+            actionList.Sort();
+            return actionList.Actions;
+        }
+
+        /// <summary>
+        /// Perform an inventory action on an item by command string.
+        /// Fires InventoryAction event on the item (or actor if FireOnActor).
+        /// Returns true if the action was handled.
+        /// </summary>
+        public static bool PerformAction(Entity actor, Entity item, string command, Zone zone = null)
+        {
+            if (actor == null || item == null || string.IsNullOrEmpty(command))
+                return false;
+
+            // Fire BeforeInventoryAction on actor (can veto)
+            var before = GameEvent.New("BeforeInventoryAction");
+            before.SetParameter("Actor", (object)actor);
+            before.SetParameter("Item", (object)item);
+            before.SetParameter("Command", command);
+            if (!actor.FireEvent(before))
+                return false;
+
+            // Fire InventoryAction on the item
+            var actionEvent = GameEvent.New("InventoryAction");
+            actionEvent.SetParameter("Actor", (object)actor);
+            actionEvent.SetParameter("Item", (object)item);
+            actionEvent.SetParameter("Command", command);
+            if (zone != null)
+                actionEvent.SetParameter("Zone", (object)zone);
+
+            bool handled = !item.FireEvent(actionEvent) || actionEvent.Handled;
+
+            if (handled)
+            {
+                // Fire AfterInventoryAction on actor
+                var after = GameEvent.New("AfterInventoryAction");
+                after.SetParameter("Actor", (object)actor);
+                after.SetParameter("Item", (object)item);
+                after.SetParameter("Command", command);
+                actor.FireEvent(after);
+            }
+
+            return handled;
+        }
+
         // --- Body-part-aware equip ---
 
         private static bool EquipBodyPartAware(Entity actor, Entity item,
@@ -394,31 +701,53 @@ namespace CavesOfOoo.Core
 
         /// <summary>
         /// Parse and apply/remove EquipBonuses string ("StatName:Amount,...").
-        /// Modifies Stat.Bonus on the actor.
+        /// Also applies ArmorPart.SpeedPenalty as a penalty to the Speed stat.
+        /// Modifies Stat.Bonus/Penalty on the actor.
         /// </summary>
         private static void ApplyEquipBonuses(Entity actor, EquippablePart equippable, bool apply)
         {
-            if (string.IsNullOrEmpty(equippable.EquipBonuses)) return;
+            var item = equippable.ParentEntity;
 
-            string[] pairs = equippable.EquipBonuses.Split(',');
-            foreach (string pair in pairs)
+            // Apply EquipBonuses string
+            if (!string.IsNullOrEmpty(equippable.EquipBonuses))
             {
-                string trimmed = pair.Trim();
-                if (string.IsNullOrEmpty(trimmed)) continue;
-                int colon = trimmed.IndexOf(':');
-                if (colon < 0) continue;
+                string[] pairs = equippable.EquipBonuses.Split(',');
+                foreach (string pair in pairs)
+                {
+                    string trimmed = pair.Trim();
+                    if (string.IsNullOrEmpty(trimmed)) continue;
+                    int colon = trimmed.IndexOf(':');
+                    if (colon < 0) continue;
 
-                string statName = trimmed.Substring(0, colon);
-                if (!int.TryParse(trimmed.Substring(colon + 1), out int amount))
-                    continue;
+                    string statName = trimmed.Substring(0, colon);
+                    if (!int.TryParse(trimmed.Substring(colon + 1), out int amount))
+                        continue;
 
-                var stat = actor.GetStat(statName);
-                if (stat == null) continue;
+                    var stat = actor.GetStat(statName);
+                    if (stat == null) continue;
 
-                if (apply)
-                    stat.Bonus += amount;
-                else
-                    stat.Bonus -= amount;
+                    if (apply)
+                        stat.Bonus += amount;
+                    else
+                        stat.Bonus -= amount;
+                }
+            }
+
+            // Apply ArmorPart.SpeedPenalty as a penalty on the Speed stat
+            if (item != null)
+            {
+                var armor = item.GetPart<ArmorPart>();
+                if (armor != null && armor.SpeedPenalty != 0)
+                {
+                    var speedStat = actor.GetStat("Speed");
+                    if (speedStat != null)
+                    {
+                        if (apply)
+                            speedStat.Penalty += armor.SpeedPenalty;
+                        else
+                            speedStat.Penalty -= armor.SpeedPenalty;
+                    }
+                }
             }
         }
     }

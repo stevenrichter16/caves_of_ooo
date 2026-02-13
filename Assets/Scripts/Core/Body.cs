@@ -753,6 +753,21 @@ namespace CavesOfOoo.Core
             }
         }
 
+        /// <summary>
+        /// Drop all equipment from all body parts to the zone.
+        /// Called on death to create loot drops.
+        /// </summary>
+        public void DropAllEquipment(Zone zone)
+        {
+            if (_body == null || zone == null) return;
+            UnequipSubtree(_body, zone);
+
+            // Also clear the EquippedItems cache on inventory
+            var inventory = ParentEntity?.GetPart<InventoryPart>();
+            if (inventory != null)
+                inventory.EquippedItems.Clear();
+        }
+
         private void UnequipSubtree(BodyPart part, Zone zone = null)
         {
             if (part._Equipped != null)

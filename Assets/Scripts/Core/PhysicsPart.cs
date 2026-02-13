@@ -25,6 +25,12 @@ namespace CavesOfOoo.Core
         public bool Takeable = false;
 
         /// <summary>
+        /// Inventory display category (e.g. "Melee Weapons", "Armor", "Food").
+        /// Matches Qud's Physics.Category field. Used for grouping in inventory UI.
+        /// </summary>
+        public string Category = "";
+
+        /// <summary>
         /// Back-reference: which entity's inventory this item is in.
         /// Null if on the ground or equipped. Mirrors Qud's Physics.InInventory.
         /// </summary>

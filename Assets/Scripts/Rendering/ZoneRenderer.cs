@@ -25,6 +25,11 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public Color BackgroundColor = new Color(0.05f, 0.05f, 0.05f);
 
+        /// <summary>
+        /// When true, zone rendering is suppressed (e.g. inventory screen is open).
+        /// </summary>
+        public bool Paused;
+
         private Tilemap _tilemap;
         private bool _dirty = true;
 
@@ -53,6 +58,7 @@ namespace CavesOfOoo.Rendering
 
         private void LateUpdate()
         {
+            if (Paused) return;
             if (_dirty && CurrentZone != null)
             {
                 RenderZone();

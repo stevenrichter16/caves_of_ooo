@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace CavesOfOoo.Core
 {
@@ -271,17 +272,71 @@ namespace CavesOfOoo.Core
             return FireEvent(GameEvent.New(eventID));
         }
 
+        // --- Cloning ---
+
+        /// <summary>
+        /// Create a structural clone of this entity suitable for stack splitting.
+        /// Copies tags, properties, stats, and parts (public fields on derived types).
+        /// </summary>
+        public Entity CloneForStack()
+        {
+            var clone = new Entity();
+            clone.BlueprintName = BlueprintName;
+
+            foreach (var kvp in Tags)
+                clone.Tags[kvp.Key] = kvp.Value;
+            foreach (var kvp in Properties)
+                clone.Properties[kvp.Key] = kvp.Value;
+            foreach (var kvp in IntProperties)
+                clone.IntProperties[kvp.Key] = kvp.Value;
+            foreach (var kvp in Statistics)
+            {
+                clone.Statistics[kvp.Key] = new Stat(kvp.Value) { Owner = clone };
+            }
+
+            foreach (var part in Parts)
+            {
+                var type = part.GetType();
+                var newPart = (Part)Activator.CreateInstance(type);
+                foreach (var field in type.GetFields(BindingFlags.Public | BindingFlags.Instance))
+                {
+                    if (field.DeclaringType == typeof(Part)) continue;
+                    field.SetValue(newPart, field.GetValue(part));
+                }
+                clone.AddPart(newPart);
+            }
+
+            // Clear context references — clone starts fresh
+            var clonePhysics = clone.GetPart<PhysicsPart>();
+            if (clonePhysics != null)
+            {
+                clonePhysics.InInventory = null;
+                clonePhysics.Equipped = null;
+            }
+
+            return clone;
+        }
+
         // --- Display ---
 
         /// <summary>
         /// Get the display name of this entity from its Render-equivalent part or blueprint name.
+        /// Includes stack count if stacked (e.g. "torch (x5)").
         /// </summary>
         public string GetDisplayName()
         {
             var render = GetPart("Render");
+            string name;
             if (render is RenderPart rp && !string.IsNullOrEmpty(rp.DisplayName))
-                return rp.DisplayName;
-            return BlueprintName ?? ID ?? "unknown";
+                name = rp.DisplayName;
+            else
+                name = BlueprintName ?? ID ?? "unknown";
+
+            var stacker = GetPart<StackerPart>();
+            if (stacker != null && stacker.StackCount > 1)
+                name += $" (x{stacker.StackCount})";
+
+            return name;
         }
 
         public override string ToString()

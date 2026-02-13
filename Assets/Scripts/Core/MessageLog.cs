@@ -40,6 +40,11 @@ namespace CavesOfOoo.Core
             Messages.Clear();
         }
 
+        public static List<string> GetMessages()
+        {
+            return new List<string>(Messages);
+        }
+
         public static int Count => Messages.Count;
     }
 }

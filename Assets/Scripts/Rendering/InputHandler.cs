@@ -60,9 +60,14 @@ namespace CavesOfOoo.Rendering
         /// Normal: standard movement/action input.
         /// AwaitingDirection: waiting for a directional key to target an ability.
         /// </summary>
-        private enum InputState { Normal, AwaitingDirection }
+        private enum InputState { Normal, AwaitingDirection, InventoryOpen }
         private InputState _inputState = InputState.Normal;
         private ActivatedAbility _pendingAbility;
+
+        /// <summary>
+        /// The inventory UI component. Set by GameBootstrap.
+        /// </summary>
+        public InventoryUI InventoryUI { get; set; }
 
         private void Update()
         {
@@ -83,6 +88,20 @@ namespace CavesOfOoo.Rendering
             if (_inputState == InputState.AwaitingDirection)
             {
                 HandleAwaitingDirection();
+                return;
+            }
+
+            if (_inputState == InputState.InventoryOpen)
+            {
+                HandleInventoryInput();
+                return;
+            }
+
+            // Open inventory (I key)
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                OpenInventory();
+                _lastMoveTime = Time.time;
                 return;
             }
 
@@ -448,31 +467,7 @@ namespace CavesOfOoo.Rendering
             var item = items[0];
             if (InventorySystem.Pickup(PlayerEntity, item, CurrentZone))
             {
-                // Auto-equip if the item has an EquippablePart and a slot is free
-                var equippable = item.GetPart<EquippablePart>();
-                if (equippable != null)
-                {
-                    var body = PlayerEntity.GetPart<Body>();
-                    bool hasFreeSlot = false;
-                    if (body != null)
-                    {
-                        // Body-part-aware: check if there's a free body part of the right type
-                        var freeSlot = body.FindFreeSlot(equippable.GetSlotArray()[0].Trim());
-                        hasFreeSlot = freeSlot != null;
-                    }
-                    else
-                    {
-                        // Legacy: check string-keyed slot
-                        var inv = PlayerEntity.GetPart<InventoryPart>();
-                        hasFreeSlot = inv != null && inv.GetEquipped(equippable.Slot) == null;
-                    }
-
-                    if (hasFreeSlot)
-                    {
-                        InventorySystem.Equip(PlayerEntity, item);
-                    }
-                }
-
+                // Note: Pickup() calls AutoEquip() internally — no need to equip here.
                 EndTurnAndProcess();
                 if (ZoneRenderer != null)
                     ZoneRenderer.MarkDirty();
@@ -577,6 +572,40 @@ namespace CavesOfOoo.Rendering
 
             EndTurnAndProcess();
             _lastMoveTime = Time.time;
+        }
+
+        private void OpenInventory()
+        {
+            if (InventoryUI == null) return;
+            InventoryUI.PlayerEntity = PlayerEntity;
+            InventoryUI.CurrentZone = CurrentZone;
+            InventoryUI.Open();
+            _inputState = InputState.InventoryOpen;
+            if (ZoneRenderer != null) ZoneRenderer.Paused = true;
+        }
+
+        private void HandleInventoryInput()
+        {
+            if (InventoryUI == null || !InventoryUI.IsOpen)
+            {
+                CloseInventory();
+                return;
+            }
+
+            InventoryUI.HandleInput();
+
+            if (!InventoryUI.IsOpen)
+                CloseInventory();
+        }
+
+        private void CloseInventory()
+        {
+            _inputState = InputState.Normal;
+            if (ZoneRenderer != null)
+            {
+                ZoneRenderer.Paused = false;
+                ZoneRenderer.MarkDirty();
+            }
         }
 
         /// <summary>

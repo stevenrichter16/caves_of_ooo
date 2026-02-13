@@ -24,6 +24,7 @@
       "Name": "MeleeWeapon",
       "Inherits": "Item",
       "Parts": [
+        { "Name": "Physics", "Params": [{ "Key": "Category", "Value": "Melee Weapons" }] },
         { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }] }
       ],
       "Stats": [],
@@ -42,7 +43,8 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "4" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "MaxStrengthBonus", "Value": "3" }] }
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "MaxStrengthBonus", "Value": "3" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "10" }] }
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 5, "Min": 0, "Max": 5 }
@@ -236,9 +238,72 @@
       "Props": [{ "Key": "NaturalWeapon", "Value": "SnapjawHunterClaw" }]
     },
     {
+      "Name": "FoodItem",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Physics", "Params": [{ "Key": "Category", "Value": "Food" }] },
+        { "Name": "Food", "Params": [] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Food", "Value": "" }
+      ]
+    },
+    {
+      "Name": "Starapple",
+      "Inherits": "FoodItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "starapple" },
+          { "Key": "RenderString", "Value": "%" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Food", "Params": [{ "Key": "Healing", "Value": "2d4" }, { "Key": "Cooking", "Value": "Meal" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "5" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "TonicItem",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Physics", "Params": [{ "Key": "Category", "Value": "Tonics" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Drink", "Value": "true" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tonic", "Value": "" }
+      ]
+    },
+    {
+      "Name": "HealingTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "healing tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&G" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Healing", "Value": "4d4" }, { "Key": "Effect", "Value": "Healing" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "15" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
       "Name": "ArmorItem",
       "Inherits": "Item",
       "Parts": [
+        { "Name": "Physics", "Params": [{ "Key": "Category", "Value": "Armor" }] },
         { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Body" }] },
         { "Name": "Armor", "Params": [] }
       ],
@@ -258,7 +323,8 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "15" }] },
-        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "-1" }] }
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "-1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "30" }] }
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 }
@@ -278,7 +344,8 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "25" }] },
-        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "5" }, { "Key": "DV", "Value": "-2" }] }
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "5" }, { "Key": "DV", "Value": "-2" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "60" }] }
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 25, "Min": 0, "Max": 25 }
@@ -410,7 +477,8 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "8" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8" }, { "Key": "PenBonus", "Value": "2" }] }
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8" }, { "Key": "PenBonus", "Value": "2" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "25" }] }
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 }

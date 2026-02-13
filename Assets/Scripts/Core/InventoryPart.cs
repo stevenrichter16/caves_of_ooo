@@ -18,7 +18,14 @@ namespace CavesOfOoo.Core
         public override string Name => "Inventory";
 
         /// <summary>
-        /// Maximum carry weight. -1 means no limit.
+        /// Pounds of carry capacity per point of Strength.
+        /// Matches Qud's MAXIMUM_CARRIED_WEIGHT_PER_STRENGTH = 15.
+        /// </summary>
+        public const int WEIGHT_PER_STRENGTH = 15;
+
+        /// <summary>
+        /// Hard weight limit for AddObject. -1 means no hard limit.
+        /// Note: overburden is a separate soft limit based on Strength.
         /// </summary>
         public int MaxWeight = -1;
 
@@ -37,16 +44,34 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Add an item to the carried list. Sets InInventory back-reference.
         /// Returns false if weight would be exceeded.
+        /// If the item is stackable and matches an existing stack, merges automatically.
         /// </summary>
         public bool AddObject(Entity item)
         {
             if (MaxWeight >= 0)
             {
-                var itemPhysics = item.GetPart<PhysicsPart>();
-                int itemWeight = itemPhysics?.Weight ?? 0;
+                int itemWeight = GetItemWeight(item);
                 if (GetCarriedWeight() + itemWeight > MaxWeight)
                     return false;
             }
+
+            // Try to merge into existing stack
+            var itemStacker = item.GetPart<StackerPart>();
+            if (itemStacker != null)
+            {
+                for (int i = 0; i < Objects.Count; i++)
+                {
+                    var existingStacker = Objects[i].GetPart<StackerPart>();
+                    if (existingStacker != null && existingStacker.CanStackWith(item))
+                    {
+                        existingStacker.MergeFrom(item);
+                        if (itemStacker.StackCount <= 0)
+                            return true; // Fully merged — item consumed
+                    }
+                }
+            }
+
+            // Add as new entry (or remaining count if partial merge)
             Objects.Add(item);
             var physics = item.GetPart<PhysicsPart>();
             if (physics != null)
@@ -232,26 +257,34 @@ namespace CavesOfOoo.Core
 
         /// <summary>
         /// Total weight of all carried + equipped items.
+        /// Stack-aware: uses StackerPart.GetTotalWeight() when present.
         /// </summary>
         public int GetCarriedWeight()
         {
             int total = 0;
             for (int i = 0; i < Objects.Count; i++)
-            {
-                var p = Objects[i].GetPart<PhysicsPart>();
-                total += p?.Weight ?? 0;
-            }
+                total += GetItemWeight(Objects[i]);
+
             // Deduplicate equipped items for weight counting
             var seen = new HashSet<Entity>();
             foreach (var kvp in EquippedItems)
             {
                 if (seen.Add(kvp.Value))
-                {
-                    var p = kvp.Value.GetPart<PhysicsPart>();
-                    total += p?.Weight ?? 0;
-                }
+                    total += GetItemWeight(kvp.Value);
             }
             return total;
+        }
+
+        /// <summary>
+        /// Get the total weight of an item, accounting for stack count.
+        /// </summary>
+        public static int GetItemWeight(Entity item)
+        {
+            var stacker = item.GetPart<StackerPart>();
+            if (stacker != null)
+                return stacker.GetTotalWeight();
+            var physics = item.GetPart<PhysicsPart>();
+            return physics?.Weight ?? 0;
         }
 
         /// <summary>
@@ -296,6 +329,51 @@ namespace CavesOfOoo.Core
                     return kvp.Key;
             }
             return null;
+        }
+
+        // --- Encumbrance / Overburden ---
+
+        /// <summary>
+        /// Maximum carry weight based on Strength stat.
+        /// Returns -1 if no Strength stat (unlimited).
+        /// </summary>
+        public int GetMaxCarryWeight()
+        {
+            if (ParentEntity == null) return -1;
+            var str = ParentEntity.GetStat("Strength");
+            if (str == null) return -1;
+            return str.Value * WEIGHT_PER_STRENGTH;
+        }
+
+        /// <summary>
+        /// Check if the entity is carrying more than Strength allows.
+        /// Only applies to player-tagged entities (NPCs are exempt per Qud).
+        /// </summary>
+        public bool IsOverburdened()
+        {
+            if (ParentEntity == null) return false;
+            if (!ParentEntity.HasTag("Player")) return false;
+
+            int maxCarry = GetMaxCarryWeight();
+            if (maxCarry < 0) return false;
+            return GetCarriedWeight() > maxCarry;
+        }
+
+        /// <summary>
+        /// Block movement when overburdened.
+        /// </summary>
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID == "BeforeMove")
+            {
+                if (IsOverburdened())
+                {
+                    e.SetParameter("Blocked", true);
+                    MessageLog.Add("You are overburdened and cannot move!");
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

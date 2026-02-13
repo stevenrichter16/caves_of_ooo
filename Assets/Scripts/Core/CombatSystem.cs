@@ -386,13 +386,28 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Handle entity death: fire Died event, remove from zone.
+        /// Handle entity death: drop loot, fire Died event, remove from zone.
+        /// Mirrors Qud's BeforeDeathRemovalEvent: equipment and inventory drop
+        /// to the ground before the entity is removed.
         /// </summary>
         public static void HandleDeath(Entity target, Entity killer, Zone zone)
         {
             string targetName = target.GetDisplayName();
             string killerName = killer?.GetDisplayName() ?? "something";
             MessageLog.Add($"{targetName} is killed by {killerName}!");
+
+            // Drop equipment from body parts
+            if (zone != null)
+            {
+                var body = target.GetPart<Body>();
+                if (body != null)
+                    body.DropAllEquipment(zone);
+
+                // Drop carried inventory
+                var inventory = target.GetPart<InventoryPart>();
+                if (inventory != null)
+                    DropInventoryOnDeath(target, inventory, zone);
+            }
 
             var died = GameEvent.New("Died");
             died.SetParameter("Target", (object)target);
@@ -401,6 +416,41 @@ namespace CavesOfOoo.Core
 
             if (zone != null)
                 zone.RemoveEntity(target);
+        }
+
+        /// <summary>
+        /// Drop all carried and equipped inventory items to the ground.
+        /// Handles both body-part-aware and legacy equip modes.
+        /// </summary>
+        private static void DropInventoryOnDeath(Entity target, InventoryPart inventory, Zone zone)
+        {
+            var pos = zone.GetEntityPosition(target);
+            if (pos.x < 0 || pos.y < 0) return;
+
+            // Drop any remaining equipped items (legacy equip mode, or items
+            // not on body parts). Body.DropAllEquipment already handles body-part items.
+            var equipped = inventory.GetAllEquipped();
+            for (int i = 0; i < equipped.Count; i++)
+            {
+                var item = equipped[i];
+                var physics = item.GetPart<PhysicsPart>();
+                if (physics != null)
+                {
+                    physics.Equipped = null;
+                    physics.InInventory = null;
+                }
+                zone.AddEntity(item, pos.x, pos.y);
+            }
+            inventory.EquippedItems.Clear();
+
+            // Drop carried items
+            var items = new List<Entity>(inventory.Objects);
+            for (int i = 0; i < items.Count; i++)
+            {
+                var item = items[i];
+                inventory.RemoveObject(item);
+                zone.AddEntity(item, pos.x, pos.y);
+            }
         }
 
         // --- Body Part Targeting ---

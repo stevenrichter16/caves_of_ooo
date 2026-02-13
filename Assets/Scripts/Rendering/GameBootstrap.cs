@@ -129,6 +129,14 @@ namespace CavesOfOoo
                 inputHandler.ZoneManager = _zoneManager;
                 inputHandler.WorldMap = _zoneManager.WorldMap;
                 inputHandler.CameraFollow = cameraFollow;
+
+                // Wire inventory UI (shares tilemap with zone renderer)
+                var inventoryUI = GetComponent<InventoryUI>();
+                if (inventoryUI == null)
+                    inventoryUI = gameObject.AddComponent<InventoryUI>();
+                if (ZoneRenderer != null)
+                    inventoryUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
+                inputHandler.InventoryUI = inventoryUI;
             }
 
             // Start the turn loop

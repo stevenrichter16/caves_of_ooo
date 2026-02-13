@@ -439,6 +439,110 @@ namespace CavesOfOoo.Tests
         }
 
         // ========================
+        // Death / Loot Drops
+        // ========================
+
+        [Test]
+        public void HandleDeath_DropsEquippedWeapon()
+        {
+            var zone = new Zone();
+            var creature = CreateCreature(16, 16, 30);
+            creature.AddPart(new InventoryPart { MaxWeight = 150 });
+            zone.AddEntity(creature, 5, 5);
+
+            var sword = new Entity();
+            sword.BlueprintName = "Sword";
+            sword.AddPart(new PhysicsPart { Takeable = true, Weight = 5 });
+            sword.AddPart(new MeleeWeaponPart { BaseDamage = "1d8" });
+            sword.AddPart(new EquippablePart { Slot = "Hand" });
+
+            var inv = creature.GetPart<InventoryPart>();
+            inv.AddObject(sword);
+            InventorySystem.Equip(creature, sword);
+
+            CombatSystem.HandleDeath(creature, null, zone);
+
+            // Creature should be removed from zone
+            Assert.IsNull(zone.GetEntityCell(creature));
+
+            // Sword should be on the ground at creature's old position
+            var cell = zone.GetCell(5, 5);
+            Assert.IsTrue(cell.Objects.Contains(sword), "Equipped weapon should drop on death");
+        }
+
+        [Test]
+        public void HandleDeath_DropsCarriedItems()
+        {
+            var zone = new Zone();
+            var creature = CreateCreature(16, 16, 30);
+            creature.AddPart(new InventoryPart { MaxWeight = 150 });
+            zone.AddEntity(creature, 5, 5);
+
+            var potion = new Entity();
+            potion.BlueprintName = "Potion";
+            potion.AddPart(new PhysicsPart { Takeable = true, Weight = 1 });
+            creature.GetPart<InventoryPart>().AddObject(potion);
+
+            CombatSystem.HandleDeath(creature, null, zone);
+
+            var cell = zone.GetCell(5, 5);
+            Assert.IsTrue(cell.Objects.Contains(potion), "Carried item should drop on death");
+        }
+
+        [Test]
+        public void HandleDeath_DropsEquipmentAndInventory()
+        {
+            var zone = new Zone();
+            var creature = CreateCreature(16, 16, 30);
+            creature.AddPart(new InventoryPart { MaxWeight = 150 });
+            zone.AddEntity(creature, 5, 5);
+
+            // Equip a weapon
+            var sword = new Entity();
+            sword.BlueprintName = "Sword";
+            sword.AddPart(new PhysicsPart { Takeable = true, Weight = 5 });
+            sword.AddPart(new MeleeWeaponPart { BaseDamage = "1d8" });
+            sword.AddPart(new EquippablePart { Slot = "Hand" });
+            creature.GetPart<InventoryPart>().AddObject(sword);
+            InventorySystem.Equip(creature, sword);
+
+            // Carry a potion
+            var potion = new Entity();
+            potion.BlueprintName = "Potion";
+            potion.AddPart(new PhysicsPart { Takeable = true, Weight = 1 });
+            creature.GetPart<InventoryPart>().AddObject(potion);
+
+            CombatSystem.HandleDeath(creature, null, zone);
+
+            var cell = zone.GetCell(5, 5);
+            Assert.IsTrue(cell.Objects.Contains(sword), "Equipped weapon should drop");
+            Assert.IsTrue(cell.Objects.Contains(potion), "Carried item should drop");
+            Assert.IsFalse(cell.Objects.Contains(creature), "Creature should be removed");
+        }
+
+        [Test]
+        public void HandleDeath_NoZone_NoCrash()
+        {
+            var creature = CreateCreature(16, 16, 30);
+            creature.AddPart(new InventoryPart { MaxWeight = 150 });
+
+            // Should not crash with null zone
+            Assert.DoesNotThrow(() => CombatSystem.HandleDeath(creature, null, null));
+        }
+
+        [Test]
+        public void HandleDeath_EmptyInventory_NoCrash()
+        {
+            var zone = new Zone();
+            var creature = CreateCreature(16, 16, 30);
+            creature.AddPart(new InventoryPart { MaxWeight = 150 });
+            zone.AddEntity(creature, 5, 5);
+
+            Assert.DoesNotThrow(() => CombatSystem.HandleDeath(creature, null, zone));
+            Assert.IsNull(zone.GetEntityCell(creature));
+        }
+
+        // ========================
         // Helpers
         // ========================
 
