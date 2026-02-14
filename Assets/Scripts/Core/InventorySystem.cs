@@ -592,6 +592,110 @@ namespace CavesOfOoo.Core
             return handled;
         }
 
+        // --- Displacement preview ---
+
+        /// <summary>
+        /// Describes a single item that would be displaced by an equip operation.
+        /// </summary>
+        public struct Displacement
+        {
+            public Entity Item;
+            public BodyPart BodyPart;
+        }
+
+        /// <summary>
+        /// Preview what items would be displaced when equipping an item, without mutating state.
+        /// Returns a list of (item, body part) pairs that would need to be unequipped.
+        /// Deduplicates multi-slot items (e.g. a two-handed weapon in two hands counts once).
+        /// </summary>
+        public static List<Displacement> PreviewDisplacements(Entity actor, Entity item,
+            BodyPart targetBodyPart = null)
+        {
+            var result = new List<Displacement>();
+            if (actor == null || item == null) return result;
+
+            var body = actor.GetPart<Body>();
+            if (body == null) return result;
+
+            var equippable = item.GetPart<EquippablePart>();
+            if (equippable == null) return result;
+
+            string[] slotTypes = equippable.GetSlotArray();
+            var claimed = new List<BodyPart>();
+            var seenItems = new HashSet<Entity>();
+
+            // If a target body part was specified, it's the first claimed slot
+            if (targetBodyPart != null)
+            {
+                claimed.Add(targetBodyPart);
+                if (targetBodyPart._Equipped != null && targetBodyPart._Equipped != item
+                    && seenItems.Add(targetBodyPart._Equipped))
+                {
+                    result.Add(new Displacement { Item = targetBodyPart._Equipped, BodyPart = targetBodyPart });
+                }
+
+                // Find additional slots for remaining slot types matching the target's type
+                for (int i = 0; i < slotTypes.Length; i++)
+                {
+                    string slotType = slotTypes[i].Trim();
+                    if (slotType != targetBodyPart.Type) continue;
+                    // First match of this type is satisfied by targetBodyPart
+                    // Find slots for subsequent matches
+                    for (int j = i + 1; j < slotTypes.Length; j++)
+                    {
+                        if (slotTypes[j].Trim() != slotType) continue;
+                        var extra = FindBestSlot(body, slotType, claimed);
+                        if (extra != null)
+                        {
+                            claimed.Add(extra);
+                            if (extra._Equipped != null && extra._Equipped != item
+                                && seenItems.Add(extra._Equipped))
+                            {
+                                result.Add(new Displacement { Item = extra._Equipped, BodyPart = extra });
+                            }
+                        }
+                    }
+                    break;
+                }
+
+                // Find slots for other slot types not matching the target
+                for (int i = 0; i < slotTypes.Length; i++)
+                {
+                    string slotType = slotTypes[i].Trim();
+                    if (slotType == targetBodyPart.Type) continue;
+                    var slot = FindBestSlot(body, slotType, claimed);
+                    if (slot != null)
+                    {
+                        claimed.Add(slot);
+                        if (slot._Equipped != null && slot._Equipped != item
+                            && seenItems.Add(slot._Equipped))
+                        {
+                            result.Add(new Displacement { Item = slot._Equipped, BodyPart = slot });
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // No target — walk all slot types and find best slots
+                for (int i = 0; i < slotTypes.Length; i++)
+                {
+                    string slotType = slotTypes[i].Trim();
+                    var slot = FindBestSlot(body, slotType, claimed);
+                    if (slot == null) continue;
+
+                    claimed.Add(slot);
+                    if (slot._Equipped != null && slot._Equipped != item
+                        && seenItems.Add(slot._Equipped))
+                    {
+                        result.Add(new Displacement { Item = slot._Equipped, BodyPart = slot });
+                    }
+                }
+            }
+
+            return result;
+        }
+
         // --- Body-part-aware equip ---
 
         private static bool EquipBodyPartAware(Entity actor, Entity item,
@@ -600,42 +704,75 @@ namespace CavesOfOoo.Core
         {
             string[] slotTypes = equippable.GetSlotArray();
 
-            // If a specific target body part was given, use it
-            if (targetBodyPart != null)
-            {
-                // Unequip existing item in that slot
-                if (targetBodyPart._Equipped != null)
-                {
-                    if (!UnequipItem(actor, targetBodyPart._Equipped))
-                        return false;
-                }
-                inventory.EquipToBodyPart(item, targetBodyPart);
-                return true;
-            }
-
-            // Find body parts for each required slot
-            // Group slot types and find matching free (or occupiable) body parts
+            // Find body parts for all required slots
             var occupiedParts = new List<BodyPart>();
 
-            for (int i = 0; i < slotTypes.Length; i++)
+            if (targetBodyPart != null)
             {
-                string slotType = slotTypes[i].Trim();
-                BodyPart slot = FindBestSlot(body, slotType, occupiedParts);
+                // Target body part is the first claimed slot
+                occupiedParts.Add(targetBodyPart);
 
-                if (slot == null)
+                // Find additional slots for remaining slot types matching the target's type
+                for (int i = 0; i < slotTypes.Length; i++)
                 {
-                    MessageLog.Add($"No available {slotType} slot for {item.GetDisplayName()}.");
-                    return false;
+                    string slotType = slotTypes[i].Trim();
+                    if (slotType != targetBodyPart.Type) continue;
+                    for (int j = i + 1; j < slotTypes.Length; j++)
+                    {
+                        if (slotTypes[j].Trim() != slotType) continue;
+                        var extra = FindBestSlot(body, slotType, occupiedParts);
+                        if (extra == null)
+                        {
+                            MessageLog.Add($"No available {slotType} slot for {item.GetDisplayName()}.");
+                            return false;
+                        }
+                        occupiedParts.Add(extra);
+                    }
+                    break;
                 }
 
-                // Unequip existing item if occupied
-                if (slot._Equipped != null)
+                // Find slots for other slot types
+                for (int i = 0; i < slotTypes.Length; i++)
                 {
-                    if (!UnequipItem(actor, slot._Equipped))
+                    string slotType = slotTypes[i].Trim();
+                    if (slotType == targetBodyPart.Type) continue;
+                    var slot = FindBestSlot(body, slotType, occupiedParts);
+                    if (slot == null)
+                    {
+                        MessageLog.Add($"No available {slotType} slot for {item.GetDisplayName()}.");
+                        return false;
+                    }
+                    occupiedParts.Add(slot);
+                }
+            }
+            else
+            {
+                // No target — walk all slot types and find best slots
+                for (int i = 0; i < slotTypes.Length; i++)
+                {
+                    string slotType = slotTypes[i].Trim();
+                    BodyPart slot = FindBestSlot(body, slotType, occupiedParts);
+
+                    if (slot == null)
+                    {
+                        MessageLog.Add($"No available {slotType} slot for {item.GetDisplayName()}.");
+                        return false;
+                    }
+
+                    occupiedParts.Add(slot);
+                }
+            }
+
+            // Unequip existing items in all claimed parts (deduplicate multi-slot)
+            var unequipped = new HashSet<Entity>();
+            for (int i = 0; i < occupiedParts.Count; i++)
+            {
+                var existing = occupiedParts[i]._Equipped;
+                if (existing != null && existing != item && unequipped.Add(existing))
+                {
+                    if (!UnequipItem(actor, existing))
                         return false;
                 }
-
-                occupiedParts.Add(slot);
             }
 
             // Equip to all found parts

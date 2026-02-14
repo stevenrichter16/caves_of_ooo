@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Anatomy;
 using CavesOfOoo.Data;
 
 namespace CavesOfOoo.Tests
@@ -2234,6 +2235,254 @@ namespace CavesOfOoo.Tests
         }
 
         // ========================
+        // Two-Handed Weapons
+        // ========================
+
+        [Test]
+        public void TwoHandedWeapon_Equip_ClaimsTwoHands()
+        {
+            var actor = CreateCreatureWithBody();
+            var inv = actor.GetPart<InventoryPart>();
+            var body = actor.GetPart<Body>();
+
+            var twoHander = CreateTwoHandedWeapon("battleaxe");
+            inv.AddObject(twoHander);
+
+            Assert.IsTrue(InventorySystem.Equip(actor, twoHander));
+
+            var hands = body.GetEquippableSlots("Hand");
+            Assert.AreEqual(twoHander, hands[0]._Equipped);
+            Assert.AreEqual(twoHander, hands[1]._Equipped);
+            Assert.IsFalse(inv.Objects.Contains(twoHander));
+        }
+
+        [Test]
+        public void TwoHandedWeapon_Unequip_FreesBothHands()
+        {
+            var actor = CreateCreatureWithBody();
+            var inv = actor.GetPart<InventoryPart>();
+            var body = actor.GetPart<Body>();
+
+            var twoHander = CreateTwoHandedWeapon("battleaxe");
+            inv.AddObject(twoHander);
+            InventorySystem.Equip(actor, twoHander);
+
+            Assert.IsTrue(InventorySystem.UnequipItem(actor, twoHander));
+
+            var hands = body.GetEquippableSlots("Hand");
+            Assert.IsNull(hands[0]._Equipped);
+            Assert.IsNull(hands[1]._Equipped);
+            Assert.IsTrue(inv.Objects.Contains(twoHander));
+        }
+
+        [Test]
+        public void TwoHandedWeapon_DisplacesOneHandedWeapons()
+        {
+            var actor = CreateCreatureWithBody();
+            var inv = actor.GetPart<InventoryPart>();
+            var body = actor.GetPart<Body>();
+
+            var sword = CreateOneHandedWeapon("long sword");
+            var shield = CreateOneHandedWeapon("buckler");
+            inv.AddObject(sword);
+            inv.AddObject(shield);
+            InventorySystem.Equip(actor, sword);
+            InventorySystem.Equip(actor, shield);
+
+            var twoHander = CreateTwoHandedWeapon("battleaxe");
+            inv.AddObject(twoHander);
+
+            Assert.IsTrue(InventorySystem.Equip(actor, twoHander));
+
+            // Two-hander occupies both hands
+            var hands = body.GetEquippableSlots("Hand");
+            Assert.AreEqual(twoHander, hands[0]._Equipped);
+            Assert.AreEqual(twoHander, hands[1]._Equipped);
+
+            // Displaced items are back in inventory
+            Assert.IsTrue(inv.Objects.Contains(sword));
+            Assert.IsTrue(inv.Objects.Contains(shield));
+        }
+
+        [Test]
+        public void TwoHandedWeapon_TargetedEquip_ClaimsSecondHand()
+        {
+            var actor = CreateCreatureWithBody();
+            var inv = actor.GetPart<InventoryPart>();
+            var body = actor.GetPart<Body>();
+
+            var hands = body.GetEquippableSlots("Hand");
+            var rightHand = hands[0];
+
+            var twoHander = CreateTwoHandedWeapon("battleaxe");
+            inv.AddObject(twoHander);
+
+            Assert.IsTrue(InventorySystem.Equip(actor, twoHander, rightHand));
+
+            Assert.AreEqual(twoHander, hands[0]._Equipped);
+            Assert.AreEqual(twoHander, hands[1]._Equipped);
+        }
+
+        [Test]
+        public void TwoHandedWeapon_TargetedEquip_DisplacesOtherHand()
+        {
+            var actor = CreateCreatureWithBody();
+            var inv = actor.GetPart<InventoryPart>();
+            var body = actor.GetPart<Body>();
+
+            var hands = body.GetEquippableSlots("Hand");
+            var shield = CreateOneHandedWeapon("buckler");
+            inv.AddObject(shield);
+            InventorySystem.Equip(actor, shield, hands[1]);
+            Assert.AreEqual(shield, hands[1]._Equipped);
+
+            var twoHander = CreateTwoHandedWeapon("battleaxe");
+            inv.AddObject(twoHander);
+
+            // Equip two-hander to hand[0]; should also claim hand[1] and displace shield
+            Assert.IsTrue(InventorySystem.Equip(actor, twoHander, hands[0]));
+
+            Assert.AreEqual(twoHander, hands[0]._Equipped);
+            Assert.AreEqual(twoHander, hands[1]._Equipped);
+            Assert.IsTrue(inv.Objects.Contains(shield));
+        }
+
+        [Test]
+        public void PreviewDisplacements_NoDisplacement_EmptyList()
+        {
+            var actor = CreateCreatureWithBody();
+            var inv = actor.GetPart<InventoryPart>();
+
+            var sword = CreateOneHandedWeapon("long sword");
+            inv.AddObject(sword);
+
+            var result = InventorySystem.PreviewDisplacements(actor, sword);
+            Assert.AreEqual(0, result.Count);
+        }
+
+        [Test]
+        public void PreviewDisplacements_TwoHandedWithBothHandsOccupied()
+        {
+            var actor = CreateCreatureWithBody();
+            var inv = actor.GetPart<InventoryPart>();
+            var body = actor.GetPart<Body>();
+
+            var sword = CreateOneHandedWeapon("long sword");
+            var shield = CreateOneHandedWeapon("buckler");
+            inv.AddObject(sword);
+            inv.AddObject(shield);
+            InventorySystem.Equip(actor, sword);
+            InventorySystem.Equip(actor, shield);
+
+            var twoHander = CreateTwoHandedWeapon("battleaxe");
+            inv.AddObject(twoHander);
+
+            var result = InventorySystem.PreviewDisplacements(actor, twoHander);
+            Assert.AreEqual(2, result.Count);
+
+            // Both existing items should be listed
+            var displacedItems = new HashSet<Entity>();
+            for (int i = 0; i < result.Count; i++)
+                displacedItems.Add(result[i].Item);
+            Assert.IsTrue(displacedItems.Contains(sword));
+            Assert.IsTrue(displacedItems.Contains(shield));
+        }
+
+        [Test]
+        public void PreviewDisplacements_TwoHandedWithOneHandFree()
+        {
+            var actor = CreateCreatureWithBody();
+            var inv = actor.GetPart<InventoryPart>();
+
+            var sword = CreateOneHandedWeapon("long sword");
+            inv.AddObject(sword);
+            InventorySystem.Equip(actor, sword);
+
+            var twoHander = CreateTwoHandedWeapon("battleaxe");
+            inv.AddObject(twoHander);
+
+            var result = InventorySystem.PreviewDisplacements(actor, twoHander);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(sword, result[0].Item);
+        }
+
+        [Test]
+        public void PreviewDisplacements_TargetedEquip_ShowsDisplacement()
+        {
+            var actor = CreateCreatureWithBody();
+            var inv = actor.GetPart<InventoryPart>();
+            var body = actor.GetPart<Body>();
+
+            var hands = body.GetEquippableSlots("Hand");
+            var shield = CreateOneHandedWeapon("buckler");
+            inv.AddObject(shield);
+            InventorySystem.Equip(actor, shield, hands[1]);
+
+            var twoHander = CreateTwoHandedWeapon("battleaxe");
+            inv.AddObject(twoHander);
+
+            var result = InventorySystem.PreviewDisplacements(actor, twoHander, hands[0]);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(shield, result[0].Item);
+        }
+
+        [Test]
+        public void PreviewDisplacements_Deduplicates_MultiSlotItem()
+        {
+            var actor = CreateCreatureWithBody();
+            var inv = actor.GetPart<InventoryPart>();
+
+            // Equip a two-hander, then preview replacing it with another two-hander
+            var oldTwoHander = CreateTwoHandedWeapon("greatsword");
+            inv.AddObject(oldTwoHander);
+            InventorySystem.Equip(actor, oldTwoHander);
+
+            var newTwoHander = CreateTwoHandedWeapon("battleaxe");
+            inv.AddObject(newTwoHander);
+
+            var result = InventorySystem.PreviewDisplacements(actor, newTwoHander);
+            // The old two-hander occupies both hands but should only appear once
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(oldTwoHander, result[0].Item);
+        }
+
+        [Test]
+        public void AutoEquip_TwoHanded_OnlyIfBothHandsFree()
+        {
+            var actor = CreateCreatureWithBody();
+            var inv = actor.GetPart<InventoryPart>();
+
+            // Occupy one hand
+            var sword = CreateOneHandedWeapon("long sword");
+            inv.AddObject(sword);
+            InventorySystem.Equip(actor, sword);
+
+            var twoHander = CreateTwoHandedWeapon("battleaxe");
+            inv.AddObject(twoHander);
+
+            // Auto-equip should fail since one hand is occupied
+            Assert.IsFalse(InventorySystem.AutoEquip(actor, twoHander));
+            Assert.IsTrue(inv.Objects.Contains(twoHander));
+        }
+
+        [Test]
+        public void AutoEquip_TwoHanded_BothHandsFree_Succeeds()
+        {
+            var actor = CreateCreatureWithBody();
+            var inv = actor.GetPart<InventoryPart>();
+            var body = actor.GetPart<Body>();
+
+            var twoHander = CreateTwoHandedWeapon("battleaxe");
+            inv.AddObject(twoHander);
+
+            Assert.IsTrue(InventorySystem.AutoEquip(actor, twoHander));
+
+            var hands = body.GetEquippableSlots("Hand");
+            Assert.AreEqual(twoHander, hands[0]._Equipped);
+            Assert.AreEqual(twoHander, hands[1]._Equipped);
+        }
+
+        // ========================
         // Helpers
         // ========================
 
@@ -2328,6 +2577,53 @@ namespace CavesOfOoo.Tests
             entity.AddPart(new RenderPart { DisplayName = name });
             if (value > 0)
                 entity.AddPart(new CommercePart { Value = value });
+            return entity;
+        }
+
+        private Entity CreateCreatureWithBody()
+        {
+            var entity = new Entity();
+            entity.BlueprintName = "TestCreature";
+            entity.Tags["Creature"] = "";
+
+            entity.Statistics["Hitpoints"] = new Stat { Owner = entity, Name = "Hitpoints", BaseValue = 30, Min = 0, Max = 30 };
+            entity.Statistics["Strength"] = new Stat { Owner = entity, Name = "Strength", BaseValue = 16, Min = 1, Max = 50 };
+            entity.Statistics["Agility"] = new Stat { Owner = entity, Name = "Agility", BaseValue = 16, Min = 1, Max = 50 };
+            entity.Statistics["Speed"] = new Stat { Owner = entity, Name = "Speed", BaseValue = 100, Min = 25, Max = 200 };
+
+            entity.AddPart(new RenderPart { DisplayName = "test creature" });
+            entity.AddPart(new PhysicsPart { Solid = true });
+            entity.AddPart(new ArmorPart());
+            entity.AddPart(new InventoryPart { MaxWeight = 150 });
+
+            var body = new Body();
+            entity.AddPart(body);
+            body.SetBody(AnatomyFactory.CreateHumanoid());
+
+            return entity;
+        }
+
+        private Entity CreateOneHandedWeapon(string name)
+        {
+            var entity = new Entity();
+            entity.BlueprintName = "Test" + name;
+            entity.Tags["Item"] = "";
+            entity.AddPart(new RenderPart { DisplayName = name });
+            entity.AddPart(new PhysicsPart { Takeable = true, Weight = 5 });
+            entity.AddPart(new MeleeWeaponPart { BaseDamage = "1d6", PenBonus = 1 });
+            entity.AddPart(new EquippablePart { Slot = "Hand" });
+            return entity;
+        }
+
+        private Entity CreateTwoHandedWeapon(string name)
+        {
+            var entity = new Entity();
+            entity.BlueprintName = "Test" + name;
+            entity.Tags["Item"] = "";
+            entity.AddPart(new RenderPart { DisplayName = name });
+            entity.AddPart(new PhysicsPart { Takeable = true, Weight = 12 });
+            entity.AddPart(new MeleeWeaponPart { BaseDamage = "2d6", PenBonus = 2 });
+            entity.AddPart(new EquippablePart { Slot = "Hand", UsesSlots = "Hand,Hand" });
             return entity;
         }
 

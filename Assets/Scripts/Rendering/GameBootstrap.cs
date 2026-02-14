@@ -137,6 +137,14 @@ namespace CavesOfOoo
                 if (ZoneRenderer != null)
                     inventoryUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
                 inputHandler.InventoryUI = inventoryUI;
+
+                // Wire pickup UI (shares tilemap with zone renderer)
+                var pickupUI = GetComponent<PickupUI>();
+                if (pickupUI == null)
+                    pickupUI = gameObject.AddComponent<PickupUI>();
+                if (ZoneRenderer != null)
+                    pickupUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
+                inputHandler.PickupUI = pickupUI;
             }
 
             // Start the turn loop
@@ -153,25 +161,41 @@ namespace CavesOfOoo
             var pos = _zone.GetEntityPosition(_player);
             if (pos.x < 0) return;
 
-            // Try adjacent cells for an open spot
+            // Try adjacent cells for open spots
             int[] dx = { 1, -1, 0, 0, 1, -1, 1, -1 };
             int[] dy = { 0, 0, 1, -1, 1, -1, -1, 1 };
-            for (int i = 0; i < dx.Length; i++)
+
+            // Spawn dagger on the first open cell
+            int spotsUsed = 0;
+            for (int i = 0; i < dx.Length && spotsUsed < 2; i++)
             {
                 int nx = pos.x + dx[i];
                 int ny = pos.y + dy[i];
                 if (!_zone.InBounds(nx, ny)) continue;
                 var cell = _zone.GetCell(nx, ny);
-                if (cell != null && cell.IsPassable())
+                if (cell == null || !cell.IsPassable()) continue;
+
+                if (spotsUsed == 0)
                 {
-                    var weapon = _factory.CreateEntity("Dagger");
+                    var dagger = _factory.CreateEntity("Dagger");
+                    if (dagger != null)
+                    {
+                        _zone.AddEntity(dagger, nx, ny);
+                        Debug.Log($"[Bootstrap] Debug: Spawned {dagger.GetDisplayName()} at ({nx},{ny}) near player");
+                    }
+                }
+                else
+                {
+                    string[] twoHanders = { "Battleaxe", "Greatsword", "Warhammer" };
+                    string pick = twoHanders[UnityEngine.Random.Range(0, twoHanders.Length)];
+                    var weapon = _factory.CreateEntity(pick);
                     if (weapon != null)
                     {
                         _zone.AddEntity(weapon, nx, ny);
                         Debug.Log($"[Bootstrap] Debug: Spawned {weapon.GetDisplayName()} at ({nx},{ny}) near player");
                     }
-                    return;
                 }
+                spotsUsed++;
             }
         }
 

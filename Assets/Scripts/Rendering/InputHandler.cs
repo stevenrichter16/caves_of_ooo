@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CavesOfOoo.Core;
 using UnityEngine;
 
@@ -60,7 +61,7 @@ namespace CavesOfOoo.Rendering
         /// Normal: standard movement/action input.
         /// AwaitingDirection: waiting for a directional key to target an ability.
         /// </summary>
-        private enum InputState { Normal, AwaitingDirection, InventoryOpen }
+        private enum InputState { Normal, AwaitingDirection, InventoryOpen, PickupOpen }
         private InputState _inputState = InputState.Normal;
         private ActivatedAbility _pendingAbility;
 
@@ -68,6 +69,11 @@ namespace CavesOfOoo.Rendering
         /// The inventory UI component. Set by GameBootstrap.
         /// </summary>
         public InventoryUI InventoryUI { get; set; }
+
+        /// <summary>
+        /// The pickup UI component. Set by GameBootstrap.
+        /// </summary>
+        public PickupUI PickupUI { get; set; }
 
         private void Update()
         {
@@ -94,6 +100,12 @@ namespace CavesOfOoo.Rendering
             if (_inputState == InputState.InventoryOpen)
             {
                 HandleInventoryInput();
+                return;
+            }
+
+            if (_inputState == InputState.PickupOpen)
+            {
+                HandlePickupInput();
                 return;
             }
 
@@ -452,8 +464,9 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>
-        /// Pick up the first takeable item at the player's feet.
-        /// Auto-equips if the item has an EquippablePart and the slot is empty.
+        /// Pick up items at the player's feet.
+        /// Single item: auto-pickup immediately.
+        /// Multiple items: open the pickup popup for individual selection.
         /// </summary>
         private void TryPickupItem()
         {
@@ -464,14 +477,61 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            var item = items[0];
-            if (InventorySystem.Pickup(PlayerEntity, item, CurrentZone))
+            if (items.Count == 1)
             {
-                // Note: Pickup() calls AutoEquip() internally — no need to equip here.
-                EndTurnAndProcess();
-                if (ZoneRenderer != null)
-                    ZoneRenderer.MarkDirty();
+                // Single item: auto-pickup
+                var item = items[0];
+                if (InventorySystem.Pickup(PlayerEntity, item, CurrentZone))
+                {
+                    EndTurnAndProcess();
+                    if (ZoneRenderer != null)
+                        ZoneRenderer.MarkDirty();
+                }
             }
+            else
+            {
+                // Multiple items: open pickup popup
+                OpenPickup(items);
+            }
+        }
+
+        private void OpenPickup(List<Entity> items)
+        {
+            if (PickupUI == null) return;
+            if (ZoneRenderer != null) ZoneRenderer.Paused = true;
+            PickupUI.PlayerEntity = PlayerEntity;
+            PickupUI.CurrentZone = CurrentZone;
+            PickupUI.Open(items);
+            _inputState = InputState.PickupOpen;
+        }
+
+        private void HandlePickupInput()
+        {
+            if (PickupUI == null || !PickupUI.IsOpen)
+            {
+                ClosePickup();
+                return;
+            }
+
+            PickupUI.HandleInput();
+
+            if (!PickupUI.IsOpen)
+                ClosePickup();
+        }
+
+        private void ClosePickup()
+        {
+            bool pickedUpAny = PickupUI != null && PickupUI.PickedUpAny;
+            _inputState = InputState.Normal;
+            if (ZoneRenderer != null)
+            {
+                ZoneRenderer.Paused = false;
+                ZoneRenderer.MarkDirty();
+            }
+
+            // Process a turn if items were picked up
+            if (pickedUpAny)
+                EndTurnAndProcess();
         }
 
         /// <summary>

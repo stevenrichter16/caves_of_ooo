@@ -52,6 +52,9 @@ namespace CavesOfOoo.Rendering
         // Equip-from-slot popup (equipment panel)
         private EquipPopupState _equipPopup;
 
+        // Displacement confirmation popup
+        private DisplaceConfirmState _displaceConfirm;
+
         // Item action popup (inventory panel)
         private ItemActionPopupState _itemActionPopup;
 
@@ -76,6 +79,18 @@ namespace CavesOfOoo.Rendering
             public int TotalRows => (HasRemoveOption ? 1 : 0) + Items.Count;
             public bool CursorOnRemove => HasRemoveOption && CursorIndex == 0;
             public int CursorItemIndex => HasRemoveOption ? CursorIndex - 1 : CursorIndex;
+        }
+
+        private class DisplaceConfirmState
+        {
+            public Entity ItemToEquip;
+            public BodyPart TargetPart; // null for auto-equip
+            public List<InventorySystem.Displacement> Displacements;
+            public bool CursorOnYes; // true = Yes selected, false = No selected
+
+            // Which popup to close after confirming (tracks origin)
+            public bool FromEquipPopup;
+            public bool FromItemAction;
         }
 
         private class ItemActionPopupState
@@ -106,6 +121,7 @@ namespace CavesOfOoo.Rendering
             _scrollOffset = 0;
             _equipCursorIndex = 0;
             _equipPopup = null;
+            _displaceConfirm = null;
             _itemActionPopup = null;
             Rebuild();
             Render();
@@ -115,6 +131,7 @@ namespace CavesOfOoo.Rendering
         {
             _isOpen = false;
             _equipPopup = null;
+            _displaceConfirm = null;
             _itemActionPopup = null;
         }
 
@@ -125,6 +142,11 @@ namespace CavesOfOoo.Rendering
             if (!_isOpen) return false;
 
             // Popups intercept all input when active
+            if (_displaceConfirm != null)
+            {
+                HandleDisplaceConfirmInput();
+                return true;
+            }
             if (_equipPopup != null)
             {
                 HandleEquipPopupInput();
@@ -473,6 +495,23 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
+            // Check for displacements and show confirmation if needed
+            var displacements = InventorySystem.PreviewDisplacements(PlayerEntity, item, targetBodyPart);
+            if (displacements.Count > 0)
+            {
+                _displaceConfirm = new DisplaceConfirmState
+                {
+                    ItemToEquip = item,
+                    TargetPart = targetBodyPart,
+                    Displacements = displacements,
+                    CursorOnYes = true,
+                    FromEquipPopup = true,
+                    FromItemAction = false
+                };
+                Render();
+                return;
+            }
+
             InventorySystem.Equip(PlayerEntity, item, targetBodyPart);
 
             _equipPopup = null;
@@ -489,6 +528,108 @@ namespace CavesOfOoo.Rendering
             _equipPopup = null;
             Rebuild();
             Render();
+        }
+
+        // ===== Displacement Confirm Popup =====
+
+        private void HandleDisplaceConfirmInput()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.N))
+            {
+                _displaceConfirm = null;
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)
+                || Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.L)
+                || Input.GetKeyDown(KeyCode.Tab))
+            {
+                _displaceConfirm.CursorOnYes = !_displaceConfirm.CursorOnYes;
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                ConfirmDisplacement();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                if (_displaceConfirm.CursorOnYes)
+                    ConfirmDisplacement();
+                else
+                {
+                    _displaceConfirm = null;
+                    Render();
+                }
+                return;
+            }
+
+            // Mouse click
+            if (Input.GetMouseButtonDown(0))
+            {
+                int button = GetDisplaceConfirmButtonAtMouse();
+                if (button == 0) // Yes
+                {
+                    ConfirmDisplacement();
+                    return;
+                }
+                else if (button == 1) // No
+                {
+                    _displaceConfirm = null;
+                    Render();
+                    return;
+                }
+            }
+        }
+
+        private void ConfirmDisplacement()
+        {
+            var item = _displaceConfirm.ItemToEquip;
+            var target = _displaceConfirm.TargetPart;
+            bool fromEquipPopup = _displaceConfirm.FromEquipPopup;
+
+            _displaceConfirm = null;
+
+            InventorySystem.Equip(PlayerEntity, item, target);
+
+            if (fromEquipPopup)
+                _equipPopup = null;
+            else
+                _itemActionPopup = null;
+
+            Rebuild();
+            ClampCursor();
+            Render();
+        }
+
+        private int GetDisplaceConfirmButtonAtMouse()
+        {
+            var grid = MouseToGrid();
+            if (grid.x < 0) return -1;
+
+            var dc = _displaceConfirm;
+            int contentRows = dc.Displacements.Count + 1; // +1 for "Will unequip:" header
+            int totalRows = contentRows + 2; // +1 blank line, +1 button row
+            int popupH = totalRows + 4;
+            int popupX = (W - POPUP_W) / 2;
+            int popupY = (H - popupH) / 2;
+            int buttonY = popupY + 3 + contentRows + 1;
+
+            if (grid.y != buttonY) return -1;
+
+            // Yes button area
+            int yesX = popupX + 4;
+            if (grid.x >= yesX && grid.x < yesX + 5) return 0;
+
+            // No button area
+            int noX = popupX + 12;
+            if (grid.x >= noX && grid.x < noX + 4) return 1;
+
+            return -1;
         }
 
         // ===== Item Action Popup =====
@@ -609,12 +750,29 @@ namespace CavesOfOoo.Rendering
             switch (action.Command)
             {
                 case "equip_auto":
+                {
+                    var displacements = InventorySystem.PreviewDisplacements(PlayerEntity, item);
+                    if (displacements.Count > 0)
+                    {
+                        _displaceConfirm = new DisplaceConfirmState
+                        {
+                            ItemToEquip = item,
+                            TargetPart = null,
+                            Displacements = displacements,
+                            CursorOnYes = true,
+                            FromEquipPopup = false,
+                            FromItemAction = true
+                        };
+                        Render();
+                        break;
+                    }
                     InventorySystem.Equip(PlayerEntity, item);
                     _itemActionPopup = null;
                     Rebuild();
                     ClampCursor();
                     Render();
                     break;
+                }
 
                 case "equip_manual":
                     OpenBodyPartPicker();
@@ -732,7 +890,26 @@ namespace CavesOfOoo.Rendering
             if (index < 0 || index >= _itemActionPopup.BodyParts.Count) return;
 
             var part = _itemActionPopup.BodyParts[index];
-            InventorySystem.Equip(PlayerEntity, _itemActionPopup.Item, part);
+            var item = _itemActionPopup.Item;
+
+            // Check for displacements and show confirmation if needed
+            var displacements = InventorySystem.PreviewDisplacements(PlayerEntity, item, part);
+            if (displacements.Count > 0)
+            {
+                _displaceConfirm = new DisplaceConfirmState
+                {
+                    ItemToEquip = item,
+                    TargetPart = part,
+                    Displacements = displacements,
+                    CursorOnYes = true,
+                    FromEquipPopup = false,
+                    FromItemAction = true
+                };
+                Render();
+                return;
+            }
+
+            InventorySystem.Equip(PlayerEntity, item, part);
 
             _itemActionPopup = null;
             Rebuild();
@@ -925,10 +1102,14 @@ namespace CavesOfOoo.Rendering
                 RenderEquipPopup();
             if (_itemActionPopup != null)
                 RenderItemActionPopup();
+            if (_displaceConfirm != null)
+                RenderDisplaceConfirm();
 
             // Action bar
             string actions;
-            if (_equipPopup != null || _itemActionPopup != null)
+            if (_displaceConfirm != null)
+                actions = " [Y]es  [N]o  [Esc]cancel";
+            else if (_equipPopup != null || _itemActionPopup != null)
                 actions = " [Enter]select  [a-z]quick select  [Esc]cancel";
             else if (_panel == 0)
                 actions = " [Enter]equip [e]unequip [>]inventory [Esc]close";
@@ -1029,9 +1210,10 @@ namespace CavesOfOoo.Rendering
             DrawText(labelStart, y + BOX_H, label, labelColor);
 
             // Stats line below label (with 1 row gap after label)
-            if (slot.EquippedItem != null)
+            Entity statsEntity = slot.EquippedItem ?? slot.DefaultBehavior;
+            if (statsEntity != null)
             {
-                string stats = BuildSlotStats(slot.EquippedItem);
+                string stats = BuildSlotStats(statsEntity);
                 if (stats.Length > 0)
                 {
                     int statsStart = x + (BOX_W - stats.Length) / 2;
@@ -1382,6 +1564,73 @@ namespace CavesOfOoo.Rendering
 
                 DrawText(popupX + 5, rowY, line, lineColor);
             }
+        }
+
+        private void RenderDisplaceConfirm()
+        {
+            var dc = _displaceConfirm;
+            int itemCount = dc.Displacements.Count;
+            // Content: "Will unequip:" header + one line per displaced item + blank + button row
+            int contentRows = itemCount + 1 + 1 + 1;
+            int popupH = contentRows + 4;
+            int popupX = (W - POPUP_W) / 2;
+            int popupY = (H - popupH) / 2;
+
+            ClearRegion(popupX, popupY, POPUP_W, popupH);
+            DrawPopupBorder(popupX, popupY, POPUP_W, popupH, contentRows);
+
+            // Title: "Equip <item name>?"
+            string title = "Equip " + dc.ItemToEquip.GetDisplayName() + "?";
+            if (title.Length > POPUP_W - 4)
+                title = title.Substring(0, POPUP_W - 5) + "~?";
+            DrawText(popupX + 2, popupY + 1, title, QudColorParser.BrightYellow);
+
+            int cy = popupY + 3;
+
+            // "Will unequip:" header
+            DrawText(popupX + 2, cy, "Will unequip:", QudColorParser.Gray);
+            cy++;
+
+            // Displaced items
+            for (int i = 0; i < itemCount; i++)
+            {
+                var d = dc.Displacements[i];
+                string partName = d.BodyPart.GetDisplayName();
+                string itemName = d.Item.GetDisplayName();
+                string line = "  " + itemName + " in " + partName;
+                int maxLen = POPUP_W - 4;
+                if (line.Length > maxLen)
+                    line = line.Substring(0, maxLen - 1) + "~";
+
+                // Draw item glyph
+                var render = d.Item.GetPart<RenderPart>();
+                if (render != null && !string.IsNullOrEmpty(render.RenderString))
+                {
+                    Color glyphColor = QudColorParser.Parse(render.ColorString);
+                    DrawChar(popupX + 3, cy, render.RenderString[0], glyphColor);
+                }
+
+                DrawText(popupX + 5, cy, line.Substring(2), QudColorParser.BrightRed);
+                cy++;
+            }
+
+            // Blank line
+            cy++;
+
+            // Yes/No buttons
+            bool yesSelected = dc.CursorOnYes;
+            string yesText = yesSelected ? "[Yes]" : " Yes ";
+            string noText = !yesSelected ? "[No]" : " No ";
+            Color yesColor = yesSelected ? QudColorParser.White : QudColorParser.Gray;
+            Color noColor = !yesSelected ? QudColorParser.White : QudColorParser.Gray;
+
+            if (yesSelected)
+                DrawChar(popupX + 3, cy, '>', QudColorParser.White);
+            else
+                DrawChar(popupX + 10, cy, '>', QudColorParser.White);
+
+            DrawText(popupX + 4, cy, yesText, yesColor);
+            DrawText(popupX + 12, cy, noText, noColor);
         }
 
         private void DrawPopupBorder(int x, int y, int w, int h, int contentRows)

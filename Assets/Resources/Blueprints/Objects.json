@@ -486,6 +486,75 @@
       "Tags": [
         { "Key": "Tier", "Value": "2" }
       ]
+    },
+    {
+      "Name": "Battleaxe",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "battleaxe" },
+          { "Key": "RenderString", "Value": "P" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "14" }] },
+        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d6" }, { "Key": "PenBonus", "Value": "3" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "40" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "TwoHanded", "Value": "" }
+      ]
+    },
+    {
+      "Name": "Greatsword",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "greatsword" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "12" }] },
+        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d12" }, { "Key": "PenBonus", "Value": "4" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "50" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 12, "Min": 0, "Max": 12 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "3" },
+        { "Key": "TwoHanded", "Value": "" }
+      ]
+    },
+    {
+      "Name": "Warhammer",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "warhammer" },
+          { "Key": "RenderString", "Value": "T" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "16" }] },
+        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d4+1" }, { "Key": "PenBonus", "Value": "5" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "45" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 20, "Min": 0, "Max": 20 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "TwoHanded", "Value": "" }
+      ]
     }
   ]
 }

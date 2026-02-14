@@ -46,6 +46,7 @@ namespace CavesOfOoo.Core
             public string BodyPartName;
             public Entity EquippedItem;
             public string ItemName;
+            public Entity DefaultBehavior;
 
             // Paperdoll layout fields
             public int GridX;
@@ -82,22 +83,45 @@ namespace CavesOfOoo.Core
             state.MaxCarryWeight = inventory.GetMaxCarryWeight();
             state.Drams = TradeSystem.GetDrams(actor);
 
-            // Build category groups from carried items
+            // Gather all items (carried + equipped) into one list, deduplicated
             var categoryMap = new Dictionary<string, CategoryGroup>();
+            var seen = new HashSet<Entity>();
 
-            for (int i = 0; i < inventory.Objects.Count; i++)
-            {
-                var item = inventory.Objects[i];
-                var display = BuildItemDisplay(actor, item, false, null);
-                AddToCategory(categoryMap, display);
-                state.TotalItems++;
-            }
-
-            // Add equipped items (legacy slots)
+            // Build a set of equipped items for status lookup
+            var equippedSet = new HashSet<Entity>();
+            var equippedSlotMap = new Dictionary<Entity, string>();
             foreach (var kvp in inventory.EquippedItems)
             {
-                if (kvp.Value == null) continue;
-                var display = BuildItemDisplay(actor, kvp.Value, true, kvp.Key);
+                if (kvp.Value != null)
+                {
+                    equippedSet.Add(kvp.Value);
+                    if (!equippedSlotMap.ContainsKey(kvp.Value))
+                        equippedSlotMap[kvp.Value] = kvp.Key;
+                }
+            }
+
+            // Combine all items: carried items + equipped items
+            var allItems = new List<Entity>();
+            for (int i = 0; i < inventory.Objects.Count; i++)
+            {
+                if (seen.Add(inventory.Objects[i]))
+                    allItems.Add(inventory.Objects[i]);
+            }
+            foreach (var kvp in inventory.EquippedItems)
+            {
+                if (kvp.Value != null && seen.Add(kvp.Value))
+                    allItems.Add(kvp.Value);
+            }
+
+            // Sort by entity ID for stable ordering across equip/unequip
+            allItems.Sort((a, b) => string.Compare(a.ID, b.ID, System.StringComparison.Ordinal));
+
+            for (int i = 0; i < allItems.Count; i++)
+            {
+                var item = allItems[i];
+                bool equipped = equippedSet.Contains(item);
+                string slot = equipped && equippedSlotMap.TryGetValue(item, out var s) ? s : null;
+                var display = BuildItemDisplay(actor, item, equipped, slot);
                 AddToCategory(categoryMap, display);
                 state.TotalItems++;
             }
@@ -142,6 +166,7 @@ namespace CavesOfOoo.Core
                             BodyPartName = part.GetDisplayName(),
                             EquippedItem = part._Equipped,
                             ItemName = part._Equipped != null ? part._Equipped.GetDisplayName() : "(empty)",
+                            DefaultBehavior = part._DefaultBehavior,
                             BodyPartID = part.ID
                         };
                         slots.Add(slot);
