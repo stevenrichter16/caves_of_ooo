@@ -2191,6 +2191,42 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void TakeFromContainerCommand_LockedContainer_DoesNotMutate()
+        {
+            var actor = CreateCreatureWithInventory();
+            var chest = CreateContainer();
+            chest.GetPart<ContainerPart>().Locked = true;
+            var item = CreateTakeableItem(5);
+            chest.GetPart<ContainerPart>().AddItem(item);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new TakeFromContainerCommand(chest, item),
+                new InventoryContext(actor));
+
+            Assert.IsFalse(result.Success);
+            Assert.IsTrue(chest.GetPart<ContainerPart>().Contents.Contains(item));
+            Assert.AreEqual(0, actor.GetPart<InventoryPart>().Objects.Count);
+        }
+
+        [Test]
+        public void TakeFromContainerCommand_ItemNotInContainer_FailsWithoutMutation()
+        {
+            var actor = CreateCreatureWithInventory();
+            var chest = CreateContainer();
+            var item = CreateTakeableItem(5);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new TakeFromContainerCommand(chest, item),
+                new InventoryContext(actor));
+
+            Assert.IsFalse(result.Success);
+            Assert.IsFalse(chest.GetPart<ContainerPart>().Contents.Contains(item));
+            Assert.AreEqual(0, actor.GetPart<InventoryPart>().Objects.Count);
+        }
+
+        [Test]
         public void PutInContainerCommand_FullContainer_RollsBackToInventory()
         {
             var actor = CreateCreatureWithInventory();
@@ -2367,6 +2403,183 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(twoHander, hands[1]._Equipped);
             Assert.IsFalse(inventory.Objects.Contains(twoHander));
             Assert.IsFalse(chest.GetPart<ContainerPart>().Contents.Contains(twoHander));
+        }
+
+        [Test]
+        public void PutInContainerCommand_ItemNotOwned_ValidationFails()
+        {
+            var actor = CreateCreatureWithInventory();
+            var chest = CreateContainer();
+            var item = CreateTakeableItem(5);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new PutInContainerCommand(chest, item),
+                new InventoryContext(actor));
+
+            Assert.IsFalse(result.Success);
+            Assert.AreEqual(InventoryCommandErrorCode.ValidationFailed, result.ErrorCode);
+            Assert.AreEqual(0, actor.GetPart<InventoryPart>().Objects.Count);
+            Assert.IsFalse(chest.GetPart<ContainerPart>().Contents.Contains(item));
+        }
+
+        [Test]
+        public void PutInContainerCommand_BodyMode_LockedContainer_MultiSlotItem_RemainsEquipped()
+        {
+            var actor = CreateCreatureWithBody();
+            var chest = CreateContainer();
+            chest.GetPart<ContainerPart>().Locked = true;
+
+            var inventory = actor.GetPart<InventoryPart>();
+            var body = actor.GetPart<Body>();
+            var hands = body.GetEquippableSlots("Hand");
+            var twoHander = CreateTwoHandedWeapon("battleaxe");
+
+            inventory.AddObject(twoHander);
+            Assert.IsTrue(InventorySystem.Equip(actor, twoHander));
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new PutInContainerCommand(chest, twoHander),
+                new InventoryContext(actor));
+
+            Assert.IsFalse(result.Success);
+            Assert.AreEqual(twoHander, hands[0]._Equipped);
+            Assert.AreEqual(twoHander, hands[1]._Equipped);
+            Assert.IsFalse(inventory.Objects.Contains(twoHander));
+            Assert.IsFalse(chest.GetPart<ContainerPart>().Contents.Contains(twoHander));
+        }
+
+        [Test]
+        public void PutInContainerCommand_Rollback_AfterOuterFailure_RestoresCarriedItem()
+        {
+            var actor = CreateCreatureWithInventory();
+            var chest = CreateContainer();
+            var item = CreateTakeableItem(5);
+            var inventory = actor.GetPart<InventoryPart>();
+            inventory.AddObject(item);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new FailAfterNestedPutInContainerCommand(chest, item),
+                new InventoryContext(actor));
+
+            Assert.IsFalse(result.Success);
+            Assert.IsTrue(inventory.Objects.Contains(item));
+            Assert.IsFalse(chest.GetPart<ContainerPart>().Contents.Contains(item));
+        }
+
+        [Test]
+        public void PutInContainerCommand_Rollback_AfterOuterFailure_ReequipsBodyModeMultiSlotItem()
+        {
+            var actor = CreateCreatureWithBody();
+            var chest = CreateContainer();
+
+            var inventory = actor.GetPart<InventoryPart>();
+            var body = actor.GetPart<Body>();
+            var hands = body.GetEquippableSlots("Hand");
+            var twoHander = CreateTwoHandedWeapon("battleaxe");
+
+            inventory.AddObject(twoHander);
+            Assert.IsTrue(InventorySystem.Equip(actor, twoHander));
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new FailAfterNestedPutInContainerCommand(chest, twoHander),
+                new InventoryContext(actor));
+
+            Assert.IsFalse(result.Success);
+            Assert.AreEqual(twoHander, hands[0]._Equipped);
+            Assert.AreEqual(twoHander, hands[1]._Equipped);
+            Assert.IsFalse(inventory.Objects.Contains(twoHander));
+            Assert.IsFalse(chest.GetPart<ContainerPart>().Contents.Contains(twoHander));
+        }
+
+        [Test]
+        public void TakeFromContainerCommand_Rollback_AfterOuterFailure_RestoresContainerItem()
+        {
+            var actor = CreateCreatureWithInventory();
+            var chest = CreateContainer();
+            var item = CreateTakeableItem(5);
+            chest.GetPart<ContainerPart>().AddItem(item);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new FailAfterNestedTakeFromContainerCommand(chest, item),
+                new InventoryContext(actor));
+
+            Assert.IsFalse(result.Success);
+            Assert.IsTrue(chest.GetPart<ContainerPart>().Contents.Contains(item));
+            Assert.IsFalse(actor.GetPart<InventoryPart>().Objects.Contains(item));
+        }
+
+        [Test]
+        public void DropCommand_Rollback_AfterOuterFailure_RestoresCarriedItem()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            zone.AddEntity(actor, 5, 5);
+
+            var item = CreateTakeableItem(5);
+            var inventory = actor.GetPart<InventoryPart>();
+            inventory.AddObject(item);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new FailAfterNestedDropCommand(item),
+                new InventoryContext(actor, zone));
+
+            Assert.IsFalse(result.Success);
+            Assert.IsTrue(inventory.Objects.Contains(item));
+            Assert.IsNull(zone.GetEntityCell(item));
+        }
+
+        [Test]
+        public void DropCommand_Rollback_AfterOuterFailure_ReequipsBodyModeMultiSlotItem()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithBody();
+            zone.AddEntity(actor, 5, 5);
+
+            var inventory = actor.GetPart<InventoryPart>();
+            var body = actor.GetPart<Body>();
+            var hands = body.GetEquippableSlots("Hand");
+            var twoHander = CreateTwoHandedWeapon("battleaxe");
+
+            inventory.AddObject(twoHander);
+            Assert.IsTrue(InventorySystem.Equip(actor, twoHander));
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new FailAfterNestedDropCommand(twoHander),
+                new InventoryContext(actor, zone));
+
+            Assert.IsFalse(result.Success);
+            Assert.AreEqual(twoHander, hands[0]._Equipped);
+            Assert.AreEqual(twoHander, hands[1]._Equipped);
+            Assert.IsFalse(inventory.Objects.Contains(twoHander));
+            Assert.IsNull(zone.GetEntityCell(twoHander));
+        }
+
+        [Test]
+        public void DropPartialCommand_Rollback_AfterOuterFailure_RestoresStackAndZone()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            zone.AddEntity(actor, 5, 5);
+
+            var torches = CreateStackableItem("Torch", 1, 5);
+            actor.GetPart<InventoryPart>().AddObject(torches);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new FailAfterNestedDropPartialCommand(torches, 2),
+                new InventoryContext(actor, zone));
+
+            Assert.IsFalse(result.Success);
+            Assert.AreEqual(5, torches.GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(1, actor.GetPart<InventoryPart>().Objects.Count);
+            Assert.AreEqual(0, InventorySystem.GetTakeableItemsAtFeet(actor, zone).Count);
         }
 
         [Test]
@@ -2644,6 +2857,136 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(result.Success);
             Assert.AreEqual(20, actor.GetStatValue("Hitpoints"));
             Assert.AreEqual(0, inv.Objects.Count);
+        }
+
+        [Test]
+        public void PerformInventoryActionCommand_Rollback_AfterOuterFailure_RestoresFoodAndHitpoints()
+        {
+            var actor = CreateCreatureWithInventory();
+            actor.Statistics["Hitpoints"] = new Stat
+            {
+                Name = "Hitpoints", BaseValue = 10, Min = 0, Max = 30
+            };
+
+            var food = CreateFoodItem("10d1");
+            var inv = actor.GetPart<InventoryPart>();
+            inv.AddObject(food);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new FailAfterNestedPerformInventoryActionCommand(food, "Eat"),
+                new InventoryContext(actor));
+
+            Assert.IsFalse(result.Success);
+            Assert.AreEqual(10, actor.GetStatValue("Hitpoints"));
+            Assert.IsTrue(inv.Objects.Contains(food));
+        }
+
+        [Test]
+        public void PerformInventoryActionCommand_Rollback_AfterOuterFailure_RestoresStackedFoodCount()
+        {
+            var actor = CreateCreatureWithInventory();
+            var food = CreateFoodItem("1d1");
+            food.BlueprintName = "TestFruit";
+            food.AddPart(new StackerPart { StackCount = 3, MaxStack = 99 });
+            var inv = actor.GetPart<InventoryPart>();
+            inv.AddObject(food);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new FailAfterNestedPerformInventoryActionCommand(food, "Eat"),
+                new InventoryContext(actor));
+
+            Assert.IsFalse(result.Success);
+            Assert.IsTrue(inv.Objects.Contains(food));
+            Assert.AreEqual(3, food.GetPart<StackerPart>().StackCount);
+        }
+
+        [Test]
+        public void PerformInventoryActionCommand_Rollback_AfterOuterFailure_RestoresTonicBoostAndItem()
+        {
+            var actor = CreateCreatureWithInventory();
+            actor.Statistics["Strength"] = new Stat
+            {
+                Name = "Strength", BaseValue = 16, Min = 1, Max = 50
+            };
+
+            var tonic = new Entity();
+            tonic.BlueprintName = "TestTonic";
+            tonic.Tags["Item"] = "";
+            tonic.AddPart(new PhysicsPart { Takeable = true, Weight = 1, Category = "Tonics" });
+            tonic.AddPart(new TonicPart { StatBoost = "Strength:4" });
+            var inv = actor.GetPart<InventoryPart>();
+            inv.AddObject(tonic);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new FailAfterNestedPerformInventoryActionCommand(tonic, "ApplyTonic"),
+                new InventoryContext(actor));
+
+            Assert.IsFalse(result.Success);
+            Assert.AreEqual(16, actor.GetStatValue("Strength"));
+            Assert.IsTrue(inv.Objects.Contains(tonic));
+        }
+
+        [Test]
+        public void PerformInventoryActionCommand_BeforeInventoryActionMutatesThenCancels_RollsBack()
+        {
+            var actor = CreateCreatureWithInventory();
+            actor.Statistics["Strength"] = new Stat
+            {
+                Name = "Strength", BaseValue = 16, Min = 1, Max = 50
+            };
+            actor.AddPart(new MutateAndCancelStatEventPart("BeforeInventoryAction", "Strength", 3));
+
+            var food = CreateFoodItem("1d1");
+            var inv = actor.GetPart<InventoryPart>();
+            inv.AddObject(food);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new PerformInventoryActionCommand(food, "Eat"),
+                new InventoryContext(actor));
+
+            Assert.IsFalse(result.Success);
+            Assert.AreEqual(16, actor.GetStatValue("Strength"));
+            Assert.IsTrue(inv.Objects.Contains(food));
+        }
+
+        [Test]
+        public void PerformInventoryActionCommand_BeforeInventoryActionCancelled_DoesNotMutate()
+        {
+            var actor = CreateCreatureWithInventory();
+            actor.AddPart(new CancelEventPart("BeforeInventoryAction"));
+
+            var food = CreateFoodItem("10d1");
+            var inv = actor.GetPart<InventoryPart>();
+            inv.AddObject(food);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new PerformInventoryActionCommand(food, "Eat"),
+                new InventoryContext(actor));
+
+            Assert.IsFalse(result.Success);
+            Assert.IsTrue(inv.Objects.Contains(food));
+        }
+
+        [Test]
+        public void PerformInventoryActionCommand_UnknownCommand_FailsWithoutMutation()
+        {
+            var actor = CreateCreatureWithInventory();
+            var food = CreateFoodItem("1d4");
+            var inv = actor.GetPart<InventoryPart>();
+            inv.AddObject(food);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new PerformInventoryActionCommand(food, "Juggle"),
+                new InventoryContext(actor));
+
+            Assert.IsFalse(result.Success);
+            Assert.IsTrue(inv.Objects.Contains(food));
         }
 
         [Test]
@@ -3243,6 +3586,105 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void EquipCommand_PreviewDisplacementsMatchExecution_Targeted()
+        {
+            var actor = CreateCreatureWithBody();
+            var inv = actor.GetPart<InventoryPart>();
+            var body = actor.GetPart<Body>();
+            var hands = body.GetEquippableSlots("Hand");
+
+            var sword = CreateOneHandedWeapon("long sword");
+            var shield = CreateOneHandedWeapon("buckler");
+            inv.AddObject(sword);
+            inv.AddObject(shield);
+            InventorySystem.Equip(actor, sword, hands[0]);
+            InventorySystem.Equip(actor, shield, hands[1]);
+
+            var twoHander = CreateTwoHandedWeapon("battleaxe");
+            inv.AddObject(twoHander);
+
+            var preview = InventorySystem.PreviewDisplacements(actor, twoHander, hands[0]);
+            var previewDisplaced = new HashSet<Entity>();
+            for (int i = 0; i < preview.Count; i++)
+                previewDisplaced.Add(preview[i].Item);
+
+            Assert.AreEqual(2, previewDisplaced.Count);
+            Assert.IsTrue(previewDisplaced.Contains(sword));
+            Assert.IsTrue(previewDisplaced.Contains(shield));
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new EquipCommand(twoHander, hands[0]),
+                new InventoryContext(actor));
+
+            Assert.IsTrue(result.Success);
+            Assert.AreEqual(twoHander, hands[0]._Equipped);
+            Assert.AreEqual(twoHander, hands[1]._Equipped);
+
+            foreach (var displaced in previewDisplaced)
+                Assert.IsTrue(inv.Objects.Contains(displaced));
+        }
+
+        [Test]
+        public void EquipCommand_Rollback_AfterOuterFailure_Targeted_RestoresPriorEquipment()
+        {
+            var actor = CreateCreatureWithBody();
+            var inv = actor.GetPart<InventoryPart>();
+            var body = actor.GetPart<Body>();
+            var hands = body.GetEquippableSlots("Hand");
+
+            var sword = CreateOneHandedWeapon("long sword");
+            var shield = CreateOneHandedWeapon("buckler");
+            inv.AddObject(sword);
+            inv.AddObject(shield);
+            InventorySystem.Equip(actor, sword, hands[0]);
+            InventorySystem.Equip(actor, shield, hands[1]);
+
+            var twoHander = CreateTwoHandedWeapon("battleaxe");
+            inv.AddObject(twoHander);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new FailAfterNestedTargetedEquipCommand(twoHander, hands[0]),
+                new InventoryContext(actor));
+
+            Assert.IsFalse(result.Success);
+            Assert.AreEqual(sword, hands[0]._Equipped);
+            Assert.AreEqual(shield, hands[1]._Equipped);
+            Assert.IsTrue(inv.Objects.Contains(twoHander));
+            Assert.IsFalse(inv.Objects.Contains(sword));
+            Assert.IsFalse(inv.Objects.Contains(shield));
+        }
+
+        [Test]
+        public void EquipCommand_TargetWrongConcreteSlotType_FailsWithoutMutation()
+        {
+            var actor = CreateCreatureWithBody();
+            var inv = actor.GetPart<InventoryPart>();
+            var body = actor.GetPart<Body>();
+
+            var sword = CreateOneHandedWeapon("long sword");
+            inv.AddObject(sword);
+
+            var head = body.GetPartByType("Head");
+            Assert.IsNotNull(head);
+            Assert.AreEqual("Head", head.Type);
+
+            var preview = InventorySystem.PreviewDisplacements(actor, sword, head);
+            Assert.AreEqual(0, preview.Count);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new EquipCommand(sword, head),
+                new InventoryContext(actor));
+
+            Assert.IsFalse(result.Success);
+            Assert.IsTrue(inv.Objects.Contains(sword));
+            var hands = body.GetEquippableSlots("Hand");
+            Assert.IsTrue(hands[0]._Equipped != sword && hands[1]._Equipped != sword);
+        }
+
+        [Test]
         public void AutoEquip_TwoHanded_OnlyIfBothHandsFree()
         {
             var actor = CreateCreatureWithBody();
@@ -3467,6 +3909,228 @@ namespace CavesOfOoo.Tests
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
                     "Intentional failure after unequip.");
+            }
+        }
+
+        private sealed class FailAfterNestedPutInContainerCommand : IInventoryCommand
+        {
+            private readonly Entity _container;
+            private readonly Entity _item;
+
+            public string Name => "FailAfterNestedPutInContainer";
+
+            public FailAfterNestedPutInContainerCommand(Entity container, Entity item)
+            {
+                _container = container;
+                _item = item;
+            }
+
+            public InventoryValidationResult Validate(InventoryContext context)
+            {
+                if (_container == null || _item == null)
+                {
+                    return InventoryValidationResult.Invalid(
+                        InventoryValidationErrorCode.InvalidItem,
+                        "Test container/item is null.");
+                }
+
+                return InventoryValidationResult.Valid();
+            }
+
+            public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
+            {
+                var putResult = new PutInContainerCommand(_container, _item).Execute(context, transaction);
+                if (!putResult.Success)
+                    return putResult;
+
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Intentional failure after put-in-container.");
+            }
+        }
+
+        private sealed class FailAfterNestedTakeFromContainerCommand : IInventoryCommand
+        {
+            private readonly Entity _container;
+            private readonly Entity _item;
+
+            public string Name => "FailAfterNestedTakeFromContainer";
+
+            public FailAfterNestedTakeFromContainerCommand(Entity container, Entity item)
+            {
+                _container = container;
+                _item = item;
+            }
+
+            public InventoryValidationResult Validate(InventoryContext context)
+            {
+                if (_container == null || _item == null)
+                {
+                    return InventoryValidationResult.Invalid(
+                        InventoryValidationErrorCode.InvalidItem,
+                        "Test container/item is null.");
+                }
+
+                return InventoryValidationResult.Valid();
+            }
+
+            public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
+            {
+                var takeResult = new TakeFromContainerCommand(_container, _item).Execute(context, transaction);
+                if (!takeResult.Success)
+                    return takeResult;
+
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Intentional failure after take-from-container.");
+            }
+        }
+
+        private sealed class FailAfterNestedDropCommand : IInventoryCommand
+        {
+            private readonly Entity _item;
+
+            public string Name => "FailAfterNestedDrop";
+
+            public FailAfterNestedDropCommand(Entity item)
+            {
+                _item = item;
+            }
+
+            public InventoryValidationResult Validate(InventoryContext context)
+            {
+                if (_item == null)
+                {
+                    return InventoryValidationResult.Invalid(
+                        InventoryValidationErrorCode.InvalidItem,
+                        "Test item is null.");
+                }
+
+                return InventoryValidationResult.Valid();
+            }
+
+            public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
+            {
+                var dropResult = new DropCommand(_item).Execute(context, transaction);
+                if (!dropResult.Success)
+                    return dropResult;
+
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Intentional failure after drop.");
+            }
+        }
+
+        private sealed class FailAfterNestedDropPartialCommand : IInventoryCommand
+        {
+            private readonly Entity _item;
+            private readonly int _count;
+
+            public string Name => "FailAfterNestedDropPartial";
+
+            public FailAfterNestedDropPartialCommand(Entity item, int count)
+            {
+                _item = item;
+                _count = count;
+            }
+
+            public InventoryValidationResult Validate(InventoryContext context)
+            {
+                if (_item == null || _count <= 0)
+                {
+                    return InventoryValidationResult.Invalid(
+                        InventoryValidationErrorCode.InvalidItem,
+                        "Test drop-partial item/count is invalid.");
+                }
+
+                return InventoryValidationResult.Valid();
+            }
+
+            public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
+            {
+                var dropPartialResult = new DropPartialCommand(_item, _count).Execute(context, transaction);
+                if (!dropPartialResult.Success)
+                    return dropPartialResult;
+
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Intentional failure after partial drop.");
+            }
+        }
+
+        private sealed class FailAfterNestedPerformInventoryActionCommand : IInventoryCommand
+        {
+            private readonly Entity _item;
+            private readonly string _actionCommand;
+
+            public string Name => "FailAfterNestedPerformInventoryAction";
+
+            public FailAfterNestedPerformInventoryActionCommand(Entity item, string actionCommand)
+            {
+                _item = item;
+                _actionCommand = actionCommand;
+            }
+
+            public InventoryValidationResult Validate(InventoryContext context)
+            {
+                if (_item == null || string.IsNullOrEmpty(_actionCommand))
+                {
+                    return InventoryValidationResult.Invalid(
+                        InventoryValidationErrorCode.InvalidItem,
+                        "Test inventory-action item/command is invalid.");
+                }
+
+                return InventoryValidationResult.Valid();
+            }
+
+            public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
+            {
+                var actionResult = new PerformInventoryActionCommand(_item, _actionCommand)
+                    .Execute(context, transaction);
+                if (!actionResult.Success)
+                    return actionResult;
+
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Intentional failure after inventory action.");
+            }
+        }
+
+        private sealed class FailAfterNestedTargetedEquipCommand : IInventoryCommand
+        {
+            private readonly Entity _item;
+            private readonly BodyPart _targetBodyPart;
+
+            public string Name => "FailAfterNestedTargetedEquip";
+
+            public FailAfterNestedTargetedEquipCommand(Entity item, BodyPart targetBodyPart)
+            {
+                _item = item;
+                _targetBodyPart = targetBodyPart;
+            }
+
+            public InventoryValidationResult Validate(InventoryContext context)
+            {
+                if (_item == null || _targetBodyPart == null)
+                {
+                    return InventoryValidationResult.Invalid(
+                        InventoryValidationErrorCode.InvalidItem,
+                        "Test targeted-equip item/body part is invalid.");
+                }
+
+                return InventoryValidationResult.Valid();
+            }
+
+            public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
+            {
+                var equipResult = new EquipCommand(_item, _targetBodyPart)
+                    .Execute(context, transaction);
+                if (!equipResult.Success)
+                    return equipResult;
+
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Intentional failure after targeted equip.");
             }
         }
 
@@ -3781,6 +4445,37 @@ namespace CavesOfOoo.Tests
             if (e.ID == _eventToCancel)
                 return false;
             return true;
+        }
+    }
+
+    /// <summary>
+    /// Test part that mutates a stat and then cancels a specific event.
+    /// Used to verify transactional rollback restores state on veto paths.
+    /// </summary>
+    public class MutateAndCancelStatEventPart : Part
+    {
+        public override string Name => "MutateAndCancelStatEvent";
+        private readonly string _eventToCancel;
+        private readonly string _statName;
+        private readonly int _delta;
+
+        public MutateAndCancelStatEventPart(string eventToCancel, string statName, int delta)
+        {
+            _eventToCancel = eventToCancel;
+            _statName = statName;
+            _delta = delta;
+        }
+
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID != _eventToCancel)
+                return true;
+
+            var stat = ParentEntity?.GetStat(_statName);
+            if (stat != null)
+                stat.Bonus += _delta;
+
+            return false;
         }
     }
 }

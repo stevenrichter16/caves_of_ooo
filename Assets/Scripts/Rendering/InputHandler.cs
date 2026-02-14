@@ -585,6 +585,9 @@ namespace CavesOfOoo.Rendering
                 Debug.LogWarning(
                     "[Inventory/Refactor] TakeFromContainer command failed. " +
                     $"Code={result.ErrorCode}, Message={result.ErrorMessage}");
+
+                // Match InventorySystem.TakeAllFromContainer parity: stop on first failure.
+                break;
             }
 
             return taken > 0;

@@ -33,7 +33,7 @@ Last updated: 2026-02-14
 - End-state criteria:
 - Mutating commands implement explicit transaction steps with `Do/Undo`.
 - Partial failures rollback to consistent pre-command state.
-- Status: `IN_PROGRESS`
+- Status: `DONE`
 - Current evidence:
 - `InventoryTransaction` is active in command execution and container transfer commands now perform transactional `Do/Undo` steps.
 - `TakeFromContainerCommand` and `PutInContainerCommand` no longer fully delegate to legacy static wrappers.
@@ -47,7 +47,9 @@ Last updated: 2026-02-14
 - Equip stacked-item rollback now removes transient split entities before stack restoration, preventing zero-count ghost stack entries.
 - Unequip rollback now restores equip bonuses through transaction undo, ensuring stat parity after rolled-back nested commands.
 - Equipped-state detection in `DropCommand`, `PutInContainerCommand`, and `UnequipCommand` now uses `UnequipCommand.CaptureEquippedState(...)` snapshots, hardening multi-slot/body-mode rollback behavior against slot-cache drift.
-- Remaining gap: verify and harden rollback determinism across edge-case event veto/stack-split/equipment scenarios.
+- Forced-failure nested rollback coverage now includes post-success failure cases for `DropCommand`, `DropPartialCommand`, `PutInContainerCommand`, and `TakeFromContainerCommand`, verifying transaction undo determinism for mixed command chains.
+- `PerformInventoryActionCommand` now captures actor-stat and item-state snapshots and registers transaction undo, restoring state for veto/failure/outer-rollback paths.
+- Forced-failure targeted-equip rollback coverage now validates planner-driven targeted equip restoration after post-success failure.
 
 4. **`InventorySystem` reduced to facade/compatibility layer**
 - End-state criteria:
@@ -68,13 +70,14 @@ Last updated: 2026-02-14
 - Input pickup now attempts container take-all when no loose items exist.
 - Inventory item popup now exposes one `put_container` action per nearby container, with explicit target container command execution.
 - Multi-container `g` take flow now opens an explicit container picker UI (`Assets/Scripts/Rendering/ContainerPickerUI.cs`) and runs command-routed transfers against the selected container.
+- Live input take-all now matches `InventorySystem.TakeAllFromContainer` semantics by stopping on first transfer failure in `Assets/Scripts/Rendering/InputHandler.cs`.
 
 6. **Regression test coverage for refactor parity**
 - End-state criteria:
 - EditMode tests cover command routing parity for pickup/drop/equip/unequip/container/item actions.
 - Tests validate planner preview equals execution intent.
 - Tests validate rollback behavior under forced failures.
-- Status: `IN_PROGRESS`
+- Status: `DONE`
 - Current evidence:
 - Existing test suite exists (`Assets/Tests/EditMode`).
 - Added container command rollback/parity tests in `Assets/Tests/EditMode/InventorySystemTests.cs`.
@@ -86,7 +89,11 @@ Last updated: 2026-02-14
 - Added command edge-case parity tests for unequip-veto interactions in drop/container flows, equip displacement blocked by unequip-veto, and stacked-item auto-equip command behavior in `Assets/Tests/EditMode/InventorySystemTests.cs`.
 - Added body-mode multi-slot rollback tests for `DropCommand` and `PutInContainerCommand` cancellation/full-container flows in `Assets/Tests/EditMode/InventorySystemTests.cs`.
 - Added planner invalid-target tests (foreign actor target body part and abstract target body part) for equip/preview paths in `Assets/Tests/EditMode/InventorySystemTests.cs`.
-- Remaining gap: expand parity/rollback cases for additional command combinations and edge-case planner scenarios.
+- Added command parity tests for locked/missing-container-item handling (`TakeFromContainerCommand`) and not-owned/locked multi-slot cases (`PutInContainerCommand`) in `Assets/Tests/EditMode/InventorySystemTests.cs`.
+- Added command parity tests for inventory-action cancellation and unknown-command failure behavior in `Assets/Tests/EditMode/InventorySystemTests.cs`.
+- Added forced-failure nested command rollback tests for `DropCommand`, `DropPartialCommand`, `PutInContainerCommand`, and `TakeFromContainerCommand` to validate deterministic state restoration after post-success failures in `Assets/Tests/EditMode/InventorySystemTests.cs`.
+- Added inventory-action rollback tests for nested post-success failure, stacked-consume restoration, tonic-boost restoration, and mutating `BeforeInventoryAction` veto behavior in `Assets/Tests/EditMode/InventorySystemTests.cs`.
+- Added final planner-command closure tests for targeted preview/execution parity, targeted-equip outer-failure rollback restoration, and concrete wrong-slot targeting failure behavior in `Assets/Tests/EditMode/InventorySystemTests.cs`.
 
 7. **Fallback branch removal**
 - End-state criteria:
@@ -106,12 +113,7 @@ Last updated: 2026-02-14
 
 ## Remaining Work Queue (Ordered)
 
-1. Add/EditMode tests for:
-- command parity (old vs new behavior),
-- planner preview/execution parity,
-- rollback correctness.
-2. Verify and harden rollback determinism across remaining edge-case event veto/stack-split/equipment scenarios.
-3. Final refactor completion sign-off once items 1-2 are fully complete and validated.
+1. None. Definition-of-done checklist items `1` through `8` are complete.
 
 ## Refactor Completion Gate
 
