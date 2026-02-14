@@ -4,17 +4,23 @@ using UnityEngine;
 namespace CavesOfOoo.Rendering
 {
     /// <summary>
-    /// Positions the camera to show the entire 80x25 zone at once,
-    /// matching Caves of Qud's fixed-screen display. The camera never
-    /// scrolls — it snaps to show the full zone, and on zone transition
-    /// the display hard-cuts to the new zone.
+    /// Zoomed-in camera that follows the player within a zone.
+    /// Clamps to zone bounds so no area outside the zone is visible.
+    /// On zone transitions, snaps to the player's arrival position.
     /// </summary>
     public class CameraFollow : MonoBehaviour
     {
         public Entity Player { get; set; }
         public Zone CurrentZone { get; set; }
 
+        /// <summary>
+        /// Orthographic half-height. Smaller = more zoomed in.
+        /// Default 10 shows ~36x20 tiles on a 16:9 screen.
+        /// </summary>
+        public float ZoomSize = 17f;
+
         private Camera _camera;
+        private bool _paused;
 
         private void Awake()
         {
@@ -22,8 +28,8 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>
-        /// Fit the camera to show the entire zone. Called once on setup
-        /// and again on each zone transition.
+        /// Set up zoom and snap camera to player. Called on setup
+        /// and after each zone transition.
         /// </summary>
         public void SnapToPlayer()
         {
@@ -32,19 +38,81 @@ namespace CavesOfOoo.Rendering
             if (_camera == null)
                 return;
 
-            // Center camera on the zone (using ZoneRenderer's Y-inversion)
-            float centerX = (Zone.Width - 1) * 0.5f;
-            float centerY = (Zone.Height - 1) * 0.5f;
+            _camera.orthographicSize = ZoomSize;
+            _camera.backgroundColor = new Color(0.05f, 0.05f, 0.05f);
+
+            FollowPlayer();
+        }
+
+        /// <summary>
+        /// Position and zoom the camera to show a full 80x25 tile grid for UI overlays.
+        /// Centers on the grid and calculates orthographic size based on aspect ratio
+        /// so all tiles are visible regardless of screen dimensions.
+        /// </summary>
+        public void SetUIView(int gridWidth, int gridHeight)
+        {
+            if (_camera == null)
+                _camera = GetComponent<Camera>();
+            if (_camera == null)
+                return;
+
+            _paused = true;
+
+            // Center camera on the grid (tiles span [0, gridSize), center at gridSize/2)
+            float centerX = gridWidth * 0.5f;
+            float centerY = gridHeight * 0.5f;
             transform.position = new Vector3(centerX, centerY, transform.position.z);
 
-            // Set orthographic size to fit the entire zone on screen
-            float sizeForHeight = Zone.Height * 0.5f;
-            float sizeForWidth = Zone.Width * 0.5f / _camera.aspect;
-            _camera.orthographicSize = Mathf.Max(sizeForHeight, sizeForWidth);
+            // Calculate orthographic size to fit both dimensions
+            float halfHeight = gridHeight * 0.5f;
+            float halfWidth = gridWidth * 0.5f;
+            float sizeForHeight = halfHeight;
+            float sizeForWidth = halfWidth / _camera.aspect;
 
-            // Match camera background to game background so letterbox
-            // bands blend invisibly with the tilemap
-            _camera.backgroundColor = new Color(0.05f, 0.05f, 0.05f);
+            _camera.orthographicSize = Mathf.Max(sizeForHeight, sizeForWidth);
+        }
+
+        /// <summary>
+        /// Restore normal camera follow behavior after UI overlay closes.
+        /// </summary>
+        public void RestoreGameView()
+        {
+            _paused = false;
+            SnapToPlayer();
+        }
+
+        private void LateUpdate()
+        {
+            if (_paused) return;
+            FollowPlayer();
+        }
+
+        private void FollowPlayer()
+        {
+            if (Player == null || CurrentZone == null || _camera == null)
+                return;
+
+            var pos = CurrentZone.GetEntityPosition(Player);
+            if (pos.x < 0) return;
+
+            // Convert roguelike coords (0,0 = top-left) to world coords (Y-inverted)
+            float targetX = pos.x;
+            float targetY = Zone.Height - 1 - pos.y;
+
+            // Clamp so camera edges stay within zone tile bounds
+            float halfH = _camera.orthographicSize;
+            float halfW = halfH * _camera.aspect;
+
+            float minX = halfW - 0.5f;
+            float maxX = (Zone.Width - 1) + 0.5f - halfW;
+            float minY = halfH - 0.5f;
+            float maxY = (Zone.Height - 1) + 0.5f - halfH;
+
+            // If zone fits entirely within camera view on an axis, center it
+            float clampedX = minX <= maxX ? Mathf.Clamp(targetX, minX, maxX) : (Zone.Width - 1) * 0.5f;
+            float clampedY = minY <= maxY ? Mathf.Clamp(targetY, minY, maxY) : (Zone.Height - 1) * 0.5f;
+
+            transform.position = new Vector3(clampedX, clampedY, transform.position.z);
         }
     }
 }

@@ -582,6 +582,7 @@ namespace CavesOfOoo.Rendering
             InventoryUI.Open();
             _inputState = InputState.InventoryOpen;
             if (ZoneRenderer != null) ZoneRenderer.Paused = true;
+            if (CameraFollow != null) CameraFollow.SetUIView(80, 45);
         }
 
         private void HandleInventoryInput()
@@ -601,6 +602,7 @@ namespace CavesOfOoo.Rendering
         private void CloseInventory()
         {
             _inputState = InputState.Normal;
+            if (CameraFollow != null) CameraFollow.RestoreGameView();
             if (ZoneRenderer != null)
             {
                 ZoneRenderer.Paused = false;

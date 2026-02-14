@@ -33,10 +33,17 @@ namespace CavesOfOoo.Rendering
         /// <summary>
         /// Number of message log lines shown at the bottom of the screen.
         /// </summary>
-        public int MessageLineCount = 3;
+        public int MessageLineCount = 4;
+
+        /// <summary>
+        /// Reference orthographic size at which message text appears at 1:1 scale.
+        /// At other zoom levels, message text scales proportionally.
+        /// </summary>
+        public float MessageReferenceZoom = 12.5f;
 
         private Tilemap _tilemap;
         private Tilemap _msgTilemap;
+        private Transform _msgGridTransform;
         private bool _dirty = true;
         private int _lastMessageCount = -1;
 
@@ -46,6 +53,7 @@ namespace CavesOfOoo.Rendering
 
             // Create a separate tilemap for messages with narrow half-width cells
             var msgGridObj = new GameObject("MessageGrid");
+            _msgGridTransform = msgGridObj.transform;
             var msgGrid = msgGridObj.AddComponent<Grid>();
             msgGrid.cellSize = new Vector3(0.5f, 1f, 0f);
 
@@ -165,12 +173,25 @@ namespace CavesOfOoo.Rendering
             var recent = MessageLog.GetRecent(MessageLineCount);
             if (recent.Count == 0) return;
 
-            // The message tilemap has 0.5×1.0 cells, so tileY maps 1:1 to world Y.
-            // Find the bottom tile row of the visible screen.
-            int bottomTileY = 0;
             var cam = Camera.main;
-            if (cam != null)
-                bottomTileY = Mathf.CeilToInt(cam.transform.position.y - cam.orthographicSize + 0.5f);
+            if (cam == null) return;
+
+            // Scale the message grid so text stays a consistent screen size
+            // regardless of camera zoom level
+            float scale = cam.orthographicSize / MessageReferenceZoom;
+            _msgGridTransform.localScale = new Vector3(scale, scale, 1f);
+
+            // Find the bottom tile row in scaled tile coordinates
+            float worldBottom = cam.transform.position.y - cam.orthographicSize;
+            int bottomTileY = Mathf.CeilToInt((worldBottom + 0.5f * scale) / scale);
+
+            // How many half-width characters fit across the visible width
+            float worldWidth = cam.orthographicSize * cam.aspect * 2f;
+            int maxChars = Mathf.FloorToInt(worldWidth / (0.5f * scale));
+
+            // Left edge in tile coordinates so text starts at the screen edge
+            float worldLeft = cam.transform.position.x - cam.orthographicSize * cam.aspect;
+            int startX = Mathf.CeilToInt(worldLeft / (0.5f * scale));
 
             // Render newest message at screen bottom, older ones above with spacer rows
             for (int i = 0; i < MessageLineCount; i++)
@@ -181,16 +202,14 @@ namespace CavesOfOoo.Rendering
                 if (msgIndex >= 0)
                 {
                     Color color = i == 0 ? QudColorParser.White : QudColorParser.Gray;
-                    DrawMsgText(0, tileY, recent[msgIndex], color);
+                    DrawMsgText(startX, tileY, recent[msgIndex], color, maxChars);
                 }
             }
         }
 
-        private void DrawMsgText(int x, int tileY, string text, Color color)
+        private void DrawMsgText(int x, int tileY, string text, Color color, int maxChars)
         {
             if (text == null) return;
-            // Message tilemap cells are 0.5 wide, so we can fit more chars across screen
-            int maxChars = Zone.Width * 2; // 160 columns at half-width
             int len = text.Length;
             if (len > maxChars) len = maxChars;
 
