@@ -1,31 +1,59 @@
-# Inventory Refactor Plan (Active)
+# Inventory Refactor Architecture (Closeout)
 
 ## Canonical Tracker
-The canonical source of truth for inventory refactor completion is:
+The authoritative completion tracker remains:
 
 `/Users/steven/caves-of-ooo/INVENTORY_REFACTOR_DEFINITION_OF_DONE.md`
 
-Use that file for:
-- end-state criteria,
-- current status (`DONE` / `IN_PROGRESS` / `NOT_STARTED`),
-- ordered remaining-work queue,
-- final completion gate.
+Use that file for status and completion gating. This file documents architecture and extension seams.
 
-## Current Summary
-- Command pipeline foundation is implemented (`InventoryContext`, `IInventoryCommand`, `InventoryCommandExecutor`, `InventoryTransaction`).
-- Live pickup/drop/equip/unequip/item-action flows are command-routed with no rendering/input fallback branches.
-- Equip planner/rules are implemented and integrated into displacement preview + body-part-aware equip path.
-- Container wiring exists (take-all-on-`g` when no loose items; explicit per-container put actions in inventory popup).
+## Final Architecture
+- `InventorySystem` is a facade/compatibility layer for mutation APIs.
+- All live mutation flows route through `InventorySystem.ExecuteCommand(...)`.
+- Command execution pipeline:
+  - `InventoryContext` carries actor/zone/body/inventory references.
+  - `IInventoryCommand` defines `Validate(...)` + `Execute(...)`.
+  - `InventoryCommandExecutor` enforces validation + transactional execution.
+  - `InventoryTransaction` commits on success and rolls back on any failure/exception.
+- Equip planning:
+  - `EquipPlanner` + rules (`TargetPartCompatibilityRule`, `SlotCountRule`, `SlotAvailabilityRule`, `DisplacementRule`) are the body-aware equip decision source.
+  - `InventorySystem.PreviewDisplacements(...)` and `EquipCommand` share planner outputs.
 
-## In-Scope End State
-1. Remove fallback direct mutator calls from rendering/input.
-2. Move command internals to transactional `Do/Undo` implementations.
-3. Complete planner unification (including auto-equip path).
-4. Add explicit container picker UI for multi-container/multi-item interactions.
-5. Add EditMode regression tests for command parity, planner parity, and rollback.
-6. Reduce `InventorySystem` to a thin facade/delegation layer.
+## Runtime Mutation Flows
+- Pickup/drop/equip/unequip/item-action/container flows from rendering/input are command-routed.
+- Multi-container pickup uses explicit `ContainerPickerUI` selection instead of implicit first-container behavior.
+- Per-container put actions are exposed in inventory popup actions and routed through `PutInContainerCommand`.
+- Auto-equip on pickup runs through `AutoEquipCommand`; failures are non-fatal for pickup.
 
-## Process Rule
-Any change to implementation sequencing or completion status must update:
+## Transaction and Rollback Invariants
+- Any command that mutates inventory/equipment state must register undo actions for each committed mutation step.
+- Rollback order is reverse-application order via `InventoryTransaction`.
+- Rollback for equip/unequip is deterministic and does not depend on vetoable `BeforeEquip`/`BeforeUnequip` recursion.
+- Stack-split equip rollback restores source stack counts and removes transient split entities from carried/equipped state to avoid ghost entries.
+- Drop/drop-partial fail fast when actor has no zone cell, preventing silent item loss.
+
+## Extension Points
+- New mutation operation:
+  - Add command in `Assets/Scripts/Core/Inventory/Commands/`.
+  - Implement strict `Validate(...)`.
+  - Register each mutation step with `transaction.Do(..., undo: ...)`.
+  - Surface through UI/input by calling `InventorySystem.ExecuteCommand(...)`.
+- New equip behavior rule:
+  - Add `IEquipRule` implementation in `Assets/Scripts/Core/Inventory/Rules/`.
+  - Wire the rule into `EquipPlanner` rule list.
+  - Add planner parity and execution tests.
+- New UI inventory flow:
+  - Keep rendering/input as orchestrators only.
+  - Do not call direct inventory mutators from rendering/input.
+
+## Migration Summary
+- Removed rendering/input fallback branches to direct mutators.
+- Reduced `InventorySystem` mutators to command delegation wrappers.
+- Consolidated equip/displacement logic around planner-driven command execution.
+- Added command-first container flow wiring (explicit selection + target container operations).
+- Hardened rollback behavior for veto and stack-split edge cases.
+
+## Remaining Refactor Work
+- Final remaining work and sign-off criteria are tracked only in:
 
 `/Users/steven/caves-of-ooo/INVENTORY_REFACTOR_DEFINITION_OF_DONE.md`

@@ -63,7 +63,7 @@ namespace CavesOfOoo.Rendering
         /// Normal: standard movement/action input.
         /// AwaitingDirection: waiting for a directional key to target an ability.
         /// </summary>
-        private enum InputState { Normal, AwaitingDirection, InventoryOpen, PickupOpen }
+        private enum InputState { Normal, AwaitingDirection, InventoryOpen, PickupOpen, ContainerPickerOpen }
         private InputState _inputState = InputState.Normal;
         private ActivatedAbility _pendingAbility;
 
@@ -76,6 +76,11 @@ namespace CavesOfOoo.Rendering
         /// The pickup UI component. Set by GameBootstrap.
         /// </summary>
         public PickupUI PickupUI { get; set; }
+
+        /// <summary>
+        /// The container picker UI component. Set by GameBootstrap.
+        /// </summary>
+        public ContainerPickerUI ContainerPickerUI { get; set; }
 
         private void Update()
         {
@@ -108,6 +113,12 @@ namespace CavesOfOoo.Rendering
             if (_inputState == InputState.PickupOpen)
             {
                 HandlePickupInput();
+                return;
+            }
+
+            if (_inputState == InputState.ContainerPickerOpen)
+            {
+                HandleContainerPickerInput();
                 return;
             }
 
@@ -475,15 +486,26 @@ namespace CavesOfOoo.Rendering
             var items = InventorySystem.GetTakeableItemsAtFeet(PlayerEntity, CurrentZone);
             if (items.Count == 0)
             {
-                if (TryTakeAllFromFirstContainerViaCommand())
+                var containers = InventorySystem.GetContainersAtFeet(PlayerEntity, CurrentZone);
+                if (containers.Count == 0)
                 {
-                    EndTurnAndProcess();
-                    if (ZoneRenderer != null)
-                        ZoneRenderer.MarkDirty();
+                    Debug.Log("[Inventory] Nothing to pick up here.");
                 }
                 else
                 {
-                    Debug.Log("[Inventory] Nothing to pick up here.");
+                    if (containers.Count == 1)
+                    {
+                        if (TryTakeAllFromContainerViaCommand(containers[0]))
+                        {
+                            EndTurnAndProcess();
+                            if (ZoneRenderer != null)
+                                ZoneRenderer.MarkDirty();
+                        }
+                    }
+                    else
+                    {
+                        OpenContainerPicker(containers);
+                    }
                 }
                 return;
             }
@@ -529,29 +551,20 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>
-        /// If there are containers on the player's tile, try taking all contents from
-        /// a nearby container through command execution.
-        /// Multi-container take flow currently requires explicit picker support.
+        /// Try taking all contents from one container through command execution.
         /// </summary>
-        private bool TryTakeAllFromFirstContainerViaCommand()
+        private bool TryTakeAllFromContainerViaCommand(Entity container)
         {
-            var containers = InventorySystem.GetContainersAtFeet(PlayerEntity, CurrentZone);
-            if (containers.Count == 0)
+            if (container == null)
                 return false;
-
-            if (containers.Count > 1)
+            var containerPart = container.GetPart<ContainerPart>();
+            if (containerPart == null)
+                return false;
+            if (containerPart.Contents.Count == 0)
             {
-                MessageLog.Add("Multiple containers are here. Open inventory and choose a container-specific action.");
-                Debug.LogWarning(
-                    "[Inventory/Refactor] Multiple containers at feet; " +
-                    "no take-flow picker is wired yet, so take-all is skipped.");
+                MessageLog.Add($"The {container.GetDisplayName()} is empty.");
                 return false;
             }
-
-            var container = containers[0];
-            var containerPart = container.GetPart<ContainerPart>();
-            if (containerPart == null || containerPart.Contents.Count == 0)
-                return false;
 
             int taken = 0;
             var snapshot = new List<Entity>(containerPart.Contents);
@@ -575,6 +588,18 @@ namespace CavesOfOoo.Rendering
             }
 
             return taken > 0;
+        }
+
+        private void OpenContainerPicker(List<Entity> containers)
+        {
+            if (ContainerPickerUI == null || containers == null || containers.Count == 0)
+                return;
+
+            if (ZoneRenderer != null)
+                ZoneRenderer.Paused = true;
+
+            ContainerPickerUI.Open(containers);
+            _inputState = InputState.ContainerPickerOpen;
         }
 
         private void OpenPickup(List<Entity> items)
@@ -613,6 +638,39 @@ namespace CavesOfOoo.Rendering
 
             // Process a turn if items were picked up
             if (pickedUpAny)
+                EndTurnAndProcess();
+        }
+
+        private void HandleContainerPickerInput()
+        {
+            if (ContainerPickerUI == null || !ContainerPickerUI.IsOpen)
+            {
+                CloseContainerPicker(false);
+                return;
+            }
+
+            ContainerPickerUI.HandleInput();
+
+            if (ContainerPickerUI.IsOpen)
+                return;
+
+            bool tookAny = false;
+            if (ContainerPickerUI.SelectionMade)
+                tookAny = TryTakeAllFromContainerViaCommand(ContainerPickerUI.SelectedContainer);
+
+            CloseContainerPicker(tookAny);
+        }
+
+        private void CloseContainerPicker(bool tookAny)
+        {
+            _inputState = InputState.Normal;
+            if (ZoneRenderer != null)
+            {
+                ZoneRenderer.Paused = false;
+                ZoneRenderer.MarkDirty();
+            }
+
+            if (tookAny)
                 EndTurnAndProcess();
         }
 

@@ -145,6 +145,14 @@ namespace CavesOfOoo
                 if (ZoneRenderer != null)
                     pickupUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
                 inputHandler.PickupUI = pickupUI;
+
+                // Wire container picker UI (shares tilemap with zone renderer)
+                var containerPickerUI = GetComponent<ContainerPickerUI>();
+                if (containerPickerUI == null)
+                    containerPickerUI = gameObject.AddComponent<ContainerPickerUI>();
+                if (ZoneRenderer != null)
+                    containerPickerUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
+                inputHandler.ContainerPickerUI = containerPickerUI;
             }
 
             // Start the turn loop

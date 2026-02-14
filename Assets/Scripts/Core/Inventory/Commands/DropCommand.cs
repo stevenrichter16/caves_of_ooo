@@ -48,6 +48,13 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Actor does not own this item.");
             }
 
+            if (context.Zone.GetEntityCell(context.Actor) == null)
+            {
+                return InventoryValidationResult.Invalid(
+                    InventoryValidationErrorCode.BlockedByRule,
+                    "Actor has no valid position to drop items.");
+            }
+
             return InventoryValidationResult.Valid();
         }
 
@@ -58,8 +65,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var inventory = context.Inventory;
 
             // If equipped, unequip first and register rollback to re-equip.
-            bool wasEquipped = InventorySystem.IsEquipped(actor, _item);
-            if (wasEquipped)
+            var equippedState = UnequipCommand.CaptureEquippedState(context, _item);
+            if (equippedState.HasLocation)
             {
                 var unequipResult = new UnequipCommand(_item).Execute(context, transaction);
                 if (!unequipResult.Success)
@@ -81,6 +88,14 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Drop was cancelled.");
             }
 
+            var cell = zone.GetEntityCell(actor);
+            if (cell == null)
+            {
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Actor has no valid position to drop items.");
+            }
+
             if (!inventory.RemoveObject(_item))
             {
                 return InventoryCommandResult.Fail(
@@ -92,14 +107,10 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 apply: null,
                 undo: () => inventory.AddObject(_item));
 
-            var cell = zone.GetEntityCell(actor);
-            if (cell != null)
-            {
-                zone.AddEntity(_item, cell.X, cell.Y);
-                transaction.Do(
-                    apply: null,
-                    undo: () => zone.RemoveEntity(_item));
-            }
+            zone.AddEntity(_item, cell.X, cell.Y);
+            transaction.Do(
+                apply: null,
+                undo: () => zone.RemoveEntity(_item));
 
             MessageLog.Add($"{actor.GetDisplayName()} drops {_item.GetDisplayName()}.");
 

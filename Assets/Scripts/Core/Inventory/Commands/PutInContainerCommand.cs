@@ -79,8 +79,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Container is locked.");
             }
 
-            bool wasEquipped = InventorySystem.IsEquipped(context.Actor, _item);
-            if (wasEquipped)
+            var equippedState = UnequipCommand.CaptureEquippedState(context, _item);
+            if (equippedState.HasLocation)
             {
                 var unequipResult = new UnequipCommand(_item).Execute(context, transaction);
                 if (!unequipResult.Success)

@@ -108,14 +108,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
             MessageLog.Add($"{actor.GetDisplayName()} picks up {_item.GetDisplayName()}.");
 
-            // Auto-equip preserves previous behavior and now participates in rollback.
-            bool autoEquipped = InventorySystem.AutoEquip(actor, _item);
-            if (autoEquipped)
-            {
-                transaction.Do(
-                    apply: null,
-                    undo: () => InventorySystem.UnequipItem(actor, _item));
-            }
+            // Preserve auto-equip-on-pickup behavior through command-native flow.
+            // Failures are non-fatal for pickup and simply mean "left carried".
+            new AutoEquipCommand(_item).Execute(context, transaction);
 
             // Fire AfterPickup on actor.
             var afterPickup = GameEvent.New("AfterPickup");

@@ -101,7 +101,6 @@ namespace CavesOfOoo.Core.Inventory.Commands
             }
 
             var actor = context.Actor;
-            var inventory = context.Inventory;
             var equippable = item.GetPart<EquippablePart>();
             if (equippable == null)
             {
@@ -118,7 +117,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 var splitItem = itemToEquip;
                 transaction.Do(
                     apply: null,
-                    undo: () => RestoreSplitStack(sourceStacker, splitItem));
+                    undo: () => RestoreSplitStack(context, sourceStacker, splitItem));
 
                 equippable = itemToEquip.GetPart<EquippablePart>();
                 if (equippable == null)
@@ -158,18 +157,12 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Equip failed.");
             }
 
+            var equippedState = UnequipCommand.CaptureEquippedState(context, itemToEquip);
             transaction.Do(
                 apply: null,
                 undo: () =>
                 {
-                    var rollback = new UnequipCommand(itemToEquip).Execute(
-                        context,
-                        new InventoryTransaction());
-                    if (!rollback.Success)
-                    {
-                        // Best-effort rollback for inventory consistency.
-                        inventory.RemoveObject(itemToEquip);
-                    }
+                    UnequipCommand.TryForceUnequip(context, itemToEquip, equippedState);
                 });
 
             EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: true);
@@ -260,7 +253,10 @@ namespace CavesOfOoo.Core.Inventory.Commands
             return true;
         }
 
-        private static void RestoreSplitStack(StackerPart sourceStacker, Entity splitItem)
+        private static void RestoreSplitStack(
+            InventoryContext context,
+            StackerPart sourceStacker,
+            Entity splitItem)
         {
             if (sourceStacker == null || splitItem == null)
                 return;
@@ -268,6 +264,15 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var splitStacker = splitItem.GetPart<StackerPart>();
             if (splitStacker == null || splitStacker.StackCount <= 0)
                 return;
+
+            if (context?.Inventory != null)
+            {
+                var equippedState = UnequipCommand.CaptureEquippedState(context, splitItem);
+                if (equippedState.HasLocation)
+                    UnequipCommand.TryForceUnequip(context, splitItem, equippedState);
+
+                context.Inventory.RemoveObject(splitItem);
+            }
 
             sourceStacker.StackCount += splitStacker.StackCount;
             splitStacker.StackCount = 0;

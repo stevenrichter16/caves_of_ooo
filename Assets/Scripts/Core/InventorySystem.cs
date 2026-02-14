@@ -1,22 +1,15 @@
 using System.Collections.Generic;
 using CavesOfOoo.Core.Inventory;
+using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Core.Inventory.Planning;
 using CavesOfOoo.Core.Anatomy;
 
 namespace CavesOfOoo.Core
 {
     /// <summary>
-    /// Static system for inventory operations: pickup, drop, equip, unequip.
-    /// Now body-part-aware: when the actor has a Body part, equipment routes
-    /// through body part nodes using Qud-style slot queries.
-    ///
-    /// Flow:
-    /// 1. Equip request: get item's EquippablePart.GetSlotArray()
-    /// 2. Query actor's Body for matching body parts
-    /// 3. Find free slots (or auto-unequip occupied ones)
-    /// 4. Place item on body part node(s)
-    ///
-    /// Falls back to legacy string-slot system when no Body part exists.
+    /// Inventory facade and compatibility layer.
+    /// Query helpers stay here, while all mutating operations route through
+    /// ExecuteCommand(...) and transactional command implementations.
     /// </summary>
     public static class InventorySystem
     {
@@ -38,53 +31,8 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static bool Pickup(Entity actor, Entity item, Zone zone)
         {
-            if (actor == null || item == null || zone == null) return false;
-
-            var inventory = actor.GetPart<InventoryPart>();
-            if (inventory == null) return false;
-
-            var itemPhysics = item.GetPart<PhysicsPart>();
-            if (itemPhysics == null || !itemPhysics.Takeable) return false;
-
-            // Fire BeforePickup on actor
-            var beforePickup = GameEvent.New("BeforePickup");
-            beforePickup.SetParameter("Actor", (object)actor);
-            beforePickup.SetParameter("Item", (object)item);
-            if (!actor.FireEvent(beforePickup))
-                return false;
-
-            // Fire BeforeBeingPickedUp on item
-            var beforeBeing = GameEvent.New("BeforeBeingPickedUp");
-            beforeBeing.SetParameter("Actor", (object)actor);
-            beforeBeing.SetParameter("Item", (object)item);
-            if (!item.FireEvent(beforeBeing))
-                return false;
-
-            // Remove from zone first, then try to add to inventory
-            zone.RemoveEntity(item);
-
-            if (!inventory.AddObject(item))
-            {
-                // Weight limit exceeded — put item back in zone
-                var cell = zone.GetEntityCell(actor);
-                if (cell != null)
-                    zone.AddEntity(item, cell.X, cell.Y);
-                MessageLog.Add($"You can't carry {item.GetDisplayName()}: too heavy!");
-                return false;
-            }
-
-            MessageLog.Add($"{actor.GetDisplayName()} picks up {item.GetDisplayName()}.");
-
-            // Auto-equip if slot is free
-            AutoEquip(actor, item);
-
-            // Fire AfterPickup
-            var afterPickup = GameEvent.New("AfterPickup");
-            afterPickup.SetParameter("Actor", (object)actor);
-            afterPickup.SetParameter("Item", (object)item);
-            actor.FireEvent(afterPickup);
-
-            return true;
+            var result = ExecuteCommand(new PickupCommand(item), actor, zone);
+            return result.Success;
         }
 
         /// <summary>
@@ -93,42 +41,8 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static bool Drop(Entity actor, Entity item, Zone zone)
         {
-            if (actor == null || item == null || zone == null) return false;
-
-            var inventory = actor.GetPart<InventoryPart>();
-            if (inventory == null) return false;
-
-            // If item is equipped, unequip first
-            if (IsEquipped(actor, item))
-            {
-                if (!UnequipItem(actor, item))
-                    return false;
-            }
-
-            // Fire BeforeDrop
-            var beforeDrop = GameEvent.New("BeforeDrop");
-            beforeDrop.SetParameter("Actor", (object)actor);
-            beforeDrop.SetParameter("Item", (object)item);
-            if (!actor.FireEvent(beforeDrop))
-                return false;
-
-            if (!inventory.RemoveObject(item))
-                return false;
-
-            // Place in zone at actor's position
-            var cell = zone.GetEntityCell(actor);
-            if (cell != null)
-                zone.AddEntity(item, cell.X, cell.Y);
-
-            MessageLog.Add($"{actor.GetDisplayName()} drops {item.GetDisplayName()}.");
-
-            // Fire AfterDrop
-            var afterDrop = GameEvent.New("AfterDrop");
-            afterDrop.SetParameter("Actor", (object)actor);
-            afterDrop.SetParameter("Item", (object)item);
-            actor.FireEvent(afterDrop);
-
-            return true;
+            var result = ExecuteCommand(new DropCommand(item), actor, zone);
+            return result.Success;
         }
 
         /// <summary>
@@ -137,27 +51,8 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static bool DropPartial(Entity actor, Entity item, int count, Zone zone)
         {
-            if (actor == null || item == null || zone == null) return false;
-            if (count <= 0) return false;
-
-            var stacker = item.GetPart<StackerPart>();
-            if (stacker == null) return Drop(actor, item, zone);
-            if (count >= stacker.StackCount) return Drop(actor, item, zone);
-
-            var inventory = actor.GetPart<InventoryPart>();
-            if (inventory == null) return false;
-
-            // Split off the requested count
-            var split = stacker.SplitStack(count);
-            if (split == null) return false;
-
-            // Place split stack in zone at actor's position
-            var cell = zone.GetEntityCell(actor);
-            if (cell != null)
-                zone.AddEntity(split, cell.X, cell.Y);
-
-            MessageLog.Add($"{actor.GetDisplayName()} drops {split.GetDisplayName()}.");
-            return true;
+            var result = ExecuteCommand(new DropPartialCommand(item, count), actor, zone);
+            return result.Success;
         }
 
         /// <summary>
@@ -173,53 +68,8 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static bool Equip(Entity actor, Entity item, BodyPart targetBodyPart = null)
         {
-            if (actor == null || item == null) return false;
-
-            var inventory = actor.GetPart<InventoryPart>();
-            if (inventory == null) return false;
-
-            var equippable = item.GetPart<EquippablePart>();
-            if (equippable == null) return false;
-
-            // If stacked, split off one item to equip
-            var stacker = item.GetPart<StackerPart>();
-            if (stacker != null && stacker.StackCount > 1)
-            {
-                item = stacker.RemoveOne();
-                equippable = item.GetPart<EquippablePart>();
-                // Original stack stays in inventory; we equip the clone
-            }
-
-            var body = actor.GetPart<Body>();
-
-            // Fire BeforeEquip
-            var beforeEquip = GameEvent.New("BeforeEquip");
-            beforeEquip.SetParameter("Actor", (object)actor);
-            beforeEquip.SetParameter("Item", (object)item);
-            beforeEquip.SetParameter("Slot", equippable.Slot);
-            if (!actor.FireEvent(beforeEquip))
-                return false;
-
-            bool result;
-            if (body != null)
-                result = EquipBodyPartAware(actor, item, inventory, targetBodyPart);
-            else
-                result = EquipLegacy(actor, item, equippable, inventory);
-
-            if (result)
-            {
-                ApplyEquipBonuses(actor, equippable, true);
-                MessageLog.Add($"{actor.GetDisplayName()} equips {item.GetDisplayName()}.");
-
-                // Fire AfterEquip
-                var afterEquip = GameEvent.New("AfterEquip");
-                afterEquip.SetParameter("Actor", (object)actor);
-                afterEquip.SetParameter("Item", (object)item);
-                afterEquip.SetParameter("Slot", equippable.Slot);
-                actor.FireEvent(afterEquip);
-            }
-
-            return result;
+            var result = ExecuteCommand(new EquipCommand(item, targetBodyPart), actor);
+            return result.Success;
         }
 
         /// <summary>
@@ -228,64 +78,8 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static bool UnequipItem(Entity actor, Entity item)
         {
-            if (actor == null || item == null) return false;
-
-            var inventory = actor.GetPart<InventoryPart>();
-            if (inventory == null) return false;
-
-            var equippable = item.GetPart<EquippablePart>();
-
-            // Fire BeforeUnequip
-            var beforeUnequip = GameEvent.New("BeforeUnequip");
-            beforeUnequip.SetParameter("Actor", (object)actor);
-            beforeUnequip.SetParameter("Item", (object)item);
-            if (!actor.FireEvent(beforeUnequip))
-                return false;
-
-            // Remove stat bonuses
-            if (equippable != null)
-                ApplyEquipBonuses(actor, equippable, false);
-
-            // Body-part-aware unequip
-            var body = actor.GetPart<Body>();
-            if (body != null)
-            {
-                var bodyPart = inventory.FindEquippedBodyPart(item);
-                if (bodyPart != null)
-                {
-                    inventory.UnequipFromBodyPart(bodyPart);
-                }
-                else
-                {
-                    // Fallback: search all parts
-                    var parts = body.GetParts();
-                    for (int i = 0; i < parts.Count; i++)
-                    {
-                        if (parts[i]._Equipped == item)
-                        {
-                            inventory.UnequipFromBodyPart(parts[i]);
-                            break;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                // Legacy unequip
-                var slotName = inventory.FindEquippedSlot(item);
-                if (slotName != null)
-                    inventory.Unequip(slotName);
-            }
-
-            MessageLog.Add($"{actor.GetDisplayName()} unequips {item.GetDisplayName()}.");
-
-            // Fire AfterUnequip
-            var afterUnequip = GameEvent.New("AfterUnequip");
-            afterUnequip.SetParameter("Actor", (object)actor);
-            afterUnequip.SetParameter("Item", (object)item);
-            actor.FireEvent(afterUnequip);
-
-            return true;
+            var result = ExecuteCommand(new UnequipCommand(item), actor);
+            return result.Success;
         }
 
         /// <summary>
@@ -350,47 +144,8 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static bool AutoEquip(Entity actor, Entity item)
         {
-            if (actor == null || item == null) return false;
-
-            var equippable = item.GetPart<EquippablePart>();
-            if (equippable == null) return false;
-
-            // Don't auto-equip stacked items (stacks stay in inventory)
-            var stacker = item.GetPart<StackerPart>();
-            if (stacker != null && stacker.StackCount > 1) return false;
-
-            var body = actor.GetPart<Body>();
-
-            if (body != null)
-                return AutoEquipBodyPartAware(actor, item);
-            else
-                return AutoEquipLegacy(actor, item, equippable);
-        }
-
-        private static bool AutoEquipBodyPartAware(Entity actor, Entity item)
-        {
-            var plan = BodyEquipPlanner.Build(actor, item);
-            if (!plan.IsValid)
-                return false;
-
-            // Auto-equip never displaces existing equipment.
-            if (plan.Displacements.Count > 0)
-                return false;
-
-            return Equip(actor, item);
-        }
-
-        private static bool AutoEquipLegacy(Entity actor, Entity item,
-            EquippablePart equippable)
-        {
-            var inventory = actor.GetPart<InventoryPart>();
-            if (inventory == null) return false;
-
-            // Only auto-equip if the slot is empty
-            if (inventory.GetEquipped(equippable.Slot) != null)
-                return false;
-
-            return Equip(actor, item);
+            var result = ExecuteCommand(new AutoEquipCommand(item), actor);
+            return result.Success;
         }
 
         // --- Containers ---
@@ -421,32 +176,8 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static bool TakeFromContainer(Entity actor, Entity container, Entity item)
         {
-            if (actor == null || container == null || item == null) return false;
-
-            var containerPart = container.GetPart<ContainerPart>();
-            if (containerPart == null) return false;
-
-            var inventory = actor.GetPart<InventoryPart>();
-            if (inventory == null) return false;
-
-            if (containerPart.Locked)
-            {
-                MessageLog.Add($"The {container.GetDisplayName()} is locked.");
-                return false;
-            }
-
-            if (!containerPart.RemoveItem(item)) return false;
-
-            if (!inventory.AddObject(item))
-            {
-                // Too heavy — put it back
-                containerPart.AddItem(item);
-                MessageLog.Add($"You can't carry {item.GetDisplayName()}: too heavy!");
-                return false;
-            }
-
-            MessageLog.Add($"You take {item.GetDisplayName()} from the {container.GetDisplayName()}.");
-            return true;
+            var result = ExecuteCommand(new TakeFromContainerCommand(container, item), actor);
+            return result.Success;
         }
 
         /// <summary>
@@ -455,13 +186,15 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static int TakeAllFromContainer(Entity actor, Entity container)
         {
-            if (actor == null || container == null) return 0;
+            if (actor == null || container == null)
+                return 0;
 
             var containerPart = container.GetPart<ContainerPart>();
-            if (containerPart == null) return 0;
+            if (containerPart == null)
+                return 0;
 
-            var inventory = actor.GetPart<InventoryPart>();
-            if (inventory == null) return 0;
+            if (actor.GetPart<InventoryPart>() == null)
+                return 0;
 
             if (containerPart.Locked)
             {
@@ -474,18 +207,13 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < items.Count; i++)
             {
                 var item = items[i];
-                if (!containerPart.RemoveItem(item)) continue;
-
-                if (!inventory.AddObject(item))
-                {
-                    containerPart.AddItem(item);
-                    MessageLog.Add($"You can't carry {item.GetDisplayName()}: too heavy!");
+                var result = ExecuteCommand(new TakeFromContainerCommand(container, item), actor);
+                if (!result.Success)
                     break;
-                }
 
-                MessageLog.Add($"You take {item.GetDisplayName()} from the {container.GetDisplayName()}.");
                 taken++;
             }
+
             return taken;
         }
 
@@ -494,39 +222,8 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static bool PutInContainer(Entity actor, Entity container, Entity item)
         {
-            if (actor == null || container == null || item == null) return false;
-
-            var containerPart = container.GetPart<ContainerPart>();
-            if (containerPart == null) return false;
-
-            var inventory = actor.GetPart<InventoryPart>();
-            if (inventory == null) return false;
-
-            if (containerPart.Locked)
-            {
-                MessageLog.Add($"The {container.GetDisplayName()} is locked.");
-                return false;
-            }
-
-            // If equipped, unequip first
-            if (IsEquipped(actor, item))
-            {
-                if (!UnequipItem(actor, item))
-                    return false;
-            }
-
-            if (!inventory.RemoveObject(item)) return false;
-
-            if (!containerPart.AddItem(item))
-            {
-                // Container full — put item back
-                inventory.AddObject(item);
-                MessageLog.Add($"The {container.GetDisplayName()} is full.");
-                return false;
-            }
-
-            MessageLog.Add($"You put {item.GetDisplayName()} {containerPart.Preposition} the {container.GetDisplayName()}.");
-            return true;
+            var result = ExecuteCommand(new PutInContainerCommand(container, item), actor);
+            return result.Success;
         }
 
         // --- Item Actions ---
@@ -554,38 +251,11 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static bool PerformAction(Entity actor, Entity item, string command, Zone zone = null)
         {
-            if (actor == null || item == null || string.IsNullOrEmpty(command))
-                return false;
-
-            // Fire BeforeInventoryAction on actor (can veto)
-            var before = GameEvent.New("BeforeInventoryAction");
-            before.SetParameter("Actor", (object)actor);
-            before.SetParameter("Item", (object)item);
-            before.SetParameter("Command", command);
-            if (!actor.FireEvent(before))
-                return false;
-
-            // Fire InventoryAction on the item
-            var actionEvent = GameEvent.New("InventoryAction");
-            actionEvent.SetParameter("Actor", (object)actor);
-            actionEvent.SetParameter("Item", (object)item);
-            actionEvent.SetParameter("Command", command);
-            if (zone != null)
-                actionEvent.SetParameter("Zone", (object)zone);
-
-            bool handled = !item.FireEvent(actionEvent) || actionEvent.Handled;
-
-            if (handled)
-            {
-                // Fire AfterInventoryAction on actor
-                var after = GameEvent.New("AfterInventoryAction");
-                after.SetParameter("Actor", (object)actor);
-                after.SetParameter("Item", (object)item);
-                after.SetParameter("Command", command);
-                actor.FireEvent(after);
-            }
-
-            return handled;
+            var result = ExecuteCommand(
+                new PerformInventoryActionCommand(item, command),
+                actor,
+                zone);
+            return result.Success;
         }
 
         // --- Displacement preview ---
@@ -626,120 +296,6 @@ namespace CavesOfOoo.Core
             }
 
             return result;
-        }
-
-        // --- Body-part-aware equip ---
-
-        private static bool EquipBodyPartAware(Entity actor, Entity item,
-            InventoryPart inventory, BodyPart targetBodyPart)
-        {
-            var plan = BodyEquipPlanner.Build(actor, item, targetBodyPart);
-            if (!plan.IsValid)
-            {
-                if (!string.IsNullOrEmpty(plan.FailureReason))
-                    MessageLog.Add(plan.FailureReason);
-                return false;
-            }
-
-            var occupiedParts = plan.ClaimedParts;
-            if (occupiedParts.Count == 0)
-                return false;
-
-            // Unequip existing items in all claimed parts (deduplicate multi-slot)
-            var unequipped = new HashSet<Entity>();
-            for (int i = 0; i < occupiedParts.Count; i++)
-            {
-                var existing = occupiedParts[i]._Equipped;
-                if (existing != null && existing != item && unequipped.Add(existing))
-                {
-                    if (!UnequipItem(actor, existing))
-                        return false;
-                }
-            }
-
-            // Equip to all found parts
-            if (occupiedParts.Count == 1)
-            {
-                inventory.EquipToBodyPart(item, occupiedParts[0]);
-            }
-            else
-            {
-                inventory.EquipToBodyParts(item, occupiedParts);
-            }
-
-            return true;
-        }
-
-        // --- Legacy equip ---
-
-        private static bool EquipLegacy(Entity actor, Entity item,
-            EquippablePart equippable, InventoryPart inventory)
-        {
-            string slot = equippable.Slot;
-
-            // Unequip existing item in that slot
-            if (inventory.GetEquipped(slot) != null)
-            {
-                if (!Unequip(actor, slot))
-                    return false;
-            }
-
-            inventory.Equip(item, slot);
-            return true;
-        }
-
-        // --- Stat bonuses ---
-
-        /// <summary>
-        /// Parse and apply/remove EquipBonuses string ("StatName:Amount,...").
-        /// Also applies ArmorPart.SpeedPenalty as a penalty to the Speed stat.
-        /// Modifies Stat.Bonus/Penalty on the actor.
-        /// </summary>
-        private static void ApplyEquipBonuses(Entity actor, EquippablePart equippable, bool apply)
-        {
-            var item = equippable.ParentEntity;
-
-            // Apply EquipBonuses string
-            if (!string.IsNullOrEmpty(equippable.EquipBonuses))
-            {
-                string[] pairs = equippable.EquipBonuses.Split(',');
-                foreach (string pair in pairs)
-                {
-                    string trimmed = pair.Trim();
-                    if (string.IsNullOrEmpty(trimmed)) continue;
-                    int colon = trimmed.IndexOf(':');
-                    if (colon < 0) continue;
-
-                    string statName = trimmed.Substring(0, colon);
-                    if (!int.TryParse(trimmed.Substring(colon + 1), out int amount))
-                        continue;
-
-                    var stat = actor.GetStat(statName);
-                    if (stat == null) continue;
-
-                    if (apply)
-                        stat.Bonus += amount;
-                    else
-                        stat.Bonus -= amount;
-                }
-            }
-
-            // Apply ArmorPart.SpeedPenalty as a penalty on the Speed stat
-            if (item != null)
-            {
-                var armor = item.GetPart<ArmorPart>();
-                if (armor != null && armor.SpeedPenalty != 0)
-                {
-                    var speedStat = actor.GetStat("Speed");
-                    if (speedStat != null)
-                    {
-                        if (apply)
-                            speedStat.Penalty += armor.SpeedPenalty;
-                        else
-                            speedStat.Penalty -= armor.SpeedPenalty;
-                    }
-                }
-            }
         }
     }
 }

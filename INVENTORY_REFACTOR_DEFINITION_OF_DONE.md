@@ -22,11 +22,12 @@ Last updated: 2026-02-14
 - End-state criteria:
 - Equip preview and equip execution share one plan build path.
 - Slot claim/displacement logic is not duplicated in `InventorySystem`.
-- Status: `IN_PROGRESS`
+- Status: `DONE`
 - Current evidence:
 - `Assets/Scripts/Core/Inventory/Planning/EquipPlanner.cs` and rules are implemented.
-- `Assets/Scripts/Core/InventorySystem.cs` uses planner in `PreviewDisplacements`, body-part equip flow, and body-part auto-equip flow.
-- Remaining gap: complete consolidation of any remaining non-planner equip-side validation paths.
+- `Assets/Scripts/Core/InventorySystem.cs` preview path is planner-driven (`PreviewDisplacements`).
+- `Assets/Scripts/Core/Inventory/Commands/EquipCommand.cs` execution path is planner-driven for body-aware equip.
+- Legacy duplicated slot-claim/displacement logic was removed from `InventorySystem`.
 
 3. **Transactional command safety**
 - End-state criteria:
@@ -40,27 +41,33 @@ Last updated: 2026-02-14
 - `DropCommand` and `PutInContainerCommand` now reuse command-internal unequip flow (`UnequipCommand`) instead of directly calling legacy unequip mutators.
 - `UnequipCommand` now performs command-internal event/stat/unequip mutation flow and rollback without direct `InventorySystem.UnequipItem(...)` delegation.
 - `EquipCommand` and `AutoEquipCommand` now execute planner/inventory mutation logic directly in command code (no direct `InventorySystem.Equip/AutoEquip` delegation).
-- Remaining gap: remove remaining command-level rollback/bridge calls that still rely on legacy mutators (for example select rollback hooks and pickup auto-equip bridge paths).
+- `PickupCommand` auto-equip path is now command-native (`AutoEquipCommand`) instead of direct `InventorySystem.AutoEquip(...)` bridging.
+- `DropCommand` and `DropPartialCommand` now explicitly fail when actor has no valid zone cell, preventing no-cell item loss scenarios.
+- Equip/unequip rollback now uses deterministic direct state restoration helpers in `Assets/Scripts/Core/Inventory/Commands/UnequipCommand.cs` (no event-veto-dependent rollback path).
+- Equip stacked-item rollback now removes transient split entities before stack restoration, preventing zero-count ghost stack entries.
+- Unequip rollback now restores equip bonuses through transaction undo, ensuring stat parity after rolled-back nested commands.
+- Equipped-state detection in `DropCommand`, `PutInContainerCommand`, and `UnequipCommand` now uses `UnequipCommand.CaptureEquippedState(...)` snapshots, hardening multi-slot/body-mode rollback behavior against slot-cache drift.
+- Remaining gap: verify and harden rollback determinism across edge-case event veto/stack-split/equipment scenarios.
 
 4. **`InventorySystem` reduced to facade/compatibility layer**
 - End-state criteria:
 - `InventorySystem` delegates to command/planner services.
 - Legacy duplicated operational logic is removed or contained as compatibility wrappers only.
-- Status: `IN_PROGRESS`
+- Status: `DONE`
 - Current evidence:
-- `ExecuteCommand(...)` seam exists and planner integration started.
-- Large legacy logic still lives inside `InventorySystem`.
+- Mutating methods in `Assets/Scripts/Core/InventorySystem.cs` now delegate to command execution (`Pickup`, `Drop`, `DropPartial`, `Equip`, `UnequipItem`, `AutoEquip`, `TakeFromContainer`, `PutInContainer`, `PerformAction`).
+- `TakeAllFromContainer` is command-routed internally via `TakeFromContainerCommand` per item.
+- Duplicated legacy mutation internals were removed from `InventorySystem`, leaving query helpers and compatibility wrappers.
 
 5. **Container flows are first-class and command-routed**
 - End-state criteria:
 - UI supports explicit container selection (not implicit first-container behavior).
 - Take/put actions run via command executor in normal gameplay flows.
-- Status: `IN_PROGRESS`
+- Status: `DONE`
 - Current evidence:
 - Input pickup now attempts container take-all when no loose items exist.
 - Inventory item popup now exposes one `put_container` action per nearby container, with explicit target container command execution.
-- Multi-container `g` take-all no longer silently defaults; it now reports missing picker support and skips implicit transfer.
-- Remaining gap: dedicated picker/flow for multi-container take flows.
+- Multi-container `g` take flow now opens an explicit container picker UI (`Assets/Scripts/Rendering/ContainerPickerUI.cs`) and runs command-routed transfers against the selected container.
 
 6. **Regression test coverage for refactor parity**
 - End-state criteria:
@@ -72,6 +79,13 @@ Last updated: 2026-02-14
 - Existing test suite exists (`Assets/Tests/EditMode`).
 - Added container command rollback/parity tests in `Assets/Tests/EditMode/InventorySystemTests.cs`.
 - Added command-routing tests for equip/unequip/item-action and a preview-displacement parity test for equip execution intent in `Assets/Tests/EditMode/InventorySystemTests.cs`.
+- Added edge-case rollback/parity tests for locked-container equipped-item preservation and auto-equip cancellation behavior in `Assets/Tests/EditMode/InventorySystemTests.cs`.
+- Added no-zone-cell drop/drop-partial validation tests to assert no unintended unequip/split mutation in `Assets/Tests/EditMode/InventorySystemTests.cs`.
+- Added rollback resilience tests proving equip/unequip transaction rollback is not blocked by `BeforeUnequip`/`BeforeEquip` veto hooks in `Assets/Tests/EditMode/InventorySystemTests.cs`.
+- Added rollback tests for stack-split equip restoration (no ghost stack entries) and equip-bonus restoration after rolled-back unequip in `Assets/Tests/EditMode/InventorySystemTests.cs`.
+- Added command edge-case parity tests for unequip-veto interactions in drop/container flows, equip displacement blocked by unequip-veto, and stacked-item auto-equip command behavior in `Assets/Tests/EditMode/InventorySystemTests.cs`.
+- Added body-mode multi-slot rollback tests for `DropCommand` and `PutInContainerCommand` cancellation/full-container flows in `Assets/Tests/EditMode/InventorySystemTests.cs`.
+- Added planner invalid-target tests (foreign actor target body part and abstract target body part) for equip/preview paths in `Assets/Tests/EditMode/InventorySystemTests.cs`.
 - Remaining gap: expand parity/rollback cases for additional command combinations and edge-case planner scenarios.
 
 7. **Fallback branch removal**
@@ -85,20 +99,19 @@ Last updated: 2026-02-14
 8. **Documentation closeout**
 - End-state criteria:
 - This file and `DESIGN_REFACTOR.md` reflect final architecture, migration summary, and extension points.
-- Status: `IN_PROGRESS`
+- Status: `DONE`
 - Current evidence:
-- End-state checklist exists (this file), but closeout summary is not yet complete.
+- `DESIGN_REFACTOR.md` now contains final architecture documentation, runtime mutation flow summary, rollback invariants, extension points, and migration summary.
+- This checklist remains the canonical completion/status tracker and completion gate.
 
 ## Remaining Work Queue (Ordered)
 
-1. Move remaining mutating logic from legacy `InventorySystem` methods into command `Execute(...)` implementations with real `InventoryTransaction` rollback steps.
-2. Add dedicated container picker UI/state for multi-container and multi-item take flows.
-3. Add EditMode tests for:
+1. Add/EditMode tests for:
 - command parity (old vs new behavior),
 - planner preview/execution parity,
 - rollback correctness.
-4. Reduce `InventorySystem` to a delegation facade and remove dead legacy internals.
-5. Final documentation closeout and explicit refactor completion sign-off.
+2. Verify and harden rollback determinism across remaining edge-case event veto/stack-split/equipment scenarios.
+3. Final refactor completion sign-off once items 1-2 are fully complete and validated.
 
 ## Refactor Completion Gate
 

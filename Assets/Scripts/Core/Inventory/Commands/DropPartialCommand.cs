@@ -57,6 +57,13 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Actor does not own this item.");
             }
 
+            if (context.Zone.GetEntityCell(context.Actor) == null)
+            {
+                return InventoryValidationResult.Invalid(
+                    InventoryValidationErrorCode.BlockedByRule,
+                    "Actor has no valid position to drop items.");
+            }
+
             return InventoryValidationResult.Valid();
         }
 
@@ -70,6 +77,14 @@ namespace CavesOfOoo.Core.Inventory.Commands
             {
                 // Fallback to normal drop behavior.
                 return new DropCommand(_item).Execute(context, transaction);
+            }
+
+            var cell = zone.GetEntityCell(actor);
+            if (cell == null)
+            {
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Actor has no valid position to drop items.");
             }
 
             var split = stacker.SplitStack(_count);
@@ -92,14 +107,10 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     splitStacker.StackCount = 0;
                 });
 
-            var cell = zone.GetEntityCell(actor);
-            if (cell != null)
-            {
-                zone.AddEntity(split, cell.X, cell.Y);
-                transaction.Do(
-                    apply: null,
-                    undo: () => zone.RemoveEntity(split));
-            }
+            zone.AddEntity(split, cell.X, cell.Y);
+            transaction.Do(
+                apply: null,
+                undo: () => zone.RemoveEntity(split));
 
             MessageLog.Add($"{actor.GetDisplayName()} drops {split.GetDisplayName()}.");
             return InventoryCommandResult.Ok();

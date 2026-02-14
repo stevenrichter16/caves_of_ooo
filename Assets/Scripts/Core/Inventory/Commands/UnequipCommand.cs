@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CavesOfOoo.Core.Anatomy;
 
 namespace CavesOfOoo.Core.Inventory.Commands
@@ -36,7 +37,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Unequip requires a valid item.");
             }
 
-            if (!InventorySystem.IsEquipped(context.Actor, _item))
+            if (!CaptureEquippedState(context, _item).HasLocation)
             {
                 return InventoryValidationResult.Invalid(
                     InventoryValidationErrorCode.BlockedByRule,
@@ -49,10 +50,13 @@ namespace CavesOfOoo.Core.Inventory.Commands
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
             var actor = context.Actor;
-            var inventory = context.Inventory;
-
-            BodyPart rollbackBodyPart = inventory.FindEquippedBodyPart(_item);
-            string rollbackLegacySlot = inventory.FindEquippedSlot(_item);
+            var rollbackState = CaptureEquippedState(context, _item);
+            if (!rollbackState.HasLocation)
+            {
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Item is not currently equipped.");
+            }
 
             var equippable = _item.GetPart<EquippablePart>();
 
@@ -69,40 +73,15 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
             // Remove equip stat bonuses before detaching item.
             if (equippable != null)
+            {
                 EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: false);
-
-            bool unequipped = false;
-            var body = context.Body;
-            if (body != null)
-            {
-                var bodyPart = rollbackBodyPart;
-                if (bodyPart == null)
-                {
-                    var parts = body.GetParts();
-                    for (int i = 0; i < parts.Count; i++)
-                    {
-                        if (parts[i]._Equipped == _item)
-                        {
-                            bodyPart = parts[i];
-                            break;
-                        }
-                    }
-                }
-
-                if (bodyPart != null)
-                    unequipped = inventory.UnequipFromBodyPart(bodyPart);
-            }
-            else if (!string.IsNullOrEmpty(rollbackLegacySlot))
-            {
-                unequipped = inventory.Unequip(rollbackLegacySlot);
+                transaction.Do(
+                    apply: null,
+                    undo: () => EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: true));
             }
 
-            if (!unequipped)
+            if (!TryForceUnequip(context, _item, rollbackState))
             {
-                // Best-effort rollback of bonus removal.
-                if (equippable != null)
-                    EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: true);
-
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
                     "Unequip failed.");
@@ -120,13 +99,137 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 apply: null,
                 undo: () =>
                 {
-                    if (rollbackBodyPart != null)
-                        InventorySystem.Equip(actor, _item, rollbackBodyPart);
-                    else if (!string.IsNullOrEmpty(rollbackLegacySlot))
-                        InventorySystem.Equip(actor, _item);
+                    TryForceRestore(context, _item, rollbackState);
                 });
 
             return InventoryCommandResult.Ok();
+        }
+
+        internal static EquippedStateSnapshot CaptureEquippedState(
+            InventoryContext context,
+            Entity item)
+        {
+            var bodyParts = CaptureEquippedBodyParts(context?.Body, item);
+            string legacySlot = bodyParts.Count == 0
+                ? context?.Inventory?.FindEquippedSlot(item)
+                : null;
+
+            return new EquippedStateSnapshot(bodyParts, legacySlot);
+        }
+
+        internal static bool TryForceUnequip(
+            InventoryContext context,
+            Entity item,
+            EquippedStateSnapshot snapshot = null)
+        {
+            if (context?.Inventory == null || item == null)
+                return false;
+
+            var effectiveSnapshot = snapshot ?? CaptureEquippedState(context, item);
+            if (!effectiveSnapshot.HasLocation)
+                return false;
+
+            if (effectiveSnapshot.BodyParts.Count > 0)
+            {
+                var firstPart = effectiveSnapshot.BodyParts[0];
+                if (firstPart == null)
+                    return false;
+
+                return context.Inventory.UnequipFromBodyPart(firstPart);
+            }
+
+            if (!string.IsNullOrEmpty(effectiveSnapshot.LegacySlot))
+                return context.Inventory.Unequip(effectiveSnapshot.LegacySlot);
+
+            return false;
+        }
+
+        internal static bool TryForceRestore(
+            InventoryContext context,
+            Entity item,
+            EquippedStateSnapshot snapshot)
+        {
+            if (context?.Inventory == null || item == null || snapshot == null || !snapshot.HasLocation)
+                return false;
+
+            var inventory = context.Inventory;
+
+            if (snapshot.BodyParts.Count > 0)
+            {
+                for (int i = 0; i < snapshot.BodyParts.Count; i++)
+                {
+                    var part = snapshot.BodyParts[i];
+                    if (part == null)
+                        return false;
+
+                    var existing = part._Equipped;
+                    if (existing != null && existing != item)
+                        return false;
+                }
+
+                if (snapshot.BodyParts.Count == 1)
+                    return inventory.EquipToBodyPart(item, snapshot.BodyParts[0]);
+
+                return inventory.EquipToBodyParts(item, snapshot.BodyParts);
+            }
+
+            if (!string.IsNullOrEmpty(snapshot.LegacySlot))
+            {
+                var existing = inventory.GetEquipped(snapshot.LegacySlot);
+                if (existing != null && existing != item)
+                    return false;
+
+                return inventory.Equip(item, snapshot.LegacySlot);
+            }
+
+            return false;
+        }
+
+        private static List<BodyPart> CaptureEquippedBodyParts(Body body, Entity item)
+        {
+            var result = new List<BodyPart>();
+            if (body == null || item == null)
+                return result;
+
+            var parts = body.GetParts();
+            BodyPart firstSlotPart = null;
+            for (int i = 0; i < parts.Count; i++)
+            {
+                var part = parts[i];
+                if (part._Equipped != item)
+                    continue;
+
+                if (firstSlotPart == null && part.FirstSlotForEquipped)
+                    firstSlotPart = part;
+                else
+                    result.Add(part);
+            }
+
+            if (firstSlotPart == null && result.Count > 0)
+            {
+                firstSlotPart = result[0];
+                result.RemoveAt(0);
+            }
+
+            if (firstSlotPart != null)
+                result.Insert(0, firstSlotPart);
+
+            return result;
+        }
+
+        internal sealed class EquippedStateSnapshot
+        {
+            public List<BodyPart> BodyParts { get; }
+
+            public string LegacySlot { get; }
+
+            public bool HasLocation => BodyParts.Count > 0 || !string.IsNullOrEmpty(LegacySlot);
+
+            public EquippedStateSnapshot(List<BodyPart> bodyParts, string legacySlot)
+            {
+                BodyParts = bodyParts ?? new List<BodyPart>();
+                LegacySlot = legacySlot;
+            }
         }
     }
 }
