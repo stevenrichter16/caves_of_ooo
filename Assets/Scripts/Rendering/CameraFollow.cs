@@ -69,7 +69,9 @@ namespace CavesOfOoo.Rendering
             float sizeForHeight = halfHeight;
             float sizeForWidth = halfWidth / _camera.aspect;
 
-            _camera.orthographicSize = Mathf.Max(sizeForHeight, sizeForWidth);
+            // Small padding prevents edge tiles from bleeding off-screen
+            // due to aspect ratio rounding or sub-pixel alignment
+            _camera.orthographicSize = Mathf.Max(sizeForHeight, sizeForWidth) + 0.15f;
         }
 
         /// <summary>

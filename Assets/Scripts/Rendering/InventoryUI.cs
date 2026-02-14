@@ -8,11 +8,11 @@ using UnityEngine.Tilemaps;
 namespace CavesOfOoo.Rendering
 {
     /// <summary>
-    /// Renders the inventory/equipment screen onto the tilemap.
-    /// Items tab: classic roguelike list with categories.
-    /// Equipment tab: paperdoll-style spatial squares showing equipped items
-    /// on body parts, with labels below each square. Press Enter on a square
-    /// to open a popup listing compatible items from inventory.
+    /// Renders a combined inventory/equipment screen onto the tilemap.
+    /// Left panel: paperdoll-style spatial squares showing equipped items.
+    /// Right panel: categorized inventory list.
+    /// Both panels are always visible. Left/Right switches focus between them.
+    /// Press Enter on an equipment square to open a popup listing compatible items.
     /// </summary>
     public class InventoryUI : MonoBehaviour
     {
@@ -20,9 +20,12 @@ namespace CavesOfOoo.Rendering
         public Entity PlayerEntity;
         public Zone CurrentZone;
 
-        // Layout constants (80x45 grid — fills 16:9 visible area for 80 columns)
+        // Layout constants (80x45 grid)
         private const int W = 80;
         private const int H = 45;
+        private const int DIVIDER_X = 30;
+        private const int RIGHT_START = 31;
+        private const int RIGHT_W = W - RIGHT_START; // 49
         private const int CONTENT_START = 2;
         private const int CONTENT_END = 42;
         private const int VISIBLE_ROWS = CONTENT_END - CONTENT_START;
@@ -34,20 +37,23 @@ namespace CavesOfOoo.Rendering
         private const int POPUP_MAX_VISIBLE = 25;
 
         private bool _isOpen;
-        private int _tab; // 0 = Items, 1 = Equipment
-        private int _cursorIndex;
-        private int _scrollOffset;
+        private int _panel; // 0 = equipment (left), 1 = inventory (right)
         private InventoryScreenData.ScreenState _state;
 
-        // Items tab: flattened display rows for navigation
+        // Inventory list state (right panel)
+        private int _cursorIndex;
+        private int _scrollOffset;
         private List<DisplayRow> _rows = new List<DisplayRow>();
 
-        // Equipment tab: spatial slot navigation
+        // Equipment paperdoll state (left panel)
         private List<InventoryScreenData.EquipmentSlot> _equipSlots;
         private int _equipCursorIndex;
 
-        // Equip-from-slot popup
+        // Equip-from-slot popup (equipment panel)
         private EquipPopupState _equipPopup;
+
+        // Item action popup (inventory panel)
+        private ItemActionPopupState _itemActionPopup;
 
         public bool IsOpen => _isOpen;
 
@@ -57,7 +63,6 @@ namespace CavesOfOoo.Rendering
             public string Text;
             public Color Color;
             public InventoryScreenData.ItemDisplay Item;
-            public InventoryScreenData.EquipmentSlot Slot;
         }
 
         private class EquipPopupState
@@ -68,25 +73,40 @@ namespace CavesOfOoo.Rendering
             public int ScrollOffset;
             public bool HasRemoveOption;
 
-            /// <summary>Total selectable rows: remove option (if present) + items.</summary>
             public int TotalRows => (HasRemoveOption ? 1 : 0) + Items.Count;
-
-            /// <summary>Whether the cursor is on the remove row.</summary>
             public bool CursorOnRemove => HasRemoveOption && CursorIndex == 0;
-
-            /// <summary>Item index for the current cursor position, or -1 if on remove row.</summary>
             public int CursorItemIndex => HasRemoveOption ? CursorIndex - 1 : CursorIndex;
+        }
+
+        private class ItemActionPopupState
+        {
+            public Entity Item;
+            public InventoryScreenData.ItemDisplay ItemDisplay;
+            public List<ItemAction> Actions;
+            public int CursorIndex;
+
+            // Body part picker sub-state (for manual equip)
+            public List<BodyPart> BodyParts;
+            public int BodyPartCursor;
+            public bool InBodyPartPicker;
+        }
+
+        private struct ItemAction
+        {
+            public string Label;
+            public string Command;
         }
 
         public void Open()
         {
             if (PlayerEntity == null) return;
             _isOpen = true;
-            _tab = 0;
+            _panel = 0;
             _cursorIndex = 0;
             _scrollOffset = 0;
             _equipCursorIndex = 0;
             _equipPopup = null;
+            _itemActionPopup = null;
             Rebuild();
             Render();
         }
@@ -95,19 +115,24 @@ namespace CavesOfOoo.Rendering
         {
             _isOpen = false;
             _equipPopup = null;
+            _itemActionPopup = null;
         }
 
-        /// <summary>
-        /// Handle input while inventory is open. Returns true if input was consumed.
-        /// </summary>
+        // ===== Input =====
+
         public bool HandleInput()
         {
             if (!_isOpen) return false;
 
-            // Equip popup intercepts all input when active
+            // Popups intercept all input when active
             if (_equipPopup != null)
             {
                 HandleEquipPopupInput();
+                return true;
+            }
+            if (_itemActionPopup != null)
+            {
+                HandleItemActionPopupInput();
                 return true;
             }
 
@@ -117,144 +142,170 @@ namespace CavesOfOoo.Rendering
                 return true;
             }
 
-            if (Input.GetKeyDown(KeyCode.Tab))
+            // Mouse click on equipment square (works from either panel)
+            if (Input.GetMouseButtonDown(0))
             {
-                _tab = (_tab + 1) % 2;
-                _cursorIndex = 0;
-                _scrollOffset = 0;
-                _equipCursorIndex = 0;
-                Rebuild();
-                Render();
-                return true;
+                int clickedSlot = GetEquipSlotAtMouse();
+                if (clickedSlot >= 0)
+                {
+                    _panel = 0;
+                    _equipCursorIndex = clickedSlot;
+                    OpenEquipPopup(_equipSlots[clickedSlot]);
+                    return true;
+                }
+
+                // Mouse click on inventory item row → open item action popup
+                int clickedRow = GetInventoryRowAtMouse();
+                if (clickedRow >= 0)
+                {
+                    _panel = 1;
+                    _cursorIndex = clickedRow;
+                    var clickedItem = _rows[clickedRow];
+                    if (clickedItem.Item != null)
+                        OpenItemActionPopup(clickedItem.Item);
+                    else
+                        Render();
+                    return true;
+                }
             }
 
-            // Navigation
+            if (_panel == 0)
+                HandleEquipPanelInput();
+            else
+                HandleInventoryPanelInput();
+
+            return true;
+        }
+
+        private void HandleEquipPanelInput()
+        {
+            // Up/Down: spatial navigation
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
             {
-                if (_tab == 1)
-                    MoveEquipCursor(0, -1);
-                else
-                    MoveCursor(-1);
+                MoveEquipCursor(0, -1);
                 Render();
-                return true;
+                return;
             }
             if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
             {
-                if (_tab == 1)
-                    MoveEquipCursor(0, 1);
-                else
-                    MoveCursor(1);
+                MoveEquipCursor(0, 1);
                 Render();
-                return true;
-            }
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.H))
-            {
-                if (_tab == 1)
-                {
-                    MoveEquipCursor(-1, 0);
-                    Render();
-                }
-                return true;
-            }
-            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.L))
-            {
-                if (_tab == 1)
-                {
-                    MoveEquipCursor(1, 0);
-                    Render();
-                }
-                return true;
+                return;
             }
 
-            // Item actions (Items tab only)
-            if (_tab == 0 && _rows.Count > 0 && _cursorIndex < _rows.Count)
+            // Left: spatial navigation within paperdoll
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.H))
+            {
+                MoveEquipCursor(-1, 0);
+                Render();
+                return;
+            }
+
+            // Right: spatial navigation, or switch to inventory panel if no slot to the right
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.L))
+            {
+                int prev = _equipCursorIndex;
+                MoveEquipCursor(1, 0);
+                if (_equipCursorIndex == prev)
+                {
+                    // No slot to the right — switch to inventory panel
+                    _panel = 1;
+                }
+                Render();
+                return;
+            }
+
+            // Tab: switch to inventory panel
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                _panel = 1;
+                Render();
+                return;
+            }
+
+            if (_equipSlots != null && _equipSlots.Count > 0
+                && _equipCursorIndex < _equipSlots.Count)
+            {
+                var slot = _equipSlots[_equipCursorIndex];
+
+                // Unequip
+                if (slot.EquippedItem != null && Input.GetKeyDown(KeyCode.E))
+                {
+                    InventorySystem.UnequipItem(PlayerEntity, slot.EquippedItem);
+                    Rebuild();
+                    if (_equipSlots != null && _equipCursorIndex >= _equipSlots.Count)
+                        _equipCursorIndex = _equipSlots.Count > 0 ? _equipSlots.Count - 1 : 0;
+                    Render();
+                    return;
+                }
+
+                // Open equip popup
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    OpenEquipPopup(slot);
+                    return;
+                }
+            }
+        }
+
+        private void HandleInventoryPanelInput()
+        {
+            // Up/Down: list navigation
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            {
+                MoveCursor(-1);
+                Render();
+                return;
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            {
+                MoveCursor(1);
+                Render();
+                return;
+            }
+
+            // Left: switch to equipment panel
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.H))
+            {
+                _panel = 0;
+                Render();
+                return;
+            }
+
+            // Tab: switch to equipment panel
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                _panel = 0;
+                Render();
+                return;
+            }
+
+            if (_rows.Count > 0 && _cursorIndex < _rows.Count)
             {
                 var row = _rows[_cursorIndex];
                 if (row.Item != null)
                 {
-                    // Drop
+                    // Drop (quick shortcut)
                     if (Input.GetKeyDown(KeyCode.D))
                     {
                         InventorySystem.Drop(PlayerEntity, row.Item.Item, CurrentZone);
                         Rebuild();
                         ClampCursor();
                         Render();
-                        return true;
+                        return;
                     }
 
-                    // Equip/Unequip
-                    if (Input.GetKeyDown(KeyCode.E))
+                    // Open item action popup (equip/unequip/use/etc.)
+                    if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E))
                     {
-                        if (row.Item.IsEquipped)
-                            InventorySystem.UnequipItem(PlayerEntity, row.Item.Item);
-                        else
-                            InventorySystem.Equip(PlayerEntity, row.Item.Item);
-                        Rebuild();
-                        ClampCursor();
-                        Render();
-                        return true;
-                    }
-
-                    // Use/Apply (enter or 'u')
-                    if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.U))
-                    {
-                        var actions = row.Item.Actions;
-                        if (actions != null && actions.Count > 0)
-                        {
-                            InventorySystem.PerformAction(
-                                PlayerEntity, row.Item.Item, actions[0].Command, CurrentZone);
-                            Rebuild();
-                            ClampCursor();
-                            Render();
-                        }
-                        return true;
+                        OpenItemActionPopup(row.Item);
+                        return;
                     }
                 }
             }
-
-            // Equipment tab actions
-            if (_tab == 1 && _equipSlots != null && _equipSlots.Count > 0)
-            {
-                // Mouse click on an equipment square
-                if (Input.GetMouseButtonDown(0))
-                {
-                    int clicked = GetEquipSlotAtMouse();
-                    if (clicked >= 0)
-                    {
-                        _equipCursorIndex = clicked;
-                        OpenEquipPopup(_equipSlots[clicked]);
-                        return true;
-                    }
-                }
-
-                if (_equipCursorIndex < _equipSlots.Count)
-                {
-                    var slot = _equipSlots[_equipCursorIndex];
-
-                    // Unequip
-                    if (slot.EquippedItem != null && Input.GetKeyDown(KeyCode.E))
-                    {
-                        InventorySystem.UnequipItem(PlayerEntity, slot.EquippedItem);
-                        Rebuild();
-                        if (_equipSlots != null && _equipCursorIndex >= _equipSlots.Count)
-                            _equipCursorIndex = _equipSlots.Count > 0 ? _equipSlots.Count - 1 : 0;
-                        Render();
-                        return true;
-                    }
-
-                    // Open equip popup
-                    if (Input.GetKeyDown(KeyCode.Return))
-                    {
-                        OpenEquipPopup(slot);
-                        return true;
-                    }
-                }
-            }
-
-            return true; // consume all input while open
         }
 
-        // --- Equip Popup ---
+        // ===== Equip Popup =====
 
         private void OpenEquipPopup(InventoryScreenData.EquipmentSlot slot)
         {
@@ -295,7 +346,6 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
-            // Sort by category then name
             compatible.Sort((a, b) =>
             {
                 string catA = ItemCategory.GetCategory(a);
@@ -314,7 +364,6 @@ namespace CavesOfOoo.Rendering
         {
             int totalRows = _equipPopup.TotalRows;
 
-            // Escape: close popup, stay on equipment tab
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 _equipPopup = null;
@@ -342,14 +391,12 @@ namespace CavesOfOoo.Rendering
                 }
                 else if (clickedRow < 0)
                 {
-                    // Click anywhere outside popup content closes it
                     _equipPopup = null;
                     Render();
                     return;
                 }
             }
 
-            // Navigate up
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
             {
                 if (totalRows > 0 && _equipPopup.CursorIndex > 0)
@@ -361,7 +408,6 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Navigate down
             if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
             {
                 if (totalRows > 0 && _equipPopup.CursorIndex < totalRows - 1)
@@ -373,7 +419,6 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Enter: remove or equip selected item
             if (Input.GetKeyDown(KeyCode.Return) && totalRows > 0)
             {
                 if (_equipPopup.CursorOnRemove)
@@ -385,7 +430,6 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Hotkey letters a-z (mapped to item indices, not the remove row)
             int itemCount = _equipPopup.Items.Count;
             for (int i = 0; i < 26 && i < itemCount; i++)
             {
@@ -414,7 +458,6 @@ namespace CavesOfOoo.Rendering
             var item = _equipPopup.Items[index];
             var slot = _equipPopup.TargetSlot;
 
-            // Find the target BodyPart by ID
             BodyPart targetBodyPart = null;
             var body = PlayerEntity.GetPart<Body>();
             if (body != null && slot.BodyPartID > 0)
@@ -448,23 +491,268 @@ namespace CavesOfOoo.Rendering
             Render();
         }
 
-        // --- Rebuild ---
+        // ===== Item Action Popup =====
+
+        private void OpenItemActionPopup(InventoryScreenData.ItemDisplay itemDisplay)
+        {
+            var item = itemDisplay.Item;
+            var actions = new List<ItemAction>();
+
+            var equippable = item.GetPart<EquippablePart>();
+
+            if (itemDisplay.IsEquipped)
+            {
+                actions.Add(new ItemAction { Label = "Unequip", Command = "unequip" });
+            }
+            else if (equippable != null)
+            {
+                actions.Add(new ItemAction { Label = "Equip (auto)", Command = "equip_auto" });
+                actions.Add(new ItemAction { Label = "Equip (manual)", Command = "equip_manual" });
+            }
+
+            // Add item-specific actions from the event system
+            if (itemDisplay.Actions != null)
+            {
+                for (int i = 0; i < itemDisplay.Actions.Count; i++)
+                {
+                    var a = itemDisplay.Actions[i];
+                    actions.Add(new ItemAction { Label = a.Display, Command = a.Command });
+                }
+            }
+
+            actions.Add(new ItemAction { Label = "Drop", Command = "drop" });
+
+            _itemActionPopup = new ItemActionPopupState
+            {
+                Item = item,
+                ItemDisplay = itemDisplay,
+                Actions = actions,
+                CursorIndex = 0,
+                InBodyPartPicker = false
+            };
+
+            Render();
+        }
+
+        private void HandleItemActionPopupInput()
+        {
+            if (_itemActionPopup.InBodyPartPicker)
+            {
+                HandleBodyPartPickerInput();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                _itemActionPopup = null;
+                Render();
+                return;
+            }
+
+            // Mouse click
+            if (Input.GetMouseButtonDown(0))
+            {
+                int clickedRow = GetItemActionPopupRowAtMouse();
+                if (clickedRow >= 0 && clickedRow < _itemActionPopup.Actions.Count)
+                {
+                    ExecuteItemAction(clickedRow);
+                    return;
+                }
+                else if (clickedRow < 0)
+                {
+                    _itemActionPopup = null;
+                    Render();
+                    return;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            {
+                if (_itemActionPopup.CursorIndex > 0)
+                    _itemActionPopup.CursorIndex--;
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            {
+                if (_itemActionPopup.CursorIndex < _itemActionPopup.Actions.Count - 1)
+                    _itemActionPopup.CursorIndex++;
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                ExecuteItemAction(_itemActionPopup.CursorIndex);
+                return;
+            }
+
+            // Hotkeys a-z
+            for (int i = 0; i < 26 && i < _itemActionPopup.Actions.Count; i++)
+            {
+                if (Input.GetKeyDown(KeyCode.A + i))
+                {
+                    ExecuteItemAction(i);
+                    return;
+                }
+            }
+        }
+
+        private void ExecuteItemAction(int index)
+        {
+            if (index < 0 || index >= _itemActionPopup.Actions.Count) return;
+
+            var action = _itemActionPopup.Actions[index];
+            var item = _itemActionPopup.Item;
+
+            switch (action.Command)
+            {
+                case "equip_auto":
+                    InventorySystem.Equip(PlayerEntity, item);
+                    _itemActionPopup = null;
+                    Rebuild();
+                    ClampCursor();
+                    Render();
+                    break;
+
+                case "equip_manual":
+                    OpenBodyPartPicker();
+                    break;
+
+                case "unequip":
+                    InventorySystem.UnequipItem(PlayerEntity, item);
+                    _itemActionPopup = null;
+                    Rebuild();
+                    ClampCursor();
+                    Render();
+                    break;
+
+                case "drop":
+                    InventorySystem.Drop(PlayerEntity, item, CurrentZone);
+                    _itemActionPopup = null;
+                    Rebuild();
+                    ClampCursor();
+                    Render();
+                    break;
+
+                default:
+                    // Item-specific action (eat, drink, apply, etc.)
+                    InventorySystem.PerformAction(PlayerEntity, item, action.Command, CurrentZone);
+                    _itemActionPopup = null;
+                    Rebuild();
+                    ClampCursor();
+                    Render();
+                    break;
+            }
+        }
+
+        private void OpenBodyPartPicker()
+        {
+            var item = _itemActionPopup.Item;
+            var equippable = item.GetPart<EquippablePart>();
+            if (equippable == null) return;
+
+            var body = PlayerEntity.GetPart<Body>();
+            if (body == null) return;
+
+            string[] slotTypes = equippable.GetSlotArray();
+            string primarySlot = slotTypes[0].Trim();
+            var parts = body.GetEquippableSlots(primarySlot);
+
+            if (parts.Count == 0) return;
+
+            _itemActionPopup.BodyParts = parts;
+            _itemActionPopup.BodyPartCursor = 0;
+            _itemActionPopup.InBodyPartPicker = true;
+            Render();
+        }
+
+        private void HandleBodyPartPickerInput()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                _itemActionPopup.InBodyPartPicker = false;
+                Render();
+                return;
+            }
+
+            // Mouse click
+            if (Input.GetMouseButtonDown(0))
+            {
+                int clickedRow = GetItemActionPopupRowAtMouse();
+                if (clickedRow >= 0 && clickedRow < _itemActionPopup.BodyParts.Count)
+                {
+                    EquipToBodyPart(clickedRow);
+                    return;
+                }
+                else if (clickedRow < 0)
+                {
+                    _itemActionPopup.InBodyPartPicker = false;
+                    Render();
+                    return;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            {
+                if (_itemActionPopup.BodyPartCursor > 0)
+                    _itemActionPopup.BodyPartCursor--;
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            {
+                if (_itemActionPopup.BodyPartCursor < _itemActionPopup.BodyParts.Count - 1)
+                    _itemActionPopup.BodyPartCursor++;
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                EquipToBodyPart(_itemActionPopup.BodyPartCursor);
+                return;
+            }
+
+            // Hotkeys a-z
+            for (int i = 0; i < 26 && i < _itemActionPopup.BodyParts.Count; i++)
+            {
+                if (Input.GetKeyDown(KeyCode.A + i))
+                {
+                    EquipToBodyPart(i);
+                    return;
+                }
+            }
+        }
+
+        private void EquipToBodyPart(int index)
+        {
+            if (index < 0 || index >= _itemActionPopup.BodyParts.Count) return;
+
+            var part = _itemActionPopup.BodyParts[index];
+            InventorySystem.Equip(PlayerEntity, _itemActionPopup.Item, part);
+
+            _itemActionPopup = null;
+            Rebuild();
+            ClampCursor();
+            Render();
+        }
+
+        // ===== Rebuild =====
 
         private void Rebuild()
         {
             _state = InventoryScreenData.Build(PlayerEntity);
-            _rows.Clear();
 
-            if (_tab == 0)
-            {
-                BuildItemRows();
-            }
-            else
-            {
-                _equipSlots = _state.Equipment;
-                if (_equipSlots.Count > 0 && _equipCursorIndex >= _equipSlots.Count)
-                    _equipCursorIndex = _equipSlots.Count - 1;
-            }
+            // Always rebuild both panels
+            _rows.Clear();
+            BuildItemRows();
+
+            _equipSlots = _state.Equipment;
+            if (_equipSlots.Count > 0 && _equipCursorIndex >= _equipSlots.Count)
+                _equipCursorIndex = _equipSlots.Count - 1;
         }
 
         private void BuildItemRows()
@@ -489,13 +777,14 @@ namespace CavesOfOoo.Rendering
                     string equipped = item.IsEquipped ? " [E]" : "";
                     string line = "  " + name;
 
-                    // Pad to column 50 for weight/value
-                    if (line.Length < 50)
-                        line = line + new string(' ', 50 - line.Length);
+                    // Pad/truncate for right panel width (49 cols, with weight/value at end)
+                    int nameWidth = RIGHT_W - 16; // reserve 16 for weight/value/equipped
+                    if (line.Length < nameWidth)
+                        line = line + new string(' ', nameWidth - line.Length);
                     else
-                        line = line.Substring(0, 50);
+                        line = line.Substring(0, nameWidth);
 
-                    line += item.Weight.ToString().PadLeft(4) + " lb  ";
+                    line += item.Weight.ToString().PadLeft(4) + "lb ";
                     line += item.Value.ToString().PadLeft(4) + "$";
                     line += equipped;
 
@@ -510,7 +799,7 @@ namespace CavesOfOoo.Rendering
             }
         }
 
-        // --- Navigation ---
+        // ===== Navigation =====
 
         private void MoveCursor(int delta)
         {
@@ -518,14 +807,12 @@ namespace CavesOfOoo.Rendering
 
             int next = _cursorIndex + delta;
 
-            // Skip headers
             while (next >= 0 && next < _rows.Count && _rows[next].IsHeader)
                 next += delta;
 
             if (next >= 0 && next < _rows.Count)
                 _cursorIndex = next;
 
-            // Scroll into view
             int viewIndex = _cursorIndex - _scrollOffset;
             if (viewIndex < 0)
                 _scrollOffset = _cursorIndex;
@@ -533,9 +820,6 @@ namespace CavesOfOoo.Rendering
                 _scrollOffset = _cursorIndex - VISIBLE_ROWS + 1;
         }
 
-        /// <summary>
-        /// Move the equipment cursor spatially toward the nearest slot in the given direction.
-        /// </summary>
         private void MoveEquipCursor(int dx, int dy)
         {
             if (_equipSlots == null || _equipSlots.Count <= 1) return;
@@ -554,13 +838,11 @@ namespace CavesOfOoo.Rendering
                 int sx = s.GridX;
                 int sy = s.GridY;
 
-                // Direction filtering
                 if (dx < 0 && sx >= cx) continue;
                 if (dx > 0 && sx <= cx) continue;
                 if (dy < 0 && sy >= cy) continue;
                 if (dy > 0 && sy <= cy) continue;
 
-                // Distance with directional weighting
                 float primaryDist, crossDist;
                 if (dx != 0)
                 {
@@ -596,7 +878,6 @@ namespace CavesOfOoo.Rendering
             if (_cursorIndex >= _rows.Count)
                 _cursorIndex = _rows.Count - 1;
 
-            // Skip to non-header
             while (_cursorIndex > 0 && _rows[_cursorIndex].IsHeader)
                 _cursorIndex--;
 
@@ -604,7 +885,7 @@ namespace CavesOfOoo.Rendering
                 _scrollOffset = _cursorIndex;
         }
 
-        // --- Rendering ---
+        // ===== Rendering =====
 
         private void Render()
         {
@@ -613,136 +894,98 @@ namespace CavesOfOoo.Rendering
             Tilemap.ClearAllTiles();
 
             // Title bar
-            string titleTab0 = _tab == 0 ? "[Items]" : " Items ";
-            string titleTab1 = _tab == 1 ? "[Equipment]" : " Equipment ";
-            string title = " " + titleTab0 + "  " + titleTab1;
-            DrawText(0, 0, title, QudColorParser.White);
+            string leftTitle = "Equipment";
+            string rightTitle = "Inventory";
+            Color leftTitleColor = _panel == 0 ? QudColorParser.White : QudColorParser.DarkGray;
+            Color rightTitleColor = _panel == 1 ? QudColorParser.White : QudColorParser.DarkGray;
+            DrawText(1, 0, leftTitle, leftTitleColor);
+            DrawText(RIGHT_START + 1, 0, rightTitle, rightTitleColor);
 
-            // Weight and drams on right side
-            string info = "Wt: " + _state.CarriedWeight + "/" + _state.MaxCarryWeight
-                        + "  $" + _state.Drams;
+            // Weight and drams on right side of header
+            string info = "Wt:" + _state.CarriedWeight + "/" + _state.MaxCarryWeight
+                        + " $" + _state.Drams;
             DrawText(W - info.Length - 1, 0, info, QudColorParser.Gray);
 
-            // Separator
+            // Horizontal separators
             DrawHLine(0, 1, W, QudColorParser.DarkGray);
-
-            if (_tab == 0)
-            {
-                RenderItemsTab();
-            }
-            else
-            {
-                RenderEquipmentTab();
-            }
-
-            // Equip popup overlay (drawn on top of paperdoll)
-            if (_equipPopup != null)
-            {
-                RenderEquipPopup();
-            }
-
-            // Bottom separator
             DrawHLine(0, CONTENT_END, W, QudColorParser.DarkGray);
+
+            // Vertical divider
+            for (int y = 0; y < H; y++)
+                DrawChar(DIVIDER_X, y, '|', QudColorParser.DarkGray);
+
+            // Left panel: paperdoll
+            RenderPaperdoll();
+
+            // Right panel: inventory list
+            RenderInventoryList();
+
+            // Popup overlays
+            if (_equipPopup != null)
+                RenderEquipPopup();
+            if (_itemActionPopup != null)
+                RenderItemActionPopup();
 
             // Action bar
             string actions;
-            if (_equipPopup != null)
+            if (_equipPopup != null || _itemActionPopup != null)
                 actions = " [Enter]select  [a-z]quick select  [Esc]cancel";
-            else if (_tab == 0)
-                actions = " [d]rop [e]quip [Enter]use [Tab]equip tab [Esc]close";
+            else if (_panel == 0)
+                actions = " [Enter]equip [e]unequip [>]inventory [Esc]close";
             else
-                actions = " [Enter]equip [e]unequip [Tab]items tab [Esc]close";
+                actions = " [d]rop [Enter]actions [<]equipment [Esc]close";
 
             DrawText(0, H - 2, actions, QudColorParser.Gray);
 
-            // Selected item detail line
-            if (_equipPopup != null)
-            {
-                if (_equipPopup.CursorOnRemove)
-                {
-                    string detail = "Remove " + (_equipPopup.TargetSlot.ItemName ?? "item")
-                                  + " from " + _equipPopup.TargetSlot.BodyPartName;
-                    DrawText(1, H - 1, detail, QudColorParser.BrightRed);
-                }
-                else if (_equipPopup.CursorItemIndex >= 0
-                    && _equipPopup.CursorItemIndex < _equipPopup.Items.Count)
-                {
-                    var item = _equipPopup.Items[_equipPopup.CursorItemIndex];
-                    var equip = item.GetPart<EquippablePart>();
-                    string detail = item.GetDisplayName();
-                    if (equip != null && !string.IsNullOrEmpty(equip.EquipBonuses))
-                        detail += "  (" + equip.EquipBonuses + ")";
-                    DrawText(1, H - 1, detail, QudColorParser.BrightCyan);
-                }
-            }
-            else if (_tab == 0 && _cursorIndex < _rows.Count && _rows[_cursorIndex].Item != null)
-            {
-                var item = _rows[_cursorIndex].Item;
-                var itemActions = item.Actions;
-                if (itemActions != null && itemActions.Count > 0)
-                {
-                    string actionStr = " Actions:";
-                    for (int i = 0; i < itemActions.Count && i < 4; i++)
-                    {
-                        actionStr += " [" + itemActions[i].Display + "]";
-                    }
-                    DrawText(0, H - 1, actionStr, QudColorParser.DarkCyan);
-                }
-            }
-            else if (_tab == 1 && _equipSlots != null && _equipCursorIndex < _equipSlots.Count)
-            {
-                var slot = _equipSlots[_equipCursorIndex];
-                string detail = slot.BodyPartName + ": " + slot.ItemName;
-                DrawText(1, H - 1, detail, QudColorParser.BrightCyan);
-            }
+            // Detail line
+            RenderDetailLine();
         }
 
-        private void RenderItemsTab()
-        {
-            // Hint about items count
-            string countText = _state.TotalItems + " items";
-            DrawText(1, 2, countText, QudColorParser.DarkGray);
-
-            // Content rows
-            int y = CONTENT_START;
-            for (int i = _scrollOffset; i < _rows.Count && y < CONTENT_END; i++, y++)
-            {
-                var row = _rows[i];
-                bool selected = (i == _cursorIndex);
-
-                if (selected && !row.IsHeader)
-                {
-                    DrawText(0, y, ">", QudColorParser.White);
-                    DrawText(1, y, row.Text, QudColorParser.White);
-                }
-                else
-                {
-                    DrawText(1, y, row.Text, row.Color);
-                }
-            }
-
-            // Scroll indicators
-            if (_scrollOffset > 0)
-                DrawText(W - 2, CONTENT_START, "^", QudColorParser.Gray);
-            if (_scrollOffset + VISIBLE_ROWS < _rows.Count)
-                DrawText(W - 2, CONTENT_END - 1, "v", QudColorParser.Gray);
-        }
-
-        private void RenderEquipmentTab()
+        private void RenderPaperdoll()
         {
             if (_equipSlots == null) return;
 
             for (int i = 0; i < _equipSlots.Count; i++)
             {
-                bool selected = (i == _equipCursorIndex) && _equipPopup == null;
+                bool selected = (i == _equipCursorIndex) && _panel == 0 && _equipPopup == null;
                 DrawEquipmentSquare(_equipSlots[i], selected);
             }
         }
 
-        /// <summary>
-        /// Draw a single equipment square: a bordered box with the item glyph inside
-        /// and a body part label below.
-        /// </summary>
+        private void RenderInventoryList()
+        {
+            int x0 = RIGHT_START;
+
+            // Item count hint
+            string countText = _state.TotalItems + " items";
+            DrawText(x0 + 1, CONTENT_START, countText, QudColorParser.DarkGray);
+
+            // Content rows
+            int y = CONTENT_START + 1;
+            int visibleRows = CONTENT_END - CONTENT_START - 1;
+            for (int i = _scrollOffset; i < _rows.Count && y < CONTENT_END; i++, y++)
+            {
+                var row = _rows[i];
+                bool selected = (i == _cursorIndex) && _panel == 1;
+
+                if (selected && !row.IsHeader)
+                {
+                    DrawChar(x0, y, '>', QudColorParser.White);
+                    DrawText(x0 + 1, y, row.Text, QudColorParser.White);
+                }
+                else
+                {
+                    DrawText(x0 + 1, y, row.Text, row.Color);
+                }
+            }
+
+            // Scroll indicators
+            if (_scrollOffset > 0)
+                DrawChar(W - 2, CONTENT_START + 1, '^', QudColorParser.Gray);
+            if (_scrollOffset + visibleRows < _rows.Count)
+                DrawChar(W - 2, CONTENT_END - 1, 'v', QudColorParser.Gray);
+        }
+
         private void DrawEquipmentSquare(InventoryScreenData.EquipmentSlot slot, bool selected)
         {
             int x = slot.GridX;
@@ -798,10 +1041,6 @@ namespace CavesOfOoo.Rendering
             }
         }
 
-        /// <summary>
-        /// Build a compact stat summary for an equipped item.
-        /// Weapons: "1d4 +2", Armor: "4AV 1DV", or EquipBonuses fallback.
-        /// </summary>
         private string BuildSlotStats(Entity item)
         {
             var parts = new List<string>();
@@ -828,7 +1067,6 @@ namespace CavesOfOoo.Rendering
                 var equippable = item.GetPart<EquippablePart>();
                 if (equippable != null && !string.IsNullOrEmpty(equippable.EquipBonuses))
                 {
-                    // Compact the bonus string: "Strength:2" -> "Str+2"
                     string[] bonuses = equippable.EquipBonuses.Split(',');
                     for (int i = 0; i < bonuses.Length; i++)
                     {
@@ -837,7 +1075,6 @@ namespace CavesOfOoo.Rendering
                         if (colon < 0) continue;
                         string stat = b.Substring(0, colon);
                         string val = b.Substring(colon + 1);
-                        // Abbreviate stat name to 3 chars
                         if (stat.Length > 3) stat = stat.Substring(0, 3);
                         if (!val.StartsWith("-")) val = "+" + val;
                         parts.Add(stat + val);
@@ -848,19 +1085,82 @@ namespace CavesOfOoo.Rendering
             return string.Join(" ", parts);
         }
 
-        /// <summary>
-        /// Render the equip-from-slot popup as a centered bordered list
-        /// overlaying the paperdoll.
-        /// </summary>
+        private void RenderDetailLine()
+        {
+            if (_equipPopup != null)
+            {
+                if (_equipPopup.CursorOnRemove)
+                {
+                    string detail = "Remove " + (_equipPopup.TargetSlot.ItemName ?? "item")
+                                  + " from " + _equipPopup.TargetSlot.BodyPartName;
+                    DrawText(1, H - 1, detail, QudColorParser.BrightRed);
+                }
+                else if (_equipPopup.CursorItemIndex >= 0
+                    && _equipPopup.CursorItemIndex < _equipPopup.Items.Count)
+                {
+                    var item = _equipPopup.Items[_equipPopup.CursorItemIndex];
+                    var equip = item.GetPart<EquippablePart>();
+                    string detail = item.GetDisplayName();
+                    if (equip != null && !string.IsNullOrEmpty(equip.EquipBonuses))
+                        detail += "  (" + equip.EquipBonuses + ")";
+                    DrawText(1, H - 1, detail, QudColorParser.BrightCyan);
+                }
+            }
+            else if (_itemActionPopup != null)
+            {
+                if (_itemActionPopup.InBodyPartPicker)
+                {
+                    if (_itemActionPopup.BodyParts != null
+                        && _itemActionPopup.BodyPartCursor < _itemActionPopup.BodyParts.Count)
+                    {
+                        var part = _itemActionPopup.BodyParts[_itemActionPopup.BodyPartCursor];
+                        string detail = part.GetDisplayName();
+                        if (part._Equipped != null)
+                            detail += ": " + part._Equipped.GetDisplayName() + " (will be unequipped)";
+                        else
+                            detail += ": (empty)";
+                        DrawText(1, H - 1, detail, QudColorParser.BrightCyan);
+                    }
+                }
+                else if (_itemActionPopup.CursorIndex < _itemActionPopup.Actions.Count)
+                {
+                    string detail = _itemActionPopup.Item.GetDisplayName();
+                    var equip = _itemActionPopup.Item.GetPart<EquippablePart>();
+                    if (equip != null && !string.IsNullOrEmpty(equip.EquipBonuses))
+                        detail += "  (" + equip.EquipBonuses + ")";
+                    DrawText(1, H - 1, detail, QudColorParser.BrightCyan);
+                }
+            }
+            else if (_panel == 0 && _equipSlots != null && _equipCursorIndex < _equipSlots.Count)
+            {
+                var slot = _equipSlots[_equipCursorIndex];
+                string detail = slot.BodyPartName + ": " + slot.ItemName;
+                DrawText(1, H - 1, detail, QudColorParser.BrightCyan);
+            }
+            else if (_panel == 1 && _cursorIndex < _rows.Count && _rows[_cursorIndex].Item != null)
+            {
+                var item = _rows[_cursorIndex].Item;
+                var itemActions = item.Actions;
+                if (itemActions != null && itemActions.Count > 0)
+                {
+                    string actionStr = " Actions:";
+                    for (int i = 0; i < itemActions.Count && i < 4; i++)
+                    {
+                        actionStr += " [" + itemActions[i].Display + "]";
+                    }
+                    DrawText(0, H - 1, actionStr, QudColorParser.DarkCyan);
+                }
+            }
+        }
+
         private void RenderEquipPopup()
         {
             int totalRows = _equipPopup.TotalRows;
             int visibleCount = Mathf.Min(totalRows > 0 ? totalRows : 1, POPUP_MAX_VISIBLE);
-            int popupH = visibleCount + 4; // top border + title + separator + content + bottom border
+            int popupH = visibleCount + 4;
             int popupX = (W - POPUP_W) / 2;
             int popupY = (H - popupH) / 2;
 
-            // Clear the region behind the popup
             ClearRegion(popupX, popupY, POPUP_W, popupH);
 
             // Top border
@@ -919,13 +1219,11 @@ namespace CavesOfOoo.Rendering
                     int rowY = contentY + vi;
                     bool selected = (idx == _equipPopup.CursorIndex);
 
-                    // Cursor indicator
                     if (selected)
                         DrawChar(popupX + 1, rowY, '>', QudColorParser.White);
 
                     if (_equipPopup.HasRemoveOption && idx == 0)
                     {
-                        // Remove row — show currently equipped item name
                         string removeName = _equipPopup.TargetSlot.ItemName ?? "item";
                         string removeText = "- Remove " + removeName;
                         int maxLen = POPUP_W - 5;
@@ -936,11 +1234,9 @@ namespace CavesOfOoo.Rendering
                     }
                     else
                     {
-                        // Item row
                         int itemIdx = idx - removeOffset;
                         var item = _equipPopup.Items[itemIdx];
 
-                        // Hotkey letter
                         if (itemIdx < 26)
                         {
                             char hotkey = (char)('a' + itemIdx);
@@ -949,7 +1245,6 @@ namespace CavesOfOoo.Rendering
                                 selected ? QudColorParser.White : QudColorParser.Gray);
                         }
 
-                        // Item glyph
                         var render = item.GetPart<RenderPart>();
                         if (render != null && !string.IsNullOrEmpty(render.RenderString))
                         {
@@ -958,7 +1253,6 @@ namespace CavesOfOoo.Rendering
                             DrawChar(popupX + 5, rowY, glyph, glyphColor);
                         }
 
-                        // Item name
                         string name = item.GetDisplayName();
                         int maxNameLen = POPUP_W - 9;
                         if (name.Length > maxNameLen)
@@ -968,7 +1262,6 @@ namespace CavesOfOoo.Rendering
                     }
                 }
 
-                // Scroll indicators
                 if (_equipPopup.ScrollOffset > 0)
                     DrawChar(popupX + POPUP_W - 2, contentY, '^', QudColorParser.Gray);
                 if (_equipPopup.ScrollOffset + visibleCount < totalRows)
@@ -976,23 +1269,164 @@ namespace CavesOfOoo.Rendering
             }
         }
 
-        // --- Mouse Helpers ---
+        // ===== Item Action Popup Rendering =====
 
-        /// <summary>
-        /// Convert mouse screen position to inventory grid coordinates.
-        /// Returns (-1,-1) if outside the grid.
-        /// </summary>
+        private void RenderItemActionPopup()
+        {
+            if (_itemActionPopup.InBodyPartPicker)
+            {
+                RenderBodyPartPicker();
+                return;
+            }
+
+            int totalRows = _itemActionPopup.Actions.Count;
+            int visibleCount = Mathf.Min(totalRows > 0 ? totalRows : 1, POPUP_MAX_VISIBLE);
+            int popupH = visibleCount + 4;
+            int popupX = (W - POPUP_W) / 2;
+            int popupY = (H - popupH) / 2;
+
+            ClearRegion(popupX, popupY, POPUP_W, popupH);
+            DrawPopupBorder(popupX, popupY, POPUP_W, popupH, visibleCount);
+
+            // Title: item name
+            string titleText = _itemActionPopup.Item.GetDisplayName();
+            if (titleText.Length > POPUP_W - 4)
+                titleText = titleText.Substring(0, POPUP_W - 4);
+            DrawText(popupX + 2, popupY + 1, titleText, QudColorParser.BrightYellow);
+
+            // Content rows
+            int contentY = popupY + 3;
+            if (totalRows == 0)
+            {
+                DrawText(popupX + 2, contentY, "(no actions available)", QudColorParser.DarkGray);
+            }
+            else
+            {
+                for (int i = 0; i < visibleCount && i < totalRows; i++)
+                {
+                    int rowY = contentY + i;
+                    bool selected = (i == _itemActionPopup.CursorIndex);
+
+                    if (selected)
+                        DrawChar(popupX + 1, rowY, '>', QudColorParser.White);
+
+                    if (i < 26)
+                    {
+                        char hotkey = (char)('a' + i);
+                        string hk = hotkey + ")";
+                        DrawText(popupX + 2, rowY, hk,
+                            selected ? QudColorParser.White : QudColorParser.Gray);
+                    }
+
+                    string label = _itemActionPopup.Actions[i].Label;
+                    int maxLen = POPUP_W - 7;
+                    if (label.Length > maxLen)
+                        label = label.Substring(0, maxLen - 1) + "~";
+                    Color labelColor = selected ? QudColorParser.White : QudColorParser.Gray;
+                    DrawText(popupX + 5, rowY, label, labelColor);
+                }
+            }
+        }
+
+        private void RenderBodyPartPicker()
+        {
+            var parts = _itemActionPopup.BodyParts;
+            int totalRows = parts.Count;
+            int visibleCount = Mathf.Min(totalRows > 0 ? totalRows : 1, POPUP_MAX_VISIBLE);
+            int popupH = visibleCount + 4;
+            int popupX = (W - POPUP_W) / 2;
+            int popupY = (H - popupH) / 2;
+
+            ClearRegion(popupX, popupY, POPUP_W, popupH);
+            DrawPopupBorder(popupX, popupY, POPUP_W, popupH, visibleCount);
+
+            // Title
+            string titleText = "Equip to which body part?";
+            DrawText(popupX + 2, popupY + 1, titleText, QudColorParser.BrightYellow);
+
+            int contentY = popupY + 3;
+            for (int i = 0; i < visibleCount && i < totalRows; i++)
+            {
+                int rowY = contentY + i;
+                var part = parts[i];
+                bool selected = (i == _itemActionPopup.BodyPartCursor);
+
+                if (selected)
+                    DrawChar(popupX + 1, rowY, '>', QudColorParser.White);
+
+                if (i < 26)
+                {
+                    char hotkey = (char)('a' + i);
+                    string hk = hotkey + ")";
+                    DrawText(popupX + 2, rowY, hk,
+                        selected ? QudColorParser.White : QudColorParser.Gray);
+                }
+
+                string partName = part.GetDisplayName();
+                string equippedInfo = "";
+                if (part._Equipped != null)
+                    equippedInfo = " [" + part._Equipped.GetDisplayName() + "]";
+
+                string line = partName + equippedInfo;
+                int maxLen = POPUP_W - 7;
+                if (line.Length > maxLen)
+                    line = line.Substring(0, maxLen - 1) + "~";
+
+                Color lineColor;
+                if (selected)
+                    lineColor = QudColorParser.White;
+                else if (part._Equipped != null)
+                    lineColor = QudColorParser.BrightCyan;
+                else
+                    lineColor = QudColorParser.Gray;
+
+                DrawText(popupX + 5, rowY, line, lineColor);
+            }
+        }
+
+        private void DrawPopupBorder(int x, int y, int w, int h, int contentRows)
+        {
+            // Top border
+            DrawChar(x, y, '+', QudColorParser.Gray);
+            for (int i = 1; i < w - 1; i++)
+                DrawChar(x + i, y, '-', QudColorParser.Gray);
+            DrawChar(x + w - 1, y, '+', QudColorParser.Gray);
+
+            // Title row sides
+            DrawChar(x, y + 1, '|', QudColorParser.Gray);
+            DrawChar(x + w - 1, y + 1, '|', QudColorParser.Gray);
+
+            // Separator under title
+            DrawChar(x, y + 2, '+', QudColorParser.Gray);
+            for (int i = 1; i < w - 1; i++)
+                DrawChar(x + i, y + 2, '-', QudColorParser.Gray);
+            DrawChar(x + w - 1, y + 2, '+', QudColorParser.Gray);
+
+            // Content row sides
+            for (int r = 0; r < contentRows; r++)
+            {
+                DrawChar(x, y + 3 + r, '|', QudColorParser.Gray);
+                DrawChar(x + w - 1, y + 3 + r, '|', QudColorParser.Gray);
+            }
+
+            // Bottom border
+            int botY = y + 3 + contentRows;
+            DrawChar(x, botY, '+', QudColorParser.Gray);
+            for (int i = 1; i < w - 1; i++)
+                DrawChar(x + i, botY, '-', QudColorParser.Gray);
+            DrawChar(x + w - 1, botY, '+', QudColorParser.Gray);
+        }
+
+        // ===== Mouse Helpers =====
+
         private Vector2Int MouseToGrid()
         {
             var cam = Camera.main;
             if (cam == null) return new Vector2Int(-1, -1);
 
             Vector3 world = cam.ScreenToWorldPoint(Input.mousePosition);
-            // Tilemap cells have origin at bottom-left, so FloorToInt maps
-            // any point within a cell to the correct grid position.
             int tx = Mathf.FloorToInt(world.x);
             int ty = Mathf.FloorToInt(world.y);
-            // Convert tilemap Y back to inventory Y (row 0 = top = tilemap Y = H-1)
             int gx = tx;
             int gy = H - 1 - ty;
 
@@ -1001,10 +1435,6 @@ namespace CavesOfOoo.Rendering
             return new Vector2Int(gx, gy);
         }
 
-        /// <summary>
-        /// Returns the equipment slot index under the mouse, or -1 if none.
-        /// Hit area covers the box (BOX_W x BOX_H) and the label row below it.
-        /// </summary>
         private int GetEquipSlotAtMouse()
         {
             if (_equipSlots == null) return -1;
@@ -1024,9 +1454,23 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>
-        /// Returns the popup row index (0-based across all rows including remove)
-        /// under the mouse, or -1 if click is outside the popup content area.
+        /// Returns the inventory list row index under the mouse, or -1 if none.
         /// </summary>
+        private int GetInventoryRowAtMouse()
+        {
+            var grid = MouseToGrid();
+            if (grid.x < 0 || grid.x < RIGHT_START) return -1;
+
+            int contentStart = CONTENT_START + 1;
+            if (grid.y < contentStart || grid.y >= CONTENT_END) return -1;
+
+            int vi = grid.y - contentStart;
+            int rowIdx = _scrollOffset + vi;
+            if (rowIdx >= 0 && rowIdx < _rows.Count && !_rows[rowIdx].IsHeader)
+                return rowIdx;
+            return -1;
+        }
+
         private int GetPopupRowAtMouse()
         {
             var grid = MouseToGrid();
@@ -1039,7 +1483,6 @@ namespace CavesOfOoo.Rendering
             int popupY = (H - popupH) / 2;
             int contentY = popupY + 3;
 
-            // Check if click is within content rows
             if (grid.x > popupX && grid.x < popupX + POPUP_W - 1
                 && grid.y >= contentY && grid.y < contentY + visibleCount)
             {
@@ -1051,7 +1494,38 @@ namespace CavesOfOoo.Rendering
             return -1;
         }
 
-        // --- Drawing Helpers ---
+        /// <summary>
+        /// Returns the row index under the mouse in the item action popup, or -1 if outside.
+        /// Works for both the action list and body part picker states.
+        /// </summary>
+        private int GetItemActionPopupRowAtMouse()
+        {
+            var grid = MouseToGrid();
+            if (grid.x < 0) return -1;
+
+            int totalRows;
+            if (_itemActionPopup.InBodyPartPicker)
+                totalRows = _itemActionPopup.BodyParts != null ? _itemActionPopup.BodyParts.Count : 0;
+            else
+                totalRows = _itemActionPopup.Actions.Count;
+
+            int visibleCount = Mathf.Min(totalRows > 0 ? totalRows : 1, POPUP_MAX_VISIBLE);
+            int popupH = visibleCount + 4;
+            int popupX = (W - POPUP_W) / 2;
+            int popupY = (H - popupH) / 2;
+            int contentY = popupY + 3;
+
+            if (grid.x > popupX && grid.x < popupX + POPUP_W - 1
+                && grid.y >= contentY && grid.y < contentY + visibleCount)
+            {
+                int vi = grid.y - contentY;
+                if (vi < totalRows)
+                    return vi;
+            }
+            return -1;
+        }
+
+        // ===== Drawing Helpers =====
 
         private void ClearRegion(int x, int y, int width, int height)
         {

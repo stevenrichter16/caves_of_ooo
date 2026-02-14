@@ -177,9 +177,10 @@ namespace CavesOfOoo.Core
 
             const int BOX_W = 5;
             const int H_GAP = 2;
-            const int CENTER_X = 37;
-            const int LEFT_X = 18;
-            const int RIGHT_X = 56;
+            const int PANEL_W = 30;
+            const int CENTER_X = 12;
+            const int LEFT_X = 5;
+            const int RIGHT_X = 19;
             const int ROW0_Y = 9;
             const int ROW1_Y = 16;
             const int ROW2_Y = 23;
@@ -242,7 +243,7 @@ namespace CavesOfOoo.Core
                 bool goLeft = (i % 2 == 0);
                 int x = goLeft ? extraLeftX : extraRightX;
                 if (x < 0) x = 0;
-                if (x + BOX_W > 80) x = 80 - BOX_W;
+                if (x + BOX_W > PANEL_W) x = PANEL_W - BOX_W;
                 string label = "Arm " + (3 + i);
                 AssignSlot(extraArms[i], x, ROW1_Y, label);
                 if (goLeft) extraLeftX -= (BOX_W + H_GAP);
@@ -257,7 +258,7 @@ namespace CavesOfOoo.Core
                 bool goLeft = (i % 2 == 0);
                 int x = goLeft ? extraLeftX : extraRightX;
                 if (x < 0) x = 0;
-                if (x + BOX_W > 80) x = 80 - BOX_W;
+                if (x + BOX_W > PANEL_W) x = PANEL_W - BOX_W;
                 string label = "Hand " + (3 + i);
                 AssignSlot(extraHands[i], x, ROW2_Y, label);
                 if (goLeft) extraLeftX -= (BOX_W + H_GAP);
