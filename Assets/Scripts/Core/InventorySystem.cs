@@ -606,7 +606,8 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Preview what items would be displaced when equipping an item, without mutating state.
         /// Returns a list of (item, body part) pairs that would need to be unequipped.
-        /// Deduplicates multi-slot items (e.g. a two-handed weapon in two hands counts once).
+        /// Multi-slot items list every body part they occupy (e.g. a two-handed weapon
+        /// shows both "greatsword in Right Hand" and "greatsword in Left Hand").
         /// </summary>
         public static List<Displacement> PreviewDisplacements(Entity actor, Entity item,
             BodyPart targetBodyPart = null)
@@ -622,25 +623,20 @@ namespace CavesOfOoo.Core
 
             string[] slotTypes = equippable.GetSlotArray();
             var claimed = new List<BodyPart>();
-            var seenItems = new HashSet<Entity>();
+            var displacedItems = new HashSet<Entity>();
 
-            // If a target body part was specified, it's the first claimed slot
+            // Find which slots would be claimed and which items sit in them
             if (targetBodyPart != null)
             {
                 claimed.Add(targetBodyPart);
-                if (targetBodyPart._Equipped != null && targetBodyPart._Equipped != item
-                    && seenItems.Add(targetBodyPart._Equipped))
-                {
-                    result.Add(new Displacement { Item = targetBodyPart._Equipped, BodyPart = targetBodyPart });
-                }
+                if (targetBodyPart._Equipped != null && targetBodyPart._Equipped != item)
+                    displacedItems.Add(targetBodyPart._Equipped);
 
                 // Find additional slots for remaining slot types matching the target's type
                 for (int i = 0; i < slotTypes.Length; i++)
                 {
                     string slotType = slotTypes[i].Trim();
                     if (slotType != targetBodyPart.Type) continue;
-                    // First match of this type is satisfied by targetBodyPart
-                    // Find slots for subsequent matches
                     for (int j = i + 1; j < slotTypes.Length; j++)
                     {
                         if (slotTypes[j].Trim() != slotType) continue;
@@ -648,11 +644,8 @@ namespace CavesOfOoo.Core
                         if (extra != null)
                         {
                             claimed.Add(extra);
-                            if (extra._Equipped != null && extra._Equipped != item
-                                && seenItems.Add(extra._Equipped))
-                            {
-                                result.Add(new Displacement { Item = extra._Equipped, BodyPart = extra });
-                            }
+                            if (extra._Equipped != null && extra._Equipped != item)
+                                displacedItems.Add(extra._Equipped);
                         }
                     }
                     break;
@@ -667,17 +660,13 @@ namespace CavesOfOoo.Core
                     if (slot != null)
                     {
                         claimed.Add(slot);
-                        if (slot._Equipped != null && slot._Equipped != item
-                            && seenItems.Add(slot._Equipped))
-                        {
-                            result.Add(new Displacement { Item = slot._Equipped, BodyPart = slot });
-                        }
+                        if (slot._Equipped != null && slot._Equipped != item)
+                            displacedItems.Add(slot._Equipped);
                     }
                 }
             }
             else
             {
-                // No target — walk all slot types and find best slots
                 for (int i = 0; i < slotTypes.Length; i++)
                 {
                     string slotType = slotTypes[i].Trim();
@@ -685,11 +674,20 @@ namespace CavesOfOoo.Core
                     if (slot == null) continue;
 
                     claimed.Add(slot);
-                    if (slot._Equipped != null && slot._Equipped != item
-                        && seenItems.Add(slot._Equipped))
-                    {
-                        result.Add(new Displacement { Item = slot._Equipped, BodyPart = slot });
-                    }
+                    if (slot._Equipped != null && slot._Equipped != item)
+                        displacedItems.Add(slot._Equipped);
+                }
+            }
+
+            // For each displaced item, find ALL body parts where it's equipped
+            // so multi-slot items show every affected slot
+            var allParts = body.GetParts();
+            foreach (var displaced in displacedItems)
+            {
+                for (int i = 0; i < allParts.Count; i++)
+                {
+                    if (allParts[i]._Equipped == displaced)
+                        result.Add(new Displacement { Item = displaced, BodyPart = allParts[i] });
                 }
             }
 

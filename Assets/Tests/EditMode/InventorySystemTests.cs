@@ -2427,10 +2427,11 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void PreviewDisplacements_Deduplicates_MultiSlotItem()
+        public void PreviewDisplacements_MultiSlotItem_ShowsBothHands()
         {
             var actor = CreateCreatureWithBody();
             var inv = actor.GetPart<InventoryPart>();
+            var body = actor.GetPart<Body>();
 
             // Equip a two-hander, then preview replacing it with another two-hander
             var oldTwoHander = CreateTwoHandedWeapon("greatsword");
@@ -2441,9 +2442,12 @@ namespace CavesOfOoo.Tests
             inv.AddObject(newTwoHander);
 
             var result = InventorySystem.PreviewDisplacements(actor, newTwoHander);
-            // The old two-hander occupies both hands but should only appear once
-            Assert.AreEqual(1, result.Count);
+            // The old two-hander occupies both hands — both should be listed
+            Assert.AreEqual(2, result.Count);
             Assert.AreEqual(oldTwoHander, result[0].Item);
+            Assert.AreEqual(oldTwoHander, result[1].Item);
+            // Each entry should reference a different body part
+            Assert.AreNotEqual(result[0].BodyPart, result[1].BodyPart);
         }
 
         [Test]
