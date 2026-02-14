@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Inventory;
+using CavesOfOoo.Core.Inventory.Commands;
 using UnityEngine;
 
 namespace CavesOfOoo.Rendering
@@ -481,7 +483,7 @@ namespace CavesOfOoo.Rendering
             {
                 // Single item: auto-pickup
                 var item = items[0];
-                if (InventorySystem.Pickup(PlayerEntity, item, CurrentZone))
+                if (TryPickupViaCommandWithFallback(item))
                 {
                     EndTurnAndProcess();
                     if (ZoneRenderer != null)
@@ -493,6 +495,35 @@ namespace CavesOfOoo.Rendering
                 // Multiple items: open pickup popup
                 OpenPickup(items);
             }
+        }
+
+        /// <summary>
+        /// Refactor seam: attempt pickup through the command pipeline first.
+        /// Falls back to legacy pickup if the pipeline fails before command execution.
+        /// </summary>
+        private bool TryPickupViaCommandWithFallback(Entity item)
+        {
+            if (item == null)
+                return false;
+
+            var result = InventorySystem.ExecuteCommand(
+                new PickupCommand(item),
+                PlayerEntity,
+                CurrentZone);
+
+            if (result.Success)
+                return true;
+
+            // Avoid retrying when execution already ran and failed in the legacy path.
+            if (result.ErrorCode == InventoryCommandErrorCode.ExecutionFailed)
+                return false;
+
+            Debug.LogWarning(
+                "[Inventory/Refactor] Pickup command failed pre-execution; " +
+                "falling back to legacy pickup. " +
+                $"Code={result.ErrorCode}, Message={result.ErrorMessage}");
+
+            return InventorySystem.Pickup(PlayerEntity, item, CurrentZone);
         }
 
         private void OpenPickup(List<Entity> items)

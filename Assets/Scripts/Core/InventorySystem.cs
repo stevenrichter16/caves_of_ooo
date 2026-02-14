@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Core.Anatomy;
 
 namespace CavesOfOoo.Core
@@ -18,6 +19,18 @@ namespace CavesOfOoo.Core
     /// </summary>
     public static class InventorySystem
     {
+        private static readonly InventoryCommandExecutor CommandExecutor = new InventoryCommandExecutor();
+
+        /// <summary>
+        /// Refactor seam: execute an inventory command through the new
+        /// validation/execution/rollback pipeline.
+        /// </summary>
+        public static InventoryCommandResult ExecuteCommand(IInventoryCommand command, Entity actor, Zone zone = null)
+        {
+            var context = new InventoryContext(actor, zone);
+            return CommandExecutor.Execute(command, context);
+        }
+
         /// <summary>
         /// Pick up an item from the zone into an actor's inventory.
         /// </summary>

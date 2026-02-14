@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Inventory;
+using CavesOfOoo.Core.Inventory.Commands;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -135,7 +137,7 @@ namespace CavesOfOoo.Rendering
             if (index < 0 || index >= _items.Count) return;
 
             var item = _items[index];
-            if (InventorySystem.Pickup(PlayerEntity, item, CurrentZone))
+            if (TryPickupViaCommandWithFallback(item))
             {
                 _pickedUpAny = true;
                 _items.RemoveAt(index);
@@ -159,7 +161,7 @@ namespace CavesOfOoo.Rendering
         {
             for (int i = _items.Count - 1; i >= 0; i--)
             {
-                if (InventorySystem.Pickup(PlayerEntity, _items[i], CurrentZone))
+                if (TryPickupViaCommandWithFallback(_items[i]))
                 {
                     _pickedUpAny = true;
                     _items.RemoveAt(i);
@@ -167,6 +169,35 @@ namespace CavesOfOoo.Rendering
             }
 
             Close();
+        }
+
+        /// <summary>
+        /// Refactor seam: attempt pickup through command pipeline first.
+        /// Falls back to legacy pickup when command processing fails before execution.
+        /// </summary>
+        private bool TryPickupViaCommandWithFallback(Entity item)
+        {
+            if (item == null)
+                return false;
+
+            var result = InventorySystem.ExecuteCommand(
+                new PickupCommand(item),
+                PlayerEntity,
+                CurrentZone);
+
+            if (result.Success)
+                return true;
+
+            // ExecutionFailed means legacy pickup already ran inside the command wrapper.
+            if (result.ErrorCode == InventoryCommandErrorCode.ExecutionFailed)
+                return false;
+
+            Debug.LogWarning(
+                "[Inventory/Refactor] PickupUI command failed pre-execution; " +
+                "falling back to legacy pickup. " +
+                $"Code={result.ErrorCode}, Message={result.ErrorMessage}");
+
+            return InventorySystem.Pickup(PlayerEntity, item, CurrentZone);
         }
 
         private void ScrollIntoView()
