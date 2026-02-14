@@ -171,14 +171,17 @@ namespace CavesOfOoo.Core
                 return;
             }
 
+            // Log the hit before applying damage so the killing blow details are visible
+            int hpBefore = defender.GetStatValue("Hitpoints", 0);
+            int hpAfter = hpBefore - totalDamage;
+
+            MessageLog.Add($"{attackerName}{srcTag} hits {defenderName}{partDesc} for {totalDamage} damage!{(hpAfter > 0 ? $" ({hpAfter} HP remaining)" : "")}");
+
             // Apply damage
             ApplyDamage(defender, totalDamage, attacker, zone);
 
-            int remainingHP = defender.GetStatValue("Hitpoints", 0);
-            if (remainingHP > 0)
+            if (hpAfter > 0)
             {
-                MessageLog.Add($"{attackerName}{srcTag} hits {defenderName}{partDesc} for {totalDamage} damage! ({remainingHP} HP remaining)");
-
                 // Check for combat dismemberment (only on survivors)
                 if (hitPart != null)
                     CheckCombatDismemberment(defender, defenderBody, hitPart, totalDamage, zone, rng);

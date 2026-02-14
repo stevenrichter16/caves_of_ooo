@@ -136,7 +136,7 @@ namespace CavesOfOoo.Rendering
                 return true;
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.I))
             {
                 Close();
                 return true;
