@@ -74,6 +74,16 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // Mouse hover — update cursor to follow mouse
+            {
+                int hoverRow = GetRowAtMouse();
+                if (hoverRow >= 0 && hoverRow != _cursorIndex)
+                {
+                    _cursorIndex = hoverRow;
+                    Render();
+                }
+            }
+
             // Mouse click
             if (Input.GetMouseButtonDown(0))
             {
@@ -137,7 +147,7 @@ namespace CavesOfOoo.Rendering
             if (index < 0 || index >= _items.Count) return;
 
             var item = _items[index];
-            if (TryPickupViaCommandWithFallback(item))
+            if (TryPickupViaCommand(item))
             {
                 _pickedUpAny = true;
                 _items.RemoveAt(index);
@@ -161,7 +171,7 @@ namespace CavesOfOoo.Rendering
         {
             for (int i = _items.Count - 1; i >= 0; i--)
             {
-                if (TryPickupViaCommandWithFallback(_items[i]))
+                if (TryPickupViaCommand(_items[i]))
                 {
                     _pickedUpAny = true;
                     _items.RemoveAt(i);
@@ -172,10 +182,9 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>
-        /// Refactor seam: attempt pickup through command pipeline first.
-        /// Falls back to legacy pickup when command processing fails before execution.
+        /// Command-first pickup seam.
         /// </summary>
-        private bool TryPickupViaCommandWithFallback(Entity item)
+        private bool TryPickupViaCommand(Entity item)
         {
             if (item == null)
                 return false;
@@ -188,16 +197,10 @@ namespace CavesOfOoo.Rendering
             if (result.Success)
                 return true;
 
-            // ExecutionFailed means legacy pickup already ran inside the command wrapper.
-            if (result.ErrorCode == InventoryCommandErrorCode.ExecutionFailed)
-                return false;
-
             Debug.LogWarning(
-                "[Inventory/Refactor] PickupUI command failed pre-execution; " +
-                "falling back to legacy pickup. " +
+                "[Inventory/Refactor] PickupUI command failed. " +
                 $"Code={result.ErrorCode}, Message={result.ErrorMessage}");
-
-            return InventorySystem.Pickup(PlayerEntity, item, CurrentZone);
+            return false;
         }
 
         private void ScrollIntoView()

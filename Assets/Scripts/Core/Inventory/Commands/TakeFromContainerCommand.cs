@@ -55,12 +55,48 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
-            bool success = InventorySystem.TakeFromContainer(context.Actor, _container, _item);
-            return success
-                ? InventoryCommandResult.Ok()
-                : InventoryCommandResult.Fail(
+            var containerPart = _container.GetPart<ContainerPart>();
+            var inventory = context.Inventory;
+            if (containerPart == null || inventory == null)
+            {
+                return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
-                    "Taking item from container failed.");
+                    "Container transfer prerequisites are missing.");
+            }
+
+            if (containerPart.Locked)
+            {
+                MessageLog.Add($"The {_container.GetDisplayName()} is locked.");
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Container is locked.");
+            }
+
+            if (!containerPart.RemoveItem(_item))
+            {
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Item is not in the container.");
+            }
+
+            transaction.Do(
+                apply: null,
+                undo: () => containerPart.AddItem(_item));
+
+            if (!inventory.AddObject(_item))
+            {
+                MessageLog.Add($"You can't carry {_item.GetDisplayName()}: too heavy!");
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Weight limit exceeded.");
+            }
+
+            transaction.Do(
+                apply: null,
+                undo: () => inventory.RemoveObject(_item));
+
+            MessageLog.Add($"You take {_item.GetDisplayName()} from the {_container.GetDisplayName()}.");
+            return InventoryCommandResult.Ok();
         }
     }
 }

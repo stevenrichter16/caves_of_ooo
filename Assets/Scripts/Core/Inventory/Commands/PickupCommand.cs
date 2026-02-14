@@ -54,10 +54,76 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
-            bool success = InventorySystem.Pickup(context.Actor, _item, context.Zone);
-            return success
-                ? InventoryCommandResult.Ok()
-                : InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "Pickup failed.");
+            var actor = context.Actor;
+            var zone = context.Zone;
+            var inventory = context.Inventory;
+
+            // Fire BeforePickup on actor.
+            var beforePickup = GameEvent.New("BeforePickup");
+            beforePickup.SetParameter("Actor", (object)actor);
+            beforePickup.SetParameter("Item", (object)_item);
+            if (!actor.FireEvent(beforePickup))
+            {
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Pickup was cancelled.");
+            }
+
+            // Fire BeforeBeingPickedUp on item.
+            var beforeBeing = GameEvent.New("BeforeBeingPickedUp");
+            beforeBeing.SetParameter("Actor", (object)actor);
+            beforeBeing.SetParameter("Item", (object)_item);
+            if (!_item.FireEvent(beforeBeing))
+            {
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Item pickup was cancelled.");
+            }
+
+            var originalCell = zone.GetEntityCell(_item);
+            bool hadZonePosition = originalCell != null;
+            int originalX = hadZonePosition ? originalCell.X : -1;
+            int originalY = hadZonePosition ? originalCell.Y : -1;
+
+            zone.RemoveEntity(_item);
+            transaction.Do(
+                apply: null,
+                undo: () =>
+                {
+                    if (hadZonePosition)
+                        zone.AddEntity(_item, originalX, originalY);
+                });
+
+            if (!inventory.AddObject(_item))
+            {
+                MessageLog.Add($"You can't carry {_item.GetDisplayName()}: too heavy!");
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Weight limit exceeded.");
+            }
+
+            transaction.Do(
+                apply: null,
+                undo: () => inventory.RemoveObject(_item));
+
+            MessageLog.Add($"{actor.GetDisplayName()} picks up {_item.GetDisplayName()}.");
+
+            // Auto-equip preserves previous behavior and now participates in rollback.
+            bool autoEquipped = InventorySystem.AutoEquip(actor, _item);
+            if (autoEquipped)
+            {
+                transaction.Do(
+                    apply: null,
+                    undo: () => InventorySystem.UnequipItem(actor, _item));
+            }
+
+            // Fire AfterPickup on actor.
+            var afterPickup = GameEvent.New("AfterPickup");
+            afterPickup.SetParameter("Actor", (object)actor);
+            afterPickup.SetParameter("Item", (object)_item);
+            actor.FireEvent(afterPickup);
+
+            return InventoryCommandResult.Ok();
         }
     }
 }

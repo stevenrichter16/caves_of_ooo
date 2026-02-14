@@ -62,12 +62,60 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
-            bool success = InventorySystem.PutInContainer(context.Actor, _container, _item);
-            return success
-                ? InventoryCommandResult.Ok()
-                : InventoryCommandResult.Fail(
+            var containerPart = _container.GetPart<ContainerPart>();
+            var inventory = context.Inventory;
+            if (containerPart == null || inventory == null)
+            {
+                return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
-                    "Putting item in container failed.");
+                    "Container transfer prerequisites are missing.");
+            }
+
+            if (containerPart.Locked)
+            {
+                MessageLog.Add($"The {_container.GetDisplayName()} is locked.");
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Container is locked.");
+            }
+
+            bool wasEquipped = InventorySystem.IsEquipped(context.Actor, _item);
+            if (wasEquipped)
+            {
+                var unequipResult = new UnequipCommand(_item).Execute(context, transaction);
+                if (!unequipResult.Success)
+                {
+                    return InventoryCommandResult.Fail(
+                        InventoryCommandErrorCode.ExecutionFailed,
+                        "Unable to unequip item before container transfer.");
+                }
+            }
+
+            if (!inventory.RemoveObject(_item))
+            {
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Item is not in inventory.");
+            }
+
+            transaction.Do(
+                apply: null,
+                undo: () => inventory.AddObject(_item));
+
+            if (!containerPart.AddItem(_item))
+            {
+                MessageLog.Add($"The {_container.GetDisplayName()} is full.");
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Container is full.");
+            }
+
+            transaction.Do(
+                apply: null,
+                undo: () => containerPart.RemoveItem(_item));
+
+            MessageLog.Add($"You put {_item.GetDisplayName()} {containerPart.Preposition} the {_container.GetDisplayName()}.");
+            return InventoryCommandResult.Ok();
         }
     }
 }

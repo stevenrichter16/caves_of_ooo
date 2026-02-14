@@ -475,7 +475,16 @@ namespace CavesOfOoo.Rendering
             var items = InventorySystem.GetTakeableItemsAtFeet(PlayerEntity, CurrentZone);
             if (items.Count == 0)
             {
-                Debug.Log("[Inventory] Nothing to pick up here.");
+                if (TryTakeAllFromFirstContainerViaCommand())
+                {
+                    EndTurnAndProcess();
+                    if (ZoneRenderer != null)
+                        ZoneRenderer.MarkDirty();
+                }
+                else
+                {
+                    Debug.Log("[Inventory] Nothing to pick up here.");
+                }
                 return;
             }
 
@@ -483,7 +492,7 @@ namespace CavesOfOoo.Rendering
             {
                 // Single item: auto-pickup
                 var item = items[0];
-                if (TryPickupViaCommandWithFallback(item))
+                if (TryPickupViaCommand(item))
                 {
                     EndTurnAndProcess();
                     if (ZoneRenderer != null)
@@ -498,10 +507,9 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>
-        /// Refactor seam: attempt pickup through the command pipeline first.
-        /// Falls back to legacy pickup if the pipeline fails before command execution.
+        /// Command-first pickup seam.
         /// </summary>
-        private bool TryPickupViaCommandWithFallback(Entity item)
+        private bool TryPickupViaCommand(Entity item)
         {
             if (item == null)
                 return false;
@@ -514,16 +522,59 @@ namespace CavesOfOoo.Rendering
             if (result.Success)
                 return true;
 
-            // Avoid retrying when execution already ran and failed in the legacy path.
-            if (result.ErrorCode == InventoryCommandErrorCode.ExecutionFailed)
+            Debug.LogWarning(
+                "[Inventory/Refactor] Pickup command failed. " +
+                $"Code={result.ErrorCode}, Message={result.ErrorMessage}");
+            return false;
+        }
+
+        /// <summary>
+        /// If there are containers on the player's tile, try taking all contents from
+        /// a nearby container through command execution.
+        /// Multi-container take flow currently requires explicit picker support.
+        /// </summary>
+        private bool TryTakeAllFromFirstContainerViaCommand()
+        {
+            var containers = InventorySystem.GetContainersAtFeet(PlayerEntity, CurrentZone);
+            if (containers.Count == 0)
                 return false;
 
-            Debug.LogWarning(
-                "[Inventory/Refactor] Pickup command failed pre-execution; " +
-                "falling back to legacy pickup. " +
-                $"Code={result.ErrorCode}, Message={result.ErrorMessage}");
+            if (containers.Count > 1)
+            {
+                MessageLog.Add("Multiple containers are here. Open inventory and choose a container-specific action.");
+                Debug.LogWarning(
+                    "[Inventory/Refactor] Multiple containers at feet; " +
+                    "no take-flow picker is wired yet, so take-all is skipped.");
+                return false;
+            }
 
-            return InventorySystem.Pickup(PlayerEntity, item, CurrentZone);
+            var container = containers[0];
+            var containerPart = container.GetPart<ContainerPart>();
+            if (containerPart == null || containerPart.Contents.Count == 0)
+                return false;
+
+            int taken = 0;
+            var snapshot = new List<Entity>(containerPart.Contents);
+            for (int i = 0; i < snapshot.Count; i++)
+            {
+                var item = snapshot[i];
+                var result = InventorySystem.ExecuteCommand(
+                    new TakeFromContainerCommand(container, item),
+                    PlayerEntity,
+                    CurrentZone);
+
+                if (result.Success)
+                {
+                    taken++;
+                    continue;
+                }
+
+                Debug.LogWarning(
+                    "[Inventory/Refactor] TakeFromContainer command failed. " +
+                    $"Code={result.ErrorCode}, Message={result.ErrorMessage}");
+            }
+
+            return taken > 0;
         }
 
         private void OpenPickup(List<Entity> items)

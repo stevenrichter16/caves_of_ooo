@@ -62,10 +62,47 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
-            bool success = InventorySystem.DropPartial(context.Actor, _item, _count, context.Zone);
-            return success
-                ? InventoryCommandResult.Ok()
-                : InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "Partial drop failed.");
+            var actor = context.Actor;
+            var zone = context.Zone;
+
+            var stacker = _item.GetPart<StackerPart>();
+            if (stacker == null || _count >= stacker.StackCount)
+            {
+                // Fallback to normal drop behavior.
+                return new DropCommand(_item).Execute(context, transaction);
+            }
+
+            var split = stacker.SplitStack(_count);
+            if (split == null)
+            {
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Could not split stack for partial drop.");
+            }
+
+            transaction.Do(
+                apply: null,
+                undo: () =>
+                {
+                    var splitStacker = split.GetPart<StackerPart>();
+                    if (splitStacker == null || splitStacker.StackCount <= 0)
+                        return;
+
+                    stacker.StackCount += splitStacker.StackCount;
+                    splitStacker.StackCount = 0;
+                });
+
+            var cell = zone.GetEntityCell(actor);
+            if (cell != null)
+            {
+                zone.AddEntity(split, cell.X, cell.Y);
+                transaction.Do(
+                    apply: null,
+                    undo: () => zone.RemoveEntity(split));
+            }
+
+            MessageLog.Add($"{actor.GetDisplayName()} drops {split.GetDisplayName()}.");
+            return InventoryCommandResult.Ok();
         }
     }
 }

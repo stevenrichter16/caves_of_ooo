@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Inventory;
+using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Core.Anatomy;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -110,6 +112,7 @@ namespace CavesOfOoo.Rendering
         {
             public string Label;
             public string Command;
+            public Entity Container;
         }
 
         public void Open()
@@ -140,6 +143,9 @@ namespace CavesOfOoo.Rendering
         public bool HandleInput()
         {
             if (!_isOpen) return false;
+
+            // Update selection to follow mouse hover
+            UpdateMouseHover();
 
             // Popups intercept all input when active
             if (_displaceConfirm != null)
@@ -199,6 +205,90 @@ namespace CavesOfOoo.Rendering
             return true;
         }
 
+        private void UpdateMouseHover()
+        {
+            var grid = MouseToGrid();
+            if (grid.x < 0) return;
+
+            if (_displaceConfirm != null)
+            {
+                int button = GetDisplaceConfirmButtonAtMouse();
+                if (button == 0 && !_displaceConfirm.CursorOnYes)
+                {
+                    _displaceConfirm.CursorOnYes = true;
+                    Render();
+                }
+                else if (button == 1 && _displaceConfirm.CursorOnYes)
+                {
+                    _displaceConfirm.CursorOnYes = false;
+                    Render();
+                }
+                return;
+            }
+
+            if (_equipPopup != null)
+            {
+                int row = GetPopupRowAtMouse();
+                if (row >= 0 && row != _equipPopup.CursorIndex)
+                {
+                    _equipPopup.CursorIndex = row;
+                    Render();
+                }
+                return;
+            }
+
+            if (_itemActionPopup != null)
+            {
+                int row = GetItemActionPopupRowAtMouse();
+                if (row >= 0)
+                {
+                    if (_itemActionPopup.InBodyPartPicker)
+                    {
+                        if (row != _itemActionPopup.BodyPartCursor)
+                        {
+                            _itemActionPopup.BodyPartCursor = row;
+                            Render();
+                        }
+                    }
+                    else
+                    {
+                        if (row != _itemActionPopup.CursorIndex)
+                        {
+                            _itemActionPopup.CursorIndex = row;
+                            Render();
+                        }
+                    }
+                }
+                return;
+            }
+
+            // Main panels — equipment slots
+            int hoveredSlot = GetEquipSlotAtMouse();
+            if (hoveredSlot >= 0)
+            {
+                if (_panel != 0 || _equipCursorIndex != hoveredSlot)
+                {
+                    _panel = 0;
+                    _equipCursorIndex = hoveredSlot;
+                    Render();
+                }
+                return;
+            }
+
+            // Main panels — inventory rows
+            int hoveredRow = GetInventoryRowAtMouse();
+            if (hoveredRow >= 0)
+            {
+                if (_panel != 1 || _cursorIndex != hoveredRow)
+                {
+                    _panel = 1;
+                    _cursorIndex = hoveredRow;
+                    Render();
+                }
+                return;
+            }
+        }
+
         private void HandleEquipPanelInput()
         {
             // Up/Down: spatial navigation
@@ -253,7 +343,7 @@ namespace CavesOfOoo.Rendering
                 // Unequip
                 if (slot.EquippedItem != null && Input.GetKeyDown(KeyCode.E))
                 {
-                    InventorySystem.UnequipItem(PlayerEntity, slot.EquippedItem);
+                    TryUnequipViaCommand(slot.EquippedItem);
                     Rebuild();
                     if (_equipSlots != null && _equipCursorIndex >= _equipSlots.Count)
                         _equipCursorIndex = _equipSlots.Count > 0 ? _equipSlots.Count - 1 : 0;
@@ -310,7 +400,7 @@ namespace CavesOfOoo.Rendering
                     // Drop (quick shortcut)
                     if (Input.GetKeyDown(KeyCode.D))
                     {
-                        InventorySystem.Drop(PlayerEntity, row.Item.Item, CurrentZone);
+                        TryDropViaCommand(row.Item.Item);
                         Rebuild();
                         ClampCursor();
                         Render();
@@ -512,7 +602,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            InventorySystem.Equip(PlayerEntity, item, targetBodyPart);
+            TryEquipViaCommand(item, targetBodyPart);
 
             _equipPopup = null;
             Rebuild();
@@ -523,7 +613,7 @@ namespace CavesOfOoo.Rendering
         {
             var slot = _equipPopup.TargetSlot;
             if (slot.EquippedItem != null)
-                InventorySystem.UnequipItem(PlayerEntity, slot.EquippedItem);
+                TryUnequipViaCommand(slot.EquippedItem);
 
             _equipPopup = null;
             Rebuild();
@@ -594,7 +684,7 @@ namespace CavesOfOoo.Rendering
 
             _displaceConfirm = null;
 
-            InventorySystem.Equip(PlayerEntity, item, target);
+            TryEquipViaCommand(item, target);
 
             if (fromEquipPopup)
                 _equipPopup = null;
@@ -658,6 +748,23 @@ namespace CavesOfOoo.Rendering
                 {
                     var a = itemDisplay.Actions[i];
                     actions.Add(new ItemAction { Label = a.Display, Command = a.Command });
+                }
+            }
+
+            // Container interaction seam: put selected item in a specific nearby container.
+            if (CurrentZone != null)
+            {
+                var containersAtFeet = InventorySystem.GetContainersAtFeet(PlayerEntity, CurrentZone);
+                for (int i = 0; i < containersAtFeet.Count; i++)
+                {
+                    var container = containersAtFeet[i];
+                    string label = $"Put in {container.GetDisplayName()}";
+                    actions.Add(new ItemAction
+                    {
+                        Label = label,
+                        Command = "put_container",
+                        Container = container
+                    });
                 }
             }
 
@@ -766,7 +873,7 @@ namespace CavesOfOoo.Rendering
                         Render();
                         break;
                     }
-                    InventorySystem.Equip(PlayerEntity, item);
+                    TryEquipViaCommand(item);
                     _itemActionPopup = null;
                     Rebuild();
                     ClampCursor();
@@ -779,7 +886,7 @@ namespace CavesOfOoo.Rendering
                     break;
 
                 case "unequip":
-                    InventorySystem.UnequipItem(PlayerEntity, item);
+                    TryUnequipViaCommand(item);
                     _itemActionPopup = null;
                     Rebuild();
                     ClampCursor();
@@ -787,7 +894,15 @@ namespace CavesOfOoo.Rendering
                     break;
 
                 case "drop":
-                    InventorySystem.Drop(PlayerEntity, item, CurrentZone);
+                    TryDropViaCommand(item);
+                    _itemActionPopup = null;
+                    Rebuild();
+                    ClampCursor();
+                    Render();
+                    break;
+
+                case "put_container":
+                    TryPutInContainerViaCommand(item, action.Container);
                     _itemActionPopup = null;
                     Rebuild();
                     ClampCursor();
@@ -796,13 +911,128 @@ namespace CavesOfOoo.Rendering
 
                 default:
                     // Item-specific action (eat, drink, apply, etc.)
-                    InventorySystem.PerformAction(PlayerEntity, item, action.Command, CurrentZone);
+                    TryPerformActionViaCommand(item, action.Command);
                     _itemActionPopup = null;
                     Rebuild();
                     ClampCursor();
                     Render();
                     break;
             }
+        }
+
+        /// <summary>
+        /// Command-first drop seam.
+        /// </summary>
+        private bool TryDropViaCommand(Entity item)
+        {
+            if (item == null)
+                return false;
+
+            var result = InventorySystem.ExecuteCommand(
+                new DropCommand(item),
+                PlayerEntity,
+                CurrentZone);
+
+            if (result.Success)
+                return true;
+            LogCommandFailure("Drop", result);
+            return false;
+        }
+
+        /// <summary>
+        /// Command-first equip seam.
+        /// </summary>
+        private bool TryEquipViaCommand(Entity item, BodyPart targetBodyPart = null)
+        {
+            if (item == null)
+                return false;
+
+            var result = InventorySystem.ExecuteCommand(
+                new EquipCommand(item, targetBodyPart),
+                PlayerEntity,
+                CurrentZone);
+
+            if (result.Success)
+                return true;
+            LogCommandFailure("Equip", result);
+            return false;
+        }
+
+        /// <summary>
+        /// Command-first unequip seam.
+        /// </summary>
+        private bool TryUnequipViaCommand(Entity item)
+        {
+            if (item == null)
+                return false;
+
+            var result = InventorySystem.ExecuteCommand(
+                new UnequipCommand(item),
+                PlayerEntity,
+                CurrentZone);
+
+            if (result.Success)
+                return true;
+            LogCommandFailure("Unequip", result);
+            return false;
+        }
+
+        /// <summary>
+        /// Command-first item action seam.
+        /// </summary>
+        private bool TryPerformActionViaCommand(Entity item, string actionCommand)
+        {
+            if (item == null || string.IsNullOrEmpty(actionCommand))
+                return false;
+
+            var result = InventorySystem.ExecuteCommand(
+                new PerformInventoryActionCommand(item, actionCommand),
+                PlayerEntity,
+                CurrentZone);
+
+            if (result.Success)
+                return true;
+            LogCommandFailure($"PerformAction[{actionCommand}]", result);
+            return false;
+        }
+
+        /// <summary>
+        /// Container flow seam: put selected item into a chosen nearby container
+        /// through command execution.
+        /// </summary>
+        private bool TryPutInContainerViaCommand(Entity item, Entity container)
+        {
+            if (item == null)
+                return false;
+
+            if (container == null || container.GetPart<ContainerPart>() == null)
+            {
+                MessageLog.Add("There is no container here.");
+                return false;
+            }
+
+            var result = InventorySystem.ExecuteCommand(
+                new PutInContainerCommand(container, item),
+                PlayerEntity,
+                CurrentZone);
+
+            if (result.Success)
+                return true;
+            LogCommandFailure("PutInContainer", result);
+            return false;
+        }
+
+        private static void LogCommandFailure(string commandName, InventoryCommandResult result)
+        {
+            var validation = result?.Validation;
+            string validationCode = validation == null
+                ? "None"
+                : validation.ErrorCode.ToString();
+
+            Debug.LogWarning(
+                "[Inventory/Refactor] " +
+                $"{commandName} command failed. " +
+                $"Code={result?.ErrorCode}, Validation={validationCode}, Message={result?.ErrorMessage}");
         }
 
         private void OpenBodyPartPicker()
@@ -909,7 +1139,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            InventorySystem.Equip(PlayerEntity, item, part);
+            TryEquipViaCommand(item, part);
 
             _itemActionPopup = null;
             Rebuild();

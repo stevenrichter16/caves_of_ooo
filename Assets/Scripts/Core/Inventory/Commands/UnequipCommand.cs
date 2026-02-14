@@ -1,3 +1,5 @@
+using CavesOfOoo.Core.Anatomy;
+
 namespace CavesOfOoo.Core.Inventory.Commands
 {
     public sealed class UnequipCommand : IInventoryCommand
@@ -46,10 +48,85 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
-            bool success = InventorySystem.UnequipItem(context.Actor, _item);
-            return success
-                ? InventoryCommandResult.Ok()
-                : InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "Unequip failed.");
+            var actor = context.Actor;
+            var inventory = context.Inventory;
+
+            BodyPart rollbackBodyPart = inventory.FindEquippedBodyPart(_item);
+            string rollbackLegacySlot = inventory.FindEquippedSlot(_item);
+
+            var equippable = _item.GetPart<EquippablePart>();
+
+            // Fire BeforeUnequip on actor (can veto).
+            var beforeUnequip = GameEvent.New("BeforeUnequip");
+            beforeUnequip.SetParameter("Actor", (object)actor);
+            beforeUnequip.SetParameter("Item", (object)_item);
+            if (!actor.FireEvent(beforeUnequip))
+            {
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Unequip was cancelled.");
+            }
+
+            // Remove equip stat bonuses before detaching item.
+            if (equippable != null)
+                EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: false);
+
+            bool unequipped = false;
+            var body = context.Body;
+            if (body != null)
+            {
+                var bodyPart = rollbackBodyPart;
+                if (bodyPart == null)
+                {
+                    var parts = body.GetParts();
+                    for (int i = 0; i < parts.Count; i++)
+                    {
+                        if (parts[i]._Equipped == _item)
+                        {
+                            bodyPart = parts[i];
+                            break;
+                        }
+                    }
+                }
+
+                if (bodyPart != null)
+                    unequipped = inventory.UnequipFromBodyPart(bodyPart);
+            }
+            else if (!string.IsNullOrEmpty(rollbackLegacySlot))
+            {
+                unequipped = inventory.Unequip(rollbackLegacySlot);
+            }
+
+            if (!unequipped)
+            {
+                // Best-effort rollback of bonus removal.
+                if (equippable != null)
+                    EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: true);
+
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Unequip failed.");
+            }
+
+            MessageLog.Add($"{actor.GetDisplayName()} unequips {_item.GetDisplayName()}.");
+
+            // Fire AfterUnequip on actor.
+            var afterUnequip = GameEvent.New("AfterUnequip");
+            afterUnequip.SetParameter("Actor", (object)actor);
+            afterUnequip.SetParameter("Item", (object)_item);
+            actor.FireEvent(afterUnequip);
+
+            transaction.Do(
+                apply: null,
+                undo: () =>
+                {
+                    if (rollbackBodyPart != null)
+                        InventorySystem.Equip(actor, _item, rollbackBodyPart);
+                    else if (!string.IsNullOrEmpty(rollbackLegacySlot))
+                        InventorySystem.Equip(actor, _item);
+                });
+
+            return InventoryCommandResult.Ok();
         }
     }
 }
