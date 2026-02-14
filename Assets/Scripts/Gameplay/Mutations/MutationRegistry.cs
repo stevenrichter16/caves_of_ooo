@@ -6,7 +6,7 @@ namespace CavesOfOoo.Core
 {
     /// <summary>
     /// Registry of mutation categories and mutation metadata.
-    /// Backed by Resources/Blueprints/Mutations.json with sensible fallbacks.
+    /// Backed by Resources/Content/Blueprints/Mutations.json with sensible fallbacks.
     /// </summary>
     public static class MutationRegistry
     {
@@ -37,7 +37,7 @@ namespace CavesOfOoo.Core
             _initialized = true;
             RegisterFallbackCategories();
 
-            TextAsset asset = Resources.Load<TextAsset>("Blueprints/Mutations");
+            TextAsset asset = Resources.Load<TextAsset>("Content/Blueprints/Mutations");
             if (asset == null || string.IsNullOrWhiteSpace(asset.text))
                 return;
 
@@ -47,7 +47,7 @@ namespace CavesOfOoo.Core
             }
             catch (Exception ex)
             {
-                Debug.LogError("MutationRegistry: Failed to parse Blueprints/Mutations.json: " + ex.Message);
+                Debug.LogError("MutationRegistry: Failed to parse Content/Blueprints/Mutations.json: " + ex.Message);
             }
         }
 

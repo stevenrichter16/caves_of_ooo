@@ -55,10 +55,10 @@ namespace CavesOfOoo
             _factory = new EntityFactory();
 
             Debug.Log("[Bootstrap] Step 4/9: Loading blueprints...");
-            TextAsset blueprintAsset = Resources.Load<TextAsset>("Blueprints/Objects");
+            TextAsset blueprintAsset = Resources.Load<TextAsset>("Content/Blueprints/Objects");
             if (blueprintAsset == null)
             {
-                Debug.LogError("[Bootstrap] FAILED: Could not load Blueprints/Objects.json from Resources");
+                Debug.LogError("[Bootstrap] FAILED: Could not load Content/Blueprints/Objects.json from Resources");
                 return;
             }
             _factory.LoadBlueprints(blueprintAsset.text);
