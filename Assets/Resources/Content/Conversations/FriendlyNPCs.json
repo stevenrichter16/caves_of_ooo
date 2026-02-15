@@ -16,6 +16,15 @@
               "Target": "Dangers"
             },
             {
+              "Text": "Have you noticed anything strange lately? Mushrooms, time distortions?",
+              "Target": "StrangeThings"
+            },
+            {
+              "Text": "I've met beings called the Rot Choir.",
+              "Target": "HeardOfChoir",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetChoir" }]
+            },
+            {
               "Text": "Farewell.",
               "Target": "End"
             }
@@ -44,6 +53,142 @@
               "Target": "Start"
             },
             {
+              "Text": "Could the missing people be related to something deeper in the caves?",
+              "Target": "DeeperCaves"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "DeeperCaves",
+          "Text": "Deeper? I... don't like to think about it. The elder says the caves go down farther than anyone has mapped. Some of the older folk whisper about things growing in the deep -- not plants, not animals. Something else. I just try to tend my crops and not think about what's beneath us.",
+          "Choices": [
+            {
+              "Text": "What kind of things?",
+              "Target": "StrangeThings"
+            },
+            {
+              "Text": "Smart approach. Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "StrangeThings",
+          "Text": "Now that you mention it... mushrooms have been sprouting in places they shouldn't. Through the floorboards, through stone walls. And last week, old Mara swore she saw her dead husband walking in the fields at dawn. She said he looked younger -- like he did thirty years ago. We told her it was a dream, but... I don't know anymore.",
+          "Choices": [
+            {
+              "Text": "The mushrooms might be connected to something called the Rot Choir.",
+              "Target": "VillagerChoir",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetChoir" }]
+            },
+            {
+              "Text": "The vision of the dead man -- that sounds like a temporal distortion.",
+              "Target": "VillagerTemporal",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetPalimpsest" }]
+            },
+            {
+              "Text": "That is strange. I'll look into it.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "VillagerStrangeThings:true" }]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "VillagerChoir",
+          "Text": "The Rot Choir? That's what the mushrooms are called? Gods help us. Are they... dangerous? Should we burn them out? Please, if you know something, tell us what to do.",
+          "Choices": [
+            {
+              "Text": "They're a consciousness. Burning might anger them.",
+              "Target": "VillagerScared"
+            },
+            {
+              "Text": "Leave them be. They probably mean no harm.",
+              "Target": "VillagerRelieved"
+            },
+            {
+              "Text": "I'm still learning about them myself.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "VillagerScared",
+          "Text": "A consciousness? In the mushrooms? I... I need to sit down. The elder needs to hear about this. Thank you for telling me, even if I wish I didn't know.",
+          "Choices": [
+            {
+              "Text": "Stay calm. Knowledge is better than ignorance.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "VillagerRelieved",
+          "Text": "No harm? You'll forgive me if I'm not entirely comforted by that. But... if you've spoken to them and you're still standing, maybe it's not as bad as I feared. I'll try not to panic.",
+          "Choices": [
+            {
+              "Text": "That's the spirit.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "VillagerTemporal",
+          "Text": "Temporal distortion? What does that mean? Are you saying old Mara really saw her husband? That he's... still here somehow? That's either the most wonderful or the most terrible thing I've ever heard.",
+          "Choices": [
+            {
+              "Text": "The boundary between past and present is thin in some places.",
+              "Target": "VillagerTimeInfo"
+            },
+            {
+              "Text": "I don't fully understand it myself.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "VillagerTimeInfo",
+          "Text": "Thin... I've felt it sometimes. Moments when the air tastes different, like a memory of rain. I thought I was going mad. You're saying that's real? That the world is... leaking?",
+          "Choices": [
+            {
+              "Text": "Something like that. Be careful near the caves.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "VillagerWarned:true" }]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "HeardOfChoir",
+          "Text": "The Rot Choir? I've heard the name whispered by travelers from the deep caves. They say it's a living fungus that thinks and speaks. I thought it was just stories to scare children. You've actually met them?",
+          "Choices": [
+            {
+              "Text": "I have. They're real, and they're vast.",
+              "Target": "VillagerChoir"
+            },
+            {
+              "Text": "It's a long story. What else have you heard?",
+              "Target": "StrangeThings"
+            },
+            {
               "Text": "Farewell.",
               "Target": "End"
             }
@@ -67,6 +212,15 @@
               "Target": "AreaInfo"
             },
             {
+              "Text": "Ever find anything really old in your salvage?",
+              "Target": "OldTech"
+            },
+            {
+              "Text": "I've heard of a faction called the Pale Curation.",
+              "Target": "PaleCuration",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "CurationContact" }]
+            },
+            {
               "Text": "Farewell.",
               "Target": "End"
             }
@@ -77,7 +231,97 @@
           "Text": "I salvage old tech and put it to new use. You'd be surprised what you can find in the ruins if you know where to look.",
           "Choices": [
             {
+              "Text": "What kind of old tech?",
+              "Target": "WhatKindOfTech"
+            },
+            {
               "Text": "Interesting. I'll keep that in mind.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "WhatKindOfTech",
+          "Text": "All sorts. Power cells, circuitry, mechanical components. Most of it is corroded beyond use, but every now and then you find something that still works. I found a heating coil last month that's older than this village. Still hums when you touch it. The old world built things to last -- they just didn't build themselves to last.",
+          "Choices": [
+            {
+              "Text": "What do you think happened to the old world?",
+              "Target": "OldWorld"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "OldWorld",
+          "Text": "Nobody knows for sure. The elder says the world 'broke.' I've seen the evidence in the tech -- scorch marks that go right through solid metal, circuits fused in patterns that don't make physical sense. Whatever happened, it wasn't a war or a plague. It was something stranger. Something that changed the rules.",
+          "Choices": [
+            {
+              "Text": "I've learned that the old world cracked the substrate of reality.",
+              "Target": "SubstrateInfo",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "HeardFactionSummary" }]
+            },
+            {
+              "Text": "Changed the rules how?",
+              "Target": "OldTech"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "SubstrateInfo",
+          "Text": "The substrate of reality? That would explain... a lot, actually. The way some salvage seems to exist in two states at once, or how certain metals have grain patterns that loop back on themselves. I always assumed it was corrosion. If reality itself was damaged... gods, I've been looking at this all wrong.",
+          "Choices": [
+            {
+              "Text": "There are factions out there who understand it better.",
+              "Target": "TellMeMore"
+            },
+            {
+              "Text": "Be careful with what you find. Some of it might be dangerous.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "TinkerWarned:true" }]
+            }
+          ]
+        },
+        {
+          "ID": "TellMeMore",
+          "Text": "Factions? Like who? I'm a practical sort, but if someone can tell me why half my salvage defies the laws of physics, I'd like to hear it.",
+          "Choices": [
+            {
+              "Text": "The Pale Curation -- they're archivists who study old-world relics.",
+              "Target": "TinkerCuration"
+            },
+            {
+              "Text": "The Saccharine Concord trades in this kind of knowledge.",
+              "Target": "TinkerConcord"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "TinkerCuration",
+          "Text": "Archivists? Now that's interesting. If they can tell me what I'm working with, I could do a lot more than just patch things together. Where would I find these Pale Curation folk?",
+          "Choices": [
+            {
+              "Text": "I'll let you know if I learn more.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "TinkerConcord",
+          "Text": "Traders who deal in knowledge, eh? Sounds expensive. But if the information is good, it might be worth the cost. I'll keep an ear out for them.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
               "Target": "Start"
             }
           ]
@@ -89,6 +333,112 @@
             {
               "Text": "Good to know. Thanks.",
               "Target": "Start"
+            },
+            {
+              "Text": "Anything deeper in the caves worth finding?",
+              "Target": "DeeperCaves"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "DeeperCaves",
+          "Text": "Deeper? I've only been to the upper levels myself. But I've heard stories from the few who've gone further down. Strange machinery embedded in the cave walls. Warm stones that pulse like a heartbeat. And mushrooms -- huge ones, bigger than a person, that seem to move when you're not looking. I stick to the ruins. Less unsettling.",
+          "Choices": [
+            {
+              "Text": "The machinery might be from before the cataclysm.",
+              "Target": "OldTech"
+            },
+            {
+              "Text": "Those mushrooms are the Rot Choir.",
+              "Target": "TinkerChoir",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetChoir" }]
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "TinkerChoir",
+          "Text": "The Rot Choir? You mean the mushrooms have a name? And they're... alive? Thinking? Well, that explains why the salvage near those growths always feels warm. And why my tools corrode faster when I work near spore-heavy areas. I'll be more careful down there.",
+          "Choices": [
+            {
+              "Text": "Good idea.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "OldTech",
+          "Text": "I found a piece once that bothered me for weeks. A small metal disc, perfectly smooth, no seams, no screws. When I held it to my ear, I could hear... voices? Not real voices. More like echoes of voices, layered on top of each other. I buried it in my yard. Couldn't sleep with it in the workshop.",
+          "Choices": [
+            {
+              "Text": "That sounds like it might contain temporal impressions.",
+              "Target": "TemporalDisc",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetPalimpsest" }]
+            },
+            {
+              "Text": "Creepy. Where did you find it?",
+              "Target": "FoundWhere"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "TemporalDisc",
+          "Text": "Temporal impressions? You mean it's recording time? That's... that's remarkable. And terrifying. I thought I was losing my mind. You're saying the old world made things that could capture moments?",
+          "Choices": [
+            {
+              "Text": "The old world did things to time that they shouldn't have.",
+              "Target": "Start",
+              "Actions": [{ "Key": "AddMessage", "Value": "The tinker looks shaken but thoughtful." }]
+            }
+          ]
+        },
+        {
+          "ID": "FoundWhere",
+          "Text": "East ruins, third level down. Near a section of wall that's been fused into glass. I didn't go back to that spot. The air there tasted like copper and old memories. If that makes any sense.",
+          "Choices": [
+            {
+              "Text": "It makes more sense than you'd think.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "PaleCuration",
+          "Text": "The Pale Curation! I've heard travelers mention them -- supposed to be the most thorough archivists in the world. If anyone could tell me what half my salvage actually does, it's them. Have you dealt with them? Are they friendly?",
+          "Choices": [
+            {
+              "Text": "They're clinical, but helpful. They like it when you bring them artifacts.",
+              "Target": "TinkerExcited"
+            },
+            {
+              "Text": "They're interested in old-world tech. You two would get along.",
+              "Target": "TinkerExcited"
+            }
+          ]
+        },
+        {
+          "ID": "TinkerExcited",
+          "Text": "Now that's promising! If I could get access to their records, I could figure out what half the things in my workshop actually are. I've been reverse-engineering by trial and error for years. Imagine having documentation! If you see them again, put in a good word for me?",
+          "Choices": [
+            {
+              "Text": "I'll see what I can do.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "TinkerWantsCuration:true" }]
             },
             {
               "Text": "Farewell.",
@@ -114,6 +464,15 @@
               "Target": "Advice"
             },
             {
+              "Text": "Ever trade with anyone... unusual?",
+              "Target": "UnusualTraders"
+            },
+            {
+              "Text": "I've met the Saccharine Concord.",
+              "Target": "KnowsConcord",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "ConcordCaveTips" }]
+            },
+            {
               "Text": "Farewell.",
               "Target": "End"
             }
@@ -124,7 +483,80 @@
           "Text": "Here and there. Caravans from the north, salvage from the ruins, the occasional adventurer who needs coin more than steel. Business is business.",
           "Choices": [
             {
+              "Text": "Any exotic goods? From deeper in the caves?",
+              "Target": "ExoticGoods"
+            },
+            {
               "Text": "Fair enough.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "ExoticGoods",
+          "Text": "Ah, you've got an eye for the rare stuff, eh? Occasionally I get things from deep delvers. Strange metals, crystals that hum when you touch them. Even had a blade once that the seller swore was grown, not forged. Made from some kind of hardened fungus. Sold it fast -- gave me the creeps.",
+          "Choices": [
+            {
+              "Text": "That was probably a Rot Choir weapon.",
+              "Target": "MerchantChoir",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetChoir" }]
+            },
+            {
+              "Text": "Crystals that hum? Could be temporal fragments.",
+              "Target": "MerchantTemporal",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetPalimpsest" }]
+            },
+            {
+              "Text": "Interesting. I'll keep an eye out for similar items.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "MerchantChoir",
+          "Text": "Rot Choir? Is that what the mushroom folk are called? I've had a few traders who smelled like old earth try to sell me things. Good quality, I'll admit, but the merchandise always seems to... settle. Like it's trying to put down roots in my shop. Bad for inventory turnover, that.",
+          "Choices": [
+            {
+              "Text": "The Choir's products are literally alive.",
+              "Target": "MerchantDisturbed"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "MerchantDisturbed",
+          "Text": "Alive? Well, that explains the one that started sprouting. I threw it in the compost heap. Probably shouldn't have done that, in retrospect. Too late now. The compost heap has been unusually productive lately, come to think of it...",
+          "Choices": [
+            {
+              "Text": "You might want to keep an eye on that compost.",
+              "Target": "Start",
+              "Actions": [{ "Key": "AddMessage", "Value": "The merchant looks nervously toward the back of the shop." }]
+            }
+          ]
+        },
+        {
+          "ID": "MerchantTemporal",
+          "Text": "Temporal fragments? You mean they're pieces of... time? I've been selling pieces of time? Well, that explains why one customer said they kept reliving the same afternoon after buying one. I thought he'd had too much ale. What have I been dealing in?",
+          "Choices": [
+            {
+              "Text": "Be more careful about your exotic merchandise.",
+              "Target": "Start"
+            },
+            {
+              "Text": "There's a faction called the Palimpsest that could tell you more.",
+              "Target": "MerchantPalimpsest"
+            }
+          ]
+        },
+        {
+          "ID": "MerchantPalimpsest",
+          "Text": "The Palimpsest? Another faction? How many of these groups are there? First the mushrooms, now time ghosts. Next you'll tell me the rocks have opinions too. Actually, don't answer that. I'd rather not know.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
               "Target": "Start"
             }
           ]
@@ -138,8 +570,157 @@
               "Target": "Start"
             },
             {
+              "Text": "Any advice about the deeper caves?",
+              "Target": "DeepAdvice"
+            },
+            {
               "Text": "Farewell.",
               "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "DeepAdvice",
+          "Text": "Don't go. That's my advice. Nothing down there is worth more than your life. But if you're the stubborn type -- and you look like the stubborn type -- carry extra torches, keep your back to the wall, and don't touch anything that pulses. That last one is from personal experience.",
+          "Choices": [
+            {
+              "Text": "What pulsed?",
+              "Target": "WhatPulsed"
+            },
+            {
+              "Text": "Noted. Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "WhatPulsed",
+          "Text": "I don't want to talk about it. Let's just say I touched a wall in the third level that felt like it was breathing, and for three days afterward I could hear whispers in a language I'd never learned. Went away eventually. Mostly. I still hear it when it rains.",
+          "Choices": [
+            {
+              "Text": "That could be the substrate leaking through.",
+              "Target": "MerchantSubstrate",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "HeardFactionSummary" }]
+            },
+            {
+              "Text": "That's unsettling.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "MerchantSubstrate",
+          "Text": "The substrate? I've heard that word from some of the strange travelers who pass through. The ones with the blue tint to their skin, or the ones who smell like a forest floor. They all seem to know something the rest of us don't. I'm not sure I want to know it.",
+          "Choices": [
+            {
+              "Text": "Sometimes ignorance is safer.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "UnusualTraders",
+          "Text": "Unusual? Depends on your definition. I've had customers who spoke in riddles, customers whose shadows didn't match their movements, and one fellow who paid entirely in memories -- don't ask me how that works, but I found myself knowing how to shoe a horse afterward, which I'd never learned. Trade is trade.",
+          "Choices": [
+            {
+              "Text": "Paid in memories? That sounds like the Palimpsest.",
+              "Target": "MerchantWeirdTrade",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetPalimpsest" }]
+            },
+            {
+              "Text": "Shadows that didn't match? That's concerning.",
+              "Target": "ShadowTrader"
+            },
+            {
+              "Text": "You accept some strange currencies.",
+              "Target": "StrangeCurrencies"
+            }
+          ]
+        },
+        {
+          "ID": "MerchantWeirdTrade",
+          "Text": "The Palimpsest? That's what they're called? The memory trader did seem a bit... translucent. And they kept finishing my sentences, as if they'd already heard the conversation. Unsettling, but they paid well. Or rather, I gained knowledge I didn't have before. Fair trade, I suppose.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "ShadowTrader",
+          "Text": "Concerning is one word for it. The shadow fell in the wrong direction, like their light was coming from somewhere else. Somewhere that wasn't quite here. They bought a lot of glass. Wouldn't say why. Paid in drams and didn't make small talk. My kind of customer, honestly.",
+          "Choices": [
+            {
+              "Text": "That might have been one of the Glassblown Remnant.",
+              "Target": "MerchantRemnant",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "HeardFactionSummary" }]
+            },
+            {
+              "Text": "Strange. Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "MerchantRemnant",
+          "Text": "The Glassblown Remnant? Well, the glass purchases make more sense now. They did have a slightly... glassy look about them, now that I think about it. Scarred, quiet, paid in full and left without a word. If that's what surviving the end of the world looks like, I'll take my chances with the snapjaws.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "StrangeCurrencies",
+          "Text": "When you've been in this business as long as I have, you learn that value is wherever you find it. Gold, drams, favors, knowledge -- it all spends the same in the end. The world is stranger than it used to be. A good merchant adapts.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "KnowsConcord",
+          "Text": "The Saccharine Concord! Now there's a name I hear more and more. Their trade caravans have been reaching this far south recently. Sweet-tongued folk, very professional. They offered to set up a regular supply route to our village. The prices are... well, they're Concord prices. But the goods are quality.",
+          "Choices": [
+            {
+              "Text": "They're the biggest trade network in the post-cataclysm world.",
+              "Target": "MerchantConcordImpressed"
+            },
+            {
+              "Text": "Be careful with them. 'Saccharine' is in the name for a reason.",
+              "Target": "MerchantConcordWarned"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "MerchantConcordImpressed",
+          "Text": "Biggest? Well, they certainly act like it. Very organized, very smooth. If they're expanding this far, it means the deep caves are producing things worth trading. That's good for business, even if it means more competition for me. A rising tide, as they say.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "MerchantConcordWarned",
+          "Text": "Ha! Fair point. I noticed that too. Everything's a deal, everything's an opportunity. But I've been in trade long enough to know that when someone's too agreeable, they're getting the better end of the bargain. I'll keep my wits about me.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
             }
           ]
         }

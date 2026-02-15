@@ -21,6 +21,16 @@
               "Predicates": [{ "Key": "IfHaveTag", "Value": "KilledSnapjaw" }]
             },
             {
+              "Text": "What do you know about the factions in the deep caves?",
+              "Target": "Factions",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "HeardFactionSummary" }]
+            },
+            {
+              "Text": "I've learned about something called the substrate.",
+              "Target": "ElderSubstrate",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "KnowsThreeEndings" }]
+            },
+            {
               "Text": "Farewell.",
               "Target": "End"
             }
@@ -38,13 +48,205 @@
             {
               "Text": "Tell me more about the caves.",
               "Target": "AboutCaves"
+            },
+            {
+              "Text": "What do you mean, 'stirred'?",
+              "Target": "Stirred"
+            }
+          ]
+        },
+        {
+          "ID": "Stirred",
+          "Text": "I am old, wanderer. Old enough to remember when the caves were just caves -- cold stone, blind creatures, dripping water. Something changed, years ago. A tremor in the earth, but not like any earthquake. The ground didn't shake. It... shifted. Like the world was turning in its sleep. After that, the caves became different.",
+          "Choices": [
+            {
+              "Text": "Different how?",
+              "Target": "DifferentHow"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "DifferentHow",
+          "Text": "The mushrooms came first. Growing in places nothing should grow -- through stone, through metal, through the walls of the mine. Then the lights. Faint blue glimmers deep in the tunnels, like reflections of something that isn't there. And then the creatures. Not the snapjaws -- those came later. I mean the things that think. The things that speak.",
+          "Choices": [
+            {
+              "Text": "You've encountered the Rot Choir.",
+              "Target": "ElderChoir",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetChoir" }]
+            },
+            {
+              "Text": "The blue lights might be temporal distortions.",
+              "Target": "ElderTemporal",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetPalimpsest" }]
+            },
+            {
+              "Text": "Tell me more.",
+              "Target": "AboutCaves"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "ElderChoir",
+          "Text": "The Rot Choir... so that is their name. I have heard them, wanderer. Late at night, when the wind is still, you can put your ear to the ground and hear... singing. Not voices, exactly. Something deeper. Like the earth itself is humming a tune. It started the same year as the tremor. The village has been uneasy ever since.",
+          "Choices": [
+            {
+              "Text": "The Choir is a mycelial consciousness. They grew from the cataclysm.",
+              "Target": "ElderUnderstands"
+            },
+            {
+              "Text": "Are they a threat to the village?",
+              "Target": "ElderThreat"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "ElderUnderstands",
+          "Text": "A consciousness... in the fungus. I have lived a long life and thought I had seen the strangest the world had to offer. I was wrong. If what you say is true, then the caves beneath us are not just caves. They are the body of a thinking being. And we have been living on its skin.",
+          "Choices": [
+            {
+              "Text": "That's one way to look at it.",
+              "Target": "ElderProcessing"
+            },
+            {
+              "Text": "They're not hostile. At least, not yet.",
+              "Target": "ElderThreat"
+            }
+          ]
+        },
+        {
+          "ID": "ElderProcessing",
+          "Text": "I need time to absorb this. But I am grateful you told me, wanderer. Knowledge, even frightening knowledge, is better than ignorance. The village will need to... adjust its understanding of the ground we stand on.",
+          "Choices": [
+            {
+              "Text": "There are other factions too. The Palimpsest, the Concord, others.",
+              "Target": "ElderMoreFactions"
+            },
+            {
+              "Text": "I'll tell you more as I learn it.",
+              "Target": "Start",
+              "Actions": [
+                { "Key": "ChangeFactionFeeling", "Value": "Villagers:Player:10" },
+                { "Key": "SetProperty", "Value": "ElderInformed:true" }
+              ]
+            }
+          ]
+        },
+        {
+          "ID": "ElderMoreFactions",
+          "Text": "More? How many beings have woken in the deep places? Tell me what you know, wanderer. This village cannot afford to be ignorant of the world changing beneath our feet.",
+          "Choices": [
+            {
+              "Text": "There are five factions, each with different views on the cataclysm.",
+              "Target": "ElderFiveFactions"
+            },
+            {
+              "Text": "It's complicated. I'll explain as I learn more.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "ElderInformed:true" }]
+            }
+          ]
+        },
+        {
+          "ID": "ElderFiveFactions",
+          "Text": "Five factions... The Choir you've told me about. And four others? This is larger than I imagined. The world truly has changed, and we've been sitting up here on the surface, thinking it was just snapjaws and bad harvests. Tell me about the others when you can, wanderer. This old man still has much to learn.",
+          "Choices": [
+            {
+              "Text": "I will. Live and drink, elder.",
+              "Target": "End",
+              "Actions": [
+                { "Key": "ChangeFactionFeeling", "Value": "Villagers:Player:15" },
+                { "Key": "SetProperty", "Value": "ElderFullyInformed:true" }
+              ]
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "ElderThreat",
+          "Text": "That is the question that keeps an elder awake at night. If they are aware, can they be reasoned with? Can we live alongside a thinking forest that grows beneath our homes? Or will it one day decide we are in the way? I do not know. But I would rather face the answer than hide from the question.",
+          "Choices": [
+            {
+              "Text": "From what I've seen, they can be reasoned with.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "ElderInformed:true" }]
+            },
+            {
+              "Text": "I'll learn more and come back.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "ElderTemporal",
+          "Text": "Temporal distortions? You speak of things beyond an old man's understanding. But I have seen what you describe. Time moving strangely in the deeper tunnels. A miner once went down for an hour and came back insisting he'd been gone for a week. His beard agreed with him. If you know what causes this, I would hear it.",
+          "Choices": [
+            {
+              "Text": "The substrate of reality is cracked. Time leaks through the cracks.",
+              "Target": "ElderSubstrateSimple"
+            },
+            {
+              "Text": "There's a consciousness made of layered time. They call themselves the Palimpsest.",
+              "Target": "ElderPalimpsest"
+            },
+            {
+              "Text": "I'm still figuring it out myself.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "ElderSubstrateSimple",
+          "Text": "The foundation of reality... cracked. Like a pot with a flaw in the clay. And through the cracks, time seeps out. That would explain the miner. It would explain old Mara's vision. It would explain many things I have struggled to understand these past years. You carry heavy knowledge, wanderer.",
+          "Choices": [
+            {
+              "Text": "There are factions who understand it better than I do.",
+              "Target": "ElderMoreFactions"
+            },
+            {
+              "Text": "I'll share more when I understand more.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "ElderInformed:true" }]
+            }
+          ]
+        },
+        {
+          "ID": "ElderPalimpsest",
+          "Text": "A consciousness made of time? That is... I don't have a word for what that is. Wonderful? Terrible? Both? If time itself thinks, then every moment we have ever lived is being watched by something that experiences all moments at once. I find that both comforting and deeply unsettling.",
+          "Choices": [
+            {
+              "Text": "They're not watching, exactly. More like... remembering.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "ElderInformed:true" }]
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
             }
           ]
         },
         {
           "ID": "AboutCaves",
-          "Text": "The caves of Ooo stretch deep beneath the earth. Strange things dwell down there -- things older than our village. But there is treasure too, for those brave enough to seek it.",
+          "Text": "The caves of Ooo stretch deep beneath the earth. Strange things dwell down there -- things older than our village. But there is treasure too, for those brave enough to seek it. In recent years, the strangeness has been... growing. Literally and otherwise.",
           "Choices": [
+            {
+              "Text": "Growing literally?",
+              "Target": "DifferentHow"
+            },
             {
               "Text": "Interesting. I'll keep that in mind.",
               "Target": "Start"
@@ -95,6 +297,144 @@
           "Choices": [
             {
               "Text": "Just doing what needs to be done.",
+              "Target": "Start",
+              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "Villagers:Player:10" }]
+            },
+            {
+              "Text": "The snapjaws may be fleeing something deeper in the caves.",
+              "Target": "SnapjawDeeper",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetChoir" }]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "SnapjawDeeper",
+          "Text": "Fleeing? You mean the snapjaws aren't raiding us out of malice? They're running from something? That... changes things. If the caves are pushing creatures to the surface, the problem is not the creatures. The problem is what drives them.",
+          "Choices": [
+            {
+              "Text": "The Rot Choir's growth may be displacing them.",
+              "Target": "SnapjawChoir"
+            },
+            {
+              "Text": "Something is expanding in the deep caves. It's complicated.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "ElderSuspects:true" }]
+            }
+          ]
+        },
+        {
+          "ID": "SnapjawChoir",
+          "Text": "A growing consciousness, displacing creatures upward to our doorstep. So the snapjaws are refugees, in a sense. That does not make them less dangerous, but it does make them less evil. Thank you for this perspective, wanderer. It will change how we deal with them.",
+          "Choices": [
+            {
+              "Text": "Maybe coexistence is possible.",
+              "Target": "Start",
+              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "Villagers:Player:10" }]
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Factions",
+          "Text": "Factions in the deep caves? I have heard whispers from travelers -- talk of living fungus, time spirits, glass-scarred wanderers. I thought they were fever-dreams from too long underground. You are telling me they are real?",
+          "Choices": [
+            {
+              "Text": "Very real. There are at least five distinct groups.",
+              "Target": "ElderFiveFactions"
+            },
+            {
+              "Text": "The world beneath us is more complex than anyone on the surface realizes.",
+              "Target": "ElderComplex"
+            }
+          ]
+        },
+        {
+          "ID": "ElderComplex",
+          "Text": "I have always suspected as much. An elder learns to listen to the ground. It has been speaking a different language these past years. I am too old to go down there myself, but you... you walk between worlds. The village -- all the surface folk -- need someone who can understand what is happening below. Will you keep us informed?",
+          "Choices": [
+            {
+              "Text": "I will. You deserve to know.",
+              "Target": "Start",
+              "Actions": [
+                { "Key": "ChangeFactionFeeling", "Value": "Villagers:Player:15" },
+                { "Key": "SetProperty", "Value": "ElderFullyInformed:true" }
+              ]
+            },
+            {
+              "Text": "I'll do my best.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "ElderSubstrate",
+          "Text": "The substrate... I have heard the word before. My grandmother spoke of it -- she was a miner before the village was a village. She said the old-timers called it 'the floor beneath the floor.' The thing that holds everything else up. If that has cracked, as you say... no wonder the world has been strange.",
+          "Choices": [
+            {
+              "Text": "There are three possible endings to all of this. Union, Transcription, or the Bridge.",
+              "Target": "ElderThreeEndings"
+            },
+            {
+              "Text": "Your grandmother was wiser than she knew.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "ElderThreeEndings",
+          "Text": "Three endings? You speak of the fate of the world as though it hangs in the balance. And perhaps it does. Union... Transcription... the Bridge. Tell me -- which do you intend to pursue?",
+          "Choices": [
+            {
+              "Text": "The Bridge. A path where nothing is lost.",
+              "Target": "ElderBridge"
+            },
+            {
+              "Text": "I haven't decided yet.",
+              "Target": "ElderUndecided"
+            },
+            {
+              "Text": "I didn't ask for this responsibility.",
+              "Target": "ElderBurden"
+            }
+          ]
+        },
+        {
+          "ID": "ElderBridge",
+          "Text": "The path where nothing is lost. That is the way of wisdom, if it can be found. This old man has seen too much lost in his lifetime. The idea that there is a path where the new world and the old can coexist... it gives me hope I had thought extinguished. Walk that path, wanderer. Walk it for all of us.",
+          "Choices": [
+            {
+              "Text": "I'll try.",
+              "Target": "End",
+              "Actions": [
+                { "Key": "ChangeFactionFeeling", "Value": "Villagers:Player:20" },
+                { "Key": "AddMessage", "Value": "The elder's eyes shine with something you haven't seen in them before: hope." }
+              ]
+            }
+          ]
+        },
+        {
+          "ID": "ElderUndecided",
+          "Text": "Then decide carefully. The world has had enough of hasty decisions. Take your time, learn what you can, and when the moment comes, trust what you have learned. That is the best advice this old man can give.",
+          "Choices": [
+            {
+              "Text": "Thank you, elder.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "ElderBurden",
+          "Text": "No one asks for the weight they carry. But you carry it nonetheless. And the fact that you carry it with open eyes and honest doubt tells me the world could do worse than to place its fate in your hands. Go well, wanderer.",
+          "Choices": [
+            {
+              "Text": "Thank you, elder.",
               "Target": "Start",
               "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "Villagers:Player:10" }]
             },

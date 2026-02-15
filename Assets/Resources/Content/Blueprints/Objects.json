@@ -1003,6 +1003,371 @@
         { "Key": "Tier", "Value": "2" },
         { "Key": "TwoHanded", "Value": "" }
       ]
+    },
+
+    {
+      "Name": "ChoirSpine",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "choir spine" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&G" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "3" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4+1" }, { "Key": "PenBonus", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "12" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 4, "Min": 0, "Max": 4 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "RotChoir", "Value": "" }
+      ]
+    },
+    {
+      "Name": "OldWorldPipe",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "old world pipe" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "9" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6" }, { "Key": "PenBonus", "Value": "2" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "6" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "Sporeblade",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "sporeblade" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&g" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "7" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8+1" }, { "Key": "PenBonus", "Value": "3" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "35" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "RotChoir", "Value": "" }
+      ]
+    },
+    {
+      "Name": "EchoKnife",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "echo knife" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&b" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "3" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4+3" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "HitBonus", "Value": "3" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "30" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 6, "Min": 0, "Max": 6 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "Palimpsest", "Value": "" }
+      ]
+    },
+    {
+      "Name": "TemporalShard",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "temporal shard" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&B" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "5" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6+2" }, { "Key": "PenBonus", "Value": "2" }, { "Key": "HitBonus", "Value": "2" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "40" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 5, "Min": 0, "Max": 5 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "Palimpsest", "Value": "" }
+      ]
+    },
+    {
+      "Name": "SeveranceEdge",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "severance edge" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "8" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8" }, { "Key": "PenBonus", "Value": "3" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "38" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 14, "Min": 0, "Max": 14 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "PaleCuration", "Value": "" }
+      ]
+    },
+    {
+      "Name": "GlassblownStiletto",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "glassblown stiletto" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4+2" }, { "Key": "PenBonus", "Value": "2" }, { "Key": "HitBonus", "Value": "3" }, { "Key": "MaxStrengthBonus", "Value": "2" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "28" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 3, "Min": 0, "Max": 3 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "GlassblownRemnant", "Value": "" }
+      ]
+    },
+    {
+      "Name": "DissolutionMaul",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "dissolution maul" },
+          { "Key": "RenderString", "Value": "T" },
+          { "Key": "ColorString", "Value": "&g" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "18" }] },
+        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d6+2" }, { "Key": "PenBonus", "Value": "5" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "55" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 20, "Min": 0, "Max": 20 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "3" },
+        { "Key": "TwoHanded", "Value": "" },
+        { "Key": "RotChoir", "Value": "" }
+      ]
+    },
+    {
+      "Name": "FirstRootGlaive",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "first root glaive" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&G" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "11" }] },
+        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d6+1" }, { "Key": "PenBonus", "Value": "4" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "60" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "3" },
+        { "Key": "TwoHanded", "Value": "" },
+        { "Key": "RotChoir", "Value": "" }
+      ]
+    },
+    {
+      "Name": "PalimpsestBlade",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "palimpsest blade" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&M" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "6" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d10+1" }, { "Key": "PenBonus", "Value": "4" }, { "Key": "HitBonus", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "70" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "3" },
+        { "Key": "Palimpsest", "Value": "" }
+      ]
+    },
+
+    {
+      "Name": "ChoirTendril",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "choir tendril" },
+          { "Key": "RenderString", "Value": "F" },
+          { "Key": "ColorString", "Value": "&G" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "0" }] },
+        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "12" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "ChoirTendril_1" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 80, "Min": 0, "Max": 80 },
+        { "Name": "Strength", "Value": 20 },
+        { "Name": "Toughness", "Value": 22 },
+        { "Name": "Willpower", "Value": 18 },
+        { "Name": "Ego", "Value": 20 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "RotChoir" },
+        { "Key": "Tier", "Value": "3" }
+      ]
+    },
+    {
+      "Name": "PalimpsestEcho",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "palimpsest echo" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&B" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "4" }] },
+        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "15" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "PalimpsestEcho_1" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 40, "Min": 0, "Max": 40 },
+        { "Name": "Intelligence", "Value": 24 },
+        { "Name": "Willpower", "Value": 20 },
+        { "Name": "Ego", "Value": 22 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Palimpsest" },
+        { "Key": "Tier", "Value": "3" }
+      ]
+    },
+    {
+      "Name": "SaccharineEnvoy",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "saccharine envoy" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "2" }] },
+        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "10" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "SaccharineEnvoy_1" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 35, "Min": 0, "Max": 35 },
+        { "Name": "Intelligence", "Value": 18 },
+        { "Name": "Ego", "Value": 20 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "SaccharineConcord" },
+        { "Key": "Tier", "Value": "2" }
+      ],
+      "IntProps": [
+        { "Key": "Drams", "Value": 300 }
+      ]
+    },
+    {
+      "Name": "PaleCurator",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "pale curator" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "10" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "PaleCurator_1" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 },
+        { "Name": "Intelligence", "Value": 22 },
+        { "Name": "Willpower", "Value": 16 },
+        { "Name": "Ego", "Value": 14 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "PaleCuration" },
+        { "Key": "Tier", "Value": "2" }
+      ],
+      "IntProps": [
+        { "Key": "Drams", "Value": 150 }
+      ]
+    },
+    {
+      "Name": "GlassblownDrifter",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "glassblown drifter" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "3" }] },
+        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "12" }, { "Key": "Wanders", "Value": "true" }, { "Key": "WandersRandomly", "Value": "true" }] },
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "GlassblownDrifter_1" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 45, "Min": 0, "Max": 45 },
+        { "Name": "Strength", "Value": 18 },
+        { "Name": "Agility", "Value": 20 },
+        { "Name": "Toughness", "Value": 18 },
+        { "Name": "Ego", "Value": 12 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "GlassblownRemnant" },
+        { "Key": "Tier", "Value": "2" }
+      ],
+      "IntProps": [
+        { "Key": "Drams", "Value": 80 }
+      ]
     }
   ]
 }

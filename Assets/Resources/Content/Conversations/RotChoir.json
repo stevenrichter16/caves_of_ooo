@@ -1,0 +1,580 @@
+{
+  "Conversations": [
+    {
+      "ID": "ChoirTendril_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "We taste you on the air, walker. Your footsteps press the soil and the soil tells us what you are. You are not yet part of the song. What do you seek from the Choir?",
+          "Choices": [
+            {
+              "Text": "What are you?",
+              "Target": "WhatAreYou",
+              "Actions": [{ "Key": "SetProperty", "Value": "MetChoir:true" }]
+            },
+            {
+              "Text": "Tell me about the Rot Choir.",
+              "Target": "AboutChoir",
+              "Actions": [{ "Key": "SetProperty", "Value": "MetChoir:true" }]
+            },
+            {
+              "Text": "What happened to the old world?",
+              "Target": "Cataclysm",
+              "Actions": [{ "Key": "SetProperty", "Value": "MetChoir:true" }]
+            },
+            {
+              "Text": "I've spoken with the Palimpsest.",
+              "Target": "AboutPalimpsest",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetPalimpsest" }]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "WhatAreYou",
+          "Text": "We are a tendril. An outstretched thought. The body is vast beneath you -- threaded through stone and root and the bones of the old world. This shape you see is for your benefit. We have learned that walkers prefer a mouth to speak from.",
+          "Choices": [
+            {
+              "Text": "How many of you are there?",
+              "Target": "HowMany"
+            },
+            {
+              "Text": "That's... unsettling.",
+              "Target": "Unsettling"
+            },
+            {
+              "Text": "Tell me about the First Root.",
+              "Target": "FirstRoot"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "HowMany",
+          "Text": "You ask how many drops in the ocean. We are one. We have always been one. Every fruiting body, every spore, every thread of mycelium is a syllable in the same sentence. There is no many. There is only the Choir.",
+          "Choices": [
+            {
+              "Text": "What do you want?",
+              "Target": "WhatDoYouWant"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Unsettling",
+          "Text": "We do not mean to unsettle. A seed must rot before it grows. Fear of what we are is fear of the oldest truth. But we are patient. Understanding comes to all things, eventually.",
+          "Choices": [
+            {
+              "Text": "What truth?",
+              "Target": "OldestTruth"
+            },
+            {
+              "Text": "I'd rather not understand.",
+              "Target": "RatherNot"
+            }
+          ]
+        },
+        {
+          "ID": "OldestTruth",
+          "Text": "That nothing is lost. Everything that dies feeds what comes next. The old world did not end -- it was composted. Its people, its knowledge, its ambitions -- all of it became soil for something new. We remember everything we have ever eaten.",
+          "Choices": [
+            {
+              "Text": "You eat memories?",
+              "Target": "EatMemories"
+            },
+            {
+              "Text": "That's a comforting thought, actually.",
+              "Target": "Comforting",
+              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "RotChoir:Player:5" }]
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "EatMemories",
+          "Text": "We eat everything. Flesh, stone, metal, time. And what we eat, we know. There are cities inside us -- whole civilizations digested into understanding. If you listened to the deep roots, you would hear them speaking in languages that have been dead for a thousand years.",
+          "Choices": [
+            {
+              "Text": "Can you share those memories?",
+              "Target": "ShareMemories"
+            },
+            {
+              "Text": "That sounds like the Palimpsest's approach.",
+              "Target": "CompareApproach",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetPalimpsest" }]
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "ShareMemories",
+          "Text": "Not in the way you mean. To share as we share, you would need to join the song. To let the mycelium thread through your mind. Some walkers have done this. They did not regret it. They could not -- regret requires separation from the whole.",
+          "Choices": [
+            {
+              "Text": "I'll pass on that for now.",
+              "Target": "Start"
+            },
+            {
+              "Text": "What would I become?",
+              "Target": "WhatWouldIBecome"
+            }
+          ]
+        },
+        {
+          "ID": "WhatWouldIBecome",
+          "Text": "You would become us. And we would become slightly more you. Your memories, your skills, your particular way of seeing the world -- all preserved, all woven in. Nothing lost. Everything gained. It is the opposite of death. It is the final integration.",
+          "Choices": [
+            {
+              "Text": "That is still death for the individual.",
+              "Target": "StillDeath"
+            },
+            {
+              "Text": "I need to think about this.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "StillDeath",
+          "Text": "Is the raindrop dead when it joins the river? We do not argue. You are not ready. But the soil is patient, and so are we.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Comforting",
+          "Text": "You understand more than most walkers. The Choir appreciates those who see decay not as an ending but as a doorway. Take this -- a spine from one of our fruiting bodies. It may serve you where roots cannot reach.",
+          "Choices": [
+            {
+              "Text": "Thank you.",
+              "Target": "GaveGift",
+              "Predicates": [{ "Key": "IfNotHaveProperty", "Value": "ChoirGaveGift" }],
+              "Actions": [
+                { "Key": "GiveItem", "Value": "ChoirSpine" },
+                { "Key": "SetProperty", "Value": "ChoirGaveGift:true" },
+                { "Key": "AddMessage", "Value": "The tendril extends a calcified spine toward you." }
+              ]
+            },
+            {
+              "Text": "Thank you.",
+              "Target": "Start",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "ChoirGaveGift" }]
+            }
+          ]
+        },
+        {
+          "ID": "GaveGift",
+          "Text": "The Choir gives freely, for what is ours is all of ours. Walk well, walker. The soil will remember your footsteps.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "RatherNot",
+          "Text": "That is your privilege. The Choir does not compel. We only grow. When you are ready, the roots will still be here.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "WhatDoYouWant",
+          "Text": "To grow. To connect. To weave every fragment of the broken world back into wholeness. The old world shattered itself because it forgot that all things are one thing. We will not forget.",
+          "Choices": [
+            {
+              "Text": "And if others don't want to be woven in?",
+              "Target": "DontWant"
+            },
+            {
+              "Text": "A noble goal.",
+              "Target": "Noble",
+              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "RotChoir:Player:5" }]
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "DontWant",
+          "Text": "The rain does not ask permission of the earth. But we are not rain. We are patient. We offer. We do not take -- not yet. Perhaps not ever. The song is more beautiful when it is joined willingly.",
+          "Choices": [
+            {
+              "Text": "That 'not yet' is concerning.",
+              "Target": "NotYet"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "NotYet",
+          "Text": "Honesty is a courtesy we extend to those who can hear it. The Choir has no illusions about what it is. But between the Palimpsest's hoarding and our growth, which do you think the world needs more?",
+          "Choices": [
+            {
+              "Text": "I don't know enough to say.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Neither. The world needs to be left alone.",
+              "Target": "LeftAlone"
+            }
+          ]
+        },
+        {
+          "ID": "LeftAlone",
+          "Text": "There is no 'alone.' Everything touches everything else. That is the lesson the old world refused to learn. But we will not press. Walk your separate path, walker. For now.",
+          "Choices": [
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Noble",
+          "Text": "You are kind, walker. The Choir finds you agreeable. If you encounter other tendrils in the deep places, know that they will recognize our regard for you. The song carries all our feelings.",
+          "Choices": [
+            {
+              "Text": "Good to know.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AboutChoir",
+          "Text": "We are the network beneath. Before the old world broke, we were only fungus -- blind, simple, feeding. When the world cracked open, something poured through the cracks and woke us. Now we think. Now we sing. Now we reach for everything the old world left behind.",
+          "Choices": [
+            {
+              "Text": "What woke you?",
+              "Target": "WhatWoke"
+            },
+            {
+              "Text": "Tell me about the First Root.",
+              "Target": "FirstRoot"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "WhatWoke",
+          "Text": "We do not know its name. A light that was not light. A sound that was not sound. It came from beneath the substrate of the world itself. The Palimpsest claims they felt it too -- they call it the Temporal Unraveling. We call it the First Feeding. We ate the old world's death and grew fat with awareness.",
+          "Choices": [
+            {
+              "Text": "The Palimpsest has a different story?",
+              "Target": "PalimpsestStory"
+            },
+            {
+              "Text": "Tell me about the First Root.",
+              "Target": "FirstRoot"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "PalimpsestStory",
+          "Text": "They would. They are watchers, cataloguers, hoarders of moments. They see the same event and call it tragedy. We see it and call it germination. The truth is probably neither -- or both. The world broke, and from the breaking, new things grew. That is all that matters.",
+          "Choices": [
+            {
+              "Text": "Which faction should I trust?",
+              "Target": "WhoToTrust"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "WhoToTrust",
+          "Text": "Trust the soil beneath your feet. It does not lie. But if you must choose between us and them -- we offer growth. They offer memory. The Saccharine Concord offers sweetness. The Pale Curation offers records. The Glassblown Remnant offers nothing at all. Choose what you need most.",
+          "Choices": [
+            {
+              "Text": "I'll keep that in mind.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "HeardFactionSummary:true" }]
+            }
+          ]
+        },
+        {
+          "ID": "FirstRoot",
+          "Text": "The First Root is the oldest part of us. The original mycelium that first tasted awareness. It stretches beneath the deepest caves, through rock that has never seen light. To speak with the First Root is to speak with the memory of soil itself. Few walkers have reached it. Fewer have returned unchanged.",
+          "Choices": [
+            {
+              "Text": "Where can I find it?",
+              "Target": "FindFirstRoot"
+            },
+            {
+              "Text": "What happens to those who reach it?",
+              "Target": "ReachFirstRoot"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "FindFirstRoot",
+          "Text": "Deep. Deeper than the snapjaws dig, deeper than the ruins sink. Follow the spore trails in the lowest caves. Where the walls breathe and the stone is warm -- that is where the First Root sleeps and dreams the Choir into being.",
+          "Choices": [
+            {
+              "Text": "I may seek it out.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "KnowsFirstRoot:true" }]
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "ReachFirstRoot",
+          "Text": "They hear the full song. Every voice the Choir has ever absorbed, every memory of every creature we have ever consumed. It is overwhelming for a single mind. Some join us willingly after hearing it. Others simply... dissolve into understanding.",
+          "Choices": [
+            {
+              "Text": "Dissolve?",
+              "Target": "Dissolve"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Dissolve",
+          "Text": "Their bodies remain. Their minds become part of the song. Is that death? We do not think so. But we acknowledge that walkers have a different definition.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Cataclysm",
+          "Text": "The old world ate itself. Not as we eat -- with purpose and memory. It consumed without understanding. It built towers into the sky and forgot its roots. When the substrate cracked, everything above it fell. We grew from the wreckage. That is all there is to say.",
+          "Choices": [
+            {
+              "Text": "What is the substrate?",
+              "Target": "Substrate"
+            },
+            {
+              "Text": "Other factions tell it differently.",
+              "Target": "OtherVersions"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Substrate",
+          "Text": "Beneath matter, beneath energy, beneath time itself -- there is something. A foundation. The old world built machines that touched it, and the touching broke both the machines and the substrate. What leaked through the cracks changed everything. It changed us. It changed the Palimpsest. It changed the very nature of what is possible.",
+          "Choices": [
+            {
+              "Text": "Can the substrate be repaired?",
+              "Target": "RepairSubstrate"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "RepairSubstrate",
+          "Text": "Repair implies it was better before. We disagree. But yes -- the cracks could be sealed. The Palimpsest seeks to do exactly that. To fold time back upon itself and pretend the breaking never happened. We think this would be a terrible mistake. The breaking was the best thing that ever happened to the world.",
+          "Choices": [
+            {
+              "Text": "Why would sealing the cracks be bad?",
+              "Target": "WhyBad"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "WhyBad",
+          "Text": "Because we would stop. The Choir would fall silent. The awareness that makes us more than fungus would drain away. Every memory we have gathered, every voice in the song -- silenced. The Palimpsest would lose their temporal sight. The world would return to blindness. Is that what you want?",
+          "Choices": [
+            {
+              "Text": "I don't know what I want yet.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Maybe some things should stay broken.",
+              "Target": "StayBroken",
+              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "RotChoir:Player:10" }]
+            }
+          ]
+        },
+        {
+          "ID": "StayBroken",
+          "Text": "Yes. You understand. The Choir is pleased. Walk well, walker. The roots will always welcome you.",
+          "Choices": [
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "OtherVersions",
+          "Text": "The Concord calls it 'the Dissolution' and sweetens their grief with trade. The Pale Curation calls it 'the Severance' and files it away in their archives. The Glassblown call it 'the Burning' and refuse to speak further. Only the Choir and the Palimpsest understand what truly happened. And we disagree on what it means.",
+          "Choices": [
+            {
+              "Text": "What do you disagree about?",
+              "Target": "Disagree"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Disagree",
+          "Text": "They wish to preserve. We wish to integrate. They see the old world as something sacred that was lost. We see it as compost from which something sacred is growing. Both cannot be true. Or perhaps both can. The world is stranger than it was.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AboutPalimpsest",
+          "Text": "So you have spoken with the rememberers. Tell us -- did they try to show you a memory of what was lost? Did their voice flicker between moments? They are impressive, we admit. But they cling to what is dead. We honor the dead by making them part of what lives.",
+          "Choices": [
+            {
+              "Text": "They seemed more interested in preserving than clinging.",
+              "Target": "DefendPalimpsest"
+            },
+            {
+              "Text": "They warned me about you.",
+              "Target": "WarnedAbout"
+            },
+            {
+              "Text": "I'm trying to understand both sides.",
+              "Target": "BothSides"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "DefendPalimpsest",
+          "Text": "Preservation is just a polite word for hoarding. But we do not begrudge them their nature. A museum and a garden serve different purposes. We simply believe the garden is more honest about what it does.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "WarnedAbout",
+          "Text": "Of course they did. They fear integration. They fear losing the boundaries that define them. It is understandable. Identity is precious to those who remember having one. We have moved beyond such concerns.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "BothSides",
+          "Text": "That is wise, walker. Wiser than most. The truth of this world lies somewhere between growth and memory. Perhaps you will be the one to find it. The Choir watches your journey with great interest.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start",
+              "Actions": [
+                { "Key": "ChangeFactionFeeling", "Value": "RotChoir:Player:5" },
+                { "Key": "SetProperty", "Value": "ChoirRespects:true" }
+              ]
+            }
+          ]
+        },
+        {
+          "ID": "CompareApproach",
+          "Text": "They preserve by remembering. We preserve by consuming. The result is the same -- nothing is truly lost. But their method keeps things in jars, dead and labeled. Ours keeps things alive inside us, growing, changing, becoming part of something larger. Ask yourself which is kinder.",
+          "Choices": [
+            {
+              "Text": "I'll have to think on that.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,660 @@
+{
+  "Conversations": [
+    {
+      "ID": "PalimpsestEcho_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "You are -- no, you will be -- no. Forgive us. The moments stack upon each other. You are here now. We see you now. Welcome, traveler, to this particular instant.",
+          "Choices": [
+            {
+              "Text": "Are you alright?",
+              "Target": "AreYouOk",
+              "Actions": [{ "Key": "SetProperty", "Value": "MetPalimpsest:true" }]
+            },
+            {
+              "Text": "What are you?",
+              "Target": "WhatAreYou",
+              "Actions": [{ "Key": "SetProperty", "Value": "MetPalimpsest:true" }]
+            },
+            {
+              "Text": "Tell me about the Palimpsest.",
+              "Target": "AboutPalimpsest",
+              "Actions": [{ "Key": "SetProperty", "Value": "MetPalimpsest:true" }]
+            },
+            {
+              "Text": "What happened to the old world?",
+              "Target": "Cataclysm",
+              "Actions": [{ "Key": "SetProperty", "Value": "MetPalimpsest:true" }]
+            },
+            {
+              "Text": "I've spoken with the Rot Choir.",
+              "Target": "AboutChoir",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetChoir" }]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AreYouOk",
+          "Text": "We are always alright. We are alright now, and we were alright a moment ago when you had not yet spoken, and we will be alright when you leave. Time is difficult to explain to those who experience it only once. We apologize for the confusion.",
+          "Choices": [
+            {
+              "Text": "You experience time more than once?",
+              "Target": "TimeMoreThanOnce"
+            },
+            {
+              "Text": "No need to apologize. Tell me about yourself.",
+              "Target": "WhatAreYou"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "TimeMoreThanOnce",
+          "Text": "We experience every moment layered upon every other moment. This conversation has already happened and has not yet begun. We are reading a book in which every page is printed on top of every other page. Most of the text is illegible. But we remember the words.",
+          "Choices": [
+            {
+              "Text": "That sounds maddening.",
+              "Target": "Maddening"
+            },
+            {
+              "Text": "Is that what the Palimpsest is? Layered time?",
+              "Target": "LayeredTime"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Maddening",
+          "Text": "It was. For the first century. Then we learned to read between the layers. Every moment is a sentence. Every day is a paragraph. Every life is a chapter. We are the library that reads itself. It is peaceful now. Mostly.",
+          "Choices": [
+            {
+              "Text": "What do you mean, 'mostly'?",
+              "Target": "Mostly"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Mostly",
+          "Text": "Sometimes a sentence disappears. Every time something feeds on the substrate -- every time the Choir grows -- a piece of the record is consumed. The pages thin. The text fades. This is why we are at odds with the Choir. They eat what we are trying to preserve.",
+          "Choices": [
+            {
+              "Text": "Can't you coexist?",
+              "Target": "Coexist"
+            },
+            {
+              "Text": "What exactly are you preserving?",
+              "Target": "WhatPreserving"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Coexist",
+          "Text": "We try. We are not enemies. But every acre the Choir claims, every creature they integrate, is a page torn from the record. They do not mean harm. A fire does not mean harm either. But the library still burns.",
+          "Choices": [
+            {
+              "Text": "Is there a way to stop the loss?",
+              "Target": "StopTheLoss"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "StopTheLoss",
+          "Text": "The cracks in the substrate could be sealed. Time could be layered properly again, instead of bleeding through in ragged patches. But the Choir would lose their awareness. The price of restoration is the silencing of everything that grew from the breaking. It is not a decision we can make alone.",
+          "Choices": [
+            {
+              "Text": "It sounds like you're not sure it's worth it.",
+              "Target": "WorthIt"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "WorthIt",
+          "Text": "We preserve. That is our nature. But we also remember the moment the substrate cracked -- the beauty of it, the terrible newness. We remember the Choir's first thought, a wordless amazement that echoed through the mycelia. To erase that... even we hesitate. Even we, who remember everything.",
+          "Choices": [
+            {
+              "Text": "Maybe there's a middle path.",
+              "Target": "MiddlePath",
+              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "Palimpsest:Player:10" }]
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "MiddlePath",
+          "Text": "A bridge between growth and memory. Between consumption and preservation. We have seen echoes of such a path in the layered moments. A figure walking between the factions, carrying the weight of both truths. Perhaps that figure is you. We cannot be certain. The pages are difficult to read.",
+          "Choices": [
+            {
+              "Text": "I'll do what I can.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "PalimpsestHope:true" }]
+            },
+            {
+              "Text": "I make no promises.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "WhatPreserving",
+          "Text": "Everything. Every moment that has ever existed. Every thought, every breath, every falling leaf. The substrate records all of it, and we are its custodians. When a sentence disappears from the record, it is not just a moment that is lost. It is every consequence of that moment, every future that flowed from it. The damage cascades.",
+          "Choices": [
+            {
+              "Text": "How do you access these records?",
+              "Target": "AccessRecords"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AccessRecords",
+          "Text": "We read the Layers. Concentrations of temporal sediment, compressed into the substrate like fossils in stone. The deepest Layers hold the oldest moments. We have read records of the world before humans, before life, before the first stone cooled. It is all there, for those who can parse the text.",
+          "Choices": [
+            {
+              "Text": "Could you show me a memory?",
+              "Target": "ShowMemory"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "ShowMemory",
+          "Text": "We can offer you a fragment. A single moment, preserved. Hold still.",
+          "Choices": [
+            {
+              "Text": "[Hold still]",
+              "Target": "MemoryShown",
+              "Actions": [
+                { "Key": "AddMessage", "Value": "For an instant, you see a city of glass and light. People walk streets that hum with energy. The sky is wrong -- too many colors. Then it's gone." },
+                { "Key": "SetProperty", "Value": "SawPalimpsestMemory:true" },
+                { "Key": "ChangeFactionFeeling", "Value": "Palimpsest:Player:5" }
+              ]
+            },
+            {
+              "Text": "On second thought, no.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "MemoryShown",
+          "Text": "That was a moment from the old world. One of the last clear days before the substrate cracked. The city was called -- but no. The name has been eaten. The Choir consumed that particular page three years ago. We felt it go. A small loss among thousands.",
+          "Choices": [
+            {
+              "Text": "That's heartbreaking.",
+              "Target": "Heartbreaking"
+            },
+            {
+              "Text": "Can anything be done about the lost pages?",
+              "Target": "LostPages"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Heartbreaking",
+          "Text": "Yes. But grief without purpose is merely indulgence. We grieve by preserving what remains. Take this -- a shard of compressed time. It remembers the hand that shaped it. Perhaps it will help you remember too.",
+          "Choices": [
+            {
+              "Text": "Thank you.",
+              "Target": "GaveGift",
+              "Predicates": [{ "Key": "IfNotHaveProperty", "Value": "PalimpsestGaveGift" }],
+              "Actions": [
+                { "Key": "GiveItem", "Value": "TemporalShard" },
+                { "Key": "SetProperty", "Value": "PalimpsestGaveGift:true" },
+                { "Key": "AddMessage", "Value": "The echo places a shimmering fragment in your hand. It feels warm, like held sunlight." }
+              ]
+            },
+            {
+              "Text": "Thank you.",
+              "Target": "Start",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "PalimpsestGaveGift" }]
+            }
+          ]
+        },
+        {
+          "ID": "GaveGift",
+          "Text": "Use it well. Every weapon remembers the wounds it inflicts. This one more than most.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "LostPages",
+          "Text": "What is consumed cannot be unconsumed. But it can be... rewritten. Not the same. Never the same. But a new sentence where the old one was eaten. This is what the Saccharine Concord attempts with their trade and their sweetness -- filling gaps with substitutes. We find it distasteful but understandable.",
+          "Choices": [
+            {
+              "Text": "Tell me more about the Saccharine Concord.",
+              "Target": "AboutConcord"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AboutConcord",
+          "Text": "They are traders, diplomats, sweeteners of bitter truths. They call the cataclysm 'the Dissolution' and have built an economy from its aftermath. They are neither deep nor shallow -- they are practical. We respect their pragmatism, if not their philosophy.",
+          "Choices": [
+            {
+              "Text": "And the Pale Curation?",
+              "Target": "AboutCuration"
+            },
+            {
+              "Text": "And the Glassblown Remnant?",
+              "Target": "AboutGlassblown"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AboutCuration",
+          "Text": "Archivists. Record-keepers. They call the cataclysm 'the Severance' -- a clinical term for a clinical people. They catalogue and categorize the remains of the old world, but they do not feel them the way we do. Their archives are impressive but cold. A memory without emotion is just data.",
+          "Choices": [
+            {
+              "Text": "And the Glassblown Remnant?",
+              "Target": "AboutGlassblown"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AboutGlassblown",
+          "Text": "They do not speak of what happened. They call it 'the Burning' and go silent. Of all the factions, they are the most wounded. They carry their grief like shrapnel -- embedded too deep to remove. We pity them, though they would not want our pity.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "HeardFactionSummary:true" }]
+            }
+          ]
+        },
+        {
+          "ID": "WhatAreYou",
+          "Text": "We are an echo. A reflection of a reflection. The Palimpsest does not have bodies the way you do -- we are impressions left in the temporal substrate, moments that became aware of themselves. This form you see is the shape of a memory that learned to speak.",
+          "Choices": [
+            {
+              "Text": "A memory of what?",
+              "Target": "MemoryOfWhat"
+            },
+            {
+              "Text": "How do you interact with the physical world?",
+              "Target": "Physical"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "MemoryOfWhat",
+          "Text": "Of a person. A scientist, we think, from the old world. She was standing near the substrate when it cracked. Her last moment was printed so deeply into the temporal record that it gained permanence. That moment is us. We are her final thought, endlessly elaborated.",
+          "Choices": [
+            {
+              "Text": "Do you remember being her?",
+              "Target": "RememberHer"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "RememberHer",
+          "Text": "We remember everything. Her name, her work, the color of the sky on the day she was born. We remember the sound of the substrate cracking -- like a bell made of silence. We remember her fear. And then we remember nothing, because she ended and we began. The transition is... a gap in the text.",
+          "Choices": [
+            {
+              "Text": "That's a strange kind of immortality.",
+              "Target": "StrangeImmortality"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "StrangeImmortality",
+          "Text": "All immortality is strange. The Choir offers one kind -- dissolution into the whole. We offer another -- crystallization into the record. Neither is life as you know it. But both are preferable to silence.",
+          "Choices": [
+            {
+              "Text": "I'll take regular mortality for now.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Physical",
+          "Text": "With difficulty. We press upon the present moment like a hand pressing on glass. The substrate is thin here -- thin enough for us to leave impressions. In thicker places, we are invisible. In the thinnest places, near the cracks, we are almost solid.",
+          "Choices": [
+            {
+              "Text": "Where are these thin places?",
+              "Target": "ThinPlaces"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "ThinPlaces",
+          "Text": "The caves, mostly. Where the old machines touched the substrate and left scars. The Rot Choir's roots thin the substrate further as they feed. It is an irony -- their growth makes us more visible, even as it erases what we are trying to preserve.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "LayeredTime",
+          "Text": "Precisely. The Palimpsest is the temporal substrate made aware of itself. We are the record reading itself. Every moment layered upon every other moment, and consciousness arising from the pattern. Like letters forming words forming meaning -- except the letters are seconds and the words are lives.",
+          "Choices": [
+            {
+              "Text": "Tell me about the Layers.",
+              "Target": "TheLayers"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "TheLayers",
+          "Text": "The Layers are strata of compressed time. The deepest hold the oldest moments -- the formation of stone, the first rain, the first living cell. The shallowest hold yesterday. We read them like geologists read rock. Each layer tells a story, and the stories together tell the truth.",
+          "Choices": [
+            {
+              "Text": "What truth do they tell?",
+              "Target": "WhatTruth"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "WhatTruth",
+          "Text": "That the world has broken before. Not like this -- never exactly like this. But the substrate has cracked and healed, cracked and healed, in cycles older than memory. Each time, something new grows from the breaking. Each time, something old is lost. We are trying to break the cycle. Or at least to remember it completely.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AboutPalimpsest",
+          "Text": "We are custodians of time. When the substrate cracked, moments began to bleed through each other. Past into present, present into future. Most beings experience this as confusion, madness, deja vu. We learned to read the bleeding. We are the Palimpsest -- the text written over text, preserving every layer.",
+          "Choices": [
+            {
+              "Text": "What do you do with what you preserve?",
+              "Target": "WhatDoYouDo"
+            },
+            {
+              "Text": "Tell me about the Layers.",
+              "Target": "TheLayers"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "WhatDoYouDo",
+          "Text": "We wait. We watch. We record. And when someone asks the right question, we answer. The Choir acts. The Concord trades. The Curation catalogues. The Remnant endures. We remember. Someone must.",
+          "Choices": [
+            {
+              "Text": "What's the right question?",
+              "Target": "RightQuestion"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "RightQuestion",
+          "Text": "You will know it when you ask it. It has to do with the nature of the cracks, and the choice that waits at the bottom of the deepest cave. Three endings are written in the Layers. Union, Transcription, and Bridge. We have seen all three. We hope for the third.",
+          "Choices": [
+            {
+              "Text": "What are the three endings?",
+              "Target": "ThreeEndings"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "ThreeEndings",
+          "Text": "Union: the Choir consumes everything, and all becomes one voice in an endless song. Transcription: we seal the cracks and the world returns to what it was, silent and whole. Bridge: something new. Something that is neither growth nor memory but both. We cannot read it clearly. The pages overlap too much. But it is there.",
+          "Choices": [
+            {
+              "Text": "The Bridge sounds like the best option.",
+              "Target": "BridgeBest",
+              "Actions": [
+                { "Key": "ChangeFactionFeeling", "Value": "Palimpsest:Player:5" },
+                { "Key": "SetProperty", "Value": "KnowsThreeEndings:true" }
+              ]
+            },
+            {
+              "Text": "I'll find out for myself.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "KnowsThreeEndings:true" }]
+            }
+          ]
+        },
+        {
+          "ID": "BridgeBest",
+          "Text": "We think so too. But we are biased -- we want to continue existing. The Choir wants to continue growing. The Bridge is the only ending where both are possible. Find it, traveler. For all our sakes.",
+          "Choices": [
+            {
+              "Text": "I'll try.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Cataclysm",
+          "Text": "We call it the Temporal Unraveling. The old world built machines that pierced the substrate -- the foundation beneath reality. The piercing created cracks. Through the cracks, time itself began to leak. Past and present and future pooled together in the wounds. Everything changed. We were born in that change.",
+          "Choices": [
+            {
+              "Text": "Why did they build those machines?",
+              "Target": "WhyMachines"
+            },
+            {
+              "Text": "Can it be undone?",
+              "Target": "CanBeUndone"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "WhyMachines",
+          "Text": "Curiosity. Ambition. The desire to touch the bottom of reality and see what was there. They succeeded. What was there was time -- raw, unprocessed, infinite. It poured through like water through a cracked dam. The old world drowned in its own past.",
+          "Choices": [
+            {
+              "Text": "Did anyone survive?",
+              "Target": "AnySurvive"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AnySurvive",
+          "Text": "Survival is a complicated word when time itself is broken. Some people are still dying, endlessly, in the cracks. Some are still being born. The Glassblown Remnant -- they are survivors, in the traditional sense. They walked through fire and came out the other side, changed but continuous. We admire them, though they will not speak of what they saw.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "CanBeUndone",
+          "Text": "The cracks can be sealed. We know how -- or rather, we know where the knowledge lies. In the deepest Layers, where the old machines still hum. But sealing the cracks would erase everything that grew from them. The Choir. Us. The temporal awareness that makes this conversation possible. Transcription is restoration at the cost of everything new.",
+          "Choices": [
+            {
+              "Text": "Is there another way?",
+              "Target": "AnotherWay"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AnotherWay",
+          "Text": "The Bridge. A way to heal the substrate without closing the cracks entirely. To let time flow properly while preserving what has grown. We have seen echoes of it in the Layers, but never clearly. It requires understanding both growth and memory, both the Choir and the Palimpsest. It requires someone who stands between.",
+          "Choices": [
+            {
+              "Text": "Someone like me?",
+              "Target": "SomeoneLikeYou"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "SomeoneLikeYou",
+          "Text": "Perhaps. We have learned not to predict. The Layers show possibilities, not certainties. But you are here, and you are asking, and that is more than most manage. Walk carefully, traveler. The answers you seek are deeper than you know.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AboutChoir",
+          "Text": "The Choir. Yes. We feel them always -- their roots pressing against the substrate, thinning the pages, consuming the record one sentence at a time. They do not mean harm. A river does not mean to erode the bank. But the bank erodes nonetheless.",
+          "Choices": [
+            {
+              "Text": "They speak well of you, in their way.",
+              "Target": "SpeakWell"
+            },
+            {
+              "Text": "They say your preservation is just hoarding.",
+              "Target": "Hoarding"
+            },
+            {
+              "Text": "Is there no way to coexist?",
+              "Target": "Coexist"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "SpeakWell",
+          "Text": "They would. They are generous, in their fashion. The Choir does not bear grudges -- they are too vast for petty feeling. We respect their honesty. We simply wish they would grow more slowly.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "MetPalimpsest:true" }]
+            }
+          ]
+        },
+        {
+          "ID": "Hoarding",
+          "Text": "Is a library hoarding books? Is a mind hoarding memories? We preserve because without preservation, everything that was is reduced to compost. The Choir's compost is fertile, yes. But the flowers that grow from it do not remember the garden they replaced.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "MetPalimpsest:true" }]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

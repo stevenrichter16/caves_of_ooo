@@ -42,6 +42,12 @@ namespace CavesOfOoo.Rendering
         private List<TradeRow> _leftRows = new List<TradeRow>();
         private List<TradeRow> _rightRows = new List<TradeRow>();
 
+        // Confirmation popup state
+        private bool _confirmActive;
+        private int _confirmPanel;   // which panel the pending trade is on
+        private int _confirmIndex;   // cursor index of the item
+        private int _confirmChoice;  // 0 = Yes, 1 = No
+
         private struct TradeRow
         {
             public Entity Item;
@@ -129,6 +135,12 @@ namespace CavesOfOoo.Rendering
         {
             if (!_isOpen) return;
 
+            if (_confirmActive)
+            {
+                HandleConfirmInput();
+                return;
+            }
+
             UpdateMouseHover();
 
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -177,7 +189,7 @@ namespace CavesOfOoo.Rendering
                     if (clickedRow >= 0)
                     {
                         SetCursor(clickedRow);
-                        ExecuteTrade();
+                        ShowConfirmation();
                         return;
                     }
                 }
@@ -186,7 +198,7 @@ namespace CavesOfOoo.Rendering
             // Enter to buy/sell
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                ExecuteTrade();
+                ShowConfirmation();
                 return;
             }
         }
@@ -217,6 +229,100 @@ namespace CavesOfOoo.Rendering
                 _rightCursor = index;
                 ClampCursor(ref _rightCursor, ref _rightScroll, _rightRows.Count);
             }
+        }
+
+        private void ShowConfirmation()
+        {
+            var rows = _panel == 0 ? _leftRows : _rightRows;
+            int cursor = _panel == 0 ? _leftCursor : _rightCursor;
+            if (rows.Count == 0 || cursor < 0 || cursor >= rows.Count) return;
+
+            _confirmActive = true;
+            _confirmPanel = _panel;
+            _confirmIndex = cursor;
+            _confirmChoice = 0; // default to Yes
+            Render();
+        }
+
+        private void HandleConfirmInput()
+        {
+            // Mouse click on Yes/No buttons
+            if (Input.GetMouseButtonDown(0))
+            {
+                var grid = MouseToGrid();
+                if (grid.x >= 0)
+                {
+                    int popupRow = GetConfirmButtonRow(grid);
+                    if (popupRow == 0) // Yes
+                    {
+                        _confirmChoice = 0;
+                        ConfirmTrade();
+                        return;
+                    }
+                    else if (popupRow == 1) // No
+                    {
+                        CancelConfirmation();
+                        return;
+                    }
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.N))
+            {
+                CancelConfirmation();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Y))
+            {
+                if (_confirmChoice == 0)
+                    ConfirmTrade();
+                else
+                    CancelConfirmation();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K)
+                || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            {
+                _confirmChoice = 1 - _confirmChoice;
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.H)
+                || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.L))
+            {
+                _confirmChoice = 1 - _confirmChoice;
+                Render();
+                return;
+            }
+        }
+
+        private int GetConfirmButtonRow(Vector2Int grid)
+        {
+            // Popup is centered: 40 wide, positioned at row 16-28 area
+            int popupX = (W - 40) / 2;
+            int popupY = (H - 9) / 2;
+            int yesRow = popupY + 5;
+            int noRow = popupY + 6;
+
+            if (grid.x < popupX + 2 || grid.x >= popupX + 38) return -1;
+            if (grid.y == yesRow) return 0;
+            if (grid.y == noRow) return 1;
+            return -1;
+        }
+
+        private void ConfirmTrade()
+        {
+            _confirmActive = false;
+            ExecuteTrade();
+        }
+
+        private void CancelConfirmation()
+        {
+            _confirmActive = false;
+            Render();
         }
 
         private void ExecuteTrade()
@@ -342,6 +448,10 @@ namespace CavesOfOoo.Rendering
                 ? " [Enter]buy  [Tab]sell panel  [Esc]close"
                 : " [Enter]sell  [Tab]buy panel  [Esc]close";
             DrawText(0, H - 1, actionBar, QudColorParser.DarkGray);
+
+            // Confirmation popup overlay
+            if (_confirmActive)
+                RenderConfirmPopup();
         }
 
         private void RenderPanel(List<TradeRow> rows, int x0, int cursor, int scroll,
@@ -396,6 +506,85 @@ namespace CavesOfOoo.Rendering
             if (detail.Length > W)
                 detail = detail.Substring(0, W);
             DrawText(0, H - 2, detail, QudColorParser.BrightCyan);
+        }
+
+        private void RenderConfirmPopup()
+        {
+            var rows = _confirmPanel == 0 ? _leftRows : _rightRows;
+            if (_confirmIndex < 0 || _confirmIndex >= rows.Count)
+            {
+                _confirmActive = false;
+                return;
+            }
+
+            var row = rows[_confirmIndex];
+            string action = _confirmPanel == 0 ? "Buy" : "Sell";
+            string itemName = row.Name;
+            string priceLine = action + " " + itemName + " for " + row.Price + "$?";
+
+            // Popup dimensions
+            int popupW = 40;
+            int popupH = 9;
+            int popupX = (W - popupW) / 2;
+            int popupY = (H - popupH) / 2;
+
+            // Truncate if item name is too long
+            if (priceLine.Length > popupW - 4)
+                priceLine = priceLine.Substring(0, popupW - 5) + "~?";
+
+            // Clear popup region
+            for (int py = popupY; py < popupY + popupH; py++)
+            {
+                for (int px = popupX; px < popupX + popupW; px++)
+                {
+                    var tilePos = new Vector3Int(px, H - 1 - py, 0);
+                    Tilemap.SetTile(tilePos, CP437TilesetGenerator.GetTile(' '));
+                    Tilemap.SetTileFlags(tilePos, TileFlags.None);
+                    Tilemap.SetColor(tilePos, QudColorParser.Black);
+                }
+            }
+
+            // Border
+            for (int px = popupX; px < popupX + popupW; px++)
+            {
+                DrawChar(px, popupY, '-', QudColorParser.White);
+                DrawChar(px, popupY + popupH - 1, '-', QudColorParser.White);
+            }
+            for (int py = popupY; py < popupY + popupH; py++)
+            {
+                DrawChar(popupX, py, '|', QudColorParser.White);
+                DrawChar(popupX + popupW - 1, py, '|', QudColorParser.White);
+            }
+            DrawChar(popupX, popupY, '+', QudColorParser.White);
+            DrawChar(popupX + popupW - 1, popupY, '+', QudColorParser.White);
+            DrawChar(popupX, popupY + popupH - 1, '+', QudColorParser.White);
+            DrawChar(popupX + popupW - 1, popupY + popupH - 1, '+', QudColorParser.White);
+
+            // Title
+            string title = "Confirm " + action;
+            int titleX = popupX + (popupW - title.Length) / 2;
+            DrawText(titleX, popupY + 1, title, QudColorParser.BrightYellow);
+
+            // Separator
+            for (int px = popupX + 1; px < popupX + popupW - 1; px++)
+                DrawChar(px, popupY + 2, '-', QudColorParser.DarkGray);
+
+            // Item info
+            int infoX = popupX + 2;
+            DrawText(infoX, popupY + 3, priceLine, QudColorParser.White);
+
+            // Yes / No choices
+            int choiceY = popupY + 5;
+            Color yesColor = _confirmChoice == 0 ? QudColorParser.White : QudColorParser.Gray;
+            Color noColor = _confirmChoice == 1 ? QudColorParser.White : QudColorParser.Gray;
+
+            if (_confirmChoice == 0)
+                DrawChar(infoX, choiceY, '>', QudColorParser.White);
+            DrawText(infoX + 2, choiceY, "[Y] Yes", yesColor);
+
+            if (_confirmChoice == 1)
+                DrawChar(infoX, choiceY + 1, '>', QudColorParser.White);
+            DrawText(infoX + 2, choiceY + 1, "[N] No", noColor);
         }
 
         // ===== Drawing Helpers (same as InventoryUI) =====

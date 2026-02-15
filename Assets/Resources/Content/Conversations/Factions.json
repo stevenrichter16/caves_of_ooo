@@ -1,0 +1,1036 @@
+{
+  "Conversations": [
+    {
+      "ID": "SaccharineEnvoy_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Ah, a new face! How delightful. The Saccharine Concord extends its warmest greetings. We are merchants of the possible, traders in what-remains. How may we sweeten your day?",
+          "Choices": [
+            {
+              "Text": "Who are the Saccharine Concord?",
+              "Target": "AboutConcord"
+            },
+            {
+              "Text": "What do you trade?",
+              "Target": "WhatTrade"
+            },
+            {
+              "Text": "Tell me about the Dissolution.",
+              "Target": "Dissolution"
+            },
+            {
+              "Text": "What do you know about the other factions?",
+              "Target": "OtherFactions"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AboutConcord",
+          "Text": "We are pragmatists, friend. When the world dissolved -- and it did dissolve, make no mistake -- some sat in the ruins and wept. Others began cataloguing the rubble. We? We started trading it. There is value in everything, even catastrophe. Especially catastrophe.",
+          "Choices": [
+            {
+              "Text": "That's a cynical way to look at the end of the world.",
+              "Target": "Cynical"
+            },
+            {
+              "Text": "Pragmatism has its virtues.",
+              "Target": "Pragmatic",
+              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "SaccharineConcord:Player:5" }]
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Cynical",
+          "Text": "Cynical? No, no. Realistic. The Rot Choir wants to eat everything. The Palimpsest wants to remember everything. The Pale Curation wants to file everything. The Remnant wants to forget everything. And the world keeps turning regardless. Someone has to keep the economy moving while the philosophers argue about meaning.",
+          "Choices": [
+            {
+              "Text": "Fair point.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Don't you believe in anything beyond commerce?",
+              "Target": "BeyondCommerce"
+            }
+          ]
+        },
+        {
+          "ID": "BeyondCommerce",
+          "Text": "Of course we do. We believe in connections. Every trade is a relationship. Every exchange builds trust between strangers. The old world dissolved because people stopped talking to each other and started talking past each other. The Concord keeps the conversations going. Commerce is just the language we use.",
+          "Choices": [
+            {
+              "Text": "That's surprisingly philosophical for a merchant.",
+              "Target": "SurprisinglyDeep",
+              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "SaccharineConcord:Player:5" }]
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "SurprisinglyDeep",
+          "Text": "We take that as a compliment. The Concord learned long ago that the best deals are the ones where both parties feel they've gained something. Sweetness, you see -- it's not deception. It's lubrication. The world moves more smoothly when people are pleasant to each other.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Pragmatic",
+          "Text": "A kindred spirit! The Concord could use more practical minds. The world is full of grand philosophies and empty stomachs. We fill the stomachs. The philosophies can wait.",
+          "Choices": [
+            {
+              "Text": "What can you offer me?",
+              "Target": "WhatOffer"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "WhatOffer",
+          "Text": "Information, primarily. The Concord has trade routes spanning the surface and the upper caves. We hear things. We know which paths are safe, which ruins have been picked clean, and which factions are feeling friendly this week. Knowledge is the most valuable commodity.",
+          "Choices": [
+            {
+              "Text": "Any tips for the caves below?",
+              "Target": "CaveTips"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "CaveTips",
+          "Text": "Avoid the spore-thick corridors unless you want to breathe Choir. The temporal anomalies on the lower levels are disorienting but rarely lethal -- just don't trust your sense of direction near them. And if you find old-world tech, bring it to us before the Pale Curation gets their archival gloves on it. We pay better.",
+          "Choices": [
+            {
+              "Text": "Good to know. Thanks.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "ConcordCaveTips:true" }]
+            }
+          ]
+        },
+        {
+          "ID": "WhatTrade",
+          "Text": "Everything and anything. Salvage from the old world, fresh provisions, weapons, information, introductions. We are the connective tissue of the post-Dissolution economy. If it exists and someone wants it, we can probably find it.",
+          "Choices": [
+            {
+              "Text": "Where do you get your stock?",
+              "Target": "Stock"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Stock",
+          "Text": "Everywhere. Surface settlements, cave delvers, even the factions themselves. The Choir sometimes trades biomatter -- useful for medicines, if you can stomach the source. The Pale Curation trades duplicates from their archives. The Remnant trades in raw materials. Only the Palimpsest refuses to deal with us. They say time cannot be commodified. We respectfully disagree.",
+          "Choices": [
+            {
+              "Text": "You trade with the Rot Choir?",
+              "Target": "TradeChoir"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "TradeChoir",
+          "Text": "Carefully. Very carefully. They are not hostile, but their idea of a fair exchange is... different. They once offered us 'a hundred years of composted memory' in exchange for a cart of iron. We accepted. The memories turned out to be... useful, if unsettling. We learned the recipe for a steel alloy that hasn't been forged in centuries.",
+          "Choices": [
+            {
+              "Text": "That's fascinating.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Dissolution",
+          "Text": "The Dissolution. That's what we call it, because that's what happened. The world didn't end in fire or flood. It dissolved. The boundaries between things stopped holding. Matter, time, identity -- all of it became fluid. Some things resolidified. Some didn't. We are the ones who learned to trade in the fluid spaces.",
+          "Choices": [
+            {
+              "Text": "Others call it different things.",
+              "Target": "DifferentNames"
+            },
+            {
+              "Text": "What caused it?",
+              "Target": "WhatCaused"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "DifferentNames",
+          "Text": "The Choir calls it 'the First Feeding.' Very them. The Palimpsest calls it 'the Temporal Unraveling.' The Pale Curation says 'the Severance.' The Remnant just says 'the Burning' and changes the subject. Names reveal what you lost. The Concord lost the ability to pretend everything was solid. So we called it what it was.",
+          "Choices": [
+            {
+              "Text": "Which name is most accurate?",
+              "Target": "MostAccurate"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "MostAccurate",
+          "Text": "All of them. That's the uncomfortable truth. The world dissolved, burned, severed, fed, and unraveled all at once. Each faction saw the part of the catastrophe that mattered most to them. The Concord sees all the parts, which is why we don't take sides. Bad for business.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "WhatCaused",
+          "Text": "The old world dug too deep. Not physically -- conceptually. They built machines that touched the substrate, the foundation of reality itself. When the substrate cracked, everything built on top of it shifted. Like pulling a tablecloth out from under the dishes, except the tablecloth was the laws of physics.",
+          "Choices": [
+            {
+              "Text": "Can it be fixed?",
+              "Target": "CanFix"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "CanFix",
+          "Text": "The Palimpsest thinks so. The Choir hopes not. The Concord? We think it's the wrong question. You don't fix a river -- you build bridges across it. The world changed. We adapt. Adaptation is more profitable than restoration, and considerably less risky.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "OtherFactions",
+          "Text": "Ah, the grand tapestry of post-Dissolution society. Where shall we begin? We know everyone, and everyone owes us favors.",
+          "Choices": [
+            {
+              "Text": "The Rot Choir.",
+              "Target": "FactionChoir"
+            },
+            {
+              "Text": "The Palimpsest.",
+              "Target": "FactionPalimpsest"
+            },
+            {
+              "Text": "The Pale Curation.",
+              "Target": "FactionCuration"
+            },
+            {
+              "Text": "The Glassblown Remnant.",
+              "Target": "FactionRemnant"
+            }
+          ]
+        },
+        {
+          "ID": "FactionChoir",
+          "Text": "The big mushroom collective. Impressive scope, questionable dining habits. They want to eat everything and become everything. Good trading partners, actually -- they have no concept of personal ownership, so they'll trade anything they have. Just don't accept dinner invitations.",
+          "Choices": [
+            {
+              "Text": "Tell me about another faction.",
+              "Target": "OtherFactions"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "FactionPalimpsest",
+          "Text": "Time ghosts. Very smart, very sad, very difficult to pin down for a business meeting. They experience every moment simultaneously, which makes negotiations interesting. They won't trade with us on principle -- they say commodifying time is obscene. We think that's rich, coming from beings made of the stuff.",
+          "Choices": [
+            {
+              "Text": "Tell me about another faction.",
+              "Target": "OtherFactions"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "FactionCuration",
+          "Text": "The archivists. Cold, thorough, absolutely insufferable at parties. They catalogue everything -- every ruin, every artifact, every scrap of old-world knowledge. Their archives are the most complete record of what was lost. They call the cataclysm 'the Severance' because they experience it as a clean cut between then and now. Good customers, though. They always pay on time.",
+          "Choices": [
+            {
+              "Text": "Tell me about another faction.",
+              "Target": "OtherFactions"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "FactionRemnant",
+          "Text": "The quiet ones. Survivors of the Burning -- their word for the catastrophe. They don't talk about what happened to them, and we've learned not to ask. They're tough, practical, and deeply private. Good fighters, poor conversationalists. They trade in raw materials -- glass, metal, stone. Nothing sentimental. Nothing that requires explanation.",
+          "Choices": [
+            {
+              "Text": "Tell me about another faction.",
+              "Target": "OtherFactions"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "PaleCurator_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Identification: traveler, unaffiliated, no archive credentials. State your purpose. The Pale Curation does not receive social calls.",
+          "Choices": [
+            {
+              "Text": "Who are the Pale Curation?",
+              "Target": "AboutCuration"
+            },
+            {
+              "Text": "Tell me about the Severance.",
+              "Target": "Severance"
+            },
+            {
+              "Text": "What do you keep in your archives?",
+              "Target": "Archives"
+            },
+            {
+              "Text": "I found an old-world artifact.",
+              "Target": "FoundArtifact",
+              "Predicates": [{ "Key": "IfHaveTag", "Value": "OldWorldItem" }]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AboutCuration",
+          "Text": "We are archivists. Before the Severance, we were librarians, data custodians, record-keepers. When the world broke, we kept our purpose. Everything that was must be recorded, catalogued, and preserved. Not in the Palimpsest's mystical sense. In a practical, indexed, cross-referenced sense.",
+          "Choices": [
+            {
+              "Text": "How are you different from the Palimpsest?",
+              "Target": "DiffPalimpsest"
+            },
+            {
+              "Text": "What's the point of cataloguing a broken world?",
+              "Target": "WhatsThePoint"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "DiffPalimpsest",
+          "Text": "The Palimpsest experiences time directly. They feel the old world. We study it. They are the wound. We are the medical record. Both have value, but only one can be consulted without the risk of emotional contamination. Our archives are objective. Their memories are not.",
+          "Choices": [
+            {
+              "Text": "Objectivity has its limits.",
+              "Target": "ObjectivityLimits"
+            },
+            {
+              "Text": "I see the value in your approach.",
+              "Target": "SeeValue",
+              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "PaleCuration:Player:5" }]
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "ObjectivityLimits",
+          "Text": "Noted. Filed under: dissenting opinions, subcategory: philosophical. We do not claim perfection. We claim thoroughness. The Curation's archives have saved more knowledge than every other faction combined. Facts outlast feelings.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "SeeValue",
+          "Text": "Acknowledged. The Curation appreciates rational minds. If you encounter pre-Severance artifacts in your travels, the Curation would be interested in examining them. We catalog, we do not confiscate. Items are returned after documentation.",
+          "Choices": [
+            {
+              "Text": "I'll keep that in mind.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "CurationContact:true" }]
+            }
+          ]
+        },
+        {
+          "ID": "WhatsThePoint",
+          "Text": "The point is continuity. The Severance cut the world in two -- before and after. Without records, the 'before' ceases to exist. Without understanding the 'before,' the 'after' has no context. Without context, every mistake the old world made can be repeated. The Curation exists to prevent repetition.",
+          "Choices": [
+            {
+              "Text": "What mistakes are you trying to prevent?",
+              "Target": "WhatMistakes"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "WhatMistakes",
+          "Text": "The primary one. The old world pierced the substrate without understanding what it was. They treated the foundation of reality as a resource to be exploited. The Rot Choir is making the same error -- feeding on the substrate, consuming the temporal record for growth. If the substrate degrades further, the cracks will widen. The consequences would be catastrophic.",
+          "Choices": [
+            {
+              "Text": "So you're against the Rot Choir?",
+              "Target": "AgainstChoir"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AgainstChoir",
+          "Text": "We are against ignorance. The Choir is not malicious -- they simply do not understand the long-term impact of their growth. Or they do not care. The distinction is irrelevant from an archival perspective. The damage is the same.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Severance",
+          "Text": "The Severance. Date: indeterminate. Pre-Severance chronology is unreliable due to temporal substrate damage. Event: catastrophic failure of substrate-interface machinery, resulting in widespread reality dissolution. Casualties: unquantifiable. Status: ongoing.",
+          "Choices": [
+            {
+              "Text": "Ongoing? It's still happening?",
+              "Target": "StillHappening"
+            },
+            {
+              "Text": "You sound like you're reading from a file.",
+              "Target": "ReadingFile"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "StillHappening",
+          "Text": "The cracks in the substrate have not sealed. Temporal leakage continues at a measurable rate. The Palimpsest's existence is evidence of ongoing substrate instability. The Choir's growth accelerates the degradation. By the Curation's projections, substrate integrity will reach critical levels within two to five generations.",
+          "Choices": [
+            {
+              "Text": "What happens at critical levels?",
+              "Target": "CriticalLevels"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "CriticalLevels",
+          "Text": "Unknown. Our models extrapolate from limited data. Best case: localized reality failures, temporal loops, spatial distortions. Worst case: total substrate collapse. The distinction between matter, energy, and time ceases to hold. Everything becomes... undifferentiated. We would prefer to avoid this outcome.",
+          "Choices": [
+            {
+              "Text": "How do we prevent it?",
+              "Target": "Prevent"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Prevent",
+          "Text": "The Curation recommends sealing the substrate cracks. This aligns with the Palimpsest's 'Transcription' scenario. The Choir would lose awareness. The Palimpsest would lose temporal perception. The Curation would lose nothing. Our records are physical. We do not depend on the substrate for our existence.",
+          "Choices": [
+            {
+              "Text": "That's convenient for you.",
+              "Target": "Convenient"
+            },
+            {
+              "Text": "Is there an option that doesn't require silencing the Choir and Palimpsest?",
+              "Target": "OtherOption"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Convenient",
+          "Text": "The Curation does not set policy based on self-interest. We set policy based on data. The data indicates that substrate degradation is an existential threat. The solution with the highest probability of success is full closure. We are sorry for the collateral effects, but the alternative is worse.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "OtherOption",
+          "Text": "The Palimpsest speaks of a 'Bridge' scenario. Partial closure, managed leakage. The Curation has insufficient data to evaluate its feasibility. It may be possible. It may also be wishful thinking from entities who do not wish to cease existing. We recommend caution with unverified hypotheses.",
+          "Choices": [
+            {
+              "Text": "I'll investigate further.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "CurationBriefing:true" }]
+            }
+          ]
+        },
+        {
+          "ID": "ReadingFile",
+          "Text": "We are always reading from a file. The file is the world. Every observation is recorded, cross-referenced, and made available for future consultation. If our manner seems clinical, it is because clinical precision saves lives. Imprecision killed the old world.",
+          "Choices": [
+            {
+              "Text": "Fair enough.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Archives",
+          "Text": "Everything recoverable from the pre-Severance world. Technical schematics, cultural records, biological specimens, geological surveys, personal effects. The Curation does not discriminate between significant and trivial. All data has potential value. A shopping list from the old world tells us about their economy. A child's drawing tells us about their cognition.",
+          "Choices": [
+            {
+              "Text": "Have you found anything about the substrate machines?",
+              "Target": "SubstrateMachines"
+            },
+            {
+              "Text": "Can I access the archives?",
+              "Target": "AccessArchives"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "SubstrateMachines",
+          "Text": "Partial schematics. Fragmentary operational logs. Enough to understand what they did, insufficient to understand why they thought it was advisable. The machines pierced the substrate at multiple points simultaneously. The cracks were not an accident -- they were a design feature. The old world wanted to access the temporal substrate. They succeeded beyond their worst projections.",
+          "Choices": [
+            {
+              "Text": "Do the machines still exist?",
+              "Target": "MachinesExist"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "MachinesExist",
+          "Text": "Some. In the deepest caves, where the substrate is thinnest. The Choir has grown around several of them, incorporating the machinery into their network. The Palimpsest clusters near others, drawn to the temporal leakage. The Curation has mapped seven confirmed sites. We have not published the locations.",
+          "Choices": [
+            {
+              "Text": "Why not?",
+              "Target": "WhyNotPublish"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "WhyNotPublish",
+          "Text": "Because knowledge without context is dangerous. The old world proved that. When we are satisfied that disclosure will not lead to further substrate damage, we will share our findings. Until then, the locations remain classified.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AccessArchives",
+          "Text": "Limited access is available to non-affiliated individuals who demonstrate responsible conduct. Bring us artifacts, share your observations, and over time, access levels increase. The Curation rewards contribution, not credentials.",
+          "Choices": [
+            {
+              "Text": "I'll bring you what I find.",
+              "Target": "Start",
+              "Actions": [
+                { "Key": "ChangeFactionFeeling", "Value": "PaleCuration:Player:5" },
+                { "Key": "SetProperty", "Value": "CurationContact:true" }
+              ]
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "FoundArtifact",
+          "Text": "An old-world artifact? Excellent. The Curation is always interested in expanding our records. May we examine it? Documentation only -- we will return the item after cataloguing.",
+          "Choices": [
+            {
+              "Text": "Of course. Take a look.",
+              "Target": "ExaminedArtifact",
+              "Actions": [
+                { "Key": "ChangeFactionFeeling", "Value": "PaleCuration:Player:10" },
+                { "Key": "SetProperty", "Value": "SharedArtifactWithCuration:true" },
+                { "Key": "AddMessage", "Value": "The curator examines the artifact with clinical precision, making detailed notes." }
+              ]
+            },
+            {
+              "Text": "Not right now.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "ExaminedArtifact",
+          "Text": "Fascinating. Pre-Severance manufacture, consistent with late-period industrial output. This will make a valuable addition to the record. You have the Curation's gratitude -- and a note in your file indicating cooperative status.",
+          "Choices": [
+            {
+              "Text": "Happy to help.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "GlassblownDrifter_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "...",
+          "Choices": [
+            {
+              "Text": "Hello?",
+              "Target": "Hello"
+            },
+            {
+              "Text": "Are you one of the Glassblown Remnant?",
+              "Target": "Remnant"
+            },
+            {
+              "Text": "[Say nothing. Wait.]",
+              "Target": "Wait"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Hello",
+          "Text": "Yeah.",
+          "Choices": [
+            {
+              "Text": "Not much for conversation?",
+              "Target": "NotMuch"
+            },
+            {
+              "Text": "I'm a traveler. Just passing through.",
+              "Target": "PassingThrough"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "NotMuch",
+          "Text": "No.",
+          "Choices": [
+            {
+              "Text": "Can I ask you a few questions?",
+              "Target": "FewQuestions"
+            },
+            {
+              "Text": "Fair enough. Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "FewQuestions",
+          "Text": "You can ask.",
+          "Choices": [
+            {
+              "Text": "Who are the Glassblown Remnant?",
+              "Target": "Remnant"
+            },
+            {
+              "Text": "What happened? To the world, I mean.",
+              "Target": "WhatHappened"
+            },
+            {
+              "Text": "Any advice for surviving out here?",
+              "Target": "Advice"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Wait",
+          "Text": "Hm. Patient. That's rare.",
+          "Choices": [
+            {
+              "Text": "I've learned that some people need space.",
+              "Target": "NeedSpace",
+              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "GlassblownRemnant:Player:10" }]
+            },
+            {
+              "Text": "I was just being polite.",
+              "Target": "Polite"
+            }
+          ]
+        },
+        {
+          "ID": "NeedSpace",
+          "Text": "Yeah. Yeah, they do. Most walkers want to talk. Ask questions. Pry. You're different. Ask what you want. I'll answer what I can.",
+          "Choices": [
+            {
+              "Text": "Who are the Glassblown Remnant?",
+              "Target": "RemnantOpen"
+            },
+            {
+              "Text": "What happened to the world?",
+              "Target": "WhatHappenedOpen"
+            },
+            {
+              "Text": "What do you know about the other factions?",
+              "Target": "OtherFactions"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Polite",
+          "Text": "Polite works too. What do you want?",
+          "Choices": [
+            {
+              "Text": "Who are the Glassblown Remnant?",
+              "Target": "Remnant"
+            },
+            {
+              "Text": "What happened to the world?",
+              "Target": "WhatHappened"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "PassingThrough",
+          "Text": "Aren't we all.",
+          "Choices": [
+            {
+              "Text": "Can I ask you some questions?",
+              "Target": "FewQuestions"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Remnant",
+          "Text": "Survivors. That's all. We walked through the Burning and came out the other side. Some of us. Not enough.",
+          "Choices": [
+            {
+              "Text": "The Burning?",
+              "Target": "Burning"
+            },
+            {
+              "Text": "How many of you are left?",
+              "Target": "HowMany"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "FewQuestions"
+            }
+          ]
+        },
+        {
+          "ID": "RemnantOpen",
+          "Text": "We were people. Before. Had homes, families, the usual. When the Burning hit, most of us didn't make it. The ones who did... we changed. Something about walking through that kind of fire. It gets into you. Under the skin. We're tougher now. Quieter. We don't break easy.",
+          "Choices": [
+            {
+              "Text": "What changed about you?",
+              "Target": "WhatChanged"
+            },
+            {
+              "Text": "The Burning -- what was it exactly?",
+              "Target": "BurningOpen"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "NeedSpace"
+            }
+          ]
+        },
+        {
+          "ID": "WhatChanged",
+          "Text": "Skin's different. Tougher, sort of glassy. Scars that don't fade. And the dreams. We all have the same dream. A city of glass, burning from the inside. We wake up and the scars are warm. Nobody talks about it. Talking doesn't help.",
+          "Choices": [
+            {
+              "Text": "That sounds painful.",
+              "Target": "Painful"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "NeedSpace"
+            }
+          ]
+        },
+        {
+          "ID": "Painful",
+          "Text": "It is what it is. Pain means you're still here. The ones who stopped hurting are the ones who stopped being.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "NeedSpace"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "BurningOpen",
+          "Text": "When the world cracked open, our part of it caught fire. Not regular fire. A fire that burned through time. We saw everything that had ever happened in our city, all at once, all of it on fire. Past, present, future -- burning. Some people got stuck in the flames. They're still there, maybe. We got out. Barely.",
+          "Choices": [
+            {
+              "Text": "A fire that burned through time... that's related to the substrate cracking?",
+              "Target": "SubstrateFire"
+            },
+            {
+              "Text": "I'm sorry.",
+              "Target": "Sorry"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "NeedSpace"
+            }
+          ]
+        },
+        {
+          "ID": "SubstrateFire",
+          "Text": "The Palimpsest would say yes. The Choir would say the fire was the old world composting itself. The Curation would file it under 'thermal substrate event.' We don't care what it was. We care that it happened and that we survived it. Names don't put out fires.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "NeedSpace"
+            }
+          ]
+        },
+        {
+          "ID": "Sorry",
+          "Text": "Don't be. Wasn't your fault. Unless you're older than you look.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "NeedSpace"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Burning",
+          "Text": "Don't want to talk about it.",
+          "Choices": [
+            {
+              "Text": "Understood.",
+              "Target": "FewQuestions"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "HowMany",
+          "Text": "Enough. Not many. We don't count. Counting means accepting the number.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "FewQuestions"
+            }
+          ]
+        },
+        {
+          "ID": "WhatHappened",
+          "Text": "The Burning. Don't ask more. Others will tell you their version. Choir, Palimpsest, Concord -- they all have stories. We just have scars.",
+          "Choices": [
+            {
+              "Text": "Understood.",
+              "Target": "FewQuestions"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "WhatHappenedOpen",
+          "Text": "We call it the Burning. Other factions have fancier names. Dissolution. Severance. Unraveling. Doesn't matter what you call it. The world broke. We were standing in the part that caught fire. Everything we knew turned to glass and ash. We picked ourselves up and kept walking. That's the whole story.",
+          "Choices": [
+            {
+              "Text": "Why glass?",
+              "Target": "WhyGlass"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "NeedSpace"
+            }
+          ]
+        },
+        {
+          "ID": "WhyGlass",
+          "Text": "When you heat sand hot enough, it becomes glass. When you heat a city hot enough... same thing. Our home is a field of glass now. Smooth, clear, beautiful if you don't think about what it used to be. Some of us go back sometimes. Stand on the glass and listen. You can hear echoes underneath. The Palimpsest says those are trapped moments. We just call them ghosts.",
+          "Choices": [
+            {
+              "Text": "Do you want to go back? To rebuild?",
+              "Target": "GoBack"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "NeedSpace"
+            }
+          ]
+        },
+        {
+          "ID": "GoBack",
+          "Text": "You don't rebuild on a grave. We drift. That's what remnants do. Keep moving, keep surviving. Maybe someday we'll find a place that doesn't remind us of what we lost. Haven't found it yet.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "NeedSpace"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Advice",
+          "Text": "Keep moving. Don't eat anything that glows. If the ground feels warm, go the other way. And don't trust anything that wants to eat you or remember you. That covers most of the factions.",
+          "Choices": [
+            {
+              "Text": "Wise words.",
+              "Target": "FewQuestions"
+            },
+            {
+              "Text": "You don't trust the Choir or the Palimpsest?",
+              "Target": "DontTrust"
+            }
+          ]
+        },
+        {
+          "ID": "DontTrust",
+          "Text": "I don't trust anything that used to be something else. The Choir used to be fungus. The Palimpsest used to be people. Neither is what they were, and both want you to become what they are. At least the Concord just wants your money. Simple. Honest, in its way.",
+          "Choices": [
+            {
+              "Text": "And the Pale Curation?",
+              "Target": "AboutCuration"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "FewQuestions"
+            }
+          ]
+        },
+        {
+          "ID": "AboutCuration",
+          "Text": "Harmless. Annoying, but harmless. They just want to write everything down. Can't fault them for that. At least someone's keeping score.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "FewQuestions"
+            }
+          ]
+        },
+        {
+          "ID": "OtherFactions",
+          "Text": "Choir eats. Palimpsest remembers. Concord trades. Curation files. We survive. Pick whoever makes sense to you. Just know what you're getting into.",
+          "Choices": [
+            {
+              "Text": "Short and to the point.",
+              "Target": "NeedSpace"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
