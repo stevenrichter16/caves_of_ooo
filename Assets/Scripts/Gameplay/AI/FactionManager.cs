@@ -31,10 +31,19 @@ namespace CavesOfOoo.Core
 
             RegisterFaction("Player");
             RegisterFaction("Snapjaws");
+            RegisterFaction("Villagers");
 
             // Snapjaws hate the player, player hates snapjaws
             SetFactionFeeling("Snapjaws", "Player", -100);
             SetFactionFeeling("Player", "Snapjaws", -100);
+
+            // Villagers are friendly toward the player
+            SetFactionFeeling("Villagers", "Player", 20);
+            SetFactionFeeling("Player", "Villagers", 20);
+
+            // Snapjaws and villagers are hostile
+            SetFactionFeeling("Snapjaws", "Villagers", -100);
+            SetFactionFeeling("Villagers", "Snapjaws", -100);
         }
 
         /// <summary>
@@ -100,6 +109,14 @@ namespace CavesOfOoo.Core
         {
             if (source == null || target == null) return 0;
             if (source == target) return 100; // self
+
+            // Per-entity hostility overrides faction feeling (bidirectional)
+            var sourceBrain = source.GetPart<BrainPart>();
+            if (sourceBrain != null && sourceBrain.IsPersonallyHostileTo(target))
+                return -100;
+            var targetBrain = target.GetPart<BrainPart>();
+            if (targetBrain != null && targetBrain.IsPersonallyHostileTo(source))
+                return -100;
 
             string factionA = GetFaction(source);
             string factionB = GetFaction(target);

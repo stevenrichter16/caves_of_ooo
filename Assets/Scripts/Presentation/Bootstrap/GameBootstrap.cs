@@ -64,6 +64,9 @@ namespace CavesOfOoo
             _factory.LoadBlueprints(blueprintAsset.text);
             Debug.Log($"[Bootstrap] Loaded {_factory.Blueprints.Count} blueprints");
 
+            // Wire conversation system
+            ConversationActions.Factory = _factory;
+
             Debug.Log("[Bootstrap] Step 5/9: Generating starting zone...");
             _zoneManager = new OverworldZoneManager(_factory);
             _zone = _zoneManager.GetZone("Overworld.5.5");
@@ -86,6 +89,7 @@ namespace CavesOfOoo
             Debug.Log($"[Bootstrap] Player created. Has Body part: {playerBody != null}, Body initialized: {playerBody?.GetBody() != null}");
             PlacePlayerInOpenCell();
             SpawnDebugWeaponNearPlayer();
+            SpawnDebugNPCNearPlayer();
 
             Debug.Log("[Bootstrap] Step 7/9: Setting up turns...");
             _turnManager = new TurnManager();
@@ -153,6 +157,22 @@ namespace CavesOfOoo
                 if (ZoneRenderer != null)
                     containerPickerUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
                 inputHandler.ContainerPickerUI = containerPickerUI;
+
+                // Wire dialogue UI (shares tilemap with zone renderer)
+                var dialogueUI = GetComponent<DialogueUI>();
+                if (dialogueUI == null)
+                    dialogueUI = gameObject.AddComponent<DialogueUI>();
+                if (ZoneRenderer != null)
+                    dialogueUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
+                inputHandler.DialogueUI = dialogueUI;
+
+                // Wire trade UI (shares tilemap with zone renderer)
+                var tradeUI = GetComponent<TradeUI>();
+                if (tradeUI == null)
+                    tradeUI = gameObject.AddComponent<TradeUI>();
+                if (ZoneRenderer != null)
+                    tradeUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
+                inputHandler.TradeUI = tradeUI;
             }
 
             // Start the turn loop
@@ -204,6 +224,48 @@ namespace CavesOfOoo
                     }
                 }
                 spotsUsed++;
+            }
+        }
+
+        /// <summary>
+        /// Debug: spawn a friendly NPC near the player for dialogue testing.
+        /// </summary>
+        private void SpawnDebugNPCNearPlayer()
+        {
+            var pos = _zone.GetEntityPosition(_player);
+            if (pos.x < 0) return;
+
+            // Find an open adjacent cell (try 2 cells away so it's not blocked by weapons)
+            int[] offsets = { 2, -2, 3, -3 };
+            for (int i = 0; i < offsets.Length; i++)
+            {
+                int nx = pos.x + offsets[i];
+                int ny = pos.y;
+                if (!_zone.InBounds(nx, ny)) continue;
+                var cell = _zone.GetCell(nx, ny);
+                if (cell == null || !cell.IsPassable()) continue;
+
+                var elder = _factory.CreateEntity("Elder");
+                if (elder != null)
+                {
+                    _zone.AddEntity(elder, nx, ny);
+
+                    // Give elder trade inventory and currency
+                    TradeSystem.SetDrams(elder, 200);
+                    var elderInv = elder.GetPart<InventoryPart>();
+                    if (elderInv != null)
+                    {
+                        var tonic = _factory.CreateEntity("HealingTonic");
+                        if (tonic != null) elderInv.AddObject(tonic);
+                        var dagger = _factory.CreateEntity("Dagger");
+                        if (dagger != null) elderInv.AddObject(dagger);
+                        var armor = _factory.CreateEntity("LeatherArmor");
+                        if (armor != null) elderInv.AddObject(armor);
+                    }
+
+                    Debug.Log($"[Bootstrap] Debug: Spawned {elder.GetDisplayName()} at ({nx},{ny}) near player");
+                }
+                return;
             }
         }
 

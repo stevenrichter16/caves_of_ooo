@@ -19,6 +19,7 @@ namespace CavesOfOoo.Core.Anatomy
     ///     │     ├── Hand (right, appendage, supports "right hand")
     ///     │     └── Hands (right, abstract, requires Hand + right laterality)
     ///     ├── Feet (appendage, mobility)
+    ///     ├── Handwear (gloves/gauntlets, separate from Hand weapon slots)
     ///     ├── Thrown Weapon (abstract, ignore position)
     ///     └── Floating Nearby (abstract, ignore position)
     /// </summary>
@@ -111,6 +112,14 @@ namespace CavesOfOoo.Core.Anatomy
                 RequiresType = "Hand",
                 ImpliedBy = "Hand",
                 ImpliedPer = 1,
+            });
+
+            // Handwear: slot for gloves/gauntlets, separate from Hand (weapons).
+            Register(new BodyPartType("Handwear")
+            {
+                Contact = true,
+                Plural = true,
+                TargetWeight = 5,
             });
 
             // Feet: appendage with mobility value. Losing feet = movement penalty.
@@ -215,6 +224,9 @@ namespace CavesOfOoo.Core.Anatomy
 
             // Feet (mobility = 2)
             body.AddPart(CreatePart("Feet"));
+
+            // Handwear (gloves/gauntlets, separate from Hand weapon slots)
+            body.AddPart(CreatePart("Handwear"));
 
             // Thrown Weapon (abstract, always present)
             body.AddPart(CreatePart("Thrown Weapon"));

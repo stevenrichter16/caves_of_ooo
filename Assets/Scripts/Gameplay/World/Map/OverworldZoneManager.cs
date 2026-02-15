@@ -52,6 +52,7 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new DesertBuilder());
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.DesertTier1()));
+            pipeline.AddBuilder(new TradeStockBuilder());
             return pipeline;
         }
 
@@ -61,6 +62,7 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new JungleBuilder());
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.JungleTier1()));
+            pipeline.AddBuilder(new TradeStockBuilder());
             return pipeline;
         }
 
@@ -70,6 +72,7 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new RuinsBuilder());
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.RuinsTier1()));
+            pipeline.AddBuilder(new TradeStockBuilder());
             return pipeline;
         }
 

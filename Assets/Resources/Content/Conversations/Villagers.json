@@ -1,0 +1,110 @@
+{
+  "Conversations": [
+    {
+      "ID": "Elder_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Live and drink, wanderer. I am the elder of this village. What brings you to these parts?",
+          "Choices": [
+            {
+              "Text": "Tell me about this place.",
+              "Target": "AboutPlace"
+            },
+            {
+              "Text": "I could use some supplies.",
+              "Target": "Supplies"
+            },
+            {
+              "Text": "I've been dealing with snapjaws nearby.",
+              "Target": "SnapjawTalk",
+              "Predicates": [{ "Key": "IfHaveTag", "Value": "KilledSnapjaw" }]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AboutPlace",
+          "Text": "This land was once peaceful, but the caves below have stirred. Creatures grow bolder by the day. We could use someone with your courage.",
+          "Choices": [
+            {
+              "Text": "I'll see what I can do.",
+              "Target": "Start",
+              "Actions": [{ "Key": "AddMessage", "Value": "The elder nods approvingly." }]
+            },
+            {
+              "Text": "Tell me more about the caves.",
+              "Target": "AboutCaves"
+            }
+          ]
+        },
+        {
+          "ID": "AboutCaves",
+          "Text": "The caves of Ooo stretch deep beneath the earth. Strange things dwell down there -- things older than our village. But there is treasure too, for those brave enough to seek it.",
+          "Choices": [
+            {
+              "Text": "Interesting. I'll keep that in mind.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Supplies",
+          "Text": "We don't have much, but take this tonic. You'll need it more than we will.",
+          "Choices": [
+            {
+              "Text": "Thank you, elder.",
+              "Target": "SuppliesGiven",
+              "Predicates": [{ "Key": "IfNotHaveProperty", "Value": "ElderGaveSupplies" }],
+              "Actions": [
+                { "Key": "GiveItem", "Value": "HealingTonic" },
+                { "Key": "SetProperty", "Value": "ElderGaveSupplies:true" }
+              ]
+            },
+            {
+              "Text": "Thank you for the tonic earlier.",
+              "Target": "Start",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "ElderGaveSupplies" }]
+            },
+            {
+              "Text": "Never mind.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "SuppliesGiven",
+          "Text": "Use it well. Stay safe out there, wanderer.",
+          "Choices": [
+            {
+              "Text": "I will. Farewell.",
+              "Target": "End"
+            },
+            {
+              "Text": "Before I go, tell me about this place.",
+              "Target": "AboutPlace"
+            }
+          ]
+        },
+        {
+          "ID": "SnapjawTalk",
+          "Text": "You've fought the snapjaws? Good. They've been raiding our stores. The village owes you a debt.",
+          "Choices": [
+            {
+              "Text": "Just doing what needs to be done.",
+              "Target": "Start",
+              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "Villagers:Player:10" }]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

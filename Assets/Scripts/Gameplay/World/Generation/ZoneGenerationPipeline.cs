@@ -65,7 +65,10 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new CaveBuilder());
             pipeline.AddBuilder(new ConnectivityBuilder());
             if (popTable != null)
+            {
                 pipeline.AddBuilder(new PopulationBuilder(popTable));
+                pipeline.AddBuilder(new TradeStockBuilder());
+            }
             return pipeline;
         }
     }

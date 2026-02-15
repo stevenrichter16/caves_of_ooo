@@ -72,6 +72,13 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Item is not equippable.");
             }
 
+            if (!context.Inventory.Contains(_item))
+            {
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    "Actor does not own this item.");
+            }
+
             var stacker = _item.GetPart<StackerPart>();
             if (stacker != null && stacker.StackCount > 1)
             {

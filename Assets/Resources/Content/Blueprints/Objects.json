@@ -13,7 +13,8 @@
       "Name": "Item",
       "Inherits": "PhysicalObject",
       "Parts": [
-        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }] }
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }] },
+        { "Name": "Stacker", "Params": [] }
       ],
       "Stats": [],
       "Tags": [
@@ -122,6 +123,9 @@
       ],
       "Tags": [
         { "Key": "Player", "Value": "" }
+      ],
+      "IntProps": [
+        { "Key": "Drams", "Value": 50 }
       ]
     },
     {
@@ -531,6 +535,450 @@
       "Tags": [
         { "Key": "Tier", "Value": "3" },
         { "Key": "TwoHanded", "Value": "" }
+      ]
+    },
+    {
+      "Name": "Elder",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "elder" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&M" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "2" }] },
+        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "8" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Elder_1" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 },
+        { "Name": "Strength", "Value": 12 },
+        { "Name": "Intelligence", "Value": 18 },
+        { "Name": "Ego", "Value": 16 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Villagers" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "ShortSword",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "short sword" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "5" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6" }, { "Key": "PenBonus", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "15" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "Mace",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "mace" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "10" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8+1" }, { "Key": "PenBonus", "Value": "3" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "20" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "Spear",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "spear" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "7" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6+1" }, { "Key": "PenBonus", "Value": "2" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "18" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "Hatchet",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "hatchet" },
+          { "Key": "RenderString", "Value": "P" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "6" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6" }, { "Key": "PenBonus", "Value": "2" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "12" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "Claymore",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "claymore" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&M" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "14" }] },
+        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d8" }, { "Key": "PenBonus", "Value": "4" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "65" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "3" },
+        { "Key": "TwoHanded", "Value": "" }
+      ]
+    },
+    {
+      "Name": "Cudgel",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "cudgel" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "8" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4+2" }, { "Key": "PenBonus", "Value": "2" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "8" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 12, "Min": 0, "Max": 12 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "Buckler",
+      "Inherits": "ArmorItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "buckler" },
+          { "Key": "RenderString", "Value": ")" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "5" }] },
+        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "20" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "IronHelmet",
+      "Inherits": "ArmorItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "iron helmet" },
+          { "Key": "RenderString", "Value": "[" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "6" }] },
+        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Head" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "0" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "25" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 12, "Min": 0, "Max": 12 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "LeatherBoots",
+      "Inherits": "ArmorItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "leather boots" },
+          { "Key": "RenderString", "Value": "[" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "3" }] },
+        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Feet" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "0" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "12" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "LeatherGloves",
+      "Inherits": "ArmorItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "leather gloves" },
+          { "Key": "RenderString", "Value": "[" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Handwear" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "0" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "8" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 5, "Min": 0, "Max": 5 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "PlateArmor",
+      "Inherits": "ArmorItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "plate armor" },
+          { "Key": "RenderString", "Value": "[" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "40" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "8" }, { "Key": "DV", "Value": "-3" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "100" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 40, "Min": 0, "Max": 40 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "3" }
+      ]
+    },
+    {
+      "Name": "Cloak",
+      "Inherits": "ArmorItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "cloak" },
+          { "Key": "RenderString", "Value": "(" },
+          { "Key": "ColorString", "Value": "&b" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "3" }] },
+        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Back" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "18" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 6, "Min": 0, "Max": 6 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "SpeedTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "speed tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&B" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Effect", "Value": "Speed" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "20" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "StrengthTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "strength tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Effect", "Value": "Strength" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "22" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "Mushroom",
+      "Inherits": "FoodItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "mushroom" },
+          { "Key": "RenderString", "Value": "%" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Food", "Params": [{ "Key": "Healing", "Value": "1d4" }, { "Key": "Cooking", "Value": "Meal" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "3" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "DriedMeat",
+      "Inherits": "FoodItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "dried meat" },
+          { "Key": "RenderString", "Value": "%" },
+          { "Key": "ColorString", "Value": "&r" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "Food", "Params": [{ "Key": "Healing", "Value": "3d4" }, { "Key": "Cooking", "Value": "Meal" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "7" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "Villager",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "villager" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&g" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "8" }, { "Key": "Wanders", "Value": "true" }, { "Key": "WandersRandomly", "Value": "true" }] },
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Villager_1" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 20, "Min": 0, "Max": 20 },
+        { "Name": "Strength", "Value": 14 },
+        { "Name": "Ego", "Value": 12 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Villagers" },
+        { "Key": "Tier", "Value": "1" }
+      ],
+      "IntProps": [
+        { "Key": "Drams", "Value": 100 }
+      ]
+    },
+    {
+      "Name": "Tinker",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "tinker" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&c" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "2" }] },
+        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "8" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Tinker_1" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 },
+        { "Name": "Intelligence", "Value": 20 },
+        { "Name": "Ego", "Value": 14 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Villagers" },
+        { "Key": "Tier", "Value": "1" }
+      ],
+      "IntProps": [
+        { "Key": "Drams", "Value": 200 }
+      ]
+    },
+    {
+      "Name": "Merchant",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "merchant" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "8" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Merchant_1" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 20, "Min": 0, "Max": 20 },
+        { "Name": "Ego", "Value": 16 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Villagers" },
+        { "Key": "Tier", "Value": "1" }
+      ],
+      "IntProps": [
+        { "Key": "Drams", "Value": 500 }
       ]
     },
     {

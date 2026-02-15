@@ -1960,6 +1960,21 @@ namespace CavesOfOoo.Tests
             Assert.IsFalse(InventorySystem.AutoEquip(actor, weapon2));
         }
 
+        [Test]
+        public void AutoEquipCommand_ItemNotOwned_Fails()
+        {
+            var actor = CreateCreatureWithInventory();
+            var weapon = CreateWeapon("1d6", 1);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new AutoEquipCommand(weapon),
+                new InventoryContext(actor));
+
+            Assert.IsFalse(result.Success);
+            Assert.IsNull(actor.GetPart<InventoryPart>().GetEquipped("Hand"));
+        }
+
         // ========================
         // Containers
         // ========================
@@ -1972,6 +1987,59 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(chest.GetPart<ContainerPart>().AddItem(item));
             Assert.AreEqual(1, chest.GetPart<ContainerPart>().Contents.Count);
             Assert.AreEqual(chest, item.GetPart<PhysicsPart>().InInventory);
+        }
+
+        [Test]
+        public void ContainerPart_AddItem_MergesStacks()
+        {
+            var chest = CreateContainer();
+            var a = CreateStackableItem("Torch", 1, 3);
+            var b = CreateStackableItem("Torch", 1, 2);
+
+            var container = chest.GetPart<ContainerPart>();
+            Assert.IsTrue(container.AddItem(a));
+            Assert.IsTrue(container.AddItem(b));
+
+            Assert.AreEqual(1, container.Contents.Count);
+            Assert.AreEqual(5, container.Contents[0].GetPart<StackerPart>().StackCount);
+        }
+
+        [Test]
+        public void ContainerPart_AddItem_FullContainer_AllowsFullMerge()
+        {
+            var chest = CreateContainer(maxItems: 1);
+            var existing = CreateStackableItem("Torch", 1, 4);
+            var incoming = CreateStackableItem("Torch", 1, 2);
+
+            var container = chest.GetPart<ContainerPart>();
+            existing.GetPart<StackerPart>().MaxStack = 6;
+            incoming.GetPart<StackerPart>().MaxStack = 6;
+
+            Assert.IsTrue(container.AddItem(existing));
+            Assert.IsTrue(container.AddItem(incoming));
+
+            Assert.AreEqual(1, container.Contents.Count);
+            Assert.AreEqual(6, container.Contents[0].GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(0, incoming.GetPart<StackerPart>().StackCount);
+        }
+
+        [Test]
+        public void ContainerPart_AddItem_FullContainer_PartialMergeRejectedWithoutMutation()
+        {
+            var chest = CreateContainer(maxItems: 1);
+            var existing = CreateStackableItem("Torch", 1, 4);
+            var incoming = CreateStackableItem("Torch", 1, 3);
+
+            var container = chest.GetPart<ContainerPart>();
+            existing.GetPart<StackerPart>().MaxStack = 5;
+            incoming.GetPart<StackerPart>().MaxStack = 5;
+
+            Assert.IsTrue(container.AddItem(existing));
+            Assert.IsFalse(container.AddItem(incoming));
+
+            Assert.AreEqual(1, container.Contents.Count);
+            Assert.AreEqual(4, container.Contents[0].GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(3, incoming.GetPart<StackerPart>().StackCount);
         }
 
         [Test]
@@ -2102,6 +2170,44 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(InventorySystem.PutInContainer(actor, chest, item));
             Assert.AreEqual(0, actor.GetPart<InventoryPart>().Objects.Count);
             Assert.AreEqual(1, chest.GetPart<ContainerPart>().Contents.Count);
+        }
+
+        [Test]
+        public void PutInContainer_Stackable_MergesIntoExistingStack()
+        {
+            var actor = CreateCreatureWithInventory();
+            var chest = CreateContainer();
+            var inventory = actor.GetPart<InventoryPart>();
+            var container = chest.GetPart<ContainerPart>();
+
+            var carried = CreateStackableItem("Torch", 1, 2);
+            var existing = CreateStackableItem("Torch", 1, 3);
+            inventory.AddObject(carried);
+            container.AddItem(existing);
+
+            Assert.IsTrue(InventorySystem.PutInContainer(actor, chest, carried));
+            Assert.AreEqual(0, inventory.Objects.Count);
+            Assert.AreEqual(1, container.Contents.Count);
+            Assert.AreEqual(5, container.Contents[0].GetPart<StackerPart>().StackCount);
+        }
+
+        [Test]
+        public void TakeFromContainer_Stackable_MergesIntoExistingStack()
+        {
+            var actor = CreateCreatureWithInventory();
+            var chest = CreateContainer();
+            var inventory = actor.GetPart<InventoryPart>();
+            var container = chest.GetPart<ContainerPart>();
+
+            var carried = CreateStackableItem("Torch", 1, 3);
+            var inContainer = CreateStackableItem("Torch", 1, 2);
+            inventory.AddObject(carried);
+            container.AddItem(inContainer);
+
+            Assert.IsTrue(InventorySystem.TakeFromContainer(actor, chest, inContainer));
+            Assert.AreEqual(1, inventory.Objects.Count);
+            Assert.AreEqual(5, inventory.Objects[0].GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(0, container.Contents.Count);
         }
 
         [Test]

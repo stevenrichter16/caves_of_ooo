@@ -1178,8 +1178,6 @@ namespace CavesOfOoo.Rendering
                 {
                     var item = cat.Items[j];
                     string name = item.Name;
-                    if (item.StackCount > 1)
-                        name += " (x" + item.StackCount + ")";
 
                     string equipped = item.IsEquipped ? " [E]" : "";
                     string line = "  " + name;

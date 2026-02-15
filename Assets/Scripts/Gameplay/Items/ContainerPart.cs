@@ -30,6 +30,43 @@ namespace CavesOfOoo.Core
         public bool AddItem(Entity item)
         {
             if (item == null) return false;
+
+            var itemStacker = item.GetPart<StackerPart>();
+            if (itemStacker != null)
+            {
+                // When full, only allow adding a stack if it can fully merge into
+                // existing stacks without creating a new entry.
+                if (MaxItems >= 0 && Contents.Count >= MaxItems)
+                {
+                    int remaining = itemStacker.StackCount;
+                    for (int i = 0; i < Contents.Count && remaining > 0; i++)
+                    {
+                        var existingStacker = Contents[i].GetPart<StackerPart>();
+                        if (existingStacker == null || !existingStacker.CanStackWith(item))
+                            continue;
+
+                        int canAccept = existingStacker.MaxStack - existingStacker.StackCount;
+                        if (canAccept > 0)
+                            remaining -= canAccept;
+                    }
+
+                    if (remaining > 0)
+                        return false;
+                }
+
+                // Merge into existing stacks first.
+                for (int i = 0; i < Contents.Count; i++)
+                {
+                    var existingStacker = Contents[i].GetPart<StackerPart>();
+                    if (existingStacker == null || !existingStacker.CanStackWith(item))
+                        continue;
+
+                    existingStacker.MergeFrom(item);
+                    if (itemStacker.StackCount <= 0)
+                        return true;
+                }
+            }
+
             if (MaxItems >= 0 && Contents.Count >= MaxItems) return false;
 
             Contents.Add(item);

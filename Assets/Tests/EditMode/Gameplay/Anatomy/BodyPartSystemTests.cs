@@ -151,8 +151,8 @@ namespace CavesOfOoo.Tests
             var root = AnatomyFactory.CreateHumanoid();
             var allParts = root.GetParts();
 
-            // Humanoid: Body, Head, Face, Back, LAr, LHand, LHands, RAr, RHand, RHands, Feet, Thrown, Float = 13
-            Assert.AreEqual(13, allParts.Count);
+            // Humanoid: Body, Head, Face, Back, LAr, LHand, LHands, RAr, RHand, RHands, Feet, Handwear, Thrown, Float = 14
+            Assert.AreEqual(14, allParts.Count);
         }
 
         [Test]

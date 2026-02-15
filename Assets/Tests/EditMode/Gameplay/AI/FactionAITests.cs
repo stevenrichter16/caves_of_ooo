@@ -611,5 +611,71 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(15, brain.SightRadius);
             Assert.IsTrue(brain.Wanders);
         }
+
+        // ========================
+        // Per-Entity Hostility Tests
+        // ========================
+
+        [Test]
+        public void SetPersonallyHostile_MakesNPCHostileToPlayer()
+        {
+            var npc = CreateCreature("Villagers");
+            var brain = new BrainPart();
+            npc.AddPart(brain);
+            var player = CreatePlayer();
+
+            Assert.IsFalse(FactionManager.IsHostile(npc, player));
+            Assert.IsFalse(FactionManager.IsHostile(player, npc));
+
+            brain.SetPersonallyHostile(player);
+
+            Assert.IsTrue(FactionManager.IsHostile(npc, player));
+            Assert.IsTrue(FactionManager.IsHostile(player, npc));
+            Assert.AreEqual(player, brain.Target);
+            Assert.IsFalse(brain.InConversation);
+        }
+
+        [Test]
+        public void PersonalHostility_DoesNotAffectOtherNPCs()
+        {
+            var npc1 = CreateCreature("Villagers");
+            var brain1 = new BrainPart();
+            npc1.AddPart(brain1);
+
+            var npc2 = CreateCreature("Villagers");
+            var brain2 = new BrainPart();
+            npc2.AddPart(brain2);
+
+            var player = CreatePlayer();
+
+            brain1.SetPersonallyHostile(player);
+
+            Assert.IsTrue(FactionManager.IsHostile(npc1, player));
+            Assert.IsFalse(FactionManager.IsHostile(npc2, player));
+        }
+
+        [Test]
+        public void IsPersonallyHostileTo_ReturnsFalseByDefault()
+        {
+            var brain = new BrainPart();
+            var player = CreatePlayer();
+            Assert.IsFalse(brain.IsPersonallyHostileTo(player));
+            Assert.IsFalse(brain.IsPersonallyHostileTo(null));
+        }
+
+        [Test]
+        public void SetPersonallyHostile_Idempotent()
+        {
+            var npc = CreateCreature("Villagers");
+            var brain = new BrainPart();
+            npc.AddPart(brain);
+            var player = CreatePlayer();
+
+            brain.SetPersonallyHostile(player);
+            brain.SetPersonallyHostile(player);
+
+            Assert.IsTrue(brain.IsPersonallyHostileTo(player));
+            Assert.AreEqual(1, brain.PersonalEnemies.Count);
+        }
     }
 }

@@ -63,9 +63,20 @@ namespace CavesOfOoo.Rendering
         /// Normal: standard movement/action input.
         /// AwaitingDirection: waiting for a directional key to target an ability.
         /// </summary>
-        private enum InputState { Normal, AwaitingDirection, InventoryOpen, PickupOpen, ContainerPickerOpen }
+        private enum InputState { Normal, AwaitingDirection, InventoryOpen, PickupOpen, ContainerPickerOpen, AwaitingTalkDirection, DialogueOpen, TradeOpen, AwaitingAttackConfirm }
         private InputState _inputState = InputState.Normal;
         private ActivatedAbility _pendingAbility;
+        private Entity _pendingAttackTarget;
+
+        /// <summary>
+        /// The dialogue UI component. Set by GameBootstrap.
+        /// </summary>
+        public DialogueUI DialogueUI { get; set; }
+
+        /// <summary>
+        /// The trade UI component. Set by GameBootstrap.
+        /// </summary>
+        public TradeUI TradeUI { get; set; }
 
         /// <summary>
         /// The inventory UI component. Set by GameBootstrap.
@@ -122,6 +133,30 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            if (_inputState == InputState.AwaitingTalkDirection)
+            {
+                HandleAwaitingTalkDirection();
+                return;
+            }
+
+            if (_inputState == InputState.DialogueOpen)
+            {
+                HandleDialogueInput();
+                return;
+            }
+
+            if (_inputState == InputState.AwaitingAttackConfirm)
+            {
+                HandleAttackConfirmInput();
+                return;
+            }
+
+            if (_inputState == InputState.TradeOpen)
+            {
+                HandleTradeInput();
+                return;
+            }
+
             // Open inventory (I key)
             if (Input.GetKeyDown(KeyCode.I))
             {
@@ -154,6 +189,15 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // Talk to NPC (C key + direction)
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                _inputState = InputState.AwaitingTalkDirection;
+                MessageLog.Add("Talk — choose a direction.");
+                _lastMoveTime = Time.time;
+                return;
+            }
+
             int dx = 0, dy = 0;
 
             // Check movement keys
@@ -175,9 +219,10 @@ namespace CavesOfOoo.Rendering
 
                     EndTurnAndProcess();
                 }
-                else if (blockedBy != null && blockedBy.HasTag("Creature"))
+                else if (blockedBy != null && blockedBy.HasTag("Creature")
+                    && FactionManager.IsHostile(PlayerEntity, blockedBy))
                 {
-                    // Bump-to-attack: blocked by a creature, perform melee attack
+                    // Bump-to-attack: blocked by a hostile creature, perform melee attack
                     CombatSystem.PerformMeleeAttack(PlayerEntity, blockedBy, CurrentZone, _combatRng);
                     EndTurnAndProcess();
                 }
@@ -892,6 +937,263 @@ namespace CavesOfOoo.Rendering
             { dx = 1; dy = 1; return true; }
 
             return false;
+        }
+
+        // ===== Dialogue =====
+
+        private void HandleAwaitingTalkDirection()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                _inputState = InputState.Normal;
+                return;
+            }
+
+            int dx = 0, dy = 0;
+            if (!GetDirectionKeyDown(out dx, out dy))
+                return;
+
+            _inputState = InputState.Normal;
+            _lastMoveTime = Time.time;
+
+            var playerCell = CurrentZone.GetEntityCell(PlayerEntity);
+            if (playerCell == null) return;
+
+            int tx = playerCell.X + dx;
+            int ty = playerCell.Y + dy;
+            var targetCell = CurrentZone.GetCell(tx, ty);
+            if (targetCell == null)
+            {
+                MessageLog.Add("There's nothing there to talk to.");
+                return;
+            }
+
+            // Find entity with ConversationPart in the target cell
+            Entity talkTarget = null;
+            for (int i = 0; i < targetCell.Objects.Count; i++)
+            {
+                if (targetCell.Objects[i].GetPart<ConversationPart>() != null)
+                {
+                    talkTarget = targetCell.Objects[i];
+                    break;
+                }
+            }
+
+            if (talkTarget == null)
+            {
+                MessageLog.Add("There's nothing there to talk to.");
+                return;
+            }
+
+            // Try starting conversation
+            bool started = ConversationManager.StartConversation(talkTarget, PlayerEntity);
+            if (!started) return;
+
+            OpenDialogue();
+        }
+
+        private void OpenDialogue()
+        {
+            if (DialogueUI == null) return;
+            if (ZoneRenderer != null) ZoneRenderer.Paused = true;
+            DialogueUI.PlayerEntity = PlayerEntity;
+            DialogueUI.CurrentZone = CurrentZone;
+            DialogueUI.Open();
+            _inputState = InputState.DialogueOpen;
+        }
+
+        private void HandleDialogueInput()
+        {
+            if (DialogueUI == null || !DialogueUI.IsOpen)
+            {
+                CloseDialogue();
+                return;
+            }
+
+            DialogueUI.HandleInput();
+
+            if (!DialogueUI.IsOpen)
+                CloseDialogue();
+        }
+
+        private void CloseDialogue()
+        {
+            // Check if conversation triggered an attack
+            var attackTarget = ConversationManager.PendingAttackTarget;
+            if (attackTarget != null)
+            {
+                ConversationManager.PendingAttackTarget = null;
+
+                if (FactionManager.IsHostile(PlayerEntity, attackTarget))
+                {
+                    // Already hostile — attack immediately, no confirmation
+                    ExecuteAttackOnNPC(attackTarget);
+                    _inputState = InputState.Normal;
+                    if (ZoneRenderer != null) { ZoneRenderer.Paused = false; ZoneRenderer.MarkDirty(); }
+                    return;
+                }
+
+                // Friendly NPC — show confirmation popup
+                _pendingAttackTarget = attackTarget;
+                _inputState = InputState.AwaitingAttackConfirm;
+                RenderAttackConfirmation(attackTarget);
+                return;
+            }
+
+            // Check if conversation triggered a trade
+            var tradePartner = ConversationManager.PendingTradePartner;
+            if (tradePartner != null)
+            {
+                ConversationManager.PendingTradePartner = null;
+                OpenTrade(tradePartner);
+                return;
+            }
+
+            _inputState = InputState.Normal;
+            if (ZoneRenderer != null)
+            {
+                ZoneRenderer.Paused = false;
+                ZoneRenderer.MarkDirty();
+            }
+        }
+
+        // ===== Trade =====
+
+        private void OpenTrade(Entity trader)
+        {
+            if (TradeUI == null) return;
+            if (ZoneRenderer != null) ZoneRenderer.Paused = true;
+            if (CameraFollow != null) CameraFollow.SetUIView(80, 45);
+            TradeUI.PlayerEntity = PlayerEntity;
+            TradeUI.CurrentZone = CurrentZone;
+            TradeUI.Open(trader);
+            _inputState = InputState.TradeOpen;
+        }
+
+        private void HandleTradeInput()
+        {
+            if (TradeUI == null || !TradeUI.IsOpen)
+            {
+                CloseTrade();
+                return;
+            }
+
+            TradeUI.HandleInput();
+
+            if (!TradeUI.IsOpen)
+                CloseTrade();
+        }
+
+        private void CloseTrade()
+        {
+            _inputState = InputState.Normal;
+            if (CameraFollow != null) CameraFollow.RestoreGameView();
+            if (ZoneRenderer != null)
+            {
+                ZoneRenderer.Paused = false;
+                ZoneRenderer.MarkDirty();
+            }
+        }
+
+        // ===== Attack Confirmation =====
+
+        private void HandleAttackConfirmInput()
+        {
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                ClearAttackConfirmation();
+                var target = _pendingAttackTarget;
+                _pendingAttackTarget = null;
+                _inputState = InputState.Normal;
+                if (ZoneRenderer != null) { ZoneRenderer.Paused = false; ZoneRenderer.MarkDirty(); }
+                ExecuteAttackOnNPC(target);
+            }
+            else if (Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.Escape))
+            {
+                ClearAttackConfirmation();
+                _pendingAttackTarget = null;
+                _inputState = InputState.Normal;
+                if (ZoneRenderer != null) { ZoneRenderer.Paused = false; ZoneRenderer.MarkDirty(); }
+                MessageLog.Add("You decide against it.");
+            }
+        }
+
+        private void ExecuteAttackOnNPC(Entity target)
+        {
+            if (target == null) return;
+
+            var brain = target.GetPart<BrainPart>();
+            if (brain != null)
+                brain.SetPersonallyHostile(PlayerEntity);
+
+            CombatSystem.PerformMeleeAttack(PlayerEntity, target, CurrentZone, _combatRng);
+            EndTurnAndProcess();
+        }
+
+        private int _confirmOriginX, _confirmTopY, _confirmW, _confirmH;
+
+        private void RenderAttackConfirmation(Entity target)
+        {
+            if (DialogueUI == null || DialogueUI.Tilemap == null) return;
+            var tilemap = DialogueUI.Tilemap;
+            var cam = Camera.main;
+            if (cam == null) return;
+
+            string name = target != null ? target.GetDisplayName() : "this creature";
+            string prompt = "Really attack " + name + "? (y/n)";
+
+            _confirmW = prompt.Length + 4;
+            _confirmH = 3;
+            _confirmOriginX = Mathf.RoundToInt(cam.transform.position.x) - _confirmW / 2;
+            _confirmTopY = Mathf.RoundToInt(cam.transform.position.y) + _confirmH / 2;
+
+            // Clear only the popup region
+            for (int dy = 0; dy < _confirmH; dy++)
+                for (int dx = 0; dx < _confirmW; dx++)
+                    tilemap.SetTile(new Vector3Int(_confirmOriginX + dx, _confirmTopY - dy, 0), null);
+
+            // Border
+            DrawConfirmChar(0, 0, '+', QudColorParser.Gray);
+            DrawConfirmChar(_confirmW - 1, 0, '+', QudColorParser.Gray);
+            DrawConfirmChar(0, 2, '+', QudColorParser.Gray);
+            DrawConfirmChar(_confirmW - 1, 2, '+', QudColorParser.Gray);
+            for (int i = 1; i < _confirmW - 1; i++)
+            {
+                DrawConfirmChar(i, 0, '-', QudColorParser.Gray);
+                DrawConfirmChar(i, 2, '-', QudColorParser.Gray);
+            }
+            DrawConfirmChar(0, 1, '|', QudColorParser.Gray);
+            DrawConfirmChar(_confirmW - 1, 1, '|', QudColorParser.Gray);
+
+            // Text
+            for (int i = 0; i < prompt.Length; i++)
+            {
+                if (prompt[i] == ' ') continue;
+                DrawConfirmChar(2 + i, 1, prompt[i], QudColorParser.BrightYellow);
+            }
+        }
+
+        private void ClearAttackConfirmation()
+        {
+            if (DialogueUI == null || DialogueUI.Tilemap == null) return;
+            var tilemap = DialogueUI.Tilemap;
+            for (int dy = 0; dy < _confirmH; dy++)
+                for (int dx = 0; dx < _confirmW; dx++)
+                    tilemap.SetTile(new Vector3Int(_confirmOriginX + dx, _confirmTopY - dy, 0), null);
+        }
+
+        private void DrawConfirmChar(int gx, int gy, char c, Color color)
+        {
+            if (DialogueUI == null || DialogueUI.Tilemap == null) return;
+            var tilemap = DialogueUI.Tilemap;
+            int wx = _confirmOriginX + gx;
+            int wy = _confirmTopY - gy;
+            var tilePos = new Vector3Int(wx, wy, 0);
+            var tile = CP437TilesetGenerator.GetTile(c);
+            if (tile == null) return;
+            tilemap.SetTile(tilePos, tile);
+            tilemap.SetTileFlags(tilePos, UnityEngine.Tilemaps.TileFlags.None);
+            tilemap.SetColor(tilePos, color);
         }
     }
 }

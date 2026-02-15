@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace CavesOfOoo.Core
 {
@@ -35,6 +36,26 @@ namespace CavesOfOoo.Core
         // Runtime state
         public AIState CurrentState = AIState.Idle;
         public Entity Target;
+        public bool InConversation;
+
+        /// <summary>
+        /// Entities this NPC is personally hostile toward, independent of faction.
+        /// Mirrors Qud's per-NPC opinion system (simplified: permanent hostility).
+        /// </summary>
+        public HashSet<Entity> PersonalEnemies = new HashSet<Entity>();
+
+        public void SetPersonallyHostile(Entity target)
+        {
+            if (target == null) return;
+            PersonalEnemies.Add(target);
+            Target = target;
+            InConversation = false;
+        }
+
+        public bool IsPersonallyHostileTo(Entity target)
+        {
+            return target != null && PersonalEnemies.Contains(target);
+        }
 
         // Zone reference (set externally by GameBootstrap)
         public Zone CurrentZone;
@@ -54,6 +75,9 @@ namespace CavesOfOoo.Core
             // Guard: no zone or not in zone (dead/removed)
             if (CurrentZone == null) return true;
             if (CurrentZone.GetEntityCell(ParentEntity) == null) return true;
+
+            // Skip turn when in conversation
+            if (InConversation) return true;
 
             // Safety: skip player entities (TurnManager shouldn't fire TakeTurn on player, but just in case)
             if (ParentEntity.HasTag("Player")) return true;

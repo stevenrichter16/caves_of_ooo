@@ -1,0 +1,149 @@
+{
+  "Conversations": [
+    {
+      "ID": "Villager_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Greetings, traveler. The roads have been dangerous lately. What brings you out here?",
+          "Choices": [
+            {
+              "Text": "Just passing through.",
+              "Target": "PassingThrough"
+            },
+            {
+              "Text": "What dangers are you talking about?",
+              "Target": "Dangers"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "PassingThrough",
+          "Text": "Well, be careful. The snapjaws have been bolder than usual. Stick to the open paths if you can.",
+          "Choices": [
+            {
+              "Text": "Thanks for the warning.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Dangers",
+          "Text": "Snapjaws, mostly. They come out of the caves at night and raid our supplies. Some folk have gone missing too.",
+          "Choices": [
+            {
+              "Text": "I'll keep an eye out.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Tinker_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Ah, a visitor! I'm always tinkering with something. Need anything repaired, or just browsing?",
+          "Choices": [
+            {
+              "Text": "What do you do here?",
+              "Target": "AboutWork"
+            },
+            {
+              "Text": "Know anything useful about the area?",
+              "Target": "AreaInfo"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AboutWork",
+          "Text": "I salvage old tech and put it to new use. You'd be surprised what you can find in the ruins if you know where to look.",
+          "Choices": [
+            {
+              "Text": "Interesting. I'll keep that in mind.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AreaInfo",
+          "Text": "The ruins to the east have the best salvage, but they're crawling with snapjaw hunters. The caves are safer, but the pickings are slim.",
+          "Choices": [
+            {
+              "Text": "Good to know. Thanks.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Merchant_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Welcome, welcome! I've got wares from all across the land. Take a look -- you won't find better prices anywhere.",
+          "Choices": [
+            {
+              "Text": "Where do you get your goods?",
+              "Target": "Sources"
+            },
+            {
+              "Text": "Any advice for a traveler?",
+              "Target": "Advice"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Sources",
+          "Text": "Here and there. Caravans from the north, salvage from the ruins, the occasional adventurer who needs coin more than steel. Business is business.",
+          "Choices": [
+            {
+              "Text": "Fair enough.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Advice",
+          "Text": "Always carry a healing tonic. And never fight a snapjaw hunter without good armor. Beyond that? Buy low, sell high.",
+          "Choices": [
+            {
+              "Text": "Sound advice.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

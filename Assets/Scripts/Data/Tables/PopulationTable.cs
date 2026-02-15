@@ -66,6 +66,9 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "Dagger", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "Stalagmite", Weight = 4, MinCount = 3, MaxCount = 8 },
+                    new PopulationEntry { BlueprintName = "Villager", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Tinker", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Merchant", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }
@@ -80,6 +83,8 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "Snapjaw", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "SnapjawScavenger", Weight = 2, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Rock", Weight = 4, MinCount = 2, MaxCount = 6 },
+                    new PopulationEntry { BlueprintName = "Villager", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Merchant", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }
@@ -94,6 +99,8 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "Snapjaw", Weight = 4, MinCount = 2, MaxCount = 4 },
                     new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 2, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "Dagger", Weight = 2, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Villager", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Tinker", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }
@@ -109,6 +116,9 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 2, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "LeatherArmor", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Villager", Weight = 2, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Tinker", Weight = 2, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Merchant", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }

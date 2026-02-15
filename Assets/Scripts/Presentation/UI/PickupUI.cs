@@ -299,9 +299,6 @@ namespace CavesOfOoo.Rendering
 
                     // Item name + stack count
                     string name = item.GetDisplayName();
-                    var stacker = item.GetPart<StackerPart>();
-                    if (stacker != null && stacker.StackCount > 1)
-                        name += " (x" + stacker.StackCount + ")";
 
                     int maxNameLen = POPUP_W - 9;
                     if (name.Length > maxNameLen)
