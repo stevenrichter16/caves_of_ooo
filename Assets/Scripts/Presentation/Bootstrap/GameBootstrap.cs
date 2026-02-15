@@ -76,7 +76,7 @@ namespace CavesOfOoo
 
             Debug.Log("[Bootstrap] Step 5/9: Generating starting zone...");
             _zoneManager = new OverworldZoneManager(_factory);
-            _zone = _zoneManager.GetZone("Overworld.5.5");
+            _zone = _zoneManager.GetZone("Overworld.5.5.0");
             _zoneManager.SetActiveZone(_zone);
             if (_zone == null)
             {

@@ -246,7 +246,7 @@ namespace CavesOfOoo.Tests
             trader.GetPart<InventoryPart>().AddObject(item);
 
             double perf = TradeSystem.GetTradePerformance(player);
-            int buyPrice = TradeSystem.GetBuyPrice(item, perf);
+            int buyPrice = TradeSystem.GetBuyPrice(item, perf, trader);
 
             bool success = TradeSystem.BuyFromTrader(player, trader, item);
             Assert.IsTrue(success);
@@ -271,7 +271,7 @@ namespace CavesOfOoo.Tests
             player.GetPart<InventoryPart>().AddObject(item);
 
             double perf = TradeSystem.GetTradePerformance(player);
-            int sellPrice = TradeSystem.GetSellPrice(item, perf);
+            int sellPrice = TradeSystem.GetSellPrice(item, perf, trader);
 
             bool success = TradeSystem.SellToTrader(player, trader, item);
             Assert.IsTrue(success);

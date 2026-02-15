@@ -53,6 +53,8 @@ namespace CavesOfOoo.Data
             var fileData = JsonUtility.FromJson<ConversationFileData>(json);
             if (fileData?.Conversations == null) return;
 
+            _loaded = true;
+
             for (int i = 0; i < fileData.Conversations.Count; i++)
             {
                 var conv = fileData.Conversations[i];

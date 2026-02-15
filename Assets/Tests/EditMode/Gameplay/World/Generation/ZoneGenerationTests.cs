@@ -180,6 +180,42 @@ namespace CavesOfOoo.Tests
               ],
               ""Stats"": [],
               ""Tags"": [{ ""Key"": ""Solid"", ""Value"": """" }]
+            },
+            {
+              ""Name"": ""Villager"",
+              ""Inherits"": ""Creature"",
+              ""Parts"": [
+                { ""Name"": ""Render"", ""Params"": [
+                  { ""Key"": ""DisplayName"", ""Value"": ""villager"" },
+                  { ""Key"": ""RenderString"", ""Value"": ""v"" }
+                ]}
+              ],
+              ""Stats"": [],
+              ""Tags"": []
+            },
+            {
+              ""Name"": ""Tinker"",
+              ""Inherits"": ""Creature"",
+              ""Parts"": [
+                { ""Name"": ""Render"", ""Params"": [
+                  { ""Key"": ""DisplayName"", ""Value"": ""tinker"" },
+                  { ""Key"": ""RenderString"", ""Value"": ""t"" }
+                ]}
+              ],
+              ""Stats"": [],
+              ""Tags"": []
+            },
+            {
+              ""Name"": ""Merchant"",
+              ""Inherits"": ""Creature"",
+              ""Parts"": [
+                { ""Name"": ""Render"", ""Params"": [
+                  { ""Key"": ""DisplayName"", ""Value"": ""merchant"" },
+                  { ""Key"": ""RenderString"", ""Value"": ""m"" }
+                ]}
+              ],
+              ""Stats"": [],
+              ""Tags"": []
             }
           ]
         }";

@@ -472,6 +472,181 @@
       "Tags": []
     },
     {
+      "Name": "LimestoneWall",
+      "Inherits": "Wall",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "limestone wall" },
+          { "Key": "RenderString", "Value": "#" },
+          { "Key": "ColorString", "Value": "&w" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "ShaleWall",
+      "Inherits": "Wall",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "shale wall" },
+          { "Key": "RenderString", "Value": "#" },
+          { "Key": "ColorString", "Value": "&K" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "SlateWall",
+      "Inherits": "Wall",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "slate wall" },
+          { "Key": "RenderString", "Value": "#" },
+          { "Key": "ColorString", "Value": "&b" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "QuartziteWall",
+      "Inherits": "Wall",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "quartzite wall" },
+          { "Key": "RenderString", "Value": "#" },
+          { "Key": "ColorString", "Value": "&C" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "ObsidianWall",
+      "Inherits": "Wall",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "obsidian wall" },
+          { "Key": "RenderString", "Value": "#" },
+          { "Key": "ColorString", "Value": "&m" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "SandstoneFloor",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "sandstone floor" },
+          { "Key": "RenderString", "Value": "." },
+          { "Key": "ColorString", "Value": "&W" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "LimestoneFloor",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "limestone floor" },
+          { "Key": "RenderString", "Value": "." },
+          { "Key": "ColorString", "Value": "&w" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "ShaleFloor",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "shale floor" },
+          { "Key": "RenderString", "Value": "." },
+          { "Key": "ColorString", "Value": "&K" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "SlateFloor",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "slate floor" },
+          { "Key": "RenderString", "Value": "," },
+          { "Key": "ColorString", "Value": "&b" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "QuartziteFloor",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "quartzite floor" },
+          { "Key": "RenderString", "Value": "." },
+          { "Key": "ColorString", "Value": "&C" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "ObsidianFloor",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "obsidian floor" },
+          { "Key": "RenderString", "Value": "." },
+          { "Key": "ColorString", "Value": "&m" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "StairsDown",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "stairs leading down" },
+          { "Key": "RenderString", "Value": ">" },
+          { "Key": "ColorString", "Value": "&W" }
+        ]},
+        { "Name": "StairsDown", "Params": [] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "StairsDown", "Value": "" }
+      ]
+    },
+    {
+      "Name": "StairsUp",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "stairs leading up" },
+          { "Key": "RenderString", "Value": "<" },
+          { "Key": "ColorString", "Value": "&W" }
+        ]},
+        { "Name": "StairsUp", "Params": [] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "StairsUp", "Value": "" }
+      ]
+    },
+    {
       "Name": "LongSword",
       "Inherits": "MeleeWeapon",
       "Parts": [

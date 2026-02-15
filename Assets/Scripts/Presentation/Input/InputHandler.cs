@@ -281,6 +281,24 @@ namespace CavesOfOoo.Rendering
                 _lastMoveTime = Time.time;
             }
 
+            // Descend stairs (> key = Shift+Period)
+            if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                && Input.GetKeyDown(KeyCode.Period))
+            {
+                TryUseStairs(goingDown: true);
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            // Ascend stairs (< key = Shift+Comma)
+            if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                && Input.GetKeyDown(KeyCode.Comma))
+            {
+                TryUseStairs(goingDown: false);
+                _lastMoveTime = Time.time;
+                return;
+            }
+
             // Wait/skip turn
             if (Input.GetKeyDown(KeyCode.Period) || Input.GetKeyDown(KeyCode.Keypad5))
             {
@@ -343,6 +361,45 @@ namespace CavesOfOoo.Rendering
             TurnManager.ProcessUntilPlayerTurn();
             if (ZoneRenderer != null)
                 ZoneRenderer.MarkDirty();
+        }
+
+        private void TryUseStairs(bool goingDown)
+        {
+            var cell = CurrentZone.GetEntityCell(PlayerEntity);
+            if (cell == null) return;
+
+            // Check for stairs entity in current cell
+            bool hasStairs = false;
+            for (int i = 0; i < cell.Objects.Count; i++)
+            {
+                if (goingDown && cell.Objects[i].GetPart<StairsDownPart>() != null)
+                { hasStairs = true; break; }
+                if (!goingDown && cell.Objects[i].GetPart<StairsUpPart>() != null)
+                { hasStairs = true; break; }
+            }
+
+            if (!hasStairs)
+            {
+                MessageLog.Add(goingDown
+                    ? "There are no stairs leading down here."
+                    : "There are no stairs leading up here.");
+                return;
+            }
+
+            if (ZoneManager == null) return;
+
+            var result = ZoneTransitionSystem.TransitionPlayerVertical(
+                PlayerEntity, CurrentZone, goingDown, cell.X, cell.Y, ZoneManager);
+
+            if (result.Success)
+            {
+                HandleZoneTransition(result);
+                EndTurnAndProcess();
+            }
+            else
+            {
+                MessageLog.Add(result.ErrorReason ?? "Cannot use stairs.");
+            }
         }
 
         /// <summary>

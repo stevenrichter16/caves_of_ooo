@@ -5,6 +5,18 @@ using CavesOfOoo.Data;
 namespace CavesOfOoo.Core
 {
     /// <summary>
+    /// Tracks a connection between two zones (e.g., stairs linking floors).
+    /// </summary>
+    public class ZoneConnection
+    {
+        public string SourceZoneID;
+        public int SourceX, SourceY;
+        public string TargetZoneID;
+        public int TargetX, TargetY;
+        public string Type; // "StairsDown", "StairsUp"
+    }
+
+    /// <summary>
     /// Manages zone lifecycle: generation, caching, and transitions.
     /// Mirrors Qud's ZoneManager: zones are identified by string IDs,
     /// cached after generation, and retrieved on demand.
@@ -15,6 +27,9 @@ namespace CavesOfOoo.Core
         public Zone ActiveZone { get; private set; }
         public EntityFactory Factory { get; private set; }
         public int WorldSeed { get; private set; }
+
+        private Dictionary<string, List<ZoneConnection>> _connections
+            = new Dictionary<string, List<ZoneConnection>>();
 
         public ZoneManager(EntityFactory factory, int worldSeed = 0)
         {
@@ -77,5 +92,68 @@ namespace CavesOfOoo.Core
         }
 
         public int CachedZoneCount => CachedZones.Count;
+
+        // --- Zone Connection Registry ---
+
+        /// <summary>
+        /// Register a connection between two zones (e.g., stairs).
+        /// Indexed by both source and target zone IDs.
+        /// </summary>
+        public void RegisterConnection(ZoneConnection conn)
+        {
+            if (!_connections.TryGetValue(conn.SourceZoneID, out var sourceList))
+            {
+                sourceList = new List<ZoneConnection>();
+                _connections[conn.SourceZoneID] = sourceList;
+            }
+            sourceList.Add(conn);
+
+            if (!_connections.TryGetValue(conn.TargetZoneID, out var targetList))
+            {
+                targetList = new List<ZoneConnection>();
+                _connections[conn.TargetZoneID] = targetList;
+            }
+            targetList.Add(conn);
+        }
+
+        /// <summary>
+        /// Get all connections involving a zone (as source or target).
+        /// </summary>
+        public List<ZoneConnection> GetConnections(string zoneID)
+        {
+            if (_connections.TryGetValue(zoneID, out var list))
+                return list;
+            return new List<ZoneConnection>();
+        }
+
+        /// <summary>
+        /// Get connections where targetZoneID matches, filtered by type.
+        /// Used by StairsUpBuilder to find where stairs from above connect.
+        /// </summary>
+        public List<ZoneConnection> GetConnectionsTo(string targetZoneID, string type)
+        {
+            var result = new List<ZoneConnection>();
+            if (!_connections.TryGetValue(targetZoneID, out var list))
+                return result;
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].TargetZoneID == targetZoneID && list[i].Type == type)
+                    result.Add(list[i]);
+            }
+            return result;
+        }
+
+        // --- Zone Tier ---
+
+        /// <summary>
+        /// Calculate zone tier from depth. Surface = 1, every 3 levels deeper = +1 tier, max 8.
+        /// </summary>
+        public static int GetZoneTier(string zoneID)
+        {
+            int z = WorldMap.GetDepth(zoneID);
+            if (z <= 0) return 1;
+            return Math.Min(z / 3 + 1, 8);
+        }
     }
 }

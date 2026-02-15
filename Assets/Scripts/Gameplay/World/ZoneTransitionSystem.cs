@@ -7,7 +7,9 @@ namespace CavesOfOoo.Core
         North,
         South,
         East,
-        West
+        West,
+        Up,
+        Down
     }
 
     public struct ZoneTransitionResult
@@ -196,6 +198,127 @@ namespace CavesOfOoo.Core
             }
 
             return (-1, -1);
+        }
+
+        /// <summary>
+        /// Execute a vertical zone transition (stairs up/down).
+        /// Finds matching stairs in the target zone for arrival position.
+        /// </summary>
+        public static ZoneTransitionResult TransitionPlayerVertical(
+            Entity player,
+            Zone currentZone,
+            bool goingDown,
+            int currentX,
+            int currentY,
+            ZoneManager zoneManager)
+        {
+            string targetZoneID = goingDown
+                ? WorldMap.GetZoneBelow(currentZone.ZoneID)
+                : WorldMap.GetZoneAbove(currentZone.ZoneID);
+
+            if (targetZoneID == null)
+            {
+                return new ZoneTransitionResult
+                {
+                    Success = false,
+                    ErrorReason = goingDown ? "Cannot go deeper" : "Already at the surface"
+                };
+            }
+
+            Zone newZone = zoneManager.GetZone(targetZoneID);
+            if (newZone == null)
+            {
+                return new ZoneTransitionResult
+                {
+                    Success = false,
+                    ErrorReason = "Failed to generate zone"
+                };
+            }
+
+            // Find matching stairs in the target zone
+            // Going down: look for StairsUp (the matching pair)
+            // Going up: look for StairsDown (the matching pair)
+            string searchTag = goingDown ? "StairsUp" : "StairsDown";
+            var (arriveX, arriveY) = FindStairsInZone(newZone, searchTag, currentX, currentY);
+
+            if (arriveX < 0)
+            {
+                // Fallback: arrive at the same position if no matching stairs found
+                arriveX = currentX;
+                arriveY = currentY;
+
+                // Ensure it's passable
+                var cell = newZone.GetCell(arriveX, arriveY);
+                if (cell == null || !cell.IsPassable())
+                {
+                    // Search for any passable cell nearby
+                    for (int radius = 1; radius <= 20; radius++)
+                    {
+                        bool found = false;
+                        for (int dx = -radius; dx <= radius && !found; dx++)
+                        {
+                            for (int dy = -radius; dy <= radius && !found; dy++)
+                            {
+                                int nx = arriveX + dx;
+                                int ny = arriveY + dy;
+                                if (!newZone.InBounds(nx, ny)) continue;
+                                var c = newZone.GetCell(nx, ny);
+                                if (c != null && c.IsPassable())
+                                {
+                                    arriveX = nx;
+                                    arriveY = ny;
+                                    found = true;
+                                }
+                            }
+                        }
+                        if (found) break;
+                    }
+                }
+            }
+
+            // Execute the transfer
+            currentZone.RemoveEntity(player);
+            newZone.AddEntity(player, arriveX, arriveY);
+
+            return new ZoneTransitionResult
+            {
+                Success = true,
+                NewZone = newZone,
+                NewPlayerX = arriveX,
+                NewPlayerY = arriveY
+            };
+        }
+
+        /// <summary>
+        /// Find stairs with the given tag in a zone, preferring position closest to (nearX, nearY).
+        /// </summary>
+        private static (int x, int y) FindStairsInZone(Zone zone, string stairsTag, int nearX, int nearY)
+        {
+            int bestX = -1, bestY = -1;
+            int bestDist = int.MaxValue;
+
+            for (int x = 0; x < Zone.Width; x++)
+            {
+                for (int y = 0; y < Zone.Height; y++)
+                {
+                    var cell = zone.GetCell(x, y);
+                    for (int i = 0; i < cell.Objects.Count; i++)
+                    {
+                        if (cell.Objects[i].HasTag(stairsTag))
+                        {
+                            int dist = Math.Abs(x - nearX) + Math.Abs(y - nearY);
+                            if (dist < bestDist)
+                            {
+                                bestDist = dist;
+                                bestX = x;
+                                bestY = y;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return (bestX, bestY);
         }
     }
 }

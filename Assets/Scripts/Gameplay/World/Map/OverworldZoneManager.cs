@@ -21,9 +21,13 @@ namespace CavesOfOoo.Core
             if (!WorldMap.IsOverworldZoneID(zoneID))
                 return base.GetPipelineForZone(zoneID);
 
-            var (wx, wy) = WorldMap.FromZoneID(zoneID);
+            var (wx, wy, wz) = WorldMap.FromZoneID(zoneID);
             if (!WorldMap.InBounds(wx, wy))
                 return base.GetPipelineForZone(zoneID);
+
+            // Underground zones use a dedicated pipeline
+            if (wz > 0)
+                return CreateUndergroundPipeline(wz);
 
             BiomeType biome = WorldMap.GetBiome(wx, wy);
 
@@ -43,7 +47,24 @@ namespace CavesOfOoo.Core
 
         private ZoneGenerationPipeline CreateCavePipeline()
         {
-            return ZoneGenerationPipeline.CreateCavePipeline(PopulationTable.CaveTier1());
+            var pipeline = ZoneGenerationPipeline.CreateCavePipeline(PopulationTable.CaveTier1());
+            pipeline.AddBuilder(new CaveEntranceBuilder(this));
+            return pipeline;
+        }
+
+        private ZoneGenerationPipeline CreateUndergroundPipeline(int depth)
+        {
+            var (wallBP, floorBP) = SolidEarthBuilder.GetMaterialsForDepth(depth);
+
+            var pipeline = new ZoneGenerationPipeline();
+            pipeline.AddBuilder(new SolidEarthBuilder(wallBP));
+            pipeline.AddBuilder(new StrataBuilder(depth, wallBP, floorBP));
+            pipeline.AddBuilder(new ConnectivityBuilder { FloorBlueprint = floorBP });
+            pipeline.AddBuilder(new StairsUpBuilder(this));
+            pipeline.AddBuilder(new StairsDownBuilder(this));
+            pipeline.AddBuilder(new StairConnectorBuilder(floorBP));
+            pipeline.AddBuilder(new PopulationBuilder(PopulationTable.UndergroundTier(depth)));
+            return pipeline;
         }
 
         private ZoneGenerationPipeline CreateDesertPipeline()
@@ -51,6 +72,7 @@ namespace CavesOfOoo.Core
             var pipeline = new ZoneGenerationPipeline();
             pipeline.AddBuilder(new DesertBuilder());
             pipeline.AddBuilder(new ConnectivityBuilder());
+            pipeline.AddBuilder(new CaveEntranceBuilder(this));
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.DesertTier1()));
             pipeline.AddBuilder(new TradeStockBuilder());
             return pipeline;
@@ -61,6 +83,7 @@ namespace CavesOfOoo.Core
             var pipeline = new ZoneGenerationPipeline();
             pipeline.AddBuilder(new JungleBuilder());
             pipeline.AddBuilder(new ConnectivityBuilder());
+            pipeline.AddBuilder(new CaveEntranceBuilder(this));
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.JungleTier1()));
             pipeline.AddBuilder(new TradeStockBuilder());
             return pipeline;
@@ -71,6 +94,7 @@ namespace CavesOfOoo.Core
             var pipeline = new ZoneGenerationPipeline();
             pipeline.AddBuilder(new RuinsBuilder());
             pipeline.AddBuilder(new ConnectivityBuilder());
+            pipeline.AddBuilder(new CaveEntranceBuilder(this));
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.RuinsTier1()));
             pipeline.AddBuilder(new TradeStockBuilder());
             return pipeline;

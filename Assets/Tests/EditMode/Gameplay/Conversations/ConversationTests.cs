@@ -369,9 +369,9 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Action_ChangeFactionFeeling_ModifiesReputation()
         {
-            int before = FactionManager.GetFactionFeeling("Villagers", "Player");
+            int before = PlayerReputation.Get("Villagers");
             ConversationActions.Execute("ChangeFactionFeeling", null, null, "Villagers:Player:10");
-            int after = FactionManager.GetFactionFeeling("Villagers", "Player");
+            int after = PlayerReputation.Get("Villagers");
             Assert.AreEqual(before + 10, after);
         }
 

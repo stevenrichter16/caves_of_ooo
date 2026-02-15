@@ -334,6 +334,65 @@ namespace CavesOfOoo.Tests
                   { ""Key"": ""DisplayName"", ""Value"": ""snapjaw hunter"" }
                 ]}
               ]
+            },
+            {
+              ""Name"": ""StairsDown"",
+              ""Inherits"": ""Terrain"",
+              ""Parts"": [
+                { ""Name"": ""Render"", ""Params"": [
+                  { ""Key"": ""DisplayName"", ""Value"": ""stairs leading down"" },
+                  { ""Key"": ""RenderString"", ""Value"": "">"" },
+                  { ""Key"": ""ColorString"", ""Value"": ""&W"" }
+                ]},
+                { ""Name"": ""StairsDown"", ""Params"": [] }
+              ],
+              ""Tags"": [{ ""Key"": ""StairsDown"", ""Value"": """" }]
+            },
+            {
+              ""Name"": ""StairsUp"",
+              ""Inherits"": ""Terrain"",
+              ""Parts"": [
+                { ""Name"": ""Render"", ""Params"": [
+                  { ""Key"": ""DisplayName"", ""Value"": ""stairs leading up"" },
+                  { ""Key"": ""RenderString"", ""Value"": ""<"" },
+                  { ""Key"": ""ColorString"", ""Value"": ""&W"" }
+                ]},
+                { ""Name"": ""StairsUp"", ""Params"": [] }
+              ],
+              ""Tags"": [{ ""Key"": ""StairsUp"", ""Value"": """" }]
+            },
+            {
+              ""Name"": ""Villager"",
+              ""Inherits"": ""Creature"",
+              ""Parts"": [
+                { ""Name"": ""Render"", ""Params"": [
+                  { ""Key"": ""DisplayName"", ""Value"": ""villager"" },
+                  { ""Key"": ""RenderString"", ""Value"": ""v"" },
+                  { ""Key"": ""ColorString"", ""Value"": ""&w"" }
+                ]}
+              ]
+            },
+            {
+              ""Name"": ""Tinker"",
+              ""Inherits"": ""Creature"",
+              ""Parts"": [
+                { ""Name"": ""Render"", ""Params"": [
+                  { ""Key"": ""DisplayName"", ""Value"": ""tinker"" },
+                  { ""Key"": ""RenderString"", ""Value"": ""t"" },
+                  { ""Key"": ""ColorString"", ""Value"": ""&c"" }
+                ]}
+              ]
+            },
+            {
+              ""Name"": ""Merchant"",
+              ""Inherits"": ""Creature"",
+              ""Parts"": [
+                { ""Name"": ""Render"", ""Params"": [
+                  { ""Key"": ""DisplayName"", ""Value"": ""merchant"" },
+                  { ""Key"": ""RenderString"", ""Value"": ""m"" },
+                  { ""Key"": ""ColorString"", ""Value"": ""&Y"" }
+                ]}
+              ]
             }
           ]
         }";
@@ -447,20 +506,40 @@ namespace CavesOfOoo.Tests
         public void WorldMap_ToZoneID_FormatsCorrectly()
         {
             string id = WorldMap.ToZoneID(5, 3);
-            Assert.AreEqual("Overworld.5.3", id);
+            Assert.AreEqual("Overworld.5.3.0", id);
         }
 
         [Test]
         public void WorldMap_FromZoneID_ParsesCorrectly()
         {
-            var (x, y) = WorldMap.FromZoneID("Overworld.5.3");
+            var (x, y, z) = WorldMap.FromZoneID("Overworld.5.3.0");
             Assert.AreEqual(5, x);
             Assert.AreEqual(3, y);
+            Assert.AreEqual(0, z);
+        }
+
+        [Test]
+        public void WorldMap_FromZoneID_LegacyFormat_DefaultsZ0()
+        {
+            var (x, y, z) = WorldMap.FromZoneID("Overworld.5.3");
+            Assert.AreEqual(5, x);
+            Assert.AreEqual(3, y);
+            Assert.AreEqual(0, z);
+        }
+
+        [Test]
+        public void WorldMap_FromZoneID_ParsesDepth()
+        {
+            var (x, y, z) = WorldMap.FromZoneID("Overworld.3.7.4");
+            Assert.AreEqual(3, x);
+            Assert.AreEqual(7, y);
+            Assert.AreEqual(4, z);
         }
 
         [Test]
         public void WorldMap_IsOverworldZoneID_CorrectResults()
         {
+            Assert.IsTrue(WorldMap.IsOverworldZoneID("Overworld.5.3.0"));
             Assert.IsTrue(WorldMap.IsOverworldZoneID("Overworld.5.3"));
             Assert.IsFalse(WorldMap.IsOverworldZoneID("CaveLevel_1"));
             Assert.IsFalse(WorldMap.IsOverworldZoneID(null));
@@ -469,15 +548,50 @@ namespace CavesOfOoo.Tests
         [Test]
         public void WorldMap_GetAdjacentZoneID_ReturnsNeighbor()
         {
-            string adjacent = WorldMap.GetAdjacentZoneID("Overworld.5.5", 1, 0);
-            Assert.AreEqual("Overworld.6.5", adjacent);
+            string adjacent = WorldMap.GetAdjacentZoneID("Overworld.5.5.0", 1, 0);
+            Assert.AreEqual("Overworld.6.5.0", adjacent);
+        }
+
+        [Test]
+        public void WorldMap_GetAdjacentZoneID_PreservesZ()
+        {
+            string adjacent = WorldMap.GetAdjacentZoneID("Overworld.5.5.3", 1, 0);
+            Assert.AreEqual("Overworld.6.5.3", adjacent);
         }
 
         [Test]
         public void WorldMap_GetAdjacentZoneID_NullAtWorldEdge()
         {
-            string adjacent = WorldMap.GetAdjacentZoneID("Overworld.9.5", 1, 0);
+            string adjacent = WorldMap.GetAdjacentZoneID("Overworld.9.5.0", 1, 0);
             Assert.IsNull(adjacent);
+        }
+
+        [Test]
+        public void WorldMap_GetZoneBelow_IncrementsZ()
+        {
+            string below = WorldMap.GetZoneBelow("Overworld.5.5.0");
+            Assert.AreEqual("Overworld.5.5.1", below);
+        }
+
+        [Test]
+        public void WorldMap_GetZoneAbove_DecrementsZ()
+        {
+            string above = WorldMap.GetZoneAbove("Overworld.5.5.3");
+            Assert.AreEqual("Overworld.5.5.2", above);
+        }
+
+        [Test]
+        public void WorldMap_GetZoneAbove_AtSurface_ReturnsNull()
+        {
+            string above = WorldMap.GetZoneAbove("Overworld.5.5.0");
+            Assert.IsNull(above);
+        }
+
+        [Test]
+        public void WorldMap_GetDepth_ReturnsZ()
+        {
+            Assert.AreEqual(0, WorldMap.GetDepth("Overworld.5.5.0"));
+            Assert.AreEqual(4, WorldMap.GetDepth("Overworld.3.7.4"));
         }
 
         [Test]
@@ -651,7 +765,7 @@ namespace CavesOfOoo.Tests
         public void TransitionPlayer_Success()
         {
             var manager = CreateManager(42);
-            string startID = "Overworld.5.5";
+            string startID = "Overworld.5.5.0";
             Zone startZone = manager.GetZone(startID);
 
             // Place player on a passable interior cell
@@ -664,7 +778,7 @@ namespace CavesOfOoo.Tests
 
             Assert.IsTrue(result.Success, result.ErrorReason ?? "Transition should succeed");
             Assert.IsNotNull(result.NewZone);
-            Assert.AreEqual("Overworld.6.5", result.NewZone.ZoneID);
+            Assert.AreEqual("Overworld.6.5.0", result.NewZone.ZoneID);
         }
 
         // ================================================================
@@ -675,7 +789,7 @@ namespace CavesOfOoo.Tests
         public void TransitionPlayer_FailsAtWorldEdge()
         {
             var manager = CreateManager(42);
-            string startID = "Overworld.9.5";
+            string startID = "Overworld.9.5.0";
             Zone startZone = manager.GetZone(startID);
 
             var player = PlacePlayer(startZone, 79, 12);
@@ -691,7 +805,7 @@ namespace CavesOfOoo.Tests
         public void TransitionPlayer_PlayerRemovedFromOldZone()
         {
             var manager = CreateManager(42);
-            string startID = "Overworld.5.5";
+            string startID = "Overworld.5.5.0";
             Zone startZone = manager.GetZone(startID);
 
             int px = 40, py = 12;
@@ -710,7 +824,7 @@ namespace CavesOfOoo.Tests
         public void TransitionPlayer_PlayerInNewZone()
         {
             var manager = CreateManager(42);
-            string startID = "Overworld.5.5";
+            string startID = "Overworld.5.5.0";
             Zone startZone = manager.GetZone(startID);
 
             int px = 40, py = 12;
@@ -731,7 +845,7 @@ namespace CavesOfOoo.Tests
             // Use a zone manager and transition; even if the ideal arrival cell
             // is blocked by a wall, the system should spiral-search for a passable cell.
             var manager = CreateManager(42);
-            string startID = "Overworld.5.5";
+            string startID = "Overworld.5.5.0";
             Zone startZone = manager.GetZone(startID);
 
             // Place player near top-left (y=1) so arrival on the other side
@@ -751,7 +865,7 @@ namespace CavesOfOoo.Tests
         public void TransitionPlayer_RoundTrip_ReturnsCachedZone()
         {
             var manager = CreateManager(42);
-            string startID = "Overworld.5.5";
+            string startID = "Overworld.5.5.0";
             Zone startZone = manager.GetZone(startID);
 
             int px = 40, py = 12;
@@ -950,7 +1064,7 @@ namespace CavesOfOoo.Tests
         public void OverworldZoneManager_CachesZones()
         {
             var manager = CreateManager(42);
-            string zoneID = "Overworld.5.5";
+            string zoneID = "Overworld.5.5.0";
 
             Zone zone1 = manager.GetZone(zoneID);
             Zone zone2 = manager.GetZone(zoneID);

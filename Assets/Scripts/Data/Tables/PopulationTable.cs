@@ -122,5 +122,45 @@ namespace CavesOfOoo.Data
                 }
             };
         }
+        /// <summary>
+        /// Underground population scaled by depth.
+        /// Deeper = more and tougher enemies, fewer friendlies.
+        /// </summary>
+        public static PopulationTable UndergroundTier(int depth)
+        {
+            int tier = depth <= 0 ? 1 : System.Math.Min(depth / 3 + 1, 8);
+
+            // Scale enemy counts with tier
+            int snapMin = 1 + tier;
+            int snapMax = 3 + tier;
+            int scavMin = tier;
+            int scavMax = 1 + tier;
+            int huntMin = System.Math.Max(0, tier - 1);
+            int huntMax = tier;
+
+            var table = new PopulationTable
+            {
+                Name = $"Underground_Depth{depth}",
+                Entries = new List<PopulationEntry>
+                {
+                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = 5, MinCount = snapMin, MaxCount = snapMax },
+                    new PopulationEntry { BlueprintName = "SnapjawScavenger", Weight = 3, MinCount = scavMin, MaxCount = scavMax },
+                    new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 2, MinCount = huntMin, MaxCount = huntMax },
+                    new PopulationEntry { BlueprintName = "Stalagmite", Weight = 3, MinCount = 2, MaxCount = 6 },
+                }
+            };
+
+            // Only add loot/weapons at certain depths
+            if (tier >= 2)
+            {
+                table.Entries.Add(new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 });
+            }
+            if (tier >= 3)
+            {
+                table.Entries.Add(new PopulationEntry { BlueprintName = "LeatherArmor", Weight = 1, MinCount = 0, MaxCount = 1 });
+            }
+
+            return table;
+        }
     }
 }
