@@ -4,7 +4,8 @@ namespace CavesOfOoo.Core
 {
     /// <summary>
     /// Extends ZoneManager to route overworld zone IDs through the WorldMap
-    /// for biome-specific generation pipelines.
+    /// for biome-specific generation pipelines. POI zones (villages, lairs)
+    /// get specialized pipelines.
     /// </summary>
     public class OverworldZoneManager : ZoneManager
     {
@@ -31,23 +32,52 @@ namespace CavesOfOoo.Core
 
             BiomeType biome = WorldMap.GetBiome(wx, wy);
 
+            // Check for POI -- villages and lairs get special pipelines
+            var poi = WorldMap.GetPOI(wx, wy);
+            if (poi != null)
+            {
+                switch (poi.Type)
+                {
+                    case POIType.Village:
+                        return CreateVillagePipeline(biome, poi);
+                    case POIType.Lair:
+                        return CreateLairPipeline(biome, poi);
+                    case POIType.MerchantCamp:
+                        // Merchant camps use normal biome pipeline + trade stock
+                        break;
+                }
+            }
+
+            // Determine tier from distance to center
+            int tier = GetTierForCoords(wx, wy);
+
             switch (biome)
             {
                 case BiomeType.Desert:
-                    return CreateDesertPipeline();
+                    return CreateDesertPipeline(tier);
                 case BiomeType.Jungle:
-                    return CreateJunglePipeline();
+                    return CreateJunglePipeline(tier);
                 case BiomeType.Ruins:
-                    return CreateRuinsPipeline();
+                    return CreateRuinsPipeline(tier);
                 case BiomeType.Cave:
                 default:
-                    return CreateCavePipeline();
+                    return CreateCavePipeline(tier);
             }
         }
 
-        private ZoneGenerationPipeline CreateCavePipeline()
+        private int GetTierForCoords(int wx, int wy)
         {
-            var pipeline = ZoneGenerationPipeline.CreateCavePipeline(PopulationTable.CaveTier1());
+            int centerX = WorldMap.Width / 2;
+            int centerY = WorldMap.Height / 2;
+            int dist = System.Math.Abs(wx - centerX) + System.Math.Abs(wy - centerY);
+            if (dist <= 4) return 1;
+            if (dist <= 8) return 2;
+            return 3;
+        }
+
+        private ZoneGenerationPipeline CreateCavePipeline(int tier = 1)
+        {
+            var pipeline = ZoneGenerationPipeline.CreateCavePipeline(PopulationTable.GetBiomeTable(BiomeType.Cave, tier));
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
             return pipeline;
         }
@@ -67,52 +97,65 @@ namespace CavesOfOoo.Core
             return pipeline;
         }
 
-        private ZoneGenerationPipeline CreateDesertPipeline()
+        private ZoneGenerationPipeline CreateDesertPipeline(int tier = 1)
         {
             var pipeline = new ZoneGenerationPipeline();
             pipeline.AddBuilder(new DesertBuilder());
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
-            pipeline.AddBuilder(new PopulationBuilder(PopulationTable.DesertTier1()));
+            pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Desert, tier)));
             pipeline.AddBuilder(new TradeStockBuilder());
             return pipeline;
         }
 
-        private ZoneGenerationPipeline CreateJunglePipeline()
+        private ZoneGenerationPipeline CreateJunglePipeline(int tier = 1)
         {
             var pipeline = new ZoneGenerationPipeline();
             pipeline.AddBuilder(new JungleBuilder());
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
-            pipeline.AddBuilder(new PopulationBuilder(PopulationTable.JungleTier1()));
+            pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Jungle, tier)));
             pipeline.AddBuilder(new TradeStockBuilder());
             return pipeline;
         }
 
-        private ZoneGenerationPipeline CreateRuinsPipeline()
+        private ZoneGenerationPipeline CreateRuinsPipeline(int tier = 1)
         {
             var pipeline = new ZoneGenerationPipeline();
             pipeline.AddBuilder(new RuinsBuilder());
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
-            pipeline.AddBuilder(new PopulationBuilder(PopulationTable.RuinsTier1()));
+            pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Ruins, tier)));
             pipeline.AddBuilder(new TradeStockBuilder());
             return pipeline;
         }
 
-        /// <summary>
-        /// Get the population table for a given biome type.
-        /// </summary>
-        public static PopulationTable GetPopulationForBiome(BiomeType biome)
+        private ZoneGenerationPipeline CreateVillagePipeline(BiomeType biome, PointOfInterest poi)
         {
-            switch (biome)
-            {
-                case BiomeType.Desert: return PopulationTable.DesertTier1();
-                case BiomeType.Jungle: return PopulationTable.JungleTier1();
-                case BiomeType.Ruins: return PopulationTable.RuinsTier1();
-                case BiomeType.Cave:
-                default: return PopulationTable.CaveTier1();
-            }
+            var pipeline = new ZoneGenerationPipeline();
+            pipeline.AddBuilder(new VillageBuilder(biome, poi));
+            pipeline.AddBuilder(new ConnectivityBuilder());
+            pipeline.AddBuilder(new CaveEntranceBuilder(this));
+            pipeline.AddBuilder(new VillagePopulationBuilder(poi));
+            pipeline.AddBuilder(new TradeStockBuilder());
+            return pipeline;
+        }
+
+        private ZoneGenerationPipeline CreateLairPipeline(BiomeType biome, PointOfInterest poi)
+        {
+            var pipeline = new ZoneGenerationPipeline();
+            pipeline.AddBuilder(new LairBuilder(biome, poi));
+            pipeline.AddBuilder(new ConnectivityBuilder());
+            pipeline.AddBuilder(new LairPopulationBuilder(biome, poi));
+            return pipeline;
+        }
+
+        /// <summary>
+        /// Get the population table for a given biome type and tier.
+        /// </summary>
+        public static PopulationTable GetPopulationForBiome(BiomeType biome, int tier = 1)
+        {
+            return PopulationTable.GetBiomeTable(biome, tier);
         }
     }
 }

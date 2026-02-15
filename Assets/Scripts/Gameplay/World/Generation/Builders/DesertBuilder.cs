@@ -51,6 +51,14 @@ namespace CavesOfOoo.Core
                             if (rock != null)
                                 zone.AddEntity(rock, x, y);
                         }
+
+                        // Scatter cacti
+                        if (rng.NextDouble() < 0.03)
+                        {
+                            var cactus = factory.CreateEntity("Cactus");
+                            if (cactus != null)
+                                zone.AddEntity(cactus, x, y);
+                        }
                     }
                 }
             }

@@ -1550,6 +1550,463 @@
       "IntProps": [
         { "Key": "Drams", "Value": 80 }
       ]
+    },
+
+    {
+      "Name": "CaveBat",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "cave bat" },
+          { "Key": "RenderString", "Value": "b" },
+          { "Key": "ColorString", "Value": "&K" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "0" }, { "Key": "DV", "Value": "4" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 6, "Min": 0, "Max": 6 },
+        { "Name": "Agility", "Value": 20 },
+        { "Name": "Speed", "Value": 120 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "CaveSlime",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "cave slime" },
+          { "Key": "RenderString", "Value": "j" },
+          { "Key": "ColorString", "Value": "&g" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "4" }, { "Key": "DV", "Value": "0" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 18, "Min": 0, "Max": 18 },
+        { "Name": "Strength", "Value": 12 },
+        { "Name": "Speed", "Value": 70 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "CaveBear",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "cave bear" },
+          { "Key": "RenderString", "Value": "B" },
+          { "Key": "ColorString", "Value": "&y" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "4" }, { "Key": "DV", "Value": "1" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 35, "Min": 0, "Max": 35 },
+        { "Name": "Strength", "Value": 22 },
+        { "Name": "Toughness", "Value": 18 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "Scorpion",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "scorpion" },
+          { "Key": "RenderString", "Value": "x" },
+          { "Key": "ColorString", "Value": "&W" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "2" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 },
+        { "Name": "Agility", "Value": 16 },
+        { "Name": "Speed", "Value": 110 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "DesertBandit",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "desert bandit" },
+          { "Key": "RenderString", "Value": "h" },
+          { "Key": "ColorString", "Value": "&y" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "2" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 16, "Min": 0, "Max": 16 },
+        { "Name": "Strength", "Value": 16 },
+        { "Name": "Agility", "Value": 16 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Snapjaws" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "SandWurm",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "sand wurm" },
+          { "Key": "RenderString", "Value": "W" },
+          { "Key": "ColorString", "Value": "&W" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "6" }, { "Key": "DV", "Value": "0" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 40, "Min": 0, "Max": 40 },
+        { "Name": "Strength", "Value": 24 },
+        { "Name": "Toughness", "Value": 20 },
+        { "Name": "Speed", "Value": 80 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "GiantSpider",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "giant spider" },
+          { "Key": "RenderString", "Value": "S" },
+          { "Key": "ColorString", "Value": "&G" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "3" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 12, "Min": 0, "Max": 12 },
+        { "Name": "Agility", "Value": 18 },
+        { "Name": "Speed", "Value": 115 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "Viper",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "viper" },
+          { "Key": "RenderString", "Value": "~" },
+          { "Key": "ColorString", "Value": "&g" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "0" }, { "Key": "DV", "Value": "5" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 },
+        { "Name": "Agility", "Value": 22 },
+        { "Name": "Speed", "Value": 130 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "JungleApe",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "jungle ape" },
+          { "Key": "RenderString", "Value": "A" },
+          { "Key": "ColorString", "Value": "&G" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "2" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 },
+        { "Name": "Strength", "Value": 22 },
+        { "Name": "Agility", "Value": 16 },
+        { "Name": "Toughness", "Value": 16 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "RuinScavenger",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "ruin scavenger" },
+          { "Key": "RenderString", "Value": "r" },
+          { "Key": "ColorString", "Value": "&K" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "2" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 14, "Min": 0, "Max": 14 },
+        { "Name": "Strength", "Value": 14 },
+        { "Name": "Agility", "Value": 16 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "SkeletalSentry",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "skeletal sentry" },
+          { "Key": "RenderString", "Value": "Z" },
+          { "Key": "ColorString", "Value": "&w" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "5" }, { "Key": "DV", "Value": "1" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 25, "Min": 0, "Max": 25 },
+        { "Name": "Strength", "Value": 18 },
+        { "Name": "Toughness", "Value": 20 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "StoneGolem",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "stone golem" },
+          { "Key": "RenderString", "Value": "G" },
+          { "Key": "ColorString", "Value": "&y" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "8" }, { "Key": "DV", "Value": "0" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 50, "Min": 0, "Max": 50 },
+        { "Name": "Strength", "Value": 26 },
+        { "Name": "Toughness", "Value": 24 },
+        { "Name": "Speed", "Value": 60 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "3" }
+      ]
+    },
+
+    {
+      "Name": "SnapjawChieftain",
+      "Inherits": "Snapjaw",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "snapjaw chieftain" },
+          { "Key": "RenderString", "Value": "S" },
+          { "Key": "ColorString", "Value": "&R" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "4" }, { "Key": "DV", "Value": "2" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 40, "Min": 0, "Max": 40 },
+        { "Name": "Strength", "Value": 22 },
+        { "Name": "Agility", "Value": 16 },
+        { "Name": "Toughness", "Value": 18 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "Boss", "Value": "" }
+      ]
+    },
+    {
+      "Name": "DesertProwler",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "desert prowler" },
+          { "Key": "RenderString", "Value": "D" },
+          { "Key": "ColorString", "Value": "&W" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "4" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 35, "Min": 0, "Max": 35 },
+        { "Name": "Strength", "Value": 18 },
+        { "Name": "Agility", "Value": 22 },
+        { "Name": "Speed", "Value": 120 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "Boss", "Value": "" }
+      ]
+    },
+    {
+      "Name": "JungleStalker",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "jungle stalker" },
+          { "Key": "RenderString", "Value": "J" },
+          { "Key": "ColorString", "Value": "&G" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "5" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 35, "Min": 0, "Max": 35 },
+        { "Name": "Strength", "Value": 20 },
+        { "Name": "Agility", "Value": 24 },
+        { "Name": "Speed", "Value": 115 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "Boss", "Value": "" }
+      ]
+    },
+    {
+      "Name": "AncientGuardian",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "ancient guardian" },
+          { "Key": "RenderString", "Value": "H" },
+          { "Key": "ColorString", "Value": "&w" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "8" }, { "Key": "DV", "Value": "1" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 50, "Min": 0, "Max": 50 },
+        { "Name": "Strength", "Value": 24 },
+        { "Name": "Toughness", "Value": 22 },
+        { "Name": "Speed", "Value": 70 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "3" },
+        { "Key": "Boss", "Value": "" }
+      ]
+    },
+
+    {
+      "Name": "Warden",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "warden" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&r" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "2" }] },
+        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "12" }, { "Key": "Wanders", "Value": "true" }, { "Key": "WandersRandomly", "Value": "false" }] },
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Warden_1" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 40, "Min": 0, "Max": 40 },
+        { "Name": "Strength", "Value": 18 },
+        { "Name": "Agility", "Value": 16 },
+        { "Name": "Toughness", "Value": 16 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Villagers" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+
+    {
+      "Name": "Cactus",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "cactus" },
+          { "Key": "RenderString", "Value": "t" },
+          { "Key": "ColorString", "Value": "&g" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] }
+      ],
+      "Tags": [
+        { "Key": "Solid", "Value": "" }
+      ]
+    },
+    {
+      "Name": "Bush",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "bush" },
+          { "Key": "RenderString", "Value": ";" },
+          { "Key": "ColorString", "Value": "&G" }
+        ]}
+      ]
+    },
+    {
+      "Name": "Pillar",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "pillar" },
+          { "Key": "RenderString", "Value": "I" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] }
+      ],
+      "Tags": [
+        { "Key": "Solid", "Value": "" }
+      ]
+    },
+    {
+      "Name": "BrokenColumn",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "broken column" },
+          { "Key": "RenderString", "Value": "," },
+          { "Key": "ColorString", "Value": "&w" }
+        ]}
+      ]
+    },
+    {
+      "Name": "Campfire",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "campfire" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&R" }
+        ]}
+      ]
+    },
+    {
+      "Name": "Well",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "well" },
+          { "Key": "RenderString", "Value": "O" },
+          { "Key": "ColorString", "Value": "&c" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] }
+      ],
+      "Tags": [
+        { "Key": "Solid", "Value": "" }
+      ]
+    },
+    {
+      "Name": "MarketStall",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "market stall" },
+          { "Key": "RenderString", "Value": "=" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] }
+      ],
+      "Tags": [
+        { "Key": "Solid", "Value": "" }
+      ]
     }
   ]
 }

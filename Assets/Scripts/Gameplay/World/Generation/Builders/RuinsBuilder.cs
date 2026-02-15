@@ -100,12 +100,22 @@ namespace CavesOfOoo.Core
 
         private void CarveRoom(Zone zone, EntityFactory factory, Room room)
         {
+            var rng = new System.Random(room.X * 31 + room.Y * 17);
             for (int x = room.X; x < room.X + room.W; x++)
             {
                 for (int y = room.Y; y < room.Y + room.H; y++)
                 {
                     if (!zone.InBounds(x, y)) continue;
                     ClearAndPlaceFloor(zone, factory, x, y);
+
+                    // Scatter pillars and broken columns
+                    if (rng.NextDouble() < 0.05)
+                    {
+                        string decor = rng.Next(2) == 0 ? "Pillar" : "BrokenColumn";
+                        var obj = factory.CreateEntity(decor);
+                        if (obj != null)
+                            zone.AddEntity(obj, x, y);
+                    }
                 }
             }
         }

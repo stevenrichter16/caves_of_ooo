@@ -393,7 +393,49 @@ namespace CavesOfOoo.Tests
                   { ""Key"": ""ColorString"", ""Value"": ""&Y"" }
                 ]}
               ]
-            }
+            },
+            { ""Name"": ""Elder"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""elder"" }, { ""Key"": ""RenderString"", ""Value"": ""E"" }, { ""Key"": ""ColorString"", ""Value"": ""&W"" }]}], ""Tags"": [{ ""Key"": ""Faction"", ""Value"": ""Villagers"" }] },
+            { ""Name"": ""Warden"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""warden"" }, { ""Key"": ""RenderString"", ""Value"": ""@"" }, { ""Key"": ""ColorString"", ""Value"": ""&r"" }]}], ""Tags"": [{ ""Key"": ""Faction"", ""Value"": ""Villagers"" }] },
+            { ""Name"": ""CaveBat"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""cave bat"" }, { ""Key"": ""RenderString"", ""Value"": ""b"" }, { ""Key"": ""ColorString"", ""Value"": ""&K"" }]}] },
+            { ""Name"": ""CaveSlime"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""cave slime"" }, { ""Key"": ""RenderString"", ""Value"": ""j"" }, { ""Key"": ""ColorString"", ""Value"": ""&g"" }]}] },
+            { ""Name"": ""CaveBear"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""cave bear"" }, { ""Key"": ""RenderString"", ""Value"": ""B"" }, { ""Key"": ""ColorString"", ""Value"": ""&y"" }]}] },
+            { ""Name"": ""Scorpion"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""scorpion"" }, { ""Key"": ""RenderString"", ""Value"": ""x"" }, { ""Key"": ""ColorString"", ""Value"": ""&W"" }]}] },
+            { ""Name"": ""DesertBandit"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""desert bandit"" }, { ""Key"": ""RenderString"", ""Value"": ""h"" }, { ""Key"": ""ColorString"", ""Value"": ""&y"" }]}] },
+            { ""Name"": ""SandWurm"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""sand wurm"" }, { ""Key"": ""RenderString"", ""Value"": ""W"" }, { ""Key"": ""ColorString"", ""Value"": ""&W"" }]}] },
+            { ""Name"": ""GiantSpider"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""giant spider"" }, { ""Key"": ""RenderString"", ""Value"": ""S"" }, { ""Key"": ""ColorString"", ""Value"": ""&G"" }]}] },
+            { ""Name"": ""Viper"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""viper"" }, { ""Key"": ""RenderString"", ""Value"": ""~"" }, { ""Key"": ""ColorString"", ""Value"": ""&g"" }]}] },
+            { ""Name"": ""JungleApe"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""jungle ape"" }, { ""Key"": ""RenderString"", ""Value"": ""A"" }, { ""Key"": ""ColorString"", ""Value"": ""&G"" }]}] },
+            { ""Name"": ""RuinScavenger"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""ruin scavenger"" }, { ""Key"": ""RenderString"", ""Value"": ""r"" }, { ""Key"": ""ColorString"", ""Value"": ""&K"" }]}] },
+            { ""Name"": ""SkeletalSentry"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""skeletal sentry"" }, { ""Key"": ""RenderString"", ""Value"": ""Z"" }, { ""Key"": ""ColorString"", ""Value"": ""&w"" }]}] },
+            { ""Name"": ""StoneGolem"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""stone golem"" }, { ""Key"": ""RenderString"", ""Value"": ""G"" }, { ""Key"": ""ColorString"", ""Value"": ""&y"" }]}] },
+            { ""Name"": ""SnapjawChieftain"", ""Inherits"": ""Snapjaw"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""snapjaw chieftain"" }]}] },
+            { ""Name"": ""DesertProwler"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""desert prowler"" }, { ""Key"": ""RenderString"", ""Value"": ""D"" }, { ""Key"": ""ColorString"", ""Value"": ""&W"" }]}] },
+            { ""Name"": ""JungleStalker"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""jungle stalker"" }, { ""Key"": ""RenderString"", ""Value"": ""J"" }, { ""Key"": ""ColorString"", ""Value"": ""&G"" }]}] },
+            { ""Name"": ""AncientGuardian"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""ancient guardian"" }, { ""Key"": ""RenderString"", ""Value"": ""H"" }, { ""Key"": ""ColorString"", ""Value"": ""&w"" }]}] },
+            { ""Name"": ""Cactus"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""cactus"" }, { ""Key"": ""RenderString"", ""Value"": ""t"" }, { ""Key"": ""ColorString"", ""Value"": ""&g"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Solid"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Solid"", ""Value"": """" }] },
+            { ""Name"": ""Bush"", ""Inherits"": ""Terrain"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""bush"" }, { ""Key"": ""RenderString"", ""Value"": "";"" }, { ""Key"": ""ColorString"", ""Value"": ""&G"" }]}] },
+            { ""Name"": ""Pillar"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""pillar"" }, { ""Key"": ""RenderString"", ""Value"": ""I"" }, { ""Key"": ""ColorString"", ""Value"": ""&w"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Solid"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Solid"", ""Value"": """" }] },
+            { ""Name"": ""BrokenColumn"", ""Inherits"": ""Terrain"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""broken column"" }, { ""Key"": ""RenderString"", ""Value"": "","" }, { ""Key"": ""ColorString"", ""Value"": ""&w"" }]}] },
+            { ""Name"": ""Campfire"", ""Inherits"": ""Terrain"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""campfire"" }, { ""Key"": ""RenderString"", ""Value"": ""*"" }, { ""Key"": ""ColorString"", ""Value"": ""&R"" }]}] },
+            { ""Name"": ""Well"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""well"" }, { ""Key"": ""RenderString"", ""Value"": ""O"" }, { ""Key"": ""ColorString"", ""Value"": ""&c"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Solid"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Solid"", ""Value"": """" }] },
+            { ""Name"": ""MarketStall"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""market stall"" }, { ""Key"": ""RenderString"", ""Value"": ""="" }, { ""Key"": ""ColorString"", ""Value"": ""&y"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Solid"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Solid"", ""Value"": """" }] },
+            { ""Name"": ""ChainMail"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""chain mail"" }, { ""Key"": ""RenderString"", ""Value"": ""["" }, { ""Key"": ""ColorString"", ""Value"": ""&w"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Takeable"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }] },
+            { ""Name"": ""IronHelmet"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""iron helmet"" }, { ""Key"": ""RenderString"", ""Value"": ""^"" }, { ""Key"": ""ColorString"", ""Value"": ""&w"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Takeable"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }] },
+            { ""Name"": ""HealingTonic"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""healing tonic"" }, { ""Key"": ""RenderString"", ""Value"": ""!"" }, { ""Key"": ""ColorString"", ""Value"": ""&r"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Takeable"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }] },
+            { ""Name"": ""SpeedTonic"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""speed tonic"" }, { ""Key"": ""RenderString"", ""Value"": ""!"" }, { ""Key"": ""ColorString"", ""Value"": ""&c"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Takeable"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }] },
+            { ""Name"": ""StrengthTonic"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""strength tonic"" }, { ""Key"": ""RenderString"", ""Value"": ""!"" }, { ""Key"": ""ColorString"", ""Value"": ""&R"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Takeable"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }] },
+            { ""Name"": ""ShortSword"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""short sword"" }, { ""Key"": ""RenderString"", ""Value"": ""/"" }, { ""Key"": ""ColorString"", ""Value"": ""&w"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Takeable"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }] },
+            { ""Name"": ""Mace"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""mace"" }, { ""Key"": ""RenderString"", ""Value"": ""/"" }, { ""Key"": ""ColorString"", ""Value"": ""&w"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Takeable"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }] },
+            { ""Name"": ""Spear"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""spear"" }, { ""Key"": ""RenderString"", ""Value"": ""/"" }, { ""Key"": ""ColorString"", ""Value"": ""&w"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Takeable"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }] },
+            { ""Name"": ""Hatchet"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""hatchet"" }, { ""Key"": ""RenderString"", ""Value"": ""/"" }, { ""Key"": ""ColorString"", ""Value"": ""&w"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Takeable"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }] },
+            { ""Name"": ""Cudgel"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""cudgel"" }, { ""Key"": ""RenderString"", ""Value"": ""/"" }, { ""Key"": ""ColorString"", ""Value"": ""&w"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Takeable"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }] },
+            { ""Name"": ""Buckler"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""buckler"" }, { ""Key"": ""RenderString"", ""Value"": "")"" }, { ""Key"": ""ColorString"", ""Value"": ""&w"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Takeable"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }] },
+            { ""Name"": ""LeatherBoots"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""leather boots"" }, { ""Key"": ""RenderString"", ""Value"": ""["" }, { ""Key"": ""ColorString"", ""Value"": ""&w"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Takeable"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }] },
+            { ""Name"": ""LeatherGloves"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""leather gloves"" }, { ""Key"": ""RenderString"", ""Value"": ""["" }, { ""Key"": ""ColorString"", ""Value"": ""&w"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Takeable"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }] },
+            { ""Name"": ""Cloak"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""cloak"" }, { ""Key"": ""RenderString"", ""Value"": ""("" }, { ""Key"": ""ColorString"", ""Value"": ""&w"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Takeable"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }] },
+            { ""Name"": ""Starapple"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""starapple"" }, { ""Key"": ""RenderString"", ""Value"": ""%"" }, { ""Key"": ""ColorString"", ""Value"": ""&M"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Takeable"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }] },
+            { ""Name"": ""Mushroom"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""mushroom"" }, { ""Key"": ""RenderString"", ""Value"": ""%"" }, { ""Key"": ""ColorString"", ""Value"": ""&w"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Takeable"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }] },
+            { ""Name"": ""DriedMeat"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""dried meat"" }, { ""Key"": ""RenderString"", ""Value"": ""%"" }, { ""Key"": ""ColorString"", ""Value"": ""&y"" }]}, { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Takeable"", ""Value"": ""true"" }]}], ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }] }
           ]
         }";
 
@@ -548,8 +590,8 @@ namespace CavesOfOoo.Tests
         [Test]
         public void WorldMap_GetAdjacentZoneID_ReturnsNeighbor()
         {
-            string adjacent = WorldMap.GetAdjacentZoneID("Overworld.5.5.0", 1, 0);
-            Assert.AreEqual("Overworld.6.5.0", adjacent);
+            string adjacent = WorldMap.GetAdjacentZoneID("Overworld.10.10.0", 1, 0);
+            Assert.AreEqual("Overworld.11.10.0", adjacent);
         }
 
         [Test]
@@ -562,15 +604,15 @@ namespace CavesOfOoo.Tests
         [Test]
         public void WorldMap_GetAdjacentZoneID_NullAtWorldEdge()
         {
-            string adjacent = WorldMap.GetAdjacentZoneID("Overworld.9.5.0", 1, 0);
+            string adjacent = WorldMap.GetAdjacentZoneID("Overworld.19.10.0", 1, 0);
             Assert.IsNull(adjacent);
         }
 
         [Test]
         public void WorldMap_GetZoneBelow_IncrementsZ()
         {
-            string below = WorldMap.GetZoneBelow("Overworld.5.5.0");
-            Assert.AreEqual("Overworld.5.5.1", below);
+            string below = WorldMap.GetZoneBelow("Overworld.10.10.0");
+            Assert.AreEqual("Overworld.10.10.1", below);
         }
 
         [Test]
@@ -583,14 +625,14 @@ namespace CavesOfOoo.Tests
         [Test]
         public void WorldMap_GetZoneAbove_AtSurface_ReturnsNull()
         {
-            string above = WorldMap.GetZoneAbove("Overworld.5.5.0");
+            string above = WorldMap.GetZoneAbove("Overworld.10.10.0");
             Assert.IsNull(above);
         }
 
         [Test]
         public void WorldMap_GetDepth_ReturnsZ()
         {
-            Assert.AreEqual(0, WorldMap.GetDepth("Overworld.5.5.0"));
+            Assert.AreEqual(0, WorldMap.GetDepth("Overworld.10.10.0"));
             Assert.AreEqual(4, WorldMap.GetDepth("Overworld.3.7.4"));
         }
 
@@ -599,8 +641,8 @@ namespace CavesOfOoo.Tests
         {
             var map = new WorldMap(1);
             Assert.IsTrue(map.InBounds(0, 0));
-            Assert.IsTrue(map.InBounds(9, 9));
-            Assert.IsFalse(map.InBounds(10, 0));
+            Assert.IsTrue(map.InBounds(19, 19));
+            Assert.IsFalse(map.InBounds(20, 0));
             Assert.IsFalse(map.InBounds(-1, 0));
         }
 
@@ -650,7 +692,7 @@ namespace CavesOfOoo.Tests
         public void WorldGenerator_CenterIsCave()
         {
             var map = WorldGenerator.Generate(42);
-            Assert.AreEqual(BiomeType.Cave, map.Tiles[5, 5]);
+            Assert.AreEqual(BiomeType.Cave, map.Tiles[10, 10]);
         }
 
         [Test]
@@ -765,7 +807,7 @@ namespace CavesOfOoo.Tests
         public void TransitionPlayer_Success()
         {
             var manager = CreateManager(42);
-            string startID = "Overworld.5.5.0";
+            string startID = "Overworld.10.10.0";
             Zone startZone = manager.GetZone(startID);
 
             // Place player on a passable interior cell
@@ -778,7 +820,7 @@ namespace CavesOfOoo.Tests
 
             Assert.IsTrue(result.Success, result.ErrorReason ?? "Transition should succeed");
             Assert.IsNotNull(result.NewZone);
-            Assert.AreEqual("Overworld.6.5.0", result.NewZone.ZoneID);
+            Assert.AreEqual("Overworld.11.10.0", result.NewZone.ZoneID);
         }
 
         // ================================================================
@@ -789,7 +831,7 @@ namespace CavesOfOoo.Tests
         public void TransitionPlayer_FailsAtWorldEdge()
         {
             var manager = CreateManager(42);
-            string startID = "Overworld.9.5.0";
+            string startID = "Overworld.19.10.0";
             Zone startZone = manager.GetZone(startID);
 
             var player = PlacePlayer(startZone, 79, 12);
@@ -805,7 +847,7 @@ namespace CavesOfOoo.Tests
         public void TransitionPlayer_PlayerRemovedFromOldZone()
         {
             var manager = CreateManager(42);
-            string startID = "Overworld.5.5.0";
+            string startID = "Overworld.10.10.0";
             Zone startZone = manager.GetZone(startID);
 
             int px = 40, py = 12;
@@ -824,7 +866,7 @@ namespace CavesOfOoo.Tests
         public void TransitionPlayer_PlayerInNewZone()
         {
             var manager = CreateManager(42);
-            string startID = "Overworld.5.5.0";
+            string startID = "Overworld.10.10.0";
             Zone startZone = manager.GetZone(startID);
 
             int px = 40, py = 12;
@@ -845,7 +887,7 @@ namespace CavesOfOoo.Tests
             // Use a zone manager and transition; even if the ideal arrival cell
             // is blocked by a wall, the system should spiral-search for a passable cell.
             var manager = CreateManager(42);
-            string startID = "Overworld.5.5.0";
+            string startID = "Overworld.10.10.0";
             Zone startZone = manager.GetZone(startID);
 
             // Place player near top-left (y=1) so arrival on the other side
@@ -865,7 +907,7 @@ namespace CavesOfOoo.Tests
         public void TransitionPlayer_RoundTrip_ReturnsCachedZone()
         {
             var manager = CreateManager(42);
-            string startID = "Overworld.5.5.0";
+            string startID = "Overworld.10.10.0";
             Zone startZone = manager.GetZone(startID);
 
             int px = 40, py = 12;
@@ -1021,8 +1063,8 @@ namespace CavesOfOoo.Tests
             // Force a Cave biome tile
             var worldMap = manager.WorldMap;
             // Center is always Cave
-            string caveID = WorldMap.ToZoneID(5, 5);
-            Assert.AreEqual(BiomeType.Cave, worldMap.GetBiome(5, 5));
+            string caveID = WorldMap.ToZoneID(10, 10);
+            Assert.AreEqual(BiomeType.Cave, worldMap.GetBiome(10, 10));
 
             Zone zone = manager.GetZone(caveID);
             Assert.IsNotNull(zone);
@@ -1064,7 +1106,7 @@ namespace CavesOfOoo.Tests
         public void OverworldZoneManager_CachesZones()
         {
             var manager = CreateManager(42);
-            string zoneID = "Overworld.5.5.0";
+            string zoneID = "Overworld.10.10.0";
 
             Zone zone1 = manager.GetZone(zoneID);
             Zone zone2 = manager.GetZone(zoneID);
@@ -1140,6 +1182,169 @@ namespace CavesOfOoo.Tests
             var ruinsEntries = PopulationTable.RuinsTier1().Roll(rng);
             Assert.Greater(ruinsEntries.Count, 0,
                 "RuinsTier1 population table should return non-empty entries");
+        }
+
+        [Test]
+        public void PopulationTables_Tier2_ReturnEntries()
+        {
+            var rng = new System.Random(42);
+
+            var caveTier2 = PopulationTable.CaveTier2().Roll(rng);
+            Assert.Greater(caveTier2.Count, 0, "CaveTier2 should return entries");
+
+            var desertTier2 = PopulationTable.DesertTier2().Roll(rng);
+            Assert.Greater(desertTier2.Count, 0, "DesertTier2 should return entries");
+
+            var jungleTier2 = PopulationTable.JungleTier2().Roll(rng);
+            Assert.Greater(jungleTier2.Count, 0, "JungleTier2 should return entries");
+
+            var ruinsTier2 = PopulationTable.RuinsTier2().Roll(rng);
+            Assert.Greater(ruinsTier2.Count, 0, "RuinsTier2 should return entries");
+        }
+
+        [Test]
+        public void PopulationTables_GetBiomeTable_ReturnsTier1ForLowTier()
+        {
+            var table = PopulationTable.GetBiomeTable(BiomeType.Cave, 1);
+            Assert.AreEqual("CaveTier1", table.Name);
+        }
+
+        [Test]
+        public void PopulationTables_GetBiomeTable_ReturnsTier2ForHighTier()
+        {
+            var table = PopulationTable.GetBiomeTable(BiomeType.Cave, 2);
+            Assert.AreEqual("CaveTier2", table.Name);
+        }
+
+        [Test]
+        public void PopulationTables_LairGuards_ReturnEntries()
+        {
+            var rng = new System.Random(42);
+            var biomes = (BiomeType[])Enum.GetValues(typeof(BiomeType));
+            foreach (var biome in biomes)
+            {
+                var guards = PopulationTable.LairGuards(biome).Roll(rng);
+                Assert.Greater(guards.Count, 0,
+                    $"LairGuards({biome}) should return non-empty entries");
+            }
+        }
+
+        [Test]
+        public void PopulationTables_VillageDecor_ReturnEntries()
+        {
+            var rng = new System.Random(42);
+            var decor = PopulationTable.VillageDecor().Roll(rng);
+            Assert.Greater(decor.Count, 0, "VillageDecor should return entries");
+        }
+
+        // ================================================================
+        // POI System (5 tests)
+        // ================================================================
+
+        [Test]
+        public void POI_SetAndRetrieve()
+        {
+            var map = new WorldMap(1);
+            var poi = new PointOfInterest(POIType.Village, "TestVillage", "Villagers", 1);
+            map.SetPOI(5, 5, poi);
+
+            var retrieved = map.GetPOI(5, 5);
+            Assert.IsNotNull(retrieved);
+            Assert.AreEqual(POIType.Village, retrieved.Type);
+            Assert.AreEqual("TestVillage", retrieved.Name);
+            Assert.AreEqual("Villagers", retrieved.Faction);
+        }
+
+        [Test]
+        public void POI_Null_WhenNone()
+        {
+            var map = new WorldMap(1);
+            Assert.IsNull(map.GetPOI(3, 3));
+            Assert.IsFalse(map.HasPOI(3, 3));
+        }
+
+        [Test]
+        public void POI_HasPOI_TrueWhenSet()
+        {
+            var map = new WorldMap(1);
+            map.SetPOI(7, 7, new PointOfInterest(POIType.Lair, "TestLair"));
+            Assert.IsTrue(map.HasPOI(7, 7));
+        }
+
+        [Test]
+        public void WorldGenerator_CenterHasVillage()
+        {
+            var map = WorldGenerator.Generate(42);
+            int cx = WorldMap.Width / 2;
+            int cy = WorldMap.Height / 2;
+
+            Assert.IsTrue(map.HasPOI(cx, cy), "Center tile should have a POI");
+            var poi = map.GetPOI(cx, cy);
+            Assert.AreEqual(POIType.Village, poi.Type, "Center POI should be a village");
+        }
+
+        [Test]
+        public void WorldGenerator_POIsSpacedApart()
+        {
+            var map = WorldGenerator.Generate(42);
+            var poiPositions = new List<(int x, int y)>();
+
+            for (int x = 0; x < WorldMap.Width; x++)
+            {
+                for (int y = 0; y < WorldMap.Height; y++)
+                {
+                    if (map.HasPOI(x, y))
+                        poiPositions.Add((x, y));
+                }
+            }
+
+            Assert.Greater(poiPositions.Count, 3, "Should have multiple POIs");
+
+            // Check that no two POIs are on the same tile
+            var unique = new HashSet<(int, int)>(poiPositions);
+            Assert.AreEqual(poiPositions.Count, unique.Count, "Each POI should be on a unique tile");
+        }
+
+        // ================================================================
+        // Village & Lair Builders (4 tests)
+        // ================================================================
+
+        [Test]
+        public void VillageBuilder_ProducesPassableCells()
+        {
+            var poi = new PointOfInterest(POIType.Village, "TestVillage", "Villagers", 1);
+            var zone = RunBiomePipeline(new VillageBuilder(BiomeType.Cave, poi), seed: 42);
+            int passable = CountPassableInterior(zone);
+            Assert.Greater(passable, 100,
+                "Village should have lots of open passable cells");
+        }
+
+        [Test]
+        public void VillageBuilder_HasBuildingWalls()
+        {
+            var poi = new PointOfInterest(POIType.Village, "TestVillage", "Villagers", 1);
+            var zone = RunBiomePipeline(new VillageBuilder(BiomeType.Cave, poi), seed: 42);
+            Assert.IsTrue(ZoneHasBlueprint(zone, "Wall"),
+                "Village should contain building walls");
+        }
+
+        [Test]
+        public void LairBuilder_ProducesPassableCells()
+        {
+            var poi = new PointOfInterest(POIType.Lair, "TestLair", null, 1, "Snapjaw");
+            var zone = RunBiomePipeline(new LairBuilder(BiomeType.Cave, poi), seed: 42);
+            int passable = CountPassableInterior(zone);
+            Assert.Greater(passable, 20,
+                "Lair should have passable cells (boss chamber + side rooms)");
+        }
+
+        [Test]
+        public void LairBuilder_PlacesBoss()
+        {
+            var poi = new PointOfInterest(POIType.Lair, "TestLair", null, 1, "Snapjaw");
+            var zone = RunBiomePipeline(new LairBuilder(BiomeType.Cave, poi), seed: 42);
+            Assert.IsTrue(ZoneHasBlueprint(zone, "Snapjaw"),
+                "Lair should contain the boss entity");
         }
     }
 }

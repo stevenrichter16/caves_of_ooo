@@ -58,6 +58,13 @@ namespace CavesOfOoo.Core
                             if (tree != null)
                                 zone.AddEntity(tree, x, y);
                         }
+                        // Scatter bushes
+                        else if (rng.NextDouble() < 0.08)
+                        {
+                            var bush = factory.CreateEntity("Bush");
+                            if (bush != null)
+                                zone.AddEntity(bush, x, y);
+                        }
                     }
                 }
             }

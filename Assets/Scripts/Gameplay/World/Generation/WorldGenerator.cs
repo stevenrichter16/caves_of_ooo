@@ -1,13 +1,26 @@
 using System;
+using System.Collections.Generic;
 
 namespace CavesOfOoo.Core
 {
     /// <summary>
-    /// Generates a 10x10 world map with biome placement using noise.
-    /// Center tile (5,5) is always Cave. All 4 biomes guaranteed present.
+    /// Generates a 20x20 world map with biome placement using noise,
+    /// then scatters Points of Interest (villages, lairs, merchant camps).
+    /// Center tile is always Cave with a starting village. All 4 biomes guaranteed present.
     /// </summary>
     public static class WorldGenerator
     {
+        private static readonly string[] VillageNames = {
+            "Kyakukya", "Ezra", "Brinestone", "Grit Gate",
+            "Shimmerwell", "Dusthaven", "Thornwall", "Roothollow",
+            "Ashveil", "Palesanctum"
+        };
+
+        private static readonly string[] LairNames = {
+            "Snapjaw Lair", "Prowler Den", "Spider Nest", "Ruined Vault",
+            "Stalker Cave", "Wurm Burrow", "Golem Crypt", "Bandit Hideout"
+        };
+
         public static WorldMap Generate(int seed)
         {
             var map = new WorldMap(seed);
@@ -15,6 +28,9 @@ namespace CavesOfOoo.Core
 
             // Generate noise field for biome assignment
             var noise = SimpleNoise.GenerateField(WorldMap.Width, WorldMap.Height, rng, octaves: 2);
+
+            int centerX = WorldMap.Width / 2;
+            int centerY = WorldMap.Height / 2;
 
             // Assign biomes based on noise thresholds
             for (int x = 0; x < WorldMap.Width; x++)
@@ -34,10 +50,13 @@ namespace CavesOfOoo.Core
             }
 
             // Force center to Cave (player starting zone)
-            map.Tiles[5, 5] = BiomeType.Cave;
+            map.Tiles[centerX, centerY] = BiomeType.Cave;
 
             // Ensure all 4 biomes are present
-            EnsureAllBiomes(map, noise);
+            EnsureAllBiomes(map, noise, centerX, centerY);
+
+            // Place points of interest
+            PlacePOIs(map, rng, centerX, centerY);
 
             return map;
         }
@@ -46,7 +65,7 @@ namespace CavesOfOoo.Core
         /// If any biome is missing, find the tile closest to its threshold range
         /// and flip it to that biome.
         /// </summary>
-        private static void EnsureAllBiomes(WorldMap map, float[,] noise)
+        private static void EnsureAllBiomes(WorldMap map, float[,] noise, int centerX, int centerY)
         {
             var biomes = (BiomeType[])Enum.GetValues(typeof(BiomeType));
 
@@ -64,7 +83,7 @@ namespace CavesOfOoo.Core
                     for (int y = 0; y < WorldMap.Height; y++)
                     {
                         // Don't overwrite the center Cave
-                        if (x == 5 && y == 5) continue;
+                        if (x == centerX && y == centerY) continue;
 
                         float dist = Math.Abs(noise[x, y] - targetCenter);
                         if (dist < bestDist)
@@ -77,6 +96,123 @@ namespace CavesOfOoo.Core
                 }
 
                 map.Tiles[bestX, bestY] = target;
+            }
+        }
+
+        private static void PlacePOIs(WorldMap map, Random rng, int centerX, int centerY)
+        {
+            var placed = new List<(int x, int y)>();
+
+            // 1. Starting village at center
+            map.SetPOI(centerX, centerY, new PointOfInterest(
+                POIType.Village, VillageNames[0], "Villagers", 1));
+            placed.Add((centerX, centerY));
+
+            // 2. Place 4-6 additional villages spread across the map
+            int villageCount = rng.Next(4, 7);
+            int nameIdx = 1;
+            for (int attempt = 0; attempt < 200 && nameIdx <= villageCount; attempt++)
+            {
+                int x = rng.Next(1, WorldMap.Width - 1);
+                int y = rng.Next(1, WorldMap.Height - 1);
+
+                if (!IsSpacedFrom(x, y, placed, 4)) continue;
+
+                BiomeType biome = map.GetBiome(x, y);
+                string faction = GetFactionForBiome(biome);
+                int tier = GetTierByDistance(x, y, centerX, centerY);
+
+                map.SetPOI(x, y, new PointOfInterest(
+                    POIType.Village,
+                    nameIdx < VillageNames.Length ? VillageNames[nameIdx] : $"Village_{nameIdx}",
+                    faction, tier));
+                placed.Add((x, y));
+                nameIdx++;
+            }
+
+            // 3. Place 3-5 lairs
+            int lairCount = rng.Next(3, 6);
+            int lairIdx = 0;
+            for (int attempt = 0; attempt < 200 && lairIdx < lairCount; attempt++)
+            {
+                int x = rng.Next(0, WorldMap.Width);
+                int y = rng.Next(0, WorldMap.Height);
+
+                if (!IsSpacedFrom(x, y, placed, 3)) continue;
+
+                BiomeType biome = map.GetBiome(x, y);
+                string boss = GetBossForBiome(biome);
+                int tier = GetTierByDistance(x, y, centerX, centerY);
+
+                map.SetPOI(x, y, new PointOfInterest(
+                    POIType.Lair,
+                    lairIdx < LairNames.Length ? LairNames[lairIdx] : $"Lair_{lairIdx}",
+                    null, tier, boss));
+                placed.Add((x, y));
+                lairIdx++;
+            }
+
+            // 4. Place 2-3 merchant camps
+            int campCount = rng.Next(2, 4);
+            int campIdx = 0;
+            for (int attempt = 0; attempt < 200 && campIdx < campCount; attempt++)
+            {
+                int x = rng.Next(1, WorldMap.Width - 1);
+                int y = rng.Next(1, WorldMap.Height - 1);
+
+                if (!IsSpacedFrom(x, y, placed, 3)) continue;
+
+                BiomeType biome = map.GetBiome(x, y);
+                int tier = GetTierByDistance(x, y, centerX, centerY);
+
+                map.SetPOI(x, y, new PointOfInterest(
+                    POIType.MerchantCamp,
+                    $"Merchant Camp",
+                    "Villagers", tier));
+                placed.Add((x, y));
+                campIdx++;
+            }
+        }
+
+        private static bool IsSpacedFrom(int x, int y, List<(int x, int y)> existing, int minDist)
+        {
+            foreach (var (ex, ey) in existing)
+            {
+                if (Math.Abs(x - ex) + Math.Abs(y - ey) < minDist)
+                    return false;
+            }
+            return true;
+        }
+
+        private static int GetTierByDistance(int x, int y, int centerX, int centerY)
+        {
+            int dist = Math.Abs(x - centerX) + Math.Abs(y - centerY);
+            if (dist <= 4) return 1;
+            if (dist <= 8) return 2;
+            return 3;
+        }
+
+        private static string GetFactionForBiome(BiomeType biome)
+        {
+            switch (biome)
+            {
+                case BiomeType.Desert: return "SaccharineConcord";
+                case BiomeType.Jungle: return "RotChoir";
+                case BiomeType.Ruins: return "Palimpsest";
+                case BiomeType.Cave:
+                default: return "Villagers";
+            }
+        }
+
+        private static string GetBossForBiome(BiomeType biome)
+        {
+            switch (biome)
+            {
+                case BiomeType.Cave: return "SnapjawChieftain";
+                case BiomeType.Desert: return "DesertProwler";
+                case BiomeType.Jungle: return "JungleStalker";
+                case BiomeType.Ruins: return "AncientGuardian";
+                default: return "SnapjawChieftain";
             }
         }
 

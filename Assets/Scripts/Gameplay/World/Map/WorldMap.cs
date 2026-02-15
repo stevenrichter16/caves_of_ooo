@@ -9,28 +9,47 @@ namespace CavesOfOoo.Core
     }
 
     /// <summary>
-    /// 10x10 grid of biome types representing the overworld.
+    /// 20x20 grid of biome types representing the overworld.
     /// Each cell maps to one zone. Zone IDs use format "Overworld.X.Y.Z"
     /// where Z=0 is the surface and Z>0 are underground levels.
     /// </summary>
     public class WorldMap
     {
-        public const int Width = 10;
-        public const int Height = 10;
+        public const int Width = 20;
+        public const int Height = 20;
 
         public BiomeType[,] Tiles;
+        public PointOfInterest[,] POIs;
         public int Seed;
 
         public WorldMap(int seed)
         {
             Seed = seed;
             Tiles = new BiomeType[Width, Height];
+            POIs = new PointOfInterest[Width, Height];
         }
 
         public BiomeType GetBiome(int x, int y)
         {
             if (!InBounds(x, y)) return BiomeType.Cave;
             return Tiles[x, y];
+        }
+
+        public PointOfInterest GetPOI(int x, int y)
+        {
+            if (!InBounds(x, y)) return null;
+            return POIs[x, y];
+        }
+
+        public void SetPOI(int x, int y, PointOfInterest poi)
+        {
+            if (InBounds(x, y))
+                POIs[x, y] = poi;
+        }
+
+        public bool HasPOI(int x, int y)
+        {
+            return InBounds(x, y) && POIs[x, y] != null;
         }
 
         public bool InBounds(int x, int y)

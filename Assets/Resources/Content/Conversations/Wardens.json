@@ -1,0 +1,110 @@
+{
+  "Conversations": [
+    {
+      "ID": "Warden_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Halt, traveler. I am the warden of this village. State your business.",
+          "Choices": [
+            {
+              "Text": "I'm just passing through.",
+              "Target": "PassingThrough"
+            },
+            {
+              "Text": "Tell me about this village.",
+              "Target": "AboutVillage"
+            },
+            {
+              "Text": "Are there any threats nearby?",
+              "Target": "Threats"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "PassingThrough",
+          "Text": "Then pass through peacefully. We don't tolerate troublemakers here, but honest travelers are welcome. The elder can tell you more about the area if you need guidance.",
+          "Choices": [
+            {
+              "Text": "Thanks for the welcome.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AboutVillage",
+          "Text": "This is a small settlement, but we look after our own. The elder leads us, the merchant trades goods, and I keep watch. We've had our share of trouble from the wilds, but we endure.",
+          "Choices": [
+            {
+              "Text": "What kind of trouble?",
+              "Target": "Threats"
+            },
+            {
+              "Text": "Sounds like a good village.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Threats",
+          "Text": "The usual -- beasts from the wilds, bandits on the roads. Lately the creatures have been bolder. Something's stirring them up. I've doubled my patrols, but one warden can only do so much.",
+          "Choices": [
+            {
+              "Text": "I could help deal with some of those threats.",
+              "Target": "OfferHelp"
+            },
+            {
+              "Text": "What kind of creatures?",
+              "Target": "Creatures"
+            },
+            {
+              "Text": "Stay vigilant, warden.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "OfferHelp",
+          "Text": "A willing blade is always welcome. Clear out some of the beasts near the village and you'll have our gratitude -- and maybe a reward from the elder.",
+          "Choices": [
+            {
+              "Text": "Consider it done.",
+              "Target": "End",
+              "Actions": [{ "Key": "AddMessage", "Value": "The warden nods with respect." }]
+            },
+            {
+              "Text": "I'll see what I can do.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Creatures",
+          "Text": "Depends on where you are. Near the caves it's snapjaws and bats. The desert has scorpions and bandits. The jungle is full of spiders and vipers. And the old ruins... I don't like to think about what lurks in the ruins.",
+          "Choices": [
+            {
+              "Text": "I can handle myself.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Thanks for the warning.",
+              "Target": "End"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

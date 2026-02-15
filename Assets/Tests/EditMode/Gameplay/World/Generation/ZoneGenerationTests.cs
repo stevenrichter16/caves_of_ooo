@@ -216,7 +216,20 @@ namespace CavesOfOoo.Tests
               ],
               ""Stats"": [],
               ""Tags"": []
-            }
+            },
+            { ""Name"": ""CaveBat"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""cave bat"" }, { ""Key"": ""RenderString"", ""Value"": ""b"" }]}] },
+            { ""Name"": ""CaveSlime"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""cave slime"" }, { ""Key"": ""RenderString"", ""Value"": ""j"" }]}] },
+            { ""Name"": ""CaveBear"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""cave bear"" }, { ""Key"": ""RenderString"", ""Value"": ""B"" }]}] },
+            { ""Name"": ""Scorpion"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""scorpion"" }, { ""Key"": ""RenderString"", ""Value"": ""x"" }]}] },
+            { ""Name"": ""DesertBandit"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""desert bandit"" }, { ""Key"": ""RenderString"", ""Value"": ""h"" }]}] },
+            { ""Name"": ""SandWurm"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""sand wurm"" }, { ""Key"": ""RenderString"", ""Value"": ""W"" }]}] },
+            { ""Name"": ""GiantSpider"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""giant spider"" }, { ""Key"": ""RenderString"", ""Value"": ""S"" }]}] },
+            { ""Name"": ""Viper"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""viper"" }, { ""Key"": ""RenderString"", ""Value"": ""~"" }]}] },
+            { ""Name"": ""JungleApe"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""jungle ape"" }, { ""Key"": ""RenderString"", ""Value"": ""A"" }]}] },
+            { ""Name"": ""RuinScavenger"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""ruin scavenger"" }, { ""Key"": ""RenderString"", ""Value"": ""r"" }]}] },
+            { ""Name"": ""SkeletalSentry"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""skeletal sentry"" }, { ""Key"": ""RenderString"", ""Value"": ""Z"" }]}] },
+            { ""Name"": ""StoneGolem"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""stone golem"" }, { ""Key"": ""RenderString"", ""Value"": ""G"" }]}] },
+            { ""Name"": ""LeatherArmor"", ""Inherits"": ""Item"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""leather armor"" }, { ""Key"": ""RenderString"", ""Value"": ""["" }]}] }
           ]
         }";
 
