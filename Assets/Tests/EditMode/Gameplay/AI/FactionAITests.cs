@@ -78,8 +78,31 @@ namespace CavesOfOoo.Tests
         [Test]
         public void FactionManager_HostileFactions_ReturnsNegative()
         {
-            Assert.AreEqual(-100, FactionManager.GetFactionFeeling("Snapjaws", "Player"));
-            Assert.AreEqual(-100, FactionManager.GetFactionFeeling("Player", "Snapjaws"));
+            Assert.AreEqual(-100, FactionManager.GetFactionFeeling("Snapjaws", "Villagers"));
+            Assert.AreEqual(-100, FactionManager.GetFactionFeeling("Villagers", "Snapjaws"));
+        }
+
+        [Test]
+        public void PlayerReputation_InitialValues()
+        {
+            Assert.AreEqual(-100, PlayerReputation.Get("Snapjaws"));
+            Assert.AreEqual(50, PlayerReputation.Get("Villagers"));
+            Assert.AreEqual(PlayerReputation.Attitude.Disliked, PlayerReputation.GetAttitude("Snapjaws"));
+            Assert.AreEqual(PlayerReputation.Attitude.Liked, PlayerReputation.GetAttitude("Villagers"));
+        }
+
+        [Test]
+        public void PlayerReputation_GetFeeling_MapsAttitudeToFeeling()
+        {
+            Assert.AreEqual(-50, PlayerReputation.GetFeeling("Snapjaws"));
+            Assert.AreEqual(50, PlayerReputation.GetFeeling("Villagers"));
+        }
+
+        [Test]
+        public void PlayerReputation_Modify_ChangesRep()
+        {
+            PlayerReputation.Modify("Villagers", 10, silent: true);
+            Assert.AreEqual(60, PlayerReputation.Get("Villagers"));
         }
 
         [Test]

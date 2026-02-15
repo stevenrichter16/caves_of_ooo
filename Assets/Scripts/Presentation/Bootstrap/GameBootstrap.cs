@@ -43,7 +43,14 @@ namespace CavesOfOoo
         private void DoStart()
         {
             Debug.Log("[Bootstrap] Step 1/9: Initializing factions...");
-            FactionManager.Initialize();
+            TextAsset factionAsset = Resources.Load<TextAsset>("Content/Data/Factions");
+            if (factionAsset != null)
+                FactionManager.Initialize(factionAsset.text);
+            else
+            {
+                Debug.LogWarning("[Bootstrap] Factions.json not found, using hardcoded defaults.");
+                FactionManager.Initialize();
+            }
 
             Debug.Log("[Bootstrap] Step 2/9: Initializing mutations...");
             MutationRegistry.EnsureInitialized();
@@ -173,6 +180,14 @@ namespace CavesOfOoo
                 if (ZoneRenderer != null)
                     tradeUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
                 inputHandler.TradeUI = tradeUI;
+
+                // Wire faction UI (shares tilemap with zone renderer)
+                var factionUI = GetComponent<FactionUI>();
+                if (factionUI == null)
+                    factionUI = gameObject.AddComponent<FactionUI>();
+                if (ZoneRenderer != null)
+                    factionUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
+                inputHandler.FactionUI = factionUI;
             }
 
             // Start the turn loop

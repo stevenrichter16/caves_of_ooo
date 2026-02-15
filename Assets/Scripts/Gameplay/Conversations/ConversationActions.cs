@@ -162,17 +162,33 @@ namespace CavesOfOoo.Core
             });
 
             // Change faction feeling: "FactionA:FactionB:Delta"
+            // When one side is "Player", routes through PlayerReputation.
             Register("ChangeFactionFeeling", (speaker, listener, arg) =>
             {
                 var parts = arg.Split(':');
                 if (parts.Length < 3) return;
                 if (!int.TryParse(parts[2], out int delta)) return;
-                int current = FactionManager.GetFactionFeeling(parts[0], parts[1]);
-                FactionManager.SetFactionFeeling(parts[0], parts[1], current + delta);
-                if (delta > 0)
-                    MessageLog.Add($"Your reputation with {parts[0]} improves.");
-                else if (delta < 0)
-                    MessageLog.Add($"Your reputation with {parts[0]} worsens.");
+
+                if (parts[1] == "Player")
+                {
+                    // "RotChoir:Player:5" → modify player rep with RotChoir
+                    PlayerReputation.Modify(parts[0], delta);
+                }
+                else if (parts[0] == "Player")
+                {
+                    // "Player:RotChoir:5" → modify player rep with RotChoir
+                    PlayerReputation.Modify(parts[1], delta);
+                }
+                else
+                {
+                    // NPC-to-NPC faction feeling
+                    int current = FactionManager.GetFactionFeeling(parts[0], parts[1]);
+                    FactionManager.SetFactionFeeling(parts[0], parts[1], current + delta);
+                    if (delta > 0)
+                        MessageLog.Add($"Relations between {FactionManager.GetDisplayName(parts[0])} and {FactionManager.GetDisplayName(parts[1])} improve.");
+                    else if (delta < 0)
+                        MessageLog.Add($"Relations between {FactionManager.GetDisplayName(parts[0])} and {FactionManager.GetDisplayName(parts[1])} worsen.");
+                }
             });
         }
 

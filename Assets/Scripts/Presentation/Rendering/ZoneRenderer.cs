@@ -84,10 +84,18 @@ namespace CavesOfOoo.Rendering
 
         private void LateUpdate()
         {
-            if (Paused) return;
-
-            // Re-render messages if new ones arrived (even without a full dirty)
             bool newMessages = MessageLog.Count != _lastMessageCount;
+
+            if (Paused)
+            {
+                // Still update messages while paused (overlay popups don't hide the message area)
+                if (newMessages)
+                {
+                    RenderMessages();
+                    _lastMessageCount = MessageLog.Count;
+                }
+                return;
+            }
 
             if (_dirty && CurrentZone != null)
             {

@@ -1,0 +1,63 @@
+{
+  "Factions": [
+    {
+      "Name": "Snapjaws",
+      "DisplayName": "the Snapjaws",
+      "Visible": true,
+      "InitialPlayerReputation": -100,
+      "Feelings": [
+        { "Faction": "Villagers", "Value": -100 }
+      ]
+    },
+    {
+      "Name": "Villagers",
+      "DisplayName": "the Villagers",
+      "Visible": true,
+      "InitialPlayerReputation": 50,
+      "Feelings": [
+        { "Faction": "Snapjaws", "Value": -100 }
+      ]
+    },
+    {
+      "Name": "RotChoir",
+      "DisplayName": "the Rot Choir",
+      "Visible": true,
+      "InitialPlayerReputation": 0,
+      "Feelings": [
+        { "Faction": "Palimpsest", "Value": -25 }
+      ]
+    },
+    {
+      "Name": "Palimpsest",
+      "DisplayName": "the Palimpsest",
+      "Visible": true,
+      "InitialPlayerReputation": 0,
+      "Feelings": [
+        { "Faction": "RotChoir", "Value": -25 }
+      ]
+    },
+    {
+      "Name": "SaccharineConcord",
+      "DisplayName": "the Saccharine Concord",
+      "Visible": true,
+      "InitialPlayerReputation": 0,
+      "Feelings": []
+    },
+    {
+      "Name": "PaleCuration",
+      "DisplayName": "the Pale Curation",
+      "Visible": true,
+      "InitialPlayerReputation": 0,
+      "Feelings": [
+        { "Faction": "RotChoir", "Value": -15 }
+      ]
+    },
+    {
+      "Name": "GlassblownRemnant",
+      "DisplayName": "the Glassblown Remnant",
+      "Visible": true,
+      "InitialPlayerReputation": 0,
+      "Feelings": []
+    }
+  ]
+}

@@ -1,13 +1,14 @@
 using System.Collections.Generic;
+using CavesOfOoo.Data;
 
 namespace CavesOfOoo.Core
 {
     /// <summary>
     /// Static registry for faction relationships and hostility checks.
-    /// Mirrors Qud's Factions/Faction system (simplified):
-    /// - Flat faction-to-faction feeling table (-100 to +100)
-    /// - Hostile at feeling <= -10, allied at >= 50
-    /// - Same faction = +100 (implicit)
+    /// Loads faction definitions from Factions.json and tracks:
+    /// - Faction-to-faction feelings (flat table, -100 to +100)
+    /// - Player reputation via PlayerReputation (integrated into GetFeeling)
+    /// Hostile at feeling <= -10, allied at >= 50.
     /// </summary>
     public static class FactionManager
     {
@@ -23,7 +24,46 @@ namespace CavesOfOoo.Core
         private static HashSet<string> _registeredFactions = new HashSet<string>();
 
         /// <summary>
-        /// Initialize default faction relationships.
+        /// Faction metadata loaded from JSON.
+        /// </summary>
+        private static Dictionary<string, FactionEntry> _factionData
+            = new Dictionary<string, FactionEntry>();
+
+        /// <summary>
+        /// Initialize from JSON faction data.
+        /// </summary>
+        public static void Initialize(string json)
+        {
+            Reset();
+
+            var fileData = FactionLoader.Load(json);
+
+            // Always register Player
+            RegisterFaction("Player");
+
+            // Register all factions from data and set inter-faction feelings
+            for (int i = 0; i < fileData.Factions.Length; i++)
+            {
+                var entry = fileData.Factions[i];
+                RegisterFaction(entry.Name);
+                _factionData[entry.Name] = entry;
+
+                if (entry.Feelings != null)
+                {
+                    for (int j = 0; j < entry.Feelings.Length; j++)
+                    {
+                        var feeling = entry.Feelings[j];
+                        SetFactionFeeling(entry.Name, feeling.Faction, feeling.Value);
+                    }
+                }
+            }
+
+            // Initialize player reputation from faction data
+            PlayerReputation.Initialize(fileData.Factions);
+        }
+
+        /// <summary>
+        /// Initialize with hardcoded defaults (for tests or when no JSON available).
         /// </summary>
         public static void Initialize()
         {
@@ -33,17 +73,32 @@ namespace CavesOfOoo.Core
             RegisterFaction("Snapjaws");
             RegisterFaction("Villagers");
 
-            // Snapjaws hate the player, player hates snapjaws
-            SetFactionFeeling("Snapjaws", "Player", -100);
-            SetFactionFeeling("Player", "Snapjaws", -100);
-
-            // Villagers are friendly toward the player
-            SetFactionFeeling("Villagers", "Player", 20);
-            SetFactionFeeling("Player", "Villagers", 20);
-
-            // Snapjaws and villagers are hostile
+            // Snapjaws hate the player and villagers
             SetFactionFeeling("Snapjaws", "Villagers", -100);
             SetFactionFeeling("Villagers", "Snapjaws", -100);
+
+            // Store minimal faction data for display
+            _factionData["Snapjaws"] = new FactionEntry
+            {
+                Name = "Snapjaws",
+                DisplayName = "the Snapjaws",
+                Visible = true,
+                InitialPlayerReputation = -100
+            };
+            _factionData["Villagers"] = new FactionEntry
+            {
+                Name = "Villagers",
+                DisplayName = "the Villagers",
+                Visible = true,
+                InitialPlayerReputation = 50
+            };
+
+            // Initialize player reputation from hardcoded data
+            PlayerReputation.Initialize(new[]
+            {
+                _factionData["Snapjaws"],
+                _factionData["Villagers"]
+            });
         }
 
         /// <summary>
@@ -53,6 +108,8 @@ namespace CavesOfOoo.Core
         {
             _factionFeelings.Clear();
             _registeredFactions.Clear();
+            _factionData.Clear();
+            PlayerReputation.Reset();
         }
 
         /// <summary>
@@ -104,6 +161,7 @@ namespace CavesOfOoo.Core
 
         /// <summary>
         /// Get how entityA feels about entityB, based on their factions.
+        /// Uses PlayerReputation when one entity is the player.
         /// </summary>
         public static int GetFeeling(Entity source, Entity target)
         {
@@ -117,6 +175,12 @@ namespace CavesOfOoo.Core
             var targetBrain = target.GetPart<BrainPart>();
             if (targetBrain != null && targetBrain.IsPersonallyHostileTo(source))
                 return -100;
+
+            // Player reputation integration
+            if (source.HasTag("Player"))
+                return PlayerReputation.GetFeeling(GetFaction(target));
+            if (target.HasTag("Player"))
+                return PlayerReputation.GetFeeling(GetFaction(source));
 
             string factionA = GetFaction(source);
             string factionB = GetFaction(target);
@@ -153,6 +217,55 @@ namespace CavesOfOoo.Core
             if (entity == null) return null;
             if (entity.HasTag("Player")) return "Player";
             return entity.GetTag("Faction");
+        }
+
+        /// <summary>
+        /// Get metadata for a faction (display name, visibility, etc.).
+        /// Returns null if the faction has no metadata.
+        /// </summary>
+        public static FactionEntry GetFactionData(string factionName)
+        {
+            if (string.IsNullOrEmpty(factionName)) return null;
+            _factionData.TryGetValue(factionName, out var entry);
+            return entry;
+        }
+
+        /// <summary>
+        /// Get the display name for a faction. Falls back to the raw name.
+        /// </summary>
+        public static string GetDisplayName(string factionName)
+        {
+            var data = GetFactionData(factionName);
+            return data?.DisplayName ?? factionName;
+        }
+
+        /// <summary>
+        /// Get all registered faction names (excluding "Player").
+        /// </summary>
+        public static List<string> GetAllFactions()
+        {
+            var result = new List<string>();
+            foreach (var name in _registeredFactions)
+            {
+                if (name != "Player")
+                    result.Add(name);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Get all visible faction names (for UI display).
+        /// </summary>
+        public static List<string> GetAllVisibleFactions()
+        {
+            var result = new List<string>();
+            foreach (var name in _registeredFactions)
+            {
+                if (name == "Player") continue;
+                if (_factionData.TryGetValue(name, out var entry) && !entry.Visible) continue;
+                result.Add(name);
+            }
+            return result;
         }
     }
 }

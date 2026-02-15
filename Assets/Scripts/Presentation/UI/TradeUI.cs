@@ -85,7 +85,7 @@ namespace CavesOfOoo.Rendering
             var stock = TradeSystem.GetTraderStock(_trader);
             for (int i = 0; i < stock.Count; i++)
             {
-                int price = TradeSystem.GetBuyPrice(stock[i], _performance);
+                int price = TradeSystem.GetBuyPrice(stock[i], _performance, _trader);
                 _leftRows.Add(BuildRow(stock[i], price));
             }
 
@@ -98,7 +98,7 @@ namespace CavesOfOoo.Rendering
                     var item = playerInv.Objects[i];
                     if (item.GetPart<CommercePart>() != null)
                     {
-                        int price = TradeSystem.GetSellPrice(item, _performance);
+                        int price = TradeSystem.GetSellPrice(item, _performance, _trader);
                         _rightRows.Add(BuildRow(item, price));
                     }
                 }

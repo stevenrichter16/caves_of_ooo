@@ -28,6 +28,7 @@ namespace CavesOfOoo.Rendering
         private int _cursorIndex;
         private int _scrollOffset;
         private bool _pickedUpAny;
+        private string _statusMessage;
 
         // Popup anchor in world tile coordinates.
         // All drawing uses popup-local grid coords (0,0 = top-left, Y down)
@@ -47,6 +48,7 @@ namespace CavesOfOoo.Rendering
             _cursorIndex = 0;
             _scrollOffset = 0;
             _pickedUpAny = false;
+            _statusMessage = null;
             Render();
         }
 
@@ -147,8 +149,10 @@ namespace CavesOfOoo.Rendering
             if (index < 0 || index >= _items.Count) return;
 
             var item = _items[index];
-            if (TryPickupViaCommand(item))
+            string error;
+            if (TryPickupViaCommand(item, out error))
             {
+                _statusMessage = null;
                 _pickedUpAny = true;
                 _items.RemoveAt(index);
 
@@ -163,15 +167,20 @@ namespace CavesOfOoo.Rendering
                     _cursorIndex = _items.Count - 1;
                 ScrollIntoView();
             }
+            else
+            {
+                _statusMessage = error ?? $"Can't pick up {item.GetDisplayName()}!";
+            }
 
             Render();
         }
 
         private void TakeAll()
         {
+            string unused;
             for (int i = _items.Count - 1; i >= 0; i--)
             {
-                if (TryPickupViaCommand(_items[i]))
+                if (TryPickupViaCommand(_items[i], out unused))
                 {
                     _pickedUpAny = true;
                     _items.RemoveAt(i);
@@ -184,8 +193,9 @@ namespace CavesOfOoo.Rendering
         /// <summary>
         /// Command-first pickup seam.
         /// </summary>
-        private bool TryPickupViaCommand(Entity item)
+        private bool TryPickupViaCommand(Entity item, out string errorMessage)
         {
+            errorMessage = null;
             if (item == null)
                 return false;
 
@@ -197,6 +207,7 @@ namespace CavesOfOoo.Rendering
             if (result.Success)
                 return true;
 
+            errorMessage = result.ErrorMessage;
             Debug.LogWarning(
                 "[Inventory/Refactor] PickupUI command failed. " +
                 $"Code={result.ErrorCode}, Message={result.ErrorMessage}");
@@ -226,7 +237,7 @@ namespace CavesOfOoo.Rendering
 
             int totalRows = _items.Count;
             int visibleCount = Mathf.Min(totalRows > 0 ? totalRows : 1, POPUP_MAX_VISIBLE);
-            _popupH = visibleCount + 5; // top border + title + separator + content + bottom border + action bar
+            _popupH = visibleCount + 6; // top border + title + separator + content + bottom border + action bar + status
 
             float camX = cam.transform.position.x;
             float camY = cam.transform.position.y;
@@ -318,6 +329,15 @@ namespace CavesOfOoo.Rendering
             // Action bar below popup border
             string actions = " [Enter]take [Tab]take all [a-z]select [Esc/g]close";
             DrawText(0, borderH, actions, QudColorParser.DarkGray);
+
+            // Status message (e.g. "too heavy" feedback)
+            if (!string.IsNullOrEmpty(_statusMessage))
+            {
+                string msg = _statusMessage;
+                if (msg.Length > POPUP_W - 2)
+                    msg = msg.Substring(0, POPUP_W - 2);
+                DrawText(1, borderH + 1, msg, QudColorParser.BrightRed);
+            }
         }
 
         // ===== Mouse =====

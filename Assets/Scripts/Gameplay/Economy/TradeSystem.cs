@@ -8,8 +8,9 @@ namespace CavesOfOoo.Core
     /// Mirrors Qud's trade system: value from CommercePart, performance from Ego stat,
     /// currency tracked as "Drams" IntProperty on entities.
     ///
-    /// Buy price (player pays): ceil(Value / Performance)  — higher Ego = cheaper
-    /// Sell price (player gets): floor(Value * Performance) — higher Ego = better deals
+    /// Buy price (player pays): ceil(Value / Performance * FactionMod)  — higher Ego = cheaper
+    /// Sell price (player gets): floor(Value * Performance / FactionMod) — higher Ego = better deals
+    /// Faction modifier: Loved=0.85, Liked=0.95, Neutral=1.0, Disliked=1.10
     /// </summary>
     public static class TradeSystem
     {
@@ -46,26 +47,49 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Price the player pays to buy an item from a trader.
-        /// Higher performance = lower price.
+        /// Get the faction price modifier based on player reputation with the trader's faction.
+        /// Loved: 0.85 (15% discount), Liked: 0.95 (5% discount),
+        /// Neutral: 1.0, Disliked: 1.10 (10% markup).
         /// </summary>
-        public static int GetBuyPrice(Entity item, double performance)
+        public static double GetFactionModifier(Entity trader)
+        {
+            if (trader == null) return 1.0;
+            string faction = FactionManager.GetFaction(trader);
+            if (string.IsNullOrEmpty(faction) || faction == "Player") return 1.0;
+
+            var attitude = PlayerReputation.GetAttitude(faction);
+            switch (attitude)
+            {
+                case PlayerReputation.Attitude.Loved: return 0.85;
+                case PlayerReputation.Attitude.Liked: return 0.95;
+                case PlayerReputation.Attitude.Disliked: return 1.10;
+                default: return 1.0;
+            }
+        }
+
+        /// <summary>
+        /// Price the player pays to buy an item from a trader.
+        /// Higher performance = lower price. Better faction standing = lower price.
+        /// </summary>
+        public static int GetBuyPrice(Entity item, double performance, Entity trader = null)
         {
             int value = GetItemValue(item);
             if (value <= 0) return 0;
             if (performance <= 0.01) return value * 20; // safety cap
-            return (int)Math.Ceiling(value / performance);
+            double factionMod = GetFactionModifier(trader);
+            return (int)Math.Ceiling(value / performance * factionMod);
         }
 
         /// <summary>
         /// Price the player receives selling an item to a trader.
-        /// Higher performance = better sell price.
+        /// Higher performance = better sell price. Better faction standing = better price.
         /// </summary>
-        public static int GetSellPrice(Entity item, double performance)
+        public static int GetSellPrice(Entity item, double performance, Entity trader = null)
         {
             int value = GetItemValue(item);
             if (value <= 0) return 0;
-            return Math.Max(1, (int)Math.Floor(value * performance));
+            double factionMod = GetFactionModifier(trader);
+            return Math.Max(1, (int)Math.Floor(value * performance / factionMod));
         }
 
         /// <summary>
@@ -100,7 +124,7 @@ namespace CavesOfOoo.Core
             if (buyerInv == null) return false;
 
             double perf = GetTradePerformance(buyer);
-            int price = GetBuyPrice(item, perf);
+            int price = GetBuyPrice(item, perf, trader);
 
             int buyerDrams = GetDrams(buyer);
             if (buyerDrams < price)
@@ -149,7 +173,7 @@ namespace CavesOfOoo.Core
             if (sellerInv == null) return false;
 
             double perf = GetTradePerformance(seller);
-            int price = GetSellPrice(item, perf);
+            int price = GetSellPrice(item, perf, trader);
 
             int traderDrams = GetDrams(trader);
             if (traderDrams < price)

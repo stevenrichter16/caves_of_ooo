@@ -63,7 +63,7 @@ namespace CavesOfOoo.Rendering
         /// Normal: standard movement/action input.
         /// AwaitingDirection: waiting for a directional key to target an ability.
         /// </summary>
-        private enum InputState { Normal, AwaitingDirection, InventoryOpen, PickupOpen, ContainerPickerOpen, AwaitingTalkDirection, DialogueOpen, TradeOpen, AwaitingAttackConfirm }
+        private enum InputState { Normal, AwaitingDirection, InventoryOpen, PickupOpen, ContainerPickerOpen, AwaitingTalkDirection, DialogueOpen, TradeOpen, AwaitingAttackConfirm, FactionOpen }
         private InputState _inputState = InputState.Normal;
         private ActivatedAbility _pendingAbility;
         private Entity _pendingAttackTarget;
@@ -92,6 +92,11 @@ namespace CavesOfOoo.Rendering
         /// The container picker UI component. Set by GameBootstrap.
         /// </summary>
         public ContainerPickerUI ContainerPickerUI { get; set; }
+
+        /// <summary>
+        /// The faction standings UI component. Set by GameBootstrap.
+        /// </summary>
+        public FactionUI FactionUI { get; set; }
 
         private void Update()
         {
@@ -157,10 +162,24 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            if (_inputState == InputState.FactionOpen)
+            {
+                HandleFactionInput();
+                return;
+            }
+
             // Open inventory (I key)
             if (Input.GetKeyDown(KeyCode.I))
             {
                 OpenInventory();
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            // Open faction standings (F key)
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                OpenFaction();
                 _lastMoveTime = Time.time;
                 return;
             }
@@ -848,6 +867,41 @@ namespace CavesOfOoo.Rendering
         }
 
         private void CloseInventory()
+        {
+            _inputState = InputState.Normal;
+            if (CameraFollow != null) CameraFollow.RestoreGameView();
+            if (ZoneRenderer != null)
+            {
+                ZoneRenderer.Paused = false;
+                ZoneRenderer.MarkDirty();
+            }
+        }
+
+        private void OpenFaction()
+        {
+            if (FactionUI == null) return;
+            FactionUI.PlayerEntity = PlayerEntity;
+            FactionUI.Open();
+            _inputState = InputState.FactionOpen;
+            if (ZoneRenderer != null) ZoneRenderer.Paused = true;
+            if (CameraFollow != null) CameraFollow.SetUIView(80, 45);
+        }
+
+        private void HandleFactionInput()
+        {
+            if (FactionUI == null || !FactionUI.IsOpen)
+            {
+                CloseFaction();
+                return;
+            }
+
+            FactionUI.HandleInput();
+
+            if (!FactionUI.IsOpen)
+                CloseFaction();
+        }
+
+        private void CloseFaction()
         {
             _inputState = InputState.Normal;
             if (CameraFollow != null) CameraFollow.RestoreGameView();

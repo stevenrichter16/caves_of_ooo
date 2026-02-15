@@ -123,6 +123,19 @@ namespace CavesOfOoo.Core
             // Check if not hostile
             Register("IfNotHostile", (speaker, listener, arg) =>
                 !FactionManager.IsHostile(speaker, listener));
+
+            // Check player reputation with a faction: "FactionName:AttitudeLevel"
+            // e.g., "RotChoir:Liked" checks if player attitude >= Liked
+            Register("IfReputationAtLeast", (speaker, listener, arg) =>
+            {
+                int colon = arg.IndexOf(':');
+                if (colon < 0) return false;
+                string faction = arg.Substring(0, colon);
+                string levelStr = arg.Substring(colon + 1);
+                if (!System.Enum.TryParse<PlayerReputation.Attitude>(levelStr, out var required))
+                    return false;
+                return (int)PlayerReputation.GetAttitude(faction) >= (int)required;
+            });
         }
 
         public static void Reset()
