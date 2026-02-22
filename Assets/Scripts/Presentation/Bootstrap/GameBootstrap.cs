@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using CavesOfOoo.Core;
 using CavesOfOoo.Data;
 using CavesOfOoo.Rendering;
@@ -21,6 +22,7 @@ namespace CavesOfOoo
         private Zone _zone;
         private TurnManager _turnManager;
         private Entity _player;
+        private static readonly char[] StartingBitTypes = { 'R', 'G', 'B', 'C', 'r', 'g', 'b', 'c', 'K', 'W', 'Y', 'M' };
 
         private void Awake()
         {
@@ -85,6 +87,8 @@ namespace CavesOfOoo
             }
             Debug.Log($"[Bootstrap] Zone generated: {_zone.EntityCount} entities");
 
+            ScatterTrees();
+
             Debug.Log("[Bootstrap] Step 6/9: Creating player...");
             _player = _factory.CreateEntity("Player");
             if (_player == null)
@@ -94,6 +98,7 @@ namespace CavesOfOoo
             }
             var playerBody = _player.GetPart<Body>();
             Debug.Log($"[Bootstrap] Player created. Has Body part: {playerBody != null}, Body initialized: {playerBody?.GetBody() != null}");
+            InitializePlayerStartingTinkering();
             PlacePlayerInOpenCell();
             SpawnDebugWeaponNearPlayer();
             SpawnDebugNPCNearPlayer();
@@ -140,6 +145,7 @@ namespace CavesOfOoo
                 inputHandler.ZoneManager = _zoneManager;
                 inputHandler.WorldMap = _zoneManager.WorldMap;
                 inputHandler.CameraFollow = cameraFollow;
+                inputHandler.EntityFactory = _factory;
 
                 // Wire inventory UI (shares tilemap with zone renderer)
                 var inventoryUI = GetComponent<InventoryUI>();
@@ -147,6 +153,7 @@ namespace CavesOfOoo
                     inventoryUI = gameObject.AddComponent<InventoryUI>();
                 if (ZoneRenderer != null)
                     inventoryUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
+                inventoryUI.EntityFactory = _factory;
                 inputHandler.InventoryUI = inventoryUI;
 
                 // Wire pickup UI (shares tilemap with zone renderer)
@@ -194,6 +201,67 @@ namespace CavesOfOoo
             _turnManager.ProcessUntilPlayerTurn();
 
             Debug.Log($"[Bootstrap] DONE. Zone has {_zone.EntityCount} entities. WASD/arrows to move.");
+        }
+
+        /// <summary>
+        /// Start the player with full V1 tinkering access:
+        /// all known recipes plus 5 units of every bit type.
+        /// </summary>
+        private void InitializePlayerStartingTinkering()
+        {
+            if (_player == null)
+                return;
+
+            var bitLocker = _player.GetPart<BitLockerPart>();
+            if (bitLocker == null)
+            {
+                _player.AddPart(new BitLockerPart());
+                bitLocker = _player.GetPart<BitLockerPart>();
+            }
+
+            if (bitLocker == null)
+            {
+                Debug.LogWarning("[Bootstrap/Tinkering] Failed to initialize BitLockerPart on player.");
+                return;
+            }
+
+            TinkerRecipeRegistry.EnsureInitialized();
+
+            int learnedNow = 0;
+            foreach (var recipe in TinkerRecipeRegistry.GetAllRecipes())
+            {
+                if (recipe == null || string.IsNullOrWhiteSpace(recipe.ID))
+                    continue;
+
+                if (bitLocker.KnowsRecipe(recipe.ID))
+                    continue;
+
+                bitLocker.LearnRecipe(recipe.ID);
+                learnedNow++;
+            }
+
+            const int startingAmountPerBit = 5;
+            bitLocker.AddBits(BuildUniformBitGrant(startingAmountPerBit));
+
+            Debug.Log(
+                "[Bootstrap/Tinkering] " +
+                $"Learned {learnedNow} recipe(s), total known: {bitLocker.GetKnownRecipes().Count}. " +
+                $"Granted {startingAmountPerBit} of each bit type.");
+        }
+
+        private static string BuildUniformBitGrant(int amountPerBit)
+        {
+            if (amountPerBit <= 0 || StartingBitTypes.Length == 0)
+                return string.Empty;
+
+            var builder = new StringBuilder(StartingBitTypes.Length * amountPerBit);
+            for (int i = 0; i < amountPerBit; i++)
+            {
+                for (int j = 0; j < StartingBitTypes.Length; j++)
+                    builder.Append(StartingBitTypes[j]);
+            }
+
+            return builder.ToString();
         }
 
         /// <summary>
@@ -282,6 +350,47 @@ namespace CavesOfOoo
                 }
                 return;
             }
+        }
+
+        /// <summary>
+        /// Scatter trees across open floor cells in the zone.
+        /// Avoids a clear radius around the center (player spawn area).
+        /// </summary>
+        private void ScatterTrees()
+        {
+            int cx = Zone.Width / 2;
+            int cy = Zone.Height / 2;
+            int clearRadius = 5; // keep spawn area clear
+            float treeDensity = 0.15f;
+            var rng = new System.Random(42);
+            int placed = 0;
+
+            for (int x = 0; x < Zone.Width; x++)
+            {
+                for (int y = 0; y < Zone.Height; y++)
+                {
+                    // Skip cells near center where player will spawn
+                    int dx = x - cx;
+                    int dy = y - cy;
+                    if (dx * dx + dy * dy < clearRadius * clearRadius)
+                        continue;
+
+                    var cell = _zone.GetCell(x, y);
+                    if (cell == null || !cell.IsPassable()) continue;
+
+                    if (rng.NextDouble() < treeDensity)
+                    {
+                        var tree = _factory.CreateEntity("Tree");
+                        if (tree != null)
+                        {
+                            _zone.AddEntity(tree, x, y);
+                            placed++;
+                        }
+                    }
+                }
+            }
+
+            Debug.Log($"[Bootstrap] Scattered {placed} trees across zone");
         }
 
         /// <summary>

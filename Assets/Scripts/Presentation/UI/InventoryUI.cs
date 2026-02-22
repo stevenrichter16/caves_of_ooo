@@ -4,23 +4,24 @@ using CavesOfOoo.Core;
 using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Core.Anatomy;
+using CavesOfOoo.Data;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace CavesOfOoo.Rendering
 {
     /// <summary>
-    /// Renders a combined inventory/equipment screen onto the tilemap.
-    /// Left panel: paperdoll-style spatial squares showing equipped items.
-    /// Right panel: categorized inventory list.
-    /// Both panels are always visible. Left/Right switches focus between them.
-    /// Press Enter on an equipment square to open a popup listing compatible items.
+    /// Renders the inventory UI on a tilemap with three tabs:
+    /// Equipment, Inventory, and Tinkering.
+    /// Equipment/Inventory preserve the paperdoll + list layout.
+    /// Tinkering uses a Qud-inspired build/mod split with recipe list + bit locker panel.
     /// </summary>
     public class InventoryUI : MonoBehaviour
     {
         public Tilemap Tilemap;
         public Entity PlayerEntity;
         public Zone CurrentZone;
+        public EntityFactory EntityFactory;
 
         // Layout constants (80x45 grid)
         private const int W = 80;
@@ -33,13 +34,22 @@ namespace CavesOfOoo.Rendering
         private const int VISIBLE_ROWS = CONTENT_END - CONTENT_START;
         private const int BOX_W = 5;
         private const int BOX_H = 3;
+        private const int PANEL_EQUIPMENT = 0;
+        private const int PANEL_INVENTORY = 1;
+        private const int PANEL_TINKERING = 2;
+
+        private const int TINKER_DIVIDER_X = 50;
+        private const int TINKER_LIST_START_Y = 3;
+        private const int TINKER_LIST_END_Y = 15;
+        private const int TINKER_DESC_START_Y = 18;
+        private static readonly char[] TinkerBitOrder = { 'R', 'G', 'B', 'C', 'r', 'g', 'b', 'c', 'K', 'W', 'Y', 'M' };
 
         // Equip popup constants
         private const int POPUP_W = 46;
         private const int POPUP_MAX_VISIBLE = 25;
 
         private bool _isOpen;
-        private int _panel; // 0 = equipment (left), 1 = inventory (right)
+        private int _panel; // 0 = equipment, 1 = inventory, 2 = tinkering
         private InventoryScreenData.ScreenState _state;
 
         // Inventory list state (right panel)
@@ -50,6 +60,13 @@ namespace CavesOfOoo.Rendering
         // Equipment paperdoll state (left panel)
         private List<InventoryScreenData.EquipmentSlot> _equipSlots;
         private int _equipCursorIndex;
+
+        // Tinkering tab state
+        private enum TinkeringMode { Build, Mod }
+        private TinkeringMode _tinkeringMode = TinkeringMode.Build;
+        private int _tinkerCursorIndex;
+        private int _tinkerScrollOffset;
+        private List<TinkeringRecipeRow> _tinkerRows = new List<TinkeringRecipeRow>();
 
         // Equip-from-slot popup (equipment panel)
         private EquipPopupState _equipPopup;
@@ -68,6 +85,16 @@ namespace CavesOfOoo.Rendering
             public string Text;
             public Color Color;
             public InventoryScreenData.ItemDisplay Item;
+        }
+
+        private struct TinkeringRecipeRow
+        {
+            public TinkerRecipe Recipe;
+            public string Name;
+            public string Cost;
+            public bool HasBits;
+            public bool HasIngredient;
+            public bool Affordable;
         }
 
         private class EquipPopupState
@@ -119,10 +146,12 @@ namespace CavesOfOoo.Rendering
         {
             if (PlayerEntity == null) return;
             _isOpen = true;
-            _panel = 0;
+            _panel = PANEL_EQUIPMENT;
             _cursorIndex = 0;
             _scrollOffset = 0;
             _equipCursorIndex = 0;
+            _tinkerCursorIndex = 0;
+            _tinkerScrollOffset = 0;
             _equipPopup = null;
             _displaceConfirm = null;
             _itemActionPopup = null;
@@ -173,10 +202,21 @@ namespace CavesOfOoo.Rendering
             // Mouse click on equipment square (works from either panel)
             if (Input.GetMouseButtonDown(0))
             {
+                if (_panel == PANEL_TINKERING)
+                {
+                    int clickedTinkerRow = GetTinkeringRowAtMouse();
+                    if (clickedTinkerRow >= 0)
+                    {
+                        _tinkerCursorIndex = clickedTinkerRow;
+                        Render();
+                    }
+                    return true;
+                }
+
                 int clickedSlot = GetEquipSlotAtMouse();
                 if (clickedSlot >= 0)
                 {
-                    _panel = 0;
+                    _panel = PANEL_EQUIPMENT;
                     _equipCursorIndex = clickedSlot;
                     OpenEquipPopup(_equipSlots[clickedSlot]);
                     return true;
@@ -186,7 +226,7 @@ namespace CavesOfOoo.Rendering
                 int clickedRow = GetInventoryRowAtMouse();
                 if (clickedRow >= 0)
                 {
-                    _panel = 1;
+                    _panel = PANEL_INVENTORY;
                     _cursorIndex = clickedRow;
                     var clickedItem = _rows[clickedRow];
                     if (clickedItem.Item != null)
@@ -197,10 +237,12 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
-            if (_panel == 0)
+            if (_panel == PANEL_EQUIPMENT)
                 HandleEquipPanelInput();
-            else
+            else if (_panel == PANEL_INVENTORY)
                 HandleInventoryPanelInput();
+            else
+                HandleTinkeringPanelInput();
 
             return true;
         }
@@ -262,13 +304,24 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            if (_panel == PANEL_TINKERING)
+            {
+                int hoveredTinkerRow = GetTinkeringRowAtMouse();
+                if (hoveredTinkerRow >= 0 && hoveredTinkerRow != _tinkerCursorIndex)
+                {
+                    _tinkerCursorIndex = hoveredTinkerRow;
+                    Render();
+                }
+                return;
+            }
+
             // Main panels — equipment slots
             int hoveredSlot = GetEquipSlotAtMouse();
             if (hoveredSlot >= 0)
             {
-                if (_panel != 0 || _equipCursorIndex != hoveredSlot)
+                if (_panel != PANEL_EQUIPMENT || _equipCursorIndex != hoveredSlot)
                 {
-                    _panel = 0;
+                    _panel = PANEL_EQUIPMENT;
                     _equipCursorIndex = hoveredSlot;
                     Render();
                 }
@@ -279,9 +332,9 @@ namespace CavesOfOoo.Rendering
             int hoveredRow = GetInventoryRowAtMouse();
             if (hoveredRow >= 0)
             {
-                if (_panel != 1 || _cursorIndex != hoveredRow)
+                if (_panel != PANEL_INVENTORY || _cursorIndex != hoveredRow)
                 {
-                    _panel = 1;
+                    _panel = PANEL_INVENTORY;
                     _cursorIndex = hoveredRow;
                     Render();
                 }
@@ -291,6 +344,13 @@ namespace CavesOfOoo.Rendering
 
         private void HandleEquipPanelInput()
         {
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                _panel = PANEL_TINKERING;
+                Render();
+                return;
+            }
+
             // Up/Down: spatial navigation
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
             {
@@ -321,7 +381,7 @@ namespace CavesOfOoo.Rendering
                 if (_equipCursorIndex == prev)
                 {
                     // No slot to the right — switch to inventory panel
-                    _panel = 1;
+                    _panel = PANEL_INVENTORY;
                 }
                 Render();
                 return;
@@ -330,7 +390,7 @@ namespace CavesOfOoo.Rendering
             // Tab: switch to inventory panel
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                _panel = 1;
+                _panel = PANEL_INVENTORY;
                 Render();
                 return;
             }
@@ -362,6 +422,13 @@ namespace CavesOfOoo.Rendering
 
         private void HandleInventoryPanelInput()
         {
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                _panel = PANEL_TINKERING;
+                Render();
+                return;
+            }
+
             // Up/Down: list navigation
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
             {
@@ -379,15 +446,23 @@ namespace CavesOfOoo.Rendering
             // Left: switch to equipment panel
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.H))
             {
-                _panel = 0;
+                _panel = PANEL_EQUIPMENT;
                 Render();
                 return;
             }
 
-            // Tab: switch to equipment panel
+            // Right: switch to tinkering tab
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.L))
+            {
+                _panel = PANEL_TINKERING;
+                Render();
+                return;
+            }
+
+            // Tab: switch to tinkering tab
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                _panel = 0;
+                _panel = PANEL_TINKERING;
                 Render();
                 return;
             }
@@ -414,6 +489,65 @@ namespace CavesOfOoo.Rendering
                         return;
                     }
                 }
+            }
+        }
+
+        private void HandleTinkeringPanelInput()
+        {
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.H))
+            {
+                _panel = PANEL_INVENTORY;
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                _panel = PANEL_EQUIPMENT;
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                _tinkeringMode = TinkeringMode.Build;
+                _tinkerCursorIndex = 0;
+                _tinkerScrollOffset = 0;
+                Rebuild();
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                _tinkeringMode = TinkeringMode.Mod;
+                _tinkerCursorIndex = 0;
+                _tinkerScrollOffset = 0;
+                Rebuild();
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            {
+                MoveTinkeringCursor(-1);
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            {
+                MoveTinkeringCursor(1);
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                TryCraftSelectedRecipeViaCommand();
+                Rebuild();
+                Render();
+                return;
             }
         }
 
@@ -751,6 +885,16 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
+            // Tinkering seam: disassemble carried tinkering items via inventory command pipeline.
+            var tinkerItem = item.GetPart<TinkerItemPart>();
+            bool canDisassemble = !itemDisplay.IsEquipped
+                && ((tinkerItem != null && tinkerItem.CanDisassemble)
+                    || item.HasPart<MeleeWeaponPart>());
+            if (canDisassemble && TinkeringService.CanDisassemble(item, out _))
+            {
+                actions.Add(new ItemAction { Label = "Disassemble", Command = "disassemble" });
+            }
+
             // Container interaction seam: put selected item in a specific nearby container.
             if (CurrentZone != null)
             {
@@ -901,6 +1045,14 @@ namespace CavesOfOoo.Rendering
                     Render();
                     break;
 
+                case "disassemble":
+                    TryDisassembleViaCommand(item);
+                    _itemActionPopup = null;
+                    Rebuild();
+                    ClampCursor();
+                    Render();
+                    break;
+
                 case "put_container":
                     TryPutInContainerViaCommand(item, action.Container);
                     _itemActionPopup = null;
@@ -993,6 +1145,70 @@ namespace CavesOfOoo.Rendering
             if (result.Success)
                 return true;
             LogCommandFailure($"PerformAction[{actionCommand}]", result);
+            return false;
+        }
+
+        /// <summary>
+        /// Tinkering seam: disassemble selected item through command execution.
+        /// </summary>
+        private bool TryDisassembleViaCommand(Entity item)
+        {
+            if (item == null)
+                return false;
+
+            var result = InventorySystem.ExecuteCommand(
+                new DisassembleCommand(item),
+                PlayerEntity,
+                CurrentZone);
+
+            if (result.Success)
+                return true;
+            LogCommandFailure("Disassemble", result);
+            return false;
+        }
+
+        private bool TryCraftSelectedRecipeViaCommand()
+        {
+            if (_tinkeringMode == TinkeringMode.Mod)
+            {
+                MessageLog.Add("Item modding tab is not implemented yet.");
+                return false;
+            }
+
+            if (_tinkerRows.Count == 0 || _tinkerCursorIndex < 0 || _tinkerCursorIndex >= _tinkerRows.Count)
+                return false;
+
+            var selected = _tinkerRows[_tinkerCursorIndex];
+            if (selected.Recipe == null || string.IsNullOrWhiteSpace(selected.Recipe.ID))
+                return false;
+
+            if (EntityFactory == null)
+            {
+                MessageLog.Add("Cannot craft: missing EntityFactory on InventoryUI.");
+                return false;
+            }
+
+            if (!selected.HasIngredient)
+            {
+                MessageLog.Add("Missing required ingredient.");
+                return false;
+            }
+
+            if (!selected.HasBits)
+            {
+                MessageLog.Add("Not enough bits.");
+                return false;
+            }
+
+            var result = InventorySystem.ExecuteCommand(
+                new CraftFromRecipeCommand(selected.Recipe.ID, EntityFactory),
+                PlayerEntity,
+                CurrentZone);
+
+            if (result.Success)
+                return true;
+
+            LogCommandFailure("CraftFromRecipe", result);
             return false;
         }
 
@@ -1156,6 +1372,7 @@ namespace CavesOfOoo.Rendering
             // Always rebuild both panels
             _rows.Clear();
             BuildItemRows();
+            BuildTinkeringRows();
 
             _equipSlots = _state.Equipment;
             if (_equipSlots.Count > 0 && _equipCursorIndex >= _equipSlots.Count)
@@ -1204,6 +1421,109 @@ namespace CavesOfOoo.Rendering
             }
         }
 
+        private void BuildTinkeringRows()
+        {
+            _tinkerRows.Clear();
+
+            if (PlayerEntity == null)
+                return;
+
+            var bitLocker = PlayerEntity.GetPart<BitLockerPart>();
+            if (bitLocker == null)
+                return;
+
+            foreach (var recipe in TinkerRecipeRegistry.GetAllRecipes())
+            {
+                if (recipe == null || string.IsNullOrWhiteSpace(recipe.ID))
+                    continue;
+
+                bool isBuild = string.Equals(recipe.Type, "Build", StringComparison.OrdinalIgnoreCase);
+                bool isMod = string.Equals(recipe.Type, "Mod", StringComparison.OrdinalIgnoreCase);
+
+                if (_tinkeringMode == TinkeringMode.Build && !isBuild)
+                    continue;
+                if (_tinkeringMode == TinkeringMode.Mod && !isMod)
+                    continue;
+
+                if (!bitLocker.KnowsRecipe(recipe.ID))
+                    continue;
+
+                string cost = BitCost.Normalize(recipe.Cost);
+                bool hasBits = bitLocker.HasBits(cost);
+                bool hasIngredient = HasAnyIngredient(recipe.Ingredient);
+
+                _tinkerRows.Add(new TinkeringRecipeRow
+                {
+                    Recipe = recipe,
+                    Name = !string.IsNullOrWhiteSpace(recipe.DisplayName) ? recipe.DisplayName : recipe.Blueprint,
+                    Cost = cost,
+                    HasBits = hasBits,
+                    HasIngredient = hasIngredient,
+                    Affordable = hasBits && hasIngredient
+                });
+            }
+
+            _tinkerRows.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.OrdinalIgnoreCase));
+
+            if (_tinkerRows.Count == 0)
+            {
+                _tinkerCursorIndex = 0;
+                _tinkerScrollOffset = 0;
+                return;
+            }
+
+            if (_tinkerCursorIndex >= _tinkerRows.Count)
+                _tinkerCursorIndex = _tinkerRows.Count - 1;
+            if (_tinkerCursorIndex < 0)
+                _tinkerCursorIndex = 0;
+
+            int visibleRows = TINKER_LIST_END_Y - TINKER_LIST_START_Y + 1;
+            if (_tinkerScrollOffset > _tinkerCursorIndex)
+                _tinkerScrollOffset = _tinkerCursorIndex;
+            if (_tinkerCursorIndex >= _tinkerScrollOffset + visibleRows)
+                _tinkerScrollOffset = _tinkerCursorIndex - visibleRows + 1;
+            if (_tinkerScrollOffset < 0)
+                _tinkerScrollOffset = 0;
+        }
+
+        private bool HasAnyIngredient(string ingredientSpec)
+        {
+            if (string.IsNullOrWhiteSpace(ingredientSpec))
+                return true;
+
+            var inventory = PlayerEntity?.GetPart<InventoryPart>();
+            if (inventory == null)
+                return false;
+
+            string[] options = ingredientSpec.Split(',');
+            for (int i = 0; i < options.Length; i++)
+            {
+                string blueprint = options[i].Trim();
+                if (string.IsNullOrEmpty(blueprint))
+                    continue;
+
+                if (PlayerHasIngredientBlueprint(inventory, blueprint))
+                    return true;
+            }
+
+            return false;
+        }
+
+        private static bool PlayerHasIngredientBlueprint(InventoryPart inventory, string blueprint)
+        {
+            if (inventory == null || string.IsNullOrWhiteSpace(blueprint))
+                return false;
+
+            for (int i = 0; i < inventory.Objects.Count; i++)
+            {
+                var item = inventory.Objects[i];
+                if (string.Equals(item.BlueprintName, blueprint, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+
+            return false;
+        }
+
         // ===== Navigation =====
 
         private void MoveCursor(int delta)
@@ -1223,6 +1543,27 @@ namespace CavesOfOoo.Rendering
                 _scrollOffset = _cursorIndex;
             else if (viewIndex >= VISIBLE_ROWS)
                 _scrollOffset = _cursorIndex - VISIBLE_ROWS + 1;
+        }
+
+        private void MoveTinkeringCursor(int delta)
+        {
+            if (_tinkerRows.Count == 0)
+                return;
+
+            _tinkerCursorIndex += delta;
+            if (_tinkerCursorIndex < 0)
+                _tinkerCursorIndex = 0;
+            if (_tinkerCursorIndex >= _tinkerRows.Count)
+                _tinkerCursorIndex = _tinkerRows.Count - 1;
+
+            int visibleRows = TINKER_LIST_END_Y - TINKER_LIST_START_Y + 1;
+            if (_tinkerCursorIndex < _tinkerScrollOffset)
+                _tinkerScrollOffset = _tinkerCursorIndex;
+            else if (_tinkerCursorIndex >= _tinkerScrollOffset + visibleRows)
+                _tinkerScrollOffset = _tinkerCursorIndex - visibleRows + 1;
+
+            if (_tinkerScrollOffset < 0)
+                _tinkerScrollOffset = 0;
         }
 
         private void MoveEquipCursor(int dx, int dy)
@@ -1298,13 +1639,10 @@ namespace CavesOfOoo.Rendering
 
             Tilemap.ClearAllTiles();
 
-            // Title bar
-            string leftTitle = "Equipment";
-            string rightTitle = "Inventory";
-            Color leftTitleColor = _panel == 0 ? QudColorParser.White : QudColorParser.DarkGray;
-            Color rightTitleColor = _panel == 1 ? QudColorParser.White : QudColorParser.DarkGray;
-            DrawText(1, 0, leftTitle, leftTitleColor);
-            DrawText(RIGHT_START + 1, 0, rightTitle, rightTitleColor);
+            // Tab bar
+            DrawText(1, 0, "Equipment", _panel == PANEL_EQUIPMENT ? QudColorParser.White : QudColorParser.DarkGray);
+            DrawText(13, 0, "Inventory", _panel == PANEL_INVENTORY ? QudColorParser.White : QudColorParser.DarkGray);
+            DrawText(25, 0, "Tinkering", _panel == PANEL_TINKERING ? QudColorParser.White : QudColorParser.DarkGray);
 
             // Weight and drams on right side of header
             string info = "Wt:" + _state.CarriedWeight + "/" + _state.MaxCarryWeight
@@ -1315,23 +1653,30 @@ namespace CavesOfOoo.Rendering
             DrawHLine(0, 1, W, QudColorParser.DarkGray);
             DrawHLine(0, CONTENT_END, W, QudColorParser.DarkGray);
 
-            // Vertical divider
-            for (int y = 0; y < H; y++)
-                DrawChar(DIVIDER_X, y, '|', QudColorParser.DarkGray);
+            if (_panel == PANEL_TINKERING)
+            {
+                RenderTinkeringPanel();
+            }
+            else
+            {
+                // Vertical divider
+                for (int y = 0; y < H; y++)
+                    DrawChar(DIVIDER_X, y, '|', QudColorParser.DarkGray);
 
-            // Left panel: paperdoll
-            RenderPaperdoll();
+                // Left panel: paperdoll
+                RenderPaperdoll();
 
-            // Right panel: inventory list
-            RenderInventoryList();
+                // Right panel: inventory list
+                RenderInventoryList();
 
-            // Popup overlays
-            if (_equipPopup != null)
-                RenderEquipPopup();
-            if (_itemActionPopup != null)
-                RenderItemActionPopup();
-            if (_displaceConfirm != null)
-                RenderDisplaceConfirm();
+                // Popup overlays
+                if (_equipPopup != null)
+                    RenderEquipPopup();
+                if (_itemActionPopup != null)
+                    RenderItemActionPopup();
+                if (_displaceConfirm != null)
+                    RenderDisplaceConfirm();
+            }
 
             // Action bar
             string actions;
@@ -1339,10 +1684,12 @@ namespace CavesOfOoo.Rendering
                 actions = " [Y]es  [N]o  [Esc]cancel";
             else if (_equipPopup != null || _itemActionPopup != null)
                 actions = " [Enter]select  [a-z]quick select  [Esc]cancel";
-            else if (_panel == 0)
+            else if (_panel == PANEL_EQUIPMENT)
                 actions = " [Enter]equip [e]unequip [>]inventory [Esc]close";
+            else if (_panel == PANEL_TINKERING)
+                actions = " [Enter]craft [B]/[M]mode [<]inventory [Tab]cycle [Esc]close";
             else
-                actions = " [d]rop [Enter]actions [<]equipment [Esc]close";
+                actions = " [d]rop [Enter]actions [<]equipment [>]tinkering [Esc]close";
 
             DrawText(0, H - 2, actions, QudColorParser.Gray);
 
@@ -1356,7 +1703,7 @@ namespace CavesOfOoo.Rendering
 
             for (int i = 0; i < _equipSlots.Count; i++)
             {
-                bool selected = (i == _equipCursorIndex) && _panel == 0 && _equipPopup == null;
+                bool selected = (i == _equipCursorIndex) && _panel == PANEL_EQUIPMENT && _equipPopup == null;
                 DrawEquipmentSquare(_equipSlots[i], selected);
             }
         }
@@ -1375,7 +1722,7 @@ namespace CavesOfOoo.Rendering
             for (int i = _scrollOffset; i < _rows.Count && y < CONTENT_END; i++, y++)
             {
                 var row = _rows[i];
-                bool selected = (i == _cursorIndex) && _panel == 1;
+                bool selected = (i == _cursorIndex) && _panel == PANEL_INVENTORY;
 
                 if (selected && !row.IsHeader)
                 {
@@ -1393,6 +1740,159 @@ namespace CavesOfOoo.Rendering
                 DrawChar(W - 2, CONTENT_START + 1, '^', QudColorParser.Gray);
             if (_scrollOffset + visibleRows < _rows.Count)
                 DrawChar(W - 2, CONTENT_END - 1, 'v', QudColorParser.Gray);
+        }
+
+        private void RenderTinkeringPanel()
+        {
+            for (int y = 0; y < CONTENT_END; y++)
+                DrawChar(TINKER_DIVIDER_X, y, '|', QudColorParser.DarkGray);
+
+            DrawHLine(0, 16, TINKER_DIVIDER_X, QudColorParser.DarkGray);
+            DrawText(2, 2,
+                _tinkeringMode == TinkeringMode.Build
+                    ? "> Build    Mod"
+                    : "  Build  > Mod",
+                QudColorParser.White);
+
+            RenderTinkeringRecipeList();
+            RenderBitLockerPanel();
+            RenderTinkeringDescription();
+            RenderTinkeringIngredientPanel();
+        }
+
+        private void RenderTinkeringRecipeList()
+        {
+            int visibleRows = TINKER_LIST_END_Y - TINKER_LIST_START_Y + 1;
+            int maxNameWidth = TINKER_DIVIDER_X - 12;
+
+            if (_tinkeringMode == TinkeringMode.Mod)
+            {
+                DrawText(2, TINKER_LIST_START_Y, "Modding recipes: coming next phase.", QudColorParser.DarkGray);
+                return;
+            }
+
+            if (_tinkerRows.Count == 0)
+            {
+                DrawText(2, TINKER_LIST_START_Y, "(no known build recipes)", QudColorParser.DarkGray);
+                return;
+            }
+
+            int rowY = TINKER_LIST_START_Y;
+            for (int i = _tinkerScrollOffset; i < _tinkerRows.Count && rowY <= TINKER_LIST_END_Y; i++, rowY++)
+            {
+                var row = _tinkerRows[i];
+                bool selected = i == _tinkerCursorIndex;
+
+                string name = row.Name ?? "(unnamed recipe)";
+                if (name.Length > maxNameWidth)
+                    name = name.Substring(0, maxNameWidth - 1) + "~";
+
+                string cost = "<" + (string.IsNullOrEmpty(row.Cost) ? "-" : row.Cost) + ">";
+                int costX = TINKER_DIVIDER_X - cost.Length - 2;
+
+                Color lineColor = row.Affordable ? QudColorParser.Gray : QudColorParser.BrightRed;
+                if (selected)
+                {
+                    DrawChar(1, rowY, '>', QudColorParser.White);
+                    lineColor = QudColorParser.White;
+                }
+
+                DrawText(3, rowY, name, lineColor);
+                DrawText(costX, rowY, cost, selected ? QudColorParser.BrightYellow : lineColor);
+            }
+
+            if (_tinkerScrollOffset > 0)
+                DrawChar(TINKER_DIVIDER_X - 2, TINKER_LIST_START_Y, '^', QudColorParser.Gray);
+            if (_tinkerScrollOffset + visibleRows < _tinkerRows.Count)
+                DrawChar(TINKER_DIVIDER_X - 2, TINKER_LIST_END_Y, 'v', QudColorParser.Gray);
+        }
+
+        private void RenderBitLockerPanel()
+        {
+            int x0 = TINKER_DIVIDER_X + 2;
+            DrawText(x0, 2, "Bit Locker", QudColorParser.BrightYellow);
+
+            var bitLocker = PlayerEntity?.GetPart<BitLockerPart>();
+            var selected = GetSelectedTinkeringRow();
+            Dictionary<char, int> required = selected.HasValue
+                ? BitCost.ToCounts(selected.Value.Cost)
+                : new Dictionary<char, int>();
+
+            for (int i = 0; i < TinkerBitOrder.Length; i++)
+            {
+                char bit = TinkerBitOrder[i];
+                int count = bitLocker != null ? bitLocker.GetBitCount(bit) : 0;
+                int y = 3 + i;
+                if (y >= CONTENT_END - 1)
+                    break;
+
+                Color bitColor = QudColorParser.CharToColor(bit);
+                DrawText(x0, y, bit.ToString(), bitColor);
+
+                if (required.TryGetValue(bit, out int need) && need > 0)
+                {
+                    bool hasEnough = count >= need;
+                    DrawText(x0 + 2, y, hasEnough ? "v" : "x", hasEnough ? QudColorParser.BrightGreen : QudColorParser.BrightRed);
+                    DrawText(W - 9, y, count.ToString().PadLeft(3) + "/" + need.ToString().PadRight(3), QudColorParser.Gray);
+                }
+                else
+                {
+                    DrawText(x0 + 2, y, "-", QudColorParser.DarkGray);
+                    DrawText(W - 6, y, count.ToString().PadLeft(4), QudColorParser.Gray);
+                }
+            }
+        }
+
+        private void RenderTinkeringDescription()
+        {
+            var selected = GetSelectedTinkeringRow();
+            if (!selected.HasValue || selected.Value.Recipe == null)
+                return;
+
+            int x0 = 2;
+            int y = TINKER_DESC_START_Y;
+            var recipe = selected.Value.Recipe;
+
+            DrawText(x0, y, selected.Value.Name, QudColorParser.BrightYellow);
+            y++;
+            DrawText(x0, y, "Blueprint: " + recipe.Blueprint, QudColorParser.Gray);
+            y++;
+            DrawText(x0, y, "Cost: <" + (string.IsNullOrEmpty(selected.Value.Cost) ? "-" : selected.Value.Cost) + ">", QudColorParser.Gray);
+            y++;
+            DrawText(x0, y, "Produces: " + Mathf.Max(1, recipe.NumberMade), QudColorParser.Gray);
+        }
+
+        private void RenderTinkeringIngredientPanel()
+        {
+            var selected = GetSelectedTinkeringRow();
+            if (!selected.HasValue || selected.Value.Recipe == null || string.IsNullOrWhiteSpace(selected.Value.Recipe.Ingredient))
+                return;
+
+            int x0 = TINKER_DIVIDER_X + 2;
+            int y = 16;
+            DrawText(x0, y, "Ingredient", QudColorParser.BrightYellow);
+            y++;
+
+            var inventory = PlayerEntity?.GetPart<InventoryPart>();
+            string[] options = selected.Value.Recipe.Ingredient.Split(',');
+            for (int i = 0; i < options.Length && y < CONTENT_END - 1; i++)
+            {
+                string blueprint = options[i].Trim();
+                if (string.IsNullOrEmpty(blueprint))
+                    continue;
+
+                bool owned = PlayerHasIngredientBlueprint(inventory, blueprint);
+                DrawText(x0, y, owned ? "v " : "x ", owned ? QudColorParser.BrightGreen : QudColorParser.BrightRed);
+                DrawText(x0 + 2, y, blueprint, QudColorParser.Gray);
+                y++;
+            }
+        }
+
+        private TinkeringRecipeRow? GetSelectedTinkeringRow()
+        {
+            if (_tinkerRows.Count == 0 || _tinkerCursorIndex < 0 || _tinkerCursorIndex >= _tinkerRows.Count)
+                return null;
+            return _tinkerRows[_tinkerCursorIndex];
         }
 
         private void DrawEquipmentSquare(InventoryScreenData.EquipmentSlot slot, bool selected)
@@ -1541,13 +2041,42 @@ namespace CavesOfOoo.Rendering
                     DrawText(1, H - 1, detail, QudColorParser.BrightCyan);
                 }
             }
-            else if (_panel == 0 && _equipSlots != null && _equipCursorIndex < _equipSlots.Count)
+            else if (_panel == PANEL_EQUIPMENT && _equipSlots != null && _equipCursorIndex < _equipSlots.Count)
             {
                 var slot = _equipSlots[_equipCursorIndex];
                 string detail = slot.BodyPartName + ": " + slot.ItemName;
                 DrawText(1, H - 1, detail, QudColorParser.BrightCyan);
             }
-            else if (_panel == 1 && _cursorIndex < _rows.Count && _rows[_cursorIndex].Item != null)
+            else if (_panel == PANEL_TINKERING)
+            {
+                var selected = GetSelectedTinkeringRow();
+                if (!selected.HasValue)
+                {
+                    DrawText(1, H - 1, "No recipe selected.", QudColorParser.DarkGray);
+                    return;
+                }
+
+                if (_tinkeringMode == TinkeringMode.Mod)
+                {
+                    DrawText(1, H - 1, "Modding flow is not implemented yet.", QudColorParser.DarkGray);
+                    return;
+                }
+
+                if (!selected.Value.HasIngredient)
+                {
+                    DrawText(1, H - 1, "Missing ingredient for recipe.", QudColorParser.BrightRed);
+                    return;
+                }
+
+                if (!selected.Value.HasBits)
+                {
+                    DrawText(1, H - 1, "Missing required bits.", QudColorParser.BrightRed);
+                    return;
+                }
+
+                DrawText(1, H - 1, "Ready to craft. Press Enter.", QudColorParser.BrightGreen);
+            }
+            else if (_panel == PANEL_INVENTORY && _cursorIndex < _rows.Count && _rows[_cursorIndex].Item != null)
             {
                 var item = _rows[_cursorIndex].Item;
                 var itemActions = item.Actions;
@@ -1945,6 +2474,27 @@ namespace CavesOfOoo.Rendering
             int rowIdx = _scrollOffset + vi;
             if (rowIdx >= 0 && rowIdx < _rows.Count && !_rows[rowIdx].IsHeader)
                 return rowIdx;
+            return -1;
+        }
+
+        private int GetTinkeringRowAtMouse()
+        {
+            if (_panel != PANEL_TINKERING)
+                return -1;
+
+            var grid = MouseToGrid();
+            if (grid.x < 0)
+                return -1;
+
+            if (grid.x < 1 || grid.x >= TINKER_DIVIDER_X)
+                return -1;
+            if (grid.y < TINKER_LIST_START_Y || grid.y > TINKER_LIST_END_Y)
+                return -1;
+
+            int index = _tinkerScrollOffset + (grid.y - TINKER_LIST_START_Y);
+            if (index >= 0 && index < _tinkerRows.Count)
+                return index;
+
             return -1;
         }
 

@@ -550,7 +550,6 @@ namespace CavesOfOoo.Core
             if (_body == null) return;
 
             var types = AnatomyFactory.GetTypes();
-            bool changed = false;
 
             foreach (var kvp in types)
             {
@@ -610,7 +609,6 @@ namespace CavesOfOoo.Core
                         }
 
                         AddPartByManager(managerID, attachParent, newPart);
-                        changed = true;
                     }
                 }
                 else if (existingDynamic > needed)
@@ -623,7 +621,6 @@ namespace CavesOfOoo.Core
                         {
                             allImplied[i].ParentPart?.RemovePart(allImplied[i]);
                             toRemove--;
-                            changed = true;
                         }
                     }
                 }

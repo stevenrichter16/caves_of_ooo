@@ -227,15 +227,23 @@ namespace CavesOfOoo.Rendering
                 "........",
                 "........"
             });
-            DrawChar('T', new[] {  // Tree
-                "XXXXXXXX",
-                "XXXXXXXX",
-                "...XX...",
-                "...XX...",
-                "...XX...",
-                "...XX...",
-                "...XX...",
-                "...XX..."
+            DrawChar16('T', new[] {  // Tree
+                "................",
+                "......XXXX......",
+                "....XXXXXXXX....",
+                "...XXXXXXXXXX...",
+                "..XXXXXXXXXXXX..",
+                "..XXXXX.XXXXXX..",
+                "..XXXXXXXXXXXX..",
+                "...XXXXXXXXXX...",
+                "....XXXXXXXX....",
+                ".....XXXXXX.....",
+                ".......XX.......",
+                ".......XX.......",
+                ".......XX.......",
+                ".......XX.......",
+                "......XXXX......",
+                "................"
             });
         }
 
@@ -261,6 +269,33 @@ namespace CavesOfOoo.Rendering
                         _atlasTexture.SetPixel(tx + 1, ty, Color.white);
                         _atlasTexture.SetPixel(tx, ty + 1, Color.white);
                         _atlasTexture.SetPixel(tx + 1, ty + 1, Color.white);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Draw a character glyph from a full 16x16 pattern (no scaling).
+        /// Each row is a 16-character string where 'X' = white pixel.
+        /// </summary>
+        private static void DrawChar16(char c, string[] pattern)
+        {
+            int charIndex = (int)c;
+            int col = charIndex % Columns;
+            int row = Rows - 1 - (charIndex / Columns);
+
+            int baseX = col * GlyphSize;
+            int baseY = row * GlyphSize;
+
+            for (int py = 0; py < 16 && py < pattern.Length; py++)
+            {
+                for (int px = 0; px < 16 && px < pattern[py].Length; px++)
+                {
+                    if (pattern[py][px] == 'X')
+                    {
+                        int tx = baseX + px;
+                        int ty = baseY + (15 - py);
+                        _atlasTexture.SetPixel(tx, ty, Color.white);
                     }
                 }
             }

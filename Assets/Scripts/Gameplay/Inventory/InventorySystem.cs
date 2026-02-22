@@ -3,6 +3,7 @@ using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Core.Inventory.Planning;
 using CavesOfOoo.Core.Anatomy;
+using CavesOfOoo.Data;
 
 namespace CavesOfOoo.Core
 {
@@ -253,6 +254,30 @@ namespace CavesOfOoo.Core
         {
             var result = ExecuteCommand(
                 new PerformInventoryActionCommand(item, command),
+                actor,
+                zone);
+            return result.Success;
+        }
+
+        /// <summary>
+        /// Craft an item from a tinkering recipe through command execution.
+        /// </summary>
+        public static bool CraftFromRecipe(Entity actor, EntityFactory factory, string recipeId, Zone zone = null)
+        {
+            var result = ExecuteCommand(
+                new CraftFromRecipeCommand(recipeId, factory),
+                actor,
+                zone);
+            return result.Success;
+        }
+
+        /// <summary>
+        /// Disassemble an owned item into bits through command execution.
+        /// </summary>
+        public static bool Disassemble(Entity actor, Entity item, Zone zone = null)
+        {
+            var result = ExecuteCommand(
+                new DisassembleCommand(item),
                 actor,
                 zone);
             return result.Success;

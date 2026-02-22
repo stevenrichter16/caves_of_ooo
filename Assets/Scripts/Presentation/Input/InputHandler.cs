@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using CavesOfOoo.Core;
 using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Core.Inventory.Commands;
+using CavesOfOoo.Data;
 using UnityEngine;
 
 namespace CavesOfOoo.Rendering
@@ -10,7 +11,8 @@ namespace CavesOfOoo.Rendering
     /// MonoBehaviour that converts player key presses into game commands.
     /// Supports WASD, arrow keys, numpad (8-directional), vi keys,
     /// item pickup (G/comma), ability activation (1-5 + direction),
-    /// and debug keys: F6 (grant mutation), F7 (dump body parts), F8 (dismember limb).
+    /// and debug keys: F6 (grant mutation), F7 (dump body parts),
+    /// F8 (dismember limb), F9 (debug craft recipe).
     /// This is the input boundary — the only place Unity input touches the simulation.
     /// </summary>
     public class InputHandler : MonoBehaviour
@@ -97,6 +99,11 @@ namespace CavesOfOoo.Rendering
         /// The faction standings UI component. Set by GameBootstrap.
         /// </summary>
         public FactionUI FactionUI { get; set; }
+
+        /// <summary>
+        /// Entity factory used by debug crafting flows.
+        /// </summary>
+        public EntityFactory EntityFactory { get; set; }
 
         private void Update()
         {
@@ -204,6 +211,14 @@ namespace CavesOfOoo.Rendering
             if (Input.GetKeyDown(KeyCode.F8))
             {
                 TryDebugDismember();
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            // Debug: craft one known recipe through the command pipeline.
+            if (Input.GetKeyDown(KeyCode.F9))
+            {
+                TryDebugCraftKnownRecipe();
                 _lastMoveTime = Time.time;
                 return;
             }
@@ -540,6 +555,96 @@ namespace CavesOfOoo.Rendering
                 Debug.Log($"[Body/Debug] F8: Dismember failed for \"{target.GetDisplayName()}\".");
             }
 
+            if (ZoneRenderer != null)
+                ZoneRenderer.MarkDirty();
+        }
+
+        /// <summary>
+        /// Debug utility: craft one known recipe through InventoryCommandExecutor.
+        /// If no known recipe exists, learns the first recipe from registry and grants exact bits.
+        /// </summary>
+        private void TryDebugCraftKnownRecipe()
+        {
+            if (PlayerEntity == null)
+            {
+                Debug.LogWarning("[Tinkering/Debug] F9 pressed, but PlayerEntity is null.");
+                return;
+            }
+
+            if (EntityFactory == null)
+            {
+                Debug.LogWarning("[Tinkering/Debug] F9 pressed, but EntityFactory is null.");
+                return;
+            }
+
+            var bitLocker = PlayerEntity.GetPart<BitLockerPart>();
+            if (bitLocker == null)
+            {
+                PlayerEntity.AddPart(new BitLockerPart());
+                bitLocker = PlayerEntity.GetPart<BitLockerPart>();
+                Debug.Log("[Tinkering/Debug] F9: Added BitLockerPart to player.");
+            }
+
+            string recipeId = null;
+            TinkerRecipe recipe = null;
+
+            foreach (var knownRecipeId in bitLocker.GetKnownRecipes())
+            {
+                if (TinkerRecipeRegistry.TryGetRecipe(knownRecipeId, out recipe))
+                {
+                    if (EntityFactory.GetBlueprint(recipe.Blueprint) == null)
+                        continue;
+                    recipeId = knownRecipeId;
+                    break;
+                }
+            }
+
+            if (recipe == null)
+            {
+                foreach (var candidate in TinkerRecipeRegistry.GetAllRecipes())
+                {
+                    if (candidate == null || string.IsNullOrWhiteSpace(candidate.Blueprint))
+                        continue;
+
+                    if (EntityFactory.GetBlueprint(candidate.Blueprint) == null)
+                        continue;
+
+                    recipe = candidate;
+                    break;
+                }
+
+                if (recipe == null || string.IsNullOrWhiteSpace(recipe.ID))
+                {
+                    Debug.LogWarning("[Tinkering/Debug] F9: No tinkering recipes are loaded.");
+                    return;
+                }
+
+                recipeId = recipe.ID;
+                bitLocker.LearnRecipe(recipeId);
+                Debug.Log($"[Tinkering/Debug] F9: Learned fallback recipe '{recipeId}'.");
+            }
+
+            string cost = BitCost.Normalize(recipe.Cost);
+            if (!string.IsNullOrEmpty(cost) && !bitLocker.HasBits(cost))
+            {
+                bitLocker.AddBits(cost);
+                Debug.Log($"[Tinkering/Debug] F9: Granted bits '{cost}' for debug craft.");
+            }
+
+            var result = InventorySystem.ExecuteCommand(
+                new CraftFromRecipeCommand(recipeId, EntityFactory),
+                PlayerEntity,
+                CurrentZone);
+
+            if (!result.Success)
+            {
+                Debug.LogWarning(
+                    "[Tinkering/Debug] F9 craft command failed. " +
+                    $"Code={result.ErrorCode}, Message={result.ErrorMessage}");
+                return;
+            }
+
+            Debug.Log($"[Tinkering/Debug] F9: Crafted recipe '{recipeId}' successfully.");
             if (ZoneRenderer != null)
                 ZoneRenderer.MarkDirty();
         }
