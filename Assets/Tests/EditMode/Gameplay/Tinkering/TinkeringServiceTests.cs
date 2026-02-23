@@ -33,6 +33,15 @@ namespace CavesOfOoo.Tests
       ""Type"": ""Build"",
       ""Cost"": ""BR"",
       ""NumberMade"": 1
+    },
+    {
+      ""ID"": ""mod_sharp_melee"",
+      ""DisplayName"": ""Apply Sharp"",
+      ""Blueprint"": ""mod_sharp"",
+      ""Type"": ""Mod"",
+      ""Cost"": ""BC"",
+      ""TargetPart"": ""MeleeWeapon"",
+      ""NumberMade"": 1
     }
   ]
 }";
@@ -343,6 +352,178 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(0, inventory.Objects.Count);
             Assert.AreEqual(1, bits.GetBitCount('B'));
             Assert.AreEqual(1, bits.GetBitCount('R'));
+        }
+
+        [Test]
+        public void ApplyModification_Succeeds_OnCompatibleMeleeWeapon()
+        {
+            var factory = CreateFactory();
+            var player = CreatePlayer();
+            var inventory = player.GetPart<InventoryPart>();
+            var bits = player.GetPart<BitLockerPart>();
+
+            bits.LearnRecipe("mod_sharp_melee");
+            bits.AddBits("BC");
+
+            var knife = factory.CreateEntity("PlainKnife");
+            Assert.NotNull(knife);
+            Assert.IsTrue(inventory.AddObject(knife));
+
+            var weapon = knife.GetPart<MeleeWeaponPart>();
+            Assert.NotNull(weapon);
+            int initialPen = weapon.PenBonus;
+
+            bool success = TinkeringService.TryApplyModification(
+                player,
+                "mod_sharp_melee",
+                knife,
+                out string reason);
+
+            Assert.IsTrue(success, reason);
+            Assert.AreEqual(initialPen + 1, weapon.PenBonus);
+            Assert.IsTrue(knife.HasTag("ModSharp"));
+            Assert.AreEqual(0, bits.GetBitCount('B'));
+            Assert.AreEqual(0, bits.GetBitCount('C'));
+        }
+
+        [Test]
+        public void ApplyModification_Fails_WhenAlreadyApplied()
+        {
+            var factory = CreateFactory();
+            var player = CreatePlayer();
+            var inventory = player.GetPart<InventoryPart>();
+            var bits = player.GetPart<BitLockerPart>();
+
+            bits.LearnRecipe("mod_sharp_melee");
+            bits.AddBits("BCBC");
+
+            var knife = factory.CreateEntity("PlainKnife");
+            Assert.NotNull(knife);
+            Assert.IsTrue(inventory.AddObject(knife));
+
+            bool first = TinkeringService.TryApplyModification(
+                player,
+                "mod_sharp_melee",
+                knife,
+                out string firstReason);
+            Assert.IsTrue(first, firstReason);
+
+            bool second = TinkeringService.TryApplyModification(
+                player,
+                "mod_sharp_melee",
+                knife,
+                out string secondReason);
+            Assert.IsFalse(second);
+            StringAssert.Contains("already", secondReason.ToLowerInvariant());
+        }
+
+        [Test]
+        public void ApplyModification_Fails_WhenNoTargetItemProvided()
+        {
+            var player = CreatePlayer();
+            var bits = player.GetPart<BitLockerPart>();
+
+            bits.LearnRecipe("mod_sharp_melee");
+            bits.AddBits("BC");
+
+            bool success = TinkeringService.TryApplyModification(
+                player,
+                "mod_sharp_melee",
+                null,
+                out string reason);
+
+            Assert.IsFalse(success);
+            StringAssert.Contains("target", reason.ToLowerInvariant());
+            Assert.AreEqual(1, bits.GetBitCount('B'));
+            Assert.AreEqual(1, bits.GetBitCount('C'));
+        }
+
+        [Test]
+        public void ApplyModification_Fails_OnStackedTarget_WithoutConsumingBits()
+        {
+            var factory = CreateFactory();
+            var player = CreatePlayer();
+            var inventory = player.GetPart<InventoryPart>();
+            var bits = player.GetPart<BitLockerPart>();
+
+            bits.LearnRecipe("mod_sharp_melee");
+            bits.AddBits("BC");
+
+            var knifeStack = factory.CreateEntity("PlainKnife");
+            Assert.NotNull(knifeStack);
+            knifeStack.AddPart(new StackerPart { StackCount = 2 });
+            Assert.IsTrue(inventory.AddObject(knifeStack));
+
+            bool success = TinkeringService.TryApplyModification(
+                player,
+                "mod_sharp_melee",
+                knifeStack,
+                out string reason);
+
+            Assert.IsFalse(success);
+            StringAssert.Contains("split", reason.ToLowerInvariant());
+            Assert.AreEqual(1, bits.GetBitCount('B'));
+            Assert.AreEqual(1, bits.GetBitCount('C'));
+            Assert.IsFalse(knifeStack.HasTag("ModSharp"));
+        }
+
+        [Test]
+        public void ApplyModification_Succeeds_OnEquippedTarget()
+        {
+            var factory = CreateFactory();
+            var player = CreatePlayer();
+            var inventory = player.GetPart<InventoryPart>();
+            var bits = player.GetPart<BitLockerPart>();
+
+            bits.LearnRecipe("mod_sharp_melee");
+            bits.AddBits("BC");
+
+            var equippedKnife = factory.CreateEntity("PlainKnife");
+            Assert.NotNull(equippedKnife);
+            Assert.IsTrue(inventory.AddObject(equippedKnife));
+            Assert.IsTrue(inventory.Equip(equippedKnife, "Hand"));
+
+            bool success = TinkeringService.TryApplyModification(
+                player,
+                "mod_sharp_melee",
+                equippedKnife,
+                out string reason);
+
+            Assert.IsTrue(success, reason);
+            Assert.IsTrue(equippedKnife.HasTag("ModSharp"));
+            Assert.AreEqual(0, bits.GetBitCount('B'));
+            Assert.AreEqual(0, bits.GetBitCount('C'));
+        }
+
+        [Test]
+        public void ApplyModification_OnlyModifiesSelectedTarget_WhenMultipleAreCompatible()
+        {
+            var factory = CreateFactory();
+            var player = CreatePlayer();
+            var inventory = player.GetPart<InventoryPart>();
+            var bits = player.GetPart<BitLockerPart>();
+
+            bits.LearnRecipe("mod_sharp_melee");
+            bits.AddBits("BC");
+
+            var firstKnife = factory.CreateEntity("PlainKnife");
+            var secondKnife = factory.CreateEntity("PlainKnife");
+            Assert.NotNull(firstKnife);
+            Assert.NotNull(secondKnife);
+            Assert.IsTrue(inventory.AddObject(firstKnife));
+            Assert.IsTrue(inventory.AddObject(secondKnife));
+
+            bool success = TinkeringService.TryApplyModification(
+                player,
+                "mod_sharp_melee",
+                secondKnife,
+                out string reason);
+
+            Assert.IsTrue(success, reason);
+            Assert.IsFalse(firstKnife.HasTag("ModSharp"));
+            Assert.IsTrue(secondKnife.HasTag("ModSharp"));
+            Assert.AreEqual(0, bits.GetBitCount('B'));
+            Assert.AreEqual(0, bits.GetBitCount('C'));
         }
 
         private static EntityFactory CreateFactory()

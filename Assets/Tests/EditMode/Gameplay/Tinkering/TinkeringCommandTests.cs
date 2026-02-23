@@ -25,6 +25,15 @@ namespace CavesOfOoo.Tests
       ""Type"": ""Build"",
       ""Cost"": ""BR"",
       ""NumberMade"": 1
+    },
+    {
+      ""ID"": ""mod_sharp_melee"",
+      ""DisplayName"": ""Apply Sharp"",
+      ""Blueprint"": ""mod_sharp"",
+      ""Type"": ""Mod"",
+      ""Cost"": ""BC"",
+      ""TargetPart"": ""MeleeWeapon"",
+      ""NumberMade"": 1
     }
   ]
 }";
@@ -183,6 +192,100 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(0, inventory.Objects.Count);
             Assert.AreEqual(1, bits.GetBitCount('B'));
             Assert.AreEqual(1, bits.GetBitCount('R'));
+        }
+
+        [Test]
+        public void ApplyModificationCommand_Succeeds_ThroughExecutor()
+        {
+            var factory = CreateFactory();
+            var player = CreatePlayer();
+            var inventory = player.GetPart<InventoryPart>();
+            var bits = player.GetPart<BitLockerPart>();
+
+            bits.LearnRecipe("mod_sharp_melee");
+            bits.AddBits("BC");
+
+            var knife = factory.CreateEntity("PlainKnife");
+            Assert.NotNull(knife);
+            Assert.IsTrue(inventory.AddObject(knife));
+
+            var weapon = knife.GetPart<MeleeWeaponPart>();
+            Assert.NotNull(weapon);
+            int initialPen = weapon.PenBonus;
+
+            var result = InventorySystem.ExecuteCommand(
+                new ApplyModificationCommand("mod_sharp_melee", knife),
+                player);
+
+            Assert.IsTrue(result.Success, result.ErrorMessage);
+            Assert.AreEqual(initialPen + 1, weapon.PenBonus);
+            Assert.IsTrue(knife.HasTag("ModSharp"));
+        }
+
+        [Test]
+        public void ApplyModificationCommand_FailsValidation_WhenTargetIsMissing()
+        {
+            var player = CreatePlayer();
+
+            var result = InventorySystem.ExecuteCommand(
+                new ApplyModificationCommand("mod_sharp_melee", null),
+                player);
+
+            Assert.IsFalse(result.Success);
+            Assert.AreEqual(InventoryCommandErrorCode.ValidationFailed, result.ErrorCode);
+        }
+
+        [Test]
+        public void ApplyModificationCommand_FailsValidation_ForStackedTarget()
+        {
+            var factory = CreateFactory();
+            var player = CreatePlayer();
+            var inventory = player.GetPart<InventoryPart>();
+            var bits = player.GetPart<BitLockerPart>();
+
+            bits.LearnRecipe("mod_sharp_melee");
+            bits.AddBits("BC");
+
+            var knife = factory.CreateEntity("PlainKnife");
+            Assert.NotNull(knife);
+            knife.AddPart(new StackerPart { StackCount = 2 });
+            Assert.IsTrue(inventory.AddObject(knife));
+
+            var result = InventorySystem.ExecuteCommand(
+                new ApplyModificationCommand("mod_sharp_melee", knife),
+                player);
+
+            Assert.IsFalse(result.Success);
+            Assert.AreEqual(InventoryCommandErrorCode.ValidationFailed, result.ErrorCode);
+            Assert.IsFalse(knife.HasTag("ModSharp"));
+            Assert.AreEqual(1, bits.GetBitCount('B'));
+            Assert.AreEqual(1, bits.GetBitCount('C'));
+        }
+
+        [Test]
+        public void ApplyModificationCommand_Succeeds_OnEquippedTarget()
+        {
+            var factory = CreateFactory();
+            var player = CreatePlayer();
+            var inventory = player.GetPart<InventoryPart>();
+            var bits = player.GetPart<BitLockerPart>();
+
+            bits.LearnRecipe("mod_sharp_melee");
+            bits.AddBits("BC");
+
+            var knife = factory.CreateEntity("PlainKnife");
+            Assert.NotNull(knife);
+            Assert.IsTrue(inventory.AddObject(knife));
+            Assert.IsTrue(inventory.Equip(knife, "Hand"));
+
+            var result = InventorySystem.ExecuteCommand(
+                new ApplyModificationCommand("mod_sharp_melee", knife),
+                player);
+
+            Assert.IsTrue(result.Success, result.ErrorMessage);
+            Assert.IsTrue(knife.HasTag("ModSharp"));
+            Assert.AreEqual(0, bits.GetBitCount('B'));
+            Assert.AreEqual(0, bits.GetBitCount('C'));
         }
 
         private static EntityFactory CreateFactory()

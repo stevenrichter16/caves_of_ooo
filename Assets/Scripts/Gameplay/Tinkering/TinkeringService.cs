@@ -52,6 +52,12 @@ namespace CavesOfOoo.Core
                 return false;
             }
 
+            if (!IsBuildRecipe(recipe))
+            {
+                reason = "Recipe is not a build recipe.";
+                return false;
+            }
+
             if (!bitLocker.KnowsRecipe(recipe.ID))
             {
                 reason = "Recipe is not known.";
@@ -109,6 +115,109 @@ namespace CavesOfOoo.Core
             return true;
         }
 
+        public static bool TryApplyModification(
+            Entity crafter,
+            string recipeId,
+            Entity targetItem,
+            out string reason)
+        {
+            reason = string.Empty;
+            if (crafter == null)
+            {
+                reason = "Crafter is missing.";
+                return false;
+            }
+
+            if (targetItem == null)
+            {
+                reason = "No target item selected.";
+                return false;
+            }
+
+            InventoryPart inventory = crafter.GetPart<InventoryPart>();
+            BitLockerPart bitLocker = crafter.GetPart<BitLockerPart>();
+            if (inventory == null || bitLocker == null)
+            {
+                reason = "Crafter cannot tinker without inventory and bit locker.";
+                return false;
+            }
+
+            if (!inventory.Contains(targetItem))
+            {
+                reason = "You must own the target item.";
+                return false;
+            }
+
+            if (!TinkerRecipeRegistry.TryGetRecipe(recipeId, out TinkerRecipe recipe))
+            {
+                reason = "Unknown recipe.";
+                return false;
+            }
+
+            if (!IsModRecipe(recipe))
+            {
+                reason = "Recipe is not a modification recipe.";
+                return false;
+            }
+
+            if (!bitLocker.KnowsRecipe(recipe.ID))
+            {
+                reason = "Recipe is not known.";
+                return false;
+            }
+
+            if (!CanApplyModificationTarget(recipe, targetItem, out reason))
+                return false;
+
+            string cost = BitCost.Normalize(recipe.Cost);
+            if (!bitLocker.HasBits(cost))
+            {
+                reason = "Not enough bits.";
+                return false;
+            }
+
+            ConsumedIngredient consumedIngredient = new ConsumedIngredient();
+            if (!string.IsNullOrWhiteSpace(recipe.Ingredient)
+                && !TryConsumeIngredient(inventory, recipe.Ingredient, out consumedIngredient))
+            {
+                reason = "Required ingredient is missing.";
+                return false;
+            }
+
+            if (!bitLocker.UseBits(cost))
+            {
+                RestoreIngredient(inventory, consumedIngredient);
+                reason = "Not enough bits.";
+                return false;
+            }
+
+            if (!TinkerModificationRegistry.TryCreate(recipe.Blueprint, out ITinkerModification modification))
+            {
+                bitLocker.AddBits(cost);
+                RestoreIngredient(inventory, consumedIngredient);
+                reason = "Unknown modification '" + recipe.Blueprint + "'.";
+                return false;
+            }
+
+            if (!modification.Apply(targetItem, out reason))
+            {
+                bitLocker.AddBits(cost);
+                RestoreIngredient(inventory, consumedIngredient);
+                if (string.IsNullOrWhiteSpace(reason))
+                    reason = "Failed to apply modification.";
+                return false;
+            }
+
+            MessageLog.Add(
+                crafter.GetDisplayName()
+                + " applies "
+                + modification.DisplayName
+                + " to "
+                + targetItem.GetDisplayName()
+                + ".");
+            return true;
+        }
+
         public static bool TryDisassemble(
             Entity crafter,
             Entity item,
@@ -159,6 +268,55 @@ namespace CavesOfOoo.Core
         public static bool CanDisassemble(Entity item, out string reason)
         {
             return TryResolveDisassemblyBits(item, out _, out reason);
+        }
+
+        public static bool CanApplyModificationTarget(TinkerRecipe recipe, Entity targetItem, out string reason)
+        {
+            reason = string.Empty;
+            if (recipe == null)
+            {
+                reason = "Recipe is missing.";
+                return false;
+            }
+
+            if (!IsModRecipe(recipe))
+            {
+                reason = "Recipe is not a modification recipe.";
+                return false;
+            }
+
+            if (targetItem == null)
+            {
+                reason = "No target item selected.";
+                return false;
+            }
+
+            if (!string.IsNullOrWhiteSpace(recipe.TargetBlueprint)
+                && !string.Equals(targetItem.BlueprintName, recipe.TargetBlueprint, StringComparison.OrdinalIgnoreCase))
+            {
+                reason = "Target item is not compatible with this mod.";
+                return false;
+            }
+
+            if (!string.IsNullOrWhiteSpace(recipe.TargetTag) && !targetItem.HasTag(recipe.TargetTag))
+            {
+                reason = "Target item is missing required tag '" + recipe.TargetTag + "'.";
+                return false;
+            }
+
+            if (!string.IsNullOrWhiteSpace(recipe.TargetPart) && !targetItem.HasPart(recipe.TargetPart))
+            {
+                reason = "Target item is missing required part '" + recipe.TargetPart + "'.";
+                return false;
+            }
+
+            if (!TinkerModificationRegistry.TryCreate(recipe.Blueprint, out ITinkerModification modification))
+            {
+                reason = "Unknown modification '" + recipe.Blueprint + "'.";
+                return false;
+            }
+
+            return modification.CanApply(targetItem, out reason);
         }
 
         private static bool TryResolveDisassemblyBits(Entity item, out string bits, out string reason)
@@ -267,6 +425,18 @@ namespace CavesOfOoo.Core
             }
 
             return inventory.RemoveObject(item);
+        }
+
+        private static bool IsBuildRecipe(TinkerRecipe recipe)
+        {
+            return recipe != null
+                && string.Equals(recipe.Type, "Build", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static bool IsModRecipe(TinkerRecipe recipe)
+        {
+            return recipe != null
+                && string.Equals(recipe.Type, "Mod", StringComparison.OrdinalIgnoreCase);
         }
     }
 }

@@ -77,6 +77,9 @@ namespace CavesOfOoo.Rendering
         // Item action popup (inventory panel)
         private ItemActionPopupState _itemActionPopup;
 
+        // Mod target picker popup (tinkering mod panel)
+        private ModTargetPopupState _modTargetPopup;
+
         public bool IsOpen => _isOpen;
 
         private struct DisplayRow
@@ -94,6 +97,8 @@ namespace CavesOfOoo.Rendering
             public string Cost;
             public bool HasBits;
             public bool HasIngredient;
+            public bool HasTarget;
+            public string TargetPreview;
             public bool Affordable;
         }
 
@@ -135,6 +140,17 @@ namespace CavesOfOoo.Rendering
             public bool InBodyPartPicker;
         }
 
+        private class ModTargetPopupState
+        {
+            public TinkerRecipe Recipe;
+            public List<Entity> Targets;
+            public int CursorIndex;
+            public int ScrollOffset;
+            public string EmptyReason;
+
+            public int TotalRows => Targets != null ? Targets.Count : 0;
+        }
+
         private struct ItemAction
         {
             public string Label;
@@ -155,6 +171,7 @@ namespace CavesOfOoo.Rendering
             _equipPopup = null;
             _displaceConfirm = null;
             _itemActionPopup = null;
+            _modTargetPopup = null;
             Rebuild();
             Render();
         }
@@ -165,6 +182,7 @@ namespace CavesOfOoo.Rendering
             _equipPopup = null;
             _displaceConfirm = null;
             _itemActionPopup = null;
+            _modTargetPopup = null;
         }
 
         // ===== Input =====
@@ -190,6 +208,11 @@ namespace CavesOfOoo.Rendering
             if (_itemActionPopup != null)
             {
                 HandleItemActionPopupInput();
+                return true;
+            }
+            if (_modTargetPopup != null)
+            {
+                HandleModTargetPopupInput();
                 return true;
             }
 
@@ -300,6 +323,18 @@ namespace CavesOfOoo.Rendering
                             Render();
                         }
                     }
+                }
+                return;
+            }
+
+            if (_modTargetPopup != null)
+            {
+                int row = GetModTargetPopupRowAtMouse();
+                if (row >= 0 && row != _modTargetPopup.CursorIndex)
+                {
+                    _modTargetPopup.CursorIndex = row;
+                    UpdateModTargetPopupScroll();
+                    Render();
                 }
                 return;
             }
@@ -544,9 +579,16 @@ namespace CavesOfOoo.Rendering
 
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                TryCraftSelectedRecipeViaCommand();
-                Rebuild();
-                Render();
+                if (_tinkeringMode == TinkeringMode.Mod)
+                {
+                    OpenModTargetPopupForSelectedRecipe();
+                }
+                else
+                {
+                    TryCraftSelectedRecipeViaCommand();
+                    Rebuild();
+                    Render();
+                }
                 return;
             }
         }
@@ -1169,12 +1211,6 @@ namespace CavesOfOoo.Rendering
 
         private bool TryCraftSelectedRecipeViaCommand()
         {
-            if (_tinkeringMode == TinkeringMode.Mod)
-            {
-                MessageLog.Add("Item modding tab is not implemented yet.");
-                return false;
-            }
-
             if (_tinkerRows.Count == 0 || _tinkerCursorIndex < 0 || _tinkerCursorIndex >= _tinkerRows.Count)
                 return false;
 
@@ -1451,6 +1487,13 @@ namespace CavesOfOoo.Rendering
                 string cost = BitCost.Normalize(recipe.Cost);
                 bool hasBits = bitLocker.HasBits(cost);
                 bool hasIngredient = HasAnyIngredient(recipe.Ingredient);
+                bool hasTarget = true;
+                string targetPreview = string.Empty;
+                if (isMod)
+                {
+                    hasTarget = TryGetPreferredModTarget(recipe, out Entity target, out _);
+                    targetPreview = target != null ? target.GetDisplayName() : string.Empty;
+                }
 
                 _tinkerRows.Add(new TinkeringRecipeRow
                 {
@@ -1459,7 +1502,9 @@ namespace CavesOfOoo.Rendering
                     Cost = cost,
                     HasBits = hasBits,
                     HasIngredient = hasIngredient,
-                    Affordable = hasBits && hasIngredient
+                    HasTarget = hasTarget,
+                    TargetPreview = targetPreview,
+                    Affordable = hasBits && hasIngredient && hasTarget
                 });
             }
 
@@ -1522,6 +1567,231 @@ namespace CavesOfOoo.Rendering
             }
 
             return false;
+        }
+
+        private bool TryGetPreferredModTarget(TinkerRecipe recipe, out Entity target, out string reason)
+        {
+            target = null;
+            reason = string.Empty;
+
+            if (recipe == null)
+            {
+                reason = "No mod recipe selected.";
+                return false;
+            }
+
+            var inventory = PlayerEntity?.GetPart<InventoryPart>();
+            if (inventory == null)
+            {
+                reason = "Cannot apply mods without inventory.";
+                return false;
+            }
+
+            var considered = new HashSet<Entity>();
+
+            // Prefer equipped items first, then carried.
+            var equipped = inventory.GetAllEquipped();
+            for (int i = 0; i < equipped.Count; i++)
+            {
+                Entity item = equipped[i];
+                if (item == null || !considered.Add(item))
+                    continue;
+
+                if (TinkeringService.CanApplyModificationTarget(recipe, item, out _))
+                {
+                    target = item;
+                    return true;
+                }
+            }
+
+            for (int i = 0; i < inventory.Objects.Count; i++)
+            {
+                Entity item = inventory.Objects[i];
+                if (item == null || !considered.Add(item))
+                    continue;
+
+                if (TinkeringService.CanApplyModificationTarget(recipe, item, out _))
+                {
+                    target = item;
+                    return true;
+                }
+            }
+
+            reason = "No compatible target item for this mod.";
+            return false;
+        }
+
+        private void OpenModTargetPopupForSelectedRecipe()
+        {
+            var selected = GetSelectedTinkeringRow();
+            if (!selected.HasValue || selected.Value.Recipe == null)
+                return;
+
+            TinkerRecipe recipe = selected.Value.Recipe;
+            if (!string.Equals(recipe.Type, "Mod", StringComparison.OrdinalIgnoreCase))
+                return;
+
+            List<Entity> targets = BuildCompatibleModTargets(recipe);
+            if (targets.Count == 0)
+            {
+                if (TryGetPreferredModTarget(recipe, out _, out string reason) && string.IsNullOrWhiteSpace(reason))
+                    reason = "No compatible target item for this mod.";
+
+                if (string.IsNullOrWhiteSpace(reason))
+                    reason = "No compatible target item for this mod.";
+
+                MessageLog.Add(reason);
+                return;
+            }
+
+            _modTargetPopup = new ModTargetPopupState
+            {
+                Recipe = recipe,
+                Targets = targets,
+                CursorIndex = 0,
+                ScrollOffset = 0,
+                EmptyReason = string.Empty
+            };
+
+            Render();
+        }
+
+        private List<Entity> BuildCompatibleModTargets(TinkerRecipe recipe)
+        {
+            var result = new List<Entity>();
+            var inventory = PlayerEntity?.GetPart<InventoryPart>();
+            if (inventory == null || recipe == null)
+                return result;
+
+            var seen = new HashSet<Entity>();
+
+            // Keep equipped targets first so the most relevant combat item is easy to choose.
+            var equipped = inventory.GetAllEquipped();
+            for (int i = 0; i < equipped.Count; i++)
+            {
+                Entity item = equipped[i];
+                if (item == null || !seen.Add(item))
+                    continue;
+
+                if (TinkeringService.CanApplyModificationTarget(recipe, item, out _))
+                    result.Add(item);
+            }
+
+            for (int i = 0; i < inventory.Objects.Count; i++)
+            {
+                Entity item = inventory.Objects[i];
+                if (item == null || !seen.Add(item))
+                    continue;
+
+                if (TinkeringService.CanApplyModificationTarget(recipe, item, out _))
+                    result.Add(item);
+            }
+
+            return result;
+        }
+
+        private void HandleModTargetPopupInput()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                _modTargetPopup = null;
+                Render();
+                return;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                int clickedRow = GetModTargetPopupRowAtMouse();
+                if (clickedRow >= 0)
+                {
+                    ApplySelectedModToPopupTarget(clickedRow);
+                    return;
+                }
+
+                _modTargetPopup = null;
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            {
+                if (_modTargetPopup.TotalRows > 0 && _modTargetPopup.CursorIndex > 0)
+                {
+                    _modTargetPopup.CursorIndex--;
+                    UpdateModTargetPopupScroll();
+                    Render();
+                }
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            {
+                if (_modTargetPopup.TotalRows > 0 && _modTargetPopup.CursorIndex < _modTargetPopup.TotalRows - 1)
+                {
+                    _modTargetPopup.CursorIndex++;
+                    UpdateModTargetPopupScroll();
+                    Render();
+                }
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                ApplySelectedModToPopupTarget(_modTargetPopup.CursorIndex);
+                return;
+            }
+
+            int maxHotkeys = Mathf.Min(26, _modTargetPopup.TotalRows);
+            for (int i = 0; i < maxHotkeys; i++)
+            {
+                if (!Input.GetKeyDown(KeyCode.A + i))
+                    continue;
+
+                ApplySelectedModToPopupTarget(i);
+                return;
+            }
+        }
+
+        private void UpdateModTargetPopupScroll()
+        {
+            if (_modTargetPopup == null)
+                return;
+
+            int visible = Mathf.Min(_modTargetPopup.TotalRows > 0 ? _modTargetPopup.TotalRows : 1, POPUP_MAX_VISIBLE);
+            if (_modTargetPopup.CursorIndex < _modTargetPopup.ScrollOffset)
+                _modTargetPopup.ScrollOffset = _modTargetPopup.CursorIndex;
+            else if (_modTargetPopup.CursorIndex >= _modTargetPopup.ScrollOffset + visible)
+                _modTargetPopup.ScrollOffset = _modTargetPopup.CursorIndex - visible + 1;
+
+            if (_modTargetPopup.ScrollOffset < 0)
+                _modTargetPopup.ScrollOffset = 0;
+        }
+
+        private void ApplySelectedModToPopupTarget(int index)
+        {
+            if (_modTargetPopup == null || _modTargetPopup.Recipe == null)
+                return;
+
+            if (index < 0 || index >= _modTargetPopup.TotalRows)
+                return;
+
+            Entity target = _modTargetPopup.Targets[index];
+            var result = InventorySystem.ExecuteCommand(
+                new ApplyModificationCommand(_modTargetPopup.Recipe.ID, target),
+                PlayerEntity,
+                CurrentZone);
+
+            if (!result.Success)
+            {
+                LogCommandFailure("ApplyModification", result);
+                Rebuild();
+                Render();
+                return;
+            }
+
+            _modTargetPopup = null;
+            Rebuild();
+            Render();
         }
 
         // ===== Navigation =====
@@ -1678,16 +1948,21 @@ namespace CavesOfOoo.Rendering
                     RenderDisplaceConfirm();
             }
 
+            if (_modTargetPopup != null)
+                RenderModTargetPopup();
+
             // Action bar
             string actions;
             if (_displaceConfirm != null)
                 actions = " [Y]es  [N]o  [Esc]cancel";
-            else if (_equipPopup != null || _itemActionPopup != null)
+            else if (_equipPopup != null || _itemActionPopup != null || _modTargetPopup != null)
                 actions = " [Enter]select  [a-z]quick select  [Esc]cancel";
             else if (_panel == PANEL_EQUIPMENT)
                 actions = " [Enter]equip [e]unequip [>]inventory [Esc]close";
             else if (_panel == PANEL_TINKERING)
-                actions = " [Enter]craft [B]/[M]mode [<]inventory [Tab]cycle [Esc]close";
+                actions = _tinkeringMode == TinkeringMode.Mod
+                    ? " [Enter]apply [B]/[M]mode [<]inventory [Tab]cycle [Esc]close"
+                    : " [Enter]craft [B]/[M]mode [<]inventory [Tab]cycle [Esc]close";
             else
                 actions = " [d]rop [Enter]actions [<]equipment [>]tinkering [Esc]close";
 
@@ -1765,15 +2040,13 @@ namespace CavesOfOoo.Rendering
             int visibleRows = TINKER_LIST_END_Y - TINKER_LIST_START_Y + 1;
             int maxNameWidth = TINKER_DIVIDER_X - 12;
 
-            if (_tinkeringMode == TinkeringMode.Mod)
-            {
-                DrawText(2, TINKER_LIST_START_Y, "Modding recipes: coming next phase.", QudColorParser.DarkGray);
-                return;
-            }
-
             if (_tinkerRows.Count == 0)
             {
-                DrawText(2, TINKER_LIST_START_Y, "(no known build recipes)", QudColorParser.DarkGray);
+                DrawText(
+                    2,
+                    TINKER_LIST_START_Y,
+                    _tinkeringMode == TinkeringMode.Mod ? "(no known mod recipes)" : "(no known build recipes)",
+                    QudColorParser.DarkGray);
                 return;
             }
 
@@ -1859,7 +2132,22 @@ namespace CavesOfOoo.Rendering
             y++;
             DrawText(x0, y, "Cost: <" + (string.IsNullOrEmpty(selected.Value.Cost) ? "-" : selected.Value.Cost) + ">", QudColorParser.Gray);
             y++;
-            DrawText(x0, y, "Produces: " + Mathf.Max(1, recipe.NumberMade), QudColorParser.Gray);
+            if (_tinkeringMode == TinkeringMode.Mod)
+                DrawText(x0, y, "Action: apply modification", QudColorParser.Gray);
+            else
+                DrawText(x0, y, "Produces: " + Mathf.Max(1, recipe.NumberMade), QudColorParser.Gray);
+            y++;
+            if (_tinkeringMode == TinkeringMode.Mod)
+            {
+                if (!string.IsNullOrWhiteSpace(recipe.TargetPart))
+                    DrawText(x0, y, "Target part: " + recipe.TargetPart, QudColorParser.Gray);
+                else if (!string.IsNullOrWhiteSpace(recipe.TargetTag))
+                    DrawText(x0, y, "Target tag: " + recipe.TargetTag, QudColorParser.Gray);
+                else if (!string.IsNullOrWhiteSpace(recipe.TargetBlueprint))
+                    DrawText(x0, y, "Target blueprint: " + recipe.TargetBlueprint, QudColorParser.Gray);
+                else
+                    DrawText(x0, y, "Target: (any compatible item)", QudColorParser.Gray);
+            }
         }
 
         private void RenderTinkeringIngredientPanel()
@@ -2041,6 +2329,30 @@ namespace CavesOfOoo.Rendering
                     DrawText(1, H - 1, detail, QudColorParser.BrightCyan);
                 }
             }
+            else if (_modTargetPopup != null)
+            {
+                if (_modTargetPopup.TotalRows <= 0)
+                {
+                    string detail = string.IsNullOrWhiteSpace(_modTargetPopup.EmptyReason)
+                        ? "No compatible target item for this mod."
+                        : _modTargetPopup.EmptyReason;
+                    DrawText(1, H - 1, detail, QudColorParser.BrightRed);
+                }
+                else if (_modTargetPopup.CursorIndex >= 0 && _modTargetPopup.CursorIndex < _modTargetPopup.TotalRows)
+                {
+                    Entity item = _modTargetPopup.Targets[_modTargetPopup.CursorIndex];
+                    string detail = item.GetDisplayName();
+                    string stats = BuildSlotStats(item);
+                    if (!string.IsNullOrWhiteSpace(stats))
+                        detail += " [" + stats + "]";
+
+                    var inventory = PlayerEntity?.GetPart<InventoryPart>();
+                    if (inventory != null && inventory.GetAllEquipped().Contains(item))
+                        detail += " [E]";
+
+                    DrawText(1, H - 1, detail, QudColorParser.BrightCyan);
+                }
+            }
             else if (_panel == PANEL_EQUIPMENT && _equipSlots != null && _equipCursorIndex < _equipSlots.Count)
             {
                 var slot = _equipSlots[_equipCursorIndex];
@@ -2058,7 +2370,28 @@ namespace CavesOfOoo.Rendering
 
                 if (_tinkeringMode == TinkeringMode.Mod)
                 {
-                    DrawText(1, H - 1, "Modding flow is not implemented yet.", QudColorParser.DarkGray);
+                    if (!selected.Value.HasTarget)
+                    {
+                        DrawText(1, H - 1, "No valid target item for this mod.", QudColorParser.BrightRed);
+                        return;
+                    }
+
+                    if (!selected.Value.HasBits)
+                    {
+                        DrawText(1, H - 1, "Missing required bits.", QudColorParser.BrightRed);
+                        return;
+                    }
+
+                    if (!selected.Value.HasIngredient)
+                    {
+                        DrawText(1, H - 1, "Missing ingredient for recipe.", QudColorParser.BrightRed);
+                        return;
+                    }
+
+                    string targetText = string.IsNullOrWhiteSpace(selected.Value.TargetPreview)
+                        ? "selected target"
+                        : selected.Value.TargetPreview;
+                    DrawText(1, H - 1, "Ready to apply to " + targetText + ". Press Enter.", QudColorParser.BrightGreen);
                     return;
                 }
 
@@ -2265,6 +2598,107 @@ namespace CavesOfOoo.Rendering
                     DrawText(popupX + 5, rowY, label, labelColor);
                 }
             }
+        }
+
+        private void RenderModTargetPopup()
+        {
+            int totalRows = _modTargetPopup.TotalRows;
+            int visibleCount = Mathf.Min(totalRows > 0 ? totalRows : 1, POPUP_MAX_VISIBLE);
+            int popupH = visibleCount + 4;
+            int popupX = (W - POPUP_W) / 2;
+            int popupY = (H - popupH) / 2;
+
+            ClearRegion(popupX, popupY, POPUP_W, popupH);
+            DrawPopupBorder(popupX, popupY, POPUP_W, popupH, visibleCount);
+
+            string recipeName = _modTargetPopup.Recipe != null
+                ? _modTargetPopup.Recipe.DisplayName
+                : "Apply Mod";
+            if (string.IsNullOrWhiteSpace(recipeName))
+                recipeName = "Apply Mod";
+
+            string titleText = recipeName + " -> choose target";
+            if (titleText.Length > POPUP_W - 4)
+                titleText = titleText.Substring(0, POPUP_W - 5) + "~";
+            DrawText(popupX + 2, popupY + 1, titleText, QudColorParser.BrightYellow);
+
+            int contentY = popupY + 3;
+            if (totalRows == 0)
+            {
+                string reason = string.IsNullOrWhiteSpace(_modTargetPopup.EmptyReason)
+                    ? "(no compatible targets)"
+                    : _modTargetPopup.EmptyReason;
+                DrawText(popupX + 2, contentY, reason, QudColorParser.DarkGray);
+                return;
+            }
+
+            var inventory = PlayerEntity?.GetPart<InventoryPart>();
+            var equippedSet = new HashSet<Entity>();
+            if (inventory != null)
+            {
+                var equipped = inventory.GetAllEquipped();
+                for (int i = 0; i < equipped.Count; i++)
+                {
+                    if (equipped[i] != null)
+                        equippedSet.Add(equipped[i]);
+                }
+            }
+
+            for (int vi = 0; vi < visibleCount; vi++)
+            {
+                int idx = _modTargetPopup.ScrollOffset + vi;
+                if (idx >= totalRows)
+                    break;
+
+                int rowY = contentY + vi;
+                bool selected = idx == _modTargetPopup.CursorIndex;
+                Entity item = _modTargetPopup.Targets[idx];
+
+                if (selected)
+                    DrawChar(popupX + 1, rowY, '>', QudColorParser.White);
+
+                if (idx < 26)
+                {
+                    char hotkey = (char)('a' + idx);
+                    DrawText(
+                        popupX + 2,
+                        rowY,
+                        hotkey + ")",
+                        selected ? QudColorParser.White : QudColorParser.Gray);
+                }
+
+                var render = item.GetPart<RenderPart>();
+                if (render != null && !string.IsNullOrEmpty(render.RenderString))
+                {
+                    DrawChar(
+                        popupX + 5,
+                        rowY,
+                        render.RenderString[0],
+                        QudColorParser.Parse(render.ColorString));
+                }
+
+                string line = item.GetDisplayName();
+                string stats = BuildSlotStats(item);
+                if (!string.IsNullOrWhiteSpace(stats))
+                    line += " [" + stats + "]";
+                if (equippedSet.Contains(item))
+                    line += " [E]";
+
+                int maxLen = POPUP_W - 9;
+                if (line.Length > maxLen)
+                    line = line.Substring(0, maxLen - 1) + "~";
+
+                DrawText(
+                    popupX + 7,
+                    rowY,
+                    line,
+                    selected ? QudColorParser.White : QudColorParser.Gray);
+            }
+
+            if (_modTargetPopup.ScrollOffset > 0)
+                DrawChar(popupX + POPUP_W - 2, contentY, '^', QudColorParser.Gray);
+            if (_modTargetPopup.ScrollOffset + visibleCount < totalRows)
+                DrawChar(popupX + POPUP_W - 2, contentY + visibleCount - 1, 'v', QudColorParser.Gray);
         }
 
         private void RenderBodyPartPicker()
@@ -2549,6 +2983,36 @@ namespace CavesOfOoo.Rendering
                 if (vi < totalRows)
                     return vi;
             }
+            return -1;
+        }
+
+        private int GetModTargetPopupRowAtMouse()
+        {
+            if (_modTargetPopup == null)
+                return -1;
+
+            var grid = MouseToGrid();
+            if (grid.x < 0)
+                return -1;
+
+            int totalRows = _modTargetPopup.TotalRows;
+            int visibleCount = Mathf.Min(totalRows > 0 ? totalRows : 1, POPUP_MAX_VISIBLE);
+            int popupH = visibleCount + 4;
+            int popupX = (W - POPUP_W) / 2;
+            int popupY = (H - popupH) / 2;
+            int contentY = popupY + 3;
+
+            if (grid.x <= popupX || grid.x >= popupX + POPUP_W - 1
+                || grid.y < contentY || grid.y >= contentY + visibleCount)
+            {
+                return -1;
+            }
+
+            int vi = grid.y - contentY;
+            int row = _modTargetPopup.ScrollOffset + vi;
+            if (row >= 0 && row < totalRows)
+                return row;
+
             return -1;
         }
 

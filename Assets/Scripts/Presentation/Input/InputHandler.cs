@@ -592,6 +592,8 @@ namespace CavesOfOoo.Rendering
             {
                 if (TinkerRecipeRegistry.TryGetRecipe(knownRecipeId, out recipe))
                 {
+                    if (!string.Equals(recipe.Type, "Build", System.StringComparison.OrdinalIgnoreCase))
+                        continue;
                     if (EntityFactory.GetBlueprint(recipe.Blueprint) == null)
                         continue;
                     recipeId = knownRecipeId;
@@ -604,6 +606,9 @@ namespace CavesOfOoo.Rendering
                 foreach (var candidate in TinkerRecipeRegistry.GetAllRecipes())
                 {
                     if (candidate == null || string.IsNullOrWhiteSpace(candidate.Blueprint))
+                        continue;
+
+                    if (!string.Equals(candidate.Type, "Build", System.StringComparison.OrdinalIgnoreCase))
                         continue;
 
                     if (EntityFactory.GetBlueprint(candidate.Blueprint) == null)

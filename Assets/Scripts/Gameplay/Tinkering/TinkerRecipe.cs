@@ -16,5 +16,11 @@ namespace CavesOfOoo.Core
         public string Cost;
         public string Ingredient;
         public int NumberMade = 1;
+
+        // Optional mod-target constraints used when Type == "Mod".
+        // These are intentionally simple for V1.
+        public string TargetPart;
+        public string TargetTag;
+        public string TargetBlueprint;
     }
 }

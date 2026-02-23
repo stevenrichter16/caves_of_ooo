@@ -283,6 +283,18 @@ namespace CavesOfOoo.Core
             return result.Success;
         }
 
+        /// <summary>
+        /// Apply a tinkering modification recipe to an owned target item.
+        /// </summary>
+        public static bool ApplyModification(Entity actor, string recipeId, Entity targetItem, Zone zone = null)
+        {
+            var result = ExecuteCommand(
+                new ApplyModificationCommand(recipeId, targetItem),
+                actor,
+                zone);
+            return result.Success;
+        }
+
         // --- Displacement preview ---
 
         /// <summary>
