@@ -163,8 +163,21 @@ namespace CavesOfOoo.Rendering
             _tilemap.SetTile(tilePos, tile);
             _tilemap.SetTileFlags(tilePos, TileFlags.None);
 
-            // Parse and apply color
-            Color color = QudColorParser.Parse(render.ColorString);
+            // Parse and apply color. Rendering participates in entity event flow,
+            // so effects/parts can mutate color similarly to Qud's RenderEvent path.
+            string colorString = render.ColorString;
+            var renderEvent = GameEvent.New("Render");
+            renderEvent.SetParameter("Entity", (object)topEntity);
+            renderEvent.SetParameter("RenderPart", (object)render);
+            renderEvent.SetParameter("ColorString", colorString ?? "");
+            renderEvent.SetParameter("DetailColor", render.DetailColor ?? "");
+            topEntity.FireEvent(renderEvent);
+
+            string eventColor = renderEvent.GetStringParameter("ColorString", colorString);
+            if (!string.IsNullOrEmpty(eventColor))
+                colorString = eventColor;
+
+            Color color = QudColorParser.Parse(colorString);
             _tilemap.SetColor(tilePos, color);
         }
 

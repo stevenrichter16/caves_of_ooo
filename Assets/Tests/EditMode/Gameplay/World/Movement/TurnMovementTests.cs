@@ -256,6 +256,41 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void TurnManager_ProcessUntilPlayerTurn_FiresNpcEndTurnBeforePlayer()
+        {
+            var tm = new TurnManager();
+            var npc = _factory.CreateEntity("Creature");
+            var player = _factory.CreateEntity("Player");
+
+            bool npcEndTurnFired = false;
+            npc.AddPart(new TestListenerPart("EndTurn", () => npcEndTurnFired = true));
+
+            // Add NPC first so tie-break energy resolution processes NPC before player.
+            tm.AddEntity(npc);
+            tm.AddEntity(player);
+
+            var result = tm.ProcessUntilPlayerTurn();
+
+            Assert.AreEqual(player, result);
+            Assert.IsTrue(npcEndTurnFired);
+        }
+
+        [Test]
+        public void TurnManager_ProcessUntilPlayerTurn_SkipsBlockedPlayerTurn()
+        {
+            var tm = new TurnManager();
+            var player = _factory.CreateEntity("Player");
+            player.ApplyEffect(new StunnedEffect(1));
+            tm.AddEntity(player);
+
+            var result = tm.ProcessUntilPlayerTurn();
+
+            Assert.AreEqual(player, result);
+            Assert.IsFalse(player.HasEffect<StunnedEffect>(), "Blocked player turn should still consume EndTurn and expire stun.");
+            Assert.IsTrue(tm.WaitingForInput);
+        }
+
+        [Test]
         public void TurnManager_RemoveEntity_StopsTracking()
         {
             var tm = new TurnManager();

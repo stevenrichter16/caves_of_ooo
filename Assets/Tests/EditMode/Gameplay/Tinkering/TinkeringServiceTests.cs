@@ -42,6 +42,42 @@ namespace CavesOfOoo.Tests
       ""Cost"": ""BC"",
       ""TargetPart"": ""MeleeWeapon"",
       ""NumberMade"": 1
+    },
+    {
+      ""ID"": ""mod_reinforced_plating_armor"",
+      ""DisplayName"": ""Apply Reinforced Plating"",
+      ""Blueprint"": ""mod_reinforced_plating"",
+      ""Type"": ""Mod"",
+      ""Cost"": ""BC"",
+      ""TargetPart"": ""Armor"",
+      ""NumberMade"": 1
+    },
+    {
+      ""ID"": ""mod_flexweave_armor"",
+      ""DisplayName"": ""Apply Flexweave"",
+      ""Blueprint"": ""mod_flexweave"",
+      ""Type"": ""Mod"",
+      ""Cost"": ""GC"",
+      ""TargetPart"": ""Armor"",
+      ""NumberMade"": 1
+    },
+    {
+      ""ID"": ""mod_hardened_shell_armor"",
+      ""DisplayName"": ""Apply Hardened Shell"",
+      ""Blueprint"": ""mod_hardened_shell"",
+      ""Type"": ""Mod"",
+      ""Cost"": ""BBC"",
+      ""TargetPart"": ""Armor"",
+      ""NumberMade"": 1
+    },
+    {
+      ""ID"": ""mod_duelist_cut_armor"",
+      ""DisplayName"": ""Apply Duelist Cut"",
+      ""Blueprint"": ""mod_duelist_cut"",
+      ""Type"": ""Mod"",
+      ""Cost"": ""CG"",
+      ""TargetPart"": ""Armor"",
+      ""NumberMade"": 1
     }
   ]
 }";
@@ -149,6 +185,37 @@ namespace CavesOfOoo.Tests
             { ""Key"": ""DisplayName"", ""Value"": ""scrap metal"" },
             { ""Key"": ""RenderString"", ""Value"": ""*"" },
             { ""Key"": ""ColorString"", ""Value"": ""&w"" }
+          ]
+        }
+      ],
+      ""Stats"": [],
+      ""Tags"": [ { ""Key"": ""Item"", ""Value"": """" } ]
+    },
+    {
+      ""Name"": ""LeatherArmor"",
+      ""Inherits"": ""Item"",
+      ""Parts"": [
+        {
+          ""Name"": ""Render"",
+          ""Params"": [
+            { ""Key"": ""DisplayName"", ""Value"": ""leather armor"" },
+            { ""Key"": ""RenderString"", ""Value"": ""["" },
+            { ""Key"": ""ColorString"", ""Value"": ""&y"" }
+          ]
+        },
+        {
+          ""Name"": ""Equippable"",
+          ""Params"": [
+            { ""Key"": ""Slot"", ""Value"": ""Body"" },
+            { ""Key"": ""EquipBonuses"", ""Value"": """" }
+          ]
+        },
+        {
+          ""Name"": ""Armor"",
+          ""Params"": [
+            { ""Key"": ""AV"", ""Value"": ""3"" },
+            { ""Key"": ""DV"", ""Value"": ""-1"" },
+            { ""Key"": ""SpeedPenalty"", ""Value"": ""0"" }
           ]
         }
       ],
@@ -526,6 +593,143 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(0, bits.GetBitCount('C'));
         }
 
+        [Test]
+        public void ApplyModification_ReinforcedPlating_AdjustsArmorStats()
+        {
+            var factory = CreateFactory();
+            var player = CreatePlayer();
+            var inventory = player.GetPart<InventoryPart>();
+            var bits = player.GetPart<BitLockerPart>();
+
+            bits.LearnRecipe("mod_reinforced_plating_armor");
+            bits.AddBits("BC");
+
+            var armorItem = factory.CreateEntity("LeatherArmor");
+            Assert.NotNull(armorItem);
+            Assert.IsTrue(inventory.AddObject(armorItem));
+
+            var armor = armorItem.GetPart<ArmorPart>();
+            Assert.NotNull(armor);
+
+            bool success = TinkeringService.TryApplyModification(
+                player,
+                "mod_reinforced_plating_armor",
+                armorItem,
+                out string reason);
+
+            Assert.IsTrue(success, reason);
+            Assert.AreEqual(4, armor.AV);
+            Assert.AreEqual(-2, armor.DV);
+            Assert.IsTrue(armorItem.HasTag("ModReinforcedPlating"));
+            Assert.AreEqual(0, bits.GetBitCount('B'));
+            Assert.AreEqual(0, bits.GetBitCount('C'));
+        }
+
+        [Test]
+        public void ApplyModification_Flexweave_AdjustsArmorStats()
+        {
+            var factory = CreateFactory();
+            var player = CreatePlayer();
+            var inventory = player.GetPart<InventoryPart>();
+            var bits = player.GetPart<BitLockerPart>();
+
+            bits.LearnRecipe("mod_flexweave_armor");
+            bits.AddBits("GC");
+
+            var armorItem = factory.CreateEntity("LeatherArmor");
+            Assert.NotNull(armorItem);
+            Assert.IsTrue(inventory.AddObject(armorItem));
+
+            var armor = armorItem.GetPart<ArmorPart>();
+            Assert.NotNull(armor);
+
+            bool success = TinkeringService.TryApplyModification(
+                player,
+                "mod_flexweave_armor",
+                armorItem,
+                out string reason);
+
+            Assert.IsTrue(success, reason);
+            Assert.AreEqual(2, armor.AV);
+            Assert.AreEqual(1, armor.DV);
+            Assert.IsTrue(armorItem.HasTag("ModFlexweave"));
+            Assert.AreEqual(0, bits.GetBitCount('G'));
+            Assert.AreEqual(0, bits.GetBitCount('C'));
+        }
+
+        [Test]
+        public void ApplyModification_HardenedShell_AdjustsArmorAndEquippedSpeedPenalty()
+        {
+            var factory = CreateFactory();
+            var player = CreatePlayer();
+            var inventory = player.GetPart<InventoryPart>();
+            var bits = player.GetPart<BitLockerPart>();
+
+            bits.LearnRecipe("mod_hardened_shell_armor");
+            bits.AddBits("BBC");
+
+            var armorItem = factory.CreateEntity("LeatherArmor");
+            Assert.NotNull(armorItem);
+            Assert.IsTrue(inventory.AddObject(armorItem));
+            Assert.IsTrue(inventory.Equip(armorItem, "Body"));
+
+            var armor = armorItem.GetPart<ArmorPart>();
+            Assert.NotNull(armor);
+            int speedPenaltyBefore = player.GetStat("Speed").Penalty;
+
+            bool success = TinkeringService.TryApplyModification(
+                player,
+                "mod_hardened_shell_armor",
+                armorItem,
+                out string reason);
+
+            Assert.IsTrue(success, reason);
+            Assert.AreEqual(5, armor.AV);
+            Assert.AreEqual(10, armor.SpeedPenalty);
+            Assert.AreEqual(speedPenaltyBefore + 10, player.GetStat("Speed").Penalty);
+            Assert.IsTrue(armorItem.HasTag("ModHardenedShell"));
+            Assert.AreEqual(0, bits.GetBitCount('B'));
+            Assert.AreEqual(0, bits.GetBitCount('C'));
+        }
+
+        [Test]
+        public void ApplyModification_DuelistCut_AdjustsArmorAndAgilityBonus()
+        {
+            var factory = CreateFactory();
+            var player = CreatePlayer();
+            var inventory = player.GetPart<InventoryPart>();
+            var bits = player.GetPart<BitLockerPart>();
+
+            bits.LearnRecipe("mod_duelist_cut_armor");
+            bits.AddBits("CG");
+
+            var armorItem = factory.CreateEntity("LeatherArmor");
+            Assert.NotNull(armorItem);
+            Assert.IsTrue(inventory.AddObject(armorItem));
+            Assert.IsTrue(inventory.Equip(armorItem, "Body"));
+
+            var armor = armorItem.GetPart<ArmorPart>();
+            var equippable = armorItem.GetPart<EquippablePart>();
+            Assert.NotNull(armor);
+            Assert.NotNull(equippable);
+
+            int agilityBonusBefore = player.GetStat("Agility").Bonus;
+
+            bool success = TinkeringService.TryApplyModification(
+                player,
+                "mod_duelist_cut_armor",
+                armorItem,
+                out string reason);
+
+            Assert.IsTrue(success, reason);
+            Assert.AreEqual(2, armor.AV);
+            StringAssert.Contains("Agility:2", equippable.EquipBonuses);
+            Assert.AreEqual(agilityBonusBefore + 2, player.GetStat("Agility").Bonus);
+            Assert.IsTrue(armorItem.HasTag("ModDuelistCut"));
+            Assert.AreEqual(0, bits.GetBitCount('C'));
+            Assert.AreEqual(0, bits.GetBitCount('G'));
+        }
+
         private static EntityFactory CreateFactory()
         {
             var factory = new EntityFactory();
@@ -546,6 +750,22 @@ namespace CavesOfOoo.Tests
                 BaseValue = 16,
                 Min = 1,
                 Max = 50,
+                Owner = player
+            };
+            player.Statistics["Agility"] = new Stat
+            {
+                Name = "Agility",
+                BaseValue = 16,
+                Min = 1,
+                Max = 50,
+                Owner = player
+            };
+            player.Statistics["Speed"] = new Stat
+            {
+                Name = "Speed",
+                BaseValue = 100,
+                Min = 1,
+                Max = 500,
                 Owner = player
             };
 

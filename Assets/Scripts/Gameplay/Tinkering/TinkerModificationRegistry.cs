@@ -13,7 +13,15 @@ namespace CavesOfOoo.Core
             new Dictionary<string, Func<ITinkerModification>>(StringComparer.OrdinalIgnoreCase)
             {
                 { "mod_sharp", () => new SharpTinkerModification() },
-                { "sharp", () => new SharpTinkerModification() }
+                { "sharp", () => new SharpTinkerModification() },
+                { "mod_reinforced_plating", () => new ReinforcedPlatingTinkerModification() },
+                { "reinforced_plating", () => new ReinforcedPlatingTinkerModification() },
+                { "mod_flexweave", () => new FlexweaveTinkerModification() },
+                { "flexweave", () => new FlexweaveTinkerModification() },
+                { "mod_hardened_shell", () => new HardenedShellTinkerModification() },
+                { "hardened_shell", () => new HardenedShellTinkerModification() },
+                { "mod_duelist_cut", () => new DuelistCutTinkerModification() },
+                { "duelist_cut", () => new DuelistCutTinkerModification() }
             };
 
         public static bool TryCreate(string id, out ITinkerModification modification)

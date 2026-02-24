@@ -382,6 +382,16 @@ namespace CavesOfOoo.Core
                 hpStat.BaseValue -= amount;
             }
 
+            // Notify the attacker that damage was dealt (for on-hit effects like poison)
+            if (source != null)
+            {
+                var damageDealt = GameEvent.New("DamageDealt");
+                damageDealt.SetParameter("Attacker", (object)source);
+                damageDealt.SetParameter("Defender", (object)target);
+                damageDealt.SetParameter("Amount", amount);
+                source.FireEvent(damageDealt);
+            }
+
             if (target.GetStatValue("Hitpoints", 0) <= 0)
             {
                 HandleDeath(target, source, zone);

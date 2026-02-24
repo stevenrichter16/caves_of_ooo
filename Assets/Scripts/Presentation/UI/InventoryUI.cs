@@ -37,6 +37,11 @@ namespace CavesOfOoo.Rendering
         private const int PANEL_EQUIPMENT = 0;
         private const int PANEL_INVENTORY = 1;
         private const int PANEL_TINKERING = 2;
+        private const int STATS_PANEL_X = 1;
+        private const int STATS_PANEL_Y = 2;
+        private const int STATS_PANEL_ROWS = 7;
+        private const int STATS_VALUE_MAX_LEN = 7;
+        private static readonly int[] STATS_COLUMN_X = { 1, 17 };
 
         private const int TINKER_DIVIDER_X = 50;
         private const int TINKER_LIST_START_Y = 3;
@@ -1933,6 +1938,9 @@ namespace CavesOfOoo.Rendering
                 for (int y = 0; y < H; y++)
                     DrawChar(DIVIDER_X, y, '|', QudColorParser.DarkGray);
 
+                // Top-left character stats strip (Qud-style quick reference).
+                RenderPlayerStatsPanel();
+
                 // Left panel: paperdoll
                 RenderPaperdoll();
 
@@ -1980,6 +1988,53 @@ namespace CavesOfOoo.Rendering
             {
                 bool selected = (i == _equipCursorIndex) && _panel == PANEL_EQUIPMENT && _equipPopup == null;
                 DrawEquipmentSquare(_equipSlots[i], selected);
+            }
+        }
+
+        private void RenderPlayerStatsPanel()
+        {
+            if (_state == null || _state.PlayerStats == null || _state.PlayerStats.Count == 0)
+                return;
+
+            DrawText(STATS_PANEL_X, STATS_PANEL_Y, "Stats", QudColorParser.BrightYellow);
+
+            int capacity = STATS_PANEL_ROWS * STATS_COLUMN_X.Length;
+            int overflow = Mathf.Max(0, _state.PlayerStats.Count - capacity);
+            int visible = overflow > 0 ? capacity - 1 : Mathf.Min(_state.PlayerStats.Count, capacity);
+
+            for (int i = 0; i < visible; i++)
+            {
+                int column = i / STATS_PANEL_ROWS;
+                int row = i % STATS_PANEL_ROWS;
+                int x = STATS_COLUMN_X[column];
+                int y = STATS_PANEL_Y + 1 + row;
+
+                var stat = _state.PlayerStats[i];
+                string label = string.IsNullOrWhiteSpace(stat.Label) ? "?" : stat.Label.ToUpperInvariant();
+                if (label.Length > 3)
+                    label = label.Substring(0, 3);
+                label = label.PadRight(3);
+
+                string value = string.IsNullOrWhiteSpace(stat.Value) ? "0" : stat.Value;
+                if (value.Length > STATS_VALUE_MAX_LEN)
+                    value = value.Substring(0, STATS_VALUE_MAX_LEN - 1) + "~";
+
+                DrawText(x, y, label, QudColorParser.Gray);
+                DrawText(x + 4, y, value, QudColorParser.BrightCyan);
+            }
+
+            if (overflow > 0)
+            {
+                int lastIndex = capacity - 1;
+                int column = lastIndex / STATS_PANEL_ROWS;
+                int row = lastIndex % STATS_PANEL_ROWS;
+                int x = STATS_COLUMN_X[column];
+                int y = STATS_PANEL_Y + 1 + row;
+                string remaining = "+" + overflow + " more";
+                const int maxOverflowLen = 11;
+                if (remaining.Length > maxOverflowLen)
+                    remaining = remaining.Substring(0, maxOverflowLen - 1) + "~";
+                DrawText(x, y, remaining, QudColorParser.DarkGray);
             }
         }
 

@@ -56,10 +56,10 @@ namespace CavesOfOoo.Core
                 }
             }
 
-            MergeGeneratedMeleeBuildRecipes();
+            MergeGeneratedEquipmentBuildRecipes();
 
             if (!loadedFromJson && RecipesById.Count == 0)
-                Debug.LogWarning("TinkerRecipeRegistry: no recipe files found and no generated melee recipes were available.");
+                Debug.LogWarning("TinkerRecipeRegistry: no recipe files found and no generated build recipes were available.");
         }
 
         public static void InitializeFromJson(string json)
@@ -142,7 +142,7 @@ namespace CavesOfOoo.Core
             }
         }
 
-        private static void MergeGeneratedMeleeBuildRecipes()
+        private static void MergeGeneratedEquipmentBuildRecipes()
         {
             TextAsset blueprintsAsset = Resources.Load<TextAsset>("Content/Blueprints/Objects");
             if (blueprintsAsset == null || string.IsNullOrWhiteSpace(blueprintsAsset.text))
@@ -155,14 +155,14 @@ namespace CavesOfOoo.Core
             }
             catch (Exception ex)
             {
-                Debug.LogError("TinkerRecipeRegistry: failed to load blueprint data for generated melee recipes: " + ex.Message);
+                Debug.LogError("TinkerRecipeRegistry: failed to load blueprint data for generated build recipes: " + ex.Message);
                 return;
             }
 
             int added = 0;
             foreach (Blueprint blueprint in blueprints.Values)
             {
-                if (!IsCraftableMeleeWeaponBlueprint(blueprint))
+                if (!IsCraftableBuildBlueprint(blueprint))
                     continue;
 
                 if (HasBuildRecipeForBlueprint(blueprint.Name))
@@ -186,7 +186,12 @@ namespace CavesOfOoo.Core
             }
 
             if (added > 0)
-                Debug.Log("TinkerRecipeRegistry: generated " + added + " melee weapon build recipes from blueprints.");
+                Debug.Log("TinkerRecipeRegistry: generated " + added + " equipment build recipes from blueprints.");
+        }
+
+        private static bool IsCraftableBuildBlueprint(Blueprint blueprint)
+        {
+            return IsCraftableMeleeWeaponBlueprint(blueprint) || IsCraftableArmorBlueprint(blueprint);
         }
 
         private static bool IsCraftableMeleeWeaponBlueprint(Blueprint blueprint)
@@ -211,6 +216,45 @@ namespace CavesOfOoo.Core
             {
                 return false;
             }
+
+            return true;
+        }
+
+        private static bool IsCraftableArmorBlueprint(Blueprint blueprint)
+        {
+            if (blueprint == null || string.IsNullOrWhiteSpace(blueprint.Name))
+                return false;
+
+            // Skip the template base armor item; generate concrete armor pieces only.
+            if (string.Equals(blueprint.Name, "ArmorItem", StringComparison.OrdinalIgnoreCase))
+                return false;
+
+            if (blueprint.Parts == null
+                || !blueprint.Parts.ContainsKey("Armor")
+                || !blueprint.Parts.ContainsKey("Equippable"))
+            {
+                return false;
+            }
+
+            if (TryGetPartParam(blueprint, "Physics", "Takeable", out string takeable)
+                && !ParseBoolOrDefault(takeable, defaultValue: true))
+            {
+                return false;
+            }
+
+            if (TryGetPartParam(blueprint, "TinkerItem", "CanBuild", out string canBuild)
+                && !ParseBoolOrDefault(canBuild, defaultValue: true))
+            {
+                return false;
+            }
+
+            // Armor template rows with no numeric armor values should not surface as craft recipes.
+            bool hasArmorNumbers =
+                HasNumericPartParam(blueprint, "Armor", "AV")
+                || HasNumericPartParam(blueprint, "Armor", "DV")
+                || HasNumericPartParam(blueprint, "Armor", "SpeedPenalty");
+            if (!hasArmorNumbers)
+                return false;
 
             return true;
         }
@@ -347,6 +391,17 @@ namespace CavesOfOoo.Core
                 return false;
 
             return defaultValue;
+        }
+
+        private static bool HasNumericPartParam(Blueprint blueprint, string partName, string paramName)
+        {
+            if (!TryGetPartParam(blueprint, partName, paramName, out string raw))
+                return false;
+
+            if (string.IsNullOrWhiteSpace(raw))
+                return false;
+
+            return int.TryParse(raw, out _);
         }
 
         private static string ToSnakeCase(string value)

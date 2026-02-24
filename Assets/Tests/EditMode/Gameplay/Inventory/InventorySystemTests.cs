@@ -3297,6 +3297,55 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void ScreenData_Build_IncludesFormattedPlayerStatsAndDerivedAVDV()
+        {
+            var actor = CreateCreatureWithInventory();
+            actor.Statistics["Hitpoints"].BaseValue = 22;
+            actor.Statistics["Strength"].BaseValue = 20;
+            actor.Statistics["Agility"].BaseValue = 18;
+
+            var state = InventoryScreenData.Build(actor);
+
+            var hp = state.PlayerStats.Find(s => s.Name == "Hitpoints");
+            Assert.IsNotNull(hp);
+            Assert.AreEqual("HP", hp.Label);
+            Assert.AreEqual("22/30", hp.Value);
+
+            var strength = state.PlayerStats.Find(s => s.Name == "Strength");
+            Assert.IsNotNull(strength);
+            Assert.AreEqual("STR", strength.Label);
+            Assert.AreEqual("20 (+2)", strength.Value);
+
+            var av = state.PlayerStats.Find(s => s.Name == "AV");
+            Assert.IsNotNull(av);
+            Assert.AreEqual("0", av.Value);
+
+            var dv = state.PlayerStats.Find(s => s.Name == "DV");
+            Assert.IsNotNull(dv);
+            Assert.AreEqual("7", dv.Value);
+        }
+
+        [Test]
+        public void ScreenData_Build_IncludesNonPriorityStats()
+        {
+            var actor = CreateCreatureWithInventory();
+            actor.Statistics["Reputation"] = new Stat
+            {
+                Name = "Reputation",
+                BaseValue = 13,
+                Min = -999,
+                Max = 999
+            };
+
+            var state = InventoryScreenData.Build(actor);
+
+            var reputation = state.PlayerStats.Find(s => s.Name == "Reputation");
+            Assert.IsNotNull(reputation);
+            Assert.AreEqual("REP", reputation.Label);
+            Assert.AreEqual("13", reputation.Value);
+        }
+
+        [Test]
         public void ScreenData_Build_EquippedItemsIncluded()
         {
             var actor = CreateCreatureWithInventory();

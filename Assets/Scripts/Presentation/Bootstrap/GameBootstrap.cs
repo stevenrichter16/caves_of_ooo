@@ -87,8 +87,6 @@ namespace CavesOfOoo
             }
             Debug.Log($"[Bootstrap] Zone generated: {_zone.EntityCount} entities");
 
-            ScatterTrees();
-
             Debug.Log("[Bootstrap] Step 6/9: Creating player...");
             _player = _factory.CreateEntity("Player");
             if (_player == null)
@@ -350,47 +348,6 @@ namespace CavesOfOoo
                 }
                 return;
             }
-        }
-
-        /// <summary>
-        /// Scatter trees across open floor cells in the zone.
-        /// Avoids a clear radius around the center (player spawn area).
-        /// </summary>
-        private void ScatterTrees()
-        {
-            int cx = Zone.Width / 2;
-            int cy = Zone.Height / 2;
-            int clearRadius = 5; // keep spawn area clear
-            float treeDensity = 0.15f;
-            var rng = new System.Random(42);
-            int placed = 0;
-
-            for (int x = 0; x < Zone.Width; x++)
-            {
-                for (int y = 0; y < Zone.Height; y++)
-                {
-                    // Skip cells near center where player will spawn
-                    int dx = x - cx;
-                    int dy = y - cy;
-                    if (dx * dx + dy * dy < clearRadius * clearRadius)
-                        continue;
-
-                    var cell = _zone.GetCell(x, y);
-                    if (cell == null || !cell.IsPassable()) continue;
-
-                    if (rng.NextDouble() < treeDensity)
-                    {
-                        var tree = _factory.CreateEntity("Tree");
-                        if (tree != null)
-                        {
-                            _zone.AddEntity(tree, x, y);
-                            placed++;
-                        }
-                    }
-                }
-            }
-
-            Debug.Log($"[Bootstrap] Scattered {placed} trees across zone");
         }
 
         /// <summary>

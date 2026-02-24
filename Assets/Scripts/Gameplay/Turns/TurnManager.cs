@@ -126,6 +126,19 @@ namespace CavesOfOoo.Core
 
                 CurrentActor = actor;
 
+                // Qud-style pre-action event seam: status effects and other parts can
+                // block the action before AI/input executes.
+                Zone actorZone = ResolveActorZone(actor);
+                var beginTakeAction = GameEvent.New("BeginTakeAction");
+                if (actorZone != null)
+                    beginTakeAction.SetParameter("Zone", (object)actorZone);
+
+                if (!actor.FireEvent(beginTakeAction))
+                {
+                    EndTurn(actor, actorZone);
+                    continue;
+                }
+
                 // If it's the player, pause and wait for input
                 if (actor.HasTag("Player"))
                 {
@@ -135,10 +148,12 @@ namespace CavesOfOoo.Core
 
                 // NPC: fire a TakeTurn event so AI parts can decide actions
                 var turnEvent = GameEvent.New("TakeTurn");
+                turnEvent.SetParameter("BeginTakeActionProcessed", true);
+                if (actorZone != null)
+                    turnEvent.SetParameter("Zone", (object)actorZone);
                 actor.FireEvent(turnEvent);
 
-                // Spend the action energy
-                SpendEnergy(actor);
+                EndTurn(actor, actorZone);
             }
         }
 
@@ -146,10 +161,13 @@ namespace CavesOfOoo.Core
         /// Called after the player (or any actor) completes their action.
         /// Spends their energy and resumes processing.
         /// </summary>
-        public void EndTurn(Entity actor)
+        public void EndTurn(Entity actor, Zone zone = null)
         {
             // Fire EndTurn event so parts can react (cooldown ticking, regeneration, etc.)
-            actor.FireEvent(GameEvent.New("EndTurn"));
+            var endTurn = GameEvent.New("EndTurn");
+            if (zone != null)
+                endTurn.SetParameter("Zone", (object)zone);
+            actor.FireEvent(endTurn);
 
             SpendEnergy(actor);
             CurrentActor = null;
@@ -201,6 +219,18 @@ namespace CavesOfOoo.Core
                 if (_entries[i].Entity == entity)
                     return _entries[i];
             }
+            return null;
+        }
+
+        private Zone ResolveActorZone(Entity actor)
+        {
+            if (actor == null)
+                return null;
+
+            var brain = actor.GetPart<BrainPart>();
+            if (brain != null && brain.CurrentZone != null)
+                return brain.CurrentZone;
+
             return null;
         }
 

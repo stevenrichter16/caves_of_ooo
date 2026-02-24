@@ -34,6 +34,15 @@ namespace CavesOfOoo.Tests
       ""Cost"": ""BC"",
       ""TargetPart"": ""MeleeWeapon"",
       ""NumberMade"": 1
+    },
+    {
+      ""ID"": ""mod_reinforced_plating_armor"",
+      ""DisplayName"": ""Apply Reinforced Plating"",
+      ""Blueprint"": ""mod_reinforced_plating"",
+      ""Type"": ""Mod"",
+      ""Cost"": ""BC"",
+      ""TargetPart"": ""Armor"",
+      ""NumberMade"": 1
     }
   ]
 }";
@@ -102,6 +111,36 @@ namespace CavesOfOoo.Tests
           ""Params"": [
             { ""Key"": ""BaseDamage"", ""Value"": ""1d4"" },
             { ""Key"": ""PenBonus"", ""Value"": ""1"" }
+          ]
+        }
+      ],
+      ""Stats"": [],
+      ""Tags"": [ { ""Key"": ""Item"", ""Value"": """" } ]
+    },
+    {
+      ""Name"": ""LeatherArmor"",
+      ""Inherits"": ""Item"",
+      ""Parts"": [
+        {
+          ""Name"": ""Render"",
+          ""Params"": [
+            { ""Key"": ""DisplayName"", ""Value"": ""leather armor"" },
+            { ""Key"": ""RenderString"", ""Value"": ""["" },
+            { ""Key"": ""ColorString"", ""Value"": ""&y"" }
+          ]
+        },
+        {
+          ""Name"": ""Equippable"",
+          ""Params"": [
+            { ""Key"": ""Slot"", ""Value"": ""Body"" },
+            { ""Key"": ""EquipBonuses"", ""Value"": """" }
+          ]
+        },
+        {
+          ""Name"": ""Armor"",
+          ""Params"": [
+            { ""Key"": ""AV"", ""Value"": ""3"" },
+            { ""Key"": ""DV"", ""Value"": ""-1"" }
           ]
         }
       ],
@@ -286,6 +325,34 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(knife.HasTag("ModSharp"));
             Assert.AreEqual(0, bits.GetBitCount('B'));
             Assert.AreEqual(0, bits.GetBitCount('C'));
+        }
+
+        [Test]
+        public void ApplyModificationCommand_ArmorMod_Succeeds_ThroughExecutor()
+        {
+            var factory = CreateFactory();
+            var player = CreatePlayer();
+            var inventory = player.GetPart<InventoryPart>();
+            var bits = player.GetPart<BitLockerPart>();
+
+            bits.LearnRecipe("mod_reinforced_plating_armor");
+            bits.AddBits("BC");
+
+            var armorItem = factory.CreateEntity("LeatherArmor");
+            Assert.NotNull(armorItem);
+            Assert.IsTrue(inventory.AddObject(armorItem));
+
+            var armor = armorItem.GetPart<ArmorPart>();
+            Assert.NotNull(armor);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ApplyModificationCommand("mod_reinforced_plating_armor", armorItem),
+                player);
+
+            Assert.IsTrue(result.Success, result.ErrorMessage);
+            Assert.AreEqual(4, armor.AV);
+            Assert.AreEqual(-2, armor.DV);
+            Assert.IsTrue(armorItem.HasTag("ModReinforcedPlating"));
         }
 
         private static EntityFactory CreateFactory()

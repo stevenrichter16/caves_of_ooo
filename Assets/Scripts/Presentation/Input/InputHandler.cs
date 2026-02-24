@@ -372,7 +372,7 @@ namespace CavesOfOoo.Rendering
 
         private void EndTurnAndProcess()
         {
-            TurnManager.EndTurn(PlayerEntity);
+            TurnManager.EndTurn(PlayerEntity, CurrentZone);
             TurnManager.ProcessUntilPlayerTurn();
             if (ZoneRenderer != null)
                 ZoneRenderer.MarkDirty();

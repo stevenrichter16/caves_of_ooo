@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CavesOfOoo.Core.Anatomy;
 
@@ -56,12 +57,23 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// Display-ready player stat line for the inventory UI.
+        /// </summary>
+        public class StatDisplay
+        {
+            public string Name;
+            public string Label;
+            public string Value;
+        }
+
+        /// <summary>
         /// Full inventory screen state.
         /// </summary>
         public class ScreenState
         {
             public List<CategoryGroup> Categories = new List<CategoryGroup>();
             public List<EquipmentSlot> Equipment = new List<EquipmentSlot>();
+            public List<StatDisplay> PlayerStats = new List<StatDisplay>();
             public int CarriedWeight;
             public int MaxCarryWeight;
             public int TotalItems;
@@ -82,6 +94,7 @@ namespace CavesOfOoo.Core
             state.CarriedWeight = inventory.GetCarriedWeight();
             state.MaxCarryWeight = inventory.GetMaxCarryWeight();
             state.Drams = TradeSystem.GetDrams(actor);
+            state.PlayerStats = BuildPlayerStats(actor);
 
             // Gather all items (carried + equipped) into one list, deduplicated
             var categoryMap = new Dictionary<string, CategoryGroup>();
@@ -136,6 +149,135 @@ namespace CavesOfOoo.Core
             BuildPaperdollLayout(state.Equipment);
 
             return state;
+        }
+
+        private static readonly string[] StatPriority =
+        {
+            "Hitpoints",
+            "Level",
+            "XP",
+            "MP",
+            "Strength",
+            "Agility",
+            "Toughness",
+            "Intelligence",
+            "Willpower",
+            "Ego",
+            "Speed"
+        };
+
+        private static List<StatDisplay> BuildPlayerStats(Entity actor)
+        {
+            var result = new List<StatDisplay>();
+            if (actor == null || actor.Statistics == null)
+                return result;
+
+            var added = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            for (int i = 0; i < StatPriority.Length; i++)
+            {
+                string statName = StatPriority[i];
+                if (!actor.Statistics.TryGetValue(statName, out Stat stat))
+                    continue;
+
+                result.Add(BuildStatDisplay(statName, stat));
+                added.Add(statName);
+            }
+
+            var remaining = new List<string>();
+            foreach (var kvp in actor.Statistics)
+            {
+                if (!added.Contains(kvp.Key))
+                    remaining.Add(kvp.Key);
+            }
+
+            remaining.Sort(StringComparer.OrdinalIgnoreCase);
+            for (int i = 0; i < remaining.Count; i++)
+            {
+                string statName = remaining[i];
+                if (actor.Statistics.TryGetValue(statName, out Stat stat))
+                    result.Add(BuildStatDisplay(statName, stat));
+            }
+
+            result.Add(new StatDisplay
+            {
+                Name = "AV",
+                Label = "AV",
+                Value = CombatSystem.GetAV(actor).ToString()
+            });
+
+            result.Add(new StatDisplay
+            {
+                Name = "DV",
+                Label = "DV",
+                Value = CombatSystem.GetDV(actor).ToString()
+            });
+
+            return result;
+        }
+
+        private static StatDisplay BuildStatDisplay(string name, Stat stat)
+        {
+            return new StatDisplay
+            {
+                Name = name,
+                Label = GetStatLabel(name),
+                Value = FormatStatValue(name, stat)
+            };
+        }
+
+        private static string GetStatLabel(string statName)
+        {
+            string n = statName ?? string.Empty;
+            switch (n.ToLowerInvariant())
+            {
+                case "hitpoints": return "HP";
+                case "level": return "LV";
+                case "xp": return "XP";
+                case "mp": return "MP";
+                case "strength": return "STR";
+                case "agility": return "AGI";
+                case "toughness": return "TGH";
+                case "intelligence": return "INT";
+                case "willpower": return "WIL";
+                case "ego": return "EGO";
+                case "speed": return "SPD";
+                default:
+                    if (n.Length <= 3)
+                        return n.ToUpperInvariant();
+                    return n.Substring(0, 3).ToUpperInvariant();
+            }
+        }
+
+        private static string FormatStatValue(string statName, Stat stat)
+        {
+            if (stat == null)
+                return "0";
+
+            if (string.Equals(statName, "Hitpoints", StringComparison.OrdinalIgnoreCase))
+            {
+                int max = stat.Max > 0 ? stat.Max : stat.Value;
+                return stat.Value + "/" + max;
+            }
+
+            if (IsAttributeStat(statName))
+            {
+                int modifier = StatUtils.GetModifier(stat.Value);
+                string modText = modifier >= 0 ? "+" + modifier : modifier.ToString();
+                return stat.Value + " (" + modText + ")";
+            }
+
+            return stat.Value.ToString();
+        }
+
+        private static bool IsAttributeStat(string statName)
+        {
+            return string.Equals(statName, "Strength", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(statName, "Agility", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(statName, "Toughness", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(statName, "Intelligence", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(statName, "Willpower", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(statName, "Ego", StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>

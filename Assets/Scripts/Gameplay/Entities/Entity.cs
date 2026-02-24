@@ -272,6 +272,60 @@ namespace CavesOfOoo.Core
             return FireEvent(GameEvent.New(eventID));
         }
 
+        // --- Status Effects ---
+
+        /// <summary>
+        /// Apply a status effect. Auto-creates StatusEffectsPart if needed.
+        /// </summary>
+        public bool ApplyEffect(Effect effect, Entity source = null)
+        {
+            return EnsureStatusEffectsPart().ApplyEffect(effect, source);
+        }
+
+        /// <summary>
+        /// Force-apply a status effect, bypassing standard CanApply checks.
+        /// </summary>
+        public bool ForceApplyEffect(Effect effect, Entity source = null)
+        {
+            return EnsureStatusEffectsPart().ForceApplyEffect(effect, source);
+        }
+
+        public bool HasEffect<T>() where T : Effect
+        {
+            return GetPart<StatusEffectsPart>()?.HasEffect<T>() ?? false;
+        }
+
+        public T GetEffect<T>() where T : Effect
+        {
+            return GetPart<StatusEffectsPart>()?.GetEffect<T>();
+        }
+
+        public bool RemoveEffect<T>() where T : Effect
+        {
+            return GetPart<StatusEffectsPart>()?.RemoveEffect<T>() ?? false;
+        }
+
+        public bool RemoveEffect(Type effectType)
+        {
+            return GetPart<StatusEffectsPart>()?.RemoveEffect(effectType) ?? false;
+        }
+
+        public bool RemoveEffect(Predicate<Effect> filter)
+        {
+            return GetPart<StatusEffectsPart>()?.RemoveEffect(filter) ?? false;
+        }
+
+        private StatusEffectsPart EnsureStatusEffectsPart()
+        {
+            var sep = GetPart<StatusEffectsPart>();
+            if (sep != null)
+                return sep;
+
+            sep = new StatusEffectsPart();
+            AddPart(sep);
+            return sep;
+        }
+
         // --- Cloning ---
 
         /// <summary>
