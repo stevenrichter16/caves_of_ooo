@@ -271,7 +271,10 @@ namespace CavesOfOoo
             {
                 "FireBoltMutation",
                 "IceShardMutation",
-                "PoisonSpitMutation"
+                "PoisonSpitMutation",
+                "PrismaticBeamMutation",
+                "FrostNovaMutation",
+                "ChainLightningMutation"
             };
 
             int granted = 0;

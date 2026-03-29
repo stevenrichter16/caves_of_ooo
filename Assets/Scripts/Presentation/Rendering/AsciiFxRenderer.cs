@@ -7,13 +7,14 @@ using UnityEngine.Tilemaps;
 namespace CavesOfOoo.Rendering
 {
     /// <summary>
-    /// Renders transient projectile, burst, and aura visuals on a dedicated tilemap.
-    /// FX are driven entirely by AsciiFxBus requests from gameplay code.
+    /// Renders transient projectile, burst, aura, beam, orbit, ring-wave, and chain-arc visuals
+    /// on a dedicated tilemap. FX are driven entirely by AsciiFxBus requests from gameplay code.
     /// </summary>
     public class AsciiFxRenderer
     {
         private const float DefaultBurstDuration = 0.18f;
         private const float ParticleLifetime = 0.08f;
+        private const float OrbitFrameDuration = 0.03f;
 
         private readonly Tilemap _tilemap;
         private readonly System.Random _rng = new System.Random(1337);
@@ -22,6 +23,10 @@ namespace CavesOfOoo.Rendering
         private readonly List<ParticleFxInstance> _particles = new List<ParticleFxInstance>();
         private readonly Dictionary<AuraKey, AuraEmitterInstance> _auras =
             new Dictionary<AuraKey, AuraEmitterInstance>();
+        private readonly List<BeamFxInstance> _beams = new List<BeamFxInstance>();
+        private readonly List<ChargeOrbitFxInstance> _chargeOrbits = new List<ChargeOrbitFxInstance>();
+        private readonly List<RingWaveFxInstance> _ringWaves = new List<RingWaveFxInstance>();
+        private readonly List<ChainArcFxInstance> _chainArcs = new List<ChainArcFxInstance>();
 
         private Zone _currentZone;
         private bool _hadVisibleFxLastFrame;
@@ -37,6 +42,10 @@ namespace CavesOfOoo.Rendering
         public int ActiveBurstCount => _bursts.Count;
         public int ActiveParticleCount => _particles.Count;
         public int ActiveAuraCount => _auras.Count;
+        public int ActiveBeamCount => _beams.Count;
+        public int ActiveChargeOrbitCount => _chargeOrbits.Count;
+        public int ActiveRingWaveCount => _ringWaves.Count;
+        public int ActiveChainArcCount => _chainArcs.Count;
 
         public void SetZone(Zone zone)
         {
@@ -48,6 +57,10 @@ namespace CavesOfOoo.Rendering
         {
             ConsumeRequests();
             UpdateAuras(deltaTime);
+            UpdateChargeOrbits(deltaTime);
+            UpdateRingWaves(deltaTime);
+            UpdateBeams(deltaTime);
+            UpdateChainArcs(deltaTime);
             UpdateProjectiles(deltaTime);
             UpdateBursts(deltaTime);
             UpdateParticles(deltaTime);
@@ -61,6 +74,10 @@ namespace CavesOfOoo.Rendering
             _bursts.Clear();
             _particles.Clear();
             _auras.Clear();
+            _beams.Clear();
+            _chargeOrbits.Clear();
+            _ringWaves.Clear();
+            _chainArcs.Clear();
             HasBlockingFx = false;
             _hadVisibleFxLastFrame = false;
             _tilemap?.ClearAllTiles();
@@ -95,6 +112,7 @@ namespace CavesOfOoo.Rendering
                                 Path = request.Path,
                                 Trail = request.Trail,
                                 BlocksTurnAdvance = request.BlocksTurnAdvance,
+                                DelayRemaining = request.Delay,
                                 CurrentIndex = 0
                             });
                         }
@@ -106,8 +124,9 @@ namespace CavesOfOoo.Rendering
                             Theme = request.Theme,
                             X = request.X,
                             Y = request.Y,
-                            Duration = DefaultBurstDuration,
-                            BlocksTurnAdvance = request.BlocksTurnAdvance
+                            Duration = request.Duration > 0f ? request.Duration : DefaultBurstDuration,
+                            BlocksTurnAdvance = request.BlocksTurnAdvance,
+                            DelayRemaining = request.Delay
                         });
                         break;
 
@@ -120,6 +139,65 @@ namespace CavesOfOoo.Rendering
                                 Anchor = request.Anchor,
                                 Theme = request.Theme
                             };
+                        }
+                        break;
+
+                    case AsciiFxRequestType.Beam:
+                        if (request.Path != null && request.Path.Count > 0)
+                        {
+                            _beams.Add(new BeamFxInstance
+                            {
+                                Theme = request.Theme,
+                                Path = request.Path,
+                                DX = request.DX,
+                                DY = request.DY,
+                                Duration = request.Duration,
+                                BlocksTurnAdvance = request.BlocksTurnAdvance,
+                                DelayRemaining = request.Delay
+                            });
+                        }
+                        break;
+
+                    case AsciiFxRequestType.ChargeOrbit:
+                        if (request.Anchor != null)
+                        {
+                            _chargeOrbits.Add(new ChargeOrbitFxInstance
+                            {
+                                Theme = request.Theme,
+                                Anchor = request.Anchor,
+                                Zone = request.Zone,
+                                Radius = request.Radius,
+                                Duration = request.Duration,
+                                BlocksTurnAdvance = request.BlocksTurnAdvance,
+                                DelayRemaining = request.Delay
+                            });
+                        }
+                        break;
+
+                    case AsciiFxRequestType.RingWave:
+                        _ringWaves.Add(new RingWaveFxInstance
+                        {
+                            Theme = request.Theme,
+                            X = request.X,
+                            Y = request.Y,
+                            MaxRadius = request.MaxRadius,
+                            StepDuration = request.StepDuration,
+                            BlocksTurnAdvance = request.BlocksTurnAdvance,
+                            DelayRemaining = request.Delay
+                        });
+                        break;
+
+                    case AsciiFxRequestType.ChainArc:
+                        if (request.Path != null && request.Path.Count >= 2)
+                        {
+                            _chainArcs.Add(new ChainArcFxInstance
+                            {
+                                Theme = request.Theme,
+                                Hops = request.Path,
+                                HopDuration = request.StepDuration,
+                                BlocksTurnAdvance = request.BlocksTurnAdvance,
+                                DelayRemaining = request.Delay
+                            });
                         }
                         break;
                 }
@@ -185,6 +263,72 @@ namespace CavesOfOoo.Rendering
             });
         }
 
+        private void UpdateChargeOrbits(float deltaTime)
+        {
+            for (int i = _chargeOrbits.Count - 1; i >= 0; i--)
+            {
+                ChargeOrbitFxInstance orbit = _chargeOrbits[i];
+                if (orbit.Anchor == null || orbit.Zone != _currentZone || _currentZone.GetEntityCell(orbit.Anchor) == null)
+                {
+                    _chargeOrbits.RemoveAt(i);
+                    continue;
+                }
+
+                float activeDelta = ConsumeDelay(ref orbit.DelayRemaining, deltaTime);
+                if (orbit.DelayRemaining > 0f)
+                    continue;
+
+                orbit.Elapsed += activeDelta;
+                if (orbit.Elapsed >= orbit.Duration)
+                    _chargeOrbits.RemoveAt(i);
+            }
+        }
+
+        private void UpdateRingWaves(float deltaTime)
+        {
+            for (int i = _ringWaves.Count - 1; i >= 0; i--)
+            {
+                RingWaveFxInstance ring = _ringWaves[i];
+                float activeDelta = ConsumeDelay(ref ring.DelayRemaining, deltaTime);
+                if (ring.DelayRemaining > 0f)
+                    continue;
+
+                ring.Elapsed += activeDelta;
+                if (ring.Elapsed >= ring.StepDuration * ring.MaxRadius)
+                    _ringWaves.RemoveAt(i);
+            }
+        }
+
+        private void UpdateBeams(float deltaTime)
+        {
+            for (int i = _beams.Count - 1; i >= 0; i--)
+            {
+                BeamFxInstance beam = _beams[i];
+                float activeDelta = ConsumeDelay(ref beam.DelayRemaining, deltaTime);
+                if (beam.DelayRemaining > 0f)
+                    continue;
+
+                beam.Elapsed += activeDelta;
+                if (beam.Elapsed >= beam.Duration)
+                    _beams.RemoveAt(i);
+            }
+        }
+
+        private void UpdateChainArcs(float deltaTime)
+        {
+            for (int i = _chainArcs.Count - 1; i >= 0; i--)
+            {
+                ChainArcFxInstance arc = _chainArcs[i];
+                float activeDelta = ConsumeDelay(ref arc.DelayRemaining, deltaTime);
+                if (arc.DelayRemaining > 0f)
+                    continue;
+
+                arc.Elapsed += activeDelta;
+                if (arc.Elapsed >= arc.HopDuration * (arc.Hops.Count - 1))
+                    _chainArcs.RemoveAt(i);
+            }
+        }
+
         private void UpdateProjectiles(float deltaTime)
         {
             for (int i = _projectiles.Count - 1; i >= 0; i--)
@@ -196,8 +340,12 @@ namespace CavesOfOoo.Rendering
                     continue;
                 }
 
+                float activeDelta = ConsumeDelay(ref projectile.DelayRemaining, deltaTime);
+                if (projectile.DelayRemaining > 0f)
+                    continue;
+
                 FxThemeConfig config = GetThemeConfig(projectile.Theme);
-                projectile.StepTimer += deltaTime;
+                projectile.StepTimer += activeDelta;
 
                 while (projectile.StepTimer >= config.ProjectileStepTime)
                 {
@@ -229,7 +377,11 @@ namespace CavesOfOoo.Rendering
             for (int i = _bursts.Count - 1; i >= 0; i--)
             {
                 BurstFxInstance burst = _bursts[i];
-                burst.Elapsed += deltaTime;
+                float activeDelta = ConsumeDelay(ref burst.DelayRemaining, deltaTime);
+                if (burst.DelayRemaining > 0f)
+                    continue;
+
+                burst.Elapsed += activeDelta;
                 if (burst.Elapsed >= burst.Duration)
                     _bursts.RemoveAt(i);
             }
@@ -251,7 +403,8 @@ namespace CavesOfOoo.Rendering
             if (_tilemap == null)
                 return;
 
-            bool hasVisibleFx = _projectiles.Count > 0 || _bursts.Count > 0 || _particles.Count > 0;
+            bool hasVisibleFx = _projectiles.Count > 0 || _bursts.Count > 0 || _particles.Count > 0 ||
+                                _beams.Count > 0 || _chargeOrbits.Count > 0 || _ringWaves.Count > 0 || _chainArcs.Count > 0;
             if (!hasVisibleFx && !_hadVisibleFxLastFrame)
                 return;
 
@@ -259,6 +412,18 @@ namespace CavesOfOoo.Rendering
 
             for (int i = 0; i < _particles.Count; i++)
                 RenderParticle(_particles[i]);
+
+            for (int i = 0; i < _ringWaves.Count; i++)
+                RenderRingWave(_ringWaves[i]);
+
+            for (int i = 0; i < _chargeOrbits.Count; i++)
+                RenderChargeOrbit(_chargeOrbits[i]);
+
+            for (int i = 0; i < _beams.Count; i++)
+                RenderBeam(_beams[i]);
+
+            for (int i = 0; i < _chainArcs.Count; i++)
+                RenderChainArc(_chainArcs[i]);
 
             for (int i = 0; i < _projectiles.Count; i++)
                 RenderProjectile(_projectiles[i]);
@@ -269,8 +434,98 @@ namespace CavesOfOoo.Rendering
             _hadVisibleFxLastFrame = hasVisibleFx;
         }
 
+        private void RenderChargeOrbit(ChargeOrbitFxInstance orbit)
+        {
+            if (orbit.DelayRemaining > 0f || orbit.Anchor == null || _currentZone == null)
+                return;
+
+            Cell anchorCell = _currentZone.GetEntityCell(orbit.Anchor);
+            if (anchorCell == null)
+                return;
+
+            FxThemeConfig config = GetThemeConfig(orbit.Theme);
+            if (config.ChargeGlyphs.Length == 0 || config.ChargeColors.Length == 0)
+                return;
+
+            List<Point> offsets = GetRingOffsets(Math.Max(1, orbit.Radius));
+            if (offsets.Count == 0)
+                return;
+
+            int phase = Math.Abs((int)(orbit.Elapsed / OrbitFrameDuration)) % offsets.Count;
+            int count = Math.Min(4, offsets.Count);
+            int step = Math.Max(1, offsets.Count / count);
+            for (int i = 0; i < count; i++)
+            {
+                Point offset = offsets[(phase + (i * step)) % offsets.Count];
+                char glyph = config.ChargeGlyphs[(phase + i) % config.ChargeGlyphs.Length];
+                string color = config.ChargeColors[(phase + i) % config.ChargeColors.Length];
+                RenderGlyphAt(anchorCell.X + offset.X, anchorCell.Y + offset.Y, glyph, color);
+            }
+        }
+
+        private void RenderRingWave(RingWaveFxInstance ring)
+        {
+            if (ring.DelayRemaining > 0f)
+                return;
+
+            FxThemeConfig config = GetThemeConfig(ring.Theme);
+            if (config.RingGlyphs.Length == 0 || config.RingColors.Length == 0)
+                return;
+
+            int radius = Mathf.Clamp((int)(ring.Elapsed / ring.StepDuration) + 1, 1, ring.MaxRadius);
+            char glyph = config.RingGlyphs[Math.Min(radius - 1, config.RingGlyphs.Length - 1)];
+            string color = config.RingColors[Math.Min(radius - 1, config.RingColors.Length - 1)];
+
+            List<Point> offsets = GetRingOffsets(radius);
+            for (int i = 0; i < offsets.Count; i++)
+                RenderGlyphAt(ring.X + offsets[i].X, ring.Y + offsets[i].Y, glyph, color);
+        }
+
+        private void RenderBeam(BeamFxInstance beam)
+        {
+            if (beam.DelayRemaining > 0f || beam.Path == null || beam.Path.Count == 0)
+                return;
+
+            FxThemeConfig config = GetThemeConfig(beam.Theme);
+            string[] colors = config.BeamColors.Length > 0 ? config.BeamColors : config.ProjectileColors;
+            if (colors.Length == 0)
+                colors = DefaultBeamColors;
+
+            char glyph = GetBeamGlyph(beam.DX, beam.DY);
+            for (int i = 0; i < beam.Path.Count; i++)
+            {
+                Point point = beam.Path[i];
+                string color = colors[i % colors.Length];
+                RenderGlyphAt(point.X, point.Y, glyph, color);
+            }
+        }
+
+        private void RenderChainArc(ChainArcFxInstance arc)
+        {
+            if (arc.DelayRemaining > 0f || arc.Hops == null || arc.Hops.Count < 2)
+                return;
+
+            FxThemeConfig config = GetThemeConfig(arc.Theme);
+            if (config.ChainGlyphs.Length == 0 || config.ChainColors.Length == 0)
+                return;
+
+            int hopIndex = Mathf.Clamp((int)(arc.Elapsed / arc.HopDuration), 0, arc.Hops.Count - 2);
+            Point start = arc.Hops[hopIndex];
+            Point end = arc.Hops[hopIndex + 1];
+            List<Point> points = GetLinePoints(start, end);
+            for (int i = 0; i < points.Count; i++)
+            {
+                char glyph = config.ChainGlyphs[(hopIndex + i) % config.ChainGlyphs.Length];
+                string color = config.ChainColors[(hopIndex + i) % config.ChainColors.Length];
+                RenderGlyphAt(points[i].X, points[i].Y, glyph, color);
+            }
+        }
+
         private void RenderProjectile(ProjectileFxInstance projectile)
         {
+            if (projectile.DelayRemaining > 0f)
+                return;
+
             FxThemeConfig config = GetThemeConfig(projectile.Theme);
             int currentIndex = projectile.CurrentIndex;
             if (currentIndex < 0 || currentIndex >= projectile.Path.Count)
@@ -293,6 +548,9 @@ namespace CavesOfOoo.Rendering
 
         private void RenderBurst(BurstFxInstance burst)
         {
+            if (burst.DelayRemaining > 0f)
+                return;
+
             FxThemeConfig config = GetThemeConfig(burst.Theme);
             int frameCount = config.BurstGlyphs.Length;
             if (frameCount == 0)
@@ -346,6 +604,30 @@ namespace CavesOfOoo.Rendering
                     return true;
             }
 
+            for (int i = 0; i < _beams.Count; i++)
+            {
+                if (_beams[i].BlocksTurnAdvance)
+                    return true;
+            }
+
+            for (int i = 0; i < _chargeOrbits.Count; i++)
+            {
+                if (_chargeOrbits[i].BlocksTurnAdvance)
+                    return true;
+            }
+
+            for (int i = 0; i < _ringWaves.Count; i++)
+            {
+                if (_ringWaves[i].BlocksTurnAdvance)
+                    return true;
+            }
+
+            for (int i = 0; i < _chainArcs.Count; i++)
+            {
+                if (_chainArcs[i].BlocksTurnAdvance)
+                    return true;
+            }
+
             return false;
         }
 
@@ -365,9 +647,92 @@ namespace CavesOfOoo.Rendering
                     return IceConfig;
                 case AsciiFxTheme.Poison:
                     return PoisonConfig;
+                case AsciiFxTheme.Arcane:
+                    return ArcaneConfig;
+                case AsciiFxTheme.Lightning:
+                    return LightningConfig;
                 default:
                     return FireConfig;
             }
+        }
+
+        private static float ConsumeDelay(ref float delayRemaining, float deltaTime)
+        {
+            if (delayRemaining <= 0f)
+                return deltaTime;
+            if (deltaTime <= 0f)
+                return 0f;
+            if (deltaTime <= delayRemaining)
+            {
+                delayRemaining -= deltaTime;
+                return 0f;
+            }
+
+            float remainder = deltaTime - delayRemaining;
+            delayRemaining = 0f;
+            return remainder;
+        }
+
+        private static char GetBeamGlyph(int dx, int dy)
+        {
+            if (dy == 0)
+                return '=';
+            if (dx == 0)
+                return '|';
+            return dx == dy ? '\\' : '/';
+        }
+
+        private static List<Point> GetRingOffsets(int radius)
+        {
+            var offsets = new List<Point>();
+            if (radius <= 0)
+                return offsets;
+
+            for (int y = -radius; y <= radius; y++)
+            {
+                for (int x = -radius; x <= radius; x++)
+                {
+                    if (Math.Max(Math.Abs(x), Math.Abs(y)) == radius)
+                        offsets.Add(new Point(x, y));
+                }
+            }
+
+            return offsets;
+        }
+
+        private static List<Point> GetLinePoints(Point start, Point end)
+        {
+            var result = new List<Point>();
+            int x0 = start.X;
+            int y0 = start.Y;
+            int x1 = end.X;
+            int y1 = end.Y;
+            int dx = Math.Abs(x1 - x0);
+            int sx = x0 < x1 ? 1 : -1;
+            int dy = -Math.Abs(y1 - y0);
+            int sy = y0 < y1 ? 1 : -1;
+            int err = dx + dy;
+
+            while (true)
+            {
+                result.Add(new Point(x0, y0));
+                if (x0 == x1 && y0 == y1)
+                    break;
+
+                int e2 = 2 * err;
+                if (e2 >= dy)
+                {
+                    err += dy;
+                    x0 += sx;
+                }
+                if (e2 <= dx)
+                {
+                    err += dx;
+                    y0 += sy;
+                }
+            }
+
+            return result;
         }
 
         private class ProjectileFxInstance
@@ -378,6 +743,7 @@ namespace CavesOfOoo.Rendering
             public bool BlocksTurnAdvance;
             public int CurrentIndex;
             public float StepTimer;
+            public float DelayRemaining;
         }
 
         private class BurstFxInstance
@@ -388,6 +754,7 @@ namespace CavesOfOoo.Rendering
             public float Elapsed;
             public float Duration;
             public bool BlocksTurnAdvance;
+            public float DelayRemaining;
         }
 
         private class ParticleFxInstance
@@ -405,6 +772,52 @@ namespace CavesOfOoo.Rendering
             public Entity Anchor;
             public AsciiFxTheme Theme;
             public float SpawnTimer;
+        }
+
+        private class BeamFxInstance
+        {
+            public AsciiFxTheme Theme;
+            public List<Point> Path;
+            public int DX;
+            public int DY;
+            public float Elapsed;
+            public float Duration;
+            public bool BlocksTurnAdvance;
+            public float DelayRemaining;
+        }
+
+        private class ChargeOrbitFxInstance
+        {
+            public Zone Zone;
+            public Entity Anchor;
+            public AsciiFxTheme Theme;
+            public int Radius;
+            public float Elapsed;
+            public float Duration;
+            public bool BlocksTurnAdvance;
+            public float DelayRemaining;
+        }
+
+        private class RingWaveFxInstance
+        {
+            public AsciiFxTheme Theme;
+            public int X;
+            public int Y;
+            public int MaxRadius;
+            public float Elapsed;
+            public float StepDuration;
+            public bool BlocksTurnAdvance;
+            public float DelayRemaining;
+        }
+
+        private class ChainArcFxInstance
+        {
+            public AsciiFxTheme Theme;
+            public List<Point> Hops;
+            public float Elapsed;
+            public float HopDuration;
+            public bool BlocksTurnAdvance;
+            public float DelayRemaining;
         }
 
         private struct AuraKey
@@ -431,7 +844,16 @@ namespace CavesOfOoo.Rendering
             public char[] AuraGlyphs;
             public string[] AuraColors;
             public float AuraInterval;
+            public char[] ChargeGlyphs;
+            public string[] ChargeColors;
+            public string[] BeamColors;
+            public char[] RingGlyphs;
+            public string[] RingColors;
+            public char[] ChainGlyphs;
+            public string[] ChainColors;
         }
+
+        private static readonly string[] DefaultBeamColors = { "&W" };
 
         private static readonly Point[] CardinalOffsets =
         {
@@ -464,7 +886,14 @@ namespace CavesOfOoo.Rendering
             BurstColors = new[] { "&R", "&Y", "&W" },
             AuraGlyphs = new[] { '*', '\u00B7', '+' },
             AuraColors = new[] { "&R", "&Y" },
-            AuraInterval = 0.15f
+            AuraInterval = 0.15f,
+            ChargeGlyphs = Array.Empty<char>(),
+            ChargeColors = Array.Empty<string>(),
+            BeamColors = Array.Empty<string>(),
+            RingGlyphs = Array.Empty<char>(),
+            RingColors = Array.Empty<string>(),
+            ChainGlyphs = Array.Empty<char>(),
+            ChainColors = Array.Empty<string>()
         };
 
         private static readonly FxThemeConfig IceConfig = new FxThemeConfig
@@ -478,7 +907,14 @@ namespace CavesOfOoo.Rendering
             BurstColors = new[] { "&C", "&Y", "&C" },
             AuraGlyphs = Array.Empty<char>(),
             AuraColors = Array.Empty<string>(),
-            AuraInterval = 999f
+            AuraInterval = 999f,
+            ChargeGlyphs = new[] { 'o', '*', '.' },
+            ChargeColors = new[] { "&C", "&W", "&B" },
+            BeamColors = Array.Empty<string>(),
+            RingGlyphs = new[] { 'o', '*' },
+            RingColors = new[] { "&C", "&W", "&B" },
+            ChainGlyphs = Array.Empty<char>(),
+            ChainColors = Array.Empty<string>()
         };
 
         private static readonly FxThemeConfig PoisonConfig = new FxThemeConfig
@@ -492,7 +928,56 @@ namespace CavesOfOoo.Rendering
             BurstColors = new[] { "&G", "&g" },
             AuraGlyphs = new[] { 'o', '\u00B7' },
             AuraColors = new[] { "&G", "&g" },
-            AuraInterval = 0.20f
+            AuraInterval = 0.20f,
+            ChargeGlyphs = Array.Empty<char>(),
+            ChargeColors = Array.Empty<string>(),
+            BeamColors = Array.Empty<string>(),
+            RingGlyphs = Array.Empty<char>(),
+            RingColors = Array.Empty<string>(),
+            ChainGlyphs = Array.Empty<char>(),
+            ChainColors = Array.Empty<string>()
+        };
+
+        private static readonly FxThemeConfig ArcaneConfig = new FxThemeConfig
+        {
+            ProjectileGlyphs = Array.Empty<char>(),
+            ProjectileColors = new[] { "&M", "&C", "&Y" },
+            TrailGlyph = '.',
+            TrailColor = "&M",
+            ProjectileStepTime = 0.04f,
+            BurstGlyphs = new[] { '*', 'X', '+' },
+            BurstColors = new[] { "&W", "&M", "&Y" },
+            AuraGlyphs = Array.Empty<char>(),
+            AuraColors = Array.Empty<string>(),
+            AuraInterval = 999f,
+            ChargeGlyphs = new[] { '*', 'o', '+' },
+            ChargeColors = new[] { "&M", "&C", "&Y" },
+            BeamColors = new[] { "&M", "&W", "&C" },
+            RingGlyphs = Array.Empty<char>(),
+            RingColors = Array.Empty<string>(),
+            ChainGlyphs = Array.Empty<char>(),
+            ChainColors = Array.Empty<string>()
+        };
+
+        private static readonly FxThemeConfig LightningConfig = new FxThemeConfig
+        {
+            ProjectileGlyphs = Array.Empty<char>(),
+            ProjectileColors = new[] { "&Y", "&W", "&C" },
+            TrailGlyph = '.',
+            TrailColor = "&Y",
+            ProjectileStepTime = 0.04f,
+            BurstGlyphs = new[] { '*', 'Z', '+' },
+            BurstColors = new[] { "&W", "&Y" },
+            AuraGlyphs = Array.Empty<char>(),
+            AuraColors = Array.Empty<string>(),
+            AuraInterval = 999f,
+            ChargeGlyphs = Array.Empty<char>(),
+            ChargeColors = Array.Empty<string>(),
+            BeamColors = Array.Empty<string>(),
+            RingGlyphs = Array.Empty<char>(),
+            RingColors = Array.Empty<string>(),
+            ChainGlyphs = new[] { '~', 'z', 'Z', '*' },
+            ChainColors = new[] { "&Y", "&W", "&C" }
         };
     }
 }

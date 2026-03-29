@@ -6,6 +6,7 @@ namespace CavesOfOoo.Core
     public enum AbilityTargetingMode
     {
         AdjacentCell = 0,
-        DirectionLine = 1
+        DirectionLine = 1,
+        SelfCentered = 2
     }
 }

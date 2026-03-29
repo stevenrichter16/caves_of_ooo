@@ -59,6 +59,83 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void Renderer_TracksAdvancedBlockingFx_AndClearsAfterExpiry()
+        {
+            Tilemap tilemap = CreateFxTilemap();
+            var renderer = new AsciiFxRenderer(tilemap);
+            var zone = new Zone("FxZone");
+            var anchor = CreatePlayer();
+            zone.AddEntity(anchor, 10, 10);
+
+            renderer.SetZone(zone);
+            AsciiFxBus.EmitChargeOrbit(zone, anchor, 1, 0.10f, AsciiFxTheme.Arcane, blocksTurnAdvance: true);
+            AsciiFxBus.EmitBeam(zone, new[] { new Point(11, 10), new Point(12, 10) }, 1, 0, AsciiFxTheme.Arcane, 0.12f, blocksTurnAdvance: true);
+            AsciiFxBus.EmitRingWave(zone, 10, 10, 2, 0.08f, AsciiFxTheme.Ice, blocksTurnAdvance: true);
+            AsciiFxBus.EmitChainArc(zone, new[] { new Point(10, 10), new Point(12, 10), new Point(12, 12) }, AsciiFxTheme.Lightning, 0.05f, blocksTurnAdvance: true);
+
+            renderer.Update(0f);
+
+            Assert.AreEqual(1, renderer.ActiveChargeOrbitCount);
+            Assert.AreEqual(1, renderer.ActiveBeamCount);
+            Assert.AreEqual(1, renderer.ActiveRingWaveCount);
+            Assert.AreEqual(1, renderer.ActiveChainArcCount);
+            Assert.IsTrue(renderer.HasBlockingFx);
+
+            renderer.Update(1f);
+
+            Assert.AreEqual(0, renderer.ActiveChargeOrbitCount);
+            Assert.AreEqual(0, renderer.ActiveBeamCount);
+            Assert.AreEqual(0, renderer.ActiveRingWaveCount);
+            Assert.AreEqual(0, renderer.ActiveChainArcCount);
+            Assert.IsFalse(renderer.HasBlockingFx);
+        }
+
+        [Test]
+        public void Renderer_ChargeOrbit_FollowsAnchorAcrossMovement()
+        {
+            Tilemap tilemap = CreateFxTilemap();
+            var renderer = new AsciiFxRenderer(tilemap);
+            var zone = new Zone("FxZone");
+            var anchor = CreatePlayer();
+            zone.AddEntity(anchor, 10, 10);
+
+            renderer.SetZone(zone);
+            AsciiFxBus.EmitChargeOrbit(zone, anchor, 1, 0.5f, AsciiFxTheme.Arcane, blocksTurnAdvance: true);
+
+            renderer.Update(0f);
+            Assert.Greater(CountTilesInWorldBox(tilemap, 9, 11, 9, 11), 0);
+
+            zone.MoveEntity(anchor, 15, 10);
+            renderer.Update(0.05f);
+
+            Assert.AreEqual(0, CountTilesInWorldBox(tilemap, 9, 11, 9, 11));
+            Assert.Greater(CountTilesInWorldBox(tilemap, 14, 16, 9, 11), 0);
+        }
+
+        [Test]
+        public void Renderer_RingWave_ExpandsByRadius_AndChainArc_AdvancesByHop()
+        {
+            Tilemap tilemap = CreateFxTilemap();
+            var renderer = new AsciiFxRenderer(tilemap);
+            var zone = new Zone("FxZone");
+
+            renderer.SetZone(zone);
+            AsciiFxBus.EmitRingWave(zone, 10, 10, 2, 0.08f, AsciiFxTheme.Ice, blocksTurnAdvance: true);
+            AsciiFxBus.EmitChainArc(zone, new[] { new Point(10, 10), new Point(12, 10), new Point(12, 12) }, AsciiFxTheme.Lightning, 0.05f, blocksTurnAdvance: true);
+
+            renderer.Update(0f);
+            Assert.IsTrue(HasTileAtWorld(tilemap, 10, 9));
+            Assert.IsFalse(HasTileAtWorld(tilemap, 10, 8));
+            Assert.IsTrue(HasTileAtWorld(tilemap, 11, 10));
+            Assert.IsFalse(HasTileAtWorld(tilemap, 12, 11));
+
+            renderer.Update(0.08f);
+            Assert.IsFalse(HasTileAtWorld(tilemap, 10, 9));
+            Assert.IsTrue(HasTileAtWorld(tilemap, 10, 8));
+            Assert.IsTrue(HasTileAtWorld(tilemap, 12, 11));
+        }
+
+        [Test]
         public void InputHandler_WaitsForBlockingFx_UntilRendererFinishes()
         {
             Tilemap zoneTilemap = CreateZoneTilemap(out ZoneRenderer zoneRenderer);
@@ -101,6 +178,43 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual("Normal", GetPrivateInputState(inputHandler));
             Assert.IsTrue(turnManager.WaitingForInput);
             Assert.IsNotNull(zoneTilemap);
+        }
+
+        [Test]
+        public void InputHandler_SelfCenteredAbility_ResolvesImmediatelyWithoutAwaitingDirection()
+        {
+            CreateZoneTilemap(out ZoneRenderer zoneRenderer);
+            var zone = new Zone("FxZone");
+            var player = CreatePlayer();
+            var abilityPart = new TestAbilityPart();
+            player.AddPart(new ActivatedAbilitiesPart());
+            player.AddPart(abilityPart);
+            player.GetPart<ActivatedAbilitiesPart>().AddAbility(
+                "Test Nova",
+                TestAbilityPart.Command,
+                "Test",
+                AbilityTargetingMode.SelfCentered,
+                2);
+            zone.AddEntity(player, 10, 10);
+
+            zoneRenderer.SetZone(zone);
+
+            var turnManager = new TurnManager();
+            turnManager.AddEntity(player);
+            turnManager.ProcessUntilPlayerTurn();
+
+            var inputGo = new GameObject("InputHandler");
+            var inputHandler = inputGo.AddComponent<InputHandler>();
+            inputHandler.PlayerEntity = player;
+            inputHandler.CurrentZone = zone;
+            inputHandler.TurnManager = turnManager;
+            inputHandler.ZoneRenderer = zoneRenderer;
+
+            InvokeNonPublic(inputHandler, "TryActivateAbility", 0);
+
+            Assert.IsTrue(abilityPart.SeenCommand);
+            Assert.AreEqual("Normal", GetPrivateInputState(inputHandler));
+            Assert.IsTrue(turnManager.WaitingForInput);
         }
 
         private static Tilemap CreateFxTilemap()
@@ -147,6 +261,12 @@ namespace CavesOfOoo.Tests
             method.Invoke(instance, null);
         }
 
+        private static void InvokeNonPublic(object instance, string methodName, params object[] args)
+        {
+            MethodInfo method = instance.GetType().GetMethod(methodName, BindingFlags.Instance | BindingFlags.NonPublic);
+            method.Invoke(instance, args);
+        }
+
         private static void SetPrivateInputState(InputHandler inputHandler, string value)
         {
             Type enumType = typeof(InputHandler).GetNestedType("InputState", BindingFlags.NonPublic);
@@ -160,6 +280,45 @@ namespace CavesOfOoo.Tests
             FieldInfo field = typeof(InputHandler).GetField("_inputState", BindingFlags.Instance | BindingFlags.NonPublic);
             object value = field.GetValue(inputHandler);
             return value.ToString();
+        }
+
+        private static bool HasTileAtWorld(Tilemap tilemap, int x, int y)
+        {
+            return tilemap.HasTile(new Vector3Int(x, Zone.Height - 1 - y, 0));
+        }
+
+        private static int CountTilesInWorldBox(Tilemap tilemap, int minX, int maxX, int minY, int maxY)
+        {
+            int count = 0;
+            for (int y = minY; y <= maxY; y++)
+            {
+                for (int x = minX; x <= maxX; x++)
+                {
+                    if (HasTileAtWorld(tilemap, x, y))
+                        count++;
+                }
+            }
+
+            return count;
+        }
+
+        private class TestAbilityPart : Part
+        {
+            public const string Command = "CommandTestSelfCenteredAbility";
+
+            public bool SeenCommand;
+
+            public override string Name => "TestAbilityPart";
+
+            public override bool HandleEvent(GameEvent e)
+            {
+                if (e.ID != Command)
+                    return true;
+
+                SeenCommand = true;
+                e.Handled = true;
+                return false;
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ namespace CavesOfOoo.Rendering
     /// <summary>
     /// MonoBehaviour that converts player key presses into game commands.
     /// Supports WASD, arrow keys, numpad (8-directional), vi keys,
-    /// item pickup (G/comma), ability activation (1-5 + direction),
+    /// item pickup (G/comma), ability activation (1-9 + direction/immediate cast),
     /// and debug keys: F6 (grant mutation), F7 (dump body parts),
     /// F8 (dismember limb), F9 (debug craft recipe).
     /// This is the input boundary — the only place Unity input touches the simulation.
@@ -300,7 +300,7 @@ namespace CavesOfOoo.Rendering
                 _lastMoveTime = Time.time;
             }
 
-            // Ability activation (keys 1-5)
+            // Ability activation (keys 1-9)
             int abilitySlot = GetAbilitySlotInput();
             if (abilitySlot >= 0)
             {
@@ -928,7 +928,7 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>
-        /// Check if a number key 1-5 was pressed. Returns 0-4 slot index, or -1 if none.
+        /// Check if a number key 1-9 was pressed. Returns a 0-based slot index, or -1 if none.
         /// </summary>
         private int GetAbilitySlotInput()
         {
@@ -937,12 +937,16 @@ namespace CavesOfOoo.Rendering
             if (Input.GetKeyDown(KeyCode.Alpha3)) return 2;
             if (Input.GetKeyDown(KeyCode.Alpha4)) return 3;
             if (Input.GetKeyDown(KeyCode.Alpha5)) return 4;
+            if (Input.GetKeyDown(KeyCode.Alpha6)) return 5;
+            if (Input.GetKeyDown(KeyCode.Alpha7)) return 6;
+            if (Input.GetKeyDown(KeyCode.Alpha8)) return 7;
+            if (Input.GetKeyDown(KeyCode.Alpha9)) return 8;
             return -1;
         }
 
         /// <summary>
-        /// Try to activate an ability by slot. If the ability is usable,
-        /// enter AwaitingDirection state for directional targeting.
+        /// Try to activate an ability by slot. Directional abilities enter targeting mode;
+        /// self-centered abilities resolve immediately.
         /// </summary>
         private void TryActivateAbility(int slot)
         {
@@ -963,6 +967,19 @@ namespace CavesOfOoo.Rendering
             if (!ability.IsUsable)
             {
                 Debug.Log($"[Abilities] {ability.DisplayName} is on cooldown ({ability.CooldownRemaining} turns remaining).");
+                return;
+            }
+
+            Cell playerCell = CurrentZone?.GetEntityCell(PlayerEntity);
+            if (playerCell == null)
+            {
+                Debug.Log("[Abilities] You have no valid source cell.");
+                return;
+            }
+
+            if (ability.TargetingMode == AbilityTargetingMode.SelfCentered)
+            {
+                ResolveAbilityCommand(ability, playerCell, 0, 0, null);
                 return;
             }
 
@@ -1009,32 +1026,49 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Fire the ability's command event
-            var cmd = GameEvent.New(_pendingAbility.Command);
+            var targetCell = _pendingAbility.TargetingMode == AbilityTargetingMode.AdjacentCell
+                ? CurrentZone.GetCell(targetX, targetY)
+                : null;
+            if (_pendingAbility.TargetingMode == AbilityTargetingMode.AdjacentCell && targetCell == null)
+            {
+                Debug.Log("[Abilities] Invalid target.");
+                _inputState = InputState.Normal;
+                _pendingAbility = null;
+                return;
+            }
+
+            ResolveAbilityCommand(_pendingAbility, playerCell, dx, dy, targetCell);
+        }
+
+        private void HandleWaitingForFxResolution()
+        {
+            if (ZoneRenderer != null && ZoneRenderer.HasBlockingFx)
+                return;
+
+            _inputState = InputState.Normal;
+            _pendingAbility = null;
+            EndTurnAndProcess();
+            _lastMoveTime = Time.time;
+        }
+
+        private void ResolveAbilityCommand(ActivatedAbility ability, Cell sourceCell, int dx, int dy, Cell targetCell)
+        {
+            if (ability == null || sourceCell == null || CurrentZone == null)
+                return;
+
+            var cmd = GameEvent.New(ability.Command);
             cmd.SetParameter("Zone", (object)CurrentZone);
             cmd.SetParameter("RNG", (object)_combatRng);
-            cmd.SetParameter("SourceCell", (object)playerCell);
+            cmd.SetParameter("SourceCell", (object)sourceCell);
             cmd.SetParameter("DirectionX", dx);
             cmd.SetParameter("DirectionY", dy);
-            cmd.SetParameter("Range", _pendingAbility.Range);
+            cmd.SetParameter("Range", ability.Range);
 
-            if (_pendingAbility.TargetingMode == AbilityTargetingMode.AdjacentCell)
-            {
-                var targetCell = CurrentZone.GetCell(targetX, targetY);
-                if (targetCell == null)
-                {
-                    Debug.Log("[Abilities] Invalid target.");
-                    _inputState = InputState.Normal;
-                    _pendingAbility = null;
-                    return;
-                }
-
+            if (ability.TargetingMode == AbilityTargetingMode.AdjacentCell && targetCell != null)
                 cmd.SetParameter("TargetCell", (object)targetCell);
-            }
 
             PlayerEntity.FireEvent(cmd);
 
-            // Reset state
             bool handled = cmd.Handled;
             _pendingAbility = null;
             _inputState = InputState.Normal;
@@ -1053,17 +1087,6 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            EndTurnAndProcess();
-            _lastMoveTime = Time.time;
-        }
-
-        private void HandleWaitingForFxResolution()
-        {
-            if (ZoneRenderer != null && ZoneRenderer.HasBlockingFx)
-                return;
-
-            _inputState = InputState.Normal;
-            _pendingAbility = null;
             EndTurnAndProcess();
             _lastMoveTime = Time.time;
         }

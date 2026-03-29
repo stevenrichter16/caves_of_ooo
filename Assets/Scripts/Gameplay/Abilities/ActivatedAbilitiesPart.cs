@@ -18,7 +18,7 @@ namespace CavesOfOoo.Core
         public Dictionary<Guid, ActivatedAbility> AbilityByGuid = new Dictionary<Guid, ActivatedAbility>();
 
         /// <summary>
-        /// Ordered list of abilities for slot-based access (keys 1-5).
+        /// Ordered list of abilities for slot-based access (keys 1-9).
         /// </summary>
         public List<ActivatedAbility> AbilityList = new List<ActivatedAbility>();
 
@@ -70,7 +70,7 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Get an ability by its slot index (0-based, for keys 1-5).
+        /// Get an ability by its slot index (0-based, for keys 1-9).
         /// Returns null if slot is out of range.
         /// </summary>
         public ActivatedAbility GetAbilityBySlot(int slot)
