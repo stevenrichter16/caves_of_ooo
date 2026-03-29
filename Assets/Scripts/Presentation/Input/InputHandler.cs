@@ -68,6 +68,7 @@ namespace CavesOfOoo.Rendering
         private enum InputState
         {
             Normal,
+            LookMode,
             AwaitingDirection,
             WaitingForFxResolution,
             InventoryOpen,
@@ -82,6 +83,8 @@ namespace CavesOfOoo.Rendering
         private InputState _inputState = InputState.Normal;
         private ActivatedAbility _pendingAbility;
         private Entity _pendingAttackTarget;
+        private readonly WorldCursorState _worldCursorState = new WorldCursorState();
+        private Vector3 _lastLookMousePosition;
 
         /// <summary>
         /// The dialogue UI component. Set by GameBootstrap.
@@ -133,6 +136,12 @@ namespace CavesOfOoo.Rendering
             if (_inputState == InputState.WaitingForFxResolution)
             {
                 HandleWaitingForFxResolution();
+                return;
+            }
+
+            if (_inputState == InputState.LookMode)
+            {
+                HandleLookModeInput();
                 return;
             }
 
@@ -191,6 +200,13 @@ namespace CavesOfOoo.Rendering
             if (_inputState == InputState.FactionOpen)
             {
                 HandleFactionInput();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                EnterLookMode();
+                _lastMoveTime = Time.time;
                 return;
             }
 
@@ -347,6 +363,9 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private void HandleZoneTransition(ZoneTransitionResult result)
         {
+            if (_inputState == InputState.LookMode)
+                ExitLookMode();
+
             // Remove old zone's non-player creatures from TurnManager
             var oldCreatures = CurrentZone.GetEntitiesWithTag("Creature");
             foreach (var creature in oldCreatures)
@@ -382,6 +401,7 @@ namespace CavesOfOoo.Rendering
             // Update camera to follow player in new zone
             if (CameraFollow != null)
             {
+                CameraFollow.ClearOverrideTarget();
                 CameraFollow.CurrentZone = result.NewZone;
                 CameraFollow.SnapToPlayer();
             }
@@ -942,6 +962,161 @@ namespace CavesOfOoo.Rendering
             if (Input.GetKeyDown(KeyCode.Alpha8)) return 7;
             if (Input.GetKeyDown(KeyCode.Alpha9)) return 8;
             return -1;
+        }
+
+        private bool EnterLookMode()
+        {
+            if (_inputState != InputState.Normal || CurrentZone == null || PlayerEntity == null)
+                return false;
+
+            Cell playerCell = CurrentZone.GetEntityCell(PlayerEntity);
+            if (playerCell == null)
+                return false;
+
+            _worldCursorState.Activate(
+                WorldCursorMode.Look,
+                CurrentZone,
+                playerCell.X,
+                playerCell.Y,
+                playerCell.X,
+                playerCell.Y,
+                followMouse: true);
+
+            _lastLookMousePosition = Input.mousePosition;
+            _inputState = InputState.LookMode;
+            ClampLookCursorToVisibleFrame();
+            RefreshLookSnapshot();
+
+            ZoneRenderer?.SetWorldCursorState(_worldCursorState, PlayerEntity);
+            return true;
+        }
+
+        private void ExitLookMode()
+        {
+            _worldCursorState.Deactivate();
+            _inputState = InputState.Normal;
+            ZoneRenderer?.ClearWorldCursor();
+            ZoneRenderer?.ClearLookSnapshot();
+            if (CameraFollow != null)
+            {
+                CameraFollow.ClearOverrideTarget();
+            }
+        }
+
+        private void HandleLookModeInput()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                ExitLookMode();
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+            if (Input.GetKeyDown(KeyCode.Period) && !shiftHeld)
+            {
+                RecenterLookCursor();
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            int dx = 0;
+            int dy = 0;
+            if (GetDirectionKeyDown(out dx, out dy))
+            {
+                MoveLookCursor(dx, dy);
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            TryUpdateLookCursorFromMouse();
+        }
+
+        private void RecenterLookCursor()
+        {
+            Cell playerCell = CurrentZone?.GetEntityCell(PlayerEntity);
+            if (playerCell == null)
+                return;
+
+            _worldCursorState.SetPosition(playerCell.X, playerCell.Y);
+            ClampLookCursorToVisibleFrame();
+            RefreshLookSnapshot();
+        }
+
+        private void MoveLookCursor(int dx, int dy)
+        {
+            if (!_worldCursorState.Active)
+                return;
+
+            _worldCursorState.MoveBy(dx, dy);
+            ClampLookCursorToVisibleFrame();
+            RefreshLookSnapshot();
+        }
+
+        private void TryUpdateLookCursorFromMouse()
+        {
+            if (!_worldCursorState.Active ||
+                !_worldCursorState.FollowMouse ||
+                ZoneRenderer == null)
+            {
+                return;
+            }
+
+            Vector3 mouse = Input.mousePosition;
+            if (mouse == _lastLookMousePosition)
+                return;
+
+            _lastLookMousePosition = mouse;
+
+            if (!ZoneRenderer.ScreenToZoneCell(mouse, Camera.main, out int x, out int y))
+                return;
+
+            if (x == _worldCursorState.X && y == _worldCursorState.Y)
+                return;
+
+            _worldCursorState.SetPosition(x, y);
+            ClampLookCursorToVisibleFrame();
+            RefreshLookSnapshot();
+        }
+
+        private void RefreshLookSnapshot()
+        {
+            if (!_worldCursorState.Active)
+                return;
+
+            LookSnapshot snapshot = LookQueryService.BuildSnapshot(
+                PlayerEntity,
+                _worldCursorState.Zone,
+                _worldCursorState.X,
+                _worldCursorState.Y);
+
+            ZoneRenderer?.SetWorldCursorState(_worldCursorState, PlayerEntity);
+            ZoneRenderer?.SetLookSnapshot(snapshot);
+        }
+
+        private void ClampLookCursorToVisibleFrame()
+        {
+            if (!_worldCursorState.Active || ZoneRenderer == null)
+                return;
+
+            if (!ZoneRenderer.TryGetVisibleZoneBounds(Camera.main, out int minX, out int maxX, out int minY, out int maxY))
+                return;
+
+            int clampedX = _worldCursorState.X;
+            int clampedY = _worldCursorState.Y;
+
+            if (clampedX < minX)
+                clampedX = minX;
+            else if (clampedX > maxX)
+                clampedX = maxX;
+
+            if (clampedY < minY)
+                clampedY = minY;
+            else if (clampedY > maxY)
+                clampedY = maxY;
+
+            if (clampedX != _worldCursorState.X || clampedY != _worldCursorState.Y)
+                _worldCursorState.SetPosition(clampedX, clampedY);
         }
 
         /// <summary>

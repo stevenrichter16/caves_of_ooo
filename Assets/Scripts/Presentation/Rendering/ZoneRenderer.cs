@@ -45,11 +45,20 @@ namespace CavesOfOoo.Rendering
         private Tilemap _tilemap;
         private Tilemap _fxTilemap;
         private Tilemap _msgTilemap;
+        private Tilemap _lookTilemap;
         private Transform _msgGridTransform;
         private AsciiFxRenderer _asciiFxRenderer;
+        private WorldCursorRenderer _worldCursorRenderer;
+        private LookOverlayRenderer _lookOverlayRenderer;
         private bool _dirty = true;
         private int _lastMessageCount = -1;
         private readonly HashSet<string> _loggedRenderIssues = new HashSet<string>();
+        private WorldCursorState _worldCursorState;
+        private Entity _cursorPlayer;
+        private LookSnapshot _currentLookSnapshot;
+        private Vector3 _lastCameraPosition;
+        private float _lastCameraSize = -1f;
+        private float _lastCameraAspect = -1f;
 
         public bool HasBlockingFx => _asciiFxRenderer?.HasBlockingFx ?? false;
 
@@ -78,6 +87,15 @@ namespace CavesOfOoo.Rendering
             _msgTilemap = msgTmObj.AddComponent<Tilemap>();
             var msgRenderer = msgTmObj.AddComponent<TilemapRenderer>();
             msgRenderer.sortingOrder = 2; // render above game world and FX
+
+            var lookTmObj = new GameObject("LookOverlayTilemap");
+            lookTmObj.transform.SetParent(msgGridObj.transform);
+            _lookTilemap = lookTmObj.AddComponent<Tilemap>();
+            var lookRenderer = lookTmObj.AddComponent<TilemapRenderer>();
+            lookRenderer.sortingOrder = 4;
+
+            _worldCursorRenderer = new WorldCursorRenderer(gridParent, _tilemap);
+            _lookOverlayRenderer = new LookOverlayRenderer(_lookTilemap, _msgGridTransform, MessageReferenceZoom);
         }
 
         /// <summary>
@@ -87,6 +105,11 @@ namespace CavesOfOoo.Rendering
         {
             CurrentZone = zone;
             _asciiFxRenderer?.SetZone(zone);
+            _worldCursorRenderer?.SetZone(zone);
+            _lookOverlayRenderer?.Clear();
+            _currentLookSnapshot = null;
+            _worldCursorState = null;
+            _cursorPlayer = null;
             _dirty = true;
         }
 
@@ -102,32 +125,46 @@ namespace CavesOfOoo.Rendering
         private void LateUpdate()
         {
             bool newMessages = MessageLog.Count != _lastMessageCount;
+            Camera cam = Camera.main;
+            bool cameraChanged = HasCameraViewChanged(cam);
 
             _asciiFxRenderer?.Update(Time.deltaTime);
 
             if (Paused)
             {
                 // Still update messages while paused (overlay popups don't hide the message area)
-                if (newMessages)
+                if (newMessages || cameraChanged)
                 {
                     RenderMessages();
                     _lastMessageCount = MessageLog.Count;
                 }
+
+                _worldCursorRenderer?.Clear();
+                _lookOverlayRenderer?.Clear();
+                CacheCameraView(cam);
                 return;
             }
 
             if (_dirty && CurrentZone != null)
             {
                 RenderZone();
-                RenderMessages();
                 _dirty = false;
-                _lastMessageCount = MessageLog.Count;
             }
-            else if (newMessages)
-            {
-                RenderMessages();
-                _lastMessageCount = MessageLog.Count;
-            }
+
+            RenderMessages();
+            _lastMessageCount = MessageLog.Count;
+
+            if (_worldCursorState != null && _worldCursorState.Active)
+                _worldCursorRenderer?.SetCursor(_worldCursorState, _cursorPlayer);
+            else
+                _worldCursorRenderer?.Clear();
+
+            if (_currentLookSnapshot != null)
+                _lookOverlayRenderer?.Render(_currentLookSnapshot, cam);
+            else
+                _lookOverlayRenderer?.Clear();
+
+            CacheCameraView(cam);
         }
 
         /// <summary>
@@ -294,6 +331,134 @@ namespace CavesOfOoo.Rendering
         {
             RenderCell(oldX, oldY);
             RenderCell(newX, newY);
+        }
+
+        public void SetWorldCursorState(WorldCursorState state, Entity player)
+        {
+            _worldCursorState = state;
+            _cursorPlayer = player;
+        }
+
+        public void ClearWorldCursor()
+        {
+            _worldCursorState = null;
+            _cursorPlayer = null;
+            _worldCursorRenderer?.Clear();
+        }
+
+        public void SetLookSnapshot(LookSnapshot snapshot)
+        {
+            _currentLookSnapshot = snapshot;
+        }
+
+        public void ClearLookSnapshot()
+        {
+            _currentLookSnapshot = null;
+            _lookOverlayRenderer?.Clear();
+        }
+
+        public bool ScreenToZoneCell(Vector2 screenPosition, Camera camera, out int x, out int y)
+        {
+            x = -1;
+            y = -1;
+
+            if (CurrentZone == null || _tilemap == null || camera == null)
+                return false;
+
+            Vector3 world = camera.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, -camera.transform.position.z));
+            Vector3Int tileCell = _tilemap.WorldToCell(world);
+
+            int zoneX = tileCell.x;
+            int zoneY = Zone.Height - 1 - tileCell.y;
+            if (!CurrentZone.InBounds(zoneX, zoneY))
+                return false;
+
+            x = zoneX;
+            y = zoneY;
+            return true;
+        }
+
+        public bool TryGetVisibleZoneBounds(Camera camera, out int minX, out int maxX, out int minY, out int maxY)
+        {
+            minX = 0;
+            maxX = Zone.Width - 1;
+            minY = 0;
+            maxY = Zone.Height - 1;
+
+            if (CurrentZone == null || _tilemap == null || camera == null)
+                return false;
+
+            float halfH = camera.orthographicSize;
+            float halfW = halfH * camera.aspect;
+            float left = camera.transform.position.x - halfW;
+            float right = camera.transform.position.x + halfW;
+            float bottom = camera.transform.position.y - halfH;
+            float top = camera.transform.position.y + halfH;
+
+            bool foundX = false;
+            int visibleMinX = Zone.Width - 1;
+            int visibleMaxX = 0;
+            for (int tileX = 0; tileX < Zone.Width; tileX++)
+            {
+                float centerX = _tilemap.GetCellCenterWorld(new Vector3Int(tileX, 0, 0)).x;
+                if (centerX < left || centerX > right)
+                    continue;
+
+                foundX = true;
+                if (tileX < visibleMinX)
+                    visibleMinX = tileX;
+                if (tileX > visibleMaxX)
+                    visibleMaxX = tileX;
+            }
+
+            bool foundY = false;
+            int visibleMinY = Zone.Height - 1;
+            int visibleMaxY = 0;
+            for (int tileY = 0; tileY < Zone.Height; tileY++)
+            {
+                float centerY = _tilemap.GetCellCenterWorld(new Vector3Int(0, tileY, 0)).y;
+                if (centerY < bottom || centerY > top)
+                    continue;
+
+                int zoneY = Zone.Height - 1 - tileY;
+                foundY = true;
+                if (zoneY < visibleMinY)
+                    visibleMinY = zoneY;
+                if (zoneY > visibleMaxY)
+                    visibleMaxY = zoneY;
+            }
+
+            if (!foundX || !foundY)
+                return false;
+
+            minX = visibleMinX;
+            maxX = visibleMaxX;
+            minY = visibleMinY;
+            maxY = visibleMaxY;
+            return true;
+        }
+
+        private bool HasCameraViewChanged(Camera camera)
+        {
+            if (camera == null)
+                return false;
+
+            if (_lastCameraSize < 0f)
+                return true;
+
+            return camera.transform.position != _lastCameraPosition ||
+                   !Mathf.Approximately(camera.orthographicSize, _lastCameraSize) ||
+                   !Mathf.Approximately(camera.aspect, _lastCameraAspect);
+        }
+
+        private void CacheCameraView(Camera camera)
+        {
+            if (camera == null)
+                return;
+
+            _lastCameraPosition = camera.transform.position;
+            _lastCameraSize = camera.orthographicSize;
+            _lastCameraAspect = camera.aspect;
         }
     }
 }

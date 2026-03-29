@@ -12,6 +12,9 @@ namespace CavesOfOoo.Rendering
     {
         public Entity Player { get; set; }
         public Zone CurrentZone { get; set; }
+        public bool HasOverrideTarget { get; private set; }
+        public Vector2Int OverrideZoneCell { get; private set; }
+        public float OverrideViewportMarginFraction = 0.25f;
 
         /// <summary>
         /// Desired number of world tiles visible vertically at normal gameplay zoom.
@@ -47,7 +50,7 @@ namespace CavesOfOoo.Rendering
             _camera.orthographicSize = GetGameplayZoomSize();
             _camera.backgroundColor = new Color(0.05f, 0.05f, 0.05f);
 
-            FollowPlayer();
+            FollowTrackedTarget();
         }
 
         /// <summary>
@@ -89,27 +92,86 @@ namespace CavesOfOoo.Rendering
             SnapToPlayer();
         }
 
+        public void SetOverrideTargetCell(int x, int y)
+        {
+            OverrideZoneCell = new Vector2Int(x, y);
+            HasOverrideTarget = true;
+
+            if (!_paused)
+                FollowTrackedTarget();
+        }
+
+        public void ClearOverrideTarget()
+        {
+            HasOverrideTarget = false;
+        }
+
         private void LateUpdate()
         {
             if (_paused) return;
-            FollowPlayer();
+            FollowTrackedTarget();
         }
 
-        private void FollowPlayer()
+        private void FollowTrackedTarget()
         {
-            if (Player == null || CurrentZone == null || _camera == null)
+            if (CurrentZone == null || _camera == null)
                 return;
 
-            var pos = CurrentZone.GetEntityPosition(Player);
-            if (pos.x < 0) return;
+            int zoneX;
+            int zoneY;
+            bool useOverride = HasOverrideTarget;
 
-            // Convert roguelike coords (0,0 = top-left) to world coords (Y-inverted)
-            float targetX = pos.x;
-            float targetY = Zone.Height - 1 - pos.y;
+            if (useOverride)
+            {
+                zoneX = OverrideZoneCell.x;
+                zoneY = OverrideZoneCell.y;
+            }
+            else
+            {
+                if (Player == null)
+                    return;
 
-            // Clamp so camera edges stay within zone tile bounds
+                var pos = CurrentZone.GetEntityPosition(Player);
+                if (pos.x < 0)
+                    return;
+
+                zoneX = pos.x;
+                zoneY = pos.y;
+            }
+
             float halfH = _camera.orthographicSize;
             float halfW = halfH * _camera.aspect;
+            float targetX = zoneX + 0.5f;
+            float targetY = Zone.Height - zoneY - 0.5f;
+            float desiredX = targetX;
+            float desiredY = targetY;
+
+            if (useOverride)
+            {
+                float marginFraction = Mathf.Clamp01(OverrideViewportMarginFraction);
+                float marginX = halfW * marginFraction;
+                float marginY = halfH * marginFraction;
+                float currentX = transform.position.x;
+                float currentY = transform.position.y;
+
+                float left = currentX - halfW + marginX;
+                float right = currentX + halfW - marginX;
+                float bottom = currentY - halfH + marginY;
+                float top = currentY + halfH - marginY;
+
+                desiredX = currentX;
+                desiredY = currentY;
+
+                if (targetX < left)
+                    desiredX -= left - targetX;
+                else if (targetX > right)
+                    desiredX += targetX - right;
+
+                if (targetY < bottom)
+                    desiredY -= bottom - targetY;
+                else if (targetY > top)
+                    desiredY += targetY - top;
+            }
 
             float minX = halfW - 0.5f;
             float maxX = (Zone.Width - 1) + 0.5f - halfW;
@@ -117,8 +179,8 @@ namespace CavesOfOoo.Rendering
             float maxY = (Zone.Height - 1) + 0.5f - halfH;
 
             // If zone fits entirely within camera view on an axis, center it
-            float clampedX = minX <= maxX ? Mathf.Clamp(targetX, minX, maxX) : (Zone.Width - 1) * 0.5f;
-            float clampedY = minY <= maxY ? Mathf.Clamp(targetY, minY, maxY) : (Zone.Height - 1) * 0.5f;
+            float clampedX = minX <= maxX ? Mathf.Clamp(desiredX, minX, maxX) : Zone.Width * 0.5f;
+            float clampedY = minY <= maxY ? Mathf.Clamp(desiredY, minY, maxY) : Zone.Height * 0.5f;
 
             transform.position = new Vector3(clampedX, clampedY, transform.position.z);
         }
