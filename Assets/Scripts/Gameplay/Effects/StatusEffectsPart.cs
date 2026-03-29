@@ -34,21 +34,21 @@ namespace CavesOfOoo.Core
         /// Checks CanApply, handles stacking, calls OnApply.
         /// Returns true if the effect was applied (or stacked).
         /// </summary>
-        public bool ApplyEffect(Effect effect, Entity source = null)
+        public bool ApplyEffect(Effect effect, Entity source = null, Zone zone = null)
         {
-            return ApplyEffectInternal(effect, source, forced: false);
+            return ApplyEffectInternal(effect, source, zone, forced: false);
         }
 
         /// <summary>
         /// Apply an effect while bypassing CanApply checks.
         /// Still supports stacking and emits force-apply lifecycle events.
         /// </summary>
-        public bool ForceApplyEffect(Effect effect, Entity source = null)
+        public bool ForceApplyEffect(Effect effect, Entity source = null, Zone zone = null)
         {
-            return ApplyEffectInternal(effect, source, forced: true);
+            return ApplyEffectInternal(effect, source, zone, forced: true);
         }
 
-        private bool ApplyEffectInternal(Effect effect, Entity source, bool forced)
+        private bool ApplyEffectInternal(Effect effect, Entity source, Zone zone, bool forced)
         {
             if (effect == null || ParentEntity == null)
                 return false;
@@ -76,7 +76,7 @@ namespace CavesOfOoo.Core
 
             _effects.Add(effect);
             effect.Applied(ParentEntity);
-            SendApplied(effect, source, forced);
+            SendApplied(effect, source, zone, forced);
             return true;
         }
 
@@ -316,7 +316,7 @@ namespace CavesOfOoo.Core
             return ParentEntity.FireEvent(before);
         }
 
-        private void SendApplied(Effect effect, Entity source, bool forced)
+        private void SendApplied(Effect effect, Entity source, Zone zone, bool forced)
         {
             if (forced)
             {
@@ -338,6 +338,8 @@ namespace CavesOfOoo.Core
             if (source != null)
                 applied.SetParameter("Source", (object)source);
             ParentEntity.FireEvent(applied);
+
+            TryStartAura(effect, zone);
         }
 
         private void SendRemoved(Effect effect)
@@ -347,6 +349,38 @@ namespace CavesOfOoo.Core
             removed.SetParameter("Effect", (object)effect);
             removed.SetParameter("EffectType", effect.ClassName);
             ParentEntity.FireEvent(removed);
+
+            TryStopAura(effect);
+        }
+
+        private void TryStartAura(Effect effect, Zone zone)
+        {
+            if (effect == null || zone == null || ParentEntity == null)
+                return;
+
+            if (effect is BurningEffect)
+            {
+                AsciiFxBus.StartAura(zone, ParentEntity, AsciiFxTheme.Fire);
+            }
+            else if (effect is PoisonedEffect)
+            {
+                AsciiFxBus.StartAura(zone, ParentEntity, AsciiFxTheme.Poison);
+            }
+        }
+
+        private void TryStopAura(Effect effect)
+        {
+            if (effect == null || ParentEntity == null)
+                return;
+
+            if (effect is BurningEffect)
+            {
+                AsciiFxBus.StopAura(ParentEntity, AsciiFxTheme.Fire);
+            }
+            else if (effect is PoisonedEffect)
+            {
+                AsciiFxBus.StopAura(ParentEntity, AsciiFxTheme.Poison);
+            }
         }
     }
 }

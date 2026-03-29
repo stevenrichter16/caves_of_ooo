@@ -277,17 +277,17 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Apply a status effect. Auto-creates StatusEffectsPart if needed.
         /// </summary>
-        public bool ApplyEffect(Effect effect, Entity source = null)
+        public bool ApplyEffect(Effect effect, Entity source = null, Zone zone = null)
         {
-            return EnsureStatusEffectsPart().ApplyEffect(effect, source);
+            return EnsureStatusEffectsPart().ApplyEffect(effect, source, zone);
         }
 
         /// <summary>
         /// Force-apply a status effect, bypassing standard CanApply checks.
         /// </summary>
-        public bool ForceApplyEffect(Effect effect, Entity source = null)
+        public bool ForceApplyEffect(Effect effect, Entity source = null, Zone zone = null)
         {
-            return EnsureStatusEffectsPart().ForceApplyEffect(effect, source);
+            return EnsureStatusEffectsPart().ForceApplyEffect(effect, source, zone);
         }
 
         public bool HasEffect<T>() where T : Effect

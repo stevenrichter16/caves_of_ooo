@@ -101,13 +101,9 @@ namespace CavesOfOoo.Core
 
         private void PlaceGrass(Zone zone, EntityFactory factory, int x, int y)
         {
-            int roll = (int)(System.Math.Abs(x * 31 + y * 17) % 100);
-            if (roll < 95)
-            {
-                var grass = factory.CreateEntity(GrassBlueprint);
-                if (grass != null)
-                    zone.AddEntity(grass, x, y);
-            }
+            var grass = factory.CreateEntity(GrassBlueprint);
+            if (grass != null)
+                zone.AddEntity(grass, x, y);
         }
     }
 }

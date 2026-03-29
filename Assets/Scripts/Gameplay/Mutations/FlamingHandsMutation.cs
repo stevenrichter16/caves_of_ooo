@@ -20,7 +20,12 @@ namespace CavesOfOoo.Core
         public override void Mutate(Entity entity, int level)
         {
             base.Mutate(entity, level);
-            ActivatedAbilityID = AddMyActivatedAbility("Flaming Hands", COMMAND_NAME, "Physical Mutations");
+            ActivatedAbilityID = AddMyActivatedAbility(
+                "Flaming Hands",
+                COMMAND_NAME,
+                "Physical Mutations",
+                AbilityTargetingMode.AdjacentCell,
+                1);
         }
 
         public override void Unmutate(Entity entity)
@@ -43,6 +48,7 @@ namespace CavesOfOoo.Core
                     return true;
 
                 Cast(targetCell, zone, rng);
+                e.SetParameter("BlocksTurnAdvance", true);
                 e.Handled = true;
                 return false;
             }
@@ -56,6 +62,8 @@ namespace CavesOfOoo.Core
         public void Cast(Cell targetCell, Zone zone, Random rng)
         {
             if (targetCell == null) return;
+
+            AsciiFxBus.EmitBurst(zone, targetCell.X, targetCell.Y, AsciiFxTheme.Fire, blocksTurnAdvance: true);
 
             // Get all creatures in the target cell
             List<Entity> creatures = targetCell.GetObjectsWithTag("Creature");

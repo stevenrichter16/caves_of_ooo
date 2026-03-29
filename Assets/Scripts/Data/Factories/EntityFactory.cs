@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using CavesOfOoo.Core;
 using CavesOfOoo.Core.Anatomy;
+using CavesOfOoo.Rendering;
 using UnityEngine;
 
 namespace CavesOfOoo.Data
@@ -14,6 +15,28 @@ namespace CavesOfOoo.Data
     /// </summary>
     public class EntityFactory
     {
+        private static readonly HashSet<string> AbstractRenderBlueprints = new HashSet<string>
+        {
+            "PhysicalObject",
+            "Terrain",
+            "Creature",
+            "Item",
+            "FoodItem",
+            "TonicItem",
+            "Container",
+            "Corpse",
+            "MeleeWeapon",
+            "MissileWeapon",
+            "Armor",
+            "ArmorItem",
+            "Shield",
+            "Helmet",
+            "Gloves",
+            "Boots",
+            "Cloak",
+            "NaturalWeapon"
+        };
+
         /// <summary>
         /// All loaded blueprints, keyed by name.
         /// </summary>
@@ -66,6 +89,44 @@ namespace CavesOfOoo.Data
             {
                 Blueprints[kvp.Key] = kvp.Value;
             }
+        }
+
+        /// <summary>
+        /// Validate baked blueprints against the world ASCII render contract.
+        /// Issues are warnings for content authors; the runtime still falls back safely.
+        /// </summary>
+        public List<string> ValidateAsciiWorldBlueprints()
+        {
+            var issues = new List<string>();
+
+            foreach (var blueprint in Blueprints.Values)
+            {
+                if (!blueprint.Parts.TryGetValue("Render", out var renderParameters))
+                    continue;
+
+                bool requireDisplayName = !AbstractRenderBlueprints.Contains(blueprint.Name);
+                issues.AddRange(AsciiWorldRenderPolicy.ValidateBlueprintRenderParameters(
+                    blueprint.Name,
+                    renderParameters,
+                    requireDisplayName));
+            }
+
+            return issues;
+        }
+
+        public List<string> ValidateAsciiWorldBlueprint(string blueprintName)
+        {
+            if (!Blueprints.TryGetValue(blueprintName, out var blueprint))
+                return new List<string> { $"Unknown blueprint '{blueprintName}'" };
+
+            if (!blueprint.Parts.TryGetValue("Render", out var renderParameters))
+                return new List<string> { $"{blueprint.Name}: missing Render part" };
+
+            bool requireDisplayName = !AbstractRenderBlueprints.Contains(blueprint.Name);
+            return AsciiWorldRenderPolicy.ValidateBlueprintRenderParameters(
+                blueprint.Name,
+                renderParameters,
+                requireDisplayName);
         }
 
         /// <summary>

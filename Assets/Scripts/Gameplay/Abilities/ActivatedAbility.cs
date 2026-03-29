@@ -31,6 +31,16 @@ namespace CavesOfOoo.Core
         public string Class;
 
         /// <summary>
+        /// How the player targets this ability from input.
+        /// </summary>
+        public AbilityTargetingMode TargetingMode = AbilityTargetingMode.AdjacentCell;
+
+        /// <summary>
+        /// Maximum input-targeting range for this ability.
+        /// </summary>
+        public int Range = 1;
+
+        /// <summary>
         /// Turns remaining on cooldown. 0 = ready.
         /// </summary>
         public int CooldownRemaining;

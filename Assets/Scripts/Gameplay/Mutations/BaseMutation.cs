@@ -207,12 +207,17 @@ namespace CavesOfOoo.Core
         /// Returns the ability's Guid for later reference.
         /// Mirrors Qud's AddMyActivatedAbility.
         /// </summary>
-        protected Guid AddMyActivatedAbility(string displayName, string command, string abilityClass)
+        protected Guid AddMyActivatedAbility(
+            string displayName,
+            string command,
+            string abilityClass,
+            AbilityTargetingMode targetingMode = AbilityTargetingMode.AdjacentCell,
+            int range = 1)
         {
             var abilities = ParentEntity?.GetPart<ActivatedAbilitiesPart>();
             if (abilities == null)
                 return Guid.Empty;
-            return abilities.AddAbility(displayName, command, abilityClass);
+            return abilities.AddAbility(displayName, command, abilityClass, targetingMode, range);
         }
 
         /// <summary>

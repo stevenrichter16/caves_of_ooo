@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CavesOfOoo.Core;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -6,8 +7,8 @@ namespace CavesOfOoo.Rendering
 {
     /// <summary>
     /// MonoBehaviour that renders a Zone onto a Unity Tilemap.
-    /// Reads each cell's top visible entity's RenderPart and draws
-    /// the appropriate glyph in the appropriate color.
+    /// World rendering is ASCII-only: the top visible entity contributes a single
+    /// CP437 glyph from RenderString and a foreground tint from ColorString.
     /// 
     /// This is the only component that bridges the pure C# simulation
     /// to Unity's rendering. Attach to a GameObject with a Tilemap + Grid.
@@ -21,7 +22,7 @@ namespace CavesOfOoo.Rendering
         public Zone CurrentZone { get; private set; }
 
         /// <summary>
-        /// Background color for empty cells.
+        /// Background tone for visually blank cells.
         /// </summary>
         public Color BackgroundColor = new Color(0.05f, 0.05f, 0.05f);
 
@@ -42,14 +43,29 @@ namespace CavesOfOoo.Rendering
         public float MessageReferenceZoom = 12.5f;
 
         private Tilemap _tilemap;
+        private Tilemap _fxTilemap;
         private Tilemap _msgTilemap;
         private Transform _msgGridTransform;
+        private AsciiFxRenderer _asciiFxRenderer;
         private bool _dirty = true;
         private int _lastMessageCount = -1;
+        private readonly HashSet<string> _loggedRenderIssues = new HashSet<string>();
+
+        public bool HasBlockingFx => _asciiFxRenderer?.HasBlockingFx ?? false;
 
         private void Awake()
         {
             _tilemap = GetComponent<Tilemap>();
+
+            Grid grid = GetComponentInParent<Grid>();
+            Transform gridParent = grid != null ? grid.transform : (transform.parent != null ? transform.parent : transform);
+
+            var fxTilemapObj = new GameObject("FxTilemap");
+            fxTilemapObj.transform.SetParent(gridParent, false);
+            _fxTilemap = fxTilemapObj.AddComponent<Tilemap>();
+            var fxRenderer = fxTilemapObj.AddComponent<TilemapRenderer>();
+            fxRenderer.sortingOrder = 1; // above world, below messages
+            _asciiFxRenderer = new AsciiFxRenderer(_fxTilemap);
 
             // Create a separate tilemap for messages with narrow half-width cells
             var msgGridObj = new GameObject("MessageGrid");
@@ -61,7 +77,7 @@ namespace CavesOfOoo.Rendering
             msgTmObj.transform.SetParent(msgGridObj.transform);
             _msgTilemap = msgTmObj.AddComponent<Tilemap>();
             var msgRenderer = msgTmObj.AddComponent<TilemapRenderer>();
-            msgRenderer.sortingOrder = 1; // render above game world
+            msgRenderer.sortingOrder = 2; // render above game world and FX
         }
 
         /// <summary>
@@ -70,6 +86,7 @@ namespace CavesOfOoo.Rendering
         public void SetZone(Zone zone)
         {
             CurrentZone = zone;
+            _asciiFxRenderer?.SetZone(zone);
             _dirty = true;
         }
 
@@ -85,6 +102,8 @@ namespace CavesOfOoo.Rendering
         private void LateUpdate()
         {
             bool newMessages = MessageLog.Count != _lastMessageCount;
+
+            _asciiFxRenderer?.Update(Time.deltaTime);
 
             if (Paused)
             {
@@ -140,9 +159,10 @@ namespace CavesOfOoo.Rendering
             Entity topEntity = cell.GetTopVisibleObject();
             if (topEntity == null)
             {
-                // Empty cell — draw a dark dot
-                Tile bgTile = CP437TilesetGenerator.GetTile('.');
-                _tilemap.SetTile(tilePos, bgTile);
+                // Truly empty cells stay visually blank. Open ground should come from
+                // explicit terrain entities, not from a renderer fallback glyph.
+                Tile emptyTile = CP437TilesetGenerator.GetTile(AsciiWorldRenderPolicy.EmptyGlyph);
+                _tilemap.SetTile(tilePos, emptyTile);
                 _tilemap.SetTileFlags(tilePos, TileFlags.None);
                 _tilemap.SetColor(tilePos, BackgroundColor);
                 return;
@@ -151,12 +171,9 @@ namespace CavesOfOoo.Rendering
             RenderPart render = topEntity.GetPart<RenderPart>();
             if (render == null) return;
 
-            // Get the glyph character
-            char glyph = '.';
-            if (!string.IsNullOrEmpty(render.RenderString) && render.RenderString.Length > 0)
-                glyph = render.RenderString[0];
+            char glyph = AsciiWorldRenderPolicy.GetGlyphOrFallback(render, out string glyphIssue);
+            LogRenderIssueOnce(topEntity, glyphIssue);
 
-            // Get the tile
             Tile tile = CP437TilesetGenerator.GetTile(glyph);
             if (tile == null) return;
 
@@ -165,7 +182,8 @@ namespace CavesOfOoo.Rendering
 
             // Parse and apply color. Rendering participates in entity event flow,
             // so effects/parts can mutate color similarly to Qud's RenderEvent path.
-            string colorString = render.ColorString;
+            string colorString = AsciiWorldRenderPolicy.GetColorOrFallback(render, out string colorIssue);
+            LogRenderIssueOnce(topEntity, colorIssue);
             var renderEvent = GameEvent.New("Render");
             renderEvent.SetParameter("Entity", (object)topEntity);
             renderEvent.SetParameter("RenderPart", (object)render);
@@ -174,11 +192,23 @@ namespace CavesOfOoo.Rendering
             topEntity.FireEvent(renderEvent);
 
             string eventColor = renderEvent.GetStringParameter("ColorString", colorString);
-            if (!string.IsNullOrEmpty(eventColor))
+            if (AsciiWorldRenderPolicy.IsValidColorString(eventColor))
                 colorString = eventColor;
+            else
+                colorString = AsciiWorldRenderPolicy.FallbackColorString;
 
             Color color = QudColorParser.Parse(colorString);
             _tilemap.SetColor(tilePos, color);
+        }
+
+        private void LogRenderIssueOnce(Entity entity, string issue)
+        {
+            if (entity == null || string.IsNullOrWhiteSpace(issue))
+                return;
+
+            string key = $"{entity.ID}:{issue}";
+            if (_loggedRenderIssues.Add(key))
+                Debug.LogWarning($"[ASCII] {entity.BlueprintName ?? entity.ID}: {issue}");
         }
 
         /// <summary>

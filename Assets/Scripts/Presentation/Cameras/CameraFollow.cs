@@ -14,8 +14,14 @@ namespace CavesOfOoo.Rendering
         public Zone CurrentZone { get; set; }
 
         /// <summary>
-        /// Orthographic half-height. Smaller = more zoomed in.
-        /// Default 10 shows ~36x20 tiles on a 16:9 screen.
+        /// Desired number of world tiles visible vertically at normal gameplay zoom.
+        /// Orthographic size is derived from this so default zoom is content-driven
+        /// instead of relying on a raw magic number.
+        /// </summary>
+        public int TargetVisibleTileRows = 34;
+
+        /// <summary>
+        /// Legacy fallback if TargetVisibleTileRows is disabled or invalid.
         /// </summary>
         public float ZoomSize = 17f;
 
@@ -38,7 +44,7 @@ namespace CavesOfOoo.Rendering
             if (_camera == null)
                 return;
 
-            _camera.orthographicSize = ZoomSize;
+            _camera.orthographicSize = GetGameplayZoomSize();
             _camera.backgroundColor = new Color(0.05f, 0.05f, 0.05f);
 
             FollowPlayer();
@@ -115,6 +121,14 @@ namespace CavesOfOoo.Rendering
             float clampedY = minY <= maxY ? Mathf.Clamp(targetY, minY, maxY) : (Zone.Height - 1) * 0.5f;
 
             transform.position = new Vector3(clampedX, clampedY, transform.position.z);
+        }
+
+        private float GetGameplayZoomSize()
+        {
+            if (TargetVisibleTileRows > 0)
+                return TargetVisibleTileRows * 0.5f;
+
+            return ZoomSize;
         }
     }
 }

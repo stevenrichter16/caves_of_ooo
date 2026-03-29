@@ -25,7 +25,12 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Register a new activated ability. Returns its Guid for later reference.
         /// </summary>
-        public Guid AddAbility(string displayName, string command, string abilityClass)
+        public Guid AddAbility(
+            string displayName,
+            string command,
+            string abilityClass,
+            AbilityTargetingMode targetingMode = AbilityTargetingMode.AdjacentCell,
+            int range = 1)
         {
             var ability = new ActivatedAbility
             {
@@ -33,6 +38,8 @@ namespace CavesOfOoo.Core
                 DisplayName = displayName,
                 Command = command,
                 Class = abilityClass,
+                TargetingMode = targetingMode,
+                Range = range < 1 ? 1 : range,
                 CooldownRemaining = 0,
                 MaxCooldown = 0
             };

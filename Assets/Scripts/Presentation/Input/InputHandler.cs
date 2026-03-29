@@ -65,7 +65,20 @@ namespace CavesOfOoo.Rendering
         /// Normal: standard movement/action input.
         /// AwaitingDirection: waiting for a directional key to target an ability.
         /// </summary>
-        private enum InputState { Normal, AwaitingDirection, InventoryOpen, PickupOpen, ContainerPickerOpen, AwaitingTalkDirection, DialogueOpen, TradeOpen, AwaitingAttackConfirm, FactionOpen }
+        private enum InputState
+        {
+            Normal,
+            AwaitingDirection,
+            WaitingForFxResolution,
+            InventoryOpen,
+            PickupOpen,
+            ContainerPickerOpen,
+            AwaitingTalkDirection,
+            DialogueOpen,
+            TradeOpen,
+            AwaitingAttackConfirm,
+            FactionOpen
+        }
         private InputState _inputState = InputState.Normal;
         private ActivatedAbility _pendingAbility;
         private Entity _pendingAttackTarget;
@@ -116,6 +129,12 @@ namespace CavesOfOoo.Rendering
 
             if (TurnManager.CurrentActor != PlayerEntity)
                 return;
+
+            if (_inputState == InputState.WaitingForFxResolution)
+            {
+                HandleWaitingForFxResolution();
+                return;
+            }
 
             // Rate limit
             if (Time.time - _lastMoveTime < MoveRepeatDelay)
@@ -972,7 +991,6 @@ namespace CavesOfOoo.Rendering
             if (!GetDirectionKeyDown(out dx, out dy))
                 return;
 
-            // Compute target cell
             var playerCell = CurrentZone.GetEntityCell(PlayerEntity);
             if (playerCell == null)
             {
@@ -983,9 +1001,7 @@ namespace CavesOfOoo.Rendering
 
             int targetX = playerCell.X + dx;
             int targetY = playerCell.Y + dy;
-            var targetCell = CurrentZone.GetCell(targetX, targetY);
-
-            if (targetCell == null)
+            if (!CurrentZone.InBounds(targetX, targetY))
             {
                 Debug.Log("[Abilities] Invalid target.");
                 _inputState = InputState.Normal;
@@ -995,15 +1011,59 @@ namespace CavesOfOoo.Rendering
 
             // Fire the ability's command event
             var cmd = GameEvent.New(_pendingAbility.Command);
-            cmd.SetParameter("TargetCell", (object)targetCell);
             cmd.SetParameter("Zone", (object)CurrentZone);
             cmd.SetParameter("RNG", (object)_combatRng);
+            cmd.SetParameter("SourceCell", (object)playerCell);
+            cmd.SetParameter("DirectionX", dx);
+            cmd.SetParameter("DirectionY", dy);
+            cmd.SetParameter("Range", _pendingAbility.Range);
+
+            if (_pendingAbility.TargetingMode == AbilityTargetingMode.AdjacentCell)
+            {
+                var targetCell = CurrentZone.GetCell(targetX, targetY);
+                if (targetCell == null)
+                {
+                    Debug.Log("[Abilities] Invalid target.");
+                    _inputState = InputState.Normal;
+                    _pendingAbility = null;
+                    return;
+                }
+
+                cmd.SetParameter("TargetCell", (object)targetCell);
+            }
+
             PlayerEntity.FireEvent(cmd);
 
             // Reset state
+            bool handled = cmd.Handled;
+            _pendingAbility = null;
+            _inputState = InputState.Normal;
+
+            if (!handled)
+            {
+                Debug.Log("[Abilities] The ability fails to resolve.");
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            if (cmd.GetParameter<bool>("BlocksTurnAdvance"))
+            {
+                _inputState = InputState.WaitingForFxResolution;
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            EndTurnAndProcess();
+            _lastMoveTime = Time.time;
+        }
+
+        private void HandleWaitingForFxResolution()
+        {
+            if (ZoneRenderer != null && ZoneRenderer.HasBlockingFx)
+                return;
+
             _inputState = InputState.Normal;
             _pendingAbility = null;
-
             EndTurnAndProcess();
             _lastMoveTime = Time.time;
         }

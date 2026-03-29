@@ -98,13 +98,7 @@ namespace CavesOfOoo.Core
         private void PlaceFloorOrRubble(Zone zone, EntityFactory factory, System.Random rng, int x, int y)
         {
             int roll = rng.Next(100);
-            string blueprint;
-            if (roll < 80)
-                blueprint = FloorBlueprint;
-            else if (roll < 95)
-                blueprint = RubbleBlueprint;
-            else
-                return; // 5% empty
+            string blueprint = roll < 80 ? FloorBlueprint : RubbleBlueprint;
 
             Entity terrain = factory.CreateEntity(blueprint);
             if (terrain != null)

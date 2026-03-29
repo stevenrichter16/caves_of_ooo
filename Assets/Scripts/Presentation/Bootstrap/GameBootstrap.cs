@@ -44,6 +44,8 @@ namespace CavesOfOoo
 
         private void DoStart()
         {
+            AsciiFxBus.Clear();
+
             Debug.Log("[Bootstrap] Step 1/9: Initializing factions...");
             TextAsset factionAsset = Resources.Load<TextAsset>("Content/Data/Factions");
             if (factionAsset != null)
@@ -72,6 +74,7 @@ namespace CavesOfOoo
             }
             _factory.LoadBlueprints(blueprintAsset.text);
             Debug.Log($"[Bootstrap] Loaded {_factory.Blueprints.Count} blueprints");
+            LogAsciiBlueprintValidation();
 
             // Wire conversation system
             ConversationActions.Factory = _factory;
@@ -96,6 +99,7 @@ namespace CavesOfOoo
             }
             var playerBody = _player.GetPart<Body>();
             Debug.Log($"[Bootstrap] Player created. Has Body part: {playerBody != null}, Body initialized: {playerBody?.GetBody() != null}");
+            GrantShowcaseSpellMutations();
             InitializePlayerStartingTinkering();
             PlacePlayerInOpenCell();
             SpawnDebugWeaponNearPlayer();
@@ -247,6 +251,43 @@ namespace CavesOfOoo
                 $"Granted {startingAmountPerBit} of each bit type.");
         }
 
+        /// <summary>
+        /// Debug-first mutation grant so projectile/spell FX is reachable immediately.
+        /// Keeps the player blueprint stable while the progression loop is unfinished.
+        /// </summary>
+        private void GrantShowcaseSpellMutations()
+        {
+            if (_player == null)
+                return;
+
+            var mutations = _player.GetPart<MutationsPart>();
+            if (mutations == null)
+            {
+                Debug.LogWarning("[Bootstrap/Mutations] Player has no MutationsPart; showcase spell grant skipped.");
+                return;
+            }
+
+            string[] showcaseMutations =
+            {
+                "FireBoltMutation",
+                "IceShardMutation",
+                "PoisonSpitMutation"
+            };
+
+            int granted = 0;
+            for (int i = 0; i < showcaseMutations.Length; i++)
+            {
+                string className = showcaseMutations[i];
+                if (mutations.HasMutation(className))
+                    continue;
+
+                if (mutations.AddMutation(className, 1))
+                    granted++;
+            }
+
+            Debug.Log("[Bootstrap/Mutations] Granted " + granted + " showcase projectile mutation(s).");
+        }
+
         private static string BuildUniformBitGrant(int amountPerBit)
         {
             if (amountPerBit <= 0 || StartingBitTypes.Length == 0)
@@ -260,6 +301,23 @@ namespace CavesOfOoo
             }
 
             return builder.ToString();
+        }
+
+        private void LogAsciiBlueprintValidation()
+        {
+            if (_factory == null)
+                return;
+
+            var issues = _factory.ValidateAsciiWorldBlueprints();
+            if (issues.Count == 0)
+            {
+                Debug.Log("[Bootstrap/ASCII] Blueprint render validation passed.");
+                return;
+            }
+
+            Debug.LogWarning($"[Bootstrap/ASCII] Found {issues.Count} world render metadata issue(s).");
+            for (int i = 0; i < issues.Count; i++)
+                Debug.LogWarning($"[Bootstrap/ASCII] {issues[i]}");
         }
 
         /// <summary>
