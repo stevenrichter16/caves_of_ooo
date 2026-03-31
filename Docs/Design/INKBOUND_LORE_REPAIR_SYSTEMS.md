@@ -235,19 +235,153 @@ These repair mechanics directly implement several Frieren concepts from the brai
 
 ---
 
+## Spell Economics: Materials to Learn, Mana to Cast, Materials to Amplify
+
+### Design Principle
+
+Spells (including repair spells) follow a three-phase resource model:
+
+1. **Learning/First Cast**: Requires full material (bit) cost. You are constructing the spell from raw components -- understanding its structure through physical engagement with its ingredients.
+2. **Subsequent Casts**: Requires only mana. You've internalized the spell; your understanding replaces the scaffolding.
+3. **Amplified Casts**: If you voluntarily spend materials alongside mana, the spell is more powerful. The materials aren't required, but they resonate with the spell's original composition.
+
+This creates a natural progression: early game is resource-constrained and every spell feels expensive. Late game, you're casting freely but choosing when to invest materials for critical moments.
+
+### Lore Justification
+
+This maps directly onto the Inkbound/Frieren themes:
+
+- **Inkbound**: The first cast is like copying a manuscript by hand -- you must work through every word to understand it. After that, you carry the knowledge. But having the original manuscript open while you work (materials) produces a more faithful result.
+- **Frieren**: "No spell is useless, only unstudied." Studying a spell means working through its material composition once. After that, the spell is *yours*. The 1000-year spellbook problem is real -- you have hundreds of spells you learned centuries ago, and they cost nothing to cast, but you've forgotten how good they can be when you feed them.
+
+### Mechanical Design
+
+#### Mana Pool
+
+A new resource on the player entity, alongside HP and MP:
+
+```
+Mana (stat)
+  |- Current: int          // current mana available
+  |- Max: int              // maximum mana pool
+  |- RegenRate: int        // mana restored per turn (or per rest)
+```
+
+Mana is a **general-purpose casting resource** -- not per-spell, not per-school. Simple and legible.
+
+#### Spell Cost Structure
+
+Each spell/mutation/repair ability has:
+
+```
+SpellCost
+  |- LearnCost: string          // bit cost for first cast (e.g. "BCC")
+  |- ManaCost: int              // mana cost for subsequent casts
+  |- Learned: bool              // has the player paid the LearnCost?
+  |- AmplificationMaterials: string  // which bits can amplify (e.g. "BC")
+```
+
+#### Casting Flow
+
+```
+CastSpell(spell, optionalMaterials):
+  if not spell.Learned:
+    require bits >= spell.LearnCost
+    consume bits
+    spell.Learned = true
+    // first cast proceeds at base power
+  else:
+    require mana >= spell.ManaCost
+    consume mana
+
+  power = spell.BasePower
+
+  if optionalMaterials provided:
+    require bits >= optionalMaterials
+    consume bits
+    power += CalculateAmplification(spell, optionalMaterials)
+
+  execute spell at power level
+```
+
+#### Amplification Scaling
+
+Materials amplify power based on **relevance** and **quantity**:
+
+| Factor | Effect |
+|--------|--------|
+| **Matching bits** (bits in `AmplificationMaterials`) | +25% power per matching bit spent |
+| **Extra matching bits** (above LearnCost quantity) | +10% per additional bit (diminishing) |
+| **Non-matching bits** | +5% per bit (they help, but less efficiently) |
+| **Full LearnCost repeated** | +50% power (you're recasting at full material fidelity) |
+
+Example: A well-repair spell has `LearnCost: "BCC"` and `AmplificationMaterials: "BC"`.
+- Cast with mana only: base power (well becomes functional)
+- Cast with 1 extra C bit: +25% (well has slightly better output)
+- Cast with full "BCC" again: +50% (well becomes a RestoredWell with enhanced properties)
+
+This means players are never *stuck* for lack of materials after learning a spell, but hoarders and scavengers are rewarded for investing materials into critical moments.
+
+#### How This Changes Repair
+
+Repair spells become a natural subset of this system:
+
+| Repair Outcome | Condition |
+|----------------|-----------|
+| Learn the repair spell | First time: pay full bit cost at the object |
+| Basic repair (mana only) | Functional restoration -- well works, column stands |
+| Amplified repair (mana + materials) | Exceptional restoration -- RestoredWell with bonus output, column reveals hidden passage |
+
+This resolves Open Question #1 elegantly: repair always succeeds once learned (you understand the spell), but **quality scales with investment**. A mana-only repair gets the well working. Dumping materials into it makes it a landmark.
+
+#### Interaction with Archive Stones
+
+Archive stones become even more interesting under this system. Repairing a `DamagedArchiveStone` could:
+- Teach you a new spell (the stone contained the spell's material formula)
+- Reveal the `AmplificationMaterials` for a spell you already know (the stone documented the original mage's preferred components)
+- Grant a one-time material cache (the stone was a supply record -- you now know where to find rare bits)
+
+#### Impact on Existing Systems
+
+| System | Change |
+|--------|--------|
+| `ActivatedAbility` | Add `ManaCost`, `LearnCost`, `Learned`, `AmplificationMaterials` fields |
+| `BaseMutation` | Override `LearnCost` and `AmplificationMaterials` per mutation |
+| `BitLockerPart` | Already supports `HasBits`/`UseBits` -- no changes needed |
+| `TinkeringService` | `TryRepair` uses this spell-cost model instead of flat bit consumption |
+| Entity stats | Add `Mana` stat alongside HP/MP |
+| `ActivatedAbilitiesPart` | Validation checks mana before allowing ability use |
+| Cooldowns | Remain separate from mana -- a spell can be off cooldown but you lack mana, or vice versa |
+
+#### Design Tensions to Watch
+
+1. **Learn cost shouldn't gate content too hard.** If a repair spell costs `BBCC` to learn and you don't have those bits, you can't fix the well at all. Mitigation: make learn costs modest, and let NPCs teach spells (Tinker NPC, Palimpsest Echo) so materials aren't the only path.
+
+2. **Mana regen rate controls pacing.** Too fast and materials never matter. Too slow and the game feels stingy. Start conservative (slow regen, rest-based) and tune from playtesting.
+
+3. **Amplification shouldn't feel mandatory.** Base-power spells should always be *sufficient*. Amplification is a bonus, not a requirement. No content should be locked behind amplified casts.
+
+4. **This system should feel like the Frieren ethos**: the master mage who spent 80 years perfecting a single mundane spell isn't powerful because of raw mana -- she's powerful because she knows exactly which materials to feed the spell at the right moment.
+
+---
+
 ## Suggested Implementation Order
 
 | Priority | Task | Depends On | Lore Value |
 |----------|------|------------|------------|
-| 1 | `RepairablePart` component | Existing Parts system | Foundation |
-| 2 | `DriedWell` + `Well` repair flow | RepairablePart, TinkeringService | High -- tangible, satisfying |
-| 3 | `DamagedArchiveStone` blueprints | RepairablePart | High -- lore delivery vehicle |
-| 4 | `TryRepair` in TinkeringService | RepairablePart, BitLockerPart | Core mechanic |
-| 5 | Faction reputation on repair | Player reputation system (Phase 2 from FACTION_SYSTEM.md) | Connects repair to social world |
-| 6 | Repair-related dialogue branches | Existing conversation system | Makes NPCs react to your restoration work |
-| 7 | World-gen placement of repairable objects | Zone generation | Content distribution |
-| 8 | `LiquidSourcePart` for functional wells | Inventory/liquid systems | Makes wells actually useful |
-| 9 | Multi-step aqueduct chain quest | All above | Endgame infrastructure quest |
+| 1 | Mana stat on player entity | Entity stats system | Foundation for all spell costs |
+| 2 | Spell cost model (LearnCost / ManaCost / Learned flag) | Mana stat, ActivatedAbility | Core mechanic -- materials-first, mana-after |
+| 3 | `RepairablePart` component | Spell cost model | Foundation for repair spells |
+| 4 | `DriedWell` + `Well` repair flow | RepairablePart, TinkeringService | High -- tangible, satisfying |
+| 5 | Material amplification system | Spell cost model, BitLockerPart | Rewards resource investment |
+| 6 | `DamagedArchiveStone` blueprints | RepairablePart | High -- lore delivery + spell teaching |
+| 7 | `TryRepair` in TinkeringService | RepairablePart, spell cost model | Core repair mechanic |
+| 8 | Faction reputation on repair | Player reputation system (Phase 2 from FACTION_SYSTEM.md) | Connects repair to social world |
+| 9 | Repair-related dialogue branches | Existing conversation system | Makes NPCs react to your restoration work |
+| 10 | NPC spell teaching (learn without materials) | Conversation system, spell cost model | Alternative learning path |
+| 11 | World-gen placement of repairable objects | Zone generation | Content distribution |
+| 12 | `LiquidSourcePart` for functional wells | Inventory/liquid systems | Makes wells actually useful |
+| 13 | Multi-step aqueduct chain quest | All above | Endgame infrastructure quest |
 
 ---
 
