@@ -1,0 +1,10 @@
+namespace CavesOfOoo.Core
+{
+    public enum RepairMethodId
+    {
+        None,
+        PurifySpell,
+        ManualRepair,
+        TeachCaretaker
+    }
+}

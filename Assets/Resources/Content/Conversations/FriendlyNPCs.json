@@ -725,6 +725,207 @@
           ]
         }
       ]
+    },
+    {
+      "ID": "WellKeeper_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "I keep the village well, or try to. These days it keeps its own bitterness better than I do. Can I help you?",
+          "Choices": [
+            {
+              "Text": "Tell me what the well is doing.",
+              "Target": "Fouled",
+              "Predicates": [{ "Key": "IfSettlementSiteStage", "Value": "MainWell:Fouled" }]
+            },
+            {
+              "Text": "The water is clear for now. How bad was it before?",
+              "Target": "Temporary",
+              "Predicates": [{ "Key": "IfSettlementSiteStage", "Value": "MainWell:TemporarilyPurified" }]
+            },
+            {
+              "Text": "The ring is repaired. Want me to show you how to keep it that way?",
+              "Target": "Stable",
+              "Predicates": [{ "Key": "IfSettlementSiteStage", "Value": "MainWell:StableRepair" }]
+            },
+            {
+              "Text": "How's the well holding up now?",
+              "Target": "Improved",
+              "Predicates": [{ "Key": "IfSettlementSiteStage", "Value": "MainWell:ImprovedWithCaretaker" }]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Fouled",
+          "Text": "First it tasted of old coins. Then bitter roots. Now every long draw pulls up a slick sheen and leaves the bucket smelling wrong. I can keep people from panicking, but I can't mend the filtration ring alone.",
+          "Choices": [
+            {
+              "Text": "I know a purification rite. It should buy the village some time.",
+              "Target": "AfterPurify",
+              "Predicates": [{ "Key": "IfHaveProperty", "Value": "KnowsPurifyWater" }],
+              "Actions": [{ "Key": "ResolveSettlementSite", "Value": "MainWell:PurifySpell" }]
+            },
+            {
+              "Text": "I have the manual and silver sand. Let's rebuild the ring properly.",
+              "Target": "AfterRepair",
+              "Predicates": [
+                { "Key": "IfHaveItem", "Value": "WellMaintenanceManual" },
+                { "Key": "IfHaveItem", "Value": "SilverSand" }
+              ],
+              "Actions": [{ "Key": "ResolveSettlementSite", "Value": "MainWell:ManualRepair" }]
+            },
+            {
+              "Text": "What do you need for a proper repair?",
+              "Target": "NeedRepair"
+            },
+            {
+              "Text": "Back.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Temporary",
+          "Text": "Clean enough to drink, thanks to you, but I can still hear the ring grinding when the bucket runs deep. The bitterness will come back if we leave it like this.",
+          "Choices": [
+            {
+              "Text": "Then let's finish the real repair.",
+              "Target": "AfterRepair",
+              "Predicates": [
+                { "Key": "IfHaveItem", "Value": "WellMaintenanceManual" },
+                { "Key": "IfHaveItem", "Value": "SilverSand" }
+              ],
+              "Actions": [{ "Key": "ResolveSettlementSite", "Value": "MainWell:ManualRepair" }]
+            },
+            {
+              "Text": "What do you need for a proper repair?",
+              "Target": "NeedRepair"
+            },
+            {
+              "Text": "Back.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "NeedRepair",
+          "Text": "The old builders packed silver sand into the filtration ring to keep the water sweet. If you've got the manual and a pouch of the stuff, I can lower the bucket and keep everyone clear while you work.",
+          "Choices": [
+            {
+              "Text": "I'll come back prepared.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AfterPurify",
+          "Text": "That'll keep the sickness down. I can taste the difference already. But it's a mercy, not a cure.",
+          "Choices": [
+            {
+              "Text": "Then we'll need the real repair next.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AfterRepair",
+          "Text": "That's it. Hear that? No grinding. No wrong taste. The water sounds clean again. If we keep the ring flushed and packed, maybe it'll stay that way this time.",
+          "Choices": [
+            {
+              "Text": "Good. Keep watch on it.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Stable",
+          "Text": "I'd like that. I know the well's moods, but not the old maintenance sequence. If you can teach me the order, I can keep it from slipping again.",
+          "Choices": [
+            {
+              "Text": "I'll teach you the maintenance cycle.",
+              "Target": "AfterTeach",
+              "Actions": [{ "Key": "ResolveSettlementSite", "Value": "MainWell:TeachCaretaker" }]
+            },
+            {
+              "Text": "Later.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AfterTeach",
+          "Text": "Monthly flush, silver sand in the outer groove, listen for the clear note in the draw. I've got it. Next time the ring starts to drift, I won't have to wait for a wanderer to save us.",
+          "Choices": [
+            {
+              "Text": "That's the point.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Improved",
+          "Text": "Cleanest it's been in years. The children stopped complaining, the watervines are sweet again, and I've got the maintenance cycle down cold. That's the kind of fix a village remembers.",
+          "Choices": [
+            {
+              "Text": "Glad to hear it.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Farmer_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "If you're here about the fields, speak plain. The watervines haven't liked the well water for weeks.",
+          "Choices": [
+            {
+              "Text": "What changed in the fields?",
+              "Target": "Fields"
+            },
+            {
+              "Text": "Do you know what's wrong with the well?",
+              "Target": "WellClue"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Fields",
+          "Text": "Leaves came up dull and the vines lost their sweetness. Worst of it is uphill, where the ground near the old cistern stays spongy even after dry days. Something from up there is getting into the draw.",
+          "Choices": [
+            {
+              "Text": "So the trouble starts uphill.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "HeardWellSeep:true" }]
+            }
+          ]
+        },
+        {
+          "ID": "WellClue",
+          "Text": "The keeper thinks it's the ring. I think it's that old cistern above the fields leaking filth downhill into the shaft. Could be both. Usually is, with village work.",
+          "Choices": [
+            {
+              "Text": "That's useful. Thanks.",
+              "Target": "Start",
+              "Actions": [{ "Key": "SetProperty", "Value": "HeardWellSeep:true" }]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

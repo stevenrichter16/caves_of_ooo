@@ -13,6 +13,7 @@ namespace CavesOfOoo.Core
     {
         public string Name => "TradeStockBuilder";
         public int Priority => 4100;
+        private readonly SettlementManager _settlementManager;
 
         private static readonly string[] TradeGoods =
         {
@@ -23,8 +24,31 @@ namespace CavesOfOoo.Core
             "Starapple", "Mushroom", "DriedMeat"
         };
 
+        private static readonly string[] FouledWellTradeGoods =
+        {
+            "Dagger", "ShortSword", "Mace", "Spear", "Hatchet",
+            "Cudgel", "Buckler", "LeatherArmor", "Cloak",
+            "HealingTonic", "Mushroom", "SilverSand"
+        };
+
+        private static readonly string[] ImprovedWellTradeGoods =
+        {
+            "Dagger", "ShortSword", "LongSword", "Mace", "Spear", "Hatchet",
+            "Buckler", "LeatherArmor", "ChainMail", "Cloak",
+            "HealingTonic", "SpeedTonic", "StrengthTonic",
+            "Starapple", "Mushroom", "DriedMeat", "Starapple", "DriedMeat"
+        };
+
+        public TradeStockBuilder(SettlementManager settlementManager = null)
+        {
+            _settlementManager = settlementManager;
+        }
+
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
         {
+            string[] goods = GetTradeGoodsForZone(zone.ZoneID);
+            RepairableSiteState site = _settlementManager?.GetSite(zone.ZoneID, SettlementSiteDefinitions.MainWellSiteId);
+
             var creatures = zone.GetEntitiesWithTag("Creature");
             foreach (var creature in creatures)
             {
@@ -38,16 +62,58 @@ namespace CavesOfOoo.Core
 
                 // Give 2-5 random items
                 int itemCount = rng.Next(2, 6);
+                if (creature.BlueprintName == "Merchant" && goods == ImprovedWellTradeGoods)
+                    itemCount += 1;
+
                 for (int i = 0; i < itemCount; i++)
                 {
-                    string blueprint = TradeGoods[rng.Next(TradeGoods.Length)];
+                    string blueprint = goods[rng.Next(goods.Length)];
                     var item = factory.CreateEntity(blueprint);
                     if (item != null)
                         inv.AddObject(item);
                 }
+
+                if (creature.BlueprintName == "Merchant"
+                    && site != null
+                    && (site.Stage == RepairStage.Fouled || site.Stage == RepairStage.TemporarilyPurified)
+                    && !HasItem(inv, SettlementRepairDefinitions.SilverSandBlueprint))
+                {
+                    var silverSand = factory.CreateEntity(SettlementRepairDefinitions.SilverSandBlueprint);
+                    if (silverSand != null)
+                        inv.AddObject(silverSand);
+                }
             }
 
             return true;
+        }
+
+        private string[] GetTradeGoodsForZone(string zoneId)
+        {
+            RepairableSiteState site = _settlementManager?.GetSite(zoneId, SettlementSiteDefinitions.MainWellSiteId);
+            if (site == null)
+                return TradeGoods;
+
+            switch (site.Stage)
+            {
+                case RepairStage.Fouled:
+                case RepairStage.TemporarilyPurified:
+                    return FouledWellTradeGoods;
+                case RepairStage.ImprovedWithCaretaker:
+                    return ImprovedWellTradeGoods;
+                default:
+                    return TradeGoods;
+            }
+        }
+
+        private static bool HasItem(InventoryPart inventory, string blueprint)
+        {
+            for (int i = 0; i < inventory.Objects.Count; i++)
+            {
+                if (inventory.Objects[i].BlueprintName == blueprint)
+                    return true;
+            }
+
+            return false;
         }
     }
 }

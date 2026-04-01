@@ -136,6 +136,41 @@ namespace CavesOfOoo.Core
                     return false;
                 return (int)PlayerReputation.GetAttitude(faction) >= (int)required;
             });
+
+            Register("IfSettlementSiteStage", (speaker, listener, arg) =>
+            {
+                if (speaker == null || string.IsNullOrWhiteSpace(arg) || SettlementManager.Current == null)
+                    return false;
+
+                string[] parts = arg.Split(':');
+                if (parts.Length != 2)
+                    return false;
+
+                string settlementId = ResolveSettlementId(speaker);
+                if (string.IsNullOrEmpty(settlementId))
+                    return false;
+
+                RepairableSiteState site = SettlementManager.Current.GetSite(settlementId, parts[0]);
+                if (site == null)
+                    return false;
+
+                RepairStage stage;
+                if (!Enum.TryParse(parts[1], out stage))
+                    return false;
+
+                return site.Stage == stage;
+            });
+        }
+
+        private static string ResolveSettlementId(Entity speaker)
+        {
+            if (speaker == null)
+                return null;
+
+            string settlementId;
+            return speaker.Properties.TryGetValue("SettlementId", out settlementId)
+                ? settlementId
+                : null;
         }
 
         public static void Reset()

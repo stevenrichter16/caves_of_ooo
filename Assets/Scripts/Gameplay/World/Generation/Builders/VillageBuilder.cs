@@ -16,16 +16,18 @@ namespace CavesOfOoo.Core
 
         private BiomeType _biome;
         private PointOfInterest _poi;
+        private SettlementManager _settlementManager;
 
         // Biome palette
         private string _floorBlueprint;
         private string _wallBlueprint;
         private string _pathBlueprint;
 
-        public VillageBuilder(BiomeType biome, PointOfInterest poi)
+        public VillageBuilder(BiomeType biome, PointOfInterest poi, SettlementManager settlementManager = null)
         {
             _biome = biome;
             _poi = poi;
+            _settlementManager = settlementManager;
             SetBiomePalette(biome);
         }
 
@@ -70,10 +72,7 @@ namespace CavesOfOoo.Core
             FillWithFloor(zone, factory);
 
             // 2. Define the village square in the center
-            int sqW = 12;
-            int sqH = 6;
-            int sqX = Zone.Width / 2 - sqW / 2;
-            int sqY = Zone.Height / 2 - sqH / 2;
+            GetVillageSquareBounds(out int sqX, out int sqY, out int sqW, out int sqH);
 
             // 3. Place 3-5 buildings around the square
             int buildingCount = rng.Next(3, 6);
@@ -106,6 +105,20 @@ namespace CavesOfOoo.Core
             }
 
             return true;
+        }
+
+        public static void GetVillageSquareBounds(out int x, out int y, out int width, out int height)
+        {
+            width = 12;
+            height = 6;
+            x = Zone.Width / 2 - width / 2;
+            y = Zone.Height / 2 - height / 2;
+        }
+
+        public static (int x, int y) GetVillageSquareCenter()
+        {
+            GetVillageSquareBounds(out int x, out int y, out int width, out int height);
+            return (x + width / 2, y + height / 2);
         }
 
         private void FillWithFloor(Zone zone, EntityFactory factory)

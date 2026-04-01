@@ -107,12 +107,15 @@ namespace CavesOfOoo
 
             Debug.Log("[Bootstrap] Step 7/9: Setting up turns...");
             _turnManager = new TurnManager();
+            _zoneManager.SetTurnProvider(() => _turnManager != null ? _turnManager.TickCount : 0);
             RegisterCreaturesForTurns();
 
             Debug.Log("[Bootstrap] Step 8/9: Wiring renderer...");
             if (ZoneRenderer != null)
             {
                 ZoneRenderer.SetZone(_zone);
+                SettlementRuntime.ZoneDirtyCallback = ZoneRenderer.MarkDirty;
+                SettlementRuntime.ActiveZone = _zone;
                 Debug.Log("[Bootstrap] ZoneRenderer wired successfully");
             }
             else
@@ -202,6 +205,9 @@ namespace CavesOfOoo
             // Start the turn loop
             _turnManager.ProcessUntilPlayerTurn();
 
+            if (_zoneManager.SettlementManager != null)
+                _zoneManager.SettlementManager.RefreshActiveZonePresentation(_zone);
+
             Debug.Log($"[Bootstrap] DONE. Zone has {_zone.EntityCount} entities. WASD/arrows to move.");
         }
 
@@ -259,6 +265,8 @@ namespace CavesOfOoo
         {
             if (_player == null)
                 return;
+
+            _player.Properties[SettlementSiteDefinitions.StartingVillageKnowledgeProperty] = "true";
 
             var mutations = _player.GetPart<MutationsPart>();
             if (mutations == null)

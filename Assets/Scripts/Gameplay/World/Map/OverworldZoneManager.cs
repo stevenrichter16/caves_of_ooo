@@ -10,11 +10,16 @@ namespace CavesOfOoo.Core
     public class OverworldZoneManager : ZoneManager
     {
         public WorldMap WorldMap { get; private set; }
+        public SettlementManager SettlementManager { get; private set; }
+        private System.Func<int> _turnProvider;
 
         public OverworldZoneManager(EntityFactory factory, int worldSeed = 0)
             : base(factory, worldSeed)
         {
             WorldMap = WorldGenerator.Generate(WorldSeed);
+            SettlementManager = new SettlementManager(
+                currentTurnProvider: null,
+                poiResolver: ResolvePointOfInterestForSettlement);
         }
 
         protected override ZoneGenerationPipeline GetPipelineForZone(string zoneID)
@@ -104,7 +109,7 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Desert, tier)));
-            pipeline.AddBuilder(new TradeStockBuilder());
+            pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             return pipeline;
         }
 
@@ -115,7 +120,7 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Jungle, tier)));
-            pipeline.AddBuilder(new TradeStockBuilder());
+            pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             return pipeline;
         }
 
@@ -126,18 +131,18 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Ruins, tier)));
-            pipeline.AddBuilder(new TradeStockBuilder());
+            pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             return pipeline;
         }
 
         private ZoneGenerationPipeline CreateVillagePipeline(BiomeType biome, PointOfInterest poi)
         {
             var pipeline = new ZoneGenerationPipeline();
-            pipeline.AddBuilder(new VillageBuilder(biome, poi));
+            pipeline.AddBuilder(new VillageBuilder(biome, poi, SettlementManager));
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
-            pipeline.AddBuilder(new VillagePopulationBuilder(poi));
-            pipeline.AddBuilder(new TradeStockBuilder());
+            pipeline.AddBuilder(new VillagePopulationBuilder(poi, SettlementManager));
+            pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             return pipeline;
         }
 
@@ -156,6 +161,49 @@ namespace CavesOfOoo.Core
         public static PopulationTable GetPopulationForBiome(BiomeType biome, int tier = 1)
         {
             return PopulationTable.GetBiomeTable(biome, tier);
+        }
+
+        public void SetTurnProvider(System.Func<int> turnProvider)
+        {
+            _turnProvider = turnProvider;
+            SettlementManager.SetCurrentTurnProvider(turnProvider);
+        }
+
+        protected override void PrepareZoneForAccess(string zoneID)
+        {
+            if (!WorldMap.IsOverworldZoneID(zoneID))
+                return;
+
+            var (wx, wy, wz) = WorldMap.FromZoneID(zoneID);
+            if (!WorldMap.InBounds(wx, wy) || wz != 0)
+                return;
+
+            var poi = WorldMap.GetPOI(wx, wy);
+            if (poi == null || poi.Type != POIType.Village)
+                return;
+
+            SettlementManager.GetOrCreateSettlement(zoneID, poi);
+            SettlementManager.AdvanceSettlement(zoneID, GetCurrentTurn());
+
+            if (ActiveZone == null || ActiveZone.ZoneID != zoneID)
+                UnloadZone(zoneID);
+        }
+
+        private PointOfInterest ResolvePointOfInterestForSettlement(string settlementId)
+        {
+            if (!WorldMap.IsOverworldZoneID(settlementId))
+                return null;
+
+            var (x, y, z) = WorldMap.FromZoneID(settlementId);
+            if (z != 0 || !WorldMap.InBounds(x, y))
+                return null;
+
+            return WorldMap.GetPOI(x, y);
+        }
+
+        private int GetCurrentTurn()
+        {
+            return _turnProvider != null ? _turnProvider() : 0;
         }
     }
 }

@@ -445,6 +445,113 @@
           ]
         }
       ]
+    },
+    {
+      "ID": "Elder_Well_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Live and drink, wanderer. Our village endures, though the well has made that harder of late. What do you need?",
+          "Choices": [
+            {
+              "Text": "Tell me about the bitter well.",
+              "Target": "WellTrouble",
+              "Predicates": [{ "Key": "IfSettlementSiteStage", "Value": "MainWell:Fouled" }]
+            },
+            {
+              "Text": "The well tasted clean when I arrived. Will it hold?",
+              "Target": "WellTrouble",
+              "Predicates": [{ "Key": "IfSettlementSiteStage", "Value": "MainWell:TemporarilyPurified" }]
+            },
+            {
+              "Text": "Do you have any records about repairing the well?",
+              "Target": "GiveManual",
+              "Predicates": [
+                { "Key": "IfSettlementSiteStage", "Value": "MainWell:Fouled" },
+                { "Key": "IfNotSpeakerHaveProperty", "Value": "ElderGaveWellManual" }
+              ]
+            },
+            {
+              "Text": "Do you have any records about repairing the well?",
+              "Target": "GiveManual",
+              "Predicates": [
+                { "Key": "IfSettlementSiteStage", "Value": "MainWell:TemporarilyPurified" },
+                { "Key": "IfNotSpeakerHaveProperty", "Value": "ElderGaveWellManual" }
+              ]
+            },
+            {
+              "Text": "Do you still have those well records?",
+              "Target": "AlreadyGaveManual",
+              "Predicates": [{ "Key": "IfSpeakerHaveProperty", "Value": "ElderGaveWellManual" }]
+            },
+            {
+              "Text": "Tell me about this place.",
+              "Target": "AboutPlace"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "WellTrouble",
+          "Text": "It started with a bitterness no one could ignore. Then the children took sick to their stomachs and the watervines lost their sweetness. The keeper says the water comes up wrong after every heavy draw, like the old filtration ring beneath the shaft has cracked.",
+          "Choices": [
+            {
+              "Text": "That sounds like a structural fault, not just bad luck.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Do you have any records about repairing the well?",
+              "Target": "GiveManual",
+              "Predicates": [{ "Key": "IfNotSpeakerHaveProperty", "Value": "ElderGaveWellManual" }]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "GiveManual",
+          "Text": "We kept one manual from the builders who lined the shaft generations ago. I cannot use it, but you might. Take it, and if you mean to mend the ring properly, speak to the keeper before you start pulling stones apart.",
+          "Choices": [
+            {
+              "Text": "I'll take it.",
+              "Target": "Start",
+              "Actions": [
+                { "Key": "GiveItem", "Value": "WellMaintenanceManual" },
+                { "Key": "SetSpeakerProperty", "Value": "ElderGaveWellManual:true" }
+              ]
+            }
+          ]
+        },
+        {
+          "ID": "AlreadyGaveManual",
+          "Text": "I already handed you the old maintenance manual. If the ring is to be rebuilt, that book and a pouch of silver sand are what you'll need.",
+          "Choices": [
+            {
+              "Text": "Understood.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AboutPlace",
+          "Text": "This village survives because people keep its small workings alive: the ovens, the fences, the well. Lose the well and everything else starts to lean after it.",
+          "Choices": [
+            {
+              "Text": "I'll keep that in mind.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

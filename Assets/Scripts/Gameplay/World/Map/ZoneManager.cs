@@ -43,6 +43,8 @@ namespace CavesOfOoo.Core
         /// </summary>
         public Zone GetZone(string zoneID)
         {
+            PrepareZoneForAccess(zoneID);
+
             if (CachedZones.TryGetValue(zoneID, out Zone zone))
                 return zone;
 
@@ -82,6 +84,10 @@ namespace CavesOfOoo.Core
         protected virtual ZoneGenerationPipeline GetPipelineForZone(string zoneID)
         {
             return ZoneGenerationPipeline.CreateCavePipeline(PopulationTable.CaveTier1());
+        }
+
+        protected virtual void PrepareZoneForAccess(string zoneID)
+        {
         }
 
         public void UnloadZone(string zoneID)

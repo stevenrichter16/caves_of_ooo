@@ -398,12 +398,23 @@ namespace CavesOfOoo.Rendering
             if (ZoneRenderer != null)
                 ZoneRenderer.SetZone(result.NewZone);
 
+            SettlementRuntime.ActiveZone = result.NewZone;
+
             // Update camera to follow player in new zone
             if (CameraFollow != null)
             {
                 CameraFollow.ClearOverrideTarget();
                 CameraFollow.CurrentZone = result.NewZone;
                 CameraFollow.SnapToPlayer();
+            }
+
+            var overworldZoneManager = ZoneManager as OverworldZoneManager;
+            if (overworldZoneManager != null && overworldZoneManager.SettlementManager != null)
+            {
+                overworldZoneManager.SettlementManager.RefreshActiveZonePresentation(result.NewZone);
+                var pendingMessages = overworldZoneManager.SettlementManager.ConsumePendingMessages(result.NewZone.ZoneID);
+                for (int i = 0; i < pendingMessages.Count; i++)
+                    MessageLog.Add(pendingMessages[i]);
             }
 
             Debug.Log($"[Zone] Transitioned to {result.NewZone.ZoneID}");

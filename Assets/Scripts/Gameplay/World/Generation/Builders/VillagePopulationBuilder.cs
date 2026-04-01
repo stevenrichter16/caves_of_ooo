@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CavesOfOoo.Data;
 
@@ -15,10 +16,12 @@ namespace CavesOfOoo.Core
         public int Priority => 4000;
 
         private PointOfInterest _poi;
+        private SettlementManager _settlementManager;
 
-        public VillagePopulationBuilder(PointOfInterest poi)
+        public VillagePopulationBuilder(PointOfInterest poi, SettlementManager settlementManager = null)
         {
             _poi = poi;
+            _settlementManager = settlementManager;
         }
 
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
@@ -26,39 +29,54 @@ namespace CavesOfOoo.Core
             var openCells = GatherOpenCells(zone);
             if (openCells.Count == 0) return true;
 
-            // Place decor first (Campfire, Well in village square area)
+            string settlementId = zone.ZoneID;
+            var settlement = _settlementManager?.GetOrCreateSettlement(settlementId, _poi);
+            RepairableSiteState mainWell = settlement?.GetSite(SettlementSiteDefinitions.MainWellSiteId);
+
+            // Place decor first, but keep the well deterministic.
             var decorTable = PopulationTable.VillageDecor();
             var decorBlueprints = decorTable.Roll(rng);
             foreach (var bp in decorBlueprints)
             {
+                if (bp == "Well")
+                    continue;
                 PlaceEntity(zone, factory, rng, openCells, bp);
             }
 
+            PlaceMainWell(zone, factory, openCells, settlementId, mainWell);
+
             // Deterministic NPC roles
-            // 1 Elder (always)
-            PlaceNPC(zone, factory, rng, openCells, "Elder");
+            Entity elder = PlaceNPC(zone, factory, rng, openCells, "Elder", settlementId);
+            if (mainWell != null)
+                SetConversation(elder, "Elder_Well_1");
 
             // 1 Merchant (always)
-            PlaceNPC(zone, factory, rng, openCells, "Merchant");
+            PlaceNPC(zone, factory, rng, openCells, "Merchant", settlementId);
 
             // 0-1 Tinker (70% chance)
             if (rng.Next(100) < 70)
-                PlaceNPC(zone, factory, rng, openCells, "Tinker");
+                PlaceNPC(zone, factory, rng, openCells, "Tinker", settlementId);
 
             // 0-1 Warden (60% chance)
             if (rng.Next(100) < 60)
-                PlaceNPC(zone, factory, rng, openCells, "Warden");
+                PlaceNPC(zone, factory, rng, openCells, "Warden", settlementId);
+
+            if (mainWell != null)
+            {
+                PlaceNPC(zone, factory, rng, openCells, "WellKeeper", settlementId);
+                PlaceNPC(zone, factory, rng, openCells, "Farmer", settlementId);
+            }
 
             // 2-4 Villagers
             int villagerCount = rng.Next(2, 5);
             for (int i = 0; i < villagerCount; i++)
-                PlaceNPC(zone, factory, rng, openCells, "Villager");
+                PlaceNPC(zone, factory, rng, openCells, "Villager", settlementId);
 
             return true;
         }
 
-        private void PlaceNPC(Zone zone, EntityFactory factory, System.Random rng,
-            List<(int x, int y)> openCells, string blueprint)
+        private Entity PlaceNPC(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> openCells, string blueprint, string settlementId)
         {
             Entity npc = PlaceEntity(zone, factory, rng, openCells, blueprint);
             if (npc != null && _poi?.Faction != null)
@@ -66,6 +84,11 @@ namespace CavesOfOoo.Core
                 // Override faction to match POI
                 npc.SetTag("Faction", _poi.Faction);
             }
+
+            if (npc != null && !string.IsNullOrEmpty(settlementId))
+                npc.Properties["SettlementId"] = settlementId;
+
+            return npc;
         }
 
         private Entity PlaceEntity(Zone zone, EntityFactory factory, System.Random rng,
@@ -82,6 +105,41 @@ namespace CavesOfOoo.Core
 
             openCells.RemoveAt(idx);
             return entity;
+        }
+
+        private void PlaceMainWell(
+            Zone zone,
+            EntityFactory factory,
+            List<(int x, int y)> openCells,
+            string settlementId,
+            RepairableSiteState mainWell)
+        {
+            var (wellX, wellY) = VillageBuilder.GetVillageSquareCenter();
+            if (!zone.InBounds(wellX, wellY))
+                return;
+
+            Entity entity = factory.CreateEntity("Well");
+            if (entity == null)
+                return;
+
+            if (!string.IsNullOrEmpty(settlementId))
+                entity.Properties["SettlementId"] = settlementId;
+
+            if (mainWell != null)
+            {
+                entity.Properties["SettlementSiteId"] = mainWell.SiteId;
+                SettlementSiteVisuals.ApplyToEntity(entity, mainWell);
+            }
+
+            zone.AddEntity(entity, wellX, wellY);
+            openCells.Remove((wellX, wellY));
+        }
+
+        private void SetConversation(Entity entity, string conversationId)
+        {
+            var conversation = entity?.GetPart<ConversationPart>();
+            if (conversation != null && !string.IsNullOrEmpty(conversationId))
+                conversation.ConversationID = conversationId;
         }
 
         private List<(int x, int y)> GatherOpenCells(Zone zone)

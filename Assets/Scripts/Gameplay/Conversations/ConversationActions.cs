@@ -190,6 +190,41 @@ namespace CavesOfOoo.Core
                         MessageLog.Add($"Relations between {FactionManager.GetDisplayName(parts[0])} and {FactionManager.GetDisplayName(parts[1])} worsen.");
                 }
             });
+
+            Register("ResolveSettlementSite", (speaker, listener, arg) =>
+            {
+                if (speaker == null || listener == null || string.IsNullOrWhiteSpace(arg) || SettlementManager.Current == null)
+                    return;
+
+                string[] parts = arg.Split(':');
+                if (parts.Length != 2)
+                    return;
+
+                string settlementId = ResolveSettlementId(speaker);
+                if (string.IsNullOrEmpty(settlementId))
+                    return;
+
+                RepairMethodId method;
+                if (!Enum.TryParse(parts[1], out method))
+                    return;
+
+                if (SettlementManager.Current.ApplyRepairMethod(settlementId, parts[0], method, listener))
+                {
+                    SettlementManager.Current.RefreshActiveZonePresentation(SettlementRuntime.ActiveZone);
+                    SettlementRuntime.MarkZoneDirty();
+                }
+            });
+        }
+
+        private static string ResolveSettlementId(Entity speaker)
+        {
+            if (speaker == null)
+                return null;
+
+            string settlementId;
+            return speaker.Properties.TryGetValue("SettlementId", out settlementId)
+                ? settlementId
+                : null;
         }
 
         public static void Reset()

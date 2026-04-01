@@ -2007,6 +2007,66 @@
       "Tags": [
         { "Key": "Solid", "Value": "" }
       ]
+    },
+    {
+      "Name": "WellKeeper",
+      "Inherits": "Villager",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "well-keeper" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "WellKeeper_1" }] }
+      ]
+    },
+    {
+      "Name": "Farmer",
+      "Inherits": "Villager",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "farmer" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Farmer_1" }] }
+      ]
+    },
+    {
+      "Name": "SilverSand",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "silver sand" },
+          { "Key": "RenderString", "Value": "." },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "1" }] }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "WellMaintenanceManual",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "well maintenance manual" },
+          { "Key": "RenderString", "Value": "?" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "20" }] }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
     }
   ]
 }
