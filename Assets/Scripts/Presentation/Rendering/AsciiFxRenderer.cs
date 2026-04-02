@@ -651,6 +651,12 @@ namespace CavesOfOoo.Rendering
                     return ArcaneConfig;
                 case AsciiFxTheme.Lightning:
                     return LightningConfig;
+                case AsciiFxTheme.WellFouled:
+                    return WellFouledConfig;
+                case AsciiFxTheme.WellClean:
+                    return WellCleanConfig;
+                case AsciiFxTheme.WellImproved:
+                    return WellImprovedConfig;
                 default:
                     return FireConfig;
             }
@@ -978,6 +984,69 @@ namespace CavesOfOoo.Rendering
             RingColors = Array.Empty<string>(),
             ChainGlyphs = new[] { '~', 'z', 'Z', '*' },
             ChainColors = new[] { "&Y", "&W", "&C" }
+        };
+
+        private static readonly FxThemeConfig WellFouledConfig = new FxThemeConfig
+        {
+            ProjectileGlyphs = Array.Empty<char>(),
+            ProjectileColors = Array.Empty<string>(),
+            TrailGlyph = '.',
+            TrailColor = "&y",
+            ProjectileStepTime = 0.04f,
+            BurstGlyphs = Array.Empty<char>(),
+            BurstColors = Array.Empty<string>(),
+            AuraGlyphs = new[] { '.', ',' },
+            AuraColors = new[] { "&y", "&w" },
+            AuraInterval = 0.40f,
+            ChargeGlyphs = Array.Empty<char>(),
+            ChargeColors = Array.Empty<string>(),
+            BeamColors = Array.Empty<string>(),
+            RingGlyphs = Array.Empty<char>(),
+            RingColors = Array.Empty<string>(),
+            ChainGlyphs = Array.Empty<char>(),
+            ChainColors = Array.Empty<string>()
+        };
+
+        private static readonly FxThemeConfig WellCleanConfig = new FxThemeConfig
+        {
+            ProjectileGlyphs = Array.Empty<char>(),
+            ProjectileColors = Array.Empty<string>(),
+            TrailGlyph = '.',
+            TrailColor = "&c",
+            ProjectileStepTime = 0.04f,
+            BurstGlyphs = Array.Empty<char>(),
+            BurstColors = Array.Empty<string>(),
+            AuraGlyphs = new[] { '.' },
+            AuraColors = new[] { "&c", "&C" },
+            AuraInterval = 0.80f,
+            ChargeGlyphs = Array.Empty<char>(),
+            ChargeColors = Array.Empty<string>(),
+            BeamColors = Array.Empty<string>(),
+            RingGlyphs = Array.Empty<char>(),
+            RingColors = Array.Empty<string>(),
+            ChainGlyphs = Array.Empty<char>(),
+            ChainColors = Array.Empty<string>()
+        };
+
+        private static readonly FxThemeConfig WellImprovedConfig = new FxThemeConfig
+        {
+            ProjectileGlyphs = Array.Empty<char>(),
+            ProjectileColors = Array.Empty<string>(),
+            TrailGlyph = '.',
+            TrailColor = "&C",
+            ProjectileStepTime = 0.04f,
+            BurstGlyphs = Array.Empty<char>(),
+            BurstColors = Array.Empty<string>(),
+            AuraGlyphs = new[] { '.', '*' },
+            AuraColors = new[] { "&C", "&Y" },
+            AuraInterval = 0.60f,
+            ChargeGlyphs = Array.Empty<char>(),
+            ChargeColors = Array.Empty<string>(),
+            BeamColors = Array.Empty<string>(),
+            RingGlyphs = Array.Empty<char>(),
+            RingColors = Array.Empty<string>(),
+            ChainGlyphs = Array.Empty<char>(),
+            ChainColors = Array.Empty<string>()
         };
     }
 }

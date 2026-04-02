@@ -1993,6 +1993,18 @@
       ]
     },
     {
+      "Name": "WellGroundMarker",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "" },
+          { "Key": "RenderString", "Value": "." },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "0" }
+        ]}
+      ]
+    },
+    {
       "Name": "MarketStall",
       "Inherits": "PhysicalObject",
       "Parts": [

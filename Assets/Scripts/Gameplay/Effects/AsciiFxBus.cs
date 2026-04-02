@@ -8,7 +8,10 @@ namespace CavesOfOoo.Core
         Ice = 1,
         Poison = 2,
         Arcane = 3,
-        Lightning = 4
+        Lightning = 4,
+        WellFouled = 5,
+        WellClean = 6,
+        WellImproved = 7
     }
 
     public enum AsciiFxRequestType

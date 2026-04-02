@@ -230,7 +230,7 @@ namespace CavesOfOoo.Core
             state.SetCondition(SettlementSiteDefinitions.ImprovedWellCondition, improvedWell);
         }
 
-        private int GetCurrentTurn()
+        public int GetCurrentTurn()
         {
             return _currentTurnProvider != null ? _currentTurnProvider() : 0;
         }

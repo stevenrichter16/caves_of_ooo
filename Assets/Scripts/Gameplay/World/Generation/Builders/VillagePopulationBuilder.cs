@@ -107,6 +107,9 @@ namespace CavesOfOoo.Core
             return entity;
         }
 
+        private static readonly (int dx, int dy)[] CardinalOffsets =
+            { (0, -1), (1, 0), (0, 1), (-1, 0) };
+
         private void PlaceMainWell(
             Zone zone,
             EntityFactory factory,
@@ -128,11 +131,55 @@ namespace CavesOfOoo.Core
             if (mainWell != null)
             {
                 entity.Properties["SettlementSiteId"] = mainWell.SiteId;
+
+                var wellPart = new WellSitePart();
+                wellPart.SettlementId = settlementId;
+                wellPart.SiteId = mainWell.SiteId;
+                entity.AddPart(wellPart);
+
                 SettlementSiteVisuals.ApplyToEntity(entity, mainWell);
             }
 
             zone.AddEntity(entity, wellX, wellY);
             openCells.Remove((wellX, wellY));
+
+            // Place ground markers on cardinal adjacent cells
+            if (mainWell != null)
+                PlaceWellGroundMarkers(zone, factory, openCells, wellX, wellY, settlementId, mainWell);
+        }
+
+        private void PlaceWellGroundMarkers(
+            Zone zone,
+            EntityFactory factory,
+            List<(int x, int y)> openCells,
+            int wellX,
+            int wellY,
+            string settlementId,
+            RepairableSiteState mainWell)
+        {
+            for (int i = 0; i < CardinalOffsets.Length; i++)
+            {
+                int mx = wellX + CardinalOffsets[i].dx;
+                int my = wellY + CardinalOffsets[i].dy;
+                if (!zone.InBounds(mx, my))
+                    continue;
+
+                Cell cell = zone.GetCell(mx, my);
+                if (cell == null || !cell.IsPassable())
+                    continue;
+
+                Entity marker = factory.CreateEntity("WellGroundMarker");
+                if (marker == null)
+                    continue;
+
+                if (!string.IsNullOrEmpty(settlementId))
+                    marker.Properties["SettlementId"] = settlementId;
+                marker.Properties["SettlementSiteId"] = mainWell.SiteId;
+                marker.SetTag("WellGroundMarker", "");
+
+                SettlementSiteVisuals.ApplyToEntity(marker, mainWell);
+                zone.AddEntity(marker, mx, my);
+            }
         }
 
         private void SetConversation(Entity entity, string conversationId)
