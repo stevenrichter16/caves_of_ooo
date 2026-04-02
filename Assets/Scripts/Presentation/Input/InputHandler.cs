@@ -12,7 +12,7 @@ namespace CavesOfOoo.Rendering
     /// Supports WASD, arrow keys, numpad (8-directional), vi keys,
     /// item pickup (G/comma), ability activation (1-9 + direction/immediate cast),
     /// and debug keys: F6 (grant mutation), F7 (dump body parts),
-    /// F8 (dismember limb), F9 (debug craft recipe), F10 (cycle well state).
+    /// F8 (dismember limb), F9 (debug craft recipe), P (cycle well state).
     /// This is the input boundary — the only place Unity input touches the simulation.
     /// </summary>
     public class InputHandler : MonoBehaviour
@@ -259,7 +259,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Debug: cycle well repair stage (Fouled → Purified → Repaired → Maintained → Fouled).
-            if (Input.GetKeyDown(KeyCode.F10))
+            if (Input.GetKeyDown(KeyCode.P))
             {
                 TryDebugCycleWellState();
                 _lastMoveTime = Time.time;
