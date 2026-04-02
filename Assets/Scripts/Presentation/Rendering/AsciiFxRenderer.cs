@@ -995,7 +995,7 @@ namespace CavesOfOoo.Rendering
             ProjectileStepTime = 0.04f,
             BurstGlyphs = Array.Empty<char>(),
             BurstColors = Array.Empty<string>(),
-            AuraGlyphs = new[] { '.', ',' },
+            AuraGlyphs = new[] { '.' },
             AuraColors = new[] { "&y", "&w" },
             AuraInterval = 0.40f,
             ChargeGlyphs = Array.Empty<char>(),

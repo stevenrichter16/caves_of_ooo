@@ -59,27 +59,22 @@ namespace CavesOfOoo.Core
             int hash = (entity.ID ?? "").GetHashCode();
             bool variant = (hash & 1) != 0;
 
+            render.RenderString = ".";
             switch (site.Stage)
             {
                 case RepairStage.Fouled:
-                    render.RenderString = variant ? "," : ".";
                     render.ColorString = variant ? "&g" : "&w";
                     break;
                 case RepairStage.TemporarilyPurified:
-                    render.RenderString = ".";
                     render.ColorString = "&c";
                     break;
                 case RepairStage.StableRepair:
-                    render.RenderString = ".";
                     render.ColorString = "&c";
                     break;
                 case RepairStage.ImprovedWithCaretaker:
-                    // One marker variant becomes a Palimpsest mark
-                    render.RenderString = variant ? "'" : ".";
                     render.ColorString = variant ? "&M" : "&C";
                     break;
                 default:
-                    render.RenderString = ".";
                     render.ColorString = "&w";
                     break;
             }
