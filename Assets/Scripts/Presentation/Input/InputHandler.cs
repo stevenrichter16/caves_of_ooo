@@ -12,7 +12,7 @@ namespace CavesOfOoo.Rendering
     /// Supports WASD, arrow keys, numpad (8-directional), vi keys,
     /// item pickup (G/comma), ability activation (1-9 + direction/immediate cast),
     /// and debug keys: F6 (grant mutation), F7 (dump body parts),
-    /// F8 (dismember limb), F9 (debug craft recipe).
+    /// F8 (dismember limb), F9 (debug craft recipe), F10 (cycle well state).
     /// This is the input boundary — the only place Unity input touches the simulation.
     /// </summary>
     public class InputHandler : MonoBehaviour
@@ -254,6 +254,14 @@ namespace CavesOfOoo.Rendering
             if (Input.GetKeyDown(KeyCode.F9))
             {
                 TryDebugCraftKnownRecipe();
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            // Debug: cycle well repair stage (Fouled → Purified → Repaired → Maintained → Fouled).
+            if (Input.GetKeyDown(KeyCode.F10))
+            {
+                TryDebugCycleWellState();
                 _lastMoveTime = Time.time;
                 return;
             }
@@ -702,6 +710,110 @@ namespace CavesOfOoo.Rendering
             Debug.Log($"[Tinkering/Debug] F9: Crafted recipe '{recipeId}' successfully.");
             if (ZoneRenderer != null)
                 ZoneRenderer.MarkDirty();
+        }
+
+        /// <summary>
+        /// Debug utility: cycle the main well through all repair stages.
+        /// F10 advances: Fouled → TemporarilyPurified → StableRepair → ImprovedWithCaretaker → Fouled.
+        /// Updates all related state: site stage, settlement conditions, visuals, auras, and ground markers.
+        /// </summary>
+        private void TryDebugCycleWellState()
+        {
+            if (CurrentZone == null)
+            {
+                Debug.LogWarning("[Settlement/Debug] F10 pressed, but CurrentZone is null.");
+                return;
+            }
+
+            string settlementId = CurrentZone.ZoneID;
+            if (SettlementManager.Current == null)
+            {
+                Debug.LogWarning("[Settlement/Debug] F10 pressed, but no SettlementManager active.");
+                return;
+            }
+
+            RepairableSiteState site = SettlementManager.Current.GetSite(
+                settlementId, SettlementSiteDefinitions.MainWellSiteId);
+            if (site == null)
+            {
+                Debug.LogWarning("[Settlement/Debug] F10 pressed, but no MainWell site in this zone.");
+                return;
+            }
+
+            // Determine next stage in cycle
+            RepairStage nextStage;
+            switch (site.Stage)
+            {
+                case RepairStage.Fouled:
+                    nextStage = RepairStage.TemporarilyPurified;
+                    break;
+                case RepairStage.TemporarilyPurified:
+                    nextStage = RepairStage.StableRepair;
+                    break;
+                case RepairStage.StableRepair:
+                    nextStage = RepairStage.ImprovedWithCaretaker;
+                    break;
+                default:
+                    nextStage = RepairStage.Fouled;
+                    break;
+            }
+
+            int currentTurn = SettlementManager.Current.GetCurrentTurn();
+
+            // Apply the new stage with appropriate metadata
+            site.Stage = nextStage;
+            site.ResolvedAtTurn = currentTurn;
+            switch (nextStage)
+            {
+                case RepairStage.Fouled:
+                    site.OutcomeTier = RepairOutcomeTier.None;
+                    site.ResolvedByMethod = RepairMethodId.None;
+                    site.RelapseAtTurn = null;
+                    site.ResolvedAtTurn = -1;
+                    break;
+                case RepairStage.TemporarilyPurified:
+                    site.OutcomeTier = RepairOutcomeTier.Temporary;
+                    site.ResolvedByMethod = RepairMethodId.PurifySpell;
+                    site.RelapseAtTurn = currentTurn + SettlementRepairDefinitions.PurifyRelapseTurns;
+                    break;
+                case RepairStage.StableRepair:
+                    site.OutcomeTier = RepairOutcomeTier.Stable;
+                    site.ResolvedByMethod = RepairMethodId.ManualRepair;
+                    site.RelapseAtTurn = null;
+                    break;
+                case RepairStage.ImprovedWithCaretaker:
+                    site.OutcomeTier = RepairOutcomeTier.Improved;
+                    site.ResolvedByMethod = RepairMethodId.TeachCaretaker;
+                    site.RelapseAtTurn = null;
+                    break;
+            }
+
+            // Sync settlement conditions (e.g. ImprovedWell condition)
+            bool isImproved = nextStage == RepairStage.ImprovedWithCaretaker;
+            SettlementManager.Current.SetCondition(
+                settlementId, SettlementSiteDefinitions.ImprovedWellCondition, isImproved);
+
+            // Refresh all well-related entity visuals (well + ground markers)
+            SettlementManager.Current.RefreshActiveZonePresentation(CurrentZone);
+
+            // Reset proximity messages so the player sees the new ambient text
+            foreach (var entity in CurrentZone.GetAllEntities())
+            {
+                var wellPart = entity.GetPart<WellSitePart>();
+                if (wellPart != null)
+                    wellPart.ResetProximityMessage();
+            }
+
+            // Mark zone dirty so renderer picks up changes
+            if (ZoneRenderer != null)
+                ZoneRenderer.MarkDirty();
+            SettlementRuntime.MarkZoneDirty();
+
+            MessageLog.Add($"[Debug] Well stage set to: {nextStage}");
+            Debug.Log($"[Settlement/Debug] F10: Cycled well to {nextStage} " +
+                $"(OutcomeTier={site.OutcomeTier}, Method={site.ResolvedByMethod}, " +
+                $"RelapseAt={site.RelapseAtTurn?.ToString() ?? "none"}, " +
+                $"Condition:ImprovedWell={isImproved})");
         }
 
         private void DumpBodyPartTree(System.Text.StringBuilder sb, CavesOfOoo.Core.Anatomy.BodyPart part, int depth)
