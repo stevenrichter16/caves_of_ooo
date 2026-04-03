@@ -485,12 +485,30 @@
               "Predicates": [{ "Key": "IfSpeakerHaveProperty", "Value": "ElderGaveWellManual" }]
             },
             {
+              "Text": "Is there any way to purify the water?",
+              "Target": "GrimoireHint",
+              "Predicates": [
+                { "Key": "IfNotHaveProperty", "Value": "KnowsPurifyWater" },
+                { "Key": "IfSettlementSiteStage", "Value": "MainWell:Fouled" }
+              ]
+            },
+            {
               "Text": "Tell me about this place.",
               "Target": "AboutPlace"
             },
             {
               "Text": "Farewell.",
               "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "GrimoireHint",
+          "Text": "The old water-keeper left a grimoire — a rite of purification, passed down from the first settlers. I stored it in the village chest for safekeeping. Find it, study it, and you might buy us some time.",
+          "Choices": [
+            {
+              "Text": "I'll look for it.",
+              "Target": "Start"
             }
           ]
         },

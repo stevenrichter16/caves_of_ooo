@@ -274,7 +274,7 @@ namespace CavesOfOoo
             if (_player == null)
                 return;
 
-            _player.Properties[SettlementSiteDefinitions.StartingVillageKnowledgeProperty] = "true";
+            // KnowsPurifyWater is now learned by reading the Water-Keeper's Grimoire
 
             var mutations = _player.GetPart<MutationsPart>();
             if (mutations == null)

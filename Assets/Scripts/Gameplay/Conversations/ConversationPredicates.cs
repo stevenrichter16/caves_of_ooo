@@ -137,6 +137,20 @@ namespace CavesOfOoo.Core
                 return (int)PlayerReputation.GetAttitude(faction) >= (int)required;
             });
 
+            // Check if player has any item with a specific tag in inventory
+            Register("IfHaveItemWithTag", (speaker, listener, arg) =>
+            {
+                if (listener == null || string.IsNullOrEmpty(arg)) return false;
+                var inv = listener.GetPart<InventoryPart>();
+                if (inv == null) return false;
+                for (int i = 0; i < inv.Objects.Count; i++)
+                {
+                    if (inv.Objects[i].HasTag(arg))
+                        return true;
+                }
+                return false;
+            });
+
             Register("IfSettlementSiteStage", (speaker, listener, arg) =>
             {
                 if (speaker == null || string.IsNullOrWhiteSpace(arg) || SettlementManager.Current == null)

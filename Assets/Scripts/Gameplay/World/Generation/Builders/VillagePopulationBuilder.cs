@@ -47,6 +47,9 @@ namespace CavesOfOoo.Core
 
             PlaceMainWell(zone, factory, openCells, settlementId, mainWell);
 
+            // Place a chest with the purify water grimoire
+            PlaceGrimoireChest(zone, factory, rng, openCells);
+
             // Deterministic NPC roles
             Entity elder = PlaceNPC(zone, factory, rng, openCells, "Elder", settlementId);
             if (mainWell != null)
@@ -68,6 +71,9 @@ namespace CavesOfOoo.Core
                 PlaceNPC(zone, factory, rng, openCells, "WellKeeper", settlementId);
                 PlaceNPC(zone, factory, rng, openCells, "Farmer", settlementId);
             }
+
+            // 1 Scribe (always)
+            PlaceNPC(zone, factory, rng, openCells, "Scribe", settlementId);
 
             // 2-4 Villagers
             int villagerCount = rng.Next(2, 5);
@@ -107,6 +113,20 @@ namespace CavesOfOoo.Core
 
             openCells.RemoveAt(idx);
             return entity;
+        }
+
+        private void PlaceGrimoireChest(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> openCells)
+        {
+            Entity chest = PlaceEntity(zone, factory, rng, openCells, "Chest");
+            if (chest == null) return;
+
+            Entity grimoire = factory.CreateEntity("PurifyWaterGrimoire");
+            if (grimoire == null) return;
+
+            var container = chest.GetPart<ContainerPart>();
+            if (container != null)
+                container.AddItem(grimoire);
         }
 
         private static readonly (int dx, int dy)[] CardinalOffsets =

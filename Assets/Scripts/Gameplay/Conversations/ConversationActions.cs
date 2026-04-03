@@ -214,6 +214,71 @@ namespace CavesOfOoo.Core
                     SettlementRuntime.MarkZoneDirty();
                 }
             });
+
+            // Copy the first grimoire in the player's inventory, producing a GrimoireCopy
+            Register("CopyGrimoire", (speaker, listener, arg) =>
+            {
+                if (listener == null || Factory == null) return;
+
+                var inv = listener.GetPart<InventoryPart>();
+                if (inv == null) return;
+
+                Entity grimoire = null;
+                for (int i = 0; i < inv.Objects.Count; i++)
+                {
+                    if (inv.Objects[i].HasTag("Grimoire") && !inv.Objects[i].HasTag("GrimoireCopy"))
+                    {
+                        grimoire = inv.Objects[i];
+                        break;
+                    }
+                }
+
+                if (grimoire == null)
+                {
+                    MessageLog.Add("You don't have a grimoire to copy.");
+                    return;
+                }
+
+                var grimoirePart = grimoire.GetPart<GrimoirePart>();
+                if (grimoirePart == null) return;
+
+                Entity copy = Factory.CreateEntity("GrimoireCopy");
+                if (copy == null) return;
+
+                var copyPart = copy.GetPart<GrimoirePart>();
+                if (copyPart != null)
+                {
+                    copyPart.KnowledgeProperty = grimoirePart.KnowledgeProperty;
+                    copyPart.LearnMessage = grimoirePart.LearnMessage;
+                    copyPart.AlreadyKnownMessage = grimoirePart.AlreadyKnownMessage;
+                }
+
+                var copyRender = copy.GetPart<RenderPart>();
+                var origRender = grimoire.GetPart<RenderPart>();
+                if (copyRender != null && origRender != null)
+                    copyRender.DisplayName = "copy of " + origRender.DisplayName;
+
+                inv.AddObject(copy);
+                MessageLog.AddAnnouncement("The scribe carefully copies the grimoire. You receive the copy.");
+            });
+
+            // Remove the first item matching a tag from the player's inventory
+            Register("TakeItemWithTag", (speaker, listener, arg) =>
+            {
+                if (listener == null || string.IsNullOrEmpty(arg)) return;
+                var inv = listener.GetPart<InventoryPart>();
+                if (inv == null) return;
+                for (int i = 0; i < inv.Objects.Count; i++)
+                {
+                    if (inv.Objects[i].HasTag(arg))
+                    {
+                        var item = inv.Objects[i];
+                        inv.RemoveObject(item);
+                        MessageLog.Add($"You hand over {item.GetDisplayName()}.");
+                        return;
+                    }
+                }
+            });
         }
 
         private static string ResolveSettlementId(Entity speaker)

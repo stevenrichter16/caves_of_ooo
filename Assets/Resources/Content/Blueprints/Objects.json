@@ -2091,6 +2091,92 @@
       "Tags": [
         { "Key": "Tier", "Value": "1" }
       ]
+    },
+    {
+      "Name": "Chest",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "chest" },
+          { "Key": "RenderString", "Value": "=" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "false" }] },
+        { "Name": "Container", "Params": [{ "Key": "MaxItems", "Value": "10" }] }
+      ]
+    },
+    {
+      "Name": "PurifyWaterGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Water-Keeper's Grimoire" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&M" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "KnowledgeProperty", "Value": "KnowsPurifyWater" },
+          { "Key": "LearnMessage", "Value": "You study the faded ink carefully. The rite of water purification takes shape in your mind." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know this rite." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "50" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "GrimoireCopy",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "grimoire copy" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&c" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "KnowledgeProperty", "Value": "" },
+          { "Key": "LearnMessage", "Value": "" },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know this." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "20" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "GrimoireCopy", "Value": "" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "Scribe",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "scribe" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&M" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "0" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "8" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Scribe_1" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 20, "Min": 0, "Max": 20 },
+        { "Name": "Intelligence", "Value": 16 },
+        { "Name": "Ego", "Value": 14 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Villagers" },
+        { "Key": "Tier", "Value": "1" }
+      ]
     }
   ]
 }

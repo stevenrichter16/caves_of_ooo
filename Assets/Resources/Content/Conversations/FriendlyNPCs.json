@@ -754,8 +754,24 @@
               "Predicates": [{ "Key": "IfSettlementSiteStage", "Value": "MainWell:ImprovedWithCaretaker" }]
             },
             {
+              "Text": "I have a copy of the purification rite. You should learn it.",
+              "Target": "AfterGiveGrimoire",
+              "Predicates": [{ "Key": "IfHaveItemWithTag", "Value": "GrimoireCopy" }],
+              "Actions": [{ "Key": "TakeItemWithTag", "Value": "GrimoireCopy" }]
+            },
+            {
               "Text": "Farewell.",
               "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AfterGiveGrimoire",
+          "Text": "A purification rite... I've heard the old keeper mention this. Let me study it. If the water sours again, I'll know what to do before the children start falling sick.",
+          "Choices": [
+            {
+              "Text": "Good. The village needs someone who can act quickly.",
+              "Target": "Start"
             }
           ]
         },
@@ -922,6 +938,65 @@
               "Text": "That's useful. Thanks.",
               "Target": "Start",
               "Actions": [{ "Key": "SetProperty", "Value": "HeardWellSeep:true" }]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Scribe_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "I copy texts for the village. Bring me a grimoire and I'll make a copy — useful if you want to teach someone else what's in it.",
+          "Choices": [
+            {
+              "Text": "I'd like a copy of this grimoire.",
+              "Target": "CopyConfirm",
+              "Predicates": [{ "Key": "IfHaveItemWithTag", "Value": "Grimoire" }]
+            },
+            {
+              "Text": "What exactly do you do?",
+              "Target": "Explain"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Explain",
+          "Text": "Knowledge shouldn't live in just one pair of hands. You find a grimoire, I make a clean copy. Then you can give the copy to someone who needs it — a keeper, a healer, whoever might put the knowledge to use.",
+          "Choices": [
+            {
+              "Text": "That sounds useful.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "CopyConfirm",
+          "Text": "Let me see what you have... Yes, I can copy this. It'll take a moment.",
+          "Choices": [
+            {
+              "Text": "Please, make the copy.",
+              "Target": "AfterCopy",
+              "Actions": [{ "Key": "CopyGrimoire", "Value": "" }]
+            },
+            {
+              "Text": "Not right now.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AfterCopy",
+          "Text": "Here you are. A faithful copy. The original is yours to keep, of course.",
+          "Choices": [
+            {
+              "Text": "Thank you.",
+              "Target": "Start"
             }
           ]
         }
