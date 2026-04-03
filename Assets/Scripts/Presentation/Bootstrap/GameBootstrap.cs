@@ -200,6 +200,14 @@ namespace CavesOfOoo
                 if (ZoneRenderer != null)
                     factionUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
                 inputHandler.FactionUI = factionUI;
+
+                // Wire announcement UI (shares tilemap with zone renderer)
+                var announcementUI = GetComponent<AnnouncementUI>();
+                if (announcementUI == null)
+                    announcementUI = gameObject.AddComponent<AnnouncementUI>();
+                if (ZoneRenderer != null)
+                    announcementUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
+                inputHandler.AnnouncementUI = announcementUI;
             }
 
             // Start the turn loop

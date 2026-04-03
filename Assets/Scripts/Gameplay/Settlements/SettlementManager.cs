@@ -117,7 +117,7 @@ namespace CavesOfOoo.Core
                     site.ResolvedByMethod = method;
                     site.ResolvedAtTurn = GetCurrentTurn();
                     site.RelapseAtTurn = site.ResolvedAtTurn + SettlementRepairDefinitions.PurifyRelapseTurns;
-                    MessageLog.Add("You purify the bitter water for now, but the well still needs a proper repair.");
+                    MessageLog.AddAnnouncement("You purify the bitter water for now, but the well still needs a proper repair.");
                     break;
 
                 case RepairMethodId.ManualRepair:
@@ -139,7 +139,7 @@ namespace CavesOfOoo.Core
                     site.ResolvedByMethod = method;
                     site.ResolvedAtTurn = GetCurrentTurn();
                     site.RelapseAtTurn = null;
-                    MessageLog.Add("You rebuild the well's filtration ring with silver sand and set the water running clear again.");
+                    MessageLog.AddAnnouncement("You rebuild the well's filtration ring with silver sand and set the water running clear again.");
                     break;
 
                 case RepairMethodId.TeachCaretaker:
@@ -154,7 +154,7 @@ namespace CavesOfOoo.Core
                     site.ResolvedByMethod = method;
                     site.ResolvedAtTurn = GetCurrentTurn();
                     site.RelapseAtTurn = null;
-                    MessageLog.Add("You teach the well-keeper how to maintain the filtration ring between seasons.");
+                    MessageLog.AddAnnouncement("You teach the well-keeper how to maintain the filtration ring between seasons.");
                     break;
 
                 default:

@@ -78,7 +78,8 @@ namespace CavesOfOoo.Rendering
             DialogueOpen,
             TradeOpen,
             AwaitingAttackConfirm,
-            FactionOpen
+            FactionOpen,
+            AnnouncementOpen
         }
         private InputState _inputState = InputState.Normal;
         private ActivatedAbility _pendingAbility;
@@ -115,6 +116,8 @@ namespace CavesOfOoo.Rendering
         /// The faction standings UI component. Set by GameBootstrap.
         /// </summary>
         public FactionUI FactionUI { get; set; }
+
+        public AnnouncementUI AnnouncementUI { get; set; }
 
         /// <summary>
         /// Entity factory used by debug crafting flows.
@@ -202,6 +205,16 @@ namespace CavesOfOoo.Rendering
                 HandleFactionInput();
                 return;
             }
+
+            if (_inputState == InputState.AnnouncementOpen)
+            {
+                HandleAnnouncementInput();
+                return;
+            }
+
+            // Check for pending announcements before normal input
+            if (TryOpenAnnouncement())
+                return;
 
             if (Input.GetKeyDown(KeyCode.L))
             {
@@ -1651,6 +1664,10 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // Check for pending announcements before returning to normal
+            if (TryOpenAnnouncement())
+                return;
+
             _inputState = InputState.Normal;
             if (ZoneRenderer != null)
             {
@@ -1796,6 +1813,53 @@ namespace CavesOfOoo.Rendering
             tilemap.SetTile(tilePos, tile);
             tilemap.SetTileFlags(tilePos, UnityEngine.Tilemaps.TileFlags.None);
             tilemap.SetColor(tilePos, color);
+        }
+
+        // ===== Announcement Modal =====
+
+        private bool TryOpenAnnouncement()
+        {
+            if (AnnouncementUI == null || !MessageLog.HasPendingAnnouncement)
+                return false;
+
+            string msg = MessageLog.ConsumeAnnouncement();
+            if (msg == null)
+                return false;
+
+            if (ZoneRenderer != null)
+                ZoneRenderer.Paused = true;
+
+            AnnouncementUI.Open(msg);
+            _inputState = InputState.AnnouncementOpen;
+            return true;
+        }
+
+        private void HandleAnnouncementInput()
+        {
+            if (AnnouncementUI == null || !AnnouncementUI.IsOpen)
+            {
+                CloseAnnouncement();
+                return;
+            }
+
+            AnnouncementUI.HandleInput();
+
+            if (!AnnouncementUI.IsOpen)
+                CloseAnnouncement();
+        }
+
+        private void CloseAnnouncement()
+        {
+            // Check for more pending announcements
+            if (TryOpenAnnouncement())
+                return;
+
+            _inputState = InputState.Normal;
+            if (ZoneRenderer != null)
+            {
+                ZoneRenderer.Paused = false;
+                ZoneRenderer.MarkDirty();
+            }
         }
     }
 }

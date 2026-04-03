@@ -10,6 +10,7 @@ namespace CavesOfOoo.Core
     public static class MessageLog
     {
         private static readonly List<string> Messages = new List<string>();
+        private static readonly Queue<string> Announcements = new Queue<string>();
 
         /// <summary>
         /// Callback fired when a new message is added.
@@ -21,6 +22,23 @@ namespace CavesOfOoo.Core
         {
             Messages.Add(message);
             OnMessage?.Invoke(message);
+        }
+
+        /// <summary>
+        /// Adds a message to both the regular log and the announcement queue.
+        /// Announcements are displayed as modal popups by AnnouncementUI.
+        /// </summary>
+        public static void AddAnnouncement(string message)
+        {
+            Add(message);
+            Announcements.Enqueue(message);
+        }
+
+        public static bool HasPendingAnnouncement => Announcements.Count > 0;
+
+        public static string ConsumeAnnouncement()
+        {
+            return Announcements.Count > 0 ? Announcements.Dequeue() : null;
         }
 
         public static string GetLast()
@@ -38,6 +56,7 @@ namespace CavesOfOoo.Core
         public static void Clear()
         {
             Messages.Clear();
+            Announcements.Clear();
         }
 
         public static List<string> GetMessages()
