@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
@@ -74,15 +76,22 @@ namespace CavesOfOoo.Core
         /// </summary>
         public void StartAura(Zone zone)
         {
+            Debug.Log($"[Campfire/Debug] StartAura called. zone={zone?.ZoneID ?? "null"}, entity={ParentEntity?.BlueprintName ?? "null"}, alreadyStarted={_auraStarted}");
+
             if (zone == null || ParentEntity == null)
+            {
+                Debug.LogWarning($"[Campfire/Debug] StartAura early-out: zone={zone != null}, entity={ParentEntity != null}");
                 return;
+            }
 
             if (_auraStarted)
             {
+                Debug.Log("[Campfire/Debug] Stopping old aura before restart");
                 AsciiFxBus.StopAura(ParentEntity, AsciiFxTheme.Campfire);
                 _auraStarted = false;
             }
 
+            Debug.Log($"[Campfire/Debug] Emitting AuraStart for Campfire theme on zone {zone.ZoneID}");
             AsciiFxBus.StartAura(zone, ParentEntity, AsciiFxTheme.Campfire);
             _auraStarted = true;
         }

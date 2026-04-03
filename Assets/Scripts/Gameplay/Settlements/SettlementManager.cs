@@ -217,7 +217,10 @@ namespace CavesOfOoo.Core
                 // Restart campfire auras on zone entry
                 var campfire = entity.GetPart<CampfirePart>();
                 if (campfire != null)
+                {
+                    UnityEngine.Debug.Log($"[Settlement/Debug] RefreshActiveZonePresentation: found campfire entity={entity.BlueprintName}, calling StartAura on zone={activeZone.ZoneID}@{activeZone.GetHashCode()}");
                     campfire.StartAura(activeZone);
+                }
             }
         }
 
