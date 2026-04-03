@@ -63,9 +63,9 @@ namespace CavesOfOoo.Rendering
 
         public void RegisterCampfire(Entity entity, int cellX, int cellY)
         {
-            // Convert game coords to world coords (matching tilemap convention)
-            float worldX = cellX;
-            float worldY = Zone.Height - 1 - cellY;
+            // Convert game coords to world coords, centering on the cell
+            float worldX = cellX + 0.5f;
+            float worldY = Zone.Height - 1 - cellY + 0.5f;
 
             _anchors.Add(new EmberAnchor
             {
