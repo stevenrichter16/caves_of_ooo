@@ -1977,6 +1977,18 @@
       ]
     },
     {
+      "Name": "CampfireGroundMarker",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "" },
+          { "Key": "RenderString", "Value": "." },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "0" }
+        ]}
+      ]
+    },
+    {
       "Name": "Well",
       "Inherits": "PhysicalObject",
       "Parts": [

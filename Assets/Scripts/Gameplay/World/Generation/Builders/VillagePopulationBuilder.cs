@@ -40,7 +40,9 @@ namespace CavesOfOoo.Core
             {
                 if (bp == "Well")
                     continue;
-                PlaceEntity(zone, factory, rng, openCells, bp);
+                Entity decor = PlaceEntity(zone, factory, rng, openCells, bp);
+                if (bp == "Campfire" && decor != null)
+                    SetupCampfire(zone, factory, decor, openCells);
             }
 
             PlaceMainWell(zone, factory, openCells, settlementId, mainWell);
@@ -178,6 +180,35 @@ namespace CavesOfOoo.Core
                 marker.SetTag("WellGroundMarker", "");
 
                 SettlementSiteVisuals.ApplyToEntity(marker, mainWell);
+                zone.AddEntity(marker, mx, my);
+            }
+        }
+
+        private void SetupCampfire(Zone zone, EntityFactory factory, Entity campfire,
+            List<(int x, int y)> openCells)
+        {
+            campfire.AddPart(new CampfirePart());
+
+            Cell cell = zone.GetEntityCell(campfire);
+            if (cell == null)
+                return;
+
+            // Place warm-glow ground markers on cardinal cells
+            for (int i = 0; i < CardinalOffsets.Length; i++)
+            {
+                int mx = cell.X + CardinalOffsets[i].dx;
+                int my = cell.Y + CardinalOffsets[i].dy;
+                if (!zone.InBounds(mx, my))
+                    continue;
+
+                Cell markerCell = zone.GetCell(mx, my);
+                if (markerCell == null || !markerCell.IsPassable())
+                    continue;
+
+                Entity marker = factory.CreateEntity("CampfireGroundMarker");
+                if (marker == null)
+                    continue;
+
                 zone.AddEntity(marker, mx, my);
             }
         }

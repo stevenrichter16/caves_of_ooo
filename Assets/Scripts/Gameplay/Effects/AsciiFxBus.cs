@@ -11,7 +11,8 @@ namespace CavesOfOoo.Core
         Lightning = 4,
         WellFouled = 5,
         WellClean = 6,
-        WellImproved = 7
+        WellImproved = 7,
+        Campfire = 8
     }
 
     public enum AsciiFxRequestType

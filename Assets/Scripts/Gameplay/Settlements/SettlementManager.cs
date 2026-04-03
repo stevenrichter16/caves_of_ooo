@@ -203,13 +203,19 @@ namespace CavesOfOoo.Core
 
             foreach (var entity in activeZone.GetAllEntities())
             {
+                // Refresh settlement site visuals (wells, ground markers)
                 string siteId = entity.GetProperty("SettlementSiteId");
-                if (string.IsNullOrEmpty(siteId))
-                    continue;
+                if (!string.IsNullOrEmpty(siteId))
+                {
+                    RepairableSiteState site = state.GetSite(siteId);
+                    if (site != null)
+                        SettlementSiteVisuals.ApplyToEntity(entity, site);
+                }
 
-                RepairableSiteState site = state.GetSite(siteId);
-                if (site != null)
-                    SettlementSiteVisuals.ApplyToEntity(entity, site);
+                // Restart campfire auras on zone entry
+                var campfire = entity.GetPart<CampfirePart>();
+                if (campfire != null)
+                    campfire.StartAura(activeZone);
             }
         }
 

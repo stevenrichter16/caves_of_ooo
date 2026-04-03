@@ -657,6 +657,8 @@ namespace CavesOfOoo.Rendering
                     return WellCleanConfig;
                 case AsciiFxTheme.WellImproved:
                     return WellImprovedConfig;
+                case AsciiFxTheme.Campfire:
+                    return CampfireConfig;
                 default:
                     return FireConfig;
             }
@@ -1040,6 +1042,27 @@ namespace CavesOfOoo.Rendering
             AuraGlyphs = new[] { '.', '*' },
             AuraColors = new[] { "&C", "&Y" },
             AuraInterval = 0.60f,
+            ChargeGlyphs = Array.Empty<char>(),
+            ChargeColors = Array.Empty<string>(),
+            BeamColors = Array.Empty<string>(),
+            RingGlyphs = Array.Empty<char>(),
+            RingColors = Array.Empty<string>(),
+            ChainGlyphs = Array.Empty<char>(),
+            ChainColors = Array.Empty<string>()
+        };
+
+        private static readonly FxThemeConfig CampfireConfig = new FxThemeConfig
+        {
+            ProjectileGlyphs = Array.Empty<char>(),
+            ProjectileColors = Array.Empty<string>(),
+            TrailGlyph = '.',
+            TrailColor = "&R",
+            ProjectileStepTime = 0.04f,
+            BurstGlyphs = Array.Empty<char>(),
+            BurstColors = Array.Empty<string>(),
+            AuraGlyphs = new[] { '.' },
+            AuraColors = new[] { "&R", "&Y", "&W" },
+            AuraInterval = 0.20f,
             ChargeGlyphs = Array.Empty<char>(),
             ChargeColors = Array.Empty<string>(),
             BeamColors = Array.Empty<string>(),
