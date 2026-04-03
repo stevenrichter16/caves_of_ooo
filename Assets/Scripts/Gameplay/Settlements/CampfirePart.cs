@@ -68,12 +68,20 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Start the ember aura. Called during zone setup.
+        /// Start the ember aura. Stops any existing aura first so the request
+        /// is always fresh — this matters when called after the renderer's zone
+        /// is set (e.g. from RefreshActiveZonePresentation).
         /// </summary>
         public void StartAura(Zone zone)
         {
-            if (zone == null || ParentEntity == null || _auraStarted)
+            if (zone == null || ParentEntity == null)
                 return;
+
+            if (_auraStarted)
+            {
+                AsciiFxBus.StopAura(ParentEntity, AsciiFxTheme.Campfire);
+                _auraStarted = false;
+            }
 
             AsciiFxBus.StartAura(zone, ParentEntity, AsciiFxTheme.Campfire);
             _auraStarted = true;

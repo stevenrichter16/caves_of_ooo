@@ -101,7 +101,7 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void StartAura_DoesNotDoubleStart()
+        public void StartAura_RestopsAndRestarts_OnSecondCall()
         {
             Entity campfire = CreateCampfire();
             _zone.AddEntity(campfire, 10, 10);
@@ -113,7 +113,11 @@ namespace CavesOfOoo.Tests
             part.StartAura(_zone);
 
             var requests = AsciiFxBus.Drain();
-            Assert.AreEqual(1, requests.Count, "Should not emit duplicate aura starts");
+            // First call: AuraStart. Second call: AuraStop + AuraStart.
+            Assert.AreEqual(3, requests.Count, "Should stop old then start new on second call");
+            Assert.AreEqual(AsciiFxRequestType.AuraStart, requests[0].Type);
+            Assert.AreEqual(AsciiFxRequestType.AuraStop, requests[1].Type);
+            Assert.AreEqual(AsciiFxRequestType.AuraStart, requests[2].Type);
         }
 
         [Test]
