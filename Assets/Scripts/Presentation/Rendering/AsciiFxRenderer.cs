@@ -49,7 +49,6 @@ namespace CavesOfOoo.Rendering
 
         public void SetZone(Zone zone)
         {
-            Debug.Log($"[FxRenderer/Debug] SetZone called: {zone?.ZoneID ?? "null"}@{zone?.GetHashCode()}, clearing all FX");
             _currentZone = zone;
             ClearAll();
         }
@@ -87,9 +86,6 @@ namespace CavesOfOoo.Rendering
         private void ConsumeRequests()
         {
             List<AsciiFxRequest> requests = AsciiFxBus.Drain();
-            if (requests.Count > 0)
-                Debug.Log($"[FxRenderer/Debug] ConsumeRequests: draining {requests.Count} requests, _currentZone={_currentZone?.ZoneID ?? "null"}");
-
             for (int i = 0; i < requests.Count; i++)
             {
                 AsciiFxRequest request = requests[i];
@@ -98,18 +94,12 @@ namespace CavesOfOoo.Rendering
 
                 if (request.Type == AsciiFxRequestType.AuraStop)
                 {
-                    Debug.Log($"[FxRenderer/Debug] AuraStop for theme={request.Theme}, anchor={request.Anchor?.BlueprintName ?? "null"}");
                     RemoveAura(request.Anchor, request.Theme);
                     continue;
                 }
 
                 if (_currentZone == null || request.Zone != _currentZone)
-                {
-                    Debug.LogWarning($"[FxRenderer/Debug] REJECTED request type={request.Type} theme={request.Theme}: " +
-                        $"_currentZone={(_currentZone == null ? "null" : _currentZone.ZoneID + "@" + _currentZone.GetHashCode())}, " +
-                        $"request.Zone={( request.Zone == null ? "null" : request.Zone.ZoneID + "@" + request.Zone.GetHashCode())}");
                     continue;
-                }
 
                 switch (request.Type)
                 {
@@ -143,7 +133,6 @@ namespace CavesOfOoo.Rendering
                     case AsciiFxRequestType.AuraStart:
                         if (request.Anchor != null)
                         {
-                            Debug.Log($"[FxRenderer/Debug] AuraStart ACCEPTED: theme={request.Theme}, anchor={request.Anchor.BlueprintName}, auraCount={_auras.Count + 1}");
                             _auras[new AuraKey(request.Anchor, request.Theme)] = new AuraEmitterInstance
                             {
                                 Zone = request.Zone,
@@ -215,16 +204,11 @@ namespace CavesOfOoo.Rendering
             }
         }
 
-        private static int _auraDebugCounter;
+
         private void UpdateAuras(float deltaTime)
         {
             if (_auras.Count == 0)
                 return;
-
-            // Log once every 60 frames so we don't spam
-            bool logThisFrame = (_auraDebugCounter++ % 60 == 0);
-            if (logThisFrame)
-                Debug.Log($"[FxRenderer/Debug] UpdateAuras: {_auras.Count} auras, {_particles.Count} particles");
 
             var toRemove = new List<AuraKey>();
             foreach (KeyValuePair<AuraKey, AuraEmitterInstance> kvp in _auras)
@@ -232,7 +216,6 @@ namespace CavesOfOoo.Rendering
                 AuraEmitterInstance aura = kvp.Value;
                 if (aura == null || aura.Zone != _currentZone || aura.Anchor == null)
                 {
-                    Debug.LogWarning($"[FxRenderer/Debug] Removing aura: null={aura == null}, zoneMismatch={aura?.Zone != _currentZone}, anchorNull={aura?.Anchor == null}, theme={aura?.Theme}");
                     toRemove.Add(kvp.Key);
                     continue;
                 }
@@ -240,26 +223,19 @@ namespace CavesOfOoo.Rendering
                 Cell anchorCell = _currentZone.GetEntityCell(aura.Anchor);
                 if (anchorCell == null)
                 {
-                    Debug.LogWarning($"[FxRenderer/Debug] Removing aura: anchor entity not in zone. theme={aura.Theme}, anchor={aura.Anchor.BlueprintName}");
                     toRemove.Add(kvp.Key);
                     continue;
                 }
 
                 FxThemeConfig config = GetThemeConfig(aura.Theme);
                 if (config.AuraGlyphs.Length == 0 || config.AuraColors.Length == 0)
-                {
-                    if (logThisFrame)
-                        Debug.LogWarning($"[FxRenderer/Debug] Aura theme={aura.Theme} has empty glyphs ({config.AuraGlyphs.Length}) or colors ({config.AuraColors.Length}) — skipping");
                     continue;
-                }
 
                 aura.SpawnTimer += deltaTime;
                 while (aura.SpawnTimer >= config.AuraInterval)
                 {
                     aura.SpawnTimer -= config.AuraInterval;
                     int particleCount = 1 + _rng.Next(2);
-                    if (logThisFrame)
-                        Debug.Log($"[FxRenderer/Debug] Spawning {particleCount} particles for theme={aura.Theme} at ({anchorCell.X},{anchorCell.Y})");
                     for (int i = 0; i < particleCount; i++)
                         SpawnAuraParticle(anchorCell.X, anchorCell.Y, config);
                 }

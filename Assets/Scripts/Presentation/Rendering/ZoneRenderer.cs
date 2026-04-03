@@ -48,6 +48,7 @@ namespace CavesOfOoo.Rendering
         private Tilemap _lookTilemap;
         private Transform _msgGridTransform;
         private AsciiFxRenderer _asciiFxRenderer;
+        private CampfireEmberRenderer _campfireEmberRenderer;
         private WorldCursorRenderer _worldCursorRenderer;
         private LookOverlayRenderer _lookOverlayRenderer;
         private bool _dirty = true;
@@ -75,6 +76,10 @@ namespace CavesOfOoo.Rendering
             var fxRenderer = fxTilemapObj.AddComponent<TilemapRenderer>();
             fxRenderer.sortingOrder = 1; // above world, below messages
             _asciiFxRenderer = new AsciiFxRenderer(_fxTilemap);
+
+            var emberObj = new GameObject("CampfireEmbers");
+            emberObj.transform.SetParent(gridParent, false);
+            _campfireEmberRenderer = emberObj.AddComponent<CampfireEmberRenderer>();
 
             // Create a separate tilemap for messages with narrow half-width cells
             var msgGridObj = new GameObject("MessageGrid");
@@ -111,6 +116,24 @@ namespace CavesOfOoo.Rendering
             _worldCursorState = null;
             _cursorPlayer = null;
             _dirty = true;
+
+            // Register campfire positions for free-floating ember rendering
+            if (_campfireEmberRenderer != null)
+            {
+                _campfireEmberRenderer.SetZone(zone);
+                if (zone != null)
+                {
+                    foreach (var entity in zone.GetAllEntities())
+                    {
+                        if (entity.GetPart<CampfirePart>() != null)
+                        {
+                            var cell = zone.GetEntityCell(entity);
+                            if (cell != null)
+                                _campfireEmberRenderer.RegisterCampfire(entity, cell.X, cell.Y);
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>

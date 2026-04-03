@@ -1,12 +1,10 @@
-using UnityEngine;
-
 namespace CavesOfOoo.Core
 {
     /// <summary>
     /// Part attached to campfire entities that provides:
     /// - Color flicker between red and yellow (the campfire itself looks alive)
-    /// - Ember aura (dots that pop on surrounding cells and vanish)
     /// - Proximity ambient message (one-shot per zone visit)
+    /// Ember particles are handled by CampfireEmberRenderer (world-space, not grid-locked).
     /// </summary>
     public class CampfirePart : Part
     {
@@ -14,7 +12,6 @@ namespace CavesOfOoo.Core
 
         private int _renderFrameCounter;
         private bool _proximityMessageShown;
-        private bool _auraStarted;
 
         public override bool HandleEvent(GameEvent e)
         {
@@ -67,45 +64,6 @@ namespace CavesOfOoo.Core
             }
 
             return true;
-        }
-
-        /// <summary>
-        /// Start the ember aura. Stops any existing aura first so the request
-        /// is always fresh — this matters when called after the renderer's zone
-        /// is set (e.g. from RefreshActiveZonePresentation).
-        /// </summary>
-        public void StartAura(Zone zone)
-        {
-            Debug.Log($"[Campfire/Debug] StartAura called. zone={zone?.ZoneID ?? "null"}, entity={ParentEntity?.BlueprintName ?? "null"}, alreadyStarted={_auraStarted}");
-
-            if (zone == null || ParentEntity == null)
-            {
-                Debug.LogWarning($"[Campfire/Debug] StartAura early-out: zone={zone != null}, entity={ParentEntity != null}");
-                return;
-            }
-
-            if (_auraStarted)
-            {
-                Debug.Log("[Campfire/Debug] Stopping old aura before restart");
-                AsciiFxBus.StopAura(ParentEntity, AsciiFxTheme.Campfire);
-                _auraStarted = false;
-            }
-
-            Debug.Log($"[Campfire/Debug] Emitting AuraStart for Campfire theme on zone {zone.ZoneID}");
-            AsciiFxBus.StartAura(zone, ParentEntity, AsciiFxTheme.Campfire);
-            _auraStarted = true;
-        }
-
-        /// <summary>
-        /// Stop the ember aura. Called on zone teardown.
-        /// </summary>
-        public void StopAura()
-        {
-            if (!_auraStarted || ParentEntity == null)
-                return;
-
-            AsciiFxBus.StopAura(ParentEntity, AsciiFxTheme.Campfire);
-            _auraStarted = false;
         }
 
         public void ResetProximityMessage()

@@ -11,7 +11,6 @@ namespace CavesOfOoo.Tests
         public void SetUp()
         {
             MessageLog.Clear();
-            AsciiFxBus.Clear();
             _zone = new Zone("TestZone");
             SettlementRuntime.ActiveZone = _zone;
         }
@@ -20,7 +19,6 @@ namespace CavesOfOoo.Tests
         public void TearDown()
         {
             SettlementRuntime.Reset();
-            AsciiFxBus.Clear();
         }
 
         [Test]
@@ -30,14 +28,12 @@ namespace CavesOfOoo.Tests
 
             int redCount = 0;
             int yellowCount = 0;
-            int whiteCount = 0;
             for (int i = 0; i < 65; i++)
             {
                 var e = CreateRenderEvent(campfire);
                 campfire.FireEvent(e);
                 string color = e.GetStringParameter("ColorString", "&R");
                 if (color == "&Y") yellowCount++;
-                else if (color == "&W") whiteCount++;
                 else redCount++;
             }
 
@@ -62,7 +58,6 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(1, MessageLog.Count);
             Assert.AreEqual("The campfire crackles warmly.", MessageLog.GetLast());
 
-            // Should not repeat
             campfire.FireEvent(GameEvent.New("EndTurn"));
             Assert.AreEqual(1, MessageLog.Count, "Should not duplicate proximity message");
         }
@@ -81,43 +76,6 @@ namespace CavesOfOoo.Tests
 
             campfire.FireEvent(GameEvent.New("EndTurn"));
             Assert.AreEqual(0, MessageLog.Count);
-        }
-
-        [Test]
-        public void StartAura_EmitsCampfireThemeRequest()
-        {
-            Entity campfire = CreateCampfire();
-            _zone.AddEntity(campfire, 10, 10);
-
-            AsciiFxBus.Clear();
-
-            var part = campfire.GetPart<CampfirePart>();
-            part.StartAura(_zone);
-
-            var requests = AsciiFxBus.Drain();
-            Assert.AreEqual(1, requests.Count);
-            Assert.AreEqual(AsciiFxRequestType.AuraStart, requests[0].Type);
-            Assert.AreEqual(AsciiFxTheme.Campfire, requests[0].Theme);
-        }
-
-        [Test]
-        public void StartAura_RestopsAndRestarts_OnSecondCall()
-        {
-            Entity campfire = CreateCampfire();
-            _zone.AddEntity(campfire, 10, 10);
-
-            AsciiFxBus.Clear();
-
-            var part = campfire.GetPart<CampfirePart>();
-            part.StartAura(_zone);
-            part.StartAura(_zone);
-
-            var requests = AsciiFxBus.Drain();
-            // First call: AuraStart. Second call: AuraStop + AuraStart.
-            Assert.AreEqual(3, requests.Count, "Should stop old then start new on second call");
-            Assert.AreEqual(AsciiFxRequestType.AuraStart, requests[0].Type);
-            Assert.AreEqual(AsciiFxRequestType.AuraStop, requests[1].Type);
-            Assert.AreEqual(AsciiFxRequestType.AuraStart, requests[2].Type);
         }
 
         [Test]
