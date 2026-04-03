@@ -271,21 +271,46 @@ namespace CavesOfOoo.Rendering
 
         private void SpawnAuraParticle(int centerX, int centerY, FxThemeConfig config)
         {
-            Point offset = AuraOffsets[_rng.Next(AuraOffsets.Length)];
-            int x = centerX + offset.X;
-            int y = centerY + offset.Y;
-
-            if (_currentZone == null || !_currentZone.InBounds(x, y))
-                return;
-
-            _particles.Add(new ParticleFxInstance
+            if (config.AuraRising)
             {
-                X = x,
-                Y = y,
-                Glyph = config.AuraGlyphs[_rng.Next(config.AuraGlyphs.Length)],
-                ColorString = config.AuraColors[_rng.Next(config.AuraColors.Length)],
-                Remaining = ParticleLifetime
-            });
+                // Rising ember: spawns at anchor with slight random x offset, rises upward
+                int xOffset = _rng.Next(3) - 1; // -1, 0, or 1
+                int x = centerX + xOffset;
+                int y = centerY;
+
+                if (_currentZone == null || !_currentZone.InBounds(x, y))
+                    return;
+
+                _particles.Add(new ParticleFxInstance
+                {
+                    X = x,
+                    Y = y,
+                    Glyph = config.AuraGlyphs[_rng.Next(config.AuraGlyphs.Length)],
+                    ColorString = config.AuraColors[_rng.Next(config.AuraColors.Length)],
+                    Remaining = config.AuraRiseLifetime,
+                    DY = -1, // -1 in game coords = upward on screen
+                    MoveInterval = config.AuraRiseInterval
+                });
+            }
+            else
+            {
+                // Standard static aura particle on a random neighbor cell
+                Point offset = AuraOffsets[_rng.Next(AuraOffsets.Length)];
+                int x = centerX + offset.X;
+                int y = centerY + offset.Y;
+
+                if (_currentZone == null || !_currentZone.InBounds(x, y))
+                    return;
+
+                _particles.Add(new ParticleFxInstance
+                {
+                    X = x,
+                    Y = y,
+                    Glyph = config.AuraGlyphs[_rng.Next(config.AuraGlyphs.Length)],
+                    ColorString = config.AuraColors[_rng.Next(config.AuraColors.Length)],
+                    Remaining = ParticleLifetime
+                });
+            }
         }
 
         private void UpdateChargeOrbits(float deltaTime)
@@ -419,7 +444,21 @@ namespace CavesOfOoo.Rendering
                 ParticleFxInstance particle = _particles[i];
                 particle.Remaining -= deltaTime;
                 if (particle.Remaining <= 0f)
+                {
                     _particles.RemoveAt(i);
+                    continue;
+                }
+
+                // Rising particles move upward periodically
+                if (particle.DY != 0 && particle.MoveInterval > 0f)
+                {
+                    particle.MoveTimer += deltaTime;
+                    while (particle.MoveTimer >= particle.MoveInterval)
+                    {
+                        particle.MoveTimer -= particle.MoveInterval;
+                        particle.Y += particle.DY;
+                    }
+                }
             }
         }
 
@@ -797,6 +836,10 @@ namespace CavesOfOoo.Rendering
             public char Glyph;
             public string ColorString;
             public float Remaining;
+            // Rising particle support
+            public int DY;
+            public float MoveInterval;
+            public float MoveTimer;
         }
 
         private class AuraEmitterInstance
@@ -884,6 +927,11 @@ namespace CavesOfOoo.Rendering
             public string[] RingColors;
             public char[] ChainGlyphs;
             public string[] ChainColors;
+            // Rising aura particles: if true, aura particles spawn at the anchor
+            // and rise upward (dy=-1 in game coords) instead of static neighbor dots
+            public bool AuraRising;
+            public float AuraRiseInterval;  // seconds between each upward step
+            public float AuraRiseLifetime;  // total particle lifetime (determines rise height)
         }
 
         private static readonly string[] DefaultBeamColors = { "&W" };
@@ -1087,7 +1135,10 @@ namespace CavesOfOoo.Rendering
             BurstColors = Array.Empty<string>(),
             AuraGlyphs = new[] { '.' },
             AuraColors = new[] { "&R", "&Y", "&W" },
-            AuraInterval = 0.20f,
+            AuraInterval = 0.15f,
+            AuraRising = true,
+            AuraRiseInterval = 0.12f,  // move up one cell every 0.12s
+            AuraRiseLifetime = 0.50f,  // live ~4 cells of rise
             ChargeGlyphs = Array.Empty<char>(),
             ChargeColors = Array.Empty<string>(),
             BeamColors = Array.Empty<string>(),
