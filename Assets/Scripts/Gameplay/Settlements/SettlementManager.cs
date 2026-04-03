@@ -198,18 +198,20 @@ namespace CavesOfOoo.Core
                 return;
 
             SettlementState state;
-            if (!_settlements.TryGetValue(activeZone.ZoneID, out state))
-                return;
+            _settlements.TryGetValue(activeZone.ZoneID, out state);
 
             foreach (var entity in activeZone.GetAllEntities())
             {
                 // Refresh settlement site visuals (wells, ground markers)
-                string siteId = entity.GetProperty("SettlementSiteId");
-                if (!string.IsNullOrEmpty(siteId))
+                if (state != null)
                 {
-                    RepairableSiteState site = state.GetSite(siteId);
-                    if (site != null)
-                        SettlementSiteVisuals.ApplyToEntity(entity, site);
+                    string siteId = entity.GetProperty("SettlementSiteId");
+                    if (!string.IsNullOrEmpty(siteId))
+                    {
+                        RepairableSiteState site = state.GetSite(siteId);
+                        if (site != null)
+                            SettlementSiteVisuals.ApplyToEntity(entity, site);
+                    }
                 }
 
                 // Restart campfire auras on zone entry

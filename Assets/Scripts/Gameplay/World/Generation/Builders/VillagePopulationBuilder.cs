@@ -187,7 +187,9 @@ namespace CavesOfOoo.Core
         private void SetupCampfire(Zone zone, EntityFactory factory, Entity campfire,
             List<(int x, int y)> openCells)
         {
-            campfire.AddPart(new CampfirePart());
+            var part = new CampfirePart();
+            campfire.AddPart(part);
+            part.StartAura(zone);
 
             Cell cell = zone.GetEntityCell(campfire);
             if (cell == null)
