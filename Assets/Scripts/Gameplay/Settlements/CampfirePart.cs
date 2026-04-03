@@ -24,15 +24,8 @@ namespace CavesOfOoo.Core
 
         private bool HandleRender(GameEvent e)
         {
-            _renderFrameCounter++;
-
-            // Flicker between red and yellow to simulate burning
-            // Mostly red, with yellow flashes every ~5 frames
-            if (_renderFrameCounter % 5 == 0)
-                e.SetParameter("ColorString", "&Y");
-            else if (_renderFrameCounter % 13 == 0)
-                e.SetParameter("ColorString", "&W");
-
+            // Always render the campfire glyph in yellow
+            e.SetParameter("ColorString", "&Y");
             return true;
         }
 
