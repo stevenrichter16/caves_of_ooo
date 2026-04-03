@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using CavesOfOoo.Core;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace CavesOfOoo.Rendering
 {
