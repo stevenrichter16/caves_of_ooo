@@ -163,6 +163,7 @@ namespace CavesOfOoo.Rendering
             var sr = go.AddComponent<SpriteRenderer>();
             sr.sprite = _dotSprite;
             sr.sortingOrder = SortingOrder;
+            go.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
 
             Color baseColor = EmberColors[Random.Range(0, EmberColors.Length)];
 
