@@ -253,6 +253,24 @@ namespace CavesOfOoo.Rendering
                 "........",
                 "........"
             });
+            DrawChar16('\u00DB', new[] {  // █ (219) Solid block for background fills
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX"
+            });
             // Floor variant glyphs — subtle specks at different positions
             // to break up visual monotony when used with GlyphVariants
             DrawChar16(',', new[] {  // Floor variant: low-left pebble

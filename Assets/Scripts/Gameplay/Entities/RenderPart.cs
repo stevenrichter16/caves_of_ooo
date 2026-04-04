@@ -15,6 +15,12 @@ namespace CavesOfOoo.Core
         public string RenderString = "?";
         public string ColorString = "&y";
         /// <summary>
+        /// Optional background color code (e.g. "^K" for dark gray background).
+        /// Uses the same CGA palette as foreground but rendered as a solid
+        /// block behind the glyph, darkened for readability.
+        /// </summary>
+        public string BackgroundColor = "";
+        /// <summary>
         /// Optional glyph variation string. Each character is a possible glyph.
         /// When set, the renderer picks one deterministically based on cell position,
         /// giving terrain visual texture without randomness between frames.

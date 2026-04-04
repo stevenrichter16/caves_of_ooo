@@ -27,6 +27,7 @@ namespace CavesOfOoo.Rendering
         public static readonly Color BrightMagenta=new Color(1.00f, 0.33f, 1.00f); // M
         public static readonly Color BrightCyan  = new Color(0.33f, 1.00f, 1.00f); // C
         public static readonly Color White       = new Color(1.00f, 1.00f, 1.00f); // Y
+        public static readonly Color Transparent = new Color(0f, 0f, 0f, 0f);
 
         /// <summary>
         /// Parse a Qud color string like "&amp;Y" or "&amp;c" into a Unity Color.
@@ -49,6 +50,41 @@ namespace CavesOfOoo.Rendering
             }
 
             return CharToColor(code);
+        }
+
+        /// <summary>
+        /// Parse a background color code like "^K" or "^b" into a Unity Color.
+        /// Returns transparent black if no background is specified.
+        /// </summary>
+        public static Color ParseBackground(string bgString)
+        {
+            if (string.IsNullOrEmpty(bgString) || bgString.Length < 2)
+                return Transparent;
+
+            char code = ' ';
+            for (int i = 0; i < bgString.Length - 1; i++)
+            {
+                if (bgString[i] == '^')
+                {
+                    code = bgString[i + 1];
+                    break;
+                }
+            }
+
+            if (code == ' ')
+                return Transparent;
+
+            return CharToColor(code);
+        }
+
+        /// <summary>
+        /// Darken a color for use as a background tint.
+        /// Background colors are rendered at reduced intensity to keep
+        /// foreground glyphs readable.
+        /// </summary>
+        public static Color DarkenForBackground(Color c, float factor = 0.25f)
+        {
+            return new Color(c.r * factor, c.g * factor, c.b * factor, 1f);
         }
 
         /// <summary>

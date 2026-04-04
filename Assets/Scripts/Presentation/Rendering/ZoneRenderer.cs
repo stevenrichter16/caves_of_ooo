@@ -43,6 +43,7 @@ namespace CavesOfOoo.Rendering
         public float MessageReferenceZoom = 25f;
 
         private Tilemap _tilemap;
+        private Tilemap _bgTilemap;
         private Tilemap _fxTilemap;
         private Tilemap _msgBgTilemap;
         private Tilemap _msgTilemap;
@@ -70,6 +71,14 @@ namespace CavesOfOoo.Rendering
 
             Grid grid = GetComponentInParent<Grid>();
             Transform gridParent = grid != null ? grid.transform : (transform.parent != null ? transform.parent : transform);
+
+            // Background tilemap: solid color blocks behind foreground glyphs.
+            // Same grid, same cell size — just a lower sorting order.
+            var bgTilemapObj = new GameObject("BgTilemap");
+            bgTilemapObj.transform.SetParent(gridParent, false);
+            _bgTilemap = bgTilemapObj.AddComponent<Tilemap>();
+            var bgRenderer = bgTilemapObj.AddComponent<TilemapRenderer>();
+            bgRenderer.sortingOrder = -1; // below world tilemap
 
             var fxTilemapObj = new GameObject("FxTilemap");
             fxTilemapObj.transform.SetParent(gridParent, false);
@@ -205,6 +214,7 @@ namespace CavesOfOoo.Rendering
             if (CurrentZone == null || _tilemap == null) return;
 
             _tilemap.ClearAllTiles();
+            _bgTilemap?.ClearAllTiles();
 
             for (int x = 0; x < Zone.Width; x++)
             {
@@ -274,6 +284,21 @@ namespace CavesOfOoo.Rendering
 
             Color color = QudColorParser.Parse(colorString);
             _tilemap.SetColor(tilePos, color);
+
+            // Render background color if specified.
+            // Uses the same tilePos (same Y-inversion) on the background tilemap.
+            if (_bgTilemap != null && !string.IsNullOrEmpty(render.BackgroundColor))
+            {
+                Color bgColor = QudColorParser.ParseBackground(render.BackgroundColor);
+                if (bgColor.a > 0f)
+                {
+                    Color darkBg = QudColorParser.DarkenForBackground(bgColor);
+                    Tile bgTile = CP437TilesetGenerator.GetTile('\u00DB'); // █ solid block
+                    _bgTilemap.SetTile(tilePos, bgTile);
+                    _bgTilemap.SetTileFlags(tilePos, TileFlags.None);
+                    _bgTilemap.SetColor(tilePos, darkBg);
+                }
+            }
         }
 
         private void LogRenderIssueOnce(Entity entity, string issue)
