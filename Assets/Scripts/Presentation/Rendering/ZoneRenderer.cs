@@ -285,56 +285,7 @@ namespace CavesOfOoo.Rendering
             // Remembered but not visible: show terrain/walls in dark gray, hide creatures/items
             if (!cell.IsVisible)
             {
-                // Only show terrain (layer 0) in remembered cells
-                Entity terrainEntity = null;
-                for (int i = 0; i < cell.Objects.Count; i++)
-                {
-                    var render = cell.Objects[i].GetPart<RenderPart>();
-                    if (render != null && render.Visible && render.RenderLayer <= 1)
-                    {
-                        terrainEntity = cell.Objects[i];
-                        break;
-                    }
-                }
-
-                if (terrainEntity != null)
-                {
-                    var render = terrainEntity.GetPart<RenderPart>();
-                    char glyph;
-                    if (!string.IsNullOrEmpty(render.GlyphVariants))
-                        glyph = render.ResolveGlyph(x, y);
-                    else
-                        glyph = AsciiWorldRenderPolicy.GetGlyphOrFallback(render, out _);
-
-                    Tile tile = CP437TilesetGenerator.GetTile(glyph);
-                    if (tile != null)
-                    {
-                        _tilemap.SetTile(tilePos, tile);
-                        _tilemap.SetTileFlags(tilePos, TileFlags.None);
-                        _tilemap.SetColor(tilePos, RememberedColor);
-
-                        // Dim background too
-                        if (_bgTilemap != null && !string.IsNullOrEmpty(render.BackgroundColor))
-                        {
-                            Color bgColor = QudColorParser.ParseBackground(render.BackgroundColor);
-                            if (bgColor.a > 0f)
-                            {
-                                Color dimBg = QudColorParser.DarkenForBackground(bgColor, 0.08f);
-                                Tile bgTile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
-                                _bgTilemap.SetTile(tilePos, bgTile);
-                                _bgTilemap.SetTileFlags(tilePos, TileFlags.None);
-                                _bgTilemap.SetColor(tilePos, dimBg);
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    Tile emptyTile = CP437TilesetGenerator.GetTile(AsciiWorldRenderPolicy.EmptyGlyph);
-                    _tilemap.SetTile(tilePos, emptyTile);
-                    _tilemap.SetTileFlags(tilePos, TileFlags.None);
-                    _tilemap.SetColor(tilePos, BackgroundColor);
-                }
+                RenderRememberedCell(cell, x, y, tilePos);
                 return;
             }
 
@@ -401,6 +352,60 @@ namespace CavesOfOoo.Rendering
                     _bgTilemap.SetTileFlags(tilePos, TileFlags.None);
                     _bgTilemap.SetColor(tilePos, darkBg);
                 }
+            }
+        }
+
+        private void RenderRememberedCell(Cell cell, int x, int y, Vector3Int tilePos)
+        {
+            // Only show terrain (layer 0-1) in remembered cells
+            Entity terrainEntity = null;
+            for (int i = 0; i < cell.Objects.Count; i++)
+            {
+                var rp = cell.Objects[i].GetPart<RenderPart>();
+                if (rp != null && rp.Visible && rp.RenderLayer <= 1)
+                {
+                    terrainEntity = cell.Objects[i];
+                    break;
+                }
+            }
+
+            if (terrainEntity != null)
+            {
+                var rp = terrainEntity.GetPart<RenderPart>();
+                char g;
+                if (!string.IsNullOrEmpty(rp.GlyphVariants))
+                    g = rp.ResolveGlyph(x, y);
+                else
+                    g = AsciiWorldRenderPolicy.GetGlyphOrFallback(rp, out _);
+
+                Tile t = CP437TilesetGenerator.GetTile(g);
+                if (t != null)
+                {
+                    _tilemap.SetTile(tilePos, t);
+                    _tilemap.SetTileFlags(tilePos, TileFlags.None);
+                    _tilemap.SetColor(tilePos, RememberedColor);
+
+                    // Dim background too
+                    if (_bgTilemap != null && !string.IsNullOrEmpty(rp.BackgroundColor))
+                    {
+                        Color bgColor = QudColorParser.ParseBackground(rp.BackgroundColor);
+                        if (bgColor.a > 0f)
+                        {
+                            Color dimBg = QudColorParser.DarkenForBackground(bgColor, 0.08f);
+                            Tile bgTile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+                            _bgTilemap.SetTile(tilePos, bgTile);
+                            _bgTilemap.SetTileFlags(tilePos, TileFlags.None);
+                            _bgTilemap.SetColor(tilePos, dimBg);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Tile emptyTile = CP437TilesetGenerator.GetTile(AsciiWorldRenderPolicy.EmptyGlyph);
+                _tilemap.SetTile(tilePos, emptyTile);
+                _tilemap.SetTileFlags(tilePos, TileFlags.None);
+                _tilemap.SetColor(tilePos, BackgroundColor);
             }
         }
 
