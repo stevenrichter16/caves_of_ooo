@@ -238,8 +238,16 @@ namespace CavesOfOoo.Rendering
             RenderPart render = topEntity.GetPart<RenderPart>();
             if (render == null) return;
 
-            char glyph = AsciiWorldRenderPolicy.GetGlyphOrFallback(render, out string glyphIssue);
-            LogRenderIssueOnce(topEntity, glyphIssue);
+            char glyph;
+            if (!string.IsNullOrEmpty(render.GlyphVariants))
+            {
+                glyph = render.ResolveGlyph(x, y);
+            }
+            else
+            {
+                glyph = AsciiWorldRenderPolicy.GetGlyphOrFallback(render, out string glyphIssue);
+                LogRenderIssueOnce(topEntity, glyphIssue);
+            }
 
             Tile tile = CP437TilesetGenerator.GetTile(glyph);
             if (tile == null) return;
