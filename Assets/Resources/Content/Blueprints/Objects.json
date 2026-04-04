@@ -115,7 +115,12 @@
           { "Key": "RenderLayer", "Value": "20" }
         ]},
         { "Name": "ActivatedAbilities", "Params": [] },
-        { "Name": "Mutations", "Params": [{ "Key": "StartingMutations", "Value": "FlamingHandsMutation:1" }] }
+        { "Name": "Mutations", "Params": [{ "Key": "StartingMutations", "Value": "FlamingHandsMutation:1" }] },
+        { "Name": "LightSource", "Params": [
+          { "Key": "Radius", "Value": "5" },
+          { "Key": "LightColor", "Value": "&Y" },
+          { "Key": "Intensity", "Value": "0.4" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 500, "Min": 0, "Max": 500 },
@@ -1995,6 +2000,11 @@
           { "Key": "DisplayName", "Value": "campfire" },
           { "Key": "RenderString", "Value": "*" },
           { "Key": "ColorString", "Value": "&R" }
+        ]},
+        { "Name": "LightSource", "Params": [
+          { "Key": "Radius", "Value": "8" },
+          { "Key": "LightColor", "Value": "&W" },
+          { "Key": "Intensity", "Value": "0.8" }
         ]}
       ]
     },
@@ -2295,7 +2305,12 @@
           { "Key": "ColorString", "Value": "&K" },
           { "Key": "RenderLayer", "Value": "1" }
         ]},
-        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] }
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "LightSource", "Params": [
+          { "Key": "Radius", "Value": "10" },
+          { "Key": "LightColor", "Value": "&Y" },
+          { "Key": "Intensity", "Value": "0.6" }
+        ]}
       ],
       "Tags": [
         { "Key": "Solid", "Value": "" }

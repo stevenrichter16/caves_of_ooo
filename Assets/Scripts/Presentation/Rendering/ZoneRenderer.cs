@@ -66,6 +66,7 @@ namespace CavesOfOoo.Rendering
         private bool _dirty = true;
         private int _lastMessageCount = -1;
         private float _ambientTimer;
+        private LightMap _lightMap;
         private readonly HashSet<string> _loggedRenderIssues = new HashSet<string>();
         private WorldCursorState _worldCursorState;
         private Entity _cursorPlayer;
@@ -237,6 +238,11 @@ namespace CavesOfOoo.Rendering
                     FieldOfView.Compute(CurrentZone, playerCell.X, playerCell.Y, FovRadius);
             }
 
+            // Compute lighting from all light sources
+            if (_lightMap == null)
+                _lightMap = new LightMap();
+            _lightMap.Compute(CurrentZone);
+
             for (int x = 0; x < Zone.Width; x++)
             {
                 for (int y = 0; y < Zone.Height; y++)
@@ -370,6 +376,11 @@ namespace CavesOfOoo.Rendering
                 colorString = AsciiWorldRenderPolicy.FallbackColorString;
 
             Color color = QudColorParser.Parse(colorString);
+
+            // Apply lighting tint
+            if (_lightMap != null)
+                color = _lightMap.ApplyToColor(color, x, y);
+
             _tilemap.SetColor(tilePos, color);
 
             // Render background color if specified.
@@ -380,7 +391,12 @@ namespace CavesOfOoo.Rendering
                 if (bgColor.a > 0f)
                 {
                     Color darkBg = QudColorParser.DarkenForBackground(bgColor);
-                    Tile bgTile = CP437TilesetGenerator.GetTile('\u00DB'); // █ solid block
+
+                    // Apply lighting to background too
+                    if (_lightMap != null)
+                        darkBg = _lightMap.ApplyToColor(darkBg, x, y);
+
+                    Tile bgTile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
                     _bgTilemap.SetTile(tilePos, bgTile);
                     _bgTilemap.SetTileFlags(tilePos, TileFlags.None);
                     _bgTilemap.SetColor(tilePos, darkBg);
