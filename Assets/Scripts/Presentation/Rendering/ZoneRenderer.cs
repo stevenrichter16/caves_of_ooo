@@ -40,10 +40,11 @@ namespace CavesOfOoo.Rendering
         /// Reference orthographic size at which message text appears at 1:1 scale.
         /// At other zoom levels, message text scales proportionally.
         /// </summary>
-        public float MessageReferenceZoom = 12.5f;
+        public float MessageReferenceZoom = 25f;
 
         private Tilemap _tilemap;
         private Tilemap _fxTilemap;
+        private Tilemap _msgBgTilemap;
         private Tilemap _msgTilemap;
         private Tilemap _lookTilemap;
         private Transform _msgGridTransform;
@@ -87,17 +88,23 @@ namespace CavesOfOoo.Rendering
             var msgGrid = msgGridObj.AddComponent<Grid>();
             msgGrid.cellSize = new Vector3(0.5f, 1f, 0f);
 
+            var msgBgObj = new GameObject("MessageBgTilemap");
+            msgBgObj.transform.SetParent(msgGridObj.transform);
+            _msgBgTilemap = msgBgObj.AddComponent<Tilemap>();
+            var msgBgRenderer = msgBgObj.AddComponent<TilemapRenderer>();
+            msgBgRenderer.sortingOrder = 2; // background behind message text
+
             var msgTmObj = new GameObject("MessageTilemap");
             msgTmObj.transform.SetParent(msgGridObj.transform);
             _msgTilemap = msgTmObj.AddComponent<Tilemap>();
             var msgRenderer = msgTmObj.AddComponent<TilemapRenderer>();
-            msgRenderer.sortingOrder = 2; // render above game world and FX
+            msgRenderer.sortingOrder = 3; // text above background
 
             var lookTmObj = new GameObject("LookOverlayTilemap");
             lookTmObj.transform.SetParent(msgGridObj.transform);
             _lookTilemap = lookTmObj.AddComponent<Tilemap>();
             var lookRenderer = lookTmObj.AddComponent<TilemapRenderer>();
-            lookRenderer.sortingOrder = 4;
+            lookRenderer.sortingOrder = 5;
 
             _worldCursorRenderer = new WorldCursorRenderer(gridParent, _tilemap);
             _lookOverlayRenderer = new LookOverlayRenderer(_lookTilemap, _msgGridTransform, MessageReferenceZoom);
@@ -275,11 +282,15 @@ namespace CavesOfOoo.Rendering
         /// Render recent messages at the bottom of the visible screen
         /// using the narrow-text message tilemap.
         /// </summary>
+        private static readonly Color MsgBgColor = new Color(0f, 0f, 0f, 0.75f);
+
         private void RenderMessages()
         {
             if (_msgTilemap == null || MessageLineCount <= 0) return;
 
             _msgTilemap.ClearAllTiles();
+            if (_msgBgTilemap != null)
+                _msgBgTilemap.ClearAllTiles();
 
             var recent = MessageLog.GetRecent(MessageLineCount);
             if (recent.Count == 0) return;
@@ -303,6 +314,30 @@ namespace CavesOfOoo.Rendering
             // Left edge in tile coordinates so text starts at the screen edge
             float worldLeft = cam.transform.position.x - cam.orthographicSize * cam.aspect;
             int startX = Mathf.CeilToInt(worldLeft / (0.5f * scale));
+
+            // Render background box behind messages
+            if (_msgBgTilemap != null)
+            {
+                var blockTile = CP437TilesetGenerator.GetTextTile((char)219);
+                if (blockTile != null)
+                {
+                    int bgLeft = startX - 1;
+                    int bgRight = startX + maxChars;
+                    int bgBottom = bottomTileY - 1;
+                    int bgTop = bottomTileY + (MessageLineCount * 2);
+
+                    for (int y = bgBottom; y <= bgTop; y++)
+                    {
+                        for (int x = bgLeft; x <= bgRight; x++)
+                        {
+                            var pos = new Vector3Int(x, y, 0);
+                            _msgBgTilemap.SetTile(pos, blockTile);
+                            _msgBgTilemap.SetTileFlags(pos, TileFlags.None);
+                            _msgBgTilemap.SetColor(pos, MsgBgColor);
+                        }
+                    }
+                }
+            }
 
             // Render newest message at screen bottom, older ones above with spacer rows
             for (int i = 0; i < MessageLineCount; i++)
