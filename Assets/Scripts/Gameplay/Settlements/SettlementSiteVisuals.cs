@@ -10,7 +10,13 @@ namespace CavesOfOoo.Core
             // Ground markers get separate visual treatment
             if (entity.HasTag("WellGroundMarker"))
             {
-                ApplyGroundMarkerVisuals(entity, site);
+                ApplyWellGroundMarkerVisuals(entity, site);
+                return;
+            }
+
+            if (entity.HasTag("OvenGroundMarker"))
+            {
+                ApplyOvenGroundMarkerVisuals(entity, site);
                 return;
             }
 
@@ -18,7 +24,13 @@ namespace CavesOfOoo.Core
             if (render == null)
                 return;
 
-            // Graduated display names and base colors per stage
+            if (site.SiteType == RepairableSiteType.HeatStone)
+            {
+                ApplyOvenVisuals(entity, render, site);
+                return;
+            }
+
+            // Well visuals — graduated display names and base colors per stage
             switch (site.Stage)
             {
                 case RepairStage.Fouled:
@@ -49,7 +61,66 @@ namespace CavesOfOoo.Core
                 wellPart.OnStageChanged(site.Stage);
         }
 
-        private static void ApplyGroundMarkerVisuals(Entity entity, RepairableSiteState site)
+        private static void ApplyOvenVisuals(Entity entity, RenderPart render, RepairableSiteState site)
+        {
+            switch (site.Stage)
+            {
+                case RepairStage.Fouled:
+                    render.DisplayName = "cracked oven";
+                    render.ColorString = "&K";
+                    break;
+                case RepairStage.TemporarilyPurified:
+                    render.DisplayName = "patched oven (temporary)";
+                    render.ColorString = "&y";
+                    break;
+                case RepairStage.StableRepair:
+                    render.DisplayName = "repaired oven";
+                    render.ColorString = "&R";
+                    break;
+                case RepairStage.ImprovedWithCaretaker:
+                    render.DisplayName = "village bakehouse";
+                    render.ColorString = "&Y";
+                    break;
+                default:
+                    render.DisplayName = "oven";
+                    render.ColorString = "&y";
+                    break;
+            }
+
+            var ovenPart = entity.GetPart<OvenSitePart>();
+            if (ovenPart != null)
+                ovenPart.OnStageChanged(site.Stage);
+        }
+
+        private static void ApplyOvenGroundMarkerVisuals(Entity entity, RepairableSiteState site)
+        {
+            var render = entity.GetPart<RenderPart>();
+            if (render == null)
+                return;
+
+            int hash = (entity.ID ?? "").GetHashCode();
+            bool variant = (hash & 1) != 0;
+
+            render.RenderString = ".";
+            switch (site.Stage)
+            {
+                case RepairStage.Fouled:
+                    render.ColorString = variant ? "&K" : "&y";
+                    break;
+                case RepairStage.TemporarilyPurified:
+                case RepairStage.StableRepair:
+                    render.ColorString = variant ? "&R" : "&Y";
+                    break;
+                case RepairStage.ImprovedWithCaretaker:
+                    render.ColorString = variant ? "&Y" : "&W";
+                    break;
+                default:
+                    render.ColorString = "&y";
+                    break;
+            }
+        }
+
+        private static void ApplyWellGroundMarkerVisuals(Entity entity, RepairableSiteState site)
         {
             var render = entity.GetPart<RenderPart>();
             if (render == null)

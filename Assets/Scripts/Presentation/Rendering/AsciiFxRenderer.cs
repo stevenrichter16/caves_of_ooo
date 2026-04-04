@@ -699,6 +699,12 @@ namespace CavesOfOoo.Rendering
                     return WellImprovedConfig;
                 case AsciiFxTheme.Campfire:
                     return CampfireConfig;
+                case AsciiFxTheme.OvenBroken:
+                    return OvenBrokenConfig;
+                case AsciiFxTheme.OvenWorking:
+                    return OvenWorkingConfig;
+                case AsciiFxTheme.OvenImproved:
+                    return OvenImprovedConfig;
                 default:
                     return FireConfig;
             }
@@ -1115,6 +1121,69 @@ namespace CavesOfOoo.Rendering
             AuraRising = true,
             AuraRiseInterval = 0.12f,  // move up one cell every 0.12s
             AuraRiseLifetime = 0.50f,  // live ~4 cells of rise
+            ChargeGlyphs = Array.Empty<char>(),
+            ChargeColors = Array.Empty<string>(),
+            BeamColors = Array.Empty<string>(),
+            RingGlyphs = Array.Empty<char>(),
+            RingColors = Array.Empty<string>(),
+            ChainGlyphs = Array.Empty<char>(),
+            ChainColors = Array.Empty<string>()
+        };
+
+        private static readonly FxThemeConfig OvenBrokenConfig = new FxThemeConfig
+        {
+            ProjectileGlyphs = Array.Empty<char>(),
+            ProjectileColors = Array.Empty<string>(),
+            TrailGlyph = '.',
+            TrailColor = "&K",
+            ProjectileStepTime = 0.04f,
+            BurstGlyphs = Array.Empty<char>(),
+            BurstColors = Array.Empty<string>(),
+            AuraGlyphs = new[] { '.' },
+            AuraColors = new[] { "&K", "&y" },
+            AuraInterval = 0.50f,
+            ChargeGlyphs = Array.Empty<char>(),
+            ChargeColors = Array.Empty<string>(),
+            BeamColors = Array.Empty<string>(),
+            RingGlyphs = Array.Empty<char>(),
+            RingColors = Array.Empty<string>(),
+            ChainGlyphs = Array.Empty<char>(),
+            ChainColors = Array.Empty<string>()
+        };
+
+        private static readonly FxThemeConfig OvenWorkingConfig = new FxThemeConfig
+        {
+            ProjectileGlyphs = Array.Empty<char>(),
+            ProjectileColors = Array.Empty<string>(),
+            TrailGlyph = '.',
+            TrailColor = "&R",
+            ProjectileStepTime = 0.04f,
+            BurstGlyphs = Array.Empty<char>(),
+            BurstColors = Array.Empty<string>(),
+            AuraGlyphs = new[] { '.' },
+            AuraColors = new[] { "&R", "&Y" },
+            AuraInterval = 0.70f,
+            ChargeGlyphs = Array.Empty<char>(),
+            ChargeColors = Array.Empty<string>(),
+            BeamColors = Array.Empty<string>(),
+            RingGlyphs = Array.Empty<char>(),
+            RingColors = Array.Empty<string>(),
+            ChainGlyphs = Array.Empty<char>(),
+            ChainColors = Array.Empty<string>()
+        };
+
+        private static readonly FxThemeConfig OvenImprovedConfig = new FxThemeConfig
+        {
+            ProjectileGlyphs = Array.Empty<char>(),
+            ProjectileColors = Array.Empty<string>(),
+            TrailGlyph = '.',
+            TrailColor = "&Y",
+            ProjectileStepTime = 0.04f,
+            BurstGlyphs = Array.Empty<char>(),
+            BurstColors = Array.Empty<string>(),
+            AuraGlyphs = new[] { '.', '*' },
+            AuraColors = new[] { "&Y", "&W" },
+            AuraInterval = 0.60f,
             ChargeGlyphs = Array.Empty<char>(),
             ChargeColors = Array.Empty<string>(),
             BeamColors = Array.Empty<string>(),

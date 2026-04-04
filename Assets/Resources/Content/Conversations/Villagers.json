@@ -493,12 +493,53 @@
               ]
             },
             {
+              "Text": "Is there anything else the village needs?",
+              "Target": "OvenHint",
+              "Predicates": [
+                { "Key": "IfSettlementSiteStage", "Value": "VillageOven:Fouled" },
+                { "Key": "IfNotSpeakerHaveProperty", "Value": "ElderGaveOvenGuide" }
+              ]
+            },
+            {
+              "Text": "About the oven guide you mentioned?",
+              "Target": "AlreadyGaveOvenGuide",
+              "Predicates": [{ "Key": "IfSpeakerHaveProperty", "Value": "ElderGaveOvenGuide" }]
+            },
+            {
               "Text": "Tell me about this place.",
               "Target": "AboutPlace"
             },
             {
               "Text": "Farewell.",
               "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "OvenHint",
+          "Text": "The oven, wanderer. It cracked weeks ago and no one here knows the old builder's art. I kept a guide from the original mason — take it. You'll also need fire clay, the red powder you sometimes find in the deep caves. And if you come across a mending rite, that might hold the cracks long enough to buy time.",
+          "Choices": [
+            {
+              "Text": "I'll take the guide.",
+              "Target": "Start",
+              "Actions": [
+                { "Key": "GiveItem", "Value": "OvenBuildersGuide" },
+                { "Key": "SetSpeakerProperty", "Value": "ElderGaveOvenGuide:true" }
+              ]
+            },
+            {
+              "Text": "Not right now.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AlreadyGaveOvenGuide",
+          "Text": "I already gave you the mason's guide. Find some fire clay and the oven can be rebuilt properly. The farmer can show you where it stands.",
+          "Choices": [
+            {
+              "Text": "Understood.",
+              "Target": "Start"
             }
           ]
         },

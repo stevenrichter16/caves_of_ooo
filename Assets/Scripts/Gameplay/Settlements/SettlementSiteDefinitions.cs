@@ -9,6 +9,10 @@ namespace CavesOfOoo.Core
         public const string ImprovedWellCondition = "ImprovedWell";
         public const string StartingVillageZoneId = "Overworld.10.10.0";
 
+        public const string VillageOvenSiteId = "VillageOven";
+        public const string OvenKnowledgeProperty = "KnowsMendingRite";
+        public const string ImprovedOvenCondition = "ImprovedOven";
+
         public static bool IsTrackedVillage(string settlementId, PointOfInterest poi)
         {
             return !string.IsNullOrEmpty(settlementId)
@@ -27,6 +31,19 @@ namespace CavesOfOoo.Core
                 SiteId = MainWellSiteId,
                 SiteType = RepairableSiteType.Well,
                 ProblemType = RepairProblemType.FouledWater,
+                Stage = RepairStage.Fouled,
+                Severity = 1,
+                ResolvedByMethod = RepairMethodId.None,
+                OutcomeTier = RepairOutcomeTier.None,
+                ResolvedAtTurn = -1,
+                RelapseAtTurn = null
+            };
+
+            yield return new RepairableSiteState
+            {
+                SiteId = VillageOvenSiteId,
+                SiteType = RepairableSiteType.HeatStone,
+                ProblemType = RepairProblemType.HeatFailure,
                 Stage = RepairStage.Fouled,
                 Severity = 1,
                 ResolvedByMethod = RepairMethodId.None,

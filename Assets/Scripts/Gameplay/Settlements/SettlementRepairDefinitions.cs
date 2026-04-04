@@ -6,6 +6,10 @@ namespace CavesOfOoo.Core
         public const string WellMaintenanceManualBlueprint = "WellMaintenanceManual";
         public const string SilverSandBlueprint = "SilverSand";
 
+        public const int MendingRelapseTurns = 100;
+        public const string OvenBuildersGuideBlueprint = "OvenBuildersGuide";
+        public const string FireClayBlueprint = "FireClay";
+
         public static string GetMethodFailureMessage(RepairMethodId method)
         {
             switch (method)
@@ -16,6 +20,12 @@ namespace CavesOfOoo.Core
                     return "You'll need the well maintenance manual and some silver sand to repair the filtration ring.";
                 case RepairMethodId.TeachCaretaker:
                     return "The villagers need a stable repair before you can teach them upkeep.";
+                case RepairMethodId.MendingRite:
+                    return "You need to know the mending rite to do that.";
+                case RepairMethodId.OvenRebuild:
+                    return "You'll need the oven builder's guide and some fire clay to rebuild the firebox.";
+                case RepairMethodId.TeachBaker:
+                    return "The oven needs a stable repair before you can teach the farmer to maintain it.";
                 default:
                     return "That repair method is not available.";
             }

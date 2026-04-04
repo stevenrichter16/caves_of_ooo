@@ -5,6 +5,9 @@ namespace CavesOfOoo.Core
         None,
         PurifySpell,
         ManualRepair,
-        TeachCaretaker
+        TeachCaretaker,
+        MendingRite,
+        OvenRebuild,
+        TeachBaker
     }
 }

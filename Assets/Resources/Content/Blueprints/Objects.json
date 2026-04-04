@@ -2177,6 +2177,91 @@
         { "Key": "Faction", "Value": "Villagers" },
         { "Key": "Tier", "Value": "1" }
       ]
+    },
+    {
+      "Name": "Oven",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "oven" },
+          { "Key": "RenderString", "Value": "#" },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] }
+      ],
+      "Tags": [
+        { "Key": "Solid", "Value": "" }
+      ]
+    },
+    {
+      "Name": "OvenGroundMarker",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "" },
+          { "Key": "RenderString", "Value": "." },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "0" }
+        ]}
+      ]
+    },
+    {
+      "Name": "MendingRiteGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Mending Rite Grimoire" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "KnowledgeProperty", "Value": "KnowsMendingRite" },
+          { "Key": "LearnMessage", "Value": "You study the diagrams of force and fracture. The mending rite settles into your hands." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know this rite." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "50" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "OvenBuildersGuide",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "oven builder's guide" },
+          { "Key": "RenderString", "Value": "?" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "20" }] }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "FireClay",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "fire clay" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "1" }] }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
     }
   ]
 }

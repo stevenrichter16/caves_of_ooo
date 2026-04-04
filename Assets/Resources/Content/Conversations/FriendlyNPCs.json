@@ -914,6 +914,43 @@
               "Target": "WellClue"
             },
             {
+              "Text": "What happened to the oven?",
+              "Target": "OvenTrouble",
+              "Predicates": [{ "Key": "IfSettlementSiteStage", "Value": "VillageOven:Fouled" }]
+            },
+            {
+              "Text": "I can mend the oven's firebox with a rite I learned.",
+              "Target": "OvenMendingRite",
+              "Predicates": [
+                { "Key": "IfHaveProperty", "Value": "KnowsMendingRite" },
+                { "Key": "IfSettlementSiteStage", "Value": "VillageOven:Fouled" }
+              ]
+            },
+            {
+              "Text": "I can mend the oven again.",
+              "Target": "OvenMendingRite",
+              "Predicates": [
+                { "Key": "IfHaveProperty", "Value": "KnowsMendingRite" },
+                { "Key": "IfSettlementSiteStage", "Value": "VillageOven:TemporarilyPurified" }
+              ]
+            },
+            {
+              "Text": "I have the guide and fire clay to rebuild the firebox properly.",
+              "Target": "OvenRebuild",
+              "Predicates": [
+                { "Key": "IfHaveItem", "Value": "OvenBuildersGuide" },
+                { "Key": "IfHaveItem", "Value": "FireClay" }
+              ]
+            },
+            {
+              "Text": "Let me teach you how to maintain the oven yourself.",
+              "Target": "TeachBaker",
+              "Predicates": [
+                { "Key": "IfSettlementSiteStage", "Value": "VillageOven:StableRepair" },
+                { "Key": "IfHaveItemWithTag", "Value": "GrimoireCopy" }
+              ]
+            },
+            {
               "Text": "Farewell.",
               "Target": "End"
             }
@@ -938,6 +975,96 @@
               "Text": "That's useful. Thanks.",
               "Target": "Start",
               "Actions": [{ "Key": "SetProperty", "Value": "HeardWellSeep:true" }]
+            }
+          ]
+        },
+        {
+          "ID": "OvenTrouble",
+          "Text": "The oven's been cold for weeks. Firebox cracked clean through. Without it we can't bake bread or dry herbs for winter. The elder might know someone who wrote about fixing these old stone ovens.",
+          "Choices": [
+            {
+              "Text": "I'll look into it.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "OvenMendingRite",
+          "Text": "You know a mending rite? That could hold the cracks together, at least for a while. Go ahead — the oven's right there.",
+          "Choices": [
+            {
+              "Text": "I'll cast the mending rite now.",
+              "Target": "AfterOvenMend",
+              "Actions": [{ "Key": "ResolveSettlementSite", "Value": "VillageOven:MendingRite" }]
+            },
+            {
+              "Text": "Not yet.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AfterOvenMend",
+          "Text": "I can feel the heat from here. It won't hold forever, but we can bake again for now. Thank you, wanderer.",
+          "Choices": [
+            {
+              "Text": "It's temporary. I'll find a way to fix it properly.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "OvenRebuild",
+          "Text": "You have the guide and the clay? Then let's not waste daylight. Show me what to do and I'll hold the stones while you pack.",
+          "Choices": [
+            {
+              "Text": "Let's rebuild the firebox.",
+              "Target": "AfterOvenRebuild",
+              "Actions": [{ "Key": "ResolveSettlementSite", "Value": "VillageOven:OvenRebuild" }]
+            },
+            {
+              "Text": "Not yet.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AfterOvenRebuild",
+          "Text": "Solid as the day it was built. Better, even — that fire clay holds heat like nothing else. The village won't forget this.",
+          "Choices": [
+            {
+              "Text": "Glad to help.",
+              "Target": "Start",
+              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "Villagers:Player:10" }]
+            }
+          ]
+        },
+        {
+          "ID": "TeachBaker",
+          "Text": "You want to teach me? I've been a farmer all my life, but if there's a way to keep this oven running without waiting for a wanderer to pass through, I'll learn.",
+          "Choices": [
+            {
+              "Text": "Here — study this copy. It explains the stress fractures and how to re-clay before they spread.",
+              "Target": "AfterTeachBaker",
+              "Actions": [
+                { "Key": "ResolveSettlementSite", "Value": "VillageOven:TeachBaker" },
+                { "Key": "TakeItemWithTag", "Value": "GrimoireCopy" }
+              ]
+            },
+            {
+              "Text": "Not right now.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AfterTeachBaker",
+          "Text": "I can read this. Force lines, clay mixtures, curing times... Give me a season and I'll have this oven running better than it ever did. They might even start calling me a baker instead of a farmer.",
+          "Choices": [
+            {
+              "Text": "You've earned it.",
+              "Target": "End",
+              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "Villagers:Player:15" }]
             }
           ]
         }

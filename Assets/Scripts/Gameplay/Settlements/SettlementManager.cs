@@ -79,7 +79,10 @@ namespace CavesOfOoo.Core
                     site.ResolvedByMethod = RepairMethodId.None;
                     site.RelapseAtTurn = null;
                     site.ResolvedAtTurn = -1;
-                    state.AddPendingMessage("The village well has gone bitter again while you were away.");
+                    string relapseMsg = site.SiteType == RepairableSiteType.HeatStone
+                        ? "The oven's firebox has cracked open again while you were away."
+                        : "The village well has gone bitter again while you were away.";
+                    state.AddPendingMessage(relapseMsg);
                     changed = true;
                     RaiseSiteChanged(settlementId, site);
                 }
@@ -155,6 +158,58 @@ namespace CavesOfOoo.Core
                     site.ResolvedAtTurn = GetCurrentTurn();
                     site.RelapseAtTurn = null;
                     MessageLog.AddAnnouncement("You teach the well-keeper how to maintain the filtration ring between seasons.");
+                    break;
+
+                case RepairMethodId.MendingRite:
+                    if (!KnowsMendingRite(player))
+                    {
+                        MessageLog.Add(SettlementRepairDefinitions.GetMethodFailureMessage(method));
+                        return false;
+                    }
+
+                    site.Stage = RepairStage.TemporarilyPurified;
+                    site.OutcomeTier = RepairOutcomeTier.Temporary;
+                    site.ResolvedByMethod = method;
+                    site.ResolvedAtTurn = GetCurrentTurn();
+                    site.RelapseAtTurn = site.ResolvedAtTurn + SettlementRepairDefinitions.MendingRelapseTurns;
+                    MessageLog.AddAnnouncement("You trace the mending glyph across the cracks. The firebox holds — for now.");
+                    break;
+
+                case RepairMethodId.OvenRebuild:
+                    if (site.Stage == RepairStage.StableRepair || site.Stage == RepairStage.ImprovedWithCaretaker)
+                    {
+                        MessageLog.Add("The oven's firebox is already rebuilt.");
+                        return false;
+                    }
+
+                    if (!HasInventoryItem(player, SettlementRepairDefinitions.OvenBuildersGuideBlueprint)
+                        || !ConsumeInventoryItem(player, SettlementRepairDefinitions.FireClayBlueprint))
+                    {
+                        MessageLog.Add(SettlementRepairDefinitions.GetMethodFailureMessage(method));
+                        return false;
+                    }
+
+                    site.Stage = RepairStage.StableRepair;
+                    site.OutcomeTier = RepairOutcomeTier.Stable;
+                    site.ResolvedByMethod = method;
+                    site.ResolvedAtTurn = GetCurrentTurn();
+                    site.RelapseAtTurn = null;
+                    MessageLog.AddAnnouncement("You pack fresh fire clay into the firebox and seal the cracks properly. Heat radiates evenly again.");
+                    break;
+
+                case RepairMethodId.TeachBaker:
+                    if (site.Stage != RepairStage.StableRepair)
+                    {
+                        MessageLog.Add(SettlementRepairDefinitions.GetMethodFailureMessage(method));
+                        return false;
+                    }
+
+                    site.Stage = RepairStage.ImprovedWithCaretaker;
+                    site.OutcomeTier = RepairOutcomeTier.Improved;
+                    site.ResolvedByMethod = method;
+                    site.ResolvedAtTurn = GetCurrentTurn();
+                    site.RelapseAtTurn = null;
+                    MessageLog.AddAnnouncement("You teach the farmer how to read the firebox for stress fractures and re-clay before they spread.");
                     break;
 
                 default:
@@ -234,6 +289,10 @@ namespace CavesOfOoo.Core
             RepairableSiteState mainWell = state.GetSite(SettlementSiteDefinitions.MainWellSiteId);
             bool improvedWell = mainWell != null && mainWell.Stage == RepairStage.ImprovedWithCaretaker;
             state.SetCondition(SettlementSiteDefinitions.ImprovedWellCondition, improvedWell);
+
+            RepairableSiteState oven = state.GetSite(SettlementSiteDefinitions.VillageOvenSiteId);
+            bool improvedOven = oven != null && oven.Stage == RepairStage.ImprovedWithCaretaker;
+            state.SetCondition(SettlementSiteDefinitions.ImprovedOvenCondition, improvedOven);
         }
 
         public int GetCurrentTurn()
@@ -250,6 +309,12 @@ namespace CavesOfOoo.Core
         {
             return player.Properties.ContainsKey(SettlementSiteDefinitions.StartingVillageKnowledgeProperty)
                 || player.HasTag(SettlementSiteDefinitions.StartingVillageKnowledgeProperty);
+        }
+
+        private static bool KnowsMendingRite(Entity player)
+        {
+            return player.Properties.ContainsKey(SettlementSiteDefinitions.OvenKnowledgeProperty)
+                || player.HasTag(SettlementSiteDefinitions.OvenKnowledgeProperty);
         }
 
         private static bool HasInventoryItem(Entity player, string blueprint)

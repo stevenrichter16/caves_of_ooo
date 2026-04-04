@@ -47,7 +47,10 @@ namespace CavesOfOoo.Core
 
             PlaceMainWell(zone, factory, openCells, settlementId, mainWell);
 
-            // Place a chest with the purify water grimoire
+            RepairableSiteState ovenSite = settlement?.GetSite(SettlementSiteDefinitions.VillageOvenSiteId);
+            PlaceOven(zone, factory, rng, openCells, settlementId, ovenSite);
+
+            // Place a chest with grimoires
             PlaceGrimoireChest(zone, factory, rng, openCells);
 
             // Deterministic NPC roles
@@ -121,12 +124,16 @@ namespace CavesOfOoo.Core
             Entity chest = PlaceEntity(zone, factory, rng, openCells, "Chest");
             if (chest == null) return;
 
-            Entity grimoire = factory.CreateEntity("PurifyWaterGrimoire");
-            if (grimoire == null) return;
-
             var container = chest.GetPart<ContainerPart>();
-            if (container != null)
+            if (container == null) return;
+
+            Entity grimoire = factory.CreateEntity("PurifyWaterGrimoire");
+            if (grimoire != null)
                 container.AddItem(grimoire);
+
+            Entity mendingGrimoire = factory.CreateEntity("MendingRiteGrimoire");
+            if (mendingGrimoire != null)
+                container.AddItem(mendingGrimoire);
         }
 
         private static readonly (int dx, int dy)[] CardinalOffsets =
@@ -200,6 +207,70 @@ namespace CavesOfOoo.Core
                 marker.SetTag("WellGroundMarker", "");
 
                 SettlementSiteVisuals.ApplyToEntity(marker, mainWell);
+                zone.AddEntity(marker, mx, my);
+            }
+        }
+
+        private void PlaceOven(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> openCells, string settlementId, RepairableSiteState ovenSite)
+        {
+            if (openCells.Count == 0)
+                return;
+
+            Entity entity = PlaceEntity(zone, factory, rng, openCells, "Oven");
+            if (entity == null)
+                return;
+
+            if (!string.IsNullOrEmpty(settlementId))
+                entity.Properties["SettlementId"] = settlementId;
+
+            if (ovenSite != null)
+            {
+                entity.Properties["SettlementSiteId"] = ovenSite.SiteId;
+
+                var ovenPart = new OvenSitePart();
+                ovenPart.SettlementId = settlementId;
+                ovenPart.SiteId = ovenSite.SiteId;
+                entity.AddPart(ovenPart);
+
+                SettlementSiteVisuals.ApplyToEntity(entity, ovenSite);
+
+                Cell ovenCell = zone.GetEntityCell(entity);
+                if (ovenCell != null)
+                    PlaceOvenGroundMarkers(zone, factory, openCells, ovenCell.X, ovenCell.Y, settlementId, ovenSite);
+            }
+        }
+
+        private void PlaceOvenGroundMarkers(
+            Zone zone,
+            EntityFactory factory,
+            List<(int x, int y)> openCells,
+            int ovenX,
+            int ovenY,
+            string settlementId,
+            RepairableSiteState ovenSite)
+        {
+            for (int i = 0; i < CardinalOffsets.Length; i++)
+            {
+                int mx = ovenX + CardinalOffsets[i].dx;
+                int my = ovenY + CardinalOffsets[i].dy;
+                if (!zone.InBounds(mx, my))
+                    continue;
+
+                Cell cell = zone.GetCell(mx, my);
+                if (cell == null || !cell.IsPassable())
+                    continue;
+
+                Entity marker = factory.CreateEntity("OvenGroundMarker");
+                if (marker == null)
+                    continue;
+
+                if (!string.IsNullOrEmpty(settlementId))
+                    marker.Properties["SettlementId"] = settlementId;
+                marker.Properties["SettlementSiteId"] = ovenSite.SiteId;
+                marker.SetTag("OvenGroundMarker", "");
+
+                SettlementSiteVisuals.ApplyToEntity(marker, ovenSite);
                 zone.AddEntity(marker, mx, my);
             }
         }

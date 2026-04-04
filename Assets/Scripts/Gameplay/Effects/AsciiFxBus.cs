@@ -12,7 +12,10 @@ namespace CavesOfOoo.Core
         WellFouled = 5,
         WellClean = 6,
         WellImproved = 7,
-        Campfire = 8
+        Campfire = 8,
+        OvenBroken = 9,
+        OvenWorking = 10,
+        OvenImproved = 11
     }
 
     public enum AsciiFxRequestType
