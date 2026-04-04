@@ -123,6 +123,7 @@ namespace CavesOfOoo.Rendering
         /// Entity factory used by debug crafting flows.
         /// </summary>
         public EntityFactory EntityFactory { get; set; }
+        public ScreenFade ScreenFade { get; set; }
 
         private void Update()
         {
@@ -437,6 +438,10 @@ namespace CavesOfOoo.Rendering
                 for (int i = 0; i < pendingMessages.Count; i++)
                     MessageLog.Add(pendingMessages[i]);
             }
+
+            // Trigger fade-from-black visual transition
+            if (ScreenFade != null)
+                ScreenFade.FadeFromBlack(0.3f);
 
             Debug.Log($"[Zone] Transitioned to {result.NewZone.ZoneID}");
         }

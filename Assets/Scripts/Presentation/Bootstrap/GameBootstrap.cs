@@ -161,6 +161,12 @@ namespace CavesOfOoo
                 inputHandler.CameraFollow = cameraFollow;
                 inputHandler.EntityFactory = _factory;
 
+                // Wire screen fade for zone transitions
+                var screenFade = GetComponent<ScreenFade>();
+                if (screenFade == null)
+                    screenFade = gameObject.AddComponent<ScreenFade>();
+                inputHandler.ScreenFade = screenFade;
+
                 // Wire inventory UI (shares tilemap with zone renderer)
                 var inventoryUI = GetComponent<InventoryUI>();
                 if (inventoryUI == null)
