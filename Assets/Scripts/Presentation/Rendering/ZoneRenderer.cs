@@ -40,7 +40,7 @@ namespace CavesOfOoo.Rendering
         /// Reference orthographic size at which message text appears at 1:1 scale.
         /// At other zoom levels, message text scales proportionally.
         /// </summary>
-        public float MessageReferenceZoom = 6.25f;
+        public float MessageReferenceZoom = 25f;
 
         private Tilemap _tilemap;
         private Tilemap _fxTilemap;
