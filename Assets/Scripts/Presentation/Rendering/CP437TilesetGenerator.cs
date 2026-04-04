@@ -16,6 +16,17 @@ namespace CavesOfOoo.Rendering
         public const int Columns = 16;
         public const int Rows = 16;
 
+        // Box-drawing character constants for UI borders
+        public const char BoxTopLeft     = '\u00DA'; // ┌
+        public const char BoxTopRight    = '\u00BF'; // ┐
+        public const char BoxBottomLeft  = '\u00C0'; // └
+        public const char BoxBottomRight = '\u00D9'; // ┘
+        public const char BoxHorizontal  = '\u00C4'; // ─
+        public const char BoxVertical    = '\u00B3'; // │
+        public const char BoxTeeLeft      = '\u00C3'; // ├
+        public const char BoxTeeRight     = '\u00B4'; // ┤
+        public const char SolidBlock     = '\u00DB'; // █
+
         private static Dictionary<char, Tile> _tileCache;
         private static Texture2D _atlasTexture;
 
@@ -252,6 +263,87 @@ namespace CavesOfOoo.Rendering
                 "........",
                 "........",
                 "........"
+            });
+            // Box-drawing characters for UI borders
+            DrawChar('\u00DA', new[] {  // ┌ (218) top-left corner
+                "........",
+                "........",
+                "........",
+                "...XXXXX",
+                "...X....",
+                "...X....",
+                "...X....",
+                "...X...."
+            });
+            DrawChar('\u00BF', new[] {  // ┐ (191) top-right corner
+                "........",
+                "........",
+                "........",
+                "XXXXX...",
+                "....X...",
+                "....X...",
+                "....X...",
+                "....X..."
+            });
+            DrawChar('\u00C0', new[] {  // └ (192) bottom-left corner
+                "...X....",
+                "...X....",
+                "...X....",
+                "...XXXXX",
+                "........",
+                "........",
+                "........",
+                "........"
+            });
+            DrawChar('\u00D9', new[] {  // ┘ (217) bottom-right corner
+                "....X...",
+                "....X...",
+                "....X...",
+                "XXXXX...",
+                "........",
+                "........",
+                "........",
+                "........"
+            });
+            DrawChar('\u00C4', new[] {  // ─ (196) horizontal line
+                "........",
+                "........",
+                "........",
+                "XXXXXXXX",
+                "........",
+                "........",
+                "........",
+                "........"
+            });
+            DrawChar('\u00B3', new[] {  // │ (179) vertical line
+                "...X....",
+                "...X....",
+                "...X....",
+                "...X....",
+                "...X....",
+                "...X....",
+                "...X....",
+                "...X...."
+            });
+            DrawChar('\u00C3', new[] {  // ├ (195) left T-junction
+                "...X....",
+                "...X....",
+                "...X....",
+                "...XXXXX",
+                "...X....",
+                "...X....",
+                "...X....",
+                "...X...."
+            });
+            DrawChar('\u00B4', new[] {  // ┤ (180) right T-junction
+                "....X...",
+                "....X...",
+                "....X...",
+                "XXXXX...",
+                "....X...",
+                "....X...",
+                "....X...",
+                "....X..."
             });
             DrawChar16('\u00DB', new[] {  // █ (219) Solid block for background fills
                 "XXXXXXXXXXXXXXXX",

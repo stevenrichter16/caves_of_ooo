@@ -223,7 +223,7 @@ namespace CavesOfOoo.Rendering
 
         private void DrawHLine(int x, int y, int width)
         {
-            var tile = CP437TilesetGenerator.GetTile('-');
+            var tile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.BoxHorizontal);
             if (tile == null) return;
             for (int i = x; i < x + width && i < W; i++)
             {

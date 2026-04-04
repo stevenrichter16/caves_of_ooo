@@ -3119,7 +3119,7 @@ namespace CavesOfOoo.Rendering
         private void DrawHLine(int x, int y, int width, Color color)
         {
             var tilePos = new Vector3Int(0, H - 1 - y, 0);
-            var tile = CP437TilesetGenerator.GetTile('-');
+            var tile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.BoxHorizontal);
             if (tile == null) return;
 
             for (int i = x; i < x + width && i < W; i++)

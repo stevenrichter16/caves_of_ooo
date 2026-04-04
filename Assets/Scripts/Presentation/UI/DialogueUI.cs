@@ -233,14 +233,14 @@ namespace CavesOfOoo.Rendering
             ClearRegion(0, 0, POPUP_W, _popupH);
 
             // Top border
-            DrawChar(0, 0, '+', QudColorParser.Gray);
+            DrawChar(0, 0, CP437TilesetGenerator.BoxTopLeft, QudColorParser.Gray);
             for (int i = 1; i < POPUP_W - 1; i++)
-                DrawChar(i, 0, '-', QudColorParser.Gray);
-            DrawChar(POPUP_W - 1, 0, '+', QudColorParser.Gray);
+                DrawChar(i, 0, CP437TilesetGenerator.BoxHorizontal, QudColorParser.Gray);
+            DrawChar(POPUP_W - 1, 0, CP437TilesetGenerator.BoxTopRight, QudColorParser.Gray);
 
             // Speaker name row
-            DrawChar(0, 1, '|', QudColorParser.Gray);
-            DrawChar(POPUP_W - 1, 1, '|', QudColorParser.Gray);
+            DrawChar(0, 1, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
+            DrawChar(POPUP_W - 1, 1, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
 
             // Speaker glyph + name
             var speaker = ConversationManager.Speaker;
@@ -259,31 +259,31 @@ namespace CavesOfOoo.Rendering
             }
 
             // Separator
-            DrawChar(0, 2, '+', QudColorParser.Gray);
+            DrawChar(0, 2, CP437TilesetGenerator.BoxTeeLeft, QudColorParser.Gray);
             for (int i = 1; i < POPUP_W - 1; i++)
-                DrawChar(i, 2, '-', QudColorParser.Gray);
-            DrawChar(POPUP_W - 1, 2, '+', QudColorParser.Gray);
+                DrawChar(i, 2, CP437TilesetGenerator.BoxHorizontal, QudColorParser.Gray);
+            DrawChar(POPUP_W - 1, 2, CP437TilesetGenerator.BoxTeeRight, QudColorParser.Gray);
 
             // NPC speech text
             int y = 3;
             for (int i = 0; i < textLines; i++)
             {
-                DrawChar(0, y, '|', QudColorParser.Gray);
-                DrawChar(POPUP_W - 1, y, '|', QudColorParser.Gray);
+                DrawChar(0, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
+                DrawChar(POPUP_W - 1, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
                 DrawText(2, y, _wrappedTextLines[i], QudColorParser.White);
                 y++;
             }
 
             // Blank line between text and choices
-            DrawChar(0, y, '|', QudColorParser.Gray);
-            DrawChar(POPUP_W - 1, y, '|', QudColorParser.Gray);
+            DrawChar(0, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
+            DrawChar(POPUP_W - 1, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
             y++;
 
             // Player choices
             for (int i = 0; i < choiceCount; i++)
             {
-                DrawChar(0, y, '|', QudColorParser.Gray);
-                DrawChar(POPUP_W - 1, y, '|', QudColorParser.Gray);
+                DrawChar(0, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
+                DrawChar(POPUP_W - 1, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
 
                 bool selected = (i == _cursorIndex);
 
@@ -309,10 +309,10 @@ namespace CavesOfOoo.Rendering
             }
 
             // Bottom border
-            DrawChar(0, y, '+', QudColorParser.Gray);
+            DrawChar(0, y, CP437TilesetGenerator.BoxBottomLeft, QudColorParser.Gray);
             for (int i = 1; i < POPUP_W - 1; i++)
-                DrawChar(i, y, '-', QudColorParser.Gray);
-            DrawChar(POPUP_W - 1, y, '+', QudColorParser.Gray);
+                DrawChar(i, y, CP437TilesetGenerator.BoxHorizontal, QudColorParser.Gray);
+            DrawChar(POPUP_W - 1, y, CP437TilesetGenerator.BoxBottomRight, QudColorParser.Gray);
             y++;
 
             // Action bar

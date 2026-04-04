@@ -91,31 +91,31 @@ namespace CavesOfOoo.Rendering
             ClearRegion(0, 0, POPUP_W, _popupH);
 
             // Top border
-            DrawChar(0, 0, '+', QudColorParser.Gray);
+            DrawChar(0, 0, CP437TilesetGenerator.BoxTopLeft, QudColorParser.Gray);
             for (int i = 1; i < POPUP_W - 1; i++)
-                DrawChar(i, 0, '-', QudColorParser.Gray);
-            DrawChar(POPUP_W - 1, 0, '+', QudColorParser.Gray);
+                DrawChar(i, 0, CP437TilesetGenerator.BoxHorizontal, QudColorParser.Gray);
+            DrawChar(POPUP_W - 1, 0, CP437TilesetGenerator.BoxTopRight, QudColorParser.Gray);
 
             // Message text lines
             int y = 1;
             for (int i = 0; i < textLines; i++)
             {
-                DrawChar(0, y, '|', QudColorParser.Gray);
-                DrawChar(POPUP_W - 1, y, '|', QudColorParser.Gray);
+                DrawChar(0, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
+                DrawChar(POPUP_W - 1, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
                 DrawText(2, y, _wrappedLines[i], QudColorParser.BrightYellow);
                 y++;
             }
 
             // Blank line before action bar
-            DrawChar(0, y, '|', QudColorParser.Gray);
-            DrawChar(POPUP_W - 1, y, '|', QudColorParser.Gray);
+            DrawChar(0, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
+            DrawChar(POPUP_W - 1, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
             y++;
 
             // Bottom border
-            DrawChar(0, y, '+', QudColorParser.Gray);
+            DrawChar(0, y, CP437TilesetGenerator.BoxBottomLeft, QudColorParser.Gray);
             for (int i = 1; i < POPUP_W - 1; i++)
-                DrawChar(i, y, '-', QudColorParser.Gray);
-            DrawChar(POPUP_W - 1, y, '+', QudColorParser.Gray);
+                DrawChar(i, y, CP437TilesetGenerator.BoxHorizontal, QudColorParser.Gray);
+            DrawChar(POPUP_W - 1, y, CP437TilesetGenerator.BoxBottomRight, QudColorParser.Gray);
             y++;
 
             // Action bar

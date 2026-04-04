@@ -287,30 +287,30 @@ namespace CavesOfOoo.Rendering
 
         private void DrawPopupBorder(int x, int y, int w, int h, int contentRows)
         {
-            DrawChar(x, y, '+', QudColorParser.Gray);
+            DrawChar(x, y, CP437TilesetGenerator.BoxTopLeft, QudColorParser.Gray);
             for (int i = 1; i < w - 1; i++)
-                DrawChar(x + i, y, '-', QudColorParser.Gray);
-            DrawChar(x + w - 1, y, '+', QudColorParser.Gray);
+                DrawChar(x + i, y, CP437TilesetGenerator.BoxHorizontal, QudColorParser.Gray);
+            DrawChar(x + w - 1, y, CP437TilesetGenerator.BoxTopRight, QudColorParser.Gray);
 
-            DrawChar(x, y + 1, '|', QudColorParser.Gray);
-            DrawChar(x + w - 1, y + 1, '|', QudColorParser.Gray);
+            DrawChar(x, y + 1, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
+            DrawChar(x + w - 1, y + 1, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
 
-            DrawChar(x, y + 2, '+', QudColorParser.Gray);
+            DrawChar(x, y + 2, CP437TilesetGenerator.BoxTeeLeft, QudColorParser.Gray);
             for (int i = 1; i < w - 1; i++)
-                DrawChar(x + i, y + 2, '-', QudColorParser.Gray);
-            DrawChar(x + w - 1, y + 2, '+', QudColorParser.Gray);
+                DrawChar(x + i, y + 2, CP437TilesetGenerator.BoxHorizontal, QudColorParser.Gray);
+            DrawChar(x + w - 1, y + 2, CP437TilesetGenerator.BoxTeeRight, QudColorParser.Gray);
 
             for (int r = 0; r < contentRows; r++)
             {
-                DrawChar(x, y + 3 + r, '|', QudColorParser.Gray);
-                DrawChar(x + w - 1, y + 3 + r, '|', QudColorParser.Gray);
+                DrawChar(x, y + 3 + r, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
+                DrawChar(x + w - 1, y + 3 + r, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
             }
 
             int botY = y + 3 + contentRows;
-            DrawChar(x, botY, '+', QudColorParser.Gray);
+            DrawChar(x, botY, CP437TilesetGenerator.BoxBottomLeft, QudColorParser.Gray);
             for (int i = 1; i < w - 1; i++)
-                DrawChar(x + i, botY, '-', QudColorParser.Gray);
-            DrawChar(x + w - 1, botY, '+', QudColorParser.Gray);
+                DrawChar(x + i, botY, CP437TilesetGenerator.BoxHorizontal, QudColorParser.Gray);
+            DrawChar(x + w - 1, botY, CP437TilesetGenerator.BoxBottomRight, QudColorParser.Gray);
         }
 
         private void DrawChar(int gx, int gy, char c, Color color)
