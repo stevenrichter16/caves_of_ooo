@@ -18,7 +18,10 @@ namespace CavesOfOoo.Core
         OvenImproved = 11,
         LanternDark = 12,
         LanternLit = 13,
-        LanternBright = 14
+        LanternBright = 14,
+        Earth = 15,
+        Water = 16,
+        Holy = 17
     }
 
     public enum AsciiFxRequestType
@@ -30,7 +33,8 @@ namespace CavesOfOoo.Core
         Beam = 4,
         ChargeOrbit = 5,
         RingWave = 6,
-        ChainArc = 7
+        ChainArc = 7,
+        ColumnRise = 8
     }
 
     public class AsciiFxRequest
@@ -51,6 +55,8 @@ namespace CavesOfOoo.Core
         public float Duration;
         public float StepDuration;
         public float Delay;
+        public int Height;
+        public float LingerDuration;
     }
 
     /// <summary>
@@ -216,6 +222,35 @@ namespace CavesOfOoo.Core
                 Theme = theme,
                 Path = copy,
                 StepDuration = hopDuration,
+                BlocksTurnAdvance = blocksTurnAdvance,
+                Delay = delay < 0f ? 0f : delay
+            });
+        }
+
+        public static void EmitColumnRise(
+            Zone zone,
+            int x,
+            int y,
+            int height,
+            float stepDuration,
+            float lingerDuration,
+            AsciiFxTheme theme,
+            bool blocksTurnAdvance,
+            float delay = 0f)
+        {
+            if (zone == null || !zone.InBounds(x, y) || height <= 0 || stepDuration <= 0f)
+                return;
+
+            PendingRequests.Enqueue(new AsciiFxRequest
+            {
+                Type = AsciiFxRequestType.ColumnRise,
+                Zone = zone,
+                Theme = theme,
+                X = x,
+                Y = y,
+                Height = height,
+                StepDuration = stepDuration,
+                LingerDuration = lingerDuration,
                 BlocksTurnAdvance = blocksTurnAdvance,
                 Delay = delay < 0f ? 0f : delay
             });

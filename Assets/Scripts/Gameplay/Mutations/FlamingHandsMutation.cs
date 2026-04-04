@@ -63,7 +63,13 @@ namespace CavesOfOoo.Core
         {
             if (targetCell == null) return;
 
-            AsciiFxBus.EmitBurst(zone, targetCell.X, targetCell.Y, AsciiFxTheme.Fire, blocksTurnAdvance: true);
+            // Brief charge-up orbit around the caster before the burst
+            AsciiFxBus.EmitChargeOrbit(zone, ParentEntity, radius: 1, duration: 0.15f,
+                AsciiFxTheme.Fire, blocksTurnAdvance: true);
+
+            // Burst at target after charge completes
+            AsciiFxBus.EmitBurst(zone, targetCell.X, targetCell.Y, AsciiFxTheme.Fire,
+                blocksTurnAdvance: true, delay: 0.15f);
 
             // Get all creatures in the target cell
             List<Entity> creatures = targetCell.GetObjectsWithTag("Creature");

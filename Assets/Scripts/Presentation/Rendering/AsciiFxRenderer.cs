@@ -27,6 +27,7 @@ namespace CavesOfOoo.Rendering
         private readonly List<ChargeOrbitFxInstance> _chargeOrbits = new List<ChargeOrbitFxInstance>();
         private readonly List<RingWaveFxInstance> _ringWaves = new List<RingWaveFxInstance>();
         private readonly List<ChainArcFxInstance> _chainArcs = new List<ChainArcFxInstance>();
+        private readonly List<ColumnRiseFxInstance> _columnRises = new List<ColumnRiseFxInstance>();
 
         private Zone _currentZone;
         private bool _hadVisibleFxLastFrame;
@@ -46,6 +47,7 @@ namespace CavesOfOoo.Rendering
         public int ActiveChargeOrbitCount => _chargeOrbits.Count;
         public int ActiveRingWaveCount => _ringWaves.Count;
         public int ActiveChainArcCount => _chainArcs.Count;
+        public int ActiveColumnRiseCount => _columnRises.Count;
 
         public void SetZone(Zone zone)
         {
@@ -61,6 +63,7 @@ namespace CavesOfOoo.Rendering
             UpdateRingWaves(deltaTime);
             UpdateBeams(deltaTime);
             UpdateChainArcs(deltaTime);
+            UpdateColumnRises(deltaTime);
             UpdateProjectiles(deltaTime);
             UpdateBursts(deltaTime);
             UpdateParticles(deltaTime);
@@ -78,6 +81,7 @@ namespace CavesOfOoo.Rendering
             _chargeOrbits.Clear();
             _ringWaves.Clear();
             _chainArcs.Clear();
+            _columnRises.Clear();
             HasBlockingFx = false;
             _hadVisibleFxLastFrame = false;
             _tilemap?.ClearAllTiles();
@@ -199,6 +203,20 @@ namespace CavesOfOoo.Rendering
                                 DelayRemaining = request.Delay
                             });
                         }
+                        break;
+
+                    case AsciiFxRequestType.ColumnRise:
+                        _columnRises.Add(new ColumnRiseFxInstance
+                        {
+                            Theme = request.Theme,
+                            X = request.X,
+                            Y = request.Y,
+                            Height = request.Height,
+                            StepDuration = request.StepDuration,
+                            LingerDuration = request.LingerDuration,
+                            BlocksTurnAdvance = request.BlocksTurnAdvance,
+                            DelayRemaining = request.Delay
+                        });
                         break;
                 }
             }
@@ -355,6 +373,22 @@ namespace CavesOfOoo.Rendering
             }
         }
 
+        private void UpdateColumnRises(float deltaTime)
+        {
+            for (int i = _columnRises.Count - 1; i >= 0; i--)
+            {
+                ColumnRiseFxInstance col = _columnRises[i];
+                float activeDelta = ConsumeDelay(ref col.DelayRemaining, deltaTime);
+                if (col.DelayRemaining > 0f)
+                    continue;
+
+                col.Elapsed += activeDelta;
+                float totalDuration = col.StepDuration * col.Height + col.LingerDuration;
+                if (col.Elapsed >= totalDuration)
+                    _columnRises.RemoveAt(i);
+            }
+        }
+
         private void UpdateProjectiles(float deltaTime)
         {
             for (int i = _projectiles.Count - 1; i >= 0; i--)
@@ -444,7 +478,8 @@ namespace CavesOfOoo.Rendering
                 return;
 
             bool hasVisibleFx = _projectiles.Count > 0 || _bursts.Count > 0 || _particles.Count > 0 ||
-                                _beams.Count > 0 || _chargeOrbits.Count > 0 || _ringWaves.Count > 0 || _chainArcs.Count > 0;
+                                _beams.Count > 0 || _chargeOrbits.Count > 0 || _ringWaves.Count > 0 ||
+                                _chainArcs.Count > 0 || _columnRises.Count > 0;
             if (!hasVisibleFx && !_hadVisibleFxLastFrame)
                 return;
 
@@ -464,6 +499,9 @@ namespace CavesOfOoo.Rendering
 
             for (int i = 0; i < _chainArcs.Count; i++)
                 RenderChainArc(_chainArcs[i]);
+
+            for (int i = 0; i < _columnRises.Count; i++)
+                RenderColumnRise(_columnRises[i]);
 
             for (int i = 0; i < _projectiles.Count; i++)
                 RenderProjectile(_projectiles[i]);
@@ -558,6 +596,29 @@ namespace CavesOfOoo.Rendering
                 char glyph = config.ChainGlyphs[(hopIndex + i) % config.ChainGlyphs.Length];
                 string color = config.ChainColors[(hopIndex + i) % config.ChainColors.Length];
                 RenderGlyphAt(points[i].X, points[i].Y, glyph, color);
+            }
+        }
+
+        private void RenderColumnRise(ColumnRiseFxInstance col)
+        {
+            if (col.DelayRemaining > 0f)
+                return;
+
+            FxThemeConfig config = GetThemeConfig(col.Theme);
+            if (config.ColumnGlyphs == null || config.ColumnGlyphs.Length == 0 ||
+                config.ColumnColors == null || config.ColumnColors.Length == 0)
+                return;
+
+            // How many cells have appeared so far (bottom-to-top)
+            int revealedCells = Mathf.Clamp((int)(col.Elapsed / col.StepDuration) + 1, 0, col.Height);
+
+            // Render each revealed cell: bottom cell is at (X, Y), rising upward (Y-1 in game coords)
+            for (int h = 0; h < revealedCells; h++)
+            {
+                int cellY = col.Y - h; // upward in game coords
+                char glyph = config.ColumnGlyphs[Math.Min(h, config.ColumnGlyphs.Length - 1)];
+                string color = config.ColumnColors[Math.Min(h, config.ColumnColors.Length - 1)];
+                RenderGlyphAt(col.X, cellY, glyph, color);
             }
         }
 
@@ -668,6 +729,12 @@ namespace CavesOfOoo.Rendering
                     return true;
             }
 
+            for (int i = 0; i < _columnRises.Count; i++)
+            {
+                if (_columnRises[i].BlocksTurnAdvance)
+                    return true;
+            }
+
             return false;
         }
 
@@ -711,6 +778,12 @@ namespace CavesOfOoo.Rendering
                     return LanternLitConfig;
                 case AsciiFxTheme.LanternBright:
                     return LanternBrightConfig;
+                case AsciiFxTheme.Earth:
+                    return EarthConfig;
+                case AsciiFxTheme.Water:
+                    return WaterConfig;
+                case AsciiFxTheme.Holy:
+                    return HolyConfig;
                 default:
                     return FireConfig;
             }
@@ -884,6 +957,19 @@ namespace CavesOfOoo.Rendering
             public float DelayRemaining;
         }
 
+        private class ColumnRiseFxInstance
+        {
+            public AsciiFxTheme Theme;
+            public int X;
+            public int Y;
+            public int Height;
+            public float Elapsed;
+            public float StepDuration;
+            public float LingerDuration;
+            public bool BlocksTurnAdvance;
+            public float DelayRemaining;
+        }
+
         private struct AuraKey
         {
             public readonly Entity Anchor;
@@ -920,6 +1006,9 @@ namespace CavesOfOoo.Rendering
             public bool AuraRising;
             public float AuraRiseInterval;  // seconds between each upward step
             public float AuraRiseLifetime;  // total particle lifetime (determines rise height)
+            // ColumnRise FX: glyphs appear bottom-to-top at a target position
+            public char[] ColumnGlyphs;
+            public string[] ColumnColors;
         }
 
         private static readonly string[] DefaultBeamColors = { "&W" };
@@ -956,13 +1045,15 @@ namespace CavesOfOoo.Rendering
             AuraGlyphs = new[] { '*', '\u00B7', '+' },
             AuraColors = new[] { "&R", "&Y" },
             AuraInterval = 0.15f,
-            ChargeGlyphs = Array.Empty<char>(),
-            ChargeColors = Array.Empty<string>(),
-            BeamColors = Array.Empty<string>(),
-            RingGlyphs = Array.Empty<char>(),
-            RingColors = Array.Empty<string>(),
-            ChainGlyphs = Array.Empty<char>(),
-            ChainColors = Array.Empty<string>()
+            ChargeGlyphs = new[] { '*', '+', 'o' },
+            ChargeColors = new[] { "&R", "&Y" },
+            BeamColors = new[] { "&R", "&Y", "&W" },
+            RingGlyphs = new[] { '*', '+' },
+            RingColors = new[] { "&R", "&Y", "&W" },
+            ChainGlyphs = new[] { '*', '+', '~' },
+            ChainColors = new[] { "&R", "&Y" },
+            ColumnGlyphs = Array.Empty<char>(),
+            ColumnColors = Array.Empty<string>()
         };
 
         private static readonly FxThemeConfig IceConfig = new FxThemeConfig
@@ -974,16 +1065,18 @@ namespace CavesOfOoo.Rendering
             ProjectileStepTime = 0.04f,
             BurstGlyphs = new[] { '*', '+', 'o' },
             BurstColors = new[] { "&C", "&Y", "&C" },
-            AuraGlyphs = Array.Empty<char>(),
-            AuraColors = Array.Empty<string>(),
-            AuraInterval = 999f,
+            AuraGlyphs = new[] { '*', '\u00B7' },
+            AuraColors = new[] { "&C", "&B" },
+            AuraInterval = 0.25f,
             ChargeGlyphs = new[] { 'o', '*', '.' },
             ChargeColors = new[] { "&C", "&W", "&B" },
-            BeamColors = Array.Empty<string>(),
+            BeamColors = new[] { "&C", "&W", "&B" },
             RingGlyphs = new[] { 'o', '*' },
             RingColors = new[] { "&C", "&W", "&B" },
-            ChainGlyphs = Array.Empty<char>(),
-            ChainColors = Array.Empty<string>()
+            ChainGlyphs = new[] { '*', 'o', '+' },
+            ChainColors = new[] { "&C", "&W" },
+            ColumnGlyphs = Array.Empty<char>(),
+            ColumnColors = Array.Empty<string>()
         };
 
         private static readonly FxThemeConfig PoisonConfig = new FxThemeConfig
@@ -998,13 +1091,15 @@ namespace CavesOfOoo.Rendering
             AuraGlyphs = new[] { 'o', '\u00B7' },
             AuraColors = new[] { "&G", "&g" },
             AuraInterval = 0.20f,
-            ChargeGlyphs = Array.Empty<char>(),
-            ChargeColors = Array.Empty<string>(),
-            BeamColors = Array.Empty<string>(),
-            RingGlyphs = Array.Empty<char>(),
-            RingColors = Array.Empty<string>(),
-            ChainGlyphs = Array.Empty<char>(),
-            ChainColors = Array.Empty<string>()
+            ChargeGlyphs = new[] { 'o', '*', '.' },
+            ChargeColors = new[] { "&G", "&g" },
+            BeamColors = new[] { "&G", "&g", "&y" },
+            RingGlyphs = new[] { 'o', '*' },
+            RingColors = new[] { "&G", "&g" },
+            ChainGlyphs = new[] { '~', 'o', '*' },
+            ChainColors = new[] { "&G", "&g" },
+            ColumnGlyphs = Array.Empty<char>(),
+            ColumnColors = Array.Empty<string>()
         };
 
         private static readonly FxThemeConfig ArcaneConfig = new FxThemeConfig
@@ -1016,16 +1111,18 @@ namespace CavesOfOoo.Rendering
             ProjectileStepTime = 0.04f,
             BurstGlyphs = new[] { '*', 'X', '+' },
             BurstColors = new[] { "&W", "&M", "&Y" },
-            AuraGlyphs = Array.Empty<char>(),
-            AuraColors = Array.Empty<string>(),
-            AuraInterval = 999f,
+            AuraGlyphs = new[] { '*', '\u00B7', '+' },
+            AuraColors = new[] { "&M", "&C" },
+            AuraInterval = 0.20f,
             ChargeGlyphs = new[] { '*', 'o', '+' },
             ChargeColors = new[] { "&M", "&C", "&Y" },
             BeamColors = new[] { "&M", "&W", "&C" },
-            RingGlyphs = Array.Empty<char>(),
-            RingColors = Array.Empty<string>(),
-            ChainGlyphs = Array.Empty<char>(),
-            ChainColors = Array.Empty<string>()
+            RingGlyphs = new[] { '*', 'o', '+' },
+            RingColors = new[] { "&M", "&C", "&Y" },
+            ChainGlyphs = new[] { '*', '+', 'o' },
+            ChainColors = new[] { "&M", "&W", "&C" },
+            ColumnGlyphs = Array.Empty<char>(),
+            ColumnColors = Array.Empty<string>()
         };
 
         private static readonly FxThemeConfig LightningConfig = new FxThemeConfig
@@ -1037,16 +1134,18 @@ namespace CavesOfOoo.Rendering
             ProjectileStepTime = 0.04f,
             BurstGlyphs = new[] { '*', 'Z', '+' },
             BurstColors = new[] { "&W", "&Y" },
-            AuraGlyphs = Array.Empty<char>(),
-            AuraColors = Array.Empty<string>(),
-            AuraInterval = 999f,
-            ChargeGlyphs = Array.Empty<char>(),
-            ChargeColors = Array.Empty<string>(),
-            BeamColors = Array.Empty<string>(),
-            RingGlyphs = Array.Empty<char>(),
-            RingColors = Array.Empty<string>(),
+            AuraGlyphs = new[] { '*', 'z' },
+            AuraColors = new[] { "&Y", "&W" },
+            AuraInterval = 0.10f,
+            ChargeGlyphs = new[] { '*', 'z', 'Z' },
+            ChargeColors = new[] { "&Y", "&W", "&C" },
+            BeamColors = new[] { "&Y", "&W", "&C" },
+            RingGlyphs = new[] { '*', 'Z', '+' },
+            RingColors = new[] { "&Y", "&W" },
             ChainGlyphs = new[] { '~', 'z', 'Z', '*' },
-            ChainColors = new[] { "&Y", "&W", "&C" }
+            ChainColors = new[] { "&Y", "&W", "&C" },
+            ColumnGlyphs = Array.Empty<char>(),
+            ColumnColors = Array.Empty<string>()
         };
 
         private static readonly FxThemeConfig WellFouledConfig = new FxThemeConfig
@@ -1260,6 +1359,75 @@ namespace CavesOfOoo.Rendering
             RingColors = Array.Empty<string>(),
             ChainGlyphs = Array.Empty<char>(),
             ChainColors = Array.Empty<string>()
+        };
+
+        private static readonly FxThemeConfig EarthConfig = new FxThemeConfig
+        {
+            ProjectileGlyphs = Array.Empty<char>(),
+            ProjectileColors = Array.Empty<string>(),
+            TrailGlyph = '.',
+            TrailColor = "&w",
+            ProjectileStepTime = 0.04f,
+            BurstGlyphs = new[] { '*', '+', '=' },
+            BurstColors = new[] { "&w", "&Y" },
+            AuraGlyphs = Array.Empty<char>(),
+            AuraColors = Array.Empty<string>(),
+            AuraInterval = 999f,
+            ChargeGlyphs = Array.Empty<char>(),
+            ChargeColors = Array.Empty<string>(),
+            BeamColors = Array.Empty<string>(),
+            RingGlyphs = Array.Empty<char>(),
+            RingColors = Array.Empty<string>(),
+            ChainGlyphs = Array.Empty<char>(),
+            ChainColors = Array.Empty<string>(),
+            ColumnGlyphs = new[] { '#', '^', 'A' },
+            ColumnColors = new[] { "&w", "&y", "&Y" }
+        };
+
+        private static readonly FxThemeConfig WaterConfig = new FxThemeConfig
+        {
+            ProjectileGlyphs = Array.Empty<char>(),
+            ProjectileColors = Array.Empty<string>(),
+            TrailGlyph = '.',
+            TrailColor = "&b",
+            ProjectileStepTime = 0.04f,
+            BurstGlyphs = new[] { 'O', 'o', '.' },
+            BurstColors = new[] { "&B", "&C", "&Y" },
+            AuraGlyphs = Array.Empty<char>(),
+            AuraColors = Array.Empty<string>(),
+            AuraInterval = 999f,
+            ChargeGlyphs = Array.Empty<char>(),
+            ChargeColors = Array.Empty<string>(),
+            BeamColors = Array.Empty<string>(),
+            RingGlyphs = new[] { '~', '.' },
+            RingColors = new[] { "&b", "&B" },
+            ChainGlyphs = Array.Empty<char>(),
+            ChainColors = Array.Empty<string>(),
+            ColumnGlyphs = new[] { '~', '|', '|', '*' },
+            ColumnColors = new[] { "&b", "&B", "&C", "&Y" }
+        };
+
+        private static readonly FxThemeConfig HolyConfig = new FxThemeConfig
+        {
+            ProjectileGlyphs = Array.Empty<char>(),
+            ProjectileColors = Array.Empty<string>(),
+            TrailGlyph = '.',
+            TrailColor = "&Y",
+            ProjectileStepTime = 0.04f,
+            BurstGlyphs = new[] { '+', '*' },
+            BurstColors = new[] { "&Y", "&W" },
+            AuraGlyphs = new[] { '+', '*' },
+            AuraColors = new[] { "&Y", "&W" },
+            AuraInterval = 0.30f,
+            ChargeGlyphs = Array.Empty<char>(),
+            ChargeColors = Array.Empty<string>(),
+            BeamColors = Array.Empty<string>(),
+            RingGlyphs = Array.Empty<char>(),
+            RingColors = Array.Empty<string>(),
+            ChainGlyphs = Array.Empty<char>(),
+            ChainColors = Array.Empty<string>(),
+            ColumnGlyphs = new[] { '#', '+' },
+            ColumnColors = new[] { "&Y", "&Y" }
         };
     }
 }
