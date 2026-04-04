@@ -62,7 +62,8 @@ namespace CavesOfOoo.Core
                 SetConversation(elder, "Elder_Well_1");
 
             // 1 Merchant (always)
-            PlaceNPC(zone, factory, rng, openCells, "Merchant", settlementId);
+            Entity merchant = PlaceNPC(zone, factory, rng, openCells, "Merchant", settlementId);
+            StockMerchant(merchant, factory);
 
             // 0-1 Tinker (70% chance)
             if (rng.Next(100) < 70)
@@ -379,6 +380,30 @@ namespace CavesOfOoo.Core
                     continue;
 
                 zone.AddEntity(marker, mx, my);
+            }
+        }
+
+        private static readonly string[] MerchantRepairStock =
+        {
+            "SilverSand",
+            "FireClay",
+            "WardOil"
+        };
+
+        private void StockMerchant(Entity merchant, EntityFactory factory)
+        {
+            if (merchant == null)
+                return;
+
+            var inventory = merchant.GetPart<InventoryPart>();
+            if (inventory == null)
+                return;
+
+            for (int i = 0; i < MerchantRepairStock.Length; i++)
+            {
+                Entity item = factory.CreateEntity(MerchantRepairStock[i]);
+                if (item != null)
+                    inventory.AddObject(item);
             }
         }
 
