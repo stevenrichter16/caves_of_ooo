@@ -39,7 +39,7 @@ namespace CavesOfOoo.Rendering
         /// <summary>
         /// FOV radius in tiles from the player.
         /// </summary>
-        public int FovRadius = 10;
+        public int FovRadius = 999;
 
         /// <summary>
         /// Number of message log lines shown at the bottom of the screen.
