@@ -138,6 +138,14 @@ namespace CavesOfOoo
                 cameraFollow.CurrentZone = _zone;
                 cameraFollow.SnapToPlayer();
 
+                // Screen shake when the player takes damage
+                var shakeCamera = cameraFollow;
+                DamageFlashPart.OnPlayerDamaged = (amount) =>
+                {
+                    float intensity = amount >= 5 ? 0.25f : 0.12f;
+                    shakeCamera.Shake(intensity, 0.15f);
+                };
+
                 // Wire up input handler
                 Debug.Log("[Bootstrap] Step 9/9: Wiring input...");
                 var inputHandler = GetComponent<InputHandler>();

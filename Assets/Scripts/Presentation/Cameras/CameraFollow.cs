@@ -31,6 +31,10 @@ namespace CavesOfOoo.Rendering
         private Camera _camera;
         private bool _paused;
 
+        // Screen shake state
+        private float _shakeTimeRemaining;
+        private float _shakeIntensity;
+
         private void Awake()
         {
             _camera = GetComponent<Camera>();
@@ -106,10 +110,30 @@ namespace CavesOfOoo.Rendering
             HasOverrideTarget = false;
         }
 
+        /// <summary>
+        /// Trigger a screen shake effect. Intensity is the max pixel offset,
+        /// duration is in seconds.
+        /// </summary>
+        public void Shake(float intensity = 0.15f, float duration = 0.15f)
+        {
+            _shakeIntensity = intensity;
+            _shakeTimeRemaining = duration;
+        }
+
         private void LateUpdate()
         {
             if (_paused) return;
             FollowTrackedTarget();
+
+            // Apply screen shake offset after positioning
+            if (_shakeTimeRemaining > 0f)
+            {
+                float t = _shakeTimeRemaining; // use as a simple seed
+                float offsetX = (Mathf.PerlinNoise(t * 40f, 0f) - 0.5f) * 2f * _shakeIntensity;
+                float offsetY = (Mathf.PerlinNoise(0f, t * 40f) - 0.5f) * 2f * _shakeIntensity;
+                transform.position += new Vector3(offsetX, offsetY, 0f);
+                _shakeTimeRemaining -= Time.deltaTime;
+            }
         }
 
         private void FollowTrackedTarget()
