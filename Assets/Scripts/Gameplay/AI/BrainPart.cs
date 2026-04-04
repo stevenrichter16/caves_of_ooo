@@ -47,9 +47,16 @@ namespace CavesOfOoo.Core
         public void SetPersonallyHostile(Entity target)
         {
             if (target == null) return;
-            PersonalEnemies.Add(target);
+            bool wasNew = PersonalEnemies.Add(target);
             Target = target;
             InConversation = false;
+
+            if (wasNew && CurrentZone != null)
+            {
+                var myPos = CurrentZone.GetEntityPosition(ParentEntity);
+                if (myPos.x >= 0)
+                    AsciiFxBus.EmitParticle(CurrentZone, myPos.x, myPos.y - 1, '!', "&R", 0.25f);
+            }
         }
 
         public bool IsPersonallyHostileTo(Entity target)
@@ -95,7 +102,18 @@ namespace CavesOfOoo.Core
             // Scan for hostile target
             Entity newTarget = AIHelpers.FindNearestHostile(ParentEntity, CurrentZone, SightRadius);
             if (newTarget != null)
+            {
+                bool firstAggro = Target == null;
                 Target = newTarget;
+
+                // Aggro indicator: red ! above creature on first detection
+                if (firstAggro)
+                {
+                    var myPos = CurrentZone.GetEntityPosition(ParentEntity);
+                    if (myPos.x >= 0)
+                        AsciiFxBus.EmitParticle(CurrentZone, myPos.x, myPos.y - 1, '!', "&R", 0.25f);
+                }
+            }
 
             if (Target != null)
             {

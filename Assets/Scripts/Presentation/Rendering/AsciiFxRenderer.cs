@@ -28,6 +28,8 @@ namespace CavesOfOoo.Rendering
         private readonly List<RingWaveFxInstance> _ringWaves = new List<RingWaveFxInstance>();
         private readonly List<ChainArcFxInstance> _chainArcs = new List<ChainArcFxInstance>();
         private readonly List<ColumnRiseFxInstance> _columnRises = new List<ColumnRiseFxInstance>();
+        private readonly List<DustMoteFxInstance> _dustMotes = new List<DustMoteFxInstance>();
+        private const int MaxDustMotes = 2;
 
         private Zone _currentZone;
         private bool _hadVisibleFxLastFrame;
@@ -67,6 +69,7 @@ namespace CavesOfOoo.Rendering
             UpdateProjectiles(deltaTime);
             UpdateBursts(deltaTime);
             UpdateParticles(deltaTime);
+            UpdateDustMotes(deltaTime);
             Render();
             HasBlockingFx = ComputeHasBlockingFx();
         }
@@ -82,6 +85,7 @@ namespace CavesOfOoo.Rendering
             _ringWaves.Clear();
             _chainArcs.Clear();
             _columnRises.Clear();
+            _dustMotes.Clear();
             HasBlockingFx = false;
             _hadVisibleFxLastFrame = false;
             _tilemap?.ClearAllTiles();
@@ -203,6 +207,20 @@ namespace CavesOfOoo.Rendering
                                 DelayRemaining = request.Delay
                             });
                         }
+                        break;
+
+                    case AsciiFxRequestType.Particle:
+                        _particles.Add(new ParticleFxInstance
+                        {
+                            X = request.X,
+                            Y = request.Y,
+                            Glyph = request.Glyph,
+                            ColorString = request.ColorString,
+                            Remaining = request.Lifetime,
+                            DY = request.DY,
+                            MoveInterval = request.MoveInterval,
+                            DelayRemaining = request.Delay
+                        });
                         break;
 
                     case AsciiFxRequestType.ColumnRise:
@@ -373,6 +391,48 @@ namespace CavesOfOoo.Rendering
             }
         }
 
+        public void SpawnDustMote(int x, int y)
+        {
+            if (_dustMotes.Count >= MaxDustMotes)
+                return;
+
+            // Random slow drift direction
+            float angle = (float)(_rng.NextDouble() * 2.0 * System.Math.PI);
+            float speed = 0.3f + (float)_rng.NextDouble() * 0.2f;
+            _dustMotes.Add(new DustMoteFxInstance
+            {
+                X = x + (float)_rng.NextDouble(),
+                Y = y + (float)_rng.NextDouble(),
+                DX = (float)System.Math.Cos(angle) * speed,
+                DY = (float)System.Math.Sin(angle) * speed,
+                Lifetime = 3f + (float)_rng.NextDouble() * 2f,
+                Elapsed = 0f
+            });
+        }
+
+        private void UpdateDustMotes(float deltaTime)
+        {
+            for (int i = _dustMotes.Count - 1; i >= 0; i--)
+            {
+                DustMoteFxInstance mote = _dustMotes[i];
+                mote.Elapsed += deltaTime;
+                if (mote.Elapsed >= mote.Lifetime)
+                {
+                    _dustMotes.RemoveAt(i);
+                    continue;
+                }
+                mote.X += mote.DX * deltaTime;
+                mote.Y += mote.DY * deltaTime;
+            }
+        }
+
+        private void RenderDustMote(DustMoteFxInstance mote)
+        {
+            int rx = Mathf.RoundToInt(mote.X);
+            int ry = Mathf.RoundToInt(mote.Y);
+            RenderGlyphAt(rx, ry, '\u00B7', "&K");
+        }
+
         private void UpdateColumnRises(float deltaTime)
         {
             for (int i = _columnRises.Count - 1; i >= 0; i--)
@@ -452,6 +512,14 @@ namespace CavesOfOoo.Rendering
             for (int i = _particles.Count - 1; i >= 0; i--)
             {
                 ParticleFxInstance particle = _particles[i];
+
+                // Handle delay before particle becomes active
+                if (particle.DelayRemaining > 0f)
+                {
+                    particle.DelayRemaining -= deltaTime;
+                    continue;
+                }
+
                 particle.Remaining -= deltaTime;
                 if (particle.Remaining <= 0f)
                 {
@@ -479,7 +547,8 @@ namespace CavesOfOoo.Rendering
 
             bool hasVisibleFx = _projectiles.Count > 0 || _bursts.Count > 0 || _particles.Count > 0 ||
                                 _beams.Count > 0 || _chargeOrbits.Count > 0 || _ringWaves.Count > 0 ||
-                                _chainArcs.Count > 0 || _columnRises.Count > 0;
+                                _chainArcs.Count > 0 || _columnRises.Count > 0 ||
+                                _dustMotes.Count > 0;
             if (!hasVisibleFx && !_hadVisibleFxLastFrame)
                 return;
 
@@ -487,6 +556,9 @@ namespace CavesOfOoo.Rendering
 
             for (int i = 0; i < _particles.Count; i++)
                 RenderParticle(_particles[i]);
+
+            for (int i = 0; i < _dustMotes.Count; i++)
+                RenderDustMote(_dustMotes[i]);
 
             for (int i = 0; i < _ringWaves.Count; i++)
                 RenderRingWave(_ringWaves[i]);
@@ -673,6 +745,8 @@ namespace CavesOfOoo.Rendering
 
         private void RenderParticle(ParticleFxInstance particle)
         {
+            if (particle.DelayRemaining > 0f)
+                return;
             RenderGlyphAt(particle.X, particle.Y, particle.Glyph, particle.ColorString);
         }
 
@@ -897,6 +971,7 @@ namespace CavesOfOoo.Rendering
             public char Glyph;
             public string ColorString;
             public float Remaining;
+            public float DelayRemaining;
             // Rising particle support
             public int DY;
             public float MoveInterval;
@@ -955,6 +1030,13 @@ namespace CavesOfOoo.Rendering
             public float HopDuration;
             public bool BlocksTurnAdvance;
             public float DelayRemaining;
+        }
+
+        private class DustMoteFxInstance
+        {
+            public float X, Y;
+            public float DX, DY;
+            public float Elapsed, Lifetime;
         }
 
         private class ColumnRiseFxInstance

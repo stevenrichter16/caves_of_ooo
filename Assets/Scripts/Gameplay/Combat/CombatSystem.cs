@@ -134,6 +134,11 @@ namespace CavesOfOoo.Core
             if (!naturalTwenty && totalHit < dv)
             {
                 MessageLog.Add($"{attackerName}{srcTag} misses {defenderName}!");
+
+                // Miss indicator: brief gray dash at defender position
+                Cell defenderCell = zone.GetEntityCell(defender);
+                if (defenderCell != null)
+                    AsciiFxBus.EmitParticle(zone, defenderCell.X, defenderCell.Y, '-', "&y", 0.15f);
                 return;
             }
 
@@ -179,6 +184,11 @@ namespace CavesOfOoo.Core
 
             // Apply damage
             ApplyDamage(defender, totalDamage, attacker, zone);
+
+            // Floating damage number
+            Cell hitCell = zone.GetEntityCell(defender);
+            if (hitCell != null)
+                AsciiFxBus.EmitFloatingNumber(zone, hitCell.X, hitCell.Y, totalDamage, "&R");
 
             if (hpAfter > 0)
             {

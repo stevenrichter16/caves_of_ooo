@@ -34,7 +34,8 @@ namespace CavesOfOoo.Core
         ChargeOrbit = 5,
         RingWave = 6,
         ChainArc = 7,
-        ColumnRise = 8
+        ColumnRise = 8,
+        Particle = 9
     }
 
     public class AsciiFxRequest
@@ -57,6 +58,10 @@ namespace CavesOfOoo.Core
         public float Delay;
         public int Height;
         public float LingerDuration;
+        public char Glyph;
+        public string ColorString;
+        public float Lifetime;
+        public float MoveInterval;
     }
 
     /// <summary>
@@ -254,6 +259,59 @@ namespace CavesOfOoo.Core
                 BlocksTurnAdvance = blocksTurnAdvance,
                 Delay = delay < 0f ? 0f : delay
             });
+        }
+
+        public static void EmitParticle(
+            Zone zone,
+            int x,
+            int y,
+            char glyph,
+            string colorString,
+            float lifetime,
+            int dy = 0,
+            float moveInterval = 0f,
+            float delay = 0f)
+        {
+            if (zone == null || !zone.InBounds(x, y) || lifetime <= 0f)
+                return;
+
+            PendingRequests.Enqueue(new AsciiFxRequest
+            {
+                Type = AsciiFxRequestType.Particle,
+                Zone = zone,
+                X = x,
+                Y = y,
+                Glyph = glyph,
+                ColorString = colorString,
+                Lifetime = lifetime,
+                DY = dy,
+                MoveInterval = moveInterval,
+                Delay = delay < 0f ? 0f : delay
+            });
+        }
+
+        public static void EmitFloatingNumber(
+            Zone zone,
+            int x,
+            int y,
+            int number,
+            string colorString,
+            float delay = 0f)
+        {
+            if (zone == null || number <= 0)
+                return;
+
+            string digits = number.ToString();
+            int startX = x - (digits.Length - 1) / 2;
+
+            for (int i = 0; i < digits.Length; i++)
+            {
+                int px = startX + i;
+                if (!zone.InBounds(px, y)) continue;
+
+                EmitParticle(zone, px, y - 1, digits[i], colorString,
+                    lifetime: 0.6f, dy: -1, moveInterval: 0.15f, delay: delay);
+            }
         }
 
         public static void StartAura(Zone zone, Entity anchor, AsciiFxTheme theme)

@@ -73,7 +73,14 @@ namespace CavesOfOoo.Core
             var pipeline = GetPipelineForZone(zoneID);
             bool success = pipeline.Generate(zone, Factory, rng);
 
+            if (success)
+                OnZoneGenerated(zone, zoneID);
+
             return success ? zone : null;
+        }
+
+        protected virtual void OnZoneGenerated(Zone zone, string zoneID)
+        {
         }
 
         /// <summary>

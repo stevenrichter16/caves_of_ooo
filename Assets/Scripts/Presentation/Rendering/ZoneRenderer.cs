@@ -66,6 +66,8 @@ namespace CavesOfOoo.Rendering
         private bool _dirty = true;
         private int _lastMessageCount = -1;
         private float _ambientTimer;
+        private float _dustMoteSpawnTimer;
+        private const float DustMoteSpawnInterval = 3.5f;
         private LightMap _lightMap;
         private readonly HashSet<string> _loggedRenderIssues = new HashSet<string>();
         private WorldCursorState _worldCursorState;
@@ -680,6 +682,25 @@ namespace CavesOfOoo.Rendering
                         Vector3Int tilePos = new Vector3Int(x, Zone.Height - 1 - y, 0);
                         _tilemap.SetTileFlags(tilePos, TileFlags.None);
                         _tilemap.SetColor(tilePos, WaterColors[colorIndex]);
+                    }
+                }
+            }
+
+            // Dust motes: spawn occasional faint particles in lit areas
+            _dustMoteSpawnTimer += deltaTime;
+            if (_dustMoteSpawnTimer >= DustMoteSpawnInterval && _asciiFxRenderer != null)
+            {
+                _dustMoteSpawnTimer = 0f;
+                for (int attempt = 0; attempt < 10; attempt++)
+                {
+                    int rx = UnityEngine.Random.Range(0, Zone.Width);
+                    int ry = UnityEngine.Random.Range(0, Zone.Height);
+                    Cell dustCell = CurrentZone.GetCell(rx, ry);
+                    if (dustCell != null && dustCell.IsVisible && !dustCell.IsWall() &&
+                        _lightMap != null && _lightMap.GetBrightness(rx, ry) > _lightMap.AmbientLevel)
+                    {
+                        _asciiFxRenderer.SpawnDustMote(rx, ry);
+                        break;
                     }
                 }
             }

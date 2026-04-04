@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace CavesOfOoo.Core
 {
@@ -13,6 +14,12 @@ namespace CavesOfOoo.Core
         public const int Height = 25;
 
         public string ZoneID;
+
+        /// <summary>
+        /// Biome-based ambient color tint applied by the lighting system.
+        /// Subtle shift: cave=cool blue, desert=warm amber, etc.
+        /// </summary>
+        public Color AmbientTint = Color.white;
 
         /// <summary>
         /// The grid of cells, stored as [x, y].

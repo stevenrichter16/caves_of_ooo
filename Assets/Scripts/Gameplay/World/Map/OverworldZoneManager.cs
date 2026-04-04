@@ -1,4 +1,5 @@
 using CavesOfOoo.Data;
+using UnityEngine;
 
 namespace CavesOfOoo.Core
 {
@@ -167,6 +168,39 @@ namespace CavesOfOoo.Core
         {
             _turnProvider = turnProvider;
             SettlementManager.SetCurrentTurnProvider(turnProvider);
+        }
+
+        protected override void OnZoneGenerated(Zone zone, string zoneID)
+        {
+            if (!WorldMap.IsOverworldZoneID(zoneID))
+                return;
+
+            var (wx, wy, wz) = WorldMap.FromZoneID(zoneID);
+
+            if (wz > 0)
+            {
+                // Underground: deeper = cooler blue tint
+                float depth = Mathf.Min(wz * 0.03f, 0.15f);
+                zone.AmbientTint = new Color(0.85f - depth, 0.9f - depth * 0.5f, 1f);
+                return;
+            }
+
+            if (!WorldMap.InBounds(wx, wy))
+                return;
+
+            zone.AmbientTint = GetBiomeTint(WorldMap.GetBiome(wx, wy));
+        }
+
+        private static Color GetBiomeTint(BiomeType biome)
+        {
+            switch (biome)
+            {
+                case BiomeType.Cave:    return new Color(0.85f, 0.9f, 1.0f);
+                case BiomeType.Desert:  return new Color(1.0f, 0.93f, 0.8f);
+                case BiomeType.Jungle:  return new Color(0.85f, 1.0f, 0.85f);
+                case BiomeType.Ruins:   return new Color(0.9f, 0.85f, 0.95f);
+                default:                return Color.white;
+            }
         }
 
         protected override void PrepareZoneForAccess(string zoneID)

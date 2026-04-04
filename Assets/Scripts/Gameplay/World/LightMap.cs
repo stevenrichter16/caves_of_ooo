@@ -31,13 +31,14 @@ namespace CavesOfOoo.Core
         /// </summary>
         public void Compute(Zone zone)
         {
-            // Reset to ambient
+            // Reset to ambient with biome tint
+            Color baseTint = zone.AmbientTint;
             for (int x = 0; x < Zone.Width; x++)
             {
                 for (int y = 0; y < Zone.Height; y++)
                 {
                     _brightness[x, y] = AmbientLevel;
-                    _tint[x, y] = Color.white;
+                    _tint[x, y] = baseTint;
                 }
             }
 
