@@ -65,6 +65,7 @@ namespace CavesOfOoo.Rendering
         private LookOverlayRenderer _lookOverlayRenderer;
         private bool _dirty = true;
         private int _lastMessageCount = -1;
+        private float _ambientTimer;
         private readonly HashSet<string> _loggedRenderIssues = new HashSet<string>();
         private WorldCursorState _worldCursorState;
         private Entity _cursorPlayer;
@@ -199,6 +200,8 @@ namespace CavesOfOoo.Rendering
                 RenderZone();
                 _dirty = false;
             }
+
+            UpdateAmbientAnimations(Time.deltaTime);
 
             RenderMessages();
             _lastMessageCount = MessageLog.Count;
@@ -611,6 +614,54 @@ namespace CavesOfOoo.Rendering
             minY = visibleMinY;
             maxY = visibleMaxY;
             return true;
+        }
+
+        // Water color cycle: 3 shades of blue/cyan
+        private static readonly Color[] WaterColors =
+        {
+            QudColorParser.DarkBlue,
+            QudColorParser.DarkCyan,
+            QudColorParser.BrightBlue
+        };
+
+        /// <summary>
+        /// Animate tiles that should shimmer or flicker (water, torches).
+        /// Runs every frame, but only updates colors on the existing tilemap —
+        /// doesn't re-set tiles.
+        /// </summary>
+        private void UpdateAmbientAnimations(float deltaTime)
+        {
+            if (CurrentZone == null || _tilemap == null) return;
+
+            _ambientTimer += deltaTime;
+
+            for (int x = 0; x < Zone.Width; x++)
+            {
+                for (int y = 0; y < Zone.Height; y++)
+                {
+                    Cell cell = CurrentZone.GetCell(x, y);
+                    if (cell == null || !cell.IsVisible) continue;
+
+                    Entity top = cell.GetTopVisibleObject();
+                    if (top == null) continue;
+
+                    var render = top.GetPart<RenderPart>();
+                    if (render == null) continue;
+
+                    // Water shimmer: cycle color based on position + time
+                    if (render.RenderString == "~")
+                    {
+                        // Different phase per cell so they don't all sync
+                        float phase = _ambientTimer * 2f + x * 0.7f + y * 1.3f;
+                        int colorIndex = ((int)phase) % WaterColors.Length;
+                        if (colorIndex < 0) colorIndex += WaterColors.Length;
+
+                        Vector3Int tilePos = new Vector3Int(x, Zone.Height - 1 - y, 0);
+                        _tilemap.SetTileFlags(tilePos, TileFlags.None);
+                        _tilemap.SetColor(tilePos, WaterColors[colorIndex]);
+                    }
+                }
+            }
         }
 
         private bool HasCameraViewChanged(Camera camera)
