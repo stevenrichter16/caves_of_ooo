@@ -114,6 +114,7 @@ namespace CavesOfOoo
             if (ZoneRenderer != null)
             {
                 ZoneRenderer.SetZone(_zone);
+                ZoneRenderer.PlayerEntity = _player;
                 SettlementRuntime.ZoneDirtyCallback = ZoneRenderer.MarkDirty;
                 SettlementRuntime.ActiveZone = _zone;
                 Debug.Log("[Bootstrap] ZoneRenderer wired successfully");

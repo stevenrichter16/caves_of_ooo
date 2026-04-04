@@ -32,6 +32,16 @@ namespace CavesOfOoo.Rendering
         public bool Paused;
 
         /// <summary>
+        /// The player entity. Used for field-of-view calculations.
+        /// </summary>
+        public Entity PlayerEntity;
+
+        /// <summary>
+        /// FOV radius in tiles from the player.
+        /// </summary>
+        public int FovRadius = 10;
+
+        /// <summary>
         /// Number of message log lines shown at the bottom of the screen.
         /// </summary>
         public int MessageLineCount = 4;
@@ -216,6 +226,14 @@ namespace CavesOfOoo.Rendering
             _tilemap.ClearAllTiles();
             _bgTilemap?.ClearAllTiles();
 
+            // Compute field of view from the player's position
+            if (PlayerEntity != null)
+            {
+                var playerCell = CurrentZone.GetEntityCell(PlayerEntity);
+                if (playerCell != null)
+                    FieldOfView.Compute(CurrentZone, playerCell.X, playerCell.Y, FovRadius);
+            }
+
             for (int x = 0; x < Zone.Width; x++)
             {
                 for (int y = 0; y < Zone.Height; y++)
@@ -225,6 +243,8 @@ namespace CavesOfOoo.Rendering
             }
         }
 
+        private static readonly Color RememberedColor = new Color(0.2f, 0.2f, 0.2f);
+
         private void RenderCell(int x, int y)
         {
             Cell cell = CurrentZone.GetCell(x, y);
@@ -233,15 +253,79 @@ namespace CavesOfOoo.Rendering
             // Unity tilemap Y is inverted relative to our grid (0=bottom in Unity, 0=top in roguelike)
             Vector3Int tilePos = new Vector3Int(x, Zone.Height - 1 - y, 0);
 
-            Entity topEntity = cell.GetTopVisibleObject();
-            if (topEntity == null)
+            // Fog of war: unexplored cells are completely black
+            if (!cell.Explored)
             {
-                // Truly empty cells stay visually blank. Open ground should come from
-                // explicit terrain entities, not from a renderer fallback glyph.
                 Tile emptyTile = CP437TilesetGenerator.GetTile(AsciiWorldRenderPolicy.EmptyGlyph);
                 _tilemap.SetTile(tilePos, emptyTile);
                 _tilemap.SetTileFlags(tilePos, TileFlags.None);
                 _tilemap.SetColor(tilePos, BackgroundColor);
+                return;
+            }
+
+            Entity topEntity = cell.GetTopVisibleObject();
+            if (topEntity == null)
+            {
+                Tile emptyTile = CP437TilesetGenerator.GetTile(AsciiWorldRenderPolicy.EmptyGlyph);
+                _tilemap.SetTile(tilePos, emptyTile);
+                _tilemap.SetTileFlags(tilePos, TileFlags.None);
+                _tilemap.SetColor(tilePos, BackgroundColor);
+                return;
+            }
+
+            // Remembered but not visible: show terrain/walls in dark gray, hide creatures/items
+            if (!cell.IsVisible)
+            {
+                // Only show terrain (layer 0) in remembered cells
+                Entity terrainEntity = null;
+                for (int i = 0; i < cell.Objects.Count; i++)
+                {
+                    var render = cell.Objects[i].GetPart<RenderPart>();
+                    if (render != null && render.Visible && render.RenderLayer <= 1)
+                    {
+                        terrainEntity = cell.Objects[i];
+                        break;
+                    }
+                }
+
+                if (terrainEntity != null)
+                {
+                    var render = terrainEntity.GetPart<RenderPart>();
+                    char glyph;
+                    if (!string.IsNullOrEmpty(render.GlyphVariants))
+                        glyph = render.ResolveGlyph(x, y);
+                    else
+                        glyph = AsciiWorldRenderPolicy.GetGlyphOrFallback(render, out _);
+
+                    Tile tile = CP437TilesetGenerator.GetTile(glyph);
+                    if (tile != null)
+                    {
+                        _tilemap.SetTile(tilePos, tile);
+                        _tilemap.SetTileFlags(tilePos, TileFlags.None);
+                        _tilemap.SetColor(tilePos, RememberedColor);
+
+                        // Dim background too
+                        if (_bgTilemap != null && !string.IsNullOrEmpty(render.BackgroundColor))
+                        {
+                            Color bgColor = QudColorParser.ParseBackground(render.BackgroundColor);
+                            if (bgColor.a > 0f)
+                            {
+                                Color dimBg = QudColorParser.DarkenForBackground(bgColor, 0.08f);
+                                Tile bgTile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+                                _bgTilemap.SetTile(tilePos, bgTile);
+                                _bgTilemap.SetTileFlags(tilePos, TileFlags.None);
+                                _bgTilemap.SetColor(tilePos, dimBg);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    Tile emptyTile = CP437TilesetGenerator.GetTile(AsciiWorldRenderPolicy.EmptyGlyph);
+                    _tilemap.SetTile(tilePos, emptyTile);
+                    _tilemap.SetTileFlags(tilePos, TileFlags.None);
+                    _tilemap.SetColor(tilePos, BackgroundColor);
+                }
                 return;
             }
 

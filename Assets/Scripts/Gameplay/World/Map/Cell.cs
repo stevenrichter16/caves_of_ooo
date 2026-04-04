@@ -14,6 +14,17 @@ namespace CavesOfOoo.Core
         public Zone ParentZone;
 
         /// <summary>
+        /// True if this cell has ever been in the player's field of view.
+        /// </summary>
+        public bool Explored;
+
+        /// <summary>
+        /// True if this cell is currently visible to the player.
+        /// Reset each turn by the FOV system.
+        /// </summary>
+        public bool IsVisible;
+
+        /// <summary>
         /// All entities at this position, ordered by render layer (lowest first).
         /// </summary>
         public List<Entity> Objects = new List<Entity>(4);
