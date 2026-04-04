@@ -15,7 +15,10 @@ namespace CavesOfOoo.Core
         Campfire = 8,
         OvenBroken = 9,
         OvenWorking = 10,
-        OvenImproved = 11
+        OvenImproved = 11,
+        LanternDark = 12,
+        LanternLit = 13,
+        LanternBright = 14
     }
 
     public enum AsciiFxRequestType

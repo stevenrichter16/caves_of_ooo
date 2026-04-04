@@ -2262,6 +2262,91 @@
       "Tags": [
         { "Key": "Tier", "Value": "1" }
       ]
+    },
+    {
+      "Name": "WatchLantern",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "watch lantern" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] }
+      ],
+      "Tags": [
+        { "Key": "Solid", "Value": "" }
+      ]
+    },
+    {
+      "Name": "LanternGroundMarker",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "" },
+          { "Key": "RenderString", "Value": "." },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "0" }
+        ]}
+      ]
+    },
+    {
+      "Name": "KindleRiteGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Kindle Rite Grimoire" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "KnowledgeProperty", "Value": "KnowsKindleRite" },
+          { "Key": "LearnMessage", "Value": "You trace the warding sigils with your eyes. The kindle rite sparks to life in your memory." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know this rite." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "50" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "LanternOilRecipe",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "lantern oil recipe" },
+          { "Key": "RenderString", "Value": "?" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "20" }] }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "WardOil",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "ward oil" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "5" }] }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
     }
   ]
 }

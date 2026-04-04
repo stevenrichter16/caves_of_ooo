@@ -10,6 +10,10 @@ namespace CavesOfOoo.Core
         public const string OvenBuildersGuideBlueprint = "OvenBuildersGuide";
         public const string FireClayBlueprint = "FireClay";
 
+        public const int KindleRelapseTurns = 80;
+        public const string LanternOilRecipeBlueprint = "LanternOilRecipe";
+        public const string WardOilBlueprint = "WardOil";
+
         public static string GetMethodFailureMessage(RepairMethodId method)
         {
             switch (method)
@@ -26,6 +30,12 @@ namespace CavesOfOoo.Core
                     return "You'll need the oven builder's guide and some fire clay to rebuild the firebox.";
                 case RepairMethodId.TeachBaker:
                     return "The oven needs a stable repair before you can teach the farmer to maintain it.";
+                case RepairMethodId.KindleRite:
+                    return "You need to know the kindle rite to relight the lantern.";
+                case RepairMethodId.LanternReforge:
+                    return "You'll need the lantern oil recipe and some ward oil to reforge the lantern.";
+                case RepairMethodId.TeachWarden:
+                    return "The lantern needs a stable repair before you can teach the warden to maintain it.";
                 default:
                     return "That repair method is not available.";
             }

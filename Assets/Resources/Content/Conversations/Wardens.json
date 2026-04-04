@@ -1,6 +1,200 @@
 {
   "Conversations": [
     {
+      "ID": "Warden_Lantern_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Halt, traveler. I am the warden of this village. The watch lantern is out and the nights have gotten bold. What do you need?",
+          "Choices": [
+            {
+              "Text": "What happened to the watch lantern?",
+              "Target": "LanternTrouble",
+              "Predicates": [{ "Key": "IfSettlementSiteStage", "Value": "VillageLantern:Fouled" }]
+            },
+            {
+              "Text": "I know a rite that can relight the lantern.",
+              "Target": "KindleRite",
+              "Predicates": [
+                { "Key": "IfHaveProperty", "Value": "KnowsKindleRite" },
+                { "Key": "IfSettlementSiteStage", "Value": "VillageLantern:Fouled" }
+              ]
+            },
+            {
+              "Text": "I can rekindle the lantern again.",
+              "Target": "KindleRite",
+              "Predicates": [
+                { "Key": "IfHaveProperty", "Value": "KnowsKindleRite" },
+                { "Key": "IfSettlementSiteStage", "Value": "VillageLantern:TemporarilyPurified" }
+              ]
+            },
+            {
+              "Text": "I have the oil recipe and ward oil to reforge the lantern properly.",
+              "Target": "LanternReforge",
+              "Predicates": [
+                { "Key": "IfHaveItem", "Value": "LanternOilRecipe" },
+                { "Key": "IfHaveItem", "Value": "WardOil" }
+              ]
+            },
+            {
+              "Text": "Let me teach you how to maintain the lantern yourself.",
+              "Target": "TeachWarden",
+              "Predicates": [
+                { "Key": "IfSettlementSiteStage", "Value": "VillageLantern:StableRepair" },
+                { "Key": "IfHaveItemWithTag", "Value": "GrimoireCopy" }
+              ]
+            },
+            {
+              "Text": "How's the lantern these days?",
+              "Target": "LanternGood",
+              "Predicates": [{ "Key": "IfSettlementSiteStage", "Value": "VillageLantern:ImprovedWithCaretaker" }]
+            },
+            {
+              "Text": "Are there any threats nearby?",
+              "Target": "Threats"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "LanternTrouble",
+          "Text": "The ward oil ran dry three weeks back. Without it the flame won't catch — it's not ordinary oil, it's mixed with cave-moss extract and something the old warden called 'bright salt.' The lantern kept the night creatures at a distance. Now they circle closer every evening.",
+          "Choices": [
+            {
+              "Text": "The elder might know where to find a recipe.",
+              "Target": "Start"
+            },
+            {
+              "Text": "I'll look into it.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "KindleRite",
+          "Text": "You know a kindle rite? That old warden magic? If you can coax a flame from that dead wick, even for a while, the village will sleep safer tonight.",
+          "Choices": [
+            {
+              "Text": "I'll kindle it now.",
+              "Target": "AfterKindle",
+              "Actions": [{ "Key": "ResolveSettlementSite", "Value": "VillageLantern:KindleRite" }]
+            },
+            {
+              "Text": "Not yet.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AfterKindle",
+          "Text": "Light! Faint, but light. I can see the tree line again. It won't last — I can tell by how the flame leans — but it's more than we've had in weeks. Thank you.",
+          "Choices": [
+            {
+              "Text": "It's temporary. I'll find a way to make it permanent.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "LanternReforge",
+          "Text": "You have the recipe and the oil? Then let's not waste another dark night. I'll hold the housing open while you work.",
+          "Choices": [
+            {
+              "Text": "Let's reforge the lantern.",
+              "Target": "AfterReforge",
+              "Actions": [{ "Key": "ResolveSettlementSite", "Value": "VillageLantern:LanternReforge" }]
+            },
+            {
+              "Text": "Not yet.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AfterReforge",
+          "Text": "That light is steady as sunrise. The creatures won't dare come close with that burning. You've given this village its nights back.",
+          "Choices": [
+            {
+              "Text": "Glad to help.",
+              "Target": "Start",
+              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "Villagers:Player:10" }]
+            }
+          ]
+        },
+        {
+          "ID": "TeachWarden",
+          "Text": "You want to teach me the old warden's craft? I've been guarding this village with a sword and a sharp eye, but I always wished I could do more than just watch the dark. If there's a way to keep this light burning, I'll learn every word.",
+          "Choices": [
+            {
+              "Text": "Here — this copy explains the oil mixture and wick trimming. Study it well.",
+              "Target": "AfterTeachWarden",
+              "Actions": [
+                { "Key": "ResolveSettlementSite", "Value": "VillageLantern:TeachWarden" },
+                { "Key": "TakeItemWithTag", "Value": "GrimoireCopy" }
+              ]
+            },
+            {
+              "Text": "Not right now.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AfterTeachWarden",
+          "Text": "Oil ratios, wick trimming, the monthly re-warding... I can do this. From now on this lantern stays lit. You've made me more than a sword-arm — you've made me a true warden.",
+          "Choices": [
+            {
+              "Text": "The village is in good hands.",
+              "Target": "End",
+              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "Villagers:Player:15" }]
+            }
+          ]
+        },
+        {
+          "ID": "LanternGood",
+          "Text": "Burning bright every night, just as you showed me. Haven't seen a creature within bowshot of the village since. The children play outside after dark again.",
+          "Choices": [
+            {
+              "Text": "That's good to hear.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Threats",
+          "Text": "The usual — beasts from the wilds, bandits on the roads. Lately the creatures have been bolder. Something's stirring them up. I've doubled my patrols, but one warden can only do so much.",
+          "Choices": [
+            {
+              "Text": "I could help deal with some of those threats.",
+              "Target": "OfferHelp"
+            },
+            {
+              "Text": "Stay vigilant, warden.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "OfferHelp",
+          "Text": "A willing blade is always welcome. Clear out some of the beasts near the village and you'll have our gratitude — and maybe a reward from the elder.",
+          "Choices": [
+            {
+              "Text": "Consider it done.",
+              "Target": "End",
+              "Actions": [{ "Key": "AddMessage", "Value": "The warden nods with respect." }]
+            },
+            {
+              "Text": "I'll see what I can do.",
+              "Target": "Start"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "ID": "Warden_1",
       "Nodes": [
         {

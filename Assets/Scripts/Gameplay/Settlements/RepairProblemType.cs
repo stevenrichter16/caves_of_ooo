@@ -5,6 +5,7 @@ namespace CavesOfOoo.Core
         None,
         FouledWater,
         HeatFailure,
-        IrrigationBreak
+        IrrigationBreak,
+        LightFailure
     }
 }

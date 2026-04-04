@@ -8,6 +8,9 @@ namespace CavesOfOoo.Core
         TeachCaretaker,
         MendingRite,
         OvenRebuild,
-        TeachBaker
+        TeachBaker,
+        KindleRite,
+        LanternReforge,
+        TeachWarden
     }
 }

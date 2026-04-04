@@ -79,9 +79,13 @@ namespace CavesOfOoo.Core
                     site.ResolvedByMethod = RepairMethodId.None;
                     site.RelapseAtTurn = null;
                     site.ResolvedAtTurn = -1;
-                    string relapseMsg = site.SiteType == RepairableSiteType.HeatStone
-                        ? "The oven's firebox has cracked open again while you were away."
-                        : "The village well has gone bitter again while you were away.";
+                    string relapseMsg;
+                    if (site.SiteType == RepairableSiteType.HeatStone)
+                        relapseMsg = "The oven's firebox has cracked open again while you were away.";
+                    else if (site.SiteType == RepairableSiteType.LightBeacon)
+                        relapseMsg = "The watch lantern has guttered out again while you were away.";
+                    else
+                        relapseMsg = "The village well has gone bitter again while you were away.";
                     state.AddPendingMessage(relapseMsg);
                     changed = true;
                     RaiseSiteChanged(settlementId, site);
@@ -212,6 +216,58 @@ namespace CavesOfOoo.Core
                     MessageLog.AddAnnouncement("You teach the farmer how to read the firebox for stress fractures and re-clay before they spread.");
                     break;
 
+                case RepairMethodId.KindleRite:
+                    if (!KnowsKindleRite(player))
+                    {
+                        MessageLog.Add(SettlementRepairDefinitions.GetMethodFailureMessage(method));
+                        return false;
+                    }
+
+                    site.Stage = RepairStage.TemporarilyPurified;
+                    site.OutcomeTier = RepairOutcomeTier.Temporary;
+                    site.ResolvedByMethod = method;
+                    site.ResolvedAtTurn = GetCurrentTurn();
+                    site.RelapseAtTurn = site.ResolvedAtTurn + SettlementRepairDefinitions.KindleRelapseTurns;
+                    MessageLog.AddAnnouncement("You speak the kindle rite and the lantern flares back to life, but the ward oil is nearly spent.");
+                    break;
+
+                case RepairMethodId.LanternReforge:
+                    if (site.Stage == RepairStage.StableRepair || site.Stage == RepairStage.ImprovedWithCaretaker)
+                    {
+                        MessageLog.Add("The lantern is already properly reforged.");
+                        return false;
+                    }
+
+                    if (!HasInventoryItem(player, SettlementRepairDefinitions.LanternOilRecipeBlueprint)
+                        || !ConsumeInventoryItem(player, SettlementRepairDefinitions.WardOilBlueprint))
+                    {
+                        MessageLog.Add(SettlementRepairDefinitions.GetMethodFailureMessage(method));
+                        return false;
+                    }
+
+                    site.Stage = RepairStage.StableRepair;
+                    site.OutcomeTier = RepairOutcomeTier.Stable;
+                    site.ResolvedByMethod = method;
+                    site.ResolvedAtTurn = GetCurrentTurn();
+                    site.RelapseAtTurn = null;
+                    MessageLog.AddAnnouncement("You fill the reservoir with ward oil and reseal the lantern housing. Steady light pushes back the dark.");
+                    break;
+
+                case RepairMethodId.TeachWarden:
+                    if (site.Stage != RepairStage.StableRepair)
+                    {
+                        MessageLog.Add(SettlementRepairDefinitions.GetMethodFailureMessage(method));
+                        return false;
+                    }
+
+                    site.Stage = RepairStage.ImprovedWithCaretaker;
+                    site.OutcomeTier = RepairOutcomeTier.Improved;
+                    site.ResolvedByMethod = method;
+                    site.ResolvedAtTurn = GetCurrentTurn();
+                    site.RelapseAtTurn = null;
+                    MessageLog.AddAnnouncement("You teach the warden how to mix ward oil and trim the wick. The lantern will burn through any night.");
+                    break;
+
                 default:
                     MessageLog.Add(SettlementRepairDefinitions.GetMethodFailureMessage(method));
                     return false;
@@ -293,6 +349,10 @@ namespace CavesOfOoo.Core
             RepairableSiteState oven = state.GetSite(SettlementSiteDefinitions.VillageOvenSiteId);
             bool improvedOven = oven != null && oven.Stage == RepairStage.ImprovedWithCaretaker;
             state.SetCondition(SettlementSiteDefinitions.ImprovedOvenCondition, improvedOven);
+
+            RepairableSiteState lantern = state.GetSite(SettlementSiteDefinitions.VillageLanternSiteId);
+            bool improvedLantern = lantern != null && lantern.Stage == RepairStage.ImprovedWithCaretaker;
+            state.SetCondition(SettlementSiteDefinitions.ImprovedLanternCondition, improvedLantern);
         }
 
         public int GetCurrentTurn()
@@ -315,6 +375,12 @@ namespace CavesOfOoo.Core
         {
             return player.Properties.ContainsKey(SettlementSiteDefinitions.OvenKnowledgeProperty)
                 || player.HasTag(SettlementSiteDefinitions.OvenKnowledgeProperty);
+        }
+
+        private static bool KnowsKindleRite(Entity player)
+        {
+            return player.Properties.ContainsKey(SettlementSiteDefinitions.LanternKnowledgeProperty)
+                || player.HasTag(SettlementSiteDefinitions.LanternKnowledgeProperty);
         }
 
         private static bool HasInventoryItem(Entity player, string blueprint)

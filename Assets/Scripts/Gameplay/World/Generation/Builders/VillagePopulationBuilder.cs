@@ -50,6 +50,9 @@ namespace CavesOfOoo.Core
             RepairableSiteState ovenSite = settlement?.GetSite(SettlementSiteDefinitions.VillageOvenSiteId);
             PlaceOven(zone, factory, rng, openCells, settlementId, ovenSite);
 
+            RepairableSiteState lanternSite = settlement?.GetSite(SettlementSiteDefinitions.VillageLanternSiteId);
+            PlaceLantern(zone, factory, rng, openCells, settlementId, lanternSite);
+
             // Place a chest with grimoires
             PlaceGrimoireChest(zone, factory, rng, openCells);
 
@@ -65,9 +68,16 @@ namespace CavesOfOoo.Core
             if (rng.Next(100) < 70)
                 PlaceNPC(zone, factory, rng, openCells, "Tinker", settlementId);
 
-            // 0-1 Warden (60% chance)
-            if (rng.Next(100) < 60)
+            // Warden (always if lantern site exists, else 60% chance)
+            if (lanternSite != null)
+            {
+                Entity warden = PlaceNPC(zone, factory, rng, openCells, "Warden", settlementId);
+                SetConversation(warden, "Warden_Lantern_1");
+            }
+            else if (rng.Next(100) < 60)
+            {
                 PlaceNPC(zone, factory, rng, openCells, "Warden", settlementId);
+            }
 
             if (mainWell != null)
             {
@@ -134,6 +144,10 @@ namespace CavesOfOoo.Core
             Entity mendingGrimoire = factory.CreateEntity("MendingRiteGrimoire");
             if (mendingGrimoire != null)
                 container.AddItem(mendingGrimoire);
+
+            Entity kindleGrimoire = factory.CreateEntity("KindleRiteGrimoire");
+            if (kindleGrimoire != null)
+                container.AddItem(kindleGrimoire);
         }
 
         private static readonly (int dx, int dy)[] CardinalOffsets =
@@ -271,6 +285,70 @@ namespace CavesOfOoo.Core
                 marker.SetTag("OvenGroundMarker", "");
 
                 SettlementSiteVisuals.ApplyToEntity(marker, ovenSite);
+                zone.AddEntity(marker, mx, my);
+            }
+        }
+
+        private void PlaceLantern(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> openCells, string settlementId, RepairableSiteState lanternSite)
+        {
+            if (openCells.Count == 0)
+                return;
+
+            Entity entity = PlaceEntity(zone, factory, rng, openCells, "WatchLantern");
+            if (entity == null)
+                return;
+
+            if (!string.IsNullOrEmpty(settlementId))
+                entity.Properties["SettlementId"] = settlementId;
+
+            if (lanternSite != null)
+            {
+                entity.Properties["SettlementSiteId"] = lanternSite.SiteId;
+
+                var lanternPart = new LanternSitePart();
+                lanternPart.SettlementId = settlementId;
+                lanternPart.SiteId = lanternSite.SiteId;
+                entity.AddPart(lanternPart);
+
+                SettlementSiteVisuals.ApplyToEntity(entity, lanternSite);
+
+                Cell lanternCell = zone.GetEntityCell(entity);
+                if (lanternCell != null)
+                    PlaceLanternGroundMarkers(zone, factory, openCells, lanternCell.X, lanternCell.Y, settlementId, lanternSite);
+            }
+        }
+
+        private void PlaceLanternGroundMarkers(
+            Zone zone,
+            EntityFactory factory,
+            List<(int x, int y)> openCells,
+            int lanternX,
+            int lanternY,
+            string settlementId,
+            RepairableSiteState lanternSite)
+        {
+            for (int i = 0; i < CardinalOffsets.Length; i++)
+            {
+                int mx = lanternX + CardinalOffsets[i].dx;
+                int my = lanternY + CardinalOffsets[i].dy;
+                if (!zone.InBounds(mx, my))
+                    continue;
+
+                Cell cell = zone.GetCell(mx, my);
+                if (cell == null || !cell.IsPassable())
+                    continue;
+
+                Entity marker = factory.CreateEntity("LanternGroundMarker");
+                if (marker == null)
+                    continue;
+
+                if (!string.IsNullOrEmpty(settlementId))
+                    marker.Properties["SettlementId"] = settlementId;
+                marker.Properties["SettlementSiteId"] = lanternSite.SiteId;
+                marker.SetTag("LanternGroundMarker", "");
+
+                SettlementSiteVisuals.ApplyToEntity(marker, lanternSite);
                 zone.AddEntity(marker, mx, my);
             }
         }

@@ -705,6 +705,12 @@ namespace CavesOfOoo.Rendering
                     return OvenWorkingConfig;
                 case AsciiFxTheme.OvenImproved:
                     return OvenImprovedConfig;
+                case AsciiFxTheme.LanternDark:
+                    return LanternDarkConfig;
+                case AsciiFxTheme.LanternLit:
+                    return LanternLitConfig;
+                case AsciiFxTheme.LanternBright:
+                    return LanternBrightConfig;
                 default:
                     return FireConfig;
             }
@@ -1184,6 +1190,69 @@ namespace CavesOfOoo.Rendering
             AuraGlyphs = new[] { '.', '*' },
             AuraColors = new[] { "&Y", "&W" },
             AuraInterval = 0.60f,
+            ChargeGlyphs = Array.Empty<char>(),
+            ChargeColors = Array.Empty<string>(),
+            BeamColors = Array.Empty<string>(),
+            RingGlyphs = Array.Empty<char>(),
+            RingColors = Array.Empty<string>(),
+            ChainGlyphs = Array.Empty<char>(),
+            ChainColors = Array.Empty<string>()
+        };
+
+        private static readonly FxThemeConfig LanternDarkConfig = new FxThemeConfig
+        {
+            ProjectileGlyphs = Array.Empty<char>(),
+            ProjectileColors = Array.Empty<string>(),
+            TrailGlyph = '.',
+            TrailColor = "&K",
+            ProjectileStepTime = 0.04f,
+            BurstGlyphs = Array.Empty<char>(),
+            BurstColors = Array.Empty<string>(),
+            AuraGlyphs = new[] { '.' },
+            AuraColors = new[] { "&K", "&w" },
+            AuraInterval = 0.60f,
+            ChargeGlyphs = Array.Empty<char>(),
+            ChargeColors = Array.Empty<string>(),
+            BeamColors = Array.Empty<string>(),
+            RingGlyphs = Array.Empty<char>(),
+            RingColors = Array.Empty<string>(),
+            ChainGlyphs = Array.Empty<char>(),
+            ChainColors = Array.Empty<string>()
+        };
+
+        private static readonly FxThemeConfig LanternLitConfig = new FxThemeConfig
+        {
+            ProjectileGlyphs = Array.Empty<char>(),
+            ProjectileColors = Array.Empty<string>(),
+            TrailGlyph = '.',
+            TrailColor = "&Y",
+            ProjectileStepTime = 0.04f,
+            BurstGlyphs = Array.Empty<char>(),
+            BurstColors = Array.Empty<string>(),
+            AuraGlyphs = new[] { '.' },
+            AuraColors = new[] { "&Y", "&y" },
+            AuraInterval = 0.70f,
+            ChargeGlyphs = Array.Empty<char>(),
+            ChargeColors = Array.Empty<string>(),
+            BeamColors = Array.Empty<string>(),
+            RingGlyphs = Array.Empty<char>(),
+            RingColors = Array.Empty<string>(),
+            ChainGlyphs = Array.Empty<char>(),
+            ChainColors = Array.Empty<string>()
+        };
+
+        private static readonly FxThemeConfig LanternBrightConfig = new FxThemeConfig
+        {
+            ProjectileGlyphs = Array.Empty<char>(),
+            ProjectileColors = Array.Empty<string>(),
+            TrailGlyph = '.',
+            TrailColor = "&W",
+            ProjectileStepTime = 0.04f,
+            BurstGlyphs = Array.Empty<char>(),
+            BurstColors = Array.Empty<string>(),
+            AuraGlyphs = new[] { '.', '*' },
+            AuraColors = new[] { "&W", "&Y" },
+            AuraInterval = 0.50f,
             ChargeGlyphs = Array.Empty<char>(),
             ChargeColors = Array.Empty<string>(),
             BeamColors = Array.Empty<string>(),

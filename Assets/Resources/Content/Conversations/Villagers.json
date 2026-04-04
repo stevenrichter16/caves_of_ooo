@@ -506,6 +506,19 @@
               "Predicates": [{ "Key": "IfSpeakerHaveProperty", "Value": "ElderGaveOvenGuide" }]
             },
             {
+              "Text": "The watch lantern is out. Do you know how to relight it?",
+              "Target": "LanternHint",
+              "Predicates": [
+                { "Key": "IfSettlementSiteStage", "Value": "VillageLantern:Fouled" },
+                { "Key": "IfNotSpeakerHaveProperty", "Value": "ElderGaveLanternRecipe" }
+              ]
+            },
+            {
+              "Text": "About the lantern oil recipe?",
+              "Target": "AlreadyGaveLanternRecipe",
+              "Predicates": [{ "Key": "IfSpeakerHaveProperty", "Value": "ElderGaveLanternRecipe" }]
+            },
+            {
               "Text": "Tell me about this place.",
               "Target": "AboutPlace"
             },
@@ -536,6 +549,34 @@
         {
           "ID": "AlreadyGaveOvenGuide",
           "Text": "I already gave you the mason's guide. Find some fire clay and the oven can be rebuilt properly. The farmer can show you where it stands.",
+          "Choices": [
+            {
+              "Text": "Understood.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "LanternHint",
+          "Text": "The watch lantern... yes. The old warden kept it burning with a special oil — ward oil, he called it. I have his recipe, but the ingredients come from the caves. Take it, and ask the warden to help. There's also a kindle rite in the village chest that might coax the flame back temporarily.",
+          "Choices": [
+            {
+              "Text": "I'll take the recipe.",
+              "Target": "Start",
+              "Actions": [
+                { "Key": "GiveItem", "Value": "LanternOilRecipe" },
+                { "Key": "SetSpeakerProperty", "Value": "ElderGaveLanternRecipe:true" }
+              ]
+            },
+            {
+              "Text": "Not right now.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "AlreadyGaveLanternRecipe",
+          "Text": "I already gave you the ward oil recipe. Find the ingredients in the caves and bring them to the warden. He'll know what to do with the lantern.",
           "Choices": [
             {
               "Text": "Understood.",

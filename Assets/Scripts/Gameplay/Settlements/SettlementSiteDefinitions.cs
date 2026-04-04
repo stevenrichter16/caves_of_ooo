@@ -13,6 +13,10 @@ namespace CavesOfOoo.Core
         public const string OvenKnowledgeProperty = "KnowsMendingRite";
         public const string ImprovedOvenCondition = "ImprovedOven";
 
+        public const string VillageLanternSiteId = "VillageLantern";
+        public const string LanternKnowledgeProperty = "KnowsKindleRite";
+        public const string ImprovedLanternCondition = "ImprovedLantern";
+
         public static bool IsTrackedVillage(string settlementId, PointOfInterest poi)
         {
             return !string.IsNullOrEmpty(settlementId)
@@ -44,6 +48,19 @@ namespace CavesOfOoo.Core
                 SiteId = VillageOvenSiteId,
                 SiteType = RepairableSiteType.HeatStone,
                 ProblemType = RepairProblemType.HeatFailure,
+                Stage = RepairStage.Fouled,
+                Severity = 1,
+                ResolvedByMethod = RepairMethodId.None,
+                OutcomeTier = RepairOutcomeTier.None,
+                ResolvedAtTurn = -1,
+                RelapseAtTurn = null
+            };
+
+            yield return new RepairableSiteState
+            {
+                SiteId = VillageLanternSiteId,
+                SiteType = RepairableSiteType.LightBeacon,
+                ProblemType = RepairProblemType.LightFailure,
                 Stage = RepairStage.Fouled,
                 Severity = 1,
                 ResolvedByMethod = RepairMethodId.None,
