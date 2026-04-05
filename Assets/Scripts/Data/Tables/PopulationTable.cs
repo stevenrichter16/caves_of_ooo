@@ -128,6 +128,7 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 2, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "GiantSpider", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "Viper", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Glowmaw", Weight = 2, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Dagger", Weight = 2, MinCount = 1, MaxCount = 2 },
                 }
             };
@@ -196,6 +197,7 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "JungleApe", Weight = 3, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "GiantSpider", Weight = 3, MinCount = 2, MaxCount = 4 },
                     new PopulationEntry { BlueprintName = "Viper", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "Glowmaw", Weight = 2, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 2, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Dagger", Weight = 2, MinCount = 0, MaxCount = 2 },
                 }
@@ -259,6 +261,7 @@ namespace CavesOfOoo.Data
                             new PopulationEntry { BlueprintName = "GiantSpider", Weight = 4, MinCount = 2, MaxCount = 4 },
                             new PopulationEntry { BlueprintName = "JungleApe", Weight = 2, MinCount = 1, MaxCount = 2 },
                             new PopulationEntry { BlueprintName = "Viper", Weight = 3, MinCount = 1, MaxCount = 3 },
+                            new PopulationEntry { BlueprintName = "Glowmaw", Weight = 2, MinCount = 0, MaxCount = 1 },
                         }
                     };
                 case BiomeType.Ruins:
