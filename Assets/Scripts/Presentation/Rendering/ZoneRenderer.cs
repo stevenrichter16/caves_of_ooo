@@ -66,6 +66,13 @@ namespace CavesOfOoo.Rendering
         private LookOverlayRenderer _lookOverlayRenderer;
         private bool _dirty = true;
         private int _lastMessageCount = -1;
+        private float _lastMessageTime;
+        private int _lastFlashStamp;
+        private float _flashUntil;
+        private const float LogIdleStart = 8f;     // seconds idle before fade starts
+        private const float LogIdleEnd = 12f;      // fully faded at this idle duration
+        private const float LogIdleAlphaFloor = 0.35f;
+        private const float FlashDuration = 0.3f;
         private float _ambientTimer;
         private float _dustMoteSpawnTimer;
         private const float DustMoteSpawnInterval = 3.5f;
@@ -89,6 +96,7 @@ namespace CavesOfOoo.Rendering
 
         private void Awake()
         {
+            _lastMessageTime = Time.time;
             _tilemap = GetComponent<Tilemap>();
 
             Grid grid = GetComponentInParent<Grid>();
@@ -186,6 +194,13 @@ namespace CavesOfOoo.Rendering
         private void LateUpdate()
         {
             bool newMessages = MessageLog.Count != _lastMessageCount;
+            if (newMessages)
+                _lastMessageTime = Time.time;
+            if (MessageLog.FlashStamp != _lastFlashStamp)
+            {
+                _lastFlashStamp = MessageLog.FlashStamp;
+                _flashUntil = Time.time + FlashDuration;
+            }
             Camera cam = Camera.main;
             bool cameraChanged = HasCameraViewChanged(cam);
 
@@ -493,6 +508,24 @@ namespace CavesOfOoo.Rendering
             float worldLeft = cam.transform.position.x - cam.orthographicSize * cam.aspect;
             int startX = Mathf.CeilToInt(worldLeft / (0.5f * scale));
 
+            // Ambience: idle-fade (log dims while untouched) + focus-flash (brief red
+            // bg tint + yellow top-line override when a critical announcement fires).
+            float idle = Time.time - _lastMessageTime;
+            float idleFadeAlpha = Mathf.Lerp(
+                1f,
+                LogIdleAlphaFloor,
+                Mathf.InverseLerp(LogIdleStart, LogIdleEnd, idle));
+            bool flashActive = Time.time < _flashUntil;
+            float flashT = flashActive
+                ? Mathf.Clamp01((_flashUntil - Time.time) / FlashDuration) * 0.5f
+                : 0f;
+
+            // Tint the bg toward red while flashing, then apply idle-fade alpha.
+            Color bgColor = MsgBgColor;
+            if (flashActive)
+                bgColor = Color.Lerp(bgColor, QudColorParser.BrightRed, flashT);
+            bgColor.a = MsgBgColor.a * idleFadeAlpha;
+
             // Render background box behind messages
             if (_msgBgTilemap != null)
             {
@@ -511,7 +544,7 @@ namespace CavesOfOoo.Rendering
                             var pos = new Vector3Int(x, y, 0);
                             _msgBgTilemap.SetTile(pos, blockTile);
                             _msgBgTilemap.SetTileFlags(pos, TileFlags.None);
-                            _msgBgTilemap.SetColor(pos, MsgBgColor);
+                            _msgBgTilemap.SetColor(pos, bgColor);
                         }
                     }
                 }
@@ -539,10 +572,13 @@ namespace CavesOfOoo.Rendering
 
                 // Alpha ramp: newest=1.0 -> oldest=0.35 across MessageLineCount lines.
                 float t = (MessageLineCount <= 1) ? 0f : (float)i / (MessageLineCount - 1);
-                float alpha = Mathf.Lerp(1.0f, 0.35f, t);
+                float alpha = Mathf.Lerp(1.0f, 0.35f, t) * idleFadeAlpha;
 
                 // Text color: hue shift from white (newest) -> gray (older).
                 Color baseColor = Color.Lerp(QudColorParser.White, QudColorParser.Gray, t);
+                // Top line flashes yellow while the focus-flash window is active.
+                if (flashActive && i == 0)
+                    baseColor = QudColorParser.BrightYellow;
                 Color textColor = new Color(baseColor.r, baseColor.g, baseColor.b, alpha);
 
                 // Tick gutter: "NNN " right-aligned in 3 chars + trailing space (4 total).
