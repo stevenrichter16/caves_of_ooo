@@ -419,6 +419,10 @@ namespace CavesOfOoo.Core
             string killerName = killer?.GetDisplayName() ?? "something";
             MessageLog.Add($"{targetName} is killed by {killerName}!");
 
+            // Award XP to the killer
+            if (killer != null && killer.HasTag("Player"))
+                LevelingSystem.AwardKillXP(killer, target, zone);
+
             // Drop equipment from body parts
             if (zone != null)
             {

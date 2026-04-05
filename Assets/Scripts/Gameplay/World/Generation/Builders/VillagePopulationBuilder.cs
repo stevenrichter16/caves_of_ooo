@@ -387,7 +387,10 @@ namespace CavesOfOoo.Core
         {
             "SilverSand",
             "FireClay",
-            "WardOil"
+            "WardOil",
+            "Antidote",
+            "BurnSalve",
+            "HealingTonic"
         };
 
         private void StockMerchant(Entity merchant, EntityFactory factory)

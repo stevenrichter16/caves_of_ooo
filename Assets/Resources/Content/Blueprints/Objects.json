@@ -75,7 +75,8 @@
         { "Name": "Intelligence", "Value": 10, "Min": 1, "Max": 50 },
         { "Name": "Willpower", "Value": 10, "Min": 1, "Max": 50 },
         { "Name": "Ego", "Value": 10, "Min": 1, "Max": 50 },
-        { "Name": "Speed", "Value": 100, "Min": 25, "Max": 200 }
+        { "Name": "Speed", "Value": 100, "Min": 25, "Max": 200 },
+        { "Name": "XPValue", "Value": 10, "Min": 0, "Max": 9999 }
       ],
       "Tags": [
         { "Key": "Creature", "Value": "" }
@@ -96,7 +97,8 @@
         { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 },
         { "Name": "Strength", "Value": 16 },
         { "Name": "Agility", "Value": 14 },
-        { "Name": "Toughness", "Value": 14 }
+        { "Name": "Toughness", "Value": 14 },
+        { "Name": "XPValue", "Value": 15 }
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Snapjaws" },
@@ -126,7 +128,9 @@
         { "Name": "Hitpoints", "Value": 500, "Min": 0, "Max": 500 },
         { "Name": "Strength", "Value": 18 },
         { "Name": "Agility", "Value": 18 },
-        { "Name": "Toughness", "Value": 18 }
+        { "Name": "Toughness", "Value": 18 },
+        { "Name": "Level", "Value": 1, "Min": 1, "Max": 50 },
+        { "Name": "Experience", "Value": 0, "Min": 0, "Max": 999999 }
       ],
       "Tags": [
         { "Key": "Player", "Value": "" }
@@ -222,7 +226,8 @@
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 20, "Min": 0, "Max": 20 },
-        { "Name": "Strength", "Value": 18 }
+        { "Name": "Strength", "Value": 18 },
+        { "Name": "XPValue", "Value": 25 }
       ],
       "Tags": [
         { "Key": "Tier", "Value": "2" }
@@ -243,7 +248,8 @@
       "Stats": [
         { "Name": "Hitpoints", "Value": 25, "Min": 0, "Max": 25 },
         { "Name": "Strength", "Value": 20 },
-        { "Name": "Agility", "Value": 18 }
+        { "Name": "Agility", "Value": 18 },
+        { "Name": "XPValue", "Value": 40 }
       ],
       "Tags": [
         { "Key": "Tier", "Value": "2" }
@@ -310,6 +316,66 @@
       "Stats": [],
       "Tags": [
         { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "Antidote",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "antidote" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&g" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Drink", "Value": "true" }, { "Key": "Message", "Value": "The bitter tonic neutralizes the poison." }] },
+        { "Name": "CureTonic", "Params": [{ "Key": "CureEffect", "Value": "PoisonedEffect" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "30" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "BurnSalve",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "burn salve" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Message", "Value": "Cool salve soothes the burns." }] },
+        { "Name": "CureTonic", "Params": [{ "Key": "CureEffect", "Value": "BurningEffect" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "25" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "Panacea",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "panacea" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Drink", "Value": "true" }, { "Key": "Message", "Value": "A warm light floods through you, purging all afflictions." }] },
+        { "Name": "CureTonic", "Params": [{ "Key": "CureEffect", "Value": "All" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "100" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
       ]
     },
     {

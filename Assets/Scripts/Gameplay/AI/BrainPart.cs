@@ -32,6 +32,7 @@ namespace CavesOfOoo.Core
         public int SightRadius = 10;
         public bool Wanders = true;
         public bool WandersRandomly = true;
+        public float FleeThreshold = 0.25f;
 
         // Runtime state
         public AIState CurrentState = AIState.Idle;
@@ -122,15 +123,25 @@ namespace CavesOfOoo.Core
                 var myPos = CurrentZone.GetEntityPosition(ParentEntity);
                 var targetPos = CurrentZone.GetEntityPosition(Target);
 
-                if (AIHelpers.IsAdjacent(myPos.x, myPos.y, targetPos.x, targetPos.y))
+                // Flee if below HP threshold
+                int hp = ParentEntity.GetStatValue("Hitpoints", 1);
+                int maxHp = ParentEntity.GetStat("Hitpoints")?.Max ?? 1;
+                bool shouldFlee = hp > 0 && maxHp > 0 && (float)hp / maxHp < FleeThreshold;
+
+                if (shouldFlee)
                 {
-                    // Adjacent — attack!
+                    StepAwayFromTarget(myPos.x, myPos.y, targetPos.x, targetPos.y);
+                }
+                else if (AIHelpers.IsAdjacent(myPos.x, myPos.y, targetPos.x, targetPos.y))
+                {
+                    // Adjacent — melee attack
                     CombatSystem.PerformMeleeAttack(ParentEntity, Target, CurrentZone, Rng);
                 }
                 else
                 {
-                    // Chase — greedy step toward target with fallback
-                    StepTowardTarget(myPos.x, myPos.y, targetPos.x, targetPos.y);
+                    // Try ranged ability before chasing
+                    if (!TryUseRangedAbility(myPos, targetPos))
+                        StepTowardTarget(myPos.x, myPos.y, targetPos.x, targetPos.y);
                 }
             }
             else if (Wanders && WandersRandomly)
@@ -185,6 +196,64 @@ namespace CavesOfOoo.Core
                     return;
             }
             // All directions blocked — do nothing
+        }
+
+        private void StepAwayFromTarget(int myX, int myY, int targetX, int targetY)
+        {
+            var (dx, dy) = AIHelpers.StepAway(myX, myY, targetX, targetY);
+
+            if (MovementSystem.TryMove(ParentEntity, CurrentZone, dx, dy))
+                return;
+
+            if (dx != 0 && dy != 0)
+            {
+                if (MovementSystem.TryMove(ParentEntity, CurrentZone, dx, 0))
+                    return;
+                if (MovementSystem.TryMove(ParentEntity, CurrentZone, 0, dy))
+                    return;
+            }
+
+            // Cornered — fight back if adjacent
+            if (Target != null && AIHelpers.IsAdjacent(myX, myY, targetX, targetY))
+                CombatSystem.PerformMeleeAttack(ParentEntity, Target, CurrentZone, Rng ?? new Random());
+        }
+
+        private bool TryUseRangedAbility((int x, int y) myPos, (int x, int y) targetPos)
+        {
+            var abilities = ParentEntity.GetPart<ActivatedAbilitiesPart>();
+            if (abilities == null) return false;
+
+            int dist = AIHelpers.ChebyshevDistance(myPos.x, myPos.y, targetPos.x, targetPos.y);
+
+            for (int i = 0; i < abilities.AbilityList.Count; i++)
+            {
+                var ability = abilities.AbilityList[i];
+                if (!ability.IsUsable) continue;
+                if (ability.TargetingMode == AbilityTargetingMode.AdjacentCell) continue;
+                if (ability.Range < dist && ability.TargetingMode != AbilityTargetingMode.SelfCentered)
+                    continue;
+
+                var cmdEvent = GameEvent.New(ability.Command);
+                cmdEvent.SetParameter("Zone", (object)CurrentZone);
+                cmdEvent.SetParameter("RNG", (object)(Rng ?? new Random()));
+
+                if (ability.TargetingMode == AbilityTargetingMode.DirectionLine)
+                {
+                    var sourceCell = CurrentZone.GetCell(myPos.x, myPos.y);
+                    var (dx, dy) = AIHelpers.StepToward(myPos.x, myPos.y, targetPos.x, targetPos.y);
+                    cmdEvent.SetParameter("SourceCell", (object)sourceCell);
+                    cmdEvent.SetParameter("DirectionX", dx);
+                    cmdEvent.SetParameter("DirectionY", dy);
+                }
+                else if (ability.TargetingMode == AbilityTargetingMode.SelfCentered)
+                {
+                    cmdEvent.SetParameter("SourceCell", (object)CurrentZone.GetCell(myPos.x, myPos.y));
+                }
+
+                ParentEntity.FireEvent(cmdEvent);
+                if (cmdEvent.Handled) return true;
+            }
+            return false;
         }
     }
 }
