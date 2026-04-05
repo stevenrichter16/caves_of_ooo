@@ -14,12 +14,16 @@ namespace CavesOfOoo.Rendering
     public class DialogueUI : MonoBehaviour
     {
         public Tilemap Tilemap;
+        public Tilemap BgTilemap;
         public Entity PlayerEntity;
         public Zone CurrentZone;
 
         private const int POPUP_W = 56;
         private const int POPUP_MAX_VISIBLE_CHOICES = 10;
-        private const int MAX_TEXT_WIDTH = POPUP_W - 4; // 2 chars padding each side
+        private const int MAX_TEXT_WIDTH = POPUP_W - 6; // 3 chars padding each side (space for tag prefix)
+
+        // Opaque dark fill color for popup background (drawn on BgTilemap behind main glyphs)
+        private static readonly Color PopupBgColor = new Color(0.05f, 0.05f, 0.08f, 0.92f);
 
         private bool _isOpen;
         private int _cursorIndex;
@@ -30,6 +34,7 @@ namespace CavesOfOoo.Rendering
         private int _worldOriginX;
         private int _worldTopY;
         private int _popupH;
+        private bool _bgDrawn;
 
         public bool IsOpen => _isOpen;
         public bool ConversationEnded => _conversationEnded;
@@ -47,6 +52,7 @@ namespace CavesOfOoo.Rendering
         public void Close()
         {
             _isOpen = false;
+            ClearBgRegion();
             if (ConversationManager.IsActive)
                 ConversationManager.EndConversation();
         }
@@ -206,9 +212,9 @@ namespace CavesOfOoo.Rendering
             int choiceCount = Mathf.Min(choices.Count, POPUP_MAX_VISIBLE_CHOICES);
             int textLines = _wrappedTextLines.Count;
 
-            // Layout: top border + speaker name + separator + text lines + blank + choices + bottom border
-            // = 1 + 1 + 1 + textLines + 1 + choiceCount + 1 + action bar
-            _popupH = 4 + textLines + 1 + choiceCount + 1;
+            // Layout: top border (with embedded title) + text lines + blank + choices + bottom border + action bar
+            // = 1 + textLines + 1 + choiceCount + 1 + 1
+            _popupH = 1 + textLines + 1 + choiceCount + 1 + 1;
 
             float camX = cam.transform.position.x;
             float camY = cam.transform.position.y;
@@ -221,51 +227,63 @@ namespace CavesOfOoo.Rendering
         {
             if (Tilemap == null || !ConversationManager.IsActive) return;
 
+            // Clear any previous-frame bg before layout changes (popup height may change per node)
+            ClearBgRegion();
+
             ComputePopupPosition();
 
             var choices = ConversationManager.VisibleChoices;
             int choiceCount = Mathf.Min(choices.Count, POPUP_MAX_VISIBLE_CHOICES);
             int textLines = _wrappedTextLines.Count;
 
-            // Border height (not including action bar)
-            int borderH = 3 + textLines + 1 + choiceCount + 1;
-
             ClearRegion(0, 0, POPUP_W, _popupH);
 
-            // Top border
-            DrawChar(0, 0, CP437TilesetGenerator.BoxTopLeft, QudColorParser.Gray);
-            for (int i = 1; i < POPUP_W - 1; i++)
-                DrawChar(i, 0, CP437TilesetGenerator.BoxHorizontal, QudColorParser.Gray);
-            DrawChar(POPUP_W - 1, 0, CP437TilesetGenerator.BoxTopRight, QudColorParser.Gray);
+            // Opaque bg fill behind everything except the action bar (last row)
+            DrawBgFill(0, 0, POPUP_W, _popupH - 1);
 
-            // Speaker name row
-            DrawChar(0, 1, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
-            DrawChar(POPUP_W - 1, 1, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
-
-            // Speaker glyph + name
+            // ----- Top border with embedded title: ╞══[ g Speaker Name ]═════╡ -----
             var speaker = ConversationManager.Speaker;
+            char speakerGlyph = '?';
+            Color speakerGlyphColor = QudColorParser.White;
+            string speakerName = "";
             if (speaker != null)
             {
                 var render = speaker.GetPart<RenderPart>();
                 if (render != null && !string.IsNullOrEmpty(render.RenderString))
                 {
-                    Color glyphColor = QudColorParser.Parse(render.ColorString);
-                    DrawChar(2, 1, render.RenderString[0], glyphColor);
+                    speakerGlyph = render.RenderString[0];
+                    speakerGlyphColor = QudColorParser.Parse(render.ColorString);
                 }
-                string speakerName = speaker.GetDisplayName();
-                if (speakerName.Length > POPUP_W - 6)
-                    speakerName = speakerName.Substring(0, POPUP_W - 6);
-                DrawText(4, 1, speakerName, QudColorParser.BrightYellow);
+                speakerName = speaker.GetDisplayName() ?? "";
             }
 
-            // Separator
-            DrawChar(0, 2, CP437TilesetGenerator.BoxTeeLeft, QudColorParser.Gray);
-            for (int i = 1; i < POPUP_W - 1; i++)
-                DrawChar(i, 2, CP437TilesetGenerator.BoxHorizontal, QudColorParser.Gray);
-            DrawChar(POPUP_W - 1, 2, CP437TilesetGenerator.BoxTeeRight, QudColorParser.Gray);
+            // Title segment length: "[ g Name ]" = 4 fixed + glyph(1) + name
+            int maxNameLen = POPUP_W - 14; // leave room for corners and some border
+            if (speakerName.Length > maxNameLen) speakerName = speakerName.Substring(0, maxNameLen);
+            int titleLen = 6 + speakerName.Length; // "[ g NAME ]" = 6 literals + name
+            int titleStart = 3; // after corner + 2 horizontal bars
 
-            // NPC speech text
-            int y = 3;
+            // Corners (use double-line top corners for emphasis)
+            DrawChar(0, 0, CP437TilesetGenerator.BoxTopLeft, QudColorParser.Gray);
+            DrawChar(POPUP_W - 1, 0, CP437TilesetGenerator.BoxTopRight, QudColorParser.Gray);
+            // Horizontal bars on each side of title
+            for (int i = 1; i < titleStart; i++)
+                DrawChar(i, 0, CP437TilesetGenerator.BoxHorizontal, QudColorParser.Gray);
+            for (int i = titleStart + titleLen; i < POPUP_W - 1; i++)
+                DrawChar(i, 0, CP437TilesetGenerator.BoxHorizontal, QudColorParser.Gray);
+
+            // Title content: [ g SpeakerName ]
+            int tx = titleStart;
+            DrawChar(tx, 0, '[', QudColorParser.Gray); tx++;
+            DrawChar(tx, 0, ' ', QudColorParser.Gray); tx++;
+            DrawChar(tx, 0, speakerGlyph, speakerGlyphColor); tx++;
+            DrawChar(tx, 0, ' ', QudColorParser.Gray); tx++;
+            DrawText(tx, 0, speakerName, QudColorParser.BrightYellow); tx += speakerName.Length;
+            DrawChar(tx, 0, ' ', QudColorParser.Gray); tx++;
+            DrawChar(tx, 0, ']', QudColorParser.Gray);
+
+            // ----- NPC speech text -----
+            int y = 1;
             for (int i = 0; i < textLines; i++)
             {
                 DrawChar(0, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
@@ -279,7 +297,7 @@ namespace CavesOfOoo.Rendering
             DrawChar(POPUP_W - 1, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
             y++;
 
-            // Player choices
+            // ----- Player choices with semantic tags -----
             for (int i = 0; i < choiceCount; i++)
             {
                 DrawChar(0, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
@@ -291,20 +309,30 @@ namespace CavesOfOoo.Rendering
                     DrawChar(1, y, '>', QudColorParser.White);
 
                 // Hotkey
+                int col = 2;
                 if (i < 26)
                 {
                     char hotkey = (char)('a' + i);
                     string hk = hotkey + ")";
-                    DrawText(2, y, hk, selected ? QudColorParser.White : QudColorParser.Gray);
+                    DrawText(col, y, hk, selected ? QudColorParser.White : QudColorParser.Gray);
+                    col += 3; // 2 chars + space
+                }
+
+                // Semantic tag prefix
+                InferChoiceTag(choices[i], out string tag, out Color tagColor);
+                if (!string.IsNullOrEmpty(tag))
+                {
+                    DrawText(col, y, tag, tagColor);
+                    col += tag.Length + 1;
                 }
 
                 // Choice text
                 string choiceText = choices[i].Text ?? "";
-                int maxLen = POPUP_W - 7;
+                int maxLen = POPUP_W - 2 - col;
                 if (choiceText.Length > maxLen)
                     choiceText = choiceText.Substring(0, maxLen - 1) + "~";
                 Color textColor = selected ? QudColorParser.BrightCyan : QudColorParser.Gray;
-                DrawText(5, y, choiceText, textColor);
+                DrawText(col, y, choiceText, textColor);
                 y++;
             }
 
@@ -318,6 +346,70 @@ namespace CavesOfOoo.Rendering
             // Action bar
             string actions = " [Enter]select [a-z]quick select [Esc]close";
             DrawText(0, y, actions, QudColorParser.DarkGray);
+        }
+
+        /// <summary>
+        /// Inspect the choice's Actions and Target to produce a short semantic tag.
+        /// </summary>
+        private static void InferChoiceTag(ChoiceData choice, out string tag, out Color color)
+        {
+            if (choice != null && choice.Actions != null)
+            {
+                for (int i = 0; i < choice.Actions.Count; i++)
+                {
+                    string key = choice.Actions[i].Key;
+                    if (key == "StartAttack") { tag = "[Attack]"; color = QudColorParser.BrightRed; return; }
+                    if (key == "StartTrade")  { tag = "[Trade]";  color = QudColorParser.BrightGreen; return; }
+                    if (key == "GiveItem")    { tag = "[Give]";   color = QudColorParser.BrightYellow; return; }
+                    if (key == "TakeItem" || key == "TakeItemWithTag") { tag = "[Take]"; color = QudColorParser.BrightYellow; return; }
+                    if (key == "CopyGrimoire") { tag = "[Copy]";  color = QudColorParser.BrightMagenta; return; }
+                }
+            }
+            if (choice != null && choice.Target == "End") { tag = "[Leave]"; color = QudColorParser.DarkGray; return; }
+            tag = "[Talk]";
+            color = QudColorParser.DarkCyan;
+        }
+
+        /// <summary>
+        /// Fills the popup rect on BgTilemap with opaque dark blocks.
+        /// </summary>
+        private void DrawBgFill(int gx, int gy, int width, int height)
+        {
+            if (BgTilemap == null) return;
+            var blockTile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+            if (blockTile == null) return;
+            for (int dy = 0; dy < height; dy++)
+            {
+                for (int dx = 0; dx < width; dx++)
+                {
+                    int wx = _worldOriginX + gx + dx;
+                    int wy = _worldTopY - (gy + dy);
+                    var pos = new Vector3Int(wx, wy, 0);
+                    BgTilemap.SetTile(pos, blockTile);
+                    BgTilemap.SetTileFlags(pos, TileFlags.None);
+                    BgTilemap.SetColor(pos, PopupBgColor);
+                }
+            }
+            _bgDrawn = true;
+        }
+
+        /// <summary>
+        /// Clears the bg tiles we drew behind the last-rendered popup.
+        /// ZoneRenderer's unexplored-fog pass will rewrite these cells as needed on redraw.
+        /// </summary>
+        private void ClearBgRegion()
+        {
+            if (!_bgDrawn || BgTilemap == null) return;
+            for (int dy = 0; dy < _popupH; dy++)
+            {
+                for (int dx = 0; dx < POPUP_W; dx++)
+                {
+                    int wx = _worldOriginX + dx;
+                    int wy = _worldTopY - dy;
+                    BgTilemap.SetTile(new Vector3Int(wx, wy, 0), null);
+                }
+            }
+            _bgDrawn = false;
         }
 
         // ===== Mouse =====
@@ -335,7 +427,7 @@ namespace CavesOfOoo.Rendering
             int gy = _worldTopY - worldY;
 
             int textLines = _wrappedTextLines.Count;
-            int choicesStartY = 3 + textLines + 1; // after border + speaker + separator + text + blank
+            int choicesStartY = 1 + textLines + 1; // after top border + text + blank
 
             var choices = ConversationManager.VisibleChoices;
             int choiceCount = Mathf.Min(choices.Count, POPUP_MAX_VISIBLE_CHOICES);

@@ -197,7 +197,10 @@ namespace CavesOfOoo
                 if (dialogueUI == null)
                     dialogueUI = gameObject.AddComponent<DialogueUI>();
                 if (ZoneRenderer != null)
+                {
                     dialogueUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
+                    dialogueUI.BgTilemap = ZoneRenderer.BgTilemap;
+                }
                 inputHandler.DialogueUI = dialogueUI;
 
                 // Wire trade UI (shares tilemap with zone renderer)

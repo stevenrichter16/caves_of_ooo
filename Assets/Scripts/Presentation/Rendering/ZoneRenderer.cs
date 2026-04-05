@@ -80,6 +80,13 @@ namespace CavesOfOoo.Rendering
 
         public bool HasBlockingFx => _asciiFxRenderer?.HasBlockingFx ?? false;
 
+        /// <summary>
+        /// Exposed background tilemap (sortingOrder -1). UI overlays like DialogueUI
+        /// can draw opaque bg fills here — they'll show through cleared cells on the
+        /// main tilemap and sit behind foreground glyphs.
+        /// </summary>
+        public Tilemap BgTilemap => _bgTilemap;
+
         private void Awake()
         {
             _tilemap = GetComponent<Tilemap>();
@@ -488,7 +495,8 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
-            // Render newest message at screen bottom, older ones above with spacer rows
+            // Render newest message at screen bottom, older ones above with spacer rows.
+            // Age-graduate opacity: newest = fully opaque white, older lines fade to gray.
             for (int i = 0; i < MessageLineCount; i++)
             {
                 int tileY = bottomTileY + (i * 2);
@@ -496,7 +504,12 @@ namespace CavesOfOoo.Rendering
 
                 if (msgIndex >= 0)
                 {
-                    Color color = i == 0 ? QudColorParser.White : QudColorParser.Gray;
+                    // Alpha ramp: newest=1.0 → oldest=0.35 across MessageLineCount lines.
+                    float t = (MessageLineCount <= 1) ? 0f : (float)i / (MessageLineCount - 1);
+                    float alpha = Mathf.Lerp(1.0f, 0.35f, t);
+                    // Hue shift: newest is white, older lines drift to gray.
+                    Color baseColor = Color.Lerp(QudColorParser.White, QudColorParser.Gray, t);
+                    Color color = new Color(baseColor.r, baseColor.g, baseColor.b, alpha);
                     DrawMsgText(startX, tileY, recent[msgIndex], color, maxChars);
                 }
             }
