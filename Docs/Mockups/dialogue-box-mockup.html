@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dialogue Box + World Log Mockup</title>
+<style>
+  :root {
+    /* Qud-ish palette (matches QudColorParser.cs) */
+    --c-black:         #000000;
+    --c-gray:          #aaaaaa;  /* 0.67 */
+    --c-dark-gray:     #545454;  /* 0.33 */
+    --c-white:         #ffffff;
+    --c-bright-yellow: #ffff55;
+    --c-bright-cyan:   #55ffff;
+    --c-bright-red:    #ff5555;
+    --c-bright-green:  #55ff55;
+    --c-bright-magenta:#ff55ff;
+    --c-dark-cyan:     #00aaaa;
+
+    /* Popup bg: Color(0.05, 0.05, 0.08, 0.92) */
+    --popup-bg: rgba(13, 13, 20, 0.92);
+
+    /* Message log bg: Color(0,0,0,0.75) */
+    --log-bg: rgba(0, 0, 0, 0.75);
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #0a0a0a;
+    font-family: "IBM Plex Mono", "Consolas", "Menlo", "Courier New", monospace;
+    color: var(--c-white);
+  }
+
+  /* Simulated world behind the UI — just a scatter of dim ascii glyphs */
+  .world {
+    position: fixed;
+    inset: 0;
+    padding: 1rem;
+    font-size: 14px;
+    line-height: 1.1;
+    letter-spacing: 0.05em;
+    color: #1e2a1e;
+    white-space: pre;
+    user-select: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .scene {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+
+  /* ================= Dialogue popup ================= */
+  .popup {
+    font-size: 18px;
+    line-height: 1.15;
+    letter-spacing: 0.02em;
+    background: var(--popup-bg);
+    padding: 0;
+    color: var(--c-white);
+    border: none;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.5), 0 12px 40px rgba(0,0,0,0.6);
+    white-space: pre;
+  }
+  .popup .row { display: block; }
+  .popup .border,
+  .popup .pipe { color: var(--c-gray); }
+  .popup .bracket { color: var(--c-gray); }
+  .popup .speaker-name { color: var(--c-bright-yellow); }
+  .popup .speaker-glyph { color: var(--c-bright-yellow); }
+  .popup .text { color: var(--c-white); }
+
+  .popup .choice-cursor-on  { color: var(--c-white); }
+  .popup .choice-cursor-off { color: transparent; }
+  .popup .choice-hotkey-on  { color: var(--c-white); }
+  .popup .choice-hotkey-off { color: var(--c-gray); }
+  .popup .choice-text-on    { color: var(--c-bright-cyan); }
+  .popup .choice-text-off   { color: var(--c-gray); }
+
+  .tag-attack  { color: var(--c-bright-red); }
+  .tag-trade   { color: var(--c-bright-green); }
+  .tag-give    { color: var(--c-bright-yellow); }
+  .tag-take    { color: var(--c-bright-yellow); }
+  .tag-copy    { color: var(--c-bright-magenta); }
+  .tag-leave   { color: var(--c-dark-gray); }
+  .tag-talk    { color: var(--c-dark-cyan); }
+
+  .popup .action-bar {
+    color: var(--c-dark-gray);
+    background: transparent;
+  }
+
+  /* ================= World log (bottom-left) ================= */
+  .worldlog {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    font-size: 13px;
+    line-height: 1.4;
+    background: var(--log-bg);
+    padding: 0.4rem 0.9rem 0.6rem 0.9rem;
+    white-space: pre;
+    z-index: 2;
+    border-top-right-radius: 2px;
+  }
+  .worldlog .msg { display: block; }
+  .worldlog .m0 { color: rgba(255,255,255, 1.00); }
+  .worldlog .m1 { color: rgba(240,240,240, 0.92); }
+  .worldlog .m2 { color: rgba(221,221,221, 0.83); }
+  .worldlog .m3 { color: rgba(204,204,204, 0.74); }
+  .worldlog .m4 { color: rgba(187,187,187, 0.65); }
+  .worldlog .m5 { color: rgba(170,170,170, 0.57); }
+  .worldlog .m6 { color: rgba(170,170,170, 0.48); }
+  .worldlog .m7 { color: rgba(170,170,170, 0.35); }
+
+  /* ================= Label strip ================= */
+  .caption {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    font-size: 11px;
+    color: var(--c-dark-gray);
+    z-index: 3;
+  }
+</style>
+</head>
+<body>
+
+<div class="caption">caves_of_ooo — dialogue box & world log polish mockup</div>
+
+<!-- decorative faux-world behind UI -->
+<pre class="world">
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ .   ~   ~   ~   .   .   &   .   .   .   .   T   .   .   .   .   .  .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ .   .   #   #   #   #   #   .   .   .   .   .   .   "   "   .   .  .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ .   .   .   .   .   .   .   .   @   .   .   .   .   .   .   .   .  .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+</pre>
+
+<div class="scene">
+  <div class="popup" role="dialog" aria-label="dialogue">
+<span class="row"><span class="border">┌──</span><span class="bracket">[ </span><span class="speaker-glyph">&amp;</span><span class="bracket"> </span><span class="speaker-name">Ink-Marked Scribe</span><span class="bracket"> ]</span><span class="border">──────────────────────────────┐</span></span><span class="row"><span class="pipe">│</span>  <span class="text">You lean over the scribe's shelf. She doesn't look up;</span>                  <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span>  <span class="text">her quill is copying itself across the parchment, one</span>                   <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span>  <span class="text">letter at a time, and the ink keeps trying to crawl back</span>                 <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span>  <span class="text">into the bottle.</span>                                                          <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span>                                                                              <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span> <span class="choice-cursor-off">&gt;</span><span class="choice-hotkey-off">a)</span> <span class="tag-talk">[Talk]</span> <span class="choice-text-off">Ask about the Palimpsest.</span>                                    <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span> <span class="choice-cursor-on">&gt;</span><span class="choice-hotkey-on">b)</span> <span class="tag-copy">[Copy]</span> <span class="choice-text-on">Hand her a grimoire to transcribe.</span>                             <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span> <span class="choice-cursor-off">&gt;</span><span class="choice-hotkey-off">c)</span> <span class="tag-trade">[Trade]</span> <span class="choice-text-off">Browse her wares.</span>                                             <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span> <span class="choice-cursor-off">&gt;</span><span class="choice-hotkey-off">d)</span> <span class="tag-give">[Give]</span> <span class="choice-text-off">Offer the rot-stained page you found.</span>                         <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span> <span class="choice-cursor-off">&gt;</span><span class="choice-hotkey-off">e)</span> <span class="tag-attack">[Attack]</span> <span class="choice-text-off">Ink is a kind of blood. Draw some.</span>                           <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span> <span class="choice-cursor-off">&gt;</span><span class="choice-hotkey-off">f)</span> <span class="tag-leave">[Leave]</span> <span class="choice-text-off">Step away.</span>                                                    <span class="pipe">│</span></span><span class="row"><span class="border">└──────────────────────────────────────────────────────────────────────────────┘</span></span><span class="row action-bar"> [Enter]select [a-z]quick select [Esc]close</span>
+  </div>
+</div>
+
+<div class="worldlog" aria-label="world log">
+<span class="msg m0">You open the grimoire. The ink stirs.</span><span class="msg m1">The snapjaw hits you for 3. (x2)</span><span class="msg m2">You slash the snapjaw for 6.</span><span class="msg m3">The snapjaw falters.</span><span class="msg m4">You slash the snapjaw for 4.</span><span class="msg m5">The snapjaw bites you for 2.</span><span class="msg m6">A glowmaw lurks somewhere above.</span><span class="msg m7">You hear dripping.</span>
+</div>
+
+</body>
+</html>
