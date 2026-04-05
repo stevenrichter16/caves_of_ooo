@@ -93,6 +93,7 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 1, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "CaveBat", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "CaveSlime", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Glowmaw", Weight = 2, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Dagger", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "Stalagmite", Weight = 4, MinCount = 3, MaxCount = 8 },
@@ -161,6 +162,7 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 4, MinCount = 2, MaxCount = 4 },
                     new PopulationEntry { BlueprintName = "CaveSlime", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "CaveBat", Weight = 2, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "Glowmaw", Weight = 2, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 2, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "LeatherArmor", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "Stalagmite", Weight = 3, MinCount = 2, MaxCount = 6 },
@@ -234,6 +236,7 @@ namespace CavesOfOoo.Data
                             new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 4, MinCount = 2, MaxCount = 4 },
                             new PopulationEntry { BlueprintName = "CaveBear", Weight = 2, MinCount = 0, MaxCount = 1 },
                             new PopulationEntry { BlueprintName = "CaveBat", Weight = 3, MinCount = 1, MaxCount = 3 },
+                            new PopulationEntry { BlueprintName = "Glowmaw", Weight = 2, MinCount = 0, MaxCount = 2 },
                         }
                     };
                 case BiomeType.Desert:
@@ -318,6 +321,7 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "SnapjawScavenger", Weight = 3, MinCount = scavMin, MaxCount = scavMax },
                     new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 2, MinCount = huntMin, MaxCount = huntMax },
                     new PopulationEntry { BlueprintName = "Stalagmite", Weight = 3, MinCount = 2, MaxCount = 6 },
+                    new PopulationEntry { BlueprintName = "Glowmaw", Weight = 2, MinCount = 0, MaxCount = 1 + tier / 2 },
                 }
             };
 

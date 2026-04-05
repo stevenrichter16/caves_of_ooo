@@ -1709,6 +1709,45 @@
       ]
     },
     {
+      "Name": "Glowmaw",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "glowmaw" },
+          { "Key": "RenderString", "Value": "O" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "10" },
+          { "Key": "Visible", "Value": "false" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "MeleeWeapon", "Params": [
+          { "Key": "BaseDamage", "Value": "2d4" },
+          { "Key": "Stat", "Value": "Strength" }
+        ]},
+        { "Name": "GlowmawAmbush", "Params": [{ "Key": "TriggerRadius", "Value": "2" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "8" },
+          { "Key": "Wanders", "Value": "false" }
+        ]},
+        { "Name": "LightSource", "Params": [
+          { "Key": "Radius", "Value": "4" },
+          { "Key": "LightColor", "Value": "&Y" },
+          { "Key": "Intensity", "Value": "0.6" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 14, "Min": 0, "Max": 14 },
+        { "Name": "Strength", "Value": 18 },
+        { "Name": "Agility", "Value": 12 },
+        { "Name": "Speed", "Value": 90 },
+        { "Name": "XPValue", "Value": 20 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "BloodColor", "Value": "&Y" }
+      ]
+    },
+    {
       "Name": "Scorpion",
       "Inherits": "Creature",
       "Parts": [
