@@ -436,6 +436,9 @@ namespace CavesOfOoo.Core
                     DropInventoryOnDeath(target, inventory, zone);
             }
 
+            // Death splatter FX (before entity removal so position is still valid)
+            DeathSplatterFx.Emit(target, killer, zone);
+
             var died = GameEvent.New("Died");
             died.SetParameter("Target", (object)target);
             died.SetParameter("Killer", (object)killer);
