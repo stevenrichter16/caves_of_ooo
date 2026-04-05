@@ -22,6 +22,12 @@ namespace CavesOfOoo.Rendering
         private const int POPUP_MIN_W = 32;
         private const int POPUP_MAX_W = 72;
 
+        // Portrait panel: left gutter showing the speaker's glyph, faction,
+        // and disposition word. The divider sits at col (PORTRAIT_W - 1), so
+        // glyph/text content lives in cols 1..PORTRAIT_W-2 (8 cells wide).
+        public bool UsePortraitPanel = true;
+        private const int PORTRAIT_W = 10;
+
         // Opaque dark fill color for popup background (drawn on BgTilemap behind main glyphs)
         private static readonly Color PopupBgColor = new Color(0.05f, 0.05f, 0.08f, 0.92f);
 
@@ -261,8 +267,12 @@ namespace CavesOfOoo.Rendering
             int titleMinW = 12 + speakerName.Length;
 
             int needed = Mathf.Max(titleMinW, longestTextLine + 4, longestChoiceRow);
-            _popupW = Mathf.Clamp(needed, POPUP_MIN_W, POPUP_MAX_W);
-            _maxTextWidth = _popupW - 4;
+            // Portrait panel eats PORTRAIT_W columns on the left, so the budget
+            // for title/text/choices in the right panel needs that much more.
+            int portraitOverhead = UsePortraitPanel ? PORTRAIT_W : 0;
+            _popupW = Mathf.Clamp(needed + portraitOverhead, POPUP_MIN_W, POPUP_MAX_W);
+            _maxTextWidth = _popupW - 4 - portraitOverhead;
+            if (_maxTextWidth < 1) _maxTextWidth = 1;
 
             WrapText(text, _maxTextWidth, _wrappedTextLines);
 
@@ -387,11 +397,18 @@ namespace CavesOfOoo.Rendering
                 else borderColor = QudColorParser.Gray;
             }
 
+            // Content offset for the right panel. When the portrait is enabled the
+            // divider sits at col (PORTRAIT_W - 1), so right-panel content starts
+            // at col PORTRAIT_W with 1 cell of padding before the inner text column.
+            int contentOffsetX = UsePortraitPanel ? PORTRAIT_W : 0;
+            int dividerX = UsePortraitPanel ? (PORTRAIT_W - 1) : -1;
+
             // Title segment length: "[ g Name ]" = 4 fixed + glyph(1) + name
-            int maxNameLen = _popupW - 14; // leave room for corners and some border
+            int maxNameLen = _popupW - contentOffsetX - 14; // leave room for corners and some border
+            if (maxNameLen < 1) maxNameLen = 1;
             if (speakerName.Length > maxNameLen) speakerName = speakerName.Substring(0, maxNameLen);
             int titleLen = 6 + speakerName.Length; // "[ g NAME ]" = 6 literals + name
-            int titleStart = 3; // after corner + 2 horizontal bars
+            int titleStart = contentOffsetX + 3; // after divider/corner + 2 horizontal bars
 
             // Corners (disposition-tinted)
             DrawChar(0, 0, CP437TilesetGenerator.BoxTopLeft, borderColor);
@@ -401,6 +418,9 @@ namespace CavesOfOoo.Rendering
                 DrawChar(i, 0, CP437TilesetGenerator.BoxHorizontal, borderColor);
             for (int i = titleStart + titleLen; i < _popupW - 1; i++)
                 DrawChar(i, 0, CP437TilesetGenerator.BoxHorizontal, borderColor);
+            // Divider top tee (┬) overwrites the horizontal bar at dividerX.
+            if (dividerX > 0 && dividerX < titleStart)
+                DrawChar(dividerX, 0, CP437TilesetGenerator.BoxTeeDown, borderColor);
 
             // Title content: [ g SpeakerName ]
             int tx = titleStart;
@@ -419,6 +439,8 @@ namespace CavesOfOoo.Rendering
             {
                 DrawChar(0, y, CP437TilesetGenerator.BoxVertical, borderColor);
                 DrawChar(_popupW - 1, y, CP437TilesetGenerator.BoxVertical, borderColor);
+                if (dividerX > 0)
+                    DrawChar(dividerX, y, CP437TilesetGenerator.BoxVertical, borderColor);
 
                 string line = _wrappedTextLines[i];
                 int drawCount;
@@ -434,7 +456,7 @@ namespace CavesOfOoo.Rendering
                     else drawCount = remaining;
                 }
                 if (drawCount > 0)
-                    DrawText(2, y, line.Substring(0, drawCount), QudColorParser.White);
+                    DrawText(contentOffsetX + 2, y, line.Substring(0, drawCount), QudColorParser.White);
                 revealedSoFar += line.Length;
                 y++;
             }
@@ -442,6 +464,8 @@ namespace CavesOfOoo.Rendering
             // Blank line between text and choices
             DrawChar(0, y, CP437TilesetGenerator.BoxVertical, borderColor);
             DrawChar(_popupW - 1, y, CP437TilesetGenerator.BoxVertical, borderColor);
+            if (dividerX > 0)
+                DrawChar(dividerX, y, CP437TilesetGenerator.BoxVertical, borderColor);
             y++;
 
             // ----- Player choices with semantic tags -----
@@ -450,14 +474,16 @@ namespace CavesOfOoo.Rendering
             {
                 DrawChar(0, y, CP437TilesetGenerator.BoxVertical, borderColor);
                 DrawChar(_popupW - 1, y, CP437TilesetGenerator.BoxVertical, borderColor);
+                if (dividerX > 0)
+                    DrawChar(dividerX, y, CP437TilesetGenerator.BoxVertical, borderColor);
 
                 bool selected = (i == _cursorIndex);
 
                 if (selected && !_revealing)
-                    DrawChar(1, y, '>', QudColorParser.White);
+                    DrawChar(contentOffsetX + 1, y, '>', QudColorParser.White);
 
                 // Hotkey
-                int col = 2;
+                int col = contentOffsetX + 2;
                 if (i < 26)
                 {
                     char hotkey = (char)('a' + i);
@@ -480,6 +506,7 @@ namespace CavesOfOoo.Rendering
                 // Choice text
                 string choiceText = choices[i].Text ?? "";
                 int maxLen = _popupW - 2 - col;
+                if (maxLen < 1) maxLen = 1;
                 if (choiceText.Length > maxLen)
                     choiceText = choiceText.Substring(0, maxLen - 1) + "~";
                 Color textColor = _revealing
@@ -494,11 +521,60 @@ namespace CavesOfOoo.Rendering
             for (int i = 1; i < _popupW - 1; i++)
                 DrawChar(i, y, CP437TilesetGenerator.BoxHorizontal, borderColor);
             DrawChar(_popupW - 1, y, CP437TilesetGenerator.BoxBottomRight, borderColor);
+            if (dividerX > 0)
+                DrawChar(dividerX, y, CP437TilesetGenerator.BoxTeeUp, borderColor);
             y++;
+
+            // ----- Portrait panel content (centered in left gutter) -----
+            if (UsePortraitPanel && dividerX > 0)
+            {
+                int panelInnerWidth = dividerX - 1; // cols 1..dividerX-1 inclusive
+                int totalRows = 1 + textLines + 1 + choiceCount; // rows 1..(y-2), y is currently bottom+1
+
+                // Centered large speaker glyph on the first interior row.
+                int glyphRow = 1;
+                int glyphCol = 1 + (panelInnerWidth - 1) / 2;
+                DrawChar(glyphCol, glyphRow, speakerGlyph, speakerGlyphColor);
+
+                // Faction name (truncated) two rows below.
+                string faction = speaker != null ? FactionManager.GetFaction(speaker) : null;
+                if (!string.IsNullOrEmpty(faction))
+                {
+                    int maxFacLen = panelInnerWidth;
+                    string f = faction.Length > maxFacLen ? faction.Substring(0, maxFacLen) : faction;
+                    int facRow = glyphRow + 2;
+                    int facCol = 1 + (panelInnerWidth - f.Length) / 2;
+                    if (facRow < totalRows + 1)
+                        DrawText(facCol, facRow, f, QudColorParser.Gray);
+                }
+
+                // Disposition word (colored to match border).
+                string dispo = DispositionWord(borderColor);
+                if (!string.IsNullOrEmpty(dispo))
+                {
+                    int maxDispoLen = panelInnerWidth;
+                    string d = dispo.Length > maxDispoLen ? dispo.Substring(0, maxDispoLen) : dispo;
+                    int dispoRow = glyphRow + 4;
+                    int dispoCol = 1 + (panelInnerWidth - d.Length) / 2;
+                    if (dispoRow < totalRows + 1)
+                        DrawText(dispoCol, dispoRow, d, borderColor);
+                }
+            }
 
             // Action bar
             string actions = " [Enter]select [a-z]quick select [Esc]close";
             DrawText(0, y, actions, QudColorParser.DarkGray);
+        }
+
+        /// <summary>
+        /// Short disposition word for the portrait panel, matching the border color.
+        /// </summary>
+        private static string DispositionWord(Color borderColor)
+        {
+            if (borderColor == QudColorParser.BrightRed) return "hostile";
+            if (borderColor == QudColorParser.BrightGreen) return "allied";
+            if (borderColor == QudColorParser.BrightYellow) return "warm";
+            return "neutral";
         }
 
         /// <summary>
@@ -591,7 +667,9 @@ namespace CavesOfOoo.Rendering
             var choices = ConversationManager.VisibleChoices;
             int choiceCount = Mathf.Min(choices.Count, POPUP_MAX_VISIBLE_CHOICES);
 
-            if (gx > 0 && gx < _popupW - 1
+            // Only count clicks in the right panel (not the portrait column).
+            int leftEdge = UsePortraitPanel ? PORTRAIT_W : 1;
+            if (gx >= leftEdge && gx < _popupW - 1
                 && gy >= choicesStartY && gy < choicesStartY + choiceCount)
             {
                 return gy - choicesStartY;

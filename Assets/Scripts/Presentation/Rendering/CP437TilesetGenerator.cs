@@ -25,6 +25,8 @@ namespace CavesOfOoo.Rendering
         public const char BoxVertical    = '\u00B3'; // │
         public const char BoxTeeLeft      = '\u00C3'; // ├
         public const char BoxTeeRight     = '\u00B4'; // ┤
+        public const char BoxTeeDown      = '\u00C2'; // ┬
+        public const char BoxTeeUp        = '\u00C1'; // ┴
         public const char SolidBlock     = '\u00DB'; // █
 
         private static Dictionary<char, Tile> _tileCache;
