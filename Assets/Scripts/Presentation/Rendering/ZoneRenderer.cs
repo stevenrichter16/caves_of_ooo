@@ -25,7 +25,7 @@ namespace CavesOfOoo.Rendering
         /// Background tone for visually blank cells.
         /// </summary>
         public Color BackgroundColor = new Color(0.05f, 0.05f, 0.05f);
-        public Color UnexploredColor = new Color(0.15f, 0.15f, 0.18f);
+        public Color UnexploredColor = new Color(0.15f, 0.15f, 0.18f, 0.75f);
 
         /// <summary>
         /// When true, zone rendering is suppressed (e.g. inventory screen is open).
@@ -265,13 +265,18 @@ namespace CavesOfOoo.Rendering
             // Unity tilemap Y is inverted relative to our grid (0=bottom in Unity, 0=top in roguelike)
             Vector3Int tilePos = new Vector3Int(x, Zone.Height - 1 - y, 0);
 
-            // Fog of war: unexplored cells use a distinct dim tint
+            // Fog of war: unexplored cells use a solid bg block tinted with UnexploredColor
+            // (alpha supported — the bg SolidBlock is fully opaque pixels so the tint shows)
             if (!cell.Explored)
             {
-                Tile emptyTile = CP437TilesetGenerator.GetTile(AsciiWorldRenderPolicy.EmptyGlyph);
-                _tilemap.SetTile(tilePos, emptyTile);
-                _tilemap.SetTileFlags(tilePos, TileFlags.None);
-                _tilemap.SetColor(tilePos, UnexploredColor);
+                if (_bgTilemap != null)
+                {
+                    Tile bgTile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+                    _bgTilemap.SetTile(tilePos, bgTile);
+                    _bgTilemap.SetTileFlags(tilePos, TileFlags.None);
+                    _bgTilemap.SetColor(tilePos, UnexploredColor);
+                }
+                _tilemap.SetTile(tilePos, null);
                 return;
             }
 
