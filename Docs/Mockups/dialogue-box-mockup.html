@@ -20,8 +20,8 @@
     /* Popup bg: Color(0.05, 0.05, 0.08, 0.92) */
     --popup-bg: rgba(13, 13, 20, 0.92);
 
-    /* Message log bg: Color(0,0,0,0.75) */
-    --log-bg: rgba(0, 0, 0, 0.75);
+    /* Message log bg: Color(0.05, 0.05, 0.08, 0.92) — now matches popup */
+    --log-bg: rgba(13, 13, 20, 0.92);
   }
 
   html, body {
@@ -72,12 +72,28 @@
     white-space: pre;
   }
   .popup .row { display: block; }
-  .popup .border,
-  .popup .pipe { color: var(--c-gray); }
+  /* Border color is disposition-tinted; neutral = gray, warm = yellow, etc. */
+  .popup.neutral .border,
+  .popup.neutral .pipe { color: var(--c-gray); }
+  .popup.warm .border,
+  .popup.warm .pipe { color: var(--c-bright-yellow); }
+  .popup.allied .border,
+  .popup.allied .pipe { color: var(--c-bright-green); }
+  .popup.hostile .border,
+  .popup.hostile .pipe { color: var(--c-bright-red); }
+
   .popup .bracket { color: var(--c-gray); }
   .popup .speaker-name { color: var(--c-bright-yellow); }
   .popup .speaker-glyph { color: var(--c-bright-yellow); }
   .popup .text { color: var(--c-white); }
+
+  /* Portrait panel */
+  .popup .portrait-glyph { color: var(--c-bright-yellow); font-size: 1em; }
+  .popup .faction-name { color: var(--c-gray); }
+  .popup.warm .dispo { color: var(--c-bright-yellow); }
+  .popup.neutral .dispo { color: var(--c-gray); }
+  .popup.allied .dispo { color: var(--c-bright-green); }
+  .popup.hostile .dispo { color: var(--c-bright-red); }
 
   .popup .choice-cursor-on  { color: var(--c-white); }
   .popup .choice-cursor-off { color: transparent; }
@@ -113,6 +129,7 @@
     border-top-right-radius: 2px;
   }
   .worldlog .msg { display: block; }
+  /* Age-graduated alpha (matches ZoneRenderer age ramp 1.0 -> 0.35) */
   .worldlog .m0 { color: rgba(255,255,255, 1.00); }
   .worldlog .m1 { color: rgba(240,240,240, 0.92); }
   .worldlog .m2 { color: rgba(221,221,221, 0.83); }
@@ -121,6 +138,16 @@
   .worldlog .m5 { color: rgba(170,170,170, 0.57); }
   .worldlog .m6 { color: rgba(170,170,170, 0.48); }
   .worldlog .m7 { color: rgba(170,170,170, 0.35); }
+
+  /* Gutter / tick column */
+  .worldlog .tick { color: var(--c-dark-gray); }
+  /* Semantic icon colors */
+  .worldlog .ic-heal   { color: var(--c-bright-green); }
+  .worldlog .ic-kill   { color: var(--c-bright-yellow); }
+  .worldlog .ic-gain   { color: var(--c-bright-yellow); }
+  .worldlog .ic-hit    { color: var(--c-bright-red); }
+  .worldlog .ic-status { color: var(--c-white); }
+  .worldlog .ic-item   { color: var(--c-dark-cyan); }
 
   /* ================= Label strip ================= */
   .caption {
@@ -135,7 +162,7 @@
 </head>
 <body>
 
-<div class="caption">caves_of_ooo — dialogue box & world log polish mockup</div>
+<div class="caption">caves_of_ooo — dialogue box & world log polish mockup (with portrait + tick gutter + icons)</div>
 
 <!-- decorative faux-world behind UI -->
 <pre class="world">
@@ -151,13 +178,13 @@
 </pre>
 
 <div class="scene">
-  <div class="popup" role="dialog" aria-label="dialogue">
-<span class="row"><span class="border">┌──</span><span class="bracket">[ </span><span class="speaker-glyph">&amp;</span><span class="bracket"> </span><span class="speaker-name">Ink-Marked Scribe</span><span class="bracket"> ]</span><span class="border">──────────────────────────────┐</span></span><span class="row"><span class="pipe">│</span>  <span class="text">You lean over the scribe's shelf. She doesn't look up;</span>                  <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span>  <span class="text">her quill is copying itself across the parchment, one</span>                   <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span>  <span class="text">letter at a time, and the ink keeps trying to crawl back</span>                 <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span>  <span class="text">into the bottle.</span>                                                          <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span>                                                                              <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span> <span class="choice-cursor-off">&gt;</span><span class="choice-hotkey-off">a)</span> <span class="tag-talk">[Talk]</span> <span class="choice-text-off">Ask about the Palimpsest.</span>                                    <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span> <span class="choice-cursor-on">&gt;</span><span class="choice-hotkey-on">b)</span> <span class="tag-copy">[Copy]</span> <span class="choice-text-on">Hand her a grimoire to transcribe.</span>                             <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span> <span class="choice-cursor-off">&gt;</span><span class="choice-hotkey-off">c)</span> <span class="tag-trade">[Trade]</span> <span class="choice-text-off">Browse her wares.</span>                                             <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span> <span class="choice-cursor-off">&gt;</span><span class="choice-hotkey-off">d)</span> <span class="tag-give">[Give]</span> <span class="choice-text-off">Offer the rot-stained page you found.</span>                         <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span> <span class="choice-cursor-off">&gt;</span><span class="choice-hotkey-off">e)</span> <span class="tag-attack">[Attack]</span> <span class="choice-text-off">Ink is a kind of blood. Draw some.</span>                           <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span> <span class="choice-cursor-off">&gt;</span><span class="choice-hotkey-off">f)</span> <span class="tag-leave">[Leave]</span> <span class="choice-text-off">Step away.</span>                                                    <span class="pipe">│</span></span><span class="row"><span class="border">└──────────────────────────────────────────────────────────────────────────────┘</span></span><span class="row action-bar"> [Enter]select [a-z]quick select [Esc]close</span>
+  <div class="popup warm" role="dialog" aria-label="dialogue">
+<span class="row"><span class="border">┌────────┬──</span><span class="bracket">[ </span><span class="speaker-glyph">&amp;</span><span class="bracket"> </span><span class="speaker-name">Ink-Marked Scribe</span><span class="bracket"> ]</span><span class="border">──────────────────────────────┐</span></span><span class="row"><span class="pipe">│</span>        <span class="pipe">│</span>                                                                  <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span>   <span class="portrait-glyph">&amp;</span>    <span class="pipe">│</span> <span class="text">You lean over the scribe's shelf. She doesn't look up;</span>           <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span>        <span class="pipe">│</span> <span class="text">her quill is copying itself across the parchment, one</span>            <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span> <span class="faction-name">Scribes</span><span class="pipe">│</span> <span class="text">letter at a time, and the ink keeps trying to crawl back</span>         <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span>        <span class="pipe">│</span> <span class="text">into the bottle.</span>                                                 <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span>  <span class="dispo">warm</span>  <span class="pipe">│</span>                                                                  <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span>        <span class="pipe">│</span><span class="choice-cursor-off">&gt;</span><span class="choice-hotkey-off">a)</span> <span class="tag-talk">[Talk]</span> <span class="choice-text-off">Ask about the Palimpsest.</span>                            <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span>        <span class="pipe">│</span><span class="choice-cursor-on">&gt;</span><span class="choice-hotkey-on">b)</span> <span class="tag-copy">[Copy]</span> <span class="choice-text-on">Hand her a grimoire to transcribe.</span>                     <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span>        <span class="pipe">│</span><span class="choice-cursor-off">&gt;</span><span class="choice-hotkey-off">c)</span> <span class="tag-trade">[Trade]</span> <span class="choice-text-off">Browse her wares.</span>                                     <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span>        <span class="pipe">│</span><span class="choice-cursor-off">&gt;</span><span class="choice-hotkey-off">d)</span> <span class="tag-give">[Give]</span> <span class="choice-text-off">Offer the rot-stained page you found.</span>                 <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span>        <span class="pipe">│</span><span class="choice-cursor-off">&gt;</span><span class="choice-hotkey-off">e)</span> <span class="tag-attack">[Attack]</span> <span class="choice-text-off">Ink is a kind of blood. Draw some.</span>                   <span class="pipe">│</span></span><span class="row"><span class="pipe">│</span>        <span class="pipe">│</span><span class="choice-cursor-off">&gt;</span><span class="choice-hotkey-off">f)</span> <span class="tag-leave">[Leave]</span> <span class="choice-text-off">Step away.</span>                                            <span class="pipe">│</span></span><span class="row"><span class="border">└────────┴─────────────────────────────────────────────────────────────────────┘</span></span><span class="row action-bar"> [Enter]select [a-z]quick select [Esc]close</span>
   </div>
 </div>
 
 <div class="worldlog" aria-label="world log">
-<span class="msg m0">You open the grimoire. The ink stirs.</span><span class="msg m1">The snapjaw hits you for 3. (x2)</span><span class="msg m2">You slash the snapjaw for 6.</span><span class="msg m3">The snapjaw falters.</span><span class="msg m4">You slash the snapjaw for 4.</span><span class="msg m5">The snapjaw bites you for 2.</span><span class="msg m6">A glowmaw lurks somewhere above.</span><span class="msg m7">You hear dripping.</span>
+<span class="msg m0"><span class="tick">042 </span><span class="ic-status">!</span> You open the grimoire. The ink stirs.</span><span class="msg m1"><span class="tick">041 </span><span class="ic-hit">-</span> The snapjaw hits you for 3. (x2)</span><span class="msg m2"><span class="tick">040 </span><span class="ic-hit">-</span> You slash the snapjaw for 6.</span><span class="msg m3"><span class="tick">039 </span><span class="ic-status">!</span> The snapjaw falters.</span><span class="msg m4"><span class="tick">038 </span><span class="ic-hit">-</span> You slash the snapjaw for 4.</span><span class="msg m5"><span class="tick">037 </span><span class="ic-hit">-</span> The snapjaw bites you for 2.</span><span class="msg m6"><span class="tick">036 </span><span class="ic-item">"</span> You pick up a moth-ember.</span><span class="msg m7"><span class="tick">035 </span>  You hear dripping.</span>
 </div>
 
 </body>
