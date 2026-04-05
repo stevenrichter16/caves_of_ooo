@@ -438,7 +438,7 @@ namespace CavesOfOoo.Rendering
         /// Render recent messages at the bottom of the visible screen
         /// using the narrow-text message tilemap.
         /// </summary>
-        private static readonly Color MsgBgColor = new Color(0f, 0f, 0f, 0.75f);
+        private static readonly Color MsgBgColor = new Color(0.05f, 0.05f, 0.08f, 0.92f);
 
         private void RenderMessages()
         {
@@ -448,8 +448,30 @@ namespace CavesOfOoo.Rendering
             if (_msgBgTilemap != null)
                 _msgBgTilemap.ClearAllTiles();
 
-            var recent = MessageLog.GetRecent(MessageLineCount);
-            if (recent.Count == 0) return;
+            // Fetch a wider window than we'll display so adjacent-duplicate coalescing
+            // doesn't leave the log sparse during spam storms (10 identical hits => 1 line).
+            int fetchCount = MessageLineCount * 8;
+            var rawRecent = MessageLog.GetRecent(fetchCount);
+            var rawTicks  = MessageLog.GetRecentTicks(fetchCount);
+            if (rawRecent.Count == 0) return;
+
+            // Coalesce adjacent duplicates walking newest->oldest until we have enough lines.
+            // displayed[0] = newest visible line.
+            var displayed = new List<(string text, int tick, int count)>(MessageLineCount);
+            int rIdx = rawRecent.Count - 1;
+            while (rIdx >= 0 && displayed.Count < MessageLineCount)
+            {
+                string cur = rawRecent[rIdx];
+                int curTick = rIdx < rawTicks.Count ? rawTicks[rIdx] : 0;
+                int n = 1;
+                while (rIdx - 1 >= 0 && rawRecent[rIdx - 1] == cur)
+                {
+                    n++;
+                    rIdx--;
+                }
+                displayed.Add((cur, curTick, n));
+                rIdx--;
+            }
 
             var cam = Camera.main;
             if (cam == null) return;
@@ -495,24 +517,84 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
+            // Column layout per line (half-width cells on the msg grid):
+            //   [0..3]  tick gutter (4 chars: "NNN ")
+            //   [4]     category icon
+            //   [5]     space
+            //   [6..]   message text (optionally suffixed " (xN)" when coalesced)
+            const int GutterWidth = 4;
+            const int IconCol = 4;
+            const int TextCol = 6;
+            int textMaxChars = maxChars - TextCol;
+            if (textMaxChars < 1) textMaxChars = 1;
+
             // Render newest message at screen bottom, older ones above with spacer rows.
             // Age-graduate opacity: newest = fully opaque white, older lines fade to gray.
             for (int i = 0; i < MessageLineCount; i++)
             {
                 int tileY = bottomTileY + (i * 2);
-                int msgIndex = recent.Count - 1 - i;
+                if (i >= displayed.Count) continue;
 
-                if (msgIndex >= 0)
+                var entry = displayed[i];
+
+                // Alpha ramp: newest=1.0 -> oldest=0.35 across MessageLineCount lines.
+                float t = (MessageLineCount <= 1) ? 0f : (float)i / (MessageLineCount - 1);
+                float alpha = Mathf.Lerp(1.0f, 0.35f, t);
+
+                // Text color: hue shift from white (newest) -> gray (older).
+                Color baseColor = Color.Lerp(QudColorParser.White, QudColorParser.Gray, t);
+                Color textColor = new Color(baseColor.r, baseColor.g, baseColor.b, alpha);
+
+                // Tick gutter: "NNN " right-aligned in 3 chars + trailing space (4 total).
+                string tickStr = FormatTick(entry.tick);
+                Color gutterColor = new Color(
+                    QudColorParser.DarkGray.r,
+                    QudColorParser.DarkGray.g,
+                    QudColorParser.DarkGray.b,
+                    alpha);
+                DrawMsgText(startX, tileY, tickStr, gutterColor, GutterWidth);
+
+                // Category icon (inferred from message content).
+                InferMsgCategory(entry.text, out char icon, out Color iconBase);
+                if (icon != ' ')
                 {
-                    // Alpha ramp: newest=1.0 → oldest=0.35 across MessageLineCount lines.
-                    float t = (MessageLineCount <= 1) ? 0f : (float)i / (MessageLineCount - 1);
-                    float alpha = Mathf.Lerp(1.0f, 0.35f, t);
-                    // Hue shift: newest is white, older lines drift to gray.
-                    Color baseColor = Color.Lerp(QudColorParser.White, QudColorParser.Gray, t);
-                    Color color = new Color(baseColor.r, baseColor.g, baseColor.b, alpha);
-                    DrawMsgText(startX, tileY, recent[msgIndex], color, maxChars);
+                    Color iconColor = new Color(iconBase.r, iconBase.g, iconBase.b, alpha);
+                    DrawMsgText(startX + IconCol, tileY, icon.ToString(), iconColor, 1);
                 }
+
+                // Message text + optional " (xN)" suffix when coalesced.
+                string body = entry.count > 1 ? entry.text + " (x" + entry.count + ")" : entry.text;
+                DrawMsgText(startX + TextCol, tileY, body, textColor, textMaxChars);
             }
+        }
+
+        /// <summary>
+        /// Formats a tick number into a 4-char gutter string "NNN " (right-pads).
+        /// Wraps past 999 by showing modulo to keep alignment stable.
+        /// </summary>
+        private static string FormatTick(int tick)
+        {
+            int n = tick % 1000;
+            if (n < 10)  return "  " + n + " ";
+            if (n < 100) return " "  + n + " ";
+            return n + " ";
+        }
+
+        /// <summary>
+        /// Infer a single-char semantic icon + color from a log message string.
+        /// Fallback is a blank icon (space) and gray color.
+        /// </summary>
+        private static void InferMsgCategory(string msg, out char icon, out Color color)
+        {
+            if (string.IsNullOrEmpty(msg)) { icon = ' '; color = QudColorParser.Gray; return; }
+            if (msg.Contains(" heals ") || msg.Contains(" heal ")) { icon = '+'; color = QudColorParser.BrightGreen; return; }
+            if (msg.Contains(" is killed") || msg.Contains(" dies")) { icon = '*'; color = QudColorParser.BrightYellow; return; }
+            if (msg.Contains("advance to level") || msg.Contains(" gain ")) { icon = '^'; color = QudColorParser.BrightYellow; return; }
+            if (msg.Contains(" hits ") || msg.Contains(" damage") || msg.Contains(" blasts ") || msg.Contains(" slashes ") || msg.Contains(" bites ")) { icon = '-'; color = QudColorParser.BrightRed; return; }
+            if (msg.Contains(" catches fire") || msg.Contains(" is confused") || msg.Contains(" is poisoned") || msg.Contains(" is stunned") || msg.Contains(" is paralyzed") || msg.Contains(" is bleeding")) { icon = '!'; color = QudColorParser.White; return; }
+            if (msg.Contains(" picks up ") || msg.Contains(" drops ") || msg.Contains(" equips ") || msg.Contains(" unequips ") || msg.Contains(" eats ")) { icon = '"'; color = QudColorParser.DarkCyan; return; }
+            icon = ' ';
+            color = QudColorParser.Gray;
         }
 
         private void DrawMsgText(int x, int tileY, string text, Color color, int maxChars)

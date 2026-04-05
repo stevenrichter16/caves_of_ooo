@@ -10,6 +10,7 @@ namespace CavesOfOoo.Core
     public static class MessageLog
     {
         private static readonly List<string> Messages = new List<string>();
+        private static readonly List<int> Ticks = new List<int>();
         private static readonly Queue<string> Announcements = new Queue<string>();
 
         /// <summary>
@@ -18,9 +19,24 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static Action<string> OnMessage;
 
+        /// <summary>
+        /// Source of the current game tick — wired at bootstrap so the log can
+        /// stamp each message with the turn/tick it occurred on. Returns 0
+        /// if unwired (e.g. in tests).
+        /// </summary>
+        public static Func<int> TickProvider;
+
+        /// <summary>
+        /// Stamp that increments every time an announcement (critical event)
+        /// is posted. UI consumers compare against a cached value to detect
+        /// new announcements and flash accordingly.
+        /// </summary>
+        public static int FlashStamp;
+
         public static void Add(string message)
         {
             Messages.Add(message);
+            Ticks.Add(TickProvider != null ? TickProvider() : 0);
             OnMessage?.Invoke(message);
         }
 
@@ -32,6 +48,7 @@ namespace CavesOfOoo.Core
         {
             Add(message);
             Announcements.Enqueue(message);
+            FlashStamp++;
         }
 
         public static bool HasPendingAnnouncement => Announcements.Count > 0;
@@ -53,10 +70,22 @@ namespace CavesOfOoo.Core
             return Messages.GetRange(start, Messages.Count - start);
         }
 
+        /// <summary>
+        /// Returns ticks parallel to GetRecent(count). Ticks[i] is the game
+        /// tick at which Messages[i] was added (0 if TickProvider unwired).
+        /// </summary>
+        public static List<int> GetRecentTicks(int count)
+        {
+            int start = Math.Max(0, Ticks.Count - count);
+            return Ticks.GetRange(start, Ticks.Count - start);
+        }
+
         public static void Clear()
         {
             Messages.Clear();
+            Ticks.Clear();
             Announcements.Clear();
+            FlashStamp = 0;
         }
 
         public static List<string> GetMessages()

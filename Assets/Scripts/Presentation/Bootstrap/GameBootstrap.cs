@@ -108,6 +108,7 @@ namespace CavesOfOoo
             Debug.Log("[Bootstrap] Step 7/9: Setting up turns...");
             _turnManager = new TurnManager();
             _zoneManager.SetTurnProvider(() => _turnManager != null ? _turnManager.TickCount : 0);
+            MessageLog.TickProvider = () => _turnManager != null ? _turnManager.TickCount : 0;
             RegisterCreaturesForTurns();
 
             Debug.Log("[Bootstrap] Step 8/9: Wiring renderer...");
