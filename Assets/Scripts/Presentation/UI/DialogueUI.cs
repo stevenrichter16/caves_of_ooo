@@ -30,6 +30,13 @@ namespace CavesOfOoo.Rendering
         private List<string> _wrappedTextLines = new List<string>();
         private bool _conversationEnded;
 
+        // Typewriter reveal state.
+        private const float REVEAL_INTERVAL = 0.015f;
+        private bool _revealing;
+        private int _revealCount;       // cumulative characters revealed across all wrapped text lines
+        private int _totalRevealChars;  // total chars in _wrappedTextLines (sum of lengths)
+        private float _revealTimer;
+
         // Popup world-space anchors (same pattern as PickupUI).
         // _popupW is computed per-render so the box shrinks/grows with content.
         private int _worldOriginX;
@@ -67,6 +74,31 @@ namespace CavesOfOoo.Rendering
                 ConversationManager.EndConversation();
         }
 
+        /// <summary>
+        /// Unity-driven per-frame tick. Advances the typewriter reveal while
+        /// the dialog is open. Independent of HandleInput so the stream
+        /// doesn't stall between input events.
+        /// </summary>
+        private void Update()
+        {
+            if (!_isOpen || !_revealing) return;
+            _revealTimer += Time.deltaTime;
+            bool rendered = false;
+            while (_revealTimer >= REVEAL_INTERVAL && _revealCount < _totalRevealChars)
+            {
+                _revealTimer -= REVEAL_INTERVAL;
+                _revealCount++;
+                rendered = true;
+            }
+            if (_revealCount >= _totalRevealChars)
+            {
+                _revealing = false;
+                _revealCount = _totalRevealChars;
+                rendered = true;
+            }
+            if (rendered) Render();
+        }
+
         public void HandleInput()
         {
             if (!_isOpen) return;
@@ -93,6 +125,31 @@ namespace CavesOfOoo.Rendering
                     Close();
                     return;
                 }
+            }
+
+            // While text is still streaming, ANY confirm input (Enter/Space/click/hotkey)
+            // fast-forwards the reveal instead of selecting a choice. The next press
+            // then performs the normal action.
+            if (_revealing)
+            {
+                bool skip = Input.GetKeyDown(KeyCode.Return)
+                         || Input.GetKeyDown(KeyCode.Space)
+                         || Input.GetMouseButtonDown(0);
+                if (!skip)
+                {
+                    for (int i = 0; i < 26 && i < choices.Count; i++)
+                    {
+                        if (Input.GetKeyDown(KeyCode.A + i)) { skip = true; break; }
+                    }
+                }
+                if (skip)
+                {
+                    _revealCount = _totalRevealChars;
+                    _revealing = false;
+                    Render();
+                    return;
+                }
+                // Arrow keys are allowed to pre-position the cursor; fall through.
             }
 
             // Mouse click
@@ -208,6 +265,14 @@ namespace CavesOfOoo.Rendering
             _maxTextWidth = _popupW - 4;
 
             WrapText(text, _maxTextWidth, _wrappedTextLines);
+
+            // Reset typewriter reveal for the new node.
+            _totalRevealChars = 0;
+            for (int i = 0; i < _wrappedTextLines.Count; i++)
+                _totalRevealChars += _wrappedTextLines[i].Length;
+            _revealCount = 0;
+            _revealTimer = 0f;
+            _revealing = _totalRevealChars > 0;
         }
 
         /// <summary>
@@ -347,13 +412,30 @@ namespace CavesOfOoo.Rendering
             DrawChar(tx, 0, ' ', QudColorParser.Gray); tx++;
             DrawChar(tx, 0, ']', QudColorParser.Gray);
 
-            // ----- NPC speech text -----
+            // ----- NPC speech text (with typewriter reveal) -----
             int y = 1;
+            int revealedSoFar = 0;
             for (int i = 0; i < textLines; i++)
             {
                 DrawChar(0, y, CP437TilesetGenerator.BoxVertical, borderColor);
                 DrawChar(_popupW - 1, y, CP437TilesetGenerator.BoxVertical, borderColor);
-                DrawText(2, y, _wrappedTextLines[i], QudColorParser.White);
+
+                string line = _wrappedTextLines[i];
+                int drawCount;
+                if (!_revealing)
+                {
+                    drawCount = line.Length;
+                }
+                else
+                {
+                    int remaining = _revealCount - revealedSoFar;
+                    if (remaining <= 0) drawCount = 0;
+                    else if (remaining >= line.Length) drawCount = line.Length;
+                    else drawCount = remaining;
+                }
+                if (drawCount > 0)
+                    DrawText(2, y, line.Substring(0, drawCount), QudColorParser.White);
+                revealedSoFar += line.Length;
                 y++;
             }
 
@@ -363,6 +445,7 @@ namespace CavesOfOoo.Rendering
             y++;
 
             // ----- Player choices with semantic tags -----
+            // While text is still streaming, choices are drawn dimmed to discourage input.
             for (int i = 0; i < choiceCount; i++)
             {
                 DrawChar(0, y, CP437TilesetGenerator.BoxVertical, borderColor);
@@ -370,7 +453,7 @@ namespace CavesOfOoo.Rendering
 
                 bool selected = (i == _cursorIndex);
 
-                if (selected)
+                if (selected && !_revealing)
                     DrawChar(1, y, '>', QudColorParser.White);
 
                 // Hotkey
@@ -379,15 +462,18 @@ namespace CavesOfOoo.Rendering
                 {
                     char hotkey = (char)('a' + i);
                     string hk = hotkey + ")";
-                    DrawText(col, y, hk, selected ? QudColorParser.White : QudColorParser.Gray);
+                    Color hkColor = _revealing
+                        ? QudColorParser.DarkGray
+                        : (selected ? QudColorParser.White : QudColorParser.Gray);
+                    DrawText(col, y, hk, hkColor);
                     col += 3; // 2 chars + space
                 }
 
-                // Semantic tag prefix
+                // Semantic tag prefix (dimmed to DarkGray while revealing)
                 InferChoiceTag(choices[i], out string tag, out Color tagColor);
                 if (!string.IsNullOrEmpty(tag))
                 {
-                    DrawText(col, y, tag, tagColor);
+                    DrawText(col, y, tag, _revealing ? QudColorParser.DarkGray : tagColor);
                     col += tag.Length + 1;
                 }
 
@@ -396,7 +482,9 @@ namespace CavesOfOoo.Rendering
                 int maxLen = _popupW - 2 - col;
                 if (choiceText.Length > maxLen)
                     choiceText = choiceText.Substring(0, maxLen - 1) + "~";
-                Color textColor = selected ? QudColorParser.BrightCyan : QudColorParser.Gray;
+                Color textColor = _revealing
+                    ? QudColorParser.DarkGray
+                    : (selected ? QudColorParser.BrightCyan : QudColorParser.Gray);
                 DrawText(col, y, choiceText, textColor);
                 y++;
             }
