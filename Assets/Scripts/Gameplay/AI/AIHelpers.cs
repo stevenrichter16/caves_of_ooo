@@ -10,6 +10,10 @@ namespace CavesOfOoo.Core
     /// </summary>
     public static class AIHelpers
     {
+        // Reusable scratch list for tag queries — avoids per-call allocation.
+        [System.ThreadStatic] private static List<Entity> _scratchCreatures;
+        private static List<Entity> ScratchCreatures => _scratchCreatures ?? (_scratchCreatures = new List<Entity>());
+
         /// <summary>
         /// Chebyshev distance (max of |dx|, |dy|). Correct for 8-directional movement.
         /// </summary>
@@ -111,7 +115,8 @@ namespace CavesOfOoo.Core
             Entity nearest = null;
             int nearestDist = int.MaxValue;
 
-            var creatures = zone.GetEntitiesWithTag("Creature");
+            var creatures = ScratchCreatures;
+            zone.GetEntitiesWithTagNonAlloc("Creature", creatures);
             for (int i = 0; i < creatures.Count; i++)
             {
                 var other = creatures[i];
@@ -155,7 +160,8 @@ namespace CavesOfOoo.Core
             int selfX = selfCell.X;
             int selfY = selfCell.Y;
 
-            var creatures = zone.GetEntitiesWithTag("Creature");
+            var creatures = ScratchCreatures;
+            zone.GetEntitiesWithTagNonAlloc("Creature", creatures);
             for (int i = 0; i < creatures.Count; i++)
             {
                 var other = creatures[i];

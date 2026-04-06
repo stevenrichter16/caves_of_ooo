@@ -14,6 +14,9 @@ namespace CavesOfOoo.Core
         private static readonly Dictionary<string, int> RegisteredIDs = new Dictionary<string, int>();
         private static int _nextID = 1;
 
+        // Object pool to reduce GC pressure from frequent event allocation
+        private static readonly Stack<GameEvent> Pool = new Stack<GameEvent>(32);
+
         public string ID;
         public bool Handled;
 
@@ -28,6 +31,32 @@ namespace CavesOfOoo.Core
             Parameters = new Dictionary<string, object>();
             StringParameters = new Dictionary<string, string>();
             IntParameters = new Dictionary<string, int>();
+        }
+
+        /// <summary>
+        /// Return this event to the pool for reuse. Clears all state.
+        /// Call after FireEvent has completed synchronous processing.
+        /// </summary>
+        public void Release()
+        {
+            ID = null;
+            Handled = false;
+            Parameters.Clear();
+            StringParameters.Clear();
+            IntParameters.Clear();
+            if (Pool.Count < 64)
+                Pool.Push(this);
+        }
+
+        private static GameEvent Rent(string id)
+        {
+            if (Pool.Count > 0)
+            {
+                var e = Pool.Pop();
+                e.ID = id;
+                return e;
+            }
+            return new GameEvent(id);
         }
 
         // --- Static ID Registration ---
@@ -46,33 +75,33 @@ namespace CavesOfOoo.Core
 
         public static GameEvent New(string id)
         {
-            return new GameEvent(id);
+            return Rent(id);
         }
 
         public static GameEvent New(string id, string name1, object value1)
         {
-            var e = new GameEvent(id);
+            var e = Rent(id);
             e.SetParameter(name1, value1);
             return e;
         }
 
         public static GameEvent New(string id, string name1, string value1)
         {
-            var e = new GameEvent(id);
+            var e = Rent(id);
             e.SetParameter(name1, value1);
             return e;
         }
 
         public static GameEvent New(string id, string name1, int value1)
         {
-            var e = new GameEvent(id);
+            var e = Rent(id);
             e.SetParameter(name1, value1);
             return e;
         }
 
         public static GameEvent New(string id, string name1, object value1, string name2, object value2)
         {
-            var e = new GameEvent(id);
+            var e = Rent(id);
             e.SetParameter(name1, value1);
             e.SetParameter(name2, value2);
             return e;

@@ -73,10 +73,15 @@ namespace CavesOfOoo.Rendering
         private const float LogIdleEnd = 12f;      // fully faded at this idle duration
         private const float LogIdleAlphaFloor = 0.35f;
         private const float FlashDuration = 0.3f;
+        private bool _messagesDirty = true;
+        private float _prevIdleFadeAlpha = -1f;
+        private bool _wasPaused;
         private float _ambientTimer;
         private float _dustMoteSpawnTimer;
         private const float DustMoteSpawnInterval = 3.5f;
+        private Camera _mainCamera;
         private LightMap _lightMap;
+        private readonly List<Vector2Int> _waterTilePositions = new List<Vector2Int>();
         private readonly HashSet<string> _loggedRenderIssues = new HashSet<string>();
         private WorldCursorState _worldCursorState;
         private Entity _cursorPlayer;
@@ -104,6 +109,7 @@ namespace CavesOfOoo.Rendering
         {
             _lastMessageTime = Time.time;
             _lastFlashStamp = MessageLog.FlashStamp;
+            _mainCamera = Camera.main;
             _tilemap = GetComponent<Tilemap>();
 
             Grid grid = GetComponentInParent<Grid>();
@@ -184,6 +190,7 @@ namespace CavesOfOoo.Rendering
             _worldCursorState = null;
             _cursorPlayer = null;
             _dirty = true;
+            RefreshWaterCache();
 
             // Register campfire positions for free-floating ember rendering
             if (_campfireEmberRenderer != null)
@@ -211,51 +218,76 @@ namespace CavesOfOoo.Rendering
         public void MarkDirty()
         {
             _dirty = true;
+            _messagesDirty = true;
         }
 
         private void LateUpdate()
         {
             bool newMessages = MessageLog.Count != _lastMessageCount;
             if (newMessages)
+            {
                 _lastMessageTime = Time.time;
+                _messagesDirty = true;
+            }
             if (MessageLog.FlashStamp != _lastFlashStamp)
             {
                 _lastFlashStamp = MessageLog.FlashStamp;
                 _flashUntil = Time.time + FlashDuration;
+                _messagesDirty = true;
             }
-            Camera cam = Camera.main;
+            Camera cam = _mainCamera;
             bool cameraChanged = HasCameraViewChanged(cam);
+            if (cameraChanged)
+                _messagesDirty = true;
+
+            // Check if idle-fade alpha changed (drives continuous fade-out)
+            float idle = Time.time - _lastMessageTime;
+            float idleFadeAlpha = Mathf.Lerp(
+                1f, LogIdleAlphaFloor,
+                Mathf.InverseLerp(LogIdleStart, LogIdleEnd, idle));
+            if (!Mathf.Approximately(idleFadeAlpha, _prevIdleFadeAlpha))
+                _messagesDirty = true;
+            // Flash also drives per-frame changes while active
+            if (Time.time < _flashUntil)
+                _messagesDirty = true;
 
             _asciiFxRenderer?.Update(Time.deltaTime);
 
             if (Paused)
             {
-                // Full-screen UIs (inventory, faction, trade) draw on the main
-                // tilemap at order 0.  Layers above AND below would show through:
-                //   - BgTilemap (order -1): fog/unexplored tiles visible in gaps
-                //   - FxTilemap (order 1): dust motes, projectiles on top
-                //   - CampfireEmbers (order 1): sprite-based, on top
-                if (_bgTilemap != null) _bgTilemap.ClearAllTiles();
-                if (_fxTilemap != null) _fxTilemap.ClearAllTiles();
-                if (_campfireEmberRenderer != null)
-                    _campfireEmberRenderer.gameObject.SetActive(false);
+                // Only clear auxiliary layers on the transition into paused state
+                if (!_wasPaused)
+                {
+                    if (_bgTilemap != null) _bgTilemap.ClearAllTiles();
+                    if (_fxTilemap != null) _fxTilemap.ClearAllTiles();
+                    if (_campfireEmberRenderer != null)
+                        _campfireEmberRenderer.gameObject.SetActive(false);
+                    _worldCursorRenderer?.Clear();
+                    _lookOverlayRenderer?.Clear();
+                }
 
                 // Still update messages while paused (overlay popups don't hide the message area)
-                if (newMessages || cameraChanged)
+                if (_messagesDirty)
                 {
                     RenderMessages();
                     _lastMessageCount = MessageLog.Count;
+                    _prevIdleFadeAlpha = idleFadeAlpha;
+                    _messagesDirty = false;
                 }
 
-                _worldCursorRenderer?.Clear();
-                _lookOverlayRenderer?.Clear();
                 CacheCameraView(cam);
+                _wasPaused = true;
                 return;
             }
 
-            // Re-enable embers when unpaused (they self-render via LateUpdate).
-            if (_campfireEmberRenderer != null && !_campfireEmberRenderer.gameObject.activeSelf)
-                _campfireEmberRenderer.gameObject.SetActive(true);
+            // Re-enable embers on transition from paused to unpaused
+            if (_wasPaused)
+            {
+                if (_campfireEmberRenderer != null)
+                    _campfireEmberRenderer.gameObject.SetActive(true);
+                _wasPaused = false;
+                _dirty = true; // Force full redraw to restore bg/fx layers
+            }
 
             if (_dirty && CurrentZone != null)
             {
@@ -265,8 +297,13 @@ namespace CavesOfOoo.Rendering
 
             UpdateAmbientAnimations(Time.deltaTime);
 
-            RenderMessages();
-            _lastMessageCount = MessageLog.Count;
+            if (_messagesDirty)
+            {
+                RenderMessages();
+                _lastMessageCount = MessageLog.Count;
+                _prevIdleFadeAlpha = idleFadeAlpha;
+                _messagesDirty = false;
+            }
 
             if (_worldCursorState != null && _worldCursorState.Active)
                 _worldCursorRenderer?.SetCursor(_worldCursorState, _cursorPlayer);
@@ -311,6 +348,8 @@ namespace CavesOfOoo.Rendering
                     RenderCell(x, y);
                 }
             }
+
+            RefreshWaterCache();
         }
 
         private static readonly Color RememberedColor = new Color(0.2f, 0.2f, 0.2f);
@@ -524,7 +563,7 @@ namespace CavesOfOoo.Rendering
                 rIdx--;
             }
 
-            var cam = Camera.main;
+            var cam = _mainCamera;
             if (cam == null) return;
 
             // Scale the message grid so text stays a consistent screen size
@@ -824,6 +863,32 @@ namespace CavesOfOoo.Rendering
         };
 
         /// <summary>
+        /// Rebuild the cached list of water tile positions from the current zone.
+        /// Called on zone load and after full redraws.
+        /// </summary>
+        private void RefreshWaterCache()
+        {
+            _waterTilePositions.Clear();
+            if (CurrentZone == null) return;
+
+            for (int x = 0; x < Zone.Width; x++)
+            {
+                for (int y = 0; y < Zone.Height; y++)
+                {
+                    Cell cell = CurrentZone.GetCell(x, y);
+                    if (cell == null) continue;
+
+                    Entity top = cell.GetTopVisibleObject();
+                    if (top == null) continue;
+
+                    var render = top.GetPart<RenderPart>();
+                    if (render != null && render.RenderString == "~")
+                        _waterTilePositions.Add(new Vector2Int(x, y));
+                }
+            }
+        }
+
+        /// <summary>
         /// Animate tiles that should shimmer or flicker (water, torches).
         /// Runs every frame, but only updates colors on the existing tilemap —
         /// doesn't re-set tiles.
@@ -834,32 +899,22 @@ namespace CavesOfOoo.Rendering
 
             _ambientTimer += deltaTime;
 
-            for (int x = 0; x < Zone.Width; x++)
+            for (int i = 0; i < _waterTilePositions.Count; i++)
             {
-                for (int y = 0; y < Zone.Height; y++)
-                {
-                    Cell cell = CurrentZone.GetCell(x, y);
-                    if (cell == null || !cell.IsVisible) continue;
+                var pos = _waterTilePositions[i];
+                int x = pos.x;
+                int y = pos.y;
 
-                    Entity top = cell.GetTopVisibleObject();
-                    if (top == null) continue;
+                Cell cell = CurrentZone.GetCell(x, y);
+                if (cell == null || !cell.IsVisible) continue;
 
-                    var render = top.GetPart<RenderPart>();
-                    if (render == null) continue;
+                float phase = _ambientTimer * 2f + x * 0.7f + y * 1.3f;
+                int colorIndex = ((int)phase) % WaterColors.Length;
+                if (colorIndex < 0) colorIndex += WaterColors.Length;
 
-                    // Water shimmer: cycle color based on position + time
-                    if (render.RenderString == "~")
-                    {
-                        // Different phase per cell so they don't all sync
-                        float phase = _ambientTimer * 2f + x * 0.7f + y * 1.3f;
-                        int colorIndex = ((int)phase) % WaterColors.Length;
-                        if (colorIndex < 0) colorIndex += WaterColors.Length;
-
-                        Vector3Int tilePos = new Vector3Int(x, Zone.Height - 1 - y, 0);
-                        _tilemap.SetTileFlags(tilePos, TileFlags.None);
-                        _tilemap.SetColor(tilePos, WaterColors[colorIndex]);
-                    }
-                }
+                Vector3Int tilePos = new Vector3Int(x, Zone.Height - 1 - y, 0);
+                _tilemap.SetTileFlags(tilePos, TileFlags.None);
+                _tilemap.SetColor(tilePos, WaterColors[colorIndex]);
             }
 
             // Dust motes: spawn occasional faint particles in lit areas

@@ -70,6 +70,7 @@ namespace CavesOfOoo.Core
 
             cell.AddObject(entity);
             _entityCells[entity] = cell;
+            EntityVersion++;
             return true;
         }
 
@@ -82,6 +83,7 @@ namespace CavesOfOoo.Core
             {
                 cell.RemoveObject(entity);
                 _entityCells.Remove(entity);
+                EntityVersion++;
                 return true;
             }
             return false;
@@ -126,7 +128,7 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Get all entities in the zone.
+        /// Get all entities in the zone (allocates a new list — prefer GetReadOnlyEntities for iteration).
         /// </summary>
         public List<Entity> GetAllEntities()
         {
@@ -136,7 +138,15 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Get all entities with a specific tag.
+        /// Non-allocating read-only view of all entities. Callers must not mutate the zone during iteration.
+        /// </summary>
+        public Dictionary<Entity, Cell>.KeyCollection GetReadOnlyEntities()
+        {
+            return _entityCells.Keys;
+        }
+
+        /// <summary>
+        /// Get all entities with a specific tag (allocates a new list).
         /// </summary>
         public List<Entity> GetEntitiesWithTag(string tag)
         {
@@ -147,6 +157,20 @@ namespace CavesOfOoo.Core
                     result.Add(entity);
             }
             return result;
+        }
+
+        /// <summary>
+        /// Non-allocating variant: fills an existing list with entities matching the tag.
+        /// The list is cleared before filling.
+        /// </summary>
+        public void GetEntitiesWithTagNonAlloc(string tag, List<Entity> result)
+        {
+            result.Clear();
+            foreach (var entity in _entityCells.Keys)
+            {
+                if (entity.HasTag(tag))
+                    result.Add(entity);
+            }
         }
 
         /// <summary>
@@ -187,6 +211,12 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Count of all entities currently in the zone.
         /// </summary>
+        /// <summary>
+        /// Incremented whenever entities are added, removed, or moved.
+        /// Used by LightMap to skip recomputation when nothing changed.
+        /// </summary>
+        public int EntityVersion { get; private set; }
+
         public int EntityCount => _entityCells.Count;
 
         public override string ToString()

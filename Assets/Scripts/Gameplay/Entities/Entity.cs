@@ -118,7 +118,7 @@ namespace CavesOfOoo.Core
                     statChanged.SetParameter("Stat", name);
                     statChanged.SetParameter("OldValue", oldValue);
                     statChanged.SetParameter("NewValue", newValue);
-                    FireEvent(statChanged);
+                    FireEventAndRelease(statChanged);
                 }
             }
         }
@@ -141,7 +141,7 @@ namespace CavesOfOoo.Core
             if (Statistics.TryGetValue("MP", out Stat stat))
             {
                 stat.BaseValue += amount;
-                FireEvent(GameEvent.New("GainedMP", "Amount", amount));
+                FireEventAndRelease(GameEvent.New("GainedMP", "Amount", amount));
                 return true;
             }
 
@@ -159,7 +159,7 @@ namespace CavesOfOoo.Core
                 var usedMP = GameEvent.New("UsedMP");
                 usedMP.SetParameter("Amount", amount);
                 usedMP.SetParameter("Context", context ?? "default");
-                FireEvent(usedMP);
+                FireEventAndRelease(usedMP);
                 return true;
             }
 
@@ -221,7 +221,7 @@ namespace CavesOfOoo.Core
                 changed.SetParameter("Name", name);
                 changed.SetParameter("OldValue", oldValue);
                 changed.SetParameter("NewValue", newValue);
-                FireEvent(changed);
+                FireEventAndRelease(changed);
             }
         }
 
@@ -241,7 +241,7 @@ namespace CavesOfOoo.Core
                 changed.SetParameter("Name", name);
                 changed.SetParameter("OldValue", oldValue);
                 changed.SetParameter("NewValue", 0);
-                FireEvent(changed);
+                FireEventAndRelease(changed);
             }
         }
 
@@ -265,11 +265,22 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// Fire an event and immediately release it to the pool.
+        /// Only use when the caller does NOT read event parameters after firing.
+        /// </summary>
+        public bool FireEventAndRelease(GameEvent e)
+        {
+            bool result = FireEvent(e);
+            e.Release();
+            return result;
+        }
+
+        /// <summary>
         /// Fire an event by ID with no parameters.
         /// </summary>
         public bool FireEvent(string eventID)
         {
-            return FireEvent(GameEvent.New(eventID));
+            return FireEventAndRelease(GameEvent.New(eventID));
         }
 
         // --- Status Effects ---

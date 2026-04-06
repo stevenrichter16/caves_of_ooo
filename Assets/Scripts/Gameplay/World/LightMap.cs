@@ -12,6 +12,7 @@ namespace CavesOfOoo.Core
     {
         private float[,] _brightness;
         private Color[,] _tint;
+        private int _lastEntityVersion = -1;
 
         /// <summary>
         /// Ambient light level for cells not reached by any light source.
@@ -28,9 +29,14 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Recompute light levels from all light sources in the zone.
         /// Call once per render pass, after FOV has been computed.
+        /// Skips recomputation if no entities have changed since last call.
         /// </summary>
         public void Compute(Zone zone)
         {
+            if (zone.EntityVersion == _lastEntityVersion)
+                return;
+            _lastEntityVersion = zone.EntityVersion;
+
             // Reset to ambient with biome tint
             Color baseTint = zone.AmbientTint;
             for (int x = 0; x < Zone.Width; x++)
@@ -42,8 +48,9 @@ namespace CavesOfOoo.Core
                 }
             }
 
-            // Accumulate light from each source
-            foreach (var entity in zone.GetAllEntities())
+            // Accumulate light from each source — iterate _entityCells.Keys directly
+            // via the zone's entity collection to avoid allocating a temporary list.
+            foreach (var entity in zone.GetReadOnlyEntities())
             {
                 var light = entity.GetPart<LightSourcePart>();
                 if (light == null) continue;
