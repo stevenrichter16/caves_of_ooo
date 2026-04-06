@@ -138,6 +138,7 @@ namespace CavesOfOoo.Rendering
 
         private void Close()
         {
+            ClearRegion(0, 0, POPUP_W, _popupH);
             _isOpen = false;
             _containers.Clear();
         }

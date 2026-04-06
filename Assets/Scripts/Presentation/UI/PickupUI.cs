@@ -54,6 +54,7 @@ namespace CavesOfOoo.Rendering
 
         public void Close()
         {
+            ClearRegion(0, 0, POPUP_W, _popupH);
             _isOpen = false;
             _items.Clear();
         }

@@ -43,6 +43,8 @@ namespace CavesOfOoo.Rendering
         public void Close()
         {
             _isOpen = false;
+            if (Tilemap != null)
+                Tilemap.ClearAllTiles();
         }
 
         public void HandleInput()
