@@ -557,9 +557,10 @@ namespace CavesOfOoo.Rendering
                     int bgLeft = startX - 1;
                     int bgRight = startX + maxChars;
                     int bgBottom = bottomTileY - 1;
-                    // +1 extra row above the topmost text glyph so the bg fully
-                    // covers it (glyphs extend 1 unit above their tile origin).
-                    int bgTop = bottomTileY + (MessageLineCount * 2) + 1;
+                    // Derive bg top from the actual topmost text row so the box
+                    // always covers all glyphs regardless of zoom/scale.
+                    int topTextY = bottomTileY + (MessageLineCount - 1) * 2;
+                    int bgTop = topTextY + 2;
 
                     for (int y = bgBottom; y <= bgTop; y++)
                     {
