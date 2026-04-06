@@ -184,55 +184,55 @@ namespace CavesOfOoo
                 inventoryUI.EntityFactory = _factory;
                 inputHandler.InventoryUI = inventoryUI;
 
-                // Wire pickup UI (shares tilemap with zone renderer)
+                // Wire pickup UI to popup tilemap (above message log)
                 var pickupUI = GetComponent<PickupUI>();
                 if (pickupUI == null)
                     pickupUI = gameObject.AddComponent<PickupUI>();
                 if (ZoneRenderer != null)
-                    pickupUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
+                    pickupUI.Tilemap = ZoneRenderer.PopupFgTilemap;
                 inputHandler.PickupUI = pickupUI;
 
-                // Wire container picker UI (shares tilemap with zone renderer)
+                // Wire container picker UI to popup tilemap (above message log)
                 var containerPickerUI = GetComponent<ContainerPickerUI>();
                 if (containerPickerUI == null)
                     containerPickerUI = gameObject.AddComponent<ContainerPickerUI>();
                 if (ZoneRenderer != null)
-                    containerPickerUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
+                    containerPickerUI.Tilemap = ZoneRenderer.PopupFgTilemap;
                 inputHandler.ContainerPickerUI = containerPickerUI;
 
-                // Wire dialogue UI (shares tilemap with zone renderer)
+                // Wire dialogue UI to dedicated popup tilemaps (above the message log)
                 var dialogueUI = GetComponent<DialogueUI>();
                 if (dialogueUI == null)
                     dialogueUI = gameObject.AddComponent<DialogueUI>();
                 if (ZoneRenderer != null)
                 {
-                    dialogueUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
-                    dialogueUI.BgTilemap = ZoneRenderer.BgTilemap;
+                    dialogueUI.Tilemap = ZoneRenderer.PopupFgTilemap;
+                    dialogueUI.BgTilemap = ZoneRenderer.PopupBgTilemap;
                 }
                 inputHandler.DialogueUI = dialogueUI;
 
-                // Wire trade UI (shares tilemap with zone renderer)
+                // Wire trade UI to popup tilemap (above message log)
                 var tradeUI = GetComponent<TradeUI>();
                 if (tradeUI == null)
                     tradeUI = gameObject.AddComponent<TradeUI>();
                 if (ZoneRenderer != null)
-                    tradeUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
+                    tradeUI.Tilemap = ZoneRenderer.PopupFgTilemap;
                 inputHandler.TradeUI = tradeUI;
 
-                // Wire faction UI (shares tilemap with zone renderer)
+                // Wire faction UI to popup tilemap (above message log)
                 var factionUI = GetComponent<FactionUI>();
                 if (factionUI == null)
                     factionUI = gameObject.AddComponent<FactionUI>();
                 if (ZoneRenderer != null)
-                    factionUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
+                    factionUI.Tilemap = ZoneRenderer.PopupFgTilemap;
                 inputHandler.FactionUI = factionUI;
 
-                // Wire announcement UI (shares tilemap with zone renderer)
+                // Wire announcement UI to popup tilemap (above message log)
                 var announcementUI = GetComponent<AnnouncementUI>();
                 if (announcementUI == null)
                     announcementUI = gameObject.AddComponent<AnnouncementUI>();
                 if (ZoneRenderer != null)
-                    announcementUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
+                    announcementUI.Tilemap = ZoneRenderer.PopupFgTilemap;
                 inputHandler.AnnouncementUI = announcementUI;
             }
 

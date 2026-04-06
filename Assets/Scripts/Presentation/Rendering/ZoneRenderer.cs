@@ -93,6 +93,12 @@ namespace CavesOfOoo.Rendering
         /// main tilemap and sit behind foreground glyphs.
         /// </summary>
         public Tilemap BgTilemap => _bgTilemap;
+        private Tilemap _popupBgTilemap;
+        private Tilemap _popupFgTilemap;
+        /// <summary>Popup background tilemap (sortingOrder 6). For DialogueUI/TradeUI bg fills.</summary>
+        public Tilemap PopupBgTilemap => _popupBgTilemap;
+        /// <summary>Popup foreground tilemap (sortingOrder 7). For DialogueUI/TradeUI glyphs.</summary>
+        public Tilemap PopupFgTilemap => _popupFgTilemap;
 
         private void Awake()
         {
@@ -148,6 +154,21 @@ namespace CavesOfOoo.Rendering
 
             _worldCursorRenderer = new WorldCursorRenderer(gridParent, _tilemap);
             _lookOverlayRenderer = new LookOverlayRenderer(_lookTilemap, _msgGridTransform, MessageReferenceZoom);
+
+            // Dedicated tilemaps for dialogue/popup UI — must sort ABOVE the
+            // message log (order 3) and look overlay (order 5) so popups aren't
+            // hidden behind the world log.
+            var popupBgObj = new GameObject("PopupBgTilemap");
+            popupBgObj.transform.SetParent(gridParent, false);
+            _popupBgTilemap = popupBgObj.AddComponent<Tilemap>();
+            var popupBgRenderer = popupBgObj.AddComponent<TilemapRenderer>();
+            popupBgRenderer.sortingOrder = 6;
+
+            var popupFgObj = new GameObject("PopupFgTilemap");
+            popupFgObj.transform.SetParent(gridParent, false);
+            _popupFgTilemap = popupFgObj.AddComponent<Tilemap>();
+            var popupFgRenderer = popupFgObj.AddComponent<TilemapRenderer>();
+            popupFgRenderer.sortingOrder = 7;
         }
 
         /// <summary>
