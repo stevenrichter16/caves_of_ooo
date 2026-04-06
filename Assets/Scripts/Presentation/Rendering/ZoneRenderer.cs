@@ -97,6 +97,7 @@ namespace CavesOfOoo.Rendering
         private void Awake()
         {
             _lastMessageTime = Time.time;
+            _lastFlashStamp = MessageLog.FlashStamp;
             _tilemap = GetComponent<Tilemap>();
 
             Grid grid = GetComponentInParent<Grid>();

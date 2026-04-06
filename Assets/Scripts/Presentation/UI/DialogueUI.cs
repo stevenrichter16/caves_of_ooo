@@ -264,7 +264,10 @@ namespace CavesOfOoo.Rendering
             string speakerName = ConversationManager.Speaker != null
                 ? (ConversationManager.Speaker.GetDisplayName() ?? "")
                 : "";
-            int titleMinW = 12 + speakerName.Length;
+            // Must match the Render formula: maxNameLen = _popupW - contentOffsetX - 14.
+            // So to avoid truncation: _popupW >= 14 + contentOffsetX + nameLen.
+            // portraitOverhead is added below, so titleMinW just needs 14 + nameLen.
+            int titleMinW = 14 + speakerName.Length;
 
             int needed = Mathf.Max(titleMinW, longestTextLine + 4, longestChoiceRow);
             // Portrait panel eats PORTRAIT_W columns on the left, so the budget
@@ -387,15 +390,10 @@ namespace CavesOfOoo.Rendering
             }
 
             // Disposition-tinted border: how the speaker feels about the player.
-            Color borderColor = QudColorParser.Gray;
-            if (speaker != null && PlayerEntity != null)
-            {
-                int feeling = FactionManager.GetFeeling(speaker, PlayerEntity);
-                if (feeling <= -10) borderColor = QudColorParser.BrightRed;
-                else if (feeling >= 50) borderColor = QudColorParser.BrightGreen;
-                else if (feeling >= 25) borderColor = QudColorParser.BrightYellow;
-                else borderColor = QudColorParser.Gray;
-            }
+            int feeling = (speaker != null && PlayerEntity != null)
+                ? FactionManager.GetFeeling(speaker, PlayerEntity)
+                : 0;
+            DispositionInfo(feeling, out Color borderColor, out Color dispoColor, out string dispoWord);
 
             // Content offset for the right panel. When the portrait is enabled the
             // divider sits at col (PORTRAIT_W - 1), so right-panel content starts
@@ -529,52 +527,58 @@ namespace CavesOfOoo.Rendering
             if (UsePortraitPanel && dividerX > 0)
             {
                 int panelInnerWidth = dividerX - 1; // cols 1..dividerX-1 inclusive
-                int totalRows = 1 + textLines + 1 + choiceCount; // rows 1..(y-2), y is currently bottom+1
+                int interiorRows = textLines + 1 + choiceCount; // rows 1..interiorRows inclusive (before bottom border)
+
+                // Adaptive row spacing: use 2-row gaps when there's room, else pack tightly.
+                int gap = interiorRows >= 5 ? 2 : 1;
 
                 // Centered large speaker glyph on the first interior row.
                 int glyphRow = 1;
                 int glyphCol = 1 + (panelInnerWidth - 1) / 2;
                 DrawChar(glyphCol, glyphRow, speakerGlyph, speakerGlyphColor);
 
-                // Faction name (truncated) two rows below.
+                // Faction name (truncated).
                 string faction = speaker != null ? FactionManager.GetFaction(speaker) : null;
                 if (!string.IsNullOrEmpty(faction))
                 {
                     int maxFacLen = panelInnerWidth;
                     string f = faction.Length > maxFacLen ? faction.Substring(0, maxFacLen) : faction;
-                    int facRow = glyphRow + 2;
+                    int facRow = glyphRow + gap;
                     int facCol = 1 + (panelInnerWidth - f.Length) / 2;
-                    if (facRow < totalRows + 1)
+                    if (facRow <= interiorRows)
                         DrawText(facCol, facRow, f, QudColorParser.Gray);
                 }
 
-                // Disposition word (colored to match border).
-                string dispo = DispositionWord(borderColor);
+                // Disposition word.
+                string dispo = dispoWord;
                 if (!string.IsNullOrEmpty(dispo))
                 {
                     int maxDispoLen = panelInnerWidth;
                     string d = dispo.Length > maxDispoLen ? dispo.Substring(0, maxDispoLen) : dispo;
-                    int dispoRow = glyphRow + 4;
+                    int dispoRow = glyphRow + gap * 2;
                     int dispoCol = 1 + (panelInnerWidth - d.Length) / 2;
-                    if (dispoRow < totalRows + 1)
-                        DrawText(dispoCol, dispoRow, d, borderColor);
+                    if (dispoRow <= interiorRows)
+                        DrawText(dispoCol, dispoRow, d, dispoColor);
                 }
             }
 
-            // Action bar
-            string actions = " [Enter]select [a-z]quick select [Esc]close";
+            // Action bar (clamped to popup width so it doesn't bleed past the border)
+            string actions = " [Enter]select [a-z]quick [Esc]close";
+            if (actions.Length > _popupW)
+                actions = actions.Substring(0, _popupW);
             DrawText(0, y, actions, QudColorParser.DarkGray);
         }
 
         /// <summary>
-        /// Short disposition word for the portrait panel, matching the border color.
+        /// Derive border color, disposition color, and disposition word from a feeling value.
+        /// Single source of truth — avoids comparing Color structs to infer disposition.
         /// </summary>
-        private static string DispositionWord(Color borderColor)
+        private static void DispositionInfo(int feeling, out Color borderColor, out Color dispoColor, out string word)
         {
-            if (borderColor == QudColorParser.BrightRed) return "hostile";
-            if (borderColor == QudColorParser.BrightGreen) return "allied";
-            if (borderColor == QudColorParser.BrightYellow) return "warm";
-            return "neutral";
+            if (feeling <= -10)      { borderColor = QudColorParser.BrightRed;    dispoColor = QudColorParser.BrightRed;    word = "hostile"; }
+            else if (feeling >= 50)  { borderColor = QudColorParser.BrightGreen;  dispoColor = QudColorParser.BrightGreen;  word = "allied";  }
+            else if (feeling >= 25)  { borderColor = QudColorParser.BrightYellow; dispoColor = QudColorParser.BrightYellow; word = "warm";    }
+            else                     { borderColor = QudColorParser.Gray;         dispoColor = QudColorParser.Gray;         word = "neutral"; }
         }
 
         /// <summary>
