@@ -230,6 +230,13 @@ namespace CavesOfOoo.Rendering
 
             if (Paused)
             {
+                // Full-screen UIs (inventory, faction, trade) draw on the main
+                // tilemap at order 0.  FX (order 1) and embers (order 1) would
+                // show through on top, so hide them while paused.
+                if (_fxTilemap != null) _fxTilemap.ClearAllTiles();
+                if (_campfireEmberRenderer != null)
+                    _campfireEmberRenderer.gameObject.SetActive(false);
+
                 // Still update messages while paused (overlay popups don't hide the message area)
                 if (newMessages || cameraChanged)
                 {
@@ -242,6 +249,10 @@ namespace CavesOfOoo.Rendering
                 CacheCameraView(cam);
                 return;
             }
+
+            // Re-enable embers when unpaused (they self-render via LateUpdate).
+            if (_campfireEmberRenderer != null && !_campfireEmberRenderer.gameObject.activeSelf)
+                _campfireEmberRenderer.gameObject.SetActive(true);
 
             if (_dirty && CurrentZone != null)
             {
