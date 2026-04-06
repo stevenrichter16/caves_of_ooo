@@ -51,7 +51,7 @@ namespace CavesOfOoo.Rendering
         /// Reference orthographic size at which message text appears at 1:1 scale.
         /// At other zoom levels, message text scales proportionally.
         /// </summary>
-        public float MessageReferenceZoom = 25f;
+        public float MessageReferenceZoom = 40f;
 
         private Tilemap _tilemap;
         private Tilemap _bgTilemap;
@@ -557,7 +557,9 @@ namespace CavesOfOoo.Rendering
                     int bgLeft = startX - 1;
                     int bgRight = startX + maxChars;
                     int bgBottom = bottomTileY - 1;
-                    int bgTop = bottomTileY + (MessageLineCount * 2);
+                    // +1 extra row above the topmost text glyph so the bg fully
+                    // covers it (glyphs extend 1 unit above their tile origin).
+                    int bgTop = bottomTileY + (MessageLineCount * 2) + 1;
 
                     for (int y = bgBottom; y <= bgTop; y++)
                     {
