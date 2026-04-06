@@ -209,9 +209,6 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Count of all entities currently in the zone.
-        /// </summary>
-        /// <summary>
         /// Incremented whenever entities are added, removed, or moved.
         /// Used by LightMap to skip recomputation when nothing changed.
         /// </summary>
