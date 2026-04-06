@@ -75,6 +75,8 @@ namespace CavesOfOoo.Rendering
         public void Close()
         {
             _isOpen = false;
+            // Clear foreground glyphs (borders, text, choices, action bar)
+            ClearRegion(0, 0, _popupW, _popupH);
             ClearBgRegion();
             if (ConversationManager.IsActive)
                 ConversationManager.EndConversation();
