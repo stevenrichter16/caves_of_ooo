@@ -231,8 +231,11 @@ namespace CavesOfOoo.Rendering
             if (Paused)
             {
                 // Full-screen UIs (inventory, faction, trade) draw on the main
-                // tilemap at order 0.  FX (order 1) and embers (order 1) would
-                // show through on top, so hide them while paused.
+                // tilemap at order 0.  Layers above AND below would show through:
+                //   - BgTilemap (order -1): fog/unexplored tiles visible in gaps
+                //   - FxTilemap (order 1): dust motes, projectiles on top
+                //   - CampfireEmbers (order 1): sprite-based, on top
+                if (_bgTilemap != null) _bgTilemap.ClearAllTiles();
                 if (_fxTilemap != null) _fxTilemap.ClearAllTiles();
                 if (_campfireEmberRenderer != null)
                     _campfireEmberRenderer.gameObject.SetActive(false);
