@@ -17,6 +17,12 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static Action<int> OnPlayerDamaged;
 
+        /// <summary>
+        /// Static callback invoked when the player entity deals damage.
+        /// The presentation layer subscribes to trigger a lighter screen shake.
+        /// </summary>
+        public static Action<int> OnPlayerDealtDamage;
+
         private int _flashFramesRemaining;
 
         private const int FlashDuration = 3;
@@ -33,6 +39,16 @@ namespace CavesOfOoo.Core
                 {
                     int amount = e.GetIntParameter("Amount", 1);
                     OnPlayerDamaged?.Invoke(amount);
+                }
+                return true;
+            }
+
+            if (e.ID == "DamageDealt")
+            {
+                if (ParentEntity != null && ParentEntity.HasTag("Player"))
+                {
+                    int amount = e.GetIntParameter("Amount", 1);
+                    OnPlayerDealtDamage?.Invoke(amount);
                 }
                 return true;
             }

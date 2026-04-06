@@ -148,6 +148,13 @@ namespace CavesOfOoo
                     shakeCamera.Shake(intensity, 0.15f);
                 };
 
+                // Lighter screen shake when the player deals damage (hit feedback)
+                DamageFlashPart.OnPlayerDealtDamage = (amount) =>
+                {
+                    float intensity = amount >= 5 ? 0.12f : 0.06f;
+                    shakeCamera.Shake(intensity, 0.1f);
+                };
+
                 // Wire up input handler
                 Debug.Log("[Bootstrap] Step 9/9: Wiring input...");
                 var inputHandler = GetComponent<InputHandler>();
