@@ -213,7 +213,7 @@ namespace CavesOfOoo.Rendering
             if (!continues)
             {
                 _conversationEnded = true;
-                _isOpen = false;
+                Close();
                 return;
             }
 
