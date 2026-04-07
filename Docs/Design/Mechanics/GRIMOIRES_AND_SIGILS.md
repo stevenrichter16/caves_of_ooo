@@ -356,7 +356,7 @@ The Inversion interaction is particularly interesting -- it turns every summonin
 
 Managing equipment swaps and potion usage mid-combat is tedious. The player knows "when my HP drops below 30%, I want to drink a health potion" but executing that requires: notice HP, open inventory, find potion, use potion. That's not strategic depth -- it's busywork that punishes slow reaction time.
 
-But fully automating combat decisions (scripting equipment swaps, ability rotations, etc.) removes tension and rewards system mastery over game mastery. In a permadeath roguelike, if the player can AFK fights via scripts, death feels like a scripting error rather than a gameplay failure.
+But fully automating combat decisions (scripting equipment swaps, ability rotations, etc.) removes tension and rewards system mastery over game mastery. If the player can AFK fights via scripts, combat stops being engaging -- wins feel hollow and losses feel like scripting errors rather than gameplay failures.
 
 ### Solution: Two Separate Systems
 
