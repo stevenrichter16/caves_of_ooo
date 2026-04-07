@@ -57,8 +57,10 @@ namespace CavesOfOoo.Core
             {
                 // Check if something blocked us
                 var blocker = beforeMove.GetParameter<Entity>("BlockedBy");
+                beforeMove.Release();
                 return (false, blocker);
             }
+            beforeMove.Release();
 
             // Perform the move
             int oldX = currentCell.X;
@@ -73,7 +75,7 @@ namespace CavesOfOoo.Core
             afterMove.SetParameter("OldY", oldY);
             afterMove.SetParameter("NewX", newX);
             afterMove.SetParameter("NewY", newY);
-            entity.FireEvent(afterMove);
+            entity.FireEventAndRelease(afterMove);
 
             return (true, null);
         }
@@ -102,6 +104,7 @@ namespace CavesOfOoo.Core
             }
 
             bool allowed = entity.FireEvent(beforeMove);
+            beforeMove.Release();
             if (!allowed) return false;
 
             // Perform the move
@@ -117,7 +120,7 @@ namespace CavesOfOoo.Core
             afterMove.SetParameter("OldY", oldY);
             afterMove.SetParameter("NewX", x);
             afterMove.SetParameter("NewY", y);
-            entity.FireEvent(afterMove);
+            entity.FireEventAndRelease(afterMove);
 
             return true;
         }

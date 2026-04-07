@@ -430,6 +430,7 @@ namespace CavesOfOoo.Rendering
                 colorString = eventColor;
             else
                 colorString = AsciiWorldRenderPolicy.FallbackColorString;
+            renderEvent.Release();
 
             Color color = QudColorParser.Parse(colorString);
 
@@ -907,6 +908,12 @@ namespace CavesOfOoo.Rendering
 
                 Cell cell = CurrentZone.GetCell(x, y);
                 if (cell == null || !cell.IsVisible) continue;
+
+                // Verify water is still the top visible entity (creature may be standing on it)
+                Entity top = cell.GetTopVisibleObject();
+                if (top == null) continue;
+                var render = top.GetPart<RenderPart>();
+                if (render == null || render.RenderString != "~") continue;
 
                 float phase = _ambientTimer * 2f + x * 0.7f + y * 1.3f;
                 int colorIndex = ((int)phase) % WaterColors.Length;
