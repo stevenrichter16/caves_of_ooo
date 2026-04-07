@@ -217,3 +217,222 @@ This split means a "pure martial" character still benefits from learning 2-3 can
 5. **Sigil discovery vs. sigil identification?** Found sigils could be unidentified until used or appraised, adding a gamble element. Or they could always be identified to keep the decision space clean.
 
 6. **Interaction with the alchemy spell system?** Alchemy spells (see ALCHEMY_SPELL_SYSTEM.md) are cast on liquids and terrain. If alchemy spells are bound to grimoires, then sigils modify alchemy too: a Frost sigil on an alchemy grimoire means your Transmute Water spell freezes the result. An Immolation sigil on Kindle makes it explosive. This could be very powerful.
+
+---
+
+## Grimoire Schools (Classification System)
+
+Grimoires are classified by **what the spell acts on**, not by vibes or theme. This determines which sigils can be slotted.
+
+### Why Classification Matters
+
+A Sigil of Immolation on a "Purify Water" grimoire is nonsensical. A Sigil of Diffusion ("single-target becomes AoE") on a spell that already targets terrain is meaningless. Universal sigils break down immediately when applied across fundamentally different spell types. But too many classifications (4+) fragments the loot pool and forces players to learn parallel systems. Three schools plus universal cost sigils is the sweet spot.
+
+### The Three Schools
+
+#### 1. Martial Grimoires -- Act on Creatures
+
+Damage, healing, status effects, buffs/debuffs, summoning. The target is always an entity (enemy, ally, self, or summoned creature).
+
+**Combat examples:** Fireball, Waterbolt, Shield Rune, Banish
+**Healing examples:** Greater Restore, Purify Body
+**Summoning examples:** See "Summoning Grimoires" section below
+
+#### 2. Shaping Grimoires -- Act on the World
+
+Terrain modification, liquid manipulation, infrastructure. The target is cells, tiles, liquids, objects. This naturally absorbs the entire alchemy spell school (see ALCHEMY_SPELL_SYSTEM.md).
+
+**Terrain examples:** Flame Wall, Flood, Oil Coat, Salt Ward
+**Alchemy examples:** Purify Water, Transmute Well, Seeking Water, Calcify
+**Infrastructure examples:** Freeze Pool (create traversable ice), Erode Wall (alternative entry)
+
+#### 3. Inscription Grimoires -- Act on Items/Knowledge
+
+Enchanting, identification, repair, crafting augmentation, lore extraction. The target is an item or information.
+
+**Repair examples:** Greater Mend, Fortify (increase durability)
+**Knowledge examples:** Identify, Extract Lore (read archive stones)
+**Enchanting examples:** Inscribe Rune (add property to weapon), Sharpen (temporary damage bonus)
+
+### Classification Rule
+
+The test is unambiguous: if the spell targets a creature, it's Martial. If it targets terrain/liquid, it's Shaping. If it targets an item or knowledge, it's Inscription. No gray areas.
+
+---
+
+## School-Specific Sigil Pools
+
+### Martial Sigils (creature-targeting spells only)
+
+| Sigil | Effect |
+|-------|--------|
+| **Sigil of Immolation** | Spells gain fire damage component, chance to ignite |
+| **Sigil of Frost** | Spells slow targets, water tiles freeze when hit |
+| **Sigil of Rot** | Spells apply poison DoT, healing reduced on target |
+| **Sigil of Static** | Spells chain to one adjacent target at half power |
+| **Sigil of Void** | Spells pull targets 1-2 tiles toward impact point |
+| **Sigil of Echoes** | Spells cast twice at half power (same target) |
+| **Sigil of Diffusion** | Single-target spells become AoE at reduced effect |
+| **Sigil of Siphoning** | Spells drain HP from target to caster, +50% MP cost |
+| **Sigil of Inversion** | Offensive spells can target self as buffs; heals become damage |
+| **Sigil of Delay** | Spells trigger after 2-turn delay at +75% power |
+| **Sigil of Reach** | Double range, -25% power |
+
+### Shaping Sigils (world-targeting spells only)
+
+| Sigil | Effect | Design Reasoning |
+|-------|--------|-----------------|
+| **Sigil of Permanence** | Shaping effects last 3x longer (permanent at high amplification) | The core question for world spells is "how long does this last?" Most valuable shaping sigil. |
+| **Sigil of Expansion** | Area of effect doubled | Flood fills 8 tiles instead of 4. Oil Coat covers a whole corridor. |
+| **Sigil of Purity** | Transmutation results are higher quality | Purified well produces cleaner water. Frozen floor is more slippery. Quality over quantity. |
+| **Sigil of Sympathy** | Shaping spell chains to adjacent similar targets | Purify one well, connected wells also purify. Freeze one water tile, adjacent water freezes too. |
+| **Sigil of Reversal** | Spell can undo its own previous effect (toggle on/off) | Freeze a pool now, unfreeze it later. Create flame wall, dismiss it when allies need to pass. |
+| **Sigil of Attunement** | Reduced MP cost for spells cast on previously shaped terrain | The more you work an area, the cheaper it gets. Rewards establishing and maintaining a home base. |
+
+### Inscription Sigils (item-targeting spells only)
+
+| Sigil | Effect | Design Reasoning |
+|-------|--------|-----------------|
+| **Sigil of Thoroughness** | Repair/enchant affects entire inventory stack, not one item | Mend all gear in one cast. Identify all items in a container. Batch processing. |
+| **Sigil of Insight** | Identification reveals hidden properties (curses, secret uses, lore) | Normal Identify shows stats. With Insight, shows who made it, why it exists, what it's really for. |
+| **Sigil of Imprint** | Enchantments can be copied to one additional item of same type | Fire rune on one sword, duplicate to a second. Constrained duplication. |
+| **Sigil of Preservation** | Targeted items gain +50% durability | Everything you touch lasts longer. The careful craftsman's sigil. |
+| **Sigil of Reclamation** | Repair spells recover enchantments lost to degradation | When items hit 0 durability, enchantments are normally lost. This recovers them. Niche but powerful for high-value gear. |
+
+### Universal Sigils (work on any grimoire school)
+
+Cost sigils modify the *casting economy*, not the spell effect. "This spell costs HP instead of MP" is equally meaningful whether casting Fireball or Purify Water.
+
+| Sigil | Effect |
+|-------|--------|
+| **Sigil of Blood** | Spells cost HP instead of MP |
+| **Sigil of Patience** | Spells cost 0 MP but gain a cooldown (N turns) |
+| **Sigil of Greed** | Spells cost drams (gold) instead of MP |
+| **Sigil of Sacrifice** | Spells cost grimoire durability instead of MP |
+| **Sigil of Ritual** | Spells cost double MP but have double duration/effect |
+
+### Sigil Budget
+
+~6 sigils per school + ~5 universal cost sigils = ~23 total sigils. Manageable loot pool where each drop is meaningful, and the player only needs to learn one school's sigils deeply for their build.
+
+---
+
+## Summoning Grimoires
+
+Summoning is a **subtype of Martial grimoires**, not a separate school. Summoned creatures are entities, so Martial sigils apply naturally and create interesting interactions without needing a dedicated sigil pool.
+
+### Summoning Spells
+
+| Grimoire | Spell | Summon |
+|----------|-------|--------|
+| Grimoire of the Hollow Pack | Call Shade | Summon a shadow creature that flanks your target |
+| Grimoire of the Hollow Pack | Shadow Swarm | Summon 3 weak shades that overwhelm |
+| Grimoire of Living Stone | Conjure Sentinel | Summon a slow, high-HP stone defender |
+| Grimoire of Living Stone | Earthen Wall | Summon a line of destructible stone pillars (quasi-summon/terrain hybrid) |
+| Grimoire of Spore and Root | Fungal Ally | Summon a mushroom creature that releases poison spores on death |
+| Grimoire of Spore and Root | Entangle | Summon grasping roots at target location (immobilize) |
+
+### Martial Sigils on Summoning Grimoires
+
+| Sigil | Summoning Interaction |
+|-------|----------------------|
+| **Echoes** | Summon two copies at half HP/damage each |
+| **Diffusion** | Summon appears at a random position within a radius instead of targeted (weaker control, but can surprise-flank) |
+| **Siphoning** | Summon drains HP from enemies it attacks and heals the caster |
+| **Immolation** | Summon deals fire damage on contact and explodes on death |
+| **Frost** | Summon slows enemies it strikes; leaves frost on tiles it walks over |
+| **Delay** | Summon appears after 2 turns but at +75% stats |
+| **Reach** | Summon appears at double range from caster |
+| **Void** | Summon pulls nearby enemies toward itself (taunt-like) |
+| **Inversion** | Instead of summoning an ally, temporarily *charm* an enemy into fighting for you |
+
+The Inversion interaction is particularly interesting -- it turns every summoning grimoire into a conditional mind-control book. High risk (charm might fail on strong enemies), high reward (their best creature fights for you).
+
+---
+
+## Reflexes and Stances: Automated Response Systems
+
+### The Problem
+
+Managing equipment swaps and potion usage mid-combat is tedious. The player knows "when my HP drops below 30%, I want to drink a health potion" but executing that requires: notice HP, open inventory, find potion, use potion. That's not strategic depth -- it's busywork that punishes slow reaction time.
+
+But fully automating combat decisions (scripting equipment swaps, ability rotations, etc.) removes tension and rewards system mastery over game mastery. In a permadeath roguelike, if the player can AFK fights via scripts, death feels like a scripting error rather than a gameplay failure.
+
+### Solution: Two Separate Systems
+
+#### Reflexes (Automatic, Limited)
+
+Reflexes are trained auto-responses to resource thresholds. Think muscle memory, not tactical genius. They are **cantrip-only** -- you can only automate weak, memorized spells, never bound grimoire power.
+
+**Rules:**
+- Only cantrips can be set as reflexes (not bound spells, not items, not equipment swaps)
+- One reflex triggers per turn maximum (no chaining)
+- The reflex consumes the cantrip's normal MP cost
+- The reflex consumes your "reaction" for that turn (you can't also dodge, block, or counter)
+- Maximum 3 active reflexes at a time (force prioritization)
+
+**Configuration:** Player sets condition + response pairs:
+
+| Condition | Cantrip Response | Example |
+|-----------|-----------------|---------|
+| HP below X% | Healing cantrip | "When HP < 25%, cast Mend Self" |
+| MP below X | MP recovery cantrip | "When MP < 5, cast Meditate" |
+| Adjacent enemy count > N | Defensive cantrip | "When 3+ enemies adjacent, cast Spark (knockback)" |
+| Status effect applied | Cleanse cantrip | "When poisoned, cast Minor Purify" |
+| Ally HP below X% | Ally healing cantrip | "When ally HP < 20%, cast Mend Other" |
+
+**Why cantrip-only:** Cantrips are weak enough that automating them doesn't break the game. Auto-casting Spark (1-2 damage) when surrounded is a survival reflex, not a win condition. Auto-casting Fireball when surrounded would be a win condition -- that's why bound spells can't be reflexes.
+
+**Strategic depth:** The 3-reflex limit forces prioritization. Do you auto-heal, auto-cleanse, AND auto-knockback? Or drop the knockback for auto-meditation (MP recovery)? Your reflex loadout tells a story about what you're afraid of.
+
+#### Stances (Manual Swap, Pre-Configured Loadouts)
+
+Instead of scripting equipment swaps, the player defines named loadout presets they switch between with a single keypress. The swap still costs a turn but it's one keypress instead of multiple inventory actions.
+
+**Rules:**
+- Maximum 3 defined stances
+- Switching stance costs 1 full turn (you're rearranging equipment)
+- Each stance defines: main hand, off-hand, and optionally belt slot
+- Items must be in inventory to equip (stances don't conjure items)
+- Stance names are player-defined for personalization
+
+**Example loadouts:**
+
+| Stance | Main Hand | Off-Hand | Belt | Use Case |
+|--------|-----------|----------|------|----------|
+| "Battle" | Iron Sword | Shield | Health Tonic | Melee combat, defensive |
+| "Arcane" | Grimoire of Conflagration | Grimoire of Mending | Mana Tonic | Full caster, dual grimoire |
+| "Scout" | Dagger | Torch | Antidote | Exploration, trap-heavy zones |
+
+**Why stances instead of scripted swaps:**
+- The player decides *when* to switch, preserving tactical agency
+- The turn cost makes switching a real decision ("do I spend this turn swapping or fighting?")
+- Pre-combat stance selection is strategic ("this zone has undead, I'll start in Arcane stance")
+- No automation removes tension -- you still have to read the situation
+
+**Why NOT scripted equipment swaps:**
+- "When MP = 0, equip sword" sounds useful but removes the interesting decision: maybe you should keep the grimoire and use Blood sigil, or drink a mana potion, or retreat. The game is about making those calls under pressure.
+- Free automatic swaps make equipment slots meaningless -- you effectively have access to everything simultaneously.
+- Scripted swaps that cost a turn are strictly worse than player-decided swaps (the script can't read context like "there's a wall behind me" or "the enemy is one hit from death").
+
+### Reflexes + Stances Interaction
+
+These two systems complement each other:
+- Reflexes handle **reactive micro** (auto-heal when low, auto-cleanse when poisoned) -- things where the optimal response is always the same
+- Stances handle **proactive macro** (switch to Battle stance for this fight, switch to Scout stance for exploration) -- things where context determines the right choice
+
+A player in "Arcane" stance with reflexes set to auto-Mend at 25% HP and auto-Spark at 3+ adjacent enemies has a coherent build: cast from range, auto-heal if hurt, auto-knockback if swarmed, manually switch to "Battle" stance if MP runs dry. Every part of that involves a real decision except the two cantrip-tier reflexes.
+
+---
+
+## Open Questions (Continued)
+
+7. **Summoning duration/limits:** Should summons be permanent until killed, or timed? Timed creates more tactical pressure. Permanent makes summoners feel like pet classes. A middle ground: summons last N turns but Sigil of Permanence (if allowed cross-school, or a Martial variant) extends them.
+
+8. **Reflex learning curve:** Should reflexes be available from the start, or unlocked via a skill/item? Starting with 1 reflex slot and unlocking more through gameplay (level-ups, trainer NPCs) creates a progression curve. But gating a QoL feature behind progression can feel punishing.
+
+9. **Stance swap cost:** Should stance swapping always cost a full turn? A half-turn (act after swapping but at reduced effectiveness) might feel less punishing. Or: certain items/skills could reduce swap cost (e.g., a "Quick Draw" skill that makes stance swaps free once every 10 turns).
+
+10. **Can enemies have reflexes?** An enemy with auto-heal at 25% HP changes how you fight them (burst them down past the threshold, or drain their MP first). Enemy reflexes make fights more puzzle-like.
+
+11. **Stance persistence across zones?** Does your stance carry between floors, or reset to a default? Carrying rewards preparation; resetting forces re-evaluation of each zone.
