@@ -32,6 +32,7 @@
 25. [All 27 Liquid Types](#25-all-27-liquid-types)
 26. [Special Reactions](#26-special-reactions)
 27. [Key Source Files](#27-key-source-files)
+28. [Emergent Systems & Gameplay](#28-emergent-systems--gameplay)
 
 ---
 
@@ -998,6 +999,46 @@ int num = (XRLCore.CurrentFrame + Liquid.FrameOffset) % 60;
 | `XRL.Liquids/LiquidNeutronFlux.cs` | ~170 | Neutron flux (explosive) |
 | `XRL.Liquids/LiquidWarmStatic.cs` | ~610 | Warm static (glitching) |
 | + 16 more liquid type files | | One per liquid type |
+
+---
+
+## 28. Emergent Systems & Gameplay
+
+Qud's liquid system creates emergent play because liquids are modeled as a shared simulation layer rather than as isolated item scripts. A liquid's state lives in `LiquidVolume`, while each liquid type contributes properties and callbacks through `BaseLiquid`. That same state is then queried by drinking, pouring, contact, movement, AI pathfinding, economy, temperature, and rendering systems.
+
+### Why emergence happens
+
+1. **Common representation across the whole game**
+   Every liquid uses the same composition model, so a puddle on the floor, a full waterskin, and a biological liquid gland all participate in the same rules.
+2. **Continuous mixtures instead of handcrafted combinations**
+   Liquids are stored as proportions out of 1000, and mixed physical properties are weighted averages. This means the game can produce intermediate states such as partially conductive, partially combustible, or partially dangerous liquids without bespoke content for every combination.
+3. **World-state changes over time**
+   Open liquids spread, mingle with adjacent pools, evaporate when shallow and mixed, and can be generated continuously by producers. The map can therefore change after generation based on how liquids interact.
+4. **Phase changes create new objects**
+   Heat and cold do not just toggle status effects. Vaporization creates gas objects, while freezing can replace a liquid with terrain-like solids such as ice, shale, wax blocks, or halite.
+5. **Per-liquid hooks plug into shared rules**
+   Special cases like neutron flux, warm static, acid, protean gunk, and lava do not replace the core system. They add custom behavior through `MixingWith`, `MixedWith`, `SmearOn`, `Drank`, `FillingContainer`, and `ObjectEnteredCell`.
+6. **One liquid decision propagates into many systems**
+   The same liquid state can affect body-part exposure, item smearing, slipping, sticking, pathfinding cost, autowalk interruption, storage safety, and trade value all at once.
+
+### Emergent gameplay patterns
+
+- **Tactical terrain control**
+  Liquids can turn a cell into a hazard, a slowdown, or a trap. Wading and swimming depths change exposure, while slippery and sticky liquids alter movement outcomes for both the player and AI.
+- **Environmental chemistry**
+  Mixing does not just blend colors; it changes conductivity, combustibility, freeze point, vapor point, and other physical properties. Small changes in composition can therefore create different downstream behaviors.
+- **Purity as a strategic resource**
+  Pure fresh water is economically special, but mixing contaminates it mechanically and financially. Storage, transport, and accidental mixing become meaningful choices rather than inventory trivia.
+- **Container and material stories**
+  The same liquid is safe or unsafe depending on what holds it. Acid can destroy organic containers, and lava requires containers that can tolerate extreme heat.
+- **Rare liquids inherit all delivery methods**
+  Because the system is shared, exotic liquids become interesting in many contexts at once. Neutron flux can explode when mixed, touched, entered, or drunk; warm static can glitch containers, targets, or the drinker depending on how it is delivered.
+- **Simulation-driven encounters**
+  Producers, pools, pathfinding weights, body contact, and phase changes combine so that rooms can evolve into threats, resources, or navigation puzzles without a custom encounter script.
+
+### In practice
+
+The key to Qud's emergent liquid gameplay is that the game does not ask, "what should happen in this exact scripted situation?" It asks, "given this liquid composition, depth, temperature, container, and contact context, what do the general rules produce?" The interesting player stories come from the answer cascading through many systems at once.
 
 ---
 
