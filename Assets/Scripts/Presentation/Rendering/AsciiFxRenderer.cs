@@ -1468,8 +1468,8 @@ namespace CavesOfOoo.Rendering
 
         private static readonly FxThemeConfig WaterConfig = new FxThemeConfig
         {
-            ProjectileGlyphs = Array.Empty<char>(),
-            ProjectileColors = Array.Empty<string>(),
+            ProjectileGlyphs = new[] { '~', '*', 'o' },
+            ProjectileColors = new[] { "&B", "&C" },
             TrailGlyph = '.',
             TrailColor = "&b",
             ProjectileStepTime = 0.04f,
