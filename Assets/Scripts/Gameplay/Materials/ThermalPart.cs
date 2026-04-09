@@ -58,6 +58,10 @@ namespace CavesOfOoo.Core
             if (wasBelow && Temperature >= FlameTemperature)
                 TryIgnite(e);
 
+            // Check for extinguish: cooling dropped temperature below FlameTemperature
+            if (!wasBelow && Temperature < FlameTemperature)
+                TryExtinguish();
+
             return true;
         }
 
@@ -91,6 +95,18 @@ namespace CavesOfOoo.Core
                 Entity source = sourceEvent.GetParameter<Entity>("Source");
                 var zone = sourceEvent.GetParameter<Zone>("Zone");
                 ParentEntity.ApplyEffect(new BurningEffect(intensity: 1.0f, source: source), source, zone);
+            }
+        }
+
+        private void TryExtinguish()
+        {
+            if (ParentEntity == null)
+                return;
+
+            if (ParentEntity.HasEffect<BurningEffect>())
+            {
+                ParentEntity.RemoveEffect<BurningEffect>();
+                ParentEntity.FireEvent("Extinguished");
             }
         }
 
