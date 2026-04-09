@@ -73,11 +73,32 @@ namespace CavesOfOoo.Core
                 if (cell.IsSolid())
                 {
                     result.BlockedBySolid = true;
+                    // Check for a hittable entity in the solid cell (e.g. barrels)
+                    Entity solidEntity = GetFirstNonCaster(cell, caster);
+                    if (solidEntity != null)
+                        result.HitEntity = solidEntity;
                     return result;
                 }
             }
 
             return result;
+        }
+
+        private static Entity GetFirstNonCaster(Cell cell, Entity caster)
+        {
+            if (cell == null)
+                return null;
+
+            for (int i = 0; i < cell.Objects.Count; i++)
+            {
+                Entity entity = cell.Objects[i];
+                if (entity == caster)
+                    continue;
+                if (entity.HasTag("Solid") || entity.HasTag("Creature"))
+                    return entity;
+            }
+
+            return null;
         }
 
         private static Entity GetFirstCreature(Cell cell, Entity caster)
