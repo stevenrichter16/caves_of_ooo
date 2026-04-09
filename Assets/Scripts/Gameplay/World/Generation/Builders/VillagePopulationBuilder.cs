@@ -56,6 +56,9 @@ namespace CavesOfOoo.Core
             // Place a chest with grimoires
             PlaceGrimoireChest(zone, factory, rng, openCells);
 
+            // Place deterministic wooden barrel layouts to demonstrate fire propagation
+            PlaceBarrelLayouts(zone, factory, rng, openCells);
+
             // Deterministic NPC roles
             Entity elder = PlaceNPC(zone, factory, rng, openCells, "Elder", settlementId);
             if (mainWell != null)
@@ -161,6 +164,95 @@ namespace CavesOfOoo.Core
             Entity conflagrationSpell = factory.CreateEntity("ConflagrationGrimoire");
             if (conflagrationSpell != null)
                 container.AddItem(conflagrationSpell);
+        }
+
+        // Wooden barrel layouts for fire-propagation showcase. Each layout is a list
+        // of (dx, dy) offsets from an anchor cell. Layouts are placed with a buffer
+        // between them so igniting one cluster cannot chain into another.
+        private static readonly (int dx, int dy)[][] BarrelLayouts =
+        {
+            // 1. Chain — 4 in a row (linear propagation)
+            new (int dx, int dy)[] { (0, 0), (1, 0), (2, 0), (3, 0) },
+            // 2. Cluster — 2x2 pack (rapid mass ignition)
+            new (int dx, int dy)[] { (0, 0), (1, 0), (0, 1), (1, 1) },
+            // 3. Cross — 5 barrels in a plus (branching propagation)
+            new (int dx, int dy)[] { (1, 0), (0, 1), (1, 1), (2, 1), (1, 2) },
+            // 4. Diagonal — 4 stepping down (Chebyshev / 8-direction propagation)
+            new (int dx, int dy)[] { (0, 0), (1, 1), (2, 2), (3, 3) },
+            // 5. Gap — two pairs separated by 1 empty cell (isolation demo)
+            new (int dx, int dy)[] { (0, 0), (1, 0), (3, 0), (4, 0) }
+        };
+
+        private const int BarrelLayoutBuffer = 2;
+        private const int BarrelLayoutPlacementAttempts = 50;
+
+        private void PlaceBarrelLayouts(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> openCells)
+        {
+            var reservedCells = new HashSet<(int x, int y)>();
+
+            for (int i = 0; i < BarrelLayouts.Length; i++)
+                TryPlaceBarrelLayout(zone, factory, rng, openCells, BarrelLayouts[i], reservedCells);
+        }
+
+        private bool TryPlaceBarrelLayout(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> openCells, (int dx, int dy)[] layout,
+            HashSet<(int x, int y)> reservedCells)
+        {
+            for (int attempt = 0; attempt < BarrelLayoutPlacementAttempts; attempt++)
+            {
+                if (openCells.Count == 0)
+                    return false;
+
+                int idx = rng.Next(openCells.Count);
+                var (anchorX, anchorY) = openCells[idx];
+
+                if (!CanPlaceLayoutAt(zone, anchorX, anchorY, layout, reservedCells))
+                    continue;
+
+                // Place barrels and reserve their buffered footprint
+                for (int i = 0; i < layout.Length; i++)
+                {
+                    int x = anchorX + layout[i].dx;
+                    int y = anchorY + layout[i].dy;
+
+                    Entity barrel = factory.CreateEntity("WoodenBarrel");
+                    if (barrel != null)
+                        zone.AddEntity(barrel, x, y);
+
+                    openCells.Remove((x, y));
+
+                    for (int by = -BarrelLayoutBuffer; by <= BarrelLayoutBuffer; by++)
+                        for (int bx = -BarrelLayoutBuffer; bx <= BarrelLayoutBuffer; bx++)
+                            reservedCells.Add((x + bx, y + by));
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool CanPlaceLayoutAt(Zone zone, int anchorX, int anchorY,
+            (int dx, int dy)[] layout, HashSet<(int x, int y)> reservedCells)
+        {
+            for (int i = 0; i < layout.Length; i++)
+            {
+                int x = anchorX + layout[i].dx;
+                int y = anchorY + layout[i].dy;
+
+                if (!zone.InBounds(x, y))
+                    return false;
+
+                Cell cell = zone.GetCell(x, y);
+                if (cell == null || !cell.IsPassable())
+                    return false;
+
+                if (reservedCells.Contains((x, y)))
+                    return false;
+            }
+
+            return true;
         }
 
         private static readonly (int dx, int dy)[] CardinalOffsets =
