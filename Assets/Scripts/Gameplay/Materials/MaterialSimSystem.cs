@@ -8,6 +8,48 @@ namespace CavesOfOoo.Core
     public static class MaterialSimSystem
     {
         /// <summary>
+        /// Tick all burning non-creature entities in a zone, advancing fire
+        /// simulation (fuel consumption, damage, heat propagation, extinguish
+        /// checks). Creatures are excluded because they already tick via
+        /// TurnManager. Call this once per player turn.
+        /// </summary>
+        public static void TickBurningEntities(Zone zone)
+        {
+            if (zone == null)
+                return;
+
+            // Snapshot the burning entities so newly-ignited entities this tick
+            // don't get processed twice in the same turn.
+            var burning = new System.Collections.Generic.List<Entity>();
+            zone.ForEachCell((cell, x, y) =>
+            {
+                for (int i = 0; i < cell.Objects.Count; i++)
+                {
+                    var obj = cell.Objects[i];
+                    if (obj.HasTag("Creature"))
+                        continue;
+                    if (obj.HasEffect<BurningEffect>())
+                        burning.Add(obj);
+                }
+            });
+
+            for (int i = 0; i < burning.Count; i++)
+            {
+                Entity entity = burning[i];
+
+                var beginTurn = GameEvent.New("BeginTakeAction");
+                beginTurn.SetParameter("Zone", (object)zone);
+                entity.FireEvent(beginTurn);
+                beginTurn.Release();
+
+                var endTurn = GameEvent.New("EndTurn");
+                endTurn.SetParameter("Zone", (object)zone);
+                entity.FireEvent(endTurn);
+                endTurn.Release();
+            }
+        }
+
+        /// <summary>
         /// Emit radiant heat from a source entity to all entities with ThermalPart
         /// in the 8 adjacent cells. Joules are split equally among directions.
         /// </summary>

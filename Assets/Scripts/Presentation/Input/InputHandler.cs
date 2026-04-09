@@ -450,6 +450,7 @@ namespace CavesOfOoo.Rendering
         {
             TurnManager.EndTurn(PlayerEntity, CurrentZone);
             TurnManager.ProcessUntilPlayerTurn();
+            MaterialSimSystem.TickBurningEntities(CurrentZone);
             if (ZoneRenderer != null)
                 ZoneRenderer.MarkDirty();
         }
