@@ -1089,7 +1089,7 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>
-        /// Check if a number key 1-9 was pressed. Returns a 0-based slot index, or -1 if none.
+        /// Check if a number key 1-0 was pressed. Returns a 0-based slot index, or -1 if none.
         /// </summary>
         private int GetAbilitySlotInput()
         {
@@ -1102,6 +1102,7 @@ namespace CavesOfOoo.Rendering
             if (Input.GetKeyDown(KeyCode.Alpha7)) return 6;
             if (Input.GetKeyDown(KeyCode.Alpha8)) return 7;
             if (Input.GetKeyDown(KeyCode.Alpha9)) return 8;
+            if (Input.GetKeyDown(KeyCode.Alpha0)) return 9;
             return -1;
         }
 
