@@ -8,19 +8,24 @@ namespace CavesOfOoo.Core
     public static class MaterialSimSystem
     {
         /// <summary>
-        /// Tick all burning non-creature entities in a zone, advancing fire
-        /// simulation (fuel consumption, damage, heat propagation, extinguish
-        /// checks). Creatures are excluded because they already tick via
-        /// TurnManager. Call this once per player turn.
+        /// Tick non-creature entities that participate in the material
+        /// simulation. Burning entities get a full BeginTakeAction (fuel
+        /// consumption, damage, heat propagation) followed by EndTurn
+        /// (temperature decay, evaporation, extinguish check). Non-burning
+        /// entities that are wet or thermally displaced from ambient get
+        /// only an EndTurn so their WetEffect evaporates and ThermalPart
+        /// cools naturally. Creatures are excluded because they already
+        /// tick via TurnManager. Call this once per player turn.
         /// </summary>
-        public static void TickBurningEntities(Zone zone)
+        public static void TickMaterialEntities(Zone zone)
         {
             if (zone == null)
                 return;
 
-            // Snapshot the burning entities so newly-ignited entities this tick
-            // don't get processed twice in the same turn.
+            // Snapshot the relevant entities so newly-ignited or newly-wet
+            // entities this tick don't get processed twice in the same turn.
             var burning = new System.Collections.Generic.List<Entity>();
+            var passive = new System.Collections.Generic.List<Entity>();
             zone.ForEachCell((cell, x, y) =>
             {
                 for (int i = 0; i < cell.Objects.Count; i++)
@@ -28,8 +33,24 @@ namespace CavesOfOoo.Core
                     var obj = cell.Objects[i];
                     if (obj.HasTag("Creature"))
                         continue;
+
                     if (obj.HasEffect<BurningEffect>())
+                    {
                         burning.Add(obj);
+                        continue;
+                    }
+
+                    // Non-burning entities still need ticking if they have
+                    // moisture to evaporate or temperature to decay.
+                    if (obj.HasEffect<WetEffect>())
+                    {
+                        passive.Add(obj);
+                        continue;
+                    }
+
+                    var thermal = obj.GetPart<ThermalPart>();
+                    if (thermal != null && thermal.Temperature != thermal.AmbientTemperature)
+                        passive.Add(obj);
                 }
             });
 
@@ -41,6 +62,16 @@ namespace CavesOfOoo.Core
                 beginTurn.SetParameter("Zone", (object)zone);
                 entity.FireEvent(beginTurn);
                 beginTurn.Release();
+
+                var endTurn = GameEvent.New("EndTurn");
+                endTurn.SetParameter("Zone", (object)zone);
+                entity.FireEvent(endTurn);
+                endTurn.Release();
+            }
+
+            for (int i = 0; i < passive.Count; i++)
+            {
+                Entity entity = passive[i];
 
                 var endTurn = GameEvent.New("EndTurn");
                 endTurn.SetParameter("Zone", (object)zone);
