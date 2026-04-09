@@ -18,7 +18,7 @@ namespace CavesOfOoo.Core
         protected override string AbilityClass => "Grimoire Spells";
         protected override string ImpactVerb => "sears";
 
-        public override string Name => "KindleMutation";
+        public override string Name => "Kindle";
         public override string MutationType => "Mental";
         public override string DisplayName => "Kindle";
 

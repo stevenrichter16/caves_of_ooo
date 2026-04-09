@@ -16,7 +16,7 @@ namespace CavesOfOoo.Core
         private const float ChargeDuration = 0.12f;
         private const float RingStepDuration = 0.08f;
 
-        public override string Name => "ConflagrationMutation";
+        public override string Name => "Conflagration";
         public override string MutationType => "Mental";
         public override string DisplayName => "Conflagration";
 

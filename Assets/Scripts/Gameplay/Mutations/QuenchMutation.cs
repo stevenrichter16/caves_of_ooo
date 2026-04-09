@@ -18,7 +18,7 @@ namespace CavesOfOoo.Core
         protected override string AbilityClass => "Grimoire Spells";
         protected override string ImpactVerb => "drenches";
 
-        public override string Name => "QuenchMutation";
+        public override string Name => "Quench";
         public override string MutationType => "Mental";
         public override string DisplayName => "Quench";
 
