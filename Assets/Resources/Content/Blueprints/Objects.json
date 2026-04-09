@@ -2582,6 +2582,78 @@
       ]
     },
     {
+      "Name": "KindleGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Kindle" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "KindleMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Flame-script blazes across the page. The kindle rite burns itself into your mind." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know the kindle rite." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "75" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "QuenchGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Quench" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&B" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "QuenchMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Water-words ripple across the vellum. The quench rite flows into your memory." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know the quench rite." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "75" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "ConflagrationGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Conflagration" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "ConflagrationMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "The pages ignite as you read, yet do not burn. The conflagration rite sears itself into your will." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know the conflagration rite." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "150" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "3" }
+      ]
+    },
+    {
       "Name": "LanternOilRecipe",
       "Inherits": "Item",
       "Parts": [
