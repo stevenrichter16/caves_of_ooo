@@ -34,8 +34,8 @@ namespace CavesOfOoo.Core
 
         private bool HandleApplyHeat(GameEvent e)
         {
-            float joules = e.GetParameter<object>("Joules") is float f ? f : 0f;
-            bool radiant = e.HasParameter("Radiant") && e.GetParameter<object>("Radiant") is bool b && b;
+            float joules = e.GetParameter<float>("Joules");
+            bool radiant = e.GetParameter<bool>("Radiant");
 
             if (joules == 0f)
                 return true;
@@ -79,7 +79,7 @@ namespace CavesOfOoo.Core
             var tryIgnite = GameEvent.New("TryIgnite");
             tryIgnite.SetParameter("Source", sourceEvent.GetParameter("Source"));
             bool allowed = ParentEntity.FireEvent(tryIgnite);
-            bool cancelled = tryIgnite.GetParameter<object>("Cancelled") is bool c && c;
+            bool cancelled = tryIgnite.GetParameter<bool>("Cancelled");
             tryIgnite.Release();
 
             if (!allowed || cancelled)
@@ -107,9 +107,10 @@ namespace CavesOfOoo.Core
                     Temperature = AmbientTemperature;
             }
 
-            // Check if fire has gone out
+            // Check if fire has gone out — remove the BurningEffect directly
             if (Temperature < FlameTemperature && ParentEntity.HasEffect<BurningEffect>())
             {
+                ParentEntity.RemoveEffect<BurningEffect>();
                 ParentEntity.FireEvent("Extinguished");
             }
 

@@ -63,8 +63,8 @@ namespace CavesOfOoo.Core
                 consumeFuel.SetParameter("Intensity", (object)Intensity);
                 target.FireEvent(consumeFuel);
 
-                bool exhausted = consumeFuel.GetParameter<object>("Exhausted") is bool ex && ex;
-                string exhaustProduct = consumeFuel.GetStringParameter("ExhaustProduct", "");
+                bool exhausted = consumeFuel.GetParameter<bool>("Exhausted");
+                string exhaustProduct = consumeFuel.GetStringParameter("ExhaustProduct");
                 consumeFuel.Release();
 
                 if (exhausted)
@@ -72,6 +72,17 @@ namespace CavesOfOoo.Core
                     // Fuel is gone — transition to smoldering
                     target.ApplyEffect(new SmolderingEffect(), null, zone);
                     target.ApplyEffect(new CharredEffect(), null, zone);
+
+                    // Notify for exhaust product spawning (e.g., AshPile)
+                    if (!string.IsNullOrEmpty(exhaustProduct))
+                    {
+                        var spawnEvent = GameEvent.New("FuelExhausted");
+                        spawnEvent.SetParameter("ExhaustProduct", exhaustProduct);
+                        spawnEvent.SetParameter("Zone", (object)zone);
+                        target.FireEvent(spawnEvent);
+                        spawnEvent.Release();
+                    }
+
                     Duration = 0; // mark for removal
                     return;
                 }

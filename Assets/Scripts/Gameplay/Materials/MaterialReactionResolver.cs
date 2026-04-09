@@ -116,9 +116,14 @@ namespace CavesOfOoo.Core
                         break;
 
                     case "ModifyFuelConsumption":
+                        // Apply as bonus consumption this tick, not a permanent BurnRate change
                         var fuel = entity.GetPart<FuelPart>();
                         if (fuel != null)
-                            fuel.BurnRate *= fx.FloatValue;
+                        {
+                            float bonusBurn = fuel.BurnRate * (fx.FloatValue - 1.0f) * burning.Intensity;
+                            fuel.FuelMass -= bonusBurn;
+                            if (fuel.FuelMass < 0f) fuel.FuelMass = 0f;
+                        }
                         break;
 
                     case "EmitBonusHeat":

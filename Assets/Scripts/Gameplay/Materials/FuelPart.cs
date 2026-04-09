@@ -28,7 +28,8 @@ namespace CavesOfOoo.Core
 
         private bool HandleConsumeFuel(GameEvent e)
         {
-            float intensity = e.GetParameter<object>("Intensity") is float f ? f : 1.0f;
+            float intensity = e.GetParameter<float>("Intensity");
+            if (intensity <= 0f) intensity = 1.0f;
             float amount = BurnRate * intensity;
 
             if (amount > FuelMass)

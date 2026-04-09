@@ -34,19 +34,16 @@ namespace CavesOfOoo.Core
             if (thermal != null && thermal.Temperature > 50f)
             {
                 float evapRate = (thermal.Temperature - 50f) * 0.002f;
-                Moisture -= evapRate;
+                Moisture = System.Math.Max(Moisture - evapRate, 0f);
             }
             else
             {
                 // Slow natural evaporation
-                Moisture -= 0.01f;
+                Moisture = System.Math.Max(Moisture - 0.01f, 0f);
             }
 
             if (Moisture <= 0f)
-            {
-                Moisture = 0f;
                 Duration = 0; // will be cleaned up by StatusEffectsPart
-            }
         }
 
         public override bool OnStack(Effect incoming)
