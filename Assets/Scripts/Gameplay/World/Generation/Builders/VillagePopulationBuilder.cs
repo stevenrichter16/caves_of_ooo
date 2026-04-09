@@ -149,6 +149,18 @@ namespace CavesOfOoo.Core
             Entity kindleGrimoire = factory.CreateEntity("KindleRiteGrimoire");
             if (kindleGrimoire != null)
                 container.AddItem(kindleGrimoire);
+
+            Entity kindleSpell = factory.CreateEntity("KindleGrimoire");
+            if (kindleSpell != null)
+                container.AddItem(kindleSpell);
+
+            Entity quenchSpell = factory.CreateEntity("QuenchGrimoire");
+            if (quenchSpell != null)
+                container.AddItem(quenchSpell);
+
+            Entity conflagrationSpell = factory.CreateEntity("ConflagrationGrimoire");
+            if (conflagrationSpell != null)
+                container.AddItem(conflagrationSpell);
         }
 
         private static readonly (int dx, int dy)[] CardinalOffsets =
