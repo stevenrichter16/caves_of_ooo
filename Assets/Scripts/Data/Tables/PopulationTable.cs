@@ -293,6 +293,7 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "Campfire", Weight = 3, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Well", Weight = 2, MinCount = 1, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "MarketStall", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "WoodenBarrel", Weight = 3, MinCount = 2, MaxCount = 4 },
                 }
             };
         }
