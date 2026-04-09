@@ -3,7 +3,7 @@ namespace CavesOfOoo.Core
     /// <summary>
     /// Poison: deals damage each turn. Stacking extends duration.
     /// </summary>
-    public class PoisonedEffect : Effect
+    public class PoisonedEffect : Effect, IAuraProvider
     {
         public override string DisplayName => "poisoned";
 
@@ -49,5 +49,7 @@ namespace CavesOfOoo.Core
         }
 
         public override string GetRenderColorOverride() => "&G";
+
+        public AsciiFxTheme GetAuraTheme() => AsciiFxTheme.Poison;
     }
 }

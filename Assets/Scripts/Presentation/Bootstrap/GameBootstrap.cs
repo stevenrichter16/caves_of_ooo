@@ -56,6 +56,16 @@ namespace CavesOfOoo
                 FactionManager.Initialize();
             }
 
+            Debug.Log("[Bootstrap] Step 1b/9: Initializing material reactions...");
+            TextAsset reactionAsset = Resources.Load<TextAsset>("Content/Data/MaterialReactions/fire_plus_organic");
+            if (reactionAsset != null)
+                MaterialReactionResolver.Initialize(reactionAsset.text);
+            else
+            {
+                Debug.LogWarning("[Bootstrap] fire_plus_organic.json not found, material reactions will be empty.");
+                MaterialReactionResolver.Initialize(null);
+            }
+
             Debug.Log("[Bootstrap] Step 2/9: Initializing mutations...");
             MutationRegistry.EnsureInitialized();
 

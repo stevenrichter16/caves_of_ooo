@@ -65,7 +65,17 @@
         { "Name": "Inventory", "Params": [{ "Key": "MaxWeight", "Value": "150" }] },
         { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "10" }, { "Key": "Wanders", "Value": "true" }, { "Key": "WandersRandomly", "Value": "true" }] },
         { "Name": "GivesRep", "Params": [{ "Key": "Value", "Value": "10" }] },
-        { "Name": "DamageFlash", "Params": [] }
+        { "Name": "DamageFlash", "Params": [] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Flesh" },
+          { "Key": "Combustibility", "Value": "0.15" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "500" },
+          { "Key": "HeatCapacity", "Value": "2.0" },
+          { "Key": "AmbientDecayRate", "Value": "0.05" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 1, "Min": 0, "Max": 999 },
@@ -2120,7 +2130,112 @@
           { "Key": "Radius", "Value": "8" },
           { "Key": "LightColor", "Value": "&W" },
           { "Key": "Intensity", "Value": "0.8" }
+        ]},
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Wood" },
+          { "Key": "Combustibility", "Value": "0.8" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Flammable" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "Temperature", "Value": "500" },
+          { "Key": "FlameTemperature", "Value": "300" },
+          { "Key": "HeatCapacity", "Value": "0.8" }
+        ]},
+        { "Name": "Fuel", "Params": [
+          { "Key": "FuelMass", "Value": "200" },
+          { "Key": "MaxFuel", "Value": "200" },
+          { "Key": "BurnRate", "Value": "0.5" },
+          { "Key": "HeatOutput", "Value": "1.5" },
+          { "Key": "ExhaustProduct", "Value": "AshPile" }
         ]}
+      ]
+    },
+    {
+      "Name": "WoodenBarrel",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "wooden barrel" },
+          { "Key": "RenderString", "Value": "0" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Wood" },
+          { "Key": "Combustibility", "Value": "0.7" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Flammable" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "350" },
+          { "Key": "HeatCapacity", "Value": "1.2" }
+        ]},
+        { "Name": "Fuel", "Params": [
+          { "Key": "FuelMass", "Value": "150" },
+          { "Key": "MaxFuel", "Value": "150" },
+          { "Key": "BurnRate", "Value": "1.0" },
+          { "Key": "HeatOutput", "Value": "1.2" },
+          { "Key": "ExhaustProduct", "Value": "AshPile" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 20, "Min": 0, "Max": 20 }
+      ],
+      "Tags": [
+        { "Key": "Solid", "Value": "" }
+      ]
+    },
+    {
+      "Name": "AshPile",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "pile of ash" },
+          { "Key": "RenderString", "Value": "," },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "0" }
+        ]}
+      ]
+    },
+    {
+      "Name": "Torch",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "torch" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "3" }] },
+        { "Name": "LightSource", "Params": [
+          { "Key": "Radius", "Value": "6" },
+          { "Key": "LightColor", "Value": "&W" },
+          { "Key": "Intensity", "Value": "0.6" }
+        ]},
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Wood" },
+          { "Key": "Combustibility", "Value": "0.9" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Flammable" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "Temperature", "Value": "450" },
+          { "Key": "FlameTemperature", "Value": "300" },
+          { "Key": "HeatCapacity", "Value": "0.5" }
+        ]},
+        { "Name": "Fuel", "Params": [
+          { "Key": "FuelMass", "Value": "50" },
+          { "Key": "MaxFuel", "Value": "50" },
+          { "Key": "BurnRate", "Value": "0.3" },
+          { "Key": "HeatOutput", "Value": "1.0" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "3" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 5, "Min": 0, "Max": 5 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
       ]
     },
     {
