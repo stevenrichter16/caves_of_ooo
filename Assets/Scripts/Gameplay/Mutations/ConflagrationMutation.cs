@@ -88,21 +88,23 @@ namespace CavesOfOoo.Core
                     CombatSystem.ApplyDamage(target, damage, ParentEntity, zone);
                 }
 
-                // Apply BurningEffect at elevated intensity
+                // Apply BurningEffect and heat only if target survived
                 if (target.GetStatValue("Hitpoints", 0) > 0)
+                {
                     target.ApplyEffect(new BurningEffect(intensity: 1.5f, source: ParentEntity, rng: rng),
                         ParentEntity, zone);
 
-                // Apply direct heat to creature
-                if (damage > 0)
-                {
-                    var heatEvent = GameEvent.New("ApplyHeat");
-                    heatEvent.SetParameter("Joules", (object)(damage * 8f));
-                    heatEvent.SetParameter("Radiant", (object)false);
-                    heatEvent.SetParameter("Source", (object)ParentEntity);
-                    heatEvent.SetParameter("Zone", (object)zone);
-                    target.FireEvent(heatEvent);
-                    heatEvent.Release();
+                    // Apply direct heat to creature
+                    if (damage > 0)
+                    {
+                        var heatEvent = GameEvent.New("ApplyHeat");
+                        heatEvent.SetParameter("Joules", (object)(damage * 8f));
+                        heatEvent.SetParameter("Radiant", (object)false);
+                        heatEvent.SetParameter("Source", (object)ParentEntity);
+                        heatEvent.SetParameter("Zone", (object)zone);
+                        target.FireEvent(heatEvent);
+                        heatEvent.Release();
+                    }
                 }
 
                 if (targetCell != null)
@@ -134,7 +136,7 @@ namespace CavesOfOoo.Core
                     if (cell == null)
                         continue;
 
-                    for (int i = 0; i < cell.Objects.Count; i++)
+                    for (int i = cell.Objects.Count - 1; i >= 0; i--)
                     {
                         Entity entity = cell.Objects[i];
                         if (entity == ParentEntity)
