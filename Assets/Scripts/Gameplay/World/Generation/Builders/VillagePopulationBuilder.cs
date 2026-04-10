@@ -176,6 +176,10 @@ namespace CavesOfOoo.Core
             Entity arcBoltSpell = factory.CreateEntity("ArcBoltGrimoire");
             if (arcBoltSpell != null)
                 container.AddItem(arcBoltSpell);
+
+            Entity rimeNovaSpell = factory.CreateEntity("RimeNovaGrimoire");
+            if (rimeNovaSpell != null)
+                container.AddItem(rimeNovaSpell);
         }
 
         // Wooden barrel layouts for fire-propagation showcase. Each layout is a list

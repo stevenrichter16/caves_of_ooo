@@ -695,5 +695,65 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(wire.HasEffect<ElectrifiedEffect>(),
                 "After EndTurn tick on struck conductor, adjacent conductive prop should chain-electrify");
         }
+
+        // ========================
+        // Rime Nova Spell
+        // ========================
+
+        [Test]
+        public void RimeNova_ExtinguishesBurningBarrel()
+        {
+            var zone = new Zone("RimeNovaZone");
+            var caster = CreateCaster();
+            var barrel = CreateCombustibleObject("barrel", flameTemp: 300f, heatCapacity: 0.6f);
+
+            zone.AddEntity(caster, 10, 10);
+            zone.AddEntity(barrel, 11, 10);
+
+            // Pre-ignite the barrel so the -200J cooling pulse has to cross
+            // FlameTemperature downward and extinguish it.
+            barrel.GetPart<ThermalPart>().Temperature = 500f;
+            barrel.ApplyEffect(new BurningEffect(intensity: 1.0f));
+            Assert.IsTrue(barrel.HasEffect<BurningEffect>());
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new RimeNovaMutation(), 1);
+            var rimeNova = mutations.GetMutation<RimeNovaMutation>();
+
+            rimeNova.Cast(zone, zone.GetCell(10, 10), new Random(42));
+
+            Assert.IsFalse(barrel.HasEffect<BurningEffect>(),
+                "Rime Nova's -200J cooling should cross FlameTemperature downward and extinguish burning props");
+            Assert.Less(barrel.GetPart<ThermalPart>().Temperature, 500f,
+                "Barrel temperature should have dropped from the cooling pulse");
+        }
+
+        [Test]
+        public void RimeNova_FreezesCreaturesInRadius()
+        {
+            var zone = new Zone("RimeNovaZone");
+            var caster = CreateCaster();
+            var near = CreateCreature("snapjaw", 50);
+            var far = CreateCreature("goatfolk", 50);
+
+            zone.AddEntity(caster, 10, 10);
+            zone.AddEntity(near, 11, 10);   // Distance 1
+            zone.AddEntity(far, 12, 10);    // Distance 2
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new RimeNovaMutation(), 1);
+            var rimeNova = mutations.GetMutation<RimeNovaMutation>();
+
+            rimeNova.Cast(zone, zone.GetCell(10, 10), new Random(42));
+
+            var nearFrost = near.GetEffect<FrozenEffect>();
+            var farFrost = far.GetEffect<FrozenEffect>();
+            Assert.IsNotNull(nearFrost, "Creature at range 1 should be frozen");
+            Assert.IsNotNull(farFrost, "Creature at range 2 should be frozen");
+            Assert.AreEqual(0.6f, nearFrost.Cold, 0.001f,
+                "Rime Nova should pre-apply FrozenEffect(0.6) distinct from TryFreeze's 1.0");
+            Assert.AreEqual(0.6f, farFrost.Cold, 0.001f,
+                "Rime Nova should pre-apply FrozenEffect(0.6) distinct from TryFreeze's 1.0");
+        }
     }
 }

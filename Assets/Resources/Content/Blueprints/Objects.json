@@ -3021,6 +3021,30 @@
       ]
     },
     {
+      "Name": "RimeNovaGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Rime Nova" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&b" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "RimeNovaMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Frost lances spiral from the margins. The rime nova rite buries itself in your will." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know the rime nova rite." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "220" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "3" }
+      ]
+    },
+    {
       "Name": "LanternOilRecipe",
       "Inherits": "Item",
       "Parts": [
