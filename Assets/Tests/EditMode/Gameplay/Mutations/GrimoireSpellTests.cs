@@ -832,5 +832,63 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(dryHpLoss * 2, wetHpLoss,
                 "Wet target should take exactly double damage from Thunderclap (same seeded RNG, same 2d6 roll)");
         }
+
+        // ========================
+        // Ember Vein Spell
+        // ========================
+
+        [Test]
+        public void EmberVein_IgnitesRowOfFourCrates()
+        {
+            var zone = new Zone("EmberVeinZone");
+            var caster = CreateCaster();
+            var crate1 = CreateCombustibleObject("crate", flameTemp: 200f, heatCapacity: 0.5f);
+            var crate2 = CreateCombustibleObject("crate", flameTemp: 200f, heatCapacity: 0.5f);
+            var crate3 = CreateCombustibleObject("crate", flameTemp: 200f, heatCapacity: 0.5f);
+            var crate4 = CreateCombustibleObject("crate", flameTemp: 200f, heatCapacity: 0.5f);
+
+            zone.AddEntity(caster, 3, 5);
+            zone.AddEntity(crate1, 4, 5);
+            zone.AddEntity(crate2, 5, 5);
+            zone.AddEntity(crate3, 6, 5);
+            zone.AddEntity(crate4, 7, 5);
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new EmberVeinMutation(), 1);
+            var emberVein = mutations.GetMutation<EmberVeinMutation>();
+
+            emberVein.Cast(zone, zone.GetCell(3, 5), 1, 0, new Random(42));
+
+            Assert.IsTrue(crate1.HasEffect<BurningEffect>(), "Crate 1 should ignite from per-cell heat pass");
+            Assert.IsTrue(crate2.HasEffect<BurningEffect>(), "Crate 2 should ignite from per-cell heat pass");
+            Assert.IsTrue(crate3.HasEffect<BurningEffect>(), "Crate 3 should ignite from per-cell heat pass");
+            Assert.IsTrue(crate4.HasEffect<BurningEffect>(), "Crate 4 should ignite from per-cell heat pass");
+        }
+
+        [Test]
+        public void EmberVein_HitsCreatureAndContinuesToProp()
+        {
+            var zone = new Zone("EmberVeinZone");
+            var caster = CreateCaster();
+            var creature = CreateCreature("snapjaw", hp: 100);
+            var crate = CreateCombustibleObject("crate", flameTemp: 200f, heatCapacity: 0.5f);
+
+            zone.AddEntity(caster, 3, 5);
+            zone.AddEntity(creature, 5, 5);
+            zone.AddEntity(crate, 7, 5);
+
+            int hpBefore = creature.GetStatValue("Hitpoints", 100);
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new EmberVeinMutation(), 1);
+            var emberVein = mutations.GetMutation<EmberVeinMutation>();
+
+            emberVein.Cast(zone, zone.GetCell(3, 5), 1, 0, new Random(42));
+
+            Assert.Less(creature.GetStatValue("Hitpoints", 100), hpBefore,
+                "Creature in beam path should take damage from HitEntities pass");
+            Assert.IsTrue(crate.HasEffect<BurningEffect>(),
+                "Crate beyond the struck creature should still ignite — TraceBeam passes through creatures and the per-cell heat pass iterates the full path");
+        }
     }
 }
