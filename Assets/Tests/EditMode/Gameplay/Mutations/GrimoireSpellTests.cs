@@ -557,5 +557,49 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(target.HasEffect<FrozenEffect>(),
                 "Ice Lance should still apply FrozenEffect after crossing FreezeTemperature");
         }
+
+        // ========================
+        // Acid Spray Spell
+        // ========================
+
+        [Test]
+        public void AcidSpray_OrganicTakesDamageAndLosesCombustibility()
+        {
+            var zone = new Zone("AcidSprayZone");
+            var caster = CreateCaster();
+            var target = CreateCreature("snapjaw", hp: 50);
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(target, 7, 5);
+
+            float combustibilityBefore = target.GetPart<MaterialPart>().Combustibility;
+            int hpBefore = target.GetStatValue("Hitpoints", 50);
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new AcidSprayMutation(), 1);
+            var acidSpray = mutations.GetMutation<AcidSprayMutation>();
+
+            acidSpray.Cast(zone, zone.GetCell(5, 5), 1, 0, new Random(42));
+
+            Assert.IsTrue(target.HasEffect<AcidicEffect>(),
+                "Acid Spray should apply AcidicEffect to the struck target");
+
+            // Fire the standard passive tick pair. BeginTakeAction drives
+            // OnTurnStart (damage + combustibility degrade); EndTurn drives
+            // corrosion decay.
+            var begin = GameEvent.New("BeginTakeAction");
+            begin.SetParameter("Zone", (object)zone);
+            target.FireEvent(begin);
+            begin.Release();
+            target.FireEvent("EndTurn");
+
+            int hpAfter = target.GetStatValue("Hitpoints", 0);
+            float combustibilityAfter = target.GetPart<MaterialPart>().Combustibility;
+
+            Assert.Less(hpAfter, hpBefore,
+                "Acid tick should damage organic target");
+            Assert.Less(combustibilityAfter, combustibilityBefore,
+                "Acid tick should degrade organic target's combustibility");
+        }
     }
 }

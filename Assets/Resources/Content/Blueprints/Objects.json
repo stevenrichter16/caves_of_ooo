@@ -2973,6 +2973,30 @@
       ]
     },
     {
+      "Name": "AcidSprayGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Acid Spray" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&g" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "AcidSprayMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Corrosive ink hisses as you read. The acid spray rite eats its way into your mind." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know the acid spray rite." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "140" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
       "Name": "LanternOilRecipe",
       "Inherits": "Item",
       "Parts": [
