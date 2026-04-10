@@ -22,7 +22,11 @@ namespace CavesOfOoo.Core
         public string SourceState;
         public string TargetMaterialTag;
         public float MinTemperature;
+        public float MaxTemperature = float.MaxValue;
         public float MaxMoisture = 1.0f;
+        public float MinBrittleness;
+        public float MinConductivity;
+        public float MinVolatility;
     }
 
     [Serializable]

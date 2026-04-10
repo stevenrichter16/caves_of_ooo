@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,12 +7,19 @@ namespace CavesOfOoo.Core
     /// <summary>
     /// Static resolver that loads material reaction blueprints from JSON
     /// and evaluates them against entity state during simulation.
-    /// Called from BurningEffect.OnTurnStart after fuel consumption.
+    /// Called from BurningEffect.OnTurnStart and other effect hooks.
     /// </summary>
     public static class MaterialReactionResolver
     {
         private static List<MaterialReactionBlueprint> _reactions = new List<MaterialReactionBlueprint>();
         private static bool _initialized;
+
+        /// <summary>
+        /// Optional entity factory used by SpawnEntity / SwapBlueprint reaction
+        /// effect types. Set by GameBootstrap at initialization. Tests can leave
+        /// it null — those effect types then no-op gracefully.
+        /// </summary>
+        public static Data.EntityFactory Factory;
 
         public static void Initialize(string json)
         {
@@ -35,12 +43,16 @@ namespace CavesOfOoo.Core
         public static int ReactionCount => _reactions.Count;
 
         /// <summary>
-        /// Evaluate all matching reactions for a burning entity.
-        /// Modifies the BurningEffect and entity state based on matched reaction effects.
+        /// Evaluate all matching reactions for an entity. When called from
+        /// BurningEffect.OnTurnStart, the burning parameter carries the active
+        /// effect so ModifyBurnIntensity / ModifyFuelConsumption can mutate it.
+        /// When called from other contexts (ElectrifiedEffect, AcidicEffect,
+        /// external systems), burning may be null and those effect types become
+        /// no-ops while other types still fire.
         /// </summary>
-        public static void EvaluateReactions(Entity entity, Zone zone, BurningEffect burning)
+        public static void EvaluateReactions(Entity entity, Zone zone, BurningEffect burning = null)
         {
-            if (!_initialized || entity == null || burning == null)
+            if (!_initialized || entity == null)
                 return;
 
             var material = entity.GetPart<MaterialPart>();
@@ -64,10 +76,10 @@ namespace CavesOfOoo.Core
             if (cond == null)
                 return false;
 
-            // Check source state
+            // Check source state — recognised values map to per-entity effect queries.
             if (!string.IsNullOrEmpty(cond.SourceState))
             {
-                if (cond.SourceState == "Burning" && burning == null)
+                if (!EntityHasSourceState(entity, cond.SourceState, burning))
                     return false;
             }
 
@@ -78,10 +90,15 @@ namespace CavesOfOoo.Core
                     return false;
             }
 
-            // Check temperature threshold
+            // Check temperature thresholds
             if (cond.MinTemperature > 0f)
             {
                 if (thermal == null || thermal.Temperature < cond.MinTemperature)
+                    return false;
+            }
+            if (cond.MaxTemperature < float.MaxValue)
+            {
+                if (thermal == null || thermal.Temperature > cond.MaxTemperature)
                     return false;
             }
 
@@ -93,7 +110,45 @@ namespace CavesOfOoo.Core
                     return false;
             }
 
+            // Check material property thresholds
+            if (cond.MinBrittleness > 0f)
+            {
+                if (material == null || material.Brittleness < cond.MinBrittleness)
+                    return false;
+            }
+            if (cond.MinConductivity > 0f)
+            {
+                if (material == null || material.Conductivity < cond.MinConductivity)
+                    return false;
+            }
+            if (cond.MinVolatility > 0f)
+            {
+                if (material == null || material.Volatility < cond.MinVolatility)
+                    return false;
+            }
+
             return true;
+        }
+
+        private static bool EntityHasSourceState(Entity entity, string state, BurningEffect burning)
+        {
+            switch (state)
+            {
+                case "Burning":
+                    // Prefer the passed-in effect (authoritative when called from
+                    // BurningEffect.OnTurnStart); fall back to a lookup.
+                    return burning != null || entity.HasEffect<BurningEffect>();
+                case "Wet":
+                    return entity.HasEffect<WetEffect>();
+                case "Frozen":
+                    return entity.HasEffect<FrozenEffect>();
+                case "Electrified":
+                    return entity.HasEffect<ElectrifiedEffect>();
+                case "Acidic":
+                    return entity.HasEffect<AcidicEffect>();
+                default:
+                    return false;
+            }
         }
 
         private static void ApplyEffects(
@@ -111,18 +166,22 @@ namespace CavesOfOoo.Core
                 switch (fx.Type)
                 {
                     case "ModifyBurnIntensity":
-                        burning.Intensity = System.Math.Min(
-                            burning.Intensity + fx.FloatValue, 5.0f);
+                        if (burning != null)
+                            burning.Intensity = System.Math.Min(
+                                burning.Intensity + fx.FloatValue, 5.0f);
                         break;
 
                     case "ModifyFuelConsumption":
-                        // Apply as bonus consumption this tick, not a permanent BurnRate change
-                        var fuel = entity.GetPart<FuelPart>();
-                        if (fuel != null)
+                        if (burning != null)
                         {
-                            float bonusBurn = fuel.BurnRate * (fx.FloatValue - 1.0f) * burning.Intensity;
-                            fuel.FuelMass -= bonusBurn;
-                            if (fuel.FuelMass < 0f) fuel.FuelMass = 0f;
+                            // Apply as bonus consumption this tick, not a permanent BurnRate change
+                            var fuel = entity.GetPart<FuelPart>();
+                            if (fuel != null)
+                            {
+                                float bonusBurn = fuel.BurnRate * (fx.FloatValue - 1.0f) * burning.Intensity;
+                                fuel.FuelMass -= bonusBurn;
+                                if (fuel.FuelMass < 0f) fuel.FuelMass = 0f;
+                            }
                         }
                         break;
 
@@ -131,11 +190,147 @@ namespace CavesOfOoo.Core
                             MaterialSimSystem.EmitHeatToAdjacent(entity, zone, fx.FloatValue);
                         break;
 
+                    case "ApplyStatusEffect":
+                        ApplyStatusEffectByName(entity, zone, fx.StringValue, fx.FloatValue);
+                        break;
+
+                    case "PropagateAlongTag":
+                        PropagateAlongTag(entity, zone, fx.StringValue, fx.FloatValue);
+                        break;
+
+                    case "DealDamage":
+                        if (entity.GetStatValue("Hitpoints", 0) > 0)
+                            CombatSystem.ApplyDamage(entity, (int)fx.FloatValue, null, zone);
+                        break;
+
+                    case "SpawnEntity":
+                        SpawnEntityInZone(entity, zone, fx.StringValue);
+                        break;
+
+                    case "SwapBlueprint":
+                        SwapBlueprint(entity, zone, fx.StringValue);
+                        break;
+
                     case "SpawnParticle":
                         // Future: spawn visual particle effect
                         break;
                 }
             }
+        }
+
+        // ── Effect helpers ─────────────────────────────────────────────────
+
+        private static void ApplyStatusEffectByName(Entity entity, Zone zone, string effectName, float value)
+        {
+            if (string.IsNullOrEmpty(effectName))
+                return;
+
+            Type effectType = FindEffectType(effectName);
+            if (effectType == null)
+            {
+                Debug.LogWarning($"MaterialReactionResolver: unknown effect '{effectName}'");
+                return;
+            }
+
+            Effect instance = InstantiateEffect(effectType, value);
+            if (instance != null)
+                entity.ApplyEffect(instance, null, zone);
+        }
+
+        private static Type FindEffectType(string name)
+        {
+            // Try fully qualified first, then short name within this assembly's Effects namespace.
+            Type t = Type.GetType(name);
+            if (t != null) return t;
+            t = Type.GetType("CavesOfOoo.Core." + name);
+            if (t != null) return t;
+            return null;
+        }
+
+        private static Effect InstantiateEffect(Type type, float value)
+        {
+            // Try a (float) constructor first — matches our Frozen/Electrified/Acidic/Wet pattern.
+            var floatCtor = type.GetConstructor(new[] { typeof(float) });
+            if (floatCtor != null)
+                return (Effect)floatCtor.Invoke(new object[] { value });
+
+            // Fall back to parameterless.
+            var empty = type.GetConstructor(Type.EmptyTypes);
+            if (empty != null)
+                return (Effect)empty.Invoke(null);
+
+            return null;
+        }
+
+        private static void PropagateAlongTag(Entity source, Zone zone, string tag, float joules)
+        {
+            if (zone == null || string.IsNullOrEmpty(tag) || joules <= 0f)
+                return;
+
+            var sourceCell = zone.GetEntityCell(source);
+            if (sourceCell == null)
+                return;
+
+            for (int dir = 0; dir < 8; dir++)
+            {
+                var cell = zone.GetCellInDirection(sourceCell.X, sourceCell.Y, dir);
+                if (cell == null)
+                    continue;
+
+                for (int i = 0; i < cell.Objects.Count; i++)
+                {
+                    var target = cell.Objects[i];
+                    if (target == source)
+                        continue;
+
+                    var mat = target.GetPart<MaterialPart>();
+                    if (mat == null || !mat.HasMaterialTag(tag))
+                        continue;
+
+                    var heat = GameEvent.New("ApplyHeat");
+                    heat.SetParameter("Joules", (object)joules);
+                    heat.SetParameter("Radiant", (object)true);
+                    heat.SetParameter("Source", (object)source);
+                    heat.SetParameter("Zone", (object)zone);
+                    target.FireEvent(heat);
+                    heat.Release();
+                }
+            }
+        }
+
+        private static void SpawnEntityInZone(Entity source, Zone zone, string blueprintName)
+        {
+            if (Factory == null || zone == null || string.IsNullOrEmpty(blueprintName))
+                return;
+
+            var sourceCell = zone.GetEntityCell(source);
+            if (sourceCell == null)
+                return;
+
+            Entity spawned = Factory.CreateEntity(blueprintName);
+            if (spawned == null)
+                return;
+
+            zone.AddEntity(spawned, sourceCell.X, sourceCell.Y);
+        }
+
+        private static void SwapBlueprint(Entity source, Zone zone, string blueprintName)
+        {
+            if (Factory == null || zone == null || string.IsNullOrEmpty(blueprintName))
+                return;
+
+            var sourceCell = zone.GetEntityCell(source);
+            if (sourceCell == null)
+                return;
+
+            Entity replacement = Factory.CreateEntity(blueprintName);
+            if (replacement == null)
+                return;
+
+            int x = sourceCell.X;
+            int y = sourceCell.Y;
+            zone.RemoveEntity(source);
+            zone.AddEntity(replacement, x, y);
         }
     }
 }

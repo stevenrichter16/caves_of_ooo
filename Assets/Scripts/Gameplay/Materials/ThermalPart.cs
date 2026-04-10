@@ -40,29 +40,64 @@ namespace CavesOfOoo.Core
             if (joules == 0f)
                 return true;
 
-            bool wasBelow = Temperature < FlameTemperature;
+            // Snapshot pre-change thresholds so we can detect crossings in both directions.
+            float previous = Temperature;
+            float effectiveFlame = GetEffectiveFlameTemperature();
+            bool wasBelowFlame = previous < effectiveFlame;
+            bool wasAboveFreeze = previous > FreezeTemperature;
+            bool wasBelowVapor = previous < VaporTemperature;
 
+            float delta;
             if (radiant)
             {
                 // Qud-style radiant: asymptotic approach
                 float factor = 0.035f / (HeatCapacity > 0f ? HeatCapacity : 1f);
-                Temperature += (joules - Temperature) * factor;
+                delta = (joules - Temperature) * factor;
             }
             else
             {
                 // Direct heat: linear addition scaled by capacity
-                Temperature += joules / (HeatCapacity > 0f ? HeatCapacity : 1f);
+                delta = joules / (HeatCapacity > 0f ? HeatCapacity : 1f);
             }
 
-            // Check for ignition threshold crossing
-            if (wasBelow && Temperature >= FlameTemperature)
+            Temperature += delta;
+
+            // Check for ignition threshold crossing (volatility lowers the bar).
+            if (wasBelowFlame && Temperature >= effectiveFlame)
                 TryIgnite(e);
 
             // Check for extinguish: cooling dropped temperature below FlameTemperature
-            if (!wasBelow && Temperature < FlameTemperature)
+            if (!wasBelowFlame && Temperature < effectiveFlame)
                 TryExtinguish();
 
+            // Cold crossing: warm → at/below freezing.
+            if (wasAboveFreeze && Temperature <= FreezeTemperature)
+                TryFreeze(e);
+
+            // Vapor crossing: sub-vapor → at/above VaporTemperature.
+            if (wasBelowVapor && Temperature >= VaporTemperature)
+                TryVaporize(e);
+
+            // Thermal shock: brittle materials crack under a large single-tick delta.
+            if (System.Math.Abs(delta) > 200f)
+                TryShatter(e, "ThermalShock");
+
             return true;
+        }
+
+        /// <summary>
+        /// Returns the ignition threshold adjusted by MaterialPart.Volatility.
+        /// Oil, alcohol, and other volatile materials ignite at a lower temperature
+        /// and start with a hotter BurningEffect.
+        /// </summary>
+        private float GetEffectiveFlameTemperature()
+        {
+            if (ParentEntity == null)
+                return FlameTemperature;
+            var material = ParentEntity.GetPart<MaterialPart>();
+            if (material == null || material.Volatility <= 0f)
+                return FlameTemperature;
+            return FlameTemperature - (material.Volatility * 100f);
         }
 
         private void TryIgnite(GameEvent sourceEvent)
@@ -89,13 +124,75 @@ namespace CavesOfOoo.Core
             if (!allowed || cancelled)
                 return;
 
-            // Apply BurningEffect if not already burning
+            // Apply BurningEffect if not already burning. Volatile materials start hotter.
             if (!ParentEntity.HasEffect<BurningEffect>())
             {
                 Entity source = sourceEvent.GetParameter<Entity>("Source");
                 var zone = sourceEvent.GetParameter<Zone>("Zone");
-                ParentEntity.ApplyEffect(new BurningEffect(intensity: 1.0f, source: source), source, zone);
+                float startIntensity = 1.0f;
+                var material = ParentEntity.GetPart<MaterialPart>();
+                if (material != null && material.Volatility > 0f)
+                    startIntensity += material.Volatility;
+                ParentEntity.ApplyEffect(new BurningEffect(intensity: startIntensity, source: source), source, zone);
             }
+        }
+
+        private void TryFreeze(GameEvent sourceEvent)
+        {
+            if (ParentEntity == null)
+                return;
+
+            // Allow other parts to veto the freeze.
+            var tryFreeze = GameEvent.New("TryFreeze");
+            tryFreeze.SetParameter("Source", sourceEvent.GetParameter("Source"));
+            bool allowed = ParentEntity.FireEvent(tryFreeze);
+            bool cancelled = tryFreeze.GetParameter<bool>("Cancelled");
+            tryFreeze.Release();
+
+            if (!allowed || cancelled)
+                return;
+
+            if (!ParentEntity.HasEffect<FrozenEffect>())
+            {
+                Entity source = sourceEvent.GetParameter<Entity>("Source");
+                var zone = sourceEvent.GetParameter<Zone>("Zone");
+                ParentEntity.ApplyEffect(new FrozenEffect(cold: 1.0f), source, zone);
+            }
+        }
+
+        private void TryVaporize(GameEvent sourceEvent)
+        {
+            if (ParentEntity == null)
+                return;
+
+            // Let parts veto vaporization (e.g. inert high-boil materials).
+            var tryVaporize = GameEvent.New("TryVaporize");
+            tryVaporize.SetParameter("Source", sourceEvent.GetParameter("Source"));
+            bool allowed = ParentEntity.FireEvent(tryVaporize);
+            bool cancelled = tryVaporize.GetParameter<bool>("Cancelled");
+            tryVaporize.Release();
+
+            if (!allowed || cancelled)
+                return;
+
+            // Strip moisture — the water has boiled off.
+            if (ParentEntity.HasEffect<WetEffect>())
+                ParentEntity.RemoveEffect<WetEffect>();
+
+            // Mark the entity for steam handling upstream (material reactions pick this up).
+            ParentEntity.FireEvent("Vaporized");
+        }
+
+        private void TryShatter(GameEvent sourceEvent, string cause)
+        {
+            if (ParentEntity == null)
+                return;
+
+            var tryShatter = GameEvent.New("TryShatter");
+            tryShatter.SetParameter("Cause", cause);
+            tryShatter.SetParameter("Source", sourceEvent.GetParameter("Source"));
+            ParentEntity.FireEvent(tryShatter);
+            tryShatter.Release();
         }
 
         private void TryExtinguish()
@@ -124,7 +221,7 @@ namespace CavesOfOoo.Core
             }
 
             // Check if fire has gone out — remove the BurningEffect directly
-            if (Temperature < FlameTemperature && ParentEntity.HasEffect<BurningEffect>())
+            if (Temperature < GetEffectiveFlameTemperature() && ParentEntity.HasEffect<BurningEffect>())
             {
                 ParentEntity.RemoveEffect<BurningEffect>();
                 ParentEntity.FireEvent("Extinguished");

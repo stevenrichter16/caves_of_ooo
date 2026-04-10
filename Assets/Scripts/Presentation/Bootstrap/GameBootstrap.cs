@@ -89,6 +89,10 @@ namespace CavesOfOoo
             // Wire conversation system
             ConversationActions.Factory = _factory;
 
+            // Wire material reaction resolver so SpawnEntity / SwapBlueprint
+            // reaction effects can look up and construct entities.
+            MaterialReactionResolver.Factory = _factory;
+
             Debug.Log("[Bootstrap] Step 5/9: Generating starting zone...");
             _zoneManager = new OverworldZoneManager(_factory);
             _zone = _zoneManager.GetZone("Overworld.10.10.0");

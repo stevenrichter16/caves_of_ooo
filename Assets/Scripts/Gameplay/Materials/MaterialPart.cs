@@ -66,6 +66,12 @@ namespace CavesOfOoo.Core
             if (e.ID == "QueryMaterial")
                 return HandleQueryMaterial(e);
 
+            if (e.ID == "TryShatter")
+                return HandleTryShatter(e);
+
+            if (e.ID == "TryChainElectricity")
+                return HandleTryChainElectricity(e);
+
             return true;
         }
 
@@ -86,6 +92,104 @@ namespace CavesOfOoo.Core
             e.SetParameter("Combustibility", (object)Combustibility);
             e.SetParameter("Conductivity", (object)Conductivity);
             e.SetParameter("Porosity", (object)Porosity);
+            e.SetParameter("Volatility", (object)Volatility);
+            e.SetParameter("Brittleness", (object)Brittleness);
+            return true;
+        }
+
+        /// <summary>
+        /// A brittle material cracks under thermal or freeze shock. Low-brittleness
+        /// materials ignore the shatter; high-brittleness materials lose HP or are
+        /// destroyed outright.
+        /// </summary>
+        private bool HandleTryShatter(GameEvent e)
+        {
+            if (Brittleness <= 0.5f)
+            {
+                e.SetParameter("Cancelled", true);
+                return true;
+            }
+
+            if (ParentEntity == null)
+                return true;
+
+            int maxHp = ParentEntity.GetStat("Hitpoints")?.Max ?? 0;
+            int currentHp = ParentEntity.GetStatValue("Hitpoints", 0);
+
+            // Catastrophic failure at very high brittleness: drop HP to zero.
+            if (Brittleness >= 0.9f && currentHp > 0)
+            {
+                CombatSystem.ApplyDamage(ParentEntity, currentHp, null, null);
+                MessageLog.Add(ParentEntity.GetDisplayName() + " shatters!");
+                return true;
+            }
+
+            // Partial failure: take a percentage of max HP in damage.
+            if (maxHp > 0 && currentHp > 0)
+            {
+                int damage = System.Math.Max(1, (int)(maxHp * (Brittleness - 0.5f)));
+                CombatSystem.ApplyDamage(ParentEntity, damage, null, null);
+                MessageLog.Add(ParentEntity.GetDisplayName() + " cracks under stress!");
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// ElectrifiedEffect fires this event each turn. Conductive materials
+        /// (Conductivity > 0.5 or Metal tag) propagate the charge to adjacent
+        /// conductive entities.
+        /// </summary>
+        private bool HandleTryChainElectricity(GameEvent e)
+        {
+            if (ParentEntity == null)
+                return true;
+
+            bool isConductor = Conductivity > 0.5f || HasMaterialTag("Metal") || HasMaterialTag("Conductor");
+            if (!isConductor)
+                return true;
+
+            var zone = e.GetParameter<Zone>("Zone");
+            var source = e.GetParameter<Entity>("Source");
+            float charge = e.GetParameter<float>("Charge");
+            if (zone == null || charge <= 0f)
+                return true;
+
+            var sourceCell = zone.GetEntityCell(ParentEntity);
+            if (sourceCell == null)
+                return true;
+
+            // Scale propagated charge by our own conductivity — better conductors
+            // pass the charge on more effectively.
+            float passCharge = charge * (Conductivity > 0f ? Conductivity : 0.5f);
+            if (passCharge < 0.05f)
+                return true;
+
+            for (int dir = 0; dir < 8; dir++)
+            {
+                var cell = zone.GetCellInDirection(sourceCell.X, sourceCell.Y, dir);
+                if (cell == null)
+                    continue;
+
+                for (int i = 0; i < cell.Objects.Count; i++)
+                {
+                    var target = cell.Objects[i];
+                    if (target == ParentEntity || target == source)
+                        continue;
+
+                    var mat = target.GetPart<MaterialPart>();
+                    if (mat == null)
+                        continue;
+
+                    bool targetConducts = mat.Conductivity > 0.5f
+                        || mat.HasMaterialTag("Metal")
+                        || mat.HasMaterialTag("Conductor");
+                    if (!targetConducts)
+                        continue;
+
+                    if (!target.HasEffect<ElectrifiedEffect>())
+                        target.ApplyEffect(new ElectrifiedEffect(charge: passCharge), source ?? ParentEntity, zone);
+                }
+            }
             return true;
         }
     }

@@ -19,6 +19,15 @@ namespace CavesOfOoo.Core
 
         public override void OnApply(Entity target)
         {
+            // Porous materials (cloth, sponge) absorb more moisture than their
+            // nominal input: scale the incoming moisture by (1 + Porosity).
+            var material = target.GetPart<MaterialPart>();
+            if (material != null && material.Porosity > 0f)
+            {
+                Moisture *= (1f + material.Porosity);
+                if (Moisture > 1.0f)
+                    Moisture = 1.0f;
+            }
             MessageLog.Add(target.GetDisplayName() + " is drenched.");
         }
 
@@ -29,17 +38,24 @@ namespace CavesOfOoo.Core
 
         public override void OnTurnEnd(Entity target)
         {
+            // Porous materials hold moisture longer. Scale evaporation by
+            // (1 - Porosity * 0.5). Porosity 1.0 → half the evap rate.
+            var material = target.GetPart<MaterialPart>();
+            float porosityScale = 1f;
+            if (material != null && material.Porosity > 0f)
+                porosityScale = 1f - (material.Porosity * 0.5f);
+
             // Evaporate based on temperature
             var thermal = target.GetPart<ThermalPart>();
             if (thermal != null && thermal.Temperature > 50f)
             {
-                float evapRate = (thermal.Temperature - 50f) * 0.002f;
+                float evapRate = (thermal.Temperature - 50f) * 0.002f * porosityScale;
                 Moisture = System.Math.Max(Moisture - evapRate, 0f);
             }
             else
             {
                 // Slow natural evaporation
-                Moisture = System.Math.Max(Moisture - 0.01f, 0f);
+                Moisture = System.Math.Max(Moisture - 0.01f * porosityScale, 0f);
             }
 
             if (Moisture <= 0f)
