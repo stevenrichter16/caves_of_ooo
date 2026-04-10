@@ -2949,6 +2949,30 @@
       ]
     },
     {
+      "Name": "IceLanceGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Ice Lance" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "IceLanceMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Crystalline glyphs bite your fingertips. The ice lance rite chills into your mind." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know the ice lance rite." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "120" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
       "Name": "LanternOilRecipe",
       "Inherits": "Item",
       "Parts": [

@@ -487,5 +487,75 @@ namespace CavesOfOoo.Tests
             Assert.IsFalse(caster.HasEffect<BurningEffect>(),
                 "Caster should not receive BurningEffect from own Conflagration");
         }
+
+        // ========================
+        // Ice Lance Spell
+        // ========================
+
+        [Test]
+        public void IceLance_ShattersBrittleFrozenMetal()
+        {
+            var zone = new Zone("IceLanceZone");
+            var caster = CreateCaster();
+
+            var target = new Entity { BlueprintName = "BrittleMetalStatue" };
+            target.Statistics["Hitpoints"] = new Stat { BaseValue = 20, Max = 20, Owner = target };
+            target.AddPart(new RenderPart { DisplayName = "brittle statue" });
+            target.AddPart(new PhysicsPart { Solid = true });
+            target.AddPart(new ThermalPart
+            {
+                Temperature = 25f,
+                FreezeTemperature = 0f,
+                BrittleTemperature = -100f,
+                HeatCapacity = 1.0f
+            });
+            target.AddPart(new MaterialPart
+            {
+                MaterialID = "BrittleMetal",
+                Brittleness = 0.9f,
+                MaterialTagsRaw = "Metal"
+            });
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(target, 7, 5);
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new IceLanceMutation(), 1);
+            var iceLance = mutations.GetMutation<IceLanceMutation>();
+
+            iceLance.Cast(zone, zone.GetCell(5, 5), 1, 0, new Random(42));
+
+            Assert.IsTrue(target.HasEffect<FrozenEffect>(),
+                "Ice Lance's cooling heat should cross FreezeTemperature and apply FrozenEffect via TryFreeze");
+            Assert.AreEqual(0, target.GetStatValue("Hitpoints", -1),
+                "Brittleness >= 0.9 catastrophic shatter should drop Hitpoints to 0");
+        }
+
+        [Test]
+        public void IceLance_ExtinguishesBurningTarget()
+        {
+            var zone = new Zone("IceLanceZone");
+            var caster = CreateCaster();
+            var target = CreateCombustibleObject("barrel", flameTemp: 200f, heatCapacity: 0.5f);
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(target, 7, 5);
+
+            // Pre-ignite the target so FrozenEffect.OnApply has to extinguish it.
+            target.GetPart<ThermalPart>().Temperature = 400f;
+            target.ApplyEffect(new BurningEffect(intensity: 1.0f));
+            Assert.IsTrue(target.HasEffect<BurningEffect>());
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new IceLanceMutation(), 1);
+            var iceLance = mutations.GetMutation<IceLanceMutation>();
+
+            iceLance.Cast(zone, zone.GetCell(5, 5), 1, 0, new Random(42));
+
+            Assert.IsFalse(target.HasEffect<BurningEffect>(),
+                "FrozenEffect.OnApply should extinguish any active BurningEffect");
+            Assert.IsTrue(target.HasEffect<FrozenEffect>(),
+                "Ice Lance should still apply FrozenEffect after crossing FreezeTemperature");
+        }
     }
 }
