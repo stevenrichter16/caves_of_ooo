@@ -1,0 +1,17 @@
+{
+  "Reactions": [
+    {
+      "ID": "cold_plus_metal",
+      "Priority": 45,
+      "Conditions": {
+        "SourceState": "Frozen",
+        "TargetMaterialTag": "Metal",
+        "MaxTemperature": 0,
+        "MinBrittleness": 0.15
+      },
+      "Effects": [
+        { "Type": "DealDamage", "FloatValue": 2.0, "StringValue": "" }
+      ]
+    }
+  ]
+}

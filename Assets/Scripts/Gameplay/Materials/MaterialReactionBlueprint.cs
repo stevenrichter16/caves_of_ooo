@@ -24,6 +24,7 @@ namespace CavesOfOoo.Core
         public float MinTemperature;
         public float MaxTemperature = float.MaxValue;
         public float MaxMoisture = 1.0f;
+        public float MinMoisture;
         public float MinBrittleness;
         public float MinConductivity;
         public float MinVolatility;

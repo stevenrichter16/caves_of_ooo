@@ -1,0 +1,16 @@
+{
+  "Reactions": [
+    {
+      "ID": "acid_plus_organic",
+      "Priority": 35,
+      "Conditions": {
+        "SourceState": "Acidic",
+        "TargetMaterialTag": "Organic"
+      },
+      "Effects": [
+        { "Type": "DealDamage", "FloatValue": 2.0, "StringValue": "" },
+        { "Type": "ModifyFuelConsumption", "FloatValue": 1.5, "StringValue": "" }
+      ]
+    }
+  ]
+}

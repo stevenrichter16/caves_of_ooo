@@ -41,8 +41,12 @@ namespace CavesOfOoo.Core
                     }
 
                     // Non-burning entities still need ticking if they have
-                    // moisture to evaporate or temperature to decay.
-                    if (obj.HasEffect<WetEffect>())
+                    // moisture to evaporate, persistent status to decay, or
+                    // temperature to drift back toward ambient.
+                    if (obj.HasEffect<WetEffect>()
+                        || obj.HasEffect<FrozenEffect>()
+                        || obj.HasEffect<AcidicEffect>()
+                        || obj.HasEffect<ElectrifiedEffect>())
                     {
                         passive.Add(obj);
                         continue;
@@ -77,6 +81,13 @@ namespace CavesOfOoo.Core
                 endTurn.SetParameter("Zone", (object)zone);
                 entity.FireEvent(endTurn);
                 endTurn.Release();
+
+                // Drive data-driven reactions for non-burning props: hot-but-not-ignited
+                // entities run fire_plus_raw_* cooking; frozen brittle metal runs the
+                // cold_plus_metal path; acid-coated wood runs acid_plus_organic. Burning
+                // entities are skipped here because BurningEffect.OnTurnStart already
+                // invoked EvaluateReactions during the burning list pass above.
+                MaterialReactionResolver.EvaluateReactions(entity, zone, null);
             }
         }
 

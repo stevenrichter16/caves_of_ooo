@@ -1,0 +1,17 @@
+{
+  "Reactions": [
+    {
+      "ID": "lightning_plus_conductor",
+      "Priority": 55,
+      "Conditions": {
+        "SourceState": "Electrified",
+        "TargetMaterialTag": "Conductor",
+        "MinConductivity": 0.5
+      },
+      "Effects": [
+        { "Type": "PropagateAlongTag", "FloatValue": 30.0, "StringValue": "Conductor" },
+        { "Type": "ApplyStatusEffect", "FloatValue": 0.5, "StringValue": "ElectrifiedEffect" }
+      ]
+    }
+  ]
+}

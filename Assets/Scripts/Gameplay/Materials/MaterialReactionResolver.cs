@@ -127,6 +127,14 @@ namespace CavesOfOoo.Core
                     return false;
             }
 
+            // Check moisture floor — used by water_plus_fire to require a wet burning entity.
+            if (cond.MinMoisture > 0f)
+            {
+                var wet = entity.GetEffect<WetEffect>();
+                if (wet == null || wet.Moisture < cond.MinMoisture)
+                    return false;
+            }
+
             // Check material property thresholds
             if (cond.MinBrittleness > 0f)
             {
