@@ -45,7 +45,19 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "4" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "MaxStrengthBonus", "Value": "3" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "10" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "10" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 5, "Min": 0, "Max": 5 }
@@ -290,7 +302,16 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
         { "Name": "Food", "Params": [{ "Key": "Healing", "Value": "2d4" }, { "Key": "Cooking", "Value": "Meal" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "5" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "5" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Plant" },
+          { "Key": "Combustibility", "Value": "0.3" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Food,Raw" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "320" },
+          { "Key": "HeatCapacity", "Value": "1.0" }
+        ]}
       ],
       "Stats": [],
       "Tags": [
@@ -413,7 +434,17 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "15" }] },
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "-1" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "30" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "30" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Leather" },
+          { "Key": "Combustibility", "Value": "0.4" },
+          { "Key": "Porosity", "Value": "0.6" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Cloth" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "380" },
+          { "Key": "HeatCapacity", "Value": "1.0" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 }
@@ -434,7 +465,19 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "25" }] },
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "5" }, { "Key": "DV", "Value": "-2" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "60" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "60" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Iron" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.15" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1400" },
+          { "Key": "HeatCapacity", "Value": "0.6" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 25, "Min": 0, "Max": 25 }
@@ -482,7 +525,17 @@
           { "Key": "ColorString", "Value": "&y" },
           { "Key": "RenderLayer", "Value": "1" }
         ]},
-        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] }
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Stone" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Brittleness", "Value": "0.3" },
+          { "Key": "MaterialTagsRaw", "Value": "Stone,Mineral" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1200" },
+          { "Key": "HeatCapacity", "Value": "2.0" }
+        ]}
       ],
       "Stats": [],
       "Tags": [
@@ -761,7 +814,19 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "8" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8" }, { "Key": "PenBonus", "Value": "2" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "25" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "25" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 }
@@ -783,7 +848,19 @@
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "14" }] },
         { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d6" }, { "Key": "PenBonus", "Value": "3" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "40" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "40" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 }
@@ -806,7 +883,19 @@
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "12" }] },
         { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d12" }, { "Key": "PenBonus", "Value": "4" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "50" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "50" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 12, "Min": 0, "Max": 12 }
@@ -855,7 +944,19 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "5" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6" }, { "Key": "PenBonus", "Value": "1" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "15" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "15" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
@@ -876,7 +977,19 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "10" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8+1" }, { "Key": "PenBonus", "Value": "3" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "20" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "20" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 }
@@ -897,7 +1010,19 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "7" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6+1" }, { "Key": "PenBonus", "Value": "2" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "18" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "18" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
@@ -2195,6 +2320,173 @@
           { "Key": "ColorString", "Value": "&K" },
           { "Key": "RenderLayer", "Value": "0" }
         ]}
+      ]
+    },
+    {
+      "Name": "SteamCloud",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "steam cloud" },
+          { "Key": "RenderString", "Value": "~" },
+          { "Key": "ColorString", "Value": "&b" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Vapor" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "MaterialTagsRaw", "Value": "Vapor,Gas" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "Temperature", "Value": "120" },
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "HeatCapacity", "Value": "0.5" }
+        ]}
+      ]
+    },
+    {
+      "Name": "WaterPuddle",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "puddle of water" },
+          { "Key": "RenderString", "Value": "~" },
+          { "Key": "ColorString", "Value": "&B" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Water" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "MaterialTagsRaw", "Value": "Liquid,Water" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "Temperature", "Value": "15" },
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "VaporTemperature", "Value": "100" },
+          { "Key": "HeatCapacity", "Value": "2.0" }
+        ]}
+      ]
+    },
+    {
+      "Name": "LanternOil",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "flask of lantern oil" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "8" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Oil" },
+          { "Key": "Combustibility", "Value": "0.9" },
+          { "Key": "Volatility", "Value": "0.8" },
+          { "Key": "MaterialTagsRaw", "Value": "Liquid,Oil,Flammable,Organic" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "280" },
+          { "Key": "HeatCapacity", "Value": "0.8" }
+        ]},
+        { "Name": "Fuel", "Params": [
+          { "Key": "FuelMass", "Value": "40" },
+          { "Key": "MaxFuel", "Value": "40" },
+          { "Key": "BurnRate", "Value": "1.5" },
+          { "Key": "HeatOutput", "Value": "2.5" },
+          { "Key": "ExhaustProduct", "Value": "AshPile" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 3, "Min": 0, "Max": 3 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "RawMeat",
+      "Inherits": "FoodItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "raw meat" },
+          { "Key": "RenderString", "Value": "%" },
+          { "Key": "ColorString", "Value": "&r" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "Food", "Params": [{ "Key": "Healing", "Value": "1d4" }, { "Key": "Cooking", "Value": "Raw" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "3" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Flesh" },
+          { "Key": "Combustibility", "Value": "0.25" },
+          { "Key": "Porosity", "Value": "0.3" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Food,Raw" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "320" },
+          { "Key": "HeatCapacity", "Value": "1.4" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "CookedMeat",
+      "Inherits": "FoodItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "cooked meat" },
+          { "Key": "RenderString", "Value": "%" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "Food", "Params": [{ "Key": "Healing", "Value": "3d4" }, { "Key": "Cooking", "Value": "Meal" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "8" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Flesh" },
+          { "Key": "Combustibility", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Food,Cooked" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "360" },
+          { "Key": "HeatCapacity", "Value": "1.2" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "RoastedStarapple",
+      "Inherits": "FoodItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "roasted starapple" },
+          { "Key": "RenderString", "Value": "%" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Food", "Params": [{ "Key": "Healing", "Value": "3d4" }, { "Key": "Cooking", "Value": "Meal" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "9" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Plant" },
+          { "Key": "Combustibility", "Value": "0.25" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Food,Cooked" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "340" },
+          { "Key": "HeatCapacity", "Value": "1.0" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
       ]
     },
     {

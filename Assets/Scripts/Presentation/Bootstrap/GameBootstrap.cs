@@ -57,12 +57,18 @@ namespace CavesOfOoo
             }
 
             Debug.Log("[Bootstrap] Step 1b/9: Initializing material reactions...");
-            TextAsset reactionAsset = Resources.Load<TextAsset>("Content/Data/MaterialReactions/fire_plus_organic");
-            if (reactionAsset != null)
-                MaterialReactionResolver.Initialize(reactionAsset.text);
+            TextAsset[] reactionAssets = Resources.LoadAll<TextAsset>("Content/Data/MaterialReactions");
+            if (reactionAssets != null && reactionAssets.Length > 0)
+            {
+                var jsonSources = new System.Collections.Generic.List<string>(reactionAssets.Length);
+                for (int i = 0; i < reactionAssets.Length; i++)
+                    jsonSources.Add(reactionAssets[i].text);
+                MaterialReactionResolver.InitializeFromJsonSources(jsonSources);
+                Debug.Log($"[Bootstrap] Loaded {reactionAssets.Length} reaction file(s), {MaterialReactionResolver.ReactionCount} reaction(s) total.");
+            }
             else
             {
-                Debug.LogWarning("[Bootstrap] fire_plus_organic.json not found, material reactions will be empty.");
+                Debug.LogWarning("[Bootstrap] No material reaction files found, reactions will be empty.");
                 MaterialReactionResolver.Initialize(null);
             }
 

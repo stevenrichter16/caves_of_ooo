@@ -24,19 +24,36 @@ namespace CavesOfOoo.Core
         public static void Initialize(string json)
         {
             _reactions.Clear();
-            if (string.IsNullOrEmpty(json))
+            AppendJson(json);
+            _reactions.Sort((a, b) => b.Priority.CompareTo(a.Priority));
+            _initialized = true;
+        }
+
+        /// <summary>
+        /// Load reactions from multiple JSON documents, merging them into a single
+        /// priority-sorted list. Used by GameBootstrap when it scans the
+        /// MaterialReactions folder for all reaction files at startup.
+        /// </summary>
+        public static void InitializeFromJsonSources(System.Collections.Generic.IEnumerable<string> jsonSources)
+        {
+            _reactions.Clear();
+            if (jsonSources != null)
             {
-                _initialized = true;
-                return;
+                foreach (var json in jsonSources)
+                    AppendJson(json);
             }
+            _reactions.Sort((a, b) => b.Priority.CompareTo(a.Priority));
+            _initialized = true;
+        }
+
+        private static void AppendJson(string json)
+        {
+            if (string.IsNullOrEmpty(json))
+                return;
 
             var collection = JsonUtility.FromJson<MaterialReactionCollection>(json);
             if (collection?.Reactions != null)
-            {
                 _reactions.AddRange(collection.Reactions);
-                _reactions.Sort((a, b) => b.Priority.CompareTo(a.Priority));
-            }
-            _initialized = true;
         }
 
         public static bool IsInitialized => _initialized;
