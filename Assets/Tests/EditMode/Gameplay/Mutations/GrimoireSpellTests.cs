@@ -755,5 +755,82 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(0.6f, farFrost.Cold, 0.001f,
                 "Rime Nova should pre-apply FrozenEffect(0.6) distinct from TryFreeze's 1.0");
         }
+
+        // ========================
+        // Thunderclap Spell
+        // ========================
+
+        [Test]
+        public void Thunderclap_ElectrifiesMetalProp_NotWoodProp()
+        {
+            var zone = new Zone("ThunderclapZone");
+            var caster = CreateCaster();
+
+            // Metal-tagged, conductive prop — should be electrified.
+            var ironRod = new Entity { BlueprintName = "IronRod" };
+            ironRod.AddPart(new RenderPart { DisplayName = "iron rod" });
+            ironRod.AddPart(new ThermalPart());
+            ironRod.AddPart(new MaterialPart
+            {
+                MaterialID = "Iron",
+                Conductivity = 0.9f,
+                MaterialTagsRaw = "Metal,Conductor"
+            });
+
+            // Wooden, non-conductive barrel — should be skipped.
+            var woodBarrel = CreateCombustibleObject("barrel", flameTemp: 9999f);
+
+            zone.AddEntity(caster, 10, 10);
+            zone.AddEntity(ironRod, 11, 10);
+            zone.AddEntity(woodBarrel, 9, 10);
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new ThunderclapMutation(), 1);
+            var thunderclap = mutations.GetMutation<ThunderclapMutation>();
+
+            thunderclap.Cast(zone, zone.GetCell(10, 10), new Random(42));
+
+            Assert.IsTrue(ironRod.HasEffect<ElectrifiedEffect>(),
+                "Thunderclap should electrify conductive metal props in radius");
+            Assert.IsFalse(woodBarrel.HasEffect<ElectrifiedEffect>(),
+                "Thunderclap should NOT electrify non-conductive wooden props");
+        }
+
+        [Test]
+        public void Thunderclap_WetCreatureTakesDoubleDamage()
+        {
+            var zoneWet = new Zone("ThunderclapZoneWet");
+            var casterWet = CreateCaster();
+            var wetTarget = CreateCreature("wetsnapjaw", hp: 100);
+            wetTarget.ApplyEffect(new WetEffect(moisture: 0.8f));
+
+            zoneWet.AddEntity(casterWet, 10, 10);
+            zoneWet.AddEntity(wetTarget, 11, 10);
+
+            var wetMutations = casterWet.GetPart<MutationsPart>();
+            wetMutations.AddMutation(new ThunderclapMutation(), 1);
+            var thunderclapWet = wetMutations.GetMutation<ThunderclapMutation>();
+            thunderclapWet.Cast(zoneWet, zoneWet.GetCell(10, 10), new Random(42));
+
+            int wetHpLoss = 100 - wetTarget.GetStatValue("Hitpoints", 0);
+
+            var zoneDry = new Zone("ThunderclapZoneDry");
+            var casterDry = CreateCaster();
+            var dryTarget = CreateCreature("drysnapjaw", hp: 100);
+
+            zoneDry.AddEntity(casterDry, 10, 10);
+            zoneDry.AddEntity(dryTarget, 11, 10);
+
+            var dryMutations = casterDry.GetPart<MutationsPart>();
+            dryMutations.AddMutation(new ThunderclapMutation(), 1);
+            var thunderclapDry = dryMutations.GetMutation<ThunderclapMutation>();
+            thunderclapDry.Cast(zoneDry, zoneDry.GetCell(10, 10), new Random(42));
+
+            int dryHpLoss = 100 - dryTarget.GetStatValue("Hitpoints", 0);
+
+            Assert.Greater(dryHpLoss, 0, "Dry target should take some damage");
+            Assert.AreEqual(dryHpLoss * 2, wetHpLoss,
+                "Wet target should take exactly double damage from Thunderclap (same seeded RNG, same 2d6 roll)");
+        }
     }
 }
