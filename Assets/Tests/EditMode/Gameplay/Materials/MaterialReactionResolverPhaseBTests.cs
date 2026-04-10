@@ -5,6 +5,7 @@ using NUnit.Framework;
 using UnityEngine;
 using CavesOfOoo.Core;
 using CavesOfOoo.Data;
+using Random = System.Random;
 
 namespace CavesOfOoo.Tests
 {
