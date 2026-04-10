@@ -78,8 +78,16 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < _reactions.Count; i++)
             {
                 var reaction = _reactions[i];
-                if (MatchesConditions(reaction.Conditions, entity, material, thermal, burning))
-                    ApplyEffects(reaction.Effects, entity, zone, burning);
+                if (!MatchesConditions(reaction.Conditions, entity, material, thermal, burning))
+                    continue;
+
+                // If an effect destroys or replaces the source entity (e.g.
+                // SwapBlueprint cooks raw meat into cooked meat), stop evaluating
+                // further reactions: the entity we were reasoning about no longer
+                // exists in the zone and subsequent reactions would operate on a
+                // dangling reference.
+                if (ApplyEffects(reaction.Effects, entity, zone, burning))
+                    return;
             }
         }
 
@@ -107,8 +115,11 @@ namespace CavesOfOoo.Core
                     return false;
             }
 
-            // Check temperature thresholds
-            if (cond.MinTemperature > 0f)
+            // Check temperature thresholds. Both sides use explicit sentinel
+            // defaults (float.MinValue / float.MaxValue) so an author who
+            // writes "MinTemperature": 0 gets the check they expect instead
+            // of having the resolver silently skip a zero floor.
+            if (cond.MinTemperature > float.MinValue)
             {
                 if (thermal == null || thermal.Temperature < cond.MinTemperature)
                     return false;
@@ -176,14 +187,20 @@ namespace CavesOfOoo.Core
             }
         }
 
-        private static void ApplyEffects(
+        /// <summary>
+        /// Apply a reaction's effects to an entity. Returns true if the
+        /// source entity was destroyed or replaced during the call, so the
+        /// caller can stop evaluating further reactions against a dangling
+        /// reference.
+        /// </summary>
+        private static bool ApplyEffects(
             List<ReactionEffect> effects,
             Entity entity,
             Zone zone,
             BurningEffect burning)
         {
             if (effects == null)
-                return;
+                return false;
 
             for (int i = 0; i < effects.Count; i++)
             {
@@ -199,7 +216,16 @@ namespace CavesOfOoo.Core
                     case "ModifyFuelConsumption":
                         if (burning != null)
                         {
-                            // Apply as bonus consumption this tick, not a permanent BurnRate change
+                            // Apply as bonus consumption this tick, not a permanent
+                            // BurnRate change. Note that multiple matching reactions
+                            // stack additively here: a burning acidic organic (for
+                            // example) receives both fire_plus_organic (1.5x) and
+                            // acid_plus_organic (1.5x) boosts in the same tick, so
+                            // the effective bonus fuel is (0.5 + 0.5) * BurnRate *
+                            // intensity. That compounding is intentional — acid
+                            // accelerates combustion decay — but authors adding
+                            // new reactions should be aware the math is additive
+                            // across matches, not multiplicative.
                             var fuel = entity.GetPart<FuelPart>();
                             if (fuel != null)
                             {
@@ -233,7 +259,13 @@ namespace CavesOfOoo.Core
                         break;
 
                     case "SwapBlueprint":
-                        SwapBlueprint(entity, zone, fx.StringValue);
+                        // SwapBlueprint removes the source entity from the zone and
+                        // replaces it with a fresh blueprint. Any effects after this
+                        // one in the list would be mutating a dangling reference, so
+                        // we short-circuit out of the whole effect list once the
+                        // swap actually lands in a zone.
+                        if (SwapBlueprint(entity, zone, fx.StringValue))
+                            return true;
                         break;
 
                     case "SpawnParticle":
@@ -241,6 +273,7 @@ namespace CavesOfOoo.Core
                         break;
                 }
             }
+            return false;
         }
 
         // ── Effect helpers ─────────────────────────────────────────────────
@@ -341,23 +374,29 @@ namespace CavesOfOoo.Core
             zone.AddEntity(spawned, sourceCell.X, sourceCell.Y);
         }
 
-        private static void SwapBlueprint(Entity source, Zone zone, string blueprintName)
+        /// <summary>
+        /// Replace the source entity with a freshly-created blueprint in the
+        /// same cell. Returns true if the swap actually happened so the
+        /// caller can stop applying further effects to the dangling source.
+        /// </summary>
+        private static bool SwapBlueprint(Entity source, Zone zone, string blueprintName)
         {
             if (Factory == null || zone == null || string.IsNullOrEmpty(blueprintName))
-                return;
+                return false;
 
             var sourceCell = zone.GetEntityCell(source);
             if (sourceCell == null)
-                return;
+                return false;
 
             Entity replacement = Factory.CreateEntity(blueprintName);
             if (replacement == null)
-                return;
+                return false;
 
             int x = sourceCell.X;
             int y = sourceCell.Y;
             zone.RemoveEntity(source);
             zone.AddEntity(replacement, x, y);
+            return true;
         }
     }
 }

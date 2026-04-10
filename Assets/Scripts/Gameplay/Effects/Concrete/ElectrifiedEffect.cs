@@ -41,16 +41,25 @@ namespace CavesOfOoo.Core
             MessageLog.Add(target.GetDisplayName() + " is no longer electrified.");
         }
 
-        public override void OnTurnStart(Entity target, GameEvent context)
+        public override void OnTurnEnd(Entity target, GameEvent context)
         {
             // Propagate along conductors during the sim tick so chains resolve
-            // during the turn, not at application time.
+            // during the turn, not at application time. Fire this from OnTurnEnd
+            // rather than OnTurnStart so passive electrified props (which only
+            // receive EndTurn via MaterialSimSystem's passive loop, never
+            // BeginTakeAction) still chain. Burning electrified entities also
+            // receive EndTurn via the burning-list pass, so this single hook
+            // covers both cases without double-firing.
             var chain = GameEvent.New("TryChainElectricity");
             chain.SetParameter("Charge", (object)Charge);
             chain.SetParameter("Zone", context?.GetParameter<Zone>("Zone"));
             chain.SetParameter("Source", (object)target);
             target.FireEvent(chain);
             chain.Release();
+
+            // Default duration decrement — preserved from base Effect.OnTurnEnd.
+            if (Duration > 0)
+                Duration--;
         }
 
         public override bool OnStack(Effect incoming)

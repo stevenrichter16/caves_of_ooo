@@ -21,8 +21,17 @@ namespace CavesOfOoo.Core
     {
         public string SourceState;
         public string TargetMaterialTag;
-        public float MinTemperature;
+
+        // Temperature bounds are symmetric: the resolver treats the
+        // sentinel defaults (float.MinValue / float.MaxValue) as "no check"
+        // and enforces any explicit value — including zero and negative
+        // temperatures — so authors can target subzero windows without the
+        // resolver silently skipping their MinTemperature.
+        public float MinTemperature = float.MinValue;
         public float MaxTemperature = float.MaxValue;
+
+        // Moisture/material scalars are in [0,1], so 0 is the natural
+        // "no minimum" sentinel and is checked via > 0.
         public float MaxMoisture = 1.0f;
         public float MinMoisture;
         public float MinBrittleness;

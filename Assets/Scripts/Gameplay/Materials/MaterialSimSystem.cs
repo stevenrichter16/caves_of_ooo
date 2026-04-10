@@ -41,12 +41,14 @@ namespace CavesOfOoo.Core
                     }
 
                     // Non-burning entities still need ticking if they have
-                    // moisture to evaporate, persistent status to decay, or
-                    // temperature to drift back toward ambient.
+                    // moisture to evaporate, persistent status to decay,
+                    // a lifespan to count down, or temperature to drift back
+                    // toward ambient.
                     if (obj.HasEffect<WetEffect>()
                         || obj.HasEffect<FrozenEffect>()
                         || obj.HasEffect<AcidicEffect>()
-                        || obj.HasEffect<ElectrifiedEffect>())
+                        || obj.HasEffect<ElectrifiedEffect>()
+                        || obj.GetPart<LifespanPart>() != null)
                     {
                         passive.Add(obj);
                         continue;
