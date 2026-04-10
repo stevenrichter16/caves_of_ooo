@@ -83,10 +83,11 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Emit radiant heat from a source entity to all entities with ThermalPart
         /// in the 8 adjacent cells. Joules are split equally among directions.
+        /// Negative joules cool adjacent entities (e.g., steam, frost bloom).
         /// </summary>
         public static void EmitHeatToAdjacent(Entity source, Zone zone, float totalJoules)
         {
-            if (source == null || zone == null || totalJoules <= 0f)
+            if (source == null || zone == null || totalJoules == 0f)
                 return;
 
             var sourceCell = zone.GetEntityCell(source);

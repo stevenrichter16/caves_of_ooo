@@ -70,16 +70,23 @@ namespace CavesOfOoo.Core
             if (!wasBelowFlame && Temperature < effectiveFlame)
                 TryExtinguish();
 
-            // Cold crossing: warm → at/below freezing.
+            // Cold crossing: warm → at/below freezing. FrozenEffect.OnApply runs its own
+            // shatter path against BrittleTemperature, so we skip the thermal-shock shatter
+            // below when a freeze also fired to avoid double-damaging mid-brittleness targets.
+            bool frozeThisTick = false;
             if (wasAboveFreeze && Temperature <= FreezeTemperature)
+            {
                 TryFreeze(e);
+                frozeThisTick = true;
+            }
 
             // Vapor crossing: sub-vapor → at/above VaporTemperature.
             if (wasBelowVapor && Temperature >= VaporTemperature)
                 TryVaporize(e);
 
-            // Thermal shock: brittle materials crack under a large single-tick delta.
-            if (System.Math.Abs(delta) > 200f)
+            // Thermal shock: brittle materials crack under a large single-tick delta,
+            // but only if a freeze crossing didn't already drive a shatter this tick.
+            if (!frozeThisTick && System.Math.Abs(delta) > 200f)
                 TryShatter(e, "ThermalShock");
 
             return true;
@@ -221,7 +228,9 @@ namespace CavesOfOoo.Core
             }
 
             // Check if fire has gone out — remove the BurningEffect directly
-            if (Temperature < GetEffectiveFlameTemperature() && ParentEntity.HasEffect<BurningEffect>())
+            if (ParentEntity != null
+                && Temperature < GetEffectiveFlameTemperature()
+                && ParentEntity.HasEffect<BurningEffect>())
             {
                 ParentEntity.RemoveEffect<BurningEffect>();
                 ParentEntity.FireEvent("Extinguished");

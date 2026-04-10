@@ -264,7 +264,9 @@ namespace CavesOfOoo.Core
 
         private static void PropagateAlongTag(Entity source, Zone zone, string tag, float joules)
         {
-            if (zone == null || string.IsNullOrEmpty(tag) || joules <= 0f)
+            // Negative joules are allowed so future cold reactions can chill neighbors
+            // along a tag (e.g., frost propagating down an ice rod).
+            if (zone == null || string.IsNullOrEmpty(tag) || joules == 0f)
                 return;
 
             var sourceCell = zone.GetEntityCell(source);

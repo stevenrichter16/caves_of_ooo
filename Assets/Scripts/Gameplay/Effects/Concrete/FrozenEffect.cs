@@ -72,6 +72,14 @@ namespace CavesOfOoo.Core
                 Cold += frozen.Cold * 0.5f;
                 if (Cold > 1.0f)
                     Cold = 1.0f;
+
+                // Re-run the extinguish side-effect on stack: a target that caught fire
+                // after the initial freeze should still be put out by the new cold pulse.
+                if (Owner != null && Owner.HasEffect<BurningEffect>())
+                {
+                    Owner.RemoveEffect<BurningEffect>();
+                    Owner.FireEvent("Extinguished");
+                }
                 return true;
             }
             return false;
