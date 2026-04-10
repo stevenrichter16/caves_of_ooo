@@ -601,5 +601,99 @@ namespace CavesOfOoo.Tests
             Assert.Less(combustibilityAfter, combustibilityBefore,
                 "Acid tick should degrade organic target's combustibility");
         }
+
+        // ========================
+        // Arc Bolt Spell
+        // ========================
+
+        [Test]
+        public void ArcBolt_WetCreatureDoublesCharge()
+        {
+            var zone = new Zone("ArcBoltZone");
+            var caster = CreateCaster();
+            var target = CreateCreature("snapjaw", hp: 50);
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(target, 7, 5);
+
+            // Pre-soak the target — ElectrifiedEffect.OnApply amplifies Charge
+            // (*= 2) and extends Duration on any creature with WetEffect.Moisture > 0.2.
+            target.ApplyEffect(new WetEffect(moisture: 0.8f));
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new ArcBoltMutation(), 1);
+            var arcBolt = mutations.GetMutation<ArcBoltMutation>();
+
+            arcBolt.Cast(zone, zone.GetCell(5, 5), 1, 0, new Random(42));
+
+            var electrified = target.GetEffect<ElectrifiedEffect>();
+            Assert.IsNotNull(electrified,
+                "Arc Bolt should apply ElectrifiedEffect to the struck creature");
+            Assert.GreaterOrEqual(electrified.Charge, 1.9f,
+                "Wet target's Charge should be doubled by ElectrifiedEffect.OnApply (1.0 → 2.0)");
+        }
+
+        [Test]
+        public void ArcBolt_ChainsToAdjacentConductor_OnEndTurn()
+        {
+            var zone = new Zone("ArcBoltChainZone");
+            var caster = CreateCaster();
+
+            // The struck target must itself be a conductor so MaterialPart.
+            // HandleTryChainElectricity (fired by ElectrifiedEffect.OnTurnEnd)
+            // finds neighbors and jumps along them. A metal-tagged creature
+            // fits: it has Hitpoints for damage, the Creature tag for stun,
+            // and Metal/Conductor tags for chain propagation.
+            var metalGolem = new Entity { BlueprintName = "MetalGolem" };
+            metalGolem.Tags["Creature"] = "";
+            metalGolem.Statistics["Hitpoints"] = new Stat { BaseValue = 40, Max = 40, Owner = metalGolem };
+            metalGolem.Statistics["HP"] = new Stat { BaseValue = 40, Max = 40, Owner = metalGolem };
+            metalGolem.AddPart(new RenderPart { DisplayName = "metal golem" });
+            metalGolem.AddPart(new PhysicsPart { Solid = true });
+            metalGolem.AddPart(new ThermalPart());
+            metalGolem.AddPart(new MaterialPart
+            {
+                MaterialID = "Iron",
+                Conductivity = 0.9f,
+                MaterialTagsRaw = "Metal,Conductor"
+            });
+
+            // Adjacent conductive prop — the chain target.
+            var wire = new Entity { BlueprintName = "CopperWire" };
+            wire.AddPart(new RenderPart { DisplayName = "copper wire" });
+            wire.AddPart(new ThermalPart());
+            wire.AddPart(new MaterialPart
+            {
+                MaterialID = "Copper",
+                Conductivity = 0.9f,
+                MaterialTagsRaw = "Metal,Conductor"
+            });
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(metalGolem, 6, 5);
+            zone.AddEntity(wire, 7, 5);
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new ArcBoltMutation(), 1);
+            var arcBolt = mutations.GetMutation<ArcBoltMutation>();
+
+            arcBolt.Cast(zone, zone.GetCell(5, 5), 1, 0, new Random(42));
+
+            Assert.IsTrue(metalGolem.HasEffect<ElectrifiedEffect>(),
+                "Struck target should be electrified immediately on Cast");
+            Assert.IsFalse(wire.HasEffect<ElectrifiedEffect>(),
+                "Chain propagation is async — wire should NOT be electrified until EndTurn runs");
+
+            // Fire EndTurn on the struck golem with Zone. ElectrifiedEffect.OnTurnEnd
+            // fires TryChainElectricity, MaterialPart.HandleTryChainElectricity
+            // scans 8 neighbors and jumps to any conductive target.
+            var endTurn = GameEvent.New("EndTurn");
+            endTurn.SetParameter("Zone", (object)zone);
+            metalGolem.FireEvent(endTurn);
+            endTurn.Release();
+
+            Assert.IsTrue(wire.HasEffect<ElectrifiedEffect>(),
+                "After EndTurn tick on struck conductor, adjacent conductive prop should chain-electrify");
+        }
     }
 }
