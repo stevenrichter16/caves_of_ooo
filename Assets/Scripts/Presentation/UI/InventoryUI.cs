@@ -409,10 +409,10 @@ namespace CavesOfOoo.Rendering
 
             if (_panel == PANEL_ABILITIES)
             {
-                int hoveredSlot = GetAbilitySlotAtMouse();
-                if (hoveredSlot >= 0 && hoveredSlot != _abilitiesCursorSlot)
+                int hoveredAbilitySlot = GetAbilitySlotAtMouse();
+                if (hoveredAbilitySlot >= 0 && hoveredAbilitySlot != _abilitiesCursorSlot)
                 {
-                    _abilitiesCursorSlot = hoveredSlot;
+                    _abilitiesCursorSlot = hoveredAbilitySlot;
                     Render();
                 }
                 return;
