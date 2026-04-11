@@ -239,15 +239,37 @@ namespace CavesOfOoo.Core
         private const int BarrelLayoutPlacementAttempts = 50;
         private const int MaterialSandboxPlacementAttempts = 50;
 
+        // Phase E material sandbox -- exercises every grimoire and every material
+        // reaction in one contiguous plot. See Plan.md Phase E checklist.
+        //
+        // Layout (5 wide x 3 tall):
+        //
+        //   col 0        col 1         col 2         col 3      col 4
+        //   Torch        WoodenBarrel  WaterPuddle   Dagger     ChainMail
+        //   RawMeat      RawMeat       Starapple     LongSword  IronHelmet
+        //   LanternOil   LanternOil    LanternOil    -          -
+        //
+        // Row 0  - ignition/water/metal block (Kindle Flame, Conjure Water, Drying
+        //          Breeze, Ice Lance, Ward Gleam, Chill Draft).
+        // Row 1  - cooking targets (Hearthwarm, oil-chain cooking) + metal cluster
+        //          continuation (Arc Bolt, Thunderclap).
+        // Row 2  - oil fuse: lighting LanternOil(0,2) chains along row 2 and
+        //          radiates up into row 1 to cook the food (Plan.md:289 showcase).
         private static readonly (string blueprint, int dx, int dy)[] MaterialSandboxLayout =
         {
-            ("RawMeat", 0, 0),
-            ("RawMeat", 1, 0),
-            ("RawMeat", 2, 0),
-            ("Torch", 0, 1),
-            ("WoodenBarrel", 1, 1),
-            ("WaterPuddle", 2, 1),
-            ("ChainMail", 3, 1)
+            ("Torch",        0, 0),
+            ("WoodenBarrel", 1, 0),
+            ("WaterPuddle",  2, 0),
+            ("Dagger",       3, 0),
+            ("ChainMail",    4, 0),
+            ("RawMeat",      0, 1),
+            ("RawMeat",      1, 1),
+            ("Starapple",    2, 1),
+            ("LongSword",    3, 1),
+            ("IronHelmet",   4, 1),
+            ("LanternOil",   0, 2),
+            ("LanternOil",   1, 2),
+            ("LanternOil",   2, 2),
         };
 
         private void PlaceBarrelLayouts(Zone zone, EntityFactory factory, System.Random rng,
