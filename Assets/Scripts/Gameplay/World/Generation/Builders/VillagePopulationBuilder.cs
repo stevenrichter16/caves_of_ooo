@@ -54,14 +54,17 @@ namespace CavesOfOoo.Core
             PlaceLantern(zone, factory, rng, openCells, settlementId, lanternSite);
 
             // Place a chest with grimoires
-            PlaceGrimoireChest(zone, factory, rng, openCells);
+            Entity grimoireChest = PlaceGrimoireChest(zone, factory, rng, openCells);
 
             // Place deterministic wooden barrel layouts to demonstrate fire propagation
             PlaceBarrelLayouts(zone, factory, rng, openCells);
 
             // Phase E integration sandbox: only in the starting zone to avoid cluttering all villages.
             if (zone.ZoneID == "Overworld.10.10.0")
+            {
                 PlaceDebugMaterialSandbox(zone, factory, rng, openCells);
+                PlaceCompassStones(zone, factory, openCells, grimoireChest);
+            }
 
             // Deterministic NPC roles
             Entity elder = PlaceNPC(zone, factory, rng, openCells, "Elder", settlementId);
@@ -94,7 +97,8 @@ namespace CavesOfOoo.Core
             }
 
             // 1 Scribe (always)
-            PlaceNPC(zone, factory, rng, openCells, "Scribe", settlementId);
+            Entity scribe = PlaceNPC(zone, factory, rng, openCells, "Scribe", settlementId);
+            SetConversation(scribe, "Scribe_1");
 
             // 2-4 Villagers
             int villagerCount = rng.Next(2, 5);
@@ -136,14 +140,14 @@ namespace CavesOfOoo.Core
             return entity;
         }
 
-        private void PlaceGrimoireChest(Zone zone, EntityFactory factory, System.Random rng,
+        private Entity PlaceGrimoireChest(Zone zone, EntityFactory factory, System.Random rng,
             List<(int x, int y)> openCells)
         {
             Entity chest = PlaceEntity(zone, factory, rng, openCells, "Chest");
-            if (chest == null) return;
+            if (chest == null) return null;
 
             var container = chest.GetPart<ContainerPart>();
-            if (container == null) return;
+            if (container == null) return chest;
 
             Entity grimoire = TryCreateEntity(factory, "PurifyWaterGrimoire");
             if (grimoire != null)
@@ -216,6 +220,49 @@ namespace CavesOfOoo.Core
             Entity wardGleamSpell = TryCreateEntity(factory, "WardGleamGrimoire");
             if (wardGleamSpell != null)
                 container.AddItem(wardGleamSpell);
+
+            return chest;
+        }
+
+        // Elemental Crossroads spawn hub polish: 4 compass stones around the
+        // grimoire chest, one per cardinal direction. Each is its own blueprint
+        // (CompassStoneNorth/East/South/West) so the look query picks up the
+        // direction via DisplayName — no per-instance description plumbing.
+        // Walks 2 cells outward from the chest in each cardinal; if that tile
+        // is blocked, silently skips (compass stones are decorative, missing
+        // one is harmless).
+        private static readonly (int dx, int dy, string blueprint)[] CompassStoneOffsets =
+        {
+            ( 0, -2, "CompassStoneNorth"),
+            ( 2,  0, "CompassStoneEast"),
+            ( 0,  2, "CompassStoneSouth"),
+            (-2,  0, "CompassStoneWest"),
+        };
+
+        private void PlaceCompassStones(Zone zone, EntityFactory factory,
+            List<(int x, int y)> openCells, Entity anchor)
+        {
+            if (zone == null || factory == null || anchor == null) return;
+
+            Cell anchorCell = zone.GetEntityCell(anchor);
+            if (anchorCell == null) return;
+
+            for (int i = 0; i < CompassStoneOffsets.Length; i++)
+            {
+                var (dx, dy, blueprint) = CompassStoneOffsets[i];
+                int x = anchorCell.X + dx;
+                int y = anchorCell.Y + dy;
+                if (!zone.InBounds(x, y)) continue;
+
+                Cell cell = zone.GetCell(x, y);
+                if (cell == null || !cell.IsPassable()) continue;
+
+                Entity stone = TryCreateEntity(factory, blueprint);
+                if (stone == null) continue;
+
+                zone.AddEntity(stone, x, y);
+                openCells.Remove((x, y));
+            }
         }
 
         // Wooden barrel layouts for fire-propagation showcase. Each layout is a list

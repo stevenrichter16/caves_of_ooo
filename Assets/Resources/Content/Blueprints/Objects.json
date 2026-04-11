@@ -2858,6 +2858,126 @@
       ]
     },
     {
+      "Name": "CompassStoneNorth",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "compass stone pointing north toward the Ruins of Sparkwright" },
+          { "Key": "RenderString", "Value": "o" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Stone" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Brittleness", "Value": "0.25" },
+          { "Key": "MaterialTagsRaw", "Value": "Mineral,Stone,Ancient" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "HeatCapacity", "Value": "3.0" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 }
+      ],
+      "Tags": [
+        { "Key": "Solid", "Value": "" },
+        { "Key": "CompassStone", "Value": "North" }
+      ]
+    },
+    {
+      "Name": "CompassStoneEast",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "compass stone pointing east toward the Saltglass Dunes" },
+          { "Key": "RenderString", "Value": "o" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Stone" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Brittleness", "Value": "0.25" },
+          { "Key": "MaterialTagsRaw", "Value": "Mineral,Stone,Ancient" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "HeatCapacity", "Value": "3.0" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 }
+      ],
+      "Tags": [
+        { "Key": "Solid", "Value": "" },
+        { "Key": "CompassStone", "Value": "East" }
+      ]
+    },
+    {
+      "Name": "CompassStoneSouth",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "compass stone pointing south toward the Verdant Rotbog" },
+          { "Key": "RenderString", "Value": "o" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Stone" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Brittleness", "Value": "0.25" },
+          { "Key": "MaterialTagsRaw", "Value": "Mineral,Stone,Ancient" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "HeatCapacity", "Value": "3.0" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 }
+      ],
+      "Tags": [
+        { "Key": "Solid", "Value": "" },
+        { "Key": "CompassStone", "Value": "South" }
+      ]
+    },
+    {
+      "Name": "CompassStoneWest",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "compass stone pointing west toward the Frostfang Grotto" },
+          { "Key": "RenderString", "Value": "o" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Stone" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Brittleness", "Value": "0.25" },
+          { "Key": "MaterialTagsRaw", "Value": "Mineral,Stone,Ancient" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "HeatCapacity", "Value": "3.0" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 }
+      ],
+      "Tags": [
+        { "Key": "Solid", "Value": "" },
+        { "Key": "CompassStone", "Value": "West" }
+      ]
+    },
+    {
       "Name": "LanternOil",
       "Inherits": "Item",
       "Parts": [
