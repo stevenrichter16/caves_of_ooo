@@ -72,6 +72,12 @@ namespace CavesOfOoo.Core
                 removedAny |= removedFromItem;
             }
 
+            if (!removedAny)
+            {
+                MessageLog.Add("Nothing to cleanse.");
+                return false;
+            }
+
             CooldownMyActivatedAbility(ActivatedAbilityID, COOLDOWN);
             return true;
         }

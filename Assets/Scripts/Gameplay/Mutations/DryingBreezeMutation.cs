@@ -45,7 +45,6 @@ namespace CavesOfOoo.Core
             if (zone == null || sourceCell == null || ParentEntity == null)
                 return false;
 
-            bool removedAny = false;
             int minX = Math.Max(0, sourceCell.X - RADIUS);
             int maxX = Math.Min(Zone.Width - 1, sourceCell.X + RADIUS);
             int minY = Math.Max(0, sourceCell.Y - RADIUS);
@@ -66,14 +65,12 @@ namespace CavesOfOoo.Core
                     {
                         Entity entity = cell.Objects[i];
                         if (entity.HasEffect<WetEffect>())
-                        {
                             entity.RemoveEffect<WetEffect>();
-                            removedAny = true;
-                        }
                     }
                 }
             }
 
+            MessageLog.Add(ParentEntity.GetDisplayName() + " exhales a drying breeze.");
             CooldownMyActivatedAbility(ActivatedAbilityID, COOLDOWN);
             return true;
         }

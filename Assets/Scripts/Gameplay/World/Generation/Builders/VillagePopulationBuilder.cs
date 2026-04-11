@@ -59,8 +59,9 @@ namespace CavesOfOoo.Core
             // Place deterministic wooden barrel layouts to demonstrate fire propagation
             PlaceBarrelLayouts(zone, factory, rng, openCells);
 
-            // Phase E integration sandbox: clustered props for manual material-system playtesting.
-            PlaceMaterialSandbox(zone, factory, rng, openCells);
+            // Phase E integration sandbox: only in the starting zone to avoid cluttering all villages.
+            if (zone.ZoneID == "Overworld.10.10.0")
+                PlaceDebugMaterialSandbox(zone, factory, rng, openCells);
 
             // Deterministic NPC roles
             Entity elder = PlaceNPC(zone, factory, rng, openCells, "Elder", settlementId);
@@ -318,7 +319,7 @@ namespace CavesOfOoo.Core
             return true;
         }
 
-        private void PlaceMaterialSandbox(Zone zone, EntityFactory factory, System.Random rng,
+        private void PlaceDebugMaterialSandbox(Zone zone, EntityFactory factory, System.Random rng,
             List<(int x, int y)> openCells)
         {
             for (int attempt = 0; attempt < MaterialSandboxPlacementAttempts; attempt++)
@@ -328,7 +329,7 @@ namespace CavesOfOoo.Core
 
                 int idx = rng.Next(openCells.Count);
                 var (anchorX, anchorY) = openCells[idx];
-                if (!CanPlaceMaterialSandboxAt(zone, anchorX, anchorY))
+                if (!CanPlaceDebugMaterialSandboxAt(zone, anchorX, anchorY))
                     continue;
 
                 for (int i = 0; i < MaterialSandboxLayout.Length; i++)
@@ -347,7 +348,7 @@ namespace CavesOfOoo.Core
             }
         }
 
-        private bool CanPlaceMaterialSandboxAt(Zone zone, int anchorX, int anchorY)
+        private bool CanPlaceDebugMaterialSandboxAt(Zone zone, int anchorX, int anchorY)
         {
             for (int i = 0; i < MaterialSandboxLayout.Length; i++)
             {
