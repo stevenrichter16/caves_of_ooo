@@ -1,8 +1,9 @@
 using System;
 using System.IO;
-using NUnit.Framework;
 using CavesOfOoo.Core;
-using UnityEngine;
+using CavesOfOoo.Data;
+using NUnit.Framework;
+using Application = UnityEngine.Application;
 
 namespace CavesOfOoo.Tests
 {
