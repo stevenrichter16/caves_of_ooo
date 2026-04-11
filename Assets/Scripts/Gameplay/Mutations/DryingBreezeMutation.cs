@@ -75,7 +75,7 @@ namespace CavesOfOoo.Core
             }
 
             CooldownMyActivatedAbility(ActivatedAbilityID, COOLDOWN);
-            return removedAny;
+            return true;
         }
     }
 }

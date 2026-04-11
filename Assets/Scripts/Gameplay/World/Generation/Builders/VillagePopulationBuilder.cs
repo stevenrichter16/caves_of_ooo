@@ -59,6 +59,9 @@ namespace CavesOfOoo.Core
             // Place deterministic wooden barrel layouts to demonstrate fire propagation
             PlaceBarrelLayouts(zone, factory, rng, openCells);
 
+            // Phase E integration sandbox: clustered props for manual material-system playtesting.
+            PlaceMaterialSandbox(zone, factory, rng, openCells);
+
             // Deterministic NPC roles
             Entity elder = PlaceNPC(zone, factory, rng, openCells, "Elder", settlementId);
             if (mainWell != null)
@@ -233,6 +236,18 @@ namespace CavesOfOoo.Core
 
         private const int BarrelLayoutBuffer = 2;
         private const int BarrelLayoutPlacementAttempts = 50;
+        private const int MaterialSandboxPlacementAttempts = 50;
+
+        private static readonly (string blueprint, int dx, int dy)[] MaterialSandboxLayout =
+        {
+            ("RawMeat", 0, 0),
+            ("RawMeat", 1, 0),
+            ("RawMeat", 2, 0),
+            ("Torch", 0, 1),
+            ("WoodenBarrel", 1, 1),
+            ("WaterPuddle", 2, 1),
+            ("ChainMail", 3, 1)
+        };
 
         private void PlaceBarrelLayouts(Zone zone, EntityFactory factory, System.Random rng,
             List<(int x, int y)> openCells)
@@ -297,6 +312,53 @@ namespace CavesOfOoo.Core
                     return false;
 
                 if (reservedCells.Contains((x, y)))
+                    return false;
+            }
+
+            return true;
+        }
+
+        private void PlaceMaterialSandbox(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> openCells)
+        {
+            for (int attempt = 0; attempt < MaterialSandboxPlacementAttempts; attempt++)
+            {
+                if (openCells.Count == 0)
+                    return;
+
+                int idx = rng.Next(openCells.Count);
+                var (anchorX, anchorY) = openCells[idx];
+                if (!CanPlaceMaterialSandboxAt(zone, anchorX, anchorY))
+                    continue;
+
+                for (int i = 0; i < MaterialSandboxLayout.Length; i++)
+                {
+                    var entry = MaterialSandboxLayout[i];
+                    int x = anchorX + entry.dx;
+                    int y = anchorY + entry.dy;
+                    Entity entity = TryCreateEntity(factory, entry.blueprint);
+                    if (entity != null)
+                        zone.AddEntity(entity, x, y);
+
+                    openCells.Remove((x, y));
+                }
+
+                return;
+            }
+        }
+
+        private bool CanPlaceMaterialSandboxAt(Zone zone, int anchorX, int anchorY)
+        {
+            for (int i = 0; i < MaterialSandboxLayout.Length; i++)
+            {
+                var entry = MaterialSandboxLayout[i];
+                int x = anchorX + entry.dx;
+                int y = anchorY + entry.dy;
+                if (!zone.InBounds(x, y))
+                    return false;
+
+                Cell cell = zone.GetCell(x, y);
+                if (cell == null || !cell.IsPassable())
                     return false;
             }
 

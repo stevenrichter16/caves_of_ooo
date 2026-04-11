@@ -72,10 +72,8 @@ namespace CavesOfOoo.Core
                 removedAny |= removedFromItem;
             }
 
-            if (removedAny)
-                CooldownMyActivatedAbility(ActivatedAbilityID, COOLDOWN);
-
-            return removedAny;
+            CooldownMyActivatedAbility(ActivatedAbilityID, COOLDOWN);
+            return true;
         }
     }
 }

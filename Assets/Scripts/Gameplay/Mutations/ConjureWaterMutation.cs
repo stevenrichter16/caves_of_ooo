@@ -66,6 +66,8 @@ namespace CavesOfOoo.Core
 
             var factory = MaterialReactionResolver.Factory;
             Entity puddle = factory?.CreateEntity("WaterPuddle");
+            if (puddle == null)
+                puddle = CreateFallbackWaterPuddle();
             if (puddle != null)
                 zone.AddEntity(puddle, tx, ty);
 
@@ -92,6 +94,31 @@ namespace CavesOfOoo.Core
             }
 
             return false;
+        }
+
+        private static Entity CreateFallbackWaterPuddle()
+        {
+            var entity = new Entity { BlueprintName = "WaterPuddle" };
+            entity.AddPart(new RenderPart
+            {
+                DisplayName = "puddle of water",
+                RenderString = "~",
+                ColorString = "&B",
+                RenderLayer = 1
+            });
+            entity.AddPart(new MaterialPart
+            {
+                MaterialID = "Water",
+                Combustibility = 0f,
+                MaterialTagsRaw = "Liquid,Water"
+            });
+            entity.AddPart(new ThermalPart
+            {
+                Temperature = 15f,
+                FlameTemperature = 9000f,
+                VaporTemperature = 100f
+            });
+            return entity;
         }
     }
 }
