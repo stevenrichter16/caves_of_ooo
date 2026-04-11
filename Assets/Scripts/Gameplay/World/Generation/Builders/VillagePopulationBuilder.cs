@@ -188,6 +188,30 @@ namespace CavesOfOoo.Core
             Entity emberVeinSpell = TryCreateEntity(factory, "EmberVeinGrimoire");
             if (emberVeinSpell != null)
                 container.AddItem(emberVeinSpell);
+
+            Entity kindleFlameSpell = TryCreateEntity(factory, "KindleFlameGrimoire");
+            if (kindleFlameSpell != null)
+                container.AddItem(kindleFlameSpell);
+
+            Entity dryingBreezeSpell = TryCreateEntity(factory, "DryingBreezeGrimoire");
+            if (dryingBreezeSpell != null)
+                container.AddItem(dryingBreezeSpell);
+
+            Entity hearthwarmSpell = TryCreateEntity(factory, "HearthwarmGrimoire");
+            if (hearthwarmSpell != null)
+                container.AddItem(hearthwarmSpell);
+
+            Entity conjureWaterSpell = TryCreateEntity(factory, "ConjureWaterGrimoire");
+            if (conjureWaterSpell != null)
+                container.AddItem(conjureWaterSpell);
+
+            Entity chillDraftSpell = TryCreateEntity(factory, "ChillDraftGrimoire");
+            if (chillDraftSpell != null)
+                container.AddItem(chillDraftSpell);
+
+            Entity wardGleamSpell = TryCreateEntity(factory, "WardGleamGrimoire");
+            if (wardGleamSpell != null)
+                container.AddItem(wardGleamSpell);
         }
 
         // Wooden barrel layouts for fire-propagation showcase. Each layout is a list

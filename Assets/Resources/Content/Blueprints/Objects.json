@@ -3093,6 +3093,150 @@
       ]
     },
     {
+      "Name": "KindleFlameGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Kindle Flame" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "KindleFlameMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Warm script flickers in the margins. You learn kindle flame." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know kindle flame." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "35" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "DryingBreezeGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Drying Breeze" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "DryingBreezeMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "The page exhales a dry wind. You learn drying breeze." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know drying breeze." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "40" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "HearthwarmGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Hearthwarm" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&r" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "HearthwarmMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Steady embers glow between the lines. You learn hearthwarm." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know hearthwarm." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "45" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "ConjureWaterGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Conjure Water" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&B" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "ConjureWaterMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Condensation beads across the page. You learn conjure water." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know conjure water." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "50" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "ChillDraftGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Chill Draft" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "ChillDraftMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "A biting draft slips from the pages. You learn chill draft." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know chill draft." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "45" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "WardGleamGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Ward Gleam" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "WardGleamMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "The ink brightens to a cleansing sheen. You learn ward gleam." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know ward gleam." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "60" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
       "Name": "LanternOilRecipe",
       "Inherits": "Item",
       "Parts": [

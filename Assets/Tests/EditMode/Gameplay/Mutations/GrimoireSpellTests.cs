@@ -890,5 +890,160 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(crate.HasEffect<BurningEffect>(),
                 "Crate beyond the struck creature should still ignite — TraceBeam passes through creatures and the per-cell heat pass iterates the full path");
         }
+
+        // ========================
+        // Everyday Grimoires
+        // ========================
+
+        [Test]
+        public void KindleFlame_HeatsTorchLikeProp_NotCreature()
+        {
+            var zone = new Zone("KindleFlameZone");
+            var caster = CreateCaster();
+            var wick = CreateCombustibleObject("wick", flameTemp: 200f, heatCapacity: 0.5f);
+            var creature = CreateCreature("snapjaw", 50);
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(wick, 6, 5);
+            zone.AddEntity(creature, 6, 5);
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new KindleFlameMutation(), 1);
+            var kindleFlame = mutations.GetMutation<KindleFlameMutation>();
+
+            float wickTempBefore = wick.GetPart<ThermalPart>().Temperature;
+            float creatureTempBefore = creature.GetPart<ThermalPart>().Temperature;
+
+            bool cast = kindleFlame.Cast(zone, zone.GetCell(6, 5));
+
+            Assert.IsTrue(cast, "Kindle Flame should affect low-flame-temperature non-creature props.");
+            Assert.Greater(wick.GetPart<ThermalPart>().Temperature, wickTempBefore);
+            Assert.AreEqual(creatureTempBefore, creature.GetPart<ThermalPart>().Temperature,
+                "Kindle Flame should skip creatures.");
+        }
+
+        [Test]
+        public void DryingBreeze_RemovesWetInRadius()
+        {
+            var zone = new Zone("DryingBreezeZone");
+            var caster = CreateCaster();
+            var adjacent = CreateCreature("ally", 40);
+
+            zone.AddEntity(caster, 10, 10);
+            zone.AddEntity(adjacent, 11, 10);
+
+            caster.ApplyEffect(new WetEffect(0.7f));
+            adjacent.ApplyEffect(new WetEffect(0.7f));
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new DryingBreezeMutation(), 1);
+            var dryingBreeze = mutations.GetMutation<DryingBreezeMutation>();
+
+            bool cast = dryingBreeze.Cast(zone, zone.GetCell(10, 10));
+
+            Assert.IsTrue(cast);
+            Assert.IsFalse(caster.HasEffect<WetEffect>());
+            Assert.IsFalse(adjacent.HasEffect<WetEffect>());
+        }
+
+        [Test]
+        public void Hearthwarm_AppliesHearthAuraEffect()
+        {
+            var zone = new Zone("HearthwarmZone");
+            var caster = CreateCaster();
+            var meat = CreateCombustibleObject("meat", flameTemp: 500f, heatCapacity: 1.0f, combustibility: 0.3f);
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(meat, 6, 5);
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new HearthwarmMutation(), 1);
+            var hearthwarm = mutations.GetMutation<HearthwarmMutation>();
+
+            bool cast = hearthwarm.Cast(zone, zone.GetCell(6, 5));
+            Assert.IsTrue(cast);
+
+            var aura = caster.GetEffect<HearthAuraEffect>();
+            Assert.IsNotNull(aura);
+            Assert.AreEqual(6, aura.TargetX);
+            Assert.AreEqual(5, aura.TargetY);
+        }
+
+        [Test]
+        public void ConjureWater_WetsTargetCellAndExtinguishesBurningEntity()
+        {
+            var zone = new Zone("ConjureWaterZone");
+            var caster = CreateCaster();
+            var barrel = CreateCombustibleObject("barrel", flameTemp: 200f, heatCapacity: 0.5f);
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(barrel, 7, 5);
+            barrel.ApplyEffect(new BurningEffect(1.0f));
+            Assert.IsTrue(barrel.HasEffect<BurningEffect>());
+
+            MaterialReactionResolver.Initialize(
+                "{ \"Reactions\": [ { \"ID\": \"water_plus_fire\", \"Priority\": 60, \"Conditions\": { \"SourceState\": \"Burning\", \"MinMoisture\": 0.3 }, \"Effects\": [ { \"Type\": \"ModifyBurnIntensity\", \"FloatValue\": -1.0, \"StringValue\": \"\" } ] } ] }");
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new ConjureWaterMutation(), 1);
+            var conjureWater = mutations.GetMutation<ConjureWaterMutation>();
+
+            bool cast = conjureWater.Cast(zone, zone.GetCell(5, 5), 1, 0, 2);
+
+            Assert.IsTrue(cast);
+            Assert.IsTrue(barrel.HasEffect<WetEffect>());
+            Assert.LessOrEqual(barrel.GetEffect<BurningEffect>().Intensity, 0.1f,
+                "water_plus_fire should reduce intensity to ~0, causing extinction on next thermal tick.");
+        }
+
+        [Test]
+        public void ChillDraft_CoolsNearbyEntities()
+        {
+            var zone = new Zone("ChillDraftZone");
+            var caster = CreateCaster();
+            var nearby = CreateCombustibleObject("barrel", flameTemp: 500f, heatCapacity: 1.0f);
+
+            zone.AddEntity(caster, 8, 8);
+            zone.AddEntity(nearby, 9, 8);
+
+            nearby.GetPart<ThermalPart>().Temperature = 150f;
+            float before = nearby.GetPart<ThermalPart>().Temperature;
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new ChillDraftMutation(), 1);
+            var chillDraft = mutations.GetMutation<ChillDraftMutation>();
+
+            bool cast = chillDraft.Cast(zone, zone.GetCell(8, 8));
+
+            Assert.IsTrue(cast);
+            Assert.Less(nearby.GetPart<ThermalPart>().Temperature, before);
+        }
+
+        [Test]
+        public void WardGleam_ClearsAcidicAndCharredOnEquippedItems()
+        {
+            var caster = CreateCaster();
+            var inventory = new InventoryPart();
+            caster.AddPart(inventory);
+
+            var sword = new Entity { BlueprintName = "Sword" };
+            sword.AddPart(new RenderPart { DisplayName = "sword" });
+            sword.AddPart(new MaterialPart { MaterialID = "Steel", MaterialTagsRaw = "Metal" });
+            sword.ApplyEffect(new AcidicEffect(0.8f));
+            sword.ApplyEffect(new CharredEffect());
+
+            inventory.Objects.Add(sword);
+            inventory.Equip(sword, "Hand");
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new WardGleamMutation(), 1);
+            var wardGleam = mutations.GetMutation<WardGleamMutation>();
+
+            bool cast = wardGleam.Cast();
+
+            Assert.IsTrue(cast);
+            Assert.IsFalse(sword.HasEffect<AcidicEffect>());
+            Assert.IsFalse(sword.HasEffect<CharredEffect>());
+        }
     }
 }
