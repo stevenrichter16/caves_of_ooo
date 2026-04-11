@@ -2,8 +2,8 @@ namespace CavesOfOoo.Core
 {
     /// <summary>
     /// Persistent warmth aura used by Hearthwarm.
-    /// Lives on the caster and emits gentle radiant heat into a chosen cell
-    /// at turn start for a short duration.
+    /// Lives on the caster and emits direct (non-radiant) heat into a chosen cell
+    /// at turn start for a short duration, triggering material reactions each pulse.
     /// </summary>
     public class HearthAuraEffect : Effect
     {
@@ -11,14 +11,14 @@ namespace CavesOfOoo.Core
 
         public int TargetX;
         public int TargetY;
-        public float JoulesPerPulse = 80f;
+        public float JoulesPerPulse = 60f;
 
         public HearthAuraEffect()
         {
             Duration = 3;
         }
 
-        public HearthAuraEffect(int targetX, int targetY, int duration = 3, float joulesPerPulse = 80f)
+        public HearthAuraEffect(int targetX, int targetY, int duration = 3, float joulesPerPulse = 60f)
         {
             TargetX = targetX;
             TargetY = targetY;
@@ -49,11 +49,12 @@ namespace CavesOfOoo.Core
 
                 var heatEvent = GameEvent.New("ApplyHeat");
                 heatEvent.SetParameter("Joules", (object)JoulesPerPulse);
-                heatEvent.SetParameter("Radiant", (object)true);
+                heatEvent.SetParameter("Radiant", (object)false);
                 heatEvent.SetParameter("Source", (object)target);
                 heatEvent.SetParameter("Zone", (object)zone);
                 entity.FireEvent(heatEvent);
                 heatEvent.Release();
+                MaterialReactionResolver.EvaluateReactions(entity, zone, null);
             }
         }
 

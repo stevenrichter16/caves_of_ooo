@@ -1,6 +1,8 @@
 using System;
+using System.IO;
 using NUnit.Framework;
 using CavesOfOoo.Core;
+using UnityEngine;
 
 namespace CavesOfOoo.Tests
 {
@@ -11,6 +13,21 @@ namespace CavesOfOoo.Tests
         {
             AsciiFxBus.Clear();
             MessageLog.Clear();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            MaterialReactionResolver.Factory = null;
+        }
+
+        private static EntityFactory LoadRealFactory()
+        {
+            var factory = new EntityFactory();
+            string blueprintPath = Path.Combine(
+                Application.dataPath, "Resources/Content/Blueprints/Objects.json");
+            factory.LoadBlueprints(File.ReadAllText(blueprintPath));
+            return factory;
         }
 
         // ========================
@@ -970,10 +987,54 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void Hearthwarm_CooksRawMeat_Over3Turns()
+        {
+            var zone = new Zone("HearthwarmCookZone");
+            var caster = CreateCaster();
+
+            var meat = new Entity { BlueprintName = "RawMeat" };
+            meat.AddPart(new RenderPart { DisplayName = "raw meat" });
+            meat.AddPart(new ThermalPart
+            {
+                Temperature = 25f,
+                FlameTemperature = 500f,
+                HeatCapacity = 1.0f
+            });
+            meat.AddPart(new MaterialPart
+            {
+                MaterialID = "RawMeat",
+                Combustibility = 0.2f,
+                MaterialTagsRaw = "Organic,RawMeat"
+            });
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(meat, 6, 5);
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new HearthwarmMutation(), 1);
+            var hearthwarm = mutations.GetMutation<HearthwarmMutation>();
+            hearthwarm.Cast(zone, zone.GetCell(6, 5));
+
+            // Fire 3 turns: each pulse delivers 60J direct (delta = 60 / HeatCap 1.0 = +60°C)
+            // Turn 1: 25 → 85; Turn 2: 85 → 145; Turn 3: 145 → 205 (crosses 150°C cooking threshold)
+            for (int i = 0; i < 3; i++)
+            {
+                var turnEvent = GameEvent.New("BeginTakeAction");
+                turnEvent.SetParameter("Zone", (object)zone);
+                caster.FireEvent(turnEvent);
+                turnEvent.Release();
+            }
+
+            Assert.Greater(meat.GetPart<ThermalPart>().Temperature, 150f,
+                "After 3 direct heat pulses (60J / HeatCap 1.0 = +60°C each), raw meat must exceed the 150°C cooking threshold");
+        }
+
+        [Test]
         public void ConjureWater_WetsTargetCellAndExtinguishesBurningEntity()
         {
             var zone = new Zone("ConjureWaterZone");
             var caster = CreateCaster();
+            // Barrel at step 2 (dx=1, range=2). Walker reaches burning barrel on step 2 and stops.
             var barrel = CreateCombustibleObject("barrel", flameTemp: 200f, heatCapacity: 0.5f);
 
             zone.AddEntity(caster, 5, 5);
@@ -983,6 +1044,7 @@ namespace CavesOfOoo.Tests
 
             MaterialReactionResolver.Initialize(
                 "{ \"Reactions\": [ { \"ID\": \"water_plus_fire\", \"Priority\": 60, \"Conditions\": { \"SourceState\": \"Burning\", \"MinMoisture\": 0.3 }, \"Effects\": [ { \"Type\": \"ModifyBurnIntensity\", \"FloatValue\": -1.0, \"StringValue\": \"\" } ] } ] }");
+            MaterialReactionResolver.Factory = LoadRealFactory();
 
             var mutations = caster.GetPart<MutationsPart>();
             mutations.AddMutation(new ConjureWaterMutation(), 1);
@@ -994,6 +1056,112 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(barrel.HasEffect<WetEffect>());
             Assert.LessOrEqual(barrel.GetEffect<BurningEffect>().Intensity, 0.1f,
                 "water_plus_fire should reduce intensity to ~0, causing extinction on next thermal tick.");
+        }
+
+        [Test]
+        public void ConjureWater_SpawnsAtFirstBurningCell_WhenInRange()
+        {
+            var zone = new Zone("ConjureWaterWalkerZone");
+            var caster = CreateCaster();
+            // Burning barrel at step 1; empty cell at step 2. Walker should stop at step 1.
+            var burningBarrel = CreateCombustibleObject("barrel", flameTemp: 200f, heatCapacity: 0.5f);
+            burningBarrel.ApplyEffect(new BurningEffect(1.0f));
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(burningBarrel, 6, 5);
+
+            MaterialReactionResolver.Initialize("{ \"Reactions\": [] }");
+            MaterialReactionResolver.Factory = LoadRealFactory();
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new ConjureWaterMutation(), 1);
+            var conjureWater = mutations.GetMutation<ConjureWaterMutation>();
+
+            conjureWater.Cast(zone, zone.GetCell(5, 5), 1, 0, 2);
+
+            // Puddle must be on cell (6,5), not (7,5)
+            var cell6 = zone.GetCell(6, 5);
+            bool hasPuddle = false;
+            for (int i = 0; i < cell6.Objects.Count; i++)
+            {
+                var mp = cell6.Objects[i].GetPart<MaterialPart>();
+                if (mp != null && mp.MaterialID == "Water") { hasPuddle = true; break; }
+            }
+            Assert.IsTrue(hasPuddle, "Water puddle should land on the first burning cell (step 1), not max range");
+        }
+
+        [Test]
+        public void ConjureWater_SpawnsAtLastPassableCell_WhenBlocked()
+        {
+            var zone = new Zone("ConjureWaterBlockedZone");
+            var caster = CreateCaster();
+            // Wall at step 2: walker stops at step 1.
+            var wall = new Entity { BlueprintName = "StoneWall" };
+            wall.Tags["Solid"] = "";
+            wall.AddPart(new RenderPart { DisplayName = "wall" });
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(wall, 7, 5);
+
+            MaterialReactionResolver.Initialize("{ \"Reactions\": [] }");
+            MaterialReactionResolver.Factory = LoadRealFactory();
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new ConjureWaterMutation(), 1);
+            var conjureWater = mutations.GetMutation<ConjureWaterMutation>();
+
+            conjureWater.Cast(zone, zone.GetCell(5, 5), 1, 0, 2);
+
+            // Puddle should land at step 1 (6,5), not on the wall (7,5)
+            var cell6 = zone.GetCell(6, 5);
+            bool hasPuddle = false;
+            for (int i = 0; i < cell6.Objects.Count; i++)
+            {
+                var mp = cell6.Objects[i].GetPart<MaterialPart>();
+                if (mp != null && mp.MaterialID == "Water") { hasPuddle = true; break; }
+            }
+            Assert.IsTrue(hasPuddle, "Water puddle should land on the last passable cell before the wall");
+        }
+
+        [Test]
+        public void ConjureWater_FailsWithZeroDirection()
+        {
+            var zone = new Zone("ConjureWaterZeroDirZone");
+            var caster = CreateCaster();
+            zone.AddEntity(caster, 5, 5);
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new ConjureWaterMutation(), 1);
+            var conjureWater = mutations.GetMutation<ConjureWaterMutation>();
+
+            bool result = conjureWater.Cast(zone, zone.GetCell(5, 5), 0, 0, 2);
+            Assert.IsFalse(result, "Cast with zero direction vector should return false");
+        }
+
+        [Test]
+        public void ConjureWater_SpawnsWaterPuddleEntity()
+        {
+            var zone = new Zone("ConjureWaterPuddleZone");
+            var caster = CreateCaster();
+            zone.AddEntity(caster, 5, 5);
+
+            MaterialReactionResolver.Initialize("{ \"Reactions\": [] }");
+            MaterialReactionResolver.Factory = LoadRealFactory();
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new ConjureWaterMutation(), 1);
+            var conjureWater = mutations.GetMutation<ConjureWaterMutation>();
+
+            conjureWater.Cast(zone, zone.GetCell(5, 5), 1, 0, 2);
+
+            var targetCell = zone.GetCell(7, 5);
+            bool hasWater = false;
+            for (int i = 0; i < targetCell.Objects.Count; i++)
+            {
+                var mp = targetCell.Objects[i].GetPart<MaterialPart>();
+                if (mp != null && mp.MaterialID == "Water") { hasWater = true; break; }
+            }
+            Assert.IsTrue(hasWater, "ConjureWater should place a WaterPuddle entity (MaterialID == Water) in the target cell");
         }
 
         [Test]
@@ -1044,6 +1212,98 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(cast);
             Assert.IsFalse(sword.HasEffect<AcidicEffect>());
             Assert.IsFalse(sword.HasEffect<CharredEffect>());
+        }
+
+        [Test]
+        public void WardGleam_ReturnsFalse_WhenNothingToCleanse()
+        {
+            var caster = CreateCaster();
+            var inventory = new InventoryPart();
+            caster.AddPart(inventory);
+
+            // Clean sword with no effects
+            var sword = new Entity { BlueprintName = "Sword" };
+            sword.AddPart(new RenderPart { DisplayName = "sword" });
+            sword.AddPart(new MaterialPart { MaterialID = "Steel", MaterialTagsRaw = "Metal" });
+            inventory.Objects.Add(sword);
+            inventory.Equip(sword, "Hand");
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new WardGleamMutation(), 1);
+            var wardGleam = mutations.GetMutation<WardGleamMutation>();
+
+            bool cast = wardGleam.Cast();
+
+            Assert.IsFalse(cast, "WardGleam should return false when no equipped items have AcidicEffect or CharredEffect");
+            Assert.IsTrue(MessageLog.GetMessages().Exists(m => m.Contains("Nothing to cleanse")),
+                "WardGleam should log 'Nothing to cleanse' when cast on clean gear");
+        }
+
+        [Test]
+        public void WardGleam_SkipsUnequippedItems()
+        {
+            var caster = CreateCaster();
+            var inventory = new InventoryPart();
+            caster.AddPart(inventory);
+
+            // Corroded sword in inventory but NOT equipped
+            var sword = new Entity { BlueprintName = "Sword" };
+            sword.AddPart(new RenderPart { DisplayName = "sword" });
+            sword.AddPart(new MaterialPart { MaterialID = "Steel", MaterialTagsRaw = "Metal" });
+            sword.ApplyEffect(new AcidicEffect(0.8f));
+            inventory.Objects.Add(sword);
+            // Deliberately NOT calling inventory.Equip(sword, ...)
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new WardGleamMutation(), 1);
+            var wardGleam = mutations.GetMutation<WardGleamMutation>();
+
+            wardGleam.Cast();
+
+            Assert.IsTrue(sword.HasEffect<AcidicEffect>(),
+                "WardGleam should only cleanse equipped items, not items merely in inventory");
+        }
+
+        [Test]
+        public void DryingBreeze_IgnoresEntities_BeyondRadius1()
+        {
+            var zone = new Zone("DryingBreezeRadiusZone");
+            var caster = CreateCaster();
+            var nearby = CreateCreature("ally", 40);   // Chebyshev distance 1 — inside radius
+            var distant = CreateCreature("enemy", 40); // Chebyshev distance 2 — outside radius
+
+            zone.AddEntity(caster, 10, 10);
+            zone.AddEntity(nearby, 11, 10);
+            zone.AddEntity(distant, 12, 10);
+
+            nearby.ApplyEffect(new WetEffect(0.7f));
+            distant.ApplyEffect(new WetEffect(0.7f));
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new DryingBreezeMutation(), 1);
+            var dryingBreeze = mutations.GetMutation<DryingBreezeMutation>();
+
+            dryingBreeze.Cast(zone, zone.GetCell(10, 10));
+
+            Assert.IsFalse(nearby.HasEffect<WetEffect>(), "Entity at Chebyshev distance 1 should be dried");
+            Assert.IsTrue(distant.HasEffect<WetEffect>(), "Entity at Chebyshev distance 2 should retain WetEffect");
+        }
+
+        [Test]
+        public void Hearthwarm_FailsOnEmptyCell()
+        {
+            var zone = new Zone("HearthwarmEmptyZone");
+            var caster = CreateCaster();
+            zone.AddEntity(caster, 5, 5);
+            // Cell (6,5) is empty — no entities with ThermalPart
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new HearthwarmMutation(), 1);
+            var hearthwarm = mutations.GetMutation<HearthwarmMutation>();
+
+            bool cast = hearthwarm.Cast(zone, zone.GetCell(6, 5));
+
+            Assert.IsFalse(cast, "Hearthwarm should return false when the target cell has no ThermalPart entities");
         }
     }
 }

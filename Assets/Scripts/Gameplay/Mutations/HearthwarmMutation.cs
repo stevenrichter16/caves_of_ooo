@@ -48,7 +48,19 @@ namespace CavesOfOoo.Core
             if (zone == null || targetCell == null || ParentEntity == null)
                 return false;
 
-            ParentEntity.ApplyEffect(new HearthAuraEffect(targetCell.X, targetCell.Y, duration: 3, joulesPerPulse: 80f),
+            bool hasThermalTarget = false;
+            for (int i = 0; i < targetCell.Objects.Count; i++)
+            {
+                if (targetCell.Objects[i].HasPart<ThermalPart>())
+                {
+                    hasThermalTarget = true;
+                    break;
+                }
+            }
+            if (!hasThermalTarget)
+                return false;
+
+            ParentEntity.ApplyEffect(new HearthAuraEffect(targetCell.X, targetCell.Y, duration: 3, joulesPerPulse: 60f),
                 ParentEntity,
                 zone);
             CooldownMyActivatedAbility(ActivatedAbilityID, COOLDOWN);
