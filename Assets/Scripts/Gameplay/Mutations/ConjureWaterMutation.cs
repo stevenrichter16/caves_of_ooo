@@ -51,27 +51,52 @@ namespace CavesOfOoo.Core
         {
             if (zone == null || sourceCell == null || ParentEntity == null)
                 return false;
+            if (dx == 0 && dy == 0)
+                return false;
 
-            int tx = sourceCell.X + (dx * range);
-            int ty = sourceCell.Y + (dy * range);
-            if (!zone.InBounds(tx, ty))
+            // Walk up to `range` steps; stop early on the first burning entity,
+            // or at the last passable cell before a wall.
+            Cell targetCell = null;
+            for (int step = 1; step <= range; step++)
             {
-                tx = sourceCell.X + dx;
-                ty = sourceCell.Y + dy;
+                int tx = sourceCell.X + dx * step;
+                int ty = sourceCell.Y + dy * step;
+                if (!zone.InBounds(tx, ty))
+                    break;
+                Cell candidate = zone.GetCell(tx, ty);
+                if (candidate == null)
+                    break;
+
+                // Stop at the first cell that has a burning entity
+                for (int i = 0; i < candidate.Objects.Count; i++)
+                {
+                    if (candidate.Objects[i].HasEffect<BurningEffect>())
+                    {
+                        targetCell = candidate;
+                        goto placeWater;
+                    }
+                }
+
+                // Stop if the cell is blocked (e.g. a wall), but don't land on it
+                if (!candidate.IsPassable())
+                    break;
+
+                targetCell = candidate;
             }
 
-            Cell targetCell = zone.GetCell(tx, ty);
+            placeWater:
             if (targetCell == null)
                 return false;
 
             var factory = MaterialReactionResolver.Factory;
             Entity puddle = factory?.CreateEntity("WaterPuddle");
             if (puddle == null)
-                puddle = CreateFallbackWaterPuddle();
-            if (puddle != null)
-                zone.AddEntity(puddle, tx, ty);
+            {
+                UnityEngine.Debug.LogError("[ConjureWater] Factory returned null for WaterPuddle blueprint.");
+                return false;
+            }
+            zone.AddEntity(puddle, targetCell.X, targetCell.Y);
 
-            bool interacted = false;
             for (int i = targetCell.Objects.Count - 1; i >= 0; i--)
             {
                 Entity entity = targetCell.Objects[i];
@@ -81,44 +106,11 @@ namespace CavesOfOoo.Core
                 entity.ApplyEffect(new WetEffect(0.5f), ParentEntity, zone);
 
                 if (entity.HasEffect<BurningEffect>())
-                {
                     MaterialReactionResolver.EvaluateReactions(entity, zone, entity.GetEffect<BurningEffect>());
-                    interacted = true;
-                }
             }
 
-            if (puddle != null || interacted)
-            {
-                CooldownMyActivatedAbility(ActivatedAbilityID, COOLDOWN);
-                return true;
-            }
-
-            return false;
-        }
-
-        private static Entity CreateFallbackWaterPuddle()
-        {
-            var entity = new Entity { BlueprintName = "WaterPuddle" };
-            entity.AddPart(new RenderPart
-            {
-                DisplayName = "puddle of water",
-                RenderString = "~",
-                ColorString = "&B",
-                RenderLayer = 1
-            });
-            entity.AddPart(new MaterialPart
-            {
-                MaterialID = "Water",
-                Combustibility = 0f,
-                MaterialTagsRaw = "Liquid,Water"
-            });
-            entity.AddPart(new ThermalPart
-            {
-                Temperature = 15f,
-                FlameTemperature = 9000f,
-                VaporTemperature = 100f
-            });
-            return entity;
+            CooldownMyActivatedAbility(ActivatedAbilityID, COOLDOWN);
+            return true;
         }
     }
 }
