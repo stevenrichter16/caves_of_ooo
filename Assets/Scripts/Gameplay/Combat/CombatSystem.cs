@@ -388,9 +388,11 @@ namespace CavesOfOoo.Core
 
             var hpStat = target.GetStat("Hitpoints");
             if (hpStat != null)
-            {
                 hpStat.BaseValue -= amount;
-            }
+
+            Stat hpAlias = target.GetStat("HP");
+            if (hpAlias != null && !ReferenceEquals(hpAlias, hpStat))
+                hpAlias.BaseValue -= amount;
 
             // Notify the attacker that damage was dealt (for on-hit effects like poison)
             if (source != null)

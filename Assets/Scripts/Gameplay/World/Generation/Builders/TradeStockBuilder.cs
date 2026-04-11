@@ -68,7 +68,7 @@ namespace CavesOfOoo.Core
                 for (int i = 0; i < itemCount; i++)
                 {
                     string blueprint = goods[rng.Next(goods.Length)];
-                    var item = factory.CreateEntity(blueprint);
+                    var item = TryCreateEntity(factory, blueprint);
                     if (item != null)
                         inv.AddObject(item);
                 }
@@ -78,7 +78,7 @@ namespace CavesOfOoo.Core
                     && (site.Stage == RepairStage.Fouled || site.Stage == RepairStage.TemporarilyPurified)
                     && !HasItem(inv, SettlementRepairDefinitions.SilverSandBlueprint))
                 {
-                    var silverSand = factory.CreateEntity(SettlementRepairDefinitions.SilverSandBlueprint);
+                    var silverSand = TryCreateEntity(factory, SettlementRepairDefinitions.SilverSandBlueprint);
                     if (silverSand != null)
                         inv.AddObject(silverSand);
                 }
@@ -114,6 +114,14 @@ namespace CavesOfOoo.Core
             }
 
             return false;
+        }
+
+        private static Entity TryCreateEntity(EntityFactory factory, string blueprint)
+        {
+            if (factory == null || string.IsNullOrEmpty(blueprint) || !factory.Blueprints.ContainsKey(blueprint))
+                return null;
+
+            return factory.CreateEntity(blueprint);
         }
     }
 }

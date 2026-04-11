@@ -124,7 +124,7 @@ namespace CavesOfOoo.Core
             int idx = rng.Next(openCells.Count);
             var (x, y) = openCells[idx];
 
-            Entity entity = factory.CreateEntity(blueprint);
+            Entity entity = TryCreateEntity(factory, blueprint);
             if (entity != null)
                 zone.AddEntity(entity, x, y);
 
@@ -141,51 +141,51 @@ namespace CavesOfOoo.Core
             var container = chest.GetPart<ContainerPart>();
             if (container == null) return;
 
-            Entity grimoire = factory.CreateEntity("PurifyWaterGrimoire");
+            Entity grimoire = TryCreateEntity(factory, "PurifyWaterGrimoire");
             if (grimoire != null)
                 container.AddItem(grimoire);
 
-            Entity mendingGrimoire = factory.CreateEntity("MendingRiteGrimoire");
+            Entity mendingGrimoire = TryCreateEntity(factory, "MendingRiteGrimoire");
             if (mendingGrimoire != null)
                 container.AddItem(mendingGrimoire);
 
-            Entity kindleGrimoire = factory.CreateEntity("KindleRiteGrimoire");
+            Entity kindleGrimoire = TryCreateEntity(factory, "KindleRiteGrimoire");
             if (kindleGrimoire != null)
                 container.AddItem(kindleGrimoire);
 
-            Entity kindleSpell = factory.CreateEntity("KindleGrimoire");
+            Entity kindleSpell = TryCreateEntity(factory, "KindleGrimoire");
             if (kindleSpell != null)
                 container.AddItem(kindleSpell);
 
-            Entity quenchSpell = factory.CreateEntity("QuenchGrimoire");
+            Entity quenchSpell = TryCreateEntity(factory, "QuenchGrimoire");
             if (quenchSpell != null)
                 container.AddItem(quenchSpell);
 
-            Entity conflagrationSpell = factory.CreateEntity("ConflagrationGrimoire");
+            Entity conflagrationSpell = TryCreateEntity(factory, "ConflagrationGrimoire");
             if (conflagrationSpell != null)
                 container.AddItem(conflagrationSpell);
 
-            Entity iceLanceSpell = factory.CreateEntity("IceLanceGrimoire");
+            Entity iceLanceSpell = TryCreateEntity(factory, "IceLanceGrimoire");
             if (iceLanceSpell != null)
                 container.AddItem(iceLanceSpell);
 
-            Entity acidSpraySpell = factory.CreateEntity("AcidSprayGrimoire");
+            Entity acidSpraySpell = TryCreateEntity(factory, "AcidSprayGrimoire");
             if (acidSpraySpell != null)
                 container.AddItem(acidSpraySpell);
 
-            Entity arcBoltSpell = factory.CreateEntity("ArcBoltGrimoire");
+            Entity arcBoltSpell = TryCreateEntity(factory, "ArcBoltGrimoire");
             if (arcBoltSpell != null)
                 container.AddItem(arcBoltSpell);
 
-            Entity rimeNovaSpell = factory.CreateEntity("RimeNovaGrimoire");
+            Entity rimeNovaSpell = TryCreateEntity(factory, "RimeNovaGrimoire");
             if (rimeNovaSpell != null)
                 container.AddItem(rimeNovaSpell);
 
-            Entity thunderclapSpell = factory.CreateEntity("ThunderclapGrimoire");
+            Entity thunderclapSpell = TryCreateEntity(factory, "ThunderclapGrimoire");
             if (thunderclapSpell != null)
                 container.AddItem(thunderclapSpell);
 
-            Entity emberVeinSpell = factory.CreateEntity("EmberVeinGrimoire");
+            Entity emberVeinSpell = TryCreateEntity(factory, "EmberVeinGrimoire");
             if (emberVeinSpell != null)
                 container.AddItem(emberVeinSpell);
         }
@@ -240,7 +240,7 @@ namespace CavesOfOoo.Core
                     int x = anchorX + layout[i].dx;
                     int y = anchorY + layout[i].dy;
 
-                    Entity barrel = factory.CreateEntity("WoodenBarrel");
+                    Entity barrel = TryCreateEntity(factory, "WoodenBarrel");
                     if (barrel != null)
                         zone.AddEntity(barrel, x, y);
 
@@ -293,7 +293,7 @@ namespace CavesOfOoo.Core
             if (!zone.InBounds(wellX, wellY))
                 return;
 
-            Entity entity = factory.CreateEntity("Well");
+            Entity entity = TryCreateEntity(factory, "Well");
             if (entity == null)
                 return;
 
@@ -329,6 +329,9 @@ namespace CavesOfOoo.Core
             string settlementId,
             RepairableSiteState mainWell)
         {
+            if (!factory.Blueprints.ContainsKey("WellGroundMarker"))
+                return;
+
             for (int i = 0; i < CardinalOffsets.Length; i++)
             {
                 int mx = wellX + CardinalOffsets[i].dx;
@@ -340,7 +343,7 @@ namespace CavesOfOoo.Core
                 if (cell == null || !cell.IsPassable())
                     continue;
 
-                Entity marker = factory.CreateEntity("WellGroundMarker");
+                Entity marker = TryCreateEntity(factory, "WellGroundMarker");
                 if (marker == null)
                     continue;
 
@@ -393,6 +396,9 @@ namespace CavesOfOoo.Core
             string settlementId,
             RepairableSiteState ovenSite)
         {
+            if (!factory.Blueprints.ContainsKey("OvenGroundMarker"))
+                return;
+
             for (int i = 0; i < CardinalOffsets.Length; i++)
             {
                 int mx = ovenX + CardinalOffsets[i].dx;
@@ -404,7 +410,7 @@ namespace CavesOfOoo.Core
                 if (cell == null || !cell.IsPassable())
                     continue;
 
-                Entity marker = factory.CreateEntity("OvenGroundMarker");
+                Entity marker = TryCreateEntity(factory, "OvenGroundMarker");
                 if (marker == null)
                     continue;
 
@@ -457,6 +463,9 @@ namespace CavesOfOoo.Core
             string settlementId,
             RepairableSiteState lanternSite)
         {
+            if (!factory.Blueprints.ContainsKey("LanternGroundMarker"))
+                return;
+
             for (int i = 0; i < CardinalOffsets.Length; i++)
             {
                 int mx = lanternX + CardinalOffsets[i].dx;
@@ -468,7 +477,7 @@ namespace CavesOfOoo.Core
                 if (cell == null || !cell.IsPassable())
                     continue;
 
-                Entity marker = factory.CreateEntity("LanternGroundMarker");
+                Entity marker = TryCreateEntity(factory, "LanternGroundMarker");
                 if (marker == null)
                     continue;
 
@@ -491,6 +500,9 @@ namespace CavesOfOoo.Core
             if (cell == null)
                 return;
 
+            if (!factory.Blueprints.ContainsKey("CampfireGroundMarker"))
+                return;
+
             // Place warm-glow ground markers on cardinal cells
             for (int i = 0; i < CardinalOffsets.Length; i++)
             {
@@ -503,7 +515,7 @@ namespace CavesOfOoo.Core
                 if (markerCell == null || !markerCell.IsPassable())
                     continue;
 
-                Entity marker = factory.CreateEntity("CampfireGroundMarker");
+                Entity marker = TryCreateEntity(factory, "CampfireGroundMarker");
                 if (marker == null)
                     continue;
 
@@ -532,10 +544,18 @@ namespace CavesOfOoo.Core
 
             for (int i = 0; i < MerchantRepairStock.Length; i++)
             {
-                Entity item = factory.CreateEntity(MerchantRepairStock[i]);
+                Entity item = TryCreateEntity(factory, MerchantRepairStock[i]);
                 if (item != null)
                     inventory.AddObject(item);
             }
+        }
+
+        private static Entity TryCreateEntity(EntityFactory factory, string blueprint)
+        {
+            if (factory == null || string.IsNullOrEmpty(blueprint) || !factory.Blueprints.ContainsKey(blueprint))
+                return null;
+
+            return factory.CreateEntity(blueprint);
         }
 
         private void SetConversation(Entity entity, string conversationId)

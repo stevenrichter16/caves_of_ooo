@@ -171,16 +171,14 @@ namespace CavesOfOoo.Core
             if (ratio <= 0f)
                 return "&y";
 
-            // 100-75%: bright yellow, 75-50%: white, 50-25%: gray, 25-0%: gray with brown flicker
-            if (ratio > 0.75f)
-                return "&W";
+            // Fade from bright to dirty in broad stages that are easy to read.
             if (ratio > 0.50f)
-                return "&Y";
+                return "&W";
             if (ratio > 0.25f)
-                return "&y";
+                return "&Y";
 
-            // Near expiry: occasional brown flicker
-            if (_renderFrameCounter % 16 == 0)
+            // Near expiry: mostly dull yellow with an occasional dirty flash.
+            if (ratio < 0.10f && _renderFrameCounter % 16 == 0)
                 return "&w";
             return "&y";
         }

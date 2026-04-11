@@ -94,9 +94,11 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Emit radiant heat from a source entity to all entities with ThermalPart
-        /// in the 8 adjacent cells. Joules are split equally among directions.
-        /// Negative joules cool adjacent entities (e.g., steam, frost bloom).
+        /// Emit heat from a source entity to all entities with ThermalPart
+        /// in the 8 adjacent cells. The transfer is modeled as direct energy
+        /// delivery per neighbor so small positive values always warm nearby
+        /// props instead of asymptotically cooling them toward a low target.
+        /// Negative values still cool adjacent entities (e.g., frost bloom).
         /// </summary>
         public static void EmitHeatToAdjacent(Entity source, Zone zone, float totalJoules)
         {
@@ -127,7 +129,7 @@ namespace CavesOfOoo.Core
 
                     var heatEvent = GameEvent.New("ApplyHeat");
                     heatEvent.SetParameter("Joules", (object)joulesPerDir);
-                    heatEvent.SetParameter("Radiant", (object)true);
+                    heatEvent.SetParameter("Radiant", (object)false);
                     heatEvent.SetParameter("Source", (object)source);
                     heatEvent.SetParameter("Zone", (object)zone);
                     target.FireEvent(heatEvent);

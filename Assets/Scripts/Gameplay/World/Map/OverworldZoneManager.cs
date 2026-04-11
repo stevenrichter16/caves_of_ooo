@@ -217,9 +217,8 @@ namespace CavesOfOoo.Core
                 return;
 
             SettlementManager.GetOrCreateSettlement(zoneID, poi);
-            SettlementManager.AdvanceSettlement(zoneID, GetCurrentTurn());
-
-            if (ActiveZone == null || ActiveZone.ZoneID != zoneID)
+            bool changed = SettlementManager.AdvanceSettlement(zoneID, GetCurrentTurn());
+            if (changed && (ActiveZone == null || ActiveZone.ZoneID != zoneID))
                 UnloadZone(zoneID);
         }
 

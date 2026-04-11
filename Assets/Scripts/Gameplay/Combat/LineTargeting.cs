@@ -70,13 +70,16 @@ namespace CavesOfOoo.Core
                     return result;
                 }
 
+                Entity hitObject = GetFirstTargetableObject(cell, caster);
+                if (hitObject != null)
+                {
+                    result.HitEntity = hitObject;
+                    return result;
+                }
+
                 if (cell.IsSolid())
                 {
                     result.BlockedBySolid = true;
-                    // Check for a hittable entity in the solid cell (e.g. barrels)
-                    Entity solidEntity = GetFirstNonCaster(cell, caster);
-                    if (solidEntity != null)
-                        result.HitEntity = solidEntity;
                     return result;
                 }
             }
@@ -84,7 +87,7 @@ namespace CavesOfOoo.Core
             return result;
         }
 
-        private static Entity GetFirstNonCaster(Cell cell, Entity caster)
+        private static Entity GetFirstTargetableObject(Cell cell, Entity caster)
         {
             if (cell == null)
                 return null;
@@ -94,8 +97,16 @@ namespace CavesOfOoo.Core
                 Entity entity = cell.Objects[i];
                 if (entity == caster)
                     continue;
-                if (entity.HasTag("Solid") || entity.HasTag("Creature"))
+                if (entity.HasTag("Creature") || entity.HasTag("Wall") || entity.HasTag("Terrain"))
+                    continue;
+
+                if (entity.GetStat("Hitpoints") != null
+                    || entity.GetPart<ThermalPart>() != null
+                    || entity.GetPart<MaterialPart>() != null
+                    || entity.GetPart<PhysicsPart>() != null)
+                {
                     return entity;
+                }
             }
 
             return null;
