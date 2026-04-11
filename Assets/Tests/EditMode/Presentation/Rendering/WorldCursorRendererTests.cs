@@ -21,16 +21,16 @@ namespace CavesOfOoo.Tests
         {
             FactionManager.Reset();
 
-            foreach (var camera in Object.FindObjectsOfType<Camera>())
+            foreach (var camera in Object.FindObjectsByType<Camera>(FindObjectsSortMode.None))
                 Object.DestroyImmediate(camera.gameObject);
 
-            foreach (var line in Object.FindObjectsOfType<LineRenderer>())
+            foreach (var line in Object.FindObjectsByType<LineRenderer>(FindObjectsSortMode.None))
                 Object.DestroyImmediate(line.gameObject);
 
-            foreach (var tilemap in Object.FindObjectsOfType<Tilemap>())
+            foreach (var tilemap in Object.FindObjectsByType<Tilemap>(FindObjectsSortMode.None))
                 Object.DestroyImmediate(tilemap.gameObject);
 
-            foreach (var grid in Object.FindObjectsOfType<Grid>())
+            foreach (var grid in Object.FindObjectsByType<Grid>(FindObjectsSortMode.None))
                 Object.DestroyImmediate(grid.gameObject);
         }
 
@@ -75,7 +75,7 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void ZoneRenderer_ClearsCursorAndLookOverlay_OnZoneChange()
+        public void ZoneRenderer_ClearsCursorAndSidebar_OnZoneChange()
         {
             var cameraGo = new GameObject("Main Camera");
             cameraGo.tag = "MainCamera";
@@ -101,17 +101,17 @@ namespace CavesOfOoo.Tests
             var cursorRenderer = (WorldCursorRenderer)typeof(ZoneRenderer)
                 .GetField("_worldCursorRenderer", BindingFlags.Instance | BindingFlags.NonPublic)
                 .GetValue(zoneRenderer);
-            var overlayRenderer = (LookOverlayRenderer)typeof(ZoneRenderer)
-                .GetField("_lookOverlayRenderer", BindingFlags.Instance | BindingFlags.NonPublic)
+            var sidebarRenderer = (GameplaySidebarRenderer)typeof(ZoneRenderer)
+                .GetField("_sidebarRenderer", BindingFlags.Instance | BindingFlags.NonPublic)
                 .GetValue(zoneRenderer);
 
             Assert.IsTrue(cursorRenderer.IsVisible);
-            Assert.IsTrue(overlayRenderer.IsVisible);
+            Assert.IsTrue(sidebarRenderer.IsVisible);
 
             zoneRenderer.SetZone(otherZone);
 
             Assert.IsFalse(cursorRenderer.IsVisible);
-            Assert.IsFalse(overlayRenderer.IsVisible);
+            Assert.IsFalse(sidebarRenderer.IsVisible);
         }
 
         [Test]

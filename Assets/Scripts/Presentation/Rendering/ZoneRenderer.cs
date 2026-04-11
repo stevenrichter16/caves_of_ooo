@@ -43,9 +43,9 @@ namespace CavesOfOoo.Rendering
         public int FovRadius = 999;
 
         /// <summary>
-        /// Number of message log lines shown at the bottom of the screen.
+        /// Persistent sidebar width in narrow text columns.
         /// </summary>
-        public int MessageLineCount = 4;
+        public int SidebarWidthChars = 34;
 
         /// <summary>
         /// Reference orthographic size at which message text appears at 1:1 scale.
@@ -56,25 +56,17 @@ namespace CavesOfOoo.Rendering
         private Tilemap _tilemap;
         private Tilemap _bgTilemap;
         private Tilemap _fxTilemap;
-        private Tilemap _msgBgTilemap;
-        private Tilemap _msgTilemap;
-        private Tilemap _lookTilemap;
-        private Transform _msgGridTransform;
+        private Tilemap _sidebarBgTilemap;
+        private Tilemap _sidebarTilemap;
+        private Transform _sidebarGridTransform;
         private AsciiFxRenderer _asciiFxRenderer;
         private CampfireEmberRenderer _campfireEmberRenderer;
         private WorldCursorRenderer _worldCursorRenderer;
-        private LookOverlayRenderer _lookOverlayRenderer;
+        private GameplaySidebarRenderer _sidebarRenderer;
         private bool _dirty = true;
-        private int _lastMessageCount = -1;
-        private float _lastMessageTime;
         private int _lastFlashStamp;
         private float _flashUntil;
-        private const float LogIdleStart = 8f;     // seconds idle before fade starts
-        private const float LogIdleEnd = 12f;      // fully faded at this idle duration
-        private const float LogIdleAlphaFloor = 0.35f;
         private const float FlashDuration = 0.3f;
-        private bool _messagesDirty = true;
-        private float _prevIdleFadeAlpha = -1f;
         private bool _wasPaused;
         private float _ambientTimer;
         private float _dustMoteSpawnTimer;
@@ -100,6 +92,8 @@ namespace CavesOfOoo.Rendering
         public Tilemap BgTilemap => _bgTilemap;
         private Tilemap _popupBgTilemap;
         private Tilemap _popupFgTilemap;
+        public Tilemap SidebarBgTilemap => _sidebarBgTilemap;
+        public Tilemap SidebarTilemap => _sidebarTilemap;
         /// <summary>Popup background tilemap (sortingOrder 6). For DialogueUI/TradeUI bg fills.</summary>
         public Tilemap PopupBgTilemap => _popupBgTilemap;
         /// <summary>Popup foreground tilemap (sortingOrder 7). For DialogueUI/TradeUI glyphs.</summary>
@@ -107,7 +101,6 @@ namespace CavesOfOoo.Rendering
 
         private void Awake()
         {
-            _lastMessageTime = Time.time;
             _lastFlashStamp = MessageLog.FlashStamp;
             _mainCamera = Camera.main;
             _tilemap = GetComponent<Tilemap>();
@@ -127,43 +120,36 @@ namespace CavesOfOoo.Rendering
             fxTilemapObj.transform.SetParent(gridParent, false);
             _fxTilemap = fxTilemapObj.AddComponent<Tilemap>();
             var fxRenderer = fxTilemapObj.AddComponent<TilemapRenderer>();
-            fxRenderer.sortingOrder = 1; // above world, below messages
+            fxRenderer.sortingOrder = 1; // above world, below sidebar
             _asciiFxRenderer = new AsciiFxRenderer(_fxTilemap);
 
             var emberObj = new GameObject("CampfireEmbers");
             emberObj.transform.SetParent(gridParent, false);
             _campfireEmberRenderer = emberObj.AddComponent<CampfireEmberRenderer>();
 
-            // Create a separate tilemap for messages with narrow half-width cells
-            var msgGridObj = new GameObject("MessageGrid");
-            _msgGridTransform = msgGridObj.transform;
-            var msgGrid = msgGridObj.AddComponent<Grid>();
-            msgGrid.cellSize = new Vector3(0.5f, 1f, 0f);
+            // Dedicated narrow-text grid for the persistent sidebar.
+            var sidebarGridObj = new GameObject("SidebarGrid");
+            _sidebarGridTransform = sidebarGridObj.transform;
+            var sidebarGrid = sidebarGridObj.AddComponent<Grid>();
+            sidebarGrid.cellSize = new Vector3(0.5f, 1f, 0f);
 
-            var msgBgObj = new GameObject("MessageBgTilemap");
-            msgBgObj.transform.SetParent(msgGridObj.transform);
-            _msgBgTilemap = msgBgObj.AddComponent<Tilemap>();
-            var msgBgRenderer = msgBgObj.AddComponent<TilemapRenderer>();
-            msgBgRenderer.sortingOrder = 2; // background behind message text
+            var sidebarBgObj = new GameObject("SidebarBgTilemap");
+            sidebarBgObj.transform.SetParent(sidebarGridObj.transform);
+            _sidebarBgTilemap = sidebarBgObj.AddComponent<Tilemap>();
+            var sidebarBgRenderer = sidebarBgObj.AddComponent<TilemapRenderer>();
+            sidebarBgRenderer.sortingOrder = 2;
 
-            var msgTmObj = new GameObject("MessageTilemap");
-            msgTmObj.transform.SetParent(msgGridObj.transform);
-            _msgTilemap = msgTmObj.AddComponent<Tilemap>();
-            var msgRenderer = msgTmObj.AddComponent<TilemapRenderer>();
-            msgRenderer.sortingOrder = 3; // text above background
-
-            var lookTmObj = new GameObject("LookOverlayTilemap");
-            lookTmObj.transform.SetParent(msgGridObj.transform);
-            _lookTilemap = lookTmObj.AddComponent<Tilemap>();
-            var lookRenderer = lookTmObj.AddComponent<TilemapRenderer>();
-            lookRenderer.sortingOrder = 5;
+            var sidebarTmObj = new GameObject("SidebarTilemap");
+            sidebarTmObj.transform.SetParent(sidebarGridObj.transform);
+            _sidebarTilemap = sidebarTmObj.AddComponent<Tilemap>();
+            var sidebarRenderer = sidebarTmObj.AddComponent<TilemapRenderer>();
+            sidebarRenderer.sortingOrder = 3;
 
             _worldCursorRenderer = new WorldCursorRenderer(gridParent, _tilemap);
-            _lookOverlayRenderer = new LookOverlayRenderer(_lookTilemap, _msgGridTransform, MessageReferenceZoom);
+            _sidebarRenderer = new GameplaySidebarRenderer(_sidebarTilemap, _sidebarBgTilemap, _sidebarGridTransform, MessageReferenceZoom);
 
             // Dedicated tilemaps for dialogue/popup UI — must sort ABOVE the
-            // message log (order 3) and look overlay (order 5) so popups aren't
-            // hidden behind the world log.
+            // persistent sidebar (order 3) so popups aren't hidden behind the UI.
             var popupBgObj = new GameObject("PopupBgTilemap");
             popupBgObj.transform.SetParent(gridParent, false);
             _popupBgTilemap = popupBgObj.AddComponent<Tilemap>();
@@ -185,7 +171,8 @@ namespace CavesOfOoo.Rendering
             CurrentZone = zone;
             _asciiFxRenderer?.SetZone(zone);
             _worldCursorRenderer?.SetZone(zone);
-            _lookOverlayRenderer?.Clear();
+            _sidebarRenderer?.Clear();
+            _sidebarRenderer?.Invalidate();
             _currentLookSnapshot = null;
             _worldCursorState = null;
             _cursorPlayer = null;
@@ -218,39 +205,18 @@ namespace CavesOfOoo.Rendering
         public void MarkDirty()
         {
             _dirty = true;
-            _messagesDirty = true;
+            _sidebarRenderer?.Invalidate();
         }
 
         private void LateUpdate()
         {
-            bool newMessages = MessageLog.Count != _lastMessageCount;
-            if (newMessages)
-            {
-                _lastMessageTime = Time.time;
-                _messagesDirty = true;
-            }
             if (MessageLog.FlashStamp != _lastFlashStamp)
             {
                 _lastFlashStamp = MessageLog.FlashStamp;
                 _flashUntil = Time.time + FlashDuration;
-                _messagesDirty = true;
             }
+
             Camera cam = _mainCamera;
-            bool cameraChanged = HasCameraViewChanged(cam);
-            if (cameraChanged)
-                _messagesDirty = true;
-
-            // Check if idle-fade alpha changed (drives continuous fade-out)
-            float idle = Time.time - _lastMessageTime;
-            float idleFadeAlpha = Mathf.Lerp(
-                1f, LogIdleAlphaFloor,
-                Mathf.InverseLerp(LogIdleStart, LogIdleEnd, idle));
-            if (!Mathf.Approximately(idleFadeAlpha, _prevIdleFadeAlpha))
-                _messagesDirty = true;
-            // Flash also drives per-frame changes while active
-            if (Time.time < _flashUntil)
-                _messagesDirty = true;
-
             _asciiFxRenderer?.Update(Time.deltaTime);
 
             if (Paused)
@@ -263,16 +229,7 @@ namespace CavesOfOoo.Rendering
                     if (_campfireEmberRenderer != null)
                         _campfireEmberRenderer.gameObject.SetActive(false);
                     _worldCursorRenderer?.Clear();
-                    _lookOverlayRenderer?.Clear();
-                }
-
-                // Still update messages while paused (overlay popups don't hide the message area)
-                if (_messagesDirty)
-                {
-                    RenderMessages();
-                    _lastMessageCount = MessageLog.Count;
-                    _prevIdleFadeAlpha = idleFadeAlpha;
-                    _messagesDirty = false;
+                    _sidebarRenderer?.Clear();
                 }
 
                 CacheCameraView(cam);
@@ -297,23 +254,12 @@ namespace CavesOfOoo.Rendering
 
             UpdateAmbientAnimations(Time.deltaTime);
 
-            if (_messagesDirty)
-            {
-                RenderMessages();
-                _lastMessageCount = MessageLog.Count;
-                _prevIdleFadeAlpha = idleFadeAlpha;
-                _messagesDirty = false;
-            }
+            RenderSidebar(cam);
 
             if (_worldCursorState != null && _worldCursorState.Active)
                 _worldCursorRenderer?.SetCursor(_worldCursorState, _cursorPlayer);
             else
                 _worldCursorRenderer?.Clear();
-
-            if (_currentLookSnapshot != null)
-                _lookOverlayRenderer?.Render(_currentLookSnapshot, cam);
-            else
-                _lookOverlayRenderer?.Clear();
 
             CacheCameraView(cam);
         }
@@ -525,212 +471,15 @@ namespace CavesOfOoo.Rendering
                 Debug.LogWarning($"[ASCII] {entity.BlueprintName ?? entity.ID}: {issue}");
         }
 
-        /// <summary>
-        /// Render recent messages at the bottom of the visible screen
-        /// using the narrow-text message tilemap.
-        /// </summary>
-        private static readonly Color MsgBgColor = new Color(0.05f, 0.05f, 0.08f, 0.92f);
-
-        private void RenderMessages()
+        private void RenderSidebar(Camera camera)
         {
-            if (_msgTilemap == null || MessageLineCount <= 0) return;
-
-            _msgTilemap.ClearAllTiles();
-            if (_msgBgTilemap != null)
-                _msgBgTilemap.ClearAllTiles();
-
-            // Fetch a wider window than we'll display so adjacent-duplicate coalescing
-            // doesn't leave the log sparse during spam storms (10 identical hits => 1 line).
-            int fetchCount = MessageLineCount * 8;
-            var rawRecent = MessageLog.GetRecent(fetchCount);
-            var rawTicks  = MessageLog.GetRecentTicks(fetchCount);
-            if (rawRecent.Count == 0) return;
-
-            // Coalesce adjacent duplicates walking newest->oldest until we have enough lines.
-            // displayed[0] = newest visible line.
-            var displayed = new List<(string text, int tick, int count)>(MessageLineCount);
-            int rIdx = rawRecent.Count - 1;
-            while (rIdx >= 0 && displayed.Count < MessageLineCount)
-            {
-                string cur = rawRecent[rIdx];
-                int curTick = rIdx < rawTicks.Count ? rawTicks[rIdx] : 0;
-                int n = 1;
-                while (rIdx - 1 >= 0 && rawRecent[rIdx - 1] == cur)
-                {
-                    n++;
-                    rIdx--;
-                }
-                displayed.Add((cur, curTick, n));
-                rIdx--;
-            }
-
-            var cam = _mainCamera;
-            if (cam == null) return;
-
-            // Scale the message grid so text stays a consistent screen size
-            // regardless of camera zoom level
-            float scale = cam.orthographicSize / MessageReferenceZoom;
-            _msgGridTransform.localScale = new Vector3(scale, scale, 1f);
-
-            // Find the bottom tile row in scaled tile coordinates
-            float worldBottom = cam.transform.position.y - cam.orthographicSize;
-            int bottomTileY = Mathf.CeilToInt((worldBottom + 0.5f * scale) / scale);
-
-            // How many half-width characters fit across the visible width
-            float worldWidth = cam.orthographicSize * cam.aspect * 2f;
-            int maxChars = Mathf.FloorToInt(worldWidth / (0.5f * scale));
-
-            // Left edge in tile coordinates so text starts at the screen edge
-            float worldLeft = cam.transform.position.x - cam.orthographicSize * cam.aspect;
-            int startX = Mathf.CeilToInt(worldLeft / (0.5f * scale));
-
-            // Ambience: idle-fade (log dims while untouched) + focus-flash (brief red
-            // bg tint + yellow top-line override when a critical announcement fires).
-            float idle = Time.time - _lastMessageTime;
-            float idleFadeAlpha = Mathf.Lerp(
-                1f,
-                LogIdleAlphaFloor,
-                Mathf.InverseLerp(LogIdleStart, LogIdleEnd, idle));
             bool flashActive = Time.time < _flashUntil;
             float flashT = flashActive
-                ? Mathf.Clamp01((_flashUntil - Time.time) / FlashDuration) * 0.5f
+                ? Mathf.Clamp01((_flashUntil - Time.time) / FlashDuration)
                 : 0f;
 
-            // Tint the bg toward red while flashing, then apply idle-fade alpha.
-            Color bgColor = MsgBgColor;
-            if (flashActive)
-                bgColor = Color.Lerp(bgColor, QudColorParser.BrightRed, flashT);
-            bgColor.a = MsgBgColor.a * idleFadeAlpha;
-
-            // Render background box behind messages
-            if (_msgBgTilemap != null)
-            {
-                var blockTile = CP437TilesetGenerator.GetTextTile((char)219);
-                if (blockTile != null)
-                {
-                    int bgLeft = startX - 1;
-                    int bgRight = startX + maxChars;
-                    int bgBottom = bottomTileY - 1;
-                    // Derive bg top from the actual topmost text row so the box
-                    // always covers all glyphs regardless of zoom/scale.
-                    int topTextY = bottomTileY + (MessageLineCount - 1) * 2;
-                    int bgTop = topTextY + 2;
-
-                    for (int y = bgBottom; y <= bgTop; y++)
-                    {
-                        for (int x = bgLeft; x <= bgRight; x++)
-                        {
-                            var pos = new Vector3Int(x, y, 0);
-                            _msgBgTilemap.SetTile(pos, blockTile);
-                            _msgBgTilemap.SetTileFlags(pos, TileFlags.None);
-                            _msgBgTilemap.SetColor(pos, bgColor);
-                        }
-                    }
-                }
-            }
-
-            // Column layout per line (half-width cells on the msg grid):
-            //   [0..3]  tick gutter (4 chars: "NNN ")
-            //   [4]     category icon
-            //   [5]     space
-            //   [6..]   message text (optionally suffixed " (xN)" when coalesced)
-            const int GutterWidth = 4;
-            const int IconCol = 4;
-            const int TextCol = 6;
-            int textMaxChars = maxChars - TextCol;
-            if (textMaxChars < 1) textMaxChars = 1;
-
-            // Render newest message at screen bottom, older ones above with spacer rows.
-            // Age-graduate opacity: newest = fully opaque white, older lines fade to gray.
-            for (int i = 0; i < MessageLineCount; i++)
-            {
-                int tileY = bottomTileY + (i * 2);
-                if (i >= displayed.Count) continue;
-
-                var entry = displayed[i];
-
-                // Alpha ramp: newest=1.0 -> oldest=0.35 across MessageLineCount lines.
-                float t = (MessageLineCount <= 1) ? 0f : (float)i / (MessageLineCount - 1);
-                float alpha = Mathf.Lerp(1.0f, 0.35f, t) * idleFadeAlpha;
-
-                // Text color: hue shift from white (newest) -> gray (older).
-                Color baseColor = Color.Lerp(QudColorParser.White, QudColorParser.Gray, t);
-                // Top line flashes yellow while the focus-flash window is active.
-                if (flashActive && i == 0)
-                    baseColor = QudColorParser.BrightYellow;
-                Color textColor = new Color(baseColor.r, baseColor.g, baseColor.b, alpha);
-
-                // Tick gutter: "NNN " right-aligned in 3 chars + trailing space (4 total).
-                string tickStr = FormatTick(entry.tick);
-                Color gutterColor = new Color(
-                    QudColorParser.DarkGray.r,
-                    QudColorParser.DarkGray.g,
-                    QudColorParser.DarkGray.b,
-                    alpha);
-                DrawMsgText(startX, tileY, tickStr, gutterColor, GutterWidth);
-
-                // Category icon (inferred from message content).
-                InferMsgCategory(entry.text, out char icon, out Color iconBase);
-                if (icon != ' ')
-                {
-                    Color iconColor = new Color(iconBase.r, iconBase.g, iconBase.b, alpha);
-                    DrawMsgText(startX + IconCol, tileY, icon.ToString(), iconColor, 1);
-                }
-
-                // Message text + optional " (xN)" suffix when coalesced.
-                string body = entry.count > 1 ? entry.text + " (x" + entry.count + ")" : entry.text;
-                DrawMsgText(startX + TextCol, tileY, body, textColor, textMaxChars);
-            }
-        }
-
-        /// <summary>
-        /// Formats a tick number into a 4-char gutter string "NNN " (right-pads).
-        /// Wraps past 999 by showing modulo to keep alignment stable.
-        /// </summary>
-        private static string FormatTick(int tick)
-        {
-            int n = tick % 1000;
-            if (n < 10)  return "  " + n + " ";
-            if (n < 100) return " "  + n + " ";
-            return n + " ";
-        }
-
-        /// <summary>
-        /// Infer a single-char semantic icon + color from a log message string.
-        /// Fallback is a blank icon (space) and gray color.
-        /// </summary>
-        private static void InferMsgCategory(string msg, out char icon, out Color color)
-        {
-            if (string.IsNullOrEmpty(msg)) { icon = ' '; color = QudColorParser.Gray; return; }
-            if (msg.Contains(" heals ") || msg.Contains(" heal ")) { icon = '+'; color = QudColorParser.BrightGreen; return; }
-            if (msg.Contains(" is killed") || msg.Contains(" dies")) { icon = '*'; color = QudColorParser.BrightYellow; return; }
-            if (msg.Contains("advance to level") || msg.Contains(" gain ")) { icon = '^'; color = QudColorParser.BrightYellow; return; }
-            if (msg.Contains(" hits ") || msg.Contains(" damage") || msg.Contains(" blasts ") || msg.Contains(" slashes ") || msg.Contains(" bites ")) { icon = '-'; color = QudColorParser.BrightRed; return; }
-            if (msg.Contains(" catches fire") || msg.Contains(" is confused") || msg.Contains(" is poisoned") || msg.Contains(" is stunned") || msg.Contains(" is paralyzed") || msg.Contains(" is bleeding")) { icon = '!'; color = QudColorParser.White; return; }
-            if (msg.Contains(" picks up ") || msg.Contains(" drops ") || msg.Contains(" equips ") || msg.Contains(" unequips ") || msg.Contains(" eats ")) { icon = '"'; color = QudColorParser.DarkCyan; return; }
-            icon = ' ';
-            color = QudColorParser.Gray;
-        }
-
-        private void DrawMsgText(int x, int tileY, string text, Color color, int maxChars)
-        {
-            if (text == null) return;
-            int len = text.Length;
-            if (len > maxChars) len = maxChars;
-
-            for (int i = 0; i < len; i++)
-            {
-                char c = text[i];
-                if (c == ' ') continue;
-
-                var tile = CP437TilesetGenerator.GetTextTile(c);
-                if (tile == null) continue;
-
-                var pos = new Vector3Int(x + i, tileY, 0);
-                _msgTilemap.SetTile(pos, tile);
-                _msgTilemap.SetTileFlags(pos, TileFlags.None);
-                _msgTilemap.SetColor(pos, color);
-            }
+            SidebarSnapshot snapshot = SidebarStateBuilder.Build(PlayerEntity, CurrentZone, _currentLookSnapshot);
+            _sidebarRenderer?.Render(snapshot, camera, SidebarWidthChars, flashActive, flashT);
         }
 
         /// <summary>
@@ -766,12 +515,13 @@ namespace CavesOfOoo.Rendering
         public void SetLookSnapshot(LookSnapshot snapshot)
         {
             _currentLookSnapshot = snapshot;
+            _sidebarRenderer?.Invalidate();
         }
 
         public void ClearLookSnapshot()
         {
             _currentLookSnapshot = null;
-            _lookOverlayRenderer?.Clear();
+            _sidebarRenderer?.Invalidate();
         }
 
         public bool ScreenToZoneCell(Vector2 screenPosition, Camera camera, out int x, out int y)
@@ -783,6 +533,10 @@ namespace CavesOfOoo.Rendering
                 return false;
 
             Vector3 world = camera.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, -camera.transform.position.z));
+            GameplayViewportMetrics metrics = GameplayViewportLayout.Measure(camera, MessageReferenceZoom, SidebarWidthChars);
+            if (world.x >= metrics.GameplayRightWorld)
+                return false;
+
             Vector3Int tileCell = _tilemap.WorldToCell(world);
 
             int zoneX = tileCell.x;
@@ -805,12 +559,11 @@ namespace CavesOfOoo.Rendering
             if (CurrentZone == null || _tilemap == null || camera == null)
                 return false;
 
-            float halfH = camera.orthographicSize;
-            float halfW = halfH * camera.aspect;
-            float left = camera.transform.position.x - halfW;
-            float right = camera.transform.position.x + halfW;
-            float bottom = camera.transform.position.y - halfH;
-            float top = camera.transform.position.y + halfH;
+            GameplayViewportMetrics metrics = GameplayViewportLayout.Measure(camera, MessageReferenceZoom, SidebarWidthChars);
+            float left = metrics.WorldLeft;
+            float right = metrics.GameplayRightWorld;
+            float bottom = metrics.WorldBottom;
+            float top = metrics.WorldTop;
 
             bool foundX = false;
             int visibleMinX = Zone.Width - 1;

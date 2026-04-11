@@ -27,6 +27,8 @@ namespace CavesOfOoo.Rendering
         /// Legacy fallback if TargetVisibleTileRows is disabled or invalid.
         /// </summary>
         public float ZoomSize = 17f;
+        public int ReservedSidebarWidthChars = 34;
+        public float SidebarReferenceZoom = 20f;
 
         private Camera _camera;
         private bool _paused;
@@ -165,9 +167,10 @@ namespace CavesOfOoo.Rendering
 
             float halfH = _camera.orthographicSize;
             float halfW = halfH * _camera.aspect;
+            float reservedSidebarWidth = GetReservedSidebarWidthWorld();
             float targetX = zoneX + 0.5f;
             float targetY = Zone.Height - zoneY - 0.5f;
-            float desiredX = targetX;
+            float desiredX = targetX + reservedSidebarWidth * 0.5f;
             float desiredY = targetY;
 
             if (useOverride)
@@ -179,7 +182,7 @@ namespace CavesOfOoo.Rendering
                 float currentY = transform.position.y;
 
                 float left = currentX - halfW + marginX;
-                float right = currentX + halfW - marginX;
+                float right = currentX + halfW - reservedSidebarWidth - marginX;
                 float bottom = currentY - halfH + marginY;
                 float top = currentY + halfH - marginY;
 
@@ -215,6 +218,17 @@ namespace CavesOfOoo.Rendering
                 return TargetVisibleTileRows * 0.5f;
 
             return ZoomSize;
+        }
+
+        private float GetReservedSidebarWidthWorld()
+        {
+            if (_camera == null || ReservedSidebarWidthChars <= 0)
+                return 0f;
+
+            return GameplayViewportLayout.GetReservedRightWorldWidth(
+                _camera,
+                SidebarReferenceZoom,
+                ReservedSidebarWidthChars);
         }
     }
 }

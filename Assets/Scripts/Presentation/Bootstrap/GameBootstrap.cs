@@ -158,6 +158,11 @@ namespace CavesOfOoo
                     cameraFollow = cam.gameObject.AddComponent<CameraFollow>();
                 cameraFollow.Player = _player;
                 cameraFollow.CurrentZone = _zone;
+                if (ZoneRenderer != null)
+                {
+                    cameraFollow.ReservedSidebarWidthChars = ZoneRenderer.SidebarWidthChars;
+                    cameraFollow.SidebarReferenceZoom = ZoneRenderer.MessageReferenceZoom;
+                }
                 cameraFollow.SnapToPlayer();
 
                 // Screen shake when the player takes damage

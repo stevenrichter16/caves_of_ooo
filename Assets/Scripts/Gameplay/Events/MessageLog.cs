@@ -9,6 +9,18 @@ namespace CavesOfOoo.Core
     /// </summary>
     public static class MessageLog
     {
+        public struct Entry
+        {
+            public readonly string Text;
+            public readonly int Tick;
+
+            public Entry(string text, int tick)
+            {
+                Text = text ?? string.Empty;
+                Tick = tick;
+            }
+        }
+
         private static readonly List<string> Messages = new List<string>();
         private static readonly List<int> Ticks = new List<int>();
         private static readonly Queue<string> Announcements = new Queue<string>();
@@ -78,6 +90,21 @@ namespace CavesOfOoo.Core
         {
             int start = Math.Max(0, Ticks.Count - count);
             return Ticks.GetRange(start, Ticks.Count - start);
+        }
+
+        public static List<Entry> GetRecentEntries(int count)
+        {
+            int start = Math.Max(0, Messages.Count - count);
+            int length = Messages.Count - start;
+            var entries = new List<Entry>(length);
+            for (int i = 0; i < length; i++)
+            {
+                int idx = start + i;
+                int tick = idx < Ticks.Count ? Ticks[idx] : 0;
+                entries.Add(new Entry(Messages[idx], tick));
+            }
+
+            return entries;
         }
 
         public static void Clear()
