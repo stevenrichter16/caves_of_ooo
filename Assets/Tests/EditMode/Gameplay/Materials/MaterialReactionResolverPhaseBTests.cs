@@ -116,11 +116,13 @@ namespace CavesOfOoo.Tests
             MaterialReactionResolver.InitializeFromJsonSources(sources);
 
             Assert.IsTrue(MaterialReactionResolver.IsInitialized);
-            // fire_plus_organic + water_plus_fire + oil_plus_fire + cold_plus_metal
-            // + lightning_plus_conductor + acid_plus_organic + fire_plus_raw_meat
-            // + fire_plus_raw_starapple = 8
-            Assert.AreEqual(8, MaterialReactionResolver.ReactionCount,
-                "Eight reaction files should produce eight reactions.");
+            // Phase B (8): fire_plus_organic + water_plus_fire + oil_plus_fire
+            //   + cold_plus_metal + lightning_plus_conductor + acid_plus_organic
+            //   + fire_plus_raw_meat + fire_plus_raw_starapple
+            // Elemental Crossroads (5): cold_plus_crystal + cold_plus_chitinous
+            //   + fire_plus_bone + fire_plus_fungal + fire_plus_ice
+            Assert.AreEqual(13, MaterialReactionResolver.ReactionCount,
+                "Thirteen reaction files should produce thirteen reactions.");
         }
 
         // ========================

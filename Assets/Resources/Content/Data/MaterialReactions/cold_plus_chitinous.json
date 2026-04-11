@@ -1,0 +1,17 @@
+{
+  "Reactions": [
+    {
+      "ID": "cold_plus_chitinous",
+      "Priority": 44,
+      "Conditions": {
+        "SourceState": "Frozen",
+        "TargetMaterialTag": "Chitinous",
+        "MaxTemperature": 0,
+        "MinBrittleness": 0.2
+      },
+      "Effects": [
+        { "Type": "DealDamage", "FloatValue": 2.0, "StringValue": "" }
+      ]
+    }
+  ]
+}
