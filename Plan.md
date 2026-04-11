@@ -108,7 +108,88 @@ Add four new cases to the `ApplyEffects` switch in `MaterialReactionResolver.cs:
 | `SpawnEntity` | `StringValue` = blueprint name, `FloatValue` = radius | Spawns a short-lived entity (steam cloud, ash pile, scorch mark) in the source cell or within `radius` cells. Uses existing `EntityFactory` / blueprint system. |
  
 The existing `SpawnParticle` stub can also be filled in (non-blocking visual FX call).
+
+---
+
+## Part 3: Data Expansion — New Reactions + Tagged Blueprints
  
+### 3A. Tag existing blueprints with new material tags
+ 
+`MaterialPart` lookups are tag-driven. To unlock the new reactions, existing entities in `Assets/Resources/Content/Blueprints/Objects.json` need their `MaterialID` / `MaterialTags` filled in. Proposed tagging pass:
+ 
+| Blueprint | MaterialID | Tags to add |
+|---|---|---|
+| Dagger, ShortSword, LongSword, Spear, Mace, Battleaxe, Greatsword | Steel | `Metal`, `Conductor` |
+| LeatherArmor | Leather | `Organic`, `Cloth` |
+| ChainMail | Iron | `Metal`, `Conductor` |
+| Rock, Stalagmite, all walls | Stone | `Stone`, `Mineral` |
+| Starapple | Plant | `Organic`, `Food`, `Raw` |
+| Bread | Grain | `Organic`, `Food`, `Cooked` |
+| Meat | Flesh | `Organic`, `Food`, `Raw` |
+| HealingTonic, BurnSalve | Liquid | `Liquid`, `Alchemical` |
+| LanternOil (if exists) | Oil | `Liquid`, `Oil`, `Flammable`, `Organic`, with `Volatility: 0.8` |
+| Torch | Wood | (already has `Organic`, `Flammable`) |
+ 
+This tagging pass is cheap (JSON edits only) but unlocks everything downstream. Also set `Conductivity: 0.8` on metal weapons/armor, `Brittleness: 0.7` on glass bottles (if added), `Porosity: 0.6` on cloth/leather.
+ 
+### 3B. Six new reaction JSON files under `Assets/Resources/Content/Data/MaterialReactions/`
+ 
+Each follows the `MaterialReactionCollection` schema already used by `fire_plus_organic.json`.
+ 
+1. **`water_plus_fire.json`** — extinguish + steam
+   - Conditions: `SourceState: "Burning"`, `MaxMoisture: 1.0`, also target has recently-applied `WetEffect`
+   - Effects: `ModifyBurnIntensity` -1.0, `SpawnEntity: "SteamCloud"` radius 1
+   - Net: burning entity that gets hit with water loses intensity and spits steam.
+ 
+2. **`oil_plus_fire.json`** — explosive burn for volatile materials
+   - Conditions: `SourceState: "Burning"`, `TargetMaterialTag: "Oil"`
+   - Effects: `ModifyBurnIntensity` +2.0, `ModifyFuelConsumption` 3.0x, `EmitBonusHeat` 50.0
+   - Net: oil-tagged entities burn fast and hot, dumping lots of heat into adjacent cells.
+ 
+3. **`fire_plus_food.json`** — cooking
+   - Conditions: `SourceState: "Burning"`, `TargetMaterialTag: "Raw"`, `MinTemperature: 150`
+   - Effects: `SwapBlueprint: "<cooked variant>"` — but this needs per-blueprint mapping, so instead use a convention: the target's blueprint has a `CookedVariant` tag param that `SwapBlueprint` reads. Alternatively: introduce a second reaction per raw food item (`fire_plus_raw_meat.json` → `CookedMeat`), which is verbose but explicit and keeps the resolver simple.
+   - Chosen: verbose explicit reactions. `fire_plus_raw_meat.json`, `fire_plus_raw_starapple.json`, etc.
+ 
+4. **`cold_plus_metal.json`** — brittleness shock
+   - Conditions: `MinTemperature: -1` (sentinel) — actually: new condition field `MaxTemperature` + `MinBrittleness`. Conditions become: `TargetMaterialTag: "Metal"`, `MaxTemperature: 0`, `MinBrittleness: 0.5`
+   - Effects: `ApplyStatusEffect: "FrozenEffect"` intensity 1.0, and (on the crossing, handled by `TryShatter`) fire the shatter pipeline.
+   - Requires extending `ReactionConditions` with `MaxTemperature` and `MinBrittleness` fields. Minor struct edit in `MaterialReactionBlueprint.cs`.
+ 
+5. **`lightning_plus_conductor.json`** — chain propagation
+   - Conditions: new `SourceState: "Electrified"`, `TargetMaterialTag: "Conductor"`
+   - Effects: `PropagateAlongTag: "Conductor"` 30.0, `ApplyStatusEffect: "ElectrifiedEffect"` 0.5
+   - Net: an electrified metal weapon zaps adjacent metal, which zaps its neighbors.
+ 
+6. **`acid_plus_organic.json`** — corrosion acceleration
+   - Conditions: `SourceState: "Acidic"`, `TargetMaterialTag: "Organic"`
+   - Effects: `ModifyFuelConsumption` 1.5 (if the organic is burning, acid accelerates decay), plus flat HP damage via a new `DealDamage` effect type (or via `ApplyStatusEffect` with intensity tied to HP loss — cleaner to add `DealDamage` as a fifth effect type).
+ 
+### 3C. Schema additions to `MaterialReactionBlueprint.cs`
+ 
+The current `ReactionConditions` class has: `SourceState`, `TargetMaterialTag`, `MinTemperature`, `MaxMoisture`. Add:
+ 
+- `float MaxTemperature` (default `float.MaxValue`) — for cold reactions
+- `float MinBrittleness` (default 0) — for shatter reactions
+- `float MinConductivity` (default 0) — for electricity reactions
+- `float MinVolatility` (default 0) — for oil/alcohol reactions
+ 
+And wire the corresponding checks in `MaterialReactionResolver.MatchesConditions`. These are trivial additions (four `if` checks) and let the JSON authoring layer target the newly-wired `MaterialPart` fields.
+ 
+### 3D. `SourceState` values
+ 
+Currently only `"Burning"` is recognized (`MaterialReactionResolver.cs:68-72`). Extend the check to also recognize `"Acidic"`, `"Electrified"`, `"Frozen"`, `"Wet"` — each mapped to a corresponding `entity.HasEffect<T>()` call. This lets reactions trigger off any source state, not just burning. One small switch/if-ladder added to `MatchesConditions`.
+ 
+### 3E. New entity blueprints for reaction products
+ 
+Add a couple of throwaway entities for the `SpawnEntity` effect to reference:
+ 
+- `SteamCloud` — non-solid, non-creature, carries `SteamEffect`, 3-turn duration, occupies one cell, renders `~` in dim cyan
+- `AshPile` — non-solid, permanent scorch mark left behind after fuel exhaustion (could be spawned by the existing `FuelExhausted` path, independent of reactions)
+- `WaterPuddle` — non-solid, tagged `Liquid` + `Water`, used by the Conjure Water everyday grimoire and for reacting with fire
+ 
+These are minimal `Objects.json` entries (Render + Physics + Material + tiny status effect carrier). 
+
 ---
  
  ## Part 4: New Grimoires
