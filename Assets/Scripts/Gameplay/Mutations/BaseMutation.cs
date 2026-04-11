@@ -217,7 +217,13 @@ namespace CavesOfOoo.Core
             var abilities = ParentEntity?.GetPart<ActivatedAbilitiesPart>();
             if (abilities == null)
                 return Guid.Empty;
-            return abilities.AddAbility(displayName, command, abilityClass, targetingMode, range);
+            return abilities.AddAbility(
+                displayName,
+                command,
+                abilityClass,
+                targetingMode,
+                range,
+                sourceMutationClass: GetType().Name);
         }
 
         /// <summary>

@@ -51,6 +51,14 @@ namespace CavesOfOoo.Core
         public int MaxCooldown;
 
         /// <summary>
+        /// Class name of the mutation that spawned this ability (e.g.
+        /// "IceLanceMutation"). Used by the Abilities tab and the grimoire picker
+        /// to look up tooltip data via <see cref="GrimoireTooltipData"/>.
+        /// Empty for abilities that aren't sourced from a mutation.
+        /// </summary>
+        public string SourceMutationClass = "";
+
+        /// <summary>
         /// Whether the ability is currently usable (off cooldown).
         /// </summary>
         public bool IsUsable => CooldownRemaining <= 0;

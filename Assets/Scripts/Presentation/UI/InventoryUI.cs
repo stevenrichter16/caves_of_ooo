@@ -37,6 +37,13 @@ namespace CavesOfOoo.Rendering
         private const int PANEL_EQUIPMENT = 0;
         private const int PANEL_INVENTORY = 1;
         private const int PANEL_TINKERING = 2;
+        private const int PANEL_ABILITIES = 3;
+
+        // Abilities tab layout
+        private const int ABILITIES_INFO_X = 6;              // where name/flavor/mechanics/signature start
+        private const int ABILITIES_ROWS_PER_OCCUPIED = 4;   // name + flavor + mechanics + signature
+        private const int ABILITIES_ROWS_PER_EMPTY = 1;      // just a "---" line
+        private const int ABILITIES_ROW_SEPARATOR = 1;       // blank row between slots
         private const int STATS_PANEL_X = 1;
         private const int STATS_PANEL_Y = 2;
         private const int STATS_PANEL_ROWS = 7;
@@ -84,6 +91,17 @@ namespace CavesOfOoo.Rendering
 
         // Mod target picker popup (tinkering mod panel)
         private ModTargetPopupState _modTargetPopup;
+
+        // Abilities tab state
+        private int _abilitiesCursorSlot;    // 0..9, currently highlighted slot
+        private int _abilitiesScrollOffset;  // screen-row offset used for scrolling the slot list
+        // Cached screen row at which each slot's block starts (pre-scroll); index = slot number.
+        // -1 means "slot not laid out this frame". Populated by RenderAbilitiesPanel and read by
+        // GetAbilitySlotAtMouse for variable-height row hit testing.
+        private readonly int[] _slotScreenRows = new int[ActivatedAbilitiesPart.SlotCount];
+
+        // Grimoire picker popup (abilities panel)
+        private GrimoirePickerState _grimoirePicker;
 
         public bool IsOpen => _isOpen;
 
@@ -173,10 +191,13 @@ namespace CavesOfOoo.Rendering
             _equipCursorIndex = 0;
             _tinkerCursorIndex = 0;
             _tinkerScrollOffset = 0;
+            _abilitiesCursorSlot = 0;
+            _abilitiesScrollOffset = 0;
             _equipPopup = null;
             _displaceConfirm = null;
             _itemActionPopup = null;
             _modTargetPopup = null;
+            _grimoirePicker = null;
             Rebuild();
             Render();
         }
@@ -188,6 +209,7 @@ namespace CavesOfOoo.Rendering
             _displaceConfirm = null;
             _itemActionPopup = null;
             _modTargetPopup = null;
+            _grimoirePicker = null;
         }
 
         // ===== Input =====
@@ -220,6 +242,11 @@ namespace CavesOfOoo.Rendering
                 HandleModTargetPopupInput();
                 return true;
             }
+            if (_grimoirePicker != null)
+            {
+                HandleGrimoirePickerInput();
+                return true;
+            }
 
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.I))
             {
@@ -237,6 +264,17 @@ namespace CavesOfOoo.Rendering
                     {
                         _tinkerCursorIndex = clickedTinkerRow;
                         Render();
+                    }
+                    return true;
+                }
+
+                if (_panel == PANEL_ABILITIES)
+                {
+                    int clickedAbilitySlot = GetAbilitySlotAtMouse();
+                    if (clickedAbilitySlot >= 0)
+                    {
+                        _abilitiesCursorSlot = clickedAbilitySlot;
+                        OpenGrimoirePicker(clickedAbilitySlot);
                     }
                     return true;
                 }
@@ -269,8 +307,10 @@ namespace CavesOfOoo.Rendering
                 HandleEquipPanelInput();
             else if (_panel == PANEL_INVENTORY)
                 HandleInventoryPanelInput();
-            else
+            else if (_panel == PANEL_TINKERING)
                 HandleTinkeringPanelInput();
+            else
+                HandleAbilitiesPanelInput();
 
             return true;
         }
@@ -344,12 +384,35 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            if (_grimoirePicker != null)
+            {
+                int row = GetGrimoirePickerRowAtMouse();
+                if (row >= 0 && row != _grimoirePicker.CursorIndex)
+                {
+                    _grimoirePicker.CursorIndex = row;
+                    ScrollGrimoirePickerIntoView();
+                    Render();
+                }
+                return;
+            }
+
             if (_panel == PANEL_TINKERING)
             {
                 int hoveredTinkerRow = GetTinkeringRowAtMouse();
                 if (hoveredTinkerRow >= 0 && hoveredTinkerRow != _tinkerCursorIndex)
                 {
                     _tinkerCursorIndex = hoveredTinkerRow;
+                    Render();
+                }
+                return;
+            }
+
+            if (_panel == PANEL_ABILITIES)
+            {
+                int hoveredSlot = GetAbilitySlotAtMouse();
+                if (hoveredSlot >= 0 && hoveredSlot != _abilitiesCursorSlot)
+                {
+                    _abilitiesCursorSlot = hoveredSlot;
                     Render();
                 }
                 return;
@@ -541,9 +604,16 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.L))
+            {
+                _panel = PANEL_ABILITIES;
+                Render();
+                return;
+            }
+
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                _panel = PANEL_EQUIPMENT;
+                _panel = PANEL_ABILITIES;
                 Render();
                 return;
             }
@@ -1918,6 +1988,7 @@ namespace CavesOfOoo.Rendering
             DrawText(1, 0, "Equipment", _panel == PANEL_EQUIPMENT ? QudColorParser.White : QudColorParser.DarkGray);
             DrawText(13, 0, "Inventory", _panel == PANEL_INVENTORY ? QudColorParser.White : QudColorParser.DarkGray);
             DrawText(25, 0, "Tinkering", _panel == PANEL_TINKERING ? QudColorParser.White : QudColorParser.DarkGray);
+            DrawText(37, 0, "Abilities", _panel == PANEL_ABILITIES ? QudColorParser.White : QudColorParser.DarkGray);
 
             // Weight and drams on right side of header
             string info = "Wt:" + _state.CarriedWeight + "/" + _state.MaxCarryWeight
@@ -1931,6 +2002,12 @@ namespace CavesOfOoo.Rendering
             if (_panel == PANEL_TINKERING)
             {
                 RenderTinkeringPanel();
+            }
+            else if (_panel == PANEL_ABILITIES)
+            {
+                RenderAbilitiesPanel();
+                if (_grimoirePicker != null)
+                    RenderGrimoirePicker();
             }
             else
             {
@@ -1965,12 +2042,16 @@ namespace CavesOfOoo.Rendering
                 actions = " [Y]es  [N]o  [Esc]cancel";
             else if (_equipPopup != null || _itemActionPopup != null || _modTargetPopup != null)
                 actions = " [Enter]select  [a-z]quick select  [Esc]cancel";
+            else if (_grimoirePicker != null)
+                actions = " [Enter]select [a-z]quick [X]clear [Esc]cancel";
             else if (_panel == PANEL_EQUIPMENT)
                 actions = " [Enter]equip [e]unequip [>]inventory [Esc]close";
             else if (_panel == PANEL_TINKERING)
                 actions = _tinkeringMode == TinkeringMode.Mod
                     ? " [Enter]apply [B]/[M]mode [<]inventory [Tab]cycle [Esc]close"
                     : " [Enter]craft [B]/[M]mode [<]inventory [Tab]cycle [Esc]close";
+            else if (_panel == PANEL_ABILITIES)
+                actions = " [Enter]assign [X]clear [<]tinkering [Tab]cycle [Esc]close";
             else
                 actions = " [d]rop [Enter]actions [<]equipment [>]tinkering [Esc]close";
 
@@ -2810,6 +2891,667 @@ namespace CavesOfOoo.Rendering
 
                 DrawText(popupX + 5, rowY, line, lineColor);
             }
+        }
+
+        // ===== Abilities Panel =====
+
+        private ActivatedAbilitiesPart GetAbilitiesPart()
+        {
+            return PlayerEntity?.GetPart<ActivatedAbilitiesPart>();
+        }
+
+        /// <summary>
+        /// Convert a slot index (0..9) to the user-facing number-key character:
+        /// slots 0..8 map to '1'..'9', slot 9 maps to '0'.
+        /// </summary>
+        private static char SlotToHotkey(int slot)
+        {
+            if (slot >= 0 && slot <= 8)
+                return (char)('1' + slot);
+            if (slot == 9)
+                return '0';
+            return '?';
+        }
+
+        private void HandleAbilitiesPanelInput()
+        {
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.H))
+            {
+                _panel = PANEL_TINKERING;
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.L))
+            {
+                _panel = PANEL_EQUIPMENT;
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                _panel = PANEL_EQUIPMENT;
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            {
+                if (_abilitiesCursorSlot > 0)
+                    _abilitiesCursorSlot--;
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            {
+                if (_abilitiesCursorSlot < ActivatedAbilitiesPart.SlotCount - 1)
+                    _abilitiesCursorSlot++;
+                Render();
+                return;
+            }
+
+            // Clear current slot via Delete / Backspace / X
+            if (Input.GetKeyDown(KeyCode.Delete)
+                || Input.GetKeyDown(KeyCode.Backspace)
+                || Input.GetKeyDown(KeyCode.X))
+            {
+                var abilities = GetAbilitiesPart();
+                if (abilities != null)
+                {
+                    abilities.AssignAbilityToSlot(System.Guid.Empty, _abilitiesCursorSlot);
+                    Render();
+                }
+                return;
+            }
+
+            // Enter / Space opens the grimoire picker for the current slot
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+            {
+                OpenGrimoirePicker(_abilitiesCursorSlot);
+                return;
+            }
+
+            // Number keys jump to a slot and open its picker
+            int slotFromNumber = -1;
+            if (Input.GetKeyDown(KeyCode.Alpha1)) slotFromNumber = 0;
+            else if (Input.GetKeyDown(KeyCode.Alpha2)) slotFromNumber = 1;
+            else if (Input.GetKeyDown(KeyCode.Alpha3)) slotFromNumber = 2;
+            else if (Input.GetKeyDown(KeyCode.Alpha4)) slotFromNumber = 3;
+            else if (Input.GetKeyDown(KeyCode.Alpha5)) slotFromNumber = 4;
+            else if (Input.GetKeyDown(KeyCode.Alpha6)) slotFromNumber = 5;
+            else if (Input.GetKeyDown(KeyCode.Alpha7)) slotFromNumber = 6;
+            else if (Input.GetKeyDown(KeyCode.Alpha8)) slotFromNumber = 7;
+            else if (Input.GetKeyDown(KeyCode.Alpha9)) slotFromNumber = 8;
+            else if (Input.GetKeyDown(KeyCode.Alpha0)) slotFromNumber = 9;
+
+            if (slotFromNumber >= 0)
+            {
+                _abilitiesCursorSlot = slotFromNumber;
+                OpenGrimoirePicker(slotFromNumber);
+                return;
+            }
+        }
+
+        /// <summary>
+        /// Make sure the currently-selected slot is fully visible in the scrollable
+        /// list. Updates <see cref="_abilitiesScrollOffset"/> so that the block for
+        /// <see cref="_abilitiesCursorSlot"/> sits within the content window.
+        /// </summary>
+        private void ScrollAbilitiesCursorIntoView(ActivatedAbilitiesPart abilities)
+        {
+            int y = CONTENT_START + 1;
+            int cursorStart = y;
+            int cursorEnd = y;
+            for (int slot = 0; slot < ActivatedAbilitiesPart.SlotCount; slot++)
+            {
+                bool occupied = abilities != null
+                    && abilities.SlotAssignments[slot] != System.Guid.Empty
+                    && abilities.GetAbilityBySlot(slot) != null;
+                int rows = occupied ? ABILITIES_ROWS_PER_OCCUPIED : ABILITIES_ROWS_PER_EMPTY;
+
+                if (slot == _abilitiesCursorSlot)
+                {
+                    cursorStart = y;
+                    cursorEnd = y + rows - 1;
+                    break;
+                }
+
+                y += rows;
+                if (slot < ActivatedAbilitiesPart.SlotCount - 1)
+                    y += ABILITIES_ROW_SEPARATOR;
+            }
+
+            int visibleTop = CONTENT_START + 1 + _abilitiesScrollOffset;
+            int visibleBot = CONTENT_END - 1 + _abilitiesScrollOffset;
+
+            if (cursorStart < visibleTop)
+                _abilitiesScrollOffset = cursorStart - (CONTENT_START + 1);
+            else if (cursorEnd > visibleBot)
+                _abilitiesScrollOffset = cursorEnd - (CONTENT_END - 1);
+
+            if (_abilitiesScrollOffset < 0)
+                _abilitiesScrollOffset = 0;
+        }
+
+        private void RenderAbilitiesPanel()
+        {
+            var abilities = GetAbilitiesPart();
+
+            // Reset slot-to-row cache so stale layout from a previous render
+            // doesn't leak into mouse hit testing when the layout changes.
+            for (int i = 0; i < _slotScreenRows.Length; i++)
+                _slotScreenRows[i] = -1;
+
+            // Header
+            DrawText(1, CONTENT_START, "Abilities", QudColorParser.BrightYellow);
+            if (abilities == null)
+            {
+                DrawText(1, CONTENT_START + 2,
+                    "(no activated abilities registered)",
+                    QudColorParser.DarkGray);
+                return;
+            }
+
+            ScrollAbilitiesCursorIntoView(abilities);
+
+            int contentTop = CONTENT_START + 1;
+            int contentBot = CONTENT_END - 1;
+            int yLogical = contentTop;    // pre-scroll y
+            int totalHeight = 0;
+
+            for (int slot = 0; slot < ActivatedAbilitiesPart.SlotCount; slot++)
+            {
+                var ability = abilities.GetAbilityBySlot(slot);
+                bool occupied = ability != null;
+                int rows = occupied ? ABILITIES_ROWS_PER_OCCUPIED : ABILITIES_ROWS_PER_EMPTY;
+
+                int yScreen = yLogical - _abilitiesScrollOffset;
+                _slotScreenRows[slot] = yScreen;
+
+                char hotkey = SlotToHotkey(slot);
+                bool selected = slot == _abilitiesCursorSlot;
+
+                // Name line ---------------------------------------------------
+                if (yScreen >= contentTop && yScreen <= contentBot)
+                {
+                    Color labelColor = selected ? QudColorParser.White : QudColorParser.Gray;
+                    DrawText(1, yScreen, "[" + hotkey + "]", labelColor);
+                    if (selected)
+                        DrawChar(4, yScreen, '>', QudColorParser.White);
+
+                    if (occupied)
+                    {
+                        GrimoireTooltipData.TryGet(ability.SourceMutationClass, out var tooltip);
+                        string displayName = !string.IsNullOrEmpty(tooltip.DisplayName)
+                            ? tooltip.DisplayName
+                            : ability.DisplayName;
+                        Color nameColor;
+                        if (selected)
+                        {
+                            nameColor = QudColorParser.White;
+                        }
+                        else if (!string.IsNullOrEmpty(tooltip.ColorCode))
+                        {
+                            nameColor = QudColorParser.Parse(tooltip.ColorCode);
+                        }
+                        else
+                        {
+                            nameColor = QudColorParser.White;
+                        }
+
+                        DrawText(ABILITIES_INFO_X, yScreen, displayName, nameColor);
+
+                        if (ability.CooldownRemaining > 0)
+                        {
+                            string cd = "(CD " + ability.CooldownRemaining + ")";
+                            DrawText(45, yScreen, cd, QudColorParser.BrightRed);
+                        }
+                    }
+                    else
+                    {
+                        DrawText(ABILITIES_INFO_X, yScreen, "---", QudColorParser.DarkGray);
+                    }
+                }
+
+                if (occupied)
+                {
+                    GrimoireTooltipData.TryGet(ability.SourceMutationClass, out var tooltip);
+                    bool anyTooltip = !string.IsNullOrEmpty(tooltip.DisplayName)
+                        || !string.IsNullOrEmpty(tooltip.Flavor)
+                        || !string.IsNullOrEmpty(tooltip.Mechanics)
+                        || !string.IsNullOrEmpty(tooltip.Signature);
+
+                    // Flavor line -------------------------------------------
+                    int fy = yScreen + 1;
+                    if (fy >= contentTop && fy <= contentBot && !string.IsNullOrEmpty(tooltip.Flavor))
+                        DrawText(ABILITIES_INFO_X, fy, tooltip.Flavor, QudColorParser.DarkGray);
+
+                    // Mechanics line ----------------------------------------
+                    int my = yScreen + 2;
+                    if (my >= contentTop && my <= contentBot && !string.IsNullOrEmpty(tooltip.Mechanics))
+                        DrawText(ABILITIES_INFO_X, my, tooltip.Mechanics, QudColorParser.White);
+
+                    // Signature line ----------------------------------------
+                    int sy = yScreen + 3;
+                    if (sy >= contentTop && sy <= contentBot && !string.IsNullOrEmpty(tooltip.Signature))
+                        DrawText(ABILITIES_INFO_X, sy, tooltip.Signature, QudColorParser.BrightCyan);
+
+                    // Fallback: if no tooltip data at all, show a stub on the mechanics row.
+                    if (!anyTooltip && my >= contentTop && my <= contentBot)
+                    {
+                        DrawText(ABILITIES_INFO_X, my,
+                            "(no inline description available)",
+                            QudColorParser.DarkGray);
+                    }
+                }
+
+                yLogical += rows;
+                if (slot < ActivatedAbilitiesPart.SlotCount - 1)
+                    yLogical += ABILITIES_ROW_SEPARATOR;
+                totalHeight = yLogical - contentTop;
+            }
+
+            // Scroll indicators
+            int visibleHeight = contentBot - contentTop + 1;
+            if (_abilitiesScrollOffset > 0)
+                DrawChar(W - 2, contentTop, '^', QudColorParser.Gray);
+            if (_abilitiesScrollOffset + visibleHeight < totalHeight)
+                DrawChar(W - 2, contentBot, 'v', QudColorParser.Gray);
+        }
+
+        /// <summary>
+        /// Map a mouse grid position to a slot index on the Abilities tab.
+        /// Uses the cached <see cref="_slotScreenRows"/> array populated during
+        /// <see cref="RenderAbilitiesPanel"/>.
+        /// </summary>
+        private int GetAbilitySlotAtMouse()
+        {
+            if (_panel != PANEL_ABILITIES)
+                return -1;
+
+            var grid = MouseToGrid();
+            if (grid.x < 0)
+                return -1;
+
+            int contentTop = CONTENT_START + 1;
+            int contentBot = CONTENT_END - 1;
+            if (grid.y < contentTop || grid.y > contentBot)
+                return -1;
+            if (grid.x < 1 || grid.x >= W - 1)
+                return -1;
+
+            var abilities = GetAbilitiesPart();
+            // Find the slot whose screen block contains grid.y. Scan from the
+            // last slot backward so we match the last start row that's <= grid.y.
+            for (int slot = ActivatedAbilitiesPart.SlotCount - 1; slot >= 0; slot--)
+            {
+                int yStart = _slotScreenRows[slot];
+                if (yStart < 0)
+                    continue;
+                if (grid.y < yStart)
+                    continue;
+
+                bool occupied = abilities != null
+                    && abilities.SlotAssignments[slot] != System.Guid.Empty
+                    && abilities.GetAbilityBySlot(slot) != null;
+                int rows = occupied ? ABILITIES_ROWS_PER_OCCUPIED : ABILITIES_ROWS_PER_EMPTY;
+                if (grid.y < yStart + rows)
+                    return slot;
+                return -1;
+            }
+            return -1;
+        }
+
+        // ===== Grimoire Picker Popup =====
+
+        // Popup geometry — wider than the other popups so the mechanics/signature
+        // lines don't truncate. Each grimoire block is 4 content rows + 1 separator;
+        // we show up to POPUP_GRIMOIRE_MAX_VISIBLE grimoires at once and scroll.
+        private const int POPUP_GRIMOIRE_W = 70;
+        private const int POPUP_GRIMOIRE_ROWS_PER_ENTRY = 4;
+        private const int POPUP_GRIMOIRE_ENTRY_SEPARATOR = 1;
+        private const int POPUP_GRIMOIRE_MAX_VISIBLE = 6;
+
+        private void OpenGrimoirePicker(int targetSlot)
+        {
+            var abilities = GetAbilitiesPart();
+            if (abilities == null)
+                return;
+
+            var grimoires = new List<ActivatedAbility>();
+            for (int i = 0; i < abilities.AbilityList.Count; i++)
+            {
+                var ab = abilities.AbilityList[i];
+                if (ab == null)
+                    continue;
+                if (GrimoireTooltipData.IsGrimoireMutation(ab.SourceMutationClass))
+                    grimoires.Add(ab);
+            }
+
+            _grimoirePicker = new GrimoirePickerState
+            {
+                TargetSlot = targetSlot,
+                Grimoires = grimoires,
+                CursorIndex = 0,
+                ScrollOffset = 0,
+                CancelWithoutCallback = false,
+                SelectionCallback = (slot, chosenId) =>
+                {
+                    var ap = GetAbilitiesPart();
+                    if (ap == null)
+                        return;
+                    ap.AssignAbilityToSlot(chosenId, slot);
+                }
+            };
+
+            // Start the cursor on whatever grimoire (if any) is currently in the slot.
+            var current = abilities.GetAbilityBySlot(targetSlot);
+            if (current != null)
+            {
+                int idx = grimoires.IndexOf(current);
+                if (idx >= 0)
+                    _grimoirePicker.CursorIndex = idx;
+            }
+            ScrollGrimoirePickerIntoView();
+            Render();
+        }
+
+        private void CloseGrimoirePicker()
+        {
+            _grimoirePicker = null;
+            Render();
+        }
+
+        private void InvokeGrimoirePickerCallback(Guid chosenId)
+        {
+            var picker = _grimoirePicker;
+            if (picker == null)
+                return;
+            picker.SelectionCallback?.Invoke(picker.TargetSlot, chosenId);
+        }
+
+        private void ConfirmGrimoirePickerSelection(int index)
+        {
+            var picker = _grimoirePicker;
+            if (picker == null)
+                return;
+
+            if (picker.Grimoires.Count == 0)
+            {
+                CloseGrimoirePicker();
+                return;
+            }
+
+            if (index < 0 || index >= picker.Grimoires.Count)
+                return;
+
+            var chosen = picker.Grimoires[index];
+            InvokeGrimoirePickerCallback(chosen.ID);
+            CloseGrimoirePicker();
+        }
+
+        private void ClearGrimoirePickerSlot()
+        {
+            InvokeGrimoirePickerCallback(Guid.Empty);
+            CloseGrimoirePicker();
+        }
+
+        private void ScrollGrimoirePickerIntoView()
+        {
+            var picker = _grimoirePicker;
+            if (picker == null || picker.Grimoires.Count == 0)
+                return;
+
+            if (picker.CursorIndex < picker.ScrollOffset)
+                picker.ScrollOffset = picker.CursorIndex;
+            else if (picker.CursorIndex >= picker.ScrollOffset + POPUP_GRIMOIRE_MAX_VISIBLE)
+                picker.ScrollOffset = picker.CursorIndex - POPUP_GRIMOIRE_MAX_VISIBLE + 1;
+
+            if (picker.ScrollOffset < 0)
+                picker.ScrollOffset = 0;
+        }
+
+        private void HandleGrimoirePickerInput()
+        {
+            var picker = _grimoirePicker;
+            if (picker == null)
+                return;
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                picker.CancelWithoutCallback = true;
+                CloseGrimoirePicker();
+                return;
+            }
+
+            // Explicit unbind: clears the target slot without picking anything.
+            if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Delete))
+            {
+                ClearGrimoirePickerSlot();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            {
+                if (picker.CursorIndex > 0)
+                {
+                    picker.CursorIndex--;
+                    ScrollGrimoirePickerIntoView();
+                }
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            {
+                if (picker.CursorIndex < picker.Grimoires.Count - 1)
+                {
+                    picker.CursorIndex++;
+                    ScrollGrimoirePickerIntoView();
+                }
+                Render();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+            {
+                ConfirmGrimoirePickerSelection(picker.CursorIndex);
+                return;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                int row = GetGrimoirePickerRowAtMouse();
+                if (row >= 0)
+                {
+                    ConfirmGrimoirePickerSelection(row);
+                }
+                else
+                {
+                    // Click outside the popup = cancel.
+                    picker.CancelWithoutCallback = true;
+                    CloseGrimoirePicker();
+                }
+                return;
+            }
+
+            // a..z quick-select
+            for (int i = 0; i < 26 && i < picker.Grimoires.Count; i++)
+            {
+                if (Input.GetKeyDown(KeyCode.A + i))
+                {
+                    ConfirmGrimoirePickerSelection(i);
+                    return;
+                }
+            }
+        }
+
+        private void RenderGrimoirePicker()
+        {
+            var picker = _grimoirePicker;
+            if (picker == null)
+                return;
+
+            int totalEntries = picker.Grimoires.Count;
+            int visibleEntries = Mathf.Min(Mathf.Max(totalEntries, 1), POPUP_GRIMOIRE_MAX_VISIBLE);
+            int contentRows =
+                visibleEntries * POPUP_GRIMOIRE_ROWS_PER_ENTRY
+                + (visibleEntries > 1 ? (visibleEntries - 1) * POPUP_GRIMOIRE_ENTRY_SEPARATOR : 0);
+
+            int popupH = contentRows + 4; // top+title+sep + content + bottom
+            int popupX = (W - POPUP_GRIMOIRE_W) / 2;
+            int popupY = (H - popupH) / 2;
+            if (popupY < 0) popupY = 0;
+
+            ClearRegion(popupX, popupY, POPUP_GRIMOIRE_W, popupH);
+            DrawPopupBorder(popupX, popupY, POPUP_GRIMOIRE_W, popupH, contentRows);
+
+            // Title
+            char hotkeyChar = SlotToHotkey(picker.TargetSlot);
+            string title = "Assign to slot [" + hotkeyChar + "]";
+            DrawText(popupX + 2, popupY + 1, title, QudColorParser.BrightYellow);
+            string hint = "[Enter]pick [X]clear [Esc]cancel";
+            DrawText(popupX + POPUP_GRIMOIRE_W - hint.Length - 2, popupY + 1,
+                hint, QudColorParser.DarkGray);
+
+            int contentY = popupY + 3;
+
+            if (totalEntries == 0)
+            {
+                DrawText(popupX + 2, contentY,
+                    "(no grimoires learned yet)",
+                    QudColorParser.DarkGray);
+                return;
+            }
+
+            var abilities = GetAbilitiesPart();
+
+            int rowY = contentY;
+            for (int vi = 0; vi < POPUP_GRIMOIRE_MAX_VISIBLE; vi++)
+            {
+                int idx = picker.ScrollOffset + vi;
+                if (idx >= totalEntries)
+                    break;
+
+                var ability = picker.Grimoires[idx];
+                bool selected = idx == picker.CursorIndex;
+
+                GrimoireTooltipData.TryGet(ability.SourceMutationClass, out var tooltip);
+                string displayName = !string.IsNullOrEmpty(tooltip.DisplayName)
+                    ? tooltip.DisplayName
+                    : ability.DisplayName;
+
+                // Name line -------------------------------------------------
+                if (selected)
+                    DrawChar(popupX + 1, rowY, '>', QudColorParser.White);
+
+                if (idx < 26)
+                {
+                    char hk = (char)('a' + idx);
+                    DrawText(popupX + 3, rowY, hk + ")",
+                        selected ? QudColorParser.White : QudColorParser.Gray);
+                }
+
+                Color themeColor = !string.IsNullOrEmpty(tooltip.ColorCode)
+                    ? QudColorParser.Parse(tooltip.ColorCode)
+                    : QudColorParser.White;
+                DrawChar(popupX + 6, rowY, '+', themeColor);
+
+                Color nameColor = selected ? QudColorParser.White : themeColor;
+                DrawText(popupX + 8, rowY, displayName, nameColor);
+
+                if (ability.CooldownRemaining > 0)
+                {
+                    string cd = "(CD " + ability.CooldownRemaining + ")";
+                    DrawText(popupX + 50, rowY, cd, QudColorParser.BrightRed);
+                }
+
+                // "Already bound" marker
+                if (abilities != null)
+                {
+                    int boundSlot = abilities.GetSlotForAbility(ability.ID);
+                    if (boundSlot >= 0 && boundSlot != picker.TargetSlot)
+                    {
+                        char bhk = SlotToHotkey(boundSlot);
+                        string mark = "<- slot " + bhk;
+                        int mx = popupX + POPUP_GRIMOIRE_W - mark.Length - 2;
+                        DrawText(mx, rowY, mark, QudColorParser.DarkGray);
+                    }
+                }
+
+                // Flavor line -----------------------------------------------
+                int fy = rowY + 1;
+                if (!string.IsNullOrEmpty(tooltip.Flavor))
+                    DrawText(popupX + 8, fy, tooltip.Flavor, QudColorParser.DarkGray);
+
+                // Mechanics line --------------------------------------------
+                int my = rowY + 2;
+                if (!string.IsNullOrEmpty(tooltip.Mechanics))
+                    DrawText(popupX + 8, my, tooltip.Mechanics, QudColorParser.White);
+
+                // Signature line --------------------------------------------
+                int sy = rowY + 3;
+                if (!string.IsNullOrEmpty(tooltip.Signature))
+                    DrawText(popupX + 8, sy, tooltip.Signature, QudColorParser.BrightCyan);
+
+                rowY += POPUP_GRIMOIRE_ROWS_PER_ENTRY;
+                if (vi < POPUP_GRIMOIRE_MAX_VISIBLE - 1 && idx < totalEntries - 1)
+                    rowY += POPUP_GRIMOIRE_ENTRY_SEPARATOR;
+            }
+
+            // Scroll indicators
+            if (picker.ScrollOffset > 0)
+                DrawChar(popupX + POPUP_GRIMOIRE_W - 2, contentY, '^', QudColorParser.Gray);
+            if (picker.ScrollOffset + POPUP_GRIMOIRE_MAX_VISIBLE < totalEntries)
+                DrawChar(popupX + POPUP_GRIMOIRE_W - 2, contentY + contentRows - 1, 'v', QudColorParser.Gray);
+        }
+
+        /// <summary>
+        /// Map a mouse grid position to a grimoire-picker row index, or -1 if
+        /// the mouse is outside the popup. Uses the picker's popup geometry.
+        /// </summary>
+        private int GetGrimoirePickerRowAtMouse()
+        {
+            var picker = _grimoirePicker;
+            if (picker == null)
+                return -1;
+
+            var grid = MouseToGrid();
+            if (grid.x < 0)
+                return -1;
+
+            int totalEntries = picker.Grimoires.Count;
+            if (totalEntries == 0)
+                return -1;
+
+            int visibleEntries = Mathf.Min(totalEntries, POPUP_GRIMOIRE_MAX_VISIBLE);
+            int contentRows =
+                visibleEntries * POPUP_GRIMOIRE_ROWS_PER_ENTRY
+                + (visibleEntries > 1 ? (visibleEntries - 1) * POPUP_GRIMOIRE_ENTRY_SEPARATOR : 0);
+            int popupH = contentRows + 4;
+            int popupX = (W - POPUP_GRIMOIRE_W) / 2;
+            int popupY = (H - popupH) / 2;
+            if (popupY < 0) popupY = 0;
+            int contentY = popupY + 3;
+
+            if (grid.x <= popupX || grid.x >= popupX + POPUP_GRIMOIRE_W - 1)
+                return -1;
+            if (grid.y < contentY || grid.y >= contentY + contentRows)
+                return -1;
+
+            int offsetRow = grid.y - contentY;
+            int stride = POPUP_GRIMOIRE_ROWS_PER_ENTRY + POPUP_GRIMOIRE_ENTRY_SEPARATOR;
+            int vi = offsetRow / stride;
+            int withinBlock = offsetRow % stride;
+            if (withinBlock >= POPUP_GRIMOIRE_ROWS_PER_ENTRY)
+                return -1; // mouse is in a separator row
+
+            int idx = picker.ScrollOffset + vi;
+            if (idx >= 0 && idx < totalEntries)
+                return idx;
+            return -1;
         }
 
         private void RenderDisplaceConfirm()
