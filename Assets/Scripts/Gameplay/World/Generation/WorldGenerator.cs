@@ -49,8 +49,17 @@ namespace CavesOfOoo.Core
                 }
             }
 
-            // Force center to Cave (player starting zone)
+            // Force center to Cave (player starting zone) and pin the four
+            // cardinal neighbours so the Elemental Crossroads zone builders
+            // can rely on a known biome under each themed chunk. Without
+            // this, the noise lottery can put e.g. Ruins in the west slot
+            // and the themed builder's set piece would land on the wrong
+            // terrain.
             map.Tiles[centerX, centerY] = BiomeType.Cave;
+            map.Tiles[centerX, centerY - 1] = BiomeType.Ruins;   // N — Sparkwright
+            map.Tiles[centerX + 1, centerY] = BiomeType.Desert;  // E — Saltglass Dunes
+            map.Tiles[centerX, centerY + 1] = BiomeType.Jungle;  // S — Verdant Rotbog
+            map.Tiles[centerX - 1, centerY] = BiomeType.Cave;    // W — Frostfang Grotto
 
             // Ensure all 4 biomes are present
             EnsureAllBiomes(map, noise, centerX, centerY);
@@ -82,8 +91,14 @@ namespace CavesOfOoo.Core
                 {
                     for (int y = 0; y < WorldMap.Height; y++)
                     {
-                        // Don't overwrite the center Cave
+                        // Don't overwrite the center Cave or the four
+                        // Elemental Crossroads cardinal pins — the themed
+                        // zone builders rely on their biomes being fixed.
                         if (x == centerX && y == centerY) continue;
+                        if (x == centerX && y == centerY - 1) continue;
+                        if (x == centerX + 1 && y == centerY) continue;
+                        if (x == centerX && y == centerY + 1) continue;
+                        if (x == centerX - 1 && y == centerY) continue;
 
                         float dist = Math.Abs(noise[x, y] - targetCenter);
                         if (dist < bestDist)

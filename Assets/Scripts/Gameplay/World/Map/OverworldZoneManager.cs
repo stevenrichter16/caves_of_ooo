@@ -85,6 +85,7 @@ namespace CavesOfOoo.Core
         {
             var pipeline = ZoneGenerationPipeline.CreateCavePipeline(PopulationTable.GetBiomeTable(BiomeType.Cave, tier));
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
+            pipeline.AddBuilder(new StartingNeighborhoodBuilder());
             return pipeline;
         }
 
@@ -109,6 +110,7 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new DesertBuilder());
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
+            pipeline.AddBuilder(new StartingNeighborhoodBuilder());
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Desert, tier)));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             return pipeline;
@@ -120,6 +122,7 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new JungleBuilder());
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
+            pipeline.AddBuilder(new StartingNeighborhoodBuilder());
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Jungle, tier)));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             return pipeline;
@@ -131,6 +134,7 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new RuinsBuilder());
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
+            pipeline.AddBuilder(new StartingNeighborhoodBuilder());
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Ruins, tier)));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             return pipeline;
