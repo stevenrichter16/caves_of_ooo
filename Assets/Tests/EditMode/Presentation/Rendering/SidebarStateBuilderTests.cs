@@ -119,7 +119,7 @@ namespace CavesOfOoo.Tests
             player.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 25, Value = 25, Min = 0, Max = 30 };
             player.Statistics["MP"] = new Stat { Name = "MP", BaseValue = 3, Value = 3, Min = 0, Max = 6 };
             player.Statistics["Level"] = new Stat { Name = "Level", BaseValue = 2, Value = 2, Min = 1, Max = 99 };
-            player.Statistics["XP"] = new Stat { Name = "XP", BaseValue = 10, Value = 10, Min = 0, Max = 99999 };
+            player.Statistics["Experience"] = new Stat { Name = "Experience", BaseValue = 10, Value = 10, Min = 0, Max = 99999 };
             player.Statistics["Strength"] = new Stat { Name = "Strength", BaseValue = 10, Value = 10, Min = 1, Max = 100 };
             player.Statistics["Speed"] = new Stat { Name = "Speed", BaseValue = 100, Value = 100, Min = 1, Max = 200 };
             return player;

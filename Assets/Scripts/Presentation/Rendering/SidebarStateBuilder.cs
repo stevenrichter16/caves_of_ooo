@@ -61,7 +61,7 @@ namespace CavesOfOoo.Rendering
         private static string GetXpLine(Entity player)
         {
             int level = GetLevel(player);
-            int xp = player?.GetStatValue("XP", 0) ?? 0;
+            int xp = player?.GetStat("Experience")?.Value ?? 0;
             int next = LevelingSystem.XPToNextLevel(level);
             return xp + "/" + next;
         }

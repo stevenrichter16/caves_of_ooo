@@ -4,6 +4,7 @@ using CavesOfOoo.Core;
 using CavesOfOoo.Data;
 using CavesOfOoo.Rendering;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
 
 namespace CavesOfOoo
@@ -157,13 +158,16 @@ namespace CavesOfOoo
                 if (cameraFollow == null)
                     cameraFollow = cam.gameObject.AddComponent<CameraFollow>();
                 Camera sidebarCamera = EnsureSidebarCamera(cam);
-                ConfigureCameraLayers(cam, sidebarCamera);
+                Camera popupOverlayCamera = EnsurePopupOverlayCamera(cam);
+                ConfigureCameraLayers(cam, sidebarCamera, popupOverlayCamera);
                 cameraFollow.Player = _player;
                 cameraFollow.CurrentZone = _zone;
                 cameraFollow.SidebarCamera = sidebarCamera;
+                cameraFollow.PopupOverlayCamera = popupOverlayCamera;
                 if (ZoneRenderer != null)
                 {
                     ZoneRenderer.SetSidebarCamera(sidebarCamera);
+                    ZoneRenderer.SetPopupOverlayCamera(popupOverlayCamera);
                     cameraFollow.ReservedSidebarWidthChars = ZoneRenderer.SidebarWidthChars;
                     cameraFollow.SidebarReferenceZoom = ZoneRenderer.MessageReferenceZoom;
                 }
@@ -218,7 +222,11 @@ namespace CavesOfOoo
                 if (pickupUI == null)
                     pickupUI = gameObject.AddComponent<PickupUI>();
                 if (ZoneRenderer != null)
-                    pickupUI.Tilemap = ZoneRenderer.PopupFgTilemap;
+                {
+                    pickupUI.Tilemap = ZoneRenderer.CenteredPopupFgTilemap;
+                    pickupUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
+                }
+                pickupUI.PopupCamera = popupOverlayCamera;
                 inputHandler.PickupUI = pickupUI;
 
                 // Wire container picker UI to popup tilemap (above message log)
@@ -226,7 +234,11 @@ namespace CavesOfOoo
                 if (containerPickerUI == null)
                     containerPickerUI = gameObject.AddComponent<ContainerPickerUI>();
                 if (ZoneRenderer != null)
-                    containerPickerUI.Tilemap = ZoneRenderer.PopupFgTilemap;
+                {
+                    containerPickerUI.Tilemap = ZoneRenderer.CenteredPopupFgTilemap;
+                    containerPickerUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
+                }
+                containerPickerUI.PopupCamera = popupOverlayCamera;
                 inputHandler.ContainerPickerUI = containerPickerUI;
 
                 // Wire dialogue UI to dedicated popup tilemaps (above the message log)
@@ -235,9 +247,10 @@ namespace CavesOfOoo
                     dialogueUI = gameObject.AddComponent<DialogueUI>();
                 if (ZoneRenderer != null)
                 {
-                    dialogueUI.Tilemap = ZoneRenderer.PopupFgTilemap;
-                    dialogueUI.BgTilemap = ZoneRenderer.PopupBgTilemap;
+                    dialogueUI.Tilemap = ZoneRenderer.CenteredPopupFgTilemap;
+                    dialogueUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
                 }
+                dialogueUI.PopupCamera = popupOverlayCamera;
                 inputHandler.DialogueUI = dialogueUI;
 
                 // Wire trade UI to popup tilemap (above message log)
@@ -261,7 +274,11 @@ namespace CavesOfOoo
                 if (announcementUI == null)
                     announcementUI = gameObject.AddComponent<AnnouncementUI>();
                 if (ZoneRenderer != null)
-                    announcementUI.Tilemap = ZoneRenderer.PopupFgTilemap;
+                {
+                    announcementUI.Tilemap = ZoneRenderer.CenteredPopupFgTilemap;
+                    announcementUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
+                }
+                announcementUI.PopupCamera = popupOverlayCamera;
                 inputHandler.AnnouncementUI = announcementUI;
             }
 
@@ -298,13 +315,71 @@ namespace CavesOfOoo
             return sidebarCamera;
         }
 
-        private static void ConfigureCameraLayers(Camera gameplayCamera, Camera sidebarCamera)
+        private static Camera EnsurePopupOverlayCamera(Camera gameplayCamera)
+        {
+            if (gameplayCamera == null)
+                return null;
+
+            Transform existing = gameplayCamera.transform.parent != null
+                ? gameplayCamera.transform.parent.Find("Popup Overlay Camera")
+                : null;
+            Camera popupOverlayCamera = existing != null ? existing.GetComponent<Camera>() : null;
+            if (popupOverlayCamera != null)
+                return popupOverlayCamera;
+
+            var cameraObject = new GameObject("Popup Overlay Camera");
+            cameraObject.transform.position = new Vector3(0f, 0f, gameplayCamera.transform.position.z);
+            popupOverlayCamera = cameraObject.AddComponent<Camera>();
+            popupOverlayCamera.orthographic = true;
+            popupOverlayCamera.depth = gameplayCamera.depth + 1f;
+            popupOverlayCamera.nearClipPlane = gameplayCamera.nearClipPlane;
+            popupOverlayCamera.farClipPlane = gameplayCamera.farClipPlane;
+            popupOverlayCamera.backgroundColor = Color.clear;
+            popupOverlayCamera.clearFlags = CameraClearFlags.Depth;
+            popupOverlayCamera.enabled = false;
+            ConfigurePopupOverlayCameraStack(gameplayCamera, popupOverlayCamera);
+            return popupOverlayCamera;
+        }
+
+        private static void ConfigureCameraLayers(Camera gameplayCamera, Camera sidebarCamera, Camera popupOverlayCamera)
         {
             if (gameplayCamera != null)
                 gameplayCamera.cullingMask = GameplayRenderLayers.GameplayCameraMask;
 
             if (sidebarCamera != null)
                 sidebarCamera.cullingMask = GameplayRenderLayers.SidebarMask;
+
+            if (popupOverlayCamera != null)
+            {
+                popupOverlayCamera.cullingMask = GameplayRenderLayers.PopupOverlayMask;
+                ConfigurePopupOverlayCameraStack(gameplayCamera, popupOverlayCamera);
+            }
+        }
+
+        private static void ConfigurePopupOverlayCameraStack(Camera gameplayCamera, Camera popupOverlayCamera)
+        {
+            if (gameplayCamera == null || popupOverlayCamera == null)
+                return;
+
+            var gameplayCameraData = gameplayCamera.GetUniversalAdditionalCameraData();
+            var popupCameraData = popupOverlayCamera.GetUniversalAdditionalCameraData();
+            if (gameplayCameraData != null)
+                gameplayCameraData.renderType = CameraRenderType.Base;
+
+            if (popupCameraData != null)
+            {
+                popupCameraData.renderType = CameraRenderType.Overlay;
+            }
+
+            if (gameplayCameraData == null)
+                return;
+
+            var stack = gameplayCameraData.cameraStack;
+            if (stack == null)
+                return;
+
+            if (!stack.Contains(popupOverlayCamera))
+                stack.Add(popupOverlayCamera);
         }
 
         /// <summary>

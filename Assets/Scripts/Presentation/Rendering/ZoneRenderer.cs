@@ -60,6 +60,11 @@ namespace CavesOfOoo.Rendering
         private Tilemap _sidebarTilemap;
         private Transform _sidebarGridTransform;
         private Material _sidebarUiMaterial;
+        private Grid _popupOverlayGrid;
+        private Tilemap _popupOverlayBgTilemap;
+        private Tilemap _popupOverlayTilemap;
+        private Transform _popupOverlayGridTransform;
+        private Material _popupOverlayUiMaterial;
         private AsciiFxRenderer _asciiFxRenderer;
         private CampfireEmberRenderer _campfireEmberRenderer;
         private WorldCursorRenderer _worldCursorRenderer;
@@ -74,6 +79,7 @@ namespace CavesOfOoo.Rendering
         private const float DustMoteSpawnInterval = 3.5f;
         private Camera _mainCamera;
         private Camera _sidebarCamera;
+        private Camera _popupOverlayCamera;
         private LightMap _lightMap;
         private readonly List<Vector2Int> _waterTilePositions = new List<Vector2Int>();
         private readonly HashSet<string> _loggedRenderIssues = new HashSet<string>();
@@ -97,6 +103,9 @@ namespace CavesOfOoo.Rendering
         public Tilemap SidebarBgTilemap => _sidebarBgTilemap;
         public Tilemap SidebarTilemap => _sidebarTilemap;
         public Camera SidebarCamera => _sidebarCamera;
+        public Tilemap CenteredPopupBgTilemap => _popupOverlayBgTilemap;
+        public Tilemap CenteredPopupFgTilemap => _popupOverlayTilemap;
+        public Camera PopupOverlayCamera => _popupOverlayCamera;
         /// <summary>Popup background tilemap (sortingOrder 6). For DialogueUI/TradeUI bg fills.</summary>
         public Tilemap PopupBgTilemap => _popupBgTilemap;
         /// <summary>Popup foreground tilemap (sortingOrder 7). For DialogueUI/TradeUI glyphs.</summary>
@@ -159,6 +168,26 @@ namespace CavesOfOoo.Rendering
             _worldCursorRenderer = new WorldCursorRenderer(gridParent, _tilemap, GameplayRenderLayers.WorldLayer);
             _sidebarRenderer = new GameplaySidebarRenderer(_sidebarTilemap, _sidebarBgTilemap, _sidebarGridTransform, MessageReferenceZoom);
 
+            var popupOverlayGridObj = new GameObject("PopupOverlayGrid");
+            _popupOverlayGridTransform = popupOverlayGridObj.transform;
+            GameplayRenderLayers.SetLayerRecursive(popupOverlayGridObj, GameplayRenderLayers.PopupOverlayLayer);
+            _popupOverlayGrid = popupOverlayGridObj.AddComponent<Grid>();
+            _popupOverlayGrid.cellSize = new Vector3(1f, 1f, 0f);
+
+            var popupOverlayBgObj = new GameObject("CenteredPopupBgTilemap");
+            popupOverlayBgObj.transform.SetParent(popupOverlayGridObj.transform, false);
+            GameplayRenderLayers.SetLayerRecursive(popupOverlayBgObj, GameplayRenderLayers.PopupOverlayLayer);
+            _popupOverlayBgTilemap = popupOverlayBgObj.AddComponent<Tilemap>();
+            var popupOverlayBgRenderer = popupOverlayBgObj.AddComponent<TilemapRenderer>();
+            ConfigurePopupOverlayTilemapRenderer(popupOverlayBgRenderer, 0);
+
+            var popupOverlayFgObj = new GameObject("CenteredPopupFgTilemap");
+            popupOverlayFgObj.transform.SetParent(popupOverlayGridObj.transform, false);
+            GameplayRenderLayers.SetLayerRecursive(popupOverlayFgObj, GameplayRenderLayers.PopupOverlayLayer);
+            _popupOverlayTilemap = popupOverlayFgObj.AddComponent<Tilemap>();
+            var popupOverlayFgRenderer = popupOverlayFgObj.AddComponent<TilemapRenderer>();
+            ConfigurePopupOverlayTilemapRenderer(popupOverlayFgRenderer, 1);
+
             // Dedicated tilemaps for dialogue/popup UI — must sort ABOVE the
             // persistent sidebar (order 3) so popups aren't hidden behind the UI.
             var popupBgObj = new GameObject("PopupBgTilemap");
@@ -178,15 +207,8 @@ namespace CavesOfOoo.Rendering
 
         private void OnDestroy()
         {
-            if (_sidebarUiMaterial == null)
-                return;
-
-            if (Application.isPlaying)
-                Destroy(_sidebarUiMaterial);
-            else
-                DestroyImmediate(_sidebarUiMaterial);
-
-            _sidebarUiMaterial = null;
+            DestroyOwnedMaterial(ref _sidebarUiMaterial);
+            DestroyOwnedMaterial(ref _popupOverlayUiMaterial);
         }
 
         /// <summary>
@@ -239,6 +261,8 @@ namespace CavesOfOoo.Rendering
         {
             if (_mainCamera == null)
                 _mainCamera = Camera.main;
+
+            UpdatePopupOverlayGridLayout();
 
             if (MessageLog.FlashStamp != _lastFlashStamp)
             {
@@ -526,15 +550,27 @@ namespace CavesOfOoo.Rendering
 
             renderer.sortingOrder = sortingOrder;
 
-            Material uiMaterial = GetSidebarUiMaterial();
+            Material uiMaterial = GetUnlitSpriteMaterial(ref _sidebarUiMaterial, "SidebarUI-Unlit");
             if (uiMaterial != null)
                 renderer.sharedMaterial = uiMaterial;
         }
 
-        private Material GetSidebarUiMaterial()
+        private void ConfigurePopupOverlayTilemapRenderer(TilemapRenderer renderer, int sortingOrder)
         {
-            if (_sidebarUiMaterial != null)
-                return _sidebarUiMaterial;
+            if (renderer == null)
+                return;
+
+            renderer.sortingOrder = sortingOrder;
+
+            Material uiMaterial = GetUnlitSpriteMaterial(ref _popupOverlayUiMaterial, "CenteredPopupUI-Unlit");
+            if (uiMaterial != null)
+                renderer.sharedMaterial = uiMaterial;
+        }
+
+        private static Material GetUnlitSpriteMaterial(ref Material material, string materialName)
+        {
+            if (material != null)
+                return material;
 
             Shader shader = Shader.Find("Universal Render Pipeline/2D/Sprite-Unlit-Default");
             if (shader == null)
@@ -542,16 +578,40 @@ namespace CavesOfOoo.Rendering
 
             if (shader == null)
             {
-                Debug.LogWarning("[Sidebar] Failed to find an unlit sprite shader for sidebar tilemaps.");
+                Debug.LogWarning("[Rendering] Failed to find an unlit sprite shader for UI tilemaps.");
                 return null;
             }
 
-            _sidebarUiMaterial = new Material(shader)
+            material = new Material(shader)
             {
-                name = "SidebarUI-Unlit"
+                name = materialName
             };
-            _sidebarUiMaterial.hideFlags = HideFlags.HideAndDontSave;
-            return _sidebarUiMaterial;
+            material.hideFlags = HideFlags.HideAndDontSave;
+            return material;
+        }
+
+        private static void DestroyOwnedMaterial(ref Material material)
+        {
+            if (material == null)
+                return;
+
+            if (Application.isPlaying)
+                Object.Destroy(material);
+            else
+                Object.DestroyImmediate(material);
+
+            material = null;
+        }
+
+        private void UpdatePopupOverlayGridLayout()
+        {
+            if (_popupOverlayGrid == null || _popupOverlayCamera == null)
+                return;
+
+            float cellWidth = CenteredPopupLayout.ComputeCellWidth(_popupOverlayCamera.aspect);
+            Vector3 cellSize = _popupOverlayGrid.cellSize;
+            if (Mathf.Abs(cellSize.x - cellWidth) > 0.0001f || Mathf.Abs(cellSize.y - 1f) > 0.0001f)
+                _popupOverlayGrid.cellSize = new Vector3(cellWidth, 1f, 0f);
         }
 
         /// <summary>
@@ -600,6 +660,12 @@ namespace CavesOfOoo.Rendering
         {
             _sidebarCamera = sidebarCamera;
             _sidebarRenderer?.Invalidate();
+        }
+
+        public void SetPopupOverlayCamera(Camera popupOverlayCamera)
+        {
+            _popupOverlayCamera = popupOverlayCamera;
+            UpdatePopupOverlayGridLayout();
         }
 
         public bool ScrollSidebarLogOlder(int rows = 1)

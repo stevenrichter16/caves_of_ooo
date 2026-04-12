@@ -15,6 +15,7 @@ namespace CavesOfOoo.Rendering
     {
         public Tilemap Tilemap;
         public Tilemap BgTilemap;
+        public Camera PopupCamera;
         public Entity PlayerEntity;
         public Zone CurrentZone;
 
@@ -43,7 +44,7 @@ namespace CavesOfOoo.Rendering
         private int _totalRevealChars;  // total chars in _wrappedTextLines (sum of lengths)
         private float _revealTimer;
 
-        // Popup world-space anchors (same pattern as PickupUI).
+        // Popup overlay-grid anchors (same top-left convention as PickupUI).
         // _popupW is computed per-render so the box shrinks/grows with content.
         private int _worldOriginX;
         private int _worldTopY;
@@ -339,9 +340,6 @@ namespace CavesOfOoo.Rendering
 
         private void ComputePopupPosition()
         {
-            var cam = Camera.main;
-            if (cam == null) return;
-
             var choices = ConversationManager.VisibleChoices;
             int choiceCount = Mathf.Min(choices.Count, POPUP_MAX_VISIBLE_CHOICES);
             int textLines = _wrappedTextLines.Count;
@@ -350,11 +348,8 @@ namespace CavesOfOoo.Rendering
             // = 1 + textLines + 1 + choiceCount + 1 + 1
             _popupH = 1 + textLines + 1 + choiceCount + 1 + 1;
 
-            float camX = cam.transform.position.x;
-            float camY = cam.transform.position.y;
-
-            _worldOriginX = Mathf.RoundToInt(camX) - _popupW / 2;
-            _worldTopY = Mathf.RoundToInt(camY) + _popupH / 2;
+            _worldOriginX = CenteredPopupLayout.GetCenteredOriginX(_popupW);
+            _worldTopY = CenteredPopupLayout.GetCenteredTopY(_popupH);
         }
 
         private void Render()
@@ -657,15 +652,11 @@ namespace CavesOfOoo.Rendering
 
         private int GetChoiceRowAtMouse()
         {
-            var cam = Camera.main;
-            if (cam == null) return -1;
+            if (!CenteredPopupLayout.ScreenToGrid(PopupCamera, Tilemap, Input.mousePosition, out int gridX, out int gridY))
+                return -1;
 
-            Vector3 world = cam.ScreenToWorldPoint(Input.mousePosition);
-            int worldX = Mathf.FloorToInt(world.x);
-            int worldY = Mathf.FloorToInt(world.y);
-
-            int gx = worldX - _worldOriginX;
-            int gy = _worldTopY - worldY;
+            int gx = gridX - _worldOriginX;
+            int gy = _worldTopY - gridY;
 
             int textLines = _wrappedTextLines.Count;
             int choicesStartY = 1 + textLines + 1; // after top border + text + blank

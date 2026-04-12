@@ -13,6 +13,7 @@ namespace CavesOfOoo.Rendering
         public Entity Player { get; set; }
         public Zone CurrentZone { get; set; }
         public Camera SidebarCamera { get; set; }
+        public Camera PopupOverlayCamera { get; set; }
         public bool HasOverrideTarget { get; private set; }
         public Vector2Int OverrideZoneCell { get; private set; }
         public float OverrideViewportMarginFraction = 0.25f;
@@ -33,6 +34,7 @@ namespace CavesOfOoo.Rendering
 
         private Camera _camera;
         private bool _paused;
+        private bool _centeredPopupOverlayActive;
 
         // Screen shake state
         private float _shakeTimeRemaining;
@@ -74,6 +76,7 @@ namespace CavesOfOoo.Rendering
                 return;
 
             _paused = true;
+            _centeredPopupOverlayActive = false;
             ApplyUIViewLayout();
 
             // Center camera on the grid (tiles span [0, gridSize), center at gridSize/2)
@@ -93,11 +96,47 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>
+        /// Expand the gameplay camera to fullscreen for centered modal overlays
+        /// without changing the current world framing. This hides the sidebar
+        /// while keeping the map positioned and zoomed exactly as-is underneath.
+        /// </summary>
+        public void SetFullscreenOverlayView()
+        {
+            if (_camera == null)
+                _camera = GetComponent<Camera>();
+            if (_camera == null)
+                return;
+
+            _paused = true;
+            _centeredPopupOverlayActive = false;
+            ApplyUIViewLayout();
+        }
+
+        /// <summary>
+        /// Keep the split gameplay/sidebar layout intact and enable the popup
+        /// overlay camera over the gameplay column.
+        /// </summary>
+        public void SetCenteredPopupOverlayView()
+        {
+            if (_camera == null)
+                _camera = GetComponent<Camera>();
+            if (_camera == null)
+                return;
+
+            _paused = true;
+            _centeredPopupOverlayActive = true;
+            ApplyGameplayLayout();
+        }
+
+        /// <summary>
         /// Restore normal camera follow behavior after UI overlay closes.
         /// </summary>
         public void RestoreGameView()
         {
             _paused = false;
+            _centeredPopupOverlayActive = false;
+            if (PopupOverlayCamera != null)
+                PopupOverlayCamera.enabled = false;
             SnapToPlayer();
         }
 
@@ -127,7 +166,12 @@ namespace CavesOfOoo.Rendering
 
         private void LateUpdate()
         {
-            if (_paused) return;
+            if (_paused)
+            {
+                if (_centeredPopupOverlayActive)
+                    ApplyGameplayLayout();
+                return;
+            }
             ApplyGameplayLayout();
             FollowTrackedTarget();
 
@@ -238,7 +282,10 @@ namespace CavesOfOoo.Rendering
             _camera.cullingMask = GameplayRenderLayers.GameplayCameraMask;
 
             if (SidebarCamera == null)
+            {
+                ConfigurePopupOverlayCamera(layout);
                 return;
+            }
 
             SidebarCamera.enabled = layout.SidebarRect.width > 0f;
             SidebarCamera.orthographic = true;
@@ -251,6 +298,7 @@ namespace CavesOfOoo.Rendering
                 SidebarCamera.transform.position.z);
             SidebarCamera.orthographicSize = _camera.orthographicSize;
             ConfigureCameraRect(SidebarCamera, layout.SidebarRect, layout.SidebarAspect);
+            ConfigurePopupOverlayCamera(layout);
         }
 
         private void ApplyUIViewLayout()
@@ -264,6 +312,24 @@ namespace CavesOfOoo.Rendering
 
             if (SidebarCamera != null)
                 SidebarCamera.enabled = false;
+            if (PopupOverlayCamera != null)
+                PopupOverlayCamera.enabled = false;
+        }
+
+        private void ConfigurePopupOverlayCamera(GameplayScreenLayout layout)
+        {
+            if (PopupOverlayCamera == null)
+                return;
+
+            PopupOverlayCamera.enabled = _centeredPopupOverlayActive && layout.GameplayRect.width > 0f;
+            PopupOverlayCamera.cullingMask = GameplayRenderLayers.PopupOverlayMask;
+            // URP overlay cameras composite over the base gameplay camera via camera stacking.
+            PopupOverlayCamera.clearFlags = CameraClearFlags.Depth;
+            PopupOverlayCamera.backgroundColor = Color.clear;
+            CenteredPopupLayout.ConfigureOverlayCamera(
+                PopupOverlayCamera,
+                layout.GameplayRect,
+                layout.GameplayAspect);
         }
 
         private static void ConfigureCameraRect(Camera camera, Rect rect, float aspect)

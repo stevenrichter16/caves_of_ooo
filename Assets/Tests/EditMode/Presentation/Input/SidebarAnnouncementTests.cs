@@ -44,7 +44,8 @@ namespace CavesOfOoo.Tests
 
             var announcementHost = new GameObject("AnnouncementUI");
             var announcementUi = announcementHost.AddComponent<AnnouncementUI>();
-            announcementUi.Tilemap = zoneRenderer.PopupFgTilemap;
+            announcementUi.Tilemap = zoneRenderer.CenteredPopupFgTilemap;
+            announcementUi.BgTilemap = zoneRenderer.CenteredPopupBgTilemap;
 
             var inputGo = new GameObject("InputHandler");
             var input = inputGo.AddComponent<InputHandler>();
@@ -62,7 +63,7 @@ namespace CavesOfOoo.Tests
 
             Assert.IsTrue(opened);
             Assert.IsTrue(announcementUi.IsOpen);
-            Assert.IsTrue(zoneRenderer.Paused);
+            Assert.IsFalse(zoneRenderer.Paused);
         }
 
         private static void CreateMainCamera()
@@ -85,7 +86,7 @@ namespace CavesOfOoo.Tests
             player.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 20, Value = 20, Min = 0, Max = 20 };
             player.Statistics["Strength"] = new Stat { Name = "Strength", BaseValue = 10, Value = 10, Min = 1, Max = 100 };
             player.Statistics["Level"] = new Stat { Name = "Level", BaseValue = 1, Value = 1, Min = 1, Max = 99 };
-            player.Statistics["XP"] = new Stat { Name = "XP", BaseValue = 0, Value = 0, Min = 0, Max = 9999 };
+            player.Statistics["Experience"] = new Stat { Name = "Experience", BaseValue = 0, Value = 0, Min = 0, Max = 9999 };
             return player;
         }
 

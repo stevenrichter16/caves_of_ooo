@@ -155,7 +155,7 @@ namespace CavesOfOoo.Core
         {
             "Hitpoints",
             "Level",
-            "XP",
+            "Experience",
             "MP",
             "Strength",
             "Agility",
@@ -234,6 +234,7 @@ namespace CavesOfOoo.Core
                 case "hitpoints": return "HP";
                 case "level": return "LV";
                 case "xp": return "XP";
+                case "experience": return "XP";
                 case "mp": return "MP";
                 case "strength": return "STR";
                 case "agility": return "AGI";

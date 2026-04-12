@@ -59,6 +59,8 @@ namespace CavesOfOoo.Rendering
 
         private float _lastMoveTime;
         private System.Random _combatRng = new System.Random();
+        private const int FullscreenUiGridWidth = 80;
+        private const int FullscreenUiGridHeight = 45;
 
         /// <summary>
         /// Input state machine for ability targeting.
@@ -1013,9 +1015,7 @@ namespace CavesOfOoo.Rendering
             if (ContainerPickerUI == null || containers == null || containers.Count == 0)
                 return;
 
-            if (ZoneRenderer != null)
-                ZoneRenderer.Paused = true;
-
+            EnterCenteredPopupOverlayView();
             ContainerPickerUI.Open(containers);
             _inputState = InputState.ContainerPickerOpen;
         }
@@ -1023,7 +1023,7 @@ namespace CavesOfOoo.Rendering
         private void OpenPickup(List<Entity> items)
         {
             if (PickupUI == null) return;
-            if (ZoneRenderer != null) ZoneRenderer.Paused = true;
+            EnterCenteredPopupOverlayView();
             PickupUI.PlayerEntity = PlayerEntity;
             PickupUI.CurrentZone = CurrentZone;
             PickupUI.Open(items);
@@ -1047,16 +1047,16 @@ namespace CavesOfOoo.Rendering
         private void ClosePickup()
         {
             bool pickedUpAny = PickupUI != null && PickupUI.PickedUpAny;
-            _inputState = InputState.Normal;
-            if (ZoneRenderer != null)
-            {
-                ZoneRenderer.Paused = false;
-                ZoneRenderer.MarkDirty();
-            }
 
-            // Process a turn if items were picked up
             if (pickedUpAny)
                 EndTurnAndProcess();
+
+            _inputState = InputState.Normal;
+
+            if (TryOpenAnnouncement())
+                return;
+
+            ExitCenteredPopupOverlayViewToGameplay();
         }
 
         private void HandleContainerPickerInput()
@@ -1081,15 +1081,15 @@ namespace CavesOfOoo.Rendering
 
         private void CloseContainerPicker(bool tookAny)
         {
-            _inputState = InputState.Normal;
-            if (ZoneRenderer != null)
-            {
-                ZoneRenderer.Paused = false;
-                ZoneRenderer.MarkDirty();
-            }
-
             if (tookAny)
                 EndTurnAndProcess();
+
+            _inputState = InputState.Normal;
+
+            if (TryOpenAnnouncement())
+                return;
+
+            ExitCenteredPopupOverlayViewToGameplay();
         }
 
         /// <summary>
@@ -1444,7 +1444,7 @@ namespace CavesOfOoo.Rendering
             InventoryUI.Open();
             _inputState = InputState.InventoryOpen;
             if (ZoneRenderer != null) ZoneRenderer.Paused = true;
-            if (CameraFollow != null) CameraFollow.SetUIView(80, 45);
+            if (CameraFollow != null) CameraFollow.SetUIView(FullscreenUiGridWidth, FullscreenUiGridHeight);
         }
 
         private void HandleInventoryInput()
@@ -1479,7 +1479,7 @@ namespace CavesOfOoo.Rendering
             FactionUI.Open();
             _inputState = InputState.FactionOpen;
             if (ZoneRenderer != null) ZoneRenderer.Paused = true;
-            if (CameraFollow != null) CameraFollow.SetUIView(80, 45);
+            if (CameraFollow != null) CameraFollow.SetUIView(FullscreenUiGridWidth, FullscreenUiGridHeight);
         }
 
         private void HandleFactionInput()
@@ -1644,7 +1644,7 @@ namespace CavesOfOoo.Rendering
         private void OpenDialogue()
         {
             if (DialogueUI == null) return;
-            if (ZoneRenderer != null) ZoneRenderer.Paused = true;
+            EnterCenteredPopupOverlayView();
             DialogueUI.PlayerEntity = PlayerEntity;
             DialogueUI.CurrentZone = CurrentZone;
             DialogueUI.Open();
@@ -1678,14 +1678,15 @@ namespace CavesOfOoo.Rendering
                     // Already hostile — attack immediately, no confirmation
                     ExecuteAttackOnNPC(attackTarget);
                     _inputState = InputState.Normal;
-                    if (ZoneRenderer != null) { ZoneRenderer.Paused = false; ZoneRenderer.MarkDirty(); }
+                    if (TryOpenAnnouncement())
+                        return;
+
+                    ExitCenteredPopupOverlayViewToGameplay();
                     return;
                 }
 
                 // Friendly NPC — show confirmation popup
-                _pendingAttackTarget = attackTarget;
-                _inputState = InputState.AwaitingAttackConfirm;
-                RenderAttackConfirmation(attackTarget);
+                OpenAttackConfirmation(attackTarget);
                 return;
             }
 
@@ -1703,11 +1704,7 @@ namespace CavesOfOoo.Rendering
                 return;
 
             _inputState = InputState.Normal;
-            if (ZoneRenderer != null)
-            {
-                ZoneRenderer.Paused = false;
-                ZoneRenderer.MarkDirty();
-            }
+            ExitCenteredPopupOverlayViewToGameplay();
         }
 
         // ===== Trade =====
@@ -1716,7 +1713,7 @@ namespace CavesOfOoo.Rendering
         {
             if (TradeUI == null) return;
             if (ZoneRenderer != null) ZoneRenderer.Paused = true;
-            if (CameraFollow != null) CameraFollow.SetUIView(80, 45);
+            if (CameraFollow != null) CameraFollow.SetUIView(FullscreenUiGridWidth, FullscreenUiGridHeight);
             TradeUI.PlayerEntity = PlayerEntity;
             TradeUI.CurrentZone = CurrentZone;
             TradeUI.Open(trader);
@@ -1754,20 +1751,11 @@ namespace CavesOfOoo.Rendering
         {
             if (Input.GetKeyDown(KeyCode.Y))
             {
-                ClearAttackConfirmation();
-                var target = _pendingAttackTarget;
-                _pendingAttackTarget = null;
-                _inputState = InputState.Normal;
-                if (ZoneRenderer != null) { ZoneRenderer.Paused = false; ZoneRenderer.MarkDirty(); }
-                ExecuteAttackOnNPC(target);
+                ResolveAttackConfirmation(true);
             }
             else if (Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.Escape))
             {
-                ClearAttackConfirmation();
-                _pendingAttackTarget = null;
-                _inputState = InputState.Normal;
-                if (ZoneRenderer != null) { ZoneRenderer.Paused = false; ZoneRenderer.MarkDirty(); }
-                MessageLog.Add("You decide against it.");
+                ResolveAttackConfirmation(false);
             }
         }
 
@@ -1784,26 +1772,57 @@ namespace CavesOfOoo.Rendering
         }
 
         private int _confirmOriginX, _confirmTopY, _confirmW, _confirmH;
+        private static readonly Color ConfirmPopupBgColor = new Color(0f, 0f, 0f, 1f);
+
+        private void OpenAttackConfirmation(Entity target)
+        {
+            _pendingAttackTarget = target;
+            _inputState = InputState.AwaitingAttackConfirm;
+            EnterCenteredPopupOverlayView();
+            RenderAttackConfirmation(target);
+        }
+
+        private void ResolveAttackConfirmation(bool confirmed)
+        {
+            ClearAttackConfirmation();
+            var target = _pendingAttackTarget;
+            _pendingAttackTarget = null;
+
+            if (confirmed)
+                ExecuteAttackOnNPC(target);
+            else
+                MessageLog.Add("You decide against it.");
+
+            _inputState = InputState.Normal;
+            if (TryOpenAnnouncement())
+                return;
+
+            ExitCenteredPopupOverlayViewToGameplay();
+        }
 
         private void RenderAttackConfirmation(Entity target)
         {
             if (DialogueUI == null || DialogueUI.Tilemap == null) return;
             var tilemap = DialogueUI.Tilemap;
-            var cam = Camera.main;
-            if (cam == null) return;
+            var bgTilemap = DialogueUI.BgTilemap;
 
             string name = target != null ? target.GetDisplayName() : "this creature";
             string prompt = "Really attack " + name + "? (y/n)";
 
             _confirmW = prompt.Length + 4;
             _confirmH = 3;
-            _confirmOriginX = Mathf.RoundToInt(cam.transform.position.x) - _confirmW / 2;
-            _confirmTopY = Mathf.RoundToInt(cam.transform.position.y) + _confirmH / 2;
+            _confirmOriginX = CenteredPopupLayout.GetCenteredOriginX(_confirmW);
+            _confirmTopY = CenteredPopupLayout.GetCenteredTopY(_confirmH);
 
             // Clear only the popup region
             for (int dy = 0; dy < _confirmH; dy++)
                 for (int dx = 0; dx < _confirmW; dx++)
+                {
                     tilemap.SetTile(new Vector3Int(_confirmOriginX + dx, _confirmTopY - dy, 0), null);
+                    bgTilemap?.SetTile(new Vector3Int(_confirmOriginX + dx, _confirmTopY - dy, 0), null);
+                }
+
+            DrawConfirmBackground(bgTilemap);
 
             // Border
             DrawConfirmChar(0, 0, '+', QudColorParser.Gray);
@@ -1830,9 +1849,32 @@ namespace CavesOfOoo.Rendering
         {
             if (DialogueUI == null || DialogueUI.Tilemap == null) return;
             var tilemap = DialogueUI.Tilemap;
+            var bgTilemap = DialogueUI.BgTilemap;
             for (int dy = 0; dy < _confirmH; dy++)
                 for (int dx = 0; dx < _confirmW; dx++)
+                {
                     tilemap.SetTile(new Vector3Int(_confirmOriginX + dx, _confirmTopY - dy, 0), null);
+                    bgTilemap?.SetTile(new Vector3Int(_confirmOriginX + dx, _confirmTopY - dy, 0), null);
+                }
+        }
+
+        private void DrawConfirmBackground(UnityEngine.Tilemaps.Tilemap bgTilemap)
+        {
+            if (bgTilemap == null) return;
+
+            var blockTile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+            if (blockTile == null) return;
+
+            for (int dy = 0; dy < _confirmH - 1; dy++)
+            {
+                for (int dx = 0; dx < _confirmW; dx++)
+                {
+                    var pos = new Vector3Int(_confirmOriginX + dx, _confirmTopY - dy, 0);
+                    bgTilemap.SetTile(pos, blockTile);
+                    bgTilemap.SetTileFlags(pos, UnityEngine.Tilemaps.TileFlags.None);
+                    bgTilemap.SetColor(pos, ConfirmPopupBgColor);
+                }
+            }
         }
 
         private void DrawConfirmChar(int gx, int gy, char c, Color color)
@@ -1860,9 +1902,7 @@ namespace CavesOfOoo.Rendering
             if (msg == null)
                 return false;
 
-            if (ZoneRenderer != null)
-                ZoneRenderer.Paused = true;
-
+            EnterCenteredPopupOverlayView();
             AnnouncementUI.Open(msg);
             _inputState = InputState.AnnouncementOpen;
             return true;
@@ -1889,11 +1929,19 @@ namespace CavesOfOoo.Rendering
                 return;
 
             _inputState = InputState.Normal;
-            if (ZoneRenderer != null)
-            {
-                ZoneRenderer.Paused = false;
-                ZoneRenderer.MarkDirty();
-            }
+            ExitCenteredPopupOverlayViewToGameplay();
+        }
+
+        private void EnterCenteredPopupOverlayView()
+        {
+            if (CameraFollow != null)
+                CameraFollow.SetCenteredPopupOverlayView();
+        }
+
+        private void ExitCenteredPopupOverlayViewToGameplay()
+        {
+            if (CameraFollow != null)
+                CameraFollow.RestoreGameView();
         }
     }
 }

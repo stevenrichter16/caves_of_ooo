@@ -3301,6 +3301,7 @@ namespace CavesOfOoo.Tests
         {
             var actor = CreateCreatureWithInventory();
             actor.Statistics["Hitpoints"].BaseValue = 22;
+            actor.Statistics["Experience"] = new Stat { Name = "Experience", BaseValue = 37, Min = 0, Max = 999999 };
             actor.Statistics["Strength"].BaseValue = 20;
             actor.Statistics["Agility"].BaseValue = 18;
 
@@ -3315,6 +3316,11 @@ namespace CavesOfOoo.Tests
             Assert.IsNotNull(strength);
             Assert.AreEqual("STR", strength.Label);
             Assert.AreEqual("20 (+2)", strength.Value);
+
+            var experience = state.PlayerStats.Find(s => s.Name == "Experience");
+            Assert.IsNotNull(experience);
+            Assert.AreEqual("XP", experience.Label);
+            Assert.AreEqual("37", experience.Value);
 
             var av = state.PlayerStats.Find(s => s.Name == "AV");
             Assert.IsNotNull(av);

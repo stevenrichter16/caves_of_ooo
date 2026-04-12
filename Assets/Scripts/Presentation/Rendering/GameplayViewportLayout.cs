@@ -149,10 +149,12 @@ namespace CavesOfOoo.Rendering
         public const int DefaultLayer = 0;
         public const int WorldLayer = 8;
         public const int SidebarLayer = 9;
+        public const int PopupOverlayLayer = 10;
 
         public static int DefaultMask => 1 << DefaultLayer;
         public static int WorldMask => 1 << WorldLayer;
         public static int SidebarMask => 1 << SidebarLayer;
+        public static int PopupOverlayMask => 1 << PopupOverlayLayer;
         public static int GameplayCameraMask => WorldMask | DefaultMask;
 
         public static void SetLayerRecursive(GameObject gameObject, int layer)

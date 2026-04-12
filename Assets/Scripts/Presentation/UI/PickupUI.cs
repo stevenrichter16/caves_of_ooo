@@ -17,11 +17,14 @@ namespace CavesOfOoo.Rendering
     public class PickupUI : MonoBehaviour
     {
         public Tilemap Tilemap;
+        public Tilemap BgTilemap;
+        public Camera PopupCamera;
         public Entity PlayerEntity;
         public Zone CurrentZone;
 
         private const int POPUP_W = 46;
         private const int POPUP_MAX_VISIBLE = 20;
+        private static readonly Color PopupBgColor = new Color(0f, 0f, 0f, 1f);
 
         private bool _isOpen;
         private List<Entity> _items = new List<Entity>();
@@ -30,12 +33,17 @@ namespace CavesOfOoo.Rendering
         private bool _pickedUpAny;
         private string _statusMessage;
 
-        // Popup anchor in world tile coordinates.
+        // Popup anchor in centered popup-grid coordinates.
         // All drawing uses popup-local grid coords (0,0 = top-left, Y down)
-        // which are converted to world coords via these anchors.
-        private int _worldOriginX;   // world X of popup grid column 0
-        private int _worldTopY;      // world Y of popup grid row 0
+        // which are converted to overlay grid coords via these anchors.
+        private int _worldOriginX;
+        private int _worldTopY;
         private int _popupH;
+        private bool _bgDrawn;
+        private int _bgDrawnW;
+        private int _bgDrawnH;
+        private int _bgDrawnOriginX;
+        private int _bgDrawnTopY;
 
         public bool IsOpen => _isOpen;
         public bool PickedUpAny => _pickedUpAny;
@@ -55,6 +63,7 @@ namespace CavesOfOoo.Rendering
         public void Close()
         {
             ClearRegion(0, 0, POPUP_W, _popupH);
+            ClearBgRegion();
             _isOpen = false;
             _items.Clear();
         }
@@ -228,37 +237,30 @@ namespace CavesOfOoo.Rendering
         // ===== Rendering =====
 
         /// <summary>
-        /// Compute popup world-space anchor from camera position.
-        /// The popup is centered on the camera's visible area.
+        /// Compute popup anchor from the fixed centered popup grid.
         /// </summary>
         private void ComputePopupPosition()
         {
-            var cam = Camera.main;
-            if (cam == null) return;
-
             int totalRows = _items.Count;
             int visibleCount = Mathf.Min(totalRows > 0 ? totalRows : 1, POPUP_MAX_VISIBLE);
             _popupH = visibleCount + 6; // top border + title + separator + content + bottom border + action bar + status
-
-            float camX = cam.transform.position.x;
-            float camY = cam.transform.position.y;
-
-            _worldOriginX = Mathf.RoundToInt(camX) - POPUP_W / 2;
-            _worldTopY = Mathf.RoundToInt(camY) + _popupH / 2;
+            _worldOriginX = CenteredPopupLayout.GetCenteredOriginX(POPUP_W);
+            _worldTopY = CenteredPopupLayout.GetCenteredTopY(_popupH);
         }
 
         private void Render()
         {
             if (Tilemap == null) return;
 
+            ClearBgRegion();
             ComputePopupPosition();
 
             int totalRows = _items.Count;
             int visibleCount = Mathf.Min(totalRows > 0 ? totalRows : 1, POPUP_MAX_VISIBLE);
             int borderH = visibleCount + 4; // border rows (not including action bar)
 
-            // Clear popup area to dark background (null tiles show camera bg color)
             ClearRegion(0, 0, POPUP_W, _popupH);
+            DrawBgFill(0, 0, POPUP_W, borderH);
 
             // Border
             DrawPopupBorder(0, 0, POPUP_W, borderH, visibleCount);
@@ -345,16 +347,11 @@ namespace CavesOfOoo.Rendering
 
         private int GetRowAtMouse()
         {
-            var cam = Camera.main;
-            if (cam == null) return -1;
+            if (!CenteredPopupLayout.ScreenToGrid(PopupCamera, Tilemap, Input.mousePosition, out int gridX, out int gridY))
+                return -1;
 
-            Vector3 world = cam.ScreenToWorldPoint(Input.mousePosition);
-            int worldX = Mathf.FloorToInt(world.x);
-            int worldY = Mathf.FloorToInt(world.y);
-
-            // Convert world tile to popup grid coords
-            int gx = worldX - _worldOriginX;
-            int gy = _worldTopY - worldY;
+            int gx = gridX - _worldOriginX;
+            int gy = _worldTopY - gridY;
 
             int totalRows = _items.Count;
             int visibleCount = Mathf.Min(totalRows, POPUP_MAX_VISIBLE);
@@ -378,7 +375,6 @@ namespace CavesOfOoo.Rendering
 
         /// <summary>
         /// Clear a region in popup grid space by setting tiles to null.
-        /// The camera's dark background color shows through cleared tiles.
         /// </summary>
         private void ClearRegion(int gx, int gy, int width, int height)
         {
@@ -391,6 +387,49 @@ namespace CavesOfOoo.Rendering
                     Tilemap.SetTile(new Vector3Int(wx, wy, 0), null);
                 }
             }
+        }
+
+        private void DrawBgFill(int gx, int gy, int width, int height)
+        {
+            if (BgTilemap == null) return;
+            var blockTile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+            if (blockTile == null) return;
+
+            for (int dy = 0; dy < height; dy++)
+            {
+                for (int dx = 0; dx < width; dx++)
+                {
+                    int wx = _worldOriginX + gx + dx;
+                    int wy = _worldTopY - (gy + dy);
+                    var pos = new Vector3Int(wx, wy, 0);
+                    BgTilemap.SetTile(pos, blockTile);
+                    BgTilemap.SetTileFlags(pos, TileFlags.None);
+                    BgTilemap.SetColor(pos, PopupBgColor);
+                }
+            }
+
+            _bgDrawn = true;
+            _bgDrawnW = width;
+            _bgDrawnH = height;
+            _bgDrawnOriginX = _worldOriginX + gx;
+            _bgDrawnTopY = _worldTopY - gy;
+        }
+
+        private void ClearBgRegion()
+        {
+            if (!_bgDrawn || BgTilemap == null) return;
+
+            for (int dy = 0; dy < _bgDrawnH; dy++)
+            {
+                for (int dx = 0; dx < _bgDrawnW; dx++)
+                {
+                    int wx = _bgDrawnOriginX + dx;
+                    int wy = _bgDrawnTopY - dy;
+                    BgTilemap.SetTile(new Vector3Int(wx, wy, 0), null);
+                }
+            }
+
+            _bgDrawn = false;
         }
 
         private void DrawPopupBorder(int x, int y, int w, int h, int contentRows)

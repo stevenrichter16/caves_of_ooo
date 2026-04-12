@@ -7,15 +7,18 @@ namespace CavesOfOoo.Rendering
 {
     /// <summary>
     /// Renders a centered modal popup for important game announcements.
-    /// Follows the same world-space tilemap popup pattern as DialogueUI.
+    /// Uses the centered popup overlay grid inside the gameplay viewport.
     /// Player must press Enter/Space/Escape or click to dismiss.
     /// </summary>
     public class AnnouncementUI : MonoBehaviour
     {
         public Tilemap Tilemap;
+        public Tilemap BgTilemap;
+        public Camera PopupCamera;
 
         private const int POPUP_W = 56;
         private const int MAX_TEXT_WIDTH = POPUP_W - 4; // 2 chars padding each side
+        private static readonly Color PopupBgColor = new Color(0f, 0f, 0f, 1f);
 
         private bool _isOpen;
         private string _message;
@@ -24,6 +27,11 @@ namespace CavesOfOoo.Rendering
         private int _worldOriginX;
         private int _worldTopY;
         private int _popupH;
+        private bool _bgDrawn;
+        private int _bgDrawnW;
+        private int _bgDrawnH;
+        private int _bgDrawnOriginX;
+        private int _bgDrawnTopY;
 
         public bool IsOpen => _isOpen;
 
@@ -41,6 +49,7 @@ namespace CavesOfOoo.Rendering
         {
             if (!_isOpen) return;
             ClearRegion(0, 0, POPUP_W, _popupH);
+            ClearBgRegion();
             _isOpen = false;
         }
 
@@ -65,30 +74,25 @@ namespace CavesOfOoo.Rendering
 
         private void ComputePopupPosition()
         {
-            var cam = Camera.main;
-            if (cam == null) return;
-
             int textLines = _wrappedLines.Count;
 
             // Layout: top border + blank + text lines + blank + action bar + bottom border
             _popupH = 2 + textLines + 2 + 1;
-
-            float camX = cam.transform.position.x;
-            float camY = cam.transform.position.y;
-
-            _worldOriginX = Mathf.RoundToInt(camX) - POPUP_W / 2;
-            _worldTopY = Mathf.RoundToInt(camY) + _popupH / 2;
+            _worldOriginX = CenteredPopupLayout.GetCenteredOriginX(POPUP_W);
+            _worldTopY = CenteredPopupLayout.GetCenteredTopY(_popupH);
         }
 
         private void Render()
         {
             if (Tilemap == null) return;
 
+            ClearBgRegion();
             ComputePopupPosition();
 
             int textLines = _wrappedLines.Count;
 
             ClearRegion(0, 0, POPUP_W, _popupH);
+            DrawBgFill(0, 0, POPUP_W, _popupH - 1);
 
             // Top border
             DrawChar(0, 0, CP437TilesetGenerator.BoxTopLeft, QudColorParser.Gray);
@@ -166,6 +170,49 @@ namespace CavesOfOoo.Rendering
         }
 
         // ===== Drawing Helpers (world-space, same as DialogueUI) =====
+
+        private void DrawBgFill(int gx, int gy, int width, int height)
+        {
+            if (BgTilemap == null) return;
+            var blockTile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+            if (blockTile == null) return;
+
+            for (int dy = 0; dy < height; dy++)
+            {
+                for (int dx = 0; dx < width; dx++)
+                {
+                    int wx = _worldOriginX + gx + dx;
+                    int wy = _worldTopY - (gy + dy);
+                    var pos = new Vector3Int(wx, wy, 0);
+                    BgTilemap.SetTile(pos, blockTile);
+                    BgTilemap.SetTileFlags(pos, TileFlags.None);
+                    BgTilemap.SetColor(pos, PopupBgColor);
+                }
+            }
+
+            _bgDrawn = true;
+            _bgDrawnW = width;
+            _bgDrawnH = height;
+            _bgDrawnOriginX = _worldOriginX + gx;
+            _bgDrawnTopY = _worldTopY - gy;
+        }
+
+        private void ClearBgRegion()
+        {
+            if (!_bgDrawn || BgTilemap == null) return;
+
+            for (int dy = 0; dy < _bgDrawnH; dy++)
+            {
+                for (int dx = 0; dx < _bgDrawnW; dx++)
+                {
+                    int wx = _bgDrawnOriginX + dx;
+                    int wy = _bgDrawnTopY - dy;
+                    BgTilemap.SetTile(new Vector3Int(wx, wy, 0), null);
+                }
+            }
+
+            _bgDrawn = false;
+        }
 
         private void ClearRegion(int gx, int gy, int width, int height)
         {

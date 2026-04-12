@@ -14,9 +14,21 @@ namespace CavesOfOoo.Core
     {
         public string Name => "VillagePopulationBuilder";
         public int Priority => 4000;
+        private const string StartingVillageZoneId = "Overworld.10.10.0";
 
         private PointOfInterest _poi;
         private SettlementManager _settlementManager;
+        private static readonly (int dx, int dy)[] StartingChestOffsets =
+        {
+            (3, -1),
+            (3, 0),
+            (3, 1),
+            (2, -1),
+            (2, 1),
+            (4, -1),
+            (4, 0),
+            (4, 1)
+        };
 
         public VillagePopulationBuilder(PointOfInterest poi, SettlementManager settlementManager = null)
         {
@@ -33,7 +45,13 @@ namespace CavesOfOoo.Core
             var settlement = _settlementManager?.GetOrCreateSettlement(settlementId, _poi);
             RepairableSiteState mainWell = settlement?.GetSite(SettlementSiteDefinitions.MainWellSiteId);
 
-            // Place decor first, but keep the well deterministic.
+            PlaceMainWell(zone, factory, openCells, settlementId, mainWell);
+
+            Entity grimoireChest = null;
+            if (zone.ZoneID == StartingVillageZoneId)
+                grimoireChest = PlaceGrimoireChest(zone, factory, rng, openCells);
+
+            // Place decor after the well and starting chest so the spawn hub stays stable.
             var decorTable = PopulationTable.VillageDecor();
             var decorBlueprints = decorTable.Roll(rng);
             foreach (var bp in decorBlueprints)
@@ -45,16 +63,15 @@ namespace CavesOfOoo.Core
                     SetupCampfire(zone, factory, decor, openCells);
             }
 
-            PlaceMainWell(zone, factory, openCells, settlementId, mainWell);
-
             RepairableSiteState ovenSite = settlement?.GetSite(SettlementSiteDefinitions.VillageOvenSiteId);
             PlaceOven(zone, factory, rng, openCells, settlementId, ovenSite);
 
             RepairableSiteState lanternSite = settlement?.GetSite(SettlementSiteDefinitions.VillageLanternSiteId);
             PlaceLantern(zone, factory, rng, openCells, settlementId, lanternSite);
 
-            // Place a chest with grimoires
-            Entity grimoireChest = PlaceGrimoireChest(zone, factory, rng, openCells);
+            // Place a chest with grimoires.
+            if (grimoireChest == null)
+                grimoireChest = PlaceGrimoireChest(zone, factory, rng, openCells);
 
             // Place deterministic wooden barrel layouts to demonstrate fire propagation
             PlaceBarrelLayouts(zone, factory, rng, openCells);
@@ -143,7 +160,9 @@ namespace CavesOfOoo.Core
         private Entity PlaceGrimoireChest(Zone zone, EntityFactory factory, System.Random rng,
             List<(int x, int y)> openCells)
         {
-            Entity chest = PlaceEntity(zone, factory, rng, openCells, "Chest");
+            Entity chest = zone.ZoneID == StartingVillageZoneId
+                ? PlaceEntityNearVillageSquare(zone, factory, openCells, "Chest", StartingChestOffsets)
+                : PlaceEntity(zone, factory, rng, openCells, "Chest");
             if (chest == null) return null;
 
             var container = chest.GetPart<ContainerPart>();
@@ -222,6 +241,75 @@ namespace CavesOfOoo.Core
                 container.AddItem(wardGleamSpell);
 
             return chest;
+        }
+
+        private Entity PlaceEntityNearVillageSquare(
+            Zone zone,
+            EntityFactory factory,
+            List<(int x, int y)> openCells,
+            string blueprint,
+            IReadOnlyList<(int dx, int dy)> preferredOffsets)
+        {
+            var (centerX, centerY) = VillageBuilder.GetVillageSquareCenter();
+            if (preferredOffsets != null)
+            {
+                for (int i = 0; i < preferredOffsets.Count; i++)
+                {
+                    int targetX = centerX + preferredOffsets[i].dx;
+                    int targetY = centerY + preferredOffsets[i].dy;
+                    Entity placed = TryPlaceEntityAt(zone, factory, openCells, blueprint, targetX, targetY);
+                    if (placed != null)
+                        return placed;
+                }
+            }
+
+            for (int radius = 0; radius < Math.Max(Zone.Width, Zone.Height); radius++)
+            {
+                for (int dx = -radius; dx <= radius; dx++)
+                {
+                    for (int dy = -radius; dy <= radius; dy++)
+                    {
+                        if (Math.Abs(dx) != radius && Math.Abs(dy) != radius)
+                            continue;
+
+                        int targetX = centerX + dx;
+                        int targetY = centerY + dy;
+                        Entity placed = TryPlaceEntityAt(zone, factory, openCells, blueprint, targetX, targetY);
+                        if (placed != null)
+                            return placed;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        private Entity TryPlaceEntityAt(
+            Zone zone,
+            EntityFactory factory,
+            List<(int x, int y)> openCells,
+            string blueprint,
+            int x,
+            int y)
+        {
+            if (!zone.InBounds(x, y))
+                return null;
+
+            int openIndex = openCells.IndexOf((x, y));
+            if (openIndex < 0)
+                return null;
+
+            Cell cell = zone.GetCell(x, y);
+            if (cell == null || !cell.IsPassable())
+                return null;
+
+            Entity entity = TryCreateEntity(factory, blueprint);
+            if (entity == null)
+                return null;
+
+            zone.AddEntity(entity, x, y);
+            openCells.RemoveAt(openIndex);
+            return entity;
         }
 
         // Elemental Crossroads spawn hub polish: 4 compass stones around the
