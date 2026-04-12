@@ -1,3 +1,5 @@
 # Ideas
 
 - Living-mechanical modular weapons assembled from organs and parts harvested from enemies and the environment. Example: a sword with a fungal-colony hilt that adds poison procs, a blade forged from a robot spine that grants armor penetration, and a pommel that is a still-living eye which gives the weapon limited awareness so it occasionally auto-parries.
+
+- Contagion Diplomacy — Diseases as Faction Tools. Diseases aren't just status effects to cure; they're complex, evolving systems that factions weaponize and trade. A fungal plague might grant its host communion with a mushroom-civilization in exchange for slowly converting their body. A nano-virus might upgrade your cybernetics but report your location to the machine-faction. Players can become disease vectors strategically: deliberately infecting an enemy settlement, developing immunity to a plague and using it as a biological border, or cultivating a "benevolent" disease that buffs allies. A "plague doctor" character class focuses entirely on disease manipulation — curing, creating, evolving, and weaponizing pathogens.
