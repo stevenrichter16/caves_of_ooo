@@ -12,14 +12,34 @@ namespace CavesOfOoo.Rendering
     {
         public struct LogLine
         {
-            public LogLine(string text, int ageIndex)
+            public LogLine(string text, int ageIndex, int entryNewestSerial, int rowIndexWithinEntry, int entryRowCount)
             {
                 Text = text ?? string.Empty;
                 AgeIndex = ageIndex < 0 ? 0 : ageIndex;
+                EntryNewestSerial = entryNewestSerial;
+                RowIndexWithinEntry = rowIndexWithinEntry < 0 ? 0 : rowIndexWithinEntry;
+                EntryRowCount = entryRowCount < 1 ? 1 : entryRowCount;
             }
 
             public string Text { get; }
             public int AgeIndex { get; }
+            public int EntryNewestSerial { get; }
+            public int RowIndexWithinEntry { get; }
+            public int EntryRowCount { get; }
+
+            public bool MatchesIdentity(LogLine other)
+            {
+                if (EntryNewestSerial >= 0 || other.EntryNewestSerial >= 0)
+                {
+                    return EntryNewestSerial == other.EntryNewestSerial &&
+                           RowIndexWithinEntry == other.RowIndexWithinEntry &&
+                           EntryRowCount == other.EntryRowCount;
+                }
+
+                return RowIndexWithinEntry == other.RowIndexWithinEntry &&
+                       EntryRowCount == other.EntryRowCount &&
+                       string.Equals(Text, other.Text, StringComparison.Ordinal);
+            }
         }
 
         public static List<string> FormatVitals(SidebarSnapshot snapshot, int width, int maxLines = 7)
@@ -79,15 +99,15 @@ namespace CavesOfOoo.Rendering
         public static List<LogLine> FormatLog(
             IReadOnlyList<SidebarLogEntry> entriesNewestFirst,
             int width,
-            int maxLines)
+            int maxLines = int.MaxValue)
         {
             int safeWidth = Math.Max(1, width);
-            int safeMaxLines = Math.Max(1, maxLines);
+            int safeMaxLines = maxLines == int.MaxValue ? int.MaxValue : Math.Max(1, maxLines);
             var lines = new List<LogLine>();
 
             if (entriesNewestFirst == null || entriesNewestFirst.Count == 0)
             {
-                lines.Add(new LogLine("No recent messages.", 0));
+                lines.Add(new LogLine("No recent messages.", 0, -1, 0, 1));
                 return lines;
             }
 
@@ -99,12 +119,19 @@ namespace CavesOfOoo.Rendering
                     : entry.Text;
 
                 int ageIndex = entryIndex;
-                List<string> wrapped = WrapWithPrefixes(body, safeWidth, "> ", "  ");
+                List<string> wrapped = WrapWithPrefixes(body, safeWidth, ":: ", "   ");
                 for (int i = 0; i < wrapped.Count; i++)
-                    lines.Add(new LogLine(wrapped[i], ageIndex));
+                {
+                    lines.Add(new LogLine(
+                        wrapped[i],
+                        ageIndex,
+                        entry.NewestSerial,
+                        i,
+                        wrapped.Count));
+                }
             }
 
-            if (lines.Count <= safeMaxLines)
+            if (safeMaxLines == int.MaxValue || lines.Count <= safeMaxLines)
                 return lines;
 
             return lines.GetRange(lines.Count - safeMaxLines, safeMaxLines);

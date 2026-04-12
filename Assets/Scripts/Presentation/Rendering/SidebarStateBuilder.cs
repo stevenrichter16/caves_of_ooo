@@ -9,11 +9,13 @@ namespace CavesOfOoo.Rendering
     /// </summary>
     public static class SidebarStateBuilder
     {
+        public const int SidebarLogMessageLimit = 30;
+
         public static SidebarSnapshot Build(
             Entity player,
             Zone zone,
             LookSnapshot currentLookSnapshot,
-            int maxRecentMessages = 96)
+            int maxRecentMessages = SidebarLogMessageLimit)
         {
             var inventoryState = InventoryScreenData.Build(player);
 
@@ -135,6 +137,7 @@ namespace CavesOfOoo.Rendering
             {
                 string currentText = raw[i].Text;
                 int currentTick = raw[i].Tick;
+                int currentSerial = raw[i].Serial;
                 int count = 1;
 
                 while (i - 1 >= 0 && string.Equals(raw[i - 1].Text, currentText, StringComparison.Ordinal))
@@ -143,7 +146,7 @@ namespace CavesOfOoo.Rendering
                     i--;
                 }
 
-                entries.Add(new SidebarLogEntry(currentText, currentTick, count));
+                entries.Add(new SidebarLogEntry(currentText, currentTick, count, currentSerial));
             }
 
             return entries;

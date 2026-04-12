@@ -59,6 +59,7 @@ namespace CavesOfOoo.Rendering
         private Tilemap _sidebarBgTilemap;
         private Tilemap _sidebarTilemap;
         private Transform _sidebarGridTransform;
+        private Material _sidebarUiMaterial;
         private AsciiFxRenderer _asciiFxRenderer;
         private CampfireEmberRenderer _campfireEmberRenderer;
         private WorldCursorRenderer _worldCursorRenderer;
@@ -72,6 +73,7 @@ namespace CavesOfOoo.Rendering
         private float _dustMoteSpawnTimer;
         private const float DustMoteSpawnInterval = 3.5f;
         private Camera _mainCamera;
+        private Camera _sidebarCamera;
         private LightMap _lightMap;
         private readonly List<Vector2Int> _waterTilePositions = new List<Vector2Int>();
         private readonly HashSet<string> _loggedRenderIssues = new HashSet<string>();
@@ -94,16 +96,19 @@ namespace CavesOfOoo.Rendering
         private Tilemap _popupFgTilemap;
         public Tilemap SidebarBgTilemap => _sidebarBgTilemap;
         public Tilemap SidebarTilemap => _sidebarTilemap;
+        public Camera SidebarCamera => _sidebarCamera;
         /// <summary>Popup background tilemap (sortingOrder 6). For DialogueUI/TradeUI bg fills.</summary>
         public Tilemap PopupBgTilemap => _popupBgTilemap;
         /// <summary>Popup foreground tilemap (sortingOrder 7). For DialogueUI/TradeUI glyphs.</summary>
         public Tilemap PopupFgTilemap => _popupFgTilemap;
+        public int SidebarLogScrollOffsetRows => _sidebarRenderer?.LogScrollOffsetRows ?? 0;
 
         private void Awake()
         {
             _lastFlashStamp = MessageLog.FlashStamp;
             _mainCamera = Camera.main;
             _tilemap = GetComponent<Tilemap>();
+            GameplayRenderLayers.SetLayerRecursive(gameObject, GameplayRenderLayers.WorldLayer);
 
             Grid grid = GetComponentInParent<Grid>();
             Transform gridParent = grid != null ? grid.transform : (transform.parent != null ? transform.parent : transform);
@@ -112,12 +117,14 @@ namespace CavesOfOoo.Rendering
             // Same grid, same cell size — just a lower sorting order.
             var bgTilemapObj = new GameObject("BgTilemap");
             bgTilemapObj.transform.SetParent(gridParent, false);
+            GameplayRenderLayers.SetLayerRecursive(bgTilemapObj, GameplayRenderLayers.WorldLayer);
             _bgTilemap = bgTilemapObj.AddComponent<Tilemap>();
             var bgRenderer = bgTilemapObj.AddComponent<TilemapRenderer>();
             bgRenderer.sortingOrder = -1; // below world tilemap
 
             var fxTilemapObj = new GameObject("FxTilemap");
             fxTilemapObj.transform.SetParent(gridParent, false);
+            GameplayRenderLayers.SetLayerRecursive(fxTilemapObj, GameplayRenderLayers.WorldLayer);
             _fxTilemap = fxTilemapObj.AddComponent<Tilemap>();
             var fxRenderer = fxTilemapObj.AddComponent<TilemapRenderer>();
             fxRenderer.sortingOrder = 1; // above world, below sidebar
@@ -125,42 +132,61 @@ namespace CavesOfOoo.Rendering
 
             var emberObj = new GameObject("CampfireEmbers");
             emberObj.transform.SetParent(gridParent, false);
+            GameplayRenderLayers.SetLayerRecursive(emberObj, GameplayRenderLayers.WorldLayer);
             _campfireEmberRenderer = emberObj.AddComponent<CampfireEmberRenderer>();
 
             // Dedicated narrow-text grid for the persistent sidebar.
             var sidebarGridObj = new GameObject("SidebarGrid");
             _sidebarGridTransform = sidebarGridObj.transform;
+            GameplayRenderLayers.SetLayerRecursive(sidebarGridObj, GameplayRenderLayers.SidebarLayer);
             var sidebarGrid = sidebarGridObj.AddComponent<Grid>();
             sidebarGrid.cellSize = new Vector3(0.5f, 1f, 0f);
 
             var sidebarBgObj = new GameObject("SidebarBgTilemap");
             sidebarBgObj.transform.SetParent(sidebarGridObj.transform);
+            GameplayRenderLayers.SetLayerRecursive(sidebarBgObj, GameplayRenderLayers.SidebarLayer);
             _sidebarBgTilemap = sidebarBgObj.AddComponent<Tilemap>();
             var sidebarBgRenderer = sidebarBgObj.AddComponent<TilemapRenderer>();
-            sidebarBgRenderer.sortingOrder = 2;
+            ConfigureSidebarTilemapRenderer(sidebarBgRenderer, 2);
 
             var sidebarTmObj = new GameObject("SidebarTilemap");
             sidebarTmObj.transform.SetParent(sidebarGridObj.transform);
+            GameplayRenderLayers.SetLayerRecursive(sidebarTmObj, GameplayRenderLayers.SidebarLayer);
             _sidebarTilemap = sidebarTmObj.AddComponent<Tilemap>();
             var sidebarRenderer = sidebarTmObj.AddComponent<TilemapRenderer>();
-            sidebarRenderer.sortingOrder = 3;
+            ConfigureSidebarTilemapRenderer(sidebarRenderer, 3);
 
-            _worldCursorRenderer = new WorldCursorRenderer(gridParent, _tilemap);
+            _worldCursorRenderer = new WorldCursorRenderer(gridParent, _tilemap, GameplayRenderLayers.WorldLayer);
             _sidebarRenderer = new GameplaySidebarRenderer(_sidebarTilemap, _sidebarBgTilemap, _sidebarGridTransform, MessageReferenceZoom);
 
             // Dedicated tilemaps for dialogue/popup UI — must sort ABOVE the
             // persistent sidebar (order 3) so popups aren't hidden behind the UI.
             var popupBgObj = new GameObject("PopupBgTilemap");
             popupBgObj.transform.SetParent(gridParent, false);
+            GameplayRenderLayers.SetLayerRecursive(popupBgObj, GameplayRenderLayers.WorldLayer);
             _popupBgTilemap = popupBgObj.AddComponent<Tilemap>();
             var popupBgRenderer = popupBgObj.AddComponent<TilemapRenderer>();
             popupBgRenderer.sortingOrder = 6;
 
             var popupFgObj = new GameObject("PopupFgTilemap");
             popupFgObj.transform.SetParent(gridParent, false);
+            GameplayRenderLayers.SetLayerRecursive(popupFgObj, GameplayRenderLayers.WorldLayer);
             _popupFgTilemap = popupFgObj.AddComponent<Tilemap>();
             var popupFgRenderer = popupFgObj.AddComponent<TilemapRenderer>();
             popupFgRenderer.sortingOrder = 7;
+        }
+
+        private void OnDestroy()
+        {
+            if (_sidebarUiMaterial == null)
+                return;
+
+            if (Application.isPlaying)
+                Destroy(_sidebarUiMaterial);
+            else
+                DestroyImmediate(_sidebarUiMaterial);
+
+            _sidebarUiMaterial = null;
         }
 
         /// <summary>
@@ -171,6 +197,7 @@ namespace CavesOfOoo.Rendering
             CurrentZone = zone;
             _asciiFxRenderer?.SetZone(zone);
             _worldCursorRenderer?.SetZone(zone);
+            _sidebarRenderer?.ResetLogScroll();
             _sidebarRenderer?.Clear();
             _sidebarRenderer?.Invalidate();
             _currentLookSnapshot = null;
@@ -210,6 +237,9 @@ namespace CavesOfOoo.Rendering
 
         private void LateUpdate()
         {
+            if (_mainCamera == null)
+                _mainCamera = Camera.main;
+
             if (MessageLog.FlashStamp != _lastFlashStamp)
             {
                 _lastFlashStamp = MessageLog.FlashStamp;
@@ -473,13 +503,55 @@ namespace CavesOfOoo.Rendering
 
         private void RenderSidebar(Camera camera)
         {
+            Camera sidebarCamera = _sidebarCamera != null ? _sidebarCamera : camera;
+            if (sidebarCamera == null || !sidebarCamera.enabled)
+            {
+                _sidebarRenderer?.Clear();
+                return;
+            }
+
             bool flashActive = Time.time < _flashUntil;
             float flashT = flashActive
                 ? Mathf.Clamp01((_flashUntil - Time.time) / FlashDuration)
                 : 0f;
 
             SidebarSnapshot snapshot = SidebarStateBuilder.Build(PlayerEntity, CurrentZone, _currentLookSnapshot);
-            _sidebarRenderer?.Render(snapshot, camera, SidebarWidthChars, flashActive, flashT);
+            _sidebarRenderer?.Render(snapshot, sidebarCamera, SidebarWidthChars, flashActive, flashT);
+        }
+
+        private void ConfigureSidebarTilemapRenderer(TilemapRenderer renderer, int sortingOrder)
+        {
+            if (renderer == null)
+                return;
+
+            renderer.sortingOrder = sortingOrder;
+
+            Material uiMaterial = GetSidebarUiMaterial();
+            if (uiMaterial != null)
+                renderer.sharedMaterial = uiMaterial;
+        }
+
+        private Material GetSidebarUiMaterial()
+        {
+            if (_sidebarUiMaterial != null)
+                return _sidebarUiMaterial;
+
+            Shader shader = Shader.Find("Universal Render Pipeline/2D/Sprite-Unlit-Default");
+            if (shader == null)
+                shader = Shader.Find("Sprites/Default");
+
+            if (shader == null)
+            {
+                Debug.LogWarning("[Sidebar] Failed to find an unlit sprite shader for sidebar tilemaps.");
+                return null;
+            }
+
+            _sidebarUiMaterial = new Material(shader)
+            {
+                name = "SidebarUI-Unlit"
+            };
+            _sidebarUiMaterial.hideFlags = HideFlags.HideAndDontSave;
+            return _sidebarUiMaterial;
         }
 
         /// <summary>
@@ -524,6 +596,22 @@ namespace CavesOfOoo.Rendering
             _sidebarRenderer?.Invalidate();
         }
 
+        public void SetSidebarCamera(Camera sidebarCamera)
+        {
+            _sidebarCamera = sidebarCamera;
+            _sidebarRenderer?.Invalidate();
+        }
+
+        public bool ScrollSidebarLogOlder(int rows = 1)
+        {
+            return _sidebarRenderer != null && _sidebarRenderer.ScrollOlder(rows);
+        }
+
+        public bool ScrollSidebarLogNewer(int rows = 1)
+        {
+            return _sidebarRenderer != null && _sidebarRenderer.ScrollNewer(rows);
+        }
+
         public bool ScreenToZoneCell(Vector2 screenPosition, Camera camera, out int x, out int y)
         {
             x = -1;
@@ -532,11 +620,10 @@ namespace CavesOfOoo.Rendering
             if (CurrentZone == null || _tilemap == null || camera == null)
                 return false;
 
-            Vector3 world = camera.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, -camera.transform.position.z));
-            GameplayViewportMetrics metrics = GameplayViewportLayout.Measure(camera, MessageReferenceZoom, SidebarWidthChars);
-            if (world.x >= metrics.GameplayRightWorld)
+            if (!camera.pixelRect.Contains(screenPosition))
                 return false;
 
+            Vector3 world = camera.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, -camera.transform.position.z));
             Vector3Int tileCell = _tilemap.WorldToCell(world);
 
             int zoneX = tileCell.x;
@@ -559,11 +646,12 @@ namespace CavesOfOoo.Rendering
             if (CurrentZone == null || _tilemap == null || camera == null)
                 return false;
 
-            GameplayViewportMetrics metrics = GameplayViewportLayout.Measure(camera, MessageReferenceZoom, SidebarWidthChars);
-            float left = metrics.WorldLeft;
-            float right = metrics.GameplayRightWorld;
-            float bottom = metrics.WorldBottom;
-            float top = metrics.WorldTop;
+            Vector3 worldBottomLeft = camera.ViewportToWorldPoint(new Vector3(0f, 0f, -camera.transform.position.z));
+            Vector3 worldTopRight = camera.ViewportToWorldPoint(new Vector3(1f, 1f, -camera.transform.position.z));
+            float left = worldBottomLeft.x;
+            float right = worldTopRight.x;
+            float bottom = worldBottomLeft.y;
+            float top = worldTopRight.y;
 
             bool foundX = false;
             int visibleMinX = Zone.Width - 1;

@@ -156,10 +156,14 @@ namespace CavesOfOoo
                 var cameraFollow = cam.GetComponent<CameraFollow>();
                 if (cameraFollow == null)
                     cameraFollow = cam.gameObject.AddComponent<CameraFollow>();
+                Camera sidebarCamera = EnsureSidebarCamera(cam);
+                ConfigureCameraLayers(cam, sidebarCamera);
                 cameraFollow.Player = _player;
                 cameraFollow.CurrentZone = _zone;
+                cameraFollow.SidebarCamera = sidebarCamera;
                 if (ZoneRenderer != null)
                 {
+                    ZoneRenderer.SetSidebarCamera(sidebarCamera);
                     cameraFollow.ReservedSidebarWidthChars = ZoneRenderer.SidebarWidthChars;
                     cameraFollow.SidebarReferenceZoom = ZoneRenderer.MessageReferenceZoom;
                 }
@@ -268,6 +272,39 @@ namespace CavesOfOoo
                 _zoneManager.SettlementManager.RefreshActiveZonePresentation(_zone);
 
             Debug.Log($"[Bootstrap] DONE. Zone has {_zone.EntityCount} entities. WASD/arrows to move.");
+        }
+
+        private static Camera EnsureSidebarCamera(Camera gameplayCamera)
+        {
+            if (gameplayCamera == null)
+                return null;
+
+            Transform existing = gameplayCamera.transform.parent != null
+                ? gameplayCamera.transform.parent.Find("Sidebar Camera")
+                : null;
+            Camera sidebarCamera = existing != null ? existing.GetComponent<Camera>() : null;
+            if (sidebarCamera != null)
+                return sidebarCamera;
+
+            var cameraObject = new GameObject("Sidebar Camera");
+            cameraObject.transform.position = new Vector3(0f, 0f, gameplayCamera.transform.position.z);
+            sidebarCamera = cameraObject.AddComponent<Camera>();
+            sidebarCamera.orthographic = true;
+            sidebarCamera.depth = gameplayCamera.depth;
+            sidebarCamera.nearClipPlane = gameplayCamera.nearClipPlane;
+            sidebarCamera.farClipPlane = gameplayCamera.farClipPlane;
+            sidebarCamera.backgroundColor = Color.black;
+            sidebarCamera.clearFlags = CameraClearFlags.SolidColor;
+            return sidebarCamera;
+        }
+
+        private static void ConfigureCameraLayers(Camera gameplayCamera, Camera sidebarCamera)
+        {
+            if (gameplayCamera != null)
+                gameplayCamera.cullingMask = GameplayRenderLayers.GameplayCameraMask;
+
+            if (sidebarCamera != null)
+                sidebarCamera.cullingMask = GameplayRenderLayers.SidebarMask;
         }
 
         /// <summary>

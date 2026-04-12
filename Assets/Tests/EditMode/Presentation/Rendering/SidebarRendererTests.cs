@@ -37,19 +37,22 @@ namespace CavesOfOoo.Tests
         public void ZoneRenderer_RendersSidebarOnlyOnRightEdge()
         {
             Camera camera = CreateMainCamera(new Vector3(25f, 20f, -10f));
+            Camera sidebarCamera = CreateSidebarCamera();
             CreateZoneTilemap(out ZoneRenderer zoneRenderer);
 
             var zone = new Zone("SidebarZone");
             var player = CreatePlayer();
             zone.AddEntity(player, 10, 10);
             zoneRenderer.PlayerEntity = player;
+            zoneRenderer.SetSidebarCamera(sidebarCamera);
             zoneRenderer.SetZone(zone);
+            ConfigureSplitLayout(camera, sidebarCamera, zone, player);
 
             MessageLog.Add("A quiet turn.");
             InvokeNonPublic(zoneRenderer, "LateUpdate");
 
             Tilemap sidebar = zoneRenderer.SidebarTilemap;
-            GameplayViewportMetrics metrics = GameplayViewportLayout.Measure(camera, zoneRenderer.MessageReferenceZoom, zoneRenderer.SidebarWidthChars);
+            SidebarCameraMetrics metrics = GameplayViewportLayout.MeasureSidebarCamera(sidebarCamera, zoneRenderer.MessageReferenceZoom, zoneRenderer.SidebarWidthChars);
             bool foundAnyTile = false;
             foreach (Vector3Int pos in sidebar.cellBounds.allPositionsWithin)
             {
@@ -57,7 +60,7 @@ namespace CavesOfOoo.Tests
                     continue;
 
                 foundAnyTile = true;
-                Assert.GreaterOrEqual(pos.x, metrics.SidebarStartCharX);
+                Assert.GreaterOrEqual(pos.x, metrics.StartCharX);
             }
 
             Assert.IsTrue(foundAnyTile, "Sidebar should render visible glyphs.");
@@ -66,7 +69,8 @@ namespace CavesOfOoo.Tests
         [Test]
         public void ZoneRenderer_SidebarFocusSection_ReflectsLookSnapshot()
         {
-            CreateMainCamera(new Vector3(25f, 20f, -10f));
+            Camera camera = CreateMainCamera(new Vector3(25f, 20f, -10f));
+            Camera sidebarCamera = CreateSidebarCamera();
             CreateZoneTilemap(out ZoneRenderer zoneRenderer);
 
             var zone = new Zone("SidebarZone");
@@ -77,7 +81,9 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(player, 10, 10);
             zone.AddEntity(hostile, 11, 10);
             zoneRenderer.PlayerEntity = player;
+            zoneRenderer.SetSidebarCamera(sidebarCamera);
             zoneRenderer.SetZone(zone);
+            ConfigureSplitLayout(camera, sidebarCamera, zone, player);
             zoneRenderer.SetLookSnapshot(LookQueryService.BuildSnapshot(player, zone, 11, 10));
 
             InvokeNonPublic(zoneRenderer, "LateUpdate");
@@ -88,14 +94,17 @@ namespace CavesOfOoo.Tests
         [Test]
         public void ZoneRenderer_SidebarFlashTintsBackground_OnAnnouncement()
         {
-            CreateMainCamera(new Vector3(25f, 20f, -10f));
+            Camera camera = CreateMainCamera(new Vector3(25f, 20f, -10f));
+            Camera sidebarCamera = CreateSidebarCamera();
             CreateZoneTilemap(out ZoneRenderer zoneRenderer);
 
             var zone = new Zone("SidebarZone");
             var player = CreatePlayer();
             zone.AddEntity(player, 10, 10);
             zoneRenderer.PlayerEntity = player;
+            zoneRenderer.SetSidebarCamera(sidebarCamera);
             zoneRenderer.SetZone(zone);
+            ConfigureSplitLayout(camera, sidebarCamera, zone, player);
 
             MessageLog.AddAnnouncement("Signal flare");
             InvokeNonPublic(zoneRenderer, "LateUpdate");
@@ -108,19 +117,134 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void ScreenToZoneCell_ReturnsFalseInsideSidebarStrip()
+        public void ZoneRenderer_SidebarTilemaps_UseUnlitUiMaterial()
+        {
+            CreateZoneTilemap(out ZoneRenderer zoneRenderer);
+
+            var sidebarRenderer = zoneRenderer.SidebarTilemap.GetComponent<TilemapRenderer>();
+            var sidebarBgRenderer = zoneRenderer.SidebarBgTilemap.GetComponent<TilemapRenderer>();
+
+            Assert.IsNotNull(sidebarRenderer.sharedMaterial);
+            Assert.IsNotNull(sidebarBgRenderer.sharedMaterial);
+
+            string shaderName = sidebarRenderer.sharedMaterial.shader != null
+                ? sidebarRenderer.sharedMaterial.shader.name
+                : string.Empty;
+            string bgShaderName = sidebarBgRenderer.sharedMaterial.shader != null
+                ? sidebarBgRenderer.sharedMaterial.shader.name
+                : string.Empty;
+
+            Assert.That(
+                shaderName == "Universal Render Pipeline/2D/Sprite-Unlit-Default" ||
+                shaderName == "Sprites/Default");
+            Assert.That(
+                bgShaderName == "Universal Render Pipeline/2D/Sprite-Unlit-Default" ||
+                bgShaderName == "Sprites/Default");
+        }
+
+        [Test]
+        public void ZoneRenderer_SidebarLog_AnchorsMessagesToBottomRows()
         {
             Camera camera = CreateMainCamera(new Vector3(25f, 20f, -10f));
+            Camera sidebarCamera = CreateSidebarCamera();
             CreateZoneTilemap(out ZoneRenderer zoneRenderer);
 
             var zone = new Zone("SidebarZone");
             var player = CreatePlayer();
             zone.AddEntity(player, 10, 10);
             zoneRenderer.PlayerEntity = player;
+            zoneRenderer.SetSidebarCamera(sidebarCamera);
             zoneRenderer.SetZone(zone);
+            ConfigureSplitLayout(camera, sidebarCamera, zone, player);
 
-            GameplayViewportMetrics metrics = GameplayViewportLayout.Measure(camera, zoneRenderer.MessageReferenceZoom, zoneRenderer.SidebarWidthChars);
-            Vector3 screen = camera.WorldToScreenPoint(new Vector3(metrics.GameplayRightWorld + 1f, camera.transform.position.y, 0f));
+            MessageLog.Add("First");
+            MessageLog.Add("Second");
+            MessageLog.Add("Third");
+            InvokeNonPublic(zoneRenderer, "LateUpdate");
+
+            Tilemap sidebar = zoneRenderer.SidebarTilemap;
+            SidebarCameraMetrics metrics = GameplayViewportLayout.MeasureSidebarCamera(sidebarCamera, zoneRenderer.MessageReferenceZoom, zoneRenderer.SidebarWidthChars);
+            int contentX = metrics.StartCharX + 2;
+            Tile expectedPrefix = CP437TilesetGenerator.GetTextTile(':');
+
+            Assert.AreSame(expectedPrefix, sidebar.GetTile(new Vector3Int(contentX, metrics.BottomTextY, 0)));
+            Assert.AreSame(expectedPrefix, sidebar.GetTile(new Vector3Int(contentX + 1, metrics.BottomTextY, 0)));
+            Assert.AreSame(expectedPrefix, sidebar.GetTile(new Vector3Int(contentX, metrics.BottomTextY + 1, 0)));
+            Assert.AreSame(expectedPrefix, sidebar.GetTile(new Vector3Int(contentX + 1, metrics.BottomTextY + 1, 0)));
+            Assert.AreSame(expectedPrefix, sidebar.GetTile(new Vector3Int(contentX, metrics.BottomTextY + 2, 0)));
+            Assert.AreSame(expectedPrefix, sidebar.GetTile(new Vector3Int(contentX + 1, metrics.BottomTextY + 2, 0)));
+            Assert.IsNull(sidebar.GetTile(new Vector3Int(contentX, metrics.BottomTextY + 3, 0)));
+        }
+
+        [Test]
+        public void ZoneRenderer_SidebarLogScroll_ShowsHints_AndStaysScrolledWhenNewMessagesArrive()
+        {
+            Camera camera = CreateMainCamera(new Vector3(25f, 20f, -10f));
+            Camera sidebarCamera = CreateSidebarCamera();
+            CreateZoneTilemap(out ZoneRenderer zoneRenderer);
+
+            var zone = new Zone("SidebarZone");
+            var player = CreatePlayer();
+            zone.AddEntity(player, 10, 10);
+            zoneRenderer.PlayerEntity = player;
+            zoneRenderer.SetSidebarCamera(sidebarCamera);
+            zoneRenderer.SetZone(zone);
+            ConfigureSplitLayout(camera, sidebarCamera, zone, player);
+
+            for (int i = 0; i < SidebarStateBuilder.SidebarLogMessageLimit; i++)
+                MessageLog.Add("msg-" + i.ToString("00"));
+
+            InvokeNonPublic(zoneRenderer, "LateUpdate");
+
+            Assert.IsTrue(TilemapContainsText(zoneRenderer.SidebarTilemap, "LOG ^"));
+            Assert.IsTrue(TilemapContainsText(zoneRenderer.SidebarTilemap, "msg-29"));
+
+            Assert.IsTrue(zoneRenderer.ScrollSidebarLogOlder(3));
+            InvokeNonPublic(zoneRenderer, "LateUpdate");
+
+            int offsetBefore = zoneRenderer.SidebarLogScrollOffsetRows;
+            Assert.Greater(offsetBefore, 0);
+            Assert.IsTrue(TilemapContainsText(zoneRenderer.SidebarTilemap, "LOG ^v"));
+
+            MessageLog.Add("msg-30");
+            InvokeNonPublic(zoneRenderer, "LateUpdate");
+
+            Assert.Greater(zoneRenderer.SidebarLogScrollOffsetRows, offsetBefore);
+            Assert.IsTrue(
+                TilemapContainsText(zoneRenderer.SidebarTilemap, "LOG ^v") ||
+                TilemapContainsText(zoneRenderer.SidebarTilemap, "LOG v"));
+            Assert.IsFalse(TilemapContainsText(zoneRenderer.SidebarTilemap, "msg-30"));
+
+            zoneRenderer.ScrollSidebarLogOlder(200);
+            InvokeNonPublic(zoneRenderer, "LateUpdate");
+
+            Assert.IsTrue(TilemapContainsText(zoneRenderer.SidebarTilemap, "LOG v"));
+            Assert.IsTrue(TilemapContainsText(zoneRenderer.SidebarTilemap, "msg-01"));
+
+            Assert.IsTrue(zoneRenderer.ScrollSidebarLogNewer(200));
+            InvokeNonPublic(zoneRenderer, "LateUpdate");
+
+            Assert.AreEqual(0, zoneRenderer.SidebarLogScrollOffsetRows);
+            Assert.IsTrue(TilemapContainsText(zoneRenderer.SidebarTilemap, "LOG ^"));
+            Assert.IsTrue(TilemapContainsText(zoneRenderer.SidebarTilemap, "msg-30"));
+        }
+
+        [Test]
+        public void ScreenToZoneCell_ReturnsFalseInsideSidebarStrip()
+        {
+            Camera camera = CreateMainCamera(new Vector3(25f, 20f, -10f));
+            Camera sidebarCamera = CreateSidebarCamera();
+            CreateZoneTilemap(out ZoneRenderer zoneRenderer);
+
+            var zone = new Zone("SidebarZone");
+            var player = CreatePlayer();
+            zone.AddEntity(player, 10, 10);
+            zoneRenderer.PlayerEntity = player;
+            zoneRenderer.SetSidebarCamera(sidebarCamera);
+            zoneRenderer.SetZone(zone);
+            ConfigureSplitLayout(camera, sidebarCamera, zone, player);
+
+            Vector3 screen = sidebarCamera.WorldToScreenPoint(new Vector3(sidebarCamera.transform.position.x, sidebarCamera.transform.position.y, 0f));
 
             bool hit = zoneRenderer.ScreenToZoneCell(screen, camera, out _, out _);
 
@@ -131,23 +255,26 @@ namespace CavesOfOoo.Tests
         public void TryGetVisibleZoneBounds_ExcludesSidebarColumns()
         {
             Camera camera = CreateMainCamera(new Vector3(25f, 20f, -10f));
+            Camera sidebarCamera = CreateSidebarCamera();
             CreateZoneTilemap(out ZoneRenderer zoneRenderer);
 
             var zone = new Zone("SidebarZone");
             var player = CreatePlayer();
             zone.AddEntity(player, 10, 10);
             zoneRenderer.PlayerEntity = player;
+            zoneRenderer.SetSidebarCamera(sidebarCamera);
             zoneRenderer.SetZone(zone);
+            ConfigureSplitLayout(camera, sidebarCamera, zone, player);
 
             Assert.IsTrue(zoneRenderer.TryGetVisibleZoneBounds(camera, out _, out int maxX, out _, out _));
 
-            GameplayViewportMetrics metrics = GameplayViewportLayout.Measure(camera, zoneRenderer.MessageReferenceZoom, zoneRenderer.SidebarWidthChars);
+            Vector3 worldRight = camera.ViewportToWorldPoint(new Vector3(1f, 0.5f, -camera.transform.position.z));
             Tilemap world = zoneRenderer.GetComponent<Tilemap>();
             float maxCenter = world.GetCellCenterWorld(new Vector3Int(maxX, 0, 0)).x;
             float nextCenter = world.GetCellCenterWorld(new Vector3Int(maxX + 1, 0, 0)).x;
 
-            Assert.LessOrEqual(maxCenter, metrics.GameplayRightWorld);
-            Assert.Greater(nextCenter, metrics.GameplayRightWorld);
+            Assert.LessOrEqual(maxCenter, worldRight.x);
+            Assert.Greater(nextCenter, worldRight.x);
         }
 
         private static Camera CreateMainCamera(Vector3 position)
@@ -159,6 +286,15 @@ namespace CavesOfOoo.Tests
             camera.orthographicSize = 17f;
             camera.aspect = 16f / 9f;
             camera.transform.position = position;
+            return camera;
+        }
+
+        private static Camera CreateSidebarCamera()
+        {
+            var cameraGo = new GameObject("Sidebar Camera");
+            var camera = cameraGo.AddComponent<Camera>();
+            camera.orthographic = true;
+            camera.transform.position = new Vector3(0f, 0f, -10f);
             return camera;
         }
 
@@ -204,6 +340,17 @@ namespace CavesOfOoo.Tests
             zoneRenderer = tilemapGo.AddComponent<ZoneRenderer>();
             if (typeof(ZoneRenderer).GetField("_sidebarRenderer", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(zoneRenderer) == null)
                 InvokeNonPublic(zoneRenderer, "Awake");
+        }
+
+        private static void ConfigureSplitLayout(Camera camera, Camera sidebarCamera, Zone zone, Entity player)
+        {
+            var follow = camera.gameObject.AddComponent<CameraFollow>();
+            follow.Player = player;
+            follow.CurrentZone = zone;
+            follow.SidebarCamera = sidebarCamera;
+            follow.ReservedSidebarWidthChars = 34;
+            follow.SidebarReferenceZoom = 20f;
+            follow.SnapToPlayer();
         }
 
         private static void InvokeNonPublic(object instance, string methodName)

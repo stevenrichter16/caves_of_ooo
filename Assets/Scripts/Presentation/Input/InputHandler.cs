@@ -217,6 +217,9 @@ namespace CavesOfOoo.Rendering
             if (TryOpenAnnouncement())
                 return;
 
+            if (TryHandleSidebarLogScrollInput())
+                return;
+
             if (Input.GetKeyDown(KeyCode.L))
             {
                 EnterLookMode();
@@ -1163,6 +1166,9 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            if (TryHandleSidebarLogScrollInput())
+                return;
+
             int dx = 0;
             int dy = 0;
             if (GetDirectionKeyDown(out dx, out dy))
@@ -1173,6 +1179,27 @@ namespace CavesOfOoo.Rendering
             }
 
             TryUpdateLookCursorFromMouse();
+        }
+
+        private bool TryHandleSidebarLogScrollInput()
+        {
+            if (Input.GetKeyDown(KeyCode.Equals))
+                return TryHandleSidebarLogScrollCommand(older: true);
+
+            if (Input.GetKeyDown(KeyCode.Minus))
+                return TryHandleSidebarLogScrollCommand(older: false);
+
+            return false;
+        }
+
+        private bool TryHandleSidebarLogScrollCommand(bool older)
+        {
+            if ((_inputState != InputState.Normal && _inputState != InputState.LookMode) || ZoneRenderer == null)
+                return false;
+
+            return older
+                ? ZoneRenderer.ScrollSidebarLogOlder()
+                : ZoneRenderer.ScrollSidebarLogNewer();
         }
 
         private void RecenterLookCursor()

@@ -13,17 +13,21 @@ namespace CavesOfOoo.Core
         {
             public readonly string Text;
             public readonly int Tick;
+            public readonly int Serial;
 
-            public Entry(string text, int tick)
+            public Entry(string text, int tick, int serial)
             {
                 Text = text ?? string.Empty;
                 Tick = tick;
+                Serial = serial;
             }
         }
 
         private static readonly List<string> Messages = new List<string>();
         private static readonly List<int> Ticks = new List<int>();
+        private static readonly List<int> Serials = new List<int>();
         private static readonly Queue<string> Announcements = new Queue<string>();
+        private static int NextSerial;
 
         /// <summary>
         /// Callback fired when a new message is added.
@@ -49,6 +53,7 @@ namespace CavesOfOoo.Core
         {
             Messages.Add(message);
             Ticks.Add(TickProvider != null ? TickProvider() : 0);
+            Serials.Add(NextSerial++);
             OnMessage?.Invoke(message);
         }
 
@@ -101,7 +106,8 @@ namespace CavesOfOoo.Core
             {
                 int idx = start + i;
                 int tick = idx < Ticks.Count ? Ticks[idx] : 0;
-                entries.Add(new Entry(Messages[idx], tick));
+                int serial = idx < Serials.Count ? Serials[idx] : idx;
+                entries.Add(new Entry(Messages[idx], tick, serial));
             }
 
             return entries;
@@ -111,8 +117,10 @@ namespace CavesOfOoo.Core
         {
             Messages.Clear();
             Ticks.Clear();
+            Serials.Clear();
             Announcements.Clear();
             FlashStamp = 0;
+            NextSerial = 0;
         }
 
         public static List<string> GetMessages()

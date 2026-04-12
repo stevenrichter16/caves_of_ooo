@@ -30,14 +30,21 @@ namespace CavesOfOoo.Rendering
     public struct SidebarLogEntry
     {
         public SidebarLogEntry(string text, int tick, int count)
+            : this(text, tick, count, -1)
+        {
+        }
+
+        public SidebarLogEntry(string text, int tick, int count, int newestSerial)
         {
             Text = text ?? string.Empty;
             Tick = tick;
             Count = count < 1 ? 1 : count;
+            NewestSerial = newestSerial;
         }
 
         public string Text { get; }
         public int Tick { get; }
         public int Count { get; }
+        public int NewestSerial { get; }
     }
 }

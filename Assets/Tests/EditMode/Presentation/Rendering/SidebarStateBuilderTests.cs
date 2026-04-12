@@ -82,6 +82,19 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void Build_RetainsOnlyTheLatestThirtyRawMessages()
+        {
+            for (int i = 0; i < 35; i++)
+                MessageLog.Add("msg-" + i.ToString("00"));
+
+            SidebarSnapshot snapshot = SidebarStateBuilder.Build(null, null, null);
+
+            Assert.AreEqual(30, snapshot.LogEntriesNewestFirst.Count);
+            Assert.AreEqual("msg-34", snapshot.LogEntriesNewestFirst[0].Text);
+            Assert.AreEqual("msg-05", snapshot.LogEntriesNewestFirst[29].Text);
+        }
+
+        [Test]
         public void FormatLog_WrapsWithPrefixes_AndPreservesCoalescedSuffix()
         {
             var lines = SidebarTextFormatter.FormatLog(
@@ -90,8 +103,8 @@ namespace CavesOfOoo.Tests
                 6);
 
             Assert.Greater(lines.Count, 1);
-            StringAssert.StartsWith("> ", lines[0].Text);
-            StringAssert.StartsWith("  ", lines[1].Text);
+            StringAssert.StartsWith(":: ", lines[0].Text);
+            StringAssert.StartsWith("   ", lines[1].Text);
             Assert.IsTrue(lines.Any(line => line.Text.Contains("(x2)")));
         }
 

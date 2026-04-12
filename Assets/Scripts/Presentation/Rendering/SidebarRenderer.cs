@@ -17,11 +17,16 @@ namespace CavesOfOoo.Rendering
         private readonly float _referenceZoom;
 
         private readonly List<SidebarTextFormatter.LogLine> _cachedLogLines = new List<SidebarTextFormatter.LogLine>();
+        private readonly List<SidebarTextFormatter.LogLine> _visibleLogLines = new List<SidebarTextFormatter.LogLine>();
         private int _cachedLogWidth = -1;
-        private int _cachedLogHeight = -1;
         private int _cachedLogCount = -1;
-        private string _cachedNewestText = string.Empty;
-        private string _cachedOldestText = string.Empty;
+        private int _cachedNewestSerial = -1;
+        private int _cachedOldestSerial = -1;
+        private int _cachedNewestCount = -1;
+        private int _cachedOldestCount = -1;
+        private int _logScrollOffsetRows;
+        private int _maxLogScrollOffsetRows;
+        private int _lastLogViewportHeight = -1;
 
         public GameplaySidebarRenderer(Tilemap tilemap, Tilemap backgroundTilemap, Transform gridTransform, float referenceZoom)
         {
@@ -32,15 +37,18 @@ namespace CavesOfOoo.Rendering
         }
 
         public bool IsVisible { get; private set; }
+        public int LogScrollOffsetRows => _logScrollOffsetRows;
 
         public void Invalidate()
         {
             _cachedLogWidth = -1;
-            _cachedLogHeight = -1;
             _cachedLogCount = -1;
-            _cachedNewestText = string.Empty;
-            _cachedOldestText = string.Empty;
+            _cachedNewestSerial = -1;
+            _cachedOldestSerial = -1;
+            _cachedNewestCount = -1;
+            _cachedOldestCount = -1;
             _cachedLogLines.Clear();
+            _visibleLogLines.Clear();
         }
 
         public void Clear()
@@ -50,6 +58,33 @@ namespace CavesOfOoo.Rendering
             _backgroundTilemap?.ClearAllTiles();
         }
 
+        public bool ScrollOlder(int rows = 1)
+        {
+            int safeRows = Mathf.Max(1, rows);
+            int next = Mathf.Clamp(_logScrollOffsetRows + safeRows, 0, _maxLogScrollOffsetRows);
+            if (next == _logScrollOffsetRows)
+                return false;
+
+            _logScrollOffsetRows = next;
+            return true;
+        }
+
+        public bool ScrollNewer(int rows = 1)
+        {
+            int safeRows = Mathf.Max(1, rows);
+            int next = Mathf.Max(0, _logScrollOffsetRows - safeRows);
+            if (next == _logScrollOffsetRows)
+                return false;
+
+            _logScrollOffsetRows = next;
+            return true;
+        }
+
+        public void ResetLogScroll()
+        {
+            _logScrollOffsetRows = 0;
+        }
+
         public void Render(SidebarSnapshot snapshot, Camera camera, int sidebarWidthChars, bool flashActive, float flashT)
         {
             Clear();
@@ -57,10 +92,10 @@ namespace CavesOfOoo.Rendering
             if (_tilemap == null || _backgroundTilemap == null || _gridTransform == null || camera == null || sidebarWidthChars <= 0)
                 return;
 
-            GameplayViewportMetrics metrics = GameplayViewportLayout.Measure(camera, _referenceZoom, sidebarWidthChars);
+            SidebarCameraMetrics metrics = GameplayViewportLayout.MeasureSidebarCamera(camera, _referenceZoom, sidebarWidthChars);
             _gridTransform.localScale = new Vector3(metrics.Scale, metrics.Scale, 1f);
 
-            int startX = metrics.SidebarStartCharX;
+            int startX = metrics.StartCharX;
             int width = sidebarWidthChars;
             int rows = metrics.VisibleRowCount;
             int topY = metrics.TopTextY;
@@ -104,13 +139,20 @@ namespace CavesOfOoo.Rendering
             if (y >= bottomY)
                 y--;
 
+            int logHeaderY = y;
+            int logHeight = Mathf.Max(1, logHeaderY - bottomY);
+            List<SidebarTextFormatter.LogLine> logLines = GetVisibleLogLines(
+                snapshot,
+                contentWidth,
+                logHeight,
+                out bool hasOlderRows,
+                out bool hasNewerRows);
+            string logHeader = BuildLogHeader(hasOlderRows, hasNewerRows);
             Color logHeaderColor = flashActive ? QudColorParser.BrightYellow : QudColorParser.White;
-            DrawSectionHeader(startX, contentX, y, contentWidth, "LOG", logHeaderColor);
-            y--;
+            DrawSectionHeader(startX, contentX, logHeaderY, contentWidth, logHeader, logHeaderColor);
+            y = logHeaderY - 1;
 
-            int logHeight = Mathf.Max(1, y - bottomY + 1);
-            List<SidebarTextFormatter.LogLine> logLines = GetLogLines(snapshot, contentWidth, logHeight);
-            int firstLogY = bottomY + logHeight - logLines.Count;
+            int firstLogY = bottomY + logLines.Count - 1;
             int maxAge = 0;
             for (int i = 0; i < logLines.Count; i++)
             {
@@ -133,29 +175,113 @@ namespace CavesOfOoo.Rendering
             IsVisible = true;
         }
 
-        private List<SidebarTextFormatter.LogLine> GetLogLines(SidebarSnapshot snapshot, int width, int height)
+        private List<SidebarTextFormatter.LogLine> GetVisibleLogLines(
+            SidebarSnapshot snapshot,
+            int width,
+            int height,
+            out bool hasOlderRows,
+            out bool hasNewerRows)
         {
             int logCount = snapshot?.LogEntriesNewestFirst?.Count ?? 0;
-            string newestText = logCount > 0 ? snapshot.LogEntriesNewestFirst[0].Text : string.Empty;
-            string oldestText = logCount > 0 ? snapshot.LogEntriesNewestFirst[logCount - 1].Text : string.Empty;
+            int newestSerial = logCount > 0 ? snapshot.LogEntriesNewestFirst[0].NewestSerial : -1;
+            int oldestSerial = logCount > 0 ? snapshot.LogEntriesNewestFirst[logCount - 1].NewestSerial : -1;
+            int newestCount = logCount > 0 ? snapshot.LogEntriesNewestFirst[0].Count : 0;
+            int oldestCount = logCount > 0 ? snapshot.LogEntriesNewestFirst[logCount - 1].Count : 0;
+            bool cacheChanged = _cachedLogWidth != width ||
+                                _cachedLogCount != logCount ||
+                                _cachedNewestSerial != newestSerial ||
+                                _cachedOldestSerial != oldestSerial ||
+                                _cachedNewestCount != newestCount ||
+                                _cachedOldestCount != oldestCount;
 
-            if (_cachedLogWidth == width &&
-                _cachedLogHeight == height &&
-                _cachedLogCount == logCount &&
-                _cachedNewestText == newestText &&
-                _cachedOldestText == oldestText)
+            bool viewportChanged = _lastLogViewportHeight != height;
+            SidebarTextFormatter.LogLine? anchor = null;
+            if (_logScrollOffsetRows > 0 && _cachedLogLines.Count > 0)
             {
-                return _cachedLogLines;
+                int oldEndExclusive = Mathf.Clamp(_cachedLogLines.Count - _logScrollOffsetRows, 1, _cachedLogLines.Count);
+                anchor = _cachedLogLines[oldEndExclusive - 1];
             }
 
-            _cachedLogLines.Clear();
-            _cachedLogLines.AddRange(SidebarTextFormatter.FormatLog(snapshot?.LogEntriesNewestFirst, width, height));
-            _cachedLogWidth = width;
-            _cachedLogHeight = height;
-            _cachedLogCount = logCount;
-            _cachedNewestText = newestText;
-            _cachedOldestText = oldestText;
-            return _cachedLogLines;
+            if (cacheChanged)
+            {
+                _cachedLogLines.Clear();
+                _cachedLogLines.AddRange(SidebarTextFormatter.FormatLog(snapshot?.LogEntriesNewestFirst, width));
+                _cachedLogWidth = width;
+                _cachedLogCount = logCount;
+                _cachedNewestSerial = newestSerial;
+                _cachedOldestSerial = oldestSerial;
+                _cachedNewestCount = newestCount;
+                _cachedOldestCount = oldestCount;
+            }
+
+            if ((cacheChanged || viewportChanged) && anchor.HasValue)
+            {
+                int anchorIndex = FindMatchingAnchorIndex(_cachedLogLines, anchor.Value);
+                if (anchorIndex >= 0)
+                    _logScrollOffsetRows = Mathf.Max(0, _cachedLogLines.Count - (anchorIndex + 1));
+            }
+
+            _maxLogScrollOffsetRows = Mathf.Max(0, _cachedLogLines.Count - Mathf.Max(1, height));
+            _logScrollOffsetRows = Mathf.Clamp(_logScrollOffsetRows, 0, _maxLogScrollOffsetRows);
+            _lastLogViewportHeight = height;
+
+            int endExclusive = _cachedLogLines.Count == 0
+                ? 0
+                : Mathf.Clamp(_cachedLogLines.Count - _logScrollOffsetRows, 1, _cachedLogLines.Count);
+            int start = Mathf.Max(0, endExclusive - Mathf.Max(1, height));
+
+            hasOlderRows = start > 0;
+            hasNewerRows = endExclusive < _cachedLogLines.Count;
+
+            _visibleLogLines.Clear();
+            for (int i = start; i < endExclusive; i++)
+                _visibleLogLines.Add(_cachedLogLines[i]);
+
+            return _visibleLogLines;
+        }
+
+        private static int FindMatchingAnchorIndex(
+            List<SidebarTextFormatter.LogLine> lines,
+            SidebarTextFormatter.LogLine anchor)
+        {
+            for (int i = lines.Count - 1; i >= 0; i--)
+            {
+                if (lines[i].MatchesIdentity(anchor))
+                    return i;
+            }
+
+            if (anchor.EntryNewestSerial >= 0)
+            {
+                int bestIndex = -1;
+                int bestDistance = int.MaxValue;
+                for (int i = 0; i < lines.Count; i++)
+                {
+                    if (lines[i].EntryNewestSerial != anchor.EntryNewestSerial)
+                        continue;
+
+                    int distance = Mathf.Abs(lines[i].RowIndexWithinEntry - anchor.RowIndexWithinEntry);
+                    if (distance < bestDistance || (distance == bestDistance && i > bestIndex))
+                    {
+                        bestDistance = distance;
+                        bestIndex = i;
+                    }
+                }
+
+                return bestIndex;
+            }
+
+            return -1;
+        }
+
+        private static string BuildLogHeader(bool hasOlderRows, bool hasNewerRows)
+        {
+            if (hasOlderRows && hasNewerRows)
+                return "LOG ^v";
+            if (hasOlderRows)
+                return "LOG ^";
+            if (hasNewerRows)
+                return "LOG v";
+            return "LOG";
         }
 
         private void DrawBackground(int startX, int bottomY, int width, int rows, bool flashActive, float flashT)
@@ -202,7 +328,7 @@ namespace CavesOfOoo.Rendering
                 return;
 
             DrawChar(dividerX, y, CP437TilesetGenerator.BoxTeeLeft, QudColorParser.DarkGray);
-            for (int x = dividerX + 1; x < dividerX + width + 2; x++)
+            for (int x = dividerX + 1; x < dividerX + width; x++)
                 DrawChar(x, y, CP437TilesetGenerator.BoxHorizontal, QudColorParser.DarkGray);
 
             DrawText(contentX, y, title, color, width);

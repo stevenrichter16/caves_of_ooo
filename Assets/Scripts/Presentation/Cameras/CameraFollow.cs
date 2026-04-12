@@ -12,6 +12,7 @@ namespace CavesOfOoo.Rendering
     {
         public Entity Player { get; set; }
         public Zone CurrentZone { get; set; }
+        public Camera SidebarCamera { get; set; }
         public bool HasOverrideTarget { get; private set; }
         public Vector2Int OverrideZoneCell { get; private set; }
         public float OverrideViewportMarginFraction = 0.25f;
@@ -55,6 +56,7 @@ namespace CavesOfOoo.Rendering
 
             _camera.orthographicSize = GetGameplayZoomSize();
             _camera.backgroundColor = new Color(0.05f, 0.05f, 0.05f);
+            ApplyGameplayLayout();
 
             FollowTrackedTarget();
         }
@@ -72,6 +74,7 @@ namespace CavesOfOoo.Rendering
                 return;
 
             _paused = true;
+            ApplyUIViewLayout();
 
             // Center camera on the grid (tiles span [0, gridSize), center at gridSize/2)
             float centerX = gridWidth * 0.5f;
@@ -125,6 +128,7 @@ namespace CavesOfOoo.Rendering
         private void LateUpdate()
         {
             if (_paused) return;
+            ApplyGameplayLayout();
             FollowTrackedTarget();
 
             // Apply screen shake offset after positioning
@@ -167,10 +171,9 @@ namespace CavesOfOoo.Rendering
 
             float halfH = _camera.orthographicSize;
             float halfW = halfH * _camera.aspect;
-            float reservedSidebarWidth = GetReservedSidebarWidthWorld();
             float targetX = zoneX + 0.5f;
             float targetY = Zone.Height - zoneY - 0.5f;
-            float desiredX = targetX + reservedSidebarWidth * 0.5f;
+            float desiredX = targetX;
             float desiredY = targetY;
 
             if (useOverride)
@@ -182,7 +185,7 @@ namespace CavesOfOoo.Rendering
                 float currentY = transform.position.y;
 
                 float left = currentX - halfW + marginX;
-                float right = currentX + halfW - reservedSidebarWidth - marginX;
+                float right = currentX + halfW - marginX;
                 float bottom = currentY - halfH + marginY;
                 float top = currentY + halfH - marginY;
 
@@ -220,15 +223,56 @@ namespace CavesOfOoo.Rendering
             return ZoomSize;
         }
 
-        private float GetReservedSidebarWidthWorld()
+        private void ApplyGameplayLayout()
         {
-            if (_camera == null || ReservedSidebarWidthChars <= 0)
-                return 0f;
+            if (_camera == null)
+                return;
 
-            return GameplayViewportLayout.GetReservedRightWorldWidth(
+            GameplayScreenLayout layout = GameplayViewportLayout.Measure(
                 _camera,
                 SidebarReferenceZoom,
                 ReservedSidebarWidthChars);
+
+            ConfigureCameraRect(_camera, layout.GameplayRect, layout.GameplayAspect);
+            _camera.orthographic = true;
+            _camera.cullingMask = GameplayRenderLayers.GameplayCameraMask;
+
+            if (SidebarCamera == null)
+                return;
+
+            SidebarCamera.enabled = layout.SidebarRect.width > 0f;
+            SidebarCamera.orthographic = true;
+            SidebarCamera.backgroundColor = Color.black;
+            SidebarCamera.clearFlags = CameraClearFlags.SolidColor;
+            SidebarCamera.cullingMask = GameplayRenderLayers.SidebarMask;
+            SidebarCamera.transform.position = new Vector3(
+                layout.SidebarWorldWidth * 0.5f,
+                _camera.orthographicSize,
+                SidebarCamera.transform.position.z);
+            SidebarCamera.orthographicSize = _camera.orthographicSize;
+            ConfigureCameraRect(SidebarCamera, layout.SidebarRect, layout.SidebarAspect);
+        }
+
+        private void ApplyUIViewLayout()
+        {
+            if (_camera == null)
+                return;
+
+            float displayAspect = GameplayViewportLayout.GetDisplayAspect(_camera);
+            ConfigureCameraRect(_camera, new Rect(0f, 0f, 1f, 1f), displayAspect);
+            _camera.cullingMask = GameplayRenderLayers.GameplayCameraMask;
+
+            if (SidebarCamera != null)
+                SidebarCamera.enabled = false;
+        }
+
+        private static void ConfigureCameraRect(Camera camera, Rect rect, float aspect)
+        {
+            if (camera == null)
+                return;
+
+            camera.rect = rect;
+            camera.aspect = Mathf.Max(0.01f, aspect);
         }
     }
 }

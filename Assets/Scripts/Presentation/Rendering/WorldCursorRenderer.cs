@@ -17,11 +17,12 @@ namespace CavesOfOoo.Rendering
         public Color CurrentColor { get; private set; } = QudColorParser.Gray;
         public Vector2Int CurrentCell { get; private set; } = new Vector2Int(-1, -1);
 
-        public WorldCursorRenderer(Transform parent, Tilemap tilemap)
+        public WorldCursorRenderer(Transform parent, Tilemap tilemap, int renderLayer)
         {
             _tilemap = tilemap;
             var go = new GameObject("WorldCursor");
             go.transform.SetParent(parent, false);
+            go.layer = renderLayer;
 
             _lineRenderer = go.AddComponent<LineRenderer>();
             _lineRenderer.positionCount = 4;
