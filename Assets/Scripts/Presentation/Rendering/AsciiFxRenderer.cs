@@ -709,13 +709,17 @@ namespace CavesOfOoo.Rendering
                 for (int i = 0; i < currentIndex; i++)
                 {
                     Point trailPoint = projectile.Path[i];
-                    RenderGlyphAt(trailPoint.X, trailPoint.Y, config.TrailGlyph, config.TrailColor);
+                    RenderGlyphAt(
+                        trailPoint.X,
+                        trailPoint.Y,
+                        ResolveTrailGlyph(config),
+                        ResolveTrailColor(config));
                 }
             }
 
             Point head = projectile.Path[currentIndex];
-            char glyph = config.ProjectileGlyphs[currentIndex % config.ProjectileGlyphs.Length];
-            string color = config.ProjectileColors[currentIndex % config.ProjectileColors.Length];
+            char glyph = ResolveProjectileGlyph(config, currentIndex);
+            string color = ResolveProjectileColor(config, currentIndex);
             RenderGlyphAt(head.X, head.Y, glyph, color);
         }
 
@@ -854,6 +858,8 @@ namespace CavesOfOoo.Rendering
                     return LanternBrightConfig;
                 case AsciiFxTheme.Earth:
                     return EarthConfig;
+                case AsciiFxTheme.ThrownObject:
+                    return ThrownObjectConfig;
                 case AsciiFxTheme.Water:
                     return WaterConfig;
                 case AsciiFxTheme.Holy:
@@ -878,6 +884,50 @@ namespace CavesOfOoo.Rendering
             float remainder = deltaTime - delayRemaining;
             delayRemaining = 0f;
             return remainder;
+        }
+
+        private static char ResolveProjectileGlyph(FxThemeConfig config, int currentIndex)
+        {
+            if (config.ProjectileGlyphs != null && config.ProjectileGlyphs.Length > 0)
+                return config.ProjectileGlyphs[currentIndex % config.ProjectileGlyphs.Length];
+            if (config.BurstGlyphs != null && config.BurstGlyphs.Length > 0)
+                return config.BurstGlyphs[Math.Min(currentIndex, config.BurstGlyphs.Length - 1)];
+            if (config.TrailGlyph != '\0')
+                return config.TrailGlyph;
+            return '*';
+        }
+
+        private static string ResolveProjectileColor(FxThemeConfig config, int currentIndex)
+        {
+            if (config.ProjectileColors != null && config.ProjectileColors.Length > 0)
+                return config.ProjectileColors[currentIndex % config.ProjectileColors.Length];
+            if (config.BurstColors != null && config.BurstColors.Length > 0)
+                return config.BurstColors[Math.Min(currentIndex, config.BurstColors.Length - 1)];
+            if (!string.IsNullOrEmpty(config.TrailColor))
+                return config.TrailColor;
+            return "&W";
+        }
+
+        private static char ResolveTrailGlyph(FxThemeConfig config)
+        {
+            if (config.TrailGlyph != '\0')
+                return config.TrailGlyph;
+            if (config.ProjectileGlyphs != null && config.ProjectileGlyphs.Length > 0)
+                return config.ProjectileGlyphs[0];
+            if (config.BurstGlyphs != null && config.BurstGlyphs.Length > 0)
+                return config.BurstGlyphs[0];
+            return '.';
+        }
+
+        private static string ResolveTrailColor(FxThemeConfig config)
+        {
+            if (!string.IsNullOrEmpty(config.TrailColor))
+                return config.TrailColor;
+            if (config.ProjectileColors != null && config.ProjectileColors.Length > 0)
+                return config.ProjectileColors[0];
+            if (config.BurstColors != null && config.BurstColors.Length > 0)
+                return config.BurstColors[0];
+            return "&W";
         }
 
         private static char GetBeamGlyph(int dx, int dy)
@@ -1464,6 +1514,27 @@ namespace CavesOfOoo.Rendering
             ChainColors = Array.Empty<string>(),
             ColumnGlyphs = new[] { '#', '^', 'A' },
             ColumnColors = new[] { "&w", "&y", "&Y" }
+        };
+
+        private static readonly FxThemeConfig ThrownObjectConfig = new FxThemeConfig
+        {
+            ProjectileGlyphs = new[] { 'o', 'O', '*' },
+            ProjectileColors = new[] { "&w", "&W", "&y" },
+            TrailGlyph = '.',
+            TrailColor = "&w",
+            ProjectileStepTime = 0.04f,
+            BurstGlyphs = new[] { '*', '+', '.' },
+            BurstColors = new[] { "&w", "&y" },
+            AuraGlyphs = Array.Empty<char>(),
+            AuraColors = Array.Empty<string>(),
+            AuraInterval = 999f,
+            ChargeGlyphs = Array.Empty<char>(),
+            ChargeColors = Array.Empty<string>(),
+            BeamColors = Array.Empty<string>(),
+            RingGlyphs = Array.Empty<char>(),
+            RingColors = Array.Empty<string>(),
+            ChainGlyphs = Array.Empty<char>(),
+            ChainColors = Array.Empty<string>()
         };
 
         private static readonly FxThemeConfig WaterConfig = new FxThemeConfig

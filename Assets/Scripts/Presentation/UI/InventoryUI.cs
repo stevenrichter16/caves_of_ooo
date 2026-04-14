@@ -102,6 +102,7 @@ namespace CavesOfOoo.Rendering
 
         // Grimoire picker popup (abilities panel)
         private GrimoirePickerState _grimoirePicker;
+        private PendingThrowRequest _pendingThrowRequest;
 
         public bool IsOpen => _isOpen;
 
@@ -163,6 +164,11 @@ namespace CavesOfOoo.Rendering
             public bool InBodyPartPicker;
         }
 
+        public sealed class PendingThrowRequest
+        {
+            public Entity Item;
+        }
+
         private class ModTargetPopupState
         {
             public TinkerRecipe Recipe;
@@ -198,6 +204,7 @@ namespace CavesOfOoo.Rendering
             _itemActionPopup = null;
             _modTargetPopup = null;
             _grimoirePicker = null;
+            _pendingThrowRequest = null;
             Rebuild();
             Render();
         }
@@ -210,6 +217,41 @@ namespace CavesOfOoo.Rendering
             _itemActionPopup = null;
             _modTargetPopup = null;
             _grimoirePicker = null;
+        }
+
+        public PendingThrowRequest ConsumePendingThrowRequest()
+        {
+            var request = _pendingThrowRequest;
+            _pendingThrowRequest = null;
+            return request;
+        }
+
+        public bool ReopenItemActionPopupFor(Entity item)
+        {
+            if (!_isOpen || item == null)
+                return false;
+
+            _panel = PANEL_INVENTORY;
+            Rebuild();
+
+            for (int i = 0; i < _rows.Count; i++)
+            {
+                if (_rows[i].IsHeader || _rows[i].Item == null || _rows[i].Item.Item != item)
+                    continue;
+
+                _cursorIndex = i;
+                if (_cursorIndex < _scrollOffset)
+                    _scrollOffset = _cursorIndex;
+                else if (_cursorIndex >= _scrollOffset + VISIBLE_ROWS)
+                    _scrollOffset = _cursorIndex - VISIBLE_ROWS + 1;
+
+                OpenItemActionPopup(_rows[i].Item);
+                return true;
+            }
+
+            ClampCursor();
+            Render();
+            return false;
         }
 
         // ===== Input =====
@@ -1012,6 +1054,9 @@ namespace CavesOfOoo.Rendering
                 actions.Add(new ItemAction { Label = "Disassemble", Command = "disassemble" });
             }
 
+            if (HandlingService.CanThrow(PlayerEntity, item, out _))
+                actions.Add(new ItemAction { Label = "Throw", Command = "throw" });
+
             // Container interaction seam: put selected item in a specific nearby container.
             if (CurrentZone != null)
             {
@@ -1168,6 +1213,11 @@ namespace CavesOfOoo.Rendering
                     Rebuild();
                     ClampCursor();
                     Render();
+                    break;
+
+                case "throw":
+                    _pendingThrowRequest = new PendingThrowRequest { Item = item };
+                    Close();
                     break;
 
                 case "put_container":
@@ -2419,6 +2469,14 @@ namespace CavesOfOoo.Rendering
             return string.Join(" ", parts);
         }
 
+        private string BuildHandlingLabel(Entity item)
+        {
+            if (item == null || item.GetPart<HandlingPart>() == null)
+                return string.Empty;
+
+            return HandlingService.GetGripType(item) == GripType.TwoHand ? "2H" : "1H";
+        }
+
         private void RenderDetailLine()
         {
             if (_equipPopup != null)
@@ -2435,6 +2493,9 @@ namespace CavesOfOoo.Rendering
                     var item = _equipPopup.Items[_equipPopup.CursorItemIndex];
                     var equip = item.GetPart<EquippablePart>();
                     string detail = item.GetDisplayName();
+                    string handlingLabel = BuildHandlingLabel(item);
+                    if (!string.IsNullOrEmpty(handlingLabel))
+                        detail += " [" + handlingLabel + "]";
                     if (equip != null && !string.IsNullOrEmpty(equip.EquipBonuses))
                         detail += "  (" + equip.EquipBonuses + ")";
                     DrawText(1, H - 1, detail, QudColorParser.BrightCyan);
@@ -2459,6 +2520,9 @@ namespace CavesOfOoo.Rendering
                 else if (_itemActionPopup.CursorIndex < _itemActionPopup.Actions.Count)
                 {
                     string detail = _itemActionPopup.Item.GetDisplayName();
+                    string handlingLabel = BuildHandlingLabel(_itemActionPopup.Item);
+                    if (!string.IsNullOrEmpty(handlingLabel))
+                        detail += " [" + handlingLabel + "]";
                     var equip = _itemActionPopup.Item.GetPart<EquippablePart>();
                     if (equip != null && !string.IsNullOrEmpty(equip.EquipBonuses))
                         detail += "  (" + equip.EquipBonuses + ")";
@@ -2478,6 +2542,9 @@ namespace CavesOfOoo.Rendering
                 {
                     Entity item = _modTargetPopup.Targets[_modTargetPopup.CursorIndex];
                     string detail = item.GetDisplayName();
+                    string handlingLabel = BuildHandlingLabel(item);
+                    if (!string.IsNullOrEmpty(handlingLabel))
+                        detail += " [" + handlingLabel + "]";
                     string stats = BuildSlotStats(item);
                     if (!string.IsNullOrWhiteSpace(stats))
                         detail += " [" + stats + "]";
@@ -2493,6 +2560,9 @@ namespace CavesOfOoo.Rendering
             {
                 var slot = _equipSlots[_equipCursorIndex];
                 string detail = slot.BodyPartName + ": " + slot.ItemName;
+                string handlingLabel = BuildHandlingLabel(slot.EquippedItem);
+                if (!string.IsNullOrEmpty(handlingLabel))
+                    detail += " [" + handlingLabel + "]";
                 DrawText(1, H - 1, detail, QudColorParser.BrightCyan);
             }
             else if (_panel == PANEL_TINKERING)
@@ -3046,6 +3116,7 @@ namespace CavesOfOoo.Rendering
 
             // Header
             DrawText(1, CONTENT_START, "Abilities", QudColorParser.BrightYellow);
+            DrawText(20, CONTENT_START, "These bindings drive the bottom hotbar.", QudColorParser.DarkGray);
             if (abilities == null)
             {
                 DrawText(1, CONTENT_START + 2,

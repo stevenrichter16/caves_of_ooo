@@ -50,6 +50,31 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Item is null.");
             }
 
+            var physics = _item.GetPart<PhysicsPart>();
+            if (physics == null || !physics.Takeable)
+            {
+                return InventoryValidationResult.Invalid(
+                    InventoryValidationErrorCode.NotTakeable,
+                    "Item is not takeable.");
+            }
+
+            var handling = _item.GetPart<HandlingPart>();
+            if (handling != null && !handling.Carryable)
+            {
+                return InventoryValidationResult.Invalid(
+                    InventoryValidationErrorCode.NotCarryable,
+                    $"{_item.GetDisplayName()} cannot be carried.");
+            }
+
+            int requiredStrength = HandlingService.GetLiftStrengthRequirement(_item);
+            int strength = context.Actor.GetStatValue("Strength", 0);
+            if (strength < requiredStrength)
+            {
+                return InventoryValidationResult.Invalid(
+                    InventoryValidationErrorCode.InsufficientStrength,
+                    $"You can't carry {_item.GetDisplayName()}: it requires Strength {requiredStrength}.");
+            }
+
             return InventoryValidationResult.Valid();
         }
 
@@ -70,6 +95,14 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
                     "Container is locked.");
+            }
+
+            if (!HandlingService.CanLift(context.Actor, _item, out string liftFailure))
+            {
+                MessageLog.Add(liftFailure);
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    liftFailure);
             }
 
             if (!containerPart.RemoveItem(_item))

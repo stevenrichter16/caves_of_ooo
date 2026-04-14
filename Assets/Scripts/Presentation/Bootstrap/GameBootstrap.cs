@@ -92,6 +92,7 @@ namespace CavesOfOoo
             _factory.LoadBlueprints(blueprintAsset.text);
             Debug.Log($"[Bootstrap] Loaded {_factory.Blueprints.Count} blueprints");
             LogAsciiBlueprintValidation();
+            LogHandlingBlueprintValidation();
 
             // Wire conversation system
             ConversationActions.Factory = _factory;
@@ -158,18 +159,22 @@ namespace CavesOfOoo
                 if (cameraFollow == null)
                     cameraFollow = cam.gameObject.AddComponent<CameraFollow>();
                 Camera sidebarCamera = EnsureSidebarCamera(cam);
+                Camera hotbarCamera = EnsureHotbarCamera(cam);
                 Camera popupOverlayCamera = EnsurePopupOverlayCamera(cam);
-                ConfigureCameraLayers(cam, sidebarCamera, popupOverlayCamera);
+                ConfigureCameraLayers(cam, sidebarCamera, hotbarCamera, popupOverlayCamera);
                 cameraFollow.Player = _player;
                 cameraFollow.CurrentZone = _zone;
                 cameraFollow.SidebarCamera = sidebarCamera;
+                cameraFollow.HotbarCamera = hotbarCamera;
                 cameraFollow.PopupOverlayCamera = popupOverlayCamera;
                 if (ZoneRenderer != null)
                 {
                     ZoneRenderer.SetSidebarCamera(sidebarCamera);
+                    ZoneRenderer.SetHotbarCamera(hotbarCamera);
                     ZoneRenderer.SetPopupOverlayCamera(popupOverlayCamera);
                     cameraFollow.ReservedSidebarWidthChars = ZoneRenderer.SidebarWidthChars;
                     cameraFollow.SidebarReferenceZoom = ZoneRenderer.MessageReferenceZoom;
+                    cameraFollow.ReservedHotbarHeightRows = GameplayHotbarLayout.GridHeight;
                 }
                 cameraFollow.SnapToPlayer();
 
@@ -341,13 +346,40 @@ namespace CavesOfOoo
             return popupOverlayCamera;
         }
 
-        private static void ConfigureCameraLayers(Camera gameplayCamera, Camera sidebarCamera, Camera popupOverlayCamera)
+        private static Camera EnsureHotbarCamera(Camera gameplayCamera)
+        {
+            if (gameplayCamera == null)
+                return null;
+
+            Transform existing = gameplayCamera.transform.parent != null
+                ? gameplayCamera.transform.parent.Find("Hotbar Camera")
+                : null;
+            Camera hotbarCamera = existing != null ? existing.GetComponent<Camera>() : null;
+            if (hotbarCamera != null)
+                return hotbarCamera;
+
+            var cameraObject = new GameObject("Hotbar Camera");
+            cameraObject.transform.position = new Vector3(0f, 0f, gameplayCamera.transform.position.z);
+            hotbarCamera = cameraObject.AddComponent<Camera>();
+            hotbarCamera.orthographic = true;
+            hotbarCamera.depth = gameplayCamera.depth;
+            hotbarCamera.nearClipPlane = gameplayCamera.nearClipPlane;
+            hotbarCamera.farClipPlane = gameplayCamera.farClipPlane;
+            hotbarCamera.backgroundColor = Color.black;
+            hotbarCamera.clearFlags = CameraClearFlags.SolidColor;
+            return hotbarCamera;
+        }
+
+        private static void ConfigureCameraLayers(Camera gameplayCamera, Camera sidebarCamera, Camera hotbarCamera, Camera popupOverlayCamera)
         {
             if (gameplayCamera != null)
                 gameplayCamera.cullingMask = GameplayRenderLayers.GameplayCameraMask;
 
             if (sidebarCamera != null)
                 sidebarCamera.cullingMask = GameplayRenderLayers.SidebarMask;
+
+            if (hotbarCamera != null)
+                hotbarCamera.cullingMask = GameplayRenderLayers.HotbarMask;
 
             if (popupOverlayCamera != null)
             {
@@ -500,6 +532,23 @@ namespace CavesOfOoo
             Debug.LogWarning($"[Bootstrap/ASCII] Found {issues.Count} world render metadata issue(s).");
             for (int i = 0; i < issues.Count; i++)
                 Debug.LogWarning($"[Bootstrap/ASCII] {issues[i]}");
+        }
+
+        private void LogHandlingBlueprintValidation()
+        {
+            if (_factory == null)
+                return;
+
+            var issues = _factory.ValidateHandlingBlueprints();
+            if (issues.Count == 0)
+            {
+                Debug.Log("[Bootstrap/Handling] Blueprint handling validation passed.");
+                return;
+            }
+
+            Debug.LogWarning($"[Bootstrap/Handling] Found {issues.Count} handling metadata issue(s).");
+            for (int i = 0; i < issues.Count; i++)
+                Debug.LogWarning($"[Bootstrap/Handling] {issues[i]}");
         }
 
         /// <summary>

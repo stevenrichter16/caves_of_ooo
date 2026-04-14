@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CavesOfOoo.Core;
 using CavesOfOoo.Core.Inventory;
@@ -71,6 +72,8 @@ namespace CavesOfOoo.Rendering
         {
             Normal,
             LookMode,
+            ThrowTargeting,
+            ThrowPopupOpen,
             AwaitingDirection,
             WaitingForFxResolution,
             InventoryOpen,
@@ -86,8 +89,49 @@ namespace CavesOfOoo.Rendering
         private InputState _inputState = InputState.Normal;
         private ActivatedAbility _pendingAbility;
         private Entity _pendingAttackTarget;
+        private int _selectedHotbarSlot = -1;
         private readonly WorldCursorState _worldCursorState = new WorldCursorState();
         private Vector3 _lastLookMousePosition;
+        private ThrowTargetState _pendingThrowTarget;
+        private ThrowPopupState _throwPopup;
+
+        private enum ThrowOriginKind
+        {
+            Inventory,
+            LookWorld
+        }
+
+        private enum ThrowPopupKind
+        {
+            SourcePicker,
+            ActionPicker
+        }
+
+        private sealed class ThrowTargetState
+        {
+            public Entity Item;
+            public ThrowOriginKind Origin;
+            public int SourceTileX;
+            public int SourceTileY;
+        }
+
+        private sealed class ThrowPopupState
+        {
+            public ThrowPopupKind Kind;
+            public string Title;
+            public List<ThrowPopupOption> Options = new List<ThrowPopupOption>();
+            public int CursorIndex;
+            public int ScrollOffset;
+            public int SourceTileX;
+            public int SourceTileY;
+            public Entity SelectedItem;
+        }
+
+        private sealed class ThrowPopupOption
+        {
+            public string Label;
+            public Entity Item;
+        }
 
         /// <summary>
         /// The dialogue UI component. Set by GameBootstrap.
@@ -139,6 +183,9 @@ namespace CavesOfOoo.Rendering
             if (TurnManager.CurrentActor != PlayerEntity)
                 return;
 
+            EnsureHotbarSelectionValid();
+            SyncHotbarState();
+
             if (_inputState == InputState.WaitingForFxResolution)
             {
                 HandleWaitingForFxResolution();
@@ -148,6 +195,18 @@ namespace CavesOfOoo.Rendering
             if (_inputState == InputState.LookMode)
             {
                 HandleLookModeInput();
+                return;
+            }
+
+            if (_inputState == InputState.ThrowTargeting)
+            {
+                HandleThrowTargetingInput();
+                return;
+            }
+
+            if (_inputState == InputState.ThrowPopupOpen)
+            {
+                HandleThrowPopupInput();
                 return;
             }
 
@@ -220,6 +279,9 @@ namespace CavesOfOoo.Rendering
                 return;
 
             if (TryHandleSidebarLogScrollInput())
+                return;
+
+            if (TryHandleHotbarInput())
                 return;
 
             if (Input.GetKeyDown(KeyCode.L))
@@ -347,8 +409,11 @@ namespace CavesOfOoo.Rendering
             int abilitySlot = GetAbilitySlotInput();
             if (abilitySlot >= 0)
             {
+                _selectedHotbarSlot = abilitySlot;
+                SyncHotbarState();
                 TryActivateAbility(abilitySlot);
                 _lastMoveTime = Time.time;
+                return;
             }
 
             // Pickup item (G or comma)
@@ -1178,6 +1243,27 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                TryOpenWorldThrowPopup(_worldCursorState.X, _worldCursorState.Y);
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (ZoneRenderer != null &&
+                    ZoneRenderer.ScreenToZoneCell(Input.mousePosition, Camera.main, out int clickX, out int clickY))
+                {
+                    _worldCursorState.SetPosition(clickX, clickY);
+                    ClampLookCursorToVisibleFrame();
+                    RefreshLookSnapshot();
+                    TryOpenWorldThrowPopup(_worldCursorState.X, _worldCursorState.Y);
+                    _lastMoveTime = Time.time;
+                    return;
+                }
+            }
+
             TryUpdateLookCursorFromMouse();
         }
 
@@ -1188,6 +1274,42 @@ namespace CavesOfOoo.Rendering
 
             if (Input.GetKeyDown(KeyCode.Minus))
                 return TryHandleSidebarLogScrollCommand(older: false);
+
+            return false;
+        }
+
+        private bool TryHandleHotbarInput()
+        {
+            if (_inputState != InputState.Normal)
+                return false;
+
+            if (Input.GetKeyDown(KeyCode.LeftBracket))
+            {
+                CycleHotbarSelection(-1);
+                return true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightBracket))
+            {
+                CycleHotbarSelection(1);
+                return true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                ActivateSelectedHotbarSlot();
+                return true;
+            }
+
+            if (Input.GetMouseButtonDown(0) &&
+                ZoneRenderer != null &&
+                ZoneRenderer.TryGetHotbarSlotAtScreenPosition(Input.mousePosition, out int clickedSlot))
+            {
+                _selectedHotbarSlot = clickedSlot;
+                SyncHotbarState();
+                TryActivateAbility(clickedSlot);
+                return true;
+            }
 
             return false;
         }
@@ -1289,6 +1411,606 @@ namespace CavesOfOoo.Rendering
                 _worldCursorState.SetPosition(clampedX, clampedY);
         }
 
+        private bool BeginThrowTargeting(
+            Entity item,
+            ThrowOriginKind origin,
+            int sourceTileX,
+            int sourceTileY,
+            bool startAtPlayerCell)
+        {
+            if (item == null || CurrentZone == null || PlayerEntity == null)
+                return false;
+
+            Cell playerCell = CurrentZone.GetEntityCell(PlayerEntity);
+            if (playerCell == null)
+                return false;
+
+            int startX = startAtPlayerCell ? playerCell.X : sourceTileX;
+            int startY = startAtPlayerCell ? playerCell.Y : sourceTileY;
+            if (!CurrentZone.InBounds(startX, startY))
+            {
+                startX = playerCell.X;
+                startY = playerCell.Y;
+            }
+
+            _pendingThrowTarget = new ThrowTargetState
+            {
+                Item = item,
+                Origin = origin,
+                SourceTileX = sourceTileX,
+                SourceTileY = sourceTileY
+            };
+
+            int maxRange = HandlingService.GetThrowRange(PlayerEntity, item);
+            _worldCursorState.Activate(
+                WorldCursorMode.ThrowTarget,
+                CurrentZone,
+                startX,
+                startY,
+                playerCell.X,
+                playerCell.Y,
+                maxRange,
+                followMouse: true);
+
+            _inputState = InputState.ThrowTargeting;
+            _lastLookMousePosition = Input.mousePosition;
+            ZoneRenderer?.ClearLookSnapshot();
+            ZoneRenderer?.SetWorldCursorState(_worldCursorState, PlayerEntity);
+            MessageLog.Add($"Throw {item.GetDisplayName()} - choose a target (range {maxRange}).");
+            return true;
+        }
+
+        private void HandleThrowTargetingInput()
+        {
+            if (_pendingThrowTarget == null)
+            {
+                ExitThrowTargetingToNormal();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                CancelThrowTargeting();
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            int dx = 0;
+            int dy = 0;
+            if (GetDirectionKeyDown(out dx, out dy))
+            {
+                MoveThrowCursor(dx, dy);
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                ConfirmThrowTarget();
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (TryUpdateThrowCursorFromMouse(applyOnHover: false))
+                {
+                    ConfirmThrowTarget();
+                    _lastMoveTime = Time.time;
+                    return;
+                }
+            }
+
+            TryUpdateThrowCursorFromMouse(applyOnHover: true);
+        }
+
+        private void MoveThrowCursor(int dx, int dy)
+        {
+            if (!_worldCursorState.Active)
+                return;
+
+            int nextX = _worldCursorState.X + dx;
+            int nextY = _worldCursorState.Y + dy;
+            if (!CurrentZone.InBounds(nextX, nextY))
+                return;
+
+            if (!IsWithinThrowRange(nextX, nextY))
+                return;
+
+            _worldCursorState.SetPosition(nextX, nextY);
+            ZoneRenderer?.SetWorldCursorState(_worldCursorState, PlayerEntity);
+        }
+
+        private bool TryUpdateThrowCursorFromMouse(bool applyOnHover)
+        {
+            if (!_worldCursorState.Active || ZoneRenderer == null)
+                return false;
+
+            Vector3 mouse = Input.mousePosition;
+            if (applyOnHover && mouse == _lastLookMousePosition)
+                return false;
+
+            _lastLookMousePosition = mouse;
+
+            if (!ZoneRenderer.ScreenToZoneCell(mouse, Camera.main, out int x, out int y))
+                return false;
+
+            if (!IsWithinThrowRange(x, y))
+                return false;
+
+            if (_worldCursorState.X == x && _worldCursorState.Y == y)
+                return true;
+
+            _worldCursorState.SetPosition(x, y);
+            ZoneRenderer?.SetWorldCursorState(_worldCursorState, PlayerEntity);
+            return true;
+        }
+
+        private bool IsWithinThrowRange(int x, int y)
+        {
+            if (!_worldCursorState.Active)
+                return false;
+
+            int maxRange = _worldCursorState.MaxRange ?? 0;
+            return AIHelpers.ChebyshevDistance(_worldCursorState.AnchorX, _worldCursorState.AnchorY, x, y) <= maxRange;
+        }
+
+        private void ConfirmThrowTarget()
+        {
+            if (_pendingThrowTarget == null)
+                return;
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(_pendingThrowTarget.Item, _worldCursorState.X, _worldCursorState.Y),
+                PlayerEntity,
+                CurrentZone);
+
+            if (!result.Success)
+            {
+                MessageLog.Add(result.ErrorMessage);
+                return;
+            }
+
+            ExitThrowTargetingToNormal();
+            _inputState = InputState.WaitingForFxResolution;
+        }
+
+        private void CancelThrowTargeting()
+        {
+            if (_pendingThrowTarget == null)
+            {
+                ExitThrowTargetingToNormal();
+                return;
+            }
+
+            var cancelled = _pendingThrowTarget;
+            ExitThrowTargetingToNormal();
+
+            if (cancelled.Origin == ThrowOriginKind.Inventory)
+            {
+                OpenInventory();
+                InventoryUI?.ReopenItemActionPopupFor(cancelled.Item);
+                return;
+            }
+
+            RestoreLookModeAt(cancelled.SourceTileX, cancelled.SourceTileY);
+        }
+
+        private void ExitThrowTargetingToNormal()
+        {
+            _pendingThrowTarget = null;
+            _worldCursorState.Deactivate();
+            ZoneRenderer?.ClearWorldCursor();
+            ZoneRenderer?.ClearLookSnapshot();
+            _inputState = InputState.Normal;
+        }
+
+        private void RestoreLookModeAt(int x, int y)
+        {
+            if (CurrentZone == null || PlayerEntity == null)
+                return;
+
+            Cell playerCell = CurrentZone.GetEntityCell(PlayerEntity);
+            if (playerCell == null)
+                return;
+
+            if (!CurrentZone.InBounds(x, y))
+            {
+                x = playerCell.X;
+                y = playerCell.Y;
+            }
+
+            _worldCursorState.Activate(
+                WorldCursorMode.Look,
+                CurrentZone,
+                x,
+                y,
+                playerCell.X,
+                playerCell.Y,
+                followMouse: true);
+
+            _lastLookMousePosition = Input.mousePosition;
+            _inputState = InputState.LookMode;
+            ClampLookCursorToVisibleFrame();
+            RefreshLookSnapshot();
+            ZoneRenderer?.SetWorldCursorState(_worldCursorState, PlayerEntity);
+        }
+
+        private bool TryOpenWorldThrowPopup(int tileX, int tileY)
+        {
+            Cell actorCell = CurrentZone?.GetEntityCell(PlayerEntity);
+            if (actorCell == null)
+                return false;
+
+            if (!IsSameOrCardinalAdjacent(actorCell.X, actorCell.Y, tileX, tileY))
+                return false;
+
+            var throwableItems = GetVisibleThrowableWorldItems(tileX, tileY);
+            if (throwableItems.Count == 0)
+            {
+                MessageLog.Add("Nothing here can be thrown.");
+                return true;
+            }
+
+            if (throwableItems.Count == 1)
+            {
+                OpenWorldThrowActionPopup(throwableItems[0], tileX, tileY);
+                return true;
+            }
+
+            OpenWorldThrowSourcePicker(throwableItems, tileX, tileY);
+            return true;
+        }
+
+        private List<Entity> GetVisibleThrowableWorldItems(int tileX, int tileY)
+        {
+            var result = new List<Entity>();
+            Cell cell = CurrentZone?.GetCell(tileX, tileY);
+            if (cell == null || !cell.IsVisible)
+                return result;
+
+            for (int i = cell.Objects.Count - 1; i >= 0; i--)
+            {
+                Entity item = cell.Objects[i];
+                if (item == null || item == PlayerEntity)
+                    continue;
+
+                var render = item.GetPart<RenderPart>();
+                if (render != null && !render.Visible)
+                    continue;
+
+                if (HandlingService.CanThrow(PlayerEntity, item, out _))
+                    result.Add(item);
+            }
+
+            return result;
+        }
+
+        private static bool IsSameOrCardinalAdjacent(int x1, int y1, int x2, int y2)
+        {
+            return Math.Abs(x2 - x1) + Math.Abs(y2 - y1) <= 1;
+        }
+
+        private void OpenWorldThrowSourcePicker(List<Entity> items, int tileX, int tileY)
+        {
+            _throwPopup = new ThrowPopupState
+            {
+                Kind = ThrowPopupKind.SourcePicker,
+                Title = "Choose an object",
+                SourceTileX = tileX,
+                SourceTileY = tileY,
+                CursorIndex = 0,
+                ScrollOffset = 0
+            };
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                _throwPopup.Options.Add(new ThrowPopupOption
+                {
+                    Item = items[i],
+                    Label = items[i].GetDisplayName()
+                });
+            }
+
+            OpenThrowPopup();
+        }
+
+        private void OpenWorldThrowActionPopup(Entity item, int tileX, int tileY)
+        {
+            if (item == null)
+                return;
+
+            _throwPopup = new ThrowPopupState
+            {
+                Kind = ThrowPopupKind.ActionPicker,
+                Title = item.GetDisplayName(),
+                SourceTileX = tileX,
+                SourceTileY = tileY,
+                SelectedItem = item,
+                CursorIndex = 0,
+                ScrollOffset = 0
+            };
+
+            _throwPopup.Options.Add(new ThrowPopupOption
+            {
+                Item = item,
+                Label = "throw"
+            });
+
+            OpenThrowPopup();
+        }
+
+        private void OpenThrowPopup()
+        {
+            if (_throwPopup == null)
+                return;
+
+            _inputState = InputState.ThrowPopupOpen;
+            EnterCenteredPopupOverlayView();
+            RenderThrowPopup();
+        }
+
+        private void HandleThrowPopupInput()
+        {
+            if (_throwPopup == null)
+            {
+                CloseThrowPopup();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                CloseThrowPopup();
+                return;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                int clickedRow = GetThrowPopupRowAtMouse();
+                if (clickedRow >= 0)
+                {
+                    _throwPopup.CursorIndex = clickedRow;
+                    ExecuteThrowPopupSelection();
+                    return;
+                }
+
+                CloseThrowPopup();
+                return;
+            }
+
+            if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K)) && _throwPopup.CursorIndex > 0)
+            {
+                _throwPopup.CursorIndex--;
+                ClampThrowPopupScroll();
+                RenderThrowPopup();
+                return;
+            }
+
+            if ((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J)) && _throwPopup.CursorIndex < _throwPopup.Options.Count - 1)
+            {
+                _throwPopup.CursorIndex++;
+                ClampThrowPopupScroll();
+                RenderThrowPopup();
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                ExecuteThrowPopupSelection();
+                return;
+            }
+        }
+
+        private void ExecuteThrowPopupSelection()
+        {
+            if (_throwPopup == null || _throwPopup.CursorIndex < 0 || _throwPopup.CursorIndex >= _throwPopup.Options.Count)
+                return;
+
+            if (_throwPopup.Kind == ThrowPopupKind.SourcePicker)
+            {
+                Entity selectedItem = _throwPopup.Options[_throwPopup.CursorIndex].Item;
+                int sourceX = _throwPopup.SourceTileX;
+                int sourceY = _throwPopup.SourceTileY;
+                OpenWorldThrowActionPopup(selectedItem, sourceX, sourceY);
+                return;
+            }
+
+            Entity item = _throwPopup.SelectedItem ?? _throwPopup.Options[_throwPopup.CursorIndex].Item;
+            int tileX = _throwPopup.SourceTileX;
+            int tileY = _throwPopup.SourceTileY;
+            ClearThrowPopupTiles();
+            ExitCenteredPopupOverlayViewToGameplay();
+            _throwPopup = null;
+            BeginThrowTargeting(item, ThrowOriginKind.LookWorld, tileX, tileY, startAtPlayerCell: false);
+        }
+
+        private void CloseThrowPopup()
+        {
+            ClearThrowPopupTiles();
+            ExitCenteredPopupOverlayViewToGameplay();
+
+            if (_throwPopup != null)
+                RestoreLookModeAt(_throwPopup.SourceTileX, _throwPopup.SourceTileY);
+            else
+                _inputState = InputState.LookMode;
+
+            _throwPopup = null;
+        }
+
+        private void ClampThrowPopupScroll()
+        {
+            if (_throwPopup == null)
+                return;
+
+            const int visibleCount = 10;
+            if (_throwPopup.CursorIndex < _throwPopup.ScrollOffset)
+                _throwPopup.ScrollOffset = _throwPopup.CursorIndex;
+            else if (_throwPopup.CursorIndex >= _throwPopup.ScrollOffset + visibleCount)
+                _throwPopup.ScrollOffset = _throwPopup.CursorIndex - visibleCount + 1;
+        }
+
+        private void RenderThrowPopup()
+        {
+            if (_throwPopup == null || ZoneRenderer?.CenteredPopupFgTilemap == null)
+                return;
+
+            ClearThrowPopupTiles();
+
+            const int popupWidth = 36;
+            const int maxVisible = 10;
+            int totalRows = _throwPopup.Options.Count;
+            int visibleRows = Math.Min(Math.Max(totalRows, 1), maxVisible);
+            ClampThrowPopupScroll();
+            int popupHeight = visibleRows + 4;
+            int popupX = CenteredPopupLayout.GetCenteredOriginX(popupWidth);
+            int popupTopY = CenteredPopupLayout.GetCenteredTopY(popupHeight);
+            DrawThrowPopupBackground(popupX, popupTopY, popupWidth, popupHeight);
+            DrawThrowPopupBorder(popupX, popupTopY, popupWidth, popupHeight);
+
+            string title = _throwPopup.Title ?? "Throw";
+            if (title.Length > popupWidth - 4)
+                title = title.Substring(0, popupWidth - 4);
+            DrawThrowPopupText(popupX + 2, popupTopY - 1, title, QudColorParser.BrightYellow);
+
+            int contentTopY = popupTopY - 3;
+            if (totalRows == 0)
+            {
+                DrawThrowPopupText(popupX + 2, contentTopY, "(no actions available)", QudColorParser.DarkGray);
+                return;
+            }
+
+            for (int i = 0; i < visibleRows; i++)
+            {
+                int rowIndex = _throwPopup.ScrollOffset + i;
+                if (rowIndex >= totalRows)
+                    break;
+
+                int rowY = contentTopY - i;
+                bool selected = rowIndex == _throwPopup.CursorIndex;
+                if (selected)
+                    DrawThrowPopupChar(popupX + 1, rowY, '>', QudColorParser.White);
+
+                if (rowIndex < 26)
+                {
+                    char hotkey = (char)('a' + rowIndex);
+                    DrawThrowPopupText(popupX + 2, rowY, hotkey + ")", selected ? QudColorParser.White : QudColorParser.Gray);
+                }
+
+                string label = _throwPopup.Options[rowIndex].Label ?? string.Empty;
+                if (label.Length > popupWidth - 8)
+                    label = label.Substring(0, popupWidth - 9) + "~";
+                DrawThrowPopupText(popupX + 5, rowY, label, selected ? QudColorParser.White : QudColorParser.Gray);
+            }
+        }
+
+        private void DrawThrowPopupBorder(int popupX, int popupTopY, int popupWidth, int popupHeight)
+        {
+            for (int dx = 0; dx < popupWidth; dx++)
+            {
+                DrawThrowPopupChar(popupX + dx, popupTopY, dx == 0 || dx == popupWidth - 1 ? '+' : '-', QudColorParser.Gray);
+                DrawThrowPopupChar(popupX + dx, popupTopY - popupHeight + 1, dx == 0 || dx == popupWidth - 1 ? '+' : '-', QudColorParser.Gray);
+            }
+
+            for (int dy = 1; dy < popupHeight - 1; dy++)
+            {
+                DrawThrowPopupChar(popupX, popupTopY - dy, '|', QudColorParser.Gray);
+                DrawThrowPopupChar(popupX + popupWidth - 1, popupTopY - dy, '|', QudColorParser.Gray);
+            }
+        }
+
+        private void DrawThrowPopupBackground(int popupX, int popupTopY, int popupWidth, int popupHeight)
+        {
+            var bgTilemap = ZoneRenderer?.CenteredPopupBgTilemap;
+            if (bgTilemap == null)
+                return;
+
+            var blockTile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+            if (blockTile == null)
+                return;
+
+            Color bgColor = new Color(0f, 0f, 0f, 1f);
+            for (int dy = 0; dy < popupHeight; dy++)
+            {
+                for (int dx = 0; dx < popupWidth; dx++)
+                {
+                    var pos = new Vector3Int(popupX + dx, popupTopY - dy, 0);
+                    bgTilemap.SetTile(pos, blockTile);
+                    bgTilemap.SetTileFlags(pos, UnityEngine.Tilemaps.TileFlags.None);
+                    bgTilemap.SetColor(pos, bgColor);
+                }
+            }
+        }
+
+        private void DrawThrowPopupText(int x, int y, string text, Color color)
+        {
+            if (string.IsNullOrEmpty(text))
+                return;
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] == ' ')
+                    continue;
+                DrawThrowPopupChar(x + i, y, text[i], color);
+            }
+        }
+
+        private void DrawThrowPopupChar(int x, int y, char c, Color color)
+        {
+            var tilemap = ZoneRenderer?.CenteredPopupFgTilemap;
+            if (tilemap == null)
+                return;
+
+            var tile = CP437TilesetGenerator.GetTile(c);
+            if (tile == null)
+                return;
+
+            var pos = new Vector3Int(x, y, 0);
+            tilemap.SetTile(pos, tile);
+            tilemap.SetTileFlags(pos, UnityEngine.Tilemaps.TileFlags.None);
+            tilemap.SetColor(pos, color);
+        }
+
+        private void ClearThrowPopupTiles()
+        {
+            ZoneRenderer?.CenteredPopupFgTilemap?.ClearAllTiles();
+            ZoneRenderer?.CenteredPopupBgTilemap?.ClearAllTiles();
+        }
+
+        private int GetThrowPopupRowAtMouse()
+        {
+            if (_throwPopup == null ||
+                ZoneRenderer?.PopupOverlayCamera == null ||
+                ZoneRenderer.CenteredPopupFgTilemap == null ||
+                !CenteredPopupLayout.ScreenToGrid(
+                    ZoneRenderer.PopupOverlayCamera,
+                    ZoneRenderer.CenteredPopupFgTilemap,
+                    Input.mousePosition,
+                    out int gridX,
+                    out int gridY))
+            {
+                return -1;
+            }
+
+            const int popupWidth = 36;
+            const int maxVisible = 10;
+            int totalRows = _throwPopup.Options.Count;
+            int visibleRows = Math.Min(Math.Max(totalRows, 1), maxVisible);
+            int popupHeight = visibleRows + 4;
+            int popupX = CenteredPopupLayout.GetCenteredOriginX(popupWidth);
+            int popupTopY = CenteredPopupLayout.GetCenteredTopY(popupHeight);
+            int contentTopY = popupTopY - 3;
+
+            if (gridX < popupX || gridX >= popupX + popupWidth)
+                return -1;
+
+            if (gridY > contentTopY || gridY <= contentTopY - visibleRows)
+                return -1;
+
+            int visibleIndex = contentTopY - gridY;
+            int rowIndex = _throwPopup.ScrollOffset + visibleIndex;
+            return rowIndex >= 0 && rowIndex < totalRows ? rowIndex : -1;
+        }
+
         /// <summary>
         /// Try to activate an ability by slot. Directional abilities enter targeting mode;
         /// self-centered abilities resolve immediately.
@@ -1298,27 +2020,27 @@ namespace CavesOfOoo.Rendering
             var abilities = PlayerEntity.GetPart<ActivatedAbilitiesPart>();
             if (abilities == null)
             {
-                Debug.Log("[Abilities] No activated abilities.");
+                MessageLog.Add("You know no rites.");
                 return;
             }
 
             var ability = abilities.GetAbilityBySlot(slot);
             if (ability == null)
             {
-                Debug.Log($"[Abilities] No ability in slot {slot + 1}.");
+                MessageLog.Add("No rite bound to [" + HotbarStateBuilder.SlotToHotkey(slot) + "].");
                 return;
             }
 
             if (!ability.IsUsable)
             {
-                Debug.Log($"[Abilities] {ability.DisplayName} is on cooldown ({ability.CooldownRemaining} turns remaining).");
+                MessageLog.Add(GetAbilityDisplayName(ability) + " is on cooldown (" + ability.CooldownRemaining + " turns remaining).");
                 return;
             }
 
             Cell playerCell = CurrentZone?.GetEntityCell(PlayerEntity);
             if (playerCell == null)
             {
-                Debug.Log("[Abilities] You have no valid source cell.");
+                MessageLog.Add("You have no valid source cell.");
                 return;
             }
 
@@ -1331,7 +2053,8 @@ namespace CavesOfOoo.Rendering
             // Enter targeting mode
             _pendingAbility = ability;
             _inputState = InputState.AwaitingDirection;
-            Debug.Log($"[Abilities] {ability.DisplayName} — choose a direction.");
+            SyncHotbarState();
+            MessageLog.Add(GetAbilityDisplayName(ability) + " - choose a direction.");
         }
 
         /// <summary>
@@ -1343,9 +2066,10 @@ namespace CavesOfOoo.Rendering
             // Cancel on Escape
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Debug.Log("[Abilities] Cancelled.");
+                MessageLog.Add("Cancelled.");
                 _inputState = InputState.Normal;
                 _pendingAbility = null;
+                SyncHotbarState();
                 return;
             }
 
@@ -1358,6 +2082,7 @@ namespace CavesOfOoo.Rendering
             {
                 _inputState = InputState.Normal;
                 _pendingAbility = null;
+                SyncHotbarState();
                 return;
             }
 
@@ -1365,9 +2090,10 @@ namespace CavesOfOoo.Rendering
             int targetY = playerCell.Y + dy;
             if (!CurrentZone.InBounds(targetX, targetY))
             {
-                Debug.Log("[Abilities] Invalid target.");
+                MessageLog.Add("Invalid target.");
                 _inputState = InputState.Normal;
                 _pendingAbility = null;
+                SyncHotbarState();
                 return;
             }
 
@@ -1376,9 +2102,10 @@ namespace CavesOfOoo.Rendering
                 : null;
             if (_pendingAbility.TargetingMode == AbilityTargetingMode.AdjacentCell && targetCell == null)
             {
-                Debug.Log("[Abilities] Invalid target.");
+                MessageLog.Add("Invalid target.");
                 _inputState = InputState.Normal;
                 _pendingAbility = null;
+                SyncHotbarState();
                 return;
             }
 
@@ -1420,8 +2147,9 @@ namespace CavesOfOoo.Rendering
 
             if (!handled)
             {
-                Debug.Log("[Abilities] The ability fails to resolve.");
+                MessageLog.Add("The rite fails to resolve.");
                 _lastMoveTime = Time.time;
+                SyncHotbarState();
                 return;
             }
 
@@ -1429,11 +2157,13 @@ namespace CavesOfOoo.Rendering
             {
                 _inputState = InputState.WaitingForFxResolution;
                 _lastMoveTime = Time.time;
+                SyncHotbarState();
                 return;
             }
 
             EndTurnAndProcess();
             _lastMoveTime = Time.time;
+            SyncHotbarState();
         }
 
         private void OpenInventory()
@@ -1456,6 +2186,19 @@ namespace CavesOfOoo.Rendering
             }
 
             InventoryUI.HandleInput();
+
+            var throwRequest = InventoryUI.ConsumePendingThrowRequest();
+            if (throwRequest != null && throwRequest.Item != null)
+            {
+                CloseInventory();
+                BeginThrowTargeting(
+                    throwRequest.Item,
+                    ThrowOriginKind.Inventory,
+                    sourceTileX: -1,
+                    sourceTileY: -1,
+                    startAtPlayerCell: true);
+                return;
+            }
 
             if (!InventoryUI.IsOpen)
                 CloseInventory();
@@ -1942,6 +2685,87 @@ namespace CavesOfOoo.Rendering
         {
             if (CameraFollow != null)
                 CameraFollow.RestoreGameView();
+        }
+
+        private void ActivateSelectedHotbarSlot()
+        {
+            EnsureHotbarSelectionValid();
+            if (_selectedHotbarSlot < 0)
+            {
+                MessageLog.Add("No rite bound.");
+                return;
+            }
+
+            TryActivateAbility(_selectedHotbarSlot);
+        }
+
+        private void CycleHotbarSelection(int direction)
+        {
+            var abilities = PlayerEntity?.GetPart<ActivatedAbilitiesPart>();
+            int nextSlot = FindNextOccupiedHotbarSlot(abilities, _selectedHotbarSlot, direction);
+            if (nextSlot < 0)
+            {
+                MessageLog.Add("No rite bound.");
+                return;
+            }
+
+            _selectedHotbarSlot = nextSlot;
+            SyncHotbarState();
+        }
+
+        private void EnsureHotbarSelectionValid()
+        {
+            var abilities = PlayerEntity?.GetPart<ActivatedAbilitiesPart>();
+            if (abilities == null)
+            {
+                _selectedHotbarSlot = -1;
+                return;
+            }
+
+            if (IsOccupiedHotbarSlot(abilities, _selectedHotbarSlot))
+                return;
+
+            _selectedHotbarSlot = FindNextOccupiedHotbarSlot(abilities, -1, 1);
+        }
+
+        private void SyncHotbarState()
+        {
+            ZoneRenderer?.SetHotbarState(_selectedHotbarSlot, _pendingAbility);
+        }
+
+        private static bool IsOccupiedHotbarSlot(ActivatedAbilitiesPart abilities, int slot)
+        {
+            return abilities != null &&
+                   slot >= 0 &&
+                   slot < ActivatedAbilitiesPart.SlotCount &&
+                   abilities.GetAbilityBySlot(slot) != null;
+        }
+
+        private static int FindNextOccupiedHotbarSlot(ActivatedAbilitiesPart abilities, int startSlot, int direction)
+        {
+            if (abilities == null)
+                return -1;
+
+            int delta = direction >= 0 ? 1 : -1;
+            for (int step = 1; step <= ActivatedAbilitiesPart.SlotCount; step++)
+            {
+                int slot = Mathf.FloorToInt(Mathf.Repeat(startSlot + step * delta, ActivatedAbilitiesPart.SlotCount));
+                if (abilities.GetAbilityBySlot(slot) != null)
+                    return slot;
+            }
+
+            return -1;
+        }
+
+        private static string GetAbilityDisplayName(ActivatedAbility ability)
+        {
+            if (ability == null)
+                return "That rite";
+
+            GrimoireTooltip tooltip = GrimoireTooltipData.GetOrDefault(ability.SourceMutationClass);
+            return !string.IsNullOrEmpty(tooltip.DisplayName)
+                ? tooltip.DisplayName
+                : ability.DisplayName;
         }
     }
 }

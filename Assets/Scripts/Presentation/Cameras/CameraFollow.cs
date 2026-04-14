@@ -13,6 +13,7 @@ namespace CavesOfOoo.Rendering
         public Entity Player { get; set; }
         public Zone CurrentZone { get; set; }
         public Camera SidebarCamera { get; set; }
+        public Camera HotbarCamera { get; set; }
         public Camera PopupOverlayCamera { get; set; }
         public bool HasOverrideTarget { get; private set; }
         public Vector2Int OverrideZoneCell { get; private set; }
@@ -31,6 +32,7 @@ namespace CavesOfOoo.Rendering
         public float ZoomSize = 17f;
         public int ReservedSidebarWidthChars = 34;
         public float SidebarReferenceZoom = 20f;
+        public int ReservedHotbarHeightRows = GameplayViewportLayout.DefaultHotbarRows;
 
         private Camera _camera;
         private bool _paused;
@@ -275,29 +277,15 @@ namespace CavesOfOoo.Rendering
             GameplayScreenLayout layout = GameplayViewportLayout.Measure(
                 _camera,
                 SidebarReferenceZoom,
-                ReservedSidebarWidthChars);
+                ReservedSidebarWidthChars,
+                ReservedHotbarHeightRows);
 
-            ConfigureCameraRect(_camera, layout.GameplayRect, layout.GameplayAspect);
+            ConfigureCameraRect(_camera, layout.MapRect, layout.MapAspect);
             _camera.orthographic = true;
             _camera.cullingMask = GameplayRenderLayers.GameplayCameraMask;
 
-            if (SidebarCamera == null)
-            {
-                ConfigurePopupOverlayCamera(layout);
-                return;
-            }
-
-            SidebarCamera.enabled = layout.SidebarRect.width > 0f;
-            SidebarCamera.orthographic = true;
-            SidebarCamera.backgroundColor = Color.black;
-            SidebarCamera.clearFlags = CameraClearFlags.SolidColor;
-            SidebarCamera.cullingMask = GameplayRenderLayers.SidebarMask;
-            SidebarCamera.transform.position = new Vector3(
-                layout.SidebarWorldWidth * 0.5f,
-                _camera.orthographicSize,
-                SidebarCamera.transform.position.z);
-            SidebarCamera.orthographicSize = _camera.orthographicSize;
-            ConfigureCameraRect(SidebarCamera, layout.SidebarRect, layout.SidebarAspect);
+            ConfigureSidebarCamera(layout);
+            ConfigureHotbarCamera(layout);
             ConfigurePopupOverlayCamera(layout);
         }
 
@@ -312,6 +300,8 @@ namespace CavesOfOoo.Rendering
 
             if (SidebarCamera != null)
                 SidebarCamera.enabled = false;
+            if (HotbarCamera != null)
+                HotbarCamera.enabled = false;
             if (PopupOverlayCamera != null)
                 PopupOverlayCamera.enabled = false;
         }
@@ -328,8 +318,41 @@ namespace CavesOfOoo.Rendering
             PopupOverlayCamera.backgroundColor = Color.clear;
             CenteredPopupLayout.ConfigureOverlayCamera(
                 PopupOverlayCamera,
-                layout.GameplayRect,
-                layout.GameplayAspect);
+                layout.MapRect,
+                layout.MapAspect);
+        }
+
+        private void ConfigureSidebarCamera(GameplayScreenLayout layout)
+        {
+            if (SidebarCamera == null)
+                return;
+
+            SidebarCamera.enabled = layout.SidebarRect.width > 0f;
+            SidebarCamera.orthographic = true;
+            SidebarCamera.backgroundColor = Color.black;
+            SidebarCamera.clearFlags = CameraClearFlags.SolidColor;
+            SidebarCamera.cullingMask = GameplayRenderLayers.SidebarMask;
+            SidebarCamera.transform.position = new Vector3(
+                layout.SidebarWorldWidth * 0.5f,
+                _camera.orthographicSize,
+                SidebarCamera.transform.position.z);
+            SidebarCamera.orthographicSize = _camera.orthographicSize;
+            ConfigureCameraRect(SidebarCamera, layout.SidebarRect, layout.SidebarAspect);
+        }
+
+        private void ConfigureHotbarCamera(GameplayScreenLayout layout)
+        {
+            if (HotbarCamera == null)
+                return;
+
+            HotbarCamera.enabled = layout.HotbarRect.width > 0f && layout.HotbarRect.height > 0f;
+            HotbarCamera.cullingMask = GameplayRenderLayers.HotbarMask;
+            HotbarCamera.clearFlags = CameraClearFlags.SolidColor;
+            HotbarCamera.backgroundColor = Color.black;
+            GameplayHotbarLayout.ConfigureOverlayCamera(
+                HotbarCamera,
+                layout.HotbarRect,
+                layout.HotbarAspect);
         }
 
         private static void ConfigureCameraRect(Camera camera, Rect rect, float aspect)

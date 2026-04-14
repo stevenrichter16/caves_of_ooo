@@ -49,6 +49,23 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Item is not takeable.");
             }
 
+            var handling = _item.GetPart<HandlingPart>();
+            if (handling != null && !handling.Carryable)
+            {
+                return InventoryValidationResult.Invalid(
+                    InventoryValidationErrorCode.NotCarryable,
+                    $"{_item.GetDisplayName()} cannot be carried.");
+            }
+
+            int requiredStrength = HandlingService.GetLiftStrengthRequirement(_item);
+            int strength = context.Actor.GetStatValue("Strength", 0);
+            if (strength < requiredStrength)
+            {
+                return InventoryValidationResult.Invalid(
+                    InventoryValidationErrorCode.InsufficientStrength,
+                    $"You can't carry {_item.GetDisplayName()}: it requires Strength {requiredStrength}.");
+            }
+
             return InventoryValidationResult.Valid();
         }
 
@@ -57,6 +74,14 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var actor = context.Actor;
             var zone = context.Zone;
             var inventory = context.Inventory;
+
+            if (!HandlingService.CanLift(actor, _item, out string liftFailure))
+            {
+                MessageLog.Add(liftFailure);
+                return InventoryCommandResult.Fail(
+                    InventoryCommandErrorCode.ExecutionFailed,
+                    liftFailure);
+            }
 
             // Fire BeforePickup on actor.
             var beforePickup = GameEvent.New("BeforePickup");

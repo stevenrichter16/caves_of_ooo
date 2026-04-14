@@ -60,6 +60,11 @@ namespace CavesOfOoo.Rendering
         private Tilemap _sidebarTilemap;
         private Transform _sidebarGridTransform;
         private Material _sidebarUiMaterial;
+        private Grid _hotbarGrid;
+        private Tilemap _hotbarBgTilemap;
+        private Tilemap _hotbarTilemap;
+        private Transform _hotbarGridTransform;
+        private Material _hotbarUiMaterial;
         private Grid _popupOverlayGrid;
         private Tilemap _popupOverlayBgTilemap;
         private Tilemap _popupOverlayTilemap;
@@ -69,6 +74,7 @@ namespace CavesOfOoo.Rendering
         private CampfireEmberRenderer _campfireEmberRenderer;
         private WorldCursorRenderer _worldCursorRenderer;
         private GameplaySidebarRenderer _sidebarRenderer;
+        private GameplayHotbarRenderer _hotbarRenderer;
         private bool _dirty = true;
         private int _lastFlashStamp;
         private float _flashUntil;
@@ -79,6 +85,7 @@ namespace CavesOfOoo.Rendering
         private const float DustMoteSpawnInterval = 3.5f;
         private Camera _mainCamera;
         private Camera _sidebarCamera;
+        private Camera _hotbarCamera;
         private Camera _popupOverlayCamera;
         private LightMap _lightMap;
         private readonly List<Vector2Int> _waterTilePositions = new List<Vector2Int>();
@@ -86,6 +93,8 @@ namespace CavesOfOoo.Rendering
         private WorldCursorState _worldCursorState;
         private Entity _cursorPlayer;
         private LookSnapshot _currentLookSnapshot;
+        private int _selectedHotbarSlot = -1;
+        private ActivatedAbility _pendingHotbarAbility;
         private Vector3 _lastCameraPosition;
         private float _lastCameraSize = -1f;
         private float _lastCameraAspect = -1f;
@@ -103,6 +112,9 @@ namespace CavesOfOoo.Rendering
         public Tilemap SidebarBgTilemap => _sidebarBgTilemap;
         public Tilemap SidebarTilemap => _sidebarTilemap;
         public Camera SidebarCamera => _sidebarCamera;
+        public Tilemap HotbarBgTilemap => _hotbarBgTilemap;
+        public Tilemap HotbarTilemap => _hotbarTilemap;
+        public Camera HotbarCamera => _hotbarCamera;
         public Tilemap CenteredPopupBgTilemap => _popupOverlayBgTilemap;
         public Tilemap CenteredPopupFgTilemap => _popupOverlayTilemap;
         public Camera PopupOverlayCamera => _popupOverlayCamera;
@@ -165,8 +177,29 @@ namespace CavesOfOoo.Rendering
             var sidebarRenderer = sidebarTmObj.AddComponent<TilemapRenderer>();
             ConfigureSidebarTilemapRenderer(sidebarRenderer, 3);
 
+            var hotbarGridObj = new GameObject("HotbarGrid");
+            _hotbarGridTransform = hotbarGridObj.transform;
+            GameplayRenderLayers.SetLayerRecursive(hotbarGridObj, GameplayRenderLayers.HotbarLayer);
+            _hotbarGrid = hotbarGridObj.AddComponent<Grid>();
+            _hotbarGrid.cellSize = new Vector3(0.5f, 1f, 0f);
+
+            var hotbarBgObj = new GameObject("HotbarBgTilemap");
+            hotbarBgObj.transform.SetParent(hotbarGridObj.transform, false);
+            GameplayRenderLayers.SetLayerRecursive(hotbarBgObj, GameplayRenderLayers.HotbarLayer);
+            _hotbarBgTilemap = hotbarBgObj.AddComponent<Tilemap>();
+            var hotbarBgRenderer = hotbarBgObj.AddComponent<TilemapRenderer>();
+            ConfigureHotbarTilemapRenderer(hotbarBgRenderer, 0);
+
+            var hotbarTmObj = new GameObject("HotbarTilemap");
+            hotbarTmObj.transform.SetParent(hotbarGridObj.transform, false);
+            GameplayRenderLayers.SetLayerRecursive(hotbarTmObj, GameplayRenderLayers.HotbarLayer);
+            _hotbarTilemap = hotbarTmObj.AddComponent<Tilemap>();
+            var hotbarRenderer = hotbarTmObj.AddComponent<TilemapRenderer>();
+            ConfigureHotbarTilemapRenderer(hotbarRenderer, 1);
+
             _worldCursorRenderer = new WorldCursorRenderer(gridParent, _tilemap, GameplayRenderLayers.WorldLayer);
             _sidebarRenderer = new GameplaySidebarRenderer(_sidebarTilemap, _sidebarBgTilemap, _sidebarGridTransform, MessageReferenceZoom);
+            _hotbarRenderer = new GameplayHotbarRenderer(_hotbarTilemap, _hotbarBgTilemap);
 
             var popupOverlayGridObj = new GameObject("PopupOverlayGrid");
             _popupOverlayGridTransform = popupOverlayGridObj.transform;
@@ -208,6 +241,7 @@ namespace CavesOfOoo.Rendering
         private void OnDestroy()
         {
             DestroyOwnedMaterial(ref _sidebarUiMaterial);
+            DestroyOwnedMaterial(ref _hotbarUiMaterial);
             DestroyOwnedMaterial(ref _popupOverlayUiMaterial);
         }
 
@@ -222,6 +256,7 @@ namespace CavesOfOoo.Rendering
             _sidebarRenderer?.ResetLogScroll();
             _sidebarRenderer?.Clear();
             _sidebarRenderer?.Invalidate();
+            _hotbarRenderer?.Clear();
             _currentLookSnapshot = null;
             _worldCursorState = null;
             _cursorPlayer = null;
@@ -263,6 +298,7 @@ namespace CavesOfOoo.Rendering
                 _mainCamera = Camera.main;
 
             UpdatePopupOverlayGridLayout();
+            UpdateHotbarGridLayout();
 
             if (MessageLog.FlashStamp != _lastFlashStamp)
             {
@@ -284,6 +320,7 @@ namespace CavesOfOoo.Rendering
                         _campfireEmberRenderer.gameObject.SetActive(false);
                     _worldCursorRenderer?.Clear();
                     _sidebarRenderer?.Clear();
+                    _hotbarRenderer?.Clear();
                 }
 
                 CacheCameraView(cam);
@@ -309,6 +346,7 @@ namespace CavesOfOoo.Rendering
             UpdateAmbientAnimations(Time.deltaTime);
 
             RenderSidebar(cam);
+            RenderHotbar();
 
             if (_worldCursorState != null && _worldCursorState.Active)
                 _worldCursorRenderer?.SetCursor(_worldCursorState, _cursorPlayer);
@@ -543,6 +581,19 @@ namespace CavesOfOoo.Rendering
             _sidebarRenderer?.Render(snapshot, sidebarCamera, SidebarWidthChars, flashActive, flashT);
         }
 
+        private void RenderHotbar()
+        {
+            Camera hotbarCamera = _hotbarCamera;
+            if (hotbarCamera == null || !hotbarCamera.enabled)
+            {
+                _hotbarRenderer?.Clear();
+                return;
+            }
+
+            HotbarSnapshot snapshot = HotbarStateBuilder.Build(PlayerEntity, _selectedHotbarSlot, _pendingHotbarAbility);
+            _hotbarRenderer?.Render(snapshot, hotbarCamera);
+        }
+
         private void ConfigureSidebarTilemapRenderer(TilemapRenderer renderer, int sortingOrder)
         {
             if (renderer == null)
@@ -563,6 +614,18 @@ namespace CavesOfOoo.Rendering
             renderer.sortingOrder = sortingOrder;
 
             Material uiMaterial = GetUnlitSpriteMaterial(ref _popupOverlayUiMaterial, "CenteredPopupUI-Unlit");
+            if (uiMaterial != null)
+                renderer.sharedMaterial = uiMaterial;
+        }
+
+        private void ConfigureHotbarTilemapRenderer(TilemapRenderer renderer, int sortingOrder)
+        {
+            if (renderer == null)
+                return;
+
+            renderer.sortingOrder = sortingOrder;
+
+            Material uiMaterial = GetUnlitSpriteMaterial(ref _hotbarUiMaterial, "HotbarUI-Unlit");
             if (uiMaterial != null)
                 renderer.sharedMaterial = uiMaterial;
         }
@@ -614,6 +677,17 @@ namespace CavesOfOoo.Rendering
                 _popupOverlayGrid.cellSize = new Vector3(cellWidth, 1f, 0f);
         }
 
+        private void UpdateHotbarGridLayout()
+        {
+            if (_hotbarGrid == null || _hotbarCamera == null)
+                return;
+
+            float cellWidth = GameplayHotbarLayout.ComputeCellWidth(_hotbarCamera.aspect);
+            Vector3 cellSize = _hotbarGrid.cellSize;
+            if (Mathf.Abs(cellSize.x - cellWidth) > 0.0001f || Mathf.Abs(cellSize.y - 1f) > 0.0001f)
+                _hotbarGrid.cellSize = new Vector3(cellWidth, 1f, 0f);
+        }
+
         /// <summary>
         /// Refresh a single cell (more efficient than full redraw for movement).
         /// </summary>
@@ -662,10 +736,22 @@ namespace CavesOfOoo.Rendering
             _sidebarRenderer?.Invalidate();
         }
 
+        public void SetHotbarCamera(Camera hotbarCamera)
+        {
+            _hotbarCamera = hotbarCamera;
+            UpdateHotbarGridLayout();
+        }
+
         public void SetPopupOverlayCamera(Camera popupOverlayCamera)
         {
             _popupOverlayCamera = popupOverlayCamera;
             UpdatePopupOverlayGridLayout();
+        }
+
+        public void SetHotbarState(int selectedSlot, ActivatedAbility pendingAbility)
+        {
+            _selectedHotbarSlot = selectedSlot;
+            _pendingHotbarAbility = pendingAbility;
         }
 
         public bool ScrollSidebarLogOlder(int rows = 1)
@@ -700,6 +786,16 @@ namespace CavesOfOoo.Rendering
             x = zoneX;
             y = zoneY;
             return true;
+        }
+
+        public bool TryGetHotbarSlotAtScreenPosition(Vector2 screenPosition, out int slot)
+        {
+            slot = -1;
+            return GameplayHotbarLayout.TryGetSlotAtScreenPosition(
+                _hotbarCamera,
+                _hotbarTilemap,
+                screenPosition,
+                out slot);
         }
 
         public bool TryGetVisibleZoneBounds(Camera camera, out int minX, out int maxX, out int minY, out int maxY)

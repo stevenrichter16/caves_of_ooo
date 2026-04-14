@@ -789,7 +789,10 @@ namespace CavesOfOoo.Core
                     // Remove from inventory if present
                     var inventory = ParentEntity.GetPart<InventoryPart>();
                     if (inventory != null)
+                    {
                         inventory.Objects.Remove(item);
+                        inventory.RefreshHandlingCarryPenalty();
+                    }
 
                     var pos = zone.GetEntityPosition(ParentEntity);
                     if (pos.x >= 0 && pos.y >= 0)
@@ -811,6 +814,7 @@ namespace CavesOfOoo.Core
                             physics.InInventory = ParentEntity;
                         }
                         inventory.Objects.Add(item);
+                        inventory.RefreshHandlingCarryPenalty();
                     }
                 }
             }

@@ -47,8 +47,13 @@ namespace CavesOfOoo.Core
         /// </summary>
         public string GetEffectiveSlots()
         {
-            if (!string.IsNullOrEmpty(UsesSlots))
+            if (!string.IsNullOrWhiteSpace(UsesSlots))
                 return UsesSlots;
+
+            string derivedSlots = GetDerivedHandlingSlots();
+            if (!string.IsNullOrEmpty(derivedSlots))
+                return derivedSlots;
+
             return Slot;
         }
 
@@ -77,6 +82,21 @@ namespace CavesOfOoo.Core
                     count++;
             }
             return count;
+        }
+
+        private string GetDerivedHandlingSlots()
+        {
+            if (ParentEntity == null)
+                return null;
+
+            if (ParentEntity.GetPart<HandlingPart>() == null)
+                return null;
+
+            string[] derived = HandlingService.GetDefaultSlots(ParentEntity);
+            if (derived == null || derived.Length == 0)
+                return null;
+
+            return string.Join(",", derived);
         }
     }
 }

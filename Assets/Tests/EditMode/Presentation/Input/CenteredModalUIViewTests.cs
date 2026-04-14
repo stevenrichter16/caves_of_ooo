@@ -15,6 +15,7 @@ namespace CavesOfOoo.Tests
         {
             public Camera MainCamera;
             public Camera SidebarCamera;
+            public Camera HotbarCamera;
             public Camera PopupOverlayCamera;
             public CameraFollow CameraFollow;
             public ZoneRenderer ZoneRenderer;
@@ -258,6 +259,11 @@ namespace CavesOfOoo.Tests
             sidebarCamera.orthographic = true;
             sidebarCamera.transform.position = new Vector3(0f, 0f, -10f);
 
+            var hotbarCameraGo = new GameObject("Hotbar Camera");
+            var hotbarCamera = hotbarCameraGo.AddComponent<Camera>();
+            hotbarCamera.orthographic = true;
+            hotbarCamera.transform.position = new Vector3(0f, 0f, -10f);
+
             var popupOverlayCameraGo = new GameObject("Popup Overlay Camera");
             var popupOverlayCamera = popupOverlayCameraGo.AddComponent<Camera>();
             popupOverlayCamera.orthographic = true;
@@ -279,6 +285,7 @@ namespace CavesOfOoo.Tests
                     .Invoke(zoneRenderer, null);
             }
             zoneRenderer.SetSidebarCamera(sidebarCamera);
+            zoneRenderer.SetHotbarCamera(hotbarCamera);
             zoneRenderer.SetPopupOverlayCamera(popupOverlayCamera);
 
             var zone = new Zone("ModalPopupZone");
@@ -291,6 +298,7 @@ namespace CavesOfOoo.Tests
             cameraFollow.Player = player;
             cameraFollow.CurrentZone = zone;
             cameraFollow.SidebarCamera = sidebarCamera;
+            cameraFollow.HotbarCamera = hotbarCamera;
             cameraFollow.PopupOverlayCamera = popupOverlayCamera;
             cameraFollow.SnapToPlayer();
 
@@ -344,6 +352,7 @@ namespace CavesOfOoo.Tests
             {
                 MainCamera = mainCamera,
                 SidebarCamera = sidebarCamera,
+                HotbarCamera = hotbarCamera,
                 PopupOverlayCamera = popupOverlayCamera,
                 CameraFollow = cameraFollow,
                 ZoneRenderer = zoneRenderer,
@@ -367,6 +376,7 @@ namespace CavesOfOoo.Tests
         {
             Assert.AreEqual(new Rect(0f, 0f, 1f, 1f), rig.MainCamera.rect);
             Assert.IsFalse(rig.SidebarCamera.enabled);
+            Assert.IsFalse(rig.HotbarCamera.enabled);
             Assert.IsFalse(rig.PopupOverlayCamera.enabled);
             Assert.IsTrue(rig.ZoneRenderer.Paused);
         }
@@ -375,6 +385,7 @@ namespace CavesOfOoo.Tests
         {
             Assert.Less(rig.MainCamera.rect.width, 1f);
             Assert.IsTrue(rig.SidebarCamera.enabled);
+            Assert.IsTrue(rig.HotbarCamera.enabled);
             Assert.IsTrue(rig.PopupOverlayCamera.enabled);
             Assert.AreEqual(rig.MainCamera.rect, rig.PopupOverlayCamera.rect);
             Assert.IsFalse(rig.ZoneRenderer.Paused);
@@ -387,6 +398,7 @@ namespace CavesOfOoo.Tests
         {
             Assert.Less(rig.MainCamera.rect.width, 1f);
             Assert.IsTrue(rig.SidebarCamera.enabled);
+            Assert.IsTrue(rig.HotbarCamera.enabled);
             Assert.IsFalse(rig.PopupOverlayCamera.enabled);
             Assert.IsFalse(rig.ZoneRenderer.Paused);
         }

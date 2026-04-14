@@ -41,6 +41,8 @@ namespace CavesOfOoo.Core
         /// </summary>
         public Dictionary<string, Entity> EquippedItems = new Dictionary<string, Entity>();
 
+        private int _appliedHandlingCarryPenalty;
+
         /// <summary>
         /// Add an item to the carried list. Sets InInventory back-reference.
         /// Returns false if weight would be exceeded.
@@ -66,7 +68,10 @@ namespace CavesOfOoo.Core
                     {
                         existingStacker.MergeFrom(item);
                         if (itemStacker.StackCount <= 0)
+                        {
+                            RefreshHandlingCarryPenalty();
                             return true; // Fully merged — item consumed
+                        }
                     }
                 }
             }
@@ -79,6 +84,7 @@ namespace CavesOfOoo.Core
                 physics.InInventory = ParentEntity;
                 physics.Equipped = null;
             }
+            RefreshHandlingCarryPenalty();
             return true;
         }
 
@@ -92,6 +98,7 @@ namespace CavesOfOoo.Core
             var physics = item.GetPart<PhysicsPart>();
             if (physics != null)
                 physics.InInventory = null;
+            RefreshHandlingCarryPenalty();
             return true;
         }
 
@@ -103,6 +110,7 @@ namespace CavesOfOoo.Core
         public bool EquipToBodyPart(Entity item, BodyPart bodyPart)
         {
             Objects.Remove(item);
+            RefreshHandlingCarryPenalty();
             bodyPart.SetEquipped(item);
 
             // Cache in EquippedItems by body part ID
@@ -123,6 +131,7 @@ namespace CavesOfOoo.Core
         public bool EquipToBodyParts(Entity item, List<BodyPart> bodyParts)
         {
             Objects.Remove(item);
+            RefreshHandlingCarryPenalty();
 
             for (int i = 0; i < bodyParts.Count; i++)
             {
@@ -177,6 +186,7 @@ namespace CavesOfOoo.Core
                 physics.InInventory = ParentEntity;
             }
             Objects.Add(item);
+            RefreshHandlingCarryPenalty();
             return true;
         }
 
@@ -187,6 +197,7 @@ namespace CavesOfOoo.Core
         public bool Equip(Entity item, string slot)
         {
             Objects.Remove(item);
+            RefreshHandlingCarryPenalty();
             EquippedItems[slot] = item;
 
             var physics = item.GetPart<PhysicsPart>();
@@ -214,6 +225,7 @@ namespace CavesOfOoo.Core
                 physics.InInventory = ParentEntity;
             }
             Objects.Add(item);
+            RefreshHandlingCarryPenalty();
             return true;
         }
 
@@ -280,11 +292,28 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static int GetItemWeight(Entity item)
         {
+            if (item == null)
+                return 0;
+
             var stacker = item.GetPart<StackerPart>();
             if (stacker != null)
                 return stacker.GetTotalWeight();
-            var physics = item.GetPart<PhysicsPart>();
-            return physics?.Weight ?? 0;
+
+            return HandlingService.GetWeight(item);
+        }
+
+        public void RefreshHandlingCarryPenalty()
+        {
+            int newPenalty = ComputeCarriedHandlingPenalty();
+            int delta = newPenalty - _appliedHandlingCarryPenalty;
+            _appliedHandlingCarryPenalty = newPenalty;
+
+            if (delta == 0 || ParentEntity == null)
+                return;
+
+            var speed = ParentEntity.GetStat("Speed");
+            if (speed != null)
+                speed.Penalty += delta;
         }
 
         /// <summary>
@@ -357,6 +386,24 @@ namespace CavesOfOoo.Core
             int maxCarry = GetMaxCarryWeight();
             if (maxCarry < 0) return false;
             return GetCarriedWeight() > maxCarry;
+        }
+
+        private int ComputeCarriedHandlingPenalty()
+        {
+            int total = 0;
+            for (int i = 0; i < Objects.Count; i++)
+            {
+                var handling = Objects[i].GetPart<HandlingPart>();
+                int penalty = handling?.CarryMovePenalty ?? 0;
+                if (penalty == 0)
+                    continue;
+
+                var stacker = Objects[i].GetPart<StackerPart>();
+                int multiplier = stacker?.StackCount ?? 1;
+                total += penalty * multiplier;
+            }
+
+            return total;
         }
 
         /// <summary>

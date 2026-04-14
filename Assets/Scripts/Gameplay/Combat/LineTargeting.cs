@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 
 namespace CavesOfOoo.Core
 {
@@ -6,6 +7,7 @@ namespace CavesOfOoo.Core
     {
         public List<Point> Path = new List<Point>();
         public Cell ImpactCell;
+        public Cell LastTraversableCell;
         public Entity HitEntity;
         public bool BlockedBySolid;
 
@@ -62,6 +64,94 @@ namespace CavesOfOoo.Core
 
                 result.Path.Add(new Point(x, y));
                 result.ImpactCell = cell;
+                if (!cell.IsSolid())
+                    result.LastTraversableCell = cell;
+
+                Entity hitCreature = GetFirstCreature(cell, caster);
+                if (hitCreature != null)
+                {
+                    result.HitEntity = hitCreature;
+                    return result;
+                }
+
+                Entity hitObject = GetFirstTargetableObject(cell, caster);
+                if (hitObject != null)
+                {
+                    result.HitEntity = hitObject;
+                    return result;
+                }
+
+                if (cell.IsSolid())
+                {
+                    result.BlockedBySolid = true;
+                    return result;
+                }
+            }
+
+            return result;
+        }
+
+        public static LineTraceResult TraceFirstImpactToTarget(
+            Zone zone,
+            Entity caster,
+            int startX,
+            int startY,
+            int targetX,
+            int targetY,
+            int maxRange)
+        {
+            var result = new LineTraceResult();
+
+            if (zone == null || maxRange < 0 || !zone.InBounds(startX, startY) || !zone.InBounds(targetX, targetY))
+                return result;
+
+            int distance = AIHelpers.ChebyshevDistance(startX, startY, targetX, targetY);
+            if (distance > maxRange)
+                return result;
+
+            if (startX == targetX && startY == targetY)
+            {
+                result.ImpactCell = zone.GetCell(startX, startY);
+                result.LastTraversableCell = result.ImpactCell;
+                return result;
+            }
+
+            int x = startX;
+            int y = startY;
+            int dx = Math.Abs(targetX - startX);
+            int dy = Math.Abs(targetY - startY);
+            int sx = startX < targetX ? 1 : -1;
+            int sy = startY < targetY ? 1 : -1;
+            int err = dx - dy;
+            int steps = 0;
+
+            while ((x != targetX || y != targetY) && steps < maxRange)
+            {
+                int e2 = 2 * err;
+                if (e2 > -dy)
+                {
+                    err -= dy;
+                    x += sx;
+                }
+                if (e2 < dx)
+                {
+                    err += dx;
+                    y += sy;
+                }
+
+                steps++;
+
+                if (!zone.InBounds(x, y))
+                    break;
+
+                Cell cell = zone.GetCell(x, y);
+                if (cell == null)
+                    break;
+
+                result.Path.Add(new Point(x, y));
+                result.ImpactCell = cell;
+                if (!cell.IsSolid())
+                    result.LastTraversableCell = cell;
 
                 Entity hitCreature = GetFirstCreature(cell, caster);
                 if (hitCreature != null)

@@ -57,6 +57,15 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// Throw an item from inventory, equipment, or a nearby world tile toward a target cell.
+        /// </summary>
+        public static bool Throw(Entity actor, Entity item, int targetX, int targetY, Zone zone)
+        {
+            var result = ExecuteCommand(new ThrowItemCommand(item, targetX, targetY), actor, zone);
+            return result.Success;
+        }
+
+        /// <summary>
         /// Equip an item from the actor's inventory.
         /// Body-part-aware: when actor has Body, queries body parts for valid slots.
         /// Falls back to legacy slot system otherwise.

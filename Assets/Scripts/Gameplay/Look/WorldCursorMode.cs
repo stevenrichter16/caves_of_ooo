@@ -9,6 +9,7 @@ namespace CavesOfOoo.Core
         Look,
         AbilityTarget,
         TalkTarget,
-        InspectTarget
+        InspectTarget,
+        ThrowTarget
     }
 }

@@ -27,11 +27,13 @@ namespace CavesOfOoo.Tests
             cameraGo.tag = "MainCamera";
             cameraGo.AddComponent<Camera>();
             var sidebarCamera = CreateSidebarCamera();
+            var hotbarCamera = CreateHotbarCamera();
             var popupOverlayCamera = CreatePopupOverlayCamera();
             var follow = cameraGo.AddComponent<CameraFollow>();
             follow.Player = player;
             follow.CurrentZone = zone;
             follow.SidebarCamera = sidebarCamera;
+            follow.HotbarCamera = hotbarCamera;
             follow.PopupOverlayCamera = popupOverlayCamera;
 
             follow.SnapToPlayer();
@@ -56,11 +58,13 @@ namespace CavesOfOoo.Tests
             cameraGo.tag = "MainCamera";
             cameraGo.AddComponent<Camera>();
             var sidebarCamera = CreateSidebarCamera();
+            var hotbarCamera = CreateHotbarCamera();
             var popupOverlayCamera = CreatePopupOverlayCamera();
             var follow = cameraGo.AddComponent<CameraFollow>();
             follow.Player = player;
             follow.CurrentZone = zone;
             follow.SidebarCamera = sidebarCamera;
+            follow.HotbarCamera = hotbarCamera;
             follow.PopupOverlayCamera = popupOverlayCamera;
 
             follow.SnapToPlayer();
@@ -92,11 +96,13 @@ namespace CavesOfOoo.Tests
             camera.orthographic = true;
             camera.aspect = 16f / 9f;
             var sidebarCamera = CreateSidebarCamera();
+            var hotbarCamera = CreateHotbarCamera();
             var popupOverlayCamera = CreatePopupOverlayCamera();
             var follow = cameraGo.AddComponent<CameraFollow>();
             follow.Player = player;
             follow.CurrentZone = zone;
             follow.SidebarCamera = sidebarCamera;
+            follow.HotbarCamera = hotbarCamera;
             follow.PopupOverlayCamera = popupOverlayCamera;
             follow.ReservedSidebarWidthChars = 34;
             follow.SidebarReferenceZoom = 20f;
@@ -107,11 +113,18 @@ namespace CavesOfOoo.Tests
             GameplayScreenLayout layout = GameplayViewportLayout.Measure(camera, follow.SidebarReferenceZoom, follow.ReservedSidebarWidthChars);
 
             Assert.AreEqual(playerCenterX, cameraGo.transform.position.x, 0.01f);
-            Assert.AreEqual(layout.GameplayRect.x, camera.rect.x, 0.0001f);
-            Assert.AreEqual(layout.GameplayRect.width, camera.rect.width, 0.0001f);
+            Assert.AreEqual(layout.MapRect.x, camera.rect.x, 0.0001f);
+            Assert.AreEqual(layout.MapRect.y, camera.rect.y, 0.0001f);
+            Assert.AreEqual(layout.MapRect.width, camera.rect.width, 0.0001f);
+            Assert.AreEqual(layout.MapRect.height, camera.rect.height, 0.0001f);
+            Assert.AreEqual(layout.HotbarRect.x, hotbarCamera.rect.x, 0.0001f);
+            Assert.AreEqual(layout.HotbarRect.y, hotbarCamera.rect.y, 0.0001f);
+            Assert.AreEqual(layout.HotbarRect.width, hotbarCamera.rect.width, 0.0001f);
+            Assert.AreEqual(layout.HotbarRect.height, hotbarCamera.rect.height, 0.0001f);
             Assert.AreEqual(layout.SidebarRect.x, sidebarCamera.rect.x, 0.0001f);
             Assert.AreEqual(layout.SidebarRect.width, sidebarCamera.rect.width, 0.0001f);
             Assert.IsTrue(sidebarCamera.enabled);
+            Assert.IsTrue(hotbarCamera.enabled);
         }
 
         [Test]
@@ -128,26 +141,31 @@ namespace CavesOfOoo.Tests
             camera.orthographic = true;
             camera.aspect = 16f / 9f;
             var sidebarCamera = CreateSidebarCamera();
+            var hotbarCamera = CreateHotbarCamera();
             var popupOverlayCamera = CreatePopupOverlayCamera();
 
             var follow = cameraGo.AddComponent<CameraFollow>();
             follow.Player = player;
             follow.CurrentZone = zone;
             follow.SidebarCamera = sidebarCamera;
+            follow.HotbarCamera = hotbarCamera;
             follow.PopupOverlayCamera = popupOverlayCamera;
 
             follow.SnapToPlayer();
             Assert.IsTrue(sidebarCamera.enabled);
+            Assert.IsTrue(hotbarCamera.enabled);
             Assert.Less(camera.rect.width, 1f);
             Assert.IsFalse(popupOverlayCamera.enabled);
 
             follow.SetUIView(80, 45);
             Assert.AreEqual(new Rect(0f, 0f, 1f, 1f), camera.rect);
             Assert.IsFalse(sidebarCamera.enabled);
+            Assert.IsFalse(hotbarCamera.enabled);
             Assert.IsFalse(popupOverlayCamera.enabled);
 
             follow.RestoreGameView();
             Assert.IsTrue(sidebarCamera.enabled);
+            Assert.IsTrue(hotbarCamera.enabled);
             Assert.Less(camera.rect.width, 1f);
         }
 
@@ -165,24 +183,28 @@ namespace CavesOfOoo.Tests
             camera.orthographic = true;
             camera.aspect = 16f / 9f;
             var sidebarCamera = CreateSidebarCamera();
+            var hotbarCamera = CreateHotbarCamera();
             var popupOverlayCamera = CreatePopupOverlayCamera();
 
             var follow = cameraGo.AddComponent<CameraFollow>();
             follow.Player = player;
             follow.CurrentZone = zone;
             follow.SidebarCamera = sidebarCamera;
+            follow.HotbarCamera = hotbarCamera;
             follow.PopupOverlayCamera = popupOverlayCamera;
 
             follow.SnapToPlayer();
             Vector3 gameplayPosition = cameraGo.transform.position;
             float gameplaySize = camera.orthographicSize;
             Rect gameplayRect = camera.rect;
+            Rect hotbarRect = hotbarCamera.rect;
             Rect sidebarRect = sidebarCamera.rect;
 
             follow.SetCenteredPopupOverlayView();
 
             Assert.AreEqual(gameplayRect, camera.rect);
             Assert.IsTrue(sidebarCamera.enabled);
+            Assert.IsTrue(hotbarCamera.enabled);
             Assert.IsTrue(popupOverlayCamera.enabled);
             Assert.AreEqual(gameplayRect, popupOverlayCamera.rect);
             Assert.AreEqual(CameraClearFlags.Depth, popupOverlayCamera.clearFlags);
@@ -190,11 +212,13 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(gameplayPosition.x, cameraGo.transform.position.x, 0.01f);
             Assert.AreEqual(gameplayPosition.y, cameraGo.transform.position.y, 0.01f);
             Assert.AreEqual(gameplaySize, camera.orthographicSize, 0.01f);
+            Assert.AreEqual(hotbarRect, hotbarCamera.rect);
             Assert.AreEqual(sidebarRect, sidebarCamera.rect);
 
             follow.RestoreGameView();
 
             Assert.IsTrue(sidebarCamera.enabled);
+            Assert.IsTrue(hotbarCamera.enabled);
             Assert.Less(camera.rect.width, 1f);
             Assert.IsFalse(popupOverlayCamera.enabled);
         }
@@ -202,6 +226,15 @@ namespace CavesOfOoo.Tests
         private static Camera CreateSidebarCamera()
         {
             var cameraGo = new GameObject("Sidebar Camera");
+            var camera = cameraGo.AddComponent<Camera>();
+            camera.orthographic = true;
+            camera.transform.position = new Vector3(0f, 0f, -10f);
+            return camera;
+        }
+
+        private static Camera CreateHotbarCamera()
+        {
+            var cameraGo = new GameObject("Hotbar Camera");
             var camera = cameraGo.AddComponent<Camera>();
             camera.orthographic = true;
             camera.transform.position = new Vector3(0f, 0f, -10f);

@@ -87,8 +87,7 @@ namespace CavesOfOoo.Core
         /// </summary>
         public int GetTotalWeight()
         {
-            var physics = ParentEntity?.GetPart<PhysicsPart>();
-            return (physics?.Weight ?? 0) * StackCount;
+            return HandlingService.GetWeight(ParentEntity) * StackCount;
         }
     }
 }
