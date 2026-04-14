@@ -324,6 +324,7 @@
       "Inherits": "Item",
       "Parts": [
         { "Name": "Physics", "Params": [{ "Key": "Category", "Value": "Tonics" }] },
+        { "Name": "Handling", "Params": [{ "Key": "GripType", "Value": "OneHand" }] },
         { "Name": "Tonic", "Params": [{ "Key": "Drink", "Value": "true" }] }
       ],
       "Stats": [],
@@ -344,6 +345,53 @@
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
         { "Name": "Tonic", "Params": [{ "Key": "Healing", "Value": "4d4" }, { "Key": "Effect", "Value": "Healing" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "15" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "PoisonTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "poison tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&g" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Message", "Value": "A toxic chill spreads through the body." }] },
+        { "Name": "StatusTonic", "Params": [
+          { "Key": "EffectName", "Value": "Poison" },
+          { "Key": "EffectDuration", "Value": "6" },
+          { "Key": "EffectDamageDice", "Value": "1d2" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "18" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "FireTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "fire tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Message", "Value": "Heat blooms outward in a violent flash." }] },
+        { "Name": "StatusTonic", "Params": [
+          { "Key": "EffectName", "Value": "Fire" },
+          { "Key": "EffectMagnitude", "Value": "1" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "20" }] }
       ],
       "Stats": [],
       "Tags": [
@@ -1242,7 +1290,11 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
-        { "Name": "Tonic", "Params": [{ "Key": "Effect", "Value": "Speed" }] },
+        { "Name": "Tonic", "Params": [
+          { "Key": "Effect", "Value": "Speed" },
+          { "Key": "StatBoost", "Value": "Speed:20" },
+          { "Key": "Message", "Value": "The tonic sends a quicksilver rush through the body." }
+        ]},
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "20" }] }
       ],
       "Stats": [],
@@ -1261,7 +1313,11 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
-        { "Name": "Tonic", "Params": [{ "Key": "Effect", "Value": "Strength" }] },
+        { "Name": "Tonic", "Params": [
+          { "Key": "Effect", "Value": "Strength" },
+          { "Key": "StatBoost", "Value": "Strength:4" },
+          { "Key": "Message", "Value": "Power surges through the body." }
+        ]},
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "22" }] }
       ],
       "Stats": [],

@@ -20,7 +20,7 @@ namespace CavesOfOoo.Core
             "Dagger", "ShortSword", "LongSword", "Mace", "Spear", "Hatchet",
             "Cudgel", "Buckler", "LeatherArmor", "ChainMail", "IronHelmet",
             "LeatherBoots", "LeatherGloves", "Cloak",
-            "HealingTonic", "SpeedTonic", "StrengthTonic",
+            "HealingTonic", "PoisonTonic", "FireTonic", "SpeedTonic", "StrengthTonic",
             "Starapple", "Mushroom", "DriedMeat"
         };
 
@@ -28,14 +28,14 @@ namespace CavesOfOoo.Core
         {
             "Dagger", "ShortSword", "Mace", "Spear", "Hatchet",
             "Cudgel", "Buckler", "LeatherArmor", "Cloak",
-            "HealingTonic", "Mushroom", "SilverSand"
+            "HealingTonic", "PoisonTonic", "Mushroom", "SilverSand"
         };
 
         private static readonly string[] ImprovedWellTradeGoods =
         {
             "Dagger", "ShortSword", "LongSword", "Mace", "Spear", "Hatchet",
             "Buckler", "LeatherArmor", "ChainMail", "Cloak",
-            "HealingTonic", "SpeedTonic", "StrengthTonic",
+            "HealingTonic", "PoisonTonic", "FireTonic", "SpeedTonic", "StrengthTonic",
             "Starapple", "Mushroom", "DriedMeat", "Starapple", "DriedMeat"
         };
 

@@ -635,6 +635,113 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void ThrowItemCommand_Execute_ThrownHealingTonic_HealsTargetAndIsConsumed()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 18);
+            zone.AddEntity(actor, 5, 5);
+
+            var tonic = CreateThrowableTonicItem(healing: "6d1");
+            actor.GetPart<InventoryPart>().AddObject(tonic);
+
+            var target = CreateTargetDummy(20);
+            target.SetStatValue("Hitpoints", 10);
+            zone.AddEntity(target, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(tonic, 7, 5),
+                actor,
+                zone);
+
+            Assert.IsTrue(result.Success);
+            Assert.AreEqual(16, target.GetStatValue("Hitpoints"));
+            Assert.IsFalse(actor.GetPart<InventoryPart>().Objects.Contains(tonic));
+            Assert.IsNull(zone.GetEntityCell(tonic));
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_ThrownAntidote_CuresPoisonAndIsConsumed()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 18);
+            zone.AddEntity(actor, 5, 5);
+
+            var tonic = CreateThrowableTonicItem(cureEffect: "PoisonedEffect");
+            actor.GetPart<InventoryPart>().AddObject(tonic);
+
+            var target = CreateTargetDummy(12);
+            target.ApplyEffect(new PoisonedEffect(duration: 5, damageDice: "1d1"), actor, zone);
+            Assert.IsTrue(target.HasEffect<PoisonedEffect>());
+            zone.AddEntity(target, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(tonic, 7, 5),
+                actor,
+                zone);
+
+            Assert.IsTrue(result.Success);
+            Assert.IsFalse(target.HasEffect<PoisonedEffect>());
+            Assert.IsNull(zone.GetEntityCell(tonic));
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_ThrownPoisonTonic_AppliesPoisonInsteadOfImpactDamage()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 18);
+            zone.AddEntity(actor, 5, 5);
+
+            var tonic = CreateThrowableTonicItem(
+                statusEffectName: "Poison",
+                effectDuration: 6,
+                effectDamageDice: "1d2");
+            actor.GetPart<InventoryPart>().AddObject(tonic);
+
+            var target = CreateTargetDummy(10);
+            zone.AddEntity(target, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(tonic, 7, 5),
+                actor,
+                zone);
+
+            Assert.IsTrue(result.Success);
+            Assert.AreEqual(10, target.GetStatValue("Hitpoints"));
+            Assert.IsTrue(target.HasEffect<PoisonedEffect>());
+            Assert.IsNull(zone.GetEntityCell(tonic));
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_ThrownFireTonic_AppliesBurningInsteadOfImpactDamage()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 18);
+            zone.AddEntity(actor, 5, 5);
+
+            var tonic = CreateThrowableTonicItem(
+                statusEffectName: "Fire",
+                effectMagnitude: 1.0f);
+            actor.GetPart<InventoryPart>().AddObject(tonic);
+
+            var target = CreateTargetDummy(10);
+            zone.AddEntity(target, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(tonic, 7, 5),
+                actor,
+                zone);
+
+            Assert.IsTrue(result.Success);
+            Assert.AreEqual(10, target.GetStatValue("Hitpoints"));
+            Assert.IsTrue(target.HasEffect<BurningEffect>());
+            Assert.IsNull(zone.GetEntityCell(tonic));
+        }
+
+        [Test]
         public void InventoryPart_AddObject_AppliesCarryMovePenaltyToSpeed()
         {
             var actor = CreateCreatureWithInventory();
@@ -4769,6 +4876,47 @@ namespace CavesOfOoo.Tests
             entity.Tags["Tonic"] = "";
             entity.AddPart(new PhysicsPart { Takeable = true, Weight = 1, Category = "Tonics" });
             entity.AddPart(new TonicPart { Healing = healing, Drink = drink });
+            return entity;
+        }
+
+        private Entity CreateThrowableTonicItem(
+            string healing = "",
+            bool drink = true,
+            string statBoost = "",
+            string cureEffect = null,
+            string statusEffectName = null,
+            int effectDuration = 0,
+            string effectDamageDice = "",
+            float effectMagnitude = 0f)
+        {
+            var entity = new Entity();
+            entity.BlueprintName = "TestThrowableTonic";
+            entity.Tags["Item"] = "";
+            entity.Tags["Tonic"] = "";
+            entity.AddPart(new RenderPart { DisplayName = "test tonic" });
+            entity.AddPart(new PhysicsPart { Takeable = true, Weight = 1, Category = "Tonics" });
+            entity.AddPart(new HandlingPart
+            {
+                GripType = GripType.OneHand,
+                Carryable = true,
+                Throwable = true
+            });
+            entity.AddPart(new TonicPart { Healing = healing, Drink = drink, StatBoost = statBoost });
+
+            if (!string.IsNullOrEmpty(cureEffect))
+                entity.AddPart(new CureTonicPart { CureEffect = cureEffect });
+
+            if (!string.IsNullOrEmpty(statusEffectName))
+            {
+                entity.AddPart(new StatusTonicPart
+                {
+                    EffectName = statusEffectName,
+                    EffectDuration = effectDuration,
+                    EffectDamageDice = effectDamageDice,
+                    EffectMagnitude = effectMagnitude
+                });
+            }
+
             return entity;
         }
 

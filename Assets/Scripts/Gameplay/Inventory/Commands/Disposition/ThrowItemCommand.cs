@@ -152,16 +152,25 @@ namespace CavesOfOoo.Core.Inventory.Commands
             int strengthBonus = Math.Max(0, StatUtils.GetModifier(actor, "Strength"));
             Entity hitTarget = trace.HitEntity;
             Cell landingCell;
+            bool consumedOnImpact = false;
             if (hitTarget != null)
             {
-                int damage = GetThrownDamage(actor, itemToThrow, strengthBonus);
-                if (damage > 0)
+                if (TryApplyThrownTonic(actor, itemToThrow, hitTarget, zone))
                 {
-                    MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()} at {hitTarget.GetDisplayName()} for {damage} damage!");
-                    CombatSystem.ApplyDamage(hitTarget, damage, actor, zone);
+                    consumedOnImpact = true;
+                    landingCell = null;
                 }
+                else
+                {
+                    int damage = GetThrownDamage(actor, itemToThrow, strengthBonus);
+                    if (damage > 0)
+                    {
+                        MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()} at {hitTarget.GetDisplayName()} for {damage} damage!");
+                        CombatSystem.ApplyDamage(hitTarget, damage, actor, zone);
+                    }
 
-                landingCell = trace.ImpactCell;
+                    landingCell = trace.ImpactCell;
+                }
             }
             else if (trace.BlockedBySolid)
             {
@@ -180,16 +189,19 @@ namespace CavesOfOoo.Core.Inventory.Commands
             if (landingCell == null)
                 landingCell = actorCell;
 
-            if (!zone.AddEntity(itemToThrow, landingCell.X, landingCell.Y))
+            if (!consumedOnImpact && !zone.AddEntity(itemToThrow, landingCell.X, landingCell.Y))
             {
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
                     "The thrown item could not land.");
             }
 
-            transaction.Do(
-                apply: null,
-                undo: () => zone.RemoveEntity(itemToThrow));
+            if (!consumedOnImpact)
+            {
+                transaction.Do(
+                    apply: null,
+                    undo: () => zone.RemoveEntity(itemToThrow));
+            }
 
             return InventoryCommandResult.Ok();
         }
@@ -296,6 +308,23 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
             int weight = HandlingService.GetWeight(item);
             return Math.Max(1, (int)Math.Ceiling(weight / 2.0)) + strengthBonus;
+        }
+
+        private static bool TryApplyThrownTonic(Entity actor, Entity item, Entity hitTarget, Zone zone)
+        {
+            var tonic = item?.GetPart<TonicPart>();
+            if (tonic == null || !tonic.HasThrowablePayload() || hitTarget == null)
+                return false;
+
+            MessageLog.Add($"{actor.GetDisplayName()} shatters {item.GetDisplayName()} on {hitTarget.GetDisplayName()}!");
+            tonic.ApplyTo(
+                hitTarget,
+                actor,
+                zone,
+                new Random(),
+                consumeItem: false,
+                showUseMessage: false);
+            return true;
         }
     }
 }
