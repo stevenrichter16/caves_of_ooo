@@ -4,6 +4,7 @@ using CavesOfOoo.Core;
 using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
 using UnityEngine;
 
 namespace CavesOfOoo.Rendering
@@ -173,15 +174,17 @@ namespace CavesOfOoo.Rendering
 
         private void Update()
         {
-            if (PlayerEntity == null || CurrentZone == null || TurnManager == null)
-                return;
+            using (PerformanceMarkers.Input.Update.Auto())
+            {
+                if (PlayerEntity == null || CurrentZone == null || TurnManager == null)
+                    return;
 
-            // Only accept input when it's the player's turn
-            if (!TurnManager.WaitingForInput)
-                return;
+                // Only accept input when it's the player's turn
+                if (!TurnManager.WaitingForInput)
+                    return;
 
-            if (TurnManager.CurrentActor != PlayerEntity)
-                return;
+                if (TurnManager.CurrentActor != PlayerEntity)
+                    return;
 
             EnsureHotbarSelectionValid();
             SyncHotbarState();
@@ -284,7 +287,7 @@ namespace CavesOfOoo.Rendering
             if (TryHandleHotbarInput())
                 return;
 
-            if (Input.GetKeyDown(KeyCode.L))
+            if (InputHelper.GetKeyDown(KeyCode.L))
             {
                 EnterLookMode();
                 _lastMoveTime = Time.time;
@@ -292,7 +295,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Open inventory (I key)
-            if (Input.GetKeyDown(KeyCode.I))
+            if (InputHelper.GetKeyDown(KeyCode.I))
             {
                 OpenInventory();
                 _lastMoveTime = Time.time;
@@ -300,7 +303,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Open faction standings (F key)
-            if (Input.GetKeyDown(KeyCode.F))
+            if (InputHelper.GetKeyDown(KeyCode.F))
             {
                 OpenFaction();
                 _lastMoveTime = Time.time;
@@ -308,7 +311,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Debug: grant a random mutation from the current mutate pool.
-            if (Input.GetKeyDown(KeyCode.F6))
+            if (InputHelper.GetKeyDown(KeyCode.F6))
             {
                 TryDebugGrantRandomMutation();
                 _lastMoveTime = Time.time;
@@ -316,7 +319,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Debug: dump body part tree to console.
-            if (Input.GetKeyDown(KeyCode.F7))
+            if (InputHelper.GetKeyDown(KeyCode.F7))
             {
                 TryDebugDumpBodyParts();
                 _lastMoveTime = Time.time;
@@ -324,7 +327,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Debug: dismember a random non-mortal appendage.
-            if (Input.GetKeyDown(KeyCode.F8))
+            if (InputHelper.GetKeyDown(KeyCode.F8))
             {
                 TryDebugDismember();
                 _lastMoveTime = Time.time;
@@ -332,7 +335,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Debug: craft one known recipe through the command pipeline.
-            if (Input.GetKeyDown(KeyCode.F9))
+            if (InputHelper.GetKeyDown(KeyCode.F9))
             {
                 TryDebugCraftKnownRecipe();
                 _lastMoveTime = Time.time;
@@ -340,7 +343,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Debug: cycle well repair stage (Fouled → Purified → Repaired → Maintained → Fouled).
-            if (Input.GetKeyDown(KeyCode.P))
+            if (InputHelper.GetKeyDown(KeyCode.P))
             {
                 TryDebugCycleWellState();
                 _lastMoveTime = Time.time;
@@ -348,7 +351,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Talk to NPC (C key + direction)
-            if (Input.GetKeyDown(KeyCode.C))
+            if (InputHelper.GetKeyDown(KeyCode.C))
             {
                 _inputState = InputState.AwaitingTalkDirection;
                 MessageLog.Add("Talk — choose a direction.");
@@ -417,15 +420,15 @@ namespace CavesOfOoo.Rendering
             }
 
             // Pickup item (G or comma)
-            if (Input.GetKeyDown(KeyCode.G) || Input.GetKeyDown(KeyCode.Comma))
+            if (InputHelper.GetKeyDown(KeyCode.G) || InputHelper.GetKeyDown(KeyCode.Comma))
             {
                 TryPickupItem();
                 _lastMoveTime = Time.time;
             }
 
             // Descend stairs (> key = Shift+Period)
-            if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-                && Input.GetKeyDown(KeyCode.Period))
+            if ((InputHelper.GetKey(KeyCode.LeftShift) || InputHelper.GetKey(KeyCode.RightShift))
+                && InputHelper.GetKeyDown(KeyCode.Period))
             {
                 TryUseStairs(goingDown: true);
                 _lastMoveTime = Time.time;
@@ -433,8 +436,8 @@ namespace CavesOfOoo.Rendering
             }
 
             // Ascend stairs (< key = Shift+Comma)
-            if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-                && Input.GetKeyDown(KeyCode.Comma))
+            if ((InputHelper.GetKey(KeyCode.LeftShift) || InputHelper.GetKey(KeyCode.RightShift))
+                && InputHelper.GetKeyDown(KeyCode.Comma))
             {
                 TryUseStairs(goingDown: false);
                 _lastMoveTime = Time.time;
@@ -442,10 +445,11 @@ namespace CavesOfOoo.Rendering
             }
 
             // Wait/skip turn
-            if (Input.GetKeyDown(KeyCode.Period) || Input.GetKeyDown(KeyCode.Keypad5))
-            {
-                EndTurnAndProcess();
-                _lastMoveTime = Time.time;
+                if (InputHelper.GetKeyDown(KeyCode.Period) || InputHelper.GetKeyDown(KeyCode.Keypad5))
+                {
+                    EndTurnAndProcess();
+                    _lastMoveTime = Time.time;
+                }
             }
         }
 
@@ -521,8 +525,7 @@ namespace CavesOfOoo.Rendering
             TurnManager.EndTurn(PlayerEntity, CurrentZone);
             TurnManager.ProcessUntilPlayerTurn();
             MaterialSimSystem.TickMaterialEntities(CurrentZone);
-            if (ZoneRenderer != null)
-                ZoneRenderer.MarkDirty();
+            RequestZoneRedraw("Turn.Advance");
         }
 
         private void TryUseStairs(bool goingDown)
@@ -602,8 +605,7 @@ namespace CavesOfOoo.Rendering
                 $"Mutations={GetMutationListSummary(mutations)} | " +
                 $"GeneratedEquipmentTracked={mutations.MutationGeneratedEquipment.Count}");
 
-            if (ZoneRenderer != null)
-                ZoneRenderer.MarkDirty();
+            RequestZoneRedraw("Debug.GrantMutation");
         }
 
         /// <summary>
@@ -702,8 +704,7 @@ namespace CavesOfOoo.Rendering
                 Debug.Log($"[Body/Debug] F8: Dismember failed for \"{target.GetDisplayName()}\".");
             }
 
-            if (ZoneRenderer != null)
-                ZoneRenderer.MarkDirty();
+            RequestZoneRedraw("Debug.Dismember");
         }
 
         /// <summary>
@@ -797,8 +798,7 @@ namespace CavesOfOoo.Rendering
             }
 
             Debug.Log($"[Tinkering/Debug] F9: Crafted recipe '{recipeId}' successfully.");
-            if (ZoneRenderer != null)
-                ZoneRenderer.MarkDirty();
+            RequestZoneRedraw("Debug.Craft");
         }
 
         /// <summary>
@@ -894,8 +894,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Mark zone dirty so renderer picks up changes
-            if (ZoneRenderer != null)
-                ZoneRenderer.MarkDirty();
+            RequestZoneRedraw("Debug.WellCycle");
             SettlementRuntime.MarkZoneDirty();
 
             MessageLog.Add($"[Debug] Well stage set to: {nextStage}");
@@ -980,8 +979,7 @@ namespace CavesOfOoo.Rendering
                         if (TryTakeAllFromContainerViaCommand(containers[0]))
                         {
                             EndTurnAndProcess();
-                            if (ZoneRenderer != null)
-                                ZoneRenderer.MarkDirty();
+                            RequestZoneRedraw("Inventory.TakeAllFromContainer");
                         }
                     }
                     else
@@ -999,8 +997,7 @@ namespace CavesOfOoo.Rendering
                 if (TryPickupViaCommand(item))
                 {
                     EndTurnAndProcess();
-                    if (ZoneRenderer != null)
-                        ZoneRenderer.MarkDirty();
+                    RequestZoneRedraw("Inventory.Pickup");
                 }
             }
             else
@@ -1162,16 +1159,16 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private int GetAbilitySlotInput()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1)) return 0;
-            if (Input.GetKeyDown(KeyCode.Alpha2)) return 1;
-            if (Input.GetKeyDown(KeyCode.Alpha3)) return 2;
-            if (Input.GetKeyDown(KeyCode.Alpha4)) return 3;
-            if (Input.GetKeyDown(KeyCode.Alpha5)) return 4;
-            if (Input.GetKeyDown(KeyCode.Alpha6)) return 5;
-            if (Input.GetKeyDown(KeyCode.Alpha7)) return 6;
-            if (Input.GetKeyDown(KeyCode.Alpha8)) return 7;
-            if (Input.GetKeyDown(KeyCode.Alpha9)) return 8;
-            if (Input.GetKeyDown(KeyCode.Alpha0)) return 9;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha1)) return 0;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha2)) return 1;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha3)) return 2;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha4)) return 3;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha5)) return 4;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha6)) return 5;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha7)) return 6;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha8)) return 7;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha9)) return 8;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha0)) return 9;
             return -1;
         }
 
@@ -1216,15 +1213,15 @@ namespace CavesOfOoo.Rendering
 
         private void HandleLookModeInput()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 ExitLookMode();
                 _lastMoveTime = Time.time;
                 return;
             }
 
-            bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
-            if (Input.GetKeyDown(KeyCode.Period) && !shiftHeld)
+            bool shiftHeld = InputHelper.GetKey(KeyCode.LeftShift) || InputHelper.GetKey(KeyCode.RightShift);
+            if (InputHelper.GetKeyDown(KeyCode.Period) && !shiftHeld)
             {
                 RecenterLookCursor();
                 _lastMoveTime = Time.time;
@@ -1243,7 +1240,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.KeypadEnter))
             {
                 TryOpenWorldThrowPopup(_worldCursorState.X, _worldCursorState.Y);
                 _lastMoveTime = Time.time;
@@ -1269,10 +1266,10 @@ namespace CavesOfOoo.Rendering
 
         private bool TryHandleSidebarLogScrollInput()
         {
-            if (Input.GetKeyDown(KeyCode.Equals))
+            if (InputHelper.GetKeyDown(KeyCode.Equals))
                 return TryHandleSidebarLogScrollCommand(older: true);
 
-            if (Input.GetKeyDown(KeyCode.Minus))
+            if (InputHelper.GetKeyDown(KeyCode.Minus))
                 return TryHandleSidebarLogScrollCommand(older: false);
 
             return false;
@@ -1283,19 +1280,19 @@ namespace CavesOfOoo.Rendering
             if (_inputState != InputState.Normal)
                 return false;
 
-            if (Input.GetKeyDown(KeyCode.LeftBracket))
+            if (InputHelper.GetKeyDown(KeyCode.LeftBracket))
             {
                 CycleHotbarSelection(-1);
                 return true;
             }
 
-            if (Input.GetKeyDown(KeyCode.RightBracket))
+            if (InputHelper.GetKeyDown(KeyCode.RightBracket))
             {
                 CycleHotbarSelection(1);
                 return true;
             }
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.KeypadEnter))
             {
                 ActivateSelectedHotbarSlot();
                 return true;
@@ -1468,7 +1465,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 CancelThrowTargeting();
                 _lastMoveTime = Time.time;
@@ -1484,7 +1481,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.KeypadEnter))
             {
                 ConfirmThrowTarget();
                 _lastMoveTime = Time.time;
@@ -1758,7 +1755,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 CloseThrowPopup();
                 return;
@@ -1778,7 +1775,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K)) && _throwPopup.CursorIndex > 0)
+            if ((InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K)) && _throwPopup.CursorIndex > 0)
             {
                 _throwPopup.CursorIndex--;
                 ClampThrowPopupScroll();
@@ -1786,7 +1783,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if ((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J)) && _throwPopup.CursorIndex < _throwPopup.Options.Count - 1)
+            if ((InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J)) && _throwPopup.CursorIndex < _throwPopup.Options.Count - 1)
             {
                 _throwPopup.CursorIndex++;
                 ClampThrowPopupScroll();
@@ -1794,7 +1791,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.KeypadEnter))
             {
                 ExecuteThrowPopupSelection();
                 return;
@@ -2064,7 +2061,7 @@ namespace CavesOfOoo.Rendering
         private void HandleAwaitingDirection()
         {
             // Cancel on Escape
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 MessageLog.Add("Cancelled.");
                 _inputState = InputState.Normal;
@@ -2211,7 +2208,7 @@ namespace CavesOfOoo.Rendering
             if (ZoneRenderer != null)
             {
                 ZoneRenderer.Paused = false;
-                ZoneRenderer.MarkDirty();
+                ZoneRenderer.MarkDirty("UI.Inventory.Close");
             }
         }
 
@@ -2246,7 +2243,7 @@ namespace CavesOfOoo.Rendering
             if (ZoneRenderer != null)
             {
                 ZoneRenderer.Paused = false;
-                ZoneRenderer.MarkDirty();
+                ZoneRenderer.MarkDirty("UI.Faction.Close");
             }
         }
 
@@ -2260,29 +2257,29 @@ namespace CavesOfOoo.Rendering
             dy = 0;
 
             // Cardinal
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Keypad8) || Input.GetKeyDown(KeyCode.K))
+            if (InputHelper.GetKeyDown(KeyCode.W) || InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.Keypad8) || InputHelper.GetKeyDown(KeyCode.K))
             { dy = -1; return true; }
 
-            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyDown(KeyCode.S) || InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.Keypad2) || InputHelper.GetKeyDown(KeyCode.J))
             { dy = 1; return true; }
 
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.H))
+            if (InputHelper.GetKeyDown(KeyCode.A) || InputHelper.GetKeyDown(KeyCode.LeftArrow) || InputHelper.GetKeyDown(KeyCode.Keypad4) || InputHelper.GetKeyDown(KeyCode.H))
             { dx = -1; return true; }
 
-            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.Keypad6) || Input.GetKeyDown(KeyCode.L))
+            if (InputHelper.GetKeyDown(KeyCode.D) || InputHelper.GetKeyDown(KeyCode.RightArrow) || InputHelper.GetKeyDown(KeyCode.Keypad6) || InputHelper.GetKeyDown(KeyCode.L))
             { dx = 1; return true; }
 
             // Diagonals
-            if (Input.GetKeyDown(KeyCode.Keypad7) || Input.GetKeyDown(KeyCode.Y))
+            if (InputHelper.GetKeyDown(KeyCode.Keypad7) || InputHelper.GetKeyDown(KeyCode.Y))
             { dx = -1; dy = -1; return true; }
 
-            if (Input.GetKeyDown(KeyCode.Keypad9) || Input.GetKeyDown(KeyCode.U))
+            if (InputHelper.GetKeyDown(KeyCode.Keypad9) || InputHelper.GetKeyDown(KeyCode.U))
             { dx = 1; dy = -1; return true; }
 
-            if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.B))
+            if (InputHelper.GetKeyDown(KeyCode.Keypad1) || InputHelper.GetKeyDown(KeyCode.B))
             { dx = -1; dy = 1; return true; }
 
-            if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.N))
+            if (InputHelper.GetKeyDown(KeyCode.Keypad3) || InputHelper.GetKeyDown(KeyCode.N))
             { dx = 1; dy = 1; return true; }
 
             return false;
@@ -2300,32 +2297,32 @@ namespace CavesOfOoo.Rendering
 
             // Cardinal directions
             // North (W, Up, Numpad8, vi k)
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Keypad8) || Input.GetKey(KeyCode.K))
+            if (InputHelper.GetKey(KeyCode.W) || InputHelper.GetKey(KeyCode.UpArrow) || InputHelper.GetKey(KeyCode.Keypad8) || InputHelper.GetKey(KeyCode.K))
             { dy = -1; return true; }
 
             // South (S, Down, Numpad2, vi j)
-            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.Keypad2) || Input.GetKey(KeyCode.J))
+            if (InputHelper.GetKey(KeyCode.S) || InputHelper.GetKey(KeyCode.DownArrow) || InputHelper.GetKey(KeyCode.Keypad2) || InputHelper.GetKey(KeyCode.J))
             { dy = 1; return true; }
 
             // West (A, Left, Numpad4, vi h)
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.Keypad4) || Input.GetKey(KeyCode.H))
+            if (InputHelper.GetKey(KeyCode.A) || InputHelper.GetKey(KeyCode.LeftArrow) || InputHelper.GetKey(KeyCode.Keypad4) || InputHelper.GetKey(KeyCode.H))
             { dx = -1; return true; }
 
             // East (D, Right, Numpad6, vi l)
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.Keypad6) || Input.GetKey(KeyCode.L))
+            if (InputHelper.GetKey(KeyCode.D) || InputHelper.GetKey(KeyCode.RightArrow) || InputHelper.GetKey(KeyCode.Keypad6) || InputHelper.GetKey(KeyCode.L))
             { dx = 1; return true; }
 
             // Diagonals (numpad + vi keys)
-            if (Input.GetKey(KeyCode.Keypad7) || Input.GetKey(KeyCode.Y))
+            if (InputHelper.GetKey(KeyCode.Keypad7) || InputHelper.GetKey(KeyCode.Y))
             { dx = -1; dy = -1; return true; }
 
-            if (Input.GetKey(KeyCode.Keypad9) || Input.GetKey(KeyCode.U))
+            if (InputHelper.GetKey(KeyCode.Keypad9) || InputHelper.GetKey(KeyCode.U))
             { dx = 1; dy = -1; return true; }
 
-            if (Input.GetKey(KeyCode.Keypad1) || Input.GetKey(KeyCode.B))
+            if (InputHelper.GetKey(KeyCode.Keypad1) || InputHelper.GetKey(KeyCode.B))
             { dx = -1; dy = 1; return true; }
 
-            if (Input.GetKey(KeyCode.Keypad3) || Input.GetKey(KeyCode.N))
+            if (InputHelper.GetKey(KeyCode.Keypad3) || InputHelper.GetKey(KeyCode.N))
             { dx = 1; dy = 1; return true; }
 
             return false;
@@ -2335,7 +2332,7 @@ namespace CavesOfOoo.Rendering
 
         private void HandleAwaitingTalkDirection()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 _inputState = InputState.Normal;
                 return;
@@ -2484,19 +2481,25 @@ namespace CavesOfOoo.Rendering
             if (ZoneRenderer != null)
             {
                 ZoneRenderer.Paused = false;
-                ZoneRenderer.MarkDirty();
+                ZoneRenderer.MarkDirty("UI.Trade.Close");
             }
+        }
+
+        private void RequestZoneRedraw(string source)
+        {
+            if (ZoneRenderer != null)
+                ZoneRenderer.MarkDirty(source);
         }
 
         // ===== Attack Confirmation =====
 
         private void HandleAttackConfirmInput()
         {
-            if (Input.GetKeyDown(KeyCode.Y))
+            if (InputHelper.GetKeyDown(KeyCode.Y))
             {
                 ResolveAttackConfirmation(true);
             }
-            else if (Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.Escape))
+            else if (InputHelper.GetKeyDown(KeyCode.N) || InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 ResolveAttackConfirmation(false);
             }
