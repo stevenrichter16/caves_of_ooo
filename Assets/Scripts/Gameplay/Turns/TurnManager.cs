@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -91,17 +92,20 @@ namespace CavesOfOoo.Core
         /// </summary>
         public Entity Tick()
         {
-            TickCount++;
-
-            // Grant energy to all entities
-            for (int i = 0; i < _entries.Count; i++)
+            using (PerformanceMarkers.Turns.Tick.Auto())
             {
-                int speed = GetSpeed(_entries[i].Entity);
-                _entries[i].Energy += speed;
-            }
+                TickCount++;
 
-            // Find the entity with the most energy that meets the threshold
-            return FindNextActor();
+                // Grant energy to all entities
+                for (int i = 0; i < _entries.Count; i++)
+                {
+                    int speed = GetSpeed(_entries[i].Entity);
+                    _entries[i].Energy += speed;
+                }
+
+                // Find the entity with the most energy that meets the threshold
+                return FindNextActor();
+            }
         }
 
         /// <summary>
@@ -111,49 +115,52 @@ namespace CavesOfOoo.Core
         /// </summary>
         public Entity ProcessUntilPlayerTurn()
         {
-            // Keep processing until we hit a player or exhaust ready actors
-            while (true)
+            using (PerformanceMarkers.Turns.ProcessUntilPlayerTurn.Auto())
             {
-                Entity actor = FindNextActor();
-
-                if (actor == null)
+                // Keep processing until we hit a player or exhaust ready actors
+                while (true)
                 {
-                    // No one has enough energy — tick to grant more
-                    if (_entries.Count == 0) return null;
-                    actor = Tick();
-                    if (actor == null) continue;
-                }
+                    Entity actor = FindNextActor();
 
-                CurrentActor = actor;
+                    if (actor == null)
+                    {
+                        // No one has enough energy — tick to grant more
+                        if (_entries.Count == 0) return null;
+                        actor = Tick();
+                        if (actor == null) continue;
+                    }
 
-                // Qud-style pre-action event seam: status effects and other parts can
-                // block the action before AI/input executes.
-                Zone actorZone = ResolveActorZone(actor);
-                var beginTakeAction = GameEvent.New("BeginTakeAction");
-                if (actorZone != null)
-                    beginTakeAction.SetParameter("Zone", (object)actorZone);
+                    CurrentActor = actor;
 
-                if (!actor.FireEvent(beginTakeAction))
-                {
+                    // Qud-style pre-action event seam: status effects and other parts can
+                    // block the action before AI/input executes.
+                    Zone actorZone = ResolveActorZone(actor);
+                    var beginTakeAction = GameEvent.New("BeginTakeAction");
+                    if (actorZone != null)
+                        beginTakeAction.SetParameter("Zone", (object)actorZone);
+
+                    if (!actor.FireEvent(beginTakeAction))
+                    {
+                        EndTurn(actor, actorZone);
+                        continue;
+                    }
+
+                    // If it's the player, pause and wait for input
+                    if (actor.HasTag("Player"))
+                    {
+                        WaitingForInput = true;
+                        return actor;
+                    }
+
+                    // NPC: fire a TakeTurn event so AI parts can decide actions
+                    var turnEvent = GameEvent.New("TakeTurn");
+                    turnEvent.SetParameter("BeginTakeActionProcessed", true);
+                    if (actorZone != null)
+                        turnEvent.SetParameter("Zone", (object)actorZone);
+                    actor.FireEvent(turnEvent);
+
                     EndTurn(actor, actorZone);
-                    continue;
                 }
-
-                // If it's the player, pause and wait for input
-                if (actor.HasTag("Player"))
-                {
-                    WaitingForInput = true;
-                    return actor;
-                }
-
-                // NPC: fire a TakeTurn event so AI parts can decide actions
-                var turnEvent = GameEvent.New("TakeTurn");
-                turnEvent.SetParameter("BeginTakeActionProcessed", true);
-                if (actorZone != null)
-                    turnEvent.SetParameter("Zone", (object)actorZone);
-                actor.FireEvent(turnEvent);
-
-                EndTurn(actor, actorZone);
             }
         }
 
@@ -163,15 +170,18 @@ namespace CavesOfOoo.Core
         /// </summary>
         public void EndTurn(Entity actor, Zone zone = null)
         {
-            // Fire EndTurn event so parts can react (cooldown ticking, regeneration, etc.)
-            var endTurn = GameEvent.New("EndTurn");
-            if (zone != null)
-                endTurn.SetParameter("Zone", (object)zone);
-            actor.FireEvent(endTurn);
+            using (PerformanceMarkers.Turns.EndTurn.Auto())
+            {
+                // Fire EndTurn event so parts can react (cooldown ticking, regeneration, etc.)
+                var endTurn = GameEvent.New("EndTurn");
+                if (zone != null)
+                    endTurn.SetParameter("Zone", (object)zone);
+                actor.FireEvent(endTurn);
 
-            SpendEnergy(actor);
-            CurrentActor = null;
-            WaitingForInput = false;
+                SpendEnergy(actor);
+                CurrentActor = null;
+                WaitingForInput = false;
+            }
         }
 
         /// <summary>

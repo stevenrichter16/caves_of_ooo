@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CavesOfOoo.Core.Anatomy;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -31,21 +32,24 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static bool PerformMeleeAttack(Entity attacker, Entity defender, Zone zone, Random rng)
         {
-            if (attacker == null || defender == null) return false;
+            using (PerformanceMarkers.Combat.PerformMeleeAttack.Auto())
+            {
+                if (attacker == null || defender == null) return false;
 
-            // 1. Fire BeforeMeleeAttack on attacker
-            var beforeAttack = GameEvent.New("BeforeMeleeAttack");
-            beforeAttack.SetParameter("Attacker", (object)attacker);
-            beforeAttack.SetParameter("Defender", (object)defender);
-            if (!attacker.FireEvent(beforeAttack))
-                return false;
+                // 1. Fire BeforeMeleeAttack on attacker
+                var beforeAttack = GameEvent.New("BeforeMeleeAttack");
+                beforeAttack.SetParameter("Attacker", (object)attacker);
+                beforeAttack.SetParameter("Defender", (object)defender);
+                if (!attacker.FireEvent(beforeAttack))
+                    return false;
 
-            var body = attacker.GetPart<Body>();
+                var body = attacker.GetPart<Body>();
 
-            if (body != null)
-                return PerformBodyPartAwareAttack(attacker, defender, body, zone, rng);
-            else
-                return PerformLegacyAttack(attacker, defender, zone, rng);
+                if (body != null)
+                    return PerformBodyPartAwareAttack(attacker, defender, body, zone, rng);
+                else
+                    return PerformLegacyAttack(attacker, defender, zone, rng);
+            }
         }
 
         /// <summary>
@@ -378,35 +382,38 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static void ApplyDamage(Entity target, int amount, Entity source, Zone zone)
         {
-            if (target == null || amount <= 0) return;
-
-            var takeDamage = GameEvent.New("TakeDamage");
-            takeDamage.SetParameter("Target", (object)target);
-            takeDamage.SetParameter("Source", (object)source);
-            takeDamage.SetParameter("Amount", amount);
-            target.FireEvent(takeDamage);
-
-            var hpStat = target.GetStat("Hitpoints");
-            if (hpStat != null)
-                hpStat.BaseValue -= amount;
-
-            Stat hpAlias = target.GetStat("HP");
-            if (hpAlias != null && !ReferenceEquals(hpAlias, hpStat))
-                hpAlias.BaseValue -= amount;
-
-            // Notify the attacker that damage was dealt (for on-hit effects like poison)
-            if (source != null)
+            using (PerformanceMarkers.Combat.ApplyDamage.Auto())
             {
-                var damageDealt = GameEvent.New("DamageDealt");
-                damageDealt.SetParameter("Attacker", (object)source);
-                damageDealt.SetParameter("Defender", (object)target);
-                damageDealt.SetParameter("Amount", amount);
-                source.FireEvent(damageDealt);
-            }
+                if (target == null || amount <= 0) return;
 
-            if (target.GetStatValue("Hitpoints", 0) <= 0)
-            {
-                HandleDeath(target, source, zone);
+                var takeDamage = GameEvent.New("TakeDamage");
+                takeDamage.SetParameter("Target", (object)target);
+                takeDamage.SetParameter("Source", (object)source);
+                takeDamage.SetParameter("Amount", amount);
+                target.FireEvent(takeDamage);
+
+                var hpStat = target.GetStat("Hitpoints");
+                if (hpStat != null)
+                    hpStat.BaseValue -= amount;
+
+                Stat hpAlias = target.GetStat("HP");
+                if (hpAlias != null && !ReferenceEquals(hpAlias, hpStat))
+                    hpAlias.BaseValue -= amount;
+
+                // Notify the attacker that damage was dealt (for on-hit effects like poison)
+                if (source != null)
+                {
+                    var damageDealt = GameEvent.New("DamageDealt");
+                    damageDealt.SetParameter("Attacker", (object)source);
+                    damageDealt.SetParameter("Defender", (object)target);
+                    damageDealt.SetParameter("Amount", amount);
+                    source.FireEvent(damageDealt);
+                }
+
+                if (target.GetStatValue("Hitpoints", 0) <= 0)
+                {
+                    HandleDeath(target, source, zone);
+                }
             }
         }
 

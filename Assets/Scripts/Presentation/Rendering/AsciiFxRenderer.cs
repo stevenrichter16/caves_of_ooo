@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CavesOfOoo.Core;
+using CavesOfOoo.Diagnostics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -50,6 +51,7 @@ namespace CavesOfOoo.Rendering
         public int ActiveRingWaveCount => _ringWaves.Count;
         public int ActiveChainArcCount => _chainArcs.Count;
         public int ActiveColumnRiseCount => _columnRises.Count;
+        public int ActiveDustMoteCount => _dustMotes.Count;
 
         public void SetZone(Zone zone)
         {
@@ -59,19 +61,22 @@ namespace CavesOfOoo.Rendering
 
         public void Update(float deltaTime)
         {
-            ConsumeRequests();
-            UpdateAuras(deltaTime);
-            UpdateChargeOrbits(deltaTime);
-            UpdateRingWaves(deltaTime);
-            UpdateBeams(deltaTime);
-            UpdateChainArcs(deltaTime);
-            UpdateColumnRises(deltaTime);
-            UpdateProjectiles(deltaTime);
-            UpdateBursts(deltaTime);
-            UpdateParticles(deltaTime);
-            UpdateDustMotes(deltaTime);
-            Render();
-            HasBlockingFx = ComputeHasBlockingFx();
+            using (PerformanceMarkers.Fx.Update.Auto())
+            {
+                ConsumeRequests();
+                UpdateAuras(deltaTime);
+                UpdateChargeOrbits(deltaTime);
+                UpdateRingWaves(deltaTime);
+                UpdateBeams(deltaTime);
+                UpdateChainArcs(deltaTime);
+                UpdateColumnRises(deltaTime);
+                UpdateProjectiles(deltaTime);
+                UpdateBursts(deltaTime);
+                UpdateParticles(deltaTime);
+                UpdateDustMotes(deltaTime);
+                Render();
+                HasBlockingFx = ComputeHasBlockingFx();
+            }
         }
 
         public void ClearAll()
@@ -88,154 +93,161 @@ namespace CavesOfOoo.Rendering
             _dustMotes.Clear();
             HasBlockingFx = false;
             _hadVisibleFxLastFrame = false;
-            _tilemap?.ClearAllTiles();
+            if (_tilemap != null)
+            {
+                _tilemap.ClearAllTiles();
+                PerformanceDiagnostics.RecordTilemapClear();
+            }
         }
 
         private void ConsumeRequests()
         {
-            List<AsciiFxRequest> requests = AsciiFxBus.Drain();
-            for (int i = 0; i < requests.Count; i++)
+            using (PerformanceMarkers.Fx.ConsumeRequests.Auto())
             {
-                AsciiFxRequest request = requests[i];
-                if (request == null)
-                    continue;
-
-                if (request.Type == AsciiFxRequestType.AuraStop)
+                List<AsciiFxRequest> requests = AsciiFxBus.Drain();
+                for (int i = 0; i < requests.Count; i++)
                 {
-                    RemoveAura(request.Anchor, request.Theme);
-                    continue;
-                }
+                    AsciiFxRequest request = requests[i];
+                    if (request == null)
+                        continue;
 
-                if (_currentZone == null || request.Zone != _currentZone)
-                    continue;
+                    if (request.Type == AsciiFxRequestType.AuraStop)
+                    {
+                        RemoveAura(request.Anchor, request.Theme);
+                        continue;
+                    }
 
-                switch (request.Type)
-                {
-                    case AsciiFxRequestType.Projectile:
-                        if (request.Path != null && request.Path.Count > 0)
-                        {
-                            _projectiles.Add(new ProjectileFxInstance
+                    if (_currentZone == null || request.Zone != _currentZone)
+                        continue;
+
+                    switch (request.Type)
+                    {
+                        case AsciiFxRequestType.Projectile:
+                            if (request.Path != null && request.Path.Count > 0)
+                            {
+                                _projectiles.Add(new ProjectileFxInstance
+                                {
+                                    Theme = request.Theme,
+                                    Path = request.Path,
+                                    Trail = request.Trail,
+                                    BlocksTurnAdvance = request.BlocksTurnAdvance,
+                                    DelayRemaining = request.Delay,
+                                    CurrentIndex = 0
+                                });
+                            }
+                            break;
+
+                        case AsciiFxRequestType.Burst:
+                            _bursts.Add(new BurstFxInstance
                             {
                                 Theme = request.Theme,
-                                Path = request.Path,
-                                Trail = request.Trail,
+                                X = request.X,
+                                Y = request.Y,
+                                Duration = request.Duration > 0f ? request.Duration : DefaultBurstDuration,
                                 BlocksTurnAdvance = request.BlocksTurnAdvance,
-                                DelayRemaining = request.Delay,
-                                CurrentIndex = 0
+                                DelayRemaining = request.Delay
                             });
-                        }
-                        break;
+                            break;
 
-                    case AsciiFxRequestType.Burst:
-                        _bursts.Add(new BurstFxInstance
-                        {
-                            Theme = request.Theme,
-                            X = request.X,
-                            Y = request.Y,
-                            Duration = request.Duration > 0f ? request.Duration : DefaultBurstDuration,
-                            BlocksTurnAdvance = request.BlocksTurnAdvance,
-                            DelayRemaining = request.Delay
-                        });
-                        break;
-
-                    case AsciiFxRequestType.AuraStart:
-                        if (request.Anchor != null)
-                        {
-                            _auras[new AuraKey(request.Anchor, request.Theme)] = new AuraEmitterInstance
+                        case AsciiFxRequestType.AuraStart:
+                            if (request.Anchor != null)
                             {
-                                Zone = request.Zone,
-                                Anchor = request.Anchor,
-                                Theme = request.Theme
-                            };
-                        }
-                        break;
+                                _auras[new AuraKey(request.Anchor, request.Theme)] = new AuraEmitterInstance
+                                {
+                                    Zone = request.Zone,
+                                    Anchor = request.Anchor,
+                                    Theme = request.Theme
+                                };
+                            }
+                            break;
 
-                    case AsciiFxRequestType.Beam:
-                        if (request.Path != null && request.Path.Count > 0)
-                        {
-                            _beams.Add(new BeamFxInstance
+                        case AsciiFxRequestType.Beam:
+                            if (request.Path != null && request.Path.Count > 0)
+                            {
+                                _beams.Add(new BeamFxInstance
+                                {
+                                    Theme = request.Theme,
+                                    Path = request.Path,
+                                    DX = request.DX,
+                                    DY = request.DY,
+                                    Duration = request.Duration,
+                                    BlocksTurnAdvance = request.BlocksTurnAdvance,
+                                    DelayRemaining = request.Delay
+                                });
+                            }
+                            break;
+
+                        case AsciiFxRequestType.ChargeOrbit:
+                            if (request.Anchor != null)
+                            {
+                                _chargeOrbits.Add(new ChargeOrbitFxInstance
+                                {
+                                    Theme = request.Theme,
+                                    Anchor = request.Anchor,
+                                    Zone = request.Zone,
+                                    Radius = request.Radius,
+                                    Duration = request.Duration,
+                                    BlocksTurnAdvance = request.BlocksTurnAdvance,
+                                    DelayRemaining = request.Delay
+                                });
+                            }
+                            break;
+
+                        case AsciiFxRequestType.RingWave:
+                            _ringWaves.Add(new RingWaveFxInstance
                             {
                                 Theme = request.Theme,
-                                Path = request.Path,
-                                DX = request.DX,
+                                X = request.X,
+                                Y = request.Y,
+                                MaxRadius = request.MaxRadius,
+                                StepDuration = request.StepDuration,
+                                BlocksTurnAdvance = request.BlocksTurnAdvance,
+                                DelayRemaining = request.Delay
+                            });
+                            break;
+
+                        case AsciiFxRequestType.ChainArc:
+                            if (request.Path != null && request.Path.Count >= 2)
+                            {
+                                _chainArcs.Add(new ChainArcFxInstance
+                                {
+                                    Theme = request.Theme,
+                                    Hops = request.Path,
+                                    HopDuration = request.StepDuration,
+                                    BlocksTurnAdvance = request.BlocksTurnAdvance,
+                                    DelayRemaining = request.Delay
+                                });
+                            }
+                            break;
+
+                        case AsciiFxRequestType.Particle:
+                            _particles.Add(new ParticleFxInstance
+                            {
+                                X = request.X,
+                                Y = request.Y,
+                                Glyph = request.Glyph,
+                                ColorString = request.ColorString,
+                                Remaining = request.Lifetime,
                                 DY = request.DY,
-                                Duration = request.Duration,
-                                BlocksTurnAdvance = request.BlocksTurnAdvance,
+                                MoveInterval = request.MoveInterval,
                                 DelayRemaining = request.Delay
                             });
-                        }
-                        break;
+                            break;
 
-                    case AsciiFxRequestType.ChargeOrbit:
-                        if (request.Anchor != null)
-                        {
-                            _chargeOrbits.Add(new ChargeOrbitFxInstance
+                        case AsciiFxRequestType.ColumnRise:
+                            _columnRises.Add(new ColumnRiseFxInstance
                             {
                                 Theme = request.Theme,
-                                Anchor = request.Anchor,
-                                Zone = request.Zone,
-                                Radius = request.Radius,
-                                Duration = request.Duration,
+                                X = request.X,
+                                Y = request.Y,
+                                Height = request.Height,
+                                StepDuration = request.StepDuration,
+                                LingerDuration = request.LingerDuration,
                                 BlocksTurnAdvance = request.BlocksTurnAdvance,
                                 DelayRemaining = request.Delay
                             });
-                        }
-                        break;
-
-                    case AsciiFxRequestType.RingWave:
-                        _ringWaves.Add(new RingWaveFxInstance
-                        {
-                            Theme = request.Theme,
-                            X = request.X,
-                            Y = request.Y,
-                            MaxRadius = request.MaxRadius,
-                            StepDuration = request.StepDuration,
-                            BlocksTurnAdvance = request.BlocksTurnAdvance,
-                            DelayRemaining = request.Delay
-                        });
-                        break;
-
-                    case AsciiFxRequestType.ChainArc:
-                        if (request.Path != null && request.Path.Count >= 2)
-                        {
-                            _chainArcs.Add(new ChainArcFxInstance
-                            {
-                                Theme = request.Theme,
-                                Hops = request.Path,
-                                HopDuration = request.StepDuration,
-                                BlocksTurnAdvance = request.BlocksTurnAdvance,
-                                DelayRemaining = request.Delay
-                            });
-                        }
-                        break;
-
-                    case AsciiFxRequestType.Particle:
-                        _particles.Add(new ParticleFxInstance
-                        {
-                            X = request.X,
-                            Y = request.Y,
-                            Glyph = request.Glyph,
-                            ColorString = request.ColorString,
-                            Remaining = request.Lifetime,
-                            DY = request.DY,
-                            MoveInterval = request.MoveInterval,
-                            DelayRemaining = request.Delay
-                        });
-                        break;
-
-                    case AsciiFxRequestType.ColumnRise:
-                        _columnRises.Add(new ColumnRiseFxInstance
-                        {
-                            Theme = request.Theme,
-                            X = request.X,
-                            Y = request.Y,
-                            Height = request.Height,
-                            StepDuration = request.StepDuration,
-                            LingerDuration = request.LingerDuration,
-                            BlocksTurnAdvance = request.BlocksTurnAdvance,
-                            DelayRemaining = request.Delay
-                        });
-                        break;
+                            break;
+                    }
                 }
             }
         }
@@ -243,42 +255,45 @@ namespace CavesOfOoo.Rendering
 
         private void UpdateAuras(float deltaTime)
         {
-            if (_auras.Count == 0)
-                return;
-
-            var toRemove = new List<AuraKey>();
-            foreach (KeyValuePair<AuraKey, AuraEmitterInstance> kvp in _auras)
+            using (PerformanceMarkers.Fx.UpdateAuras.Auto())
             {
-                AuraEmitterInstance aura = kvp.Value;
-                if (aura == null || aura.Zone != _currentZone || aura.Anchor == null)
+                if (_auras.Count == 0)
+                    return;
+
+                var toRemove = new List<AuraKey>();
+                foreach (KeyValuePair<AuraKey, AuraEmitterInstance> kvp in _auras)
                 {
-                    toRemove.Add(kvp.Key);
-                    continue;
+                    AuraEmitterInstance aura = kvp.Value;
+                    if (aura == null || aura.Zone != _currentZone || aura.Anchor == null)
+                    {
+                        toRemove.Add(kvp.Key);
+                        continue;
+                    }
+
+                    Cell anchorCell = _currentZone.GetEntityCell(aura.Anchor);
+                    if (anchorCell == null)
+                    {
+                        toRemove.Add(kvp.Key);
+                        continue;
+                    }
+
+                    FxThemeConfig config = GetThemeConfig(aura.Theme);
+                    if (config.AuraGlyphs.Length == 0 || config.AuraColors.Length == 0)
+                        continue;
+
+                    aura.SpawnTimer += deltaTime;
+                    while (aura.SpawnTimer >= config.AuraInterval)
+                    {
+                        aura.SpawnTimer -= config.AuraInterval;
+                        int particleCount = 1 + _rng.Next(2);
+                        for (int i = 0; i < particleCount; i++)
+                            SpawnAuraParticle(anchorCell.X, anchorCell.Y, config);
+                    }
                 }
 
-                Cell anchorCell = _currentZone.GetEntityCell(aura.Anchor);
-                if (anchorCell == null)
-                {
-                    toRemove.Add(kvp.Key);
-                    continue;
-                }
-
-                FxThemeConfig config = GetThemeConfig(aura.Theme);
-                if (config.AuraGlyphs.Length == 0 || config.AuraColors.Length == 0)
-                    continue;
-
-                aura.SpawnTimer += deltaTime;
-                while (aura.SpawnTimer >= config.AuraInterval)
-                {
-                    aura.SpawnTimer -= config.AuraInterval;
-                    int particleCount = 1 + _rng.Next(2);
-                    for (int i = 0; i < particleCount; i++)
-                        SpawnAuraParticle(anchorCell.X, anchorCell.Y, config);
-                }
+                for (int i = 0; i < toRemove.Count; i++)
+                    _auras.Remove(toRemove[i]);
             }
-
-            for (int i = 0; i < toRemove.Count; i++)
-                _auras.Remove(toRemove[i]);
         }
 
         private void SpawnAuraParticle(int centerX, int centerY, FxThemeConfig config)
@@ -327,67 +342,79 @@ namespace CavesOfOoo.Rendering
 
         private void UpdateChargeOrbits(float deltaTime)
         {
-            for (int i = _chargeOrbits.Count - 1; i >= 0; i--)
+            using (PerformanceMarkers.Fx.UpdateChargeOrbits.Auto())
             {
-                ChargeOrbitFxInstance orbit = _chargeOrbits[i];
-                if (orbit.Anchor == null || orbit.Zone != _currentZone || _currentZone.GetEntityCell(orbit.Anchor) == null)
+                for (int i = _chargeOrbits.Count - 1; i >= 0; i--)
                 {
-                    _chargeOrbits.RemoveAt(i);
-                    continue;
+                    ChargeOrbitFxInstance orbit = _chargeOrbits[i];
+                    if (orbit.Anchor == null || orbit.Zone != _currentZone || _currentZone.GetEntityCell(orbit.Anchor) == null)
+                    {
+                        _chargeOrbits.RemoveAt(i);
+                        continue;
+                    }
+
+                    float activeDelta = ConsumeDelay(ref orbit.DelayRemaining, deltaTime);
+                    if (orbit.DelayRemaining > 0f)
+                        continue;
+
+                    orbit.Elapsed += activeDelta;
+                    if (orbit.Elapsed >= orbit.Duration)
+                        _chargeOrbits.RemoveAt(i);
                 }
-
-                float activeDelta = ConsumeDelay(ref orbit.DelayRemaining, deltaTime);
-                if (orbit.DelayRemaining > 0f)
-                    continue;
-
-                orbit.Elapsed += activeDelta;
-                if (orbit.Elapsed >= orbit.Duration)
-                    _chargeOrbits.RemoveAt(i);
             }
         }
 
         private void UpdateRingWaves(float deltaTime)
         {
-            for (int i = _ringWaves.Count - 1; i >= 0; i--)
+            using (PerformanceMarkers.Fx.UpdateRingWaves.Auto())
             {
-                RingWaveFxInstance ring = _ringWaves[i];
-                float activeDelta = ConsumeDelay(ref ring.DelayRemaining, deltaTime);
-                if (ring.DelayRemaining > 0f)
-                    continue;
+                for (int i = _ringWaves.Count - 1; i >= 0; i--)
+                {
+                    RingWaveFxInstance ring = _ringWaves[i];
+                    float activeDelta = ConsumeDelay(ref ring.DelayRemaining, deltaTime);
+                    if (ring.DelayRemaining > 0f)
+                        continue;
 
-                ring.Elapsed += activeDelta;
-                if (ring.Elapsed >= ring.StepDuration * ring.MaxRadius)
-                    _ringWaves.RemoveAt(i);
+                    ring.Elapsed += activeDelta;
+                    if (ring.Elapsed >= ring.StepDuration * ring.MaxRadius)
+                        _ringWaves.RemoveAt(i);
+                }
             }
         }
 
         private void UpdateBeams(float deltaTime)
         {
-            for (int i = _beams.Count - 1; i >= 0; i--)
+            using (PerformanceMarkers.Fx.UpdateBeams.Auto())
             {
-                BeamFxInstance beam = _beams[i];
-                float activeDelta = ConsumeDelay(ref beam.DelayRemaining, deltaTime);
-                if (beam.DelayRemaining > 0f)
-                    continue;
+                for (int i = _beams.Count - 1; i >= 0; i--)
+                {
+                    BeamFxInstance beam = _beams[i];
+                    float activeDelta = ConsumeDelay(ref beam.DelayRemaining, deltaTime);
+                    if (beam.DelayRemaining > 0f)
+                        continue;
 
-                beam.Elapsed += activeDelta;
-                if (beam.Elapsed >= beam.Duration)
-                    _beams.RemoveAt(i);
+                    beam.Elapsed += activeDelta;
+                    if (beam.Elapsed >= beam.Duration)
+                        _beams.RemoveAt(i);
+                }
             }
         }
 
         private void UpdateChainArcs(float deltaTime)
         {
-            for (int i = _chainArcs.Count - 1; i >= 0; i--)
+            using (PerformanceMarkers.Fx.UpdateChainArcs.Auto())
             {
-                ChainArcFxInstance arc = _chainArcs[i];
-                float activeDelta = ConsumeDelay(ref arc.DelayRemaining, deltaTime);
-                if (arc.DelayRemaining > 0f)
-                    continue;
+                for (int i = _chainArcs.Count - 1; i >= 0; i--)
+                {
+                    ChainArcFxInstance arc = _chainArcs[i];
+                    float activeDelta = ConsumeDelay(ref arc.DelayRemaining, deltaTime);
+                    if (arc.DelayRemaining > 0f)
+                        continue;
 
-                arc.Elapsed += activeDelta;
-                if (arc.Elapsed >= arc.HopDuration * (arc.Hops.Count - 1))
-                    _chainArcs.RemoveAt(i);
+                    arc.Elapsed += activeDelta;
+                    if (arc.Elapsed >= arc.HopDuration * (arc.Hops.Count - 1))
+                        _chainArcs.RemoveAt(i);
+                }
             }
         }
 
@@ -412,17 +439,20 @@ namespace CavesOfOoo.Rendering
 
         private void UpdateDustMotes(float deltaTime)
         {
-            for (int i = _dustMotes.Count - 1; i >= 0; i--)
+            using (PerformanceMarkers.Fx.UpdateDustMotes.Auto())
             {
-                DustMoteFxInstance mote = _dustMotes[i];
-                mote.Elapsed += deltaTime;
-                if (mote.Elapsed >= mote.Lifetime)
+                for (int i = _dustMotes.Count - 1; i >= 0; i--)
                 {
-                    _dustMotes.RemoveAt(i);
-                    continue;
+                    DustMoteFxInstance mote = _dustMotes[i];
+                    mote.Elapsed += deltaTime;
+                    if (mote.Elapsed >= mote.Lifetime)
+                    {
+                        _dustMotes.RemoveAt(i);
+                        continue;
+                    }
+                    mote.X += mote.DX * deltaTime;
+                    mote.Y += mote.DY * deltaTime;
                 }
-                mote.X += mote.DX * deltaTime;
-                mote.Y += mote.DY * deltaTime;
             }
         }
 
@@ -435,106 +465,118 @@ namespace CavesOfOoo.Rendering
 
         private void UpdateColumnRises(float deltaTime)
         {
-            for (int i = _columnRises.Count - 1; i >= 0; i--)
+            using (PerformanceMarkers.Fx.UpdateColumnRises.Auto())
             {
-                ColumnRiseFxInstance col = _columnRises[i];
-                float activeDelta = ConsumeDelay(ref col.DelayRemaining, deltaTime);
-                if (col.DelayRemaining > 0f)
-                    continue;
+                for (int i = _columnRises.Count - 1; i >= 0; i--)
+                {
+                    ColumnRiseFxInstance col = _columnRises[i];
+                    float activeDelta = ConsumeDelay(ref col.DelayRemaining, deltaTime);
+                    if (col.DelayRemaining > 0f)
+                        continue;
 
-                col.Elapsed += activeDelta;
-                float totalDuration = col.StepDuration * col.Height + col.LingerDuration;
-                if (col.Elapsed >= totalDuration)
-                    _columnRises.RemoveAt(i);
+                    col.Elapsed += activeDelta;
+                    float totalDuration = col.StepDuration * col.Height + col.LingerDuration;
+                    if (col.Elapsed >= totalDuration)
+                        _columnRises.RemoveAt(i);
+                }
             }
         }
 
         private void UpdateProjectiles(float deltaTime)
         {
-            for (int i = _projectiles.Count - 1; i >= 0; i--)
+            using (PerformanceMarkers.Fx.UpdateProjectiles.Auto())
             {
-                ProjectileFxInstance projectile = _projectiles[i];
-                if (projectile.Path == null || projectile.Path.Count == 0)
+                for (int i = _projectiles.Count - 1; i >= 0; i--)
                 {
-                    _projectiles.RemoveAt(i);
-                    continue;
-                }
-
-                float activeDelta = ConsumeDelay(ref projectile.DelayRemaining, deltaTime);
-                if (projectile.DelayRemaining > 0f)
-                    continue;
-
-                FxThemeConfig config = GetThemeConfig(projectile.Theme);
-                projectile.StepTimer += activeDelta;
-
-                while (projectile.StepTimer >= config.ProjectileStepTime)
-                {
-                    projectile.StepTimer -= config.ProjectileStepTime;
-
-                    if (projectile.CurrentIndex < projectile.Path.Count - 1)
+                    ProjectileFxInstance projectile = _projectiles[i];
+                    if (projectile.Path == null || projectile.Path.Count == 0)
                     {
-                        projectile.CurrentIndex++;
+                        _projectiles.RemoveAt(i);
                         continue;
                     }
 
-                    Point impact = projectile.Path[projectile.Path.Count - 1];
-                    _bursts.Add(new BurstFxInstance
+                    float activeDelta = ConsumeDelay(ref projectile.DelayRemaining, deltaTime);
+                    if (projectile.DelayRemaining > 0f)
+                        continue;
+
+                    FxThemeConfig config = GetThemeConfig(projectile.Theme);
+                    projectile.StepTimer += activeDelta;
+
+                    while (projectile.StepTimer >= config.ProjectileStepTime)
                     {
-                        Theme = projectile.Theme,
-                        X = impact.X,
-                        Y = impact.Y,
-                        Duration = DefaultBurstDuration,
-                        BlocksTurnAdvance = projectile.BlocksTurnAdvance
-                    });
-                    _projectiles.RemoveAt(i);
-                    break;
+                        projectile.StepTimer -= config.ProjectileStepTime;
+
+                        if (projectile.CurrentIndex < projectile.Path.Count - 1)
+                        {
+                            projectile.CurrentIndex++;
+                            continue;
+                        }
+
+                        Point impact = projectile.Path[projectile.Path.Count - 1];
+                        _bursts.Add(new BurstFxInstance
+                        {
+                            Theme = projectile.Theme,
+                            X = impact.X,
+                            Y = impact.Y,
+                            Duration = DefaultBurstDuration,
+                            BlocksTurnAdvance = projectile.BlocksTurnAdvance
+                        });
+                        _projectiles.RemoveAt(i);
+                        break;
+                    }
                 }
             }
         }
 
         private void UpdateBursts(float deltaTime)
         {
-            for (int i = _bursts.Count - 1; i >= 0; i--)
+            using (PerformanceMarkers.Fx.UpdateBursts.Auto())
             {
-                BurstFxInstance burst = _bursts[i];
-                float activeDelta = ConsumeDelay(ref burst.DelayRemaining, deltaTime);
-                if (burst.DelayRemaining > 0f)
-                    continue;
+                for (int i = _bursts.Count - 1; i >= 0; i--)
+                {
+                    BurstFxInstance burst = _bursts[i];
+                    float activeDelta = ConsumeDelay(ref burst.DelayRemaining, deltaTime);
+                    if (burst.DelayRemaining > 0f)
+                        continue;
 
-                burst.Elapsed += activeDelta;
-                if (burst.Elapsed >= burst.Duration)
-                    _bursts.RemoveAt(i);
+                    burst.Elapsed += activeDelta;
+                    if (burst.Elapsed >= burst.Duration)
+                        _bursts.RemoveAt(i);
+                }
             }
         }
 
         private void UpdateParticles(float deltaTime)
         {
-            for (int i = _particles.Count - 1; i >= 0; i--)
+            using (PerformanceMarkers.Fx.UpdateParticles.Auto())
             {
-                ParticleFxInstance particle = _particles[i];
-
-                // Handle delay before particle becomes active
-                if (particle.DelayRemaining > 0f)
+                for (int i = _particles.Count - 1; i >= 0; i--)
                 {
-                    particle.DelayRemaining -= deltaTime;
-                    continue;
-                }
+                    ParticleFxInstance particle = _particles[i];
 
-                particle.Remaining -= deltaTime;
-                if (particle.Remaining <= 0f)
-                {
-                    _particles.RemoveAt(i);
-                    continue;
-                }
-
-                // Rising particles move upward periodically
-                if (particle.DY != 0 && particle.MoveInterval > 0f)
-                {
-                    particle.MoveTimer += deltaTime;
-                    while (particle.MoveTimer >= particle.MoveInterval)
+                    // Handle delay before particle becomes active
+                    if (particle.DelayRemaining > 0f)
                     {
-                        particle.MoveTimer -= particle.MoveInterval;
-                        particle.Y += particle.DY;
+                        particle.DelayRemaining -= deltaTime;
+                        continue;
+                    }
+
+                    particle.Remaining -= deltaTime;
+                    if (particle.Remaining <= 0f)
+                    {
+                        _particles.RemoveAt(i);
+                        continue;
+                    }
+
+                    // Rising particles move upward periodically
+                    if (particle.DY != 0 && particle.MoveInterval > 0f)
+                    {
+                        particle.MoveTimer += deltaTime;
+                        while (particle.MoveTimer >= particle.MoveInterval)
+                        {
+                            particle.MoveTimer -= particle.MoveInterval;
+                            particle.Y += particle.DY;
+                        }
                     }
                 }
             }
@@ -542,46 +584,50 @@ namespace CavesOfOoo.Rendering
 
         private void Render()
         {
-            if (_tilemap == null)
-                return;
+            using (PerformanceMarkers.Fx.Render.Auto())
+            {
+                if (_tilemap == null)
+                    return;
 
-            bool hasVisibleFx = _projectiles.Count > 0 || _bursts.Count > 0 || _particles.Count > 0 ||
-                                _beams.Count > 0 || _chargeOrbits.Count > 0 || _ringWaves.Count > 0 ||
-                                _chainArcs.Count > 0 || _columnRises.Count > 0 ||
-                                _dustMotes.Count > 0;
-            if (!hasVisibleFx && !_hadVisibleFxLastFrame)
-                return;
+                bool hasVisibleFx = _projectiles.Count > 0 || _bursts.Count > 0 || _particles.Count > 0 ||
+                                    _beams.Count > 0 || _chargeOrbits.Count > 0 || _ringWaves.Count > 0 ||
+                                    _chainArcs.Count > 0 || _columnRises.Count > 0 ||
+                                    _dustMotes.Count > 0;
+                if (!hasVisibleFx && !_hadVisibleFxLastFrame)
+                    return;
 
-            _tilemap.ClearAllTiles();
+                _tilemap.ClearAllTiles();
+                PerformanceDiagnostics.RecordTilemapClear();
 
-            for (int i = 0; i < _particles.Count; i++)
-                RenderParticle(_particles[i]);
+                for (int i = 0; i < _particles.Count; i++)
+                    RenderParticle(_particles[i]);
 
-            for (int i = 0; i < _dustMotes.Count; i++)
-                RenderDustMote(_dustMotes[i]);
+                for (int i = 0; i < _dustMotes.Count; i++)
+                    RenderDustMote(_dustMotes[i]);
 
-            for (int i = 0; i < _ringWaves.Count; i++)
-                RenderRingWave(_ringWaves[i]);
+                for (int i = 0; i < _ringWaves.Count; i++)
+                    RenderRingWave(_ringWaves[i]);
 
-            for (int i = 0; i < _chargeOrbits.Count; i++)
-                RenderChargeOrbit(_chargeOrbits[i]);
+                for (int i = 0; i < _chargeOrbits.Count; i++)
+                    RenderChargeOrbit(_chargeOrbits[i]);
 
-            for (int i = 0; i < _beams.Count; i++)
-                RenderBeam(_beams[i]);
+                for (int i = 0; i < _beams.Count; i++)
+                    RenderBeam(_beams[i]);
 
-            for (int i = 0; i < _chainArcs.Count; i++)
-                RenderChainArc(_chainArcs[i]);
+                for (int i = 0; i < _chainArcs.Count; i++)
+                    RenderChainArc(_chainArcs[i]);
 
-            for (int i = 0; i < _columnRises.Count; i++)
-                RenderColumnRise(_columnRises[i]);
+                for (int i = 0; i < _columnRises.Count; i++)
+                    RenderColumnRise(_columnRises[i]);
 
-            for (int i = 0; i < _projectiles.Count; i++)
-                RenderProjectile(_projectiles[i]);
+                for (int i = 0; i < _projectiles.Count; i++)
+                    RenderProjectile(_projectiles[i]);
 
-            for (int i = 0; i < _bursts.Count; i++)
-                RenderBurst(_bursts[i]);
+                for (int i = 0; i < _bursts.Count; i++)
+                    RenderBurst(_bursts[i]);
 
-            _hadVisibleFxLastFrame = hasVisibleFx;
+                _hadVisibleFxLastFrame = hasVisibleFx;
+            }
         }
 
         private void RenderChargeOrbit(ChargeOrbitFxInstance orbit)
