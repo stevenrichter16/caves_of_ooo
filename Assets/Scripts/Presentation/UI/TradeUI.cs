@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CavesOfOoo.Core;
+using CavesOfOoo.Diagnostics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -72,7 +73,10 @@ namespace CavesOfOoo.Rendering
         {
             _isOpen = false;
             if (Tilemap != null)
+            {
                 Tilemap.ClearAllTiles();
+                PerformanceDiagnostics.RecordTilemapClear();
+            }
         }
 
         // ===== Data =====
@@ -145,14 +149,14 @@ namespace CavesOfOoo.Rendering
 
             UpdateMouseHover();
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 Close();
                 return;
             }
 
             // Tab to switch panels
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (InputHelper.GetKeyDown(KeyCode.Tab))
             {
                 _panel = 1 - _panel;
                 Render();
@@ -160,13 +164,13 @@ namespace CavesOfOoo.Rendering
             }
 
             // Navigation
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
             {
                 MoveCursor(-1);
                 Render();
                 return;
             }
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J))
             {
                 MoveCursor(1);
                 Render();
@@ -198,7 +202,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Enter to buy/sell
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (InputHelper.GetKeyDown(KeyCode.Return))
             {
                 ShowConfirmation();
                 return;
@@ -269,13 +273,13 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.N))
+            if (InputHelper.GetKeyDown(KeyCode.Escape) || InputHelper.GetKeyDown(KeyCode.N))
             {
                 CancelConfirmation();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Y))
+            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.Y))
             {
                 if (_confirmChoice == 0)
                     ConfirmTrade();
@@ -284,16 +288,16 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K)
-                || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K)
+                || InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J))
             {
                 _confirmChoice = 1 - _confirmChoice;
                 Render();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.H)
-                || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.L))
+            if (InputHelper.GetKeyDown(KeyCode.LeftArrow) || InputHelper.GetKeyDown(KeyCode.H)
+                || InputHelper.GetKeyDown(KeyCode.RightArrow) || InputHelper.GetKeyDown(KeyCode.L))
             {
                 _confirmChoice = 1 - _confirmChoice;
                 Render();
@@ -407,53 +411,60 @@ namespace CavesOfOoo.Rendering
 
         private void Render()
         {
-            if (Tilemap == null) return;
-            Tilemap.ClearAllTiles();
+            using (PerformanceMarkers.Ui.TradeRender.Auto())
+            {
+                PerformanceDiagnostics.RecordTradeRender();
+                if (Tilemap == null)
+                    return;
 
-            int playerDrams = TradeSystem.GetDrams(PlayerEntity);
-            int traderDrams = TradeSystem.GetDrams(_trader);
-            int perfPct = (int)(_performance * 100);
+                Tilemap.ClearAllTiles();
+                PerformanceDiagnostics.RecordTilemapClear();
 
-            // Row 0: panel titles
-            string traderName = _trader != null ? _trader.GetDisplayName() : "Trader";
-            string leftTitle = "Buy from " + traderName;
-            string rightTitle = "Sell your items";
-            DrawText(LEFT_START, 0, leftTitle, _panel == 0 ? QudColorParser.White : QudColorParser.Gray);
-            DrawText(RIGHT_START, 0, rightTitle, _panel == 1 ? QudColorParser.White : QudColorParser.Gray);
+                int playerDrams = TradeSystem.GetDrams(PlayerEntity);
+                int traderDrams = TradeSystem.GetDrams(_trader);
+                int perfPct = (int)(_performance * 100);
 
-            // Row 1: drams and performance
-            DrawText(LEFT_START, 1, "Trader: $" + traderDrams, QudColorParser.BrightYellow);
-            string playerInfo = "You: $" + playerDrams + "  Perf:" + perfPct + "%";
-            DrawText(RIGHT_START, 1, playerInfo, QudColorParser.BrightYellow);
+                // Row 0: panel titles
+                string traderName = _trader != null ? _trader.GetDisplayName() : "Trader";
+                string leftTitle = "Buy from " + traderName;
+                string rightTitle = "Sell your items";
+                DrawText(LEFT_START, 0, leftTitle, _panel == 0 ? QudColorParser.White : QudColorParser.Gray);
+                DrawText(RIGHT_START, 0, rightTitle, _panel == 1 ? QudColorParser.White : QudColorParser.Gray);
 
-            // Row 2: separator
-            DrawHLine(0, 2, W);
+                // Row 1: drams and performance
+                DrawText(LEFT_START, 1, "Trader: $" + traderDrams, QudColorParser.BrightYellow);
+                string playerInfo = "You: $" + playerDrams + "  Perf:" + perfPct + "%";
+                DrawText(RIGHT_START, 1, playerInfo, QudColorParser.BrightYellow);
 
-            // Vertical divider
-            for (int y = 0; y < H; y++)
-                DrawChar(DIVIDER_X, y, '|', QudColorParser.DarkGray);
+                // Row 2: separator
+                DrawHLine(0, 2, W);
 
-            // Left panel: trader items
-            RenderPanel(_leftRows, LEFT_START, _leftCursor, _leftScroll, _panel == 0, LEFT_W, true);
+                // Vertical divider
+                for (int y = 0; y < H; y++)
+                    DrawChar(DIVIDER_X, y, '|', QudColorParser.DarkGray);
 
-            // Right panel: player items
-            RenderPanel(_rightRows, RIGHT_START, _rightCursor, _rightScroll, _panel == 1, RIGHT_W, false);
+                // Left panel: trader items
+                RenderPanel(_leftRows, LEFT_START, _leftCursor, _leftScroll, _panel == 0, LEFT_W, true);
 
-            // Row 42: separator
-            DrawHLine(0, CONTENT_BOTTOM + 1, W);
+                // Right panel: player items
+                RenderPanel(_rightRows, RIGHT_START, _rightCursor, _rightScroll, _panel == 1, RIGHT_W, false);
 
-            // Row 43: detail line for selected item
-            RenderDetailLine();
+                // Row 42: separator
+                DrawHLine(0, CONTENT_BOTTOM + 1, W);
 
-            // Row 44: action bar
-            string actionBar = _panel == 0
-                ? " [Enter]buy  [Tab]sell panel  [Esc]close"
-                : " [Enter]sell  [Tab]buy panel  [Esc]close";
-            DrawText(0, H - 1, actionBar, QudColorParser.DarkGray);
+                // Row 43: detail line for selected item
+                RenderDetailLine();
 
-            // Confirmation popup overlay
-            if (_confirmActive)
-                RenderConfirmPopup();
+                // Row 44: action bar
+                string actionBar = _panel == 0
+                    ? " [Enter]buy  [Tab]sell panel  [Esc]close"
+                    : " [Enter]sell  [Tab]buy panel  [Esc]close";
+                DrawText(0, H - 1, actionBar, QudColorParser.DarkGray);
+
+                // Confirmation popup overlay
+                if (_confirmActive)
+                    RenderConfirmPopup();
+            }
         }
 
         private void RenderPanel(List<TradeRow> rows, int x0, int cursor, int scroll,

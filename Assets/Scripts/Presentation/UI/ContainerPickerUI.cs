@@ -60,7 +60,7 @@ namespace CavesOfOoo.Rendering
             if (!_isOpen)
                 return;
 
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.G))
+            if (InputHelper.GetKeyDown(KeyCode.Escape) || InputHelper.GetKeyDown(KeyCode.G))
             {
                 Cancel();
                 return;
@@ -89,7 +89,7 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
             {
                 if (_cursorIndex > 0)
                 {
@@ -100,7 +100,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J))
             {
                 if (_cursorIndex < _containers.Count - 1)
                 {
@@ -111,7 +111,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.Space))
             {
                 SelectContainer(_cursorIndex);
                 return;
@@ -119,7 +119,7 @@ namespace CavesOfOoo.Rendering
 
             for (int i = 0; i < 26 && i < _containers.Count; i++)
             {
-                if (Input.GetKeyDown(KeyCode.A + i))
+                if (InputHelper.GetKeyDown(KeyCode.A + i))
                 {
                     SelectContainer(i);
                     return;

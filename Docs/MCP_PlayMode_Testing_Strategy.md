@@ -5,457 +5,231 @@ A comprehensive guide for an LLM to use the Unity MCP `manage_input` tool to tes
 ## Prerequisites
 
 - MCP for Unity package with `manage_input` tool (gameplay group enabled)
-- `InputHelper.cs` bridge installed (replaces `Input.GetKeyDown` with dual-system checks)
+- `InputHelper.cs` bridge installed — ALL keyboard input across the game (InputHandler + all UI scripts) must go through `InputHelper.GetKeyDown`/`GetKey`/`GetKeyUp` instead of raw `Input.GetKeyDown`. This is required because MCP input simulation injects via the New Input System, which the legacy `Input` class does not see.
 - Unity Input System package (`com.unity.inputsystem`) installed
 - Player Settings: Active Input Handling = "Both"
+- `CavesOfOoo.asmdef` must reference `Unity.InputSystem`
+
+## Critical Rules
+
+1. **NEVER fire game events directly via `execute_code`** (e.g., `entity.FireEvent()`, `TurnManager.EndTurn()`). This bypasses the UI flow, leaves popups orphaned, and corrupts game state. Only use `execute_code` for **read-only observation** of game state.
+2. **ALL gameplay actions must go through keyboard input** via `manage_input` — mimicking what a real player would do.
+3. **Use `move_to` and `query_surroundings`** for navigation and observation — these are MCP-only helpers that handle pathfinding and state queries safely.
+4. **Always check for announcement popups** after actions that trigger them (reading grimoires, zone transitions, level-ups). Press Enter/Space/Escape to dismiss.
 
 ## Game Overview
 
-Caves of Ooo is a turn-based ASCII roguelike. The player moves on an 80x25 grid, explores zones connected by stairs, fights monsters, picks up items, equips gear, learns mutations from grimoires, crafts at settlement sites, and trades with NPCs. Input is processed one key at a time per turn.
+Caves of Ooo is a turn-based ASCII roguelike. The player moves on an 80x25 grid, explores zones connected by stairs, fights monsters, picks up items, equips gear, learns mutations from grimoires, crafts at settlement sites, and trades with NPCs.
 
-Key constraint: **this is turn-based**. Each key press is one action. The game processes NPC turns between player inputs. There is a `MoveRepeatDelay` of 0.12s that throttles inputs, so delays between key presses must be >= 0.15s.
+Key constraint: **this is turn-based**. Each key press is one action. The game processes NPC turns between player inputs. There is a `MoveRepeatDelay` of 0.12s that throttles inputs.
 
-## Input Reference
+## InputState Machine
 
-### Movement (8-directional, uses one turn each)
-| Direction | Keys |
-|-----------|------|
-| North | W, UpArrow, Numpad8, K |
-| South | S, DownArrow, Numpad2, J |
-| East | D, RightArrow, Numpad6, L |
-| West | A, LeftArrow, Numpad4, H |
-| NE | Numpad9 |
-| NW | Numpad7 |
-| SE | Numpad3 |
-| SW | Numpad1 |
-| Wait | Numpad5, Period |
+The game has a state machine that determines which keys do what. Before pressing any key, know which state you're in:
 
-### Actions
-| Action | Key | Notes |
-|--------|-----|-------|
-| Pick up item | G or Comma | Opens PickupUI if multiple items on tile |
-| Open inventory | I | Full inventory management |
-| Look mode | L | Examine tiles with cursor |
-| Faction standings | F | Shows reputation with all factions |
-| Talk to NPC | C + direction | Initiates dialogue with adjacent NPC |
-| Use ability | 1-9 | Activates hotbar slot, may await direction |
-| Interact (stairs, etc.) | Period (on stairs) | Descend/ascend |
+| State | Context | Valid Keys |
+|-------|---------|------------|
+| `Normal` | Standard gameplay | WASD (move), G (pickup), I (inventory), L (look), F (factions), C (talk), 1-9 (abilities), Period (wait/stairs) |
+| `PickupOpen` | Pickup popup showing items | a-z (select), Enter/Space (take), Tab (take all), Escape/G (close) |
+| `ContainerPickerOpen` | Choosing which container | Up/Down/J/K (navigate), Enter/Space (select), Escape/G (cancel) |
+| `InventoryOpen` | Inventory UI | Tab (switch tabs: Equipment -> Inventory -> Tinkering -> Abilities), J/K/Up/Down (navigate items), Enter (action menu), Escape/I (close) |
+| `AnnouncementOpen` | Popup modal (grimoire read, etc.) | Enter, Space, or Escape (dismiss) |
+| `AwaitingDirection` | Ability targeting | WASD/arrows/numpad/hjklyubn (direction), Escape (cancel) |
+| `DialogueOpen` | NPC dialogue | Up/Down/J/K (navigate options), Enter (select), Escape (close) |
+| `TradeOpen` | Trade UI | Left/Right (switch panels), Up/Down/J/K (navigate), Enter (buy/sell), Escape (close) |
+| `LookMode` | Examining tiles | WASD/arrows (move cursor), Escape (exit) |
+| `ThrowTargeting` | Throw targeting | WASD/arrows (aim), Enter (throw), Escape (cancel) |
 
-### Pickup UI (when open)
-| Key | Action |
-|-----|--------|
-| a-z | Select item by letter |
-| Enter/Space | Pick up selected |
-| Tab | Take all |
-| Escape/G | Close |
+## MCP Navigation Actions (use these instead of manual WASD)
 
-### Inventory UI (when open)
-| Key | Action |
-|-----|--------|
-| Arrows/J/K | Navigate items |
-| Enter | Show item actions |
-| Escape/I | Close |
-| e | Equip selected |
-| d | Drop selected |
-| r | Read (grimoire) |
-| a | Apply/drink (tonic) |
-| t | Throw |
-
-### Debug Keys (development only)
-| Key | Action |
-|-----|--------|
-| F6 | Grant random mutation |
-| F7 | Dump body parts to console |
-| F8 | Dismember random limb |
-| F9 | Debug craft recipe |
-| P | Cycle well repair stage |
-
----
-
-## MCP Tool Usage Pattern
-
-### Basic key press (one game turn)
+### `move_to` -- pathfind to a target
 ```
-manage_input(action="key_down", key="W")
--- wait 0.15s --
-manage_input(action="key_up", key="W")
+manage_input(action="move_to", target="chest")       -- by entity name
+manage_input(action="move_to", x=43, y=11)           -- by coordinates
+manage_input(action="move_to", target="elder", max_steps=20)
+```
+Uses BFS pathfinding on the zone grid. Executes movement step by step with proper turn processing and renderer refresh. Stops if path is blocked.
+
+### `query_surroundings` -- observe game state without screenshots
+```
+manage_input(action="query_surroundings", radius=8)
+```
+Returns: player position, stats (HP, STR, AGI, etc.), nearby creatures (with faction, hostility, HP), nearby items (with takeable flag, grimoire info), structures, and an ASCII mini-map.
+
+### `wait_turns` -- pass time
+```
+manage_input(action="wait_turns", count=5)
 ```
 
-### Using sequences for multi-step actions
+## Complete Keystroke Flows
+
+### Flow 1: Pick Up Items from Chest
+
+The chest uses `ContainerPart` (not ground items). Player must stand ON the chest tile.
+
 ```
-manage_input(action="send_sequence", sequence=[
-  {"action": "key_down", "params": {"key": "W"}, "delay": 0},
-  {"action": "key_up", "params": {"key": "W"}, "delay": 0.15},
-  {"action": "key_down", "params": {"key": "W"}, "delay": 0.2},
-  {"action": "key_up", "params": {"key": "W"}, "delay": 0.15}
-])
+1. move_to(target="chest")       -- pathfind adjacent to chest
+2. move_to(x=CHEST_X, y=CHEST_Y) -- step onto chest tile (chest is not Solid)
+3. key_press("G")                -- triggers TryPickupItem() -> auto-takes all from single container
+4. (Items transferred to inventory, turn consumed)
+5. Check: query_surroundings to verify items in inventory
 ```
 
-### Observing game state
-- `manage_scene(action="screenshot")` -- capture game view
-- `read_console(action="get")` -- read game log messages
-- `find_gameobjects(search_term="Player")` -- find player entity
-- `execute_code` -- query game state directly (HP, position, inventory)
+If multiple containers on one tile, a ContainerPickerUI opens:
+```
+4. Up/Down to select container
+5. Enter to confirm
+```
 
-### Querying game state via execute_code
+### Flow 2: Pick Up Ground Items
+
+Items on the ground (not in containers) use PickupUI.
+
+```
+1. move_to the item's tile
+2. key_press("G")
+   - Single item: auto-pickup, no UI
+   - Multiple items: PickupUI opens
+3. If PickupUI open:
+   - a-z letter keys to select specific item
+   - Tab to take all
+   - Escape to close without taking
+```
+
+### Flow 3: Read a Grimoire (Learn Mutation/Knowledge)
+
+Must be done from the Inventory UI:
+
+```
+1. key_press("I")               -- open inventory (starts on Equipment tab)
+2. key_press("Tab")             -- switch to Inventory tab (list of carried items)
+3. key_press("J") x N           -- navigate down to the grimoire
+4. key_press("Enter")           -- open item action popup
+5. key_press("R")               -- select "Read" action (hotkey 'r')
+6. key_press("Escape")          -- close inventory
+7. ANNOUNCEMENT POPUP appears on next frame
+8. key_press("Enter")           -- dismiss announcement popup
+9. (Repeat step 8 for each pending announcement)
+```
+
+**Critical: Announcement popups queue up.** If you read multiple grimoires, each one queues an announcement. They appear one at a time after closing the inventory. Press Enter for EACH one. Use `execute_code` (read-only) to check:
 ```csharp
-// Get player position and HP
+var ui = Object.FindAnyObjectByType<CavesOfOoo.Rendering.AnnouncementUI>();
+return $"Popup open: {ui?.IsOpen}";
+```
+
+### Flow 4: Cast a Spell (Directional Ability)
+
+Spells auto-bind to hotbar slots when learned. Starting mutations fill slots 0-6 (keys 1-7), grimoire spells fill slots 7-9 (keys 8-0).
+
+```
+1. key_press("8")               -- activate Kindle (slot 7 = key 8)
+   - Game enters AwaitingDirection state
+   - Log shows: "Kindle - choose a direction."
+2. key_press("W")               -- aim north
+   - Projectile fires, damage resolves, cooldown starts
+   - Turn ends, NPCs act
+```
+
+For self-centered abilities (no direction needed), pressing the number key fires immediately.
+
+Key-to-slot mapping:
+| Key | Slot Index | Default Mutation |
+|-----|-----------|-----------------|
+| 1 | 0 | Flaming Hands |
+| 2 | 1 | Fire Bolt |
+| 3 | 2 | Ice Shard |
+| 4 | 3 | Poison Spit |
+| 5 | 4 | Prismatic Beam |
+| 6 | 5 | Frost Nova |
+| 7 | 6 | Chain Lightning |
+| 8 | 7 | (first grimoire spell) |
+| 9 | 8 | (second grimoire spell) |
+| 0 | 9 | (third grimoire spell) |
+
+### Flow 5: Equip a Weapon/Armor
+
+```
+1. key_press("I")               -- open inventory
+2. key_press("Tab")             -- switch to Inventory tab
+3. key_press("J") x N           -- navigate to weapon/armor
+4. key_press("Enter")           -- open action popup
+5. key_press("E")               -- equip (hotkey 'e')
+6. key_press("Escape") or "I"   -- close inventory
+```
+
+### Flow 6: Talk to NPC
+
+```
+1. move_to(target="elder")      -- move adjacent to NPC
+2. key_press("C")               -- enter talk mode
+3. key_press("D")               -- direction toward NPC (e.g., east)
+   - DialogueUI opens
+4. key_press("J"/"K")           -- navigate dialogue options
+5. key_press("Enter")           -- select option
+6. key_press("Escape")          -- close dialogue
+```
+
+### Flow 7: Use Stairs
+
+```
+1. move_to(target="stairs leading down")
+2. move_to(x=STAIR_X, y=STAIR_Y)  -- step onto stair tile
+3. key_press("Period")          -- descend/ascend
+4. (Zone transition, new zone generated)
+```
+
+### Flow 8: Throw an Item
+
+```
+1. key_press("I")               -- open inventory
+2. Navigate to throwable item
+3. key_press("Enter")           -- action popup
+4. key_press("T")               -- throw (hotkey 't')
+   - Enters ThrowTargeting state
+5. WASD to aim direction
+6. Enter to confirm throw
+```
+
+### Flow 9: Drink/Apply a Tonic
+
+```
+1. key_press("I")               -- open inventory
+2. Navigate to tonic
+3. key_press("Enter")           -- action popup
+4. key_press("A")               -- apply/drink (hotkey 'a')
+5. key_press("Escape")          -- close inventory
+```
+
+## Inventory UI Tab Navigation
+
+The inventory has 4 tabs, cycled with Tab key:
+
+| Tab | Contents | Hints |
+|-----|----------|-------|
+| Equipment | Body slot display (Head, Body, Arms, Hands, Feet) + item list | `[Enter]equip [e]unequip [>]inventory [Esc]close` |
+| Inventory | Carried items list with categories (Tonics, Books, Weapons) | `[Enter]actions [d]drop [>]tinkering [Esc]close` |
+| Tinkering | Crafting recipes | `[Enter]craft [>]abilities [Esc]close` |
+| Abilities | Hotbar slot assignments (10 slots) | `[Enter]bind [>]equipment [Esc]close` |
+
+## State Observation (read-only execute_code)
+
+Use these to understand game state WITHOUT taking screenshots:
+
+### Current InputState
+```csharp
+// Check what state the game is in via reflection
 var handler = Object.FindAnyObjectByType<CavesOfOoo.Rendering.InputHandler>();
-var player = handler.PlayerEntity;
-var zone = handler.CurrentZone;
-var cell = zone.GetEntityCell(player);
-var hp = player.GetStatValue("Hitpoints");
-var maxHp = player.GetStatMax("Hitpoints");
-return $"Pos: ({cell.X}, {cell.Y}), HP: {hp}/{maxHp}";
+var stateField = handler.GetType().GetField("_inputState", 
+    System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+return $"InputState: {stateField?.GetValue(handler)}";
 ```
 
----
-
-## Test Scenarios
-
-### 1. Movement and Navigation
-
-**Goal:** Verify the player can move in all 8 directions and is blocked by walls/solid entities.
-
-**Setup:** Enter Play Mode, wait for bootstrap.
-
-**Steps:**
-1. Screenshot to see initial position
-2. Query player position via `execute_code`
-3. Move north (W key), query position again -- Y should decrease by 1
-4. Move south (S key) -- Y should increase by 1
-5. Move east (D key) -- X should increase by 1
-6. Move west (A key) -- X should decrease by 1
-7. Move toward a wall -- position should NOT change
-8. Screenshot after each move to verify visual update
-
-**Verification:**
+### Check for Announcement Popup
 ```csharp
-var zone = handler.CurrentZone;
-var cell = zone.GetCell(targetX, targetY);
-return $"Target cell solid: {cell.IsSolid()}, wall: {cell.IsWall()}";
+var ui = Object.FindAnyObjectByType<CavesOfOoo.Rendering.AnnouncementUI>();
+return $"Announcement open: {ui?.IsOpen}";
 ```
-
-**What to check:**
-- Position changes correctly for each direction
-- Walls (IsSolid=true) block movement
-- Entity positions update in zone cell grid
-- FOV updates after each move (explored cells expand)
-- MoveRepeatDelay prevents double-moves from rapid input
-
-### 2. Combat Encounter
-
-**Goal:** Walk into a hostile creature and verify combat resolves.
-
-**Setup:** Need to locate a hostile creature first.
-
-**Steps:**
-1. Query nearby entities to find a hostile:
-```csharp
-var zone = handler.CurrentZone;
-var playerCell = zone.GetEntityCell(handler.PlayerEntity);
-var entities = new System.Collections.Generic.List<string>();
-for (int dx = -5; dx <= 5; dx++)
-  for (int dy = -5; dy <= 5; dy++) {
-    var c = zone.GetCell(playerCell.X + dx, playerCell.Y + dy);
-    if (c != null)
-      foreach (var e in c.Objects)
-        if (e.HasTag("Creature") && e != handler.PlayerEntity)
-          entities.Add($"{e.GetPart<CavesOfOoo.Core.RenderPart>()?.DisplayName} at ({c.X},{c.Y})");
-  }
-return string.Join("\n", entities);
-```
-2. Navigate toward the hostile creature
-3. Move into their tile to initiate melee attack
-4. Check console for combat messages ("You hit the X", "The X attacks you")
-5. Query HP after combat to verify damage
-6. Screenshot to see combat result
-
-**Verification:**
-- Hit/miss messages appear in console
-- Damage reduces HP
-- If creature dies, it's removed from zone
-- XP awarded on kill (check Experience stat)
-- Equipment drops from dead creatures
-
-### 3. Item Pickup
-
-**Goal:** Pick up items from the ground.
-
-**Steps:**
-1. Find items on nearby ground tiles:
-```csharp
-var zone = handler.CurrentZone;
-var items = new System.Collections.Generic.List<string>();
-zone.ForEachCell((c, x, y) => {
-  foreach (var e in c.Objects)
-    if (e.HasTag("Item") && e.GetPart<CavesOfOoo.Core.PhysicsPart>()?.Takeable == true)
-      items.Add($"{e.GetPart<CavesOfOoo.Core.RenderPart>()?.DisplayName} at ({x},{y})");
-});
-return string.Join("\n", items.Take(10));
-```
-2. Navigate to a tile with items
-3. Press G to open PickupUI (or comma if single item)
-4. Screenshot to see pickup popup
-5. Press 'a' (first item) then Enter to pick up
-6. Press Escape to close
-7. Verify item in inventory:
-```csharp
-var inv = handler.PlayerEntity.GetPart<CavesOfOoo.Core.Inventory.InventoryPart>();
-return string.Join("\n", inv.Objects.Select(o =>
-  o.GetPart<CavesOfOoo.Core.RenderPart>()?.DisplayName ?? o.BlueprintName));
-```
-
-**What to check:**
-- PickupUI opens with correct item list
-- Item transfers from ground to inventory
-- Weight tracking updates
-- Auto-equip triggers if slot is free
-- Stack merging for stackable items (same blueprint)
-
-### 4. Inventory Management
-
-**Goal:** Open inventory, examine items, equip/unequip gear.
-
-**Steps:**
-1. Press I to open inventory
-2. Screenshot to see inventory UI
-3. Navigate with arrow keys to select an item
-4. Press Enter to see action menu
-5. Press 'e' to equip (if weapon/armor)
-6. Press Escape to close menus
-7. Verify equipment via:
-```csharp
-var inv = handler.PlayerEntity.GetPart<CavesOfOoo.Core.Inventory.InventoryPart>();
-var equipped = inv.EquippedItems;
-return string.Join("\n", equipped.Select(kvp =>
-  $"Slot: {kvp.Key} = {kvp.Value.GetPart<CavesOfOoo.Core.RenderPart>()?.DisplayName}"));
-```
-
-**What to check:**
-- Inventory UI displays all carried items
-- Equipment slots are correct (hand, body, etc.)
-- Equipping a weapon changes combat stats
-- Two-handed weapons occupy both hand slots
-- Unequipping moves item back to carried list
-
-### 5. Grimoire Reading (Mutation Learning)
-
-**Goal:** Read a grimoire to learn a spell/mutation.
-
-**Steps:**
-1. Find a grimoire item (either pick up or grant via debug):
-```csharp
-// Check if player has any grimoires
-var inv = handler.PlayerEntity.GetPart<CavesOfOoo.Core.Inventory.InventoryPart>();
-var grimoires = inv.Objects.Where(o => o.GetPart<CavesOfOoo.Gameplay.Items.GrimoirePart>() != null).ToList();
-return $"Grimoires in inventory: {grimoires.Count}\n" +
-  string.Join("\n", grimoires.Select(g => g.GetPart<CavesOfOoo.Core.RenderPart>()?.DisplayName));
-```
-2. If no grimoire, use F6 to grant a random mutation directly (debug shortcut)
-3. Otherwise: open inventory (I), navigate to grimoire, press 'r' to read
-4. Check mutations:
-```csharp
-var muts = handler.PlayerEntity.GetPart<CavesOfOoo.Gameplay.Mutations.MutationsPart>();
-if (muts == null) return "No MutationsPart";
-return string.Join("\n", muts.MutationList.Select(m => $"{m.DisplayName} (Level {m.Level})"));
-```
-
-**What to check:**
-- Grimoire read message appears
-- Mutation added to MutationsPart
-- Ability registered in ActivatedAbilitiesPart
-- Hotbar slot populated
-- Duplicate read shows "already known" message
-
-### 6. Ability/Spell Casting
-
-**Goal:** Use a mutation ability from the hotbar.
-
-**Steps:**
-1. Verify player has abilities:
-```csharp
-var abilities = handler.PlayerEntity.GetPart<CavesOfOoo.Gameplay.Mutations.ActivatedAbilitiesPart>();
-if (abilities == null) return "No abilities";
-return string.Join("\n", abilities.AbilityList.Select((a, i) =>
-  $"Slot {i+1}: {a.DisplayName} CD={a.CooldownRemaining}"));
-```
-2. Press the ability's number key (1-9)
-3. If directional: press a direction key (W/A/S/D) to target
-4. If immediate: ability fires immediately
-5. Screenshot to see effect
-6. Check console for ability messages
-7. Verify cooldown applied
-
-**What to check:**
-- Ability fires with visual/text feedback
-- Cooldown prevents re-use
-- Mana/MP cost deducted (if applicable)
-- Effect applied to target (damage, status effect)
-- Hotbar UI updates cooldown display
-
-### 7. Zone Transition (Stairs)
-
-**Goal:** Find and use stairs to move between floors.
-
-**Steps:**
-1. Find stairs:
-```csharp
-var zone = handler.CurrentZone;
-var stairs = new System.Collections.Generic.List<string>();
-zone.ForEachCell((c, x, y) => {
-  foreach (var e in c.Objects)
-    if (e.HasTag("StairsDown") || e.HasTag("StairsUp"))
-      stairs.Add($"{e.GetPart<CavesOfOoo.Core.RenderPart>()?.DisplayName} at ({x},{y}) - {(e.HasTag("StairsDown") ? "DOWN" : "UP")}");
-});
-return string.Join("\n", stairs);
-```
-2. Navigate to stairs tile
-3. Press Period (.) to use stairs
-4. Screenshot new zone
-5. Verify zone changed:
-```csharp
-return $"Current zone: {handler.CurrentZone?.ZoneID}";
-```
-
-**What to check:**
-- New zone generates correctly
-- Player position in new zone is at arrival stairs
-- FOV recalculates for new zone
-- Zone ID reflects new depth
-- Return via opposite stairs works
-
-### 8. Faction Interaction and Trading
-
-**Goal:** Find a friendly NPC and initiate trade.
-
-**Steps:**
-1. Find NPCs:
-```csharp
-var zone = handler.CurrentZone;
-var npcs = new System.Collections.Generic.List<string>();
-zone.ForEachCell((c, x, y) => {
-  foreach (var e in c.Objects) {
-    if (e.HasTag("Creature") && e != handler.PlayerEntity) {
-      string faction = e.GetTag("Faction") ?? "None";
-      bool hostile = CavesOfOoo.Gameplay.AI.FactionManager.Instance?.IsHostile(e, handler.PlayerEntity) ?? false;
-      npcs.Add($"{e.GetPart<CavesOfOoo.Core.RenderPart>()?.DisplayName} ({faction}, hostile={hostile}) at ({x},{y})");
-    }
-  }
-});
-return string.Join("\n", npcs);
-```
-2. Navigate adjacent to a friendly NPC
-3. Press C then direction toward NPC to talk
-4. If trader: navigate dialogue options to trade
-5. Screenshot trade UI
-6. Test buy/sell with arrow keys and Enter
-
-**What to check:**
-- Hostile creatures attack on contact; friendly don't
-- Faction determines hostility (Snapjaws = hostile, Villagers = friendly)
-- Dialogue UI opens for non-hostile NPCs
-- Trade prices reflect Ego stat and faction reputation
-
-### 9. Settlement Interaction
-
-**Goal:** Find and interact with settlement structures (campfire, well, oven).
-
-**Steps:**
-1. Find settlement sites:
-```csharp
-var zone = handler.CurrentZone;
-var sites = new System.Collections.Generic.List<string>();
-zone.ForEachCell((c, x, y) => {
-  foreach (var e in c.Objects) {
-    if (e.GetPart<CavesOfOoo.Gameplay.Settlements.CampfirePart>() != null)
-      sites.Add($"Campfire at ({x},{y})");
-    if (e.GetPart<CavesOfOoo.Gameplay.Settlements.WellSitePart>() != null)
-      sites.Add($"Well at ({x},{y})");
-    if (e.GetPart<CavesOfOoo.Gameplay.Settlements.OvenSitePart>() != null)
-      sites.Add($"Oven at ({x},{y})");
-  }
-});
-return string.Join("\n", sites);
-```
-2. Navigate adjacent to a campfire
-3. Check console for proximity message ("The campfire crackles warmly")
-4. Navigate to well, test debug cycle (P key)
-
-### 10. Death and Recovery
-
-**Goal:** Verify death handling when HP reaches 0.
-
-**Steps:**
-1. Check current HP
-2. Find a hostile creature
-3. Engage in combat repeatedly until HP is low
-4. Or use execute_code to set HP low:
-```csharp
-var hp = handler.PlayerEntity.Statistics["Hitpoints"];
-hp.Penalty = hp.BaseValue - 1; // Set to 1 HP
-return $"HP set to {hp.Value}/{hp.Max}";
-```
-5. Take one more hit
-6. Check if death screen/game over triggers
-7. Check console for death messages
-
----
-
-## Automated Regression Test Sequences
-
-### Quick Smoke Test (30 seconds)
-```
-1. Enter Play Mode
-2. Wait for bootstrap (check console for "Bootstrap complete")
-3. get_status -- verify input system detected
-4. Screenshot -- verify game renders
-5. Move W, W, W -- verify 3 moves north
-6. Screenshot -- verify position changed
-7. Query HP -- verify player alive
-8. Stop Play Mode
-```
-
-### Full Movement Test
-```
-1. Query initial position
-2. Move N, verify Y-1
-3. Move S, verify Y+1
-4. Move E, verify X+1
-5. Move W, verify X-1
-6. Move toward known wall, verify position unchanged
-7. Wait (Period), verify turn passed but position same
-```
-
-### Combat Loop Test
-```
-1. Query nearby hostiles
-2. Navigate to adjacent tile of nearest hostile
-3. Record attacker HP and defender HP
-4. Move into hostile (attack)
-5. Read console for hit/miss/damage
-6. Query HP changes
-7. Repeat until one dies
-8. If player dies: note death handling
-9. If enemy dies: check XP gain, item drops
-```
-
-### Full Inventory Cycle
-```
-1. Find ground item
-2. Navigate to item
-3. G to pick up
-4. I to open inventory
-5. Navigate to item, Enter for actions
-6. Equip or use
-7. Check stats changed
-8. Drop item
-9. Verify item on ground
-```
-
----
-
-## State Observation Cheat Sheet
 
 ### Player Stats
 ```csharp
@@ -466,52 +240,45 @@ foreach (var kvp in p.Statistics)
 return sb.ToString();
 ```
 
-### Nearby Entity Map
+### Inventory Contents
 ```csharp
-var zone = handler.CurrentZone;
-var pc = zone.GetEntityCell(handler.PlayerEntity);
-var sb = new System.Text.StringBuilder();
-for (int dy = -3; dy <= 3; dy++) {
-  for (int dx = -3; dx <= 3; dx++) {
-    var c = zone.GetCell(pc.X + dx, pc.Y + dy);
-    if (c == null) { sb.Append('#'); continue; }
-    if (dx == 0 && dy == 0) { sb.Append('@'); continue; }
-    var top = c.Objects.LastOrDefault();
-    sb.Append(top?.GetPart<CavesOfOoo.Core.RenderPart>()?.RenderString?[0] ?? '.');
-  }
-  sb.AppendLine();
+var inv = handler.PlayerEntity.GetPart<CavesOfOoo.Core.InventoryPart>();
+foreach (var item in inv.Objects) {
+  var rend = item.GetPart<CavesOfOoo.Core.RenderPart>();
+  sb.AppendLine(rend?.DisplayName ?? item.BlueprintName);
 }
-return sb.ToString();
 ```
 
-### Current Input State
+### Ability Slots and Cooldowns
 ```csharp
-var tm = handler.TurnManager;
-return $"WaitingForInput: {tm.WaitingForInput}\nCurrentActor: {tm.CurrentActor?.GetPart<CavesOfOoo.Core.RenderPart>()?.DisplayName ?? "null"}";
+var abilities = handler.PlayerEntity.GetPart<CavesOfOoo.Core.ActivatedAbilitiesPart>();
+for (int i = 0; i < abilities.AbilityList.Count; i++) {
+  var a = abilities.AbilityList[i];
+  sb.AppendLine($"Slot {i}: {a.DisplayName} CD={a.CooldownRemaining} Usable={a.IsUsable}");
+}
 ```
-
-### Inventory Summary
-```csharp
-var inv = handler.PlayerEntity.GetPart<CavesOfOoo.Core.Inventory.InventoryPart>();
-var carried = inv.Objects.Select(o => o.GetPart<CavesOfOoo.Core.RenderPart>()?.DisplayName).ToList();
-var equipped = inv.EquippedItems.Select(kvp => $"[{kvp.Key}] {kvp.Value.GetPart<CavesOfOoo.Core.RenderPart>()?.DisplayName}").ToList();
-return $"Carried ({carried.Count}): {string.Join(", ", carried)}\nEquipped ({equipped.Count}): {string.Join(", ", equipped)}";
-```
-
----
 
 ## Timing Considerations
 
-- **Turn-based**: Each key press = one game turn. NPCs act between player inputs.
-- **MoveRepeatDelay**: 0.12s minimum between accepted inputs. Use >= 0.15s delay.
-- **Sequence step delays**: Use 0.2-0.3s between key_down and key_up for reliable detection.
-- **Bootstrap time**: Game needs ~1-2 seconds to initialize on Play Mode entry. Wait for console log "Bootstrap complete" or check `TurnManager.WaitingForInput == true`.
-- **Screenshot timing**: In Play Mode, screenshots are async (captured at end of frame). Allow 0.5s after requesting before reading the file.
-- **Domain reload**: Entering/exiting Play Mode triggers domain reload. MCP connection persists but needs ~1-2s to stabilize.
+- **key_press duration**: Default 0.1s hold. The MCPInputBridge re-queues state every frame during this hold. With `MoveRepeatDelay` of 0.12s, a 0.1s hold produces exactly 1 movement action (safe for turn-based games).
+- **Sequence delays**: Use 0.2-0.3s between steps in `send_sequence`. This ensures the game processes each action and NPCs take their turns before the next input.
+- **Bootstrap time**: Game needs ~2-3 seconds to initialize. Wait for console log containing "Step 9/9" or use `execute_code` to check `handler.TurnManager?.WaitingForInput == true`.
+- **After zone transitions**: Allow 1-2 seconds for new zone generation before querying.
 
 ## Known Limitations
 
-1. **QueueStateEvent persistence**: Each key_down queues a one-frame state. The InputHelper bridge detects transitions via manual state tracking. Very rapid key presses (< 0.1s apart) may be missed.
-2. **Input state for held keys**: For held-key movement (e.g., holding W to walk north), send key_down, wait desired duration, then key_up. The game's `Input.GetKey` check via InputHelper will see the key as held.
-3. **Modal UIs consume input**: When InventoryUI, PickupUI, DialogueUI, or TradeUI is open, movement keys don't move the player -- they navigate the UI instead. Always close modals before attempting movement.
-4. **NPC turns between inputs**: After each player action, all NPCs with enough energy take their turns. This can include combat, movement, and ability usage that changes the game state before the next player input.
+1. **MCPInputBridge re-queuing**: The bridge holds key state by re-queuing `QueueStateEvent` every frame in `Update()`. For turn-based games, `key_press` with default 0.1s duration produces 1 action. Longer holds may produce multiple actions due to `GetKey` continuous movement.
+2. **Popup queue**: Reading multiple grimoires queues multiple announcement popups. Each must be dismissed individually with Enter. Always check `AnnouncementUI.IsOpen` after actions that might trigger announcements.
+3. **Auto-bind limit**: Only 10 hotbar slots (keys 1-9 and 0). If all slots are full, new abilities exist but can't be cast via number keys until rebound through the Abilities tab.
+4. **Container pickup**: Pressing G on a chest auto-takes ALL items (single container path). There is no "take one item" option from containers — use inventory to drop unwanted items after.
+
+## Spawn Area Reference
+
+The starting zone (Overworld.10.10.0) contains:
+- **Player start**: (39, 11)
+- **Chest with 10 grimoires**: (43, 11) -- contains 3 knowledge + 7 spell grimoires
+- **Compass stones** (Solid, block movement): (41,11), (43,9), (43,13), (45,11)
+- **Weapons/armor cache**: around (40-41, 16-17) -- daggers, swords, chain mail, helmets
+- **Settlement structures**: campfire, fouled well, cracked oven, lanterns
+- **NPCs (Villagers faction, friendly)**: elder, villager, merchant, scribe, warden, farmer, tinker, well-keeper
+- **Stairs down**: (50, 15) -- leads to depth 1 with hostile creatures

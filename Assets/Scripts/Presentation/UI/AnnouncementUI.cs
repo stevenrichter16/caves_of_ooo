@@ -57,7 +57,7 @@ namespace CavesOfOoo.Rendering
         {
             if (!_isOpen) return;
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.Space) || InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 Close();
                 return;

@@ -51,13 +51,13 @@ namespace CavesOfOoo.Rendering
         {
             if (!_isOpen) return;
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 Close();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
             {
                 if (_cursor > 0)
                 {
@@ -67,7 +67,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J))
             {
                 if (_cursor < _rows.Count - 1)
                 {

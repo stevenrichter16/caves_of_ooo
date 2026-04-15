@@ -5,6 +5,7 @@ using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Core.Anatomy;
 using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -191,6 +192,7 @@ namespace CavesOfOoo.Rendering
         {
             if (PlayerEntity == null) return;
             _isOpen = true;
+            PerformanceDiagnostics.BeginInventorySession();
             _panel = PANEL_EQUIPMENT;
             _cursorIndex = 0;
             _scrollOffset = 0;
@@ -212,6 +214,7 @@ namespace CavesOfOoo.Rendering
         public void Close()
         {
             _isOpen = false;
+            PerformanceDiagnostics.EndInventorySession();
             _equipPopup = null;
             _displaceConfirm = null;
             _itemActionPopup = null;
@@ -290,7 +293,7 @@ namespace CavesOfOoo.Rendering
                 return true;
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.I))
+            if (InputHelper.GetKeyDown(KeyCode.Escape) || InputHelper.GetKeyDown(KeyCode.I))
             {
                 Close();
                 return true;
@@ -489,7 +492,7 @@ namespace CavesOfOoo.Rendering
 
         private void HandleEquipPanelInput()
         {
-            if (Input.GetKeyDown(KeyCode.T))
+            if (InputHelper.GetKeyDown(KeyCode.T))
             {
                 _panel = PANEL_TINKERING;
                 Render();
@@ -497,13 +500,13 @@ namespace CavesOfOoo.Rendering
             }
 
             // Up/Down: spatial navigation
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
             {
                 MoveEquipCursor(0, -1);
                 Render();
                 return;
             }
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J))
             {
                 MoveEquipCursor(0, 1);
                 Render();
@@ -511,7 +514,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Left: spatial navigation within paperdoll
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.H))
+            if (InputHelper.GetKeyDown(KeyCode.LeftArrow) || InputHelper.GetKeyDown(KeyCode.H))
             {
                 MoveEquipCursor(-1, 0);
                 Render();
@@ -519,7 +522,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Right: spatial navigation, or switch to inventory panel if no slot to the right
-            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.L))
+            if (InputHelper.GetKeyDown(KeyCode.RightArrow) || InputHelper.GetKeyDown(KeyCode.L))
             {
                 int prev = _equipCursorIndex;
                 MoveEquipCursor(1, 0);
@@ -533,7 +536,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Tab: switch to inventory panel
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (InputHelper.GetKeyDown(KeyCode.Tab))
             {
                 _panel = PANEL_INVENTORY;
                 Render();
@@ -546,7 +549,7 @@ namespace CavesOfOoo.Rendering
                 var slot = _equipSlots[_equipCursorIndex];
 
                 // Unequip
-                if (slot.EquippedItem != null && Input.GetKeyDown(KeyCode.E))
+                if (slot.EquippedItem != null && InputHelper.GetKeyDown(KeyCode.E))
                 {
                     TryUnequipViaCommand(slot.EquippedItem);
                     Rebuild();
@@ -557,7 +560,7 @@ namespace CavesOfOoo.Rendering
                 }
 
                 // Open equip popup
-                if (Input.GetKeyDown(KeyCode.Return))
+                if (InputHelper.GetKeyDown(KeyCode.Return))
                 {
                     OpenEquipPopup(slot);
                     return;
@@ -567,7 +570,7 @@ namespace CavesOfOoo.Rendering
 
         private void HandleInventoryPanelInput()
         {
-            if (Input.GetKeyDown(KeyCode.T))
+            if (InputHelper.GetKeyDown(KeyCode.T))
             {
                 _panel = PANEL_TINKERING;
                 Render();
@@ -575,13 +578,13 @@ namespace CavesOfOoo.Rendering
             }
 
             // Up/Down: list navigation
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
             {
                 MoveCursor(-1);
                 Render();
                 return;
             }
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J))
             {
                 MoveCursor(1);
                 Render();
@@ -589,7 +592,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Left: switch to equipment panel
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.H))
+            if (InputHelper.GetKeyDown(KeyCode.LeftArrow) || InputHelper.GetKeyDown(KeyCode.H))
             {
                 _panel = PANEL_EQUIPMENT;
                 Render();
@@ -597,7 +600,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Right: switch to tinkering tab
-            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.L))
+            if (InputHelper.GetKeyDown(KeyCode.RightArrow) || InputHelper.GetKeyDown(KeyCode.L))
             {
                 _panel = PANEL_TINKERING;
                 Render();
@@ -605,7 +608,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Tab: switch to tinkering tab
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (InputHelper.GetKeyDown(KeyCode.Tab))
             {
                 _panel = PANEL_TINKERING;
                 Render();
@@ -618,7 +621,7 @@ namespace CavesOfOoo.Rendering
                 if (row.Item != null)
                 {
                     // Drop (quick shortcut)
-                    if (Input.GetKeyDown(KeyCode.D))
+                    if (InputHelper.GetKeyDown(KeyCode.D))
                     {
                         TryDropViaCommand(row.Item.Item);
                         Rebuild();
@@ -628,7 +631,7 @@ namespace CavesOfOoo.Rendering
                     }
 
                     // Open item action popup (equip/unequip/use/etc.)
-                    if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E))
+                    if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.E))
                     {
                         OpenItemActionPopup(row.Item);
                         return;
@@ -639,28 +642,28 @@ namespace CavesOfOoo.Rendering
 
         private void HandleTinkeringPanelInput()
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.H))
+            if (InputHelper.GetKeyDown(KeyCode.LeftArrow) || InputHelper.GetKeyDown(KeyCode.H))
             {
                 _panel = PANEL_INVENTORY;
                 Render();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.L))
+            if (InputHelper.GetKeyDown(KeyCode.RightArrow) || InputHelper.GetKeyDown(KeyCode.L))
             {
                 _panel = PANEL_ABILITIES;
                 Render();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (InputHelper.GetKeyDown(KeyCode.Tab))
             {
                 _panel = PANEL_ABILITIES;
                 Render();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.B))
+            if (InputHelper.GetKeyDown(KeyCode.B))
             {
                 _tinkeringMode = TinkeringMode.Build;
                 _tinkerCursorIndex = 0;
@@ -670,7 +673,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.M))
+            if (InputHelper.GetKeyDown(KeyCode.M))
             {
                 _tinkeringMode = TinkeringMode.Mod;
                 _tinkerCursorIndex = 0;
@@ -680,21 +683,21 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
             {
                 MoveTinkeringCursor(-1);
                 Render();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J))
             {
                 MoveTinkeringCursor(1);
                 Render();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (InputHelper.GetKeyDown(KeyCode.Return))
             {
                 if (_tinkeringMode == TinkeringMode.Mod)
                 {
@@ -769,7 +772,7 @@ namespace CavesOfOoo.Rendering
         {
             int totalRows = _equipPopup.TotalRows;
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 _equipPopup = null;
                 Render();
@@ -802,7 +805,7 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
             {
                 if (totalRows > 0 && _equipPopup.CursorIndex > 0)
                 {
@@ -813,7 +816,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J))
             {
                 if (totalRows > 0 && _equipPopup.CursorIndex < totalRows - 1)
                 {
@@ -824,7 +827,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Return) && totalRows > 0)
+            if (InputHelper.GetKeyDown(KeyCode.Return) && totalRows > 0)
             {
                 if (_equipPopup.CursorOnRemove)
                 {
@@ -838,7 +841,7 @@ namespace CavesOfOoo.Rendering
             int itemCount = _equipPopup.Items.Count;
             for (int i = 0; i < 26 && i < itemCount; i++)
             {
-                if (Input.GetKeyDown(KeyCode.A + i))
+                if (InputHelper.GetKeyDown(KeyCode.A + i))
                 {
                     EquipFromPopup(i);
                     return;
@@ -917,29 +920,29 @@ namespace CavesOfOoo.Rendering
 
         private void HandleDisplaceConfirmInput()
         {
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.N))
+            if (InputHelper.GetKeyDown(KeyCode.Escape) || InputHelper.GetKeyDown(KeyCode.N))
             {
                 _displaceConfirm = null;
                 Render();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)
-                || Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.L)
-                || Input.GetKeyDown(KeyCode.Tab))
+            if (InputHelper.GetKeyDown(KeyCode.LeftArrow) || InputHelper.GetKeyDown(KeyCode.RightArrow)
+                || InputHelper.GetKeyDown(KeyCode.H) || InputHelper.GetKeyDown(KeyCode.L)
+                || InputHelper.GetKeyDown(KeyCode.Tab))
             {
                 _displaceConfirm.CursorOnYes = !_displaceConfirm.CursorOnYes;
                 Render();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Y))
+            if (InputHelper.GetKeyDown(KeyCode.Y))
             {
                 ConfirmDisplacement();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (InputHelper.GetKeyDown(KeyCode.Return))
             {
                 if (_displaceConfirm.CursorOnYes)
                     ConfirmDisplacement();
@@ -1096,7 +1099,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 _itemActionPopup = null;
                 Render();
@@ -1120,7 +1123,7 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
             {
                 if (_itemActionPopup.CursorIndex > 0)
                     _itemActionPopup.CursorIndex--;
@@ -1128,7 +1131,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J))
             {
                 if (_itemActionPopup.CursorIndex < _itemActionPopup.Actions.Count - 1)
                     _itemActionPopup.CursorIndex++;
@@ -1136,7 +1139,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (InputHelper.GetKeyDown(KeyCode.Return))
             {
                 ExecuteItemAction(_itemActionPopup.CursorIndex);
                 return;
@@ -1145,7 +1148,7 @@ namespace CavesOfOoo.Rendering
             // Hotkeys a-z
             for (int i = 0; i < 26 && i < _itemActionPopup.Actions.Count; i++)
             {
-                if (Input.GetKeyDown(KeyCode.A + i))
+                if (InputHelper.GetKeyDown(KeyCode.A + i))
                 {
                     ExecuteItemAction(i);
                     return;
@@ -1435,7 +1438,7 @@ namespace CavesOfOoo.Rendering
 
         private void HandleBodyPartPickerInput()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 _itemActionPopup.InBodyPartPicker = false;
                 Render();
@@ -1459,7 +1462,7 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
             {
                 if (_itemActionPopup.BodyPartCursor > 0)
                     _itemActionPopup.BodyPartCursor--;
@@ -1467,7 +1470,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J))
             {
                 if (_itemActionPopup.BodyPartCursor < _itemActionPopup.BodyParts.Count - 1)
                     _itemActionPopup.BodyPartCursor++;
@@ -1475,7 +1478,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (InputHelper.GetKeyDown(KeyCode.Return))
             {
                 EquipToBodyPart(_itemActionPopup.BodyPartCursor);
                 return;
@@ -1484,7 +1487,7 @@ namespace CavesOfOoo.Rendering
             // Hotkeys a-z
             for (int i = 0; i < 26 && i < _itemActionPopup.BodyParts.Count; i++)
             {
-                if (Input.GetKeyDown(KeyCode.A + i))
+                if (InputHelper.GetKeyDown(KeyCode.A + i))
                 {
                     EquipToBodyPart(i);
                     return;
@@ -1817,7 +1820,7 @@ namespace CavesOfOoo.Rendering
 
         private void HandleModTargetPopupInput()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 _modTargetPopup = null;
                 Render();
@@ -1838,7 +1841,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
             {
                 if (_modTargetPopup.TotalRows > 0 && _modTargetPopup.CursorIndex > 0)
                 {
@@ -1849,7 +1852,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J))
             {
                 if (_modTargetPopup.TotalRows > 0 && _modTargetPopup.CursorIndex < _modTargetPopup.TotalRows - 1)
                 {
@@ -1860,7 +1863,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (InputHelper.GetKeyDown(KeyCode.Return))
             {
                 ApplySelectedModToPopupTarget(_modTargetPopup.CursorIndex);
                 return;
@@ -1869,7 +1872,7 @@ namespace CavesOfOoo.Rendering
             int maxHotkeys = Mathf.Min(26, _modTargetPopup.TotalRows);
             for (int i = 0; i < maxHotkeys; i++)
             {
-                if (!Input.GetKeyDown(KeyCode.A + i))
+                if (!InputHelper.GetKeyDown(KeyCode.A + i))
                     continue;
 
                 ApplySelectedModToPopupTarget(i);
@@ -2030,85 +2033,91 @@ namespace CavesOfOoo.Rendering
 
         private void Render()
         {
-            if (Tilemap == null) return;
-
-            Tilemap.ClearAllTiles();
-
-            // Tab bar
-            DrawText(1, 0, "Equipment", _panel == PANEL_EQUIPMENT ? QudColorParser.White : QudColorParser.DarkGray);
-            DrawText(13, 0, "Inventory", _panel == PANEL_INVENTORY ? QudColorParser.White : QudColorParser.DarkGray);
-            DrawText(25, 0, "Tinkering", _panel == PANEL_TINKERING ? QudColorParser.White : QudColorParser.DarkGray);
-            DrawText(37, 0, "Abilities", _panel == PANEL_ABILITIES ? QudColorParser.White : QudColorParser.DarkGray);
-
-            // Weight and drams on right side of header
-            string info = "Wt:" + _state.CarriedWeight + "/" + _state.MaxCarryWeight
-                        + " $" + _state.Drams;
-            DrawText(W - info.Length - 1, 0, info, QudColorParser.Gray);
-
-            // Horizontal separators
-            DrawHLine(0, 1, W, QudColorParser.DarkGray);
-            DrawHLine(0, CONTENT_END, W, QudColorParser.DarkGray);
-
-            if (_panel == PANEL_TINKERING)
+            using (PerformanceMarkers.Ui.InventoryRender.Auto())
             {
-                RenderTinkeringPanel();
-            }
-            else if (_panel == PANEL_ABILITIES)
-            {
-                RenderAbilitiesPanel();
-                if (_grimoirePicker != null)
-                    RenderGrimoirePicker();
-            }
-            else
-            {
-                // Vertical divider
-                for (int y = 0; y < H; y++)
-                    DrawChar(DIVIDER_X, y, '|', QudColorParser.DarkGray);
+                PerformanceDiagnostics.RecordInventoryRender();
+                if (Tilemap == null)
+                    return;
 
-                // Top-left character stats strip (Qud-style quick reference).
-                RenderPlayerStatsPanel();
+                Tilemap.ClearAllTiles();
+                PerformanceDiagnostics.RecordTilemapClear();
 
-                // Left panel: paperdoll
-                RenderPaperdoll();
+                // Tab bar
+                DrawText(1, 0, "Equipment", _panel == PANEL_EQUIPMENT ? QudColorParser.White : QudColorParser.DarkGray);
+                DrawText(13, 0, "Inventory", _panel == PANEL_INVENTORY ? QudColorParser.White : QudColorParser.DarkGray);
+                DrawText(25, 0, "Tinkering", _panel == PANEL_TINKERING ? QudColorParser.White : QudColorParser.DarkGray);
+                DrawText(37, 0, "Abilities", _panel == PANEL_ABILITIES ? QudColorParser.White : QudColorParser.DarkGray);
 
-                // Right panel: inventory list
-                RenderInventoryList();
+                // Weight and drams on right side of header
+                string info = "Wt:" + _state.CarriedWeight + "/" + _state.MaxCarryWeight
+                            + " $" + _state.Drams;
+                DrawText(W - info.Length - 1, 0, info, QudColorParser.Gray);
 
-                // Popup overlays
-                if (_equipPopup != null)
-                    RenderEquipPopup();
-                if (_itemActionPopup != null)
-                    RenderItemActionPopup();
+                // Horizontal separators
+                DrawHLine(0, 1, W, QudColorParser.DarkGray);
+                DrawHLine(0, CONTENT_END, W, QudColorParser.DarkGray);
+
+                if (_panel == PANEL_TINKERING)
+                {
+                    RenderTinkeringPanel();
+                }
+                else if (_panel == PANEL_ABILITIES)
+                {
+                    RenderAbilitiesPanel();
+                    if (_grimoirePicker != null)
+                        RenderGrimoirePicker();
+                }
+                else
+                {
+                    // Vertical divider
+                    for (int y = 0; y < H; y++)
+                        DrawChar(DIVIDER_X, y, '|', QudColorParser.DarkGray);
+
+                    // Top-left character stats strip (Qud-style quick reference).
+                    RenderPlayerStatsPanel();
+
+                    // Left panel: paperdoll
+                    RenderPaperdoll();
+
+                    // Right panel: inventory list
+                    RenderInventoryList();
+
+                    // Popup overlays
+                    if (_equipPopup != null)
+                        RenderEquipPopup();
+                    if (_itemActionPopup != null)
+                        RenderItemActionPopup();
+                    if (_displaceConfirm != null)
+                        RenderDisplaceConfirm();
+                }
+
+                if (_modTargetPopup != null)
+                    RenderModTargetPopup();
+
+                // Action bar
+                string actions;
                 if (_displaceConfirm != null)
-                    RenderDisplaceConfirm();
+                    actions = " [Y]es  [N]o  [Esc]cancel";
+                else if (_equipPopup != null || _itemActionPopup != null || _modTargetPopup != null)
+                    actions = " [Enter]select  [a-z]quick select  [Esc]cancel";
+                else if (_grimoirePicker != null)
+                    actions = " [Enter]select [a-z]quick [X]clear [Esc]cancel";
+                else if (_panel == PANEL_EQUIPMENT)
+                    actions = " [Enter]equip [e]unequip [>]inventory [Esc]close";
+                else if (_panel == PANEL_TINKERING)
+                    actions = _tinkeringMode == TinkeringMode.Mod
+                        ? " [Enter]apply [B]/[M]mode [<]inventory [Tab]cycle [Esc]close"
+                        : " [Enter]craft [B]/[M]mode [<]inventory [Tab]cycle [Esc]close";
+                else if (_panel == PANEL_ABILITIES)
+                    actions = " [Enter]assign [X]clear [<]tinkering [Tab]cycle [Esc]close";
+                else
+                    actions = " [d]rop [Enter]actions [<]equipment [>]tinkering [Esc]close";
+
+                DrawText(0, H - 2, actions, QudColorParser.Gray);
+
+                // Detail line
+                RenderDetailLine();
             }
-
-            if (_modTargetPopup != null)
-                RenderModTargetPopup();
-
-            // Action bar
-            string actions;
-            if (_displaceConfirm != null)
-                actions = " [Y]es  [N]o  [Esc]cancel";
-            else if (_equipPopup != null || _itemActionPopup != null || _modTargetPopup != null)
-                actions = " [Enter]select  [a-z]quick select  [Esc]cancel";
-            else if (_grimoirePicker != null)
-                actions = " [Enter]select [a-z]quick [X]clear [Esc]cancel";
-            else if (_panel == PANEL_EQUIPMENT)
-                actions = " [Enter]equip [e]unequip [>]inventory [Esc]close";
-            else if (_panel == PANEL_TINKERING)
-                actions = _tinkeringMode == TinkeringMode.Mod
-                    ? " [Enter]apply [B]/[M]mode [<]inventory [Tab]cycle [Esc]close"
-                    : " [Enter]craft [B]/[M]mode [<]inventory [Tab]cycle [Esc]close";
-            else if (_panel == PANEL_ABILITIES)
-                actions = " [Enter]assign [X]clear [<]tinkering [Tab]cycle [Esc]close";
-            else
-                actions = " [d]rop [Enter]actions [<]equipment [>]tinkering [Esc]close";
-
-            DrawText(0, H - 2, actions, QudColorParser.Gray);
-
-            // Detail line
-            RenderDetailLine();
         }
 
         private void RenderPaperdoll()
@@ -2985,28 +2994,28 @@ namespace CavesOfOoo.Rendering
 
         private void HandleAbilitiesPanelInput()
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.H))
+            if (InputHelper.GetKeyDown(KeyCode.LeftArrow) || InputHelper.GetKeyDown(KeyCode.H))
             {
                 _panel = PANEL_TINKERING;
                 Render();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.L))
+            if (InputHelper.GetKeyDown(KeyCode.RightArrow) || InputHelper.GetKeyDown(KeyCode.L))
             {
                 _panel = PANEL_EQUIPMENT;
                 Render();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (InputHelper.GetKeyDown(KeyCode.Tab))
             {
                 _panel = PANEL_EQUIPMENT;
                 Render();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
             {
                 if (_abilitiesCursorSlot > 0)
                     _abilitiesCursorSlot--;
@@ -3014,7 +3023,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J))
             {
                 if (_abilitiesCursorSlot < ActivatedAbilitiesPart.SlotCount - 1)
                     _abilitiesCursorSlot++;
@@ -3023,9 +3032,9 @@ namespace CavesOfOoo.Rendering
             }
 
             // Clear current slot via Delete / Backspace / X
-            if (Input.GetKeyDown(KeyCode.Delete)
-                || Input.GetKeyDown(KeyCode.Backspace)
-                || Input.GetKeyDown(KeyCode.X))
+            if (InputHelper.GetKeyDown(KeyCode.Delete)
+                || InputHelper.GetKeyDown(KeyCode.Backspace)
+                || InputHelper.GetKeyDown(KeyCode.X))
             {
                 var abilities = GetAbilitiesPart();
                 if (abilities != null)
@@ -3037,7 +3046,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Enter / Space opens the grimoire picker for the current slot
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.Space))
             {
                 OpenGrimoirePicker(_abilitiesCursorSlot);
                 return;
@@ -3045,16 +3054,16 @@ namespace CavesOfOoo.Rendering
 
             // Number keys jump to a slot and open its picker
             int slotFromNumber = -1;
-            if (Input.GetKeyDown(KeyCode.Alpha1)) slotFromNumber = 0;
-            else if (Input.GetKeyDown(KeyCode.Alpha2)) slotFromNumber = 1;
-            else if (Input.GetKeyDown(KeyCode.Alpha3)) slotFromNumber = 2;
-            else if (Input.GetKeyDown(KeyCode.Alpha4)) slotFromNumber = 3;
-            else if (Input.GetKeyDown(KeyCode.Alpha5)) slotFromNumber = 4;
-            else if (Input.GetKeyDown(KeyCode.Alpha6)) slotFromNumber = 5;
-            else if (Input.GetKeyDown(KeyCode.Alpha7)) slotFromNumber = 6;
-            else if (Input.GetKeyDown(KeyCode.Alpha8)) slotFromNumber = 7;
-            else if (Input.GetKeyDown(KeyCode.Alpha9)) slotFromNumber = 8;
-            else if (Input.GetKeyDown(KeyCode.Alpha0)) slotFromNumber = 9;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha1)) slotFromNumber = 0;
+            else if (InputHelper.GetKeyDown(KeyCode.Alpha2)) slotFromNumber = 1;
+            else if (InputHelper.GetKeyDown(KeyCode.Alpha3)) slotFromNumber = 2;
+            else if (InputHelper.GetKeyDown(KeyCode.Alpha4)) slotFromNumber = 3;
+            else if (InputHelper.GetKeyDown(KeyCode.Alpha5)) slotFromNumber = 4;
+            else if (InputHelper.GetKeyDown(KeyCode.Alpha6)) slotFromNumber = 5;
+            else if (InputHelper.GetKeyDown(KeyCode.Alpha7)) slotFromNumber = 6;
+            else if (InputHelper.GetKeyDown(KeyCode.Alpha8)) slotFromNumber = 7;
+            else if (InputHelper.GetKeyDown(KeyCode.Alpha9)) slotFromNumber = 8;
+            else if (InputHelper.GetKeyDown(KeyCode.Alpha0)) slotFromNumber = 9;
 
             if (slotFromNumber >= 0)
             {
@@ -3390,7 +3399,7 @@ namespace CavesOfOoo.Rendering
             if (picker == null)
                 return;
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 picker.CancelWithoutCallback = true;
                 CloseGrimoirePicker();
@@ -3398,13 +3407,13 @@ namespace CavesOfOoo.Rendering
             }
 
             // Explicit unbind: clears the target slot without picking anything.
-            if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Delete))
+            if (InputHelper.GetKeyDown(KeyCode.X) || InputHelper.GetKeyDown(KeyCode.Delete))
             {
                 ClearGrimoirePickerSlot();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
             {
                 if (picker.CursorIndex > 0)
                 {
@@ -3415,7 +3424,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J))
             {
                 if (picker.CursorIndex < picker.Grimoires.Count - 1)
                 {
@@ -3426,7 +3435,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.Space))
             {
                 ConfirmGrimoirePickerSelection(picker.CursorIndex);
                 return;
@@ -3451,7 +3460,7 @@ namespace CavesOfOoo.Rendering
             // a..z quick-select
             for (int i = 0; i < 26 && i < picker.Grimoires.Count; i++)
             {
-                if (Input.GetKeyDown(KeyCode.A + i))
+                if (InputHelper.GetKeyDown(KeyCode.A + i))
                 {
                     ConfirmGrimoirePickerSelection(i);
                     return;

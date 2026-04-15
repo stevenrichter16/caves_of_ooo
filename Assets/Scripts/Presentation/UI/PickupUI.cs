@@ -73,14 +73,14 @@ namespace CavesOfOoo.Rendering
             if (!_isOpen) return;
 
             // Close on Escape or G
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.G))
+            if (InputHelper.GetKeyDown(KeyCode.Escape) || InputHelper.GetKeyDown(KeyCode.G))
             {
                 Close();
                 return;
             }
 
             // Take all (Tab)
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (InputHelper.GetKeyDown(KeyCode.Tab))
             {
                 TakeAll();
                 return;
@@ -113,7 +113,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Up/Down navigation
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
             {
                 if (_cursorIndex > 0)
                 {
@@ -124,7 +124,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J))
             {
                 if (_cursorIndex < _items.Count - 1)
                 {
@@ -136,7 +136,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Enter/Space: pick up selected
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.Space))
             {
                 if (_items.Count > 0)
                     PickupItem(_cursorIndex);
@@ -146,7 +146,7 @@ namespace CavesOfOoo.Rendering
             // Hotkeys a-z
             for (int i = 0; i < 26 && i < _items.Count; i++)
             {
-                if (Input.GetKeyDown(KeyCode.A + i))
+                if (InputHelper.GetKeyDown(KeyCode.A + i))
                 {
                     PickupItem(i);
                     return;
