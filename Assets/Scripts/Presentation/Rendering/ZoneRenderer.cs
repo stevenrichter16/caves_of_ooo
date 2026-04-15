@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using CavesOfOoo.Core;
+using CavesOfOoo.Diagnostics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 namespace CavesOfOoo.Rendering
 {
@@ -288,72 +290,119 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public void MarkDirty()
         {
-            _dirty = true;
-            _sidebarRenderer?.Invalidate();
+            MarkDirty("Unknown");
+        }
+
+        public void MarkDirty(string source)
+        {
+            using (PerformanceMarkers.Zone.MarkDirty.Auto())
+            {
+                PerformanceDiagnostics.RecordMarkDirty(source);
+                _dirty = true;
+                _sidebarRenderer?.Invalidate();
+            }
         }
 
         private void LateUpdate()
         {
-            if (_mainCamera == null)
-                _mainCamera = Camera.main;
-
-            UpdatePopupOverlayGridLayout();
-            UpdateHotbarGridLayout();
-
-            if (MessageLog.FlashStamp != _lastFlashStamp)
+            long frameStart = Stopwatch.GetTimestamp();
+            using (PerformanceMarkers.Zone.LateUpdate.Auto())
             {
-                _lastFlashStamp = MessageLog.FlashStamp;
-                _flashUntil = Time.time + FlashDuration;
-            }
+                PerformanceDiagnostics.BeginFrame(
+                    MessageLog.TickProvider != null ? MessageLog.TickProvider() : 0,
+                    Paused,
+                    _dirty);
 
-            Camera cam = _mainCamera;
-            _asciiFxRenderer?.Update(Time.deltaTime);
+                if (_mainCamera == null)
+                    _mainCamera = Camera.main;
 
-            if (Paused)
-            {
-                // Only clear auxiliary layers on the transition into paused state
-                if (!_wasPaused)
+                UpdatePopupOverlayGridLayout();
+                UpdateHotbarGridLayout();
+
+                if (MessageLog.FlashStamp != _lastFlashStamp)
                 {
-                    if (_bgTilemap != null) _bgTilemap.ClearAllTiles();
-                    if (_fxTilemap != null) _fxTilemap.ClearAllTiles();
-                    if (_campfireEmberRenderer != null)
-                        _campfireEmberRenderer.gameObject.SetActive(false);
-                    _worldCursorRenderer?.Clear();
-                    _sidebarRenderer?.Clear();
-                    _hotbarRenderer?.Clear();
+                    _lastFlashStamp = MessageLog.FlashStamp;
+                    _flashUntil = Time.time + FlashDuration;
                 }
 
+                Camera cam = _mainCamera;
+                _asciiFxRenderer?.Update(Time.deltaTime);
+                if (_asciiFxRenderer != null)
+                {
+                    PerformanceDiagnostics.RecordAsciiFxCounts(
+                        _asciiFxRenderer.ActiveProjectileCount,
+                        _asciiFxRenderer.ActiveBurstCount,
+                        _asciiFxRenderer.ActiveParticleCount,
+                        _asciiFxRenderer.ActiveAuraCount,
+                        _asciiFxRenderer.ActiveBeamCount,
+                        _asciiFxRenderer.ActiveChargeOrbitCount,
+                        _asciiFxRenderer.ActiveRingWaveCount,
+                        _asciiFxRenderer.ActiveChainArcCount,
+                        _asciiFxRenderer.ActiveColumnRiseCount,
+                        _asciiFxRenderer.ActiveDustMoteCount);
+                }
+
+                if (Paused)
+                {
+                    // Only clear auxiliary layers on the transition into paused state
+                    if (!_wasPaused)
+                    {
+                        if (_bgTilemap != null)
+                        {
+                            _bgTilemap.ClearAllTiles();
+                            PerformanceDiagnostics.RecordTilemapClear();
+                        }
+
+                        if (_fxTilemap != null)
+                        {
+                            _fxTilemap.ClearAllTiles();
+                            PerformanceDiagnostics.RecordTilemapClear();
+                        }
+
+                        if (_campfireEmberRenderer != null)
+                            _campfireEmberRenderer.gameObject.SetActive(false);
+                        _worldCursorRenderer?.Clear();
+                        _sidebarRenderer?.Clear();
+                        _hotbarRenderer?.Clear();
+                    }
+
+                    CacheCameraView(cam);
+                    _wasPaused = true;
+                    PerformanceDiagnostics.EndFrame(
+                        PerformanceDiagnostics.ElapsedMilliseconds(frameStart, Stopwatch.GetTimestamp()));
+                    return;
+                }
+
+                // Re-enable embers on transition from paused to unpaused
+                if (_wasPaused)
+                {
+                    if (_campfireEmberRenderer != null)
+                        _campfireEmberRenderer.gameObject.SetActive(true);
+                    _wasPaused = false;
+                    _dirty = true; // Force full redraw to restore bg/fx layers
+                }
+
+                if (_dirty && CurrentZone != null)
+                {
+                    RenderZone();
+                    _dirty = false;
+                }
+
+                using (PerformanceMarkers.Zone.UpdateAmbientAnimations.Auto())
+                    UpdateAmbientAnimations(Time.deltaTime);
+
+                RenderSidebar(cam);
+                RenderHotbar();
+
+                if (_worldCursorState != null && _worldCursorState.Active)
+                    _worldCursorRenderer?.SetCursor(_worldCursorState, _cursorPlayer);
+                else
+                    _worldCursorRenderer?.Clear();
+
                 CacheCameraView(cam);
-                _wasPaused = true;
-                return;
+                PerformanceDiagnostics.EndFrame(
+                    PerformanceDiagnostics.ElapsedMilliseconds(frameStart, Stopwatch.GetTimestamp()));
             }
-
-            // Re-enable embers on transition from paused to unpaused
-            if (_wasPaused)
-            {
-                if (_campfireEmberRenderer != null)
-                    _campfireEmberRenderer.gameObject.SetActive(true);
-                _wasPaused = false;
-                _dirty = true; // Force full redraw to restore bg/fx layers
-            }
-
-            if (_dirty && CurrentZone != null)
-            {
-                RenderZone();
-                _dirty = false;
-            }
-
-            UpdateAmbientAnimations(Time.deltaTime);
-
-            RenderSidebar(cam);
-            RenderHotbar();
-
-            if (_worldCursorState != null && _worldCursorState.Active)
-                _worldCursorRenderer?.SetCursor(_worldCursorState, _cursorPlayer);
-            else
-                _worldCursorRenderer?.Clear();
-
-            CacheCameraView(cam);
         }
 
         /// <summary>
@@ -361,38 +410,62 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public void RenderZone()
         {
-            if (CurrentZone == null || _tilemap == null) return;
-
-            _tilemap.ClearAllTiles();
-            _bgTilemap?.ClearAllTiles();
-
-            // Compute field of view from the player's position
-            if (PlayerEntity != null)
+            using (PerformanceMarkers.Zone.RenderZone.Auto())
             {
-                var playerCell = CurrentZone.GetEntityCell(PlayerEntity);
-                if (playerCell != null)
-                    FieldOfView.Compute(CurrentZone, playerCell.X, playerCell.Y, FovRadius);
-            }
+                if (CurrentZone == null || _tilemap == null) return;
 
-            // Compute lighting from all light sources
-            if (_lightMap == null)
-                _lightMap = new LightMap();
-            _lightMap.Compute(CurrentZone);
-
-            for (int x = 0; x < Zone.Width; x++)
-            {
-                for (int y = 0; y < Zone.Height; y++)
+                _tilemap.ClearAllTiles();
+                PerformanceDiagnostics.RecordTilemapClear();
+                if (_bgTilemap != null)
                 {
-                    RenderCell(x, y);
+                    _bgTilemap.ClearAllTiles();
+                    PerformanceDiagnostics.RecordTilemapClear();
                 }
-            }
 
-            RefreshWaterCache();
+                // Compute field of view from the player's position
+                if (PlayerEntity != null)
+                {
+                    var playerCell = CurrentZone.GetEntityCell(PlayerEntity);
+                    if (playerCell != null)
+                    {
+                        using (PerformanceMarkers.Zone.ComputeFov.Auto())
+                            FieldOfView.Compute(CurrentZone, playerCell.X, playerCell.Y, FovRadius);
+                    }
+                }
+
+                // Compute lighting from all light sources
+                if (_lightMap == null)
+                    _lightMap = new LightMap();
+                using (PerformanceMarkers.Zone.ComputeLightMap.Auto())
+                    _lightMap.Compute(CurrentZone);
+
+                int cellsRendered = Zone.Width * Zone.Height;
+                PerformanceDiagnostics.RecordZoneRedraw(cellsRendered);
+                for (int x = 0; x < Zone.Width; x++)
+                {
+                    for (int y = 0; y < Zone.Height; y++)
+                        RenderCell(x, y);
+                }
+
+                RefreshWaterCache();
+            }
         }
 
         private static readonly Color RememberedColor = new Color(0.2f, 0.2f, 0.2f);
 
         private void RenderCell(int x, int y)
+        {
+            if (PerformanceDiagnostics.DetailedCellProfilingEnabled)
+            {
+                using (PerformanceMarkers.Zone.RenderCell.Auto())
+                    RenderCellCore(x, y);
+                return;
+            }
+
+            RenderCellCore(x, y);
+        }
+
+        private void RenderCellCore(int x, int y)
         {
             Cell cell = CurrentZone.GetCell(x, y);
             if (cell == null) return;
@@ -565,33 +638,39 @@ namespace CavesOfOoo.Rendering
 
         private void RenderSidebar(Camera camera)
         {
-            Camera sidebarCamera = _sidebarCamera != null ? _sidebarCamera : camera;
-            if (sidebarCamera == null || !sidebarCamera.enabled)
+            using (PerformanceMarkers.Zone.RenderSidebar.Auto())
             {
-                _sidebarRenderer?.Clear();
-                return;
+                Camera sidebarCamera = _sidebarCamera != null ? _sidebarCamera : camera;
+                if (sidebarCamera == null || !sidebarCamera.enabled)
+                {
+                    _sidebarRenderer?.Clear();
+                    return;
+                }
+
+                bool flashActive = Time.time < _flashUntil;
+                float flashT = flashActive
+                    ? Mathf.Clamp01((_flashUntil - Time.time) / FlashDuration)
+                    : 0f;
+
+                SidebarSnapshot snapshot = SidebarStateBuilder.Build(PlayerEntity, CurrentZone, _currentLookSnapshot);
+                _sidebarRenderer?.Render(snapshot, sidebarCamera, SidebarWidthChars, flashActive, flashT);
             }
-
-            bool flashActive = Time.time < _flashUntil;
-            float flashT = flashActive
-                ? Mathf.Clamp01((_flashUntil - Time.time) / FlashDuration)
-                : 0f;
-
-            SidebarSnapshot snapshot = SidebarStateBuilder.Build(PlayerEntity, CurrentZone, _currentLookSnapshot);
-            _sidebarRenderer?.Render(snapshot, sidebarCamera, SidebarWidthChars, flashActive, flashT);
         }
 
         private void RenderHotbar()
         {
-            Camera hotbarCamera = _hotbarCamera;
-            if (hotbarCamera == null || !hotbarCamera.enabled)
+            using (PerformanceMarkers.Zone.RenderHotbar.Auto())
             {
-                _hotbarRenderer?.Clear();
-                return;
-            }
+                Camera hotbarCamera = _hotbarCamera;
+                if (hotbarCamera == null || !hotbarCamera.enabled)
+                {
+                    _hotbarRenderer?.Clear();
+                    return;
+                }
 
-            HotbarSnapshot snapshot = HotbarStateBuilder.Build(PlayerEntity, _selectedHotbarSlot, _pendingHotbarAbility);
-            _hotbarRenderer?.Render(snapshot, hotbarCamera);
+                HotbarSnapshot snapshot = HotbarStateBuilder.Build(PlayerEntity, _selectedHotbarSlot, _pendingHotbarAbility);
+                _hotbarRenderer?.Render(snapshot, hotbarCamera);
+            }
         }
 
         private void ConfigureSidebarTilemapRenderer(TilemapRenderer renderer, int sortingOrder)

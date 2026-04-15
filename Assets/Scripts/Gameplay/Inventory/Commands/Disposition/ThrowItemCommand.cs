@@ -137,6 +137,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Unable to ready that item to throw.");
             }
 
+            var rng = new Random();
+
             LineTraceResult trace = LineTargeting.TraceFirstImpactToTarget(
                 zone,
                 actor,
@@ -155,14 +157,14 @@ namespace CavesOfOoo.Core.Inventory.Commands
             bool consumedOnImpact = false;
             if (hitTarget != null)
             {
-                if (TryApplyThrownTonic(actor, itemToThrow, hitTarget, zone))
+                if (TryApplyThrownTonic(actor, itemToThrow, hitTarget, zone, rng))
                 {
                     consumedOnImpact = true;
                     landingCell = null;
                 }
                 else
                 {
-                    int damage = GetThrownDamage(actor, itemToThrow, strengthBonus);
+                    int damage = GetThrownDamage(actor, itemToThrow, strengthBonus, rng);
                     if (damage > 0)
                     {
                         MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()} at {hitTarget.GetDisplayName()} for {damage} damage!");
@@ -260,16 +262,14 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
                 case ThrowSourceKind.Equipped:
                 {
-                    var unequipResult = new UnequipCommand(_item).Execute(context, transaction);
-                    if (!unequipResult.Success)
+                    if (!UnequipCommand.UnequipAndRemove(context, _item, transaction))
                         return null;
 
-                    if (context.Inventory == null || !context.Inventory.RemoveObject(_item))
-                        return null;
-
+                    // Item has been removed from inventory by UnequipAndRemove.
+                    // Register undo to put it back there if the throw is rolled back.
                     transaction.Do(
                         apply: null,
-                        undo: () => context.Inventory.AddObject(_item));
+                        undo: () => context.Inventory?.AddObject(_item));
                     return _item;
                 }
 
@@ -300,17 +300,17 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 inventory.RefreshHandlingCarryPenalty();
         }
 
-        private static int GetThrownDamage(Entity actor, Entity item, int strengthBonus)
+        private static int GetThrownDamage(Entity actor, Entity item, int strengthBonus, Random rng)
         {
             var weapon = item?.GetPart<MeleeWeaponPart>();
             if (weapon != null && !string.IsNullOrWhiteSpace(weapon.BaseDamage))
-                return DiceRoller.Roll(weapon.BaseDamage, new Random()) + strengthBonus;
+                return DiceRoller.Roll(weapon.BaseDamage, rng) + strengthBonus;
 
             int weight = HandlingService.GetWeight(item);
             return Math.Max(1, (int)Math.Ceiling(weight / 2.0)) + strengthBonus;
         }
 
-        private static bool TryApplyThrownTonic(Entity actor, Entity item, Entity hitTarget, Zone zone)
+        private static bool TryApplyThrownTonic(Entity actor, Entity item, Entity hitTarget, Zone zone, Random rng)
         {
             var tonic = item?.GetPart<TonicPart>();
             if (tonic == null || !tonic.HasThrowablePayload() || hitTarget == null)
@@ -321,7 +321,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 hitTarget,
                 actor,
                 zone,
-                new Random(),
+                rng,
                 consumeItem: false,
                 showUseMessage: false);
             return true;

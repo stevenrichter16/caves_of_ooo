@@ -1,4 +1,5 @@
 using CavesOfOoo.Core;
+using CavesOfOoo.Diagnostics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -23,32 +24,45 @@ namespace CavesOfOoo.Rendering
 
         public void Clear()
         {
-            _tilemap?.ClearAllTiles();
-            _backgroundTilemap?.ClearAllTiles();
+            if (_tilemap != null)
+            {
+                _tilemap.ClearAllTiles();
+                PerformanceDiagnostics.RecordTilemapClear();
+            }
+
+            if (_backgroundTilemap != null)
+            {
+                _backgroundTilemap.ClearAllTiles();
+                PerformanceDiagnostics.RecordTilemapClear();
+            }
         }
 
         public void Render(HotbarSnapshot snapshot, Camera camera)
         {
-            Clear();
+            using (PerformanceMarkers.Ui.HotbarRender.Auto())
+            {
+                PerformanceDiagnostics.RecordHotbarRender();
+                Clear();
 
-            if (_tilemap == null || _backgroundTilemap == null || camera == null || !camera.enabled)
-                return;
+                if (_tilemap == null || _backgroundTilemap == null || camera == null || !camera.enabled)
+                    return;
 
-            DrawBackground();
-            DrawText(1, GameplayHotbarLayout.GridHeight - 1, snapshot?.Title ?? "GRIMOIRES", QudColorParser.White, 18);
-            DrawRightAligned(
-                GameplayHotbarLayout.GridWidth - 2,
-                GameplayHotbarLayout.GridHeight - 1,
-                snapshot?.HintText ?? string.Empty,
-                QudColorParser.DarkGray,
-                GameplayHotbarLayout.GridWidth - 20);
-            DrawText(1, GameplayHotbarLayout.GridHeight - 2, snapshot?.SummaryText ?? string.Empty, QudColorParser.Gray, GameplayHotbarLayout.GridWidth - 2);
+                DrawBackground();
+                DrawText(1, GameplayHotbarLayout.GridHeight - 1, snapshot?.Title ?? "GRIMOIRES", QudColorParser.White, 18);
+                DrawRightAligned(
+                    GameplayHotbarLayout.GridWidth - 2,
+                    GameplayHotbarLayout.GridHeight - 1,
+                    snapshot?.HintText ?? string.Empty,
+                    QudColorParser.DarkGray,
+                    GameplayHotbarLayout.GridWidth - 20);
+                DrawText(1, GameplayHotbarLayout.GridHeight - 2, snapshot?.SummaryText ?? string.Empty, QudColorParser.Gray, GameplayHotbarLayout.GridWidth - 2);
 
-            if (snapshot?.Slots == null)
-                return;
+                if (snapshot?.Slots == null)
+                    return;
 
-            for (int i = 0; i < snapshot.Slots.Count; i++)
-                DrawSlot(snapshot.Slots[i]);
+                for (int i = 0; i < snapshot.Slots.Count; i++)
+                    DrawSlot(snapshot.Slots[i]);
+            }
         }
 
         private void DrawBackground()

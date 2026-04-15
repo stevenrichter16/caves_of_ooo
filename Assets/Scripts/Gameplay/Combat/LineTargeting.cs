@@ -54,38 +54,8 @@ namespace CavesOfOoo.Core
             {
                 x += dx;
                 y += dy;
-
-                if (!zone.InBounds(x, y))
-                    break;
-
-                Cell cell = zone.GetCell(x, y);
-                if (cell == null)
-                    break;
-
-                result.Path.Add(new Point(x, y));
-                result.ImpactCell = cell;
-                if (!cell.IsSolid())
-                    result.LastTraversableCell = cell;
-
-                Entity hitCreature = GetFirstCreature(cell, caster);
-                if (hitCreature != null)
-                {
-                    result.HitEntity = hitCreature;
+                if (StepTrace(zone, caster, x, y, result))
                     return result;
-                }
-
-                Entity hitObject = GetFirstTargetableObject(cell, caster);
-                if (hitObject != null)
-                {
-                    result.HitEntity = hitObject;
-                    return result;
-                }
-
-                if (cell.IsSolid())
-                {
-                    result.BlockedBySolid = true;
-                    return result;
-                }
             }
 
             return result;
@@ -140,41 +110,52 @@ namespace CavesOfOoo.Core
                 }
 
                 steps++;
-
-                if (!zone.InBounds(x, y))
-                    break;
-
-                Cell cell = zone.GetCell(x, y);
-                if (cell == null)
-                    break;
-
-                result.Path.Add(new Point(x, y));
-                result.ImpactCell = cell;
-                if (!cell.IsSolid())
-                    result.LastTraversableCell = cell;
-
-                Entity hitCreature = GetFirstCreature(cell, caster);
-                if (hitCreature != null)
-                {
-                    result.HitEntity = hitCreature;
+                if (StepTrace(zone, caster, x, y, result))
                     return result;
-                }
-
-                Entity hitObject = GetFirstTargetableObject(cell, caster);
-                if (hitObject != null)
-                {
-                    result.HitEntity = hitObject;
-                    return result;
-                }
-
-                if (cell.IsSolid())
-                {
-                    result.BlockedBySolid = true;
-                    return result;
-                }
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Records a single trace step at (x, y) into result.
+        /// Returns true if tracing should stop (out-of-bounds, null cell, hit entity, or solid wall).
+        /// </summary>
+        private static bool StepTrace(Zone zone, Entity caster, int x, int y, LineTraceResult result)
+        {
+            if (!zone.InBounds(x, y))
+                return true;
+
+            Cell cell = zone.GetCell(x, y);
+            if (cell == null)
+                return true;
+
+            result.Path.Add(new Point(x, y));
+            result.ImpactCell = cell;
+            if (!cell.IsSolid())
+                result.LastTraversableCell = cell;
+
+            Entity hitCreature = GetFirstCreature(cell, caster);
+            if (hitCreature != null)
+            {
+                result.HitEntity = hitCreature;
+                return true;
+            }
+
+            Entity hitObject = GetFirstTargetableObject(cell, caster);
+            if (hitObject != null)
+            {
+                result.HitEntity = hitObject;
+                return true;
+            }
+
+            if (cell.IsSolid())
+            {
+                result.BlockedBySolid = true;
+                return true;
+            }
+
+            return false;
         }
 
         private static Entity GetFirstTargetableObject(Cell cell, Entity caster)
