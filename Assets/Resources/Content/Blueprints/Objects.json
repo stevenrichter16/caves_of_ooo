@@ -652,6 +652,26 @@
       "Tags": []
     },
     {
+      "Name": "Chair",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "wooden chair" },
+          { "Key": "RenderString", "Value": "h" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" }
+        ]},
+        { "Name": "Chair", "Params": [] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Furniture", "Value": "" }
+      ]
+    },
+    {
       "Name": "StoneWall",
       "Inherits": "Wall",
       "Parts": [
@@ -1375,7 +1395,12 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "1" }] },
-        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "8" }, { "Key": "Wanders", "Value": "true" }, { "Key": "WandersRandomly", "Value": "true" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "8" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" },
+          { "Key": "Staying", "Value": "true" }
+        ]},
         { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Villager_1" }] }
       ],
       "Stats": [
@@ -1385,7 +1410,8 @@
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Villagers" },
-        { "Key": "Tier", "Value": "1" }
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
       ],
       "IntProps": [
         { "Key": "Drams", "Value": 100 }

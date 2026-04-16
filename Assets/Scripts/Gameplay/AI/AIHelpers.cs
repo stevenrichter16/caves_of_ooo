@@ -221,5 +221,105 @@ namespace CavesOfOoo.Core
 
             return (0, 0);
         }
+
+        /// <summary>
+        /// Greedy step toward target with fallback directions.
+        /// Tries the ideal diagonal/cardinal direction first, then falls back to alternatives.
+        /// Returns true if movement succeeded.
+        /// </summary>
+        public static bool TryStepToward(Entity entity, Zone zone, int myX, int myY, int targetX, int targetY)
+        {
+            var (dx, dy) = StepToward(myX, myY, targetX, targetY);
+
+            if (MovementSystem.TryMove(entity, zone, dx, dy))
+                return true;
+
+            if (dx != 0 && dy != 0)
+            {
+                if (MovementSystem.TryMove(entity, zone, dx, 0))
+                    return true;
+                if (MovementSystem.TryMove(entity, zone, 0, dy))
+                    return true;
+            }
+            else if (dx != 0)
+            {
+                if (MovementSystem.TryMove(entity, zone, dx, 1))
+                    return true;
+                if (MovementSystem.TryMove(entity, zone, dx, -1))
+                    return true;
+            }
+            else if (dy != 0)
+            {
+                if (MovementSystem.TryMove(entity, zone, 1, dy))
+                    return true;
+                if (MovementSystem.TryMove(entity, zone, -1, dy))
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Greedy step away from target with fallback directions.
+        /// Returns true if movement succeeded. Does NOT handle cornered fight-back.
+        /// </summary>
+        public static bool TryStepAway(Entity entity, Zone zone, int myX, int myY, int awayFromX, int awayFromY)
+        {
+            var (dx, dy) = StepAway(myX, myY, awayFromX, awayFromY);
+
+            if (MovementSystem.TryMove(entity, zone, dx, dy))
+                return true;
+
+            if (dx != 0 && dy != 0)
+            {
+                if (MovementSystem.TryMove(entity, zone, dx, 0))
+                    return true;
+                if (MovementSystem.TryMove(entity, zone, 0, dy))
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// AI attempts to use a ranged ability against a target.
+        /// Returns true if an ability was successfully used.
+        /// </summary>
+        public static bool TryUseRangedAbility(Entity entity, Zone zone, Random rng,
+            (int x, int y) myPos, (int x, int y) targetPos)
+        {
+            var abilities = entity.GetPart<ActivatedAbilitiesPart>();
+            if (abilities == null) return false;
+
+            int dist = ChebyshevDistance(myPos.x, myPos.y, targetPos.x, targetPos.y);
+
+            for (int i = 0; i < abilities.AbilityList.Count; i++)
+            {
+                var ability = abilities.AbilityList[i];
+                if (!ability.IsUsable) continue;
+                if (ability.TargetingMode == AbilityTargetingMode.AdjacentCell) continue;
+                if (ability.Range < dist && ability.TargetingMode != AbilityTargetingMode.SelfCentered)
+                    continue;
+
+                var cmdEvent = GameEvent.New(ability.Command);
+                cmdEvent.SetParameter("Zone", (object)zone);
+                cmdEvent.SetParameter("RNG", (object)(rng ?? new Random()));
+
+                if (ability.TargetingMode == AbilityTargetingMode.DirectionLine)
+                {
+                    var sourceCell = zone.GetCell(myPos.x, myPos.y);
+                    var (dx, dy) = StepToward(myPos.x, myPos.y, targetPos.x, targetPos.y);
+                    cmdEvent.SetParameter("SourceCell", (object)sourceCell);
+                    cmdEvent.SetParameter("DirectionX", dx);
+                    cmdEvent.SetParameter("DirectionY", dy);
+                }
+                else if (ability.TargetingMode == AbilityTargetingMode.SelfCentered)
+                {
+                    cmdEvent.SetParameter("SourceCell", (object)zone.GetCell(myPos.x, myPos.y));
+                }
+
+                entity.FireEvent(cmdEvent);
+                if (cmdEvent.Handled) return true;
+            }
+            return false;
+        }
     }
 }

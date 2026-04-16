@@ -168,6 +168,25 @@ namespace CavesOfOoo.Core
                 }
             }
 
+            // Place one chair at the room's interior center (Tier 1: idle furniture showcase).
+            // For any room 5+ wide × 4+ tall, CenterX/CenterY are strictly interior cells.
+            // Guarded by ContainsKey so test factories without "Chair" blueprints don't log errors.
+            if (factory.Blueprints.ContainsKey("Chair"))
+            {
+                int chairX = room.CenterX;
+                int chairY = room.CenterY;
+                if (zone.InBounds(chairX, chairY))
+                {
+                    var chairCell = zone.GetCell(chairX, chairY);
+                    if (chairCell != null && chairCell.IsPassable())
+                    {
+                        var chair = factory.CreateEntity("Chair");
+                        if (chair != null)
+                            zone.AddEntity(chair, chairX, chairY);
+                    }
+                }
+            }
+
             // Place a door gap on one side
             int side = rng.Next(4);
             int doorX, doorY;

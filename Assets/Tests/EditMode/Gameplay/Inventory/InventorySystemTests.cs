@@ -742,6 +742,39 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void ThrowItemCommand_Execute_ThrowsEquippedItem_UnequipsWithoutLogAndThrows()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 18);
+            zone.AddEntity(actor, 5, 5);
+
+            var weapon = CreateThrowableWeapon("1d1", 0);
+            actor.GetPart<InventoryPart>().AddObject(weapon);
+            Assert.IsTrue(InventorySystem.Equip(actor, weapon));
+
+            var target = CreateTargetDummy(10);
+            zone.AddEntity(target, 7, 5);
+
+            MessageLog.Clear();
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(weapon, 7, 5),
+                actor,
+                zone);
+
+            Assert.IsTrue(result.Success);
+            // Weapon should land at the target cell (creature stops it there).
+            Assert.AreEqual(zone.GetCell(7, 5), zone.GetEntityCell(weapon));
+            // Target should have taken weapon damage (1d1 + Str bonus 1 = 2 damage → 8 HP).
+            Assert.AreEqual(8, target.GetStatValue("Hitpoints"));
+            // No "unequips" message should have been emitted.
+            var logMessages = MessageLog.GetMessages();
+            foreach (var msg in logMessages)
+                Assert.IsFalse(msg.Contains("unequips"), $"Unexpected unequip message: {msg}");
+        }
+
+        [Test]
         public void InventoryPart_AddObject_AppliesCarryMovePenaltyToSpeed()
         {
             var actor = CreateCreatureWithInventory();

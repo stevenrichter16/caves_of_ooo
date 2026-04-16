@@ -53,6 +53,100 @@ namespace CavesOfOoo.Tests
             return entity;
         }
 
+        // ========================
+        // TraceFirstImpactToTarget
+        // ========================
+
+        [Test]
+        public void TraceFirstImpactToTarget_HitsCreatureAtTarget()
+        {
+            var zone = new Zone("TraceZone");
+            var caster = CreateCreature("caster");
+            var target = CreateCreature("target");
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(target, 8, 5);
+
+            LineTraceResult trace = LineTargeting.TraceFirstImpactToTarget(zone, caster, 5, 5, 8, 5, 6);
+
+            Assert.AreEqual(3, trace.Path.Count);
+            Assert.AreEqual(target, trace.HitEntity);
+            Assert.AreEqual(8, trace.ImpactCell.X);
+            Assert.AreEqual(5, trace.ImpactCell.Y);
+            Assert.IsFalse(trace.BlockedBySolid);
+        }
+
+        [Test]
+        public void TraceFirstImpactToTarget_HitsCreatureBeforeTarget()
+        {
+            var zone = new Zone("TraceZone");
+            var caster = CreateCreature("caster");
+            var blocker = CreateCreature("blocker");
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(blocker, 7, 5);
+
+            LineTraceResult trace = LineTargeting.TraceFirstImpactToTarget(zone, caster, 5, 5, 9, 5, 6);
+
+            Assert.AreEqual(blocker, trace.HitEntity);
+            Assert.AreEqual(7, trace.ImpactCell.X);
+            Assert.AreEqual(5, trace.ImpactCell.Y);
+        }
+
+        [Test]
+        public void TraceFirstImpactToTarget_StopsAtSolid_LandsInLastTraversableCell()
+        {
+            var zone = new Zone("TraceZone");
+            var caster = CreateCreature("caster");
+            var wall = CreateWall();
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(wall, 7, 5);
+
+            LineTraceResult trace = LineTargeting.TraceFirstImpactToTarget(zone, caster, 5, 5, 9, 5, 6);
+
+            Assert.IsNull(trace.HitEntity);
+            Assert.IsTrue(trace.BlockedBySolid);
+            Assert.AreEqual(7, trace.ImpactCell.X);
+            Assert.IsNotNull(trace.LastTraversableCell);
+            Assert.AreEqual(6, trace.LastTraversableCell.X);
+        }
+
+        [Test]
+        public void TraceFirstImpactToTarget_SameCellTarget_ReturnsImpactCellWithEmptyPath()
+        {
+            var zone = new Zone("TraceZone");
+            var caster = CreateCreature("caster");
+
+            zone.AddEntity(caster, 5, 5);
+
+            LineTraceResult trace = LineTargeting.TraceFirstImpactToTarget(zone, caster, 5, 5, 5, 5, 6);
+
+            Assert.AreEqual(0, trace.Path.Count);
+            Assert.IsNotNull(trace.ImpactCell);
+            Assert.AreEqual(5, trace.ImpactCell.X);
+            Assert.AreEqual(5, trace.ImpactCell.Y);
+            Assert.IsNull(trace.HitEntity);
+            Assert.IsFalse(trace.BlockedBySolid);
+        }
+
+        [Test]
+        public void TraceFirstImpactToTarget_DiagonalTrace_HitsCreatureAtTarget()
+        {
+            var zone = new Zone("TraceZone");
+            var caster = CreateCreature("caster");
+            var target = CreateCreature("target");
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(target, 7, 7);
+
+            LineTraceResult trace = LineTargeting.TraceFirstImpactToTarget(zone, caster, 5, 5, 7, 7, 4);
+
+            Assert.AreEqual(target, trace.HitEntity);
+            Assert.AreEqual(7, trace.ImpactCell.X);
+            Assert.AreEqual(7, trace.ImpactCell.Y);
+        }
+
         private static Entity CreateWall()
         {
             var entity = new Entity { BlueprintName = "Wall" };

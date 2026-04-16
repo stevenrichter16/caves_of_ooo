@@ -105,6 +105,66 @@ namespace CavesOfOoo.Core.Inventory.Commands
             return InventoryCommandResult.Ok();
         }
 
+        /// <summary>
+        /// Unequips an equipped item and removes it from inventory in one step,
+        /// without emitting an unequip log message. Used internally by throw logic
+        /// so that "X unequips Y." does not appear before the throw message.
+        /// Fires BeforeUnequip (callers can still veto) and AfterUnequip.
+        /// The caller is responsible for registering an undo that restores the item
+        /// to inventory if the overall operation needs to be rolled back.
+        /// Returns false if the item is not equipped or the unequip is vetoed.
+        /// </summary>
+        internal static bool UnequipAndRemove(
+            InventoryContext context,
+            Entity item,
+            InventoryTransaction transaction)
+        {
+            if (context?.Actor == null || context.Inventory == null || item == null)
+                return false;
+
+            var actor = context.Actor;
+            var rollbackState = CaptureEquippedState(context, item);
+            if (!rollbackState.HasLocation)
+                return false;
+
+            var equippable = item.GetPart<EquippablePart>();
+
+            // Fire BeforeUnequip on actor (can veto, e.g. cursed items).
+            var beforeUnequip = GameEvent.New("BeforeUnequip");
+            beforeUnequip.SetParameter("Actor", (object)actor);
+            beforeUnequip.SetParameter("Item", (object)item);
+            if (!actor.FireEvent(beforeUnequip))
+                return false;
+
+            // Remove equip stat bonuses before detaching item.
+            if (equippable != null)
+            {
+                EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: false);
+                transaction.Do(
+                    apply: null,
+                    undo: () => EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: true));
+            }
+
+            if (!TryForceUnequip(context, item, rollbackState))
+                return false;
+
+            // Fire AfterUnequip on actor.
+            var afterUnequip = GameEvent.New("AfterUnequip");
+            afterUnequip.SetParameter("Actor", (object)actor);
+            afterUnequip.SetParameter("Item", (object)item);
+            actor.FireEvent(afterUnequip);
+
+            transaction.Do(
+                apply: null,
+                undo: () => TryForceRestore(context, item, rollbackState));
+
+            // Item is now in inventory (deposited by TryForceUnequip). Remove it so
+            // the caller can do what it likes with the entity (e.g. throw it).
+            context.Inventory.RemoveObject(item);
+
+            return true;
+        }
+
         internal static EquippedStateSnapshot CaptureEquippedState(
             InventoryContext context,
             Entity item)

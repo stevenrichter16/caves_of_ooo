@@ -2,10 +2,12 @@ using System;
 using System.Text;
 using CavesOfOoo.Core;
 using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
 using CavesOfOoo.Rendering;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 namespace CavesOfOoo
 {
@@ -24,6 +26,17 @@ namespace CavesOfOoo
         private TurnManager _turnManager;
         private Entity _player;
         private static readonly char[] StartingBitTypes = { 'R', 'G', 'B', 'C', 'r', 'g', 'b', 'c', 'K', 'W', 'Y', 'M' };
+        private static readonly string[] StartingTonicBlueprints =
+        {
+            "HealingTonic",
+            "PoisonTonic",
+            "FireTonic",
+            "Antidote",
+            "BurnSalve",
+            "Panacea",
+            "SpeedTonic",
+            "StrengthTonic"
+        };
 
         private void Awake()
         {
@@ -45,255 +58,289 @@ namespace CavesOfOoo
 
         private void DoStart()
         {
-            AsciiFxBus.Clear();
+            PerformanceDiagnostics.ResetAll();
+            long startupStart = Stopwatch.GetTimestamp();
 
-            Debug.Log("[Bootstrap] Step 1/9: Initializing factions...");
-            TextAsset factionAsset = Resources.Load<TextAsset>("Content/Data/Factions");
-            if (factionAsset != null)
-                FactionManager.Initialize(factionAsset.text);
-            else
+            using (PerformanceMarkers.Bootstrap.DoStart.Auto())
             {
-                Debug.LogWarning("[Bootstrap] Factions.json not found, using hardcoded defaults.");
-                FactionManager.Initialize();
-            }
+                AsciiFxBus.Clear();
 
-            Debug.Log("[Bootstrap] Step 1b/9: Initializing material reactions...");
-            TextAsset[] reactionAssets = Resources.LoadAll<TextAsset>("Content/Data/MaterialReactions");
-            if (reactionAssets != null && reactionAssets.Length > 0)
-            {
-                var jsonSources = new System.Collections.Generic.List<string>(reactionAssets.Length);
-                for (int i = 0; i < reactionAssets.Length; i++)
-                    jsonSources.Add(reactionAssets[i].text);
-                MaterialReactionResolver.InitializeFromJsonSources(jsonSources);
-                Debug.Log($"[Bootstrap] Loaded {reactionAssets.Length} reaction file(s), {MaterialReactionResolver.ReactionCount} reaction(s) total.");
-            }
-            else
-            {
-                Debug.LogWarning("[Bootstrap] No material reaction files found, reactions will be empty.");
-                MaterialReactionResolver.Initialize(null);
-            }
-
-            Debug.Log("[Bootstrap] Step 2/9: Initializing mutations...");
-            MutationRegistry.EnsureInitialized();
-
-            // Wire combat messages to Unity console
-            MessageLog.OnMessage = msg => Debug.Log($"[Combat] {msg}");
-
-            Debug.Log("[Bootstrap] Step 3/9: Creating EntityFactory...");
-            _factory = new EntityFactory();
-
-            Debug.Log("[Bootstrap] Step 4/9: Loading blueprints...");
-            TextAsset blueprintAsset = Resources.Load<TextAsset>("Content/Blueprints/Objects");
-            if (blueprintAsset == null)
-            {
-                Debug.LogError("[Bootstrap] FAILED: Could not load Content/Blueprints/Objects.json from Resources");
-                return;
-            }
-            _factory.LoadBlueprints(blueprintAsset.text);
-            Debug.Log($"[Bootstrap] Loaded {_factory.Blueprints.Count} blueprints");
-            LogAsciiBlueprintValidation();
-            LogHandlingBlueprintValidation();
-
-            // Wire conversation system
-            ConversationActions.Factory = _factory;
-
-            // Wire material reaction resolver so SpawnEntity / SwapBlueprint
-            // reaction effects can look up and construct entities.
-            MaterialReactionResolver.Factory = _factory;
-
-            Debug.Log("[Bootstrap] Step 5/9: Generating starting zone...");
-            _zoneManager = new OverworldZoneManager(_factory);
-            _zone = _zoneManager.GetZone("Overworld.10.10.0");
-            _zoneManager.SetActiveZone(_zone);
-            if (_zone == null)
-            {
-                Debug.LogError("[Bootstrap] FAILED: Zone generation returned null");
-                return;
-            }
-            Debug.Log($"[Bootstrap] Zone generated: {_zone.EntityCount} entities");
-
-            Debug.Log("[Bootstrap] Step 6/9: Creating player...");
-            _player = _factory.CreateEntity("Player");
-            if (_player == null)
-            {
-                Debug.LogError("[Bootstrap] FAILED: Player entity creation returned null");
-                return;
-            }
-            var playerBody = _player.GetPart<Body>();
-            Debug.Log($"[Bootstrap] Player created. Has Body part: {playerBody != null}, Body initialized: {playerBody?.GetBody() != null}");
-            GrantShowcaseSpellMutations();
-            InitializePlayerStartingTinkering();
-            PlacePlayerInOpenCell();
-            SpawnDebugWeaponNearPlayer();
-            SpawnDebugNPCNearPlayer();
-
-            Debug.Log("[Bootstrap] Step 7/9: Setting up turns...");
-            _turnManager = new TurnManager();
-            _zoneManager.SetTurnProvider(() => _turnManager != null ? _turnManager.TickCount : 0);
-            MessageLog.TickProvider = () => _turnManager != null ? _turnManager.TickCount : 0;
-            RegisterCreaturesForTurns();
-
-            Debug.Log("[Bootstrap] Step 8/9: Wiring renderer...");
-            if (ZoneRenderer != null)
-            {
-                ZoneRenderer.SetZone(_zone);
-                ZoneRenderer.PlayerEntity = _player;
-                SettlementRuntime.ZoneDirtyCallback = ZoneRenderer.MarkDirty;
-                SettlementRuntime.ActiveZone = _zone;
-                Debug.Log("[Bootstrap] ZoneRenderer wired successfully");
-            }
-            else
-            {
-                Debug.LogError("[Bootstrap] FAILED: ZoneRenderer not assigned in Inspector!");
-            }
-
-            // Wire up camera follow on the main camera
-            var cam = Camera.main;
-            if (cam == null)
-            {
-                Debug.LogError("[Bootstrap] FAILED: Camera.main is null (no camera tagged MainCamera)");
-            }
-            else
-            {
-                var cameraFollow = cam.GetComponent<CameraFollow>();
-                if (cameraFollow == null)
-                    cameraFollow = cam.gameObject.AddComponent<CameraFollow>();
-                Camera sidebarCamera = EnsureSidebarCamera(cam);
-                Camera hotbarCamera = EnsureHotbarCamera(cam);
-                Camera popupOverlayCamera = EnsurePopupOverlayCamera(cam);
-                ConfigureCameraLayers(cam, sidebarCamera, hotbarCamera, popupOverlayCamera);
-                cameraFollow.Player = _player;
-                cameraFollow.CurrentZone = _zone;
-                cameraFollow.SidebarCamera = sidebarCamera;
-                cameraFollow.HotbarCamera = hotbarCamera;
-                cameraFollow.PopupOverlayCamera = popupOverlayCamera;
-                if (ZoneRenderer != null)
+                Debug.Log("[Bootstrap] Step 1/9: Initializing factions...");
+                PerformanceDiagnostics.MeasureStartupPhase("LoadFactions", PerformanceMarkers.Bootstrap.LoadFactions, () =>
                 {
-                    ZoneRenderer.SetSidebarCamera(sidebarCamera);
-                    ZoneRenderer.SetHotbarCamera(hotbarCamera);
-                    ZoneRenderer.SetPopupOverlayCamera(popupOverlayCamera);
-                    cameraFollow.ReservedSidebarWidthChars = ZoneRenderer.SidebarWidthChars;
-                    cameraFollow.SidebarReferenceZoom = ZoneRenderer.MessageReferenceZoom;
-                    cameraFollow.ReservedHotbarHeightRows = GameplayHotbarLayout.GridHeight;
-                }
-                cameraFollow.SnapToPlayer();
+                    TextAsset factionAsset = Resources.Load<TextAsset>("Content/Data/Factions");
+                    if (factionAsset != null)
+                    {
+                        FactionManager.Initialize(factionAsset.text);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("[Bootstrap] Factions.json not found, using hardcoded defaults.");
+                        FactionManager.Initialize();
+                    }
+                });
 
-                // Screen shake when the player takes damage
-                var shakeCamera = cameraFollow;
-                DamageFlashPart.OnPlayerDamaged = (amount) =>
+                Debug.Log("[Bootstrap] Step 1b/9: Initializing material reactions...");
+                PerformanceDiagnostics.MeasureStartupPhase("LoadMaterialReactions", PerformanceMarkers.Bootstrap.LoadMaterialReactions, () =>
                 {
-                    float intensity = amount >= 5 ? 0.25f : 0.12f;
-                    shakeCamera.Shake(intensity, 0.15f);
-                };
+                    TextAsset[] reactionAssets = Resources.LoadAll<TextAsset>("Content/Data/MaterialReactions");
+                    if (reactionAssets != null && reactionAssets.Length > 0)
+                    {
+                        var jsonSources = new System.Collections.Generic.List<string>(reactionAssets.Length);
+                        for (int i = 0; i < reactionAssets.Length; i++)
+                            jsonSources.Add(reactionAssets[i].text);
 
-                // Lighter screen shake when the player deals damage (hit feedback)
-                DamageFlashPart.OnPlayerDealtDamage = (amount) =>
+                        MaterialReactionResolver.InitializeFromJsonSources(jsonSources);
+                        Debug.Log($"[Bootstrap] Loaded {reactionAssets.Length} reaction file(s), {MaterialReactionResolver.ReactionCount} reaction(s) total.");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("[Bootstrap] No material reaction files found, reactions will be empty.");
+                        MaterialReactionResolver.Initialize(null);
+                    }
+                });
+
+                Debug.Log("[Bootstrap] Step 2/9: Initializing mutations...");
+                PerformanceDiagnostics.MeasureStartupPhase(
+                    "InitializeMutations",
+                    PerformanceMarkers.Bootstrap.InitializeMutations,
+                    MutationRegistry.EnsureInitialized);
+
+                MessageLog.OnMessage = msg => Debug.Log($"[Combat] {msg}");
+
+                Debug.Log("[Bootstrap] Step 3/9: Creating EntityFactory...");
+                _factory = new EntityFactory();
+
+                Debug.Log("[Bootstrap] Step 4/9: Loading blueprints...");
+                bool blueprintsLoaded = PerformanceDiagnostics.MeasureStartupPhase("LoadBlueprints", PerformanceMarkers.Bootstrap.LoadBlueprints, () =>
                 {
-                    float intensity = amount >= 5 ? 0.12f : 0.06f;
-                    shakeCamera.Shake(intensity, 0.1f);
-                };
+                    TextAsset blueprintAsset = Resources.Load<TextAsset>("Content/Blueprints/Objects");
+                    if (blueprintAsset == null)
+                    {
+                        Debug.LogError("[Bootstrap] FAILED: Could not load Content/Blueprints/Objects.json from Resources");
+                        return false;
+                    }
 
-                // Wire up input handler
-                Debug.Log("[Bootstrap] Step 9/9: Wiring input...");
-                var inputHandler = GetComponent<InputHandler>();
-                if (inputHandler == null)
-                    inputHandler = gameObject.AddComponent<InputHandler>();
-                inputHandler.PlayerEntity = _player;
-                inputHandler.CurrentZone = _zone;
-                inputHandler.TurnManager = _turnManager;
-                inputHandler.ZoneRenderer = ZoneRenderer;
-                inputHandler.ZoneManager = _zoneManager;
-                inputHandler.WorldMap = _zoneManager.WorldMap;
-                inputHandler.CameraFollow = cameraFollow;
-                inputHandler.EntityFactory = _factory;
+                    _factory.LoadBlueprints(blueprintAsset.text);
+                    Debug.Log($"[Bootstrap] Loaded {_factory.Blueprints.Count} blueprints");
+                    LogAsciiBlueprintValidation();
+                    LogHandlingBlueprintValidation();
+                    return true;
+                });
+                if (!blueprintsLoaded)
+                    return;
 
-                // Wire screen fade for zone transitions
-                var screenFade = GetComponent<ScreenFade>();
-                if (screenFade == null)
-                    screenFade = gameObject.AddComponent<ScreenFade>();
-                inputHandler.ScreenFade = screenFade;
+                ConversationActions.Factory = _factory;
+                MaterialReactionResolver.Factory = _factory;
 
-                // Wire inventory UI (shares tilemap with zone renderer)
-                var inventoryUI = GetComponent<InventoryUI>();
-                if (inventoryUI == null)
-                    inventoryUI = gameObject.AddComponent<InventoryUI>();
-                if (ZoneRenderer != null)
-                    inventoryUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
-                inventoryUI.EntityFactory = _factory;
-                inputHandler.InventoryUI = inventoryUI;
-
-                // Wire pickup UI to popup tilemap (above message log)
-                var pickupUI = GetComponent<PickupUI>();
-                if (pickupUI == null)
-                    pickupUI = gameObject.AddComponent<PickupUI>();
-                if (ZoneRenderer != null)
+                Debug.Log("[Bootstrap] Step 5/9: Generating starting zone...");
+                bool zoneGenerated = PerformanceDiagnostics.MeasureStartupPhase("GenerateZone", PerformanceMarkers.Bootstrap.GenerateZone, () =>
                 {
-                    pickupUI.Tilemap = ZoneRenderer.CenteredPopupFgTilemap;
-                    pickupUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
-                }
-                pickupUI.PopupCamera = popupOverlayCamera;
-                inputHandler.PickupUI = pickupUI;
+                    _zoneManager = new OverworldZoneManager(_factory);
+                    _zone = _zoneManager.GetZone("Overworld.10.10.0");
+                    _zoneManager.SetActiveZone(_zone);
+                    if (_zone == null)
+                    {
+                        Debug.LogError("[Bootstrap] FAILED: Zone generation returned null");
+                        return false;
+                    }
 
-                // Wire container picker UI to popup tilemap (above message log)
-                var containerPickerUI = GetComponent<ContainerPickerUI>();
-                if (containerPickerUI == null)
-                    containerPickerUI = gameObject.AddComponent<ContainerPickerUI>();
-                if (ZoneRenderer != null)
+                    Debug.Log($"[Bootstrap] Zone generated: {_zone.EntityCount} entities");
+                    return true;
+                });
+                if (!zoneGenerated)
+                    return;
+
+                Debug.Log("[Bootstrap] Step 6/9: Creating player...");
+                bool playerCreated = PerformanceDiagnostics.MeasureStartupPhase("SetupPlayer", PerformanceMarkers.Bootstrap.SetupPlayer, () =>
                 {
-                    containerPickerUI.Tilemap = ZoneRenderer.CenteredPopupFgTilemap;
-                    containerPickerUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
-                }
-                containerPickerUI.PopupCamera = popupOverlayCamera;
-                inputHandler.ContainerPickerUI = containerPickerUI;
+                    _player = _factory.CreateEntity("Player");
+                    if (_player == null)
+                    {
+                        Debug.LogError("[Bootstrap] FAILED: Player entity creation returned null");
+                        return false;
+                    }
 
-                // Wire dialogue UI to dedicated popup tilemaps (above the message log)
-                var dialogueUI = GetComponent<DialogueUI>();
-                if (dialogueUI == null)
-                    dialogueUI = gameObject.AddComponent<DialogueUI>();
-                if (ZoneRenderer != null)
+                    var playerBody = _player.GetPart<Body>();
+                    Debug.Log($"[Bootstrap] Player created. Has Body part: {playerBody != null}, Body initialized: {playerBody?.GetBody() != null}");
+                    GrantShowcaseSpellMutations();
+                    InitializePlayerStartingTinkering();
+                    GivePlayerStartingTonics();
+                    PlacePlayerInOpenCell();
+                    SpawnDebugWeaponNearPlayer();
+                    SpawnDebugNPCNearPlayer();
+                    return true;
+                });
+                if (!playerCreated)
+                    return;
+
+                Debug.Log("[Bootstrap] Step 7/9: Setting up turns...");
+                PerformanceDiagnostics.MeasureStartupPhase("SetupTurns", PerformanceMarkers.Bootstrap.SetupTurns, () =>
                 {
-                    dialogueUI.Tilemap = ZoneRenderer.CenteredPopupFgTilemap;
-                    dialogueUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
-                }
-                dialogueUI.PopupCamera = popupOverlayCamera;
-                inputHandler.DialogueUI = dialogueUI;
+                    _turnManager = new TurnManager();
+                    _zoneManager.SetTurnProvider(() => _turnManager != null ? _turnManager.TickCount : 0);
+                    MessageLog.TickProvider = () => _turnManager != null ? _turnManager.TickCount : 0;
+                    RegisterCreaturesForTurns();
+                });
 
-                // Wire trade UI to popup tilemap (above message log)
-                var tradeUI = GetComponent<TradeUI>();
-                if (tradeUI == null)
-                    tradeUI = gameObject.AddComponent<TradeUI>();
-                if (ZoneRenderer != null)
-                    tradeUI.Tilemap = ZoneRenderer.PopupFgTilemap;
-                inputHandler.TradeUI = tradeUI;
-
-                // Wire faction UI to popup tilemap (above message log)
-                var factionUI = GetComponent<FactionUI>();
-                if (factionUI == null)
-                    factionUI = gameObject.AddComponent<FactionUI>();
-                if (ZoneRenderer != null)
-                    factionUI.Tilemap = ZoneRenderer.PopupFgTilemap;
-                inputHandler.FactionUI = factionUI;
-
-                // Wire announcement UI to popup tilemap (above message log)
-                var announcementUI = GetComponent<AnnouncementUI>();
-                if (announcementUI == null)
-                    announcementUI = gameObject.AddComponent<AnnouncementUI>();
-                if (ZoneRenderer != null)
+                Debug.Log("[Bootstrap] Step 8/9: Wiring renderer...");
+                PerformanceDiagnostics.MeasureStartupPhase("WirePresentation", PerformanceMarkers.Bootstrap.WirePresentation, () =>
                 {
-                    announcementUI.Tilemap = ZoneRenderer.CenteredPopupFgTilemap;
-                    announcementUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
-                }
-                announcementUI.PopupCamera = popupOverlayCamera;
-                inputHandler.AnnouncementUI = announcementUI;
+                    if (ZoneRenderer != null)
+                    {
+                        ZoneRenderer.SetZone(_zone);
+                        ZoneRenderer.PlayerEntity = _player;
+                        SettlementRuntime.ZoneDirtyCallback = () => ZoneRenderer.MarkDirty("SettlementRuntime");
+                        SettlementRuntime.ActiveZone = _zone;
+                        Debug.Log("[Bootstrap] ZoneRenderer wired successfully");
+                    }
+                    else
+                    {
+                        Debug.LogError("[Bootstrap] FAILED: ZoneRenderer not assigned in Inspector!");
+                    }
+
+                    Camera cam = Camera.main;
+                    if (cam == null)
+                    {
+                        Debug.LogError("[Bootstrap] FAILED: Camera.main is null (no camera tagged MainCamera)");
+                        return;
+                    }
+
+                    var cameraFollow = cam.GetComponent<CameraFollow>();
+                    if (cameraFollow == null)
+                        cameraFollow = cam.gameObject.AddComponent<CameraFollow>();
+
+                    Camera sidebarCamera = EnsureSidebarCamera(cam);
+                    Camera hotbarCamera = EnsureHotbarCamera(cam);
+                    Camera popupOverlayCamera = EnsurePopupOverlayCamera(cam);
+                    ConfigureCameraLayers(cam, sidebarCamera, hotbarCamera, popupOverlayCamera);
+
+                    cameraFollow.Player = _player;
+                    cameraFollow.CurrentZone = _zone;
+                    cameraFollow.SidebarCamera = sidebarCamera;
+                    cameraFollow.HotbarCamera = hotbarCamera;
+                    cameraFollow.PopupOverlayCamera = popupOverlayCamera;
+
+                    if (ZoneRenderer != null)
+                    {
+                        ZoneRenderer.SetSidebarCamera(sidebarCamera);
+                        ZoneRenderer.SetHotbarCamera(hotbarCamera);
+                        ZoneRenderer.SetPopupOverlayCamera(popupOverlayCamera);
+                        cameraFollow.ReservedSidebarWidthChars = ZoneRenderer.SidebarWidthChars;
+                        cameraFollow.SidebarReferenceZoom = ZoneRenderer.MessageReferenceZoom;
+                        cameraFollow.ReservedHotbarHeightRows = GameplayHotbarLayout.GridHeight;
+                    }
+
+                    cameraFollow.SnapToPlayer();
+
+                    var shakeCamera = cameraFollow;
+                    DamageFlashPart.OnPlayerDamaged = amount =>
+                    {
+                        float intensity = amount >= 5 ? 0.25f : 0.12f;
+                        shakeCamera.Shake(intensity, 0.15f);
+                    };
+
+                    DamageFlashPart.OnPlayerDealtDamage = amount =>
+                    {
+                        float intensity = amount >= 5 ? 0.12f : 0.06f;
+                        shakeCamera.Shake(intensity, 0.1f);
+                    };
+
+                    Debug.Log("[Bootstrap] Step 9/9: Wiring input...");
+                    var inputHandler = GetComponent<InputHandler>();
+                    if (inputHandler == null)
+                        inputHandler = gameObject.AddComponent<InputHandler>();
+                    inputHandler.PlayerEntity = _player;
+                    inputHandler.CurrentZone = _zone;
+                    inputHandler.TurnManager = _turnManager;
+                    inputHandler.ZoneRenderer = ZoneRenderer;
+                    inputHandler.ZoneManager = _zoneManager;
+                    inputHandler.WorldMap = _zoneManager.WorldMap;
+                    inputHandler.CameraFollow = cameraFollow;
+                    inputHandler.EntityFactory = _factory;
+
+                    var screenFade = GetComponent<ScreenFade>();
+                    if (screenFade == null)
+                        screenFade = gameObject.AddComponent<ScreenFade>();
+                    inputHandler.ScreenFade = screenFade;
+
+                    var inventoryUI = GetComponent<InventoryUI>();
+                    if (inventoryUI == null)
+                        inventoryUI = gameObject.AddComponent<InventoryUI>();
+                    if (ZoneRenderer != null)
+                        inventoryUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
+                    inventoryUI.EntityFactory = _factory;
+                    inputHandler.InventoryUI = inventoryUI;
+
+                    var pickupUI = GetComponent<PickupUI>();
+                    if (pickupUI == null)
+                        pickupUI = gameObject.AddComponent<PickupUI>();
+                    if (ZoneRenderer != null)
+                    {
+                        pickupUI.Tilemap = ZoneRenderer.CenteredPopupFgTilemap;
+                        pickupUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
+                    }
+                    pickupUI.PopupCamera = popupOverlayCamera;
+                    inputHandler.PickupUI = pickupUI;
+
+                    var containerPickerUI = GetComponent<ContainerPickerUI>();
+                    if (containerPickerUI == null)
+                        containerPickerUI = gameObject.AddComponent<ContainerPickerUI>();
+                    if (ZoneRenderer != null)
+                    {
+                        containerPickerUI.Tilemap = ZoneRenderer.CenteredPopupFgTilemap;
+                        containerPickerUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
+                    }
+                    containerPickerUI.PopupCamera = popupOverlayCamera;
+                    inputHandler.ContainerPickerUI = containerPickerUI;
+
+                    var dialogueUI = GetComponent<DialogueUI>();
+                    if (dialogueUI == null)
+                        dialogueUI = gameObject.AddComponent<DialogueUI>();
+                    if (ZoneRenderer != null)
+                    {
+                        dialogueUI.Tilemap = ZoneRenderer.CenteredPopupFgTilemap;
+                        dialogueUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
+                    }
+                    dialogueUI.PopupCamera = popupOverlayCamera;
+                    inputHandler.DialogueUI = dialogueUI;
+
+                    var tradeUI = GetComponent<TradeUI>();
+                    if (tradeUI == null)
+                        tradeUI = gameObject.AddComponent<TradeUI>();
+                    if (ZoneRenderer != null)
+                        tradeUI.Tilemap = ZoneRenderer.PopupFgTilemap;
+                    inputHandler.TradeUI = tradeUI;
+
+                    var factionUI = GetComponent<FactionUI>();
+                    if (factionUI == null)
+                        factionUI = gameObject.AddComponent<FactionUI>();
+                    if (ZoneRenderer != null)
+                        factionUI.Tilemap = ZoneRenderer.PopupFgTilemap;
+                    inputHandler.FactionUI = factionUI;
+
+                    var announcementUI = GetComponent<AnnouncementUI>();
+                    if (announcementUI == null)
+                        announcementUI = gameObject.AddComponent<AnnouncementUI>();
+                    if (ZoneRenderer != null)
+                    {
+                        announcementUI.Tilemap = ZoneRenderer.CenteredPopupFgTilemap;
+                        announcementUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
+                    }
+                    announcementUI.PopupCamera = popupOverlayCamera;
+                    inputHandler.AnnouncementUI = announcementUI;
+                });
+
+                _turnManager.ProcessUntilPlayerTurn();
+
+                if (_zoneManager.SettlementManager != null)
+                    _zoneManager.SettlementManager.RefreshActiveZonePresentation(_zone);
+
+                Debug.Log($"[Bootstrap] DONE. Zone has {_zone.EntityCount} entities. WASD/arrows to move.");
             }
 
-            // Start the turn loop
-            _turnManager.ProcessUntilPlayerTurn();
-
-            if (_zoneManager.SettlementManager != null)
-                _zoneManager.SettlementManager.RefreshActiveZonePresentation(_zone);
-
-            Debug.Log($"[Bootstrap] DONE. Zone has {_zone.EntityCount} entities. WASD/arrows to move.");
+            PerformanceDiagnostics.RecordStartupTotal(
+                PerformanceDiagnostics.ElapsedMilliseconds(startupStart, Stopwatch.GetTimestamp()));
         }
 
         private static Camera EnsureSidebarCamera(Camera gameplayCamera)
@@ -502,6 +549,41 @@ namespace CavesOfOoo
             Debug.Log("[Bootstrap/Mutations] Granted " + granted + " showcase projectile mutation(s).");
         }
 
+        private void GivePlayerStartingTonics()
+        {
+            if (_player == null || _factory == null)
+                return;
+
+            var inventory = _player.GetPart<InventoryPart>();
+            if (inventory == null)
+            {
+                Debug.LogWarning("[Bootstrap/Tonics] Player has no InventoryPart; starting tonic grant skipped.");
+                return;
+            }
+
+            int granted = 0;
+            for (int i = 0; i < StartingTonicBlueprints.Length; i++)
+            {
+                string blueprint = StartingTonicBlueprints[i];
+                var tonic = _factory.CreateEntity(blueprint);
+                if (tonic == null)
+                {
+                    Debug.LogWarning($"[Bootstrap/Tonics] Failed to create starting tonic '{blueprint}'.");
+                    continue;
+                }
+
+                if (!inventory.AddObject(tonic))
+                {
+                    Debug.LogWarning($"[Bootstrap/Tonics] Failed to add starting tonic '{blueprint}' to player inventory.");
+                    continue;
+                }
+
+                granted++;
+            }
+
+            Debug.Log($"[Bootstrap/Tonics] Granted {granted} starting tonic(s) to the player.");
+        }
+
         private static string BuildUniformBitGrant(int amountPerBit)
         {
             if (amountPerBit <= 0 || StartingBitTypes.Length == 0)
@@ -688,6 +770,14 @@ namespace CavesOfOoo
                 {
                     brain.CurrentZone = _zone;
                     brain.Rng = new System.Random();
+
+                    // Set starting cell eagerly so it's available before first turn
+                    var pos = _zone.GetEntityPosition(creature);
+                    if (pos.x >= 0)
+                    {
+                        brain.StartingCellX = pos.x;
+                        brain.StartingCellY = pos.y;
+                    }
                 }
             }
             Debug.Log($"GameBootstrap: Registered {creatures.Count} creatures for turns");

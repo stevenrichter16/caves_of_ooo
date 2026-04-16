@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CavesOfOoo.Diagnostics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -54,8 +55,17 @@ namespace CavesOfOoo.Rendering
         public void Clear()
         {
             IsVisible = false;
-            _tilemap?.ClearAllTiles();
-            _backgroundTilemap?.ClearAllTiles();
+            if (_tilemap != null)
+            {
+                _tilemap.ClearAllTiles();
+                PerformanceDiagnostics.RecordTilemapClear();
+            }
+
+            if (_backgroundTilemap != null)
+            {
+                _backgroundTilemap.ClearAllTiles();
+                PerformanceDiagnostics.RecordTilemapClear();
+            }
         }
 
         public bool ScrollOlder(int rows = 1)
@@ -87,13 +97,16 @@ namespace CavesOfOoo.Rendering
 
         public void Render(SidebarSnapshot snapshot, Camera camera, int sidebarWidthChars, bool flashActive, float flashT)
         {
-            Clear();
+            using (PerformanceMarkers.Ui.SidebarRender.Auto())
+            {
+                PerformanceDiagnostics.RecordSidebarRender();
+                Clear();
 
-            if (_tilemap == null || _backgroundTilemap == null || _gridTransform == null || camera == null || sidebarWidthChars <= 0)
-                return;
+                if (_tilemap == null || _backgroundTilemap == null || _gridTransform == null || camera == null || sidebarWidthChars <= 0)
+                    return;
 
-            SidebarCameraMetrics metrics = GameplayViewportLayout.MeasureSidebarCamera(camera, _referenceZoom, sidebarWidthChars);
-            _gridTransform.localScale = new Vector3(metrics.Scale, metrics.Scale, 1f);
+                SidebarCameraMetrics metrics = GameplayViewportLayout.MeasureSidebarCamera(camera, _referenceZoom, sidebarWidthChars);
+                _gridTransform.localScale = new Vector3(metrics.Scale, metrics.Scale, 1f);
 
             int startX = metrics.StartCharX;
             int width = sidebarWidthChars;
@@ -172,7 +185,8 @@ namespace CavesOfOoo.Rendering
                 DrawText(contentX, rowY, line.Text, lineColor, contentWidth);
             }
 
-            IsVisible = true;
+                IsVisible = true;
+            }
         }
 
         private List<SidebarTextFormatter.LogLine> GetVisibleLogLines(
