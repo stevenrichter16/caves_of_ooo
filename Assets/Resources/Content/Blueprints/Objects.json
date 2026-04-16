@@ -2680,7 +2680,8 @@
           { "Key": "WandersRandomly", "Value": "false" },
           { "Key": "Staying", "Value": "true" }
         ]},
-        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Warden_1" }] }
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Warden_1" }] },
+        { "Name": "AIGuard", "Params": [] }
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 40, "Min": 0, "Max": 40 },
@@ -3352,7 +3353,8 @@
           { "Key": "ColorString", "Value": "&Y" },
           { "Key": "RenderLayer", "Value": "10" }
         ]},
-        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Farmer_1" }] }
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Farmer_1" }] },
+        { "Name": "AIWellVisitor", "Params": [{ "Key": "Chance", "Value": "5" }] }
       ]
     },
     {

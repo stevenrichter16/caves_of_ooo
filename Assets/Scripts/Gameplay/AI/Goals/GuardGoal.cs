@@ -4,6 +4,10 @@ namespace CavesOfOoo.Core
     /// Goal that guards a specific position. Scans for hostiles, returns to post,
     /// and idles when at position.
     /// Mirrors Qud's Guard goal handler.
+    ///
+    /// At post: does NOT push a child goal — just sets Idle state and returns.
+    /// This keeps GuardGoal on top of the stack so it re-scans for hostiles
+    /// every tick (no 2-tick reactivity delay from WaitGoal blocking).
     /// </summary>
     public class GuardGoal : GoalHandler
     {
@@ -37,8 +41,8 @@ namespace CavesOfOoo.Core
                 return;
             }
 
-            // At position, idle
-            PushChildGoal(new WaitGoal(1));
+            // At post: idle in place. Don't push a child — re-scan every tick.
+            ParentBrain.CurrentState = AIState.Idle;
         }
     }
 }
