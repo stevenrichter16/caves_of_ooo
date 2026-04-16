@@ -137,6 +137,64 @@ namespace CavesOfOoo.Core
             return false;
         }
 
+        /// <summary>
+        /// Check if any goal on the stack has a type whose class name equals typeName.
+        /// Mirrors Qud's Brain.HasGoal(string) — used by behavior parts to gate
+        /// "am I already doing X?" (e.g. "TurretTinker only places a turret if !HasGoal('PlaceTurretGoal')").
+        /// </summary>
+        public bool HasGoal(string typeName)
+        {
+            if (string.IsNullOrEmpty(typeName)) return false;
+            for (int i = 0; i < _goals.Count; i++)
+            {
+                if (_goals[i].GetType().Name == typeName) return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Retrieve the first (topmost) goal of type T on the stack, or null.
+        /// Mirrors Qud's Brain.FindGoal pattern. Returns null if no matching goal exists.
+        /// Scans top-down so the most recent goal of that type wins.
+        /// </summary>
+        public T FindGoal<T>() where T : GoalHandler
+        {
+            for (int i = _goals.Count - 1; i >= 0; i--)
+            {
+                if (_goals[i] is T typed) return typed;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Retrieve the first (topmost) goal whose class name equals typeName, or null.
+        /// String variant — mirrors Qud's Brain.FindGoal(string) used by ModPsionic
+        /// to find the Kill goal and insert Reequip above it.
+        /// </summary>
+        public GoalHandler FindGoal(string typeName)
+        {
+            if (string.IsNullOrEmpty(typeName)) return null;
+            for (int i = _goals.Count - 1; i >= 0; i--)
+            {
+                if (_goals[i].GetType().Name == typeName) return _goals[i];
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// True if the stack has any goal whose class name is NOT the given typeName.
+        /// Useful for "act only if idle" checks that want to exclude a specific
+        /// background goal (typically BoredGoal). Mirrors Qud's HasGoalOtherThan(name).
+        /// </summary>
+        public bool HasGoalOtherThan(string typeName)
+        {
+            for (int i = 0; i < _goals.Count; i++)
+            {
+                if (_goals[i].GetType().Name != typeName) return true;
+            }
+            return false;
+        }
+
         // --- Event Handling ---
 
         public override bool HandleEvent(GameEvent e)
