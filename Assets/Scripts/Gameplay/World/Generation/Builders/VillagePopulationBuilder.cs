@@ -133,15 +133,7 @@ namespace CavesOfOoo.Core
             List<(int x, int y)> openCells, string blueprint, string settlementId)
         {
             Entity npc = PlaceEntity(zone, factory, rng, openCells, blueprint);
-            if (npc != null && _poi?.Faction != null)
-            {
-                // Override faction to match POI
-                npc.SetTag("Faction", _poi.Faction);
-            }
-
-            if (npc != null && !string.IsNullOrEmpty(settlementId))
-                npc.Properties["SettlementId"] = settlementId;
-
+            WireNPC(npc, settlementId);
             return npc;
         }
 
@@ -827,7 +819,9 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Gather passable cells that are on StoneFloor (building interiors).
         /// Used to bias NPC spawning toward buildings instead of random outdoor cells.
-        /// Call this AFTER decor placement so occupied cells are excluded.
+        /// Excludes cells that already have furniture (Chair, Bed) to prevent NPCs
+        /// from spawning on top of furniture without going through the idle-query flow.
+        /// Call this AFTER all terrain and decor placement.
         /// </summary>
         private List<(int x, int y)> GatherInteriorCells(Zone zone)
         {
@@ -835,14 +829,19 @@ namespace CavesOfOoo.Core
             zone.ForEachCell((cell, x, y) =>
             {
                 if (!cell.IsPassable()) return;
+
+                bool isInterior = false;
+                bool hasFurniture = false;
                 for (int i = 0; i < cell.Objects.Count; i++)
                 {
                     if (cell.Objects[i].BlueprintName == "StoneFloor")
-                    {
-                        cells.Add((x, y));
-                        break;
-                    }
+                        isInterior = true;
+                    if (cell.Objects[i].HasTag("Furniture"))
+                        hasFurniture = true;
                 }
+
+                if (isInterior && !hasFurniture)
+                    cells.Add((x, y));
             });
             return cells;
         }
@@ -868,18 +867,26 @@ namespace CavesOfOoo.Core
                     zone.AddEntity(npc, x, y);
                     interiorCells.RemoveAt(idx);
                     openCells.Remove((x, y)); // keep open list in sync
-
-                    if (_poi?.Faction != null)
-                        npc.SetTag("Faction", _poi.Faction);
-                    if (!string.IsNullOrEmpty(settlementId))
-                        npc.Properties["SettlementId"] = settlementId;
-
+                    WireNPC(npc, settlementId);
                     return npc;
                 }
             }
 
             // Fallback to any open cell
             return PlaceNPC(zone, factory, rng, openCells, blueprint, settlementId);
+        }
+
+        /// <summary>
+        /// Apply faction and settlement wiring to a newly-placed NPC.
+        /// Shared between PlaceNPC and PlaceNPCInInterior.
+        /// </summary>
+        private void WireNPC(Entity npc, string settlementId)
+        {
+            if (npc == null) return;
+            if (_poi?.Faction != null)
+                npc.SetTag("Faction", _poi.Faction);
+            if (!string.IsNullOrEmpty(settlementId))
+                npc.Properties["SettlementId"] = settlementId;
         }
     }
 }

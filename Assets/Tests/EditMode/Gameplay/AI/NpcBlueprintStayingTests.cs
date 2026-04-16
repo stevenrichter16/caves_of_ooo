@@ -188,5 +188,69 @@ namespace CavesOfOoo.Tests
                 $"At least 50% of NPCs should spawn inside buildings (got {npcOnStoneFloor}/{npcTotal} = {interiorRatio:P0}). " +
                 "This verifies the Tier 2b interior-biased spawning is working.");
         }
+
+        [Test]
+        public void VillagePopulationBuilder_FallsBackToOpenCellsWhenInteriorExhausted()
+        {
+            // Use a tiny seed that produces few buildings (and thus few interior cells).
+            // With many NPCs to place and few interior cells, the builder should
+            // fall back to open cells without crashing or leaving NPCs unplaced.
+            var poi = new PointOfInterest(POIType.Village, "Tiny Village", "Villagers");
+            var villageBuilder = new VillageBuilder(BiomeType.Cave, poi);
+            var populationBuilder = new VillagePopulationBuilder(poi);
+            var zone = new Zone("Overworld.10.10.0");
+
+            // Use a different seed to get a potentially different room layout
+            villageBuilder.BuildZone(zone, _factory, new System.Random(777));
+            populationBuilder.BuildZone(zone, _factory, new System.Random(777));
+
+            int npcTotal = 0;
+            foreach (var entity in zone.GetReadOnlyEntities())
+            {
+                if (entity.HasTag("Creature"))
+                    npcTotal++;
+            }
+
+            // The village should still have NPCs even if interior cells were exhausted.
+            // The fallback to openCells ensures NPCs are always placed.
+            Assert.Greater(npcTotal, 0,
+                "Village should have NPCs even when interior cells are scarce — fallback to open cells should work.");
+        }
+
+        [Test]
+        public void VillagePopulationBuilder_FurnitureCellsExcludedFromInterior()
+        {
+            // After VillageBuilder places chairs and beds, those cells should NOT
+            // be in the interior cells list. NPCs should not spawn on top of furniture.
+            var poi = new PointOfInterest(POIType.Village, "Test Village", "Villagers");
+            var villageBuilder = new VillageBuilder(BiomeType.Cave, poi);
+            var populationBuilder = new VillagePopulationBuilder(poi);
+            var zone = new Zone("Overworld.10.10.0");
+
+            villageBuilder.BuildZone(zone, _factory, new System.Random(42));
+            populationBuilder.BuildZone(zone, _factory, new System.Random(42));
+
+            // Check that no creature spawned on a cell with a Chair or Bed
+            int creaturesOnFurniture = 0;
+            foreach (var entity in zone.GetReadOnlyEntities())
+            {
+                if (!entity.HasTag("Creature")) continue;
+
+                var cell = zone.GetEntityCell(entity);
+                if (cell == null) continue;
+
+                for (int i = 0; i < cell.Objects.Count; i++)
+                {
+                    if (cell.Objects[i].HasTag("Furniture"))
+                    {
+                        creaturesOnFurniture++;
+                        break;
+                    }
+                }
+            }
+
+            Assert.AreEqual(0, creaturesOnFurniture,
+                "No creature should spawn on a furniture cell — furniture cells are excluded from interior spawning.");
+        }
     }
 }

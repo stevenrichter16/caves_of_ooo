@@ -310,7 +310,9 @@ namespace CavesOfOoo.Core
             // Slow path: A* pathfind around obstacles. Only the first step of
             // the returned path is used — the next tick will recompute if still
             // needed, so we naturally handle moving targets.
-            var path = FindPath.Search(zone, myX, myY, targetX, targetY);
+            // ignoreCreatures=true: combat approach should route around walls but
+            // through creature-occupied cells (creatures move, paths recompute).
+            var path = FindPath.Search(zone, myX, myY, targetX, targetY, ignoreCreatures: true);
             if (path.Usable && path.Steps.Count > 0)
             {
                 var (pdx, pdy) = path.Steps[0];

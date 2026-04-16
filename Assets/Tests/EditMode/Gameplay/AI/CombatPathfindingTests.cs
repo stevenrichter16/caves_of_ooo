@@ -89,10 +89,10 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void TryApproach_ThinWall_UsesGreedyDiagonalFallback()
+        public void TryApproach_ThinWall_NavigatesAround()
         {
             // Single-cell wall at (6,5). Creature at (5,5), target at (10,5).
-            // Greedy: try (6,5) → blocked. Try diagonals (6,6) or (6,4) → passable.
+            // Ideal step (6,5) is blocked → falls through to A* which routes around.
             var zone = new Zone("TestZone");
             PlaceWall(zone, 6, 5);
 
@@ -101,7 +101,7 @@ namespace CavesOfOoo.Tests
 
             bool moved = AIHelpers.TryApproachWithPathfinding(creature, zone, 5, 5, 10, 5);
 
-            Assert.IsTrue(moved, "Should move around single-cell wall via diagonal fallback");
+            Assert.IsTrue(moved, "Should move around single-cell wall via A* fallback");
             var pos = zone.GetEntityPosition(creature);
             Assert.IsTrue(pos.x != 5 || pos.y != 5, "Should have moved from start");
         }

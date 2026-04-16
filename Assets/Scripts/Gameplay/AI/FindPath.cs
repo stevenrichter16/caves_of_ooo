@@ -40,7 +40,21 @@ namespace CavesOfOoo.Core
         /// <param name="goalX">Goal X coordinate.</param>
         /// <param name="goalY">Goal Y coordinate.</param>
         /// <param name="maxNodes">Maximum nodes to expand before giving up.</param>
-        public static FindPath Search(Zone zone, int startX, int startY, int goalX, int goalY, int maxNodes = 2000)
+        /// <summary>
+        /// Run A* from (startX, startY) to (goalX, goalY) in the given zone.
+        /// </summary>
+        /// <param name="zone">The zone to pathfind in.</param>
+        /// <param name="startX">Start X coordinate.</param>
+        /// <param name="startY">Start Y coordinate.</param>
+        /// <param name="goalX">Goal X coordinate.</param>
+        /// <param name="goalY">Goal Y coordinate.</param>
+        /// <param name="maxNodes">Maximum nodes to expand before giving up.</param>
+        /// <param name="ignoreCreatures">If true, cells with creatures (PhysicsPart.Solid)
+        /// are treated as passable. Use for combat approach (KillGoal) where the attacker
+        /// should path through allied creatures. If false (default), cells with
+        /// PhysicsPart.Solid entities are impassable (correct for furniture walks).</param>
+        public static FindPath Search(Zone zone, int startX, int startY, int goalX, int goalY,
+            int maxNodes = 2000, bool ignoreCreatures = false)
         {
             var result = new FindPath { Usable = false, Steps = new List<(int, int)>() };
 
@@ -117,7 +131,15 @@ namespace CavesOfOoo.Core
                     if (neighborIdx != goalIdx)
                     {
                         var cell = zone.GetCell(nx, ny);
-                        if (cell == null || !cell.IsPassable()) continue;
+                        if (cell == null) continue;
+                        if (!cell.IsPassable()) continue;
+
+                        // When not ignoring creatures, also check PhysicsPart.Solid.
+                        // Cell.IsPassable() only checks the "Solid" tag (walls), but
+                        // creatures have PhysicsPart.Solid=true without the tag.
+                        // This prevents furniture-walk A* from routing through NPCs.
+                        if (!ignoreCreatures && IsCellBlockedByCreature(cell))
+                            continue;
                     }
 
                     // Check diagonal movement isn't cutting through walls
@@ -171,6 +193,22 @@ namespace CavesOfOoo.Core
         private static int CellIndex(int x, int y)
         {
             return y * Zone.Width + x;
+        }
+
+        /// <summary>
+        /// Check if a cell has an entity with PhysicsPart.Solid = true.
+        /// This catches creatures (which have PhysicsPart.Solid but not the "Solid" tag)
+        /// that Cell.IsPassable() misses.
+        /// </summary>
+        private static bool IsCellBlockedByCreature(Cell cell)
+        {
+            for (int i = 0; i < cell.Objects.Count; i++)
+            {
+                var physics = cell.Objects[i].GetPart<PhysicsPart>();
+                if (physics != null && physics.Solid)
+                    return true;
+            }
+            return false;
         }
 
         private static void ReconstructPath(FindPath result, int startIdx, int goalIdx)
