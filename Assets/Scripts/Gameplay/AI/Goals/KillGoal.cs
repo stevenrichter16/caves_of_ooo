@@ -6,6 +6,13 @@ namespace CavesOfOoo.Core
     /// Goal that tracks and attacks a hostile target.
     /// Mirrors Qud's Kill goal handler.
     /// Finishes when the target dies or leaves the zone.
+    ///
+    /// Approach strategy:
+    /// - Adjacent → melee attack
+    /// - Not adjacent → try ranged ability, else walk toward target
+    /// - Walking uses TryApproachWithPathfinding: greedy-first with A* fallback
+    ///   when blocked by walls, so creatures navigate around obstacles to reach
+    ///   moving targets (no more snapjaws stuck on building walls).
     /// </summary>
     public class KillGoal : GoalHandler
     {
@@ -43,7 +50,7 @@ namespace CavesOfOoo.Core
             else
             {
                 if (!AIHelpers.TryUseRangedAbility(ParentEntity, CurrentZone, Rng, myPos, targetPos))
-                    AIHelpers.TryStepToward(ParentEntity, CurrentZone, myPos.x, myPos.y, targetPos.x, targetPos.y);
+                    AIHelpers.TryApproachWithPathfinding(ParentEntity, CurrentZone, myPos.x, myPos.y, targetPos.x, targetPos.y);
             }
         }
     }

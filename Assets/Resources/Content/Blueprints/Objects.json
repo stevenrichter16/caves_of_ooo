@@ -988,7 +988,12 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "2" }] },
-        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "8" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "8" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" },
+          { "Key": "Staying", "Value": "true" }
+        ]},
         { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Elder_1" }] },
         { "Name": "GivesRep", "Params": [{ "Key": "Value", "Value": "25" }] }
       ],
@@ -1000,7 +1005,8 @@
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Villagers" },
-        { "Key": "Tier", "Value": "1" }
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
       ]
     },
     {
@@ -1429,7 +1435,12 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "2" }] },
-        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "8" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "8" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" },
+          { "Key": "Staying", "Value": "true" }
+        ]},
         { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Tinker_1" }] }
       ],
       "Stats": [
@@ -1439,7 +1450,8 @@
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Villagers" },
-        { "Key": "Tier", "Value": "1" }
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
       ],
       "IntProps": [
         { "Key": "Drams", "Value": 200 }
@@ -1457,7 +1469,12 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "1" }] },
-        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "8" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "8" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" },
+          { "Key": "Staying", "Value": "true" }
+        ]},
         { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Merchant_1" }] }
       ],
       "Stats": [
@@ -1466,7 +1483,8 @@
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Villagers" },
-        { "Key": "Tier", "Value": "1" }
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
       ],
       "IntProps": [
         { "Key": "Drams", "Value": 500 }
@@ -2636,7 +2654,12 @@
           { "Key": "ColorString", "Value": "&r" }
         ]},
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "2" }] },
-        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "12" }, { "Key": "Wanders", "Value": "true" }, { "Key": "WandersRandomly", "Value": "false" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "12" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" },
+          { "Key": "Staying", "Value": "true" }
+        ]},
         { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Warden_1" }] }
       ],
       "Stats": [
@@ -2647,7 +2670,8 @@
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Villagers" },
-        { "Key": "Tier", "Value": "2" }
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
       ]
     },
 
@@ -3418,7 +3442,12 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "0" }, { "Key": "DV", "Value": "1" }] },
-        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "8" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "8" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" },
+          { "Key": "Staying", "Value": "true" }
+        ]},
         { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Scribe_1" }] }
       ],
       "Stats": [
@@ -3428,7 +3457,8 @@
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Villagers" },
-        { "Key": "Tier", "Value": "1" }
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
       ]
     },
     {
