@@ -121,6 +121,15 @@ namespace CavesOfOoo.Core
             Entity scribe = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Scribe", settlementId);
             SetConversation(scribe, "Scribe_1");
 
+            // 1 Innkeeper (always, if blueprint available) — assigned ownership of
+            // the nearest chair so no other NPC can use it. Tier 3d: per-NPC chair ownership.
+            if (factory.Blueprints.ContainsKey("Innkeeper"))
+            {
+                Entity innkeeper = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Innkeeper", settlementId);
+                if (innkeeper != null)
+                    AssignNearestChairOwner(zone, innkeeper);
+            }
+
             // 2-4 Villagers
             int villagerCount = rng.Next(2, 5);
             for (int i = 0; i < villagerCount; i++)
@@ -887,6 +896,47 @@ namespace CavesOfOoo.Core
                 npc.SetTag("Faction", _poi.Faction);
             if (!string.IsNullOrEmpty(settlementId))
                 npc.Properties["SettlementId"] = settlementId;
+        }
+
+        /// <summary>
+        /// Tier 3d: Per-NPC chair ownership.
+        /// Finds the unowned chair nearest to the NPC's spawn position and sets
+        /// ChairPart.Owner to the NPC's entity ID. After this, only this specific
+        /// NPC can query/sit in this chair (IdleQueryEvent's Owner check rejects
+        /// any querier whose ID doesn't match and doesn't have Owner as a tag).
+        ///
+        /// If no chair exists in the zone, or all chairs are already owned,
+        /// this is a no-op — the NPC falls back to querying any available chair.
+        /// </summary>
+        private static void AssignNearestChairOwner(Zone zone, Entity owner)
+        {
+            if (zone == null || owner == null) return;
+
+            var ownerCell = zone.GetEntityCell(owner);
+            if (ownerCell == null) return;
+
+            Entity nearestChair = null;
+            int nearestDist = int.MaxValue;
+
+            foreach (var entity in zone.GetReadOnlyEntities())
+            {
+                var chairPart = entity.GetPart<ChairPart>();
+                if (chairPart == null) continue;
+                if (!string.IsNullOrEmpty(chairPart.Owner)) continue; // already owned
+
+                var chairCell = zone.GetEntityCell(entity);
+                if (chairCell == null) continue;
+
+                int dist = AIHelpers.ChebyshevDistance(ownerCell.X, ownerCell.Y, chairCell.X, chairCell.Y);
+                if (dist < nearestDist)
+                {
+                    nearestDist = dist;
+                    nearestChair = entity;
+                }
+            }
+
+            if (nearestChair != null)
+                nearestChair.GetPart<ChairPart>().Owner = owner.ID;
         }
     }
 }

@@ -3358,6 +3358,22 @@
       ]
     },
     {
+      "Name": "Innkeeper",
+      "Inherits": "Villager",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "innkeeper" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&B" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Innkeeper_1" }] }
+      ],
+      "IntProps": [
+        { "Key": "Drams", "Value": 250 }
+      ]
+    },
+    {
       "Name": "SilverSand",
       "Inherits": "Item",
       "Parts": [
