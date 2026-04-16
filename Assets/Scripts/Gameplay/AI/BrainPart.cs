@@ -71,6 +71,24 @@ namespace CavesOfOoo.Core
         // RNG for AI decisions (injectable for deterministic testing)
         public Random Rng;
 
+        // --- Starting Cell / Home ---
+
+        /// <summary>Cell where this NPC was first placed. Used by BoredGoal to return home.</summary>
+        public int StartingCellX = -1;
+        public int StartingCellY = -1;
+        public bool HasStartingCell => StartingCellX >= 0 && StartingCellY >= 0;
+
+        /// <summary>When true, NPC returns to StartingCell when idle instead of wandering.</summary>
+        public bool Staying = false;
+
+        /// <summary>Set the NPC's home cell and enable Staying behavior.</summary>
+        public void Stay(int x, int y)
+        {
+            StartingCellX = x;
+            StartingCellY = y;
+            Staying = true;
+        }
+
         // --- Goal Stack ---
 
         private List<GoalHandler> _goals = new List<GoalHandler>();
@@ -150,6 +168,17 @@ namespace CavesOfOoo.Core
                 {
                     if (CurrentZone.GetEntityCell(Target) == null)
                         Target = null;
+                }
+
+                // Set starting cell on first turn if not already set
+                if (!HasStartingCell)
+                {
+                    var pos = CurrentZone.GetEntityPosition(ParentEntity);
+                    if (pos.x >= 0)
+                    {
+                        StartingCellX = pos.x;
+                        StartingCellY = pos.y;
+                    }
                 }
 
                 // Clean finished goals from top of stack

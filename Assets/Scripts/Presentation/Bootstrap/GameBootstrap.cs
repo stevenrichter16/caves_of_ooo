@@ -770,6 +770,14 @@ namespace CavesOfOoo
                 {
                     brain.CurrentZone = _zone;
                     brain.Rng = new System.Random();
+
+                    // Set starting cell eagerly so it's available before first turn
+                    var pos = _zone.GetEntityPosition(creature);
+                    if (pos.x >= 0)
+                    {
+                        brain.StartingCellX = pos.x;
+                        brain.StartingCellY = pos.y;
+                    }
                 }
             }
             Debug.Log($"GameBootstrap: Registered {creatures.Count} creatures for turns");
