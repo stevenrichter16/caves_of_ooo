@@ -141,5 +141,52 @@ namespace CavesOfOoo.Tests
             Assert.IsFalse(snapjaw.HasTag("AllowIdleBehavior"),
                 "Snapjaw should not have AllowIdleBehavior tag");
         }
+
+        // ========================
+        // Tier 2b: Interior-biased NPC spawning
+        // ========================
+
+        [Test]
+        public void VillagePopulationBuilder_SpawnsNPCsInsideBuildings()
+        {
+            // Generate a full village and verify most NPCs spawn on StoneFloor (interior)
+            var poi = new PointOfInterest(POIType.Village, "Test Village", "Villagers");
+            var villageBuilder = new VillageBuilder(BiomeType.Cave, poi);
+            var populationBuilder = new VillagePopulationBuilder(poi);
+            var zone = new Zone("Overworld.10.10.0");
+
+            villageBuilder.BuildZone(zone, _factory, new System.Random(42));
+            populationBuilder.BuildZone(zone, _factory, new System.Random(42));
+
+            int npcTotal = 0;
+            int npcOnStoneFloor = 0;
+
+            foreach (var entity in zone.GetReadOnlyEntities())
+            {
+                if (!entity.HasTag("Creature")) continue;
+                npcTotal++;
+
+                var cell = zone.GetEntityCell(entity);
+                if (cell == null) continue;
+
+                for (int i = 0; i < cell.Objects.Count; i++)
+                {
+                    if (cell.Objects[i].BlueprintName == "StoneFloor")
+                    {
+                        npcOnStoneFloor++;
+                        break;
+                    }
+                }
+            }
+
+            Assert.Greater(npcTotal, 0, "Village should have at least one NPC");
+
+            // With interior-biased spawning, MOST NPCs should be on StoneFloor.
+            // Allow some to be on open cells (fallback when interior cells run out).
+            float interiorRatio = (float)npcOnStoneFloor / npcTotal;
+            Assert.GreaterOrEqual(interiorRatio, 0.5f,
+                $"At least 50% of NPCs should spawn inside buildings (got {npcOnStoneFloor}/{npcTotal} = {interiorRatio:P0}). " +
+                "This verifies the Tier 2b interior-biased spawning is working.");
+        }
     }
 }

@@ -111,6 +111,22 @@ namespace CavesOfOoo.Tests
               ""Tags"": [{ ""Key"": ""Furniture"", ""Value"": """" }]
             },
             {
+              ""Name"": ""Bed"",
+              ""Inherits"": ""PhysicalObject"",
+              ""Parts"": [
+                { ""Name"": ""Render"", ""Params"": [
+                  { ""Key"": ""DisplayName"", ""Value"": ""straw bed"" },
+                  { ""Key"": ""RenderString"", ""Value"": ""="" },
+                  { ""Key"": ""ColorString"", ""Value"": ""&W"" },
+                  { ""Key"": ""RenderLayer"", ""Value"": ""5"" }
+                ]},
+                { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Solid"", ""Value"": ""false"" }] },
+                { ""Name"": ""Bed"", ""Params"": [] }
+              ],
+              ""Stats"": [],
+              ""Tags"": [{ ""Key"": ""Furniture"", ""Value"": """" }]
+            },
+            {
               ""Name"": ""Villager"",
               ""Inherits"": ""Creature"",
               ""Parts"": [
@@ -188,6 +204,51 @@ namespace CavesOfOoo.Tests
 
             Assert.IsFalse(chairPart.Occupied, "New chair should start unoccupied");
             Assert.AreEqual("", chairPart.Owner, "New chair should have no owner restriction");
+        }
+
+        // ========================
+        // Bed blueprint
+        // ========================
+
+        [Test]
+        public void BedBlueprint_CreatesEntityWithBedPart()
+        {
+            var bed = _factory.CreateEntity("Bed");
+
+            Assert.IsNotNull(bed, "Bed blueprint should create an entity");
+            Assert.IsNotNull(bed.GetPart<BedPart>(), "Bed entity should have BedPart");
+        }
+
+        [Test]
+        public void BedBlueprint_IsNotSolid()
+        {
+            var bed = _factory.CreateEntity("Bed");
+            var physics = bed.GetPart<PhysicsPart>();
+
+            Assert.IsNotNull(physics);
+            Assert.IsFalse(physics.Solid, "Bed must not be solid — NPCs need to walk onto it");
+        }
+
+        [Test]
+        public void BedBlueprint_HasCorrectRender()
+        {
+            var bed = _factory.CreateEntity("Bed");
+            var render = bed.GetPart<RenderPart>();
+
+            Assert.IsNotNull(render);
+            Assert.AreEqual("=", render.RenderString);
+            Assert.AreEqual("&W", render.ColorString);
+            Assert.AreEqual(5, render.RenderLayer);
+            Assert.AreEqual("straw bed", render.DisplayName);
+        }
+
+        [Test]
+        public void BedBlueprint_StartsUnoccupied()
+        {
+            var bed = _factory.CreateEntity("Bed");
+            var bedPart = bed.GetPart<BedPart>();
+
+            Assert.IsFalse(bedPart.Occupied, "New bed should start unoccupied");
         }
 
         // ========================
@@ -330,6 +391,89 @@ namespace CavesOfOoo.Tests
                 }
                 Assert.IsTrue(onStoneFloor,
                     $"Chair at ({cell.X},{cell.Y}) should be on stone floor (inside a building)");
+            }
+        }
+
+        // ========================
+        // VillageBuilder bed placement
+        // ========================
+
+        [Test]
+        public void VillageBuilder_PlacesBedsInBuildings()
+        {
+            var zone = new Zone("TestVillage");
+            var builder = new VillageBuilder(BiomeType.Cave, null, null);
+            var rng = new System.Random(12345);
+
+            builder.BuildZone(zone, _factory, rng);
+
+            int bedCount = 0;
+            foreach (var entity in zone.GetReadOnlyEntities())
+            {
+                if (entity.GetPart<BedPart>() != null)
+                    bedCount++;
+            }
+
+            Assert.Greater(bedCount, 0,
+                "VillageBuilder should place at least one bed. Each building gets one bed.");
+        }
+
+        [Test]
+        public void VillageBuilder_BedsAreInsideBuildings()
+        {
+            var zone = new Zone("TestVillage");
+            var builder = new VillageBuilder(BiomeType.Cave, null, null);
+            var rng = new System.Random(99999);
+
+            builder.BuildZone(zone, _factory, rng);
+
+            foreach (var entity in zone.GetReadOnlyEntities())
+            {
+                if (entity.GetPart<BedPart>() == null) continue;
+
+                var cell = zone.GetEntityCell(entity);
+                Assert.IsNotNull(cell);
+
+                bool onStoneFloor = false;
+                foreach (var obj in cell.Objects)
+                {
+                    if (obj.GetPart<RenderPart>()?.DisplayName == "stone floor")
+                    {
+                        onStoneFloor = true;
+                        break;
+                    }
+                }
+                Assert.IsTrue(onStoneFloor,
+                    $"Bed at ({cell.X},{cell.Y}) should be on stone floor (inside a building)");
+            }
+        }
+
+        [Test]
+        public void VillageBuilder_BedsAndChairsAtDifferentPositions()
+        {
+            var zone = new Zone("TestVillage");
+            var builder = new VillageBuilder(BiomeType.Cave, null, null);
+            var rng = new System.Random(42);
+
+            builder.BuildZone(zone, _factory, rng);
+
+            var chairPositions = new System.Collections.Generic.HashSet<(int, int)>();
+            var bedPositions = new System.Collections.Generic.HashSet<(int, int)>();
+
+            foreach (var entity in zone.GetReadOnlyEntities())
+            {
+                var cell = zone.GetEntityCell(entity);
+                if (entity.GetPart<ChairPart>() != null)
+                    chairPositions.Add((cell.X, cell.Y));
+                if (entity.GetPart<BedPart>() != null)
+                    bedPositions.Add((cell.X, cell.Y));
+            }
+
+            // Beds and chairs should not overlap (different positions within each room)
+            foreach (var bedPos in bedPositions)
+            {
+                Assert.IsFalse(chairPositions.Contains(bedPos),
+                    $"Bed and chair overlap at ({bedPos.Item1},{bedPos.Item2})");
             }
         }
 

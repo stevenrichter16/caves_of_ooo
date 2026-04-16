@@ -672,6 +672,26 @@
       ]
     },
     {
+      "Name": "Bed",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "straw bed" },
+          { "Key": "RenderString", "Value": "=" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" }
+        ]},
+        { "Name": "Bed", "Params": [] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Furniture", "Value": "" }
+      ]
+    },
+    {
       "Name": "StoneWall",
       "Inherits": "Wall",
       "Parts": [

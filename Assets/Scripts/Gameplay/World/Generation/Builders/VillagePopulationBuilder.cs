@@ -83,44 +83,48 @@ namespace CavesOfOoo.Core
                 PlaceCompassStones(zone, factory, openCells, grimoireChest);
             }
 
-            // Deterministic NPC roles
-            Entity elder = PlaceNPC(zone, factory, rng, openCells, "Elder", settlementId);
+            // Gather interior cells (building floors) for NPC placement.
+            // Done after all decor so occupied cells are already excluded.
+            var interiorCells = GatherInteriorCells(zone);
+
+            // Deterministic NPC roles — prefer interior (building) cells.
+            Entity elder = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Elder", settlementId);
             if (mainWell != null)
                 SetConversation(elder, "Elder_Well_1");
 
             // 1 Merchant (always)
-            Entity merchant = PlaceNPC(zone, factory, rng, openCells, "Merchant", settlementId);
+            Entity merchant = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Merchant", settlementId);
             StockMerchant(merchant, factory);
 
             // 0-1 Tinker (70% chance)
             if (rng.Next(100) < 70)
-                PlaceNPC(zone, factory, rng, openCells, "Tinker", settlementId);
+                PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Tinker", settlementId);
 
             // Warden (always if lantern site exists, else 60% chance)
             if (lanternSite != null)
             {
-                Entity warden = PlaceNPC(zone, factory, rng, openCells, "Warden", settlementId);
+                Entity warden = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Warden", settlementId);
                 SetConversation(warden, "Warden_Lantern_1");
             }
             else if (rng.Next(100) < 60)
             {
-                PlaceNPC(zone, factory, rng, openCells, "Warden", settlementId);
+                PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Warden", settlementId);
             }
 
             if (mainWell != null)
             {
-                PlaceNPC(zone, factory, rng, openCells, "WellKeeper", settlementId);
-                PlaceNPC(zone, factory, rng, openCells, "Farmer", settlementId);
+                PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "WellKeeper", settlementId);
+                PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Farmer", settlementId);
             }
 
             // 1 Scribe (always)
-            Entity scribe = PlaceNPC(zone, factory, rng, openCells, "Scribe", settlementId);
+            Entity scribe = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Scribe", settlementId);
             SetConversation(scribe, "Scribe_1");
 
             // 2-4 Villagers
             int villagerCount = rng.Next(2, 5);
             for (int i = 0; i < villagerCount; i++)
-                PlaceNPC(zone, factory, rng, openCells, "Villager", settlementId);
+                PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
 
             return true;
         }
@@ -818,6 +822,64 @@ namespace CavesOfOoo.Core
                     cells.Add((x, y));
             });
             return cells;
+        }
+
+        /// <summary>
+        /// Gather passable cells that are on StoneFloor (building interiors).
+        /// Used to bias NPC spawning toward buildings instead of random outdoor cells.
+        /// Call this AFTER decor placement so occupied cells are excluded.
+        /// </summary>
+        private List<(int x, int y)> GatherInteriorCells(Zone zone)
+        {
+            var cells = new List<(int x, int y)>();
+            zone.ForEachCell((cell, x, y) =>
+            {
+                if (!cell.IsPassable()) return;
+                for (int i = 0; i < cell.Objects.Count; i++)
+                {
+                    if (cell.Objects[i].BlueprintName == "StoneFloor")
+                    {
+                        cells.Add((x, y));
+                        break;
+                    }
+                }
+            });
+            return cells;
+        }
+
+        /// <summary>
+        /// Place an NPC, preferring building interior cells first.
+        /// Falls back to any open cell if no interior cells remain.
+        /// Keeps both cell lists in sync when a cell is consumed.
+        /// </summary>
+        private Entity PlaceNPCInInterior(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> interiorCells, List<(int x, int y)> openCells,
+            string blueprint, string settlementId)
+        {
+            // Try interior first
+            if (interiorCells.Count > 0)
+            {
+                int idx = rng.Next(interiorCells.Count);
+                var (x, y) = interiorCells[idx];
+
+                Entity npc = TryCreateEntity(factory, blueprint);
+                if (npc != null)
+                {
+                    zone.AddEntity(npc, x, y);
+                    interiorCells.RemoveAt(idx);
+                    openCells.Remove((x, y)); // keep open list in sync
+
+                    if (_poi?.Faction != null)
+                        npc.SetTag("Faction", _poi.Faction);
+                    if (!string.IsNullOrEmpty(settlementId))
+                        npc.Properties["SettlementId"] = settlementId;
+
+                    return npc;
+                }
+            }
+
+            // Fallback to any open cell
+            return PlaceNPC(zone, factory, rng, openCells, blueprint, settlementId);
         }
     }
 }
