@@ -19,7 +19,11 @@ namespace CavesOfOoo.Core
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == AIBoredEvent.ID)
-                return HandleBored();
+            {
+                bool result = HandleBored();
+                if (!result) e.Handled = true;
+                return result;
+            }
             return true;
         }
 
@@ -29,6 +33,8 @@ namespace CavesOfOoo.Core
             if (brain == null || !brain.HasStartingCell)
                 return true; // no post to guard — let default behavior proceed
 
+            // TODO: When party/follower system exists (Phase 8), gate this with
+            // CanAIDoIndependentBehavior to prevent followers from guarding independently.
             brain.PushGoal(new GuardGoal(brain.StartingCellX, brain.StartingCellY));
             return false; // consumed — BoredGoal will not proceed to wander/idle
         }

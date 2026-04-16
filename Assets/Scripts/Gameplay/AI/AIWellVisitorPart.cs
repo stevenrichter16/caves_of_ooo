@@ -22,7 +22,11 @@ namespace CavesOfOoo.Core
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == AIBoredEvent.ID)
-                return HandleBored();
+            {
+                bool result = HandleBored();
+                if (!result) e.Handled = true;
+                return result;
+            }
             return true;
         }
 
@@ -31,6 +35,9 @@ namespace CavesOfOoo.Core
             var brain = ParentEntity.GetPart<BrainPart>();
             if (brain?.Rng == null || brain.CurrentZone == null)
                 return true;
+
+            // TODO: When party/follower system exists (Phase 8), gate this with
+            // CanAIDoIndependentBehavior to prevent followers from wandering to the well.
 
             // Probability gate
             if (brain.Rng.Next(100) >= Chance)

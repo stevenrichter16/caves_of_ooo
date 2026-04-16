@@ -42,13 +42,6 @@ namespace CavesOfOoo.Tests
             return entity;
         }
 
-        private Entity CreatePlayer(int hp = 20)
-        {
-            var entity = CreateCreature(null, hp);
-            entity.Tags["Player"] = "";
-            return entity;
-        }
-
         private Entity CreateWarden(Zone zone, int x, int y)
         {
             var entity = CreateCreature("Villagers");
@@ -205,6 +198,73 @@ namespace CavesOfOoo.Tests
 
             Assert.IsTrue(brain.HasGoal<KillGoal>(),
                 "Warden should react to hostile Snapjaw immediately (no WaitGoal blocking)");
+        }
+
+        // ========================
+        // Tier 3c: AIWellVisitorPart
+        [Test]
+        public void AIGuard_GoalStackStable_AfterMultipleTurns()
+        {
+            // GuardGoal should stay on the stack without duplicating.
+            // After N turns with no hostiles, stack should be exactly [BoredGoal, GuardGoal].
+            var zone = new Zone("TestZone");
+            var warden = CreateWarden(zone, 10, 10);
+            var brain = warden.GetPart<BrainPart>();
+
+            for (int i = 0; i < 20; i++)
+                warden.FireEvent(GameEvent.New("TakeTurn"));
+
+            // Stack should be stable: BoredGoal at bottom, GuardGoal on top
+            Assert.AreEqual(2, brain.GoalCount,
+                "Stack should be [BoredGoal, GuardGoal] — no extra goals from repeated ticks");
+            Assert.IsTrue(brain.HasGoal<BoredGoal>());
+            Assert.IsTrue(brain.HasGoal<GuardGoal>());
+
+            // Warden should still be at post
+            var pos = zone.GetEntityPosition(warden);
+            Assert.AreEqual(10, pos.x);
+            Assert.AreEqual(10, pos.y);
+        }
+
+        [Test]
+        public void AIGuard_FullCombatCycle_ChaseAndReturnToPost()
+        {
+            // Full integration: hostile appears, warden chases, hostile dies,
+            // warden walks back to post.
+            var zone = new Zone("TestZone");
+            var warden = CreateWarden(zone, 10, 10);
+            var brain = warden.GetPart<BrainPart>();
+            // Give warden a strong weapon to ensure kill
+            warden.GetPart<MeleeWeaponPart>().BaseDamage = "10d10";
+
+            // First tick: pushes GuardGoal
+            warden.FireEvent(GameEvent.New("TakeTurn"));
+            Assert.IsTrue(brain.HasGoal<GuardGoal>());
+
+            // Snapjaw appears nearby
+            var snapjaw = CreateCreature("Snapjaws");
+            snapjaw.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 1, Min = 0, Max = 1 };
+            zone.AddEntity(snapjaw, 12, 10);
+
+            // Run ticks — warden should chase and kill the snapjaw
+            for (int i = 0; i < 5; i++)
+            {
+                warden.FireEvent(GameEvent.New("TakeTurn"));
+                // If snapjaw is dead (removed from zone), stop
+                if (zone.GetEntityCell(snapjaw) == null) break;
+            }
+
+            // Snapjaw should be dead
+            Assert.IsNull(zone.GetEntityCell(snapjaw),
+                "Snapjaw should be dead after warden attack");
+
+            // Warden drifted from post during chase. Run more ticks to return.
+            for (int i = 0; i < 15; i++)
+                warden.FireEvent(GameEvent.New("TakeTurn"));
+
+            var pos = zone.GetEntityPosition(warden);
+            Assert.AreEqual(10, pos.x, "Warden should return to guard post X after combat");
+            Assert.AreEqual(10, pos.y, "Warden should return to guard post Y after combat");
         }
 
         // ========================
