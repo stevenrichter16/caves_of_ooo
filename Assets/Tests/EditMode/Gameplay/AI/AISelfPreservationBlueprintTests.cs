@@ -92,6 +92,33 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(0.95f, part.SafeThreshold, 0.001f);
         }
 
+        [Test]
+        public void WellKeeper_HasAISelfPreservation_With_0_7_Threshold()
+        {
+            // M1 code review Bug 4: WellKeeper was Passive but missing
+            // AISelfPreservation. An attacked WellKeeper fights back via
+            // PersonalEnemies path; without retreat he fights to the death.
+            var wellKeeper = _factory.CreateEntity("WellKeeper");
+            var part = wellKeeper.GetPart<AISelfPreservationPart>();
+            Assert.IsNotNull(part, "WellKeeper should have AISelfPreservation for symmetry " +
+                "with other passive NPCs (Innkeeper, Scribe).");
+            Assert.AreEqual(0.7f, part.RetreatThreshold, 0.001f);
+            Assert.AreEqual(0.9f, part.SafeThreshold, 0.001f);
+        }
+
+        [Test]
+        public void Elder_HasAISelfPreservation_With_0_7_Threshold()
+        {
+            // M1 code review Bug 4: Elder was Passive but missing
+            // AISelfPreservation.
+            var elder = _factory.CreateEntity("Elder");
+            var part = elder.GetPart<AISelfPreservationPart>();
+            Assert.IsNotNull(part, "Elder should have AISelfPreservation — ceremonial leader, " +
+                "not a combatant, should retreat when wounded.");
+            Assert.AreEqual(0.7f, part.RetreatThreshold, 0.001f);
+            Assert.AreEqual(0.9f, part.SafeThreshold, 0.001f);
+        }
+
         // ========================
         // M1.2 — Passive flag
         // ========================
@@ -228,6 +255,73 @@ namespace CavesOfOoo.Tests
 
             Assert.IsFalse(brain.HasGoal<KillGoal>(),
                 "Passive Scribe should NOT push KillGoal on hostile sight");
+        }
+
+        [Test]
+        public void Warden_DoesNotRetreat_WhileHostileInSight()
+        {
+            // M1 code review Test gap 11:
+            //
+            // Pins the design-intentional behavior: AISelfPreservation only fires
+            // via AIBoredEvent, which only fires when BoredGoal finds NO hostile
+            // in sight. Therefore a wounded NPC in active combat will NOT retreat
+            // mid-fight — they engage via KillGoal until combat breaks off.
+            //
+            // Setup: Warden HP = 11/40 (27.5%). Above FleeThreshold (25%) so
+            // ShouldFlee is false. Below RetreatThreshold (30%) so if AIBored
+            // fired, AISelfPreservation would push RetreatGoal. But the hostile
+            // in sight causes BoredGoal to engage first and return early,
+            // skipping AIBoredEvent.
+            var zone = new Zone("TestZone");
+            var warden = _factory.CreateEntity("Warden");
+            var snapjaw = _factory.CreateEntity("Snapjaw");
+            zone.AddEntity(warden, 10, 10);
+            zone.AddEntity(snapjaw, 12, 10);
+
+            var brain = warden.GetPart<BrainPart>();
+            brain.CurrentZone = zone;
+            brain.Rng = new System.Random(1);
+            brain.StartingCellX = 10;
+            brain.StartingCellY = 10;
+
+            // HP 11/40 = 0.275 — above FleeThreshold (0.25), below RetreatThreshold (0.3)
+            warden.GetStat("Hitpoints").BaseValue = 11;
+
+            warden.FireEvent(GameEvent.New("TakeTurn"));
+
+            Assert.IsTrue(brain.HasGoal<KillGoal>(),
+                "Warden with hostile in sight should engage via KillGoal — " +
+                "AIBored can't fire while a hostile is visible.");
+            Assert.IsFalse(brain.HasGoal<RetreatGoal>(),
+                "AISelfPreservation depends on AIBoredEvent firing, which is " +
+                "suppressed when a hostile is sighted. Mid-combat retreat is not supported.");
+        }
+
+        [Test]
+        public void Warden_Retreats_AfterHostileLeavesSight()
+        {
+            // Companion to Warden_DoesNotRetreat_WhileHostileInSight: verifies the
+            // retreat path DOES fire once the hostile is gone (hostile killed or
+            // moved off-screen), closing the "hostile is visible" guard and
+            // letting BoredGoal fire AIBored.
+            var zone = new Zone("TestZone");
+            var warden = _factory.CreateEntity("Warden");
+            zone.AddEntity(warden, 10, 10);
+
+            var brain = warden.GetPart<BrainPart>();
+            brain.CurrentZone = zone;
+            brain.Rng = new System.Random(1);
+            brain.StartingCellX = 10;
+            brain.StartingCellY = 10;
+
+            // Low HP, no hostile in zone
+            warden.GetStat("Hitpoints").BaseValue = 8; // 20% — well below RetreatThreshold (30%)
+
+            warden.FireEvent(GameEvent.New("TakeTurn"));
+
+            Assert.IsTrue(brain.HasGoal<RetreatGoal>(),
+                "With no hostile in sight, AIBored fires and AISelfPreservation " +
+                "pushes RetreatGoal for the wounded Warden.");
         }
     }
 }

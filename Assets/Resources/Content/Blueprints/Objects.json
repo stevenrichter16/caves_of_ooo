@@ -1016,7 +1016,11 @@
           { "Key": "Passive", "Value": "true" }
         ]},
         { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Elder_1" }] },
-        { "Name": "GivesRep", "Params": [{ "Key": "Value", "Value": "25" }] }
+        { "Name": "GivesRep", "Params": [{ "Key": "Value", "Value": "25" }] },
+        { "Name": "AISelfPreservation", "Params": [
+          { "Key": "RetreatThreshold", "Value": "0.7" },
+          { "Key": "SafeThreshold", "Value": "0.9" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 },
@@ -3352,6 +3356,10 @@
         { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "WellKeeper_1" }] },
         { "Name": "Brain", "Params": [
           { "Key": "Passive", "Value": "true" }
+        ]},
+        { "Name": "AISelfPreservation", "Params": [
+          { "Key": "RetreatThreshold", "Value": "0.7" },
+          { "Key": "SafeThreshold", "Value": "0.9" }
         ]}
       ]
     },
@@ -4108,16 +4116,17 @@
           { "Key": "RenderString", "Value": "=" },
           { "Key": "ColorString", "Value": "&Y" }
         ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "false" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8" }, { "Key": "PenBonus", "Value": "1" }] },
         { "Name": "Brain", "Params": [
-          { "Key": "SightRadius", "Value": "5" },
+          { "Key": "SightRadius", "Value": "0" },
           { "Key": "Staying", "Value": "true" },
           { "Key": "Wanders", "Value": "false" },
           { "Key": "WandersRandomly", "Value": "false" }
         ]},
         { "Name": "AIAmbush", "Params": [
           { "Key": "WakeOnDamage", "Value": "true" },
-          { "Key": "WakeOnHostileInSight", "Value": "false" },
+          { "Key": "WakeOnHostileInSight", "Value": "true" },
           { "Key": "SleepParticleInterval", "Value": "0" }
         ]}
       ],
@@ -4148,7 +4157,8 @@
         { "Name": "Brain", "Params": [
           { "Key": "SightRadius", "Value": "10" },
           { "Key": "Wanders", "Value": "false" },
-          { "Key": "WandersRandomly", "Value": "false" }
+          { "Key": "WandersRandomly", "Value": "false" },
+          { "Key": "Staying", "Value": "true" }
         ]},
         { "Name": "AIAmbush", "Params": [
           { "Key": "WakeOnDamage", "Value": "true" },

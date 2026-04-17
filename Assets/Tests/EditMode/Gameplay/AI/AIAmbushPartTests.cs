@@ -8,9 +8,15 @@ namespace CavesOfOoo.Tests
 {
     /// <summary>
     /// Phase 6 Milestone M1.3 — verifies AIAmbushPart pushes DormantGoal on
-    /// first TakeTurn, that the SleepingTroll/MimicChest/AmbushBandit blueprints
-    /// load correctly with their per-creature wake-trigger configurations,
-    /// and that the ambush push is idempotent across repeated TakeTurns.
+    /// Part.Initialize (at construction time, before any TakeTurn), that the
+    /// SleepingTroll/MimicChest/AmbushBandit blueprints load correctly with
+    /// their per-creature wake-trigger configurations, and that the ambush
+    /// push is idempotent across repeated TakeTurns.
+    ///
+    /// Push-timing note: DormantGoal is pushed in Initialize (Part.AddPart hook)
+    /// to avoid the turn-1 ordering bug where BrainPart.HandleEvent would
+    /// otherwise fire BoredGoal on an empty stack before AIAmbush got a chance
+    /// to push DormantGoal. See Phase 6 M1 code review Bug 1 in QUD-PARITY.md.
     /// </summary>
     [TestFixture]
     public class AIAmbushPartTests
@@ -67,19 +73,47 @@ namespace CavesOfOoo.Tests
         // ========================
 
         [Test]
-        public void AIAmbush_PushesDormantGoal_OnFirstTakeTurn()
+        public void AIAmbush_PushesDormantGoal_AtConstructionTime()
         {
+            // AIAmbushPart.Initialize runs when the part is attached to the entity
+            // (inside Entity.AddPart). DormantGoal should be on the stack immediately,
+            // before any TakeTurn has fired.
             var zone = new Zone("TestZone");
             var creature = CreateAmbushCreature(zone, 10, 10);
             var brain = creature.GetPart<BrainPart>();
 
-            Assert.IsFalse(brain.HasGoal<DormantGoal>(),
-                "Before first TakeTurn, there should be no DormantGoal");
+            Assert.IsTrue(brain.HasGoal<DormantGoal>(),
+                "AIAmbushPart.Initialize should push DormantGoal at construction time, " +
+                "not on first TakeTurn (prevents BoredGoal from running before ambush).");
+        }
+
+        [Test]
+        public void AIAmbush_DormantGoalOnTop_NotBoredGoal_AfterFirstTakeTurn()
+        {
+            // Regression test for M1 code review Bug 1: turn-1 ordering.
+            //
+            // Previously AIAmbushPart pushed DormantGoal on TakeTurn, which fired
+            // AFTER BrainPart.HandleEvent (due to blueprint part-declaration order).
+            // That meant BrainPart.HandleTakeTurn pushed BoredGoal onto the empty
+            // stack and executed a tick of wandering/scanning BEFORE DormantGoal
+            // ever reached the top.
+            //
+            // With the Initialize-based push fix, DormantGoal is already on the stack
+            // when BrainPart.HandleTakeTurn runs. Stack-empty check fails, BoredGoal
+            // never gets pushed, and the first tick executes DormantGoal.TakeAction.
+            var zone = new Zone("TestZone");
+            var creature = CreateAmbushCreature(zone, 10, 10);
+            var brain = creature.GetPart<BrainPart>();
 
             creature.FireEvent(GameEvent.New("TakeTurn"));
 
-            Assert.IsTrue(brain.HasGoal<DormantGoal>(),
-                "After first TakeTurn, AIAmbushPart should have pushed DormantGoal");
+            Assert.AreEqual(1, brain.GoalCount,
+                "Stack should contain exactly one goal (DormantGoal). BoredGoal must not leak in.");
+            Assert.IsTrue(brain.PeekGoal() is DormantGoal,
+                "Top goal should be DormantGoal, not BoredGoal.");
+            Assert.IsFalse(brain.HasGoal<BoredGoal>(),
+                "BoredGoal should never be pushed — DormantGoal was already on the stack " +
+                "before BrainPart.HandleTakeTurn's empty-stack check.");
         }
 
         [Test]
@@ -89,6 +123,8 @@ namespace CavesOfOoo.Tests
             var creature = CreateAmbushCreature(zone, 10, 10);
             var brain = creature.GetPart<BrainPart>();
 
+            // DormantGoal is already pushed at construction (Initialize). Firing
+            // TakeTurn repeatedly should NOT re-push via the HandleEvent fallback.
             for (int i = 0; i < 5; i++)
                 creature.FireEvent(GameEvent.New("TakeTurn"));
 
@@ -97,7 +133,69 @@ namespace CavesOfOoo.Tests
             Assert.IsNotNull(first, "A DormantGoal should be present");
             brain.RemoveGoal(first);
             Assert.IsNull(brain.FindGoal<DormantGoal>(),
-                "AIAmbushPart must push DormantGoal exactly once, not per-turn");
+                "AIAmbushPart must push DormantGoal exactly once (via _dormantPushed flag).");
+        }
+
+        [Test]
+        public void AIAmbush_Rearm_AllowsReAmbushAfterWake()
+        {
+            // Polish 5: Rearm() clears _dormantPushed so a woken creature can
+            // re-enter ambush mode (e.g., via a Sleep status effect). Without
+            // Rearm, the flag remains set and AIAmbush can't re-push.
+            var zone = new Zone("TestZone");
+            var creature = CreateAmbushCreature(zone, 10, 10);
+            var brain = creature.GetPart<BrainPart>();
+            var ambush = creature.GetPart<AIAmbushPart>();
+
+            // Pop initial DormantGoal (simulating wake)
+            var initial = brain.FindGoal<DormantGoal>();
+            brain.RemoveGoal(initial);
+            Assert.IsFalse(brain.HasGoal<DormantGoal>(), "DormantGoal removed post-wake");
+
+            // TakeTurn without Rearm — should NOT re-push
+            creature.FireEvent(GameEvent.New("TakeTurn"));
+            Assert.IsFalse(brain.HasGoal<DormantGoal>(),
+                "Without Rearm, AIAmbush must not re-push after a wake");
+
+            // Rearm + TakeTurn — should push again via fallback path
+            ambush.Rearm();
+            creature.FireEvent(GameEvent.New("TakeTurn"));
+            Assert.IsTrue(brain.HasGoal<DormantGoal>(),
+                "After Rearm, next TakeTurn fallback should re-push DormantGoal");
+        }
+
+        [Test]
+        public void AIAmbush_FallbackPushOnTakeTurn_WhenBrainAddedAfter()
+        {
+            // Defensive: Initialize push requires BrainPart to already exist on the entity.
+            // If someone adds AIAmbush before Brain (unusual but possible), Initialize
+            // can't find a brain and skips. The HandleEvent fallback catches this
+            // on the first TakeTurn.
+            var entity = new Entity { BlueprintName = "TestOrderingEdgeCase" };
+            entity.Tags["Creature"] = "";
+            entity.Tags["Faction"] = "Snapjaws";
+            entity.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 20, Min = 0, Max = 20 };
+            entity.Statistics["Speed"] = new Stat { Name = "Speed", BaseValue = 100, Min = 25, Max = 200 };
+            entity.AddPart(new RenderPart());
+            entity.AddPart(new PhysicsPart { Solid = true });
+
+            // Reversed order: AIAmbush FIRST (no brain yet), then Brain
+            entity.AddPart(new AIAmbushPart { WakeOnDamage = true, WakeOnHostileInSight = true });
+            var brain = new BrainPart();
+            entity.AddPart(brain);
+
+            Assert.IsFalse(brain.HasGoal<DormantGoal>(),
+                "Initialize couldn't find brain — no push yet");
+
+            // Fallback kicks in on TakeTurn
+            var zone = new Zone("TestZone");
+            brain.CurrentZone = zone;
+            brain.Rng = new System.Random(1);
+            zone.AddEntity(entity, 5, 5);
+            entity.FireEvent(GameEvent.New("TakeTurn"));
+
+            Assert.IsTrue(brain.HasGoal<DormantGoal>(),
+                "TakeTurn fallback should push DormantGoal when Initialize couldn't");
         }
 
         [Test]
@@ -136,19 +234,34 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void MimicChest_Blueprint_Loads_WithDamageOnlyWake()
+        public void MimicChest_Blueprint_Loads_WithWakeOnSameCell()
         {
+            // M1 code review Bug 3: MimicChest is Physics.Solid=false so the player
+            // can walk onto it (preserving chest-like interaction), and its Brain
+            // SightRadius=0 + WakeOnHostileInSight=true means it only wakes when
+            // a hostile is ON its cell. Walking ADJACENT to it does nothing —
+            // the disguise holds until the player actually steps on it.
             var mimic = _factory.CreateEntity("MimicChest");
             Assert.IsNotNull(mimic);
 
             var ambush = mimic.GetPart<AIAmbushPart>();
             Assert.IsNotNull(ambush);
             Assert.IsTrue(ambush.WakeOnDamage,
-                "MimicChest wakes when attacked (someone tries to 'open' it)");
-            Assert.IsFalse(ambush.WakeOnHostileInSight,
-                "MimicChest must stay dormant when player is merely nearby — surprise is the point");
+                "MimicChest wakes when attacked");
+            Assert.IsTrue(ambush.WakeOnHostileInSight,
+                "MimicChest wakes when hostile enters sight — but SightRadius=0 " +
+                "narrows that to the mimic's own cell only");
             Assert.AreEqual(0, ambush.SleepParticleInterval,
                 "MimicChest has no 'z' particles — it's disguised, not obviously asleep");
+
+            var brain = mimic.GetPart<BrainPart>();
+            Assert.AreEqual(0, brain.SightRadius,
+                "SightRadius=0 restricts wake-on-sight to same-cell hostiles");
+
+            var physics = mimic.GetPart<PhysicsPart>();
+            Assert.IsFalse(physics.Solid,
+                "MimicChest must be non-solid so players can walk onto it (like a real Chest), " +
+                "preserving the chest-disguise surface interaction.");
         }
 
         [Test]
@@ -221,9 +334,11 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void MimicChest_StaysDormantWhenHostileInSight()
+        public void MimicChest_StaysDormantWhenHostileAdjacent_ButWakesOnSameCell()
         {
-            // A player walking past a mimic should NOT trigger it (no WakeOnHostileInSight)
+            // M1 code review Bug 3: MimicChest uses SightRadius=0 so it wakes
+            // ONLY when a hostile is on its cell (distance 0). Adjacent hostiles
+            // (distance 1) do not wake it — the chest disguise holds.
             var zone = new Zone("TestZone");
             var mimic = _factory.CreateEntity("MimicChest");
             zone.AddEntity(mimic, 10, 10);
@@ -232,26 +347,30 @@ namespace CavesOfOoo.Tests
             brain.CurrentZone = zone;
             brain.Rng = new System.Random(1);
 
-            // Spawn hostile in sight
-            var snapjaw = new Entity();
-            snapjaw.Tags["Creature"] = "";
-            snapjaw.Tags["Faction"] = "Villagers"; // hostile to Snapjaws faction
-            snapjaw.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 10, Min = 0, Max = 10 };
-            snapjaw.Statistics["Speed"] = new Stat { Name = "Speed", BaseValue = 100, Min = 25, Max = 200 };
-            snapjaw.AddPart(new RenderPart());
-            snapjaw.AddPart(new PhysicsPart { Solid = true });
-            zone.AddEntity(snapjaw, 11, 10); // adjacent
+            var villager = new Entity();
+            villager.Tags["Creature"] = "";
+            villager.Tags["Faction"] = "Villagers"; // hostile to mimic's Snapjaws faction
+            villager.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 10, Min = 0, Max = 10 };
+            villager.Statistics["Speed"] = new Stat { Name = "Speed", BaseValue = 100, Min = 25, Max = 200 };
+            villager.AddPart(new RenderPart());
+            villager.AddPart(new PhysicsPart { Solid = true });
+            zone.AddEntity(villager, 11, 10); // adjacent — distance 1
 
-            // Push dormant first
-            mimic.FireEvent(GameEvent.New("TakeTurn"));
-
-            // Then advance the dormant goal a few times; it should NOT wake on sight
             var dormant = brain.FindGoal<DormantGoal>();
-            Assert.IsNotNull(dormant);
+            Assert.IsNotNull(dormant, "DormantGoal is pushed at Initialize");
+
+            // Adjacent hostile: should stay dormant (outside SightRadius=0)
             dormant.TakeAction();
             dormant.TakeAction();
             Assert.IsFalse(dormant.Finished(),
-                "MimicChest with WakeOnHostileInSight=false must stay dormant despite adjacent hostile");
+                "MimicChest with SightRadius=0 must not wake when hostile is only adjacent");
+
+            // Move hostile onto mimic's cell (distance 0): wakes
+            zone.RemoveEntity(villager);
+            zone.AddEntity(villager, 10, 10); // same cell now
+            dormant.TakeAction();
+            Assert.IsTrue(dormant.Finished(),
+                "MimicChest must wake when a hostile steps onto its cell — the 'open chest' moment");
         }
     }
 }

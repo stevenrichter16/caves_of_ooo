@@ -903,11 +903,15 @@ implementation plan output for full JSON bodies).
 - [x] Lair generation spawns dormant creatures
 - [x] All M1 tests green; full EditMode suite still passes (1301/1301 tests, was 1275 before M1)
 
-##### M1 Status: ✅ Complete — subject to in-game validation
+##### M1 Status: ✅ Complete — all review findings addressed, subject to in-game validation
 
-All unit-level verification passed via MCP-driven test runs. **In-game playtest deferred** —
-behaviors should be visually verified during live play before declaring truly done.
-See "In-Game Verification (Option A)" below.
+Initial M1 implementation: 1301/1301 EditMode tests passing (MCP-verified).
+Post-review fix pass: all 14 findings (1 🔴 + 3 🟡 + 5 🔵 + 4 🧪 + 1 ⚪) addressed.
+
+**Not re-verified via test run** — post-review fixes were implemented while the Unity
+MCP was disconnected. The next session should run `mcp__unity__run_tests` (EditMode)
+to confirm green status before declaring truly done. **In-game playtest deferred** —
+behaviors should be visually verified during live play per Option A below.
 
 ##### In-Game Verification (Option A) — TODO
 
@@ -1150,22 +1154,49 @@ ordering. Worth a comment in `BlueprintLoader.Bake` noting this dependency.
 
 ###### Summary and priority
 
-| # | Severity | Issue | Fix complexity |
-|---|:--------:|-------|:--------------:|
-| 1 | 🔴 | Turn-1 ordering: push in Initialize, not HandleEvent | Small |
-| 2 | 🟡 | No HP regen → RetreatGoal stuck | Small–medium |
-| 3 | 🟡 | MimicChest Solid=true breaks disguise | Small |
-| 4 | 🟡 | WellKeeper/Elder missing AISelfPreservation | Trivial (JSON) |
-| 5 | 🔵 | AIAmbush `_dormantPushed` never resets | Small |
-| 6 | 🔵 | AIAmbush XML doc inaccurate | Trivial |
-| 7 | 🔵 | Ambushers spawn in hallways | Small–medium |
-| 8 | 🔵 | AmbushBandit lacks Staying | Trivial |
-| 9 | 🔵 | Passive/Flee threshold docs | Trivial |
-| 10–13 | 🧪 | Test gaps | Small each |
+| # | Severity | Issue | Fix complexity | Status |
+|---|:--------:|-------|:--------------:|:------:|
+| 1 | 🔴 | Turn-1 ordering: push in Initialize, not HandleEvent | Small | ✅ Fixed |
+| 2 | 🟡 | No HP regen → RetreatGoal stuck | Small–medium | ✅ Fixed |
+| 3 | 🟡 | MimicChest Solid=true breaks disguise | Small | ✅ Fixed |
+| 4 | 🟡 | WellKeeper/Elder missing AISelfPreservation | Trivial (JSON) | ✅ Fixed |
+| 5 | 🔵 | AIAmbush `_dormantPushed` never resets | Small | ✅ Fixed |
+| 6 | 🔵 | AIAmbush XML doc inaccurate | Trivial | ✅ Fixed |
+| 7 | 🔵 | Ambushers spawn in hallways | Small–medium | ✅ Fixed |
+| 8 | 🔵 | AmbushBandit lacks Staying | Trivial | ✅ Fixed |
+| 9 | 🔵 | Passive/Flee threshold docs | Trivial | ✅ Fixed |
+| 10 | 🧪 | Stack-contents-after-turn-1 regression test | Small | ✅ Fixed |
+| 11 | 🧪 | Warden-does-not-retreat-while-in-combat test | Small | ✅ Fixed |
+| 12 | 🧪 | LairPopulationBuilder ambush spawn rate test | Small | ✅ Fixed |
+| 13 | 🧪 | RetreatGoal recovery-heals test | Small | ✅ Fixed |
+| 14 | ⚪ | BlueprintLoader dictionary-insertion-order comment | Trivial | ✅ Fixed |
 
-**Recommended next step:** before starting M2, address Bugs 1, 2, and 4 (the functional
-ones) and update tests. Leave 🔵/🧪 items for a polish pass after M3. Total fix effort
-estimate: ~2 hours.
+**All 14 findings addressed.** Highlights:
+- Bug 1 fix splits into Initialize-push (primary path) + HandleEvent fallback, making
+  AIAmbushPart robust to both normal blueprint loading AND edge-case manual part
+  ordering (test-only scenarios where AIAmbush is attached before Brain).
+- Bug 2 adds `HealPerTick` parameter (default 1) to RetreatGoal so NPCs without
+  RegenerationMutation can still recover during retreat. Scoped to Recover phase
+  only — does not affect general combat balance.
+- Bug 3 makes MimicChest non-solid with `SightRadius=0` so the disguise holds when
+  the player walks adjacent, but wakes the moment they step ONTO the mimic
+  (distance-0 hostile in sight).
+- New tests added: `AIAmbush_DormantGoalOnTop_NotBoredGoal_AfterFirstTakeTurn`,
+  `AIAmbush_Rearm_AllowsReAmbushAfterWake`, `AIAmbush_FallbackPushOnTakeTurn_*`,
+  `MimicChest_StaysDormantWhenHostileAdjacent_ButWakesOnSameCell`,
+  `WellKeeper_HasAISelfPreservation_*`, `Elder_HasAISelfPreservation_*`,
+  `Warden_DoesNotRetreat_WhileHostileInSight`,
+  `Warden_Retreats_AfterHostileLeavesSight`,
+  `RetreatGoal_Recovery_HealsHpPerTick_WithoutExternalRegen`,
+  `RetreatGoal_Recovery_ClampsHealToMaxHp`,
+  `RetreatGoal_Recovery_HealPerTickZero_FallsBackToMaxTurnsExit`,
+  new `LairPopulationBuilderAmbushTests` fixture (6 statistical spawn-rate tests).
+
+⚠️ **Not independently verified by test run** — these fixes were implemented while the
+Unity MCP was disconnected. The next session should run the EditMode suite via
+`mcp__unity__run_tests` to confirm green status before trusting them fully. Fix 7
+(GatherRoomCells filter) is the most likely to require tuning if empty-zone
+generation doesn't naturally produce ≥ 5-neighbor cells.
 
 #### Milestone M2 — Dialogue/Status triggers (Tier B, 2–3 days)
 

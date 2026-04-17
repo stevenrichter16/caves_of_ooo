@@ -55,22 +55,35 @@ namespace CavesOfOoo.Core
         /// independently so a lair can have any combination. Mimics appear in all
         /// biomes (disguised as chests are biome-independent); trolls/bandits are
         /// biome-specific.
+        ///
+        /// Ambush creatures are placed in ROOM cells (via <see cref="GatherRoomCells"/>)
+        /// rather than any passable cell. This prevents a MimicChest from spawning
+        /// in a 1-cell-wide corridor (where the "chest" is obviously out of place)
+        /// or a SleepingTroll from blocking a hallway (where its sleep-particle
+        /// animation is immediately visible as you round a corner). If no room
+        /// cells are available, falls back to open cells.
         /// </summary>
         private void PlaceAmbushers(Zone zone, EntityFactory factory, System.Random rng,
             List<(int x, int y)> openCells)
         {
+            // Prefer room cells for ambushers (rooms feel more natural for chests,
+            // sleeping creatures, and hidden bandits). Fallback to openCells if
+            // the lair is all-corridor (rare).
+            var roomCells = GatherRoomCells(zone);
+            var placementPool = roomCells.Count > 0 ? roomCells : openCells;
+
             // Biome-specific sleeping creatures
             switch (_biome)
             {
                 case BiomeType.Cave:
                     // 25% chance per cave lair to contain a sleeping troll
                     if (rng.Next(100) < 25)
-                        PlaceEntity(zone, factory, rng, openCells, "SleepingTroll");
+                        PlaceEntity(zone, factory, rng, placementPool, "SleepingTroll");
                     break;
                 case BiomeType.Desert:
                     // 30% chance per desert lair to contain an ambushing bandit
                     if (rng.Next(100) < 30)
-                        PlaceEntity(zone, factory, rng, openCells, "AmbushBandit");
+                        PlaceEntity(zone, factory, rng, placementPool, "AmbushBandit");
                     break;
             }
 
@@ -79,7 +92,7 @@ namespace CavesOfOoo.Core
             int mimicCount = rng.Next(3);
             for (int i = 0; i < mimicCount; i++)
             {
-                PlaceEntity(zone, factory, rng, openCells, "MimicChest");
+                PlaceEntity(zone, factory, rng, placementPool, "MimicChest");
             }
         }
 
@@ -104,6 +117,40 @@ namespace CavesOfOoo.Core
             zone.ForEachCell((cell, x, y) =>
             {
                 if (cell.IsPassable())
+                    cells.Add((x, y));
+            });
+            return cells;
+        }
+
+        /// <summary>
+        /// Filter open cells to those inside a "room" — i.e., at least
+        /// <see cref="MinRoomNeighbors"/> of the 8 surrounding cells are passable.
+        /// This excludes 1-cell-wide corridors (which have 2 or fewer passable
+        /// neighbors) and thin 2-cell corridors (up to 4). The threshold is
+        /// calibrated so a cell in the interior of a 3x3 room (8 passable
+        /// neighbors) easily qualifies, while corner/edge room cells (5-6
+        /// neighbors) also qualify — only corridor cells are excluded.
+        /// </summary>
+        private const int MinRoomNeighbors = 5;
+
+        private List<(int x, int y)> GatherRoomCells(Zone zone)
+        {
+            var cells = new List<(int x, int y)>();
+            zone.ForEachCell((cell, x, y) =>
+            {
+                if (!cell.IsPassable()) return;
+                int passableNeighbors = 0;
+                for (int dx = -1; dx <= 1; dx++)
+                {
+                    for (int dy = -1; dy <= 1; dy++)
+                    {
+                        if (dx == 0 && dy == 0) continue;
+                        var adj = zone.GetCell(x + dx, y + dy);
+                        if (adj != null && adj.IsPassable())
+                            passableNeighbors++;
+                    }
+                }
+                if (passableNeighbors >= MinRoomNeighbors)
                     cells.Add((x, y));
             });
             return cells;

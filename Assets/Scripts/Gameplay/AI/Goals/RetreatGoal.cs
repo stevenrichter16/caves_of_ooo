@@ -18,6 +18,14 @@ namespace CavesOfOoo.Core
     /// Typical usage: pushed by AISelfPreservationPart when HP drops below
     /// RetreatThreshold. Retreats to BrainPart.StartingCell and holds until
     /// HP climbs back above the "safe" threshold.
+    ///
+    /// Self-heal during Recover: the goal heals <see cref="HealPerTick"/> HP per
+    /// turn while in the Recover phase (clamped to max HP). This ensures the
+    /// goal terminates even for creatures without RegenerationMutation — which
+    /// is most of them. Without this self-heal, an NPC without passive regen
+    /// would be stuck cycling retreat → MaxTurns timeout → retreat forever.
+    /// The heal is scoped to Recover phase only, so it doesn't affect combat
+    /// balance outside of retreat scenarios.
     /// </summary>
     public class RetreatGoal : GoalHandler
     {
@@ -30,15 +38,20 @@ namespace CavesOfOoo.Core
         /// <summary>Hard turn cap so a stuck NPC eventually gives up and falls back to BoredGoal.</summary>
         public int MaxTurns;
 
+        /// <summary>HP healed per tick while in the Recover phase. Clamps to Max HP.</summary>
+        public int HealPerTick;
+
         private enum Phase { Travel, Recover, Done }
         private Phase _phase = Phase.Travel;
 
-        public RetreatGoal(int waypointX, int waypointY, float safeHpFraction = 0.75f, int maxTurns = 200)
+        public RetreatGoal(int waypointX, int waypointY, float safeHpFraction = 0.75f,
+            int maxTurns = 200, int healPerTick = 1)
         {
             WaypointX = waypointX;
             WaypointY = waypointY;
             SafeHpFraction = safeHpFraction;
             MaxTurns = maxTurns;
+            HealPerTick = healPerTick;
         }
 
         public override bool CanFight() => false;
@@ -81,9 +94,22 @@ namespace CavesOfOoo.Core
             if (ParentBrain != null)
                 ParentBrain.CurrentState = AIState.Idle;
 
+            // Heal a small amount each tick. Without this, creatures lacking
+            // RegenerationMutation (most of them) would never recover HP and
+            // this goal would only terminate via the MaxTurns safety cap.
+            // Scoped to the Recover phase so it doesn't affect combat balance
+            // outside retreat scenarios.
+            var hpStat = ParentEntity.GetStat("Hitpoints");
+            if (HealPerTick > 0 && hpStat != null && hpStat.BaseValue < hpStat.Max)
+            {
+                hpStat.BaseValue += HealPerTick;
+                if (hpStat.BaseValue > hpStat.Max)
+                    hpStat.BaseValue = hpStat.Max;
+            }
+
             // Recovery complete when HP is back above the safe fraction
             int hp = ParentEntity.GetStatValue("Hitpoints", 0);
-            int maxHp = ParentEntity.GetStat("Hitpoints")?.Max ?? 0;
+            int maxHp = hpStat?.Max ?? 0;
             if (hp > 0 && maxHp > 0 && (float)hp / maxHp >= SafeHpFraction)
             {
                 _phase = Phase.Done;

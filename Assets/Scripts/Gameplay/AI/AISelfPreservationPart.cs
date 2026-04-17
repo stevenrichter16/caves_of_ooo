@@ -9,8 +9,28 @@ namespace CavesOfOoo.Core
     ///   { "Name": "AISelfPreservation", "Params": [{ "Key": "RetreatThreshold", "Value": "0.4" }] }
     ///
     /// The threshold is an HP fraction (0..1). Default 0.4 = retreat at 40% HP.
-    /// Distinct from FleeThreshold (which triggers raw FleeGoal away from a threat):
-    /// Self-preservation is a more deliberate fallback to a safe waypoint.
+    ///
+    /// Relationship to BrainPart.FleeThreshold (default 0.25):
+    /// - <see cref="BrainPart.FleeThreshold"/> triggers a raw FleeGoal via
+    ///   BoredGoal's ShouldFlee() check — "run AWAY from the nearest threat"
+    ///   regardless of location. Used when combat is IMMINENT.
+    /// - RetreatThreshold triggers RetreatGoal via AIBoredEvent — "walk to my
+    ///   safe waypoint and recover HP." Used when combat has PAUSED (no
+    ///   hostile in sight) and the NPC is still wounded.
+    ///
+    /// Typical pairing: RetreatThreshold (higher, e.g., 0.4–0.8) is the
+    /// graceful fallback; FleeThreshold (lower, e.g., 0.25) is the panic
+    /// tripwire. Authors should keep RetreatThreshold &gt; FleeThreshold so the
+    /// flows compose naturally. If RetreatThreshold &lt; FleeThreshold, the NPC
+    /// would enter panic-flee BEFORE ever crossing the retreat threshold,
+    /// making retreat unreachable in practice (a dead-zone bug).
+    ///
+    /// Also note: AISelfPreservation only fires via AIBoredEvent, which only
+    /// fires when BoredGoal runs and finds NO hostile in sight. Consequence:
+    /// a wounded NPC in active combat will NOT mid-fight retreat — they'll
+    /// fight on, then retreat after combat breaks off (hostile moves out of
+    /// sight, dies, or goes into a different zone). This matches the
+    /// "disengage and heal" design rather than "panic and run mid-swing."
     ///
     /// Evaluation order in BoredGoal:
     /// 1. BoredGoal fires AIBoredEvent → this part runs

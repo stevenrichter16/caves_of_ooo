@@ -483,6 +483,93 @@ namespace CavesOfOoo.Tests
                 "RetreatGoal should push MoveToGoal toward the waypoint when not there yet");
         }
 
+        [Test]
+        public void RetreatGoal_Recovery_HealsHpPerTick_WithoutExternalRegen()
+        {
+            // M1 code review Bug 2 / Test gap 13:
+            //
+            // RetreatGoal.Recover phase must be self-healing so NPCs without
+            // RegenerationMutation (most of them) can recover HP and exit
+            // retreat. Without per-tick heal, Recover would block on
+            // `hp/maxHp >= SafeFraction` forever and the goal would only
+            // terminate via the MaxTurns safety cap.
+            var zone = new Zone("TestZone");
+            var creature = CreateCreature(zone, 5, 5); // HP 20/20 max (from helper)
+            var brain = creature.GetPart<BrainPart>();
+            creature.GetStat("Hitpoints").BaseValue = 5; // 25% HP
+
+            var goal = new RetreatGoal(5, 5, safeHpFraction: 0.75f, maxTurns: 200, healPerTick: 1);
+            brain.PushGoal(goal);
+
+            // First tick: Travel → already at waypoint → phase = Recover → heal first tick
+            goal.TakeAction();
+            Assert.IsFalse(goal.Finished(), "Should still be recovering");
+
+            // Keep ticking; HP 5 → 15 takes 10 ticks at 1/tick, well within maxTurns
+            int tickBudget = 20;
+            while (tickBudget > 0 && !goal.Finished())
+            {
+                goal.TakeAction();
+                tickBudget--;
+            }
+
+            Assert.IsTrue(goal.Finished(),
+                "RetreatGoal.Recover should self-heal to SafeFraction within 20 ticks " +
+                "at healPerTick=1 (regardless of whether the creature has RegenerationMutation).");
+            Assert.GreaterOrEqual(creature.GetStatValue("Hitpoints", 0), 15,
+                "Creature HP should reach at least 15/20 (=75% SafeFraction) before goal finishes.");
+        }
+
+        [Test]
+        public void RetreatGoal_Recovery_ClampsHealToMaxHp()
+        {
+            // Recovery heal should not overflow Max HP.
+            var zone = new Zone("TestZone");
+            var creature = CreateCreature(zone, 5, 5);
+            var brain = creature.GetPart<BrainPart>();
+            creature.GetStat("Hitpoints").BaseValue = 19; // 1 below max
+
+            // SafeFraction 1.0 = must reach full HP to finish
+            var goal = new RetreatGoal(5, 5, safeHpFraction: 1.0f, healPerTick: 5);
+            brain.PushGoal(goal);
+
+            goal.TakeAction(); // heals by 5 → but clamped to 20
+
+            Assert.AreEqual(20, creature.GetStatValue("Hitpoints", 0),
+                "Heal must clamp to Max HP, not overflow.");
+            Assert.IsTrue(goal.Finished(),
+                "At max HP with SafeFraction=1.0, goal should complete.");
+        }
+
+        [Test]
+        public void RetreatGoal_Recovery_HealPerTickZero_FallsBackToMaxTurnsExit()
+        {
+            // If healPerTick=0 is explicitly configured (e.g., a creature using
+            // external regen), the goal still has MaxTurns as a safety cap so
+            // it never blocks forever. This pins that safety behavior.
+            var zone = new Zone("TestZone");
+            var creature = CreateCreature(zone, 5, 5);
+            var brain = creature.GetPart<BrainPart>();
+            creature.GetStat("Hitpoints").BaseValue = 5; // 25% HP
+
+            var goal = new RetreatGoal(5, 5, safeHpFraction: 0.75f, maxTurns: 3, healPerTick: 0);
+            brain.PushGoal(goal);
+
+            // Simulate ticks: no heal, HP stays at 5, SafeFraction never reached.
+            // MaxTurns=3 → Age > 3 triggers Finished().
+            for (int i = 0; i < 5; i++)
+            {
+                goal.Age++;
+                goal.TakeAction();
+            }
+
+            Assert.IsTrue(goal.Finished(),
+                "With healPerTick=0 and no external regen, MaxTurns cap must eventually " +
+                "terminate the goal so the NPC isn't stuck forever.");
+            Assert.AreEqual(5, creature.GetStatValue("Hitpoints", 0),
+                "HP should not have changed when healPerTick=0.");
+        }
+
         // ========================
         // AISelfPreservationPart
         // ========================
