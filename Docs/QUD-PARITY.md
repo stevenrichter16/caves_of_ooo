@@ -903,15 +903,20 @@ implementation plan output for full JSON bodies).
 - [x] Lair generation spawns dormant creatures
 - [x] All M1 tests green; full EditMode suite still passes (1301/1301 tests, was 1275 before M1)
 
-##### M1 Status: ✅ Complete — all review findings addressed, subject to in-game validation
+##### M1 Status: ✅ Complete — all review findings addressed and verified, subject to in-game validation
 
 Initial M1 implementation: 1301/1301 EditMode tests passing (MCP-verified).
 Post-review fix pass: all 14 findings (1 🔴 + 3 🟡 + 5 🔵 + 4 🧪 + 1 ⚪) addressed.
+Post-fix test run: **1317/1317 EditMode tests passing** (MCP-verified, 12.5s).
 
-**Not re-verified via test run** — post-review fixes were implemented while the Unity
-MCP was disconnected. The next session should run `mcp__unity__run_tests` (EditMode)
-to confirm green status before declaring truly done. **In-game playtest deferred** —
-behaviors should be visually verified during live play per Option A below.
+Net new tests from the fix pass: 16 (covering Initialize-based ambush push,
+stack-contents regression, Rearm behavior, fallback ordering, MimicChest
+same-cell wake, WellKeeper/Elder AISelfPreservation, Warden-no-retreat-in-combat
+vs Warden-retreats-after, RetreatGoal heal-to-safe + clamp-to-max + MaxTurns
+fallback, and 6 statistical LairPopulationBuilderAmbushTests).
+
+**In-game playtest still deferred** — behaviors should be visually verified during
+live play per Option A below.
 
 ##### In-Game Verification (Option A) — TODO
 
@@ -1192,11 +1197,11 @@ ordering. Worth a comment in `BlueprintLoader.Bake` noting this dependency.
   `RetreatGoal_Recovery_HealPerTickZero_FallsBackToMaxTurnsExit`,
   new `LairPopulationBuilderAmbushTests` fixture (6 statistical spawn-rate tests).
 
-⚠️ **Not independently verified by test run** — these fixes were implemented while the
-Unity MCP was disconnected. The next session should run the EditMode suite via
-`mcp__unity__run_tests` to confirm green status before trusting them fully. Fix 7
-(GatherRoomCells filter) is the most likely to require tuning if empty-zone
-generation doesn't naturally produce ≥ 5-neighbor cells.
+✅ **Verified via MCP test run:** 1317/1317 EditMode tests passing (12.5s). All 14
+finding-fixes confirmed green, including the ones flagged as highest-risk during
+implementation (LairPopulationBuilderAmbushTests statistical bounds, RetreatGoal
+`HealPerTickZero` MaxTurns-fallback boundary, and AIAmbush Initialize-vs-fallback
+ordering paths).
 
 #### Milestone M2 — Dialogue/Status triggers (Tier B, 2–3 days)
 
