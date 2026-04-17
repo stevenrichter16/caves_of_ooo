@@ -43,7 +43,44 @@ namespace CavesOfOoo.Core
                 PlaceEntity(zone, factory, rng, openCells, loot);
             }
 
+            // Biome-specific ambush creatures — dormant until disturbed.
+            // Uses AIAmbushPart + DormantGoal; see Phase 6 (M1.3).
+            PlaceAmbushers(zone, factory, rng, openCells);
+
             return true;
+        }
+
+        /// <summary>
+        /// Spawn dormant ambush creatures based on biome. Each creature type rolls
+        /// independently so a lair can have any combination. Mimics appear in all
+        /// biomes (disguised as chests are biome-independent); trolls/bandits are
+        /// biome-specific.
+        /// </summary>
+        private void PlaceAmbushers(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> openCells)
+        {
+            // Biome-specific sleeping creatures
+            switch (_biome)
+            {
+                case BiomeType.Cave:
+                    // 25% chance per cave lair to contain a sleeping troll
+                    if (rng.Next(100) < 25)
+                        PlaceEntity(zone, factory, rng, openCells, "SleepingTroll");
+                    break;
+                case BiomeType.Desert:
+                    // 30% chance per desert lair to contain an ambushing bandit
+                    if (rng.Next(100) < 30)
+                        PlaceEntity(zone, factory, rng, openCells, "AmbushBandit");
+                    break;
+            }
+
+            // Mimic chests: 0-2 per lair regardless of biome.
+            // Uses (0,3) exclusive upper bound → rolls 0, 1, or 2 mimics.
+            int mimicCount = rng.Next(3);
+            for (int i = 0; i < mimicCount; i++)
+            {
+                PlaceEntity(zone, factory, rng, openCells, "MimicChest");
+            }
         }
 
         private void PlaceEntity(Zone zone, EntityFactory factory, System.Random rng,
