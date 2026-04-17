@@ -761,17 +761,17 @@ This section describes what it takes to move every goal from state 1 → state 2
 
 #### Execution Milestones
 
-| Milestone | Tier | Effort | What goes live |
-|-----------|:----:|:------:|----------------|
-| **M1** — Blueprint wiring | A | 1–2d | RetreatGoal, Passive, DormantGoal |
-| **M2** — Dialogue/status triggers | B | 2–3d | NoFightGoal, WanderDurationGoal |
-| **M3** — Ambient behavior parts | B | 2–3d | PetGoal, GoFetchGoal, FleeLocationGoal |
-| **M4** — Interior/Exterior (Gap B) | C | 3–4d | MoveToInterior/ExteriorGoal, weather foundation |
-| **M5** — Corpse system (Gap C) | C | 3–5d | DisposeOfCorpseGoal, necromancy/butcher foundation |
-| **M6** — Rune system | C | 3–4d | LayRuneGoal |
-| **M7** — Turret system | C | 3–4d | PlaceTurretGoal |
-| **M8** — Gap A (zone transitions) | D | 1–2w | MoveToZone/GlobalGoal, Phase 13 foundation |
-| **M9** — Gap D (damage types) | D | 2–3w | ReequipGoal/ChangeEquipmentGoal, Phase 14 foundation |
+| Milestone | Status | Tier | Effort | What goes live |
+|-----------|:------:|:----:|:------:|----------------|
+| **M1** — Blueprint wiring | ✅ Done (1317/1317) | A | 1–2d | RetreatGoal, Passive, DormantGoal |
+| **M2** — Dialogue/status triggers | ⏳ Next | B | 2–3d | NoFightGoal, WanderDurationGoal |
+| **M3** — Ambient behavior parts | | B | 2–3d | PetGoal, GoFetchGoal, FleeLocationGoal |
+| **M4** — Interior/Exterior (Gap B) | | C | 3–4d | MoveToInterior/ExteriorGoal, weather foundation |
+| **M5** — Corpse system (Gap C) | | C | 3–5d | DisposeOfCorpseGoal, necromancy/butcher foundation |
+| **M6** — Rune system | | C | 3–4d | LayRuneGoal |
+| **M7** — Turret system | | C | 3–4d | PlaceTurretGoal |
+| **M8** — Gap A (zone transitions) | | D | 1–2w | MoveToZone/GlobalGoal, Phase 13 foundation |
+| **M9** — Gap D (damage types) | | D | 2–3w | ReequipGoal/ChangeEquipmentGoal, Phase 14 foundation |
 
 **Recommended sequencing:** M1 → M2 → M3 → (M4 ∥ M5) → M6 → M7 → (M8 ∥ M9).
 
@@ -1202,6 +1202,208 @@ finding-fixes confirmed green, including the ones flagged as highest-risk during
 implementation (LairPopulationBuilderAmbushTests statistical bounds, RetreatGoal
 `HealPerTickZero` MaxTurns-fallback boundary, and AIAmbush Initialize-vs-fallback
 ordering paths).
+
+### M2 Preparation — Analysis and Plan (Updated)
+
+Post-M1, this section supersedes the original M2 sub-plans (M2.1/M2.2/M2.3) with
+an updated execution plan incorporating the investigation findings that only
+surfaced after M1's implementation revealed the actual state of adjacent
+subsystems (ConversationActions, ConversationManager, BaseMutation,
+StatusEffectsPart, CombatSystem.HandleDeath).
+
+#### What M2 gives the game in concrete gameplay terms
+
+M2 adds a **"social + consequence" layer**. Pre-M2, gameplay is
+combat-or-ignore. Post-M2, the player has non-violent tools and the world
+reacts to violence.
+
+##### New player-facing capabilities
+
+**(1) Persuasion as combat alternative (M2.1)** — Dialogue branches gated
+by Charisma can push NoFightGoal on hostile NPCs. Example: a low-HP player
+escaping a Warden can select "Stand down, friend" on a CHA 14+ check,
+pacifying her for 200 turns. Unlocks: speech-check playstyle, escape-by-talking,
+faction infiltration, quest-driven truce states.
+
+**(2) Calm mutation (M2.2)** — New Mental mutation on the player's catalog.
+Target a hostile down a direction, fire a calming bolt, target gains
+NoFightGoal for 40 + Level×10 turns. Unlocks: Mental/psionic archetype
+(first non-damaging Mental spell), crowd control in multi-hostile fights,
+complement to M1's Passive flag (works on both).
+
+**(3) Conversations are safe zones (M2.1 auto-pacify)** — Both participants
+receive NoFightGoal on StartConversation, removed on EndConversation.
+Eliminates the awkward "NPC sits inert during dialogue" behavior and
+prevents mid-dialogue combat initiations. Foundation for future bartering
+with tense factions, negotiating with bosses.
+
+##### New NPC/world reactivity
+
+**(4) NPCs witness violence (M2.3)** — When a creature dies in combat,
+Passive NPCs within 8 cells + LOS receive WitnessedEffect(20), which
+pushes WanderDurationGoal(20). The Innkeeper paces nervously after a
+fight breaks out in the square; Scribes look shaken. Directly consumes
+M1's Passive flag as the filter. Also becomes the natural hook for Phase 9
+opinion tracking ("they saw you kill someone").
+
+**(5) Dialogue writers gain a new verb** — `PushNoFightGoal` registers
+alongside existing `ChangeFactionFeeling` / `SetTag` / `SetSpeakerProperty`.
+Scripts can express "bribe the captain," "intimidate the shopkeeper,"
+"diplomatic quest resolved" via composable dialogue actions.
+
+##### Coverage after M2
+
+| Phase 6 goal | Wired | Triggered by |
+|--------------|-------|--------------|
+| ✅ RetreatGoal | M1 | AISelfPreservation low HP |
+| ✅ DormantGoal | M1 | AIAmbush spawn |
+| ✅ Passive flag | M1 | Blueprint config |
+| 🟢 NoFightGoal | M2 | Dialogue choice / CalmMutation / auto-pacify |
+| 🟢 WanderDurationGoal | M2 | WitnessedEffect (nearby violent death) |
+| ⏸️ PetGoal | M3 | — |
+| ⏸️ GoFetchGoal | M3 | — |
+| ⏸️ FleeLocationGoal | M3 | — |
+
+Post-M2: **5 of 7 shipped Phase 6 goals have real gameplay triggers.**
+
+#### Investigation corrections (from my earlier M2 plan)
+
+Before implementing M2, I ran a targeted investigation to verify my earlier
+M2 skeleton against the current codebase. The following points were
+confirmed or corrected:
+
+| Earlier assumption | Actual state | Correction |
+|-------------------|--------------|------------|
+| `StartingMutations` separator | Comma (`,`) confirmed — MutationsPart.cs:57 | No change |
+| `InConversation` set on both participants | **Set on speaker only** (CM.cs:67-75) | M2.1 Part B must set on both via new PushConversationNoFight helper |
+| Effect base has `Type` field | Has `GetEffectType()` method instead | WitnessedEffect overrides `GetEffectType()`, returns bitmask |
+| Only `Duration` abstract | Only `DisplayName` abstract (Effect.cs:52); Duration is a virtual field | WitnessedEffect sets Duration in constructor |
+| Mutation ABC = `DamageDice`, `CooldownTurns`, etc. | Confirmed. Plus `FxTheme`, `AbilityClass`, `ImpactVerb` | CalmMutation must override all 7 |
+| Death event = "Died" fired on deceased | Confirmed (CombatSystem.cs:451-454). No existing zone-broadcast pattern. | BroadcastDeathWitnessed enumerates `zone.GetReadOnlyEntities()` directly |
+
+#### Execution plan (detailed)
+
+##### M2.1 — NoFightGoal via dialogue + auto-pacify
+
+**Modify:**
+- `Assets/Scripts/Gameplay/Conversations/ConversationActions.cs` —
+  add `Register("PushNoFightGoal", (speaker, listener, arg) => { … })`
+  inside `RegisterDefaults()`. Parses arg as int with default 100,
+  pushes `NoFightGoal(duration, wander: false)` on speaker's Brain.
+  Idempotent via `!HasGoal("NoFightGoal")` gate.
+- `Assets/Scripts/Gameplay/Conversations/ConversationManager.cs` —
+  add static `Dictionary<Entity, NoFightGoal> _conversationNoFightGoals`,
+  `PushConversationNoFight(entity)` helper, `RemoveConversationNoFight(entity)`
+  helper. Call Push on both speaker and listener in StartConversation
+  (after line 75). Call Remove on both in EndConversation (before line 134).
+
+**Create:**
+- `Assets/Tests/EditMode/Gameplay/Conversations/NoFightConversationTests.cs` — 6 tests
+
+**Proof-of-concept dialogue edit:** add a Charisma-gated persuasion branch
+to one hostile dialogue tree (choice TBD during implementation).
+
+##### M2.2 — CalmMutation
+
+**Create:**
+- `Assets/Scripts/Gameplay/Mutations/CalmMutation.cs` extends
+  `DirectionalProjectileMutationBase`. Overrides 8 abstracts/virtuals:
+  `Name`, `MutationType="Mental"`, `DisplayName`, `CommandName`,
+  `FxTheme`, `CooldownTurns=20`, `AbilityRange=6`, `DamageDice="0"`,
+  `AbilityClass="Mental"`, `ImpactVerb="calms"`. Public `BaseDuration=40`.
+  Overrides `ApplyOnHitEffect(target, zone, rng)` to push
+  `NoFightGoal(BaseDuration + Level*10, wander: false)` on target's Brain.
+  Idempotent via HasGoal gate. Emits `MessageLog.Add("X becomes peaceful.")`.
+
+- `Assets/Tests/EditMode/Gameplay/Mutations/CalmMutationTests.cs` — 3 tests
+
+**Modify:**
+- `Assets/Resources/Content/Blueprints/Mutations.json` — append Calm entry
+  (Category: Mental, Cost: 4, MaxLevel: 10, Ranked: true).
+- `Assets/Resources/Content/Blueprints/Objects.json` Player blueprint
+  (line ~143) — change `StartingMutations` from `"FlamingHandsMutation:1"`
+  to `"FlamingHandsMutation:1,CalmMutation:1"` (comma delimiter
+  confirmed in MutationsPart.cs:57).
+
+##### M2.3 — WitnessedEffect + death broadcast
+
+**Create:**
+- `Assets/Scripts/Gameplay/Effects/Concrete/WitnessedEffect.cs` extends
+  `Effect`. Overrides `DisplayName => "shaken"`, `GetEffectType()`
+  returning `TYPE_MENTAL | TYPE_NEGATIVE | TYPE_REMOVABLE`. Constructor
+  sets `Duration = duration`. On `OnApply(target)`: pushes
+  `WanderDurationGoal(Duration)` on target's Brain (idempotent via
+  HasGoal gate), tracks the goal in private field, emits
+  `MessageLog.Add("X looks shaken.")`. On `OnRemove(target)`: removes
+  the tracked WanderDurationGoal from the Brain.
+
+- `Assets/Tests/EditMode/Gameplay/Effects/WitnessedEffectTests.cs` — 5 tests
+
+**Modify:**
+- `Assets/Scripts/Gameplay/Combat/CombatSystem.cs` — add private static
+  `BroadcastDeathWitnessed(deceased, killer, zone, radius)` helper that
+  iterates `zone.GetReadOnlyEntities()`, filters to Creature-tagged
+  entities that are not deceased/killer, have a BrainPart with
+  `Passive == true`, are within `radius` Chebyshev distance AND have LOS
+  to the death cell. Applies `WitnessedEffect(20)` to each. Call it
+  from `HandleDeath` between the `Died` event fire (line 454) and
+  `zone.RemoveEntity` (line 457), so the death cell is still valid.
+
+#### M2 verification checklist
+
+- [ ] `PushNoFightGoal` registered; handles int/empty/invalid args cleanly
+- [ ] Both speaker and listener get NoFightGoal on conversation start
+- [ ] NoFightGoal removed on conversation end (idempotent if already gone)
+- [ ] `CalmMutation` compiles, registers in Mutations.json, player loadout includes it
+- [ ] Cast Calm → target gets NoFightGoal with correct duration (40 + Level*10)
+- [ ] `WitnessedEffect` applies WanderDurationGoal on apply; removes on remove
+- [ ] `HandleDeath` broadcasts to Passive NPCs within 8 cells + LOS
+- [ ] Active combatants (Warden, Snapjaw) do NOT get WitnessedEffect
+- [ ] Wall between witness and deceased blocks the effect
+- [ ] Full EditMode suite still green (1317 → ~1332 expected)
+
+#### Cross-milestone dependencies (updated)
+
+```
+          ┌──> M1.1 AISelfPreservation ─┐
+M1 ✅ ──>├──> M1.2 Passive ────────────┼──> M2.3 WitnessedEffect filter ★
+          └──> M1.3 AIAmbush ───────────┘
+
+          ┌──> M2.1 NoFight dialogue ──> "safe-zone" conversation foundation
+M2 ──────>├──> M2.2 CalmMutation ─────> Player combat toolkit
+          └──> M2.3 WitnessedEffect ──> World reactivity (depends on M1.2 ★)
+```
+
+**Blocker:** M2.3 requires M1.2 (Passive flag on blueprints) to filter
+witnesses correctly. M1.2 is shipped and verified → M2.3 can proceed.
+
+#### Should M1 be playtested before M2?
+
+**Recommendation: Yes, briefly — ~10–15 minute Option A verification.**
+
+- 1317 passing tests prove mechanisms work at unit level; they can't catch
+  (a) visual/animation feel, (b) real-zone-generation integration issues,
+  (c) subtle behaviors only visible across many turns.
+- M2.3 directly consumes M1.2's Passive flag — worth confirming it's
+  correctly set on all 4 blueprints in a live village before adding the
+  witness layer on top.
+- M2.1's auto-pacify modifies a system M1 doesn't touch, but M1's Passive
+  behaviors are still visible during dialogue scenarios (a Passive Scribe's
+  non-aggression is naturally observed during a conversation walkthrough).
+- Cheap: 5 scenarios via MCP `execute_code` against a live Play-mode
+  session. Can be done in one batch of tool calls.
+
+**Scenarios to run:**
+1. Wounded Warden breaks combat and retreats to post
+2. Scribe ignores a sighted hostile (Passive flag working)
+3. SleepingTroll emits `z` particles, wakes on proximity
+4. MimicChest stays dormant when walked past, wakes when stepped on
+5. All 4 Passive blueprints have `Brain.Passive == true` at runtime
+
+If all pass, M2 implementation is de-risked. If any fail, investigate
+before M2 (a latent M1 bug that M2 would compound).
+
+---
 
 #### Milestone M2 — Dialogue/Status triggers (Tier B, 2–3 days)
 
