@@ -46,21 +46,33 @@ namespace CavesOfOoo.Core
             Entity hostile = AIHelpers.FindNearestHostile(ParentEntity, CurrentZone, ParentBrain.SightRadius);
             if (hostile != null)
             {
-                bool firstAggro = ParentBrain.Target == null;
-                ParentBrain.Target = hostile;
+                // Passive creatures do not initiate combat proactively. They WILL
+                // still defend themselves against entities they've personally
+                // aggroed (PersonalEnemies), and they'll still flee when HP is low
+                // — but a Passive scholar won't chase a snapjaw across the zone.
+                // Mirrors Qud's Brain.Passive + !HasGoal() gate.
+                bool canInitiate = !ParentBrain.Passive
+                    || ParentBrain.IsPersonallyHostileTo(hostile);
 
-                if (firstAggro)
+                if (canInitiate || ShouldFlee())
                 {
-                    var myPos = CurrentZone.GetEntityPosition(ParentEntity);
-                    if (myPos.x >= 0)
-                        AsciiFxBus.EmitParticle(CurrentZone, myPos.x, myPos.y - 1, '!', "&R", 0.25f);
-                }
+                    bool firstAggro = ParentBrain.Target == null;
+                    ParentBrain.Target = hostile;
 
-                if (ShouldFlee())
-                    PushChildGoal(new FleeGoal(hostile));
-                else
-                    PushChildGoal(new KillGoal(hostile));
-                return;
+                    if (firstAggro)
+                    {
+                        var myPos = CurrentZone.GetEntityPosition(ParentEntity);
+                        if (myPos.x >= 0)
+                            AsciiFxBus.EmitParticle(CurrentZone, myPos.x, myPos.y - 1, '!', "&R", 0.25f);
+                    }
+
+                    if (ShouldFlee())
+                        PushChildGoal(new FleeGoal(hostile));
+                    else
+                        PushChildGoal(new KillGoal(hostile));
+                    return;
+                }
+                // Passive + not personally hostile + not low HP: ignore and continue to idle behavior.
             }
 
             // 3. Fire AIBoredEvent — let behavior parts handle custom idle behavior

@@ -34,6 +34,21 @@ namespace CavesOfOoo.Core
         public bool WandersRandomly = true;
         public float FleeThreshold = 0.25f;
 
+        /// <summary>
+        /// Passive creatures do not proactively initiate combat. They'll still defend
+        /// themselves against entities in <see cref="PersonalEnemies"/> (populated when
+        /// they're directly attacked), and they'll still flee when HP drops below
+        /// <see cref="FleeThreshold"/> — but a Passive scholar won't chase a snapjaw
+        /// across the zone just because it walked into sight.
+        /// Mirrors Qud's Brain.Passive flag. Used by non-combat NPCs (scholars, clerics,
+        /// civilians, wildlife that doesn't hunt).
+        ///
+        /// Semantics in <c>BoredGoal.TakeAction</c>:
+        ///   <c>canInitiate = !Passive || IsPersonallyHostileTo(hostile)</c>
+        /// Engagement happens when <c>canInitiate || ShouldFlee()</c>.
+        /// </summary>
+        public bool Passive = false;
+
         // Runtime state
         public AIState CurrentState = AIState.Idle;
         public Entity Target;
