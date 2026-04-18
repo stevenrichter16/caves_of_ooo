@@ -30,9 +30,9 @@ namespace CavesOfOoo.Tests
         [SetUp]
         public void Setup()
         {
-            // Re-init per-test (Dispose in OneTimeTearDown resets FactionManager
-            // state; MessageLog is static across tests too).
-            FactionManager.Initialize();
+            // Clear static MessageLog between tests so snapshots don't leak
+            // across fixtures. FactionManager is already initialized by the
+            // harness in OneTimeSetUp — no need to re-init here.
             MessageLog.Clear();
         }
 
@@ -93,8 +93,6 @@ namespace CavesOfOoo.Tests
             bool consumed = !AIBoredEvent.Check(entity);
 
             Assert.IsFalse(consumed, "AIGuard should not consume AIBored without a StartingCell");
-            ctx.Verify()
-                .Entity(entity); // Sanity — entity resolves; no goal assertion needed (we asserted no consumption)
             Assert.IsFalse(entity.GetPart<BrainPart>().HasGoal<GuardGoal>(),
                 "AIGuard should not push GuardGoal without a StartingCell");
         }
