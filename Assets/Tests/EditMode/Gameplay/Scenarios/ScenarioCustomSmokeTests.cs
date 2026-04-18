@@ -44,9 +44,6 @@ namespace CavesOfOoo.Tests.Scenarios
         [Test] public void StoutSnapjaw_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new StoutSnapjaw().Apply(FreshContext()));
 
-        [Test] public void WoundedWarden_Applies_WithoutThrowing() =>
-            Assert.DoesNotThrow(() => new WoundedWarden().Apply(FreshContext()));
-
         [Test] public void MimicSurprise_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new MimicSurprise().Apply(FreshContext()));
 

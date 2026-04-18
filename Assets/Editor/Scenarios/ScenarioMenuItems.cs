@@ -72,10 +72,6 @@ namespace CavesOfOoo.Editor.Scenarios
         // AI Behavior
         // =========================================================
 
-        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Wounded Warden", priority = 200)]
-        private static void Launch_WoundedWarden()
-            => ScenarioRunner.Launch<WoundedWarden>();
-
         [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Cornered Warden (M1.1 retreat)", priority = 201)]
         private static void Launch_CorneredWarden()
             => ScenarioRunner.Launch<CorneredWarden>();
