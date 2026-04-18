@@ -124,5 +124,35 @@ namespace CavesOfOoo.Tests.TestSupport
                 Assert.AreEqual(r1, r2, "Same seed should produce the same RNG sequence.");
             }
         }
+
+        [Test]
+        public void CreateContext_CustomZoneId_IsAppliedToZone()
+        {
+            using (var harness = new ScenarioTestHarness())
+            {
+                var ctx = harness.CreateContext(zoneId: "MyCustomZone");
+                Assert.AreEqual("MyCustomZone", ctx.Zone.ZoneID);
+            }
+        }
+
+        [Test]
+        public void Dispose_ResetsFactionManager()
+        {
+            // Confirm FactionManager state resets on Dispose. Without this, global
+            // faction config could leak across fixtures and cause flakes in distant
+            // tests that would be maddening to diagnose.
+            var harness = new ScenarioTestHarness();
+            Assert.Contains("Snapjaws", FactionManager.GetAllFactions(),
+                "Sanity: FactionManager initialized by constructor.");
+
+            harness.Dispose();
+
+            // After reset, the factions list should be empty (pre-Initialize state).
+            Assert.AreEqual(0, FactionManager.GetAllFactions().Count,
+                "FactionManager should be reset after Dispose — no residual factions.");
+
+            // Re-initialize so subsequent tests in this fixture aren't affected.
+            FactionManager.Initialize();
+        }
     }
 }
