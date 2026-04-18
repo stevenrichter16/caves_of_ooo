@@ -42,7 +42,7 @@ namespace CavesOfOoo.Tests.TestSupport
         /// <returns>The same context, for chaining.</returns>
         public static ScenarioContext AdvanceTurns(this ScenarioContext ctx, int count = 1)
         {
-            if (ctx == null) return null;
+            if (ctx == null) throw new System.ArgumentNullException(nameof(ctx));
             if (count <= 0) return ctx;
 
             for (int step = 0; step < count; step++)

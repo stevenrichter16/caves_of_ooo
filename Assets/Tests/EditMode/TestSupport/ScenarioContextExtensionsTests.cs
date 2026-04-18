@@ -156,6 +156,115 @@ namespace CavesOfOoo.Tests.TestSupport
                 "Advancing turns with no registered entities should be a silent no-op.");
         }
 
+        [Test]
+        public void TurnManager_Entities_YieldsInInsertionOrder()
+        {
+            // Direct test for TurnManager.Entities (the only runtime API added
+            // in Phase 3). If someone refactors Entities to e.g. sort or
+            // deduplicate, this pins the current contract.
+            var ctx = _harness.CreateContext();
+            var a = new Entity { BlueprintName = "A" };
+            var b = new Entity { BlueprintName = "B" };
+            var c = new Entity { BlueprintName = "C" };
+            ctx.Turns.AddEntity(a);
+            ctx.Turns.AddEntity(b);
+            ctx.Turns.AddEntity(c);
+
+            var yielded = new System.Collections.Generic.List<Entity>();
+            foreach (var e in ctx.Turns.Entities) yielded.Add(e);
+
+            CollectionAssert.AreEqual(new[] { a, b, c }, yielded);
+        }
+
+        [Test]
+        public void AdvanceTurns_NullContext_ThrowsArgumentNullException()
+        {
+            // Standard extension-method contract: null receiver throws
+            // ArgumentNullException rather than silently no-op'ing.
+            ScenarioContext nullCtx = null;
+            Assert.Throws<System.ArgumentNullException>(
+                () => nullCtx.AdvanceTurns(1));
+        }
+
+        [Test]
+        public void AdvanceTurns_TickOrder_IsInsertionOrder()
+        {
+            // Pins the current behavior: entities tick in the order they were
+            // added to the TurnManager. Documents the contract — any future
+            // change (e.g. speed-sorted ticking) should come with a deliberate
+            // update to this test.
+            var ctx = _harness.CreateContext();
+
+            var order = new System.Collections.Generic.List<string>();
+            var a = BuildOrderRecorder("A", order, ctx);
+            var b = BuildOrderRecorder("B", order, ctx);
+            var c = BuildOrderRecorder("C", order, ctx);
+
+            ctx.AdvanceTurns(1);
+
+            CollectionAssert.AreEqual(new[] { "A", "B", "C" }, order,
+                "Tick order should match insertion order.");
+        }
+
+        [Test]
+        public void AdvanceTurns_EntityThatDiedMidStep_StillReceivesTakeTurn()
+        {
+            // DOCUMENTATION TEST — not a contract we want, but a contract the
+            // underlying engine has today.
+            //
+            // CombatSystem.HandleDeath removes the dead entity from the Zone
+            // but NOT from the TurnManager. The only code path in the entire
+            // codebase that calls TurnManager.RemoveEntity is ZoneBuilder.
+            // So a Snapjaw killed on turn N stays in the TurnManager and
+            // continues receiving TakeTurn events on turn N+1, N+2, ...
+            //
+            // AdvanceTurns inherits this behavior (by design — it matches how
+            // AI tests have always manually fired TakeTurn). This test pins
+            // the current behavior; if CombatSystem is ever fixed to also
+            // de-register from TurnManager, this test will start failing and
+            // should be updated deliberately.
+            var ctx = _harness.CreateContext();
+            var (_, counter) = SpawnCountingEntity(ctx, 10, 10);
+
+            // Simulate mid-combat Zone removal (what HandleDeath does).
+            ctx.Zone.RemoveEntity(counter.ParentEntity);
+            // Deliberately do NOT remove from TurnManager — this mirrors the
+            // production HandleDeath path.
+
+            ctx.AdvanceTurns(3);
+
+            Assert.AreEqual(3, counter.Count,
+                "Dead-in-zone but still-in-TurnManager entity continues ticking. " +
+                "This documents the current engine behavior — CombatSystem does not " +
+                "de-register from TurnManager on death.");
+        }
+
+        /// <summary>
+        /// Constructs an entity with a part that appends its label to a shared
+        /// list on every TakeTurn. Used to verify tick ordering.
+        /// </summary>
+        private static Entity BuildOrderRecorder(string label, System.Collections.Generic.List<string> order, ScenarioContext ctx)
+        {
+            var e = new Entity { BlueprintName = "Order_" + label };
+            e.Tags["Creature"] = "";
+            e.AddPart(new OrderRecorderPart { Label = label, SharedOrder = order });
+            ctx.Zone.AddEntity(e, 10 + label[0] - 'A', 10);
+            ctx.Turns.AddEntity(e);
+            return e;
+        }
+
+        private class OrderRecorderPart : Part
+        {
+            public string Label;
+            public System.Collections.Generic.List<string> SharedOrder;
+
+            public override bool HandleEvent(GameEvent e)
+            {
+                if (e.ID == "TakeTurn") SharedOrder.Add(Label);
+                return base.HandleEvent(e);
+            }
+        }
+
         /// <summary>
         /// Test-only part: invokes a callback the first time TakeTurn fires on its
         /// parent. Used to test mid-step entity additions.
