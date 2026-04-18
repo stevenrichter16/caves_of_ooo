@@ -5,6 +5,8 @@ using CavesOfOoo.Data;
 using CavesOfOoo.Scenarios.Builders;
 using UnityEngine;
 
+// PlayerBuilder is in CavesOfOoo.Scenarios.Builders (using above).
+
 namespace CavesOfOoo.Scenarios
 {
     /// <summary>
@@ -20,8 +22,13 @@ namespace CavesOfOoo.Scenarios
     ///
     /// Fluent entry points:
     /// - <see cref="Spawn(string)"/> — begin an entity spawn chain
-    /// - <c>Player</c> — player modification builder (future phase)
-    /// - <c>Zone</c> — zone/world modification builder (future phase)
+    /// - <see cref="Player"/> — player modification builder (Phase 2c)
+    /// - <c>World</c> — zone/world modification builder (Phase 2d, not yet)
+    ///
+    /// Naming note (Phase 2c rename): <c>Player</c> is now the fluent
+    /// <see cref="PlayerBuilder"/>. The raw player Entity — for
+    /// <c>AsPersonalEnemyOf(...)</c>, position lookups, etc. — is accessible
+    /// as <see cref="PlayerEntity"/>.
     /// </summary>
     public sealed class ScenarioContext
     {
@@ -31,8 +38,12 @@ namespace CavesOfOoo.Scenarios
         /// <summary>The live entity factory with all blueprints loaded.</summary>
         public EntityFactory Factory { get; }
 
-        /// <summary>The live player entity.</summary>
-        public Entity Player { get; }
+        /// <summary>
+        /// The live player <see cref="Entity"/>. Use this when you need the
+        /// Entity itself (e.g., <c>.AsPersonalEnemyOf(ctx.PlayerEntity)</c>).
+        /// For MODIFYING the player, use <see cref="Player"/> — the fluent builder.
+        /// </summary>
+        public Entity PlayerEntity { get; }
 
         /// <summary>The live turn manager driving NPC turns.</summary>
         public TurnManager Turns { get; }
@@ -48,7 +59,7 @@ namespace CavesOfOoo.Scenarios
         {
             Zone = zone ?? throw new ArgumentNullException(nameof(zone));
             Factory = factory ?? throw new ArgumentNullException(nameof(factory));
-            Player = player ?? throw new ArgumentNullException(nameof(player));
+            PlayerEntity = player ?? throw new ArgumentNullException(nameof(player));
             Turns = turns ?? throw new ArgumentNullException(nameof(turns));
             Rng = new System.Random(rngSeed != 0 ? rngSeed : Guid.NewGuid().GetHashCode());
         }
@@ -96,6 +107,22 @@ namespace CavesOfOoo.Scenarios
         /// </summary>
         public EntityBuilder Spawn(string blueprintName) =>
             new EntityBuilder(this, blueprintName);
+
+        /// <summary>
+        /// Fluent player-modification builder. Lazy-initialized on first access,
+        /// cached for subsequent calls so repeated chaining touches the same instance.
+        /// Example: <c>ctx.Player.Teleport(50, 20).SetHpMax().AddMutation("CalmMutation");</c>
+        /// </summary>
+        public PlayerBuilder Player
+        {
+            get
+            {
+                if (_playerBuilder == null)
+                    _playerBuilder = new PlayerBuilder(this);
+                return _playerBuilder;
+            }
+        }
+        private PlayerBuilder _playerBuilder;
 
         /// <summary>
         /// Emit a tagged log line with a <c>[Scenario]</c> prefix and also push to the

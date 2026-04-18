@@ -23,7 +23,7 @@ namespace CavesOfOoo.Scenarios.Custom
                .WithStatMax("Hitpoints", 100).WithStat("Hitpoints", 100)
                .WithStatMax("Strength", 30).WithStat("Strength", 28)
                .WithEquipment("LongSword")
-               .AsPersonalEnemyOf(ctx.Player)
+               .AsPersonalEnemyOf(ctx.PlayerEntity)
                .AtPlayerOffset(5, 0);
 
             ctx.Log("Stout Snapjaw spawned — 100 HP beefcake wielding LongSword.");

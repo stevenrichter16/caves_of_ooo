@@ -215,7 +215,7 @@ namespace CavesOfOoo.Scenarios.Builders
         /// <summary>Spawn at a cell offset from the live player's current position.</summary>
         public Entity AtPlayerOffset(int dx, int dy)
         {
-            var playerPos = _ctx.Zone.GetEntityPosition(_ctx.Player);
+            var playerPos = _ctx.Zone.GetEntityPosition(_ctx.PlayerEntity);
             if (playerPos.x < 0)
             {
                 Debug.LogWarning($"[Scenario] AtPlayerOffset: player has no position — skipping spawn of '{_blueprintName}'");
@@ -227,7 +227,7 @@ namespace CavesOfOoo.Scenarios.Builders
         /// <summary>Spawn at a random passable cell within Chebyshev band [min, max] from the player.</summary>
         public Entity NearPlayer(int minRadius = 1, int maxRadius = 8)
         {
-            var playerPos = _ctx.Zone.GetEntityPosition(_ctx.Player);
+            var playerPos = _ctx.Zone.GetEntityPosition(_ctx.PlayerEntity);
             if (playerPos.x < 0)
             {
                 Debug.LogWarning($"[Scenario] NearPlayer: player has no position — skipping spawn of '{_blueprintName}'");
@@ -250,7 +250,7 @@ namespace CavesOfOoo.Scenarios.Builders
         /// <summary>Spawn at ring position <paramref name="indexOf"/> of <paramref name="totalOfN"/> around the player.</summary>
         public Entity InRing(int radius, int indexOf, int totalOfN)
         {
-            var playerPos = _ctx.Zone.GetEntityPosition(_ctx.Player);
+            var playerPos = _ctx.Zone.GetEntityPosition(_ctx.PlayerEntity);
             if (playerPos.x < 0)
             {
                 Debug.LogWarning($"[Scenario] InRing: player has no position — skipping spawn of '{_blueprintName}'");
