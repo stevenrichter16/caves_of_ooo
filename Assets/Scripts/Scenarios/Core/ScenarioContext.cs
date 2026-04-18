@@ -23,7 +23,7 @@ namespace CavesOfOoo.Scenarios
     /// Fluent entry points:
     /// - <see cref="Spawn(string)"/> — begin an entity spawn chain
     /// - <see cref="Player"/> — player modification builder (Phase 2c)
-    /// - <c>World</c> — zone/world modification builder (Phase 2d, not yet)
+    /// - <see cref="World"/> — zone-modification builder (Phase 2d)
     ///
     /// Naming note (Phase 2c rename): <c>Player</c> is now the fluent
     /// <see cref="PlayerBuilder"/>. The raw player Entity — for
@@ -123,6 +123,23 @@ namespace CavesOfOoo.Scenarios
             }
         }
         private PlayerBuilder _playerBuilder;
+
+        /// <summary>
+        /// Fluent zone-modification builder. Lazy-initialized on first access,
+        /// cached for subsequent calls.
+        /// Example: <c>ctx.World.PlaceObject("Chest").AtPlayerOffset(3, 0);</c>
+        /// Example: <c>ctx.World.RemoveEntitiesWithTag("Creature");</c>
+        /// </summary>
+        public ZoneBuilder World
+        {
+            get
+            {
+                if (_worldBuilder == null)
+                    _worldBuilder = new ZoneBuilder(this);
+                return _worldBuilder;
+            }
+        }
+        private ZoneBuilder _worldBuilder;
 
         /// <summary>
         /// Emit a tagged log line with a <c>[Scenario]</c> prefix and also push to the
