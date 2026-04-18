@@ -219,6 +219,77 @@ namespace CavesOfOoo.Tests.TestSupport
             ctx.Verify().Entity(snapjaw).HasTag("Creature");
         }
 
+        [Test]
+        public void Entity_HasTag_Missing_Fails()
+        {
+            var ctx = _harness.CreateContext();
+            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
+            var ex = Assert.Throws<AssertionException>(
+                () => ctx.Verify().Entity(snapjaw).HasTag("NoSuchTag"));
+            StringAssert.Contains("HasTag", ex.Message);
+            StringAssert.Contains("NoSuchTag", ex.Message);
+        }
+
+        [Test]
+        public void Entity_HasStat_WrongValue_Fails()
+        {
+            var ctx = _harness.CreateContext();
+            var snapjaw = ctx.Spawn("Snapjaw").WithStat("Strength", 10).At(20, 10);
+            var ex = Assert.Throws<AssertionException>(
+                () => ctx.Verify().Entity(snapjaw).HasStat("Strength", 99));
+            StringAssert.Contains("Strength", ex.Message);
+            StringAssert.Contains("expected 99", ex.Message);
+        }
+
+        [Test]
+        public void Entity_HasStat_MissingStat_Fails()
+        {
+            var ctx = _harness.CreateContext();
+            // Chests don't have a Strength stat.
+            var chest = ctx.World.PlaceObject("Chest").At(20, 10);
+            var ex = Assert.Throws<AssertionException>(
+                () => ctx.Verify().Entity(chest).HasStat("Strength", 5));
+            StringAssert.Contains("not present", ex.Message);
+        }
+
+        // =========================================================
+        // HasGoalOnStack — previously uncovered (filled in review)
+        // =========================================================
+
+        [Test]
+        public void Entity_HasGoalOnStack_WithMatchingGoal_Passes()
+        {
+            var ctx = _harness.CreateContext();
+            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
+            var brain = snapjaw.GetPart<BrainPart>();
+            brain.PushGoal(new WaitGoal(3));
+
+            ctx.Verify().Entity(snapjaw).HasGoalOnStack<WaitGoal>();
+        }
+
+        [Test]
+        public void Entity_HasGoalOnStack_GoalNotPresent_Fails()
+        {
+            var ctx = _harness.CreateContext();
+            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
+            // No goals pushed — stack is empty.
+            var ex = Assert.Throws<AssertionException>(
+                () => ctx.Verify().Entity(snapjaw).HasGoalOnStack<WaitGoal>());
+            StringAssert.Contains("HasGoalOnStack", ex.Message);
+            StringAssert.Contains("WaitGoal", ex.Message);
+        }
+
+        [Test]
+        public void Entity_HasGoalOnStack_NoBrainPart_Fails()
+        {
+            var ctx = _harness.CreateContext();
+            // Chests don't have a BrainPart.
+            var chest = ctx.World.PlaceObject("Chest").At(20, 10);
+            var ex = Assert.Throws<AssertionException>(
+                () => ctx.Verify().Entity(chest).HasGoalOnStack<WaitGoal>());
+            StringAssert.Contains("no BrainPart", ex.Message);
+        }
+
         // =========================================================
         // PlayerVerifier
         // =========================================================
@@ -336,6 +407,44 @@ namespace CavesOfOoo.Tests.TestSupport
             ctx.Spawn("Snapjaw").At(5, 5);
             Assert.Throws<AssertionException>(
                 () => ctx.Verify().Cell(5, 5).HasNoEntityWithTag("Creature"));
+        }
+
+        [Test]
+        public void Cell_IsPassable_EmptyCell_Passes()
+        {
+            var ctx = _harness.CreateContext();
+            ctx.Verify().Cell(5, 5).IsPassable();
+        }
+
+        [Test]
+        public void Cell_IsPassable_SolidCell_Fails()
+        {
+            // Cell.IsSolid checks the "Solid" TAG KEY — walls carry it explicitly,
+            // but creatures only have PhysicsPart.Solid=true (a field, not a tag).
+            // So a cell with a creature is still Passable by Cell's definition;
+            // we need an actual Wall blueprint for this test.
+            var ctx = _harness.CreateContext();
+            ctx.World.PlaceObject("StoneWall").At(5, 5);
+            var ex = Assert.Throws<AssertionException>(
+                () => ctx.Verify().Cell(5, 5).IsPassable());
+            StringAssert.Contains("IsPassable", ex.Message);
+        }
+
+        [Test]
+        public void Cell_IsSolid_WithSolidEntity_Passes()
+        {
+            var ctx = _harness.CreateContext();
+            ctx.World.PlaceObject("StoneWall").At(5, 5);
+            ctx.Verify().Cell(5, 5).IsSolid();
+        }
+
+        [Test]
+        public void Cell_IsSolid_EmptyCell_Fails()
+        {
+            var ctx = _harness.CreateContext();
+            var ex = Assert.Throws<AssertionException>(
+                () => ctx.Verify().Cell(5, 5).IsSolid());
+            StringAssert.Contains("IsSolid", ex.Message);
         }
 
         // =========================================================
