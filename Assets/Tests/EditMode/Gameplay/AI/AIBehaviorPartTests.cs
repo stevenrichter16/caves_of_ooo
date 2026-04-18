@@ -1,9 +1,8 @@
 using System;
-using System.IO;
-using NUnit.Framework;
 using CavesOfOoo.Core;
-using CavesOfOoo.Data;
-using Application = UnityEngine.Application;
+using CavesOfOoo.Scenarios;
+using CavesOfOoo.Tests.TestSupport;
+using NUnit.Framework;
 
 namespace CavesOfOoo.Tests
 {
@@ -11,88 +10,30 @@ namespace CavesOfOoo.Tests
     /// Tests for Tier 3b (AIGuardPart) and Tier 3c (AIWellVisitorPart).
     /// Validates that concrete AIBehaviorPart subclasses respond to AIBoredEvent
     /// and push the correct goals onto the brain's stack.
+    ///
+    /// Ported to the Phase 3 scenario-test infrastructure:
+    /// <see cref="ScenarioTestHarness"/> (fixture setup),
+    /// <see cref="ScenarioContextExtensions.AdvanceTurns"/> (turn advancement),
+    /// and <see cref="ScenarioVerifier"/> (fluent assertions).
     /// </summary>
     [TestFixture]
     public class AIBehaviorPartTests
     {
+        private static ScenarioTestHarness _harness;
+
+        [OneTimeSetUp]
+        public void OneTimeSetUp() => _harness = new ScenarioTestHarness();
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown() => _harness?.Dispose();
+
         [SetUp]
         public void Setup()
         {
+            // Re-init per-test (Dispose in OneTimeTearDown resets FactionManager
+            // state; MessageLog is static across tests too).
             FactionManager.Initialize();
             MessageLog.Clear();
-        }
-
-        // --- Helpers ---
-
-        private Entity CreateCreature(string faction, int hp = 15)
-        {
-            var entity = new Entity { BlueprintName = "TestCreature" };
-            entity.Tags["Creature"] = "";
-            if (!string.IsNullOrEmpty(faction))
-                entity.Tags["Faction"] = faction;
-            entity.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = hp, Min = 0, Max = hp };
-            entity.Statistics["Strength"] = new Stat { Name = "Strength", BaseValue = 16, Min = 1, Max = 50 };
-            entity.Statistics["Agility"] = new Stat { Name = "Agility", BaseValue = 16, Min = 1, Max = 50 };
-            entity.Statistics["Toughness"] = new Stat { Name = "Toughness", BaseValue = 16, Min = 1, Max = 50 };
-            entity.Statistics["Speed"] = new Stat { Name = "Speed", BaseValue = 100, Min = 25, Max = 200 };
-            entity.AddPart(new RenderPart { DisplayName = faction ?? "creature" });
-            entity.AddPart(new PhysicsPart { Solid = true });
-            entity.AddPart(new MeleeWeaponPart { BaseDamage = "1d4" });
-            entity.AddPart(new ArmorPart());
-            return entity;
-        }
-
-        private Entity CreateWarden(Zone zone, int x, int y)
-        {
-            var entity = CreateCreature("Villagers");
-            var brain = new BrainPart
-            {
-                SightRadius = 12,
-                Wanders = false,
-                WandersRandomly = false,
-                Staying = true,
-                CurrentZone = zone,
-                Rng = new Random(42)
-            };
-            entity.AddPart(brain);
-            entity.AddPart(new AIGuardPart());
-            zone.AddEntity(entity, x, y);
-
-            // Set starting cell (normally done by GameBootstrap)
-            brain.StartingCellX = x;
-            brain.StartingCellY = y;
-
-            return entity;
-        }
-
-        private Entity CreateFarmerWithWellVisitor(Zone zone, int x, int y, int chance = 100)
-        {
-            var entity = CreateCreature("Villagers");
-            entity.Tags["AllowIdleBehavior"] = "";
-            var brain = new BrainPart
-            {
-                Wanders = false,
-                WandersRandomly = false,
-                Staying = true,
-                CurrentZone = zone,
-                Rng = new Random(42)
-            };
-            entity.AddPart(brain);
-            entity.AddPart(new AIWellVisitorPart { Chance = chance });
-            zone.AddEntity(entity, x, y);
-            brain.StartingCellX = x;
-            brain.StartingCellY = y;
-            return entity;
-        }
-
-        private Entity CreateWell(Zone zone, int x, int y)
-        {
-            var well = new Entity { BlueprintName = "Well" };
-            well.Tags["Solid"] = "";
-            well.AddPart(new RenderPart { DisplayName = "well", RenderString = "O" });
-            well.AddPart(new PhysicsPart { Solid = true });
-            zone.AddEntity(well, x, y);
-            return well;
         }
 
         // ========================
@@ -102,128 +43,97 @@ namespace CavesOfOoo.Tests
         [Test]
         public void AIGuard_PushesGuardGoalOnBored()
         {
-            var zone = new Zone("TestZone");
-            var warden = CreateWarden(zone, 10, 10);
-            var brain = warden.GetPart<BrainPart>();
+            var ctx = _harness.CreateContext();
+            var warden = ctx.Spawn("Warden").At(10, 10);
 
-            warden.FireEvent(GameEvent.New("TakeTurn"));
+            ctx.AdvanceTurns(1);
 
-            Assert.IsTrue(brain.HasGoal<GuardGoal>(),
-                "AIGuard should push GuardGoal when the NPC is bored");
+            ctx.Verify().Entity(warden).HasGoalOnStack<GuardGoal>();
         }
 
         [Test]
         public void AIGuard_GuardGoalScansForHostiles()
         {
-            var zone = new Zone("TestZone");
-            var warden = CreateWarden(zone, 10, 10);
-            var brain = warden.GetPart<BrainPart>();
+            var ctx = _harness.CreateContext();
+            var warden = ctx.Spawn("Warden").At(10, 10);
+            // Observer — not registered, won't tick on its own.
+            ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(12, 10);
 
-            // Add hostile Snapjaw within sight (Villagers are hostile to Snapjaws)
-            var snapjaw = CreateCreature("Snapjaws");
-            zone.AddEntity(snapjaw, 12, 10);
+            ctx.AdvanceTurns(1);
 
-            // First tick: BoredGoal detects hostile (before AIGuard fires)
-            warden.FireEvent(GameEvent.New("TakeTurn"));
-
-            Assert.AreEqual(AIState.Chase, brain.CurrentState,
-                "Warden should chase hostile Snapjaw (BoredGoal hostile scan fires before AIGuard)");
+            // No Verify method for brain state — inline check. The rest of the
+            // test chain uses Verify.
+            Assert.AreEqual(AIState.Chase, warden.GetPart<BrainPart>().CurrentState,
+                "Warden should chase hostile Snapjaw.");
         }
 
         [Test]
         public void AIGuard_ReturnsToPostAfterCombat()
         {
-            var zone = new Zone("TestZone");
-            var warden = CreateWarden(zone, 10, 10);
-            var brain = warden.GetPart<BrainPart>();
+            var ctx = _harness.CreateContext();
+            var warden = ctx.Spawn("Warden").At(10, 10);
+            ctx.AdvanceTurns(1); // pushes GuardGoal
 
-            // First tick: pushes GuardGoal
-            warden.FireEvent(GameEvent.New("TakeTurn"));
+            // Displace warden from post.
+            ctx.Zone.MoveEntity(warden, 15, 10);
+            ctx.AdvanceTurns(15);
 
-            // Displace the warden from its post
-            zone.MoveEntity(warden, 15, 10);
-
-            // Run several ticks — GuardGoal should push MoveToGoal to return
-            for (int i = 0; i < 15; i++)
-                warden.FireEvent(GameEvent.New("TakeTurn"));
-
-            var pos = zone.GetEntityPosition(warden);
-            Assert.AreEqual(10, pos.x, "Warden should have returned to guard post X");
-            Assert.AreEqual(10, pos.y, "Warden should have returned to guard post Y");
+            ctx.Verify().Entity(warden).IsAt(10, 10);
         }
 
         [Test]
         public void AIGuard_DoesNotConsumeBoredWithoutStartingCell()
         {
-            // Test via direct AIBored event (not TakeTurn) because HandleTakeTurn
-            // auto-sets StartingCell before the goal stack runs.
-            var zone = new Zone("TestZone");
-            var entity = CreateCreature("Villagers");
-            var brain = new BrainPart
-            {
-                CurrentZone = zone,
-                Rng = new Random(42)
-            };
-            entity.AddPart(brain);
-            entity.AddPart(new AIGuardPart());
-            zone.AddEntity(entity, 10, 10);
-            // StartingCell is NOT set (default -1, -1)
+            // Special-case: ctx.Spawn auto-sets StartingCell. This test needs an
+            // entity with no StartingCell, so we manually build one.
+            var ctx = _harness.CreateContext();
+            var entity = BuildMinimalCreatureWithAIGuard(ctx, 10, 10);
+            // StartingCell NOT set (default -1, -1).
 
             bool consumed = !AIBoredEvent.Check(entity);
 
-            Assert.IsFalse(consumed,
-                "AIGuard should not consume AIBored without a StartingCell");
-            Assert.IsFalse(brain.HasGoal<GuardGoal>(),
+            Assert.IsFalse(consumed, "AIGuard should not consume AIBored without a StartingCell");
+            ctx.Verify()
+                .Entity(entity); // Sanity — entity resolves; no goal assertion needed (we asserted no consumption)
+            Assert.IsFalse(entity.GetPart<BrainPart>().HasGoal<GuardGoal>(),
                 "AIGuard should not push GuardGoal without a StartingCell");
         }
 
         [Test]
         public void AIGuard_AtPost_ReactsToHostileImmediately()
         {
-            // Verifies the GuardGoal reactivity fix: at post, GuardGoal doesn't
+            // Verifies the GuardGoal reactivity fix — at post, GuardGoal doesn't
             // push WaitGoal, so it re-scans for hostiles every tick.
-            var zone = new Zone("TestZone");
-            var warden = CreateWarden(zone, 10, 10);
-            var brain = warden.GetPart<BrainPart>();
+            var ctx = _harness.CreateContext();
+            var warden = ctx.Spawn("Warden").At(10, 10);
 
-            // First tick: pushes GuardGoal, which idles at post
-            warden.FireEvent(GameEvent.New("TakeTurn"));
-            Assert.IsTrue(brain.HasGoal<GuardGoal>());
+            ctx.AdvanceTurns(1); // Warden at post with GuardGoal idling
+            ctx.Verify().Entity(warden).HasGoalOnStack<GuardGoal>();
 
-            // Add hostile Snapjaw — should react on the very next tick
-            var snapjaw = CreateCreature("Snapjaws");
-            zone.AddEntity(snapjaw, 12, 10);
+            ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(12, 10);
+            ctx.AdvanceTurns(1);
 
-            warden.FireEvent(GameEvent.New("TakeTurn"));
-
-            Assert.IsTrue(brain.HasGoal<KillGoal>(),
-                "Warden should react to hostile Snapjaw immediately (no WaitGoal blocking)");
+            ctx.Verify().Entity(warden).HasGoalOnStack<KillGoal>();
         }
 
-        // ========================
-        // Tier 3c: AIWellVisitorPart
         [Test]
         public void AIGuard_GoalStackStable_AfterMultipleTurns()
         {
             // GuardGoal should stay on the stack without duplicating.
-            // After N turns with no hostiles, stack should be exactly [BoredGoal, GuardGoal].
-            var zone = new Zone("TestZone");
-            var warden = CreateWarden(zone, 10, 10);
+            // After N turns with no hostiles, stack should be [BoredGoal, GuardGoal].
+            var ctx = _harness.CreateContext();
+            var warden = ctx.Spawn("Warden").At(10, 10);
+
+            ctx.AdvanceTurns(20);
+
             var brain = warden.GetPart<BrainPart>();
-
-            for (int i = 0; i < 20; i++)
-                warden.FireEvent(GameEvent.New("TakeTurn"));
-
-            // Stack should be stable: BoredGoal at bottom, GuardGoal on top
             Assert.AreEqual(2, brain.GoalCount,
-                "Stack should be [BoredGoal, GuardGoal] — no extra goals from repeated ticks");
-            Assert.IsTrue(brain.HasGoal<BoredGoal>());
-            Assert.IsTrue(brain.HasGoal<GuardGoal>());
-
-            // Warden should still be at post
-            var pos = zone.GetEntityPosition(warden);
-            Assert.AreEqual(10, pos.x);
-            Assert.AreEqual(10, pos.y);
+                "Stack should be [BoredGoal, GuardGoal] — no duplication from repeated ticks");
+            ctx.Verify()
+                .Entity(warden)
+                    .HasGoalOnStack<BoredGoal>()
+                    .HasGoalOnStack<GuardGoal>()
+                    .IsAt(10, 10);
         }
 
         [Test]
@@ -231,40 +141,33 @@ namespace CavesOfOoo.Tests
         {
             // Full integration: hostile appears, warden chases, hostile dies,
             // warden walks back to post.
-            var zone = new Zone("TestZone");
-            var warden = CreateWarden(zone, 10, 10);
-            var brain = warden.GetPart<BrainPart>();
-            // Give warden a strong weapon to ensure kill
-            warden.GetPart<MeleeWeaponPart>().BaseDamage = "10d10";
+            var ctx = _harness.CreateContext();
+            var warden = ctx.Spawn("Warden").At(10, 10);
+            // Real Warden blueprint has no built-in MeleeWeaponPart (combat
+            // goes through equipped weapons). Add one with overpowered damage
+            // so the kill happens within the loop.
+            warden.AddPart(new MeleeWeaponPart { BaseDamage = "10d10" });
 
-            // First tick: pushes GuardGoal
-            warden.FireEvent(GameEvent.New("TakeTurn"));
-            Assert.IsTrue(brain.HasGoal<GuardGoal>());
+            ctx.AdvanceTurns(1); // pushes GuardGoal
+            ctx.Verify().Entity(warden).HasGoalOnStack<GuardGoal>();
 
-            // Snapjaw appears nearby
-            var snapjaw = CreateCreature("Snapjaws");
-            snapjaw.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 1, Min = 0, Max = 1 };
-            zone.AddEntity(snapjaw, 12, 10);
+            // Fragile Snapjaw — 1 HP.
+            var snapjaw = ctx.Spawn("Snapjaw")
+                .WithStatMax("Hitpoints", 1)
+                .WithHpAbsolute(1)
+                .At(12, 10);
 
-            // Run ticks — warden should chase and kill the snapjaw
+            // Chase + kill within 5 ticks.
             for (int i = 0; i < 5; i++)
             {
-                warden.FireEvent(GameEvent.New("TakeTurn"));
-                // If snapjaw is dead (removed from zone), stop
-                if (zone.GetEntityCell(snapjaw) == null) break;
+                ctx.AdvanceTurns(1);
+                if (ctx.Zone.GetEntityCell(snapjaw) == null) break;
             }
+            Assert.IsNull(ctx.Zone.GetEntityCell(snapjaw), "Snapjaw should be dead after warden attack");
 
-            // Snapjaw should be dead
-            Assert.IsNull(zone.GetEntityCell(snapjaw),
-                "Snapjaw should be dead after warden attack");
-
-            // Warden drifted from post during chase. Run more ticks to return.
-            for (int i = 0; i < 15; i++)
-                warden.FireEvent(GameEvent.New("TakeTurn"));
-
-            var pos = zone.GetEntityPosition(warden);
-            Assert.AreEqual(10, pos.x, "Warden should return to guard post X after combat");
-            Assert.AreEqual(10, pos.y, "Warden should return to guard post Y after combat");
+            // Return to post.
+            ctx.AdvanceTurns(15);
+            ctx.Verify().Entity(warden).IsAt(10, 10);
         }
 
         // ========================
@@ -274,92 +177,70 @@ namespace CavesOfOoo.Tests
         [Test]
         public void AIWellVisitor_WalksTowardWell()
         {
-            var zone = new Zone("TestZone");
-            CreateWell(zone, 20, 12);
-            // Chance=100 ensures it always fires
-            var farmer = CreateFarmerWithWellVisitor(zone, 5, 5, chance: 100);
-            var brain = farmer.GetPart<BrainPart>();
+            var ctx = _harness.CreateContext();
+            ctx.World.PlaceObject("Well").At(20, 12);
+            var farmer = BuildFarmerWithWellVisitor(ctx, 5, 5, chance: 100);
 
-            farmer.FireEvent(GameEvent.New("TakeTurn"));
+            ctx.AdvanceTurns(1);
 
-            Assert.IsTrue(brain.HasGoal<MoveToGoal>(),
-                "AIWellVisitor should push MoveToGoal toward the well");
+            ctx.Verify().Entity(farmer).HasGoalOnStack<MoveToGoal>();
         }
 
         [Test]
         public void AIWellVisitor_TargetsAdjacentToWell()
         {
-            var zone = new Zone("TestZone");
-            CreateWell(zone, 20, 12);
-            var farmer = CreateFarmerWithWellVisitor(zone, 5, 5, chance: 100);
-            var brain = farmer.GetPart<BrainPart>();
+            var ctx = _harness.CreateContext();
+            ctx.World.PlaceObject("Well").At(20, 12);
+            var farmer = BuildFarmerWithWellVisitor(ctx, 5, 5, chance: 100);
 
-            // Directly fire AIBored to get the MoveToGoal pushed onto the stack
-            // before TakeTurn's child-chain executes it (which would start walking).
+            // Fire AIBored directly so the MoveToGoal stays on top of the stack
+            // (TakeTurn's child-chain would execute and start walking).
             AIBoredEvent.Check(farmer);
 
-            Assert.IsTrue(brain.HasGoal<MoveToGoal>(),
-                "AIWellVisitor should push MoveToGoal");
+            var brain = farmer.GetPart<BrainPart>();
+            ctx.Verify().Entity(farmer).HasGoalOnStack<MoveToGoal>();
 
-            // Find the MoveToGoal on the stack
-            MoveToGoal moveGoal = null;
-            // PeekGoal returns the top — which should be MoveToGoal since AIBored pushed it
-            var top = brain.PeekGoal();
-            if (top is MoveToGoal m) moveGoal = m;
-
-            Assert.IsNotNull(moveGoal, "Top goal should be MoveToGoal");
-
-            // The target should be adjacent to the well (20, 12), not on the well itself
-            int dist = AIHelpers.ChebyshevDistance(moveGoal.TargetX, moveGoal.TargetY, 20, 12);
+            // MoveToGoal coordinates need direct inspection — no verifier for that.
+            var top = brain.PeekGoal() as MoveToGoal;
+            Assert.IsNotNull(top, "Top goal should be MoveToGoal");
+            int dist = AIHelpers.ChebyshevDistance(top.TargetX, top.TargetY, 20, 12);
             Assert.AreEqual(1, dist,
-                $"MoveToGoal target ({moveGoal.TargetX},{moveGoal.TargetY}) should be 1 cell from well (20,12)");
+                $"MoveToGoal target ({top.TargetX},{top.TargetY}) should be 1 cell from well (20,12)");
         }
 
         [Test]
         public void AIWellVisitor_NoWellInZone_DoesNothing()
         {
-            var zone = new Zone("TestZone");
-            // No well placed
-            var farmer = CreateFarmerWithWellVisitor(zone, 5, 5, chance: 100);
-            var brain = farmer.GetPart<BrainPart>();
+            var ctx = _harness.CreateContext();
+            var farmer = BuildFarmerWithWellVisitor(ctx, 5, 5, chance: 100);
 
-            farmer.FireEvent(GameEvent.New("TakeTurn"));
+            ctx.AdvanceTurns(1);
 
-            // Without a well, AIWellVisitor should not consume the event.
-            // The NPC falls through to normal staying behavior.
-            Assert.IsFalse(brain.HasGoal<MoveToGoal>(),
+            Assert.IsFalse(farmer.GetPart<BrainPart>().HasGoal<MoveToGoal>(),
                 "AIWellVisitor should not push MoveToGoal when no well exists");
         }
 
         [Test]
         public void AIWellVisitor_ProbabilityGate_WithZeroChance()
         {
-            var zone = new Zone("TestZone");
-            CreateWell(zone, 20, 12);
-            var farmer = CreateFarmerWithWellVisitor(zone, 5, 5, chance: 0);
-            var brain = farmer.GetPart<BrainPart>();
+            var ctx = _harness.CreateContext();
+            ctx.World.PlaceObject("Well").At(20, 12);
+            var farmer = BuildFarmerWithWellVisitor(ctx, 5, 5, chance: 0);
 
-            // With Chance=0, should never fire
-            for (int i = 0; i < 20; i++)
-                farmer.FireEvent(GameEvent.New("TakeTurn"));
+            ctx.AdvanceTurns(20);
 
-            Assert.IsFalse(brain.HasGoal<MoveToGoal>(),
+            Assert.IsFalse(farmer.GetPart<BrainPart>().HasGoal<MoveToGoal>(),
                 "AIWellVisitor with Chance=0 should never push MoveToGoal");
         }
 
         // ========================
-        // Blueprint integration (loads real Objects.json)
+        // Blueprint integration — no zone/context needed
         // ========================
 
         [Test]
         public void Warden_Blueprint_HasAIGuard()
         {
-            FactionManager.Initialize();
-            var factory = new EntityFactory();
-            string blueprintPath = Path.Combine(Application.dataPath, "Resources/Content/Blueprints/Objects.json");
-            factory.LoadBlueprints(File.ReadAllText(blueprintPath));
-
-            var warden = factory.CreateEntity("Warden");
+            var warden = _harness.Factory.CreateEntity("Warden");
             Assert.IsNotNull(warden);
             Assert.IsNotNull(warden.GetPart<AIGuardPart>(),
                 "Warden blueprint should have AIGuardPart attached");
@@ -368,18 +249,62 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Farmer_Blueprint_HasAIWellVisitor()
         {
-            FactionManager.Initialize();
-            var factory = new EntityFactory();
-            string blueprintPath = Path.Combine(Application.dataPath, "Resources/Content/Blueprints/Objects.json");
-            factory.LoadBlueprints(File.ReadAllText(blueprintPath));
-
-            var farmer = factory.CreateEntity("Farmer");
+            var farmer = _harness.Factory.CreateEntity("Farmer");
             Assert.IsNotNull(farmer);
             var wellVisitor = farmer.GetPart<AIWellVisitorPart>();
-            Assert.IsNotNull(wellVisitor,
-                "Farmer blueprint should have AIWellVisitorPart attached");
+            Assert.IsNotNull(wellVisitor, "Farmer blueprint should have AIWellVisitorPart attached");
             Assert.AreEqual(5, wellVisitor.Chance,
                 "Farmer's AIWellVisitor should have 5% chance per tick");
+        }
+
+        // ========================
+        // Local helpers (test-specific setups that can't go through ctx.Spawn)
+        // ========================
+
+        /// <summary>
+        /// Builds a minimal creature with AIGuard attached but NO StartingCell
+        /// set. Needed for the "AIGuard doesn't fire without StartingCell" test —
+        /// ctx.Spawn auto-sets StartingCell so we can't use it here.
+        /// </summary>
+        private static Entity BuildMinimalCreatureWithAIGuard(ScenarioContext ctx, int x, int y)
+        {
+            var entity = new Entity { BlueprintName = "TestCreature" };
+            entity.Tags["Creature"] = "";
+            entity.Tags["Faction"] = "Villagers";
+            entity.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 15, Max = 15 };
+            entity.AddPart(new BrainPart { CurrentZone = ctx.Zone, Rng = new Random(42) });
+            entity.AddPart(new AIGuardPart());
+            ctx.Zone.AddEntity(entity, x, y);
+            // StartingCell deliberately NOT set.
+            return entity;
+        }
+
+        /// <summary>
+        /// Builds a minimal farmer-shaped creature with AIWellVisitor. Can't use
+        /// ctx.Spawn("Farmer") because the real Farmer has Chance=5 baked in —
+        /// we need to test other Chance values (0, 100).
+        /// </summary>
+        private static Entity BuildFarmerWithWellVisitor(ScenarioContext ctx, int x, int y, int chance)
+        {
+            var entity = new Entity { BlueprintName = "TestFarmer" };
+            entity.Tags["Creature"] = "";
+            entity.Tags["Faction"] = "Villagers";
+            entity.Tags["AllowIdleBehavior"] = "";
+            entity.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 15, Max = 15 };
+            entity.AddPart(new BrainPart
+            {
+                CurrentZone = ctx.Zone,
+                Rng = new Random(42),
+                Wanders = false,
+                WandersRandomly = false,
+                Staying = true,
+                StartingCellX = x,
+                StartingCellY = y
+            });
+            entity.AddPart(new AIWellVisitorPart { Chance = chance });
+            ctx.Zone.AddEntity(entity, x, y);
+            ctx.Turns.AddEntity(entity);
+            return entity;
         }
     }
 }
