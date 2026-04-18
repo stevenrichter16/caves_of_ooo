@@ -48,6 +48,21 @@ namespace CavesOfOoo.Tests.TestSupport
         }
 
         /// <summary>
+        /// Assert the cell contains NO entity matching <paramref name="blueprintName"/>.
+        /// </summary>
+        public CellVerifier DoesNotContainBlueprint(string blueprintName)
+        {
+            var cell = Cell;
+            if (cell == null) return this; // null cell trivially contains nothing
+            foreach (var entity in cell.Objects)
+                if (entity != null && entity.BlueprintName == blueprintName)
+                    Assert.Fail(
+                        $"Verify.Cell({_x},{_y}).DoesNotContainBlueprint('{blueprintName}'): " +
+                        $"found a matching entity in the cell.");
+            return this;
+        }
+
+        /// <summary>
         /// Assert the cell has no entities at all. Note this fails even if the
         /// only objects in the cell are terrain (Wall/Floor/Terrain tags). For
         /// "no creatures" use <see cref="HasNoEntityWithTag"/> with "Creature".

@@ -10,7 +10,7 @@ namespace CavesOfOoo.Tests.TestSupport
     /// Holds a reference to the test's <see cref="ScenarioContext"/> and offers
     /// two things:
     /// 1. Global state assertions that apply across the whole zone
-    ///    (<see cref="EntityCount"/>, <see cref="TurnCount"/>, <see cref="PlayerIsAlive"/>)
+    ///    (<see cref="EntityCount"/>, <see cref="PlayerIsAlive"/>)
     /// 2. Factories for narrower sub-verifiers (<see cref="Entity"/>,
     ///    <see cref="Player"/>, <see cref="Cell"/>)
     ///
@@ -95,20 +95,12 @@ namespace CavesOfOoo.Tests.TestSupport
             return this;
         }
 
-        /// <summary>
-        /// Assert the TurnManager has ticked exactly <paramref name="expected"/>
-        /// times. Note that <see cref="ScenarioContextExtensions.AdvanceTurns"/>
-        /// does NOT increment TurnManager.TickCount — only
-        /// <see cref="TurnManager.Tick"/>/<see cref="TurnManager.ProcessUntilPlayerTurn"/>
-        /// do. This assertion is primarily useful for tests that exercise the
-        /// production turn loop directly.
-        /// </summary>
-        public ScenarioVerifier TurnCount(int expected)
-        {
-            Assert.AreEqual(expected, Ctx.Turns.TickCount,
-                $"Verify.TurnCount: expected {expected} ticks, got {Ctx.Turns.TickCount}.");
-            return this;
-        }
+        // TurnCount() deliberately not provided: AdvanceTurns doesn't increment
+        // TurnManager.TickCount (only production Tick/ProcessUntilPlayerTurn do),
+        // so a Verify().TurnCount() would be useless for the common scenario-test
+        // flow and a footgun for anyone expecting symmetry with AdvanceTurns.
+        // Tests that need tick counting should drive TurnManager.Tick directly
+        // and assert on TickCount inline.
     }
 
     /// <summary>

@@ -305,10 +305,10 @@ public void AIGuard_PushesGuardGoalOnBored()
 
 | Sub-verifier | Entry | Methods |
 |--------------|-------|---------|
-| `ScenarioVerifier` (root) | `ctx.Verify()` | `EntityCount(withTag, expected)`, `PlayerIsAlive()`, `TurnCount(expected)`, `Entity(e)`, `Player()`, `Cell(x, y)` |
-| `EntityVerifier` | `.Entity(e)` | `IsAt`, `HasHpFraction`, `HasStat`, `HasStatAtLeast`, `HasPartOfType<T>`, `HasGoalOnStack<T>`, `HasTag`, `IsAlive`, `Back()` |
-| `PlayerVerifier` | `.Player()` | `IsAt`, `HasHpFraction`, `HasStatAtLeast`, `HasMutation`, `HasItemInInventory`, `HasEquipped`, `HasFactionRep`, `HasFactionRepAtLeast`, `Back()` |
-| `CellVerifier` | `.Cell(x, y)` | `ContainsBlueprint`, `IsEmpty`, `IsPassable`, `IsSolid`, `HasNoEntityWithTag`, `Back()` |
+| `ScenarioVerifier` (root) | `ctx.Verify()` | `EntityCount(withTag, expected)`, `PlayerIsAlive()`, `Entity(e)`, `Player()`, `Cell(x, y)` |
+| `EntityVerifier` | `.Entity(e)` | `IsAt`, `IsNotAt`, `HasHpFraction`, `HasStat`, `HasStatAtLeast`, `HasPartOfType<T>`, `HasNoPartOfType<T>`, `HasGoalOnStack<T>`, `HasNoGoalOnStack<T>`, `HasTag`, `DoesNotHaveTag`, `IsAlive`, `Back()` |
+| `PlayerVerifier` | `.Player()` | `IsAt`, `IsNotAt`, `HasHpFraction`, `HasStatAtLeast`, `HasPartOfType<T>`, `HasNoPartOfType<T>`, `HasTag`, `DoesNotHaveTag`, `HasMutation`, `HasItemInInventory`, `HasEquipped`, `HasFactionRep`, `HasFactionRepAtLeast`, `Back()` |
+| `CellVerifier` | `.Cell(x, y)` | `ContainsBlueprint`, `DoesNotContainBlueprint`, `IsEmpty`, `IsPassable`, `IsSolid`, `HasNoEntityWithTag`, `Back()` |
 
 Sub-verifiers chain via `.Back()` to step back to the root, letting one
 test assert across entity, player, and cell state in a single chain.

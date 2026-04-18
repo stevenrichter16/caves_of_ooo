@@ -35,6 +35,53 @@ namespace CavesOfOoo.Tests.TestSupport
             return this;
         }
 
+        /// <summary>Assert player is NOT at <paramref name="x"/>, <paramref name="y"/>.</summary>
+        public PlayerVerifier IsNotAt(int x, int y)
+        {
+            var pos = _root.Ctx.Zone.GetEntityPosition(Player);
+            if (pos.x == x && pos.y == y)
+                Assert.Fail($"Verify.Player.IsNotAt({x},{y}): player IS at ({x},{y}).");
+            return this;
+        }
+
+        // =========================================================
+        // Parts & tags (parallels EntityVerifier)
+        // =========================================================
+
+        /// <summary>Assert the player has a part of type <typeparamref name="T"/>.</summary>
+        public PlayerVerifier HasPartOfType<T>() where T : Part
+        {
+            if (Player.GetPart<T>() == null)
+                Assert.Fail($"Verify.Player.HasPartOfType<{typeof(T).Name}>: part not attached.");
+            return this;
+        }
+
+        /// <summary>Assert the player does NOT have a part of type <typeparamref name="T"/>.</summary>
+        public PlayerVerifier HasNoPartOfType<T>() where T : Part
+        {
+            if (Player.GetPart<T>() != null)
+                Assert.Fail(
+                    $"Verify.Player.HasNoPartOfType<{typeof(T).Name}>: " +
+                    "part IS attached but shouldn't be.");
+            return this;
+        }
+
+        /// <summary>Assert the player carries the given tag key.</summary>
+        public PlayerVerifier HasTag(string tag)
+        {
+            if (!Player.HasTag(tag))
+                Assert.Fail($"Verify.Player.HasTag('{tag}'): tag not present.");
+            return this;
+        }
+
+        /// <summary>Assert the player does NOT carry the given tag key.</summary>
+        public PlayerVerifier DoesNotHaveTag(string tag)
+        {
+            if (Player.HasTag(tag))
+                Assert.Fail($"Verify.Player.DoesNotHaveTag('{tag}'): tag IS present.");
+            return this;
+        }
+
         public PlayerVerifier HasHpFraction(float fraction, float tolerance = 0.05f)
         {
             var stat = Player.GetStat("Hitpoints");

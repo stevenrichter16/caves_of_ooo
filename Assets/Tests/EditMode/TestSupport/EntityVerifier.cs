@@ -48,6 +48,20 @@ namespace CavesOfOoo.Tests.TestSupport
             return this;
         }
 
+        /// <summary>
+        /// Assert entity is NOT at <paramref name="x"/>, <paramref name="y"/>.
+        /// Entity being absent from the zone counts as "not at" — it's trivially
+        /// not at any cell.
+        /// </summary>
+        public EntityVerifier IsNotAt(int x, int y)
+        {
+            var pos = _root.Ctx.Zone.GetEntityPosition(_entity);
+            if (pos.x == x && pos.y == y)
+                Assert.Fail(
+                    $"Verify.Entity({Label}).IsNotAt({x},{y}): entity IS at ({x},{y}).");
+            return this;
+        }
+
         // =========================================================
         // Health / life
         // =========================================================
@@ -123,6 +137,16 @@ namespace CavesOfOoo.Tests.TestSupport
             return this;
         }
 
+        /// <summary>Assert the entity does NOT have a part of type <typeparamref name="T"/>.</summary>
+        public EntityVerifier HasNoPartOfType<T>() where T : Part
+        {
+            if (_entity.GetPart<T>() != null)
+                Assert.Fail(
+                    $"Verify.Entity({Label}).HasNoPartOfType<{typeof(T).Name}>: " +
+                    "part IS attached but shouldn't be.");
+            return this;
+        }
+
         public EntityVerifier HasGoalOnStack<T>() where T : GoalHandler
         {
             var brain = _entity.GetPart<BrainPart>();
@@ -135,10 +159,38 @@ namespace CavesOfOoo.Tests.TestSupport
             return this;
         }
 
+        /// <summary>
+        /// Assert the entity's brain stack does NOT contain a goal of type
+        /// <typeparamref name="T"/>. Fails if the entity has no BrainPart at
+        /// all (if there's no brain to inspect, the assertion is meaningless).
+        /// </summary>
+        public EntityVerifier HasNoGoalOnStack<T>() where T : GoalHandler
+        {
+            var brain = _entity.GetPart<BrainPart>();
+            if (brain == null)
+                Assert.Fail(
+                    $"Verify.Entity({Label}).HasNoGoalOnStack<{typeof(T).Name}>: " +
+                    "entity has no BrainPart (can't verify goal absence).");
+            if (brain.HasGoal<T>())
+                Assert.Fail(
+                    $"Verify.Entity({Label}).HasNoGoalOnStack<{typeof(T).Name}>: " +
+                    "goal IS on stack but shouldn't be.");
+            return this;
+        }
+
         public EntityVerifier HasTag(string tag)
         {
             if (!_entity.HasTag(tag))
                 Assert.Fail($"Verify.Entity({Label}).HasTag('{tag}'): tag not present.");
+            return this;
+        }
+
+        /// <summary>Assert the entity does NOT carry the given tag key.</summary>
+        public EntityVerifier DoesNotHaveTag(string tag)
+        {
+            if (_entity.HasTag(tag))
+                Assert.Fail(
+                    $"Verify.Entity({Label}).DoesNotHaveTag('{tag}'): tag IS present.");
             return this;
         }
     }

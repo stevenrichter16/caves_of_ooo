@@ -90,14 +90,6 @@ namespace CavesOfOoo.Tests.TestSupport
         }
 
         [Test]
-        public void TurnCount_MatchesTickCount()
-        {
-            var ctx = _harness.CreateContext();
-            // Fresh TurnManager — TickCount = 0.
-            ctx.Verify().TurnCount(0);
-        }
-
-        [Test]
         public void Cell_OutOfBounds_Fails()
         {
             var ctx = _harness.CreateContext();
@@ -486,6 +478,170 @@ namespace CavesOfOoo.Tests.TestSupport
                 .Entity(a).IsAt(10, 10).Back()
                 .Entity(b).IsAt(20, 20).Back()
                 .EntityCount(withTag: "Creature", expected: 3);
+        }
+
+        // =========================================================
+        // Negative assertions (Phase 3 polish)
+        // =========================================================
+
+        [Test]
+        public void Entity_IsNotAt_Passes_WhenElsewhere()
+        {
+            var ctx = _harness.CreateContext();
+            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
+            ctx.Verify().Entity(snapjaw).IsNotAt(5, 5);
+        }
+
+        [Test]
+        public void Entity_IsNotAt_Fails_WhenAtPosition()
+        {
+            var ctx = _harness.CreateContext();
+            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
+            var ex = Assert.Throws<AssertionException>(
+                () => ctx.Verify().Entity(snapjaw).IsNotAt(20, 10));
+            StringAssert.Contains("IsNotAt", ex.Message);
+        }
+
+        [Test]
+        public void Entity_HasNoPartOfType_Passes_WhenPartAbsent()
+        {
+            var ctx = _harness.CreateContext();
+            var chest = ctx.World.PlaceObject("Chest").At(20, 10);
+            ctx.Verify().Entity(chest).HasNoPartOfType<BrainPart>();
+        }
+
+        [Test]
+        public void Entity_HasNoPartOfType_Fails_WhenPartPresent()
+        {
+            var ctx = _harness.CreateContext();
+            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
+            Assert.Throws<AssertionException>(
+                () => ctx.Verify().Entity(snapjaw).HasNoPartOfType<BrainPart>());
+        }
+
+        [Test]
+        public void Entity_HasNoGoalOnStack_EmptyStack_Passes()
+        {
+            var ctx = _harness.CreateContext();
+            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
+            // No goals pushed.
+            ctx.Verify().Entity(snapjaw).HasNoGoalOnStack<WaitGoal>();
+        }
+
+        [Test]
+        public void Entity_HasNoGoalOnStack_GoalPresent_Fails()
+        {
+            var ctx = _harness.CreateContext();
+            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
+            snapjaw.GetPart<BrainPart>().PushGoal(new WaitGoal(3));
+            var ex = Assert.Throws<AssertionException>(
+                () => ctx.Verify().Entity(snapjaw).HasNoGoalOnStack<WaitGoal>());
+            StringAssert.Contains("HasNoGoalOnStack", ex.Message);
+        }
+
+        [Test]
+        public void Entity_HasNoGoalOnStack_NoBrainPart_Fails()
+        {
+            // Asserting "goal not on stack" for an entity with no brain is
+            // nonsensical — the verifier fails rather than silently passing.
+            var ctx = _harness.CreateContext();
+            var chest = ctx.World.PlaceObject("Chest").At(20, 10);
+            Assert.Throws<AssertionException>(
+                () => ctx.Verify().Entity(chest).HasNoGoalOnStack<WaitGoal>());
+        }
+
+        [Test]
+        public void Entity_DoesNotHaveTag_Passes_WhenAbsent()
+        {
+            var ctx = _harness.CreateContext();
+            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
+            ctx.Verify().Entity(snapjaw).DoesNotHaveTag("NoSuchTag");
+        }
+
+        [Test]
+        public void Entity_DoesNotHaveTag_Fails_WhenPresent()
+        {
+            var ctx = _harness.CreateContext();
+            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
+            Assert.Throws<AssertionException>(
+                () => ctx.Verify().Entity(snapjaw).DoesNotHaveTag("Creature"));
+        }
+
+        // =========================================================
+        // PlayerVerifier — new HasPartOfType / HasTag methods + negations
+        // =========================================================
+
+        [Test]
+        public void Player_HasPartOfType_Passes()
+        {
+            var ctx = _harness.CreateContext(playerBlueprint: "Player");
+            ctx.Verify().Player().HasPartOfType<MutationsPart>();
+        }
+
+        [Test]
+        public void Player_HasPartOfType_Missing_Fails()
+        {
+            // Stub player has no MutationsPart.
+            var ctx = _harness.CreateContext();
+            Assert.Throws<AssertionException>(
+                () => ctx.Verify().Player().HasPartOfType<MutationsPart>());
+        }
+
+        [Test]
+        public void Player_HasNoPartOfType_Passes()
+        {
+            // Stub player has no BrainPart by design.
+            var ctx = _harness.CreateContext();
+            ctx.Verify().Player().HasNoPartOfType<BrainPart>();
+        }
+
+        [Test]
+        public void Player_HasTag_Passes()
+        {
+            var ctx = _harness.CreateContext();
+            ctx.Verify().Player().HasTag("Creature");
+        }
+
+        [Test]
+        public void Player_DoesNotHaveTag_Passes()
+        {
+            var ctx = _harness.CreateContext();
+            ctx.Verify().Player().DoesNotHaveTag("NoSuchTag");
+        }
+
+        [Test]
+        public void Player_IsNotAt_Passes()
+        {
+            var ctx = _harness.CreateContext(playerX: 40, playerY: 12);
+            ctx.Verify().Player().IsNotAt(5, 5);
+        }
+
+        [Test]
+        public void Player_IsNotAt_Fails_WhenAtPosition()
+        {
+            var ctx = _harness.CreateContext(playerX: 40, playerY: 12);
+            Assert.Throws<AssertionException>(
+                () => ctx.Verify().Player().IsNotAt(40, 12));
+        }
+
+        // =========================================================
+        // CellVerifier.DoesNotContainBlueprint
+        // =========================================================
+
+        [Test]
+        public void Cell_DoesNotContainBlueprint_Passes_WhenAbsent()
+        {
+            var ctx = _harness.CreateContext();
+            ctx.Verify().Cell(25, 15).DoesNotContainBlueprint("Chest");
+        }
+
+        [Test]
+        public void Cell_DoesNotContainBlueprint_Fails_WhenPresent()
+        {
+            var ctx = _harness.CreateContext();
+            ctx.World.PlaceObject("Chest").At(25, 15);
+            Assert.Throws<AssertionException>(
+                () => ctx.Verify().Cell(25, 15).DoesNotContainBlueprint("Chest"));
         }
     }
 }

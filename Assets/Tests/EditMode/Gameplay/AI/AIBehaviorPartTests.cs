@@ -93,8 +93,7 @@ namespace CavesOfOoo.Tests
             bool consumed = !AIBoredEvent.Check(entity);
 
             Assert.IsFalse(consumed, "AIGuard should not consume AIBored without a StartingCell");
-            Assert.IsFalse(entity.GetPart<BrainPart>().HasGoal<GuardGoal>(),
-                "AIGuard should not push GuardGoal without a StartingCell");
+            ctx.Verify().Entity(entity).HasNoGoalOnStack<GuardGoal>();
         }
 
         [Test]
@@ -214,8 +213,7 @@ namespace CavesOfOoo.Tests
 
             ctx.AdvanceTurns(1);
 
-            Assert.IsFalse(farmer.GetPart<BrainPart>().HasGoal<MoveToGoal>(),
-                "AIWellVisitor should not push MoveToGoal when no well exists");
+            ctx.Verify().Entity(farmer).HasNoGoalOnStack<MoveToGoal>();
         }
 
         [Test]
@@ -227,8 +225,7 @@ namespace CavesOfOoo.Tests
 
             ctx.AdvanceTurns(20);
 
-            Assert.IsFalse(farmer.GetPart<BrainPart>().HasGoal<MoveToGoal>(),
-                "AIWellVisitor with Chance=0 should never push MoveToGoal");
+            ctx.Verify().Entity(farmer).HasNoGoalOnStack<MoveToGoal>();
         }
 
         // ========================
