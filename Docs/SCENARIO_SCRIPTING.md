@@ -549,3 +549,487 @@ real. The hand-written approach is fine up to at least 50 scenarios.
 - Unblocks rapid iteration on AI/combat/balance work for every future milestone
 - Pays for itself in M2 alone (calm-mutation testing, witness-effect tuning
   both benefit hugely)
+
+---
+
+# Phase 2 Detailed Plan
+
+**Status:** Designed, not yet implemented.
+
+**Goal of Phase 2:** Take the library from "I can spawn a creature at (x,y)" to
+"I can describe any engineered game situation in ~10-30 lines of C#."
+
+After Phase 2, a scenario author can: spawn via 6 positioning primitives,
+modify spawned entities with 8+ chainable methods, configure the player's
+stats/mutations/inventory/reputation, and place/clear world objects.
+
+## Sub-phase breakdown
+
+Phase 2 splits into four commit-sized chunks. Each is independently useful
+and leaves the library in a compiling, test-green state.
+
+| Sub-phase | Scope | Effort | What unblocks |
+|-----------|-------|:------:|---------------|
+| **2a** | EntityBuilder: richer positioning | ~1 hr | `.NearPlayer`, `.AdjacentToPlayer`, `.InRing(N, of, total)`, `.OnFirstPassableCell(pred)` |
+| **2b** | EntityBuilder: modification expansion | ~1.5 hr | `.WithStat`, `.WithEquipment`, `.WithInventory`, `.WithGoal`, `.Passive`, `.Hostile`, `.AsPersonalEnemyOf`, `.WithStartingCell` |
+| **2c** | PlayerBuilder (new class) | ~1 hr | `.Teleport`, `.SetHp`, `.AddMutation`, `.GiveItem`, `.Equip`, `.SetStat`, `.SetFactionReputation` |
+| **2d** | ZoneBuilder (new class) | ~1 hr | `.PlaceObject(bp).At(x,y)/.AtPlayerOffset(dx,dy)`, `.ClearCell`, `.RemoveEntitiesWithTag` |
+| **2e** | Example scenarios + authoring README | ~1 hr | 3 new reference scenarios + developer docs |
+
+Total Phase 2 effort: ~half a day including tests and commits.
+
+---
+
+## Sub-phase 2a — EntityBuilder richer positioning
+
+**File:** `Assets/Scripts/Scenarios/Builders/EntityBuilder.cs`
+
+### New positioning terminals
+
+```csharp
+/// <summary>
+/// Spawn at a random passable cell within Chebyshev distance [minRadius, maxRadius]
+/// from the player. All candidate cells are collected and one is selected via
+/// ctx.Rng — deterministic given scenario seed.
+/// Returns null if no passable cell exists in the range.
+/// </summary>
+public Entity NearPlayer(int minRadius = 1, int maxRadius = 8)
+
+/// <summary>
+/// Convenience: NearPlayer(1, 1). Picks one of the (up to) 8 adjacent cells
+/// that's passable. Returns null if fully surrounded.
+/// </summary>
+public Entity AdjacentToPlayer()
+
+/// <summary>
+/// Deterministic ring-position spawn. Given <c>count = N</c> total spawns and
+/// this being the <c>indexOf = i</c>-th, computes a grid cell approximating
+/// (playerX + radius·cos(2πi/N), playerY + radius·sin(2πi/N)).
+///
+/// Use in a loop: for (int i = 0; i &lt; 8; i++) ctx.Spawn("Snapjaw").InRing(3, i, 8);
+/// </summary>
+public Entity InRing(int radius, int indexOf, int totalOfN)
+
+/// <summary>
+/// Scan the zone for the first passable cell matching the predicate, spawn there.
+/// Scan order is row-major (x=0..79 for each y=0..24). Use for conditional
+/// placement like "spawn in any room cell tagged FurnitureAdjacent".
+/// </summary>
+public Entity OnFirstPassableCell(Func<Cell, bool> predicate)
+```
+
+### Implementation notes
+
+- All new terminals route through the existing `SpawnAt(x, y)` private method,
+  so the BrainPart wiring and HP-fraction application logic stays centralized.
+- `NearPlayer` should collect cells once, filter, then sample — not retry-sample.
+  A fully-walled-in player gets a clean `return null + warning` rather than an
+  infinite loop.
+- `InRing` rounds to int; adjacent ring indices may land on the same cell for
+  small radii. Document this — callers with fine-grained needs should use
+  explicit `.AtPlayerOffset(dx, dy)` per spawn.
+
+### Tests
+
+- Unit test in `Assets/Tests/EditMode/Gameplay/Scenarios/PositionResolverTests.cs`:
+  - `NearPlayer_ReturnsCellWithinRadius_WhenAvailable`
+  - `NearPlayer_ReturnsNull_WhenFullyWalled`
+  - `InRing_DistributesEvenly_AtLargeRadius` (asserts 8 spawns at radius 10 give
+    8 distinct cells)
+  - `InRing_ClustersExpected_AtSmallRadius` (documents the known-rounding behavior)
+  - `OnFirstPassableCell_FindsFirstMatch_InRowMajorOrder`
+
+---
+
+## Sub-phase 2b — EntityBuilder modification expansion
+
+**File:** same — `EntityBuilder.cs`.
+
+### New chainable modifications
+
+Each method returns `this` for continued chaining. All applied at well-defined
+stages of the spawn pipeline (pre-placement, post-placement, post-brain-wire —
+marked per method).
+
+```csharp
+/// <summary>Set a stat's BaseValue. If the stat doesn't exist, logs a warning
+/// and skips. For stats with high target values (e.g., HP above 30), also call
+/// <see cref="WithStatMax"/> — Stat.Max defaults to 30 and silently clamps.</summary>
+/// <remarks>Applied post-spawn, before BrainPart wiring.</remarks>
+public EntityBuilder WithStat(string statName, int value)
+
+/// <summary>Raise a stat's Max ceiling so WithStat can set higher values.</summary>
+public EntityBuilder WithStatMax(string statName, int max)
+
+/// <summary>Spawn an item blueprint, add to inventory, and equip in the first
+/// matching body slot. Entity must have InventoryPart or a Body with slots.
+/// Logs warning + skips on missing inventory or equip failure.</summary>
+/// <remarks>Applied post-placement.</remarks>
+public EntityBuilder WithEquipment(string itemBlueprintName)
+
+/// <summary>Spawn and add item blueprints to inventory (no equip). Stackable
+/// items auto-merge via StackerPart.</summary>
+public EntityBuilder WithInventory(params string[] itemBlueprintNames)
+
+/// <summary>Push a goal onto the spawned entity's brain stack. Goal is
+/// constructed by caller — library doesn't know game-specific goal types.</summary>
+/// <remarks>Applied post-brain-wire. Throws if entity has no BrainPart.</remarks>
+public EntityBuilder WithGoal(GoalHandler goal)
+
+/// <summary>Set Brain.Passive. Default true; pass false to explicitly un-passivate
+/// blueprints that were Passive by default.</summary>
+public EntityBuilder Passive(bool enabled = true)
+
+/// <summary>Alias for Passive(false) — explicit semantic.</summary>
+public EntityBuilder Hostile()
+
+/// <summary>Make this entity personally hostile toward target, bypassing faction.
+/// One-way (source → target); in practice mutual because GetFeeling checks both.</summary>
+public EntityBuilder AsPersonalEnemyOf(Entity target)
+
+/// <summary>Override the auto-set starting cell (which defaults to the spawn
+/// cell). Useful when you want the creature to "know home is elsewhere" from
+/// the moment it spawns.</summary>
+public EntityBuilder WithStartingCell(int x, int y)
+```
+
+### Pipeline ordering
+
+```
+CreateEntity(blueprint)
+  ↓
+Apply field-level mods: WithStat, WithStatMax, Passive, Hostile
+  ↓
+Wire BrainPart (CurrentZone, Rng, StartingCell default)
+  ↓
+Override: WithStartingCell (if set)
+  ↓
+zone.AddEntity(entity, x, y)
+  ↓
+Post-placement mods: WithHp, WithEquipment, WithInventory, WithGoal, AsPersonalEnemyOf
+  ↓
+TurnManager.AddEntity (if registered)
+```
+
+### Tests
+
+- Expanded `EntityBuilderSmokeTests.cs` via MCP execute_code at commit time:
+  one live scenario that chains 6+ modifications and asserts end state.
+
+---
+
+## Sub-phase 2c — PlayerBuilder
+
+**File:** `Assets/Scripts/Scenarios/Builders/PlayerBuilder.cs` (new)
+
+**Access:** `ctx.Player` — returns a shared `PlayerBuilder` instance wrapping
+the context. Methods return `this` for chaining.
+
+### API
+
+```csharp
+public sealed class PlayerBuilder
+{
+    private readonly ScenarioContext _ctx;
+    internal PlayerBuilder(ScenarioContext ctx) { _ctx = ctx; }
+
+    /// <summary>Move the player to (x, y) in the current zone. Uses zone.AddEntity
+    /// semantics (bypasses BeforeMove/AfterMove events — a teleport, not a walk).</summary>
+    public PlayerBuilder Teleport(int x, int y);
+
+    /// <summary>Set player HP. Only ONE of absolute/fraction/max should be used.</summary>
+    public PlayerBuilder SetHp(int? absolute = null, float? fraction = null, bool max = false);
+
+    /// <summary>Set an arbitrary stat. See EntityBuilder.WithStat caveats.</summary>
+    public PlayerBuilder SetStat(string statName, int value);
+
+    /// <summary>Grant a mutation. Class name must match the MutationsPart
+    /// reflection lookup (e.g., "FireBoltMutation", not "FireBolt").</summary>
+    public PlayerBuilder AddMutation(string mutationClassName, int level = 1);
+
+    /// <summary>Spawn a fresh item and add to inventory. Non-stackable: spawns
+    /// `count` separate items. Stackable: relies on StackerPart auto-merge.</summary>
+    public PlayerBuilder GiveItem(string itemBlueprintName, int count = 1);
+
+    /// <summary>Shortcut: GiveItem + equip in first compatible slot.</summary>
+    public PlayerBuilder Equip(string itemBlueprintName);
+
+    /// <summary>Set player reputation with a named faction. Clamped to [-200, 200]
+    /// by PlayerReputation. Silent (no in-game message log entry).</summary>
+    public PlayerBuilder SetFactionReputation(string faction, int value);
+
+    /// <summary>Adjust player reputation by delta. Silent.</summary>
+    public PlayerBuilder ModifyFactionReputation(string faction, int delta);
+}
+```
+
+### Implementation notes
+
+- `Teleport` uses `zone.AddEntity(player, x, y)` — the confirmed idiomatic pattern
+  for re-placing an already-placed entity. This is intentional: we want teleport
+  semantics (no move-blockers), not "walk there" semantics.
+- `SetHp` validates exactly one of its three modes is set; overloads would be
+  cleaner but the parameterized form is explicit at the call site.
+- `AddMutation` uses `MutationsPart.AddMutation(className, level)` — the same
+  code path as blueprint-driven `StartingMutations` parsing.
+- `GiveItem` for unknown blueprints logs a warning and no-ops (same pattern as
+  EntityBuilder spawn failures).
+- `Equip` is `GiveItem + InventorySystem.Equip` — one call does both.
+- Faction reputation methods go through `PlayerReputation.Set` / `Modify` with
+  `silent: true`, so the setup doesn't pollute MessageLog with noise.
+
+### Also required
+
+- Extend `ScenarioContext` with a `public PlayerBuilder Player { get; }` property
+  (lazy-initialized). Small change to `ScenarioContext.cs`.
+
+---
+
+## Sub-phase 2d — ZoneBuilder
+
+**File:** `Assets/Scripts/Scenarios/Builders/ZoneBuilder.cs` (new)
+
+**Access:** `ctx.World` — not `ctx.Zone` (that name is taken by the raw Zone
+reference). `World` reads more naturally in fluent contexts ("place a chest in
+the world at...").
+
+### API
+
+```csharp
+public sealed class ZoneBuilder
+{
+    private readonly ScenarioContext _ctx;
+    internal ZoneBuilder(ScenarioContext ctx) { _ctx = ctx; }
+
+    /// <summary>Begin a fluent placement chain for a non-creature object
+    /// (furniture, item, decor). Returns an ObjectPlacer that needs a
+    /// positioning terminal (.At or .AtPlayerOffset).</summary>
+    public ObjectPlacer PlaceObject(string blueprintName);
+
+    /// <summary>Remove all non-terrain entities from the cell. "Terrain" means
+    /// entities with the "Wall" or "Floor" tag (or other terrain-ish tags to be
+    /// confirmed). Useful for making a cell available to a subsequent spawn.</summary>
+    public ZoneBuilder ClearCell(int x, int y);
+
+    /// <summary>Remove every entity in the zone carrying the given tag. Common
+    /// uses: RemoveEntitiesWithTag("Creature") to empty the zone of NPCs,
+    /// RemoveEntitiesWithTag("Snapjaws") via the Faction tag.</summary>
+    public ZoneBuilder RemoveEntitiesWithTag(string tagName);
+}
+
+public sealed class ObjectPlacer
+{
+    // Positioning terminals — same shape as EntityBuilder but the result is
+    // always non-registered-for-turns.
+    public Entity At(int x, int y);
+    public Entity AtPlayerOffset(int dx, int dy);
+}
+```
+
+### Implementation notes
+
+- `PlaceObject` is essentially `Spawn(...).NotRegisteredForTurns()` but with a
+  narrower return type. Internally it can share code with EntityBuilder — the
+  "ObjectPlacer" wrapper just omits the creature-only modifiers.
+- `ClearCell` iterates `cell.Objects` in reverse and calls `zone.RemoveEntity`
+  on anything that lacks the terrain guard tags. Needs one-time verification
+  during implementation — current Zone/Cell API may expose a cleaner helper.
+- `RemoveEntitiesWithTag("Creature")` is very useful for test-setup scenarios
+  that want to start from a clean world ("empty zone" baseline).
+
+### Also required
+
+- Extend `ScenarioContext` with `public ZoneBuilder World { get; }` lazy prop.
+
+---
+
+## Sub-phase 2e — Example scenarios + README
+
+**New files under `Assets/Scripts/Scenarios/Custom/`:**
+
+### 1. WoundedWarden.cs
+
+```csharp
+[Scenario(name: "Wounded Warden",
+    category: "AI Behavior",
+    description: "Warden at 20% HP out of sight — watch her retreat to guard post.")]
+public class WoundedWarden : IScenario
+{
+    public void Apply(ScenarioContext ctx)
+    {
+        ctx.Spawn("Warden")
+           .AtPlayerOffset(8, 0)
+           .WithHp(fraction: 0.20f)
+           .WithStartingCell(
+               ctx.Zone.GetEntityPosition(ctx.Player).x + 8,
+               ctx.Zone.GetEntityPosition(ctx.Player).y);
+
+        ctx.Log("Warden spawned at 20% HP — observe RetreatGoal flow.");
+    }
+}
+```
+
+**Also needs a menu stub added to `ScenarioMenuItems.cs`:**
+```csharp
+[MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Wounded Warden")]
+private static void Launch_WoundedWarden() => ScenarioRunner.Launch<WoundedWarden>();
+```
+
+### 2. MimicSurprise.cs
+
+```csharp
+[Scenario(name: "Mimic Surprise",
+    category: "Content Demo",
+    description: "Real chest and a mimic next to each other. Attack or step on the wrong one.")]
+public class MimicSurprise : IScenario
+{
+    public void Apply(ScenarioContext ctx)
+    {
+        // Real chest (decoy)
+        ctx.World.PlaceObject("Chest").AtPlayerOffset(3, 0);
+
+        // Mimic disguised identically — walk onto it wakes it
+        ctx.Spawn("MimicChest").AtPlayerOffset(5, 0);
+
+        // Gold pile as lure
+        ctx.World.PlaceObject("GoldPile").AtPlayerOffset(3, 0);
+
+        ctx.Log("Mimic Surprise applied. One of the chests is lying to you.");
+    }
+}
+```
+
+Menu stub: `Caves Of Ooo/Scenarios/Content Demo/Mimic Surprise`.
+
+### 3. EmptyStartingZone.cs
+
+```csharp
+[Scenario(name: "Empty Starting Zone",
+    category: "Baseline",
+    description: "Strip all creatures from the current zone, leaving only the player.")]
+public class EmptyStartingZone : IScenario
+{
+    public void Apply(ScenarioContext ctx)
+    {
+        ctx.World.RemoveEntitiesWithTag("Creature");
+        // Re-add the player (we remove then re-add to guarantee the player's
+        // position/registration isn't affected by the mass-remove).
+        ctx.Zone.AddEntity(ctx.Player, ctx.Zone.GetEntityPosition(ctx.Player));
+        ctx.Log("Zone emptied. Baseline for controlled tests.");
+    }
+}
+```
+
+Menu stub: `Caves Of Ooo/Scenarios/Baseline/Empty Starting Zone`.
+
+### (Phase-2-ready, activates when M2 ships)
+
+**CalmTestSetup.cs** — references `CalmMutation` which doesn't exist yet. Logs a
+warning on launch until M2 lands, then works automatically.
+
+```csharp
+[Scenario(name: "Calm Test Setup",
+    category: "Mutations",
+    description: "Player with Calm mutation + 3 hostiles to target. Activates after M2.2.")]
+public class CalmTestSetup : IScenario
+{
+    public void Apply(ScenarioContext ctx)
+    {
+        ctx.Player.AddMutation("CalmMutation", level: 3);
+
+        ctx.Spawn("Snapjaw").AtPlayerOffset(3, 0);
+        ctx.Spawn("Snapjaw").AtPlayerOffset(5, 0);
+        ctx.Spawn("Snapjaw").AtPlayerOffset(7, 0);
+
+        ctx.Log("Calm Test ready — cast Calm on one snapjaw, fight the rest.");
+    }
+}
+```
+
+### README.md
+
+**File:** `Assets/Scripts/Scenarios/README.md`
+
+**Structure:**
+- **What this is** — 2 paragraphs on the scenario library's purpose
+- **Your first scenario** — walkthrough: create .cs, add menu stub, click, play
+- **Common patterns**
+  - Positioning: `.At` vs `.AtPlayerOffset` vs `.NearPlayer` vs `.InRing`
+  - Modifying spawned entities: stats, equipment, inventory, goals
+  - Setting up the player: mutations, reputation, teleport
+  - Clearing the world: `RemoveEntitiesWithTag` for clean-slate tests
+- **Limitations**
+  - No hot-reload: edit requires Unity recompile
+  - No cross-zone scenarios in Phase 2 (Gap A)
+  - No cell-level effects in Phase 2 (Phase 5)
+- **Troubleshooting**
+  - Scenario doesn't appear in menu → check `ScenarioMenuItems.cs` has the stub
+  - Spawn silently dropped → check console for passable-cell warning
+  - HP silently clamped → stat.Max defaults to 30, use `.WithStatMax` to raise
+  - Mutation not granted → class name must match Type.Name exactly
+- **Reference table** — every builder method in one table with one-line description
+
+---
+
+## Phase 2 acceptance criteria
+
+- [ ] All 1317 existing tests still pass
+- [ ] 4 new `PositionResolverTests` pass (2a unit tests)
+- [ ] Each sub-phase compiles cleanly on commit (`mcp__unity__refresh_unity` + `read_console`)
+- [ ] MCP smoke tests for each new builder method produce the expected state
+- [ ] 3+ example scenarios exist and launch cleanly from the menu
+- [ ] `README.md` present and cross-referenced from `SCENARIO_SCRIPTING.md`
+- [ ] `CalmTestSetup` ships with a clear "activates after M2.2" note
+
+## What Phase 2 explicitly does NOT include
+
+Deferred to future phases to keep 2 tight and shippable:
+
+- **Automated test-harness reuse** (Phase 3 — `ScenarioContext.FromTestHarness`,
+  `.Assert` chain, `RunAsTest` extension, port existing M1 tests)
+- **Cell-level effect placement** (Phase 5 — `ZoneBuilder.ApplyEffectToCell`)
+- **Mid-play scenario application** (post-Phase 2 — apply to already-running
+  Play session instead of requiring restart)
+- **Parameterized scenarios** (Phase 5 — editor-visible inputs like
+  `[ScenarioParam] int SnapjawCount = 5`)
+- **Editor browser window** (Phase 4 — deferred indefinitely per Option A
+  decision; 20-30 scenario scope doesn't warrant it)
+
+## Known risks / decisions that may shift
+
+1. **`RemoveEntitiesWithTag("Creature")`** may not cleanly remove NPCs that are
+   mid-goal. Safe in blueprint-load ordering (before any turn has ticked) but
+   testing needed. If it breaks, fallback: iterate entities and check
+   `brain.CurrentZone = null` before removal.
+
+2. **`MimicSurprise` uses `GoldPile`** — need to confirm that blueprint exists
+   in `Objects.json`. If not, swap for any Item-type blueprint.
+
+3. **Stat.Max = 30 default** could surprise scenario authors setting HP to 50+
+   on spawned creatures. The `WithStatMax` method is the workaround but needs
+   a prominent README callout.
+
+4. **`InRing` rounding** clusters spawns at small radii. Acceptable limitation
+   but README should guide authors toward `.NearPlayer` for random-ring or
+   explicit `.AtPlayerOffset` chains for deterministic placement at r < 3.
+
+## Implementation order recommendation
+
+**Ship 2a and 2b first** (roughly 2.5 hours combined). These are the
+most-used primitives and unblock the example scenarios. PlayerBuilder (2c)
+and ZoneBuilder (2d) can each ship independently afterward — neither depends
+on the other. 2e is last, consuming all prior work.
+
+Recommended commits:
+1. `feat(scenarios): Phase 2a — richer positioning primitives` (NearPlayer,
+   AdjacentToPlayer, InRing, OnFirstPassableCell + 4 unit tests)
+2. `feat(scenarios): Phase 2b — entity modification expansion` (WithStat,
+   WithEquipment, WithInventory, WithGoal, Passive/Hostile, AsPersonalEnemyOf,
+   WithStartingCell)
+3. `feat(scenarios): Phase 2c — PlayerBuilder` (Teleport, SetHp, AddMutation,
+   GiveItem, Equip, SetStat, SetFactionReputation)
+4. `feat(scenarios): Phase 2d — ZoneBuilder` (PlaceObject, ClearCell,
+   RemoveEntitiesWithTag)
+5. `feat(scenarios): Phase 2e — example scenarios + authoring README`
+
+After all five commits: push the branch and declare Phase 2 done.
