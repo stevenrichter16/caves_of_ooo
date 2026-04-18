@@ -234,34 +234,45 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void MimicChest_Blueprint_Loads_WithWakeOnSameCell()
+        public void MimicChest_Blueprint_Loads_WithBumpToAttackWake()
         {
-            // M1 code review Bug 3: MimicChest is Physics.Solid=false so the player
-            // can walk onto it (preserving chest-like interaction), and its Brain
-            // SightRadius=0 + WakeOnHostileInSight=true means it only wakes when
-            // a hostile is ON its cell. Walking ADJACENT to it does nothing —
-            // the disguise holds until the player actually steps on it.
+            // MimicChest is Physics.Solid=true so the player CANNOT walk through
+            // it — same as real Chests and NPCs. Attempting to walk into the
+            // mimic's cell triggers the bump-to-attack flow (InputHandler.cs
+            // line 383: blocked hostile Creature → auto-melee), which damages
+            // the mimic → WakeOnDamage fires → mimic awakens mid-combat.
+            //
+            // SightRadius=0 means the mimic cannot wake by spotting a hostile
+            // from a distance — WakeOnHostileInSight stays true in the blueprint
+            // but is functionally inert. The disguise is preserved until the
+            // player actually interacts with the cell.
+            //
+            // Contract (post-bump-to-attack redesign):
+            // - Adjacent player: disguise holds (no sight wake, no damage)
+            // - Player presses 'o' on adjacent cell: real Chest opens; Mimic has
+            //   no Container part so the action doesn't apply
+            // - Player bumps into mimic's cell: blocked → auto-melee → WakeOnDamage
             var mimic = _factory.CreateEntity("MimicChest");
             Assert.IsNotNull(mimic);
 
             var ambush = mimic.GetPart<AIAmbushPart>();
             Assert.IsNotNull(ambush);
             Assert.IsTrue(ambush.WakeOnDamage,
-                "MimicChest wakes when attacked");
+                "MimicChest wakes when attacked (primary wake path under bump-to-attack design)");
             Assert.IsTrue(ambush.WakeOnHostileInSight,
-                "MimicChest wakes when hostile enters sight — but SightRadius=0 " +
-                "narrows that to the mimic's own cell only");
+                "Flag stays true in the blueprint for consistency, though SightRadius=0 makes it inert");
             Assert.AreEqual(0, ambush.SleepParticleInterval,
                 "MimicChest has no 'z' particles — it's disguised, not obviously asleep");
 
             var brain = mimic.GetPart<BrainPart>();
             Assert.AreEqual(0, brain.SightRadius,
-                "SightRadius=0 restricts wake-on-sight to same-cell hostiles");
+                "SightRadius=0 — disguise holds until the player attacks the mimic");
 
             var physics = mimic.GetPart<PhysicsPart>();
-            Assert.IsFalse(physics.Solid,
-                "MimicChest must be non-solid so players can walk onto it (like a real Chest), " +
-                "preserving the chest-disguise surface interaction.");
+            Assert.IsTrue(physics.Solid,
+                "MimicChest is Solid=true (same as real Chest, same as NPCs) — the player " +
+                "cannot walk through it. Bumping into the cell triggers bump-to-attack, " +
+                "which deals damage and wakes the mimic via WakeOnDamage.");
         }
 
         [Test]
@@ -336,9 +347,18 @@ namespace CavesOfOoo.Tests
         [Test]
         public void MimicChest_StaysDormantWhenHostileAdjacent_ButWakesOnSameCell()
         {
-            // M1 code review Bug 3: MimicChest uses SightRadius=0 so it wakes
-            // ONLY when a hostile is on its cell (distance 0). Adjacent hostiles
-            // (distance 1) do not wake it — the chest disguise holds.
+            // MimicChest uses SightRadius=0 so DormantGoal only wakes when a
+            // hostile is on the same cell (distance 0). Adjacent hostiles
+            // (distance 1) don't wake it — the chest disguise holds.
+            //
+            // Under the current design (MimicChest.Physics.Solid=true + bump-to-
+            // attack), the primary wake path is damage, not same-cell detection:
+            // the player CAN'T walk onto the mimic, they bump-attack instead.
+            // This test still drives the same-cell code path directly via
+            // zone.AddEntity (bypassing MovementSystem) because the logic is
+            // still wired and acts as a safety net: if any game system ever
+            // places a hostile onto the mimic's cell via teleport, push effect,
+            // scripted event, etc., the mimic wakes as designed.
             var zone = new Zone("TestZone");
             var mimic = _factory.CreateEntity("MimicChest");
             zone.AddEntity(mimic, 10, 10);

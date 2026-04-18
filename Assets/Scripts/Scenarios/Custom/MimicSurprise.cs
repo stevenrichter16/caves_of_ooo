@@ -20,10 +20,12 @@ namespace CavesOfOoo.Scenarios.Custom
     /// updated to match Chest's color intrinsically, this override becomes a
     /// harmless no-op and can be removed.
     ///
-    /// Note: MimicChest blueprint has <c>SightRadius=0</c> and
-    /// <c>Physics.Solid=false</c> — so the mimic can't wake on sight (only on
-    /// damage) and the player can walk through its cell without triggering it.
-    /// The interaction is entirely attack-driven.
+    /// Note: MimicChest has <c>SightRadius=0</c> (blueprint) so it can't wake
+    /// on sight — only on damage. Both Chest and MimicChest are now
+    /// <c>Physics.Solid=true</c>, so the player must either press 'o' to open
+    /// (real Chest path) or bump into the cell (melee attack — wakes the
+    /// mimic via its <c>WakeOnDamage</c> flag, since MimicChest carries the
+    /// Creature tag + hostile faction).
     ///
     /// Plan detail: originally called for a GoldPile lure, but that blueprint
     /// doesn't exist — swapped to HealingTonic per the plan's risk note.
