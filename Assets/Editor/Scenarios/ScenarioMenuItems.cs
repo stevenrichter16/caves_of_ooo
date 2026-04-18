@@ -76,6 +76,18 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_WoundedWarden()
             => ScenarioRunner.Launch<WoundedWarden>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Cornered Warden (M1.1 retreat)", priority = 201)]
+        private static void Launch_CorneredWarden()
+            => ScenarioRunner.Launch<CorneredWarden>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Ignored Scribe (M1.2 passive)", priority = 202)]
+        private static void Launch_IgnoredScribe()
+            => ScenarioRunner.Launch<IgnoredScribe>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Sleeping Troll (M1.3 ambush)", priority = 203)]
+        private static void Launch_SleepingTroll()
+            => ScenarioRunner.Launch<SleepingTroll>();
+
         // =========================================================
         // Content Demo
         // =========================================================
