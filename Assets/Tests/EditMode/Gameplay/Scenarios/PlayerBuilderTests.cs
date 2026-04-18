@@ -1,56 +1,38 @@
-using System.IO;
 using CavesOfOoo.Core;
-using CavesOfOoo.Data;
 using CavesOfOoo.Scenarios;
+using CavesOfOoo.Tests.TestSupport;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-using Application = UnityEngine.Application;
 
 namespace CavesOfOoo.Tests.Scenarios
 {
     /// <summary>
     /// Phase 2c tests — PlayerBuilder methods. Integration-style: each test
-    /// constructs a ScenarioContext with a real Player entity from the live
-    /// blueprint JSON, applies a builder method, and asserts state.
-    ///
-    /// Shares the EntityFactory across the fixture via OneTimeSetUp so blueprint
-    /// loading isn't repeated per test.
+    /// gets a fresh ScenarioContext (with a real Player entity) from the
+    /// shared <see cref="ScenarioTestHarness"/> and asserts state after
+    /// applying builder methods.
     /// </summary>
     [TestFixture]
     public class PlayerBuilderTests
     {
-        private static EntityFactory _sharedFactory;
+        private static ScenarioTestHarness _harness;
 
         [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            FactionManager.Initialize();
-            _sharedFactory = new EntityFactory();
-            string blueprintPath = Path.Combine(Application.dataPath, "Resources/Content/Blueprints/Objects.json");
-            _sharedFactory.LoadBlueprints(File.ReadAllText(blueprintPath));
-        }
+        public void OneTimeSetUp() => _harness = new ScenarioTestHarness();
 
         [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-            FactionManager.Reset();
-            _sharedFactory = null;
-        }
+        public void OneTimeTearDown() => _harness?.Dispose();
 
         /// <summary>
-        /// Builds a fresh context with a real Player entity placed at (40, 12)
-        /// in a synthetic Zone.
+        /// Fresh context with a REAL Player blueprint at (40, 12). The Player
+        /// blueprint is required here because PlayerBuilder exercises parts
+        /// (MutationsPart, InventoryPart) that the minimal stub doesn't carry.
         /// </summary>
         private static (ScenarioContext ctx, Zone zone, Entity player) BuildContext()
         {
-            var zone = new Zone("PlayerBuilderTestZone");
-            var player = _sharedFactory.CreateEntity("Player");
-            zone.AddEntity(player, 40, 12);
-
-            var tm = new TurnManager();
-            var ctx = new ScenarioContext(zone, _sharedFactory, player, tm, rngSeed: 98765);
-            return (ctx, zone, player);
+            var ctx = _harness.CreateContext(rngSeed: 98765, playerBlueprint: "Player");
+            return (ctx, ctx.Zone, ctx.PlayerEntity);
         }
 
         // ======================================================

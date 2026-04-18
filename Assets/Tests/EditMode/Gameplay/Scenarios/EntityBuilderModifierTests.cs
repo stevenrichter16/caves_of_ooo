@@ -1,11 +1,9 @@
-using System.IO;
 using CavesOfOoo.Core;
-using CavesOfOoo.Data;
 using CavesOfOoo.Scenarios;
+using CavesOfOoo.Tests.TestSupport;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-using Application = UnityEngine.Application;
 
 namespace CavesOfOoo.Tests.Scenarios
 {
@@ -14,48 +12,26 @@ namespace CavesOfOoo.Tests.Scenarios
     /// Passive/Hostile, AsPersonalEnemyOf, WithStartingCell, WithEquipment,
     /// WithInventory, WithGoal.
     ///
-    /// These are integration-style tests: they construct a ScenarioContext with
-    /// a real EntityFactory (loaded from the live blueprints JSON) and a
-    /// synthetic Zone, then call the full spawn pipeline and assert end state.
-    /// The EntityFactory is expensive to set up so we share it at the fixture
-    /// level via OneTimeSetUp.
+    /// Integration-style: each test gets a fresh context with a stub player
+    /// from the shared <see cref="ScenarioTestHarness"/>, then exercises the
+    /// full spawn pipeline and asserts end state.
     /// </summary>
     [TestFixture]
     public class EntityBuilderModifierTests
     {
-        private static EntityFactory _sharedFactory;
+        private static ScenarioTestHarness _harness;
 
         [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            FactionManager.Initialize();
-            _sharedFactory = new EntityFactory();
-            string blueprintPath = Path.Combine(Application.dataPath, "Resources/Content/Blueprints/Objects.json");
-            _sharedFactory.LoadBlueprints(File.ReadAllText(blueprintPath));
-        }
+        public void OneTimeSetUp() => _harness = new ScenarioTestHarness();
 
         [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-            FactionManager.Reset();
-            _sharedFactory = null;
-        }
+        public void OneTimeTearDown() => _harness?.Dispose();
 
-        /// <summary>Build a fresh test context with a synthetic zone, stub player at (40,12), and a new TurnManager.</summary>
+        /// <summary>Fresh context with a stub player at (40, 12).</summary>
         private static (ScenarioContext ctx, Zone zone, Entity player) BuildContext()
         {
-            var zone = new Zone("ModifierTestZone");
-
-            // Minimal player — just an Entity with a Hitpoints stat and a zone position.
-            var player = new Entity { BlueprintName = "TestPlayer" };
-            player.Tags["Player"] = "";
-            player.Tags["Creature"] = "";
-            player.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 100, Max = 100, Min = 0 };
-            zone.AddEntity(player, 40, 12);
-
-            var tm = new TurnManager();
-            var ctx = new ScenarioContext(zone, _sharedFactory, player, tm, rngSeed: 12345);
-            return (ctx, zone, player);
+            var ctx = _harness.CreateContext(rngSeed: 12345, zoneId: "ModifierTestZone");
+            return (ctx, ctx.Zone, ctx.PlayerEntity);
         }
 
         // ===========================================

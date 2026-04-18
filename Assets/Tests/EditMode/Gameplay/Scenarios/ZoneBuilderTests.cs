@@ -1,59 +1,37 @@
-using System.IO;
 using CavesOfOoo.Core;
-using CavesOfOoo.Data;
 using CavesOfOoo.Scenarios;
+using CavesOfOoo.Tests.TestSupport;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-using Application = UnityEngine.Application;
 
 namespace CavesOfOoo.Tests.Scenarios
 {
     /// <summary>
-    /// Phase 2d tests — ZoneBuilder methods. Integration-style: each test builds
-    /// a ScenarioContext with a real EntityFactory from the live blueprint JSON,
-    /// applies ZoneBuilder methods, and asserts zone + turn-manager state.
-    ///
-    /// Shares the EntityFactory across the fixture so blueprint loading happens
-    /// once per run.
+    /// Phase 2d tests — ZoneBuilder methods. Integration-style: each test gets
+    /// a fresh context (with a minimal stub player) from the shared
+    /// <see cref="ScenarioTestHarness"/> and asserts zone + turn-manager state.
     /// </summary>
     [TestFixture]
     public class ZoneBuilderTests
     {
-        private static EntityFactory _sharedFactory;
+        private static ScenarioTestHarness _harness;
 
         [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            FactionManager.Initialize();
-            _sharedFactory = new EntityFactory();
-            string blueprintPath = Path.Combine(Application.dataPath, "Resources/Content/Blueprints/Objects.json");
-            _sharedFactory.LoadBlueprints(File.ReadAllText(blueprintPath));
-        }
+        public void OneTimeSetUp() => _harness = new ScenarioTestHarness();
 
         [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-            FactionManager.Reset();
-            _sharedFactory = null;
-        }
+        public void OneTimeTearDown() => _harness?.Dispose();
 
         /// <summary>
-        /// Fresh context with a minimal player entity at (40, 12) in a synthetic zone.
+        /// Fresh context with a stub player at (40, 12). ZoneBuilder tests don't
+        /// need the full Player blueprint — they just need an entity to verify
+        /// the player-preservation rails.
         /// </summary>
         private static (ScenarioContext ctx, Zone zone, Entity player, TurnManager tm) BuildContext()
         {
-            var zone = new Zone("ZoneBuilderTestZone");
-
-            var player = new Entity { BlueprintName = "TestPlayer" };
-            player.Tags["Player"] = "";
-            player.Tags["Creature"] = "";
-            player.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 100, Max = 100, Min = 0 };
-            zone.AddEntity(player, 40, 12);
-
-            var tm = new TurnManager();
-            var ctx = new ScenarioContext(zone, _sharedFactory, player, tm, rngSeed: 54321);
-            return (ctx, zone, player, tm);
+            var ctx = _harness.CreateContext(rngSeed: 54321, zoneId: "ZoneBuilderTestZone");
+            return (ctx, ctx.Zone, ctx.PlayerEntity, ctx.Turns);
         }
 
         // ======================================================

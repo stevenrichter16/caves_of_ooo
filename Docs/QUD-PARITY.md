@@ -1790,6 +1790,142 @@ Weapon evaluation (`CompareWeapons`), `PerformReequip`, `WantToKill(entity, reas
 
 ---
 
+## Scenario Library — Phase 3: Scenario-as-Test Infrastructure
+
+**Status:** 📋 Planned (canonical plan lives in `Docs/SCENARIO_SCRIPTING.md`
+alongside Phases 1–2e; duplicated here because it directly affects how we
+validate Qud-parity work going forward).
+
+**Design thesis:** Phase 3 isn't "scenarios can now run in CI." It's *"the
+scenario IS the test fixture."* The scenario's `Apply()` is the only place
+the setup exists — tests call the same `Apply()` users click-to-launch.
+Drift goes to zero.
+
+**Why it matters for parity work:** every Qud-parity behavior we port
+(RetreatGoal, AIGuard, AIWellVisitor, future goals) has a "canonical
+situation" that proves it works. Today each test re-declares the setup
+inline; Phase 3 lets tests + manual playtests share one fixture.
+
+### Sub-phase breakdown
+
+#### 3a — `ScenarioTestHarness` (foundation)
+
+- `Assets/Tests/EditMode/TestSupport/ScenarioTestHarness.cs` — fixture-scope
+  factory + context builder. Encapsulates `FactionManager.Initialize`,
+  `EntityFactory` with blueprint JSON load, stub player creation,
+  `ScenarioContext.CreateContext(rngSeed)` per-test.
+- **Key design call:** test assembly only, zero runtime deps. Keeps
+  `Application.dataPath` out of runtime builds.
+- **Impact:** replaces the `BuildContext()` helpers in `PlayerBuilderTests`,
+  `ZoneBuilderTests`, `EntityBuilderModifierTests`, `AIBehaviorPartTests`.
+- **Scope:** ~150 lines, 1–2 hours.
+
+#### 3b — Turn advancement API
+
+- `ScenarioContextExtensions.AdvanceTurns(this ctx, int count)` — fires
+  `TakeTurn` on every registered entity N times. Simple tick; speed-independent.
+- **Runtime touchpoint:** expose `TurnManager.Entries` as read-only view
+  (currently private). One-line addition.
+- **Alternative rejected:** energy-accurate advancement — matches game loop
+  exactly but requires deeper wiring; tests rarely need it. Defer until a
+  concrete test demands it.
+- **Scope:** ~50 lines + 1 runtime accessor, 1 hour.
+
+#### 3c — Fluent `Verify()` API
+
+Extension method on `ScenarioContext` (test assembly) returning a chainable
+verifier. NUnit-native failures with readable messages.
+
+```csharp
+ctx.Verify()
+    .Entity(warden).IsAt(10, 10).HasHpFraction(0.20f).HasGoalOnStack<GuardGoal>()
+    .Back()
+    .Player().HasMutation("FireBoltMutation").HasEquipped("ShortSword")
+    .Back()
+    .EntityCount(withTag: "Creature", expected: 3);
+```
+
+Initial surface (~20 methods across 4 verifier types):
+
+| Verifier | Methods |
+|----------|---------|
+| `EntityVerifier` | `IsAt`, `HasHpFraction`, `HasStat`, `HasStatAtLeast`, `HasPart<T>`, `HasGoalOnStack<T>`, `HasTag`, `IsAlive` |
+| `PlayerVerifier` | `HasMutation`, `HasItemInInventory`, `HasEquipped`, `HasFactionRep`, `IsAt` |
+| `CellVerifier` | `ContainsBlueprint`, `IsEmpty`, `IsPassable`, `IsSolid` |
+| `ScenarioVerifier` (root) | `EntityCount(withTag, expected)`, `PlayerIsAlive`, `TurnCount` |
+
+**Design calls:** extension-only (no runtime pollution), `.Back()` to
+escape sub-verifiers, each assertion generates readable fail messages.
+
+**Scope:** ~500 lines, 3 hours.
+
+#### 3d — Port existing tests as proof
+
+Port 4 test files to prove the harness + Verify() combination is
+measurably cleaner:
+
+| Test file | Why |
+|-----------|-----|
+| `AIBehaviorPartTests.cs` | 13 tests with manual creature setup — biggest line-count savings |
+| `EntityBuilderModifierTests.cs` | 9 tests, repeated fixture setup |
+| `PlayerBuilderTests.cs` | 20 tests — harness migration baseline |
+| `ZoneBuilderTests.cs` | 16 tests — easy port |
+
+Rule: only port tests with non-trivial scenario-like setup. Don't port
+`Stat_Clamps_ToMax()`-style pure algorithm tests.
+
+Target: 30–40% line reduction across ported files.
+
+#### 3e — Docs
+
+- `Assets/Scripts/Scenarios/README.md` — new "Reusing scenarios as tests"
+  section with before/after walkthrough
+- `Docs/SCENARIO_SCRIPTING.md` — Phase 3 marked complete, acceptance criteria
+  updated
+
+### Phase 3 non-goals (defer)
+
+- `RunAsTest` attribute magic (e.g. `[TestScenario(typeof(WoundedWarden))]`)
+  — punt; cleverness exceeds payoff
+- Mock/fake parts for unit-test isolation — unit-test territory, out of scope
+- PlayMode test harness — separate runner, separate concerns
+- Perf benchmark API — Phase 5 if requested
+- Parameterized scenarios — Phase 5 per roadmap
+
+### Risks
+
+| Risk | Mitigation |
+|------|------------|
+| Blueprint load expensive (~100ms) | Fixture-scope sharing via `OneTimeSetUp` (established pattern) |
+| `AdvanceTurns` semantics drift from real loop | Simple TakeTurn-per-entity matches current tests exactly; add energy-accurate variant separately if demanded |
+| `Verify()` surface balloons | Start with ~20 methods; add only per-concrete-test-demand |
+| Runtime assembly pollution | Strict rule: Phase 3 code in `Assets/Tests/EditMode/TestSupport/` only. One runtime exception: `TurnManager.Entries` accessor |
+| Ported tests fail for subtle reasons | Port incrementally, full-suite after each. No big-bang migration |
+
+### Implementation sequence
+
+```
+1. 3a — ScenarioTestHarness + migrate PlayerBuilderTests + ZoneBuilderTests
+2. 3b — TurnManager.Entries accessor + AdvanceTurns extension
+3. 3c — Verify() root + EntityVerifier (highest-demand first)
+4. 3c — PlayerVerifier + CellVerifier + ScenarioVerifier
+5. 3d — Port AIBehaviorPartTests + EntityBuilderModifierTests
+6. 3e — Docs
+```
+
+Three commit boundaries: `3a`, `3b+3c`, `3d+3e`.
+
+### Acceptance criteria
+
+- [ ] All existing tests still pass (zero regressions)
+- [ ] `ScenarioTestHarness` in test assembly, zero runtime deps except `TurnManager.Entries`
+- [ ] `ctx.Verify()` chain produces NUnit-native failure messages
+- [ ] At least 2 test files ported with measurable line reduction (target: 30–40%)
+- [ ] README has a "Reusing scenarios as tests" section with full before/after example
+- [ ] `SCENARIO_SCRIPTING.md` marks Phase 3 complete
+
+---
+
 ## Implementation Priority (Recommended)
 
 1. **Tier 4 polish** (small wins in already-shipped systems): SittingEffect visual indicator, tunable scan frequency, force-move auto-cleanup
