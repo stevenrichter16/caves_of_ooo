@@ -60,6 +60,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_FiveSnapjawAmbush()
             => ScenarioRunner.Launch<FiveSnapjawAmbush>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Snapjaw Ring Ambush (x8)", priority = 101)]
+        private static void Launch_SnapjawRingAmbush()
+            => ScenarioRunner.Launch<SnapjawRingAmbush>();
+
         // Future scenarios go under their category below:
         //
         //   [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Wounded Warden")]

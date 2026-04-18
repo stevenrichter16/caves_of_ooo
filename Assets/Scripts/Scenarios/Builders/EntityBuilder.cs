@@ -1,4 +1,6 @@
+using System;
 using CavesOfOoo.Core;
+using CavesOfOoo.Scenarios;
 using UnityEngine;
 
 namespace CavesOfOoo.Scenarios.Builders
@@ -91,6 +93,85 @@ namespace CavesOfOoo.Scenarios.Builders
                 return null;
             }
             return SpawnAt(playerPos.x + dx, playerPos.y + dy);
+        }
+
+        /// <summary>
+        /// Spawn at a random passable cell within Chebyshev distance
+        /// [<paramref name="minRadius"/>, <paramref name="maxRadius"/>] from the
+        /// player. Selection uses <see cref="ScenarioContext.Rng"/>, so the same
+        /// scenario seed gives the same placement. Returns null if no passable
+        /// cell exists in the band.
+        /// </summary>
+        public Entity NearPlayer(int minRadius = 1, int maxRadius = 8)
+        {
+            var playerPos = _ctx.Zone.GetEntityPosition(_ctx.Player);
+            if (playerPos.x < 0)
+            {
+                Debug.LogWarning($"[Scenario] NearPlayer: player has no position — skipping spawn of '{_blueprintName}'");
+                return null;
+            }
+            var candidates = PositionResolver.CollectCellsInRadiusBand(
+                _ctx.Zone, playerPos.x, playerPos.y, minRadius, maxRadius);
+            if (candidates.Count == 0)
+            {
+                Debug.LogWarning($"[Scenario] NearPlayer({minRadius},{maxRadius}): no passable cells for '{_blueprintName}' — skipping.");
+                return null;
+            }
+            var pick = candidates[_ctx.Rng.Next(candidates.Count)];
+            return SpawnAt(pick.x, pick.y);
+        }
+
+        /// <summary>
+        /// Spawn on a random passable cell immediately adjacent to the player
+        /// (Chebyshev distance 1). Convenience for the common <c>NearPlayer(1, 1)</c>
+        /// case. Returns null if the player is fully walled in.
+        /// </summary>
+        public Entity AdjacentToPlayer() => NearPlayer(1, 1);
+
+        /// <summary>
+        /// Spawn at ring position <paramref name="indexOf"/> of
+        /// <paramref name="totalOfN"/> evenly-distributed points at the given
+        /// <paramref name="radius"/> around the player. Designed for loops like:
+        /// <code>for (int i = 0; i &lt; 8; i++) ctx.Spawn("Snapjaw").InRing(3, i, 8);</code>
+        ///
+        /// Uses integer-rounded trig, so adjacent indices may collide at small
+        /// radii (r &lt; 3). Use <see cref="AtPlayerOffset"/> for exact placement
+        /// in tight rings.
+        /// </summary>
+        public Entity InRing(int radius, int indexOf, int totalOfN)
+        {
+            var playerPos = _ctx.Zone.GetEntityPosition(_ctx.Player);
+            if (playerPos.x < 0)
+            {
+                Debug.LogWarning($"[Scenario] InRing: player has no position — skipping spawn of '{_blueprintName}'");
+                return null;
+            }
+            var (x, y) = PositionResolver.ComputeRingPosition(
+                playerPos.x, playerPos.y, radius, indexOf, totalOfN);
+            return SpawnAt(x, y);
+        }
+
+        /// <summary>
+        /// Scan the zone in row-major order for the first passable cell matching
+        /// <paramref name="predicate"/>, spawn there. Use for conditional placement
+        /// like "spawn on the first empty floor cell in any building."
+        ///
+        /// Scan is deterministic — the same zone yields the same first match.
+        /// </summary>
+        public Entity OnFirstPassableCell(Func<Cell, bool> predicate)
+        {
+            if (predicate == null)
+            {
+                Debug.LogWarning($"[Scenario] OnFirstPassableCell: null predicate — skipping spawn of '{_blueprintName}'");
+                return null;
+            }
+            var match = PositionResolver.FindFirstPassableCell(_ctx.Zone, predicate);
+            if (match == null)
+            {
+                Debug.LogWarning($"[Scenario] OnFirstPassableCell: no cell matched predicate for '{_blueprintName}' — skipping.");
+                return null;
+            }
+            return SpawnAt(match.Value.x, match.Value.y);
         }
 
         // ---------- Internals ----------
