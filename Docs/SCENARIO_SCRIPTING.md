@@ -356,7 +356,7 @@ be gitignored or shared selectively).
 Each phase is independently usable — you get value after Phase 1, more after
 Phase 2, and so on.
 
-### Phase 1 — Core + minimal spawn (half day)
+### Phase 1 — Core + minimal spawn ✅ SHIPPED (half day)
 
 **Builds:**
 - `IScenario` + `ScenarioAttribute`
@@ -373,7 +373,7 @@ Phase 2, and so on.
 **Outcome:** click `CavesOfOoo > Scenarios > Combat Stress > Five Snapjaw
 Ambush` → Play mode enters → 5 snapjaws surround the player → you playtest.
 
-### Phase 2 — Richer positioning + modifications (half day)
+### Phase 2 — Richer positioning + modifications ✅ SHIPPED (half day)
 
 **Builds:**
 - `.NearPlayer`, `.AdjacentToPlayer`, `.InRing`, `.OnFirstPassableCell`
@@ -390,20 +390,62 @@ Ambush` → Play mode enters → 5 snapjaws surround the player → you playtest
 **Outcome:** expressive enough to set up 90% of testing scenarios you'd want
 for Phase 6 / 7 work.
 
-### Phase 3 — Test harness integration (half day)
+### Phase 3 — Test harness integration ✅ SHIPPED
 
-**Builds:**
-- `ScenarioContext.FromTestHarness(...)` for EditMode/NUnit
-- `ScenarioAssertions` — `.Assert.Entity(name).HasGoal<T>()`, `.HasNoGoal<T>()`,
-  `.IsAtCell(...)`, `.HasHpBelow(fraction)`
-- `ctx.AdvanceTurns(n)` via `TurnManager.Tick()`
+**Status:** Complete as of 2026-04-18 across commits `a463990` (3a),
+`d82e674` (3b), `061bd39` (3c), `4404df7` (3d), `08c1f90` (3d follow-up),
+plus review follow-ups.
 
-**Ships:**
-- A `RunAsTest()` extension that wraps a scenario in a PlayMode test harness
-- Port 2 existing M1 tests to use the new library (demonstrates reuse)
+**Shipped:**
+- **3a — `ScenarioTestHarness`** (test-assembly only, zero runtime code):
+  fixture-scope factory that encapsulates FactionManager init, blueprint load,
+  stub/real-player construction, and `ScenarioContext` creation per test.
+- **3b — `ctx.AdvanceTurns(n)`** extension (test-assembly only) + one runtime
+  addition: `TurnManager.Entities` yield-based accessor. Simple tick semantics
+  — fires `TakeTurn` once per registered entity per advance-step.
+- **3c — `ctx.Verify()` fluent assertion DSL** (test-assembly only): root
+  `ScenarioVerifier` with global assertions (`EntityCount`, `PlayerIsAlive`,
+  `TurnCount`) + three sub-verifiers (`Entity(e)`, `Player()`, `Cell(x, y)`)
+  with ~20 chained assertion methods. NUnit-native failures with readable
+  messages.
+- **3d — ported `AIBehaviorPartTests`** (13 tests) to the full stack. 385 → 310
+  lines (-19%). Real blueprints where possible, special-case helpers kept for
+  tests that genuinely can't use `ctx.Spawn`.
 
-**Outcome:** the library works for automated CI tests AND manual playtest
-launch — no duplicated infrastructure.
+**What was deferred (originally planned but cut):**
+- `RunAsTest()` decorator magic — punted; cleverness-to-payoff ratio not
+  worth it. Tests just use the normal NUnit `[Test]` attribute with the
+  harness in `[OneTimeSetUp]`.
+- PlayMode test harness — different runner, different concerns. Can be its
+  own phase if needed later.
+
+**Acceptance criteria (met):**
+- [x] All existing tests still pass (1445 / 1445)
+- [x] `ScenarioTestHarness` in test assembly, zero runtime deps except
+  `TurnManager.Entities` accessor (yield-based, no TurnEntry leak)
+- [x] `ctx.Verify()` chain produces NUnit-native failure messages
+- [x] 1 test file ported with measurable line reduction (AIBehaviorPartTests,
+  385 → 310). Plan targeted 30-40%; actual 19% — honest report: the raw
+  delta undersells the shift because per-test bodies halved (from ~10 to
+  ~5 lines) while the deleted lines were mostly helpers.
+- [x] README has a "Reusing scenarios as tests" section with full
+  before/after walkthrough + verifier reference table
+
+**Files shipped:**
+```
+Assets/Tests/EditMode/TestSupport/
+├── ScenarioTestHarness.cs                  (3a)
+├── ScenarioTestHarnessTests.cs             (3a self-tests)
+├── ScenarioContextExtensions.cs            (3b AdvanceTurns)
+├── ScenarioContextExtensionsTests.cs       (3b self-tests)
+├── ScenarioVerifier.cs                     (3c root + .Verify() extension)
+├── EntityVerifier.cs                       (3c)
+├── PlayerVerifier.cs                       (3c)
+├── CellVerifier.cs                         (3c)
+└── VerifierTests.cs                        (3c self-tests, 48 tests)
+
+Assets/Scripts/Gameplay/Turns/TurnManager.cs  (one new accessor: `Entities`)
+```
 
 ### Phase 4 — Editor window (half day, optional)
 
@@ -971,24 +1013,24 @@ public class CalmTestSetup : IScenario
 
 ---
 
-## Phase 2 acceptance criteria
+## Phase 2 acceptance criteria ✅ MET
 
-- [ ] All 1317 existing tests still pass
-- [ ] 4 new `PositionResolverTests` pass (2a unit tests)
-- [ ] Each sub-phase compiles cleanly on commit (`mcp__unity__refresh_unity` + `read_console`)
-- [ ] MCP smoke tests for each new builder method produce the expected state
-- [ ] 3+ example scenarios exist and launch cleanly from the menu
-- [ ] `README.md` present and cross-referenced from `SCENARIO_SCRIPTING.md`
-- [ ] `CalmTestSetup` ships with a clear "activates after M2.2" note
+- [x] All existing tests still pass (1445 / 1445 after Phase 3)
+- [x] 4 new `PositionResolverTests` pass (2a unit tests)
+- [x] Each sub-phase compiles cleanly on commit (`mcp__unity__refresh_unity` + `read_console`)
+- [x] MCP smoke tests for each new builder method produce the expected state
+- [x] 3+ example scenarios exist and launch cleanly from the menu
+- [x] `README.md` present and cross-referenced from `SCENARIO_SCRIPTING.md`
+- [x] `CalmTestSetup` ships with a clear "activates after M2.2" note
 
 ## What Phase 2 explicitly does NOT include
 
-Deferred to future phases to keep 2 tight and shippable:
+Deferred to later phases to keep Phase 2 tight and shippable:
 
-- **Automated test-harness reuse** (Phase 3 — `ScenarioContext.FromTestHarness`,
-  `.Assert` chain, `RunAsTest` extension, port existing M1 tests)
+- **Automated test-harness reuse** — ✅ shipped in Phase 3 (`ScenarioTestHarness`,
+  `ctx.AdvanceTurns(n)`, `ctx.Verify()` fluent DSL, ported `AIBehaviorPartTests`)
 - **Cell-level effect placement** (Phase 5 — `ZoneBuilder.ApplyEffectToCell`)
-- **Mid-play scenario application** (post-Phase 2 — apply to already-running
+- **Mid-play scenario application** (post-Phase 3 — apply to already-running
   Play session instead of requiring restart)
 - **Parameterized scenarios** (Phase 5 — editor-visible inputs like
   `[ScenarioParam] int SnapjawCount = 5`)

@@ -227,6 +227,121 @@ All methods return `PlayerBuilder` for chaining.
 
 ---
 
+## Reusing scenarios as tests (Phase 3)
+
+Every scenario is also a test fixture. The same `Apply(ctx)` that a menu
+click launches can be run inside an NUnit `[Test]` — same setup, same
+blueprints, zero drift between manual playtest and regression coverage.
+
+Three Phase 3 helpers live in `Assets/Tests/EditMode/TestSupport/`:
+
+| Helper | Role |
+|--------|------|
+| `ScenarioTestHarness` | Fixture-scope factory. Loads blueprints once, creates fresh `ScenarioContext` per test. |
+| `ctx.AdvanceTurns(n)` | Fires `TakeTurn` on every registered entity, N times. Extension method. |
+| `ctx.Verify()` | Fluent assertion API that throws NUnit-native failures with readable messages. |
+
+### Typical fixture pattern
+
+```csharp
+[TestFixture]
+public class WoundedWardenTests
+{
+    private static ScenarioTestHarness _harness;
+    [OneTimeSetUp] public void Setup() => _harness = new ScenarioTestHarness();
+    [OneTimeTearDown] public void Teardown() => _harness?.Dispose();
+
+    [Test]
+    public void WoundedWarden_RetreatsWhenLowHp()
+    {
+        var ctx = _harness.CreateContext();
+        new WoundedWarden().Apply(ctx);          // THE scenario, unchanged
+
+        ctx.AdvanceTurns(10);
+
+        var warden = ctx.Zone.GetEntitiesWithTag("Creature")[0];  // or track the spawn
+        ctx.Verify()
+            .Entity(warden)
+                .HasHpFraction(0.20f)
+            .Back()
+            .PlayerIsAlive();
+    }
+}
+```
+
+### Before / after — typical AI behavior test
+
+**Before (hand-rolled entity construction, raw Asserts):**
+```csharp
+[Test]
+public void AIGuard_PushesGuardGoalOnBored()
+{
+    var zone = new Zone("TestZone");
+    var warden = CreateWarden(zone, 10, 10);     // 20-line helper
+    var brain = warden.GetPart<BrainPart>();
+
+    warden.FireEvent(GameEvent.New("TakeTurn"));
+
+    Assert.IsTrue(brain.HasGoal<GuardGoal>(),
+        "AIGuard should push GuardGoal when the NPC is bored");
+}
+```
+
+**After (real blueprint, fluent verification):**
+```csharp
+[Test]
+public void AIGuard_PushesGuardGoalOnBored()
+{
+    var ctx = _harness.CreateContext();
+    var warden = ctx.Spawn("Warden").At(10, 10);
+
+    ctx.AdvanceTurns(1);
+
+    ctx.Verify().Entity(warden).HasGoalOnStack<GuardGoal>();
+}
+```
+
+### Verifier reference (ctx.Verify())
+
+| Sub-verifier | Entry | Methods |
+|--------------|-------|---------|
+| `ScenarioVerifier` (root) | `ctx.Verify()` | `EntityCount(withTag, expected)`, `PlayerIsAlive()`, `TurnCount(expected)`, `Entity(e)`, `Player()`, `Cell(x, y)` |
+| `EntityVerifier` | `.Entity(e)` | `IsAt`, `HasHpFraction`, `HasStat`, `HasStatAtLeast`, `HasPartOfType<T>`, `HasGoalOnStack<T>`, `HasTag`, `IsAlive`, `Back()` |
+| `PlayerVerifier` | `.Player()` | `IsAt`, `HasHpFraction`, `HasStatAtLeast`, `HasMutation`, `HasItemInInventory`, `HasEquipped`, `HasFactionRep`, `HasFactionRepAtLeast`, `Back()` |
+| `CellVerifier` | `.Cell(x, y)` | `ContainsBlueprint`, `IsEmpty`, `IsPassable`, `IsSolid`, `HasNoEntityWithTag`, `Back()` |
+
+Sub-verifiers chain via `.Back()` to step back to the root, letting one
+test assert across entity, player, and cell state in a single chain.
+
+### When to use raw `new Entity()` instead of `ctx.Spawn`
+
+`ctx.Spawn("Warden")` is usually right, but two cases need manual
+construction:
+- **No StartingCell wanted.** `ctx.Spawn` auto-sets `BrainPart.StartingCell`
+  to the spawn cell. If your test needs the default `(-1, -1)` to exercise
+  pre-wiring code paths, use `new Entity()`.
+- **Blueprint bakes in a parameter you need to vary.** e.g. the `Farmer`
+  blueprint bakes `AIWellVisitor.Chance=5`; if your test needs `Chance=0`
+  or `Chance=100`, build the creature manually with the desired value.
+
+See `AIBehaviorPartTests.cs` for working examples of both patterns.
+
+### Caveats
+
+- **Dead entities keep ticking.** `CombatSystem.HandleDeath` removes dead
+  entities from the Zone but NOT from the TurnManager. `AdvanceTurns`
+  continues firing `TakeTurn` on them. In practice their parts no-op
+  without a zone position, but don't rely on "dead means no more ticks"
+  in test logic. If you need that guarantee, manually `ctx.Turns.RemoveEntity(e)`.
+- **`AdvanceTurns` is speed-independent.** It fires `TakeTurn` once per
+  entity per advance-step. The production loop (`TurnManager.Tick` /
+  `ProcessUntilPlayerTurn`) is energy/Speed-accurate. For speed-variance
+  tests, drive the production loop directly.
+- **`HasHpFraction` tolerance is 0.05.** Integer rounding on small-Max
+  entities (Snapjaw Max=15 → HalfHP=8 → fraction=0.533) needs headroom.
+
+---
+
 ## Where things live
 
 ```
@@ -258,6 +373,17 @@ Assets/Tests/EditMode/Gameplay/Scenarios/
 ├── EntityBuilderModifierTests.cs
 ├── PlayerBuilderTests.cs
 └── ZoneBuilderTests.cs
+
+Assets/Tests/EditMode/TestSupport/     (Phase 3 — scenario-as-test infra)
+├── ScenarioTestHarness.cs             Fixture-scope factory
+├── ScenarioContextExtensions.cs       ctx.AdvanceTurns(n)
+├── ScenarioVerifier.cs                ctx.Verify() root + .Verify() extension
+├── EntityVerifier.cs                  .Entity(e).IsAt(...).HasHpFraction(...)...
+├── PlayerVerifier.cs                  .Player().HasMutation(...).HasEquipped(...)...
+├── CellVerifier.cs                    .Cell(x, y).ContainsBlueprint(...)...
+├── ScenarioTestHarnessTests.cs        Self-tests for the harness
+├── ScenarioContextExtensionsTests.cs  Self-tests for AdvanceTurns
+└── VerifierTests.cs                   Self-tests for every verifier method
 ```
 
 ---

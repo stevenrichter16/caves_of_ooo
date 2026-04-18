@@ -1792,9 +1792,32 @@ Weapon evaluation (`CompareWeapons`), `PerformReequip`, `WantToKill(entity, reas
 
 ## Scenario Library — Phase 3: Scenario-as-Test Infrastructure
 
-**Status:** 📋 Planned (canonical plan lives in `Docs/SCENARIO_SCRIPTING.md`
-alongside Phases 1–2e; duplicated here because it directly affects how we
-validate Qud-parity work going forward).
+**Status:** ✅ SHIPPED (2026-04-18). All five sub-phases (3a–3e) landed with
+review follow-ups for each. Canonical details live in
+`Docs/SCENARIO_SCRIPTING.md`; this section retained for Qud-parity work
+tracking since Phase 3 directly affects how parity features get validated.
+
+**What shipped:**
+- 3a — `ScenarioTestHarness` (fixture-scope factory)
+- 3b — `ctx.AdvanceTurns(n)` + runtime `TurnManager.Entities` accessor
+- 3c — `ctx.Verify()` fluent assertion DSL (4 verifier types, ~25 methods)
+- 3d — `AIBehaviorPartTests` ported end-to-end (13 tests, 385 → 310 lines)
+- 3e — Docs updated in `Assets/Scripts/Scenarios/README.md` and
+  `Docs/SCENARIO_SCRIPTING.md`
+
+**Honest numbers:**
+- Test suite: 1445 / 1445 passing (0 regressions across full suite)
+- New tests added by Phase 3 infrastructure: 58 (harness 10 + AdvanceTurns 11 + Verify 48, minus overlaps)
+- Line reduction on the one deep port: 19% (below the 30-40% plan target;
+  raw delta undersells the semantic cleanup — per-test bodies halved)
+
+**Next parity work that benefits:** every Phase 7 (`AIBehaviorPart` subclasses
+like `AIPilgrim`, `AIShopper`) test from here on can use the scenario-as-test
+stack. No more hand-rolled creature helpers per fixture.
+
+---
+
+**Original plan (retained for reference):**
 
 **Design thesis:** Phase 3 isn't "scenarios can now run in CI." It's *"the
 scenario IS the test fixture."* The scenario's `Apply()` is the only place
