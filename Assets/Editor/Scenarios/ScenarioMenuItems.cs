@@ -68,11 +68,36 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_StoutSnapjaw()
             => ScenarioRunner.Launch<StoutSnapjaw>();
 
-        // Future scenarios go under their category below:
-        //
-        //   [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Wounded Warden")]
-        //   private static void Launch_WoundedWarden()
-        //       => ScenarioRunner.Launch<WoundedWarden>();
-        //
+        // =========================================================
+        // AI Behavior
+        // =========================================================
+
+        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Wounded Warden", priority = 200)]
+        private static void Launch_WoundedWarden()
+            => ScenarioRunner.Launch<WoundedWarden>();
+
+        // =========================================================
+        // Content Demo
+        // =========================================================
+
+        [MenuItem("Caves Of Ooo/Scenarios/Content Demo/Mimic Surprise", priority = 300)]
+        private static void Launch_MimicSurprise()
+            => ScenarioRunner.Launch<MimicSurprise>();
+
+        // =========================================================
+        // Baseline
+        // =========================================================
+
+        [MenuItem("Caves Of Ooo/Scenarios/Baseline/Empty Starting Zone", priority = 400)]
+        private static void Launch_EmptyStartingZone()
+            => ScenarioRunner.Launch<EmptyStartingZone>();
+
+        // =========================================================
+        // Mutations
+        // =========================================================
+
+        [MenuItem("Caves Of Ooo/Scenarios/Mutations/Calm Test Setup (M2-ready)", priority = 500)]
+        private static void Launch_CalmTestSetup()
+            => ScenarioRunner.Launch<CalmTestSetup>();
     }
 }
