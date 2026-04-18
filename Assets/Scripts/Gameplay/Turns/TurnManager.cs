@@ -248,5 +248,23 @@ namespace CavesOfOoo.Core
         /// Number of registered entities.
         /// </summary>
         public int EntityCount => _entries.Count;
+
+        /// <summary>
+        /// Read-only iteration of every registered entity, in insertion order.
+        /// Zero-allocation enumerator (yield-based). The sequence is stable only
+        /// between AddEntity/RemoveEntity calls — don't mutate during iteration.
+        ///
+        /// Primary consumer: test helpers (Phase 3b's <c>AdvanceTurns</c>). If
+        /// production code needs this, consider whether it should go through
+        /// <see cref="ProcessUntilPlayerTurn"/> or <see cref="Tick"/> instead.
+        /// </summary>
+        public IEnumerable<Entity> Entities
+        {
+            get
+            {
+                for (int i = 0; i < _entries.Count; i++)
+                    yield return _entries[i].Entity;
+            }
+        }
     }
 }
