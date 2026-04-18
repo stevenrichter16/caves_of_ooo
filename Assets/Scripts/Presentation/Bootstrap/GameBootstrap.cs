@@ -20,6 +20,17 @@ namespace CavesOfOoo
         [Header("References")]
         public ZoneRenderer ZoneRenderer;
 
+        /// <summary>
+        /// Fired exactly once per successful <see cref="Start"/>, after the zone,
+        /// player, factory, and turn manager are fully wired and the game is ready
+        /// to take input. Subscribers receive live references for post-init hooks
+        /// (e.g., the scenario runner applies a pending scenario here).
+        ///
+        /// Not fired if bootstrap fails mid-init. Arguments: zone, factory, player,
+        /// turnManager.
+        /// </summary>
+        public static event System.Action<Zone, EntityFactory, Entity, TurnManager> OnAfterBootstrap;
+
         private EntityFactory _factory;
         private OverworldZoneManager _zoneManager;
         private Zone _zone;
@@ -335,6 +346,18 @@ namespace CavesOfOoo
 
                 if (_zoneManager.SettlementManager != null)
                     _zoneManager.SettlementManager.RefreshActiveZonePresentation(_zone);
+
+                // Fire the after-bootstrap event so scenario runners (and any future
+                // post-init hooks) can apply pending state. Wrapped in try/catch so a
+                // buggy scenario can't abort startup logging.
+                try
+                {
+                    OnAfterBootstrap?.Invoke(_zone, _factory, _player, _turnManager);
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError($"[Bootstrap] OnAfterBootstrap handler threw: {ex}");
+                }
 
                 Debug.Log($"[Bootstrap] DONE. Zone has {_zone.EntityCount} entities. WASD/arrows to move.");
             }
