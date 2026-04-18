@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using CavesOfOoo.Core;
 using CavesOfOoo.Scenarios;
 using UnityEngine;
@@ -7,30 +8,57 @@ namespace CavesOfOoo.Scenarios.Builders
 {
     /// <summary>
     /// Fluent builder returned by <see cref="ScenarioContext.Spawn(string)"/>.
-    /// Chain positioning and modification methods, then either invoke a terminal
-    /// positioning method (<c>.At</c>, <c>.AtPlayerOffset</c>) to trigger the spawn,
-    /// or leave the builder dangling — it will log a warning since no position was set.
+    /// Chain positioning and modification methods, then invoke a terminal
+    /// positioning method (<c>.At</c>, <c>.AtPlayerOffset</c>, <c>.NearPlayer</c>,
+    /// <c>.AdjacentToPlayer</c>, <c>.InRing</c>, <c>.OnFirstPassableCell</c>) to
+    /// trigger the spawn.
     ///
-    /// Spawn lifecycle:
-    /// 1. Instantiate blueprint via <see cref="CavesOfOoo.Data.EntityFactory.CreateEntity"/>
-    /// 2. Apply pre-placement modifications (HP fraction etc. — deferred until we know max stats)
-    /// 3. Wire <see cref="BrainPart.CurrentZone"/>, <c>Rng</c>, <c>StartingCell</c>
-    ///    (same wiring <see cref="GameBootstrap.RegisterCreaturesForTurns"/> does for real NPCs)
-    /// 4. Add to zone at the resolved cell
-    /// 5. Apply post-placement modifications (HP if deferred)
-    /// 6. Optionally register with <see cref="TurnManager"/> so it actually takes turns
+    /// Pipeline ordering — applied in this exact sequence inside SpawnAt:
     ///
-    /// If positioning resolution fails (blocked cell, off-map, etc.), the builder
-    /// logs a warning and returns null — scenarios continue rather than crash.
+    ///   1. Factory.CreateEntity(blueprint)
+    ///   2. Pre-wiring stat + brain-flag mutations
+    ///        - WithStatMax (first, so later WithStat won't silently clamp)
+    ///        - WithStat
+    ///        - Passive / Hostile
+    ///   3. BrainPart wiring (CurrentZone, Rng, default StartingCell)
+    ///   4. WithStartingCell override (if set)
+    ///   5. Zone.AddEntity(entity, x, y)
+    ///   6. Post-placement mutations
+    ///        - WithHp (fraction or absolute)
+    ///        - WithInventory (spawn items + AddObject, no equip)
+    ///        - WithEquipment (spawn item + AddObject + InventorySystem.Equip)
+    ///        - WithGoal (brain.PushGoal for each)
+    ///        - AsPersonalEnemyOf (brain.SetPersonallyHostile)
+    ///   7. TurnManager.AddEntity (if Creature-tagged and not suppressed)
+    ///
+    /// Fail-soft: if positioning fails or any modifier has an unmet precondition
+    /// (e.g. WithEquipment on a creature with no InventoryPart), the builder logs
+    /// a warning and either drops the spawn entirely (pre-CreateEntity failures)
+    /// or skips that specific modifier (post-CreateEntity failures). Partial
+    /// scenarios are better than no scenarios.
     /// </summary>
     public sealed class EntityBuilder
     {
         private readonly ScenarioContext _ctx;
         private readonly string _blueprintName;
 
-        // Pending modifications applied after spawn
+        // --- Pre-wiring modifications ---
+        private readonly List<(string statName, int max)> _statMaxOverrides = new List<(string, int)>();
+        private readonly List<(string statName, int value)> _statOverrides = new List<(string, int)>();
+        private bool? _passive;
+
+        // --- Post-wiring, pre-placement modification ---
+        private (int x, int y)? _startingCellOverride;
+
+        // --- Post-placement modifications ---
         private float? _hpFraction;
         private int? _hpAbsolute;
+        private readonly List<string> _inventoryBlueprints = new List<string>();
+        private string _equipmentBlueprint;
+        private readonly List<GoalHandler> _goalsToAdd = new List<GoalHandler>();
+        private Entity _personalEnemy;
+
+        // --- Turn registration flag ---
         private bool _registerForTurns = true;
 
         internal EntityBuilder(ScenarioContext ctx, string blueprintName)
@@ -39,11 +67,71 @@ namespace CavesOfOoo.Scenarios.Builders
             _blueprintName = blueprintName;
         }
 
-        // ---------- Modification chain (applied at spawn time) ----------
+        // =========================================================
+        // Modification chain — pre-wiring stats & flags
+        // =========================================================
 
         /// <summary>
-        /// Set HP to a fraction of Max (0.0 to 1.0). For example, <c>0.20f</c> = 20% HP.
-        /// Applied after spawn so <c>Hitpoints.Max</c> is known.
+        /// Set a stat's <see cref="Stat.BaseValue"/>. Clamped to [Min, Max] at apply
+        /// time. If the stat doesn't exist on the blueprint, logs a warning and
+        /// skips. For values above 30, also call <see cref="WithStatMax"/> — Stat.Max
+        /// defaults to 30 and will silently clamp otherwise.
+        /// </summary>
+        public EntityBuilder WithStat(string statName, int value)
+        {
+            if (!string.IsNullOrEmpty(statName))
+                _statOverrides.Add((statName, value));
+            return this;
+        }
+
+        /// <summary>
+        /// Raise a stat's <see cref="Stat.Max"/> ceiling. Applied before
+        /// <see cref="WithStat"/> so high-value sets don't silently clamp.
+        /// Lowering Max is permitted but may clamp BaseValue at apply time.
+        /// </summary>
+        public EntityBuilder WithStatMax(string statName, int max)
+        {
+            if (!string.IsNullOrEmpty(statName))
+                _statMaxOverrides.Add((statName, max));
+            return this;
+        }
+
+        /// <summary>
+        /// Set <see cref="BrainPart.Passive"/>. Default argument is true — call
+        /// <c>.Passive(false)</c> or <c>.Hostile()</c> to explicitly un-passivate
+        /// a blueprint that was Passive by default.
+        /// </summary>
+        public EntityBuilder Passive(bool enabled = true)
+        {
+            _passive = enabled;
+            return this;
+        }
+
+        /// <summary>Alias for <c>.Passive(false)</c> — explicit semantic.</summary>
+        public EntityBuilder Hostile() => Passive(false);
+
+        // =========================================================
+        // Modification chain — post-wiring, pre-placement
+        // =========================================================
+
+        /// <summary>
+        /// Override the auto-set <see cref="BrainPart.StartingCellX"/>/<c>StartingCellY</c>,
+        /// which default to the spawn cell. Use when the creature should "know home
+        /// is elsewhere" (e.g., a patrolling Warden spawned mid-patrol).
+        /// </summary>
+        public EntityBuilder WithStartingCell(int x, int y)
+        {
+            _startingCellOverride = (x, y);
+            return this;
+        }
+
+        // =========================================================
+        // Modification chain — post-placement
+        // =========================================================
+
+        /// <summary>
+        /// Set HP to a fraction of Max (0.0 to 1.0). For example, 0.20f = 20% HP.
+        /// Applied after spawn so Hitpoints.Max is known.
         /// </summary>
         public EntityBuilder WithHp(float fraction)
         {
@@ -61,9 +149,55 @@ namespace CavesOfOoo.Scenarios.Builders
         }
 
         /// <summary>
-        /// If called, the spawned entity will NOT be registered with the TurnManager.
-        /// Useful for inert test targets (e.g., a creature you want to exist visually
-        /// but not take turns, for pose/visualization scenarios). Default: register.
+        /// Spawn the named item blueprint, add it to the entity's inventory, and
+        /// equip it via <see cref="InventorySystem.Equip"/>. Only one equipment
+        /// item per builder call — subsequent calls replace the pending blueprint.
+        /// Silently skipped (with warning) if the entity lacks an InventoryPart.
+        /// </summary>
+        public EntityBuilder WithEquipment(string itemBlueprintName)
+        {
+            _equipmentBlueprint = itemBlueprintName;
+            return this;
+        }
+
+        /// <summary>
+        /// Spawn items from the given blueprints and add to inventory (not equipped).
+        /// Stackable items auto-merge via <see cref="StackerPart"/>.
+        /// </summary>
+        public EntityBuilder WithInventory(params string[] itemBlueprintNames)
+        {
+            if (itemBlueprintNames != null)
+                _inventoryBlueprints.AddRange(itemBlueprintNames);
+            return this;
+        }
+
+        /// <summary>
+        /// Push a goal onto the spawned entity's brain stack. Multiple calls push
+        /// multiple goals in the order you chained them. Silently skipped (with
+        /// warning) if the entity lacks a BrainPart.
+        /// </summary>
+        public EntityBuilder WithGoal(GoalHandler goal)
+        {
+            if (goal != null)
+                _goalsToAdd.Add(goal);
+            return this;
+        }
+
+        /// <summary>
+        /// Make this entity personally hostile toward the target, bypassing faction
+        /// feelings. One-way source→target, but <see cref="FactionManager.GetFeeling"/>
+        /// checks both directions so in practice they become mutually hostile.
+        /// Silently skipped (with warning) if the entity lacks a BrainPart.
+        /// </summary>
+        public EntityBuilder AsPersonalEnemyOf(Entity target)
+        {
+            _personalEnemy = target;
+            return this;
+        }
+
+        /// <summary>
+        /// Skip registration with the <see cref="TurnManager"/>. Useful for inert
+        /// test targets that should exist in the world but not take turns.
         /// </summary>
         public EntityBuilder NotRegisteredForTurns()
         {
@@ -71,37 +205,26 @@ namespace CavesOfOoo.Scenarios.Builders
             return this;
         }
 
-        // ---------- Positioning terminals (trigger spawn + return Entity) ----------
+        // =========================================================
+        // Positioning terminals
+        // =========================================================
 
-        /// <summary>
-        /// Spawn at absolute zone cell (x, y). Returns the spawned entity or null if
-        /// the spawn failed (blueprint missing, cell out of bounds, etc.).
-        /// </summary>
+        /// <summary>Spawn at absolute zone cell (x, y).</summary>
         public Entity At(int x, int y) => SpawnAt(x, y);
 
-        /// <summary>
-        /// Spawn at a cell offset from the live player's current position.
-        /// For example, <c>AtPlayerOffset(3, 0)</c> spawns 3 cells east of the player.
-        /// Returns the spawned entity or null on failure.
-        /// </summary>
+        /// <summary>Spawn at a cell offset from the live player's current position.</summary>
         public Entity AtPlayerOffset(int dx, int dy)
         {
             var playerPos = _ctx.Zone.GetEntityPosition(_ctx.Player);
             if (playerPos.x < 0)
             {
-                Debug.LogWarning($"[Scenario] AtPlayerOffset: player has no position in zone — skipping spawn of '{_blueprintName}'");
+                Debug.LogWarning($"[Scenario] AtPlayerOffset: player has no position — skipping spawn of '{_blueprintName}'");
                 return null;
             }
             return SpawnAt(playerPos.x + dx, playerPos.y + dy);
         }
 
-        /// <summary>
-        /// Spawn at a random passable cell within Chebyshev distance
-        /// [<paramref name="minRadius"/>, <paramref name="maxRadius"/>] from the
-        /// player. Selection uses <see cref="ScenarioContext.Rng"/>, so the same
-        /// scenario seed gives the same placement. Returns null if no passable
-        /// cell exists in the band.
-        /// </summary>
+        /// <summary>Spawn at a random passable cell within Chebyshev band [min, max] from the player.</summary>
         public Entity NearPlayer(int minRadius = 1, int maxRadius = 8)
         {
             var playerPos = _ctx.Zone.GetEntityPosition(_ctx.Player);
@@ -121,23 +244,10 @@ namespace CavesOfOoo.Scenarios.Builders
             return SpawnAt(pick.x, pick.y);
         }
 
-        /// <summary>
-        /// Spawn on a random passable cell immediately adjacent to the player
-        /// (Chebyshev distance 1). Convenience for the common <c>NearPlayer(1, 1)</c>
-        /// case. Returns null if the player is fully walled in.
-        /// </summary>
+        /// <summary>Spawn on a random passable cell immediately adjacent to the player.</summary>
         public Entity AdjacentToPlayer() => NearPlayer(1, 1);
 
-        /// <summary>
-        /// Spawn at ring position <paramref name="indexOf"/> of
-        /// <paramref name="totalOfN"/> evenly-distributed points at the given
-        /// <paramref name="radius"/> around the player. Designed for loops like:
-        /// <code>for (int i = 0; i &lt; 8; i++) ctx.Spawn("Snapjaw").InRing(3, i, 8);</code>
-        ///
-        /// Uses integer-rounded trig, so adjacent indices may collide at small
-        /// radii (r &lt; 3). Use <see cref="AtPlayerOffset"/> for exact placement
-        /// in tight rings.
-        /// </summary>
+        /// <summary>Spawn at ring position <paramref name="indexOf"/> of <paramref name="totalOfN"/> around the player.</summary>
         public Entity InRing(int radius, int indexOf, int totalOfN)
         {
             var playerPos = _ctx.Zone.GetEntityPosition(_ctx.Player);
@@ -151,13 +261,7 @@ namespace CavesOfOoo.Scenarios.Builders
             return SpawnAt(x, y);
         }
 
-        /// <summary>
-        /// Scan the zone in row-major order for the first passable cell matching
-        /// <paramref name="predicate"/>, spawn there. Use for conditional placement
-        /// like "spawn on the first empty floor cell in any building."
-        ///
-        /// Scan is deterministic — the same zone yields the same first match.
-        /// </summary>
+        /// <summary>Spawn on the first passable cell matching <paramref name="predicate"/> (row-major scan).</summary>
         public Entity OnFirstPassableCell(Func<Cell, bool> predicate)
         {
             if (predicate == null)
@@ -174,7 +278,9 @@ namespace CavesOfOoo.Scenarios.Builders
             return SpawnAt(match.Value.x, match.Value.y);
         }
 
-        // ---------- Internals ----------
+        // =========================================================
+        // Internals — the one spawn pipeline
+        // =========================================================
 
         private Entity SpawnAt(int x, int y)
         {
@@ -198,9 +304,39 @@ namespace CavesOfOoo.Scenarios.Builders
                 return null;
             }
 
-            // Mirror GameBootstrap.RegisterCreaturesForTurns wiring BEFORE zone placement
-            // so goals pushed via Initialize (e.g., AIAmbushPart) have a live Brain context.
+            // === Stage 1: Pre-wiring stat / flag mutations ===
+            // Max first so BaseValue sets don't silently clamp.
+            foreach (var (statName, max) in _statMaxOverrides)
+            {
+                var stat = entity.GetStat(statName);
+                if (stat == null)
+                {
+                    Debug.LogWarning($"[Scenario] WithStatMax('{statName}', {max}): stat not found on '{_blueprintName}'.");
+                    continue;
+                }
+                stat.Max = max;
+            }
+            foreach (var (statName, value) in _statOverrides)
+            {
+                var stat = entity.GetStat(statName);
+                if (stat == null)
+                {
+                    Debug.LogWarning($"[Scenario] WithStat('{statName}', {value}): stat not found on '{_blueprintName}'.");
+                    continue;
+                }
+                stat.BaseValue = Mathf.Clamp(value, stat.Min, stat.Max);
+            }
+
             var brain = entity.GetPart<BrainPart>();
+            if (_passive.HasValue)
+            {
+                if (brain != null)
+                    brain.Passive = _passive.Value;
+                else
+                    Debug.LogWarning($"[Scenario] Passive/Hostile called on '{_blueprintName}' which has no BrainPart.");
+            }
+
+            // === Stage 2: Brain wiring (mirrors GameBootstrap.RegisterCreaturesForTurns) ===
             if (brain != null)
             {
                 brain.CurrentZone = _ctx.Zone;
@@ -209,9 +345,26 @@ namespace CavesOfOoo.Scenarios.Builders
                 brain.StartingCellY = y;
             }
 
+            // === Stage 3: StartingCell override ===
+            if (_startingCellOverride.HasValue)
+            {
+                if (brain != null)
+                {
+                    brain.StartingCellX = _startingCellOverride.Value.x;
+                    brain.StartingCellY = _startingCellOverride.Value.y;
+                }
+                else
+                {
+                    Debug.LogWarning($"[Scenario] WithStartingCell called on '{_blueprintName}' which has no BrainPart.");
+                }
+            }
+
+            // === Stage 4: Place in zone ===
             _ctx.Zone.AddEntity(entity, x, y);
 
-            // Post-placement modifications
+            // === Stage 5: Post-placement mutations ===
+
+            // HP (fraction has priority if both set due to mutual-exclusion setters)
             if (_hpFraction.HasValue)
             {
                 var hpStat = entity.GetStat("Hitpoints");
@@ -228,8 +381,75 @@ namespace CavesOfOoo.Scenarios.Builders
                     hpStat.BaseValue = Mathf.Clamp(_hpAbsolute.Value, 0, hpStat.Max);
             }
 
-            // TurnManager registration: lets the creature actually take turns under
-            // the live turn loop, same as if GameBootstrap had spawned it.
+            // Inventory (spawn items + add to inventory, no equip)
+            if (_inventoryBlueprints.Count > 0)
+            {
+                var inventory = entity.GetPart<InventoryPart>();
+                if (inventory == null)
+                {
+                    Debug.LogWarning($"[Scenario] WithInventory on '{_blueprintName}' which has no InventoryPart — skipping.");
+                }
+                else
+                {
+                    foreach (var bp in _inventoryBlueprints)
+                    {
+                        var item = _ctx.Factory.CreateEntity(bp);
+                        if (item == null)
+                        {
+                            Debug.LogWarning($"[Scenario] WithInventory item blueprint '{bp}' not found — skipping item.");
+                            continue;
+                        }
+                        if (!inventory.AddObject(item))
+                            Debug.LogWarning($"[Scenario] WithInventory: AddObject failed for '{bp}' (weight limit?).");
+                    }
+                }
+            }
+
+            // Equipment (spawn item + add + equip)
+            if (!string.IsNullOrEmpty(_equipmentBlueprint))
+            {
+                var inventory = entity.GetPart<InventoryPart>();
+                var item = _ctx.Factory.CreateEntity(_equipmentBlueprint);
+                if (item == null)
+                {
+                    Debug.LogWarning($"[Scenario] WithEquipment: blueprint '{_equipmentBlueprint}' not found — skipping.");
+                }
+                else if (inventory == null)
+                {
+                    Debug.LogWarning($"[Scenario] WithEquipment on '{_blueprintName}' which has no InventoryPart — skipping.");
+                }
+                else
+                {
+                    inventory.AddObject(item);
+                    if (!InventorySystem.Equip(entity, item))
+                        Debug.LogWarning($"[Scenario] WithEquipment: Equip call failed for '{_equipmentBlueprint}' (no matching slot?).");
+                }
+            }
+
+            // Goals
+            if (_goalsToAdd.Count > 0)
+            {
+                if (brain != null)
+                {
+                    foreach (var goal in _goalsToAdd)
+                        brain.PushGoal(goal);
+                }
+                else
+                {
+                    Debug.LogWarning($"[Scenario] WithGoal called on '{_blueprintName}' which has no BrainPart — {_goalsToAdd.Count} goals dropped.");
+                }
+            }
+
+            // Personal hostility
+            if (_personalEnemy != null)
+            {
+                if (brain != null)
+                    brain.SetPersonallyHostile(_personalEnemy);
+                else
+                    Debug.LogWarning($"[Scenario] AsPersonalEnemyOf on '{_blueprintName}' which has no BrainPart.");
+            }
+
+            // === Stage 6: Turn manager registration ===
             if (_registerForTurns && entity.HasTag("Creature"))
             {
                 _ctx.Turns.AddEntity(entity);
