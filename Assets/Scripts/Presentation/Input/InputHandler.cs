@@ -1738,6 +1738,7 @@ namespace CavesOfOoo.Rendering
 
             WorldActionMenuUI.Open(PlayerEntity, target, cell, actions);
             _inputState = InputState.WorldActionMenuOpen;
+            EnterCenteredPopupOverlayView(); // swap to popup camera so the menu is actually visible
             UnityEngine.Debug.Log($"[ActionMenu:open] opened menu — state=WorldActionMenuOpen");
         }
 
@@ -1760,6 +1761,7 @@ namespace CavesOfOoo.Rendering
             if (WorldActionMenuUI.SelectionCancelled)
             {
                 WorldActionMenuUI.ConsumeSelection();
+                ExitCenteredPopupOverlayViewToGameplay(); // pair with the Enter on open
                 _inputState = InputState.LookMode;
                 return;
             }
@@ -1790,9 +1792,15 @@ namespace CavesOfOoo.Rendering
         {
             if (action == null || target == null)
             {
+                ExitCenteredPopupOverlayViewToGameplay();
                 _inputState = InputState.LookMode;
                 return;
             }
+
+            // Restore gameplay camera BEFORE running the action — some
+            // actions (Chat → OpenDialogue) transition to their own popup
+            // view and re-Enter the overlay camera themselves.
+            ExitCenteredPopupOverlayViewToGameplay();
 
             // Special case: pile-cell Examine → cell description rather than
             // target's individual Examine.
@@ -1814,7 +1822,8 @@ namespace CavesOfOoo.Rendering
 
             // If the action started a conversation, open the dialogue UI
             // now (ConversationPart doesn't open it itself — see its
-            // docstring).
+            // docstring). OpenDialogue re-enters the popup overlay view
+            // for the dialogue popup.
             if (ConversationManager.IsActive)
             {
                 OpenDialogue();
