@@ -1690,6 +1690,163 @@ public class AIPetterPart : AIBehaviorPart {
 
 **Acceptance:** Wound the Scribe → she flees to the shrine instead of home. Destroy the shrine → she falls back to AISelfPreservation (home).
 
+##### M3 Plan Verification Sweep (applying Methodology Template §1.2)
+
+Pre-implementation audit of every API-shape and path claim across §§M3.1–M3.3.
+Applies the Methodology Template's Part 1.2 discipline: never trust a plan's
+signature claims — verify each against the live code before writing any
+implementation, then log corrections here so the implementer sees them before
+touching the keyboard.
+
+Status: **plan is solid overall**, with one hard path correction and several
+implementation-time notes the plan didn't surface. All three Phase 6 goal
+primitives (`PetGoal`, `GoFetchGoal`, `FleeLocationGoal`) are confirmed present
+and non-stub.
+
+**Plan corrections (MUST be applied before implementation):**
+
+| # | Plan claim | Actual state | Action |
+|---|------------|--------------|--------|
+| 1 | `ThrowItemCommand.cs` lives at `.../Commands/Item/ThrowItemCommand.cs` | Path is `.../Commands/Disposition/ThrowItemCommand.cs` (confirmed at file:1) | M3.2 file list must be updated |
+| 2 | `FleeLocationGoal(x, y, maxTurns)` — 3 params | Ctor is `FleeLocationGoal(int x, int y, int maxTurns = 30, bool endWhenNotFleeing = true)` — 4 params with defaults | None (plan's 3-arg call compatible); note second optional param exists |
+| 3 | `PetGoal()` — only no-arg ctor | Two ctors: `PetGoal()` and `PetGoal(Entity target)`. Targeted variant pre-sets `_phase = Approach`, skipping FindAlly. | None for M3.1; noted for future targeted-pet callers |
+
+**Primitive goal readiness (all ✅):**
+
+- `PetGoal.cs` — fully implemented, not a stub. Two-phase (FindAlly →
+  Approach), emits magenta `*` particle on success, capped at
+  `MaxApproachAttempts=3` pushes of `MoveToGoal` to prevent infinite chase.
+  Uses `GetReadOnlyEntities()` to scan — see implementation-time note #2 below.
+- `GoFetchGoal(Entity item, bool returnHome = false)` — present, matches
+  M3.2's `new GoFetchGoal(item, returnHome: true)` call.
+- `FleeLocationGoal(int x, int y, int maxTurns = 30, bool endWhenNotFleeing = true)`
+  — present, matches M3.3's `new FleeLocationGoal(cell.X, cell.Y, maxTurns: 50)`.
+
+**Pattern parity (AIWellVisitorPart reference):**
+
+M3.1's class shape cites "mirrors AIWellVisitorPart." Verified against
+`Assets/Scripts/Gameplay/AI/AIWellVisitorPart.cs:15–24`:
+- `class : AIBehaviorPart` ✓
+- `public override string Name => ...` ✓
+- `public int Chance = ...` ✓
+- `HandleEvent` on `AIBoredEvent.ID` with `brain.Rng.Next(100) >= Chance` gate ✓
+- `e.Handled = true; return false;` consume pattern ✓
+
+AISelfPreservationPart, AIGuardPart, and AIWellVisitorPart all use identical
+event-consumption shape. M3.1/M3.2/M3.3 are safe to copy it.
+
+**ThrowItemCommand insertion point (M3.2 BroadcastItemLanded):**
+
+Concrete line anchor — both `if (!consumedOnImpact)` blocks at lines 194 and 201
+can be merged. The broadcast belongs AFTER `zone.AddEntity` succeeds (so
+`landingCell` is valid and the item is placed) and BEFORE `transaction.Do`
+(so a roll-back of the throw also rolls back any AIRetriever response).
+Insertion shape:
+
+```csharp
+if (!consumedOnImpact && !zone.AddEntity(itemToThrow, landingCell.X, landingCell.Y))
+{
+    return InventoryCommandResult.Fail(
+        InventoryCommandErrorCode.ExecutionFailed,
+        "The thrown item could not land.");
+}
+
+if (!consumedOnImpact)
+{
+    BroadcastItemLanded(zone, actor, itemToThrow, landingCell);  // ← M3.2 addition
+
+    transaction.Do(
+        apply: null,
+        undo: () => zone.RemoveEntity(itemToThrow));
+}
+```
+
+The `consumedOnImpact` branch (thrown tonic applied on hit, line 160–164)
+is correctly excluded — no landed item exists to fetch.
+
+**Implementation-time notes (NOT plan drift — forward reminders):**
+
+1. **Snapshot discipline on GetReadOnlyEntities** (Methodology Template §7.2):
+   `PetGoal.FindNearestAlly` iterates `GetReadOnlyEntities()` and nothing it
+   does mutates `_entityCells`, so it's fine. BUT M3.2's `AIHoarderPart` (scans
+   items, pushes GoFetchGoal) and `BroadcastItemLanded` (fires events on every
+   Creature, some of which may call `ApplyEffect`) should use
+   `zone.GetAllEntities()` or take a `new List<Entity>(...)` snapshot before
+   iterating. Same pitfall that caught us in M2.3 BroadcastDeathWitnessed.
+
+2. **M3.2's AIHoarderPart scan is O(all-zone-entities) per bored tick**:
+   if a zone has thousands of entities (live sweep confirmed 2181 in the
+   starting zone), scanning for Shiny items every AIBored tick on every
+   Magpie will be O(magpies × entities) per tick. For a village with one
+   Magpie this is fine; if M3 grows into "flock of magpies" scenarios
+   the scan needs a spatial index. Acceptable for shipping; flag for
+   Phase 7 polish.
+
+3. **M3.3's "declare AIFleeToShrine FIRST" blueprint ordering**: relies on
+   `Dictionary<string, Dictionary<...>>` insertion-order preservation for
+   `HandleEvent` dispatch — the same ⚪ architectural dependency
+   documented in M1 review finding #14 (`BlueprintLoader.Bake`). Works on
+   Unity 6 / .NET Standard 2.1. If an ordering regression ever surfaces
+   (AISelfPreservation fires before AIFleeToShrine despite the blueprint
+   listing order), look first at `BlueprintLoader.Bake`'s dictionary
+   iteration.
+
+4. **Tests from Methodology Template §3 should be planned per sub-milestone**:
+   - M3.1: EditMode unit tests with `Chance=100` (deterministic) + counter-
+     check with `Chance=0`. Integration test via `ScenarioTestHarness` that
+     exercises the full AIBoredEvent → HandleEvent → PushGoal path on a real
+     blueprint.
+   - M3.2: unit tests for `AIHoarderPart.FindNearestTagged` (scan correctness),
+     `AIRetrieverPart.HandleItemLanded` (ally-filter, radius gate, idempotent
+     push). Integration test for `ThrowItemCommand → BroadcastItemLanded`.
+     Counter-checks: enemy throw filtered, out-of-radius throw filtered.
+   - M3.3: unit tests for `AIFleeToShrinePart` (HP gate, zone scan for
+     SanctuaryPart). Integration test for "no shrine in zone → falls through
+     to AISelfPreservation." Counter-check: shrine destroyed mid-scenario
+     reverts the NPC to AISelfPreservation.
+   - All three sub-milestones: regression tests per Methodology Template
+     §3.3 for any bug caught during implementation.
+
+5. **Manual playtest scenarios** (Methodology Template §3.6) to write during
+   or after each sub-milestone:
+   - M3.1: `VillageChildrenPetting` — enter a village, observe `*` particles
+     periodically near the Innkeeper's chair. Counter-case: combat scenario
+     where children retreat/stop petting (Passive flag interaction).
+   - M3.2: `MagpieFetchesGold` — drop gold near Magpie, watch it fetch.
+     `ThrownBoneForDog` — throw bone past a PetDog, watch it fetch.
+     Counter-case: enemy throwing a bone — PetDog ignores (ally-only filter).
+   - M3.3: `WoundedScribeFleesToShrine` — wound Scribe, observe flight toward
+     shrine instead of home. Counter-case: destroy the shrine mid-flight,
+     observe fallback to AISelfPreservation (home).
+
+6. **Starting-zone hazards** (from M2 scenario implementation, same trap
+   likely hits M3 scenarios): east-axis scenarios must call
+   `ctx.World.ClearCell(p.x + 1..5, p.y)` to remove the starting zone's
+   West compass stone (player+2,0), grimoire chest (player+4,0), and East
+   compass stone (player+6,0). See M2 scenarios `PacifiedWarden.cs` and
+   `ScribeWitnessesSnapjawKill.cs` for the pattern.
+
+**Post-M3 Qud parity audit plan (Methodology Template §4):**
+
+After M3 ships, produce a parity table entry in this doc analogous to the
+M2 one. Expected findings based on code survey so far:
+
+| Artifact | Reference (Qud decompiled) | Predicted classification |
+|---|---|---|
+| PetGoal (primitive) | `XRL.World.AI.GoalHandlers/Pet.cs` | Verify exists; CoO impl likely simplified |
+| GoFetchGoal (primitive) | Not yet surveyed | TBD |
+| FleeLocationGoal (primitive) | Not yet surveyed | TBD |
+| AIPetterPart | Likely no direct Qud analog | Probably CoO-original pattern |
+| AIHoarderPart | `XRL.World.Parts/Hoarder.cs` (if exists) | Verify |
+| AIRetrieverPart | Dogged-fetch behavior in Qud? | Verify |
+| AIFleeToShrinePart | CoO-original — no Qud shrine concept | **CoO-original** |
+| SanctuaryPart | Marker-part pattern is CoO convention | **CoO-original** |
+| Shrine blueprint | CoO-original content | **CoO-original** |
+
+The parity audit is a **post-implementation** step — not a blocker for
+starting M3 work.
+
+
 ##### M3 Verification checklist
 - [ ] AIPetterPart + VillageChild; 1-2 children near Innkeeper
 - [ ] AIHoarderPart + Magpie; Shiny tag on gold/gems
