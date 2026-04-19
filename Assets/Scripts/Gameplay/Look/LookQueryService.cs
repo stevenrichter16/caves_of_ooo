@@ -175,6 +175,16 @@ namespace CavesOfOoo.Core
             if (player == null || target == null)
                 return "neutral";
 
+            // NoFightGoal (from M2.2 CalmMutation, M2.1 dialogue action, or any
+            // future pacification source) takes precedence over the underlying
+            // faction stance: the target is behaviorally non-hostile for the
+            // goal's duration. Showing "hostile" on a pacified Snapjaw was the
+            // reported bug — the player just cast Calm on it and can visually
+            // confirm it's no longer pursuing, yet the readout claimed hostile.
+            var brain = target.GetPart<BrainPart>();
+            if (brain != null && brain.HasGoal<NoFightGoal>())
+                return "pacified";
+
             if (FactionManager.IsHostile(player, target))
                 return "hostile";
             if (FactionManager.IsAllied(player, target) || player == target)
