@@ -155,6 +155,14 @@ namespace CavesOfOoo.Tests
         [TestCase("ShortSword")]
         [TestCase("Scribe")]
         [TestCase("SleepingTroll")]
+        // Terrain cascade — these override Parts in their own blueprint,
+        // so their presence pins "the blueprint loader MERGES child and parent
+        // Parts rather than replacing." A loader refactor that flipped that
+        // semantic would silently break Examine on every terrain tile; these
+        // TestCases would catch it immediately.
+        [TestCase("Wall")]
+        [TestCase("StoneWall")]
+        [TestCase("Floor")]
         public void Blueprint_CascadesExaminable(string blueprintName)
         {
             var entity = _factory.CreateEntity(blueprintName);
