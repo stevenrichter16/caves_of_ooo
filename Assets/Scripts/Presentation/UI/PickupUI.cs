@@ -54,6 +54,19 @@ namespace CavesOfOoo.Rendering
         private int _bgDrawnOriginX;
         private int _bgDrawnTopY;
 
+        // Previously-drawn FG rectangle. Tracked so Render() can erase the
+        // tiles painted by the LAST draw even if _popupH/_worldTopY changed
+        // in between. Without this, taking an item from a chest shrinks the
+        // popup by one row, the centered origin shifts, and the prior
+        // render's top border + action-bar row fall outside the new rect
+        // and linger — producing the stacked ghost-borders / repeated
+        // "close" fragments seen while looting a chest one item at a time.
+        private bool _fgDrawn;
+        private int _fgDrawnW;
+        private int _fgDrawnH;
+        private int _fgDrawnOriginX;
+        private int _fgDrawnTopY;
+
         public bool IsOpen => _isOpen;
         public bool PickedUpAny => _pickedUpAny;
 
@@ -82,7 +95,7 @@ namespace CavesOfOoo.Rendering
 
         public void Close()
         {
-            ClearRegion(0, 0, POPUP_W, _popupH);
+            ClearFgRegion();
             ClearBgRegion();
             _isOpen = false;
             _items.Clear();
@@ -286,6 +299,12 @@ namespace CavesOfOoo.Rendering
         {
             if (Tilemap == null) return;
 
+            // Erase the previous draw FIRST, using the rectangle we recorded
+            // when we painted it. Re-computing the popup position below
+            // updates _worldOriginX/_worldTopY/_popupH to the NEW values, so
+            // clearing after that only wipes the new (smaller) rectangle and
+            // leaves stale border/action-bar tiles behind.
+            ClearFgRegion();
             ClearBgRegion();
             ComputePopupPosition();
 
@@ -293,7 +312,6 @@ namespace CavesOfOoo.Rendering
             int visibleCount = Mathf.Min(totalRows > 0 ? totalRows : 1, POPUP_MAX_VISIBLE);
             int borderH = visibleCount + 4; // border rows (not including action bar)
 
-            ClearRegion(0, 0, POPUP_W, _popupH);
             DrawBgFill(0, 0, POPUP_W, borderH);
 
             // Border
@@ -375,6 +393,15 @@ namespace CavesOfOoo.Rendering
                     msg = msg.Substring(0, POPUP_W - 2);
                 DrawText(1, borderH + 1, msg, QudColorParser.BrightRed);
             }
+
+            // Record the full FG footprint we just painted so the NEXT
+            // Render/Close can erase it even if _worldOriginX/_worldTopY/
+            // _popupH shift when the item count changes.
+            _fgDrawn = true;
+            _fgDrawnW = POPUP_W;
+            _fgDrawnH = _popupH;
+            _fgDrawnOriginX = _worldOriginX;
+            _fgDrawnTopY = _worldTopY;
         }
 
         // ===== Mouse =====
@@ -406,22 +433,6 @@ namespace CavesOfOoo.Rendering
         // All coordinates are in popup-local grid space:
         //   (0,0) = top-left of popup, X increases right, Y increases down.
         // Internally converted to world tile positions via _worldOriginX / _worldTopY.
-
-        /// <summary>
-        /// Clear a region in popup grid space by setting tiles to null.
-        /// </summary>
-        private void ClearRegion(int gx, int gy, int width, int height)
-        {
-            for (int dy = 0; dy < height; dy++)
-            {
-                for (int dx = 0; dx < width; dx++)
-                {
-                    int wx = _worldOriginX + gx + dx;
-                    int wy = _worldTopY - (gy + dy);
-                    Tilemap.SetTile(new Vector3Int(wx, wy, 0), null);
-                }
-            }
-        }
 
         private void DrawBgFill(int gx, int gy, int width, int height)
         {
@@ -464,6 +475,29 @@ namespace CavesOfOoo.Rendering
             }
 
             _bgDrawn = false;
+        }
+
+        /// <summary>
+        /// Erase the FG tiles painted by the previous Render() call, using
+        /// the origin/size we recorded at that time — NOT the current
+        /// _worldOriginX/_worldTopY/_popupH, which have been reassigned to
+        /// the new popup's dimensions by ComputePopupPosition.
+        /// </summary>
+        private void ClearFgRegion()
+        {
+            if (!_fgDrawn || Tilemap == null) return;
+
+            for (int dy = 0; dy < _fgDrawnH; dy++)
+            {
+                for (int dx = 0; dx < _fgDrawnW; dx++)
+                {
+                    int wx = _fgDrawnOriginX + dx;
+                    int wy = _fgDrawnTopY - dy;
+                    Tilemap.SetTile(new Vector3Int(wx, wy, 0), null);
+                }
+            }
+
+            _fgDrawn = false;
         }
 
         private void DrawPopupBorder(int x, int y, int w, int h, int contentRows)

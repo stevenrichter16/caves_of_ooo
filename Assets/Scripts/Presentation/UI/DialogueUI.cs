@@ -61,6 +61,19 @@ namespace CavesOfOoo.Rendering
         private int _bgDrawnOriginX;
         private int _bgDrawnTopY;
 
+        // Previously-drawn FG rectangle. Cached at Render time so the NEXT
+        // Render/Close can erase the tiles we actually painted, even after
+        // _popupW/_popupH/_worldOriginX/_worldTopY have shifted to the new
+        // node's dimensions. Without this, advancing to a shorter dialogue
+        // node left the prior node's top border / action bar painted
+        // outside the new rectangle — ghost borders stacked above a
+        // shrinking conversation box.
+        private bool _fgDrawn;
+        private int _fgDrawnW;
+        private int _fgDrawnH;
+        private int _fgDrawnOriginX;
+        private int _fgDrawnTopY;
+
         public bool IsOpen => _isOpen;
         public bool ConversationEnded => _conversationEnded;
 
@@ -78,7 +91,10 @@ namespace CavesOfOoo.Rendering
         {
             _isOpen = false;
             // Clear foreground glyphs (borders, text, choices, action bar)
-            ClearRegion(0, 0, _popupW, _popupH);
+            // using the rectangle cached at the last Render — not the
+            // current _popupW/_popupH, which may have shifted from a prior
+            // node's layout.
+            ClearFgRegion();
             ClearBgRegion();
             if (ConversationManager.IsActive)
                 ConversationManager.EndConversation();
@@ -361,7 +377,11 @@ namespace CavesOfOoo.Rendering
                 if (Tilemap == null || !ConversationManager.IsActive)
                     return;
 
-                // Clear any previous-frame bg before layout changes (popup height may change per node)
+                // Erase the PREVIOUS draw first (both FG and BG) using the
+                // cached rectangles — popup width/height can change per
+                // node, so we can't use the current values to clear the
+                // old paint.
+                ClearFgRegion();
                 ClearBgRegion();
 
                 ComputePopupPosition();
@@ -369,8 +389,6 @@ namespace CavesOfOoo.Rendering
                 var choices = ConversationManager.VisibleChoices;
                 int choiceCount = Mathf.Min(choices.Count, POPUP_MAX_VISIBLE_CHOICES);
                 int textLines = _wrappedTextLines.Count;
-
-                ClearRegion(0, 0, _popupW, _popupH);
 
                 // Opaque bg fill behind everything except the action bar (last row)
                 DrawBgFill(0, 0, _popupW, _popupH - 1);
@@ -552,6 +570,15 @@ namespace CavesOfOoo.Rendering
                 if (actions.Length > _popupW)
                     actions = actions.Substring(0, _popupW);
                 DrawText(0, y, actions, QudColorParser.DarkGray);
+
+                // Record the full FG footprint we just painted so the NEXT
+                // Render/Close can erase it even if the popup's width,
+                // height, or origin change with the next dialogue node.
+                _fgDrawn = true;
+                _fgDrawnW = _popupW;
+                _fgDrawnH = _popupH;
+                _fgDrawnOriginX = _worldOriginX;
+                _fgDrawnTopY = _worldTopY;
             }
         }
 
@@ -665,17 +692,27 @@ namespace CavesOfOoo.Rendering
 
         // ===== Drawing Helpers (world-space, same as PickupUI) =====
 
-        private void ClearRegion(int gx, int gy, int width, int height)
+        /// <summary>
+        /// Erase the FG tiles painted by the previous Render() call, using
+        /// the origin/size we recorded at that time — NOT the current
+        /// _worldOriginX/_worldTopY/_popupW/_popupH, which may have been
+        /// reassigned for the new dialogue node's layout.
+        /// </summary>
+        private void ClearFgRegion()
         {
-            for (int dy = 0; dy < height; dy++)
+            if (!_fgDrawn || Tilemap == null) return;
+
+            for (int dy = 0; dy < _fgDrawnH; dy++)
             {
-                for (int dx = 0; dx < width; dx++)
+                for (int dx = 0; dx < _fgDrawnW; dx++)
                 {
-                    int wx = _worldOriginX + gx + dx;
-                    int wy = _worldTopY - (gy + dy);
+                    int wx = _fgDrawnOriginX + dx;
+                    int wy = _fgDrawnTopY - dy;
                     Tilemap.SetTile(new Vector3Int(wx, wy, 0), null);
                 }
             }
+
+            _fgDrawn = false;
         }
 
         private void DrawChar(int gx, int gy, char c, Color color)
