@@ -4119,14 +4119,14 @@
         { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8" }, { "Key": "PenBonus", "Value": "1" }] },
         { "Name": "Brain", "Params": [
-          { "Key": "SightRadius", "Value": "0" },
+          { "Key": "SightRadius", "Value": "8" },
           { "Key": "Staying", "Value": "true" },
           { "Key": "Wanders", "Value": "false" },
           { "Key": "WandersRandomly", "Value": "false" }
         ]},
         { "Name": "AIAmbush", "Params": [
           { "Key": "WakeOnDamage", "Value": "true" },
-          { "Key": "WakeOnHostileInSight", "Value": "true" },
+          { "Key": "WakeOnHostileInSight", "Value": "false" },
           { "Key": "SleepParticleInterval", "Value": "0" }
         ]}
       ],

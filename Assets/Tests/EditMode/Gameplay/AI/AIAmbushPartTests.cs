@@ -238,35 +238,40 @@ namespace CavesOfOoo.Tests
         {
             // MimicChest is Physics.Solid=true so the player CANNOT walk through
             // it — same as real Chests and NPCs. Attempting to walk into the
-            // mimic's cell triggers the bump-to-attack flow (InputHandler.cs
-            // line 383: blocked hostile Creature → auto-melee), which damages
-            // the mimic → WakeOnDamage fires → mimic awakens mid-combat.
+            // mimic's cell triggers bump-to-attack (InputHandler.cs line 383:
+            // blocked hostile Creature → auto-melee), which damages the mimic →
+            // WakeOnDamage fires → mimic awakens mid-combat.
             //
-            // SightRadius=0 means the mimic cannot wake by spotting a hostile
-            // from a distance — WakeOnHostileInSight stays true in the blueprint
-            // but is functionally inert. The disguise is preserved until the
-            // player actually interacts with the cell.
+            // Wake trigger: damage-only. WakeOnHostileInSight=false keeps the
+            // disguise intact (mimic does not wake merely by having the player
+            // visible). An earlier iteration used SightRadius=0 + WakeOnSight=
+            // true to enforce this, but that also gated BoredGoal's post-wake
+            // hostile scan so the woken mimic couldn't find its target. The
+            // current design: normal SightRadius=8 for combat AI + explicit
+            // WakeOnHostileInSight=false for disguise.
             //
-            // Contract (post-bump-to-attack redesign):
-            // - Adjacent player: disguise holds (no sight wake, no damage)
+            // Contract:
+            // - Adjacent player: disguise holds (no sight wake — flag is off)
             // - Player presses 'o' on adjacent cell: real Chest opens; Mimic has
             //   no Container part so the action doesn't apply
-            // - Player bumps into mimic's cell: blocked → auto-melee → WakeOnDamage
+            // - Player bumps into mimic's cell: blocked → auto-melee → damage →
+            //   WakeOnDamage → BoredGoal finds hostile within SightRadius=8 →
+            //   pushes KillGoal → mimic fights back
             var mimic = _factory.CreateEntity("MimicChest");
             Assert.IsNotNull(mimic);
 
             var ambush = mimic.GetPart<AIAmbushPart>();
             Assert.IsNotNull(ambush);
             Assert.IsTrue(ambush.WakeOnDamage,
-                "MimicChest wakes when attacked (primary wake path under bump-to-attack design)");
-            Assert.IsTrue(ambush.WakeOnHostileInSight,
-                "Flag stays true in the blueprint for consistency, though SightRadius=0 makes it inert");
+                "MimicChest wakes when attacked (primary and only wake path under this design)");
+            Assert.IsFalse(ambush.WakeOnHostileInSight,
+                "WakeOnHostileInSight is false — disguise holds regardless of who walks near");
             Assert.AreEqual(0, ambush.SleepParticleInterval,
                 "MimicChest has no 'z' particles — it's disguised, not obviously asleep");
 
             var brain = mimic.GetPart<BrainPart>();
-            Assert.AreEqual(0, brain.SightRadius,
-                "SightRadius=0 — disguise holds until the player attacks the mimic");
+            Assert.AreEqual(8, brain.SightRadius,
+                "SightRadius=8 — post-wake, BoredGoal needs a non-zero range to find the attacker");
 
             var physics = mimic.GetPart<PhysicsPart>();
             Assert.IsTrue(physics.Solid,
@@ -345,20 +350,13 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void MimicChest_StaysDormantWhenHostileAdjacent_ButWakesOnSameCell()
+        public void MimicChest_StaysDormantWhenHostileInSight()
         {
-            // MimicChest uses SightRadius=0 so DormantGoal only wakes when a
-            // hostile is on the same cell (distance 0). Adjacent hostiles
-            // (distance 1) don't wake it — the chest disguise holds.
-            //
-            // Under the current design (MimicChest.Physics.Solid=true + bump-to-
-            // attack), the primary wake path is damage, not same-cell detection:
-            // the player CAN'T walk onto the mimic, they bump-attack instead.
-            // This test still drives the same-cell code path directly via
-            // zone.AddEntity (bypassing MovementSystem) because the logic is
-            // still wired and acts as a safety net: if any game system ever
-            // places a hostile onto the mimic's cell via teleport, push effect,
-            // scripted event, etc., the mimic wakes as designed.
+            // MimicChest blueprint has WakeOnHostileInSight=false — the
+            // disguise holds regardless of who walks nearby. The only wake
+            // trigger is taking damage. DormantGoal's generic wake-on-sight
+            // path is exercised separately in Phase6GoalsTests
+            // (DormantGoal_WakesOnHostileInSight).
             var zone = new Zone("TestZone");
             var mimic = _factory.CreateEntity("MimicChest");
             zone.AddEntity(mimic, 10, 10);
@@ -374,23 +372,19 @@ namespace CavesOfOoo.Tests
             villager.Statistics["Speed"] = new Stat { Name = "Speed", BaseValue = 100, Min = 25, Max = 200 };
             villager.AddPart(new RenderPart());
             villager.AddPart(new PhysicsPart { Solid = true });
-            zone.AddEntity(villager, 11, 10); // adjacent — distance 1
+            zone.AddEntity(villager, 11, 10); // adjacent — within SightRadius=8
 
             var dormant = brain.FindGoal<DormantGoal>();
             Assert.IsNotNull(dormant, "DormantGoal is pushed at Initialize");
 
-            // Adjacent hostile: should stay dormant (outside SightRadius=0)
-            dormant.TakeAction();
-            dormant.TakeAction();
-            Assert.IsFalse(dormant.Finished(),
-                "MimicChest with SightRadius=0 must not wake when hostile is only adjacent");
+            // Adjacent hostile, fully in sight — but WakeOnHostileInSight=false
+            // keeps the disguise intact. Many ticks shouldn't wake it.
+            for (int i = 0; i < 10; i++)
+                dormant.TakeAction();
 
-            // Move hostile onto mimic's cell (distance 0): wakes
-            zone.RemoveEntity(villager);
-            zone.AddEntity(villager, 10, 10); // same cell now
-            dormant.TakeAction();
-            Assert.IsTrue(dormant.Finished(),
-                "MimicChest must wake when a hostile steps onto its cell — the 'open chest' moment");
+            Assert.IsFalse(dormant.Finished(),
+                "MimicChest with WakeOnHostileInSight=false must not wake by sight alone — " +
+                "only damage can wake a disguised mimic.");
         }
     }
 }
