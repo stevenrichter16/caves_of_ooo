@@ -1557,6 +1557,27 @@ M2.3:
 **Post-M2 sanity:** re-run Option A (M1 state-portion) + one M2 scenario (cast
 Calm on a hostile; tick; assert no engagement). Script-verifiable.
 
+#### Post-implementation Qud parity audit (M2)
+
+Added after M2 shipped — survey of `qud_decompiled_project/` for each M2 feature.
+M2 was planned and built without a parity pre-check; the findings below make the
+actual parity status explicit so future parity work on Qud's equivalents isn't
+blocked by ambiguous provenance claims.
+
+| M2 feature | Qud equivalent | Parity status |
+|------------|----------------|---------------|
+| `NoFightGoal` (Phase 6 primitive) | `XRL.World.AI.GoalHandlers/NoFightGoal.cs` | **Extension.** Qud's version is 13 lines — only `CanFight() => false`. CoO's adds `Duration` + `Wander` fields that the M2.1 dialogue action and M2.2 CalmMutation both depend on. Divergence is deliberate and forward-compatible: a future strict parity run could drop our fields into a subtype without rewriting upstream uses. |
+| `CalmMutation` (M2.2) | **None.** Qud's mental mutations (MentalMirror, PsionicMigraines, Telepathy, Beguile, CollectiveUnconscious) do not pacify via NoFightGoal. | **CoO-original.** Builds on Qud's `DirectionalProjectileMutationBase` shape but the pacify-on-hit mechanic is ours. |
+| `PushNoFightGoal` dialogue action (M2.1) | **None** in Qud's `ConversationActions` registry. | **CoO-original hook.** |
+| `WitnessedEffect` (M2.3) | `XRL.World.Effects/Shaken.cs` (partial) | **Divergent mechanics, same classification.** Qud's `Shaken` carries a `Level` field and applies `-Level DV` via `StatShifter`; ours pushes `WanderDurationGoal` for a pacing animation. Both share the `"shaken"` display name and the max-on-stack merge rule. Our `GetEffectType()` now matches Qud's bitmask (`117440514` = `TYPE_MENTAL \| TYPE_MINOR \| TYPE_NEGATIVE \| TYPE_REMOVABLE`) so future mental-effect category queries classify both correctly. |
+| `BroadcastDeathWitnessed` (M2.3) | **None.** Qud's `Shaken` is fired from `ApplyShaken` events in combat contexts (`CryptFerretBehavior.cs` etc.), never from a death handler. | **CoO-original mechanic.** Uses M1.2's `Passive` flag as the filter — an M1-to-M2 hook that has no Qud precedent. |
+| `Effect.OnStack` merge override | Qud uses `Shaken.Apply` override + `Object.GetEffect<Shaken>()` lookup | **Different override point, equivalent behavior.** Both take `max(existing, incoming)` on Duration. If future Qud parity work on `Shaken` grows complex merge rules (level-capping, resistance), switching our merge to `Apply` is the natural refactor. |
+
+**Net:** M2 delivers Qud-primitive consumers (`NoFightGoal`, `WanderDurationGoal`) via
+CoO-original triggers. The Phase 6 coverage claim ("5 of 7 shipped goals now have
+real gameplay triggers") stands; the claim that M2 is "Qud parity work" does NOT —
+M2 is closer to "Qud-inspired extensions that consume Qud-parity primitives."
+
 #### Milestone M3 — Ambient behavior parts (Tier B, 2–3 days)
 
 Goal: after M3, `PetGoal`, `GoFetchGoal`, and `FleeLocationGoal` are all

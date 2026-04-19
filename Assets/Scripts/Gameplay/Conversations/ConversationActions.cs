@@ -297,7 +297,15 @@ namespace CavesOfOoo.Core
                 if (speaker == null) return;
                 var brain = speaker.GetPart<BrainPart>();
                 if (brain == null) return;
-                if (brain.HasGoal<NoFightGoal>()) return;
+
+                // Idempotent: if already pacified, emit visible feedback
+                // so the player sees why the "Stand down, friend" choice
+                // looks like it did nothing.
+                if (brain.HasGoal<NoFightGoal>())
+                {
+                    MessageLog.Add($"{speaker.GetDisplayName()} is already at peace.");
+                    return;
+                }
 
                 // `int.TryParse` writes 0 to the out param on failure, which
                 // NoFightGoal treats as INFINITE — so a typo in the dialogue

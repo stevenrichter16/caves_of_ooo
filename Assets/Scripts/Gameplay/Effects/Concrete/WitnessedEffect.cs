@@ -27,11 +27,20 @@ namespace CavesOfOoo.Core
     {
         public override string DisplayName => "shaken";
 
-        // Qud-style effect type bitmask. Override the virtual GetEffectType()
-        // — there is no `Type` property to override, and ClassName is
-        // non-virtual (auto-derived from GetType().Name).
+        // Qud-style effect type bitmask. Matches the category set used by
+        // qud_decompiled_project/XRL.World.Effects/Shaken.cs (value
+        // 117440514 = TYPE_MENTAL | TYPE_MINOR | TYPE_NEGATIVE | TYPE_REMOVABLE).
+        // TYPE_MENTAL in particular matters — mind-blank / psionic-immunity
+        // queries filter on that bit, and a shaken NPC should register as
+        // having a mental effect for future interactions.
+        //
+        // NOTE: the mechanical payload diverges from Qud's Shaken. Qud's
+        // Shaken carries a Level field and applies `-Level DV` as a stat
+        // shift; ours pushes WanderDurationGoal for a pacing animation.
+        // The category/bitmask stays aligned so future parity work on the
+        // stat-shift mechanic can ride the same classification.
         public override int GetEffectType()
-            => TYPE_GENERAL | TYPE_NEGATIVE | TYPE_REMOVABLE;
+            => TYPE_MENTAL | TYPE_MINOR | TYPE_NEGATIVE | TYPE_REMOVABLE;
 
         // The goal this effect pushed on OnApply. Kept as a reference so
         // OnRemove can surgically remove exactly the goal we pushed, not

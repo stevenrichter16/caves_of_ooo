@@ -53,7 +53,16 @@ namespace CavesOfOoo.Core
             if (target == null) return;
             var brain = target.GetPart<BrainPart>();
             if (brain == null) return;
-            if (brain.HasGoal<NoFightGoal>()) return; // idempotent — don't stack or replace
+
+            // Idempotent: don't stack or replace an existing pacification.
+            // The cast still consumed its cooldown (handled by the base
+            // class) so emit a message so the player isn't confused by an
+            // apparently-silent cast.
+            if (brain.HasGoal<NoFightGoal>())
+            {
+                MessageLog.Add(target.GetDisplayName() + " is already at peace.");
+                return;
+            }
 
             int duration = BaseDuration + (Level * 10);
             brain.PushGoal(new NoFightGoal(duration, wander: false));

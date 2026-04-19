@@ -238,6 +238,81 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void HandleDeath_Broadcast_IncludesWitnessAtExactRadius()
+        {
+            // Boundary test: radius == 8 (Chebyshev). The broadcast filter
+            // is `if (dist > radius) continue;`, so exactly 8 must INCLUDE
+            // the witness. Pins the boundary so a future flip to `>=`
+            // regresses noisily instead of silently.
+            var zone = new Zone();
+            var victim  = CreateCombatant();
+            var witness = CreatePassiveCreature();
+            zone.AddEntity(victim, 5, 5);
+            zone.AddEntity(witness, 13, 5); // Chebyshev distance exactly 8
+
+            CombatSystem.HandleDeath(victim, killer: null, zone: zone);
+
+            Assert.IsTrue(witness.HasEffect<WitnessedEffect>(),
+                "Witness at dist == radius (inclusive boundary) must receive the effect.");
+        }
+
+        [Test]
+        public void HandleDeath_Broadcast_SkipsCreatureWithoutBrain()
+        {
+            // A Creature-tagged entity with no BrainPart (e.g. a future
+            // plant/corpse/construct) must not throw AND must not receive
+            // the effect. The `brain == null` guard inside the broadcast
+            // loop handles it — pinning here because the surrounding
+            // test `SkipsNonCreatures` tests a different filter (Creature
+            // tag, not brain presence).
+            var zone = new Zone();
+            var victim = CreateCombatant();
+            var mindless = CreateBaseCreature("mindless_thing");
+            // Intentionally: no BrainPart added.
+            Assert.IsNull(mindless.GetPart<BrainPart>(),
+                "Precondition: entity has no BrainPart.");
+            Assert.IsTrue(mindless.HasTag("Creature"),
+                "Precondition: entity IS Creature-tagged so the tag guard doesn't short-circuit the brain guard.");
+
+            zone.AddEntity(victim, 10, 5);
+            zone.AddEntity(mindless, 12, 5);
+
+            Assert.DoesNotThrow(() =>
+                CombatSystem.HandleDeath(victim, killer: null, zone: zone),
+                "Broadcast must tolerate a Creature-tagged entity with no BrainPart.");
+            Assert.IsFalse(mindless.HasEffect<WitnessedEffect>(),
+                "Brainless Creature must not receive the witness effect.");
+        }
+
+        [Test]
+        public void WitnessedEffect_OnRemove_PreservesExternallyPushedWanderGoal()
+        {
+            // Regression: if another system pushed a WanderDurationGoal onto
+            // the brain before WitnessedEffect applied, OnApply correctly
+            // skipped its own push (_pushedGoal stays null). When the effect
+            // later expires, OnRemove must leave the external goal alone —
+            // _pushedGoal's null-guard is the mechanism, this test pins it.
+            var witness = CreatePassiveCreature();
+            var brain = witness.GetPart<BrainPart>();
+            var externalGoal = new WanderDurationGoal(duration: 100);
+            brain.PushGoal(externalGoal);
+            Assert.AreSame(externalGoal, brain.FindGoal<WanderDurationGoal>(),
+                "Precondition: external goal is on the brain.");
+
+            witness.ApplyEffect(new WitnessedEffect(duration: 20));
+            // Effect is on the status list but _pushedGoal is null because
+            // the HasGoal<WanderDurationGoal> guard hit.
+
+            witness.GetPart<StatusEffectsPart>().RemoveEffect<WitnessedEffect>();
+
+            Assert.IsTrue(brain.HasGoal<WanderDurationGoal>(),
+                "External WanderDurationGoal must survive the effect's OnRemove.");
+            Assert.AreSame(externalGoal, brain.FindGoal<WanderDurationGoal>(),
+                "The SAME external goal instance must still be on the stack — " +
+                "OnRemove must not have nuked an unrelated goal of the same type.");
+        }
+
+        [Test]
         public void HandleDeath_Broadcast_SkipsNonCreatures()
         {
             // An item dropped on the ground (not a Creature) must not be
