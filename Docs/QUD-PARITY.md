@@ -1953,6 +1953,754 @@ Three commit boundaries: `3a`, `3b+3c`, `3d+3e`.
 - [ ] README has a "Reusing scenarios as tests" section with full before/after example
 - [ ] `SCENARIO_SCRIPTING.md` marks Phase 3 complete
 
+## Major Feature Development Standard — Methodology & Testing Template
+
+> **Executive Summary**
+>
+> Phase 6 (M1 + M2) shipped two milestones with 1564 passing EditMode tests,
+> zero shipping-blocking bugs, and a documented audit trail of every
+> assumption, divergence, and post-review fix. It also caught several bugs
+> _pre-commit_ that would have shipped silently under a lower-discipline
+> workflow: the `int.TryParse` 0-on-failure trap in PushNoFightGoal, the
+> `Penalty`-stuck RetreatGoal deadlock, the `GatherRoomCells` zone re-scan
+> that stacked ambushers on guards, and the look-mode "hostile" label on
+> pacified NPCs.
+>
+> Those catches did not happen by accident. They happened because we
+> verified every plan assumption against live code before writing any,
+> paired every positive assertion with a counter-check, and reviewed our
+> own output critically against the decompiled reference. When we cut
+> corners — implicit trust in a plan's claimed API shape, vacuous tests
+> that passed without exercising the path — we regressed.
+>
+> This section codifies the workflow that produced that outcome so it can
+> be reused for every future Major Plan in Caves of Ooo, and for Unity
+> projects built with the Unity MCP tooling beyond this one. It is
+> deliberately specific — concrete checklists, not principles — because
+> the failure modes we saw were all "I forgot to check X" failures, not
+> "I didn't know X was important" failures.
+>
+> Non-goals: this template is not a style guide, not a code-review rubric,
+> and not a replacement for judgment. It's a protocol for _which order to
+> do things in_ and _what evidence to produce at each step_.
+
+### How to use this template
+
+For any feature that meets two or more of:
+
+- Touches multiple systems (AI + combat + UI, etc.)
+- Requires new blueprint/JSON content to be visible
+- Claims parity with a reference codebase (Qud, etc.)
+- Has a non-obvious failure mode (state-machine, timing, RNG-dependent)
+- Will be wired into gameplay the player can exercise
+
+Follow Parts 1–7 in order. Reach for Part 8 checklists mid-milestone to
+stay honest about what you've verified.
+
+Small features (one-file, one-test bugfixes) don't need the full protocol —
+but the commit-message discipline (Part 2.2) and the honesty protocols
+(Part 6) still apply.
+
+---
+
+### Part 1 — Plan Lifecycle
+
+A plan passes through three states before any code is written:
+**drafted** → **verified** → **scope-pruned and tiered**. Skipping any
+state is how hallucinations ship.
+
+#### 1.1 — Initial plan draft
+
+**Output:** a plan document (in-repo — `Docs/...` — not in a chat
+buffer) with:
+
+| Section | Content |
+|---|---|
+| Goal | 1-paragraph description of the player-visible outcome |
+| Scope | What's in, what's explicitly out |
+| Content-readiness analysis | Each deliverable tagged 🟢 ready / 🟡 partial / 🔴 blocked / ⚪ deferred-until-content |
+| Cross-cutting infrastructure gaps | Any adjacent system that must change to unblock this |
+| Effort-to-impact ordering | Sub-deliverables ranked by player-visible value per day of work |
+| Implementation tiers | A (blueprint wiring, hours), B (small systems, days), C (medium infra, days each), D (large infra, weeks) |
+| Verification checklist | Empty checkboxes for "what proves this shipped correctly" |
+
+**Evidence from Phase 6:** commits `e56e674`, `519ee3f` established the
+Per-Goal Verdict table, Cross-Cutting Infrastructure Gaps section, and
+Summary Matrix. That framework made it possible to say M1 ships Tier A
+(blueprint wiring) and defer Tiers C/D without losing track.
+
+#### 1.2 — Pre-implementation verification sweep
+
+**The single highest-leverage step in this whole protocol.** Before
+writing code, take every API-shape claim in the plan and verify it
+against the actual codebase.
+
+**Check each of:**
+
+- Class/interface signatures referenced by the plan
+- Abstract vs virtual members (plans often get this wrong)
+- Constructor signatures (is there a `: base(duration)` overload? Often not.)
+- Field vs property access (can you really override that?)
+- Event names + argument shapes
+- Enum values referenced (e.g. does `AsciiFxTheme.Mental` exist?)
+- Line numbers the plan cites (they drift over time)
+
+**Output:** a correction table in the plan, showing every drift you
+found.
+
+**Evidence from Phase 6 M2**: the pre-M2 verification sweep produced 14
+concrete corrections, every one of which would have caused a compile
+error or silent no-op if the plan had been followed verbatim. Examples:
+
+- Plan said `Effect` had `public int Type`; reality was
+  `virtual int GetEffectType()`
+- Plan said `OnApply()` / `OnRemove()` were zero-arg; reality takes
+  `Entity target`
+- Plan said `DirectionalProjectileMutationBase` had 4 abstracts; reality
+  has 7
+- Plan said `Effect` took `: base(duration)`; no such constructor exists
+
+See `Docs/QUD-PARITY.md` M2 section "Plan corrections vs the prior M2
+drafts" for the full list.
+
+#### 1.3 — Scope pruning with documented rationale
+
+Sometimes the verification sweep reveals that a sub-feature the plan
+called for is **redundant in the current code**, or **actively harmful**.
+Prune it, _in writing_, with the rationale.
+
+**Evidence from Phase 6 M2**: during M2.1 implementation, reading
+`BrainPart.HandleTakeTurn` revealed `if (InConversation) return true;`
+at line 231 — which meant the plan's "auto-pacify on StartConversation"
+feature was functionally redundant, and would actively _break_ the
+PushNoFightGoal action via the idempotency guard. Shipped only the
+dialogue action; documented the cut in the commit message and the test
+class xml-doc. See commit `a34faf6`.
+
+**Protocol for pruning:**
+
+1. Quote the plan's original claim
+2. Cite the line numbers in current code that make it redundant or
+   harmful
+3. Describe the concrete regression the prune prevents
+4. Record what to revisit if conditions change ("if a future scenario
+   needs mid-dialogue combat protection beyond what InConversation
+   provides, auto-pacify can be revisited with semantics that don't
+   collide with this action")
+
+#### 1.4 — Risk-ordered sub-milestone breakdown
+
+**Rule:** smallest blast radius first. Each sub-milestone must:
+
+- Commit as one reviewable change
+- Be independently revertable
+- Ship one complete player-visible or testable behavior
+
+**Evidence from Phase 6**: M2 shipped as three focused commits in risk
+order — M2.2 (CalmMutation — 1 new class + 1 JSON edit + 1 Player
+loadout one-liner) before M2.1 (ConversationManager static state)
+before M2.3 (CombatSystem.HandleDeath — highest integration cost).
+Each could have been reverted alone.
+
+---
+
+### Part 2 — Implementation Discipline
+
+#### 2.1 — Hallucination-avoidance checklist (apply per code change)
+
+Before writing each new symbol:
+
+- [ ] Open the file you're extending; confirm the abstract/virtual
+  surface matches your plan
+- [ ] If the plan shows code, spot-check at least one signature in the
+  file before copying the shape
+- [ ] Follow an existing sibling (e.g. another `DirectionalProjectileMutation`)
+  as the template for your new class — not your memory of the pattern
+- [ ] If a method takes `out T`, read its failure semantics before
+  trusting it. `int.TryParse` writes 0 on failure AND returns false
+  — either guard is sufficient if you know about it, together they
+  close the trap
+
+Before calling an API you haven't used recently:
+
+- [ ] Read its implementation (not just the signature) to understand
+  side effects
+- [ ] Check whether it mutates state that your calling context also
+  touches (the `GetReadOnlyEntities` live-collection trap)
+
+#### 2.2 — Commit message template
+
+Phase 6 commits converged on a consistent body structure. Reuse it:
+
+```
+<type>(<scope>): <tight present-tense summary>
+
+<2-3 sentence problem statement: what was broken or missing, in
+user-observable terms>
+
+<section headers in CAPS for each kind of content>
+
+IMPLEMENTATION NOTES (risks verified before writing code)
+  1. <Plan correction #1>: what was wrong in the plan, what's actually
+     true (with file:line citation), how the code reflects the truth
+  2. <Plan correction #2>: ...
+
+SCOPE DIVERGENCE FROM THE PLAN (if any)
+  <Feature that was dropped>: why, backed by cited evidence; what to
+  revisit if conditions change.
+
+BUG CAUGHT BY A TEST MID-IMPLEMENTATION (if any)
+  <Raw pre-commit test failure>, followed by: root cause + fix.
+
+Files:
+- MOD/NEW <path>: <one-line purpose>
+- ...
+
+Tests: <N> -> <M> (+D). All green.
+
+<Footer: co-author line>
+```
+
+**Evidence**: every Phase 6 M1/M2 commit follows this pattern. Examples:
+`a34faf6` (scope divergence called out), `9c8522c` (5 implementation
+notes), `ecca5c9` (2 post-review findings, each cited against
+file:line).
+
+#### 2.3 — Pre-commit verification gates
+
+Before `git commit`:
+
+- [ ] `mcp__unity__refresh_unity` with `compile: request` → no errors
+- [ ] `mcp__unity__read_console` with `types: ["error"]` → empty
+- [ ] `mcp__unity__run_tests` EditMode → all green
+- [ ] If new test files were added and `total` count didn't change after
+  the test run, retry with `mode: force` on the refresh (Unity's test
+  runner can miss newly-created files on a soft refresh)
+- [ ] Diff review: did any symbol name, method arity, or signature
+  contradict the verified API from Part 1.2?
+
+---
+
+### Part 3 — Testing Pyramid
+
+Caves of Ooo has six distinct test layers. Each has a different failure
+mode it's good at catching; none replaces the others. The goal is not to
+use every layer for every feature but to know _when_ each is the right
+tool.
+
+#### 3.1 — EditMode unit tests (fastest, most isolated)
+
+**Location:** `Assets/Tests/EditMode/**/*.cs`, NUnit `[Test]` methods.
+
+**What they're good for:** single-method behavior, boundary conditions,
+null-guard coverage, algorithmic correctness. Fast — whole 1564-test
+suite runs in ~15s.
+
+**Style:**
+- Manual entity construction (`new Entity()` + `AddPart(...)`) when you
+  need to exercise pre-wiring code paths
+- `ctx.Spawn("Warden")` via `ScenarioTestHarness` when you want the real
+  blueprint
+- Setup via `[SetUp]`, teardown via `[TearDown]` (Faction/ConversationActions
+  reset commonly needed)
+
+#### 3.2 — EditMode integration tests via Scenario harness
+
+**Location:** same test folder, but using `ScenarioTestHarness`,
+`ctx.AdvanceTurns(n)`, and `ctx.Verify()`.
+
+**What they're good for:** end-to-end behavior against real blueprints
+— "does the Warden blueprint's AISelfPreservation actually trigger
+after a tick cycle" kinds of questions. The harness loads Objects.json
+once at `[OneTimeSetUp]` and hands out fresh `ScenarioContext`
+instances per test.
+
+**Why it matters:** unit tests against hand-constructed entities can pass
+even when a blueprint JSON edit silently dropped a required part. The
+harness closes that gap.
+
+**Evidence**: `AIBehaviorPartTests` was ported to the harness during
+scenario Phase 3d (commit `4404df7`) with measurable line reduction.
+
+#### 3.3 — Regression tests (pin every fix)
+
+**Rule:** every bug fix ships with a test whose name describes the bug
+and whose assertion would fail if the fix were reverted.
+
+**Examples from Phase 6:**
+
+- `RetreatGoal_Recovery_Exit_UsesBaseValue_NotPenalizedValue` — comment
+  cites M1.R-3, the test deliberately sets Penalty=18 so the old
+  `Value`-based gate would deadlock forever
+- `AmbushCreatures_NeverShareCellWithGuardsOrLoot` — 200-seed iteration
+  across both biomes, builds an occupancy dictionary, fails if any
+  cell has >1 entity
+- `HandleDeath_Broadcast_IncludesWitnessAtExactRadius` — places a
+  witness at Chebyshev distance exactly 8, pins the inclusive boundary
+  against a future `>=` flip
+
+**Every test file** containing regression tests should link the xml-doc
+back to the commit or review finding that motivated it ("Regression
+for M2 post-review finding M1.R-2").
+
+#### 3.4 — Counter-check pattern (avoids vacuous passes)
+
+**The core discipline for tests:** every positive assertion is paired
+with a case that would FAIL if the wiring were wrong.
+
+**Examples:**
+
+| Positive test | Counter-check that rules out vacuous pass |
+|---|---|
+| Passive Scribe doesn't push KillGoal against hostile Snapjaw | Non-Passive Warden in identical setup DOES push KillGoal |
+| MimicChest stays dormant with faction-hostile in sight | SleepingTroll in identical setup DOES wake (`WakeOnHostileInSight=true`) |
+| PushNoFightGoal pacifies speaker | Listener (player) in the same call is NOT pacified |
+| Scribe within 8 cells gets WitnessedEffect | Scribe at distance 10 does NOT |
+| Wall between witness and death blocks effect | No-wall control case: effect fires |
+
+**Without counter-checks**, "no KillGoal pushed" can mean "the Passive
+gate works" _or_ "the Snapjaw couldn't see the Scribe" _or_ "they
+weren't actually faction-hostile". The counter-check distinguishes.
+
+**Every precondition** (hostility, line-of-sight, sight radius, distance)
+is explicitly asserted via `Assume.That(...)` or an inline check before
+the positive assertion. See `CalmMutationTests` and `WitnessedEffectTests`.
+
+#### 3.5 — PlayMode sanity sweep via `mcp__unity__execute_code`
+
+**When to use:** after a milestone ships, before declaring it production-
+ready — verify the state-machine transitions hold against a live
+bootstrap with real blueprints, live FactionManager, and the full
+turn-manager loop.
+
+**Protocol (follow exactly, or a silent sweep will convince you
+everything works when it doesn't):**
+
+1. `mcp__unity__manage_editor play` — warn the user this resets the
+   scene
+2. **Preflight**: one `execute_code` call confirming Play mode is
+   active, PlayerEntity resolves, EntityFactory is wired, the specific
+   blueprints and registry entries you're about to exercise are reachable
+3. **Per-scenario**:
+   a. Print preconditions before acting (hostility, LOS, distances, stat
+      values). If any precondition is not what you expected, STOP and
+      report; do not paper over
+   b. Perform the action
+   c. Print raw post-state — not paraphrased. Raw field values, raw
+      goal stack contents, raw effect list
+   d. Include a counter-case in the same scenario (or as a sibling
+      scenario) that would FAIL if the wiring were broken
+4. `mcp__unity__manage_editor stop`
+5. **Summary**: one table per scenario, every row a fact from
+   execute_code output, each row labeled "Observed / Expected". No
+   "mostly works" — either the table passes or it doesn't.
+
+**Honesty bounds — always stated explicitly in the summary:**
+
+- **Can script-verify**: goal-stack membership, effect-list contents,
+  `Stat.BaseValue`, `zone.GetEntityPosition`, `brain.HasGoal<T>()`,
+  `FactionManager.IsHostile`, message-log last-entry
+- **Cannot script-verify**: particle emission, smooth visual motion,
+  camera transitions, FX renderer state, input-driven dialogue flows
+
+**Evidence**: the M1 state-portion sweep (see "Option A — State-portion
+results" earlier in this conversation) caught a vacuous-pass risk in
+Scenario 4a — Snapjaw is not faction-hostile to MimicChest, so the
+"sight-wake disabled" test was trivially true. Re-ran with a Warden
+(confirmed faction-hostile) to make the counter-check meaningful. M2
+sweep confirmed the live look-mode label "pacified" bugfix end-to-end.
+
+#### 3.6 — Manual playtest via Scenario Scripting
+
+**Location:** `Assets/Scripts/Scenarios/Custom/*.cs` + one menu entry in
+`Assets/Editor/Scenarios/ScenarioMenuItems.cs`.
+
+**When to use:** for behaviors that are easy for a human to see but hard
+to script-verify — particle emission, path-smoothness, UI rendering,
+"does this _feel_ right."
+
+**Pattern:**
+
+```csharp
+[Scenario(name: "…", category: "…", description: "…")]
+public class MyScenario : IScenario
+{
+    public void Apply(ScenarioContext ctx)
+    {
+        ctx.Player.AddMutation("...", level: 3);
+        ctx.Spawn("Scribe").AtPlayerOffset(3, 0);
+        ctx.Spawn("Snapjaw").WithHpAbsolute(1).AsPersonalEnemyOf(ctx.PlayerEntity).AtPlayerOffset(5, 0);
+        ctx.Log("Kill the Snapjaw, watch the Scribe shake.");
+    }
+}
+```
+
++ one menu entry line in `ScenarioMenuItems.cs`.
+
+**Evidence**: M1 shipped three playtest scenarios (`CorneredWarden`,
+`IgnoredScribe`, `SleepingTroll`, commits `0ebaa9a` and
+`e3d7d76`). M2 mapping is documented in the conversation above but not
+yet committed.
+
+**Do not** use this layer for things that _could_ be script-verified.
+Manual playtest time is expensive; pyramid discipline says push as
+low as possible.
+
+#### 3.7 — MCP `manage_input` keyboard-driven PlayMode testing
+
+**Location**: documented in `Docs/MCP_PlayMode_Testing_Strategy.md`.
+
+**When to use**: flows that involve UI state transitions (Inventory →
+ActionMenu → Read → Announcement → Dismiss) where `execute_code`
+cannot legally substitute (it would leave popups orphaned per the
+strategy doc's Rule 1: "NEVER fire game events directly via execute_code").
+
+**Protocol** (excerpted from the strategy doc):
+
+1. Use `manage_input` `move_to` / `key_press` / `send_sequence` to mimic
+   player actions
+2. Use `execute_code` only for **read-only observation** (InputState,
+   AnnouncementUI.IsOpen, stat values)
+3. Always dismiss announcement popups after actions that may queue
+   them — they stack
+
+#### 3.8 — Testing-layer selection matrix
+
+| Behavior under test | First choice | Second choice |
+|---|---|---|
+| Pure algorithm (distance, LOS) | EditMode unit | — |
+| Part with minimal env (Effect lifecycle) | EditMode unit | — |
+| Behavior through blueprint wiring | EditMode integration (Scenario harness) | EditMode unit if harness overkill |
+| Bug you just fixed | Regression test (Parts 3.1 or 3.2) | Playtest scenario if visual |
+| Multi-system live integration | PlayMode sanity sweep (3.5) | Manual scenario (3.6) |
+| Particle / animation / "feel" | Manual scenario (3.6) | Screenshot by user |
+| UI-driven state flow | `manage_input` MCP (3.7) | — |
+
+---
+
+### Part 4 — Parity / Reference-Code Audit Protocol
+
+When adapting from a reference codebase (Qud decompiled, or any upstream
+project), document parity explicitly. Overclaimed parity is a bug.
+
+#### 4.1 — Survey the reference
+
+For each artifact you're about to implement:
+
+1. `find qud_decompiled_project -name "*KeywordA*" -o -name "*KeywordB*"`
+   (or ripgrep equivalent) — identify candidate files
+2. Read each candidate. Compare:
+   - Signatures (ctor, method args, field types)
+   - Mechanical behavior (what events fire, what state changes)
+   - Identifiers (effect bitmasks — `TYPE_MENTAL | TYPE_MINOR` etc.)
+   - Subtle merge rules (OnStack vs Apply overrides)
+
+3. Classify each artifact as:
+   - **Match** — same shape and mechanic
+   - **Extension** — same shape, CoO adds fields/params the reference lacks
+   - **Divergent mechanics** — shares name/spirit, implements differently
+   - **CoO-original** — no reference equivalent
+
+**Evidence from Phase 6 M2**: the post-implementation parity audit
+produced a classification table for M2:
+
+| Artifact | Reference | Classification |
+|---|---|---|
+| NoFightGoal (primitive) | `XRL.World.AI.GoalHandlers/NoFightGoal.cs` | Extension (Duration + Wander added) |
+| CalmMutation | None | CoO-original |
+| PushNoFightGoal dialogue action | None | CoO-original hook |
+| WitnessedEffect | `XRL.World.Effects/Shaken.cs` | Divergent mechanics, bitmask aligned |
+| BroadcastDeathWitnessed | None | CoO-original mechanic |
+
+#### 4.2 — Handle classification honestly
+
+- **Match**: cite the reference file:line in the class xml-doc.
+- **Extension**: document which fields are CoO-specific and why they
+  don't collide with future strict-parity work.
+- **Divergent mechanics**: call out what DIFFERS in a "Parity notes:"
+  block in the class docstring. Do not pretend the mechanics are
+  identical.
+- **CoO-original**: flag explicitly in both the class docstring AND the
+  project's parity doc (e.g. `QUD-PARITY.md`) so a future parity audit
+  doesn't mistake it for a port.
+
+#### 4.3 — Doc drift prevention
+
+After shipping, add a post-implementation parity table to the plan doc
+— not to the class docstrings alone. A reader of `QUD-PARITY.md`
+should be able to see at a glance which artifacts are matched, extended,
+divergent, or CoO-original _without reading the source_.
+
+**Evidence**: M2 shipped this as the "Post-implementation Qud parity
+audit (M2)" subsection in `Docs/QUD-PARITY.md`.
+
+---
+
+### Part 5 — Post-Implementation Review
+
+After a milestone's code lands and tests pass, review your own output
+critically. This is not a second round of implementation — it's a
+code-review pass you perform on yourself (or delegate to a sub-agent)
+with the goal of catching what the implementation missed.
+
+#### 5.1 — Severity scale
+
+Use the same scale consistently across the project. Introduced for M1
+review:
+
+| Marker | Meaning |
+|---|---|
+| 🔴 | Critical — ships a bug, corrupts state, or blocks a claim in docs |
+| 🟡 | Moderate — real defect or parity drift, workable for one iteration |
+| 🔵 | Minor — polish, UX feedback, docstring drift |
+| 🧪 | Test gap — behavior is correct but unpinned |
+| ⚪ | Architectural note for future work, not actionable now |
+
+#### 5.2 — Finding template
+
+For each finding, record:
+
+```
+##### 🟡 Bug N — <one-line title>
+
+**File:** <exact path>:<line-range>
+
+<1-paragraph description: what's wrong, what's observable, what fires
+or doesn't fire>
+
+**Why it matters**: <concrete in-game consequence or correctness
+property it breaks>
+
+**Proposed fix**: <1-3 sentences, sketch only — no code yet>
+```
+
+**Evidence**: the M1 review section of `QUD-PARITY.md` documents 14
+such findings. The post-M2 self-review in this conversation produced 11
+more using the same format.
+
+#### 5.3 — Fix pass structure
+
+After review:
+
+1. Rank findings by severity + effort
+2. Pick the top N (usually 3–5) for an immediate follow-up commit
+3. Document the rest in the plan for later
+4. Each fixed finding gets a regression test per Part 3.3
+
+**Rule**: the follow-up commit's message body lists every finding by
+severity marker ("🔴 Bug 1: ...", "🟡 Bug 2: ..."). See commit
+`3167614` for the M1 fix-pass precedent, `585b73b` for the M2 analog.
+
+#### 5.4 — What review misses
+
+Self-review is systematically weaker at:
+
+- **Behavioral feel** (does this animate right, does the timing feel
+  good). Manual playtest scenarios are the only reliable check.
+- **Integration timing** (event ordering across systems). PlayMode
+  sanity sweeps with counter-checks are the only reliable check.
+- **Hallucination in the review itself**. If you delegate to a sub-
+  agent, cross-check 3–4 of the agent's claims against source files
+  before accepting the full report. See the M1 audit, where the audit
+  agent's claim that a specific fix was incomplete turned out to be
+  correct (M2.R-3 RetreatGoal Penalty).
+
+---
+
+### Part 6 — Honesty & Reporting Protocols
+
+This is where discipline most often breaks down under time pressure.
+
+#### 6.1 — Raw output rule
+
+When reporting on a sanity sweep or live check: **paste the raw
+`execute_code` output**, not a paraphrase. Paraphrasing is how you
+convince yourself "mostly works" is "works."
+
+**Good**: "Observed: `HasKill=False HasFlee=False HasNoFight=True
+top=NoFightGoal`. Expected: HasKill=False (Passive suppresses combat
+push), NoFight on stack."
+
+**Bad**: "Counter-check passed."
+
+#### 6.2 — Stop-on-unexpected rule
+
+If any precondition is not what you expected, or a script throws, or a
+counter-check returns "n/a":
+
+1. Stop
+2. Report the raw observation
+3. Decide: is this a meaningful failure (the feature is broken), a
+   precondition issue (fix the setup and re-run), or a hallucinated
+   expectation (update your understanding)?
+4. Do not continue to subsequent steps as if nothing happened
+
+**Evidence**: M1 Option A Scenario 4a showed `hostile-to-Mimic=False`
+as a precondition — the test was trivially true with no real hostile
+in sight. Stopped, surveyed faction relationships, re-ran with a
+Warden (actually faction-hostile to Mimic) as the witness source. The
+second run then exercised the WakeOnHostileInSight gate for real.
+
+#### 6.3 — Can-verify vs cannot-verify bounds
+
+Every live-verification report includes an explicit honesty section:
+
+```
+Can verify (script-observable):
+  - goal-stack membership, effect list, stat values, entity positions
+
+Cannot verify (require screenshot or human eyes):
+  - particle emission, smooth motion, UI rendering, animation feel
+```
+
+Claim nothing outside the "can verify" bounds. If the user needs the
+"cannot verify" checks, _say so_ — don't bluff.
+
+#### 6.4 — Scope divergence transparency
+
+When a plan calls for X and you ship Y, the commit message body says
+SO, with the rationale. Do not ship the divergence silently assuming
+the plan will be updated later.
+
+**Evidence**: commit `a34faf6` body has a full "SCOPE DIVERGENCE FROM
+THE CONSOLIDATED M2 PLAN" section explaining why the auto-pacify was
+cut. Future readers can see the reasoning without reading conversation
+history.
+
+---
+
+### Part 7 — Unity MCP Tooling Workflow
+
+Specific tool-call discipline for the Unity MCP environment.
+
+#### 7.1 — Tool usage rules
+
+| Tool | Use for | Do NOT use for |
+|---|---|---|
+| `mcp__unity__refresh_unity` | Compile requests after script changes | Dismissing stale play state (use `manage_editor stop`) |
+| `mcp__unity__read_console` | Errors, warnings after compile | Performance profiling (use `manage_profiler`) |
+| `mcp__unity__run_tests` | EditMode & PlayMode suites | Running a single test (filter is unreliable; run all and read the summary) |
+| `mcp__unity__manage_editor play/stop` | Entering/exiting Play mode | Dismissing UI (use `manage_input`) |
+| `mcp__unity__execute_code` | **Read-only** state observation | Firing gameplay events (corrupts state — see `Docs/MCP_PlayMode_Testing_Strategy.md` Rule 1) |
+| `mcp__unity__manage_input` | Keyboard-driven playtest flows | Logic not backed by an actual key binding |
+
+#### 7.2 — Common pitfalls
+
+**New test files not picked up by `run_tests`**: the test runner misses
+newly-created files on a soft refresh. Retry with `mcp__unity__refresh_unity`
+`{mode: force, compile: request, scope: all}`. Observed twice during Phase
+6 M2 (at M2.3 WitnessedEffectTests and at post-review tests).
+
+**Test job "failed to initialize (tests did not start within timeout)"**: 
+the editor is in Play mode. Call `mcp__unity__manage_editor stop` first.
+Observed after ~6 distinct `run_tests` calls during Phase 6.
+
+**`Int.TryParse(arg, out duration)` writes 0 on failure**: always
+combine with explicit sentinel (use a separate `out int parsed`
+variable and guard `parsed > 0`). This trap caught us pre-commit once
+at M2.1.
+
+**`Zone.GetReadOnlyEntities()` returns live `Dictionary.KeyCollection`**:
+do not iterate it while calling `ApplyEffect`, `AddEntity`,
+`RemoveEntity`, or anything that could touch `_entityCells`. Use
+`zone.GetAllEntities()` which allocates a fresh list. Comment at
+`Zone.cs:141` explicitly warns: "Callers must not mutate the zone
+during iteration."
+
+**Play mode is a reset**: entering Play mode resets the scene to its
+initial state. Warn the user before doing it. If they had in-progress
+state (carried items, explored zones), those are gone.
+
+#### 7.3 — Verification loop
+
+Standard post-edit cycle:
+
+```
+1. refresh_unity { compile: request }
+2. refresh_unity { compile: none, wait_for_ready: true }   # wait for compile to finish
+3. read_console { types: [error] }                          # must be empty
+4. run_tests { mode: EditMode }                             # must pass
+   - If timeout: manage_editor stop, re-run
+   - If new test count == old: refresh with mode: force, re-run
+5. Commit
+```
+
+---
+
+### Part 8 — Copy-Paste Checklists
+
+Pin these in the milestone's workspace. Check items off as you go.
+
+#### 8.1 — Pre-plan checklist
+
+- [ ] Feature goal is one sentence, player-visible
+- [ ] Scope document lists what's in AND what's out
+- [ ] Every deliverable tagged 🟢/🟡/🔴/⚪
+- [ ] Cross-cutting gaps identified
+- [ ] Verification checklist exists with empty boxes
+- [ ] Plan committed to the repo before any code
+
+#### 8.2 — Pre-implementation checklist (per sub-milestone)
+
+- [ ] Verification sweep complete — every API shape the plan claims is
+  corroborated or corrected
+- [ ] Corrections logged in the plan as a table
+- [ ] Scope pruned with rationale if the sweep revealed redundancy
+- [ ] Sub-milestone order set by blast radius (smallest first)
+- [ ] Each sub-milestone will commit standalone
+
+#### 8.3 — Pre-commit checklist (per sub-milestone)
+
+- [ ] `refresh_unity` compile clean, `read_console` errors empty
+- [ ] `run_tests` EditMode: all green
+- [ ] New test count increased as expected (force-refresh if not)
+- [ ] Regression test present for every fix
+- [ ] Counter-check present for every positive assertion
+- [ ] Commit message body follows the template in Part 2.2
+- [ ] Scope divergences documented (if any)
+
+#### 8.4 — Post-milestone checklist (after final sub-milestone)
+
+- [ ] Self-review pass completed, findings logged with severity markers
+- [ ] High-priority findings fixed in a follow-up commit
+- [ ] Parity audit table populated in the plan doc
+- [ ] PlayMode sanity sweep executed with raw-output reporting
+- [ ] Honesty bounds (can-verify / cannot-verify) stated
+- [ ] Manual playtest scenarios written for visual/feel aspects
+- [ ] Plan doc's verification checklist boxes all checked
+- [ ] Plan doc's claims still match the shipped code — any drift fixed
+
+---
+
+### Appendix A — Worked example: Phase 6 M1 + M2
+
+Phase 6 M1 + M2 is the canonical application of this template. For a
+new feature, read the corresponding section here alongside the
+checklists above.
+
+| Step | M1 precedent | M2 precedent |
+|---|---|---|
+| 1.1 Plan draft | `Docs/QUD-PARITY.md` Phase 6 sections (commits `e56e674`, `519ee3f`) | M2 consolidated plan in QUD-PARITY.md (commit `9cedaec`) |
+| 1.2 Verification sweep | Pre-coding audit against `BlueprintLoader`, `Entity`, `BrainPart` | 14 plan corrections documented in QUD-PARITY.md M2 section |
+| 1.3 Scope pruning | N/A | M2.1 auto-pacify pruned (commit `a34faf6`, cited `BrainPart.HandleTakeTurn:231`) |
+| 1.4 Risk-ordered breakdown | M1.1 (blueprints) → M1.2 (Passive) → M1.3 (AIAmbush + lair) | M2.2 → M2.1 → M2.3 (by blast radius) |
+| 2.2 Commit messages | `bf06376`, `3167614` | `9c8522c`, `a34faf6`, `a16c35c` |
+| 2.3 Verification gates | 1317 → 1534 → 1536 tests | 1536 → 1539 → 1547 → 1559 → 1564 tests |
+| 3.1–3.3 Unit/integration/regression | `AIAmbushPartTests`, `AISelfPreservationBlueprintTests`, `LairPopulationBuilderAmbushTests` | `CalmMutationTests`, `NoFightConversationTests`, `WitnessedEffectTests`, `LookQueryServiceTests` |
+| 3.4 Counter-checks | Warden-not-retreating-in-combat; SleepingTroll wakes, Mimic doesn't | Speaker-not-listener, Passive-vs-combatant witness, wall-blocks-LOS |
+| 3.5 PlayMode sanity sweep | "Option A" four-scenario sweep earlier in this conversation | M2 four-scenario sweep immediately above |
+| 3.6 Manual playtest | `CorneredWarden`, `IgnoredScribe`, `SleepingTroll`, `MimicSurprise` | S1–S6 mapped in conversation; `CalmTestSetup` shipped pre-M2 |
+| 4 Parity audit | Per-Goal Verdict table in QUD-PARITY.md | "Post-implementation Qud parity audit (M2)" subsection |
+| 5 Post-review | 14-finding review → 14 fixes (commit `3167614`) | 11-finding self-review → 4 fixes (commit `585b73b`) |
+| 6 Honesty | Option A results labeled "cannot verify particles" | M2 sweep same bounds stated |
+| 7 MCP tooling | refresh/compile/tests/force-refresh discipline | same, + `manage_editor stop` before `run_tests` after Play mode |
+
+**Net outcome:** Phase 6 shipped with 1564 passing tests, 5 of 7 goal
+primitives wired to real gameplay triggers, one user-reported bug
+(pacified-hostile look label) fixed within the same session, and every
+deviation from the original plan documented with cited rationale. The
+workflow above is what produced that outcome.
+
 ---
 
 ## Implementation Priority (Recommended)
