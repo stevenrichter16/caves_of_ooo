@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using CavesOfOoo.Core;
 using CavesOfOoo.Data;
@@ -183,6 +184,71 @@ namespace CavesOfOoo.Tests
                     $"{trollsTotal - trollsInRooms} of {trollsTotal} trolls spawned in " +
                     "corridor-like cells (< 5 passable neighbors). GatherRoomCells filter failed.");
             }
+        }
+
+        [Test]
+        public void AmbushCreatures_NeverShareCellWithGuardsOrLoot()
+        {
+            // Regression for M1 post-review finding M1.R-2:
+            //
+            // GatherRoomCells used to re-scan the zone for every passable
+            // "room" cell, ignoring that PlaceEntity had already consumed
+            // cells for guards and loot. Because placement reads from the
+            // same pool via RemoveAt(idx), any pool that's rebuilt
+            // independently (as roomCells was) silently loses that dedup
+            // guarantee — so a mimic / sleeping troll could land on top of
+            // a snapjaw guard or a dropped weapon.
+            //
+            // Fix: GatherRoomCells now filters the already-pruned openCells
+            // list instead of rescanning the zone, so guard/loot cells
+            // can't leak back in as ambusher candidates.
+            //
+            // This test iterates a range of seeds (both biomes, so all
+            // three ambusher types get exercised) and asserts every cell
+            // holds at most one creature OR item from the lair builder.
+            const int iterations = 200;
+            int cavesChecked = 0;
+            int desertsChecked = 0;
+            for (int seed = 0; seed < iterations; seed++)
+            {
+                BiomeType biome = (seed % 2 == 0) ? BiomeType.Cave : BiomeType.Desert;
+                if (biome == BiomeType.Cave) cavesChecked++;
+                else desertsChecked++;
+
+                var zone = BuildLairZone(biome, seed);
+
+                var occupancy = new Dictionary<(int x, int y), List<string>>();
+                foreach (var e in zone.GetReadOnlyEntities())
+                {
+                    if (string.IsNullOrEmpty(e.BlueprintName)) continue;
+                    var cell = zone.GetEntityCell(e);
+                    if (cell == null) continue;
+                    var key = (cell.X, cell.Y);
+                    if (!occupancy.TryGetValue(key, out var list))
+                    {
+                        list = new List<string>();
+                        occupancy[key] = list;
+                    }
+                    list.Add(e.BlueprintName);
+                }
+
+                foreach (var pair in occupancy)
+                {
+                    if (pair.Value.Count > 1)
+                    {
+                        Assert.Fail(
+                            $"Seed {seed} ({biome}): cell {pair.Key} has {pair.Value.Count} " +
+                            $"entities stacked: [{string.Join(", ", pair.Value)}]. " +
+                            "LairPopulationBuilder must never place two creatures/items " +
+                            "on the same cell — the top glyph would hide the underneath.");
+                    }
+                }
+            }
+
+            // Sanity: make sure we actually exercised both biomes. If one
+            // side were 0 we'd miss coverage of the corresponding ambusher type.
+            Assert.Greater(cavesChecked, 0, "No cave lairs checked — test mis-configured.");
+            Assert.Greater(desertsChecked, 0, "No desert lairs checked — test mis-configured.");
         }
     }
 }

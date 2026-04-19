@@ -69,7 +69,16 @@ namespace CavesOfOoo.Core
             // Prefer room cells for ambushers (rooms feel more natural for chests,
             // sleeping creatures, and hidden bandits). Fallback to openCells if
             // the lair is all-corridor (rare).
-            var roomCells = GatherRoomCells(zone);
+            //
+            // IMPORTANT: we filter openCells (which has had guard/loot cells
+            // already removed by prior PlaceEntity calls) rather than
+            // re-scanning the zone. A zone-scan would return ALL passable
+            // room cells — including ones a guard is already standing on —
+            // and an ambusher could silently stack on top of a guard or loot
+            // item. The cell dedup-by-removal discipline in PlaceEntity only
+            // works when every placement path reads from the same
+            // progressively-shrinking list.
+            var roomCells = GatherRoomCells(zone, openCells);
             var placementPool = roomCells.Count > 0 ? roomCells : openCells;
 
             // Biome-specific sleeping creatures
@@ -133,12 +142,19 @@ namespace CavesOfOoo.Core
         /// </summary>
         private const int MinRoomNeighbors = 5;
 
-        private List<(int x, int y)> GatherRoomCells(Zone zone)
+        /// <summary>
+        /// Filter <paramref name="fromCells"/> down to the subset that sits in
+        /// a "room" (enough passable neighbors to not be a corridor). Takes
+        /// the already-pruned placement list as input so guard/loot cells
+        /// removed by earlier <see cref="PlaceEntity"/> calls don't leak
+        /// back in as ambusher candidates.
+        /// </summary>
+        private List<(int x, int y)> GatherRoomCells(Zone zone, List<(int x, int y)> fromCells)
         {
             var cells = new List<(int x, int y)>();
-            zone.ForEachCell((cell, x, y) =>
+            for (int i = 0; i < fromCells.Count; i++)
             {
-                if (!cell.IsPassable()) return;
+                var (x, y) = fromCells[i];
                 int passableNeighbors = 0;
                 for (int dx = -1; dx <= 1; dx++)
                 {
@@ -152,7 +168,7 @@ namespace CavesOfOoo.Core
                 }
                 if (passableNeighbors >= MinRoomNeighbors)
                     cells.Add((x, y));
-            });
+            }
             return cells;
         }
     }

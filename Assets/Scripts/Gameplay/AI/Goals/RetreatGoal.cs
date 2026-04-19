@@ -100,17 +100,27 @@ namespace CavesOfOoo.Core
             // Scoped to the Recover phase so it doesn't affect combat balance
             // outside retreat scenarios.
             var hpStat = ParentEntity.GetStat("Hitpoints");
-            if (HealPerTick > 0 && hpStat != null && hpStat.BaseValue < hpStat.Max)
+            if (hpStat == null) return;
+
+            if (HealPerTick > 0 && hpStat.BaseValue < hpStat.Max)
             {
                 hpStat.BaseValue += HealPerTick;
                 if (hpStat.BaseValue > hpStat.Max)
                     hpStat.BaseValue = hpStat.Max;
             }
 
-            // Recovery complete when HP is back above the safe fraction
-            int hp = ParentEntity.GetStatValue("Hitpoints", 0);
-            int maxHp = hpStat?.Max ?? 0;
-            if (hp > 0 && maxHp > 0 && (float)hp / maxHp >= SafeHpFraction)
+            // Recovery complete when BaseValue HP is back above the safe
+            // fraction. Using BaseValue (not the computed Stat.Value) is
+            // deliberate — the heal above only writes to BaseValue, while
+            // Stat.Value subtracts any active Penalty. If this gate compared
+            // Value, a debuffed NPC (bleed, poison, exhaustion) could heal
+            // BaseValue to full yet never satisfy the gate while Penalty
+            // persists, deadlocking Recover until the MaxTurns cap pops the
+            // goal. BaseValue-vs-Max keeps the exit condition aligned with
+            // the quantity we actually mutate.
+            int baseHp = hpStat.BaseValue;
+            int maxHp = hpStat.Max;
+            if (baseHp > 0 && maxHp > 0 && (float)baseHp / maxHp >= SafeHpFraction)
             {
                 _phase = Phase.Done;
             }

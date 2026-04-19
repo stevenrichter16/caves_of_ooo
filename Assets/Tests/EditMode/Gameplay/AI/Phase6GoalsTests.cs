@@ -542,6 +542,65 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void RetreatGoal_Recovery_Exit_UsesBaseValue_NotPenalizedValue()
+        {
+            // Regression for M1 post-review finding M1.R-3:
+            //
+            // The Recover phase self-heals by writing to hpStat.BaseValue,
+            // but the exit gate used to compare Stat.Value (= BaseValue +
+            // Bonus - Penalty + Boost, clamped) against Max. If the NPC
+            // carried a Penalty — bleed, poison, exhaustion, debuff aura —
+            // BaseValue could heal to full while Value stayed pinned below
+            // the SafeFraction forever. Recovery would deadlock and only
+            // exit via the MaxTurns safety cap, then get re-pushed by
+            // AISelfPreservation on the next AIBored tick.
+            //
+            // Fix: the gate now compares BaseValue / Max, which is the
+            // quantity the heal actually moves.
+            var zone = new Zone("TestZone");
+            var creature = CreateCreature(zone, 5, 5); // HP 20/20 max
+            var brain = creature.GetPart<BrainPart>();
+            var hp = creature.GetStat("Hitpoints");
+            hp.BaseValue = 5;       // 25% of Max
+            hp.Penalty = 18;        // heavy debuff — Value clamps near Min
+
+            // Sanity check: with Penalty=18, Stat.Value is near Min, so a
+            // Value-based gate would never clear SafeFraction=0.75 even if
+            // BaseValue hits Max.
+            Assert.LessOrEqual(hp.Value, 5,
+                "Penalty should suppress Stat.Value; if this precondition " +
+                "fails the test isn't exercising the bug.");
+
+            var goal = new RetreatGoal(5, 5, safeHpFraction: 0.75f,
+                                       maxTurns: 200, healPerTick: 5);
+            brain.PushGoal(goal);
+
+            // Tick until the goal finishes. HealPerTick=5 takes BaseValue
+            // 5 → 10 → 15 → 20 → satisfied at 20/20 ≥ 0.75. Budget is
+            // generous; the point is the goal MUST terminate despite the
+            // persistent Penalty.
+            int tickBudget = 20;
+            while (tickBudget > 0 && !goal.Finished())
+            {
+                goal.TakeAction();
+                tickBudget--;
+            }
+
+            Assert.IsTrue(goal.Finished(),
+                "RetreatGoal.Recover should complete once BaseValue/Max " +
+                "crosses SafeFraction, regardless of any persistent Penalty " +
+                "on the stat. If this fails, the exit gate is comparing " +
+                "Stat.Value again and debuffed NPCs will deadlock in retreat.");
+
+            // Goal should have finished well before the MaxTurns=200 cap —
+            // confirm that the exit path is the "healed to safe" path, not
+            // the "gave up after MaxTurns" fallback.
+            Assert.Less(goal.Age, 200,
+                "Goal should exit via the SafeFraction gate, not MaxTurns. " +
+                $"Age={goal.Age} suggests the MaxTurns fallback fired instead.");
+        }
+
+        [Test]
         public void RetreatGoal_Recovery_HealPerTickZero_FallsBackToMaxTurnsExit()
         {
             // If healPerTick=0 is explicitly configured (e.g., a creature using
