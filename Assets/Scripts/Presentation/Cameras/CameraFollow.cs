@@ -131,6 +131,46 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>
+        /// Enable the popup overlay camera on top of an already-established
+        /// fullscreen UI view (e.g. the inventory). Unlike
+        /// <see cref="SetCenteredPopupOverlayView"/>, this does NOT flip the
+        /// main camera to the cropped gameplay layout — the UI view is left
+        /// alone so the inventory underneath stays fullscreen instead of
+        /// shrinking into black strips on the right and bottom where the
+        /// sidebar and hotbar would normally sit.
+        ///
+        /// Used by the announcement flow when a popup fires from inside
+        /// the inventory (e.g. reading a grimoire).
+        /// </summary>
+        public void SetCenteredPopupOverlayOverUIView()
+        {
+            if (_camera == null)
+                _camera = GetComponent<Camera>();
+            if (_camera == null || PopupOverlayCamera == null)
+                return;
+
+            // Keep the pause flag so the camera doesn't auto-follow the
+            // player, but leave _centeredPopupOverlayActive false —
+            // otherwise LateUpdate would reapply ApplyGameplayLayout every
+            // frame and overwrite the UI view we're trying to preserve.
+            _paused = true;
+            _centeredPopupOverlayActive = false;
+
+            // Configure the popup overlay camera to cover the entire
+            // screen at the display's real aspect (not the cropped
+            // gameplay aspect).
+            float displayAspect = GameplayViewportLayout.GetDisplayAspect(_camera);
+            CenteredPopupLayout.ConfigureOverlayCamera(
+                PopupOverlayCamera,
+                new Rect(0f, 0f, 1f, 1f),
+                displayAspect);
+            PopupOverlayCamera.cullingMask = GameplayRenderLayers.PopupOverlayMask;
+            PopupOverlayCamera.clearFlags = CameraClearFlags.Depth;
+            PopupOverlayCamera.backgroundColor = Color.clear;
+            PopupOverlayCamera.enabled = true;
+        }
+
+        /// <summary>
         /// Restore normal camera follow behavior after UI overlay closes.
         /// </summary>
         public void RestoreGameView()

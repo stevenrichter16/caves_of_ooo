@@ -2935,7 +2935,20 @@ namespace CavesOfOoo.Rendering
             if (_inputState != InputState.AnnouncementOpen)
                 _stateBeforeAnnouncement = _inputState;
 
-            EnterCenteredPopupOverlayView();
+            // When the announcement is layering over the inventory, use
+            // the UI-view overlay path — the normal SetCenteredPopupOverlayView
+            // flips the main camera to the cropped gameplay MapRect, which
+            // shrinks the inventory underneath with black strips where the
+            // sidebar and hotbar would sit in gameplay.
+            if (_stateBeforeAnnouncement == InputState.InventoryOpen && CameraFollow != null)
+            {
+                CameraFollow.SetCenteredPopupOverlayOverUIView();
+            }
+            else
+            {
+                EnterCenteredPopupOverlayView();
+            }
+
             AnnouncementUI.Open(msg);
             _inputState = InputState.AnnouncementOpen;
             return true;
