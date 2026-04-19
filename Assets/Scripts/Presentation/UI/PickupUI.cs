@@ -33,6 +33,15 @@ namespace CavesOfOoo.Rendering
         private bool _pickedUpAny;
         private string _statusMessage;
 
+        /// <summary>
+        /// When non-null, the popup is operating in "container loot" mode —
+        /// it pulls items FROM this container via TakeFromContainerCommand
+        /// instead of FROM the ground via PickupCommand. Set by the
+        /// <see cref="Open(List{Entity}, Entity)"/> overload. Chest-opening
+        /// path in InputHandler uses this seam.
+        /// </summary>
+        private Entity _sourceContainer;
+
         // Popup anchor in centered popup-grid coordinates.
         // All drawing uses popup-local grid coords (0,0 = top-left, Y down)
         // which are converted to overlay grid coords via these anchors.
@@ -50,9 +59,20 @@ namespace CavesOfOoo.Rendering
 
         public void Open(List<Entity> items)
         {
+            Open(items, sourceContainer: null);
+        }
+
+        /// <summary>
+        /// Open in "container loot" mode. Items are taken FROM <paramref name="sourceContainer"/>
+        /// via TakeFromContainerCommand instead of from the ground. The passed
+        /// item list should typically be <c>container.GetPart&lt;ContainerPart&gt;().Contents</c>.
+        /// </summary>
+        public void Open(List<Entity> items, Entity sourceContainer)
+        {
             if (items == null || items.Count == 0) return;
             _isOpen = true;
             _items = new List<Entity>(items);
+            _sourceContainer = sourceContainer;
             _cursorIndex = 0;
             _scrollOffset = 0;
             _pickedUpAny = false;
@@ -66,6 +86,7 @@ namespace CavesOfOoo.Rendering
             ClearBgRegion();
             _isOpen = false;
             _items.Clear();
+            _sourceContainer = null;
         }
 
         public void HandleInput()
@@ -201,7 +222,9 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>
-        /// Command-first pickup seam.
+        /// Command-first pickup seam. Dispatches to PickupCommand (ground)
+        /// or TakeFromContainerCommand (container-loot mode) depending on
+        /// whether <see cref="_sourceContainer"/> was set by Open().
         /// </summary>
         private bool TryPickupViaCommand(Entity item, out string errorMessage)
         {
@@ -209,10 +232,21 @@ namespace CavesOfOoo.Rendering
             if (item == null)
                 return false;
 
-            var result = InventorySystem.ExecuteCommand(
-                new PickupCommand(item),
-                PlayerEntity,
-                CurrentZone);
+            InventoryCommandResult result;
+            if (_sourceContainer != null)
+            {
+                result = InventorySystem.ExecuteCommand(
+                    new TakeFromContainerCommand(_sourceContainer, item),
+                    PlayerEntity,
+                    CurrentZone);
+            }
+            else
+            {
+                result = InventorySystem.ExecuteCommand(
+                    new PickupCommand(item),
+                    PlayerEntity,
+                    CurrentZone);
+            }
 
             if (result.Success)
                 return true;

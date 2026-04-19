@@ -1670,30 +1670,12 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private void OpenWorldActionMenuOrThrow(int tileX, int tileY)
         {
-            // DIAG [Phase4d] — trace dispatch decision.
-            bool adjThrow = HasAdjacentThrowableAt(tileX, tileY);
-            UnityEngine.Debug.Log($"[ActionMenu:dispatch] ({tileX},{tileY}) adjThrowable={adjThrow}");
-
-            if (adjThrow)
-            {
-                TryOpenWorldThrowPopup(tileX, tileY);
-                return;
-            }
-
+            // The world action menu is now the single entry point for look-
+            // mode clicks. Throwable items surface "Throw" as a menu action
+            // (declared by HandlingPart's GetInventoryActions handler); the
+            // legacy HasAdjacentThrowableAt pre-emption has been removed so
+            // adjacent throwable cells no longer skip the menu.
             OpenWorldActionMenu(tileX, tileY);
-        }
-
-        /// <summary>
-        /// Cheap pre-check so we know whether to fall back to the action menu.
-        /// Mirrors the throw-popup eligibility rule without side effects.
-        /// </summary>
-        private bool HasAdjacentThrowableAt(int tileX, int tileY)
-        {
-            Cell actorCell = CurrentZone?.GetEntityCell(PlayerEntity);
-            if (actorCell == null) return false;
-            if (!IsSameOrCardinalAdjacent(actorCell.X, actorCell.Y, tileX, tileY)) return false;
-            var throwables = GetVisibleThrowableWorldItems(tileX, tileY);
-            return throwables.Count > 0;
         }
 
         /// <summary>
@@ -1798,8 +1780,9 @@ namespace CavesOfOoo.Rendering
             }
 
             // Restore gameplay camera BEFORE running the action — some
-            // actions (Chat → OpenDialogue) transition to their own popup
-            // view and re-Enter the overlay camera themselves.
+            // downstream actions (Chat → OpenDialogue, OpenContainer →
+            // loot UI, Throw → throw popup) re-enter the overlay view
+            // themselves for their own popup.
             ExitCenteredPopupOverlayViewToGameplay();
 
             // Special case: pile-cell Examine → cell description rather than
@@ -1811,26 +1794,74 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // Special case: Throw → route to the throw popup with the target
+            // item and its cell coords. The throw popup handles aim + confirm;
+            // we don't fire an InventoryAction event here because the throw
+            // command needs a target cell the player hasn't picked yet.
+            if (action.Command == "Throw")
+            {
+                var pos = CurrentZone.GetEntityPosition(target);
+                if (pos.x < 0 || pos.y < 0)
+                {
+                    MessageLog.Add($"{target.GetDisplayName()} can't be thrown from here.");
+                    _inputState = InputState.LookMode;
+                    return;
+                }
+                OpenWorldThrowActionPopup(target, pos.x, pos.y);
+                // OpenWorldThrowActionPopup transitions to ThrowPopupOpen and
+                // re-enters the overlay camera itself.
+                return;
+            }
+
             // Fire the InventoryAction event on the target. Parts that
-            // declared this command will handle it (ExaminablePart for
-            // Examine, ContainerPart for OpenContainer, ConversationPart
-            // for Chat, etc.).
+            // declared this command handle it: ExaminablePart for Examine,
+            // ContainerPart for OpenContainer, ConversationPart for Chat,
+            // etc.
             var e = GameEvent.New("InventoryAction");
             e.SetParameter("Command", action.Command);
             e.SetParameter("Actor", (object)PlayerEntity);
             target.FireEvent(e);
 
-            // If the action started a conversation, open the dialogue UI
-            // now (ConversationPart doesn't open it itself — see its
-            // docstring). OpenDialogue re-enters the popup overlay view
-            // for the dialogue popup.
+            // If Chat started a conversation, open the dialogue UI —
+            // ConversationPart doesn't open it itself.
             if (ConversationManager.IsActive)
             {
                 OpenDialogue();
                 return;
             }
 
+            // If OpenContainer succeeded on a container with contents, open
+            // the loot popup so the player can browse + take individual items.
+            // ContainerPart has already logged the open message and fired
+            // its "OpenContainer" sub-event.
+            if (action.Command == "OpenContainer")
+            {
+                var containerPart = target.GetPart<ContainerPart>();
+                if (containerPart != null && !containerPart.Locked && containerPart.Contents.Count > 0)
+                {
+                    OpenContainerLoot(target, containerPart);
+                    return;
+                }
+            }
+
             _inputState = InputState.LookMode;
+        }
+
+        /// <summary>
+        /// Open the PickupUI in container-loot mode with <paramref name="container"/>'s
+        /// contents. Uses TakeFromContainerCommand on each take (not PickupCommand,
+        /// which is for zone-ground items).
+        /// </summary>
+        private void OpenContainerLoot(Entity container, ContainerPart containerPart)
+        {
+            if (PickupUI == null || container == null || containerPart == null) return;
+            if (containerPart.Contents.Count == 0) return;
+
+            EnterCenteredPopupOverlayView();
+            PickupUI.PlayerEntity = PlayerEntity;
+            PickupUI.CurrentZone = CurrentZone;
+            PickupUI.Open(containerPart.Contents, container);
+            _inputState = InputState.PickupOpen;
         }
 
         private bool TryOpenWorldThrowPopup(int tileX, int tileY)
