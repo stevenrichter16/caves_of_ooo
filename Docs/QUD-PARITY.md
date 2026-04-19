@@ -1203,279 +1203,172 @@ implementation (LairPopulationBuilderAmbushTests statistical bounds, RetreatGoal
 `HealPerTickZero` MaxTurns-fallback boundary, and AIAmbush Initialize-vs-fallback
 ordering paths).
 
-### M2 Preparation — Analysis and Plan (Updated)
+#### Milestone M2 — Social + Consequence Layer (Tier B, 2–3 days)
 
-Post-M1, this section supersedes the original M2 sub-plans (M2.1/M2.2/M2.3) with
-an updated execution plan incorporating the investigation findings that only
-surfaced after M1's implementation revealed the actual state of adjacent
-subsystems (ConversationActions, ConversationManager, BaseMutation,
-StatusEffectsPart, CombatSystem.HandleDeath).
+Goal: wire the remaining Phase 6 goals (`NoFightGoal`, `WanderDurationGoal`) to
+real gameplay triggers. M2 adds **non-violent player tools** (persuasion,
+pacification) and **world reactivity to violence** (witness effect). It consumes
+M1's `Passive` flag directly as the witness filter.
 
-#### What M2 gives the game in concrete gameplay terms
+This section replaces the two earlier M2 drafts (previously at this location and
+under "Milestone M2 — Dialogue/Status triggers"). It was rewritten after an
+audit of the actual codebase surfaced ~14 concrete drifts between the prior
+plans' claimed API shapes and the real code. Corrections below.
 
-M2 adds a **"social + consequence" layer**. Pre-M2, gameplay is
-combat-or-ignore. Post-M2, the player has non-violent tools and the world
-reacts to violence.
+#### Coverage after M2
 
-##### New player-facing capabilities
-
-**(1) Persuasion as combat alternative (M2.1)** — Dialogue branches gated
-by Charisma can push NoFightGoal on hostile NPCs. Example: a low-HP player
-escaping a Warden can select "Stand down, friend" on a CHA 14+ check,
-pacifying her for 200 turns. Unlocks: speech-check playstyle, escape-by-talking,
-faction infiltration, quest-driven truce states.
-
-**(2) Calm mutation (M2.2)** — New Mental mutation on the player's catalog.
-Target a hostile down a direction, fire a calming bolt, target gains
-NoFightGoal for 40 + Level×10 turns. Unlocks: Mental/psionic archetype
-(first non-damaging Mental spell), crowd control in multi-hostile fights,
-complement to M1's Passive flag (works on both).
-
-**(3) Conversations are safe zones (M2.1 auto-pacify)** — Both participants
-receive NoFightGoal on StartConversation, removed on EndConversation.
-Eliminates the awkward "NPC sits inert during dialogue" behavior and
-prevents mid-dialogue combat initiations. Foundation for future bartering
-with tense factions, negotiating with bosses.
-
-##### New NPC/world reactivity
-
-**(4) NPCs witness violence (M2.3)** — When a creature dies in combat,
-Passive NPCs within 8 cells + LOS receive WitnessedEffect(20), which
-pushes WanderDurationGoal(20). The Innkeeper paces nervously after a
-fight breaks out in the square; Scribes look shaken. Directly consumes
-M1's Passive flag as the filter. Also becomes the natural hook for Phase 9
-opinion tracking ("they saw you kill someone").
-
-**(5) Dialogue writers gain a new verb** — `PushNoFightGoal` registers
-alongside existing `ChangeFactionFeeling` / `SetTag` / `SetSpeakerProperty`.
-Scripts can express "bribe the captain," "intimidate the shopkeeper,"
-"diplomatic quest resolved" via composable dialogue actions.
-
-##### Coverage after M2
-
-| Phase 6 goal | Wired | Triggered by |
-|--------------|-------|--------------|
-| ✅ RetreatGoal | M1 | AISelfPreservation low HP |
-| ✅ DormantGoal | M1 | AIAmbush spawn |
-| ✅ Passive flag | M1 | Blueprint config |
-| 🟢 NoFightGoal | M2 | Dialogue choice / CalmMutation / auto-pacify |
-| 🟢 WanderDurationGoal | M2 | WitnessedEffect (nearby violent death) |
-| ⏸️ PetGoal | M3 | — |
-| ⏸️ GoFetchGoal | M3 | — |
-| ⏸️ FleeLocationGoal | M3 | — |
+| Phase 6 goal          | Wired | Triggered by                                           |
+|-----------------------|:-----:|--------------------------------------------------------|
+| RetreatGoal           |  M1   | AISelfPreservation at low HP                           |
+| DormantGoal           |  M1   | AIAmbushPart at spawn                                  |
+| Passive flag          |  M1   | Blueprint config                                       |
+| NoFightGoal           |  M2   | Dialogue action / CalmMutation / conversation auto-pacify |
+| WanderDurationGoal    |  M2   | WitnessedEffect (nearby violent death)                 |
+| PetGoal               |  M3   | —                                                      |
+| GoFetchGoal           |  M3   | —                                                      |
+| FleeLocationGoal      |  M3   | —                                                      |
 
 Post-M2: **5 of 7 shipped Phase 6 goals have real gameplay triggers.**
 
-#### Investigation corrections (from my earlier M2 plan)
+#### Plan corrections vs the prior M2 drafts
 
-Before implementing M2, I ran a targeted investigation to verify my earlier
-M2 skeleton against the current codebase. The following points were
-confirmed or corrected:
+Each item below would have caused a compile failure, silent no-op, or spec
+mismatch if followed verbatim. All are fixed in the per-sub-milestone spec
+below.
 
-| Earlier assumption | Actual state | Correction |
-|-------------------|--------------|------------|
-| `StartingMutations` separator | Comma (`,`) confirmed — MutationsPart.cs:57 | No change |
-| `InConversation` set on both participants | **Set on speaker only** (CM.cs:67-75) | M2.1 Part B must set on both via new PushConversationNoFight helper |
-| Effect base has `Type` field | Has `GetEffectType()` method instead | WitnessedEffect overrides `GetEffectType()`, returns bitmask |
-| Only `Duration` abstract | Only `DisplayName` abstract (Effect.cs:52); Duration is a virtual field | WitnessedEffect sets Duration in constructor |
-| Mutation ABC = `DamageDice`, `CooldownTurns`, etc. | Confirmed. Plus `FxTheme`, `AbilityClass`, `ImpactVerb` | CalmMutation must override all 7 |
-| Death event = "Died" fired on deceased | Confirmed (CombatSystem.cs:451-454). No existing zone-broadcast pattern. | BroadcastDeathWitnessed enumerates `zone.GetReadOnlyEntities()` directly |
+| # | Prior plan claim | Reality in current code | Location |
+|---|------------------|-------------------------|----------|
+| 1 | `public override void OnApply()` (no args) | `virtual void OnApply(Entity target)` | Effect.cs:106 |
+| 2 | `public override void OnRemove()` (no args) | `virtual void OnRemove(Entity target)` | Effect.cs:112 |
+| 3 | `WitnessedEffect(int duration) : base(duration)` | `Effect` has no ctor taking duration; must assign `Duration` in body | Effect.cs:9–47 |
+| 4 | `public override string ClassName => "Witnessed";` | `ClassName => GetType().Name;` is non-virtual; do not override | Effect.cs:57 |
+| 5 | `public override int Type => ...;` | Property is `virtual int GetEffectType()`, returns bitmask | Effect.cs:62 |
+| 6 | `DirectionalProjectileMutationBase` has 4 abstracts | Has 7: CommandName, FxTheme, CooldownTurns, AbilityRange, DamageDice, AbilityClass, ImpactVerb (plus Name/MutationType/DisplayName inherited) | DirectionalProjectileMutationBase.cs:12–18 |
+| 7 | Mutations.json entry lacks Defect/Exclusions | Existing entries include both; required for schema consistency | Mutations.json:25–35 |
+| 8 | `target = speaker ?? listener` in PushNoFightGoal | Speaker = NPC, listener = player; `??` would pacify player | ConversationManager.cs:69–70 |
+| 9 | NoFightGoal pacification is harmless | `NoFightGoal` suppresses `AIBoredEvent`; AISelfPreservation stops firing while pacified | NoFightGoal.cs:23–30 |
+| 10 | `OnRemove` can always call `RemoveGoal` on tracked reference | Goal may have popped naturally via `Finished()`; `BrainPart.RemoveGoal` on absent = no-op (verify), but guard with null-check | BrainPart.cs:131; NoFightGoal.cs:49 |
+| 11 | `NoFightGoal(0)` = infinite | Confirmed: `Finished()` returns `Duration > 0 && Age >= Duration` | NoFightGoal.cs:49–52 |
+| 12 | `brain.HasGoal("NoFightGoal")` | Both `HasGoal<T>()` and `HasGoal(string)` work | BrainPart.cs:146, 160 |
+| 13 | `Effect.Owner` access in OnApply | Owner is set by StatusEffectsPart before OnApply fires | Effect.cs:41 |
+| 14 | `NoFightGoal` ctor | `NoFightGoal(int duration = 0, bool wander = false)` | NoFightGoal.cs:40 |
 
-#### Execution plan (detailed)
+#### M2.1 — NoFightGoal via dialogue + conversation auto-pacify
 
-##### M2.1 — NoFightGoal via dialogue + auto-pacify
+**Files:**
 
-**Modify:**
-- `Assets/Scripts/Gameplay/Conversations/ConversationActions.cs` —
-  add `Register("PushNoFightGoal", (speaker, listener, arg) => { … })`
-  inside `RegisterDefaults()`. Parses arg as int with default 100,
-  pushes `NoFightGoal(duration, wander: false)` on speaker's Brain.
-  Idempotent via `!HasGoal("NoFightGoal")` gate.
-- `Assets/Scripts/Gameplay/Conversations/ConversationManager.cs` —
-  add static `Dictionary<Entity, NoFightGoal> _conversationNoFightGoals`,
-  `PushConversationNoFight(entity)` helper, `RemoveConversationNoFight(entity)`
-  helper. Call Push on both speaker and listener in StartConversation
-  (after line 75). Call Remove on both in EndConversation (before line 134).
+| Path | Change |
+|------|--------|
+| `Assets/Scripts/Gameplay/Conversations/ConversationActions.cs` | Add `PushNoFightGoal` action in `RegisterDefaults()` |
+| `Assets/Scripts/Gameplay/Conversations/ConversationManager.cs` | Track per-conversation NoFightGoals; push both speaker + listener on Start; remove both on End |
+| `Assets/Tests/EditMode/Gameplay/Conversations/NoFightConversationTests.cs` | **new** — 6 tests |
+| `Assets/Resources/Content/Blueprints/Conversations/*.json` | Add ONE Charisma-gated persuasion branch to a hostile NPC (choice of tree deferred to implementation) |
 
-**Create:**
-- `Assets/Tests/EditMode/Gameplay/Conversations/NoFightConversationTests.cs` — 6 tests
-
-**Proof-of-concept dialogue edit:** add a Charisma-gated persuasion branch
-to one hostile dialogue tree (choice TBD during implementation).
-
-##### M2.2 — CalmMutation
-
-**Create:**
-- `Assets/Scripts/Gameplay/Mutations/CalmMutation.cs` extends
-  `DirectionalProjectileMutationBase`. Overrides 8 abstracts/virtuals:
-  `Name`, `MutationType="Mental"`, `DisplayName`, `CommandName`,
-  `FxTheme`, `CooldownTurns=20`, `AbilityRange=6`, `DamageDice="0"`,
-  `AbilityClass="Mental"`, `ImpactVerb="calms"`. Public `BaseDuration=40`.
-  Overrides `ApplyOnHitEffect(target, zone, rng)` to push
-  `NoFightGoal(BaseDuration + Level*10, wander: false)` on target's Brain.
-  Idempotent via HasGoal gate. Emits `MessageLog.Add("X becomes peaceful.")`.
-
-- `Assets/Tests/EditMode/Gameplay/Mutations/CalmMutationTests.cs` — 3 tests
-
-**Modify:**
-- `Assets/Resources/Content/Blueprints/Mutations.json` — append Calm entry
-  (Category: Mental, Cost: 4, MaxLevel: 10, Ranked: true).
-- `Assets/Resources/Content/Blueprints/Objects.json` Player blueprint
-  (line ~143) — change `StartingMutations` from `"FlamingHandsMutation:1"`
-  to `"FlamingHandsMutation:1,CalmMutation:1"` (comma delimiter
-  confirmed in MutationsPart.cs:57).
-
-##### M2.3 — WitnessedEffect + death broadcast
-
-**Create:**
-- `Assets/Scripts/Gameplay/Effects/Concrete/WitnessedEffect.cs` extends
-  `Effect`. Overrides `DisplayName => "shaken"`, `GetEffectType()`
-  returning `TYPE_MENTAL | TYPE_NEGATIVE | TYPE_REMOVABLE`. Constructor
-  sets `Duration = duration`. On `OnApply(target)`: pushes
-  `WanderDurationGoal(Duration)` on target's Brain (idempotent via
-  HasGoal gate), tracks the goal in private field, emits
-  `MessageLog.Add("X looks shaken.")`. On `OnRemove(target)`: removes
-  the tracked WanderDurationGoal from the Brain.
-
-- `Assets/Tests/EditMode/Gameplay/Effects/WitnessedEffectTests.cs` — 5 tests
-
-**Modify:**
-- `Assets/Scripts/Gameplay/Combat/CombatSystem.cs` — add private static
-  `BroadcastDeathWitnessed(deceased, killer, zone, radius)` helper that
-  iterates `zone.GetReadOnlyEntities()`, filters to Creature-tagged
-  entities that are not deceased/killer, have a BrainPart with
-  `Passive == true`, are within `radius` Chebyshev distance AND have LOS
-  to the death cell. Applies `WitnessedEffect(20)` to each. Call it
-  from `HandleDeath` between the `Died` event fire (line 454) and
-  `zone.RemoveEntity` (line 457), so the death cell is still valid.
-
-#### M2 verification checklist
-
-- [ ] `PushNoFightGoal` registered; handles int/empty/invalid args cleanly
-- [ ] Both speaker and listener get NoFightGoal on conversation start
-- [ ] NoFightGoal removed on conversation end (idempotent if already gone)
-- [ ] `CalmMutation` compiles, registers in Mutations.json, player loadout includes it
-- [ ] Cast Calm → target gets NoFightGoal with correct duration (40 + Level*10)
-- [ ] `WitnessedEffect` applies WanderDurationGoal on apply; removes on remove
-- [ ] `HandleDeath` broadcasts to Passive NPCs within 8 cells + LOS
-- [ ] Active combatants (Warden, Snapjaw) do NOT get WitnessedEffect
-- [ ] Wall between witness and deceased blocks the effect
-- [ ] Full EditMode suite still green (1317 → ~1332 expected)
-
-#### Cross-milestone dependencies (updated)
-
-```
-          ┌──> M1.1 AISelfPreservation ─┐
-M1 ✅ ──>├──> M1.2 Passive ────────────┼──> M2.3 WitnessedEffect filter ★
-          └──> M1.3 AIAmbush ───────────┘
-
-          ┌──> M2.1 NoFight dialogue ──> "safe-zone" conversation foundation
-M2 ──────>├──> M2.2 CalmMutation ─────> Player combat toolkit
-          └──> M2.3 WitnessedEffect ──> World reactivity (depends on M1.2 ★)
-```
-
-**Blocker:** M2.3 requires M1.2 (Passive flag on blueprints) to filter
-witnesses correctly. M1.2 is shipped and verified → M2.3 can proceed.
-
-#### Should M1 be playtested before M2?
-
-**Recommendation: Yes, briefly — ~10–15 minute Option A verification.**
-
-- 1317 passing tests prove mechanisms work at unit level; they can't catch
-  (a) visual/animation feel, (b) real-zone-generation integration issues,
-  (c) subtle behaviors only visible across many turns.
-- M2.3 directly consumes M1.2's Passive flag — worth confirming it's
-  correctly set on all 4 blueprints in a live village before adding the
-  witness layer on top.
-- M2.1's auto-pacify modifies a system M1 doesn't touch, but M1's Passive
-  behaviors are still visible during dialogue scenarios (a Passive Scribe's
-  non-aggression is naturally observed during a conversation walkthrough).
-- Cheap: 5 scenarios via MCP `execute_code` against a live Play-mode
-  session. Can be done in one batch of tool calls.
-
-**Scenarios to run:**
-1. Wounded Warden breaks combat and retreats to post
-2. Scribe ignores a sighted hostile (Passive flag working)
-3. SleepingTroll emits `z` particles, wakes on proximity
-4. MimicChest stays dormant when walked past, wakes when stepped on
-5. All 4 Passive blueprints have `Brain.Passive == true` at runtime
-
-If all pass, M2 implementation is de-risked. If any fail, investigate
-before M2 (a latent M1 bug that M2 would compound).
-
----
-
-#### Milestone M2 — Dialogue/Status triggers (Tier B, 2–3 days)
-
-Goal: after M2, `NoFightGoal` and `WanderDurationGoal` are triggered via
-player-accessible paths (dialogue, mutation, witness effect).
-Prerequisites: M1 (for witness effect's Passive filter).
-
-##### M2.1 — NoFightGoal via dialogue action + auto-pacify on conversation
-
-**Files to modify:**
-- `Assets/Scripts/Gameplay/Conversations/ConversationActions.cs`
-- `Assets/Scripts/Gameplay/Conversations/ConversationManager.cs`
-
-**ConversationActions.cs — add to `RegisterDefaults()`:**
+**ConversationActions — new action (added in `RegisterDefaults()` alongside SetTag/SetProperty):**
 ```csharp
-Register("PushNoFightGoal", (speaker, listener, arg) => {
+Register("PushNoFightGoal", (speaker, listener, arg) =>
+{
+    // Speaker is the NPC in this codebase — that's the entity to pacify.
+    if (speaker == null) return;
+    var brain = speaker.GetPart<BrainPart>();
+    if (brain == null) return;
+    if (brain.HasGoal<NoFightGoal>()) return; // idempotent per correction #12
+
     int duration = 100;
     int.TryParse(arg, out duration);
-    var target = speaker ?? listener;
-    var brain = target?.GetPart<BrainPart>();
-    if (brain == null || brain.HasGoal("NoFightGoal")) return;
     brain.PushGoal(new NoFightGoal(duration, wander: false));
 });
 ```
 
-**ConversationManager.cs — modify `StartConversation`/`EndConversation`:**
-- After `InConversation = true` set on speaker (line 73–75), push `NoFightGoal(duration: 0)` on both speaker and listener
-- Track pushed goals in a `Dictionary<Entity, NoFightGoal>`
-- In `EndConversation`, remove tracked goals before clearing state
+**ConversationManager — static per-entity goal tracking + Start/End hooks:**
+```csharp
+private static readonly Dictionary<Entity, NoFightGoal> _conversationNoFight
+    = new Dictionary<Entity, NoFightGoal>();
 
-Pattern rationale: `NoFightGoal.Duration=0` means infinite; explicit removal
-ensures NPCs re-enter normal combat gating the instant dialogue ends.
-
-**Integration example — add a persuasion branch to an existing dialogue:**
-```json
+private static void PushConversationNoFight(Entity e)
 {
-  "Text": "Stand down, friend.",
-  "Target": "End",
-  "Condition": { "Stat": "Charisma", "Min": 14 },
-  "Actions": [{ "Key": "PushNoFightGoal", "Value": "200" }]
+    if (e == null) return;
+    var brain = e.GetPart<BrainPart>();
+    if (brain == null) return;
+    if (_conversationNoFight.ContainsKey(e)) return;
+    var goal = new NoFightGoal(duration: 0, wander: false); // 0 = infinite per correction #11
+    brain.PushGoal(goal);
+    _conversationNoFight[e] = goal;
+}
+
+private static void RemoveConversationNoFight(Entity e)
+{
+    if (e == null) return;
+    if (!_conversationNoFight.TryGetValue(e, out var goal)) return;
+    var brain = e.GetPart<BrainPart>();
+    brain?.RemoveGoal(goal);
+    _conversationNoFight.Remove(e);
 }
 ```
 
-**Tests** (new `NoFightConversationTests.cs`):
-- `PushNoFightGoal_DialogueAction_PushesWithParsedDuration`
-- `PushNoFightGoal_Idempotent_DoesNotStack`
-- `ConversationStart_PacifiesBothParticipants`
-- `ConversationEnd_RemovesPacification`
+- In `StartConversation`, after line 75 (the existing `brain.InConversation = true`):
+  `PushConversationNoFight(speaker); PushConversationNoFight(listener);`
+- In `EndConversation`, before line 134 (while `Speaker`/`Listener` references
+  still point at the entities): `RemoveConversationNoFight(Speaker); RemoveConversationNoFight(Listener);`
 
-**Acceptance:** Persuasion branch makes hostile NPC stand down for 200 turns; during normal dialogue, neither party attacks mid-conversation.
+**Hallucination risks to watch while implementing:**
+- **AISelfPreservation suppression** (correction #9). Document on the new helpers
+  that conversation-pacified NPCs won't retreat at low HP until dialogue ends.
+- **Listener = Player edge case.** If player lacks a `BrainPart` in live
+  gameplay, the null-guard in `PushConversationNoFight` makes it a no-op.
+  Verify in a test that player Brain presence is consistent.
+- **BrainPart.RemoveGoal's OnPop semantics.** Before writing the remove helper,
+  read BrainPart.cs:131 — if RemoveGoal does NOT call OnPop, document the
+  asymmetry with the natural Finished()→pop path. Currently NoFightGoal has no
+  OnPop behavior, so this is latent.
 
-##### M2.2 — CalmMutation
+**Tests (6):**
+1. `PushNoFightGoal_DialogueAction_PushesWithParsedDuration` — arg `"200"` → Duration=200.
+2. `PushNoFightGoal_Idempotent_DoesNotStackIfAlreadyPresent`.
+3. `PushNoFightGoal_EmptyOrInvalidArg_DefaultsTo100`.
+4. `ConversationStart_PacifiesBothParticipants`.
+5. `ConversationEnd_RemovesPacification`.
+6. `ConversationStart_SpeakerAlreadyHasNoFight_DoesNotStack` — pre-push, then Start.
 
-**Files to create:** `Assets/Scripts/Gameplay/Mutations/CalmMutation.cs`
+**Acceptance:** CHA-gated "Stand down" branch makes a hostile Warden non-aggressive for 200 turns; neither party attacks mid-conversation.
 
-**Files to modify:** `Assets/Resources/Content/Blueprints/Mutations.json`
+#### M2.2 — CalmMutation
 
-**Class shape (extends `DirectionalProjectileMutationBase`):**
+**Files:**
+
+| Path | Change |
+|------|--------|
+| `Assets/Scripts/Gameplay/Mutations/CalmMutation.cs` | **new** — extends DirectionalProjectileMutationBase |
+| `Assets/Resources/Content/Blueprints/Mutations.json` | Append Calm entry |
+| `Assets/Resources/Content/Blueprints/Objects.json:144` | Change Player `StartingMutations` from `"FlamingHandsMutation:1"` to `"FlamingHandsMutation:1,CalmMutation:1"` |
+| `Assets/Tests/EditMode/Gameplay/Mutations/CalmMutationTests.cs` | **new** — 3 tests |
+
+**Class shape (all 10 required overrides, correction #6):**
 ```csharp
-public class CalmMutation : DirectionalProjectileMutationBase {
+public class CalmMutation : DirectionalProjectileMutationBase
+{
+    public const string COMMAND = "CommandCalm";
+
+    // DirectionalProjectileMutationBase abstracts (7):
+    protected override string CommandName   => COMMAND;
+    protected override AsciiFxTheme FxTheme => AsciiFxTheme.Mental; // verify enum exists
+    protected override int CooldownTurns    => 20;
+    protected override int AbilityRange     => 6;
+    protected override string DamageDice    => "0";                  // verify DiceRoller accepts
+    protected override string AbilityClass  => "Mental Mutations";
+    protected override string ImpactVerb    => "calms";
+
+    // Part + BaseMutation abstracts (3):
+    public override string Name         => "Calm";
     public override string MutationType => "Mental";
-    public override string DisplayName => "Calm";
-    protected override string CommandName => "Calm";
-    protected override int CooldownTurns => 20;
-    protected override string DamageDice => "0";
-    protected override int AbilityRange => 6;
+    public override string DisplayName  => "Calm";
 
     public int BaseDuration = 40;
 
-    protected override void ApplyOnHitEffect(Entity target, Zone zone, Random rng) {
+    protected override void ApplyOnHitEffect(Entity target, Zone zone, System.Random rng)
+    {
         var brain = target?.GetPart<BrainPart>();
-        if (brain == null || brain.HasGoal("NoFightGoal")) return;
+        if (brain == null || brain.HasGoal<NoFightGoal>()) return;
         int duration = BaseDuration + (Level * 10);
         brain.PushGoal(new NoFightGoal(duration, wander: false));
         MessageLog.Add($"{target.GetDisplayName()} becomes peaceful.");
@@ -1483,7 +1376,7 @@ public class CalmMutation : DirectionalProjectileMutationBase {
 }
 ```
 
-**Mutations.json entry:**
+**Mutations.json entry (correction #7 — includes Defect, Exclusions):**
 ```json
 {
   "Name": "Calm",
@@ -1492,85 +1385,177 @@ public class CalmMutation : DirectionalProjectileMutationBase {
   "Category": "Mental",
   "Cost": 4,
   "MaxLevel": 10,
-  "Description": "Fire a mental bolt that pacifies the target."
+  "Defect": false,
+  "Ranked": true,
+  "Exclusions": []
 }
 ```
 
-**Tests:**
-- `CalmMutation_AppliesNoFightGoalOnHit`
-- `CalmMutation_LevelScalesDuration`
+**Hallucination risks to watch while implementing:**
+- **`AsciiFxTheme.Mental` may not exist.** Open `AsciiFxTheme.cs` BEFORE writing
+  the override. If Mental isn't a value, either substitute (Ice? Lightning?) or
+  add the enum value. Existing themes: Ice, Fire, Acid, Lightning.
+- **`DiceRoller.Roll("0")`.** Verify `DiceRoller.Roll("0", rng)` returns `0`
+  cleanly. If it doesn't, use `"0d1"` or override `Cast` to skip damage. Cheaper
+  to fix DiceRoller if it's broken for the zero case.
+- **Re-cast behavior.** Idempotency guard (`HasGoal<NoFightGoal>`) means a
+  second Calm cast on the same target won't extend duration. Documented
+  trade-off, not a bug.
+- **"Splashes against obstacle" message on zero-damage cast.** Cosmetic; defer.
 
-**Acceptance:** Cast on hostile NPC → NPC becomes passive for BaseDuration + Level*10 turns.
+**Tests (3):**
+1. `CalmMutation_AppliesNoFightGoalOnHit_WithBaseDuration` — Level=1 → Duration=50.
+2. `CalmMutation_LevelScalesDuration` — Level=3 → Duration=70.
+3. `CalmMutation_Idempotent_DoesNotStackOrExtendIfAlreadyPacified`.
 
-##### M2.3 — WanderDurationGoal via WitnessedEffect + death broadcast
+**Acceptance:** Player casts Calm → target gains NoFightGoal(`BaseDuration + Level*10`) turns; existing pacification not replaced.
 
-**Files to create:**
-- `Assets/Scripts/Gameplay/Effects/Concrete/WitnessedEffect.cs`
-- `Assets/Tests/EditMode/Gameplay/Effects/WitnessedEffectTests.cs`
+#### M2.3 — WitnessedEffect + death broadcast
 
-**Files to modify:** `Assets/Scripts/Gameplay/Combat/CombatSystem.cs`
+**Files:**
 
-**WitnessedEffect shape:**
+| Path | Change |
+|------|--------|
+| `Assets/Scripts/Gameplay/Effects/Concrete/WitnessedEffect.cs` | **new** |
+| `Assets/Scripts/Gameplay/Combat/CombatSystem.cs` | Add private static `BroadcastDeathWitnessed`; call between lines 454 and 457 |
+| `Assets/Tests/EditMode/Gameplay/Effects/WitnessedEffectTests.cs` | **new** — 7 tests |
+
+**WitnessedEffect class shape (corrections #1–5 and #13):**
 ```csharp
-public class WitnessedEffect : Effect {
-    public override string ClassName => "Witnessed";
+public class WitnessedEffect : Effect
+{
     public override string DisplayName => "shaken";
-    public override int Type => TYPE_GENERAL | TYPE_NEGATIVE;
+
+    public override int GetEffectType()                        // NOT `Type` (correction #5)
+        => TYPE_GENERAL | TYPE_NEGATIVE | TYPE_REMOVABLE;
+
     private WanderDurationGoal _pushedGoal;
 
-    public WitnessedEffect(int duration = 20) : base(duration) { }
-
-    public override void OnApply() {
-        var brain = Owner?.GetPart<BrainPart>();
-        if (brain == null || brain.HasGoal("WanderDurationGoal")) return;
-        _pushedGoal = new WanderDurationGoal(Duration);
-        brain.PushGoal(_pushedGoal);
+    public WitnessedEffect(int duration = 20)                  // no `: base(duration)` (correction #3)
+    {
+        Duration = duration;
     }
 
-    public override void OnRemove() {
-        if (_pushedGoal != null) {
-            Owner?.GetPart<BrainPart>()?.RemoveGoal(_pushedGoal);
-            _pushedGoal = null;
-        }
+    public override void OnApply(Entity target)                // takes Entity (correction #1)
+    {
+        var brain = target?.GetPart<BrainPart>();
+        if (brain == null) return;
+        if (brain.HasGoal<WanderDurationGoal>()) return;
+        _pushedGoal = new WanderDurationGoal(Duration);
+        brain.PushGoal(_pushedGoal);
+        MessageLog.Add($"{target.GetDisplayName()} looks shaken.");
+    }
+
+    public override void OnRemove(Entity target)               // takes Entity (correction #2)
+    {
+        if (_pushedGoal == null) return;
+        target?.GetPart<BrainPart>()?.RemoveGoal(_pushedGoal);
+        _pushedGoal = null;
     }
 }
 ```
 
-**CombatSystem.HandleDeath — new helper, called between `Died` event and `RemoveEntity`:**
+**CombatSystem.HandleDeath — insert point at line 454–457, new helper in same file:**
 ```csharp
-private static void BroadcastDeathWitnessed(Entity deceased, Entity killer, Zone zone, int radius) {
-    var deathCell = zone?.GetEntityCell(deceased);
+// New helper:
+private static void BroadcastDeathWitnessed(Entity deceased, Entity killer, Zone zone, int radius)
+{
+    if (zone == null) return;
+    var deathCell = zone.GetEntityCell(deceased);
     if (deathCell == null) return;
-    foreach (var witness in zone.GetReadOnlyEntities()) {
+
+    // Snapshot first — the Died event fired just before this may have added
+    // or removed entities, and we'll be calling ApplyEffect inside the loop.
+    var snapshot = new List<Entity>(zone.GetReadOnlyEntities());
+
+    for (int i = 0; i < snapshot.Count; i++)
+    {
+        var witness = snapshot[i];
         if (witness == deceased || witness == killer) continue;
         if (!witness.HasTag("Creature")) continue;
         var brain = witness.GetPart<BrainPart>();
-        if (brain == null || !brain.Passive) continue;
+        if (brain == null || !brain.Passive) continue;                 // M1.2 Passive consumed here
+
         var wCell = zone.GetEntityCell(witness);
         if (wCell == null) continue;
-        int dist = AIHelpers.ChebyshevDistance(deathCell.X, deathCell.Y, wCell.X, wCell.Y);
-        if (dist > radius) continue;
+        if (AIHelpers.ChebyshevDistance(deathCell.X, deathCell.Y, wCell.X, wCell.Y) > radius) continue;
         if (!AIHelpers.HasLineOfSight(zone, wCell.X, wCell.Y, deathCell.X, deathCell.Y)) continue;
+
         witness.ApplyEffect(new WitnessedEffect(duration: 20));
     }
 }
+
+// In HandleDeath, insert between line 454 (target.FireEvent(died);) and line 457 (zone.RemoveEntity(target);):
+BroadcastDeathWitnessed(target, killer, zone, radius: 8);
 ```
 
-**Tests:**
-- `WitnessedEffect_PushesWanderDurationOnApply`
-- `WitnessedEffect_OnRemove_ClearsGoal`
-- `CombatDeath_BroadcastsWitness_ToNearbyPassiveNpcs`
-- `CombatDeath_DoesNotShakeActiveCombatants` (Warden, not Passive)
-- `CombatDeath_Broadcast_RespectsLineOfSight`
+**Hallucination risks to watch while implementing:**
+- **Snapshot the entity list.** `zone.GetReadOnlyEntities()` likely returns the
+  live collection. Iterating while `ApplyEffect` runs could invalidate the
+  enumerator. Take `new List<Entity>(...)` snapshot before iterating.
+- **Killer may be null.** Environmental death, poison DoT. `witness == killer`
+  with null killer is safe (null != witness), confirm by test.
+- **HasLineOfSight symmetry.** Confirm `AIHelpers.HasLineOfSight` is symmetric
+  across arg order before shipping. If not, "witness sees death" ≠ "death sees
+  witness" and we'd pick the wrong orientation.
+- **WanderDurationGoal vs NoFightGoal interaction.** If a Passive NPC already
+  has NoFightGoal (e.g., mid-conversation) and witnesses a death, WanderDurationGoal
+  pushes on top — the NPC wanders despite being pacified. Design-acceptable
+  (shock overrides calm); document.
 
-**Acceptance:** Kill a snapjaw near the Scribe → Scribe paces for 20 turns afterward.
+**Tests (7):**
+1. `WitnessedEffect_PushesWanderDurationOnApply`.
+2. `WitnessedEffect_OnRemove_ClearsGoal`.
+3. `WitnessedEffect_OnRemove_SafeIfGoalAlreadyPoppedNaturally` — short Duration, tick past, then manual remove.
+4. `CombatDeath_BroadcastsWitness_ToNearbyPassiveNpcs`.
+5. `CombatDeath_DoesNotShakeActiveCombatants` — Warden/Snapjaw (Passive=false).
+6. `CombatDeath_Broadcast_RespectsLineOfSight` — wall between blocks effect.
+7. `CombatDeath_Broadcast_SkipsDeceasedAndKiller` — contrived Passive killer.
 
-##### M2 Verification checklist
-- [ ] `PushNoFightGoal` dialogue action registered
-- [ ] ConversationManager auto-pacifies on start/remove on end
-- [ ] `CalmMutation` registered in Mutations.json
-- [ ] `WitnessedEffect` exists; broadcast filters by Passive + radius + LOS
-- [ ] All M2 tests green; full suite still passes
+**Acceptance:** Kill a snapjaw near a Scribe → Scribe paces for 20 turns. Kill through a wall → no effect.
+
+#### Sequence + rollback
+
+Implement in order — each sub-milestone stands alone and commits separately so
+any can be reverted without affecting the others.
+
+1. **M2.2 first** — smallest blast radius (new class + JSON + Player one-liner).
+2. **M2.1 second** — ConversationManager static state requires care.
+3. **M2.3 last** — touches CombatSystem.HandleDeath; highest integration cost.
+   Save for last so M2.1/2.2 can ship if M2.3 regresses.
+
+Rollback: `git revert <sha>` on any single sub-milestone commit.
+
+#### M2 verification checklist
+
+**Per-sub-milestone gates (each must pass before moving on):**
+
+M2.1:
+- [ ] `PushNoFightGoal` registered; int/empty/invalid args handled
+- [ ] Both speaker + listener pacified on StartConversation
+- [ ] Both un-pacified on EndConversation
+- [ ] Player (listener) pacification doesn't break player input
+- [ ] 6 tests green
+
+M2.2:
+- [ ] `CalmMutation.cs` compiles with all 10 overrides
+- [ ] `AsciiFxTheme.Mental` exists (or substituted)
+- [ ] `DiceRoller.Roll("0")` returns 0 cleanly (or spec updated)
+- [ ] Mutations.json entry round-trips through MutationRegistry
+- [ ] Player starts with Calm castable
+- [ ] 3 tests green
+
+M2.3:
+- [ ] `WitnessedEffect` compiles with corrected OnApply/OnRemove signatures
+- [ ] BroadcastDeathWitnessed iterates a snapshot, not live enumerator
+- [ ] Passive NPCs within 8 cells + LOS get effect; active combatants do not
+- [ ] Wall blocks effect; killer and deceased are skipped
+- [ ] 7 tests green
+
+**Full suite target:** 1536 → ~1552 (+16 total: 6+3+7).
+
+**Post-M2 sanity:** re-run Option A (M1 state-portion) + one M2 scenario (cast
+Calm on a hostile; tick; assert no engagement). Script-verifiable.
 
 #### Milestone M3 — Ambient behavior parts (Tier B, 2–3 days)
 
