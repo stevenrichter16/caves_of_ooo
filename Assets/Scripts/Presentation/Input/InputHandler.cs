@@ -85,7 +85,8 @@ namespace CavesOfOoo.Rendering
             TradeOpen,
             AwaitingAttackConfirm,
             FactionOpen,
-            AnnouncementOpen
+            AnnouncementOpen,
+            WorldActionMenuOpen  // Phase 4d — look-mode click/Enter on a cell opens this
         }
         private InputState _inputState = InputState.Normal;
         private ActivatedAbility _pendingAbility;
@@ -167,6 +168,14 @@ namespace CavesOfOoo.Rendering
         public AnnouncementUI AnnouncementUI { get; set; }
 
         /// <summary>
+        /// World-action menu popup (Phase 4d). Opens when the player clicks
+        /// or presses Enter on a cell in look mode. Lists actions (Examine,
+        /// Open, Chat, etc.) gathered from the target entity's parts.
+        /// Set by GameBootstrap.
+        /// </summary>
+        public WorldActionMenuUI WorldActionMenuUI { get; set; }
+
+        /// <summary>
         /// Entity factory used by debug crafting flows.
         /// </summary>
         public EntityFactory EntityFactory { get; set; }
@@ -238,6 +247,12 @@ namespace CavesOfOoo.Rendering
             if (_inputState == InputState.ContainerPickerOpen)
             {
                 HandleContainerPickerInput();
+                return;
+            }
+
+            if (_inputState == InputState.WorldActionMenuOpen)
+            {
+                HandleWorldActionMenuInput();
                 return;
             }
 
@@ -1246,7 +1261,7 @@ namespace CavesOfOoo.Rendering
 
             if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.KeypadEnter))
             {
-                TryOpenWorldThrowPopup(_worldCursorState.X, _worldCursorState.Y);
+                OpenWorldActionMenuOrThrow(_worldCursorState.X, _worldCursorState.Y);
                 _lastMoveTime = Time.time;
                 return;
             }
@@ -1259,7 +1274,7 @@ namespace CavesOfOoo.Rendering
                     _worldCursorState.SetPosition(clickX, clickY);
                     ClampLookCursorToVisibleFrame();
                     RefreshLookSnapshot();
-                    TryOpenWorldThrowPopup(_worldCursorState.X, _worldCursorState.Y);
+                    OpenWorldActionMenuOrThrow(_worldCursorState.X, _worldCursorState.Y);
                     _lastMoveTime = Time.time;
                     return;
                 }
@@ -1635,6 +1650,168 @@ namespace CavesOfOoo.Rendering
             ClampLookCursorToVisibleFrame();
             RefreshLookSnapshot();
             ZoneRenderer?.SetWorldCursorState(_worldCursorState, PlayerEntity);
+        }
+
+        // ===== World Action Menu (Phase 4d) =====
+
+        /// <summary>
+        /// Decide what look-mode Enter/click should do at (tileX, tileY):
+        /// - Cell has a throwable adjacent item → legacy throw popup path.
+        /// - Otherwise → open the world action menu with the cell's actions.
+        /// This preserves the existing "click adjacent throwable to toss it"
+        /// UX while adding the generic action menu for everything else.
+        /// </summary>
+        private void OpenWorldActionMenuOrThrow(int tileX, int tileY)
+        {
+            // Try throw popup first — it only opens if we're adjacent AND
+            // there's a throwable item at the target cell (otherwise no-ops
+            // or shows "nothing to throw" and returns true to claim the input).
+            if (HasAdjacentThrowableAt(tileX, tileY))
+            {
+                TryOpenWorldThrowPopup(tileX, tileY);
+                return;
+            }
+
+            OpenWorldActionMenu(tileX, tileY);
+        }
+
+        /// <summary>
+        /// Cheap pre-check so we know whether to fall back to the action menu.
+        /// Mirrors the throw-popup eligibility rule without side effects.
+        /// </summary>
+        private bool HasAdjacentThrowableAt(int tileX, int tileY)
+        {
+            Cell actorCell = CurrentZone?.GetEntityCell(PlayerEntity);
+            if (actorCell == null) return false;
+            if (!IsSameOrCardinalAdjacent(actorCell.X, actorCell.Y, tileX, tileY)) return false;
+            var throwables = GetVisibleThrowableWorldItems(tileX, tileY);
+            return throwables.Count > 0;
+        }
+
+        /// <summary>
+        /// Open the world action menu for the cell at (tileX, tileY).
+        /// Resolves target via <see cref="WorldInteractionSystem.ResolveTarget"/>,
+        /// gathers actions, and transitions to the WorldActionMenuOpen state.
+        /// If no target or no actions, logs a friendly message and stays in
+        /// look mode so the player can pick a different cell.
+        /// </summary>
+        private void OpenWorldActionMenu(int tileX, int tileY)
+        {
+            if (WorldActionMenuUI == null)
+            {
+                // UI not wired (tests or degraded boot). Silent no-op.
+                return;
+            }
+
+            Cell cell = CurrentZone?.GetCell(tileX, tileY);
+            if (cell == null)
+            {
+                MessageLog.Add("There's nothing there.");
+                return;
+            }
+
+            Entity target = WorldInteractionSystem.ResolveTarget(cell);
+            if (target == null)
+            {
+                MessageLog.Add(WorldInteractionSystem.DescribeCell(cell));
+                return;
+            }
+
+            var actions = WorldInteractionSystem.GatherActions(target);
+            if (actions.Count == 0)
+            {
+                // Very unusual — target with no declared actions (missing
+                // Examinable cascade?). Log the cell description instead
+                // so the click isn't silently eaten.
+                MessageLog.Add(WorldInteractionSystem.DescribeCell(cell));
+                return;
+            }
+
+            WorldActionMenuUI.Open(PlayerEntity, target, cell, actions);
+            _inputState = InputState.WorldActionMenuOpen;
+        }
+
+        /// <summary>
+        /// Process input while the world action menu is open. Delegates to
+        /// the UI for key handling, polls for a resolved selection or
+        /// cancellation, and executes the chosen action on the target.
+        /// </summary>
+        private void HandleWorldActionMenuInput()
+        {
+            if (WorldActionMenuUI == null)
+            {
+                // UI disappeared mid-state — bail cleanly back to look mode.
+                _inputState = InputState.LookMode;
+                return;
+            }
+
+            WorldActionMenuUI.HandleInput();
+
+            if (WorldActionMenuUI.SelectionCancelled)
+            {
+                WorldActionMenuUI.ConsumeSelection();
+                _inputState = InputState.LookMode;
+                return;
+            }
+
+            if (!WorldActionMenuUI.SelectionMade) return;
+
+            var action = WorldActionMenuUI.SelectedAction;
+            var target = WorldActionMenuUI.SelectedTarget;
+            var cell = WorldActionMenuUI.SelectedCell;
+            bool isPile = WorldActionMenuUI.SelectedCellIsPile;
+            WorldActionMenuUI.ConsumeSelection();
+
+            ExecuteWorldActionSelection(action, target, cell, isPile);
+        }
+
+        /// <summary>
+        /// Run the selected action. Handles three cases:
+        /// - Pile-cell Examine: log cell description instead of target's
+        ///   individual Examine (matches user spec: pile summary for piles).
+        /// - Chat: fire the command; if ConversationManager.IsActive after,
+        ///   open the dialogue UI and transition to DialogueOpen.
+        /// - Everything else: fire the InventoryAction event on the target.
+        /// After the action runs, returns to LookMode so the player can
+        /// keep poking at the world without having to re-enter look mode.
+        /// </summary>
+        private void ExecuteWorldActionSelection(
+            InventoryAction action, Entity target, Cell cell, bool isPileCell)
+        {
+            if (action == null || target == null)
+            {
+                _inputState = InputState.LookMode;
+                return;
+            }
+
+            // Special case: pile-cell Examine → cell description rather than
+            // target's individual Examine.
+            if (isPileCell && action.Command == "Examine")
+            {
+                MessageLog.Add(WorldInteractionSystem.DescribeCell(cell));
+                _inputState = InputState.LookMode;
+                return;
+            }
+
+            // Fire the InventoryAction event on the target. Parts that
+            // declared this command will handle it (ExaminablePart for
+            // Examine, ContainerPart for OpenContainer, ConversationPart
+            // for Chat, etc.).
+            var e = GameEvent.New("InventoryAction");
+            e.SetParameter("Command", action.Command);
+            e.SetParameter("Actor", (object)PlayerEntity);
+            target.FireEvent(e);
+
+            // If the action started a conversation, open the dialogue UI
+            // now (ConversationPart doesn't open it itself — see its
+            // docstring).
+            if (ConversationManager.IsActive)
+            {
+                OpenDialogue();
+                return;
+            }
+
+            _inputState = InputState.LookMode;
         }
 
         private bool TryOpenWorldThrowPopup(int tileX, int tileY)

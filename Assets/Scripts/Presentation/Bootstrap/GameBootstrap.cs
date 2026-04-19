@@ -305,6 +305,17 @@ namespace CavesOfOoo
                     containerPickerUI.PopupCamera = popupOverlayCamera;
                     inputHandler.ContainerPickerUI = containerPickerUI;
 
+                    var worldActionMenuUI = GetComponent<WorldActionMenuUI>();
+                    if (worldActionMenuUI == null)
+                        worldActionMenuUI = gameObject.AddComponent<WorldActionMenuUI>();
+                    if (ZoneRenderer != null)
+                    {
+                        worldActionMenuUI.Tilemap = ZoneRenderer.CenteredPopupFgTilemap;
+                        worldActionMenuUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
+                    }
+                    worldActionMenuUI.PopupCamera = popupOverlayCamera;
+                    inputHandler.WorldActionMenuUI = worldActionMenuUI;
+
                     var dialogueUI = GetComponent<DialogueUI>();
                     if (dialogueUI == null)
                         dialogueUI = gameObject.AddComponent<DialogueUI>();
