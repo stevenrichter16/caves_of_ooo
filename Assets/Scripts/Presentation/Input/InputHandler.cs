@@ -350,11 +350,15 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Talk to NPC (C key + direction)
+            // Interact with an adjacent entity (C key + direction).
+            // Dispatches by what's in the target cell:
+            //   - ConversationPart  → talk to NPC
+            //   - ContainerPart     → open chest/container
+            //   - neither           → friendly "nothing there" log
             if (InputHelper.GetKeyDown(KeyCode.C))
             {
                 _inputState = InputState.AwaitingTalkDirection;
-                MessageLog.Add("Talk — choose a direction.");
+                MessageLog.Add("Interact — choose a direction.");
                 _lastMoveTime = Time.time;
                 return;
             }
@@ -2353,32 +2357,50 @@ namespace CavesOfOoo.Rendering
             var targetCell = CurrentZone.GetCell(tx, ty);
             if (targetCell == null)
             {
-                MessageLog.Add("There's nothing there to talk to.");
+                MessageLog.Add("There's nothing there to interact with.");
                 return;
             }
 
-            // Find entity with ConversationPart in the target cell
+            // Dispatch by what's in the target cell. Priority order:
+            //   1. ConversationPart → talk (matches original 'c' behavior)
+            //   2. ContainerPart    → open chest
+            // We loop once and keep the first match of each kind; talk wins
+            // if the same cell somehow has both (unlikely but well-defined).
             Entity talkTarget = null;
+            Entity containerTarget = null;
             for (int i = 0; i < targetCell.Objects.Count; i++)
             {
-                if (targetCell.Objects[i].GetPart<ConversationPart>() != null)
-                {
-                    talkTarget = targetCell.Objects[i];
-                    break;
-                }
+                var obj = targetCell.Objects[i];
+                if (talkTarget == null && obj.GetPart<ConversationPart>() != null)
+                    talkTarget = obj;
+                else if (containerTarget == null && obj.GetPart<ContainerPart>() != null)
+                    containerTarget = obj;
             }
 
-            if (talkTarget == null)
+            if (talkTarget != null)
             {
-                MessageLog.Add("There's nothing there to talk to.");
+                // Start conversation
+                bool started = ConversationManager.StartConversation(talkTarget, PlayerEntity);
+                if (!started) return;
+                OpenDialogue();
                 return;
             }
 
-            // Try starting conversation
-            bool started = ConversationManager.StartConversation(talkTarget, PlayerEntity);
-            if (!started) return;
+            if (containerTarget != null)
+            {
+                // Fire the InventoryAction event on the container with the OpenContainer
+                // command — reuses ContainerPart.HandleEvent's existing open flow
+                // (locked-check, contents message, OpenContainer event broadcast).
+                // End the turn so the open action consumes a tick, matching talk.
+                var openAction = GameEvent.New("InventoryAction");
+                openAction.SetParameter("Command", "OpenContainer");
+                openAction.SetParameter("Actor", (object)PlayerEntity);
+                containerTarget.FireEventAndRelease(openAction);
+                EndTurnAndProcess();
+                return;
+            }
 
-            OpenDialogue();
+            MessageLog.Add("There's nothing there to interact with.");
         }
 
         private void OpenDialogue()
