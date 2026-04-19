@@ -279,6 +279,44 @@ namespace CavesOfOoo.Core
                     }
                 }
             });
+
+            // M2.1: Pacify the speaker (the NPC) for N turns — e.g., a
+            // Charisma-gated "Stand down" dialogue branch can non-violently
+            // resolve a combat scenario. Argument is an integer duration in
+            // turns; default 100 when empty/invalid. Idempotent: if a
+            // NoFightGoal is already present on the speaker, this is a
+            // no-op (no stacking, no duration extension) so chained calls
+            // can't accidentally reset an ongoing pacification.
+            //
+            // Note: NoFightGoal suppresses AIBoredEvent on the pacified
+            // entity, so AISelfPreservation won't push RetreatGoal while the
+            // NPC is calmed. See NoFightGoal's xml-doc for the broader
+            // gotcha.
+            Register("PushNoFightGoal", (speaker, listener, arg) =>
+            {
+                if (speaker == null) return;
+                var brain = speaker.GetPart<BrainPart>();
+                if (brain == null) return;
+                if (brain.HasGoal<NoFightGoal>()) return;
+
+                // `int.TryParse` writes 0 to the out param on failure, which
+                // NoFightGoal treats as INFINITE — so a typo in the dialogue
+                // JSON would silently pacify the NPC forever. Guard by only
+                // taking the parsed value when parse succeeds AND the value
+                // is positive. Rejects "0" for the same reason (authors
+                // wanting infinite should use the auto-pacify path, not
+                // this action).
+                int duration = 100;
+                if (!string.IsNullOrEmpty(arg)
+                    && int.TryParse(arg, out int parsed)
+                    && parsed > 0)
+                {
+                    duration = parsed;
+                }
+
+                brain.PushGoal(new NoFightGoal(duration, wander: false));
+                MessageLog.Add($"{speaker.GetDisplayName()} stands down.");
+            });
         }
 
         private static string ResolveSettlementId(Entity speaker)
