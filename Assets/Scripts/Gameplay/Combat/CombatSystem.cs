@@ -453,8 +453,61 @@ namespace CavesOfOoo.Core
             died.SetParameter("Killer", (object)killer);
             target.FireEvent(died);
 
+            // M2.3: broadcast the death to nearby Passive NPCs so they can
+            // visibly react (wander-pace for 20 turns). Fires AFTER the Died
+            // event so any handlers that mutate the zone have already run,
+            // and BEFORE RemoveEntity so the death cell is still resolvable
+            // via GetEntityCell(target).
+            if (zone != null)
+                BroadcastDeathWitnessed(target, killer, zone, WitnessRadius);
+
             if (zone != null)
                 zone.RemoveEntity(target);
+        }
+
+        /// <summary>Chebyshev radius for death-witness broadcast (M2.3).</summary>
+        private const int WitnessRadius = 8;
+
+        /// <summary>
+        /// Apply a <see cref="WitnessedEffect"/> to every Passive, Creature-tagged
+        /// entity in the zone that is within <paramref name="radius"/> Chebyshev
+        /// cells of the death location AND has line-of-sight to it.
+        /// Consumes M1.2's <see cref="BrainPart.Passive"/> flag as the filter.
+        /// </summary>
+        private static void BroadcastDeathWitnessed(Entity deceased, Entity killer, Zone zone, int radius)
+        {
+            if (zone == null || deceased == null) return;
+            var deathCell = zone.GetEntityCell(deceased);
+            if (deathCell == null) return;
+
+            // Snapshot via GetAllEntities (already allocates) — do NOT iterate
+            // GetReadOnlyEntities() directly because ApplyEffect below can run
+            // side-effect chains that mutate _entityCells, invalidating the
+            // live Dictionary.KeyCollection enumerator.
+            var all = zone.GetAllEntities();
+            for (int i = 0; i < all.Count; i++)
+            {
+                var witness = all[i];
+                if (witness == deceased) continue;
+                if (witness == killer) continue;                 // null killer (env death) is fine here
+                if (!witness.HasTag("Creature")) continue;
+
+                var brain = witness.GetPart<BrainPart>();
+                if (brain == null || !brain.Passive) continue;   // only Passive NPCs witness
+
+                var wCell = zone.GetEntityCell(witness);
+                if (wCell == null) continue;
+
+                int dist = AIHelpers.ChebyshevDistance(deathCell.X, deathCell.Y, wCell.X, wCell.Y);
+                if (dist > radius) continue;
+
+                // HasLineOfSight is symmetric (Bresenham on IsSolid cells).
+                // Witness → death cell is the semantically natural order.
+                if (!AIHelpers.HasLineOfSight(zone, wCell.X, wCell.Y, deathCell.X, deathCell.Y))
+                    continue;
+
+                witness.ApplyEffect(new WitnessedEffect(duration: 20));
+            }
         }
 
         /// <summary>
