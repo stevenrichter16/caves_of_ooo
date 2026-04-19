@@ -7,7 +7,7 @@ namespace CavesOfOoo.Core
     /// talk to.
     ///
     /// Also declares a "Chat" action for the world action menu
-    /// (<see cref="Docs/Plans/WORLD_ACTION_MENU_PLAN.md"/> Phase 4b). When
+    /// (see <c>Docs/Plans/WORLD_ACTION_MENU_PLAN.md</c>, Phase 4b). When
     /// selected, fires an <c>InventoryAction</c> with <c>Command = "Chat"</c>,
     /// which this part handles by calling
     /// <see cref="ConversationManager.StartConversation"/>. If the NPC lacks
