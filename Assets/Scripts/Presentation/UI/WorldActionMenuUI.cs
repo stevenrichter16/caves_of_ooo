@@ -101,6 +101,10 @@ namespace CavesOfOoo.Rendering
             _selectionMade = false;
             _selectionCancelled = false;
             _selectedAction = null;
+            // DIAG [Phase4d] — confirm Open ran with usable state.
+            UnityEngine.Debug.Log($"[ActionMenu:ui-open] actions={_actions.Count} " +
+                $"Tilemap={(Tilemap != null ? "set" : "NULL")} " +
+                $"BgTilemap={(BgTilemap != null ? "set" : "NULL")}");
             Render();
         }
 

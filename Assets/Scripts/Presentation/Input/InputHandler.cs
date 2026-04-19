@@ -1268,8 +1268,15 @@ namespace CavesOfOoo.Rendering
 
             if (Input.GetMouseButtonDown(0))
             {
-                if (ZoneRenderer != null &&
-                    ZoneRenderer.ScreenToZoneCell(Input.mousePosition, Camera.main, out int clickX, out int clickY))
+                // DIAG [Phase4d] — upstream-most log. Click detected in look mode.
+                int clickX = -1, clickY = -1;
+                bool screenResolved = ZoneRenderer != null &&
+                    ZoneRenderer.ScreenToZoneCell(Input.mousePosition, Camera.main, out clickX, out clickY);
+                UnityEngine.Debug.Log($"[ActionMenu:lookclick] ZoneRenderer={(ZoneRenderer != null)} " +
+                    $"screenResolved={screenResolved}" +
+                    (screenResolved ? $" -> ({clickX},{clickY})" : ""));
+
+                if (screenResolved)
                 {
                     _worldCursorState.SetPosition(clickX, clickY);
                     ClampLookCursorToVisibleFrame();
@@ -1663,10 +1670,11 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private void OpenWorldActionMenuOrThrow(int tileX, int tileY)
         {
-            // Try throw popup first — it only opens if we're adjacent AND
-            // there's a throwable item at the target cell (otherwise no-ops
-            // or shows "nothing to throw" and returns true to claim the input).
-            if (HasAdjacentThrowableAt(tileX, tileY))
+            // DIAG [Phase4d] — trace dispatch decision.
+            bool adjThrow = HasAdjacentThrowableAt(tileX, tileY);
+            UnityEngine.Debug.Log($"[ActionMenu:dispatch] ({tileX},{tileY}) adjThrowable={adjThrow}");
+
+            if (adjThrow)
             {
                 TryOpenWorldThrowPopup(tileX, tileY);
                 return;
@@ -1697,20 +1705,23 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private void OpenWorldActionMenu(int tileX, int tileY)
         {
-            if (WorldActionMenuUI == null)
-            {
-                // UI not wired (tests or degraded boot). Silent no-op.
-                return;
-            }
+            // DIAG [Phase4d] — trace every decision branch.
+            UnityEngine.Debug.Log($"[ActionMenu:open] entry ({tileX},{tileY}) " +
+                $"UI={(WorldActionMenuUI != null ? "set" : "NULL")}");
+
+            if (WorldActionMenuUI == null) return;
 
             Cell cell = CurrentZone?.GetCell(tileX, tileY);
             if (cell == null)
             {
+                UnityEngine.Debug.Log("[ActionMenu:open] BAIL: null cell");
                 MessageLog.Add("There's nothing there.");
                 return;
             }
 
             Entity target = WorldInteractionSystem.ResolveTarget(cell);
+            UnityEngine.Debug.Log($"[ActionMenu:open] cell.Objects.Count={cell.Objects.Count} " +
+                $"target={(target != null ? target.BlueprintName : "NULL")}");
             if (target == null)
             {
                 MessageLog.Add(WorldInteractionSystem.DescribeCell(cell));
@@ -1718,17 +1729,16 @@ namespace CavesOfOoo.Rendering
             }
 
             var actions = WorldInteractionSystem.GatherActions(target);
+            UnityEngine.Debug.Log($"[ActionMenu:open] actions.Count={actions.Count}");
             if (actions.Count == 0)
             {
-                // Very unusual — target with no declared actions (missing
-                // Examinable cascade?). Log the cell description instead
-                // so the click isn't silently eaten.
                 MessageLog.Add(WorldInteractionSystem.DescribeCell(cell));
                 return;
             }
 
             WorldActionMenuUI.Open(PlayerEntity, target, cell, actions);
             _inputState = InputState.WorldActionMenuOpen;
+            UnityEngine.Debug.Log($"[ActionMenu:open] opened menu — state=WorldActionMenuOpen");
         }
 
         /// <summary>

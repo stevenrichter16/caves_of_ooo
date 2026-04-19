@@ -315,6 +315,11 @@ namespace CavesOfOoo
                     }
                     worldActionMenuUI.PopupCamera = popupOverlayCamera;
                     inputHandler.WorldActionMenuUI = worldActionMenuUI;
+                    // DIAG [Phase4d] — confirm wiring took. Remove once verified.
+                    UnityEngine.Debug.Log($"[ActionMenu:wire] component={worldActionMenuUI != null} " +
+                        $"Tilemap={(worldActionMenuUI.Tilemap != null ? "SET" : "NULL")} " +
+                        $"BgTilemap={(worldActionMenuUI.BgTilemap != null ? "SET" : "NULL")} " +
+                        $"PopupCamera={(worldActionMenuUI.PopupCamera != null ? "SET" : "NULL")}");
 
                     var dialogueUI = GetComponent<DialogueUI>();
                     if (dialogueUI == null)
