@@ -5,10 +5,24 @@ using UnityEngine.InputSystem;
 namespace CavesOfOoo.Rendering
 {
     /// <summary>
-    /// Thin wrapper over Unity input that checks BOTH legacy Input and New Input System.
-    /// Tracks New Input System key state transitions manually to reliably detect
-    /// "pressed this frame" even when QueueStateEvent timing doesn't align with
-    /// the game's Update loop.
+    /// Thin wrapper over Unity input that checks BOTH the legacy <c>UnityEngine.Input</c>
+    /// and the New Input System's <c>Keyboard.current</c>. The legacy system's
+    /// <c>GetKeyDown</c> and the new system's <c>wasPressedThisFrame</c> are both
+    /// one-frame-precise, so together they reliably detect "pressed this frame"
+    /// for user keyboard input across either input backend.
+    ///
+    /// HISTORICAL NOTE: an earlier revision also ran a manual "was pressed last
+    /// frame?" transition check as a fallback for programmatic
+    /// <c>QueueStateEvent</c>-injected keys. That fallback was broken — its state
+    /// snapshot was taken at the START of a frame (via the first GetKey call),
+    /// which overwrote the previous-frame state before any GetKeyDown check
+    /// could use it. When a flow used only GetKeyDown (no GetKey) the snapshot
+    /// was never updated at all, and the fallback fired every frame the key was
+    /// held — which manifested as "one tap scrolls 5-6 entries" in the chest
+    /// loot UI and the sidebar log scroll. Removed entirely since no code in
+    /// this project actually queues input events; if MCP key injection is
+    /// added later, the fix is an end-of-frame snapshot in a MonoBehaviour
+    /// LateUpdate, not a start-of-frame one.
     /// </summary>
     public static class InputHelper
     {
@@ -56,35 +70,8 @@ namespace CavesOfOoo.Rendering
             { KeyCode.LeftBracket, Key.LeftBracket }, { KeyCode.RightBracket, Key.RightBracket },
         };
 
-        // Manual state tracking: previous frame's pressed state per key
-        private static readonly Dictionary<Key, bool> _prevPressed = new Dictionary<Key, bool>();
-        private static int _lastTrackedFrame = -1;
-
-        /// <summary>
-        /// Update previous-frame state. Must be called once per frame before any GetKeyDown checks.
-        /// Called automatically on first GetKeyDown/GetKey/GetKeyUp call each frame.
-        /// </summary>
-        private static void UpdateTracking()
-        {
-            int frame = Time.frameCount;
-            if (frame == _lastTrackedFrame)
-                return;
-
-            // Save current pressed state as "previous" for next frame's transition detection
-            if (Keyboard.current != null)
-            {
-                foreach (var kvp in KeyCodeToKey)
-                {
-                    var key = kvp.Value;
-                    _prevPressed[key] = Keyboard.current[key].isPressed;
-                }
-            }
-            _lastTrackedFrame = frame;
-        }
-
         /// <summary>
         /// Returns true if the key was pressed this frame — checks both legacy Input AND New Input System.
-        /// Uses manual state tracking to detect transitions from QueueStateEvent.
         /// </summary>
         public static bool GetKeyDown(KeyCode keyCode)
         {
@@ -92,17 +79,7 @@ namespace CavesOfOoo.Rendering
                 return true;
 
             if (Keyboard.current != null && KeyCodeToKey.TryGetValue(keyCode, out var key))
-            {
-                // Check New Input System's own tracking first
-                if (Keyboard.current[key].wasPressedThisFrame)
-                    return true;
-
-                // Also check manual transition: was not pressed last frame, is pressed now
-                bool currentlyPressed = Keyboard.current[key].isPressed;
-                bool wasPrevPressed = _prevPressed.TryGetValue(key, out var prev) && prev;
-                if (currentlyPressed && !wasPrevPressed)
-                    return true;
-            }
+                return Keyboard.current[key].wasPressedThisFrame;
 
             return false;
         }
@@ -112,8 +89,6 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public static bool GetKey(KeyCode keyCode)
         {
-            UpdateTracking();
-
             if (Input.GetKey(keyCode))
                 return true;
 
@@ -132,16 +107,7 @@ namespace CavesOfOoo.Rendering
                 return true;
 
             if (Keyboard.current != null && KeyCodeToKey.TryGetValue(keyCode, out var key))
-            {
-                if (Keyboard.current[key].wasReleasedThisFrame)
-                    return true;
-
-                // Manual transition: was pressed last frame, not pressed now
-                bool currentlyPressed = Keyboard.current[key].isPressed;
-                bool wasPrevPressed = _prevPressed.TryGetValue(key, out var prev) && prev;
-                if (!currentlyPressed && wasPrevPressed)
-                    return true;
-            }
+                return Keyboard.current[key].wasReleasedThisFrame;
 
             return false;
         }
