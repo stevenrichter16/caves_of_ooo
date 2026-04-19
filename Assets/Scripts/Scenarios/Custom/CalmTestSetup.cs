@@ -1,36 +1,51 @@
 namespace CavesOfOoo.Scenarios.Custom
 {
     /// <summary>
-    /// Phase-2-ready scenario that activates automatically once the Calm mutation
-    /// ships in M2. Until then, <see cref="Builders.PlayerBuilder.AddMutation"/>'s
-    /// fail-soft contract logs a warning and continues — the three Snapjaws still
-    /// spawn, they're just not in a Calmable configuration yet.
+    /// M2.2 Calm stress-test — player with Calm at Level 3 plus three
+    /// hostile Snapjaws in a row. Exercises the "pacify one, fight the
+    /// rest" workflow: the player's challenge is to cast Calm
+    /// selectively and manage the remaining two with normal combat.
     ///
-    /// M2 readiness checklist:
-    /// 1. <c>CalmMutation</c> exists as a <see cref="CavesOfOoo.Core.BaseMutation"/>
-    ///    subclass reachable by <c>Type.Name</c> lookup
-    /// 2. Registered in the mutation factory / reflection table
-    /// 3. On activation, targets one enemy with a debuff that makes them ignore
-    ///    the player for N turns
+    /// Compared to <see cref="PacifiedWarden"/> (the minimum single-
+    /// target test), this scenario:
+    /// - Has multiple targets — player must pick which to pacify
+    /// - Stresses the idempotent-recast feedback at scale (if you
+    ///   accidentally re-target an already-calmed Snapjaw, you see
+    ///   "... is already at peace." rather than wasting a cooldown
+    ///   silently)
+    /// - Forces combat AND pacification in the same encounter —
+    ///   NoFightGoal vs. KillGoal interactions on the non-calmed
+    ///   Snapjaws are visible
     ///
-    /// When M2 ships, the warning disappears automatically on next scenario run.
+    /// Good for:
+    /// - Stress-testing the M2.2 pipeline across multiple targets
+    /// - Verifying selective pacification works as expected
+    /// - Observing the look-mode "pacified" label on one Snapjaw
+    ///   next to "hostile" on two others — a good sanity check for
+    ///   the disposition-label fix (commit 4cc7d3d)
     /// </summary>
     [Scenario(
-        name: "Calm Test Setup",
+        name: "Calm Test Setup (multi-target)",
         category: "Mutations",
-        description: "Player with Calm + 3 hostile Snapjaws. Calm the first, fight the rest. Activates after M2.")]
+        description: "Player with Calm + 3 hostile Snapjaws. Calm the first, fight the rest.")]
     public class CalmTestSetup : IScenario
     {
         public void Apply(ScenarioContext ctx)
         {
-            // Will log "unknown class" warning until M2.2 lands; harmless.
             ctx.Player.AddMutation("CalmMutation", level: 3);
+
+            // Clear the east row so Calm's projectile can reach each Snapjaw
+            // individually and the player can reach any of them in melee
+            // without routing around compass stones or the chest.
+            var p = ctx.Zone.GetEntityPosition(ctx.PlayerEntity);
+            for (int dx = 1; dx <= 7; dx++)
+                ctx.World.ClearCell(p.x + dx, p.y);
 
             ctx.Spawn("Snapjaw").AtPlayerOffset(3, 0);
             ctx.Spawn("Snapjaw").AtPlayerOffset(5, 0);
             ctx.Spawn("Snapjaw").AtPlayerOffset(7, 0);
 
-            ctx.Log("Calm Test ready — cast Calm on one snapjaw, fight the rest.");
+            ctx.Log("Cast Calm on one snapjaw (key 8), fight the rest. Look at the pacified one — should read 'pacified'.");
         }
     }
 }

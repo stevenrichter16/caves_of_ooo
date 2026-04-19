@@ -104,8 +104,36 @@ namespace CavesOfOoo.Editor.Scenarios
         // Mutations
         // =========================================================
 
-        [MenuItem("Caves Of Ooo/Scenarios/Mutations/Calm Test Setup (M2-ready)", priority = 500)]
+        [MenuItem("Caves Of Ooo/Scenarios/Mutations/Calm Test Setup (multi-target)", priority = 500)]
         private static void Launch_CalmTestSetup()
             => ScenarioRunner.Launch<CalmTestSetup>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Mutations/Pacified Warden (M2.2)", priority = 501)]
+        private static void Launch_PacifiedWarden()
+            => ScenarioRunner.Launch<PacifiedWarden>();
+
+        // =========================================================
+        // AI Behavior — M2.3 witness scenarios
+        // =========================================================
+
+        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Scribe Witnesses Snapjaw Kill (M2.3)", priority = 210)]
+        private static void Launch_ScribeWitnessesSnapjawKill()
+            => ScenarioRunner.Launch<ScribeWitnessesSnapjawKill>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Witness LOS Wall (M2.3)", priority = 211)]
+        private static void Launch_WitnessLineOfSightWall()
+            => ScenarioRunner.Launch<WitnessLineOfSightWall>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Witness Radius Boundary (M2.3)", priority = 212)]
+        private static void Launch_WitnessRadiusBoundary()
+            => ScenarioRunner.Launch<WitnessRadiusBoundary>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Witness Stacks on Second Death (M2.3)", priority = 213)]
+        private static void Launch_WitnessStacksOnSecondDeath()
+            => ScenarioRunner.Launch<WitnessStacksOnSecondDeath>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Calm then Witness (M2.2 × M2.3)", priority = 214)]
+        private static void Launch_CalmThenWitness()
+            => ScenarioRunner.Launch<CalmThenWitness>();
     }
 }
