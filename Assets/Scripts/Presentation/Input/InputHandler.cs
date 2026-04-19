@@ -1151,6 +1151,20 @@ namespace CavesOfOoo.Rendering
 
             _inputState = InputState.Normal;
 
+            // Chest-loot path enters here from LookMode → WorldActionMenu →
+            // PickupOpen, so the world cursor / look snapshot / camera
+            // override were set up when look mode opened and are still
+            // live. Without tearing them down, closing the chest UI leaves
+            // the blue look-mode selection square painted on the chest.
+            // Safe to call even when the pickup was the ground-pickup
+            // path (G key) — Deactivate / ClearWorldCursor / ClearLookSnapshot
+            // are all no-ops when no cursor is active.
+            _worldCursorState.Deactivate();
+            ZoneRenderer?.ClearWorldCursor();
+            ZoneRenderer?.ClearLookSnapshot();
+            if (CameraFollow != null)
+                CameraFollow.ClearOverrideTarget();
+
             if (TryOpenAnnouncement())
                 return;
 
