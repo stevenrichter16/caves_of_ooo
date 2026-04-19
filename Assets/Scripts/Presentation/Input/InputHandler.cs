@@ -89,6 +89,14 @@ namespace CavesOfOoo.Rendering
             WorldActionMenuOpen  // Phase 4d — look-mode click/Enter on a cell opens this
         }
         private InputState _inputState = InputState.Normal;
+
+        // State we should return to when the announcement queue drains.
+        // Captured at the moment the FIRST announcement in a burst opens so
+        // that chained Opens (popup N → popup N+1) don't overwrite it. If an
+        // announcement fires while the player has the inventory open, we
+        // restore InventoryOpen — not Normal — and put the UI camera back
+        // where it was instead of snapping to the world.
+        private InputState _stateBeforeAnnouncement = InputState.Normal;
         private ActivatedAbility _pendingAbility;
         private Entity _pendingAttackTarget;
         private int _selectedHotbarSlot = -1;
@@ -234,6 +242,15 @@ namespace CavesOfOoo.Rendering
 
             if (_inputState == InputState.InventoryOpen)
             {
+                // If something the player just did from the inventory (e.g.
+                // reading a grimoire) queued an announcement, pop it now
+                // over the inventory instead of waiting for the inventory
+                // to close. TryOpenAnnouncement will flip state to
+                // AnnouncementOpen and CloseAnnouncement will return to
+                // InventoryOpen when the queue drains.
+                if (TryOpenAnnouncement())
+                    return;
+
                 HandleInventoryInput();
                 return;
             }
@@ -2897,6 +2914,13 @@ namespace CavesOfOoo.Rendering
             if (msg == null)
                 return false;
 
+            // Remember where we came from so CloseAnnouncement can restore
+            // that state (e.g. InventoryOpen) after the whole queue drains.
+            // Don't overwrite it when chaining popup→popup — the queue is
+            // logically one burst until it reaches empty.
+            if (_inputState != InputState.AnnouncementOpen)
+                _stateBeforeAnnouncement = _inputState;
+
             EnterCenteredPopupOverlayView();
             AnnouncementUI.Open(msg);
             _inputState = InputState.AnnouncementOpen;
@@ -2919,12 +2943,34 @@ namespace CavesOfOoo.Rendering
 
         private void CloseAnnouncement()
         {
-            // Check for more pending announcements
+            // Chain into the next queued announcement if there is one.
             if (TryOpenAnnouncement())
                 return;
 
-            _inputState = InputState.Normal;
-            ExitCenteredPopupOverlayViewToGameplay();
+            // Queue drained — return to whatever state was active before the
+            // first announcement popped. If the player was in the inventory
+            // (grimoire just read), put the UI camera back on the inventory
+            // instead of snapping to the gameplay view.
+            var prior = _stateBeforeAnnouncement;
+            _stateBeforeAnnouncement = InputState.Normal;
+            _inputState = prior;
+
+            if (prior == InputState.InventoryOpen)
+            {
+                // Disable the popup overlay camera but keep the fullscreen
+                // UI camera framing; the inventory's tiles are still on the
+                // main tilemap beneath.
+                if (CameraFollow != null)
+                {
+                    if (CameraFollow.PopupOverlayCamera != null)
+                        CameraFollow.PopupOverlayCamera.enabled = false;
+                    CameraFollow.SetUIView(FullscreenUiGridWidth, FullscreenUiGridHeight);
+                }
+            }
+            else
+            {
+                ExitCenteredPopupOverlayViewToGameplay();
+            }
         }
 
         private void EnterCenteredPopupOverlayView()
