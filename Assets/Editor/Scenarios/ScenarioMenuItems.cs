@@ -143,5 +143,13 @@ namespace CavesOfOoo.Editor.Scenarios
         [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Wounded Scribe Flees to Shrine (M3.3)", priority = 221)]
         private static void Launch_WoundedScribeFleesToShrine()
             => ScenarioRunner.Launch<WoundedScribeFleesToShrine>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Magpie Fetches Gold (M3.2)", priority = 222)]
+        private static void Launch_MagpieFetchesGold()
+            => ScenarioRunner.Launch<MagpieFetchesGold>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Pet Dog Fetches Thrown Item (M3.2)", priority = 223)]
+        private static void Launch_PetDogFetchesBone()
+            => ScenarioRunner.Launch<PetDogFetchesBone>();
     }
 }

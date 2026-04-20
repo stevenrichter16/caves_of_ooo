@@ -23,6 +23,23 @@
       ]
     },
     {
+      "Name": "GoldCoin",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "gold coin" },
+          { "Key": "RenderString", "Value": "$" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Shiny", "Value": "" }
+      ]
+    },
+    {
       "Name": "MeleeWeapon",
       "Inherits": "Item",
       "Parts": [
@@ -1466,6 +1483,79 @@
       ],
       "IntProps": [
         { "Key": "Drams", "Value": 100 }
+      ]
+    },
+    {
+      "Name": "Magpie",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "magpie" },
+          { "Key": "RenderString", "Value": "b" },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Inventory", "Params": [{ "Key": "MaxWeight", "Value": "20" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "10" },
+          { "Key": "Wanders", "Value": "true" },
+          { "Key": "WandersRandomly", "Value": "true" },
+          { "Key": "Staying", "Value": "false" },
+          { "Key": "Passive", "Value": "true" }
+        ]},
+        { "Name": "AIHoarder", "Params": [
+          { "Key": "TargetTag", "Value": "Shiny" },
+          { "Key": "Chance", "Value": "15" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 6, "Min": 0, "Max": 6 },
+        { "Name": "Strength", "Value": 4 },
+        { "Name": "Agility", "Value": 14 },
+        { "Name": "Toughness", "Value": 5 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Villagers" },
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
+      ]
+    },
+    {
+      "Name": "PetDog",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "dog" },
+          { "Key": "RenderString", "Value": "d" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Inventory", "Params": [{ "Key": "MaxWeight", "Value": "10" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "10" },
+          { "Key": "Wanders", "Value": "true" },
+          { "Key": "WandersRandomly", "Value": "true" },
+          { "Key": "Staying", "Value": "false" },
+          { "Key": "Passive", "Value": "true" }
+        ]},
+        { "Name": "AIRetriever", "Params": [
+          { "Key": "AlliesOnly", "Value": "true" },
+          { "Key": "NoticeRadius", "Value": "10" }
+        ]},
+        { "Name": "AIPetter", "Params": [{ "Key": "Chance", "Value": "4" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 },
+        { "Name": "Strength", "Value": 10 },
+        { "Name": "Agility", "Value": 14 },
+        { "Name": "Toughness", "Value": 12 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Villagers" },
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
       ]
     },
     {

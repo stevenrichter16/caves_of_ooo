@@ -506,6 +506,311 @@ namespace CavesOfOoo.Tests
                 "Shrine should have Furniture tag so GatherInteriorCells excludes it.");
         }
 
+        // ========================
+        // Phase 6 M3.2: AIHoarderPart
+        // ========================
+
+        [Test]
+        public void AIHoarder_PushesGoFetchGoal_ForNearestTaggedItem()
+        {
+            // Positive: Chance=100, ally has a Shiny item on the floor,
+            // magpie (hoarder) is bored → push GoFetchGoal targeting it.
+            var ctx = _harness.CreateContext();
+            var coin = ctx.World.PlaceObject("GoldCoin").At(15, 10);
+            var magpie = BuildHoarderCreature(ctx, 10, 10, tag: "Shiny", chance: 100);
+
+            AIBoredEvent.Check(magpie);
+
+            ctx.Verify().Entity(magpie).HasGoalOnStack<GoFetchGoal>();
+            var goal = magpie.GetPart<BrainPart>().FindGoal<GoFetchGoal>();
+            Assert.AreSame(coin, goal.Item, "GoFetchGoal should target the nearest Shiny item.");
+            Assert.IsTrue(goal.ReturnHome,
+                "Hoarder mode — item goes HOME (magpie's starting cell).");
+        }
+
+        [Test]
+        public void AIHoarder_FindsNearestAmongMultipleTaggedItems()
+        {
+            // Counter-check: two Shiny items, must pick the nearer one.
+            var ctx = _harness.CreateContext();
+            ctx.World.PlaceObject("GoldCoin").At(30, 30); // far — Chebyshev 20
+            var nearCoin = ctx.World.PlaceObject("GoldCoin").At(12, 10); // near — Chebyshev 2
+            var magpie = BuildHoarderCreature(ctx, 10, 10, tag: "Shiny", chance: 100);
+
+            AIBoredEvent.Check(magpie);
+
+            var goal = magpie.GetPart<BrainPart>().FindGoal<GoFetchGoal>();
+            Assert.IsNotNull(goal);
+            Assert.AreSame(nearCoin, goal.Item, "Should target the nearer Shiny coin.");
+        }
+
+        [Test]
+        public void AIHoarder_DoesNotFire_WhenNoTaggedItemsPresent()
+        {
+            // Counter-check: no Shiny items in zone → event passes through.
+            var ctx = _harness.CreateContext();
+            var magpie = BuildHoarderCreature(ctx, 10, 10, tag: "Shiny", chance: 100);
+
+            bool consumed = !AIBoredEvent.Check(magpie);
+
+            Assert.IsFalse(consumed,
+                "AIHoarder must not consume the event when no tagged items exist.");
+            ctx.Verify().Entity(magpie).HasNoGoalOnStack<GoFetchGoal>();
+        }
+
+        [Test]
+        public void AIHoarder_IgnoresItemsWithoutTargetTag()
+        {
+            // Counter-check: an item exists but doesn't have the Shiny tag.
+            // Magpie should NOT fetch an untagged item.
+            var ctx = _harness.CreateContext();
+            ctx.World.PlaceObject("Torch").At(12, 10); // not Shiny
+            var magpie = BuildHoarderCreature(ctx, 10, 10, tag: "Shiny", chance: 100);
+
+            AIBoredEvent.Check(magpie);
+
+            ctx.Verify().Entity(magpie).HasNoGoalOnStack<GoFetchGoal>();
+        }
+
+        [Test]
+        public void AIHoarder_DoesNotFire_AtChanceZero()
+        {
+            // Counter-check (§3.4): chance=0 never fires, even with a Shiny
+            // item right next to the magpie across many ticks.
+            var ctx = _harness.CreateContext();
+            ctx.World.PlaceObject("GoldCoin").At(11, 10);
+            var magpie = BuildHoarderCreature(ctx, 10, 10, tag: "Shiny", chance: 0);
+
+            ctx.AdvanceTurns(20);
+
+            ctx.Verify().Entity(magpie).HasNoGoalOnStack<GoFetchGoal>();
+        }
+
+        [Test]
+        public void AIHoarder_DoesNotDoublePush_WhenGoFetchAlreadyOnStack()
+        {
+            var ctx = _harness.CreateContext();
+            var coin = ctx.World.PlaceObject("GoldCoin").At(15, 10);
+            var magpie = BuildHoarderCreature(ctx, 10, 10, tag: "Shiny", chance: 100);
+
+            var brain = magpie.GetPart<BrainPart>();
+            brain.PushGoal(new GoFetchGoal(coin, returnHome: true));
+            int preCount = brain.GoalCount;
+
+            AIBoredEvent.Check(magpie);
+
+            Assert.AreEqual(preCount, brain.GoalCount,
+                "AIHoarder must not stack a second GoFetchGoal.");
+        }
+
+        [Test]
+        public void Magpie_Blueprint_HasAIHoarder_AndInventory()
+        {
+            var magpie = _harness.Factory.CreateEntity("Magpie");
+            Assert.IsNotNull(magpie, "Magpie blueprint should load.");
+            var hoarder = magpie.GetPart<AIHoarderPart>();
+            Assert.IsNotNull(hoarder, "Magpie blueprint should have AIHoarderPart.");
+            Assert.AreEqual("Shiny", hoarder.TargetTag);
+            Assert.AreEqual(15, hoarder.Chance);
+            Assert.IsNotNull(magpie.GetPart<InventoryPart>(),
+                "Magpie needs InventoryPart to stow fetched items.");
+        }
+
+        [Test]
+        public void GoldCoin_Blueprint_HasShinyTag_AndIsTakeable()
+        {
+            var coin = _harness.Factory.CreateEntity("GoldCoin");
+            Assert.IsNotNull(coin, "GoldCoin blueprint should load.");
+            Assert.IsTrue(coin.HasTag("Shiny"),
+                "GoldCoin should carry the Shiny tag so AIHoarder scans find it.");
+            var physics = coin.GetPart<PhysicsPart>();
+            Assert.IsNotNull(physics);
+            Assert.IsTrue(physics.Takeable,
+                "GoldCoin should be Takeable so GoFetchGoal's pickup phase succeeds.");
+        }
+
+        // ========================
+        // Phase 6 M3.2: AIRetrieverPart + ItemLanded broadcast
+        // ========================
+
+        [Test]
+        public void AIRetriever_PushesGoFetchGoal_OnItemLandedFromAlly()
+        {
+            var ctx = _harness.CreateContext();
+            var dog = BuildRetrieverCreature(ctx, 10, 10, alliesOnly: true, noticeRadius: 10);
+            var ally = ctx.Spawn("Villager").NotRegisteredForTurns().At(10, 9);
+            var item = BuildFloorItem(ctx, "Bone");
+            ctx.Zone.AddEntity(item, 12, 10);
+            var landingCell = ctx.Zone.GetCell(12, 10);
+
+            // Simulate ItemLanded event from the ally.
+            var e = GameEvent.New(ItemLandedEvent.ID);
+            e.SetParameter("Item", (object)item);
+            e.SetParameter("Thrower", (object)ally);
+            e.SetParameter("LandingCell", (object)landingCell);
+            dog.FireEvent(e);
+            e.Release();
+
+            ctx.Verify().Entity(dog).HasGoalOnStack<GoFetchGoal>();
+            var goal = dog.GetPart<BrainPart>().FindGoal<GoFetchGoal>();
+            Assert.AreSame(item, goal.Item);
+            Assert.IsFalse(goal.ReturnHome,
+                "Retriever mode — item stays where pet is (no return home).");
+        }
+
+        [Test]
+        public void AIRetriever_IgnoresEnemyThrow_WhenAlliesOnlyTrue()
+        {
+            // Counter-check: a thrower from a hostile faction must NOT
+            // trigger the fetch. Pins the AlliesOnly filter branch.
+            var ctx = _harness.CreateContext();
+            var dog = BuildRetrieverCreature(ctx, 10, 10, alliesOnly: true, noticeRadius: 10);
+            var enemy = ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(10, 9);
+            var item = BuildFloorItem(ctx, "Bone");
+            ctx.Zone.AddEntity(item, 12, 10);
+            var landingCell = ctx.Zone.GetCell(12, 10);
+
+            var e = GameEvent.New(ItemLandedEvent.ID);
+            e.SetParameter("Item", (object)item);
+            e.SetParameter("Thrower", (object)enemy);
+            e.SetParameter("LandingCell", (object)landingCell);
+            dog.FireEvent(e);
+            e.Release();
+
+            ctx.Verify().Entity(dog).HasNoGoalOnStack<GoFetchGoal>();
+        }
+
+        [Test]
+        public void AIRetriever_IgnoresThrowBeyondNoticeRadius()
+        {
+            // Counter-check (radius gate): item lands 20 cells away, radius=8.
+            // Even though thrower is an ally, distance kills the fetch.
+            var ctx = _harness.CreateContext();
+            var dog = BuildRetrieverCreature(ctx, 10, 10, alliesOnly: true, noticeRadius: 8);
+            var ally = ctx.Spawn("Villager").NotRegisteredForTurns().At(10, 9);
+            var item = BuildFloorItem(ctx, "Bone");
+            ctx.Zone.AddEntity(item, 30, 10); // dist 20
+            var landingCell = ctx.Zone.GetCell(30, 10);
+
+            var e = GameEvent.New(ItemLandedEvent.ID);
+            e.SetParameter("Item", (object)item);
+            e.SetParameter("Thrower", (object)ally);
+            e.SetParameter("LandingCell", (object)landingCell);
+            dog.FireEvent(e);
+            e.Release();
+
+            ctx.Verify().Entity(dog).HasNoGoalOnStack<GoFetchGoal>();
+        }
+
+        [Test]
+        public void AIRetriever_DoesNotDoublePush_WhenGoFetchAlreadyOnStack()
+        {
+            var ctx = _harness.CreateContext();
+            var dog = BuildRetrieverCreature(ctx, 10, 10, alliesOnly: false, noticeRadius: 10);
+            var item = BuildFloorItem(ctx, "Bone");
+            ctx.Zone.AddEntity(item, 12, 10);
+            var landingCell = ctx.Zone.GetCell(12, 10);
+
+            var brain = dog.GetPart<BrainPart>();
+            brain.PushGoal(new GoFetchGoal(item, returnHome: false));
+            int preCount = brain.GoalCount;
+
+            var e = GameEvent.New(ItemLandedEvent.ID);
+            e.SetParameter("Item", (object)item);
+            e.SetParameter("Thrower", (object)dog); // self-throw edge — still blocked by idempotency
+            e.SetParameter("LandingCell", (object)landingCell);
+            dog.FireEvent(e);
+            e.Release();
+
+            Assert.AreEqual(preCount, brain.GoalCount,
+                "AIRetriever must not stack a second GoFetchGoal.");
+        }
+
+        [Test]
+        public void ItemLandedEvent_Broadcast_SkipsThrowerAndItem()
+        {
+            // Pin Broadcast's self-exclusion: thrower doesn't get an event
+            // about their own throw; item doesn't get an event about its
+            // own landing. To make this observable we attach a spy part
+            // to the thrower AND a spy to a bystander. Only the bystander
+            // should flip Received=true.
+            var ctx = _harness.CreateContext();
+
+            var thrower = new Entity { BlueprintName = "TestThrower" };
+            thrower.Tags["Creature"] = "";
+            thrower.AddPart(new ItemLandedSpyPart()); // Thrower has a spy
+            ctx.Zone.AddEntity(thrower, 10, 10);
+
+            var bystander = BuildEventProbeEntity(ctx, 11, 10);
+
+            var item = BuildFloorItem(ctx, "Bone");
+            ctx.Zone.AddEntity(item, 12, 10);
+            var landingCell = ctx.Zone.GetCell(12, 10);
+
+            ItemLandedEvent.Broadcast(ctx.Zone, thrower, item, landingCell);
+
+            var throwerSpy = thrower.GetPart<ItemLandedSpyPart>();
+            var bystanderSpy = bystander.GetPart<ItemLandedSpyPart>();
+
+            Assert.IsFalse(throwerSpy.Received,
+                "Thrower MUST be skipped by Broadcast — no self-notification.");
+            Assert.IsTrue(bystanderSpy.Received,
+                "Bystander should have received the broadcast.");
+        }
+
+        [Test]
+        public void ThrowItemCommand_FiresItemLanded_OnZoneCreatures()
+        {
+            // Integration: wire the throw pipeline end-to-end and confirm
+            // the ItemLanded event actually broadcasts from
+            // ThrowItemCommand.Execute. Uses an ItemLandedSpyPart on a
+            // nearby creature that flips a flag on receipt.
+            //
+            // Throw distance is 1 cell so the range check trivially passes
+            // regardless of the thrower's Strength or the item's weight —
+            // the test is about the BROADCAST, not the range algorithm.
+            var ctx = _harness.CreateContext();
+            var thrower = ctx.Spawn("Villager").NotRegisteredForTurns().At(10, 10);
+            var inv = thrower.GetPart<InventoryPart>();
+            if (inv == null)
+            {
+                inv = new InventoryPart { MaxWeight = 50 };
+                thrower.AddPart(inv); // AddPart returns void; attach then keep the ref
+            }
+            var bone = BuildFloorItem(ctx, "Bone");
+            // HandlingService.CanThrow requires a HandlingPart with Throwable=true.
+            bone.AddPart(new HandlingPart { Carryable = true, Throwable = true, Weight = 1 });
+            inv.AddObject(bone);
+
+            // Probe east of the throw line so it sees the broadcast.
+            var probe = BuildEventProbeEntity(ctx, 13, 10);
+
+            var throwCmd = new CavesOfOoo.Core.Inventory.Commands.ThrowItemCommand(bone, 11, 10);
+            var result = InventorySystem.ExecuteCommand(throwCmd, thrower, ctx.Zone);
+
+            Assert.IsTrue(result.Success, "Throw should succeed. Error: " + result.ErrorMessage);
+            var spy = probe.GetPart<ItemLandedSpyPart>();
+            Assert.IsTrue(spy.Received,
+                "Probe should receive ItemLanded broadcast from ThrowItemCommand.");
+            Assert.AreSame(bone, spy.LastItem,
+                "Broadcast's Item parameter should point at the thrown bone.");
+            Assert.AreSame(thrower, spy.LastThrower,
+                "Broadcast's Thrower parameter should point at the throw's actor.");
+        }
+
+        [Test]
+        public void PetDog_Blueprint_HasRetrieverAndPetter()
+        {
+            var dog = _harness.Factory.CreateEntity("PetDog");
+            Assert.IsNotNull(dog, "PetDog blueprint should load.");
+            Assert.IsNotNull(dog.GetPart<AIRetrieverPart>(),
+                "PetDog blueprint should have AIRetrieverPart.");
+            Assert.IsNotNull(dog.GetPart<AIPetterPart>(),
+                "PetDog blueprint should also have AIPetterPart (pets get petted too).");
+            var brain = dog.GetPart<BrainPart>();
+            Assert.IsTrue(brain.Passive, "PetDog should be Passive (won't initiate combat).");
+        }
+
         [Test]
         public void VillageChild_Blueprint_HasAIPetter_AndWanderingPassiveBrain()
         {
@@ -650,6 +955,119 @@ namespace CavesOfOoo.Tests
             ctx.Zone.AddEntity(entity, x, y);
             ctx.Turns.AddEntity(entity);
             return entity;
+        }
+
+        /// <summary>
+        /// Builds a minimal creature with AIHoarderPart + InventoryPart +
+        /// StartingCell (required by the hoarder's HasStartingCell gate).
+        /// Tests need tag + chance variance (0, 100) that the real Magpie
+        /// blueprint bakes (Shiny, 15), so build manually.
+        /// </summary>
+        private static Entity BuildHoarderCreature(ScenarioContext ctx, int x, int y, string tag, int chance)
+        {
+            var entity = new Entity { BlueprintName = "TestMagpie" };
+            entity.Tags["Creature"] = "";
+            entity.Tags["Faction"] = "Villagers";
+            entity.Tags["AllowIdleBehavior"] = "";
+            entity.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 6, Max = 6 };
+            entity.AddPart(new BrainPart
+            {
+                CurrentZone = ctx.Zone,
+                Rng = new Random(42),
+                Wanders = true,
+                WandersRandomly = true,
+                Staying = false,
+                Passive = true,
+                StartingCellX = x,
+                StartingCellY = y
+            });
+            entity.AddPart(new InventoryPart { MaxWeight = 20 });
+            entity.AddPart(new AIHoarderPart { TargetTag = tag, Chance = chance });
+            ctx.Zone.AddEntity(entity, x, y);
+            ctx.Turns.AddEntity(entity);
+            return entity;
+        }
+
+        /// <summary>
+        /// Builds a minimal creature with AIRetrieverPart + InventoryPart.
+        /// Tests need to vary AlliesOnly + NoticeRadius independently of
+        /// the PetDog blueprint's baked defaults.
+        /// </summary>
+        private static Entity BuildRetrieverCreature(ScenarioContext ctx, int x, int y,
+            bool alliesOnly, int noticeRadius)
+        {
+            var entity = new Entity { BlueprintName = "TestDog" };
+            entity.Tags["Creature"] = "";
+            entity.Tags["Faction"] = "Villagers";
+            entity.Tags["AllowIdleBehavior"] = "";
+            entity.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 15, Max = 15 };
+            entity.AddPart(new BrainPart
+            {
+                CurrentZone = ctx.Zone,
+                Rng = new Random(42),
+                Wanders = true,
+                WandersRandomly = true,
+                Staying = false,
+                Passive = true,
+                StartingCellX = x,
+                StartingCellY = y
+            });
+            entity.AddPart(new InventoryPart { MaxWeight = 10 });
+            entity.AddPart(new AIRetrieverPart { AlliesOnly = alliesOnly, NoticeRadius = noticeRadius });
+            ctx.Zone.AddEntity(entity, x, y);
+            ctx.Turns.AddEntity(entity);
+            return entity;
+        }
+
+        /// <summary>
+        /// Minimal floor-item entity for use as a fetch target in retriever
+        /// tests. <paramref name="displayName"/> is used for tracing; the
+        /// tests that care about tags set them on the returned entity
+        /// directly.
+        /// </summary>
+        private static Entity BuildFloorItem(ScenarioContext ctx, string displayName)
+        {
+            var item = new Entity { BlueprintName = displayName };
+            item.AddPart(new RenderPart { DisplayName = displayName });
+            item.AddPart(new PhysicsPart { Takeable = true, Weight = 1 });
+            return item;
+        }
+
+        /// <summary>
+        /// Spawns a minimal entity with an ItemLandedSpyPart that records
+        /// whether it received the ItemLanded event. Used for asserting
+        /// the broadcast actually reaches nearby entities.
+        /// </summary>
+        private static Entity BuildEventProbeEntity(ScenarioContext ctx, int x, int y)
+        {
+            var entity = new Entity { BlueprintName = "TestProbe" };
+            entity.Tags["Creature"] = ""; // so Broadcast doesn't skip as non-creature
+            entity.AddPart(new ItemLandedSpyPart());
+            ctx.Zone.AddEntity(entity, x, y);
+            return entity;
+        }
+
+        /// <summary>
+        /// Test-only probe part: listens for ItemLanded events and flips
+        /// Received=true. Lets tests assert broadcast reachability without
+        /// inferring from goal-stack side effects.
+        /// </summary>
+        private class ItemLandedSpyPart : Part
+        {
+            public bool Received;
+            public Entity LastItem;
+            public Entity LastThrower;
+
+            public override bool HandleEvent(GameEvent e)
+            {
+                if (e.ID == ItemLandedEvent.ID)
+                {
+                    Received = true;
+                    LastItem = e.GetParameter<Entity>("Item");
+                    LastThrower = e.GetParameter<Entity>("Thrower");
+                }
+                return true;
+            }
         }
     }
 }
