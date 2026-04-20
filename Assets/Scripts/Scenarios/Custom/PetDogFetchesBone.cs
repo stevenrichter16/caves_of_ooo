@@ -8,18 +8,31 @@ namespace CavesOfOoo.Scenarios.Custom
     /// to the bone, picks it up.
     ///
     /// Expected flow when launched:
-    /// - PetDog spawns 2 cells east of the player.
+    /// - PetDog spawns 2 east, 1 north of the player (diagonal). The
+    ///   diagonal placement keeps the dog adjacent enough that its
+    ///   AIRetriever NoticeRadius=10 sees the broadcast, but OUT of
+    ///   the east throw trajectory so the dagger doesn't hit the dog
+    ///   and the dog doesn't get accidentally damaged by the throw.
     /// - Player inventory contains a Dagger repurposed as throwable
     ///   (the first throwable the builder has at hand — bones aren't
     ///   a blueprint yet; substituting a small dagger).
     /// - Player throws the dagger east (inventory → Throw action →
     ///   direction east). ItemLandedEvent fires on the PetDog.
-    /// - PetDog is on Villagers faction (same as player), so the
-    ///   AlliesOnly=true gate passes.
+    /// - PetDog is on the Villagers faction (the player is on "Player"
+    ///   faction, which FactionManager treats as allied with Villagers),
+    ///   so the AlliesOnly=true gate passes.
     /// - Dog pushes GoFetchGoal(dagger, returnHome: false) — walks to
     ///   the dagger's landing cell, picks it up.
     /// - Look at the PetDog's inventory afterward — it now has the
     ///   dagger.
+    ///
+    /// Note on village NPCs: the starting zone drops the player into
+    /// the village, which has Elders/Villagers with their own
+    /// inventories who WILL also pick up nearby items. In a laggy or
+    /// fair-chance run, a shop NPC may grab the thrown dagger before
+    /// the dog arrives. To see a clean fetch, throw immediately after
+    /// the scenario applies. This is emergent first-come-first-served
+    /// behavior from the item-pickup economy, not an M3.2 bug.
     ///
     /// Good for:
     /// - Verifying the Throw → ItemLanded broadcast → AIRetriever →
@@ -43,13 +56,19 @@ namespace CavesOfOoo.Scenarios.Custom
         public void Apply(ScenarioContext ctx)
         {
             // Clear east row of starting-zone hazards so the throw line
-            // and pathfinding are clean.
+            // and pathfinding are clean. Also clear the dog's cell
+            // (player+2 east, 1 north) so the spawn placement succeeds
+            // even if the starting-zone generator dropped a chest/stone there.
             var p = ctx.Zone.GetEntityPosition(ctx.PlayerEntity);
             for (int dx = 1; dx <= 7; dx++)
                 ctx.World.ClearCell(p.x + dx, p.y);
+            ctx.World.ClearCell(p.x + 2, p.y - 1);
 
-            // Dog between player and the eventual landing cell.
-            ctx.Spawn("PetDog").AtPlayerOffset(2, 0);
+            // Dog offset diagonally (east + north) so it's NOT in the
+            // east throw trajectory — otherwise the thrown dagger hits
+            // the dog and damages it. Still within the AIRetriever's
+            // NoticeRadius of 10, so ItemLanded reaches it.
+            ctx.Spawn("PetDog").AtPlayerOffset(2, -1);
 
             // Equip the player with a throwable. A plain Dagger is light
             // and readily in range; a dedicated Bone blueprint is future
