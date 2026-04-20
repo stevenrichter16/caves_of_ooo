@@ -135,5 +135,9 @@ namespace CavesOfOoo.Editor.Scenarios
         [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Calm then Witness (M2.2 × M2.3)", priority = 214)]
         private static void Launch_CalmThenWitness()
             => ScenarioRunner.Launch<CalmThenWitness>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Village Children Petting (M3.1)", priority = 220)]
+        private static void Launch_VillageChildrenPetting()
+            => ScenarioRunner.Launch<VillageChildrenPetting>();
     }
 }

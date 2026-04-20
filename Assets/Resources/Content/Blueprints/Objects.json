@@ -1450,6 +1450,39 @@
       ]
     },
     {
+      "Name": "VillageChild",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "child" },
+          { "Key": "RenderString", "Value": "c" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "0" }, { "Key": "DV", "Value": "2" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "8" },
+          { "Key": "Wanders", "Value": "true" },
+          { "Key": "WandersRandomly", "Value": "true" },
+          { "Key": "Staying", "Value": "false" },
+          { "Key": "Passive", "Value": "true" }
+        ]},
+        { "Name": "AIPetter", "Params": [{ "Key": "Chance", "Value": "5" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 },
+        { "Name": "Strength", "Value": 6 },
+        { "Name": "Agility", "Value": 12 },
+        { "Name": "Toughness", "Value": 8 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Villagers" },
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
+      ]
+    },
+    {
       "Name": "Tinker",
       "Inherits": "Creature",
       "Parts": [

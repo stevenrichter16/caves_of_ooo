@@ -127,7 +127,18 @@ namespace CavesOfOoo.Core
             {
                 Entity innkeeper = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Innkeeper", settlementId);
                 if (innkeeper != null)
+                {
                     AssignNearestChairOwner(zone, innkeeper);
+                    // Phase 6 M3.1: spawn 1-2 VillageChild near the Innkeeper's
+                    // cell — ambient life. Children wander, have AIPetter so
+                    // they periodically walk up to a nearby villager and
+                    // emit a petting particle. PlaceVillageChildrenNearAnchor
+                    // ring-scans passable interior cells up to radius 5 and
+                    // fails soft if none are available.
+                    PlaceVillageChildrenNearAnchor(
+                        zone, factory, rng, interiorCells, openCells, innkeeper,
+                        settlementId, minCount: 1, maxCount: 2, maxRadius: 5);
+                }
             }
 
             // 2-4 Villagers
@@ -937,6 +948,69 @@ namespace CavesOfOoo.Core
 
             if (nearestChair != null)
                 nearestChair.GetPart<ChairPart>().Owner = owner.ID;
+        }
+
+        /// <summary>
+        /// Phase 6 M3.1: place <paramref name="minCount"/>–<paramref name="maxCount"/>
+        /// VillageChild entities in passable interior cells near
+        /// <paramref name="anchor"/> (typically the Innkeeper). Ring-scans
+        /// outward up to <paramref name="maxRadius"/> for cells that are BOTH
+        /// still in the interior list AND passable. Children are registered as
+        /// NPCs via <see cref="WireNPC"/> so they inherit the settlement's
+        /// faction and settlement id like any other villager.
+        ///
+        /// Fails soft: if no matching cells exist within the radius, fewer
+        /// children spawn (possibly zero). Zero children is not an error.
+        /// </summary>
+        private void PlaceVillageChildrenNearAnchor(
+            Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> interiorCells, List<(int x, int y)> openCells,
+            Entity anchor, string settlementId,
+            int minCount, int maxCount, int maxRadius)
+        {
+            if (zone == null || factory == null || anchor == null) return;
+            if (!factory.Blueprints.ContainsKey("VillageChild")) return;
+
+            var anchorCell = zone.GetEntityCell(anchor);
+            if (anchorCell == null) return;
+
+            // How many to place this pass. rng.Next(min, max+1) is inclusive
+            // on both ends.
+            int targetCount = minCount + rng.Next(maxCount - minCount + 1);
+            if (targetCount <= 0) return;
+
+            // Build a candidate list of interior cells within the radius of
+            // the anchor. Interior cells are already filtered for
+            // passability; we just need the ones close to the anchor.
+            var candidates = new List<(int x, int y)>();
+            for (int i = 0; i < interiorCells.Count; i++)
+            {
+                var (x, y) = interiorCells[i];
+                int dist = AIHelpers.ChebyshevDistance(anchorCell.X, anchorCell.Y, x, y);
+                if (dist > 0 && dist <= maxRadius)
+                    candidates.Add((x, y));
+            }
+
+            // Shuffle candidates to randomize placement order (Fisher-Yates).
+            for (int i = candidates.Count - 1; i > 0; i--)
+            {
+                int j = rng.Next(i + 1);
+                (candidates[i], candidates[j]) = (candidates[j], candidates[i]);
+            }
+
+            int placed = 0;
+            for (int i = 0; i < candidates.Count && placed < targetCount; i++)
+            {
+                var (x, y) = candidates[i];
+
+                Entity child = TryCreateEntity(factory, "VillageChild");
+                if (child == null) return; // blueprint missing — bail for the rest
+                zone.AddEntity(child, x, y);
+                interiorCells.Remove((x, y));
+                openCells.Remove((x, y));
+                WireNPC(child, settlementId);
+                placed++;
+            }
         }
     }
 }

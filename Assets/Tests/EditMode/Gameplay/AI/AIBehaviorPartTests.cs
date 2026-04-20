@@ -253,6 +253,85 @@ namespace CavesOfOoo.Tests
         }
 
         // ========================
+        // Phase 6 M3.1: AIPetterPart
+        // ========================
+
+        [Test]
+        public void AIPetter_PushesPetGoalOnBored_WhenChance100()
+        {
+            // Deterministic positive: chance=100 always pushes. An ally is
+            // present so PetGoal's FindAlly phase has something to find,
+            // but we fire AIBoredEvent directly (not TakeTurn) so the goal
+            // stays on the stack without executing its TakeAction.
+            var ctx = _harness.CreateContext();
+            var child = BuildVillageChildWithPetter(ctx, 10, 10, chance: 100);
+            ctx.Spawn("Villager").NotRegisteredForTurns().At(12, 10); // ally
+
+            AIBoredEvent.Check(child);
+
+            ctx.Verify().Entity(child).HasGoalOnStack<PetGoal>();
+        }
+
+        [Test]
+        public void AIPetter_DoesNotDoublePush_WhenPetGoalAlreadyOnStack()
+        {
+            // Idempotency: HasGoal("PetGoal") gate in AIPetterPart should
+            // prevent stacking even at chance=100. Pre-push a PetGoal,
+            // fire AIBoredEvent, verify GoalCount is unchanged.
+            var ctx = _harness.CreateContext();
+            var child = BuildVillageChildWithPetter(ctx, 10, 10, chance: 100);
+            ctx.Spawn("Villager").NotRegisteredForTurns().At(12, 10);
+
+            var brain = child.GetPart<BrainPart>();
+            brain.PushGoal(new PetGoal());
+            int preCount = brain.GoalCount;
+
+            AIBoredEvent.Check(child);
+
+            Assert.AreEqual(preCount, brain.GoalCount,
+                "AIPetter must not stack a second PetGoal when one is already on the brain.");
+        }
+
+        [Test]
+        public void AIPetter_DoesNotPushAtChanceZero()
+        {
+            // Counter-check (Methodology Template §3.4): chance=0 must NEVER
+            // push PetGoal, even across many bored ticks. Rules out "pushes
+            // regardless of Chance" regression.
+            var ctx = _harness.CreateContext();
+            var child = BuildVillageChildWithPetter(ctx, 10, 10, chance: 0);
+            ctx.Spawn("Villager").NotRegisteredForTurns().At(12, 10);
+
+            ctx.AdvanceTurns(20);
+
+            ctx.Verify().Entity(child).HasNoGoalOnStack<PetGoal>();
+        }
+
+        [Test]
+        public void VillageChild_Blueprint_HasAIPetter_AndWanderingPassiveBrain()
+        {
+            // Blueprint integration: the real VillageChild should load with
+            // AIPetter attached at chance=5, a Passive wandering Brain, and
+            // the Villagers faction tag.
+            var child = _harness.Factory.CreateEntity("VillageChild");
+            Assert.IsNotNull(child, "VillageChild blueprint missing from Objects.json.");
+
+            var petter = child.GetPart<AIPetterPart>();
+            Assert.IsNotNull(petter, "VillageChild should have AIPetterPart attached.");
+            Assert.AreEqual(5, petter.Chance,
+                "VillageChild's AIPetter should have 5% chance per tick.");
+
+            var brain = child.GetPart<BrainPart>();
+            Assert.IsNotNull(brain, "VillageChild should have a BrainPart.");
+            Assert.IsTrue(brain.Passive, "VillageChild should be Passive (don't initiate combat).");
+            Assert.IsTrue(brain.Wanders, "VillageChild should Wander.");
+            Assert.IsTrue(brain.WandersRandomly, "VillageChild should WanderRandomly.");
+
+            Assert.AreEqual("Villagers", child.GetTag("Faction"),
+                "VillageChild should be on the Villagers faction.");
+        }
+
+        // ========================
         // Local helpers (test-specific setups that can't go through ctx.Spawn)
         // ========================
 
@@ -297,6 +376,36 @@ namespace CavesOfOoo.Tests
                 StartingCellY = y
             });
             entity.AddPart(new AIWellVisitorPart { Chance = chance });
+            ctx.Zone.AddEntity(entity, x, y);
+            ctx.Turns.AddEntity(entity);
+            return entity;
+        }
+
+        /// <summary>
+        /// Builds a minimal VillageChild-shaped creature with AIPetter. Can't
+        /// use ctx.Spawn("VillageChild") because the real blueprint bakes
+        /// Chance=5 — we need Chance=0 and Chance=100 to exercise the gate
+        /// deterministically.
+        /// </summary>
+        private static Entity BuildVillageChildWithPetter(ScenarioContext ctx, int x, int y, int chance)
+        {
+            var entity = new Entity { BlueprintName = "TestChild" };
+            entity.Tags["Creature"] = "";
+            entity.Tags["Faction"] = "Villagers";
+            entity.Tags["AllowIdleBehavior"] = "";
+            entity.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 10, Max = 10 };
+            entity.AddPart(new BrainPart
+            {
+                CurrentZone = ctx.Zone,
+                Rng = new Random(42),
+                Wanders = true,
+                WandersRandomly = true,
+                Staying = false,
+                Passive = true,
+                StartingCellX = x,
+                StartingCellY = y
+            });
+            entity.AddPart(new AIPetterPart { Chance = chance });
             ctx.Zone.AddEntity(entity, x, y);
             ctx.Turns.AddEntity(entity);
             return entity;
