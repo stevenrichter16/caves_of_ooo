@@ -183,6 +183,24 @@
       ]
     },
     {
+      "Name": "Shrine",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "shrine" },
+          { "Key": "RenderString", "Value": "_" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "false" }] },
+        { "Name": "Sanctuary", "Params": [] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Furniture", "Value": "" }
+      ]
+    },
+    {
       "Name": "Terrain",
       "Inherits": "PhysicalObject",
       "Parts": [
@@ -1018,6 +1036,7 @@
         ]},
         { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Elder_1" }] },
         { "Name": "GivesRep", "Params": [{ "Key": "Value", "Value": "25" }] },
+        { "Name": "AIFleeToShrine", "Params": [{ "Key": "FleeThreshold", "Value": "0.7" }] },
         { "Name": "AISelfPreservation", "Params": [
           { "Key": "RetreatThreshold", "Value": "0.7" },
           { "Key": "SafeThreshold", "Value": "0.9" }
@@ -3553,6 +3572,7 @@
           { "Key": "Passive", "Value": "true" }
         ]},
         { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Scribe_1" }] },
+        { "Name": "AIFleeToShrine", "Params": [{ "Key": "FleeThreshold", "Value": "0.8" }] },
         { "Name": "AISelfPreservation", "Params": [
           { "Key": "RetreatThreshold", "Value": "0.8" },
           { "Key": "SafeThreshold", "Value": "0.95" }

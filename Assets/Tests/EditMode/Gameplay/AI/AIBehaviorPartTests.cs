@@ -307,6 +307,205 @@ namespace CavesOfOoo.Tests
             ctx.Verify().Entity(child).HasNoGoalOnStack<PetGoal>();
         }
 
+        // ========================
+        // Phase 6 M3.3: AIFleeToShrinePart
+        // ========================
+
+        [Test]
+        public void AIFleeToShrine_PushesFleeLocationGoal_WhenHpLow_AndShrineExists()
+        {
+            // Positive path: HP below threshold + shrine in zone → push
+            // FleeLocationGoal targeting the shrine's cell + consume event.
+            var ctx = _harness.CreateContext();
+            var shrine = ctx.World.PlaceObject("Shrine").At(20, 12);
+            var scribe = BuildFleeToShrineCreature(ctx, 10, 10, fleeThreshold: 0.8f, hpFraction: 0.5f);
+
+            bool consumed = !AIBoredEvent.Check(scribe);
+
+            Assert.IsTrue(consumed,
+                "AIFleeToShrine must consume the AIBoredEvent when it pushes a FleeLocationGoal.");
+            ctx.Verify().Entity(scribe).HasGoalOnStack<FleeLocationGoal>();
+
+            // Verify the goal targets the shrine's cell (not some other arbitrary point).
+            var goal = scribe.GetPart<BrainPart>().FindGoal<FleeLocationGoal>();
+            Assert.IsNotNull(goal);
+            Assert.AreEqual(20, goal.SafeX, "FleeLocationGoal.SafeX should match shrine cell.");
+            Assert.AreEqual(12, goal.SafeY, "FleeLocationGoal.SafeY should match shrine cell.");
+        }
+
+        [Test]
+        public void AIFleeToShrine_DoesNotFire_WhenHpAboveThreshold()
+        {
+            // Counter-check #1 (HP gate): HP above threshold → event passes
+            // through unconsumed, no FleeLocationGoal push.
+            var ctx = _harness.CreateContext();
+            ctx.World.PlaceObject("Shrine").At(20, 12);
+            var scribe = BuildFleeToShrineCreature(ctx, 10, 10, fleeThreshold: 0.5f, hpFraction: 0.9f);
+
+            bool consumed = !AIBoredEvent.Check(scribe);
+
+            Assert.IsFalse(consumed,
+                "AIFleeToShrine must NOT consume the event when HP is above FleeThreshold.");
+            ctx.Verify().Entity(scribe).HasNoGoalOnStack<FleeLocationGoal>();
+        }
+
+        [Test]
+        public void AIFleeToShrine_DoesNotFire_WhenNoShrineInZone()
+        {
+            // Counter-check #2 (graceful fallback): HP below threshold BUT
+            // no shrine in zone → event passes through unconsumed so
+            // AISelfPreservation (if present) can fall back to home retreat.
+            var ctx = _harness.CreateContext();
+            var scribe = BuildFleeToShrineCreature(ctx, 10, 10, fleeThreshold: 0.8f, hpFraction: 0.5f);
+
+            bool consumed = !AIBoredEvent.Check(scribe);
+
+            Assert.IsFalse(consumed,
+                "AIFleeToShrine must NOT consume the event when no shrine is available — " +
+                "allows AISelfPreservation fallback to fire.");
+            ctx.Verify().Entity(scribe).HasNoGoalOnStack<FleeLocationGoal>();
+        }
+
+        [Test]
+        public void AIFleeToShrine_DoesNotDoublePush_WhenFleeLocationGoalAlreadyOnStack()
+        {
+            // Idempotency: pre-push a FleeLocationGoal, verify second
+            // trigger is a no-op (doesn't stack a second goal).
+            var ctx = _harness.CreateContext();
+            ctx.World.PlaceObject("Shrine").At(20, 12);
+            var scribe = BuildFleeToShrineCreature(ctx, 10, 10, fleeThreshold: 0.8f, hpFraction: 0.5f);
+
+            var brain = scribe.GetPart<BrainPart>();
+            brain.PushGoal(new FleeLocationGoal(5, 5, 10)); // pre-existing goal, different target
+            int countBefore = brain.GoalCount;
+
+            AIBoredEvent.Check(scribe);
+
+            Assert.AreEqual(countBefore, brain.GoalCount,
+                "AIFleeToShrine must not stack a second FleeLocationGoal when one exists.");
+            var goal = brain.FindGoal<FleeLocationGoal>();
+            Assert.AreEqual(5, goal.SafeX,
+                "Existing FleeLocationGoal target must be preserved (not overwritten by shrine scan).");
+        }
+
+        [Test]
+        public void AIFleeToShrine_FindsNearestShrine_WhenMultiplePresent()
+        {
+            // Counter-check: with two shrines at different distances, the
+            // part should target the NEAREST one. Pins the "nearest"
+            // selection logic in FindNearestSanctuary.
+            var ctx = _harness.CreateContext();
+            ctx.World.PlaceObject("Shrine").At(30, 30); // distance 20 (Chebyshev)
+            ctx.World.PlaceObject("Shrine").At(12, 11); // distance 2 (nearest)
+            var scribe = BuildFleeToShrineCreature(ctx, 10, 10, fleeThreshold: 0.8f, hpFraction: 0.5f);
+
+            AIBoredEvent.Check(scribe);
+
+            var goal = scribe.GetPart<BrainPart>().FindGoal<FleeLocationGoal>();
+            Assert.IsNotNull(goal);
+            Assert.AreEqual(12, goal.SafeX, "Should target the nearer shrine.");
+            Assert.AreEqual(11, goal.SafeY, "Should target the nearer shrine.");
+        }
+
+        [Test]
+        public void AIFleeToShrine_PriorityOverAISelfPreservation_ViaEventConsumption()
+        {
+            // Integration: when both parts are attached AND AIFleeToShrine
+            // fires, it must consume the event before AISelfPreservation
+            // runs. Blueprint order decides (AIFleeToShrine added FIRST).
+            // Entity.FireEvent stops propagation on Handled=true.
+            var ctx = _harness.CreateContext();
+            ctx.World.PlaceObject("Shrine").At(20, 12);
+
+            var entity = new Entity { BlueprintName = "TestDualPart" };
+            entity.Tags["Creature"] = "";
+            entity.Tags["Faction"] = "Villagers";
+            entity.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 5, Max = 20 }; // 25%
+            entity.AddPart(new BrainPart
+            {
+                CurrentZone = ctx.Zone,
+                Rng = new Random(42),
+                StartingCellX = 10, StartingCellY = 10,
+                Passive = true
+            });
+            // AIFleeToShrine FIRST (per M3.3 priority note).
+            entity.AddPart(new AIFleeToShrinePart { FleeThreshold = 0.5f });
+            // AISelfPreservation SECOND.
+            entity.AddPart(new AISelfPreservationPart { RetreatThreshold = 0.5f });
+            ctx.Zone.AddEntity(entity, 10, 10);
+            ctx.Turns.AddEntity(entity);
+
+            AIBoredEvent.Check(entity);
+
+            ctx.Verify().Entity(entity).HasGoalOnStack<FleeLocationGoal>();
+            ctx.Verify().Entity(entity).HasNoGoalOnStack<RetreatGoal>();
+            // ^ AISelfPreservation would have pushed RetreatGoal if it ran;
+            // its absence proves AIFleeToShrine consumed the event first.
+        }
+
+        [Test]
+        public void Scribe_Blueprint_HasAIFleeToShrine_BeforeAISelfPreservation()
+        {
+            // Blueprint integration: real Scribe should load with both
+            // parts attached in the right order. Part-insertion order is
+            // preserved by BlueprintLoader.Bake (M1 ⚪ architectural note
+            // #14 dependency), so "FIRST" in JSON → first in Parts list
+            // → first to receive the bored event.
+            var scribe = _harness.Factory.CreateEntity("Scribe");
+            Assert.IsNotNull(scribe);
+            Assert.IsNotNull(scribe.GetPart<AIFleeToShrinePart>(),
+                "Scribe blueprint should have AIFleeToShrinePart attached.");
+            Assert.IsNotNull(scribe.GetPart<AISelfPreservationPart>(),
+                "Scribe blueprint should retain AISelfPreservationPart as fallback.");
+
+            // Find indices in the Parts list to verify ordering.
+            int fleeIdx = -1, selfPresIdx = -1;
+            for (int i = 0; i < scribe.Parts.Count; i++)
+            {
+                if (scribe.Parts[i] is AIFleeToShrinePart) fleeIdx = i;
+                else if (scribe.Parts[i] is AISelfPreservationPart) selfPresIdx = i;
+            }
+            Assert.Greater(fleeIdx, -1, "AIFleeToShrine should be in Parts list.");
+            Assert.Greater(selfPresIdx, -1, "AISelfPreservation should be in Parts list.");
+            Assert.Less(fleeIdx, selfPresIdx,
+                "AIFleeToShrine MUST come BEFORE AISelfPreservation in the Parts " +
+                "list so event dispatch order gives shrine-fleeing priority.");
+        }
+
+        [Test]
+        public void Elder_Blueprint_HasAIFleeToShrine_BeforeAISelfPreservation()
+        {
+            var elder = _harness.Factory.CreateEntity("Elder");
+            Assert.IsNotNull(elder);
+            Assert.IsNotNull(elder.GetPart<AIFleeToShrinePart>(),
+                "Elder blueprint should have AIFleeToShrinePart attached.");
+            Assert.IsNotNull(elder.GetPart<AISelfPreservationPart>(),
+                "Elder blueprint should retain AISelfPreservationPart as fallback.");
+
+            int fleeIdx = -1, selfPresIdx = -1;
+            for (int i = 0; i < elder.Parts.Count; i++)
+            {
+                if (elder.Parts[i] is AIFleeToShrinePart) fleeIdx = i;
+                else if (elder.Parts[i] is AISelfPreservationPart) selfPresIdx = i;
+            }
+            Assert.Less(fleeIdx, selfPresIdx,
+                "AIFleeToShrine must precede AISelfPreservation in Elder's Parts list.");
+        }
+
+        [Test]
+        public void Shrine_Blueprint_Loads_WithSanctuaryPart()
+        {
+            // Blueprint round-trip: Shrine blueprint should produce an
+            // entity with SanctuaryPart (the marker AIFleeToShrine scans
+            // for) and Furniture tag (so NPC placement skips it).
+            var shrine = _harness.Factory.CreateEntity("Shrine");
+            Assert.IsNotNull(shrine, "Shrine blueprint should load.");
+            Assert.IsNotNull(shrine.GetPart<SanctuaryPart>(),
+                "Shrine should carry SanctuaryPart — AIFleeToShrine scans for this.");
+            Assert.IsTrue(shrine.HasTag("Furniture"),
+                "Shrine should have Furniture tag so GatherInteriorCells excludes it.");
+        }
+
         [Test]
         public void VillageChild_Blueprint_HasAIPetter_AndWanderingPassiveBrain()
         {
@@ -406,6 +605,48 @@ namespace CavesOfOoo.Tests
                 StartingCellY = y
             });
             entity.AddPart(new AIPetterPart { Chance = chance });
+            ctx.Zone.AddEntity(entity, x, y);
+            ctx.Turns.AddEntity(entity);
+            return entity;
+        }
+
+        /// <summary>
+        /// Builds a minimal Scribe-shaped creature with AIFleeToShrine. Can't
+        /// use ctx.Spawn("Scribe") — the real blueprint bakes FleeThreshold
+        /// (0.8) AND pairs with AISelfPreservation, both of which this test
+        /// fixture needs to vary independently (chance=0.5/0.9, HP-ratio
+        /// 0.5/0.9, with/without companion AISelfPreservation).
+        ///
+        /// HP setup: Max stays at 20 (Creature default) so hpFraction of
+        /// Max produces an integer >= 1. BaseValue gets set from fraction
+        /// so ShouldFlee and the part's own HP gate see consistent
+        /// fractional values.
+        /// </summary>
+        private static Entity BuildFleeToShrineCreature(ScenarioContext ctx, int x, int y,
+            float fleeThreshold, float hpFraction)
+        {
+            var entity = new Entity { BlueprintName = "TestScribe" };
+            entity.Tags["Creature"] = "";
+            entity.Tags["Faction"] = "Villagers";
+            entity.Tags["AllowIdleBehavior"] = "";
+            entity.Statistics["Hitpoints"] = new Stat
+            {
+                Name = "Hitpoints",
+                Max = 20,
+                BaseValue = UnityEngine.Mathf.Max(1, UnityEngine.Mathf.RoundToInt(20 * hpFraction))
+            };
+            entity.AddPart(new BrainPart
+            {
+                CurrentZone = ctx.Zone,
+                Rng = new Random(42),
+                Wanders = false,
+                WandersRandomly = false,
+                Staying = true,
+                Passive = true,
+                StartingCellX = x,
+                StartingCellY = y
+            });
+            entity.AddPart(new AIFleeToShrinePart { FleeThreshold = fleeThreshold });
             ctx.Zone.AddEntity(entity, x, y);
             ctx.Turns.AddEntity(entity);
             return entity;

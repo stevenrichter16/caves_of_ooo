@@ -87,6 +87,14 @@ namespace CavesOfOoo.Core
             // Done after all decor so occupied cells are already excluded.
             var interiorCells = GatherInteriorCells(zone);
 
+            // Phase 6 M3.3: place ONE Shrine in an interior cell BEFORE any
+            // NPCs spawn, so wounded Scribe/Elder (both carrying the
+            // AIFleeToShrine part) have a sanctuary to target. If the
+            // blueprint is missing or no interior cells are available the
+            // call is a fail-soft no-op and the NPCs will fall through to
+            // AISelfPreservationPart (home-retreat) as before.
+            PlaceShrine(zone, factory, rng, interiorCells, openCells);
+
             // Deterministic NPC roles — prefer interior (building) cells.
             Entity elder = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Elder", settlementId);
             if (mainWell != null)
@@ -948,6 +956,32 @@ namespace CavesOfOoo.Core
 
             if (nearestChair != null)
                 nearestChair.GetPart<ChairPart>().Owner = owner.ID;
+        }
+
+        /// <summary>
+        /// Phase 6 M3.3: place a single Shrine in a random interior cell.
+        /// Called from <see cref="BuildZone"/> before NPC placement so the
+        /// shrine claims a cell that no NPC will overlap. Fail-soft:
+        /// returns a no-op when the Shrine blueprint is missing or no
+        /// interior cells are available (the AIFleeToShrine part will
+        /// degrade gracefully to AISelfPreservation fallback in that case).
+        /// </summary>
+        private void PlaceShrine(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> interiorCells, List<(int x, int y)> openCells)
+        {
+            if (zone == null || factory == null) return;
+            if (!factory.Blueprints.ContainsKey("Shrine")) return;
+            if (interiorCells == null || interiorCells.Count == 0) return;
+
+            int idx = rng.Next(interiorCells.Count);
+            var (x, y) = interiorCells[idx];
+
+            Entity shrine = TryCreateEntity(factory, "Shrine");
+            if (shrine == null) return;
+
+            zone.AddEntity(shrine, x, y);
+            interiorCells.RemoveAt(idx);
+            openCells.Remove((x, y));
         }
 
         /// <summary>

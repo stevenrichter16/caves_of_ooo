@@ -139,5 +139,9 @@ namespace CavesOfOoo.Editor.Scenarios
         [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Village Children Petting (M3.1)", priority = 220)]
         private static void Launch_VillageChildrenPetting()
             => ScenarioRunner.Launch<VillageChildrenPetting>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Wounded Scribe Flees to Shrine (M3.3)", priority = 221)]
+        private static void Launch_WoundedScribeFleesToShrine()
+            => ScenarioRunner.Launch<WoundedScribeFleesToShrine>();
     }
 }
