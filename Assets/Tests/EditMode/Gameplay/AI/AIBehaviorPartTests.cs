@@ -604,6 +604,67 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void AIHoarder_DoesNotFire_WithoutStartingCell()
+        {
+            // Gate pin: HasStartingCell is required because GoFetchGoal
+            // with returnHome=true walks back to StartingCell. Without one,
+            // the return leg silently no-ops and "fetch" becomes "walk
+            // one way." The part bails rather than push a half-baked goal.
+            var ctx = _harness.CreateContext();
+            ctx.World.PlaceObject("GoldCoin").At(12, 10);
+
+            // Build a hoarder without StartingCell deliberately — ctx.Spawn
+            // auto-sets it, so construct manually.
+            var entity = new Entity { BlueprintName = "TestHoarderNoHome" };
+            entity.Tags["Creature"] = "";
+            entity.Tags["Faction"] = "Villagers";
+            entity.Tags["AllowIdleBehavior"] = "";
+            entity.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 6, Max = 6 };
+            entity.AddPart(new BrainPart { CurrentZone = ctx.Zone, Rng = new Random(42) });
+            // StartingCell deliberately NOT set.
+            entity.AddPart(new InventoryPart { MaxWeight = 20 });
+            entity.AddPart(new AIHoarderPart { TargetTag = "Shiny", Chance = 100 });
+            ctx.Zone.AddEntity(entity, 10, 10);
+
+            bool consumed = !AIBoredEvent.Check(entity);
+
+            Assert.IsFalse(consumed,
+                "AIHoarder must not consume the event when StartingCell is missing.");
+            ctx.Verify().Entity(entity).HasNoGoalOnStack<GoFetchGoal>();
+        }
+
+        [Test]
+        public void AIHoarder_DoesNotFire_WithoutInventory()
+        {
+            // Gate pin: no InventoryPart → GoFetchGoal's Pickup phase
+            // would fail with no stow destination. AIHoarder skips the
+            // scan entirely rather than walk to an item it can't carry.
+            var ctx = _harness.CreateContext();
+            ctx.World.PlaceObject("GoldCoin").At(12, 10);
+
+            var entity = new Entity { BlueprintName = "TestHoarderNoInv" };
+            entity.Tags["Creature"] = "";
+            entity.Tags["Faction"] = "Villagers";
+            entity.Tags["AllowIdleBehavior"] = "";
+            entity.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 6, Max = 6 };
+            entity.AddPart(new BrainPart
+            {
+                CurrentZone = ctx.Zone,
+                Rng = new Random(42),
+                StartingCellX = 10, StartingCellY = 10
+            });
+            // InventoryPart deliberately NOT added.
+            entity.AddPart(new AIHoarderPart { TargetTag = "Shiny", Chance = 100 });
+            ctx.Zone.AddEntity(entity, 10, 10);
+
+            bool consumed = !AIBoredEvent.Check(entity);
+
+            Assert.IsFalse(consumed,
+                "AIHoarder must not consume the event when InventoryPart is missing.");
+            ctx.Verify().Entity(entity).HasNoGoalOnStack<GoFetchGoal>();
+        }
+
+        [Test]
         public void Magpie_Blueprint_HasAIHoarder_AndInventory()
         {
             var magpie = _harness.Factory.CreateEntity("Magpie");
@@ -833,6 +894,91 @@ namespace CavesOfOoo.Tests
 
             Assert.AreEqual("Villagers", child.GetTag("Faction"),
                 "VillageChild should be on the Villagers faction.");
+        }
+
+        // ========================
+        // Phase 6 M3.2: additional gate + consumed-on-impact pins
+        // ========================
+
+        [Test]
+        public void AIRetriever_DoesNotFire_WithoutInventory()
+        {
+            // Gate pin: no InventoryPart → GoFetchGoal's Pickup phase can't
+            // stow the fetched item. AIRetriever bails rather than push a
+            // doomed goal. Mirrors the Hoarder-no-inventory case but on
+            // the reactive event-driven branch.
+            var ctx = _harness.CreateContext();
+
+            var dog = new Entity { BlueprintName = "TestDogNoInv" };
+            dog.Tags["Creature"] = "";
+            dog.Tags["Faction"] = "Villagers";
+            dog.Tags["AllowIdleBehavior"] = "";
+            dog.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 15, Max = 15 };
+            dog.AddPart(new BrainPart
+            {
+                CurrentZone = ctx.Zone,
+                Rng = new Random(42),
+                StartingCellX = 10, StartingCellY = 10
+            });
+            // InventoryPart deliberately NOT added.
+            dog.AddPart(new AIRetrieverPart { AlliesOnly = false, NoticeRadius = 20 });
+            ctx.Zone.AddEntity(dog, 10, 10);
+
+            var item = BuildFloorItem(ctx, "Bone");
+            ctx.Zone.AddEntity(item, 12, 10);
+            var landingCell = ctx.Zone.GetCell(12, 10);
+
+            var e = GameEvent.New(ItemLandedEvent.ID);
+            e.SetParameter("Item", (object)item);
+            e.SetParameter("Thrower", (object)null);
+            e.SetParameter("LandingCell", (object)landingCell);
+            dog.FireEvent(e);
+            e.Release();
+
+            ctx.Verify().Entity(dog).HasNoGoalOnStack<GoFetchGoal>();
+        }
+
+        [Test]
+        public void ThrowItemCommand_DoesNotBroadcast_WhenConsumedOnImpact()
+        {
+            // Counter-check for the !consumedOnImpact guard around
+            // ItemLandedEvent.Broadcast: a tonic thrown at a hit target
+            // gets TryApplyThrownTonic → consumedOnImpact=true → the item
+            // is NOT added to the zone and the event is NOT fired.
+            // Regression guard: a future refactor that moves the Broadcast
+            // call outside the !consumedOnImpact branch would break here.
+            var ctx = _harness.CreateContext();
+            var thrower = ctx.Spawn("Villager").NotRegisteredForTurns().At(10, 10);
+            var inv = thrower.GetPart<InventoryPart>();
+            if (inv == null)
+            {
+                inv = new InventoryPart { MaxWeight = 50 };
+                thrower.AddPart(inv);
+            }
+
+            // Hit target directly in the throw trajectory.
+            var victim = ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(11, 10);
+
+            // Tonic with a throwable payload (Healing set → HasThrowablePayload true).
+            var tonic = new Entity { BlueprintName = "TestTonic" };
+            tonic.AddPart(new RenderPart { DisplayName = "test tonic" });
+            tonic.AddPart(new PhysicsPart { Takeable = true, Weight = 1 });
+            tonic.AddPart(new HandlingPart { Carryable = true, Throwable = true, Weight = 1 });
+            tonic.AddPart(new TonicPart { Healing = "1d1" });
+            inv.AddObject(tonic);
+
+            // Probe on the far side of the victim. If the broadcast leaked,
+            // the probe would flip Received=true.
+            var probe = BuildEventProbeEntity(ctx, 13, 10);
+
+            var throwCmd = new CavesOfOoo.Core.Inventory.Commands.ThrowItemCommand(tonic, 11, 10);
+            var result = InventorySystem.ExecuteCommand(throwCmd, thrower, ctx.Zone);
+
+            Assert.IsTrue(result.Success, "Throw should succeed. Error: " + result.ErrorMessage);
+            var spy = probe.GetPart<ItemLandedSpyPart>();
+            Assert.IsFalse(spy.Received,
+                "Tonic consumed on impact must NOT broadcast ItemLanded — " +
+                "there's no landed item to fetch.");
         }
 
         // ========================

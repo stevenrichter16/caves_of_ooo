@@ -67,7 +67,7 @@ namespace CavesOfOoo.Tests.Scenarios
         }
 
         // ======================================================
-        // New — M1 scenarios (Cornered Warden, Ignored Scribe, Sleeping Troll)
+        // M1 scenarios (Cornered Warden, Ignored Scribe, Sleeping Troll)
         // ======================================================
 
         [Test] public void CorneredWarden_Applies_WithoutThrowing() =>
@@ -78,5 +78,81 @@ namespace CavesOfOoo.Tests.Scenarios
 
         [Test] public void SleepingTroll_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new SleepingTroll().Apply(FreshContext()));
+
+        // ======================================================
+        // M2.2 scenarios (Calm-based)
+        // ======================================================
+
+        [Test]
+        public void PacifiedWarden_Applies_WithoutThrowing()
+        {
+            // Like CalmTestSetup, references CalmMutation / Calm effect and
+            // may log soft-fail warnings during setup; ignore them so we can
+            // focus on the "no exception" signal.
+            UnityEngine.TestTools.LogAssert.ignoreFailingMessages = true;
+            try
+            {
+                Assert.DoesNotThrow(() => new PacifiedWarden().Apply(FreshContext()));
+            }
+            finally
+            {
+                UnityEngine.TestTools.LogAssert.ignoreFailingMessages = false;
+            }
+        }
+
+        // ======================================================
+        // M2.3 scenarios (Witness pipeline)
+        // ======================================================
+
+        [Test] public void ScribeWitnessesSnapjawKill_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new ScribeWitnessesSnapjawKill().Apply(FreshContext()));
+
+        [Test] public void WitnessLineOfSightWall_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new WitnessLineOfSightWall().Apply(FreshContext()));
+
+        [Test] public void WitnessRadiusBoundary_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new WitnessRadiusBoundary().Apply(FreshContext()));
+
+        [Test] public void WitnessStacksOnSecondDeath_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new WitnessStacksOnSecondDeath().Apply(FreshContext()));
+
+        [Test]
+        public void CalmThenWitness_Applies_WithoutThrowing()
+        {
+            // Combines Calm + Witness paths; Calm setup may log soft-fail warnings.
+            UnityEngine.TestTools.LogAssert.ignoreFailingMessages = true;
+            try
+            {
+                Assert.DoesNotThrow(() => new CalmThenWitness().Apply(FreshContext()));
+            }
+            finally
+            {
+                UnityEngine.TestTools.LogAssert.ignoreFailingMessages = false;
+            }
+        }
+
+        // ======================================================
+        // M3.1 scenario (AIPetter)
+        // ======================================================
+
+        [Test] public void VillageChildrenPetting_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new VillageChildrenPetting().Apply(FreshContext()));
+
+        // ======================================================
+        // M3.2 scenarios (AIHoarder + AIRetriever)
+        // ======================================================
+
+        [Test] public void MagpieFetchesGold_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new MagpieFetchesGold().Apply(FreshContext()));
+
+        [Test] public void PetDogFetchesBone_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new PetDogFetchesBone().Apply(FreshContext()));
+
+        // ======================================================
+        // M3.3 scenario (AIFleeToShrine)
+        // ======================================================
+
+        [Test] public void WoundedScribeFleesToShrine_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new WoundedScribeFleesToShrine().Apply(FreshContext()));
     }
 }

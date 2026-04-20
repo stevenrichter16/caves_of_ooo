@@ -202,14 +202,19 @@ namespace CavesOfOoo.Core.Inventory.Commands
             {
                 // M3.2: broadcast ItemLanded to every creature in the zone
                 // so AIRetrieverPart wearers (pet dogs, fetch companions)
-                // can push GoFetchGoal. Fires AFTER AddEntity succeeds (so
-                // the item is truly on the ground and GoFetchGoal's
-                // zone.GetEntityCell lookup will succeed) and BEFORE
-                // transaction.Do so a rolled-back throw doesn't leave a
-                // ghost fetch-goal pointing at a now-absent item.
-                // Consumed-on-impact items (thrown tonic applied directly)
-                // are correctly excluded by the outer if — there's no
-                // landed item to fetch.
+                // can push GoFetchGoal.
+                //
+                // Fired AFTER AddEntity succeeds so the item is already on
+                // the ground and GoFetchGoal's zone.GetEntityCell lookup
+                // will succeed. Consumed-on-impact items (thrown tonic
+                // applied directly) are excluded by the outer if — there's
+                // no landed item to fetch.
+                //
+                // Rollback safety: if the throw's outer transaction is
+                // ever rolled back, the undo below removes itemToThrow
+                // from the zone. Any GoFetchGoal pushed by this broadcast
+                // will then see a null cell lookup and self-pop — see
+                // GoFetchGoal.TakeAction's itemCell == null guards.
                 ItemLandedEvent.Broadcast(zone, actor, itemToThrow, landingCell);
 
                 transaction.Do(
