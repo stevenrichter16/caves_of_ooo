@@ -331,6 +331,21 @@ namespace CavesOfOoo.Tests
             Assert.IsNotNull(goal);
             Assert.AreEqual(20, goal.SafeX, "FleeLocationGoal.SafeX should match shrine cell.");
             Assert.AreEqual(12, goal.SafeY, "FleeLocationGoal.SafeY should match shrine cell.");
+
+            // Regression pin (polish-pass bug): the pushed goal must NOT be
+            // finished on the very next Finished() check. AIFleeToShrine's
+            // FleeThreshold (0.8) is much higher than BrainPart.FleeThreshold
+            // (0.25), so at 50% HP the scribe IS "AIFleeToShrine-wounded"
+            // but NOT "BrainPart.ShouldFlee-wounded." If the goal were pushed
+            // with endWhenNotFleeing=true, Finished() would immediately return
+            // true and the scribe would never actually move. Shrine-seeking
+            // semantic = "make the pilgrimage," not "stop at first relief."
+            Assert.IsFalse(goal.EndWhenNotFleeing,
+                "AIFleeToShrine must push with endWhenNotFleeing=false so the goal " +
+                "survives BrainPart.ShouldFlee() (which uses a stricter threshold).");
+            Assert.IsFalse(goal.Finished(),
+                "FleeLocationGoal must NOT be finished immediately after push — " +
+                "otherwise the next HandleTakeTurn pops it before any movement.");
         }
 
         [Test]

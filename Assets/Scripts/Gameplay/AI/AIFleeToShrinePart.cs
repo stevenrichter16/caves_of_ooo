@@ -103,7 +103,16 @@ namespace CavesOfOoo.Core
             if (shrineCell == null)
                 return true;
 
-            brain.PushGoal(new FleeLocationGoal(shrineCell.X, shrineCell.Y, MaxTurns));
+            // endWhenNotFleeing: false — critical. By default, FleeLocationGoal
+            // finishes as soon as HP is back above BrainPart.FleeThreshold (0.25).
+            // AIFleeToShrinePart's FleeThreshold (0.8 on Scribe/Elder) is much
+            // higher than BrainPart's, so with endWhenNotFleeing=true the goal
+            // would pop immediately — the NPC is wounded by AIFleeToShrine's
+            // standards but NOT by BrainPart.ShouldFlee()'s standards. Semantic:
+            // shrine-seeking means "make the pilgrimage to sanctuary," not
+            // "abort the moment you feel a little better." Let it run to
+            // MaxTurns or until the shrine cell is reached.
+            brain.PushGoal(new FleeLocationGoal(shrineCell.X, shrineCell.Y, MaxTurns, endWhenNotFleeing: false));
             return false; // consumed — suppress AISelfPreservation's fallback
         }
 

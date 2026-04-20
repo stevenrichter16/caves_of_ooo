@@ -23,6 +23,26 @@
       ]
     },
     {
+      "Name": "Bone",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "bone" },
+          { "Key": "RenderString", "Value": "," },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Handling", "Params": [
+          { "Key": "Carryable", "Value": "true" },
+          { "Key": "Throwable", "Value": "true" },
+          { "Key": "Weight", "Value": "1" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "GoldCoin",
       "Inherits": "Item",
       "Parts": [

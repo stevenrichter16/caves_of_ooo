@@ -11,25 +11,25 @@ namespace CavesOfOoo.Scenarios.Custom
     /// - PetDog spawns 2 east, 1 north of the player (diagonal). The
     ///   diagonal placement keeps the dog adjacent enough that its
     ///   AIRetriever NoticeRadius=10 sees the broadcast, but OUT of
-    ///   the east throw trajectory so the dagger doesn't hit the dog
+    ///   the east throw trajectory so the bone doesn't hit the dog
     ///   and the dog doesn't get accidentally damaged by the throw.
-    /// - Player inventory contains a Dagger repurposed as throwable
-    ///   (the first throwable the builder has at hand — bones aren't
-    ///   a blueprint yet; substituting a small dagger).
-    /// - Player throws the dagger east (inventory → Throw action →
+    /// - Player inventory contains a Bone (lightweight throwable, newly
+    ///   blueprinted — was substituted with Dagger in earlier iterations
+    ///   before the Bone blueprint existed).
+    /// - Player throws the bone east (inventory → Throw action →
     ///   direction east). ItemLandedEvent fires on the PetDog.
     /// - PetDog is on the Villagers faction (the player is on "Player"
     ///   faction, which FactionManager treats as allied with Villagers),
     ///   so the AlliesOnly=true gate passes.
-    /// - Dog pushes GoFetchGoal(dagger, returnHome: false) — walks to
-    ///   the dagger's landing cell, picks it up.
+    /// - Dog pushes GoFetchGoal(bone, returnHome: false) — walks to
+    ///   the bone's landing cell, picks it up.
     /// - Look at the PetDog's inventory afterward — it now has the
-    ///   dagger.
+    ///   bone.
     ///
     /// Note on village NPCs: the starting zone drops the player into
     /// the village, which has Elders/Villagers with their own
     /// inventories who WILL also pick up nearby items. In a laggy or
-    /// fair-chance run, a shop NPC may grab the thrown dagger before
+    /// fair-chance run, a shop NPC may grab the thrown bone before
     /// the dog arrives. To see a clean fetch, throw immediately after
     /// the scenario applies. This is emergent first-come-first-served
     /// behavior from the item-pickup economy, not an M3.2 bug.
@@ -65,17 +65,16 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.World.ClearCell(p.x + 2, p.y - 1);
 
             // Dog offset diagonally (east + north) so it's NOT in the
-            // east throw trajectory — otherwise the thrown dagger hits
+            // east throw trajectory — otherwise the thrown bone hits
             // the dog and damages it. Still within the AIRetriever's
             // NoticeRadius of 10, so ItemLanded reaches it.
             ctx.Spawn("PetDog").AtPlayerOffset(2, -1);
 
-            // Equip the player with a throwable. A plain Dagger is light
-            // and readily in range; a dedicated Bone blueprint is future
-            // content but not required for this scenario.
-            ctx.Player.GiveItem("Dagger", 1);
+            // Equip the player with a throwable Bone (weight 1, takeable,
+            // Handling with Throwable=true — see Objects.json Bone blueprint).
+            ctx.Player.GiveItem("Bone", 1);
 
-            ctx.Log("Open inventory ('i'), pick the dagger, action menu Throw ('t'), aim east. Dog fetches it.");
+            ctx.Log("Open inventory ('i'), pick the bone, action menu Throw ('t'), aim east. Dog fetches it.");
         }
     }
 }

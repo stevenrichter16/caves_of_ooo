@@ -25,13 +25,13 @@ namespace CavesOfOoo.Core
     ///   (ItemLanded) broadcasts, which happens at most once per throw.
     ///   Push happens when the event fires, not on a bored tick.
     ///
-    /// On successful push, the event is consumed (<c>e.Handled = true</c>,
-    /// <c>return false</c>) so the wearer only reacts to ONE
-    /// thrown-item-this-tick even if multiple pets receive the event
-    /// — actually, each pet receives its own event, so the per-pet
-    /// consumption is about stopping other parts on the SAME entity
-    /// from also reacting to the same event (e.g. a combined
-    /// Retriever+Hoarder shouldn't double-dip).
+    /// Event consumption (<c>e.Handled = true</c>, <c>return false</c>
+    /// on success) stops other parts on the SAME entity from also
+    /// reacting to this event — e.g. a creature carrying both
+    /// AIRetriever and AIHoarder shouldn't double-dip on the same
+    /// thrown item. Each entity receives its own GameEvent instance,
+    /// so consumption is scoped to this entity's Parts list, not
+    /// across the broadcast.
     ///
     /// Blueprint attachment:
     ///   { "Name": "AIRetriever", "Params": [
