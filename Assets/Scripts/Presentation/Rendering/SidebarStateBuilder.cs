@@ -15,7 +15,8 @@ namespace CavesOfOoo.Rendering
             Entity player,
             Zone zone,
             LookSnapshot currentLookSnapshot,
-            int maxRecentMessages = SidebarLogMessageLimit)
+            int maxRecentMessages = SidebarLogMessageLimit,
+            bool showThoughts = false)
         {
             var inventoryState = InventoryScreenData.Build(player);
 
@@ -35,7 +36,41 @@ namespace CavesOfOoo.Rendering
             LookSnapshot focusSnapshot = currentLookSnapshot ?? BuildFallbackFocus(player, zone);
             IReadOnlyList<SidebarLogEntry> logEntries = BuildRecentLogEntries(maxRecentMessages);
 
-            return new SidebarSnapshot(vitalLines, statusText, focusSnapshot, logEntries);
+            // Phase 10 — when the 't' toggle is on, collect every Creature's
+            // current LastThought so the sidebar renderer can swap LOG for
+            // THOUGHTS. Null entries list = log mode (the default); non-null =
+            // thought mode (even if empty — the renderer needs to know the
+            // user asked for thoughts even if the zone has none).
+            IReadOnlyList<SidebarThoughtEntry> thoughtEntries =
+                showThoughts ? BuildThoughtEntries(zone) : null;
+
+            return new SidebarSnapshot(
+                vitalLines, statusText, focusSnapshot, logEntries, thoughtEntries);
+        }
+
+        /// <summary>
+        /// Gather one <see cref="SidebarThoughtEntry"/> per Creature-tagged
+        /// entity with a <see cref="BrainPart"/>, sorted alphabetically by
+        /// display name so the panel doesn't jitter as entities tick in
+        /// different orders between turns.
+        /// </summary>
+        private static IReadOnlyList<SidebarThoughtEntry> BuildThoughtEntries(Zone zone)
+        {
+            var result = new List<SidebarThoughtEntry>();
+            if (zone == null) return result;
+
+            foreach (var entity in zone.GetReadOnlyEntities())
+            {
+                if (entity == null) continue;
+                if (!entity.HasTag("Creature")) continue;
+                var brain = entity.GetPart<BrainPart>();
+                if (brain == null) continue;
+
+                string name = entity.GetDisplayName() ?? entity.BlueprintName ?? "?";
+                result.Add(new SidebarThoughtEntry(name, brain.LastThought ?? string.Empty));
+            }
+            result.Sort((a, b) => string.CompareOrdinal(a.Name, b.Name));
+            return result;
         }
 
         private static string FindStat(InventoryScreenData.ScreenState state, string label, string fallback)

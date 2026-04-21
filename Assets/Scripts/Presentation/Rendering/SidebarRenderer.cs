@@ -160,18 +160,48 @@ namespace CavesOfOoo.Rendering
             if (y >= bottomY)
                 y--;
 
-            int logHeaderY = y;
-            int logHeight = Mathf.Max(1, logHeaderY - bottomY);
+            int bottomHeaderY = y;
+            int bottomHeight = Mathf.Max(1, bottomHeaderY - bottomY);
+
+            // Phase 10 — when the 't' toggle populated ThoughtEntries, the
+            // bottom panel renders THOUGHTS instead of LOG. Uses the same
+            // tilemap container and DrawText helpers as the log section so
+            // the visual language stays consistent.
+            if (snapshot?.ThoughtEntries != null)
+            {
+                DrawThoughtsPanel(
+                    startX, contentX, bottomHeaderY, bottomY, bottomHeight,
+                    contentWidth, snapshot.ThoughtEntries);
+            }
+            else
+            {
+                DrawLogPanel(
+                    startX, contentX, bottomHeaderY, bottomY, bottomHeight,
+                    contentWidth, snapshot, flashActive);
+            }
+
+                IsVisible = true;
+            }
+        }
+
+        /// <summary>
+        /// Render the bottom panel as the live message log. Extracted from
+        /// the original inline code so the THOUGHTS mode can share the same
+        /// panel geometry while swapping content.
+        /// </summary>
+        private void DrawLogPanel(
+            int startX, int contentX, int headerY, int bottomY, int height,
+            int contentWidth, SidebarSnapshot snapshot, bool flashActive)
+        {
             List<SidebarTextFormatter.LogLine> logLines = GetVisibleLogLines(
                 snapshot,
                 contentWidth,
-                logHeight,
+                height,
                 out bool hasOlderRows,
                 out bool hasNewerRows);
             string logHeader = BuildLogHeader(hasOlderRows, hasNewerRows);
             Color logHeaderColor = flashActive ? QudColorParser.BrightYellow : QudColorParser.White;
-            DrawSectionHeader(startX, contentX, logHeaderY, contentWidth, logHeader, logHeaderColor);
-            y = logHeaderY - 1;
+            DrawSectionHeader(startX, contentX, headerY, contentWidth, logHeader, logHeaderColor);
 
             int firstLogY = bottomY + logLines.Count - 1;
             int maxAge = 0;
@@ -192,8 +222,66 @@ namespace CavesOfOoo.Rendering
                 int rowY = firstLogY - i;
                 DrawText(contentX, rowY, line.Text, lineColor, contentWidth);
             }
+        }
 
-                IsVisible = true;
+        /// <summary>
+        /// Render the bottom panel as the per-creature thought list
+        /// (Phase 10 't' overlay). Shares the sidebar's tilemap container
+        /// and color palette with the log panel — "same container as the
+        /// logger" per the design requirement. Each entry occupies two rows:
+        /// name line + indented thought line (or "..." for no-thought yet).
+        /// Entries render top-down; when more entries exist than fit, a
+        /// "... (N more)" sentinel appears on the final row.
+        /// </summary>
+        private void DrawThoughtsPanel(
+            int startX, int contentX, int headerY, int bottomY, int height,
+            int contentWidth, IReadOnlyList<SidebarThoughtEntry> entries)
+        {
+            DrawSectionHeader(startX, contentX, headerY, contentWidth,
+                "THOUGHTS", QudColorParser.BrightYellow);
+
+            if (entries.Count == 0)
+            {
+                DrawText(contentX, headerY - 1, "(no creatures)",
+                    QudColorParser.DarkGray, contentWidth);
+                return;
+            }
+
+            // Reserve the last row for overflow indicator when needed.
+            // We can fit floor((height-1)/2) two-line entries, minus 1 if
+            // an overflow indicator is required.
+            int maxEntriesNoOverflow = Mathf.Max(1, (height) / 2);
+            int maxEntriesWithOverflow = Mathf.Max(1, (height - 1) / 2);
+            bool needsOverflow = entries.Count > maxEntriesNoOverflow;
+            int shown = needsOverflow
+                ? Mathf.Min(entries.Count, maxEntriesWithOverflow)
+                : entries.Count;
+
+            int y = headerY - 1;
+            for (int i = 0; i < shown && y >= bottomY; i++)
+            {
+                var entry = entries[i];
+
+                // Name row.
+                DrawText(contentX, y, entry.Name, QudColorParser.White, contentWidth);
+                y--;
+                if (y < bottomY) break;
+
+                // Thought row (indented). Empty thought renders as "..." in
+                // dark gray — useful signal that the creature has a brain
+                // but hasn't thought anything yet this session.
+                bool empty = string.IsNullOrEmpty(entry.Thought);
+                string body = empty ? "  ..." : "  " + entry.Thought;
+                Color color = empty ? QudColorParser.DarkGray : QudColorParser.Gray;
+                DrawText(contentX, y, body, color, contentWidth);
+                y--;
+            }
+
+            int overflow = entries.Count - shown;
+            if (overflow > 0 && y >= bottomY)
+            {
+                DrawText(contentX, y, "... (" + overflow + " more)",
+                    QudColorParser.DarkGray, contentWidth);
             }
         }
 
