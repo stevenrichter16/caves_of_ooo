@@ -59,7 +59,19 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public float MoveRepeatDelay = 0.12f;
 
+        /// <summary>
+        /// Minimum time between auto-repeating wait-turn ticks while the
+        /// period/numpad-5 key is HELD. Default 0.2s → 5 turns per second.
+        /// Independent of <see cref="MoveRepeatDelay"/> so wait-hold can
+        /// deliberately be slower than move-hold; otherwise a held wait
+        /// would advance world state faster than the player can observe.
+        /// </summary>
+        public float WaitHoldDelay = 0.2f;
+
         private float _lastMoveTime;
+        // Initialized to large-negative so the first tap of `.` fires
+        // instantly (Time.time - (-999) always exceeds WaitHoldDelay).
+        private float _lastWaitTime = -999f;
         private System.Random _combatRng = new System.Random();
         private const int FullscreenUiGridWidth = 80;
         private const int FullscreenUiGridHeight = 45;
@@ -480,10 +492,22 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Wait/skip turn
-            if (InputHelper.GetKeyDown(KeyCode.Period) || InputHelper.GetKeyDown(KeyCode.Keypad5))
+            // Wait/skip turn — tap OR hold. GetKey (held) combined with a
+            // dedicated _lastWaitTime gate means:
+            //   - First press: _lastWaitTime is old → fires immediately
+            //   - Held: fires at WaitHoldDelay intervals (~5/sec by default)
+            // Using GetKey (not GetKeyDown) lets holding the key repeat
+            // without needing to tap-tap-tap. The shiftHeld guard prevents
+            // Shift+Period (descend stairs) from also firing a wait tick
+            // on subsequent frames while the player still holds the combo.
+            bool waitShiftHeld = InputHelper.GetKey(KeyCode.LeftShift)
+                || InputHelper.GetKey(KeyCode.RightShift);
+            if (!waitShiftHeld
+                && (InputHelper.GetKey(KeyCode.Period) || InputHelper.GetKey(KeyCode.Keypad5))
+                && Time.time - _lastWaitTime >= WaitHoldDelay)
             {
                 EndTurnAndProcess();
+                _lastWaitTime = Time.time;
                 _lastMoveTime = Time.time;
             }
             }
