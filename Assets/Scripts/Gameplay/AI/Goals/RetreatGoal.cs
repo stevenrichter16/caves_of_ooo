@@ -62,6 +62,9 @@ namespace CavesOfOoo.Core
             return _phase == Phase.Done;
         }
 
+        public override string GetDetails() =>
+            $"phase={_phase} | waypoint=({WaypointX},{WaypointY}) | age={Age}/{MaxTurns}";
+
         public override void TakeAction()
         {
             if (CurrentZone == null || ParentEntity == null) { Pop(); return; }
@@ -82,6 +85,7 @@ namespace CavesOfOoo.Core
             var pos = CurrentZone.GetEntityPosition(ParentEntity);
             if (pos.x == WaypointX && pos.y == WaypointY)
             {
+                Think("arrived at safe spot, recovering");
                 _phase = Phase.Recover;
                 RecoverAtWaypoint();
                 return;

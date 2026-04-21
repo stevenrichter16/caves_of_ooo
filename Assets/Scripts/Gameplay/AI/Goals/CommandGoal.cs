@@ -21,10 +21,14 @@ namespace CavesOfOoo.Core
 
         public override bool CanFight() => false;
 
+        public override string GetDetails() =>
+            string.IsNullOrEmpty(Command) ? null : $"command={Command}";
+
         public override void TakeAction()
         {
             if (!string.IsNullOrEmpty(Command) && ParentEntity != null)
             {
+                Think($"executing command {Command}");
                 var e = GameEvent.New(Command);
                 ParentEntity.FireEvent(e);
                 e.Release();

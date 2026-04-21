@@ -180,5 +180,120 @@ namespace CavesOfOoo.Tests
             public override void TakeAction() { /* no-op */ }
             public override string GetDetails() => Details;
         }
+
+        // ========================
+        // GetDetails overrides on shipped goals (Commit 3)
+        // ========================
+
+        [Test]
+        public void KillGoal_GetDetails_IncludesTargetDisplayName()
+        {
+            var target = new Entity { BlueprintName = "Snapjaw" };
+            target.AddPart(new RenderPart { DisplayName = "snapjaw" });
+            var goal = new KillGoal(target);
+            Assert.AreEqual("target=snapjaw", goal.GetDetails());
+        }
+
+        [Test]
+        public void KillGoal_GetDetails_NullTarget_ReturnsNull()
+        {
+            // Counter-check: null target → null details → GetDescription falls
+            // back to "KillGoal" without dangling "target=" fragment.
+            var goal = new KillGoal(null);
+            Assert.IsNull(goal.GetDetails());
+            Assert.AreEqual("KillGoal", goal.GetDescription());
+        }
+
+        [Test]
+        public void MoveToGoal_GetDetails_IncludesTargetCoordsAndAge()
+        {
+            var goal = new MoveToGoal(42, 11, maxTurns: 100);
+            goal.Age = 7;
+            Assert.AreEqual("to=(42,11) age=7/100", goal.GetDetails());
+        }
+
+        [Test]
+        public void GoFetchGoal_GetDetails_IncludesPhaseAttemptsItemName()
+        {
+            var bone = new Entity { BlueprintName = "Bone" };
+            bone.AddPart(new RenderPart { DisplayName = "bone" });
+            var goal = new GoFetchGoal(bone, returnHome: false);
+            // Fresh goal: phase=WalkToItem, attempts=0/2, item=bone
+            Assert.AreEqual(
+                "phase=WalkToItem | attempts=0/2 | item=bone",
+                goal.GetDetails());
+        }
+
+        [Test]
+        public void GoFetchGoal_GetDetails_NullItem_ShowsNullMarker()
+        {
+            // Counter-check: a fetch with a null Item (item left zone between
+            // push and inspector-read) should still render a readable details
+            // string — no NullReferenceException.
+            var goal = new GoFetchGoal(null, returnHome: true);
+            string details = goal.GetDetails();
+            Assert.IsNotNull(details);
+            StringAssert.Contains("item=null", details);
+        }
+
+        [Test]
+        public void FleeGoal_GetDetails_IncludesFromNameAndAge()
+        {
+            var threat = new Entity { BlueprintName = "Bandit" };
+            threat.AddPart(new RenderPart { DisplayName = "bandit" });
+            var goal = new FleeGoal(threat, maxTurns: 20);
+            goal.Age = 3;
+            Assert.AreEqual("from=bandit | age=3/20", goal.GetDetails());
+        }
+
+        [Test]
+        public void RetreatGoal_GetDetails_IncludesPhaseWaypointAndAge()
+        {
+            var goal = new RetreatGoal(waypointX: 10, waypointY: 5,
+                safeHpFraction: 0.75f, maxTurns: 200, healPerTick: 1);
+            goal.Age = 12;
+            Assert.AreEqual(
+                "phase=Travel | waypoint=(10,5) | age=12/200",
+                goal.GetDetails());
+        }
+
+        [Test]
+        public void CommandGoal_GetDetails_IncludesCommandName()
+        {
+            var goal = new CommandGoal("CommandSubmerge");
+            Assert.AreEqual("command=CommandSubmerge", goal.GetDetails());
+        }
+
+        [Test]
+        public void CommandGoal_GetDetails_EmptyCommand_ReturnsNull()
+        {
+            // Counter-check: empty command should not produce "command=" with
+            // dangling equals sign.
+            var goal = new CommandGoal("");
+            Assert.IsNull(goal.GetDetails());
+        }
+
+        [Test]
+        public void GoFetchGoal_GetDetails_DoesNotExposePrivateFieldsAsPublic()
+        {
+            // Regression: the inspector needs to read _walkAttempts (private).
+            // The plan's approach is GetDetails reading its OWN class's private
+            // field directly — no new public property. This test catches a
+            // future refactor that "fixes" access by adding `public int
+            // WalkAttempts { get; }` — that would break encapsulation without
+            // need, since GetDetails already has in-class access.
+            var fi = typeof(GoFetchGoal).GetField(
+                "_walkAttempts",
+                System.Reflection.BindingFlags.NonPublic
+                    | System.Reflection.BindingFlags.Instance);
+            Assert.IsNotNull(fi,
+                "GoFetchGoal._walkAttempts must remain a private field.");
+
+            var pi = typeof(GoFetchGoal).GetProperty("WalkAttempts");
+            Assert.IsNull(pi,
+                "GoFetchGoal must NOT have a public WalkAttempts property — " +
+                "GetDetails reads the private field directly and no external " +
+                "code should need the value.");
+        }
     }
 }

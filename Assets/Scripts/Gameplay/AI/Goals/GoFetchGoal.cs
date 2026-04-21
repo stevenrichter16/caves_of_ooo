@@ -48,6 +48,12 @@ namespace CavesOfOoo.Core
 
         public override bool Finished() => _phase == Phase.Done;
 
+        public override string GetDetails()
+        {
+            string itemName = Item?.GetDisplayName() ?? "null";
+            return $"phase={_phase} | attempts={_walkAttempts}/{MaxWalkAttempts} | item={itemName}";
+        }
+
         public override void TakeAction()
         {
             if (Item == null || CurrentZone == null) { Pop(); return; }
@@ -89,11 +95,13 @@ namespace CavesOfOoo.Core
             // WalkToItem ↔ Pickup forever.
             if (_walkAttempts >= MaxWalkAttempts)
             {
+                Think("giving up on fetch — max walk attempts");
                 Pop();
                 return;
             }
 
             _walkAttempts++;
+            Think($"walking to {Item?.GetDisplayName() ?? "item"} at ({itemCell.X},{itemCell.Y})");
             PushChildGoal(new MoveToGoal(itemCell.X, itemCell.Y, WalkStepBudget));
         }
 

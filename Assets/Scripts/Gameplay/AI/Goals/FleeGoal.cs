@@ -29,6 +29,12 @@ namespace CavesOfOoo.Core
             return false;
         }
 
+        public override string GetDetails()
+        {
+            string name = FleeFrom?.GetDisplayName() ?? "null";
+            return $"from={name} | age={Age}/{MaxTurns}";
+        }
+
         public override void TakeAction()
         {
             var myPos = CurrentZone.GetEntityPosition(ParentEntity);
@@ -38,7 +44,14 @@ namespace CavesOfOoo.Core
             {
                 // Cornered: fight back if adjacent
                 if (AIHelpers.IsAdjacent(myPos.x, myPos.y, threatPos.x, threatPos.y))
+                {
+                    Think($"cornered by {FleeFrom?.GetDisplayName()}, fighting back");
                     CombatSystem.PerformMeleeAttack(ParentEntity, FleeFrom, CurrentZone, Rng);
+                }
+            }
+            else
+            {
+                Think($"fleeing from {FleeFrom?.GetDisplayName()}");
             }
         }
     }

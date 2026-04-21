@@ -28,6 +28,13 @@ namespace CavesOfOoo.Core
             return Target == null || CurrentZone?.GetEntityCell(Target) == null;
         }
 
+        public override string GetDetails()
+        {
+            if (Target == null) return null;
+            string name = Target.GetDisplayName();
+            return string.IsNullOrEmpty(name) ? null : $"target={name}";
+        }
+
         public override void TakeAction()
         {
             ParentBrain.CurrentState = AIState.Chase;
@@ -39,18 +46,23 @@ namespace CavesOfOoo.Core
             // Check if we should flee instead
             if (ShouldFlee())
             {
+                Think("low hp, breaking off attack");
                 FailToParent();
                 return;
             }
 
             if (AIHelpers.IsAdjacent(myPos.x, myPos.y, targetPos.x, targetPos.y))
             {
+                Think($"attacking {Target.GetDisplayName()}");
                 CombatSystem.PerformMeleeAttack(ParentEntity, Target, CurrentZone, Rng);
             }
             else
             {
                 if (!AIHelpers.TryUseRangedAbility(ParentEntity, CurrentZone, Rng, myPos, targetPos))
+                {
+                    Think($"closing on {Target.GetDisplayName()}");
                     AIHelpers.TryApproachWithPathfinding(ParentEntity, CurrentZone, myPos.x, myPos.y, targetPos.x, targetPos.y);
+                }
             }
         }
     }

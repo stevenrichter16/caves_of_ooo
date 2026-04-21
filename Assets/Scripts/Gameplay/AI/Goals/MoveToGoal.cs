@@ -32,6 +32,8 @@ namespace CavesOfOoo.Core
             return pos.x == TargetX && pos.y == TargetY;
         }
 
+        public override string GetDetails() => $"to=({TargetX},{TargetY}) age={Age}/{MaxTurns}";
+
         public override void TakeAction()
         {
             var pos = CurrentZone.GetEntityPosition(ParentEntity);
