@@ -56,6 +56,20 @@ namespace CavesOfOoo.Core
         /// <summary>Tag stamped on every river entity; read by the renderer to pick the flow animation.</summary>
         private const string FlowsSouthTag = "FlowsSouth";
 
+        /// <summary>Name of the reed decoration blueprint.</summary>
+        private const string ReedsBlueprint = "Reeds";
+
+        /// <summary>
+        /// Modulus for reed-row selection — a row qualifies as a reed row
+        /// when <c>(hash(y) % ReedDensityModulus) &lt; ReedDensityThreshold</c>.
+        /// With modulus 7 and threshold 2 we hit ~2/7 ≈ 28% of rows, giving
+        /// about 7 reeds per 25-row zone.
+        /// </summary>
+        private const int ReedDensityModulus = 7;
+
+        /// <summary>Inclusive threshold used with ReedDensityModulus.</summary>
+        private const int ReedDensityThreshold = 2;
+
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
         {
             if (zone == null || factory == null) return true;
@@ -109,7 +123,74 @@ namespace CavesOfOoo.Core
                 }
             }
 
+            // Reeds: sparse, deterministic vegetation on cells flanking the
+            // river. Runs after the river loop so we never place a reed in
+            // a cell we just flooded. Skipped silently if the Reeds
+            // blueprint is unavailable (keeps builder forward-compatible).
+            if (factory.Blueprints.ContainsKey(ReedsBlueprint))
+                PlaceReeds(zone, factory, baseX, height);
+
             return true;
+        }
+
+        /// <summary>
+        /// Place vertical reed glyphs on cells immediately west or east of
+        /// the river channel. Alternates sides and skips most rows so the
+        /// vegetation reads as a few accents rather than a continuous wall.
+        ///
+        /// Determinism is load-bearing: the hash uses only <c>y</c>, so a
+        /// fresh zone generation produces identical reed positions every
+        /// time — same promise the river itself makes.
+        /// </summary>
+        private void PlaceReeds(Zone zone, EntityFactory factory, int baseX, int height)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                // Knuth multiplicative hash — cheap, well-distributed, no
+                // RNG dependency. Mask to 31 bits so the modulo is safe
+                // from negative-int wrap.
+                uint h = ((uint)(y * 2654435761U)) & 0x7FFFFFFF;
+                if ((h % ReedDensityModulus) >= ReedDensityThreshold) continue;
+
+                // Recompute centerX rather than passing it in — keeps the
+                // reed loop's body self-contained and the river loop free
+                // of per-row side structures.
+                float angle = (y * 2f * System.MathF.PI) / MeanderWavelength;
+                int centerX = baseX + (int)System.MathF.Round(MeanderAmplitude * System.MathF.Sin(angle));
+
+                bool westSide = (h & 1U) == 0U;
+                int reedX = westSide ? centerX - 1 : centerX + RiverWidth;
+
+                if (!zone.InBounds(reedX, y)) continue;
+
+                Cell cell = zone.GetCell(reedX, y);
+                if (cell == null || !cell.IsPassable()) continue;
+
+                // Don't stack reeds on top of existing decor, water, or
+                // props. Layer 0 = floor terrain (fine to place over);
+                // layer 1+ = water/walls/furniture/NPCs (skip).
+                if (CellHasDecorOrAbove(cell)) continue;
+
+                Entity reed = factory.CreateEntity(ReedsBlueprint);
+                if (reed == null) continue;
+
+                zone.AddEntity(reed, reedX, y);
+            }
+        }
+
+        /// <summary>
+        /// True if any entity on this cell has a RenderPart with RenderLayer
+        /// &gt;= 1 — i.e. something more than bare floor terrain. Includes
+        /// water, walls, furniture, villager spawn markers, etc.
+        /// </summary>
+        private static bool CellHasDecorOrAbove(Cell cell)
+        {
+            foreach (var obj in cell.Objects)
+            {
+                var r = obj.GetPart<RenderPart>();
+                if (r != null && r.RenderLayer >= 1) return true;
+            }
+            return false;
         }
     }
 }
