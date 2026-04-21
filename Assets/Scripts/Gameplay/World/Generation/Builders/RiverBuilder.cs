@@ -90,7 +90,11 @@ namespace CavesOfOoo.Core
                     if (water == null) continue;
 
                     // Tag for the renderer's directional-flow animation.
-                    water.Tags[FlowsSouthTag] = string.Empty;
+                    // Value identifies depth: bank 0 (centerX) is "core"
+                    // (deeper, darker palette); bank 1 (centerX + 1) is
+                    // "bank" (shallower, brighter palette). ZoneRenderer
+                    // selects the palette from this tag value.
+                    water.Tags[FlowsSouthTag] = bank == 0 ? "core" : "bank";
 
                     // Override the default "~" glyph with dashes for the
                     // starting static look. The renderer overrides this

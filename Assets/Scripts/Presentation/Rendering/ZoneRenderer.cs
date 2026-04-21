@@ -957,14 +957,40 @@ namespace CavesOfOoo.Rendering
             return true;
         }
 
-        // Water color cycle: 3 shades of blue/cyan. Used by both the
-        // stationary shimmer (village puddles) and the flowing-river wave,
-        // just with different phase formulas.
+        // Water color cycle: 3 shades of blue/cyan. Used for village-decor
+        // puddles (stationary shimmer). River cells use the depth-shaded
+        // WaterCoreColors / WaterBankColors palettes below.
         private static readonly Color[] WaterColors =
         {
             QudColorParser.DarkBlue,
             QudColorParser.DarkCyan,
             QudColorParser.BrightBlue
+        };
+
+        /// <summary>
+        /// Palette for the deeper (center) column of the river — weighted
+        /// toward dark blues so the channel reads as having depth. Shares
+        /// DarkCyan with the bank palette to blend smoothly at the boundary.
+        /// Must be the same length as WaterBankColors and FlowGlyphs so
+        /// glyph + color animations stay in lockstep.
+        /// </summary>
+        private static readonly Color[] WaterCoreColors =
+        {
+            QudColorParser.DarkBlue,
+            QudColorParser.DarkBlue,
+            QudColorParser.DarkCyan
+        };
+
+        /// <summary>
+        /// Palette for the shallower (outer) column of the river — brighter
+        /// cyans and blues so the bank edge reads as sunlight-catching
+        /// ripples. Shares DarkCyan with the core palette.
+        /// </summary>
+        private static readonly Color[] WaterBankColors =
+        {
+            QudColorParser.DarkCyan,
+            QudColorParser.BrightBlue,
+            QudColorParser.BrightCyan
         };
 
         /// <summary>
@@ -1044,13 +1070,28 @@ namespace CavesOfOoo.Rendering
                 // southward (y increasing = lower on screen in roguelike
                 // coords). Village puddles without the tag keep their
                 // stationary spatial-shimmer formula.
+                //
+                // Tag VALUE on river cells is "core" (center column —
+                // deeper palette) or "bank" (outer column — shallower,
+                // brighter palette). Village decor pulls from WaterColors.
                 bool isFlowing = top.HasTag("FlowsSouth");
-                float phase = isFlowing
-                    ? _ambientTimer * FlowSpeedRowsPerSecond - y
-                    : _ambientTimer * 2f + x * 0.7f + y * 1.3f;
+                float phase;
+                Color[] palette;
+                if (isFlowing)
+                {
+                    phase = _ambientTimer * FlowSpeedRowsPerSecond - y;
+                    palette = top.Tags["FlowsSouth"] == "bank"
+                        ? WaterBankColors
+                        : WaterCoreColors; // default (includes empty-string legacy values)
+                }
+                else
+                {
+                    phase = _ambientTimer * 2f + x * 0.7f + y * 1.3f;
+                    palette = WaterColors;
+                }
 
-                int colorIndex = ((int)phase) % WaterColors.Length;
-                if (colorIndex < 0) colorIndex += WaterColors.Length;
+                int colorIndex = ((int)phase) % palette.Length;
+                if (colorIndex < 0) colorIndex += palette.Length;
 
                 Vector3Int tilePos = new Vector3Int(x, Zone.Height - 1 - y, 0);
 
@@ -1068,7 +1109,7 @@ namespace CavesOfOoo.Rendering
                 }
 
                 _tilemap.SetTileFlags(tilePos, TileFlags.None);
-                _tilemap.SetColor(tilePos, WaterColors[colorIndex]);
+                _tilemap.SetColor(tilePos, palette[colorIndex]);
             }
 
             // Dust motes: spawn occasional faint particles in lit areas
