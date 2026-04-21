@@ -538,6 +538,68 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void HandlingPart_GetInventoryActions_DeclaresThrow_WithCapitalTCommand()
+        {
+            // Regression pin (2026-04-20): InventoryUI.BuildItemActionPopup
+            // filters out HandlingPart's declared "Throw" command (capital T)
+            // to avoid a duplicate menu entry alongside InventoryUI's own
+            // lowercase "throw" action. That filter keys on the exact string
+            // "Throw" — if HandlingPart ever changes its declared Command
+            // to lowercase or adds a third casing, the filter would silently
+            // stop working and the duplicate would reappear, with the capital-T
+            // entry falling through to PerformInventoryActionCommand and
+            // surfacing the user-visible warning
+            //     [Inventory/Refactor] PerformAction[Throw] command failed.
+            // This test pins the string contract so the filter stays live.
+            var item = new Entity { BlueprintName = "TestThrowable" };
+            item.AddPart(new HandlingPart { Throwable = true, Carryable = true });
+
+            var actions = new InventoryActionList();
+            var ev = GameEvent.New("GetInventoryActions");
+            ev.SetParameter("Actions", actions);
+            item.FireEvent(ev);
+            ev.Release();
+
+            InventoryAction throwAction = null;
+            for (int i = 0; i < actions.Actions.Count; i++)
+            {
+                if (actions.Actions[i].Name == "Throw")
+                {
+                    throwAction = actions.Actions[i];
+                    break;
+                }
+            }
+
+            Assert.IsNotNull(throwAction,
+                "HandlingPart.GetInventoryActions must declare a Throw action when Throwable=true.");
+            Assert.AreEqual("Throw", throwAction.Command,
+                "HandlingPart must declare Throw with capital-T Command. " +
+                "InventoryUI.BuildItemActionPopup filters this exact string to " +
+                "avoid a duplicate menu entry; changing the casing here would " +
+                "re-introduce the duplicate-action bug.");
+        }
+
+        [Test]
+        public void HandlingPart_GetInventoryActions_DoesNotDeclareThrow_WhenNotThrowable()
+        {
+            // Counter-check: flipping Throwable=false suppresses the action.
+            var item = new Entity { BlueprintName = "TestNonThrowable" };
+            item.AddPart(new HandlingPart { Throwable = false, Carryable = true });
+
+            var actions = new InventoryActionList();
+            var ev = GameEvent.New("GetInventoryActions");
+            ev.SetParameter("Actions", actions);
+            item.FireEvent(ev);
+            ev.Release();
+
+            for (int i = 0; i < actions.Actions.Count; i++)
+            {
+                Assert.AreNotEqual("Throw", actions.Actions[i].Name,
+                    "Non-throwable items must not surface a Throw action.");
+            }
+        }
+
+        [Test]
         public void ThrowItemCommand_Execute_ThrowsSingleItemFromCarriedStack()
         {
             var zone = new Zone();

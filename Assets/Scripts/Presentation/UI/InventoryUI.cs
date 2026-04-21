@@ -1037,12 +1037,22 @@ namespace CavesOfOoo.Rendering
                 actions.Add(new ItemAction { Label = "Equip (manual)", Command = "equip_manual" });
             }
 
-            // Add item-specific actions from the event system
+            // Add item-specific actions from the event system.
+            // NOTE: HandlingPart's GetInventoryActions declares a "Throw" command
+            // (capital T) for the WorldActionMenu flow (InputHandler special-
+            // cases Command=="Throw" to open the throw aim popup). The inventory
+            // UI's switch in ExecuteItemAction uses the lowercase "throw" case
+            // declared below (with a stricter HandlingService.CanThrow gate).
+            // Skip HandlingPart's capital-T "Throw" here so it doesn't appear
+            // as a duplicate menu entry whose failure mode is falling through
+            // to PerformInventoryActionCommand — which lands on an unhandled
+            // InventoryAction event and bubbles up as a user-visible warning.
             if (itemDisplay.Actions != null)
             {
                 for (int i = 0; i < itemDisplay.Actions.Count; i++)
                 {
                     var a = itemDisplay.Actions[i];
+                    if (a.Command == "Throw") continue; // handled below via lowercase "throw"
                     actions.Add(new ItemAction { Label = a.Display, Command = a.Command });
                 }
             }
@@ -1219,6 +1229,7 @@ namespace CavesOfOoo.Rendering
                     break;
 
                 case "throw":
+                case "Throw": // HandlingPart.GetInventoryActions declares capital-T
                     _pendingThrowRequest = new PendingThrowRequest { Item = item };
                     Close();
                     break;
