@@ -481,11 +481,11 @@ namespace CavesOfOoo.Rendering
             }
 
             // Wait/skip turn
-                if (InputHelper.GetKeyDown(KeyCode.Period) || InputHelper.GetKeyDown(KeyCode.Keypad5))
-                {
-                    EndTurnAndProcess();
-                    _lastMoveTime = Time.time;
-                }
+            if (InputHelper.GetKeyDown(KeyCode.Period) || InputHelper.GetKeyDown(KeyCode.Keypad5))
+            {
+                EndTurnAndProcess();
+                _lastMoveTime = Time.time;
+            }
             }
         }
 
