@@ -409,10 +409,19 @@ namespace CavesOfOoo.Rendering
         /// <summary>
         /// Phase 10 — position the thought-overlay camera's viewport rect
         /// over the left portion of the main gameplay viewport (NOT over
-        /// the sidebar). Orthographic size matches the main camera so
-        /// world-space tile coords line up. Culling mask kept in sync;
-        /// clear flags are Depth so the overlay composites over the world
-        /// via URP camera stacking (gameplay shows through transparent bg).
+        /// the sidebar), and configure orthographic size + aspect so the
+        /// overlay's narrow-text glyphs render at IDENTICAL pixel size to
+        /// the main sidebar's logger (same tile scale on screen, same font
+        /// weight). Culling mask kept in sync; clear flags are Depth so the
+        /// overlay composites over the world via URP camera stacking
+        /// (gameplay shows through transparent bg).
+        ///
+        /// Orthographic-size matching trick: Unity's orthographic size is
+        /// HALF the vertical world extent the camera covers. If the overlay
+        /// rect is only 85% of screen height while orthoSize stays at the
+        /// main camera's full value, the overlay's pixels-per-world-unit is
+        /// 85% of the sidebar's — which would shrink text. Fix: scale
+        /// orthoSize by rect.height so pixel density matches exactly.
         ///
         /// Enabled/disabled state is managed by ZoneRenderer based on the
         /// 't' toggle — this method just sets up geometry + configuration.
@@ -426,11 +435,9 @@ namespace CavesOfOoo.Rendering
             ThoughtOverlayCamera.clearFlags = CameraClearFlags.Depth;
             ThoughtOverlayCamera.backgroundColor = Color.clear;
             ThoughtOverlayCamera.orthographic = true;
-            ThoughtOverlayCamera.orthographicSize = _camera.orthographicSize;
 
             // Overlay viewport: left 30% of the main gameplay viewport
-            // (the portion before the sidebar starts). layout.MapRect
-            // already describes the main viewport — subset its left part.
+            // (the portion before the sidebar starts).
             Rect main = layout.MapRect;
             float overlayWidthFraction = 0.30f;
             var overlayRect = new Rect(
@@ -438,20 +445,42 @@ namespace CavesOfOoo.Rendering
                 main.yMin,
                 main.width * overlayWidthFraction,
                 main.height);
-            // Aspect: overlay's world-width / world-height ratio scaled
-            // from the gameplay aspect. Simpler: derive from rect.
-            float overlayAspect = Mathf.Max(0.01f,
-                overlayRect.width / Mathf.Max(0.01f, overlayRect.height)
-                * (Screen.width / (float)Mathf.Max(1, Screen.height)));
 
-            // Position the camera so (0, ortho) world-origin sits at the
-            // bottom-left of the overlay — mirrors the sidebar setup where
-            // the camera is placed at the bottom-left of its viewport.
+            // CRITICAL for text-size parity with the sidebar logger:
+            // pixels-per-world-unit = (Screen.height * rect.height) / (2 * orthoSize).
+            // To match sidebar's (rect.height = 1, orthoSize = mainOrthoSize),
+            // we need orthoSize_overlay = mainOrthoSize * rect.height so the
+            // density stays Screen.height / (2 * mainOrthoSize). Without this,
+            // characters render smaller when the overlay rect is shorter than
+            // the full screen height (which it is — it skips the hotbar).
+            float clampedHeight = Mathf.Max(0.01f, overlayRect.height);
+            ThoughtOverlayCamera.orthographicSize = _camera.orthographicSize * clampedHeight;
+
+            float overlayAspect = MeasureRectAspect(layout.DisplayAspect, overlayRect);
+
+            // Position the camera so the viewport's bottom-left maps to
+            // world-origin — mirrors the sidebar (which places its camera at
+            // bottom-left of its rect). Grid cells start at (0,0) of the
+            // overlay's world space and grow up/right.
             ThoughtOverlayCamera.transform.position = new Vector3(
                 ThoughtOverlayCamera.orthographicSize * overlayAspect,
-                _camera.orthographicSize,
+                ThoughtOverlayCamera.orthographicSize,
                 ThoughtOverlayCamera.transform.position.z);
             ConfigureCameraRect(ThoughtOverlayCamera, overlayRect, overlayAspect);
+        }
+
+        /// <summary>
+        /// Local copy of GameplayViewportLayout.MeasureRectAspect so the
+        /// thought overlay uses the same aspect-from-rect math the main
+        /// layout uses for the sidebar/hotbar/map rects. Inline here rather
+        /// than exposing internal from GameplayViewportLayout — one-line
+        /// helper, low cost to duplicate.
+        /// </summary>
+        private static float MeasureRectAspect(float displayAspect, Rect rect)
+        {
+            if (rect.width <= 0f || rect.height <= 0f)
+                return 0.01f;
+            return Mathf.Max(0.01f, displayAspect * rect.width / rect.height);
         }
 
         private static void ConfigureCameraRect(Camera camera, Rect rect, float aspect)
