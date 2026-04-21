@@ -42,10 +42,21 @@ namespace CavesOfOoo.Core
             return false;
         }
 
+        public override string GetDetails() => $"to=({SafeX},{SafeY}) age={Age}/{MaxTurns}";
+
         public override void TakeAction()
         {
             var pos = CurrentZone.GetEntityPosition(ParentEntity);
             if (pos.x < 0) { FailToParent(); return; }
+
+            // Narrative signal for the THOUGHTS inspector. Fires when this
+            // goal is the top of the stack and pushes a MoveToGoal child.
+            // Between stages (child MoveToGoal running), LastThought
+            // persists — so the inspector shows "running for safety" for
+            // the whole retreat, not just the first tick. Seeded in Phase 10
+            // v2 follow-up (user reported wounded-fleeing NPCs had empty
+            // thoughts because FleeLocationGoal was silent).
+            Think("running for safety");
 
             // Delegate the actual path-following to MoveToGoal so we get A* + greedy fallback.
             // The child runs immediately via the Brain's child-chain execution.
