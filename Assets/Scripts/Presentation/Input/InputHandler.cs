@@ -361,6 +361,24 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // Phase 10 — toggle the thought-log overlay. Non-blocking: unlike
+            // every other UI key above this point, 't' does NOT change
+            // _inputState, does NOT return early, and does NOT set
+            // _lastMoveTime. The player can flip the overlay and move on
+            // the same frame. The overlay just requests a redraw so the
+            // current thoughts show immediately; it refreshes on every
+            // RenderZone thereafter (i.e. whenever the player acts).
+            if (InputHelper.GetKeyDown(KeyCode.T))
+            {
+                if (ZoneRenderer != null)
+                {
+                    ZoneRenderer.ShowThoughtLog = !ZoneRenderer.ShowThoughtLog;
+                    RequestZoneRedraw("Overlay.ThoughtLog");
+                }
+                // Deliberately no `return` — fall through so the frame can
+                // also process movement/action keys pressed simultaneously.
+            }
+
             // Open inventory (I key)
             if (InputHelper.GetKeyDown(KeyCode.I))
             {

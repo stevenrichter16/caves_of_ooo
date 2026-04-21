@@ -77,6 +77,15 @@ namespace CavesOfOoo.Rendering
         private WorldCursorRenderer _worldCursorRenderer;
         private GameplaySidebarRenderer _sidebarRenderer;
         private GameplayHotbarRenderer _hotbarRenderer;
+        private readonly ThoughtLogOverlayRenderer _thoughtLogOverlay = new ThoughtLogOverlayRenderer();
+
+        /// <summary>
+        /// Phase 10 companion — when true, <see cref="RenderZone"/> paints the
+        /// thought-log overlay column on the right edge of the play area.
+        /// Toggled by InputHandler on 't' keypress. Non-blocking: the player
+        /// keeps full game input while visible.
+        /// </summary>
+        public bool ShowThoughtLog { get; set; }
         private bool _dirty = true;
         private int _lastFlashStamp;
         private float _flashUntil;
@@ -448,6 +457,19 @@ namespace CavesOfOoo.Rendering
                 }
 
                 RefreshWaterCache();
+
+                // Phase 10 companion — paint the thought-log overlay AFTER
+                // cells are drawn, so the panel sits on top of the world.
+                // The overlay column overdraws ~24 cells of world content on
+                // the right edge; when toggled off the next RenderZone sweep
+                // naturally redraws those cells back to their normal state
+                // (no explicit clear needed — the tilemap is cleared at the
+                // start of RenderZone above).
+                if (ShowThoughtLog)
+                {
+                    int yInvert = Zone.Height - 1;
+                    _thoughtLogOverlay.Draw(CurrentZone, _tilemap, _bgTilemap, yInvert);
+                }
             }
         }
 
