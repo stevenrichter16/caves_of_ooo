@@ -29,28 +29,12 @@ namespace CavesOfOoo.Rendering
         private int _maxLogScrollOffsetRows;
         private int _lastLogViewportHeight = -1;
 
-        /// <summary>
-        /// When false, <see cref="Render"/> / <see cref="RenderAt"/> do NOT
-        /// call <see cref="Clear"/> on entry — callers that share their
-        /// tilemap with other writers (e.g. the Phase 10 thought overlay,
-        /// which draws onto the world's main + bg tilemaps that RenderZone
-        /// manages) set this false. The main sidebar owns its tilemap
-        /// exclusively and clears every render to drop stale tiles.
-        /// </summary>
-        private readonly bool _ownsTilemap;
-
         public GameplaySidebarRenderer(Tilemap tilemap, Tilemap backgroundTilemap, Transform gridTransform, float referenceZoom)
-            : this(tilemap, backgroundTilemap, gridTransform, referenceZoom, ownsTilemap: true)
-        {
-        }
-
-        public GameplaySidebarRenderer(Tilemap tilemap, Tilemap backgroundTilemap, Transform gridTransform, float referenceZoom, bool ownsTilemap)
         {
             _tilemap = tilemap;
             _backgroundTilemap = backgroundTilemap;
             _gridTransform = gridTransform;
             _referenceZoom = referenceZoom;
-            _ownsTilemap = ownsTilemap;
         }
 
         public bool IsVisible { get; private set; }
@@ -116,8 +100,7 @@ namespace CavesOfOoo.Rendering
             using (PerformanceMarkers.Ui.SidebarRender.Auto())
             {
                 PerformanceDiagnostics.RecordSidebarRender();
-                if (_ownsTilemap)
-                    Clear();
+                Clear();
 
                 if (_tilemap == null || _backgroundTilemap == null || _gridTransform == null || camera == null || sidebarWidthChars <= 0)
                     return;
@@ -125,48 +108,11 @@ namespace CavesOfOoo.Rendering
                 SidebarCameraMetrics metrics = GameplayViewportLayout.MeasureSidebarCamera(camera, _referenceZoom, sidebarWidthChars);
                 _gridTransform.localScale = new Vector3(metrics.Scale, metrics.Scale, 1f);
 
-                RenderBody(snapshot, metrics.StartCharX, metrics.TopTextY, metrics.BottomTextY,
-                    sidebarWidthChars, metrics.VisibleRowCount, flashActive, flashT);
-                IsVisible = true;
-            }
-        }
-
-        /// <summary>
-        /// Phase 10 — render this snapshot onto the bound tilemaps at explicit
-        /// coordinates, bypassing camera-metric computation. Used by the
-        /// standalone thought-overlay instance which shares the world
-        /// tilemap with <see cref="ZoneRenderer"/> and therefore cannot use
-        /// the sidebar-specific camera positioning logic.
-        ///
-        /// The caller is responsible for supplying consistent tile coords
-        /// (roguelike grid space for the world tilemap, sidebar narrow-text
-        /// space for the sidebar tilemap). No Clear() happens here — when
-        /// this renderer shares its tilemap with other writers, clearing
-        /// would wipe their content. The world-tilemap caller gets fresh
-        /// content on every RenderZone sweep (which clears at the start),
-        /// so stale tiles aren't an issue.
-        /// </summary>
-        public void RenderAt(SidebarSnapshot snapshot,
-            int startX, int topY, int bottomY, int width, bool flashActive, float flashT)
-        {
-            using (PerformanceMarkers.Ui.SidebarRender.Auto())
-            {
-                if (_ownsTilemap)
-                    Clear();
-
-                if (_tilemap == null || _backgroundTilemap == null || width <= 0)
-                    return;
-
-                int rows = topY - bottomY + 1;
-                RenderBody(snapshot, startX, topY, bottomY, width, rows, flashActive, flashT);
-                IsVisible = true;
-            }
-        }
-
-        private void RenderBody(SidebarSnapshot snapshot,
-            int startX, int topY, int bottomY, int width, int rows,
-            bool flashActive, float flashT)
-        {
+            int startX = metrics.StartCharX;
+            int width = sidebarWidthChars;
+            int rows = metrics.VisibleRowCount;
+            int topY = metrics.TopTextY;
+            int bottomY = metrics.BottomTextY;
             int contentX = startX + 2;
             int contentWidth = Mathf.Max(1, width - 3);
 
@@ -243,6 +189,9 @@ namespace CavesOfOoo.Rendering
                 DrawLogPanel(
                     startX, contentX, bottomHeaderY, bottomY, bottomHeight,
                     contentWidth, snapshot, flashActive);
+            }
+
+                IsVisible = true;
             }
         }
 

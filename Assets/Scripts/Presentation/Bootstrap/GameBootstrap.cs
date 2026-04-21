@@ -224,19 +224,22 @@ namespace CavesOfOoo
                     Camera sidebarCamera = EnsureSidebarCamera(cam);
                     Camera hotbarCamera = EnsureHotbarCamera(cam);
                     Camera popupOverlayCamera = EnsurePopupOverlayCamera(cam);
-                    ConfigureCameraLayers(cam, sidebarCamera, hotbarCamera, popupOverlayCamera);
+                    Camera thoughtOverlayCamera = EnsureThoughtOverlayCamera(cam);
+                    ConfigureCameraLayers(cam, sidebarCamera, hotbarCamera, popupOverlayCamera, thoughtOverlayCamera);
 
                     cameraFollow.Player = _player;
                     cameraFollow.CurrentZone = _zone;
                     cameraFollow.SidebarCamera = sidebarCamera;
                     cameraFollow.HotbarCamera = hotbarCamera;
                     cameraFollow.PopupOverlayCamera = popupOverlayCamera;
+                    cameraFollow.ThoughtOverlayCamera = thoughtOverlayCamera;
 
                     if (ZoneRenderer != null)
                     {
                         ZoneRenderer.SetSidebarCamera(sidebarCamera);
                         ZoneRenderer.SetHotbarCamera(hotbarCamera);
                         ZoneRenderer.SetPopupOverlayCamera(popupOverlayCamera);
+                        ZoneRenderer.SetThoughtOverlayCamera(thoughtOverlayCamera);
                         cameraFollow.ReservedSidebarWidthChars = ZoneRenderer.SidebarWidthChars;
                         cameraFollow.SidebarReferenceZoom = ZoneRenderer.MessageReferenceZoom;
                         cameraFollow.ReservedHotbarHeightRows = GameplayHotbarLayout.GridHeight;
@@ -432,6 +435,37 @@ namespace CavesOfOoo
             return popupOverlayCamera;
         }
 
+        private static Camera EnsureThoughtOverlayCamera(Camera gameplayCamera)
+        {
+            if (gameplayCamera == null)
+                return null;
+
+            Transform existing = gameplayCamera.transform.parent != null
+                ? gameplayCamera.transform.parent.Find("Thought Overlay Camera")
+                : null;
+            Camera thoughtOverlayCamera = existing != null ? existing.GetComponent<Camera>() : null;
+            if (thoughtOverlayCamera != null)
+                return thoughtOverlayCamera;
+
+            // Phase 10 — overlay camera rendered on top of the gameplay camera
+            // via URP camera stacking. Depth = gameplay.depth + 1 so it paints
+            // after the world. Clear flags = Depth so the background stays
+            // transparent and the world shows through. Overlay rendering
+            // handled by CameraFollow (viewport rect + world position).
+            var cameraObject = new GameObject("Thought Overlay Camera");
+            cameraObject.transform.position = new Vector3(0f, 0f, gameplayCamera.transform.position.z);
+            thoughtOverlayCamera = cameraObject.AddComponent<Camera>();
+            thoughtOverlayCamera.orthographic = true;
+            thoughtOverlayCamera.depth = gameplayCamera.depth + 1f;
+            thoughtOverlayCamera.nearClipPlane = gameplayCamera.nearClipPlane;
+            thoughtOverlayCamera.farClipPlane = gameplayCamera.farClipPlane;
+            thoughtOverlayCamera.backgroundColor = Color.clear;
+            thoughtOverlayCamera.clearFlags = CameraClearFlags.Depth;
+            thoughtOverlayCamera.enabled = false; // flipped on by ZoneRenderer when 't' is pressed
+            ConfigureThoughtOverlayCameraStack(gameplayCamera, thoughtOverlayCamera);
+            return thoughtOverlayCamera;
+        }
+
         private static Camera EnsureHotbarCamera(Camera gameplayCamera)
         {
             if (gameplayCamera == null)
@@ -456,7 +490,7 @@ namespace CavesOfOoo
             return hotbarCamera;
         }
 
-        private static void ConfigureCameraLayers(Camera gameplayCamera, Camera sidebarCamera, Camera hotbarCamera, Camera popupOverlayCamera)
+        private static void ConfigureCameraLayers(Camera gameplayCamera, Camera sidebarCamera, Camera hotbarCamera, Camera popupOverlayCamera, Camera thoughtOverlayCamera)
         {
             if (gameplayCamera != null)
                 gameplayCamera.cullingMask = GameplayRenderLayers.GameplayCameraMask;
@@ -471,6 +505,12 @@ namespace CavesOfOoo
             {
                 popupOverlayCamera.cullingMask = GameplayRenderLayers.PopupOverlayMask;
                 ConfigurePopupOverlayCameraStack(gameplayCamera, popupOverlayCamera);
+            }
+
+            if (thoughtOverlayCamera != null)
+            {
+                thoughtOverlayCamera.cullingMask = GameplayRenderLayers.ThoughtOverlayMask;
+                ConfigureThoughtOverlayCameraStack(gameplayCamera, thoughtOverlayCamera);
             }
         }
 
@@ -498,6 +538,36 @@ namespace CavesOfOoo
 
             if (!stack.Contains(popupOverlayCamera))
                 stack.Add(popupOverlayCamera);
+        }
+
+        /// <summary>
+        /// Phase 10 — attach the thought-overlay camera to the gameplay
+        /// camera's URP stack so it renders on top of the world with the
+        /// overlay's transparent-clear producing a composited view.
+        /// Mirrors <see cref="ConfigurePopupOverlayCameraStack"/>.
+        /// </summary>
+        private static void ConfigureThoughtOverlayCameraStack(Camera gameplayCamera, Camera thoughtOverlayCamera)
+        {
+            if (gameplayCamera == null || thoughtOverlayCamera == null)
+                return;
+
+            var gameplayCameraData = gameplayCamera.GetUniversalAdditionalCameraData();
+            var overlayCameraData = thoughtOverlayCamera.GetUniversalAdditionalCameraData();
+            if (gameplayCameraData != null)
+                gameplayCameraData.renderType = CameraRenderType.Base;
+
+            if (overlayCameraData != null)
+                overlayCameraData.renderType = CameraRenderType.Overlay;
+
+            if (gameplayCameraData == null)
+                return;
+
+            var stack = gameplayCameraData.cameraStack;
+            if (stack == null)
+                return;
+
+            if (!stack.Contains(thoughtOverlayCamera))
+                stack.Add(thoughtOverlayCamera);
         }
 
         /// <summary>

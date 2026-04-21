@@ -204,11 +204,20 @@ namespace CavesOfOoo.Rendering
         public const int PopupOverlayLayer = 10;
         public const int HotbarLayer = 11;
 
+        /// <summary>
+        /// Phase 10 — the AI thought-log overlay's dedicated render layer.
+        /// Hosted by <c>ThoughtOverlayCamera</c> (orthographic, URP Overlay
+        /// render type, transparent clear). Culled by the gameplay camera so
+        /// the overlay tilemaps don't leak into the world view.
+        /// </summary>
+        public const int ThoughtOverlayLayer = 12;
+
         public static int DefaultMask => 1 << DefaultLayer;
         public static int WorldMask => 1 << WorldLayer;
         public static int SidebarMask => 1 << SidebarLayer;
         public static int PopupOverlayMask => 1 << PopupOverlayLayer;
         public static int HotbarMask => 1 << HotbarLayer;
+        public static int ThoughtOverlayMask => 1 << ThoughtOverlayLayer;
         public static int GameplayCameraMask => WorldMask | DefaultMask;
 
         public static void SetLayerRecursive(GameObject gameObject, int layer)

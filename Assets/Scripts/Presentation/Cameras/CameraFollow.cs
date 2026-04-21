@@ -15,6 +15,16 @@ namespace CavesOfOoo.Rendering
         public Camera SidebarCamera { get; set; }
         public Camera HotbarCamera { get; set; }
         public Camera PopupOverlayCamera { get; set; }
+
+        /// <summary>
+        /// Phase 10 — dedicated camera for the AI thought-log overlay.
+        /// Configured by <see cref="ConfigureThoughtOverlayCamera"/> to
+        /// cover the left ~30% of the main gameplay viewport so the overlay
+        /// sits on top of the play area without colliding with the sidebar
+        /// on the right. Enabled/disabled by <see cref="ZoneRenderer"/>
+        /// based on the player's 't' toggle.
+        /// </summary>
+        public Camera ThoughtOverlayCamera { get; set; }
         public bool HasOverrideTarget { get; private set; }
         public Vector2Int OverrideZoneCell { get; private set; }
         public float OverrideViewportMarginFraction = 0.25f;
@@ -327,6 +337,7 @@ namespace CavesOfOoo.Rendering
             ConfigureSidebarCamera(layout);
             ConfigureHotbarCamera(layout);
             ConfigurePopupOverlayCamera(layout);
+            ConfigureThoughtOverlayCamera(layout);
         }
 
         private void ApplyUIViewLayout()
@@ -393,6 +404,54 @@ namespace CavesOfOoo.Rendering
                 HotbarCamera,
                 layout.HotbarRect,
                 layout.HotbarAspect);
+        }
+
+        /// <summary>
+        /// Phase 10 — position the thought-overlay camera's viewport rect
+        /// over the left portion of the main gameplay viewport (NOT over
+        /// the sidebar). Orthographic size matches the main camera so
+        /// world-space tile coords line up. Culling mask kept in sync;
+        /// clear flags are Depth so the overlay composites over the world
+        /// via URP camera stacking (gameplay shows through transparent bg).
+        ///
+        /// Enabled/disabled state is managed by ZoneRenderer based on the
+        /// 't' toggle — this method just sets up geometry + configuration.
+        /// </summary>
+        private void ConfigureThoughtOverlayCamera(GameplayScreenLayout layout)
+        {
+            if (ThoughtOverlayCamera == null || _camera == null)
+                return;
+
+            ThoughtOverlayCamera.cullingMask = GameplayRenderLayers.ThoughtOverlayMask;
+            ThoughtOverlayCamera.clearFlags = CameraClearFlags.Depth;
+            ThoughtOverlayCamera.backgroundColor = Color.clear;
+            ThoughtOverlayCamera.orthographic = true;
+            ThoughtOverlayCamera.orthographicSize = _camera.orthographicSize;
+
+            // Overlay viewport: left 30% of the main gameplay viewport
+            // (the portion before the sidebar starts). layout.MapRect
+            // already describes the main viewport — subset its left part.
+            Rect main = layout.MapRect;
+            float overlayWidthFraction = 0.30f;
+            var overlayRect = new Rect(
+                main.xMin,
+                main.yMin,
+                main.width * overlayWidthFraction,
+                main.height);
+            // Aspect: overlay's world-width / world-height ratio scaled
+            // from the gameplay aspect. Simpler: derive from rect.
+            float overlayAspect = Mathf.Max(0.01f,
+                overlayRect.width / Mathf.Max(0.01f, overlayRect.height)
+                * (Screen.width / (float)Mathf.Max(1, Screen.height)));
+
+            // Position the camera so (0, ortho) world-origin sits at the
+            // bottom-left of the overlay — mirrors the sidebar setup where
+            // the camera is placed at the bottom-left of its viewport.
+            ThoughtOverlayCamera.transform.position = new Vector3(
+                ThoughtOverlayCamera.orthographicSize * overlayAspect,
+                _camera.orthographicSize,
+                ThoughtOverlayCamera.transform.position.z);
+            ConfigureCameraRect(ThoughtOverlayCamera, overlayRect, overlayAspect);
         }
 
         private static void ConfigureCameraRect(Camera camera, Rect rect, float aspect)
