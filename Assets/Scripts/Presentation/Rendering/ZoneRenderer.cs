@@ -261,21 +261,16 @@ namespace CavesOfOoo.Rendering
             var thoughtOverlayTmRenderer = thoughtOverlayTmObj.AddComponent<TilemapRenderer>();
             ConfigureThoughtOverlayTilemapRenderer(thoughtOverlayTmRenderer, 3);
 
-            // Same class as the main sidebar — one class serves both UIs.
-            // The overlay renderer gets a REDUCED referenceZoom to compensate
-            // for the fact that its camera's orthoSize is scaled by
-            // overlayRectHeight (0.85) in CameraFollow. Without the reduced
-            // reference, gridScale = overlayOrtho / referenceZoom = 14.45/20
-            // = 0.72, but the sidebar's gridScale is 17/20 = 0.85 — overlay
-            // text would render at 85% sidebar size. Scaling referenceZoom
-            // by the same 0.85 factor yields gridScale = 14.45/17 = 0.85,
-            // matching the sidebar exactly. See CameraFollow.ConfigureThoughtOverlayCamera
-            // for the orthoSize derivation.
-            const float overlayRectHeightFraction = 0.85f;
+            // Same class AND same configuration as the main sidebar — one
+            // class serves both UIs, and because the overlay's camera (in
+            // CameraFollow.ConfigureThoughtOverlayCamera) is a verbatim
+            // clone of the sidebar's camera (same orthoSize, same aspect,
+            // same rect dimensions — only x is mirrored to the left), the
+            // renderer's internal gridScale math produces identical cell
+            // sizes. No custom referenceZoom compensation needed.
             _thoughtOverlayRenderer = new GameplaySidebarRenderer(
                 _thoughtOverlayTilemap, _thoughtOverlayBgTilemap,
-                _thoughtOverlayGridTransform,
-                MessageReferenceZoom * overlayRectHeightFraction);
+                _thoughtOverlayGridTransform, MessageReferenceZoom);
 
             _hotbarRenderer = new GameplayHotbarRenderer(_hotbarTilemap, _hotbarBgTilemap);
 
@@ -531,9 +526,12 @@ namespace CavesOfOoo.Rendering
 
         /// <summary>
         /// Phase 10 — width in narrow-text chars of the thought overlay
-        /// panel. Mirrors SidebarWidthChars for the main sidebar.
+        /// panel. Mirrors <see cref="SidebarWidthChars"/> exactly — the
+        /// overlay camera is a clone of the sidebar camera on the left,
+        /// and using the same char width keeps the two panels visually
+        /// symmetrical.
         /// </summary>
-        public int ThoughtOverlayWidthChars => 32;
+        public int ThoughtOverlayWidthChars => SidebarWidthChars;
 
         /// <summary>
         /// Phase 10 — render the standalone thought overlay to its own
