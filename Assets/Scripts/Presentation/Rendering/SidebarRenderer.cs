@@ -135,28 +135,40 @@ namespace CavesOfOoo.Rendering
             if (y >= bottomY)
                 y--;
 
-            DrawSectionHeader(startX, contentX, y, contentWidth, "FOCUS", QudColorParser.White);
-            y--;
+            // Phase 10 — in THOUGHTS mode ('t' toggle on), skip the FOCUS
+            // section entirely so the bottom THOUGHTS panel gets all of the
+            // reclaimed vertical space. FOCUS is most useful for seeing a
+            // single hovered creature's detail; when the player explicitly
+            // asked to see all creatures' thoughts at once, that slot is
+            // better spent on the thought list. Toggle back to LOG mode to
+            // get FOCUS back.
+            bool thoughtsMode = snapshot?.ThoughtEntries != null;
 
-            int remainingAfterFocusHeader = y - bottomY + 1;
-            // Phase 10 — when the AI goal-stack inspector is populated on the
-            // focus snapshot, grant extra height to the focus panel so the
-            // inspector block isn't clipped to 6 lines.
-            bool inspectorActive = snapshot?.FocusSnapshot?.GoalStackLines != null
-                || snapshot?.FocusSnapshot?.LastThought != null;
-            int focusCeiling = inspectorActive ? 14 : 6;
-            int focusMaxLines = Mathf.Clamp(remainingAfterFocusHeader - 4, 2, focusCeiling);
-            List<string> focusLines = SidebarTextFormatter.FormatFocus(snapshot?.FocusSnapshot, contentWidth, focusMaxLines);
-            for (int i = 0; i < focusLines.Count && y >= bottomY; i++, y--)
+            if (!thoughtsMode)
             {
-                Color color = i == 0
-                    ? QudColorParser.White
-                    : (i == 1 ? QudColorParser.Gray : QudColorParser.DarkGray);
-                DrawText(contentX, y, focusLines[i], color, contentWidth);
-            }
-
-            if (y >= bottomY)
+                DrawSectionHeader(startX, contentX, y, contentWidth, "FOCUS", QudColorParser.White);
                 y--;
+
+                int remainingAfterFocusHeader = y - bottomY + 1;
+                // Phase 10 — when the AI goal-stack inspector is populated on the
+                // focus snapshot, grant extra height to the focus panel so the
+                // inspector block isn't clipped to 6 lines.
+                bool inspectorActive = snapshot?.FocusSnapshot?.GoalStackLines != null
+                    || snapshot?.FocusSnapshot?.LastThought != null;
+                int focusCeiling = inspectorActive ? 14 : 6;
+                int focusMaxLines = Mathf.Clamp(remainingAfterFocusHeader - 4, 2, focusCeiling);
+                List<string> focusLines = SidebarTextFormatter.FormatFocus(snapshot?.FocusSnapshot, contentWidth, focusMaxLines);
+                for (int i = 0; i < focusLines.Count && y >= bottomY; i++, y--)
+                {
+                    Color color = i == 0
+                        ? QudColorParser.White
+                        : (i == 1 ? QudColorParser.Gray : QudColorParser.DarkGray);
+                    DrawText(contentX, y, focusLines[i], color, contentWidth);
+                }
+
+                if (y >= bottomY)
+                    y--;
+            }
 
             int bottomHeaderY = y;
             int bottomHeight = Mathf.Max(1, bottomHeaderY - bottomY);
@@ -165,7 +177,7 @@ namespace CavesOfOoo.Rendering
             // (SidebarStateBuilder populated ThoughtEntries), otherwise LOG.
             // Same tilemap, same container, same layout geometry — data-driven
             // swap. Text size parity is automatic: same panel rendering itself.
-            if (snapshot?.ThoughtEntries != null)
+            if (thoughtsMode)
             {
                 DrawThoughtsPanel(
                     startX, contentX, bottomHeaderY, bottomY, bottomHeight,
