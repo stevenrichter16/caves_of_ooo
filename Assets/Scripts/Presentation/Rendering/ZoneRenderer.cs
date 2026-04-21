@@ -976,6 +976,16 @@ namespace CavesOfOoo.Rendering
         private const float FlowSpeedRowsPerSecond = 12.5f;
 
         /// <summary>
+        /// Glyphs cycled across a FlowsSouth cell every frame, indexed by the
+        /// same phase integer used for WaterColors. Two dashes + one tilde
+        /// means each cell shows flat water most of the time with a visible
+        /// crest that sweeps south once per wave cycle (~2s). Must be the
+        /// same length as WaterCoreColors / WaterBankColors so the glyph
+        /// animation stays in lockstep with the color animation.
+        /// </summary>
+        private static readonly char[] FlowGlyphs = { '-', '-', '~' };
+
+        /// <summary>
         /// Rebuild the cached list of water tile positions from the current zone.
         /// Called on zone load and after full redraws.
         /// </summary>
@@ -1034,16 +1044,29 @@ namespace CavesOfOoo.Rendering
                 // southward (y increasing = lower on screen in roguelike
                 // coords). Village puddles without the tag keep their
                 // stationary spatial-shimmer formula.
-                float phase;
-                if (top.HasTag("FlowsSouth"))
-                    phase = _ambientTimer * FlowSpeedRowsPerSecond - y;
-                else
-                    phase = _ambientTimer * 2f + x * 0.7f + y * 1.3f;
+                bool isFlowing = top.HasTag("FlowsSouth");
+                float phase = isFlowing
+                    ? _ambientTimer * FlowSpeedRowsPerSecond - y
+                    : _ambientTimer * 2f + x * 0.7f + y * 1.3f;
 
                 int colorIndex = ((int)phase) % WaterColors.Length;
                 if (colorIndex < 0) colorIndex += WaterColors.Length;
 
                 Vector3Int tilePos = new Vector3Int(x, Zone.Height - 1 - y, 0);
+
+                // Glyph rotation (flowing cells only): must precede
+                // SetTileFlags/SetColor because SetTile re-applies the
+                // tile's own color and reverts the flags to LockColor.
+                // The village decor puddle keeps its static "~" — a
+                // single seizure-cell is not a vibe.
+                if (isFlowing)
+                {
+                    char glyph = FlowGlyphs[colorIndex % FlowGlyphs.Length];
+                    Tile glyphTile = CP437TilesetGenerator.GetTile(glyph);
+                    if (glyphTile != null)
+                        _tilemap.SetTile(tilePos, glyphTile);
+                }
+
                 _tilemap.SetTileFlags(tilePos, TileFlags.None);
                 _tilemap.SetColor(tilePos, WaterColors[colorIndex]);
             }

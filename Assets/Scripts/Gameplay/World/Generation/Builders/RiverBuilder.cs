@@ -92,6 +92,15 @@ namespace CavesOfOoo.Core
                     // Tag for the renderer's directional-flow animation.
                     water.Tags[FlowsSouthTag] = string.Empty;
 
+                    // Override the default "~" glyph with dashes for the
+                    // starting static look. The renderer overrides this
+                    // glyph every frame in UpdateAmbientAnimations using
+                    // FlowGlyphs, so this only controls the very first
+                    // paint (before the animation loop runs).
+                    var render = water.GetPart<RenderPart>();
+                    if (render != null)
+                        render.GlyphVariants = "---";
+
                     zone.AddEntity(water, x, y);
                 }
             }
