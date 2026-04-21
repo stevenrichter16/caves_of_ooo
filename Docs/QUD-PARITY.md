@@ -1952,6 +1952,17 @@ Zone suspend/thaw, elapsed-time catch-up, `GetZoneSuspendabilityEvent`.
 Weapon evaluation (`CompareWeapons`), `PerformReequip`, `WantToKill(entity, reason)`, Reequip/ChangeEquipment goals, `AICommandList` priority system.
 
 ---
+Phase 5 — Goal composition primitives (InsertGoalAfter, CommandGoal)
+Phase 6 — Missing goal handlers (WanderDuration, FleeLocation, Retreat, Dormant, Reequip, MoveToZone, etc.)
+Phase 7 — More AIBehaviorPart subclasses (AIShopper, AIPilgrim, AIShoreLounging)
+Phase 8 — Party / follower system (PartyLeader, CanAIDoIndependentBehavior)
+Phase 9 — Opinion system (OpinionMap replacing PersonalEnemies)
+Phase 10 — Debug / introspection (Brain.Think, goal descriptions)
+Phase 11 — TurnTick system (part-level ticks independent of TakeTurn)
+Phase 12 — Calendar / world time (IsDay/IsNight, schedules)
+Phase 13 — Zone lifecycle (suspend/thaw, elapsed-time catch-up)
+Phase 14 — AI combat intelligence (weapon evaluation, Reequip, FindProspectiveTarget)
+---
 
 ## Scenario Library — Phase 3: Scenario-as-Test Infrastructure
 
