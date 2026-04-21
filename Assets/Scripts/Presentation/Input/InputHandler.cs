@@ -61,12 +61,13 @@ namespace CavesOfOoo.Rendering
 
         /// <summary>
         /// Minimum time between auto-repeating wait-turn ticks while the
-        /// period/numpad-5 key is HELD. Default 0.2s → 5 turns per second.
-        /// Independent of <see cref="MoveRepeatDelay"/> so wait-hold can
-        /// deliberately be slower than move-hold; otherwise a held wait
-        /// would advance world state faster than the player can observe.
+        /// period/numpad-5 key is HELD. Default 0.1s → 10 turns per second.
+        /// Independent of (and therefore can be faster than) the upstream
+        /// <see cref="MoveRepeatDelay"/>; the wait-hold branch lives ABOVE
+        /// the rate-limit gate in Update() so setting this below 0.12f
+        /// actually delivers the promised rate.
         /// </summary>
-        public float WaitHoldDelay = 0.2f;
+        public float WaitHoldDelay = 0.1f;
 
         private float _lastMoveTime;
         // Initialized to large-negative so the first tap of `.` fires
@@ -240,6 +241,28 @@ namespace CavesOfOoo.Rendering
             {
                 HandleThrowPopupInput();
                 return;
+            }
+
+            // Wait/skip turn (tap or hold) — placed BEFORE the general rate
+            // limit so the hold cadence is independent of MoveRepeatDelay.
+            // With WaitHoldDelay=0.1 → 10 turns/sec while '.' is held; the
+            // upstream 120ms rate limit would otherwise cap us to ~8/sec.
+            // Gated on InputState.Normal so holding '.' while the inventory
+            // or any popup is open doesn't accidentally advance turns (the
+            // popup's own HandleXxxInput early-returns below this point).
+            if (_inputState == InputState.Normal)
+            {
+                bool waitShiftHeld = InputHelper.GetKey(KeyCode.LeftShift)
+                    || InputHelper.GetKey(KeyCode.RightShift);
+                if (!waitShiftHeld
+                    && (InputHelper.GetKey(KeyCode.Period) || InputHelper.GetKey(KeyCode.Keypad5))
+                    && Time.time - _lastWaitTime >= WaitHoldDelay)
+                {
+                    EndTurnAndProcess();
+                    _lastWaitTime = Time.time;
+                    _lastMoveTime = Time.time;
+                    return;
+                }
             }
 
             // Rate limit
@@ -492,24 +515,8 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Wait/skip turn — tap OR hold. GetKey (held) combined with a
-            // dedicated _lastWaitTime gate means:
-            //   - First press: _lastWaitTime is old → fires immediately
-            //   - Held: fires at WaitHoldDelay intervals (~5/sec by default)
-            // Using GetKey (not GetKeyDown) lets holding the key repeat
-            // without needing to tap-tap-tap. The shiftHeld guard prevents
-            // Shift+Period (descend stairs) from also firing a wait tick
-            // on subsequent frames while the player still holds the combo.
-            bool waitShiftHeld = InputHelper.GetKey(KeyCode.LeftShift)
-                || InputHelper.GetKey(KeyCode.RightShift);
-            if (!waitShiftHeld
-                && (InputHelper.GetKey(KeyCode.Period) || InputHelper.GetKey(KeyCode.Keypad5))
-                && Time.time - _lastWaitTime >= WaitHoldDelay)
-            {
-                EndTurnAndProcess();
-                _lastWaitTime = Time.time;
-                _lastMoveTime = Time.time;
-            }
+            // Wait/skip turn is handled above the rate-limit gate; see the
+            // "Wait/skip turn (tap or hold)" block earlier in this function.
             }
         }
 
