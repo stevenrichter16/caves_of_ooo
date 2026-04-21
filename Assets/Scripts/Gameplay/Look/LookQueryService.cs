@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -58,7 +59,74 @@ namespace CavesOfOoo.Core
             if (!string.IsNullOrEmpty(flags))
                 details.Add(flags);
 
-            return new LookSnapshot(x, y, header, summary, details, primary, cell);
+            // Phase 10 — AI goal-stack + last-thought inspector fields. Populated
+            // only when the debug toggle is on AND the primary is a Creature with
+            // a BrainPart. All three gates must pass or both fields stay null.
+            // LookOverlayRenderer / SidebarRenderer treat null as "don't render".
+            BuildBrainInspection(primary, out var goalLines, out var lastThought);
+
+            return new LookSnapshot(x, y, header, summary, details, primary, cell,
+                goalStackLines: goalLines,
+                lastThought: lastThought);
+        }
+
+        /// <summary>
+        /// Phase 10 — populate goal-stack + last-thought fields for the primary
+        /// entity when the inspector toggle is on. Emits goals TOP-DOWN (topmost
+        /// / currently-executing first) and collapses consecutive-duplicate
+        /// descriptions with <c>xN</c>, matching Qud's <c>GetDebugInternalsEvent</c>
+        /// renderer's format.
+        ///
+        /// Both outs are null when:
+        /// - <see cref="AIDebug.AIInspectorEnabled"/> is false, OR
+        /// - primary is null / not Creature-tagged, OR
+        /// - primary has no <see cref="BrainPart"/>.
+        /// </summary>
+        private static void BuildBrainInspection(
+            Entity primary,
+            out List<string> goalLines,
+            out string lastThought)
+        {
+            goalLines = null;
+            lastThought = null;
+
+            if (!AIDebug.AIInspectorEnabled) return;
+            if (primary == null) return;
+            if (!primary.HasTag("Creature")) return;
+
+            var brain = primary.GetPart<BrainPart>();
+            if (brain == null) return;
+
+            // LastThought is set even when the goal stack is empty (Brain.Think
+            // can be called outside any goal). Use "none" placeholder when null
+            // so the sidebar always renders a "Thought:" line instead of
+            // silently omitting it when the creature just hasn't thought yet.
+            lastThought = string.IsNullOrEmpty(brain.LastThought) ? "none" : brain.LastThought;
+
+            int count = brain.GoalCount;
+            if (count == 0) return;
+
+            goalLines = new List<string>(count);
+            // Iterate top-down so the first rendered line is what the NPC is
+            // currently doing. Indices in BrainPart._goals are bottom-up (0 =
+            // oldest), so we start at count-1 and walk down.
+            int i = count - 1;
+            while (i >= 0)
+            {
+                var goal = brain.PeekGoalAt(i);
+                if (goal == null) { i--; continue; }
+
+                string desc = goal.GetDescription();
+                int run = 1;
+                while (i - run >= 0)
+                {
+                    var next = brain.PeekGoalAt(i - run);
+                    if (next == null || next.GetDescription() != desc) break;
+                    run++;
+                }
+                goalLines.Add(run > 1 ? desc + " x" + run : desc);
+                i -= run;
+            }
         }
 
         private static List<Entity> GetVisibleObjects(Cell cell)

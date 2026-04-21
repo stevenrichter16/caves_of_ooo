@@ -163,6 +163,18 @@ namespace CavesOfOoo.Core
             return _goals.Count > 0 ? _goals[_goals.Count - 1] : null;
         }
 
+        /// <summary>
+        /// Peek at a specific stack index without removing. Index 0 is the
+        /// BOTTOM (oldest / root — typically BoredGoal); <c>GoalCount - 1</c>
+        /// is the TOP (innermost / currently executing). Returns null if
+        /// index is out of range. Used by the Phase 10 goal-stack inspector
+        /// UI to render the whole chain without exposing the backing list.
+        /// </summary>
+        public GoalHandler PeekGoalAt(int index)
+        {
+            return (index >= 0 && index < _goals.Count) ? _goals[index] : null;
+        }
+
         /// <summary>Push a goal onto the top of the stack.</summary>
         public void PushGoal(GoalHandler goal)
         {
