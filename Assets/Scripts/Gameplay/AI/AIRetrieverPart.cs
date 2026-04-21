@@ -107,9 +107,24 @@ namespace CavesOfOoo.Core
                 myCell.X, myCell.Y, landingCell.X, landingCell.Y);
             if (dist > NoticeRadius) return true;
 
-            // Retriever fetches WITHOUT returning home — pet brings the
-            // item back to the player's general area, not its own
-            // spawn cell.
+            // Retriever fetches WITHOUT returning home — pet walks to the
+            // item's landing cell, picks it up, and stops. It does NOT walk
+            // back to the thrower or drop the item. ReturnHome=true would
+            // send the pet to its own StartingCell (still not the thrower).
+            //
+            // TODO(pet-ux): Real "dog fetches bone to owner" UX wants a third
+            // mode — walk to an empty cell ADJACENT to the thrower, then
+            // DropCommand the fetched item there. Requires:
+            //   1. Extend GoFetchGoal with ReturnToEntity (tracks thrower).
+            //   2. New Phase.WalkToThrower after Pickup, targeting a
+            //      passable cell adjacent to the tracked entity (recompute
+            //      each tick in case the thrower moves).
+            //   3. Phase.DropAtThrower fires DropCommand on arrival.
+            //   4. AIRetrieverPart passes `thrower` from the ItemLandedEvent.
+            //   5. Tests: arrival + drop, thrower-moves-during-fetch,
+            //      thrower-dies-during-fetch (fall back to ReturnHome).
+            // Punted during M3.2 polish — fetch+hoard works, but the loop
+            // is "throw once, bone gone forever into dog's inventory."
             brain.PushGoal(new GoFetchGoal(item, returnHome: false));
             return false; // consumed
         }
