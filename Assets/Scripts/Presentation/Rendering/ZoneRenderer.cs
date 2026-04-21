@@ -262,11 +262,20 @@ namespace CavesOfOoo.Rendering
             ConfigureThoughtOverlayTilemapRenderer(thoughtOverlayTmRenderer, 3);
 
             // Same class as the main sidebar — one class serves both UIs.
-            // ownsTilemap:true because the overlay owns its dedicated tilemaps
-            // (no shared writers), so Clear() on each Render is safe.
+            // The overlay renderer gets a REDUCED referenceZoom to compensate
+            // for the fact that its camera's orthoSize is scaled by
+            // overlayRectHeight (0.85) in CameraFollow. Without the reduced
+            // reference, gridScale = overlayOrtho / referenceZoom = 14.45/20
+            // = 0.72, but the sidebar's gridScale is 17/20 = 0.85 — overlay
+            // text would render at 85% sidebar size. Scaling referenceZoom
+            // by the same 0.85 factor yields gridScale = 14.45/17 = 0.85,
+            // matching the sidebar exactly. See CameraFollow.ConfigureThoughtOverlayCamera
+            // for the orthoSize derivation.
+            const float overlayRectHeightFraction = 0.85f;
             _thoughtOverlayRenderer = new GameplaySidebarRenderer(
                 _thoughtOverlayTilemap, _thoughtOverlayBgTilemap,
-                _thoughtOverlayGridTransform, MessageReferenceZoom);
+                _thoughtOverlayGridTransform,
+                MessageReferenceZoom * overlayRectHeightFraction);
 
             _hotbarRenderer = new GameplayHotbarRenderer(_hotbarTilemap, _hotbarBgTilemap);
 
