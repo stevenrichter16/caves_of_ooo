@@ -151,5 +151,13 @@ namespace CavesOfOoo.Editor.Scenarios
         [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Pet Dog Fetches Thrown Item (M3.2)", priority = 223)]
         private static void Launch_PetDogFetchesBone()
             => ScenarioRunner.Launch<PetDogFetchesBone>();
+
+        // =========================================================
+        // Debug (Phase 10)
+        // =========================================================
+
+        [MenuItem("Caves Of Ooo/Scenarios/Debug/Inspect AI Goals (P10)", priority = 600)]
+        private static void Launch_InspectAIGoals()
+            => ScenarioRunner.Launch<InspectAIGoals>();
     }
 }

@@ -69,6 +69,16 @@ namespace CavesOfOoo.Rendering
             return lines;
         }
 
+        /// <summary>
+        /// Max goal-stack entries shown in the focus panel before collapsing
+        /// overflow into "... (N more)". Cap protects against a pathological
+        /// 20-deep stack pushing the log section off-screen (see Phase 10
+        /// plan §Risks #2). Override via <c>goalStackLineCap</c>-style knobs
+        /// later if needed; for now an 8-line cap is enough for every goal
+        /// stack the game generates (typical depth: 2–4).
+        /// </summary>
+        private const int FocusGoalStackLineCap = 8;
+
         public static List<string> FormatFocus(LookSnapshot snapshot, int width, int maxLines)
         {
             int safeWidth = Math.Max(1, width);
@@ -90,10 +100,80 @@ namespace CavesOfOoo.Rendering
                     AppendWrapped(lines, snapshot.DetailLines[i], safeWidth, safeMaxLines);
             }
 
+            // Phase 10 — AI goal-stack inspector block. Only rendered when
+            // LookQueryService populated the snapshot's inspector fields (which
+            // requires AIDebug.AIInspectorEnabled true + Creature target with
+            // BrainPart). The inspector-off path contributes zero lines.
+            AppendInspectorBlock(lines, snapshot, safeWidth, safeMaxLines);
+
             if (lines.Count == 0)
                 lines.Add("No focus");
 
             return lines;
+        }
+
+        /// <summary>
+        /// Appends the goal-stack + last-thought block when the snapshot's
+        /// inspector fields are populated. Emits (within the caller's
+        /// <paramref name="maxLines"/> budget):
+        ///   "Goals:"                         — header
+        ///   &lt;topmost goal description&gt; — one per stack frame, capped
+        ///   "... (N more)"                   — overflow sentinel if capped
+        ///   "Thought: &lt;text&gt;"          — trailer
+        /// </summary>
+        private static void AppendInspectorBlock(
+            List<string> lines, LookSnapshot snapshot, int width, int maxLines)
+        {
+            if (snapshot == null) return;
+
+            // GoalStackLines == null means the inspector is off OR the primary
+            // isn't a Creature with a Brain. Either way, nothing to render.
+            var goalLines = snapshot.GoalStackLines;
+            string thought = snapshot.LastThought;
+            if (goalLines == null && thought == null) return;
+
+            // Goals: header + stack lines + overflow indicator. Goal-stack
+            // lines get a 2-space indent (matches Qud's inspector layout).
+            // WrapWithPrefixes preserves the indent; AppendWrapped's internal
+            // .Trim() would strip it, so we use WrapWithPrefixes directly for
+            // the indented lines.
+            if (goalLines != null)
+            {
+                if (lines.Count >= maxLines) return;
+                lines.Add(Truncate("Goals:", width));
+
+                int shown = Math.Min(goalLines.Count, FocusGoalStackLineCap);
+                for (int i = 0; i < shown && lines.Count < maxLines; i++)
+                    AppendWithPrefix(lines, goalLines[i], width, maxLines, "  ");
+
+                int overflow = goalLines.Count - shown;
+                if (overflow > 0 && lines.Count < maxLines)
+                    AppendWithPrefix(lines, "... (" + overflow + " more)",
+                        width, maxLines, "  ");
+            }
+
+            // Thought: trailer. LookQueryService writes "none" when the
+            // brain's LastThought is empty, so the line always has content
+            // when the inspector is active. No indent — trailer sits flush
+            // left with the "Goals:" header above.
+            if (thought != null && lines.Count < maxLines)
+                AppendWithPrefix(lines, "Thought: " + thought, width, maxLines, string.Empty);
+        }
+
+        /// <summary>
+        /// Append-with-indent helper that preserves leading whitespace that
+        /// <see cref="AppendWrapped"/> would otherwise strip via Trim().
+        /// Used by the inspector block for goal-stack indentation.
+        /// </summary>
+        private static void AppendWithPrefix(
+            List<string> lines, string text, int width, int maxLines, string prefix)
+        {
+            if (lines.Count >= maxLines || string.IsNullOrWhiteSpace(text))
+                return;
+
+            List<string> wrapped = WrapWithPrefixes(text, width, prefix, prefix);
+            for (int i = 0; i < wrapped.Count && lines.Count < maxLines; i++)
+                lines.Add(wrapped[i]);
         }
 
         public static List<LogLine> FormatLog(

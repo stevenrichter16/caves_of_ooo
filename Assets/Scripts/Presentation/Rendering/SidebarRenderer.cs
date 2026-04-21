@@ -139,7 +139,15 @@ namespace CavesOfOoo.Rendering
             y--;
 
             int remainingAfterFocusHeader = y - bottomY + 1;
-            int focusMaxLines = Mathf.Clamp(remainingAfterFocusHeader - 7, 2, 6);
+            // Phase 10 — when the AI goal-stack inspector is populated on the
+            // focus snapshot, grant extra height to the focus panel so the
+            // inspector block isn't clipped to 6 lines. Ceiling raised to 14
+            // (room for header + 8 goals + overflow + Thought + baseline HP
+            // lines). The log section below compresses proportionally.
+            bool inspectorActive = snapshot?.FocusSnapshot?.GoalStackLines != null
+                || snapshot?.FocusSnapshot?.LastThought != null;
+            int focusCeiling = inspectorActive ? 14 : 6;
+            int focusMaxLines = Mathf.Clamp(remainingAfterFocusHeader - 4, 2, focusCeiling);
             List<string> focusLines = SidebarTextFormatter.FormatFocus(snapshot?.FocusSnapshot, contentWidth, focusMaxLines);
             for (int i = 0; i < focusLines.Count && y >= bottomY; i++, y--)
             {

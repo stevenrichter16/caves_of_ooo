@@ -154,5 +154,25 @@ namespace CavesOfOoo.Tests.Scenarios
 
         [Test] public void WoundedScribeFleesToShrine_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new WoundedScribeFleesToShrine().Apply(FreshContext()));
+
+        // ======================================================
+        // Phase 10 scenario (AI goal-stack inspector)
+        // ======================================================
+
+        [Test]
+        public void InspectAIGoals_Applies_WithoutThrowing()
+        {
+            // Scenario flips the global AIDebug.AIInspectorEnabled flag.
+            // Reset it in a finally so this smoke test doesn't leak static
+            // state into other fixtures.
+            try
+            {
+                Assert.DoesNotThrow(() => new InspectAIGoals().Apply(FreshContext()));
+            }
+            finally
+            {
+                CavesOfOoo.Diagnostics.AIDebug.AIInspectorEnabled = false;
+            }
+        }
     }
 }
