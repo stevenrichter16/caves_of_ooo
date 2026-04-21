@@ -85,6 +85,43 @@ namespace CavesOfOoo.Core
         /// </summary>
         protected void Think(string thought) => ParentBrain?.Think(thought);
 
+        /// <summary>
+        /// One-liner shown in the AI goal-stack inspector UI. Default shape:
+        ///   <c>"TypeName"</c>            — when <see cref="GetDetails"/> is null
+        ///   <c>"TypeName: details"</c>   — when <see cref="GetDetails"/> returns a string
+        ///
+        /// Override <see cref="GetDetails"/> for state-specific strings; only
+        /// override this method directly if the <c>"Type: Details"</c> shape
+        /// is wrong for your goal (e.g. you want the type name suppressed).
+        /// Non-abstract so unimplemented subclasses still produce readable
+        /// output — mirrors Qud's <c>GoalHandler.GetDescription</c>.
+        /// </summary>
+        public virtual string GetDescription()
+        {
+            string details = GetDetails();
+            string typeName = GetType().Name;
+            return string.IsNullOrEmpty(details) ? typeName : $"{typeName}: {details}";
+        }
+
+        /// <summary>
+        /// State summary for this goal (target name, phase, counter values).
+        /// Default: null → inspector shows just the type name. Override to
+        /// surface interesting runtime state. Format convention: single line,
+        /// fields joined with <c>" | "</c>, no trailing punctuation.
+        ///
+        /// Examples of good overrides:
+        ///   "target=Snapjaw"
+        ///   "phase=Pickup | attempts=1/2 | item=Bone"
+        ///   "to=(44,11) age=3/100"
+        ///
+        /// Examples to AVOID (too verbose / multi-line / unstable reprs):
+        ///   "{Target=Snapjaw, Pos=[44,11]}"      // object-dump style
+        ///   "target: Snapjaw\nphase: Pickup"     // multi-line
+        ///
+        /// Mirrors Qud's <c>GoalHandler.GetDetails</c>.
+        /// </summary>
+        public virtual string GetDetails() => null;
+
         // --- Shared helpers ---
 
         /// <summary>Check if the entity should flee based on HP and FleeThreshold.</summary>

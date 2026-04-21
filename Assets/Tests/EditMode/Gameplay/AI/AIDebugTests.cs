@@ -121,5 +121,64 @@ namespace CavesOfOoo.Tests
             public override void TakeAction() { /* no-op */ }
             public void InvokeThink(string thought) => Think(thought);
         }
+
+        // ========================
+        // GoalHandler.GetDescription / GetDetails defaults (Commit 2)
+        // ========================
+
+        [Test]
+        public void GetDescription_DefaultOnBoredGoal_IsTypeName()
+        {
+            // A concrete shipped goal that doesn't override GetDetails should
+            // surface its type name verbatim — no ceremony, no empty ": ".
+            var goal = new BoredGoal();
+            Assert.AreEqual("BoredGoal", goal.GetDescription());
+        }
+
+        [Test]
+        public void GetDetails_DefaultReturnsNull()
+        {
+            // Base contract: GetDetails defaults to null so subclasses opt in.
+            // If this default ever becomes "" or something else, every
+            // non-overriding goal's inspector line shape would shift.
+            var goal = new BoredGoal();
+            Assert.IsNull(goal.GetDetails());
+        }
+
+        [Test]
+        public void GetDescription_WithDetailsOverride_FormatsAsTypeColonDetails()
+        {
+            // Pins the default format string: "TypeName: details" (single space
+            // after colon, no trailing punctuation). If someone rewrites
+            // GetDescription to use a different separator, inspector lines
+            // drift silently — this test catches that.
+            var goal = new DetailOnlyTestGoal { Details = "target=Snapjaw" };
+            Assert.AreEqual(
+                "DetailOnlyTestGoal: target=Snapjaw",
+                goal.GetDescription());
+        }
+
+        [Test]
+        public void GetDescription_WithEmptyDetails_FallsBackToTypeName()
+        {
+            // Counter-check: if a goal accidentally returns "" instead of
+            // null, the inspector shouldn't render "BoredGoal: " with
+            // trailing colon-space. GetDescription treats null and ""
+            // identically via string.IsNullOrEmpty.
+            var goal = new DetailOnlyTestGoal { Details = "" };
+            Assert.AreEqual("DetailOnlyTestGoal", goal.GetDescription());
+        }
+
+        /// <summary>
+        /// Test-only goal that returns a caller-supplied details string.
+        /// Isolates the default-format behavior from the details logic of
+        /// any production goal.
+        /// </summary>
+        private class DetailOnlyTestGoal : GoalHandler
+        {
+            public string Details;
+            public override void TakeAction() { /* no-op */ }
+            public override string GetDetails() => Details;
+        }
     }
 }
