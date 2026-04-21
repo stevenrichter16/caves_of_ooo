@@ -146,6 +146,10 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new VillageBuilder(biome, poi, SettlementManager));
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
+            // RiverBuilder (priority 3850) runs before population (4000) so
+            // NPCs don't spawn in the water. Only carves in the starting
+            // village zone (Overworld.10.10.0).
+            pipeline.AddBuilder(new RiverBuilder());
             pipeline.AddBuilder(new VillagePopulationBuilder(poi, SettlementManager));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             return pipeline;

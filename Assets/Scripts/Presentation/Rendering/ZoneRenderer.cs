@@ -957,13 +957,23 @@ namespace CavesOfOoo.Rendering
             return true;
         }
 
-        // Water color cycle: 3 shades of blue/cyan
+        // Water color cycle: 3 shades of blue/cyan. Used by both the
+        // stationary shimmer (village puddles) and the flowing-river wave,
+        // just with different phase formulas.
         private static readonly Color[] WaterColors =
         {
             QudColorParser.DarkBlue,
             QudColorParser.DarkCyan,
             QudColorParser.BrightBlue
         };
+
+        /// <summary>
+        /// Flow wave speed for FlowsSouth tiles, in "color-index units per
+        /// second." With Zone.Height = 25 rows and this rate, a single color
+        /// band takes about 2 seconds to cross the full height of the zone —
+        /// the pace the design spec calls for (2s per wave). Larger = faster.
+        /// </summary>
+        private const float FlowSpeedRowsPerSecond = 12.5f;
 
         /// <summary>
         /// Rebuild the cached list of water tile positions from the current zone.
@@ -1017,7 +1027,19 @@ namespace CavesOfOoo.Rendering
                 var render = top.GetPart<RenderPart>();
                 if (render == null || render.RenderString != "~") continue;
 
-                float phase = _ambientTimer * 2f + x * 0.7f + y * 1.3f;
+                // River cells carry a FlowsSouth tag (set by RiverBuilder).
+                // Directional phase formula: ambientTimer * speed - y means
+                // the color band's effective row-index INCREASES over time
+                // and DECREASES with higher y, so the band visually slides
+                // southward (y increasing = lower on screen in roguelike
+                // coords). Village puddles without the tag keep their
+                // stationary spatial-shimmer formula.
+                float phase;
+                if (top.HasTag("FlowsSouth"))
+                    phase = _ambientTimer * FlowSpeedRowsPerSecond - y;
+                else
+                    phase = _ambientTimer * 2f + x * 0.7f + y * 1.3f;
+
                 int colorIndex = ((int)phase) % WaterColors.Length;
                 if (colorIndex < 0) colorIndex += WaterColors.Length;
 
