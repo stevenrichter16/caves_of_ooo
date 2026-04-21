@@ -15,7 +15,8 @@ namespace CavesOfOoo.Rendering
             Entity player,
             Zone zone,
             LookSnapshot currentLookSnapshot,
-            int maxRecentMessages = SidebarLogMessageLimit)
+            int maxRecentMessages = SidebarLogMessageLimit,
+            bool showThoughts = false)
         {
             var inventoryState = InventoryScreenData.Build(player);
 
@@ -35,31 +36,14 @@ namespace CavesOfOoo.Rendering
             LookSnapshot focusSnapshot = currentLookSnapshot ?? BuildFallbackFocus(player, zone);
             IReadOnlyList<SidebarLogEntry> logEntries = BuildRecentLogEntries(maxRecentMessages);
 
-            return new SidebarSnapshot(vitalLines, statusText, focusSnapshot, logEntries);
-        }
+            // Phase 10 — when the 't' toggle is on, populate thought entries
+            // so the sidebar renderer swaps LOG for THOUGHTS in the bottom
+            // panel. Null (default) → LOG mode. Populated → THOUGHTS mode.
+            IReadOnlyList<SidebarThoughtEntry> thoughtEntries =
+                showThoughts ? BuildThoughtEntries(zone) : null;
 
-        /// <summary>
-        /// Phase 10 — build a separate <see cref="SidebarSnapshot"/> for the
-        /// standalone thought overlay. Empty vitals and null focus so
-        /// <see cref="GameplaySidebarRenderer"/> skips those sections; the
-        /// only populated bottom-panel content is the thought entries.
-        ///
-        /// Intentionally a second method (not a flag on Build): the two
-        /// snapshots represent different UIs and share no layout logic.
-        /// </summary>
-        public static SidebarSnapshot BuildThoughtOverlay(Zone zone)
-        {
-            IReadOnlyList<SidebarThoughtEntry> thoughtEntries = BuildThoughtEntries(zone);
-
-            // Empty lists / null focus tell the sidebar renderer "no vitals,
-            // no status, no focus section" via the new skip-empty-section
-            // path added in this commit.
             return new SidebarSnapshot(
-                vitalLines: new List<string>(),
-                statusText: null,
-                focusSnapshot: null,
-                logEntriesNewestFirst: new List<SidebarLogEntry>(),
-                thoughtEntries: thoughtEntries);
+                vitalLines, statusText, focusSnapshot, logEntries, thoughtEntries);
         }
 
         /// <summary>

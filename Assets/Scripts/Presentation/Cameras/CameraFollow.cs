@@ -15,16 +15,6 @@ namespace CavesOfOoo.Rendering
         public Camera SidebarCamera { get; set; }
         public Camera HotbarCamera { get; set; }
         public Camera PopupOverlayCamera { get; set; }
-
-        /// <summary>
-        /// Phase 10 — dedicated camera for the AI thought-log overlay.
-        /// Configured by <see cref="ConfigureThoughtOverlayCamera"/> to
-        /// cover the left ~30% of the main gameplay viewport so the overlay
-        /// sits on top of the play area without colliding with the sidebar
-        /// on the right. Enabled/disabled by <see cref="ZoneRenderer"/>
-        /// based on the player's 't' toggle.
-        /// </summary>
-        public Camera ThoughtOverlayCamera { get; set; }
         public bool HasOverrideTarget { get; private set; }
         public Vector2Int OverrideZoneCell { get; private set; }
         public float OverrideViewportMarginFraction = 0.25f;
@@ -337,7 +327,6 @@ namespace CavesOfOoo.Rendering
             ConfigureSidebarCamera(layout);
             ConfigureHotbarCamera(layout);
             ConfigurePopupOverlayCamera(layout);
-            ConfigureThoughtOverlayCamera(layout);
         }
 
         private void ApplyUIViewLayout()
@@ -404,66 +393,6 @@ namespace CavesOfOoo.Rendering
                 HotbarCamera,
                 layout.HotbarRect,
                 layout.HotbarAspect);
-        }
-
-        /// <summary>
-        /// Phase 10 — the thought overlay camera is a LITERAL CLONE of the
-        /// sidebar camera, mirrored to the left side of the screen. This is
-        /// the simplest reliable way to guarantee identical text size and
-        /// style with the logger: same orthoSize, same aspect, same
-        /// camera-position math, same viewport dimensions (just x=0 instead
-        /// of x=leftColumnWidth). The ONLY things we change:
-        ///
-        ///   - cullingMask       → ThoughtOverlayMask (not SidebarMask)
-        ///   - clearFlags        → Depth (transparent bg for overlay compositing)
-        ///   - backgroundColor   → clear
-        ///   - rect.x            → 0  (mirror of sidebar's rect.xMin = leftColumnWidth)
-        ///   - transform.x       → the overlay's own center, NOT sidebar's center
-        ///
-        /// Everything else — orthoSize, rect.height, rect.width, aspect,
-        /// transform.y — matches the sidebar exactly. No more ad-hoc math,
-        /// no more referenceZoom compensation, no more rect.height-scaled
-        /// orthoSize. If the sidebar's text size looks right, the overlay's
-        /// will too, because they're configured identically.
-        ///
-        /// Enable/disable state is managed by ZoneRenderer based on the 't'
-        /// toggle — this method just sets up geometry + configuration.
-        /// </summary>
-        private void ConfigureThoughtOverlayCamera(GameplayScreenLayout layout)
-        {
-            if (ThoughtOverlayCamera == null || _camera == null)
-                return;
-
-            // Mirror sidebar's rect: width, height, y all identical — only x is 0.
-            // This guarantees the overlay covers the exact same-shaped screen
-            // region as the sidebar, just on the left edge instead of the right.
-            Rect sidebarRect = layout.SidebarRect;
-            var overlayRect = new Rect(0f, sidebarRect.y, sidebarRect.width, sidebarRect.height);
-
-            // Clone sidebar config verbatim; only the three "this is an
-            // overlay, not the sidebar" fields differ.
-            ThoughtOverlayCamera.orthographic = true;
-            ThoughtOverlayCamera.cullingMask = GameplayRenderLayers.ThoughtOverlayMask;
-            ThoughtOverlayCamera.clearFlags = CameraClearFlags.Depth;
-            ThoughtOverlayCamera.backgroundColor = Color.clear;
-
-            // orthoSize + aspect: identical to sidebar. Because rect.height
-            // and rect.width are identical, pixels-per-world-unit ends up
-            // identical, and the GameplaySidebarRenderer instance on this
-            // camera produces the same gridScale → same cell size in pixels.
-            ThoughtOverlayCamera.orthographicSize = _camera.orthographicSize;
-
-            // Position: for the sidebar, transform.x = layout.SidebarWorldWidth * 0.5.
-            // That's because the sidebar tilemap lives in world coords 0..SidebarWorldWidth,
-            // and the camera is centered on the middle of that range. Our overlay
-            // tilemap lives at the SAME world coords 0..(same width), so our camera
-            // has the SAME center-x computation.
-            ThoughtOverlayCamera.transform.position = new Vector3(
-                layout.SidebarWorldWidth * 0.5f,
-                _camera.orthographicSize,
-                ThoughtOverlayCamera.transform.position.z);
-
-            ConfigureCameraRect(ThoughtOverlayCamera, overlayRect, layout.SidebarAspect);
         }
 
         private static void ConfigureCameraRect(Camera camera, Rect rect, float aspect)

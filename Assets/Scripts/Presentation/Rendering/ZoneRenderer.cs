@@ -72,27 +72,10 @@ namespace CavesOfOoo.Rendering
         private Tilemap _popupOverlayTilemap;
         private Transform _popupOverlayGridTransform;
         private Material _popupOverlayUiMaterial;
-        // Phase 10 — dedicated thought-overlay grid + tilemaps (narrow text,
-        // own layer + camera, mirrors the sidebar setup).
-        private Grid _thoughtOverlayGrid;
-        private Tilemap _thoughtOverlayBgTilemap;
-        private Tilemap _thoughtOverlayTilemap;
-        private Transform _thoughtOverlayGridTransform;
-        private Material _thoughtOverlayUiMaterial;
-        private Camera _thoughtOverlayCamera;
         private AsciiFxRenderer _asciiFxRenderer;
         private CampfireEmberRenderer _campfireEmberRenderer;
         private WorldCursorRenderer _worldCursorRenderer;
         private GameplaySidebarRenderer _sidebarRenderer;
-
-        /// <summary>
-        /// Phase 10 — second <see cref="GameplaySidebarRenderer"/> instance
-        /// that renders the standalone thought overlay onto the world
-        /// tilemap. Intentionally the same class as the main logger/sidebar
-        /// renderer (per the design followup request) — one class serves
-        /// both UIs; the only difference is the snapshot they receive.
-        /// </summary>
-        private GameplaySidebarRenderer _thoughtOverlayRenderer;
         private GameplayHotbarRenderer _hotbarRenderer;
 
         /// <summary>
@@ -149,12 +132,6 @@ namespace CavesOfOoo.Rendering
         public Tilemap CenteredPopupBgTilemap => _popupOverlayBgTilemap;
         public Tilemap CenteredPopupFgTilemap => _popupOverlayTilemap;
         public Camera PopupOverlayCamera => _popupOverlayCamera;
-
-        /// <summary>Phase 10 — accessor for the thought-overlay camera set via <see cref="SetThoughtOverlayCamera"/>.</summary>
-        public Camera ThoughtOverlayCamera => _thoughtOverlayCamera;
-
-        public Tilemap ThoughtOverlayTilemap => _thoughtOverlayTilemap;
-        public Tilemap ThoughtOverlayBgTilemap => _thoughtOverlayBgTilemap;
         /// <summary>Popup background tilemap (sortingOrder 6). For DialogueUI/TradeUI bg fills.</summary>
         public Tilemap PopupBgTilemap => _popupBgTilemap;
         /// <summary>Popup foreground tilemap (sortingOrder 7). For DialogueUI/TradeUI glyphs.</summary>
@@ -236,42 +213,6 @@ namespace CavesOfOoo.Rendering
 
             _worldCursorRenderer = new WorldCursorRenderer(gridParent, _tilemap, GameplayRenderLayers.WorldLayer);
             _sidebarRenderer = new GameplaySidebarRenderer(_sidebarTilemap, _sidebarBgTilemap, _sidebarGridTransform, MessageReferenceZoom);
-
-            // Phase 10 — dedicated Grid + tilemaps for the thought overlay,
-            // mirroring the sidebar setup precisely: own layer, own cellSize
-            // (0.5x1 narrow text), own TilemapRenderer material. Will be
-            // rendered by its own Camera assigned via SetThoughtOverlayCamera.
-            var thoughtOverlayGridObj = new GameObject("ThoughtOverlayGrid");
-            _thoughtOverlayGridTransform = thoughtOverlayGridObj.transform;
-            GameplayRenderLayers.SetLayerRecursive(thoughtOverlayGridObj, GameplayRenderLayers.ThoughtOverlayLayer);
-            _thoughtOverlayGrid = thoughtOverlayGridObj.AddComponent<Grid>();
-            _thoughtOverlayGrid.cellSize = new Vector3(0.5f, 1f, 0f);
-
-            var thoughtOverlayBgObj = new GameObject("ThoughtOverlayBgTilemap");
-            thoughtOverlayBgObj.transform.SetParent(thoughtOverlayGridObj.transform);
-            GameplayRenderLayers.SetLayerRecursive(thoughtOverlayBgObj, GameplayRenderLayers.ThoughtOverlayLayer);
-            _thoughtOverlayBgTilemap = thoughtOverlayBgObj.AddComponent<Tilemap>();
-            var thoughtOverlayBgRenderer = thoughtOverlayBgObj.AddComponent<TilemapRenderer>();
-            ConfigureThoughtOverlayTilemapRenderer(thoughtOverlayBgRenderer, 2);
-
-            var thoughtOverlayTmObj = new GameObject("ThoughtOverlayTilemap");
-            thoughtOverlayTmObj.transform.SetParent(thoughtOverlayGridObj.transform);
-            GameplayRenderLayers.SetLayerRecursive(thoughtOverlayTmObj, GameplayRenderLayers.ThoughtOverlayLayer);
-            _thoughtOverlayTilemap = thoughtOverlayTmObj.AddComponent<Tilemap>();
-            var thoughtOverlayTmRenderer = thoughtOverlayTmObj.AddComponent<TilemapRenderer>();
-            ConfigureThoughtOverlayTilemapRenderer(thoughtOverlayTmRenderer, 3);
-
-            // Same class AND same configuration as the main sidebar — one
-            // class serves both UIs, and because the overlay's camera (in
-            // CameraFollow.ConfigureThoughtOverlayCamera) is a verbatim
-            // clone of the sidebar's camera (same orthoSize, same aspect,
-            // same rect dimensions — only x is mirrored to the left), the
-            // renderer's internal gridScale math produces identical cell
-            // sizes. No custom referenceZoom compensation needed.
-            _thoughtOverlayRenderer = new GameplaySidebarRenderer(
-                _thoughtOverlayTilemap, _thoughtOverlayBgTilemap,
-                _thoughtOverlayGridTransform, MessageReferenceZoom);
-
             _hotbarRenderer = new GameplayHotbarRenderer(_hotbarTilemap, _hotbarBgTilemap);
 
             var popupOverlayGridObj = new GameObject("PopupOverlayGrid");
@@ -316,7 +257,6 @@ namespace CavesOfOoo.Rendering
             DestroyOwnedMaterial(ref _sidebarUiMaterial);
             DestroyOwnedMaterial(ref _hotbarUiMaterial);
             DestroyOwnedMaterial(ref _popupOverlayUiMaterial);
-            DestroyOwnedMaterial(ref _thoughtOverlayUiMaterial);
         }
 
         /// <summary>
@@ -520,47 +460,7 @@ namespace CavesOfOoo.Rendering
                 }
 
                 RefreshWaterCache();
-
             }
-        }
-
-        /// <summary>
-        /// Phase 10 — width in narrow-text chars of the thought overlay
-        /// panel. Mirrors <see cref="SidebarWidthChars"/> exactly — the
-        /// overlay camera is a clone of the sidebar camera on the left,
-        /// and using the same char width keeps the two panels visually
-        /// symmetrical.
-        /// </summary>
-        public int ThoughtOverlayWidthChars => SidebarWidthChars;
-
-        /// <summary>
-        /// Phase 10 — render the standalone thought overlay to its own
-        /// dedicated tilemaps via its own dedicated Camera. Called from
-        /// the main render loop alongside the sidebar; gated by
-        /// <see cref="ShowThoughtLog"/>. When the toggle is off, we clear
-        /// once (so stale tiles don't linger) and disable the camera so it
-        /// stops rendering every frame.
-        /// </summary>
-        private void RenderThoughtOverlay()
-        {
-            if (_thoughtOverlayRenderer == null) return;
-
-            if (!ShowThoughtLog || _thoughtOverlayCamera == null)
-            {
-                if (_thoughtOverlayRenderer.IsVisible)
-                    _thoughtOverlayRenderer.Clear();
-                if (_thoughtOverlayCamera != null && _thoughtOverlayCamera.enabled)
-                    _thoughtOverlayCamera.enabled = false;
-                return;
-            }
-
-            if (!_thoughtOverlayCamera.enabled)
-                _thoughtOverlayCamera.enabled = true;
-
-            var thoughtSnapshot = SidebarStateBuilder.BuildThoughtOverlay(CurrentZone);
-            _thoughtOverlayRenderer.Render(
-                thoughtSnapshot, _thoughtOverlayCamera, ThoughtOverlayWidthChars,
-                flashActive: false, flashT: 0f);
         }
 
         private static readonly Color RememberedColor = new Color(0.2f, 0.2f, 0.2f);
@@ -764,15 +664,16 @@ namespace CavesOfOoo.Rendering
                     ? Mathf.Clamp01((_flashUntil - Time.time) / FlashDuration)
                     : 0f;
 
+                // Phase 10 — the 't' toggle swaps the sidebar's bottom
+                // section (LOG) for THOUGHTS by passing showThoughts into
+                // Build. Data-driven dispatch inside the sidebar renderer
+                // selects DrawLogPanel vs DrawThoughtsPanel based on
+                // snapshot.ThoughtEntries being null/non-null. No separate
+                // tilemap or camera — same panel, different content.
                 SidebarSnapshot snapshot = SidebarStateBuilder.Build(
-                    PlayerEntity, CurrentZone, _currentLookSnapshot);
+                    PlayerEntity, CurrentZone, _currentLookSnapshot,
+                    showThoughts: ShowThoughtLog);
                 _sidebarRenderer?.Render(snapshot, sidebarCamera, SidebarWidthChars, flashActive, flashT);
-
-                // Phase 10 — sibling render pass for the thought overlay
-                // (same GameplaySidebarRenderer class, different instance +
-                // tilemaps + camera). Gated by ShowThoughtLog; short-circuits
-                // cheaply when off.
-                RenderThoughtOverlay();
             }
         }
 
@@ -824,18 +725,6 @@ namespace CavesOfOoo.Rendering
             renderer.sortingOrder = sortingOrder;
 
             Material uiMaterial = GetUnlitSpriteMaterial(ref _hotbarUiMaterial, "HotbarUI-Unlit");
-            if (uiMaterial != null)
-                renderer.sharedMaterial = uiMaterial;
-        }
-
-        private void ConfigureThoughtOverlayTilemapRenderer(TilemapRenderer renderer, int sortingOrder)
-        {
-            if (renderer == null)
-                return;
-
-            renderer.sortingOrder = sortingOrder;
-
-            Material uiMaterial = GetUnlitSpriteMaterial(ref _thoughtOverlayUiMaterial, "ThoughtOverlayUI-Unlit");
             if (uiMaterial != null)
                 renderer.sharedMaterial = uiMaterial;
         }
@@ -956,17 +845,6 @@ namespace CavesOfOoo.Rendering
         {
             _popupOverlayCamera = popupOverlayCamera;
             UpdatePopupOverlayGridLayout();
-        }
-
-        /// <summary>
-        /// Phase 10 — assign the thought-overlay camera created by
-        /// <see cref="Bootstrap.GameBootstrap"/>. Called once at bootstrap;
-        /// the camera's culling mask, viewport rect, and URP stack position
-        /// are configured by <see cref="Cameras.CameraFollow"/>.
-        /// </summary>
-        public void SetThoughtOverlayCamera(Camera thoughtOverlayCamera)
-        {
-            _thoughtOverlayCamera = thoughtOverlayCamera;
         }
 
         public void SetHotbarState(int selectedSlot, ActivatedAbility pendingAbility)

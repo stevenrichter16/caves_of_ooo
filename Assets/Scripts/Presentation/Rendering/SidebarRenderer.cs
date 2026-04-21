@@ -120,66 +120,53 @@ namespace CavesOfOoo.Rendering
             DrawDivider(startX, bottomY, rows);
 
             int y = topY;
+            DrawSectionHeader(startX, contentX, y, contentWidth, "VITALS", QudColorParser.White);
+            y--;
 
-            // Phase 10 — renderer is data-driven: a snapshot with empty
-            // vitals, null status, null focus, and non-null thoughts becomes
-            // a standalone thought-overlay instance of this same class.
-            // Each section only draws its header when the data for that
-            // section is actually populated; empty sections compress away.
-            bool hasVitals = snapshot?.VitalLines != null && snapshot.VitalLines.Count > 0;
-            bool hasStatus = !string.IsNullOrEmpty(snapshot?.StatusText) && snapshot.StatusText != "-";
-            bool hasFocus = snapshot?.FocusSnapshot != null;
-
-            if (hasVitals || hasStatus)
+            List<string> vitals = SidebarTextFormatter.FormatVitals(snapshot, contentWidth, 7);
+            for (int i = 0; i < vitals.Count && y >= bottomY; i++, y--)
             {
-                DrawSectionHeader(startX, contentX, y, contentWidth, "VITALS", QudColorParser.White);
-                y--;
-
-                List<string> vitals = SidebarTextFormatter.FormatVitals(snapshot, contentWidth, 7);
-                for (int i = 0; i < vitals.Count && y >= bottomY; i++, y--)
-                {
-                    Color color = vitals[i].StartsWith("ST ", System.StringComparison.Ordinal)
-                        ? QudColorParser.Gray
-                        : QudColorParser.White;
-                    DrawText(contentX, y, vitals[i], color, contentWidth);
-                }
-
-                if (y >= bottomY)
-                    y--;
+                Color color = vitals[i].StartsWith("ST ", System.StringComparison.Ordinal)
+                    ? QudColorParser.Gray
+                    : QudColorParser.White;
+                DrawText(contentX, y, vitals[i], color, contentWidth);
             }
 
-            if (hasFocus)
-            {
-                DrawSectionHeader(startX, contentX, y, contentWidth, "FOCUS", QudColorParser.White);
+            if (y >= bottomY)
                 y--;
 
-                int remainingAfterFocusHeader = y - bottomY + 1;
-                // Phase 10 — when the AI goal-stack inspector is populated on the
-                // focus snapshot, grant extra height to the focus panel so the
-                // inspector block isn't clipped to 6 lines.
-                bool inspectorActive = snapshot?.FocusSnapshot?.GoalStackLines != null
-                    || snapshot?.FocusSnapshot?.LastThought != null;
-                int focusCeiling = inspectorActive ? 14 : 6;
-                int focusMaxLines = Mathf.Clamp(remainingAfterFocusHeader - 4, 2, focusCeiling);
-                List<string> focusLines = SidebarTextFormatter.FormatFocus(snapshot?.FocusSnapshot, contentWidth, focusMaxLines);
-                for (int i = 0; i < focusLines.Count && y >= bottomY; i++, y--)
-                {
-                    Color color = i == 0
-                        ? QudColorParser.White
-                        : (i == 1 ? QudColorParser.Gray : QudColorParser.DarkGray);
-                    DrawText(contentX, y, focusLines[i], color, contentWidth);
-                }
+            DrawSectionHeader(startX, contentX, y, contentWidth, "FOCUS", QudColorParser.White);
+            y--;
 
-                if (y >= bottomY)
-                    y--;
+            int remainingAfterFocusHeader = y - bottomY + 1;
+            // Phase 10 — when the AI goal-stack inspector is populated on the
+            // focus snapshot, grant extra height to the focus panel so the
+            // inspector block isn't clipped to 6 lines.
+            bool inspectorActive = snapshot?.FocusSnapshot?.GoalStackLines != null
+                || snapshot?.FocusSnapshot?.LastThought != null;
+            int focusCeiling = inspectorActive ? 14 : 6;
+            int focusMaxLines = Mathf.Clamp(remainingAfterFocusHeader - 4, 2, focusCeiling);
+            List<string> focusLines = SidebarTextFormatter.FormatFocus(snapshot?.FocusSnapshot, contentWidth, focusMaxLines);
+            for (int i = 0; i < focusLines.Count && y >= bottomY; i++, y--)
+            {
+                Color color = i == 0
+                    ? QudColorParser.White
+                    : (i == 1 ? QudColorParser.Gray : QudColorParser.DarkGray);
+                DrawText(contentX, y, focusLines[i], color, contentWidth);
             }
+
+            if (y >= bottomY)
+                y--;
 
             int bottomHeaderY = y;
             int bottomHeight = Mathf.Max(1, bottomHeaderY - bottomY);
 
+            // Phase 10 — bottom panel is THOUGHTS when the 't' toggle is on
+            // (SidebarStateBuilder populated ThoughtEntries), otherwise LOG.
+            // Same tilemap, same container, same layout geometry — data-driven
+            // swap. Text size parity is automatic: same panel rendering itself.
             if (snapshot?.ThoughtEntries != null)
             {
-                // Thought-overlay mode: bottom panel is THOUGHTS instead of LOG.
                 DrawThoughtsPanel(
                     startX, contentX, bottomHeaderY, bottomY, bottomHeight,
                     contentWidth, snapshot.ThoughtEntries);
