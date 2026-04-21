@@ -104,6 +104,50 @@ namespace CavesOfOoo.Core
             Staying = true;
         }
 
+        // --- Debug Introspection (Phase 10) ---
+
+        /// <summary>
+        /// Most recent thought string set by a goal handler via <see cref="Think"/>.
+        /// Null until first call. Surfaces in the AI goal-stack inspector UI when
+        /// <see cref="CavesOfOoo.Diagnostics.AIDebug.AIInspectorEnabled"/> is true.
+        /// Mirrors Qud's <c>Brain.LastThought</c> — a single slot, not a history buffer.
+        /// </summary>
+        public string LastThought;
+
+        /// <summary>
+        /// When true, every <see cref="Think"/> call also emits a
+        /// <c>[Think:{entityName}] {thought}</c> line to
+        /// <see cref="UnityEngine.Debug.Log"/>. Default false so production builds
+        /// are silent. Set per-entity (e.g. from a scenario) to stream a specific
+        /// NPC's reasoning without spamming every creature's thoughts.
+        /// </summary>
+        public bool ThinkOutLoud;
+
+        /// <summary>
+        /// Record a debug thought for this NPC's current tick. Mirrors Qud's
+        /// <c>Brain.Think(string)</c>: single-slot <see cref="LastThought"/>
+        /// assignment, plus optional <see cref="UnityEngine.Debug.Log"/> echo
+        /// when <see cref="ThinkOutLoud"/> is on.
+        ///
+        /// Safe to call on every goal tick — the no-echo path is a single
+        /// field write with no allocation. The expensive interpolation for
+        /// the Debug.Log format sits behind the <see cref="ThinkOutLoud"/>
+        /// gate so it costs nothing in the common case.
+        ///
+        /// Goals should call this at BRANCH POINTS (phase changes, gate passes,
+        /// bailouts), not inside tight per-frame loops — that would allocate
+        /// every tick if the caller interpolated <c>$"hp is {hp}"</c>.
+        /// </summary>
+        public void Think(string thought)
+        {
+            LastThought = thought;
+            if (ThinkOutLoud && thought != null)
+            {
+                string name = ParentEntity?.GetDisplayName() ?? "?";
+                UnityEngine.Debug.Log($"[Think:{name}] {thought}");
+            }
+        }
+
         // --- Goal Stack ---
 
         private List<GoalHandler> _goals = new List<GoalHandler>();

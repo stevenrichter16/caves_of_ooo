@@ -75,6 +75,16 @@ namespace CavesOfOoo.Core
         protected Random Rng => ParentBrain?.Rng ?? _fallbackRng ?? (_fallbackRng = new Random());
         private static Random _fallbackRng;
 
+        // --- Debug ---
+
+        /// <summary>
+        /// Record a debug thought on the parent brain. Shim for
+        /// <see cref="BrainPart.Think"/> so goals can write
+        /// <c>Think("walking to bone")</c> without a ParentBrain.null-check at
+        /// every call site. Mirrors Qud's <c>GoalHandler.Think(string)</c>.
+        /// </summary>
+        protected void Think(string thought) => ParentBrain?.Think(thought);
+
         // --- Shared helpers ---
 
         /// <summary>Check if the entity should flee based on HP and FleeThreshold.</summary>
