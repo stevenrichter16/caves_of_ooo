@@ -76,6 +76,15 @@ namespace CavesOfOoo.Rendering
         private CampfireEmberRenderer _campfireEmberRenderer;
         private WorldCursorRenderer _worldCursorRenderer;
         private GameplaySidebarRenderer _sidebarRenderer;
+
+        /// <summary>
+        /// Phase 10 — second <see cref="GameplaySidebarRenderer"/> instance
+        /// that renders the standalone thought overlay onto the world
+        /// tilemap. Intentionally the same class as the main logger/sidebar
+        /// renderer (per the design followup request) — one class serves
+        /// both UIs; the only difference is the snapshot they receive.
+        /// </summary>
+        private GameplaySidebarRenderer _thoughtOverlayRenderer;
         private GameplayHotbarRenderer _hotbarRenderer;
 
         /// <summary>
@@ -213,6 +222,15 @@ namespace CavesOfOoo.Rendering
 
             _worldCursorRenderer = new WorldCursorRenderer(gridParent, _tilemap, GameplayRenderLayers.WorldLayer);
             _sidebarRenderer = new GameplaySidebarRenderer(_sidebarTilemap, _sidebarBgTilemap, _sidebarGridTransform, MessageReferenceZoom);
+
+            // Second instance of the same class for the thought overlay.
+            // ownsTilemap:false → it shares the world's main/bg tilemaps with
+            // RenderZone and must NOT call Clear on them. RenderZone already
+            // clears those at the start of each frame; the overlay draws after
+            // cells are drawn and naturally refreshes.
+            _thoughtOverlayRenderer = new GameplaySidebarRenderer(
+                _tilemap, _bgTilemap, gridParent, MessageReferenceZoom, ownsTilemap: false);
+
             _hotbarRenderer = new GameplayHotbarRenderer(_hotbarTilemap, _hotbarBgTilemap);
 
             var popupOverlayGridObj = new GameObject("PopupOverlayGrid");
@@ -460,6 +478,33 @@ namespace CavesOfOoo.Rendering
                 }
 
                 RefreshWaterCache();
+
+                // Phase 10 — paint the standalone thought overlay on the
+                // right edge of the play area via a second
+                // GameplaySidebarRenderer instance (the same class as the
+                // logger / main sidebar). The overlay only renders when the
+                // 't' toggle is on; its snapshot has null focus + empty
+                // vitals so the renderer's data-driven section skipping
+                // collapses everything except the THOUGHTS panel.
+                if (ShowThoughtLog && _thoughtOverlayRenderer != null)
+                {
+                    var thoughtSnapshot = SidebarStateBuilder.BuildThoughtOverlay(CurrentZone);
+                    // Overlay column: rightmost 26 chars of the play area
+                    // (cols 54..79 of the 80-wide zone), top to bottom.
+                    // Unity tilemap Y is inverted — top of grid is Zone.Height-1.
+                    const int overlayWidth = 26;
+                    int overlayStartX = Zone.Width - overlayWidth;  // 54
+                    int overlayTopY = Zone.Height - 1;              // 24 (Unity space)
+                    int overlayBottomY = 0;
+                    _thoughtOverlayRenderer.RenderAt(
+                        thoughtSnapshot,
+                        overlayStartX,
+                        overlayTopY,
+                        overlayBottomY,
+                        overlayWidth,
+                        flashActive: false,
+                        flashT: 0f);
+                }
             }
         }
 
@@ -665,8 +710,7 @@ namespace CavesOfOoo.Rendering
                     : 0f;
 
                 SidebarSnapshot snapshot = SidebarStateBuilder.Build(
-                    PlayerEntity, CurrentZone, _currentLookSnapshot,
-                    showThoughts: ShowThoughtLog);
+                    PlayerEntity, CurrentZone, _currentLookSnapshot);
                 _sidebarRenderer?.Render(snapshot, sidebarCamera, SidebarWidthChars, flashActive, flashT);
             }
         }

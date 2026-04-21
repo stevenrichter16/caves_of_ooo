@@ -29,12 +29,28 @@ namespace CavesOfOoo.Rendering
         private int _maxLogScrollOffsetRows;
         private int _lastLogViewportHeight = -1;
 
+        /// <summary>
+        /// When false, <see cref="Render"/> / <see cref="RenderAt"/> do NOT
+        /// call <see cref="Clear"/> on entry — callers that share their
+        /// tilemap with other writers (e.g. the Phase 10 thought overlay,
+        /// which draws onto the world's main + bg tilemaps that RenderZone
+        /// manages) set this false. The main sidebar owns its tilemap
+        /// exclusively and clears every render to drop stale tiles.
+        /// </summary>
+        private readonly bool _ownsTilemap;
+
         public GameplaySidebarRenderer(Tilemap tilemap, Tilemap backgroundTilemap, Transform gridTransform, float referenceZoom)
+            : this(tilemap, backgroundTilemap, gridTransform, referenceZoom, ownsTilemap: true)
+        {
+        }
+
+        public GameplaySidebarRenderer(Tilemap tilemap, Tilemap backgroundTilemap, Transform gridTransform, float referenceZoom, bool ownsTilemap)
         {
             _tilemap = tilemap;
             _backgroundTilemap = backgroundTilemap;
             _gridTransform = gridTransform;
             _referenceZoom = referenceZoom;
+            _ownsTilemap = ownsTilemap;
         }
 
         public bool IsVisible { get; private set; }
@@ -100,7 +116,8 @@ namespace CavesOfOoo.Rendering
             using (PerformanceMarkers.Ui.SidebarRender.Auto())
             {
                 PerformanceDiagnostics.RecordSidebarRender();
-                Clear();
+                if (_ownsTilemap)
+                    Clear();
 
                 if (_tilemap == null || _backgroundTilemap == null || _gridTransform == null || camera == null || sidebarWidthChars <= 0)
                     return;
@@ -108,11 +125,48 @@ namespace CavesOfOoo.Rendering
                 SidebarCameraMetrics metrics = GameplayViewportLayout.MeasureSidebarCamera(camera, _referenceZoom, sidebarWidthChars);
                 _gridTransform.localScale = new Vector3(metrics.Scale, metrics.Scale, 1f);
 
-            int startX = metrics.StartCharX;
-            int width = sidebarWidthChars;
-            int rows = metrics.VisibleRowCount;
-            int topY = metrics.TopTextY;
-            int bottomY = metrics.BottomTextY;
+                RenderBody(snapshot, metrics.StartCharX, metrics.TopTextY, metrics.BottomTextY,
+                    sidebarWidthChars, metrics.VisibleRowCount, flashActive, flashT);
+                IsVisible = true;
+            }
+        }
+
+        /// <summary>
+        /// Phase 10 — render this snapshot onto the bound tilemaps at explicit
+        /// coordinates, bypassing camera-metric computation. Used by the
+        /// standalone thought-overlay instance which shares the world
+        /// tilemap with <see cref="ZoneRenderer"/> and therefore cannot use
+        /// the sidebar-specific camera positioning logic.
+        ///
+        /// The caller is responsible for supplying consistent tile coords
+        /// (roguelike grid space for the world tilemap, sidebar narrow-text
+        /// space for the sidebar tilemap). No Clear() happens here — when
+        /// this renderer shares its tilemap with other writers, clearing
+        /// would wipe their content. The world-tilemap caller gets fresh
+        /// content on every RenderZone sweep (which clears at the start),
+        /// so stale tiles aren't an issue.
+        /// </summary>
+        public void RenderAt(SidebarSnapshot snapshot,
+            int startX, int topY, int bottomY, int width, bool flashActive, float flashT)
+        {
+            using (PerformanceMarkers.Ui.SidebarRender.Auto())
+            {
+                if (_ownsTilemap)
+                    Clear();
+
+                if (_tilemap == null || _backgroundTilemap == null || width <= 0)
+                    return;
+
+                int rows = topY - bottomY + 1;
+                RenderBody(snapshot, startX, topY, bottomY, width, rows, flashActive, flashT);
+                IsVisible = true;
+            }
+        }
+
+        private void RenderBody(SidebarSnapshot snapshot,
+            int startX, int topY, int bottomY, int width, int rows,
+            bool flashActive, float flashT)
+        {
             int contentX = startX + 2;
             int contentWidth = Mathf.Max(1, width - 3);
 
@@ -120,55 +174,66 @@ namespace CavesOfOoo.Rendering
             DrawDivider(startX, bottomY, rows);
 
             int y = topY;
-            DrawSectionHeader(startX, contentX, y, contentWidth, "VITALS", QudColorParser.White);
-            y--;
 
-            List<string> vitals = SidebarTextFormatter.FormatVitals(snapshot, contentWidth, 7);
-            for (int i = 0; i < vitals.Count && y >= bottomY; i++, y--)
+            // Phase 10 — renderer is data-driven: a snapshot with empty
+            // vitals, null status, null focus, and non-null thoughts becomes
+            // a standalone thought-overlay instance of this same class.
+            // Each section only draws its header when the data for that
+            // section is actually populated; empty sections compress away.
+            bool hasVitals = snapshot?.VitalLines != null && snapshot.VitalLines.Count > 0;
+            bool hasStatus = !string.IsNullOrEmpty(snapshot?.StatusText) && snapshot.StatusText != "-";
+            bool hasFocus = snapshot?.FocusSnapshot != null;
+
+            if (hasVitals || hasStatus)
             {
-                Color color = vitals[i].StartsWith("ST ", System.StringComparison.Ordinal)
-                    ? QudColorParser.Gray
-                    : QudColorParser.White;
-                DrawText(contentX, y, vitals[i], color, contentWidth);
-            }
-
-            if (y >= bottomY)
+                DrawSectionHeader(startX, contentX, y, contentWidth, "VITALS", QudColorParser.White);
                 y--;
 
-            DrawSectionHeader(startX, contentX, y, contentWidth, "FOCUS", QudColorParser.White);
-            y--;
+                List<string> vitals = SidebarTextFormatter.FormatVitals(snapshot, contentWidth, 7);
+                for (int i = 0; i < vitals.Count && y >= bottomY; i++, y--)
+                {
+                    Color color = vitals[i].StartsWith("ST ", System.StringComparison.Ordinal)
+                        ? QudColorParser.Gray
+                        : QudColorParser.White;
+                    DrawText(contentX, y, vitals[i], color, contentWidth);
+                }
 
-            int remainingAfterFocusHeader = y - bottomY + 1;
-            // Phase 10 — when the AI goal-stack inspector is populated on the
-            // focus snapshot, grant extra height to the focus panel so the
-            // inspector block isn't clipped to 6 lines. Ceiling raised to 14
-            // (room for header + 8 goals + overflow + Thought + baseline HP
-            // lines). The log section below compresses proportionally.
-            bool inspectorActive = snapshot?.FocusSnapshot?.GoalStackLines != null
-                || snapshot?.FocusSnapshot?.LastThought != null;
-            int focusCeiling = inspectorActive ? 14 : 6;
-            int focusMaxLines = Mathf.Clamp(remainingAfterFocusHeader - 4, 2, focusCeiling);
-            List<string> focusLines = SidebarTextFormatter.FormatFocus(snapshot?.FocusSnapshot, contentWidth, focusMaxLines);
-            for (int i = 0; i < focusLines.Count && y >= bottomY; i++, y--)
-            {
-                Color color = i == 0
-                    ? QudColorParser.White
-                    : (i == 1 ? QudColorParser.Gray : QudColorParser.DarkGray);
-                DrawText(contentX, y, focusLines[i], color, contentWidth);
+                if (y >= bottomY)
+                    y--;
             }
 
-            if (y >= bottomY)
+            if (hasFocus)
+            {
+                DrawSectionHeader(startX, contentX, y, contentWidth, "FOCUS", QudColorParser.White);
                 y--;
+
+                int remainingAfterFocusHeader = y - bottomY + 1;
+                // Phase 10 — when the AI goal-stack inspector is populated on the
+                // focus snapshot, grant extra height to the focus panel so the
+                // inspector block isn't clipped to 6 lines.
+                bool inspectorActive = snapshot?.FocusSnapshot?.GoalStackLines != null
+                    || snapshot?.FocusSnapshot?.LastThought != null;
+                int focusCeiling = inspectorActive ? 14 : 6;
+                int focusMaxLines = Mathf.Clamp(remainingAfterFocusHeader - 4, 2, focusCeiling);
+                List<string> focusLines = SidebarTextFormatter.FormatFocus(snapshot?.FocusSnapshot, contentWidth, focusMaxLines);
+                for (int i = 0; i < focusLines.Count && y >= bottomY; i++, y--)
+                {
+                    Color color = i == 0
+                        ? QudColorParser.White
+                        : (i == 1 ? QudColorParser.Gray : QudColorParser.DarkGray);
+                    DrawText(contentX, y, focusLines[i], color, contentWidth);
+                }
+
+                if (y >= bottomY)
+                    y--;
+            }
 
             int bottomHeaderY = y;
             int bottomHeight = Mathf.Max(1, bottomHeaderY - bottomY);
 
-            // Phase 10 — when the 't' toggle populated ThoughtEntries, the
-            // bottom panel renders THOUGHTS instead of LOG. Uses the same
-            // tilemap container and DrawText helpers as the log section so
-            // the visual language stays consistent.
             if (snapshot?.ThoughtEntries != null)
             {
+                // Thought-overlay mode: bottom panel is THOUGHTS instead of LOG.
                 DrawThoughtsPanel(
                     startX, contentX, bottomHeaderY, bottomY, bottomHeight,
                     contentWidth, snapshot.ThoughtEntries);
@@ -179,16 +244,9 @@ namespace CavesOfOoo.Rendering
                     startX, contentX, bottomHeaderY, bottomY, bottomHeight,
                     contentWidth, snapshot, flashActive);
             }
-
-                IsVisible = true;
-            }
         }
 
-        /// <summary>
-        /// Render the bottom panel as the live message log. Extracted from
-        /// the original inline code so the THOUGHTS mode can share the same
-        /// panel geometry while swapping content.
-        /// </summary>
+        /// <summary>Render the bottom panel as the live message log.</summary>
         private void DrawLogPanel(
             int startX, int contentX, int headerY, int bottomY, int height,
             int contentWidth, SidebarSnapshot snapshot, bool flashActive)
@@ -225,13 +283,13 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>
-        /// Render the bottom panel as the per-creature thought list
-        /// (Phase 10 't' overlay). Shares the sidebar's tilemap container
-        /// and color palette with the log panel — "same container as the
-        /// logger" per the design requirement. Each entry occupies two rows:
-        /// name line + indented thought line (or "..." for no-thought yet).
-        /// Entries render top-down; when more entries exist than fit, a
-        /// "... (N more)" sentinel appears on the final row.
+        /// Render the bottom panel as a per-creature thought list. Used when
+        /// the renderer is instantiated as a standalone thought-overlay
+        /// (Phase 10 't' toggle). Same tilemap + DrawText helpers as
+        /// DrawLogPanel — that's what "reuse the same class as the logger"
+        /// means in this refactor: one <c>GameplaySidebarRenderer</c> class
+        /// serves both the main sidebar and the thought overlay, the only
+        /// difference is which <c>SidebarSnapshot</c> it's given.
         /// </summary>
         private void DrawThoughtsPanel(
             int startX, int contentX, int headerY, int bottomY, int height,
@@ -247,10 +305,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Reserve the last row for overflow indicator when needed.
-            // We can fit floor((height-1)/2) two-line entries, minus 1 if
-            // an overflow indicator is required.
-            int maxEntriesNoOverflow = Mathf.Max(1, (height) / 2);
+            int maxEntriesNoOverflow = Mathf.Max(1, height / 2);
             int maxEntriesWithOverflow = Mathf.Max(1, (height - 1) / 2);
             bool needsOverflow = entries.Count > maxEntriesNoOverflow;
             int shown = needsOverflow
@@ -261,15 +316,10 @@ namespace CavesOfOoo.Rendering
             for (int i = 0; i < shown && y >= bottomY; i++)
             {
                 var entry = entries[i];
-
-                // Name row.
                 DrawText(contentX, y, entry.Name, QudColorParser.White, contentWidth);
                 y--;
                 if (y < bottomY) break;
 
-                // Thought row (indented). Empty thought renders as "..." in
-                // dark gray — useful signal that the creature has a brain
-                // but hasn't thought anything yet this session.
                 bool empty = string.IsNullOrEmpty(entry.Thought);
                 string body = empty ? "  ..." : "  " + entry.Thought;
                 Color color = empty ? QudColorParser.DarkGray : QudColorParser.Gray;

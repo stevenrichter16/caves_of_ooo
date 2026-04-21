@@ -15,8 +15,7 @@ namespace CavesOfOoo.Rendering
             Entity player,
             Zone zone,
             LookSnapshot currentLookSnapshot,
-            int maxRecentMessages = SidebarLogMessageLimit,
-            bool showThoughts = false)
+            int maxRecentMessages = SidebarLogMessageLimit)
         {
             var inventoryState = InventoryScreenData.Build(player);
 
@@ -36,16 +35,31 @@ namespace CavesOfOoo.Rendering
             LookSnapshot focusSnapshot = currentLookSnapshot ?? BuildFallbackFocus(player, zone);
             IReadOnlyList<SidebarLogEntry> logEntries = BuildRecentLogEntries(maxRecentMessages);
 
-            // Phase 10 — when the 't' toggle is on, collect every Creature's
-            // current LastThought so the sidebar renderer can swap LOG for
-            // THOUGHTS. Null entries list = log mode (the default); non-null =
-            // thought mode (even if empty — the renderer needs to know the
-            // user asked for thoughts even if the zone has none).
-            IReadOnlyList<SidebarThoughtEntry> thoughtEntries =
-                showThoughts ? BuildThoughtEntries(zone) : null;
+            return new SidebarSnapshot(vitalLines, statusText, focusSnapshot, logEntries);
+        }
 
+        /// <summary>
+        /// Phase 10 — build a separate <see cref="SidebarSnapshot"/> for the
+        /// standalone thought overlay. Empty vitals and null focus so
+        /// <see cref="GameplaySidebarRenderer"/> skips those sections; the
+        /// only populated bottom-panel content is the thought entries.
+        ///
+        /// Intentionally a second method (not a flag on Build): the two
+        /// snapshots represent different UIs and share no layout logic.
+        /// </summary>
+        public static SidebarSnapshot BuildThoughtOverlay(Zone zone)
+        {
+            IReadOnlyList<SidebarThoughtEntry> thoughtEntries = BuildThoughtEntries(zone);
+
+            // Empty lists / null focus tell the sidebar renderer "no vitals,
+            // no status, no focus section" via the new skip-empty-section
+            // path added in this commit.
             return new SidebarSnapshot(
-                vitalLines, statusText, focusSnapshot, logEntries, thoughtEntries);
+                vitalLines: new List<string>(),
+                statusText: null,
+                focusSnapshot: null,
+                logEntriesNewestFirst: new List<SidebarLogEntry>(),
+                thoughtEntries: thoughtEntries);
         }
 
         /// <summary>
