@@ -1006,54 +1006,87 @@ namespace CavesOfOoo.Rendering
             QudColorParser.BrightCyan
         };
 
-        // -------- River surface realism tuning --------
+        // -------- River scalar-field sampler (density-ramp port) --------
+        //
+        // Adapted from the river.ascii demo: instead of phase-cycling through
+        // a fixed glyph array, each water cell samples a scalar field
+        //   val = mix(ripples, noise)
+        // and picks a glyph + color by thresholds. Ripples travel along the
+        // flow direction (+y), noise drifts slowly to keep the field organic.
+
+        /// <summary>Along-flow (per-row) frequency of the primary ripple wave.</summary>
+        private const float RippleFreq1 = 0.28f;
+
+        /// <summary>Along-flow frequency of the faster detail ripple.</summary>
+        private const float RippleFreq2 = 0.55f;
+
+        /// <summary>Along-flow frequency of the slow undulation.</summary>
+        private const float RippleFreq3 = 0.11f;
+
+        /// <summary>Temporal speed of primary ripple (at flow=1 → ~4 phase units/sec).</summary>
+        private const float RippleSpeed1 = 4.0f;
+
+        /// <summary>Temporal speed of detail ripple.</summary>
+        private const float RippleSpeed2 = 6.5f;
+
+        /// <summary>Temporal speed of slow undulation.</summary>
+        private const float RippleSpeed3 = 2.0f;
+
+        /// <summary>Cross-flow phase coupling for primary ripple (bank lags core).</summary>
+        private const float RippleCross1 = 2.0f;
+
+        /// <summary>Cross-flow phase coupling for detail ripple (opposite sign creates beat).</summary>
+        private const float RippleCross2 = -3.0f;
+
+        /// <summary>Amplitude weight for the secondary (detail) ripple.</summary>
+        private const float RippleAmp2 = 0.55f;
+
+        /// <summary>Amplitude weight for the tertiary (slow) ripple.</summary>
+        private const float RippleAmp3 = 0.80f;
+
+        /// <summary>Final rescaling of the combined ripple sum → roughly [-1, 1].</summary>
+        private const float RippleMixWeight = 0.4f;
+
+        /// <summary>Global flow-speed multiplier. HTML presets: calm=0.55 / steady=1.0 / rapids=1.9.</summary>
+        private const float FlowSpeedMult = 0.8f;
+
+        /// <summary>Amplitude of the organic noise term layered onto ripples.</summary>
+        private const float TurbulenceAmount = 0.5f;
+
+        /// <summary>Along-flow sample frequency for turbulence noise.</summary>
+        private const float TurbFreqAlong = 0.12f;
+
+        /// <summary>Cross-flow sample frequency for turbulence noise.</summary>
+        private const float TurbFreqCross = 0.18f;
+
+        /// <summary>How fast the noise field drifts through time (adds slow organic shift).</summary>
+        private const float TurbTimeScale = 0.4f;
+
+        /// <summary>val threshold above which a cell renders as '*' foam (biggest breakers).</summary>
+        private const float FoamCutoffLarge = 1.15f;
+
+        /// <summary>val threshold above which a cell renders as '≈' foam (small crest).</summary>
+        private const float FoamCutoffSmall = 0.85f;
+
+        /// <summary>val threshold for '=' glyph (heavy water).</summary>
+        private const float DensityThreshHeavy = 0.55f;
+
+        /// <summary>val threshold for '-' glyph (medium flow).</summary>
+        private const float DensityThreshMedium = 0.15f;
+
+        /// <summary>val threshold for '~' glyph (standard ripple).</summary>
+        private const float DensityThreshTilde = -0.25f;
+
+        /// <summary>val threshold for '.' glyph (calm). Below this, the cell renders as space.</summary>
+        private const float DensityThreshDot = -0.65f;
 
         /// <summary>
-        /// Flow wave speed for the deeper CORE column (FlowsSouth tag value
-        /// "core"). Faster than the bank — in real rivers the current peaks
-        /// at the channel center where friction is lowest. One color band
-        /// crosses the 25-row zone in ~25/15 = 1.67s.
+        /// BG tint strength on the river cells themselves. Stronger than
+        /// ReflectionTintStrength (0.22) because the water IS the light
+        /// source — its own cells should glow visibly even when the fg
+        /// glyph is space (empty patch of calm water).
         /// </summary>
-        private const float CoreFlowSpeedRowsPerSecond = 15f;
-
-        /// <summary>
-        /// Flow wave speed for the shallower BANK column (FlowsSouth tag
-        /// value "bank"). Slower than the core by a factor of 1.5×, so
-        /// crests at the bank visibly lag the core's. One band crosses
-        /// the zone in ~25/10 = 2.5s. Bracketing the old single-speed
-        /// value of 12.5 keeps average perception ~2s/wave (user spec)
-        /// while introducing cross-channel texture.
-        /// </summary>
-        private const float BankFlowSpeedRowsPerSecond = 10f;
-
-        /// <summary>
-        /// Glyphs cycled across a FlowsSouth cell every frame, indexed by the
-        /// same phase integer used for WaterColors. Two dashes + one tilde
-        /// means each cell shows flat water most of the time with a visible
-        /// crest that sweeps south once per wave cycle. Must be the same
-        /// length as WaterCoreColors / WaterBankColors so the glyph
-        /// animation stays in lockstep with the color animation.
-        /// </summary>
-        private static readonly char[] FlowGlyphs = { '-', '-', '~' };
-
-        /// <summary>Seconds between whitecap-sparkle spawn attempts (~2/sec).</summary>
-        private const float WhitecapSpawnInterval = 0.5f;
-
-        /// <summary>How long a single whitecap glyph stays visible (~9 frames @ 60fps).</summary>
-        private const float WhitecapLifetime = 0.15f;
-
-        /// <summary>Glyph drawn for a whitecap — ASCII '*' reads as a specular glint.</summary>
-        private const char WhitecapGlyph = '*';
-
-        /// <summary>Color string for whitecaps. '&amp;Y' = pure white in QudColorParser.</summary>
-        private const string WhitecapColor = "&Y";
-
-        /// <summary>
-        /// Probability of rejecting a core-column spawn and trying again,
-        /// biasing sparkles toward the brighter bank column. 0.6 means
-        /// bank cells end up with ~2.5× the sparkle density of core cells.
-        /// </summary>
-        private const float WhitecapBankBiasChance = 0.6f;
+        private const float WaterBgTintStrength = 0.5f;
 
         /// <summary>
         /// How strongly the reflection tint blends the water's current color
@@ -1063,7 +1096,109 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private const float ReflectionTintStrength = 0.22f;
 
-        private float _whitecapTimer;
+        // ---- Sampling helpers (port of the river.ascii scalar field) ----
+
+        /// <summary>Cheap deterministic hash → [0, 1]. Port of the HTML demo's hash().</summary>
+        private static float Hash01(int x, int y)
+        {
+            float n = Mathf.Sin(x * 12.9898f + y * 78.233f) * 43758.5453f;
+            return n - Mathf.Floor(n);
+        }
+
+        /// <summary>2D smoothed value noise → [0, 1]. Bilinear interp with smoothstep.</summary>
+        private static float ValueNoise(float x, float y)
+        {
+            int xi = Mathf.FloorToInt(x);
+            int yi = Mathf.FloorToInt(y);
+            float xf = x - xi;
+            float yf = y - yi;
+
+            float a = Hash01(xi,     yi);
+            float b = Hash01(xi + 1, yi);
+            float c = Hash01(xi,     yi + 1);
+            float d = Hash01(xi + 1, yi + 1);
+
+            float u = xf * xf * (3f - 2f * xf);
+            float v = yf * yf * (3f - 2f * yf);
+
+            return a * (1f - u) * (1f - v) + b * u * (1f - v)
+                 + c * (1f - u) * v       + d * u * v;
+        }
+
+        /// <summary>
+        /// Sample the river's scalar field at (x, y) and time t. Returns a
+        /// value in roughly [-1.8, 1.8]; thresholds on it pick the glyph
+        /// and color. High = crest / foam, low = calm / empty.
+        ///
+        /// Port of river.ascii's sample(). Axes swapped: HTML flows in +x,
+        /// we flow in +y, so ripples use y as the along-flow coordinate.
+        /// </summary>
+        private static float SampleRiverVal(int x, int y, float t, bool isBank)
+        {
+            // rel ≈ cross-flow position. In HTML rel∈[0,1]; here we have
+            // only two cells (core + bank) so we pick representative
+            // values that give a visible — but not extreme — speed
+            // differential via the parabolic profile below.
+            float rel = isBank ? 0.75f : 0.25f;
+
+            // Parabolic speed profile: current is strongest at the center
+            // line and drops off toward the banks (friction).
+            float flow = (1f - rel * rel * 0.65f) * FlowSpeedMult;
+
+            // Three traveling sines at different frequencies and speeds.
+            // Minus sign on t means bands move in +y (south) over time.
+            float r1 = Mathf.Sin(y * RippleFreq1 - t * RippleSpeed1 * flow + rel * RippleCross1);
+            float r2 = Mathf.Sin(y * RippleFreq2 - t * RippleSpeed2 * flow + rel * RippleCross2) * RippleAmp2;
+            float r3 = Mathf.Sin(y * RippleFreq3 - t * RippleSpeed3 * flow)                      * RippleAmp3;
+
+            // Organic turbulence: noise sampled with time advancing one
+            // axis, so the field visibly drifts without ever repeating.
+            float turb = (ValueNoise(y * TurbFreqAlong + t * TurbTimeScale,
+                                     x * TurbFreqCross) - 0.5f) * TurbulenceAmount;
+
+            return (r1 + r2 + r3) * RippleMixWeight + turb;
+        }
+
+        /// <summary>
+        /// Density-ramp glyph: mid-line heavy → thin → calm → dot → space.
+        /// The trailing ' ' (space) is intentional — empty cells let the
+        /// bg tint show as "deep still water" and add visual variety to
+        /// the channel silhouette.
+        /// </summary>
+        private static char DensityGlyph(float val)
+        {
+            if (val > DensityThreshHeavy)  return '=';
+            if (val > DensityThreshMedium) return '-';
+            if (val > DensityThreshTilde)  return '~';
+            if (val > DensityThreshDot)    return '.';
+            return ' ';
+        }
+
+        /// <summary>
+        /// Foam glyph at ripple peaks, or '\0' if below foam cutoffs. '*'
+        /// for the biggest breakers, '≈' for gentler crests. White color
+        /// is applied separately by WaterColorForVal.
+        /// </summary>
+        private static char FoamGlyph(float val)
+        {
+            if (val > FoamCutoffLarge) return '*';
+            if (val > FoamCutoffSmall) return '\u2248';  // ≈
+            return '\0';
+        }
+
+        /// <summary>
+        /// Pick the fg color for a water cell. Foam overrides to white;
+        /// otherwise val picks an index within the core/bank palette so
+        /// crests glow brighter, troughs sink toward DarkBlue.
+        /// </summary>
+        private static Color WaterColorForVal(float val, bool isBank)
+        {
+            if (val > FoamCutoffSmall) return QudColorParser.White;
+            Color[] palette = isBank ? WaterBankColors : WaterCoreColors;
+            if (val > DensityThreshMedium) return palette[2];
+            if (val > DensityThreshTilde)  return palette[1];
+            return palette[0];
+        }
 
         /// <summary>
         /// Rebuild the cached list of water tile positions from the current zone.
@@ -1138,60 +1273,49 @@ namespace CavesOfOoo.Rendering
                 if (render == null || render.RenderString != "~") continue;
 
                 // River cells carry a FlowsSouth tag (set by RiverBuilder).
-                // Directional phase formula: ambientTimer * speed - y means
-                // the color band's effective row-index INCREASES over time
-                // and DECREASES with higher y, so the band visually slides
-                // southward (y increasing = lower on screen in roguelike
-                // coords). Village puddles without the tag keep their
-                // stationary spatial-shimmer formula.
-                //
-                // Tag VALUE on river cells is "core" (center column —
-                // deeper palette) or "bank" (outer column — shallower,
-                // brighter palette). Village decor pulls from WaterColors.
+                // Tag VALUE is "core" (center column — deeper palette) or
+                // "bank" (outer column — shallower, brighter palette).
+                // Village decor (no tag) keeps its stationary shimmer.
                 bool isFlowing = top.HasTag("FlowsSouth");
-                float phase;
-                Color[] palette;
-                if (isFlowing)
-                {
-                    // Core flows faster than bank (physical-ish current
-                    // stratification). Desynced phases produce visible
-                    // cross-channel texture: core may show ~ while bank
-                    // still shows -, etc.
-                    bool isBank = top.Tags["FlowsSouth"] == "bank";
-                    float speed = isBank
-                        ? BankFlowSpeedRowsPerSecond
-                        : CoreFlowSpeedRowsPerSecond;
-                    phase = _ambientTimer * speed - y;
-                    palette = isBank
-                        ? WaterBankColors
-                        : WaterCoreColors; // default covers "core" + empty-string legacy
-                }
-                else
-                {
-                    phase = _ambientTimer * 2f + x * 0.7f + y * 1.3f;
-                    palette = WaterColors;
-                }
-
-                int colorIndex = ((int)phase) % palette.Length;
-                if (colorIndex < 0) colorIndex += palette.Length;
-
                 Vector3Int tilePos = new Vector3Int(x, Zone.Height - 1 - y, 0);
 
-                // Glyph rotation (flowing cells only): must precede
-                // SetTileFlags/SetColor because SetTile re-applies the
-                // tile's own color and reverts the flags to LockColor.
-                // The village decor puddle keeps its static "~" — a
-                // single seizure-cell is not a vibe.
                 if (isFlowing)
                 {
-                    char glyph = FlowGlyphs[colorIndex % FlowGlyphs.Length];
+                    bool isBank = top.Tags["FlowsSouth"] == "bank";
+
+                    // Sample the scalar field and pick glyph + color by
+                    // density thresholds. Foam wins over plain density.
+                    float val = SampleRiverVal(x, y, _ambientTimer, isBank);
+                    char foam = FoamGlyph(val);
+                    char glyph = foam != '\0' ? foam : DensityGlyph(val);
+                    Color color = WaterColorForVal(val, isBank);
+
+                    // Paint the bg tile BEFORE the fg tile so space glyphs
+                    // (very-calm cells) reveal dim blue underneath rather
+                    // than the bright floor. The tint tracks the current
+                    // palette index so it visibly ripples with the wave.
+                    PaintWaterBgTint(tilePos, isBank, val);
+
+                    // SetTile must precede SetTileFlags/SetColor because
+                    // SetTile re-applies the tile's own color and reverts
+                    // the flags to LockColor.
                     Tile glyphTile = CP437TilesetGenerator.GetTile(glyph);
                     if (glyphTile != null)
                         _tilemap.SetTile(tilePos, glyphTile);
-                }
 
-                _tilemap.SetTileFlags(tilePos, TileFlags.None);
-                _tilemap.SetColor(tilePos, palette[colorIndex]);
+                    _tilemap.SetTileFlags(tilePos, TileFlags.None);
+                    _tilemap.SetColor(tilePos, color);
+                }
+                else
+                {
+                    // Stationary spatial-shimmer for the village decor puddle.
+                    float phase = _ambientTimer * 2f + x * 0.7f + y * 1.3f;
+                    int colorIndex = ((int)phase) % WaterColors.Length;
+                    if (colorIndex < 0) colorIndex += WaterColors.Length;
+
+                    _tilemap.SetTileFlags(tilePos, TileFlags.None);
+                    _tilemap.SetColor(tilePos, WaterColors[colorIndex]);
+                }
             }
 
             // Reflection tint: for every cached adjacent (flank) cell,
@@ -1221,53 +1345,36 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
-            // Whitecap sparkles: a random FlowsSouth cell gets a brief '*'
-            // particle via the FX bus. Pure visual — lives on the FX
-            // tilemap above the main map, so it overlays the wave without
-            // disturbing any cell's water glyph/color.
-            _whitecapTimer += deltaTime;
-            if (_whitecapTimer >= WhitecapSpawnInterval && _waterTilePositions.Count > 0)
-            {
-                _whitecapTimer = 0f;
-                TrySpawnWhitecap();
-            }
+            // (Random whitecap sparkles were removed when ripple-driven foam
+            // replaced them in the density-ramp sampler — foam now appears
+            // where the wave actually peaks, driven by SampleRiverVal.)
         }
 
         /// <summary>
-        /// Pick a visible FlowsSouth cell at random (with a bias toward the
-        /// brighter bank column) and emit a short-lived white '*' particle.
-        /// Retries up to 5 times if a chosen cell fails the visibility /
-        /// top-entity / bias checks; gives up silently if no cell qualifies.
+        /// Paint a dim blue tint onto the background of a river cell itself.
+        /// Stronger than the flank reflection tint because the water is the
+        /// light source — its own cells should visibly glow even when the
+        /// foreground glyph is space (DensityGlyph returns ' ' for very
+        /// calm patches).
         /// </summary>
-        private void TrySpawnWhitecap()
+        private void PaintWaterBgTint(Vector3Int tilePos, bool isBank, float val)
         {
-            for (int attempt = 0; attempt < 5; attempt++)
+            if (_bgTilemap == null) return;
+
+            // Pick palette index by val so the bg tint pulses with the wave.
+            Color[] palette = isBank ? WaterBankColors : WaterCoreColors;
+            int idx = val > DensityThreshMedium ? 2 : val > DensityThreshTilde ? 1 : 0;
+            Color water = palette[idx];
+            Color darkened = QudColorParser.DarkenForBackground(water);
+            Color tinted = Color.Lerp(BackgroundColor, darkened, WaterBgTintStrength);
+
+            if (_bgTilemap.GetTile(tilePos) == null)
             {
-                int idx = UnityEngine.Random.Range(0, _waterTilePositions.Count);
-                var pos = _waterTilePositions[idx];
-                Cell cell = CurrentZone.GetCell(pos.x, pos.y);
-                if (cell == null || !cell.IsVisible) continue;
-
-                // Top entity must still be water — if a creature walked onto
-                // the cell, the sparkle would sit on top of the @ character.
-                Entity top = cell.GetTopVisibleObject();
-                if (top == null || !top.HasTag("FlowsSouth")) continue;
-
-                // Bias toward bank cells: reject a core cell with
-                // WhitecapBankBiasChance probability and try again.
-                bool isBank = top.Tags["FlowsSouth"] == "bank";
-                if (!isBank && UnityEngine.Random.value < WhitecapBankBiasChance)
-                    continue;
-
-                AsciiFxBus.EmitParticle(
-                    CurrentZone,
-                    pos.x,
-                    pos.y,
-                    WhitecapGlyph,
-                    WhitecapColor,
-                    WhitecapLifetime);
-                return;
+                Tile solid = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+                if (solid != null) _bgTilemap.SetTile(tilePos, solid);
             }
+            _bgTilemap.SetTileFlags(tilePos, TileFlags.None);
+            _bgTilemap.SetColor(tilePos, tinted);
         }
 
         /// <summary>
@@ -1290,12 +1397,16 @@ namespace CavesOfOoo.Rendering
                 Cell cell = CurrentZone.GetCell(adj.X, adj.Y);
                 if (cell == null || !cell.IsVisible) continue;
 
+                // Sample the same scalar field the adjacent water cell
+                // uses, so tint and wave stay in lockstep. We pass the
+                // flank's own (x, y) — the noise term's cross-flow shift
+                // between adjacent columns is imperceptible, not worth
+                // recomputing the water cell's exact coords.
                 Color[] palette = adj.UseBankPalette ? WaterBankColors : WaterCoreColors;
-                float speed    = adj.UseBankPalette ? BankFlowSpeedRowsPerSecond : CoreFlowSpeedRowsPerSecond;
-                float phase = _ambientTimer * speed - adj.Y;
-                int colorIndex = ((int)phase) % palette.Length;
-                if (colorIndex < 0) colorIndex += palette.Length;
-
+                float val = SampleRiverVal(adj.X, adj.Y, _ambientTimer, adj.UseBankPalette);
+                int colorIndex = val > DensityThreshMedium ? 2
+                               : val > DensityThreshTilde  ? 1
+                               : 0;
                 Color waterColor = palette[colorIndex];
                 Color darkened = QudColorParser.DarkenForBackground(waterColor);
                 Color tinted = Color.Lerp(BackgroundColor, darkened, ReflectionTintStrength);
