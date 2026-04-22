@@ -58,6 +58,29 @@ namespace CavesOfOoo.Rendering
         private Tilemap _tilemap;
         private Tilemap _bgTilemap;
         private Tilemap _fxTilemap;
+
+        /// <summary>
+        /// Horizontal sub-cell tilemap overlaid on the main tilemap for
+        /// HTML-faithful water rendering. cellSize = (1/N, 1, 0) so each
+        /// zone cell maps to N fine tiles across. Painted only on
+        /// FlowsEast water cells — village N→S water stays at coarse
+        /// resolution on the main tilemap.
+        /// </summary>
+        private Tilemap _fineWaterTilemap;
+        private Transform _fineWaterGridTransform;
+
+        /// <summary>
+        /// Sub-tiles per zone cell along the flow axis. 2 gives 2× wave
+        /// resolution; bump to 4 for 4× (requires matching cellSize on
+        /// the Grid). Squished-aspect glyphs only render water chars
+        /// (= - ~ . * space) which are horizontally symmetric, so the
+        /// squish isn't visible.
+        /// </summary>
+        private const int FineWaterSubdivisions = 2;
+
+        /// <summary>Fine tile width in world units = 1 / FineWaterSubdivisions.</summary>
+        private const float FineWaterCellWidth = 1f / FineWaterSubdivisions;
+
         private Tilemap _sidebarBgTilemap;
         private Tilemap _sidebarTilemap;
         private Transform _sidebarGridTransform;
@@ -205,12 +228,33 @@ namespace CavesOfOoo.Rendering
             var bgRenderer = bgTilemapObj.AddComponent<TilemapRenderer>();
             bgRenderer.sortingOrder = -1; // below world tilemap
 
+            // FineWaterTilemap: horizontal sub-cell overlay for river water.
+            // Dedicated Grid with cellSize (1/N, 1) so each zone cell maps to
+            // N fine tiles that tile exactly over it. Shares the default
+            // (lit) material with the main tilemap so URP 2D lights apply
+            // consistently. Painted only for FlowsEast water — the water
+            // loop clears fg on the main tilemap for those cells so the
+            // coarse glyph doesn't bleed through fine glyphs' transparency.
+            var fineWaterGridObj = new GameObject("FineWaterGrid");
+            _fineWaterGridTransform = fineWaterGridObj.transform;
+            GameplayRenderLayers.SetLayerRecursive(fineWaterGridObj, GameplayRenderLayers.WorldLayer);
+            var fineWaterGrid = fineWaterGridObj.AddComponent<Grid>();
+            fineWaterGrid.cellSize = new Vector3(FineWaterCellWidth, 1f, 0f);
+
+            var fineWaterTmObj = new GameObject("FineWaterTilemap");
+            fineWaterTmObj.transform.SetParent(fineWaterGridObj.transform, false);
+            GameplayRenderLayers.SetLayerRecursive(fineWaterTmObj, GameplayRenderLayers.WorldLayer);
+            _fineWaterTilemap = fineWaterTmObj.AddComponent<Tilemap>();
+            var fineWaterRenderer = fineWaterTmObj.AddComponent<TilemapRenderer>();
+            fineWaterRenderer.sortingOrder = 1; // above main (0), below FX (2)
+            // No sharedMaterial → inherits Sprite-Lit-Default like the main tilemap.
+
             var fxTilemapObj = new GameObject("FxTilemap");
             fxTilemapObj.transform.SetParent(gridParent, false);
             GameplayRenderLayers.SetLayerRecursive(fxTilemapObj, GameplayRenderLayers.WorldLayer);
             _fxTilemap = fxTilemapObj.AddComponent<Tilemap>();
             var fxRenderer = fxTilemapObj.AddComponent<TilemapRenderer>();
-            fxRenderer.sortingOrder = 1; // above world, below sidebar
+            fxRenderer.sortingOrder = 2; // bumped from 1 to make room for fine water at 1
             _asciiFxRenderer = new AsciiFxRenderer(_fxTilemap);
 
             var emberObj = new GameObject("CampfireEmbers");
@@ -324,6 +368,11 @@ namespace CavesOfOoo.Rendering
             _cursorPlayer = null;
             _dirty = true;
             RefreshWaterCache();
+
+            // Clear the fine-water tilemap so stale sub-tiles from the
+            // previous zone don't leak into the new one. Cheap — the new
+            // zone's water loop repaints every frame anyway.
+            _fineWaterTilemap?.ClearAllTiles();
 
             // Register campfire positions for free-floating ember rendering
             if (_campfireEmberRenderer != null)
