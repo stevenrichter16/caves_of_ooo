@@ -389,5 +389,69 @@ namespace CavesOfOoo.Core
             }
             return false;
         }
+
+        /// <summary>
+        /// Breadth-first search over passable cells from (fromX, fromY) up
+        /// to <paramref name="maxRadius"/> steps (4-neighbor). Returns the
+        /// position of the first cell where <paramref name="predicate"/>
+        /// is true; null if no match within range. The start cell is
+        /// tested too. BFS traverses only passable cells — sealed rooms
+        /// (no door reached first) won't be returned even if their
+        /// interior cells match the predicate.
+        ///
+        /// <para>Used by MoveToInterior/ExteriorGoal to find the nearest
+        /// reachable indoor/outdoor cell. No Qud analogue (Qud navigates to
+        /// specific target GameObjects, not predicate cells) — this is a
+        /// CoO-native primitive.</para>
+        /// </summary>
+        public static (int x, int y)? FindNearestCellWhere(
+            Zone zone, int fromX, int fromY,
+            System.Predicate<Cell> predicate,
+            int maxRadius = 40)
+        {
+            if (zone == null || predicate == null) return null;
+
+            // Encode (x, y) as a single long for HashSet — avoids per-visit
+            // allocation. x, y are in [0, 80) so fitting in 32 bits is safe.
+            var visited = new System.Collections.Generic.HashSet<long>();
+            var queue = new System.Collections.Generic.Queue<(int x, int y, int dist)>();
+
+            queue.Enqueue((fromX, fromY, 0));
+            visited.Add(((long)(uint)fromX << 32) | (uint)fromY);
+
+            while (queue.Count > 0)
+            {
+                var (x, y, dist) = queue.Dequeue();
+                var cell = zone.GetCell(x, y);
+                if (cell == null) continue;
+
+                if (predicate(cell)) return (x, y);
+
+                if (dist >= maxRadius) continue;
+
+                // Only expand through passable neighbors. Doors are
+                // passable so BFS enters rooms correctly; walls are
+                // solid so BFS stops at them.
+                foreach (var (dx, dy) in CardinalOffsets)
+                {
+                    int nx = x + dx;
+                    int ny = y + dy;
+                    if (!zone.InBounds(nx, ny)) continue;
+
+                    long key = ((long)(uint)nx << 32) | (uint)ny;
+                    if (!visited.Add(key)) continue;
+
+                    var nCell = zone.GetCell(nx, ny);
+                    if (nCell == null) continue;
+                    if (!nCell.IsPassable()) continue;
+
+                    queue.Enqueue((nx, ny, dist + 1));
+                }
+            }
+            return null;
+        }
+
+        private static readonly (int dx, int dy)[] CardinalOffsets =
+            { (1, 0), (-1, 0), (0, 1), (0, -1) };
     }
 }
