@@ -70,16 +70,16 @@ namespace CavesOfOoo.Rendering
         private Transform _fineWaterGridTransform;
 
         /// <summary>
-        /// Sub-tiles per zone cell along the flow axis. 2 gives 2× wave
-        /// resolution; bump to 4 for 4× (requires matching cellSize on
-        /// the Grid). Squished-aspect glyphs only render water chars
-        /// (= - ~ . * space) which are horizontally symmetric, so the
-        /// squish isn't visible.
+        /// Sub-tiles per zone cell on EACH axis. 2 gives a 2×2 grid = 4
+        /// sub-tiles per cell, yielding 4× wave resolution over the coarse
+        /// main tilemap. FineWaterTilemap's Grid cellSize must match
+        /// (1/N, 1/N, 0). Water glyphs (= - ~ . *) are horizontally
+        /// symmetric and read correctly when shrunk to square sub-tiles.
         /// </summary>
         private const int FineWaterSubdivisions = 2;
 
-        /// <summary>Fine tile width in world units = 1 / FineWaterSubdivisions.</summary>
-        private const float FineWaterCellWidth = 1f / FineWaterSubdivisions;
+        /// <summary>Fine tile size in world units on each axis = 1 / FineWaterSubdivisions.</summary>
+        private const float FineWaterCellSize = 1f / FineWaterSubdivisions;
 
         private Tilemap _sidebarBgTilemap;
         private Tilemap _sidebarTilemap;
@@ -239,7 +239,7 @@ namespace CavesOfOoo.Rendering
             _fineWaterGridTransform = fineWaterGridObj.transform;
             GameplayRenderLayers.SetLayerRecursive(fineWaterGridObj, GameplayRenderLayers.WorldLayer);
             var fineWaterGrid = fineWaterGridObj.AddComponent<Grid>();
-            fineWaterGrid.cellSize = new Vector3(FineWaterCellWidth, 1f, 0f);
+            fineWaterGrid.cellSize = new Vector3(FineWaterCellSize, FineWaterCellSize, 0f);
 
             var fineWaterTmObj = new GameObject("FineWaterTilemap");
             fineWaterTmObj.transform.SetParent(fineWaterGridObj.transform, false);
@@ -1231,11 +1231,12 @@ namespace CavesOfOoo.Rendering
         /// "rel" is the cell's cross-flow position [0..1], 0 at centerline
         /// and 1 at channel edge — drives the parabolic speed profile.
         ///
-        /// <para><c>along</c> is a float so the fine-water renderer can
-        /// sample at sub-cell positions (e.g. x + 0.5). Callers with ints
-        /// pass them unchanged — implicit int→float conversion applies.</para>
+        /// <para>Both <c>along</c> and <c>cross</c> are floats so the
+        /// fine-water renderer can sample at sub-cell positions on either
+        /// axis (2×2 sub-sampling). Callers with ints pass them unchanged
+        /// — implicit int→float conversion applies.</para>
         /// </summary>
-        private static float SampleRiverVal(float along, int cross, float t, float rel)
+        private static float SampleRiverVal(float along, float cross, float t, float rel)
         {
             // Parabolic speed profile: current is strongest at the center
             // line and drops off toward the banks (friction).
@@ -1682,42 +1683,53 @@ namespace CavesOfOoo.Rendering
 
         /// <summary>
         /// Paint the FineWaterTilemap for a single horizontal-flow zone
-        /// cell. Samples the scalar field at N along-flow sub-positions
-        /// and picks glyph + color per sub-tile, giving 2× wave resolution
-        /// over the coarse main-tilemap paint. Each sub-tile is also
-        /// light-map-attenuated so unlit areas darken consistently with
-        /// the main tilemap's RenderCellForLighting pass.
+        /// cell. Samples the scalar field at N×N sub-positions (along-flow
+        /// and cross-flow) and picks glyph + color per sub-tile, giving
+        /// 4× wave resolution over the coarse main-tilemap paint. Each
+        /// sub-tile is also light-map-attenuated so unlit areas darken
+        /// consistently with the main tilemap's RenderCellForLighting.
         /// </summary>
         private void PaintFineWater(int x, int y, float along, int cross, float rel, bool useBankPalette)
         {
             if (_fineWaterTilemap == null) return;
 
-            int tileY = Zone.Height - 1 - y;
-            for (int sub = 0; sub < FineWaterSubdivisions; sub++)
+            int mainTileY = Zone.Height - 1 - y;
+
+            for (int subAlong = 0; subAlong < FineWaterSubdivisions; subAlong++)
             {
-                float alongF = along + sub * FineWaterCellWidth;
-                float subVal = SampleRiverVal(alongF, cross, _ambientTimer, rel);
+                for (int subCross = 0; subCross < FineWaterSubdivisions; subCross++)
+                {
+                    float alongF = along + subAlong * FineWaterCellSize;
+                    float crossF = cross + subCross * FineWaterCellSize;
+                    float subVal = SampleRiverVal(alongF, crossF, _ambientTimer, rel);
 
-                char subFoam = FoamGlyph(subVal);
-                char subGlyph = subFoam != '\0' ? subFoam : DensityGlyph(subVal);
-                Color subColor = WaterColorForVal(subVal, useBankPalette);
+                    char subFoam  = FoamGlyph(subVal);
+                    char subGlyph = subFoam != '\0' ? subFoam : DensityGlyph(subVal);
+                    Color subColor = WaterColorForVal(subVal, useBankPalette);
 
-                if (_lightMap != null)
-                    subColor = _lightMap.ApplyToColor(subColor, x, y);
+                    if (_lightMap != null)
+                        subColor = _lightMap.ApplyToColor(subColor, x, y);
 
-                Vector3Int fineTilePos = new Vector3Int(
-                    FineWaterSubdivisions * x + sub, tileY, 0);
+                    // Tilemap Y flip: zoneY grows south, tilemap Y grows
+                    // north. subCross=0 samples the NORTHERN half of the
+                    // main cell (crossF = y), so it must render at the
+                    // HIGHER tilemap Y (2*mainTileY + 1). subCross=1 is
+                    // the SOUTHERN half and goes to the lower tilemap Y.
+                    int fineTileX = FineWaterSubdivisions * x + subAlong;
+                    int fineTileY = 2 * mainTileY + (1 - subCross);
 
-                Tile subTile = CP437TilesetGenerator.GetTile(subGlyph);
-                if (subTile != null)
-                    _fineWaterTilemap.SetTile(fineTilePos, subTile);
-                _fineWaterTilemap.SetTileFlags(fineTilePos, TileFlags.None);
-                _fineWaterTilemap.SetColor(fineTilePos, subColor);
+                    Vector3Int fineTilePos = new Vector3Int(fineTileX, fineTileY, 0);
+                    Tile subTile = CP437TilesetGenerator.GetTile(subGlyph);
+                    if (subTile != null)
+                        _fineWaterTilemap.SetTile(fineTilePos, subTile);
+                    _fineWaterTilemap.SetTileFlags(fineTilePos, TileFlags.None);
+                    _fineWaterTilemap.SetColor(fineTilePos, subColor);
+                }
             }
         }
 
         /// <summary>
-        /// Clear the N fine-water sub-tiles covering zone cell (x, y).
+        /// Clear the N×N fine-water sub-tiles covering zone cell (x, y).
         /// Called when a cell goes non-visible, has a non-water top entity,
         /// or is on a vertical-flow river (coarse rendering only). SetTile
         /// to null on an already-null tile is a no-op, so it's safe to call
@@ -1727,12 +1739,15 @@ namespace CavesOfOoo.Rendering
         {
             if (_fineWaterTilemap == null) return;
 
-            int tileY = Zone.Height - 1 - y;
-            for (int sub = 0; sub < FineWaterSubdivisions; sub++)
+            int mainTileY = Zone.Height - 1 - y;
+            for (int dx = 0; dx < FineWaterSubdivisions; dx++)
             {
-                Vector3Int fineTilePos = new Vector3Int(
-                    FineWaterSubdivisions * x + sub, tileY, 0);
-                _fineWaterTilemap.SetTile(fineTilePos, null);
+                for (int dy = 0; dy < FineWaterSubdivisions; dy++)
+                {
+                    int fineTileX = FineWaterSubdivisions * x + dx;
+                    int fineTileY = FineWaterSubdivisions * mainTileY + dy;
+                    _fineWaterTilemap.SetTile(new Vector3Int(fineTileX, fineTileY, 0), null);
+                }
             }
         }
 
