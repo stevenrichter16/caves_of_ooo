@@ -1230,8 +1230,12 @@ namespace CavesOfOoo.Rendering
         /// chunk: x). "cross" is perpendicular (used only for noise).
         /// "rel" is the cell's cross-flow position [0..1], 0 at centerline
         /// and 1 at channel edge — drives the parabolic speed profile.
+        ///
+        /// <para><c>along</c> is a float so the fine-water renderer can
+        /// sample at sub-cell positions (e.g. x + 0.5). Callers with ints
+        /// pass them unchanged — implicit int→float conversion applies.</para>
         /// </summary>
-        private static float SampleRiverVal(int along, int cross, float t, float rel)
+        private static float SampleRiverVal(float along, int cross, float t, float rel)
         {
             // Parabolic speed profile: current is strongest at the center
             // line and drops off toward the banks (friction).
@@ -1474,13 +1478,25 @@ namespace CavesOfOoo.Rendering
                 int y = pos.y;
 
                 Cell cell = CurrentZone.GetCell(x, y);
-                if (cell == null || !cell.IsVisible) continue;
+                if (cell == null || !cell.IsVisible)
+                {
+                    // Clear any leftover fine-water tiles so they don't stay
+                    // visible in fog of war / out of vision.
+                    ClearFineWaterAt(x, y);
+                    continue;
+                }
 
                 // Verify water is still the top visible entity (creature may be standing on it)
                 Entity top = cell.GetTopVisibleObject();
-                if (top == null) continue;
+                if (top == null) { ClearFineWaterAt(x, y); continue; }
                 var render = top.GetPart<RenderPart>();
-                if (render == null || render.RenderString != "~") continue;
+                if (render == null || render.RenderString != "~")
+                {
+                    // Entity (player/NPC) is on this water cell — clear fine
+                    // tiles so they don't cover the entity's glyph.
+                    ClearFineWaterAt(x, y);
+                    continue;
+                }
 
                 // River cells carry a FlowsSouth tag (vertical-flow village
                 // river — tag value = "core" / "bank") OR a FlowsEast tag
@@ -1561,15 +1577,30 @@ namespace CavesOfOoo.Rendering
                     // palette index so it visibly ripples with the wave.
                     PaintWaterBgTint(tilePos, useBankPalette, val);
 
-                    // SetTile must precede SetTileFlags/SetColor because
-                    // SetTile re-applies the tile's own color and reverts
-                    // the flags to LockColor.
-                    Tile glyphTile = CP437TilesetGenerator.GetTile(glyph);
-                    if (glyphTile != null)
-                        _tilemap.SetTile(tilePos, glyphTile);
+                    if (flowsEast)
+                    {
+                        // Horizontal flow → paint on the FineWaterTilemap at
+                        // N sub-positions for 2× wave resolution. Clear the
+                        // main tilemap's fg (null) so its coarse glyph's
+                        // pixels don't bleed through the fine tiles'
+                        // transparent regions.
+                        _tilemap.SetTile(tilePos, null);
+                        PaintFineWater(x, y, along, cross, rel, useBankPalette);
+                    }
+                    else
+                    {
+                        // Vertical flow (village river) — keep coarse
+                        // rendering on the main tilemap. SetTile precedes
+                        // SetTileFlags/SetColor because SetTile re-applies
+                        // the tile's own color and reverts flags to LockColor.
+                        ClearFineWaterAt(x, y);
+                        Tile glyphTile = CP437TilesetGenerator.GetTile(glyph);
+                        if (glyphTile != null)
+                            _tilemap.SetTile(tilePos, glyphTile);
 
-                    _tilemap.SetTileFlags(tilePos, TileFlags.None);
-                    _tilemap.SetColor(tilePos, color);
+                        _tilemap.SetTileFlags(tilePos, TileFlags.None);
+                        _tilemap.SetColor(tilePos, color);
+                    }
                 }
                 else
                 {
@@ -1647,6 +1678,62 @@ namespace CavesOfOoo.Rendering
             }
             _bgTilemap.SetTileFlags(tilePos, TileFlags.None);
             _bgTilemap.SetColor(tilePos, tinted);
+        }
+
+        /// <summary>
+        /// Paint the FineWaterTilemap for a single horizontal-flow zone
+        /// cell. Samples the scalar field at N along-flow sub-positions
+        /// and picks glyph + color per sub-tile, giving 2× wave resolution
+        /// over the coarse main-tilemap paint. Each sub-tile is also
+        /// light-map-attenuated so unlit areas darken consistently with
+        /// the main tilemap's RenderCellForLighting pass.
+        /// </summary>
+        private void PaintFineWater(int x, int y, float along, int cross, float rel, bool useBankPalette)
+        {
+            if (_fineWaterTilemap == null) return;
+
+            int tileY = Zone.Height - 1 - y;
+            for (int sub = 0; sub < FineWaterSubdivisions; sub++)
+            {
+                float alongF = along + sub * FineWaterCellWidth;
+                float subVal = SampleRiverVal(alongF, cross, _ambientTimer, rel);
+
+                char subFoam = FoamGlyph(subVal);
+                char subGlyph = subFoam != '\0' ? subFoam : DensityGlyph(subVal);
+                Color subColor = WaterColorForVal(subVal, useBankPalette);
+
+                if (_lightMap != null)
+                    subColor = _lightMap.ApplyToColor(subColor, x, y);
+
+                Vector3Int fineTilePos = new Vector3Int(
+                    FineWaterSubdivisions * x + sub, tileY, 0);
+
+                Tile subTile = CP437TilesetGenerator.GetTile(subGlyph);
+                if (subTile != null)
+                    _fineWaterTilemap.SetTile(fineTilePos, subTile);
+                _fineWaterTilemap.SetTileFlags(fineTilePos, TileFlags.None);
+                _fineWaterTilemap.SetColor(fineTilePos, subColor);
+            }
+        }
+
+        /// <summary>
+        /// Clear the N fine-water sub-tiles covering zone cell (x, y).
+        /// Called when a cell goes non-visible, has a non-water top entity,
+        /// or is on a vertical-flow river (coarse rendering only). SetTile
+        /// to null on an already-null tile is a no-op, so it's safe to call
+        /// unconditionally.
+        /// </summary>
+        private void ClearFineWaterAt(int x, int y)
+        {
+            if (_fineWaterTilemap == null) return;
+
+            int tileY = Zone.Height - 1 - y;
+            for (int sub = 0; sub < FineWaterSubdivisions; sub++)
+            {
+                Vector3Int fineTilePos = new Vector3Int(
+                    FineWaterSubdivisions * x + sub, tileY, 0);
+                _fineWaterTilemap.SetTile(fineTilePos, null);
+            }
         }
 
         /// <summary>
