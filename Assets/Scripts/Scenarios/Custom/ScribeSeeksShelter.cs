@@ -77,8 +77,20 @@ namespace CavesOfOoo.Scenarios.Custom
                 return;
             }
 
+            // Turn OFF Staying. Scribe blueprints default to Staying=true
+            // (Qud-parity home-cell behavior — don't drift from assigned
+            // post). Leaving that on here would turn the scenario into a
+            // round-trip: MoveToInteriorGoal walks her INTO a building,
+            // pops on arrival, BoredGoal then notices she's away from her
+            // spawn cell and pushes MoveToGoal BACK to the exterior
+            // spawn. The playtester sees "she entered and walked back
+            // out" — confusingly indistinguishable from a bug in the M4
+            // goal, even though each system is working correctly on its
+            // own. Disabling Staying isolates the M4 goal for inspection.
+            brain.Staying = false;
+
             brain.PushGoal(new MoveToInteriorGoal());
-            ctx.Log($"[ScribeSeeksShelter] Scribe spawned at ({spawnCell.X},{spawnCell.Y}) (exterior). MoveToInteriorGoal pushed. Advance turns (.) and watch her walk to the nearest building. Press 't' to see 'seeking shelter' in the thought inspector.");
+            ctx.Log($"[ScribeSeeksShelter] Scribe spawned at ({spawnCell.X},{spawnCell.Y}) (exterior), Staying disabled. MoveToInteriorGoal pushed. Advance turns (.) and watch her walk to the nearest building — she'll stop when she reaches an interior cell. Press 't' for the 'seeking shelter' thought in the inspector.");
         }
     }
 }
