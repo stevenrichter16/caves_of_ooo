@@ -764,9 +764,9 @@ This section describes what it takes to move every goal from state 1 → state 2
 | Milestone | Status | Tier | Effort | What goes live |
 |-----------|:------:|:----:|:------:|----------------|
 | **M1** — Blueprint wiring | ✅ Done (1317/1317) | A | 1–2d | RetreatGoal, Passive, DormantGoal |
-| **M2** — Dialogue/status triggers | ⏳ Next | B | 2–3d | NoFightGoal, WanderDurationGoal |
-| **M3** — Ambient behavior parts | | B | 2–3d | PetGoal, GoFetchGoal, FleeLocationGoal |
-| **M4** — Interior/Exterior (Gap B) | | C | 3–4d | MoveToInterior/ExteriorGoal, weather foundation |
+| **M2** — Dialogue/status triggers | ✅ Done | B | 2–3d | NoFightGoal, WanderDurationGoal |
+| **M3** — Ambient behavior parts | ✅ Done | B | 2–3d | PetGoal, GoFetchGoal, FleeLocationGoal |
+| **M4** — Interior/Exterior (Gap B) | ⏳ Next | C | 3–4d | MoveToInterior/ExteriorGoal, weather foundation |
 | **M5** — Corpse system (Gap C) | | C | 3–5d | DisposeOfCorpseGoal, necromancy/butcher foundation |
 | **M6** — Rune system | | C | 3–4d | LayRuneGoal |
 | **M7** — Turret system | | C | 3–4d | PlaceTurretGoal |
