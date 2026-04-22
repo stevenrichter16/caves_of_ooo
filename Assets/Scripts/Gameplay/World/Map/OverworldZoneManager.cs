@@ -148,20 +148,23 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new VillageBuilder(biome, poi, SettlementManager));
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
-            // Narrow HTML-style water channel threading through the village,
-            // flowing north → south along the east side. halfWidth=2.0 gives
-            // a ~4-cell channel; crossCenterOffset=+30 places it around x=70
-            // (zone center 40 + 30), matching the old narrow river's
-            // east-side footprint. skipBanks=true keeps the surrounding
-            // cells as normal village ground — no amber bank vegetation.
-            // Priority 3850 runs before VillagePopulationBuilder (4000) so
-            // NPCs don't spawn in water; the builder's IsPassable guard
-            // also prevents the channel from overwriting village walls.
+            // Narrow HTML-style water channel running west → east along the
+            // BOTTOM of the village. halfWidth=2.0 gives a ~4-cell-tall
+            // channel; crossCenterOffset=+8 places the centerline around
+            // y=20 (zone midpoint 12.5 + 8), with the river occupying roughly
+            // rows 17–23. skipBanks=true keeps cells outside the channel as
+            // normal village ground. clearSolidEntities=true bulldozes any
+            // walls / wells / ovens / fences in the river's path — the
+            // river takes priority over village layout. Priority 3850
+            // runs before VillagePopulationBuilder (4000) so NPCs don't
+            // spawn in water (though they may still spawn on cells where
+            // we just removed structures — acceptable collateral).
             pipeline.AddBuilder(new RiverChunkBuilder(
                 halfWidthBase: 2.0f,
                 skipBanks: true,
-                direction: RiverFlowDirection.South,
-                crossCenterOffset: 30));
+                direction: RiverFlowDirection.East,
+                crossCenterOffset: 8,
+                clearSolidEntities: true));
             pipeline.AddBuilder(new VillagePopulationBuilder(poi, SettlementManager));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             return pipeline;

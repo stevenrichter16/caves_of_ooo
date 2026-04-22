@@ -58,6 +58,7 @@ namespace CavesOfOoo.Core
         private readonly bool _skipBanks;
         private readonly RiverFlowDirection _direction;
         private readonly int _crossCenterOffset;
+        private readonly bool _clearSolidEntities;
 
         /// <summary>
         /// Construct a river builder.
@@ -68,19 +69,27 @@ namespace CavesOfOoo.Core
         /// the channel are left alone so the underlying village terrain shows through.</param>
         /// <param name="direction">East = horizontal +x flow; South = vertical +y flow.</param>
         /// <param name="crossCenterOffset">Shift the channel's centerline away from zone
-        /// center by this many cells in the cross-flow axis. For village N→S rivers we
-        /// use +30 so the channel sits on the east side (x ≈ 70), matching the old
-        /// narrow-river footprint rather than cutting through the village square.</param>
+        /// center by this many cells in the cross-flow axis. For a horizontal river at
+        /// the BOTTOM of the zone use +8 (center y ≈ 20). For N→S east-side use +30
+        /// (center x ≈ 70).</param>
+        /// <param name="clearSolidEntities">When true, water cells forcibly remove any
+        /// entity tagged "Solid" (walls, wells, ovens, fences) from the cell before
+        /// placing water. When false (default), the channel skips non-passable cells
+        /// so the river routes AROUND existing structures. Use true when the river
+        /// should take priority over village layout; false when the village should
+        /// keep its integrity and the river accommodates it.</param>
         public RiverChunkBuilder(
             float halfWidthBase = 4.5f,
             bool skipBanks = false,
             RiverFlowDirection direction = RiverFlowDirection.East,
-            int crossCenterOffset = 0)
+            int crossCenterOffset = 0,
+            bool clearSolidEntities = false)
         {
             _halfWidthBase = halfWidthBase;
             _skipBanks = skipBanks;
             _direction = direction;
             _crossCenterOffset = crossCenterOffset;
+            _clearSolidEntities = clearSolidEntities;
         }
 
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
@@ -118,10 +127,23 @@ namespace CavesOfOoo.Core
 
                     if (dist <= halfW)
                     {
-                        // Water cell. Skip non-passable cells so we don't stomp
-                        // village walls / wells / ovens. The channel gets a
-                        // visual gap at that spot — reads as "the village was
-                        // built around the river."
+                        // Water cell. If clearSolidEntities is on, bulldoze
+                        // any walls/wells/ovens in the river's path — the
+                        // river takes priority over village layout. When
+                        // off, skip non-passable cells so the channel
+                        // routes around existing structures.
+                        if (_clearSolidEntities && !cell.IsPassable())
+                        {
+                            var toRemove = new System.Collections.Generic.List<Entity>();
+                            foreach (var obj in cell.Objects)
+                            {
+                                if (obj.HasTag("Solid"))
+                                    toRemove.Add(obj);
+                            }
+                            foreach (var obj in toRemove)
+                                zone.RemoveEntity(obj);
+                        }
+
                         if (!cell.IsPassable()) continue;
 
                         float rel = dist / halfW;
