@@ -1553,54 +1553,40 @@ namespace CavesOfOoo.Rendering
                         useBankPalette = rel > 0.5f;
                     }
 
-                    // Sample the scalar field and pick glyph + color by
-                    // density thresholds. Foam wins over plain density.
+                    // Sample val at zone-cell resolution for the bg tint.
+                    // (Fine tiles do their own sub-cell sampling inside
+                    // PaintFineWater — we don't need per-cell glyph/color
+                    // at the coarse level anymore.)
                     float val = SampleRiverVal(along, cross, _ambientTimer, rel);
-                    char foam = FoamGlyph(val);
-                    char glyph = foam != '\0' ? foam : DensityGlyph(val);
-                    Color color = WaterColorForVal(val, useBankPalette);
 
-                    // Debris override (village river only for now — river
-                    // chunk has no debris per design spec).
-                    if (flowsSouth)
-                    {
-                        char debris = DebrisGlyphAt(x, y, _ambientTimer);
-                        if (debris != '\0')
-                        {
-                            glyph = debris;
-                            color = QudColorParser.Parse(DebrisColor);
-                        }
-                    }
-
-                    // Paint the bg tile BEFORE the fg tile so space glyphs
-                    // (very-calm cells) reveal dim blue underneath rather
-                    // than the bright floor. The tint tracks the current
-                    // palette index so it visibly ripples with the wave.
+                    // Paint the bg tile (dim blue pulse with the wave)
+                    // BEFORE the fg — space glyphs on fine tiles reveal
+                    // this underneath instead of the bright floor.
                     PaintWaterBgTint(tilePos, useBankPalette, val);
 
-                    if (flowsEast)
+                    // Debris override (village FlowsSouth river only):
+                    // paint the leaf at coarse (1-cell) resolution on the
+                    // main tilemap. A 'o' drawn at 0.5×0.5 sub-tile size
+                    // would look weirdly tiny; keep debris full-scale.
+                    char debris = flowsSouth
+                        ? DebrisGlyphAt(x, y, _ambientTimer)
+                        : '\0';
+                    if (debris != '\0')
                     {
-                        // Horizontal flow → paint on the FineWaterTilemap at
-                        // N sub-positions for 2× wave resolution. Clear the
-                        // main tilemap's fg (null) so its coarse glyph's
-                        // pixels don't bleed through the fine tiles'
-                        // transparent regions.
-                        _tilemap.SetTile(tilePos, null);
-                        PaintFineWater(x, y, along, cross, rel, useBankPalette);
+                        ClearFineWaterAt(x, y);
+                        Tile debrisTile = CP437TilesetGenerator.GetTile(debris);
+                        if (debrisTile != null)
+                            _tilemap.SetTile(tilePos, debrisTile);
+                        _tilemap.SetTileFlags(tilePos, TileFlags.None);
+                        _tilemap.SetColor(tilePos, QudColorParser.Parse(DebrisColor));
                     }
                     else
                     {
-                        // Vertical flow (village river) — keep coarse
-                        // rendering on the main tilemap. SetTile precedes
-                        // SetTileFlags/SetColor because SetTile re-applies
-                        // the tile's own color and reverts flags to LockColor.
-                        ClearFineWaterAt(x, y);
-                        Tile glyphTile = CP437TilesetGenerator.GetTile(glyph);
-                        if (glyphTile != null)
-                            _tilemap.SetTile(tilePos, glyphTile);
-
-                        _tilemap.SetTileFlags(tilePos, TileFlags.None);
-                        _tilemap.SetColor(tilePos, color);
+                        // Normal water — N×N fine sub-tiles. Clear the
+                        // main tilemap's fg so its previous glyph doesn't
+                        // bleed through fine tiles' transparency.
+                        _tilemap.SetTile(tilePos, null);
+                        PaintFineWater(x, y, along, cross, rel, useBankPalette, flowsEast);
                     }
                 }
                 else
@@ -1682,14 +1668,21 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>
-        /// Paint the FineWaterTilemap for a single horizontal-flow zone
-        /// cell. Samples the scalar field at N×N sub-positions (along-flow
-        /// and cross-flow) and picks glyph + color per sub-tile, giving
-        /// 4× wave resolution over the coarse main-tilemap paint. Each
-        /// sub-tile is also light-map-attenuated so unlit areas darken
-        /// consistently with the main tilemap's RenderCellForLighting.
+        /// Paint the FineWaterTilemap for a single water zone cell. Samples
+        /// the scalar field at N×N sub-positions (along-flow and cross-flow)
+        /// and picks glyph + color per sub-tile, giving 4× wave resolution
+        /// over the coarse main tilemap. Each sub-tile is light-map-
+        /// attenuated so unlit areas darken consistently with the main
+        /// tilemap's RenderCellForLighting pass.
+        ///
+        /// <para><c>isHorizontal</c> controls how (subAlong, subCross) map
+        /// to tilemap (x, y):</para>
+        /// <list type="bullet">
+        /// <item>true (FlowsEast): subAlong → tilemap X, subCross → tilemap Y (Y-flipped).</item>
+        /// <item>false (FlowsSouth): subAlong → tilemap Y (Y-flipped), subCross → tilemap X.</item>
+        /// </list>
         /// </summary>
-        private void PaintFineWater(int x, int y, float along, int cross, float rel, bool useBankPalette)
+        private void PaintFineWater(int x, int y, float along, int cross, float rel, bool useBankPalette, bool isHorizontal)
         {
             if (_fineWaterTilemap == null) return;
 
@@ -1710,13 +1703,22 @@ namespace CavesOfOoo.Rendering
                     if (_lightMap != null)
                         subColor = _lightMap.ApplyToColor(subColor, x, y);
 
-                    // Tilemap Y flip: zoneY grows south, tilemap Y grows
-                    // north. subCross=0 samples the NORTHERN half of the
-                    // main cell (crossF = y), so it must render at the
-                    // HIGHER tilemap Y (2*mainTileY + 1). subCross=1 is
-                    // the SOUTHERN half and goes to the lower tilemap Y.
-                    int fineTileX = FineWaterSubdivisions * x + subAlong;
-                    int fineTileY = 2 * mainTileY + (1 - subCross);
+                    // Y-flip: zoneY grows south, tilemap Y grows north.
+                    // For horizontal flow, subCross indexes cross-flow (zoneY)
+                    //   → subCross=0 is NORTH half → higher tilemap Y.
+                    // For vertical flow, subAlong indexes along-flow (zoneY)
+                    //   → subAlong=0 is NORTH half → higher tilemap Y.
+                    int fineTileX, fineTileY;
+                    if (isHorizontal)
+                    {
+                        fineTileX = FineWaterSubdivisions * x + subAlong;
+                        fineTileY = 2 * mainTileY + (1 - subCross);
+                    }
+                    else
+                    {
+                        fineTileX = FineWaterSubdivisions * x + subCross;
+                        fineTileY = 2 * mainTileY + (1 - subAlong);
+                    }
 
                     Vector3Int fineTilePos = new Vector3Int(fineTileX, fineTileY, 0);
                     Tile subTile = CP437TilesetGenerator.GetTile(subGlyph);
