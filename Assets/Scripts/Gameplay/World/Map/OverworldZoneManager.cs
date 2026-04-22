@@ -38,7 +38,7 @@ namespace CavesOfOoo.Core
 
             BiomeType biome = WorldMap.GetBiome(wx, wy);
 
-            // Check for POI -- villages and lairs get special pipelines
+            // Check for POI -- villages, lairs, and river chunks get special pipelines
             var poi = WorldMap.GetPOI(wx, wy);
             if (poi != null)
             {
@@ -51,6 +51,8 @@ namespace CavesOfOoo.Core
                     case POIType.MerchantCamp:
                         // Merchant camps use normal biome pipeline + trade stock
                         break;
+                    case POIType.RiverChunk:
+                        return CreateRiverChunkPipeline();
                 }
             }
 
@@ -161,6 +163,19 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new LairBuilder(biome, poi));
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new LairPopulationBuilder(biome, poi));
+            return pipeline;
+        }
+
+        /// <summary>
+        /// Pipeline for POIType.RiverChunk zones — the entire 80×25 grid
+        /// is the river.ascii demo. No village buildings, no NPCs, no
+        /// connectivity pass (every cell is water or bank, both passable).
+        /// Just the faithful-port builder.
+        /// </summary>
+        private ZoneGenerationPipeline CreateRiverChunkPipeline()
+        {
+            var pipeline = new ZoneGenerationPipeline();
+            pipeline.AddBuilder(new RiverChunkBuilder());
             return pipeline;
         }
 

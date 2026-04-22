@@ -105,6 +105,13 @@ namespace CavesOfOoo.Rendering
         private readonly List<Vector2Int> _waterTilePositions = new List<Vector2Int>();
 
         /// <summary>
+        /// Positions of Bank entities in a RiverChunk zone. Cached so
+        /// UpdateAmbientAnimations' bank loop doesn't re-scan the whole
+        /// zone. Empty for non-RiverChunk zones.
+        /// </summary>
+        private readonly List<Vector2Int> _bankTilePositions = new List<Vector2Int>();
+
+        /// <summary>
         /// A cell immediately west or east of a river channel column, cached
         /// for per-frame reflection tinting in UpdateAmbientAnimations.
         /// </summary>
@@ -1165,37 +1172,74 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>
-        /// Sample the river's scalar field at (x, y) and time t. Returns a
-        /// value in roughly [-1.8, 1.8]; thresholds on it pick the glyph
-        /// and color. High = crest / foam, low = calm / empty.
+        /// Sample the river's scalar field at (along, cross) and time t.
+        /// Returns val ∈ roughly [-1.8, 1.8]; thresholds pick the glyph
+        /// and color. High = crest / foam; low = calm / empty.
         ///
-        /// Port of river.ascii's sample(). Axes swapped: HTML flows in +x,
-        /// we flow in +y, so ripples use y as the along-flow coordinate.
+        /// Port of river.ascii's sample(). "along" is the flow direction
+        /// (HTML: x; vertical-flow village river: y; horizontal-flow river
+        /// chunk: x). "cross" is perpendicular (used only for noise).
+        /// "rel" is the cell's cross-flow position [0..1], 0 at centerline
+        /// and 1 at channel edge — drives the parabolic speed profile.
         /// </summary>
-        private static float SampleRiverVal(int x, int y, float t, bool isBank)
+        private static float SampleRiverVal(int along, int cross, float t, float rel)
         {
-            // rel ≈ cross-flow position. In HTML rel∈[0,1]; here we have
-            // only two cells (core + bank) so we pick representative
-            // values that give a visible — but not extreme — speed
-            // differential via the parabolic profile below.
-            float rel = isBank ? 0.75f : 0.25f;
-
             // Parabolic speed profile: current is strongest at the center
             // line and drops off toward the banks (friction).
             float flow = (1f - rel * rel * 0.65f) * FlowSpeedMult;
 
             // Three traveling sines at different frequencies and speeds.
-            // Minus sign on t means bands move in +y (south) over time.
-            float r1 = Mathf.Sin(y * RippleFreq1 - t * RippleSpeed1 * flow + rel * RippleCross1);
-            float r2 = Mathf.Sin(y * RippleFreq2 - t * RippleSpeed2 * flow + rel * RippleCross2) * RippleAmp2;
-            float r3 = Mathf.Sin(y * RippleFreq3 - t * RippleSpeed3 * flow)                      * RippleAmp3;
+            // Minus sign on t means bands move in +along direction over time.
+            float r1 = Mathf.Sin(along * RippleFreq1 - t * RippleSpeed1 * flow + rel * RippleCross1);
+            float r2 = Mathf.Sin(along * RippleFreq2 - t * RippleSpeed2 * flow + rel * RippleCross2) * RippleAmp2;
+            float r3 = Mathf.Sin(along * RippleFreq3 - t * RippleSpeed3 * flow)                       * RippleAmp3;
 
             // Organic turbulence: noise sampled with time advancing one
             // axis, so the field visibly drifts without ever repeating.
-            float turb = (ValueNoise(y * TurbFreqAlong + t * TurbTimeScale,
-                                     x * TurbFreqCross) - 0.5f) * TurbulenceAmount;
+            float turb = (ValueNoise(along * TurbFreqAlong + t * TurbTimeScale,
+                                     cross * TurbFreqCross) - 0.5f) * TurbulenceAmount;
 
             return (r1 + r2 + r3) * RippleMixWeight + turb;
+        }
+
+        /// <summary>
+        /// Parse a tag value saved as an InvariantCulture F3 float ("0.750").
+        /// Returns a clamped [0,1] value; silently falls back to 0.5 on
+        /// malformed input so a bad tag never NaNs the renderer.
+        /// </summary>
+        private static float ParseRel(string tagValue)
+        {
+            if (string.IsNullOrEmpty(tagValue)) return 0.5f;
+            if (!float.TryParse(tagValue, System.Globalization.NumberStyles.Float,
+                                System.Globalization.CultureInfo.InvariantCulture,
+                                out float rel))
+                return 0.5f;
+            if (rel < 0f) return 0f;
+            if (rel > 1f) return 1f;
+            return rel;
+        }
+
+        /// <summary>
+        /// Port of river.ascii's bank glyph pick. Density <c>d</c> is a
+        /// blend of noise plus bank depth (how far from water). Glyphs
+        /// come in gravity-aware pairs: <c>'</c> vs <c>,</c>, <c>`</c> vs <c>.</c>,
+        /// chosen by whether the cell is above (north side) or below
+        /// (south side) the centerline. <c>v</c> / <c>^</c> / <c>w</c> are
+        /// vegetation tufts at the densest bank edges.
+        /// </summary>
+        private static char SampleBankGlyph(int x, int y, float bankDepth, bool above)
+        {
+            float n1 = ValueNoise(x * 0.28f, y * 0.28f);
+            float n2 = ValueNoise(x * 0.65f, y * 0.55f);
+            float d  = n1 * 0.55f + n2 * 0.25f + bankDepth * 0.35f;
+
+            if (d < 0.28f) return ' ';
+            if (d < 0.42f) return '.';
+            if (d < 0.55f) return above ? '\'' : ',';
+            if (d < 0.68f) return above ? '`'  : '.';
+            if (d < 0.80f) return '"';
+            if (d < 0.92f) return n2 < 0.5f ? 'v' : '^';
+            return 'w';
         }
 
         /// <summary>
@@ -1215,13 +1259,15 @@ namespace CavesOfOoo.Rendering
 
         /// <summary>
         /// Foam glyph at ripple peaks, or '\0' if below foam cutoffs. '*'
-        /// for the biggest breakers, '≈' for gentler crests. White color
-        /// is applied separately by WaterColorForVal.
+        /// for the biggest breakers; '=' (same glyph as heavy density, but
+        /// tinted White by WaterColorForVal) for gentler crests. Using
+        /// HTML's '≈' (U+2248) would fall outside our 256-slot CP437 cache
+        /// and render as '?' — stick with CP437-safe ASCII.
         /// </summary>
         private static char FoamGlyph(float val)
         {
             if (val > FoamCutoffLarge) return '*';
-            if (val > FoamCutoffSmall) return '\u2248';  // ≈
+            if (val > FoamCutoffSmall) return '=';
             return '\0';
         }
 
@@ -1277,6 +1323,7 @@ namespace CavesOfOoo.Rendering
         {
             _waterTilePositions.Clear();
             _waterAdjacentPositions.Clear();
+            _bankTilePositions.Clear();
             if (CurrentZone == null) return;
 
             // Per-row centerline cache for debris targeting. First core
@@ -1296,31 +1343,43 @@ namespace CavesOfOoo.Rendering
                     if (top == null) continue;
 
                     var render = top.GetPart<RenderPart>();
-                    if (render == null || render.RenderString != "~") continue;
+                    if (render == null) continue;
 
-                    _waterTilePositions.Add(new Vector2Int(x, y));
-
-                    // Reflection tint: a core cell spills a dark-blue glow
-                    // onto its WEST neighbor; a bank cell spills a bright-
-                    // cyan glow onto its EAST neighbor. Other orientations
-                    // skipped so the effect reads as "sun on two sides of
-                    // the channel" rather than "fog around everything."
-                    if (!top.HasTag("FlowsSouth")) continue;
-                    bool isBank = top.Tags["FlowsSouth"] == "bank";
-
-                    if (!isBank && _centerXPerRow[y] < 0)
-                        _centerXPerRow[y] = x;
-
-                    int adjX = isBank ? x + 1 : x - 1;
-                    if (CurrentZone.InBounds(adjX, y))
+                    // Water cells (RenderString "~") — both river types.
+                    if (render.RenderString == "~")
                     {
-                        _waterAdjacentPositions.Add(new ReflectionAdjacentTile
+                        _waterTilePositions.Add(new Vector2Int(x, y));
+
+                        // Village-river FlowsSouth: cache west/east flank for
+                        // reflection tint, and cache centerX per row for debris.
+                        if (top.HasTag("FlowsSouth"))
                         {
-                            X = adjX,
-                            Y = y,
-                            UseBankPalette = isBank
-                        });
+                            bool isBank = top.Tags["FlowsSouth"] == "bank";
+                            if (!isBank && _centerXPerRow[y] < 0)
+                                _centerXPerRow[y] = x;
+                            int adjX = isBank ? x + 1 : x - 1;
+                            if (CurrentZone.InBounds(adjX, y))
+                            {
+                                _waterAdjacentPositions.Add(new ReflectionAdjacentTile
+                                {
+                                    X = adjX,
+                                    Y = y,
+                                    UseBankPalette = isBank
+                                });
+                            }
+                        }
+                        // River-chunk FlowsEast cells don't need a flank
+                        // cache — banks are first-class entities, not
+                        // cross-channel reflections.
+                        continue;
                     }
+
+                    // Bank cells (RiverChunk): entities whose top-visible
+                    // RenderPart comes from the Bank blueprint. We detect
+                    // via BlueprintName so Grass or other "." entities
+                    // don't accidentally get animated.
+                    if (top.BlueprintName == "Bank")
+                        _bankTilePositions.Add(new Vector2Int(x, y));
                 }
             }
 
@@ -1374,40 +1433,66 @@ namespace CavesOfOoo.Rendering
                 var render = top.GetPart<RenderPart>();
                 if (render == null || render.RenderString != "~") continue;
 
-                // River cells carry a FlowsSouth tag (set by RiverBuilder).
-                // Tag VALUE is "core" (center column — deeper palette) or
-                // "bank" (outer column — shallower, brighter palette).
-                // Village decor (no tag) keeps its stationary shimmer.
-                bool isFlowing = top.HasTag("FlowsSouth");
+                // River cells carry a FlowsSouth tag (vertical-flow village
+                // river — tag value = "core" / "bank") OR a FlowsEast tag
+                // (horizontal-flow river chunk — tag value = rel as float
+                // in [0,1]). Village decor (no tag) keeps its stationary
+                // shimmer.
+                bool flowsSouth = top.HasTag("FlowsSouth");
+                bool flowsEast  = top.HasTag("FlowsEast");
+                bool isFlowing  = flowsSouth || flowsEast;
                 Vector3Int tilePos = new Vector3Int(x, Zone.Height - 1 - y, 0);
 
                 if (isFlowing)
                 {
-                    bool isBank = top.Tags["FlowsSouth"] == "bank";
+                    // Compute along-flow / cross-flow axes and rel per direction.
+                    int along, cross;
+                    float rel;
+                    bool useBankPalette;
+                    if (flowsSouth)
+                    {
+                        along = y;
+                        cross = x;
+                        bool isBankCol = top.Tags["FlowsSouth"] == "bank";
+                        rel = isBankCol ? 0.75f : 0.25f;
+                        useBankPalette = isBankCol;
+                    }
+                    else
+                    {
+                        along = x;
+                        cross = y;
+                        rel = ParseRel(top.Tags["FlowsEast"]);
+                        // River-chunk cells are single-cyan (palette[2] for bright);
+                        // we still pass bank-palette=true into WaterColorForVal so
+                        // cells at the channel edge pick the brighter end. Core
+                        // cells (rel ≈ 0) then fall back to core palette.
+                        useBankPalette = rel > 0.5f;
+                    }
 
                     // Sample the scalar field and pick glyph + color by
                     // density thresholds. Foam wins over plain density.
-                    float val = SampleRiverVal(x, y, _ambientTimer, isBank);
+                    float val = SampleRiverVal(along, cross, _ambientTimer, rel);
                     char foam = FoamGlyph(val);
                     char glyph = foam != '\0' ? foam : DensityGlyph(val);
-                    Color color = WaterColorForVal(val, isBank);
+                    Color color = WaterColorForVal(val, useBankPalette);
 
-                    // Debris override: a drifting leaf takes precedence
-                    // over water glyph AND foam (leaves visibly ride
-                    // crests). Color flips to DebrisColor so the leaf
-                    // contrasts against the blue channel.
-                    char debris = DebrisGlyphAt(x, y, _ambientTimer);
-                    if (debris != '\0')
+                    // Debris override (village river only for now — river
+                    // chunk has no debris per design spec).
+                    if (flowsSouth)
                     {
-                        glyph = debris;
-                        color = QudColorParser.Parse(DebrisColor);
+                        char debris = DebrisGlyphAt(x, y, _ambientTimer);
+                        if (debris != '\0')
+                        {
+                            glyph = debris;
+                            color = QudColorParser.Parse(DebrisColor);
+                        }
                     }
 
                     // Paint the bg tile BEFORE the fg tile so space glyphs
                     // (very-calm cells) reveal dim blue underneath rather
                     // than the bright floor. The tint tracks the current
                     // palette index so it visibly ripples with the wave.
-                    PaintWaterBgTint(tilePos, isBank, val);
+                    PaintWaterBgTint(tilePos, useBankPalette, val);
 
                     // SetTile must precede SetTileFlags/SetColor because
                     // SetTile re-applies the tile's own color and reverts
@@ -1438,6 +1523,13 @@ namespace CavesOfOoo.Rendering
             // frame flicker after a RenderZone stomp, imperceptible at
             // 60fps.
             UpdateReflectionTint();
+
+            // Bank glyphs (RiverChunk zones only): per-frame sampling of
+            // the noise-driven HTML bank field. Glyphs are static-per-cell
+            // for the current zone — the noise doesn't move — but we
+            // recompute each frame because RenderZone stomps cell state
+            // on player movement, and re-painting avoids fog-of-war bugs.
+            UpdateBankGlyphs();
 
             // Dust motes: spawn occasional faint particles in lit areas
             _dustMoteSpawnTimer += deltaTime;
@@ -1516,7 +1608,9 @@ namespace CavesOfOoo.Rendering
                 // between adjacent columns is imperceptible, not worth
                 // recomputing the water cell's exact coords.
                 Color[] palette = adj.UseBankPalette ? WaterBankColors : WaterCoreColors;
-                float val = SampleRiverVal(adj.X, adj.Y, _ambientTimer, adj.UseBankPalette);
+                // Village river: along=y, cross=x; bank cells at rel=0.75, core at 0.25.
+                float rel = adj.UseBankPalette ? 0.75f : 0.25f;
+                float val = SampleRiverVal(adj.Y, adj.X, _ambientTimer, rel);
                 int colorIndex = val > DensityThreshMedium ? 2
                                : val > DensityThreshTilde  ? 1
                                : 0;
@@ -1536,6 +1630,46 @@ namespace CavesOfOoo.Rendering
 
                 _bgTilemap.SetTileFlags(tilePos, TileFlags.None);
                 _bgTilemap.SetColor(tilePos, tinted);
+            }
+        }
+
+        /// <summary>
+        /// Paint the noise-driven bank glyph on every cached Bank entity
+        /// cell. Runs every frame for the RiverChunk zones; for non-river
+        /// zones the cache is empty and this is a no-op.
+        ///
+        /// Bank glyphs are position-deterministic (noise is static), so
+        /// glyph choice doesn't change frame-to-frame. We still repaint
+        /// every frame because RenderZone can stomp cell state on state
+        /// changes, and it's cheaper to always repaint than track dirty.
+        /// </summary>
+        private void UpdateBankGlyphs()
+        {
+            if (_tilemap == null || CurrentZone == null) return;
+            if (_bankTilePositions.Count == 0) return;
+
+            Color bankColor = QudColorParser.DarkYellow;
+            for (int i = 0; i < _bankTilePositions.Count; i++)
+            {
+                var pos = _bankTilePositions[i];
+                Cell cell = CurrentZone.GetCell(pos.x, pos.y);
+                if (cell == null || !cell.IsVisible) continue;
+
+                Entity top = cell.GetTopVisibleObject();
+                if (top == null || top.BlueprintName != "Bank") continue;
+
+                float bankDepth = ParseRel(top.Tags["BankDepth"]);
+                bool above = top.Tags["BankAbove"] == "1";
+
+                char glyph = SampleBankGlyph(pos.x, pos.y, bankDepth, above);
+
+                Vector3Int tilePos = new Vector3Int(pos.x, Zone.Height - 1 - pos.y, 0);
+                Tile glyphTile = CP437TilesetGenerator.GetTile(glyph);
+                if (glyphTile != null)
+                    _tilemap.SetTile(tilePos, glyphTile);
+
+                _tilemap.SetTileFlags(tilePos, TileFlags.None);
+                _tilemap.SetColor(tilePos, bankColor);
             }
         }
 

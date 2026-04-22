@@ -4,7 +4,14 @@ namespace CavesOfOoo.Core
     {
         Village,
         Lair,
-        MerchantCamp
+        MerchantCamp,
+
+        /// <summary>
+        /// A zone whose entire 80×25 grid is a faithful port of the
+        /// river.ascii demo: a full-width channel of water flanked on
+        /// both sides by noise-driven bank vegetation. No village content.
+        /// </summary>
+        RiverChunk
     }
 
     /// <summary>

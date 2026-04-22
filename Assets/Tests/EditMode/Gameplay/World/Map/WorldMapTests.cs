@@ -1060,12 +1060,23 @@ namespace CavesOfOoo.Tests
         public void OverworldZoneManager_RoutesCaveBiome()
         {
             var manager = CreateManager(42);
-            // Force a Cave biome tile
             var worldMap = manager.WorldMap;
-            // Center is always Cave
-            string caveID = WorldMap.ToZoneID(10, 10);
-            Assert.AreEqual(BiomeType.Cave, worldMap.GetBiome(10, 10));
 
+            // The starting POI (previously Village, now RiverChunk) bypasses
+            // the cave pipeline — even though the center tile's BIOME is Cave.
+            // Pick any other Cave-biome tile without a POI for this routing test.
+            (int x, int y)? cavePos = null;
+            for (int y = 0; y < WorldMap.Height && cavePos == null; y++)
+            {
+                for (int x = 0; x < WorldMap.Width && cavePos == null; x++)
+                {
+                    if (worldMap.GetBiome(x, y) == BiomeType.Cave && !worldMap.HasPOI(x, y))
+                        cavePos = (x, y);
+                }
+            }
+            Assert.IsNotNull(cavePos, "Expected at least one Cave-biome tile without a POI.");
+
+            string caveID = WorldMap.ToZoneID(cavePos.Value.x, cavePos.Value.y);
             Zone zone = manager.GetZone(caveID);
             Assert.IsNotNull(zone);
 
@@ -1274,13 +1285,19 @@ namespace CavesOfOoo.Tests
         [Test]
         public void WorldGenerator_CenterHasVillage()
         {
+            // Historical name kept for blame continuity. The starting-zone
+            // POI was swapped to RiverChunk so the spawn area is the faithful
+            // river.ascii showcase. To restore village-at-spawn behavior,
+            // revert WorldGenerator's PlacePOIs starting-zone POIType to
+            // Village and restore this assertion to POIType.Village.
             var map = WorldGenerator.Generate(42);
             int cx = WorldMap.Width / 2;
             int cy = WorldMap.Height / 2;
 
             Assert.IsTrue(map.HasPOI(cx, cy), "Center tile should have a POI");
             var poi = map.GetPOI(cx, cy);
-            Assert.AreEqual(POIType.Village, poi.Type, "Center POI should be a village");
+            Assert.AreEqual(POIType.RiverChunk, poi.Type,
+                "Center POI should be a RiverChunk (river.ascii port zone)");
         }
 
         [Test]
