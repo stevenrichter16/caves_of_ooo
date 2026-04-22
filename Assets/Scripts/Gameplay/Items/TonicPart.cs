@@ -62,53 +62,85 @@ namespace CavesOfOoo.Core
 
         private bool DoApply(Entity actor, GameEvent e)
         {
-            // Apply instant healing
-            if (!string.IsNullOrEmpty(Healing))
-            {
-                var rng = e.GetParameter<Random>("Random") ?? new Random();
-                int healed = DiceRoller.Roll(Healing, rng);
-                if (healed > 0)
-                {
-                    var hp = actor.GetStat("Hitpoints");
-                    if (hp != null)
-                    {
-                        int before = hp.Value;
-                        hp.BaseValue = Math.Min(hp.BaseValue + healed, hp.Max);
-                        int actual = hp.Value - before;
-                        if (actual > 0)
-                            MessageLog.Add($"{actor.GetDisplayName()} heals {actual} HP.");
-                    }
-                }
-            }
+            var rng = e.GetParameter<Random>("Random") ?? new Random();
+            Zone zone = e.GetParameter<Zone>("Zone");
 
-            // Apply stat boost
-            if (!string.IsNullOrEmpty(StatBoost))
-            {
-                ApplyStatBoost(actor);
-            }
-
-            // Fire ApplyTonic event on the item for extensibility
-            var applyEvent = GameEvent.New("ApplyTonic");
-            applyEvent.SetParameter("Actor", (object)actor);
-            applyEvent.SetParameter("Tonic", (object)ParentEntity);
-            applyEvent.SetParameter("Effect", Effect);
-            applyEvent.SetParameter("Duration", Duration);
-            ParentEntity.FireEvent(applyEvent);
-
-            // Show message
-            string verb = Drink ? "drinks" : "applies";
-            string displayMsg = !string.IsNullOrEmpty(Message) ? Message
-                : $"{actor.GetDisplayName()} {verb} {ParentEntity.GetDisplayName()}.";
-            MessageLog.Add(displayMsg);
-
-            // Consume the item
-            ConsumeItem(actor);
-
+            ApplyTo(actor, actor, zone, rng, consumeItem: true, showUseMessage: true);
             e.Handled = true;
             return false;
         }
 
-        private void ApplyStatBoost(Entity actor)
+        public bool HasThrowablePayload()
+        {
+            return !string.IsNullOrWhiteSpace(Healing)
+                || !string.IsNullOrWhiteSpace(StatBoost)
+                || ParentEntity?.GetPart<CureTonicPart>() != null
+                || ParentEntity?.GetPart<StatusTonicPart>() != null;
+        }
+
+        public bool ApplyTo(
+            Entity target,
+            Entity user,
+            Zone zone = null,
+            Random rng = null,
+            bool consumeItem = false,
+            bool showUseMessage = true)
+        {
+            if (target == null)
+                return false;
+
+            rng = rng ?? new Random();
+
+            ApplyHealing(target, rng);
+
+            if (!string.IsNullOrEmpty(StatBoost))
+                ApplyStatBoost(target);
+
+            var applyEvent = GameEvent.New("ApplyTonic");
+            applyEvent.SetParameter("Actor", (object)target);
+            applyEvent.SetParameter("Tonic", (object)ParentEntity);
+            applyEvent.SetParameter("Effect", Effect);
+            applyEvent.SetParameter("Duration", Duration);
+            applyEvent.SetParameter("Zone", (object)zone);
+            applyEvent.SetParameter("Random", (object)rng);
+            applyEvent.SetParameter("Source", (object)user);
+            ParentEntity.FireEvent(applyEvent);
+
+            if (showUseMessage)
+            {
+                string verb = Drink ? "drinks" : "applies";
+                string displayMsg = !string.IsNullOrEmpty(Message) ? Message
+                    : $"{target.GetDisplayName()} {verb} {ParentEntity.GetDisplayName()}.";
+                MessageLog.Add(displayMsg);
+            }
+
+            if (consumeItem && user != null)
+                ConsumeItem(user);
+
+            return true;
+        }
+
+        private void ApplyHealing(Entity target, Random rng)
+        {
+            if (string.IsNullOrEmpty(Healing))
+                return;
+
+            int healed = DiceRoller.Roll(Healing, rng);
+            if (healed <= 0)
+                return;
+
+            var hp = target.GetStat("Hitpoints");
+            if (hp == null)
+                return;
+
+            int before = hp.Value;
+            hp.BaseValue = Math.Min(hp.BaseValue + healed, hp.Max);
+            int actual = hp.Value - before;
+            if (actual > 0)
+                MessageLog.Add($"{target.GetDisplayName()} heals {actual} HP.");
+        }
+
+        private void ApplyStatBoost(Entity target)
         {
             // Format: "StatName:Amount" (e.g., "Strength:4")
             int colon = StatBoost.IndexOf(':');
@@ -117,11 +149,11 @@ namespace CavesOfOoo.Core
             string statName = StatBoost.Substring(0, colon);
             if (!int.TryParse(StatBoost.Substring(colon + 1), out int amount)) return;
 
-            var stat = actor.GetStat(statName);
+            var stat = target.GetStat(statName);
             if (stat == null) return;
 
             stat.Boost += amount;
-            MessageLog.Add($"{actor.GetDisplayName()} feels a surge of {statName}!");
+            MessageLog.Add($"{target.GetDisplayName()} feels a surge of {statName}!");
         }
 
         private void ConsumeItem(Entity actor)

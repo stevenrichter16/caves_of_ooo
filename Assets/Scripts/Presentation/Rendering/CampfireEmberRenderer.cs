@@ -159,6 +159,7 @@ namespace CavesOfOoo.Rendering
 
             var go = new GameObject("Ember");
             go.transform.SetParent(transform, false);
+            go.layer = gameObject.layer;
 
             var sr = go.AddComponent<SpriteRenderer>();
             sr.sprite = _dotSprite;

@@ -1,0 +1,19 @@
+{
+  "Reactions": [
+    {
+      "ID": "fire_plus_fungal",
+      "Priority": 34,
+      "Conditions": {
+        "SourceState": "Burning",
+        "TargetMaterialTag": "Fungal",
+        "MinTemperature": 200,
+        "MaxMoisture": 0.4
+      },
+      "Effects": [
+        { "Type": "DealDamage", "FloatValue": 3.0, "StringValue": "" },
+        { "Type": "PropagateAlongTag", "FloatValue": 25.0, "StringValue": "Fungal" },
+        { "Type": "EmitBonusHeat", "FloatValue": 20.0, "StringValue": "" }
+      ]
+    }
+  ]
+}

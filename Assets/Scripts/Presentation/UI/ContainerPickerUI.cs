@@ -12,9 +12,12 @@ namespace CavesOfOoo.Rendering
     public class ContainerPickerUI : MonoBehaviour
     {
         public Tilemap Tilemap;
+        public Tilemap BgTilemap;
+        public Camera PopupCamera;
 
         private const int POPUP_W = 54;
         private const int POPUP_MAX_VISIBLE = 12;
+        private static readonly Color PopupBgColor = new Color(0f, 0f, 0f, 1f);
 
         private bool _isOpen;
         private readonly List<Entity> _containers = new List<Entity>();
@@ -27,6 +30,11 @@ namespace CavesOfOoo.Rendering
         private int _worldOriginX;
         private int _worldTopY;
         private int _popupH;
+        private bool _bgDrawn;
+        private int _bgDrawnW;
+        private int _bgDrawnH;
+        private int _bgDrawnOriginX;
+        private int _bgDrawnTopY;
 
         public bool IsOpen => _isOpen;
         public bool SelectionMade => _selectionMade;
@@ -52,7 +60,7 @@ namespace CavesOfOoo.Rendering
             if (!_isOpen)
                 return;
 
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.G))
+            if (InputHelper.GetKeyDown(KeyCode.Escape) || InputHelper.GetKeyDown(KeyCode.G))
             {
                 Cancel();
                 return;
@@ -81,7 +89,7 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
             {
                 if (_cursorIndex > 0)
                 {
@@ -92,7 +100,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J))
             {
                 if (_cursorIndex < _containers.Count - 1)
                 {
@@ -103,7 +111,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.Space))
             {
                 SelectContainer(_cursorIndex);
                 return;
@@ -111,7 +119,7 @@ namespace CavesOfOoo.Rendering
 
             for (int i = 0; i < 26 && i < _containers.Count; i++)
             {
-                if (Input.GetKeyDown(KeyCode.A + i))
+                if (InputHelper.GetKeyDown(KeyCode.A + i))
                 {
                     SelectContainer(i);
                     return;
@@ -139,6 +147,7 @@ namespace CavesOfOoo.Rendering
         private void Close()
         {
             ClearRegion(0, 0, POPUP_W, _popupH);
+            ClearBgRegion();
             _isOpen = false;
             _containers.Clear();
         }
@@ -157,19 +166,11 @@ namespace CavesOfOoo.Rendering
 
         private void ComputePopupPosition()
         {
-            var cam = Camera.main;
-            if (cam == null)
-                return;
-
             int totalRows = _containers.Count;
             int visibleCount = Mathf.Min(totalRows > 0 ? totalRows : 1, POPUP_MAX_VISIBLE);
             _popupH = visibleCount + 5;
-
-            float camX = cam.transform.position.x;
-            float camY = cam.transform.position.y;
-
-            _worldOriginX = Mathf.RoundToInt(camX) - POPUP_W / 2;
-            _worldTopY = Mathf.RoundToInt(camY) + _popupH / 2;
+            _worldOriginX = CenteredPopupLayout.GetCenteredOriginX(POPUP_W);
+            _worldTopY = CenteredPopupLayout.GetCenteredTopY(_popupH);
         }
 
         private void Render()
@@ -177,6 +178,7 @@ namespace CavesOfOoo.Rendering
             if (Tilemap == null)
                 return;
 
+            ClearBgRegion();
             ComputePopupPosition();
 
             int totalRows = _containers.Count;
@@ -184,6 +186,7 @@ namespace CavesOfOoo.Rendering
             int borderH = visibleCount + 4;
 
             ClearRegion(0, 0, POPUP_W, _popupH);
+            DrawBgFill(0, 0, POPUP_W, borderH);
             DrawPopupBorder(0, 0, POPUP_W, borderH, visibleCount);
 
             string title = "Choose container (" + totalRows + ")";
@@ -247,16 +250,11 @@ namespace CavesOfOoo.Rendering
 
         private int GetRowAtMouse()
         {
-            var cam = Camera.main;
-            if (cam == null)
+            if (!CenteredPopupLayout.ScreenToGrid(PopupCamera, Tilemap, Input.mousePosition, out int gridX, out int gridY))
                 return -1;
 
-            Vector3 world = cam.ScreenToWorldPoint(Input.mousePosition);
-            int worldX = Mathf.FloorToInt(world.x);
-            int worldY = Mathf.FloorToInt(world.y);
-
-            int gx = worldX - _worldOriginX;
-            int gy = _worldTopY - worldY;
+            int gx = gridX - _worldOriginX;
+            int gy = _worldTopY - gridY;
 
             int totalRows = _containers.Count;
             int visibleCount = Mathf.Min(totalRows, POPUP_MAX_VISIBLE);
@@ -284,6 +282,49 @@ namespace CavesOfOoo.Rendering
                     Tilemap.SetTile(new Vector3Int(wx, wy, 0), null);
                 }
             }
+        }
+
+        private void DrawBgFill(int gx, int gy, int width, int height)
+        {
+            if (BgTilemap == null) return;
+            var blockTile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+            if (blockTile == null) return;
+
+            for (int dy = 0; dy < height; dy++)
+            {
+                for (int dx = 0; dx < width; dx++)
+                {
+                    int wx = _worldOriginX + gx + dx;
+                    int wy = _worldTopY - (gy + dy);
+                    var pos = new Vector3Int(wx, wy, 0);
+                    BgTilemap.SetTile(pos, blockTile);
+                    BgTilemap.SetTileFlags(pos, TileFlags.None);
+                    BgTilemap.SetColor(pos, PopupBgColor);
+                }
+            }
+
+            _bgDrawn = true;
+            _bgDrawnW = width;
+            _bgDrawnH = height;
+            _bgDrawnOriginX = _worldOriginX + gx;
+            _bgDrawnTopY = _worldTopY - gy;
+        }
+
+        private void ClearBgRegion()
+        {
+            if (!_bgDrawn || BgTilemap == null) return;
+
+            for (int dy = 0; dy < _bgDrawnH; dy++)
+            {
+                for (int dx = 0; dx < _bgDrawnW; dx++)
+                {
+                    int wx = _bgDrawnOriginX + dx;
+                    int wy = _bgDrawnTopY - dy;
+                    BgTilemap.SetTile(new Vector3Int(wx, wy, 0), null);
+                }
+            }
+
+            _bgDrawn = false;
         }
 
         private void DrawPopupBorder(int x, int y, int w, int h, int contentRows)

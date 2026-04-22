@@ -130,6 +130,28 @@ namespace CavesOfOoo.Data
         }
 
         /// <summary>
+        /// Validate item handling metadata such as GripType, carry/throw flags,
+        /// and contradictions between Handling and explicit UsesSlots.
+        /// </summary>
+        public List<string> ValidateHandlingBlueprints()
+        {
+            var issues = new List<string>();
+
+            foreach (var blueprint in Blueprints.Values)
+                issues.AddRange(ValidateHandlingBlueprint(blueprint));
+
+            return issues;
+        }
+
+        public List<string> ValidateHandlingBlueprint(string blueprintName)
+        {
+            if (!Blueprints.TryGetValue(blueprintName, out var blueprint))
+                return new List<string> { $"Unknown blueprint '{blueprintName}'" };
+
+            return ValidateHandlingBlueprint(blueprint);
+        }
+
+        /// <summary>
         /// Create an entity from a blueprint name.
         /// </summary>
         public Entity CreateEntity(string blueprintName)
@@ -228,7 +250,7 @@ namespace CavesOfOoo.Data
 
         /// <summary>
         /// Set public fields/properties on a Part from a string parameter dictionary.
-        /// Handles string, int, float, and bool fields.
+        /// Handles string, int, float, bool, double, and enum fields.
         /// </summary>
         private void ApplyParameters(Part part, Dictionary<string, string> parameters)
         {
@@ -260,6 +282,8 @@ namespace CavesOfOoo.Data
         {
             if (targetType == typeof(string))
                 return value;
+            if (targetType.IsEnum)
+                return Enum.TryParse(targetType, value, true, out object enumValue) ? enumValue : null;
             if (targetType == typeof(int))
                 return int.TryParse(value, out int i) ? (object)i : null;
             if (targetType == typeof(float))
@@ -269,6 +293,145 @@ namespace CavesOfOoo.Data
             if (targetType == typeof(double))
                 return double.TryParse(value, out double d) ? (object)d : null;
             return null;
+        }
+
+        private List<string> ValidateHandlingBlueprint(Blueprint blueprint)
+        {
+            var issues = new List<string>();
+            if (blueprint == null || !blueprint.Parts.TryGetValue("Handling", out var handlingParameters))
+                return issues;
+
+            GripType gripType = GripType.OneHand;
+            if (handlingParameters.TryGetValue("GripType", out string gripTypeRaw)
+                && !Enum.TryParse(gripTypeRaw, true, out gripType))
+            {
+                issues.Add($"{blueprint.Name}: Handling.GripType '{gripTypeRaw}' is invalid. Expected OneHand or TwoHand.");
+            }
+
+            bool carryable = GetBoolParameter(
+                blueprint.Name,
+                "Handling",
+                "Carryable",
+                handlingParameters,
+                true,
+                issues);
+            bool throwable = GetBoolParameter(
+                blueprint.Name,
+                "Handling",
+                "Throwable",
+                handlingParameters,
+                true,
+                issues);
+            int weight = GetIntParameter(
+                blueprint.Name,
+                "Handling",
+                "Weight",
+                handlingParameters,
+                0,
+                issues);
+            int minLiftStrength = GetIntParameter(
+                blueprint.Name,
+                "Handling",
+                "MinLiftStrength",
+                handlingParameters,
+                0,
+                issues);
+            int minThrowStrength = GetIntParameter(
+                blueprint.Name,
+                "Handling",
+                "MinThrowStrength",
+                handlingParameters,
+                0,
+                issues);
+
+            if (!carryable && throwable)
+                issues.Add($"{blueprint.Name}: Handling marks the item throwable while Carryable is false.");
+
+            if (weight < 0)
+                issues.Add($"{blueprint.Name}: Handling.Weight cannot be negative.");
+            if (minLiftStrength < 0)
+                issues.Add($"{blueprint.Name}: Handling.MinLiftStrength cannot be negative.");
+            if (minThrowStrength < 0)
+                issues.Add($"{blueprint.Name}: Handling.MinThrowStrength cannot be negative.");
+
+            if (blueprint.Parts.TryGetValue("Equippable", out var equippableParameters))
+            {
+                bool hasUsesSlots = equippableParameters.TryGetValue("UsesSlots", out string usesSlots)
+                    && !string.IsNullOrWhiteSpace(usesSlots);
+
+                if (hasUsesSlots)
+                {
+                    int handCount = CountSlots(usesSlots, "Hand");
+                    if (gripType == GripType.TwoHand && handCount < 2)
+                    {
+                        issues.Add($"{blueprint.Name}: Handling.GripType=TwoHand conflicts with UsesSlots='{usesSlots}'.");
+                    }
+                    else if (gripType == GripType.OneHand && handCount >= 2)
+                    {
+                        issues.Add($"{blueprint.Name}: Handling.GripType=OneHand conflicts with UsesSlots='{usesSlots}'.");
+                    }
+                }
+                else if (equippableParameters.TryGetValue("Slot", out string slot)
+                    && !string.IsNullOrWhiteSpace(slot)
+                    && !string.Equals(slot.Trim(), "Hand", StringComparison.OrdinalIgnoreCase))
+                {
+                    issues.Add($"{blueprint.Name}: Handling.GripType will override Equippable.Slot='{slot}' when UsesSlots is not set; add explicit UsesSlots to preserve non-hand occupancy.");
+                }
+            }
+
+            return issues;
+        }
+
+        private static bool GetBoolParameter(
+            string blueprintName,
+            string partName,
+            string parameterName,
+            Dictionary<string, string> parameters,
+            bool defaultValue,
+            List<string> issues)
+        {
+            if (!parameters.TryGetValue(parameterName, out string rawValue))
+                return defaultValue;
+
+            if (bool.TryParse(rawValue, out bool value))
+                return value;
+
+            issues.Add($"{blueprintName}: {partName}.{parameterName}='{rawValue}' is not a valid bool.");
+            return defaultValue;
+        }
+
+        private static int GetIntParameter(
+            string blueprintName,
+            string partName,
+            string parameterName,
+            Dictionary<string, string> parameters,
+            int defaultValue,
+            List<string> issues)
+        {
+            if (!parameters.TryGetValue(parameterName, out string rawValue))
+                return defaultValue;
+
+            if (int.TryParse(rawValue, out int value))
+                return value;
+
+            issues.Add($"{blueprintName}: {partName}.{parameterName}='{rawValue}' is not a valid int.");
+            return defaultValue;
+        }
+
+        private static int CountSlots(string slots, string slotName)
+        {
+            if (string.IsNullOrWhiteSpace(slots))
+                return 0;
+
+            string[] parts = slots.Split(',');
+            int count = 0;
+            for (int i = 0; i < parts.Length; i++)
+            {
+                if (string.Equals(parts[i].Trim(), slotName, StringComparison.OrdinalIgnoreCase))
+                    count++;
+            }
+
+            return count;
         }
 
         /// <summary>

@@ -1,0 +1,17 @@
+{
+  "Reactions": [
+    {
+      "ID": "fire_plus_ice",
+      "Priority": 48,
+      "Conditions": {
+        "SourceState": "Burning",
+        "TargetMaterialTag": "Ice",
+        "MinTemperature": 0
+      },
+      "Effects": [
+        { "Type": "DealDamage", "FloatValue": 5.0, "StringValue": "" },
+        { "Type": "SwapBlueprint", "FloatValue": 0.0, "StringValue": "WaterPuddle" }
+      ]
+    }
+  ]
+}

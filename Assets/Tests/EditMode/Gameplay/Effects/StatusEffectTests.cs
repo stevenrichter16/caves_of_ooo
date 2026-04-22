@@ -161,7 +161,7 @@ namespace CavesOfOoo.Tests
         public void Duration_DecrementsOnEndTurn()
         {
             var e = CreateCreature();
-            var burn = new BurningEffect(3, "1d4", new Random(42));
+            var burn = new BurningEffect(intensity: 1.0f, rng: new Random(42));
             e.ApplyEffect(burn);
 
             e.FireEvent(GameEvent.New("EndTurn"));
@@ -301,7 +301,7 @@ namespace CavesOfOoo.Tests
         public void Burning_DealsDamageOnTurnStart()
         {
             var e = CreateCreature(hp: 100);
-            e.ApplyEffect(new BurningEffect(3, "1d4", new Random(42)));
+            e.ApplyEffect(new BurningEffect(intensity: 1.0f, rng: new Random(42)));
 
             int hpBefore = e.GetStatValue("HP");
             e.FireEvent(GameEvent.New("TakeTurn"));
@@ -311,18 +311,15 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Burning_StackResetsDuration()
+        public void Burning_StackIncreasesIntensity()
         {
             var e = CreateCreature(hp: 1000);
-            var burn = new BurningEffect(3, "1d4", new Random(42));
+            var burn = new BurningEffect(intensity: 1.0f, rng: new Random(42));
             e.ApplyEffect(burn);
 
-            e.FireEvent(GameEvent.New("EndTurn")); // Duration: 3 -> 2
-            Assert.AreEqual(2, burn.Duration);
-
-            // Apply another burn — should reset duration to 3
-            e.ApplyEffect(new BurningEffect(3, "1d4", new Random(42)));
-            Assert.AreEqual(3, burn.Duration);
+            // Apply another burn — should increase intensity by incoming * 0.5
+            e.ApplyEffect(new BurningEffect(intensity: 2.0f, rng: new Random(42)));
+            Assert.AreEqual(2.0f, burn.Intensity, 0.01f, "Stacking should increase intensity");
 
             // Should still be same instance (stacked, not duplicated)
             var sep = e.GetPart<StatusEffectsPart>();
@@ -534,7 +531,7 @@ namespace CavesOfOoo.Tests
             var e = CreateCreature();
             e.ApplyEffect(new PoisonedEffect(5, "1d3", new Random(42)));
             e.ApplyEffect(new StunnedEffect(2));
-            e.ApplyEffect(new BurningEffect(3, "1d4", new Random(42)));
+            e.ApplyEffect(new BurningEffect(intensity: 1.0f, rng: new Random(42)));
 
             e.FireEvent(GameEvent.New("Died"));
 
@@ -573,7 +570,7 @@ namespace CavesOfOoo.Tests
         {
             var e = CreateCreature();
             e.ApplyEffect(new PoisonedEffect(5)); // &G
-            e.ApplyEffect(new BurningEffect(3));   // &R
+            e.ApplyEffect(new BurningEffect(intensity: 1.0f));   // &R
 
             var sep = e.GetPart<StatusEffectsPart>();
             Assert.AreEqual("&G", sep.GetRenderColorOverride(), "First effect's color should take priority");
@@ -598,7 +595,7 @@ namespace CavesOfOoo.Tests
         {
             var e = CreateCreature();
             e.ApplyEffect(new PoisonedEffect(5, "1d3", new Random(42)));
-            e.ApplyEffect(new BurningEffect(3, "1d4", new Random(42)));
+            e.ApplyEffect(new BurningEffect(intensity: 1.0f, rng: new Random(42)));
             e.ApplyEffect(new ConfusedEffect(4));
 
             Assert.IsTrue(e.HasEffect<PoisonedEffect>());
@@ -614,14 +611,15 @@ namespace CavesOfOoo.Tests
         {
             var e = CreateCreature(hp: 1000);
             var poison = new PoisonedEffect(3, "1d3", new Random(42));
-            var burn = new BurningEffect(2, "1d4", new Random(42));
+            var burn = new BurningEffect(intensity: 1.0f, rng: new Random(42));
             e.ApplyEffect(poison);
             e.ApplyEffect(burn);
 
+            // BurningEffect without FuelPart: Duration = ceil(1.0 * 3) = 3
             e.FireEvent(GameEvent.New("EndTurn"));
 
             Assert.AreEqual(2, poison.Duration);
-            Assert.AreEqual(1, burn.Duration);
+            Assert.AreEqual(2, burn.Duration);
         }
 
         [Test]
@@ -629,7 +627,8 @@ namespace CavesOfOoo.Tests
         {
             var e = CreateCreature(hp: 1000);
             e.ApplyEffect(new PoisonedEffect(3, "1d3", new Random(42)));
-            e.ApplyEffect(new BurningEffect(1, "1d4", new Random(42)));
+            // Intensity 0.3 => Duration = ceil(0.3 * 3) = 1
+            e.ApplyEffect(new BurningEffect(intensity: 0.3f, rng: new Random(42)));
 
             e.FireEvent(GameEvent.New("EndTurn")); // Burn expires (1->0), Poison ticks (3->2)
 

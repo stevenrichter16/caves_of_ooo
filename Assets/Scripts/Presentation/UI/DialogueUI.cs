@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using CavesOfOoo.Core;
 using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -15,6 +16,7 @@ namespace CavesOfOoo.Rendering
     {
         public Tilemap Tilemap;
         public Tilemap BgTilemap;
+        public Camera PopupCamera;
         public Entity PlayerEntity;
         public Zone CurrentZone;
 
@@ -43,7 +45,7 @@ namespace CavesOfOoo.Rendering
         private int _totalRevealChars;  // total chars in _wrappedTextLines (sum of lengths)
         private float _revealTimer;
 
-        // Popup world-space anchors (same pattern as PickupUI).
+        // Popup overlay-grid anchors (same top-left convention as PickupUI).
         // _popupW is computed per-render so the box shrinks/grows with content.
         private int _worldOriginX;
         private int _worldTopY;
@@ -58,6 +60,19 @@ namespace CavesOfOoo.Rendering
         private int _bgDrawnH;
         private int _bgDrawnOriginX;
         private int _bgDrawnTopY;
+
+        // Previously-drawn FG rectangle. Cached at Render time so the NEXT
+        // Render/Close can erase the tiles we actually painted, even after
+        // _popupW/_popupH/_worldOriginX/_worldTopY have shifted to the new
+        // node's dimensions. Without this, advancing to a shorter dialogue
+        // node left the prior node's top border / action bar painted
+        // outside the new rectangle — ghost borders stacked above a
+        // shrinking conversation box.
+        private bool _fgDrawn;
+        private int _fgDrawnW;
+        private int _fgDrawnH;
+        private int _fgDrawnOriginX;
+        private int _fgDrawnTopY;
 
         public bool IsOpen => _isOpen;
         public bool ConversationEnded => _conversationEnded;
@@ -76,7 +91,10 @@ namespace CavesOfOoo.Rendering
         {
             _isOpen = false;
             // Clear foreground glyphs (borders, text, choices, action bar)
-            ClearRegion(0, 0, _popupW, _popupH);
+            // using the rectangle cached at the last Render — not the
+            // current _popupW/_popupH, which may have shifted from a prior
+            // node's layout.
+            ClearFgRegion();
             ClearBgRegion();
             if (ConversationManager.IsActive)
                 ConversationManager.EndConversation();
@@ -124,7 +142,7 @@ namespace CavesOfOoo.Rendering
             var choices = ConversationManager.VisibleChoices;
 
             // Escape to close (if allowed)
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 if (ConversationManager.CurrentNode == null ||
                     ConversationManager.CurrentNode.AllowEscape)
@@ -140,14 +158,14 @@ namespace CavesOfOoo.Rendering
             // then performs the normal action.
             if (_revealing)
             {
-                bool skip = Input.GetKeyDown(KeyCode.Return)
-                         || Input.GetKeyDown(KeyCode.Space)
+                bool skip = InputHelper.GetKeyDown(KeyCode.Return)
+                         || InputHelper.GetKeyDown(KeyCode.Space)
                          || Input.GetMouseButtonDown(0);
                 if (!skip)
                 {
                     for (int i = 0; i < 26 && i < choices.Count; i++)
                     {
-                        if (Input.GetKeyDown(KeyCode.A + i)) { skip = true; break; }
+                        if (InputHelper.GetKeyDown(KeyCode.A + i)) { skip = true; break; }
                     }
                 }
                 if (skip)
@@ -172,7 +190,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Up/Down navigation
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.K))
+            if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
             {
                 if (_cursorIndex > 0)
                     _cursorIndex--;
@@ -180,7 +198,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J))
             {
                 if (_cursorIndex < choices.Count - 1)
                     _cursorIndex++;
@@ -189,7 +207,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Enter to select
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.Space))
             {
                 if (choices.Count > 0)
                     SelectChoice(_cursorIndex);
@@ -199,7 +217,7 @@ namespace CavesOfOoo.Rendering
             // Hotkeys a-z
             for (int i = 0; i < 26 && i < choices.Count; i++)
             {
-                if (Input.GetKeyDown(KeyCode.A + i))
+                if (InputHelper.GetKeyDown(KeyCode.A + i))
                 {
                     SelectChoice(i);
                     return;
@@ -339,9 +357,6 @@ namespace CavesOfOoo.Rendering
 
         private void ComputePopupPosition()
         {
-            var cam = Camera.main;
-            if (cam == null) return;
-
             var choices = ConversationManager.VisibleChoices;
             int choiceCount = Mathf.Min(choices.Count, POPUP_MAX_VISIBLE_CHOICES);
             int textLines = _wrappedTextLines.Count;
@@ -350,225 +365,221 @@ namespace CavesOfOoo.Rendering
             // = 1 + textLines + 1 + choiceCount + 1 + 1
             _popupH = 1 + textLines + 1 + choiceCount + 1 + 1;
 
-            float camX = cam.transform.position.x;
-            float camY = cam.transform.position.y;
-
-            _worldOriginX = Mathf.RoundToInt(camX) - _popupW / 2;
-            _worldTopY = Mathf.RoundToInt(camY) + _popupH / 2;
+            _worldOriginX = CenteredPopupLayout.GetCenteredOriginX(_popupW);
+            _worldTopY = CenteredPopupLayout.GetCenteredTopY(_popupH);
         }
 
         private void Render()
         {
-            if (Tilemap == null || !ConversationManager.IsActive) return;
-
-            // Clear any previous-frame bg before layout changes (popup height may change per node)
-            ClearBgRegion();
-
-            ComputePopupPosition();
-
-            var choices = ConversationManager.VisibleChoices;
-            int choiceCount = Mathf.Min(choices.Count, POPUP_MAX_VISIBLE_CHOICES);
-            int textLines = _wrappedTextLines.Count;
-
-            ClearRegion(0, 0, _popupW, _popupH);
-
-            // Opaque bg fill behind everything except the action bar (last row)
-            DrawBgFill(0, 0, _popupW, _popupH - 1);
-
-            // ----- Top border with embedded title: ╞══[ g Speaker Name ]═════╡ -----
-            var speaker = ConversationManager.Speaker;
-            char speakerGlyph = '?';
-            Color speakerGlyphColor = QudColorParser.White;
-            string speakerName = "";
-            if (speaker != null)
+            using (PerformanceMarkers.Ui.DialogueRender.Auto())
             {
-                var render = speaker.GetPart<RenderPart>();
-                if (render != null && !string.IsNullOrEmpty(render.RenderString))
+                PerformanceDiagnostics.RecordDialogueRender();
+                if (Tilemap == null || !ConversationManager.IsActive)
+                    return;
+
+                // Erase the PREVIOUS draw first (both FG and BG) using the
+                // cached rectangles — popup width/height can change per
+                // node, so we can't use the current values to clear the
+                // old paint.
+                ClearFgRegion();
+                ClearBgRegion();
+
+                ComputePopupPosition();
+
+                var choices = ConversationManager.VisibleChoices;
+                int choiceCount = Mathf.Min(choices.Count, POPUP_MAX_VISIBLE_CHOICES);
+                int textLines = _wrappedTextLines.Count;
+
+                // Opaque bg fill behind everything except the action bar (last row)
+                DrawBgFill(0, 0, _popupW, _popupH - 1);
+
+                // ----- Top border with embedded title: ╞══[ g Speaker Name ]═════╡ -----
+                var speaker = ConversationManager.Speaker;
+                char speakerGlyph = '?';
+                Color speakerGlyphColor = QudColorParser.White;
+                string speakerName = "";
+                if (speaker != null)
                 {
-                    speakerGlyph = render.RenderString[0];
-                    speakerGlyphColor = QudColorParser.Parse(render.ColorString);
+                    var render = speaker.GetPart<RenderPart>();
+                    if (render != null && !string.IsNullOrEmpty(render.RenderString))
+                    {
+                        speakerGlyph = render.RenderString[0];
+                        speakerGlyphColor = QudColorParser.Parse(render.ColorString);
+                    }
+
+                    speakerName = speaker.GetDisplayName() ?? "";
                 }
-                speakerName = speaker.GetDisplayName() ?? "";
-            }
 
-            // Disposition-tinted border: how the speaker feels about the player.
-            int feeling = (speaker != null && PlayerEntity != null)
-                ? FactionManager.GetFeeling(speaker, PlayerEntity)
-                : 0;
-            DispositionInfo(feeling, out Color borderColor, out Color dispoColor, out string dispoWord);
+                int feeling = (speaker != null && PlayerEntity != null)
+                    ? FactionManager.GetFeeling(speaker, PlayerEntity)
+                    : 0;
+                DispositionInfo(feeling, out Color borderColor, out Color dispoColor, out string dispoWord);
 
-            // Content offset for the right panel. When the portrait is enabled the
-            // divider sits at col (PORTRAIT_W - 1), so right-panel content starts
-            // at col PORTRAIT_W with 1 cell of padding before the inner text column.
-            int contentOffsetX = UsePortraitPanel ? PORTRAIT_W : 0;
-            int dividerX = UsePortraitPanel ? (PORTRAIT_W - 1) : -1;
+                int contentOffsetX = UsePortraitPanel ? PORTRAIT_W : 0;
+                int dividerX = UsePortraitPanel ? (PORTRAIT_W - 1) : -1;
 
-            // Title segment length: "[ g Name ]" = 4 fixed + glyph(1) + name
-            int maxNameLen = _popupW - contentOffsetX - 14; // leave room for corners and some border
-            if (maxNameLen < 1) maxNameLen = 1;
-            if (speakerName.Length > maxNameLen) speakerName = speakerName.Substring(0, maxNameLen);
-            int titleLen = 6 + speakerName.Length; // "[ g NAME ]" = 6 literals + name
-            int titleStart = contentOffsetX + 3; // after divider/corner + 2 horizontal bars
+                int maxNameLen = _popupW - contentOffsetX - 14;
+                if (maxNameLen < 1)
+                    maxNameLen = 1;
+                if (speakerName.Length > maxNameLen)
+                    speakerName = speakerName.Substring(0, maxNameLen);
+                int titleLen = 6 + speakerName.Length;
+                int titleStart = contentOffsetX + 3;
 
-            // Corners (disposition-tinted)
-            DrawChar(0, 0, CP437TilesetGenerator.BoxTopLeft, borderColor);
-            DrawChar(_popupW - 1, 0, CP437TilesetGenerator.BoxTopRight, borderColor);
-            // Horizontal bars on each side of title
-            for (int i = 1; i < titleStart; i++)
-                DrawChar(i, 0, CP437TilesetGenerator.BoxHorizontal, borderColor);
-            for (int i = titleStart + titleLen; i < _popupW - 1; i++)
-                DrawChar(i, 0, CP437TilesetGenerator.BoxHorizontal, borderColor);
-            // Divider top tee (┬) overwrites the horizontal bar at dividerX.
-            if (dividerX > 0 && dividerX < titleStart)
-                DrawChar(dividerX, 0, CP437TilesetGenerator.BoxTeeDown, borderColor);
+                DrawChar(0, 0, CP437TilesetGenerator.BoxTopLeft, borderColor);
+                DrawChar(_popupW - 1, 0, CP437TilesetGenerator.BoxTopRight, borderColor);
+                for (int i = 1; i < titleStart; i++)
+                    DrawChar(i, 0, CP437TilesetGenerator.BoxHorizontal, borderColor);
+                for (int i = titleStart + titleLen; i < _popupW - 1; i++)
+                    DrawChar(i, 0, CP437TilesetGenerator.BoxHorizontal, borderColor);
+                if (dividerX > 0 && dividerX < titleStart)
+                    DrawChar(dividerX, 0, CP437TilesetGenerator.BoxTeeDown, borderColor);
 
-            // Title content: [ g SpeakerName ]
-            int tx = titleStart;
-            DrawChar(tx, 0, '[', QudColorParser.Gray); tx++;
-            DrawChar(tx, 0, ' ', QudColorParser.Gray); tx++;
-            DrawChar(tx, 0, speakerGlyph, speakerGlyphColor); tx++;
-            DrawChar(tx, 0, ' ', QudColorParser.Gray); tx++;
-            DrawText(tx, 0, speakerName, QudColorParser.BrightYellow); tx += speakerName.Length;
-            DrawChar(tx, 0, ' ', QudColorParser.Gray); tx++;
-            DrawChar(tx, 0, ']', QudColorParser.Gray);
+                int tx = titleStart;
+                DrawChar(tx, 0, '[', QudColorParser.Gray); tx++;
+                DrawChar(tx, 0, ' ', QudColorParser.Gray); tx++;
+                DrawChar(tx, 0, speakerGlyph, speakerGlyphColor); tx++;
+                DrawChar(tx, 0, ' ', QudColorParser.Gray); tx++;
+                DrawText(tx, 0, speakerName, QudColorParser.BrightYellow); tx += speakerName.Length;
+                DrawChar(tx, 0, ' ', QudColorParser.Gray); tx++;
+                DrawChar(tx, 0, ']', QudColorParser.Gray);
 
-            // ----- NPC speech text (with typewriter reveal) -----
-            int y = 1;
-            int revealedSoFar = 0;
-            for (int i = 0; i < textLines; i++)
-            {
+                int y = 1;
+                int revealedSoFar = 0;
+                for (int i = 0; i < textLines; i++)
+                {
+                    DrawChar(0, y, CP437TilesetGenerator.BoxVertical, borderColor);
+                    DrawChar(_popupW - 1, y, CP437TilesetGenerator.BoxVertical, borderColor);
+                    if (dividerX > 0)
+                        DrawChar(dividerX, y, CP437TilesetGenerator.BoxVertical, borderColor);
+
+                    string line = _wrappedTextLines[i];
+                    int drawCount;
+                    if (!_revealing)
+                    {
+                        drawCount = line.Length;
+                    }
+                    else
+                    {
+                        int remaining = _revealCount - revealedSoFar;
+                        if (remaining <= 0)
+                            drawCount = 0;
+                        else if (remaining >= line.Length)
+                            drawCount = line.Length;
+                        else
+                            drawCount = remaining;
+                    }
+
+                    if (drawCount > 0)
+                        DrawText(contentOffsetX + 2, y, line.Substring(0, drawCount), QudColorParser.White);
+                    revealedSoFar += line.Length;
+                    y++;
+                }
+
                 DrawChar(0, y, CP437TilesetGenerator.BoxVertical, borderColor);
                 DrawChar(_popupW - 1, y, CP437TilesetGenerator.BoxVertical, borderColor);
                 if (dividerX > 0)
                     DrawChar(dividerX, y, CP437TilesetGenerator.BoxVertical, borderColor);
-
-                string line = _wrappedTextLines[i];
-                int drawCount;
-                if (!_revealing)
-                {
-                    drawCount = line.Length;
-                }
-                else
-                {
-                    int remaining = _revealCount - revealedSoFar;
-                    if (remaining <= 0) drawCount = 0;
-                    else if (remaining >= line.Length) drawCount = line.Length;
-                    else drawCount = remaining;
-                }
-                if (drawCount > 0)
-                    DrawText(contentOffsetX + 2, y, line.Substring(0, drawCount), QudColorParser.White);
-                revealedSoFar += line.Length;
                 y++;
-            }
 
-            // Blank line between text and choices
-            DrawChar(0, y, CP437TilesetGenerator.BoxVertical, borderColor);
-            DrawChar(_popupW - 1, y, CP437TilesetGenerator.BoxVertical, borderColor);
-            if (dividerX > 0)
-                DrawChar(dividerX, y, CP437TilesetGenerator.BoxVertical, borderColor);
-            y++;
-
-            // ----- Player choices with semantic tags -----
-            // While text is still streaming, choices are drawn dimmed to discourage input.
-            for (int i = 0; i < choiceCount; i++)
-            {
-                DrawChar(0, y, CP437TilesetGenerator.BoxVertical, borderColor);
-                DrawChar(_popupW - 1, y, CP437TilesetGenerator.BoxVertical, borderColor);
-                if (dividerX > 0)
-                    DrawChar(dividerX, y, CP437TilesetGenerator.BoxVertical, borderColor);
-
-                bool selected = (i == _cursorIndex);
-
-                if (selected && !_revealing)
-                    DrawChar(contentOffsetX + 1, y, '>', QudColorParser.White);
-
-                // Hotkey
-                int col = contentOffsetX + 2;
-                if (i < 26)
+                for (int i = 0; i < choiceCount; i++)
                 {
-                    char hotkey = (char)('a' + i);
-                    string hk = hotkey + ")";
-                    Color hkColor = _revealing
+                    DrawChar(0, y, CP437TilesetGenerator.BoxVertical, borderColor);
+                    DrawChar(_popupW - 1, y, CP437TilesetGenerator.BoxVertical, borderColor);
+                    if (dividerX > 0)
+                        DrawChar(dividerX, y, CP437TilesetGenerator.BoxVertical, borderColor);
+
+                    bool selected = i == _cursorIndex;
+                    if (selected && !_revealing)
+                        DrawChar(contentOffsetX + 1, y, '>', QudColorParser.White);
+
+                    int col = contentOffsetX + 2;
+                    if (i < 26)
+                    {
+                        char hotkey = (char)('a' + i);
+                        string hk = hotkey + ")";
+                        Color hkColor = _revealing
+                            ? QudColorParser.DarkGray
+                            : (selected ? QudColorParser.White : QudColorParser.Gray);
+                        DrawText(col, y, hk, hkColor);
+                        col += 3;
+                    }
+
+                    InferChoiceTag(choices[i], out string tag, out Color tagColor);
+                    if (!string.IsNullOrEmpty(tag))
+                    {
+                        DrawText(col, y, tag, _revealing ? QudColorParser.DarkGray : tagColor);
+                        col += tag.Length + 1;
+                    }
+
+                    string choiceText = choices[i].Text ?? "";
+                    int maxLen = _popupW - 2 - col;
+                    if (maxLen < 1)
+                        maxLen = 1;
+                    if (choiceText.Length > maxLen)
+                        choiceText = choiceText.Substring(0, maxLen - 1) + "~";
+                    Color textColor = _revealing
                         ? QudColorParser.DarkGray
-                        : (selected ? QudColorParser.White : QudColorParser.Gray);
-                    DrawText(col, y, hk, hkColor);
-                    col += 3; // 2 chars + space
+                        : (selected ? QudColorParser.BrightCyan : QudColorParser.Gray);
+                    DrawText(col, y, choiceText, textColor);
+                    y++;
                 }
 
-                // Semantic tag prefix (dimmed to DarkGray while revealing)
-                InferChoiceTag(choices[i], out string tag, out Color tagColor);
-                if (!string.IsNullOrEmpty(tag))
-                {
-                    DrawText(col, y, tag, _revealing ? QudColorParser.DarkGray : tagColor);
-                    col += tag.Length + 1;
-                }
-
-                // Choice text
-                string choiceText = choices[i].Text ?? "";
-                int maxLen = _popupW - 2 - col;
-                if (maxLen < 1) maxLen = 1;
-                if (choiceText.Length > maxLen)
-                    choiceText = choiceText.Substring(0, maxLen - 1) + "~";
-                Color textColor = _revealing
-                    ? QudColorParser.DarkGray
-                    : (selected ? QudColorParser.BrightCyan : QudColorParser.Gray);
-                DrawText(col, y, choiceText, textColor);
+                DrawChar(0, y, CP437TilesetGenerator.BoxBottomLeft, borderColor);
+                for (int i = 1; i < _popupW - 1; i++)
+                    DrawChar(i, y, CP437TilesetGenerator.BoxHorizontal, borderColor);
+                DrawChar(_popupW - 1, y, CP437TilesetGenerator.BoxBottomRight, borderColor);
+                if (dividerX > 0)
+                    DrawChar(dividerX, y, CP437TilesetGenerator.BoxTeeUp, borderColor);
                 y++;
-            }
 
-            // Bottom border
-            DrawChar(0, y, CP437TilesetGenerator.BoxBottomLeft, borderColor);
-            for (int i = 1; i < _popupW - 1; i++)
-                DrawChar(i, y, CP437TilesetGenerator.BoxHorizontal, borderColor);
-            DrawChar(_popupW - 1, y, CP437TilesetGenerator.BoxBottomRight, borderColor);
-            if (dividerX > 0)
-                DrawChar(dividerX, y, CP437TilesetGenerator.BoxTeeUp, borderColor);
-            y++;
-
-            // ----- Portrait panel content (centered in left gutter) -----
-            if (UsePortraitPanel && dividerX > 0)
-            {
-                int panelInnerWidth = dividerX - 1; // cols 1..dividerX-1 inclusive
-                int interiorRows = textLines + 1 + choiceCount; // rows 1..interiorRows inclusive (before bottom border)
-
-                // Adaptive row spacing: use 2-row gaps when there's room, else pack tightly.
-                int gap = interiorRows >= 5 ? 2 : 1;
-
-                // Centered large speaker glyph on the first interior row.
-                int glyphRow = 1;
-                int glyphCol = 1 + (panelInnerWidth - 1) / 2;
-                DrawChar(glyphCol, glyphRow, speakerGlyph, speakerGlyphColor);
-
-                // Faction name (truncated).
-                string faction = speaker != null ? FactionManager.GetFaction(speaker) : null;
-                if (!string.IsNullOrEmpty(faction))
+                if (UsePortraitPanel && dividerX > 0)
                 {
-                    int maxFacLen = panelInnerWidth;
-                    string f = faction.Length > maxFacLen ? faction.Substring(0, maxFacLen) : faction;
-                    int facRow = glyphRow + gap;
-                    int facCol = 1 + (panelInnerWidth - f.Length) / 2;
-                    if (facRow <= interiorRows)
-                        DrawText(facCol, facRow, f, QudColorParser.Gray);
+                    int panelInnerWidth = dividerX - 1;
+                    int interiorRows = textLines + 1 + choiceCount;
+                    int gap = interiorRows >= 5 ? 2 : 1;
+
+                    int glyphRow = 1;
+                    int glyphCol = 1 + (panelInnerWidth - 1) / 2;
+                    DrawChar(glyphCol, glyphRow, speakerGlyph, speakerGlyphColor);
+
+                    string faction = speaker != null ? FactionManager.GetFaction(speaker) : null;
+                    if (!string.IsNullOrEmpty(faction))
+                    {
+                        int maxFacLen = panelInnerWidth;
+                        string f = faction.Length > maxFacLen ? faction.Substring(0, maxFacLen) : faction;
+                        int facRow = glyphRow + gap;
+                        int facCol = 1 + (panelInnerWidth - f.Length) / 2;
+                        if (facRow <= interiorRows)
+                            DrawText(facCol, facRow, f, QudColorParser.Gray);
+                    }
+
+                    string dispo = dispoWord;
+                    if (!string.IsNullOrEmpty(dispo))
+                    {
+                        int maxDispoLen = panelInnerWidth;
+                        string d = dispo.Length > maxDispoLen ? dispo.Substring(0, maxDispoLen) : dispo;
+                        int dispoRow = glyphRow + gap * 2;
+                        int dispoCol = 1 + (panelInnerWidth - d.Length) / 2;
+                        if (dispoRow <= interiorRows)
+                            DrawText(dispoCol, dispoRow, d, dispoColor);
+                    }
                 }
 
-                // Disposition word.
-                string dispo = dispoWord;
-                if (!string.IsNullOrEmpty(dispo))
-                {
-                    int maxDispoLen = panelInnerWidth;
-                    string d = dispo.Length > maxDispoLen ? dispo.Substring(0, maxDispoLen) : dispo;
-                    int dispoRow = glyphRow + gap * 2;
-                    int dispoCol = 1 + (panelInnerWidth - d.Length) / 2;
-                    if (dispoRow <= interiorRows)
-                        DrawText(dispoCol, dispoRow, d, dispoColor);
-                }
-            }
+                string actions = " [Enter]select [a-z]quick [Esc]close";
+                if (actions.Length > _popupW)
+                    actions = actions.Substring(0, _popupW);
+                DrawText(0, y, actions, QudColorParser.DarkGray);
 
-            // Action bar (clamped to popup width so it doesn't bleed past the border)
-            string actions = " [Enter]select [a-z]quick [Esc]close";
-            if (actions.Length > _popupW)
-                actions = actions.Substring(0, _popupW);
-            DrawText(0, y, actions, QudColorParser.DarkGray);
+                // Record the full FG footprint we just painted so the NEXT
+                // Render/Close can erase it even if the popup's width,
+                // height, or origin change with the next dialogue node.
+                _fgDrawn = true;
+                _fgDrawnW = _popupW;
+                _fgDrawnH = _popupH;
+                _fgDrawnOriginX = _worldOriginX;
+                _fgDrawnTopY = _worldTopY;
+            }
         }
 
         /// <summary>
@@ -657,15 +668,11 @@ namespace CavesOfOoo.Rendering
 
         private int GetChoiceRowAtMouse()
         {
-            var cam = Camera.main;
-            if (cam == null) return -1;
+            if (!CenteredPopupLayout.ScreenToGrid(PopupCamera, Tilemap, Input.mousePosition, out int gridX, out int gridY))
+                return -1;
 
-            Vector3 world = cam.ScreenToWorldPoint(Input.mousePosition);
-            int worldX = Mathf.FloorToInt(world.x);
-            int worldY = Mathf.FloorToInt(world.y);
-
-            int gx = worldX - _worldOriginX;
-            int gy = _worldTopY - worldY;
+            int gx = gridX - _worldOriginX;
+            int gy = _worldTopY - gridY;
 
             int textLines = _wrappedTextLines.Count;
             int choicesStartY = 1 + textLines + 1; // after top border + text + blank
@@ -685,17 +692,27 @@ namespace CavesOfOoo.Rendering
 
         // ===== Drawing Helpers (world-space, same as PickupUI) =====
 
-        private void ClearRegion(int gx, int gy, int width, int height)
+        /// <summary>
+        /// Erase the FG tiles painted by the previous Render() call, using
+        /// the origin/size we recorded at that time — NOT the current
+        /// _worldOriginX/_worldTopY/_popupW/_popupH, which may have been
+        /// reassigned for the new dialogue node's layout.
+        /// </summary>
+        private void ClearFgRegion()
         {
-            for (int dy = 0; dy < height; dy++)
+            if (!_fgDrawn || Tilemap == null) return;
+
+            for (int dy = 0; dy < _fgDrawnH; dy++)
             {
-                for (int dx = 0; dx < width; dx++)
+                for (int dx = 0; dx < _fgDrawnW; dx++)
                 {
-                    int wx = _worldOriginX + gx + dx;
-                    int wy = _worldTopY - (gy + dy);
+                    int wx = _fgDrawnOriginX + dx;
+                    int wy = _fgDrawnTopY - dy;
                     Tilemap.SetTile(new Vector3Int(wx, wy, 0), null);
                 }
             }
+
+            _fgDrawn = false;
         }
 
         private void DrawChar(int gx, int gy, char c, Color color)

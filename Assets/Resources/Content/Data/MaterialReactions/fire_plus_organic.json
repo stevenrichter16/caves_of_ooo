@@ -1,0 +1,19 @@
+{
+  "Reactions": [
+    {
+      "ID": "fire_plus_organic",
+      "Priority": 40,
+      "Conditions": {
+        "SourceState": "Burning",
+        "TargetMaterialTag": "Organic",
+        "MinTemperature": 180,
+        "MaxMoisture": 0.35
+      },
+      "Effects": [
+        { "Type": "ModifyBurnIntensity", "FloatValue": 0.5, "StringValue": "" },
+        { "Type": "ModifyFuelConsumption", "FloatValue": 1.5, "StringValue": "" },
+        { "Type": "EmitBonusHeat", "FloatValue": 15.0, "StringValue": "" }
+      ]
+    }
+  ]
+}

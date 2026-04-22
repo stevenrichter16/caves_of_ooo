@@ -59,6 +59,44 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void Renderer_ThrownObjectProjectile_RendersWithoutError()
+        {
+            Tilemap tilemap = CreateFxTilemap();
+            var renderer = new AsciiFxRenderer(tilemap);
+            var zone = new Zone("FxZone");
+
+            renderer.SetZone(zone);
+            AsciiFxBus.EmitProjectile(
+                zone,
+                new[] { new Point(4, 4), new Point(5, 4), new Point(6, 4) },
+                AsciiFxTheme.ThrownObject,
+                trail: true,
+                blocksTurnAdvance: true);
+
+            Assert.DoesNotThrow(() => renderer.Update(0f));
+            Assert.IsTrue(HasTileAtWorld(tilemap, 4, 4));
+        }
+
+        [Test]
+        public void Renderer_EmptyProjectileTheme_FallsBackWithoutCrash()
+        {
+            Tilemap tilemap = CreateFxTilemap();
+            var renderer = new AsciiFxRenderer(tilemap);
+            var zone = new Zone("FxZone");
+
+            renderer.SetZone(zone);
+            AsciiFxBus.EmitProjectile(
+                zone,
+                new[] { new Point(8, 8), new Point(9, 8) },
+                AsciiFxTheme.Earth,
+                trail: true,
+                blocksTurnAdvance: true);
+
+            Assert.DoesNotThrow(() => renderer.Update(0f));
+            Assert.IsTrue(HasTileAtWorld(tilemap, 8, 8));
+        }
+
+        [Test]
         public void Renderer_TracksAdvancedBlockingFx_AndClearsAfterExpiry()
         {
             Tilemap tilemap = CreateFxTilemap();

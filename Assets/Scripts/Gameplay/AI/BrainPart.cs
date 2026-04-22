@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
     /// <summary>
-    /// AI state for BrainPart's simple state machine.
+    /// AI state — informational, set by goals for backward compatibility.
     /// </summary>
     public enum AIState
     {
@@ -15,14 +16,13 @@ namespace CavesOfOoo.Core
 
     /// <summary>
     /// AI Part that handles the TakeTurn event for NPC creatures.
-    /// Mirrors Qud's Brain (simplified: state machine instead of goal stack).
+    /// Mirrors Qud's Brain: owns a goal stack that drives behavior each tick.
     ///
-    /// Behavior flow:
-    /// 1. Scan for nearest hostile within SightRadius (with line-of-sight)
-    /// 2. If hostile found and adjacent → melee attack
-    /// 3. If hostile found and not adjacent → step toward it
-    /// 4. If no hostile and Wanders → random movement
-    /// 5. If no hostile and !Wanders → idle
+    /// The goal stack is a LIFO list of GoalHandler objects. Each tick:
+    /// 1. Finished goals are popped from the top
+    /// 2. If the stack is empty, a BoredGoal is pushed as the default
+    /// 3. The top goal's TakeAction() is called
+    /// 4. If TakeAction pushed a child, the child executes immediately too
     /// </summary>
     public class BrainPart : Part
     {
@@ -33,6 +33,21 @@ namespace CavesOfOoo.Core
         public bool Wanders = true;
         public bool WandersRandomly = true;
         public float FleeThreshold = 0.25f;
+
+        /// <summary>
+        /// Passive creatures do not proactively initiate combat. They'll still defend
+        /// themselves against entities in <see cref="PersonalEnemies"/> (populated when
+        /// they're directly attacked), and they'll still flee when HP drops below
+        /// <see cref="FleeThreshold"/> — but a Passive scholar won't chase a snapjaw
+        /// across the zone just because it walked into sight.
+        /// Mirrors Qud's Brain.Passive flag. Used by non-combat NPCs (scholars, clerics,
+        /// civilians, wildlife that doesn't hunt).
+        ///
+        /// Semantics in <c>BoredGoal.TakeAction</c>:
+        ///   <c>canInitiate = !Passive || IsPersonallyHostileTo(hostile)</c>
+        /// Engagement happens when <c>canInitiate || ShouldFlee()</c>.
+        /// </summary>
+        public bool Passive = false;
 
         // Runtime state
         public AIState CurrentState = AIState.Idle;
@@ -71,6 +86,188 @@ namespace CavesOfOoo.Core
         // RNG for AI decisions (injectable for deterministic testing)
         public Random Rng;
 
+        // --- Starting Cell / Home ---
+
+        /// <summary>Cell where this NPC was first placed. Used by BoredGoal to return home.</summary>
+        public int StartingCellX = -1;
+        public int StartingCellY = -1;
+        public bool HasStartingCell => StartingCellX >= 0 && StartingCellY >= 0;
+
+        /// <summary>When true, NPC returns to StartingCell when idle instead of wandering.</summary>
+        public bool Staying = false;
+
+        /// <summary>Set the NPC's home cell and enable Staying behavior.</summary>
+        public void Stay(int x, int y)
+        {
+            StartingCellX = x;
+            StartingCellY = y;
+            Staying = true;
+        }
+
+        // --- Debug Introspection (Phase 10) ---
+
+        /// <summary>
+        /// Most recent thought string set by a goal handler via <see cref="Think"/>.
+        /// Null until first call. Surfaces in the AI goal-stack inspector UI when
+        /// <see cref="CavesOfOoo.Diagnostics.AIDebug.AIInspectorEnabled"/> is true.
+        /// Mirrors Qud's <c>Brain.LastThought</c> — a single slot, not a history buffer.
+        /// </summary>
+        public string LastThought;
+
+        /// <summary>
+        /// When true, every <see cref="Think"/> call also emits a
+        /// <c>[Think:{entityName}] {thought}</c> line to
+        /// <see cref="UnityEngine.Debug.Log"/>. Default false so production builds
+        /// are silent. Set per-entity (e.g. from a scenario) to stream a specific
+        /// NPC's reasoning without spamming every creature's thoughts.
+        /// </summary>
+        public bool ThinkOutLoud;
+
+        /// <summary>
+        /// Record a debug thought for this NPC's current tick. Mirrors Qud's
+        /// <c>Brain.Think(string)</c>: single-slot <see cref="LastThought"/>
+        /// assignment, plus optional <see cref="UnityEngine.Debug.Log"/> echo
+        /// when <see cref="ThinkOutLoud"/> is on.
+        ///
+        /// Safe to call on every goal tick — the no-echo path is a single
+        /// field write with no allocation. The expensive interpolation for
+        /// the Debug.Log format sits behind the <see cref="ThinkOutLoud"/>
+        /// gate so it costs nothing in the common case.
+        ///
+        /// Goals should call this at BRANCH POINTS (phase changes, gate passes,
+        /// bailouts), not inside tight per-frame loops — that would allocate
+        /// every tick if the caller interpolated <c>$"hp is {hp}"</c>.
+        /// </summary>
+        public void Think(string thought)
+        {
+            LastThought = thought;
+            if (ThinkOutLoud && thought != null)
+            {
+                string name = ParentEntity?.GetDisplayName() ?? "?";
+                UnityEngine.Debug.Log($"[Think:{name}] {thought}");
+            }
+        }
+
+        // --- Goal Stack ---
+
+        private List<GoalHandler> _goals = new List<GoalHandler>();
+
+        private const int MaxChildChainDepth = 10;
+
+        /// <summary>Number of goals on the stack.</summary>
+        public int GoalCount => _goals.Count;
+
+        /// <summary>Peek at the top goal without removing it. Returns null if empty.</summary>
+        public GoalHandler PeekGoal()
+        {
+            return _goals.Count > 0 ? _goals[_goals.Count - 1] : null;
+        }
+
+        /// <summary>
+        /// Peek at a specific stack index without removing. Index 0 is the
+        /// BOTTOM (oldest / root — typically BoredGoal); <c>GoalCount - 1</c>
+        /// is the TOP (innermost / currently executing). Returns null if
+        /// index is out of range. Used by the Phase 10 goal-stack inspector
+        /// UI to render the whole chain without exposing the backing list.
+        /// </summary>
+        public GoalHandler PeekGoalAt(int index)
+        {
+            return (index >= 0 && index < _goals.Count) ? _goals[index] : null;
+        }
+
+        /// <summary>Push a goal onto the top of the stack.</summary>
+        public void PushGoal(GoalHandler goal)
+        {
+            goal.ParentBrain = this;
+            _goals.Add(goal);
+            goal.OnPush();
+        }
+
+        /// <summary>Remove a specific goal from the stack.</summary>
+        public void RemoveGoal(GoalHandler goal)
+        {
+            if (_goals.Remove(goal))
+                goal.OnPop();
+        }
+
+        /// <summary>Clear all goals from the stack.</summary>
+        public void ClearGoals()
+        {
+            for (int i = _goals.Count - 1; i >= 0; i--)
+                _goals[i].OnPop();
+            _goals.Clear();
+        }
+
+        /// <summary>Check if any goal of type T is on the stack.</summary>
+        public bool HasGoal<T>() where T : GoalHandler
+        {
+            for (int i = 0; i < _goals.Count; i++)
+            {
+                if (_goals[i] is T) return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Check if any goal on the stack has a type whose class name equals typeName.
+        /// Mirrors Qud's Brain.HasGoal(string) — used by behavior parts to gate
+        /// "am I already doing X?" (e.g. "TurretTinker only places a turret if !HasGoal('PlaceTurretGoal')").
+        /// </summary>
+        public bool HasGoal(string typeName)
+        {
+            if (string.IsNullOrEmpty(typeName)) return false;
+            for (int i = 0; i < _goals.Count; i++)
+            {
+                if (_goals[i].GetType().Name == typeName) return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Retrieve the first (topmost) goal of type T on the stack, or null.
+        /// Mirrors Qud's Brain.FindGoal pattern. Returns null if no matching goal exists.
+        /// Scans top-down so the most recent goal of that type wins.
+        /// </summary>
+        public T FindGoal<T>() where T : GoalHandler
+        {
+            for (int i = _goals.Count - 1; i >= 0; i--)
+            {
+                if (_goals[i] is T typed) return typed;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Retrieve the first (topmost) goal whose class name equals typeName, or null.
+        /// String variant — mirrors Qud's Brain.FindGoal(string) used by ModPsionic
+        /// to find the Kill goal and insert Reequip above it.
+        /// </summary>
+        public GoalHandler FindGoal(string typeName)
+        {
+            if (string.IsNullOrEmpty(typeName)) return null;
+            for (int i = _goals.Count - 1; i >= 0; i--)
+            {
+                if (_goals[i].GetType().Name == typeName) return _goals[i];
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// True if the stack has any goal whose class name is NOT the given typeName.
+        /// Useful for "act only if idle" checks that want to exclude a specific
+        /// background goal (typically BoredGoal). Mirrors Qud's HasGoalOtherThan(name).
+        /// </summary>
+        public bool HasGoalOtherThan(string typeName)
+        {
+            for (int i = 0; i < _goals.Count; i++)
+            {
+                if (_goals[i].GetType().Name != typeName) return true;
+            }
+            return false;
+        }
+
+        // --- Event Handling ---
+
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == "TakeTurn")
@@ -80,180 +277,81 @@ namespace CavesOfOoo.Core
 
         private bool HandleTakeTurn()
         {
-            // Guard: no zone or not in zone (dead/removed)
-            if (CurrentZone == null) return true;
-            if (CurrentZone.GetEntityCell(ParentEntity) == null) return true;
-
-            // Skip turn when in conversation
-            if (InConversation) return true;
-
-            // Safety: skip player entities (TurnManager shouldn't fire TakeTurn on player, but just in case)
-            if (ParentEntity.HasTag("Player")) return true;
-
-            // Ensure RNG exists
-            if (Rng == null) Rng = new Random();
-
-            // Clear dead/removed target
-            if (Target != null)
+            using (PerformanceMarkers.Turns.AiTakeTurn.Auto())
             {
-                if (CurrentZone.GetEntityCell(Target) == null)
-                    Target = null;
-            }
+                // Guard: no zone or not in zone (dead/removed)
+                if (CurrentZone == null) return true;
+                if (CurrentZone.GetEntityCell(ParentEntity) == null) return true;
 
-            // Scan for hostile target
-            Entity newTarget = AIHelpers.FindNearestHostile(ParentEntity, CurrentZone, SightRadius);
-            if (newTarget != null)
-            {
-                bool firstAggro = Target == null;
-                Target = newTarget;
+                // Skip turn when in conversation
+                if (InConversation) return true;
 
-                // Aggro indicator: red ! above creature on first detection
-                if (firstAggro)
+                // Safety: skip player entities
+                if (ParentEntity.HasTag("Player")) return true;
+
+                // Ensure RNG exists
+                if (Rng == null) Rng = new Random();
+
+                // Clear dead/removed target
+                if (Target != null)
                 {
-                    var myPos = CurrentZone.GetEntityPosition(ParentEntity);
-                    if (myPos.x >= 0)
-                        AsciiFxBus.EmitParticle(CurrentZone, myPos.x, myPos.y - 1, '!', "&R", 0.25f);
-                }
-            }
-
-            if (Target != null)
-            {
-                CurrentState = AIState.Chase;
-
-                var myPos = CurrentZone.GetEntityPosition(ParentEntity);
-                var targetPos = CurrentZone.GetEntityPosition(Target);
-
-                // Flee if below HP threshold
-                int hp = ParentEntity.GetStatValue("Hitpoints", 1);
-                int maxHp = ParentEntity.GetStat("Hitpoints")?.Max ?? 1;
-                bool shouldFlee = hp > 0 && maxHp > 0 && (float)hp / maxHp < FleeThreshold;
-
-                if (shouldFlee)
-                {
-                    StepAwayFromTarget(myPos.x, myPos.y, targetPos.x, targetPos.y);
-                }
-                else if (AIHelpers.IsAdjacent(myPos.x, myPos.y, targetPos.x, targetPos.y))
-                {
-                    // Adjacent — melee attack
-                    CombatSystem.PerformMeleeAttack(ParentEntity, Target, CurrentZone, Rng);
-                }
-                else
-                {
-                    // Try ranged ability before chasing
-                    if (!TryUseRangedAbility(myPos, targetPos))
-                        StepTowardTarget(myPos.x, myPos.y, targetPos.x, targetPos.y);
-                }
-            }
-            else if (Wanders && WandersRandomly)
-            {
-                CurrentState = AIState.Wander;
-                var (dx, dy) = AIHelpers.RandomPassableDirection(ParentEntity, CurrentZone, Rng);
-                if (dx != 0 || dy != 0)
-                    MovementSystem.TryMove(ParentEntity, CurrentZone, dx, dy);
-            }
-            else
-            {
-                CurrentState = AIState.Idle;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        /// Greedy step toward target. Tries the ideal diagonal/cardinal direction first,
-        /// then falls back to the two closest alternative directions.
-        /// </summary>
-        private void StepTowardTarget(int myX, int myY, int targetX, int targetY)
-        {
-            var (dx, dy) = AIHelpers.StepToward(myX, myY, targetX, targetY);
-
-            // Try ideal direction first
-            if (MovementSystem.TryMove(ParentEntity, CurrentZone, dx, dy))
-                return;
-
-            // If diagonal, try the two cardinal components
-            if (dx != 0 && dy != 0)
-            {
-                if (MovementSystem.TryMove(ParentEntity, CurrentZone, dx, 0))
-                    return;
-                if (MovementSystem.TryMove(ParentEntity, CurrentZone, 0, dy))
-                    return;
-            }
-            else if (dx != 0)
-            {
-                // Horizontal blocked, try diagonals
-                if (MovementSystem.TryMove(ParentEntity, CurrentZone, dx, 1))
-                    return;
-                if (MovementSystem.TryMove(ParentEntity, CurrentZone, dx, -1))
-                    return;
-            }
-            else if (dy != 0)
-            {
-                // Vertical blocked, try diagonals
-                if (MovementSystem.TryMove(ParentEntity, CurrentZone, 1, dy))
-                    return;
-                if (MovementSystem.TryMove(ParentEntity, CurrentZone, -1, dy))
-                    return;
-            }
-            // All directions blocked — do nothing
-        }
-
-        private void StepAwayFromTarget(int myX, int myY, int targetX, int targetY)
-        {
-            var (dx, dy) = AIHelpers.StepAway(myX, myY, targetX, targetY);
-
-            if (MovementSystem.TryMove(ParentEntity, CurrentZone, dx, dy))
-                return;
-
-            if (dx != 0 && dy != 0)
-            {
-                if (MovementSystem.TryMove(ParentEntity, CurrentZone, dx, 0))
-                    return;
-                if (MovementSystem.TryMove(ParentEntity, CurrentZone, 0, dy))
-                    return;
-            }
-
-            // Cornered — fight back if adjacent
-            if (Target != null && AIHelpers.IsAdjacent(myX, myY, targetX, targetY))
-                CombatSystem.PerformMeleeAttack(ParentEntity, Target, CurrentZone, Rng ?? new Random());
-        }
-
-        private bool TryUseRangedAbility((int x, int y) myPos, (int x, int y) targetPos)
-        {
-            var abilities = ParentEntity.GetPart<ActivatedAbilitiesPart>();
-            if (abilities == null) return false;
-
-            int dist = AIHelpers.ChebyshevDistance(myPos.x, myPos.y, targetPos.x, targetPos.y);
-
-            for (int i = 0; i < abilities.AbilityList.Count; i++)
-            {
-                var ability = abilities.AbilityList[i];
-                if (!ability.IsUsable) continue;
-                if (ability.TargetingMode == AbilityTargetingMode.AdjacentCell) continue;
-                if (ability.Range < dist && ability.TargetingMode != AbilityTargetingMode.SelfCentered)
-                    continue;
-
-                var cmdEvent = GameEvent.New(ability.Command);
-                cmdEvent.SetParameter("Zone", (object)CurrentZone);
-                cmdEvent.SetParameter("RNG", (object)(Rng ?? new Random()));
-
-                if (ability.TargetingMode == AbilityTargetingMode.DirectionLine)
-                {
-                    var sourceCell = CurrentZone.GetCell(myPos.x, myPos.y);
-                    var (dx, dy) = AIHelpers.StepToward(myPos.x, myPos.y, targetPos.x, targetPos.y);
-                    cmdEvent.SetParameter("SourceCell", (object)sourceCell);
-                    cmdEvent.SetParameter("DirectionX", dx);
-                    cmdEvent.SetParameter("DirectionY", dy);
-                }
-                else if (ability.TargetingMode == AbilityTargetingMode.SelfCentered)
-                {
-                    cmdEvent.SetParameter("SourceCell", (object)CurrentZone.GetCell(myPos.x, myPos.y));
+                    if (CurrentZone.GetEntityCell(Target) == null)
+                        Target = null;
                 }
 
-                ParentEntity.FireEvent(cmdEvent);
-                if (cmdEvent.Handled) return true;
+                // Set starting cell on first turn if not already set
+                if (!HasStartingCell)
+                {
+                    var pos = CurrentZone.GetEntityPosition(ParentEntity);
+                    if (pos.x >= 0)
+                    {
+                        StartingCellX = pos.x;
+                        StartingCellY = pos.y;
+                    }
+                }
+
+                // Clean finished goals from top of stack
+                while (_goals.Count > 0 && _goals[_goals.Count - 1].Finished())
+                {
+                    var done = _goals[_goals.Count - 1];
+                    _goals.RemoveAt(_goals.Count - 1);
+                    done.OnPop();
+                }
+
+                // Ensure default goal exists
+                if (_goals.Count == 0)
+                    PushGoal(new BoredGoal());
+
+                // Increment age on all goals
+                for (int i = 0; i < _goals.Count; i++)
+                    _goals[i].Age++;
+
+                // Execute top goal
+                int stackSize = _goals.Count;
+                _goals[stackSize - 1].TakeAction();
+
+                // Child-chain execution: if TakeAction pushed a child, execute it immediately.
+                // This ensures BoredGoal -> KillGoal -> attack all happen in one tick.
+                int depth = 0;
+                while (_goals.Count > stackSize && depth < MaxChildChainDepth)
+                {
+                    depth++;
+                    // Clean any immediately-finished goals
+                    while (_goals.Count > 0 && _goals[_goals.Count - 1].Finished())
+                    {
+                        var done = _goals[_goals.Count - 1];
+                        _goals.RemoveAt(_goals.Count - 1);
+                        done.OnPop();
+                    }
+
+                    if (_goals.Count <= stackSize) break;
+
+                    stackSize = _goals.Count;
+                    _goals[stackSize - 1].TakeAction();
+                }
+
+                return true;
             }
-            return false;
         }
     }
 }

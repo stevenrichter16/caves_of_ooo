@@ -18,7 +18,7 @@ namespace CavesOfOoo.Core
 
         protected override void ApplyOnHitEffect(Entity target, Zone zone, System.Random rng)
         {
-            target.ApplyEffect(new BurningEffect(duration: 3, damageDice: "1d3", rng: rng), ParentEntity, zone);
+            target.ApplyEffect(new BurningEffect(intensity: 1.0f, source: ParentEntity, rng: rng), ParentEntity, zone);
         }
     }
 }

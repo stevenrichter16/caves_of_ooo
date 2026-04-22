@@ -1087,6 +1087,10 @@
               "Target": "Explain"
             },
             {
+              "Text": "What's around here that I should know about?",
+              "Target": "RegionOverview"
+            },
+            {
               "Text": "Farewell.",
               "Target": "End"
             }
@@ -1125,6 +1129,45 @@
               "Text": "Thank you.",
               "Target": "Start"
             }
+          ]
+        },
+        {
+          "ID": "RegionOverview",
+          "Text": "Four places, four warnings. Which one do you want to hear?",
+          "Choices": [
+            { "Text": "To the north?", "Target": "RegionNorth" },
+            { "Text": "To the east?",  "Target": "RegionEast"  },
+            { "Text": "To the south?", "Target": "RegionSouth" },
+            { "Text": "To the west?",  "Target": "RegionWest"  },
+            { "Text": "Back.",         "Target": "Start"       }
+          ]
+        },
+        {
+          "ID": "RegionNorth",
+          "Text": "The Ruins of Sparkwright. Brass husks still walk there, and the old capacitors haven't all discharged. Water conducts their spark — so do chains. A little arc goes a long way.",
+          "Choices": [
+            { "Text": "And elsewhere?", "Target": "RegionOverview" }
+          ]
+        },
+        {
+          "ID": "RegionEast",
+          "Text": "The Saltglass Dunes. Glass scorpions scuttle between oil seeps. One match is all it takes to cook a whole canyon. Beware the dunes on still nights — a single spark travels further than you'd think.",
+          "Choices": [
+            { "Text": "And elsewhere?", "Target": "RegionOverview" }
+          ]
+        },
+        {
+          "ID": "RegionSouth",
+          "Text": "The Verdant Rotbog. Shambling fungus-folk, acid ponds that drink iron. Fire spreads cleanly through the fungal crowns — so if one catches, they all do. Try not to fall in the green water.",
+          "Choices": [
+            { "Text": "And elsewhere?", "Target": "RegionOverview" }
+          ]
+        },
+        {
+          "ID": "RegionWest",
+          "Text": "The Frostfang Grotto. Ice wights that refuse to thaw on their own — but bring a flame inside, and the ceiling weeps, and the wights weep with it. Kindle is a kinder weapon than a blade in that place.",
+          "Choices": [
+            { "Text": "And elsewhere?", "Target": "RegionOverview" }
           ]
         }
       ]

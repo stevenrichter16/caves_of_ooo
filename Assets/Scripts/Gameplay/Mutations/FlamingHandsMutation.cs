@@ -97,6 +97,15 @@ namespace CavesOfOoo.Core
                         string targetName = target.GetDisplayName();
                         MessageLog.Add($"{attackerName} blasts {targetName} with flames for {totalDamage} damage!");
                         CombatSystem.ApplyDamage(target, totalDamage, ParentEntity, zone);
+
+                        // Participate in the material system: emit heat to the target
+                        var heatEvent = GameEvent.New("ApplyHeat");
+                        heatEvent.SetParameter("Joules", (object)(totalDamage * 5f));
+                        heatEvent.SetParameter("Radiant", (object)false);
+                        heatEvent.SetParameter("Source", (object)ParentEntity);
+                        heatEvent.SetParameter("Zone", (object)zone);
+                        target.FireEvent(heatEvent);
+                        heatEvent.Release();
                     }
                 }
             }

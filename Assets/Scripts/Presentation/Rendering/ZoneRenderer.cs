@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using CavesOfOoo.Core;
+using CavesOfOoo.Diagnostics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 namespace CavesOfOoo.Rendering
 {
@@ -43,9 +45,9 @@ namespace CavesOfOoo.Rendering
         public int FovRadius = 999;
 
         /// <summary>
-        /// Number of message log lines shown at the bottom of the screen.
+        /// Persistent sidebar width in narrow text columns.
         /// </summary>
-        public int MessageLineCount = 4;
+        public int SidebarWidthChars = 34;
 
         /// <summary>
         /// Reference orthographic size at which message text appears at 1:1 scale.
@@ -56,36 +58,128 @@ namespace CavesOfOoo.Rendering
         private Tilemap _tilemap;
         private Tilemap _bgTilemap;
         private Tilemap _fxTilemap;
-        private Tilemap _msgBgTilemap;
-        private Tilemap _msgTilemap;
-        private Tilemap _lookTilemap;
-        private Transform _msgGridTransform;
+
+        /// <summary>
+        /// Horizontal sub-cell tilemap overlaid on the main tilemap for
+        /// HTML-faithful water rendering. cellSize = (1/N, 1, 0) so each
+        /// zone cell maps to N fine tiles across. Painted only on
+        /// FlowsEast water cells — village N→S water stays at coarse
+        /// resolution on the main tilemap.
+        /// </summary>
+        private Tilemap _fineWaterTilemap;
+        private Transform _fineWaterGridTransform;
+
+        /// <summary>
+        /// Sub-tiles per zone cell on EACH axis. 2 gives a 2×2 grid = 4
+        /// sub-tiles per cell, yielding 4× wave resolution over the coarse
+        /// main tilemap. FineWaterTilemap's Grid cellSize must match
+        /// (1/N, 1/N, 0). Water glyphs (= - ~ . *) are horizontally
+        /// symmetric and read correctly when shrunk to square sub-tiles.
+        /// </summary>
+        private const int FineWaterSubdivisions = 2;
+
+        /// <summary>Fine tile size in world units on each axis = 1 / FineWaterSubdivisions.</summary>
+        private const float FineWaterCellSize = 1f / FineWaterSubdivisions;
+
+        private Tilemap _sidebarBgTilemap;
+        private Tilemap _sidebarTilemap;
+        private Transform _sidebarGridTransform;
+        private Material _sidebarUiMaterial;
+        private Grid _hotbarGrid;
+        private Tilemap _hotbarBgTilemap;
+        private Tilemap _hotbarTilemap;
+        private Transform _hotbarGridTransform;
+        private Material _hotbarUiMaterial;
+        private Grid _popupOverlayGrid;
+        private Tilemap _popupOverlayBgTilemap;
+        private Tilemap _popupOverlayTilemap;
+        private Transform _popupOverlayGridTransform;
+        private Material _popupOverlayUiMaterial;
         private AsciiFxRenderer _asciiFxRenderer;
         private CampfireEmberRenderer _campfireEmberRenderer;
         private WorldCursorRenderer _worldCursorRenderer;
-        private LookOverlayRenderer _lookOverlayRenderer;
+        private GameplaySidebarRenderer _sidebarRenderer;
+        private GameplayHotbarRenderer _hotbarRenderer;
+
+        /// <summary>
+        /// Phase 10 companion — when true, the sidebar's LOG section is
+        /// replaced by a THOUGHTS section listing every Creature's current
+        /// <see cref="BrainPart.LastThought"/>. Toggled by InputHandler on
+        /// 't' keypress. Non-blocking: the player keeps full game input
+        /// while visible (no InputState change, no early-return). Reuses the
+        /// sidebar's existing tilemap + layout instead of drawing a separate
+        /// overlay on the play area — the logger container doubles as the
+        /// thought container so both surfaces share the same space.
+        /// </summary>
+        public bool ShowThoughtLog { get; set; }
         private bool _dirty = true;
-        private int _lastMessageCount = -1;
-        private float _lastMessageTime;
         private int _lastFlashStamp;
         private float _flashUntil;
-        private const float LogIdleStart = 8f;     // seconds idle before fade starts
-        private const float LogIdleEnd = 12f;      // fully faded at this idle duration
-        private const float LogIdleAlphaFloor = 0.35f;
         private const float FlashDuration = 0.3f;
-        private bool _messagesDirty = true;
-        private float _prevIdleFadeAlpha = -1f;
         private bool _wasPaused;
         private float _ambientTimer;
         private float _dustMoteSpawnTimer;
         private const float DustMoteSpawnInterval = 3.5f;
         private Camera _mainCamera;
+        private Camera _sidebarCamera;
+        private Camera _hotbarCamera;
+        private Camera _popupOverlayCamera;
         private LightMap _lightMap;
         private readonly List<Vector2Int> _waterTilePositions = new List<Vector2Int>();
+
+        /// <summary>
+        /// Positions of Bank entities in a RiverChunk zone. Cached so
+        /// UpdateAmbientAnimations' bank loop doesn't re-scan the whole
+        /// zone. Empty for non-RiverChunk zones.
+        /// </summary>
+        private readonly List<Vector2Int> _bankTilePositions = new List<Vector2Int>();
+
+        /// <summary>
+        /// A cell immediately west or east of a river channel column, cached
+        /// for per-frame reflection tinting in UpdateAmbientAnimations.
+        /// </summary>
+        private struct ReflectionAdjacentTile
+        {
+            public int X, Y;
+            /// <summary>True = use WaterBankColors (east flank of a bank cell), false = WaterCoreColors (west flank of a core cell).</summary>
+            public bool UseBankPalette;
+        }
+        private readonly List<ReflectionAdjacentTile> _waterAdjacentPositions = new List<ReflectionAdjacentTile>();
+
+        /// <summary>
+        /// A leaf / twig that drifts south with the current at a cell-sub-
+        /// precision position. Rendered by overriding the water glyph at
+        /// the matching cell — no entity, no physics, just a visual loop.
+        /// Port of river.ascii's debris pool.
+        /// </summary>
+        private struct DebrisDrifter
+        {
+            /// <summary>Cross-flow offset from centerline in half-widths (-0.6..0.6).</summary>
+            public float XRel;
+            /// <summary>Zone-heights per second — HTML range 0.12..0.30.</summary>
+            public float Speed;
+            /// <summary>Starting offset in [0, 1) so drifters don't bunch at zone load.</summary>
+            public float Phase;
+            /// <summary>'o' (60%) or '.' (40%) per HTML preset.</summary>
+            public char Glyph;
+        }
+
+        /// <summary>Pool of debris drifters, re-randomized on each zone load.</summary>
+        private DebrisDrifter[] _debris = System.Array.Empty<DebrisDrifter>();
+
+        /// <summary>
+        /// Per-row cached meander center column. Populated in
+        /// RefreshWaterCache so DebrisGlyphAt doesn't recompute the sine
+        /// for every cell every frame.
+        /// </summary>
+        private int[] _centerXPerRow = System.Array.Empty<int>();
+
         private readonly HashSet<string> _loggedRenderIssues = new HashSet<string>();
         private WorldCursorState _worldCursorState;
         private Entity _cursorPlayer;
         private LookSnapshot _currentLookSnapshot;
+        private int _selectedHotbarSlot = -1;
+        private ActivatedAbility _pendingHotbarAbility;
         private Vector3 _lastCameraPosition;
         private float _lastCameraSize = -1f;
         private float _lastCameraAspect = -1f;
@@ -100,17 +194,27 @@ namespace CavesOfOoo.Rendering
         public Tilemap BgTilemap => _bgTilemap;
         private Tilemap _popupBgTilemap;
         private Tilemap _popupFgTilemap;
+        public Tilemap SidebarBgTilemap => _sidebarBgTilemap;
+        public Tilemap SidebarTilemap => _sidebarTilemap;
+        public Camera SidebarCamera => _sidebarCamera;
+        public Tilemap HotbarBgTilemap => _hotbarBgTilemap;
+        public Tilemap HotbarTilemap => _hotbarTilemap;
+        public Camera HotbarCamera => _hotbarCamera;
+        public Tilemap CenteredPopupBgTilemap => _popupOverlayBgTilemap;
+        public Tilemap CenteredPopupFgTilemap => _popupOverlayTilemap;
+        public Camera PopupOverlayCamera => _popupOverlayCamera;
         /// <summary>Popup background tilemap (sortingOrder 6). For DialogueUI/TradeUI bg fills.</summary>
         public Tilemap PopupBgTilemap => _popupBgTilemap;
         /// <summary>Popup foreground tilemap (sortingOrder 7). For DialogueUI/TradeUI glyphs.</summary>
         public Tilemap PopupFgTilemap => _popupFgTilemap;
+        public int SidebarLogScrollOffsetRows => _sidebarRenderer?.LogScrollOffsetRows ?? 0;
 
         private void Awake()
         {
-            _lastMessageTime = Time.time;
             _lastFlashStamp = MessageLog.FlashStamp;
             _mainCamera = Camera.main;
             _tilemap = GetComponent<Tilemap>();
+            GameplayRenderLayers.SetLayerRecursive(gameObject, GameplayRenderLayers.WorldLayer);
 
             Grid grid = GetComponentInParent<Grid>();
             Transform gridParent = grid != null ? grid.transform : (transform.parent != null ? transform.parent : transform);
@@ -119,62 +223,132 @@ namespace CavesOfOoo.Rendering
             // Same grid, same cell size — just a lower sorting order.
             var bgTilemapObj = new GameObject("BgTilemap");
             bgTilemapObj.transform.SetParent(gridParent, false);
+            GameplayRenderLayers.SetLayerRecursive(bgTilemapObj, GameplayRenderLayers.WorldLayer);
             _bgTilemap = bgTilemapObj.AddComponent<Tilemap>();
             var bgRenderer = bgTilemapObj.AddComponent<TilemapRenderer>();
             bgRenderer.sortingOrder = -1; // below world tilemap
 
+            // FineWaterTilemap: horizontal sub-cell overlay for river water.
+            // Dedicated Grid with cellSize (1/N, 1) so each zone cell maps to
+            // N fine tiles that tile exactly over it. Shares the default
+            // (lit) material with the main tilemap so URP 2D lights apply
+            // consistently. Painted only for FlowsEast water — the water
+            // loop clears fg on the main tilemap for those cells so the
+            // coarse glyph doesn't bleed through fine glyphs' transparency.
+            var fineWaterGridObj = new GameObject("FineWaterGrid");
+            _fineWaterGridTransform = fineWaterGridObj.transform;
+            GameplayRenderLayers.SetLayerRecursive(fineWaterGridObj, GameplayRenderLayers.WorldLayer);
+            var fineWaterGrid = fineWaterGridObj.AddComponent<Grid>();
+            fineWaterGrid.cellSize = new Vector3(FineWaterCellSize, FineWaterCellSize, 0f);
+
+            var fineWaterTmObj = new GameObject("FineWaterTilemap");
+            fineWaterTmObj.transform.SetParent(fineWaterGridObj.transform, false);
+            GameplayRenderLayers.SetLayerRecursive(fineWaterTmObj, GameplayRenderLayers.WorldLayer);
+            _fineWaterTilemap = fineWaterTmObj.AddComponent<Tilemap>();
+            var fineWaterRenderer = fineWaterTmObj.AddComponent<TilemapRenderer>();
+            fineWaterRenderer.sortingOrder = 1; // above main (0), below FX (2)
+            // No sharedMaterial → inherits Sprite-Lit-Default like the main tilemap.
+
             var fxTilemapObj = new GameObject("FxTilemap");
             fxTilemapObj.transform.SetParent(gridParent, false);
+            GameplayRenderLayers.SetLayerRecursive(fxTilemapObj, GameplayRenderLayers.WorldLayer);
             _fxTilemap = fxTilemapObj.AddComponent<Tilemap>();
             var fxRenderer = fxTilemapObj.AddComponent<TilemapRenderer>();
-            fxRenderer.sortingOrder = 1; // above world, below messages
+            fxRenderer.sortingOrder = 2; // bumped from 1 to make room for fine water at 1
             _asciiFxRenderer = new AsciiFxRenderer(_fxTilemap);
 
             var emberObj = new GameObject("CampfireEmbers");
             emberObj.transform.SetParent(gridParent, false);
+            GameplayRenderLayers.SetLayerRecursive(emberObj, GameplayRenderLayers.WorldLayer);
             _campfireEmberRenderer = emberObj.AddComponent<CampfireEmberRenderer>();
 
-            // Create a separate tilemap for messages with narrow half-width cells
-            var msgGridObj = new GameObject("MessageGrid");
-            _msgGridTransform = msgGridObj.transform;
-            var msgGrid = msgGridObj.AddComponent<Grid>();
-            msgGrid.cellSize = new Vector3(0.5f, 1f, 0f);
+            // Dedicated narrow-text grid for the persistent sidebar.
+            var sidebarGridObj = new GameObject("SidebarGrid");
+            _sidebarGridTransform = sidebarGridObj.transform;
+            GameplayRenderLayers.SetLayerRecursive(sidebarGridObj, GameplayRenderLayers.SidebarLayer);
+            var sidebarGrid = sidebarGridObj.AddComponent<Grid>();
+            sidebarGrid.cellSize = new Vector3(0.5f, 1f, 0f);
 
-            var msgBgObj = new GameObject("MessageBgTilemap");
-            msgBgObj.transform.SetParent(msgGridObj.transform);
-            _msgBgTilemap = msgBgObj.AddComponent<Tilemap>();
-            var msgBgRenderer = msgBgObj.AddComponent<TilemapRenderer>();
-            msgBgRenderer.sortingOrder = 2; // background behind message text
+            var sidebarBgObj = new GameObject("SidebarBgTilemap");
+            sidebarBgObj.transform.SetParent(sidebarGridObj.transform);
+            GameplayRenderLayers.SetLayerRecursive(sidebarBgObj, GameplayRenderLayers.SidebarLayer);
+            _sidebarBgTilemap = sidebarBgObj.AddComponent<Tilemap>();
+            var sidebarBgRenderer = sidebarBgObj.AddComponent<TilemapRenderer>();
+            ConfigureSidebarTilemapRenderer(sidebarBgRenderer, 2);
 
-            var msgTmObj = new GameObject("MessageTilemap");
-            msgTmObj.transform.SetParent(msgGridObj.transform);
-            _msgTilemap = msgTmObj.AddComponent<Tilemap>();
-            var msgRenderer = msgTmObj.AddComponent<TilemapRenderer>();
-            msgRenderer.sortingOrder = 3; // text above background
+            var sidebarTmObj = new GameObject("SidebarTilemap");
+            sidebarTmObj.transform.SetParent(sidebarGridObj.transform);
+            GameplayRenderLayers.SetLayerRecursive(sidebarTmObj, GameplayRenderLayers.SidebarLayer);
+            _sidebarTilemap = sidebarTmObj.AddComponent<Tilemap>();
+            var sidebarRenderer = sidebarTmObj.AddComponent<TilemapRenderer>();
+            ConfigureSidebarTilemapRenderer(sidebarRenderer, 3);
 
-            var lookTmObj = new GameObject("LookOverlayTilemap");
-            lookTmObj.transform.SetParent(msgGridObj.transform);
-            _lookTilemap = lookTmObj.AddComponent<Tilemap>();
-            var lookRenderer = lookTmObj.AddComponent<TilemapRenderer>();
-            lookRenderer.sortingOrder = 5;
+            var hotbarGridObj = new GameObject("HotbarGrid");
+            _hotbarGridTransform = hotbarGridObj.transform;
+            GameplayRenderLayers.SetLayerRecursive(hotbarGridObj, GameplayRenderLayers.HotbarLayer);
+            _hotbarGrid = hotbarGridObj.AddComponent<Grid>();
+            _hotbarGrid.cellSize = new Vector3(0.5f, 1f, 0f);
 
-            _worldCursorRenderer = new WorldCursorRenderer(gridParent, _tilemap);
-            _lookOverlayRenderer = new LookOverlayRenderer(_lookTilemap, _msgGridTransform, MessageReferenceZoom);
+            var hotbarBgObj = new GameObject("HotbarBgTilemap");
+            hotbarBgObj.transform.SetParent(hotbarGridObj.transform, false);
+            GameplayRenderLayers.SetLayerRecursive(hotbarBgObj, GameplayRenderLayers.HotbarLayer);
+            _hotbarBgTilemap = hotbarBgObj.AddComponent<Tilemap>();
+            var hotbarBgRenderer = hotbarBgObj.AddComponent<TilemapRenderer>();
+            ConfigureHotbarTilemapRenderer(hotbarBgRenderer, 0);
+
+            var hotbarTmObj = new GameObject("HotbarTilemap");
+            hotbarTmObj.transform.SetParent(hotbarGridObj.transform, false);
+            GameplayRenderLayers.SetLayerRecursive(hotbarTmObj, GameplayRenderLayers.HotbarLayer);
+            _hotbarTilemap = hotbarTmObj.AddComponent<Tilemap>();
+            var hotbarRenderer = hotbarTmObj.AddComponent<TilemapRenderer>();
+            ConfigureHotbarTilemapRenderer(hotbarRenderer, 1);
+
+            _worldCursorRenderer = new WorldCursorRenderer(gridParent, _tilemap, GameplayRenderLayers.WorldLayer);
+            _sidebarRenderer = new GameplaySidebarRenderer(_sidebarTilemap, _sidebarBgTilemap, _sidebarGridTransform, MessageReferenceZoom);
+            _hotbarRenderer = new GameplayHotbarRenderer(_hotbarTilemap, _hotbarBgTilemap);
+
+            var popupOverlayGridObj = new GameObject("PopupOverlayGrid");
+            _popupOverlayGridTransform = popupOverlayGridObj.transform;
+            GameplayRenderLayers.SetLayerRecursive(popupOverlayGridObj, GameplayRenderLayers.PopupOverlayLayer);
+            _popupOverlayGrid = popupOverlayGridObj.AddComponent<Grid>();
+            _popupOverlayGrid.cellSize = new Vector3(1f, 1f, 0f);
+
+            var popupOverlayBgObj = new GameObject("CenteredPopupBgTilemap");
+            popupOverlayBgObj.transform.SetParent(popupOverlayGridObj.transform, false);
+            GameplayRenderLayers.SetLayerRecursive(popupOverlayBgObj, GameplayRenderLayers.PopupOverlayLayer);
+            _popupOverlayBgTilemap = popupOverlayBgObj.AddComponent<Tilemap>();
+            var popupOverlayBgRenderer = popupOverlayBgObj.AddComponent<TilemapRenderer>();
+            ConfigurePopupOverlayTilemapRenderer(popupOverlayBgRenderer, 0);
+
+            var popupOverlayFgObj = new GameObject("CenteredPopupFgTilemap");
+            popupOverlayFgObj.transform.SetParent(popupOverlayGridObj.transform, false);
+            GameplayRenderLayers.SetLayerRecursive(popupOverlayFgObj, GameplayRenderLayers.PopupOverlayLayer);
+            _popupOverlayTilemap = popupOverlayFgObj.AddComponent<Tilemap>();
+            var popupOverlayFgRenderer = popupOverlayFgObj.AddComponent<TilemapRenderer>();
+            ConfigurePopupOverlayTilemapRenderer(popupOverlayFgRenderer, 1);
 
             // Dedicated tilemaps for dialogue/popup UI — must sort ABOVE the
-            // message log (order 3) and look overlay (order 5) so popups aren't
-            // hidden behind the world log.
+            // persistent sidebar (order 3) so popups aren't hidden behind the UI.
             var popupBgObj = new GameObject("PopupBgTilemap");
             popupBgObj.transform.SetParent(gridParent, false);
+            GameplayRenderLayers.SetLayerRecursive(popupBgObj, GameplayRenderLayers.WorldLayer);
             _popupBgTilemap = popupBgObj.AddComponent<Tilemap>();
             var popupBgRenderer = popupBgObj.AddComponent<TilemapRenderer>();
             popupBgRenderer.sortingOrder = 6;
 
             var popupFgObj = new GameObject("PopupFgTilemap");
             popupFgObj.transform.SetParent(gridParent, false);
+            GameplayRenderLayers.SetLayerRecursive(popupFgObj, GameplayRenderLayers.WorldLayer);
             _popupFgTilemap = popupFgObj.AddComponent<Tilemap>();
             var popupFgRenderer = popupFgObj.AddComponent<TilemapRenderer>();
             popupFgRenderer.sortingOrder = 7;
+        }
+
+        private void OnDestroy()
+        {
+            DestroyOwnedMaterial(ref _sidebarUiMaterial);
+            DestroyOwnedMaterial(ref _hotbarUiMaterial);
+            DestroyOwnedMaterial(ref _popupOverlayUiMaterial);
         }
 
         /// <summary>
@@ -185,12 +359,20 @@ namespace CavesOfOoo.Rendering
             CurrentZone = zone;
             _asciiFxRenderer?.SetZone(zone);
             _worldCursorRenderer?.SetZone(zone);
-            _lookOverlayRenderer?.Clear();
+            _sidebarRenderer?.ResetLogScroll();
+            _sidebarRenderer?.Clear();
+            _sidebarRenderer?.Invalidate();
+            _hotbarRenderer?.Clear();
             _currentLookSnapshot = null;
             _worldCursorState = null;
             _cursorPlayer = null;
             _dirty = true;
             RefreshWaterCache();
+
+            // Clear the fine-water tilemap so stale sub-tiles from the
+            // previous zone don't leak into the new one. Cheap — the new
+            // zone's water loop repaints every frame anyway.
+            _fineWaterTilemap?.ClearAllTiles();
 
             // Register campfire positions for free-floating ember rendering
             if (_campfireEmberRenderer != null)
@@ -217,105 +399,119 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public void MarkDirty()
         {
-            _dirty = true;
-            _messagesDirty = true;
+            MarkDirty("Unknown");
+        }
+
+        public void MarkDirty(string source)
+        {
+            using (PerformanceMarkers.Zone.MarkDirty.Auto())
+            {
+                PerformanceDiagnostics.RecordMarkDirty(source);
+                _dirty = true;
+                _sidebarRenderer?.Invalidate();
+            }
         }
 
         private void LateUpdate()
         {
-            bool newMessages = MessageLog.Count != _lastMessageCount;
-            if (newMessages)
+            long frameStart = Stopwatch.GetTimestamp();
+            using (PerformanceMarkers.Zone.LateUpdate.Auto())
             {
-                _lastMessageTime = Time.time;
-                _messagesDirty = true;
-            }
-            if (MessageLog.FlashStamp != _lastFlashStamp)
-            {
-                _lastFlashStamp = MessageLog.FlashStamp;
-                _flashUntil = Time.time + FlashDuration;
-                _messagesDirty = true;
-            }
-            Camera cam = _mainCamera;
-            bool cameraChanged = HasCameraViewChanged(cam);
-            if (cameraChanged)
-                _messagesDirty = true;
+                PerformanceDiagnostics.BeginFrame(
+                    MessageLog.TickProvider != null ? MessageLog.TickProvider() : 0,
+                    Paused,
+                    _dirty);
 
-            // Check if idle-fade alpha changed (drives continuous fade-out)
-            float idle = Time.time - _lastMessageTime;
-            float idleFadeAlpha = Mathf.Lerp(
-                1f, LogIdleAlphaFloor,
-                Mathf.InverseLerp(LogIdleStart, LogIdleEnd, idle));
-            if (!Mathf.Approximately(idleFadeAlpha, _prevIdleFadeAlpha))
-                _messagesDirty = true;
-            // Flash also drives per-frame changes while active
-            if (Time.time < _flashUntil)
-                _messagesDirty = true;
+                if (_mainCamera == null)
+                    _mainCamera = Camera.main;
 
-            _asciiFxRenderer?.Update(Time.deltaTime);
+                UpdatePopupOverlayGridLayout();
+                UpdateHotbarGridLayout();
 
-            if (Paused)
-            {
-                // Only clear auxiliary layers on the transition into paused state
-                if (!_wasPaused)
+                if (MessageLog.FlashStamp != _lastFlashStamp)
                 {
-                    if (_bgTilemap != null) _bgTilemap.ClearAllTiles();
-                    if (_fxTilemap != null) _fxTilemap.ClearAllTiles();
+                    _lastFlashStamp = MessageLog.FlashStamp;
+                    _flashUntil = Time.time + FlashDuration;
+                }
+
+                Camera cam = _mainCamera;
+                _asciiFxRenderer?.Update(Time.deltaTime);
+                if (_asciiFxRenderer != null)
+                {
+                    PerformanceDiagnostics.RecordAsciiFxCounts(
+                        _asciiFxRenderer.ActiveProjectileCount,
+                        _asciiFxRenderer.ActiveBurstCount,
+                        _asciiFxRenderer.ActiveParticleCount,
+                        _asciiFxRenderer.ActiveAuraCount,
+                        _asciiFxRenderer.ActiveBeamCount,
+                        _asciiFxRenderer.ActiveChargeOrbitCount,
+                        _asciiFxRenderer.ActiveRingWaveCount,
+                        _asciiFxRenderer.ActiveChainArcCount,
+                        _asciiFxRenderer.ActiveColumnRiseCount,
+                        _asciiFxRenderer.ActiveDustMoteCount);
+                }
+
+                if (Paused)
+                {
+                    // Only clear auxiliary layers on the transition into paused state
+                    if (!_wasPaused)
+                    {
+                        if (_bgTilemap != null)
+                        {
+                            _bgTilemap.ClearAllTiles();
+                            PerformanceDiagnostics.RecordTilemapClear();
+                        }
+
+                        if (_fxTilemap != null)
+                        {
+                            _fxTilemap.ClearAllTiles();
+                            PerformanceDiagnostics.RecordTilemapClear();
+                        }
+
+                        if (_campfireEmberRenderer != null)
+                            _campfireEmberRenderer.gameObject.SetActive(false);
+                        _worldCursorRenderer?.Clear();
+                        _sidebarRenderer?.Clear();
+                        _hotbarRenderer?.Clear();
+                    }
+
+                    CacheCameraView(cam);
+                    _wasPaused = true;
+                    PerformanceDiagnostics.EndFrame(
+                        PerformanceDiagnostics.ElapsedMilliseconds(frameStart, Stopwatch.GetTimestamp()));
+                    return;
+                }
+
+                // Re-enable embers on transition from paused to unpaused
+                if (_wasPaused)
+                {
                     if (_campfireEmberRenderer != null)
-                        _campfireEmberRenderer.gameObject.SetActive(false);
-                    _worldCursorRenderer?.Clear();
-                    _lookOverlayRenderer?.Clear();
+                        _campfireEmberRenderer.gameObject.SetActive(true);
+                    _wasPaused = false;
+                    _dirty = true; // Force full redraw to restore bg/fx layers
                 }
 
-                // Still update messages while paused (overlay popups don't hide the message area)
-                if (_messagesDirty)
+                if (_dirty && CurrentZone != null)
                 {
-                    RenderMessages();
-                    _lastMessageCount = MessageLog.Count;
-                    _prevIdleFadeAlpha = idleFadeAlpha;
-                    _messagesDirty = false;
+                    RenderZone();
+                    _dirty = false;
                 }
+
+                using (PerformanceMarkers.Zone.UpdateAmbientAnimations.Auto())
+                    UpdateAmbientAnimations(Time.deltaTime);
+
+                RenderSidebar(cam);
+                RenderHotbar();
+
+                if (_worldCursorState != null && _worldCursorState.Active)
+                    _worldCursorRenderer?.SetCursor(_worldCursorState, _cursorPlayer);
+                else
+                    _worldCursorRenderer?.Clear();
 
                 CacheCameraView(cam);
-                _wasPaused = true;
-                return;
+                PerformanceDiagnostics.EndFrame(
+                    PerformanceDiagnostics.ElapsedMilliseconds(frameStart, Stopwatch.GetTimestamp()));
             }
-
-            // Re-enable embers on transition from paused to unpaused
-            if (_wasPaused)
-            {
-                if (_campfireEmberRenderer != null)
-                    _campfireEmberRenderer.gameObject.SetActive(true);
-                _wasPaused = false;
-                _dirty = true; // Force full redraw to restore bg/fx layers
-            }
-
-            if (_dirty && CurrentZone != null)
-            {
-                RenderZone();
-                _dirty = false;
-            }
-
-            UpdateAmbientAnimations(Time.deltaTime);
-
-            if (_messagesDirty)
-            {
-                RenderMessages();
-                _lastMessageCount = MessageLog.Count;
-                _prevIdleFadeAlpha = idleFadeAlpha;
-                _messagesDirty = false;
-            }
-
-            if (_worldCursorState != null && _worldCursorState.Active)
-                _worldCursorRenderer?.SetCursor(_worldCursorState, _cursorPlayer);
-            else
-                _worldCursorRenderer?.Clear();
-
-            if (_currentLookSnapshot != null)
-                _lookOverlayRenderer?.Render(_currentLookSnapshot, cam);
-            else
-                _lookOverlayRenderer?.Clear();
-
-            CacheCameraView(cam);
         }
 
         /// <summary>
@@ -323,38 +519,62 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public void RenderZone()
         {
-            if (CurrentZone == null || _tilemap == null) return;
-
-            _tilemap.ClearAllTiles();
-            _bgTilemap?.ClearAllTiles();
-
-            // Compute field of view from the player's position
-            if (PlayerEntity != null)
+            using (PerformanceMarkers.Zone.RenderZone.Auto())
             {
-                var playerCell = CurrentZone.GetEntityCell(PlayerEntity);
-                if (playerCell != null)
-                    FieldOfView.Compute(CurrentZone, playerCell.X, playerCell.Y, FovRadius);
-            }
+                if (CurrentZone == null || _tilemap == null) return;
 
-            // Compute lighting from all light sources
-            if (_lightMap == null)
-                _lightMap = new LightMap();
-            _lightMap.Compute(CurrentZone);
-
-            for (int x = 0; x < Zone.Width; x++)
-            {
-                for (int y = 0; y < Zone.Height; y++)
+                _tilemap.ClearAllTiles();
+                PerformanceDiagnostics.RecordTilemapClear();
+                if (_bgTilemap != null)
                 {
-                    RenderCell(x, y);
+                    _bgTilemap.ClearAllTiles();
+                    PerformanceDiagnostics.RecordTilemapClear();
                 }
-            }
 
-            RefreshWaterCache();
+                // Compute field of view from the player's position
+                if (PlayerEntity != null)
+                {
+                    var playerCell = CurrentZone.GetEntityCell(PlayerEntity);
+                    if (playerCell != null)
+                    {
+                        using (PerformanceMarkers.Zone.ComputeFov.Auto())
+                            FieldOfView.Compute(CurrentZone, playerCell.X, playerCell.Y, FovRadius);
+                    }
+                }
+
+                // Compute lighting from all light sources
+                if (_lightMap == null)
+                    _lightMap = new LightMap();
+                using (PerformanceMarkers.Zone.ComputeLightMap.Auto())
+                    _lightMap.Compute(CurrentZone);
+
+                int cellsRendered = Zone.Width * Zone.Height;
+                PerformanceDiagnostics.RecordZoneRedraw(cellsRendered);
+                for (int x = 0; x < Zone.Width; x++)
+                {
+                    for (int y = 0; y < Zone.Height; y++)
+                        RenderCell(x, y);
+                }
+
+                RefreshWaterCache();
+            }
         }
 
         private static readonly Color RememberedColor = new Color(0.2f, 0.2f, 0.2f);
 
         private void RenderCell(int x, int y)
+        {
+            if (PerformanceDiagnostics.DetailedCellProfilingEnabled)
+            {
+                using (PerformanceMarkers.Zone.RenderCell.Auto())
+                    RenderCellCore(x, y);
+                return;
+            }
+
+            RenderCellCore(x, y);
+        }
+
+        private void RenderCellCore(int x, int y)
         {
             Cell cell = CurrentZone.GetCell(x, y);
             if (cell == null) return;
@@ -525,212 +745,143 @@ namespace CavesOfOoo.Rendering
                 Debug.LogWarning($"[ASCII] {entity.BlueprintName ?? entity.ID}: {issue}");
         }
 
-        /// <summary>
-        /// Render recent messages at the bottom of the visible screen
-        /// using the narrow-text message tilemap.
-        /// </summary>
-        private static readonly Color MsgBgColor = new Color(0.05f, 0.05f, 0.08f, 0.92f);
-
-        private void RenderMessages()
+        private void RenderSidebar(Camera camera)
         {
-            if (_msgTilemap == null || MessageLineCount <= 0) return;
-
-            _msgTilemap.ClearAllTiles();
-            if (_msgBgTilemap != null)
-                _msgBgTilemap.ClearAllTiles();
-
-            // Fetch a wider window than we'll display so adjacent-duplicate coalescing
-            // doesn't leave the log sparse during spam storms (10 identical hits => 1 line).
-            int fetchCount = MessageLineCount * 8;
-            var rawRecent = MessageLog.GetRecent(fetchCount);
-            var rawTicks  = MessageLog.GetRecentTicks(fetchCount);
-            if (rawRecent.Count == 0) return;
-
-            // Coalesce adjacent duplicates walking newest->oldest until we have enough lines.
-            // displayed[0] = newest visible line.
-            var displayed = new List<(string text, int tick, int count)>(MessageLineCount);
-            int rIdx = rawRecent.Count - 1;
-            while (rIdx >= 0 && displayed.Count < MessageLineCount)
+            using (PerformanceMarkers.Zone.RenderSidebar.Auto())
             {
-                string cur = rawRecent[rIdx];
-                int curTick = rIdx < rawTicks.Count ? rawTicks[rIdx] : 0;
-                int n = 1;
-                while (rIdx - 1 >= 0 && rawRecent[rIdx - 1] == cur)
+                Camera sidebarCamera = _sidebarCamera != null ? _sidebarCamera : camera;
+                if (sidebarCamera == null || !sidebarCamera.enabled)
                 {
-                    n++;
-                    rIdx--;
-                }
-                displayed.Add((cur, curTick, n));
-                rIdx--;
-            }
-
-            var cam = _mainCamera;
-            if (cam == null) return;
-
-            // Scale the message grid so text stays a consistent screen size
-            // regardless of camera zoom level
-            float scale = cam.orthographicSize / MessageReferenceZoom;
-            _msgGridTransform.localScale = new Vector3(scale, scale, 1f);
-
-            // Find the bottom tile row in scaled tile coordinates
-            float worldBottom = cam.transform.position.y - cam.orthographicSize;
-            int bottomTileY = Mathf.CeilToInt((worldBottom + 0.5f * scale) / scale);
-
-            // How many half-width characters fit across the visible width
-            float worldWidth = cam.orthographicSize * cam.aspect * 2f;
-            int maxChars = Mathf.FloorToInt(worldWidth / (0.5f * scale));
-
-            // Left edge in tile coordinates so text starts at the screen edge
-            float worldLeft = cam.transform.position.x - cam.orthographicSize * cam.aspect;
-            int startX = Mathf.CeilToInt(worldLeft / (0.5f * scale));
-
-            // Ambience: idle-fade (log dims while untouched) + focus-flash (brief red
-            // bg tint + yellow top-line override when a critical announcement fires).
-            float idle = Time.time - _lastMessageTime;
-            float idleFadeAlpha = Mathf.Lerp(
-                1f,
-                LogIdleAlphaFloor,
-                Mathf.InverseLerp(LogIdleStart, LogIdleEnd, idle));
-            bool flashActive = Time.time < _flashUntil;
-            float flashT = flashActive
-                ? Mathf.Clamp01((_flashUntil - Time.time) / FlashDuration) * 0.5f
-                : 0f;
-
-            // Tint the bg toward red while flashing, then apply idle-fade alpha.
-            Color bgColor = MsgBgColor;
-            if (flashActive)
-                bgColor = Color.Lerp(bgColor, QudColorParser.BrightRed, flashT);
-            bgColor.a = MsgBgColor.a * idleFadeAlpha;
-
-            // Render background box behind messages
-            if (_msgBgTilemap != null)
-            {
-                var blockTile = CP437TilesetGenerator.GetTextTile((char)219);
-                if (blockTile != null)
-                {
-                    int bgLeft = startX - 1;
-                    int bgRight = startX + maxChars;
-                    int bgBottom = bottomTileY - 1;
-                    // Derive bg top from the actual topmost text row so the box
-                    // always covers all glyphs regardless of zoom/scale.
-                    int topTextY = bottomTileY + (MessageLineCount - 1) * 2;
-                    int bgTop = topTextY + 2;
-
-                    for (int y = bgBottom; y <= bgTop; y++)
-                    {
-                        for (int x = bgLeft; x <= bgRight; x++)
-                        {
-                            var pos = new Vector3Int(x, y, 0);
-                            _msgBgTilemap.SetTile(pos, blockTile);
-                            _msgBgTilemap.SetTileFlags(pos, TileFlags.None);
-                            _msgBgTilemap.SetColor(pos, bgColor);
-                        }
-                    }
-                }
-            }
-
-            // Column layout per line (half-width cells on the msg grid):
-            //   [0..3]  tick gutter (4 chars: "NNN ")
-            //   [4]     category icon
-            //   [5]     space
-            //   [6..]   message text (optionally suffixed " (xN)" when coalesced)
-            const int GutterWidth = 4;
-            const int IconCol = 4;
-            const int TextCol = 6;
-            int textMaxChars = maxChars - TextCol;
-            if (textMaxChars < 1) textMaxChars = 1;
-
-            // Render newest message at screen bottom, older ones above with spacer rows.
-            // Age-graduate opacity: newest = fully opaque white, older lines fade to gray.
-            for (int i = 0; i < MessageLineCount; i++)
-            {
-                int tileY = bottomTileY + (i * 2);
-                if (i >= displayed.Count) continue;
-
-                var entry = displayed[i];
-
-                // Alpha ramp: newest=1.0 -> oldest=0.35 across MessageLineCount lines.
-                float t = (MessageLineCount <= 1) ? 0f : (float)i / (MessageLineCount - 1);
-                float alpha = Mathf.Lerp(1.0f, 0.35f, t) * idleFadeAlpha;
-
-                // Text color: hue shift from white (newest) -> gray (older).
-                Color baseColor = Color.Lerp(QudColorParser.White, QudColorParser.Gray, t);
-                // Top line flashes yellow while the focus-flash window is active.
-                if (flashActive && i == 0)
-                    baseColor = QudColorParser.BrightYellow;
-                Color textColor = new Color(baseColor.r, baseColor.g, baseColor.b, alpha);
-
-                // Tick gutter: "NNN " right-aligned in 3 chars + trailing space (4 total).
-                string tickStr = FormatTick(entry.tick);
-                Color gutterColor = new Color(
-                    QudColorParser.DarkGray.r,
-                    QudColorParser.DarkGray.g,
-                    QudColorParser.DarkGray.b,
-                    alpha);
-                DrawMsgText(startX, tileY, tickStr, gutterColor, GutterWidth);
-
-                // Category icon (inferred from message content).
-                InferMsgCategory(entry.text, out char icon, out Color iconBase);
-                if (icon != ' ')
-                {
-                    Color iconColor = new Color(iconBase.r, iconBase.g, iconBase.b, alpha);
-                    DrawMsgText(startX + IconCol, tileY, icon.ToString(), iconColor, 1);
+                    _sidebarRenderer?.Clear();
+                    return;
                 }
 
-                // Message text + optional " (xN)" suffix when coalesced.
-                string body = entry.count > 1 ? entry.text + " (x" + entry.count + ")" : entry.text;
-                DrawMsgText(startX + TextCol, tileY, body, textColor, textMaxChars);
+                bool flashActive = Time.time < _flashUntil;
+                float flashT = flashActive
+                    ? Mathf.Clamp01((_flashUntil - Time.time) / FlashDuration)
+                    : 0f;
+
+                // Phase 10 — the 't' toggle swaps the sidebar's bottom
+                // section (LOG) for THOUGHTS by passing showThoughts into
+                // Build. Data-driven dispatch inside the sidebar renderer
+                // selects DrawLogPanel vs DrawThoughtsPanel based on
+                // snapshot.ThoughtEntries being null/non-null. No separate
+                // tilemap or camera — same panel, different content.
+                SidebarSnapshot snapshot = SidebarStateBuilder.Build(
+                    PlayerEntity, CurrentZone, _currentLookSnapshot,
+                    showThoughts: ShowThoughtLog);
+                _sidebarRenderer?.Render(snapshot, sidebarCamera, SidebarWidthChars, flashActive, flashT);
             }
         }
 
-        /// <summary>
-        /// Formats a tick number into a 4-char gutter string "NNN " (right-pads).
-        /// Wraps past 999 by showing modulo to keep alignment stable.
-        /// </summary>
-        private static string FormatTick(int tick)
+        private void RenderHotbar()
         {
-            int n = tick % 1000;
-            if (n < 10)  return "  " + n + " ";
-            if (n < 100) return " "  + n + " ";
-            return n + " ";
-        }
-
-        /// <summary>
-        /// Infer a single-char semantic icon + color from a log message string.
-        /// Fallback is a blank icon (space) and gray color.
-        /// </summary>
-        private static void InferMsgCategory(string msg, out char icon, out Color color)
-        {
-            if (string.IsNullOrEmpty(msg)) { icon = ' '; color = QudColorParser.Gray; return; }
-            if (msg.Contains(" heals ") || msg.Contains(" heal ")) { icon = '+'; color = QudColorParser.BrightGreen; return; }
-            if (msg.Contains(" is killed") || msg.Contains(" dies")) { icon = '*'; color = QudColorParser.BrightYellow; return; }
-            if (msg.Contains("advance to level") || msg.Contains(" gain ")) { icon = '^'; color = QudColorParser.BrightYellow; return; }
-            if (msg.Contains(" hits ") || msg.Contains(" damage") || msg.Contains(" blasts ") || msg.Contains(" slashes ") || msg.Contains(" bites ")) { icon = '-'; color = QudColorParser.BrightRed; return; }
-            if (msg.Contains(" catches fire") || msg.Contains(" is confused") || msg.Contains(" is poisoned") || msg.Contains(" is stunned") || msg.Contains(" is paralyzed") || msg.Contains(" is bleeding")) { icon = '!'; color = QudColorParser.White; return; }
-            if (msg.Contains(" picks up ") || msg.Contains(" drops ") || msg.Contains(" equips ") || msg.Contains(" unequips ") || msg.Contains(" eats ")) { icon = '"'; color = QudColorParser.DarkCyan; return; }
-            icon = ' ';
-            color = QudColorParser.Gray;
-        }
-
-        private void DrawMsgText(int x, int tileY, string text, Color color, int maxChars)
-        {
-            if (text == null) return;
-            int len = text.Length;
-            if (len > maxChars) len = maxChars;
-
-            for (int i = 0; i < len; i++)
+            using (PerformanceMarkers.Zone.RenderHotbar.Auto())
             {
-                char c = text[i];
-                if (c == ' ') continue;
+                Camera hotbarCamera = _hotbarCamera;
+                if (hotbarCamera == null || !hotbarCamera.enabled)
+                {
+                    _hotbarRenderer?.Clear();
+                    return;
+                }
 
-                var tile = CP437TilesetGenerator.GetTextTile(c);
-                if (tile == null) continue;
-
-                var pos = new Vector3Int(x + i, tileY, 0);
-                _msgTilemap.SetTile(pos, tile);
-                _msgTilemap.SetTileFlags(pos, TileFlags.None);
-                _msgTilemap.SetColor(pos, color);
+                HotbarSnapshot snapshot = HotbarStateBuilder.Build(PlayerEntity, _selectedHotbarSlot, _pendingHotbarAbility);
+                _hotbarRenderer?.Render(snapshot, hotbarCamera);
             }
+        }
+
+        private void ConfigureSidebarTilemapRenderer(TilemapRenderer renderer, int sortingOrder)
+        {
+            if (renderer == null)
+                return;
+
+            renderer.sortingOrder = sortingOrder;
+
+            Material uiMaterial = GetUnlitSpriteMaterial(ref _sidebarUiMaterial, "SidebarUI-Unlit");
+            if (uiMaterial != null)
+                renderer.sharedMaterial = uiMaterial;
+        }
+
+        private void ConfigurePopupOverlayTilemapRenderer(TilemapRenderer renderer, int sortingOrder)
+        {
+            if (renderer == null)
+                return;
+
+            renderer.sortingOrder = sortingOrder;
+
+            Material uiMaterial = GetUnlitSpriteMaterial(ref _popupOverlayUiMaterial, "CenteredPopupUI-Unlit");
+            if (uiMaterial != null)
+                renderer.sharedMaterial = uiMaterial;
+        }
+
+        private void ConfigureHotbarTilemapRenderer(TilemapRenderer renderer, int sortingOrder)
+        {
+            if (renderer == null)
+                return;
+
+            renderer.sortingOrder = sortingOrder;
+
+            Material uiMaterial = GetUnlitSpriteMaterial(ref _hotbarUiMaterial, "HotbarUI-Unlit");
+            if (uiMaterial != null)
+                renderer.sharedMaterial = uiMaterial;
+        }
+
+        private static Material GetUnlitSpriteMaterial(ref Material material, string materialName)
+        {
+            if (material != null)
+                return material;
+
+            Shader shader = Shader.Find("Universal Render Pipeline/2D/Sprite-Unlit-Default");
+            if (shader == null)
+                shader = Shader.Find("Sprites/Default");
+
+            if (shader == null)
+            {
+                Debug.LogWarning("[Rendering] Failed to find an unlit sprite shader for UI tilemaps.");
+                return null;
+            }
+
+            material = new Material(shader)
+            {
+                name = materialName
+            };
+            material.hideFlags = HideFlags.HideAndDontSave;
+            return material;
+        }
+
+        private static void DestroyOwnedMaterial(ref Material material)
+        {
+            if (material == null)
+                return;
+
+            if (Application.isPlaying)
+                Object.Destroy(material);
+            else
+                Object.DestroyImmediate(material);
+
+            material = null;
+        }
+
+        private void UpdatePopupOverlayGridLayout()
+        {
+            if (_popupOverlayGrid == null || _popupOverlayCamera == null)
+                return;
+
+            float cellWidth = CenteredPopupLayout.ComputeCellWidth(_popupOverlayCamera.aspect);
+            Vector3 cellSize = _popupOverlayGrid.cellSize;
+            if (Mathf.Abs(cellSize.x - cellWidth) > 0.0001f || Mathf.Abs(cellSize.y - 1f) > 0.0001f)
+                _popupOverlayGrid.cellSize = new Vector3(cellWidth, 1f, 0f);
+        }
+
+        private void UpdateHotbarGridLayout()
+        {
+            if (_hotbarGrid == null || _hotbarCamera == null)
+                return;
+
+            float cellWidth = GameplayHotbarLayout.ComputeCellWidth(_hotbarCamera.aspect);
+            Vector3 cellSize = _hotbarGrid.cellSize;
+            if (Mathf.Abs(cellSize.x - cellWidth) > 0.0001f || Mathf.Abs(cellSize.y - 1f) > 0.0001f)
+                _hotbarGrid.cellSize = new Vector3(cellWidth, 1f, 0f);
         }
 
         /// <summary>
@@ -766,12 +917,47 @@ namespace CavesOfOoo.Rendering
         public void SetLookSnapshot(LookSnapshot snapshot)
         {
             _currentLookSnapshot = snapshot;
+            _sidebarRenderer?.Invalidate();
         }
 
         public void ClearLookSnapshot()
         {
             _currentLookSnapshot = null;
-            _lookOverlayRenderer?.Clear();
+            _sidebarRenderer?.Invalidate();
+        }
+
+        public void SetSidebarCamera(Camera sidebarCamera)
+        {
+            _sidebarCamera = sidebarCamera;
+            _sidebarRenderer?.Invalidate();
+        }
+
+        public void SetHotbarCamera(Camera hotbarCamera)
+        {
+            _hotbarCamera = hotbarCamera;
+            UpdateHotbarGridLayout();
+        }
+
+        public void SetPopupOverlayCamera(Camera popupOverlayCamera)
+        {
+            _popupOverlayCamera = popupOverlayCamera;
+            UpdatePopupOverlayGridLayout();
+        }
+
+        public void SetHotbarState(int selectedSlot, ActivatedAbility pendingAbility)
+        {
+            _selectedHotbarSlot = selectedSlot;
+            _pendingHotbarAbility = pendingAbility;
+        }
+
+        public bool ScrollSidebarLogOlder(int rows = 1)
+        {
+            return _sidebarRenderer != null && _sidebarRenderer.ScrollOlder(rows);
+        }
+
+        public bool ScrollSidebarLogNewer(int rows = 1)
+        {
+            return _sidebarRenderer != null && _sidebarRenderer.ScrollNewer(rows);
         }
 
         public bool ScreenToZoneCell(Vector2 screenPosition, Camera camera, out int x, out int y)
@@ -780,6 +966,9 @@ namespace CavesOfOoo.Rendering
             y = -1;
 
             if (CurrentZone == null || _tilemap == null || camera == null)
+                return false;
+
+            if (!camera.pixelRect.Contains(screenPosition))
                 return false;
 
             Vector3 world = camera.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, -camera.transform.position.z));
@@ -795,6 +984,16 @@ namespace CavesOfOoo.Rendering
             return true;
         }
 
+        public bool TryGetHotbarSlotAtScreenPosition(Vector2 screenPosition, out int slot)
+        {
+            slot = -1;
+            return GameplayHotbarLayout.TryGetSlotAtScreenPosition(
+                _hotbarCamera,
+                _hotbarTilemap,
+                screenPosition,
+                out slot);
+        }
+
         public bool TryGetVisibleZoneBounds(Camera camera, out int minX, out int maxX, out int minY, out int maxY)
         {
             minX = 0;
@@ -805,12 +1004,12 @@ namespace CavesOfOoo.Rendering
             if (CurrentZone == null || _tilemap == null || camera == null)
                 return false;
 
-            float halfH = camera.orthographicSize;
-            float halfW = halfH * camera.aspect;
-            float left = camera.transform.position.x - halfW;
-            float right = camera.transform.position.x + halfW;
-            float bottom = camera.transform.position.y - halfH;
-            float top = camera.transform.position.y + halfH;
+            Vector3 worldBottomLeft = camera.ViewportToWorldPoint(new Vector3(0f, 0f, -camera.transform.position.z));
+            Vector3 worldTopRight = camera.ViewportToWorldPoint(new Vector3(1f, 1f, -camera.transform.position.z));
+            float left = worldBottomLeft.x;
+            float right = worldTopRight.x;
+            float bottom = worldBottomLeft.y;
+            float top = worldTopRight.y;
 
             bool foundX = false;
             int visibleMinX = Zone.Width - 1;
@@ -855,7 +1054,9 @@ namespace CavesOfOoo.Rendering
             return true;
         }
 
-        // Water color cycle: 3 shades of blue/cyan
+        // Water color cycle: 3 shades of blue/cyan. Used for village-decor
+        // puddles (stationary shimmer). River cells use the depth-shaded
+        // WaterCoreColors / WaterBankColors palettes below.
         private static readonly Color[] WaterColors =
         {
             QudColorParser.DarkBlue,
@@ -864,13 +1065,326 @@ namespace CavesOfOoo.Rendering
         };
 
         /// <summary>
+        /// Palette for the deeper (center) column of the river — weighted
+        /// toward dark blues so the channel reads as having depth. Shares
+        /// DarkCyan with the bank palette to blend smoothly at the boundary.
+        /// Must be the same length as WaterBankColors and FlowGlyphs so
+        /// glyph + color animations stay in lockstep.
+        /// </summary>
+        private static readonly Color[] WaterCoreColors =
+        {
+            QudColorParser.DarkBlue,
+            QudColorParser.DarkBlue,
+            QudColorParser.DarkCyan
+        };
+
+        /// <summary>
+        /// Palette for the shallower (outer) column of the river — brighter
+        /// cyans and blues so the bank edge reads as sunlight-catching
+        /// ripples. Shares DarkCyan with the core palette.
+        /// </summary>
+        private static readonly Color[] WaterBankColors =
+        {
+            QudColorParser.DarkCyan,
+            QudColorParser.BrightBlue,
+            QudColorParser.BrightCyan
+        };
+
+        // -------- River scalar-field sampler (density-ramp port) --------
+        //
+        // Adapted from the river.ascii demo: instead of phase-cycling through
+        // a fixed glyph array, each water cell samples a scalar field
+        //   val = mix(ripples, noise)
+        // and picks a glyph + color by thresholds. Ripples travel along the
+        // flow direction (+y), noise drifts slowly to keep the field organic.
+
+        /// <summary>Along-flow (per-row) frequency of the primary ripple wave.</summary>
+        private const float RippleFreq1 = 0.28f;
+
+        /// <summary>Along-flow frequency of the faster detail ripple.</summary>
+        private const float RippleFreq2 = 0.55f;
+
+        /// <summary>Along-flow frequency of the slow undulation.</summary>
+        private const float RippleFreq3 = 0.11f;
+
+        /// <summary>Temporal speed of primary ripple (at flow=1 → ~4 phase units/sec).</summary>
+        private const float RippleSpeed1 = 4.0f;
+
+        /// <summary>Temporal speed of detail ripple.</summary>
+        private const float RippleSpeed2 = 6.5f;
+
+        /// <summary>Temporal speed of slow undulation.</summary>
+        private const float RippleSpeed3 = 2.0f;
+
+        /// <summary>Cross-flow phase coupling for primary ripple (bank lags core).</summary>
+        private const float RippleCross1 = 2.0f;
+
+        /// <summary>Cross-flow phase coupling for detail ripple (opposite sign creates beat).</summary>
+        private const float RippleCross2 = -3.0f;
+
+        /// <summary>Amplitude weight for the secondary (detail) ripple.</summary>
+        private const float RippleAmp2 = 0.55f;
+
+        /// <summary>Amplitude weight for the tertiary (slow) ripple.</summary>
+        private const float RippleAmp3 = 0.80f;
+
+        /// <summary>Final rescaling of the combined ripple sum → roughly [-1, 1].</summary>
+        private const float RippleMixWeight = 0.4f;
+
+        /// <summary>Global flow-speed multiplier. HTML presets: calm=0.55 / steady=1.0 / rapids=1.9.</summary>
+        private const float FlowSpeedMult = 0.8f;
+
+        /// <summary>Amplitude of the organic noise term layered onto ripples.</summary>
+        private const float TurbulenceAmount = 0.5f;
+
+        /// <summary>Along-flow sample frequency for turbulence noise.</summary>
+        private const float TurbFreqAlong = 0.12f;
+
+        /// <summary>Cross-flow sample frequency for turbulence noise.</summary>
+        private const float TurbFreqCross = 0.18f;
+
+        /// <summary>How fast the noise field drifts through time (adds slow organic shift).</summary>
+        private const float TurbTimeScale = 0.4f;
+
+        /// <summary>val threshold above which a cell renders as '*' foam (biggest breakers).</summary>
+        private const float FoamCutoffLarge = 1.15f;
+
+        /// <summary>val threshold above which a cell renders as '≈' foam (small crest).</summary>
+        private const float FoamCutoffSmall = 0.85f;
+
+        /// <summary>val threshold for '=' glyph (heavy water).</summary>
+        private const float DensityThreshHeavy = 0.55f;
+
+        /// <summary>val threshold for '-' glyph (medium flow).</summary>
+        private const float DensityThreshMedium = 0.15f;
+
+        /// <summary>val threshold for '~' glyph (standard ripple).</summary>
+        private const float DensityThreshTilde = -0.25f;
+
+        /// <summary>val threshold for '.' glyph (calm). Below this, the cell renders as space.</summary>
+        private const float DensityThreshDot = -0.65f;
+
+        /// <summary>
+        /// BG tint strength on the river cells themselves. Stronger than
+        /// ReflectionTintStrength (0.22) because the water IS the light
+        /// source — its own cells should glow visibly even when the fg
+        /// glyph is space (empty patch of calm water).
+        /// </summary>
+        private const float WaterBgTintStrength = 0.5f;
+
+        /// <summary>
+        /// How strongly the reflection tint blends the water's current color
+        /// into flanking cells' background. 0 = no reflection, 1 = fully
+        /// replace bg with the (darkened) water color. 0.22 keeps ground
+        /// cells readable while still visibly linking them to the river.
+        /// </summary>
+        private const float ReflectionTintStrength = 0.22f;
+
+        // ---- Debris drifters (river.ascii leaf pool) ----
+
+        /// <summary>How many leaves/twigs drift in the river at any time. HTML uses 3..6 across presets; 4 sits in the middle and feels right for a 25-row zone.</summary>
+        private const int DebrisCount = 4;
+
+        /// <summary>Color string for debris. DarkYellow is the nearest Qud palette match to HTML's amber #c99755.</summary>
+        private const string DebrisColor = "&w";
+
+        /// <summary>Cell-distance threshold (|y-debrisY| and |x-targetX|) for "debris is at this cell." HTML uses 0.75 in normalized coords; here in raw cells.</summary>
+        private const float DebrisCellMatchDistance = 0.75f;
+
+        // ---- Sampling helpers (port of the river.ascii scalar field) ----
+
+        /// <summary>Cheap deterministic hash → [0, 1]. Port of the HTML demo's hash().</summary>
+        private static float Hash01(int x, int y)
+        {
+            float n = Mathf.Sin(x * 12.9898f + y * 78.233f) * 43758.5453f;
+            return n - Mathf.Floor(n);
+        }
+
+        /// <summary>2D smoothed value noise → [0, 1]. Bilinear interp with smoothstep.</summary>
+        private static float ValueNoise(float x, float y)
+        {
+            int xi = Mathf.FloorToInt(x);
+            int yi = Mathf.FloorToInt(y);
+            float xf = x - xi;
+            float yf = y - yi;
+
+            float a = Hash01(xi,     yi);
+            float b = Hash01(xi + 1, yi);
+            float c = Hash01(xi,     yi + 1);
+            float d = Hash01(xi + 1, yi + 1);
+
+            float u = xf * xf * (3f - 2f * xf);
+            float v = yf * yf * (3f - 2f * yf);
+
+            return a * (1f - u) * (1f - v) + b * u * (1f - v)
+                 + c * (1f - u) * v       + d * u * v;
+        }
+
+        /// <summary>
+        /// Sample the river's scalar field at (along, cross) and time t.
+        /// Returns val ∈ roughly [-1.8, 1.8]; thresholds pick the glyph
+        /// and color. High = crest / foam; low = calm / empty.
+        ///
+        /// Port of river.ascii's sample(). "along" is the flow direction
+        /// (HTML: x; vertical-flow village river: y; horizontal-flow river
+        /// chunk: x). "cross" is perpendicular (used only for noise).
+        /// "rel" is the cell's cross-flow position [0..1], 0 at centerline
+        /// and 1 at channel edge — drives the parabolic speed profile.
+        ///
+        /// <para>Both <c>along</c> and <c>cross</c> are floats so the
+        /// fine-water renderer can sample at sub-cell positions on either
+        /// axis (2×2 sub-sampling). Callers with ints pass them unchanged
+        /// — implicit int→float conversion applies.</para>
+        /// </summary>
+        private static float SampleRiverVal(float along, float cross, float t, float rel)
+        {
+            // Parabolic speed profile: current is strongest at the center
+            // line and drops off toward the banks (friction).
+            float flow = (1f - rel * rel * 0.65f) * FlowSpeedMult;
+
+            // Three traveling sines at different frequencies and speeds.
+            // Minus sign on t means bands move in +along direction over time.
+            float r1 = Mathf.Sin(along * RippleFreq1 - t * RippleSpeed1 * flow + rel * RippleCross1);
+            float r2 = Mathf.Sin(along * RippleFreq2 - t * RippleSpeed2 * flow + rel * RippleCross2) * RippleAmp2;
+            float r3 = Mathf.Sin(along * RippleFreq3 - t * RippleSpeed3 * flow)                       * RippleAmp3;
+
+            // Organic turbulence: noise sampled with time advancing one
+            // axis, so the field visibly drifts without ever repeating.
+            float turb = (ValueNoise(along * TurbFreqAlong + t * TurbTimeScale,
+                                     cross * TurbFreqCross) - 0.5f) * TurbulenceAmount;
+
+            return (r1 + r2 + r3) * RippleMixWeight + turb;
+        }
+
+        /// <summary>
+        /// Parse a tag value saved as an InvariantCulture F3 float ("0.750").
+        /// Returns a clamped [0,1] value; silently falls back to 0.5 on
+        /// malformed input so a bad tag never NaNs the renderer.
+        /// </summary>
+        private static float ParseRel(string tagValue)
+        {
+            if (string.IsNullOrEmpty(tagValue)) return 0.5f;
+            if (!float.TryParse(tagValue, System.Globalization.NumberStyles.Float,
+                                System.Globalization.CultureInfo.InvariantCulture,
+                                out float rel))
+                return 0.5f;
+            if (rel < 0f) return 0f;
+            if (rel > 1f) return 1f;
+            return rel;
+        }
+
+        /// <summary>
+        /// Port of river.ascii's bank glyph pick. Density <c>d</c> is a
+        /// blend of noise plus bank depth (how far from water). Glyphs
+        /// come in gravity-aware pairs: <c>'</c> vs <c>,</c>, <c>`</c> vs <c>.</c>,
+        /// chosen by whether the cell is above (north side) or below
+        /// (south side) the centerline. <c>v</c> / <c>^</c> / <c>w</c> are
+        /// vegetation tufts at the densest bank edges.
+        /// </summary>
+        private static char SampleBankGlyph(int x, int y, float bankDepth, bool above)
+        {
+            float n1 = ValueNoise(x * 0.28f, y * 0.28f);
+            float n2 = ValueNoise(x * 0.65f, y * 0.55f);
+            float d  = n1 * 0.55f + n2 * 0.25f + bankDepth * 0.35f;
+
+            if (d < 0.28f) return ' ';
+            if (d < 0.42f) return '.';
+            if (d < 0.55f) return above ? '\'' : ',';
+            if (d < 0.68f) return above ? '`'  : '.';
+            if (d < 0.80f) return '"';
+            if (d < 0.92f) return n2 < 0.5f ? 'v' : '^';
+            return 'w';
+        }
+
+        /// <summary>
+        /// Density-ramp glyph: mid-line heavy → thin → calm → dot → space.
+        /// The trailing ' ' (space) is intentional — empty cells let the
+        /// bg tint show as "deep still water" and add visual variety to
+        /// the channel silhouette.
+        /// </summary>
+        private static char DensityGlyph(float val)
+        {
+            if (val > DensityThreshHeavy)  return '=';
+            if (val > DensityThreshMedium) return '-';
+            if (val > DensityThreshTilde)  return '~';
+            if (val > DensityThreshDot)    return '.';
+            return ' ';
+        }
+
+        /// <summary>
+        /// Foam glyph at ripple peaks, or '\0' if below foam cutoffs. '*'
+        /// for the biggest breakers; '=' (same glyph as heavy density, but
+        /// tinted White by WaterColorForVal) for gentler crests. Using
+        /// HTML's '≈' (U+2248) would fall outside our 256-slot CP437 cache
+        /// and render as '?' — stick with CP437-safe ASCII.
+        /// </summary>
+        private static char FoamGlyph(float val)
+        {
+            if (val > FoamCutoffLarge) return '*';
+            if (val > FoamCutoffSmall) return '=';
+            return '\0';
+        }
+
+        /// <summary>
+        /// Pick the fg color for a water cell. Foam overrides to white;
+        /// otherwise val picks an index within the core/bank palette so
+        /// crests glow brighter, troughs sink toward DarkBlue.
+        /// </summary>
+        private static Color WaterColorForVal(float val, bool isBank)
+        {
+            if (val > FoamCutoffSmall) return QudColorParser.White;
+            Color[] palette = isBank ? WaterBankColors : WaterCoreColors;
+            if (val > DensityThreshMedium) return palette[2];
+            if (val > DensityThreshTilde)  return palette[1];
+            return palette[0];
+        }
+
+        /// <summary>
+        /// Return the glyph of any debris drifter currently occupying this
+        /// cell, or '\0' if none. Drifters wrap south → off-bottom-edge →
+        /// re-enter from top, with a small margin so they don't pop in/out
+        /// visibly at the boundaries.
+        /// </summary>
+        private char DebrisGlyphAt(int x, int y, float t)
+        {
+            if (_debris == null || _debris.Length == 0) return '\0';
+            if (_centerXPerRow == null || y < 0 || y >= _centerXPerRow.Length) return '\0';
+            int centerX = _centerXPerRow[y];
+            if (centerX < 0) return '\0'; // no river on this row
+
+            for (int i = 0; i < _debris.Length; i++)
+            {
+                var d = _debris[i];
+                // pos ∈ [-0.05, 1.05) — HTML's margin lets drifters enter
+                // and exit off-screen without a visible snap.
+                float pos = ((d.Speed * t + d.Phase) % 1.1f) - 0.05f;
+                float debrisY = pos * Zone.Height;
+                float targetX = centerX + d.XRel;
+                if (Mathf.Abs(y - debrisY) < DebrisCellMatchDistance &&
+                    Mathf.Abs(x - targetX) < DebrisCellMatchDistance)
+                {
+                    return d.Glyph;
+                }
+            }
+            return '\0';
+        }
+
+        /// <summary>
         /// Rebuild the cached list of water tile positions from the current zone.
         /// Called on zone load and after full redraws.
         /// </summary>
         private void RefreshWaterCache()
         {
             _waterTilePositions.Clear();
+            _waterAdjacentPositions.Clear();
+            _bankTilePositions.Clear();
             if (CurrentZone == null) return;
+
+            // Per-row centerline cache for debris targeting. First core
+            // cell we see at each row wins; rows with no river stay at -1
+            // and debris skips them.
+            _centerXPerRow = new int[Zone.Height];
+            for (int i = 0; i < _centerXPerRow.Length; i++) _centerXPerRow[i] = -1;
 
             for (int x = 0; x < Zone.Width; x++)
             {
@@ -883,9 +1397,67 @@ namespace CavesOfOoo.Rendering
                     if (top == null) continue;
 
                     var render = top.GetPart<RenderPart>();
-                    if (render != null && render.RenderString == "~")
+                    if (render == null) continue;
+
+                    // Water cells (RenderString "~") — both river types.
+                    if (render.RenderString == "~")
+                    {
                         _waterTilePositions.Add(new Vector2Int(x, y));
+
+                        // Village-river FlowsSouth: cache west/east flank for
+                        // reflection tint, and cache centerX per row for debris.
+                        if (top.HasTag("FlowsSouth"))
+                        {
+                            bool isBank = top.Tags["FlowsSouth"] == "bank";
+                            if (!isBank && _centerXPerRow[y] < 0)
+                                _centerXPerRow[y] = x;
+                            int adjX = isBank ? x + 1 : x - 1;
+                            if (CurrentZone.InBounds(adjX, y))
+                            {
+                                _waterAdjacentPositions.Add(new ReflectionAdjacentTile
+                                {
+                                    X = adjX,
+                                    Y = y,
+                                    UseBankPalette = isBank
+                                });
+                            }
+                        }
+                        // River-chunk FlowsEast cells don't need a flank
+                        // cache — banks are first-class entities, not
+                        // cross-channel reflections.
+                        continue;
+                    }
+
+                    // Bank cells (RiverChunk): entities whose top-visible
+                    // RenderPart comes from the Bank blueprint. We detect
+                    // via BlueprintName so Grass or other "." entities
+                    // don't accidentally get animated.
+                    if (top.BlueprintName == "Bank")
+                        _bankTilePositions.Add(new Vector2Int(x, y));
                 }
+            }
+
+            InitDebrisPool();
+        }
+
+        /// <summary>
+        /// Randomize the debris drifters on each zone load. Unseeded —
+        /// each playthrough sees slightly different leaf timing, and the
+        /// pool isn't gameplay-observable so non-determinism is fine.
+        /// </summary>
+        private void InitDebrisPool()
+        {
+            _debris = new DebrisDrifter[DebrisCount];
+            var rng = new System.Random();
+            for (int i = 0; i < DebrisCount; i++)
+            {
+                _debris[i] = new DebrisDrifter
+                {
+                    XRel  = (float)(rng.NextDouble() - 0.5) * 1.2f,  // -0.6..0.6
+                    Speed = 0.12f + (float)rng.NextDouble() * 0.18f, // 0.12..0.30
+                    Phase = (float)rng.NextDouble(),                 // 0..1
+                    Glyph = rng.NextDouble() < 0.6 ? 'o' : '.'
+                };
             }
         }
 
@@ -907,22 +1479,142 @@ namespace CavesOfOoo.Rendering
                 int y = pos.y;
 
                 Cell cell = CurrentZone.GetCell(x, y);
-                if (cell == null || !cell.IsVisible) continue;
+                if (cell == null || !cell.IsVisible)
+                {
+                    // Clear any leftover fine-water tiles so they don't stay
+                    // visible in fog of war / out of vision.
+                    ClearFineWaterAt(x, y);
+                    continue;
+                }
 
                 // Verify water is still the top visible entity (creature may be standing on it)
                 Entity top = cell.GetTopVisibleObject();
-                if (top == null) continue;
+                if (top == null) { ClearFineWaterAt(x, y); continue; }
                 var render = top.GetPart<RenderPart>();
-                if (render == null || render.RenderString != "~") continue;
+                if (render == null || render.RenderString != "~")
+                {
+                    // Entity (player/NPC) is on this water cell — clear fine
+                    // tiles so they don't cover the entity's glyph.
+                    ClearFineWaterAt(x, y);
+                    continue;
+                }
 
-                float phase = _ambientTimer * 2f + x * 0.7f + y * 1.3f;
-                int colorIndex = ((int)phase) % WaterColors.Length;
-                if (colorIndex < 0) colorIndex += WaterColors.Length;
-
+                // River cells carry a FlowsSouth tag (vertical-flow village
+                // river — tag value = "core" / "bank") OR a FlowsEast tag
+                // (horizontal-flow river chunk — tag value = rel as float
+                // in [0,1]). Village decor (no tag) keeps its stationary
+                // shimmer.
+                bool flowsSouth = top.HasTag("FlowsSouth");
+                bool flowsEast  = top.HasTag("FlowsEast");
+                bool isFlowing  = flowsSouth || flowsEast;
                 Vector3Int tilePos = new Vector3Int(x, Zone.Height - 1 - y, 0);
-                _tilemap.SetTileFlags(tilePos, TileFlags.None);
-                _tilemap.SetColor(tilePos, WaterColors[colorIndex]);
+
+                if (isFlowing)
+                {
+                    // Compute along-flow / cross-flow axes and rel per direction.
+                    int along, cross;
+                    float rel;
+                    bool useBankPalette;
+                    if (flowsSouth)
+                    {
+                        along = y;
+                        cross = x;
+                        // FlowsSouth carries two formats:
+                        //   legacy (old narrow RiverBuilder): "core" | "bank" | ""
+                        //   new HTML (RiverChunkBuilder South): rel as F3 float
+                        // Detect by checking the legacy sentinel strings first.
+                        string tagVal = top.Tags["FlowsSouth"];
+                        if (tagVal == "bank")
+                        {
+                            rel = 0.75f;
+                            useBankPalette = true;
+                        }
+                        else if (tagVal == "core" || string.IsNullOrEmpty(tagVal))
+                        {
+                            rel = 0.25f;
+                            useBankPalette = false;
+                        }
+                        else
+                        {
+                            // HTML float format.
+                            rel = ParseRel(tagVal);
+                            useBankPalette = rel > 0.5f;
+                        }
+                    }
+                    else
+                    {
+                        along = x;
+                        cross = y;
+                        rel = ParseRel(top.Tags["FlowsEast"]);
+                        // River-chunk cells are single-cyan (palette[2] for bright);
+                        // we still pass bank-palette=true into WaterColorForVal so
+                        // cells at the channel edge pick the brighter end. Core
+                        // cells (rel ≈ 0) then fall back to core palette.
+                        useBankPalette = rel > 0.5f;
+                    }
+
+                    // Sample val at zone-cell resolution for the bg tint.
+                    // (Fine tiles do their own sub-cell sampling inside
+                    // PaintFineWater — we don't need per-cell glyph/color
+                    // at the coarse level anymore.)
+                    float val = SampleRiverVal(along, cross, _ambientTimer, rel);
+
+                    // Paint the bg tile (dim blue pulse with the wave)
+                    // BEFORE the fg — space glyphs on fine tiles reveal
+                    // this underneath instead of the bright floor.
+                    PaintWaterBgTint(tilePos, useBankPalette, val);
+
+                    // Debris override (village FlowsSouth river only):
+                    // paint the leaf at coarse (1-cell) resolution on the
+                    // main tilemap. A 'o' drawn at 0.5×0.5 sub-tile size
+                    // would look weirdly tiny; keep debris full-scale.
+                    char debris = flowsSouth
+                        ? DebrisGlyphAt(x, y, _ambientTimer)
+                        : '\0';
+                    if (debris != '\0')
+                    {
+                        ClearFineWaterAt(x, y);
+                        Tile debrisTile = CP437TilesetGenerator.GetTile(debris);
+                        if (debrisTile != null)
+                            _tilemap.SetTile(tilePos, debrisTile);
+                        _tilemap.SetTileFlags(tilePos, TileFlags.None);
+                        _tilemap.SetColor(tilePos, QudColorParser.Parse(DebrisColor));
+                    }
+                    else
+                    {
+                        // Normal water — N×N fine sub-tiles. Clear the
+                        // main tilemap's fg so its previous glyph doesn't
+                        // bleed through fine tiles' transparency.
+                        _tilemap.SetTile(tilePos, null);
+                        PaintFineWater(x, y, along, cross, rel, useBankPalette, flowsEast);
+                    }
+                }
+                else
+                {
+                    // Stationary spatial-shimmer for the village decor puddle.
+                    float phase = _ambientTimer * 2f + x * 0.7f + y * 1.3f;
+                    int colorIndex = ((int)phase) % WaterColors.Length;
+                    if (colorIndex < 0) colorIndex += WaterColors.Length;
+
+                    _tilemap.SetTileFlags(tilePos, TileFlags.None);
+                    _tilemap.SetColor(tilePos, WaterColors[colorIndex]);
+                }
             }
+
+            // Reflection tint: for every cached adjacent (flank) cell,
+            // blend the water's current color onto the background tilemap.
+            // Uses the same phase formula as the water it reflects so tint
+            // and wave stay in lockstep. Runs every frame — worst case 1
+            // frame flicker after a RenderZone stomp, imperceptible at
+            // 60fps.
+            UpdateReflectionTint();
+
+            // Bank glyphs (RiverChunk zones only): per-frame sampling of
+            // the noise-driven HTML bank field. Glyphs are static-per-cell
+            // for the current zone — the noise doesn't move — but we
+            // recompute each frame because RenderZone stomps cell state
+            // on player movement, and re-painting avoids fog-of-war bugs.
+            UpdateBankGlyphs();
 
             // Dust motes: spawn occasional faint particles in lit areas
             _dustMoteSpawnTimer += deltaTime;
@@ -941,6 +1633,214 @@ namespace CavesOfOoo.Rendering
                         break;
                     }
                 }
+            }
+
+            // (Random whitecap sparkles were removed when ripple-driven foam
+            // replaced them in the density-ramp sampler — foam now appears
+            // where the wave actually peaks, driven by SampleRiverVal.)
+        }
+
+        /// <summary>
+        /// Paint a dim blue tint onto the background of a river cell itself.
+        /// Stronger than the flank reflection tint because the water is the
+        /// light source — its own cells should visibly glow even when the
+        /// foreground glyph is space (DensityGlyph returns ' ' for very
+        /// calm patches).
+        /// </summary>
+        private void PaintWaterBgTint(Vector3Int tilePos, bool isBank, float val)
+        {
+            if (_bgTilemap == null) return;
+
+            // Pick palette index by val so the bg tint pulses with the wave.
+            Color[] palette = isBank ? WaterBankColors : WaterCoreColors;
+            int idx = val > DensityThreshMedium ? 2 : val > DensityThreshTilde ? 1 : 0;
+            Color water = palette[idx];
+            Color darkened = QudColorParser.DarkenForBackground(water);
+            Color tinted = Color.Lerp(BackgroundColor, darkened, WaterBgTintStrength);
+
+            if (_bgTilemap.GetTile(tilePos) == null)
+            {
+                Tile solid = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+                if (solid != null) _bgTilemap.SetTile(tilePos, solid);
+            }
+            _bgTilemap.SetTileFlags(tilePos, TileFlags.None);
+            _bgTilemap.SetColor(tilePos, tinted);
+        }
+
+        /// <summary>
+        /// Paint the FineWaterTilemap for a single water zone cell. Samples
+        /// the scalar field at N×N sub-positions (along-flow and cross-flow)
+        /// and picks glyph + color per sub-tile, giving 4× wave resolution
+        /// over the coarse main tilemap. Each sub-tile is light-map-
+        /// attenuated so unlit areas darken consistently with the main
+        /// tilemap's RenderCellForLighting pass.
+        ///
+        /// <para><c>isHorizontal</c> controls how (subAlong, subCross) map
+        /// to tilemap (x, y):</para>
+        /// <list type="bullet">
+        /// <item>true (FlowsEast): subAlong → tilemap X, subCross → tilemap Y (Y-flipped).</item>
+        /// <item>false (FlowsSouth): subAlong → tilemap Y (Y-flipped), subCross → tilemap X.</item>
+        /// </list>
+        /// </summary>
+        private void PaintFineWater(int x, int y, float along, int cross, float rel, bool useBankPalette, bool isHorizontal)
+        {
+            if (_fineWaterTilemap == null) return;
+
+            int mainTileY = Zone.Height - 1 - y;
+
+            for (int subAlong = 0; subAlong < FineWaterSubdivisions; subAlong++)
+            {
+                for (int subCross = 0; subCross < FineWaterSubdivisions; subCross++)
+                {
+                    float alongF = along + subAlong * FineWaterCellSize;
+                    float crossF = cross + subCross * FineWaterCellSize;
+                    float subVal = SampleRiverVal(alongF, crossF, _ambientTimer, rel);
+
+                    char subFoam  = FoamGlyph(subVal);
+                    char subGlyph = subFoam != '\0' ? subFoam : DensityGlyph(subVal);
+                    Color subColor = WaterColorForVal(subVal, useBankPalette);
+
+                    if (_lightMap != null)
+                        subColor = _lightMap.ApplyToColor(subColor, x, y);
+
+                    // Y-flip: zoneY grows south, tilemap Y grows north.
+                    // For horizontal flow, subCross indexes cross-flow (zoneY)
+                    //   → subCross=0 is NORTH half → higher tilemap Y.
+                    // For vertical flow, subAlong indexes along-flow (zoneY)
+                    //   → subAlong=0 is NORTH half → higher tilemap Y.
+                    int fineTileX, fineTileY;
+                    if (isHorizontal)
+                    {
+                        fineTileX = FineWaterSubdivisions * x + subAlong;
+                        fineTileY = 2 * mainTileY + (1 - subCross);
+                    }
+                    else
+                    {
+                        fineTileX = FineWaterSubdivisions * x + subCross;
+                        fineTileY = 2 * mainTileY + (1 - subAlong);
+                    }
+
+                    Vector3Int fineTilePos = new Vector3Int(fineTileX, fineTileY, 0);
+                    Tile subTile = CP437TilesetGenerator.GetTile(subGlyph);
+                    if (subTile != null)
+                        _fineWaterTilemap.SetTile(fineTilePos, subTile);
+                    _fineWaterTilemap.SetTileFlags(fineTilePos, TileFlags.None);
+                    _fineWaterTilemap.SetColor(fineTilePos, subColor);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Clear the N×N fine-water sub-tiles covering zone cell (x, y).
+        /// Called when a cell goes non-visible, has a non-water top entity,
+        /// or is on a vertical-flow river (coarse rendering only). SetTile
+        /// to null on an already-null tile is a no-op, so it's safe to call
+        /// unconditionally.
+        /// </summary>
+        private void ClearFineWaterAt(int x, int y)
+        {
+            if (_fineWaterTilemap == null) return;
+
+            int mainTileY = Zone.Height - 1 - y;
+            for (int dx = 0; dx < FineWaterSubdivisions; dx++)
+            {
+                for (int dy = 0; dy < FineWaterSubdivisions; dy++)
+                {
+                    int fineTileX = FineWaterSubdivisions * x + dx;
+                    int fineTileY = FineWaterSubdivisions * mainTileY + dy;
+                    _fineWaterTilemap.SetTile(new Vector3Int(fineTileX, fineTileY, 0), null);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Paint a phase-aware bluish tint onto the background tilemap for
+        /// every cached flank cell. Runs every frame; O(count) where count
+        /// is roughly the river's length. An empty-floor flank cell needs
+        /// a SolidBlock tile painted once before SetColor does anything —
+        /// subsequent frames just update color.
+        /// </summary>
+        private void UpdateReflectionTint()
+        {
+            if (_bgTilemap == null || CurrentZone == null) return;
+
+            Tile solid = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+            if (solid == null) return;
+
+            for (int i = 0; i < _waterAdjacentPositions.Count; i++)
+            {
+                var adj = _waterAdjacentPositions[i];
+                Cell cell = CurrentZone.GetCell(adj.X, adj.Y);
+                if (cell == null || !cell.IsVisible) continue;
+
+                // Sample the same scalar field the adjacent water cell
+                // uses, so tint and wave stay in lockstep. We pass the
+                // flank's own (x, y) — the noise term's cross-flow shift
+                // between adjacent columns is imperceptible, not worth
+                // recomputing the water cell's exact coords.
+                Color[] palette = adj.UseBankPalette ? WaterBankColors : WaterCoreColors;
+                // Village river: along=y, cross=x; bank cells at rel=0.75, core at 0.25.
+                float rel = adj.UseBankPalette ? 0.75f : 0.25f;
+                float val = SampleRiverVal(adj.Y, adj.X, _ambientTimer, rel);
+                int colorIndex = val > DensityThreshMedium ? 2
+                               : val > DensityThreshTilde  ? 1
+                               : 0;
+                Color waterColor = palette[colorIndex];
+                Color darkened = QudColorParser.DarkenForBackground(waterColor);
+                Color tinted = Color.Lerp(BackgroundColor, darkened, ReflectionTintStrength);
+
+                Vector3Int tilePos = new Vector3Int(adj.X, Zone.Height - 1 - adj.Y, 0);
+
+                // SolidBlock provides the tintable surface on otherwise
+                // empty floor cells. Only paint once per cell — after
+                // the first frame the tile is already set (SetTile is
+                // idempotent but wasteful if called every frame on every
+                // flank).
+                if (_bgTilemap.GetTile(tilePos) == null)
+                    _bgTilemap.SetTile(tilePos, solid);
+
+                _bgTilemap.SetTileFlags(tilePos, TileFlags.None);
+                _bgTilemap.SetColor(tilePos, tinted);
+            }
+        }
+
+        /// <summary>
+        /// Paint the noise-driven bank glyph on every cached Bank entity
+        /// cell. Runs every frame for the RiverChunk zones; for non-river
+        /// zones the cache is empty and this is a no-op.
+        ///
+        /// Bank glyphs are position-deterministic (noise is static), so
+        /// glyph choice doesn't change frame-to-frame. We still repaint
+        /// every frame because RenderZone can stomp cell state on state
+        /// changes, and it's cheaper to always repaint than track dirty.
+        /// </summary>
+        private void UpdateBankGlyphs()
+        {
+            if (_tilemap == null || CurrentZone == null) return;
+            if (_bankTilePositions.Count == 0) return;
+
+            Color bankColor = QudColorParser.DarkYellow;
+            for (int i = 0; i < _bankTilePositions.Count; i++)
+            {
+                var pos = _bankTilePositions[i];
+                Cell cell = CurrentZone.GetCell(pos.x, pos.y);
+                if (cell == null || !cell.IsVisible) continue;
+
+                Entity top = cell.GetTopVisibleObject();
+                if (top == null || top.BlueprintName != "Bank") continue;
+
+                float bankDepth = ParseRel(top.Tags["BankDepth"]);
+                bool above = top.Tags["BankAbove"] == "1";
+
+                char glyph = SampleBankGlyph(pos.x, pos.y, bankDepth, above);
+
+                Vector3Int tilePos = new Vector3Int(pos.x, Zone.Height - 1 - pos.y, 0);
+                Tile glyphTile = CP437TilesetGenerator.GetTile(glyph);
+                if (glyphTile != null)
+                    _tilemap.SetTile(tilePos, glyphTile);
+
+                _tilemap.SetTileFlags(tilePos, TileFlags.None);
+                _tilemap.SetColor(tilePos, bankColor);
             }
         }
 

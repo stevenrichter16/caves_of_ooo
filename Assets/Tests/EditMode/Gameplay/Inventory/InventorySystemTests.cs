@@ -198,6 +198,39 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual("Equippable", equip.Name);
         }
 
+        [Test]
+        public void EquippablePart_DerivesOneHandSlotFromHandlingGripType()
+        {
+            var item = new Entity();
+            item.AddPart(new HandlingPart { GripType = GripType.OneHand });
+            var equip = new EquippablePart { Slot = "Head" };
+            item.AddPart(equip);
+
+            CollectionAssert.AreEqual(new[] { "Hand" }, equip.GetSlotArray());
+        }
+
+        [Test]
+        public void EquippablePart_DerivesTwoHandSlotsFromHandlingGripType()
+        {
+            var item = new Entity();
+            item.AddPart(new HandlingPart { GripType = GripType.TwoHand });
+            var equip = new EquippablePart { Slot = "Head" };
+            item.AddPart(equip);
+
+            CollectionAssert.AreEqual(new[] { "Hand", "Hand" }, equip.GetSlotArray());
+        }
+
+        [Test]
+        public void EquippablePart_ExplicitUsesSlotsOverrideHandlingGripType()
+        {
+            var item = new Entity();
+            item.AddPart(new HandlingPart { GripType = GripType.OneHand });
+            var equip = new EquippablePart { Slot = "Head", UsesSlots = "Hand,Hand" };
+            item.AddPart(equip);
+
+            CollectionAssert.AreEqual(new[] { "Hand", "Hand" }, equip.GetSlotArray());
+        }
+
         // ========================
         // InventorySystem.Pickup
         // ========================
@@ -299,6 +332,572 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(InventoryCommandErrorCode.ExecutionFailed, result.ErrorCode);
             Assert.IsNotNull(zone.GetEntityCell(heavy));
             Assert.AreEqual(0, actor.GetPart<InventoryPart>().Objects.Count);
+        }
+
+        [Test]
+        public void PickupCommand_NotCarryable_FailsValidation()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            zone.AddEntity(actor, 5, 5);
+
+            var item = CreateHandledItem(
+                physicsWeight: 5,
+                carryable: false);
+            zone.AddEntity(item, 5, 5);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new PickupCommand(item),
+                new InventoryContext(actor, zone));
+
+            Assert.IsFalse(result.Success);
+            Assert.AreEqual(InventoryCommandErrorCode.ValidationFailed, result.ErrorCode);
+            Assert.AreEqual(InventoryValidationErrorCode.NotCarryable, result.Validation.ErrorCode);
+            Assert.IsNotNull(zone.GetEntityCell(item));
+            Assert.AreEqual(0, actor.GetPart<InventoryPart>().Objects.Count);
+        }
+
+        [Test]
+        public void PickupCommand_InsufficientStrength_FailsValidation()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 2);
+            zone.AddEntity(actor, 5, 5);
+
+            var item = CreateHandledItem(
+                physicsWeight: 6,
+                gripType: GripType.OneHand);
+            zone.AddEntity(item, 5, 5);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new PickupCommand(item),
+                new InventoryContext(actor, zone));
+
+            Assert.IsFalse(result.Success);
+            Assert.AreEqual(InventoryCommandErrorCode.ValidationFailed, result.ErrorCode);
+            Assert.AreEqual(InventoryValidationErrorCode.InsufficientStrength, result.Validation.ErrorCode);
+            Assert.That(result.ErrorMessage, Does.Contain("requires Strength 4"));
+        }
+
+        [Test]
+        public void InventoryPart_GetItemWeight_UsesExplicitHandlingWeight()
+        {
+            var item = CreateHandledItem(
+                physicsWeight: 5,
+                handlingWeight: 9);
+
+            Assert.AreEqual(9, InventoryPart.GetItemWeight(item));
+        }
+
+        [Test]
+        public void InventoryPart_GetItemWeight_FallsBackToPhysicsWeightWhenHandlingWeightIsUnset()
+        {
+            var item = CreateHandledItem(physicsWeight: 6, handlingWeight: 0);
+
+            Assert.AreEqual(6, InventoryPart.GetItemWeight(item));
+        }
+
+        [Test]
+        public void InventoryPart_GetItemWeight_TreatsHandlingWeightOneAsExplicitOverride()
+        {
+            var item = CreateHandledItem(physicsWeight: 6, handlingWeight: 1);
+
+            Assert.AreEqual(1, InventoryPart.GetItemWeight(item));
+        }
+
+        [Test]
+        public void InventoryPart_GetItemWeight_UsesResolvedHandlingWeightForStacks()
+        {
+            var item = CreateStackableItem("HandledStack", 6, 3);
+            item.AddPart(new HandlingPart
+            {
+                GripType = GripType.OneHand,
+                Weight = 1
+            });
+
+            Assert.AreEqual(3, InventoryPart.GetItemWeight(item));
+        }
+
+        [Test]
+        public void HandlingService_GetLiftStrengthRequirement_DiffersByGripTypeForSameWeight()
+        {
+            var oneHand = CreateHandledItem(physicsWeight: 6, gripType: GripType.OneHand, handlingWeight: 0);
+            var twoHand = CreateHandledItem(physicsWeight: 6, gripType: GripType.TwoHand, handlingWeight: 0);
+
+            Assert.AreEqual(4, HandlingService.GetLiftStrengthRequirement(oneHand));
+            Assert.AreEqual(3, HandlingService.GetLiftStrengthRequirement(twoHand));
+        }
+
+        [Test]
+        public void HandlingService_GetThrowStrengthRequirement_RespectsLiftRequirementAndMinimums()
+        {
+            var item = CreateHandledItem(
+                physicsWeight: 8,
+                gripType: GripType.TwoHand,
+                handlingWeight: 0,
+                minLiftStrength: 6,
+                minThrowStrength: 10);
+
+            Assert.AreEqual(6, HandlingService.GetLiftStrengthRequirement(item));
+            Assert.AreEqual(10, HandlingService.GetThrowStrengthRequirement(item));
+        }
+
+        [Test]
+        public void HandlingService_CanThrow_UsesComputedRequirement()
+        {
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 5);
+
+            var item = CreateHandledItem(
+                physicsWeight: 8,
+                gripType: GripType.TwoHand,
+                handlingWeight: 0);
+
+            Assert.IsFalse(HandlingService.CanThrow(actor, item, out string reason));
+            Assert.That(reason, Does.Contain("requires Strength 6"));
+        }
+
+        [Test]
+        public void HandlingService_GetThrowRange_UsesStrengthAndRequirement()
+        {
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 8);
+
+            var item = CreateHandledItem(
+                physicsWeight: 8,
+                gripType: GripType.TwoHand,
+                handlingWeight: 0);
+
+            Assert.AreEqual(6, HandlingService.GetThrowStrengthRequirement(item));
+            Assert.AreEqual(5, HandlingService.GetThrowRange(actor, item));
+        }
+
+        [Test]
+        public void ThrowItemCommand_Validate_AllowsCarriedItem()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            zone.AddEntity(actor, 5, 5);
+
+            var item = CreateHandledItem(physicsWeight: 4);
+            actor.GetPart<InventoryPart>().AddObject(item);
+
+            var validation = new ThrowItemCommand(item, 7, 5).Validate(new InventoryContext(actor, zone));
+
+            Assert.IsTrue(validation.IsValid);
+        }
+
+        [Test]
+        public void ThrowItemCommand_Validate_AllowsEquippedItem()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            zone.AddEntity(actor, 5, 5);
+
+            var item = CreateThrowableWeapon("1d4", 0);
+            actor.GetPart<InventoryPart>().AddObject(item);
+            Assert.IsTrue(InventorySystem.Equip(actor, item));
+
+            var validation = new ThrowItemCommand(item, 7, 5).Validate(new InventoryContext(actor, zone));
+
+            Assert.IsTrue(validation.IsValid);
+        }
+
+        [Test]
+        public void ThrowItemCommand_Validate_AllowsCardinalAdjacentWorldItem()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            zone.AddEntity(actor, 5, 5);
+
+            var item = CreateHandledItem(physicsWeight: 4);
+            zone.AddEntity(item, 6, 5);
+
+            var validation = new ThrowItemCommand(item, 8, 5).Validate(new InventoryContext(actor, zone));
+
+            Assert.IsTrue(validation.IsValid);
+        }
+
+        [Test]
+        public void ThrowItemCommand_Validate_RejectsDiagonalWorldItem()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            zone.AddEntity(actor, 5, 5);
+
+            var item = CreateHandledItem(physicsWeight: 4);
+            zone.AddEntity(item, 6, 6);
+
+            var validation = new ThrowItemCommand(item, 8, 5).Validate(new InventoryContext(actor, zone));
+
+            Assert.IsFalse(validation.IsValid);
+            Assert.AreEqual(InventoryValidationErrorCode.BlockedByRule, validation.ErrorCode);
+        }
+
+        [Test]
+        public void HandlingPart_GetInventoryActions_DeclaresThrow_WithCapitalTCommand()
+        {
+            // Regression pin (2026-04-20): InventoryUI.BuildItemActionPopup
+            // filters out HandlingPart's declared "Throw" command (capital T)
+            // to avoid a duplicate menu entry alongside InventoryUI's own
+            // lowercase "throw" action. That filter keys on the exact string
+            // "Throw" — if HandlingPart ever changes its declared Command
+            // to lowercase or adds a third casing, the filter would silently
+            // stop working and the duplicate would reappear, with the capital-T
+            // entry falling through to PerformInventoryActionCommand and
+            // surfacing the user-visible warning
+            //     [Inventory/Refactor] PerformAction[Throw] command failed.
+            // This test pins the string contract so the filter stays live.
+            var item = new Entity { BlueprintName = "TestThrowable" };
+            item.AddPart(new HandlingPart { Throwable = true, Carryable = true });
+
+            var actions = new InventoryActionList();
+            var ev = GameEvent.New("GetInventoryActions");
+            ev.SetParameter("Actions", actions);
+            item.FireEvent(ev);
+            ev.Release();
+
+            InventoryAction throwAction = null;
+            for (int i = 0; i < actions.Actions.Count; i++)
+            {
+                if (actions.Actions[i].Name == "Throw")
+                {
+                    throwAction = actions.Actions[i];
+                    break;
+                }
+            }
+
+            Assert.IsNotNull(throwAction,
+                "HandlingPart.GetInventoryActions must declare a Throw action when Throwable=true.");
+            Assert.AreEqual("Throw", throwAction.Command,
+                "HandlingPart must declare Throw with capital-T Command. " +
+                "InventoryUI.BuildItemActionPopup filters this exact string to " +
+                "avoid a duplicate menu entry; changing the casing here would " +
+                "re-introduce the duplicate-action bug.");
+        }
+
+        [Test]
+        public void HandlingPart_GetInventoryActions_DoesNotDeclareThrow_WhenNotThrowable()
+        {
+            // Counter-check: flipping Throwable=false suppresses the action.
+            var item = new Entity { BlueprintName = "TestNonThrowable" };
+            item.AddPart(new HandlingPart { Throwable = false, Carryable = true });
+
+            var actions = new InventoryActionList();
+            var ev = GameEvent.New("GetInventoryActions");
+            ev.SetParameter("Actions", actions);
+            item.FireEvent(ev);
+            ev.Release();
+
+            for (int i = 0; i < actions.Actions.Count; i++)
+            {
+                Assert.AreNotEqual("Throw", actions.Actions[i].Name,
+                    "Non-throwable items must not surface a Throw action.");
+            }
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_ThrowsSingleItemFromCarriedStack()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            zone.AddEntity(actor, 5, 5);
+
+            var stack = CreateStackableItem("ThrowingStone", 2, 3);
+            stack.AddPart(new RenderPart { DisplayName = "throwing stone" });
+            stack.AddPart(new HandlingPart { GripType = GripType.OneHand, Throwable = true, Carryable = true });
+            actor.GetPart<InventoryPart>().AddObject(stack);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(stack, 7, 5),
+                actor,
+                zone);
+
+            Assert.IsTrue(result.Success);
+            Assert.AreEqual(1, actor.GetPart<InventoryPart>().Objects.Count);
+            Assert.AreEqual(2, stack.GetPart<StackerPart>().StackCount);
+            var landedCell = zone.GetCell(7, 5);
+            Assert.IsNotNull(landedCell);
+            Assert.AreEqual(1, landedCell.Objects.FindAll(o => o.BlueprintName == "ThrowingStone").Count);
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_UsesWeaponDamageAndLandsInImpactCell()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 18);
+            zone.AddEntity(actor, 5, 5);
+
+            var weapon = CreateThrowableWeapon("1d1", 0);
+            actor.GetPart<InventoryPart>().AddObject(weapon);
+
+            var target = CreateTargetDummy(10);
+            zone.AddEntity(target, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(weapon, 7, 5),
+                actor,
+                zone);
+
+            Assert.IsTrue(result.Success);
+            Assert.AreEqual(8, target.GetStatValue("Hitpoints"));
+            Assert.AreEqual(zone.GetCell(7, 5), zone.GetEntityCell(weapon));
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_UsesImprovisedWeightDamage()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 18);
+            zone.AddEntity(actor, 5, 5);
+
+            var item = CreateHandledItem(physicsWeight: 6);
+            actor.GetPart<InventoryPart>().AddObject(item);
+
+            var target = CreateTargetDummy(10);
+            zone.AddEntity(target, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(item, 7, 5),
+                actor,
+                zone);
+
+            Assert.IsTrue(result.Success);
+            Assert.AreEqual(6, target.GetStatValue("Hitpoints"));
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_LandsInLastTraversableCellBeforeObstacle()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            zone.AddEntity(actor, 5, 5);
+
+            var item = CreateHandledItem(physicsWeight: 4);
+            actor.GetPart<InventoryPart>().AddObject(item);
+
+            var wall = new Entity();
+            wall.Tags["Wall"] = "";
+            wall.Tags["Solid"] = "";
+            wall.AddPart(new PhysicsPart { Solid = true, Takeable = false });
+            zone.AddEntity(wall, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(item, 8, 5),
+                actor,
+                zone);
+
+            Assert.IsTrue(result.Success);
+            Assert.AreEqual(zone.GetCell(6, 5), zone.GetEntityCell(item));
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_ThrownHealingTonic_HealsTargetAndIsConsumed()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 18);
+            zone.AddEntity(actor, 5, 5);
+
+            var tonic = CreateThrowableTonicItem(healing: "6d1");
+            actor.GetPart<InventoryPart>().AddObject(tonic);
+
+            var target = CreateTargetDummy(20);
+            target.SetStatValue("Hitpoints", 10);
+            zone.AddEntity(target, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(tonic, 7, 5),
+                actor,
+                zone);
+
+            Assert.IsTrue(result.Success);
+            Assert.AreEqual(16, target.GetStatValue("Hitpoints"));
+            Assert.IsFalse(actor.GetPart<InventoryPart>().Objects.Contains(tonic));
+            Assert.IsNull(zone.GetEntityCell(tonic));
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_ThrownAntidote_CuresPoisonAndIsConsumed()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 18);
+            zone.AddEntity(actor, 5, 5);
+
+            var tonic = CreateThrowableTonicItem(cureEffect: "PoisonedEffect");
+            actor.GetPart<InventoryPart>().AddObject(tonic);
+
+            var target = CreateTargetDummy(12);
+            target.ApplyEffect(new PoisonedEffect(duration: 5, damageDice: "1d1"), actor, zone);
+            Assert.IsTrue(target.HasEffect<PoisonedEffect>());
+            zone.AddEntity(target, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(tonic, 7, 5),
+                actor,
+                zone);
+
+            Assert.IsTrue(result.Success);
+            Assert.IsFalse(target.HasEffect<PoisonedEffect>());
+            Assert.IsNull(zone.GetEntityCell(tonic));
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_ThrownPoisonTonic_AppliesPoisonInsteadOfImpactDamage()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 18);
+            zone.AddEntity(actor, 5, 5);
+
+            var tonic = CreateThrowableTonicItem(
+                statusEffectName: "Poison",
+                effectDuration: 6,
+                effectDamageDice: "1d2");
+            actor.GetPart<InventoryPart>().AddObject(tonic);
+
+            var target = CreateTargetDummy(10);
+            zone.AddEntity(target, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(tonic, 7, 5),
+                actor,
+                zone);
+
+            Assert.IsTrue(result.Success);
+            Assert.AreEqual(10, target.GetStatValue("Hitpoints"));
+            Assert.IsTrue(target.HasEffect<PoisonedEffect>());
+            Assert.IsNull(zone.GetEntityCell(tonic));
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_ThrownFireTonic_AppliesBurningInsteadOfImpactDamage()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 18);
+            zone.AddEntity(actor, 5, 5);
+
+            var tonic = CreateThrowableTonicItem(
+                statusEffectName: "Fire",
+                effectMagnitude: 1.0f);
+            actor.GetPart<InventoryPart>().AddObject(tonic);
+
+            var target = CreateTargetDummy(10);
+            zone.AddEntity(target, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(tonic, 7, 5),
+                actor,
+                zone);
+
+            Assert.IsTrue(result.Success);
+            Assert.AreEqual(10, target.GetStatValue("Hitpoints"));
+            Assert.IsTrue(target.HasEffect<BurningEffect>());
+            Assert.IsNull(zone.GetEntityCell(tonic));
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_ThrowsEquippedItem_UnequipsWithoutLogAndThrows()
+        {
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 18);
+            zone.AddEntity(actor, 5, 5);
+
+            var weapon = CreateThrowableWeapon("1d1", 0);
+            actor.GetPart<InventoryPart>().AddObject(weapon);
+            Assert.IsTrue(InventorySystem.Equip(actor, weapon));
+
+            var target = CreateTargetDummy(10);
+            zone.AddEntity(target, 7, 5);
+
+            MessageLog.Clear();
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(weapon, 7, 5),
+                actor,
+                zone);
+
+            Assert.IsTrue(result.Success);
+            // Weapon should land at the target cell (creature stops it there).
+            Assert.AreEqual(zone.GetCell(7, 5), zone.GetEntityCell(weapon));
+            // Target should have taken weapon damage (1d1 + Str bonus 1 = 2 damage → 8 HP).
+            Assert.AreEqual(8, target.GetStatValue("Hitpoints"));
+            // No "unequips" message should have been emitted.
+            var logMessages = MessageLog.GetMessages();
+            foreach (var msg in logMessages)
+                Assert.IsFalse(msg.Contains("unequips"), $"Unexpected unequip message: {msg}");
+        }
+
+        [Test]
+        public void InventoryPart_AddObject_AppliesCarryMovePenaltyToSpeed()
+        {
+            var actor = CreateCreatureWithInventory();
+            var inventory = actor.GetPart<InventoryPart>();
+            var item = CreateHandledItem(
+                physicsWeight: 4,
+                handlingWeight: 0,
+                carryMovePenalty: 3);
+
+            Assert.IsTrue(inventory.AddObject(item));
+            Assert.AreEqual(3, actor.GetStat("Speed").Penalty);
+        }
+
+        [Test]
+        public void InventoryPart_RemoveObject_RemovesCarryMovePenaltyFromSpeed()
+        {
+            var actor = CreateCreatureWithInventory();
+            var inventory = actor.GetPart<InventoryPart>();
+            var item = CreateHandledItem(
+                physicsWeight: 4,
+                handlingWeight: 0,
+                carryMovePenalty: 3);
+
+            inventory.AddObject(item);
+            Assert.IsTrue(inventory.RemoveObject(item));
+
+            Assert.AreEqual(0, actor.GetStat("Speed").Penalty);
+        }
+
+        [Test]
+        public void InventoryPart_Equip_RemovesCarryMovePenaltyFromSpeed()
+        {
+            var actor = CreateCreatureWithInventory();
+            var inventory = actor.GetPart<InventoryPart>();
+            var item = CreateHandledItem(
+                physicsWeight: 4,
+                handlingWeight: 0,
+                carryMovePenalty: 4);
+            item.AddPart(new EquippablePart { Slot = "Hand" });
+
+            inventory.AddObject(item);
+            Assert.AreEqual(4, actor.GetStat("Speed").Penalty);
+
+            Assert.IsTrue(inventory.Equip(item, "Hand"));
+            Assert.AreEqual(0, actor.GetStat("Speed").Penalty);
+        }
+
+        [Test]
+        public void InventoryPart_CarryMovePenalty_ScalesWithStackCount()
+        {
+            var actor = CreateCreatureWithInventory();
+            var inventory = actor.GetPart<InventoryPart>();
+            var stack = CreateStackableItem("HandledStack", 2, 3);
+            stack.AddPart(new HandlingPart
+            {
+                GripType = GripType.OneHand,
+                CarryMovePenalty = 2
+            });
+
+            Assert.IsTrue(inventory.AddObject(stack));
+            Assert.AreEqual(6, actor.GetStat("Speed").Penalty);
         }
 
         [Test]
@@ -2132,6 +2731,50 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void TakeFromContainerCommand_NotCarryable_FailsValidation()
+        {
+            var actor = CreateCreatureWithInventory();
+            var chest = CreateContainer();
+            var item = CreateHandledItem(
+                physicsWeight: 5,
+                carryable: false);
+            chest.GetPart<ContainerPart>().AddItem(item);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new TakeFromContainerCommand(chest, item),
+                new InventoryContext(actor));
+
+            Assert.IsFalse(result.Success);
+            Assert.AreEqual(InventoryCommandErrorCode.ValidationFailed, result.ErrorCode);
+            Assert.AreEqual(InventoryValidationErrorCode.NotCarryable, result.Validation.ErrorCode);
+            Assert.IsTrue(chest.GetPart<ContainerPart>().Contents.Contains(item));
+        }
+
+        [Test]
+        public void TakeFromContainerCommand_InsufficientStrength_FailsValidation()
+        {
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 2);
+            var chest = CreateContainer();
+            var item = CreateHandledItem(
+                physicsWeight: 6,
+                gripType: GripType.OneHand,
+                handlingWeight: 0);
+            chest.GetPart<ContainerPart>().AddItem(item);
+
+            var executor = new InventoryCommandExecutor();
+            var result = executor.Execute(
+                new TakeFromContainerCommand(chest, item),
+                new InventoryContext(actor));
+
+            Assert.IsFalse(result.Success);
+            Assert.AreEqual(InventoryCommandErrorCode.ValidationFailed, result.ErrorCode);
+            Assert.AreEqual(InventoryValidationErrorCode.InsufficientStrength, result.Validation.ErrorCode);
+            Assert.IsTrue(chest.GetPart<ContainerPart>().Contents.Contains(item));
+        }
+
+        [Test]
         public void TakeAllFromContainer_TransfersAll()
         {
             var actor = CreateCreatureWithInventory();
@@ -3301,6 +3944,7 @@ namespace CavesOfOoo.Tests
         {
             var actor = CreateCreatureWithInventory();
             actor.Statistics["Hitpoints"].BaseValue = 22;
+            actor.Statistics["Experience"] = new Stat { Name = "Experience", BaseValue = 37, Min = 0, Max = 999999 };
             actor.Statistics["Strength"].BaseValue = 20;
             actor.Statistics["Agility"].BaseValue = 18;
 
@@ -3315,6 +3959,11 @@ namespace CavesOfOoo.Tests
             Assert.IsNotNull(strength);
             Assert.AreEqual("STR", strength.Label);
             Assert.AreEqual("20 (+2)", strength.Value);
+
+            var experience = state.PlayerStats.Find(s => s.Name == "Experience");
+            Assert.IsNotNull(experience);
+            Assert.AreEqual("XP", experience.Label);
+            Assert.AreEqual("37", experience.Value);
 
             var av = state.PlayerStats.Find(s => s.Name == "AV");
             Assert.IsNotNull(av);
@@ -4325,6 +4974,47 @@ namespace CavesOfOoo.Tests
             return entity;
         }
 
+        private Entity CreateThrowableTonicItem(
+            string healing = "",
+            bool drink = true,
+            string statBoost = "",
+            string cureEffect = null,
+            string statusEffectName = null,
+            int effectDuration = 0,
+            string effectDamageDice = "",
+            float effectMagnitude = 0f)
+        {
+            var entity = new Entity();
+            entity.BlueprintName = "TestThrowableTonic";
+            entity.Tags["Item"] = "";
+            entity.Tags["Tonic"] = "";
+            entity.AddPart(new RenderPart { DisplayName = "test tonic" });
+            entity.AddPart(new PhysicsPart { Takeable = true, Weight = 1, Category = "Tonics" });
+            entity.AddPart(new HandlingPart
+            {
+                GripType = GripType.OneHand,
+                Carryable = true,
+                Throwable = true
+            });
+            entity.AddPart(new TonicPart { Healing = healing, Drink = drink, StatBoost = statBoost });
+
+            if (!string.IsNullOrEmpty(cureEffect))
+                entity.AddPart(new CureTonicPart { CureEffect = cureEffect });
+
+            if (!string.IsNullOrEmpty(statusEffectName))
+            {
+                entity.AddPart(new StatusTonicPart
+                {
+                    EffectName = statusEffectName,
+                    EffectDuration = effectDuration,
+                    EffectDamageDice = effectDamageDice,
+                    EffectMagnitude = effectMagnitude
+                });
+            }
+
+            return entity;
+        }
+
         private Entity CreateStackableItem(string blueprintName, int weight, int stackCount)
         {
             var entity = new Entity();
@@ -4363,6 +5053,34 @@ namespace CavesOfOoo.Tests
             return entity;
         }
 
+        private Entity CreateHandledItem(
+            int physicsWeight,
+            GripType gripType = GripType.OneHand,
+            int handlingWeight = 0,
+            int minLiftStrength = 0,
+            int minThrowStrength = 0,
+            bool carryable = true,
+            bool throwable = true,
+            int carryMovePenalty = 0)
+        {
+            var entity = new Entity();
+            entity.BlueprintName = "HandledItem";
+            entity.Tags["Item"] = "";
+            entity.AddPart(new RenderPart { DisplayName = "handled item" });
+            entity.AddPart(new PhysicsPart { Takeable = true, Weight = physicsWeight });
+            entity.AddPart(new HandlingPart
+            {
+                GripType = gripType,
+                Carryable = carryable,
+                Throwable = throwable,
+                Weight = handlingWeight,
+                MinLiftStrength = minLiftStrength,
+                MinThrowStrength = minThrowStrength,
+                CarryMovePenalty = carryMovePenalty
+            });
+            return entity;
+        }
+
         private Entity CreateWeapon(string damage, int penBonus)
         {
             var entity = new Entity();
@@ -4371,6 +5089,38 @@ namespace CavesOfOoo.Tests
             entity.AddPart(new PhysicsPart { Takeable = true, Weight = 5 });
             entity.AddPart(new MeleeWeaponPart { BaseDamage = damage, PenBonus = penBonus });
             entity.AddPart(new EquippablePart { Slot = "Hand" });
+            return entity;
+        }
+
+        private Entity CreateThrowableWeapon(string damage, int penBonus, int weight = 5, GripType gripType = GripType.OneHand)
+        {
+            var entity = CreateWeapon(damage, penBonus);
+            var physics = entity.GetPart<PhysicsPart>();
+            if (physics != null)
+                physics.Weight = weight;
+            entity.AddPart(new HandlingPart
+            {
+                GripType = gripType,
+                Throwable = true,
+                Carryable = true
+            });
+            return entity;
+        }
+
+        private Entity CreateTargetDummy(int hitpoints)
+        {
+            var entity = new Entity();
+            entity.BlueprintName = "TargetDummy";
+            entity.Tags["Creature"] = "";
+            entity.AddPart(new RenderPart { DisplayName = "target dummy" });
+            entity.AddPart(new PhysicsPart { Solid = true });
+            entity.Statistics["Hitpoints"] = new Stat
+            {
+                Name = "Hitpoints",
+                BaseValue = hitpoints,
+                Min = 0,
+                Max = hitpoints
+            };
             return entity;
         }
 

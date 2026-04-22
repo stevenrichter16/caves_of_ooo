@@ -20,7 +20,7 @@ namespace CavesOfOoo.Core
             "Dagger", "ShortSword", "LongSword", "Mace", "Spear", "Hatchet",
             "Cudgel", "Buckler", "LeatherArmor", "ChainMail", "IronHelmet",
             "LeatherBoots", "LeatherGloves", "Cloak",
-            "HealingTonic", "SpeedTonic", "StrengthTonic",
+            "HealingTonic", "PoisonTonic", "FireTonic", "SpeedTonic", "StrengthTonic",
             "Starapple", "Mushroom", "DriedMeat"
         };
 
@@ -28,14 +28,14 @@ namespace CavesOfOoo.Core
         {
             "Dagger", "ShortSword", "Mace", "Spear", "Hatchet",
             "Cudgel", "Buckler", "LeatherArmor", "Cloak",
-            "HealingTonic", "Mushroom", "SilverSand"
+            "HealingTonic", "PoisonTonic", "Mushroom", "SilverSand"
         };
 
         private static readonly string[] ImprovedWellTradeGoods =
         {
             "Dagger", "ShortSword", "LongSword", "Mace", "Spear", "Hatchet",
             "Buckler", "LeatherArmor", "ChainMail", "Cloak",
-            "HealingTonic", "SpeedTonic", "StrengthTonic",
+            "HealingTonic", "PoisonTonic", "FireTonic", "SpeedTonic", "StrengthTonic",
             "Starapple", "Mushroom", "DriedMeat", "Starapple", "DriedMeat"
         };
 
@@ -68,7 +68,7 @@ namespace CavesOfOoo.Core
                 for (int i = 0; i < itemCount; i++)
                 {
                     string blueprint = goods[rng.Next(goods.Length)];
-                    var item = factory.CreateEntity(blueprint);
+                    var item = TryCreateEntity(factory, blueprint);
                     if (item != null)
                         inv.AddObject(item);
                 }
@@ -78,7 +78,7 @@ namespace CavesOfOoo.Core
                     && (site.Stage == RepairStage.Fouled || site.Stage == RepairStage.TemporarilyPurified)
                     && !HasItem(inv, SettlementRepairDefinitions.SilverSandBlueprint))
                 {
-                    var silverSand = factory.CreateEntity(SettlementRepairDefinitions.SilverSandBlueprint);
+                    var silverSand = TryCreateEntity(factory, SettlementRepairDefinitions.SilverSandBlueprint);
                     if (silverSand != null)
                         inv.AddObject(silverSand);
                 }
@@ -114,6 +114,14 @@ namespace CavesOfOoo.Core
             }
 
             return false;
+        }
+
+        private static Entity TryCreateEntity(EntityFactory factory, string blueprint)
+        {
+            if (factory == null || string.IsNullOrEmpty(blueprint) || !factory.Blueprints.ContainsKey(blueprint))
+                return null;
+
+            return factory.CreateEntity(blueprint);
         }
     }
 }

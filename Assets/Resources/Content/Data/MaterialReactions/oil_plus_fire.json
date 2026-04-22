@@ -1,0 +1,19 @@
+{
+  "Reactions": [
+    {
+      "ID": "oil_plus_fire",
+      "Priority": 50,
+      "Conditions": {
+        "SourceState": "Burning",
+        "TargetMaterialTag": "Oil",
+        "MinTemperature": 150,
+        "MaxMoisture": 0.35
+      },
+      "Effects": [
+        { "Type": "ModifyBurnIntensity", "FloatValue": 2.0, "StringValue": "" },
+        { "Type": "ModifyFuelConsumption", "FloatValue": 3.0, "StringValue": "" },
+        { "Type": "EmitBonusHeat", "FloatValue": 50.0, "StringValue": "" }
+      ]
+    }
+  ]
+}

@@ -38,7 +38,7 @@ namespace CavesOfOoo.Core
 
             BiomeType biome = WorldMap.GetBiome(wx, wy);
 
-            // Check for POI -- villages and lairs get special pipelines
+            // Check for POI -- villages, lairs, and river chunks get special pipelines
             var poi = WorldMap.GetPOI(wx, wy);
             if (poi != null)
             {
@@ -51,6 +51,8 @@ namespace CavesOfOoo.Core
                     case POIType.MerchantCamp:
                         // Merchant camps use normal biome pipeline + trade stock
                         break;
+                    case POIType.RiverChunk:
+                        return CreateRiverChunkPipeline();
                 }
             }
 
@@ -85,6 +87,7 @@ namespace CavesOfOoo.Core
         {
             var pipeline = ZoneGenerationPipeline.CreateCavePipeline(PopulationTable.GetBiomeTable(BiomeType.Cave, tier));
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
+            pipeline.AddBuilder(new StartingNeighborhoodBuilder());
             return pipeline;
         }
 
@@ -109,6 +112,7 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new DesertBuilder());
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
+            pipeline.AddBuilder(new StartingNeighborhoodBuilder());
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Desert, tier)));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             return pipeline;
@@ -120,6 +124,7 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new JungleBuilder());
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
+            pipeline.AddBuilder(new StartingNeighborhoodBuilder());
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Jungle, tier)));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             return pipeline;
@@ -131,6 +136,7 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new RuinsBuilder());
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
+            pipeline.AddBuilder(new StartingNeighborhoodBuilder());
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Ruins, tier)));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             return pipeline;
@@ -142,6 +148,23 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new VillageBuilder(biome, poi, SettlementManager));
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
+            // Narrow HTML-style water channel running west → east along the
+            // BOTTOM of the village. halfWidth=2.0 gives a ~4-cell-tall
+            // channel; crossCenterOffset=+8 places the centerline around
+            // y=20 (zone midpoint 12.5 + 8), with the river occupying roughly
+            // rows 17–23. skipBanks=true keeps cells outside the channel as
+            // normal village ground. clearSolidEntities=true bulldozes any
+            // walls / wells / ovens / fences in the river's path — the
+            // river takes priority over village layout. Priority 3850
+            // runs before VillagePopulationBuilder (4000) so NPCs don't
+            // spawn in water (though they may still spawn on cells where
+            // we just removed structures — acceptable collateral).
+            pipeline.AddBuilder(new RiverChunkBuilder(
+                halfWidthBase: 2.0f,
+                skipBanks: true,
+                direction: RiverFlowDirection.East,
+                crossCenterOffset: 8,
+                clearSolidEntities: true));
             pipeline.AddBuilder(new VillagePopulationBuilder(poi, SettlementManager));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             return pipeline;
@@ -153,6 +176,19 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new LairBuilder(biome, poi));
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new LairPopulationBuilder(biome, poi));
+            return pipeline;
+        }
+
+        /// <summary>
+        /// Pipeline for POIType.RiverChunk zones — the entire 80×25 grid
+        /// is the river.ascii demo. No village buildings, no NPCs, no
+        /// connectivity pass (every cell is water or bank, both passable).
+        /// Just the faithful-port builder.
+        /// </summary>
+        private ZoneGenerationPipeline CreateRiverChunkPipeline()
+        {
+            var pipeline = new ZoneGenerationPipeline();
+            pipeline.AddBuilder(new RiverChunkBuilder());
             return pipeline;
         }
 
@@ -217,9 +253,8 @@ namespace CavesOfOoo.Core
                 return;
 
             SettlementManager.GetOrCreateSettlement(zoneID, poi);
-            SettlementManager.AdvanceSettlement(zoneID, GetCurrentTurn());
-
-            if (ActiveZone == null || ActiveZone.ZoneID != zoneID)
+            bool changed = SettlementManager.AdvanceSettlement(zoneID, GetCurrentTurn());
+            if (changed && (ActiveZone == null || ActiveZone.ZoneID != zoneID))
                 UnloadZone(zoneID);
         }
 

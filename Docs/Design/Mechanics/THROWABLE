@@ -1,0 +1,269 @@
+# Throwing & Environmental Objects
+
+## Concept Summary
+Create a universal **grab, carry, and throw** system that applies to the player, allies, and enemies. Nearby environmental objects become improvised weapons, utility tools, or elemental payloads during combat and exploration.
+
+This supports emergent moments such as:
+- Throwing a burning log from a campfire at an ice enemy.
+- Throwing rocks or light debris to interrupt enemy casts.
+- Using thrown objects as a fallback while a grimoire spell is on cooldown.
+- Letting allies and enemies exploit the same battlefield objects the player sees.
+
+## Design Goal
+Make the world itself part of combat decision-making rather than background decoration. Thrown objects should:
+- Bridge downtime between ability uses.
+- Reward environmental awareness.
+- Preserve build identity through Strength gating and handling penalties.
+- Create readable systemic combat because all sides use the same rules.
+
+## Core Interaction Loop
+All entities can:
+1. Detect nearby throwable objects.
+2. Attempt pickup based on Strength vs weight.
+3. Carry or hold the object with movement/combat penalties.
+4. Throw with force based on Strength, weight, and object properties.
+5. Resolve impact as kinetic damage plus material payload.
+6. Apply secondary effects to targets, tiles, and nearby actors.
+
+## Universal Object Data
+Every throwable-capable item or world prop should expose a shared baseline data shape.
+
+### Required fields
+- `WeightKg` or equivalent mass value.
+- `BulkClass`: Tiny, Light, Medium, Heavy, Massive.
+- `GripType`: OneHand, TwoHand, Awkward, DragOnly.
+- `Material`: wood, metal, stone, flesh, fungal, ceramic, etc.
+- `StateTags`: burning, frozen, electrified, poisoned, brittle, wet, explosive.
+- `Throwable`: whether it can be thrown at all.
+- `Carryable`: whether it can be lifted or dragged.
+
+### Suggested initial weight classes
+- Tiny: 1-2
+- Light: 3-5
+- Medium: 6-10
+- Heavy: 11-18
+- Massive: 19+
+
+### Fast defaulting strategy
+- Missing explicit weights get defaults by category: bottle, sword, log, crate, barrel, statue fragment.
+- Stackables can use per-unit weight.
+- Large props can break into smaller throwable pieces.
+
+## Strength-Gated Pickup and Throw Rules
+
+### Pickup gate
+Use Strength, Might, or equivalent physical-power stat.
+
+Suggested rule:
+
+`CanLift = (Strength * LiftFactor) >= EffectiveWeight`
+
+Where:
+
+`EffectiveWeight = WeightKg * condition modifiers`
+
+Condition modifiers can include wetness, freezing, awkward shape, or unstable burning state.
+
+If failed:
+- Cannot pick up.
+- May only drag if `GripType` allows it.
+- UI should explain the failure clearly.
+
+### Throw gate
+Suggested rule:
+
+`CanThrow = CanLift AND Throwable == true`
+
+Important behavior:
+- Some objects can be lifted but only tossed weakly.
+- Awkward or oversized objects may require charge-up or two hands.
+- Heavy-object use should stay meaningful rather than universally optimal.
+
+## Throw Force, Range, and Damage
+Lighter objects should be throwable farther and faster, while heavier objects deliver more short-range impact if the user is strong enough.
+
+### Prototype-friendly formula set
+Use a simple starter model:
+
+`SurplusStrength = max(0, StrengthCapacity - EffectiveWeight)`
+
+`ThrowVelocity = BaseVelocity * (1 + SurplusStrength * VelocityScale)`
+
+`ImpactKinetic = WeightKg * ThrowVelocity * KineticScale`
+
+This creates the intended behavior:
+- Heavy object: shorter range, bigger stagger payoff if it lands.
+- Light object: longer range, better hit quality, still dangerous with high Strength.
+
+### Optional alternate tuning formula
+If you want a slightly more curved scaling model:
+
+`throw_force = base_force * (Strength / weight)^0.7`
+
+This is useful for early prototyping because it naturally makes light objects feel better to throw without many extra rules.
+
+### Impact result can combine
+- Mass component.
+- Velocity component.
+- Material or shape modifier: sharp, blunt, brittle, jagged.
+- Object condition: cracked, burning, frozen, unstable.
+
+## Material Payload System
+Thrown objects should carry their current material state into combat.
+
+### Suggested payload tags
+- `OnFire`
+- `Frozen`
+- `Electrified`
+- `Toxic`
+- `Oily`
+- `Explosive`
+
+### Example interaction
+**Burning log -> Ice enemy**
+- Impact damage.
+- Fire damage over time.
+- Bonus melt or shatter effects.
+- Possible fire surface on nearby tiles.
+
+This is the strongest part of the mechanic because it turns battlefield objects into cooldown filler, combo pieces, and environmental counters.
+
+## Combat Use Cases
+
+### Player fallback during cooldowns
+- Use nearby props while grimoire spells cool down.
+- Maintain pressure without flattening spell identity.
+
+### Enemy behavior
+- Brutes prefer heavy close throws.
+- Skirmishers prefer light debris from safer range.
+- Elemental enemies prefer objects that match their element or counter the player.
+
+### Ally behavior
+- Allies can set up combos, such as oil first and ignition second.
+
+## AI Decision Heuristics
+AI should evaluate throwable objects with a utility score instead of scripted one-off behaviors.
+
+Suggested score:
+
+`Score = (HitChance * TotalDamageValue + UtilityValue - RiskValue) / ActionCost`
+
+Where:
+- `TotalDamageValue` = kinetic + elemental + status potential
+- `UtilityValue` includes interrupt chance, knockback, terrain denial, or combo setup
+- `RiskValue` includes self-exposure, friendly fire, or losing cover
+- `ActionCost` includes pickup distance, wind-up, and opportunity loss
+
+### Practical AI priorities
+1. If best ability is unavailable and target is in throw range, search for throwable objects.
+2. Prefer elemental counters when obvious.
+3. Prefer light objects for interrupts and quick pressure.
+4. Prefer heavy objects for armored or stationary targets.
+5. Avoid pickup actions under extreme threat.
+
+## Status and Crowd-Control Hooks
+Thrown objects should be more than damage packets.
+
+Possible outcomes:
+- Knockback.
+- Knockdown.
+- Stagger and cast interruption.
+- Limb injury on very high kinetic impacts.
+- Ground effects such as fire patches, poison puddles, or ice slicks.
+
+## UX and Readability
+Players need clear feedback about what can be lifted, carried, and thrown.
+
+### UI feedback
+- Highlight throwable objects in range.
+- Show weight class and Strength requirement.
+- Show current state tags: burning, frozen, electrified, etc.
+- Show throw arc preview with confidence coloring.
+
+Suggested throw preview colors:
+- Green: strong legal throw
+- Yellow: weak or unstable throw
+- Red: cannot throw
+
+### Failure messaging
+Examples:
+- `Too heavy. Need STR 12, have STR 9.`
+- `You can drag it, but not throw it.`
+
+### Animation and presentation
+- Distinct pickup tiers: quick scoop, strain lift, overhead heave.
+- Clear carry silhouette in crowded combat.
+- Distinct hit reactions by impact class.
+- Visible elemental transfer: embers, frost trails, sparks, toxin splash.
+
+## Progression Hooks
+This system supports a full Strength or battlefield-control build path.
+
+### Example perks
+- Power Clean: lift one weight class higher.
+- Quick Hands: faster pickup and throw wind-up.
+- Pitcher's Form: increased range with light and medium objects.
+- Brutal Heave: heavy throws gain knockdown chance.
+- Elemental Grip: safe handling of hazardous objects.
+- Ricochet Savant: improved bounce shots.
+
+### Grimoire synergy hooks
+- Next throw after casting gains bonus force.
+- Throwing during cooldown slightly reduces cooldown.
+- Elemental throws can prime or consume spell interactions.
+
+## Data Model Sketch
+```yaml
+ThrowableObject:
+  id: burning_log
+  weightKg: 18.0
+  bulkClass: Heavy
+  gripType: TwoHand
+  throwable: true
+  baseVelocity: 8.0
+  kineticScale: 1.2
+  materialTags: [Wood, Fire]
+  onHit:
+    - applyDamage: { type: Blunt, scale: Kinetic }
+    - applyStatus: Burning
+    - conditionalBonus:
+        ifTargetTag: Ice
+        bonusType: ThermalShatter
+```
+
+## Balancing Guardrails
+- Start generous so the system is fun immediately.
+- Tune throw damage separately from spell damage.
+- Heavy objects should be limited by setup time, carry penalties, and exposure.
+- Light objects should remain useful for non-Strength builds.
+- Cap maximum range so thrown debris does not replace dedicated ranged tools.
+- Add stamina or action cost scaling with weight.
+- Some bosses should resist knockback to avoid hard-lock loops.
+
+## Incremental Implementation Plan
+
+### Phase 1: MVP
+- Add baseline weights to all pickup-capable objects.
+- Add `Carryable` and `Throwable` tagging.
+- Add Strength-gated pickup and throw rules.
+- Add throw arc, velocity, and impact resolution.
+- Add basic payload transfer for at least burning and frozen.
+- Add simple AI throwable usage during cooldown windows.
+
+### Phase 2: Depth
+- Add richer elemental combinations.
+- Add material-specific breakage, splash, and ricochet behavior.
+- Add throw-specific perks and build hooks.
+- Expand AI contextual choices and enemy role preferences.
+
+### Phase 3: Encounter Design
+- Build combat spaces where battlefield objects matter on purpose.
+- Create enemy kits that contest shared throwable resources.
+- Add ally combo behaviors and object-denial scenarios.
+
+## Quick Prototype Scenarios
+1. Campfire duel: player and ice enemy both contest burning logs as weapons.
+2. Cooldown bridge: player uses environmental throws while fire grimoire is cooling down.
+3. Strength fantasy test: high-Strength builds throw pebbles like bullets, lower-Strength builds rely on lighter utility objects.
+4. Ally combo test: ally throws oil, player ignites it.

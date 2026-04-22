@@ -37,10 +37,14 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public static Tile GetTile(char c)
         {
-            if (_tileCache == null)
+            if (NeedsTilesetRebuild())
                 GenerateTileset();
 
-            if (_tileCache.TryGetValue(c, out Tile tile))
+            if (_tileCache.TryGetValue(c, out Tile tile) && tile != null && tile.sprite != null)
+                return tile;
+
+            GenerateTileset();
+            if (_tileCache.TryGetValue(c, out tile) && tile != null && tile.sprite != null)
                 return tile;
 
             // Fallback to '?' for unknown characters
@@ -53,7 +57,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public static Texture2D GetAtlasTexture()
         {
-            if (_atlasTexture == null)
+            if (NeedsTilesetRebuild())
                 GenerateTileset();
             return _atlasTexture;
         }
@@ -563,14 +567,40 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public static Tile GetTextTile(char c)
         {
-            if (_textTileCache == null)
+            if (NeedsTextTilesetRebuild())
                 GenerateTextTileset();
 
-            if (_textTileCache.TryGetValue(c, out Tile tile))
+            if (_textTileCache.TryGetValue(c, out Tile tile) && tile != null && tile.sprite != null)
+                return tile;
+
+            GenerateTextTileset();
+            if (_textTileCache.TryGetValue(c, out tile) && tile != null && tile.sprite != null)
                 return tile;
 
             _textTileCache.TryGetValue('?', out tile);
             return tile;
+        }
+
+        private static bool NeedsTilesetRebuild()
+        {
+            if (_tileCache == null || _atlasTexture == null)
+                return true;
+
+            if (_tileCache.TryGetValue('?', out Tile fallback))
+                return fallback == null || fallback.sprite == null;
+
+            return true;
+        }
+
+        private static bool NeedsTextTilesetRebuild()
+        {
+            if (_textTileCache == null || _textAtlasTexture == null)
+                return true;
+
+            if (_textTileCache.TryGetValue('?', out Tile fallback))
+                return fallback == null || fallback.sprite == null;
+
+            return true;
         }
 
         private static void GenerateTextTileset()

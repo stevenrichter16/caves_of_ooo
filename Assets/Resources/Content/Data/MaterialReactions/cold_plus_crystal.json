@@ -1,0 +1,17 @@
+{
+  "Reactions": [
+    {
+      "ID": "cold_plus_crystal",
+      "Priority": 46,
+      "Conditions": {
+        "SourceState": "Frozen",
+        "TargetMaterialTag": "Crystal",
+        "MaxTemperature": 0,
+        "MinBrittleness": 0.3
+      },
+      "Effects": [
+        { "Type": "DealDamage", "FloatValue": 4.0, "StringValue": "" }
+      ]
+    }
+  ]
+}

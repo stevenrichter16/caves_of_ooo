@@ -152,6 +152,91 @@ namespace CavesOfOoo.Tests
             Assert.LessOrEqual(cursorState.Y, maxY);
         }
 
+        [Test]
+        public void SidebarLogScrollCommand_WorksInNormalAndLookMode_WithoutSpendingTurn()
+        {
+            var zone = new Zone("LookZone");
+            var player = CreatePlayer();
+            zone.AddEntity(player, 10, 10);
+
+            var turnManager = new TurnManager();
+            turnManager.AddEntity(player);
+            turnManager.ProcessUntilPlayerTurn();
+
+            CreateZoneTilemap(out ZoneRenderer zoneRenderer);
+            zoneRenderer.PlayerEntity = player;
+            zoneRenderer.SetZone(zone);
+
+            Camera camera = CreateMainCamera(new Vector3(25f, 20f, -10f), 17f);
+            Camera sidebarCamera = CreateSidebarCamera();
+            ConfigureSplitLayout(camera, sidebarCamera, zone, player);
+            zoneRenderer.SetSidebarCamera(sidebarCamera);
+
+            for (int i = 0; i < SidebarStateBuilder.SidebarLogMessageLimit; i++)
+                MessageLog.Add("msg-" + i.ToString("00"));
+
+            InvokeNonPublic(zoneRenderer, "LateUpdate");
+
+            var inputGo = new GameObject("InputHandler");
+            var input = inputGo.AddComponent<InputHandler>();
+            input.PlayerEntity = player;
+            input.CurrentZone = zone;
+            input.TurnManager = turnManager;
+            input.ZoneRenderer = zoneRenderer;
+
+            bool scrolledOlder = (bool)InvokeNonPublic(input, "TryHandleSidebarLogScrollCommand", true);
+
+            Assert.IsTrue(scrolledOlder);
+            Assert.Greater(zoneRenderer.SidebarLogScrollOffsetRows, 0);
+            Assert.IsTrue(turnManager.WaitingForInput);
+            Assert.AreEqual((10, 10), zone.GetEntityPosition(player));
+
+            SetPrivateInputState(input, "LookMode");
+            int offsetBefore = zoneRenderer.SidebarLogScrollOffsetRows;
+
+            bool scrolledNewer = (bool)InvokeNonPublic(input, "TryHandleSidebarLogScrollCommand", false);
+
+            Assert.IsTrue(scrolledNewer);
+            Assert.Less(zoneRenderer.SidebarLogScrollOffsetRows, offsetBefore);
+            Assert.IsTrue(turnManager.WaitingForInput);
+            Assert.AreEqual((10, 10), zone.GetEntityPosition(player));
+        }
+
+        [Test]
+        public void SidebarLogScrollCommand_IsIgnoredOutsideNormalAndLookMode()
+        {
+            var zone = new Zone("LookZone");
+            var player = CreatePlayer();
+            zone.AddEntity(player, 10, 10);
+
+            CreateZoneTilemap(out ZoneRenderer zoneRenderer);
+            zoneRenderer.PlayerEntity = player;
+            zoneRenderer.SetZone(zone);
+
+            Camera camera = CreateMainCamera(new Vector3(25f, 20f, -10f), 17f);
+            Camera sidebarCamera = CreateSidebarCamera();
+            ConfigureSplitLayout(camera, sidebarCamera, zone, player);
+            zoneRenderer.SetSidebarCamera(sidebarCamera);
+
+            for (int i = 0; i < SidebarStateBuilder.SidebarLogMessageLimit; i++)
+                MessageLog.Add("msg-" + i.ToString("00"));
+
+            InvokeNonPublic(zoneRenderer, "LateUpdate");
+
+            var inputGo = new GameObject("InputHandler");
+            var input = inputGo.AddComponent<InputHandler>();
+            input.PlayerEntity = player;
+            input.CurrentZone = zone;
+            input.ZoneRenderer = zoneRenderer;
+
+            SetPrivateInputState(input, "InventoryOpen");
+
+            bool handled = (bool)InvokeNonPublic(input, "TryHandleSidebarLogScrollCommand", true);
+
+            Assert.IsFalse(handled);
+            Assert.AreEqual(0, zoneRenderer.SidebarLogScrollOffsetRows);
+        }
+
         private static Entity CreatePlayer()
         {
             var player = new Entity { BlueprintName = "Player" };
@@ -177,6 +262,38 @@ namespace CavesOfOoo.Tests
             FieldInfo field = typeof(ZoneRenderer).GetField("_worldCursorRenderer", BindingFlags.Instance | BindingFlags.NonPublic);
             if (field.GetValue(zoneRenderer) == null)
                 InvokeNonPublic(zoneRenderer, "Awake");
+        }
+
+        private static Camera CreateMainCamera(Vector3 position, float orthographicSize)
+        {
+            var cameraGo = new GameObject("Main Camera");
+            cameraGo.tag = "MainCamera";
+            var camera = cameraGo.AddComponent<Camera>();
+            camera.orthographic = true;
+            camera.orthographicSize = orthographicSize;
+            camera.aspect = 16f / 9f;
+            camera.transform.position = position;
+            return camera;
+        }
+
+        private static Camera CreateSidebarCamera()
+        {
+            var cameraGo = new GameObject("Sidebar Camera");
+            var camera = cameraGo.AddComponent<Camera>();
+            camera.orthographic = true;
+            camera.transform.position = new Vector3(0f, 0f, -10f);
+            return camera;
+        }
+
+        private static void ConfigureSplitLayout(Camera camera, Camera sidebarCamera, Zone zone, Entity player)
+        {
+            var follow = camera.gameObject.AddComponent<CameraFollow>();
+            follow.Player = player;
+            follow.CurrentZone = zone;
+            follow.SidebarCamera = sidebarCamera;
+            follow.ReservedSidebarWidthChars = 34;
+            follow.SidebarReferenceZoom = 20f;
+            follow.SnapToPlayer();
         }
 
         private static object InvokeNonPublic(object instance, string methodName, params object[] args)

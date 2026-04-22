@@ -24,8 +24,8 @@ namespace CavesOfOoo.Core
 
         private bool HandleRender(GameEvent e)
         {
-            // Always render the campfire glyph in yellow
-            e.SetParameter("ColorString", "&Y");
+            _renderFrameCounter++;
+            e.SetParameter("ColorString", _renderFrameCounter % 6 == 0 ? "&Y" : "&R");
             return true;
         }
 

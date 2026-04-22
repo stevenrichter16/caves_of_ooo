@@ -201,6 +201,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     if (insertAt < 0 || insertAt > inventory.Objects.Count)
                         insertAt = inventory.Objects.Count;
                     inventory.Objects.Insert(insertAt, item);
+                    inventory.RefreshHandlingCarryPenalty();
                 }
                 else if (snapshot.CarriedIndex >= 0)
                 {
@@ -212,6 +213,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                         if (insertAt < 0 || insertAt > inventory.Objects.Count)
                             insertAt = inventory.Objects.Count;
                         inventory.Objects.Insert(insertAt, item);
+                        inventory.RefreshHandlingCarryPenalty();
                     }
                 }
 

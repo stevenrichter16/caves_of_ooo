@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using CavesOfOoo.Core;
 using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
 using UnityEngine;
 
 namespace CavesOfOoo.Rendering
@@ -57,8 +59,23 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public float MoveRepeatDelay = 0.12f;
 
+        /// <summary>
+        /// Minimum time between auto-repeating wait-turn ticks while the
+        /// period/numpad-5 key is HELD. Default 0.1s → 10 turns per second.
+        /// Independent of (and therefore can be faster than) the upstream
+        /// <see cref="MoveRepeatDelay"/>; the wait-hold branch lives ABOVE
+        /// the rate-limit gate in Update() so setting this below 0.12f
+        /// actually delivers the promised rate.
+        /// </summary>
+        public float WaitHoldDelay = 0.1f;
+
         private float _lastMoveTime;
+        // Initialized to large-negative so the first tap of `.` fires
+        // instantly (Time.time - (-999) always exceeds WaitHoldDelay).
+        private float _lastWaitTime = -999f;
         private System.Random _combatRng = new System.Random();
+        private const int FullscreenUiGridWidth = 80;
+        private const int FullscreenUiGridHeight = 45;
 
         /// <summary>
         /// Input state machine for ability targeting.
@@ -69,6 +86,8 @@ namespace CavesOfOoo.Rendering
         {
             Normal,
             LookMode,
+            ThrowTargeting,
+            ThrowPopupOpen,
             AwaitingDirection,
             WaitingForFxResolution,
             InventoryOpen,
@@ -79,13 +98,63 @@ namespace CavesOfOoo.Rendering
             TradeOpen,
             AwaitingAttackConfirm,
             FactionOpen,
-            AnnouncementOpen
+            AnnouncementOpen,
+            WorldActionMenuOpen  // Phase 4d — look-mode click/Enter on a cell opens this
         }
         private InputState _inputState = InputState.Normal;
+
+        // State we should return to when the announcement queue drains.
+        // Captured at the moment the FIRST announcement in a burst opens so
+        // that chained Opens (popup N → popup N+1) don't overwrite it. If an
+        // announcement fires while the player has the inventory open, we
+        // restore InventoryOpen — not Normal — and put the UI camera back
+        // where it was instead of snapping to the world.
+        private InputState _stateBeforeAnnouncement = InputState.Normal;
         private ActivatedAbility _pendingAbility;
         private Entity _pendingAttackTarget;
+        private int _selectedHotbarSlot = -1;
         private readonly WorldCursorState _worldCursorState = new WorldCursorState();
         private Vector3 _lastLookMousePosition;
+        private ThrowTargetState _pendingThrowTarget;
+        private ThrowPopupState _throwPopup;
+
+        private enum ThrowOriginKind
+        {
+            Inventory,
+            LookWorld
+        }
+
+        private enum ThrowPopupKind
+        {
+            SourcePicker,
+            ActionPicker
+        }
+
+        private sealed class ThrowTargetState
+        {
+            public Entity Item;
+            public ThrowOriginKind Origin;
+            public int SourceTileX;
+            public int SourceTileY;
+        }
+
+        private sealed class ThrowPopupState
+        {
+            public ThrowPopupKind Kind;
+            public string Title;
+            public List<ThrowPopupOption> Options = new List<ThrowPopupOption>();
+            public int CursorIndex;
+            public int ScrollOffset;
+            public int SourceTileX;
+            public int SourceTileY;
+            public Entity SelectedItem;
+        }
+
+        private sealed class ThrowPopupOption
+        {
+            public string Label;
+            public Entity Item;
+        }
 
         /// <summary>
         /// The dialogue UI component. Set by GameBootstrap.
@@ -120,6 +189,14 @@ namespace CavesOfOoo.Rendering
         public AnnouncementUI AnnouncementUI { get; set; }
 
         /// <summary>
+        /// World-action menu popup (Phase 4d). Opens when the player clicks
+        /// or presses Enter on a cell in look mode. Lists actions (Examine,
+        /// Open, Chat, etc.) gathered from the target entity's parts.
+        /// Set by GameBootstrap.
+        /// </summary>
+        public WorldActionMenuUI WorldActionMenuUI { get; set; }
+
+        /// <summary>
         /// Entity factory used by debug crafting flows.
         /// </summary>
         public EntityFactory EntityFactory { get; set; }
@@ -127,15 +204,20 @@ namespace CavesOfOoo.Rendering
 
         private void Update()
         {
-            if (PlayerEntity == null || CurrentZone == null || TurnManager == null)
-                return;
+            using (PerformanceMarkers.Input.Update.Auto())
+            {
+                if (PlayerEntity == null || CurrentZone == null || TurnManager == null)
+                    return;
 
-            // Only accept input when it's the player's turn
-            if (!TurnManager.WaitingForInput)
-                return;
+                // Only accept input when it's the player's turn
+                if (!TurnManager.WaitingForInput)
+                    return;
 
-            if (TurnManager.CurrentActor != PlayerEntity)
-                return;
+                if (TurnManager.CurrentActor != PlayerEntity)
+                    return;
+
+            EnsureHotbarSelectionValid();
+            SyncHotbarState();
 
             if (_inputState == InputState.WaitingForFxResolution)
             {
@@ -147,6 +229,40 @@ namespace CavesOfOoo.Rendering
             {
                 HandleLookModeInput();
                 return;
+            }
+
+            if (_inputState == InputState.ThrowTargeting)
+            {
+                HandleThrowTargetingInput();
+                return;
+            }
+
+            if (_inputState == InputState.ThrowPopupOpen)
+            {
+                HandleThrowPopupInput();
+                return;
+            }
+
+            // Wait/skip turn (tap or hold) — placed BEFORE the general rate
+            // limit so the hold cadence is independent of MoveRepeatDelay.
+            // With WaitHoldDelay=0.1 → 10 turns/sec while '.' is held; the
+            // upstream 120ms rate limit would otherwise cap us to ~8/sec.
+            // Gated on InputState.Normal so holding '.' while the inventory
+            // or any popup is open doesn't accidentally advance turns (the
+            // popup's own HandleXxxInput early-returns below this point).
+            if (_inputState == InputState.Normal)
+            {
+                bool waitShiftHeld = InputHelper.GetKey(KeyCode.LeftShift)
+                    || InputHelper.GetKey(KeyCode.RightShift);
+                if (!waitShiftHeld
+                    && (InputHelper.GetKey(KeyCode.Period) || InputHelper.GetKey(KeyCode.Keypad5))
+                    && Time.time - _lastWaitTime >= WaitHoldDelay)
+                {
+                    EndTurnAndProcess();
+                    _lastWaitTime = Time.time;
+                    _lastMoveTime = Time.time;
+                    return;
+                }
             }
 
             // Rate limit
@@ -161,6 +277,15 @@ namespace CavesOfOoo.Rendering
 
             if (_inputState == InputState.InventoryOpen)
             {
+                // If something the player just did from the inventory (e.g.
+                // reading a grimoire) queued an announcement, pop it now
+                // over the inventory instead of waiting for the inventory
+                // to close. TryOpenAnnouncement will flip state to
+                // AnnouncementOpen and CloseAnnouncement will return to
+                // InventoryOpen when the queue drains.
+                if (TryOpenAnnouncement())
+                    return;
+
                 HandleInventoryInput();
                 return;
             }
@@ -174,6 +299,12 @@ namespace CavesOfOoo.Rendering
             if (_inputState == InputState.ContainerPickerOpen)
             {
                 HandleContainerPickerInput();
+                return;
+            }
+
+            if (_inputState == InputState.WorldActionMenuOpen)
+            {
+                HandleWorldActionMenuInput();
                 return;
             }
 
@@ -217,15 +348,39 @@ namespace CavesOfOoo.Rendering
             if (TryOpenAnnouncement())
                 return;
 
-            if (Input.GetKeyDown(KeyCode.L))
+            if (TryHandleSidebarLogScrollInput())
+                return;
+
+            if (TryHandleHotbarInput())
+                return;
+
+            if (InputHelper.GetKeyDown(KeyCode.L))
             {
                 EnterLookMode();
                 _lastMoveTime = Time.time;
                 return;
             }
 
+            // Phase 10 — toggle the thought-log overlay. Non-blocking: unlike
+            // every other UI key above this point, 't' does NOT change
+            // _inputState, does NOT return early, and does NOT set
+            // _lastMoveTime. The player can flip the overlay and move on
+            // the same frame. The overlay just requests a redraw so the
+            // current thoughts show immediately; it refreshes on every
+            // RenderZone thereafter (i.e. whenever the player acts).
+            if (InputHelper.GetKeyDown(KeyCode.T))
+            {
+                if (ZoneRenderer != null)
+                {
+                    ZoneRenderer.ShowThoughtLog = !ZoneRenderer.ShowThoughtLog;
+                    RequestZoneRedraw("Overlay.ThoughtLog");
+                }
+                // Deliberately no `return` — fall through so the frame can
+                // also process movement/action keys pressed simultaneously.
+            }
+
             // Open inventory (I key)
-            if (Input.GetKeyDown(KeyCode.I))
+            if (InputHelper.GetKeyDown(KeyCode.I))
             {
                 OpenInventory();
                 _lastMoveTime = Time.time;
@@ -233,7 +388,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Open faction standings (F key)
-            if (Input.GetKeyDown(KeyCode.F))
+            if (InputHelper.GetKeyDown(KeyCode.F))
             {
                 OpenFaction();
                 _lastMoveTime = Time.time;
@@ -241,7 +396,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Debug: grant a random mutation from the current mutate pool.
-            if (Input.GetKeyDown(KeyCode.F6))
+            if (InputHelper.GetKeyDown(KeyCode.F6))
             {
                 TryDebugGrantRandomMutation();
                 _lastMoveTime = Time.time;
@@ -249,7 +404,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Debug: dump body part tree to console.
-            if (Input.GetKeyDown(KeyCode.F7))
+            if (InputHelper.GetKeyDown(KeyCode.F7))
             {
                 TryDebugDumpBodyParts();
                 _lastMoveTime = Time.time;
@@ -257,7 +412,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Debug: dismember a random non-mortal appendage.
-            if (Input.GetKeyDown(KeyCode.F8))
+            if (InputHelper.GetKeyDown(KeyCode.F8))
             {
                 TryDebugDismember();
                 _lastMoveTime = Time.time;
@@ -265,7 +420,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Debug: craft one known recipe through the command pipeline.
-            if (Input.GetKeyDown(KeyCode.F9))
+            if (InputHelper.GetKeyDown(KeyCode.F9))
             {
                 TryDebugCraftKnownRecipe();
                 _lastMoveTime = Time.time;
@@ -273,18 +428,22 @@ namespace CavesOfOoo.Rendering
             }
 
             // Debug: cycle well repair stage (Fouled → Purified → Repaired → Maintained → Fouled).
-            if (Input.GetKeyDown(KeyCode.P))
+            if (InputHelper.GetKeyDown(KeyCode.P))
             {
                 TryDebugCycleWellState();
                 _lastMoveTime = Time.time;
                 return;
             }
 
-            // Talk to NPC (C key + direction)
-            if (Input.GetKeyDown(KeyCode.C))
+            // Interact with an adjacent entity (C key + direction).
+            // Dispatches by what's in the target cell:
+            //   - ConversationPart  → talk to NPC
+            //   - ContainerPart     → open chest/container
+            //   - neither           → friendly "nothing there" log
+            if (InputHelper.GetKeyDown(KeyCode.C))
             {
                 _inputState = InputState.AwaitingTalkDirection;
-                MessageLog.Add("Talk — choose a direction.");
+                MessageLog.Add("Interact — choose a direction.");
                 _lastMoveTime = Time.time;
                 return;
             }
@@ -342,20 +501,23 @@ namespace CavesOfOoo.Rendering
             int abilitySlot = GetAbilitySlotInput();
             if (abilitySlot >= 0)
             {
+                _selectedHotbarSlot = abilitySlot;
+                SyncHotbarState();
                 TryActivateAbility(abilitySlot);
                 _lastMoveTime = Time.time;
+                return;
             }
 
             // Pickup item (G or comma)
-            if (Input.GetKeyDown(KeyCode.G) || Input.GetKeyDown(KeyCode.Comma))
+            if (InputHelper.GetKeyDown(KeyCode.G) || InputHelper.GetKeyDown(KeyCode.Comma))
             {
                 TryPickupItem();
                 _lastMoveTime = Time.time;
             }
 
             // Descend stairs (> key = Shift+Period)
-            if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-                && Input.GetKeyDown(KeyCode.Period))
+            if ((InputHelper.GetKey(KeyCode.LeftShift) || InputHelper.GetKey(KeyCode.RightShift))
+                && InputHelper.GetKeyDown(KeyCode.Period))
             {
                 TryUseStairs(goingDown: true);
                 _lastMoveTime = Time.time;
@@ -363,19 +525,16 @@ namespace CavesOfOoo.Rendering
             }
 
             // Ascend stairs (< key = Shift+Comma)
-            if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-                && Input.GetKeyDown(KeyCode.Comma))
+            if ((InputHelper.GetKey(KeyCode.LeftShift) || InputHelper.GetKey(KeyCode.RightShift))
+                && InputHelper.GetKeyDown(KeyCode.Comma))
             {
                 TryUseStairs(goingDown: false);
                 _lastMoveTime = Time.time;
                 return;
             }
 
-            // Wait/skip turn
-            if (Input.GetKeyDown(KeyCode.Period) || Input.GetKeyDown(KeyCode.Keypad5))
-            {
-                EndTurnAndProcess();
-                _lastMoveTime = Time.time;
+            // Wait/skip turn is handled above the rate-limit gate; see the
+            // "Wait/skip turn (tap or hold)" block earlier in this function.
             }
         }
 
@@ -450,8 +609,8 @@ namespace CavesOfOoo.Rendering
         {
             TurnManager.EndTurn(PlayerEntity, CurrentZone);
             TurnManager.ProcessUntilPlayerTurn();
-            if (ZoneRenderer != null)
-                ZoneRenderer.MarkDirty();
+            MaterialSimSystem.TickMaterialEntities(CurrentZone);
+            RequestZoneRedraw("Turn.Advance");
         }
 
         private void TryUseStairs(bool goingDown)
@@ -531,8 +690,7 @@ namespace CavesOfOoo.Rendering
                 $"Mutations={GetMutationListSummary(mutations)} | " +
                 $"GeneratedEquipmentTracked={mutations.MutationGeneratedEquipment.Count}");
 
-            if (ZoneRenderer != null)
-                ZoneRenderer.MarkDirty();
+            RequestZoneRedraw("Debug.GrantMutation");
         }
 
         /// <summary>
@@ -631,8 +789,7 @@ namespace CavesOfOoo.Rendering
                 Debug.Log($"[Body/Debug] F8: Dismember failed for \"{target.GetDisplayName()}\".");
             }
 
-            if (ZoneRenderer != null)
-                ZoneRenderer.MarkDirty();
+            RequestZoneRedraw("Debug.Dismember");
         }
 
         /// <summary>
@@ -726,8 +883,7 @@ namespace CavesOfOoo.Rendering
             }
 
             Debug.Log($"[Tinkering/Debug] F9: Crafted recipe '{recipeId}' successfully.");
-            if (ZoneRenderer != null)
-                ZoneRenderer.MarkDirty();
+            RequestZoneRedraw("Debug.Craft");
         }
 
         /// <summary>
@@ -823,8 +979,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Mark zone dirty so renderer picks up changes
-            if (ZoneRenderer != null)
-                ZoneRenderer.MarkDirty();
+            RequestZoneRedraw("Debug.WellCycle");
             SettlementRuntime.MarkZoneDirty();
 
             MessageLog.Add($"[Debug] Well stage set to: {nextStage}");
@@ -909,8 +1064,7 @@ namespace CavesOfOoo.Rendering
                         if (TryTakeAllFromContainerViaCommand(containers[0]))
                         {
                             EndTurnAndProcess();
-                            if (ZoneRenderer != null)
-                                ZoneRenderer.MarkDirty();
+                            RequestZoneRedraw("Inventory.TakeAllFromContainer");
                         }
                     }
                     else
@@ -928,8 +1082,7 @@ namespace CavesOfOoo.Rendering
                 if (TryPickupViaCommand(item))
                 {
                     EndTurnAndProcess();
-                    if (ZoneRenderer != null)
-                        ZoneRenderer.MarkDirty();
+                    RequestZoneRedraw("Inventory.Pickup");
                 }
             }
             else
@@ -1009,9 +1162,7 @@ namespace CavesOfOoo.Rendering
             if (ContainerPickerUI == null || containers == null || containers.Count == 0)
                 return;
 
-            if (ZoneRenderer != null)
-                ZoneRenderer.Paused = true;
-
+            EnterCenteredPopupOverlayView();
             ContainerPickerUI.Open(containers);
             _inputState = InputState.ContainerPickerOpen;
         }
@@ -1019,7 +1170,7 @@ namespace CavesOfOoo.Rendering
         private void OpenPickup(List<Entity> items)
         {
             if (PickupUI == null) return;
-            if (ZoneRenderer != null) ZoneRenderer.Paused = true;
+            EnterCenteredPopupOverlayView();
             PickupUI.PlayerEntity = PlayerEntity;
             PickupUI.CurrentZone = CurrentZone;
             PickupUI.Open(items);
@@ -1043,16 +1194,30 @@ namespace CavesOfOoo.Rendering
         private void ClosePickup()
         {
             bool pickedUpAny = PickupUI != null && PickupUI.PickedUpAny;
-            _inputState = InputState.Normal;
-            if (ZoneRenderer != null)
-            {
-                ZoneRenderer.Paused = false;
-                ZoneRenderer.MarkDirty();
-            }
 
-            // Process a turn if items were picked up
             if (pickedUpAny)
                 EndTurnAndProcess();
+
+            _inputState = InputState.Normal;
+
+            // Chest-loot path enters here from LookMode → WorldActionMenu →
+            // PickupOpen, so the world cursor / look snapshot / camera
+            // override were set up when look mode opened and are still
+            // live. Without tearing them down, closing the chest UI leaves
+            // the blue look-mode selection square painted on the chest.
+            // Safe to call even when the pickup was the ground-pickup
+            // path (G key) — Deactivate / ClearWorldCursor / ClearLookSnapshot
+            // are all no-ops when no cursor is active.
+            _worldCursorState.Deactivate();
+            ZoneRenderer?.ClearWorldCursor();
+            ZoneRenderer?.ClearLookSnapshot();
+            if (CameraFollow != null)
+                CameraFollow.ClearOverrideTarget();
+
+            if (TryOpenAnnouncement())
+                return;
+
+            ExitCenteredPopupOverlayViewToGameplay();
         }
 
         private void HandleContainerPickerInput()
@@ -1077,31 +1242,32 @@ namespace CavesOfOoo.Rendering
 
         private void CloseContainerPicker(bool tookAny)
         {
-            _inputState = InputState.Normal;
-            if (ZoneRenderer != null)
-            {
-                ZoneRenderer.Paused = false;
-                ZoneRenderer.MarkDirty();
-            }
-
             if (tookAny)
                 EndTurnAndProcess();
+
+            _inputState = InputState.Normal;
+
+            if (TryOpenAnnouncement())
+                return;
+
+            ExitCenteredPopupOverlayViewToGameplay();
         }
 
         /// <summary>
-        /// Check if a number key 1-9 was pressed. Returns a 0-based slot index, or -1 if none.
+        /// Check if a number key 1-0 was pressed. Returns a 0-based slot index, or -1 if none.
         /// </summary>
         private int GetAbilitySlotInput()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1)) return 0;
-            if (Input.GetKeyDown(KeyCode.Alpha2)) return 1;
-            if (Input.GetKeyDown(KeyCode.Alpha3)) return 2;
-            if (Input.GetKeyDown(KeyCode.Alpha4)) return 3;
-            if (Input.GetKeyDown(KeyCode.Alpha5)) return 4;
-            if (Input.GetKeyDown(KeyCode.Alpha6)) return 5;
-            if (Input.GetKeyDown(KeyCode.Alpha7)) return 6;
-            if (Input.GetKeyDown(KeyCode.Alpha8)) return 7;
-            if (Input.GetKeyDown(KeyCode.Alpha9)) return 8;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha1)) return 0;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha2)) return 1;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha3)) return 2;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha4)) return 3;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha5)) return 4;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha6)) return 5;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha7)) return 6;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha8)) return 7;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha9)) return 8;
+            if (InputHelper.GetKeyDown(KeyCode.Alpha0)) return 9;
             return -1;
         }
 
@@ -1146,20 +1312,23 @@ namespace CavesOfOoo.Rendering
 
         private void HandleLookModeInput()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 ExitLookMode();
                 _lastMoveTime = Time.time;
                 return;
             }
 
-            bool shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
-            if (Input.GetKeyDown(KeyCode.Period) && !shiftHeld)
+            bool shiftHeld = InputHelper.GetKey(KeyCode.LeftShift) || InputHelper.GetKey(KeyCode.RightShift);
+            if (InputHelper.GetKeyDown(KeyCode.Period) && !shiftHeld)
             {
                 RecenterLookCursor();
                 _lastMoveTime = Time.time;
                 return;
             }
+
+            if (TryHandleSidebarLogScrollInput())
+                return;
 
             int dx = 0;
             int dy = 0;
@@ -1170,7 +1339,92 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                OpenWorldActionMenuOrThrow(_worldCursorState.X, _worldCursorState.Y);
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                // DIAG [Phase4d] — upstream-most log. Click detected in look mode.
+                int clickX = -1, clickY = -1;
+                bool screenResolved = ZoneRenderer != null &&
+                    ZoneRenderer.ScreenToZoneCell(Input.mousePosition, Camera.main, out clickX, out clickY);
+                UnityEngine.Debug.Log($"[ActionMenu:lookclick] ZoneRenderer={(ZoneRenderer != null)} " +
+                    $"screenResolved={screenResolved}" +
+                    (screenResolved ? $" -> ({clickX},{clickY})" : ""));
+
+                if (screenResolved)
+                {
+                    _worldCursorState.SetPosition(clickX, clickY);
+                    ClampLookCursorToVisibleFrame();
+                    RefreshLookSnapshot();
+                    OpenWorldActionMenuOrThrow(_worldCursorState.X, _worldCursorState.Y);
+                    _lastMoveTime = Time.time;
+                    return;
+                }
+            }
+
             TryUpdateLookCursorFromMouse();
+        }
+
+        private bool TryHandleSidebarLogScrollInput()
+        {
+            if (InputHelper.GetKeyDown(KeyCode.Equals))
+                return TryHandleSidebarLogScrollCommand(older: true);
+
+            if (InputHelper.GetKeyDown(KeyCode.Minus))
+                return TryHandleSidebarLogScrollCommand(older: false);
+
+            return false;
+        }
+
+        private bool TryHandleHotbarInput()
+        {
+            if (_inputState != InputState.Normal)
+                return false;
+
+            if (InputHelper.GetKeyDown(KeyCode.LeftBracket))
+            {
+                CycleHotbarSelection(-1);
+                return true;
+            }
+
+            if (InputHelper.GetKeyDown(KeyCode.RightBracket))
+            {
+                CycleHotbarSelection(1);
+                return true;
+            }
+
+            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                ActivateSelectedHotbarSlot();
+                return true;
+            }
+
+            if (Input.GetMouseButtonDown(0) &&
+                ZoneRenderer != null &&
+                ZoneRenderer.TryGetHotbarSlotAtScreenPosition(Input.mousePosition, out int clickedSlot))
+            {
+                _selectedHotbarSlot = clickedSlot;
+                SyncHotbarState();
+                TryActivateAbility(clickedSlot);
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool TryHandleSidebarLogScrollCommand(bool older)
+        {
+            if ((_inputState != InputState.Normal && _inputState != InputState.LookMode) || ZoneRenderer == null)
+                return false;
+
+            return older
+                ? ZoneRenderer.ScrollSidebarLogOlder()
+                : ZoneRenderer.ScrollSidebarLogNewer();
         }
 
         private void RecenterLookCursor()
@@ -1260,6 +1514,811 @@ namespace CavesOfOoo.Rendering
                 _worldCursorState.SetPosition(clampedX, clampedY);
         }
 
+        private bool BeginThrowTargeting(
+            Entity item,
+            ThrowOriginKind origin,
+            int sourceTileX,
+            int sourceTileY,
+            bool startAtPlayerCell)
+        {
+            if (item == null || CurrentZone == null || PlayerEntity == null)
+                return false;
+
+            Cell playerCell = CurrentZone.GetEntityCell(PlayerEntity);
+            if (playerCell == null)
+                return false;
+
+            int startX = startAtPlayerCell ? playerCell.X : sourceTileX;
+            int startY = startAtPlayerCell ? playerCell.Y : sourceTileY;
+            if (!CurrentZone.InBounds(startX, startY))
+            {
+                startX = playerCell.X;
+                startY = playerCell.Y;
+            }
+
+            _pendingThrowTarget = new ThrowTargetState
+            {
+                Item = item,
+                Origin = origin,
+                SourceTileX = sourceTileX,
+                SourceTileY = sourceTileY
+            };
+
+            int maxRange = HandlingService.GetThrowRange(PlayerEntity, item);
+            _worldCursorState.Activate(
+                WorldCursorMode.ThrowTarget,
+                CurrentZone,
+                startX,
+                startY,
+                playerCell.X,
+                playerCell.Y,
+                maxRange,
+                followMouse: true);
+
+            _inputState = InputState.ThrowTargeting;
+            _lastLookMousePosition = Input.mousePosition;
+            ZoneRenderer?.ClearLookSnapshot();
+            ZoneRenderer?.SetWorldCursorState(_worldCursorState, PlayerEntity);
+            MessageLog.Add($"Throw {item.GetDisplayName()} - choose a target (range {maxRange}).");
+            return true;
+        }
+
+        private void HandleThrowTargetingInput()
+        {
+            if (_pendingThrowTarget == null)
+            {
+                ExitThrowTargetingToNormal();
+                return;
+            }
+
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
+            {
+                CancelThrowTargeting();
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            int dx = 0;
+            int dy = 0;
+            if (GetDirectionKeyDown(out dx, out dy))
+            {
+                MoveThrowCursor(dx, dy);
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                ConfirmThrowTarget();
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (TryUpdateThrowCursorFromMouse(applyOnHover: false))
+                {
+                    ConfirmThrowTarget();
+                    _lastMoveTime = Time.time;
+                    return;
+                }
+            }
+
+            TryUpdateThrowCursorFromMouse(applyOnHover: true);
+        }
+
+        private void MoveThrowCursor(int dx, int dy)
+        {
+            if (!_worldCursorState.Active)
+                return;
+
+            int nextX = _worldCursorState.X + dx;
+            int nextY = _worldCursorState.Y + dy;
+            if (!CurrentZone.InBounds(nextX, nextY))
+                return;
+
+            if (!IsWithinThrowRange(nextX, nextY))
+                return;
+
+            _worldCursorState.SetPosition(nextX, nextY);
+            ZoneRenderer?.SetWorldCursorState(_worldCursorState, PlayerEntity);
+        }
+
+        private bool TryUpdateThrowCursorFromMouse(bool applyOnHover)
+        {
+            if (!_worldCursorState.Active || ZoneRenderer == null)
+                return false;
+
+            Vector3 mouse = Input.mousePosition;
+            if (applyOnHover && mouse == _lastLookMousePosition)
+                return false;
+
+            _lastLookMousePosition = mouse;
+
+            if (!ZoneRenderer.ScreenToZoneCell(mouse, Camera.main, out int x, out int y))
+                return false;
+
+            if (!IsWithinThrowRange(x, y))
+                return false;
+
+            if (_worldCursorState.X == x && _worldCursorState.Y == y)
+                return true;
+
+            _worldCursorState.SetPosition(x, y);
+            ZoneRenderer?.SetWorldCursorState(_worldCursorState, PlayerEntity);
+            return true;
+        }
+
+        private bool IsWithinThrowRange(int x, int y)
+        {
+            if (!_worldCursorState.Active)
+                return false;
+
+            int maxRange = _worldCursorState.MaxRange ?? 0;
+            return AIHelpers.ChebyshevDistance(_worldCursorState.AnchorX, _worldCursorState.AnchorY, x, y) <= maxRange;
+        }
+
+        private void ConfirmThrowTarget()
+        {
+            if (_pendingThrowTarget == null)
+                return;
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(_pendingThrowTarget.Item, _worldCursorState.X, _worldCursorState.Y),
+                PlayerEntity,
+                CurrentZone);
+
+            if (!result.Success)
+            {
+                MessageLog.Add(result.ErrorMessage);
+                return;
+            }
+
+            ExitThrowTargetingToNormal();
+            _inputState = InputState.WaitingForFxResolution;
+        }
+
+        private void CancelThrowTargeting()
+        {
+            if (_pendingThrowTarget == null)
+            {
+                ExitThrowTargetingToNormal();
+                return;
+            }
+
+            var cancelled = _pendingThrowTarget;
+            ExitThrowTargetingToNormal();
+
+            if (cancelled.Origin == ThrowOriginKind.Inventory)
+            {
+                OpenInventory();
+                InventoryUI?.ReopenItemActionPopupFor(cancelled.Item);
+                return;
+            }
+
+            RestoreLookModeAt(cancelled.SourceTileX, cancelled.SourceTileY);
+        }
+
+        private void ExitThrowTargetingToNormal()
+        {
+            _pendingThrowTarget = null;
+            _worldCursorState.Deactivate();
+            ZoneRenderer?.ClearWorldCursor();
+            ZoneRenderer?.ClearLookSnapshot();
+            _inputState = InputState.Normal;
+        }
+
+        private void RestoreLookModeAt(int x, int y)
+        {
+            if (CurrentZone == null || PlayerEntity == null)
+                return;
+
+            Cell playerCell = CurrentZone.GetEntityCell(PlayerEntity);
+            if (playerCell == null)
+                return;
+
+            if (!CurrentZone.InBounds(x, y))
+            {
+                x = playerCell.X;
+                y = playerCell.Y;
+            }
+
+            _worldCursorState.Activate(
+                WorldCursorMode.Look,
+                CurrentZone,
+                x,
+                y,
+                playerCell.X,
+                playerCell.Y,
+                followMouse: true);
+
+            _lastLookMousePosition = Input.mousePosition;
+            _inputState = InputState.LookMode;
+            ClampLookCursorToVisibleFrame();
+            RefreshLookSnapshot();
+            ZoneRenderer?.SetWorldCursorState(_worldCursorState, PlayerEntity);
+        }
+
+        // ===== World Action Menu (Phase 4d) =====
+
+        /// <summary>
+        /// Decide what look-mode Enter/click should do at (tileX, tileY):
+        /// - Cell has a throwable adjacent item → legacy throw popup path.
+        /// - Otherwise → open the world action menu with the cell's actions.
+        /// This preserves the existing "click adjacent throwable to toss it"
+        /// UX while adding the generic action menu for everything else.
+        /// </summary>
+        private void OpenWorldActionMenuOrThrow(int tileX, int tileY)
+        {
+            // The world action menu is now the single entry point for look-
+            // mode clicks. Throwable items surface "Throw" as a menu action
+            // (declared by HandlingPart's GetInventoryActions handler); the
+            // legacy HasAdjacentThrowableAt pre-emption has been removed so
+            // adjacent throwable cells no longer skip the menu.
+            OpenWorldActionMenu(tileX, tileY);
+        }
+
+        /// <summary>
+        /// Open the world action menu for the cell at (tileX, tileY).
+        /// Resolves target via <see cref="WorldInteractionSystem.ResolveTarget"/>,
+        /// gathers actions, and transitions to the WorldActionMenuOpen state.
+        /// If no target or no actions, logs a friendly message and stays in
+        /// look mode so the player can pick a different cell.
+        /// </summary>
+        private void OpenWorldActionMenu(int tileX, int tileY)
+        {
+            // DIAG [Phase4d] — trace every decision branch.
+            UnityEngine.Debug.Log($"[ActionMenu:open] entry ({tileX},{tileY}) " +
+                $"UI={(WorldActionMenuUI != null ? "set" : "NULL")}");
+
+            if (WorldActionMenuUI == null) return;
+
+            Cell cell = CurrentZone?.GetCell(tileX, tileY);
+            if (cell == null)
+            {
+                UnityEngine.Debug.Log("[ActionMenu:open] BAIL: null cell");
+                MessageLog.Add("There's nothing there.");
+                return;
+            }
+
+            Entity target = WorldInteractionSystem.ResolveTarget(cell);
+            UnityEngine.Debug.Log($"[ActionMenu:open] cell.Objects.Count={cell.Objects.Count} " +
+                $"target={(target != null ? target.BlueprintName : "NULL")}");
+            if (target == null)
+            {
+                MessageLog.Add(WorldInteractionSystem.DescribeCell(cell));
+                return;
+            }
+
+            var actions = WorldInteractionSystem.GatherActions(target);
+            UnityEngine.Debug.Log($"[ActionMenu:open] actions.Count={actions.Count}");
+            if (actions.Count == 0)
+            {
+                MessageLog.Add(WorldInteractionSystem.DescribeCell(cell));
+                return;
+            }
+
+            WorldActionMenuUI.Open(PlayerEntity, target, cell, actions);
+            _inputState = InputState.WorldActionMenuOpen;
+            EnterCenteredPopupOverlayView(); // swap to popup camera so the menu is actually visible
+            UnityEngine.Debug.Log($"[ActionMenu:open] opened menu — state=WorldActionMenuOpen");
+        }
+
+        /// <summary>
+        /// Process input while the world action menu is open. Delegates to
+        /// the UI for key handling, polls for a resolved selection or
+        /// cancellation, and executes the chosen action on the target.
+        /// </summary>
+        private void HandleWorldActionMenuInput()
+        {
+            if (WorldActionMenuUI == null)
+            {
+                // UI disappeared mid-state — bail cleanly back to look mode.
+                _inputState = InputState.LookMode;
+                return;
+            }
+
+            WorldActionMenuUI.HandleInput();
+
+            if (WorldActionMenuUI.SelectionCancelled)
+            {
+                WorldActionMenuUI.ConsumeSelection();
+                ExitCenteredPopupOverlayViewToGameplay(); // pair with the Enter on open
+                _inputState = InputState.LookMode;
+                return;
+            }
+
+            if (!WorldActionMenuUI.SelectionMade) return;
+
+            var action = WorldActionMenuUI.SelectedAction;
+            var target = WorldActionMenuUI.SelectedTarget;
+            var cell = WorldActionMenuUI.SelectedCell;
+            bool isPile = WorldActionMenuUI.SelectedCellIsPile;
+            WorldActionMenuUI.ConsumeSelection();
+
+            ExecuteWorldActionSelection(action, target, cell, isPile);
+        }
+
+        /// <summary>
+        /// Run the selected action. Handles three cases:
+        /// - Pile-cell Examine: log cell description instead of target's
+        ///   individual Examine (matches user spec: pile summary for piles).
+        /// - Chat: fire the command; if ConversationManager.IsActive after,
+        ///   open the dialogue UI and transition to DialogueOpen.
+        /// - Everything else: fire the InventoryAction event on the target.
+        /// After the action runs, returns to LookMode so the player can
+        /// keep poking at the world without having to re-enter look mode.
+        /// </summary>
+        private void ExecuteWorldActionSelection(
+            InventoryAction action, Entity target, Cell cell, bool isPileCell)
+        {
+            if (action == null || target == null)
+            {
+                ExitCenteredPopupOverlayViewToGameplay();
+                _inputState = InputState.LookMode;
+                return;
+            }
+
+            // Restore gameplay camera BEFORE running the action — some
+            // downstream actions (Chat → OpenDialogue, OpenContainer →
+            // loot UI, Throw → throw popup) re-enter the overlay view
+            // themselves for their own popup.
+            ExitCenteredPopupOverlayViewToGameplay();
+
+            // Special case: pile-cell Examine → cell description rather than
+            // target's individual Examine.
+            if (isPileCell && action.Command == "Examine")
+            {
+                MessageLog.Add(WorldInteractionSystem.DescribeCell(cell));
+                _inputState = InputState.LookMode;
+                return;
+            }
+
+            // Special case: Throw → route to the throw popup with the target
+            // item and its cell coords. The throw popup handles aim + confirm;
+            // we don't fire an InventoryAction event here because the throw
+            // command needs a target cell the player hasn't picked yet.
+            if (action.Command == "Throw")
+            {
+                var pos = CurrentZone.GetEntityPosition(target);
+                if (pos.x < 0 || pos.y < 0)
+                {
+                    MessageLog.Add($"{target.GetDisplayName()} can't be thrown from here.");
+                    _inputState = InputState.LookMode;
+                    return;
+                }
+                OpenWorldThrowActionPopup(target, pos.x, pos.y);
+                // OpenWorldThrowActionPopup transitions to ThrowPopupOpen and
+                // re-enters the overlay camera itself.
+                return;
+            }
+
+            // Fire the InventoryAction event on the target. Parts that
+            // declared this command handle it: ExaminablePart for Examine,
+            // ContainerPart for OpenContainer, ConversationPart for Chat,
+            // etc.
+            var e = GameEvent.New("InventoryAction");
+            e.SetParameter("Command", action.Command);
+            e.SetParameter("Actor", (object)PlayerEntity);
+            target.FireEvent(e);
+
+            // If Chat started a conversation, open the dialogue UI —
+            // ConversationPart doesn't open it itself.
+            if (ConversationManager.IsActive)
+            {
+                OpenDialogue();
+                return;
+            }
+
+            // If OpenContainer succeeded on a container with contents, open
+            // the loot popup so the player can browse + take individual items.
+            // ContainerPart has already logged the open message and fired
+            // its "OpenContainer" sub-event.
+            if (action.Command == "OpenContainer")
+            {
+                var containerPart = target.GetPart<ContainerPart>();
+                if (containerPart != null && !containerPart.Locked && containerPart.Contents.Count > 0)
+                {
+                    OpenContainerLoot(target, containerPart);
+                    return;
+                }
+            }
+
+            _inputState = InputState.LookMode;
+        }
+
+        /// <summary>
+        /// Open the PickupUI in container-loot mode with <paramref name="container"/>'s
+        /// contents. Uses TakeFromContainerCommand on each take (not PickupCommand,
+        /// which is for zone-ground items).
+        /// </summary>
+        private void OpenContainerLoot(Entity container, ContainerPart containerPart)
+        {
+            if (PickupUI == null || container == null || containerPart == null) return;
+            if (containerPart.Contents.Count == 0) return;
+
+            EnterCenteredPopupOverlayView();
+            PickupUI.PlayerEntity = PlayerEntity;
+            PickupUI.CurrentZone = CurrentZone;
+            PickupUI.Open(containerPart.Contents, container);
+            _inputState = InputState.PickupOpen;
+        }
+
+        private bool TryOpenWorldThrowPopup(int tileX, int tileY)
+        {
+            Cell actorCell = CurrentZone?.GetEntityCell(PlayerEntity);
+            if (actorCell == null)
+                return false;
+
+            if (!IsSameOrCardinalAdjacent(actorCell.X, actorCell.Y, tileX, tileY))
+                return false;
+
+            var throwableItems = GetVisibleThrowableWorldItems(tileX, tileY);
+            if (throwableItems.Count == 0)
+            {
+                MessageLog.Add("Nothing here can be thrown.");
+                return true;
+            }
+
+            if (throwableItems.Count == 1)
+            {
+                OpenWorldThrowActionPopup(throwableItems[0], tileX, tileY);
+                return true;
+            }
+
+            OpenWorldThrowSourcePicker(throwableItems, tileX, tileY);
+            return true;
+        }
+
+        private List<Entity> GetVisibleThrowableWorldItems(int tileX, int tileY)
+        {
+            var result = new List<Entity>();
+            Cell cell = CurrentZone?.GetCell(tileX, tileY);
+            if (cell == null || !cell.IsVisible)
+                return result;
+
+            for (int i = cell.Objects.Count - 1; i >= 0; i--)
+            {
+                Entity item = cell.Objects[i];
+                if (item == null || item == PlayerEntity)
+                    continue;
+
+                var render = item.GetPart<RenderPart>();
+                if (render != null && !render.Visible)
+                    continue;
+
+                if (HandlingService.CanThrow(PlayerEntity, item, out _))
+                    result.Add(item);
+            }
+
+            return result;
+        }
+
+        private static bool IsSameOrCardinalAdjacent(int x1, int y1, int x2, int y2)
+        {
+            return Math.Abs(x2 - x1) + Math.Abs(y2 - y1) <= 1;
+        }
+
+        private void OpenWorldThrowSourcePicker(List<Entity> items, int tileX, int tileY)
+        {
+            _throwPopup = new ThrowPopupState
+            {
+                Kind = ThrowPopupKind.SourcePicker,
+                Title = "Choose an object",
+                SourceTileX = tileX,
+                SourceTileY = tileY,
+                CursorIndex = 0,
+                ScrollOffset = 0
+            };
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                _throwPopup.Options.Add(new ThrowPopupOption
+                {
+                    Item = items[i],
+                    Label = items[i].GetDisplayName()
+                });
+            }
+
+            OpenThrowPopup();
+        }
+
+        private void OpenWorldThrowActionPopup(Entity item, int tileX, int tileY)
+        {
+            if (item == null)
+                return;
+
+            _throwPopup = new ThrowPopupState
+            {
+                Kind = ThrowPopupKind.ActionPicker,
+                Title = item.GetDisplayName(),
+                SourceTileX = tileX,
+                SourceTileY = tileY,
+                SelectedItem = item,
+                CursorIndex = 0,
+                ScrollOffset = 0
+            };
+
+            _throwPopup.Options.Add(new ThrowPopupOption
+            {
+                Item = item,
+                Label = "throw"
+            });
+
+            OpenThrowPopup();
+        }
+
+        private void OpenThrowPopup()
+        {
+            if (_throwPopup == null)
+                return;
+
+            _inputState = InputState.ThrowPopupOpen;
+            EnterCenteredPopupOverlayView();
+            RenderThrowPopup();
+        }
+
+        private void HandleThrowPopupInput()
+        {
+            if (_throwPopup == null)
+            {
+                CloseThrowPopup();
+                return;
+            }
+
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
+            {
+                CloseThrowPopup();
+                return;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                int clickedRow = GetThrowPopupRowAtMouse();
+                if (clickedRow >= 0)
+                {
+                    _throwPopup.CursorIndex = clickedRow;
+                    ExecuteThrowPopupSelection();
+                    return;
+                }
+
+                CloseThrowPopup();
+                return;
+            }
+
+            if ((InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K)) && _throwPopup.CursorIndex > 0)
+            {
+                _throwPopup.CursorIndex--;
+                ClampThrowPopupScroll();
+                RenderThrowPopup();
+                return;
+            }
+
+            if ((InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J)) && _throwPopup.CursorIndex < _throwPopup.Options.Count - 1)
+            {
+                _throwPopup.CursorIndex++;
+                ClampThrowPopupScroll();
+                RenderThrowPopup();
+                return;
+            }
+
+            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                ExecuteThrowPopupSelection();
+                return;
+            }
+        }
+
+        private void ExecuteThrowPopupSelection()
+        {
+            if (_throwPopup == null || _throwPopup.CursorIndex < 0 || _throwPopup.CursorIndex >= _throwPopup.Options.Count)
+                return;
+
+            if (_throwPopup.Kind == ThrowPopupKind.SourcePicker)
+            {
+                Entity selectedItem = _throwPopup.Options[_throwPopup.CursorIndex].Item;
+                int sourceX = _throwPopup.SourceTileX;
+                int sourceY = _throwPopup.SourceTileY;
+                OpenWorldThrowActionPopup(selectedItem, sourceX, sourceY);
+                return;
+            }
+
+            Entity item = _throwPopup.SelectedItem ?? _throwPopup.Options[_throwPopup.CursorIndex].Item;
+            int tileX = _throwPopup.SourceTileX;
+            int tileY = _throwPopup.SourceTileY;
+            ClearThrowPopupTiles();
+            ExitCenteredPopupOverlayViewToGameplay();
+            _throwPopup = null;
+            BeginThrowTargeting(item, ThrowOriginKind.LookWorld, tileX, tileY, startAtPlayerCell: false);
+        }
+
+        private void CloseThrowPopup()
+        {
+            ClearThrowPopupTiles();
+            ExitCenteredPopupOverlayViewToGameplay();
+
+            if (_throwPopup != null)
+                RestoreLookModeAt(_throwPopup.SourceTileX, _throwPopup.SourceTileY);
+            else
+                _inputState = InputState.LookMode;
+
+            _throwPopup = null;
+        }
+
+        private void ClampThrowPopupScroll()
+        {
+            if (_throwPopup == null)
+                return;
+
+            const int visibleCount = 10;
+            if (_throwPopup.CursorIndex < _throwPopup.ScrollOffset)
+                _throwPopup.ScrollOffset = _throwPopup.CursorIndex;
+            else if (_throwPopup.CursorIndex >= _throwPopup.ScrollOffset + visibleCount)
+                _throwPopup.ScrollOffset = _throwPopup.CursorIndex - visibleCount + 1;
+        }
+
+        private void RenderThrowPopup()
+        {
+            if (_throwPopup == null || ZoneRenderer?.CenteredPopupFgTilemap == null)
+                return;
+
+            ClearThrowPopupTiles();
+
+            const int popupWidth = 36;
+            const int maxVisible = 10;
+            int totalRows = _throwPopup.Options.Count;
+            int visibleRows = Math.Min(Math.Max(totalRows, 1), maxVisible);
+            ClampThrowPopupScroll();
+            int popupHeight = visibleRows + 4;
+            int popupX = CenteredPopupLayout.GetCenteredOriginX(popupWidth);
+            int popupTopY = CenteredPopupLayout.GetCenteredTopY(popupHeight);
+            DrawThrowPopupBackground(popupX, popupTopY, popupWidth, popupHeight);
+            DrawThrowPopupBorder(popupX, popupTopY, popupWidth, popupHeight);
+
+            string title = _throwPopup.Title ?? "Throw";
+            if (title.Length > popupWidth - 4)
+                title = title.Substring(0, popupWidth - 4);
+            DrawThrowPopupText(popupX + 2, popupTopY - 1, title, QudColorParser.BrightYellow);
+
+            int contentTopY = popupTopY - 3;
+            if (totalRows == 0)
+            {
+                DrawThrowPopupText(popupX + 2, contentTopY, "(no actions available)", QudColorParser.DarkGray);
+                return;
+            }
+
+            for (int i = 0; i < visibleRows; i++)
+            {
+                int rowIndex = _throwPopup.ScrollOffset + i;
+                if (rowIndex >= totalRows)
+                    break;
+
+                int rowY = contentTopY - i;
+                bool selected = rowIndex == _throwPopup.CursorIndex;
+                if (selected)
+                    DrawThrowPopupChar(popupX + 1, rowY, '>', QudColorParser.White);
+
+                if (rowIndex < 26)
+                {
+                    char hotkey = (char)('a' + rowIndex);
+                    DrawThrowPopupText(popupX + 2, rowY, hotkey + ")", selected ? QudColorParser.White : QudColorParser.Gray);
+                }
+
+                string label = _throwPopup.Options[rowIndex].Label ?? string.Empty;
+                if (label.Length > popupWidth - 8)
+                    label = label.Substring(0, popupWidth - 9) + "~";
+                DrawThrowPopupText(popupX + 5, rowY, label, selected ? QudColorParser.White : QudColorParser.Gray);
+            }
+        }
+
+        private void DrawThrowPopupBorder(int popupX, int popupTopY, int popupWidth, int popupHeight)
+        {
+            for (int dx = 0; dx < popupWidth; dx++)
+            {
+                DrawThrowPopupChar(popupX + dx, popupTopY, dx == 0 || dx == popupWidth - 1 ? '+' : '-', QudColorParser.Gray);
+                DrawThrowPopupChar(popupX + dx, popupTopY - popupHeight + 1, dx == 0 || dx == popupWidth - 1 ? '+' : '-', QudColorParser.Gray);
+            }
+
+            for (int dy = 1; dy < popupHeight - 1; dy++)
+            {
+                DrawThrowPopupChar(popupX, popupTopY - dy, '|', QudColorParser.Gray);
+                DrawThrowPopupChar(popupX + popupWidth - 1, popupTopY - dy, '|', QudColorParser.Gray);
+            }
+        }
+
+        private void DrawThrowPopupBackground(int popupX, int popupTopY, int popupWidth, int popupHeight)
+        {
+            var bgTilemap = ZoneRenderer?.CenteredPopupBgTilemap;
+            if (bgTilemap == null)
+                return;
+
+            var blockTile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+            if (blockTile == null)
+                return;
+
+            Color bgColor = new Color(0f, 0f, 0f, 1f);
+            for (int dy = 0; dy < popupHeight; dy++)
+            {
+                for (int dx = 0; dx < popupWidth; dx++)
+                {
+                    var pos = new Vector3Int(popupX + dx, popupTopY - dy, 0);
+                    bgTilemap.SetTile(pos, blockTile);
+                    bgTilemap.SetTileFlags(pos, UnityEngine.Tilemaps.TileFlags.None);
+                    bgTilemap.SetColor(pos, bgColor);
+                }
+            }
+        }
+
+        private void DrawThrowPopupText(int x, int y, string text, Color color)
+        {
+            if (string.IsNullOrEmpty(text))
+                return;
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] == ' ')
+                    continue;
+                DrawThrowPopupChar(x + i, y, text[i], color);
+            }
+        }
+
+        private void DrawThrowPopupChar(int x, int y, char c, Color color)
+        {
+            var tilemap = ZoneRenderer?.CenteredPopupFgTilemap;
+            if (tilemap == null)
+                return;
+
+            var tile = CP437TilesetGenerator.GetTile(c);
+            if (tile == null)
+                return;
+
+            var pos = new Vector3Int(x, y, 0);
+            tilemap.SetTile(pos, tile);
+            tilemap.SetTileFlags(pos, UnityEngine.Tilemaps.TileFlags.None);
+            tilemap.SetColor(pos, color);
+        }
+
+        private void ClearThrowPopupTiles()
+        {
+            ZoneRenderer?.CenteredPopupFgTilemap?.ClearAllTiles();
+            ZoneRenderer?.CenteredPopupBgTilemap?.ClearAllTiles();
+        }
+
+        private int GetThrowPopupRowAtMouse()
+        {
+            if (_throwPopup == null ||
+                ZoneRenderer?.PopupOverlayCamera == null ||
+                ZoneRenderer.CenteredPopupFgTilemap == null ||
+                !CenteredPopupLayout.ScreenToGrid(
+                    ZoneRenderer.PopupOverlayCamera,
+                    ZoneRenderer.CenteredPopupFgTilemap,
+                    Input.mousePosition,
+                    out int gridX,
+                    out int gridY))
+            {
+                return -1;
+            }
+
+            const int popupWidth = 36;
+            const int maxVisible = 10;
+            int totalRows = _throwPopup.Options.Count;
+            int visibleRows = Math.Min(Math.Max(totalRows, 1), maxVisible);
+            int popupHeight = visibleRows + 4;
+            int popupX = CenteredPopupLayout.GetCenteredOriginX(popupWidth);
+            int popupTopY = CenteredPopupLayout.GetCenteredTopY(popupHeight);
+            int contentTopY = popupTopY - 3;
+
+            if (gridX < popupX || gridX >= popupX + popupWidth)
+                return -1;
+
+            if (gridY > contentTopY || gridY <= contentTopY - visibleRows)
+                return -1;
+
+            int visibleIndex = contentTopY - gridY;
+            int rowIndex = _throwPopup.ScrollOffset + visibleIndex;
+            return rowIndex >= 0 && rowIndex < totalRows ? rowIndex : -1;
+        }
+
         /// <summary>
         /// Try to activate an ability by slot. Directional abilities enter targeting mode;
         /// self-centered abilities resolve immediately.
@@ -1269,27 +2328,27 @@ namespace CavesOfOoo.Rendering
             var abilities = PlayerEntity.GetPart<ActivatedAbilitiesPart>();
             if (abilities == null)
             {
-                Debug.Log("[Abilities] No activated abilities.");
+                MessageLog.Add("You know no rites.");
                 return;
             }
 
             var ability = abilities.GetAbilityBySlot(slot);
             if (ability == null)
             {
-                Debug.Log($"[Abilities] No ability in slot {slot + 1}.");
+                MessageLog.Add("No rite bound to [" + HotbarStateBuilder.SlotToHotkey(slot) + "].");
                 return;
             }
 
             if (!ability.IsUsable)
             {
-                Debug.Log($"[Abilities] {ability.DisplayName} is on cooldown ({ability.CooldownRemaining} turns remaining).");
+                MessageLog.Add(GetAbilityDisplayName(ability) + " is on cooldown (" + ability.CooldownRemaining + " turns remaining).");
                 return;
             }
 
             Cell playerCell = CurrentZone?.GetEntityCell(PlayerEntity);
             if (playerCell == null)
             {
-                Debug.Log("[Abilities] You have no valid source cell.");
+                MessageLog.Add("You have no valid source cell.");
                 return;
             }
 
@@ -1302,7 +2361,8 @@ namespace CavesOfOoo.Rendering
             // Enter targeting mode
             _pendingAbility = ability;
             _inputState = InputState.AwaitingDirection;
-            Debug.Log($"[Abilities] {ability.DisplayName} — choose a direction.");
+            SyncHotbarState();
+            MessageLog.Add(GetAbilityDisplayName(ability) + " - choose a direction.");
         }
 
         /// <summary>
@@ -1312,11 +2372,12 @@ namespace CavesOfOoo.Rendering
         private void HandleAwaitingDirection()
         {
             // Cancel on Escape
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
-                Debug.Log("[Abilities] Cancelled.");
+                MessageLog.Add("Cancelled.");
                 _inputState = InputState.Normal;
                 _pendingAbility = null;
+                SyncHotbarState();
                 return;
             }
 
@@ -1329,6 +2390,7 @@ namespace CavesOfOoo.Rendering
             {
                 _inputState = InputState.Normal;
                 _pendingAbility = null;
+                SyncHotbarState();
                 return;
             }
 
@@ -1336,9 +2398,10 @@ namespace CavesOfOoo.Rendering
             int targetY = playerCell.Y + dy;
             if (!CurrentZone.InBounds(targetX, targetY))
             {
-                Debug.Log("[Abilities] Invalid target.");
+                MessageLog.Add("Invalid target.");
                 _inputState = InputState.Normal;
                 _pendingAbility = null;
+                SyncHotbarState();
                 return;
             }
 
@@ -1347,9 +2410,10 @@ namespace CavesOfOoo.Rendering
                 : null;
             if (_pendingAbility.TargetingMode == AbilityTargetingMode.AdjacentCell && targetCell == null)
             {
-                Debug.Log("[Abilities] Invalid target.");
+                MessageLog.Add("Invalid target.");
                 _inputState = InputState.Normal;
                 _pendingAbility = null;
+                SyncHotbarState();
                 return;
             }
 
@@ -1391,8 +2455,9 @@ namespace CavesOfOoo.Rendering
 
             if (!handled)
             {
-                Debug.Log("[Abilities] The ability fails to resolve.");
+                MessageLog.Add("The rite fails to resolve.");
                 _lastMoveTime = Time.time;
+                SyncHotbarState();
                 return;
             }
 
@@ -1400,11 +2465,13 @@ namespace CavesOfOoo.Rendering
             {
                 _inputState = InputState.WaitingForFxResolution;
                 _lastMoveTime = Time.time;
+                SyncHotbarState();
                 return;
             }
 
             EndTurnAndProcess();
             _lastMoveTime = Time.time;
+            SyncHotbarState();
         }
 
         private void OpenInventory()
@@ -1415,7 +2482,7 @@ namespace CavesOfOoo.Rendering
             InventoryUI.Open();
             _inputState = InputState.InventoryOpen;
             if (ZoneRenderer != null) ZoneRenderer.Paused = true;
-            if (CameraFollow != null) CameraFollow.SetUIView(80, 45);
+            if (CameraFollow != null) CameraFollow.SetUIView(FullscreenUiGridWidth, FullscreenUiGridHeight);
         }
 
         private void HandleInventoryInput()
@@ -1428,6 +2495,19 @@ namespace CavesOfOoo.Rendering
 
             InventoryUI.HandleInput();
 
+            var throwRequest = InventoryUI.ConsumePendingThrowRequest();
+            if (throwRequest != null && throwRequest.Item != null)
+            {
+                CloseInventory();
+                BeginThrowTargeting(
+                    throwRequest.Item,
+                    ThrowOriginKind.Inventory,
+                    sourceTileX: -1,
+                    sourceTileY: -1,
+                    startAtPlayerCell: true);
+                return;
+            }
+
             if (!InventoryUI.IsOpen)
                 CloseInventory();
         }
@@ -1439,7 +2519,7 @@ namespace CavesOfOoo.Rendering
             if (ZoneRenderer != null)
             {
                 ZoneRenderer.Paused = false;
-                ZoneRenderer.MarkDirty();
+                ZoneRenderer.MarkDirty("UI.Inventory.Close");
             }
         }
 
@@ -1450,7 +2530,7 @@ namespace CavesOfOoo.Rendering
             FactionUI.Open();
             _inputState = InputState.FactionOpen;
             if (ZoneRenderer != null) ZoneRenderer.Paused = true;
-            if (CameraFollow != null) CameraFollow.SetUIView(80, 45);
+            if (CameraFollow != null) CameraFollow.SetUIView(FullscreenUiGridWidth, FullscreenUiGridHeight);
         }
 
         private void HandleFactionInput()
@@ -1474,7 +2554,7 @@ namespace CavesOfOoo.Rendering
             if (ZoneRenderer != null)
             {
                 ZoneRenderer.Paused = false;
-                ZoneRenderer.MarkDirty();
+                ZoneRenderer.MarkDirty("UI.Faction.Close");
             }
         }
 
@@ -1488,29 +2568,29 @@ namespace CavesOfOoo.Rendering
             dy = 0;
 
             // Cardinal
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Keypad8) || Input.GetKeyDown(KeyCode.K))
+            if (InputHelper.GetKeyDown(KeyCode.W) || InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.Keypad8) || InputHelper.GetKeyDown(KeyCode.K))
             { dy = -1; return true; }
 
-            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyDown(KeyCode.S) || InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.Keypad2) || InputHelper.GetKeyDown(KeyCode.J))
             { dy = 1; return true; }
 
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.H))
+            if (InputHelper.GetKeyDown(KeyCode.A) || InputHelper.GetKeyDown(KeyCode.LeftArrow) || InputHelper.GetKeyDown(KeyCode.Keypad4) || InputHelper.GetKeyDown(KeyCode.H))
             { dx = -1; return true; }
 
-            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.Keypad6) || Input.GetKeyDown(KeyCode.L))
+            if (InputHelper.GetKeyDown(KeyCode.D) || InputHelper.GetKeyDown(KeyCode.RightArrow) || InputHelper.GetKeyDown(KeyCode.Keypad6) || InputHelper.GetKeyDown(KeyCode.L))
             { dx = 1; return true; }
 
             // Diagonals
-            if (Input.GetKeyDown(KeyCode.Keypad7) || Input.GetKeyDown(KeyCode.Y))
+            if (InputHelper.GetKeyDown(KeyCode.Keypad7) || InputHelper.GetKeyDown(KeyCode.Y))
             { dx = -1; dy = -1; return true; }
 
-            if (Input.GetKeyDown(KeyCode.Keypad9) || Input.GetKeyDown(KeyCode.U))
+            if (InputHelper.GetKeyDown(KeyCode.Keypad9) || InputHelper.GetKeyDown(KeyCode.U))
             { dx = 1; dy = -1; return true; }
 
-            if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.B))
+            if (InputHelper.GetKeyDown(KeyCode.Keypad1) || InputHelper.GetKeyDown(KeyCode.B))
             { dx = -1; dy = 1; return true; }
 
-            if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.N))
+            if (InputHelper.GetKeyDown(KeyCode.Keypad3) || InputHelper.GetKeyDown(KeyCode.N))
             { dx = 1; dy = 1; return true; }
 
             return false;
@@ -1528,32 +2608,32 @@ namespace CavesOfOoo.Rendering
 
             // Cardinal directions
             // North (W, Up, Numpad8, vi k)
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Keypad8) || Input.GetKey(KeyCode.K))
+            if (InputHelper.GetKey(KeyCode.W) || InputHelper.GetKey(KeyCode.UpArrow) || InputHelper.GetKey(KeyCode.Keypad8) || InputHelper.GetKey(KeyCode.K))
             { dy = -1; return true; }
 
             // South (S, Down, Numpad2, vi j)
-            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.Keypad2) || Input.GetKey(KeyCode.J))
+            if (InputHelper.GetKey(KeyCode.S) || InputHelper.GetKey(KeyCode.DownArrow) || InputHelper.GetKey(KeyCode.Keypad2) || InputHelper.GetKey(KeyCode.J))
             { dy = 1; return true; }
 
             // West (A, Left, Numpad4, vi h)
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.Keypad4) || Input.GetKey(KeyCode.H))
+            if (InputHelper.GetKey(KeyCode.A) || InputHelper.GetKey(KeyCode.LeftArrow) || InputHelper.GetKey(KeyCode.Keypad4) || InputHelper.GetKey(KeyCode.H))
             { dx = -1; return true; }
 
             // East (D, Right, Numpad6, vi l)
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.Keypad6) || Input.GetKey(KeyCode.L))
+            if (InputHelper.GetKey(KeyCode.D) || InputHelper.GetKey(KeyCode.RightArrow) || InputHelper.GetKey(KeyCode.Keypad6) || InputHelper.GetKey(KeyCode.L))
             { dx = 1; return true; }
 
             // Diagonals (numpad + vi keys)
-            if (Input.GetKey(KeyCode.Keypad7) || Input.GetKey(KeyCode.Y))
+            if (InputHelper.GetKey(KeyCode.Keypad7) || InputHelper.GetKey(KeyCode.Y))
             { dx = -1; dy = -1; return true; }
 
-            if (Input.GetKey(KeyCode.Keypad9) || Input.GetKey(KeyCode.U))
+            if (InputHelper.GetKey(KeyCode.Keypad9) || InputHelper.GetKey(KeyCode.U))
             { dx = 1; dy = -1; return true; }
 
-            if (Input.GetKey(KeyCode.Keypad1) || Input.GetKey(KeyCode.B))
+            if (InputHelper.GetKey(KeyCode.Keypad1) || InputHelper.GetKey(KeyCode.B))
             { dx = -1; dy = 1; return true; }
 
-            if (Input.GetKey(KeyCode.Keypad3) || Input.GetKey(KeyCode.N))
+            if (InputHelper.GetKey(KeyCode.Keypad3) || InputHelper.GetKey(KeyCode.N))
             { dx = 1; dy = 1; return true; }
 
             return false;
@@ -1563,7 +2643,7 @@ namespace CavesOfOoo.Rendering
 
         private void HandleAwaitingTalkDirection()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 _inputState = InputState.Normal;
                 return;
@@ -1584,38 +2664,56 @@ namespace CavesOfOoo.Rendering
             var targetCell = CurrentZone.GetCell(tx, ty);
             if (targetCell == null)
             {
-                MessageLog.Add("There's nothing there to talk to.");
+                MessageLog.Add("There's nothing there to interact with.");
                 return;
             }
 
-            // Find entity with ConversationPart in the target cell
+            // Dispatch by what's in the target cell. Priority order:
+            //   1. ConversationPart → talk (matches original 'c' behavior)
+            //   2. ContainerPart    → open chest
+            // We loop once and keep the first match of each kind; talk wins
+            // if the same cell somehow has both (unlikely but well-defined).
             Entity talkTarget = null;
+            Entity containerTarget = null;
             for (int i = 0; i < targetCell.Objects.Count; i++)
             {
-                if (targetCell.Objects[i].GetPart<ConversationPart>() != null)
-                {
-                    talkTarget = targetCell.Objects[i];
-                    break;
-                }
+                var obj = targetCell.Objects[i];
+                if (talkTarget == null && obj.GetPart<ConversationPart>() != null)
+                    talkTarget = obj;
+                else if (containerTarget == null && obj.GetPart<ContainerPart>() != null)
+                    containerTarget = obj;
             }
 
-            if (talkTarget == null)
+            if (talkTarget != null)
             {
-                MessageLog.Add("There's nothing there to talk to.");
+                // Start conversation
+                bool started = ConversationManager.StartConversation(talkTarget, PlayerEntity);
+                if (!started) return;
+                OpenDialogue();
                 return;
             }
 
-            // Try starting conversation
-            bool started = ConversationManager.StartConversation(talkTarget, PlayerEntity);
-            if (!started) return;
+            if (containerTarget != null)
+            {
+                // Fire the InventoryAction event on the container with the OpenContainer
+                // command — reuses ContainerPart.HandleEvent's existing open flow
+                // (locked-check, contents message, OpenContainer event broadcast).
+                // End the turn so the open action consumes a tick, matching talk.
+                var openAction = GameEvent.New("InventoryAction");
+                openAction.SetParameter("Command", "OpenContainer");
+                openAction.SetParameter("Actor", (object)PlayerEntity);
+                containerTarget.FireEventAndRelease(openAction);
+                EndTurnAndProcess();
+                return;
+            }
 
-            OpenDialogue();
+            MessageLog.Add("There's nothing there to interact with.");
         }
 
         private void OpenDialogue()
         {
             if (DialogueUI == null) return;
-            if (ZoneRenderer != null) ZoneRenderer.Paused = true;
+            EnterCenteredPopupOverlayView();
             DialogueUI.PlayerEntity = PlayerEntity;
             DialogueUI.CurrentZone = CurrentZone;
             DialogueUI.Open();
@@ -1649,14 +2747,15 @@ namespace CavesOfOoo.Rendering
                     // Already hostile — attack immediately, no confirmation
                     ExecuteAttackOnNPC(attackTarget);
                     _inputState = InputState.Normal;
-                    if (ZoneRenderer != null) { ZoneRenderer.Paused = false; ZoneRenderer.MarkDirty(); }
+                    if (TryOpenAnnouncement())
+                        return;
+
+                    ExitCenteredPopupOverlayViewToGameplay();
                     return;
                 }
 
                 // Friendly NPC — show confirmation popup
-                _pendingAttackTarget = attackTarget;
-                _inputState = InputState.AwaitingAttackConfirm;
-                RenderAttackConfirmation(attackTarget);
+                OpenAttackConfirmation(attackTarget);
                 return;
             }
 
@@ -1674,11 +2773,7 @@ namespace CavesOfOoo.Rendering
                 return;
 
             _inputState = InputState.Normal;
-            if (ZoneRenderer != null)
-            {
-                ZoneRenderer.Paused = false;
-                ZoneRenderer.MarkDirty();
-            }
+            ExitCenteredPopupOverlayViewToGameplay();
         }
 
         // ===== Trade =====
@@ -1687,7 +2782,7 @@ namespace CavesOfOoo.Rendering
         {
             if (TradeUI == null) return;
             if (ZoneRenderer != null) ZoneRenderer.Paused = true;
-            if (CameraFollow != null) CameraFollow.SetUIView(80, 45);
+            if (CameraFollow != null) CameraFollow.SetUIView(FullscreenUiGridWidth, FullscreenUiGridHeight);
             TradeUI.PlayerEntity = PlayerEntity;
             TradeUI.CurrentZone = CurrentZone;
             TradeUI.Open(trader);
@@ -1715,30 +2810,27 @@ namespace CavesOfOoo.Rendering
             if (ZoneRenderer != null)
             {
                 ZoneRenderer.Paused = false;
-                ZoneRenderer.MarkDirty();
+                ZoneRenderer.MarkDirty("UI.Trade.Close");
             }
+        }
+
+        private void RequestZoneRedraw(string source)
+        {
+            if (ZoneRenderer != null)
+                ZoneRenderer.MarkDirty(source);
         }
 
         // ===== Attack Confirmation =====
 
         private void HandleAttackConfirmInput()
         {
-            if (Input.GetKeyDown(KeyCode.Y))
+            if (InputHelper.GetKeyDown(KeyCode.Y))
             {
-                ClearAttackConfirmation();
-                var target = _pendingAttackTarget;
-                _pendingAttackTarget = null;
-                _inputState = InputState.Normal;
-                if (ZoneRenderer != null) { ZoneRenderer.Paused = false; ZoneRenderer.MarkDirty(); }
-                ExecuteAttackOnNPC(target);
+                ResolveAttackConfirmation(true);
             }
-            else if (Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.Escape))
+            else if (InputHelper.GetKeyDown(KeyCode.N) || InputHelper.GetKeyDown(KeyCode.Escape))
             {
-                ClearAttackConfirmation();
-                _pendingAttackTarget = null;
-                _inputState = InputState.Normal;
-                if (ZoneRenderer != null) { ZoneRenderer.Paused = false; ZoneRenderer.MarkDirty(); }
-                MessageLog.Add("You decide against it.");
+                ResolveAttackConfirmation(false);
             }
         }
 
@@ -1755,26 +2847,57 @@ namespace CavesOfOoo.Rendering
         }
 
         private int _confirmOriginX, _confirmTopY, _confirmW, _confirmH;
+        private static readonly Color ConfirmPopupBgColor = new Color(0f, 0f, 0f, 1f);
+
+        private void OpenAttackConfirmation(Entity target)
+        {
+            _pendingAttackTarget = target;
+            _inputState = InputState.AwaitingAttackConfirm;
+            EnterCenteredPopupOverlayView();
+            RenderAttackConfirmation(target);
+        }
+
+        private void ResolveAttackConfirmation(bool confirmed)
+        {
+            ClearAttackConfirmation();
+            var target = _pendingAttackTarget;
+            _pendingAttackTarget = null;
+
+            if (confirmed)
+                ExecuteAttackOnNPC(target);
+            else
+                MessageLog.Add("You decide against it.");
+
+            _inputState = InputState.Normal;
+            if (TryOpenAnnouncement())
+                return;
+
+            ExitCenteredPopupOverlayViewToGameplay();
+        }
 
         private void RenderAttackConfirmation(Entity target)
         {
             if (DialogueUI == null || DialogueUI.Tilemap == null) return;
             var tilemap = DialogueUI.Tilemap;
-            var cam = Camera.main;
-            if (cam == null) return;
+            var bgTilemap = DialogueUI.BgTilemap;
 
             string name = target != null ? target.GetDisplayName() : "this creature";
             string prompt = "Really attack " + name + "? (y/n)";
 
             _confirmW = prompt.Length + 4;
             _confirmH = 3;
-            _confirmOriginX = Mathf.RoundToInt(cam.transform.position.x) - _confirmW / 2;
-            _confirmTopY = Mathf.RoundToInt(cam.transform.position.y) + _confirmH / 2;
+            _confirmOriginX = CenteredPopupLayout.GetCenteredOriginX(_confirmW);
+            _confirmTopY = CenteredPopupLayout.GetCenteredTopY(_confirmH);
 
             // Clear only the popup region
             for (int dy = 0; dy < _confirmH; dy++)
                 for (int dx = 0; dx < _confirmW; dx++)
+                {
                     tilemap.SetTile(new Vector3Int(_confirmOriginX + dx, _confirmTopY - dy, 0), null);
+                    bgTilemap?.SetTile(new Vector3Int(_confirmOriginX + dx, _confirmTopY - dy, 0), null);
+                }
+
+            DrawConfirmBackground(bgTilemap);
 
             // Border
             DrawConfirmChar(0, 0, '+', QudColorParser.Gray);
@@ -1801,9 +2924,32 @@ namespace CavesOfOoo.Rendering
         {
             if (DialogueUI == null || DialogueUI.Tilemap == null) return;
             var tilemap = DialogueUI.Tilemap;
+            var bgTilemap = DialogueUI.BgTilemap;
             for (int dy = 0; dy < _confirmH; dy++)
                 for (int dx = 0; dx < _confirmW; dx++)
+                {
                     tilemap.SetTile(new Vector3Int(_confirmOriginX + dx, _confirmTopY - dy, 0), null);
+                    bgTilemap?.SetTile(new Vector3Int(_confirmOriginX + dx, _confirmTopY - dy, 0), null);
+                }
+        }
+
+        private void DrawConfirmBackground(UnityEngine.Tilemaps.Tilemap bgTilemap)
+        {
+            if (bgTilemap == null) return;
+
+            var blockTile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+            if (blockTile == null) return;
+
+            for (int dy = 0; dy < _confirmH - 1; dy++)
+            {
+                for (int dx = 0; dx < _confirmW; dx++)
+                {
+                    var pos = new Vector3Int(_confirmOriginX + dx, _confirmTopY - dy, 0);
+                    bgTilemap.SetTile(pos, blockTile);
+                    bgTilemap.SetTileFlags(pos, UnityEngine.Tilemaps.TileFlags.None);
+                    bgTilemap.SetColor(pos, ConfirmPopupBgColor);
+                }
+            }
         }
 
         private void DrawConfirmChar(int gx, int gy, char c, Color color)
@@ -1831,8 +2977,26 @@ namespace CavesOfOoo.Rendering
             if (msg == null)
                 return false;
 
-            if (ZoneRenderer != null)
-                ZoneRenderer.Paused = true;
+            // Remember where we came from so CloseAnnouncement can restore
+            // that state (e.g. InventoryOpen) after the whole queue drains.
+            // Don't overwrite it when chaining popup→popup — the queue is
+            // logically one burst until it reaches empty.
+            if (_inputState != InputState.AnnouncementOpen)
+                _stateBeforeAnnouncement = _inputState;
+
+            // When the announcement is layering over the inventory, use
+            // the UI-view overlay path — the normal SetCenteredPopupOverlayView
+            // flips the main camera to the cropped gameplay MapRect, which
+            // shrinks the inventory underneath with black strips where the
+            // sidebar and hotbar would sit in gameplay.
+            if (_stateBeforeAnnouncement == InputState.InventoryOpen && CameraFollow != null)
+            {
+                CameraFollow.SetCenteredPopupOverlayOverUIView();
+            }
+            else
+            {
+                EnterCenteredPopupOverlayView();
+            }
 
             AnnouncementUI.Open(msg);
             _inputState = InputState.AnnouncementOpen;
@@ -1855,16 +3019,127 @@ namespace CavesOfOoo.Rendering
 
         private void CloseAnnouncement()
         {
-            // Check for more pending announcements
+            // Chain into the next queued announcement if there is one.
             if (TryOpenAnnouncement())
                 return;
 
-            _inputState = InputState.Normal;
-            if (ZoneRenderer != null)
+            // Queue drained — return to whatever state was active before the
+            // first announcement popped. If the player was in the inventory
+            // (grimoire just read), put the UI camera back on the inventory
+            // instead of snapping to the gameplay view.
+            var prior = _stateBeforeAnnouncement;
+            _stateBeforeAnnouncement = InputState.Normal;
+            _inputState = prior;
+
+            if (prior == InputState.InventoryOpen)
             {
-                ZoneRenderer.Paused = false;
-                ZoneRenderer.MarkDirty();
+                // Disable the popup overlay camera but keep the fullscreen
+                // UI camera framing; the inventory's tiles are still on the
+                // main tilemap beneath.
+                if (CameraFollow != null)
+                {
+                    if (CameraFollow.PopupOverlayCamera != null)
+                        CameraFollow.PopupOverlayCamera.enabled = false;
+                    CameraFollow.SetUIView(FullscreenUiGridWidth, FullscreenUiGridHeight);
+                }
             }
+            else
+            {
+                ExitCenteredPopupOverlayViewToGameplay();
+            }
+        }
+
+        private void EnterCenteredPopupOverlayView()
+        {
+            if (CameraFollow != null)
+                CameraFollow.SetCenteredPopupOverlayView();
+        }
+
+        private void ExitCenteredPopupOverlayViewToGameplay()
+        {
+            if (CameraFollow != null)
+                CameraFollow.RestoreGameView();
+        }
+
+        private void ActivateSelectedHotbarSlot()
+        {
+            EnsureHotbarSelectionValid();
+            if (_selectedHotbarSlot < 0)
+            {
+                MessageLog.Add("No rite bound.");
+                return;
+            }
+
+            TryActivateAbility(_selectedHotbarSlot);
+        }
+
+        private void CycleHotbarSelection(int direction)
+        {
+            var abilities = PlayerEntity?.GetPart<ActivatedAbilitiesPart>();
+            int nextSlot = FindNextOccupiedHotbarSlot(abilities, _selectedHotbarSlot, direction);
+            if (nextSlot < 0)
+            {
+                MessageLog.Add("No rite bound.");
+                return;
+            }
+
+            _selectedHotbarSlot = nextSlot;
+            SyncHotbarState();
+        }
+
+        private void EnsureHotbarSelectionValid()
+        {
+            var abilities = PlayerEntity?.GetPart<ActivatedAbilitiesPart>();
+            if (abilities == null)
+            {
+                _selectedHotbarSlot = -1;
+                return;
+            }
+
+            if (IsOccupiedHotbarSlot(abilities, _selectedHotbarSlot))
+                return;
+
+            _selectedHotbarSlot = FindNextOccupiedHotbarSlot(abilities, -1, 1);
+        }
+
+        private void SyncHotbarState()
+        {
+            ZoneRenderer?.SetHotbarState(_selectedHotbarSlot, _pendingAbility);
+        }
+
+        private static bool IsOccupiedHotbarSlot(ActivatedAbilitiesPart abilities, int slot)
+        {
+            return abilities != null &&
+                   slot >= 0 &&
+                   slot < ActivatedAbilitiesPart.SlotCount &&
+                   abilities.GetAbilityBySlot(slot) != null;
+        }
+
+        private static int FindNextOccupiedHotbarSlot(ActivatedAbilitiesPart abilities, int startSlot, int direction)
+        {
+            if (abilities == null)
+                return -1;
+
+            int delta = direction >= 0 ? 1 : -1;
+            for (int step = 1; step <= ActivatedAbilitiesPart.SlotCount; step++)
+            {
+                int slot = Mathf.FloorToInt(Mathf.Repeat(startSlot + step * delta, ActivatedAbilitiesPart.SlotCount));
+                if (abilities.GetAbilityBySlot(slot) != null)
+                    return slot;
+            }
+
+            return -1;
+        }
+
+        private static string GetAbilityDisplayName(ActivatedAbility ability)
+        {
+            if (ability == null)
+                return "That rite";
+
+            GrimoireTooltip tooltip = GrimoireTooltipData.GetOrDefault(ability.SourceMutationClass);
+            return !string.IsNullOrEmpty(tooltip.DisplayName)
+                ? tooltip.DisplayName
+                : ability.DisplayName;
         }
     }
 }

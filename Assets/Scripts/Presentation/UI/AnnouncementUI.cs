@@ -7,15 +7,18 @@ namespace CavesOfOoo.Rendering
 {
     /// <summary>
     /// Renders a centered modal popup for important game announcements.
-    /// Follows the same world-space tilemap popup pattern as DialogueUI.
+    /// Uses the centered popup overlay grid inside the gameplay viewport.
     /// Player must press Enter/Space/Escape or click to dismiss.
     /// </summary>
     public class AnnouncementUI : MonoBehaviour
     {
         public Tilemap Tilemap;
+        public Tilemap BgTilemap;
+        public Camera PopupCamera;
 
         private const int POPUP_W = 56;
         private const int MAX_TEXT_WIDTH = POPUP_W - 4; // 2 chars padding each side
+        private static readonly Color PopupBgColor = new Color(0f, 0f, 0f, 1f);
 
         private bool _isOpen;
         private string _message;
@@ -24,6 +27,23 @@ namespace CavesOfOoo.Rendering
         private int _worldOriginX;
         private int _worldTopY;
         private int _popupH;
+        private bool _bgDrawn;
+        private int _bgDrawnW;
+        private int _bgDrawnH;
+        private int _bgDrawnOriginX;
+        private int _bgDrawnTopY;
+
+        // Previously-drawn FG region, tracked so Render() can erase the
+        // actual tiles from the last draw (even if position/size changed)
+        // before painting the new popup. Without this, chaining Open() for
+        // differently-sized messages left top-border / action-bar fragments
+        // visible outside the new rectangle — 4 grimoires in a row produced
+        // 4 ghost top-bars stacked above the active popup.
+        private bool _fgDrawn;
+        private int _fgDrawnW;
+        private int _fgDrawnH;
+        private int _fgDrawnOriginX;
+        private int _fgDrawnTopY;
 
         public bool IsOpen => _isOpen;
 
@@ -40,7 +60,8 @@ namespace CavesOfOoo.Rendering
         public void Close()
         {
             if (!_isOpen) return;
-            ClearRegion(0, 0, POPUP_W, _popupH);
+            ClearFgRegion();
+            ClearBgRegion();
             _isOpen = false;
         }
 
@@ -48,7 +69,7 @@ namespace CavesOfOoo.Rendering
         {
             if (!_isOpen) return;
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.Space) || InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 Close();
                 return;
@@ -65,30 +86,30 @@ namespace CavesOfOoo.Rendering
 
         private void ComputePopupPosition()
         {
-            var cam = Camera.main;
-            if (cam == null) return;
-
             int textLines = _wrappedLines.Count;
 
             // Layout: top border + blank + text lines + blank + action bar + bottom border
             _popupH = 2 + textLines + 2 + 1;
-
-            float camX = cam.transform.position.x;
-            float camY = cam.transform.position.y;
-
-            _worldOriginX = Mathf.RoundToInt(camX) - POPUP_W / 2;
-            _worldTopY = Mathf.RoundToInt(camY) + _popupH / 2;
+            _worldOriginX = CenteredPopupLayout.GetCenteredOriginX(POPUP_W);
+            _worldTopY = CenteredPopupLayout.GetCenteredTopY(_popupH);
         }
 
         private void Render()
         {
             if (Tilemap == null) return;
 
+            // Erase whatever was drawn by the previous Open() call FIRST —
+            // the new popup's rectangle may not fully overlap the old one's
+            // (different text wraps to different heights, shifting the
+            // centered origin), so tiles outside the new rectangle would
+            // otherwise be left behind as ghost artifacts.
+            ClearFgRegion();
+            ClearBgRegion();
             ComputePopupPosition();
 
             int textLines = _wrappedLines.Count;
 
-            ClearRegion(0, 0, POPUP_W, _popupH);
+            DrawBgFill(0, 0, POPUP_W, _popupH - 1);
 
             // Top border
             DrawChar(0, 0, CP437TilesetGenerator.BoxTopLeft, QudColorParser.Gray);
@@ -121,6 +142,15 @@ namespace CavesOfOoo.Rendering
             // Action bar
             string actions = " [Enter] okay";
             DrawText(0, y, actions, QudColorParser.DarkGray);
+
+            // Record the full FG footprint we just painted (box rows +
+            // action bar row below) so the NEXT Render/Close can erase it
+            // even if _worldOriginX/_worldTopY/_popupH change in between.
+            _fgDrawn = true;
+            _fgDrawnW = POPUP_W;
+            _fgDrawnH = _popupH + 1;
+            _fgDrawnOriginX = _worldOriginX;
+            _fgDrawnTopY = _worldTopY;
         }
 
         // ===== Word Wrap =====
@@ -167,17 +197,69 @@ namespace CavesOfOoo.Rendering
 
         // ===== Drawing Helpers (world-space, same as DialogueUI) =====
 
-        private void ClearRegion(int gx, int gy, int width, int height)
+        private void DrawBgFill(int gx, int gy, int width, int height)
         {
+            if (BgTilemap == null) return;
+            var blockTile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+            if (blockTile == null) return;
+
             for (int dy = 0; dy < height; dy++)
             {
                 for (int dx = 0; dx < width; dx++)
                 {
                     int wx = _worldOriginX + gx + dx;
                     int wy = _worldTopY - (gy + dy);
+                    var pos = new Vector3Int(wx, wy, 0);
+                    BgTilemap.SetTile(pos, blockTile);
+                    BgTilemap.SetTileFlags(pos, TileFlags.None);
+                    BgTilemap.SetColor(pos, PopupBgColor);
+                }
+            }
+
+            _bgDrawn = true;
+            _bgDrawnW = width;
+            _bgDrawnH = height;
+            _bgDrawnOriginX = _worldOriginX + gx;
+            _bgDrawnTopY = _worldTopY - gy;
+        }
+
+        private void ClearBgRegion()
+        {
+            if (!_bgDrawn || BgTilemap == null) return;
+
+            for (int dy = 0; dy < _bgDrawnH; dy++)
+            {
+                for (int dx = 0; dx < _bgDrawnW; dx++)
+                {
+                    int wx = _bgDrawnOriginX + dx;
+                    int wy = _bgDrawnTopY - dy;
+                    BgTilemap.SetTile(new Vector3Int(wx, wy, 0), null);
+                }
+            }
+
+            _bgDrawn = false;
+        }
+
+        /// <summary>
+        /// Erase the FG tiles painted by the previous Render() call, using
+        /// the origin/size we recorded at that time (not the current ones —
+        /// those may already have been reassigned for the NEW popup).
+        /// </summary>
+        private void ClearFgRegion()
+        {
+            if (!_fgDrawn || Tilemap == null) return;
+
+            for (int dy = 0; dy < _fgDrawnH; dy++)
+            {
+                for (int dx = 0; dx < _fgDrawnW; dx++)
+                {
+                    int wx = _fgDrawnOriginX + dx;
+                    int wy = _fgDrawnTopY - dy;
                     Tilemap.SetTile(new Vector3Int(wx, wy, 0), null);
                 }
             }
+
+            _fgDrawn = false;
         }
 
         private void DrawChar(int gx, int gy, char c, Color color)

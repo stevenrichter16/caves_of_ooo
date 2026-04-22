@@ -10,6 +10,8 @@ namespace CavesOfOoo.Core.Inventory
         MissingBodyPart,
         MissingEquippablePart,
         NotTakeable,
+        NotCarryable,
+        InsufficientStrength,
         NotOwned,
         NoCompatibleSlot,
         OverWeightLimit,

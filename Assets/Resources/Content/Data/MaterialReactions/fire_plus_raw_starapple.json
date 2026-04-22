@@ -1,0 +1,16 @@
+{
+  "Reactions": [
+    {
+      "ID": "fire_plus_raw_starapple",
+      "Priority": 30,
+      "Conditions": {
+        "TargetMaterialTag": "RawStarapple",
+        "MinTemperature": 150,
+        "MaxMoisture": 0.5
+      },
+      "Effects": [
+        { "Type": "SwapBlueprint", "FloatValue": 0.0, "StringValue": "RoastedStarapple" }
+      ]
+    }
+  ]
+}

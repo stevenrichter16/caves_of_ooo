@@ -1060,12 +1060,23 @@ namespace CavesOfOoo.Tests
         public void OverworldZoneManager_RoutesCaveBiome()
         {
             var manager = CreateManager(42);
-            // Force a Cave biome tile
             var worldMap = manager.WorldMap;
-            // Center is always Cave
-            string caveID = WorldMap.ToZoneID(10, 10);
-            Assert.AreEqual(BiomeType.Cave, worldMap.GetBiome(10, 10));
 
+            // The starting POI (previously Village, now RiverChunk) bypasses
+            // the cave pipeline — even though the center tile's BIOME is Cave.
+            // Pick any other Cave-biome tile without a POI for this routing test.
+            (int x, int y)? cavePos = null;
+            for (int y = 0; y < WorldMap.Height && cavePos == null; y++)
+            {
+                for (int x = 0; x < WorldMap.Width && cavePos == null; x++)
+                {
+                    if (worldMap.GetBiome(x, y) == BiomeType.Cave && !worldMap.HasPOI(x, y))
+                        cavePos = (x, y);
+                }
+            }
+            Assert.IsNotNull(cavePos, "Expected at least one Cave-biome tile without a POI.");
+
+            string caveID = WorldMap.ToZoneID(cavePos.Value.x, cavePos.Value.y);
             Zone zone = manager.GetZone(caveID);
             Assert.IsNotNull(zone);
 

@@ -115,6 +115,28 @@ namespace CavesOfOoo.Data
         /// <summary>
         /// Resolve inheritance for a single blueprint. Recurses up the chain.
         /// Child values override parent values (parts are merged, not replaced wholesale).
+        ///
+        /// IMPORTANT — dictionary iteration order is load-bearing.
+        /// The merge below preserves PARENT parts first (inserted in parent's JSON
+        /// order), then appends CHILD-NEW parts (inserted in child's JSON order).
+        /// <see cref="EntityFactory.CreateEntity"/> iterates <c>bp.Parts</c> in the
+        /// same order to call <see cref="Entity.AddPart"/>, which determines:
+        ///   1. The order of <c>Part.Initialize()</c> calls (dependencies between
+        ///      parts — e.g., AIAmbushPart.Initialize calling GetPart&lt;BrainPart&gt;
+        ///      — require Brain to be inserted earlier).
+        ///   2. The dispatch order of <see cref="Entity.FireEvent"/>: earlier parts
+        ///      handle events first, which decides who "wins" an event race (e.g.,
+        ///      AISelfPreservation must fire BEFORE AIGuard so HP-retreat wins
+        ///      the AIBoredEvent consumption over post-guarding).
+        ///
+        /// This relies on <see cref="Dictionary{TKey,TValue}"/> preserving insertion
+        /// order, which is guaranteed on .NET Core 2.0+ / .NET Standard 2.1 (the
+        /// Unity 6 runtime target). If this code were ever retargeted to an older
+        /// runtime where insertion order is undefined, part dispatch would become
+        /// non-deterministic and the Phase 6 event-race semantics would break
+        /// silently. Authors adding new AIBehaviorPart subclasses should keep this
+        /// in mind and verify via blueprint part-order tests
+        /// (see AISelfPreservationBlueprintTests.Warden_PartOrder_*).
         /// </summary>
         private static void Bake(Blueprint bp, Dictionary<string, Blueprint> all)
         {
@@ -133,7 +155,8 @@ namespace CavesOfOoo.Data
             Bake(parent, all);
             bp.Parent = parent;
 
-            // Inherit parts: parent parts first, then child overrides
+            // Inherit parts: parent parts first, then child overrides.
+            // Insertion order here is load-bearing (see method doc above).
             var mergedParts = new Dictionary<string, Dictionary<string, string>>();
             foreach (var kvp in parent.Parts)
             {

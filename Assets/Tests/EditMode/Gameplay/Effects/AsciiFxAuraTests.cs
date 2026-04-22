@@ -19,7 +19,7 @@ namespace CavesOfOoo.Tests
             var entity = CreateCreature("burning target");
             zone.AddEntity(entity, 5, 5);
 
-            bool applied = entity.ApplyEffect(new BurningEffect(duration: 3), zone: zone);
+            bool applied = entity.ApplyEffect(new BurningEffect(intensity: 1.0f), zone: zone);
             var applyRequests = AsciiFxBus.Drain();
 
             Assert.IsTrue(applied);

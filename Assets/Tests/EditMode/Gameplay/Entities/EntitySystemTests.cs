@@ -342,6 +342,135 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void EntityFactory_ParsesHandlingGripTypeEnum()
+        {
+            const string json = @"{
+              ""Objects"": [
+                {
+                  ""Name"": ""HandledWeapon"",
+                  ""Parts"": [
+                    { ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Takeable"", ""Value"": ""true"" }] },
+                    { ""Name"": ""Equippable"", ""Params"": [{ ""Key"": ""Slot"", ""Value"": ""Hand"" }] },
+                    { ""Name"": ""Handling"", ""Params"": [{ ""Key"": ""GripType"", ""Value"": ""TwoHand"" }] }
+                  ],
+                  ""Stats"": [],
+                  ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }]
+                }
+              ]
+            }";
+
+            var factory = new EntityFactory();
+            factory.LoadBlueprints(json);
+
+            var weapon = factory.CreateEntity("HandledWeapon");
+
+            Assert.IsNotNull(weapon);
+            Assert.AreEqual(GripType.TwoHand, weapon.GetPart<HandlingPart>().GripType);
+        }
+
+        [Test]
+        public void EntityFactory_ValidateHandlingBlueprint_FindsGripTypeSlotConflict()
+        {
+            const string json = @"{
+              ""Objects"": [
+                {
+                  ""Name"": ""ConflictWeapon"",
+                  ""Parts"": [
+                    { ""Name"": ""Equippable"", ""Params"": [{ ""Key"": ""Slot"", ""Value"": ""Hand"" }, { ""Key"": ""UsesSlots"", ""Value"": ""Hand"" }] },
+                    { ""Name"": ""Handling"", ""Params"": [{ ""Key"": ""GripType"", ""Value"": ""TwoHand"" }] }
+                  ],
+                  ""Stats"": [],
+                  ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }]
+                }
+              ]
+            }";
+
+            var factory = new EntityFactory();
+            factory.LoadBlueprints(json);
+
+            var issues = factory.ValidateHandlingBlueprint("ConflictWeapon");
+
+            Assert.That(issues, Has.Some.Contains("GripType=TwoHand"));
+        }
+
+        [Test]
+        public void EntityFactory_ValidateHandlingBlueprint_FindsOneHandSlotConflict()
+        {
+            const string json = @"{
+              ""Objects"": [
+                {
+                  ""Name"": ""OneHandConflictWeapon"",
+                  ""Parts"": [
+                    { ""Name"": ""Equippable"", ""Params"": [{ ""Key"": ""Slot"", ""Value"": ""Hand"" }, { ""Key"": ""UsesSlots"", ""Value"": ""Hand,Hand"" }] },
+                    { ""Name"": ""Handling"", ""Params"": [{ ""Key"": ""GripType"", ""Value"": ""OneHand"" }] }
+                  ],
+                  ""Stats"": [],
+                  ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }]
+                }
+              ]
+            }";
+
+            var factory = new EntityFactory();
+            factory.LoadBlueprints(json);
+
+            var issues = factory.ValidateHandlingBlueprint("OneHandConflictWeapon");
+
+            Assert.That(issues, Has.Some.Contains("GripType=OneHand"));
+        }
+
+        [Test]
+        public void EntityFactory_ValidateHandlingBlueprint_FindsNonCarryableThrowableConflict()
+        {
+            const string json = @"{
+              ""Objects"": [
+                {
+                  ""Name"": ""BadThrowWeapon"",
+                  ""Parts"": [
+                    { ""Name"": ""Handling"", ""Params"": [
+                      { ""Key"": ""Carryable"", ""Value"": ""false"" },
+                      { ""Key"": ""Throwable"", ""Value"": ""true"" }
+                    ]}
+                  ],
+                  ""Stats"": [],
+                  ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }]
+                }
+              ]
+            }";
+
+            var factory = new EntityFactory();
+            factory.LoadBlueprints(json);
+
+            var issues = factory.ValidateHandlingBlueprint("BadThrowWeapon");
+
+            Assert.That(issues, Has.Some.Contains("throwable while Carryable is false"));
+        }
+
+        [Test]
+        public void EntityFactory_ValidateHandlingBlueprint_WarnsWhenGripTypeOverridesLegacySlotFallback()
+        {
+            const string json = @"{
+              ""Objects"": [
+                {
+                  ""Name"": ""HeadSlotHandledItem"",
+                  ""Parts"": [
+                    { ""Name"": ""Equippable"", ""Params"": [{ ""Key"": ""Slot"", ""Value"": ""Head"" }] },
+                    { ""Name"": ""Handling"", ""Params"": [{ ""Key"": ""GripType"", ""Value"": ""TwoHand"" }] }
+                  ],
+                  ""Stats"": [],
+                  ""Tags"": [{ ""Key"": ""Item"", ""Value"": """" }]
+                }
+              ]
+            }";
+
+            var factory = new EntityFactory();
+            factory.LoadBlueprints(json);
+
+            var issues = factory.ValidateHandlingBlueprint("HeadSlotHandledItem");
+
+            Assert.That(issues, Has.Some.Contains("override Equippable.Slot='Head'"));
+        }
+
+        [Test]
         public void EntityFactory_CreatesSnapjaw_WithInheritedStats()
         {
             var factory = new EntityFactory();

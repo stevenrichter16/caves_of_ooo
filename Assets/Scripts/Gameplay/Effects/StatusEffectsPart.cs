@@ -358,14 +358,8 @@ namespace CavesOfOoo.Core
             if (effect == null || zone == null || ParentEntity == null)
                 return;
 
-            if (effect is BurningEffect)
-            {
-                AsciiFxBus.StartAura(zone, ParentEntity, AsciiFxTheme.Fire);
-            }
-            else if (effect is PoisonedEffect)
-            {
-                AsciiFxBus.StartAura(zone, ParentEntity, AsciiFxTheme.Poison);
-            }
+            if (effect is IAuraProvider aura)
+                AsciiFxBus.StartAura(zone, ParentEntity, aura.GetAuraTheme());
         }
 
         private void TryStopAura(Effect effect)
@@ -373,14 +367,8 @@ namespace CavesOfOoo.Core
             if (effect == null || ParentEntity == null)
                 return;
 
-            if (effect is BurningEffect)
-            {
-                AsciiFxBus.StopAura(ParentEntity, AsciiFxTheme.Fire);
-            }
-            else if (effect is PoisonedEffect)
-            {
-                AsciiFxBus.StopAura(ParentEntity, AsciiFxTheme.Poison);
-            }
+            if (effect is IAuraProvider aura)
+                AsciiFxBus.StopAura(ParentEntity, aura.GetAuraTheme());
         }
     }
 }

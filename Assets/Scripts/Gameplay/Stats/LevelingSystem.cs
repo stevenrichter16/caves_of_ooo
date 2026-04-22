@@ -48,6 +48,8 @@ namespace CavesOfOoo.Core
 
             while (xpStat.Value >= XPToNextLevel(levelStat.Value))
             {
+                int threshold = XPToNextLevel(levelStat.Value);
+                xpStat.BaseValue -= threshold;
                 levelStat.BaseValue++;
                 int newLevel = levelStat.Value;
 

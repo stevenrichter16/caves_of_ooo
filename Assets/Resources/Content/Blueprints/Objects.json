@@ -4,7 +4,8 @@
       "Name": "PhysicalObject",
       "Parts": [
         { "Name": "Render", "Params": [{ "Key": "RenderString", "Value": "?" }, { "Key": "ColorString", "Value": "&y" }] },
-        { "Name": "Physics", "Params": [] }
+        { "Name": "Physics", "Params": [] },
+        { "Name": "Examinable", "Params": [] }
       ],
       "Stats": [],
       "Tags": []
@@ -22,11 +23,49 @@
       ]
     },
     {
+      "Name": "Bone",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "bone" },
+          { "Key": "RenderString", "Value": "," },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Handling", "Params": [
+          { "Key": "Carryable", "Value": "true" },
+          { "Key": "Throwable", "Value": "true" },
+          { "Key": "Weight", "Value": "1" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "GoldCoin",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "gold coin" },
+          { "Key": "RenderString", "Value": "$" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Shiny", "Value": "" }
+      ]
+    },
+    {
       "Name": "MeleeWeapon",
       "Inherits": "Item",
       "Parts": [
         { "Name": "Physics", "Params": [{ "Key": "Category", "Value": "Melee Weapons" }] },
-        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }] }
+        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }] },
+        { "Name": "Handling", "Params": [{ "Key": "GripType", "Value": "OneHand" }] }
       ],
       "Stats": [],
       "Tags": [
@@ -45,7 +84,19 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "4" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "MaxStrengthBonus", "Value": "3" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "10" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "10" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 5, "Min": 0, "Max": 5 }
@@ -65,7 +116,17 @@
         { "Name": "Inventory", "Params": [{ "Key": "MaxWeight", "Value": "150" }] },
         { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "10" }, { "Key": "Wanders", "Value": "true" }, { "Key": "WandersRandomly", "Value": "true" }] },
         { "Name": "GivesRep", "Params": [{ "Key": "Value", "Value": "10" }] },
-        { "Name": "DamageFlash", "Params": [] }
+        { "Name": "DamageFlash", "Params": [] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Flesh" },
+          { "Key": "Combustibility", "Value": "0.15" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "500" },
+          { "Key": "HeatCapacity", "Value": "2.0" },
+          { "Key": "AmbientDecayRate", "Value": "0.05" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 1, "Min": 0, "Max": 999 },
@@ -117,7 +178,7 @@
           { "Key": "RenderLayer", "Value": "20" }
         ]},
         { "Name": "ActivatedAbilities", "Params": [] },
-        { "Name": "Mutations", "Params": [{ "Key": "StartingMutations", "Value": "FlamingHandsMutation:1" }] },
+        { "Name": "Mutations", "Params": [{ "Key": "StartingMutations", "Value": "FlamingHandsMutation:1,CalmMutation:1" }] },
         { "Name": "LightSource", "Params": [
           { "Key": "Radius", "Value": "5" },
           { "Key": "LightColor", "Value": "&Y" },
@@ -156,6 +217,24 @@
       "Tags": [
         { "Key": "Solid", "Value": "" },
         { "Key": "Wall", "Value": "" }
+      ]
+    },
+    {
+      "Name": "Shrine",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "shrine" },
+          { "Key": "RenderString", "Value": "_" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "false" }] },
+        { "Name": "Sanctuary", "Params": [] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Furniture", "Value": "" }
       ]
     },
     {
@@ -280,7 +359,16 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
         { "Name": "Food", "Params": [{ "Key": "Healing", "Value": "2d4" }, { "Key": "Cooking", "Value": "Meal" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "5" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "5" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Plant" },
+          { "Key": "Combustibility", "Value": "0.3" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Food,Raw,RawStarapple" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "320" },
+          { "Key": "HeatCapacity", "Value": "1.0" }
+        ]}
       ],
       "Stats": [],
       "Tags": [
@@ -292,6 +380,7 @@
       "Inherits": "Item",
       "Parts": [
         { "Name": "Physics", "Params": [{ "Key": "Category", "Value": "Tonics" }] },
+        { "Name": "Handling", "Params": [{ "Key": "GripType", "Value": "OneHand" }] },
         { "Name": "Tonic", "Params": [{ "Key": "Drink", "Value": "true" }] }
       ],
       "Stats": [],
@@ -312,6 +401,53 @@
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
         { "Name": "Tonic", "Params": [{ "Key": "Healing", "Value": "4d4" }, { "Key": "Effect", "Value": "Healing" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "15" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "PoisonTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "poison tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&g" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Message", "Value": "A toxic chill spreads through the body." }] },
+        { "Name": "StatusTonic", "Params": [
+          { "Key": "EffectName", "Value": "Poison" },
+          { "Key": "EffectDuration", "Value": "6" },
+          { "Key": "EffectDamageDice", "Value": "1d2" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "18" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "FireTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "fire tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Message", "Value": "Heat blooms outward in a violent flash." }] },
+        { "Name": "StatusTonic", "Params": [
+          { "Key": "EffectName", "Value": "Fire" },
+          { "Key": "EffectMagnitude", "Value": "1" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "20" }] }
       ],
       "Stats": [],
       "Tags": [
@@ -403,7 +539,17 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "15" }] },
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "-1" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "30" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "30" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Leather" },
+          { "Key": "Combustibility", "Value": "0.4" },
+          { "Key": "Porosity", "Value": "0.6" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Cloth" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "380" },
+          { "Key": "HeatCapacity", "Value": "1.0" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 }
@@ -424,7 +570,19 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "25" }] },
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "5" }, { "Key": "DV", "Value": "-2" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "60" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "60" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Iron" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.15" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1400" },
+          { "Key": "HeatCapacity", "Value": "0.6" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 25, "Min": 0, "Max": 25 }
@@ -472,7 +630,17 @@
           { "Key": "ColorString", "Value": "&y" },
           { "Key": "RenderLayer", "Value": "1" }
         ]},
-        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] }
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Stone" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Brittleness", "Value": "0.3" },
+          { "Key": "MaterialTagsRaw", "Value": "Stone,Mineral" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1200" },
+          { "Key": "HeatCapacity", "Value": "2.0" }
+        ]}
       ],
       "Stats": [],
       "Tags": [
@@ -538,6 +706,46 @@
       ],
       "Stats": [],
       "Tags": []
+    },
+    {
+      "Name": "Chair",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "wooden chair" },
+          { "Key": "RenderString", "Value": "h" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" }
+        ]},
+        { "Name": "Chair", "Params": [] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Furniture", "Value": "" }
+      ]
+    },
+    {
+      "Name": "Bed",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "straw bed" },
+          { "Key": "RenderString", "Value": "=" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" }
+        ]},
+        { "Name": "Bed", "Params": [] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Furniture", "Value": "" }
+      ]
     },
     {
       "Name": "StoneWall",
@@ -751,7 +959,19 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "8" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8" }, { "Key": "PenBonus", "Value": "2" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "25" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "25" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 }
@@ -772,8 +992,21 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "14" }] },
         { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
+        { "Name": "Handling", "Params": [{ "Key": "GripType", "Value": "TwoHand" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d6" }, { "Key": "PenBonus", "Value": "3" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "40" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "40" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 }
@@ -795,8 +1028,21 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "12" }] },
         { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
+        { "Name": "Handling", "Params": [{ "Key": "GripType", "Value": "TwoHand" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d12" }, { "Key": "PenBonus", "Value": "4" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "50" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "50" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 12, "Min": 0, "Max": 12 }
@@ -818,9 +1064,20 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "2" }] },
-        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "8" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "8" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" },
+          { "Key": "Staying", "Value": "true" },
+          { "Key": "Passive", "Value": "true" }
+        ]},
         { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Elder_1" }] },
-        { "Name": "GivesRep", "Params": [{ "Key": "Value", "Value": "25" }] }
+        { "Name": "GivesRep", "Params": [{ "Key": "Value", "Value": "25" }] },
+        { "Name": "AIFleeToShrine", "Params": [{ "Key": "FleeThreshold", "Value": "0.7" }] },
+        { "Name": "AISelfPreservation", "Params": [
+          { "Key": "RetreatThreshold", "Value": "0.7" },
+          { "Key": "SafeThreshold", "Value": "0.9" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 },
@@ -830,7 +1087,8 @@
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Villagers" },
-        { "Key": "Tier", "Value": "1" }
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
       ]
     },
     {
@@ -845,7 +1103,19 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "5" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6" }, { "Key": "PenBonus", "Value": "1" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "15" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "15" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
@@ -866,7 +1136,19 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "10" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8+1" }, { "Key": "PenBonus", "Value": "3" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "20" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "20" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 }
@@ -887,7 +1169,19 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "7" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6+1" }, { "Key": "PenBonus", "Value": "2" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "18" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "18" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
@@ -929,6 +1223,7 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "14" }] },
         { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
+        { "Name": "Handling", "Params": [{ "Key": "GripType", "Value": "TwoHand" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d8" }, { "Key": "PenBonus", "Value": "4" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "65" }] }
       ],
@@ -1103,7 +1398,11 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
-        { "Name": "Tonic", "Params": [{ "Key": "Effect", "Value": "Speed" }] },
+        { "Name": "Tonic", "Params": [
+          { "Key": "Effect", "Value": "Speed" },
+          { "Key": "StatBoost", "Value": "Speed:20" },
+          { "Key": "Message", "Value": "The tonic sends a quicksilver rush through the body." }
+        ]},
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "20" }] }
       ],
       "Stats": [],
@@ -1122,7 +1421,11 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
-        { "Name": "Tonic", "Params": [{ "Key": "Effect", "Value": "Strength" }] },
+        { "Name": "Tonic", "Params": [
+          { "Key": "Effect", "Value": "Strength" },
+          { "Key": "StatBoost", "Value": "Strength:4" },
+          { "Key": "Message", "Value": "Power surges through the body." }
+        ]},
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "22" }] }
       ],
       "Stats": [],
@@ -1180,7 +1483,12 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "1" }] },
-        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "8" }, { "Key": "Wanders", "Value": "true" }, { "Key": "WandersRandomly", "Value": "true" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "8" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" },
+          { "Key": "Staying", "Value": "true" }
+        ]},
         { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Villager_1" }] }
       ],
       "Stats": [
@@ -1190,10 +1498,117 @@
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Villagers" },
-        { "Key": "Tier", "Value": "1" }
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
       ],
       "IntProps": [
         { "Key": "Drams", "Value": 100 }
+      ]
+    },
+    {
+      "Name": "Magpie",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "magpie" },
+          { "Key": "RenderString", "Value": "b" },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Inventory", "Params": [{ "Key": "MaxWeight", "Value": "20" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "10" },
+          { "Key": "Wanders", "Value": "true" },
+          { "Key": "WandersRandomly", "Value": "true" },
+          { "Key": "Staying", "Value": "false" },
+          { "Key": "Passive", "Value": "true" }
+        ]},
+        { "Name": "AIHoarder", "Params": [
+          { "Key": "TargetTag", "Value": "Shiny" },
+          { "Key": "Chance", "Value": "15" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 6, "Min": 0, "Max": 6 },
+        { "Name": "Strength", "Value": 4 },
+        { "Name": "Agility", "Value": 14 },
+        { "Name": "Toughness", "Value": 5 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Villagers" },
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
+      ]
+    },
+    {
+      "Name": "PetDog",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "dog" },
+          { "Key": "RenderString", "Value": "d" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Inventory", "Params": [{ "Key": "MaxWeight", "Value": "10" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "10" },
+          { "Key": "Wanders", "Value": "true" },
+          { "Key": "WandersRandomly", "Value": "true" },
+          { "Key": "Staying", "Value": "false" },
+          { "Key": "Passive", "Value": "true" }
+        ]},
+        { "Name": "AIRetriever", "Params": [
+          { "Key": "AlliesOnly", "Value": "true" },
+          { "Key": "NoticeRadius", "Value": "10" }
+        ]},
+        { "Name": "AIPetter", "Params": [{ "Key": "Chance", "Value": "4" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 },
+        { "Name": "Strength", "Value": 10 },
+        { "Name": "Agility", "Value": 14 },
+        { "Name": "Toughness", "Value": 12 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Villagers" },
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
+      ]
+    },
+    {
+      "Name": "VillageChild",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "child" },
+          { "Key": "RenderString", "Value": "c" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "0" }, { "Key": "DV", "Value": "2" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "8" },
+          { "Key": "Wanders", "Value": "true" },
+          { "Key": "WandersRandomly", "Value": "true" },
+          { "Key": "Staying", "Value": "false" },
+          { "Key": "Passive", "Value": "true" }
+        ]},
+        { "Name": "AIPetter", "Params": [{ "Key": "Chance", "Value": "5" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 },
+        { "Name": "Strength", "Value": 6 },
+        { "Name": "Agility", "Value": 12 },
+        { "Name": "Toughness", "Value": 8 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Villagers" },
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
       ]
     },
     {
@@ -1208,8 +1623,17 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "2" }] },
-        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "8" }, { "Key": "Wanders", "Value": "false" }] },
-        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Tinker_1" }] }
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "8" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" },
+          { "Key": "Staying", "Value": "true" }
+        ]},
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Tinker_1" }] },
+        { "Name": "AISelfPreservation", "Params": [
+          { "Key": "RetreatThreshold", "Value": "0.5" },
+          { "Key": "SafeThreshold", "Value": "0.75" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 },
@@ -1218,7 +1642,8 @@
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Villagers" },
-        { "Key": "Tier", "Value": "1" }
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
       ],
       "IntProps": [
         { "Key": "Drams", "Value": 200 }
@@ -1236,7 +1661,12 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "1" }] },
-        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "8" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "8" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" },
+          { "Key": "Staying", "Value": "true" }
+        ]},
         { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Merchant_1" }] }
       ],
       "Stats": [
@@ -1245,7 +1675,8 @@
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Villagers" },
-        { "Key": "Tier", "Value": "1" }
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
       ],
       "IntProps": [
         { "Key": "Drams", "Value": 500 }
@@ -1263,6 +1694,7 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "16" }] },
         { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
+        { "Name": "Handling", "Params": [{ "Key": "GripType", "Value": "TwoHand" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d4+1" }, { "Key": "PenBonus", "Value": "5" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "45" }] }
       ],
@@ -1287,7 +1719,17 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "3" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4+1" }, { "Key": "PenBonus", "Value": "1" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "12" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "12" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Bone" },
+          { "Key": "Combustibility", "Value": "0.3" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Bone,Organic" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "420" },
+          { "Key": "HeatCapacity", "Value": "0.9" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 4, "Min": 0, "Max": 4 }
@@ -1309,7 +1751,19 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "9" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6" }, { "Key": "PenBonus", "Value": "2" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "6" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "6" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.95" },
+          { "Key": "Brittleness", "Value": "0.1" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 }
@@ -1330,7 +1784,19 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "7" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8+1" }, { "Key": "PenBonus", "Value": "3" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "35" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "35" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0.1" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Fungal" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
@@ -1352,7 +1818,18 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "3" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4+3" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "HitBonus", "Value": "3" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "30" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "30" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Crystal" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Brittleness", "Value": "0.4" },
+          { "Key": "MaterialTagsRaw", "Value": "Crystal,Sonic" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.6" },
+          { "Key": "BrittleTemperature", "Value": "-50" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 6, "Min": 0, "Max": 6 }
@@ -1374,7 +1851,18 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "5" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6+2" }, { "Key": "PenBonus", "Value": "2" }, { "Key": "HitBonus", "Value": "2" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "40" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "40" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Crystal" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Brittleness", "Value": "0.5" },
+          { "Key": "MaterialTagsRaw", "Value": "Crystal,Temporal" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.6" },
+          { "Key": "BrittleTemperature", "Value": "-50" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 5, "Min": 0, "Max": 5 }
@@ -1418,7 +1906,18 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4+2" }, { "Key": "PenBonus", "Value": "2" }, { "Key": "HitBonus", "Value": "3" }, { "Key": "MaxStrengthBonus", "Value": "2" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "28" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "28" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Glass" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Brittleness", "Value": "0.7" },
+          { "Key": "MaterialTagsRaw", "Value": "Glass,Crystal,Brittle" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.6" },
+          { "Key": "BrittleTemperature", "Value": "-50" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 3, "Min": 0, "Max": 3 }
@@ -1440,8 +1939,21 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "18" }] },
         { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
+        { "Name": "Handling", "Params": [{ "Key": "GripType", "Value": "TwoHand" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d6+2" }, { "Key": "PenBonus", "Value": "5" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "55" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "55" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.15" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Corrosive" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 20, "Min": 0, "Max": 20 }
@@ -1464,8 +1976,19 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "11" }] },
         { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
+        { "Name": "Handling", "Params": [{ "Key": "GripType", "Value": "TwoHand" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d6+1" }, { "Key": "PenBonus", "Value": "4" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "60" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "60" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Wood" },
+          { "Key": "Combustibility", "Value": "0.5" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Wood,Living,Organic" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "320" },
+          { "Key": "HeatCapacity", "Value": "1.4" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 }
@@ -1488,7 +2011,19 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "6" }] },
         { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d10+1" }, { "Key": "PenBonus", "Value": "4" }, { "Key": "HitBonus", "Value": "1" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "70" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "70" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.15" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Ancient" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
@@ -1656,7 +2191,17 @@
           { "Key": "RenderString", "Value": "b" },
           { "Key": "ColorString", "Value": "&K" }
         ]},
-        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "0" }, { "Key": "DV", "Value": "4" }] }
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "0" }, { "Key": "DV", "Value": "4" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Flesh" },
+          { "Key": "Combustibility", "Value": "0.18" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "500" },
+          { "Key": "HeatCapacity", "Value": "0.8" },
+          { "Key": "AmbientDecayRate", "Value": "0.05" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 6, "Min": 0, "Max": 6 },
@@ -1676,7 +2221,17 @@
           { "Key": "RenderString", "Value": "j" },
           { "Key": "ColorString", "Value": "&g" }
         ]},
-        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "4" }, { "Key": "DV", "Value": "0" }] }
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "4" }, { "Key": "DV", "Value": "0" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Flesh" },
+          { "Key": "Combustibility", "Value": "0.02" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Wet" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "500" },
+          { "Key": "HeatCapacity", "Value": "2.5" },
+          { "Key": "AmbientDecayRate", "Value": "0.05" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 18, "Min": 0, "Max": 18 },
@@ -1697,7 +2252,17 @@
           { "Key": "RenderString", "Value": "B" },
           { "Key": "ColorString", "Value": "&y" }
         ]},
-        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "4" }, { "Key": "DV", "Value": "1" }] }
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "4" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Flesh" },
+          { "Key": "Combustibility", "Value": "0.22" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Fur" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "500" },
+          { "Key": "HeatCapacity", "Value": "1.8" },
+          { "Key": "AmbientDecayRate", "Value": "0.05" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 35, "Min": 0, "Max": 35 },
@@ -1733,6 +2298,17 @@
           { "Key": "Radius", "Value": "4" },
           { "Key": "LightColor", "Value": "&Y" },
           { "Key": "Intensity", "Value": "0.6" }
+        ]},
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Flesh" },
+          { "Key": "Combustibility", "Value": "0.35" },
+          { "Key": "Volatility", "Value": "0.4" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Phosphorus" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "500" },
+          { "Key": "HeatCapacity", "Value": "1.2" },
+          { "Key": "AmbientDecayRate", "Value": "0.05" }
         ]}
       ],
       "Stats": [
@@ -1756,7 +2332,18 @@
           { "Key": "RenderString", "Value": "x" },
           { "Key": "ColorString", "Value": "&W" }
         ]},
-        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "2" }] }
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "2" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Flesh" },
+          { "Key": "Combustibility", "Value": "0.2" },
+          { "Key": "Brittleness", "Value": "0.3" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Chitinous" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "500" },
+          { "Key": "HeatCapacity", "Value": "1.2" },
+          { "Key": "AmbientDecayRate", "Value": "0.05" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 },
@@ -1798,7 +2385,17 @@
           { "Key": "RenderString", "Value": "W" },
           { "Key": "ColorString", "Value": "&W" }
         ]},
-        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "6" }, { "Key": "DV", "Value": "0" }] }
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "6" }, { "Key": "DV", "Value": "0" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Flesh" },
+          { "Key": "Combustibility", "Value": "0.4" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Dry" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "500" },
+          { "Key": "HeatCapacity", "Value": "1.4" },
+          { "Key": "AmbientDecayRate", "Value": "0.05" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 40, "Min": 0, "Max": 40 },
@@ -1820,7 +2417,18 @@
           { "Key": "RenderString", "Value": "S" },
           { "Key": "ColorString", "Value": "&G" }
         ]},
-        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "3" }] }
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "3" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Flesh" },
+          { "Key": "Combustibility", "Value": "0.2" },
+          { "Key": "Brittleness", "Value": "0.25" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Chitinous" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "500" },
+          { "Key": "HeatCapacity", "Value": "1.2" },
+          { "Key": "AmbientDecayRate", "Value": "0.05" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 12, "Min": 0, "Max": 12 },
@@ -1862,7 +2470,17 @@
           { "Key": "RenderString", "Value": "A" },
           { "Key": "ColorString", "Value": "&G" }
         ]},
-        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "2" }] }
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "2" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Flesh" },
+          { "Key": "Combustibility", "Value": "0.22" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Fur" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "500" },
+          { "Key": "HeatCapacity", "Value": "1.8" },
+          { "Key": "AmbientDecayRate", "Value": "0.05" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 },
@@ -1903,7 +2521,18 @@
           { "Key": "RenderString", "Value": "Z" },
           { "Key": "ColorString", "Value": "&w" }
         ]},
-        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "5" }, { "Key": "DV", "Value": "1" }] }
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "5" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Bone" },
+          { "Key": "Combustibility", "Value": "0.35" },
+          { "Key": "Brittleness", "Value": "0.25" },
+          { "Key": "MaterialTagsRaw", "Value": "Bone,Dry,Undead" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "420" },
+          { "Key": "HeatCapacity", "Value": "0.9" },
+          { "Key": "AmbientDecayRate", "Value": "0.02" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 25, "Min": 0, "Max": 25 },
@@ -1924,7 +2553,18 @@
           { "Key": "RenderString", "Value": "G" },
           { "Key": "ColorString", "Value": "&y" }
         ]},
-        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "8" }, { "Key": "DV", "Value": "0" }] }
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "8" }, { "Key": "DV", "Value": "0" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Stone" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Brittleness", "Value": "0.5" },
+          { "Key": "MaterialTagsRaw", "Value": "Mineral,Stone,Ancient" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "HeatCapacity", "Value": "3.0" },
+          { "Key": "AmbientDecayRate", "Value": "0.02" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 50, "Min": 0, "Max": 50 },
@@ -1969,7 +2609,17 @@
           { "Key": "RenderString", "Value": "D" },
           { "Key": "ColorString", "Value": "&W" }
         ]},
-        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "4" }] }
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "4" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Flesh" },
+          { "Key": "Combustibility", "Value": "0.3" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Dry" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "500" },
+          { "Key": "HeatCapacity", "Value": "1.6" },
+          { "Key": "AmbientDecayRate", "Value": "0.05" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 35, "Min": 0, "Max": 35 },
@@ -2013,7 +2663,18 @@
           { "Key": "RenderString", "Value": "H" },
           { "Key": "ColorString", "Value": "&w" }
         ]},
-        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "8" }, { "Key": "DV", "Value": "1" }] }
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "8" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Stone" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Brittleness", "Value": "0.4" },
+          { "Key": "MaterialTagsRaw", "Value": "Mineral,Stone,Ancient" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "HeatCapacity", "Value": "3.0" },
+          { "Key": "AmbientDecayRate", "Value": "0.02" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 50, "Min": 0, "Max": 50 },
@@ -2029,6 +2690,153 @@
     },
 
     {
+      "Name": "BrassHusk",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "brass husk" },
+          { "Key": "RenderString", "Value": "H" },
+          { "Key": "ColorString", "Value": "&y" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "4" }, { "Key": "DV", "Value": "0" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Brass" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.95" },
+          { "Key": "Brittleness", "Value": "0.15" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor,Ancient" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "950" },
+          { "Key": "HeatCapacity", "Value": "0.9" },
+          { "Key": "BrittleTemperature", "Value": "-180" },
+          { "Key": "AmbientDecayRate", "Value": "0.02" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 },
+        { "Name": "Strength", "Value": 18 },
+        { "Name": "Agility", "Value": 8 },
+        { "Name": "Speed", "Value": 80 },
+        { "Name": "XPValue", "Value": 35 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Palimpsest" },
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "BloodColor", "Value": "&y" }
+      ]
+    },
+    {
+      "Name": "GlassScorpion",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "glass scorpion" },
+          { "Key": "RenderString", "Value": "s" },
+          { "Key": "ColorString", "Value": "&W" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "4" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Glass" },
+          { "Key": "Combustibility", "Value": "0.05" },
+          { "Key": "Brittleness", "Value": "0.7" },
+          { "Key": "MaterialTagsRaw", "Value": "Glass,Crystal,Chitinous,Brittle" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.6" },
+          { "Key": "BrittleTemperature", "Value": "-50" },
+          { "Key": "AmbientDecayRate", "Value": "0.05" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 6, "Min": 0, "Max": 6 },
+        { "Name": "Strength", "Value": 12 },
+        { "Name": "Agility", "Value": 14 },
+        { "Name": "Speed", "Value": 105 },
+        { "Name": "XPValue", "Value": 20 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "SaccharineConcord" },
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "BloodColor", "Value": "&W" }
+      ]
+    },
+    {
+      "Name": "SporeShambler",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "spore shambler" },
+          { "Key": "RenderString", "Value": "f" },
+          { "Key": "ColorString", "Value": "&g" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Fungal" },
+          { "Key": "Combustibility", "Value": "0.4" },
+          { "Key": "Porosity", "Value": "0.5" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Fungal,Living" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "240" },
+          { "Key": "HeatCapacity", "Value": "1.3" },
+          { "Key": "AmbientDecayRate", "Value": "0.03" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 22, "Min": 0, "Max": 22 },
+        { "Name": "Strength", "Value": 14 },
+        { "Name": "Agility", "Value": 10 },
+        { "Name": "Speed", "Value": 85 },
+        { "Name": "XPValue", "Value": 30 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "RotChoir" },
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "BloodColor", "Value": "&g" }
+      ]
+    },
+    {
+      "Name": "IceWight",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "ice wight" },
+          { "Key": "RenderString", "Value": "W" },
+          { "Key": "ColorString", "Value": "&C" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Ice" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.1" },
+          { "Key": "Brittleness", "Value": "0.8" },
+          { "Key": "MaterialTagsRaw", "Value": "Ice,Undead,Brittle" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "Temperature", "Value": "-30" },
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "FreezeTemperature", "Value": "0" },
+          { "Key": "BrittleTemperature", "Value": "20" },
+          { "Key": "HeatCapacity", "Value": "2.0" },
+          { "Key": "AmbientDecayRate", "Value": "0.0" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 24, "Min": 0, "Max": 24 },
+        { "Name": "Strength", "Value": 16 },
+        { "Name": "Agility", "Value": 8 },
+        { "Name": "Speed", "Value": 70 },
+        { "Name": "XPValue", "Value": 35 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "BloodColor", "Value": "&C" }
+      ]
+    },
+
+    {
       "Name": "Warden",
       "Inherits": "Creature",
       "Parts": [
@@ -2038,8 +2846,18 @@
           { "Key": "ColorString", "Value": "&r" }
         ]},
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "2" }] },
-        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "12" }, { "Key": "Wanders", "Value": "true" }, { "Key": "WandersRandomly", "Value": "false" }] },
-        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Warden_1" }] }
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "12" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" },
+          { "Key": "Staying", "Value": "true" }
+        ]},
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Warden_1" }] },
+        { "Name": "AISelfPreservation", "Params": [
+          { "Key": "RetreatThreshold", "Value": "0.3" },
+          { "Key": "SafeThreshold", "Value": "0.7" }
+        ]},
+        { "Name": "AIGuard", "Params": [] }
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 40, "Min": 0, "Max": 40 },
@@ -2049,7 +2867,8 @@
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Villagers" },
-        { "Key": "Tier", "Value": "2" }
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
       ]
     },
 
@@ -2120,7 +2939,543 @@
           { "Key": "Radius", "Value": "8" },
           { "Key": "LightColor", "Value": "&W" },
           { "Key": "Intensity", "Value": "0.8" }
+        ]},
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Wood" },
+          { "Key": "Combustibility", "Value": "0.8" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Flammable" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "Temperature", "Value": "500" },
+          { "Key": "FlameTemperature", "Value": "300" },
+          { "Key": "HeatCapacity", "Value": "0.8" }
+        ]},
+        { "Name": "Fuel", "Params": [
+          { "Key": "FuelMass", "Value": "200" },
+          { "Key": "MaxFuel", "Value": "200" },
+          { "Key": "BurnRate", "Value": "0.5" },
+          { "Key": "HeatOutput", "Value": "1.5" },
+          { "Key": "ExhaustProduct", "Value": "AshPile" }
         ]}
+      ]
+    },
+    {
+      "Name": "WoodenBarrel",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "wooden barrel" },
+          { "Key": "RenderString", "Value": "0" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Wood" },
+          { "Key": "Combustibility", "Value": "0.7" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Flammable" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "350" },
+          { "Key": "HeatCapacity", "Value": "1.2" }
+        ]},
+        { "Name": "Fuel", "Params": [
+          { "Key": "FuelMass", "Value": "150" },
+          { "Key": "MaxFuel", "Value": "150" },
+          { "Key": "BurnRate", "Value": "1.0" },
+          { "Key": "HeatOutput", "Value": "1.2" },
+          { "Key": "ExhaustProduct", "Value": "AshPile" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 20, "Min": 0, "Max": 20 }
+      ],
+      "Tags": [
+        { "Key": "Solid", "Value": "" }
+      ]
+    },
+    {
+      "Name": "AshPile",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "pile of ash" },
+          { "Key": "RenderString", "Value": "," },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "0" }
+        ]}
+      ]
+    },
+    {
+      "Name": "SteamCloud",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "steam cloud" },
+          { "Key": "RenderString", "Value": "~" },
+          { "Key": "ColorString", "Value": "&b" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Vapor" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "MaterialTagsRaw", "Value": "Vapor,Gas" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "Temperature", "Value": "120" },
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "HeatCapacity", "Value": "0.5" }
+        ]},
+        { "Name": "Lifespan", "Params": [
+          { "Key": "TurnsRemaining", "Value": "3" }
+        ]}
+      ]
+    },
+    {
+      "Name": "WaterPuddle",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "puddle of water" },
+          { "Key": "RenderString", "Value": "~" },
+          { "Key": "ColorString", "Value": "&B" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Water" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "MaterialTagsRaw", "Value": "Liquid,Water" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "Temperature", "Value": "15" },
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "VaporTemperature", "Value": "100" },
+          { "Key": "HeatCapacity", "Value": "2.0" }
+        ]}
+      ]
+    },
+    {
+      "Name": "Reeds",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "reeds" },
+          { "Key": "RenderString", "Value": "|" },
+          { "Key": "ColorString", "Value": "&G" },
+          { "Key": "GlyphVariants", "Value": "|!" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]}
+      ],
+      "Tags": []
+    },
+    {
+      "Name": "Bank",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "riverbank" },
+          { "Key": "RenderString", "Value": "." },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "BackgroundColor", "Value": "^w" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]}
+      ],
+      "Tags": []
+    },
+    {
+      "Name": "OilSeep",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "oil seep" },
+          { "Key": "RenderString", "Value": "~" },
+          { "Key": "ColorString", "Value": "&k" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Oil" },
+          { "Key": "Combustibility", "Value": "0.9" },
+          { "Key": "Volatility", "Value": "0.8" },
+          { "Key": "MaterialTagsRaw", "Value": "Liquid,Oil,Flammable,Organic" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "280" },
+          { "Key": "VaporTemperature", "Value": "500" },
+          { "Key": "HeatCapacity", "Value": "0.8" }
+        ]},
+        { "Name": "Fuel", "Params": [
+          { "Key": "FuelMass", "Value": "60" },
+          { "Key": "MaxFuel", "Value": "60" },
+          { "Key": "BurnRate", "Value": "1.5" },
+          { "Key": "HeatOutput", "Value": "2.5" }
+        ]}
+      ]
+    },
+    {
+      "Name": "AcidPond",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "acid pond" },
+          { "Key": "RenderString", "Value": "~" },
+          { "Key": "ColorString", "Value": "&G" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Acid" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.3" },
+          { "Key": "MaterialTagsRaw", "Value": "Liquid,Acidic,Corrosive" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "Temperature", "Value": "15" },
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "VaporTemperature", "Value": "200" },
+          { "Key": "HeatCapacity", "Value": "2.0" }
+        ]}
+      ]
+    },
+    {
+      "Name": "BrokenCapacitor",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "broken capacitor" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Iron" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "1.0" },
+          { "Key": "Brittleness", "Value": "0.3" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor,Volatile" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.4" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 3, "Min": 0, "Max": 3 }
+      ],
+      "Tags": [
+        { "Key": "Solid", "Value": "" }
+      ]
+    },
+    {
+      "Name": "IceStalactite",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "ice stalactite" },
+          { "Key": "RenderString", "Value": "|" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "4" }
+        ]},
+        { "Name": "Physics", "Params": [] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Ice" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Brittleness", "Value": "0.95" },
+          { "Key": "MaterialTagsRaw", "Value": "Ice,Brittle" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "Temperature", "Value": "-10" },
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "BrittleTemperature", "Value": "20" },
+          { "Key": "HeatCapacity", "Value": "2.0" },
+          { "Key": "AmbientDecayRate", "Value": "0.0" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 1, "Min": 0, "Max": 1 }
+      ]
+    },
+    {
+      "Name": "CompassStoneNorth",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "compass stone pointing north toward the Ruins of Sparkwright" },
+          { "Key": "RenderString", "Value": "o" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Stone" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Brittleness", "Value": "0.25" },
+          { "Key": "MaterialTagsRaw", "Value": "Mineral,Stone,Ancient" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "HeatCapacity", "Value": "3.0" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 }
+      ],
+      "Tags": [
+        { "Key": "Solid", "Value": "" },
+        { "Key": "CompassStone", "Value": "North" }
+      ]
+    },
+    {
+      "Name": "CompassStoneEast",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "compass stone pointing east toward the Saltglass Dunes" },
+          { "Key": "RenderString", "Value": "o" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Stone" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Brittleness", "Value": "0.25" },
+          { "Key": "MaterialTagsRaw", "Value": "Mineral,Stone,Ancient" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "HeatCapacity", "Value": "3.0" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 }
+      ],
+      "Tags": [
+        { "Key": "Solid", "Value": "" },
+        { "Key": "CompassStone", "Value": "East" }
+      ]
+    },
+    {
+      "Name": "CompassStoneSouth",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "compass stone pointing south toward the Verdant Rotbog" },
+          { "Key": "RenderString", "Value": "o" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Stone" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Brittleness", "Value": "0.25" },
+          { "Key": "MaterialTagsRaw", "Value": "Mineral,Stone,Ancient" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "HeatCapacity", "Value": "3.0" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 }
+      ],
+      "Tags": [
+        { "Key": "Solid", "Value": "" },
+        { "Key": "CompassStone", "Value": "South" }
+      ]
+    },
+    {
+      "Name": "CompassStoneWest",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "compass stone pointing west toward the Frostfang Grotto" },
+          { "Key": "RenderString", "Value": "o" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Stone" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Brittleness", "Value": "0.25" },
+          { "Key": "MaterialTagsRaw", "Value": "Mineral,Stone,Ancient" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "HeatCapacity", "Value": "3.0" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 }
+      ],
+      "Tags": [
+        { "Key": "Solid", "Value": "" },
+        { "Key": "CompassStone", "Value": "West" }
+      ]
+    },
+    {
+      "Name": "LanternOil",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "flask of lantern oil" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "8" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Oil" },
+          { "Key": "Combustibility", "Value": "0.9" },
+          { "Key": "Volatility", "Value": "0.8" },
+          { "Key": "MaterialTagsRaw", "Value": "Liquid,Oil,Flammable,Organic" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "280" },
+          { "Key": "HeatCapacity", "Value": "0.8" }
+        ]},
+        { "Name": "Fuel", "Params": [
+          { "Key": "FuelMass", "Value": "40" },
+          { "Key": "MaxFuel", "Value": "40" },
+          { "Key": "BurnRate", "Value": "1.5" },
+          { "Key": "HeatOutput", "Value": "2.5" },
+          { "Key": "ExhaustProduct", "Value": "AshPile" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 3, "Min": 0, "Max": 3 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "RawMeat",
+      "Inherits": "FoodItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "raw meat" },
+          { "Key": "RenderString", "Value": "%" },
+          { "Key": "ColorString", "Value": "&r" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "Food", "Params": [{ "Key": "Healing", "Value": "1d4" }, { "Key": "Cooking", "Value": "Raw" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "3" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Flesh" },
+          { "Key": "Combustibility", "Value": "0.25" },
+          { "Key": "Porosity", "Value": "0.3" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Food,Raw,RawMeat" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "320" },
+          { "Key": "HeatCapacity", "Value": "1.4" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "CookedMeat",
+      "Inherits": "FoodItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "cooked meat" },
+          { "Key": "RenderString", "Value": "%" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "Food", "Params": [{ "Key": "Healing", "Value": "3d4" }, { "Key": "Cooking", "Value": "Meal" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "8" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Flesh" },
+          { "Key": "Combustibility", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Food,Cooked" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "360" },
+          { "Key": "HeatCapacity", "Value": "1.2" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "RoastedStarapple",
+      "Inherits": "FoodItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "roasted starapple" },
+          { "Key": "RenderString", "Value": "%" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Food", "Params": [{ "Key": "Healing", "Value": "3d4" }, { "Key": "Cooking", "Value": "Meal" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "9" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Plant" },
+          { "Key": "Combustibility", "Value": "0.25" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Food,Cooked" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "340" },
+          { "Key": "HeatCapacity", "Value": "1.0" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "Torch",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "torch" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "3" }] },
+        { "Name": "LightSource", "Params": [
+          { "Key": "Radius", "Value": "6" },
+          { "Key": "LightColor", "Value": "&W" },
+          { "Key": "Intensity", "Value": "0.6" }
+        ]},
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Wood" },
+          { "Key": "Combustibility", "Value": "0.9" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Flammable" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "Temperature", "Value": "450" },
+          { "Key": "FlameTemperature", "Value": "300" },
+          { "Key": "HeatCapacity", "Value": "0.5" }
+        ]},
+        { "Name": "Fuel", "Params": [
+          { "Key": "FuelMass", "Value": "50" },
+          { "Key": "MaxFuel", "Value": "50" },
+          { "Key": "BurnRate", "Value": "0.3" },
+          { "Key": "HeatOutput", "Value": "1.0" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "3" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 5, "Min": 0, "Max": 5 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
       ]
     },
     {
@@ -2189,7 +3544,14 @@
           { "Key": "ColorString", "Value": "&C" },
           { "Key": "RenderLayer", "Value": "10" }
         ]},
-        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "WellKeeper_1" }] }
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "WellKeeper_1" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "Passive", "Value": "true" }
+        ]},
+        { "Name": "AISelfPreservation", "Params": [
+          { "Key": "RetreatThreshold", "Value": "0.7" },
+          { "Key": "SafeThreshold", "Value": "0.9" }
+        ]}
       ]
     },
     {
@@ -2202,7 +3564,35 @@
           { "Key": "ColorString", "Value": "&Y" },
           { "Key": "RenderLayer", "Value": "10" }
         ]},
-        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Farmer_1" }] }
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Farmer_1" }] },
+        { "Name": "AISelfPreservation", "Params": [
+          { "Key": "RetreatThreshold", "Value": "0.4" },
+          { "Key": "SafeThreshold", "Value": "0.75" }
+        ]},
+        { "Name": "AIWellVisitor", "Params": [{ "Key": "Chance", "Value": "5" }] }
+      ]
+    },
+    {
+      "Name": "Innkeeper",
+      "Inherits": "Villager",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "innkeeper" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&B" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Innkeeper_1" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "Passive", "Value": "true" }
+        ]},
+        { "Name": "AISelfPreservation", "Params": [
+          { "Key": "RetreatThreshold", "Value": "0.7" },
+          { "Key": "SafeThreshold", "Value": "0.9" }
+        ]}
+      ],
+      "IntProps": [
+        { "Key": "Drams", "Value": 250 }
       ]
     },
     {
@@ -2249,7 +3639,7 @@
           { "Key": "ColorString", "Value": "&w" },
           { "Key": "RenderLayer", "Value": "1" }
         ]},
-        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "false" }] },
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
         { "Name": "Container", "Params": [{ "Key": "MaxItems", "Value": "10" }] }
       ]
     },
@@ -2312,8 +3702,19 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "0" }, { "Key": "DV", "Value": "1" }] },
-        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "8" }, { "Key": "Wanders", "Value": "false" }] },
-        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Scribe_1" }] }
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "8" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" },
+          { "Key": "Staying", "Value": "true" },
+          { "Key": "Passive", "Value": "true" }
+        ]},
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Scribe_1" }] },
+        { "Name": "AIFleeToShrine", "Params": [{ "Key": "FleeThreshold", "Value": "0.8" }] },
+        { "Name": "AISelfPreservation", "Params": [
+          { "Key": "RetreatThreshold", "Value": "0.8" },
+          { "Key": "SafeThreshold", "Value": "0.95" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 20, "Min": 0, "Max": 20 },
@@ -2322,7 +3723,8 @@
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Villagers" },
-        { "Key": "Tier", "Value": "1" }
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
       ]
     },
     {
@@ -2467,6 +3869,366 @@
       ]
     },
     {
+      "Name": "KindleGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Kindle" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "KindleMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Flame-script blazes across the page. The kindle rite burns itself into your mind." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know the kindle rite." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "75" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "QuenchGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Quench" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&B" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "QuenchMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Water-words ripple across the vellum. The quench rite flows into your memory." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know the quench rite." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "75" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "ConflagrationGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Conflagration" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "ConflagrationMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "The pages ignite as you read, yet do not burn. The conflagration rite sears itself into your will." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know the conflagration rite." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "150" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "3" }
+      ]
+    },
+    {
+      "Name": "IceLanceGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Ice Lance" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "IceLanceMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Crystalline glyphs bite your fingertips. The ice lance rite chills into your mind." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know the ice lance rite." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "120" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "AcidSprayGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Acid Spray" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&g" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "AcidSprayMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Corrosive ink hisses as you read. The acid spray rite eats its way into your mind." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know the acid spray rite." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "140" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "ArcBoltGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Arc Bolt" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "ArcBoltMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Static crackles across the vellum. The arc bolt rite sparks into your memory." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know the arc bolt rite." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "120" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "RimeNovaGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Rime Nova" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&b" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "RimeNovaMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Frost lances spiral from the margins. The rime nova rite buries itself in your will." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know the rime nova rite." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "220" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "3" }
+      ]
+    },
+    {
+      "Name": "ThunderclapGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Thunderclap" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "ThunderclapMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Thunder rolls from the open pages. The thunderclap rite booms itself into your will." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know the thunderclap rite." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "240" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "3" }
+      ]
+    },
+    {
+      "Name": "EmberVeinGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Ember Vein" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&r" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "EmberVeinMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "A vein of embers traces the page. The ember vein rite burns itself into your will." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know the ember vein rite." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "200" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "3" }
+      ]
+    },
+    {
+      "Name": "KindleFlameGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Kindle Flame" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "KindleFlameMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Warm script flickers in the margins. You learn kindle flame." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know kindle flame." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "35" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "DryingBreezeGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Drying Breeze" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "DryingBreezeMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "The page exhales a dry wind. You learn drying breeze." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know drying breeze." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "40" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "HearthwarmGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Hearthwarm" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&r" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "HearthwarmMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Steady embers glow between the lines. You learn hearthwarm." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know hearthwarm." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "45" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "ConjureWaterGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Conjure Water" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&B" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "ConjureWaterMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Condensation beads across the page. You learn conjure water." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know conjure water." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "50" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "ChillDraftGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Chill Draft" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "ChillDraftMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "A biting draft slips from the pages. You learn chill draft." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know chill draft." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "45" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "WardGleamGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grimoire of Ward Gleam" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "WardGleamMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "The ink brightens to a cleansing sheen. You learn ward gleam." },
+          { "Key": "AlreadyKnownMessage", "Value": "You already know ward gleam." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "60" }] }
+      ],
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
       "Name": "LanternOilRecipe",
       "Inherits": "Item",
       "Parts": [
@@ -2497,6 +4259,114 @@
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "5" }] }
       ],
       "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+
+    {
+      "Name": "SleepingTroll",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "sleeping troll" },
+          { "Key": "RenderString", "Value": "T" },
+          { "Key": "ColorString", "Value": "&g" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "4" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d6" }, { "Key": "PenBonus", "Value": "2" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "8" },
+          { "Key": "Staying", "Value": "true" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" }
+        ]},
+        { "Name": "AIAmbush", "Params": [
+          { "Key": "WakeOnDamage", "Value": "true" },
+          { "Key": "WakeOnHostileInSight", "Value": "true" },
+          { "Key": "SleepParticleInterval", "Value": "8" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 60, "Min": 0, "Max": 60 },
+        { "Name": "Strength", "Value": 20 },
+        { "Name": "Agility", "Value": 10 },
+        { "Name": "Toughness", "Value": 18 },
+        { "Name": "XPValue", "Value": 40 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Snapjaws" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+
+    {
+      "Name": "MimicChest",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "chest" },
+          { "Key": "RenderString", "Value": "=" },
+          { "Key": "ColorString", "Value": "&Y" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8" }, { "Key": "PenBonus", "Value": "1" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "8" },
+          { "Key": "Staying", "Value": "true" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" }
+        ]},
+        { "Name": "AIAmbush", "Params": [
+          { "Key": "WakeOnDamage", "Value": "true" },
+          { "Key": "WakeOnHostileInSight", "Value": "false" },
+          { "Key": "SleepParticleInterval", "Value": "0" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 },
+        { "Name": "Strength", "Value": 14 },
+        { "Name": "Agility", "Value": 14 },
+        { "Name": "Toughness", "Value": 16 },
+        { "Name": "XPValue", "Value": 25 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Snapjaws" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+
+    {
+      "Name": "AmbushBandit",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "ambushing bandit" },
+          { "Key": "RenderString", "Value": "b" },
+          { "Key": "ColorString", "Value": "&r" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "2" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6" }, { "Key": "PenBonus", "Value": "1" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "10" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" },
+          { "Key": "Staying", "Value": "true" }
+        ]},
+        { "Name": "AIAmbush", "Params": [
+          { "Key": "WakeOnDamage", "Value": "true" },
+          { "Key": "WakeOnHostileInSight", "Value": "true" },
+          { "Key": "SleepParticleInterval", "Value": "0" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 22, "Min": 0, "Max": 22 },
+        { "Name": "Strength", "Value": 14 },
+        { "Name": "Agility", "Value": 15 },
+        { "Name": "Toughness", "Value": 12 },
+        { "Name": "XPValue", "Value": 20 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Snapjaws" },
         { "Key": "Tier", "Value": "1" }
       ]
     }

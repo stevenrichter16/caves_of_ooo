@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CavesOfOoo.Core.Anatomy;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -31,21 +32,24 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static bool PerformMeleeAttack(Entity attacker, Entity defender, Zone zone, Random rng)
         {
-            if (attacker == null || defender == null) return false;
+            using (PerformanceMarkers.Combat.PerformMeleeAttack.Auto())
+            {
+                if (attacker == null || defender == null) return false;
 
-            // 1. Fire BeforeMeleeAttack on attacker
-            var beforeAttack = GameEvent.New("BeforeMeleeAttack");
-            beforeAttack.SetParameter("Attacker", (object)attacker);
-            beforeAttack.SetParameter("Defender", (object)defender);
-            if (!attacker.FireEvent(beforeAttack))
-                return false;
+                // 1. Fire BeforeMeleeAttack on attacker
+                var beforeAttack = GameEvent.New("BeforeMeleeAttack");
+                beforeAttack.SetParameter("Attacker", (object)attacker);
+                beforeAttack.SetParameter("Defender", (object)defender);
+                if (!attacker.FireEvent(beforeAttack))
+                    return false;
 
-            var body = attacker.GetPart<Body>();
+                var body = attacker.GetPart<Body>();
 
-            if (body != null)
-                return PerformBodyPartAwareAttack(attacker, defender, body, zone, rng);
-            else
-                return PerformLegacyAttack(attacker, defender, zone, rng);
+                if (body != null)
+                    return PerformBodyPartAwareAttack(attacker, defender, body, zone, rng);
+                else
+                    return PerformLegacyAttack(attacker, defender, zone, rng);
+            }
         }
 
         /// <summary>
@@ -378,33 +382,38 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static void ApplyDamage(Entity target, int amount, Entity source, Zone zone)
         {
-            if (target == null || amount <= 0) return;
-
-            var takeDamage = GameEvent.New("TakeDamage");
-            takeDamage.SetParameter("Target", (object)target);
-            takeDamage.SetParameter("Source", (object)source);
-            takeDamage.SetParameter("Amount", amount);
-            target.FireEvent(takeDamage);
-
-            var hpStat = target.GetStat("Hitpoints");
-            if (hpStat != null)
+            using (PerformanceMarkers.Combat.ApplyDamage.Auto())
             {
-                hpStat.BaseValue -= amount;
-            }
+                if (target == null || amount <= 0) return;
 
-            // Notify the attacker that damage was dealt (for on-hit effects like poison)
-            if (source != null)
-            {
-                var damageDealt = GameEvent.New("DamageDealt");
-                damageDealt.SetParameter("Attacker", (object)source);
-                damageDealt.SetParameter("Defender", (object)target);
-                damageDealt.SetParameter("Amount", amount);
-                source.FireEvent(damageDealt);
-            }
+                var takeDamage = GameEvent.New("TakeDamage");
+                takeDamage.SetParameter("Target", (object)target);
+                takeDamage.SetParameter("Source", (object)source);
+                takeDamage.SetParameter("Amount", amount);
+                target.FireEvent(takeDamage);
 
-            if (target.GetStatValue("Hitpoints", 0) <= 0)
-            {
-                HandleDeath(target, source, zone);
+                var hpStat = target.GetStat("Hitpoints");
+                if (hpStat != null)
+                    hpStat.BaseValue -= amount;
+
+                Stat hpAlias = target.GetStat("HP");
+                if (hpAlias != null && !ReferenceEquals(hpAlias, hpStat))
+                    hpAlias.BaseValue -= amount;
+
+                // Notify the attacker that damage was dealt (for on-hit effects like poison)
+                if (source != null)
+                {
+                    var damageDealt = GameEvent.New("DamageDealt");
+                    damageDealt.SetParameter("Attacker", (object)source);
+                    damageDealt.SetParameter("Defender", (object)target);
+                    damageDealt.SetParameter("Amount", amount);
+                    source.FireEvent(damageDealt);
+                }
+
+                if (target.GetStatValue("Hitpoints", 0) <= 0)
+                {
+                    HandleDeath(target, source, zone);
+                }
             }
         }
 
@@ -444,8 +453,61 @@ namespace CavesOfOoo.Core
             died.SetParameter("Killer", (object)killer);
             target.FireEvent(died);
 
+            // M2.3: broadcast the death to nearby Passive NPCs so they can
+            // visibly react (wander-pace for 20 turns). Fires AFTER the Died
+            // event so any handlers that mutate the zone have already run,
+            // and BEFORE RemoveEntity so the death cell is still resolvable
+            // via GetEntityCell(target).
+            if (zone != null)
+                BroadcastDeathWitnessed(target, killer, zone, WitnessRadius);
+
             if (zone != null)
                 zone.RemoveEntity(target);
+        }
+
+        /// <summary>Chebyshev radius for death-witness broadcast (M2.3).</summary>
+        private const int WitnessRadius = 8;
+
+        /// <summary>
+        /// Apply a <see cref="WitnessedEffect"/> to every Passive, Creature-tagged
+        /// entity in the zone that is within <paramref name="radius"/> Chebyshev
+        /// cells of the death location AND has line-of-sight to it.
+        /// Consumes M1.2's <see cref="BrainPart.Passive"/> flag as the filter.
+        /// </summary>
+        private static void BroadcastDeathWitnessed(Entity deceased, Entity killer, Zone zone, int radius)
+        {
+            if (zone == null || deceased == null) return;
+            var deathCell = zone.GetEntityCell(deceased);
+            if (deathCell == null) return;
+
+            // Snapshot via GetAllEntities (already allocates) — do NOT iterate
+            // GetReadOnlyEntities() directly because ApplyEffect below can run
+            // side-effect chains that mutate _entityCells, invalidating the
+            // live Dictionary.KeyCollection enumerator.
+            var all = zone.GetAllEntities();
+            for (int i = 0; i < all.Count; i++)
+            {
+                var witness = all[i];
+                if (witness == deceased) continue;
+                if (witness == killer) continue;                 // null killer (env death) is fine here
+                if (!witness.HasTag("Creature")) continue;
+
+                var brain = witness.GetPart<BrainPart>();
+                if (brain == null || !brain.Passive) continue;   // only Passive NPCs witness
+
+                var wCell = zone.GetEntityCell(witness);
+                if (wCell == null) continue;
+
+                int dist = AIHelpers.ChebyshevDistance(deathCell.X, deathCell.Y, wCell.X, wCell.Y);
+                if (dist > radius) continue;
+
+                // HasLineOfSight is symmetric (Bresenham on IsSolid cells).
+                // Witness → death cell is the semantically natural order.
+                if (!AIHelpers.HasLineOfSight(zone, wCell.X, wCell.Y, deathCell.X, deathCell.Y))
+                    continue;
+
+                witness.ApplyEffect(new WitnessedEffect(duration: 20));
+            }
         }
 
         /// <summary>

@@ -1,0 +1,18 @@
+{
+  "Reactions": [
+    {
+      "ID": "fire_plus_bone",
+      "Priority": 32,
+      "Conditions": {
+        "SourceState": "Burning",
+        "TargetMaterialTag": "Bone",
+        "MinTemperature": 500,
+        "MaxMoisture": 0.3
+      },
+      "Effects": [
+        { "Type": "DealDamage", "FloatValue": 2.0, "StringValue": "" },
+        { "Type": "ModifyFuelConsumption", "FloatValue": 1.2, "StringValue": "" }
+      ]
+    }
+  ]
+}

@@ -43,7 +43,66 @@ namespace CavesOfOoo.Core
                 PlaceEntity(zone, factory, rng, openCells, loot);
             }
 
+            // Biome-specific ambush creatures — dormant until disturbed.
+            // Uses AIAmbushPart + DormantGoal; see Phase 6 (M1.3).
+            PlaceAmbushers(zone, factory, rng, openCells);
+
             return true;
+        }
+
+        /// <summary>
+        /// Spawn dormant ambush creatures based on biome. Each creature type rolls
+        /// independently so a lair can have any combination. Mimics appear in all
+        /// biomes (disguised as chests are biome-independent); trolls/bandits are
+        /// biome-specific.
+        ///
+        /// Ambush creatures are placed in ROOM cells (via <see cref="GatherRoomCells"/>)
+        /// rather than any passable cell. This prevents a MimicChest from spawning
+        /// in a 1-cell-wide corridor (where the "chest" is obviously out of place)
+        /// or a SleepingTroll from blocking a hallway (where its sleep-particle
+        /// animation is immediately visible as you round a corner). If no room
+        /// cells are available, falls back to open cells.
+        /// </summary>
+        private void PlaceAmbushers(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> openCells)
+        {
+            // Prefer room cells for ambushers (rooms feel more natural for chests,
+            // sleeping creatures, and hidden bandits). Fallback to openCells if
+            // the lair is all-corridor (rare).
+            //
+            // IMPORTANT: we filter openCells (which has had guard/loot cells
+            // already removed by prior PlaceEntity calls) rather than
+            // re-scanning the zone. A zone-scan would return ALL passable
+            // room cells — including ones a guard is already standing on —
+            // and an ambusher could silently stack on top of a guard or loot
+            // item. The cell dedup-by-removal discipline in PlaceEntity only
+            // works when every placement path reads from the same
+            // progressively-shrinking list.
+            var roomCells = GatherRoomCells(zone, openCells);
+            var placementPool = roomCells.Count > 0 ? roomCells : openCells;
+
+            // Biome-specific sleeping creatures
+            switch (_biome)
+            {
+                case BiomeType.Cave:
+                    // 25% chance per cave lair to contain a sleeping troll
+                    if (rng.Next(100) < 25)
+                        PlaceEntity(zone, factory, rng, placementPool, "SleepingTroll");
+                    break;
+                case BiomeType.Desert:
+                    // 30% chance per desert lair to contain an ambushing bandit
+                    if (rng.Next(100) < 30)
+                        PlaceEntity(zone, factory, rng, placementPool, "AmbushBandit");
+                    break;
+            }
+
+            // Mimic chests: 0-2 per lair regardless of biome.
+            // Uses (0,3) exclusive upper bound → rolls 0, 1, or 2 mimics.
+            int mimicCount = rng.Next(3);
+            for (int i = 0; i < mimicCount; i++)
+            {
+                PlaceEntity(zone, factory, rng, placementPool, "MimicChest");
+            }
         }
 
         private void PlaceEntity(Zone zone, EntityFactory factory, System.Random rng,
@@ -69,6 +128,47 @@ namespace CavesOfOoo.Core
                 if (cell.IsPassable())
                     cells.Add((x, y));
             });
+            return cells;
+        }
+
+        /// <summary>
+        /// Filter open cells to those inside a "room" — i.e., at least
+        /// <see cref="MinRoomNeighbors"/> of the 8 surrounding cells are passable.
+        /// This excludes 1-cell-wide corridors (which have 2 or fewer passable
+        /// neighbors) and thin 2-cell corridors (up to 4). The threshold is
+        /// calibrated so a cell in the interior of a 3x3 room (8 passable
+        /// neighbors) easily qualifies, while corner/edge room cells (5-6
+        /// neighbors) also qualify — only corridor cells are excluded.
+        /// </summary>
+        private const int MinRoomNeighbors = 5;
+
+        /// <summary>
+        /// Filter <paramref name="fromCells"/> down to the subset that sits in
+        /// a "room" (enough passable neighbors to not be a corridor). Takes
+        /// the already-pruned placement list as input so guard/loot cells
+        /// removed by earlier <see cref="PlaceEntity"/> calls don't leak
+        /// back in as ambusher candidates.
+        /// </summary>
+        private List<(int x, int y)> GatherRoomCells(Zone zone, List<(int x, int y)> fromCells)
+        {
+            var cells = new List<(int x, int y)>();
+            for (int i = 0; i < fromCells.Count; i++)
+            {
+                var (x, y) = fromCells[i];
+                int passableNeighbors = 0;
+                for (int dx = -1; dx <= 1; dx++)
+                {
+                    for (int dy = -1; dy <= 1; dy++)
+                    {
+                        if (dx == 0 && dy == 0) continue;
+                        var adj = zone.GetCell(x + dx, y + dy);
+                        if (adj != null && adj.IsPassable())
+                            passableNeighbors++;
+                    }
+                }
+                if (passableNeighbors >= MinRoomNeighbors)
+                    cells.Add((x, y));
+            }
             return cells;
         }
     }

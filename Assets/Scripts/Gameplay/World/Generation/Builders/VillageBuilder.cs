@@ -168,6 +168,44 @@ namespace CavesOfOoo.Core
                 }
             }
 
+            // Place furniture inside the building (Tier 1/3a).
+            // Chair at interior center, bed at NW interior corner.
+            // For rooms 5+ wide × 4+ tall, both positions are strictly interior cells.
+            // Guarded by ContainsKey so test factories without furniture blueprints don't log errors.
+            if (factory.Blueprints.ContainsKey("Chair"))
+            {
+                int chairX = room.CenterX;
+                int chairY = room.CenterY;
+                if (zone.InBounds(chairX, chairY))
+                {
+                    var chairCell = zone.GetCell(chairX, chairY);
+                    if (chairCell != null && chairCell.IsPassable())
+                    {
+                        var chair = factory.CreateEntity("Chair");
+                        if (chair != null)
+                            zone.AddEntity(chair, chairX, chairY);
+                    }
+                }
+            }
+
+            if (factory.Blueprints.ContainsKey("Bed"))
+            {
+                // Place at NW interior corner (room.X + 1, room.Y + 1).
+                // Distinct from chair center so they don't overlap.
+                int bedX = room.X + 1;
+                int bedY = room.Y + 1;
+                if (zone.InBounds(bedX, bedY))
+                {
+                    var bedCell = zone.GetCell(bedX, bedY);
+                    if (bedCell != null && bedCell.IsPassable())
+                    {
+                        var bed = factory.CreateEntity("Bed");
+                        if (bed != null)
+                            zone.AddEntity(bed, bedX, bedY);
+                    }
+                }
+            }
+
             // Place a door gap on one side
             int side = rng.Next(4);
             int doorX, doorY;

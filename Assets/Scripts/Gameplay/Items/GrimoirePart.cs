@@ -13,6 +13,12 @@ namespace CavesOfOoo.Core
         /// <summary>Property key granted to the reader (e.g., "KnowsPurifyWater").</summary>
         public string KnowledgeProperty = "";
 
+        /// <summary>If set, grants this mutation (spell) when read instead of a knowledge property.</summary>
+        public string MutationClassName = "";
+
+        /// <summary>Level to grant the mutation at.</summary>
+        public int MutationLevel = 1;
+
         /// <summary>Announcement text shown when the reader learns from this grimoire.</summary>
         public string LearnMessage = "";
 
@@ -45,6 +51,41 @@ namespace CavesOfOoo.Core
 
         private bool DoRead(Entity actor, GameEvent e)
         {
+            // Spell-granting grimoire: teaches a mutation when read
+            if (!string.IsNullOrEmpty(MutationClassName))
+            {
+                var mutations = actor.GetPart<MutationsPart>();
+                if (mutations == null)
+                {
+                    MessageLog.Add("The symbols are beyond your comprehension.");
+                    e.Handled = true;
+                    return false;
+                }
+
+                if (mutations.HasMutation(MutationClassName))
+                {
+                    MessageLog.Add(AlreadyKnownMessage);
+                    e.Handled = true;
+                    return false;
+                }
+
+                if (mutations.AddMutation(MutationClassName, MutationLevel))
+                {
+                    if (!string.IsNullOrEmpty(LearnMessage))
+                        MessageLog.AddAnnouncement(LearnMessage);
+                    else
+                        MessageLog.AddAnnouncement($"You study {ParentEntity.GetDisplayName()} and learn a new rite.");
+                }
+                else
+                {
+                    MessageLog.Add("The symbols are beyond your comprehension.");
+                }
+
+                e.Handled = true;
+                return false;
+            }
+
+            // Knowledge-granting grimoire: sets a property on the reader
             if (string.IsNullOrEmpty(KnowledgeProperty))
             {
                 MessageLog.Add("The pages are blank.");

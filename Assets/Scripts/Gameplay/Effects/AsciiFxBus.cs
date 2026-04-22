@@ -21,7 +21,8 @@ namespace CavesOfOoo.Core
         LanternBright = 14,
         Earth = 15,
         Water = 16,
-        Holy = 17
+        Holy = 17,
+        ThrownObject = 18
     }
 
     public enum AsciiFxRequestType
