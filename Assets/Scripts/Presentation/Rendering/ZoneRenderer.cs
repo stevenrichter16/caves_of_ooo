@@ -1453,9 +1453,27 @@ namespace CavesOfOoo.Rendering
                     {
                         along = y;
                         cross = x;
-                        bool isBankCol = top.Tags["FlowsSouth"] == "bank";
-                        rel = isBankCol ? 0.75f : 0.25f;
-                        useBankPalette = isBankCol;
+                        // FlowsSouth carries two formats:
+                        //   legacy (old narrow RiverBuilder): "core" | "bank" | ""
+                        //   new HTML (RiverChunkBuilder South): rel as F3 float
+                        // Detect by checking the legacy sentinel strings first.
+                        string tagVal = top.Tags["FlowsSouth"];
+                        if (tagVal == "bank")
+                        {
+                            rel = 0.75f;
+                            useBankPalette = true;
+                        }
+                        else if (tagVal == "core" || string.IsNullOrEmpty(tagVal))
+                        {
+                            rel = 0.25f;
+                            useBankPalette = false;
+                        }
+                        else
+                        {
+                            // HTML float format.
+                            rel = ParseRel(tagVal);
+                            useBankPalette = rel > 0.5f;
+                        }
                     }
                     else
                     {

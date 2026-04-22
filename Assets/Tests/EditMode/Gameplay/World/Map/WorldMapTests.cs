@@ -1285,19 +1285,13 @@ namespace CavesOfOoo.Tests
         [Test]
         public void WorldGenerator_CenterHasVillage()
         {
-            // Historical name kept for blame continuity. The starting-zone
-            // POI was swapped to RiverChunk so the spawn area is the faithful
-            // river.ascii showcase. To restore village-at-spawn behavior,
-            // revert WorldGenerator's PlacePOIs starting-zone POIType to
-            // Village and restore this assertion to POIType.Village.
             var map = WorldGenerator.Generate(42);
             int cx = WorldMap.Width / 2;
             int cy = WorldMap.Height / 2;
 
             Assert.IsTrue(map.HasPOI(cx, cy), "Center tile should have a POI");
             var poi = map.GetPOI(cx, cy);
-            Assert.AreEqual(POIType.RiverChunk, poi.Type,
-                "Center POI should be a RiverChunk (river.ascii port zone)");
+            Assert.AreEqual(POIType.Village, poi.Type, "Center POI should be a village");
         }
 
         [Test]

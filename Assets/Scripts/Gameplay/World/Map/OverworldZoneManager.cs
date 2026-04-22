@@ -148,10 +148,20 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new VillageBuilder(biome, poi, SettlementManager));
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
-            // RiverBuilder (priority 3850) runs before population (4000) so
-            // NPCs don't spawn in the water. Only carves in the starting
-            // village zone (Overworld.10.10.0).
-            pipeline.AddBuilder(new RiverBuilder());
+            // Narrow HTML-style water channel threading through the village,
+            // flowing north → south along the east side. halfWidth=2.0 gives
+            // a ~4-cell channel; crossCenterOffset=+30 places it around x=70
+            // (zone center 40 + 30), matching the old narrow river's
+            // east-side footprint. skipBanks=true keeps the surrounding
+            // cells as normal village ground — no amber bank vegetation.
+            // Priority 3850 runs before VillagePopulationBuilder (4000) so
+            // NPCs don't spawn in water; the builder's IsPassable guard
+            // also prevents the channel from overwriting village walls.
+            pipeline.AddBuilder(new RiverChunkBuilder(
+                halfWidthBase: 2.0f,
+                skipBanks: true,
+                direction: RiverFlowDirection.South,
+                crossCenterOffset: 30));
             pipeline.AddBuilder(new VillagePopulationBuilder(poi, SettlementManager));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             return pipeline;

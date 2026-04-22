@@ -118,14 +118,11 @@ namespace CavesOfOoo.Core
         {
             var placed = new List<(int x, int y)>();
 
-            // 1. Starting zone at center — previously POIType.Village; now a
-            // faithful river.ascii port so the player spawns into the
-            // ported-river showcase. The village pipeline is still wired
-            // into OverworldZoneManager for other zones; it's just bypassed
-            // for this one coord. Revert to POIType.Village here to restore
-            // the old starting-village behavior.
+            // 1. Starting village at center. The village pipeline includes
+            // a narrow HTML-style water channel (see CreateVillagePipeline)
+            // so the river is visible without displacing village content.
             map.SetPOI(centerX, centerY, new PointOfInterest(
-                POIType.RiverChunk, VillageNames[0], "Villagers", 1));
+                POIType.Village, VillageNames[0], "Villagers", 1));
             placed.Add((centerX, centerY));
 
             // 2. Place 4-6 additional villages spread across the map
