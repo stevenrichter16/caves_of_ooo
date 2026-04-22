@@ -993,23 +993,56 @@ namespace CavesOfOoo.Rendering
             QudColorParser.BrightCyan
         };
 
+        // -------- River surface realism tuning --------
+
         /// <summary>
-        /// Flow wave speed for FlowsSouth tiles, in "color-index units per
-        /// second." With Zone.Height = 25 rows and this rate, a single color
-        /// band takes about 2 seconds to cross the full height of the zone —
-        /// the pace the design spec calls for (2s per wave). Larger = faster.
+        /// Flow wave speed for the deeper CORE column (FlowsSouth tag value
+        /// "core"). Faster than the bank — in real rivers the current peaks
+        /// at the channel center where friction is lowest. One color band
+        /// crosses the 25-row zone in ~25/15 = 1.67s.
         /// </summary>
-        private const float FlowSpeedRowsPerSecond = 12.5f;
+        private const float CoreFlowSpeedRowsPerSecond = 15f;
+
+        /// <summary>
+        /// Flow wave speed for the shallower BANK column (FlowsSouth tag
+        /// value "bank"). Slower than the core by a factor of 1.5×, so
+        /// crests at the bank visibly lag the core's. One band crosses
+        /// the zone in ~25/10 = 2.5s. Bracketing the old single-speed
+        /// value of 12.5 keeps average perception ~2s/wave (user spec)
+        /// while introducing cross-channel texture.
+        /// </summary>
+        private const float BankFlowSpeedRowsPerSecond = 10f;
 
         /// <summary>
         /// Glyphs cycled across a FlowsSouth cell every frame, indexed by the
         /// same phase integer used for WaterColors. Two dashes + one tilde
         /// means each cell shows flat water most of the time with a visible
-        /// crest that sweeps south once per wave cycle (~2s). Must be the
-        /// same length as WaterCoreColors / WaterBankColors so the glyph
+        /// crest that sweeps south once per wave cycle. Must be the same
+        /// length as WaterCoreColors / WaterBankColors so the glyph
         /// animation stays in lockstep with the color animation.
         /// </summary>
         private static readonly char[] FlowGlyphs = { '-', '-', '~' };
+
+        /// <summary>Seconds between whitecap-sparkle spawn attempts (~2/sec).</summary>
+        private const float WhitecapSpawnInterval = 0.5f;
+
+        /// <summary>How long a single whitecap glyph stays visible (~9 frames @ 60fps).</summary>
+        private const float WhitecapLifetime = 0.15f;
+
+        /// <summary>Glyph drawn for a whitecap — ASCII '*' reads as a specular glint.</summary>
+        private const char WhitecapGlyph = '*';
+
+        /// <summary>Color string for whitecaps. '&amp;Y' = pure white in QudColorParser.</summary>
+        private const string WhitecapColor = "&Y";
+
+        /// <summary>
+        /// Probability of rejecting a core-column spawn and trying again,
+        /// biasing sparkles toward the brighter bank column. 0.6 means
+        /// bank cells end up with ~2.5× the sparkle density of core cells.
+        /// </summary>
+        private const float WhitecapBankBiasChance = 0.6f;
+
+        private float _whitecapTimer;
 
         /// <summary>
         /// Rebuild the cached list of water tile positions from the current zone.
@@ -1079,10 +1112,18 @@ namespace CavesOfOoo.Rendering
                 Color[] palette;
                 if (isFlowing)
                 {
-                    phase = _ambientTimer * FlowSpeedRowsPerSecond - y;
-                    palette = top.Tags["FlowsSouth"] == "bank"
+                    // Core flows faster than bank (physical-ish current
+                    // stratification). Desynced phases produce visible
+                    // cross-channel texture: core may show ~ while bank
+                    // still shows -, etc.
+                    bool isBank = top.Tags["FlowsSouth"] == "bank";
+                    float speed = isBank
+                        ? BankFlowSpeedRowsPerSecond
+                        : CoreFlowSpeedRowsPerSecond;
+                    phase = _ambientTimer * speed - y;
+                    palette = isBank
                         ? WaterBankColors
-                        : WaterCoreColors; // default (includes empty-string legacy values)
+                        : WaterCoreColors; // default covers "core" + empty-string legacy
                 }
                 else
                 {
@@ -1129,6 +1170,54 @@ namespace CavesOfOoo.Rendering
                         break;
                     }
                 }
+            }
+
+            // Whitecap sparkles: a random FlowsSouth cell gets a brief '*'
+            // particle via the FX bus. Pure visual — lives on the FX
+            // tilemap above the main map, so it overlays the wave without
+            // disturbing any cell's water glyph/color.
+            _whitecapTimer += deltaTime;
+            if (_whitecapTimer >= WhitecapSpawnInterval && _waterTilePositions.Count > 0)
+            {
+                _whitecapTimer = 0f;
+                TrySpawnWhitecap();
+            }
+        }
+
+        /// <summary>
+        /// Pick a visible FlowsSouth cell at random (with a bias toward the
+        /// brighter bank column) and emit a short-lived white '*' particle.
+        /// Retries up to 5 times if a chosen cell fails the visibility /
+        /// top-entity / bias checks; gives up silently if no cell qualifies.
+        /// </summary>
+        private void TrySpawnWhitecap()
+        {
+            for (int attempt = 0; attempt < 5; attempt++)
+            {
+                int idx = UnityEngine.Random.Range(0, _waterTilePositions.Count);
+                var pos = _waterTilePositions[idx];
+                Cell cell = CurrentZone.GetCell(pos.x, pos.y);
+                if (cell == null || !cell.IsVisible) continue;
+
+                // Top entity must still be water — if a creature walked onto
+                // the cell, the sparkle would sit on top of the @ character.
+                Entity top = cell.GetTopVisibleObject();
+                if (top == null || !top.HasTag("FlowsSouth")) continue;
+
+                // Bias toward bank cells: reject a core cell with
+                // WhitecapBankBiasChance probability and try again.
+                bool isBank = top.Tags["FlowsSouth"] == "bank";
+                if (!isBank && UnityEngine.Random.value < WhitecapBankBiasChance)
+                    continue;
+
+                AsciiFxBus.EmitParticle(
+                    CurrentZone,
+                    pos.x,
+                    pos.y,
+                    WhitecapGlyph,
+                    WhitecapColor,
+                    WhitecapLifetime);
+                return;
             }
         }
 
