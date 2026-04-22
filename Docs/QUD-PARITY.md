@@ -488,8 +488,8 @@ Cheapest → most expensive: **Gap B (interior/exterior) → Gap C (corpses) →
 | ReequipGoal / ChangeEquipmentGoal | 🔴 | **Gap D (Phase 14)** |
 | MoveToZoneGoal | 🔴 | **Gap A (Phase 13)** |
 | MoveToGlobalGoal | 🔴 | **Gap A + global solver** |
-| MoveToExteriorGoal | 🔴 | **Gap B** |
-| MoveToInteriorGoal | 🔴 | **Gap B** |
+| MoveToExteriorGoal | 🟢 Shipped | — (M4) |
+| MoveToInteriorGoal | 🟢 Shipped | — (M4) |
 
 ### Known Style / Polish Items (Non-Blocking)
 
@@ -766,7 +766,7 @@ This section describes what it takes to move every goal from state 1 → state 2
 | **M1** — Blueprint wiring | ✅ Done (1317/1317) | A | 1–2d | RetreatGoal, Passive, DormantGoal |
 | **M2** — Dialogue/status triggers | ✅ Done | B | 2–3d | NoFightGoal, WanderDurationGoal |
 | **M3** — Ambient behavior parts | ✅ Done | B | 2–3d | PetGoal, GoFetchGoal, FleeLocationGoal |
-| **M4** — Interior/Exterior (Gap B) | ⏳ Next | C | 3–4d | MoveToInterior/ExteriorGoal, weather foundation |
+| **M4** — Interior/Exterior (Gap B) | ✅ Done (1657/1657) | C | 3–4d | MoveToInterior/ExteriorGoal, weather foundation |
 | **M5** — Corpse system (Gap C) | | C | 3–5d | DisposeOfCorpseGoal, necromancy/butcher foundation |
 | **M6** — Rune system | | C | 3–4d | LayRuneGoal |
 | **M7** — Turret system | | C | 3–4d | PlaceTurretGoal |
@@ -1854,6 +1854,71 @@ starting M3 work.
 - [ ] SanctuaryPart + Shrine; AIFleeToShrine on Scribe/Elder
 - [ ] Shrine placed in villages during generation
 - [ ] All M3 tests green; full suite still passes
+
+#### Milestone M4 — Interior/Exterior cell tagging (Tier C, 3–4 days)
+
+**Status: ✅ Shipped** — 1657/1657 EditMode tests passing.
+
+M4 adds a per-cell `IsInterior` flag, tagged at zone-generation time, plus
+two goal handlers (`MoveToInteriorGoal`, `MoveToExteriorGoal`) that BFS to
+the nearest reachable cell matching the predicate and push `MoveToGoal` as
+a child. Completes Gap B from the Phase 6 audit.
+
+##### M4 Design decisions (with Qud-parity evidence)
+
+Before implementation, we consulted the Qud decompiled source. Findings:
+
+- **Qud uses a zone-level flag, not per-cell**: `Zone.IsInside()` returns
+  true based on a zone property or dungeon depth (`Z > 10`). Buildings are
+  **pocket-dimension `InteriorZone` objects**, not walls-on-a-grid.
+- **Qud's MoveToInterior/MoveToExterior navigate to specific `GameObject`
+  targets** (containers with `Interior` part, or `InteriorPortal` for
+  exits), not to predicate-matched cells.
+- **Qud's callers are vehicle-related** (`AIBarathrumShuttle`,
+  `AIVehiclePilot`, `AIPassenger`) — no weather-driven shelter AI.
+- **No MaxTurns** on Qud's versions — they loop until Finished() or the
+  target becomes null (unreachable / TryEnter fails).
+
+Implementation choices for CoO:
+
+1. **Per-cell `IsInterior` bool** — fits our flat-zone architecture where
+   buildings are walls+floor in the same 80×25 grid. Documented as a CoO
+   adaptation of Qud's zone-level concept.
+2. **BFS cell-predicate search** — no Qud analogue; needed because we
+   don't have InteriorPortal GameObjects to target. `MaxSearchRadius=40`.
+3. **`MaxTurns=50` safety net** — CoO-native addition. Qud can afford no
+   timeout because its pathing target is concrete; our predicate search
+   could spin on a broken path without the cap.
+4. **Dungeon cells tagged as interior** — mirrors Qud's
+   `Zone.IsInside() → Z > 10`. Done in `OverworldZoneManager.OnZoneGenerated`
+   for every cell of a `wz > 0` zone.
+5. **Weather/curfew triggers deferred** — Qud doesn't wire
+   MoveToInterior to weather either; M4 ships only the primitive. Future
+   triggers belong to Phase 12 (Calendar) or Phase 17 (Weather).
+
+##### M4 Verification checklist
+- [x] `Cell.IsInterior` field on `Cell.cs`
+- [x] `VillageBuilder.BuildRoom` tags interior floor cells
+- [x] `OverworldZoneManager.OnZoneGenerated` tags all cells of `wz > 0` zones
+- [x] `AIHelpers.FindNearestCellWhere` (BFS primitive)
+- [x] `MoveToInteriorGoal` + `MoveToExteriorGoal`
+- [x] `CellVerifier.IsInterior()` / `.IsExterior()` test helpers
+- [x] Tests: 2 VillageBuilder interior tagging + 13 goal/BFS tests
+- [x] Full suite green (1657/1657)
+
+##### M4 Follow-up opportunities (out of M4 scope)
+
+- **`BrainPart.Passive`-style trigger parts** — e.g. `AISheltererPart` that
+  pushes `MoveToInteriorGoal` on a GameEvent (rain, night, fire).
+- **`AISheltererPart` equivalent on vehicles** — closer to Qud's actual
+  usage pattern (`AIPassenger`-style).
+- **Weather system** — rain event would iterate outdoor NPCs and push
+  `MoveToInteriorGoal`. Needs Phase 17.
+- **Curfew system** — dusk/dawn pressure on NPCs. Needs Phase 12.
+- **`Zone.IsInside()` mirror** — for full Qud parity, add a zone-level
+  `IsInside` flag that defaults from dungeon depth + a builder override.
+  Our current `wz > 0` tag-all-cells approach approximates this but could
+  be cleaner as a true zone-level flag with cell-level implying true.
 
 #### Cross-milestone dependencies
 
