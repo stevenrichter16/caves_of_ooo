@@ -116,6 +116,34 @@ namespace CavesOfOoo.Rendering
         }
         private readonly List<ReflectionAdjacentTile> _waterAdjacentPositions = new List<ReflectionAdjacentTile>();
 
+        /// <summary>
+        /// A leaf / twig that drifts south with the current at a cell-sub-
+        /// precision position. Rendered by overriding the water glyph at
+        /// the matching cell — no entity, no physics, just a visual loop.
+        /// Port of river.ascii's debris pool.
+        /// </summary>
+        private struct DebrisDrifter
+        {
+            /// <summary>Cross-flow offset from centerline in half-widths (-0.6..0.6).</summary>
+            public float XRel;
+            /// <summary>Zone-heights per second — HTML range 0.12..0.30.</summary>
+            public float Speed;
+            /// <summary>Starting offset in [0, 1) so drifters don't bunch at zone load.</summary>
+            public float Phase;
+            /// <summary>'o' (60%) or '.' (40%) per HTML preset.</summary>
+            public char Glyph;
+        }
+
+        /// <summary>Pool of debris drifters, re-randomized on each zone load.</summary>
+        private DebrisDrifter[] _debris = System.Array.Empty<DebrisDrifter>();
+
+        /// <summary>
+        /// Per-row cached meander center column. Populated in
+        /// RefreshWaterCache so DebrisGlyphAt doesn't recompute the sine
+        /// for every cell every frame.
+        /// </summary>
+        private int[] _centerXPerRow = System.Array.Empty<int>();
+
         private readonly HashSet<string> _loggedRenderIssues = new HashSet<string>();
         private WorldCursorState _worldCursorState;
         private Entity _cursorPlayer;
@@ -1096,6 +1124,17 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private const float ReflectionTintStrength = 0.22f;
 
+        // ---- Debris drifters (river.ascii leaf pool) ----
+
+        /// <summary>How many leaves/twigs drift in the river at any time. HTML uses 3..6 across presets; 4 sits in the middle and feels right for a 25-row zone.</summary>
+        private const int DebrisCount = 4;
+
+        /// <summary>Color string for debris. DarkYellow is the nearest Qud palette match to HTML's amber #c99755.</summary>
+        private const string DebrisColor = "&w";
+
+        /// <summary>Cell-distance threshold (|y-debrisY| and |x-targetX|) for "debris is at this cell." HTML uses 0.75 in normalized coords; here in raw cells.</summary>
+        private const float DebrisCellMatchDistance = 0.75f;
+
         // ---- Sampling helpers (port of the river.ascii scalar field) ----
 
         /// <summary>Cheap deterministic hash → [0, 1]. Port of the HTML demo's hash().</summary>
@@ -1201,6 +1240,36 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>
+        /// Return the glyph of any debris drifter currently occupying this
+        /// cell, or '\0' if none. Drifters wrap south → off-bottom-edge →
+        /// re-enter from top, with a small margin so they don't pop in/out
+        /// visibly at the boundaries.
+        /// </summary>
+        private char DebrisGlyphAt(int x, int y, float t)
+        {
+            if (_debris == null || _debris.Length == 0) return '\0';
+            if (_centerXPerRow == null || y < 0 || y >= _centerXPerRow.Length) return '\0';
+            int centerX = _centerXPerRow[y];
+            if (centerX < 0) return '\0'; // no river on this row
+
+            for (int i = 0; i < _debris.Length; i++)
+            {
+                var d = _debris[i];
+                // pos ∈ [-0.05, 1.05) — HTML's margin lets drifters enter
+                // and exit off-screen without a visible snap.
+                float pos = ((d.Speed * t + d.Phase) % 1.1f) - 0.05f;
+                float debrisY = pos * Zone.Height;
+                float targetX = centerX + d.XRel;
+                if (Mathf.Abs(y - debrisY) < DebrisCellMatchDistance &&
+                    Mathf.Abs(x - targetX) < DebrisCellMatchDistance)
+                {
+                    return d.Glyph;
+                }
+            }
+            return '\0';
+        }
+
+        /// <summary>
         /// Rebuild the cached list of water tile positions from the current zone.
         /// Called on zone load and after full redraws.
         /// </summary>
@@ -1209,6 +1278,12 @@ namespace CavesOfOoo.Rendering
             _waterTilePositions.Clear();
             _waterAdjacentPositions.Clear();
             if (CurrentZone == null) return;
+
+            // Per-row centerline cache for debris targeting. First core
+            // cell we see at each row wins; rows with no river stay at -1
+            // and debris skips them.
+            _centerXPerRow = new int[Zone.Height];
+            for (int i = 0; i < _centerXPerRow.Length; i++) _centerXPerRow[i] = -1;
 
             for (int x = 0; x < Zone.Width; x++)
             {
@@ -1232,6 +1307,10 @@ namespace CavesOfOoo.Rendering
                     // the channel" rather than "fog around everything."
                     if (!top.HasTag("FlowsSouth")) continue;
                     bool isBank = top.Tags["FlowsSouth"] == "bank";
+
+                    if (!isBank && _centerXPerRow[y] < 0)
+                        _centerXPerRow[y] = x;
+
                     int adjX = isBank ? x + 1 : x - 1;
                     if (CurrentZone.InBounds(adjX, y))
                     {
@@ -1243,6 +1322,29 @@ namespace CavesOfOoo.Rendering
                         });
                     }
                 }
+            }
+
+            InitDebrisPool();
+        }
+
+        /// <summary>
+        /// Randomize the debris drifters on each zone load. Unseeded —
+        /// each playthrough sees slightly different leaf timing, and the
+        /// pool isn't gameplay-observable so non-determinism is fine.
+        /// </summary>
+        private void InitDebrisPool()
+        {
+            _debris = new DebrisDrifter[DebrisCount];
+            var rng = new System.Random();
+            for (int i = 0; i < DebrisCount; i++)
+            {
+                _debris[i] = new DebrisDrifter
+                {
+                    XRel  = (float)(rng.NextDouble() - 0.5) * 1.2f,  // -0.6..0.6
+                    Speed = 0.12f + (float)rng.NextDouble() * 0.18f, // 0.12..0.30
+                    Phase = (float)rng.NextDouble(),                 // 0..1
+                    Glyph = rng.NextDouble() < 0.6 ? 'o' : '.'
+                };
             }
         }
 
@@ -1289,6 +1391,17 @@ namespace CavesOfOoo.Rendering
                     char foam = FoamGlyph(val);
                     char glyph = foam != '\0' ? foam : DensityGlyph(val);
                     Color color = WaterColorForVal(val, isBank);
+
+                    // Debris override: a drifting leaf takes precedence
+                    // over water glyph AND foam (leaves visibly ride
+                    // crests). Color flips to DebrisColor so the leaf
+                    // contrasts against the blue channel.
+                    char debris = DebrisGlyphAt(x, y, _ambientTimer);
+                    if (debris != '\0')
+                    {
+                        glyph = debris;
+                        color = QudColorParser.Parse(DebrisColor);
+                    }
 
                     // Paint the bg tile BEFORE the fg tile so space glyphs
                     // (very-calm cells) reveal dim blue underneath rather
