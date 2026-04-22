@@ -100,6 +100,28 @@ namespace CavesOfOoo.Tests.TestSupport
             return this;
         }
 
+        /// <summary>Assert the cell has <see cref="Cell.IsInterior"/>=true (under a roof).</summary>
+        public CellVerifier IsInterior()
+        {
+            var cell = Cell;
+            if (cell == null)
+                Assert.Fail($"Verify.Cell({_x},{_y}).IsInterior: cell is null.");
+            if (!cell.IsInterior)
+                Assert.Fail($"Verify.Cell({_x},{_y}).IsInterior: cell is exterior.");
+            return this;
+        }
+
+        /// <summary>Assert the cell has <see cref="Cell.IsInterior"/>=false (not under a roof).</summary>
+        public CellVerifier IsExterior()
+        {
+            var cell = Cell;
+            if (cell == null)
+                Assert.Fail($"Verify.Cell({_x},{_y}).IsExterior: cell is null.");
+            if (cell.IsInterior)
+                Assert.Fail($"Verify.Cell({_x},{_y}).IsExterior: cell is interior.");
+            return this;
+        }
+
         /// <summary>
         /// Assert no entity in this cell has the given tag KEY. Handy negation
         /// for cleared-cell verification.

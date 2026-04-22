@@ -218,6 +218,21 @@ namespace CavesOfOoo.Core
                 // Underground: deeper = cooler blue tint
                 float depth = Mathf.Min(wz * 0.03f, 0.15f);
                 zone.AmbientTint = new Color(0.85f - depth, 0.9f - depth * 0.5f, 1f);
+
+                // Every cell in a dungeon zone is "interior" — this mirrors
+                // Qud's Zone.IsInside() returning true for Z > 10 (dungeon
+                // depth). Used by MoveToInterior/ExteriorGoal. We tag walls
+                // AND floors here (can't distinguish cheaply without walking
+                // entity contents) — any "is cell under a roof" consumer
+                // should still check IsPassable for walk-to purposes.
+                for (int cx = 0; cx < Zone.Width; cx++)
+                {
+                    for (int cy = 0; cy < Zone.Height; cy++)
+                    {
+                        var cell = zone.GetCell(cx, cy);
+                        if (cell != null) cell.IsInterior = true;
+                    }
+                }
                 return;
             }
 

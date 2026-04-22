@@ -164,6 +164,16 @@ namespace CavesOfOoo.Core
                     {
                         // Interior gets stone floor
                         ClearAndFloor(zone, factory, x, y, "StoneFloor");
+
+                        // Tag the cell as interior for MoveToInterior/
+                        // ExteriorGoal and future weather/shelter rules.
+                        // Walls (the edge branch) stay IsInterior=false so
+                        // doors at edge positions naturally read as exterior,
+                        // matching the intuition that the roof is above the
+                        // floor, not the doorway.
+                        var interiorCell = zone.GetCell(x, y);
+                        if (interiorCell != null)
+                            interiorCell.IsInterior = true;
                     }
                 }
             }

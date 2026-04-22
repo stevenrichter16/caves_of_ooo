@@ -25,6 +25,25 @@ namespace CavesOfOoo.Core
         public bool IsVisible;
 
         /// <summary>
+        /// True when this cell is under a roof — inside a village building,
+        /// or anywhere in a dungeon (wz &gt; 0) zone. Set at zone-generation
+        /// time by VillageBuilder (interior floor cells) and
+        /// OverworldZoneManager.OnZoneGenerated (every cell in an underground
+        /// zone). Persists for the cell's lifetime; if the zone unloads and
+        /// re-runs generation, the flag gets re-set.
+        ///
+        /// <para>Consumed by MoveToInteriorGoal / MoveToExteriorGoal as a
+        /// per-cell predicate target. Future weather / curfew systems can
+        /// gate "safe from rain" and "daylight pressure" rules on it.</para>
+        ///
+        /// <para>Note: this is a CoO adaptation. Qud uses a zone-level
+        /// IsInside flag plus InteriorZone pocket dimensions; since our
+        /// buildings are walls+floor in the same 80×25 zone, we encode
+        /// the same concept per-cell.</para>
+        /// </summary>
+        public bool IsInterior;
+
+        /// <summary>
         /// All entities at this position, ordered by render layer (lowest first).
         /// </summary>
         public List<Entity> Objects = new List<Entity>(4);
