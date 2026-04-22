@@ -127,11 +127,84 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void MoveToInteriorGoal_MaxTurnsClampsRegardlessOfCurrentCellState()
+        {
+            // Regression pin for the doc-claim that MaxTurns is the CoO
+            // safety net: even if the NPC is mid-pathing on an exterior
+            // cell (not yet at an interior), Age > MaxTurns MUST terminate
+            // the goal. This prevents an infinite spin if FindNearestCellWhere
+            // is called every tick and the chosen target becomes unreachable
+            // partway through.
+            var zone = new Zone("TestZone");
+            var creature = CreateCreature(zone, 1, 1);
+            TagInterior(zone, 20, 20, 22, 22);
+            var brain = creature.GetPart<BrainPart>();
+
+            var goal = new MoveToInteriorGoal(maxTurns: 5);
+            brain.PushGoal(goal);
+
+            // Simulate: NPC has been pathing for 6 ticks but hasn't reached
+            // any interior cell. Current position still exterior.
+            goal.Age = 6;
+
+            // Precondition: creature is on an exterior cell (counter-check
+            // that the test isn't trivially passing via the already-interior
+            // branch).
+            var hereCell = zone.GetCell(1, 1);
+            Assert.IsFalse(hereCell.IsInterior,
+                "Test setup: creature should be on an exterior cell at (1,1).");
+
+            Assert.IsTrue(goal.Finished(),
+                "Age > MaxTurns must terminate the goal even mid-journey (CoO safety net).");
+        }
+
+        [Test]
         public void MoveToInteriorGoal_IsBusyAndCannotFight()
         {
             var goal = new MoveToInteriorGoal();
             Assert.IsTrue(goal.IsBusy(), "Sheltering NPC should be busy.");
             Assert.IsFalse(goal.CanFight(), "Sheltering NPC should not engage combat mid-path.");
+        }
+
+        [Test]
+        public void MoveToInteriorGoal_EmitsSeekingShelterThought_WhenExterior()
+        {
+            // Regression pin for the Phase-10 narrative-signal contract.
+            // Previously fixed for FleeLocationGoal in commit 045580d;
+            // mirror that pin here so a future refactor can't silently
+            // drop the Think() call.
+            var zone = new Zone("TestZone");
+            var creature = CreateCreature(zone, 1, 1);
+            TagInterior(zone, 5, 5, 7, 7);
+            var brain = creature.GetPart<BrainPart>();
+
+            var goal = new MoveToInteriorGoal();
+            brain.PushGoal(goal);
+            goal.TakeAction();
+
+            Assert.AreEqual("seeking shelter", brain.LastThought,
+                "MoveToInteriorGoal should write 'seeking shelter' to BrainPart.LastThought.");
+        }
+
+        [Test]
+        public void MoveToInteriorGoal_DoesNotEmitThought_WhenAlreadyInterior()
+        {
+            // Counter-check to the previous test: already-inside early-return
+            // should NOT call Think(). Confirms we don't accidentally set
+            // LastThought on the already-satisfied path.
+            var zone = new Zone("TestZone");
+            var creature = CreateCreature(zone, 5, 5);
+            zone.GetCell(5, 5).IsInterior = true;
+            var brain = creature.GetPart<BrainPart>();
+
+            var goal = new MoveToInteriorGoal();
+            brain.PushGoal(goal);
+            // Clear any baseline Think set by PushGoal internals (defensive).
+            brain.LastThought = null;
+            goal.TakeAction();
+
+            Assert.IsNull(brain.LastThought,
+                "Already-interior NPC should not emit the 'seeking shelter' narrative signal.");
         }
 
         // ========================
@@ -195,6 +268,23 @@ namespace CavesOfOoo.Tests
             var goal = new MoveToExteriorGoal(maxTurns: 5);
             goal.Age = 6;
             Assert.IsTrue(goal.Finished(), "Age > MaxTurns should terminate the goal (CoO safety net).");
+        }
+
+        [Test]
+        public void MoveToExteriorGoal_EmitsHeadingOutsideThought_WhenInterior()
+        {
+            // Mirrors the MoveToInteriorGoal narrative-signal pin above.
+            var zone = new Zone("TestZone");
+            TagInterior(zone, 4, 4, 8, 8);
+            var creature = CreateCreature(zone, 6, 6);
+            var brain = creature.GetPart<BrainPart>();
+
+            var goal = new MoveToExteriorGoal();
+            brain.PushGoal(goal);
+            goal.TakeAction();
+
+            Assert.AreEqual("heading outside", brain.LastThought,
+                "MoveToExteriorGoal should write 'heading outside' to BrainPart.LastThought.");
         }
 
         // ========================

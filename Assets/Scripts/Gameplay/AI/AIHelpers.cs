@@ -411,6 +411,14 @@ namespace CavesOfOoo.Core
         {
             if (zone == null || predicate == null) return null;
 
+            // Caller precondition: (fromX, fromY) must be a passable cell.
+            // NPCs always stand on passable cells, so in practice this is
+            // met — but we defend against unusual teleports / pushbacks
+            // that could leave an entity on a solid cell. Returning null
+            // cleanly rather than silently BFS-ing from inside a wall.
+            var startCell = zone.GetCell(fromX, fromY);
+            if (startCell == null || !startCell.IsPassable()) return null;
+
             // Encode (x, y) as a single long for HashSet — avoids per-visit
             // allocation. x, y are in [0, 80) so fitting in 32 bits is safe.
             var visited = new System.Collections.Generic.HashSet<long>();

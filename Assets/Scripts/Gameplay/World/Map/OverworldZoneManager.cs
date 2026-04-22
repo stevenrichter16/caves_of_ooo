@@ -219,20 +219,10 @@ namespace CavesOfOoo.Core
                 float depth = Mathf.Min(wz * 0.03f, 0.15f);
                 zone.AmbientTint = new Color(0.85f - depth, 0.9f - depth * 0.5f, 1f);
 
-                // Every cell in a dungeon zone is "interior" — this mirrors
-                // Qud's Zone.IsInside() returning true for Z > 10 (dungeon
-                // depth). Used by MoveToInterior/ExteriorGoal. We tag walls
-                // AND floors here (can't distinguish cheaply without walking
-                // entity contents) — any "is cell under a roof" consumer
-                // should still check IsPassable for walk-to purposes.
-                for (int cx = 0; cx < Zone.Width; cx++)
-                {
-                    for (int cy = 0; cy < Zone.Height; cy++)
-                    {
-                        var cell = zone.GetCell(cx, cy);
-                        if (cell != null) cell.IsInterior = true;
-                    }
-                }
+                // Mark all cells as interior. Extracted so a future zone-
+                // hydration path (save/load) can call it too without
+                // re-running the generator pipeline.
+                MarkDungeonInterior(zone);
                 return;
             }
 
@@ -240,6 +230,27 @@ namespace CavesOfOoo.Core
                 return;
 
             zone.AmbientTint = GetBiomeTint(WorldMap.GetBiome(wx, wy));
+        }
+
+        /// <summary>
+        /// Mark every cell in a dungeon (wz &gt; 0) zone as IsInterior=true.
+        /// Mirrors Qud's <c>Zone.IsInside()</c> returning true for
+        /// <c>Z &gt; 10</c>. We tag walls AND floors here — distinguishing
+        /// cheaply without walking entity contents isn't worth the cost;
+        /// any "is cell under a roof" consumer should still check
+        /// <c>IsPassable</c> for walk-to purposes.
+        /// </summary>
+        private static void MarkDungeonInterior(Zone zone)
+        {
+            if (zone == null) return;
+            for (int cx = 0; cx < Zone.Width; cx++)
+            {
+                for (int cy = 0; cy < Zone.Height; cy++)
+                {
+                    var cell = zone.GetCell(cx, cy);
+                    if (cell != null) cell.IsInterior = true;
+                }
+            }
         }
 
         private static Color GetBiomeTint(BiomeType biome)
