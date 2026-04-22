@@ -40,17 +40,45 @@ namespace CavesOfOoo.Scenarios.Custom
     {
         public void Apply(ScenarioContext ctx)
         {
-            var scribe = ctx.Spawn("Scribe")
-                .AtPlayerOffset(2, 0);
+            // Spawn in the 3–5 ring around the player. AtPlayerOffset(2, 0)
+            // was previously used but silently failed in this village's
+            // layout (a CompassStone sits solid at player+2). NearPlayer
+            // picks a random passable cell in the band — almost always
+            // exterior in a village of our size, but we still check below
+            // so the scenario fails loud rather than silent.
+            var scribe = ctx.Spawn("Scribe").NearPlayer(minRadius: 3, maxRadius: 5);
+            if (scribe == null)
+            {
+                ctx.Log("[ScribeSeeksShelter] FAILED: no passable cell in the player+3..+5 ring. Check console for a spawn-skip warning.");
+                return;
+            }
 
-            // Push the goal directly — no event trigger yet in this
-            // milestone. When the weather / curfew system ships, this
-            // becomes a reactive push instead of an imperative one.
+            var spawnCell = ctx.Zone.GetEntityCell(scribe);
+            if (spawnCell == null)
+            {
+                ctx.Log("[ScribeSeeksShelter] FAILED: Scribe has no cell after spawn. This should not happen.");
+                return;
+            }
+
             var brain = scribe.GetPart<BrainPart>();
-            if (brain != null)
-                brain.PushGoal(new MoveToInteriorGoal());
+            if (brain == null)
+            {
+                ctx.Log("[ScribeSeeksShelter] FAILED: Scribe has no BrainPart. Goal cannot be pushed.");
+                return;
+            }
 
-            ctx.Log("Scribe has MoveToInteriorGoal pushed. Watch her walk to the nearest building interior; open the thought inspector ('t') to see 'seeking shelter'.");
+            // If she happened to spawn INSIDE a building, the goal will
+            // Finish immediately with no Think() call — confusing for the
+            // playtester. Call it out in the log so "nothing happened"
+            // isn't mistaken for a bug.
+            if (spawnCell.IsInterior)
+            {
+                ctx.Log($"[ScribeSeeksShelter] Scribe spawned at ({spawnCell.X},{spawnCell.Y}) which is already INTERIOR. MoveToInteriorGoal will pop immediately. Re-run for a different spawn.");
+                return;
+            }
+
+            brain.PushGoal(new MoveToInteriorGoal());
+            ctx.Log($"[ScribeSeeksShelter] Scribe spawned at ({spawnCell.X},{spawnCell.Y}) (exterior). MoveToInteriorGoal pushed. Advance turns (.) and watch her walk to the nearest building. Press 't' to see 'seeking shelter' in the thought inspector.");
         }
     }
 }
