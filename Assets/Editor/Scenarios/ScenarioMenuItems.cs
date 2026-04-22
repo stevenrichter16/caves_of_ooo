@@ -84,6 +84,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_SleepingTroll()
             => ScenarioRunner.Launch<SleepingTroll>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Scribe Seeks Shelter (M4 MoveToInterior)", priority = 204)]
+        private static void Launch_ScribeSeeksShelter()
+            => ScenarioRunner.Launch<ScribeSeeksShelter>();
+
         // =========================================================
         // Content Demo
         // =========================================================
