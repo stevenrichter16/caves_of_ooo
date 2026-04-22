@@ -103,6 +103,19 @@ namespace CavesOfOoo.Rendering
         private Camera _popupOverlayCamera;
         private LightMap _lightMap;
         private readonly List<Vector2Int> _waterTilePositions = new List<Vector2Int>();
+
+        /// <summary>
+        /// A cell immediately west or east of a river channel column, cached
+        /// for per-frame reflection tinting in UpdateAmbientAnimations.
+        /// </summary>
+        private struct ReflectionAdjacentTile
+        {
+            public int X, Y;
+            /// <summary>True = use WaterBankColors (east flank of a bank cell), false = WaterCoreColors (west flank of a core cell).</summary>
+            public bool UseBankPalette;
+        }
+        private readonly List<ReflectionAdjacentTile> _waterAdjacentPositions = new List<ReflectionAdjacentTile>();
+
         private readonly HashSet<string> _loggedRenderIssues = new HashSet<string>();
         private WorldCursorState _worldCursorState;
         private Entity _cursorPlayer;
@@ -1042,6 +1055,14 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private const float WhitecapBankBiasChance = 0.6f;
 
+        /// <summary>
+        /// How strongly the reflection tint blends the water's current color
+        /// into flanking cells' background. 0 = no reflection, 1 = fully
+        /// replace bg with the (darkened) water color. 0.22 keeps ground
+        /// cells readable while still visibly linking them to the river.
+        /// </summary>
+        private const float ReflectionTintStrength = 0.22f;
+
         private float _whitecapTimer;
 
         /// <summary>
@@ -1051,6 +1072,7 @@ namespace CavesOfOoo.Rendering
         private void RefreshWaterCache()
         {
             _waterTilePositions.Clear();
+            _waterAdjacentPositions.Clear();
             if (CurrentZone == null) return;
 
             for (int x = 0; x < Zone.Width; x++)
@@ -1064,8 +1086,27 @@ namespace CavesOfOoo.Rendering
                     if (top == null) continue;
 
                     var render = top.GetPart<RenderPart>();
-                    if (render != null && render.RenderString == "~")
-                        _waterTilePositions.Add(new Vector2Int(x, y));
+                    if (render == null || render.RenderString != "~") continue;
+
+                    _waterTilePositions.Add(new Vector2Int(x, y));
+
+                    // Reflection tint: a core cell spills a dark-blue glow
+                    // onto its WEST neighbor; a bank cell spills a bright-
+                    // cyan glow onto its EAST neighbor. Other orientations
+                    // skipped so the effect reads as "sun on two sides of
+                    // the channel" rather than "fog around everything."
+                    if (!top.HasTag("FlowsSouth")) continue;
+                    bool isBank = top.Tags["FlowsSouth"] == "bank";
+                    int adjX = isBank ? x + 1 : x - 1;
+                    if (CurrentZone.InBounds(adjX, y))
+                    {
+                        _waterAdjacentPositions.Add(new ReflectionAdjacentTile
+                        {
+                            X = adjX,
+                            Y = y,
+                            UseBankPalette = isBank
+                        });
+                    }
                 }
             }
         }
@@ -1153,6 +1194,14 @@ namespace CavesOfOoo.Rendering
                 _tilemap.SetColor(tilePos, palette[colorIndex]);
             }
 
+            // Reflection tint: for every cached adjacent (flank) cell,
+            // blend the water's current color onto the background tilemap.
+            // Uses the same phase formula as the water it reflects so tint
+            // and wave stay in lockstep. Runs every frame — worst case 1
+            // frame flicker after a RenderZone stomp, imperceptible at
+            // 60fps.
+            UpdateReflectionTint();
+
             // Dust motes: spawn occasional faint particles in lit areas
             _dustMoteSpawnTimer += deltaTime;
             if (_dustMoteSpawnTimer >= DustMoteSpawnInterval && _asciiFxRenderer != null)
@@ -1218,6 +1267,51 @@ namespace CavesOfOoo.Rendering
                     WhitecapColor,
                     WhitecapLifetime);
                 return;
+            }
+        }
+
+        /// <summary>
+        /// Paint a phase-aware bluish tint onto the background tilemap for
+        /// every cached flank cell. Runs every frame; O(count) where count
+        /// is roughly the river's length. An empty-floor flank cell needs
+        /// a SolidBlock tile painted once before SetColor does anything —
+        /// subsequent frames just update color.
+        /// </summary>
+        private void UpdateReflectionTint()
+        {
+            if (_bgTilemap == null || CurrentZone == null) return;
+
+            Tile solid = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+            if (solid == null) return;
+
+            for (int i = 0; i < _waterAdjacentPositions.Count; i++)
+            {
+                var adj = _waterAdjacentPositions[i];
+                Cell cell = CurrentZone.GetCell(adj.X, adj.Y);
+                if (cell == null || !cell.IsVisible) continue;
+
+                Color[] palette = adj.UseBankPalette ? WaterBankColors : WaterCoreColors;
+                float speed    = adj.UseBankPalette ? BankFlowSpeedRowsPerSecond : CoreFlowSpeedRowsPerSecond;
+                float phase = _ambientTimer * speed - adj.Y;
+                int colorIndex = ((int)phase) % palette.Length;
+                if (colorIndex < 0) colorIndex += palette.Length;
+
+                Color waterColor = palette[colorIndex];
+                Color darkened = QudColorParser.DarkenForBackground(waterColor);
+                Color tinted = Color.Lerp(BackgroundColor, darkened, ReflectionTintStrength);
+
+                Vector3Int tilePos = new Vector3Int(adj.X, Zone.Height - 1 - adj.Y, 0);
+
+                // SolidBlock provides the tintable surface on otherwise
+                // empty floor cells. Only paint once per cell — after
+                // the first frame the tile is already set (SetTile is
+                // idempotent but wasteful if called every frame on every
+                // flank).
+                if (_bgTilemap.GetTile(tilePos) == null)
+                    _bgTilemap.SetTile(tilePos, solid);
+
+                _bgTilemap.SetTileFlags(tilePos, TileFlags.None);
+                _bgTilemap.SetColor(tilePos, tinted);
             }
         }
 
