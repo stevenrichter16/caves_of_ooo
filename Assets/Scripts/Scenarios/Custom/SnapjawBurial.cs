@@ -77,7 +77,15 @@ namespace CavesOfOoo.Scenarios.Custom
             }
 
             // --- Undertaker (the AI under test) ---
-            var undertaker = ctx.Spawn("Undertaker").NearPlayer(minRadius: 3, maxRadius: 5);
+            // 1000 HP so accidental friendly fire / environmental damage
+            // can't kill the undertaker mid-haul during playtest. The known
+            // "NPC dies mid-haul" bug (corpse reservation leaks, corpse drops
+            // at feet via HandleDeath) is documented in QUD-PARITY.md §M5
+            // follow-ups but is a distraction for the happy-path playtest.
+            var undertaker = ctx.Spawn("Undertaker")
+                .WithStatMax("Hitpoints", 1000)
+                .WithHpAbsolute(1000)
+                .NearPlayer(minRadius: 3, maxRadius: 5);
             if (undertaker == null)
             {
                 ctx.Log("[SnapjawBurial] FAILED: no passable cell in the player+3..+5 ring for Undertaker.");
