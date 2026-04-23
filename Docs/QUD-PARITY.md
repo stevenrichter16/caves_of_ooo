@@ -2287,7 +2287,7 @@ Read:
 - [ ] `Snapjaw` blueprint — CorpsePart with CorpseChance=70
 - [ ] Tests: 6 (M5.1) + 9 (M5.2) + 8 (M5.3) = **~23 new M5 tests**
 - [ ] Full suite green (1665 → ~1688)
-- [ ] Playtest scenario `SnapjawBurial` wired into `Caves Of Ooo > Scenarios > AI Behavior > Snapjaw Burial (M5 Corpse system)`
+- [x] Playtest scenario `SnapjawBurial` wired into `Caves Of Ooo > Scenarios > AI Behavior > Snapjaw Burial (M5 Corpse system)` (menu entry added retroactively in `3d7e298` — the initial M5.3 commit shipped the `IScenario` class but forgot the `[MenuItem]` entry in `ScenarioMenuItems.cs`)
 - [ ] Manual playtest observation (awaiting user run)
 
 ##### M5 Risks & mitigations
