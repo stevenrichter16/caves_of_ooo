@@ -3672,6 +3672,36 @@
       ]
     },
     {
+      "Name": "Graveyard",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "graveyard" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Container", "Params": [{ "Key": "MaxItems", "Value": "-1" }] }
+      ],
+      "Tags": [
+        { "Key": "Graveyard", "Value": "" }
+      ]
+    },
+    {
+      "Name": "Undertaker",
+      "Inherits": "Villager",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "undertaker" },
+          { "Key": "RenderString", "Value": "U" },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "AIUndertaker", "Params": [] }
+      ]
+    },
+    {
       "Name": "PurifyWaterGrimoire",
       "Inherits": "Item",
       "Parts": [
