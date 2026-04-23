@@ -143,6 +143,7 @@ namespace CavesOfOoo
 
                 ConversationActions.Factory = _factory;
                 MaterialReactionResolver.Factory = _factory;
+                CorpsePart.Factory = _factory;
 
                 Debug.Log("[Bootstrap] Step 5/9: Generating starting zone...");
                 bool zoneGenerated = PerformanceDiagnostics.MeasureStartupPhase("GenerateZone", PerformanceMarkers.Bootstrap.GenerateZone, () =>

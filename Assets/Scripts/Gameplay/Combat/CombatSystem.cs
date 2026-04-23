@@ -451,6 +451,11 @@ namespace CavesOfOoo.Core
             var died = GameEvent.New("Died");
             died.SetParameter("Target", (object)target);
             died.SetParameter("Killer", (object)killer);
+            // Zone is threaded through so handlers that spawn entities at the
+            // death cell (M5: CorpsePart) don't need to couple to BrainPart to
+            // resolve the zone. Non-spawner handlers (StatusEffectsPart,
+            // GivesRepPart) ignore the extra parameter.
+            died.SetParameter("Zone", (object)zone);
             target.FireEvent(died);
 
             // M2.3: broadcast the death to nearby Passive NPCs so they can

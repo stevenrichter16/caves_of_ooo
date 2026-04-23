@@ -152,7 +152,11 @@
           { "Key": "RenderString", "Value": "s" },
           { "Key": "ColorString", "Value": "&w" }
         ]},
-        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "1" }] }
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "Corpse", "Params": [
+          { "Key": "CorpseChance", "Value": "70" },
+          { "Key": "CorpseBlueprint", "Value": "SnapjawCorpse" }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 },
@@ -166,6 +170,30 @@
         { "Key": "Tier", "Value": "1" }
       ],
       "Props": [{ "Key": "NaturalWeapon", "Value": "SnapjawClaw" }]
+    },
+    {
+      "Name": "SnapjawCorpse",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "snapjaw corpse" },
+          { "Key": "RenderString", "Value": "%" },
+          { "Key": "ColorString", "Value": "&r" },
+          { "Key": "RenderLayer", "Value": "3" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Takeable", "Value": "true" },
+          { "Key": "Weight", "Value": "10" }
+        ]},
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Flesh" },
+          { "Key": "Combustibility", "Value": "0.15" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic" }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Corpse", "Value": "" }
+      ]
     },
     {
       "Name": "Player",
