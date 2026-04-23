@@ -88,6 +88,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_ScribeSeeksShelter()
             => ScenarioRunner.Launch<ScribeSeeksShelter>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Snapjaw Burial (M5 Corpse system)", priority = 205)]
+        private static void Launch_SnapjawBurial()
+            => ScenarioRunner.Launch<SnapjawBurial>();
+
         // =========================================================
         // Content Demo
         // =========================================================
