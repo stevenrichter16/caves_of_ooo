@@ -766,8 +766,8 @@ This section describes what it takes to move every goal from state 1 → state 2
 | **M1** — Blueprint wiring | ✅ Done (1317/1317) | A | 1–2d | RetreatGoal, Passive, DormantGoal |
 | **M2** — Dialogue/status triggers | ✅ Done | B | 2–3d | NoFightGoal, WanderDurationGoal |
 | **M3** — Ambient behavior parts | ✅ Done | B | 2–3d | PetGoal, GoFetchGoal, FleeLocationGoal |
-| **M4** — Interior/Exterior (Gap B) | ✅ Done (1657/1657) | C | 3–4d | MoveToInterior/ExteriorGoal, weather foundation |
-| **M5** — Corpse system (Gap C) | | C | 3–5d | DisposeOfCorpseGoal, necromancy/butcher foundation |
+| **M4** — Interior/Exterior (Gap B) | ✅ Done (1665/1665) | C | 3–4d | MoveToInterior/ExteriorGoal, weather foundation |
+| **M5** — Corpse system (Gap C) | ⏳ Next | C | 3–5d | DisposeOfCorpseGoal, necromancy/butcher foundation |
 | **M6** — Rune system | | C | 3–4d | LayRuneGoal |
 | **M7** — Turret system | | C | 3–4d | PlaceTurretGoal |
 | **M8** — Gap A (zone transitions) | | D | 1–2w | MoveToZone/GlobalGoal, Phase 13 foundation |
@@ -1857,12 +1857,29 @@ starting M3 work.
 
 #### Milestone M4 — Interior/Exterior cell tagging (Tier C, 3–4 days)
 
-**Status: ✅ Shipped** — 1657/1657 EditMode tests passing.
+**Status: ✅ Shipped** — 1665/1665 EditMode tests passing (1 pre-existing
+unrelated flake: `AsciiFxRendererTests.InputHandler_WaitsForBlockingFx_
+UntilRendererFinishes`, passes in isolation).
+
+**Manual playtest:** ⏳ scenario shipped, awaiting user observation.
 
 M4 adds a per-cell `IsInterior` flag, tagged at zone-generation time, plus
 two goal handlers (`MoveToInteriorGoal`, `MoveToExteriorGoal`) that BFS to
 the nearest reachable cell matching the predicate and push `MoveToGoal` as
 a child. Completes Gap B from the Phase 6 audit.
+
+**Commit history** (chronological on `main`):
+
+| SHA | Role | Description |
+|---|---|---|
+| `7d991ee` | M4.1 | `Cell.IsInterior` + VillageBuilder/dungeon tagging + CellVerifier assertions |
+| `5e1571d` | M4.2 | `AIHelpers.FindNearestCellWhere` + MoveToInterior/ExteriorGoal + 13 tests |
+| `04e09d5` | docs | Plan-doc update; Qud-parity audit captured in this section |
+| `ac9c5cc` | fix-pass | Post-review: 🟡×2 (dungeon-tag coupling, BFS start-cell passability) + 🧪×2 (MaxTurns pin, Think-signal pins) |
+| `3e6e3b7` | scenario | `ScribeSeeksShelter.cs` manual-playtest + menu wiring |
+| `9781450` | scenario fix | Spawn silently failed on a CompassStone at player+2; switched to `NearPlayer(3,5)` with null-check |
+| `fe55380` | scenario fix | Disable Scribe's `Staying=true` so BoredGoal step-5 doesn't round-trip her back to her exterior spawn |
+| `f7b9ec3` | **thought UX** | `OnPop` writes terminal thought (`"sheltered"` / `"outside"`) to unstick `LastThought` — user-reported after playtest |
 
 ##### M4 Design decisions (with Qud-parity evidence)
 
@@ -1899,12 +1916,47 @@ Implementation choices for CoO:
 ##### M4 Verification checklist
 - [x] `Cell.IsInterior` field on `Cell.cs`
 - [x] `VillageBuilder.BuildRoom` tags interior floor cells
-- [x] `OverworldZoneManager.OnZoneGenerated` tags all cells of `wz > 0` zones
-- [x] `AIHelpers.FindNearestCellWhere` (BFS primitive)
-- [x] `MoveToInteriorGoal` + `MoveToExteriorGoal`
+- [x] `OverworldZoneManager.MarkDungeonInterior` tags all cells of `wz > 0` zones (extracted from OnZoneGenerated for save/load reusability — fix-pass 🟡 Bug 1)
+- [x] `AIHelpers.FindNearestCellWhere` (BFS primitive) — rejects non-passable start cells (fix-pass 🟡 Bug 2)
+- [x] `MoveToInteriorGoal` + `MoveToExteriorGoal` — `OnPop` writes terminal thought to unstick LastThought
 - [x] `CellVerifier.IsInterior()` / `.IsExterior()` test helpers
-- [x] Tests: 2 VillageBuilder interior tagging + 13 goal/BFS tests
-- [x] Full suite green (1657/1657)
+- [x] Tests: 2 VillageBuilder interior tagging + 13 goal/BFS + 3 regression pins (MaxTurns mid-journey, Think signals) + 4 OnPop terminal-thought pins = **22 new M4 tests**
+- [x] Full suite green (1665/1665, +8 since initial M4 ship)
+- [x] Playtest scenario `ScribeSeeksShelter` wired into `Caves Of Ooo > Scenarios > AI Behavior > Scribe Seeks Shelter (M4 MoveToInterior)`
+- [ ] Manual playtest observation (awaiting user run)
+
+##### M4 Post-review findings (applied 5.1–5.3 severity-scaled review)
+
+| # | Sev | Title | Status |
+|---|---|---|---|
+| 1 | 🟡 | Dungeon interior tag never re-applied after `OnZoneGenerated` (future save/load trap) | ✅ Fixed in `ac9c5cc` — extracted `MarkDungeonInterior` helper |
+| 2 | 🟡 | `FindNearestCellWhere` traverses non-passable start cell | ✅ Fixed in `ac9c5cc` — early-return null |
+| 3 | 🧪 | MaxTurns mid-journey unpinned | ✅ Test added in `ac9c5cc` |
+| 4 | 🧪 | `Think("seeking shelter")` / `Think("heading outside")` unpinned | ✅ 3 tests added in `ac9c5cc` |
+| 5 | ⚪ | Qud's `Interior.TryEnter` status enum not mirrored | 📝 Noted, deferred — only relevant if we ever port pocket-dim buildings |
+| 6 | 🟡 | **Post-playtest finding** — sticky LastThought lingers after goal pops (`"seeking shelter"` after Scribe already arrived) | ✅ Fixed in `f7b9ec3` — OnPop writes terminal thought |
+
+##### Methodology Template compliance
+
+Applied retroactively after initial M4 ship per user request (see the
+commit chain `ac9c5cc → fe55380 → f7b9ec3`):
+
+| Template part | Status |
+|---|---|
+| 1.2 Pre-impl verification sweep | ✅ Every API read before use |
+| 1.4 Risk-ordered sub-milestones | ✅ M4.1 (infra) → M4.2 (consumers) → docs → review → scenario |
+| 2.1 Hallucination-avoidance | ✅ No unverified API calls |
+| 2.2 Commit-message template | ✅ Scoped prefixes + structured bodies |
+| 3.1 EditMode unit tests | ✅ 22 tests |
+| 3.3 Regression pins | ✅ All findings have accompanying tests |
+| 3.4 Counter-check pattern | ✅ Positive + negative tests paired |
+| 3.5 PlayMode sanity sweep | ✅ 4 scenarios with Observed/Expected tables (see commit series) |
+| 3.6 Manual playtest scenario | ✅ Committed; ⏳ user observation pending |
+| 4 Parity audit | ✅ Read Qud's `MoveToInterior.cs`, `MoveToExterior.cs`, `Interior.cs`, `InteriorPortal.cs`, `InteriorZone.cs`, `Zone.IsInside` |
+| 5.1–5.3 Post-impl review | ✅ 6 findings logged + fixed |
+| 6.1–6.4 Honesty protocols | ✅ Raw Observed/Expected tables, can/cannot-verify bounds stated |
+| 7 Unity MCP tooling | ✅ Turn-by-turn live reflection traces |
+| 8.4 Post-milestone | ✅ This section
 
 ##### M4 Follow-up opportunities (out of M4 scope)
 
