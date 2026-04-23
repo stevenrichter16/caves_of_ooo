@@ -265,4 +265,144 @@ namespace CavesOfOoo.Tests
                 "(regression pin for HandleDeath ordering: Died fires BEFORE zone.RemoveEntity).");
         }
     }
+
+    /// <summary>
+    /// Fix-pass regression fixture for the "spawn-village NPCs don't drop
+    /// corpses" report. Loads the real Objects.json to exercise blueprint
+    /// inheritance and the CreatureCorpse + Creature.CorpsePart wiring.
+    ///
+    /// Context: M5.1 originally only attached CorpsePart to <c>Snapjaw</c>,
+    /// which left every other creature (Villager, Scribe, Warden, Farmer,
+    /// and ~40 more) silently corpse-less. Fix: attach a CorpsePart to the
+    /// <c>Creature</c> parent pointing at a new <c>CreatureCorpse</c>
+    /// blueprint; Snapjaw's override continues to point at SnapjawCorpse;
+    /// <c>Player</c> and <c>MimicChest</c> opt out via the
+    /// <c>SuppressCorpseDrops</c> tag.
+    /// </summary>
+    [TestFixture]
+    public class CreatureCorpseBlueprintTests
+    {
+        private EntityFactory _factory;
+
+        [SetUp]
+        public void Setup()
+        {
+            MessageLog.Clear();
+            _factory = new EntityFactory();
+            var text = UnityEngine.Resources.Load<UnityEngine.TextAsset>("Content/Blueprints/Objects");
+            Assert.IsNotNull(text, "Real Objects.json must be loadable.");
+            _factory.LoadBlueprints(text.text);
+            CorpsePart.Factory = _factory;
+        }
+
+        [TearDown]
+        public void Teardown() { CorpsePart.Factory = null; }
+
+        [Test]
+        public void CreatureBlueprint_HasCorpsePart_PointingAtCreatureCorpse()
+        {
+            var villager = _factory.CreateEntity("Villager");
+            Assert.IsNotNull(villager, "Villager blueprint must instantiate.");
+            var cp = villager.GetPart<CorpsePart>();
+            Assert.IsNotNull(cp,
+                "Every Creature-derived blueprint must inherit a CorpsePart from the Creature parent.");
+            Assert.AreEqual("CreatureCorpse", cp.CorpseBlueprint,
+                "Default corpse blueprint for a generic NPC is CreatureCorpse.");
+            Assert.AreEqual(100, cp.CorpseChance,
+                "Default CorpseChance for a generic NPC is 100 (every kill drops).");
+        }
+
+        [Test]
+        public void CreatureCorpseBlueprint_HasTakeableRenderAndCorpseTag()
+        {
+            var corpse = _factory.CreateEntity("CreatureCorpse");
+            Assert.IsNotNull(corpse, "CreatureCorpse blueprint must exist.");
+            Assert.IsTrue(corpse.HasTag("Corpse"),
+                "CreatureCorpse must carry the Corpse tag so AIUndertakerPart can find it.");
+            var physics = corpse.GetPart<PhysicsPart>();
+            Assert.IsNotNull(physics);
+            Assert.IsTrue(physics.Takeable, "Corpse must be Takeable for PickupCommand.");
+            Assert.AreEqual(10, physics.Weight, "Default corpse weight=10 matches SnapjawCorpse convention.");
+        }
+
+        [Test]
+        public void SnapjawBlueprint_OverridesCreatureCorpse_StillSpawnsSnapjawCorpse()
+        {
+            // Blueprint inheritance merges Parts by name with child-wins.
+            // Snapjaw's Corpse part entry should OVERRIDE the Creature parent's
+            // entry, pointing at SnapjawCorpse not CreatureCorpse.
+            var snapjaw = _factory.CreateEntity("Snapjaw");
+            var cp = snapjaw.GetPart<CorpsePart>();
+            Assert.IsNotNull(cp, "Snapjaw should still have a CorpsePart.");
+            Assert.AreEqual("SnapjawCorpse", cp.CorpseBlueprint,
+                "Snapjaw's override must stick — not fall through to CreatureCorpse.");
+            Assert.AreEqual(70, cp.CorpseChance,
+                "Snapjaw's 70% corpse-chance override must stick.");
+        }
+
+        [Test]
+        public void PlayerBlueprint_HasSuppressCorpseDropsTag()
+        {
+            var player = _factory.CreateEntity("Player");
+            Assert.IsNotNull(player);
+            Assert.IsTrue(player.HasTag("SuppressCorpseDrops"),
+                "Player must opt out of corpse drops — dying-player corpse is unwanted semantics.");
+        }
+
+        [Test]
+        public void MimicChestBlueprint_HasSuppressCorpseDropsTag()
+        {
+            var mimic = _factory.CreateEntity("MimicChest");
+            Assert.IsNotNull(mimic);
+            Assert.IsTrue(mimic.HasTag("SuppressCorpseDrops"),
+                "MimicChest must opt out — a 'corpse of a mimic chest' is off-theme.");
+        }
+
+        // End-to-end integration: spawn a Villager, fire Died via HandleDeath,
+        // confirm CreatureCorpse lands at the death cell. Mirrors the Snapjaw
+        // integration test above, but exercises the inherited CorpsePart path.
+        [Test]
+        public void Villager_OnDied_SpawnsCreatureCorpseAtDeathCell()
+        {
+            FactionManager.Initialize();
+            var zone = new Zone("TestZone");
+            var villager = _factory.CreateEntity("Villager");
+            Assert.IsNotNull(villager);
+            zone.AddEntity(villager, 10, 10);
+
+            CombatSystem.HandleDeath(villager, killer: null, zone);
+
+            Assert.IsNull(zone.GetEntityCell(villager),
+                "Deceased Villager should be removed post-HandleDeath.");
+            CavesOfOoo.Core.Entity corpse = null;
+            var cell = zone.GetCell(10, 10);
+            foreach (var obj in cell.Objects)
+            {
+                if (obj.BlueprintName == "CreatureCorpse") { corpse = obj; break; }
+            }
+            Assert.IsNotNull(corpse,
+                "Villager must drop a CreatureCorpse at their death cell (inherited Creature.CorpsePart).");
+            Assert.AreEqual("villager", corpse.GetProperty("CreatureName"));
+            Assert.AreEqual("Villager", corpse.GetProperty("SourceBlueprint"));
+        }
+
+        [Test]
+        public void Player_OnDied_DoesNotSpawnCorpse()
+        {
+            FactionManager.Initialize();
+            var zone = new Zone("TestZone");
+            var player = _factory.CreateEntity("Player");
+            Assert.IsNotNull(player);
+            zone.AddEntity(player, 10, 10);
+
+            CombatSystem.HandleDeath(player, killer: null, zone);
+
+            var cell = zone.GetCell(10, 10);
+            foreach (var obj in cell.Objects)
+            {
+                Assert.IsFalse(obj.HasTag("Corpse"),
+                    "Player death must NOT spawn any Corpse-tagged entity — SuppressCorpseDrops gate.");
+            }
+        }
+    }
 }

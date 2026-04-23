@@ -117,6 +117,10 @@
         { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "10" }, { "Key": "Wanders", "Value": "true" }, { "Key": "WandersRandomly", "Value": "true" }] },
         { "Name": "GivesRep", "Params": [{ "Key": "Value", "Value": "10" }] },
         { "Name": "DamageFlash", "Params": [] },
+        { "Name": "Corpse", "Params": [
+          { "Key": "CorpseChance", "Value": "100" },
+          { "Key": "CorpseBlueprint", "Value": "CreatureCorpse" }
+        ]},
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Flesh" },
           { "Key": "Combustibility", "Value": "0.15" },
@@ -172,6 +176,30 @@
       "Props": [{ "Key": "NaturalWeapon", "Value": "SnapjawClaw" }]
     },
     {
+      "Name": "CreatureCorpse",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "corpse" },
+          { "Key": "RenderString", "Value": "%" },
+          { "Key": "ColorString", "Value": "&r" },
+          { "Key": "RenderLayer", "Value": "3" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Takeable", "Value": "true" },
+          { "Key": "Weight", "Value": "10" }
+        ]},
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Flesh" },
+          { "Key": "Combustibility", "Value": "0.15" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic" }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Corpse", "Value": "" }
+      ]
+    },
+    {
       "Name": "SnapjawCorpse",
       "Inherits": "PhysicalObject",
       "Parts": [
@@ -222,7 +250,8 @@
         { "Name": "Experience", "Value": 0, "Min": 0, "Max": 999999 }
       ],
       "Tags": [
-        { "Key": "Player", "Value": "" }
+        { "Key": "Player", "Value": "" },
+        { "Key": "SuppressCorpseDrops", "Value": "" }
       ],
       "IntProps": [
         { "Key": "Drams", "Value": 50 }
@@ -4389,7 +4418,8 @@
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Snapjaws" },
-        { "Key": "Tier", "Value": "1" }
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "SuppressCorpseDrops", "Value": "" }
       ]
     },
 
