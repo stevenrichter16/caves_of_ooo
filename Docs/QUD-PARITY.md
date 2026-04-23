@@ -1972,6 +1972,281 @@ commit chain `ac9c5cc → fe55380 → f7b9ec3`):
   Our current `wz > 0` tag-all-cells approach approximates this but could
   be cleaner as a true zone-level flag with cell-level implying true.
 
+#### Milestone M5 — Corpse system (Tier C, 3–5 days)
+
+**Status: ⏳ Next** — plan ready; implementation not yet started.
+
+**Target:** 1665 → ~1688 EditMode tests; full suite green. Closes Gap C from
+the Phase 6 audit.
+
+M5 adds:
+- A **`CorpsePart`** spawner (a Part on living creatures) that listens to
+  the `"Died"` event in `CombatSystem.HandleDeath` and drops a corpse
+  entity at the deceased's cell.
+- A **`DisposeOfCorpseGoal`** — a 4-case carry-and-deposit state machine
+  ported from Qud's `XRL.World.AI.GoalHandlers.DisposeOfCorpse`.
+- An **`AIUndertakerPart`** — a new `AIBehaviorPart` subclass that
+  responds to `AIBoredEvent`, finds a corpse + graveyard, reserves the
+  corpse, and pushes `DisposeOfCorpseGoal`.
+- Two new blueprints — **`SnapjawCorpse`** (the corpse entity) and
+  **`Graveyard`** (unlimited-capacity container). One new NPC blueprint,
+  **`Undertaker`**.
+- A manual-playtest scenario **`SnapjawBurial`** — player + snapjaw +
+  undertaker + graveyard; kill the snapjaw, watch the undertaker haul
+  the corpse.
+
+Downstream M5 unlocks:
+- Necromancy (reanimate Corpse-tagged entities) — Phase 16
+- Butchering recipes (SnapjawCorpse → RawMeat) — Phase 14
+- Corpse decay → bones via existing `LifespanPart` — trivial follow-up
+
+##### Sub-milestone breakdown
+
+**M5.1 — CorpsePart + `SnapjawCorpse` blueprint + death hook** (~1.5 days, ~6 tests)
+
+New files:
+- `Assets/Scripts/Gameplay/Entities/CorpsePart.cs` — ports Qud's `Corpse` Part
+- `Assets/Tests/EditMode/Gameplay/Entities/CorpsePartTests.cs`
+- New blueprint entry in `Assets/Resources/Content/Blueprints/Objects.json`:
+  `SnapjawCorpse`
+
+Behavior:
+- `CorpsePart` is a Part on **living creatures**, not an entity type — it's
+  a **spawner**, mirroring Qud's architecture (`XRL.World.Parts.Corpse`
+  lines 9–202).
+- Fields: `CorpseChance` (int 0–100), `CorpseBlueprint` (string),
+  `BuildCorpseChance` (int, default 100), `SuppressCorpseDrops` tag check.
+- Burnt/Vaporized variants **deferred** — CoO has no `LastDamagedByType` on
+  `PhysicsPart` (grep confirmed no matches). Adding damage-type tracking is
+  M9's scope; single-variant ships in M5.
+- Hook: listens for `"Died"` fired in
+  `Assets/Scripts/Gameplay/Combat/CombatSystem.cs:451`. The hook point is
+  valid — Died fires after equipment drop (lines 435–445) and before
+  `zone.RemoveEntity(target)` (line 465), so the deceased's cell is still
+  resolvable via `zone.GetEntityCell(target)`.
+- On Died handler:
+  1. Skip if parent has `SuppressCorpseDrops` tag.
+  2. Skip if `Rng.Next(100) >= CorpseChance`.
+  3. Spawn `CorpseBlueprint` entity at the deceased's cell via `EntityFactory`.
+  4. Copy properties mirroring Qud's ProcessCorpseDrop (lines 138–163):
+     - `CreatureName` = parent's DisplayName
+     - `SourceBlueprint` = parent's BlueprintName
+     - `SourceID` = parent's ID (if HasID)
+     - `KillerID` = killer's ID (if killer != null && killer != parent)
+     - `KillerBlueprint` = killer's BlueprintName (if applicable)
+
+Blueprint `SnapjawCorpse`:
+- Render: `"%"` (standard roguelike corpse glyph), color `&r` (red)
+- Physics: `Solid=false` (walk-over), `Weight=10` (carry-friendly for Str-8+ NPCs)
+- Tags: `Corpse` (for the `AIUndertakerPart` finder), `Organic` material
+- `Examinable`: formatted "the corpse of a {SourceBlueprint}"
+
+`Snapjaw` blueprint gets a new Part entry:
+```json
+{
+  "Name": "Corpse",
+  "Params": [
+    { "Key": "CorpseChance", "Value": "70" },
+    { "Key": "CorpseBlueprint", "Value": "SnapjawCorpse" }
+  ]
+}
+```
+
+Tests (6):
+- Snapjaw dies → CorpseBlueprint spawns at its cell (deterministic RNG)
+- CorpseChance=0 → no spawn
+- SuppressCorpseDrops tag → no spawn
+- Spawned corpse has CreatureName, SourceBlueprint
+- Killer's ID propagated to corpse when Killer has HasID
+- Spawn cell resolvable before `zone.RemoveEntity` (pins the hook-ordering)
+
+**M5.2 — DisposeOfCorpseGoal (carry-and-deposit state machine)** (~1 day, ~9 tests)
+
+New files:
+- `Assets/Scripts/Gameplay/AI/Goals/DisposeOfCorpseGoal.cs` — ports Qud's
+  `XRL.World.AI.GoalHandlers.DisposeOfCorpse` (lines 6–90)
+- `Assets/Tests/EditMode/Gameplay/AI/DisposeOfCorpseGoalTests.cs`
+
+Constructor: `DisposeOfCorpseGoal(Entity corpse, Entity container)` — both
+injected. Internal state: `Done` bool, `GoToCorpseTries` int,
+`GoToContainerTries` int.
+
+4-case state machine in `TakeAction()` (ports Qud DisposeOfCorpse.cs
+lines 41–89):
+
+| Case | Condition | Action |
+|---|---|---|
+| A | `corpse` or `container` null/different zone | `FailToParent()` |
+| B | Carrying corpse && adjacent to container | Try `container.ContainerPart.AddItem(corpse)`; on failure drop at feet (`PerformDrop` event); `Done = true` |
+| C | Carrying corpse && !adjacent | `PushChildGoal(new MoveToGoal(containerX, containerY, remainingTurns))`; `GoToContainerTries++`; if > 10 → drop at feet, `Done = true` |
+| D | !Carrying && adjacent to corpse | `new PickupCommand(corpse).Execute(...)`; on failure `FailToParent()` |
+| E | !Carrying && !adjacent | `PushChildGoal(new MoveToGoal(corpseX, corpseY, remainingTurns))`; `GoToCorpseTries++`; if > 10 → `Done = true` |
+
+Each tick re-validates:
+- `corpse` still exists in NPC's inventory OR in a cell in the same zone
+- `container` still exists in the same zone
+- NPC in same zone as both
+
+`Think()` narrative signals (mirrors M4 pattern):
+- Phase B/D → `"arrived"` (transitional, next tick handles transfer)
+- Phase C → `"hauling corpse"`
+- Phase E → `"fetching corpse"`
+- `OnPop` writes terminal thought: `"buried"` on success, clears on failure
+
+Tests (9):
+- All 5 cases reached independently (A failure, B transfer, C hauling, D pickup, E fetch)
+- Corpse destroyed mid-haul → FailToParent (case A)
+- Container full → corpse dropped at NPC's feet (fallback in case B)
+- 11 tries to reach container → dropped at feet (case C cap)
+- 11 tries to reach corpse → Done without failure (case E cap, matches Qud line 87–88)
+- OnPop writes `"buried"` on success
+
+**M5.3 — AIUndertakerPart + Graveyard blueprint + Undertaker NPC** (~1.5 days, ~8 tests)
+
+New files:
+- `Assets/Scripts/Gameplay/AI/AIUndertakerPart.cs` — `AIBehaviorPart` subclass
+- `Assets/Tests/EditMode/Gameplay/AI/AIUndertakerPartTests.cs`
+- `Assets/Scripts/Scenarios/Custom/SnapjawBurial.cs` — manual-playtest showcase
+
+Blueprint additions in `Objects.json`:
+- `Graveyard` — ContainerPart(`MaxItems=-1`, unlimited), `Solid=true`,
+  `Render='†'`, tag `Graveyard`. Single-cell entity; scenario spawns one
+  for now (world-generation hook is out of M5 scope).
+- `Undertaker` — inherits `Villager`. Adds `AIUndertakerPart`. Render
+  `'U'` color `&k` (black), DisplayName "undertaker".
+
+`AIUndertakerPart` fields (Qud-parity naming; see Qud's `DepositCorpses`
+lines 12–16):
+- `Chance = 100` — always try when bored, matching Qud's deterministic
+  idle hijack (`AIPetterPart` uses 3% for cosmetic behavior; undertaking
+  is a job, not a whim)
+- `MaxNavigationWeight = 30` — Qud-parity; rejects unreachable corpses
+- `OwnersOnlyIfOwned = true` — respect graveyard ownership (can be turned
+  off on public graveyards)
+
+`HandleEvent(AIBoredEvent)` flow (mirrors `AIPetterPart.HandleBored`
+structure):
+1. Idempotency: if brain already has `DisposeOfCorpseGoal` → `return true`
+2. Find nearest `Graveyard`-tagged container in same zone
+3. Find all `Corpse`-tagged entities in same zone; filter out those with
+   active `DepositCorpsesReserve` property
+4. Pick nearest unclaimed corpse (Chebyshev distance)
+5. Check NPC's `InventoryPart.WouldBeOverburdened(corpse)` via
+   `GetCarriedWeight() + corpseWeight <= GetMaxCarryWeight()` guard
+6. Claim: `corpse.SetIntProperty("DepositCorpsesReserve", 50)` — mirrors
+   Qud's `Corpse.cs` ProcessCorpseDrop line 115
+7. `brain.PushGoal(new DisposeOfCorpseGoal(corpse, graveyard))`;
+   `e.Handled = true`; `return false`
+
+**Reservation lifecycle:** `DisposeOfCorpseGoal.OnPop` clears the property.
+Qud decrements each frame — simpler to clear on goal-pop since CoO goals
+have clean Pop lifecycle. Test explicitly.
+
+Tests (8):
+- AIUndertaker with graveyard + corpse + Bored → pushes DisposeOfCorpseGoal
+- No graveyard → no push (no-op)
+- No corpse → no push (no-op)
+- Two Undertakers + one corpse → only one claims (reservation works)
+- Overburdened NPC → skipped (no push)
+- NoHauling tag → skipped (parity with Qud line 75)
+- Blueprint wiring: `Undertaker` blueprint produces entity with AIUndertakerPart
+- Blueprint wiring: `Graveyard` blueprint produces entity with ContainerPart(MaxItems=-1) + Graveyard tag
+
+##### M5 Design decisions (with Qud-parity evidence)
+
+Read:
+- `XRL.World.Parts.Corpse` (Corpse spawner Part)
+- `XRL.World.AI.GoalHandlers.DisposeOfCorpse` (goal state machine)
+- `XRL.World.Parts.DepositCorpses` (Undertaker behavior dispatcher)
+
+| Question | Qud answer | CoO choice | Rationale |
+|---|---|---|---|
+| Is Corpse a Part or an entity? | **Part** on living creatures (spawner) | Same | Preserves Qud's architecture; mirrors CoO's existing Part-as-behavior-attachment convention. |
+| Death hook point | `BeforeDeathRemovalEvent` (typed event) | `GameEvent.New("Died")` in `CombatSystem.HandleDeath:451` | No typed event infra in CoO yet — the string-ID event fires at the equivalent point (post equipment-drop, pre zone-removal). |
+| Burnt / Vaporized variants | Via `Physics.LastDamagedByType` (Corpse.cs lines 115–128) | **Deferred** to M9 (damage-type system) | `grep` confirmed no `LastDamagedByType` in CoO. Shipping base variant avoids guessing damage-type API. |
+| Goal architecture | 4-case state machine with `GoToCorpseTries` / `GoToContainerTries` capped at 10 | Same, ported directly | No architectural friction; CoO has `MoveToGoal` with a turn-budget analog. |
+| Corpse reservation (anti-race) | `SetIntProperty("DepositeCorpsesReserve", 50)`, `ModIntProperty(..., -1)` each frame | `SetIntProperty("DepositCorpsesReserve", 50)`, cleared on `DisposeOfCorpseGoal.OnPop` | CoO's goal lifecycle gives a clean clear point; avoids per-frame decrement overhead. |
+| Undertaker dispatch: container-side or NPC-side? | **Container-side** — `DepositCorpses` IActivePart on the Graveyard handles `IdleQueryEvent` and pushes the goal onto the bored NPC (`DepositCorpses.cs:50–57`) | **NPC-side** — `AIUndertakerPart : AIBehaviorPart` on the NPC handles `AIBoredEvent` | CoO's `IdleQueryEvent` is structured for furniture-offer (TargetX/Y/Action/Cleanup), not NPC-hijacking. NPC-side dispatch mirrors the existing `AIPetterPart` / `AIGuardPart` / `AIFleeToShrinePart` convention. Documented adaptation (same category as M4's per-cell vs zone-level IsInterior). |
+| Graveyard capacity | Unlimited (zone-level container in Qud) | `ContainerPart(MaxItems=-1)` | CoO's ContainerPart supports -1 as unlimited; matches Qud's semantics. |
+| Container-full fallback | `PerformDrop` event at NPC's feet | Same — fire `PerformDrop` event; Done=true | Ports directly. |
+| `NoHauling` tag | Parity check on actor (`DepositCorpses.cs:75–78`) | Same — skip NPCs with `NoHauling` tag | Ports directly; tag gets documented in new blueprint comment. |
+| Cybernetics extraction | Collected into `CyberneticsButcherableCybernetic` | **Deferred** — no cybernetics in CoO yet (Phase 15) | Noted in follow-ups. |
+
+##### M5 Verification checklist (targets)
+
+- [ ] `CorpsePart.cs` — listens to "Died", gates on CorpseChance,
+  writes CreatureName/SourceBlueprint/KillerID properties
+- [ ] `SnapjawCorpse` blueprint — renderable, walkable, `Corpse` tag, `Organic` material
+- [ ] `DisposeOfCorpseGoal.cs` — 4-case state machine, try-counter caps,
+  OnPop clears reservation + writes terminal thought
+- [ ] `AIUndertakerPart.cs` — AIBehaviorPart pattern, reservation,
+  overburden check, NoHauling skip
+- [ ] `Graveyard` blueprint — ContainerPart(MaxItems=-1), Solid, `Graveyard` tag
+- [ ] `Undertaker` NPC blueprint — inherits Villager + AIUndertakerPart
+- [ ] `Snapjaw` blueprint — CorpsePart with CorpseChance=70
+- [ ] Tests: 6 (M5.1) + 9 (M5.2) + 8 (M5.3) = **~23 new M5 tests**
+- [ ] Full suite green (1665 → ~1688)
+- [ ] Playtest scenario `SnapjawBurial` wired into `Caves Of Ooo > Scenarios > AI Behavior > Snapjaw Burial (M5 Corpse system)`
+- [ ] Manual playtest observation (awaiting user run)
+
+##### M5 Risks & mitigations
+
+| # | Risk | Likelihood | Mitigation |
+|---|---|---|---|
+| 1 | `"Died"` event fires after `zone.RemoveEntity` → cell lookup fails | Low (verified line 451 < line 465) | Pin with a regression test: assert `zone.GetEntityCell(target)` is non-null at the moment `CorpsePart` reads it |
+| 2 | Corpse weight > NPC max carry → Undertaker can't haul | Medium | Weight=10 keeps Str-8+ NPCs OK; pin with overburden-skip test (`Str=4` Undertaker + Weight=100 corpse → no push) |
+| 3 | Two Undertakers race same corpse | Medium | Reservation via `DepositCorpsesReserve` int property; test explicitly with 2-NPC zone |
+| 4 | Container full → silent corpse loss | Medium | `ContainerPart.AddItem` returning false triggers `PerformDrop` at feet (Qud-parity); test explicitly |
+| 5 | Goal loop: dispose → arrive → pop → bored → push again → infinite | Low | `AIUndertakerPart.HandleEvent` checks `brain.HasGoal<DisposeOfCorpseGoal>()` before pushing (mirrors `AIPetterPart.HandleBored` line 49–50) |
+| 6 | Circular blueprint dependency (Graveyard references AIUndertakerPart references Graveyard) | None | AIUndertakerPart searches by tag/ContainerPart presence, not by blueprint name |
+| 7 | CombatSystem hot-path slow-down from entity spawn | Low | CoO already drops equipment + emits splatter fx in HandleDeath; one more spawn is symmetric |
+| 8 | Reservation never cleared (NPC dies mid-haul, corpse stays claimed forever) | Medium | `DisposeOfCorpseGoal.OnPop` clears the property unconditionally; also add `CorpsePart.OnZoneActivate` sweep to clear stale reservations (Qud-parity-plus safety) |
+
+##### M5 Follow-up opportunities (out of M5 scope)
+
+- **BurntCorpse / VaporizedCorpse variants** — needs `LastDamagedByType` on
+  PhysicsPart; ships with M9 (damage types).
+- **Butchering recipes** — "butcher SnapjawCorpse → RawMeat" crafting
+  action; needs Phase 14 (crafting).
+- **Necromancy mutation** — `RaiseDeadMutation` targeting `Corpse`-tagged
+  entities; Phase 16.
+- **Corpse decay → Bones** — `LifespanPart` (already exists) with a 30-day
+  timer that replaces SnapjawCorpse with Bones entity. Trivial post-M5 add.
+- **Boneyard / Ossuary zones** — world-gen hook that auto-places a
+  Graveyard in every village edge; needs Phase 12.
+- **Cybernetics extraction** — Qud's ProcessCorpseDrop collects Cybernetics
+  into a butcherable list; needs Phase 15.
+- **Player butchering UI** — "examine corpse → butcher" action menu entry;
+  plugs into the existing world action menu infrastructure.
+- **Zone-level DepositCorpses dispatcher** — for full Qud parity, add an
+  `IActivePart`-equivalent on the Graveyard that also offers work to bored
+  NPCs via a new `ZoneTickIdleOffer` path; the per-NPC AIUndertakerPart
+  would then be complementary rather than the sole dispatcher.
+- **Corpse examine pronoun** — Qud uses `NameMaker.MakeName` to generate
+  unnamed corpse descriptors ("the corpse of a gnarled snapjaw"); CoO's
+  `ExaminablePart` could gain a templated description.
+
+##### Methodology Template planned application (M5)
+
+Following the standard established by M1–M4:
+
+| Template part | Plan |
+|---|---|
+| 1.2 Pre-impl verification sweep | ✅ This plan — Qud source cross-referenced + CoO APIs grepped with line citations |
+| 1.4 Risk-ordered sub-milestones | M5.1 (spawner, testable in isolation) → M5.2 (goal, depends on M5.1 blueprint) → M5.3 (behavior + Undertaker/Graveyard, depends on M5.1+M5.2) |
+| 2.1 Hallucination avoidance | Every CoO API cited here was grepped and line-cited during reconnaissance (see "Design decisions" table evidence column) |
+| 2.2 Commit-message template | Scoped prefixes: `feat(entities)`, `feat(ai)`, `feat(blueprints)`, `docs(qud-parity)`, `fix-pass(ai)`, `test(scenarios)` |
+| 3.1 EditMode unit tests | ~23 new tests across 3 new test files (CorpsePartTests, DisposeOfCorpseGoalTests, AIUndertakerPartTests) |
+| 3.3 Regression pins | Every risk in the table above has an explicit regression test |
+| 3.4 Counter-check pattern | Positive path (spawn, dispose, deposit) paired with negative (no-chance, overburden, NoHauling, claimed) for each |
+| 3.5 PlayMode sanity sweep | Scenarios `SnapjawBurial` + on-demand `InspectAIGoals` during playtest |
+| 3.6 Manual playtest scenario | `SnapjawBurial.cs` — player + snapjaw + undertaker + graveyard in starter village; kill snapjaw, observe corpse spawn, observe undertaker haul, observe graveyard deposit |
+| 4 Parity audit | Pre-impl done here; post-impl re-audit before docs update |
+| 5.1–5.3 Post-impl review | Mandatory severity-scaled pass (🔴🟡⚪🧪) before M5 section's Status flips to ✅ |
+| 6.1–6.4 Honesty protocols | Observed/Expected tables in playtest scenarios; "can/cannot verify" bounds explicit |
+| 7 Unity MCP tooling | Turn-by-turn reflection traces on brain.Goals for debugging corpse-carry transitions |
+| 8.4 Post-milestone | This section gets a **Commit history** table and **Post-review findings** table after ship, mirroring M4's final form |
+
 #### Cross-milestone dependencies
 
 ```
