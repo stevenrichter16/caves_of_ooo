@@ -259,6 +259,104 @@ namespace CavesOfOoo.Tests
             Assert.IsFalse(chairPart.Occupied, "Removing SittingEffect should clear Occupied");
         }
 
+        // ========================================================
+        // Sit-forever regression — AIBored fires while seated
+        // ========================================================
+
+        /// <summary>
+        /// Minimal stand-in AIBehaviorPart for tests. Consumes AIBoredEvent
+        /// unconditionally and pushes a WaitGoal so the brain gets something
+        /// other than BoredGoal on its stack. Mirrors AIUndertakerPart's
+        /// HandleEvent shape without M5's corpse/graveyard dependencies.
+        /// </summary>
+        private class TestAIBoredConsumer : AIBehaviorPart
+        {
+            public override string Name => "TestAIBoredConsumer";
+            public int Consumed;
+
+            public override bool HandleEvent(GameEvent e)
+            {
+                if (e.ID == AIBoredEvent.ID)
+                {
+                    Consumed++;
+                    var brain = ParentEntity.GetPart<BrainPart>();
+                    brain?.PushGoal(new WaitGoal(5));
+                    e.Handled = true;
+                    return false; // consumed
+                }
+                return true;
+            }
+        }
+
+        [Test]
+        public void SittingEffect_AIBoredConsumerWantsNPC_NPCStandsUp()
+        {
+            // Regression pin for user-reported "Undertaker sits in a chair
+            // forever, never leaves." Fix: BoredGoal.Step 1 now fires
+            // AIBoredEvent while seated; if a handler consumes it (indicating
+            // it has duty work for this NPC), stand the NPC up so their
+            // pushed goal drives movement.
+            var zone = new Zone("TestZone");
+            var creature = CreateCreature("Villagers");
+            creature.Tags["AllowIdleBehavior"] = "";
+            var brain = new BrainPart
+            {
+                CurrentZone = zone,
+                Rng = new Random(42),
+                SightRadius = 8,
+            };
+            creature.AddPart(brain);
+            creature.AddPart(new StatusEffectsPart());
+            var consumer = new TestAIBoredConsumer();
+            creature.AddPart(consumer);
+            zone.AddEntity(creature, 10, 10);
+
+            creature.ApplyEffect(new SittingEffect());
+            Assert.IsTrue(creature.HasEffect<SittingEffect>(), "Precondition: NPC is seated.");
+
+            creature.FireEvent(GameEvent.New("TakeTurn"));
+
+            Assert.AreEqual(1, consumer.Consumed,
+                "AIBoredEvent must fire on seated NPCs so AIBehaviorPart consumers can act.");
+            Assert.IsFalse(creature.HasEffect<SittingEffect>(),
+                "Sitting NPC must stand up (SittingEffect removed) when an AIBehaviorPart " +
+                "consumes AIBored — duty work overrides leisure.");
+        }
+
+        [Test]
+        public void SittingEffect_NoAIBoredConsumer_StaysSeated()
+        {
+            // Counter-check: if no AIBehaviorPart consumes AIBoredEvent,
+            // the NPC should STAY seated (current behavior preserved for
+            // generic villagers enjoying leisure). Without this preservation
+            // path the sit-forever fix would flip every seated NPC into
+            // pacing mode every turn.
+            var zone = new Zone("TestZone");
+            var creature = CreateCreature("Villagers");
+            creature.Tags["AllowIdleBehavior"] = "";
+            var brain = new BrainPart
+            {
+                CurrentZone = zone,
+                Rng = new Random(42),
+                SightRadius = 8,
+            };
+            creature.AddPart(brain);
+            creature.AddPart(new StatusEffectsPart());
+            // Intentionally NO AIBehaviorPart attached.
+            zone.AddEntity(creature, 10, 10);
+
+            creature.ApplyEffect(new SittingEffect());
+
+            creature.FireEvent(GameEvent.New("TakeTurn"));
+
+            Assert.IsTrue(creature.HasEffect<SittingEffect>(),
+                "Without a duty-bound AIBehaviorPart consumer, the NPC must stay seated — " +
+                "sit-forever is still the default for civilian NPCs with no AI role.");
+            var pos = zone.GetEntityPosition(creature);
+            Assert.AreEqual(10, pos.x, "Position unchanged.");
+            Assert.AreEqual(10, pos.y, "Position unchanged.");
+        }
+
         // ========================
         // BedPart
         // ========================

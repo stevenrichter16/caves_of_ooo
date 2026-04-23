@@ -23,20 +23,41 @@ namespace CavesOfOoo.Core
 
         public override void TakeAction()
         {
-            // 1. If currently sitting, check for threats
+            // 1. If currently sitting, check for threats, then for duty work.
             if (ParentEntity.HasEffect<SittingEffect>())
             {
+                // 1a. Hostile in sight → stand up and fight.
                 Entity sittingHostile = AIHelpers.FindNearestHostile(ParentEntity, CurrentZone, ParentBrain.SightRadius);
                 if (sittingHostile != null)
                 {
-                    // Stand up and fight
                     ParentEntity.RemoveEffect<SittingEffect>();
                     ParentBrain.Target = sittingHostile;
                     PushChildGoal(new KillGoal(sittingHostile));
                     return;
                 }
 
-                // Stay seated
+                // 1b. Fire AIBoredEvent while seated so AIBehaviorPart
+                // subclasses can pull the NPC out of their sit when they
+                // have duty work. Fixes "NPC sits in a chair forever": once
+                // seated, BoredGoal used to short-circuit to WaitGoal(1) at
+                // Step 1 without ever firing AIBoredEvent, so AIUndertaker /
+                // AIGuard / AIPetter / AIWellVisitor / AIFleeToShrine never
+                // got a chance to push their goals on a seated NPC.
+                //
+                // AIBoredEvent.Check returns false if any handler consumed
+                // the event (typically by pushing a goal). If consumed,
+                // stand the NPC up so the pushed goal drives movement
+                // cleanly — otherwise the goal stack has both SittingEffect
+                // and a move-oriented goal simultaneously, which works but
+                // confuses the inspector.
+                if (!AIBoredEvent.Check(ParentEntity))
+                {
+                    ParentEntity.RemoveEffect<SittingEffect>();
+                    return;
+                }
+
+                // 1c. No hostile, no duty-bound handler wants this NPC:
+                // genuinely idle at rest. Stay seated.
                 ParentBrain.CurrentState = AIState.Idle;
                 PushChildGoal(new WaitGoal(1));
                 return;
