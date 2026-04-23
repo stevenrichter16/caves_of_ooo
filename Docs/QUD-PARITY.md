@@ -1855,6 +1855,194 @@ starting M3 work.
 - [ ] Shrine placed in villages during generation
 - [ ] All M3 tests green; full suite still passes
 
+##### M3 Post-audit findings (2026-04-23)
+
+Pass 3 of the Comprehensive Audit. Read: `AIPetterPart.cs`,
+`AIHoarderPart.cs`, `AIRetrieverPart.cs`, `AIFleeToShrinePart.cs`,
+`SanctuaryPart.cs`, `GoFetchGoal.cs`, `FleeLocationGoal.cs`,
+`ScenarioMenuItems.cs`, `AIBehaviorPartTests.cs` (M3.1/M3.3 test
+sections). Qud references: `AIPetter.cs`, `AIHoarder.cs`,
+`AIRetriever.cs`, `AIFleeToShrine.cs`, `GoFetch.cs`,
+`FleeLocation.cs`, `Pet.cs`.
+
+**9 findings** — 0 🔴, 2 🟡, 3 🔵, 4 🧪, 0 ⚪.
+
+| # | Sev | Cat | Title | File:line |
+|---|-----|-----|-------|-----------|
+| M3.A1 | 🟡 | func | SanctuaryPart is pure marker — heal-over-time mechanic never shipped | `SanctuaryPart.cs:9-13`, `Shrine.Physics.Solid=false` in `Objects.json:280-296` |
+| M3.A2 | 🟡 | func | AIRetrieverPart doesn't return bone to thrower; "fetch" loop is half-complete | `AIRetrieverPart.cs:115-128` (TODO comment) |
+| M3.A3 | 🔵 | bug | FleeLocationGoal's "running for safety" thought sticks after OnPop (no clear) | `FleeLocationGoal.cs:59` (set), no OnPop override |
+| M3.A4 | 🔵 | logic | No reservation on fetch targets — two Magpies race, waste motion | `AIHoarderPart.cs` + `AIRetrieverPart.cs` + `GoFetchGoal.cs` (grep for "reserv" → 0 matches) |
+| M3.A5 | 🔵 | logic | FleeLocationGoal targets SafeX,SafeY directly; future Solid sanctuary would reproduce HaulPhase-style fail | `FleeLocationGoal.cs:63` |
+| M3.A6 | 🧪 | test-integration | No test for two-Magpie race on same GoldCoin | n/a |
+| M3.A7 | 🧪 | test-integration | No test for intended "dog fetches, returns bone to owner" loop (pins M3.A2) | n/a |
+| M3.A8 | 🧪 | test-playmode | No PlayMode sanity sweep for M3 | n/a |
+| M3.A9 | 🧪 | test-manual | M3 scenarios (VillageChildrenPetting, MagpieFetchesGold, PetDogFetchesBone, WoundedScribeFleesToShrine) manual observation pending | scenarios exist + menu-wired |
+
+###### 🟡 M3.A1 (func) — SanctuaryPart has no sanctuary mechanic
+
+**File:** `Assets/Scripts/Gameplay/Settlements/SanctuaryPart.cs:9-13`
+
+SanctuaryPart class body is literally just `public override string Name
+=> "Sanctuary";`. The class docstring explicitly states:
+
+> *Pure marker — no behavior of its own. The "HealOverTime" polish
+> feature in the M3.3 plan is deferred; when implemented it'll add a
+> field here plus a tick handler that regenerates HP for adjacent
+> allied creatures. Today a shrine just provides a destination; it
+> doesn't heal on arrival.*
+
+The M3.3 plan (visible at `QUD-PARITY.md:1659+`) mentioned sanctuary
+mechanics implicitly via the scenario goal. What shipped: shrine is a
+flee destination, and an NPC reaching the shrine just stands there.
+
+**Why it matters:** player plays the scenario, sees the wounded
+Scribe run to the shrine, expects something to happen (heal, visual
+cue, faction cue, timer). Nothing happens. The scenario reads as
+"feature is broken" when it's actually "feature was descoped but
+not flagged in scenario docs."
+
+**Proposed fix:** one of
+- (a) Ship a minimal heal-over-time: at-shrine NPC regenerates 1 HP
+  per turn until Max. Add field `HealPerTurn=1` + an `OnTurnEnd`
+  handler that scans adjacent cells for allied wounded + heals one
+  tick. ~30 min.
+- (b) Accept current state, update M3.3 docstring + scenario log to
+  say "shrine reached" is the terminal state and no heal yet.
+
+**Severity rationale:** 🟡 because it's an observable design gap in
+a shipped feature — the shrine exists in the world and nothing uses
+it. Not 🔴 because the sanctuary flee destination works mechanically.
+
+###### 🟡 M3.A2 (func) — AIRetriever doesn't complete the fetch loop
+
+**File:** `Assets/Scripts/Gameplay/AI/AIRetrieverPart.cs:115-128`
+
+AIRetrieverPart pushes `new GoFetchGoal(item, returnHome: false)`
+at line 128. `returnHome: false` means GoFetchGoal terminates the
+moment the dog picks up the bone — no phase WalkHome, no drop at
+thrower. Bone permanently lives in dog's inventory.
+
+The TODO at line 115-127 acknowledges the gap:
+> *Real "dog fetches bone to owner" UX wants a third mode — walk to
+> an empty cell ADJACENT to the thrower, then DropCommand the fetched
+> item there.*
+
+As shipped, "PetDog fetches bone" plays as "Player throws bone, dog
+walks to it, bone disappears into dog" — one-shot, no repeat possible
+because bone is now in dog's inventory.
+
+**Why it matters:** `PetDogFetchesBone` scenario is misleading —
+reads as "this works" in the menu, plays as incomplete-UX in practice.
+User would reasonably expect fetch-and-return.
+
+**Proposed fix:** implement the TODO. Extend GoFetchGoal with a
+`ReturnToEntity` mode that walks to a passable cell adjacent to a
+target entity (tracking the target's current position each tick in
+case they move), then calls DropCommand. 2-4 hours + regression tests.
+
+**Severity rationale:** 🟡 because the scenario has the same
+"misleading shipped status" property as M3.A1. Not 🔴 because the
+mechanical pipeline (AIBehaviorPart consumes ItemLandedEvent, pushes
+goal, walks, picks up) works.
+
+###### 🔵 M3.A3 (bug) — FleeLocationGoal leaves "running for safety" sticky
+
+**File:** `Assets/Scripts/Gameplay/AI/Goals/FleeLocationGoal.cs:59`
+
+```csharp
+public override void TakeAction()
+{
+    var pos = CurrentZone.GetEntityPosition(ParentEntity);
+    if (pos.x < 0) { FailToParent(); return; }
+
+    Think("running for safety");
+
+    PushChildGoal(new MoveToGoal(SafeX, SafeY, MaxTurns));
+}
+```
+
+Each TakeAction re-asserts the thought. Good while goal is active.
+But no `OnPop` clears it after the goal terminates (reached safe,
+MaxTurns exceeded, or HP recovered). After pop, BoredGoal runs;
+BoredGoal doesn't Think. Result: `"running for safety"` sticks in
+LastThought indefinitely even after the NPC is back home and healed.
+
+Same exact class as the user-reported sticky-`"buried"` bug M5.2
+fixed. FleeLocationGoal has no `OnPop` override today.
+
+**Proposed fix:** add:
+```csharp
+public override void OnPop() { Think(null); }
+```
+One line. Plus a regression test in the existing M3 flee-to-shrine
+test fixture asserting LastThought is null after the goal pops.
+
+**Severity rationale:** 🔵 same reasoning as M4.A2 — mechanical
+behavior correct, only inspector readout stale. Elevate to 🟡 if user
+reports confusion during playtest.
+
+###### 🔵 M3.A4 (logic) — No fetch-target reservation; concurrent fetches waste motion
+
+**Files:** `AIHoarderPart.cs`, `AIRetrieverPart.cs`, `GoFetchGoal.cs`
+— grep for `Reserve|reserv|Claim|claim` returns 0 matches across
+all three.
+
+Compare with M5's DisposeOfCorpseGoal which explicitly reserves the
+corpse via `SetIntProperty("DepositCorpsesReserve", 50)` to prevent
+two Undertakers racing.
+
+For fetch behaviors: two Magpies in the same zone both see the same
+Shiny GoldCoin, both push `GoFetchGoal(goldcoin)`, both walk toward
+it. First arrives, calls `InventorySystem.Pickup` — succeeds, coin
+enters Magpie-A's inventory. Magpie-B's next tick:
+`GoFetchGoal.WalkToItem` line 80 `if (itemCell == null) { Pop(); return; }`
+— pops gracefully because the coin is no longer in zone (it's in
+Magpie-A's inventory).
+
+Race resolves, no crash, no data loss. But Magpie-B's wasted motion
+is real — they walked halfway to a coin that was already claimed
+by the time they arrived. For a flock scenario this compounds.
+
+**Why it matters:** efficiency + scenario feel. A "flock of magpies
+converging on a coin-drop" plays as jittery — multiple fly in, first
+grabs, others turn and walk away silently. Not wrong, just flavorless.
+
+**Proposed fix:** add a shared `FetchClaim` IntProperty that
+AIHoarder/AIRetriever set at claim time and `GoFetchGoal.OnPop`
+clears. Mirrors the M5 reservation pattern. ~30 min + counter-test.
+
+###### 🔵 M3.A5 (logic) — FleeLocationGoal targets cell directly; Solid-sanctuary future trap
+
+**File:** `FleeLocationGoal.cs:63`
+```csharp
+PushChildGoal(new MoveToGoal(SafeX, SafeY, MaxTurns));
+```
+
+The SafeX/SafeY target is passed straight to MoveToGoal. If the
+safe-target cell contains a Solid object, MoveToGoal fails.
+
+Current `Shrine` blueprint has `Physics.Solid=false` (`Objects.json:289`),
+so MoveToGoal can reach the shrine cell directly. Not a bug today.
+
+A future shrine variant (e.g., "Altar" with `Solid=true` so it can't
+be walked on top of) would reproduce the pre-fix HaulPhase bug:
+MoveToGoal can't step onto Solid, A* + greedy fail, FleeLocationGoal's
+`Failed` propagates via `FailToParent` — NPC stops wherever they
+are. And FleeLocationGoal has no corpse-in-inventory concern like
+M5.A2 does, so the consequence is just "NPC doesn't reach shrine."
+
+**Proposed fix:** identical to the HaulPhase fix —
+`FindPassableCellNearTarget` helper, MoveToGoal targets a neighbor.
+Or document `SanctuaryPart` as an invariant: "sanctuary-bearing
+entities MUST be non-Solid." Current Shrine already complies; lint
+could enforce.
+
+**Severity rationale:** 🔵 because no current content triggers the
+bug. Promote to 🟡 if a future sanctuary blueprint needs Solid.
+
+---
+
 #### Milestone M4 — Interior/Exterior cell tagging (Tier C, 3–4 days)
 
 **Status: ✅ Shipped** — 1665/1665 EditMode tests passing (1 pre-existing
