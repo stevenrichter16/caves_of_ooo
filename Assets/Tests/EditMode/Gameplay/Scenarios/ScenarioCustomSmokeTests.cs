@@ -79,6 +79,12 @@ namespace CavesOfOoo.Tests.Scenarios
         [Test] public void SleepingTroll_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new SleepingTroll().Apply(FreshContext()));
 
+        [Test] public void ScribeSeeksShelter_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new ScribeSeeksShelter().Apply(FreshContext()));
+
+        [Test] public void SnapjawBurial_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new SnapjawBurial().Apply(FreshContext()));
+
         // ======================================================
         // M2.2 scenarios (Calm-based)
         // ======================================================

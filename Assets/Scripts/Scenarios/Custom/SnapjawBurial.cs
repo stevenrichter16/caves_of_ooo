@@ -51,10 +51,15 @@ namespace CavesOfOoo.Scenarios.Custom
         public void Apply(ScenarioContext ctx)
         {
             // --- Snapjaw (victim) ---
-            var snapjaw = ctx.Spawn("Snapjaw").AtPlayerOffset(2, 0);
+            // NearPlayer(1,3) instead of AtPlayerOffset(2,0) because the
+            // starting village has solid CompassStones at player+2 east and
+            // player+6 east. NearPlayer's resolver filters for passable cells
+            // and picks one from the Chebyshev band. Same fix M4's
+            // ScribeSeeksShelter used after the identical pitfall.
+            var snapjaw = ctx.Spawn("Snapjaw").NearPlayer(minRadius: 1, maxRadius: 3);
             if (snapjaw == null)
             {
-                ctx.Log("[SnapjawBurial] FAILED: could not place Snapjaw at player+2,+0. Check console for a spawn-skip warning.");
+                ctx.Log("[SnapjawBurial] FAILED: no passable cell in the player+1..+3 ring for Snapjaw. Unusual village layout — rerun or report.");
                 return;
             }
 
@@ -72,28 +77,76 @@ namespace CavesOfOoo.Scenarios.Custom
             }
 
             // --- Undertaker (the AI under test) ---
-            var undertaker = ctx.Spawn("Undertaker").NearPlayer(minRadius: 3, maxRadius: 4);
+            var undertaker = ctx.Spawn("Undertaker").NearPlayer(minRadius: 3, maxRadius: 5);
             if (undertaker == null)
             {
-                ctx.Log("[SnapjawBurial] FAILED: could not place Undertaker in the player+3..+4 ring.");
+                ctx.Log("[SnapjawBurial] FAILED: no passable cell in the player+3..+5 ring for Undertaker.");
                 return;
             }
 
             // --- Graveyard (the deposit target) ---
-            // ObjectPlacer only supports At(x,y) and AtPlayerOffset(dx,dy) —
-            // no NearPlayer ring. player+6 east gives enough travel distance
-            // to visually observe the haul phase without leaving the screen.
-            var grave = ctx.World.PlaceObject("Graveyard").AtPlayerOffset(6, 0);
+            // ObjectPlacer has only At(x,y) / AtPlayerOffset(dx,dy) — no
+            // NearPlayer ring. AtPlayerOffset(5,-3) lands on the y-3 strip
+            // that the PlayMode sanity sweep confirmed is open in the
+            // starting village (see Docs/QUD-PARITY.md §M5 PlayMode sweep
+            // results). Fallback hunt if this specific offset is blocked.
+            var grave = TryPlaceGraveyard(ctx);
             if (grave == null)
             {
-                ctx.Log("[SnapjawBurial] FAILED: could not place Graveyard at player+6,+0. Check for a blocking wall/obstacle.");
+                ctx.Log("[SnapjawBurial] FAILED: could not place Graveyard — tried multiple offsets, all blocked. Unusual village layout.");
                 return;
             }
 
-            ctx.Log("[SnapjawBurial] Snapjaw (player+2), Undertaker (player+3..+4), Graveyard (player+6). " +
+            var gyPos = ctx.Zone.GetEntityPosition(grave);
+            ctx.Log($"[SnapjawBurial] Snapjaw spawned (player+1..+3 ring), Undertaker spawned (player+3..+5 ring), Graveyard at ({gyPos.x},{gyPos.y}). " +
                     "Kill the snapjaw ('s'), watch the corpse ('%') drop, then advance turns ('.') and observe the undertaker ('U') " +
                     "walk to the corpse, pick it up, and deposit it at the graveyard ('+'). Press 't' for thought inspector: " +
                     "expect 'fetching corpse' → 'hauling corpse' → 'buried'.");
+        }
+
+        /// <summary>
+        /// Try a small fixed set of player-relative offsets for the Graveyard
+        /// placement. Each candidate is pre-checked for passability AND for
+        /// lack of Solid objects (PhysicsPart.Solid or "Solid" tag) so the
+        /// Graveyard doesn't land on a CompassStone / Chest it'll visually
+        /// overlap. First candidate that's clean wins.
+        /// </summary>
+        private static Entity TryPlaceGraveyard(ScenarioContext ctx)
+        {
+            // Offsets ordered by preference: open y-3 strip first (proven
+            // clean in PlayMode sweep), then alternative rows as fallbacks.
+            var candidates = new[]
+            {
+                (5, -3), (6, -3), (4, -3), (7, -3),
+                (5,  3), (6,  3), (4,  3),
+                (5, -2), (6, -2), (5,  2),
+            };
+            var playerPos = ctx.Zone.GetEntityPosition(ctx.PlayerEntity);
+            if (playerPos.x < 0) return null;
+
+            foreach (var (dx, dy) in candidates)
+            {
+                int x = playerPos.x + dx;
+                int y = playerPos.y + dy;
+                if (!ctx.Zone.InBounds(x, y)) continue;
+                var cell = ctx.Zone.GetCell(x, y);
+                if (cell == null) continue;
+                // Strict steppability — same predicate DisposeOfCorpseGoal uses
+                // so we don't drop the Graveyard on top of an invisible-to-
+                // IsPassable solid (Chest, CompassStone) the Undertaker then
+                // can't navigate to a neighbor of.
+                bool clean = true;
+                for (int i = 0; i < cell.Objects.Count; i++)
+                {
+                    var obj = cell.Objects[i];
+                    if (obj.HasTag("Solid")) { clean = false; break; }
+                    var phys = obj.GetPart<PhysicsPart>();
+                    if (phys != null && phys.Solid) { clean = false; break; }
+                }
+                if (!clean) continue;
+                return ctx.World.PlaceObject("Graveyard").At(x, y);
+            }
+            return null;
         }
     }
 }
