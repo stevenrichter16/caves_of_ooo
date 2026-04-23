@@ -70,5 +70,18 @@ namespace CavesOfOoo.Core
         {
             FailToParent();
         }
+
+        public override void OnPop()
+        {
+            // Mirrors MoveToInteriorGoal.OnPop — writes a terminal thought
+            // so the Phase 10 inspector reflects the completed state
+            // instead of the sticky "heading outside" TakeAction message.
+            // See MoveToInteriorGoal.OnPop for the full rationale.
+            var pos = CurrentZone?.GetEntityPosition(ParentEntity) ?? (-1, -1);
+            var cell = (pos.x >= 0 && CurrentZone != null)
+                ? CurrentZone.GetCell(pos.x, pos.y)
+                : null;
+            Think(cell != null && !cell.IsInterior ? "outside" : null);
+        }
     }
 }

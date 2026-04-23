@@ -76,5 +76,31 @@ namespace CavesOfOoo.Core
             // Child MoveToGoal gave up (unreachable) — propagate.
             FailToParent();
         }
+
+        public override void OnPop()
+        {
+            // Phase 10 cleanup: BrainPart.LastThought is sticky — it only
+            // updates when a goal calls Think(). BoredGoal / MoveToGoal /
+            // WaitGoal don't Think, so without this override the
+            // "seeking shelter" message set in TakeAction would persist
+            // indefinitely after the NPC arrives and the goal pops.
+            //
+            // Success path (Finished → true because cell.IsInterior): write
+            // "sheltered" so the inspector shows the NPC has completed
+            // their goal.
+            //
+            // Failure path (FindNearestCellWhere returned null, child
+            // MoveToGoal failed, or NPC removed from zone): clear the
+            // thought. Failure always happens from an exterior cell or
+            // with no cell at all, so the conditional below falls through
+            // to Think(null), clearing the stale message. A future
+            // AISheltererPart could layer its own "could not find shelter"
+            // message on top if needed.
+            var pos = CurrentZone?.GetEntityPosition(ParentEntity) ?? (-1, -1);
+            var cell = (pos.x >= 0 && CurrentZone != null)
+                ? CurrentZone.GetCell(pos.x, pos.y)
+                : null;
+            Think(cell != null && cell.IsInterior ? "sheltered" : null);
+        }
     }
 }

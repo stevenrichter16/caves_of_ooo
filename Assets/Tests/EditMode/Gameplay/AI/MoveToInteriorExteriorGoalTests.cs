@@ -187,6 +187,52 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void MoveToInteriorGoal_OnPop_WritesShelteredThought_WhenOnInteriorCell()
+        {
+            // User-reported bug: after the goal pops on arrival,
+            // BrainPart.LastThought was sticky at "seeking shelter"
+            // forever because BoredGoal doesn't Think(). The fix: OnPop
+            // writes a terminal thought reflecting the new state. This
+            // test pins the success branch.
+            var zone = new Zone("TestZone");
+            var creature = CreateCreature(zone, 5, 5);
+            zone.GetCell(5, 5).IsInterior = true;  // she's already interior
+            var brain = creature.GetPart<BrainPart>();
+
+            var goal = new MoveToInteriorGoal();
+            brain.PushGoal(goal);
+            brain.LastThought = "seeking shelter";  // simulate prior Think call
+
+            brain.RemoveGoal(goal);  // triggers OnPop
+
+            Assert.AreEqual("sheltered", brain.LastThought,
+                "After MoveToInteriorGoal pops on an interior cell, thought should update to 'sheltered'.");
+        }
+
+        [Test]
+        public void MoveToInteriorGoal_OnPop_ClearsThought_WhenNotOnInteriorCell()
+        {
+            // Pins the failure branch: if the goal pops while the NPC is
+            // still on an exterior cell (FindNearestCellWhere returned
+            // null, child MoveToGoal failed, NPC removed from zone),
+            // OnPop clears LastThought so the stale "seeking shelter"
+            // message doesn't linger under the next goal.
+            var zone = new Zone("TestZone");
+            var creature = CreateCreature(zone, 5, 5);
+            // Default IsInterior=false — she's on exterior cell.
+            var brain = creature.GetPart<BrainPart>();
+
+            var goal = new MoveToInteriorGoal();
+            brain.PushGoal(goal);
+            brain.LastThought = "seeking shelter";
+
+            brain.RemoveGoal(goal);
+
+            Assert.IsNull(brain.LastThought,
+                "After MoveToInteriorGoal pops on a non-interior cell, thought should clear to null.");
+        }
+
+        [Test]
         public void MoveToInteriorGoal_DoesNotEmitThought_WhenAlreadyInterior()
         {
             // Counter-check to the previous test: already-inside early-return
@@ -268,6 +314,42 @@ namespace CavesOfOoo.Tests
             var goal = new MoveToExteriorGoal(maxTurns: 5);
             goal.Age = 6;
             Assert.IsTrue(goal.Finished(), "Age > MaxTurns should terminate the goal (CoO safety net).");
+        }
+
+        [Test]
+        public void MoveToExteriorGoal_OnPop_WritesOutsideThought_WhenOnExteriorCell()
+        {
+            var zone = new Zone("TestZone");
+            var creature = CreateCreature(zone, 5, 5);
+            // default IsInterior=false — she's exterior
+            var brain = creature.GetPart<BrainPart>();
+
+            var goal = new MoveToExteriorGoal();
+            brain.PushGoal(goal);
+            brain.LastThought = "heading outside";
+
+            brain.RemoveGoal(goal);
+
+            Assert.AreEqual("outside", brain.LastThought,
+                "After MoveToExteriorGoal pops on an exterior cell, thought should update to 'outside'.");
+        }
+
+        [Test]
+        public void MoveToExteriorGoal_OnPop_ClearsThought_WhenOnInteriorCell()
+        {
+            var zone = new Zone("TestZone");
+            var creature = CreateCreature(zone, 5, 5);
+            zone.GetCell(5, 5).IsInterior = true;  // on interior (failure case — didn't reach exterior)
+            var brain = creature.GetPart<BrainPart>();
+
+            var goal = new MoveToExteriorGoal();
+            brain.PushGoal(goal);
+            brain.LastThought = "heading outside";
+
+            brain.RemoveGoal(goal);
+
+            Assert.IsNull(brain.LastThought,
+                "After MoveToExteriorGoal pops on an interior cell, thought should clear to null.");
         }
 
         [Test]
