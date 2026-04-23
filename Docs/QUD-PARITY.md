@@ -767,7 +767,7 @@ This section describes what it takes to move every goal from state 1 → state 2
 | **M2** — Dialogue/status triggers | ✅ Done | B | 2–3d | NoFightGoal, WanderDurationGoal |
 | **M3** — Ambient behavior parts | ✅ Done | B | 2–3d | PetGoal, GoFetchGoal, FleeLocationGoal |
 | **M4** — Interior/Exterior (Gap B) | ✅ Done (1665/1665) | C | 3–4d | MoveToInterior/ExteriorGoal, weather foundation |
-| **M5** — Corpse system (Gap C) | ⏳ Next | C | 3–5d | DisposeOfCorpseGoal, necromancy/butcher foundation |
+| **M5** — Corpse system (Gap C) | ✅ Done (1693/1693) | C | 3–5d | CorpsePart, DisposeOfCorpseGoal, AIUndertakerPart, Graveyard blueprint |
 | **M6** — Rune system | | C | 3–4d | LayRuneGoal |
 | **M7** — Turret system | | C | 3–4d | PlaceTurretGoal |
 | **M8** — Gap A (zone transitions) | | D | 1–2w | MoveToZone/GlobalGoal, Phase 13 foundation |
@@ -1974,10 +1974,65 @@ commit chain `ac9c5cc → fe55380 → f7b9ec3`):
 
 #### Milestone M5 — Corpse system (Tier C, 3–5 days)
 
-**Status: ⏳ Next** — plan ready; implementation not yet started.
+**Status: ✅ Shipped** — 1693/1693 EditMode tests passing. Closes Gap C
+from the Phase 6 audit.
 
-**Target:** 1665 → ~1688 EditMode tests; full suite green. Closes Gap C from
-the Phase 6 audit.
+**Manual playtest:** ⏳ scenario shipped (`SnapjawBurial`), awaiting user
+observation.
+
+**Actual outcome vs plan:**
+- **Tests:** planned ~23, delivered **28** (7 M5.1 + 10 M5.2 + 10 M5.3 + 1 fix-pass death-drop pin).
+- **Suite growth:** 1665 → 1693 (+28).
+- **Sub-milestones:** all three shipped in sequence with zero regressions at each step.
+- **Follow-up opportunity surfaced during review:** ClearGoals-on-NPC-death (see §M5 follow-ups); cross-cutting so deferred.
+
+**Commit history** (chronological on `main`):
+
+| SHA | Role | Description |
+|---|---|---|
+| `33c4be7` | docs | M5 plan section authored (pre-impl) |
+| `4eed32a` | M5.1 | `CorpsePart` + `SnapjawCorpse` blueprint + "Died" event wiring + 7 tests |
+| `ab28254` | M5.2 | `DisposeOfCorpseGoal` 2-phase state machine + 10 tests |
+| `89d2070` | M5.3 | `AIUndertakerPart` + `Graveyard` / `Undertaker` blueprints + `SnapjawBurial` scenario + 10 tests |
+| `44182c9` | fix-pass | Post-review: 🔴×1 (factory-null log) + 🟡×1 (rename) + 🧪×1 (undertaker-death drop pin) |
+
+##### M5 Post-review findings (Methodology Template §5.1–5.3)
+
+Independent review pass after the three feature commits. 9 findings
+triaged — 3 actionable, 6 dismissed with documented rationale.
+
+| # | Sev | Title | Status |
+|---|---|---|---|
+| 1 | 🔴 | `CorpsePart` silently drops a corpse on null `factory.CreateEntity` (misconfigured blueprint symptom) | ✅ Fixed in `44182c9` — added `Debug.LogWarning` with parent + target names |
+| 3 | 🟡 | `AIUndertakerPart.FindNearestUnclaimedReachableCorpse` name misleading (no actual reachability check) | ✅ Fixed in `44182c9` — renamed + documented; pathfinding left to `DisposeOfCorpseGoal.MaxMoveTries` cap |
+| 8 | 🧪 | Test gap: undertaker killed mid-haul | ✅ Added in `44182c9` — pins `DropInventoryOnDeath` contract |
+| 2 | ⚪ | Reservation leak from entity pooling | 📝 Dismissed — CoO has no entity pool; IDs are monotonic |
+| 4 | ⚪ | Validation order causing NPE | 📝 Dismissed — false alarm; zone null-check is already first |
+| 5 | ⚪ | Container-full atomicity race | 📝 Dismissed — CoO is single-threaded; no race window |
+| 6 | ⚪ | Shared `TEST_SEED` constant | 📝 Dismissed — cosmetic; `System.Random(0)` is a stable API |
+| 7 | ⚪ | `SnapjawBurial` Part mutation | 📝 Dismissed — verified safe; EntityFactory creates fresh Part instances per entity |
+| 9 | ⚪ | `GoalHandler.ParentHandler` cycle | 📝 Dismissed — not a leak in .NET GC |
+
+##### Methodology Template compliance
+
+Applied end-to-end (not retroactively, unlike M4):
+
+| Template part | Status |
+|---|---|
+| 1.2 Pre-impl verification sweep | ✅ Every CoO API read before use — see §M5.1–M5.3 design tables |
+| 1.4 Risk-ordered sub-milestones | ✅ M5.1 (spawner, no AI) → M5.2 (goal, testable alone) → M5.3 (behavior + blueprints + scenario) |
+| 2.1 Hallucination avoidance | ✅ No unverified APIs |
+| 2.2 Commit-message template | ✅ Scoped prefixes (`feat(entities)`, `feat(ai)`, `fix-pass(ai)`) + structured bodies with test-count deltas |
+| 3.1 EditMode unit tests | ✅ 28 tests across 3 new test files |
+| 3.3 Regression pins | ✅ Hook-ordering, try-counter caps, reservation lifecycle, death-drop contract all pinned |
+| 3.4 Counter-check pattern | ✅ Positive paths paired with negatives (no-corpse, no-graveyard, reserved, overburden, NoHauling, idempotency) |
+| 3.5 PlayMode sanity sweep | ✅ `SnapjawBurial` scenario wired |
+| 3.6 Manual playtest scenario | ✅ `SnapjawBurial` committed; ⏳ user observation pending |
+| 4 Parity audit | ✅ Read Qud's `Corpse.cs`, `DisposeOfCorpse.cs`, `DepositCorpses.cs` before design |
+| 5.1–5.3 Post-impl review | ✅ 9 findings logged, 3 fixed, 6 dismissed with rationale |
+| 6.1–6.4 Honesty protocols | ✅ Raw test-count deltas, documented-known-limitations (reservation-on-death leak) |
+| 7 Unity MCP tooling | ✅ `run_tests` + `read_console` for compile-feedback loop at each step |
+| 8.4 Post-milestone | ✅ This section |
 
 M5 adds:
 - A **`CorpsePart`** spawner (a Part on living creatures) that listens to
@@ -2222,6 +2277,17 @@ Read:
   `IActivePart`-equivalent on the Graveyard that also offers work to bored
   NPCs via a new `ZoneTickIdleOffer` path; the per-NPC AIUndertakerPart
   would then be complementary rather than the sole dispatcher.
+- **`ClearGoals` on NPC death (cross-cutting)** — surfaced during M5
+  post-review: `CombatSystem.HandleDeath` doesn't clear the dying NPC's
+  goal stack, so any in-flight `DisposeOfCorpseGoal` never fires its
+  `OnPop` cleanup. In M5 specifically this leaks the
+  `DepositCorpsesReserve` property on the carried corpse (another
+  undertaker can still find + claim it next tick in 99% of cases because
+  the reservation's meaning is "in-flight for someone," and the in-flight
+  undertaker is dead — but the property stays stuck). Fixing cleanly
+  means deciding a policy for every Phase 6 goal's death-cleanup;
+  probably right before `zone.RemoveEntity(target)` in HandleDeath,
+  `brain?.ClearGoals()`. Deferred as cross-cutting work.
 - **Corpse examine pronoun** — Qud uses `NameMaker.MakeName` to generate
   unnamed corpse descriptors ("the corpse of a gnarled snapjaw"); CoO's
   `ExaminablePart` could gain a templated description.
