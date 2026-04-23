@@ -1958,6 +1958,193 @@ commit chain `ac9c5cc → fe55380 → f7b9ec3`):
 | 7 Unity MCP tooling | ✅ Turn-by-turn live reflection traces |
 | 8.4 Post-milestone | ✅ This section
 
+##### M4 Post-audit findings (2026-04-23)
+
+Pass 1 of the Comprehensive Audit. Read: `Cell.cs`, `AIHelpers.cs`,
+`MoveToInteriorGoal.cs`, `MoveToExteriorGoal.cs`,
+`VillageBuilder.cs`, `OverworldZoneManager.cs`,
+`MoveToInteriorExteriorGoalTests.cs`, `VillageBuilderInteriorTests.cs`,
+`ScribeSeeksShelter.cs`, `ScenarioMenuItems.cs`,
+Qud `MoveToInterior.cs`. Grepped for M4 consumers + test coverage.
+
+**9 findings** — 0 🔴, 1 🟡, 3 🔵, 3 🧪, 2 ⚪.
+
+| # | Sev | Cat | Title | File:line |
+|---|-----|-----|-------|-----------|
+| M4.A1 | 🟡 | logic | FindNearestCellWhere uses 4-directional BFS; MoveToGoal's A* uses 8-directional | `AIHelpers.cs:443,462` vs `FindPath.cs:19,119` |
+| M4.A2 | 🔵 | bug | MoveToInterior/ExteriorGoal OnPop writes sticky terminal thought ("sheltered" / "outside") | `MoveToInteriorGoal.cs:103`, `MoveToExteriorGoal.cs:84` |
+| M4.A3 | 🔵 | doc | Doorway cells tagged IsInterior=false by design; tests don't pin this | `VillageBuilder.cs:170-177` |
+| M4.A4 | 🧪 | test-unit | MarkDungeonInterior helper has no regression test | `OverworldZoneManager.cs:243` |
+| M4.A5 | 🧪 | test-playmode | No PlayMode sanity sweep for the interior-tagging + BFS + MoveTo chain | n/a |
+| M4.A6 | 🧪 | test-manual | ScribeSeeksShelter manual observation still ⏳ pending | scenario file exists + menu-wired |
+| M4.A7 | ⚪ | parity | Flat-zone IsInterior vs Qud's pocket-dim InteriorZone | documented in §M4 design table |
+| M4.A8 | ⚪ | parity | No `Interior.TryEnter` status enum equivalent | scope-pruned in §M4 |
+| M4.A9 | 🔵 | test-unit | No test explicitly checks Door cell's IsInterior value | `VillageBuilderInteriorTests.cs` |
+
+###### 🟡 M4.A1 (logic) — FindNearestCellWhere's 4-directional BFS diverges from MoveToGoal's 8-directional A*
+
+**Files:** `Assets/Scripts/Gameplay/AI/AIHelpers.cs:443,462` and `Assets/Scripts/Gameplay/AI/FindPath.cs:19,119`
+
+`FindNearestCellWhere` expands only 4 cardinal neighbors (line 443
+iterates `CardinalOffsets`, defined line 462). `FindPath.Search` —
+the A* used by every `MoveToGoal` — expands 8 directions (line 19
+comment: *"8-directional neighbor offsets (N, NE, E, SE, S, SW, W,
+NW)"*, line 119 `for (int dir = 0; dir < 8; dir++)`).
+
+Concrete failure mode: a room whose ONLY entrance is a diagonal
+passthrough (unusual but possible in a winding village layout).
+`FindNearestCellWhere` can't find the interior cell (its BFS stops
+at the diagonal boundary), so `MoveToInteriorGoal.TakeAction`
+`FailToParent`s. `MoveToGoal` itself could have pathed there.
+
+**Why it matters:** "NPC stands outside, can't find shelter" even
+when the room is actually reachable. Current starting-village layout
+uses straight-walled buildings so this rarely fires in practice, but
+a future zone with a diagonal-access building would hit it silently.
+
+**Proposed fix:** swap `CardinalOffsets` for an 8-direction array in
+the BFS loop. One-line change + a regression test that constructs a
+diagonal-access layout. Alternative (documentary): add a docstring
+note that `FindNearestCellWhere` can undercount reachable cells
+compared to A* and accept the mismatch.
+
+**Severity rationale:** 🟡 not 🔵 because it's a reachability
+mismatch between two systems that claim to answer the same question
+("is this cell reachable from here?"). Not 🔴 because the current
+content layout doesn't expose the bug.
+
+###### 🔵 M4.A2 (bug) — MoveToInterior/ExteriorGoal write sticky terminal thoughts
+
+**Files:** `Assets/Scripts/Gameplay/AI/Goals/MoveToInteriorGoal.cs:103` and `Assets/Scripts/Gameplay/AI/Goals/MoveToExteriorGoal.cs:84`
+
+`OnPop` calls `Think(cell != null && cell.IsInterior ? "sheltered" : null);` and
+the Exterior counterpart writes `"outside"`. On success, the thought
+sticks indefinitely in `LastThought` because subsequent goals
+(`BoredGoal`, `WaitGoal`, `MoveToGoal`, `WanderRandomlyGoal`) never
+call `Think()`. Same class as the user-reported sticky-`"buried"`
+bug in M5.2 (fixed in commit `941ce1e` by switching DisposeOfCorpseGoal.OnPop to `Think(null)`
+unconditionally).
+
+**Why it matters:** Phase 10 inspector shows stale `"sheltered"` for
+an NPC who may have since moved, been displaced, or is about to
+re-leave the building. The self-documenting comment in
+MoveToInteriorGoal.cs:80-99 (the extended OnPop rationale) predates
+the M5.2 UX lesson. DisposeOfCorpseGoal's current OnPop docstring
+at `DisposeOfCorpseGoal.cs:320-324` explicitly flags this as the
+M4 carry-over concern.
+
+**Proposed fix:** change both OnPops to `Think(null);` unconditionally.
+Update the 3 existing regression pins in
+`MoveToInteriorExteriorGoalTests.cs` that assert `"sheltered"` /
+`"outside"` after OnPop to instead assert `null`. Same shape as
+commit `941ce1e`.
+
+**Severity rationale:** 🔵 not 🟡 because the mechanical behavior is
+correct (NPC sheltered correctly, just the inspector readout is
+stale). Promote to 🟡 if user confirms via playtest that the stale
+thought is actively confusing (matches the M5.2 escalation path).
+
+###### 🔵 M4.A3 (doc) — Doorway cells tagged IsInterior=false by design, rationale debatable
+
+**File:** `Assets/Scripts/Gameplay/World/Generation/Builders/VillageBuilder.cs:170-177`
+
+Edge cells of a room are always `IsInterior=false` (walls AND door
+cells — the BuildRoom loop treats `isEdge` the same regardless of
+whether a door is later placed there). Comment at line 170: *"Walls
+(the edge branch) stay IsInterior=false so doors at edge positions
+naturally read as exterior, matching the intuition that the roof is
+above the floor, not the doorway."*
+
+Design argument is defensible but contestable. In weather/shelter
+rules, a doorway IS partially under the roof. If a future system
+wants "N is under roof" as a gate, door cells will be misclassified.
+
+**Why it matters:** future weather triggers (rain shelter, dusk
+curfew) that key off `IsInterior` may behave weirdly at doorways.
+Specifically: NPC walking through a door would register as
+"transitioned exterior" for one tick, then "interior" the next.
+
+**Proposed fix:** either (a) accept the current design and document
+it in Cell.cs's IsInterior xml-doc more prominently; or (b) change
+VillageBuilder to tag door cells as IsInterior=true. Needs a design
+call — flagging as 🔵 not ⚪ because it has real downstream
+consequences.
+
+###### 🧪 M4.A4 (test-unit) — MarkDungeonInterior helper has no regression test
+
+**File:** `Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs:243`
+
+The M4 post-review extracted `MarkDungeonInterior` from inline
+code into a named helper specifically so a future save/load path
+could re-invoke it (commit `ac9c5cc`, M4 fix-pass 🟡 #1). The
+extraction wasn't accompanied by a test. Grep of
+`Assets/Tests/EditMode` for `MarkDungeonInterior` returns **zero**
+matches.
+
+**Why it matters:** the helper is private-static so refactors don't
+get compile-error guardrails. If its signature or behavior changes,
+dungeon zones silently stop tagging cells IsInterior=true.
+
+**Proposed fix:** add a test that constructs a `Zone` with `wz > 0`
+(via `OverworldZoneManager.OnZoneGenerated`), asserts every cell has
+`IsInterior=true` post-call. ~15 lines.
+
+###### 🧪 M4.A5 (test-playmode) — No PlayMode sanity sweep for M4
+
+**Scope:** M4 declared ✅ Shipped without the Template §3.5 sweep.
+Unlike M5 (where the sweep caught the 🔴 HaulPhase bug that EditMode
+missed), M4 has no live-scene verification that the interior-tagging
++ BFS + MoveToGoal end-to-end chain actually works in a real bootstrap.
+M4's regression tests all use hand-constructed zones, not the
+real-Objects.json village layout.
+
+**Why it matters:** the M5 precedent is concerning — the live-scene
+flow had bugs the unit tests couldn't catch. M4's flow has the same
+shape (goal → MoveToGoal → real-village geometry). Risk is analogous.
+
+**Proposed fix:** a 3-phase PlayMode sweep (spawn Passive NPC
+outdoor → push MoveToInteriorGoal → advance turns → confirm
+`cell.IsInterior=true` at final position + thought transitioned
+correctly). Same `execute_code` shape as the M5 sweep. ~30 min.
+
+###### 🧪 M4.A6 (test-manual) — ScribeSeeksShelter manual observation pending
+
+**Scope:** `Assets/Scripts/Scenarios/Custom/ScribeSeeksShelter.cs`
+
+Scenario exists, `[Scenario]`-attributed, menu-wired at
+`ScenarioMenuItems.cs:87-89`. Confirmed via grep. But M4 §Status
+still carries `⏳ scenario shipped, awaiting user observation` (line
+1864 in QUD-PARITY.md). No user-observed playtest report has
+landed since M4 shipped.
+
+**Why it matters:** §M4's ✅ Shipped status is partially unverified.
+The M5.2 sticky-thought bug surfaced only via playtest (not EditMode
+tests). Unplaytested M4 could have analogous-but-undiscovered bugs.
+
+**Proposed fix:** user runs the scenario once and reports Observed
+vs Expected (the scenario's ctx.Log documents the expected flow).
+OR: convert to a PlayMode sweep per §M4.A5 to mechanically verify.
+
+###### 🔵 M4.A9 (test-unit) — No test explicitly checks Door cell's IsInterior
+
+**File:** `Assets/Tests/EditMode/Gameplay/World/Generation/VillageBuilderInteriorTests.cs`
+
+Existing tests cover StoneFloor (interior) and wall (exterior) cells.
+No test targets a Door entity specifically. The design (per §M4.A3)
+treats door cells as exterior. If a future VillageBuilder refactor
+starts tagging doors as interior (or changes the edge-branch logic),
+no test catches the drift.
+
+**Why it matters:** couples to §M4.A3. If A3 is resolved by keeping
+doors exterior, this test pins that decision. If A3 is resolved by
+flipping doors to interior, this test still gets written but with
+the opposite assertion. Either way, the Door case is unpinned today.
+
+**Proposed fix:** add `BuildZone_DoorCell_HasIsInteriorFalse` (or
+`_True`, pending A3) to `VillageBuilderInteriorTests.cs`.
+
+---
+
 ##### M4 Follow-up opportunities (out of M4 scope)
 
 - **`BrainPart.Passive`-style trigger parts** — e.g. `AISheltererPart` that
