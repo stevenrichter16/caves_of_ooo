@@ -70,7 +70,11 @@ namespace CavesOfOoo.Core
             // won't accidentally remove the OTHER system's goal.
             if (brain.HasGoal<WanderDurationGoal>()) return;
 
-            _pushedGoal = new WanderDurationGoal(Duration);
+            // Pass "shaken" as the pacing thought so the Phase 10 inspector
+            // shows why the witness is pacing. Without this the inspector
+            // was blank during the 20-turn pace, even though MessageLog
+            // said "X looks shaken" at the moment of application.
+            _pushedGoal = new WanderDurationGoal(Duration, thought: "shaken");
             brain.PushGoal(_pushedGoal);
             MessageLog.Add(target.GetDisplayName() + " looks shaken.");
         }

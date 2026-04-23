@@ -40,6 +40,96 @@ namespace CavesOfOoo.Tests
             var goal = brain.FindGoal<WanderDurationGoal>();
             Assert.AreEqual(20, goal.Duration,
                 "Pushed goal must carry the effect's Duration.");
+            Assert.AreEqual("shaken", goal.Thought,
+                "Pushed goal must carry the 'shaken' thought so the Phase 10 inspector " +
+                "reflects why the NPC is pacing. User-reported: WanderDurationGoal without " +
+                "a thought showed blank in the inspector during 20-turn pace.");
+        }
+
+        [Test]
+        public void WitnessedEffect_ShakenThought_WrittenEachTickDuringPace()
+        {
+            // Regression pin for the user-reported "no thought while pacing"
+            // bug. Advancing turns must re-assert the "shaken" thought on
+            // each tick so the inspector shows it for the full duration,
+            // not just at OnApply time.
+            var zone = new Zone("TestZone");
+            var witness = CreatePassiveCreature();
+            zone.AddEntity(witness, 10, 10);
+            var brain = witness.GetPart<BrainPart>();
+            brain.CurrentZone = zone;
+            brain.Rng = new Random(42);
+
+            witness.ApplyEffect(new WitnessedEffect(duration: 20));
+
+            // Advance one turn — WanderDurationGoal should run TakeAction
+            // and Think("shaken").
+            witness.FireEvent(GameEvent.New("TakeTurn"));
+
+            Assert.AreEqual("shaken", brain.LastThought,
+                "After one TakeTurn tick, the witness's LastThought must be \"shaken\" " +
+                "so the Phase 10 inspector reflects their state.");
+        }
+
+        [Test]
+        public void WitnessedEffect_ShakenThought_ClearsOnGoalPop()
+        {
+            // Counter-check for the above: when the wander-duration goal
+            // finishes and pops, the thought must clear. Otherwise "shaken"
+            // would stick in LastThought indefinitely after pacing ends —
+            // the same class of sticky-thought bug M5.2 fixed for
+            // DisposeOfCorpseGoal.
+            var zone = new Zone("TestZone");
+            var witness = CreatePassiveCreature();
+            zone.AddEntity(witness, 10, 10);
+            var brain = witness.GetPart<BrainPart>();
+            brain.CurrentZone = zone;
+            brain.Rng = new Random(42);
+
+            // Duration=1 so the goal finishes after one TakeAction cycle.
+            witness.ApplyEffect(new WitnessedEffect(duration: 1));
+
+            // Tick 1: WanderDurationGoal.TakeAction fires, _ticksTaken=1,
+            // Think("shaken"), push WanderRandomlyGoal child which finishes
+            // same tick via child-chain.
+            witness.FireEvent(GameEvent.New("TakeTurn"));
+            Assume.That(brain.LastThought, Is.EqualTo("shaken"),
+                "Precondition: tick 1 writes the thought.");
+
+            // Tick 2: cleanup phase sees WanderDurationGoal.Finished()=true
+            // (_ticksTaken=1 >= Duration=1), pops it, OnPop calls Think(null).
+            // Stack becomes empty → BoredGoal pushed → runs, no Think call.
+            witness.FireEvent(GameEvent.New("TakeTurn"));
+
+            Assert.IsNull(brain.LastThought,
+                "\"shaken\" must clear on WanderDurationGoal.OnPop — sticky past-tense " +
+                "thoughts are UX debt (same lesson as DisposeOfCorpseGoal's OnPop fix).");
+        }
+
+        [Test]
+        public void WanderDurationGoal_WithoutThought_DoesNotOverwriteLastThought()
+        {
+            // The Thought field is opt-in. A WanderDurationGoal pushed without
+            // a thought (e.g., from a future ambient system) must NOT touch
+            // LastThought — otherwise it would clobber whatever the outer
+            // context was showing.
+            var zone = new Zone("TestZone");
+            var witness = CreatePassiveCreature();
+            zone.AddEntity(witness, 10, 10);
+            var brain = witness.GetPart<BrainPart>();
+            brain.CurrentZone = zone;
+            brain.Rng = new Random(42);
+            brain.LastThought = "pre-existing";
+
+            // Push without thought (null default).
+            brain.PushGoal(new WanderDurationGoal(duration: 5));
+
+            witness.FireEvent(GameEvent.New("TakeTurn"));
+
+            Assert.AreEqual("pre-existing", brain.LastThought,
+                "WanderDurationGoal with Thought=null must NOT overwrite LastThought. " +
+                "Otherwise calling it from ambient contexts would clobber the narrative " +
+                "signal the outer goal was maintaining.");
         }
 
         [Test]
