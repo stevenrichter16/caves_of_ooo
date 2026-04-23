@@ -304,10 +304,25 @@ namespace CavesOfOoo.Core
             // (or never existed), the property removal is a safe no-op.
             Corpse?.RemoveIntProperty("DepositCorpsesReserve");
 
-            // Terminal thought — mirrors M4 MoveToInteriorGoal.OnPop pattern
-            // (clear the sticky "hauling corpse" / "fetching corpse" LastThought
-            // so the Phase 10 inspector reflects goal completion).
-            Think(_done ? "buried" : null);
+            // Unstick LastThought. The goal's active ticks wrote
+            // "fetching corpse" / "hauling corpse"; clearing here prevents
+            // those (or any would-be terminal thought like "buried") from
+            // persisting forever once the goal pops.
+            //
+            // Design trade-off: we intentionally do NOT write a terminal
+            // "buried" signal even on success. User playtest of M5 reported
+            // that "buried" sticks in LastThought indefinitely after the
+            // goal pops — subsequent goals (BoredGoal / WaitGoal / MoveToGoal
+            // for Staying) don't Think(), so whatever's in LastThought
+            // persists forever. A terminal signal is unhelpful UX when it
+            // outlives the action it describes. The disappearance of the
+            // active-phase thought ("hauling corpse" → null) is itself the
+            // completion cue.
+            //
+            // M4's MoveToInteriorGoal.OnPop still writes "sheltered" /
+            // "outside" terminal thoughts — that pattern may need the same
+            // treatment after M4 playtest, but is out of M5 scope.
+            Think(null);
         }
     }
 }

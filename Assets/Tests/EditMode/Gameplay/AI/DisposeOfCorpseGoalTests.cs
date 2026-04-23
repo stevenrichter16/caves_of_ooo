@@ -462,8 +462,16 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void OnPop_WritesTerminalThought_OnSuccess()
+        public void OnPop_ClearsLastThought_OnSuccess_SoActivePhaseThoughtDoesNotStick()
         {
+            // Regression pin for a user-reported sticky-thought bug: the
+            // initial M5.2 OnPop wrote "buried" on success (mirroring the
+            // M4 MoveToInteriorGoal "sheltered" pattern), and that value
+            // persisted in LastThought indefinitely because subsequent
+            // goals (BoredGoal / WaitGoal / MoveToGoal for Staying) don't
+            // Think(). The fix is to clear LastThought unconditionally on
+            // pop — the disappearance of "hauling corpse" is the terminal
+            // signal; no separate "buried" marker is needed.
             var zone = new Zone("TestZone");
             var npc = CreateUndertaker(zone, 10, 10);
             var corpse = CreateCorpse(zone, 10, 10);
@@ -478,9 +486,47 @@ namespace CavesOfOoo.Tests
             RunGoalOnce(goal, brain);    // deposit — sets Done=true
             brain.RemoveGoal(goal);      // invokes OnPop
 
-            Assert.AreEqual("buried", brain.LastThought,
-                "OnPop on success should write the terminal \"buried\" thought " +
-                "(same pattern as M4 MoveToInteriorGoal writing \"sheltered\").");
+            Assert.IsNull(brain.LastThought,
+                "OnPop must clear LastThought — not write a terminal \"buried\" value. " +
+                "Past-tense terminal thoughts stick in the inspector because no subsequent " +
+                "goal overwrites them. Regression for the user-reported sticky-'buried' bug.");
+        }
+
+        [Test]
+        public void OnPop_ClearsActivePhaseThought_EvenOnFailure()
+        {
+            // Complement to the above: failure paths (corpse missing,
+            // container gone, exhausted tries) ALSO must clear the
+            // LastThought. Here we force a failure by removing the corpse
+            // mid-fetch so DisposeOfCorpseGoal.TakeAction calls FailToParent.
+            var zone = new Zone("TestZone");
+            var npc = CreateUndertaker(zone, 10, 10);
+            var corpse = CreateCorpse(zone, 15, 10);    // not adjacent
+            var grave = CreateGraveyard(zone, 20, 10);
+
+            var brain = npc.GetPart<BrainPart>();
+            var goal = new DisposeOfCorpseGoal(corpse, grave);
+            brain.PushGoal(goal);
+
+            // First TakeAction sets LastThought to "fetching corpse" and
+            // pushes a MoveToGoal child.
+            RunGoalOnce(goal, brain);
+            Assert.AreEqual("fetching corpse", brain.LastThought,
+                "Precondition: fetch phase should set the active thought.");
+
+            // Now remove the corpse so the next tick's validation fails.
+            zone.RemoveEntity(corpse);
+            // Clean the stale child MoveToGoal off so RunGoalOnce calls
+            // our goal's TakeAction directly.
+            var child = brain.FindGoal<MoveToGoal>();
+            if (child != null) brain.RemoveGoal(child);
+            // The goal's TakeAction sees corpse.CurrentCell==null → FailToParent → Pop → OnPop.
+            goal.TakeAction();
+
+            Assert.IsFalse(brain.HasGoal<DisposeOfCorpseGoal>(),
+                "Goal should have popped via FailToParent.");
+            Assert.IsNull(brain.LastThought,
+                "OnPop must clear LastThought on failure too — not leave \"fetching corpse\" stuck.");
         }
     }
 }
