@@ -3856,6 +3856,440 @@ The audit is NOT considered complete if:
 
 ---
 
+#### Cross-milestone audit findings (2026-04-23)
+
+Passes 6 + 7 of the Comprehensive Audit, combined. Each of the 10
+cross-cutting concerns enumerated in the audit plan is promoted to a
+formal finding with evidence, OR dismissed. Each of the 9 pre-known
+findings is confirmed by a numbered finding above or here.
+
+**10 cross-milestone findings** — 1 🔴, 3 🟡, 4 🔵, 0 🧪, 2 ⚪. Plus
+1 🧪 for the manual-playtest-gap that hits every milestone.
+
+| # | Sev | Cat | Title | Evidence |
+|---|-----|-----|-------|----------|
+| CM-1 | 🟡 | bug | `ClearGoals`-on-NPC-death missing; reservations leak | `CombatSystem.cs` grep `ClearGoals` → 0 matches |
+| CM-2 | 🟡 | design | `Passive=true` covers 7 blueprints; Villager/Merchant/Farmer/Warden/Undertaker excluded from M2.3 witness broadcast | `Objects.json` grep for `"Passive"` returns 7 matches (Elder/Scribe/Innkeeper/WellKeeper/VillageChild/Magpie/PetDog) |
+| CM-3 | 🟡 | bug | `SittingEffect` zombie state: stays attached after NPC walks off chair (via WanderDurationGoal) | `SittingEffect.cs` — no cell-departure hook; `WanderDurationGoal.cs` — no SittingEffect removal |
+| CM-4 | 🔵 | wiring | Scenario menu-wiring pattern gap; `[Scenario]` attribute is metadata only | `ScenarioMenuItems.cs` — all current scenarios manually wired; risk is pattern-repeat |
+| CM-5 | 🔴 | bug | **Active scenario broken by CompassStone spawn pitfall** — `InspectAIGoals.cs:58` uses `AtPlayerOffset(6, 0)`, collides with CompassStoneEast at (45,11) | `Scenarios/Custom/InspectAIGoals.cs:58` |
+| CM-6 | 🔵 | pattern | Terminal-thought stickiness — multiple goals use Think() without OnPop Think(null) | M4.A2 + M3.A3 confirm; M5.2 already fixed |
+| CM-7 | 🧪 | test-manual | 18+ scenarios shipped across M1-M5; only SnapjawBurial has user-confirmed observation | aggregates M1.A3 + M2.A4 + M3.A9 + M4.A6 + M5.A10 |
+| CM-8 | 🔵 | design | `AllowIdleBehavior` on pets (Magpie, PetDog) is unusual | `Objects.json` blueprints with the tag: 9 (6 NPCs + 2 pets + Elder) |
+| CM-9 | ⚪ | doc | HandleDeath event ordering is correct but brittle to refactor | `CombatSystem.cs:440 → 445 → 451 → 467 → 470` |
+| CM-10 | 🔵 | doc | `BrainPart.CurrentZone` init asymmetric between bootstrap and zone-transition | `GameBootstrap.cs:811-820` (eager) vs `InputHandler.cs:572-574` (partial) |
+
+###### 🔴 CM-5 (bug) — InspectAIGoals scenario has the CompassStone spawn pitfall
+
+**File:** `Assets/Scripts/Scenarios/Custom/InspectAIGoals.cs:58`
+
+```csharp
+ctx.Spawn("Snapjaw").AtPlayerOffset(6, 0);
+```
+
+Preflight evidence from the M5 PlayMode sweep confirmed
+`+6 east (45,11): passable=False objs=[Floor,CompassStoneEast(solid=True)]`
+in the starting village layout. `EntityBuilder.SpawnAt`
+(line 287-298) logs a warning and returns null on non-passable cells.
+The scenario's Snapjaw silently fails to spawn.
+
+This is the **third occurrence** of the same pattern after M4's
+ScribeSeeksShelter (fixed `9781450`) and M5's SnapjawBurial (fixed
+`e24a595`). Both fixes used `NearPlayer(...)` instead. InspectAIGoals
+was not re-audited at the time.
+
+**Why it matters:** a user running the `InspectAIGoals` scenario
+(menu entry confirmed at `ScenarioMenuItems.cs`) sees the Warden and
+VillageChild spawn but NO Snapjaw. The goal-stack inspector demo has
+no hostile to demonstrate KillGoal pushing. Core scenario feature
+silently broken.
+
+**Why 🔴:** this is an ACTIVE bug in committed scenario content, not
+latent or edge-case. Any user running the scenario hits it.
+
+**Proposed fix:** swap `AtPlayerOffset(6, 0)` for `NearPlayer(5, 7)`
+(same pattern as SnapjawBurial). ~2-line change + re-run smoke test.
+
+**Additional action:** grep all `Assets/Scripts/Scenarios/Custom/*.cs`
+for `AtPlayerOffset(6, 0)` / `AtPlayerOffset(2, 0)` (the two known
+CompassStone cells) and audit each for pitfall vs valid. Minor fix-pass
+commit.
+
+###### 🟡 CM-1 (bug) — ClearGoals-on-NPC-death missing
+
+**File:** `Assets/Scripts/Gameplay/Combat/CombatSystem.cs` —
+`grep -n "ClearGoals" CombatSystem.cs` returns **zero** matches.
+
+`HandleDeath` currently does (in order):
+1. `body.DropAllEquipment(zone)` — line 440
+2. `DropInventoryOnDeath(target, inventory, zone)` — line 445
+3. Fire `"Died"` event — line 451
+4. `BroadcastDeathWitnessed(target, killer, zone, WitnessRadius)` — line 467
+5. `zone.RemoveEntity(target)` — line 470
+
+Step missing: `brain?.ClearGoals()` between 4 and 5. Without it, the
+dying entity's goal stack retains every goal verbatim. Goals with
+`OnPop`-based cleanup never run their cleanup.
+
+Concrete leaked state:
+- **M5 (DisposeOfCorpseGoal):** reservation `DepositCorpsesReserve=50`
+  on the carried corpse stays set → other undertakers skip that
+  corpse forever (carried corpse is in dead NPC's inventory, not
+  zone, so they can't see it anyway — but reservation still wrong).
+- **M5.A2 consequence:** corpse stays in dead NPC's inventory
+  forever (combined with the Failed-path orphan bug).
+- **M3 (GoFetchGoal):** NO reservation in M3, so no leak there.
+- **M1.3 (DormantGoal):** stack dormancy state leaks, harmless
+  since entity is dead.
+
+**Why it matters:** a wounded Undertaker dying mid-haul (player
+retaliates) leaves their carried corpse inaccessible to future
+undertakers. Compounds M5.A2.
+
+**Proposed fix:** one-liner after line 470:
+```csharp
+target.GetPart<BrainPart>()?.ClearGoals();
+```
+Insert AFTER BroadcastDeathWitnessed but BEFORE zone.RemoveEntity so
+witness handlers can still read pre-death brain state if needed.
+Add regression test per goal class with OnPop cleanup — at minimum
+DisposeOfCorpseGoal + M3's FleeLocationGoal.
+
+###### 🟡 CM-2 (design) — Passive flag limited to a specific subset; Villager/Merchant/Farmer don't react to death
+
+**Files:** `Assets/Resources/Content/Blueprints/Objects.json` —
+`grep -n '"Key": "Passive"'` returns 7 blueprints (Elder, Magpie,
+PetDog, VillageChild, WellKeeper, Innkeeper, Scribe).
+
+Villager, Farmer, Merchant, Warden, Undertaker, Tinker do NOT set
+`Passive=true`. Consequence: `CombatSystem.BroadcastDeathWitnessed`
+at line 501 filters them out (`if (brain == null || !brain.Passive)
+continue;`). They watch a neighbour die in their own shop and don't
+flinch.
+
+This was surfaced organically during investigation of the
+sit-forever bug (user asked about merchants; grep revealed exclusion).
+
+**Why it matters:** scenes where a Villager sees their neighbor
+killed play as inert — no "looks shaken" message, no pacing, no
+reaction. Contradicts M2.3's shipped-narrative ("Innkeeper pacing
+nervously after a tavern brawl" cited in WitnessedEffect.cs:6).
+
+**Why this is design not bug:** the Passive gate is documented in
+M2.3 as intentional — "only Passive NPCs witness." The gap is the
+roster of Passive-tagged NPCs, not the gate itself.
+
+**Proposed fix:** add `Passive=true` to Villager / Farmer / Merchant
+base blueprints. Wardens and Undertakers are "job-role" NPCs and
+arguably stay non-Passive. One-line edits per blueprint + update
+M2.3 docs to reflect the extended Passive roster.
+
+**Severity rationale:** 🟡 because it's a shipped-feature gap
+visible to any player observing inter-village violence. Design call
+(not a bug per se) elevates it to 🟡 rather than ⚪ because it has a
+concrete narrative consequence.
+
+###### 🟡 CM-3 (bug) — SittingEffect zombie state
+
+**Files:**
+- `Assets/Scripts/Gameplay/Effects/Concrete/SittingEffect.cs` — no
+  cell-departure hook, no OnTurnEnd cleanup. `Furniture` field
+  reference stays attached indefinitely.
+- `Assets/Scripts/Gameplay/AI/Goals/WanderDurationGoal.cs` — no
+  `SittingEffect` removal in its push or pop lifecycle.
+
+Walkthrough: Scribe sits in chair (`SittingEffect` applied via
+`ChairPart.IdleQueryOffer`). Player kills a neighbor. M2.3 applies
+`WitnessedEffect` → pushes `WanderDurationGoal(20)`. Scribe paces for
+20 ticks, walks away from chair. `SittingEffect` stays attached
+(no code path removes it based on cell-departure or movement). After
+20 ticks, WanderDurationGoal pops. BrainPart's `HandleTakeTurn` runs
+`BoredGoal.TakeAction`. `BoredGoal.Step 1` short-circuits:
+
+```csharp
+if (ParentEntity.HasEffect<SittingEffect>())
+{
+    // ...hostile check...
+    // Stay seated
+    ParentBrain.CurrentState = AIState.Idle;
+    PushChildGoal(new WaitGoal(1));
+    return;
+}
+```
+
+Scribe is now standing 10 cells away from the chair, but their
+`SittingEffect` is still present → they stand still forever, looking
+idle without actually being in the chair.
+
+**Why it matters:** post-pacing NPCs get stuck standing wherever
+they ended up, not returning to work or home. Highly visible in play
+(user has already noticed the sit-forever behavior generally).
+
+**Proposed fix:** two options:
+- (a) `SittingEffect.OnTurnEnd` checks if the carrier's current cell
+  matches `Furniture`'s cell; if not, self-remove. Safe but requires
+  per-tick spatial check.
+- (b) `WanderDurationGoal.OnPush` removes `SittingEffect` if present.
+  Narrow fix, covers the known trigger (witness-shaken). Doesn't
+  cover hypothetical future "something else displaces a sitting NPC
+  without clearing the effect."
+
+Recommend (a) — more robust. ~10 lines + regression test.
+
+###### 🔵 CM-4 (wiring) — Scenario menu-wiring pattern gap
+
+**File:** `Assets/Editor/Scenarios/ScenarioMenuItems.cs`
+
+Every scenario with a `[Scenario]` attribute needs a corresponding
+`[MenuItem]` entry here. The file's opening docstring explicitly
+warns about this (lines 8-24 of the file — "Adding a new scenario
+requires writing the IScenario class AND adding a 2-line entry here").
+SnapjawBurial hit this gap (fixed `3d7e298`). Audit confirms all
+current scenarios are menu-wired (grep shows menu entries for every
+scenario file).
+
+**Risk:** pattern-repeat. Someone adds a new scenario, forgets the
+menu entry, ships a "committed but unreachable" scenario. Same
+failure mode that took user's "I don't see the menu entry" report to
+catch for M5.
+
+**Proposed fix:** optional — a build-time validator that uses
+reflection to enumerate `[Scenario]`-attributed classes and asserts
+each has a `Launch_<Name>` static method in `ScenarioMenuItems.cs`.
+EditMode test, ~30 min.
+
+###### 🔵 CM-6 (pattern) — Terminal-thought stickiness recurring across goals
+
+**Pattern:** goals that call `Think("active-phase-description")` in
+`TakeAction` without `Think(null)` in `OnPop` leave the thought in
+`LastThought` indefinitely after the goal pops.
+
+**Affected goals (current state):**
+| Goal | Thinks in TakeAction? | OnPop clears? | Status |
+|---|---|---|---|
+| DisposeOfCorpseGoal | yes (fetching/hauling) | yes (Think(null)) | ✅ fixed M5.2 |
+| WanderDurationGoal | yes (when Thought set) | yes (Think(null)) | ✅ fixed caad57d |
+| MoveToInteriorGoal | yes (seeking shelter) | writes "sheltered" | ❌ M4.A2 |
+| MoveToExteriorGoal | yes (heading outside) | writes "outside" | ❌ M4.A2 |
+| FleeLocationGoal | yes (running for safety) | no OnPop override | ❌ M3.A3 |
+| KillGoal | yes (closing on / attacking) | no OnPop override | unknown — audit target |
+| RetreatGoal | possibly | possibly | unknown — audit target |
+| GoFetchGoal | yes (walking to X) | no OnPop override | unknown — audit target |
+
+**Why it matters:** every new goal added without OnPop-Think(null)
+perpetuates the pattern. Users notice stale thoughts (the user's
+M5.2 report kicked off the original fix).
+
+**Proposed fix:** add a Methodology Template §3.1 rule: "every Goal
+that calls Think() in TakeAction MUST override OnPop to write
+Think(null) unless the terminal thought is intentionally persistent
+(document reason in OnPop docstring)." Back-fill OnPops on the ❌
+goals above. ~15 min per goal + regression test per.
+
+###### 🔵 CM-8 (design) — AllowIdleBehavior on pets reads as oversight
+
+**File:** `Objects.json` grep for `AllowIdleBehavior` returns:
+Elder, Villager, **Magpie**, **PetDog**, VillageChild, Tinker,
+Merchant, Warden, Scribe.
+
+Magpie and PetDog having the tag means they'd accept
+`ChairPart.IdleQueryOffer` and sit in chairs if offered. Narratively
+odd — a magpie doesn't sit in a chair, a dog doesn't.
+
+No current bug: pets don't stay in the village interior where
+chairs live, so the tag's consequence is dormant. But the tag is
+present; if a future scenario places pets + chairs together, the
+pets would sit.
+
+**Proposed fix:** remove `AllowIdleBehavior` from Magpie and PetDog
+blueprints. Pets have their own behaviors (AIHoarderPart,
+AIRetrieverPart); they don't need furniture idle fallback. Or
+document why pets keep the tag if it's intentional.
+
+**Severity rationale:** 🔵 because no current gameplay surface
+exposes the oddity. Would be 🟡 if a "pet-in-tavern" scenario
+started placing pets near chairs.
+
+###### 🔵 CM-10 (doc) — CurrentZone init asymmetric
+
+**Files:**
+- **Eager** (bootstrap): `GameBootstrap.cs:800-824` — for every Creature in the initial zone, sets `brain.CurrentZone = _zone; brain.Rng = new System.Random(); brain.StartingCellX = pos.x; brain.StartingCellY = pos.y;`
+- **Partial** (zone transition): `InputHandler.cs:562-576` — for every Creature in the new zone, sets `brain.CurrentZone = result.NewZone; brain.Rng = new System.Random();`. Does NOT set StartingCell.
+
+The StartingCell omission is compensated by
+`BrainPart.HandleTakeTurn` line 303-310 which lazy-sets it on first
+tick. So functionally correct. But the asymmetry is a code smell —
+two spawn paths with different init contracts.
+
+**Why it matters:** a future spawn path (e.g., summon-mutation, dialogue-
+scripted-spawn) might forget one or both init steps and get silent
+misbehavior (NPC's first-tick StartingCell lazy-set would lock them
+to wherever they happened to be at tick 1, not their intended post).
+
+**Proposed fix:** extract an `InitializeBrainFor(Entity npc, Zone
+zone)` helper on BrainPart or GameBootstrap. Both spawn paths call
+it. Same init semantics everywhere.
+
+###### ⚪ CM-9 (doc) — HandleDeath event ordering correct but fragile
+
+**File:** `CombatSystem.cs:440-470`
+
+Confirmed order:
+1. `body.DropAllEquipment(zone)` — equipment off body onto floor
+2. `DropInventoryOnDeath(target, inventory, zone)` — inventory onto floor
+3. `DeathSplatterFx.Emit(target, killer, zone)` — particle FX
+4. `GameEvent.New("Died")` fires — CorpsePart handles, StatusEffectsPart handles, GivesRepPart handles
+5. `BroadcastDeathWitnessed(...)` — M2.3
+6. `zone.RemoveEntity(target)`
+
+Invariants required:
+- M5.1 needs death cell resolvable at step 4 (corpse spawn cell).
+- M2.3 needs death cell resolvable at step 5 (witness filter reads it).
+- Both are satisfied because step 6 (zone.RemoveEntity) is last.
+
+A refactor that moves step 6 before step 4 or 5 silently breaks both
+milestones. No test pins the ordering explicitly.
+
+**Proposed fix:** regression test that uses a custom test Part
+attached to the dying entity — the Part's HandleEvent("Died") asserts
+`zone.GetEntityCell(target) != null`. Breaks loudly if a future
+refactor reorders.
+
+**Severity rationale:** ⚪ because the current code is correct; the
+finding is a "reduce future fragility" architectural note.
+
+---
+
+#### Pre-known findings resolution (Pass 7)
+
+All 9 pre-known findings have been formalised as audit findings:
+
+| Pre-known # | Title | Resolution |
+|---|---|---|
+| 1 | ClearGoals-on-NPC-death | Promoted to 🟡 **CM-1** |
+| 2 | SittingEffect zombie state | Promoted to 🟡 **CM-3** |
+| 3 | Passive missing on Villager/Merchant | Promoted to 🟡 **CM-2** |
+| 4 | M4 MoveToInterior/Exterior sticky | Confirmed as 🔵 **M4.A2** |
+| 5 | M4 playtest pending | Confirmed as 🧪 **M4.A6** + rolled into **CM-7** |
+| 6 | Corpse stacker bug | Confirmed as 🟡 **M5.A1** (promoted from ⚪ in the Plan) |
+| 7 | No Graveyard in world-gen | Confirmed as 🟡 **M5.A3** |
+| 8 | Scenario CompassStone pitfall | Elevated to 🔴 **CM-5** (concrete InspectAIGoals hit) |
+| 9 | Scenario menu-wiring gap | Confirmed as 🔵 **CM-4** |
+
+No pre-known findings are dismissed. The severity elevations for
+#6 and #8 reflect new evidence surfaced during the passes.
+
+---
+
+#### Fix-pass queue (prioritised by severity × effort)
+
+49 findings total across 7 passes. Below is the recommended
+execution order for a fix-pass burn-down, ordered by severity (🔴
+first) and within a tier by effort (smallest first). Effort estimates
+are best-guess wall-clock for the code change + regression test +
+commit.
+
+##### 🔴 tier (ship now)
+
+| # | ID | Title | Effort |
+|---|----|-------|--------|
+| 1 | CM-5 | InspectAIGoals CompassStone fix (swap `AtPlayerOffset(6,0)` → `NearPlayer(5,7)`) | ~15 min |
+
+##### 🟡 tier (ship this fix-pass)
+
+| # | ID | Title | Effort | Depends on |
+|---|----|-------|--------|------------|
+| 2 | M5.A2 | DisposeOfCorpseGoal.Failed drops carried corpse | ~30 min | — |
+| 3 | CM-1 | HandleDeath calls brain.ClearGoals() | ~30 min | — |
+| 4 | CM-3 | SittingEffect self-removes on cell-departure | ~45 min | — |
+| 5 | M4.A1 | FindNearestCellWhere 8-directional BFS | ~20 min | — |
+| 6 | CM-2 | Add `Passive=true` to Villager/Merchant/Farmer blueprints | ~15 min | design call |
+| 7 | M2.A1 | PushNoFightGoal gets dialogue-content consumer | ~2 hrs | needs conversation JSON authoring |
+| 8 | M5.A1 | StackerPart honors CreatureName for CreatureCorpse | ~1 hr | — |
+| 9 | M3.A1 | SanctuaryPart heal-over-time minimal implementation | ~45 min | — |
+| 10 | M5.A3 | VillagePopulationBuilder places Graveyard + Undertaker | ~1 hr | — |
+| 11 | M3.A2 | AIRetriever ReturnToThrower mode | ~3 hrs | bigger refactor |
+
+##### 🔵 tier (batch in a single "pattern fixes" commit)
+
+| # | ID | Title | Effort |
+|---|----|-------|--------|
+| 12 | M4.A2 + M3.A3 + CM-6 | Terminal-thought OnPop audit — fix all known sticky thoughts | ~2 hrs total (batch) |
+| 13 | M4.A3 + M4.A9 | Doorway IsInterior decision + test | ~30 min |
+| 14 | CM-4 | Scenario menu-wiring validator | ~30 min |
+| 15 | M1.A1 + alignment | AISelfPreservation Value/BaseValue alignment | ~30 min |
+| 16 | M3.A4 | Fetch reservation for AIHoarder/AIRetriever | ~45 min |
+| 17 | M5.A4-A6 | Corpse DisplayName edge-cases (case-sensitivity, empty-name fallback) | ~30 min |
+| 18 | CM-8 | Remove `AllowIdleBehavior` from Magpie/PetDog (or document) | ~10 min |
+| 19 | CM-10 | BrainPart `InitializeBrainFor` helper | ~30 min |
+
+##### 🧪 tier (fill test gaps after code fixes)
+
+| # | ID | Title | Effort |
+|---|----|-------|--------|
+| 20 | M4.A4 | MarkDungeonInterior test | ~15 min |
+| 21 | M4.A5 | M4 PlayMode sanity sweep | ~45 min |
+| 22 | M2.A3 | M2 PlayMode sanity sweep | ~45 min |
+| 23 | M3.A8 | M3 PlayMode sanity sweep | ~45 min |
+| 24 | M1.A2 | M1 PlayMode sanity sweep | ~45 min |
+| 25 | M5.A7 | Corpse factory-null LogAssert test | ~15 min |
+| 26 | M5.A8 | Sit-stand-haul Undertaker integration test | ~30 min |
+| 27 | M5.A9 | DisposeOfCorpseGoal.Failed-while-carrying test | included in #2 |
+| 28 | M3.A6 | Two-Magpie race integration test | ~20 min |
+| 29 | CM-9 | HandleDeath event-ordering regression test | ~30 min |
+| 30 | CM-7 | User-driven manual playtest of all 18 scenarios | user time |
+
+##### ⚪ tier (architectural notes; action optional)
+
+Findings M4.A7, M4.A8, M5.A11, M5.A12, M1.A4, M2.A5 are documented
+parity divergences or design decisions. No action needed; revisit if
+the scope they defer to becomes active.
+
+---
+
+#### Audit summary
+
+**Per-pass totals:**
+
+| Pass | Milestone | Findings | 🔴 | 🟡 | 🔵 | 🧪 | ⚪ |
+|------|-----------|----------|------|------|------|------|------|
+| 1 | M4 | 9 | 0 | 1 | 3 | 3 | 2 |
+| 2 | M5 | 12 | 0 | 3 | 3 | 4 | 2 |
+| 3 | M3 | 9 | 0 | 2 | 3 | 4 | 0 |
+| 4 | M2 | 5 | 0 | 1 | 1 | 2 | 1 |
+| 5 | M1 | 4 | 0 | 0 | 1 | 2 | 1 |
+| 6+7 | Cross-milestone | 10 | 1 | 3 | 4 | 1 | 1 |
+| **Total** | | **49** | **1** | **10** | **15** | **16** | **7** |
+
+**Headline takeaways:**
+
+1. **One 🔴 bug found** (CM-5 InspectAIGoals CompassStone). Fixable
+   in ~15 minutes. Should ship immediately.
+2. **10 🟡 bugs** — concentrated in M3 (2), M5 (3), and cross-cutting (3).
+   Main themes: incomplete features shipped as "done"
+   (SanctuaryPart heal, AIRetriever return, Graveyard world-gen,
+   PushNoFightGoal dialogue consumer), plus systemic gaps
+   (ClearGoals-on-death, Passive coverage, SittingEffect zombie).
+3. **Pattern: sticky thoughts** (🔵 CM-6) — 5 goals affected across
+   M3/M4; 2 of them correct after M5.2's lesson; rest drift. One batch
+   fix-pass closes all.
+4. **Testing: no milestone except M5 ran a PlayMode sweep.** 4 of 5
+   milestones shipped ✅ Done without the Template §3.5 live-scene
+   verification. M5 caught a 🔴 with its sweep — M1-M4 carry analogous
+   risk.
+5. **Manual playtest backlog: 18+ scenarios unplayed by user.** Only
+   M5 (SnapjawBurial) has confirmed observation.
+6. **M1's low finding count (4)** reflects its rigorous pre-ship
+   14-finding review. Worth treating the M1 review as the methodology
+   template's reference worked-example.
+
+**Recommended next action:** ship the 🔴 CM-5 fix today (15 min), then
+plan a fix-pass sprint covering the 🟡 tier (~10 hours). After the
+🟡 burn-down the shipped-feature claims for M1-M5 are genuinely
+accurate to a reader.
+
+---
+
 **Status:** 🟡 Partial (2/many)
 
 **Shipped:**
