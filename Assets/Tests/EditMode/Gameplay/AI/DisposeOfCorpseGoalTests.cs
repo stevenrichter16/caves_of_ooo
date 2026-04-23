@@ -166,6 +166,87 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void HaulPhase_TargetsPassableNeighbor_NotSolidContainerCell()
+        {
+            // Regression pin for the M5 PlayMode-sweep finding: HaulPhase used
+            // to push `new MoveToGoal(containerCell.X, containerCell.Y, ...)`
+            // targeting the container cell directly. Graveyard is Solid=true,
+            // so MovementSystem.TryMove blocks the final step; MoveToGoal
+            // FailsToParent, DisposeOfCorpseGoal.Failed cascades FailToParent,
+            // corpse stuck in NPC inventory forever. Fix: target the passable
+            // cell closest to the actor rather than the container cell.
+            // Mirrors AIWellVisitorPart.GetPassableAdjacentCells pattern.
+            var zone = new Zone("TestZone");
+            var npc = CreateUndertaker(zone, 10, 10);
+            var corpse = CreateCorpse(zone, 10, 10);
+            var grave = CreateGraveyard(zone, 15, 10); // Solid=true in helper
+            zone.RemoveEntity(corpse);
+            npc.GetPart<InventoryPart>().AddObject(corpse);
+
+            var brain = npc.GetPart<BrainPart>();
+            var goal = new DisposeOfCorpseGoal(corpse, grave);
+            brain.PushGoal(goal);
+
+            RunGoalOnce(goal, brain);
+
+            var move = brain.FindGoal<MoveToGoal>();
+            Assert.IsNotNull(move, "HaulPhase should push a MoveToGoal when not adjacent.");
+            Assert.IsFalse(move.TargetX == 15 && move.TargetY == 10,
+                "MoveToGoal must NOT target the Graveyard cell (15,10) directly — Solid tiles are unreachable.");
+            var targetCell = zone.GetCell(move.TargetX, move.TargetY);
+            Assert.IsNotNull(targetCell, "Target cell must be in bounds.");
+            Assert.IsTrue(targetCell.IsPassable(),
+                $"MoveToGoal target ({move.TargetX},{move.TargetY}) must be passable, else the move fails forever.");
+            int dx = System.Math.Abs(move.TargetX - 15);
+            int dy = System.Math.Abs(move.TargetY - 10);
+            Assert.LessOrEqual(System.Math.Max(dx, dy), 1,
+                "Target should be Chebyshev-adjacent to the Graveyard so the next HaulPhase tick sees adjacency and deposits.");
+        }
+
+        [Test]
+        public void HaulPhase_ContainerWalledIn_DropsAtFeetRatherThanLoop()
+        {
+            // Counter-check for the above fix: when NO passable neighbor exists
+            // (container fully walled in), HaulPhase must drop at feet instead
+            // of looping forever.
+            var zone = new Zone("TestZone");
+            var npc = CreateUndertaker(zone, 10, 10);
+            var corpse = CreateCorpse(zone, 10, 10);
+            var grave = CreateGraveyard(zone, 15, 10);
+            // Wall in every cell adjacent to the graveyard with solid objects.
+            for (int wx = 14; wx <= 16; wx++)
+            {
+                for (int wy = 9; wy <= 11; wy++)
+                {
+                    if (wx == 15 && wy == 10) continue; // skip grave cell itself
+                    var wall = new Entity { BlueprintName = "TestWall" };
+                    // "Solid" TAG drives Cell.IsPassable (line 91). PhysicsPart.Solid
+                    // drives MovementSystem.TryMove blocking. Both are used inconsistently
+                    // across CoO — set both for a fully-solid test wall.
+                    wall.Tags["Solid"] = "";
+                    wall.AddPart(new PhysicsPart { Solid = true });
+                    zone.AddEntity(wall, wx, wy);
+                }
+            }
+
+            zone.RemoveEntity(corpse);
+            npc.GetPart<InventoryPart>().AddObject(corpse);
+
+            var brain = npc.GetPart<BrainPart>();
+            var goal = new DisposeOfCorpseGoal(corpse, grave);
+            brain.PushGoal(goal);
+
+            RunGoalOnce(goal, brain);
+
+            Assert.IsTrue(goal.Finished(),
+                "Walled-in container must cause HaulPhase to drop at feet and finish.");
+            Assert.IsFalse(npc.GetPart<InventoryPart>().Contains(corpse),
+                "Corpse must be dropped from inventory when container is unreachable.");
+            Assert.IsNotNull(zone.GetEntityCell(corpse),
+                "Corpse must land back in the zone at NPC's cell (not vanish).");
+        }
+
+        [Test]
         public void HaulPhase_AdjacentToContainer_DepositsCorpseAndSetsDone()
         {
             var zone = new Zone("TestZone");

@@ -170,7 +170,23 @@ namespace CavesOfOoo.Core
             if (++GoToContainerTries <= MaxMoveTries)
             {
                 Think("hauling corpse");
-                PushChildGoal(new MoveToGoal(containerCell.X, containerCell.Y, ChildMoveMaxTurns));
+                // Containers are typically Solid (Graveyard.Physics.Solid=true)
+                // — MoveToGoal cannot step onto a Solid cell and will
+                // FailToParent after A* + greedy fallback both fail, leaving
+                // the corpse stuck in the NPC's inventory. Target a passable
+                // neighbor instead. Mirrors the AIWellVisitorPart pattern
+                // (AIWellVisitorPart.cs line 55-61). Caught by the M5
+                // PlayMode sanity sweep.
+                var target = FindPassableCellNearContainer(zone, containerCell, actorPos);
+                if (!target.found)
+                {
+                    // Container is walled in on all 8 sides — unreachable.
+                    // Drop the corpse at NPC feet rather than loop forever.
+                    InventorySystem.Drop(actor, Corpse, zone);
+                    _done = true;
+                    return;
+                }
+                PushChildGoal(new MoveToGoal(target.x, target.y, ChildMoveMaxTurns));
                 return;
             }
 
@@ -178,6 +194,71 @@ namespace CavesOfOoo.Core
             // lost forever in inventory. Mirrors Qud DisposeOfCorpse.cs line 64.
             InventorySystem.Drop(actor, Corpse, zone);
             _done = true;
+        }
+
+        /// <summary>
+        /// Find the passable cell adjacent to the container that minimises
+        /// Chebyshev distance to <paramref name="actorPos"/>. Returns
+        /// <c>found=false</c> only when the container is walled in on all
+        /// eight sides (the haul is then abandoned).
+        ///
+        /// <para><b>Passability predicate.</b> Uses the same rule as
+        /// <c>MovementSystem.TryMove</c> / <c>PhysicsPart.HandleBeforeMove</c>:
+        /// a cell is steppable iff no object in it has
+        /// <c>PhysicsPart.Solid=true</c> OR the <c>"Solid"</c> tag.
+        /// <see cref="Cell.IsPassable"/> alone is insufficient — it only
+        /// checks the tag, so a cell with a <c>PhysicsPart.Solid=true</c>
+        /// entity (e.g. Chest, CompassStone) reads as "passable" but is
+        /// un-step-into. Using the stricter predicate avoids picking such
+        /// a cell as the haul target and then hitting the same original
+        /// M5.3 bug one step closer to the graveyard.</para>
+        /// </summary>
+        private static (bool found, int x, int y) FindPassableCellNearContainer(
+            Zone zone, Cell containerCell, (int x, int y) actorPos)
+        {
+            int bestDist = int.MaxValue;
+            int bestX = -1, bestY = -1;
+            bool anyFound = false;
+            for (int dx = -1; dx <= 1; dx++)
+            {
+                for (int dy = -1; dy <= 1; dy++)
+                {
+                    if (dx == 0 && dy == 0) continue;
+                    int nx = containerCell.X + dx;
+                    int ny = containerCell.Y + dy;
+                    if (!zone.InBounds(nx, ny)) continue;
+                    var c = zone.GetCell(nx, ny);
+                    if (c == null) continue;
+                    if (!IsSteppable(c)) continue;
+                    int d = AIHelpers.ChebyshevDistance(actorPos.x, actorPos.y, nx, ny);
+                    if (d < bestDist)
+                    {
+                        bestDist = d;
+                        bestX = nx;
+                        bestY = ny;
+                        anyFound = true;
+                    }
+                }
+            }
+            return (anyFound, bestX, bestY);
+        }
+
+        /// <summary>
+        /// Mirrors <c>PhysicsPart.HandleBeforeMove</c>'s blocking rule: a cell
+        /// is un-step-into if any object has <c>PhysicsPart.Solid=true</c> or
+        /// the <c>"Solid"</c> tag. See <see cref="FindPassableCellNearContainer"/>
+        /// for why <see cref="Cell.IsPassable"/> alone isn't enough.
+        /// </summary>
+        private static bool IsSteppable(Cell c)
+        {
+            for (int i = 0; i < c.Objects.Count; i++)
+            {
+                var obj = c.Objects[i];
+                if (obj.HasTag("Solid")) return false;
+                var phys = obj.GetPart<PhysicsPart>();
+                if (phys != null && phys.Solid) return false;
+            }
+            return true;
         }
 
         /// <summary>
