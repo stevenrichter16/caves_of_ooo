@@ -1578,6 +1578,99 @@ CoO-original triggers. The Phase 6 coverage claim ("5 of 7 shipped goals now hav
 real gameplay triggers") stands; the claim that M2 is "Qud parity work" does NOT —
 M2 is closer to "Qud-inspired extensions that consume Qud-parity primitives."
 
+##### M2 Post-audit findings (2026-04-23)
+
+Pass 4 of the Comprehensive Audit. Read: `NoFightGoal.cs`,
+`WanderDurationGoal.cs`, `ConversationActions.cs` (PushNoFightGoal
+registration), `CalmMutation.cs`, `WitnessedEffect.cs`, `CombatSystem.cs`
+(BroadcastDeathWitnessed), `PacifiedWarden.cs` scenario,
+`NoFightConversationTests.cs`, `CalmMutationTests.cs`,
+`WitnessedEffectTests.cs`. Grepped `Assets/Resources/**/*.json` for
+`PushNoFightGoal` consumers.
+
+**5 findings** — 0 🔴, 1 🟡, 1 🔵, 2 🧪, 1 ⚪.
+
+| # | Sev | Cat | Title | File:line |
+|---|-----|-----|-------|-----------|
+| M2.A1 | 🟡 | wiring | `PushNoFightGoal` dialogue action has zero content consumers | `ConversationActions.cs:295` (registered), grep `Assets/Resources` for `PushNoFightGoal` → 0 |
+| M2.A2 | 🔵 | design | NoFightGoal suppresses ALL AIBehaviorPart responses while active; pacified low-HP NPCs can't self-retreat | `NoFightGoal.cs:22-30` (documented) |
+| M2.A3 | 🧪 | test-playmode | No PlayMode sanity sweep for M2 | n/a |
+| M2.A4 | 🧪 | test-manual | 7 M2 scenarios' manual observation pending | `ScenarioMenuItems.cs` entries all wired; no user reports |
+| M2.A5 | ⚪ | parity | WitnessedEffect classifies as Mental but lacks Qud's `-Level DV` stat-shift | `WitnessedEffect.cs:36-41` (documented) |
+
+###### 🟡 M2.A1 (wiring) — PushNoFightGoal dialogue action has zero consumers
+
+**Files:**
+- **Registered:** `Assets/Scripts/Gameplay/Conversations/ConversationActions.cs:295-327`
+- **Tested:** `Assets/Tests/EditMode/Gameplay/Conversations/NoFightConversationTests.cs` (8 tests exercise the action via direct `ConversationActions.Execute` calls).
+- **Consumed by dialogue content:** grep `-rn "PushNoFightGoal" Assets/Resources` returns **zero** matches.
+
+The M2.1 shipping narrative (QUD-PARITY.md:1571) documents
+`PushNoFightGoal` as a "CoO-original hook" intended to make
+conversation choices like "Stand down, friend" actually pacify the
+speaker. The C# action is fully wired: idempotency guard, TryParse
+trap-fix, MessageLog echo. But no conversation tree in
+`Assets/Resources/...` references the action name.
+
+The existing M2 scenarios that exercise pacification
+(`PacifiedWarden.cs`, `CalmTestSetup.cs`, etc.) bypass dialogue by
+calling `AsPersonalEnemyOf` then casting `CalmMutation`, not by
+triggering the dialogue action.
+
+**Why it matters:** M2.1's shipped claim is "dialogue-pacify." Tests
+confirm the action fires correctly. But a player in the actual game
+cannot trigger the action because no dialogue offers it. The feature
+is functionally inert in the shipped game — same class as M5.A3
+(Graveyard without world-gen placement). The M2 parity audit table
+correctly labels the action "CoO-original hook," but doesn't flag
+that the hook has no caller.
+
+**Proposed fix:** add a dialogue choice to at least one Villager /
+Merchant / Scribe conversation tree (wherever `Conversation_1.json`
+or similar lives) that calls `PushNoFightGoal` with an appropriate
+duration. E.g., a "calm down" option on the Warden's dialogue when
+the player has some high-Ego stat. Needs dialogue-content authoring
++ a scenario that demonstrates it. ~2 hours.
+
+**Severity rationale:** 🟡 because the M2.1 shipping claim is
+partially unverified in normal play. Not 🔴 because the tests pin
+the action's behavior — the gap is content, not correctness.
+
+###### 🔵 M2.A2 (design) — NoFightGoal suppresses self-preservation
+
+**File:** `Assets/Scripts/Gameplay/AI/Goals/NoFightGoal.cs:22-30`
+
+Docstring explicitly warns:
+
+> *⚠️ Side-effect: while NoFightGoal is on top of the stack,
+> AIBoredEvent does not fire, which means all AIBehaviorPart
+> subclasses stop responding — including AISelfPreservationPart. A
+> pacified creature at critical HP will not be retreated by
+> self-preservation until the NoFightGoal expires or is removed.*
+
+This is a documented design trade-off — pacification is "complete"
+by intent. But it creates a concrete gameplay surface: Calm a hostile
+Warden → Warden stops attacking → also stops self-preservation →
+any ongoing damage (bleed, poison, environmental) kills the Warden
+uninterrupted.
+
+**Why it matters:** calm-then-kill-with-damage-over-time is an
+exploit. The player's counter-strategy ("calm + wait for DoT")
+bypasses the "non-lethal pacification" intent.
+
+**Proposed fix:** two options:
+- (a) Add a NoFightGoal-bypass in AISelfPreservationPart: if HP
+  fraction < critical threshold (e.g., 0.15), remove NoFightGoal
+  and push RetreatGoal. Documented as "pacification doesn't override
+  flight instinct when dying."
+- (b) Accept the current semantics and document the exploit as
+  intentional (calm-then-kill is a valid strategy by design).
+
+**Severity rationale:** 🔵 because it's documented existing behavior,
+not new drift. Elevate to 🟡 if playtest shows it's a common exploit.
+
+---
+
 #### Milestone M3 — Ambient behavior parts (Tier B, 2–3 days)
 
 Goal: after M3, `PetGoal`, `GoFetchGoal`, and `FleeLocationGoal` are all
