@@ -168,7 +168,8 @@ namespace CavesOfOoo.Core
             // string-typed fields on the corpse part itself: consumers
             // (Examinable, AIUndertaker) read via GetProperty, which is the
             // established CoO pattern for per-instance descriptor data.
-            corpse.Properties["CreatureName"] = ParentEntity.GetDisplayName();
+            string creatureName = ParentEntity.GetDisplayName();
+            corpse.Properties["CreatureName"] = creatureName;
             if (!string.IsNullOrEmpty(ParentEntity.BlueprintName))
                 corpse.Properties["SourceBlueprint"] = ParentEntity.BlueprintName;
             if (!string.IsNullOrEmpty(ParentEntity.ID))
@@ -181,6 +182,31 @@ namespace CavesOfOoo.Core
                     corpse.Properties["KillerID"] = killer.ID;
                 if (!string.IsNullOrEmpty(killer.BlueprintName))
                     corpse.Properties["KillerBlueprint"] = killer.BlueprintName;
+            }
+
+            // Interpolate the corpse's DisplayName so "villager corpse" /
+            // "elder corpse" / "scribe corpse" show in the sidebar and
+            // pickup UI instead of the flat CreatureCorpse default "corpse".
+            //
+            // Conditional on the corpse blueprint's authored DisplayName
+            // being exactly the CreatureCorpse default ("corpse"). A
+            // per-creature corpse blueprint that hand-authored a flavored
+            // name — e.g. SnapjawCorpse with DisplayName="snapjaw corpse"
+            // — keeps its author-chosen string. Worth noting SnapjawCorpse's
+            // value coincidentally equals what interpolation would produce,
+            // so this condition matters primarily for future flavored
+            // corpses (e.g. "gnawed snapjaw corpse"), not current content.
+            //
+            // Qud-parity note: Qud uses NameMaker.MakeName to build richer
+            // "the corpse of a gnarled N-armed snapjaw" descriptors. CoO's
+            // simpler "{creatureName} corpse" template is a documented
+            // simplification; a fuller formatter can layer on later.
+            var render = corpse.GetPart<RenderPart>();
+            if (render != null
+                && !string.IsNullOrEmpty(creatureName)
+                && render.DisplayName == "corpse")
+            {
+                render.DisplayName = $"{creatureName} corpse";
             }
 
             zone.AddEntity(corpse, cell.X, cell.Y);

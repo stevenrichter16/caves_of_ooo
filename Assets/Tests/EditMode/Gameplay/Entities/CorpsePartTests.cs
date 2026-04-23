@@ -387,6 +387,61 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void Villager_Corpse_DisplayName_InterpolatesToVillagerCorpse()
+        {
+            // User-reported UX: generic "corpse" DisplayName was
+            // indistinguishable across creature types in the sidebar /
+            // look-mode. Fix: CorpsePart post-spawn override interpolates
+            // CreatureName into DisplayName when the corpse blueprint's
+            // default was the flat "corpse" (CreatureCorpse case).
+            FactionManager.Initialize();
+            var zone = new Zone("TestZone");
+            var villager = _factory.CreateEntity("Villager");
+            zone.AddEntity(villager, 10, 10);
+
+            CombatSystem.HandleDeath(villager, killer: null, zone);
+
+            CavesOfOoo.Core.Entity corpse = null;
+            foreach (var obj in zone.GetCell(10, 10).Objects)
+                if (obj.BlueprintName == "CreatureCorpse") { corpse = obj; break; }
+            Assert.IsNotNull(corpse);
+            var render = corpse.GetPart<RenderPart>();
+            Assert.IsNotNull(render);
+            Assert.AreEqual("villager corpse", render.DisplayName,
+                "Villager's corpse DisplayName must interpolate to \"villager corpse\" — " +
+                "sidebar/pickup UI should distinguish this from a scribe/warden corpse.");
+        }
+
+        [Test]
+        public void Snapjaw_Corpse_DisplayName_PreservesBlueprintValue_NotInterpolated()
+        {
+            // Counter-check for the conditional override: SnapjawCorpse has
+            // a hand-authored Render.DisplayName = "snapjaw corpse". The
+            // interpolation condition (`render.DisplayName == "corpse"`)
+            // should not fire, so the author-chosen flavor is preserved
+            // even if a future SnapjawCorpse ships as "gnawed snapjaw corpse"
+            // or similar.
+            FactionManager.Initialize();
+            var zone = new Zone("TestZone");
+            var snapjaw = _factory.CreateEntity("Snapjaw");
+            zone.AddEntity(snapjaw, 10, 10);
+            // Force deterministic drop (default CorpseChance=70).
+            snapjaw.GetPart<CorpsePart>().CorpseChance = 100;
+
+            CombatSystem.HandleDeath(snapjaw, killer: null, zone);
+
+            CavesOfOoo.Core.Entity corpse = null;
+            foreach (var obj in zone.GetCell(10, 10).Objects)
+                if (obj.BlueprintName == "SnapjawCorpse") { corpse = obj; break; }
+            Assert.IsNotNull(corpse);
+            var render = corpse.GetPart<RenderPart>();
+            Assert.AreEqual("snapjaw corpse", render.DisplayName,
+                "SnapjawCorpse blueprint's hand-authored \"snapjaw corpse\" DisplayName " +
+                "must be preserved — the interpolation override only fires when the " +
+                "blueprint default is the flat \"corpse\".");
+        }
+
+        [Test]
         public void Player_OnDied_DoesNotSpawnCorpse()
         {
             FactionManager.Initialize();
