@@ -767,7 +767,7 @@ This section describes what it takes to move every goal from state 1 → state 2
 | **M2** — Dialogue/status triggers | ✅ Done | B | 2–3d | NoFightGoal, WanderDurationGoal |
 | **M3** — Ambient behavior parts | ✅ Done | B | 2–3d | PetGoal, GoFetchGoal, FleeLocationGoal |
 | **M4** — Interior/Exterior (Gap B) | ✅ Done (1665/1665) | C | 3–4d | MoveToInterior/ExteriorGoal, weather foundation |
-| **M5** — Corpse system (Gap C) | ✅ Done (1693/1693) | C | 3–5d | CorpsePart, DisposeOfCorpseGoal, AIUndertakerPart, Graveyard blueprint |
+| **M5** — Corpse system (Gap C) | ✅ Done (1702/1702, PlayMode-verified) | C | 3–5d | CorpsePart, DisposeOfCorpseGoal, AIUndertakerPart, Graveyard blueprint |
 | **M6** — Rune system | | C | 3–4d | LayRuneGoal |
 | **M7** — Turret system | | C | 3–4d | PlaceTurretGoal |
 | **M8** — Gap A (zone transitions) | | D | 1–2w | MoveToZone/GlobalGoal, Phase 13 foundation |
@@ -1974,16 +1974,20 @@ commit chain `ac9c5cc → fe55380 → f7b9ec3`):
 
 #### Milestone M5 — Corpse system (Tier C, 3–5 days)
 
-**Status: ✅ Shipped** — 1693/1693 EditMode tests passing. Closes Gap C
-from the Phase 6 audit.
+**Status: ✅ Shipped + PlayMode-verified** — 1702/1702 EditMode tests,
+PlayMode sanity sweep all 11 observations pass. Closes Gap C from the
+Phase 6 audit.
 
-**Manual playtest:** ⏳ scenario shipped (`SnapjawBurial`), awaiting user
-observation.
+**Manual playtest:** ⏳ `SnapjawBurial` scenario shipped, awaiting user
+observation (the PlayMode sweep covers the mechanical chain via
+`execute_code` but not visual feel).
 
 **Actual outcome vs plan:**
-- **Tests:** planned ~23, delivered **28** (7 M5.1 + 10 M5.2 + 10 M5.3 + 1 fix-pass death-drop pin).
-- **Suite growth:** 1665 → 1693 (+28).
+- **Tests:** planned ~23, delivered **37** (7 M5.1 + 10 M5.2 + 10 M5.3 + 1 initial-review death-drop pin + 2 HaulPhase-fix regression pins + 7 CreatureCorpse blueprint pins).
+- **Suite growth:** 1665 → 1702 (+37).
 - **Sub-milestones:** all three shipped in sequence with zero regressions at each step.
+- **PlayMode sweep caught 🔴 production bug missed by EditMode** — HaulPhase targeting the Solid container cell. Fixed in `daba022`. Details under §M5 Post-review findings #10.
+- **User playtest caught 🟡 content gap** — only Snapjaw had CorpsePart; all other NPCs lacked corpse drops. Fixed in `87c8400`. Details under #11.
 - **Follow-up opportunity surfaced during review:** ClearGoals-on-NPC-death (see §M5 follow-ups); cross-cutting so deferred.
 
 **Commit history** (chronological on `main`):
@@ -1994,7 +1998,10 @@ observation.
 | `4eed32a` | M5.1 | `CorpsePart` + `SnapjawCorpse` blueprint + "Died" event wiring + 7 tests |
 | `ab28254` | M5.2 | `DisposeOfCorpseGoal` 2-phase state machine + 10 tests |
 | `89d2070` | M5.3 | `AIUndertakerPart` + `Graveyard` / `Undertaker` blueprints + `SnapjawBurial` scenario + 10 tests |
-| `44182c9` | fix-pass | Post-review: 🔴×1 (factory-null log) + 🟡×1 (rename) + 🧪×1 (undertaker-death drop pin) |
+| `44182c9` | fix-pass | Initial post-review: 🔴×1 (factory-null log) + 🟡×1 (rename) + 🧪×1 (undertaker-death drop pin) |
+| `42ea48d` | docs | M5 post-ship commit-chain + findings table |
+| `daba022` | fix-pass | **PlayMode sweep caught** 🔴 HaulPhase targets Solid container cell → corpse stuck in inventory; fix + 2 regression pins |
+| `87c8400` | fix-pass | **User playtest caught** 🟡 spawn-village NPCs never dropped corpses; CreatureCorpse blueprint + Creature.CorpsePart + SuppressCorpseDrops on Player/MimicChest + 7 regression pins |
 
 ##### M5 Post-review findings (Methodology Template §5.1–5.3)
 
@@ -2012,6 +2019,45 @@ triaged — 3 actionable, 6 dismissed with documented rationale.
 | 6 | ⚪ | Shared `TEST_SEED` constant | 📝 Dismissed — cosmetic; `System.Random(0)` is a stable API |
 | 7 | ⚪ | `SnapjawBurial` Part mutation | 📝 Dismissed — verified safe; EntityFactory creates fresh Part instances per entity |
 | 9 | ⚪ | `GoalHandler.ParentHandler` cycle | 📝 Dismissed — not a leak in .NET GC |
+| 10 | 🔴 | **PlayMode-sweep** caught: `HaulPhase` targeted the Solid container cell; MoveToGoal FailsToParent → corpse stuck in inventory forever | ✅ Fixed in `daba022` — `FindPassableCellNearContainer` targets nearest steppable neighbor; steppability predicate tightened to match `PhysicsPart.HandleBeforeMove` (both `"Solid"` tag AND `PhysicsPart.Solid=true`); 2 regression pins |
+| 11 | 🟡 | **User-playtest** caught: spawn-village NPCs never dropped corpses — only Snapjaw had `CorpsePart`, the 40+ other creature blueprints had nothing | ✅ Fixed in `87c8400` — `CreatureCorpse` blueprint + `Corpse` part on `Creature` parent + `SuppressCorpseDrops` tag on `Player` / `MimicChest`; 7 regression pins |
+
+##### M5 PlayMode sanity sweep results
+
+Executed against a live `GameBootstrap` + real `Objects.json`, with the
+HaulPhase fix (`daba022`) and NPC-corpse fix (`87c8400`) in place.
+
+**Scenario 1 — Happy-path full chain** (all 8 phases pass):
+
+| Phase | Observed | Expected | Verdict |
+|---|---|---|---|
+| Preflight (8 gates) | `PLAY_ACTIVE=True CORPSE_FACTORY=WIRED Creature_has_Corpse_part_entry=True Villager.CorpseChance=100 .CorpseBlueprint=CreatureCorpse Snapjaw.CorpseChance=70 .CorpseBlueprint=SnapjawCorpse Player.HasSuppressCorpseDrops=True` | All wiring reachable at runtime | ✅ |
+| 1a Setup | SJ=(41,7) UT=(44,7) GY=(47,7) | 3 entities on open strip | ✅ |
+| 1b Kill → corpse spawn | `SJ_IN_ZONE=False CORPSE_AT=(41,7) BP=SnapjawCorpse` | Corpse at SJ's cell | ✅ |
+| 1c AIBored → goal push | `CONSUMED=True TOP=DisposeOfCorpseGoal Reserve=50` | Goal pushed, corpse reserved | ✅ |
+| 1d–1e Fetch phase | T1–T3 walk west, `PICKUP_AT_T=4 thought=fetching corpse` | Walks to corpse, picks up | ✅ |
+| 1f–1g Haul phase | T5–T9 walk east, `DEPOSIT_AT_T=10 thought=hauling corpse` UT ended (46,6) adjacent to GY(47,7) | Targets neighbor cell, reaches it, deposits | ✅ |
+| 1h Terminal | `FINAL_Reserve=0 FINAL_THOUGHT=buried HasDisposeGoal_final=False` | Reservation cleared, "buried" thought, goal popped | ✅ |
+
+**Scenario 2 — Counter-checks** (all 3 rule out vacuous pass):
+
+| Variant | Observed | Expected | Verdict |
+|---|---|---|---|
+| 2a No graveyard in zone | `UT.GoalCount=0 consumed=False HasDispose=False` | No push | ✅ |
+| 2b Undertaker has NoHauling tag | `UT.GoalCount=0 consumed=False HasDispose=False` | No push | ✅ |
+| 2c Corpse pre-reserved by another | `UT.GoalCount=0 consumed=False HasDispose=False Reserve=50` (unchanged) | No push, reservation intact | ✅ |
+
+**Honesty bounds:**
+
+*Can script-verify:* Bootstrap wiring, blueprint inheritance resolution,
+entity position, corpse-at-cell, goal-stack membership at each tick,
+inventory contents, container contents, reservation int property,
+LastThought progression through the state machine.
+
+*Cannot script-verify:* `DeathSplatterFx` particle emission, A* visual
+smoothness, glyph rendering (`%` in red), "feel" of the sequence,
+player-swings-sword kill path (the sweep uses scripted
+`HandleDeath` to isolate the pipeline from combat-resolution variables).
 
 ##### Methodology Template compliance
 
@@ -2026,12 +2072,12 @@ Applied end-to-end (not retroactively, unlike M4):
 | 3.1 EditMode unit tests | ✅ 28 tests across 3 new test files |
 | 3.3 Regression pins | ✅ Hook-ordering, try-counter caps, reservation lifecycle, death-drop contract all pinned |
 | 3.4 Counter-check pattern | ✅ Positive paths paired with negatives (no-corpse, no-graveyard, reserved, overburden, NoHauling, idempotency) |
-| 3.5 PlayMode sanity sweep | ✅ `SnapjawBurial` scenario wired |
+| 3.5 PlayMode sanity sweep | ✅ Executed against live Bootstrap + real Objects.json; 8-phase happy-path + 3 counter-checks all pass with raw Observed/Expected tables above. **Sweep caught 🔴 HaulPhase-Solid-target bug** that EditMode missed. |
 | 3.6 Manual playtest scenario | ✅ `SnapjawBurial` committed; ⏳ user observation pending |
 | 4 Parity audit | ✅ Read Qud's `Corpse.cs`, `DisposeOfCorpse.cs`, `DepositCorpses.cs` before design |
-| 5.1–5.3 Post-impl review | ✅ 9 findings logged, 3 fixed, 6 dismissed with rationale |
-| 6.1–6.4 Honesty protocols | ✅ Raw test-count deltas, documented-known-limitations (reservation-on-death leak) |
-| 7 Unity MCP tooling | ✅ `run_tests` + `read_console` for compile-feedback loop at each step |
+| 5.1–5.3 Post-impl review | ✅ 11 findings logged across initial-review + PlayMode-sweep + user-playtest passes, 5 fixed, 6 dismissed with rationale |
+| 6.1–6.4 Honesty protocols | ✅ Raw test-count deltas, documented-known-limitations (reservation-on-death leak); can-verify/cannot-verify bounds in PlayMode sweep report |
+| 7 Unity MCP tooling | ✅ `run_tests` + `read_console` + `manage_editor play/stop` + `execute_code` used; PlayMode sweep exercised the full loop including live entity-inspection |
 | 8.4 Post-milestone | ✅ This section |
 
 M5 adds:
