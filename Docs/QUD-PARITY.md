@@ -2490,6 +2490,312 @@ Read:
 | 7 | CombatSystem hot-path slow-down from entity spawn | Low | CoO already drops equipment + emits splatter fx in HandleDeath; one more spawn is symmetric |
 | 8 | Reservation never cleared (NPC dies mid-haul, corpse stays claimed forever) | Medium | `DisposeOfCorpseGoal.OnPop` clears the property unconditionally; also add `CorpsePart.OnZoneActivate` sweep to clear stale reservations (Qud-parity-plus safety) |
 
+##### M5 Post-audit findings (2026-04-23)
+
+Pass 2 of the Comprehensive Audit. Read: `CorpsePart.cs`,
+`DisposeOfCorpseGoal.cs`, `AIUndertakerPart.cs`, `SnapjawBurial.cs`,
+`CorpsePartTests.cs`, `DisposeOfCorpseGoalTests.cs`,
+`AIUndertakerPartTests.cs`, `ScenarioMenuItems.cs`, Qud `Corpse.cs` /
+`DisposeOfCorpse.cs` / `DepositCorpses.cs`. Cross-checked
+StackerPart.CanStackWith semantics against inventory / container
+flows.
+
+**12 findings** — 0 🔴, 3 🟡, 3 🔵, 4 🧪, 2 ⚪.
+
+| # | Sev | Cat | Title | File:line |
+|---|-----|-----|-------|-----------|
+| M5.A1 | 🟡 | bug | CreatureCorpse entities stack ignoring CreatureName — defeats DisplayName interpolation | `StackerPart` + `InventoryPart.AddObject` + `ContainerPart.AddItem` |
+| M5.A2 | 🟡 | bug | DisposeOfCorpseGoal.Failed doesn't drop carried corpse; orphaned in inventory forever | `DisposeOfCorpseGoal.cs:290-298` |
+| M5.A3 | 🟡 | wiring | No world-gen places Graveyard in villages — Undertaker inert outside scenarios | `VillageBuilder.cs` (absence grep), `Objects.json` (Graveyard placed only by scenario) |
+| M5.A4 | 🔵 | logic | Interpolation gate `render.DisplayName == "corpse"` is case-sensitive | `CorpsePart.cs:207` |
+| M5.A5 | 🔵 | logic | FetchPhase targets corpse cell directly; a future Solid-corpse would reproduce the HaulPhase bug pre-fix | `DisposeOfCorpseGoal.cs:143` |
+| M5.A6 | 🔵 | logic | Fallback `GetDisplayName()` returns BlueprintName with capital-S → `"Snapjaw corpse"` for creatures without a Render.DisplayName | `Entity.cs:391-405` + `CorpsePart.cs:171,209` |
+| M5.A7 | 🧪 | test-unit | Factory-null `Debug.LogWarning` (fix-pass #1) has no regression test | `CorpsePart.cs:160-163` |
+| M5.A8 | 🧪 | test-integration | No test for the sit → AIUndertaker stand → haul integration path (from `04dca03` sit-fix) | n/a |
+| M5.A9 | 🧪 | test-unit | No test covers `DisposeOfCorpseGoal.Failed` while carrying — pins M5.A2 | n/a |
+| M5.A10 | 🧪 | test-manual | SnapjawBurial visual-feel manual observation pending (PlayMode sweep covered mechanics only) | scenario file |
+| M5.A11 | ⚪ | logic | FindGraveyard returns first match, not nearest | `AIUndertakerPart.cs:107-118` — documented |
+| M5.A12 | ⚪ | logic | FindNearestUnclaimedCorpse uses Chebyshev, not reachability | `AIUndertakerPart.cs:120-164` — documented |
+
+**Cross-milestone pointer**: the M5 commit body documents a known
+ClearGoals-on-NPC-death leak affecting DisposeOfCorpseGoal's
+`DepositCorpsesReserve` cleanup. That finding lives in the
+cross-milestone section — see Cross-milestone concern CM-1.
+
+###### 🟡 M5.A1 (bug) — StackerPart merges different-CreatureName corpses
+
+**Files:** `Assets/Scripts/Gameplay/Items/StackerPart.cs:30-40` (CanStackWith),
+`Assets/Scripts/Gameplay/Inventory/InventoryPart.cs:51-89` (AddObject
+stack-merge), `Assets/Scripts/Gameplay/Items/ContainerPart.cs:30-79`
+(AddItem stack-merge).
+
+`StackerPart.CanStackWith` returns true when both entities have a
+StackerPart and share the same `BlueprintName`. `Villager` kill
+produces a CreatureCorpse with `CreatureName="villager"` and
+interpolated DisplayName `"villager corpse"`; `Scribe` kill produces
+another CreatureCorpse with `CreatureName="scribe"` and DisplayName
+`"scribe corpse"`. Both have `BlueprintName="CreatureCorpse"` → they
+stack. Player picks them up and the inventory shows
+`"scribe corpse (x2)"` (or whichever the stack-leader was) — one of
+the corpses loses its identity.
+
+This directly contradicts the M5 `59e1674` commit which shipped
+DisplayName interpolation specifically to distinguish corpse types
+in the UI.
+
+**Why it matters:** two villagers killed in the same cell → looks
+like one corpse in the UI with count=2. Butchering / burial flavor
+(future Phase 14) reads the wrong `CreatureName`. Reversible but
+quietly destructive — the minority entity's `SourceID`, `KillerID`,
+and any other Properties get discarded by MergeFrom.
+
+**Proposed fix:** extend `StackerPart.CanStackWith` to check
+equality of a declarable set of Properties (e.g., a new field
+`StackByProperties: string[]` defaulting to `[]`). `CreatureCorpse`
+blueprint sets `StackByProperties="CreatureName,SourceBlueprint"` so
+only identical-creature corpses stack. Alternative (simpler but
+loses stacking entirely for corpses): add a `NoStack` tag to
+`CreatureCorpse` and short-circuit `CanStackWith` on either party's
+`NoStack`.
+
+**Severity rationale:** 🟡 because it's observable player-facing
+incorrectness (inventory shows wrong data), not just an edge case.
+Not 🔴 because reproduction requires two corpses to land in the
+same cell, which is uncommon in normal play.
+
+###### 🟡 M5.A2 (bug) — DisposeOfCorpseGoal.Failed orphans carried corpse
+
+**File:** `Assets/Scripts/Gameplay/AI/Goals/DisposeOfCorpseGoal.cs:290-298`
+
+```csharp
+public override void Failed(GoalHandler child)
+{
+    FailToParent();
+}
+```
+
+When a child MoveToGoal hits its explicit failure path (A* AND
+greedy fallback both fail), it calls `FailToParent()`. Our
+`DisposeOfCorpseGoal.Failed(child)` cascades that up by calling
+`FailToParent()` on itself. That pops the goal and runs `OnPop`
+(lines 300+) which clears the corpse's `DepositCorpsesReserve`
+property and `LastThought` — but **does not drop the carried corpse
+back to the zone**.
+
+Downstream consequence traced end-to-end:
+1. Goal pops, `_done=false`, NPC still has corpse in `InventoryPart.Objects`.
+2. Corpse is removed from `zone._entityCells` (happened at pickup
+   via `PickupCommand.Execute`) → no longer visible in
+   `zone.GetReadOnlyEntities()`.
+3. AIUndertakerPart's next bored tick calls
+   `FindNearestUnclaimedCorpse(brain.CurrentZone, ...)` which scans
+   zone entities. The corpse isn't in the zone, so the scan misses
+   it. `FindNearestUnclaimedCorpse` returns null. No new
+   `DisposeOfCorpseGoal` pushed.
+4. NPC walks around with corpse in inventory forever. No
+   mechanism re-engages.
+
+**Why it matters:** the Undertaker pipeline silently loses a corpse
+to NPC inventory if pathing fails mid-haul. The MaxMoveTries cap in
+`HaulPhase` only fires on counter overflow (10 tries before
+drop-at-feet). The `Failed` cascade fires on any A*-and-greedy-both-
+fail tick, which for a broken/walled-in path happens immediately.
+
+**Proposed fix:** before calling `FailToParent()` in
+`Failed(GoalHandler child)`, drop the corpse at NPC's feet via
+`InventorySystem.Drop(ParentEntity, Corpse, CurrentZone)` if the
+NPC is carrying it:
+
+```csharp
+public override void Failed(GoalHandler child)
+{
+    var inv = ParentEntity?.GetPart<InventoryPart>();
+    if (inv != null && Corpse != null && inv.Contains(Corpse))
+        InventorySystem.Drop(ParentEntity, Corpse, CurrentZone);
+    FailToParent();
+}
+```
+
+Plus a regression test that forces MoveToGoal failure mid-haul
+(walls every neighbor of a Graveyard mid-carry) and asserts the
+corpse ends up in zone at NPC's feet, not stuck in inventory.
+
+**Severity rationale:** 🟡 because it's a quiet data-loss path the
+user would see as "Undertaker never finishes a burial despite
+trying." Not 🔴 because the trigger (A* and greedy both failing) is
+rare in the starting village layout. Elevate to 🔴 if a user reports
+the symptom in play.
+
+###### 🟡 M5.A3 (wiring) — No world-gen places Graveyard → Undertaker inert outside scenarios
+
+**Files:** `Assets/Scripts/Gameplay/World/Generation/Builders/VillageBuilder.cs`
+(grep for `"Graveyard"` → 0 matches inside the builder),
+`Assets/Resources/Content/Blueprints/Objects.json` (Graveyard
+blueprint exists but no world-gen references it).
+
+The `AIUndertakerPart` filter at `AIUndertakerPart.cs:87-89` requires
+a Graveyard-tagged entity in the zone:
+```csharp
+Entity graveyard = FindGraveyard(brain.CurrentZone);
+if (graveyard == null) return true;
+```
+
+In the shipped starting village, no Graveyard is placed. The
+Undertaker blueprint itself isn't placed either (no
+`PlaceNPCInInterior("Undertaker", ...)` call in VillagePopulationBuilder
+— grep confirms). So the Undertaker behavior only runs via the
+`SnapjawBurial` scenario or a future world-gen addition.
+
+**Why it matters:** the M5 section (1975+) reads as if Undertakers
+exist in villages. They don't. Player playing the game — not a
+scenario — will never encounter an Undertaker. The entire M5.3
+gameplay surface is scenario-only content for now.
+
+**Proposed fix:** extend `VillagePopulationBuilder` to
+(a) place one Graveyard at a plausible cell (village edge, near a
+path) and (b) place one Undertaker NPC associated with it. Or scope
+as intentional follow-up and update the M5 doc's status to
+"shipped; world-gen placement deferred" for honesty.
+
+**Severity rationale:** 🟡 because the gameplay-visible feature
+doesn't work in normal play. Not 🔴 because the mechanics all work;
+only the population hook is missing. The M5 docs don't claim
+world-gen placement was in scope (the follow-ups list mentions it
+explicitly), so this is scope-honesty not functional regression.
+
+###### 🔵 M5.A4 (logic) — DisplayName interpolation case-sensitive
+
+**File:** `CorpsePart.cs:205-209`
+
+```csharp
+if (render != null
+    && !string.IsNullOrEmpty(creatureName)
+    && render.DisplayName == "corpse")
+{
+    render.DisplayName = $"{creatureName} corpse";
+}
+```
+
+The gate compares exactly to lowercase `"corpse"`. If a future
+corpse blueprint accidentally uses `"Corpse"` or `" corpse"` as its
+authored DisplayName, the interpolation won't fire and the corpse
+displays as-authored. No bug today (CreatureCorpse is lowercase) but
+brittle.
+
+**Proposed fix:** use `string.Equals(render.DisplayName, "corpse",
+StringComparison.OrdinalIgnoreCase)` plus `.Trim()` on the
+blueprint-loaded string. Or accept the brittleness and
+document it in a code comment (already partially documented).
+
+###### 🔵 M5.A5 (logic) — FetchPhase targets corpse cell directly
+
+**File:** `DisposeOfCorpseGoal.cs:143`
+
+```csharp
+PushChildGoal(new MoveToGoal(corpseCell.X, corpseCell.Y, ChildMoveMaxTurns));
+```
+
+Symmetric to the HaulPhase bug that PlayMode-sweep caught. Currently
+safe because `SnapjawCorpse`/`CreatureCorpse` both have
+`Physics.Solid=false` → MoveToGoal reaches the corpse cell fine. A
+future corpse blueprint with `Solid=true` (e.g., a "frozen bandit
+corpse" acting as a temporary barrier) would reproduce the
+"MoveToGoal fails because target is solid" bug.
+
+**Proposed fix:** mirror HaulPhase's `FindPassableCellNearContainer`
+with a symmetric `FindPassableCellNearCorpse` — OR document the
+invariant ("corpse blueprints must be non-Solid") in
+`CorpsePart.CorpseBlueprint` docstring and a blueprint-validation
+lint.
+
+**Severity rationale:** 🔵 because no current content violates the
+invariant. Promote to 🟡 if a future corpse blueprint needs Solid.
+
+###### 🔵 M5.A6 (logic) — Empty-DisplayName fallback produces capital-letter interpolation
+
+**Files:** `Entity.cs:391-405` (GetDisplayName fallback),
+`CorpsePart.cs:171` (creatureName = GetDisplayName),
+`CorpsePart.cs:209` (interpolation)
+
+`Entity.GetDisplayName()` returns `RenderPart.DisplayName` when set,
+else falls back to `BlueprintName ?? ID ?? "unknown"`. A creature
+blueprint that has a RenderPart but leaves `DisplayName` empty
+(common mistake) would produce `GetDisplayName() = "Snapjaw"` (the
+BlueprintName, capital S). The interpolation then writes
+`"Snapjaw corpse"` — capital letter leaks into the player-visible
+string.
+
+No current blueprint triggers this (every Creature-derived has
+non-empty DisplayName per `VillageBuilderInteriorTests` setup and
+`AsciiWorldRenderPolicy` validation), but a new blueprint without
+DisplayName would silently look wrong.
+
+**Proposed fix:** lowercase the string at interpolation time:
+`render.DisplayName = $"{creatureName.ToLowerInvariant()} corpse";`.
+Keep the property (`CreatureName`) in its original case so consumers
+that want proper capitalization ("the corpse of a {CreatureName}")
+can do their own formatting.
+
+###### 🧪 M5.A7 (test-unit) — Factory-null log warning not tested
+
+**File:** `CorpsePart.cs:160-163`
+
+Fix-pass #1 in the M5 post-review added a `Debug.LogWarning` when
+`factory.CreateEntity(CorpseBlueprint)` returns null (misconfigured
+blueprint). No test asserts the warning actually fires. If the log
+call is accidentally deleted or changed to the wrong level, no test
+catches it.
+
+**Proposed fix:** use `LogAssert.Expect(LogType.Warning, "...")` in
+a new test `CorpsePart_LogsWarning_WhenCorpseBlueprintUnknown` that
+sets `CorpseBlueprint="NonexistentBlueprint"` and fires Died.
+
+###### 🧪 M5.A8 (test-integration) — Sit → stand → haul integration path
+
+**Scope:** `04dca03` sit-fix makes `BoredGoal.Step 1` fire
+AIBoredEvent while sitting, and an `AIBoredEvent` consumer
+(including `AIUndertakerPart`) can stand the NPC up. No test exercises
+the full path: seated Undertaker + corpse in zone → TakeTurn →
+stands up → DisposeOfCorpseGoal pushed.
+
+The existing BoredGoal sit-regression (IdleQueryTests) uses a generic
+`TestAIBoredConsumer`. Not an Undertaker-specific test.
+
+**Proposed fix:** add an `AIUndertakerPartTests` test that applies
+SittingEffect, places corpse+graveyard, fires TakeTurn on the
+Undertaker, and asserts: `SittingEffect` removed, `DisposeOfCorpseGoal`
+on stack, corpse `DepositCorpsesReserve=50`.
+
+###### 🧪 M5.A9 (test-unit) — No test covers Failed-while-carrying
+
+**Scope:** pins M5.A2. Current `DisposeOfCorpseGoalTests` has
+`HaulPhase_ExhaustedTries_DropsAtFeetAndSetsDone` for the MaxMoveTries
+cap path, but nothing for the
+`MoveToGoal.FailToParent → DisposeOfCorpseGoal.Failed → orphaned`
+path.
+
+**Proposed fix:** fix-pass commit for M5.A2 MUST include a regression
+test: construct a scenario where the MoveToGoal will fail its A* AND
+greedy step (e.g., wall-in every neighbor so the greedy step fails),
+assert after one tick the corpse is in zone at NPC's feet and the
+goal is popped.
+
+###### 🧪 M5.A10 (test-manual) — SnapjawBurial visual-feel observation pending
+
+**Scope:** `SnapjawBurial.cs` is menu-wired and has passed the
+PlayMode mechanical sweep (Scenario 1 + Scenario 2 counter-checks
+in §M5 PlayMode sweep results). But no user-confirmed visual-feel
+pass ("the corpse `%` glyph looks right," "the haul animation reads
+clearly," "the graveyard `†` is visible"). Without that pass, the
+visual-rendering-layer assumptions in §"Cannot script-verify" of the
+PlayMode sweep remain unverified.
+
+**Proposed fix:** user runs the scenario once, confirms Observed vs
+Expected on the "can NOT script-verify" list (particle emission on
+death, glyph rendering, pathing smoothness), reports back.
+
+---
+
 ##### M5 Follow-up opportunities (out of M5 scope)
 
 - **BurntCorpse / VaporizedCorpse variants** — needs `LastDamagedByType` on
