@@ -150,7 +150,18 @@ namespace CavesOfOoo.Core
 
             var corpse = factory.CreateEntity(CorpseBlueprint);
             if (corpse == null)
+            {
+                // Blueprint is misconfigured (typo, missing entry, etc).
+                // factory.CreateEntity already logs Debug.LogError with the
+                // specific name, but the gameplay symptom — "creature dies,
+                // no corpse" — is only traceable if we surface the
+                // blueprint-name context here too. Fix-pass M5 post-review
+                // finding #1.
+                UnityEngine.Debug.LogWarning(
+                    $"[CorpsePart] Could not spawn corpse for '{ParentEntity.BlueprintName}': " +
+                    $"factory.CreateEntity('{CorpseBlueprint}') returned null. Check Objects.json.");
                 return;
+            }
 
             // Descriptor properties — mirrors Qud Corpse.cs lines 138-163.
             // We intentionally use Entity.Properties (string dict) rather than

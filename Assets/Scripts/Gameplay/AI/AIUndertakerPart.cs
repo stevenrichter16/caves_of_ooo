@@ -88,7 +88,7 @@ namespace CavesOfOoo.Core
             if (graveyard == null)
                 return true;
 
-            Entity corpse = FindNearestUnclaimedReachableCorpse(brain.CurrentZone, ParentEntity, inventory);
+            Entity corpse = FindNearestUnclaimedCorpse(brain.CurrentZone, ParentEntity, inventory);
             if (corpse == null)
                 return true;
 
@@ -117,7 +117,12 @@ namespace CavesOfOoo.Core
             return null;
         }
 
-        private static Entity FindNearestUnclaimedReachableCorpse(Zone zone, Entity actor, InventoryPart inventory)
+        // Name is deliberately honest — we do NOT check pathfinding reachability
+        // here. A corpse behind a wall is still "nearest" by Chebyshev distance
+        // and gets claimed; DisposeOfCorpseGoal will then cycle through its
+        // MaxMoveTries budget before dropping at feet. Fix-pass M5 post-review
+        // finding #3 (rename from FindNearestUnclaimedReachableCorpse).
+        private static Entity FindNearestUnclaimedCorpse(Zone zone, Entity actor, InventoryPart inventory)
         {
             var actorPos = zone.GetEntityPosition(actor);
             if (actorPos.x < 0) return null;

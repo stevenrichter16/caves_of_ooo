@@ -343,6 +343,44 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void UndertakerKilledMidHaul_CorpseDropsAtDeathCell()
+        {
+            // Fix-pass M5 post-review finding #8: pin the contract between
+            // DisposeOfCorpseGoal and CombatSystem.HandleDeath. When the
+            // undertaker dies carrying a corpse, DropInventoryOnDeath should
+            // drop the corpse at the undertaker's cell — the corpse must NOT
+            // stay orphaned in the dead NPC's inventory.
+            //
+            // KNOWN LIMITATION (deferred to M5 follow-ups): HandleDeath does
+            // not invoke brain.ClearGoals(), so the DisposeOfCorpseGoal stays
+            // attached to the dead NPC with its OnPop never firing. The
+            // corpse's DepositCorpsesReserve property remains set, preventing
+            // other undertakers from claiming it. Fixing this cleanly is
+            // cross-cutting (affects every AI goal's cleanup on death) and
+            // out of M5 scope. Documented in QUD-PARITY.md §M5 follow-ups.
+            var zone = new Zone("TestZone");
+            var npc = CreateUndertaker(zone, 10, 10);
+            npc.Statistics["Hitpoints"].BaseValue = 0; // mark as dead for HandleDeath
+            var corpse = CreateCorpse(zone, 10, 10);
+            var grave = CreateGraveyard(zone, 12, 10);
+            zone.RemoveEntity(corpse);
+            npc.GetPart<InventoryPart>().AddObject(corpse);
+
+            var brain = npc.GetPart<BrainPart>();
+            brain.PushGoal(new DisposeOfCorpseGoal(corpse, grave));
+
+            CombatSystem.HandleDeath(npc, killer: null, zone);
+
+            Assert.IsNull(zone.GetEntityCell(npc),
+                "Dead undertaker should be removed from the zone.");
+            var corpseCell = zone.GetEntityCell(corpse);
+            Assert.IsNotNull(corpseCell,
+                "The snapjaw corpse must be dropped back into the zone — not orphaned in the dead undertaker's inventory.");
+            Assert.AreEqual(10, corpseCell.X, "Corpse should drop at the undertaker's cell X.");
+            Assert.AreEqual(10, corpseCell.Y, "Corpse should drop at the undertaker's cell Y.");
+        }
+
+        [Test]
         public void OnPop_WritesTerminalThought_OnSuccess()
         {
             var zone = new Zone("TestZone");
