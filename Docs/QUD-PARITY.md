@@ -1203,6 +1203,86 @@ implementation (LairPopulationBuilderAmbushTests statistical bounds, RetreatGoal
 `HealPerTickZero` MaxTurns-fallback boundary, and AIAmbush Initialize-vs-fallback
 ordering paths).
 
+##### M1 Post-audit findings (2026-04-23)
+
+Pass 5 of the Comprehensive Audit. Read: `AISelfPreservationPart.cs`,
+`RetreatGoal.cs`, `AIAmbushPart.cs`, `DormantGoal.cs`, `BrainPart.cs`
+(Passive field semantics), blueprint grep for `AISelfPreservation` /
+`AIAmbush` / `Passive=true`. Verified `AIAmbushPart.Rearm` is tested
+(`AIAmbushPartTests.cs:161`). Checked M1.R-3 fix (RetreatGoal
+BaseValue vs Value) at `RetreatGoal.cs:109-125`.
+
+**4 findings** — 0 🔴, 0 🟡, 1 🔵, 2 🧪, 1 ⚪.
+
+Smaller finding count than other milestones because M1 shipped with
+14 pre-ship review findings fixed (see §M1 Code Review — Findings
+above); the patterns that would surface new audit-tier issues were
+largely closed during initial development.
+
+| # | Sev | Cat | Title | File:line |
+|---|-----|-----|-------|-----------|
+| M1.A1 | 🔵 | logic | AISelfPreservation entry uses Stat.Value; RetreatGoal exit uses BaseValue — Penalty-without-damage can thrash | `AISelfPreservationPart.cs:86` vs `RetreatGoal.cs:109-125` |
+| M1.A2 | 🧪 | test-playmode | No PlayMode sanity sweep for M1 | n/a |
+| M1.A3 | 🧪 | test-manual | M1 scenarios (CorneredWarden, IgnoredScribe, SleepingTroll, MimicSurprise) manual observation pending | all menu-wired |
+| M1.A4 | ⚪ | doc | Value/BaseValue asymmetry design decision documented in RetreatGoal but not AISelfPreservationPart | cross-ref requires reading both files |
+
+###### 🔵 M1.A1 (logic) — Value/BaseValue asymmetry can thrash under HP Penalty without damage
+
+**Files:**
+- **Entry gate:** `AISelfPreservationPart.cs:86`
+  ```csharp
+  int hp = ParentEntity.GetStatValue("Hitpoints", 0);  // returns Stat.Value (BaseValue - Penalty)
+  ```
+- **Exit gate:** `RetreatGoal.cs:123-131`
+  ```csharp
+  int baseHp = hpStat.BaseValue;  // deliberately BaseValue, docstring lines 116-125 explains
+  ```
+
+Walkthrough of the thrash:
+1. NPC has `Hitpoints.BaseValue=100, Max=100, Penalty=100 → Value=0`.
+   (Penalty-without-damage scenario; future `Wounded` / `Exhausted`
+   effects could produce this shape.)
+2. BoredGoal fires `AIBoredEvent`. `AISelfPreservationPart.HandleBored`:
+   `fraction = 0 / 100 = 0`, `<= RetreatThreshold` → push `RetreatGoal`.
+3. BrainPart's next-tick cleanup: `RetreatGoal.Finished` evaluates
+   `baseHp / Max = 100/100 = 1.0`, `>= SafeThreshold (0.75)` → true.
+   Goal pops on first Finished-check before any TakeAction.
+4. Next tick's BoredGoal fires `AIBoredEvent`. `AISelfPreservation`
+   idempotency gate `brain.HasGoal("RetreatGoal")=false`.
+   `Value=0` still → push RetreatGoal again → pop immediately again.
+5. Thrash: push-pop every tick for as long as the Penalty is held.
+
+No current content produces HP Penalty without damage. `StatusEffectsPart`
+hooks in the codebase apply HP reductions via actual damage (damage
+reduces BaseValue directly, not Penalty). So the bug is **latent** —
+possible but not currently triggered.
+
+**Why it matters:** if a future status effect (e.g., `Wounded`,
+`Fatigued`, a debuff gauntlet applied by a boss) applies HP Penalty
+mechanically, every affected NPC starts thrashing silently. Perf
+impact is one-push-one-pop per tick per NPC, small but cumulative.
+More concerning: the `MessageLog` emits nothing, so the bug is only
+visible via goal-stack inspector.
+
+**Proposed fix:** three options:
+- (a) Align the gates: `AISelfPreservationPart.HandleBored` uses
+  `hpStat.BaseValue` too. Reads as "retreat when I've objectively
+  taken damage." Consistent; loses the "Penalty fraction" signal
+  if that ever matters.
+- (b) Align the other way: `RetreatGoal.Finished` uses Value. Reads
+  as "recover fully (penalty-free)." Risk: a Penalty-stuck NPC can't
+  satisfy the exit and stays in RetreatGoal forever — deadlock
+  instead of thrash.
+- (c) Explicit logic: AISelfPreservation checks both Value AND
+  BaseValue gates; only fires when BaseValue is also below threshold.
+  Reads as "retreat when the damage is real, not just debuffs."
+  More code, most semantically honest.
+
+**Severity rationale:** 🔵 because no current content triggers.
+Promote to 🟡 if a non-damage HP Penalty effect ships.
+
+---
+
 #### Milestone M2 — Social + Consequence Layer (Tier B, 2–3 days)
 
 Goal: wire the remaining Phase 6 goals (`NoFightGoal`, `WanderDurationGoal`) to
