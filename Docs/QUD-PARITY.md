@@ -2380,7 +2380,627 @@ Otherwise M2 and M3 can proceed in parallel.
 
 ---
 
-## Phase 7 — Concrete AIBehaviorPart Subclasses
+### Comprehensive Audit Plan — M1 through M5
+
+> **Status:** planning document; execution pending. Once executed, findings
+> land in §"Post-audit findings" per milestone (new subsections appended
+> to each M1–M5 section), plus a cross-milestone findings appendix.
+> Baseline HEAD for this audit: `caad57d` (main), 1712/1712 EditMode tests.
+
+#### Audit goal
+
+Produce a rigorous, evidence-backed inventory of every functional gap,
+Qud-parity divergence, test hole, and logic error across M1–M5 —
+including the production code, blueprint content, test code, and
+manual playtest scenarios each milestone shipped. Output: a prioritised
+fix-pass queue that the next several commits can burn down.
+
+#### Scope
+
+**In scope:**
+- All files produced or modified by M1–M5 commit chains (Phase 6 Tier A/B/C work).
+- The Qud decompiled reference files each milestone's docstring cites.
+- All `[Test]` fixtures whose names reference M1–M5 features.
+- All scenarios under `Assets/Scripts/Scenarios/Custom/` added for M1–M5.
+- `Assets/Editor/Scenarios/ScenarioMenuItems.cs` wiring entries.
+- All `Passive`, `AllowIdleBehavior`, `Corpse`, `Graveyard`, and M1.3-ambush-related blueprint keys in `Objects.json`.
+
+**Explicitly out of scope:**
+- Phase 6 Tier D (M8 zone transitions, M9 damage types) — not shipped.
+- Unrelated systems (crafting, weather, calendar) unless a direct dependency surfaces.
+- Performance profiling / GC allocation analysis.
+- UI/renderer code except where it reads M1–M5-written state (e.g., sidebar reading `LastThought`).
+- Save/load serialization drift — tracked separately.
+
+#### Anti-hallucination discipline
+
+Every finding in the executed audit must carry **source evidence**.
+Non-evidence findings are discarded before reporting. Rules:
+
+1. **File:line citation required.** A finding has the form
+   `<path>:<line-range> — <observation>`. No exceptions for "I think it's…"
+   or "probably…" claims.
+
+2. **Quote the relevant code** inline with the finding when it aids reading.
+   Prefer ≤ 8-line quotes; if more context is needed, cite the broader
+   range in text and quote the tightest relevant slice.
+
+3. **Claims about missing functionality require a negative-evidence
+   grep.** Example: "X is missing" → run `grep -rn "X" Assets/Scripts`
+   and include the empty/no-match result in the finding body. Absence
+   of the tool's output is not absence of the feature.
+
+4. **Claims about Qud parity require the Qud source file:line too.**
+   A "parity divergence" without a cited Qud reference is just an
+   opinion. If Qud has no equivalent, state that explicitly as
+   "CoO-original" (per Methodology Template §4.2).
+
+5. **Claims about test coverage require grepping the test assembly.**
+   "No test pins X" → run
+   `grep -rn "<keyword>" Assets/Tests/EditMode | wc -l` and report the
+   count. Paired with a positive search of *what* the tests cover so
+   the claim is falsifiable.
+
+6. **Severity must be justified.** Every 🔴 / 🟡 finding includes a
+   one-sentence "why this severity" explanation tying to concrete
+   gameplay or correctness impact. No borderline-severity hedging.
+
+7. **Wishy-washy language is banned from findings.** Replace "might,"
+   "could potentially," "probably," "sometimes" with specific observed
+   conditions or, if unverifiable, promote to a 🧪 test-gap finding
+   ("behavior is unverified under condition X").
+
+8. **Findings the audit cannot ground are rejected**, not deferred.
+   If a claim needs playmode verification and the auditor can't run
+   playmode, the finding becomes "🧪 test gap: behavior under condition
+   X is not pinned; write a test." It does not become "🟡 bug: behavior
+   under condition X is probably broken."
+
+#### Finding taxonomy
+
+Per Methodology Template §5.1, findings use the shared severity scale:
+
+| Marker | Meaning |
+|---|---|
+| 🔴 | Critical — ships a bug, corrupts state, or blocks a claim in docs |
+| 🟡 | Moderate — real defect or parity drift, workable for one iteration |
+| 🔵 | Minor — polish, UX feedback, docstring drift |
+| 🧪 | Test gap — behavior is correct (or presumed so) but unpinned |
+| ⚪ | Architectural note for future work, not actionable now |
+
+Each finding is also tagged with one or more **category tags**:
+
+- `func` — functional completeness gap (claim vs shipped)
+- `parity` — Qud divergence, intentional or not
+- `test-unit` — EditMode unit test gap
+- `test-integration` — scenario-harness / real-blueprint integration test gap
+- `test-playmode` — live PlayMode sanity sweep gap
+- `test-manual` — manual-playtest scenario missing / broken / unwired
+- `bug` — observable incorrect behavior with repro steps
+- `logic` — code correctness error without playtest repro but provable via read
+- `wiring` — Part/Blueprint/Menu hookup missing
+- `doc` — QUD-PARITY.md drift vs shipped code
+- `perf` — unnecessary work, leak, or allocation in a hot path
+
+Finding format (per Methodology Template §5.2):
+
+```
+##### <sev> <cat-tag> — <one-line title>
+
+**File:** <path>:<line-range>
+
+<1-paragraph description: what's wrong, what's observable, what fires
+or doesn't fire. Quote the relevant code inline.>
+
+**Why it matters:** <concrete in-game consequence or correctness
+property it breaks>
+
+**Proposed fix:** <1-3 sentences, sketch only — no code yet>
+
+**Severity rationale:** <why this marker, not the next one up or down>
+```
+
+#### Audit dimensions (cross-cutting)
+
+Each milestone must be examined along these seven dimensions. Findings
+may apply to multiple dimensions — tag all that fit.
+
+1. **Functional completeness.** Does the shipped code actually deliver
+   the player-visible outcome the milestone plan promised? Cross-check
+   the milestone's "M_x adds:" bullet list against shipped file diff.
+   Any promised deliverable without corresponding code → 🟡 func gap.
+
+2. **Qud parity.** For each ported artifact (Part, Goal, Effect), read
+   the Qud reference file cited in the class docstring and confirm:
+   mechanical behavior match, event-name match, field-type match,
+   divergence documentation match. Undocumented divergences → 🟡 parity.
+
+3. **EditMode unit test coverage.** For every public method, every
+   event-handler branch, every non-trivial state transition: is there a
+   test that would fail if the branch were broken? Count branches vs
+   test-assertions; missing branch → 🧪 test-unit.
+
+4. **Integration test coverage.** Does a `ScenarioTestHarness`-style
+   test (or manual inline factory test) exercise the real blueprint
+   wiring end-to-end? Missing integration pin → 🧪 test-integration.
+
+5. **PlayMode sanity sweep.** Was the milestone verified with a
+   live-bootstrap `execute_code` sweep per Template §3.5? Missing →
+   🧪 test-playmode (for milestones claiming completeness; M5 did this,
+   M1–M4 did not).
+
+6. **Manual playtest scenario.** Does a scenario file exist under
+   `Assets/Scripts/Scenarios/Custom/`? Is it wired into
+   `ScenarioMenuItems.cs`? Does its current spawn geometry actually
+   work in the starting village (no CompassStone-at-+2 pitfalls)? Any
+   "exists but doesn't run" → 🟡 test-manual.
+
+7. **Wiring/integration gaps.** Is the Part attached to the blueprints
+   the milestone's doc claims it should be? Do the blueprints carry
+   the tags the Part's filter requires? Does `GameBootstrap` wire any
+   static factory references the Part uses? Missing → 🟡 wiring.
+
+#### Per-milestone audit workbooks
+
+Each workbook enumerates the files/blueprints/tests/scenarios/Qud-refs
+in scope, plus the specific audit questions to answer. The auditor's
+deliverable per milestone is a filled-in findings subsection.
+
+##### M1 — Blueprint wiring (Tier A)
+
+**Production files (confirm existence + read):**
+- `Assets/Scripts/Gameplay/AI/AISelfPreservationPart.cs` (M1.1)
+- `Assets/Scripts/Gameplay/AI/Goals/RetreatGoal.cs` (M1.1)
+- `Assets/Scripts/Gameplay/AI/BrainPart.cs` — `Passive` field semantics (M1.2)
+- `Assets/Scripts/Gameplay/AI/AIAmbushPart.cs` (M1.3)
+- `Assets/Scripts/Gameplay/AI/Goals/DormantGoal.cs` (M1.3)
+- `Assets/Scripts/Gameplay/AI/Goals/BoredGoal.cs` — Passive gate at hostile-initiate (consumer of M1.2)
+
+**Blueprints to audit (in `Objects.json`):**
+- Which NPCs carry `AISelfPreservation` part? Grep `"AISelfPreservation"`.
+- Which NPCs set `Brain.Passive=true`? Grep `"Key": "Passive"`.
+- Which NPCs carry `AIAmbush` part? Grep `"AIAmbush"`.
+- MimicChest, SleepingTroll variants — are they correctly flagged with
+  `WakeOnDamage` / `WakeOnHostileInSight`?
+
+**Tests to verify exist:**
+- `AIBehaviorPartTests` — specifically Warden AISelfPreservation + Ambush behaviors.
+- `Phase6GoalsTests` or similar — RetreatGoal pathing.
+- `AIAmbushPartTests` / `AISelfPreservationBlueprintTests` — blueprint wiring integration.
+
+**Scenarios to verify (exist + menu-wired + actually run):**
+- `CorneredWarden.cs`
+- `IgnoredScribe.cs`
+- `SleepingTroll.cs`
+- `MimicSurprise.cs` (M1.3 dormant-creature content)
+
+**Qud references to cross-check:**
+- `qud_decompiled_project/XRL.World.Parts/AISelfPreservation.cs`
+- `qud_decompiled_project/XRL.World.Parts/Brain.cs` (Passive field)
+- `qud_decompiled_project/XRL.World.Parts/AIAmbush.cs`
+- `qud_decompiled_project/XRL.World.AI.GoalHandlers/Retreat.cs` and `Dormant.cs`
+
+**Specific audit questions:**
+1. Does `BrainPart.HandleTakeTurn` actually gate hostile-initiate on
+   `Passive`, or does the Passive gate live only in a subset of code
+   paths? Read `BoredGoal.TakeAction` Step 2.
+2. Does `RetreatGoal` use `Stat.BaseValue` (not `.Value`) for the
+   HP-recovery exit gate? (M1 post-review M1.R-3.) Verify the current
+   code still avoids Penalty-stuck deadlock.
+3. Does `AIAmbushPart` handle entity removal (zone.RemoveEntity) while
+   dormant without leaving stale references? Grep for any event hooks
+   it registers and confirm cleanup.
+4. Do all M1.3 dormant-creature blueprints actually inherit from a
+   consistent parent that wires `DormantGoal` on initial spawn?
+5. Is the Passive-flag gate on `BroadcastDeathWitnessed` (line 501)
+   consistent with who "should" react to death? (Opens a M1.2 design
+   re-evaluation for Villager/Merchant inclusion.)
+
+##### M2 — Social + Consequence Layer (Tier B)
+
+**Production files:**
+- `Assets/Scripts/Gameplay/AI/Goals/NoFightGoal.cs` (M2.1)
+- `Assets/Scripts/Gameplay/AI/Goals/WanderDurationGoal.cs` (M2.1 + M2.3 consumer)
+- `Assets/Scripts/Gameplay/Conversations/ConversationActions.cs` — `PushNoFightGoal` action
+- `Assets/Scripts/Gameplay/Mutations/CalmMutation.cs` (M2.2)
+- `Assets/Scripts/Gameplay/Effects/Concrete/WitnessedEffect.cs` (M2.3)
+- `Assets/Scripts/Gameplay/Combat/CombatSystem.cs` — `BroadcastDeathWitnessed` (M2.3)
+
+**Blueprints to audit:**
+- Which conversations reference `PushNoFightGoal`? Grep in `Conversations/*.json` if present, or in `ConversationActions.cs` usages.
+- Is `CalmMutation` accessible to the player (grimoire / starting mutations)?
+- What's the Qud-parity effect-type bitmask on `WitnessedEffect` (currently `MENTAL|MINOR|NEGATIVE|REMOVABLE`)?
+
+**Tests to verify exist:**
+- `NoFightConversationTests`
+- `CalmMutationTests`
+- `WitnessedEffectTests`
+- `WitnessLineOfSightWall`, `WitnessRadiusBoundary`, `WitnessStacksOnSecondDeath` scenarios
+
+**Scenarios to verify:**
+- `PacifiedWarden.cs`
+- `CalmTestSetup.cs`
+- `CalmThenWitness.cs`
+- `ScribeWitnessesSnapjawKill.cs`
+- `WitnessLineOfSightWall.cs` / `WitnessRadiusBoundary.cs` / `WitnessStacksOnSecondDeath.cs`
+
+**Qud references:**
+- `XRL.World.AI.GoalHandlers/NoFightGoal.cs`
+- `XRL.World.Effects/Shaken.cs` (the M2.3 divergent-mechanic reference)
+- Any Qud equivalent to `CalmMutation` (M2 audit table says CoO-original; re-verify).
+
+**Specific audit questions:**
+1. Does `PushNoFightGoal` still idempotency-guard against duplicate
+   pushes? Re-read the conversation-action implementation.
+2. Does `WanderDurationGoal`'s new `Thought` field interact correctly
+   with non-WitnessedEffect callers (if any exist)? `grep -n
+   "new WanderDurationGoal" Assets/Scripts` → audit every call site.
+3. `BroadcastDeathWitnessed` filter at `CombatSystem.cs:501` — is the
+   Passive-only gate actually correct? Or should Villagers/Merchants/
+   Farmers also react? (Design question, not necessarily a bug.)
+4. Does `WitnessedEffect.OnStack` correctly extend on longer incoming
+   duration but not on shorter? Re-verify against Qud's Shaken.
+5. Does `CalmMutation` respect Passive flag correctly when targeting?
+   Can it calm a non-Passive Warden into a pacified-but-still-Staying
+   state, or does it flip Passive to true during the duration?
+6. Is the `int.TryParse` 0-on-failure trap documented in the M2 review
+   actually fixed in `PushNoFightGoal`'s duration parse? (M2.R precedent
+   — should still hold, confirm.)
+
+##### M3 — Ambient behavior parts (Tier B)
+
+**Production files:**
+- `Assets/Scripts/Gameplay/AI/AIPetterPart.cs` + `Goals/PetGoal.cs` (M3.1)
+- `Assets/Scripts/Gameplay/AI/AIHoarderPart.cs` + `AIRetrieverPart.cs` + `Goals/GoFetchGoal.cs` (M3.2)
+- `Assets/Scripts/Gameplay/AI/AIFleeToShrinePart.cs` + `Goals/FleeLocationGoal.cs` (M3.3)
+- `Assets/Scripts/Gameplay/Settlements/SanctuaryPart.cs` (M3.3)
+
+**Blueprints:**
+- Which NPCs carry `AIPetter`? (Default target: VillageChild.)
+- Which entities carry `AIHoarder` / `AIRetriever`? (Magpie, PetDog.)
+- Which NPCs carry `AIFleeToShrine`? (Wounded Scribe, etc.)
+- Which entities carry `Sanctuary` part? (Shrine.)
+
+**Tests + scenarios:**
+- `AIPetterPartTests` / `AIBehaviorPartTests` subset.
+- `VillageChildrenPetting.cs`
+- `MagpieFetchesGold.cs`
+- `PetDogFetchesBone.cs`
+- `WoundedScribeFleesToShrine.cs`
+
+**Qud references:**
+- `XRL.World.Parts/AIPetter.cs`, `AIHoarder.cs`, `AIRetriever.cs`, `AIFleeToShrine.cs`
+- `XRL.World.AI.GoalHandlers/GoFetch.cs`, `FleeLocation.cs`, `Pet.cs`
+
+**Specific audit questions:**
+1. `AIPetterPart` — does it correctly idempotency-check `HasGoal("PetGoal")`?
+   Does it still work after the 2026-04 sit-forever fix (BoredGoal
+   fires AIBored while sitting)?
+2. `AIHoarder`/`AIRetriever` interaction — can a Magpie and PetDog
+   fight over the same GoldCoin, or does the reservation system prevent
+   it? `GoFetchGoal` has a target-entity — is there a claim/reservation?
+3. `AIFleeToShrine` filter — triggers only on wounded (low HP)? On
+   shaken (WitnessedEffect)? Both? Read the `HandleEvent` gate.
+4. `SanctuaryPart` — does it actually protect fleeing NPCs (e.g., apply
+   a heal-over-time, reduce aggro)? Or is the shrine just a flee destination
+   with no sanctuary mechanic? Compare to Qud's Sanctuary semantics.
+5. Are all M3 scenarios wired into `ScenarioMenuItems.cs`? Same gap
+   that bit SnapjawBurial — grep `[MenuItem]` entries.
+
+##### M4 — Interior/Exterior (Tier C)
+
+**Production files:**
+- `Assets/Scripts/Gameplay/World/Map/Cell.cs` — `IsInterior` field
+- `Assets/Scripts/Gameplay/World/Generation/Builders/VillageBuilder.cs` — interior tagging in `BuildRoom`
+- `Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs` — `MarkDungeonInterior` helper
+- `Assets/Scripts/Gameplay/AI/AIHelpers.cs` — `FindNearestCellWhere` BFS
+- `Assets/Scripts/Gameplay/AI/Goals/MoveToInteriorGoal.cs` + `MoveToExteriorGoal.cs`
+- `Assets/Tests/EditMode/TestSupport/CellVerifier.cs` — `IsInterior()/IsExterior()` helpers
+
+**Scenarios:**
+- `ScribeSeeksShelter.cs` (user has NOT yet confirmed manual playtest)
+
+**Qud references:**
+- `XRL.World/Zone.cs` — `IsInside` flag
+- `XRL.World.AI.GoalHandlers/MoveToInterior.cs` + `MoveToExterior.cs`
+- `XRL.World.Parts/Interior.cs` + `InteriorPortal.cs`
+- `XRL.World/InteriorZone.cs`
+
+**Specific audit questions:**
+1. Does `VillageBuilder.BuildRoom` tag every interior floor cell
+   correctly, or are doorway cells / thresholds missed?
+2. `OverworldZoneManager.MarkDungeonInterior` — does it tag every
+   dungeon cell (all of `wz > 0`), or only passable ones? What about
+   walls inside dungeons?
+3. `FindNearestCellWhere` — does it correctly reject non-passable
+   START cells (fix-pass 🟡 #2), or can it still loop when the NPC
+   themselves is on a solid cell?
+4. `MoveToInteriorGoal`/`MoveToExteriorGoal` — do their `OnPop`
+   overrides match the M5.2 lesson (clear `LastThought` rather than
+   write a terminal `"sheltered"` that sticks)? This is the
+   **known unfixed M4 follow-up** from the M5.2 commit body.
+5. Has `ScribeSeeksShelter` actually been playtest-verified by the
+   user? (Marked ⏳ pending — confirm or follow up.)
+6. Is `ScribeSeeksShelter` wired into `ScenarioMenuItems.cs`? (Verify
+   — it was the pattern-fix precedent for the M5 menu gap.)
+7. Is there a `MoveToExteriorGoal`-driving scenario anywhere? (M4
+   plan says it was out of scope — confirm.)
+
+##### M5 — Corpse system (Tier C)
+
+**Production files:**
+- `Assets/Scripts/Gameplay/Entities/CorpsePart.cs`
+- `Assets/Scripts/Gameplay/AI/Goals/DisposeOfCorpseGoal.cs`
+- `Assets/Scripts/Gameplay/AI/AIUndertakerPart.cs`
+- `Assets/Scripts/Scenarios/Custom/SnapjawBurial.cs`
+- `Assets/Scripts/Gameplay/Combat/CombatSystem.cs` — `"Died"` event Zone-param (M5.1)
+
+**Blueprints:**
+- `SnapjawCorpse`, `CreatureCorpse`, `Graveyard`, `Undertaker`
+- `Creature` parent (gained `Corpse` part in fix-pass `87c8400`)
+- `Player`, `MimicChest` (gained `SuppressCorpseDrops` tag)
+- `Snapjaw` (override for `Corpse` part)
+
+**Tests:**
+- `CorpsePartTests`, `CreatureCorpseBlueprintTests`, `DisposeOfCorpseGoalTests`, `AIUndertakerPartTests`, `SnapjawBurial_Applies_WithoutThrowing` smoke
+
+**Scenarios:**
+- `SnapjawBurial.cs` (user has NOT yet confirmed manual playtest; the
+  mechanics are verified via PlayMode sweep but the visual/feel pass
+  is ⏳)
+
+**Qud references:**
+- `XRL.World.Parts/Corpse.cs`
+- `XRL.World.AI.GoalHandlers/DisposeOfCorpse.cs`
+- `XRL.World.Parts/DepositCorpses.cs`
+- `XRL.Names/NameMaker.cs` (corpse naming flavor — current CoO "{name} corpse" is simpler than Qud's NameMaker-driven descriptors)
+
+**Specific audit questions:**
+1. `CorpsePart.HandleDied` — does the spawned corpse's `DisplayName`
+   interpolation fire for every Creature-derived NPC, or are there
+   edge cases where `CreatureName` is the literal `"corpse"` string
+   and the interpolation short-circuits? Audit the conditional.
+2. `StackerPart.CanStackWith` stacks by `BlueprintName` — two
+   `CreatureCorpse` entities with DIFFERENT `CreatureName` properties
+   (villager + scribe) still stack. Confirm with a grep of stack logic
+   + one new test. Currently noted as "accepted" in the M5 commit body
+   — re-evaluate severity.
+3. `DisposeOfCorpseGoal.OnPop` clears `DepositCorpsesReserve` — does
+   it handle the case where the corpse was destroyed between claim
+   and pop (e.g., burned to ash)? Grep for `RemoveIntProperty` and
+   verify null-safety.
+4. `AIUndertakerPart.FindNearestUnclaimedCorpse` — verify the rename
+   in commit `44182c9` actually landed in both the method definition
+   and all call sites.
+5. `Undertaker` blueprint inherits `Villager`. Villager has
+   `AllowIdleBehavior` tag → Undertaker inherits sitting behaviour.
+   After the 2026-04 sit-fix (`04dca03`), AIUndertaker can now stand
+   the NPC up when bored and a corpse exists — verify by integration
+   test if not already covered.
+6. `SnapjawBurial` scenario's `TryPlaceGraveyard` — the fallback ring
+   of offsets avoids known starting-village blockers. Does it work in
+   other village layouts (if zones are re-generated with different
+   RNG)? Out of M5 scope but flag as ⚪ architectural note.
+7. NPC-dies-mid-haul reservation leak — the documented follow-up
+   (corpse's `DepositCorpsesReserve` stays set forever because
+   `OnPop` doesn't fire on NPC death, which doesn't call
+   `brain.ClearGoals()`). This is the **cross-milestone ClearGoals
+   concern**; promote to a cross-cutting finding.
+8. `CreatureCorpse` has `Weight=10`. A Str=14 Undertaker can carry
+   multiple corpses simultaneously (MaxCarry ≈ 210). Is there any
+   check preventing the Undertaker from over-claiming? Re-read
+   `AIUndertakerPart`'s claim logic.
+
+#### Cross-milestone concerns
+
+These issues span multiple milestones; they are tracked at the audit
+level rather than per-milestone to avoid double-logging.
+
+1. **`ClearGoals` on NPC death** — `CombatSystem.HandleDeath` never
+   calls `brain?.ClearGoals()`. Every goal on the dying NPC's stack
+   keeps its state, including any `OnPop`-based cleanup. Known effects:
+   - M5.2: `DisposeOfCorpseGoal.OnPop` doesn't fire → corpse's
+     `DepositCorpsesReserve` property leaks.
+   - Potentially M3.2: `GoFetchGoal`'s target-reservation leaks.
+   - M1.3: `DormantGoal` state leaks (harmless since the ambusher is
+     dead, but noisy).
+   
+   **Proposed audit action:** enumerate every goal with a meaningful
+   `OnPop` / pop-time cleanup, verify cleanup-on-entity-death semantics,
+   propose a single-site `brain?.ClearGoals()` call in `HandleDeath`
+   with regression tests per affected goal.
+
+2. **`Passive` flag coverage for civilian NPCs** — Villager, Farmer,
+   Merchant, Warden, Undertaker are all `Passive=false`, meaning they
+   do not react to nearby deaths via M2.3's `WitnessedEffect`. Design
+   question: should the Passive filter be narrowed to "combat NPCs
+   only," or is the current gap intentional (guards/farmers are too
+   seasoned to be shaken)? Outcome: either widen the `Passive=true`
+   roster in `Objects.json`, or document the design decision in the
+   M2.3 section.
+
+3. **`SittingEffect` zombie state** — `SittingEffect` persists even
+   when the NPC moves off the chair (e.g., driven by `WanderDurationGoal`
+   from M2.3's witness pacing). Post-pace, the NPC still has
+   `SittingEffect`; `BoredGoal.Step 1` short-circuits to WaitGoal. The
+   NPC stands in place forever with a stale "sitting" effect attached.
+   **Proposed audit action:** either (a) auto-clear `SittingEffect`
+   when the carrier's cell ≠ `SittingEffect.Furniture`'s cell, or
+   (b) have `WanderDurationGoal.OnPush` remove `SittingEffect`.
+
+4. **Scenario menu-wiring pattern gap** — Every new scenario requires
+   BOTH the `[Scenario]`-attributed class AND a hand-added
+   `[MenuItem]` in `ScenarioMenuItems.cs`. M5's `SnapjawBurial` shipped
+   without the menu entry (fixed retroactively in `3d7e298`). Audit
+   every scenario under `Assets/Scripts/Scenarios/Custom/` and verify
+   menu wiring exists. Tooling opportunity: consider a build-time
+   validator that fails compilation if a `[Scenario]` class has no
+   corresponding `[MenuItem]`.
+
+5. **Scenario spawn-geometry pitfall** — The starting village has
+   solid CompassStones at player+2 east and player+6 east. Scenarios
+   using `AtPlayerOffset(2, 0)` or `AtPlayerOffset(6, 0)` silently
+   fail the spawn. Pattern caught in M4's `ScribeSeeksShelter` (fix
+   `9781450`) and repeated in M5's `SnapjawBurial` (fix `e24a595`).
+   Audit every scenario for hardcoded offsets against known blockers.
+   Longer-term: `NearPlayer(min, max)` is the safe default.
+
+6. **Terminal-thought stickiness pattern** — `LastThought` is a
+   single-slot field with no auto-clear. Any goal that writes a
+   "completion" thought in `OnPop` (e.g., M4's `"sheltered"` /
+   `"outside"`) will stick indefinitely until the next goal's `Think()`
+   call — which for idle villagers is never. M5.2 fixed this for
+   `DisposeOfCorpseGoal` (OnPop writes null). **Audit M4's OnPop
+   overrides:** `MoveToInteriorGoal` and `MoveToExteriorGoal` still
+   write terminal thoughts. Either align with M5 by writing null, or
+   verify in playtest that the M4 stickiness is desired.
+
+7. **Manual-playtest validation gap** — M4 (`ScribeSeeksShelter`) and
+   M5 (`SnapjawBurial`) both ship with manual playtest scenarios
+   marked ⏳ "awaiting user observation." User has observed M5
+   (multiple findings surfaced and were fixed); M4 remains unobserved.
+   Audit outcome: either the user runs M4 and we log findings, or
+   M4's status is honestly re-labeled "unverified" instead of
+   "shipped."
+
+8. **`AllowIdleBehavior` tag coverage** — Villager, Merchant, and
+   Undertaker all carry `AllowIdleBehavior`. Does every NPC blueprint
+   that SHOULD sit have it, and every one that shouldn't sit lack it?
+   Grep-verify against the intended design for each.
+
+9. **Event-ordering invariants** — Several M1-M5 features depend on
+   precise event ordering in `CombatSystem.HandleDeath`:
+   - M2.3: `BroadcastDeathWitnessed` must fire AFTER equipment-drop
+     and BEFORE `zone.RemoveEntity(target)`.
+   - M5.1: `CorpsePart.HandleDied` via `"Died"` event must fire
+     BEFORE `zone.RemoveEntity(target)` so the death cell is
+     resolvable.
+   Read `CombatSystem.HandleDeath` once and confirm the current
+   ordering. Any drift would silently break M2.3 AND M5.1.
+
+10. **`BrainPart.CurrentZone` auto-population** — BrainPart's
+    `CurrentZone` is set externally (by `GameBootstrap` for the
+    starting player, by spawn-handlers for NPCs). Scenarios that
+    spawn NPCs via `ctx.Spawn` — is `CurrentZone` set, or do some
+    paths rely on first-TakeTurn to populate it (which means goals
+    pushed pre-TakeTurn with brain-accessing logic can NRE)? Grep
+    all `EntityBuilder.SpawnAt` paths for `brain.CurrentZone =`.
+
+#### Pre-known findings (to confirm or dismiss during audit)
+
+These were surfaced in prior reviews or user playtests and tracked
+informally. The audit should confirm their current status and either
+resolve or formalise as numbered findings.
+
+| # | Sev | Source | Status |
+|---|---|---|---|
+| 1 | 🟡 | M5 post-review | ClearGoals-on-NPC-death leaks DisposeOfCorpseGoal's reservation. Cross-milestone. |
+| 2 | 🟡 | M5 post-playtest | SittingEffect zombie state (pace without clearing). Just flagged; not fixed. |
+| 3 | 🟡 | Investigation | Passive flag missing on Villager/Merchant/Farmer/Warden; death-witness broadcast excludes them. Design-question-shaped. |
+| 4 | 🔵 | M4 follow-up | MoveToInterior/ExteriorGoal OnPop still writes terminal `"sheltered"` / `"outside"`, potential sticky-thought bug same as M5.2 pattern. Unverified in playtest. |
+| 5 | 🧪 | M4 | Manual playtest of `ScribeSeeksShelter` ⏳ pending. |
+| 6 | ⚪ | M5 | Corpse stacker bug: CreatureCorpse stacks by BlueprintName ignoring CreatureName. Documented as accepted; re-evaluate. |
+| 7 | ⚪ | M5 follow-up | No world-gen hook places Graveyard in villages — scenario-only. |
+| 8 | 🔵 | Scenario review | Scenario spawn-geometry pattern (CompassStone pitfall) — enumerate all scenarios for repeat offenders. |
+| 9 | 🧪 | Scenario review | Menu-wiring pattern gap — enumerate all scenarios for missing `[MenuItem]` entries. |
+
+#### Execution sequence
+
+Audit is organised as **five per-milestone passes** followed by **two
+cross-cutting passes**. Each pass produces a subsection appended to
+QUD-PARITY.md.
+
+**Recommended order (smallest-review-surface first):**
+
+1. **M4 pass** — smallest code footprint; lets the auditor warm up
+   on pattern recognition (OnPop stickiness, scenario wiring) before
+   tackling the larger milestones.
+2. **M5 pass** — most recently touched; patterns are familiar.
+3. **M3 pass** — three AIBehaviorParts + FleeLocationGoal + SanctuaryPart.
+4. **M2 pass** — dialogue-hook + mutation + effect. Moderate surface.
+5. **M1 pass** — blueprint wiring + RetreatGoal state machine. Largest
+   historical scope; save for when audit skills are calibrated.
+6. **Cross-milestone pass 1** — confirm the 10 cross-cutting concerns
+   above; promote to formal findings or dismiss.
+7. **Cross-milestone pass 2** — review the pre-known findings table;
+   confirm or dismiss each.
+
+**Checkpointing:** at the end of each pass, commit a doc update with
+the findings subsection. This keeps the review log in git history
+rather than one monolithic unreviewable PR.
+
+**Estimated effort (wall-clock):**
+- Per-milestone pass: 45-90 min (read, grep, find, write)
+- Cross-milestone passes: 30-45 min each
+- Total: ~6-8 hours of focused audit work
+- Fix-pass burn-down: another 4-8 hours depending on finding count
+
+#### Reporting format
+
+Findings land in QUD-PARITY.md as new subsections per milestone:
+
+```
+##### M<X> Post-audit findings (<date>)
+
+<Intro: audit pass N of N; # findings by severity>
+
+| # | Sev | Cat | Title | File:line |
+|---|-----|-----|-------|-----------|
+| …detailed finding blocks follow the table… |
+
+##### <sev> <cat-tag> — <Finding title>
+
+**File:** <path>:<line-range>
+
+<body>
+```
+
+Cross-milestone findings go into a new top-level subsection:
+
+```
+#### Cross-milestone audit findings (<date>)
+
+<Intro>
+
+<Findings, same format>
+```
+
+After all findings land, a fix-pass queue is assembled at the top of
+the audit section:
+
+```
+##### Fix-pass queue (ordered by severity × effort)
+
+1. <🔴 finding> — est. <N hours>
+2. …
+```
+
+#### Success criteria
+
+The audit is complete when:
+
+- [ ] Each milestone (M1-M5) has a Post-audit findings subsection with
+      at least the categories (functional, parity, test, bug, wiring)
+      explicitly addressed — either with findings or with an evidence-
+      backed "no findings" statement.
+- [ ] Every finding has a file:line citation and a severity rationale.
+- [ ] Every finding in the Pre-known table is either confirmed (with
+      a numbered audit finding) or dismissed (with evidence).
+- [ ] Every cross-milestone concern is either promoted to a formal
+      finding or dismissed with evidence.
+- [ ] A prioritised fix-pass queue exists at the top of the audit
+      section, with effort estimates per finding.
+- [ ] The audit section committed to main with a clear rollback path
+      (each pass = one commit).
+
+The audit is NOT considered complete if:
+
+- Any finding uses wishy-washy language ("might," "probably").
+- Any finding lacks a file:line or severity rationale.
+- The fix-pass queue mixes severity tiers without effort weights.
+- Cross-cutting concerns are left unpromoted/undismissed.
+
+---
 
 **Status:** 🟡 Partial (2/many)
 
