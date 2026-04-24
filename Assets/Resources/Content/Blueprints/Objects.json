@@ -4457,6 +4457,76 @@
         { "Key": "Faction", "Value": "Snapjaws" },
         { "Key": "Tier", "Value": "1" }
       ]
+    },
+    {
+      "Name": "RuneOfFlame",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "rune of flame" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" }
+        ]},
+        { "Name": "RuneFlameTrigger", "Params": [
+          { "Key": "Damage", "Value": "8" },
+          { "Key": "SmolderDuration", "Value": "5" },
+          { "Key": "ConsumeOnTrigger", "Value": "true" }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Rune", "Value": "" }
+      ]
+    },
+    {
+      "Name": "RuneOfFrost",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "rune of frost" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" }
+        ]},
+        { "Name": "RuneFrostTrigger", "Params": [
+          { "Key": "Damage", "Value": "6" },
+          { "Key": "Cold", "Value": "1.0" },
+          { "Key": "ConsumeOnTrigger", "Value": "true" }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Rune", "Value": "" }
+      ]
+    },
+    {
+      "Name": "RuneOfPoison",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "rune of poison" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&G" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" }
+        ]},
+        { "Name": "RunePoisonTrigger", "Params": [
+          { "Key": "Damage", "Value": "3" },
+          { "Key": "PoisonDuration", "Value": "5" },
+          { "Key": "PoisonDice", "Value": "1d3" },
+          { "Key": "ConsumeOnTrigger", "Value": "true" }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Rune", "Value": "" }
+      ]
     }
   ]
 }
