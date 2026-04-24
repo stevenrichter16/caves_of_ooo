@@ -3872,48 +3872,104 @@ findings is confirmed by a numbered finding above or here.
 | CM-2 | 🟡 | design | `Passive=true` covers 7 blueprints; Villager/Merchant/Farmer/Warden/Undertaker excluded from M2.3 witness broadcast | `Objects.json` grep for `"Passive"` returns 7 matches (Elder/Scribe/Innkeeper/WellKeeper/VillageChild/Magpie/PetDog) |
 | CM-3 | 🟡 | bug | `SittingEffect` zombie state: stays attached after NPC walks off chair (via WanderDurationGoal) | `SittingEffect.cs` — no cell-departure hook; `WanderDurationGoal.cs` — no SittingEffect removal |
 | CM-4 | 🔵 | wiring | Scenario menu-wiring pattern gap; `[Scenario]` attribute is metadata only | `ScenarioMenuItems.cs` — all current scenarios manually wired; risk is pattern-repeat |
-| CM-5 | 🔴 | bug | **Active scenario broken by CompassStone spawn pitfall** — `InspectAIGoals.cs:58` uses `AtPlayerOffset(6, 0)`, collides with CompassStoneEast at (45,11) | `Scenarios/Custom/InspectAIGoals.cs:58` |
+| CM-5 | ⚪ | — | ~~InspectAIGoals CompassStone pitfall~~ — **DISMISSED after full-context re-read** (see §audit self-correction below) | n/a |
 | CM-6 | 🔵 | pattern | Terminal-thought stickiness — multiple goals use Think() without OnPop Think(null) | M4.A2 + M3.A3 confirm; M5.2 already fixed |
 | CM-7 | 🧪 | test-manual | 18+ scenarios shipped across M1-M5; only SnapjawBurial has user-confirmed observation | aggregates M1.A3 + M2.A4 + M3.A9 + M4.A6 + M5.A10 |
 | CM-8 | 🔵 | design | `AllowIdleBehavior` on pets (Magpie, PetDog) is unusual | `Objects.json` blueprints with the tag: 9 (6 NPCs + 2 pets + Elder) |
 | CM-9 | ⚪ | doc | HandleDeath event ordering is correct but brittle to refactor | `CombatSystem.cs:440 → 445 → 451 → 467 → 470` |
 | CM-10 | 🔵 | doc | `BrainPart.CurrentZone` init asymmetric between bootstrap and zone-transition | `GameBootstrap.cs:811-820` (eager) vs `InputHandler.cs:572-574` (partial) |
 
-###### 🔴 CM-5 (bug) — InspectAIGoals scenario has the CompassStone spawn pitfall
+###### ⚪ CM-5 (dismissed) — InspectAIGoals is already guarded; original finding was an audit error
 
-**File:** `Assets/Scripts/Scenarios/Custom/InspectAIGoals.cs:58`
+**File:** `Assets/Scripts/Scenarios/Custom/InspectAIGoals.cs:46-58`
+
+**Status:** Dismissed. No bug exists. Original finding was a
+pattern-match error during the cross-milestone pass; caught during
+fix-prep before any code change.
+
+**What the original finding claimed:** `AtPlayerOffset(6, 0)` at line
+58 collides with `CompassStoneEast` → silent spawn failure → third
+occurrence of the M4/M5 pattern → 🔴.
+
+**What full-context read shows:** scenario runs a `ClearCell` sweep
+BEFORE the spawn, which removes the CompassStone:
 
 ```csharp
+// Lines 46-52 — runs BEFORE line 58's spawn
+var p = ctx.Zone.GetEntityPosition(ctx.PlayerEntity);
+for (int dx = 1; dx <= 6; dx++)
+{
+    ctx.World.ClearCell(p.x + dx, p.y);
+    ctx.World.ClearCell(p.x + dx, p.y - 1);
+    ctx.World.ClearCell(p.x + dx, p.y + 1);
+}
+
+// Line 58 — by now CompassStoneEast at (p.x+6, p.y) is gone
 ctx.Spawn("Snapjaw").AtPlayerOffset(6, 0);
 ```
 
-Preflight evidence from the M5 PlayMode sweep confirmed
-`+6 east (45,11): passable=False objs=[Floor,CompassStoneEast(solid=True)]`
-in the starting village layout. `EntityBuilder.SpawnAt`
-(line 287-298) logs a warning and returns null on non-passable cells.
-The scenario's Snapjaw silently fails to spawn.
+Chain verified end-to-end:
 
-This is the **third occurrence** of the same pattern after M4's
-ScribeSeeksShelter (fixed `9781450`) and M5's SnapjawBurial (fixed
-`e24a595`). Both fixes used `NearPlayer(...)` instead. InspectAIGoals
-was not re-audited at the time.
+1. `ZoneBuilder.ClearCell` (`ZoneBuilder.cs:57-79`) removes every
+   entity in the target cell unless `ShouldPreserve` returns true.
+2. `ShouldPreserve` (line 137-144) preserves only `PlayerEntity` plus
+   entities with the `"Wall"`, `"Floor"`, or `"Terrain"` tag.
+3. `CompassStoneEast` tags are `{"Solid", "CompassStone"}` (verified
+   in `Objects.json`). None match the preserve list.
+4. Therefore `ClearCell(p.x+6, p.y)` removes the CompassStoneEast.
+5. By the time `AtPlayerOffset(6, 0)` runs, the target cell is
+   passable — the spawn succeeds.
 
-**Why it matters:** a user running the `InspectAIGoals` scenario
-(menu entry confirmed at `ScenarioMenuItems.cs`) sees the Warden and
-VillageChild spawn but NO Snapjaw. The goal-stack inspector demo has
-no hostile to demonstrate KillGoal pushing. Core scenario feature
-silently broken.
+The scenario's own docstring (lines 42-45) explicitly documents the
+sweep's intent: *"Clear east and north-east rows of starting-zone
+hazards so the three creatures have clean line-of-sight + open
+ground… compass stones and chests would otherwise block pathfinding…"*
 
-**Why 🔴:** this is an ACTIVE bug in committed scenario content, not
-latent or edge-case. Any user running the scenario hits it.
+**Sibling scenarios using the same pattern (re-audited):**
 
-**Proposed fix:** swap `AtPlayerOffset(6, 0)` for `NearPlayer(5, 7)`
-(same pattern as SnapjawBurial). ~2-line change + re-run smoke test.
+- `PacifiedWarden.cs:47` — ClearCell sweep before spawn.
+- `WitnessRadiusBoundary.cs:40` — ClearCell sweep before spawn.
+- `WoundedScribeFleesToShrine.cs:59` — ClearCell sweep before spawn.
+- `InspectAIGoals.cs:46-52` — ClearCell sweep before spawn (this one).
 
-**Additional action:** grep all `Assets/Scripts/Scenarios/Custom/*.cs`
-for `AtPlayerOffset(6, 0)` / `AtPlayerOffset(2, 0)` (the two known
-CompassStone cells) and audit each for pitfall vs valid. Minor fix-pass
-commit.
+All four correctly neutralise the CompassStone / Chest hazard before
+spawning. The pattern is established and sound.
+
+**Verified scenarios using blocked offsets WITHOUT a ClearCell guard:**
+
+- `grep -rn "AtPlayerOffset(6," Scenarios/Custom/` → only
+  `InspectAIGoals.cs:58` (guarded above).
+- `grep -rn "AtPlayerOffset(2," Scenarios/Custom/` → zero matches.
+  Historical M4/M5 uses of this offset were replaced with `NearPlayer`
+  during their fix-passes.
+
+**No scenario is currently exposed to the CompassStone pitfall.**
+
+###### Audit self-correction — meta-lesson (added to §5.4 scope)
+
+The CM-5 error is exactly the class Methodology Template §5.4
+(*"What review misses → Hallucination in the review itself"*) warns
+about. The original finding:
+
+- ✅ Had a valid file:line citation (`InspectAIGoals.cs:58`).
+- ✅ Had grep evidence for the CompassStone being non-passable.
+- ❌ Had a severity rationale tied to "ACTIVE bug in committed
+  scenario" — but the "active" claim required reading the FULL
+  scenario, not one line.
+- ❌ Used pattern-recognition against M4/M5 as a shortcut for
+  verification of the full-context claim.
+
+**New audit rule codified for future passes:** for any "active bug"
+or 🔴 claim, the auditor MUST read the full caller's `Apply`/
+`TakeAction`/etc. method, not just the referenced line. One-line
+citations establish the target of the claim, not its truth. Pattern-
+match against known bugs is a *hypothesis*; verification requires
+disproving all guards that could exist in context.
+
+**Downstream updates to this audit section:**
+- Fix-pass queue — 🔴 tier is now empty (CM-5 removed).
+- Audit summary tables — 1 🔴 → 0 🔴; 7 ⚪ → 8 ⚪.
+- Total findings unchanged (49), severity distribution shifted.
 
 ###### 🟡 CM-1 (bug) — ClearGoals-on-NPC-death missing
 
@@ -4191,9 +4247,8 @@ commit.
 
 ##### 🔴 tier (ship now)
 
-| # | ID | Title | Effort |
-|---|----|-------|--------|
-| 1 | CM-5 | InspectAIGoals CompassStone fix (swap `AtPlayerOffset(6,0)` → `NearPlayer(5,7)`) | ~15 min |
+*(Empty — the sole original 🔴 finding (CM-5) was dismissed as an
+audit error; see §CM-5 above.)*
 
 ##### 🟡 tier (ship this fix-pass)
 
@@ -4258,13 +4313,18 @@ the scope they defer to becomes active.
 | 3 | M3 | 9 | 0 | 2 | 3 | 4 | 0 |
 | 4 | M2 | 5 | 0 | 1 | 1 | 2 | 1 |
 | 5 | M1 | 4 | 0 | 0 | 1 | 2 | 1 |
-| 6+7 | Cross-milestone | 10 | 1 | 3 | 4 | 1 | 1 |
-| **Total** | | **49** | **1** | **10** | **15** | **16** | **7** |
+| 6+7 | Cross-milestone | 10 | 0 | 3 | 4 | 1 | 2 |
+| **Total** | | **49** | **0** | **10** | **15** | **16** | **8** |
+
+> **Audit self-correction:** the original totals carried 1 🔴 (CM-5 —
+> InspectAIGoals CompassStone). CM-5 was dismissed during fix-prep
+> after full-context verification showed the scenario correctly
+> guards the spawn via `ClearCell`. Dismissed-totals above are the
+> current state. See §CM-5 for the meta-lesson.
 
 **Headline takeaways:**
 
-1. **One 🔴 bug found** (CM-5 InspectAIGoals CompassStone). Fixable
-   in ~15 minutes. Should ship immediately.
+1. **Zero 🔴 bugs.** (Original CM-5 🔴 dismissed per §CM-5.)
 2. **10 🟡 bugs** — concentrated in M3 (2), M5 (3), and cross-cutting (3).
    Main themes: incomplete features shipped as "done"
    (SanctuaryPart heal, AIRetriever return, Graveyard world-gen,
@@ -4283,10 +4343,13 @@ the scope they defer to becomes active.
    14-finding review. Worth treating the M1 review as the methodology
    template's reference worked-example.
 
-**Recommended next action:** ship the 🔴 CM-5 fix today (15 min), then
-plan a fix-pass sprint covering the 🟡 tier (~10 hours). After the
-🟡 burn-down the shipped-feature claims for M1-M5 are genuinely
-accurate to a reader.
+**Recommended next action:** since the 🔴 tier is empty post-
+CM-5-dismissal, plan a fix-pass sprint covering the 🟡 tier
+(~10 hours across 10 commits). After the 🟡 burn-down the shipped-
+feature claims for M1-M5 are genuinely accurate to a reader. Consider
+an audit-of-the-audit pass on the remaining 🟡 findings (30 min) to
+confirm none have a CM-5-style full-context-missed error before
+burning down code.
 
 ---
 
