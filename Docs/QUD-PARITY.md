@@ -3568,6 +3568,161 @@ avoiding:
 
 ---
 
+##### M6 Implementation status (2026-04-23)
+
+**Shipped in three commits on `main`:**
+
+| Commit | Sub-milestone | What shipped |
+|---|---|---|
+| `00ee4c3` | **M6.1** | `MovementSystem.FireCellEnteredEvents` + `EntityEnteredCell` event; `TriggerOnStepPart` abstract + `RuneFlameTriggerPart` / `RuneFrostTriggerPart` / `RunePoisonTriggerPart`; 9 tests |
+| `a5fc219` | **M6.2** | `LayRuneGoal` (Walk → Place); `RuneOfFlame` / `RuneOfFrost` / `RuneOfPoison` blueprints; `LayRuneGoal.Factory` static; 9 tests |
+| `057001f` | **M6.3** | `AILayRunePart`; `RuneCultist` blueprint (Faction=Cultists); `RuneCultistAmbush` scenario; `GameBootstrap` factory wiring; 10 tests |
+
+**Test suite:** 1740/1740 green after M6.3. Pre-M6 baseline was 1721;
+28 new tests added across the three sub-milestones plus 1 scenario
+smoke test + 1 regression added during audit = 30 net new tests.
+
+**Qud-parity references used during implementation:**
+
+- `Tinkering_Mine.cs:428` — `ObjectEnteredCellEvent` dispatched on destination-cell objects → our `"EntityEnteredCell"` event in `MovementSystem.cs:FireCellEnteredEvents`.
+- `LayMineGoal.cs:45-82` — Walk / Place state machine → our `LayRuneGoal.TakeAction`.
+- `Miner.cs:95-128` — `BeginTakeActionEvent` handler with probability + stack-cleanliness + zone-quota gates → our `AILayRunePart.HandleBored`.
+- `Miner.MaxMinesPerZone=15` (Miner.cs:19) → `AILayRune.MaxRunesPerZone=5` (scaled for CoO's smaller zones).
+
+---
+
+##### M6 Post-impl audit findings (2026-04-23)
+
+Pass 1 of the M6 post-impl audit. Read (written + re-read): `MovementSystem.cs`,
+`TriggerOnStepPart.cs`, `LayRuneGoal.cs`, `AILayRunePart.cs`,
+`RuneCultistAmbush.cs`, three rune blueprints in `Objects.json`,
+`ScenarioMenuItems.cs`. Cross-checked against the M6 Audit
+pre-commitments (above) and the audit-methodology template (§5).
+
+**5 findings** — 0 🔴, 1 🟡 (fixed in audit), 2 🔵, 1 🧪, 1 ⚪.
+
+| # | Sev | Cat | Title | File:line |
+|---|-----|-----|-------|-----------|
+| M6.A1 | 🟡→✅ | bug | AILayRunePart used `Cell.IsPassable()` not the stricter `IsSteppable` — violated M6 Audit pre-commitment #2 | `AILayRunePart.cs:PickRunePlacementCell` — **fixed in audit, regression test M6.A1 landed same commit** |
+| M6.A2 | 🔵 | logic | Two co-located runes both fire on step (double damage + stacked effects) | `MovementSystem.cs:FireCellEnteredEvents` — intentional but undocumented; add comment |
+| M6.A3 | 🔵 | logic | `AILayRunePart.PickRunePlacementCell` runs O(radius²) scan every bored tick regardless of gate outcome — cheap today but redundant when the probability gate will reject | `AILayRunePart.cs:HandleBored` (target scan after probability already passed — correct; but cached candidate list could trim 80 cell checks × N cultists) |
+| M6.A4 | 🧪 | test-integration | No PlayMode sanity sweep run — scenario smoke test proves spawn, but not the end-to-end rune-laid-then-stepped-on cycle in live turn flow | `RuneCultistAmbush.cs` (scenario) — deferred to manual QA |
+| M6.A5 | ⚪ | logic | `LayRuneGoal` places the rune AT the target cell, not one-step-away as Qud's `LayMineGoal` does — deliberate CoO divergence, documented in class xmldoc | `LayRuneGoal.cs:19-31` (already documented) |
+
+**Pre-commitment checklist results:**
+
+| # | Pre-commitment | Result |
+|---|---|---|
+| 1 | Terminal-thought stickiness — `LayRuneGoal.OnPop` must `Think(null)` | ✅ Passed — `LayRuneGoal.cs:OnPop` clears thought, matches `DisposeOfCorpseGoal` pattern |
+| 2 | Solid-target MoveToGoal — use `IsSteppable`, not `IsPassable` | ❌→✅ Violated initially (M6.A1), **fixed in audit**; regression test landed same commit |
+| 3 | Scenario spawn pitfall — `InRing`, not `AtPlayerOffset` | ✅ Passed — `RuneCultistAmbush` uses `ctx.Spawn("RuneCultist").InRing(Radius, i, Count)` |
+| 4 | Menu wiring — `[Scenario]` + `[MenuItem]` same commit | ❌→✅ Missed in M6.3 commit (`057001f`), **added in audit**; now wired in `ScenarioMenuItems.cs` |
+| 5 | ClearGoals-on-death cleanup | ✅ N/A — `LayRuneGoal` uses no cell/entity reservations |
+
+**Net audit impact:** 2 of 5 pre-commitments initially violated (M6.A1
+stricter predicate, menu entry). Both fixed in the audit-fix commit,
+with a regression test for the steppability rule. Zero blocker-grade
+findings survived to shippable code.
+
+###### 🟡 M6.A1 (bug, FIXED) — AILayRunePart used IsPassable instead of IsSteppable
+
+**File:** `Assets/Scripts/Gameplay/AI/AILayRunePart.cs:PickRunePlacementCell`
+
+The initial M6.3 commit (`057001f`) checked candidate cells with
+`Cell.IsPassable()`, which only tests the `"Solid"` tag. Blueprint
+entities with `PhysicsPart.Solid=true` but no `"Solid"` tag (chairs,
+CompassStone, chests) would slip through — `AILayRunePart` would
+target them, and `LayRuneGoal`'s child `MoveToGoal` would walk up to
+the cell, fail the last step (blocked by `PhysicsPart.HandleBeforeMove`),
+and `FailToParent` without laying the rune. Behavior-equivalent to a
+wasted turn budget but directly violates M6 Audit pre-commitment #2
+which called out this exact M5 lesson.
+
+**Fix (applied in audit):** duplicate the `IsSteppable` helper from
+`DisposeOfCorpseGoal` (tag-and-PhysicsPart scan). Added regression
+test `AILayRune_IsSteppable_RejectsCellsWithPhysicsSolidButNoSolidTag`
+which surrounds the cultist with 7 Physics-solid-but-no-tag chairs
+leaving one valid target, and asserts that's the picked cell (would
+flake under the old predicate).
+
+**Severity rationale:** 🟡 not 🔴 because the symptom is a wasted
+retry-budget (NPC eventually gives up and tries a new target), not a
+crash or correctness violation. Still meaningful: it's the exact
+category the pre-commitment was supposed to prevent, and a single-pass
+audit was what it took to catch it.
+
+###### 🔵 M6.A2 (logic) — Co-located runes both fire on step
+
+**File:** `Assets/Scripts/Gameplay/Turns/MovementSystem.cs:FireCellEnteredEvents`
+
+If two `TriggerOnStepPart` entities occupy the same cell (e.g. an
+AILayRune cultist picks a target that already has an ancient rune
+from world-gen), both trigger on a single step — the stepper takes
+two damage hits and gains two stacked status effects. This is
+arguably correct (each rune is a distinct trap), but it's not
+documented anywhere and a playtester seeing 2× Flame damage from one
+step would reasonably call it a bug.
+
+**Proposed fix:** add an xmldoc paragraph to `FireCellEnteredEvents`
+stating the semantics. No code change needed — AILayRunePart already
+filters `cell.HasObjectWithTag("Rune")` out of candidates, so
+same-cell rune-on-rune placement can only arise from world-gen or
+mixed trigger types (e.g. a rune plus a future non-rune trigger).
+
+**Severity rationale:** 🔵 because it's observable but arguably
+intentional and the upstream placer (`AILayRunePart`) already avoids
+the common source of double-placement.
+
+###### 🔵 M6.A3 (logic) — Redundant candidate-list scan on gate-reject ticks
+
+**File:** `Assets/Scripts/Gameplay/AI/AILayRunePart.cs:HandleBored`
+
+`PickRunePlacementCell` runs AFTER the probability + stack-cleanliness
++ quota gates all pass, so the order is correct — we don't scan
+unless we're definitely going to place. But within the scan itself,
+every bored tick rebuilds the whole candidate list. With 3 cultists
+at chance=15, the expected scans-per-100-ticks is 45, each ~80 cells
+= ~3600 cell checks per zone per 100 ticks. Not a hot-path problem
+yet but worth a comment pointing at an easy optimization (cache the
+list and only invalidate when runes are added/removed from the zone).
+
+**Severity rationale:** 🔵 — performance-adjacent but well within
+CoO's per-tick budget at current scale.
+
+###### 🧪 M6.A4 (test-integration) — No PlayMode sanity sweep
+
+**Scope:** live turn-flow verification of the M6 pipeline end-to-end —
+load `RuneCultistAmbush`, play for 30 turns, observe a cultist lay a
+rune, walk the player onto it, watch damage + effect apply.
+
+`ScenarioCustomSmokeTests.RuneCultistAmbush_Applies_WithoutThrowing`
+proves the scenario builds and all blueprint references resolve, but
+it doesn't tick any turns. Manual playtest is still required to catch
+any integration issues that compile-clean, unit-test-pass code can hide
+(wrong `[Scenario]` category, unintended mutation of FOV/rendering, etc.).
+
+**Proposed resolution:** defer to user playtest — log as 🧪 rather
+than block the commit. If the playtest surfaces issues, log them as
+new findings.
+
+###### ⚪ M6.A5 (logic, documented) — Rune placed at target, not one-away
+
+**File:** `Assets/Scripts/Gameplay/AI/Goals/LayRuneGoal.cs:19-31`
+
+Qud's `LayMineGoal` lays the mine at the NPC's current cell WHEN
+`DistanceTo(Target) == 1` (adjacent), deliberately keeping the NPC
+off their own mine. CoO's `LayRuneGoal` walks ONTO the target cell
+and lays the rune there. Safe because `TriggerOnStepPart` excludes
+the mover from self-triggering AND the faction filter prevents later
+same-faction occupants from setting it off, but it's a semantic
+divergence worth flagging so a future parity sweep doesn't
+accidentally "fix" it back.
+
+**Resolution:** already documented in `LayRuneGoal` class xmldoc.
+Logged here as ⚪ for traceability.
+
+---
+
 #### Cross-milestone dependencies
 
 ```

@@ -118,11 +118,22 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Pick a random passable, empty (no existing Rune) cell within
+        /// Pick a random steppable, empty (no existing Rune) cell within
         /// <see cref="SearchRadius"/> of <paramref name="fromX"/>,<paramref name="fromY"/>.
         /// Excludes the NPC's own cell so the NPC doesn't try to lay a rune
         /// where they already stand (wasted turn — LayRuneGoal would spawn
         /// immediately, but blocks the cell from other placements).
+        ///
+        /// <para><b>Steppability vs passability.</b> Uses the stricter
+        /// "no Solid tag AND no PhysicsPart.Solid=true" predicate that
+        /// <see cref="MovementSystem"/>'s <c>PhysicsPart.HandleBeforeMove</c>
+        /// actually enforces, NOT <see cref="Cell.IsPassable"/> alone (which
+        /// only checks the tag). Mirrors M6 audit pre-commitment #2 and the
+        /// <c>IsSteppable</c> helper added to
+        /// <see cref="DisposeOfCorpseGoal.FindPassableCellNearContainer"/>
+        /// in M5. Without this, the NPC would happily target a
+        /// PhysicsPart.Solid chair / CompassStone / chest and then burn
+        /// MoveToGoal's retry budget failing to step onto it.</para>
         /// </summary>
         private (bool found, int x, int y) PickRunePlacementCell(
             Zone zone, int fromX, int fromY, System.Random rng)
@@ -140,7 +151,7 @@ namespace CavesOfOoo.Core
                     if (!zone.InBounds(nx, ny)) continue;
                     var cell = zone.GetCell(nx, ny);
                     if (cell == null) continue;
-                    if (!cell.IsPassable()) continue;
+                    if (!IsSteppable(cell)) continue;
                     if (cell.HasObjectWithTag("Rune")) continue; // already runed
                     candidates.Add((nx, ny));
                 }
@@ -148,6 +159,25 @@ namespace CavesOfOoo.Core
             if (candidates.Count == 0) return (false, 0, 0);
             var pick = candidates[rng.Next(candidates.Count)];
             return (true, pick.x, pick.y);
+        }
+
+        /// <summary>
+        /// Mirrors <c>PhysicsPart.HandleBeforeMove</c>'s blocking rule: a
+        /// cell is un-step-into if any object has either the <c>"Solid"</c>
+        /// tag OR <c>PhysicsPart.Solid=true</c>. Duplicated (not shared) with
+        /// <see cref="DisposeOfCorpseGoal"/>.IsSteppable because the dupe is
+        /// trivial and avoids a cross-namespace helper class for one method.
+        /// </summary>
+        private static bool IsSteppable(Cell cell)
+        {
+            for (int i = 0; i < cell.Objects.Count; i++)
+            {
+                var obj = cell.Objects[i];
+                if (obj.HasTag("Solid")) return false;
+                var phys = obj.GetPart<PhysicsPart>();
+                if (phys != null && phys.Solid) return false;
+            }
+            return true;
         }
 
         /// <summary>

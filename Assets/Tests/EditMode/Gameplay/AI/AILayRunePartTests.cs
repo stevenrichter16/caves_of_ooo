@@ -216,6 +216,52 @@ namespace CavesOfOoo.Tests
                 "No goal should be pushed when no target is found.");
         }
 
+        [Test]
+        public void AILayRune_IsSteppable_RejectsCellsWithPhysicsSolidButNoSolidTag()
+        {
+            // M6 post-impl audit finding: AILayRune must use the stricter
+            // IsSteppable predicate (PhysicsPart.Solid OR "Solid" tag) — NOT
+            // Cell.IsPassable() alone, which only checks the tag. A chair /
+            // CompassStone / chest has PhysicsPart.Solid=true but no "Solid"
+            // tag, and would be selected as a target under the old rule,
+            // burning LayRuneGoal's retry budget on unreachable cells.
+            //
+            // Regression: fill every radius-1 cell except (11,10) with a
+            // PhysicsPart.Solid-but-no-tag entity. If IsSteppable is wired,
+            // (11,10) is the ONLY valid target. If the old IsPassable rule
+            // leaks back in, random selection would sometimes pick one of
+            // the solid cells and this test would flake.
+            var zone = new Zone("TestZone");
+
+            // Place Physics-solid (but no "Solid" tag) blockers on 7 of the
+            // 8 radius-1 cells around (10,10).
+            for (int dy = -1; dy <= 1; dy++)
+            {
+                for (int dx = -1; dx <= 1; dx++)
+                {
+                    if (dx == 0 && dy == 0) continue;
+                    if (dx == 1 && dy == 0) continue; // leave (11,10) open
+                    var blocker = new Entity { BlueprintName = "Chair", ID = $"chair-{dx}-{dy}" };
+                    blocker.AddPart(new RenderPart { DisplayName = "chair" });
+                    blocker.AddPart(new PhysicsPart { Solid = true });
+                    // Intentionally NO SetTag("Solid") — this is the whole
+                    // point of the IsSteppable-vs-IsPassable distinction.
+                    zone.AddEntity(blocker, 10 + dx, 10 + dy);
+                }
+            }
+
+            var cultist = CreateCultist(zone, 10, 10, chance: 100, searchRadius: 1);
+            var brain = cultist.GetPart<BrainPart>();
+
+            FireBored(cultist);
+
+            var goal = (LayRuneGoal)brain.PeekGoalAt(brain.GoalCount - 1);
+            Assert.IsNotNull(goal, "A goal should still be pushed — (11,10) remains a valid target.");
+            Assert.AreEqual(11, goal.TargetX,
+                "IsSteppable must reject PhysicsPart.Solid cells — only (11,10) is reachable.");
+            Assert.AreEqual(10, goal.TargetY);
+        }
+
         // ====================================================================
         // Rune blueprint selection
         // ====================================================================
