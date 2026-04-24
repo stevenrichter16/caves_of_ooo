@@ -4527,6 +4527,35 @@
       "Tags": [
         { "Key": "Rune", "Value": "" }
       ]
+    },
+    {
+      "Name": "RuneCultist",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "rune cultist" },
+          { "Key": "RenderString", "Value": "c" },
+          { "Key": "ColorString", "Value": "&M" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "2" }] },
+        { "Name": "AILayRune", "Params": [
+          { "Key": "Chance", "Value": "15" },
+          { "Key": "MaxRunesPerZone", "Value": "5" },
+          { "Key": "SearchRadius", "Value": "4" },
+          { "Key": "RuneBlueprints", "Value": "RuneOfFlame,RuneOfFrost,RuneOfPoison" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 14, "Min": 0, "Max": 14 },
+        { "Name": "Strength", "Value": 12 },
+        { "Name": "Agility", "Value": 13 },
+        { "Name": "Toughness", "Value": 10 },
+        { "Name": "XPValue", "Value": 25 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Cultists" },
+        { "Key": "Tier", "Value": "2" }
+      ]
     }
   ]
 }
