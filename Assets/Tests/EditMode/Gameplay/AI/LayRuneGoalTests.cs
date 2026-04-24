@@ -67,6 +67,9 @@ namespace CavesOfOoo.Tests
             // Static hygiene — prevent leakage into adjacent test fixtures.
             // Mirrors CorpsePart.Factory teardown pattern.
             LayRuneGoal.Factory = null;
+            // Reset log-once latches so each test sees a fresh state.
+            LayRuneGoal.FactoryNullWarned = false;
+            LayRuneGoal.BlueprintMissingWarned = false;
         }
 
         // ====================================================================
@@ -225,12 +228,83 @@ namespace CavesOfOoo.Tests
             var goal = new LayRuneGoal(10, 10, "TestRune");
             brain.PushGoal(goal);
 
+            // Warning is expected on first trip — but only ONCE.
+            UnityEngine.TestTools.LogAssert.Expect(
+                UnityEngine.LogType.Warning,
+                new System.Text.RegularExpressions.Regex("LayRuneGoal.*Factory is null"));
+
             Assert.DoesNotThrow(() => goal.TakeAction(),
                 "LayRuneGoal must not crash when Factory is unwired.");
             Assert.IsNull(FindRune(zone),
                 "No rune should be placed when Factory is null (graceful no-op).");
             Assert.IsTrue(goal.Finished(),
                 "Goal should still mark itself done so it doesn't loop forever.");
+        }
+
+        // ====================================================================
+        // P-09 regression — log-once guards
+        // ====================================================================
+
+        [Test]
+        public void LayRune_FactoryNullWarning_LogsOnce_AcrossMultipleAttempts()
+        {
+            LayRuneGoal.Factory = null;
+            LayRuneGoal.FactoryNullWarned = false;
+
+            var zone = new Zone("TestZone");
+            var cultist = CreateCultist(zone, 10, 10);
+            var brain = cultist.GetPart<BrainPart>();
+
+            // Expect exactly ONE warning despite five goal cycles. If
+            // we emitted per-cycle, LogAssert would fail on the
+            // unmatched subsequent warnings.
+            UnityEngine.TestTools.LogAssert.Expect(
+                UnityEngine.LogType.Warning,
+                new System.Text.RegularExpressions.Regex("LayRuneGoal.*Factory is null"));
+
+            for (int i = 0; i < 5; i++)
+            {
+                var goal = new LayRuneGoal(10, 10, "TestRune");
+                brain.PushGoal(goal);
+                goal.TakeAction();
+                brain.RemoveGoal(goal);
+            }
+
+            Assert.IsTrue(LayRuneGoal.FactoryNullWarned,
+                "Latch must be set after first warning.");
+        }
+
+        [Test]
+        public void LayRune_BlueprintMissingWarning_LogsOnce_AcrossMultipleAttempts()
+        {
+            // Factory present but blueprint name is bogus.
+            LayRuneGoal.BlueprintMissingWarned = false;
+
+            var zone = new Zone("TestZone");
+            var cultist = CreateCultist(zone, 10, 10);
+            var brain = cultist.GetPart<BrainPart>();
+
+            // CreateEntity on a missing blueprint logs its own error via
+            // EntityFactory before we get to LayRuneGoal's null-check.
+            // Accept any errors from that path alongside our one warning.
+            UnityEngine.TestTools.LogAssert.ignoreFailingMessages = true;
+            try
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    var goal = new LayRuneGoal(10, 10, "NoSuchRuneBlueprint");
+                    brain.PushGoal(goal);
+                    goal.TakeAction();
+                    brain.RemoveGoal(goal);
+                }
+
+                Assert.IsTrue(LayRuneGoal.BlueprintMissingWarned,
+                    "Latch must be set after first blueprint-missing warning.");
+            }
+            finally
+            {
+                UnityEngine.TestTools.LogAssert.ignoreFailingMessages = false;
+            }
         }
 
         // ====================================================================

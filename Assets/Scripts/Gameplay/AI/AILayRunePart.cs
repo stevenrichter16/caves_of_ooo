@@ -68,6 +68,13 @@ namespace CavesOfOoo.Core
         private string[] _runeList;
         private string _runeListSource;
 
+        // Shared scratch list for candidate cells, reused across every
+        // PickRunePlacementCell invocation (P-03 in the M6 perf audit).
+        // Safe because AI turns are serial — one NPC's HandleBored finishes
+        // before the next NPC's. Cleared at the start of every call.
+        private static readonly List<(int x, int y)> _candidateScratch
+            = new List<(int x, int y)>(32);
+
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID != AIBoredEvent.ID) return true;
@@ -152,9 +159,10 @@ namespace CavesOfOoo.Core
         private (bool found, int x, int y) PickRunePlacementCell(
             Zone zone, int fromX, int fromY, System.Random rng)
         {
-            // Build the candidate list. Radius of 4 → up to 80 cells checked,
-            // which is well within a bored-tick's budget.
-            var candidates = new List<(int x, int y)>();
+            // Build the candidate list in a shared scratch. Radius of 4 →
+            // up to 80 cells checked, which is well within a bored-tick's
+            // budget. Cleared at entry to prevent leakage across calls.
+            _candidateScratch.Clear();
             for (int dy = -SearchRadius; dy <= SearchRadius; dy++)
             {
                 for (int dx = -SearchRadius; dx <= SearchRadius; dx++)
@@ -167,11 +175,11 @@ namespace CavesOfOoo.Core
                     if (cell == null) continue;
                     if (!IsSteppable(cell)) continue;
                     if (cell.HasObjectWithTag("Rune")) continue; // already runed
-                    candidates.Add((nx, ny));
+                    _candidateScratch.Add((nx, ny));
                 }
             }
-            if (candidates.Count == 0) return (false, 0, 0);
-            var pick = candidates[rng.Next(candidates.Count)];
+            if (_candidateScratch.Count == 0) return (false, 0, 0);
+            var pick = _candidateScratch[rng.Next(_candidateScratch.Count)];
             return (true, pick.x, pick.y);
         }
 

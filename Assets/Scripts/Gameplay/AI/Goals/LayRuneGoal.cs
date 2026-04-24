@@ -54,6 +54,17 @@ namespace CavesOfOoo.Core
         // ====================================================================
         public static EntityFactory Factory;
 
+        // Log-once latches (P-09 in M6 perf audit). LayRune otherwise spews
+        // Debug.LogWarning on every completed walk-to-target cycle when the
+        // factory is unwired or a blueprint is missing — Debug.LogWarning
+        // does nontrivial work (stack capture, formatting). Reset across
+        // domain reloads implicitly because static state resets on compile.
+        // Public (rather than internal) because the CoO test assembly
+        // doesn't have InternalsVisibleTo set up; tests reset these to
+        // re-exercise the warning path.
+        public static bool FactoryNullWarned;
+        public static bool BlueprintMissingWarned;
+
         /// <summary>Maximum MoveToGoal child pushes before giving up.
         /// Matches the DisposeOfCorpseGoal.MaxMoveTries convention (M5.3).
         ///
@@ -144,19 +155,31 @@ namespace CavesOfOoo.Core
             if (factory == null)
             {
                 // No factory wired (test or uninitialised runtime).
-                // Graceful no-op — don't crash.
-                UnityEngine.Debug.LogWarning(
-                    "[LayRuneGoal] Factory is null; cannot spawn rune. " +
-                    "Wire LayRuneGoal.Factory = factory at bootstrap.");
+                // Graceful no-op — don't crash. Log at most once per
+                // domain so a long misconfigured session doesn't spew
+                // a warning per completed walk-cycle.
+                if (!FactoryNullWarned)
+                {
+                    FactoryNullWarned = true;
+                    UnityEngine.Debug.LogWarning(
+                        "[LayRuneGoal] Factory is null; cannot spawn rune. " +
+                        "Wire LayRuneGoal.Factory = factory at bootstrap. " +
+                        "(Further occurrences suppressed.)");
+                }
                 return;
             }
 
             var rune = factory.CreateEntity(RuneBlueprint);
             if (rune == null)
             {
-                UnityEngine.Debug.LogWarning(
-                    $"[LayRuneGoal] factory.CreateEntity('{RuneBlueprint}') " +
-                    "returned null. Check blueprint name in Objects.json.");
+                if (!BlueprintMissingWarned)
+                {
+                    BlueprintMissingWarned = true;
+                    UnityEngine.Debug.LogWarning(
+                        $"[LayRuneGoal] factory.CreateEntity('{RuneBlueprint}') " +
+                        "returned null. Check blueprint name in Objects.json. " +
+                        "(Further occurrences suppressed.)");
+                }
                 return;
             }
 

@@ -340,6 +340,44 @@ namespace CavesOfOoo.Tests
         // made the ambush scenario neutral).
         // ====================================================================
 
+        // ====================================================================
+        // P-03 regression — candidate scratch list doesn't leak between calls
+        // ====================================================================
+
+        [Test]
+        public void AILayRune_CandidateScratch_DoesNotLeakBetweenCalls()
+        {
+            // PickRunePlacementCell now reuses a static List<(int,int)>.
+            // Two cultists run HandleBored back-to-back; the second's
+            // target must come from a scan centered on ITS position, not
+            // contaminated by the first's candidate set.
+            var zone = new Zone("TestZone");
+            var cultistA = CreateCultist(zone, 3, 3, chance: 100, searchRadius: 2, seed: 1);
+            var cultistB = CreateCultist(zone, 20, 20, chance: 100, searchRadius: 2, seed: 1);
+            // Both have ID "cultist-1" from CreateCultist; distinguish by
+            // giving cultistB a unique one so zone-add doesn't collide.
+            cultistB.ID = "cultist-2";
+
+            var brainA = cultistA.GetPart<BrainPart>();
+            var brainB = cultistB.GetPart<BrainPart>();
+
+            FireBored(cultistA);
+            var goalA = (LayRuneGoal)brainA.PeekGoalAt(brainA.GoalCount - 1);
+            Assert.IsNotNull(goalA);
+            // Target must be within radius-2 of cultistA at (3,3).
+            Assert.LessOrEqual(System.Math.Abs(goalA.TargetX - 3), 2);
+            Assert.LessOrEqual(System.Math.Abs(goalA.TargetY - 3), 2);
+
+            FireBored(cultistB);
+            var goalB = (LayRuneGoal)brainB.PeekGoalAt(brainB.GoalCount - 1);
+            Assert.IsNotNull(goalB);
+            // If scratch leaked, cultistB's target would be near (3,3)
+            // (cultistA's leftovers). It must be near (20,20) — ITS own position.
+            Assert.LessOrEqual(System.Math.Abs(goalB.TargetX - 20), 2,
+                "P-03 regression: scratch list contamination would make cultistB's target near cultistA's position.");
+            Assert.LessOrEqual(System.Math.Abs(goalB.TargetY - 20), 2);
+        }
+
         [Test]
         public void RuneCultist_Faction_IsRegistered_AndHostileToPlayer()
         {

@@ -19,6 +19,15 @@ namespace CavesOfOoo.Core
     /// </summary>
     public static class MovementSystem
     {
+        // Shared scratch list for FireCellEnteredEvents' non-mover snapshot.
+        // Reused across every move to avoid per-move List<Entity> allocation
+        // (P-01 in the M6 perf audit). Safe because movement is turn-serial:
+        // one move's dispatch completes before the next begins, and no M6
+        // listener triggers a nested move. If a future listener DOES need to
+        // re-enter movement, switch to ArrayPool<Entity> or gate re-entrance
+        // explicitly.
+        private static readonly List<Entity> _enteredCellScratch = new List<Entity>(8);
+
         /// <summary>
         /// Attempt to move an entity in a direction (dx, dy).
         /// Returns true if the move succeeded, false if blocked.
@@ -163,30 +172,35 @@ namespace CavesOfOoo.Core
             if (targetCell == null) return;
             var occupants = targetCell.Objects;
             if (occupants.Count == 0) return;
-            // Fast path: only occupant is the mover itself. Avoids the
-            // per-move List<Entity> allocation that showed up in the
-            // review as a minor GC hotspot.
+            // Fast path: only occupant is the mover itself — no dispatch
+            // needed and we skip the scratch-list population cost.
             if (occupants.Count == 1 && occupants[0] == mover) return;
 
-            var snapshot = new List<Entity>(occupants.Count);
+            // Populate the shared scratch list with non-mover occupants.
+            // Cleared at the start of every call so a prior invocation's
+            // leftovers never leak in. Static reuse avoids the per-move
+            // allocation (P-01 in the M6 perf audit).
+            _enteredCellScratch.Clear();
             for (int i = 0; i < occupants.Count; i++)
             {
                 var occ = occupants[i];
                 if (occ == null || occ == mover) continue;
-                snapshot.Add(occ);
+                _enteredCellScratch.Add(occ);
             }
 
-            var parentZone = targetCell.ParentZone;
-            for (int i = 0; i < snapshot.Count; i++)
+            for (int i = 0; i < _enteredCellScratch.Count; i++)
             {
-                // Mover removed from zone by a prior dispatch (death /
-                // teleport-out). Stop firing — further handlers would see
-                // a detached Actor and, in the death case, re-trigger
-                // HandleDeath. See CR-01 in the M6 review.
-                if (parentZone != null && parentZone.GetEntityCell(mover) == null)
-                    break;
+                // Mover removed from the target cell by a prior dispatch
+                // (death / teleport-out). Stop firing — further handlers
+                // would see a detached Actor and, in the death case,
+                // re-trigger HandleDeath. See CR-01 in the M6 review.
+                //
+                // `occupants.Contains(mover)` is a linear scan over a
+                // typically-tiny list (≤ ~5 entities) and is cheaper than
+                // a Dictionary<Entity, Cell> lookup on the zone (P-02).
+                if (!occupants.Contains(mover)) break;
 
-                var occ = snapshot[i];
+                var occ = _enteredCellScratch[i];
                 var ev = GameEvent.New("EntityEnteredCell");
                 ev.SetParameter("Actor", (object)mover);
                 ev.SetParameter("Cell", (object)targetCell);

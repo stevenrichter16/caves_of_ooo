@@ -275,6 +275,64 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
+        // P-01 regression — scratch-list reuse doesn't leak across calls
+        // ====================================================================
+
+        [Test]
+        public void Movement_ScratchList_DoesNotLeakBetweenCalls()
+        {
+            // FireCellEnteredEvents now reuses a static List<Entity> to
+            // avoid per-move allocation. If the list isn't cleared at the
+            // start of each call, a second move would dispatch stale
+            // EntityEnteredCell events to entities that no longer live at
+            // the target cell.
+            //
+            // Setup: mover at (0,0). Cell (1,0) has THREE witnesses.
+            // Cell (2,0) has ONE witness. Move mover into (1,0) then (2,0)
+            // and verify each witness saw exactly the dispatches for its
+            // own cell, nothing more.
+            var zone = new Zone("TestZone");
+
+            var w1 = new Entity { BlueprintName = "W1", ID = "w1" };
+            w1.AddPart(new PhysicsPart { Solid = false });
+            var r1 = new TestEnteredCellRecorder();
+            w1.AddPart(r1);
+            zone.AddEntity(w1, 1, 0);
+
+            var w2 = new Entity { BlueprintName = "W2", ID = "w2" };
+            w2.AddPart(new PhysicsPart { Solid = false });
+            var r2 = new TestEnteredCellRecorder();
+            w2.AddPart(r2);
+            zone.AddEntity(w2, 1, 0);
+
+            var w3 = new Entity { BlueprintName = "W3", ID = "w3" };
+            w3.AddPart(new PhysicsPart { Solid = false });
+            var r3 = new TestEnteredCellRecorder();
+            w3.AddPart(r3);
+            zone.AddEntity(w3, 1, 0);
+
+            var lone = new Entity { BlueprintName = "Lone", ID = "lone" };
+            lone.AddPart(new PhysicsPart { Solid = false });
+            var rLone = new TestEnteredCellRecorder();
+            lone.AddPart(rLone);
+            zone.AddEntity(lone, 2, 0);
+
+            var mover = CreateStepper(zone, 0, 0);
+
+            MovementSystem.TryMove(mover, zone, dx: 1, dy: 0);
+            Assert.AreEqual(1, r1.Count, "w1 should have received one dispatch.");
+            Assert.AreEqual(1, r2.Count, "w2 should have received one dispatch.");
+            Assert.AreEqual(1, r3.Count, "w3 should have received one dispatch.");
+            Assert.AreEqual(0, rLone.Count, "lone is in (2,0), not reached yet.");
+
+            MovementSystem.TryMove(mover, zone, dx: 1, dy: 0);
+            Assert.AreEqual(1, r1.Count, "w1 must not receive a second dispatch — mover is now at (2,0). Scratch list leakage would make this fail.");
+            Assert.AreEqual(1, r2.Count, "Same for w2.");
+            Assert.AreEqual(1, r3.Count, "Same for w3.");
+            Assert.AreEqual(1, rLone.Count, "lone receives exactly one dispatch on the second move.");
+        }
+
+        // ====================================================================
         // Test-only helper part
         // ====================================================================
 
