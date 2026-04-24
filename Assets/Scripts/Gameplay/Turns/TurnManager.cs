@@ -117,7 +117,30 @@ namespace CavesOfOoo.Core
         {
             using (PerformanceMarkers.Turns.ProcessUntilPlayerTurn.Auto())
             {
-                // Keep processing until we hit a player or exhaust ready actors
+                // Status-effect spin-prevention. If the player gets blocked
+                // by BeginTakeAction (frozen / stunned / paralyzed), we must
+                // NOT keep cycling back to them in the same Unity frame —
+                // the old behavior ground through every skipped player turn
+                // in the loop until their effect thawed, collapsing the
+                // entire freeze duration into zero real-world-play time.
+                //
+                // Instead, on the FIRST player-block this call:
+                //   1. Fire their EndTurn (so the effect ticks / thaws).
+                //   2. Set `playerAlreadyBlocked` so the next time
+                //      FindNextActor would pick the player, we return
+                //      immediately without blocking them again.
+                //   3. `continue` — let the loop keep running so OTHER
+                //      ready actors (NPCs) get their turns this round.
+                //      This is the bit my earlier attempt (f1aaabc) got
+                //      wrong: it returned on the first player-block,
+                //      robbing NPCs of their turns when the player was
+                //      picked first by insertion-order.
+                //
+                // Net effect: one keypress-while-frozen ⇒ one player
+                // "skipped turn" (one thaw tick) + a full round of NPC
+                // turns + one yield back to the input loop.
+                bool playerAlreadyBlocked = false;
+
                 while (true)
                 {
                     Entity actor = FindNextActor();
@@ -128,6 +151,18 @@ namespace CavesOfOoo.Core
                         if (_entries.Count == 0) return null;
                         actor = Tick();
                         if (actor == null) continue;
+                    }
+
+                    // Second player-pick this call: we already did one
+                    // blocked turn on them. Yield to the game loop so the
+                    // frame renders and the user sees NPC movement. The
+                    // next EndTurnAndProcess (from the next keypress) will
+                    // re-enter and advance another round.
+                    if (playerAlreadyBlocked && actor.HasTag("Player"))
+                    {
+                        CurrentActor = actor;
+                        WaitingForInput = true;
+                        return actor;
                     }
 
                     CurrentActor = actor;
@@ -142,23 +177,8 @@ namespace CavesOfOoo.Core
                     if (!actor.FireEvent(beginTakeAction))
                     {
                         EndTurn(actor, actorZone);
-
-                        // If the PLAYER was the blocked actor, don't keep
-                        // cycling them through this loop in one Unity frame.
-                        // Otherwise a status-effect duration (frozen, stunned,
-                        // paralyzed) collapses to zero real-world-play time —
-                        // the loop grinds through every skipped turn until
-                        // the effect thaws below its threshold, all inside
-                        // the same Update() call. Return with
-                        // WaitingForInput=true so input is accepted; the
-                        // InputHandler's "movement blocked by status" fallback
-                        // routes each keypress back through EndTurnAndProcess
-                        // for a one-tick-per-press cadence.
                         if (actor.HasTag("Player"))
-                        {
-                            WaitingForInput = true;
-                            return actor;
-                        }
+                            playerAlreadyBlocked = true;
                         continue;
                     }
 

@@ -291,10 +291,11 @@ namespace CavesOfOoo.Tests
             // spin-until-player-can-act loop, collapsing the entire thaw
             // into zero real-world-play time.
             //
-            // Fix: when the player's BeginTakeAction is blocked,
-            // ProcessUntilPlayerTurn returns early (WaitingForInput=true)
-            // instead of cycling the player through more skipped turns
-            // in the same frame.
+            // Fix: when the player's BeginTakeAction is blocked, set a
+            // per-call flag `playerAlreadyBlocked`. The loop continues so
+            // ready NPCs get their turns, but the next time the player
+            // would be picked, return immediately instead of blocking
+            // them again.
             //
             // This test pins the invariant by running ProcessUntilPlayerTurn
             // in a freshly-frozen scenario and counting OnTurnEnd calls: at
@@ -317,7 +318,6 @@ namespace CavesOfOoo.Tests
 
             // Give the player 1000 energy so BeginTakeAction fires
             // immediately on the first iteration.
-            var tickMethod = typeof(TurnManager).GetMethod("Tick");
             for (int i = 0; i < 10; i++) turnManager.Tick();
 
             int probeBefore = probe.Count;
@@ -330,6 +330,48 @@ namespace CavesOfOoo.Tests
                 "one Unity frame regardless of its nominal duration (pre-fix was 41).");
         }
 
+        [Test]
+        public void Frozen_ProcessUntilPlayerTurn_StillAllowsNpcsToAct()
+        {
+            // Second half of the fix: when the player is blocked, NPCs
+            // STILL need to get their turns. The previous iteration of
+            // the fix (f1aaabc) returned on the first player-block, so
+            // NPCs never acted when the player was picked first by
+            // insertion order — players saw their freeze tick but the
+            // world froze around them.
+            //
+            // This test pins the "NPCs act during player's blocked turn"
+            // invariant by registering a player + NPC with matching speed
+            // (insertion-order-tied), ticking both to 1000 energy, then
+            // calling ProcessUntilPlayerTurn. The NPC's BeginTakeAction
+            // must be seen at least once.
+            var player = CreateCreature();
+            player.SetTag("Player");
+            player.AddPart(new ThermalPart { Temperature = 25f, FreezeTemperature = 0f });
+            player.ApplyEffect(new FrozenEffect(cold: 1.0f));
+
+            var npc = CreateCreature();
+            var npcProbe = new BeginTakeActionCounterPart();
+            npc.AddPart(npcProbe);
+
+            var turnManager = new TurnManager();
+            turnManager.AddEntity(player);  // registered first — will be picked first on ties
+            turnManager.AddEntity(npc);
+
+            // Tick both to 1000 energy. Both now tied; player wins
+            // tiebreak via insertion order. Under the broken fix, that
+            // meant immediate-return and NPC never acted.
+            for (int i = 0; i < 10; i++) turnManager.Tick();
+
+            turnManager.ProcessUntilPlayerTurn();
+
+            Assert.GreaterOrEqual(npcProbe.BeginTakeActionSeen, 1,
+                "NPC never received BeginTakeAction. When the player is " +
+                "blocked by a status effect, ProcessUntilPlayerTurn must " +
+                "still let ready NPCs act — otherwise the world appears " +
+                "frozen alongside the player.");
+        }
+
         /// <summary>Test-only effect that counts OnTurnEnd fires. Never blocks action.</summary>
         private class TurnEndCounterEffect : Effect
         {
@@ -337,6 +379,17 @@ namespace CavesOfOoo.Tests
             public int Count;
             public TurnEndCounterEffect() { Duration = DURATION_INDEFINITE; }
             public override void OnTurnEnd(Entity target) { Count++; }
+        }
+
+        /// <summary>Test-only part that counts BeginTakeAction fires on its owner.</summary>
+        private class BeginTakeActionCounterPart : Part
+        {
+            public int BeginTakeActionSeen;
+            public override bool HandleEvent(GameEvent e)
+            {
+                if (e.ID == "BeginTakeAction") BeginTakeActionSeen++;
+                return true;
+            }
         }
 
         [Test]
