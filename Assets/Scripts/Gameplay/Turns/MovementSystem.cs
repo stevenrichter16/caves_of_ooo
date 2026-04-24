@@ -142,17 +142,32 @@ namespace CavesOfOoo.Core
         /// <c>ObjectEnteredCellEvent</c> dispatched against every object
         /// in the destination cell (see Qud's Tinkering_Mine.cs:428).
         ///
-        /// We iterate over a snapshot because a listener may mutate the
-        /// cell's Objects list during handling — e.g. a single-use rune
-        /// with ConsumeOnTrigger=true removing itself from the zone.
+        /// <para><b>Snapshot iteration.</b> Consumers may mutate the cell's
+        /// <c>Objects</c> list during handling — e.g. a single-use rune with
+        /// <c>ConsumeOnTrigger=true</c> removing itself from the zone — so
+        /// we iterate over a pre-captured snapshot.</para>
+        ///
+        /// <para><b>Mid-dispatch mover death.</b> If a listener's payload
+        /// kills or removes the mover from the zone (e.g. rune damage
+        /// reduces HP ≤ 0 → <see cref="CombatSystem.HandleDeath"/> →
+        /// <c>zone.RemoveEntity(mover)</c>), we break the dispatch loop.
+        /// Without this, two co-located runes would both fire on the same
+        /// stepper and both call <c>HandleDeath</c> — which is not
+        /// idempotent: it emits a duplicate "X is killed by Y" message,
+        /// double-fires the <c>"Died"</c> event, and can double-spawn
+        /// corpses via <c>CorpsePart</c>. Catches the CR-01 finding from
+        /// the M6 review.</para>
         /// </summary>
         private static void FireCellEnteredEvents(Entity mover, Cell targetCell)
         {
             if (targetCell == null) return;
-            // Snapshot: consumers may remove themselves or other entities
-            // from the cell during event handling.
             var occupants = targetCell.Objects;
             if (occupants.Count == 0) return;
+            // Fast path: only occupant is the mover itself. Avoids the
+            // per-move List<Entity> allocation that showed up in the
+            // review as a minor GC hotspot.
+            if (occupants.Count == 1 && occupants[0] == mover) return;
+
             var snapshot = new List<Entity>(occupants.Count);
             for (int i = 0; i < occupants.Count; i++)
             {
@@ -160,8 +175,17 @@ namespace CavesOfOoo.Core
                 if (occ == null || occ == mover) continue;
                 snapshot.Add(occ);
             }
+
+            var parentZone = targetCell.ParentZone;
             for (int i = 0; i < snapshot.Count; i++)
             {
+                // Mover removed from zone by a prior dispatch (death /
+                // teleport-out). Stop firing — further handlers would see
+                // a detached Actor and, in the death case, re-trigger
+                // HandleDeath. See CR-01 in the M6 review.
+                if (parentZone != null && parentZone.GetEntityCell(mover) == null)
+                    break;
+
                 var occ = snapshot[i];
                 var ev = GameEvent.New("EntityEnteredCell");
                 ev.SetParameter("Actor", (object)mover);

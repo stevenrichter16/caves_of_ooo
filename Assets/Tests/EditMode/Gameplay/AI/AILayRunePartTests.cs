@@ -57,6 +57,10 @@ namespace CavesOfOoo.Tests
         public void Teardown()
         {
             LayRuneGoal.Factory = null;
+            // Reset faction state — RuneCultist_Faction_IsRegistered_AndHostileToPlayer
+            // overrides static FactionManager state; subsequent fixtures expect
+            // the default hardcoded init (Snapjaws/Villagers only).
+            FactionManager.Initialize();
         }
 
         // ====================================================================
@@ -328,6 +332,54 @@ namespace CavesOfOoo.Tests
 
             Assert.IsTrue(unhandled,
                 "AILayRune must be a safe no-op when the entity has no BrainPart.");
+        }
+
+        // ====================================================================
+        // CR-02 regression — RuneCultist faction is registered & hostile
+        // to the player (M6 review: "Cultists" missing from Factions.json
+        // made the ambush scenario neutral).
+        // ====================================================================
+
+        [Test]
+        public void RuneCultist_Faction_IsRegistered_AndHostileToPlayer()
+        {
+            // Load real Factions.json + real Objects.json end-to-end. If
+            // "Cultists" is absent from the faction registry, IsHostile
+            // will return false and the regression re-surfaces.
+            var factionAsset = UnityEngine.Resources
+                .Load<UnityEngine.TextAsset>("Content/Data/Factions");
+            if (factionAsset == null)
+            {
+                Assert.Ignore("Factions.json not loadable via Resources (editor path mismatch).");
+                return;
+            }
+            FactionManager.Initialize(factionAsset.text);
+
+            var blueprintAsset = UnityEngine.Resources
+                .Load<UnityEngine.TextAsset>("Content/Blueprints/Objects");
+            if (blueprintAsset == null)
+            {
+                Assert.Ignore("Objects.json not loadable via Resources.");
+                return;
+            }
+            var realFactory = new EntityFactory();
+            realFactory.LoadBlueprints(blueprintAsset.text);
+
+            var cultist = realFactory.CreateEntity("RuneCultist");
+            Assert.IsNotNull(cultist, "RuneCultist blueprint must exist.");
+            Assert.AreEqual("Cultists", FactionManager.GetFaction(cultist),
+                "RuneCultist must carry the Cultists faction tag (pins the Objects.json blueprint).");
+
+            // Player stub with the Player tag (FactionManager.GetFaction
+            // returns 'Player' for any entity carrying the Player tag).
+            var player = new Entity { BlueprintName = "Player", ID = "p-1" };
+            player.SetTag("Player");
+            player.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 100, Min = 0, Max = 100 };
+
+            Assert.IsTrue(FactionManager.IsHostile(cultist, player),
+                "Cultists must be hostile to the player so RuneCultistAmbush actually ambushes. " +
+                "CR-02 regression — if Factions.json lacks a 'Cultists' entry with negative " +
+                "InitialPlayerReputation, IsHostile falls through to 0 (neutral).");
         }
     }
 }

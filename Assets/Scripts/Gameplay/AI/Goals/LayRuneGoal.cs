@@ -16,14 +16,24 @@ namespace CavesOfOoo.Core
     ///
     /// <para><b>CoO simplifications vs Qud.</b> Qud's LayMineGoal lays the
     /// mine when <c>DistanceTo(Target) == 1</c> (adjacent) and drops it at
-    /// <c>ParentObject.CurrentCell</c>, not at Target itself. CoO drops the
-    /// rune AT the target cell — the NPC walks onto the cell and lays it
-    /// there. This is safe because <see cref="TriggerOnStepPart"/> excludes
-    /// the mover from the <c>EntityEnteredCell</c> dispatch (so the layer's
-    /// arrival on the cell does not trigger the newly-laid rune), and the
-    /// faction filter means later same-faction occupants also pass through
-    /// safely. Also, Qud's bomb / timer mechanic is omitted — CoO runes
-    /// are pure step triggers, no countdown.</para>
+    /// <c>ParentObject.CurrentCell</c>, not at Target itself — deliberately
+    /// keeping the NPC one step off their own mine. CoO drops the rune AT
+    /// the target cell — the NPC walks onto the cell and lays it there.
+    /// Two separate mechanisms keep this safe:</para>
+    /// <list type="bullet">
+    ///   <item><b>Timing.</b> The rune is spawned AFTER the NPC has already
+    ///   arrived at the target cell. The <c>EntityEnteredCell</c> dispatch
+    ///   that fires during arrival doesn't include the rune because the
+    ///   rune doesn't exist yet. By the next tick, when the NPC steps OFF
+    ///   the cell (via wander/return/flee/whatever), the rune is present
+    ///   but no arrival event fires for the leaver.</item>
+    ///   <item><b>Faction filter.</b> If the NPC (or any same-faction ally)
+    ///   later walks back onto the cell, <see cref="TriggerOnStepPart"/>'s
+    ///   <c>TriggerFaction</c> — stamped in <see cref="LayRune"/> — rejects
+    ///   the trigger.</item>
+    /// </list>
+    /// <para>Qud's bomb / timer mechanic is omitted — CoO runes are pure
+    /// step triggers, no countdown.</para>
     ///
     /// <para><b>CanFight.</b> False, matching Qud (LayMineGoal.cs line 35).
     /// An NPC in the middle of laying a rune interrupts to fight when
@@ -45,7 +55,15 @@ namespace CavesOfOoo.Core
         public static EntityFactory Factory;
 
         /// <summary>Maximum MoveToGoal child pushes before giving up.
-        /// Matches the DisposeOfCorpseGoal.MaxMoveTries convention (M5.3).</summary>
+        /// Matches the DisposeOfCorpseGoal.MaxMoveTries convention (M5.3).
+        ///
+        /// <para><b>Scope.</b> Protects against <c>MoveToGoal</c> <i>timeouts</i>
+        /// (child self-completes via <c>Age &gt; MaxTurns</c> without
+        /// reaching target). A child <c>MoveToGoal</c> that explicitly
+        /// FailToParents (A* + greedy both fail) pops this goal immediately
+        /// via <see cref="Failed"/> — <c>MoveTries</c> is not consulted in
+        /// that path. Mirrors Qud <c>LayMineGoal.cs:77-81</c>'s
+        /// one-shot-abort-on-unreachable behavior.</para></summary>
         public const int MaxMoveTries = 10;
 
         /// <summary>Per-leg MaxTurns budget handed to child MoveToGoal.

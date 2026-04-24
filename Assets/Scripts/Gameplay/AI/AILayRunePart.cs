@@ -5,8 +5,14 @@ namespace CavesOfOoo.Core
     /// <summary>
     /// AI behavior part that occasionally has an NPC lay a defensive rune
     /// in their current zone. Mirrors Qud's <c>XRL.World.Parts.Miner</c>
-    /// (Miner.cs:95-128 — <c>BeginTakeActionEvent</c> handler), adapted to
-    /// CoO's <see cref="AIBoredEvent"/> pipeline.
+    /// (Miner.cs:95-128 — <c>HandleEvent(BeginTakeActionEvent E)</c>),
+    /// adapted to CoO's <see cref="AIBoredEvent"/> pipeline.
+    ///
+    /// <para><b>CoO divergence from Qud's pacing.</b> Qud paces mine-laying
+    /// via a <c>MineCooldown</c> integer that ticks down each turn
+    /// (Miner.cs:15, 97-101, 124). CoO replaces this with a simpler
+    /// per-tick <see cref="Chance"/> probability roll. Different mechanic;
+    /// same end effect of "don't lay a rune every single tick."</para>
     ///
     /// Blueprint attachment:
     /// <code>
@@ -42,8 +48,11 @@ namespace CavesOfOoo.Core
         /// <summary>Percent chance per bored tick to attempt a rune lay (0-100).</summary>
         public int Chance = 10;
 
-        /// <summary>Per-zone cap on runes placed by this entity (total across all AILayRunePart instances).
-        /// Matches Qud's Miner.MaxMinesPerZone=15, scaled down for CoO's smaller zones.</summary>
+        /// <summary>Per-zone cap on Rune-tagged entities of ANY origin (not
+        /// just AILayRune-placed ones — the count is a simple tag scan over
+        /// the zone's entities, see <see cref="CountRunesInZone"/>). Matches
+        /// Qud's <c>Miner.MaxMinesPerZone=15</c> (Miner.cs:25); 5 is tuned
+        /// down for CoO's typical NPC density per zone.</summary>
         public int MaxRunesPerZone = 5;
 
         /// <summary>Chebyshev radius the NPC will search for a rune-placement target.
@@ -77,13 +86,16 @@ namespace CavesOfOoo.Core
             var brain = ParentEntity?.GetPart<BrainPart>();
             if (brain?.Rng == null || brain.CurrentZone == null) return true;
 
-            // --- Stack cleanliness (Qud Miner.cs:110 — !HasGoal("LayMineGoal")) ---
+            // --- Stack cleanliness (Qud Miner.cs:102 — !HasGoal("LayMineGoal")) ---
+            // Defensive: in practice AIBoredEvent only fires when BoredGoal
+            // is the only goal on the stack, so LayRuneGoal can never
+            // actually be there when we run. Kept for parity + future safety.
             if (brain.HasGoal<LayRuneGoal>()) return true;
 
-            // --- Probability gate ---
+            // --- Probability gate (CoO-specific; replaces Qud's MineCooldown) ---
             if (brain.Rng.Next(100) >= Chance) return true;
 
-            // --- Zone quota (Qud Miner.cs:124 — MaxMinesPerZone) ---
+            // --- Zone quota (Qud Miner.cs:104 — CurrentZone.CountObjects("MineShell") check) ---
             if (CountRunesInZone(brain.CurrentZone) >= MaxRunesPerZone) return true;
 
             // --- Resolve the NPC's cell, then scan for a target ---
@@ -102,10 +114,12 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Count entities in the zone tagged "Rune". Runs O(N) in zone
-        /// entity count; Caves of Qud does the same per-tick scan inside
-        /// Miner.ShouldPlaceMine (acceptable for the small entity counts
-        /// in a single zone).
+        /// Count entities in the zone tagged "Rune". O(N) in zone entity
+        /// count. Equivalent to Qud's inline
+        /// <c>CurrentZone.CountObjects("MineShell")</c> at
+        /// <c>Miner.cs:104</c> (Qud doesn't extract it into a named
+        /// method — our helper is a CoO stylistic tidy-up, not a parity
+        /// mirror).
         /// </summary>
         private static int CountRunesInZone(Zone zone)
         {

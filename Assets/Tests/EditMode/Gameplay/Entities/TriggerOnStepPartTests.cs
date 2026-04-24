@@ -227,6 +227,54 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
+        // CR-01 regression — mid-dispatch death / double-trigger
+        // ====================================================================
+
+        [Test]
+        public void Movement_BreaksDispatchLoop_WhenMoverDiesMidSweep()
+        {
+            // M6 review CR-01: two co-located runes used to both fire on
+            // a single step. If the first kills the stepper, the second
+            // would call ApplyDamage on a dead entity which re-enters
+            // HandleDeath (not idempotent). This test pins the fix —
+            // FireCellEnteredEvents must break the dispatch loop when
+            // the mover is removed from the zone mid-sweep.
+            var zone = new Zone("TestZone");
+
+            // Two flame runes at the same cell, 10 damage each, consumed on trigger.
+            var runeA = CreateRune(zone, 5, 5, new RuneFlameTriggerPart { Damage = 10 });
+            var runeB = CreateRune(zone, 5, 5, new RuneFlameTriggerPart { Damage = 10 });
+
+            // Stepper has exactly 10 HP — first rune kills; second must NOT fire.
+            var stepper = CreateStepper(zone, 4, 5, hp: 10);
+
+            MovementSystem.TryMove(stepper, zone, dx: 1, dy: 0);
+
+            // HP went to 0 from the first rune, NOT to -10 from a second
+            // hit (stat floors at 0 via Stat.Min regardless, but the
+            // critical signal is: only one "killed" message fired).
+            int killedMessages = 0;
+            foreach (var msg in MessageLog.GetMessages())
+            {
+                if (msg.Contains("is killed by")) killedMessages++;
+            }
+            Assert.AreEqual(1, killedMessages,
+                "HandleDeath must fire exactly once — CR-01 would produce two \"is killed\" entries.");
+
+            // Zone must only have consumed the rune that actually triggered.
+            // The second rune should still be in the zone.
+            int runesRemaining = 0;
+            foreach (var e in zone.GetReadOnlyEntities())
+            {
+                if (e.HasTag("Rune") || e.BlueprintName == "TestRune") runesRemaining++;
+            }
+            // RuneA was consumed by its trigger; runeB's trigger never fired
+            // (loop broke on mover death), so ConsumeOnTrigger never ran on it.
+            Assert.AreEqual(1, runesRemaining,
+                "Only one rune should have fired and consumed itself — the loop break must leave rune B untouched.");
+        }
+
+        // ====================================================================
         // Test-only helper part
         // ====================================================================
 
