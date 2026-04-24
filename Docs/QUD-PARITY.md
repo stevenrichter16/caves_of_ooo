@@ -768,7 +768,7 @@ This section describes what it takes to move every goal from state 1 → state 2
 | **M3** — Ambient behavior parts | ✅ Done | B | 2–3d | PetGoal, GoFetchGoal, FleeLocationGoal |
 | **M4** — Interior/Exterior (Gap B) | ✅ Done (1665/1665) | C | 3–4d | MoveToInterior/ExteriorGoal, weather foundation |
 | **M5** — Corpse system (Gap C) | ✅ Done (1702/1702, PlayMode-verified) | C | 3–5d | CorpsePart, DisposeOfCorpseGoal, AIUndertakerPart, Graveyard blueprint |
-| **M6** — Rune system | | C | 3–4d | LayRuneGoal |
+| **M6** — Rune system | ⏳ Planned (1712 → ~1740) | C | 3–4d | EntityEnteredCell event, TriggerOnStepPart, LayRuneGoal, AILayRunePart, RuneCultist |
 | **M7** — Turret system | | C | 3–4d | PlaceTurretGoal |
 | **M8** — Gap A (zone transitions) | | D | 1–2w | MoveToZone/GlobalGoal, Phase 13 foundation |
 | **M9** — Gap D (damage types) | | D | 2–3w | ReequipGoal/ChangeEquipmentGoal, Phase 14 foundation |
@@ -3212,6 +3212,361 @@ Following the standard established by M1–M4:
 | 6.1–6.4 Honesty protocols | Observed/Expected tables in playtest scenarios; "can/cannot verify" bounds explicit |
 | 7 Unity MCP tooling | Turn-by-turn reflection traces on brain.Goals for debugging corpse-carry transitions |
 | 8.4 Post-milestone | This section gets a **Commit history** table and **Post-review findings** table after ship, mirroring M4's final form |
+
+#### Milestone M6 — Rune system (Tier C, 3–4 days)
+
+**Status: ⏳ Next** — plan ready; implementation not yet started.
+
+**Target:** 1712 → ~1740 EditMode tests; full suite green. Takes
+LayRuneGoal (currently an ⚪ "no rune system" Phase 6 entry) to
+usable content.
+
+M6 adds:
+- A new **cell-entered event hook** in `MovementSystem.TryMoveEx` so
+  environmental entities can react when a creature moves onto their
+  cell. Smallest possible change — additive event fire after the
+  existing `AfterMove`.
+- A **`TriggerOnStepPart`** that subscribes to the new event. Fires
+  an effect payload when a non-ally creature enters the rune's cell.
+- A **`RunePart`** marker + three concrete rune blueprints:
+  `RuneOfFlame`, `RuneOfFrost`, `RuneOfPoison`. Each is a
+  takeable inventory item that becomes a placed world-entity when
+  `LayRuneGoal` drops it.
+- A **`LayRuneGoal`** — 2-phase carry-to-cell-then-drop state
+  machine, ports the Qud `LayMineGoal` pattern to CoO's event model.
+- An **`AILayRunePart`** — a new `AIBehaviorPart` subclass responding
+  to `AIBoredEvent`. Selects a passable reachable cell, reserves it,
+  pushes `LayRuneGoal`.
+- A new hostile NPC blueprint — **`RuneCultist`** — with three runes
+  in starting inventory + AILayRunePart.
+- A manual-playtest scenario — **`RuneCultistAmbush`**.
+
+Downstream M6 unlocks:
+- M7 (Turret system) can reuse the event hook for "turret shoots when
+  enemy enters range" detection.
+- Phase 15 (Alchemy / explosives) can reuse the rune-part pattern for
+  thrown bombs that detonate on impact.
+
+##### M6 Pre-impl verification sweep (Methodology Template §1.2)
+
+Read and confirmed:
+- **Qud `LayMineGoal.cs`** (lines 9-83): constructor takes
+  `Location2D Target, string Mine, string MineName, string Timer,
+  int HideDifficulty`. `TakeAction` walks to `DistanceTo==1`; at
+  target, calls `Tinkering_LayMine.CreateMine(Mine, ParentObject)`
+  to spawn the mine entity, `UseEnergy(1000)`, `FailToParent` (self-
+  pop). Uses `Think()` narrative signals per phase.
+- **Qud `Miner.cs`** (lines 95-128): `BeginTakeActionEvent` handler.
+  Gates: `IsMyActivatedAbilityAIUsable`, `CanAIDoIndependentBehavior`,
+  `!HasGoal("LayMineGoal")`, `!HasGoal("WanderRandomly")`,
+  `!HasGoal("Flee")`, not-in-cooldown, zone-mine-count under
+  `MaxMinesPerZone=15`. Picks target via
+  `ParentObject.CurrentZone.GetEmptyReachableCells().GetRandomElement()`.
+- **Qud `Tinkering_Mine.cs`** (line 428): trigger uses
+  `ObjectEnteredCellEvent` — a typed event fired on entities in the
+  destination cell when another enters. This is the exact
+  mechanism we need in CoO.
+- **CoO `MovementSystem.TryMoveEx`** (`MovementSystem.cs:19-80`):
+  fires `"AfterMove"` on the MOVING entity only. Does NOT notify
+  entities in the destination cell. Needs extension for M6.
+- **CoO `EntityFactory.Factory` pattern** (in use at
+  `MaterialReactionResolver.Factory`, `CorpsePart.Factory`,
+  `ConversationActions.Factory`): established static-factory
+  convention; `LayRuneGoal` will need one too to spawn the rune
+  entity from a blueprint name.
+- **CoO precursors**: `GrimoirePart`, `TonicPart`, `StatusTonicPart`,
+  `CureTonicPart` — all Part-on-item blueprints with use / apply
+  semantics. Confirms the "rune is an item until placed, then
+  becomes an environmental entity" dual-role pattern is consistent
+  with existing item architecture.
+- **CoO combat damage pipeline**: `CombatSystem.ApplyDamage` (or a
+  similar named method) for direct-damage effects. Need to re-verify
+  precise signature during M6.1 implementation.
+
+##### Sub-milestone breakdown
+
+**M6.1 — `EntityEnteredCell` event + `TriggerOnStepPart`** (~1 day, ~8 tests)
+
+New files:
+- `Assets/Scripts/Gameplay/Entities/TriggerOnStepPart.cs` — abstract
+  base Part that subscribes to the new event, filters by predicate,
+  and dispatches to an abstract `OnTrigger(Entity actor, Zone zone)`
+  method.
+- `Assets/Scripts/Gameplay/Entities/Triggers/RuneFlameTriggerPart.cs`,
+  `RuneFrostTriggerPart.cs`, `RunePoisonTriggerPart.cs` — concrete
+  subclasses that each apply a damage + status effect payload.
+- `Assets/Tests/EditMode/Gameplay/Entities/TriggerOnStepTests.cs`.
+
+Modified files:
+- `Assets/Scripts/Gameplay/Turns/MovementSystem.cs` — add 3-5 lines
+  after the existing `AfterMove` fire: iterate destination cell's
+  `Objects` and fire a new `"EntityEnteredCell"` event on each
+  (except the mover). Event parameters: `Actor`, `Cell`.
+
+Key design choices:
+- **New event name: `"EntityEnteredCell"`** — distinct from the
+  existing `"AfterMove"` so handlers can disambiguate "I'm the one
+  who moved" vs "someone stepped onto me."
+- **Filter model** — `TriggerOnStepPart` has a `TriggerFaction`
+  string field (default empty = fire on anyone). When set, the Part
+  only triggers if `FactionManager.IsHostile(actor, placerFaction)`.
+  Placer faction read from a `PlacerFaction` property the
+  `LayRuneGoal` writes when it drops the rune.
+- **One-shot consumption** — default `ConsumeOnTrigger=true`. The
+  rune entity is removed from the zone after firing. Re-usable runes
+  (perma-sigils) set `ConsumeOnTrigger=false` as a blueprint param.
+- **Self-exclusion** — the `MovementSystem` event-fire loop skips
+  the mover itself, so a rune doesn't trigger when the placer moves
+  onto it post-placement. Defensive double-check in the Part too.
+
+Tests (8):
+- AfterMove still fires on mover (regression, existing behavior intact)
+- EntityEnteredCell fires on each non-mover object in destination cell
+- EntityEnteredCell does NOT fire on the mover itself
+- RuneFlameTriggerPart applies damage when non-faction-ally enters
+- Faction-ally stepping in does NOT trigger (counter-check)
+- Faction filter `null/empty` fires on anyone (permissive default)
+- ConsumeOnTrigger=true removes the rune from zone post-fire
+- ConsumeOnTrigger=false leaves rune in place (re-usable sigil case)
+
+**M6.2 — `LayRuneGoal` + 3 rune blueprints** (~1 day, ~10 tests)
+
+New files:
+- `Assets/Scripts/Gameplay/AI/Goals/LayRuneGoal.cs` — 2-phase state
+  machine (Walk → Place). Ports Qud's `LayMineGoal` shape.
+- `Assets/Tests/EditMode/Gameplay/AI/LayRuneGoalTests.cs`.
+- Blueprints in `Objects.json`: `RuneOfFlame`, `RuneOfFrost`,
+  `RuneOfPoison`.
+
+State machine (mirrors Qud `LayMineGoal.cs:45-82`):
+1. **Validate** — rune item still in NPC's inventory; target cell
+   still in zone + steppable; NPC in zone. Any fail → `FailToParent`.
+2. **If at target cell** → call
+   `InventorySystem.Drop(actor, runeItem, zone)` (reuses existing
+   drop-at-feet mechanic — the rune item becomes a zone entity at
+   the NPC's cell). After drop, stamp `runeItem.Properties["PlacerFaction"]
+   = actor.GetTag("Faction");` so `TriggerOnStepPart` can filter.
+   Set `_done=true`.
+3. **If not at target** → `PushChildGoal(new MoveToGoal(targetX,
+   targetY, 20))` with `GoToPlaceTries++`. Cap at 10.
+
+Constructor: `LayRuneGoal(Entity runeItem, int targetX, int targetY)`.
+Fields: `RuneItem`, `TargetX`, `TargetY`, `GoToPlaceTries`, `_done`.
+
+`CanFight() => false` (mirror Qud: don't defend while laying).
+`OnPop` clears `LastThought` (per M5.2 sticky-thought lesson).
+`Failed(child)` propagates via `FailToParent`.
+
+Rune blueprints:
+```json
+{
+  "Name": "RuneOfFlame",
+  "Inherits": "Item",
+  "Parts": [
+    { "Name": "Render", "Params": [
+      { "Key": "DisplayName", "Value": "rune of flame" },
+      { "Key": "RenderString", "Value": "‡" },
+      { "Key": "ColorString", "Value": "&R" },
+      { "Key": "RenderLayer", "Value": "3" }
+    ]},
+    { "Name": "Physics", "Params": [
+      { "Key": "Takeable", "Value": "true" },
+      { "Key": "Weight", "Value": "1" }
+    ]},
+    { "Name": "Rune", "Params": [] },
+    { "Name": "RuneFlameTrigger", "Params": [
+      { "Key": "Damage", "Value": "6" },
+      { "Key": "ApplyEffect", "Value": "BurningEffect" }
+    ]}
+  ],
+  "Tags": [{ "Key": "Rune", "Value": "" }]
+}
+```
+Frost and Poison variants swap damage value + effect class.
+
+Tests (10):
+- LayRuneGoal at target: drops rune at NPC cell, stamps PlacerFaction, _done=true
+- LayRuneGoal not at target: pushes MoveToGoal + tries counter
+- Exhausted tries: FailToParent (no successful place)
+- Validates rune still in inventory each tick
+- Validates target cell still steppable
+- OnPop clears LastThought
+- RuneOfFlame blueprint → RenderPart exists, Rune tag present
+- RuneOfFrost blueprint correct damage + effect
+- RuneOfPoison blueprint correct damage + effect
+- Placer walks away after place (rune is now in zone, not inventory)
+
+**M6.3 — `AILayRunePart` + `RuneCultist` + scenario** (~1.5 days, ~10 tests)
+
+New files:
+- `Assets/Scripts/Gameplay/AI/AILayRunePart.cs` — AIBehaviorPart
+  responding to `AIBoredEvent`. Selects a target cell and pushes
+  LayRuneGoal.
+- `Assets/Tests/EditMode/Gameplay/AI/AILayRunePartTests.cs`.
+- `Assets/Scripts/Scenarios/Custom/RuneCultistAmbush.cs` — manual
+  playtest.
+- Blueprint in `Objects.json`: `RuneCultist` — inherits Creature,
+  starting Faction=Snapjaws (or new hostile faction), inventory of
+  3 random runes, AILayRunePart.
+- `[MenuItem]` entry in `ScenarioMenuItems.cs`.
+
+Behavior part fields (Qud-parity naming):
+- `Chance = 100` — always try when bored + cooldown clear.
+- `CooldownTurns = 10` — gap between successful places (tracked via
+  `_cooldownRemaining`, decremented each TakeTurn via a cheap
+  internal ticker).
+- `MaxRunesPerZone = 5` — mirrors Qud's `MaxMinesPerZone=15`; lower
+  because CoO zones are smaller.
+- `ReservationRadius = 8` — don't re-pick a cell within N tiles of
+  an already-reserved cell.
+
+`HandleBored` flow (mirrors M5 `AIUndertakerPart.HandleBored`):
+1. Skip if no inventory or no Rune-tagged item in inventory.
+2. Skip if `HasGoal("LayRuneGoal")` (idempotency).
+3. Skip if `_cooldownRemaining > 0`.
+4. Skip if zone already has >= `MaxRunesPerZone` Rune-tagged entities.
+5. Pick a random passable + unreserved cell via a helper that
+   iterates `GetReadOnlyEntities` + `zone.Cells` and filters. Cap
+   retries at 10.
+6. Mark cell reserved via a scoped `RuneReservation` int property
+   (hacky-but-consistent with M5's DepositCorpsesReserve).
+7. Pick a rune from inventory (first match is fine; blueprint can
+   determine which runes are available).
+8. `brain.PushGoal(new LayRuneGoal(rune, cell.X, cell.Y))`.
+9. Set `_cooldownRemaining = CooldownTurns`.
+10. Consume event.
+
+`OnPop` of LayRuneGoal clears the `RuneReservation` property on the
+target cell (release the reservation).
+
+Scenario `RuneCultistAmbush`:
+- Spawn 2 RuneCultists at moderate distance from player.
+- Each spawns with 3 runes in inventory.
+- Cultists place runes in a pattern near the player's approach.
+- Player walks toward them → triggers runes → takes damage +
+  status effect.
+- Counter-check embedded in scenario docstring: "if you're the same
+  faction (not applicable by default), runes don't trigger."
+
+Tests (10):
+- AILayRunePart with rune inventory + empty reachable cell pushes
+  LayRuneGoal
+- Empty inventory → no push (no-op, event not consumed)
+- All-runes-placed zone (count >= max) → no push
+- In-cooldown → no push
+- Already has LayRuneGoal → no push (idempotency)
+- Two cultists don't reserve same cell (reservation works)
+- Blueprint wiring: RuneCultist has AILayRunePart + 3 runes
+- Integration: cultist places a rune end-to-end via TakeTurn (1 tick
+  for AIBored, N ticks for MoveToGoal, 1 tick for drop)
+- Integration: player steps on placed rune → takes damage
+- Menu wiring: RuneCultistAmbush registered in ScenarioMenuItems.cs
+
+##### M6 Design decisions (with Qud-parity evidence)
+
+| Question | Qud answer | CoO choice | Rationale |
+|---|---|---|---|
+| Trigger event mechanism | `ObjectEnteredCellEvent` fired on entities in destination cell | New `"EntityEnteredCell"` event in `MovementSystem.TryMoveEx` fired on each non-mover in dest cell | Direct port; CoO lacks the equivalent, smallest possible MovementSystem extension |
+| Item-then-entity dual-role | Mine is `IPart` on the mine object; goes into inventory via `Tinkering_LayMine.CreateMine` spawning a dropped item | Same — Rune is an item with `RunePart` marker + `TriggerOnStepPart`; uses `InventorySystem.Drop` to zone-place | Directly maps to existing CoO item patterns (GrimoirePart, TonicPart precedent) |
+| Filter model | Per-mine `WillTrigger(Actor)` checks faction + special cases | `TriggerOnStepPart.TriggerFaction` string + `FactionManager.IsHostile` | Simpler; extensible via subclass override |
+| Placer-not-triggered | Mine's `WillTrigger` excludes placer | Event-fire loop excludes mover; `PlacerFaction` property disambiguates | Two defensive layers, same net result |
+| Cooldown semantics | `Miner.MineCooldown` int counter, decremented on BeginTakeActionEvent | `AILayRunePart._cooldownRemaining` int counter, decremented each TakeTurn handler | Direct port |
+| Zone rune cap | `MaxMinesPerZone = 15` | `MaxRunesPerZone = 5` | CoO zones are 80×25 = 2000 cells; 5 is proportional to Qud's cap scaled to smaller zones. Also keeps scenario visual from spamming. |
+| Target-cell reservation | Qud uses `GetEmptyReachableCells().GetRandomElement()` (no reservation; race is rare) | CoO uses `RuneReservation` int property on target cell, cleared on OnPop | Two M6 cultists in same zone would race otherwise; consistent with M5's DepositCorpsesReserve pattern |
+| Goal's target-is-Solid concern | N/A (Qud mines target empty cells) | Symmetric to M5 HaulPhase fix: M6 target cell is always pre-verified steppable in AILayRunePart | M5.2 lesson: never target a cell-that-MoveToGoal-can't-reach |
+| `CanFight` during lay | `false` (docstring in LayMineGoal: don't fight while laying) | Same (`CanFight() => false` in LayRuneGoal) | Ports directly |
+| Invisible / hidden runes | Qud mines use `Hidden.Difficulty` — Perception gates reveal | **Deferred** — runes ship always-visible in M6. Hidden layer comes with Phase 17 (Perception) | Avoids a new mechanic ship-blocker |
+| Disarm mechanic | Qud's `IDisarmingSifrahHandler` (skill-based disarm) | **Deferred** — no disarm in M6; player + NPCs must step around or through | Phase 14 (Tinkering) |
+
+##### M6 Verification checklist (targets)
+
+- [ ] `MovementSystem` fires new `"EntityEnteredCell"` event (reg. test: existing `AfterMove` behavior preserved, new event fires on non-mover entities)
+- [ ] `TriggerOnStepPart` abstract base + 3 concrete subclasses (Flame/Frost/Poison), each with a regression test for payload + filter
+- [ ] 3 rune blueprints loadable via EntityFactory, each with correct Render + Physics + Rune tag + TriggerOnStep part
+- [ ] `LayRuneGoal` — 2-phase state machine, tries cap, OnPop thought-clear
+- [ ] `AILayRunePart` — 10-field behavior part with cooldown + reservation
+- [ ] `RuneCultist` blueprint — inherits Creature, starting 3-rune inventory, AILayRunePart
+- [ ] `RuneCultistAmbush` scenario — committed + menu-wired + smoke-tested
+- [ ] Tests: 8 (M6.1) + 10 (M6.2) + 10 (M6.3) = **~28 new M6 tests**
+- [ ] Full suite green (1712 → ~1740)
+- [ ] PlayMode sanity sweep (Template §3.5) executed with raw Observed/Expected tables
+- [ ] Manual playtest scenario written; ⏳ user observation pending
+- [ ] Post-impl audit — file:line evidence, severity-rated findings, no wishy-washy language (the M1-M5 audit's pattern-recognition gotcha flagged explicitly in pre-impl)
+
+##### M6 Risks & mitigations
+
+| # | Risk | Likelihood | Mitigation |
+|---|------|:----------:|------------|
+| 1 | New `"EntityEnteredCell"` event fires on every move → perf regression in dense zones | Low | Event fires only on destination-cell objects (usually 1-3 entities); fast-path: if cell has zero non-mover objects, skip event construction entirely |
+| 2 | MovementSystem refactor breaks existing AfterMove consumers | Low | Strict additive change — new event AFTER existing AfterMove, not a replacement. Regression tests cover both events |
+| 3 | Rune self-triggers when placer drops it (placer steps onto rune in the same tick it's placed) | Medium | `LayRuneGoal` does `InventorySystem.Drop` which adds rune to NPC's cell. NPC doesn't "enter" its own cell during that tick — no move event fires. Confirmed by reading Drop path; test regardless |
+| 4 | `EntityEnteredCell` event fires on zone-load teleport (player arrives in zone at cell X with existing rune) | Low-medium | `TryMoveEx` is the only path that fires it; zone-transition uses a different mechanism (`zone.AddEntity` directly). Test explicitly that load-into-zone doesn't trigger runes. |
+| 5 | Faction filter regresses if `FactionManager.IsHostile` semantics change | Low | Regression pin: explicitly assert hostile-vs-ally trigger behavior with test faction setup |
+| 6 | Rune spam in scenarios if `MaxRunesPerZone` isn't enforced early enough | Medium | Check happens in `AILayRunePart.HandleBored` BEFORE any goal push. Scenario writer can lower cap per-blueprint |
+| 7 | Cultist dies carrying runes → `DropInventoryOnDeath` places runes in zone with no `PlacerFaction` property → runes fire on anyone | Medium | `TriggerOnStepPart` defaults `TriggerFaction=null` = fire on anyone. Dead-cultist dropped runes still work (intent-aligned: "cultist's remaining arsenal is armed")|
+| 8 | Reservation leak if `LayRuneGoal` pops mid-flight without clearing | Low | OnPop does both: `RemoveIntProperty("RuneReservation")` on the target cell (which is a zone-level thing, not an entity — need to encode via cell's Objects' intprops, OR use a zone-level dictionary) | 
+| 9 | Scenario spawn pitfall recurrence (CompassStone etc.) | Low | `RuneCultistAmbush` uses `NearPlayer(5, 8)` ring. No `AtPlayerOffset(6,0)` or `AtPlayerOffset(2,0)`. Audited in §M6 post-impl |
+| 10 | ClearGoals-on-NPC-death leak (cross-cutting CM-1) applies to LayRuneGoal too | Medium | Fix CM-1 before M6.3 lands (add `brain?.ClearGoals()` in HandleDeath). LayRuneGoal.OnPop clears its own reservation. |
+
+##### M6 Follow-up opportunities (out of M6 scope)
+
+- **Hidden runes** — stealth/perception gate on visibility. Phase 17 work.
+- **Rune disarm** — player skill-check to safely remove placed runes. Phase 14.
+- **Rune crafting** — player-side "create a rune" recipe. Phase 14.
+- **Triggered runes (delayed)** — rune fires after N turns of a trigger condition holding. Phase 15 alchemy.
+- **Area runes** — rune affects a 3x3 or 5x5 radius rather than single cell. ~1 hour extension.
+- **Rune chains** — stepping on rune A triggers rune B elsewhere. Phase 16 combos.
+- **World-gen rune cultist placement** — M6.3 ships the blueprint but no `VillagePopulationBuilder` / `LairPopulationBuilder` hook places them. Symmetric to M5.A3 (Graveyard world-gen). Out of M6 scope — add during content-design phase.
+- **AIDisarmRune behavior** — allied NPCs attempt to disarm enemy runes. Cross-cuts M1.1 AISelfPreservation (disarm while fleeing?). Future.
+
+##### Methodology Template planned application (M6)
+
+Following the standard established by M1-M5:
+
+| Template part | Plan |
+|---|---|
+| 1.2 Pre-impl verification sweep | ✅ Done above (this doc) — Qud LayMineGoal/Miner/Tinkering_Mine + CoO MovementSystem/precursors cross-referenced with file:line citations |
+| 1.4 Risk-ordered sub-milestones | M6.1 (event + triggers, no AI) → M6.2 (goal + blueprints, testable alone) → M6.3 (behavior + NPC + scenario) |
+| 2.1 Hallucination avoidance | Every CoO API + Qud reference grepped + line-cited before any code. M5-post-impl-audit's CM-5 error is the cautionary tale — full-context read required, not just line match |
+| 2.2 Commit-message template | Scoped prefixes: `feat(turns)` for MovementSystem, `feat(entities)` for trigger parts, `feat(ai)` for goal + AILayRunePart, `feat(blueprints)` for content, `test(scenarios)` for RuneCultistAmbush |
+| 3.1 EditMode unit tests | ~28 new tests across 3 new test files |
+| 3.3 Regression pins | Existing AfterMove behavior preserved; placer-not-triggered invariant; zone-load doesn't fire triggers |
+| 3.4 Counter-check pattern | Faction-ally vs faction-hostile trigger; with-cooldown vs without; placer-step vs other-step |
+| 3.5 PlayMode sanity sweep | **Mandatory** (M5 precedent: sweep caught 🔴 EditMode missed). Before flipping M6 to ✅ Shipped |
+| 3.6 Manual playtest scenario | `RuneCultistAmbush.cs` — 2 cultists + runes; player walks into ambush zone |
+| 4 Parity audit | Pre-impl done here; post-impl re-audit before docs update |
+| 5.1–5.3 Post-impl review | Mandatory severity-scaled pass with file:line evidence. Special vigilance for CM-5-class errors (full-context reads). |
+| 6.1–6.4 Honesty protocols | Observed/Expected tables in playtest + PlayMode sweep |
+| 7 Unity MCP tooling | `run_tests` loop per sub-milestone; `execute_code` live state inspection during PlayMode sweep |
+| 8.4 Post-milestone | Commit history table + post-review findings table + Methodology Template compliance matrix — mirrors M4/M5 final form |
+
+##### M6 Audit pre-commitments
+
+The M1-M5 audit surfaced 5 recurring patterns worth pre-committing M6 to
+avoiding:
+
+1. **Terminal-thought stickiness** (CM-6 audit finding) — M6 goals with
+   `Think()` in `TakeAction` MUST override `OnPop` to `Think(null)`.
+   Apply to `LayRuneGoal` from the start.
+
+2. **Solid-target MoveToGoal** (M5.1 HaulPhase lesson) — `LayRuneGoal`'s
+   target cell is chosen by `AILayRunePart` which MUST pre-verify
+   steppability via the same `IsSteppable` predicate used in M5. No
+   post-hoc FindPassableCellNear needed because the selection is
+   upstream.
+
+3. **Scenario spawn pitfall** (CM-5, M4+M5 fix-pass lesson) —
+   `RuneCultistAmbush` uses `NearPlayer(min, max)` for ALL NPC
+   spawns. NO `AtPlayerOffset(2,0)` or `AtPlayerOffset(6,0)`.
+
+4. **Menu wiring** (CM-4 lesson, SnapjawBurial gap) — `[Scenario]`
+   attribute + `[MenuItem]` entry SAME commit. Do not split.
+
+5. **ClearGoals-on-death** (CM-1) — if not fixed cross-cutting before
+   M6.3, `LayRuneGoal.OnPop` clears its reservation explicitly so
+   an NPC dying mid-lay doesn't leak the cell-reservation property.
+
+---
 
 #### Cross-milestone dependencies
 
