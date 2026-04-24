@@ -1,14 +1,21 @@
+using System.Collections.Generic;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
     /// Handles entity movement through a Zone.
-    /// Fires BeforeMove and AfterMove events so parts can validate or react.
+    /// Fires BeforeMove, AfterMove, and EntityEnteredCell events so parts
+    /// can validate or react.
     ///
     /// Movement flow:
     /// 1. Create BeforeMove event with Actor, TargetCell, Direction
     /// 2. Fire on the actor — PhysicsPart checks for solid blockers
     /// 3. If not blocked, move the entity in the zone
-    /// 4. Fire AfterMove event for post-movement reactions
+    /// 4. Fire AfterMove event on the mover (post-movement reactions)
+    /// 5. Fire EntityEnteredCell on every non-mover occupant of the
+    ///    destination cell (M6: rune triggers, future turret proximity
+    ///    detection, etc.). Mirrors Qud's <c>ObjectEnteredCellEvent</c>
+    ///    fired on mine entities (see Qud's Tinkering_Mine.cs:428).
     /// </summary>
     public static class MovementSystem
     {
@@ -77,6 +84,8 @@ namespace CavesOfOoo.Core
             afterMove.SetParameter("NewY", newY);
             entity.FireEventAndRelease(afterMove);
 
+            FireCellEnteredEvents(entity, targetCell);
+
             return (true, null);
         }
 
@@ -122,7 +131,43 @@ namespace CavesOfOoo.Core
             afterMove.SetParameter("NewY", y);
             entity.FireEventAndRelease(afterMove);
 
+            FireCellEnteredEvents(entity, targetCell);
+
             return true;
+        }
+
+        /// <summary>
+        /// Fire <c>EntityEnteredCell</c> on every non-mover occupant of
+        /// <paramref name="targetCell"/>. Mirrors Qud's
+        /// <c>ObjectEnteredCellEvent</c> dispatched against every object
+        /// in the destination cell (see Qud's Tinkering_Mine.cs:428).
+        ///
+        /// We iterate over a snapshot because a listener may mutate the
+        /// cell's Objects list during handling — e.g. a single-use rune
+        /// with ConsumeOnTrigger=true removing itself from the zone.
+        /// </summary>
+        private static void FireCellEnteredEvents(Entity mover, Cell targetCell)
+        {
+            if (targetCell == null) return;
+            // Snapshot: consumers may remove themselves or other entities
+            // from the cell during event handling.
+            var occupants = targetCell.Objects;
+            if (occupants.Count == 0) return;
+            var snapshot = new List<Entity>(occupants.Count);
+            for (int i = 0; i < occupants.Count; i++)
+            {
+                var occ = occupants[i];
+                if (occ == null || occ == mover) continue;
+                snapshot.Add(occ);
+            }
+            for (int i = 0; i < snapshot.Count; i++)
+            {
+                var occ = snapshot[i];
+                var ev = GameEvent.New("EntityEnteredCell");
+                ev.SetParameter("Actor", (object)mover);
+                ev.SetParameter("Cell", (object)targetCell);
+                occ.FireEventAndRelease(ev);
+            }
         }
 
         /// <summary>
