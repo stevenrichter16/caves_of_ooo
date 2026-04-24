@@ -335,9 +335,13 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
-        // CR-02 regression — RuneCultist faction is registered & hostile
-        // to the player (M6 review: "Cultists" missing from Factions.json
-        // made the ambush scenario neutral).
+        // CR-02 regression — RuneCultist faction is registered (not
+        // missing from Factions.json). Disposition is NEUTRAL toward the
+        // player by design: cultists are hazard-placers, not combatants,
+        // so the scenario reads as "watch them wander and lay traps"
+        // rather than a combat ambush. The earlier -100 reputation was
+        // reverted after playtest feedback that combat noise was drowning
+        // out the rune-mechanic demonstration.
         // ====================================================================
 
         // ====================================================================
@@ -379,11 +383,18 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void RuneCultist_Faction_IsRegistered_AndHostileToPlayer()
+        public void RuneCultist_Faction_IsRegistered_AsNeutralToPlayer()
         {
-            // Load real Factions.json + real Objects.json end-to-end. If
-            // "Cultists" is absent from the faction registry, IsHostile
-            // will return false and the regression re-surfaces.
+            // Load real Factions.json + real Objects.json end-to-end.
+            // Two invariants:
+            //   1. The "Cultists" faction MUST be registered (otherwise
+            //      the blueprint's Faction tag points at a ghost and
+            //      faction-sensitive systems silently default to 0).
+            //   2. Cultists disposition toward the player MUST be neutral
+            //      (not hostile). If a future edit accidentally flips
+            //      InitialPlayerReputation negative, the scenario changes
+            //      from "wander & lay runes" to "chase & attack" without
+            //      any design intent behind it.
             var factionAsset = UnityEngine.Resources
                 .Load<UnityEngine.TextAsset>("Content/Data/Factions");
             if (factionAsset == null)
@@ -414,10 +425,12 @@ namespace CavesOfOoo.Tests
             player.SetTag("Player");
             player.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 100, Min = 0, Max = 100 };
 
-            Assert.IsTrue(FactionManager.IsHostile(cultist, player),
-                "Cultists must be hostile to the player so RuneCultistAmbush actually ambushes. " +
-                "CR-02 regression — if Factions.json lacks a 'Cultists' entry with negative " +
-                "InitialPlayerReputation, IsHostile falls through to 0 (neutral).");
+            Assert.IsFalse(FactionManager.IsHostile(cultist, player),
+                "Cultists must be NEUTRAL (not hostile) toward the player. " +
+                "The scenario is a rune-hazard demo, not a combat ambush — cultists " +
+                "wander and lay runes; the player is damaged by stepping on runes, " +
+                "not by being chased. If this flips to true, check Factions.json for " +
+                "an accidental negative InitialPlayerReputation under Cultists.");
         }
     }
 }

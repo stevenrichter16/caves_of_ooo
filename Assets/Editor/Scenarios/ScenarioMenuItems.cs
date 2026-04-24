@@ -68,7 +68,7 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_StoutSnapjaw()
             => ScenarioRunner.Launch<StoutSnapjaw>();
 
-        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Rune Cultist Ambush (M6)", priority = 103)]
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Rune Cultists (M6 neutral)", priority = 103)]
         private static void Launch_RuneCultistAmbush()
             => ScenarioRunner.Launch<RuneCultistAmbush>();
 

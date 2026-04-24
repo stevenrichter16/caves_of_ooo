@@ -7,11 +7,14 @@ namespace CavesOfOoo.Scenarios.Custom
     /// RuneOfX entity with TriggerOnStepPart → EntityEnteredCell event
     /// on player step → damage + effect.
     ///
-    /// The ring radius is large enough that the cultists start outside
-    /// the player's immediate reach, giving them a few turns of idle
-    /// time (and therefore several AILayRune chances) before they
-    /// aggro. The player can then see laid runes in the FOV and decide
-    /// whether to step around them or eat the damage.
+    /// <para><b>Cultist disposition.</b> Cultists are <c>neutral</c>
+    /// toward the player (<c>Factions.json</c> sets
+    /// <c>Cultists.InitialPlayerReputation = 0</c>). They wander the
+    /// zone, occasionally laying runes as their idle behavior. They do
+    /// not initiate combat against the player — the scenario is a
+    /// hazard-placement demo, not a combat ambush. The runes themselves
+    /// still damage the player because <c>TriggerOnStepPart</c>'s
+    /// <c>TriggerFaction</c> filter rejects only same-faction steppers.</para>
     ///
     /// Why 3 cultists: one per rune variant makes it statistically likely
     /// that Flame / Frost / Poison runes all appear within a dozen turns,
@@ -19,9 +22,9 @@ namespace CavesOfOoo.Scenarios.Custom
     /// scenario run.
     /// </summary>
     [Scenario(
-        name: "Rune Cultist Ambush",
+        name: "Rune Cultists",
         category: "Combat Stress",
-        description: "Three rune cultists on a radius-4 ring; they lay runes as they close.")]
+        description: "Three neutral rune cultists wander the zone, laying runes as they go.")]
     public class RuneCultistAmbush : IScenario
     {
         private const int Count = 3;
