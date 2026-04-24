@@ -203,6 +203,19 @@ namespace CavesOfOoo.Core
                 return HandleBeginTakeAction(e);
             }
 
+            // Block movement when any active effect denies action. Defense in
+            // depth against paths that call MovementSystem.TryMove directly
+            // (e.g. InputHandler's player-move path) without first going
+            // through the TurnManager's BeginTakeAction gate.
+            //
+            // Without this, a frozen player could still press a direction
+            // key and move — the "X is frozen and cannot act!" log from
+            // HandleBeginTakeAction would appear on their skipped turn,
+            // but the next input frame would slip through because
+            // BeforeMove has no AllowAction consultation upstream.
+            if (e.ID == "BeforeMove")
+                return HandleBeforeMove(e);
+
             if (e.ID == "EndTurn")
             {
                 HandleEndTurn(e);
@@ -224,6 +237,24 @@ namespace CavesOfOoo.Core
             if (e.ID == "Render")
                 return HandleRender(e);
 
+            return true;
+        }
+
+        private bool HandleBeforeMove(GameEvent e)
+        {
+            // Same scan as HandleBeginTakeAction — if any effect returns
+            // AllowAction=false, block the move. We DON'T re-log here
+            // because HandleBeginTakeAction already logged on the turn
+            // gate; a second "cannot act" per skipped-input key-press
+            // would spam the log.
+            for (int i = 0; i < _effects.Count; i++)
+            {
+                if (!_effects[i].AllowAction(ParentEntity))
+                {
+                    e.Handled = true;
+                    return false;
+                }
+            }
             return true;
         }
 

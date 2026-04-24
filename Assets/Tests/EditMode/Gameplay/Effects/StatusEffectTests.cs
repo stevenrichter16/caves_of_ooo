@@ -243,6 +243,74 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void Frozen_BlocksBeginTakeAction_WhenColdAbove50()
+        {
+            // Reported gameplay bug: RuneOfFrost triggers, log shows
+            // "X is frozen and cannot act!" but player can still move.
+            // This test pins the contract: BeginTakeAction MUST return
+            // false when FrozenEffect is active with Cold > 0.5. If it
+            // returns true, the TurnManager will set WaitingForInput=true
+            // and InputHandler will process movement.
+            var e = CreateCreature();
+            e.ApplyEffect(new FrozenEffect(cold: 1.0f));
+
+            var beginTakeAction = GameEvent.New("BeginTakeAction");
+            bool result = e.FireEvent(beginTakeAction);
+
+            Assert.IsFalse(result,
+                "BeginTakeAction must be blocked when frozen with Cold=1.0. If this test fails, the player can still move while the log says they're frozen.");
+            Assert.IsTrue(beginTakeAction.Handled,
+                "The event's Handled flag must be set so TurnManager's FireEvent short-circuits correctly.");
+        }
+
+        [Test]
+        public void Frozen_DoesNotBlock_WhenColdBelow50()
+        {
+            // Contrast with the above — once Cold ≤ 0.5 (partial thaw),
+            // the creature regains the ability to act. Pins
+            // FrozenEffect.AllowAction's threshold at exactly 0.5.
+            var e = CreateCreature();
+            e.ApplyEffect(new FrozenEffect(cold: 0.4f));
+
+            var beginTakeAction = GameEvent.New("BeginTakeAction");
+            bool result = e.FireEvent(beginTakeAction);
+
+            Assert.IsTrue(result,
+                "BeginTakeAction must pass when Cold ≤ 0.5 — partial freeze allows action.");
+        }
+
+        [Test]
+        public void Frozen_AlsoBlocksMovement_ViaBeforeMove()
+        {
+            // Reported gameplay bug: player steps on RuneOfFrost, gets
+            // FrozenEffect, log says "frozen and cannot act" — but can
+            // still move. Root cause: StatusEffectsPart only gates
+            // BeginTakeAction. The player-input path goes through
+            // MovementSystem.TryMoveEx, which fires BeforeMove — a
+            // different event — and no part consults AllowAction there.
+            //
+            // Fix: StatusEffectsPart must also block BeforeMove when
+            // any active effect returns AllowAction=false. Defense in
+            // depth against any path that moves an entity without
+            // first going through the turn-manager gate.
+            var zone = new Zone("TestZone");
+            var frozen = CreateCreature();
+            frozen.AddPart(new PhysicsPart { Solid = false });
+            zone.AddEntity(frozen, 5, 5);
+            frozen.ApplyEffect(new FrozenEffect(cold: 1.0f));
+
+            // Try to move the frozen entity. Without the fix, TryMove
+            // returns true and the entity ends up at (6,5).
+            bool moved = MovementSystem.TryMove(frozen, zone, dx: 1, dy: 0);
+
+            Assert.IsFalse(moved,
+                "Frozen entity (Cold=1.0) must not be able to move. MovementSystem.TryMove is the player-input entry point; if it returns true here, the player can move despite the frozen message.");
+            var cell = zone.GetEntityCell(frozen);
+            Assert.AreEqual(5, cell.X, "Entity must remain at starting X.");
+            Assert.AreEqual(5, cell.Y, "Entity must remain at starting Y.");
+        }
+
+        [Test]
         public void Stunned_DoesNotBlockAfterExpired()
         {
             var e = CreateCreature();
