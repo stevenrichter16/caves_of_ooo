@@ -90,18 +90,39 @@ namespace CavesOfOoo.Tests
             e.ApplyEffect(frozen);
 
             Assert.IsFalse(frozen.AllowAction(e),
-                "Cold > 0.5 should block action like stun.");
+                "Any positive Cold should block action like stun.");
         }
 
         [Test]
-        public void FrozenEffect_ShallowCold_AllowsAction()
+        public void FrozenEffect_ShallowCold_StillBlocksAction()
         {
+            // Historical note: this test originally asserted that Cold=0.3
+            // allowed action (the old threshold was Cold > 0.5 blocks). That
+            // created a "log says frozen but player can move" UX bug — the
+            // partial-thaw window let the player act while the FrozenEffect
+            // was still visibly present. The fix is to block at any Cold > 0.
+            // See Docs/QUD-PARITY.md / git blame on FrozenEffect.cs for the
+            // reproduction log trace.
             var e = CreateCreature();
             var frozen = new FrozenEffect(cold: 0.3f);
             e.ApplyEffect(frozen);
 
+            Assert.IsFalse(frozen.AllowAction(e),
+                "Shallow Cold (0.3) must still block — 'effect present' means 'frozen'.");
+        }
+
+        [Test]
+        public void FrozenEffect_ZeroCold_AllowsAction()
+        {
+            // Cold == 0 is the natural expiry state — OnTurnEnd sets
+            // Duration=0 when this becomes true, so the effect shouldn't
+            // still be in _effects by then. But pin the predicate itself.
+            var e = CreateCreature();
+            var frozen = new FrozenEffect(cold: 1.0f);
+            frozen.Cold = 0f;
+
             Assert.IsTrue(frozen.AllowAction(e),
-                "Cold <= 0.5 should allow action.");
+                "Fully-thawed Cold (0) must allow action.");
         }
 
         [Test]

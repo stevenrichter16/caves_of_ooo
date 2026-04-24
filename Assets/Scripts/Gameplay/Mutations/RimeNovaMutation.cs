@@ -73,8 +73,14 @@ namespace CavesOfOoo.Core
             // 1. Damage creatures in radius and apply FrozenEffect(0.6) directly.
             // Pre-applying preserves the 0.6 Cold value; the follow-up cooling
             // heat's TryFreeze short-circuits on HasEffect<FrozenEffect>(). At
-            // Cold = 0.6 the creature fails FrozenEffect.AllowAction (<= 0.5)
+            // any positive Cold the creature fails FrozenEffect.AllowAction
             // and is locked out of acting — the intentional AoE soft-lock.
+            // Duration scales with thaw rate: Cold=0.6 @ ~0.025/turn thaw =
+            // ~24 turns of lockout from a single cast. If that's too strong,
+            // tune the Cold value down (0.3 → ~12 turns, 0.15 → ~6 turns)
+            // rather than touching the AllowAction threshold — the threshold
+            // is 0 by design so "frozen in log" and "frozen in practice"
+            // stay aligned.
             var creatures = SpellTargeting.GetCreaturesInRadius(
                 zone, sourceCell.X, sourceCell.Y, RADIUS, exclude: ParentEntity);
 

@@ -264,19 +264,54 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Frozen_DoesNotBlock_WhenColdBelow50()
+        public void Frozen_BlocksAction_WhileAnyColdRemains()
         {
-            // Contrast with the above — once Cold ≤ 0.5 (partial thaw),
-            // the creature regains the ability to act. Pins
-            // FrozenEffect.AllowAction's threshold at exactly 0.5.
+            // FrozenEffect.AllowAction blocks at ANY Cold > 0 (not the
+            // old Cold > 0.5 half-threshold). This pins the semantic
+            // that "effect present" === "frozen" — no partial-thaw
+            // window where the log says frozen but the player can act.
             var e = CreateCreature();
             e.ApplyEffect(new FrozenEffect(cold: 0.4f));
 
             var beginTakeAction = GameEvent.New("BeginTakeAction");
             bool result = e.FireEvent(beginTakeAction);
 
-            Assert.IsTrue(result,
-                "BeginTakeAction must pass when Cold ≤ 0.5 — partial freeze allows action.");
+            Assert.IsFalse(result,
+                "BeginTakeAction must be blocked for any Cold > 0. If this flips " +
+                "back to Assert.IsTrue, the partial-thaw UX bug has regressed.");
+        }
+
+        [Test]
+        public void Frozen_AllowsAction_WhenFullyThawed()
+        {
+            // Sanity: once Cold == 0, the effect should allow action.
+            // In practice OnTurnEnd sets Duration=0 the same tick this
+            // becomes true, so the effect doesn't linger — but verify
+            // the predicate itself.
+            var frozen = new FrozenEffect(cold: 1.0f);
+            frozen.Cold = 0f; // simulate full thaw
+            Assert.IsTrue(frozen.AllowAction(null),
+                "AllowAction must return true at Cold == 0 so the final thaw frame doesn't keep blocking.");
+        }
+
+        [Test]
+        public void Frozen_AlsoBlocksMovement_ViaTryMoveEx()
+        {
+            // Actual player-input path in InputHandler.cs:460 uses TryMoveEx,
+            // not TryMove. Mirror the exact call shape here.
+            var zone = new Zone("TestZone");
+            var frozen = CreateCreature();
+            frozen.AddPart(new PhysicsPart { Solid = false });
+            zone.AddEntity(frozen, 5, 5);
+            frozen.ApplyEffect(new FrozenEffect(cold: 1.0f));
+
+            var (moved, blockedBy) = MovementSystem.TryMoveEx(frozen, zone, dx: 1, dy: 0);
+
+            Assert.IsFalse(moved,
+                "TryMoveEx (the player-input path) must also block when frozen.");
+            var cell = zone.GetEntityCell(frozen);
+            Assert.AreEqual(5, cell.X);
+            Assert.AreEqual(5, cell.Y);
         }
 
         [Test]
