@@ -282,6 +282,64 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void Frozen_ProcessUntilPlayerTurn_DoesNotCollapseEntireFreeze_InOneCall()
+        {
+            // Reported gameplay bug: stepping on a frost rune applies
+            // FrozenEffect(Cold=1.0), but the very next input moves the
+            // player — diagnostic logs showed 41 OnTurnEnd calls running
+            // inside a single Update() frame through ProcessUntilPlayerTurn's
+            // spin-until-player-can-act loop, collapsing the entire thaw
+            // into zero real-world-play time.
+            //
+            // Fix: when the player's BeginTakeAction is blocked,
+            // ProcessUntilPlayerTurn returns early (WaitingForInput=true)
+            // instead of cycling the player through more skipped turns
+            // in the same frame.
+            //
+            // This test pins the invariant by running ProcessUntilPlayerTurn
+            // in a freshly-frozen scenario and counting OnTurnEnd calls: at
+            // most ONE thaw from the player's EndTurn should fire in the
+            // call — not 40.
+            var player = CreateCreature();
+            player.SetTag("Player");
+            player.AddPart(new ThermalPart { Temperature = 25f, FreezeTemperature = 0f });
+
+            // Install a probe effect that counts OnTurnEnd fires on the
+            // player. Positioned BEFORE the FrozenEffect in the effect
+            // list so it always runs (AllowAction=true on the probe
+            // doesn't block the gate).
+            var probe = new TurnEndCounterEffect();
+            player.ApplyEffect(probe);
+            player.ApplyEffect(new FrozenEffect(cold: 1.0f));
+
+            var turnManager = new TurnManager();
+            turnManager.AddEntity(player);
+
+            // Give the player 1000 energy so BeginTakeAction fires
+            // immediately on the first iteration.
+            var tickMethod = typeof(TurnManager).GetMethod("Tick");
+            for (int i = 0; i < 10; i++) turnManager.Tick();
+
+            int probeBefore = probe.Count;
+            turnManager.ProcessUntilPlayerTurn();
+
+            int thawsThisCall = probe.Count - probeBefore;
+            Assert.LessOrEqual(thawsThisCall, 1,
+                $"ProcessUntilPlayerTurn fired OnTurnEnd {thawsThisCall} times on the frozen " +
+                "player in a single call. Must be ≤ 1 — more means the freeze collapses to " +
+                "one Unity frame regardless of its nominal duration (pre-fix was 41).");
+        }
+
+        /// <summary>Test-only effect that counts OnTurnEnd fires. Never blocks action.</summary>
+        private class TurnEndCounterEffect : Effect
+        {
+            public override string DisplayName => "counter";
+            public int Count;
+            public TurnEndCounterEffect() { Duration = DURATION_INDEFINITE; }
+            public override void OnTurnEnd(Entity target) { Count++; }
+        }
+
+        [Test]
         public void Frozen_AllowsAction_WhenFullyThawed()
         {
             // Sanity: once Cold == 0, the effect should allow action.

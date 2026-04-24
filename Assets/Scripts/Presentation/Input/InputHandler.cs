@@ -492,6 +492,28 @@ namespace CavesOfOoo.Rendering
                             EndTurnAndProcess();
                         }
                     }
+                    // If there's no transition, fall through to the
+                    // status-block fallback below.
+                }
+
+                // Status-block fallback: the move wasn't accepted by any
+                // of the above paths AND the player has an active
+                // action-blocking effect (frozen/stunned/paralyzed). Treat
+                // the keypress as a "wait" and advance one turn so the
+                // effect thaws at its configured rate. Without this, a
+                // frozen player pressing direction keys would produce no
+                // turn advance at all — the freeze would never tick down.
+                //
+                // Pair this with TurnManager.ProcessUntilPlayerTurn's
+                // early-return on player-block: one keypress = one
+                // blocked-turn thaw, matching player expectation.
+                if (!moved)
+                {
+                    var sep = PlayerEntity.GetPart<StatusEffectsPart>();
+                    if (sep != null && sep.IsActionBlocked())
+                    {
+                        EndTurnAndProcess();
+                    }
                 }
 
                 _lastMoveTime = Time.time;

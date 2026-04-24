@@ -142,6 +142,23 @@ namespace CavesOfOoo.Core
                     if (!actor.FireEvent(beginTakeAction))
                     {
                         EndTurn(actor, actorZone);
+
+                        // If the PLAYER was the blocked actor, don't keep
+                        // cycling them through this loop in one Unity frame.
+                        // Otherwise a status-effect duration (frozen, stunned,
+                        // paralyzed) collapses to zero real-world-play time —
+                        // the loop grinds through every skipped turn until
+                        // the effect thaws below its threshold, all inside
+                        // the same Update() call. Return with
+                        // WaitingForInput=true so input is accepted; the
+                        // InputHandler's "movement blocked by status" fallback
+                        // routes each keypress back through EndTurnAndProcess
+                        // for a one-tick-per-press cadence.
+                        if (actor.HasTag("Player"))
+                        {
+                            WaitingForInput = true;
+                            return actor;
+                        }
                         continue;
                     }
 

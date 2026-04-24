@@ -151,6 +151,23 @@ namespace CavesOfOoo.Core
             return false;
         }
 
+        /// <summary>
+        /// True when any active effect would block the owner from acting
+        /// (AllowAction returns false). Used by InputHandler to detect
+        /// the "frozen / stunned / paralyzed" state and route failed
+        /// player-input moves through the turn advancer instead of
+        /// ignoring them.
+        /// </summary>
+        public bool IsActionBlocked()
+        {
+            for (int i = 0; i < _effects.Count; i++)
+            {
+                if (!_effects[i].AllowAction(ParentEntity))
+                    return true;
+            }
+            return false;
+        }
+
         public T GetEffect<T>() where T : Effect
         {
             for (int i = 0; i < _effects.Count; i++)
