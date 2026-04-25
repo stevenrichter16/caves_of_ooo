@@ -1181,7 +1181,14 @@ namespace CavesOfOoo.Core
             if (type == null || type.IsAbstract || !typeof(Effect).IsAssignableFrom(type))
                 return null;
 
-            var effect = (Effect)Activator.CreateInstance(type);
+            // Bypass constructors via FormatterServices — many concrete effects
+            // (SmolderingEffect, FrozenEffect, PoisonedEffect, ...) declare
+            // parameterized constructors only. Activator.CreateInstance(type)
+            // would throw MissingMethodException for those, breaking save load
+            // for any creature with a status effect. Field-level deserialization
+            // below restores the state the constructor would have set, so
+            // skipping ctor invocation is safe.
+            var effect = (Effect)System.Runtime.Serialization.FormatterServices.GetUninitializedObject(type);
             effect.Duration = reader.ReadInt();
             ReadPublicFields(effect, reader);
             return effect;
@@ -1486,7 +1493,15 @@ namespace CavesOfOoo.Core
             if (type == null || type.IsAbstract || !typeof(GoalHandler).IsAssignableFrom(type) || type.Name == "DelegateGoal")
                 return null;
 
-            var goal = (GoalHandler)Activator.CreateInstance(type);
+            // Bypass constructors via FormatterServices — most concrete goals
+            // (LayRuneGoal, MoveToGoal, WaitGoal, KillGoal, FleeGoal,
+            // DisposeOfCorpseGoal, ...) declare parameterized constructors
+            // only. Activator.CreateInstance(type) would throw
+            // MissingMethodException for those, breaking save load for any
+            // NPC with goals on the stack. Field-level deserialization below
+            // restores the state the constructor would have set, so skipping
+            // ctor invocation is safe.
+            var goal = (GoalHandler)System.Runtime.Serialization.FormatterServices.GetUninitializedObject(type);
             goal.Age = reader.ReadInt();
             ReadPublicFields(goal, reader);
             return goal;

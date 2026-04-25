@@ -77,6 +77,13 @@ namespace CavesOfOoo.Rendering
         private const int FullscreenUiGridWidth = 80;
         private const int FullscreenUiGridHeight = 45;
 
+        // Phase 4: save/load hotkeys (F5 = QuickSave, F6 = QuickLoad).
+        // Pure-logic controller is unit-tested in SaveLoadInputControllerTests;
+        // this field + its two adapters are the thin Unity glue.
+        private readonly SaveLoadInputController _saveLoadInputController = new SaveLoadInputController();
+        private static readonly UnityInputProbeAdapter _saveLoadInputProbe = new UnityInputProbeAdapter();
+        private static readonly SaveGameServiceAdapter _saveLoadService = new SaveGameServiceAdapter();
+
         /// <summary>
         /// Input state machine for ability targeting.
         /// Normal: standard movement/action input.
@@ -241,6 +248,23 @@ namespace CavesOfOoo.Rendering
             {
                 HandleThrowPopupInput();
                 return;
+            }
+
+            // Save/Load hotkeys (Phase 4) — fire only in normal gameplay,
+            // never while a modal UI is open. Routed through the
+            // SaveLoadInputController so its dispatch logic stays
+            // unit-testable. Run BEFORE the wait-skip block so a save
+            // doesn't get swallowed by a held '.' key. Tick returns
+            // true when the F5/F6 input was consumed — early-return
+            // so subsequent debug F-key bindings (F6=mutate-debug etc.)
+            // don't ALSO fire on the same press.
+            if (_inputState == InputState.Normal)
+            {
+                if (_saveLoadInputController.Tick(_saveLoadInputProbe, _saveLoadService, MessageLog.Add))
+                {
+                    _lastMoveTime = Time.time;
+                    return;
+                }
             }
 
             // Wait/skip turn (tap or hold) — placed BEFORE the general rate
