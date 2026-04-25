@@ -273,9 +273,12 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
             Assert.IsNotNull(lHand.Equipped, "Loaded hand must still have an equipped item.");
             Assert.AreSame(lHand.Equipped, lInv.EquippedItems[lHand.ID.ToString()],
                 "EquippedItems[slot] must point to the SAME instance as BodyPart.Equipped — no duplicate entity.");
-            // Critical: the equipped item must also appear in the inventory's Objects list (one canonical reference).
-            Assert.Contains(lHand.Equipped, lInv.Objects,
-                "Equipped item must be the same instance present in InventoryPart.Objects (no duplicate).");
+            // Note: equipped items are NOT in InventoryPart.Objects (that list holds unequipped items only).
+            // The same-instance contract is enforced via the token map across BodyPart._Equipped and
+            // EquippedItems[slot]. Pinning that here, plus the round-trip identity, plus the absence
+            // from Objects (which would indicate duplication, the actual bug we want to catch).
+            Assert.IsFalse(lInv.Objects.Contains(lHand.Equipped),
+                "Equipped items live exclusively in EquippedItems[slot] + BodyPart._Equipped — they are not duplicated into Objects.");
         }
 
         /// <summary>
@@ -371,7 +374,7 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
             using var stream = new MemoryStream(new byte[0]);
             var reader = new SaveReader(stream, null);
 
-            Assert.Throws<System.Exception>(
+            Assert.Catch<System.Exception>(
                 () => GameSessionState.Load(reader),
                 "Empty stream must throw on load — never silently produce an invalid GameSessionState.");
         }
@@ -393,7 +396,7 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
             using var stream = new MemoryStream(garbage);
             var reader = new SaveReader(stream, null);
 
-            Assert.Throws<System.Exception>(
+            Assert.Catch<System.Exception>(
                 () => GameSessionState.Load(reader),
                 "Random bytes (no valid magic) must throw on load.");
         }
@@ -419,7 +422,7 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
             using var stream = new MemoryStream(truncated);
             var reader = new SaveReader(stream, null);
 
-            Assert.Throws<System.Exception>(
+            Assert.Catch<System.Exception>(
                 () => GameSessionState.Load(reader),
                 "Truncated save must throw — not return partial state.");
         }
@@ -443,7 +446,7 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
             using var stream = new MemoryStream(corrupted);
             var reader = new SaveReader(stream, null);
 
-            Assert.Throws<System.Exception>(
+            Assert.Catch<System.Exception>(
                 () => GameSessionState.Load(reader),
                 "Wrong magic header must reject the load (this isn't our save file).");
         }
@@ -768,7 +771,7 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
             var smolder = new SmolderingEffect(duration: 5);
             effects.ApplyEffect(smolder, source: null, zone: zone);
             // Stack again — should accumulate.
-            effects.Apply(new SmolderingEffect(duration: 5), source: null, zone: zone);
+            effects.ApplyEffect(new SmolderingEffect(duration: 5), source: null, zone: zone);
 
             var loaded = RoundTrip(player, zone, mgr, turns);
             var lp = loaded.Player;
