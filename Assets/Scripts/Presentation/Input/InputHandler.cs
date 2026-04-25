@@ -254,10 +254,17 @@ namespace CavesOfOoo.Rendering
             // never while a modal UI is open. Routed through the
             // SaveLoadInputController so its dispatch logic stays
             // unit-testable. Run BEFORE the wait-skip block so a save
-            // doesn't get swallowed by a held '.' key.
+            // doesn't get swallowed by a held '.' key. Tick returns
+            // true when the F5/F6 input was consumed — early-return
+            // so subsequent debug F-key bindings (F6=mutate-debug etc.)
+            // don't ALSO fire on the same press.
             if (_inputState == InputState.Normal)
             {
-                _saveLoadInputController.Tick(_saveLoadInputProbe, _saveLoadService, MessageLog.Add);
+                if (_saveLoadInputController.Tick(_saveLoadInputProbe, _saveLoadService, MessageLog.Add))
+                {
+                    _lastMoveTime = Time.time;
+                    return;
+                }
             }
 
             // Wait/skip turn (tap or hold) — placed BEFORE the general rate

@@ -188,6 +188,47 @@ namespace CavesOfOoo.Tests.EditMode.Presentation.Input
         }
 
         // ============================================================
+        // Consume contract — Tick returns whether it consumed input
+        // ============================================================
+
+        [Test]
+        public void Tick_SaveKeyPressed_ReturnsTrue_ConsumesInput()
+        {
+            _input.PressKey(_controller.SaveKey);
+            bool consumed = _controller.Tick(_input, _service, _log.Add);
+            Assert.IsTrue(consumed,
+                "Save key dispatched → must signal consumed=true so the host short-circuits remaining bindings.");
+        }
+
+        [Test]
+        public void Tick_LoadKeyPressed_SaveExists_ReturnsTrue_ConsumesInput()
+        {
+            _service.HasQuickSaveResult = true;
+            _input.PressKey(_controller.LoadKey);
+            bool consumed = _controller.Tick(_input, _service, _log.Add);
+            Assert.IsTrue(consumed, "Successful load dispatch → consumed=true.");
+        }
+
+        [Test]
+        public void Tick_LoadKeyPressed_NoSaveExists_ReturnsTrue_ConsumesInput()
+        {
+            // The 'no save' message IS dispatch — the F-key was a save/load
+            // intent, never let it fall through to a debug binding.
+            _service.HasQuickSaveResult = false;
+            _input.PressKey(_controller.LoadKey);
+            bool consumed = _controller.Tick(_input, _service, _log.Add);
+            Assert.IsTrue(consumed,
+                "Even no-save fallback consumes the load key — host must NOT pass it through to debug bindings.");
+        }
+
+        [Test]
+        public void Tick_NoKeyPressed_ReturnsFalse_NotConsumed()
+        {
+            bool consumed = _controller.Tick(_input, _service, _log.Add);
+            Assert.IsFalse(consumed, "Quiet tick must return false so host continues normally.");
+        }
+
+        // ============================================================
         // Test doubles
         // ============================================================
 

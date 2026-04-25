@@ -47,8 +47,13 @@ namespace CavesOfOoo.Rendering
 
         /// <summary>
         /// Run one polling tick. Call from the host's Update().
+        /// Returns <c>true</c> when the controller consumed the input
+        /// (save fired, load fired, or load short-circuited on no-save) —
+        /// the host MUST early-return so subsequent bindings (debug
+        /// hotkeys etc.) don't see the same key. Returns <c>false</c>
+        /// when no save/load key was pressed.
         /// </summary>
-        public void Tick(IInputProbe input, ISaveLoadService service, Action<string> log)
+        public bool Tick(IInputProbe input, ISaveLoadService service, Action<string> log)
         {
             bool savePressed = input.GetKeyDown(SaveKey);
             bool loadPressed = input.GetKeyDown(LoadKey);
@@ -58,7 +63,7 @@ namespace CavesOfOoo.Rendering
             {
                 bool ok = service.QuickSave();
                 log?.Invoke(ok ? "Game saved." : "Save failed — see console.");
-                return;
+                return true;
             }
 
             if (loadPressed)
@@ -66,12 +71,15 @@ namespace CavesOfOoo.Rendering
                 if (!service.HasQuickSave())
                 {
                     log?.Invoke("No save to load.");
-                    return;
+                    return true;  // load-key was an intent — never fall through to debug bindings
                 }
 
                 bool ok = service.QuickLoad();
                 log?.Invoke(ok ? "Game loaded." : "Load failed — save may be corrupted.");
+                return true;
             }
+
+            return false;
         }
     }
 }
