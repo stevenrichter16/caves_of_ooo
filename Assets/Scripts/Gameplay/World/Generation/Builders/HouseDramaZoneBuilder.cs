@@ -51,8 +51,11 @@ namespace CavesOfOoo.Core
                 return true;
             }
 
-            HouseDramaRuntime.RegisterDrama(data);
-            HouseDramaRuntime.ActivateDrama(_dramaId);
+            if (!HouseDramaRuntime.IsDramaActive(_dramaId))
+            {
+                HouseDramaRuntime.RegisterDrama(data);
+                HouseDramaRuntime.ActivateDrama(_dramaId);
+            }
 
             if (data.NpcRoles == null || data.NpcRoles.Count == 0)
                 return true;

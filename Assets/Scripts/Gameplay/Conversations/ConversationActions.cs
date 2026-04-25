@@ -358,8 +358,13 @@ namespace CavesOfOoo.Core
             Register("StartDrama", (speaker, listener, arg) =>
             {
                 if (string.IsNullOrEmpty(arg)) return;
-                var data = Data.HouseDramaLoader.Get(arg);
-                if (data != null) HouseDramaRuntime.RegisterDrama(data);
+                if (HouseDramaRuntime.IsDramaActive(arg)) return;
+                if (HouseDramaRuntime.GetDrama(arg) == null)
+                {
+                    var data = Data.HouseDramaLoader.Get(arg);
+                    if (data == null) return;
+                    HouseDramaRuntime.RegisterDrama(data);
+                }
                 HouseDramaRuntime.ActivateDrama(arg);
             });
 

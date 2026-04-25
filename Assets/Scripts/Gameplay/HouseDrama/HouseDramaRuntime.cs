@@ -12,7 +12,7 @@ namespace CavesOfOoo.Core
     ///   - Track pressure point activation states (dormant/active/resolved/failed)
     ///   - Record which path resolved each pressure point
     ///   - Maintain per-NPC witness knowledge
-    ///   - Track corruption score (summed from path EmotionalCostMagnitude + CorruptionContribution)
+    ///   - Track corruption score (summed from path CorruptionContribution only)
     ///   - Evaluate crossover edges on state change
     ///   - Track closed paths (sealed by crossover edges like AntagonistReveal)
     ///
@@ -129,7 +129,7 @@ namespace CavesOfOoo.Core
                 var pathData = drama.Data?.GetPath(pointId, pathId);
                 if (pathData != null)
                     drama.CorruptionScore = Math.Max(0, drama.CorruptionScore +
-                        pathData.CorruptionContribution + pathData.EmotionalCostMagnitude);
+                        pathData.CorruptionContribution);
             }
 
             EvaluateCrossovers(dramaId, pointId, newState);
@@ -240,8 +240,9 @@ namespace CavesOfOoo.Core
         // ─────────────────────────────────────────────────────────────────────
 
         /// <summary>
-        /// Returns the ID of the end state that best matches the current drama progress,
-        /// or null if no end state has been reached.
+        /// Returns the ID of the end state whose PathSignature is a subset of paths taken
+        /// and has the most entries (most specific match). Ties go to the earlier-listed
+        /// end state. Returns null if no end state has been reached.
         /// </summary>
         public static string EvaluateEndState(string dramaId)
         {
@@ -254,7 +255,9 @@ namespace CavesOfOoo.Core
                 if (!string.IsNullOrEmpty(pp.PathTaken))
                     pathsTaken.Add(pp.PathTaken);
 
-            // Find end state whose path signature is a subset of paths taken
+            // Find the most specific end state (largest PathSignature) that is a subset of paths taken
+            string bestId = null;
+            int bestScore = -1;
             foreach (var endState in drama.Data.EndStates)
             {
                 if (endState.PathSignature == null || endState.PathSignature.Count == 0)
@@ -262,9 +265,13 @@ namespace CavesOfOoo.Core
                 bool allMatch = true;
                 foreach (var sig in endState.PathSignature)
                     if (!pathsTaken.Contains(sig)) { allMatch = false; break; }
-                if (allMatch) return endState.Id;
+                if (allMatch && endState.PathSignature.Count > bestScore)
+                {
+                    bestId = endState.Id;
+                    bestScore = endState.PathSignature.Count;
+                }
             }
-            return null;
+            return bestId;
         }
 
         // ─────────────────────────────────────────────────────────────────────

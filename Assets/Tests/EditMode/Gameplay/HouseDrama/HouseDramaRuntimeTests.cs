@@ -153,10 +153,10 @@ namespace CavesOfOoo.Tests
             HouseDramaRuntime.RegisterDrama(BuildMinimalDrama());
             HouseDramaRuntime.ActivateDrama(DramaId);
 
-            // PathA: EmotionalCostMagnitude=2, CorruptionContribution=1 → total 3
+            // PathA: CorruptionContribution=1 → total 1 (EmotionalCostMagnitude no longer feeds corruption)
             HouseDramaRuntime.AdvancePressurePoint(DramaId, "PP1", "resolved", "PathA");
 
-            Assert.AreEqual(3, HouseDramaRuntime.GetCorruption(DramaId));
+            Assert.AreEqual(1, HouseDramaRuntime.GetCorruption(DramaId));
         }
 
         [Test]
