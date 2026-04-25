@@ -80,6 +80,21 @@ namespace CavesOfOoo.Core
             }
         }
 
+        public override void OnAfterLoad(SaveReader reader)
+        {
+            MutationList.Clear();
+            if (ParentEntity != null)
+            {
+                for (int i = 0; i < ParentEntity.Parts.Count; i++)
+                {
+                    if (ParentEntity.Parts[i] is BaseMutation mutation && !MutationList.Contains(mutation))
+                        MutationList.Add(mutation);
+                }
+            }
+
+            SyncMutationLevels();
+        }
+
         /// <summary>
         /// Add a mutation to this entity at the given level.
         /// Attaches the mutation as a Part, calls Mutate lifecycle.

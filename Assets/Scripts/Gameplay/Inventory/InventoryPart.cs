@@ -267,6 +267,39 @@ namespace CavesOfOoo.Core
             return result;
         }
 
+        public override void OnAfterLoad(SaveReader reader)
+        {
+            RefreshLoadedBackReferences();
+        }
+
+        public override void FinalizeLoad(SaveReader reader)
+        {
+            RefreshLoadedBackReferences();
+        }
+
+        private void RefreshLoadedBackReferences()
+        {
+            for (int i = 0; i < Objects.Count; i++)
+            {
+                var physics = Objects[i]?.GetPart<PhysicsPart>();
+                if (physics != null)
+                {
+                    physics.InInventory = ParentEntity;
+                    physics.Equipped = null;
+                }
+            }
+
+            foreach (var kvp in EquippedItems)
+            {
+                var physics = kvp.Value?.GetPart<PhysicsPart>();
+                if (physics != null)
+                {
+                    physics.InInventory = null;
+                    physics.Equipped = ParentEntity;
+                }
+            }
+        }
+
         /// <summary>
         /// Total weight of all carried + equipped items.
         /// Stack-aware: uses StackerPart.GetTotalWeight() when present.

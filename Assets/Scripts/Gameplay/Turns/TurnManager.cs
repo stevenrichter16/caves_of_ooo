@@ -44,6 +44,12 @@ namespace CavesOfOoo.Core
             public int Energy;
         }
 
+        public struct SavedTurnEntry
+        {
+            public Entity Entity;
+            public int Energy;
+        }
+
         /// <summary>
         /// Register an entity to participate in turns.
         /// </summary>
@@ -301,6 +307,47 @@ namespace CavesOfOoo.Core
             {
                 for (int i = 0; i < _entries.Count; i++)
                     yield return _entries[i].Entity;
+            }
+        }
+
+        public List<SavedTurnEntry> GetSavedEntries()
+        {
+            var result = new List<SavedTurnEntry>(_entries.Count);
+            for (int i = 0; i < _entries.Count; i++)
+            {
+                result.Add(new SavedTurnEntry
+                {
+                    Entity = _entries[i].Entity,
+                    Energy = _entries[i].Energy
+                });
+            }
+            return result;
+        }
+
+        public void RestoreSavedState(
+            int tickCount,
+            bool waitingForInput,
+            Entity currentActor,
+            List<SavedTurnEntry> entries)
+        {
+            TickCount = tickCount;
+            WaitingForInput = waitingForInput;
+            CurrentActor = currentActor;
+            _entries.Clear();
+
+            if (entries == null)
+                return;
+
+            for (int i = 0; i < entries.Count; i++)
+            {
+                if (entries[i].Entity == null)
+                    continue;
+
+                _entries.Add(new TurnEntry
+                {
+                    Entity = entries[i].Entity,
+                    Energy = entries[i].Energy
+                });
             }
         }
     }

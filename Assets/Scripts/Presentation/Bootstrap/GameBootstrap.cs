@@ -36,6 +36,7 @@ namespace CavesOfOoo
         private Zone _zone;
         private TurnManager _turnManager;
         private Entity _player;
+        private string _gameID = Guid.NewGuid().ToString("N");
         private static readonly char[] StartingBitTypes = { 'R', 'G', 'B', 'C', 'r', 'g', 'b', 'c', 'K', 'W', 'Y', 'M' };
         private static readonly string[] StartingTonicBlueprints =
         {
@@ -377,6 +378,8 @@ namespace CavesOfOoo
                     Debug.LogError($"[Bootstrap] OnAfterBootstrap handler threw: {ex}");
                 }
 
+                SaveGameService.RegisterRuntime(CaptureGameSessionState, ApplyLoadedGame);
+
                 Debug.Log($"[Bootstrap] DONE. Zone has {_zone.EntityCount} entities. WASD/arrows to move.");
             }
 
@@ -500,6 +503,104 @@ namespace CavesOfOoo
 
             if (!stack.Contains(popupOverlayCamera))
                 stack.Add(popupOverlayCamera);
+        }
+
+        private GameSessionState CaptureGameSessionState()
+        {
+            return GameSessionState.Capture(
+                _gameID,
+                Application.version,
+                _zoneManager,
+                _turnManager,
+                _player,
+                selectedHotbarSlot: 0);
+        }
+
+        public void ApplyLoadedGame(GameSessionState state)
+        {
+            if (state == null)
+                return;
+
+            _gameID = string.IsNullOrEmpty(state.GameID) ? _gameID : state.GameID;
+            _zoneManager = state.ZoneManager;
+            _turnManager = state.TurnManager;
+            _player = state.Player;
+            _zone = _zoneManager?.ActiveZone;
+
+            ConversationActions.Factory = _factory;
+            MaterialReactionResolver.Factory = _factory;
+            CorpsePart.Factory = _factory;
+            LayRuneGoal.Factory = _factory;
+            ConversationManager.EndConversation();
+
+            if (_zoneManager != null)
+                _zoneManager.SetTurnProvider(() => _turnManager != null ? _turnManager.TickCount : 0);
+            MessageLog.TickProvider = () => _turnManager != null ? _turnManager.TickCount : 0;
+
+            RewireLoadedBrains();
+            WirePresentationForLoadedGame();
+
+            if (_turnManager != null && !_turnManager.WaitingForInput)
+                _turnManager.ProcessUntilPlayerTurn();
+
+            if (_zoneManager?.SettlementManager != null)
+                _zoneManager.SettlementManager.RefreshActiveZonePresentation(_zone);
+
+            SaveGameService.RegisterRuntime(CaptureGameSessionState, ApplyLoadedGame);
+        }
+
+        private void RewireLoadedBrains()
+        {
+            if (_zoneManager == null)
+                return;
+
+            foreach (var kvp in _zoneManager.CachedZones)
+            {
+                Zone zone = kvp.Value;
+                foreach (Entity entity in zone.GetAllEntities())
+                {
+                    var brain = entity.GetPart<BrainPart>();
+                    if (brain != null)
+                        brain.CurrentZone = zone;
+                }
+            }
+        }
+
+        private void WirePresentationForLoadedGame()
+        {
+            if (ZoneRenderer != null)
+            {
+                ZoneRenderer.SetZone(_zone);
+                ZoneRenderer.PlayerEntity = _player;
+                SettlementRuntime.ZoneDirtyCallback = () => ZoneRenderer.MarkDirty("SettlementRuntime");
+                SettlementRuntime.ActiveZone = _zone;
+            }
+
+            Camera cam = Camera.main;
+            CameraFollow cameraFollow = null;
+            if (cam != null)
+            {
+                cameraFollow = cam.GetComponent<CameraFollow>();
+                if (cameraFollow == null)
+                    cameraFollow = cam.gameObject.AddComponent<CameraFollow>();
+
+                cameraFollow.Player = _player;
+                cameraFollow.CurrentZone = _zone;
+                cameraFollow.SnapToPlayer();
+            }
+
+            var inputHandler = GetComponent<InputHandler>();
+            if (inputHandler != null)
+            {
+                inputHandler.PlayerEntity = _player;
+                inputHandler.CurrentZone = _zone;
+                inputHandler.TurnManager = _turnManager;
+                inputHandler.ZoneRenderer = ZoneRenderer;
+                inputHandler.ZoneManager = _zoneManager;
+                inputHandler.WorldMap = _zoneManager?.WorldMap;
+                inputHandler.CameraFollow = cameraFollow;
+                inputHandler.EntityFactory = _factory;
+            }
         }
 
         /// <summary>

@@ -96,7 +96,12 @@ namespace CavesOfOoo.Core.Anatomy
                     _id = _nextID++;
                 return _id;
             }
-            set => _id = value;
+            set
+            {
+                _id = value;
+                if (value >= _nextID)
+                    _nextID = value + 1;
+            }
         }
 
         // --- Flag properties ---

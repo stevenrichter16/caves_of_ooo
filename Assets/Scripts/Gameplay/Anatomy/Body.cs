@@ -55,6 +55,18 @@ namespace CavesOfOoo.Core
             }
         }
 
+        public override void OnAfterLoad(SaveReader reader)
+        {
+            if (_body != null)
+                PropagateBody(_body);
+
+            for (int i = 0; i < DismemberedParts.Count; i++)
+            {
+                if (DismemberedParts[i].Part != null)
+                    PropagateBody(DismemberedParts[i].Part);
+            }
+        }
+
         /// <summary>
         /// Get a flat list of all attached body parts.
         /// </summary>

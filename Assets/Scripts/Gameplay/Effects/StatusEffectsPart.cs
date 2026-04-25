@@ -182,6 +182,29 @@ namespace CavesOfOoo.Core
 
         public int EffectCount => _effects.Count;
 
+        public void RestoreEffectsForLoad(List<Effect> effects)
+        {
+            _effects.Clear();
+            if (effects == null)
+                return;
+
+            for (int i = 0; i < effects.Count; i++)
+            {
+                Effect effect = effects[i];
+                if (effect == null)
+                    continue;
+
+                effect.Owner = ParentEntity;
+                _effects.Add(effect);
+            }
+        }
+
+        public override void OnAfterLoad(SaveReader reader)
+        {
+            for (int i = 0; i < _effects.Count; i++)
+                _effects[i].Owner = ParentEntity;
+        }
+
         /// <summary>
         /// Remove all effects, calling OnRemove on each.
         /// </summary>

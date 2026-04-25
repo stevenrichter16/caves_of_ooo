@@ -175,6 +175,28 @@ namespace CavesOfOoo.Core
             return (index >= 0 && index < _goals.Count) ? _goals[index] : null;
         }
 
+        public List<GoalHandler> GetGoalsSnapshot()
+        {
+            return new List<GoalHandler>(_goals);
+        }
+
+        public void RestoreGoalsForLoad(List<GoalHandler> goals)
+        {
+            _goals.Clear();
+            if (goals == null)
+                return;
+
+            for (int i = 0; i < goals.Count; i++)
+            {
+                GoalHandler goal = goals[i];
+                if (goal == null)
+                    continue;
+
+                goal.ParentBrain = this;
+                _goals.Add(goal);
+            }
+        }
+
         /// <summary>Push a goal onto the top of the stack.</summary>
         public void PushGoal(GoalHandler goal)
         {

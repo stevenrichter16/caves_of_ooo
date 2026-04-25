@@ -139,6 +139,28 @@ namespace CavesOfOoo.Core
             return new List<ZoneConnection>();
         }
 
+        public Dictionary<string, List<ZoneConnection>> GetConnectionSnapshot()
+        {
+            var result = new Dictionary<string, List<ZoneConnection>>();
+            foreach (var kvp in _connections)
+                result[kvp.Key] = new List<ZoneConnection>(kvp.Value);
+            return result;
+        }
+
+        public void ReplaceLoadedState(
+            Dictionary<string, Zone> cachedZones,
+            string activeZoneID,
+            Dictionary<string, List<ZoneConnection>> connections)
+        {
+            CachedZones = cachedZones ?? new Dictionary<string, Zone>();
+            _connections = connections ?? new Dictionary<string, List<ZoneConnection>>();
+
+            if (!string.IsNullOrEmpty(activeZoneID) && CachedZones.TryGetValue(activeZoneID, out Zone active))
+                ActiveZone = active;
+            else
+                ActiveZone = null;
+        }
+
         /// <summary>
         /// Get connections where targetZoneID matches, filtered by type.
         /// Used by StairsUpBuilder to find where stairs from above connect.

@@ -172,5 +172,13 @@ namespace CavesOfOoo.Core
         /// Qud-style render hook. Return false to abort rendering.
         /// </summary>
         public virtual bool Render(GameEvent e) => true;
+
+        public virtual void OnBeforeSave(SaveWriter writer) { }
+
+        public virtual void OnAfterSave(SaveWriter writer) { }
+
+        public virtual void OnAfterLoad(SaveReader reader) { }
+
+        public virtual void FinalizeLoad(SaveReader reader) { }
     }
 }

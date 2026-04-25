@@ -131,6 +131,16 @@ namespace CavesOfOoo.Core
             return new Dictionary<string, int>(_reputation);
         }
 
+        public static void Restore(Dictionary<string, int> reputation)
+        {
+            _reputation.Clear();
+            if (reputation == null)
+                return;
+
+            foreach (var kvp in reputation)
+                Set(kvp.Key, kvp.Value);
+        }
+
         /// <summary>
         /// Human-readable label for an attitude.
         /// </summary>
