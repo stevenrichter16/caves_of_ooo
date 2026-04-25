@@ -333,6 +333,88 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(HouseDramaRuntime.IsPathClosed(DramaId, "PP1", "PathA"));
         }
 
+        // ── EvaluateEndState: Specificity (Fix 4) ────────────────────────────
+
+        [Test]
+        public void EvaluateEndState_PrefersMoreSpecificMatchOverFirstMatch()
+        {
+            // "Short" is listed first but has only 1 signature entry.
+            // "Long" is listed second but has 2 signature entries.
+            // Both are subsets of paths taken — Fix 4 must return "Long" (most specific).
+            var drama = new HouseDramaData
+            {
+                ID = DramaId,
+                EndStates = new List<EndStateData>
+                {
+                    new EndStateData { Id = "Short", PathSignature = new List<string> { "PathA" } },
+                    new EndStateData { Id = "Long",  PathSignature = new List<string> { "PathA", "PathC" } },
+                },
+                PressurePoints = new List<PressurePointData>
+                {
+                    new PressurePointData { Id = "PP1" },
+                    new PressurePointData { Id = "PP2" },
+                }
+            };
+            HouseDramaRuntime.RegisterDrama(drama);
+            HouseDramaRuntime.ActivateDrama(DramaId);
+            HouseDramaRuntime.AdvancePressurePoint(DramaId, "PP1", "resolved", "PathA");
+            HouseDramaRuntime.AdvancePressurePoint(DramaId, "PP2", "resolved", "PathC");
+
+            Assert.AreEqual("Long", HouseDramaRuntime.EvaluateEndState(DramaId));
+        }
+
+        [Test]
+        public void EvaluateEndState_WhenOnlyOneMatches_ReturnsIt()
+        {
+            // Sanity: when only the shorter end state matches, it is returned.
+            var drama = new HouseDramaData
+            {
+                ID = DramaId,
+                EndStates = new List<EndStateData>
+                {
+                    new EndStateData { Id = "Short", PathSignature = new List<string> { "PathA" } },
+                    new EndStateData { Id = "Long",  PathSignature = new List<string> { "PathA", "PathC" } },
+                },
+                PressurePoints = new List<PressurePointData> { new PressurePointData { Id = "PP1" } }
+            };
+            HouseDramaRuntime.RegisterDrama(drama);
+            HouseDramaRuntime.ActivateDrama(DramaId);
+            HouseDramaRuntime.AdvancePressurePoint(DramaId, "PP1", "resolved", "PathA");
+            // PathC not taken → "Long" does not match → "Short" is the only match
+
+            Assert.AreEqual("Short", HouseDramaRuntime.EvaluateEndState(DramaId));
+        }
+
+        // ── Corruption: EmotionalCostMagnitude excluded (Fix 5) ──────────────
+
+        [Test]
+        public void AdvancePressurePoint_ZeroCorruptionContribution_AddsNoCorruption()
+        {
+            // PathB: CorruptionContribution=0, EmotionalCostMagnitude=1.
+            // Before Fix 5 the emotional cost was added too; now only CorruptionContribution counts.
+            HouseDramaRuntime.RegisterDrama(BuildMinimalDrama());
+            HouseDramaRuntime.ActivateDrama(DramaId);
+
+            HouseDramaRuntime.AdvancePressurePoint(DramaId, "PP1", "resolved", "PathB");
+
+            Assert.AreEqual(0, HouseDramaRuntime.GetCorruption(DramaId));
+        }
+
+        [Test]
+        public void AdvancePressurePoint_MultiplePathsAccumulateOnlyCorruptionContribution()
+        {
+            // PathA: CorruptionContribution=1, EmotionalCostMagnitude=2 → adds 1
+            // PathC: CorruptionContribution=2, EmotionalCostMagnitude=3 → adds 2
+            // Total should be 3 (not 1+2+2+3=8 as it was before Fix 5).
+            HouseDramaRuntime.RegisterDrama(BuildMinimalDrama());
+            HouseDramaRuntime.ActivateDrama(DramaId);
+
+            HouseDramaRuntime.AdvancePressurePoint(DramaId, "PP1", "resolved", "PathA");
+            HouseDramaRuntime.AdvancePressurePoint(DramaId, "PP2", "resolved", "PathC");
+
+            Assert.AreEqual(3, HouseDramaRuntime.GetCorruption(DramaId));
+        }
+
         // ── Reset ────────────────────────────────────────────────────────────
 
         [Test]
