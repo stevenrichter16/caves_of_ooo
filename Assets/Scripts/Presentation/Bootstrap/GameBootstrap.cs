@@ -380,6 +380,15 @@ namespace CavesOfOoo
 
                 SaveGameService.RegisterRuntime(CaptureGameSessionState, ApplyLoadedGame);
 
+                // Phase 4c: if a save exists, offer the boot menu so the player
+                // can choose between continuing from the save or starting fresh
+                // with the world we just generated. No-op when no save exists.
+                var inputHandlerForBoot = GetComponent<InputHandler>();
+                if (inputHandlerForBoot != null)
+                {
+                    inputHandlerForBoot.TryActivateBootMenu(SaveGameService.HasQuickSave());
+                }
+
                 Debug.Log($"[Bootstrap] DONE. Zone has {_zone.EntityCount} entities. WASD/arrows to move.");
             }
 
