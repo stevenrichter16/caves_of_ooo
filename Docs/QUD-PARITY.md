@@ -5151,8 +5151,8 @@ Follow Parts 1–7 in order. Reach for Part 8 checklists mid-milestone to
 stay honest about what you've verified.
 
 Small features (one-file, one-test bugfixes) don't need the full protocol —
-but the commit-message discipline (Part 2.2) and the honesty protocols
-(Part 6) still apply.
+but the **TDD cadence (Part 2.1)**, the commit-message discipline (Part 2.3),
+and the honesty protocols (Part 6) still apply.
 
 ---
 
@@ -5259,7 +5259,115 @@ Each could have been reverted alone.
 
 ### Part 2 — Implementation Discipline
 
-#### 2.1 — Hallucination-avoidance checklist (apply per code change)
+#### 2.1 — Test-first development (TDD) is the default cadence
+
+**Rule:** for every feature — major or small — write the failing test(s)
+**before** the implementation. This is non-negotiable for any new
+observable behavior, bug fix, or feature-gate change. It applies equally
+to Major Plan milestones and to one-file bug fixes.
+
+**Why this is in force, not optional:**
+
+The catastrophic failure mode this protocol is trying to prevent is
+"tests pass but gameplay is still broken." Under implementation-first
+cadence, it's easy to write tests that mirror the code you just wrote —
+they'll pass, but they're exercising the wrong invariant. Under test-
+first cadence, you MUST articulate the observable behavior before you
+know the implementation, which forces the test to cover user-visible
+outcomes rather than internal method calls.
+
+**Concrete instance from this codebase (why this rule exists):**
+
+The freeze-bug saga (commits `9de2156` → `f1aaabc` → `1c80b01` → `5cc04ec`)
+shipped **three successive fixes that each passed their unit tests**
+while the user-observable bug persisted:
+
+| Commit | Test that passed | Observable behavior |
+|---|---|---|
+| `9de2156` | "BeforeMove is blocked when frozen" | Player could still move |
+| `0e8e09b` | "AllowAction returns false at any Cold > 0" | Player could still move |
+| `f1aaabc` | "ProcessUntilPlayerTurn fires ≤ 1 OnTurnEnd per call" | Player was blocked, but NPCs stopped moving too |
+
+Each test was technically correct about its proxy assertion but missed
+the actual invariant the user cared about: *"when I'm frozen, I can't
+move AND other NPCs still act."* The fourth commit (`5cc04ec`) finally
+shipped position-level integration tests that asserted the real
+observable — and caught a remaining design flaw on the first run. Had
+those tests been written FIRST in each round, the thrash would have
+been zero.
+
+**Protocol:**
+
+1. **Phrase the invariant in user-visible terms** before writing any
+   code. Example: "after stepping on RuneOfFrost, pressing direction
+   keys does not move the player but NPCs still take their turns."
+2. **Write the test against that exact phrasing.** The assertion should
+   read like the invariant. Position equality, effect-list membership,
+   zone state — not proxy counters like "a method was called N times"
+   unless there's genuinely no observable downstream.
+3. **Pair every positive assertion with a counter-check** (Part 3.4) —
+   written in the same test or as a sibling test before implementation.
+4. **Run the test, confirm it FAILS.** A test that passes before you've
+   written the code is a broken test (or the code already existed).
+5. **Implement the minimum code to pass the test.** Resist the urge to
+   over-build; the test is the specification.
+6. **Re-run, confirm it passes.** Then write the next failing test for
+   the next observable invariant. Do not batch.
+
+**What a "first" test looks like in this codebase:**
+
+```csharp
+// BEFORE writing FrozenEffect.AllowAction / HandleBeforeMove / anything:
+[Test]
+public void Frozen_Player_Cannot_Move_While_Npc_Actually_Moves()
+{
+    var zone = new Zone("TestZone");
+    var player = CreateCreature();
+    player.SetTag("Player");
+    player.AddPart(new PhysicsPart { Solid = false });
+    player.ApplyEffect(new FrozenEffect(cold: 1.0f));
+    zone.AddEntity(player, 5, 5);
+
+    var npc = CreateCreature(); /* ... StepGoal east ... */
+    zone.AddEntity(npc, 10, 10);
+
+    var tm = new TurnManager();
+    tm.AddEntity(player); tm.AddEntity(npc);
+    for (int i = 0; i < 10; i++) tm.Tick();
+
+    tm.ProcessUntilPlayerTurn();
+
+    Assert.AreEqual(5,  zone.GetEntityCell(player).X, "frozen stays put");
+    Assert.AreEqual(11, zone.GetEntityCell(npc).X,    "NPC advances one step");
+}
+```
+
+This test is the **specification for the feature**. Once it passes,
+the feature is shipped. Once it fails in the future, the feature
+regressed. Proxies like "`BeginTakeAction` fired on the NPC" do not
+reach that bar.
+
+**When TDD is genuinely inapplicable:**
+
+- Pure rendering / particle / audio effects where the observable is
+  visual-only — use manual playtest (Part 3.6) instead.
+- Content-only changes (pure JSON blueprint edits) with no new
+  behavior — a smoke test that the blueprint loads is sufficient.
+- Exploratory spikes where the goal is learning what's possible, not
+  shipping. Spikes must be thrown away; do not let one become a
+  feature without the test-first rewrite.
+
+**Auditing this rule in code review / commit review:**
+
+Every commit that adds production behavior should have a test diff
+where the **test file change predates or accompanies** the production
+change. Commits that add production code without a corresponding test
+(beyond content / rendering exceptions above) should be called out in
+review. The commit-message template (Part 2.3) already has a "Tests:"
+line — if it says "0 → 0", that's a red flag for anything other than
+the documented exceptions.
+
+#### 2.2 — Hallucination-avoidance checklist (apply per code change)
 
 Before writing each new symbol:
 
@@ -5281,7 +5389,7 @@ Before calling an API you haven't used recently:
 - [ ] Check whether it mutates state that your calling context also
   touches (the `GetReadOnlyEntities` live-collection trap)
 
-#### 2.2 — Commit message template
+#### 2.3 — Commit message template
 
 Phase 6 commits converged on a consistent body structure. Reuse it:
 
@@ -5319,7 +5427,7 @@ Tests: <N> -> <M> (+D). All green.
 notes), `ecca5c9` (2 post-review findings, each cited against
 file:line).
 
-#### 2.3 — Pre-commit verification gates
+#### 2.4 — Pre-commit verification gates
 
 Before `git commit`:
 
@@ -5801,6 +5909,11 @@ Pin these in the milestone's workspace. Check items off as you go.
 - [ ] Scope pruned with rationale if the sweep revealed redundancy
 - [ ] Sub-milestone order set by blast radius (smallest first)
 - [ ] Each sub-milestone will commit standalone
+- [ ] **TDD: observable invariant phrased in user-visible terms
+  (Part 2.1)**
+- [ ] **TDD: failing test(s) written, run, and confirmed RED before any
+  production code — position-level / state-level assertions, not proxy
+  counters**
 
 #### 8.3 — Pre-commit checklist (per sub-milestone)
 
@@ -5809,7 +5922,8 @@ Pin these in the milestone's workspace. Check items off as you go.
 - [ ] New test count increased as expected (force-refresh if not)
 - [ ] Regression test present for every fix
 - [ ] Counter-check present for every positive assertion
-- [ ] Commit message body follows the template in Part 2.2
+- [ ] Failing test was written BEFORE the implementation (Part 2.1)
+- [ ] Commit message body follows the template in Part 2.3
 - [ ] Scope divergences documented (if any)
 
 #### 8.4 — Post-milestone checklist (after final sub-milestone)
