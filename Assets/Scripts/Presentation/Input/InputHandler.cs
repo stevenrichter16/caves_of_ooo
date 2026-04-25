@@ -84,6 +84,12 @@ namespace CavesOfOoo.Rendering
         private static readonly UnityInputProbeAdapter _saveLoadInputProbe = new UnityInputProbeAdapter();
         private static readonly SaveGameServiceAdapter _saveLoadService = new SaveGameServiceAdapter();
 
+        // Phase 4b: death-screen modal. Polled HP-based activation rather
+        // than event-subscription so we don't need a Part on the player
+        // (which would also get serialized into saves — wrong concern).
+        private readonly DeathScreenController _deathScreenController = new DeathScreenController();
+        private static readonly SceneRestarterAdapter _deathScreenRestarter = new SceneRestarterAdapter();
+
         /// <summary>
         /// Input state machine for ability targeting.
         /// Normal: standard movement/action input.
@@ -215,6 +221,22 @@ namespace CavesOfOoo.Rendering
             {
                 if (PlayerEntity == null || CurrentZone == null || TurnManager == null)
                     return;
+
+                // Death-screen modal (Phase 4b) — checked BEFORE the player-turn
+                // gates because a dead player can't take a turn (so WaitingForInput
+                // would be false and we'd never get past the gates). Activation is
+                // HP-based polling rather than Died-event subscription so the
+                // modal lives in the UI layer, not as a Part on the player.
+                int playerHp = PlayerEntity.GetStatValue("Hitpoints", 1);
+                if (playerHp <= 0 && !_deathScreenController.IsActive)
+                {
+                    _deathScreenController.Activate(MessageLog.Add);
+                }
+                if (_deathScreenController.IsActive)
+                {
+                    _deathScreenController.Tick(_saveLoadInputProbe, _saveLoadService, _deathScreenRestarter, MessageLog.Add);
+                    return;  // suppress all other input while the modal is up
+                }
 
                 // Only accept input when it's the player's turn
                 if (!TurnManager.WaitingForInput)
