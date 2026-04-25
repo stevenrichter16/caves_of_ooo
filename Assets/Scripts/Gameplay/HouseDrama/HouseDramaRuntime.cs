@@ -75,6 +75,10 @@ namespace CavesOfOoo.Core
         public static bool IsDramaActive(string dramaId) =>
             _dramas.TryGetValue(dramaId, out var d) && d.IsActive;
 
+        /// <summary>Returns true if the drama has been registered, regardless of activation state.</summary>
+        public static bool IsDramaRegistered(string dramaId) =>
+            _dramas.ContainsKey(dramaId);
+
         // ─────────────────────────────────────────────────────────────────────
         // Pressure Point State
         // ─────────────────────────────────────────────────────────────────────
@@ -359,6 +363,7 @@ namespace CavesOfOoo.Core
         public static ActiveDrama GetDrama(string dramaId) =>
             _dramas.TryGetValue(dramaId, out var d) ? d : null;
 
+        /// <summary>Returns IDs of all registered dramas (active or not).</summary>
         public static List<string> GetAllDramaIds() =>
             new List<string>(_dramas.Keys);
 

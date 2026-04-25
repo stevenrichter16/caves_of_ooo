@@ -359,7 +359,7 @@ namespace CavesOfOoo.Core
             {
                 if (string.IsNullOrEmpty(arg)) return;
                 if (HouseDramaRuntime.IsDramaActive(arg)) return;
-                if (HouseDramaRuntime.GetDrama(arg) == null)
+                if (!HouseDramaRuntime.IsDramaRegistered(arg))
                 {
                     var data = Data.HouseDramaLoader.Get(arg);
                     if (data == null) return;

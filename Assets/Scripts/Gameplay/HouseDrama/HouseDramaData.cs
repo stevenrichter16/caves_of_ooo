@@ -3,6 +3,27 @@ using System.Collections.Generic;
 
 namespace CavesOfOoo.Data
 {
+    // Valid NPC role strings and canonical end-state IDs, used by Validate().
+    internal static class HouseDramaSchema
+    {
+        internal static readonly HashSet<string> ValidRoles = new HashSet<string>
+        {
+            "FoundationalDead", "LostDead", "DiminishedHead",
+            "RisingInheritor", "NamedAntagonist", "SilencedHelper"
+        };
+
+        internal static readonly HashSet<string> DeadRoles = new HashSet<string>
+        {
+            "FoundationalDead", "LostDead"
+        };
+
+        internal static readonly HashSet<string> ValidEndStateIds = new HashSet<string>
+        {
+            "Restored", "TransformedA", "TransformedB", "Extinct", "Corrupted"
+        };
+    }
+
+
     // ─────────────────────────────────────────────────────────────────────────
     // Root wrapper — matches { "Dramas": [...] } in JSON.
     // ─────────────────────────────────────────────────────────────────────────
@@ -55,6 +76,60 @@ namespace CavesOfOoo.Data
             foreach (var path in pp.Paths)
                 if (path.Id == pathId) return path;
             return null;
+        }
+
+        /// <summary>
+        /// Validates this drama definition and returns a list of error strings.
+        /// An empty list means the drama is well-formed. Does not throw.
+        /// </summary>
+        public List<string> Validate()
+        {
+            var errors = new List<string>();
+
+            if (string.IsNullOrEmpty(ID))
+                errors.Add("Drama must have a non-empty ID.");
+
+            if (PressurePoints != null)
+            {
+                foreach (var pp in PressurePoints)
+                {
+                    if (pp.Paths == null || pp.Paths.Count == 0)
+                        errors.Add($"PressurePoint '{pp.Id}' has no paths.");
+                }
+            }
+
+            if (NpcRoles != null)
+            {
+                var memorialSubjects = new HashSet<string>();
+                if (MemorialActs != null)
+                    foreach (var act in MemorialActs)
+                        if (!string.IsNullOrEmpty(act.SubjectId))
+                            memorialSubjects.Add(act.SubjectId);
+
+                foreach (var npc in NpcRoles)
+                {
+                    if (string.IsNullOrEmpty(npc.Role) ||
+                        !HouseDramaSchema.ValidRoles.Contains(npc.Role))
+                        errors.Add($"NPC '{npc.Id}' has unknown role '{npc.Role}'.");
+
+                    if (!string.IsNullOrEmpty(npc.Role) &&
+                        HouseDramaSchema.DeadRoles.Contains(npc.Role) &&
+                        !memorialSubjects.Contains(npc.Id))
+                        errors.Add($"NPC '{npc.Id}' (role: {npc.Role}) has no MemorialAct.");
+                }
+            }
+
+            if (EndStates != null)
+            {
+                foreach (var es in EndStates)
+                {
+                    if (!string.IsNullOrEmpty(es.Id) &&
+                        !HouseDramaSchema.ValidEndStateIds.Contains(es.Id))
+                        errors.Add($"EndState has invalid ID '{es.Id}'.");
+                }
+            }
+
+            return errors;
         }
     }
 

@@ -31,7 +31,17 @@ namespace CavesOfOoo.Data
         {
             if (string.IsNullOrEmpty(json)) return;
 
-            var fileData = JsonUtility.FromJson<HouseDramaFileData>(json);
+            HouseDramaFileData fileData;
+            try
+            {
+                fileData = JsonUtility.FromJson<HouseDramaFileData>(json);
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogWarning($"[HouseDramaLoader] Failed to parse '{sourceName}': {ex.Message}");
+                return;
+            }
+
             if (fileData?.Dramas == null) return;
 
             foreach (var drama in fileData.Dramas)
@@ -41,6 +51,10 @@ namespace CavesOfOoo.Data
                     Debug.LogWarning($"[HouseDramaLoader] Drama in '{sourceName}' has no ID; skipped.");
                     continue;
                 }
+
+                var errors = drama.Validate();
+                foreach (var error in errors)
+                    Debug.LogWarning($"[HouseDramaLoader] Drama '{drama.ID}' in '{sourceName}': {error}");
 
                 _dramas[drama.ID] = drama;
             }

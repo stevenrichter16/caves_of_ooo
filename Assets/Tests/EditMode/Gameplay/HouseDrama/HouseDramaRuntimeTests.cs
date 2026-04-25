@@ -415,6 +415,42 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(3, HouseDramaRuntime.GetCorruption(DramaId));
         }
 
+        // ── IsDramaRegistered (Issue 10) ─────────────────────────────────────
+
+        [Test]
+        public void IsDramaRegistered_ReturnsTrueAfterRegisterDrama()
+        {
+            // RED: IsDramaRegistered does not exist yet on HouseDramaRuntime.
+            HouseDramaRuntime.RegisterDrama(BuildMinimalDrama());
+
+            Assert.IsTrue(HouseDramaRuntime.IsDramaRegistered(DramaId));
+        }
+
+        [Test]
+        public void IsDramaRegistered_ReturnsFalseForUnknownDrama()
+        {
+            Assert.IsFalse(HouseDramaRuntime.IsDramaRegistered("ghost_drama"));
+        }
+
+        [Test]
+        public void IsDramaRegistered_ReturnsTrueBeforeActivation()
+        {
+            HouseDramaRuntime.RegisterDrama(BuildMinimalDrama());
+            // Registered but not yet activated
+            Assert.IsFalse(HouseDramaRuntime.IsDramaActive(DramaId));
+
+            Assert.IsTrue(HouseDramaRuntime.IsDramaRegistered(DramaId));
+        }
+
+        [Test]
+        public void IsDramaRegistered_ReturnsFalseAfterReset()
+        {
+            HouseDramaRuntime.RegisterDrama(BuildMinimalDrama());
+            HouseDramaRuntime.Reset();
+
+            Assert.IsFalse(HouseDramaRuntime.IsDramaRegistered(DramaId));
+        }
+
         // ── Reset ────────────────────────────────────────────────────────────
 
         [Test]
