@@ -5636,6 +5636,108 @@ strategy doc's Rule 1: "NEVER fire game events directly via execute_code").
 | Multi-system live integration | PlayMode sanity sweep (3.5) | Manual scenario (3.6) |
 | Particle / animation / "feel" | Manual scenario (3.6) | Screenshot by user |
 | UI-driven state flow | `manage_input` MCP (3.7) | — |
+| **Hunting bugs in already-shipped code** | **Adversarial cold-eye (3.9)** | Mutation testing if available |
+
+#### 3.9 — Adversarial cold-eye testing (post-implementation bug-hunting)
+
+**Distinct from §2.1 (TDD) and §3.3 (regression tests).** TDD writes
+tests *before* the production code exists — the test is the spec, and
+the code is built to satisfy it. Regression tests pin a behavior you
+just fixed so it stays fixed. **Adversarial cold-eye testing is the
+third class:** code already exists, you didn't write it (or wrote it
+long enough ago to forget the details), and you want to find lurking
+bugs that the original author and post-impl audits missed.
+
+**The discipline:**
+
+1. **Pick an unaudited target.** A class / method that's been in the
+   tree for a while, hasn't had a recent post-impl pass, and either
+   has subtle math (integer ops, thresholds, divisions) or interacts
+   with multiple systems (events, parts, zones).
+2. **Don't read the production code first.** This is non-negotiable.
+   Reading the implementation seeds your tests with whatever the
+   code does, even when what it does is wrong.
+3. **State your honest expectation in the test name + assertion
+   message + xml-doc.** Each test's xml-doc gets a `PREDICTION:` line
+   ("I think this should…") and a `CONFIDENCE:` line ("low / medium /
+   high"). Low-confidence tests are the gold — those are where
+   reality is most likely to disagree with you.
+4. **Cover edge cases adversarial users would target:**
+   - Boundary values (0, exact-equal-to-threshold, off-by-one,
+     negative, MaxValue)
+   - Null arguments at every parameter
+   - Repeated calls (idempotency: most code-under-pressure isn't)
+   - Calls in unusual states (already-dead targets, removed entities,
+     stale references)
+   - Math that could divide by zero, overflow, or accumulate float
+     drift
+   - Events fired in the wrong order, or fired twice, or with missing
+     parameters
+5. **Run the test pass.** For each failure, **honestly classify**:
+
+   | Failure cause | Action |
+   |---|---|
+   | My expectation was wrong (production behaves differently for a documented or sensible reason) | Update the test to match reality, document the surprise in the test xml-doc as a future-reader signal |
+   | Production code is genuinely buggy | Fix the production code. Keep the failing test as the regression shield. |
+   | Test setup was wrong (wrong API, missing dependency) | Fix the test setup. Discard the result — neither bug nor expectation, just an unfit test. |
+
+6. **Commit the analysis.** The commit message MUST include a
+   per-test outcome table with the classification above. Future
+   readers should be able to see which tests caught real bugs.
+
+**Why this is a distinct discipline:**
+
+The M1, M2, M3 gap-coverage passes (commits `0078a69`, `17665e5`,
+`137d0c6`) wrote tests *while looking at* the production code — and
+returned 0/59 bugs found across 59 new tests. The first adversarial
+cold-eye pass (commit `65df19c`) wrote 16 tests *without looking at*
+production and returned **2 / 16 real bugs in `CombatSystem.ApplyDamage`:**
+
+  - **Bug 1**: `ApplyDamage` auto-killed entities without a
+    Hitpoints stat. Path: `GetStatValue("Hitpoints", 0)` returns
+    the default `0` when the stat is absent; `0 <= 0` is true →
+    `HandleDeath` fires.
+  - **Bug 2**: A second `ApplyDamage` on a dying target re-fired the
+    non-idempotent `HandleDeath`, causing duplicate XP awards,
+    duplicate equipment + inventory drops (item duplication
+    exploit), duplicate `Died` events, and duplicate witness
+    broadcasts.
+
+The empirical gap between gap-coverage and adversarial cold-eye is
+**0% bug-find vs 12.5% bug-find** on the same general code surface.
+Adversarial discipline is what surfaces bugs that survived the
+original implementation and post-impl audit.
+
+**When adversarial cold-eye is the right tool:**
+
+- A milestone has shipped and you want a deeper sweep than the
+  in-line audit produced.
+- You suspect a class has bug surface (lots of integer math, lots
+  of branches, multiple events) but haven't been able to articulate
+  what to test.
+- You're ramping up on a codebase you didn't write — adversarial
+  testing forces you to build a mental model and check it against
+  reality, which doubles as onboarding.
+
+**When adversarial cold-eye is NOT the right tool:**
+
+- You're TDD-ing a feature that doesn't exist yet — use §2.1 (write
+  test first, watch it fail RED for missing-implementation reasons).
+- You just fixed a bug — the test you write is a regression shield
+  (§3.3), not an adversarial probe.
+- You're filling gaps in coverage of behaviors you've already
+  audited — that's gap-coverage (similar shape but you read the
+  code first; failures are almost always test-misconfig, not bugs).
+
+**Cadence recommendation:**
+
+After every 2-3 milestones ship, run an adversarial pass against one
+unaudited high-value component (combat math, zone transitions, save/
+load, stat clamping, event-fire ordering). Treat the resulting bug
+list as a punch-down: each real bug becomes a fix commit + a
+permanent regression test. Tests where the prediction was wrong stay
+in the suite as honest "I expected X, actually Y" comments — useful
+for the next person working in the area.
 
 ---
 
