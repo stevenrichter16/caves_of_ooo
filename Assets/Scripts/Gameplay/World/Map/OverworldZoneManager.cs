@@ -167,6 +167,17 @@ namespace CavesOfOoo.Core
                 clearSolidEntities: true));
             pipeline.AddBuilder(new VillagePopulationBuilder(poi, SettlementManager));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
+
+            // Seed a House Drama into this village if any dramas are loaded.
+            // Uses the zone's seed to pick deterministically so the same world
+            // always assigns the same drama to the same village.
+            var dramaIds = HouseDramaRuntime.GetAllDramaIds();
+            if (dramaIds.Count > 0)
+            {
+                int pick = System.Math.Abs(poi.GetHashCode()) % dramaIds.Count;
+                pipeline.AddBuilder(new HouseDramaZoneBuilder(dramaIds[pick]));
+            }
+
             return pipeline;
         }
 

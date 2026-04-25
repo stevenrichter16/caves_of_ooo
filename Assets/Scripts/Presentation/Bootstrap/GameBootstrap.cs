@@ -111,6 +111,11 @@ namespace CavesOfOoo
                     }
                 });
 
+                Debug.Log("[Bootstrap] Step 1c/9: Loading House Dramas...");
+                Data.HouseDramaLoader.LoadAll();
+                foreach (var drama in Data.HouseDramaLoader.GetAll())
+                    Core.HouseDramaRuntime.RegisterDrama(drama);
+
                 Debug.Log("[Bootstrap] Step 2/9: Initializing mutations...");
                 PerformanceDiagnostics.MeasureStartupPhase(
                     "InitializeMutations",
