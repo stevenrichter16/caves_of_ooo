@@ -280,6 +280,109 @@ namespace CavesOfOoo.Core
                 }
             });
 
+            // Activate a house drama in the speaker's settlement: "DramaId"
+            // Creates the drama record if absent; no-ops if already active or resolved.
+            Register("ActivateDrama", (speaker, listener, arg) =>
+            {
+                if (speaker == null || string.IsNullOrWhiteSpace(arg) || SettlementManager.Current == null)
+                    return;
+
+                string settlementId = ResolveSettlementId(speaker);
+                if (string.IsNullOrEmpty(settlementId))
+                    return;
+
+                SettlementManager.Current.ActivateDrama(settlementId, arg);
+            });
+
+            // Mark a pressure point resolved and record which path was taken:
+            // "DramaId:PressurePointId:PathTaken"
+            // e.g., "OrdrenDrama:Wound:CounselPath"
+            Register("ResolveDramaPressurePoint", (speaker, listener, arg) =>
+            {
+                if (speaker == null || string.IsNullOrWhiteSpace(arg) || SettlementManager.Current == null)
+                    return;
+
+                string[] parts = arg.Split(':');
+                if (parts.Length != 3)
+                    return;
+
+                string settlementId = ResolveSettlementId(speaker);
+                if (string.IsNullOrEmpty(settlementId))
+                    return;
+
+                SettlementManager.Current.ResolvePressurePoint(settlementId, parts[0], parts[1], parts[2]);
+            });
+
+            // Mark a pressure point failed with a reason substate:
+            // "DramaId:PressurePointId:Substate"
+            // e.g., "OrdrenDrama:Wound:failed:escalated"
+            Register("FailDramaPressurePoint", (speaker, listener, arg) =>
+            {
+                if (speaker == null || string.IsNullOrWhiteSpace(arg) || SettlementManager.Current == null)
+                    return;
+
+                int first = arg.IndexOf(':');
+                if (first < 0)
+                    return;
+                int second = arg.IndexOf(':', first + 1);
+                if (second < 0)
+                    return;
+
+                string dramaId = arg.Substring(0, first);
+                string pressurePointId = arg.Substring(first + 1, second - first - 1);
+                string substate = arg.Substring(second + 1);
+
+                string settlementId = ResolveSettlementId(speaker);
+                if (string.IsNullOrEmpty(settlementId))
+                    return;
+
+                SettlementManager.Current.FailPressurePoint(settlementId, dramaId, pressurePointId, substate);
+            });
+
+            // Conclude a drama by setting its end state: "DramaId:EndStateName"
+            // e.g., "OrdrenDrama:Restored"
+            Register("SetDramaEndState", (speaker, listener, arg) =>
+            {
+                if (speaker == null || string.IsNullOrWhiteSpace(arg) || SettlementManager.Current == null)
+                    return;
+
+                int colon = arg.IndexOf(':');
+                if (colon < 0)
+                    return;
+
+                HouseDramaEndState endState;
+                if (!Enum.TryParse(arg.Substring(colon + 1), out endState))
+                    return;
+
+                string settlementId = ResolveSettlementId(speaker);
+                if (string.IsNullOrEmpty(settlementId))
+                    return;
+
+                SettlementManager.Current.SetDramaEndState(settlementId, arg.Substring(0, colon), endState);
+            });
+
+            // Add to the drama's corruption score: "DramaId:DeltaInt"
+            // e.g., "OrdrenDrama:2"
+            Register("AddDramaCorruption", (speaker, listener, arg) =>
+            {
+                if (speaker == null || string.IsNullOrWhiteSpace(arg) || SettlementManager.Current == null)
+                    return;
+
+                int colon = arg.IndexOf(':');
+                if (colon < 0)
+                    return;
+
+                int delta;
+                if (!int.TryParse(arg.Substring(colon + 1), out delta))
+                    return;
+
+                string settlementId = ResolveSettlementId(speaker);
+                if (string.IsNullOrEmpty(settlementId))
+                    return;
+
+                SettlementManager.Current.AddDramaCorruption(settlementId, arg.Substring(0, colon), delta);
+            });
+
             // M2.1: Pacify the speaker (the NPC) for N turns — e.g., a
             // Charisma-gated "Stand down" dialogue branch can non-violently
             // resolve a combat scenario. Argument is an integer duration in

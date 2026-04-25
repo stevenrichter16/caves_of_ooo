@@ -11,10 +11,12 @@ namespace CavesOfOoo.Core
         public int LastAdvancedTurn;
 
         private readonly Dictionary<string, RepairableSiteState> _sites = new Dictionary<string, RepairableSiteState>();
+        private readonly Dictionary<string, HouseDramaState> _dramas = new Dictionary<string, HouseDramaState>();
         private readonly HashSet<string> _conditions = new HashSet<string>();
         private readonly List<string> _pendingMessages = new List<string>();
 
         public IReadOnlyDictionary<string, RepairableSiteState> Sites => _sites;
+        public IReadOnlyDictionary<string, HouseDramaState> Dramas => _dramas;
 
         public RepairableSiteState GetSite(string siteId)
         {
@@ -28,6 +30,20 @@ namespace CavesOfOoo.Core
                 return;
 
             _sites[site.SiteId] = site;
+        }
+
+        public HouseDramaState GetDrama(string dramaId)
+        {
+            HouseDramaState drama;
+            return dramaId != null && _dramas.TryGetValue(dramaId, out drama) ? drama : null;
+        }
+
+        public void SetDrama(HouseDramaState drama)
+        {
+            if (drama == null || string.IsNullOrEmpty(drama.DramaId))
+                return;
+
+            _dramas[drama.DramaId] = drama;
         }
 
         public bool HasCondition(string condition)

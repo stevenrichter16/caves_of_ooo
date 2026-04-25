@@ -12,6 +12,7 @@ namespace CavesOfOoo.Core
         private readonly Func<string, PointOfInterest> _poiResolver;
 
         public event Action<string, RepairableSiteState> SiteStateChanged;
+        public event Action<string, HouseDramaState> DramaStateChanged;
 
         public SettlementManager(Func<int> currentTurnProvider = null, Func<string, PointOfInterest> poiResolver = null)
         {
@@ -278,6 +279,103 @@ namespace CavesOfOoo.Core
             return true;
         }
 
+        public HouseDramaState GetDrama(string settlementId, string dramaId)
+        {
+            PointOfInterest poi = ResolvePoi(settlementId);
+            SettlementState state = GetOrCreateSettlement(settlementId, poi);
+            return state?.GetDrama(dramaId);
+        }
+
+        public HouseDramaState ActivateDrama(string settlementId, string dramaId)
+        {
+            if (string.IsNullOrEmpty(dramaId))
+                return null;
+
+            PointOfInterest poi = ResolvePoi(settlementId);
+            SettlementState state = GetOrCreateSettlement(settlementId, poi);
+            if (state == null)
+                return null;
+
+            HouseDramaState drama = state.GetDrama(dramaId);
+            if (drama == null)
+            {
+                drama = new HouseDramaState { DramaId = dramaId };
+                state.SetDrama(drama);
+            }
+
+            if (drama.State == HouseDramaActivationState.Dormant)
+            {
+                drama.State = HouseDramaActivationState.Active;
+                drama.ActivatedTurn = GetCurrentTurn();
+                RaiseDramaChanged(settlementId, drama);
+            }
+
+            return drama;
+        }
+
+        public bool ResolvePressurePoint(string settlementId, string dramaId, string pressurePointId, string pathTaken)
+        {
+            HouseDramaState drama = GetDrama(settlementId, dramaId);
+            if (drama == null || string.IsNullOrEmpty(pressurePointId))
+                return false;
+
+            HousePressurePointState pp = drama.GetPressurePoint(pressurePointId);
+            if (pp == null)
+            {
+                pp = new HousePressurePointState { Id = pressurePointId };
+                drama.SetPressurePoint(pp);
+            }
+
+            pp.State = HouseDramaActivationState.Resolved;
+            pp.Substate = "resolved:complete";
+            pp.PathTaken = pathTaken ?? string.Empty;
+            RaiseDramaChanged(settlementId, drama);
+            return true;
+        }
+
+        public bool FailPressurePoint(string settlementId, string dramaId, string pressurePointId, string substate)
+        {
+            HouseDramaState drama = GetDrama(settlementId, dramaId);
+            if (drama == null || string.IsNullOrEmpty(pressurePointId))
+                return false;
+
+            HousePressurePointState pp = drama.GetPressurePoint(pressurePointId);
+            if (pp == null)
+            {
+                pp = new HousePressurePointState { Id = pressurePointId };
+                drama.SetPressurePoint(pp);
+            }
+
+            pp.State = HouseDramaActivationState.Failed;
+            pp.Substate = !string.IsNullOrEmpty(substate) ? substate : "failed:ignored";
+            RaiseDramaChanged(settlementId, drama);
+            return true;
+        }
+
+        public bool SetDramaEndState(string settlementId, string dramaId, HouseDramaEndState endState)
+        {
+            HouseDramaState drama = GetDrama(settlementId, dramaId);
+            if (drama == null)
+                return false;
+
+            drama.EndState = endState;
+            drama.State = HouseDramaActivationState.Resolved;
+            drama.ResolvedAtTurn = GetCurrentTurn();
+            RaiseDramaChanged(settlementId, drama);
+            return true;
+        }
+
+        public bool AddDramaCorruption(string settlementId, string dramaId, int delta)
+        {
+            HouseDramaState drama = GetDrama(settlementId, dramaId);
+            if (drama == null)
+                return false;
+
+            drama.CorruptionScore += delta;
+            RaiseDramaChanged(settlementId, drama);
+            return true;
+        }
+
         public bool HasCondition(string settlementId, string condition)
         {
             PointOfInterest poi = ResolvePoi(settlementId);
@@ -338,6 +436,11 @@ namespace CavesOfOoo.Core
         private void RaiseSiteChanged(string settlementId, RepairableSiteState site)
         {
             SiteStateChanged?.Invoke(settlementId, site);
+        }
+
+        private void RaiseDramaChanged(string settlementId, HouseDramaState drama)
+        {
+            DramaStateChanged?.Invoke(settlementId, drama);
         }
 
         private void SyncConditions(SettlementState state)

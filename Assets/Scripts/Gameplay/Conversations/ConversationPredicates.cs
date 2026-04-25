@@ -174,6 +174,88 @@ namespace CavesOfOoo.Core
 
                 return site.Stage == stage;
             });
+
+            // Check a drama pressure point's activation state: "DramaId:PressurePointId:StateName"
+            // e.g., "OrdrenDrama:Wound:Active"
+            Register("IfDramaPressurePointState", (speaker, listener, arg) =>
+            {
+                if (speaker == null || string.IsNullOrWhiteSpace(arg) || SettlementManager.Current == null)
+                    return false;
+
+                string[] parts = arg.Split(':');
+                if (parts.Length != 3)
+                    return false;
+
+                string settlementId = ResolveSettlementId(speaker);
+                if (string.IsNullOrEmpty(settlementId))
+                    return false;
+
+                HouseDramaState drama = SettlementManager.Current.GetDrama(settlementId, parts[0]);
+                if (drama == null)
+                    return false;
+
+                HousePressurePointState pp = drama.GetPressurePoint(parts[1]);
+                if (pp == null)
+                    return false;
+
+                HouseDramaActivationState state;
+                if (!Enum.TryParse(parts[2], out state))
+                    return false;
+
+                return pp.State == state;
+            });
+
+            // Check the drama's end state: "DramaId:EndStateName"
+            // e.g., "OrdrenDrama:Restored"
+            Register("IfDramaEndState", (speaker, listener, arg) =>
+            {
+                if (speaker == null || string.IsNullOrWhiteSpace(arg) || SettlementManager.Current == null)
+                    return false;
+
+                int colon = arg.IndexOf(':');
+                if (colon < 0)
+                    return false;
+
+                string settlementId = ResolveSettlementId(speaker);
+                if (string.IsNullOrEmpty(settlementId))
+                    return false;
+
+                HouseDramaState drama = SettlementManager.Current.GetDrama(settlementId, arg.Substring(0, colon));
+                if (drama == null)
+                    return false;
+
+                HouseDramaEndState endState;
+                if (!Enum.TryParse(arg.Substring(colon + 1), out endState))
+                    return false;
+
+                return drama.EndState == endState;
+            });
+
+            // Check if drama corruption score meets a minimum: "DramaId:MinValue"
+            // e.g., "OrdrenDrama:3"
+            Register("IfDramaCorruptionAtLeast", (speaker, listener, arg) =>
+            {
+                if (speaker == null || string.IsNullOrWhiteSpace(arg) || SettlementManager.Current == null)
+                    return false;
+
+                int colon = arg.IndexOf(':');
+                if (colon < 0)
+                    return false;
+
+                string settlementId = ResolveSettlementId(speaker);
+                if (string.IsNullOrEmpty(settlementId))
+                    return false;
+
+                HouseDramaState drama = SettlementManager.Current.GetDrama(settlementId, arg.Substring(0, colon));
+                if (drama == null)
+                    return false;
+
+                int minScore;
+                if (!int.TryParse(arg.Substring(colon + 1), out minScore))
+                    return false;
+
+                return drama.CorruptionScore >= minScore;
+            });
         }
 
         private static string ResolveSettlementId(Entity speaker)
