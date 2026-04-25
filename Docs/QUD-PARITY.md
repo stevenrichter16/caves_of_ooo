@@ -768,7 +768,7 @@ This section describes what it takes to move every goal from state 1 → state 2
 | **M3** — Ambient behavior parts | ✅ Done | B | 2–3d | PetGoal, GoFetchGoal, FleeLocationGoal |
 | **M4** — Interior/Exterior (Gap B) | ✅ Done (1665/1665) | C | 3–4d | MoveToInterior/ExteriorGoal, weather foundation |
 | **M5** — Corpse system (Gap C) | ✅ Done (1702/1702, PlayMode-verified) | C | 3–5d | CorpsePart, DisposeOfCorpseGoal, AIUndertakerPart, Graveyard blueprint |
-| **M6** — Rune system | ⏳ Planned (1712 → ~1740) | C | 3–4d | EntityEnteredCell event, TriggerOnStepPart, LayRuneGoal, AILayRunePart, RuneCultist |
+| **M6** — Rune system | ✅ Done (1965/1965, audit-cadence complete) | C | 3–4d | EntityEnteredCell event, TriggerOnStepPart, LayRuneGoal, AILayRunePart, RuneCultist |
 | **M7** — Turret system | | C | 3–4d | PlaceTurretGoal |
 | **M8** — Gap A (zone transitions) | | D | 1–2w | MoveToZone/GlobalGoal, Phase 13 foundation |
 | **M9** — Gap D (damage types) | | D | 2–3w | ReequipGoal/ChangeEquipmentGoal, Phase 14 foundation |
@@ -3721,6 +3721,59 @@ accidentally "fix" it back.
 **Resolution:** already documented in `LayRuneGoal` class xmldoc.
 Logged here as ⚪ for traceability.
 
+##### M6 Audit-cadence pass (gap-coverage + adversarial, 2026-04-25)
+
+After the M6 post-impl audit (above) shipped, the systematic
+gap-coverage + adversarial cadence (per §3.9) was applied to round
+out the audit cycle.
+
+| Pass | Tests | First-run | Bugs |
+|---|:-:|:-:|:-:|
+| Gap-coverage (`M6CoverageGapTests.cs`) | 24 | 24/24 ✓ | 0 |
+| Adversarial cold-eye (`M6AdversarialTests.cs`) | 12 | 12/12 ✓ | 0 |
+
+Combined commit: `67a635b`. Surfaces probed:
+
+- **MovementSystem.FireCellEnteredEvents**: empty-destination skip, mover-only fast-path, target-cell reference identity, multi-occupant insertion-order dispatch, mover-pushed-off-cell mid-dispatch break (Contains-guard parity to CR-01)
+- **TriggerOnStepPart**: non-EnteredCell propagation, null-Actor / self-actor / null-Cell short-circuits, empty TriggerFaction = no-filter, HandleEvent always returns true, faction-comparison case-sensitivity, consumed-rune-doesn't-fire-on-second-stepper
+- **LayRuneGoal**: Finished/CanFight/GetDetails contracts, actor-not-in-zone FailToParent, Failed(child) propagation, MoveTries per-push, factionless-actor-doesn't-stamp, at-target-at-construction shortcut, rune-without-TriggerOnStepPart safe spawn
+- **AILayRunePart**: non-AIBored propagation, all null short-circuits, SearchRadius=0 self-exclusion, runed-cell skip, AIBored consume contract, zone-corner bounded search, two-cultist no-reservation race, RuneBlueprints cache invalidation, internal-empty-entries trim, whitespace-only no-op, quota `>=` boundary, static scratch reset
+
+**Pre-audit context**: M6 had already received post-impl audit
+(5 findings, 1 🟡 fix), perf sweep (P-01..P-09), CR review
+(CR-01..CR-08), and cultist-neutrality refactor. Adding the
+gap-coverage + adversarial pair found nothing new.
+
+**Conclusion**: M6 is the post-audit baseline. Continuing to probe
+M-series surface yields zero EV. Future cadence work should target
+the priority backlog at §3.9 (Tier S: SaveSystem, CombatSystem,
+TurnManager, StatusEffectsPart).
+
+---
+
+##### M5 Audit-cadence pass (gap-coverage + adversarial, 2026-04-25)
+
+Equivalent retroactive cadence pass for M5 (added when the M5 audit
+was being closed out alongside M6).
+
+| Pass | Tests | First-run | Bugs |
+|---|:-:|:-:|:-:|
+| Gap-coverage (`M5CoverageGapTests.cs`) | 29 | 29/29 ✓ | 0 |
+| Adversarial cold-eye (`M5AdversarialTests.cs`) | 13 | 13/13 ✓ | 0 |
+
+Commits: `ee0f6c7` (gap), `d9bcc32` (adversarial).
+
+Surfaces probed:
+
+- **CorpsePart**: BuildCorpseChance two-stage gate ordering, Factory==null no-op, CorpseBlueprint null/empty no-op, missing Zone parameter, entity-not-in-zone, bad blueprint logs warning, DisplayName interpolation gate is on Render.DisplayName (not blueprint name), HandleEvent always propagates, empty SourceID skipped, replay-on-same-creature spawns N corpses (no guard, but defended at CombatSystem layer), double-CorpsePart spawns 2 corpses, empty creature name → no interpolation, killer with empty ID + non-empty BlueprintName → independent guards
+- **DisposeOfCorpseGoal**: Finished/CanFight/GetDetails, all FailToParent paths (null Corpse / Container / inventory, container-removed-mid-haul), adjacent + missing ContainerPart drops at feet, Failed(child) propagates, GoToCorpseTries per-push, IsSteppable rejects PhysicsPart.Solid even without tag, deposit lands corpse in Contents, diagonal adjacency triggers pickup, GoToContainerTries per-push, OnPop on detached goal safe
+- **AIUndertakerPart**: non-AIBored passthrough, all null short-circuits, no-Inventory no-claim, Chance=0 never fires, success consumes AIBored, graveyard-tag-without-Container ignored, multi-corpse picks nearest by Chebyshev, actor-not-in-zone no-claim, all-corpses-claimed no-op, two-graveyards first-added wins (iteration-order contract), corpse+graveyard same cell full-lifecycle works, probability gate uses brain.Rng deterministically, Locked container observed: `inLock=True, atFeet=False` (Locked is UI-only)
+
+**Notable empirical findings** (not bugs, but contracts now pinned):
+
+1. `Replay_DiedFiredTwice_SpawnsTwoCorpses` — at the CorpsePart layer there's no guard against re-fire. Not exploitable in actual gameplay because `CombatSystem.ApplyDamage` already guards re-entry post-`65df19c`. CorpsePart correctly trusts that upstream invariant. Layered design.
+2. `ContainerPart.Locked is UI-only` — programmatic AddItem accepts regardless. An undertaker can deposit into a player-locked graveyard. Whether intentional is a game-design call; pinned via XOR assertion + TestContext.Out so the contract documents itself but the test stays valid if the semantics flip.
+
 ---
 
 #### Cross-milestone dependencies
@@ -5708,6 +5761,40 @@ The empirical gap between gap-coverage and adversarial cold-eye is
 Adversarial discipline is what surfaces bugs that survived the
 original implementation and post-impl audit.
 
+##### Updated empirical pattern (post-M6, 2026-04-25)
+
+The cadence has now been applied to six milestones. Bug counts:
+
+| Milestone | Surface | Gap-coverage tests | Gap bugs | Adversarial tests | Adv. bugs |
+|-----------|---------|:------------------:|:--------:|:-----------------:|:---------:|
+| M1 | AISelfPreservation, Passive, AIAmbush, RetreatGoal, DormantGoal | 21 | 0 | 10 | 0 |
+| M2 | NoFightGoal, CalmMutation, WitnessedEffect | 16 | 0 | 9 | 0 |
+| M3 | AIPetter, Hoarder, Retriever, FleeToShrine, Sanctuary | 22 | 0 | — | — |
+| M4 | Cell.IsInterior, MoveToInterior/ExteriorGoal, FindNearestCellWhere | 19 | 0 | 11 | 0 |
+| M5 | CorpsePart, DisposeOfCorpseGoal, AIUndertakerPart | 29 | 0 | 13 | 0 |
+| M6 | TriggerOnStepPart, LayRuneGoal, AILayRunePart, MovementSystem.FireCellEnteredEvents | 24 | 0 | 12 | 0 |
+| **Cross-cut** (CombatSystem.ApplyDamage) | — | — | — | 16 | **2** |
+
+**Total**: 131 gap-coverage tests with 0 bugs found; 71 adversarial
+tests against M-series + 16 against unaudited code, 2 bugs total —
+all 2 in the `CombatSystem.ApplyDamage` cross-cut probe (`65df19c`,
+April 24th).
+
+The M-series milestones share a common shape: pre-impl plan +
+TDD-first cadence + post-impl audit (Methodology Template Parts 1.2,
+2.1, 5). Across all six, **post-hoc gap-coverage and adversarial both
+return zero**. That isn't proof the M-series is bug-free — it's proof
+that the **methodology itself exhausts the easy wins before the
+audit cadence runs**. The audit cadence's value isn't catching bugs
+in M-style code; its value is the discipline-template it preserves
+and propagates.
+
+The actual payoff sits in code that did **not** get the M-style
+treatment — older systems written before the methodology
+crystallized. The cross-cut adversarial against `CombatSystem` is
+the existence proof: 12.5% bug-find on a single 16-test session in
+~677 LOC of pre-M code.
+
 **When adversarial cold-eye is the right tool:**
 
 - A milestone has shipped and you want a deeper sweep than the
@@ -5738,6 +5825,86 @@ list as a punch-down: each real bug becomes a fix commit + a
 permanent regression test. Tests where the prediction was wrong stay
 in the suite as honest "I expected X, actually Y" comments — useful
 for the next person working in the area.
+
+##### Where to audit next — priority backlog (post-M6, 2026-04-25)
+
+A scan of `Assets/Scripts/Gameplay/` for high-LOC files with NO
+direct `${Name}Tests.cs` test fixture, ranked by EV. These are the
+strongest candidates for the next adversarial pass — the
+`CombatSystem.ApplyDamage` precedent (12.5% adversarial bug-find on
+677 LOC of pre-M code) makes the case empirically.
+
+**Tier S — first targets** (large LOC, zero direct tests, foundational, evidence of past saga-class bugs):
+
+| Surface | LOC | Direct tests | Why high-EV |
+|---------|----:|:-:|---|
+| `Save/SaveSystem.cs` | 1876 | none | Largest file in repo. Zero automated coverage. Classic source of stale-reference, serialization-identity, and post-load static-state bugs |
+| `Combat/CombatSystem.cs` | 677 | partial (`CombatSystemTests.cs`) | Already gave up 2 bugs to `65df19c`. Active churn (5+ commits) — re-probe `HandleDeath` ordering, multi-effect re-entrancy, killer==null paths |
+| `Turns/TurnManager.cs` | 354 | none | Hosted the frozen-bug saga (3 successive fixes `9de2156`, `0e8e09b`, `1c80b01`). Edges: Speed=0, energy overflow, mid-turn entity removal, AI exception propagation |
+| `Effects/StatusEffectsPart.cs` | 445 | none | Other half of the frozen-bug saga. Edges: AllowAction-ordering when 2 effects disagree, OnStack(stacks=0), Duration=0, OnTick-during-removal, re-entrant Apply/Remove |
+
+**Tier A — second targets** (cross-cutting, lots of callers, save-load implicated):
+
+| Surface | LOC | Direct tests | Notes |
+|---------|----:|:-:|---|
+| `Mutations/MutationsPart.cs` | 1207 | none | Cross-cuts Body system; dynamic part add/remove |
+| `Turns/MovementSystem.cs` | 231 | none | M6 audited only `FireCellEnteredEvents`. Core `TryMove` / `TryMoveEx` / direction resolution / collision still unprobed |
+| `Inventory/InventoryPart.cs` | 459 | none | Equipment slots, weight calculation, body-part wiring, EquippedItems back-references after load |
+| `AI/BrainPart.cs` | 379 | none | Goal stack save/restore (`RestoreGoalsForLoad` exists but isn't pin-tested), faction wiring, Think |
+| `AI/FactionManager.cs` | 271 | none | Static singleton — init-race, registration order, `IsHostile` feeling-graph transitions |
+
+**Tier B — medium EV** (smaller scope or partial indirect coverage):
+
+| Surface | LOC | Notes |
+|---------|----:|---|
+| `Conversations/ConversationActions.cs` | 347 | `SetFaction`, `GiveItem`, `CompleteQuest` dispatch |
+| `World/ZoneTransitionSystem.cs` | 324 | Stale-reference candidate after zone unload |
+| `World/Map/OverworldZoneManager.cs` | 318 | Zone caching/eviction |
+| `Mutations/BaseMutation.cs` | 291 | Cooldown, level-up triggers |
+| `Abilities/ActivatedAbilitiesPart.cs` | 253 | Ability cooldown, energy cost |
+| `World/FieldOfView.cs` | — | Vision blocking, light propagation |
+| `AI/AIHelpers.cs` | 465 | Many shared utilities; bug here cascades |
+
+**Concrete edge candidates per Tier S surface:**
+
+*SaveSystem*:
+- Round-trip identity: `entity == reload(save(entity))` for all part types
+- `BrainPart.RestoreGoalsForLoad` preserves goal-internal state (`Age`, `ParentHandler`, custom fields like `DisposeOfCorpseGoal.GoToCorpseTries`, `LayRuneGoal.MoveTries`)
+- Static factory re-wiring: `CorpsePart.Factory`, `LayRuneGoal.Factory`, `MaterialReactionResolver.Factory` after a "cold" load
+- `InventoryPart.EquippedItems[slot]` back-references same instance after reload
+- `MutationsPart` manager IDs map to correct dynamic body parts
+- `StatusEffectsPart` non-zero stacks restored
+- `Entity.ID` collision on load
+
+*CombatSystem*:
+- `ApplyDamage(damage <= 0)` paths
+- `ApplyDamage(damage > Hitpoints.Max)` clamp / underflow
+- `killer == null` (rune DoT, poison tick, environmental) — message formatting NPE risk
+- `HandleDeath` ordering: equipment-drop → corpse-drop → Died event → zone-removal — what if a Died handler re-fires HandleDeath?
+- Multi-effect re-entrancy: `ApplyEffect(A)` whose OnApply triggers `ApplyEffect(B)`
+- `actor.GetDisplayName()` returning empty during message formatting
+
+*TurnManager*:
+- `Speed == 0` entity (stuck forever, or skipped?)
+- `Speed == int.MaxValue` energy-accumulator overflow
+- `ProcessUntilPlayerTurn` with TWO consecutive status-blocked NPCs
+- Entity dies mid-turn — turn-order with dead actor still in queue
+- AI throws during `TakeAction` — crash-propagate or skip?
+- Entity has no `Speed` stat — default vs null-deref
+
+*StatusEffectsPart*:
+- Two effects both override `AllowAction` and disagree
+- `OnStack(stacks=0)` — no-op or weird side-effect?
+- Effect with `Duration=0` — immediate-removal vs 1-turn-persists
+- `OnTick` while another effect's `OnTick` removes this effect mid-iteration
+- Same-Type effect added twice — Stack increment vs replace
+- Effect's `OnApply` adds another effect (re-entrant)
+- Effect's `OnRemove` adds another effect (zombie cycle)
+
+**Diminishing returns on M1-M6**: continuing to probe the M-series
+surface yields nothing. The cadence's purpose now is to **walk the
+priority backlog above**, one Tier-S target at a time, until the EV
+flattens.
 
 ---
 
