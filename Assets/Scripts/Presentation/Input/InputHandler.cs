@@ -221,6 +221,28 @@ namespace CavesOfOoo.Rendering
         public ScreenFade ScreenFade { get; set; }
 
         /// <summary>
+        /// Phase 4d — pause menu UI (Esc → centered modal). Wired by
+        /// <c>GameBootstrap</c>. The controller is owned here; the UI
+        /// borrows it via <see cref="PauseMenuUI.Controller"/>.
+        /// </summary>
+        public PauseMenuUI PauseMenuUI
+        {
+            get => _pauseMenuUI;
+            set
+            {
+                _pauseMenuUI = value;
+                if (_pauseMenuUI != null)
+                {
+                    _pauseMenuUI.Controller = _pauseMenuController;
+                    _pauseMenuUI.SaveLoadService = _saveLoadService;
+                    _pauseMenuUI.Log = MessageLog.Add;
+                }
+            }
+        }
+        private PauseMenuUI _pauseMenuUI;
+        private readonly PauseMenuController _pauseMenuController = new PauseMenuController();
+
+        /// <summary>
         /// Public activation hook for the boot-menu modal — called from
         /// <c>GameBootstrap</c> at end-of-init. No-op if no save exists.
         /// </summary>
@@ -241,6 +263,27 @@ namespace CavesOfOoo.Rendering
                 if (_bootMenuController.IsActive)
                 {
                     _bootMenuController.Tick(_saveLoadInputProbe, _saveLoadService, MessageLog.Add);
+                    return;
+                }
+
+                // Pause menu (Phase 4d) — Esc opens the centered Save/Load
+                // modal during normal gameplay. Tick handles BOTH the open
+                // (Esc-when-closed) and active (nav, confirm, close) paths
+                // so this single block covers all states. Routed through
+                // PauseMenuUI so mouse hover/click also work.
+                if (_pauseMenuUI != null)
+                {
+                    if (_pauseMenuUI.HandleInput(_saveLoadInputProbe))
+                        return;
+                    // When the menu is open we still suppress all other input
+                    // even on no-key frames (modal is fully blocking).
+                    if (_pauseMenuUI.IsOpen)
+                        return;
+                }
+                else if (_pauseMenuController.Tick(_saveLoadInputProbe, _saveLoadService, MessageLog.Add))
+                {
+                    // Headless / test path: no UI wired but the controller still
+                    // works. Production always has the UI; this branch is defensive.
                     return;
                 }
 
