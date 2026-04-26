@@ -201,8 +201,22 @@ namespace CavesOfOoo.Core
 
         public override void OnAfterLoad(SaveReader reader)
         {
+            // Resolve the entity's current zone so IAuraProvider effects can
+            // re-emit their visual auras after a save/load. BrainPart owns
+            // CurrentZone post-load (LoadBrainPart line ~1452 calls FindZone);
+            // entities without a brain (rare for status-effect targets) fall
+            // back to the active zone from the SaveReader. Without this, a
+            // poisoned/smoldering NPC would load with the effect mechanically
+            // intact but no visual cue — caught by
+            // SaveSystemAdversarialTests.Adv_PoisonedNpc_VisualAuraResumes_AfterSaveLoad.
+            Zone zone = ParentEntity?.GetPart<BrainPart>()?.CurrentZone
+                ?? reader?.ZoneManager?.ActiveZone;
+
             for (int i = 0; i < _effects.Count; i++)
+            {
                 _effects[i].Owner = ParentEntity;
+                TryStartAura(_effects[i], zone);
+            }
         }
 
         /// <summary>
