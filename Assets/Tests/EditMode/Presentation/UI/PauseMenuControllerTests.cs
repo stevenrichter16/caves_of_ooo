@@ -11,9 +11,16 @@ namespace CavesOfOoo.Tests.EditMode.Presentation.UI
     /// <c>Docs/QUD-PARITY.md §2.1</c>. New work, not audit.
     ///
     /// <para><b>Lifecycle.</b> Closed on construct. Pressing
-    /// <c>Esc</c> opens; Up/Down arrows navigate Save↔Load; Enter
+    /// <c>Tab</c> opens; Up/Down arrows navigate Save↔Load; Enter
     /// (or mouse click via <see cref="PauseMenuController.ClickSelect"/>)
-    /// confirms; Esc again closes without dispatch.</para>
+    /// confirms; Tab again closes without dispatch.</para>
+    ///
+    /// <para><b>Why Tab and not Esc:</b> Esc is the project-wide
+    /// "close current modal" key (PickupUI, ContainerPickerUI,
+    /// WorldActionMenuUI, etc.) — making Esc also OPEN a modal would
+    /// either fight those existing handlers or accidentally double-
+    /// dismiss. Tab is unbound elsewhere and reads as
+    /// "switch context."</para>
     ///
     /// <para><b>Two items.</b> Index 0 = Save, Index 1 = Load. No
     /// wrap on navigation — Up at top stays at top, Down at bottom
@@ -49,28 +56,29 @@ namespace CavesOfOoo.Tests.EditMode.Presentation.UI
         }
 
         [Test]
-        public void Tick_WhenClosed_EscKey_OpensMenu_AndConsumesInput()
+        public void Tick_WhenClosed_OpenCloseKey_OpensMenu_AndConsumesInput()
         {
             _input.PressKey(_controller.OpenCloseKey);
 
             bool consumed = _controller.Tick(_input, _service, _log.Add);
 
-            Assert.IsTrue(_controller.IsOpen, "Esc while closed must open menu.");
-            Assert.IsTrue(consumed, "Opening Esc must signal consumed=true so host short-circuits.");
+            Assert.IsTrue(_controller.IsOpen, "OpenCloseKey while closed must open menu.");
+            Assert.IsTrue(consumed, "Opening must signal consumed=true so host short-circuits.");
             Assert.AreEqual(PauseMenuController.SaveIndex, _controller.SelectedIndex,
                 "Open should reset selection to Save (top item).");
         }
 
         [Test]
-        public void Tick_WhenClosed_NonEscKey_DoesNothing_NotConsumed()
+        public void Tick_WhenClosed_OtherKey_DoesNothing_NotConsumed()
         {
+            // Use a key the controller doesn't bind (avoid arrow keys / Enter).
             _input.PressKey(KeyCode.A);
 
             bool consumed = _controller.Tick(_input, _service, _log.Add);
 
             Assert.IsFalse(_controller.IsOpen);
             Assert.IsFalse(consumed,
-                "Non-Esc keys while closed must return consumed=false so host continues normal flow.");
+                "Unbound keys while closed must return consumed=false so host continues normal flow.");
         }
 
         [Test]
@@ -187,14 +195,14 @@ namespace CavesOfOoo.Tests.EditMode.Presentation.UI
         }
 
         // ============================================================
-        // Open-state close (Esc)
+        // Open-state close (OpenCloseKey)
         // ============================================================
 
         [Test]
-        public void Tick_WhenOpen_EscKey_ClosesWithoutDispatch()
+        public void Tick_WhenOpen_OpenCloseKey_ClosesWithoutDispatch()
         {
             _controller.Open();
-            _input.PressKey(_controller.OpenCloseKey);  // Esc again
+            _input.PressKey(_controller.OpenCloseKey);  // toggle close
 
             bool consumed = _controller.Tick(_input, _service, _log.Add);
 

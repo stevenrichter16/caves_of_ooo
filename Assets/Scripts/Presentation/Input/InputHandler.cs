@@ -266,27 +266,6 @@ namespace CavesOfOoo.Rendering
                     return;
                 }
 
-                // Pause menu (Phase 4d) — Esc opens the centered Save/Load
-                // modal during normal gameplay. Tick handles BOTH the open
-                // (Esc-when-closed) and active (nav, confirm, close) paths
-                // so this single block covers all states. Routed through
-                // PauseMenuUI so mouse hover/click also work.
-                if (_pauseMenuUI != null)
-                {
-                    if (_pauseMenuUI.HandleInput(_saveLoadInputProbe))
-                        return;
-                    // When the menu is open we still suppress all other input
-                    // even on no-key frames (modal is fully blocking).
-                    if (_pauseMenuUI.IsOpen)
-                        return;
-                }
-                else if (_pauseMenuController.Tick(_saveLoadInputProbe, _saveLoadService, MessageLog.Add))
-                {
-                    // Headless / test path: no UI wired but the controller still
-                    // works. Production always has the UI; this branch is defensive.
-                    return;
-                }
-
                 // Death-screen modal (Phase 4b) — checked BEFORE the player-turn
                 // gates because a dead player can't take a turn (so WaitingForInput
                 // would be false and we'd never get past the gates). Activation is
@@ -337,20 +316,36 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Save/Load hotkeys (Phase 4) — fire only in normal gameplay,
-            // never while a modal UI is open. Routed through the
-            // SaveLoadInputController so its dispatch logic stays
-            // unit-testable. Run BEFORE the wait-skip block so a save
-            // doesn't get swallowed by a held '.' key. Tick returns
-            // true when the F5/F6 input was consumed — early-return
-            // so subsequent debug F-key bindings (F6=mutate-debug etc.)
-            // don't ALSO fire on the same press.
+            // Save/Load + Pause menu (Phases 4 + 4d) — fire only in normal
+            // gameplay, never while a modal UI is open. Routed through
+            // unit-tested controllers so dispatch logic stays testable.
+            // Run BEFORE the wait-skip block so a save doesn't get swallowed
+            // by a held '.' key. Tick returns true when input was consumed
+            // — early-return so subsequent debug F-key bindings (F6=mutate-
+            // debug etc.) don't ALSO fire on the same press.
+            //
+            // Pause menu is gated on InputState.Normal so Tab inside an
+            // open InventoryUI / PickupUI / TradeUI (all of which use Tab
+            // for in-modal navigation) goes to those handlers, not here.
             if (_inputState == InputState.Normal)
             {
                 if (_saveLoadInputController.Tick(_saveLoadInputProbe, _saveLoadService, MessageLog.Add))
                 {
                     _lastMoveTime = Time.time;
                     return;
+                }
+
+                // Pause menu — Tab opens, arrows/Enter navigate, Tab closes.
+                // When open, fully blocks other input via the IsOpen guard.
+                if (_pauseMenuUI != null)
+                {
+                    if (_pauseMenuUI.HandleInput(_saveLoadInputProbe))
+                    {
+                        _lastMoveTime = Time.time;
+                        return;
+                    }
+                    if (_pauseMenuUI.IsOpen)
+                        return;  // suppress other input while modal up
                 }
             }
 

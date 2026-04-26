@@ -130,7 +130,7 @@ namespace CavesOfOoo.Rendering
         //   │ > Save game              │   ← selected: '>' + white
         //   │   Load game              │
         //   └──────────────────────────┘
-        //   [Enter]select [Esc]close
+        //   [Enter]select [Tab]close
 
         private void Render()
         {
@@ -160,7 +160,7 @@ namespace CavesOfOoo.Rendering
 
             // Hint at bottom (outside the border)
             int hintY = BORDER_H;
-            DrawText(0, hintY, "[Enter]select [Esc]close", QudColorParser.DarkGray);
+            DrawText(0, hintY, "[Enter]select [Tab]close", QudColorParser.DarkGray);
         }
 
         private void ClearAll()

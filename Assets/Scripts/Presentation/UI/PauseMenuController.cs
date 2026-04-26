@@ -5,15 +5,23 @@ namespace CavesOfOoo.Rendering
 {
     /// <summary>
     /// Pure dispatch logic for the pause menu — a centered modal
-    /// shown when the player presses Esc during normal gameplay.
+    /// shown when the player presses Tab during normal gameplay.
     /// Two items: <see cref="SaveIndex"/> (Save) and
     /// <see cref="LoadIndex"/> (Load). Per
     /// <c>Docs/QUD-PARITY.md §2.1</c> (TDD).
     ///
-    /// <para><b>Lifecycle.</b> Closed on construct. Esc opens.
-    /// While open: arrow keys (or J/K) navigate; Enter (or
-    /// <see cref="ClickSelect"/> from mouse) confirms; Esc closes
-    /// without dispatch. Visual rendering lives in
+    /// <para><b>Default key choice.</b> Tab — Esc was originally
+    /// considered but conflicts with the project-wide convention
+    /// that Esc closes the currently-active modal (PickupUI,
+    /// ContainerPickerUI, WorldActionMenuUI, etc. all use Esc to
+    /// dismiss). Tab is unbound elsewhere and reads naturally as a
+    /// "switch context" gesture.</para>
+    ///
+    /// <para><b>Lifecycle.</b> Closed on construct. Pressing
+    /// <see cref="OpenCloseKey"/> (default Tab) opens; while open,
+    /// arrow keys navigate, Enter (or <see cref="ClickSelect"/> for
+    /// mouse) confirms, and pressing <see cref="OpenCloseKey"/>
+    /// again closes without dispatch. Visual rendering lives in
     /// <c>PauseMenuUI</c> (MonoBehaviour) — this class is pure
     /// logic and 100% unit-tested.</para>
     ///
@@ -28,7 +36,7 @@ namespace CavesOfOoo.Rendering
         public const int LoadIndex = 1;
         public const int ItemCount = 2;
 
-        public KeyCode OpenCloseKey = KeyCode.Escape;
+        public KeyCode OpenCloseKey = KeyCode.Tab;
         public KeyCode ConfirmKey = KeyCode.Return;
         public KeyCode UpKey = KeyCode.UpArrow;
         public KeyCode DownKey = KeyCode.DownArrow;
@@ -89,7 +97,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public bool Tick(IInputProbe input, ISaveLoadService service, Action<string> log)
         {
-            // Closed → only Esc is meaningful (opens menu).
+            // Closed → only the open/close key (default Tab) is meaningful.
             if (!IsOpen)
             {
                 if (input.GetKeyDown(OpenCloseKey))
@@ -100,7 +108,7 @@ namespace CavesOfOoo.Rendering
                 return false;
             }
 
-            // Open → handle Esc (close), arrows (navigate), Enter (confirm).
+            // Open → handle close key (close), arrows (navigate), Enter (confirm).
             if (input.GetKeyDown(OpenCloseKey))
             {
                 Close();
