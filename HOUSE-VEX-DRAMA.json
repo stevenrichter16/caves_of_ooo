@@ -1,0 +1,571 @@
+{
+  "Dramas": [
+    {
+      "ID": "Vex",
+      "Name": "House Vex",
+      "Setting": {
+        "Region": "the Bloomtangle — a humid stretch of strangler-figs and venom-orchids west of the Cloud Forest's edge, where the Saltspine River bends north before the rains",
+        "HouseSeat": "the Knot — a four-tier distillery built into the hollow trunk of a thousand-year strangler-fig, lit by candle-shafts cut through the bark; the Saltspine flows directly beneath the lowest floor, useful for cooling the kettles and washing the bottling room when a specimen escapes",
+        "ClimateBeats": "monsoon arrives every 11 months; the three weeks before the rain are when venom yields are highest and tempers are shortest"
+      },
+      "Craft": {
+        "Name": "Venom Distillation and Alchemy",
+        "DistinctiveProperty": "House Vex extracts toxins from named jungle creatures — whisperback adders, glass-spiders, lure-toads, tear-mantises, and the near-extinct Ironheart Cane Cobra — and stabilizes them into compounds that cross every social register: bloom-fever cures for the river clinics, funeral-shroud dyes for the Crimson Veil weavers, dream-honey for the dreamers, and (under pressure) escalating-dose battlefield poisons for buyers who never visit the Bloomtangle in person",
+        "DistinctiveProducts": [
+          "Vex Tears — clear vials of glass-spider venom diluted with monsoon water to 0.001%; the only known cure for bloom-fever",
+          "Crimson Veil — tear-mantis dye that turns silk a color funeral-weavers call 'last sunset'",
+          "Sleepwell — whisperback adder essence in white-orchid honey, three drops on the tongue treats dream-fever",
+          "Theron's Dust — antibacterial powder of his own formulation; the only Vex product that bears a living maker's name",
+          "Ironheart series (under duress) — poisons whose lethality scales with the victim's heart rate; the harder the victim runs, the faster they die"
+        ],
+        "MasterMarker": "Can synthesize an antitoxin from a competing creature's venom — the test piece is, and has always been, the Ironheart Cane Cobra (its bite was Vorus's last)",
+        "MinimumPractitioners": 2,
+        "ActivePractitioners": 1,
+        "EmergingPractitioners": 1,
+        "CycleDuration": "one monsoon cycle",
+        "FailureCondition": "active practitioners below 2 for more than one cycle; cane-cobra population in the Knot's range below 3 breeding pairs; all stabilized venom stores depleted"
+      },
+      "RootConflict": {
+        "Adversary": "House Vex's craft turning against its purpose — slow corruption from within, accelerated by external demand",
+        "AdversaryProject": "Kess Ballow, a Saltspine-port weapons broker who has never once entered the Bloomtangle, is forcing the family to convert their finest distillates into the Ironheart series — escalating-dose battlefield poisons for an assassination network operating in the river basin's three richest cities",
+        "AdversaryAlignment": "CosmicB",
+        "NamedAntagonistId": "kess",
+        "SecretTruth": "Vorus founded House Vex because his sister died of bloom-fever in a town with no doctor; the venom trade was always meant to be the alchemy of mercy, not commerce. The Ironheart series uses the very cane-cobra venom Vorus spent forty years trying to render into a panacea — the same venom that killed him when his last formulation came up four percent short",
+        "DisclosureStakes": "Exposing Kess's network would trigger the river-port magistrate's investigation, almost certainly drag House Vex into testimony and possible prosecution as accomplices, but restore the Healer's Mission. Complying means the family becomes — slowly, then all at once — a quiet subsidiary of an empire of murder."
+      },
+      "NpcRoles": [
+        {
+          "Id": "vorus",
+          "Role": "FoundationalDead",
+          "Variant": "idealized-origin",
+          "Alive": false,
+          "Age": 87,
+          "DeathDetails": "Died testing his own panacea against an Ironheart Cane Cobra bite, on purpose, in front of his apprentices. The formulation came up four percent short. He died smiling, holding then-eight-year-old Lyra's hand. Theron found them after the third candle burned out. The failed panacea bottle has been kept on the distillery's central shelf ever since, untouched, as the family's relic.",
+          "Wants": "For the Bloomtangle's venoms to reach every clinic in the river basin; for no child to die of bloom-fever within walking distance of a House Vex courier",
+          "Fears": "That his life's work would become a tool of the very rich against the very poor — that the Ironheart Cane Cobra, the creature he loved most, would become its weapon",
+          "SelfDeception": "Believed the difficulty of the craft would be its own filter — that learning venom would teach restraint by hand, drop by drop, and that no one cruel could survive the apprenticeship",
+          "ChangeCondition": "N/A — dead",
+          "PhysicalTokens": [
+            "the panacea relic bottle (sealed, on the central shelf, the founder's letter etched in glass-spider script on the inside of the glass)",
+            "his apprenticeship ring — three coiled silver bands meant for the smallest finger of a left hand"
+          ]
+        },
+        {
+          "Id": "lyra",
+          "Role": "LostDead",
+          "Variant": "tragic-accident",
+          "Alive": false,
+          "Age": 11,
+          "DeathDetails": "Three years ago, on the anniversary of Vorus's death, Lyra — eleven, secretly studying — uncorked a bottle she believed was the panacea relic. She wanted to drink the same formula her grandfather had died testing, to see what he saw. The bottle was actually mock-snake venom, mislabeled when Theron, distracted by grief during the prior monsoon, had transposed the cages of two specimens that look almost identical. She drank a thumb's measure. She seized for nineteen minutes. Theron held her the whole time.",
+          "Wants": "To learn her grandfather's craft — specifically, to understand why he chose to die proving it",
+          "Fears": "The needles, the fangs, the sound of the lure-toads at night — and being told she was too young to hold the heavy bottles",
+          "SelfDeception": "Believed the symbol-system on the bottles was perfect; that the family's labels could not lie. She had named the cane-cobra in the back room 'Threadling' and visited it every morning",
+          "ChangeCondition": "N/A — dead",
+          "PhysicalTokens": [
+            "her child's cloak (blue, mended at the hem with Crimson Veil silk)",
+            "Threadling, the named cane-cobra, still living in the back room — never milked for venom since her death"
+          ]
+        },
+        {
+          "Id": "theron",
+          "Role": "DiminishedHead",
+          "Variant": "grieving-parent",
+          "Alive": true,
+          "Age": 62,
+          "Wants": "To honor Vorus's vision; to make the distillery a place where another child cannot die the way Lyra did; to retire by the next monsoon and not see a single more vial leave the Knot for any purpose he would not name in front of his daughter",
+          "Fears": "That refusing Kess will draw the kind of retaliation Saltspine-port brokers are known for (a 'specimen accident' in the distillery, an 'inspection' that confiscates the harvest); that accepting will doom them anyway and Lyra will have died for nothing",
+          "SelfDeception": "Tells himself he is buying time — that each shipment to Kess is the second-to-last, that he is preparing the refusal carefully, that he has a plan. He has not slept through a night since Lyra died. He polishes the panacea relic every morning before opening the shop.",
+          "ChangeCondition": "Realizes Kess's patience is finite — the Ironheart series demands cane-cobra at a rate that will exhaust the wild population within two monsoons, and Threadling (Lyra's named snake) is now the largest known breeding female. The choice can no longer be deferred.",
+          "PhysicalTokens": [
+            "a small leather pouch of Crimson Veil silk Lyra mended; he keeps it in his coat pocket",
+            "his apprenticeship ring — Vorus's, resized to fit his left index finger"
+          ]
+        },
+        {
+          "Id": "nyla",
+          "Role": "RisingInheritor",
+          "Variant": "ambitious-compromised",
+          "Alive": true,
+          "Age": 24,
+          "Wants": "To be remembered as House Vex's greatest distiller — not its quietest. To be the one who made venom into capital-A Art. To leave the Knot for a season and bring back a buyer's name spoken in three languages",
+          "Fears": "Becoming her father — fifty years of careful work for clinics that don't pay enough to maintain the distillery, dying with a relic on the shelf and no apprentice to leave it to. Being told the work was beautiful but no one will remember it",
+          "SelfDeception": "Believes the Ironheart commissions are her chance to compose with the most volatile pigments the Bloomtangle offers. Keeps a private notebook ('The Colors of Distilled Fear') of venom reactions painted in cross-section — annotated with hue, translucency, viscosity, and the pulse rate at which the toxin reaches the heart. Has not yet written the word 'kill' anywhere in the notebook",
+          "ChangeCondition": "Confronted with proof that Kess's Ironheart shipments killed not soldiers or rivals but the entire family of a downriver bloom-fever clinic doctor — Valdris's first apprentice — AND offered Valdris's competing rate for healing compounds at the same profit margin. The notebook tears in her hands.",
+          "PhysicalTokens": [
+            "her notebook ('The Colors of Distilled Fear') — kept in a glass-spider-silk binding she made herself",
+            "a half-finished cross-section of an Ironheart sample, painted from a cane-cobra Threadling did not yet know was missing"
+          ]
+        },
+        {
+          "Id": "kess",
+          "Role": "NamedAntagonist",
+          "Variant": "pragmatic-ruthless",
+          "Alive": true,
+          "Age": 51,
+          "Wants": "A reliable supply chain of the Ironheart series for the Saltspine assassination network's three biggest clients; quiet relations with the magistrate; House Vex producing without questions until Threadling's bloodline is exhausted, at which point he intends to dissolve the partnership and switch to a competitor he has been quietly grooming",
+          "Fears": "The Bloomtangle itself. As a child, Kess was dragged by a strangler-vine into a venom-pool and survived by playing dead while a tear-mantis fed on his tears. He has not cried since. He keeps an embalmed tear-mantis on his ledger desk and has not entered any jungle in thirty-eight years. His business depends on people willing to do the entering for him",
+          "SelfDeception": "Tells himself the people who buy his products made their own choices, the cities they kill in were going to be bled anyway, and that House Vex is selling him bottles, not corpses. Sees himself as the merchant who makes the world's existing cruelty more efficient, not the man who adds cruelty to it",
+          "ChangeCondition": "Valdris approaches House Vex with a higher offer for healing compounds at equal margin AND Theron simultaneously refuses Kess's next shipment in front of two witnesses Kess respects. Kess's response is not moral — it's commercial: he requires evidence that the new arrangement is at least as profitable as his own and that walking away does not threaten his standing. Material only — he will not be moved by sentiment, history, or moral argument",
+          "AntagonistMotivation": "Profit maximization dressed as business necessity, fear of the jungle dressed as professional distance, contempt for sentiment dressed as commercial discipline",
+          "AntagonistEmotionalStyle": "Charming to whoever has just signed something; coldly transactional otherwise; quietly courteous to widows and never to widowers (a tic he is unaware of)",
+          "AntagonistVulnerability": "His phobia. Will not enter the distillery; meets Theron at the river dock or at a teahouse in Saltspine. Cannot inspect the work. Must trust the bottles. If the player can demonstrate that a shipment has been adulterated or replaced, Kess cannot verify without entering the Knot, and he will not",
+          "AntagonistLineWontCross": "Will not personally enter the Bloomtangle. Will not handle a sealed venom bottle without gloves. Will not look directly at the embalmed tear-mantis on his desk, though he keeps it",
+          "ChangedByCondition": "Offered a monopoly on Valdris's healing-compound channel at the same profit margin Kess currently demands, with a written guarantee from Valdris's broker that he can decline mid-monsoon without penalty",
+          "ChangedByReachable": true,
+          "ChangedByEvidenceTier": "material only"
+        },
+        {
+          "Id": "sael",
+          "Role": "SilencedHelper",
+          "Variant": "guilty-complicit",
+          "Alive": true,
+          "Age": 38,
+          "Wants": "To pay her sister's school stipend at the river-school for one more season; to feed her two daughters through the dry months; to never have to choose between Theron and Kess directly, because she likes Theron and Kess pays better",
+          "Fears": "That speaking out will cost her the courier job, the river-route, and the household. That the magistrate will name her as an accessory if House Vex falls. That her own sister, who teaches at the school, will discover what the second crate beneath the slate-shipments contains",
+          "SelfDeception": "Tells herself she only ferries the bottles; she does not seal them, she does not name them, she does not know the buyers. The boat carries the slates one trip and the crates the next — the boat is innocent, surely she is innocent in the boat",
+          "ChangeCondition": "Player demonstrates that an Ironheart shipment Sael ferried last summer was used in the takedown of Anuthien village — a town her sister's school takes its monsoon-trip to. The map of complicity becomes geographic, family-shaped, and immediate.",
+          "PhysicalTokens": [
+            "her river-pole, worn smooth by twenty years of the Saltspine",
+            "a packet of school slates wrapped in oilcloth she carries on every trip — both the school trips and the venom trips"
+          ]
+        },
+        {
+          "Id": "valdris",
+          "Role": "OffstageAlly",
+          "Variant": "patient-creditor",
+          "Alive": true,
+          "Age": 47,
+          "Wants": "To stock her three downriver bloom-fever clinics with the cleanest Vex Tears and Theron's Dust the Bloomtangle can produce; to repay a debt she considers personal but Theron does not know exists",
+          "Fears": "That House Vex falls before she can secure the supply line; that Kess discovers her interest and undercuts her; that Theron's pride keeps him from accepting an offer Vorus would have accepted in an instant",
+          "SelfDeception": "Believes she is making a clean commercial offer; refuses to acknowledge that the visit she remembers (Vorus, twenty years ago, treating her dying sister with the first batch of Vex Tears, charging nothing) is the entire reason she's at the dock",
+          "ChangeCondition": "N/A — Valdris is the lever, not the locus. Her offer is consistent and patient until the SuccessionHinge resolves",
+          "Backstory": "A former courtesan who learned medicine from the dying. Twenty years ago her sister contracted bloom-fever in a town with no doctor; Vorus walked four days to deliver Vex Tears and refused payment. The sister lived. Valdris funded a clinic. Then a second. Then a third. She has been quietly buying small batches from competing Bloomtangle houses for years, but House Vex's product is inimitable — and she has been waiting for the moment Theron is willing to talk"
+        }
+      ],
+      "WitnessMap": {
+        "Entries": [
+          {
+            "SubjectId": "theron",
+            "Knows": [
+              "venom_trade_profitable",
+              "lyra_drank_relic_that_was_mocksnake",
+              "vorus_died_testing_panacea_on_himself",
+              "vorus_original_intent_was_healing",
+              "ironheart_series_requires_cane_cobra",
+              "threadling_is_largest_breeding_female",
+              "kess_phobia_he_wont_enter_distillery"
+            ],
+            "Suspects": [
+              "kess_uses_ironheart_for_assassination",
+              "nyla_keeps_secret_notebook"
+            ],
+            "DoesNotKnow": [
+              "valdris_remembers_vorus_personally",
+              "ironheart_killed_anuthien_village",
+              "founder_letter_etched_inside_relic_bottle",
+              "sael_courier_route_overlaps_school_route"
+            ]
+          },
+          {
+            "SubjectId": "nyla",
+            "Knows": [
+              "venom_trade_profitable",
+              "kess_high_bidder",
+              "ironheart_series_is_artistically_volatile",
+              "threadling_is_off_limits"
+            ],
+            "Suspects": [
+              "father_is_keeping_a_letter_somewhere"
+            ],
+            "DoesNotKnow": [
+              "lyra_drank_what_she_thought_was_relic",
+              "vorus_died_testing_failed_panacea",
+              "kess_uses_ironheart_for_assassination",
+              "valdris_offers_equal_margin",
+              "ironheart_killed_valdris_first_apprentice",
+              "founder_letter_etched_inside_relic_bottle"
+            ]
+          },
+          {
+            "SubjectId": "kess",
+            "Knows": [
+              "house_vex_reluctance",
+              "venom_quality_superior",
+              "therons_refusals_increasing",
+              "cane_cobra_supply_finite"
+            ],
+            "Suspects": [
+              "theron_is_preparing_to_break_contract"
+            ],
+            "DoesNotKnow": [
+              "valdris_competing_offer_exists",
+              "founder_letter_etched_inside_relic_bottle",
+              "player_knows_his_phobia",
+              "threadling_is_named_and_protected",
+              "anuthien_targeting_traceable_to_him"
+            ]
+          },
+          {
+            "SubjectId": "sael",
+            "Knows": [
+              "venom_trade_profitable",
+              "kess_behavior_escalating",
+              "theron_is_conflicted",
+              "second_crate_under_slates_every_trip"
+            ],
+            "Suspects": [
+              "kess_uses_poisons_darkly",
+              "her_sisters_school_route_overlaps_kess_route"
+            ],
+            "DoesNotKnow": [
+              "vorus_original_intent_was_healing",
+              "lyra_drank_relic_that_was_mocksnake",
+              "valdris_competing_offer_exists",
+              "founder_letter_etched_inside_relic_bottle",
+              "ironheart_killed_anuthien_village"
+            ]
+          }
+        ],
+        "DangerousDisclosures": [
+          {
+            "Condition": "If kess_uses_ironheart_for_assassination revealed to Kess before the SuccessionHinge resolves",
+            "Consequence": "Kess relocates the operation to a competing Bloomtangle house he has been grooming as backup; the leverage to convert him is lost permanently"
+          },
+          {
+            "Condition": "If valdris_competing_offer_exists revealed to Nyla before the SuccessionHinge resolves",
+            "Consequence": "Nyla contacts Valdris independently, negotiates a side arrangement that splits the supply between healing channels and Ironheart commissions, and locks Theron out of the decision; she frames it as a 'compromise' that lets her keep her notebook"
+          },
+          {
+            "Condition": "If threadling_is_named_and_protected revealed to Kess",
+            "Consequence": "Kess offers a substantial bonus to harvest Threadling specifically; if accepted, the Restored end-state closes and Lyra's memorial is permanently broken"
+          }
+        ]
+      },
+      "PressurePoints": [
+        {
+          "Id": "VenomVault",
+          "Archetype": "Wound",
+          "Temporal": "Suspended",
+          "DominantAlignment": "Home",
+          "Description": "Kess's pre-monsoon order is double the previous quarter and demands the Ironheart series exclusively, which means cane-cobra venom in volumes that cannot be met without harvesting from breeding females — including Threadling, the cane-cobra Lyra named",
+          "UrgencyTrigger": "Kess demands the entire monsoon harvest in advance, with Threadling specifically called out by anatomical description",
+          "UrgencyEffect": "Closes the Restored path; locks in TransformedA as the best achievable outcome; Threadling's loss breaks Lyra's memorial",
+          "UrgencyTiming": "medium",
+          "TransitionRules": [
+            { "FromState": "active", "ToState": "resolved", "Condition": "SuccessionHinge resolved via any path" },
+            { "FromState": "active", "ToState": "failed", "Condition": "UrgencyTrigger fires before SuccessionHinge resolves" }
+          ],
+          "Paths": [
+            {
+              "Id": "RespectfulHarvest",
+              "PrimaryAlignment": "Home",
+              "EmotionalCostDescription": "Refuse to draw from Threadling's bloodline; accept the partial harvest and the certainty of Kess's displeasure. Theron walks the Knot's outer perimeter alone for three nights afterward",
+              "EmotionalCostMagnitude": 4,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "Trust", "Magnitude": 3, "Timing": "front-loaded" },
+                { "Type": "Time", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Restored", "Weight": 3 },
+                { "EndStateId": "TransformedA", "Weight": 1 }
+              ]
+            },
+            {
+              "Id": "Overharvest",
+              "PrimaryAlignment": "CosmicB",
+              "SecondaryAlignment": "Home",
+              "EmotionalCostDescription": "Take the breeding females. Threadling included. Theron does it himself rather than ask Nyla to. He cannot watch the milking. The relic bottle on the central shelf shifts a quarter inch when the back-room door slams; nobody acknowledges it",
+              "EmotionalCostMagnitude": 2,
+              "CorruptionContribution": 2,
+              "Costs": [
+                { "Type": "Ideology", "Magnitude": 2, "Timing": "front-loaded" },
+                { "Type": "LineagePurity", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "TransformedB", "Weight": 3 },
+                { "EndStateId": "Corrupted", "Weight": 1 }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "TaintedHeir",
+          "Archetype": "PreventedHelp",
+          "Temporal": "Suspended",
+          "DominantAlignment": "CosmicA",
+          "Description": "Nyla's notebook, 'The Colors of Distilled Fear,' has begun to include Ironheart cross-sections. She has not yet written the word 'kill' on any page. The page she is currently working on requires Threadling's specific venom for accuracy",
+          "UrgencyTrigger": "Nyla negotiates directly with Kess for a personal profit-sharing arrangement (a 'commission line' for her artistic series, with proceeds funding her departure from the Knot)",
+          "UrgencyEffect": "Nyla becomes Kess's advocate in the household; Theron's authority fractures; the notebook gets locked in her room and Threadling's milk-record begins appearing in her ledger",
+          "UrgencyTiming": "short",
+          "TransitionRules": [
+            { "FromState": "active", "ToState": "resolved", "Condition": "Nyla is shown evidence that Ironheart killed Valdris's first apprentice's family AND offered Valdris's parallel compound contract at equal margin" },
+            { "FromState": "active", "ToState": "failed", "Condition": "UrgencyTrigger fires before that confrontation" }
+          ],
+          "Paths": [
+            {
+              "Id": "NylaAwakens",
+              "PrimaryAlignment": "CosmicA",
+              "EmotionalCostDescription": "Nyla writes 'kill' for the first time in her notebook, on the cross-section page she has been working from a Threadling sample. She tears the page in half; she keeps both halves. She does not show Theron until two days later",
+              "EmotionalCostMagnitude": 3,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "SelfEdit", "Magnitude": 2, "Timing": "front-loaded" },
+                { "Type": "Trust", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Restored", "Weight": 2 },
+                { "EndStateId": "TransformedA", "Weight": 2 }
+              ]
+            },
+            {
+              "Id": "NylaSideshifts",
+              "PrimaryAlignment": "CosmicB",
+              "EmotionalCostDescription": "Nyla commits to the Ironheart commissions as her body of work; the notebook expands; Theron loses his apprentice and his successor in the same conversation; the relic bottle is moved from the central shelf to a side cabinet",
+              "EmotionalCostMagnitude": 1,
+              "CorruptionContribution": 3,
+              "Costs": [
+                { "Type": "Ideology", "Magnitude": 1, "Timing": "front-loaded" },
+                { "Type": "Trust", "Magnitude": 1, "Timing": "front-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Corrupted", "Weight": 3 },
+                { "EndStateId": "TransformedB", "Weight": 1 }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "PoisonMerchant",
+          "Archetype": "SuccessionHinge",
+          "Temporal": "Imminent",
+          "DominantAlignment": "Variable",
+          "Description": "Theron is sixty-two and exhausted. Kess wants a written contract for the next three monsoons. Valdris is patient but not infinitely. The choice belongs to Theron, but only for as long as he is at the central shelf with the polishing cloth in his hand. After that — Nyla",
+          "UrgencyTrigger": "Theron steps down (or is moved aside via Nyla's side-deal); Nyla assumes full control and re-signs Kess's contract within a week",
+          "UrgencyEffect": "Corrupted becomes the most likely outcome; Restored closes; the relic bottle is sold to a private collector six months later",
+          "UrgencyTiming": "long",
+          "TransitionRules": [
+            { "FromState": "active", "ToState": "resolved", "Condition": "Theron makes a final choice about Kess's contract after all available evidence is in front of him" },
+            { "FromState": "active", "ToState": "failed", "Condition": "UrgencyTrigger fires" }
+          ],
+          "Paths": [
+            {
+              "Id": "RebuildLegacy",
+              "PrimaryAlignment": "Home",
+              "EmotionalCostDescription": "Theron names Nyla co-leader on the condition that she accepts the healing mission as the family's only purpose. The Ironheart commissions die in the same hour the contract dies. Nyla burns one page of her notebook; she keeps the rest",
+              "EmotionalCostMagnitude": 4,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "Ideology", "Magnitude": 3, "Timing": "front-loaded" },
+                { "Type": "SelfEdit", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Restored", "Weight": 4 },
+                { "EndStateId": "TransformedA", "Weight": 1 }
+              ]
+            },
+            {
+              "Id": "CompromisedSustenance",
+              "PrimaryAlignment": "CosmicB",
+              "SecondaryAlignment": "Home",
+              "EmotionalCostDescription": "Theron keeps Kess's account at half-volume and quietly routes the proceeds into an unmarked bloom-fever fund administered through a third party. The relic stays on the shelf. The family eats. No one says aloud that they are eating from blood",
+              "EmotionalCostMagnitude": 3,
+              "CorruptionContribution": 3,
+              "Costs": [
+                { "Type": "Ideology", "Magnitude": 2, "Timing": "ongoing" },
+                { "Type": "LineagePurity", "Magnitude": 3, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "TransformedB", "Weight": 3 },
+                { "EndStateId": "Corrupted", "Weight": 2 }
+              ]
+            },
+            {
+              "Id": "SeverKess",
+              "PrimaryAlignment": "CosmicA",
+              "EmotionalCostDescription": "Theron severs the contract publicly at the Saltspine dock, hands Kess the unfilled order, and walks away. The family loses seventy percent of its income overnight. Two of the four apprentices leave by the next monsoon. The Knot's outer floors are mothballed",
+              "EmotionalCostMagnitude": 2,
+              "CorruptionContribution": 1,
+              "Costs": [
+                { "Type": "Trust", "Magnitude": 2, "Timing": "front-loaded" },
+                { "Type": "Time", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "TransformedA", "Weight": 3 },
+                { "EndStateId": "Extinct", "Weight": 1 }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "FounderLetter",
+          "Archetype": "HiddenEvidence",
+          "Temporal": "Latent",
+          "DominantAlignment": "Home",
+          "Description": "Vorus's last writing was not stored in any journal. Three days before he died testing the panacea, he etched his confession into the inside of the relic bottle's glass with a glass-spider's leg — small enough to read only by candle held behind the bottle. The message states the founder's intent (healing only), names the Ironheart venom as the test piece because 'no one cruel will ever sit long enough to extract it,' and asks forgiveness for being wrong about that. Theron has never read it. He has polished the relic every morning for nineteen years and has never once held it up to candlelight",
+          "UrgencyTrigger": "Kess discovers the relic's contents and arranges its destruction — either via a 'specimen accident' or by buying it from Nyla outright after she takes control",
+          "UrgencyEffect": "The founder's true voice is lost; only the profit-driven memory of him remains in the family; TransformedB and Corrupted become the only viable end-states",
+          "UrgencyTiming": "immediate",
+          "TransitionRules": [
+            { "FromState": "active", "ToState": "resolved", "Condition": "Player or NPC reads the etched letter inside the relic bottle by candlelight" },
+            { "FromState": "active", "ToState": "failed", "Condition": "Kess is confronted about Ironheart use before the letter is read" }
+          ],
+          "HiddenEvidence": {
+            "Subtypes": ["Passive", "Gated"],
+            "CustodianId": "theron",
+            "GateCondition": "The relic bottle sits on the central distillery shelf in plain sight — but reading the etched message requires holding it before a candle and knowing to look, which Theron has never done. Asking him to do so requires Theron's trust. Doing it without his knowledge requires being alone in the distillery with a candle",
+            "RevealMethods": [
+              { "Alignment": "Home", "Method": "Earn Theron's trust and ask him directly to read it; he will, with the player present, and weep when he does" },
+              { "Alignment": "CosmicA", "Method": "Wait until the distillery is empty (Theron walks the perimeter at dawn), light a candle, hold the relic up alone" }
+            ]
+          },
+          "Paths": [
+            {
+              "Id": "LetterUncovered",
+              "PrimaryAlignment": "Home",
+              "EmotionalCostDescription": "Vorus's true voice arrives nineteen years late. The reading is bittersweet; Theron understands for the first time why his father chose the Ironheart bite as his final test. The relic is restored to the central shelf, this time deliberately",
+              "EmotionalCostMagnitude": 1,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "SelfEdit", "Magnitude": 1, "Timing": "front-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Restored", "Weight": 2 },
+                { "EndStateId": "TransformedA", "Weight": 2 }
+              ]
+            },
+            {
+              "Id": "LetterBurned",
+              "PrimaryAlignment": "CosmicB",
+              "EmotionalCostDescription": "The relic is destroyed (broken, sold, or 'accidentally' shattered during Kess's pressure cycle). Whatever Vorus wrote is lost; only the family's profit-flavored memory of him remains. Theron stops polishing the central shelf",
+              "EmotionalCostMagnitude": 2,
+              "CorruptionContribution": 3,
+              "Costs": [
+                { "Type": "Ideology", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Corrupted", "Weight": 3 },
+                { "EndStateId": "TransformedB", "Weight": 1 }
+              ]
+            }
+          ]
+        }
+      ],
+      "MemorialActs": [
+        {
+          "SubjectId": "vorus",
+          "Objects": ["RelicBottle", "ApprenticeshipRing", "JournalBoundInGlassSpiderSilk"],
+          "Interactions": [
+            { "Alignment": "Home", "Description": "Place a fresh-distilled Vex Tears vial in the empty space beside the relic — continuing the work he started for his sister" },
+            { "Alignment": "CosmicA", "Description": "Hold the relic to a candle and read the etched letter aloud to whoever is in the distillery; the act of reading-with-others is itself the memorial" },
+            { "Alignment": "Home", "Description": "Place his apprenticeship ring on Threadling's enclosure as a vow: this snake will not be milked while she lives" }
+          ]
+        },
+        {
+          "SubjectId": "lyra",
+          "Objects": ["ChildsCloak", "FamilyTokenRibbon", "Threadling"],
+          "Interactions": [
+            { "Alignment": "Home", "Description": "Hang the blue cloak (Crimson-Veil-mended hem) at the distillery entrance; new apprentices touch the hem on their first day" },
+            { "Alignment": "CosmicA", "Description": "Plant a monsoon lily at the threshold where she fell; the lily blooms blue in venom-rich soil and white otherwise — a living label-system that cannot lie" },
+            { "Alignment": "Home", "Description": "Speak Threadling's name at the back-room enclosure once a week, on the day Lyra named her; the snake responds to the cadence" }
+          ]
+        }
+      ],
+      "Crossovers": [
+        {
+          "Type": "TruthPropagation",
+          "FromPointId": "FounderLetter",
+          "FromCondition": "state:resolved",
+          "ToPointId": "TaintedHeir",
+          "ToEffect": "reveal:nyla:vorus_original_intent_was_healing",
+          "DerivedFromWitnessMap": true
+        },
+        {
+          "Type": "TruthPropagation",
+          "FromPointId": "FounderLetter",
+          "FromCondition": "state:resolved",
+          "ToPointId": "PoisonMerchant",
+          "ToEffect": "reveal:theron:founder_letter_etched_inside_relic_bottle",
+          "DerivedFromWitnessMap": true
+        },
+        {
+          "Type": "TruthPropagation",
+          "FromPointId": "VenomVault",
+          "FromCondition": "path:RespectfulHarvest",
+          "ToPointId": "TaintedHeir",
+          "ToEffect": "reveal:nyla:threadling_is_named_and_protected",
+          "DerivedFromWitnessMap": true
+        },
+        {
+          "Type": "Amplification",
+          "FromPointId": "TaintedHeir",
+          "FromCondition": "state:failed",
+          "ToPointId": "PoisonMerchant",
+          "ToEffect": "corruption:2",
+          "DerivedFromWitnessMap": false
+        },
+        {
+          "Type": "MutualExclusion",
+          "FromPointId": "VenomVault",
+          "FromCondition": "path:Overharvest",
+          "ToPointId": "FounderLetter",
+          "ToEffect": "close:FounderLetter:LetterUncovered",
+          "DerivedFromWitnessMap": false,
+          "Rationale": "If Threadling is harvested, the relic loses its meaning before the candle is ever lit; reading it becomes a hollow act and the Restored path is no longer reachable through this letter"
+        }
+      ],
+      "EndStates": [
+        {
+          "Id": "Restored",
+          "Name": "The Healer's Path (Bottled Mercy)",
+          "PathSignature": ["RespectfulHarvest", "NylaAwakens", "RebuildLegacy", "LetterUncovered"],
+          "Tag": "VexRestored",
+          "Rewards": ["VenomAntitoxin", "HouseVexReputation+3", "ThreadlingBreedingFemaleSecured"],
+          "ExternalResonanceDescription": "House Vex becomes the river basin's primary supplier of Vex Tears and Theron's Dust. The downriver clinics expand. Kess's Ironheart series goes out of business within two monsoons because no other Bloomtangle house can match Vex quality. The relic sits on the central shelf, polished by Nyla now, the etched letter readable to anyone who asks. Threadling lives to be named again by Nyla's eventual apprentice",
+          "ExternalResonanceScope": "basin-wide"
+        },
+        {
+          "Id": "TransformedA",
+          "Name": "The Quiet Distillery",
+          "PathSignature": ["RespectfulHarvest", "NylaSideshifts", "SeverKess"],
+          "Tag": "VexTransformedA",
+          "Rewards": ["HouseVexReputation+1", "QuietDistilleryHomestead"],
+          "ExternalResonanceDescription": "House Vex shrinks to a single floor and three apprentices. Income halves. Nyla leaves for Saltspine and is not heard from for two years. Theron continues making Vex Tears for the clinics that remain. The relic stays on the shelf. The Knot is smaller, but it is still the Knot",
+          "ExternalResonanceScope": "house-local"
+        },
+        {
+          "Id": "TransformedB",
+          "Name": "The Crimson Ledger",
+          "PathSignature": ["Overharvest", "NylaSideshifts", "CompromisedSustenance", "LetterBurned"],
+          "Tag": "VexTransformedB",
+          "Rewards": ["HouseVexReputation-1", "QuietBloodFund"],
+          "ExternalResonanceDescription": "House Vex grows wealthier than at any time in its history. The Ironheart series funds an expanded distillery and three Saltspine warehouses. The downriver clinics still receive Vex Tears, paid for in Kess's silver, and nobody asks where the silver came from. The relic is moved to a private cabinet. Apprentices stop hearing the founder's name. The work is precise, beautiful, profitable, and the mirror does not look back",
+          "ExternalResonanceScope": "house-local"
+        },
+        {
+          "Id": "Extinct",
+          "Name": "The Empty Vials",
+          "PathSignature": ["RespectfulHarvest", "SeverKess", "LetterBurned"],
+          "Tag": "VexExtinct",
+          "Rewards": [],
+          "ExternalResonanceDescription": "House Vex collapses financially within two monsoons of severing Kess. Theron's apprentices leave. Nyla moves to Saltspine and never returns. Theron passes the Knot's deed to an outside investor who converts the lower three floors into a teahouse. The cane-cobras (Threadling included) revert fully to the wild. The craft dies with Theron; Vex Tears remain a downriver folk-memory only",
+          "ExternalResonanceScope": "regional"
+        },
+        {
+          "Id": "Corrupted",
+          "Name": "Kess's Quiet Garden",
+          "PathSignature": ["Overharvest", "NylaSideshifts", "CompromisedSustenance", "LetterBurned"],
+          "Tag": "VexCorrupted",
+          "Rewards": ["HouseVexReputation-3"],
+          "ExternalResonanceDescription": "House Vex becomes a wholly-owned tributary of Kess's network. The Knot is repurposed: lower floors house Saltspine's contract chemists, the central shelf is empty, and the back-room enclosures are converted to industrial milking stations. Threadling's bloodline is exhausted within a single monsoon. The Ironheart series becomes the basin's de-facto assassination standard. Three downriver towns later report mass casualty events traceable to Vex-stamped vials; the magistrate cannot prosecute Kess because Vex is the legal entity. Theron, somewhere, polishes nothing",
+          "ExternalResonanceScope": "basin-wide"
+        }
+      ],
+      "CorruptionGradient": {
+        "EarlyWarningSignal": "Kess delivers his next Ironheart contract directly to Nyla, bypassing Theron, with a personal note praising 'the artist of the Bloomtangle' — and Nyla does not show Theron the note",
+        "MidWarningSignal": "Theron stops polishing the relic. The cloth disappears for a week. Then for two weeks. Then it is found in a drawer Nyla does not open",
+        "PointOfNoReturn": "CompromisedSustenance taken in PoisonMerchant while Overharvest is already resolved AND Threadling has been milked. The relic bottle is then either sold or 'broken' within three months; House Vex's Restored future becomes mathematically unreachable"
+      }
+    }
+  ]
+}
