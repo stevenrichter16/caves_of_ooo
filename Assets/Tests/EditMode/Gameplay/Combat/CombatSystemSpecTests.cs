@@ -14,7 +14,7 @@ namespace CavesOfOoo.Tests
     /// locked in by tests. See Docs/COMBAT-AUDIT-PLAN.md, "Path B" outcome.
     ///
     /// In scope:
-    ///   • RollPenetrations streak math + early exit + determinism
+    ///   • RollPenetrations smoke checks (Qud-parity details in RollPenetrationsParityTests)
     ///   • SelectHitLocation Abstract/TargetWeight skip + weighted distribution
     ///   • GatherMeleeWeapons equipped/default-behavior fallback + primary sort + 2H dedup
     ///   • HandleDeath cascade ordering (drops → Died → RemoveEntity)
@@ -36,80 +36,51 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
-        // RollPenetrations — pure function, well-formed mechanic
-        // 3 rolls of 1d8+PV vs AV; if all 3 succeed, drop PV by 2, restart loop;
-        // exit early if currentPV+8 ≤ AV (no chance of any future success).
+        // RollPenetrations — Qud-parity surface checks.
+        //
+        // Detailed Qud-parity behavior (per-set pen counting, exploding dice,
+        // bonus decay, MaxBonus cap) is exercised in RollPenetrationsParityTests.
+        // This file only retains a few high-level checks that survive the port.
+        //
+        // Two prior tests were removed:
+        //   • NegativePV_HighAV_ReturnsZero (superseded by parity test
+        //     LoopTerminates_AtPathologicalNegativeBonus)
+        //   • BalancedPVAV_NoStreak_ReturnsZeroToThree (stale: Qud allows >3
+        //     via per-set streak)
         // ====================================================================
 
         [Test]
-        public void RollPenetrations_NegativePV_HighAV_ReturnsZero()
+        public void RollPenetrations_HighBonus_ZeroTarget_StreakTriggers_ReturnsMoreThan3()
         {
-            // 1d8 + (-20) ranges -19 to -12; never exceeds AV=10. Always 0.
-            var rng = new Random(42);
-            for (int seed = 0; seed < 20; seed++)
-            {
-                int pens = CombatSystem.RollPenetrations(-20, 10, new Random(seed));
-                Assert.AreEqual(0, pens, $"PV=-20 vs AV=10 must always return 0 (seed {seed})");
-            }
-        }
-
-        [Test]
-        public void RollPenetrations_HighPV_ZeroAV_StreakTriggers_ReturnsMoreThan3()
-        {
-            // PV=20 vs AV=0: every 1d8+20 > 0 always. Without the streak-restart,
-            // the for-loop caps at 3 iterations → max 3 penetrations. So pens > 3
-            // PROVES the streak-restart fired at least once.
-            var rng = new Random(42);
-            int pens = CombatSystem.RollPenetrations(20, 0, rng);
+            // Qud's outer loop continues while last set was a clean sweep. With
+            // bonus=20 vs target=0, every roll [-1,8]+20 > 0 → every set sweeps
+            // for several iterations until bonus decays into failure range.
+            // Without the per-set continuation, max would be 1 pen. So pens > 3
+            // proves the multi-set loop is doing its job.
+            int pens = CombatSystem.RollPenetrations(0, 20, 50, new Random(42));
             Assert.Greater(pens, 3,
-                "Streak-restart must trigger when 3 successes occur — pens > 3 is the signal");
+                "Per-set streak continuation must produce >3 pens with bonus=20 vs target=0");
         }
 
         [Test]
-        public void RollPenetrations_HighPV_ZeroAV_StreakDoesNotLoopForever()
+        public void RollPenetrations_HighBonus_ZeroTarget_LoopTerminates()
         {
-            // The early-exit guard `currentPV + 8 <= av` must terminate the loop
-            // when penetration becomes mathematically impossible. With PV=20 AV=0,
-            // currentPV decrements by 2 each streak: 20,18,16,...,-8. At -8, the
-            // guard fires (-8+8=0 ≤ 0) and loop exits. Test: function returns in
-            // bounded time and finite count.
-            var rng = new Random(42);
-            int pens = CombatSystem.RollPenetrations(20, 0, rng);
-            // Upper bound check: if every roll succeeded all the way down to PV=-6
-            // (last fully-passable streak), that's ~14 streak iterations × 3 rolls
-            // each = 42. Cap generously at 100 to catch infinite loops without
-            // being fragile to RNG.
-            Assert.Less(pens, 100, "Loop must terminate via early-exit guard, not run unbounded");
-        }
-
-        [Test]
-        public void RollPenetrations_BalancedPVAV_NoStreak_ReturnsZeroToThree()
-        {
-            // PV=5 vs AV=10: 1d8+5 succeeds when roll ≥ 6 (rolls 6,7,8 = 3/8 = 37.5%).
-            // Streak-restart cannot fire reliably; expect 0-3 pens, mostly 0-1.
-            int observedMax = 0;
-            for (int seed = 0; seed < 50; seed++)
-            {
-                int pens = CombatSystem.RollPenetrations(5, 10, new Random(seed));
-                Assert.GreaterOrEqual(pens, 0);
-                Assert.LessOrEqual(pens, 3, $"With PV=5 vs AV=10 the streak should rarely fire (seed {seed})");
-                observedMax = Math.Max(observedMax, pens);
-            }
-            // Sanity: at least one seed should give >=1 to prove the function works.
-            Assert.Greater(observedMax, 0, "Some seeds must produce at least one penetration");
+            // The bonus-decay each set guarantees termination: bonus drops by 2
+            // every iteration, eventually rolls fail, loop exits. Test asserts
+            // the call returns and the count is finite/bounded.
+            int pens = CombatSystem.RollPenetrations(0, 20, 50, new Random(42));
+            Assert.Less(pens, 100, "Bonus-decay must bound the streak; no runaway loops");
         }
 
         [Test]
         public void RollPenetrations_Deterministic_SameSeedSameResult()
         {
             // Replay safety: identical seeded RNG must yield identical results.
-            var rng1 = new Random(99);
-            var rng2 = new Random(99);
-            for (int i = 0; i < 20; i++)
+            for (int seed = 0; seed < 20; seed++)
             {
-                int a = CombatSystem.RollPenetrations(7, 5, rng1);
-                int b = CombatSystem.RollPenetrations(7, 5, rng2);
-                Assert.AreEqual(a, b, $"Same seed must produce same penetration count (call #{i})");
+                int a = CombatSystem.RollPenetrations(5, 7, 7, new Random(seed));
+                int b = CombatSystem.RollPenetrations(5, 7, 7, new Random(seed));
+                Assert.AreEqual(a, b, $"Same seed must produce same penetration count (seed {seed})");
             }
         }
 

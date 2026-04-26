@@ -154,14 +154,17 @@ namespace CavesOfOoo.Core
 
             string partDesc = hitPart != null ? $" in the {hitPart.GetDisplayName()}" : "";
 
-            // Penetration — per-part AV when hit location is known
+            // Penetration — per-part AV when hit location is known.
+            // The MaxBonus cap is now applied INSIDE RollPenetrations (Qud-parity).
+            // Legacy weapons with MaxStrengthBonus = -1 (uncapped sentinel) get a
+            // sane large value to avoid integer overflow in the bonus-decay loop.
             int strMod = StatUtils.GetModifier(attacker, statName);
-            if (maxStrBonus >= 0 && strMod > maxStrBonus)
-                strMod = maxStrBonus;
-            int pv = strMod + penBonus;
+            int bonus = strMod + penBonus;
+            int effectiveMaxStrBonus = (maxStrBonus < 0) ? 50 : maxStrBonus;
+            int maxBonus = effectiveMaxStrBonus + penBonus;
             int av = hitPart != null ? GetPartAV(defender, hitPart) : GetAV(defender);
 
-            int penetrations = RollPenetrations(pv, av, rng);
+            int penetrations = RollPenetrations(av, bonus, maxBonus, rng);
 
             if (penetrations == 0)
             {
@@ -343,37 +346,53 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Roll penetrations: 3 rolls of 1d8+PV vs AV.
-        /// If all 3 succeed, roll again with PV-2 (diminishing returns).
+        /// Roll penetrations using Qud's algorithm
+        /// (mirrors <c>XRL.Rules.Stat.RollDamagePenetrations</c>, lines 160-203).
+        ///
+        /// Per set of 3 rolls of (<c>1d10 − 2</c>, exploding on raw 10):
+        ///   • Count successes (rolls with total &gt; <paramref name="targetInclusive"/>).
+        ///   • A set with ≥1 success awards EXACTLY 1 penetration (not per-roll).
+        ///   • Continue rolling new sets only if all 3 rolls in the set succeeded.
+        ///   • Bonus decays by 2 every set, regardless of success count.
+        ///
+        /// Effective per-roll bonus: <c>Math.Min(bonus, maxBonus)</c>.
+        ///
+        /// See <c>Docs/COMBAT-QUD-PARITY-PORT.md</c> Phase A for the parity rationale.
         /// </summary>
-        public static int RollPenetrations(int pv, int av, Random rng)
+        /// <param name="targetInclusive">AV (Armor Value). Rolls must STRICTLY exceed this.</param>
+        /// <param name="bonus">Total pen bonus (e.g., StatMod + weapon PenBonus + crit bonus).</param>
+        /// <param name="maxBonus">Cap on the bonus contribution per roll (mirrors weapon's MaxStrengthBonus).</param>
+        /// <param name="rng">Seeded RNG for replay safety in tests.</param>
+        public static int RollPenetrations(int targetInclusive, int bonus, int maxBonus, Random rng)
         {
-            int penetrations = 0;
-            int currentPV = pv;
-            int streak = 0;
-            int rollsInSet = 3;
+            int totalPens = 0;
+            int successesInSet = 3; // sentinel — enter the loop
 
-            for (int i = 0; i < rollsInSet; i++)
+            while (successesInSet == 3)
             {
-                int roll = DiceRoller.Roll(8, rng) + currentPV;
-                if (roll > av)
+                successesInSet = 0;
+                for (int i = 0; i < 3; i++)
                 {
-                    penetrations++;
-                    streak++;
-
-                    if (streak == rollsInSet)
+                    // 1d10 − 2 (range −1 to 8). Raw 10 (post-mod 8) explodes:
+                    // adds +8 to the running total and re-rolls. Explosions chain.
+                    int rawRoll = DiceRoller.Roll(10, rng) - 2;
+                    int explodeAccum = 0;
+                    while (rawRoll == 8)
                     {
-                        currentPV -= 2;
-                        streak = 0;
-                        rollsInSet = 3;
-                        i = -1;
-                        if (currentPV + 8 <= av)
-                            break;
+                        explodeAccum += 8;
+                        rawRoll = DiceRoller.Roll(10, rng) - 2;
                     }
+                    int dieResult = explodeAccum + rawRoll;
+                    int totalRoll = dieResult + Math.Min(bonus, maxBonus);
+                    if (totalRoll > targetInclusive)
+                        successesInSet++;
                 }
+                if (successesInSet >= 1)
+                    totalPens++;
+                bonus -= 2;
             }
 
-            return penetrations;
+            return totalPens;
         }
 
         /// <summary>
