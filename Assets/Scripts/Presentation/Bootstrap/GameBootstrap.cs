@@ -359,6 +359,18 @@ namespace CavesOfOoo
                     }
                     announcementUI.PopupCamera = popupOverlayCamera;
                     inputHandler.AnnouncementUI = announcementUI;
+
+                    // Phase 4d — Pause menu (Esc → centered modal with Save/Load).
+                    var pauseMenuUI = GetComponent<PauseMenuUI>();
+                    if (pauseMenuUI == null)
+                        pauseMenuUI = gameObject.AddComponent<PauseMenuUI>();
+                    if (ZoneRenderer != null)
+                    {
+                        pauseMenuUI.Tilemap = ZoneRenderer.CenteredPopupFgTilemap;
+                        pauseMenuUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
+                    }
+                    pauseMenuUI.PopupCamera = popupOverlayCamera;
+                    inputHandler.PauseMenuUI = pauseMenuUI;
                 });
 
                 _turnManager.ProcessUntilPlayerTurn();

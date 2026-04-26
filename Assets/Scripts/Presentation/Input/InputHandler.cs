@@ -221,6 +221,28 @@ namespace CavesOfOoo.Rendering
         public ScreenFade ScreenFade { get; set; }
 
         /// <summary>
+        /// Phase 4d — pause menu UI (Esc → centered modal). Wired by
+        /// <c>GameBootstrap</c>. The controller is owned here; the UI
+        /// borrows it via <see cref="PauseMenuUI.Controller"/>.
+        /// </summary>
+        public PauseMenuUI PauseMenuUI
+        {
+            get => _pauseMenuUI;
+            set
+            {
+                _pauseMenuUI = value;
+                if (_pauseMenuUI != null)
+                {
+                    _pauseMenuUI.Controller = _pauseMenuController;
+                    _pauseMenuUI.SaveLoadService = _saveLoadService;
+                    _pauseMenuUI.Log = MessageLog.Add;
+                }
+            }
+        }
+        private PauseMenuUI _pauseMenuUI;
+        private readonly PauseMenuController _pauseMenuController = new PauseMenuController();
+
+        /// <summary>
         /// Public activation hook for the boot-menu modal — called from
         /// <c>GameBootstrap</c> at end-of-init. No-op if no save exists.
         /// </summary>
@@ -294,20 +316,50 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Save/Load hotkeys (Phase 4) — fire only in normal gameplay,
-            // never while a modal UI is open. Routed through the
-            // SaveLoadInputController so its dispatch logic stays
-            // unit-testable. Run BEFORE the wait-skip block so a save
-            // doesn't get swallowed by a held '.' key. Tick returns
-            // true when the F5/F6 input was consumed — early-return
-            // so subsequent debug F-key bindings (F6=mutate-debug etc.)
-            // don't ALSO fire on the same press.
+            // Save/Load + Pause menu (Phases 4 + 4d) — fire only in normal
+            // gameplay, never while a modal UI is open. Routed through
+            // unit-tested controllers so dispatch logic stays testable.
+            // Run BEFORE the wait-skip block so a save doesn't get swallowed
+            // by a held '.' key. Tick returns true when input was consumed
+            // — early-return so subsequent debug F-key bindings (F6=mutate-
+            // debug etc.) don't ALSO fire on the same press.
+            //
+            // Pause menu is gated on InputState.Normal so Tab inside an
+            // open InventoryUI / PickupUI / TradeUI (all of which use Tab
+            // for in-modal navigation) goes to those handlers, not here.
             if (_inputState == InputState.Normal)
             {
                 if (_saveLoadInputController.Tick(_saveLoadInputProbe, _saveLoadService, MessageLog.Add))
                 {
                     _lastMoveTime = Time.time;
                     return;
+                }
+
+                // Pause menu — Tab opens, arrows/Enter navigate, Tab closes.
+                // When open, fully blocks other input via the IsOpen guard.
+                // The popup-overlay camera lifecycle MUST be toggled around
+                // state transitions, matching the WorldActionMenuUI /
+                // ContainerPickerUI pattern (line ~1954). Without this, the
+                // PauseMenuUI tilemap renders correctly but no camera is
+                // displaying it — the player sees nothing.
+                if (_pauseMenuUI != null)
+                {
+                    bool wasOpenBeforeTick = _pauseMenuUI.IsOpen;
+                    bool consumed = _pauseMenuUI.HandleInput(_saveLoadInputProbe);
+                    bool isOpenAfterTick = _pauseMenuUI.IsOpen;
+
+                    if (!wasOpenBeforeTick && isOpenAfterTick)
+                        EnterCenteredPopupOverlayView();
+                    else if (wasOpenBeforeTick && !isOpenAfterTick)
+                        ExitCenteredPopupOverlayViewToGameplay();
+
+                    if (consumed)
+                    {
+                        _lastMoveTime = Time.time;
+                        return;
+                    }
+                    if (_pauseMenuUI.IsOpen)
+                        return;  // suppress other input while modal up
                 }
             }
 
