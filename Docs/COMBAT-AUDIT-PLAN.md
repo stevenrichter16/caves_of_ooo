@@ -22,6 +22,35 @@ Three reasons CombatSystem is the highest-EV next audit target:
 
 ---
 
+## Definition of "production bug"
+
+For purposes of this audit, a **production bug** is any of:
+
+1. **Crash or NPE** in a code path reachable through the public API with parameters the contract does not forbid
+2. **Documented contract violation** — production behavior diverges from a comment, doc, or test that articulates the intended contract
+3. **Cross-system invariant violation** — production correctly handles its own surface but breaks an invariant of another system (e.g., HandleDeath leaves an entity in two zones simultaneously)
+4. **Data corruption** — state mutated to a value the rest of the codebase will mishandle (e.g., negative HP that another system reads as "alive")
+
+Behaviors that are **NOT bugs** for this audit:
+- **Performance issues** unless they cause crashes or correctness errors
+- **Aesthetic concerns** about API shape or naming
+- **Missing features** the code never claimed to have (damage types, etc.)
+- **Surprising-but-documented** behavior — pin it as a contract test, do not "fix"
+
+When classification is ambiguous, apply the decision framework in the Risks section.
+
+## Success criterion
+
+The audit closes successfully when ALL of the following hold:
+
+- Phases 0-3 executed (P4/P4½/P5 may be skipped)
+- All bugs found are either (a) fixed with regression tests pinned, or (b) documented in the audit summary as "deferred — out of audit scope"
+- All "test-wrong" findings have been corrected
+- Full EditMode suite green at the post-audit summary commit
+- Audit summary commit lands with: per-phase bug count, fix locations, final test count, list of deferred items
+
+The audit does NOT need to find any specific number of bugs. A 0-bug audit that produced 80+ tests with regression-shield value still succeeds — it confirms the existing 37 tests covered the surface adequately, which is itself a useful empirical finding.
+
 ## Scope (what's in, what's out)
 
 **In scope** — the seven public methods of `CombatSystem.cs` and their immediate cross-system effects (the 15 touchpoints listed below).
@@ -73,7 +102,7 @@ That's **15 touchpoints**. Even one test per is 15 integration tests; targeted t
 
 ## The plan (six-phase sweep, ~2-3 days)
 
-### Phase 0 — Recon + prioritized test backlog (1-2 hours)
+### Phase 0 — Recon + prioritized test backlog (2-3 hours)
 
 **Deliverables:**
 1. `Docs/COMBAT-BRANCH-MAP.md` — the branch + touchpoint map
@@ -260,10 +289,32 @@ For each mutation: revert before the next. If the suite passes after a mutation,
 
 ## Stop conditions for the whole sweep
 
-- **Phase 0 mandatory** before any test-writing.
-- **Phases 1-3 are the core.** P4 and P5 are optional layers if budget permits.
-- **Stop the sweep early** if Phase 1 + Phase 2 collectively yield 0 bugs (extremely unlikely given the empirical baseline; would suggest the existing 37 tests already covered everything).
-- **Continue past Phase 3** if running average bug-find > 5%.
+Sequencing rules:
+
+- **Phase 0 is mandatory** before any test-writing
+- **Phases 1, 2, 3 always execute** in order — they are the audit's core. The structure does not allow skipping them
+- **Phase 4 (property tests) is conditional** on running average bug-find through P3 being > 5%, OR on the user explicitly greenlighting at G2
+- **Phase 4½ (mutation testing) is conditional** on whether P3 felt rushed for time. If P3 produced thorough adversarial coverage, mutation testing's marginal value drops; if not, it rises
+- **Phase 5 (vs Qud) is independent** — schedule based on user interest in parity documentation, not on bug-find rate
+
+The earlier "stop early if P1+P2 yield 0 bugs" rule is REPLACED by this clearer structure. P3 always runs. Whether to continue past P3 is the G2 decision.
+
+## Escalation path for "audit-too-big" findings
+
+A finding may be too large to address within the audit:
+- A structural flaw requiring multi-day refactor
+- A bug whose fix changes a public contract that other systems rely on
+- A bug whose fix is itself a feature (e.g., requires implementing damage types)
+
+Discipline for such findings:
+
+1. Write a regression test that pins the bug as it currently exists (Skip with `[Ignore("audit-deferred: <reason>")]` if the bug crashes the test runner)
+2. Document the finding in `Docs/COMBAT-AUDIT-DEFERRED.md` with: bug description, reproduction, why it's too big, suggested resolution shape, estimated effort
+3. Surface to user at the next gate (G1, G2, or G3 — whichever comes first)
+4. Continue the audit; do not attempt the refactor mid-sweep
+5. The deferred items are filed as Tier-2 or Tier-3 entries in `Docs/roadmap.md` post-audit
+
+This prevents two failure modes: (a) the audit silently grows from 3 days to 3 weeks; (b) the audit surfaces problems but lets them go unrecorded.
 
 ## User check-in gates
 
@@ -283,10 +334,19 @@ Between gates I work continuously; I do not pause every commit. The gates are *f
 
 | | |
 |---|---|
-| Total time | 2-3 days (mandatory phases); +½ day each for P4½ and P5 if executed |
-| Total new tests | 80-130 (up from earlier draft due to P4½ coverage-gap closures) |
-| Production bugs expected | 4-8 (treat as a budget, not a target — see Risks) |
-| Coverage gaps closed (independent of bugs) | 2-5 (mostly from P4½ mutation testing) |
+| Phase 0 | 2-3 hours |
+| Phase 1 | ½ day |
+| Phase 2 | ½ day |
+| Phase 3 | ½ day |
+| Phase 4 (conditional) | ½ day |
+| Phase 4½ (conditional) | 1-2 hours |
+| Phase 5 (optional) | ½ day |
+| Audit summary write-up | 1-2 hours (per-phase findings, fix locations, deferred items) |
+| **Total — mandatory phases (P0-P3) + summary** | **~2 days** |
+| **Total — all phases** | **~3 days** |
+| Total new tests | 80-130 (P4½ contributes coverage-gap closures, not just bugs) |
+| Production bugs expected | 4-8 (budget, not target — see Risks) |
+| Coverage gaps closed (independent of bugs) | 2-5 (mostly from P4½) |
 | Production fixes (per §3.9 cadence) | 1 commit per bug, regression test pinned, full suite re-run before next test |
 | Outcome target | CombatSystem joins M1-M6 as post-audit baseline |
 
@@ -299,7 +359,7 @@ Between gates I work continuously; I do not pause every commit. The gates are *f
 | **Refactor temptation.** Combat is old; it's tempting to "improve" it during audit. | Discipline: audits do not refactor. If a refactor is warranted, file it as a separate Tier-3 item post-audit. |
 | **"Bug" vs "design choice" ambiguity.** Some surprising behaviors may be intentional (e.g., damage clamping at 0 vs allowing negative HP for special effects). | **Decision framework**: if the surprising behavior is *documented in code comments or referenced docs*, it's design — write a test that pins it as a contract. If the behavior is *undocumented and surprising*, it's likely a bug — fix it. If both unclear, mark the test `[Ignore]` with a note and surface to user for design review rather than fix. |
 | **Cross-system tests are slow to write.** A Combat × StatusEffects test needs both systems set up realistically. | Use existing test patterns: `MakeMinimalState` from Save tests, `ScenarioTestHarness` for higher-level flows. Don't reinvent setup. |
-| **PlayMode-only bugs.** Some integration bugs only surface in real Play Mode (the IAuraProvider bug was an EditMode-invisible Unity-runtime concern). | **Tactic per pause-menu precedent**: when a Phase 2 category resists EditMode capture (the assertion can't reach the bug class because it's behind a Unity-runtime boundary like Camera/Tilemap/SceneManager), add `[CombatDiag/...]`-style Debug.Log statements at the suspicious chokepoints, push to a side branch, ask user to manually playtest one scenario, then remove the diagnostics in a follow-up commit once the bug is identified. |
+| **PlayMode-only bugs.** Some integration bugs only surface in real Play Mode (the IAuraProvider bug was an EditMode-invisible Unity-runtime concern). | **Three-tier fallback toolkit, ordered by cost:** **(1) PlayMode test** — when the bug class is regularly testable but requires a Play Mode session, write a `[UnityTest]` PlayMode test. Slower and flakier but reproducible. Best for bugs in the Camera/Tilemap/SceneManager/AsciiFx layers. **(2) Diagnostic-log probe** — when the bug class is intermittent or hard to reproduce in test, add `[CombatDiag/...]` Debug.Log statements at suspicious chokepoints (per pause-menu precedent), push to a side branch, ask user for a manual playtest, then remove the diagnostics in a follow-up commit once identified. Best for bugs that need real-game timing. **(3) Manual checklist** — when neither test nor probe applies, add a PlayMode test scenario to a new `Docs/COMBAT-MANUAL-QA.md` checklist for periodic human verification. **Apply during Phase 2** when a touchpoint's tests cannot reach the class via EditMode assertions. |
 | **Phase 4 property-tests have a learning curve.** | Use simple `for` loops with seeded RNG. The shape is "1000 random inputs, assert invariant" — vanilla C# handles it. |
 | **Motivated reasoning from bug predictions.** Predicting "4-8 bugs" creates pressure to find that many. Tempting to upgrade marginal findings to bugs to validate the prediction. | **Discipline**: at the end of Phase 3, count the bugs honestly. If the actual rate is below 5%, the prior probes were thorough; do not fish for additional findings to hit the prediction. The prediction is a budget, not a target. |
 | **Regression cascade from fixes.** CombatSystem is cross-cutting; a fix can break a system that was passing. | **Per-fix discipline**: after each production fix, run the FULL EditMode suite before adding the next test. A 2071-test full run takes ~22s — cheap enough to gate every fix on it. If the suite fails, revert the fix and re-classify the bug (was it actually a contract drift, or was it load-bearing behavior?). |
