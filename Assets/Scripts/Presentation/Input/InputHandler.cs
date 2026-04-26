@@ -253,29 +253,6 @@ namespace CavesOfOoo.Rendering
         {
             using (PerformanceMarkers.Input.Update.Auto())
             {
-                // [PauseMenuDiag] Phase 4d — diagnostic for "Tab doesn't open menu" bug.
-                // Fires ONCE per Tab press; prints every gate so the failing one is obvious.
-                // Remove this block (and the matching ones below) once the issue is diagnosed.
-                bool tabPressedDiag = InputHelper.GetKeyDown(KeyCode.Tab);
-                if (tabPressedDiag)
-                {
-                    Debug.Log($"[PauseMenuDiag] Tab=true | " +
-                        $"PlayerEntity={(PlayerEntity != null ? "set" : "NULL")} | " +
-                        $"CurrentZone={(CurrentZone != null ? "set" : "NULL")} | " +
-                        $"TurnManager={(TurnManager != null ? "set" : "NULL")} | " +
-                        $"WaitingForInput={(TurnManager != null ? TurnManager.WaitingForInput.ToString() : "n/a")} | " +
-                        $"CurrentActor==Player={(TurnManager?.CurrentActor == PlayerEntity)} | " +
-                        $"InputState={_inputState} | " +
-                        $"BootMenu.Active={_bootMenuController.IsActive} | " +
-                        $"DeathScreen.Active={_deathScreenController.IsActive} | " +
-                        $"_pauseMenuUI={(_pauseMenuUI != null ? "set" : "NULL")} | " +
-                        $"UI.Controller={(_pauseMenuUI?.Controller != null ? "set" : "NULL")} | " +
-                        $"UI.Tilemap={(_pauseMenuUI?.Tilemap != null ? "set" : "NULL")} | " +
-                        $"UI.BgTilemap={(_pauseMenuUI?.BgTilemap != null ? "set" : "NULL")} | " +
-                        $"UI.PopupCamera={(_pauseMenuUI?.PopupCamera != null ? "set" : "NULL")} | " +
-                        $"Controller.IsOpen={_pauseMenuController.IsOpen}");
-                }
-
                 if (PlayerEntity == null || CurrentZone == null || TurnManager == null)
                     return;
 

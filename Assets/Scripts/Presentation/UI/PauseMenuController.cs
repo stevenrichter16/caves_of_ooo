@@ -97,17 +97,6 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public bool Tick(IInputProbe input, ISaveLoadService service, Action<string> log)
         {
-            // [PauseMenuDiag] Controller-level diagnostic for "Tab doesn't open" bug.
-            // Fires once per OpenCloseKey press. Remove once diagnosed.
-            bool tabDiag = input != null && input.GetKeyDown(OpenCloseKey);
-            if (tabDiag)
-            {
-                UnityEngine.Debug.Log($"[PauseMenuDiag/Controller.Tick] " +
-                    $"OpenCloseKey={OpenCloseKey} pressed | " +
-                    $"IsOpen-PreCheck={IsOpen} | " +
-                    $"WillTakeBranch={(!IsOpen ? "OPEN" : "CLOSE/NAV")}");
-            }
-
             // Closed → only the open/close key (default Tab) is meaningful.
             if (!IsOpen)
             {
