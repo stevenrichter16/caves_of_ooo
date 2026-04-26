@@ -1,0 +1,234 @@
+using System.Collections.Generic;
+
+namespace CavesOfOoo.Core
+{
+    /// <summary>
+    /// AI behavior part that occasionally has an NPC lay a defensive rune
+    /// in their current zone. Mirrors Qud's <c>XRL.World.Parts.Miner</c>
+    /// (Miner.cs:95-128 — <c>HandleEvent(BeginTakeActionEvent E)</c>),
+    /// adapted to CoO's <see cref="AIBoredEvent"/> pipeline.
+    ///
+    /// <para><b>CoO divergence from Qud's pacing.</b> Qud paces mine-laying
+    /// via a <c>MineCooldown</c> integer that ticks down each turn
+    /// (Miner.cs:15, 97-101, 124). CoO replaces this with a simpler
+    /// per-tick <see cref="Chance"/> probability roll. Different mechanic;
+    /// same end effect of "don't lay a rune every single tick."</para>
+    ///
+    /// Blueprint attachment:
+    /// <code>
+    ///   { "Name": "AILayRune", "Params": [
+    ///       { "Key": "Chance", "Value": "10" },
+    ///       { "Key": "MaxRunesPerZone", "Value": "5" },
+    ///       { "Key": "RuneBlueprints", "Value": "RuneOfFlame,RuneOfFrost,RuneOfPoison" }
+    ///   ]}
+    /// </code>
+    ///
+    /// <para><b>Gates</b> (all must pass per bored tick):</para>
+    /// <list type="bullet">
+    ///   <item>Probability: <c>Rng.Next(100) &lt; Chance</c>.</item>
+    ///   <item>Stack cleanliness: no existing <see cref="LayRuneGoal"/>.</item>
+    ///   <item>Quota: total rune count in zone &lt; <see cref="MaxRunesPerZone"/>.
+    ///   Mirrors Qud's <c>Miner.MaxMinesPerZone</c> cap (Miner.cs:19).</item>
+    ///   <item>A passable target cell exists within
+    ///   <see cref="SearchRadius"/> of the NPC.</item>
+    /// </list>
+    ///
+    /// <para><b>Target selection.</b> Picks a random passable cell within
+    /// Chebyshev distance <see cref="SearchRadius"/> of the NPC, excluding
+    /// the NPC's own cell and cells that already carry a Rune tag. Matches
+    /// Qud's <c>CurrentZone.GetEmptyReachableCells().GetRandomElement()</c>
+    /// simplified to a bounded radius search (cheaper than a full reachability
+    /// flood and adequate for ambush scenarios where cultists want runes
+    /// near themselves).</para>
+    /// </summary>
+    public class AILayRunePart : AIBehaviorPart
+    {
+        public override string Name => "AILayRune";
+
+        /// <summary>Percent chance per bored tick to attempt a rune lay (0-100).</summary>
+        public int Chance = 10;
+
+        /// <summary>Per-zone cap on Rune-tagged entities of ANY origin (not
+        /// just AILayRune-placed ones — the count is a simple tag scan over
+        /// the zone's entities, see <see cref="CountRunesInZone"/>). Matches
+        /// Qud's <c>Miner.MaxMinesPerZone=15</c> (Miner.cs:25); 5 is tuned
+        /// down for CoO's typical NPC density per zone.</summary>
+        public int MaxRunesPerZone = 5;
+
+        /// <summary>Chebyshev radius the NPC will search for a rune-placement target.
+        /// 4 keeps the NPC close enough to walk there within MoveToGoal's MaxTurns budget.</summary>
+        public int SearchRadius = 4;
+
+        /// <summary>Comma-separated blueprint names of runes this NPC can lay.
+        /// A random entry is chosen per tick. Set via blueprint param.</summary>
+        public string RuneBlueprints = "RuneOfFlame,RuneOfFrost,RuneOfPoison";
+
+        // Cache of the blueprint list split on first use. Invalidated when
+        // RuneBlueprints changes (checked by string equality on the raw field).
+        private string[] _runeList;
+        private string _runeListSource;
+
+        // Shared scratch list for candidate cells, reused across every
+        // PickRunePlacementCell invocation (P-03 in the M6 perf audit).
+        // Safe because AI turns are serial — one NPC's HandleBored finishes
+        // before the next NPC's. Cleared at the start of every call.
+        private static readonly List<(int x, int y)> _candidateScratch
+            = new List<(int x, int y)>(32);
+
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID != AIBoredEvent.ID) return true;
+            bool proceed = HandleBored();
+            if (!proceed) e.Handled = true;
+            return proceed;
+        }
+
+        /// <summary>
+        /// Returns false (consumed) when a LayRuneGoal was pushed — BoredGoal
+        /// then returns early without running its Staying / furniture / wander
+        /// branches. True otherwise so other idle behaviors can take over.
+        /// </summary>
+        private bool HandleBored()
+        {
+            var brain = ParentEntity?.GetPart<BrainPart>();
+            if (brain?.Rng == null || brain.CurrentZone == null) return true;
+
+            // --- Stack cleanliness (Qud Miner.cs:102 — !HasGoal("LayMineGoal")) ---
+            // Defensive: in practice AIBoredEvent only fires when BoredGoal
+            // is the only goal on the stack, so LayRuneGoal can never
+            // actually be there when we run. Kept for parity + future safety.
+            if (brain.HasGoal<LayRuneGoal>()) return true;
+
+            // --- Probability gate (CoO-specific; replaces Qud's MineCooldown) ---
+            if (brain.Rng.Next(100) >= Chance) return true;
+
+            // --- Zone quota (Qud Miner.cs:104 — CurrentZone.CountObjects("MineShell") check) ---
+            if (CountRunesInZone(brain.CurrentZone) >= MaxRunesPerZone) return true;
+
+            // --- Resolve the NPC's cell, then scan for a target ---
+            var pos = brain.CurrentZone.GetEntityPosition(ParentEntity);
+            if (pos.x < 0) return true;
+
+            var target = PickRunePlacementCell(brain.CurrentZone, pos.x, pos.y, brain.Rng);
+            if (!target.found) return true;
+
+            // --- Pick a rune blueprint at random from the configured list ---
+            string blueprint = PickRuneBlueprint(brain.Rng);
+            if (string.IsNullOrEmpty(blueprint)) return true;
+
+            brain.PushGoal(new LayRuneGoal(target.x, target.y, blueprint));
+            return false; // consumed — don't fall through to default idle
+        }
+
+        /// <summary>
+        /// Count entities in the zone tagged "Rune". O(N) in zone entity
+        /// count. Equivalent to Qud's inline
+        /// <c>CurrentZone.CountObjects("MineShell")</c> at
+        /// <c>Miner.cs:104</c> (Qud doesn't extract it into a named
+        /// method — our helper is a CoO stylistic tidy-up, not a parity
+        /// mirror).
+        /// </summary>
+        private static int CountRunesInZone(Zone zone)
+        {
+            int count = 0;
+            foreach (var entity in zone.GetReadOnlyEntities())
+            {
+                if (entity.HasTag("Rune")) count++;
+            }
+            return count;
+        }
+
+        /// <summary>
+        /// Pick a random steppable, empty (no existing Rune) cell within
+        /// <see cref="SearchRadius"/> of <paramref name="fromX"/>,<paramref name="fromY"/>.
+        /// Excludes the NPC's own cell so the NPC doesn't try to lay a rune
+        /// where they already stand (wasted turn — LayRuneGoal would spawn
+        /// immediately, but blocks the cell from other placements).
+        ///
+        /// <para><b>Steppability vs passability.</b> Uses the stricter
+        /// "no Solid tag AND no PhysicsPart.Solid=true" predicate that
+        /// <see cref="MovementSystem"/>'s <c>PhysicsPart.HandleBeforeMove</c>
+        /// actually enforces, NOT <see cref="Cell.IsPassable"/> alone (which
+        /// only checks the tag). Mirrors M6 audit pre-commitment #2 and the
+        /// <c>IsSteppable</c> helper added to
+        /// <see cref="DisposeOfCorpseGoal.FindPassableCellNearContainer"/>
+        /// in M5. Without this, the NPC would happily target a
+        /// PhysicsPart.Solid chair / CompassStone / chest and then burn
+        /// MoveToGoal's retry budget failing to step onto it.</para>
+        /// </summary>
+        private (bool found, int x, int y) PickRunePlacementCell(
+            Zone zone, int fromX, int fromY, System.Random rng)
+        {
+            // Build the candidate list in a shared scratch. Radius of 4 →
+            // up to 80 cells checked, which is well within a bored-tick's
+            // budget. Cleared at entry to prevent leakage across calls.
+            _candidateScratch.Clear();
+            for (int dy = -SearchRadius; dy <= SearchRadius; dy++)
+            {
+                for (int dx = -SearchRadius; dx <= SearchRadius; dx++)
+                {
+                    if (dx == 0 && dy == 0) continue; // skip self-cell
+                    int nx = fromX + dx;
+                    int ny = fromY + dy;
+                    if (!zone.InBounds(nx, ny)) continue;
+                    var cell = zone.GetCell(nx, ny);
+                    if (cell == null) continue;
+                    if (!IsSteppable(cell)) continue;
+                    if (cell.HasObjectWithTag("Rune")) continue; // already runed
+                    _candidateScratch.Add((nx, ny));
+                }
+            }
+            if (_candidateScratch.Count == 0) return (false, 0, 0);
+            var pick = _candidateScratch[rng.Next(_candidateScratch.Count)];
+            return (true, pick.x, pick.y);
+        }
+
+        /// <summary>
+        /// Mirrors <c>PhysicsPart.HandleBeforeMove</c>'s blocking rule: a
+        /// cell is un-step-into if any object has either the <c>"Solid"</c>
+        /// tag OR <c>PhysicsPart.Solid=true</c>. Duplicated (not shared) with
+        /// <see cref="DisposeOfCorpseGoal"/>.IsSteppable because the dupe is
+        /// trivial and avoids a cross-namespace helper class for one method.
+        /// </summary>
+        private static bool IsSteppable(Cell cell)
+        {
+            for (int i = 0; i < cell.Objects.Count; i++)
+            {
+                var obj = cell.Objects[i];
+                if (obj.HasTag("Solid")) return false;
+                var phys = obj.GetPart<PhysicsPart>();
+                if (phys != null && phys.Solid) return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Parse <see cref="RuneBlueprints"/> (lazy, cached against the raw
+        /// field) and return a random entry.
+        /// </summary>
+        private string PickRuneBlueprint(System.Random rng)
+        {
+            if (_runeList == null || _runeListSource != RuneBlueprints)
+            {
+                _runeListSource = RuneBlueprints;
+                if (string.IsNullOrEmpty(RuneBlueprints))
+                {
+                    _runeList = System.Array.Empty<string>();
+                }
+                else
+                {
+                    var split = RuneBlueprints.Split(',');
+                    var trimmed = new List<string>(split.Length);
+                    for (int i = 0; i < split.Length; i++)
+                    {
+                        var s = split[i].Trim();
+                        if (s.Length > 0) trimmed.Add(s);
+                    }
+                    _runeList = trimmed.ToArray();
+                }
+            }
+            if (_runeList.Length == 0) return null;
+            return _runeList[rng.Next(_runeList.Length)];
+        }
+    }
+}

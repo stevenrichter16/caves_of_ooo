@@ -218,6 +218,20 @@ namespace CavesOfOoo.Core
             SettlementManager.SetCurrentTurnProvider(turnProvider);
         }
 
+        public void ReplaceLoadedOverworldState(
+            WorldMap worldMap,
+            SettlementManager settlementManager,
+            System.Func<int> turnProvider)
+        {
+            if (worldMap != null)
+                WorldMap = worldMap;
+
+            if (settlementManager != null)
+                SettlementManager = settlementManager;
+
+            SetTurnProvider(turnProvider);
+        }
+
         protected override void OnZoneGenerated(Zone zone, string zoneID)
         {
             if (!WorldMap.IsOverworldZoneID(zoneID))

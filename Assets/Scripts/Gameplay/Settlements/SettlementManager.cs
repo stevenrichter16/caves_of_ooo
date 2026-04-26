@@ -335,6 +335,24 @@ namespace CavesOfOoo.Core
             Current = null;
         }
 
+        public Dictionary<string, SettlementState> GetAllSettlementsSnapshot()
+        {
+            return new Dictionary<string, SettlementState>(_settlements);
+        }
+
+        public void RestoreSettlements(Dictionary<string, SettlementState> settlements)
+        {
+            _settlements.Clear();
+            if (settlements == null)
+                return;
+
+            foreach (var kvp in settlements)
+            {
+                if (!string.IsNullOrEmpty(kvp.Key) && kvp.Value != null)
+                    _settlements[kvp.Key] = kvp.Value;
+            }
+        }
+
         private void RaiseSiteChanged(string settlementId, RepairableSiteState site)
         {
             SiteStateChanged?.Invoke(settlementId, site);

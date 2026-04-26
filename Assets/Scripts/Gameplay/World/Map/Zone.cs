@@ -216,6 +216,36 @@ namespace CavesOfOoo.Core
 
         public int EntityCount => _entityCells.Count;
 
+        public void RebuildEntityCellsFromCells()
+        {
+            _entityCells.Clear();
+            for (int x = 0; x < Width; x++)
+            {
+                for (int y = 0; y < Height; y++)
+                {
+                    Cell cell = Cells[x, y];
+                    if (cell == null)
+                    {
+                        cell = new Cell(x, y, this);
+                        Cells[x, y] = cell;
+                    }
+
+                    cell.ParentZone = this;
+                    for (int i = 0; i < cell.Objects.Count; i++)
+                    {
+                        Entity entity = cell.Objects[i];
+                        if (entity != null)
+                            _entityCells[entity] = cell;
+                    }
+                }
+            }
+        }
+
+        public void SetEntityVersionForLoad(int version)
+        {
+            EntityVersion = version;
+        }
+
         public override string ToString()
         {
             return $"Zone({ZoneID}) [{EntityCount} entities]";

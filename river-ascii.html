@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>river.ascii</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060a12;
+    --bg-hi: #0b1422;
+    --water: #9ddde8;
+    --foam: #f0f7f2;
+    --bank: #c99755;
+    --ink: #8ab6bf;
+    --ink-dim: #3b5660;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+    overflow: hidden;
+    -webkit-user-select: none;
+            user-select: none;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    padding: 14px 12px max(14px, env(safe-area-inset-bottom)) 12px;
+    gap: 10px;
+    background:
+      radial-gradient(ellipse at 80% 12%, rgba(245, 239, 221, 0.07), transparent 35%),
+      radial-gradient(ellipse at 50% 50%, rgba(157, 221, 232, 0.05), transparent 70%),
+      linear-gradient(180deg, var(--bg-hi) 0%, var(--bg) 55%, #020408 100%);
+  }
+  /* faint moon */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 28px; right: 32px;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fbf4dd, #e8d9a8 65%, #8b7b52 95%);
+    box-shadow:
+      0 0 30px rgba(251, 244, 221, 0.25),
+      0 0 60px rgba(251, 244, 221, 0.15);
+    opacity: 0.85;
+    z-index: 1;
+    pointer-events: none;
+  }
+  /* atmospheric vignette */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.6) 100%);
+    z-index: 2;
+  }
+
+  header {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(139, 182, 191, 0.12);
+  }
+  header .title {
+    color: var(--ink);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+  }
+  header .flow::before {
+    content: '→';
+    color: var(--water);
+    margin-right: 6px;
+    animation: drift 2s ease-in-out infinite;
+    display: inline-block;
+  }
+  @keyframes drift {
+    0%, 100% { transform: translateX(0); opacity: 0.6; }
+    50%      { transform: translateX(3px); opacity: 1; }
+  }
+
+  .stage {
+    position: relative;
+    flex: 1;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    z-index: 3;
+  }
+  /* three layers of <pre> stacked. each holds only the glyphs
+     for its layer (water / bank / foam), others are spaces. */
+  .stage pre {
+    position: absolute;
+    font: inherit;
+    font-size: clamp(7px, 1.7vw, 12px);
+    line-height: 1.0;
+    white-space: pre;
+    margin: 0;
+    letter-spacing: 0;
+  }
+  #l-water { color: var(--water); text-shadow: 0 0 8px rgba(157, 221, 232, 0.35); }
+  #l-bank  { color: var(--bank);  text-shadow: 0 0 4px rgba(201, 151, 85, 0.3); }
+  #l-foam  { color: var(--foam);  text-shadow: 0 0 10px rgba(240, 247, 242, 0.55); }
+
+  .controls {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    padding-top: 8px;
+    border-top: 1px solid rgba(139, 182, 191, 0.12);
+  }
+  .controls button {
+    font: inherit;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 9px 10px;
+    flex: 1;
+    max-width: 140px;
+    background: transparent;
+    color: var(--ink-dim);
+    border: 1px solid rgba(139, 182, 191, 0.18);
+    cursor: pointer;
+    transition: color .18s ease, background .18s ease, border-color .18s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .controls button:hover { color: var(--ink); border-color: var(--ink); }
+  .controls button.active {
+    color: var(--bg);
+    background: var(--water);
+    border-color: var(--water);
+    text-shadow: none;
+  }
+
+  footer {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    padding: 0 2px;
+  }
+  footer b { color: var(--ink); font-weight: 400; }
+</style>
+</head>
+<body>
+  <header>
+    <span class="title">river.ascii</span>
+    <span class="flow">downstream</span>
+  </header>
+
+  <div class="stage">
+    <pre id="l-water" aria-hidden="true"></pre>
+    <pre id="l-bank"  aria-hidden="true"></pre>
+    <pre id="l-foam"  aria-hidden="true"></pre>
+  </div>
+
+  <div class="controls">
+    <button data-preset="calm"   class="active">calm</button>
+    <button data-preset="steady">steady</button>
+    <button data-preset="rapids">rapids</button>
+  </div>
+
+  <footer>
+    <span>grid <b id="dims">—</b></span>
+    <span>render <b id="fps">—</b></span>
+  </footer>
+
+<script>
+/* ---------------------------------------------------------------
+ * A river is just a flow field with structure:
+ *
+ *   1. a MEANDERING CENTERLINE       (a slow sine, maybe two)
+ *   2. a WIDTH FUNCTION              (everything within is water, outside is bank)
+ *   3. a RIPPLE FIELD on the water   (sines traveling in +x with noise on top)
+ *   4. a SPEED PROFILE               (faster in the middle, slower at edges)
+ *   5. FOAM at turbulent peaks       (threshold on the ripple scalar)
+ *   6. a few DEBRIS particles        (things that drift with the current)
+ *
+ * Rendering trick: instead of painting colored spans, we stack THREE
+ * <pre> elements in the same spot. Each row of the river contributes
+ * one glyph to exactly one layer (water / bank / foam) and a space to
+ * the other two. That gives us three independent colors without the
+ * per-glyph <span> tax.
+ * ------------------------------------------------------------- */
+
+const lWater = document.getElementById('l-water');
+const lBank  = document.getElementById('l-bank');
+const lFoam  = document.getElementById('l-foam');
+const fpsEl  = document.getElementById('fps');
+const dimsEl = document.getElementById('dims');
+
+/* cheap value noise */
+function hash(x, y) {
+  const n = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453;
+  return n - Math.floor(n);
+}
+function noise(x, y) {
+  const xi = Math.floor(x), yi = Math.floor(y);
+  const xf = x - xi,        yf = y - yi;
+  const a = hash(xi, yi),     b = hash(xi + 1, yi);
+  const c = hash(xi, yi + 1), d = hash(xi + 1, yi + 1);
+  const u = xf * xf * (3 - 2 * xf);
+  const v = yf * yf * (3 - 2 * yf);
+  return a * (1 - u) * (1 - v) + b * u * (1 - v)
+       + c * (1 - u) * v       + d * u * v;
+}
+
+/* -------------- presets -------------- */
+const PRESETS = {
+  calm:   { flowSpeed: 0.55, turb: 0.35, width: 0.28, foamCut: 1.35, debris: 3 },
+  steady: { flowSpeed: 1.00, turb: 0.65, width: 0.36, foamCut: 1.05, debris: 4 },
+  rapids: { flowSpeed: 1.90, turb: 1.25, width: 0.42, foamCut: 0.70, debris: 6 }
+};
+let cfg = PRESETS.calm;
+
+/* -------------- debris (leaves drifting downstream) -------------- */
+const DEBRIS_POOL = Array.from({ length: 8 }, () => ({
+  yRel: (Math.random() - 0.5) * 0.6,  // offset from centerline, in river-widths
+  speed: 0.12 + Math.random() * 0.18, // screens per second at flowSpeed 1
+  phase: Math.random(),
+  glyph: Math.random() < 0.6 ? 'o' : '.'
+}));
+
+/* -------------- grid size (measured from font) -------------- */
+let cols = 80, rows = 30;
+function resize() {
+  const probe = document.createElement('span');
+  const cs = getComputedStyle(lWater);
+  probe.textContent = 'M';
+  probe.style.cssText =
+    `position:absolute;visibility:hidden;white-space:pre;` +
+    `font-family:${cs.fontFamily};font-size:${cs.fontSize};` +
+    `letter-spacing:${cs.letterSpacing};`;
+  document.body.appendChild(probe);
+  const cw = probe.getBoundingClientRect().width;
+  probe.remove();
+  const ch = parseFloat(cs.fontSize); // line-height: 1.0
+
+  const stage = document.querySelector('.stage').getBoundingClientRect();
+  cols = Math.max(30, Math.floor(stage.width  / cw));
+  rows = Math.max(14, Math.floor(stage.height / ch));
+  dimsEl.textContent = cols + '×' + rows;
+}
+window.addEventListener('resize', resize);
+
+/* -------------- preset buttons -------------- */
+document.querySelectorAll('.controls button').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.controls button')
+      .forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    cfg = PRESETS[b.dataset.preset];
+  });
+});
+
+/* -------------- the sampler -------------- *
+ * Returns which layer the cell belongs to and what glyph to use.
+ * One call per cell per frame.
+ */
+function sample(x, y, t) {
+  const u = x / cols;
+  const v = y / rows;
+
+  // meander: two sines at different scales
+  const center = 0.5
+               + Math.sin(u * 2.5 + 0.3) * 0.06
+               + Math.sin(u * 6.0 + 1.1) * 0.02;
+
+  const halfW = cfg.width + Math.sin(u * 3.7) * 0.015;
+  const dist  = Math.abs(v - center);
+
+  // --- BANK ---
+  if (dist > halfW) {
+    const bankDepth = Math.min(1, (dist - halfW) / 0.18);
+    const n1 = noise(x * 0.28, y * 0.28);
+    const n2 = noise(x * 0.65, y * 0.55);
+    const d  = n1 * 0.55 + n2 * 0.25 + bankDepth * 0.35;
+
+    // pick bank glyph based on density + side
+    const above = v < center;
+    let ch;
+    if      (d < 0.28) ch = ' ';
+    else if (d < 0.42) ch = '.';
+    else if (d < 0.55) ch = above ? '\'' : ',';
+    else if (d < 0.68) ch = above ? '`'  : '.';
+    else if (d < 0.80) ch = '"';
+    else if (d < 0.92) ch = n2 < 0.5 ? 'v' : '^';
+    else               ch = 'w';
+
+    return { layer: 'bank', ch };
+  }
+
+  // --- WATER ---
+  const rel  = dist / halfW;                // 0 at middle, 1 at bank edge
+  const flow = (1 - rel * rel * 0.65) * cfg.flowSpeed;
+
+  // three ripple layers traveling in +x, each at a different speed/freq
+  const r1 = Math.sin(x * 0.28 - t * 4.0 * flow + v * 2.0);
+  const r2 = Math.sin(x * 0.55 - t * 6.5 * flow - v * 3.0) * 0.55;
+  const r3 = Math.sin(x * 0.11 - t * 2.0 * flow)           * 0.80;
+
+  // organic turbulence from slow-moving noise
+  const turb = (noise(x * 0.12 + t * 0.4, y * 0.18) - 0.5) * cfg.turb;
+
+  const val = (r1 + r2 + r3) * 0.4 + turb;
+  // val is roughly in [-1.6, 1.6]
+
+  // foam at the loudest peaks
+  if (val > cfg.foamCut) {
+    return { layer: 'foam', ch: val > cfg.foamCut + 0.4 ? '*' : '≈' };
+  }
+
+  // otherwise: water density ramp
+  let ch;
+  if      (val >  0.55) ch = '=';
+  else if (val >  0.15) ch = '-';
+  else if (val > -0.25) ch = '~';
+  else if (val > -0.65) ch = '.';
+  else                  ch = ' ';
+
+  return { layer: 'water', ch };
+}
+
+/* check a cell for drifting debris. if a leaf is currently over (x,y),
+ * return the glyph; otherwise null. */
+function debrisAt(x, y, t) {
+  const u = x / cols;
+  const limit = Math.min(cfg.debris, DEBRIS_POOL.length);
+  for (let i = 0; i < limit; i++) {
+    const d = DEBRIS_POOL[i];
+    // position loops in [0, 1.1), with a small margin so it enters offscreen
+    const pos = (d.speed * t * cfg.flowSpeed + d.phase) % 1.1 - 0.05;
+    const center = 0.5
+                 + Math.sin(u * 2.5 + 0.3) * 0.06
+                 + Math.sin(u * 6.0 + 1.1) * 0.02;
+    const yTarget = center + d.yRel * cfg.width * 0.7;
+    if (Math.abs(u - pos) * cols < 0.75 &&
+        Math.abs(y / rows - yTarget) * rows < 0.75) {
+      return d.glyph;
+    }
+  }
+  return null;
+}
+
+/* -------------- draw -------------- */
+const t0 = performance.now();
+let frames = 0, lastFps = t0;
+
+function frame(now) {
+  const t = (now - t0) / 1000;
+  const W = new Array(rows), B = new Array(rows), F = new Array(rows);
+
+  for (let y = 0; y < rows; y++) {
+    let wr = '', br = '', fr = '';
+    for (let x = 0; x < cols; x++) {
+      const s = sample(x, y, t);
+
+      // debris overrides water cells only
+      let ch = s.ch, layer = s.layer;
+      if (layer === 'water') {
+        const dg = debrisAt(x, y, t);
+        if (dg) { ch = dg; layer = 'bank'; } // tint leaves with bank color
+      }
+
+      wr += layer === 'water' ? ch : ' ';
+      br += layer === 'bank'  ? ch : ' ';
+      fr += layer === 'foam'  ? ch : ' ';
+    }
+    W[y] = wr; B[y] = br; F[y] = fr;
+  }
+
+  lWater.textContent = W.join('\n');
+  lBank .textContent = B.join('\n');
+  lFoam .textContent = F.join('\n');
+
+  frames++;
+  if (now - lastFps > 500) {
+    const fps = Math.round(frames * 1000 / (now - lastFps));
+    fpsEl.textContent = String(fps).padStart(2, '0') + 'fps';
+    frames = 0; lastFps = now;
+  }
+  requestAnimationFrame(frame);
+}
+
+function boot() { resize(); requestAnimationFrame(frame); }
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(boot);
+  setTimeout(boot, 400);
+} else boot();
+</script>
+</body>
+</html>

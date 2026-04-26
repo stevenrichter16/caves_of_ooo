@@ -44,6 +44,12 @@ namespace CavesOfOoo.Core
             public int Energy;
         }
 
+        public struct SavedTurnEntry
+        {
+            public Entity Entity;
+            public int Energy;
+        }
+
         /// <summary>
         /// Register an entity to participate in turns.
         /// </summary>
@@ -117,7 +123,30 @@ namespace CavesOfOoo.Core
         {
             using (PerformanceMarkers.Turns.ProcessUntilPlayerTurn.Auto())
             {
-                // Keep processing until we hit a player or exhaust ready actors
+                // Status-effect spin-prevention. If the player gets blocked
+                // by BeginTakeAction (frozen / stunned / paralyzed), we must
+                // NOT keep cycling back to them in the same Unity frame —
+                // the old behavior ground through every skipped player turn
+                // in the loop until their effect thawed, collapsing the
+                // entire freeze duration into zero real-world-play time.
+                //
+                // Instead, on the FIRST player-block this call:
+                //   1. Fire their EndTurn (so the effect ticks / thaws).
+                //   2. Set `playerAlreadyBlocked` so the next time
+                //      FindNextActor would pick the player, we return
+                //      immediately without blocking them again.
+                //   3. `continue` — let the loop keep running so OTHER
+                //      ready actors (NPCs) get their turns this round.
+                //      This is the bit my earlier attempt (f1aaabc) got
+                //      wrong: it returned on the first player-block,
+                //      robbing NPCs of their turns when the player was
+                //      picked first by insertion-order.
+                //
+                // Net effect: one keypress-while-frozen ⇒ one player
+                // "skipped turn" (one thaw tick) + a full round of NPC
+                // turns + one yield back to the input loop.
+                bool playerAlreadyBlocked = false;
+
                 while (true)
                 {
                     Entity actor = FindNextActor();
@@ -128,6 +157,18 @@ namespace CavesOfOoo.Core
                         if (_entries.Count == 0) return null;
                         actor = Tick();
                         if (actor == null) continue;
+                    }
+
+                    // Second player-pick this call: we already did one
+                    // blocked turn on them. Yield to the game loop so the
+                    // frame renders and the user sees NPC movement. The
+                    // next EndTurnAndProcess (from the next keypress) will
+                    // re-enter and advance another round.
+                    if (playerAlreadyBlocked && actor.HasTag("Player"))
+                    {
+                        CurrentActor = actor;
+                        WaitingForInput = true;
+                        return actor;
                     }
 
                     CurrentActor = actor;
@@ -142,6 +183,8 @@ namespace CavesOfOoo.Core
                     if (!actor.FireEvent(beginTakeAction))
                     {
                         EndTurn(actor, actorZone);
+                        if (actor.HasTag("Player"))
+                            playerAlreadyBlocked = true;
                         continue;
                     }
 
@@ -264,6 +307,47 @@ namespace CavesOfOoo.Core
             {
                 for (int i = 0; i < _entries.Count; i++)
                     yield return _entries[i].Entity;
+            }
+        }
+
+        public List<SavedTurnEntry> GetSavedEntries()
+        {
+            var result = new List<SavedTurnEntry>(_entries.Count);
+            for (int i = 0; i < _entries.Count; i++)
+            {
+                result.Add(new SavedTurnEntry
+                {
+                    Entity = _entries[i].Entity,
+                    Energy = _entries[i].Energy
+                });
+            }
+            return result;
+        }
+
+        public void RestoreSavedState(
+            int tickCount,
+            bool waitingForInput,
+            Entity currentActor,
+            List<SavedTurnEntry> entries)
+        {
+            TickCount = tickCount;
+            WaitingForInput = waitingForInput;
+            CurrentActor = currentActor;
+            _entries.Clear();
+
+            if (entries == null)
+                return;
+
+            for (int i = 0; i < entries.Count; i++)
+            {
+                if (entries[i].Entity == null)
+                    continue;
+
+                _entries.Add(new TurnEntry
+                {
+                    Entity = entries[i].Entity,
+                    Energy = entries[i].Energy
+                });
             }
         }
     }

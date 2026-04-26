@@ -1,17 +1,33 @@
+using System.Collections.Generic;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
     /// Handles entity movement through a Zone.
-    /// Fires BeforeMove and AfterMove events so parts can validate or react.
+    /// Fires BeforeMove, AfterMove, and EntityEnteredCell events so parts
+    /// can validate or react.
     ///
     /// Movement flow:
     /// 1. Create BeforeMove event with Actor, TargetCell, Direction
     /// 2. Fire on the actor — PhysicsPart checks for solid blockers
     /// 3. If not blocked, move the entity in the zone
-    /// 4. Fire AfterMove event for post-movement reactions
+    /// 4. Fire AfterMove event on the mover (post-movement reactions)
+    /// 5. Fire EntityEnteredCell on every non-mover occupant of the
+    ///    destination cell (M6: rune triggers, future turret proximity
+    ///    detection, etc.). Mirrors Qud's <c>ObjectEnteredCellEvent</c>
+    ///    fired on mine entities (see Qud's Tinkering_Mine.cs:428).
     /// </summary>
     public static class MovementSystem
     {
+        // Shared scratch list for FireCellEnteredEvents' non-mover snapshot.
+        // Reused across every move to avoid per-move List<Entity> allocation
+        // (P-01 in the M6 perf audit). Safe because movement is turn-serial:
+        // one move's dispatch completes before the next begins, and no M6
+        // listener triggers a nested move. If a future listener DOES need to
+        // re-enter movement, switch to ArrayPool<Entity> or gate re-entrance
+        // explicitly.
+        private static readonly List<Entity> _enteredCellScratch = new List<Entity>(8);
+
         /// <summary>
         /// Attempt to move an entity in a direction (dx, dy).
         /// Returns true if the move succeeded, false if blocked.
@@ -77,6 +93,8 @@ namespace CavesOfOoo.Core
             afterMove.SetParameter("NewY", newY);
             entity.FireEventAndRelease(afterMove);
 
+            FireCellEnteredEvents(entity, targetCell);
+
             return (true, null);
         }
 
@@ -122,7 +140,72 @@ namespace CavesOfOoo.Core
             afterMove.SetParameter("NewY", y);
             entity.FireEventAndRelease(afterMove);
 
+            FireCellEnteredEvents(entity, targetCell);
+
             return true;
+        }
+
+        /// <summary>
+        /// Fire <c>EntityEnteredCell</c> on every non-mover occupant of
+        /// <paramref name="targetCell"/>. Mirrors Qud's
+        /// <c>ObjectEnteredCellEvent</c> dispatched against every object
+        /// in the destination cell (see Qud's Tinkering_Mine.cs:428).
+        ///
+        /// <para><b>Snapshot iteration.</b> Consumers may mutate the cell's
+        /// <c>Objects</c> list during handling — e.g. a single-use rune with
+        /// <c>ConsumeOnTrigger=true</c> removing itself from the zone — so
+        /// we iterate over a pre-captured snapshot.</para>
+        ///
+        /// <para><b>Mid-dispatch mover death.</b> If a listener's payload
+        /// kills or removes the mover from the zone (e.g. rune damage
+        /// reduces HP ≤ 0 → <see cref="CombatSystem.HandleDeath"/> →
+        /// <c>zone.RemoveEntity(mover)</c>), we break the dispatch loop.
+        /// Without this, two co-located runes would both fire on the same
+        /// stepper and both call <c>HandleDeath</c> — which is not
+        /// idempotent: it emits a duplicate "X is killed by Y" message,
+        /// double-fires the <c>"Died"</c> event, and can double-spawn
+        /// corpses via <c>CorpsePart</c>. Catches the CR-01 finding from
+        /// the M6 review.</para>
+        /// </summary>
+        private static void FireCellEnteredEvents(Entity mover, Cell targetCell)
+        {
+            if (targetCell == null) return;
+            var occupants = targetCell.Objects;
+            if (occupants.Count == 0) return;
+            // Fast path: only occupant is the mover itself — no dispatch
+            // needed and we skip the scratch-list population cost.
+            if (occupants.Count == 1 && occupants[0] == mover) return;
+
+            // Populate the shared scratch list with non-mover occupants.
+            // Cleared at the start of every call so a prior invocation's
+            // leftovers never leak in. Static reuse avoids the per-move
+            // allocation (P-01 in the M6 perf audit).
+            _enteredCellScratch.Clear();
+            for (int i = 0; i < occupants.Count; i++)
+            {
+                var occ = occupants[i];
+                if (occ == null || occ == mover) continue;
+                _enteredCellScratch.Add(occ);
+            }
+
+            for (int i = 0; i < _enteredCellScratch.Count; i++)
+            {
+                // Mover removed from the target cell by a prior dispatch
+                // (death / teleport-out). Stop firing — further handlers
+                // would see a detached Actor and, in the death case,
+                // re-trigger HandleDeath. See CR-01 in the M6 review.
+                //
+                // `occupants.Contains(mover)` is a linear scan over a
+                // typically-tiny list (≤ ~5 entities) and is cheaper than
+                // a Dictionary<Entity, Cell> lookup on the zone (P-02).
+                if (!occupants.Contains(mover)) break;
+
+                var occ = _enteredCellScratch[i];
+                var ev = GameEvent.New("EntityEnteredCell");
+                ev.SetParameter("Actor", (object)mover);
+                ev.SetParameter("Cell", (object)targetCell);
+                occ.FireEventAndRelease(ev);
+            }
         }
 
         /// <summary>

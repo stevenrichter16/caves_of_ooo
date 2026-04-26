@@ -52,6 +52,29 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// Called immediately before this part is serialized into a save file.
+        /// Runtime-only caches can flush stable state here.
+        /// </summary>
+        public virtual void OnBeforeSave(SaveWriter writer) { }
+
+        /// <summary>
+        /// Called after this part has been serialized.
+        /// </summary>
+        public virtual void OnAfterSave(SaveWriter writer) { }
+
+        /// <summary>
+        /// Called after the owning entity and all of this part's persisted fields
+        /// have been loaded, but before cross-object finalization.
+        /// </summary>
+        public virtual void OnAfterLoad(SaveReader reader) { }
+
+        /// <summary>
+        /// Called after every entity body in the save graph has been loaded.
+        /// Entity references are stable by this point.
+        /// </summary>
+        public virtual void FinalizeLoad(SaveReader reader) { }
+
+        /// <summary>
         /// Fire an event on the parent entity. Convenience method.
         /// </summary>
         protected bool FireEvent(GameEvent e)

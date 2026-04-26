@@ -243,6 +243,421 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void Frozen_BlocksBeginTakeAction_WhenColdAbove50()
+        {
+            // Reported gameplay bug: RuneOfFrost triggers, log shows
+            // "X is frozen and cannot act!" but player can still move.
+            // This test pins the contract: BeginTakeAction MUST return
+            // false when FrozenEffect is active with Cold > 0.5. If it
+            // returns true, the TurnManager will set WaitingForInput=true
+            // and InputHandler will process movement.
+            var e = CreateCreature();
+            e.ApplyEffect(new FrozenEffect(cold: 1.0f));
+
+            var beginTakeAction = GameEvent.New("BeginTakeAction");
+            bool result = e.FireEvent(beginTakeAction);
+
+            Assert.IsFalse(result,
+                "BeginTakeAction must be blocked when frozen with Cold=1.0. If this test fails, the player can still move while the log says they're frozen.");
+            Assert.IsTrue(beginTakeAction.Handled,
+                "The event's Handled flag must be set so TurnManager's FireEvent short-circuits correctly.");
+        }
+
+        [Test]
+        public void Frozen_BlocksAction_WhileAnyColdRemains()
+        {
+            // FrozenEffect.AllowAction blocks at ANY Cold > 0 (not the
+            // old Cold > 0.5 half-threshold). This pins the semantic
+            // that "effect present" === "frozen" — no partial-thaw
+            // window where the log says frozen but the player can act.
+            var e = CreateCreature();
+            e.ApplyEffect(new FrozenEffect(cold: 0.4f));
+
+            var beginTakeAction = GameEvent.New("BeginTakeAction");
+            bool result = e.FireEvent(beginTakeAction);
+
+            Assert.IsFalse(result,
+                "BeginTakeAction must be blocked for any Cold > 0. If this flips " +
+                "back to Assert.IsTrue, the partial-thaw UX bug has regressed.");
+        }
+
+        [Test]
+        public void Frozen_ProcessUntilPlayerTurn_DoesNotCollapseEntireFreeze_InOneCall()
+        {
+            // Reported gameplay bug: stepping on a frost rune applies
+            // FrozenEffect(Cold=1.0), but the very next input moves the
+            // player — diagnostic logs showed 41 OnTurnEnd calls running
+            // inside a single Update() frame through ProcessUntilPlayerTurn's
+            // spin-until-player-can-act loop, collapsing the entire thaw
+            // into zero real-world-play time.
+            //
+            // Fix: when the player's BeginTakeAction is blocked, set a
+            // per-call flag `playerAlreadyBlocked`. The loop continues so
+            // ready NPCs get their turns, but the next time the player
+            // would be picked, return immediately instead of blocking
+            // them again.
+            //
+            // This test pins the invariant by running ProcessUntilPlayerTurn
+            // in a freshly-frozen scenario and counting OnTurnEnd calls: at
+            // most ONE thaw from the player's EndTurn should fire in the
+            // call — not 40.
+            var player = CreateCreature();
+            player.SetTag("Player");
+            player.AddPart(new ThermalPart { Temperature = 25f, FreezeTemperature = 0f });
+
+            // Install a probe effect that counts OnTurnEnd fires on the
+            // player. Positioned BEFORE the FrozenEffect in the effect
+            // list so it always runs (AllowAction=true on the probe
+            // doesn't block the gate).
+            var probe = new TurnEndCounterEffect();
+            player.ApplyEffect(probe);
+            player.ApplyEffect(new FrozenEffect(cold: 1.0f));
+
+            var turnManager = new TurnManager();
+            turnManager.AddEntity(player);
+
+            // Give the player 1000 energy so BeginTakeAction fires
+            // immediately on the first iteration.
+            for (int i = 0; i < 10; i++) turnManager.Tick();
+
+            int probeBefore = probe.Count;
+            turnManager.ProcessUntilPlayerTurn();
+
+            int thawsThisCall = probe.Count - probeBefore;
+            Assert.LessOrEqual(thawsThisCall, 1,
+                $"ProcessUntilPlayerTurn fired OnTurnEnd {thawsThisCall} times on the frozen " +
+                "player in a single call. Must be ≤ 1 — more means the freeze collapses to " +
+                "one Unity frame regardless of its nominal duration (pre-fix was 41).");
+        }
+
+        [Test]
+        public void Frozen_ProcessUntilPlayerTurn_StillAllowsNpcsToAct()
+        {
+            // Second half of the fix: when the player is blocked, NPCs
+            // STILL need to get their turns. The previous iteration of
+            // the fix (f1aaabc) returned on the first player-block, so
+            // NPCs never acted when the player was picked first by
+            // insertion order — players saw their freeze tick but the
+            // world froze around them.
+            //
+            // This test pins the "NPCs act during player's blocked turn"
+            // invariant by registering a player + NPC with matching speed
+            // (insertion-order-tied), ticking both to 1000 energy, then
+            // calling ProcessUntilPlayerTurn. The NPC's BeginTakeAction
+            // must be seen at least once.
+            var player = CreateCreature();
+            player.SetTag("Player");
+            player.AddPart(new ThermalPart { Temperature = 25f, FreezeTemperature = 0f });
+            player.ApplyEffect(new FrozenEffect(cold: 1.0f));
+
+            var npc = CreateCreature();
+            var npcProbe = new BeginTakeActionCounterPart();
+            npc.AddPart(npcProbe);
+
+            var turnManager = new TurnManager();
+            turnManager.AddEntity(player);  // registered first — will be picked first on ties
+            turnManager.AddEntity(npc);
+
+            // Tick both to 1000 energy. Both now tied; player wins
+            // tiebreak via insertion order. Under the broken fix, that
+            // meant immediate-return and NPC never acted.
+            for (int i = 0; i < 10; i++) turnManager.Tick();
+
+            turnManager.ProcessUntilPlayerTurn();
+
+            Assert.GreaterOrEqual(npcProbe.BeginTakeActionSeen, 1,
+                "NPC never received BeginTakeAction. When the player is " +
+                "blocked by a status effect, ProcessUntilPlayerTurn must " +
+                "still let ready NPCs act — otherwise the world appears " +
+                "frozen alongside the player.");
+        }
+
+        [Test]
+        public void Frozen_Player_Cannot_Move_While_Npc_Actually_Moves()
+        {
+            // True end-to-end integration: the scenario the user actually
+            // experienced in gameplay. Set up a zone with a frozen player
+            // and an NPC carrying a MoveToGoal. Run ProcessUntilPlayerTurn.
+            // Assert:
+            //   (a) player is still at their starting cell — they did
+            //       not move, because TryMove would have been blocked by
+            //       StatusEffectsPart.HandleBeforeMove AND by
+            //       FrozenEffect.AllowAction at BeginTakeAction.
+            //   (b) the NPC is at a DIFFERENT cell than it started —
+            //       it didn't just receive BeginTakeAction (proxy signal),
+            //       it actually executed a TakeTurn action and moved.
+            //
+            // This test would have caught the earlier fix regression
+            // (f1aaabc) AND the original no-BeforeMove bug. The weaker
+            // "BeginTakeAction was fired on NPC" test above is a proxy;
+            // this one proves the behavior end-to-end.
+            var zone = new Zone("TestZone");
+
+            // Player: frozen, starts at (5, 5).
+            var player = CreateCreature();
+            player.SetTag("Player");
+            player.AddPart(new PhysicsPart { Solid = false });
+            player.AddPart(new ThermalPart { Temperature = 25f, FreezeTemperature = 0f });
+            player.ApplyEffect(new FrozenEffect(cold: 1.0f));
+            zone.AddEntity(player, 5, 5);
+
+            // NPC: will step one cell east each turn via StepGoal.
+            // StepGoal(dx, dy) is the simplest AI goal — on TakeAction it
+            // calls MovementSystem.TryMove(entity, zone, dx, dy) once.
+            var npc = CreateCreature();
+            npc.AddPart(new PhysicsPart { Solid = false });
+            var brain = new BrainPart { CurrentZone = zone, Rng = new Random(42) };
+            npc.AddPart(brain);
+            brain.PushGoal(new StepGoal(dx: 1, dy: 0));
+            zone.AddEntity(npc, 10, 10);
+
+            var turnManager = new TurnManager();
+            turnManager.AddEntity(player);  // first registered — picked first on ties
+            turnManager.AddEntity(npc);
+
+            // Both to 1000 energy via Ticks.
+            for (int i = 0; i < 10; i++) turnManager.Tick();
+
+            turnManager.ProcessUntilPlayerTurn();
+
+            // (a) Player did NOT move — frozen.
+            var playerCell = zone.GetEntityCell(player);
+            Assert.AreEqual(5, playerCell.X,
+                "Frozen player must not have moved. If they did, " +
+                "FrozenEffect.AllowAction is passing through, BeforeMove " +
+                "is not consulting the status gate, or the turn manager " +
+                "ran the player's TakeTurn despite BeginTakeAction blocking.");
+            Assert.AreEqual(5, playerCell.Y);
+
+            // (b) NPC DID move east from (10,10) → (11,10). If the NPC
+            // is still at (10,10), ProcessUntilPlayerTurn returned before
+            // letting the NPC take their turn — the exact regression the
+            // user reported ("other NPCs do not move").
+            var npcCell = zone.GetEntityCell(npc);
+            Assert.AreEqual(11, npcCell.X,
+                "NPC did not move. ProcessUntilPlayerTurn returned " +
+                "too early — it must let ready NPCs execute their " +
+                "TakeTurn when the player is status-blocked, not just " +
+                "fire BeginTakeAction on them.");
+            Assert.AreEqual(10, npcCell.Y);
+        }
+
+        [Test]
+        public void Frozen_Player_Across_Multiple_Keypresses_NpcMovesEachTime()
+        {
+            // User-observable cadence: each simulated "keypress" (one
+            // ProcessUntilPlayerTurn call) must advance NPCs by one step
+            // each, not zero. Without the flag-gate fix, the second+
+            // calls would return immediately (player picked, blocked,
+            // returned without ever giving NPCs their Tick-round).
+            //
+            // Also verifies the player stays frozen across multiple
+            // presses (they don't escape the freeze in 1 press, don't
+            // free themselves by pressing keys).
+            var zone = new Zone("TestZone");
+
+            var player = CreateCreature();
+            player.SetTag("Player");
+            player.AddPart(new PhysicsPart { Solid = false });
+            player.AddPart(new ThermalPart { Temperature = 25f, FreezeTemperature = 0f });
+            player.ApplyEffect(new FrozenEffect(cold: 1.0f));
+            zone.AddEntity(player, 5, 5);
+
+            var npc = CreateCreature();
+            npc.AddPart(new PhysicsPart { Solid = false });
+            var brain = new BrainPart { CurrentZone = zone, Rng = new Random(42) };
+            npc.AddPart(brain);
+            zone.AddEntity(npc, 10, 10);
+
+            var turnManager = new TurnManager();
+            turnManager.AddEntity(player);
+            turnManager.AddEntity(npc);
+
+            for (int i = 0; i < 10; i++) turnManager.Tick();
+
+            // Simulate 5 keypresses. Between each, push a fresh
+            // StepGoal so the NPC has something to do (StepGoal pops
+            // itself after one action).
+            int expectedNpcX = 10;
+            for (int press = 0; press < 5; press++)
+            {
+                brain.PushGoal(new StepGoal(dx: 1, dy: 0));
+                turnManager.ProcessUntilPlayerTurn();
+                expectedNpcX++;
+
+                var pc = zone.GetEntityCell(player);
+                Assert.AreEqual(5, pc.X,
+                    $"Press #{press + 1}: player moved. Frozen must persist across multiple presses — " +
+                    "pressing keys should not help the player escape the freeze.");
+
+                var nc = zone.GetEntityCell(npc);
+                Assert.AreEqual(expectedNpcX, nc.X,
+                    $"Press #{press + 1}: NPC should have advanced to x={expectedNpcX} but is at x={nc.X}. " +
+                    "If this fails on press #2+, ProcessUntilPlayerTurn is returning before NPCs " +
+                    "act on repeat calls — the exact regression from f1aaabc.");
+            }
+
+            // Player should STILL be frozen after 5 presses — thaw rate
+            // is ~0.025 per OnTurnEnd, so 5 presses (≤ 2 thaws per press
+            // = max ~0.25 total thaw) can't finish a Cold=1.0 freeze.
+            var finalFrozen = player.GetEffect<FrozenEffect>();
+            Assert.IsNotNull(finalFrozen,
+                "Player should still be frozen after only 5 presses — " +
+                "Cold=1.0 requires roughly 20+ presses to fully thaw at " +
+                "~0.05 per press.");
+            Assert.Greater(finalFrozen.Cold, 0f,
+                "Cold should still be positive after 5 presses.");
+        }
+
+        [Test]
+        public void Normal_Flow_Not_Impacted_By_Frozen_Fix_Regression()
+        {
+            // Regression guard: the status-blocked yield path must NOT
+            // affect normal turn processing. Canonical healthy-player flow:
+            //
+            //   1st call:  ProcessUntilPlayerTurn returns player
+            //              (tied energy, first insertion) — NPC waits.
+            //              This is the PRE-EXISTING behavior; the flag-
+            //              gate fix must not break it.
+            //   Then simulate a player action: EndTurn(player).
+            //   2nd call:  Player at 0 energy, NPC at 1000 — NPC picked,
+            //              acts, moves. Ticks bring player back up to
+            //              1000; returns player again.
+            //
+            // Under the broken fix (f1aaabc) or a buggy flag-gate, the
+            // first call would skip past the player (no blocking reason)
+            // and the test state would be different. We assert both calls'
+            // observable outputs to pin normal ordering.
+            var zone = new Zone("TestZone");
+
+            // Player with NO status effects — healthy happy-path.
+            var player = CreateCreature();
+            player.SetTag("Player");
+            player.AddPart(new PhysicsPart { Solid = false });
+            zone.AddEntity(player, 5, 5);
+
+            // NPC that wants to move east.
+            var npc = CreateCreature();
+            npc.AddPart(new PhysicsPart { Solid = false });
+            var brain = new BrainPart { CurrentZone = zone, Rng = new Random(42) };
+            npc.AddPart(brain);
+            brain.PushGoal(new StepGoal(dx: 1, dy: 0));
+            zone.AddEntity(npc, 10, 10);
+
+            var turnManager = new TurnManager();
+            turnManager.AddEntity(player);
+            turnManager.AddEntity(npc);
+
+            for (int i = 0; i < 10; i++) turnManager.Tick();
+
+            // --- 1st call: tied energy, player picked first, returned to
+            //     caller as "your turn!" — NPC has not moved yet. ---
+            var ret1 = turnManager.ProcessUntilPlayerTurn();
+            Assert.AreSame(player, ret1,
+                "Healthy player's ProcessUntilPlayerTurn must return the player.");
+            Assert.IsTrue(turnManager.WaitingForInput,
+                "Healthy player's ProcessUntilPlayerTurn must set WaitingForInput=true.");
+            Assert.AreEqual(10, zone.GetEntityCell(npc).X,
+                "NPC should still be at x=10 after the first call — the " +
+                "canonical flow returns to the caller before NPCs act on ties.");
+
+            // --- Simulate the player acting and ending their turn. ---
+            turnManager.EndTurn(player, zone);
+
+            // --- 2nd call: player at 0 energy, NPC at 1000 → NPC acts. ---
+            turnManager.ProcessUntilPlayerTurn();
+            var npcCell = zone.GetEntityCell(npc);
+            Assert.AreEqual(11, npcCell.X,
+                "After the player's EndTurn, the next ProcessUntilPlayerTurn " +
+                "must let the NPC take their turn. If this fails, the " +
+                "flag-gate fix broke the happy path.");
+        }
+
+        /// <summary>Test-only effect that counts OnTurnEnd fires. Never blocks action.</summary>
+        private class TurnEndCounterEffect : Effect
+        {
+            public override string DisplayName => "counter";
+            public int Count;
+            public TurnEndCounterEffect() { Duration = DURATION_INDEFINITE; }
+            public override void OnTurnEnd(Entity target) { Count++; }
+        }
+
+        /// <summary>Test-only part that counts BeginTakeAction fires on its owner.</summary>
+        private class BeginTakeActionCounterPart : Part
+        {
+            public int BeginTakeActionSeen;
+            public override bool HandleEvent(GameEvent e)
+            {
+                if (e.ID == "BeginTakeAction") BeginTakeActionSeen++;
+                return true;
+            }
+        }
+
+        [Test]
+        public void Frozen_AllowsAction_WhenFullyThawed()
+        {
+            // Sanity: once Cold == 0, the effect should allow action.
+            // In practice OnTurnEnd sets Duration=0 the same tick this
+            // becomes true, so the effect doesn't linger — but verify
+            // the predicate itself.
+            var frozen = new FrozenEffect(cold: 1.0f);
+            frozen.Cold = 0f; // simulate full thaw
+            Assert.IsTrue(frozen.AllowAction(null),
+                "AllowAction must return true at Cold == 0 so the final thaw frame doesn't keep blocking.");
+        }
+
+        [Test]
+        public void Frozen_AlsoBlocksMovement_ViaTryMoveEx()
+        {
+            // Actual player-input path in InputHandler.cs:460 uses TryMoveEx,
+            // not TryMove. Mirror the exact call shape here.
+            var zone = new Zone("TestZone");
+            var frozen = CreateCreature();
+            frozen.AddPart(new PhysicsPart { Solid = false });
+            zone.AddEntity(frozen, 5, 5);
+            frozen.ApplyEffect(new FrozenEffect(cold: 1.0f));
+
+            var (moved, blockedBy) = MovementSystem.TryMoveEx(frozen, zone, dx: 1, dy: 0);
+
+            Assert.IsFalse(moved,
+                "TryMoveEx (the player-input path) must also block when frozen.");
+            var cell = zone.GetEntityCell(frozen);
+            Assert.AreEqual(5, cell.X);
+            Assert.AreEqual(5, cell.Y);
+        }
+
+        [Test]
+        public void Frozen_AlsoBlocksMovement_ViaBeforeMove()
+        {
+            // Reported gameplay bug: player steps on RuneOfFrost, gets
+            // FrozenEffect, log says "frozen and cannot act" — but can
+            // still move. Root cause: StatusEffectsPart only gates
+            // BeginTakeAction. The player-input path goes through
+            // MovementSystem.TryMoveEx, which fires BeforeMove — a
+            // different event — and no part consults AllowAction there.
+            //
+            // Fix: StatusEffectsPart must also block BeforeMove when
+            // any active effect returns AllowAction=false. Defense in
+            // depth against any path that moves an entity without
+            // first going through the turn-manager gate.
+            var zone = new Zone("TestZone");
+            var frozen = CreateCreature();
+            frozen.AddPart(new PhysicsPart { Solid = false });
+            zone.AddEntity(frozen, 5, 5);
+            frozen.ApplyEffect(new FrozenEffect(cold: 1.0f));
+
+            // Try to move the frozen entity. Without the fix, TryMove
+            // returns true and the entity ends up at (6,5).
+            bool moved = MovementSystem.TryMove(frozen, zone, dx: 1, dy: 0);
+
+            Assert.IsFalse(moved,
+                "Frozen entity (Cold=1.0) must not be able to move. MovementSystem.TryMove is the player-input entry point; if it returns true here, the player can move despite the frozen message.");
+            var cell = zone.GetEntityCell(frozen);
+            Assert.AreEqual(5, cell.X, "Entity must remain at starting X.");
+            Assert.AreEqual(5, cell.Y, "Entity must remain at starting Y.");
+        }
+
+        [Test]
         public void Stunned_DoesNotBlockAfterExpired()
         {
             var e = CreateCreature();

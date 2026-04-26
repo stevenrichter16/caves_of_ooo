@@ -58,5 +58,51 @@ namespace CavesOfOoo.Core
             _pendingMessages.Clear();
             return result;
         }
+
+        public List<string> GetConditionsSnapshot()
+        {
+            return new List<string>(_conditions);
+        }
+
+        public List<string> GetPendingMessagesSnapshot()
+        {
+            return new List<string>(_pendingMessages);
+        }
+
+        public void RestoreCollections(
+            Dictionary<string, RepairableSiteState> sites,
+            IEnumerable<string> conditions,
+            IEnumerable<string> pendingMessages)
+        {
+            _sites.Clear();
+            if (sites != null)
+            {
+                foreach (var kvp in sites)
+                {
+                    if (kvp.Value != null)
+                        _sites[kvp.Key] = kvp.Value;
+                }
+            }
+
+            _conditions.Clear();
+            if (conditions != null)
+            {
+                foreach (string condition in conditions)
+                {
+                    if (!string.IsNullOrEmpty(condition))
+                        _conditions.Add(condition);
+                }
+            }
+
+            _pendingMessages.Clear();
+            if (pendingMessages != null)
+            {
+                foreach (string message in pendingMessages)
+                {
+                    if (!string.IsNullOrWhiteSpace(message))
+                        _pendingMessages.Add(message);
+                }
+            }
+        }
     }
 }

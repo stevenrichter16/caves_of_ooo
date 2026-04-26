@@ -113,6 +113,49 @@ namespace CavesOfOoo.Core
             return entries;
         }
 
+        public static List<Entry> GetAllEntries()
+        {
+            return GetRecentEntries(Messages.Count);
+        }
+
+        public static List<string> GetPendingAnnouncementsSnapshot()
+        {
+            return new List<string>(Announcements);
+        }
+
+        public static void Restore(
+            List<Entry> entries,
+            List<string> pendingAnnouncements,
+            int flashStamp,
+            int nextSerial)
+        {
+            Messages.Clear();
+            Ticks.Clear();
+            Serials.Clear();
+            Announcements.Clear();
+
+            if (entries != null)
+            {
+                for (int i = 0; i < entries.Count; i++)
+                {
+                    Messages.Add(entries[i].Text);
+                    Ticks.Add(entries[i].Tick);
+                    Serials.Add(entries[i].Serial);
+                }
+            }
+
+            if (pendingAnnouncements != null)
+            {
+                for (int i = 0; i < pendingAnnouncements.Count; i++)
+                    Announcements.Enqueue(pendingAnnouncements[i]);
+            }
+
+            FlashStamp = flashStamp;
+            NextSerial = nextSerial;
+        }
+
+        public static int NextSerialValue => NextSerial;
+
         public static void Clear()
         {
             Messages.Clear();

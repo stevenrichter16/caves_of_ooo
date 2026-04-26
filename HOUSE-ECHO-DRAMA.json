@@ -1,0 +1,583 @@
+{
+  "Dramas": [
+    {
+      "ID": "Echo",
+      "Name": "House Echo",
+      "Setting": {
+        "Region": "the Hollow — a cavern system behind the Three-Step Falls on the eastern bend of the Saltspine, two days upriver from House Vex's Knot. The Bloomtangle's canopy thins above the falls, but the caverns themselves are darker than night and warm as breath",
+        "HouseSeat": "the Listening Chamber — a cavity carved by water and song-mill apprentices over four generations into the porous limestone behind the second waterfall. Acoustic-fossil shelves spiral the walls. The room is shaped like an ear because Wenna designed it that way before she could draw an ear (she had never seen one drawn — she designed by feel)",
+        "ClimateBeats": "the falls run loudest in the three weeks after monsoon; song-millers learn to filter the constant low-roar from their captures. A perfectly silent stone (no roar bleed) is the second master-marker after capturing an Old Thing's voice"
+      },
+      "Craft": {
+        "Name": "Song-Milling and Acoustic Capture",
+        "DistinctiveProperty": "House Echo presses sound — animal calls, dying words, the rumble of an Old Thing surfacing — into porous acoustic-fossil stones quarried from the cavern walls. A milled stone, struck against bone or polished wood, replays its captured sound for as long as the stone holds shape (decades for warnings, centuries for masterworks). The craft requires perfect stillness, three breaths held in succession, and a knowing of which frequencies the stone wants to keep",
+        "DistinctiveProducts": [
+          "Warning-stones — clipped to village bell-frames, struck when bandits approach; replay the cry of the wet-season jaguar-vine, which carries for two miles and turns most predators back",
+          "Lure-stones — used by hunters; mimic the bleat of fawn-cane to draw cane-cobras into open ground (thus House Echo's quiet trade with House Vex)",
+          "Memorial-stones — pressed into the dying as their last breath leaves; played for grieving families on the anniversary of the loss. Free of charge to anyone within four days' walk of the Hollow. This is the family's mission",
+          "Healing-stones — six specific frequencies known to calm fever-dreams; tuned by Marrek's hand individually for each child",
+          "The Voice of the Hollow (masterwork, in progress for forty-one years) — the captured cry of the Resident, the Old Thing that lives in the cavern's deepest passage. Not yet finished. May never be finished"
+        ],
+        "MasterMarker": "Capture the voice of an Old Thing — a creature heard once a generation. Wenna captured the surfacing of the Saltspine Leviathan in her thirty-fourth year. Marrek has captured nothing of that order. Nyssa is too young to have tried",
+        "MinimumPractitioners": 2,
+        "ActivePractitioners": 1,
+        "EmergingPractitioners": 1,
+        "CycleDuration": "one monsoon cycle",
+        "FailureCondition": "active practitioners below 2 for more than one cycle; the Resident leaves the deep passage; the Listening Chamber's acoustic-fossil shelves crack from disuse-shrinkage"
+      },
+      "RootConflict": {
+        "Adversary": "the slow inversion of the family's mission — memorial-stones for the grieving turning into trophy-stones for the powerful, while Marrek looks the other way",
+        "AdversaryProject": "Audric Vell, the voiceless Master of Whispers in the river-port council, has commissioned three memorial-stones from House Echo over the past two years — the recorded last moments of three political rivals whose deaths (he insists) he merely outlived. He pays in pre-monsoon silver, which is why the cavern's entrance staircase is repaired and the apprentices eat well. Nyssa mills the commissions. Marrek does not ask",
+        "AdversaryAlignment": "CosmicB",
+        "NamedAntagonistId": "vell",
+        "SecretTruth": "Wenna invented song-milling as an act of giving voice to those who couldn't be heard. Deaf from birth, she discovered the porous-fossils' acoustic memory by pressing her hands to them and feeling the trapped vibrations of long-gone creatures. Her first masterwork was a memorial-stone for a mute river-girl who died of bloom-fever — the captured sound of the girl's mother singing the lullaby the girl could not. The collector's commissions invert this completely: voices that NEVER consented to be kept, harvested for the powerful's amusement",
+        "DisclosureStakes": "Exposing Vell would shatter his standing in the river-port council and likely end his collector's circle entirely. House Echo would lose 40% of its income but recover its reputation as the river basin's free memorialists. Compliance means the family becomes Vell's quiet voice-archivists — the inheritors of every dead rival's last sound, locked in a private library that no grieving family will ever be allowed to enter"
+      },
+      "NpcRoles": [
+        {
+          "Id": "wenna",
+          "Role": "FoundationalDead",
+          "Variant": "idealized-origin",
+          "Alive": false,
+          "Age": 79,
+          "DeathDetails": "Died of slow lung-rot at home, three weeks after the death of her grandson Bren — a death she never knew about. Marrek did not tell her. He could not bring himself to. The lullaby Bren had been trying to record for her never reached her in any form she could perceive. Her last act was to press a final stone — a small one, blank — into Marrek's hand, as if asking him to fill it. He has not. It sits on the chamber's central shelf, untouched.",
+          "Wants": "For every grieving family in the river basin to keep the voice of the one they lost; for no death to be silent if a family wished otherwise; for the Hollow's apprentices to learn that listening is itself the work",
+          "Fears": "That the craft would become a trade in voices the dead never wished kept; that the Listening Chamber would become a vault rather than a gift",
+          "SelfDeception": "Believed her own deafness was a guarantee against misuse — that anyone who could not hear the stones could not be tempted by what they captured. She did not anticipate inheritors with full hearing and rich clients",
+          "ChangeCondition": "N/A — dead",
+          "PhysicalTokens": [
+            "the blank stone she pressed into Marrek's hand",
+            "her hand-fossil — the limestone tablet she pressed her palms against for sixty years; her fingerprints have worn grooves in it"
+          ]
+        },
+        {
+          "Id": "bren",
+          "Role": "LostDead",
+          "Variant": "tragic-accident",
+          "Alive": false,
+          "Age": 9,
+          "DeathDetails": "Six years ago, on a night his grandmother Wenna lay dying upstream, Bren snuck into the Listening Chamber to record himself singing her favorite lullaby — he wanted to give it to her on her deathbed. He took a stone from a shelf labeled in apprentice-glyphs he had only half-learned. The stone was the in-progress masterwork: forty years of captured cry from the Resident, the Old Thing that lives in the deep passage. Bren pressed his lullaby into it. The two recordings overlapped. When the stone was struck — once, by Marrek, the next morning, who heard nothing in the chamber and feared the worst — both voices came out together: a child singing a mother's lullaby beneath the layered scream of something that lives in the dark. Bren was found at the chamber's entrance, his hands bloodied from clutching the stone too long. The stone is intact. It sits on the deep-shelf, labeled in Marrek's hand: DO NOT PLAY.",
+          "Wants": "To give his grandmother the lullaby before she died; to be old enough to handle the heavy stones; to learn the glyphs",
+          "Fears": "Being told he was too young to record a stone; the dark behind the second waterfall; not finishing the lullaby in time",
+          "SelfDeception": "Believed he could read enough of the apprentice-glyphs to know which stones were safe; believed his grandmother could still hear the lullaby through the stone he sent her, even though she was deaf",
+          "ChangeCondition": "N/A — dead",
+          "PhysicalTokens": [
+            "the overlapped masterwork stone (DO NOT PLAY)",
+            "his apprentice's chalk and wax tablet — the half-learned glyph guide still tucked between two pages"
+          ]
+        },
+        {
+          "Id": "marrek",
+          "Role": "DiminishedHead",
+          "Variant": "grieving-parent",
+          "Alive": true,
+          "Age": 65,
+          "Wants": "To honor Wenna's mission — free memorial-stones for grieving families — without ever again losing a child to a mislabeled stone. To finish the masterwork by re-capturing the Resident's voice (he cannot, the Resident has not surfaced since Bren's death, and Marrek suspects this is not coincidence). To die in the chamber where his mother taught him, with no living debts owed",
+          "Fears": "That the chamber will outlive him only as Vell's voice-archive. That Nyssa, the only inheritor, will turn the family's gift into a trade in trophies. That the Resident is grieving alongside him and will never sing again",
+          "SelfDeception": "Tells himself he does not know what Nyssa is doing in the side-chamber she carved last summer; tells himself the silver in the lockbox came from warning-stone commissions to upriver villages; tells himself Wenna would understand a 'tactical compromise.' Polishes Bren's hand-print on the chamber wall every Wenday morning. Has not played a memorial-stone himself in three years",
+          "ChangeCondition": "Realizes the side-chamber Nyssa carved is not a private practice space but a commercial milling room, and that the next stone scheduled for it is a memorial-stone of the river-port council's third oldest member, Halric Soun — who is not yet dead, but whose name has appeared on Vell's payment-ledger. Forced choice: let Nyssa mill, or confront her",
+          "PhysicalTokens": [
+            "Wenna's blank stone (kept on the central chamber shelf, never filled)",
+            "Bren's chalk fragment in his coat pocket; he holds it during silence-tunings",
+            "the chamber-key, which he wears on a hand-leather strap that he has not removed since Bren's death"
+          ]
+        },
+        {
+          "Id": "nyssa",
+          "Role": "RisingInheritor",
+          "Variant": "ambitious-compromised",
+          "Alive": true,
+          "Age": 27,
+          "Wants": "To be the first song-miller in three generations to capture an Old Thing — and to be paid handsomely for whatever comes after. To leave the Hollow eventually for the river-port, where the council pays in silver and not in fish. To prove, to the brother she lost and the grandmother she barely remembers, that song-milling can be more than charity",
+          "Fears": "Becoming Marrek — sixty years of free memorials for families who cannot pay, dying with one masterwork unfinished and an apprentice you taught who leaves for the city anyway. Being the last song-miller of the Hollow because she could not feed those who came after her",
+          "SelfDeception": "Believes Vell's commissions are 'historical preservation' — capturing the voices of important men so they are not lost to time. Has trained herself to never ask the dying whether they consent. The side-chamber she carved last summer uses the same fossil-veins as the Listening Chamber, so the acoustic memory is identical; she tells herself this means the work is the same. She mills only on nights Marrek walks the falls",
+          "ChangeCondition": "Confronted with proof that Vell's three previous memorial-stones were commissioned BEFORE the rivals' deaths — that he ordered them weeks in advance, knowing exactly when the deaths would occur — AND offered Hadrian's circuit-judge contract for free memorial-stones at the same monthly silver. The papers in her hand smell of fixed-throat poison",
+          "PhysicalTokens": [
+            "her milling cloak (lined with silenced-fossil dust to dampen breath-noise)",
+            "the side-chamber key (forged at a river-port smithy under Vell's introduction; Marrek does not know it exists)",
+            "her glyph-book, in which she has begun annotating Vell's stones with private codes — the third one's annotation reads 'silver / four moons / clean'"
+          ]
+        },
+        {
+          "Id": "vell",
+          "Role": "NamedAntagonist",
+          "Variant": "pragmatic-ruthless",
+          "Alive": true,
+          "Age": 56,
+          "Wants": "To complete his collection — the recorded last moments of every political rival who opposed him, every old enemy who outranked him, every voice he was forbidden from speaking back to during his orator's career. To rule the river-port council from the listening-room he keeps behind his study, where forty-seven memorial-stones already sit in a curve like a smile",
+          "Fears": "Silence. Specifically: silence in his own listening-room, which has happened only twice — once when his throat was first poisoned, and once on the night his rival Aelis Mor finally died (the memorial-stone arrived the next morning; the silence ended). He sleeps with three warning-stones playing on rotation. He drinks a vial of Sleepwell every night to soften the edge of the stones still in his head",
+          "SelfDeception": "Tells himself the people whose voices he keeps were already going to die; that history would have lost them; that he is the only one who cared enough to preserve them. Believes his collection makes him the basin's true historian. Cannot say any of this aloud (his voice is too damaged for sustained speech), so he writes it on small wax tablets and seals them in his desk drawer for no one",
+          "AntagonistMotivation": "Compensation for his lost voice through the captured voices of others; political consolidation through ownership of dead enemies' last words; the genuine, unspoken belief that he is preserving history rather than mocking the dead",
+          "AntagonistEmotionalStyle": "Whispers everything; never raises a hand; pays well; keeps a faintly courteous distance from anyone who has not yet died. Refuses to attend funerals (the silence breaks him). Uses written notes for negotiations, signed with a thumbprint pressed into wax — never with a name",
+          "AntagonistVulnerability": "His night-paralysis. Without Sleepwell (House Vex's product) he cannot fall asleep; he wakes hearing voices that are not playing. Currently buys Sleepwell through a chain of brokers who do not know it ends at him. If House Vex closes the Sleepwell line — or if Vell is exposed and his Sleepwell deliveries stop — he will not sleep again",
+          "AntagonistLineWontCross": "Will not personally enter the Hollow. The cavern's natural acoustics overwhelm him; he hears too many voices at once. Meets Nyssa at the river-port dock, never in the Hollow. Refuses to ever play the Resident-fragment masterwork (he knows what it overlaps with; he is afraid of children's voices)",
+          "ChangedByCondition": "Hadrian (the circuit judge) offers House Echo a contract for free memorials in the upriver outposts at the same monthly silver Vell pays AND the player demonstrates that Vell's Sleepwell supply can be cut at the source. The offer must include a written guarantee that Echo will not pursue his existing collection — only the future commissions stop",
+          "ChangedByReachable": true,
+          "ChangedByEvidenceTier": "material only",
+          "Backstory": "Was once Audric Vell the Orator — the voice that opened the river-port council's monsoon sessions for fourteen years. Five years ago, a poisoned cup of mulled cane-juice (an Ironheart-series compound, sold by House Vex under duress, brokered by Kess Ballow) damaged his vocal cords beyond repair. He survived. The orator who poisoned him did not (Vell's first memorial-stone, commissioned anonymously through an early intermediary). Since then he has built his power through what he keeps rather than what he says. The basin's three richest cities now have a quiet word for him: the Whisper Council. He does not appear at their meetings. They send him notes"
+        },
+        {
+          "Id": "olea",
+          "Role": "SilencedHelper",
+          "Variant": "guilty-complicit",
+          "Alive": true,
+          "Age": 41,
+          "Wants": "To shape stones for as long as her hands hold the chisel; to keep her workshop within walking distance of the Hollow; to never have to choose between Marrek's mission and Nyssa's silver, because Marrek paid for her daughter's burial when she could not, and Nyssa pays her now",
+          "Fears": "That Marrek will discover she has been shaping fossil-stones for the side-chamber and stop trusting her; that Nyssa will move her commissions to a river-port carver; that her own daughter's memorial-stone (which Marrek milled, free, the day after the funeral) will be played one day for some collector who confuses it with someone else",
+          "SelfDeception": "Tells herself stones are stones; she shapes them, she does not press them. The pressing is what makes a stone a memorial or a trophy or a warning. Her work happens before any of those choices are made. The stone is innocent until pressed",
+          "ChangeCondition": "Player demonstrates that one of the stones Olea shaped — a beautifully polished one with a hairline grain pattern she remembered finishing — was used for the memorial-stone of Halric Soun's daughter, who has not yet died but whose name is on Vell's ledger for the next monsoon",
+          "PhysicalTokens": [
+            "her chisel-set, inherited from her mother (a river-port carver who never learned to mill)",
+            "a small fossil-fragment from her daughter's memorial-stone, the one Marrek pressed for free; she keeps it in her apron pocket",
+            "her workshop-keys (Listening Chamber, side-chamber, and her own front door — she has never told Marrek she has the second)"
+          ]
+        },
+        {
+          "Id": "hadrian",
+          "Role": "OffstageAlly",
+          "Variant": "patient-creditor",
+          "Alive": true,
+          "Age": 53,
+          "Wants": "To ensure that every village in his circuit — twenty-three settlements scattered along the upriver basin, mostly poor — has access to warning-stones AND to free memorial-stones for families who would otherwise lose a voice. To repay a debt he believes is procedural, not personal, but is in fact deeply personal",
+          "Fears": "That House Echo will fold before he can secure a written supply contract; that Vell will outbid him through brokers; that Marrek will refuse out of pride a deal that the upriver villages desperately need",
+          "SelfDeception": "Believes his interest in House Echo is purely judicial — bringing legal services (memorial-witnessing for inheritance disputes, warning-stones for outpost defense) to underserved settlements. Refuses to acknowledge that the village where he was born — Mereck-on-the-Falls — was where Wenna was raised, and that as a child he heard her early lullaby-stones at the village square. He thought music came from rocks for the first eight years of his life",
+          "ChangeCondition": "N/A — Hadrian is the lever, not the locus. His offer is consistent and patient until the SuccessionHinge resolves",
+          "Backstory": "Born in Mereck-on-the-Falls, Wenna's home village. Heard her earliest stones as a child — she was fifteen years older than him, and she taught the village's deaf children to communicate by pressing their hands to fossil-stones she had milled with simple words. He learned his first thirty signs from her. Became a circuit judge at thirty-four; has held the upriver bench for nineteen years. Quietly funds two outpost schools where deaf children learn through Wenna's method (now called handsong). Has been waiting for the moment Marrek is ready to talk"
+        }
+      ],
+      "WitnessMap": {
+        "Entries": [
+          {
+            "SubjectId": "marrek",
+            "Knows": [
+              "memorial_stones_are_house_mission",
+              "bren_died_in_chamber",
+              "wenna_invented_milling_for_voiceless",
+              "resident_has_not_surfaced_since_bren",
+              "nyssa_carved_a_side_chamber_last_summer",
+              "vell_pays_in_pre_monsoon_silver"
+            ],
+            "Suspects": [
+              "nyssa_mills_for_vell_in_side_chamber",
+              "vell_commissions_dead_rivals_voices"
+            ],
+            "DoesNotKnow": [
+              "vell_orders_stones_before_deaths_occur",
+              "halric_soun_is_next_on_vells_ledger",
+              "hadrian_remembers_wenna_personally",
+              "vell_depends_on_sleepwell_to_sleep",
+              "wenna_blank_stone_was_meant_to_be_filled_by_him"
+            ]
+          },
+          {
+            "SubjectId": "nyssa",
+            "Knows": [
+              "memorial_stones_are_house_mission",
+              "vell_pays_well",
+              "bren_died_pressing_lullaby_into_resident_stone",
+              "side_chamber_uses_same_fossil_vein"
+            ],
+            "Suspects": [
+              "marrek_knows_about_side_chamber"
+            ],
+            "DoesNotKnow": [
+              "vell_orders_stones_before_deaths_occur",
+              "halric_soun_is_next_on_vells_ledger",
+              "vells_first_memorial_was_his_own_assassin",
+              "hadrians_competing_offer_exists",
+              "vell_depends_on_sleepwell_to_sleep",
+              "wenna_blank_stone_was_meant_to_be_filled_by_someone"
+            ]
+          },
+          {
+            "SubjectId": "vell",
+            "Knows": [
+              "house_echo_reluctance_at_marreks_level",
+              "nyssa_mills_in_secret",
+              "memorial_stones_are_publicly_associated_with_grief",
+              "his_sleepwell_supply_chain_starts_at_house_vex",
+              "the_resident_has_not_been_milled_in_years"
+            ],
+            "Suspects": [
+              "marrek_will_eventually_intervene"
+            ],
+            "DoesNotKnow": [
+              "hadrians_competing_offer_exists",
+              "olea_shaped_the_stone_for_halric_souns_daughter",
+              "wenna_was_deaf_and_invented_milling_for_voiceless",
+              "player_can_trace_his_sleepwell_supply",
+              "bren_overlap_stone_exists"
+            ]
+          },
+          {
+            "SubjectId": "olea",
+            "Knows": [
+              "memorial_stones_are_house_mission",
+              "marrek_paid_for_her_daughters_burial",
+              "nyssa_uses_a_side_chamber_marrek_doesnt_know_about",
+              "vell_pays_well"
+            ],
+            "Suspects": [
+              "vell_commissions_living_targets",
+              "halric_souns_daughter_is_next"
+            ],
+            "DoesNotKnow": [
+              "wenna_invented_milling_for_voiceless",
+              "vells_first_memorial_was_his_own_assassin",
+              "hadrians_competing_offer_exists",
+              "wenna_blank_stone_was_meant_to_be_filled"
+            ]
+          }
+        ],
+        "DangerousDisclosures": [
+          {
+            "Condition": "If vell_orders_stones_before_deaths_occur revealed to Vell before the SuccessionHinge resolves",
+            "Consequence": "Vell relocates his commissions to a competing fossil-trade in the river-port (a forger who fabricates voices using actor recordings); Echo loses leverage and Vell's collection grows beyond reach"
+          },
+          {
+            "Condition": "If hadrians_competing_offer_exists revealed to Nyssa before the SuccessionHinge resolves",
+            "Consequence": "Nyssa contacts Hadrian directly, frames a 'split contract' (free memorials AND collector commissions, paid through separate ledgers), and locks Marrek out of the decision; she titles the arrangement 'Wenna's Compromise' on the documents she signs"
+          },
+          {
+            "Condition": "If bren_overlap_stone_exists revealed to Vell",
+            "Consequence": "Vell offers a vast sum to acquire it as the centerpiece of his collection — a child and an Old Thing on a single stone, the only one of its kind. If accepted, the Restored end-state closes and Bren's memorial is permanently broken"
+          }
+        ]
+      },
+      "PressurePoints": [
+        {
+          "Id": "ResidentChorus",
+          "Archetype": "Wound",
+          "Temporal": "Suspended",
+          "DominantAlignment": "Home",
+          "Description": "The Resident — the Old Thing in the deep passage — has not surfaced since the night Bren died. Marrek believes the masterwork is unrecoverable; Nyssa believes the Resident is waiting for a worthier miller. The deep passage is silent in a way the Hollow has never been",
+          "UrgencyTrigger": "Vell commissions a 'companion stone' to the bren-overlap masterwork — he has heard rumors of its existence from a former Echo apprentice — and Nyssa is offered triple her current rate to attempt a re-capture",
+          "UrgencyEffect": "Closes the Restored path; Bren's memorial is desecrated by the attempted re-press; the Resident, if it surfaces, is recorded for a buyer it does not consent to",
+          "UrgencyTiming": "medium",
+          "TransitionRules": [
+            { "FromState": "active", "ToState": "resolved", "Condition": "SuccessionHinge resolved via any path" },
+            { "FromState": "active", "ToState": "failed", "Condition": "UrgencyTrigger fires before SuccessionHinge resolves" }
+          ],
+          "Paths": [
+            {
+              "Id": "LeaveTheDeepPassage",
+              "PrimaryAlignment": "Home",
+              "EmotionalCostDescription": "Refuse to attempt re-capture. Honor Bren's overlapped stone as the final form of the masterwork. Marrek seals the deep passage with a fossil door he carves himself, by hand, over four months",
+              "EmotionalCostMagnitude": 4,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "Trust", "Magnitude": 3, "Timing": "front-loaded" },
+                { "Type": "Time", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Restored", "Weight": 3 },
+                { "EndStateId": "TransformedA", "Weight": 1 }
+              ]
+            },
+            {
+              "Id": "RecaptureTheResident",
+              "PrimaryAlignment": "CosmicB",
+              "SecondaryAlignment": "Home",
+              "EmotionalCostDescription": "Attempt the re-capture. Nyssa enters the deep passage alone (Marrek refuses). The Resident does not surface, but the side-chamber's stones now hold the silence of its absence. Vell pays for that silence too — at a discount",
+              "EmotionalCostMagnitude": 2,
+              "CorruptionContribution": 2,
+              "Costs": [
+                { "Type": "Ideology", "Magnitude": 2, "Timing": "front-loaded" },
+                { "Type": "LineagePurity", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "TransformedB", "Weight": 3 },
+                { "EndStateId": "Corrupted", "Weight": 1 }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "PrivateChamber",
+          "Archetype": "PreventedHelp",
+          "Temporal": "Suspended",
+          "DominantAlignment": "CosmicA",
+          "Description": "Nyssa's side-chamber, carved last summer, is a commercial milling room. The next stone scheduled for it is a memorial-stone for Halric Soun's daughter — who has not yet died, but whose name is on Vell's ledger for the next monsoon. Olea has already shaped the fossil-blank Nyssa will use",
+          "UrgencyTrigger": "Halric Soun's daughter dies (a Bloomtangle 'accident' arranged by Vell); Nyssa enters the side-chamber that evening to mill the memorial-stone",
+          "UrgencyEffect": "Nyssa fully commits to the trophy-trade; the side-chamber becomes the operational center of the Hollow; Marrek's authority becomes ceremonial",
+          "UrgencyTiming": "short",
+          "TransitionRules": [
+            { "FromState": "active", "ToState": "resolved", "Condition": "Nyssa is shown evidence that Vell's previous memorial-stones were commissioned BEFORE the deaths AND offered Hadrian's competing contract at equal silver" },
+            { "FromState": "active", "ToState": "failed", "Condition": "UrgencyTrigger fires before that confrontation" }
+          ],
+          "Paths": [
+            {
+              "Id": "NyssaListens",
+              "PrimaryAlignment": "CosmicA",
+              "EmotionalCostDescription": "Nyssa annotates her glyph-book with the dates Vell ordered each commission; the gap between order-date and death-date averages six weeks. She does not show Marrek for two days. When she does, she has already burned the side-chamber key in the Listening Chamber's hearth",
+              "EmotionalCostMagnitude": 3,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "SelfEdit", "Magnitude": 2, "Timing": "front-loaded" },
+                { "Type": "Trust", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Restored", "Weight": 2 },
+                { "EndStateId": "TransformedA", "Weight": 2 }
+              ]
+            },
+            {
+              "Id": "NyssaSeals",
+              "PrimaryAlignment": "CosmicB",
+              "EmotionalCostDescription": "Nyssa locks the side-chamber against Marrek and re-keys it; the memorial-stone for Halric Soun's daughter is milled the night the death is announced. Marrek's chamber-key no longer fits the new lock. He does not try to force it",
+              "EmotionalCostMagnitude": 1,
+              "CorruptionContribution": 3,
+              "Costs": [
+                { "Type": "Ideology", "Magnitude": 1, "Timing": "front-loaded" },
+                { "Type": "Trust", "Magnitude": 1, "Timing": "front-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Corrupted", "Weight": 3 },
+                { "EndStateId": "TransformedB", "Weight": 1 }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "MemorialOath",
+          "Archetype": "SuccessionHinge",
+          "Temporal": "Imminent",
+          "DominantAlignment": "Variable",
+          "Description": "Marrek is sixty-five and has stopped milling memorial-stones himself. The chamber is run, in practice, by Nyssa. The river-port council expects either a written contract (renewing Vell's commissions for the next two monsoons) or an explicit refusal — they will not wait beyond the next council session, six weeks away. Hadrian's circuit-judge contract is on the table, signed and sealed by him, awaiting Marrek's countersignature",
+          "UrgencyTrigger": "The next council session begins; Marrek has not signed either contract; Nyssa appears at the session in his place, with the river-port silver-broker standing beside her",
+          "UrgencyEffect": "Corrupted becomes the most likely outcome; Restored closes; Vell formally annexes House Echo into the Whisper Council's archive within three months",
+          "UrgencyTiming": "long",
+          "TransitionRules": [
+            { "FromState": "active", "ToState": "resolved", "Condition": "Marrek makes a final choice about Vell's contract before the council session" },
+            { "FromState": "active", "ToState": "failed", "Condition": "UrgencyTrigger fires" }
+          ],
+          "Paths": [
+            {
+              "Id": "RenewWennasMission",
+              "PrimaryAlignment": "Home",
+              "EmotionalCostDescription": "Marrek countersigns Hadrian's contract in front of the river-port council. Nyssa stands beside him; she is the one who has to look at Vell. The chamber's free-memorial line resumes the next morning. Marrek mills the first stone himself, for a Mereck-on-the-Falls grandmother who has been waiting two years",
+              "EmotionalCostMagnitude": 4,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "Ideology", "Magnitude": 3, "Timing": "front-loaded" },
+                { "Type": "SelfEdit", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Restored", "Weight": 4 },
+                { "EndStateId": "TransformedA", "Weight": 1 }
+              ]
+            },
+            {
+              "Id": "QuietArchive",
+              "PrimaryAlignment": "CosmicB",
+              "SecondaryAlignment": "Home",
+              "EmotionalCostDescription": "Marrek countersigns BOTH contracts and tells himself the silver from Vell will fund the free memorials Hadrian's contract subsidizes only halfway. The side-chamber stays. The stones get sorted by an under-apprentice who is told never to mix the two ledgers. The lullaby-stones for Mereck-on-the-Falls get milled on Wendays; the rival-stones for Vell get milled on the other six days",
+              "EmotionalCostMagnitude": 3,
+              "CorruptionContribution": 3,
+              "Costs": [
+                { "Type": "Ideology", "Magnitude": 2, "Timing": "ongoing" },
+                { "Type": "LineagePurity", "Magnitude": 3, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "TransformedB", "Weight": 3 },
+                { "EndStateId": "Corrupted", "Weight": 2 }
+              ]
+            },
+            {
+              "Id": "RefuseAllCommissions",
+              "PrimaryAlignment": "CosmicA",
+              "EmotionalCostDescription": "Marrek refuses both contracts at the council session. Vell is publicly snubbed; Hadrian withdraws his offer in solidarity with Marrek's stated mission of unconditional free memorials. The Hollow loses 90% of its income overnight. Olea moves her workshop downriver within the season",
+              "EmotionalCostMagnitude": 2,
+              "CorruptionContribution": 1,
+              "Costs": [
+                { "Type": "Trust", "Magnitude": 2, "Timing": "front-loaded" },
+                { "Type": "Time", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "TransformedA", "Weight": 3 },
+                { "EndStateId": "Extinct", "Weight": 1 }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "TestStone",
+          "Archetype": "HiddenEvidence",
+          "Temporal": "Latent",
+          "DominantAlignment": "Home",
+          "Description": "Wenna's blank stone — the one she pressed into Marrek's hand on the day she died — sits on the central chamber shelf. It is, in fact, NOT blank. Six months before her death, in a moment of rare experimentation, Wenna pressed her own voice into it. She had never spoken aloud in her life; what she pressed was three breaths of unvoiced air, the closest thing to silence a person can deliberately make. The stone records the silence. Played, it produces a hush so complete that listeners hear their own breathing for the first time. Marrek has not played it. He believes it is blank because Wenna told him it was. She lied",
+          "UrgencyTrigger": "Vell purchases the central chamber shelf's contents through Nyssa's side-deal — including the 'blank' stone, listed at low value because nobody has ever heard it",
+          "UrgencyEffect": "The founder's true voice (the recorded silence) is lost into the Whisper Council's collection; Wenna's mission becomes literally inaudible to the family",
+          "UrgencyTiming": "immediate",
+          "TransitionRules": [
+            { "FromState": "active", "ToState": "resolved", "Condition": "Player or NPC strikes the blank stone in the Listening Chamber" },
+            { "FromState": "active", "ToState": "failed", "Condition": "Vell is confronted about his living-target commissions before the stone is played" }
+          ],
+          "HiddenEvidence": {
+            "Subtypes": ["Passive", "Gated"],
+            "CustodianId": "marrek",
+            "GateCondition": "The stone sits on the central shelf in plain view, but striking it requires either Marrek's permission (he believes it is blank and forbids the strike on the grounds that it was a gift) or being alone in the chamber with a striking-rod and the willingness to defy that gift",
+            "RevealMethods": [
+              { "Alignment": "Home", "Method": "Earn Marrek's trust and ask him to strike his mother's stone with you; he will, with the rod his mother carved, and he will weep when he hears the silence" },
+              { "Alignment": "CosmicA", "Method": "Wait for the chamber to empty (Marrek walks the falls at dawn), take the striking-rod, and play the stone yourself" }
+            ]
+          },
+          "Paths": [
+            {
+              "Id": "SilenceHeard",
+              "PrimaryAlignment": "Home",
+              "EmotionalCostDescription": "The hush of Wenna's recorded silence reframes everything. Marrek understands his mother's mission for the first time as a mission rather than a craft: she did not invent song-milling to capture sounds, but to give the unheard a way to be received. The stone is restored to the central shelf, this time as the chamber's foundational artifact",
+              "EmotionalCostMagnitude": 1,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "SelfEdit", "Magnitude": 1, "Timing": "front-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Restored", "Weight": 2 },
+                { "EndStateId": "TransformedA", "Weight": 2 }
+              ]
+            },
+            {
+              "Id": "StoneSold",
+              "PrimaryAlignment": "CosmicB",
+              "EmotionalCostDescription": "The blank stone is sold (to Vell, or to a broker, or 'misplaced' during a disputed inventory). Wenna's silence enters the Whisper Council's collection unheard, listed in the catalogue under low-priority items. Marrek stops using the central shelf",
+              "EmotionalCostMagnitude": 2,
+              "CorruptionContribution": 3,
+              "Costs": [
+                { "Type": "Ideology", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Corrupted", "Weight": 3 },
+                { "EndStateId": "TransformedB", "Weight": 1 }
+              ]
+            }
+          ]
+        }
+      ],
+      "MemorialActs": [
+        {
+          "SubjectId": "wenna",
+          "Objects": ["BlankStone", "HandFossil", "FirstLullabyStone"],
+          "Interactions": [
+            { "Alignment": "Home", "Description": "Press a fresh hand-fossil for a deaf child of Mereck-on-the-Falls — continuing her handsong work" },
+            { "Alignment": "CosmicA", "Description": "Strike the blank stone in front of any apprentice present; the recorded silence is the foundational lesson — listening before milling" },
+            { "Alignment": "Home", "Description": "Replay the first lullaby-stone (the one she pressed for the mute river-girl) at the chamber entrance every Wenday morning" }
+          ]
+        },
+        {
+          "SubjectId": "bren",
+          "Objects": ["OverlapStone", "ChalkFragment", "ApprenticeWaxTablet"],
+          "Interactions": [
+            { "Alignment": "Home", "Description": "Display the wax tablet at the chamber entrance, glyph-page open; new apprentices read the half-learned glyphs and remember why labels matter" },
+            { "Alignment": "CosmicA", "Description": "Carry the chalk fragment when first attempting any new mill — Marrek's silent vow that no apprentice will press the wrong stone again" },
+            { "Alignment": "Home", "Description": "Sing the lullaby Bren tried to record, by mouth, on the day Wenna died — without recording it. Some sounds are meant to leave" }
+          ]
+        }
+      ],
+      "Crossovers": [
+        {
+          "Type": "TruthPropagation",
+          "FromPointId": "TestStone",
+          "FromCondition": "state:resolved",
+          "ToPointId": "PrivateChamber",
+          "ToEffect": "reveal:nyssa:wenna_invented_milling_for_voiceless",
+          "DerivedFromWitnessMap": true
+        },
+        {
+          "Type": "TruthPropagation",
+          "FromPointId": "TestStone",
+          "FromCondition": "state:resolved",
+          "ToPointId": "MemorialOath",
+          "ToEffect": "reveal:marrek:wenna_blank_stone_was_meant_to_be_filled_by_him",
+          "DerivedFromWitnessMap": true
+        },
+        {
+          "Type": "TruthPropagation",
+          "FromPointId": "ResidentChorus",
+          "FromCondition": "path:LeaveTheDeepPassage",
+          "ToPointId": "PrivateChamber",
+          "ToEffect": "reveal:nyssa:bren_overlap_stone_is_the_masterwork",
+          "DerivedFromWitnessMap": true
+        },
+        {
+          "Type": "Amplification",
+          "FromPointId": "PrivateChamber",
+          "FromCondition": "state:failed",
+          "ToPointId": "MemorialOath",
+          "ToEffect": "corruption:2",
+          "DerivedFromWitnessMap": false
+        },
+        {
+          "Type": "MutualExclusion",
+          "FromPointId": "ResidentChorus",
+          "FromCondition": "path:RecaptureTheResident",
+          "ToPointId": "TestStone",
+          "ToEffect": "close:TestStone:SilenceHeard",
+          "DerivedFromWitnessMap": false,
+          "Rationale": "If the deep passage is breached for re-capture, the chamber's foundational silence is broken — Wenna's blank-stone trick (deliberate silence as content) becomes inaudible against the new noise; the act of striking it becomes a hollow gesture"
+        }
+      ],
+      "EndStates": [
+        {
+          "Id": "Restored",
+          "Name": "The Listening Tower",
+          "PathSignature": ["LeaveTheDeepPassage", "NyssaListens", "RenewWennasMission", "SilenceHeard"],
+          "Tag": "EchoRestored",
+          "Rewards": ["WennaBlankStone", "HouseEchoReputation+3", "HadrianCircuitContract"],
+          "ExternalResonanceDescription": "House Echo becomes the upriver basin's quiet conscience. Hadrian's circuit-contract funds free memorial-stones for every village in his bench. The Whisper Council collapses within a year — Vell's Sleepwell supply (by way of House Vex's Restored arc) is cut, his collection plays unattended in his sleepless room, and the political weight of his memorials evaporates without a song-miller to add to them. The deep passage stays sealed; the Resident, on the third monsoon after Bren's death, is heard to surface again. No one mills it. Marrek sits at the entrance, hears it, and walks back inside",
+          "ExternalResonanceScope": "basin-wide"
+        },
+        {
+          "Id": "TransformedA",
+          "Name": "The Quiet Chamber",
+          "PathSignature": ["LeaveTheDeepPassage", "NyssaSeals", "RefuseAllCommissions"],
+          "Tag": "EchoTransformedA",
+          "Rewards": ["HouseEchoReputation+1", "HollowSanctuaryDeed"],
+          "ExternalResonanceDescription": "House Echo shrinks to Marrek alone. Nyssa departs for the river-port, taking the side-chamber's keys with her. The Listening Chamber's apprentice-shelves go bare. Marrek mills only memorial-stones, on commission only, payable in fish or labor. The Hollow becomes a place upriver families walk to once a generation, on foot, with their dead",
+          "ExternalResonanceScope": "house-local"
+        },
+        {
+          "Id": "TransformedB",
+          "Name": "The Collector's Library",
+          "PathSignature": ["RecaptureTheResident", "NyssaSeals", "QuietArchive", "StoneSold"],
+          "Tag": "EchoTransformedB",
+          "Rewards": ["HouseEchoReputation-1", "WhisperCouncilStanding"],
+          "ExternalResonanceDescription": "House Echo signs both contracts. The two ledgers do not, in fact, stay separate. Vell pays well; Hadrian pays less and more rarely. By the third monsoon the side-chamber outproduces the Listening Chamber by four stones to one. Marrek dies in his sleep. The chamber's central shelf is empty. Nyssa is invited to the Whisper Council's annual gathering for the first time and accepts, in writing, with a thumbprint pressed into wax",
+          "ExternalResonanceScope": "house-local"
+        },
+        {
+          "Id": "Extinct",
+          "Name": "The Silent Mill",
+          "PathSignature": ["LeaveTheDeepPassage", "RefuseAllCommissions", "StoneSold"],
+          "Tag": "EchoExtinct",
+          "Rewards": [],
+          "ExternalResonanceDescription": "House Echo collapses within two seasons of the council session. Nyssa leaves first; Olea closes the carving-shop within the month. Marrek seals the Listening Chamber with the same hand-carved fossil door he made for the deep passage. He dies that winter. The chamber, locked, sounds only of the falls. Mereck-on-the-Falls forgets the lullaby-stones within a generation; the warning-stones at the upriver outposts crack from disuse. The Bloomtangle no longer remembers its dead in voice",
+          "ExternalResonanceScope": "regional"
+        },
+        {
+          "Id": "Corrupted",
+          "Name": "Vell's Voice",
+          "PathSignature": ["RecaptureTheResident", "NyssaSeals", "QuietArchive", "StoneSold"],
+          "Tag": "EchoCorrupted",
+          "Rewards": ["HouseEchoReputation-3"],
+          "ExternalResonanceDescription": "House Echo becomes the Whisper Council's official archivists. The Hollow is renamed the Vell Library on basin maps within five years. The deep passage is opened by force; the Resident, found, is pressed into a stone Vell keeps at the center of his collection. The bren-overlap masterwork is purchased privately and added to the same shelf. Wenna's blank stone is sold at auction as a curiosity. Three downriver villages stop receiving warning-stones; bandit raids resume. The Whisper Council's collection grows to eighty-three stones, then a hundred, then more — a smile that never closes. Children of those whose voices are kept are told, when they ask, that their grandfather is preserved. They are never permitted to listen",
+          "ExternalResonanceScope": "basin-wide"
+        }
+      ],
+      "CorruptionGradient": {
+        "EarlyWarningSignal": "Vell sends his next commission directly to Nyssa, with a written note (his usual medium) that addresses her as 'milleress of the Hollow' — a title only Marrek bears. Nyssa does not show Marrek the note",
+        "MidWarningSignal": "Marrek stops walking the falls at dawn. The morning silence in the chamber is filled instead by Nyssa milling. The under-apprentices learn her schedule and arrange their work around it",
+        "PointOfNoReturn": "QuietArchive taken in MemorialOath while RecaptureTheResident is already resolved AND the bren-overlap stone has been moved off the deep-shelf. The stone is then sold or 'misplaced' within three months; House Echo's Restored future becomes mathematically unreachable, and the Resident — if it surfaces again — is no longer of any use to the family"
+      },
+      "CrossHouseLinks": {
+        "VexConnections": [
+          "Vell's voice was destroyed by an Ironheart-series poison sold by House Vex under duress (brokered by Kess Ballow). House Vex's corruption created House Echo's antagonist",
+          "Vell relies on Sleepwell (House Vex's whisperback-adder honey product) to fall asleep nightly. If House Vex's Restored arc cuts the Sleepwell supply chain, Vell's vulnerability is exploitable",
+          "House Echo's lure-stones are quietly purchased by House Vex apprentices for safer cane-cobra capture. The two houses are not in formal trade — but their economies touch via this single product line",
+          "Halric Soun's daughter (next on Vell's ledger) is Valdris's clinic-patron in the river-port; her death would close Valdris's flagship clinic. Both dramas fork on the same Bloomtangle politics"
+        ],
+        "ResonanceNotes": "If both Vex and Echo resolve to Restored, the basin's poison-trade collapses and the basin's voice-trade flourishes — the cleanest possible outcome. If both resolve to Corrupted, the river-port is ruled by a class that kills with venom and memorializes the killings as art. The two dramas can be played independently; their cross-effects amplify whichever direction the player has already pushed"
+      }
+    }
+  ]
+}

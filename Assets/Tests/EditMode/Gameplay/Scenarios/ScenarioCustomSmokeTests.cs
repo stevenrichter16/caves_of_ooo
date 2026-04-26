@@ -162,6 +162,13 @@ namespace CavesOfOoo.Tests.Scenarios
             Assert.DoesNotThrow(() => new WoundedScribeFleesToShrine().Apply(FreshContext()));
 
         // ======================================================
+        // M6 scenario (Rune system — cultists lay runes via AILayRune)
+        // ======================================================
+
+        [Test] public void RuneCultistAmbush_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new RuneCultistAmbush().Apply(FreshContext()));
+
+        // ======================================================
         // Phase 10 scenario (AI goal-stack inspector)
         // ======================================================
 

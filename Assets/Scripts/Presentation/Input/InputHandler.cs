@@ -77,6 +77,24 @@ namespace CavesOfOoo.Rendering
         private const int FullscreenUiGridWidth = 80;
         private const int FullscreenUiGridHeight = 45;
 
+        // Phase 4: save/load hotkeys (F5 = QuickSave, F6 = QuickLoad).
+        // Pure-logic controller is unit-tested in SaveLoadInputControllerTests;
+        // this field + its two adapters are the thin Unity glue.
+        private readonly SaveLoadInputController _saveLoadInputController = new SaveLoadInputController();
+        private static readonly UnityInputProbeAdapter _saveLoadInputProbe = new UnityInputProbeAdapter();
+        private static readonly SaveGameServiceAdapter _saveLoadService = new SaveGameServiceAdapter();
+
+        // Phase 4b: death-screen modal. Polled HP-based activation rather
+        // than event-subscription so we don't need a Part on the player
+        // (which would also get serialized into saves — wrong concern).
+        private readonly DeathScreenController _deathScreenController = new DeathScreenController();
+        private static readonly SceneRestarterAdapter _deathScreenRestarter = new SceneRestarterAdapter();
+
+        // Phase 4c: boot-menu modal. Activated at end of GameBootstrap.DoStart()
+        // via TryActivateBootMenu() iff a save exists; player chooses Continue
+        // (load save) or New Game (dismiss menu, keep current bootstrap state).
+        private readonly BootMenuController _bootMenuController = new BootMenuController();
+
         /// <summary>
         /// Input state machine for ability targeting.
         /// Normal: standard movement/action input.
@@ -202,12 +220,67 @@ namespace CavesOfOoo.Rendering
         public EntityFactory EntityFactory { get; set; }
         public ScreenFade ScreenFade { get; set; }
 
+        /// <summary>
+        /// Phase 4d — pause menu UI (Esc → centered modal). Wired by
+        /// <c>GameBootstrap</c>. The controller is owned here; the UI
+        /// borrows it via <see cref="PauseMenuUI.Controller"/>.
+        /// </summary>
+        public PauseMenuUI PauseMenuUI
+        {
+            get => _pauseMenuUI;
+            set
+            {
+                _pauseMenuUI = value;
+                if (_pauseMenuUI != null)
+                {
+                    _pauseMenuUI.Controller = _pauseMenuController;
+                    _pauseMenuUI.SaveLoadService = _saveLoadService;
+                    _pauseMenuUI.Log = MessageLog.Add;
+                }
+            }
+        }
+        private PauseMenuUI _pauseMenuUI;
+        private readonly PauseMenuController _pauseMenuController = new PauseMenuController();
+
+        /// <summary>
+        /// Public activation hook for the boot-menu modal — called from
+        /// <c>GameBootstrap</c> at end-of-init. No-op if no save exists.
+        /// </summary>
+        public bool TryActivateBootMenu(bool hasSave)
+            => _bootMenuController.TryActivate(hasSave, MessageLog.Add);
+
         private void Update()
         {
             using (PerformanceMarkers.Input.Update.Auto())
             {
                 if (PlayerEntity == null || CurrentZone == null || TurnManager == null)
                     return;
+
+                // Boot-menu modal (Phase 4c) — checked BEFORE the player-turn
+                // gates so it can run before the player can act. Only active
+                // if GameBootstrap.DoStart() called TryActivateBootMenu() with
+                // hasSave=true.
+                if (_bootMenuController.IsActive)
+                {
+                    _bootMenuController.Tick(_saveLoadInputProbe, _saveLoadService, MessageLog.Add);
+                    return;
+                }
+
+                // Death-screen modal (Phase 4b) — checked BEFORE the player-turn
+                // gates because a dead player can't take a turn (so WaitingForInput
+                // would be false and we'd never get past the gates). Activation is
+                // HP-based polling rather than Died-event subscription so the
+                // modal lives in the UI layer, not as a Part on the player.
+                int playerHp = PlayerEntity.GetStatValue("Hitpoints", 1);
+                if (playerHp <= 0 && !_deathScreenController.IsActive)
+                {
+                    _deathScreenController.Activate(MessageLog.Add);
+                }
+                if (_deathScreenController.IsActive)
+                {
+                    _deathScreenController.Tick(_saveLoadInputProbe, _saveLoadService, _deathScreenRestarter, MessageLog.Add);
+                    return;  // suppress all other input while the modal is up
+                }
 
                 // Only accept input when it's the player's turn
                 if (!TurnManager.WaitingForInput)
@@ -241,6 +314,53 @@ namespace CavesOfOoo.Rendering
             {
                 HandleThrowPopupInput();
                 return;
+            }
+
+            // Save/Load + Pause menu (Phases 4 + 4d) — fire only in normal
+            // gameplay, never while a modal UI is open. Routed through
+            // unit-tested controllers so dispatch logic stays testable.
+            // Run BEFORE the wait-skip block so a save doesn't get swallowed
+            // by a held '.' key. Tick returns true when input was consumed
+            // — early-return so subsequent debug F-key bindings (F6=mutate-
+            // debug etc.) don't ALSO fire on the same press.
+            //
+            // Pause menu is gated on InputState.Normal so Tab inside an
+            // open InventoryUI / PickupUI / TradeUI (all of which use Tab
+            // for in-modal navigation) goes to those handlers, not here.
+            if (_inputState == InputState.Normal)
+            {
+                if (_saveLoadInputController.Tick(_saveLoadInputProbe, _saveLoadService, MessageLog.Add))
+                {
+                    _lastMoveTime = Time.time;
+                    return;
+                }
+
+                // Pause menu — Tab opens, arrows/Enter navigate, Tab closes.
+                // When open, fully blocks other input via the IsOpen guard.
+                // The popup-overlay camera lifecycle MUST be toggled around
+                // state transitions, matching the WorldActionMenuUI /
+                // ContainerPickerUI pattern (line ~1954). Without this, the
+                // PauseMenuUI tilemap renders correctly but no camera is
+                // displaying it — the player sees nothing.
+                if (_pauseMenuUI != null)
+                {
+                    bool wasOpenBeforeTick = _pauseMenuUI.IsOpen;
+                    bool consumed = _pauseMenuUI.HandleInput(_saveLoadInputProbe);
+                    bool isOpenAfterTick = _pauseMenuUI.IsOpen;
+
+                    if (!wasOpenBeforeTick && isOpenAfterTick)
+                        EnterCenteredPopupOverlayView();
+                    else if (wasOpenBeforeTick && !isOpenAfterTick)
+                        ExitCenteredPopupOverlayViewToGameplay();
+
+                    if (consumed)
+                    {
+                        _lastMoveTime = Time.time;
+                        return;
+                    }
+                    if (_pauseMenuUI.IsOpen)
+                        return;  // suppress other input while modal up
+                }
             }
 
             // Wait/skip turn (tap or hold) — placed BEFORE the general rate
@@ -491,6 +611,28 @@ namespace CavesOfOoo.Rendering
                             HandleZoneTransition(result);
                             EndTurnAndProcess();
                         }
+                    }
+                    // If there's no transition, fall through to the
+                    // status-block fallback below.
+                }
+
+                // Status-block fallback: the move wasn't accepted by any
+                // of the above paths AND the player has an active
+                // action-blocking effect (frozen/stunned/paralyzed). Treat
+                // the keypress as a "wait" and advance one turn so the
+                // effect thaws at its configured rate. Without this, a
+                // frozen player pressing direction keys would produce no
+                // turn advance at all — the freeze would never tick down.
+                //
+                // Pair this with TurnManager.ProcessUntilPlayerTurn's
+                // early-return on player-block: one keypress = one
+                // blocked-turn thaw, matching player expectation.
+                if (!moved)
+                {
+                    var sep = PlayerEntity.GetPart<StatusEffectsPart>();
+                    if (sep != null && sep.IsActionBlocked())
+                    {
+                        EndTurnAndProcess();
                     }
                 }
 

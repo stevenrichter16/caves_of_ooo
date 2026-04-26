@@ -9,7 +9,13 @@ namespace CavesOfOoo.Core
     {
         public override string DisplayName => "frozen";
 
-        /// <summary>0..1. Above 0.5, the owner cannot act.</summary>
+        /// <summary>
+        /// 0..1. Any positive value locks the owner out of action. The
+        /// field slowly thaws toward 0 in <see cref="OnTurnEnd"/>, and
+        /// when it reaches 0 the effect removes itself via
+        /// <c>Duration = 0</c>. "Partially frozen" is not a playable
+        /// state — the owner is either acting or not.
+        /// </summary>
         public float Cold;
 
         public FrozenEffect(float cold = 1.0f)
@@ -63,7 +69,14 @@ namespace CavesOfOoo.Core
                 Duration = 0;
         }
 
-        public override bool AllowAction(Entity target) => Cold <= 0.5f;
+        // Block ALL action while the effect is present (Cold > 0). The
+        // old <= 0.5 threshold created a confusing window where the log
+        // said "X is frozen and cannot act!" on the skipped turn while
+        // ProcessUntilPlayerTurn thawed Cold below 0.5 in the same
+        // Unity frame, so by the next input frame the player could move
+        // despite the log message. The effect self-expires at Cold == 0
+        // (OnTurnEnd sets Duration = 0), so "effect present" === "frozen".
+        public override bool AllowAction(Entity target) => Cold <= 0f;
 
         public override bool OnStack(Effect incoming)
         {

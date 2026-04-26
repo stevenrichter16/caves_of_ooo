@@ -768,7 +768,7 @@ This section describes what it takes to move every goal from state 1 → state 2
 | **M3** — Ambient behavior parts | ✅ Done | B | 2–3d | PetGoal, GoFetchGoal, FleeLocationGoal |
 | **M4** — Interior/Exterior (Gap B) | ✅ Done (1665/1665) | C | 3–4d | MoveToInterior/ExteriorGoal, weather foundation |
 | **M5** — Corpse system (Gap C) | ✅ Done (1702/1702, PlayMode-verified) | C | 3–5d | CorpsePart, DisposeOfCorpseGoal, AIUndertakerPart, Graveyard blueprint |
-| **M6** — Rune system | | C | 3–4d | LayRuneGoal |
+| **M6** — Rune system | ✅ Done (1965/1965, audit-cadence complete) | C | 3–4d | EntityEnteredCell event, TriggerOnStepPart, LayRuneGoal, AILayRunePart, RuneCultist |
 | **M7** — Turret system | | C | 3–4d | PlaceTurretGoal |
 | **M8** — Gap A (zone transitions) | | D | 1–2w | MoveToZone/GlobalGoal, Phase 13 foundation |
 | **M9** — Gap D (damage types) | | D | 2–3w | ReequipGoal/ChangeEquipmentGoal, Phase 14 foundation |
@@ -1203,6 +1203,86 @@ implementation (LairPopulationBuilderAmbushTests statistical bounds, RetreatGoal
 `HealPerTickZero` MaxTurns-fallback boundary, and AIAmbush Initialize-vs-fallback
 ordering paths).
 
+##### M1 Post-audit findings (2026-04-23)
+
+Pass 5 of the Comprehensive Audit. Read: `AISelfPreservationPart.cs`,
+`RetreatGoal.cs`, `AIAmbushPart.cs`, `DormantGoal.cs`, `BrainPart.cs`
+(Passive field semantics), blueprint grep for `AISelfPreservation` /
+`AIAmbush` / `Passive=true`. Verified `AIAmbushPart.Rearm` is tested
+(`AIAmbushPartTests.cs:161`). Checked M1.R-3 fix (RetreatGoal
+BaseValue vs Value) at `RetreatGoal.cs:109-125`.
+
+**4 findings** — 0 🔴, 0 🟡, 1 🔵, 2 🧪, 1 ⚪.
+
+Smaller finding count than other milestones because M1 shipped with
+14 pre-ship review findings fixed (see §M1 Code Review — Findings
+above); the patterns that would surface new audit-tier issues were
+largely closed during initial development.
+
+| # | Sev | Cat | Title | File:line |
+|---|-----|-----|-------|-----------|
+| M1.A1 | 🔵 | logic | AISelfPreservation entry uses Stat.Value; RetreatGoal exit uses BaseValue — Penalty-without-damage can thrash | `AISelfPreservationPart.cs:86` vs `RetreatGoal.cs:109-125` |
+| M1.A2 | 🧪 | test-playmode | No PlayMode sanity sweep for M1 | n/a |
+| M1.A3 | 🧪 | test-manual | M1 scenarios (CorneredWarden, IgnoredScribe, SleepingTroll, MimicSurprise) manual observation pending | all menu-wired |
+| M1.A4 | ⚪ | doc | Value/BaseValue asymmetry design decision documented in RetreatGoal but not AISelfPreservationPart | cross-ref requires reading both files |
+
+###### 🔵 M1.A1 (logic) — Value/BaseValue asymmetry can thrash under HP Penalty without damage
+
+**Files:**
+- **Entry gate:** `AISelfPreservationPart.cs:86`
+  ```csharp
+  int hp = ParentEntity.GetStatValue("Hitpoints", 0);  // returns Stat.Value (BaseValue - Penalty)
+  ```
+- **Exit gate:** `RetreatGoal.cs:123-131`
+  ```csharp
+  int baseHp = hpStat.BaseValue;  // deliberately BaseValue, docstring lines 116-125 explains
+  ```
+
+Walkthrough of the thrash:
+1. NPC has `Hitpoints.BaseValue=100, Max=100, Penalty=100 → Value=0`.
+   (Penalty-without-damage scenario; future `Wounded` / `Exhausted`
+   effects could produce this shape.)
+2. BoredGoal fires `AIBoredEvent`. `AISelfPreservationPart.HandleBored`:
+   `fraction = 0 / 100 = 0`, `<= RetreatThreshold` → push `RetreatGoal`.
+3. BrainPart's next-tick cleanup: `RetreatGoal.Finished` evaluates
+   `baseHp / Max = 100/100 = 1.0`, `>= SafeThreshold (0.75)` → true.
+   Goal pops on first Finished-check before any TakeAction.
+4. Next tick's BoredGoal fires `AIBoredEvent`. `AISelfPreservation`
+   idempotency gate `brain.HasGoal("RetreatGoal")=false`.
+   `Value=0` still → push RetreatGoal again → pop immediately again.
+5. Thrash: push-pop every tick for as long as the Penalty is held.
+
+No current content produces HP Penalty without damage. `StatusEffectsPart`
+hooks in the codebase apply HP reductions via actual damage (damage
+reduces BaseValue directly, not Penalty). So the bug is **latent** —
+possible but not currently triggered.
+
+**Why it matters:** if a future status effect (e.g., `Wounded`,
+`Fatigued`, a debuff gauntlet applied by a boss) applies HP Penalty
+mechanically, every affected NPC starts thrashing silently. Perf
+impact is one-push-one-pop per tick per NPC, small but cumulative.
+More concerning: the `MessageLog` emits nothing, so the bug is only
+visible via goal-stack inspector.
+
+**Proposed fix:** three options:
+- (a) Align the gates: `AISelfPreservationPart.HandleBored` uses
+  `hpStat.BaseValue` too. Reads as "retreat when I've objectively
+  taken damage." Consistent; loses the "Penalty fraction" signal
+  if that ever matters.
+- (b) Align the other way: `RetreatGoal.Finished` uses Value. Reads
+  as "recover fully (penalty-free)." Risk: a Penalty-stuck NPC can't
+  satisfy the exit and stays in RetreatGoal forever — deadlock
+  instead of thrash.
+- (c) Explicit logic: AISelfPreservation checks both Value AND
+  BaseValue gates; only fires when BaseValue is also below threshold.
+  Reads as "retreat when the damage is real, not just debuffs."
+  More code, most semantically honest.
+
+**Severity rationale:** 🔵 because no current content triggers.
+Promote to 🟡 if a non-damage HP Penalty effect ships.
+
+---
+
 #### Milestone M2 — Social + Consequence Layer (Tier B, 2–3 days)
 
 Goal: wire the remaining Phase 6 goals (`NoFightGoal`, `WanderDurationGoal`) to
@@ -1578,6 +1658,99 @@ CoO-original triggers. The Phase 6 coverage claim ("5 of 7 shipped goals now hav
 real gameplay triggers") stands; the claim that M2 is "Qud parity work" does NOT —
 M2 is closer to "Qud-inspired extensions that consume Qud-parity primitives."
 
+##### M2 Post-audit findings (2026-04-23)
+
+Pass 4 of the Comprehensive Audit. Read: `NoFightGoal.cs`,
+`WanderDurationGoal.cs`, `ConversationActions.cs` (PushNoFightGoal
+registration), `CalmMutation.cs`, `WitnessedEffect.cs`, `CombatSystem.cs`
+(BroadcastDeathWitnessed), `PacifiedWarden.cs` scenario,
+`NoFightConversationTests.cs`, `CalmMutationTests.cs`,
+`WitnessedEffectTests.cs`. Grepped `Assets/Resources/**/*.json` for
+`PushNoFightGoal` consumers.
+
+**5 findings** — 0 🔴, 1 🟡, 1 🔵, 2 🧪, 1 ⚪.
+
+| # | Sev | Cat | Title | File:line |
+|---|-----|-----|-------|-----------|
+| M2.A1 | 🟡 | wiring | `PushNoFightGoal` dialogue action has zero content consumers | `ConversationActions.cs:295` (registered), grep `Assets/Resources` for `PushNoFightGoal` → 0 |
+| M2.A2 | 🔵 | design | NoFightGoal suppresses ALL AIBehaviorPart responses while active; pacified low-HP NPCs can't self-retreat | `NoFightGoal.cs:22-30` (documented) |
+| M2.A3 | 🧪 | test-playmode | No PlayMode sanity sweep for M2 | n/a |
+| M2.A4 | 🧪 | test-manual | 7 M2 scenarios' manual observation pending | `ScenarioMenuItems.cs` entries all wired; no user reports |
+| M2.A5 | ⚪ | parity | WitnessedEffect classifies as Mental but lacks Qud's `-Level DV` stat-shift | `WitnessedEffect.cs:36-41` (documented) |
+
+###### 🟡 M2.A1 (wiring) — PushNoFightGoal dialogue action has zero consumers
+
+**Files:**
+- **Registered:** `Assets/Scripts/Gameplay/Conversations/ConversationActions.cs:295-327`
+- **Tested:** `Assets/Tests/EditMode/Gameplay/Conversations/NoFightConversationTests.cs` (8 tests exercise the action via direct `ConversationActions.Execute` calls).
+- **Consumed by dialogue content:** grep `-rn "PushNoFightGoal" Assets/Resources` returns **zero** matches.
+
+The M2.1 shipping narrative (QUD-PARITY.md:1571) documents
+`PushNoFightGoal` as a "CoO-original hook" intended to make
+conversation choices like "Stand down, friend" actually pacify the
+speaker. The C# action is fully wired: idempotency guard, TryParse
+trap-fix, MessageLog echo. But no conversation tree in
+`Assets/Resources/...` references the action name.
+
+The existing M2 scenarios that exercise pacification
+(`PacifiedWarden.cs`, `CalmTestSetup.cs`, etc.) bypass dialogue by
+calling `AsPersonalEnemyOf` then casting `CalmMutation`, not by
+triggering the dialogue action.
+
+**Why it matters:** M2.1's shipped claim is "dialogue-pacify." Tests
+confirm the action fires correctly. But a player in the actual game
+cannot trigger the action because no dialogue offers it. The feature
+is functionally inert in the shipped game — same class as M5.A3
+(Graveyard without world-gen placement). The M2 parity audit table
+correctly labels the action "CoO-original hook," but doesn't flag
+that the hook has no caller.
+
+**Proposed fix:** add a dialogue choice to at least one Villager /
+Merchant / Scribe conversation tree (wherever `Conversation_1.json`
+or similar lives) that calls `PushNoFightGoal` with an appropriate
+duration. E.g., a "calm down" option on the Warden's dialogue when
+the player has some high-Ego stat. Needs dialogue-content authoring
++ a scenario that demonstrates it. ~2 hours.
+
+**Severity rationale:** 🟡 because the M2.1 shipping claim is
+partially unverified in normal play. Not 🔴 because the tests pin
+the action's behavior — the gap is content, not correctness.
+
+###### 🔵 M2.A2 (design) — NoFightGoal suppresses self-preservation
+
+**File:** `Assets/Scripts/Gameplay/AI/Goals/NoFightGoal.cs:22-30`
+
+Docstring explicitly warns:
+
+> *⚠️ Side-effect: while NoFightGoal is on top of the stack,
+> AIBoredEvent does not fire, which means all AIBehaviorPart
+> subclasses stop responding — including AISelfPreservationPart. A
+> pacified creature at critical HP will not be retreated by
+> self-preservation until the NoFightGoal expires or is removed.*
+
+This is a documented design trade-off — pacification is "complete"
+by intent. But it creates a concrete gameplay surface: Calm a hostile
+Warden → Warden stops attacking → also stops self-preservation →
+any ongoing damage (bleed, poison, environmental) kills the Warden
+uninterrupted.
+
+**Why it matters:** calm-then-kill-with-damage-over-time is an
+exploit. The player's counter-strategy ("calm + wait for DoT")
+bypasses the "non-lethal pacification" intent.
+
+**Proposed fix:** two options:
+- (a) Add a NoFightGoal-bypass in AISelfPreservationPart: if HP
+  fraction < critical threshold (e.g., 0.15), remove NoFightGoal
+  and push RetreatGoal. Documented as "pacification doesn't override
+  flight instinct when dying."
+- (b) Accept the current semantics and document the exploit as
+  intentional (calm-then-kill is a valid strategy by design).
+
+**Severity rationale:** 🔵 because it's documented existing behavior,
+not new drift. Elevate to 🟡 if playtest shows it's a common exploit.
+
+---
+
 #### Milestone M3 — Ambient behavior parts (Tier B, 2–3 days)
 
 Goal: after M3, `PetGoal`, `GoFetchGoal`, and `FleeLocationGoal` are all
@@ -1855,6 +2028,194 @@ starting M3 work.
 - [ ] Shrine placed in villages during generation
 - [ ] All M3 tests green; full suite still passes
 
+##### M3 Post-audit findings (2026-04-23)
+
+Pass 3 of the Comprehensive Audit. Read: `AIPetterPart.cs`,
+`AIHoarderPart.cs`, `AIRetrieverPart.cs`, `AIFleeToShrinePart.cs`,
+`SanctuaryPart.cs`, `GoFetchGoal.cs`, `FleeLocationGoal.cs`,
+`ScenarioMenuItems.cs`, `AIBehaviorPartTests.cs` (M3.1/M3.3 test
+sections). Qud references: `AIPetter.cs`, `AIHoarder.cs`,
+`AIRetriever.cs`, `AIFleeToShrine.cs`, `GoFetch.cs`,
+`FleeLocation.cs`, `Pet.cs`.
+
+**9 findings** — 0 🔴, 2 🟡, 3 🔵, 4 🧪, 0 ⚪.
+
+| # | Sev | Cat | Title | File:line |
+|---|-----|-----|-------|-----------|
+| M3.A1 | 🟡 | func | SanctuaryPart is pure marker — heal-over-time mechanic never shipped | `SanctuaryPart.cs:9-13`, `Shrine.Physics.Solid=false` in `Objects.json:280-296` |
+| M3.A2 | 🟡 | func | AIRetrieverPart doesn't return bone to thrower; "fetch" loop is half-complete | `AIRetrieverPart.cs:115-128` (TODO comment) |
+| M3.A3 | 🔵 | bug | FleeLocationGoal's "running for safety" thought sticks after OnPop (no clear) | `FleeLocationGoal.cs:59` (set), no OnPop override |
+| M3.A4 | 🔵 | logic | No reservation on fetch targets — two Magpies race, waste motion | `AIHoarderPart.cs` + `AIRetrieverPart.cs` + `GoFetchGoal.cs` (grep for "reserv" → 0 matches) |
+| M3.A5 | 🔵 | logic | FleeLocationGoal targets SafeX,SafeY directly; future Solid sanctuary would reproduce HaulPhase-style fail | `FleeLocationGoal.cs:63` |
+| M3.A6 | 🧪 | test-integration | No test for two-Magpie race on same GoldCoin | n/a |
+| M3.A7 | 🧪 | test-integration | No test for intended "dog fetches, returns bone to owner" loop (pins M3.A2) | n/a |
+| M3.A8 | 🧪 | test-playmode | No PlayMode sanity sweep for M3 | n/a |
+| M3.A9 | 🧪 | test-manual | M3 scenarios (VillageChildrenPetting, MagpieFetchesGold, PetDogFetchesBone, WoundedScribeFleesToShrine) manual observation pending | scenarios exist + menu-wired |
+
+###### 🟡 M3.A1 (func) — SanctuaryPart has no sanctuary mechanic
+
+**File:** `Assets/Scripts/Gameplay/Settlements/SanctuaryPart.cs:9-13`
+
+SanctuaryPart class body is literally just `public override string Name
+=> "Sanctuary";`. The class docstring explicitly states:
+
+> *Pure marker — no behavior of its own. The "HealOverTime" polish
+> feature in the M3.3 plan is deferred; when implemented it'll add a
+> field here plus a tick handler that regenerates HP for adjacent
+> allied creatures. Today a shrine just provides a destination; it
+> doesn't heal on arrival.*
+
+The M3.3 plan (visible at `QUD-PARITY.md:1659+`) mentioned sanctuary
+mechanics implicitly via the scenario goal. What shipped: shrine is a
+flee destination, and an NPC reaching the shrine just stands there.
+
+**Why it matters:** player plays the scenario, sees the wounded
+Scribe run to the shrine, expects something to happen (heal, visual
+cue, faction cue, timer). Nothing happens. The scenario reads as
+"feature is broken" when it's actually "feature was descoped but
+not flagged in scenario docs."
+
+**Proposed fix:** one of
+- (a) Ship a minimal heal-over-time: at-shrine NPC regenerates 1 HP
+  per turn until Max. Add field `HealPerTurn=1` + an `OnTurnEnd`
+  handler that scans adjacent cells for allied wounded + heals one
+  tick. ~30 min.
+- (b) Accept current state, update M3.3 docstring + scenario log to
+  say "shrine reached" is the terminal state and no heal yet.
+
+**Severity rationale:** 🟡 because it's an observable design gap in
+a shipped feature — the shrine exists in the world and nothing uses
+it. Not 🔴 because the sanctuary flee destination works mechanically.
+
+###### 🟡 M3.A2 (func) — AIRetriever doesn't complete the fetch loop
+
+**File:** `Assets/Scripts/Gameplay/AI/AIRetrieverPart.cs:115-128`
+
+AIRetrieverPart pushes `new GoFetchGoal(item, returnHome: false)`
+at line 128. `returnHome: false` means GoFetchGoal terminates the
+moment the dog picks up the bone — no phase WalkHome, no drop at
+thrower. Bone permanently lives in dog's inventory.
+
+The TODO at line 115-127 acknowledges the gap:
+> *Real "dog fetches bone to owner" UX wants a third mode — walk to
+> an empty cell ADJACENT to the thrower, then DropCommand the fetched
+> item there.*
+
+As shipped, "PetDog fetches bone" plays as "Player throws bone, dog
+walks to it, bone disappears into dog" — one-shot, no repeat possible
+because bone is now in dog's inventory.
+
+**Why it matters:** `PetDogFetchesBone` scenario is misleading —
+reads as "this works" in the menu, plays as incomplete-UX in practice.
+User would reasonably expect fetch-and-return.
+
+**Proposed fix:** implement the TODO. Extend GoFetchGoal with a
+`ReturnToEntity` mode that walks to a passable cell adjacent to a
+target entity (tracking the target's current position each tick in
+case they move), then calls DropCommand. 2-4 hours + regression tests.
+
+**Severity rationale:** 🟡 because the scenario has the same
+"misleading shipped status" property as M3.A1. Not 🔴 because the
+mechanical pipeline (AIBehaviorPart consumes ItemLandedEvent, pushes
+goal, walks, picks up) works.
+
+###### 🔵 M3.A3 (bug) — FleeLocationGoal leaves "running for safety" sticky
+
+**File:** `Assets/Scripts/Gameplay/AI/Goals/FleeLocationGoal.cs:59`
+
+```csharp
+public override void TakeAction()
+{
+    var pos = CurrentZone.GetEntityPosition(ParentEntity);
+    if (pos.x < 0) { FailToParent(); return; }
+
+    Think("running for safety");
+
+    PushChildGoal(new MoveToGoal(SafeX, SafeY, MaxTurns));
+}
+```
+
+Each TakeAction re-asserts the thought. Good while goal is active.
+But no `OnPop` clears it after the goal terminates (reached safe,
+MaxTurns exceeded, or HP recovered). After pop, BoredGoal runs;
+BoredGoal doesn't Think. Result: `"running for safety"` sticks in
+LastThought indefinitely even after the NPC is back home and healed.
+
+Same exact class as the user-reported sticky-`"buried"` bug M5.2
+fixed. FleeLocationGoal has no `OnPop` override today.
+
+**Proposed fix:** add:
+```csharp
+public override void OnPop() { Think(null); }
+```
+One line. Plus a regression test in the existing M3 flee-to-shrine
+test fixture asserting LastThought is null after the goal pops.
+
+**Severity rationale:** 🔵 same reasoning as M4.A2 — mechanical
+behavior correct, only inspector readout stale. Elevate to 🟡 if user
+reports confusion during playtest.
+
+###### 🔵 M3.A4 (logic) — No fetch-target reservation; concurrent fetches waste motion
+
+**Files:** `AIHoarderPart.cs`, `AIRetrieverPart.cs`, `GoFetchGoal.cs`
+— grep for `Reserve|reserv|Claim|claim` returns 0 matches across
+all three.
+
+Compare with M5's DisposeOfCorpseGoal which explicitly reserves the
+corpse via `SetIntProperty("DepositCorpsesReserve", 50)` to prevent
+two Undertakers racing.
+
+For fetch behaviors: two Magpies in the same zone both see the same
+Shiny GoldCoin, both push `GoFetchGoal(goldcoin)`, both walk toward
+it. First arrives, calls `InventorySystem.Pickup` — succeeds, coin
+enters Magpie-A's inventory. Magpie-B's next tick:
+`GoFetchGoal.WalkToItem` line 80 `if (itemCell == null) { Pop(); return; }`
+— pops gracefully because the coin is no longer in zone (it's in
+Magpie-A's inventory).
+
+Race resolves, no crash, no data loss. But Magpie-B's wasted motion
+is real — they walked halfway to a coin that was already claimed
+by the time they arrived. For a flock scenario this compounds.
+
+**Why it matters:** efficiency + scenario feel. A "flock of magpies
+converging on a coin-drop" plays as jittery — multiple fly in, first
+grabs, others turn and walk away silently. Not wrong, just flavorless.
+
+**Proposed fix:** add a shared `FetchClaim` IntProperty that
+AIHoarder/AIRetriever set at claim time and `GoFetchGoal.OnPop`
+clears. Mirrors the M5 reservation pattern. ~30 min + counter-test.
+
+###### 🔵 M3.A5 (logic) — FleeLocationGoal targets cell directly; Solid-sanctuary future trap
+
+**File:** `FleeLocationGoal.cs:63`
+```csharp
+PushChildGoal(new MoveToGoal(SafeX, SafeY, MaxTurns));
+```
+
+The SafeX/SafeY target is passed straight to MoveToGoal. If the
+safe-target cell contains a Solid object, MoveToGoal fails.
+
+Current `Shrine` blueprint has `Physics.Solid=false` (`Objects.json:289`),
+so MoveToGoal can reach the shrine cell directly. Not a bug today.
+
+A future shrine variant (e.g., "Altar" with `Solid=true` so it can't
+be walked on top of) would reproduce the pre-fix HaulPhase bug:
+MoveToGoal can't step onto Solid, A* + greedy fail, FleeLocationGoal's
+`Failed` propagates via `FailToParent` — NPC stops wherever they
+are. And FleeLocationGoal has no corpse-in-inventory concern like
+M5.A2 does, so the consequence is just "NPC doesn't reach shrine."
+
+**Proposed fix:** identical to the HaulPhase fix —
+`FindPassableCellNearTarget` helper, MoveToGoal targets a neighbor.
+Or document `SanctuaryPart` as an invariant: "sanctuary-bearing
+entities MUST be non-Solid." Current Shrine already complies; lint
+could enforce.
+
+**Severity rationale:** 🔵 because no current content triggers the
+bug. Promote to 🟡 if a future sanctuary blueprint needs Solid.
+
+---
+
 #### Milestone M4 — Interior/Exterior cell tagging (Tier C, 3–4 days)
 
 **Status: ✅ Shipped** — 1665/1665 EditMode tests passing (1 pre-existing
@@ -1957,6 +2318,193 @@ commit chain `ac9c5cc → fe55380 → f7b9ec3`):
 | 6.1–6.4 Honesty protocols | ✅ Raw Observed/Expected tables, can/cannot-verify bounds stated |
 | 7 Unity MCP tooling | ✅ Turn-by-turn live reflection traces |
 | 8.4 Post-milestone | ✅ This section
+
+##### M4 Post-audit findings (2026-04-23)
+
+Pass 1 of the Comprehensive Audit. Read: `Cell.cs`, `AIHelpers.cs`,
+`MoveToInteriorGoal.cs`, `MoveToExteriorGoal.cs`,
+`VillageBuilder.cs`, `OverworldZoneManager.cs`,
+`MoveToInteriorExteriorGoalTests.cs`, `VillageBuilderInteriorTests.cs`,
+`ScribeSeeksShelter.cs`, `ScenarioMenuItems.cs`,
+Qud `MoveToInterior.cs`. Grepped for M4 consumers + test coverage.
+
+**9 findings** — 0 🔴, 1 🟡, 3 🔵, 3 🧪, 2 ⚪.
+
+| # | Sev | Cat | Title | File:line |
+|---|-----|-----|-------|-----------|
+| M4.A1 | 🟡 | logic | FindNearestCellWhere uses 4-directional BFS; MoveToGoal's A* uses 8-directional | `AIHelpers.cs:443,462` vs `FindPath.cs:19,119` |
+| M4.A2 | 🔵 | bug | MoveToInterior/ExteriorGoal OnPop writes sticky terminal thought ("sheltered" / "outside") | `MoveToInteriorGoal.cs:103`, `MoveToExteriorGoal.cs:84` |
+| M4.A3 | 🔵 | doc | Doorway cells tagged IsInterior=false by design; tests don't pin this | `VillageBuilder.cs:170-177` |
+| M4.A4 | 🧪 | test-unit | MarkDungeonInterior helper has no regression test | `OverworldZoneManager.cs:243` |
+| M4.A5 | 🧪 | test-playmode | No PlayMode sanity sweep for the interior-tagging + BFS + MoveTo chain | n/a |
+| M4.A6 | 🧪 | test-manual | ScribeSeeksShelter manual observation still ⏳ pending | scenario file exists + menu-wired |
+| M4.A7 | ⚪ | parity | Flat-zone IsInterior vs Qud's pocket-dim InteriorZone | documented in §M4 design table |
+| M4.A8 | ⚪ | parity | No `Interior.TryEnter` status enum equivalent | scope-pruned in §M4 |
+| M4.A9 | 🔵 | test-unit | No test explicitly checks Door cell's IsInterior value | `VillageBuilderInteriorTests.cs` |
+
+###### 🟡 M4.A1 (logic) — FindNearestCellWhere's 4-directional BFS diverges from MoveToGoal's 8-directional A*
+
+**Files:** `Assets/Scripts/Gameplay/AI/AIHelpers.cs:443,462` and `Assets/Scripts/Gameplay/AI/FindPath.cs:19,119`
+
+`FindNearestCellWhere` expands only 4 cardinal neighbors (line 443
+iterates `CardinalOffsets`, defined line 462). `FindPath.Search` —
+the A* used by every `MoveToGoal` — expands 8 directions (line 19
+comment: *"8-directional neighbor offsets (N, NE, E, SE, S, SW, W,
+NW)"*, line 119 `for (int dir = 0; dir < 8; dir++)`).
+
+Concrete failure mode: a room whose ONLY entrance is a diagonal
+passthrough (unusual but possible in a winding village layout).
+`FindNearestCellWhere` can't find the interior cell (its BFS stops
+at the diagonal boundary), so `MoveToInteriorGoal.TakeAction`
+`FailToParent`s. `MoveToGoal` itself could have pathed there.
+
+**Why it matters:** "NPC stands outside, can't find shelter" even
+when the room is actually reachable. Current starting-village layout
+uses straight-walled buildings so this rarely fires in practice, but
+a future zone with a diagonal-access building would hit it silently.
+
+**Proposed fix:** swap `CardinalOffsets` for an 8-direction array in
+the BFS loop. One-line change + a regression test that constructs a
+diagonal-access layout. Alternative (documentary): add a docstring
+note that `FindNearestCellWhere` can undercount reachable cells
+compared to A* and accept the mismatch.
+
+**Severity rationale:** 🟡 not 🔵 because it's a reachability
+mismatch between two systems that claim to answer the same question
+("is this cell reachable from here?"). Not 🔴 because the current
+content layout doesn't expose the bug.
+
+###### 🔵 M4.A2 (bug) — MoveToInterior/ExteriorGoal write sticky terminal thoughts
+
+**Files:** `Assets/Scripts/Gameplay/AI/Goals/MoveToInteriorGoal.cs:103` and `Assets/Scripts/Gameplay/AI/Goals/MoveToExteriorGoal.cs:84`
+
+`OnPop` calls `Think(cell != null && cell.IsInterior ? "sheltered" : null);` and
+the Exterior counterpart writes `"outside"`. On success, the thought
+sticks indefinitely in `LastThought` because subsequent goals
+(`BoredGoal`, `WaitGoal`, `MoveToGoal`, `WanderRandomlyGoal`) never
+call `Think()`. Same class as the user-reported sticky-`"buried"`
+bug in M5.2 (fixed in commit `941ce1e` by switching DisposeOfCorpseGoal.OnPop to `Think(null)`
+unconditionally).
+
+**Why it matters:** Phase 10 inspector shows stale `"sheltered"` for
+an NPC who may have since moved, been displaced, or is about to
+re-leave the building. The self-documenting comment in
+MoveToInteriorGoal.cs:80-99 (the extended OnPop rationale) predates
+the M5.2 UX lesson. DisposeOfCorpseGoal's current OnPop docstring
+at `DisposeOfCorpseGoal.cs:320-324` explicitly flags this as the
+M4 carry-over concern.
+
+**Proposed fix:** change both OnPops to `Think(null);` unconditionally.
+Update the 3 existing regression pins in
+`MoveToInteriorExteriorGoalTests.cs` that assert `"sheltered"` /
+`"outside"` after OnPop to instead assert `null`. Same shape as
+commit `941ce1e`.
+
+**Severity rationale:** 🔵 not 🟡 because the mechanical behavior is
+correct (NPC sheltered correctly, just the inspector readout is
+stale). Promote to 🟡 if user confirms via playtest that the stale
+thought is actively confusing (matches the M5.2 escalation path).
+
+###### 🔵 M4.A3 (doc) — Doorway cells tagged IsInterior=false by design, rationale debatable
+
+**File:** `Assets/Scripts/Gameplay/World/Generation/Builders/VillageBuilder.cs:170-177`
+
+Edge cells of a room are always `IsInterior=false` (walls AND door
+cells — the BuildRoom loop treats `isEdge` the same regardless of
+whether a door is later placed there). Comment at line 170: *"Walls
+(the edge branch) stay IsInterior=false so doors at edge positions
+naturally read as exterior, matching the intuition that the roof is
+above the floor, not the doorway."*
+
+Design argument is defensible but contestable. In weather/shelter
+rules, a doorway IS partially under the roof. If a future system
+wants "N is under roof" as a gate, door cells will be misclassified.
+
+**Why it matters:** future weather triggers (rain shelter, dusk
+curfew) that key off `IsInterior` may behave weirdly at doorways.
+Specifically: NPC walking through a door would register as
+"transitioned exterior" for one tick, then "interior" the next.
+
+**Proposed fix:** either (a) accept the current design and document
+it in Cell.cs's IsInterior xml-doc more prominently; or (b) change
+VillageBuilder to tag door cells as IsInterior=true. Needs a design
+call — flagging as 🔵 not ⚪ because it has real downstream
+consequences.
+
+###### 🧪 M4.A4 (test-unit) — MarkDungeonInterior helper has no regression test
+
+**File:** `Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs:243`
+
+The M4 post-review extracted `MarkDungeonInterior` from inline
+code into a named helper specifically so a future save/load path
+could re-invoke it (commit `ac9c5cc`, M4 fix-pass 🟡 #1). The
+extraction wasn't accompanied by a test. Grep of
+`Assets/Tests/EditMode` for `MarkDungeonInterior` returns **zero**
+matches.
+
+**Why it matters:** the helper is private-static so refactors don't
+get compile-error guardrails. If its signature or behavior changes,
+dungeon zones silently stop tagging cells IsInterior=true.
+
+**Proposed fix:** add a test that constructs a `Zone` with `wz > 0`
+(via `OverworldZoneManager.OnZoneGenerated`), asserts every cell has
+`IsInterior=true` post-call. ~15 lines.
+
+###### 🧪 M4.A5 (test-playmode) — No PlayMode sanity sweep for M4
+
+**Scope:** M4 declared ✅ Shipped without the Template §3.5 sweep.
+Unlike M5 (where the sweep caught the 🔴 HaulPhase bug that EditMode
+missed), M4 has no live-scene verification that the interior-tagging
++ BFS + MoveToGoal end-to-end chain actually works in a real bootstrap.
+M4's regression tests all use hand-constructed zones, not the
+real-Objects.json village layout.
+
+**Why it matters:** the M5 precedent is concerning — the live-scene
+flow had bugs the unit tests couldn't catch. M4's flow has the same
+shape (goal → MoveToGoal → real-village geometry). Risk is analogous.
+
+**Proposed fix:** a 3-phase PlayMode sweep (spawn Passive NPC
+outdoor → push MoveToInteriorGoal → advance turns → confirm
+`cell.IsInterior=true` at final position + thought transitioned
+correctly). Same `execute_code` shape as the M5 sweep. ~30 min.
+
+###### 🧪 M4.A6 (test-manual) — ScribeSeeksShelter manual observation pending
+
+**Scope:** `Assets/Scripts/Scenarios/Custom/ScribeSeeksShelter.cs`
+
+Scenario exists, `[Scenario]`-attributed, menu-wired at
+`ScenarioMenuItems.cs:87-89`. Confirmed via grep. But M4 §Status
+still carries `⏳ scenario shipped, awaiting user observation` (line
+1864 in QUD-PARITY.md). No user-observed playtest report has
+landed since M4 shipped.
+
+**Why it matters:** §M4's ✅ Shipped status is partially unverified.
+The M5.2 sticky-thought bug surfaced only via playtest (not EditMode
+tests). Unplaytested M4 could have analogous-but-undiscovered bugs.
+
+**Proposed fix:** user runs the scenario once and reports Observed
+vs Expected (the scenario's ctx.Log documents the expected flow).
+OR: convert to a PlayMode sweep per §M4.A5 to mechanically verify.
+
+###### 🔵 M4.A9 (test-unit) — No test explicitly checks Door cell's IsInterior
+
+**File:** `Assets/Tests/EditMode/Gameplay/World/Generation/VillageBuilderInteriorTests.cs`
+
+Existing tests cover StoneFloor (interior) and wall (exterior) cells.
+No test targets a Door entity specifically. The design (per §M4.A3)
+treats door cells as exterior. If a future VillageBuilder refactor
+starts tagging doors as interior (or changes the edge-branch logic),
+no test catches the drift.
+
+**Why it matters:** couples to §M4.A3. If A3 is resolved by keeping
+doors exterior, this test pins that decision. If A3 is resolved by
+flipping doors to interior, this test still gets written but with
+the opposite assertion. Either way, the Door case is unpinned today.
+
+**Proposed fix:** add `BuildZone_DoorCell_HasIsInteriorFalse` (or
+`_True`, pending A3) to `VillageBuilderInteriorTests.cs`.
+
+---
 
 ##### M4 Follow-up opportunities (out of M4 scope)
 
@@ -2303,6 +2851,312 @@ Read:
 | 7 | CombatSystem hot-path slow-down from entity spawn | Low | CoO already drops equipment + emits splatter fx in HandleDeath; one more spawn is symmetric |
 | 8 | Reservation never cleared (NPC dies mid-haul, corpse stays claimed forever) | Medium | `DisposeOfCorpseGoal.OnPop` clears the property unconditionally; also add `CorpsePart.OnZoneActivate` sweep to clear stale reservations (Qud-parity-plus safety) |
 
+##### M5 Post-audit findings (2026-04-23)
+
+Pass 2 of the Comprehensive Audit. Read: `CorpsePart.cs`,
+`DisposeOfCorpseGoal.cs`, `AIUndertakerPart.cs`, `SnapjawBurial.cs`,
+`CorpsePartTests.cs`, `DisposeOfCorpseGoalTests.cs`,
+`AIUndertakerPartTests.cs`, `ScenarioMenuItems.cs`, Qud `Corpse.cs` /
+`DisposeOfCorpse.cs` / `DepositCorpses.cs`. Cross-checked
+StackerPart.CanStackWith semantics against inventory / container
+flows.
+
+**12 findings** — 0 🔴, 3 🟡, 3 🔵, 4 🧪, 2 ⚪.
+
+| # | Sev | Cat | Title | File:line |
+|---|-----|-----|-------|-----------|
+| M5.A1 | 🟡 | bug | CreatureCorpse entities stack ignoring CreatureName — defeats DisplayName interpolation | `StackerPart` + `InventoryPart.AddObject` + `ContainerPart.AddItem` |
+| M5.A2 | 🟡 | bug | DisposeOfCorpseGoal.Failed doesn't drop carried corpse; orphaned in inventory forever | `DisposeOfCorpseGoal.cs:290-298` |
+| M5.A3 | 🟡 | wiring | No world-gen places Graveyard in villages — Undertaker inert outside scenarios | `VillageBuilder.cs` (absence grep), `Objects.json` (Graveyard placed only by scenario) |
+| M5.A4 | 🔵 | logic | Interpolation gate `render.DisplayName == "corpse"` is case-sensitive | `CorpsePart.cs:207` |
+| M5.A5 | 🔵 | logic | FetchPhase targets corpse cell directly; a future Solid-corpse would reproduce the HaulPhase bug pre-fix | `DisposeOfCorpseGoal.cs:143` |
+| M5.A6 | 🔵 | logic | Fallback `GetDisplayName()` returns BlueprintName with capital-S → `"Snapjaw corpse"` for creatures without a Render.DisplayName | `Entity.cs:391-405` + `CorpsePart.cs:171,209` |
+| M5.A7 | 🧪 | test-unit | Factory-null `Debug.LogWarning` (fix-pass #1) has no regression test | `CorpsePart.cs:160-163` |
+| M5.A8 | 🧪 | test-integration | No test for the sit → AIUndertaker stand → haul integration path (from `04dca03` sit-fix) | n/a |
+| M5.A9 | 🧪 | test-unit | No test covers `DisposeOfCorpseGoal.Failed` while carrying — pins M5.A2 | n/a |
+| M5.A10 | 🧪 | test-manual | SnapjawBurial visual-feel manual observation pending (PlayMode sweep covered mechanics only) | scenario file |
+| M5.A11 | ⚪ | logic | FindGraveyard returns first match, not nearest | `AIUndertakerPart.cs:107-118` — documented |
+| M5.A12 | ⚪ | logic | FindNearestUnclaimedCorpse uses Chebyshev, not reachability | `AIUndertakerPart.cs:120-164` — documented |
+
+**Cross-milestone pointer**: the M5 commit body documents a known
+ClearGoals-on-NPC-death leak affecting DisposeOfCorpseGoal's
+`DepositCorpsesReserve` cleanup. That finding lives in the
+cross-milestone section — see Cross-milestone concern CM-1.
+
+###### 🟡 M5.A1 (bug) — StackerPart merges different-CreatureName corpses
+
+**Files:** `Assets/Scripts/Gameplay/Items/StackerPart.cs:30-40` (CanStackWith),
+`Assets/Scripts/Gameplay/Inventory/InventoryPart.cs:51-89` (AddObject
+stack-merge), `Assets/Scripts/Gameplay/Items/ContainerPart.cs:30-79`
+(AddItem stack-merge).
+
+`StackerPart.CanStackWith` returns true when both entities have a
+StackerPart and share the same `BlueprintName`. `Villager` kill
+produces a CreatureCorpse with `CreatureName="villager"` and
+interpolated DisplayName `"villager corpse"`; `Scribe` kill produces
+another CreatureCorpse with `CreatureName="scribe"` and DisplayName
+`"scribe corpse"`. Both have `BlueprintName="CreatureCorpse"` → they
+stack. Player picks them up and the inventory shows
+`"scribe corpse (x2)"` (or whichever the stack-leader was) — one of
+the corpses loses its identity.
+
+This directly contradicts the M5 `59e1674` commit which shipped
+DisplayName interpolation specifically to distinguish corpse types
+in the UI.
+
+**Why it matters:** two villagers killed in the same cell → looks
+like one corpse in the UI with count=2. Butchering / burial flavor
+(future Phase 14) reads the wrong `CreatureName`. Reversible but
+quietly destructive — the minority entity's `SourceID`, `KillerID`,
+and any other Properties get discarded by MergeFrom.
+
+**Proposed fix:** extend `StackerPart.CanStackWith` to check
+equality of a declarable set of Properties (e.g., a new field
+`StackByProperties: string[]` defaulting to `[]`). `CreatureCorpse`
+blueprint sets `StackByProperties="CreatureName,SourceBlueprint"` so
+only identical-creature corpses stack. Alternative (simpler but
+loses stacking entirely for corpses): add a `NoStack` tag to
+`CreatureCorpse` and short-circuit `CanStackWith` on either party's
+`NoStack`.
+
+**Severity rationale:** 🟡 because it's observable player-facing
+incorrectness (inventory shows wrong data), not just an edge case.
+Not 🔴 because reproduction requires two corpses to land in the
+same cell, which is uncommon in normal play.
+
+###### 🟡 M5.A2 (bug) — DisposeOfCorpseGoal.Failed orphans carried corpse
+
+**File:** `Assets/Scripts/Gameplay/AI/Goals/DisposeOfCorpseGoal.cs:290-298`
+
+```csharp
+public override void Failed(GoalHandler child)
+{
+    FailToParent();
+}
+```
+
+When a child MoveToGoal hits its explicit failure path (A* AND
+greedy fallback both fail), it calls `FailToParent()`. Our
+`DisposeOfCorpseGoal.Failed(child)` cascades that up by calling
+`FailToParent()` on itself. That pops the goal and runs `OnPop`
+(lines 300+) which clears the corpse's `DepositCorpsesReserve`
+property and `LastThought` — but **does not drop the carried corpse
+back to the zone**.
+
+Downstream consequence traced end-to-end:
+1. Goal pops, `_done=false`, NPC still has corpse in `InventoryPart.Objects`.
+2. Corpse is removed from `zone._entityCells` (happened at pickup
+   via `PickupCommand.Execute`) → no longer visible in
+   `zone.GetReadOnlyEntities()`.
+3. AIUndertakerPart's next bored tick calls
+   `FindNearestUnclaimedCorpse(brain.CurrentZone, ...)` which scans
+   zone entities. The corpse isn't in the zone, so the scan misses
+   it. `FindNearestUnclaimedCorpse` returns null. No new
+   `DisposeOfCorpseGoal` pushed.
+4. NPC walks around with corpse in inventory forever. No
+   mechanism re-engages.
+
+**Why it matters:** the Undertaker pipeline silently loses a corpse
+to NPC inventory if pathing fails mid-haul. The MaxMoveTries cap in
+`HaulPhase` only fires on counter overflow (10 tries before
+drop-at-feet). The `Failed` cascade fires on any A*-and-greedy-both-
+fail tick, which for a broken/walled-in path happens immediately.
+
+**Proposed fix:** before calling `FailToParent()` in
+`Failed(GoalHandler child)`, drop the corpse at NPC's feet via
+`InventorySystem.Drop(ParentEntity, Corpse, CurrentZone)` if the
+NPC is carrying it:
+
+```csharp
+public override void Failed(GoalHandler child)
+{
+    var inv = ParentEntity?.GetPart<InventoryPart>();
+    if (inv != null && Corpse != null && inv.Contains(Corpse))
+        InventorySystem.Drop(ParentEntity, Corpse, CurrentZone);
+    FailToParent();
+}
+```
+
+Plus a regression test that forces MoveToGoal failure mid-haul
+(walls every neighbor of a Graveyard mid-carry) and asserts the
+corpse ends up in zone at NPC's feet, not stuck in inventory.
+
+**Severity rationale:** 🟡 because it's a quiet data-loss path the
+user would see as "Undertaker never finishes a burial despite
+trying." Not 🔴 because the trigger (A* and greedy both failing) is
+rare in the starting village layout. Elevate to 🔴 if a user reports
+the symptom in play.
+
+###### 🟡 M5.A3 (wiring) — No world-gen places Graveyard → Undertaker inert outside scenarios
+
+**Files:** `Assets/Scripts/Gameplay/World/Generation/Builders/VillageBuilder.cs`
+(grep for `"Graveyard"` → 0 matches inside the builder),
+`Assets/Resources/Content/Blueprints/Objects.json` (Graveyard
+blueprint exists but no world-gen references it).
+
+The `AIUndertakerPart` filter at `AIUndertakerPart.cs:87-89` requires
+a Graveyard-tagged entity in the zone:
+```csharp
+Entity graveyard = FindGraveyard(brain.CurrentZone);
+if (graveyard == null) return true;
+```
+
+In the shipped starting village, no Graveyard is placed. The
+Undertaker blueprint itself isn't placed either (no
+`PlaceNPCInInterior("Undertaker", ...)` call in VillagePopulationBuilder
+— grep confirms). So the Undertaker behavior only runs via the
+`SnapjawBurial` scenario or a future world-gen addition.
+
+**Why it matters:** the M5 section (1975+) reads as if Undertakers
+exist in villages. They don't. Player playing the game — not a
+scenario — will never encounter an Undertaker. The entire M5.3
+gameplay surface is scenario-only content for now.
+
+**Proposed fix:** extend `VillagePopulationBuilder` to
+(a) place one Graveyard at a plausible cell (village edge, near a
+path) and (b) place one Undertaker NPC associated with it. Or scope
+as intentional follow-up and update the M5 doc's status to
+"shipped; world-gen placement deferred" for honesty.
+
+**Severity rationale:** 🟡 because the gameplay-visible feature
+doesn't work in normal play. Not 🔴 because the mechanics all work;
+only the population hook is missing. The M5 docs don't claim
+world-gen placement was in scope (the follow-ups list mentions it
+explicitly), so this is scope-honesty not functional regression.
+
+###### 🔵 M5.A4 (logic) — DisplayName interpolation case-sensitive
+
+**File:** `CorpsePart.cs:205-209`
+
+```csharp
+if (render != null
+    && !string.IsNullOrEmpty(creatureName)
+    && render.DisplayName == "corpse")
+{
+    render.DisplayName = $"{creatureName} corpse";
+}
+```
+
+The gate compares exactly to lowercase `"corpse"`. If a future
+corpse blueprint accidentally uses `"Corpse"` or `" corpse"` as its
+authored DisplayName, the interpolation won't fire and the corpse
+displays as-authored. No bug today (CreatureCorpse is lowercase) but
+brittle.
+
+**Proposed fix:** use `string.Equals(render.DisplayName, "corpse",
+StringComparison.OrdinalIgnoreCase)` plus `.Trim()` on the
+blueprint-loaded string. Or accept the brittleness and
+document it in a code comment (already partially documented).
+
+###### 🔵 M5.A5 (logic) — FetchPhase targets corpse cell directly
+
+**File:** `DisposeOfCorpseGoal.cs:143`
+
+```csharp
+PushChildGoal(new MoveToGoal(corpseCell.X, corpseCell.Y, ChildMoveMaxTurns));
+```
+
+Symmetric to the HaulPhase bug that PlayMode-sweep caught. Currently
+safe because `SnapjawCorpse`/`CreatureCorpse` both have
+`Physics.Solid=false` → MoveToGoal reaches the corpse cell fine. A
+future corpse blueprint with `Solid=true` (e.g., a "frozen bandit
+corpse" acting as a temporary barrier) would reproduce the
+"MoveToGoal fails because target is solid" bug.
+
+**Proposed fix:** mirror HaulPhase's `FindPassableCellNearContainer`
+with a symmetric `FindPassableCellNearCorpse` — OR document the
+invariant ("corpse blueprints must be non-Solid") in
+`CorpsePart.CorpseBlueprint` docstring and a blueprint-validation
+lint.
+
+**Severity rationale:** 🔵 because no current content violates the
+invariant. Promote to 🟡 if a future corpse blueprint needs Solid.
+
+###### 🔵 M5.A6 (logic) — Empty-DisplayName fallback produces capital-letter interpolation
+
+**Files:** `Entity.cs:391-405` (GetDisplayName fallback),
+`CorpsePart.cs:171` (creatureName = GetDisplayName),
+`CorpsePart.cs:209` (interpolation)
+
+`Entity.GetDisplayName()` returns `RenderPart.DisplayName` when set,
+else falls back to `BlueprintName ?? ID ?? "unknown"`. A creature
+blueprint that has a RenderPart but leaves `DisplayName` empty
+(common mistake) would produce `GetDisplayName() = "Snapjaw"` (the
+BlueprintName, capital S). The interpolation then writes
+`"Snapjaw corpse"` — capital letter leaks into the player-visible
+string.
+
+No current blueprint triggers this (every Creature-derived has
+non-empty DisplayName per `VillageBuilderInteriorTests` setup and
+`AsciiWorldRenderPolicy` validation), but a new blueprint without
+DisplayName would silently look wrong.
+
+**Proposed fix:** lowercase the string at interpolation time:
+`render.DisplayName = $"{creatureName.ToLowerInvariant()} corpse";`.
+Keep the property (`CreatureName`) in its original case so consumers
+that want proper capitalization ("the corpse of a {CreatureName}")
+can do their own formatting.
+
+###### 🧪 M5.A7 (test-unit) — Factory-null log warning not tested
+
+**File:** `CorpsePart.cs:160-163`
+
+Fix-pass #1 in the M5 post-review added a `Debug.LogWarning` when
+`factory.CreateEntity(CorpseBlueprint)` returns null (misconfigured
+blueprint). No test asserts the warning actually fires. If the log
+call is accidentally deleted or changed to the wrong level, no test
+catches it.
+
+**Proposed fix:** use `LogAssert.Expect(LogType.Warning, "...")` in
+a new test `CorpsePart_LogsWarning_WhenCorpseBlueprintUnknown` that
+sets `CorpseBlueprint="NonexistentBlueprint"` and fires Died.
+
+###### 🧪 M5.A8 (test-integration) — Sit → stand → haul integration path
+
+**Scope:** `04dca03` sit-fix makes `BoredGoal.Step 1` fire
+AIBoredEvent while sitting, and an `AIBoredEvent` consumer
+(including `AIUndertakerPart`) can stand the NPC up. No test exercises
+the full path: seated Undertaker + corpse in zone → TakeTurn →
+stands up → DisposeOfCorpseGoal pushed.
+
+The existing BoredGoal sit-regression (IdleQueryTests) uses a generic
+`TestAIBoredConsumer`. Not an Undertaker-specific test.
+
+**Proposed fix:** add an `AIUndertakerPartTests` test that applies
+SittingEffect, places corpse+graveyard, fires TakeTurn on the
+Undertaker, and asserts: `SittingEffect` removed, `DisposeOfCorpseGoal`
+on stack, corpse `DepositCorpsesReserve=50`.
+
+###### 🧪 M5.A9 (test-unit) — No test covers Failed-while-carrying
+
+**Scope:** pins M5.A2. Current `DisposeOfCorpseGoalTests` has
+`HaulPhase_ExhaustedTries_DropsAtFeetAndSetsDone` for the MaxMoveTries
+cap path, but nothing for the
+`MoveToGoal.FailToParent → DisposeOfCorpseGoal.Failed → orphaned`
+path.
+
+**Proposed fix:** fix-pass commit for M5.A2 MUST include a regression
+test: construct a scenario where the MoveToGoal will fail its A* AND
+greedy step (e.g., wall-in every neighbor so the greedy step fails),
+assert after one tick the corpse is in zone at NPC's feet and the
+goal is popped.
+
+###### 🧪 M5.A10 (test-manual) — SnapjawBurial visual-feel observation pending
+
+**Scope:** `SnapjawBurial.cs` is menu-wired and has passed the
+PlayMode mechanical sweep (Scenario 1 + Scenario 2 counter-checks
+in §M5 PlayMode sweep results). But no user-confirmed visual-feel
+pass ("the corpse `%` glyph looks right," "the haul animation reads
+clearly," "the graveyard `†` is visible"). Without that pass, the
+visual-rendering-layer assumptions in §"Cannot script-verify" of the
+PlayMode sweep remain unverified.
+
+**Proposed fix:** user runs the scenario once, confirms Observed vs
+Expected on the "can NOT script-verify" list (particle emission on
+death, glyph rendering, pathing smoothness), reports back.
+
+---
+
 ##### M5 Follow-up opportunities (out of M5 scope)
 
 - **BurntCorpse / VaporizedCorpse variants** — needs `LastDamagedByType` on
@@ -2358,6 +3212,569 @@ Following the standard established by M1–M4:
 | 6.1–6.4 Honesty protocols | Observed/Expected tables in playtest scenarios; "can/cannot verify" bounds explicit |
 | 7 Unity MCP tooling | Turn-by-turn reflection traces on brain.Goals for debugging corpse-carry transitions |
 | 8.4 Post-milestone | This section gets a **Commit history** table and **Post-review findings** table after ship, mirroring M4's final form |
+
+#### Milestone M6 — Rune system (Tier C, 3–4 days)
+
+**Status: ⏳ Next** — plan ready; implementation not yet started.
+
+**Target:** 1712 → ~1740 EditMode tests; full suite green. Takes
+LayRuneGoal (currently an ⚪ "no rune system" Phase 6 entry) to
+usable content.
+
+M6 adds:
+- A new **cell-entered event hook** in `MovementSystem.TryMoveEx` so
+  environmental entities can react when a creature moves onto their
+  cell. Smallest possible change — additive event fire after the
+  existing `AfterMove`.
+- A **`TriggerOnStepPart`** that subscribes to the new event. Fires
+  an effect payload when a non-ally creature enters the rune's cell.
+- A **`RunePart`** marker + three concrete rune blueprints:
+  `RuneOfFlame`, `RuneOfFrost`, `RuneOfPoison`. Each is a
+  takeable inventory item that becomes a placed world-entity when
+  `LayRuneGoal` drops it.
+- A **`LayRuneGoal`** — 2-phase carry-to-cell-then-drop state
+  machine, ports the Qud `LayMineGoal` pattern to CoO's event model.
+- An **`AILayRunePart`** — a new `AIBehaviorPart` subclass responding
+  to `AIBoredEvent`. Selects a passable reachable cell, reserves it,
+  pushes `LayRuneGoal`.
+- A new hostile NPC blueprint — **`RuneCultist`** — with three runes
+  in starting inventory + AILayRunePart.
+- A manual-playtest scenario — **`RuneCultistAmbush`**.
+
+Downstream M6 unlocks:
+- M7 (Turret system) can reuse the event hook for "turret shoots when
+  enemy enters range" detection.
+- Phase 15 (Alchemy / explosives) can reuse the rune-part pattern for
+  thrown bombs that detonate on impact.
+
+##### M6 Pre-impl verification sweep (Methodology Template §1.2)
+
+Read and confirmed:
+- **Qud `LayMineGoal.cs`** (lines 9-83): constructor takes
+  `Location2D Target, string Mine, string MineName, string Timer,
+  int HideDifficulty`. `TakeAction` walks to `DistanceTo==1`; at
+  target, calls `Tinkering_LayMine.CreateMine(Mine, ParentObject)`
+  to spawn the mine entity, `UseEnergy(1000)`, `FailToParent` (self-
+  pop). Uses `Think()` narrative signals per phase.
+- **Qud `Miner.cs`** (lines 95-128): `BeginTakeActionEvent` handler.
+  Gates: `IsMyActivatedAbilityAIUsable`, `CanAIDoIndependentBehavior`,
+  `!HasGoal("LayMineGoal")`, `!HasGoal("WanderRandomly")`,
+  `!HasGoal("Flee")`, not-in-cooldown, zone-mine-count under
+  `MaxMinesPerZone=15`. Picks target via
+  `ParentObject.CurrentZone.GetEmptyReachableCells().GetRandomElement()`.
+- **Qud `Tinkering_Mine.cs`** (line 428): trigger uses
+  `ObjectEnteredCellEvent` — a typed event fired on entities in the
+  destination cell when another enters. This is the exact
+  mechanism we need in CoO.
+- **CoO `MovementSystem.TryMoveEx`** (`MovementSystem.cs:19-80`):
+  fires `"AfterMove"` on the MOVING entity only. Does NOT notify
+  entities in the destination cell. Needs extension for M6.
+- **CoO `EntityFactory.Factory` pattern** (in use at
+  `MaterialReactionResolver.Factory`, `CorpsePart.Factory`,
+  `ConversationActions.Factory`): established static-factory
+  convention; `LayRuneGoal` will need one too to spawn the rune
+  entity from a blueprint name.
+- **CoO precursors**: `GrimoirePart`, `TonicPart`, `StatusTonicPart`,
+  `CureTonicPart` — all Part-on-item blueprints with use / apply
+  semantics. Confirms the "rune is an item until placed, then
+  becomes an environmental entity" dual-role pattern is consistent
+  with existing item architecture.
+- **CoO combat damage pipeline**: `CombatSystem.ApplyDamage` (or a
+  similar named method) for direct-damage effects. Need to re-verify
+  precise signature during M6.1 implementation.
+
+##### Sub-milestone breakdown
+
+**M6.1 — `EntityEnteredCell` event + `TriggerOnStepPart`** (~1 day, ~8 tests)
+
+New files:
+- `Assets/Scripts/Gameplay/Entities/TriggerOnStepPart.cs` — abstract
+  base Part that subscribes to the new event, filters by predicate,
+  and dispatches to an abstract `OnTrigger(Entity actor, Zone zone)`
+  method.
+- `Assets/Scripts/Gameplay/Entities/Triggers/RuneFlameTriggerPart.cs`,
+  `RuneFrostTriggerPart.cs`, `RunePoisonTriggerPart.cs` — concrete
+  subclasses that each apply a damage + status effect payload.
+- `Assets/Tests/EditMode/Gameplay/Entities/TriggerOnStepTests.cs`.
+
+Modified files:
+- `Assets/Scripts/Gameplay/Turns/MovementSystem.cs` — add 3-5 lines
+  after the existing `AfterMove` fire: iterate destination cell's
+  `Objects` and fire a new `"EntityEnteredCell"` event on each
+  (except the mover). Event parameters: `Actor`, `Cell`.
+
+Key design choices:
+- **New event name: `"EntityEnteredCell"`** — distinct from the
+  existing `"AfterMove"` so handlers can disambiguate "I'm the one
+  who moved" vs "someone stepped onto me."
+- **Filter model** — `TriggerOnStepPart` has a `TriggerFaction`
+  string field (default empty = fire on anyone). When set, the Part
+  only triggers if `FactionManager.IsHostile(actor, placerFaction)`.
+  Placer faction read from a `PlacerFaction` property the
+  `LayRuneGoal` writes when it drops the rune.
+- **One-shot consumption** — default `ConsumeOnTrigger=true`. The
+  rune entity is removed from the zone after firing. Re-usable runes
+  (perma-sigils) set `ConsumeOnTrigger=false` as a blueprint param.
+- **Self-exclusion** — the `MovementSystem` event-fire loop skips
+  the mover itself, so a rune doesn't trigger when the placer moves
+  onto it post-placement. Defensive double-check in the Part too.
+
+Tests (8):
+- AfterMove still fires on mover (regression, existing behavior intact)
+- EntityEnteredCell fires on each non-mover object in destination cell
+- EntityEnteredCell does NOT fire on the mover itself
+- RuneFlameTriggerPart applies damage when non-faction-ally enters
+- Faction-ally stepping in does NOT trigger (counter-check)
+- Faction filter `null/empty` fires on anyone (permissive default)
+- ConsumeOnTrigger=true removes the rune from zone post-fire
+- ConsumeOnTrigger=false leaves rune in place (re-usable sigil case)
+
+**M6.2 — `LayRuneGoal` + 3 rune blueprints** (~1 day, ~10 tests)
+
+New files:
+- `Assets/Scripts/Gameplay/AI/Goals/LayRuneGoal.cs` — 2-phase state
+  machine (Walk → Place). Ports Qud's `LayMineGoal` shape.
+- `Assets/Tests/EditMode/Gameplay/AI/LayRuneGoalTests.cs`.
+- Blueprints in `Objects.json`: `RuneOfFlame`, `RuneOfFrost`,
+  `RuneOfPoison`.
+
+State machine (mirrors Qud `LayMineGoal.cs:45-82`):
+1. **Validate** — rune item still in NPC's inventory; target cell
+   still in zone + steppable; NPC in zone. Any fail → `FailToParent`.
+2. **If at target cell** → call
+   `InventorySystem.Drop(actor, runeItem, zone)` (reuses existing
+   drop-at-feet mechanic — the rune item becomes a zone entity at
+   the NPC's cell). After drop, stamp `runeItem.Properties["PlacerFaction"]
+   = actor.GetTag("Faction");` so `TriggerOnStepPart` can filter.
+   Set `_done=true`.
+3. **If not at target** → `PushChildGoal(new MoveToGoal(targetX,
+   targetY, 20))` with `GoToPlaceTries++`. Cap at 10.
+
+Constructor: `LayRuneGoal(Entity runeItem, int targetX, int targetY)`.
+Fields: `RuneItem`, `TargetX`, `TargetY`, `GoToPlaceTries`, `_done`.
+
+`CanFight() => false` (mirror Qud: don't defend while laying).
+`OnPop` clears `LastThought` (per M5.2 sticky-thought lesson).
+`Failed(child)` propagates via `FailToParent`.
+
+Rune blueprints:
+```json
+{
+  "Name": "RuneOfFlame",
+  "Inherits": "Item",
+  "Parts": [
+    { "Name": "Render", "Params": [
+      { "Key": "DisplayName", "Value": "rune of flame" },
+      { "Key": "RenderString", "Value": "‡" },
+      { "Key": "ColorString", "Value": "&R" },
+      { "Key": "RenderLayer", "Value": "3" }
+    ]},
+    { "Name": "Physics", "Params": [
+      { "Key": "Takeable", "Value": "true" },
+      { "Key": "Weight", "Value": "1" }
+    ]},
+    { "Name": "Rune", "Params": [] },
+    { "Name": "RuneFlameTrigger", "Params": [
+      { "Key": "Damage", "Value": "6" },
+      { "Key": "ApplyEffect", "Value": "BurningEffect" }
+    ]}
+  ],
+  "Tags": [{ "Key": "Rune", "Value": "" }]
+}
+```
+Frost and Poison variants swap damage value + effect class.
+
+Tests (10):
+- LayRuneGoal at target: drops rune at NPC cell, stamps PlacerFaction, _done=true
+- LayRuneGoal not at target: pushes MoveToGoal + tries counter
+- Exhausted tries: FailToParent (no successful place)
+- Validates rune still in inventory each tick
+- Validates target cell still steppable
+- OnPop clears LastThought
+- RuneOfFlame blueprint → RenderPart exists, Rune tag present
+- RuneOfFrost blueprint correct damage + effect
+- RuneOfPoison blueprint correct damage + effect
+- Placer walks away after place (rune is now in zone, not inventory)
+
+**M6.3 — `AILayRunePart` + `RuneCultist` + scenario** (~1.5 days, ~10 tests)
+
+New files:
+- `Assets/Scripts/Gameplay/AI/AILayRunePart.cs` — AIBehaviorPart
+  responding to `AIBoredEvent`. Selects a target cell and pushes
+  LayRuneGoal.
+- `Assets/Tests/EditMode/Gameplay/AI/AILayRunePartTests.cs`.
+- `Assets/Scripts/Scenarios/Custom/RuneCultistAmbush.cs` — manual
+  playtest.
+- Blueprint in `Objects.json`: `RuneCultist` — inherits Creature,
+  starting Faction=Snapjaws (or new hostile faction), inventory of
+  3 random runes, AILayRunePart.
+- `[MenuItem]` entry in `ScenarioMenuItems.cs`.
+
+Behavior part fields (Qud-parity naming):
+- `Chance = 100` — always try when bored + cooldown clear.
+- `CooldownTurns = 10` — gap between successful places (tracked via
+  `_cooldownRemaining`, decremented each TakeTurn via a cheap
+  internal ticker).
+- `MaxRunesPerZone = 5` — mirrors Qud's `MaxMinesPerZone=15`; lower
+  because CoO zones are smaller.
+- `ReservationRadius = 8` — don't re-pick a cell within N tiles of
+  an already-reserved cell.
+
+`HandleBored` flow (mirrors M5 `AIUndertakerPart.HandleBored`):
+1. Skip if no inventory or no Rune-tagged item in inventory.
+2. Skip if `HasGoal("LayRuneGoal")` (idempotency).
+3. Skip if `_cooldownRemaining > 0`.
+4. Skip if zone already has >= `MaxRunesPerZone` Rune-tagged entities.
+5. Pick a random passable + unreserved cell via a helper that
+   iterates `GetReadOnlyEntities` + `zone.Cells` and filters. Cap
+   retries at 10.
+6. Mark cell reserved via a scoped `RuneReservation` int property
+   (hacky-but-consistent with M5's DepositCorpsesReserve).
+7. Pick a rune from inventory (first match is fine; blueprint can
+   determine which runes are available).
+8. `brain.PushGoal(new LayRuneGoal(rune, cell.X, cell.Y))`.
+9. Set `_cooldownRemaining = CooldownTurns`.
+10. Consume event.
+
+`OnPop` of LayRuneGoal clears the `RuneReservation` property on the
+target cell (release the reservation).
+
+Scenario `RuneCultistAmbush`:
+- Spawn 2 RuneCultists at moderate distance from player.
+- Each spawns with 3 runes in inventory.
+- Cultists place runes in a pattern near the player's approach.
+- Player walks toward them → triggers runes → takes damage +
+  status effect.
+- Counter-check embedded in scenario docstring: "if you're the same
+  faction (not applicable by default), runes don't trigger."
+
+Tests (10):
+- AILayRunePart with rune inventory + empty reachable cell pushes
+  LayRuneGoal
+- Empty inventory → no push (no-op, event not consumed)
+- All-runes-placed zone (count >= max) → no push
+- In-cooldown → no push
+- Already has LayRuneGoal → no push (idempotency)
+- Two cultists don't reserve same cell (reservation works)
+- Blueprint wiring: RuneCultist has AILayRunePart + 3 runes
+- Integration: cultist places a rune end-to-end via TakeTurn (1 tick
+  for AIBored, N ticks for MoveToGoal, 1 tick for drop)
+- Integration: player steps on placed rune → takes damage
+- Menu wiring: RuneCultistAmbush registered in ScenarioMenuItems.cs
+
+##### M6 Design decisions (with Qud-parity evidence)
+
+| Question | Qud answer | CoO choice | Rationale |
+|---|---|---|---|
+| Trigger event mechanism | `ObjectEnteredCellEvent` fired on entities in destination cell | New `"EntityEnteredCell"` event in `MovementSystem.TryMoveEx` fired on each non-mover in dest cell | Direct port; CoO lacks the equivalent, smallest possible MovementSystem extension |
+| Item-then-entity dual-role | Mine is `IPart` on the mine object; goes into inventory via `Tinkering_LayMine.CreateMine` spawning a dropped item | Same — Rune is an item with `RunePart` marker + `TriggerOnStepPart`; uses `InventorySystem.Drop` to zone-place | Directly maps to existing CoO item patterns (GrimoirePart, TonicPart precedent) |
+| Filter model | Per-mine `WillTrigger(Actor)` checks faction + special cases | `TriggerOnStepPart.TriggerFaction` string + `FactionManager.IsHostile` | Simpler; extensible via subclass override |
+| Placer-not-triggered | Mine's `WillTrigger` excludes placer | Event-fire loop excludes mover; `PlacerFaction` property disambiguates | Two defensive layers, same net result |
+| Cooldown semantics | `Miner.MineCooldown` int counter, decremented on BeginTakeActionEvent | `AILayRunePart._cooldownRemaining` int counter, decremented each TakeTurn handler | Direct port |
+| Zone rune cap | `MaxMinesPerZone = 15` | `MaxRunesPerZone = 5` | CoO zones are 80×25 = 2000 cells; 5 is proportional to Qud's cap scaled to smaller zones. Also keeps scenario visual from spamming. |
+| Target-cell reservation | Qud uses `GetEmptyReachableCells().GetRandomElement()` (no reservation; race is rare) | CoO uses `RuneReservation` int property on target cell, cleared on OnPop | Two M6 cultists in same zone would race otherwise; consistent with M5's DepositCorpsesReserve pattern |
+| Goal's target-is-Solid concern | N/A (Qud mines target empty cells) | Symmetric to M5 HaulPhase fix: M6 target cell is always pre-verified steppable in AILayRunePart | M5.2 lesson: never target a cell-that-MoveToGoal-can't-reach |
+| `CanFight` during lay | `false` (docstring in LayMineGoal: don't fight while laying) | Same (`CanFight() => false` in LayRuneGoal) | Ports directly |
+| Invisible / hidden runes | Qud mines use `Hidden.Difficulty` — Perception gates reveal | **Deferred** — runes ship always-visible in M6. Hidden layer comes with Phase 17 (Perception) | Avoids a new mechanic ship-blocker |
+| Disarm mechanic | Qud's `IDisarmingSifrahHandler` (skill-based disarm) | **Deferred** — no disarm in M6; player + NPCs must step around or through | Phase 14 (Tinkering) |
+
+##### M6 Verification checklist (targets)
+
+- [ ] `MovementSystem` fires new `"EntityEnteredCell"` event (reg. test: existing `AfterMove` behavior preserved, new event fires on non-mover entities)
+- [ ] `TriggerOnStepPart` abstract base + 3 concrete subclasses (Flame/Frost/Poison), each with a regression test for payload + filter
+- [ ] 3 rune blueprints loadable via EntityFactory, each with correct Render + Physics + Rune tag + TriggerOnStep part
+- [ ] `LayRuneGoal` — 2-phase state machine, tries cap, OnPop thought-clear
+- [ ] `AILayRunePart` — 10-field behavior part with cooldown + reservation
+- [ ] `RuneCultist` blueprint — inherits Creature, starting 3-rune inventory, AILayRunePart
+- [ ] `RuneCultistAmbush` scenario — committed + menu-wired + smoke-tested
+- [ ] Tests: 8 (M6.1) + 10 (M6.2) + 10 (M6.3) = **~28 new M6 tests**
+- [ ] Full suite green (1712 → ~1740)
+- [ ] PlayMode sanity sweep (Template §3.5) executed with raw Observed/Expected tables
+- [ ] Manual playtest scenario written; ⏳ user observation pending
+- [ ] Post-impl audit — file:line evidence, severity-rated findings, no wishy-washy language (the M1-M5 audit's pattern-recognition gotcha flagged explicitly in pre-impl)
+
+##### M6 Risks & mitigations
+
+| # | Risk | Likelihood | Mitigation |
+|---|------|:----------:|------------|
+| 1 | New `"EntityEnteredCell"` event fires on every move → perf regression in dense zones | Low | Event fires only on destination-cell objects (usually 1-3 entities); fast-path: if cell has zero non-mover objects, skip event construction entirely |
+| 2 | MovementSystem refactor breaks existing AfterMove consumers | Low | Strict additive change — new event AFTER existing AfterMove, not a replacement. Regression tests cover both events |
+| 3 | Rune self-triggers when placer drops it (placer steps onto rune in the same tick it's placed) | Medium | `LayRuneGoal` does `InventorySystem.Drop` which adds rune to NPC's cell. NPC doesn't "enter" its own cell during that tick — no move event fires. Confirmed by reading Drop path; test regardless |
+| 4 | `EntityEnteredCell` event fires on zone-load teleport (player arrives in zone at cell X with existing rune) | Low-medium | `TryMoveEx` is the only path that fires it; zone-transition uses a different mechanism (`zone.AddEntity` directly). Test explicitly that load-into-zone doesn't trigger runes. |
+| 5 | Faction filter regresses if `FactionManager.IsHostile` semantics change | Low | Regression pin: explicitly assert hostile-vs-ally trigger behavior with test faction setup |
+| 6 | Rune spam in scenarios if `MaxRunesPerZone` isn't enforced early enough | Medium | Check happens in `AILayRunePart.HandleBored` BEFORE any goal push. Scenario writer can lower cap per-blueprint |
+| 7 | Cultist dies carrying runes → `DropInventoryOnDeath` places runes in zone with no `PlacerFaction` property → runes fire on anyone | Medium | `TriggerOnStepPart` defaults `TriggerFaction=null` = fire on anyone. Dead-cultist dropped runes still work (intent-aligned: "cultist's remaining arsenal is armed")|
+| 8 | Reservation leak if `LayRuneGoal` pops mid-flight without clearing | Low | OnPop does both: `RemoveIntProperty("RuneReservation")` on the target cell (which is a zone-level thing, not an entity — need to encode via cell's Objects' intprops, OR use a zone-level dictionary) | 
+| 9 | Scenario spawn pitfall recurrence (CompassStone etc.) | Low | `RuneCultistAmbush` uses `NearPlayer(5, 8)` ring. No `AtPlayerOffset(6,0)` or `AtPlayerOffset(2,0)`. Audited in §M6 post-impl |
+| 10 | ClearGoals-on-NPC-death leak (cross-cutting CM-1) applies to LayRuneGoal too | Medium | Fix CM-1 before M6.3 lands (add `brain?.ClearGoals()` in HandleDeath). LayRuneGoal.OnPop clears its own reservation. |
+
+##### M6 Follow-up opportunities (out of M6 scope)
+
+- **Hidden runes** — stealth/perception gate on visibility. Phase 17 work.
+- **Rune disarm** — player skill-check to safely remove placed runes. Phase 14.
+- **Rune crafting** — player-side "create a rune" recipe. Phase 14.
+- **Triggered runes (delayed)** — rune fires after N turns of a trigger condition holding. Phase 15 alchemy.
+- **Area runes** — rune affects a 3x3 or 5x5 radius rather than single cell. ~1 hour extension.
+- **Rune chains** — stepping on rune A triggers rune B elsewhere. Phase 16 combos.
+- **World-gen rune cultist placement** — M6.3 ships the blueprint but no `VillagePopulationBuilder` / `LairPopulationBuilder` hook places them. Symmetric to M5.A3 (Graveyard world-gen). Out of M6 scope — add during content-design phase.
+- **AIDisarmRune behavior** — allied NPCs attempt to disarm enemy runes. Cross-cuts M1.1 AISelfPreservation (disarm while fleeing?). Future.
+
+##### Methodology Template planned application (M6)
+
+Following the standard established by M1-M5:
+
+| Template part | Plan |
+|---|---|
+| 1.2 Pre-impl verification sweep | ✅ Done above (this doc) — Qud LayMineGoal/Miner/Tinkering_Mine + CoO MovementSystem/precursors cross-referenced with file:line citations |
+| 1.4 Risk-ordered sub-milestones | M6.1 (event + triggers, no AI) → M6.2 (goal + blueprints, testable alone) → M6.3 (behavior + NPC + scenario) |
+| 2.1 Hallucination avoidance | Every CoO API + Qud reference grepped + line-cited before any code. M5-post-impl-audit's CM-5 error is the cautionary tale — full-context read required, not just line match |
+| 2.2 Commit-message template | Scoped prefixes: `feat(turns)` for MovementSystem, `feat(entities)` for trigger parts, `feat(ai)` for goal + AILayRunePart, `feat(blueprints)` for content, `test(scenarios)` for RuneCultistAmbush |
+| 3.1 EditMode unit tests | ~28 new tests across 3 new test files |
+| 3.3 Regression pins | Existing AfterMove behavior preserved; placer-not-triggered invariant; zone-load doesn't fire triggers |
+| 3.4 Counter-check pattern | Faction-ally vs faction-hostile trigger; with-cooldown vs without; placer-step vs other-step |
+| 3.5 PlayMode sanity sweep | **Mandatory** (M5 precedent: sweep caught 🔴 EditMode missed). Before flipping M6 to ✅ Shipped |
+| 3.6 Manual playtest scenario | `RuneCultistAmbush.cs` — 2 cultists + runes; player walks into ambush zone |
+| 4 Parity audit | Pre-impl done here; post-impl re-audit before docs update |
+| 5.1–5.3 Post-impl review | Mandatory severity-scaled pass with file:line evidence. Special vigilance for CM-5-class errors (full-context reads). |
+| 6.1–6.4 Honesty protocols | Observed/Expected tables in playtest + PlayMode sweep |
+| 7 Unity MCP tooling | `run_tests` loop per sub-milestone; `execute_code` live state inspection during PlayMode sweep |
+| 8.4 Post-milestone | Commit history table + post-review findings table + Methodology Template compliance matrix — mirrors M4/M5 final form |
+
+##### M6 Audit pre-commitments
+
+The M1-M5 audit surfaced 5 recurring patterns worth pre-committing M6 to
+avoiding:
+
+1. **Terminal-thought stickiness** (CM-6 audit finding) — M6 goals with
+   `Think()` in `TakeAction` MUST override `OnPop` to `Think(null)`.
+   Apply to `LayRuneGoal` from the start.
+
+2. **Solid-target MoveToGoal** (M5.1 HaulPhase lesson) — `LayRuneGoal`'s
+   target cell is chosen by `AILayRunePart` which MUST pre-verify
+   steppability via the same `IsSteppable` predicate used in M5. No
+   post-hoc FindPassableCellNear needed because the selection is
+   upstream.
+
+3. **Scenario spawn pitfall** (CM-5, M4+M5 fix-pass lesson) —
+   `RuneCultistAmbush` uses `NearPlayer(min, max)` for ALL NPC
+   spawns. NO `AtPlayerOffset(2,0)` or `AtPlayerOffset(6,0)`.
+
+4. **Menu wiring** (CM-4 lesson, SnapjawBurial gap) — `[Scenario]`
+   attribute + `[MenuItem]` entry SAME commit. Do not split.
+
+5. **ClearGoals-on-death** (CM-1) — if not fixed cross-cutting before
+   M6.3, `LayRuneGoal.OnPop` clears its reservation explicitly so
+   an NPC dying mid-lay doesn't leak the cell-reservation property.
+
+---
+
+##### M6 Implementation status (2026-04-23)
+
+**Shipped in three commits on `main`:**
+
+| Commit | Sub-milestone | What shipped |
+|---|---|---|
+| `00ee4c3` | **M6.1** | `MovementSystem.FireCellEnteredEvents` + `EntityEnteredCell` event; `TriggerOnStepPart` abstract + `RuneFlameTriggerPart` / `RuneFrostTriggerPart` / `RunePoisonTriggerPart`; 9 tests |
+| `a5fc219` | **M6.2** | `LayRuneGoal` (Walk → Place); `RuneOfFlame` / `RuneOfFrost` / `RuneOfPoison` blueprints; `LayRuneGoal.Factory` static; 9 tests |
+| `057001f` | **M6.3** | `AILayRunePart`; `RuneCultist` blueprint (Faction=Cultists); `RuneCultistAmbush` scenario; `GameBootstrap` factory wiring; 10 tests |
+
+**Test suite:** 1740/1740 green after M6.3. Pre-M6 baseline was 1721;
+28 new tests added across the three sub-milestones plus 1 scenario
+smoke test + 1 regression added during audit = 30 net new tests.
+
+**Qud-parity references used during implementation:**
+
+- `Tinkering_Mine.cs:428` — `ObjectEnteredCellEvent` dispatched on destination-cell objects → our `"EntityEnteredCell"` event in `MovementSystem.cs:FireCellEnteredEvents`.
+- `LayMineGoal.cs:45-82` — Walk / Place state machine → our `LayRuneGoal.TakeAction`.
+- `Miner.cs:95-128` — `BeginTakeActionEvent` handler with probability + stack-cleanliness + zone-quota gates → our `AILayRunePart.HandleBored`.
+- `Miner.MaxMinesPerZone=15` (Miner.cs:19) → `AILayRune.MaxRunesPerZone=5` (scaled for CoO's smaller zones).
+
+---
+
+##### M6 Post-impl audit findings (2026-04-23)
+
+Pass 1 of the M6 post-impl audit. Read (written + re-read): `MovementSystem.cs`,
+`TriggerOnStepPart.cs`, `LayRuneGoal.cs`, `AILayRunePart.cs`,
+`RuneCultistAmbush.cs`, three rune blueprints in `Objects.json`,
+`ScenarioMenuItems.cs`. Cross-checked against the M6 Audit
+pre-commitments (above) and the audit-methodology template (§5).
+
+**5 findings** — 0 🔴, 1 🟡 (fixed in audit), 2 🔵, 1 🧪, 1 ⚪.
+
+| # | Sev | Cat | Title | File:line |
+|---|-----|-----|-------|-----------|
+| M6.A1 | 🟡→✅ | bug | AILayRunePart used `Cell.IsPassable()` not the stricter `IsSteppable` — violated M6 Audit pre-commitment #2 | `AILayRunePart.cs:PickRunePlacementCell` — **fixed in audit, regression test M6.A1 landed same commit** |
+| M6.A2 | 🔵 | logic | Two co-located runes both fire on step (double damage + stacked effects) | `MovementSystem.cs:FireCellEnteredEvents` — intentional but undocumented; add comment |
+| M6.A3 | 🔵 | logic | `AILayRunePart.PickRunePlacementCell` runs O(radius²) scan every bored tick regardless of gate outcome — cheap today but redundant when the probability gate will reject | `AILayRunePart.cs:HandleBored` (target scan after probability already passed — correct; but cached candidate list could trim 80 cell checks × N cultists) |
+| M6.A4 | 🧪 | test-integration | No PlayMode sanity sweep run — scenario smoke test proves spawn, but not the end-to-end rune-laid-then-stepped-on cycle in live turn flow | `RuneCultistAmbush.cs` (scenario) — deferred to manual QA |
+| M6.A5 | ⚪ | logic | `LayRuneGoal` places the rune AT the target cell, not one-step-away as Qud's `LayMineGoal` does — deliberate CoO divergence, documented in class xmldoc | `LayRuneGoal.cs:19-31` (already documented) |
+
+**Pre-commitment checklist results:**
+
+| # | Pre-commitment | Result |
+|---|---|---|
+| 1 | Terminal-thought stickiness — `LayRuneGoal.OnPop` must `Think(null)` | ✅ Passed — `LayRuneGoal.cs:OnPop` clears thought, matches `DisposeOfCorpseGoal` pattern |
+| 2 | Solid-target MoveToGoal — use `IsSteppable`, not `IsPassable` | ❌→✅ Violated initially (M6.A1), **fixed in audit**; regression test landed same commit |
+| 3 | Scenario spawn pitfall — `InRing`, not `AtPlayerOffset` | ✅ Passed — `RuneCultistAmbush` uses `ctx.Spawn("RuneCultist").InRing(Radius, i, Count)` |
+| 4 | Menu wiring — `[Scenario]` + `[MenuItem]` same commit | ❌→✅ Missed in M6.3 commit (`057001f`), **added in audit**; now wired in `ScenarioMenuItems.cs` |
+| 5 | ClearGoals-on-death cleanup | ✅ N/A — `LayRuneGoal` uses no cell/entity reservations |
+
+**Net audit impact:** 2 of 5 pre-commitments initially violated (M6.A1
+stricter predicate, menu entry). Both fixed in the audit-fix commit,
+with a regression test for the steppability rule. Zero blocker-grade
+findings survived to shippable code.
+
+###### 🟡 M6.A1 (bug, FIXED) — AILayRunePart used IsPassable instead of IsSteppable
+
+**File:** `Assets/Scripts/Gameplay/AI/AILayRunePart.cs:PickRunePlacementCell`
+
+The initial M6.3 commit (`057001f`) checked candidate cells with
+`Cell.IsPassable()`, which only tests the `"Solid"` tag. Blueprint
+entities with `PhysicsPart.Solid=true` but no `"Solid"` tag (chairs,
+CompassStone, chests) would slip through — `AILayRunePart` would
+target them, and `LayRuneGoal`'s child `MoveToGoal` would walk up to
+the cell, fail the last step (blocked by `PhysicsPart.HandleBeforeMove`),
+and `FailToParent` without laying the rune. Behavior-equivalent to a
+wasted turn budget but directly violates M6 Audit pre-commitment #2
+which called out this exact M5 lesson.
+
+**Fix (applied in audit):** duplicate the `IsSteppable` helper from
+`DisposeOfCorpseGoal` (tag-and-PhysicsPart scan). Added regression
+test `AILayRune_IsSteppable_RejectsCellsWithPhysicsSolidButNoSolidTag`
+which surrounds the cultist with 7 Physics-solid-but-no-tag chairs
+leaving one valid target, and asserts that's the picked cell (would
+flake under the old predicate).
+
+**Severity rationale:** 🟡 not 🔴 because the symptom is a wasted
+retry-budget (NPC eventually gives up and tries a new target), not a
+crash or correctness violation. Still meaningful: it's the exact
+category the pre-commitment was supposed to prevent, and a single-pass
+audit was what it took to catch it.
+
+###### 🔵 M6.A2 (logic) — Co-located runes both fire on step
+
+**File:** `Assets/Scripts/Gameplay/Turns/MovementSystem.cs:FireCellEnteredEvents`
+
+If two `TriggerOnStepPart` entities occupy the same cell (e.g. an
+AILayRune cultist picks a target that already has an ancient rune
+from world-gen), both trigger on a single step — the stepper takes
+two damage hits and gains two stacked status effects. This is
+arguably correct (each rune is a distinct trap), but it's not
+documented anywhere and a playtester seeing 2× Flame damage from one
+step would reasonably call it a bug.
+
+**Proposed fix:** add an xmldoc paragraph to `FireCellEnteredEvents`
+stating the semantics. No code change needed — AILayRunePart already
+filters `cell.HasObjectWithTag("Rune")` out of candidates, so
+same-cell rune-on-rune placement can only arise from world-gen or
+mixed trigger types (e.g. a rune plus a future non-rune trigger).
+
+**Severity rationale:** 🔵 because it's observable but arguably
+intentional and the upstream placer (`AILayRunePart`) already avoids
+the common source of double-placement.
+
+###### 🔵 M6.A3 (logic) — Redundant candidate-list scan on gate-reject ticks
+
+**File:** `Assets/Scripts/Gameplay/AI/AILayRunePart.cs:HandleBored`
+
+`PickRunePlacementCell` runs AFTER the probability + stack-cleanliness
++ quota gates all pass, so the order is correct — we don't scan
+unless we're definitely going to place. But within the scan itself,
+every bored tick rebuilds the whole candidate list. With 3 cultists
+at chance=15, the expected scans-per-100-ticks is 45, each ~80 cells
+= ~3600 cell checks per zone per 100 ticks. Not a hot-path problem
+yet but worth a comment pointing at an easy optimization (cache the
+list and only invalidate when runes are added/removed from the zone).
+
+**Severity rationale:** 🔵 — performance-adjacent but well within
+CoO's per-tick budget at current scale.
+
+###### 🧪 M6.A4 (test-integration) — No PlayMode sanity sweep
+
+**Scope:** live turn-flow verification of the M6 pipeline end-to-end —
+load `RuneCultistAmbush`, play for 30 turns, observe a cultist lay a
+rune, walk the player onto it, watch damage + effect apply.
+
+`ScenarioCustomSmokeTests.RuneCultistAmbush_Applies_WithoutThrowing`
+proves the scenario builds and all blueprint references resolve, but
+it doesn't tick any turns. Manual playtest is still required to catch
+any integration issues that compile-clean, unit-test-pass code can hide
+(wrong `[Scenario]` category, unintended mutation of FOV/rendering, etc.).
+
+**Proposed resolution:** defer to user playtest — log as 🧪 rather
+than block the commit. If the playtest surfaces issues, log them as
+new findings.
+
+###### ⚪ M6.A5 (logic, documented) — Rune placed at target, not one-away
+
+**File:** `Assets/Scripts/Gameplay/AI/Goals/LayRuneGoal.cs:19-31`
+
+Qud's `LayMineGoal` lays the mine at the NPC's current cell WHEN
+`DistanceTo(Target) == 1` (adjacent), deliberately keeping the NPC
+off their own mine. CoO's `LayRuneGoal` walks ONTO the target cell
+and lays the rune there. Safe because `TriggerOnStepPart` excludes
+the mover from self-triggering AND the faction filter prevents later
+same-faction occupants from setting it off, but it's a semantic
+divergence worth flagging so a future parity sweep doesn't
+accidentally "fix" it back.
+
+**Resolution:** already documented in `LayRuneGoal` class xmldoc.
+Logged here as ⚪ for traceability.
+
+##### M6 Audit-cadence pass (gap-coverage + adversarial, 2026-04-25)
+
+After the M6 post-impl audit (above) shipped, the systematic
+gap-coverage + adversarial cadence (per §3.9) was applied to round
+out the audit cycle.
+
+| Pass | Tests | First-run | Bugs |
+|---|:-:|:-:|:-:|
+| Gap-coverage (`M6CoverageGapTests.cs`) | 24 | 24/24 ✓ | 0 |
+| Adversarial cold-eye (`M6AdversarialTests.cs`) | 12 | 12/12 ✓ | 0 |
+
+Combined commit: `67a635b`. Surfaces probed:
+
+- **MovementSystem.FireCellEnteredEvents**: empty-destination skip, mover-only fast-path, target-cell reference identity, multi-occupant insertion-order dispatch, mover-pushed-off-cell mid-dispatch break (Contains-guard parity to CR-01)
+- **TriggerOnStepPart**: non-EnteredCell propagation, null-Actor / self-actor / null-Cell short-circuits, empty TriggerFaction = no-filter, HandleEvent always returns true, faction-comparison case-sensitivity, consumed-rune-doesn't-fire-on-second-stepper
+- **LayRuneGoal**: Finished/CanFight/GetDetails contracts, actor-not-in-zone FailToParent, Failed(child) propagation, MoveTries per-push, factionless-actor-doesn't-stamp, at-target-at-construction shortcut, rune-without-TriggerOnStepPart safe spawn
+- **AILayRunePart**: non-AIBored propagation, all null short-circuits, SearchRadius=0 self-exclusion, runed-cell skip, AIBored consume contract, zone-corner bounded search, two-cultist no-reservation race, RuneBlueprints cache invalidation, internal-empty-entries trim, whitespace-only no-op, quota `>=` boundary, static scratch reset
+
+**Pre-audit context**: M6 had already received post-impl audit
+(5 findings, 1 🟡 fix), perf sweep (P-01..P-09), CR review
+(CR-01..CR-08), and cultist-neutrality refactor. Adding the
+gap-coverage + adversarial pair found nothing new.
+
+**Conclusion**: M6 is the post-audit baseline. Continuing to probe
+M-series surface yields zero EV. Future cadence work should target
+the priority backlog at §3.9 (Tier S: SaveSystem, CombatSystem,
+TurnManager, StatusEffectsPart).
+
+---
+
+##### M5 Audit-cadence pass (gap-coverage + adversarial, 2026-04-25)
+
+Equivalent retroactive cadence pass for M5 (added when the M5 audit
+was being closed out alongside M6).
+
+| Pass | Tests | First-run | Bugs |
+|---|:-:|:-:|:-:|
+| Gap-coverage (`M5CoverageGapTests.cs`) | 29 | 29/29 ✓ | 0 |
+| Adversarial cold-eye (`M5AdversarialTests.cs`) | 13 | 13/13 ✓ | 0 |
+
+Commits: `ee0f6c7` (gap), `d9bcc32` (adversarial).
+
+Surfaces probed:
+
+- **CorpsePart**: BuildCorpseChance two-stage gate ordering, Factory==null no-op, CorpseBlueprint null/empty no-op, missing Zone parameter, entity-not-in-zone, bad blueprint logs warning, DisplayName interpolation gate is on Render.DisplayName (not blueprint name), HandleEvent always propagates, empty SourceID skipped, replay-on-same-creature spawns N corpses (no guard, but defended at CombatSystem layer), double-CorpsePart spawns 2 corpses, empty creature name → no interpolation, killer with empty ID + non-empty BlueprintName → independent guards
+- **DisposeOfCorpseGoal**: Finished/CanFight/GetDetails, all FailToParent paths (null Corpse / Container / inventory, container-removed-mid-haul), adjacent + missing ContainerPart drops at feet, Failed(child) propagates, GoToCorpseTries per-push, IsSteppable rejects PhysicsPart.Solid even without tag, deposit lands corpse in Contents, diagonal adjacency triggers pickup, GoToContainerTries per-push, OnPop on detached goal safe
+- **AIUndertakerPart**: non-AIBored passthrough, all null short-circuits, no-Inventory no-claim, Chance=0 never fires, success consumes AIBored, graveyard-tag-without-Container ignored, multi-corpse picks nearest by Chebyshev, actor-not-in-zone no-claim, all-corpses-claimed no-op, two-graveyards first-added wins (iteration-order contract), corpse+graveyard same cell full-lifecycle works, probability gate uses brain.Rng deterministically, Locked container observed: `inLock=True, atFeet=False` (Locked is UI-only)
+
+**Notable empirical findings** (not bugs, but contracts now pinned):
+
+1. `Replay_DiedFiredTwice_SpawnsTwoCorpses` — at the CorpsePart layer there's no guard against re-fire. Not exploitable in actual gameplay because `CombatSystem.ApplyDamage` already guards re-entry post-`65df19c`. CorpsePart correctly trusts that upstream invariant. Layered design.
+2. `ContainerPart.Locked is UI-only` — programmatic AddItem accepts regardless. An undertaker can deposit into a player-locked graveyard. Whether intentional is a game-design call; pinned via XOR assertion + TestContext.Out so the contract documents itself but the test stays valid if the semantics flip.
+
+---
 
 #### Cross-milestone dependencies
 
@@ -3002,6 +4419,503 @@ The audit is NOT considered complete if:
 
 ---
 
+#### Cross-milestone audit findings (2026-04-23)
+
+Passes 6 + 7 of the Comprehensive Audit, combined. Each of the 10
+cross-cutting concerns enumerated in the audit plan is promoted to a
+formal finding with evidence, OR dismissed. Each of the 9 pre-known
+findings is confirmed by a numbered finding above or here.
+
+**10 cross-milestone findings** — 1 🔴, 3 🟡, 4 🔵, 0 🧪, 2 ⚪. Plus
+1 🧪 for the manual-playtest-gap that hits every milestone.
+
+| # | Sev | Cat | Title | Evidence |
+|---|-----|-----|-------|----------|
+| CM-1 | 🟡 | bug | `ClearGoals`-on-NPC-death missing; reservations leak | `CombatSystem.cs` grep `ClearGoals` → 0 matches |
+| CM-2 | 🟡 | design | `Passive=true` covers 7 blueprints; Villager/Merchant/Farmer/Warden/Undertaker excluded from M2.3 witness broadcast | `Objects.json` grep for `"Passive"` returns 7 matches (Elder/Scribe/Innkeeper/WellKeeper/VillageChild/Magpie/PetDog) |
+| CM-3 | 🟡 | bug | `SittingEffect` zombie state: stays attached after NPC walks off chair (via WanderDurationGoal) | `SittingEffect.cs` — no cell-departure hook; `WanderDurationGoal.cs` — no SittingEffect removal |
+| CM-4 | 🔵 | wiring | Scenario menu-wiring pattern gap; `[Scenario]` attribute is metadata only | `ScenarioMenuItems.cs` — all current scenarios manually wired; risk is pattern-repeat |
+| CM-5 | ⚪ | — | ~~InspectAIGoals CompassStone pitfall~~ — **DISMISSED after full-context re-read** (see §audit self-correction below) | n/a |
+| CM-6 | 🔵 | pattern | Terminal-thought stickiness — multiple goals use Think() without OnPop Think(null) | M4.A2 + M3.A3 confirm; M5.2 already fixed |
+| CM-7 | 🧪 | test-manual | 18+ scenarios shipped across M1-M5; only SnapjawBurial has user-confirmed observation | aggregates M1.A3 + M2.A4 + M3.A9 + M4.A6 + M5.A10 |
+| CM-8 | 🔵 | design | `AllowIdleBehavior` on pets (Magpie, PetDog) is unusual | `Objects.json` blueprints with the tag: 9 (6 NPCs + 2 pets + Elder) |
+| CM-9 | ⚪ | doc | HandleDeath event ordering is correct but brittle to refactor | `CombatSystem.cs:440 → 445 → 451 → 467 → 470` |
+| CM-10 | 🔵 | doc | `BrainPart.CurrentZone` init asymmetric between bootstrap and zone-transition | `GameBootstrap.cs:811-820` (eager) vs `InputHandler.cs:572-574` (partial) |
+
+###### ⚪ CM-5 (dismissed) — InspectAIGoals is already guarded; original finding was an audit error
+
+**File:** `Assets/Scripts/Scenarios/Custom/InspectAIGoals.cs:46-58`
+
+**Status:** Dismissed. No bug exists. Original finding was a
+pattern-match error during the cross-milestone pass; caught during
+fix-prep before any code change.
+
+**What the original finding claimed:** `AtPlayerOffset(6, 0)` at line
+58 collides with `CompassStoneEast` → silent spawn failure → third
+occurrence of the M4/M5 pattern → 🔴.
+
+**What full-context read shows:** scenario runs a `ClearCell` sweep
+BEFORE the spawn, which removes the CompassStone:
+
+```csharp
+// Lines 46-52 — runs BEFORE line 58's spawn
+var p = ctx.Zone.GetEntityPosition(ctx.PlayerEntity);
+for (int dx = 1; dx <= 6; dx++)
+{
+    ctx.World.ClearCell(p.x + dx, p.y);
+    ctx.World.ClearCell(p.x + dx, p.y - 1);
+    ctx.World.ClearCell(p.x + dx, p.y + 1);
+}
+
+// Line 58 — by now CompassStoneEast at (p.x+6, p.y) is gone
+ctx.Spawn("Snapjaw").AtPlayerOffset(6, 0);
+```
+
+Chain verified end-to-end:
+
+1. `ZoneBuilder.ClearCell` (`ZoneBuilder.cs:57-79`) removes every
+   entity in the target cell unless `ShouldPreserve` returns true.
+2. `ShouldPreserve` (line 137-144) preserves only `PlayerEntity` plus
+   entities with the `"Wall"`, `"Floor"`, or `"Terrain"` tag.
+3. `CompassStoneEast` tags are `{"Solid", "CompassStone"}` (verified
+   in `Objects.json`). None match the preserve list.
+4. Therefore `ClearCell(p.x+6, p.y)` removes the CompassStoneEast.
+5. By the time `AtPlayerOffset(6, 0)` runs, the target cell is
+   passable — the spawn succeeds.
+
+The scenario's own docstring (lines 42-45) explicitly documents the
+sweep's intent: *"Clear east and north-east rows of starting-zone
+hazards so the three creatures have clean line-of-sight + open
+ground… compass stones and chests would otherwise block pathfinding…"*
+
+**Sibling scenarios using the same pattern (re-audited):**
+
+- `PacifiedWarden.cs:47` — ClearCell sweep before spawn.
+- `WitnessRadiusBoundary.cs:40` — ClearCell sweep before spawn.
+- `WoundedScribeFleesToShrine.cs:59` — ClearCell sweep before spawn.
+- `InspectAIGoals.cs:46-52` — ClearCell sweep before spawn (this one).
+
+All four correctly neutralise the CompassStone / Chest hazard before
+spawning. The pattern is established and sound.
+
+**Verified scenarios using blocked offsets WITHOUT a ClearCell guard:**
+
+- `grep -rn "AtPlayerOffset(6," Scenarios/Custom/` → only
+  `InspectAIGoals.cs:58` (guarded above).
+- `grep -rn "AtPlayerOffset(2," Scenarios/Custom/` → zero matches.
+  Historical M4/M5 uses of this offset were replaced with `NearPlayer`
+  during their fix-passes.
+
+**No scenario is currently exposed to the CompassStone pitfall.**
+
+###### Audit self-correction — meta-lesson (added to §5.4 scope)
+
+The CM-5 error is exactly the class Methodology Template §5.4
+(*"What review misses → Hallucination in the review itself"*) warns
+about. The original finding:
+
+- ✅ Had a valid file:line citation (`InspectAIGoals.cs:58`).
+- ✅ Had grep evidence for the CompassStone being non-passable.
+- ❌ Had a severity rationale tied to "ACTIVE bug in committed
+  scenario" — but the "active" claim required reading the FULL
+  scenario, not one line.
+- ❌ Used pattern-recognition against M4/M5 as a shortcut for
+  verification of the full-context claim.
+
+**New audit rule codified for future passes:** for any "active bug"
+or 🔴 claim, the auditor MUST read the full caller's `Apply`/
+`TakeAction`/etc. method, not just the referenced line. One-line
+citations establish the target of the claim, not its truth. Pattern-
+match against known bugs is a *hypothesis*; verification requires
+disproving all guards that could exist in context.
+
+**Downstream updates to this audit section:**
+- Fix-pass queue — 🔴 tier is now empty (CM-5 removed).
+- Audit summary tables — 1 🔴 → 0 🔴; 7 ⚪ → 8 ⚪.
+- Total findings unchanged (49), severity distribution shifted.
+
+###### 🟡 CM-1 (bug) — ClearGoals-on-NPC-death missing
+
+**File:** `Assets/Scripts/Gameplay/Combat/CombatSystem.cs` —
+`grep -n "ClearGoals" CombatSystem.cs` returns **zero** matches.
+
+`HandleDeath` currently does (in order):
+1. `body.DropAllEquipment(zone)` — line 440
+2. `DropInventoryOnDeath(target, inventory, zone)` — line 445
+3. Fire `"Died"` event — line 451
+4. `BroadcastDeathWitnessed(target, killer, zone, WitnessRadius)` — line 467
+5. `zone.RemoveEntity(target)` — line 470
+
+Step missing: `brain?.ClearGoals()` between 4 and 5. Without it, the
+dying entity's goal stack retains every goal verbatim. Goals with
+`OnPop`-based cleanup never run their cleanup.
+
+Concrete leaked state:
+- **M5 (DisposeOfCorpseGoal):** reservation `DepositCorpsesReserve=50`
+  on the carried corpse stays set → other undertakers skip that
+  corpse forever (carried corpse is in dead NPC's inventory, not
+  zone, so they can't see it anyway — but reservation still wrong).
+- **M5.A2 consequence:** corpse stays in dead NPC's inventory
+  forever (combined with the Failed-path orphan bug).
+- **M3 (GoFetchGoal):** NO reservation in M3, so no leak there.
+- **M1.3 (DormantGoal):** stack dormancy state leaks, harmless
+  since entity is dead.
+
+**Why it matters:** a wounded Undertaker dying mid-haul (player
+retaliates) leaves their carried corpse inaccessible to future
+undertakers. Compounds M5.A2.
+
+**Proposed fix:** one-liner after line 470:
+```csharp
+target.GetPart<BrainPart>()?.ClearGoals();
+```
+Insert AFTER BroadcastDeathWitnessed but BEFORE zone.RemoveEntity so
+witness handlers can still read pre-death brain state if needed.
+Add regression test per goal class with OnPop cleanup — at minimum
+DisposeOfCorpseGoal + M3's FleeLocationGoal.
+
+###### 🟡 CM-2 (design) — Passive flag limited to a specific subset; Villager/Merchant/Farmer don't react to death
+
+**Files:** `Assets/Resources/Content/Blueprints/Objects.json` —
+`grep -n '"Key": "Passive"'` returns 7 blueprints (Elder, Magpie,
+PetDog, VillageChild, WellKeeper, Innkeeper, Scribe).
+
+Villager, Farmer, Merchant, Warden, Undertaker, Tinker do NOT set
+`Passive=true`. Consequence: `CombatSystem.BroadcastDeathWitnessed`
+at line 501 filters them out (`if (brain == null || !brain.Passive)
+continue;`). They watch a neighbour die in their own shop and don't
+flinch.
+
+This was surfaced organically during investigation of the
+sit-forever bug (user asked about merchants; grep revealed exclusion).
+
+**Why it matters:** scenes where a Villager sees their neighbor
+killed play as inert — no "looks shaken" message, no pacing, no
+reaction. Contradicts M2.3's shipped-narrative ("Innkeeper pacing
+nervously after a tavern brawl" cited in WitnessedEffect.cs:6).
+
+**Why this is design not bug:** the Passive gate is documented in
+M2.3 as intentional — "only Passive NPCs witness." The gap is the
+roster of Passive-tagged NPCs, not the gate itself.
+
+**Proposed fix:** add `Passive=true` to Villager / Farmer / Merchant
+base blueprints. Wardens and Undertakers are "job-role" NPCs and
+arguably stay non-Passive. One-line edits per blueprint + update
+M2.3 docs to reflect the extended Passive roster.
+
+**Severity rationale:** 🟡 because it's a shipped-feature gap
+visible to any player observing inter-village violence. Design call
+(not a bug per se) elevates it to 🟡 rather than ⚪ because it has a
+concrete narrative consequence.
+
+###### 🟡 CM-3 (bug) — SittingEffect zombie state
+
+**Files:**
+- `Assets/Scripts/Gameplay/Effects/Concrete/SittingEffect.cs` — no
+  cell-departure hook, no OnTurnEnd cleanup. `Furniture` field
+  reference stays attached indefinitely.
+- `Assets/Scripts/Gameplay/AI/Goals/WanderDurationGoal.cs` — no
+  `SittingEffect` removal in its push or pop lifecycle.
+
+Walkthrough: Scribe sits in chair (`SittingEffect` applied via
+`ChairPart.IdleQueryOffer`). Player kills a neighbor. M2.3 applies
+`WitnessedEffect` → pushes `WanderDurationGoal(20)`. Scribe paces for
+20 ticks, walks away from chair. `SittingEffect` stays attached
+(no code path removes it based on cell-departure or movement). After
+20 ticks, WanderDurationGoal pops. BrainPart's `HandleTakeTurn` runs
+`BoredGoal.TakeAction`. `BoredGoal.Step 1` short-circuits:
+
+```csharp
+if (ParentEntity.HasEffect<SittingEffect>())
+{
+    // ...hostile check...
+    // Stay seated
+    ParentBrain.CurrentState = AIState.Idle;
+    PushChildGoal(new WaitGoal(1));
+    return;
+}
+```
+
+Scribe is now standing 10 cells away from the chair, but their
+`SittingEffect` is still present → they stand still forever, looking
+idle without actually being in the chair.
+
+**Why it matters:** post-pacing NPCs get stuck standing wherever
+they ended up, not returning to work or home. Highly visible in play
+(user has already noticed the sit-forever behavior generally).
+
+**Proposed fix:** two options:
+- (a) `SittingEffect.OnTurnEnd` checks if the carrier's current cell
+  matches `Furniture`'s cell; if not, self-remove. Safe but requires
+  per-tick spatial check.
+- (b) `WanderDurationGoal.OnPush` removes `SittingEffect` if present.
+  Narrow fix, covers the known trigger (witness-shaken). Doesn't
+  cover hypothetical future "something else displaces a sitting NPC
+  without clearing the effect."
+
+Recommend (a) — more robust. ~10 lines + regression test.
+
+###### 🔵 CM-4 (wiring) — Scenario menu-wiring pattern gap
+
+**File:** `Assets/Editor/Scenarios/ScenarioMenuItems.cs`
+
+Every scenario with a `[Scenario]` attribute needs a corresponding
+`[MenuItem]` entry here. The file's opening docstring explicitly
+warns about this (lines 8-24 of the file — "Adding a new scenario
+requires writing the IScenario class AND adding a 2-line entry here").
+SnapjawBurial hit this gap (fixed `3d7e298`). Audit confirms all
+current scenarios are menu-wired (grep shows menu entries for every
+scenario file).
+
+**Risk:** pattern-repeat. Someone adds a new scenario, forgets the
+menu entry, ships a "committed but unreachable" scenario. Same
+failure mode that took user's "I don't see the menu entry" report to
+catch for M5.
+
+**Proposed fix:** optional — a build-time validator that uses
+reflection to enumerate `[Scenario]`-attributed classes and asserts
+each has a `Launch_<Name>` static method in `ScenarioMenuItems.cs`.
+EditMode test, ~30 min.
+
+###### 🔵 CM-6 (pattern) — Terminal-thought stickiness recurring across goals
+
+**Pattern:** goals that call `Think("active-phase-description")` in
+`TakeAction` without `Think(null)` in `OnPop` leave the thought in
+`LastThought` indefinitely after the goal pops.
+
+**Affected goals (current state):**
+| Goal | Thinks in TakeAction? | OnPop clears? | Status |
+|---|---|---|---|
+| DisposeOfCorpseGoal | yes (fetching/hauling) | yes (Think(null)) | ✅ fixed M5.2 |
+| WanderDurationGoal | yes (when Thought set) | yes (Think(null)) | ✅ fixed caad57d |
+| MoveToInteriorGoal | yes (seeking shelter) | writes "sheltered" | ❌ M4.A2 |
+| MoveToExteriorGoal | yes (heading outside) | writes "outside" | ❌ M4.A2 |
+| FleeLocationGoal | yes (running for safety) | no OnPop override | ❌ M3.A3 |
+| KillGoal | yes (closing on / attacking) | no OnPop override | unknown — audit target |
+| RetreatGoal | possibly | possibly | unknown — audit target |
+| GoFetchGoal | yes (walking to X) | no OnPop override | unknown — audit target |
+
+**Why it matters:** every new goal added without OnPop-Think(null)
+perpetuates the pattern. Users notice stale thoughts (the user's
+M5.2 report kicked off the original fix).
+
+**Proposed fix:** add a Methodology Template §3.1 rule: "every Goal
+that calls Think() in TakeAction MUST override OnPop to write
+Think(null) unless the terminal thought is intentionally persistent
+(document reason in OnPop docstring)." Back-fill OnPops on the ❌
+goals above. ~15 min per goal + regression test per.
+
+###### 🔵 CM-8 (design) — AllowIdleBehavior on pets reads as oversight
+
+**File:** `Objects.json` grep for `AllowIdleBehavior` returns:
+Elder, Villager, **Magpie**, **PetDog**, VillageChild, Tinker,
+Merchant, Warden, Scribe.
+
+Magpie and PetDog having the tag means they'd accept
+`ChairPart.IdleQueryOffer` and sit in chairs if offered. Narratively
+odd — a magpie doesn't sit in a chair, a dog doesn't.
+
+No current bug: pets don't stay in the village interior where
+chairs live, so the tag's consequence is dormant. But the tag is
+present; if a future scenario places pets + chairs together, the
+pets would sit.
+
+**Proposed fix:** remove `AllowIdleBehavior` from Magpie and PetDog
+blueprints. Pets have their own behaviors (AIHoarderPart,
+AIRetrieverPart); they don't need furniture idle fallback. Or
+document why pets keep the tag if it's intentional.
+
+**Severity rationale:** 🔵 because no current gameplay surface
+exposes the oddity. Would be 🟡 if a "pet-in-tavern" scenario
+started placing pets near chairs.
+
+###### 🔵 CM-10 (doc) — CurrentZone init asymmetric
+
+**Files:**
+- **Eager** (bootstrap): `GameBootstrap.cs:800-824` — for every Creature in the initial zone, sets `brain.CurrentZone = _zone; brain.Rng = new System.Random(); brain.StartingCellX = pos.x; brain.StartingCellY = pos.y;`
+- **Partial** (zone transition): `InputHandler.cs:562-576` — for every Creature in the new zone, sets `brain.CurrentZone = result.NewZone; brain.Rng = new System.Random();`. Does NOT set StartingCell.
+
+The StartingCell omission is compensated by
+`BrainPart.HandleTakeTurn` line 303-310 which lazy-sets it on first
+tick. So functionally correct. But the asymmetry is a code smell —
+two spawn paths with different init contracts.
+
+**Why it matters:** a future spawn path (e.g., summon-mutation, dialogue-
+scripted-spawn) might forget one or both init steps and get silent
+misbehavior (NPC's first-tick StartingCell lazy-set would lock them
+to wherever they happened to be at tick 1, not their intended post).
+
+**Proposed fix:** extract an `InitializeBrainFor(Entity npc, Zone
+zone)` helper on BrainPart or GameBootstrap. Both spawn paths call
+it. Same init semantics everywhere.
+
+###### ⚪ CM-9 (doc) — HandleDeath event ordering correct but fragile
+
+**File:** `CombatSystem.cs:440-470`
+
+Confirmed order:
+1. `body.DropAllEquipment(zone)` — equipment off body onto floor
+2. `DropInventoryOnDeath(target, inventory, zone)` — inventory onto floor
+3. `DeathSplatterFx.Emit(target, killer, zone)` — particle FX
+4. `GameEvent.New("Died")` fires — CorpsePart handles, StatusEffectsPart handles, GivesRepPart handles
+5. `BroadcastDeathWitnessed(...)` — M2.3
+6. `zone.RemoveEntity(target)`
+
+Invariants required:
+- M5.1 needs death cell resolvable at step 4 (corpse spawn cell).
+- M2.3 needs death cell resolvable at step 5 (witness filter reads it).
+- Both are satisfied because step 6 (zone.RemoveEntity) is last.
+
+A refactor that moves step 6 before step 4 or 5 silently breaks both
+milestones. No test pins the ordering explicitly.
+
+**Proposed fix:** regression test that uses a custom test Part
+attached to the dying entity — the Part's HandleEvent("Died") asserts
+`zone.GetEntityCell(target) != null`. Breaks loudly if a future
+refactor reorders.
+
+**Severity rationale:** ⚪ because the current code is correct; the
+finding is a "reduce future fragility" architectural note.
+
+---
+
+#### Pre-known findings resolution (Pass 7)
+
+All 9 pre-known findings have been formalised as audit findings:
+
+| Pre-known # | Title | Resolution |
+|---|---|---|
+| 1 | ClearGoals-on-NPC-death | Promoted to 🟡 **CM-1** |
+| 2 | SittingEffect zombie state | Promoted to 🟡 **CM-3** |
+| 3 | Passive missing on Villager/Merchant | Promoted to 🟡 **CM-2** |
+| 4 | M4 MoveToInterior/Exterior sticky | Confirmed as 🔵 **M4.A2** |
+| 5 | M4 playtest pending | Confirmed as 🧪 **M4.A6** + rolled into **CM-7** |
+| 6 | Corpse stacker bug | Confirmed as 🟡 **M5.A1** (promoted from ⚪ in the Plan) |
+| 7 | No Graveyard in world-gen | Confirmed as 🟡 **M5.A3** |
+| 8 | Scenario CompassStone pitfall | Elevated to 🔴 **CM-5** (concrete InspectAIGoals hit) |
+| 9 | Scenario menu-wiring gap | Confirmed as 🔵 **CM-4** |
+
+No pre-known findings are dismissed. The severity elevations for
+#6 and #8 reflect new evidence surfaced during the passes.
+
+---
+
+#### Fix-pass queue (prioritised by severity × effort)
+
+49 findings total across 7 passes. Below is the recommended
+execution order for a fix-pass burn-down, ordered by severity (🔴
+first) and within a tier by effort (smallest first). Effort estimates
+are best-guess wall-clock for the code change + regression test +
+commit.
+
+##### 🔴 tier (ship now)
+
+*(Empty — the sole original 🔴 finding (CM-5) was dismissed as an
+audit error; see §CM-5 above.)*
+
+##### 🟡 tier (ship this fix-pass)
+
+| # | ID | Title | Effort | Depends on |
+|---|----|-------|--------|------------|
+| 2 | M5.A2 | DisposeOfCorpseGoal.Failed drops carried corpse | ~30 min | — |
+| 3 | CM-1 | HandleDeath calls brain.ClearGoals() | ~30 min | — |
+| 4 | CM-3 | SittingEffect self-removes on cell-departure | ~45 min | — |
+| 5 | M4.A1 | FindNearestCellWhere 8-directional BFS | ~20 min | — |
+| 6 | CM-2 | Add `Passive=true` to Villager/Merchant/Farmer blueprints | ~15 min | design call |
+| 7 | M2.A1 | PushNoFightGoal gets dialogue-content consumer | ~2 hrs | needs conversation JSON authoring |
+| 8 | M5.A1 | StackerPart honors CreatureName for CreatureCorpse | ~1 hr | — |
+| 9 | M3.A1 | SanctuaryPart heal-over-time minimal implementation | ~45 min | — |
+| 10 | M5.A3 | VillagePopulationBuilder places Graveyard + Undertaker | ~1 hr | — |
+| 11 | M3.A2 | AIRetriever ReturnToThrower mode | ~3 hrs | bigger refactor |
+
+##### 🔵 tier (batch in a single "pattern fixes" commit)
+
+| # | ID | Title | Effort |
+|---|----|-------|--------|
+| 12 | M4.A2 + M3.A3 + CM-6 | Terminal-thought OnPop audit — fix all known sticky thoughts | ~2 hrs total (batch) |
+| 13 | M4.A3 + M4.A9 | Doorway IsInterior decision + test | ~30 min |
+| 14 | CM-4 | Scenario menu-wiring validator | ~30 min |
+| 15 | M1.A1 + alignment | AISelfPreservation Value/BaseValue alignment | ~30 min |
+| 16 | M3.A4 | Fetch reservation for AIHoarder/AIRetriever | ~45 min |
+| 17 | M5.A4-A6 | Corpse DisplayName edge-cases (case-sensitivity, empty-name fallback) | ~30 min |
+| 18 | CM-8 | Remove `AllowIdleBehavior` from Magpie/PetDog (or document) | ~10 min |
+| 19 | CM-10 | BrainPart `InitializeBrainFor` helper | ~30 min |
+
+##### 🧪 tier (fill test gaps after code fixes)
+
+| # | ID | Title | Effort |
+|---|----|-------|--------|
+| 20 | M4.A4 | MarkDungeonInterior test | ~15 min |
+| 21 | M4.A5 | M4 PlayMode sanity sweep | ~45 min |
+| 22 | M2.A3 | M2 PlayMode sanity sweep | ~45 min |
+| 23 | M3.A8 | M3 PlayMode sanity sweep | ~45 min |
+| 24 | M1.A2 | M1 PlayMode sanity sweep | ~45 min |
+| 25 | M5.A7 | Corpse factory-null LogAssert test | ~15 min |
+| 26 | M5.A8 | Sit-stand-haul Undertaker integration test | ~30 min |
+| 27 | M5.A9 | DisposeOfCorpseGoal.Failed-while-carrying test | included in #2 |
+| 28 | M3.A6 | Two-Magpie race integration test | ~20 min |
+| 29 | CM-9 | HandleDeath event-ordering regression test | ~30 min |
+| 30 | CM-7 | User-driven manual playtest of all 18 scenarios | user time |
+
+##### ⚪ tier (architectural notes; action optional)
+
+Findings M4.A7, M4.A8, M5.A11, M5.A12, M1.A4, M2.A5 are documented
+parity divergences or design decisions. No action needed; revisit if
+the scope they defer to becomes active.
+
+---
+
+#### Audit summary
+
+**Per-pass totals:**
+
+| Pass | Milestone | Findings | 🔴 | 🟡 | 🔵 | 🧪 | ⚪ |
+|------|-----------|----------|------|------|------|------|------|
+| 1 | M4 | 9 | 0 | 1 | 3 | 3 | 2 |
+| 2 | M5 | 12 | 0 | 3 | 3 | 4 | 2 |
+| 3 | M3 | 9 | 0 | 2 | 3 | 4 | 0 |
+| 4 | M2 | 5 | 0 | 1 | 1 | 2 | 1 |
+| 5 | M1 | 4 | 0 | 0 | 1 | 2 | 1 |
+| 6+7 | Cross-milestone | 10 | 0 | 3 | 4 | 1 | 2 |
+| **Total** | | **49** | **0** | **10** | **15** | **16** | **8** |
+
+> **Audit self-correction:** the original totals carried 1 🔴 (CM-5 —
+> InspectAIGoals CompassStone). CM-5 was dismissed during fix-prep
+> after full-context verification showed the scenario correctly
+> guards the spawn via `ClearCell`. Dismissed-totals above are the
+> current state. See §CM-5 for the meta-lesson.
+
+**Headline takeaways:**
+
+1. **Zero 🔴 bugs.** (Original CM-5 🔴 dismissed per §CM-5.)
+2. **10 🟡 bugs** — concentrated in M3 (2), M5 (3), and cross-cutting (3).
+   Main themes: incomplete features shipped as "done"
+   (SanctuaryPart heal, AIRetriever return, Graveyard world-gen,
+   PushNoFightGoal dialogue consumer), plus systemic gaps
+   (ClearGoals-on-death, Passive coverage, SittingEffect zombie).
+3. **Pattern: sticky thoughts** (🔵 CM-6) — 5 goals affected across
+   M3/M4; 2 of them correct after M5.2's lesson; rest drift. One batch
+   fix-pass closes all.
+4. **Testing: no milestone except M5 ran a PlayMode sweep.** 4 of 5
+   milestones shipped ✅ Done without the Template §3.5 live-scene
+   verification. M5 caught a 🔴 with its sweep — M1-M4 carry analogous
+   risk.
+5. **Manual playtest backlog: 18+ scenarios unplayed by user.** Only
+   M5 (SnapjawBurial) has confirmed observation.
+6. **M1's low finding count (4)** reflects its rigorous pre-ship
+   14-finding review. Worth treating the M1 review as the methodology
+   template's reference worked-example.
+
+**Recommended next action:** since the 🔴 tier is empty post-
+CM-5-dismissal, plan a fix-pass sprint covering the 🟡 tier
+(~10 hours across 10 commits). After the 🟡 burn-down the shipped-
+feature claims for M1-M5 are genuinely accurate to a reader. Consider
+an audit-of-the-audit pass on the remaining 🟡 findings (30 min) to
+confirm none have a CM-5-style full-context-missed error before
+burning down code.
+
+---
+
 **Status:** 🟡 Partial (2/many)
 
 **Shipped:**
@@ -3290,8 +5204,8 @@ Follow Parts 1–7 in order. Reach for Part 8 checklists mid-milestone to
 stay honest about what you've verified.
 
 Small features (one-file, one-test bugfixes) don't need the full protocol —
-but the commit-message discipline (Part 2.2) and the honesty protocols
-(Part 6) still apply.
+but the **TDD cadence (Part 2.1)**, the commit-message discipline (Part 2.3),
+and the honesty protocols (Part 6) still apply.
 
 ---
 
@@ -3398,7 +5312,115 @@ Each could have been reverted alone.
 
 ### Part 2 — Implementation Discipline
 
-#### 2.1 — Hallucination-avoidance checklist (apply per code change)
+#### 2.1 — Test-first development (TDD) is the default cadence
+
+**Rule:** for every feature — major or small — write the failing test(s)
+**before** the implementation. This is non-negotiable for any new
+observable behavior, bug fix, or feature-gate change. It applies equally
+to Major Plan milestones and to one-file bug fixes.
+
+**Why this is in force, not optional:**
+
+The catastrophic failure mode this protocol is trying to prevent is
+"tests pass but gameplay is still broken." Under implementation-first
+cadence, it's easy to write tests that mirror the code you just wrote —
+they'll pass, but they're exercising the wrong invariant. Under test-
+first cadence, you MUST articulate the observable behavior before you
+know the implementation, which forces the test to cover user-visible
+outcomes rather than internal method calls.
+
+**Concrete instance from this codebase (why this rule exists):**
+
+The freeze-bug saga (commits `9de2156` → `f1aaabc` → `1c80b01` → `5cc04ec`)
+shipped **three successive fixes that each passed their unit tests**
+while the user-observable bug persisted:
+
+| Commit | Test that passed | Observable behavior |
+|---|---|---|
+| `9de2156` | "BeforeMove is blocked when frozen" | Player could still move |
+| `0e8e09b` | "AllowAction returns false at any Cold > 0" | Player could still move |
+| `f1aaabc` | "ProcessUntilPlayerTurn fires ≤ 1 OnTurnEnd per call" | Player was blocked, but NPCs stopped moving too |
+
+Each test was technically correct about its proxy assertion but missed
+the actual invariant the user cared about: *"when I'm frozen, I can't
+move AND other NPCs still act."* The fourth commit (`5cc04ec`) finally
+shipped position-level integration tests that asserted the real
+observable — and caught a remaining design flaw on the first run. Had
+those tests been written FIRST in each round, the thrash would have
+been zero.
+
+**Protocol:**
+
+1. **Phrase the invariant in user-visible terms** before writing any
+   code. Example: "after stepping on RuneOfFrost, pressing direction
+   keys does not move the player but NPCs still take their turns."
+2. **Write the test against that exact phrasing.** The assertion should
+   read like the invariant. Position equality, effect-list membership,
+   zone state — not proxy counters like "a method was called N times"
+   unless there's genuinely no observable downstream.
+3. **Pair every positive assertion with a counter-check** (Part 3.4) —
+   written in the same test or as a sibling test before implementation.
+4. **Run the test, confirm it FAILS.** A test that passes before you've
+   written the code is a broken test (or the code already existed).
+5. **Implement the minimum code to pass the test.** Resist the urge to
+   over-build; the test is the specification.
+6. **Re-run, confirm it passes.** Then write the next failing test for
+   the next observable invariant. Do not batch.
+
+**What a "first" test looks like in this codebase:**
+
+```csharp
+// BEFORE writing FrozenEffect.AllowAction / HandleBeforeMove / anything:
+[Test]
+public void Frozen_Player_Cannot_Move_While_Npc_Actually_Moves()
+{
+    var zone = new Zone("TestZone");
+    var player = CreateCreature();
+    player.SetTag("Player");
+    player.AddPart(new PhysicsPart { Solid = false });
+    player.ApplyEffect(new FrozenEffect(cold: 1.0f));
+    zone.AddEntity(player, 5, 5);
+
+    var npc = CreateCreature(); /* ... StepGoal east ... */
+    zone.AddEntity(npc, 10, 10);
+
+    var tm = new TurnManager();
+    tm.AddEntity(player); tm.AddEntity(npc);
+    for (int i = 0; i < 10; i++) tm.Tick();
+
+    tm.ProcessUntilPlayerTurn();
+
+    Assert.AreEqual(5,  zone.GetEntityCell(player).X, "frozen stays put");
+    Assert.AreEqual(11, zone.GetEntityCell(npc).X,    "NPC advances one step");
+}
+```
+
+This test is the **specification for the feature**. Once it passes,
+the feature is shipped. Once it fails in the future, the feature
+regressed. Proxies like "`BeginTakeAction` fired on the NPC" do not
+reach that bar.
+
+**When TDD is genuinely inapplicable:**
+
+- Pure rendering / particle / audio effects where the observable is
+  visual-only — use manual playtest (Part 3.6) instead.
+- Content-only changes (pure JSON blueprint edits) with no new
+  behavior — a smoke test that the blueprint loads is sufficient.
+- Exploratory spikes where the goal is learning what's possible, not
+  shipping. Spikes must be thrown away; do not let one become a
+  feature without the test-first rewrite.
+
+**Auditing this rule in code review / commit review:**
+
+Every commit that adds production behavior should have a test diff
+where the **test file change predates or accompanies** the production
+change. Commits that add production code without a corresponding test
+(beyond content / rendering exceptions above) should be called out in
+review. The commit-message template (Part 2.3) already has a "Tests:"
+line — if it says "0 → 0", that's a red flag for anything other than
+the documented exceptions.
+
+#### 2.2 — Hallucination-avoidance checklist (apply per code change)
 
 Before writing each new symbol:
 
@@ -3420,7 +5442,7 @@ Before calling an API you haven't used recently:
 - [ ] Check whether it mutates state that your calling context also
   touches (the `GetReadOnlyEntities` live-collection trap)
 
-#### 2.2 — Commit message template
+#### 2.3 — Commit message template
 
 Phase 6 commits converged on a consistent body structure. Reuse it:
 
@@ -3458,7 +5480,7 @@ Tests: <N> -> <M> (+D). All green.
 notes), `ecca5c9` (2 post-review findings, each cited against
 file:line).
 
-#### 2.3 — Pre-commit verification gates
+#### 2.4 — Pre-commit verification gates
 
 Before `git commit`:
 
@@ -3667,6 +5689,222 @@ strategy doc's Rule 1: "NEVER fire game events directly via execute_code").
 | Multi-system live integration | PlayMode sanity sweep (3.5) | Manual scenario (3.6) |
 | Particle / animation / "feel" | Manual scenario (3.6) | Screenshot by user |
 | UI-driven state flow | `manage_input` MCP (3.7) | — |
+| **Hunting bugs in already-shipped code** | **Adversarial cold-eye (3.9)** | Mutation testing if available |
+
+#### 3.9 — Adversarial cold-eye testing (post-implementation bug-hunting)
+
+**Distinct from §2.1 (TDD) and §3.3 (regression tests).** TDD writes
+tests *before* the production code exists — the test is the spec, and
+the code is built to satisfy it. Regression tests pin a behavior you
+just fixed so it stays fixed. **Adversarial cold-eye testing is the
+third class:** code already exists, you didn't write it (or wrote it
+long enough ago to forget the details), and you want to find lurking
+bugs that the original author and post-impl audits missed.
+
+**The discipline:**
+
+1. **Pick an unaudited target.** A class / method that's been in the
+   tree for a while, hasn't had a recent post-impl pass, and either
+   has subtle math (integer ops, thresholds, divisions) or interacts
+   with multiple systems (events, parts, zones).
+2. **Don't read the production code first.** This is non-negotiable.
+   Reading the implementation seeds your tests with whatever the
+   code does, even when what it does is wrong.
+3. **State your honest expectation in the test name + assertion
+   message + xml-doc.** Each test's xml-doc gets a `PREDICTION:` line
+   ("I think this should…") and a `CONFIDENCE:` line ("low / medium /
+   high"). Low-confidence tests are the gold — those are where
+   reality is most likely to disagree with you.
+4. **Cover edge cases adversarial users would target:**
+   - Boundary values (0, exact-equal-to-threshold, off-by-one,
+     negative, MaxValue)
+   - Null arguments at every parameter
+   - Repeated calls (idempotency: most code-under-pressure isn't)
+   - Calls in unusual states (already-dead targets, removed entities,
+     stale references)
+   - Math that could divide by zero, overflow, or accumulate float
+     drift
+   - Events fired in the wrong order, or fired twice, or with missing
+     parameters
+5. **Run the test pass.** For each failure, **honestly classify**:
+
+   | Failure cause | Action |
+   |---|---|
+   | My expectation was wrong (production behaves differently for a documented or sensible reason) | Update the test to match reality, document the surprise in the test xml-doc as a future-reader signal |
+   | Production code is genuinely buggy | Fix the production code. Keep the failing test as the regression shield. |
+   | Test setup was wrong (wrong API, missing dependency) | Fix the test setup. Discard the result — neither bug nor expectation, just an unfit test. |
+
+6. **Commit the analysis.** The commit message MUST include a
+   per-test outcome table with the classification above. Future
+   readers should be able to see which tests caught real bugs.
+
+**Why this is a distinct discipline:**
+
+The M1, M2, M3 gap-coverage passes (commits `0078a69`, `17665e5`,
+`137d0c6`) wrote tests *while looking at* the production code — and
+returned 0/59 bugs found across 59 new tests. The first adversarial
+cold-eye pass (commit `65df19c`) wrote 16 tests *without looking at*
+production and returned **2 / 16 real bugs in `CombatSystem.ApplyDamage`:**
+
+  - **Bug 1**: `ApplyDamage` auto-killed entities without a
+    Hitpoints stat. Path: `GetStatValue("Hitpoints", 0)` returns
+    the default `0` when the stat is absent; `0 <= 0` is true →
+    `HandleDeath` fires.
+  - **Bug 2**: A second `ApplyDamage` on a dying target re-fired the
+    non-idempotent `HandleDeath`, causing duplicate XP awards,
+    duplicate equipment + inventory drops (item duplication
+    exploit), duplicate `Died` events, and duplicate witness
+    broadcasts.
+
+The empirical gap between gap-coverage and adversarial cold-eye is
+**0% bug-find vs 12.5% bug-find** on the same general code surface.
+Adversarial discipline is what surfaces bugs that survived the
+original implementation and post-impl audit.
+
+##### Updated empirical pattern (post-M6, 2026-04-25)
+
+The cadence has now been applied to six milestones. Bug counts:
+
+| Milestone | Surface | Gap-coverage tests | Gap bugs | Adversarial tests | Adv. bugs |
+|-----------|---------|:------------------:|:--------:|:-----------------:|:---------:|
+| M1 | AISelfPreservation, Passive, AIAmbush, RetreatGoal, DormantGoal | 21 | 0 | 10 | 0 |
+| M2 | NoFightGoal, CalmMutation, WitnessedEffect | 16 | 0 | 9 | 0 |
+| M3 | AIPetter, Hoarder, Retriever, FleeToShrine, Sanctuary | 22 | 0 | — | — |
+| M4 | Cell.IsInterior, MoveToInterior/ExteriorGoal, FindNearestCellWhere | 19 | 0 | 11 | 0 |
+| M5 | CorpsePart, DisposeOfCorpseGoal, AIUndertakerPart | 29 | 0 | 13 | 0 |
+| M6 | TriggerOnStepPart, LayRuneGoal, AILayRunePart, MovementSystem.FireCellEnteredEvents | 24 | 0 | 12 | 0 |
+| **Cross-cut** (CombatSystem.ApplyDamage) | — | — | — | 16 | **2** |
+
+**Total**: 131 gap-coverage tests with 0 bugs found; 71 adversarial
+tests against M-series + 16 against unaudited code, 2 bugs total —
+all 2 in the `CombatSystem.ApplyDamage` cross-cut probe (`65df19c`,
+April 24th).
+
+The M-series milestones share a common shape: pre-impl plan +
+TDD-first cadence + post-impl audit (Methodology Template Parts 1.2,
+2.1, 5). Across all six, **post-hoc gap-coverage and adversarial both
+return zero**. That isn't proof the M-series is bug-free — it's proof
+that the **methodology itself exhausts the easy wins before the
+audit cadence runs**. The audit cadence's value isn't catching bugs
+in M-style code; its value is the discipline-template it preserves
+and propagates.
+
+The actual payoff sits in code that did **not** get the M-style
+treatment — older systems written before the methodology
+crystallized. The cross-cut adversarial against `CombatSystem` is
+the existence proof: 12.5% bug-find on a single 16-test session in
+~677 LOC of pre-M code.
+
+**When adversarial cold-eye is the right tool:**
+
+- A milestone has shipped and you want a deeper sweep than the
+  in-line audit produced.
+- You suspect a class has bug surface (lots of integer math, lots
+  of branches, multiple events) but haven't been able to articulate
+  what to test.
+- You're ramping up on a codebase you didn't write — adversarial
+  testing forces you to build a mental model and check it against
+  reality, which doubles as onboarding.
+
+**When adversarial cold-eye is NOT the right tool:**
+
+- You're TDD-ing a feature that doesn't exist yet — use §2.1 (write
+  test first, watch it fail RED for missing-implementation reasons).
+- You just fixed a bug — the test you write is a regression shield
+  (§3.3), not an adversarial probe.
+- You're filling gaps in coverage of behaviors you've already
+  audited — that's gap-coverage (similar shape but you read the
+  code first; failures are almost always test-misconfig, not bugs).
+
+**Cadence recommendation:**
+
+After every 2-3 milestones ship, run an adversarial pass against one
+unaudited high-value component (combat math, zone transitions, save/
+load, stat clamping, event-fire ordering). Treat the resulting bug
+list as a punch-down: each real bug becomes a fix commit + a
+permanent regression test. Tests where the prediction was wrong stay
+in the suite as honest "I expected X, actually Y" comments — useful
+for the next person working in the area.
+
+##### Where to audit next — priority backlog (post-M6, 2026-04-25)
+
+A scan of `Assets/Scripts/Gameplay/` for high-LOC files with NO
+direct `${Name}Tests.cs` test fixture, ranked by EV. These are the
+strongest candidates for the next adversarial pass — the
+`CombatSystem.ApplyDamage` precedent (12.5% adversarial bug-find on
+677 LOC of pre-M code) makes the case empirically.
+
+**Tier S — first targets** (large LOC, zero direct tests, foundational, evidence of past saga-class bugs):
+
+| Surface | LOC | Direct tests | Why high-EV |
+|---------|----:|:-:|---|
+| `Save/SaveSystem.cs` | 1876 | none | Largest file in repo. Zero automated coverage. Classic source of stale-reference, serialization-identity, and post-load static-state bugs |
+| `Combat/CombatSystem.cs` | 677 | partial (`CombatSystemTests.cs`) | Already gave up 2 bugs to `65df19c`. Active churn (5+ commits) — re-probe `HandleDeath` ordering, multi-effect re-entrancy, killer==null paths |
+| `Turns/TurnManager.cs` | 354 | none | Hosted the frozen-bug saga (3 successive fixes `9de2156`, `0e8e09b`, `1c80b01`). Edges: Speed=0, energy overflow, mid-turn entity removal, AI exception propagation |
+| `Effects/StatusEffectsPart.cs` | 445 | none | Other half of the frozen-bug saga. Edges: AllowAction-ordering when 2 effects disagree, OnStack(stacks=0), Duration=0, OnTick-during-removal, re-entrant Apply/Remove |
+
+**Tier A — second targets** (cross-cutting, lots of callers, save-load implicated):
+
+| Surface | LOC | Direct tests | Notes |
+|---------|----:|:-:|---|
+| `Mutations/MutationsPart.cs` | 1207 | none | Cross-cuts Body system; dynamic part add/remove |
+| `Turns/MovementSystem.cs` | 231 | none | M6 audited only `FireCellEnteredEvents`. Core `TryMove` / `TryMoveEx` / direction resolution / collision still unprobed |
+| `Inventory/InventoryPart.cs` | 459 | none | Equipment slots, weight calculation, body-part wiring, EquippedItems back-references after load |
+| `AI/BrainPart.cs` | 379 | none | Goal stack save/restore (`RestoreGoalsForLoad` exists but isn't pin-tested), faction wiring, Think |
+| `AI/FactionManager.cs` | 271 | none | Static singleton — init-race, registration order, `IsHostile` feeling-graph transitions |
+
+**Tier B — medium EV** (smaller scope or partial indirect coverage):
+
+| Surface | LOC | Notes |
+|---------|----:|---|
+| `Conversations/ConversationActions.cs` | 347 | `SetFaction`, `GiveItem`, `CompleteQuest` dispatch |
+| `World/ZoneTransitionSystem.cs` | 324 | Stale-reference candidate after zone unload |
+| `World/Map/OverworldZoneManager.cs` | 318 | Zone caching/eviction |
+| `Mutations/BaseMutation.cs` | 291 | Cooldown, level-up triggers |
+| `Abilities/ActivatedAbilitiesPart.cs` | 253 | Ability cooldown, energy cost |
+| `World/FieldOfView.cs` | — | Vision blocking, light propagation |
+| `AI/AIHelpers.cs` | 465 | Many shared utilities; bug here cascades |
+
+**Concrete edge candidates per Tier S surface:**
+
+*SaveSystem*:
+- Round-trip identity: `entity == reload(save(entity))` for all part types
+- `BrainPart.RestoreGoalsForLoad` preserves goal-internal state (`Age`, `ParentHandler`, custom fields like `DisposeOfCorpseGoal.GoToCorpseTries`, `LayRuneGoal.MoveTries`)
+- Static factory re-wiring: `CorpsePart.Factory`, `LayRuneGoal.Factory`, `MaterialReactionResolver.Factory` after a "cold" load
+- `InventoryPart.EquippedItems[slot]` back-references same instance after reload
+- `MutationsPart` manager IDs map to correct dynamic body parts
+- `StatusEffectsPart` non-zero stacks restored
+- `Entity.ID` collision on load
+
+*CombatSystem*:
+- `ApplyDamage(damage <= 0)` paths
+- `ApplyDamage(damage > Hitpoints.Max)` clamp / underflow
+- `killer == null` (rune DoT, poison tick, environmental) — message formatting NPE risk
+- `HandleDeath` ordering: equipment-drop → corpse-drop → Died event → zone-removal — what if a Died handler re-fires HandleDeath?
+- Multi-effect re-entrancy: `ApplyEffect(A)` whose OnApply triggers `ApplyEffect(B)`
+- `actor.GetDisplayName()` returning empty during message formatting
+
+*TurnManager*:
+- `Speed == 0` entity (stuck forever, or skipped?)
+- `Speed == int.MaxValue` energy-accumulator overflow
+- `ProcessUntilPlayerTurn` with TWO consecutive status-blocked NPCs
+- Entity dies mid-turn — turn-order with dead actor still in queue
+- AI throws during `TakeAction` — crash-propagate or skip?
+- Entity has no `Speed` stat — default vs null-deref
+
+*StatusEffectsPart*:
+- Two effects both override `AllowAction` and disagree
+- `OnStack(stacks=0)` — no-op or weird side-effect?
+- Effect with `Duration=0` — immediate-removal vs 1-turn-persists
+- `OnTick` while another effect's `OnTick` removes this effect mid-iteration
+- Same-Type effect added twice — Stack increment vs replace
+- Effect's `OnApply` adds another effect (re-entrant)
+- Effect's `OnRemove` adds another effect (zombie cycle)
+
+**Diminishing returns on M1-M6**: continuing to probe the M-series
+surface yields nothing. The cadence's purpose now is to **walk the
+priority backlog above**, one Tier-S target at a time, until the EV
+flattens.
 
 ---
 
@@ -3940,6 +6178,11 @@ Pin these in the milestone's workspace. Check items off as you go.
 - [ ] Scope pruned with rationale if the sweep revealed redundancy
 - [ ] Sub-milestone order set by blast radius (smallest first)
 - [ ] Each sub-milestone will commit standalone
+- [ ] **TDD: observable invariant phrased in user-visible terms
+  (Part 2.1)**
+- [ ] **TDD: failing test(s) written, run, and confirmed RED before any
+  production code — position-level / state-level assertions, not proxy
+  counters**
 
 #### 8.3 — Pre-commit checklist (per sub-milestone)
 
@@ -3948,7 +6191,8 @@ Pin these in the milestone's workspace. Check items off as you go.
 - [ ] New test count increased as expected (force-refresh if not)
 - [ ] Regression test present for every fix
 - [ ] Counter-check present for every positive assertion
-- [ ] Commit message body follows the template in Part 2.2
+- [ ] Failing test was written BEFORE the implementation (Part 2.1)
+- [ ] Commit message body follows the template in Part 2.3
 - [ ] Scope divergences documented (if any)
 
 #### 8.4 — Post-milestone checklist (after final sub-milestone)

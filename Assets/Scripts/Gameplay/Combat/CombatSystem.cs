@@ -386,15 +386,32 @@ namespace CavesOfOoo.Core
             {
                 if (target == null || amount <= 0) return;
 
+                // Two guards rolled into one: targets without a Hitpoints
+                // stat aren't damageable creatures (statues, props), and
+                // targets whose Hitpoints stat is already ≤ 0 are already
+                // dead — re-running the damage flow on them would re-fire
+                // HandleDeath, which is NOT idempotent. Caught by the
+                // adversarial cold-eye pass:
+                //   ApplyDamage_NoHitpointsStat_DoesNotCrashOrKill
+                //   ApplyDamage_OnAlreadyDeadTarget_DoesNotReFireDeath
+                //
+                // The double-HandleDeath consequences are concrete and
+                // exploitable: duplicate XP award, duplicate equipment +
+                // inventory drops (item duplication), duplicate Died event
+                // → potential double corpse spawn, duplicate "killed"
+                // message, duplicate witness broadcast. Worse than M6
+                // CR-01 because it isn't gated on co-location — any
+                // second damage call on a dying target trips it.
+                var hpStat = target.GetStat("Hitpoints");
+                if (hpStat == null || hpStat.BaseValue <= 0) return;
+
                 var takeDamage = GameEvent.New("TakeDamage");
                 takeDamage.SetParameter("Target", (object)target);
                 takeDamage.SetParameter("Source", (object)source);
                 takeDamage.SetParameter("Amount", amount);
                 target.FireEvent(takeDamage);
 
-                var hpStat = target.GetStat("Hitpoints");
-                if (hpStat != null)
-                    hpStat.BaseValue -= amount;
+                hpStat.BaseValue -= amount;
 
                 Stat hpAlias = target.GetStat("HP");
                 if (hpAlias != null && !ReferenceEquals(hpAlias, hpStat))
@@ -410,7 +427,7 @@ namespace CavesOfOoo.Core
                     source.FireEvent(damageDealt);
                 }
 
-                if (target.GetStatValue("Hitpoints", 0) <= 0)
+                if (hpStat.BaseValue <= 0)
                 {
                     HandleDeath(target, source, zone);
                 }

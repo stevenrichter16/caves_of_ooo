@@ -151,6 +151,23 @@ namespace CavesOfOoo.Core
             return false;
         }
 
+        /// <summary>
+        /// True when any active effect would block the owner from acting
+        /// (AllowAction returns false). Used by InputHandler to detect
+        /// the "frozen / stunned / paralyzed" state and route failed
+        /// player-input moves through the turn advancer instead of
+        /// ignoring them.
+        /// </summary>
+        public bool IsActionBlocked()
+        {
+            for (int i = 0; i < _effects.Count; i++)
+            {
+                if (!_effects[i].AllowAction(ParentEntity))
+                    return true;
+            }
+            return false;
+        }
+
         public T GetEffect<T>() where T : Effect
         {
             for (int i = 0; i < _effects.Count; i++)
@@ -164,6 +181,43 @@ namespace CavesOfOoo.Core
         public IReadOnlyList<Effect> GetAllEffects() => _effects;
 
         public int EffectCount => _effects.Count;
+
+        public void RestoreEffectsForLoad(List<Effect> effects)
+        {
+            _effects.Clear();
+            if (effects == null)
+                return;
+
+            for (int i = 0; i < effects.Count; i++)
+            {
+                Effect effect = effects[i];
+                if (effect == null)
+                    continue;
+
+                effect.Owner = ParentEntity;
+                _effects.Add(effect);
+            }
+        }
+
+        public override void OnAfterLoad(SaveReader reader)
+        {
+            // Resolve the entity's current zone so IAuraProvider effects can
+            // re-emit their visual auras after a save/load. BrainPart owns
+            // CurrentZone post-load (LoadBrainPart line ~1452 calls FindZone);
+            // entities without a brain (rare for status-effect targets) fall
+            // back to the active zone from the SaveReader. Without this, a
+            // poisoned/smoldering NPC would load with the effect mechanically
+            // intact but no visual cue — caught by
+            // SaveSystemAdversarialTests.Adv_PoisonedNpc_VisualAuraResumes_AfterSaveLoad.
+            Zone zone = ParentEntity?.GetPart<BrainPart>()?.CurrentZone
+                ?? reader?.ZoneManager?.ActiveZone;
+
+            for (int i = 0; i < _effects.Count; i++)
+            {
+                _effects[i].Owner = ParentEntity;
+                TryStartAura(_effects[i], zone);
+            }
+        }
 
         /// <summary>
         /// Remove all effects, calling OnRemove on each.
@@ -203,6 +257,19 @@ namespace CavesOfOoo.Core
                 return HandleBeginTakeAction(e);
             }
 
+            // Block movement when any active effect denies action. Defense in
+            // depth against paths that call MovementSystem.TryMove directly
+            // (e.g. InputHandler's player-move path) without first going
+            // through the TurnManager's BeginTakeAction gate.
+            //
+            // Without this, a frozen player could still press a direction
+            // key and move — the "X is frozen and cannot act!" log from
+            // HandleBeginTakeAction would appear on their skipped turn,
+            // but the next input frame would slip through because
+            // BeforeMove has no AllowAction consultation upstream.
+            if (e.ID == "BeforeMove")
+                return HandleBeforeMove(e);
+
             if (e.ID == "EndTurn")
             {
                 HandleEndTurn(e);
@@ -224,6 +291,24 @@ namespace CavesOfOoo.Core
             if (e.ID == "Render")
                 return HandleRender(e);
 
+            return true;
+        }
+
+        private bool HandleBeforeMove(GameEvent e)
+        {
+            // Same scan as HandleBeginTakeAction — if any effect returns
+            // AllowAction=false, block the move. We DON'T re-log here
+            // because HandleBeginTakeAction already logged on the turn
+            // gate; a second "cannot act" per skipped-input key-press
+            // would spam the log.
+            for (int i = 0; i < _effects.Count; i++)
+            {
+                if (!_effects[i].AllowAction(ParentEntity))
+                {
+                    e.Handled = true;
+                    return false;
+                }
+            }
             return true;
         }
 

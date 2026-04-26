@@ -80,5 +80,33 @@ namespace CavesOfOoo.Core
         {
             return _knownRecipes;
         }
+
+        public Dictionary<char, int> GetBitsSnapshot()
+        {
+            return new Dictionary<char, int>(_bits);
+        }
+
+        public void RestoreBitsAndRecipes(Dictionary<char, int> bits, IEnumerable<string> knownRecipes)
+        {
+            _bits.Clear();
+            if (bits != null)
+            {
+                foreach (var kvp in bits)
+                {
+                    if (kvp.Value > 0)
+                        _bits[kvp.Key] = kvp.Value;
+                }
+            }
+
+            _knownRecipes.Clear();
+            if (knownRecipes != null)
+            {
+                foreach (string recipe in knownRecipes)
+                {
+                    if (!string.IsNullOrWhiteSpace(recipe))
+                        _knownRecipes.Add(recipe);
+                }
+            }
+        }
     }
 }

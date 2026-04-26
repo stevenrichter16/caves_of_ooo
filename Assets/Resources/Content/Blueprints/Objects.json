@@ -3540,7 +3540,7 @@
       "Inherits": "Terrain",
       "Parts": [
         { "Name": "Render", "Params": [
-          { "Key": "DisplayName", "Value": "" },
+          { "Key": "DisplayName", "Value": "scorched earth" },
           { "Key": "RenderString", "Value": "." },
           { "Key": "ColorString", "Value": "&R" },
           { "Key": "RenderLayer", "Value": "0" }
@@ -3568,7 +3568,7 @@
       "Inherits": "Terrain",
       "Parts": [
         { "Name": "Render", "Params": [
-          { "Key": "DisplayName", "Value": "" },
+          { "Key": "DisplayName", "Value": "damp flagstone" },
           { "Key": "RenderString", "Value": "." },
           { "Key": "ColorString", "Value": "&w" },
           { "Key": "RenderLayer", "Value": "0" }
@@ -3835,7 +3835,7 @@
       "Inherits": "Terrain",
       "Parts": [
         { "Name": "Render", "Params": [
-          { "Key": "DisplayName", "Value": "" },
+          { "Key": "DisplayName", "Value": "soot-stained stone" },
           { "Key": "RenderString", "Value": "." },
           { "Key": "ColorString", "Value": "&K" },
           { "Key": "RenderLayer", "Value": "0" }
@@ -3925,7 +3925,7 @@
       "Inherits": "Terrain",
       "Parts": [
         { "Name": "Render", "Params": [
-          { "Key": "DisplayName", "Value": "" },
+          { "Key": "DisplayName", "Value": "lamplit stone" },
           { "Key": "RenderString", "Value": "." },
           { "Key": "ColorString", "Value": "&K" },
           { "Key": "RenderLayer", "Value": "0" }
@@ -4456,6 +4456,105 @@
       "Tags": [
         { "Key": "Faction", "Value": "Snapjaws" },
         { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "RuneOfFlame",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "rune of flame" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" }
+        ]},
+        { "Name": "RuneFlameTrigger", "Params": [
+          { "Key": "Damage", "Value": "8" },
+          { "Key": "SmolderDuration", "Value": "5" },
+          { "Key": "ConsumeOnTrigger", "Value": "true" }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Rune", "Value": "" }
+      ]
+    },
+    {
+      "Name": "RuneOfFrost",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "rune of frost" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" }
+        ]},
+        { "Name": "RuneFrostTrigger", "Params": [
+          { "Key": "Damage", "Value": "6" },
+          { "Key": "Cold", "Value": "1.0" },
+          { "Key": "ConsumeOnTrigger", "Value": "true" }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Rune", "Value": "" }
+      ]
+    },
+    {
+      "Name": "RuneOfPoison",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "rune of poison" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&G" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" }
+        ]},
+        { "Name": "RunePoisonTrigger", "Params": [
+          { "Key": "Damage", "Value": "3" },
+          { "Key": "PoisonDuration", "Value": "5" },
+          { "Key": "PoisonDice", "Value": "1d3" },
+          { "Key": "ConsumeOnTrigger", "Value": "true" }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Rune", "Value": "" }
+      ]
+    },
+    {
+      "Name": "RuneCultist",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "rune cultist" },
+          { "Key": "RenderString", "Value": "c" },
+          { "Key": "ColorString", "Value": "&M" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "2" }] },
+        { "Name": "AILayRune", "Params": [
+          { "Key": "Chance", "Value": "15" },
+          { "Key": "MaxRunesPerZone", "Value": "5" },
+          { "Key": "SearchRadius", "Value": "4" },
+          { "Key": "RuneBlueprints", "Value": "RuneOfFlame,RuneOfFrost,RuneOfPoison" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 14, "Min": 0, "Max": 14 },
+        { "Name": "Strength", "Value": 12 },
+        { "Name": "Agility", "Value": 13 },
+        { "Name": "Toughness", "Value": 10 },
+        { "Name": "XPValue", "Value": 25 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Cultists" },
+        { "Key": "Tier", "Value": "2" }
       ]
     }
   ]
