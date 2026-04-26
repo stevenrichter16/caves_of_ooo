@@ -60,6 +60,23 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public bool HandleInput(IInputProbe input)
         {
+            // [PauseMenuDiag] Diagnostic for "Tab doesn't open menu" bug.
+            // Fires once per Tab press in the UI layer (after InputHandler routed here).
+            // Remove this block once the issue is diagnosed.
+            bool tabDiag = input != null
+                && input.GetKeyDown(Controller != null ? Controller.OpenCloseKey : KeyCode.Tab);
+            if (tabDiag)
+            {
+                Debug.Log($"[PauseMenuDiag/UI.HandleInput] " +
+                    $"Controller={(Controller != null ? "set" : "NULL")} | " +
+                    $"SaveLoadService={(SaveLoadService != null ? "set" : "NULL")} | " +
+                    $"Log={(Log != null ? "set" : "NULL")} | " +
+                    $"Tilemap={(Tilemap != null ? "set" : "NULL")} | " +
+                    $"BgTilemap={(BgTilemap != null ? "set" : "NULL")} | " +
+                    $"PopupCamera={(PopupCamera != null ? "set" : "NULL")} | " +
+                    $"PreTick.IsOpen={(Controller?.IsOpen.ToString() ?? "n/a")}");
+            }
+
             if (Controller == null) return false;
 
             int prevSelected = Controller.SelectedIndex;
@@ -93,6 +110,16 @@ namespace CavesOfOoo.Rendering
             }
 
             bool consumed = Controller.Tick(input, SaveLoadService, Log);
+
+            // [PauseMenuDiag] Post-Tick diagnostic: did the controller open?
+            if (tabDiag)
+            {
+                Debug.Log($"[PauseMenuDiag/UI.HandleInput.PostTick] " +
+                    $"consumed={consumed} | " +
+                    $"PostTick.IsOpen={Controller.IsOpen} | " +
+                    $"OpenChanged={Controller.IsOpen != wasOpen} | " +
+                    $"SelectedIndex={Controller.SelectedIndex}");
+            }
 
             // Render when state changed or selection changed (either due to
             // keyboard nav or mouse hover handled above).
@@ -134,6 +161,14 @@ namespace CavesOfOoo.Rendering
 
         private void Render()
         {
+            // [PauseMenuDiag] Render call diagnostic.
+            Debug.Log($"[PauseMenuDiag/UI.Render] " +
+                $"Tilemap={(Tilemap != null ? "set" : "NULL")} | " +
+                $"BgTilemap={(BgTilemap != null ? "set" : "NULL")} | " +
+                $"Controller={(Controller != null ? "set" : "NULL")} | " +
+                $"IsOpen={(Controller?.IsOpen.ToString() ?? "n/a")} | " +
+                $"SelectedIndex={(Controller?.SelectedIndex.ToString() ?? "n/a")}");
+
             if (Tilemap == null || Controller == null) return;
 
             ComputePopupPosition();
