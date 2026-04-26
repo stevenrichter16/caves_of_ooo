@@ -325,6 +325,58 @@ namespace CavesOfOoo.Core
                 brain.PushGoal(new NoFightGoal(duration, wander: false));
                 MessageLog.Add($"{speaker.GetDisplayName()} stands down.");
             });
+
+            // ── House Drama actions ───────────────────────────────────────────
+
+            // arg: "DramaID:PointID:NewState" or "DramaID:PointID:NewState:PathID"
+            Register("AdvancePressurePoint", (speaker, listener, arg) =>
+            {
+                var parts = arg.Split(':');
+                if (parts.Length < 3) return;
+                string pathId = parts.Length >= 4 ? parts[3] : null;
+                HouseDramaRuntime.AdvancePressurePoint(parts[0], parts[1], parts[2], pathId);
+            });
+
+            // arg: "DramaID:NpcID:FactID"
+            Register("RevealWitnessFact", (speaker, listener, arg) =>
+            {
+                var parts = arg.Split(':');
+                if (parts.Length < 3) return;
+                HouseDramaRuntime.RevealWitnessFact(parts[0], parts[1], parts[2]);
+            });
+
+            // arg: "DramaID:Amount"
+            Register("AddCorruption", (speaker, listener, arg) =>
+            {
+                int colon = arg.IndexOf(':');
+                if (colon < 0) return;
+                if (!int.TryParse(arg.Substring(colon + 1), out int amount)) return;
+                HouseDramaRuntime.AddCorruption(arg.Substring(0, colon), amount);
+            });
+
+            // arg: "DramaID"
+            Register("StartDrama", (speaker, listener, arg) =>
+            {
+                if (string.IsNullOrEmpty(arg)) return;
+                if (HouseDramaRuntime.IsDramaActive(arg)) return;
+                if (!HouseDramaRuntime.IsDramaRegistered(arg))
+                {
+                    var data = Data.HouseDramaLoader.Get(arg);
+                    if (data == null) return;
+                    HouseDramaRuntime.RegisterDrama(data);
+                }
+                HouseDramaRuntime.ActivateDrama(arg);
+            });
+
+            // arg: "DramaID:EffectString" — e.g. "Thresker:close:InheritanceHinge:SilentBargain"
+            Register("TriggerCrossover", (speaker, listener, arg) =>
+            {
+                int colon = arg.IndexOf(':');
+                if (colon < 0) return;
+                string dramaId = arg.Substring(0, colon);
+                string effect   = arg.Substring(colon + 1);
+                HouseDramaRuntime.ApplyCrossoverEffect(dramaId, effect);
+            });
         }
 
         private static string ResolveSettlementId(Entity speaker)
