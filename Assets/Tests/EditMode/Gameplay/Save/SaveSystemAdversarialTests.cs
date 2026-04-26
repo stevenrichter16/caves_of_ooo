@@ -531,5 +531,121 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
             Assert.AreEqual("TestFaction", loaded2.Player.Tags["Faction"]);
             Assert.AreEqual("stoic", loaded2.Player.Properties["Mood"]);
         }
+
+        // ============================================================
+        // E. Visual-effect resumption after load (IAuraProvider effects)
+        // ============================================================
+
+        /// <summary>
+        /// PRED: An NPC poisoned BEFORE saving should have its visual
+        /// poison aura ACTIVE after loading the save.
+        ///
+        /// <para>The mechanism: <see cref="StatusEffectsPart.ApplyEffect"/>
+        /// (production line 51) calls <c>TryStartAura</c> for any
+        /// <see cref="IAuraProvider"/> effect (PoisonedEffect implements
+        /// this interface). On the SAVE path, the effect's data fields
+        /// round-trip via reflection — that part works. On the LOAD
+        /// path, however, <c>RestoreEffectsForLoad</c> (line 185) and
+        /// <c>StatusEffectsPart.OnAfterLoad</c> (line 202) ONLY re-wire
+        /// the <c>Owner</c> reference. Neither calls <c>TryStartAura</c>
+        /// for IAuraProvider effects. So the loaded NPC has the
+        /// PoisonedEffect data (still ticks damage on its turn) but the
+        /// visual aura — the green sparkle that tells the player "this
+        /// thing is poisoned" — is gone.</para>
+        ///
+        /// <para><b>CONFIDENCE: LOW</b> — this is a real adversarial
+        /// probe. If the test FAILS, classify as <i>code-wrong</i> and
+        /// fix StatusEffectsPart.OnAfterLoad to call TryStartAura on
+        /// each IAuraProvider effect using the loaded entity's current
+        /// zone. The fix is small and the regression test is this very
+        /// test.</para>
+        ///
+        /// <para><b>How we assert.</b> AsciiFxBus enqueues
+        /// <c>AuraStart</c> requests for IAuraProvider apply paths.
+        /// Calling <c>AsciiFxBus.Drain()</c> returns + clears the
+        /// queue, so we can probe two phases:
+        /// <list type="number">
+        ///   <item>Apply via canonical path → drain → assert AuraStart was emitted (sanity).</item>
+        ///   <item>Clear queue → save+load → drain → assert AuraStart was emitted (the bug surface).</item>
+        /// </list></para>
+        /// </summary>
+        [Test]
+        public void Adv_PoisonedNpc_VisualAuraResumes_AfterSaveLoad()
+        {
+            // --- Setup: NPC + StatusEffectsPart in a zone ---
+            AsciiFxBus.Clear();
+            var player = MakeCreature("p-1", "Player");
+            player.SetTag("Player");
+            var npc = MakeCreature("victim-1", "Snapjaw");
+            var effects = new StatusEffectsPart();
+            npc.AddPart(effects);
+
+            var zone = new Zone("Z");
+            zone.AddEntity(player, 1, 1);
+            zone.AddEntity(npc, 5, 5);
+            var mgr = new OverworldZoneManager(null, 12345);
+            mgr.ReplaceLoadedState(
+                new System.Collections.Generic.Dictionary<string, Zone> { { zone.ZoneID, zone } },
+                zone.ZoneID,
+                new System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<ZoneConnection>>());
+            var turns = new TurnManager();
+            turns.RestoreSavedState(0, true, player,
+                new System.Collections.Generic.List<TurnManager.SavedTurnEntry>
+                {
+                    new TurnManager.SavedTurnEntry { Entity = player, Energy = 100 },
+                    new TurnManager.SavedTurnEntry { Entity = npc, Energy = 100 }
+                });
+
+            // --- Phase 1: apply poison via canonical path; assert aura started ---
+            effects.ApplyEffect(new PoisonedEffect(duration: 5), source: null, zone: zone);
+            var preSaveRequests = AsciiFxBus.Drain();
+            Assert.IsTrue(
+                AnyAuraStart(preSaveRequests, AsciiFxTheme.Poison, npc),
+                "Sanity check: applying PoisonedEffect via the canonical path must emit AuraStart on AsciiFxBus.");
+
+            // --- Phase 2: round-trip; clear queue between save and load so the
+            //              post-load assertion only sees load-emitted requests ---
+            var state = GameSessionState.Capture("g", "v", mgr, turns, player);
+            using var stream = new MemoryStream();
+            state.Save(new SaveWriter(stream));
+            stream.Position = 0;
+
+            AsciiFxBus.Clear();  // strict isolation: only post-load events from here on
+
+            var loaded = GameSessionState.Load(new SaveReader(stream, null));
+
+            // Find the loaded NPC instance.
+            Entity loadedNpc = null;
+            foreach (var obj in loaded.ZoneManager.ActiveZone.GetCell(5, 5).Objects)
+                if (obj.ID == "victim-1") { loadedNpc = obj; break; }
+            Assert.IsNotNull(loadedNpc, "Setup precondition: loaded NPC must be present in the zone.");
+
+            // Sanity: effect data round-tripped (this part works — it's just the visuals
+            // that have historically been silent on the load path).
+            var loadedEffects = loadedNpc.GetPart<StatusEffectsPart>();
+            Assert.IsNotNull(loadedEffects, "StatusEffectsPart must round-trip.");
+            Assert.IsNotNull(loadedEffects.GetEffect<PoisonedEffect>(),
+                "PoisonedEffect data must round-trip (mechanical state — separate from the visual probe).");
+
+            // --- The actual probe: aura must be re-established on load ---
+            var postLoadRequests = AsciiFxBus.Drain();
+            Assert.IsTrue(
+                AnyAuraStart(postLoadRequests, AsciiFxTheme.Poison, loadedNpc),
+                "Loaded poisoned NPC must have its visual poison aura re-established. " +
+                "If this fails — code-wrong: StatusEffectsPart.OnAfterLoad must iterate effects " +
+                "and call TryStartAura on each IAuraProvider using the entity's current zone.");
+        }
+
+        private static bool AnyAuraStart(System.Collections.Generic.List<AsciiFxRequest> requests,
+                                         AsciiFxTheme theme, Entity anchor)
+        {
+            for (int i = 0; i < requests.Count; i++)
+            {
+                var r = requests[i];
+                if (r.Type == AsciiFxRequestType.AuraStart && r.Theme == theme && r.Anchor == anchor)
+                    return true;
+            }
+            return false;
+        }
     }
 }
