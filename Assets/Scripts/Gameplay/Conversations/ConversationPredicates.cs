@@ -174,6 +174,45 @@ namespace CavesOfOoo.Core
 
                 return site.Stage == stage;
             });
+
+            // ── House Drama predicates ────────────────────────────────────────
+
+            // arg: "DramaID"
+            Register("IfDramaActive", (speaker, listener, arg) =>
+                HouseDramaRuntime.IsDramaActive(arg));
+
+            // arg: "DramaID:PointID:ExpectedState"
+            Register("IfPressurePointState", (speaker, listener, arg) =>
+            {
+                var parts = arg.Split(':');
+                if (parts.Length < 3) return false;
+                return HouseDramaRuntime.GetPressurePointState(parts[0], parts[1]) == parts[2];
+            });
+
+            // arg: "DramaID:PointID:ExpectedPathID"
+            Register("IfPathTaken", (speaker, listener, arg) =>
+            {
+                var parts = arg.Split(':');
+                if (parts.Length < 3) return false;
+                return HouseDramaRuntime.GetPathTaken(parts[0], parts[1]) == parts[2];
+            });
+
+            // arg: "DramaID:NpcID:FactID"
+            Register("IfWitnessKnows", (speaker, listener, arg) =>
+            {
+                var parts = arg.Split(':');
+                if (parts.Length < 3) return false;
+                return HouseDramaRuntime.WitnessKnows(parts[0], parts[1], parts[2]);
+            });
+
+            // arg: "DramaID:Score"
+            Register("IfCorruptionAtLeast", (speaker, listener, arg) =>
+            {
+                int colon = arg.IndexOf(':');
+                if (colon < 0) return false;
+                if (!int.TryParse(arg.Substring(colon + 1), out int min)) return false;
+                return HouseDramaRuntime.GetCorruption(arg.Substring(0, colon)) >= min;
+            });
         }
 
         private static string ResolveSettlementId(Entity speaker)
