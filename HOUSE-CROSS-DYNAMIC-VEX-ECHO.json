@@ -1,0 +1,451 @@
+{
+  "CrossDynamics": [
+    {
+      "ID": "VexEcho-PoisonedOration",
+      "Name": "The Poisoned Oration",
+      "Subtitle": "A guilt-chain bridging House Vex and House Echo across five Bloomtangle years",
+      "InvolvedHouses": ["Vex", "Echo"],
+      "Setting": {
+        "TemporalAnchor": "Five years ago, on the third night of the river-port council's monsoon-eve session, the orator Audric Vell drank a cup of mulled cane-juice during a recess and collapsed at the speaker's rail. He survived. His vocal cords did not.",
+        "PhysicalAnchor": "The cup was a small unmarked vessel, sealed with a wax-stamp of three concentric rings. The vintner who poured it died two weeks later of an unrelated bloom-fever. The cup itself sits in the river-port magistrate's evidence room, never matched to a maker — its contents were a fast-decaying Ironheart compound (a precursor of the modern series), and the residue had vaporized by the time investigators reached it",
+        "WhatActuallyHappened": "Sael ferried the bottle of Ironheart precursor up from the Knot to a Saltspine-port intermediary on the night of the eighteenth Wenday, five monsoons ago. Theron had distilled it three days earlier, under Kess's first major commission. Kess's broker delivered it to the vintner, who poured it for Vell. The assassin (Aelis Mor) was paid by a rival orator to ensure the cup was offered. Aelis was murdered the next morning by Vell's people; Vell's first memorial-stone, commissioned anonymously through an early Echo intermediary, was a recording of her dying breath. Marrek milled it. He never knew whose voice he was preserving. Nobody outside Vell's inner circle has ever connected these dots"
+      },
+      "RootSecret": "The Whisper Council exists because of a single Wenday-night shipment from House Vex. Vell's voicelessness was made in the Knot's distillery and ferried by Sael's boat. House Echo's corruption is downstream of House Vex's compromise by exactly one bottle and four years. Theron does not know this. Sael half-suspects. Marrek does not know. Vell knows perfectly, has always known, and views his commissions to House Echo as a kind of poetic justice — he is making the basin's voice-keepers into archivists of his enemies' deaths because the basin's poison-makers made him voiceless. He has never said this aloud. He could not, even if he wished to",
+      "BridgeNpcRoles": [
+        {
+          "Id": "aelis",
+          "Role": "AbsentInstrument",
+          "Variant": "instrumental-victim",
+          "Alive": false,
+          "Age": 34,
+          "DeathDetails": "Aelis Mor — a small-press reporter for the river-port news-leaves who moonlit as a paid intermediary for political grievances. She accepted three thousand silver from a rival orator to ensure the poisoned cup reached Vell on the third Wenday. She succeeded. The next morning, Vell's people poured her a 'congratulatory' cup that was its own Ironheart compound; she died choking in the alley behind the council chambers, witnessed only by a stone-carver's apprentice who has since left the basin. Her body was buried unmarked. Her dying breath was captured by a small fossil-stone planted in the alley's gutter by a mid-level Whisper Council operative who knew, even then, what Vell was building. The stone reached Marrek through three intermediaries, listed as 'sister of a grieving family, name withheld.' He milled it without question. It was his first commission for what would later be called the Whisper Council",
+          "Wants": "(retrospectively) — to have understood that she was a tool, not an agent; to have refused the silver",
+          "Fears": "(retrospectively) — that her name would be entirely lost; that her last words would be played for the man who killed her",
+          "SelfDeception": "Believed she was the buyer's instrument, not Vell's; believed her death was clean because she paid for the poisoning with her own poisoning",
+          "ChangeCondition": "N/A — dead",
+          "PhysicalTokens": [
+            "her press-credentials, found in a second-floor desk-drawer of the news-leaf office, never claimed by family",
+            "the unmarked grave at the edge of the river-port pauper's field; Hadrian has been quietly maintaining it for four years"
+          ],
+          "BridgeRole": "The link between Vex's first major Ironheart commission and Echo's first Whisper Council memorial-stone is Aelis. If the player exhumes her story (literally or figuratively), the chain becomes documentary"
+        }
+      ],
+      "GuiltArcs": [
+        {
+          "Id": "TheronGuilt",
+          "Subject": "theron",
+          "House": "Vex",
+          "DiscoveryMoment": "Player presents Theron with: (1) Sael's ledger from five years ago listing a Wenday-eighteen shipment to a Saltspine intermediary, AND (2) the council magistrate's evidence inventory referencing the unmatched poisoned cup of the same week, AND (3) Vell's first commissioned memorial-stone date (also that week). The three documents together force the recognition. Theron sits down on the cooling-bench of the distillery and does not speak for an hour",
+          "CurrentBelief": "That Kess's poisons probably went to warlords and rival merchants — distant violence, abstract harm",
+          "RevisedBelief": "That a single bottle from his own hand created a man who is currently corrupting another house's craft. The guilt is no longer abstract — it is a chain three links long, every link a name",
+          "EmotionalSpecifics": "The discovery does not produce tears. Theron is too old and too tired for tears. It produces a small physical change: he stops carrying Lyra's mended Crimson-Veil pouch in his coat pocket. He moves it to a drawer in the central distillery shelf, beside the panacea relic. The two griefs are now in the same place because they are connected",
+          "ChangeCondition": "Confronted with the documentary chain AND offered a path to make material amends through cross-house action",
+          "WhatHeFearsMost": "That Marrek will refuse the alliance — that the truth will arrive too late or in the wrong shape, and the harm Vex did to Echo will simply be confirmed without being repaired"
+        },
+        {
+          "Id": "SaelGuilt",
+          "Subject": "sael",
+          "House": "Vex",
+          "DiscoveryMoment": "Player shows Sael a leaf from the Saltspine news-leaf five years ago: a small story about Vell's collapse at the council chambers. The date is stamped at the top. Sael fetches her own waterproof ledger-tin from beneath her boat (which she has never opened in five years; she could not bear to know). She finds her own handwriting next to that date: 'Wenday 18, one crate, Saltspine intermediary, paid in silver, no notes.' The bottle in the crate is the bottle that destroyed Vell",
+          "CurrentBelief": "That her courier work has caused diffuse harm — possibly to Anuthien village, possibly to others — but the specifics are blurred by the time and distance of the river",
+          "RevisedBelief": "That on a single dated trip, by a route she remembers because the river was running unusually high, she ferried the precise bottle that created the man who is now corrupting House Echo. The geography of complicity becomes a single Wenday afternoon. The boat she still uses today is the boat that carried the bottle",
+          "EmotionalSpecifics": "Sael does not stop ferrying — she cannot afford to. But she begins, after the discovery, ferrying her sister's school-trip slates in a separate boat she rents at a daily rate. The two boats stop converging. The economic meaning of the separation (loss of monthly margin) is real and bearable; the symbolic meaning (her family's livelihood and her family's witness will not share a hull again) is not negotiable for her",
+          "ChangeCondition": "Confronted with the dated news-leaf AND her own ledger AND offered a path to testify (Hadrian's circuit-bench, the council magistrate, OR private testimony to Marrek)",
+          "WhatSheFearsMost": "Her sister's reaction. Her sister teaches the school-trip children at Mereck-on-the-Falls. Her sister has heard Wenna's lullaby-stones at the village square since childhood. Her sister thinks Sael is a courier of medicine"
+        },
+        {
+          "Id": "NylaGuilt",
+          "Subject": "nyla",
+          "House": "Vex",
+          "DiscoveryPrerequisite": "NylaAwakens path must already be resolved (i.e., she has already written 'kill' in her notebook and confronted the Ironheart-killing of Valdris's apprentice's family)",
+          "DiscoveryMoment": "Player or Marrek shows Nyla three of Vell's collected memorial-stones and asks her to listen to the death-sounds. Nyla recognizes — by ear, against her will — the specific choking-cadence her own Ironheart designs were tuned to produce. Two of the three stones contain the audio signature of her notebook's most recent cross-section. The third — Aelis Mor's — uses an older formulation, but it is the precursor to her own work",
+          "CurrentBelief": "(post-NylaAwakens) That her Ironheart designs killed innocent people, but that the work itself was, at least, hers — her aesthetic, her composition, her authorship",
+          "RevisedBelief": "That her composition has been re-collected as someone else's archive. The dying sounds her venoms produce are now somebody's library, indexed by date, retrievable for replay. The art is no longer hers in any meaningful sense; she is merely the engineer of an instrument Vell plays for his own collection",
+          "EmotionalSpecifics": "Nyla returns to the chamber, removes her notebook from the glass-spider-silk binding, and burns the binding (not the notebook). She tells Theron she has not decided what to do with the pages yet. The notebook now sits in plain view on the central distillery shelf, untitled, open to the page that contains the Threadling cross-section. She does not lock it",
+          "ChangeCondition": "Hearing the stones AND being told (by Marrek or Olea) that none of these recordings would exist without Vex's specific compounds",
+          "WhatSheFearsMost": "That her notebook will be the next thing Vell wants. That her work will be acquired by his collection in life as it has been in death-recording. That her artistry will be confirmed as having always served someone else"
+        },
+        {
+          "Id": "VorusPostscript",
+          "Subject": "vorus",
+          "House": "Vex",
+          "Type": "Anticipatory (posthumous)",
+          "DiscoveryMoment": "If the FounderLetter pressure point in House Vex resolves via LetterUncovered AND the Echo TestStone resolves via SilenceHeard, a cross-resonance triggers: holding the Vex relic to a candle while in the Echo Listening Chamber reveals a faint second etching on the OUTSIDE of the bottle, in fainter glass-spider script: 'the voiceless will speak through us if we let them.' Vorus etched it the day before he died, knowing the family was already taking Kess's first commissions. He believed the venoms would create voiceless people downstream and that those people would, eventually, find their way to a song-miller. He hoped the family would see it before Echo did",
+          "EffectOnArc": "Theron's guilt acquires the weight of prophecy — Vorus knew the chain was forming. The discovery of the postscript transforms guilt into mission: the founder predicted Vell-shaped people would emerge from Vex's corruption, and predicted they would seek Echo. Theron and Marrek become co-stewards of an old prediction, not just co-victims of a new harm",
+          "Status": "Reveals only when both houses have already partially-resolved their respective hidden-evidence pressure points"
+        }
+      ],
+      "JointPressurePoints": [
+        {
+          "Id": "ConfessionLetter",
+          "Archetype": "BridgeWound",
+          "Temporal": "Suspended",
+          "DominantAlignment": "Home",
+          "InvolvedHouses": ["Vex", "Echo"],
+          "Description": "Theron has the documentary chain. Marrek does not. The choice is whether Theron writes — and whether Marrek receives the writing as ally or as evidence of his own betrayal-by-circumstance. The letter, if written, must include the names of every shipment, every date, every intermediary. It cannot be partial; partiality reads as concealment. A complete letter is a confession that can be used in court if Marrek wishes",
+          "Prerequisite": "TheronGuilt resolved AND Marrek's house drama in active state (i.e., not yet at MemorialOath resolution)",
+          "UrgencyTrigger": "Vell discovers the chain himself (via a leaked Whisper Council document) and arranges for the documentary evidence to disappear before it can move between houses",
+          "UrgencyEffect": "The cross-house alliance becomes impossible; both houses are forced into their individual default arcs without coordination",
+          "UrgencyTiming": "medium",
+          "Paths": [
+            {
+              "Id": "TheronWrites",
+              "PrimaryAlignment": "Home",
+              "EmotionalCostDescription": "Theron writes the letter by his own hand, no apprentice's transcription. The letter is delivered by Hadrian, in person, to the Listening Chamber. Marrek reads it twice. The second reading takes longer than the first",
+              "EmotionalCostMagnitude": 5,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "Trust", "Magnitude": 4, "Timing": "front-loaded" },
+                { "Type": "Time", "Magnitude": 2, "Timing": "back-loaded" },
+                { "Type": "LegalExposure", "Magnitude": 3, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "DualRestored", "Weight": 4 },
+                { "EndStateId": "AsymmetricVexRestoredEchoTransformed", "Weight": 2 }
+              ]
+            },
+            {
+              "Id": "TheronWithholds",
+              "PrimaryAlignment": "Home",
+              "SecondaryAlignment": "CosmicB",
+              "EmotionalCostDescription": "Theron tells himself the letter would only burden Marrek. He keeps the documentary evidence in his coat pocket, beside Lyra's pouch. He polishes the relic every morning anyway. The chain stays in his hands and in his hands alone",
+              "EmotionalCostMagnitude": 3,
+              "CorruptionContribution": 1,
+              "Costs": [
+                { "Type": "SelfEdit", "Magnitude": 3, "Timing": "ongoing" },
+                { "Type": "LineagePurity", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "SilentChain", "Weight": 3 },
+                { "EndStateId": "AsymmetricVexRestoredEchoCorrupted", "Weight": 2 }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "AntitoxinProject",
+          "Archetype": "BridgeWork",
+          "Temporal": "Latent",
+          "DominantAlignment": "Home",
+          "InvolvedHouses": ["Vex", "Echo"],
+          "Description": "Vell's nightly Sleepwell dose is the only thing that lets him sleep through the voices in his head. House Vex makes Sleepwell. If Vex develops a Sleepwell-blocker (a faint counter-distillate that acts as the precise inverse of the whisperback-adder dream-honey) and House Echo distributes it through Hadrian's circuit-clinics — disguised in routine deliveries to bloom-fever clinics that Vell's brokers also supply — Vell's sleep collapses within ten nights. He cannot function without it. The Whisper Council fractures because its center cannot hold a meeting",
+          "Prerequisite": "TheronGuilt resolved AND Olea's complicity-arc resolved (Olea must agree to shape the delivery-stones for the antitoxin packets, which requires her own Sael-parallel awakening)",
+          "UrgencyTrigger": "Vell switches Sleepwell suppliers (he hears whispers) and the antitoxin window closes",
+          "UrgencyEffect": "Vell continues sleeping; his collection continues; House Echo's options narrow to confrontation-only, which is significantly riskier",
+          "UrgencyTiming": "short",
+          "Paths": [
+            {
+              "Id": "JointDistillation",
+              "PrimaryAlignment": "CosmicA",
+              "EmotionalCostDescription": "Theron and Nyla (post-NylaAwakens) develop the Sleepwell-blocker over four days, in the original distillery, working from Vorus's notes on universal antitoxins. Olea shapes carrier-stones. Sael ferries the first delivery. The convergence of three Vex characters and one Echo character on a single act of remediation is itself the resolution of multiple smaller arcs",
+              "EmotionalCostMagnitude": 4,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "Trust", "Magnitude": 3, "Timing": "front-loaded" },
+                { "Type": "Time", "Magnitude": 3, "Timing": "ongoing" },
+                { "Type": "LegalExposure", "Magnitude": 4, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "DualRestored", "Weight": 5 }
+              ]
+            },
+            {
+              "Id": "VexAlone",
+              "PrimaryAlignment": "Home",
+              "EmotionalCostDescription": "Vex develops the antitoxin and tries to deliver it without Echo's distribution network. Without Echo's clinics, the antitoxin reaches Vell only through Vex's existing channels — which Vell controls. He intercepts the first delivery. The attempt is recognized; House Vex draws Vell's direct attention for the first time",
+              "EmotionalCostMagnitude": 2,
+              "CorruptionContribution": 2,
+              "Costs": [
+                { "Type": "LegalExposure", "Magnitude": 3, "Timing": "back-loaded" },
+                { "Type": "Trust", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "AsymmetricVexRestoredEchoTransformed", "Weight": 2 },
+                { "EndStateId": "DualCorrupted", "Weight": 1 }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "BoatLedgerTestimony",
+          "Archetype": "BridgeEvidence",
+          "Temporal": "Latent",
+          "DominantAlignment": "CosmicA",
+          "InvolvedHouses": ["Vex", "Echo"],
+          "Description": "Sael's waterproof ledger-tin contains five years of dated shipments. The Wenday-eighteen entry (Vell's poison) is corroborated by Olea's stone-shaping records (the carrier-fossils for that specific Ironheart precursor were quarried by Olea's mother, and the inventory survives in a Listening Chamber back-shelf log). Together, the two records establish the chain in court-admissible form. Hadrian, as circuit judge, can convene a magistrate's review on the strength of the joint evidence",
+          "Prerequisite": "SaelGuilt resolved AND Olea's complicity-arc resolved",
+          "UrgencyTrigger": "Vell's brokers identify Sael as the courier of record (this is in their files; they have always known) and arrange a 'specimen accident' on her boat",
+          "UrgencyEffect": "Sael cannot testify if she does not survive the next monsoon's run. The window for joint testimony is narrow",
+          "UrgencyTiming": "short",
+          "Paths": [
+            {
+              "Id": "JointTestimony",
+              "PrimaryAlignment": "CosmicA",
+              "EmotionalCostDescription": "Sael testifies before Hadrian's bench with Olea standing beside her. The testimony is recorded — in writing by Hadrian's clerk, AND on a memorial-stone milled by Marrek that morning, the first such stone Marrek has milled in three years. The stone is given to Hadrian for the magistrate's archive. Vell's standing collapses within the council session",
+              "EmotionalCostMagnitude": 5,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "Trust", "Magnitude": 3, "Timing": "front-loaded" },
+                { "Type": "LegalExposure", "Magnitude": 5, "Timing": "back-loaded" },
+                { "Type": "Income", "Magnitude": 4, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "DualRestored", "Weight": 5 }
+              ]
+            },
+            {
+              "Id": "SilentBoats",
+              "PrimaryAlignment": "Home",
+              "SecondaryAlignment": "CosmicB",
+              "EmotionalCostDescription": "Sael keeps the ledger but does not testify. The two boats remain separate. Olea does not corroborate. The chain stays unspoken — and therefore unbreakable",
+              "EmotionalCostMagnitude": 3,
+              "CorruptionContribution": 2,
+              "Costs": [
+                { "Type": "SelfEdit", "Magnitude": 3, "Timing": "ongoing" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "SilentChain", "Weight": 4 }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "AelisFuneral",
+          "Archetype": "BridgeMemorial",
+          "Temporal": "Latent",
+          "DominantAlignment": "Home",
+          "InvolvedHouses": ["Vex", "Echo"],
+          "Description": "Aelis Mor's unmarked grave at the river-port pauper's field is maintained by Hadrian. If both houses jointly hold a public funeral for her — Marrek mills a memorial-stone of her dying breath (already in the chamber, listed as 'sister of a grieving family, name withheld'); Theron pours a vial of Vex Tears into the soil; Hadrian reads the documentary chain aloud — the act of public memorial breaks the seal on the entire five-year cover-up. The river-port news-leaves cover it. Vell, who has never attended a funeral, must respond: either acknowledge the chain (impossible without confessing) or attempt to suppress the coverage (which his weakened position can no longer support)",
+          "Prerequisite": "ConfessionLetter resolved via TheronWrites AND Aelis's stone identified in Marrek's chamber records",
+          "UrgencyTrigger": "Vell preempts the funeral by publicly 'discovering' Aelis's grave himself and donating a memorial garden in her name — co-opting her story as one of his own historical preservations",
+          "UrgencyEffect": "The funeral becomes a Vell-controlled event; the chain is permanently obscured under his patronage",
+          "UrgencyTiming": "medium",
+          "Paths": [
+            {
+              "Id": "PublicFuneral",
+              "PrimaryAlignment": "Home",
+              "EmotionalCostDescription": "Theron, Marrek, Hadrian, Sael, and Olea attend. Nyla, who designed the modern Ironheart compounds, plays the memorial-stone of Aelis's dying breath aloud at the graveside — the first time the stone has been struck since Marrek milled it. Hadrian reads the chain. The river-port press is present",
+              "EmotionalCostMagnitude": 4,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "Trust", "Magnitude": 2, "Timing": "front-loaded" },
+                { "Type": "LegalExposure", "Magnitude": 3, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "DualRestored", "Weight": 3 }
+              ]
+            }
+          ]
+        }
+      ],
+      "JointEndStates": [
+        {
+          "Id": "DualRestored",
+          "Name": "The Bottled Mercy and the Listening Tower",
+          "Subtitle": "The Chain Acknowledged, The Voices Returned",
+          "PathSignature": ["TheronWrites", "JointDistillation", "JointTestimony", "PublicFuneral"],
+          "RequiredHouseStates": [
+            { "House": "Vex", "EndState": "Restored" },
+            { "House": "Echo", "EndState": "Restored" }
+          ],
+          "Tag": "VexEchoDualRestored",
+          "Rewards": ["WhisperCouncilDissolved", "BloomtangleAccord", "HadrianBenchExpanded"],
+          "ExternalResonanceDescription": "The Whisper Council collapses within a single monsoon. Vell, sleepless and exposed, retires to his estate and dies of stress-related complications within the year; his collection is impounded by Hadrian's bench and returned, where possible, to grieving families who had never known their dead were preserved. The Knot and the Hollow sign a formal Bloomtangle Accord — Vex agrees never to produce escalating-dose poisons, Echo agrees never to mill memorial-stones for the not-yet-deceased. Hadrian's circuit-bench expands to include both houses' products as basin-wide public goods. Aelis Mor's grave gains a marker; the inscription is short. Vorus's relic and Wenna's blank stone both sit on their respective central shelves, deliberately, polished by the next generation",
+          "ExternalResonanceScope": "basin-wide",
+          "Notes": "This is the only end-state in either drama where Vell himself is meaningfully ended. His persistence in the basin requires both houses' continued compromise; both houses' simultaneous restoration removes him"
+        },
+        {
+          "Id": "AsymmetricVexRestoredEchoTransformed",
+          "Name": "The House That Remembered, The House That Could Not",
+          "PathSignature": ["TheronWrites", "VexAlone"],
+          "RequiredHouseStates": [
+            { "House": "Vex", "EndState": "Restored" },
+            { "House": "Echo", "EndState": "TransformedB" }
+          ],
+          "Tag": "VexRestoredEchoTransformed",
+          "Rewards": ["BloomtangleAccord", "HouseVexReputation+3", "HouseEchoReputation-1"],
+          "ExternalResonanceDescription": "House Vex makes amends and restores its mission; House Echo, not yet ready to face its own complicity at Marrek's level, signs Vell's contract anyway. The result: the basin's poisons go clean, but its voices remain locked in Vell's library. Hadrian's circuit handles upriver memorial-services himself, by hand, with no song-miller's stones. Marrek dies seven years later with the side-chamber still sealed against him. Nyssa attends his funeral and does not speak. Theron mills nothing for the rest of his life and considers it a partial expiation",
+          "ExternalResonanceScope": "house-local"
+        },
+        {
+          "Id": "AsymmetricVexCorruptedEchoRestored",
+          "Name": "The House That Could Not Hear, The House That Could",
+          "PathSignature": ["TheronWithholds", "JointTestimony"],
+          "RequiredHouseStates": [
+            { "House": "Vex", "EndState": "Corrupted" },
+            { "House": "Echo", "EndState": "Restored" }
+          ],
+          "Tag": "VexCorruptedEchoRestored",
+          "Rewards": ["HouseVexReputation-3", "HouseEchoReputation+3"],
+          "ExternalResonanceDescription": "Sael testifies even though Theron does not write. Hadrian's bench prosecutes Kess and Vell on the strength of Sael's ledger and Olea's stone-records — without Theron's confession, the case is harder but not impossible. House Vex is named in the proceedings; Theron testifies under subpoena, not by choice; he is not prosecuted but his standing in the basin collapses. House Echo emerges from the trial intact; Marrek mills the testimony stone himself. The Whisper Council ends. The Knot becomes a footnote in the legal record",
+          "ExternalResonanceScope": "regional"
+        },
+        {
+          "Id": "SilentChain",
+          "Name": "The Bottle and the Stone, Unspoken",
+          "Subtitle": "The chain holds because no one names it",
+          "PathSignature": ["TheronWithholds", "SilentBoats"],
+          "RequiredHouseStates": [
+            { "House": "Vex", "EndState": "TransformedB" },
+            { "House": "Echo", "EndState": "TransformedB" }
+          ],
+          "Tag": "VexEchoSilentChain",
+          "Rewards": ["BasinStability-1", "WhisperCouncilEntrenched"],
+          "ExternalResonanceDescription": "Both houses settle into compromise. Vex makes its medicines and its Ironheart, separately ledgered. Echo mills its memorials and its trophies, separately archived. The chain between them — Sael's Wenday boat and Marrek's Aelis stone — is never named. Vell continues to sleep on Sleepwell. The Whisper Council grows quietly larger every monsoon. Theron and Marrek meet once, by accident, at a Saltspine teahouse; they recognize each other in the way people recognize each other across a long room without speaking. They do not sit together. They both order tea. They drink it slowly. Theron leaves first",
+          "ExternalResonanceScope": "basin-wide",
+          "Notes": "The 'least visible' end-state — basin life appears stable, Vex and Echo both appear functional, the harm continues at a rate that becomes the new normal. Players who choose this state will find few NPCs willing to acknowledge anything is wrong. The drama ends because everyone has stopped fighting"
+        },
+        {
+          "Id": "DualCorrupted",
+          "Name": "The Whisper Empire",
+          "PathSignature": ["TheronWithholds", "VexAlone"],
+          "RequiredHouseStates": [
+            { "House": "Vex", "EndState": "Corrupted" },
+            { "House": "Echo", "EndState": "Corrupted" }
+          ],
+          "Tag": "VexEchoDualCorrupted",
+          "Rewards": ["WhisperCouncilHegemony", "HouseVexReputation-3", "HouseEchoReputation-3"],
+          "ExternalResonanceDescription": "Both houses become subsidiaries of Vell's apparatus. The Knot supplies the venoms. The Hollow records the deaths. The basin is governed, in practice, by the man who cannot speak. Three downriver towns lose their bloom-fever clinics. Five upriver outposts lose their warning-stones. Children in Mereck-on-the-Falls grow up not knowing what handsong was. The Bloomtangle becomes a region whose only export is precision and silence. The Saltspine still flows. Aelis Mor's grave is paved over for a Whisper Council monument honoring 'the orators of the basin.' Her name is not on the plaque",
+          "ExternalResonanceScope": "basin-wide"
+        }
+      ],
+      "CrossHouseCrossovers": [
+        {
+          "Type": "ChainReveal",
+          "FromPointId": "Vex.FounderLetter",
+          "FromCondition": "state:resolved AND Echo.TestStone state:resolved",
+          "ToPointId": "VexEcho-PoisonedOration.VorusPostscript",
+          "ToEffect": "reveal:vorus_postscript_voiceless_will_speak",
+          "Rationale": "Both houses have read their founder's hidden message; the postscript on the Vex relic becomes legible only when read in dialogue with Wenna's silent stone. The two foundations were always connected"
+        },
+        {
+          "Type": "ChainReveal",
+          "FromPointId": "Vex.TaintedHeir",
+          "FromCondition": "path:NylaAwakens",
+          "ToPointId": "VexEcho-PoisonedOration.NylaGuilt",
+          "ToEffect": "unlock:nyla_guilt_arc",
+          "Rationale": "Nyla cannot hear her own work in Vell's collection until she has already stopped hiding from what the work does. The awakening is the prerequisite"
+        },
+        {
+          "Type": "ChainReveal",
+          "FromPointId": "Echo.PrivateChamber",
+          "FromCondition": "path:NyssaListens",
+          "ToPointId": "VexEcho-PoisonedOration.SaelGuilt",
+          "ToEffect": "amplify:sael_guilt_via_olea_corroboration",
+          "Rationale": "Once Nyssa has annotated Vell's ordering-pattern, Olea is freed to contribute her stone-records — which corroborates Sael's ledger and gives Sael's discovery its full weight"
+        },
+        {
+          "Type": "MutualReinforcement",
+          "FromPointId": "VexEcho-PoisonedOration.ConfessionLetter",
+          "FromCondition": "path:TheronWrites",
+          "ToPointId": "VexEcho-PoisonedOration.AntitoxinProject",
+          "ToEffect": "unlock:joint_distillation",
+          "Rationale": "Marrek will not accept Sleepwell-blocker carrier-stones from Vex without a written acknowledgment of what Vex's compounds did. The letter is the entry-condition for the joint work"
+        },
+        {
+          "Type": "MutualReinforcement",
+          "FromPointId": "VexEcho-PoisonedOration.AntitoxinProject",
+          "FromCondition": "path:JointDistillation",
+          "ToPointId": "VexEcho-PoisonedOration.BoatLedgerTestimony",
+          "ToEffect": "amplify:joint_testimony_credibility",
+          "Rationale": "If both houses have already collaborated on remediation, the magistrate weighs their testimony as the act of two reformed parties rather than two competing accusers. Hadrian's bench can act faster"
+        },
+        {
+          "Type": "Suppression",
+          "FromPointId": "VexEcho-PoisonedOration.ConfessionLetter",
+          "FromCondition": "path:TheronWithholds",
+          "ToPointId": "VexEcho-PoisonedOration.AelisFuneral",
+          "ToEffect": "close:aelis_funeral_path",
+          "Rationale": "Without Theron's documented chain, no public funeral for Aelis is supportable as fact. Hadrian will not preside over a memorial whose claims he cannot defend on the bench"
+        }
+      ],
+      "WitnessExtensions": {
+        "Description": "Witness-map updates that propagate when this cross-dynamic activates. Each entry adds knowledge to a character's existing map or moves an item from Suspects to Knows",
+        "Updates": [
+          {
+            "SubjectId": "theron",
+            "AddTo": "Knows",
+            "Item": "vell_was_poisoned_by_a_vex_ironheart_compound",
+            "Trigger": "TheronGuilt.DiscoveryMoment fires"
+          },
+          {
+            "SubjectId": "theron",
+            "AddTo": "Knows",
+            "Item": "marrek_does_not_know_the_chain",
+            "Trigger": "ConfessionLetter pressure point activates"
+          },
+          {
+            "SubjectId": "sael",
+            "MoveFrom": "Suspects",
+            "MoveTo": "Knows",
+            "Item": "kess_uses_poisons_darkly",
+            "Trigger": "SaelGuilt.DiscoveryMoment fires (because the dating now confirms it)"
+          },
+          {
+            "SubjectId": "sael",
+            "AddTo": "Knows",
+            "Item": "she_ferried_the_bottle_that_destroyed_vell",
+            "Trigger": "SaelGuilt.DiscoveryMoment fires"
+          },
+          {
+            "SubjectId": "marrek",
+            "AddTo": "Knows",
+            "Item": "aelis_mor_is_subject_of_first_vell_commission",
+            "Trigger": "ConfessionLetter resolved via TheronWrites"
+          },
+          {
+            "SubjectId": "marrek",
+            "AddTo": "Knows",
+            "Item": "vex_compounds_caused_vell",
+            "Trigger": "ConfessionLetter resolved via TheronWrites"
+          },
+          {
+            "SubjectId": "olea",
+            "AddTo": "Knows",
+            "Item": "her_mother_quarried_aelis_carrier_fossil",
+            "Trigger": "Player asks Olea about back-shelf log records"
+          },
+          {
+            "SubjectId": "vell",
+            "AddTo": "Suspects",
+            "Item": "houses_are_communicating",
+            "Trigger": "ConfessionLetter resolved (Vell sees Hadrian on the dock more often)"
+          },
+          {
+            "SubjectId": "vell",
+            "AddTo": "Knows",
+            "Item": "houses_are_coordinating_against_him",
+            "Trigger": "AntitoxinProject path:JointDistillation resolved"
+          }
+        ],
+        "DangerousDisclosures": [
+          {
+            "Condition": "If vex_compounds_caused_vell revealed to Vell before the AntitoxinProject resolves",
+            "Consequence": "Vell preemptively exposes the entire Vex-Echo chain through controlled press leaks, framing Vex as the original architect of his own injury — turning the basin against both houses simultaneously and securing his own position as the innocent voiceless victim"
+          },
+          {
+            "Condition": "If she_ferried_the_bottle_that_destroyed_vell revealed to Sael's sister before BoatLedgerTestimony resolves",
+            "Consequence": "Sael's sister resigns from the river-school in shame; the school closes; Sael loses both her courier income AND her family stability, removing her capacity to testify"
+          }
+        ]
+      },
+      "MemorialExtensions": [
+        {
+          "SubjectId": "aelis",
+          "Objects": ["UnmarkedHeadstone", "PressCredentialsCard", "AelisDyingBreathStone"],
+          "Interactions": [
+            { "Alignment": "Home", "Description": "Lay Vorus's apprenticeship ring on the unmarked headstone — a Vex-side acknowledgment of debt to a victim Vex never knew" },
+            { "Alignment": "Home", "Description": "Strike the dying-breath stone at the graveside ONCE, in front of witnesses, then commit to never striking it again — the memorial as restitution rather than collection" },
+            { "Alignment": "CosmicA", "Description": "File the press-credentials card with Hadrian's bench as evidence-of-record — the first time Aelis's name enters the official archive of the basin" }
+          ]
+        }
+      ],
+      "ReadingNotes": {
+        "ForGameDesigners": "This cross-dynamic is meant to activate gradually as the player progresses through both individual house dramas. None of the four JointPressurePoints can fire before specific milestones in their parent dramas (see each Prerequisite block). The dynamic is not a 'third drama' competing for attention; it is the connective tissue that makes the existing two dramas more than the sum of their parts",
+        "ForWriters": "The emotional center of the dynamic is the moment a Vex character recognizes that abstract harm became concrete (Theron sees the documents, Sael opens the ledger-tin, Nyla hears her aesthetic in someone else's archive). These are the three required scenes; everything else is structural support. Adapt the surrounding mechanics to the players' pace, but do not skip these three discoveries",
+        "ForPlayers": "Both houses' Restored arcs are individually achievable without ever activating this cross-dynamic. The dynamic offers a deeper resolution that reaches beyond the two families and changes the basin itself. It costs more — in trust, time, legal exposure, and emotional weight — but produces an outcome neither house can reach alone",
+        "OnGuiltAsMechanic": "Guilt in this design is not a punishment for past choices; it is information about the world that some characters carry and others do not. When a conscience-bearing character discovers the chain, the change is in their model of responsibility, not in their moral standing. The mechanic is recognition, then choice. The choice is whether to act on the recognition or to add the knowledge to the pile of things one polishes every morning without speaking of"
+      }
+    }
+  ]
+}
