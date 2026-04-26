@@ -360,9 +360,23 @@ namespace CavesOfOoo.Rendering
 
                 // Pause menu — Tab opens, arrows/Enter navigate, Tab closes.
                 // When open, fully blocks other input via the IsOpen guard.
+                // The popup-overlay camera lifecycle MUST be toggled around
+                // state transitions, matching the WorldActionMenuUI /
+                // ContainerPickerUI pattern (line ~1954). Without this, the
+                // PauseMenuUI tilemap renders correctly but no camera is
+                // displaying it — the player sees nothing.
                 if (_pauseMenuUI != null)
                 {
-                    if (_pauseMenuUI.HandleInput(_saveLoadInputProbe))
+                    bool wasOpenBeforeTick = _pauseMenuUI.IsOpen;
+                    bool consumed = _pauseMenuUI.HandleInput(_saveLoadInputProbe);
+                    bool isOpenAfterTick = _pauseMenuUI.IsOpen;
+
+                    if (!wasOpenBeforeTick && isOpenAfterTick)
+                        EnterCenteredPopupOverlayView();
+                    else if (wasOpenBeforeTick && !isOpenAfterTick)
+                        ExitCenteredPopupOverlayViewToGameplay();
+
+                    if (consumed)
                     {
                         _lastMoveTime = Time.time;
                         return;
