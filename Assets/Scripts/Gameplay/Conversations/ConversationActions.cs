@@ -35,6 +35,18 @@ namespace CavesOfOoo.Core
             _actions[name] = func;
         }
 
+        /// <summary>
+        /// Returns true if an action with this name is registered. Used by
+        /// content loaders (e.g. StoryletRegistry) to fail-fast on unknown
+        /// action names at load time, since Execute() silently no-ops with
+        /// a warning for unknown names.
+        /// </summary>
+        public static bool IsRegistered(string name)
+        {
+            EnsureInitialized();
+            return !string.IsNullOrEmpty(name) && _actions.ContainsKey(name);
+        }
+
         public static void Execute(string name, Entity speaker, Entity listener, string argument)
         {
             EnsureInitialized();

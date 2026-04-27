@@ -29,6 +29,23 @@ namespace CavesOfOoo.Core
             _predicates[name] = func;
         }
 
+        /// <summary>
+        /// Returns true if a predicate with this name is registered, OR if the
+        /// name is an auto-invertible "IfNot..." form whose base predicate
+        /// "If..." is registered. Used by content loaders (e.g. StoryletRegistry)
+        /// to fail-fast on unknown predicate names at load time, since
+        /// Evaluate() returns true for unknown names by default.
+        /// </summary>
+        public static bool IsRegistered(string name)
+        {
+            EnsureInitialized();
+            if (string.IsNullOrEmpty(name)) return false;
+            if (_predicates.ContainsKey(name)) return true;
+            if (name.StartsWith("IfNot") && name.Length > 5)
+                return _predicates.ContainsKey("If" + name.Substring(5));
+            return false;
+        }
+
         public static bool Evaluate(string name, Entity speaker, Entity listener, string argument)
         {
             EnsureInitialized();
