@@ -19,6 +19,11 @@ namespace CavesOfOoo.Core
         public const int DefaultSpeed = 100;
 
         /// <summary>
+        /// The singleton world entity to receive TickEnd events. Set by GameBootstrap.
+        /// </summary>
+        public static Entity World;
+
+        /// <summary>
         /// All entities participating in the turn order.
         /// </summary>
         private List<TurnEntry> _entries = new List<TurnEntry>();
@@ -224,6 +229,13 @@ namespace CavesOfOoo.Core
                 SpendEnergy(actor);
                 CurrentActor = null;
                 WaitingForInput = false;
+
+                if (World != null)
+                {
+                    var tickEnd = GameEvent.New("TickEnd");
+                    World.FireEvent(tickEnd);
+                    tickEnd.Release();
+                }
             }
         }
 

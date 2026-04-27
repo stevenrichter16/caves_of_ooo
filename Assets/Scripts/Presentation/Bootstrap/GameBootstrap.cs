@@ -176,6 +176,7 @@ namespace CavesOfOoo
                 var narrativeState = new NarrativeStatePart();
                 _world.AddPart(narrativeState);
                 NarrativeStatePart.Current = narrativeState;
+                TurnManager.World = _world;
 
                 Debug.Log("[Bootstrap] Step 6/9: Creating player...");
                 bool playerCreated = PerformanceDiagnostics.MeasureStartupPhase("SetupPlayer", PerformanceMarkers.Bootstrap.SetupPlayer, () =>
@@ -561,6 +562,7 @@ namespace CavesOfOoo
             _player = state.Player;
             _world = state.World;
             NarrativeStatePart.Current = _world?.GetPart<NarrativeStatePart>();
+            TurnManager.World = _world;
             _zone = _zoneManager?.ActiveZone;
 
             ConversationActions.Factory = _factory;
