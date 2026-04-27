@@ -45,6 +45,14 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// Marker substring inserted into the <see cref="MessageLog"/> hit line
+        /// when a melee attack lands as a critical (nat-20). Tests pin this
+        /// constant rather than the exact wording so future polish (color
+        /// codes, particle FX) can change the line without breaking tests.
+        /// </summary>
+        public const string CRITICAL_HIT_TAG = "CRITICAL";
+
+        /// <summary>
         /// Sentinel-substitute used when a weapon's <c>MaxStrengthBonus</c> is set to
         /// <c>-1</c> (legacy "uncapped" sentinel from pre-Phase-A code). Mapped to a
         /// large-but-not-overflow value so the bonus-decay loop in <see cref="RollPenetrations"/>
@@ -236,11 +244,14 @@ namespace CavesOfOoo.Core
                 return;
             }
 
-            // Log the hit before applying damage so the killing blow details are visible
+            // Log the hit before applying damage so the killing blow details are visible.
+            // Tier 2.1: nat-20 hits include the CRITICAL_HIT_TAG so the player sees
+            // the crit happen, not just the silent "Critical" attribute on Damage.
             int hpBefore = defender.GetStatValue("Hitpoints", 0);
             int hpAfter = hpBefore - damage.Amount;
 
-            MessageLog.Add($"{attackerName}{srcTag} hits {defenderName}{partDesc} for {damage.Amount} damage!{(hpAfter > 0 ? $" ({hpAfter} HP remaining)" : "")}");
+            string hitVerb = naturalTwenty ? $"{CRITICAL_HIT_TAG}LY hits" : "hits";
+            MessageLog.Add($"{attackerName}{srcTag} {hitVerb} {defenderName}{partDesc} for {damage.Amount} damage!{(hpAfter > 0 ? $" ({hpAfter} HP remaining)" : "")}");
 
             // Apply damage (typed overload — preferred path)
             ApplyDamage(defender, damage, attacker, zone);
