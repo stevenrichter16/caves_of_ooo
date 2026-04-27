@@ -203,5 +203,8 @@ namespace CavesOfOoo.Tests.Scenarios
 
         [Test] public void ElementalSwordsShowcase_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new ElementalSwordsShowcase().Apply(FreshContext()));
+
+        [Test] public void ThunderHammerShowcase_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new ThunderHammerShowcase().Apply(FreshContext()));
     }
 }

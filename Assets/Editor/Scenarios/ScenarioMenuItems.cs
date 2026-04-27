@@ -88,6 +88,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_ElementalSwordsShowcase()
             => ScenarioRunner.Launch<ElementalSwordsShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/ThunderHammer Showcase (Lightning + vulnerability)", priority = 108)]
+        private static void Launch_ThunderHammerShowcase()
+            => ScenarioRunner.Launch<ThunderHammerShowcase>();
+
         // =========================================================
         // AI Behavior
         // =========================================================
