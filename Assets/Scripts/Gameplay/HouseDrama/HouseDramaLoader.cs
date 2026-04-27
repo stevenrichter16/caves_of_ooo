@@ -58,6 +58,8 @@ namespace CavesOfOoo.Data
 
                 _dramas[drama.ID] = drama;
             }
+
+            _loaded = true;
         }
 
         public static HouseDramaData Get(string id)
@@ -76,12 +78,13 @@ namespace CavesOfOoo.Data
         {
             if (data == null || string.IsNullOrEmpty(data.ID)) return;
             _dramas[data.ID] = data;
+            _loaded = true;
         }
 
         public static void Reset()
         {
             _dramas.Clear();
-            _loaded = false;
+            _loaded = true;
         }
 
         private static void EnsureLoaded()
