@@ -173,6 +173,14 @@ Fix every 🟡 and 🔴 pre-commit. Defer 🧪/⚪ with a note in the doc.
   types/methods are missing. **Fix:** ask the user to focus the editor
   window or restart it; `refresh_unity {mode: force}` alone is not enough.
   Met during the Phase F/G/H methodology-debt closure (2026-04-26).
+- **Active-instance routing can drop**: if multiple Unity Editor instances
+  are connected to the same MCP server, `set_active_instance` may not
+  persist for the whole session — a later call can route to a *different*
+  project's editor. Symptom: tests "vanish" or `read_console` returns 0
+  errors when there should be many, because the request hit a different
+  Unity. **Fix:** re-confirm `editor_state.unity.instance_id` before
+  relying on a result. Re-pin via `set_active_instance` if it drifted.
+  Met during M2 of the storylet/quest layer plan (2026-04-26).
 - **Test job init timeout** during recompile is normal — retry once
   after the editor settles (`sleep 3` if needed).
 - `int.TryParse(arg, out duration)` writes 0 on failure AND returns
