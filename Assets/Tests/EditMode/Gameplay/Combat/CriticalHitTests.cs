@@ -110,12 +110,16 @@ namespace CavesOfOoo.Tests
                 CombatSystem.PerformMeleeAttack(attacker, defender, zone, new Random(seed));
             }
 
-            // With unreachable AV and no AutoPen, nat-20 still fails to penetrate.
-            // Critical pen bonus (+1) might enable explosion-driven pens but should be rare.
-            // Asymmetric assertion: hits should be VERY rare (< 5 across 200 trials)
-            // to distinguish from the player-AutoPen case (10+).
-            Assert.Less(hitsLanded, 50,
-                $"Non-player nat-20 against AV=99 should rarely land. Got {hitsLanded}.");
+            // With AV=99, bonus=-3, the only way pen succeeds is via massive
+            // explosion chains (≥13 chained 10s; P ≈ 10⁻¹³). Across 200 trials,
+            // expected hits ≈ 0. A regression where AutoPen incorrectly fires
+            // for non-players would produce ~10 hits (5% nat-20 × 200).
+            //
+            // Self-review Finding 2: tightened from < 50 to < 5 to actually catch
+            // the non-player AutoPen mutation.
+            Assert.Less(hitsLanded, 5,
+                $"Non-player nat-20 vs AV=99: only chain-explosions can pen, hits should be ~0. " +
+                $"Got {hitsLanded}. If hits >= 5, AutoPen is firing for non-players (mutation bug).");
         }
 
         // ====================================================================
@@ -165,9 +169,12 @@ namespace CavesOfOoo.Tests
         [Test]
         public void NonCriticalHit_DoesNotAddCriticalAttribute()
         {
+            // Self-review Finding 3: original assertion (`nonCrit > crit`) was
+            // vacuously true. Strengthened to bound the crit count to within a
+            // small statistical envelope around the expected nat-20 rate (5%
+            // of 200 = 10 ± noise), which a "wrongly tag non-crits as Critical"
+            // mutation would blow past.
             var zone = new Zone();
-            // Configure HitBonus high enough to land most hits BUT we filter out nat-20s
-            // by checking the Damage object — non-crit hits should never carry Critical.
             var attacker = MakeFighter(strength: 20, agility: 20);
             attacker.GetPart<MeleeWeaponPart>().BaseDamage = "1d4";
             attacker.GetPart<MeleeWeaponPart>().PenBonus = 5;
@@ -192,17 +199,21 @@ namespace CavesOfOoo.Tests
             };
             defender.AddPart(probe);
 
-            for (int seed = 0; seed < 200; seed++)
+            const int trials = 200;
+            for (int seed = 0; seed < trials; seed++)
             {
                 defender.SetStatValue("Hitpoints", 999);
                 CombatSystem.PerformMeleeAttack(attacker, defender, zone, new Random(seed));
             }
 
+            // Expected nat-20 rate: 1/20 = 5%. Across 200 trials, expect ~10
+            // crits. Allow up to 25 (3-sigma upper bound + slack). If crit count
+            // exceeds 25, a mutation is tagging non-crits as Critical.
             Assert.Greater(nonCritHitsObserved, 0,
-                "Most hits across 200 seeds should be non-crit (nat-20 is 5%)");
-            // The bulk of hits should be non-crit. Roughly 95% of hits should be non-crit.
-            Assert.Greater(nonCritHitsObserved, critsObserved,
-                "Non-critical hits should outnumber critical hits");
+                "Sanity: at least some non-crit hits must land");
+            Assert.LessOrEqual(critsObserved, 25,
+                $"Crits should be ~5% of hits ({trials * 0.05:F0} expected). " +
+                $"Got {critsObserved} — mutation may be tagging non-crit hits as Critical.");
         }
 
         // ====================================================================

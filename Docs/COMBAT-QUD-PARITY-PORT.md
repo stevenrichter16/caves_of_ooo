@@ -185,10 +185,11 @@ int pv = strMod + penBonus;
 int av = hitPart != null ? GetPartAV(defender, hitPart) : GetAV(defender);
 int penetrations = RollPenetrations(pv, av, rng);
 
-// NEW
+// NEW (post-self-review Finding 5: magic number replaced by constant)
 int strMod = StatUtils.GetModifier(attacker, statName);
 int bonus = strMod + penBonus;
-int maxBonus = ((maxStrBonus < 0) ? int.MaxValue / 2 : maxStrBonus) + penBonus;
+int effectiveMaxStrBonus = (maxStrBonus < 0) ? LEGACY_UNCAPPED_MAX_STR_BONUS : maxStrBonus;
+int maxBonus = effectiveMaxStrBonus + penBonus;
 int av = hitPart != null ? GetPartAV(defender, hitPart) : GetAV(defender);
 int penetrations = RollPenetrations(av, bonus, maxBonus, rng);
 ```

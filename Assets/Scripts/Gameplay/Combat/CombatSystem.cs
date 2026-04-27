@@ -27,6 +27,16 @@ namespace CavesOfOoo.Core
         public const int OFF_HAND_HIT_PENALTY = -2;
 
         /// <summary>
+        /// Sentinel-substitute used when a weapon's <c>MaxStrengthBonus</c> is set to
+        /// <c>-1</c> (legacy "uncapped" sentinel from pre-Phase-A code). Mapped to a
+        /// large-but-not-overflow value so the bonus-decay loop in <see cref="RollPenetrations"/>
+        /// terminates in bounded time. Qud weapons always have a real positive
+        /// MaxStrengthBonus; CoO will migrate to that pattern in Phase B½. See
+        /// <c>Docs/COMBAT-QUD-PARITY-PORT.md</c> Phase A divergence #1.
+        /// </summary>
+        public const int LEGACY_UNCAPPED_MAX_STR_BONUS = 50;
+
+        /// <summary>
         /// Perform a melee attack. Body-part-aware: attacks with each equipped weapon.
         /// Returns true if the attack was attempted.
         /// </summary>
@@ -160,7 +170,7 @@ namespace CavesOfOoo.Core
             // sane large value to avoid integer overflow in the bonus-decay loop.
             int strMod = StatUtils.GetModifier(attacker, statName);
             int bonus = strMod + penBonus;
-            int effectiveMaxStrBonus = (maxStrBonus < 0) ? 50 : maxStrBonus;
+            int effectiveMaxStrBonus = (maxStrBonus < 0) ? LEGACY_UNCAPPED_MAX_STR_BONUS : maxStrBonus;
             int maxBonus = effectiveMaxStrBonus + penBonus;
             int av = hitPart != null ? GetPartAV(defender, hitPart) : GetAV(defender);
 
@@ -460,16 +470,35 @@ namespace CavesOfOoo.Core
                 if (!damage.HasAttribute("IgnoreResist"))
                     ApplyResistances(target, damage);
 
-                if (damage.Amount <= 0) return;  // resistance fully absorbed
+                if (damage.Amount <= 0)
+                {
+                    // Resistance fully absorbed. Surface a "fully resisted" event so
+                    // listeners (UI, AI retaliation, achievements) still see the attack
+                    // attempt even though no HP was lost. (Self-review Finding 4.)
+                    var fullyResisted = GameEvent.New("DamageFullyResisted");
+                    fullyResisted.SetParameter("Target", (object)target);
+                    fullyResisted.SetParameter("Source", (object)source);
+                    fullyResisted.SetParameter("Damage", (object)damage);
+                    target.FireEvent(fullyResisted);
+                    return;
+                }
 
-                int amount = damage.Amount;
-
+                // Phase C/E: fire TakeDamage with the typed Damage object BEFORE
+                // capturing amount, so listeners can mutate damage.Amount in-flight
+                // (e.g., a "StoneSkin" effect that subtracts 2 from incoming damage).
+                // The captured amount is read AFTER the event so listener mutations
+                // propagate to the HP decrement. (Self-review Finding 1.)
                 var takeDamage = GameEvent.New("TakeDamage");
                 takeDamage.SetParameter("Target", (object)target);
                 takeDamage.SetParameter("Source", (object)source);
-                takeDamage.SetParameter("Amount", amount);
-                takeDamage.SetParameter("Damage", (object)damage);     // Phase C: typed damage available to listeners
+                takeDamage.SetParameter("Amount", damage.Amount);
+                takeDamage.SetParameter("Damage", (object)damage);
                 target.FireEvent(takeDamage);
+
+                // Re-read damage.Amount after listeners — it may have been mutated.
+                // Clamp at 0 so over-mutation can't heal the target.
+                int amount = Math.Max(0, damage.Amount);
+                if (amount <= 0) return;
 
                 hpStat.BaseValue -= amount;
 
