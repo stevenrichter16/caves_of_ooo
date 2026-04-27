@@ -176,6 +176,50 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
+        // ThunderHammer — Lightning counterpart, Bludgeoning class
+        // (Tier-1 Quick Win; ties Phase C Attributes → Phase E ElectricResistance)
+        // ====================================================================
+
+        [Test]
+        public void ThunderHammer_HasBludgeoningLightningCudgelAttribute()
+        {
+            var hammer = _harness.Factory.CreateEntity("ThunderHammer");
+            Assert.IsNotNull(hammer, "ThunderHammer blueprint must exist");
+            var weapon = hammer.GetPart<MeleeWeaponPart>();
+            Assert.IsNotNull(weapon, "ThunderHammer must have a MeleeWeaponPart");
+            Assert.AreEqual("Bludgeoning Lightning Cudgel", weapon.Attributes,
+                "ThunderHammer.Attributes should declare 'Bludgeoning Lightning Cudgel' " +
+                "so it carries both the physical class (Bludgeoning/Cudgel) and the " +
+                "elemental type (Lightning) into the Damage object on hit");
+        }
+
+        [Test]
+        public void ThunderHammer_AttributesContain_Lightning()
+        {
+            // Pinned separately from the exact-string test so a future reorder
+            // doesn't silently strip Lightning and turn this into a plain hammer.
+            var hammer = _harness.Factory.CreateEntity("ThunderHammer");
+            var weapon = hammer.GetPart<MeleeWeaponPart>();
+            Assert.IsNotNull(weapon);
+            Assert.IsTrue(weapon.Attributes.Contains("Lightning"),
+                "ThunderHammer must contain 'Lightning' in its Attributes — that's " +
+                "what routes its damage through ElectricResistance (Phase E) on " +
+                "creatures with conductive- or insulating-tagged stats");
+        }
+
+        [Test]
+        public void ThunderHammer_DoesNotHaveCutting_OrPiercing()
+        {
+            // Counter-check: physical-class is Bludgeoning, not the others.
+            var hammer = _harness.Factory.CreateEntity("ThunderHammer");
+            var weapon = hammer.GetPart<MeleeWeaponPart>();
+            Assert.IsFalse(weapon.Attributes.Contains("Cutting"),
+                "ThunderHammer is Bludgeoning, not Cutting");
+            Assert.IsFalse(weapon.Attributes.Contains("Piercing"),
+                "ThunderHammer is Bludgeoning, not Piercing");
+        }
+
+        // ====================================================================
         // Counter-checks: attributes don't leak across categories
         // ====================================================================
 
