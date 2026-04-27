@@ -178,6 +178,11 @@ namespace CavesOfOoo
                 NarrativeStatePart.Current = narrativeState;
                 TurnManager.World = _world;
 
+                var storyletPart = new Storylets.StoryletPart();
+                _world.AddPart(storyletPart);
+                Storylets.StoryletPart.Current = storyletPart;
+                narrativeState.RegisterReactor(storyletPart);
+
                 Debug.Log("[Bootstrap] Step 6/9: Creating player...");
                 bool playerCreated = PerformanceDiagnostics.MeasureStartupPhase("SetupPlayer", PerformanceMarkers.Bootstrap.SetupPlayer, () =>
                 {
@@ -563,6 +568,21 @@ namespace CavesOfOoo
             _world = state.World;
             NarrativeStatePart.Current = _world?.GetPart<NarrativeStatePart>();
             TurnManager.World = _world;
+
+            // Re-attach StoryletPart on the loaded world entity. If the save
+            // graph contained one (v3+), re-bind Current to it; otherwise
+            // attach a fresh one (defensive — required if a v3 save somehow
+            // omits the part). Re-register on the loaded NarrativeStatePart's
+            // reactor list because reactor registration is runtime-only and
+            // does not survive serialization.
+            Storylets.StoryletPart.Current = _world?.GetPart<Storylets.StoryletPart>();
+            if (_world != null && Storylets.StoryletPart.Current == null)
+            {
+                Storylets.StoryletPart.Current = new Storylets.StoryletPart();
+                _world.AddPart(Storylets.StoryletPart.Current);
+            }
+            if (NarrativeStatePart.Current != null && Storylets.StoryletPart.Current != null)
+                NarrativeStatePart.Current.RegisterReactor(Storylets.StoryletPart.Current);
             _zone = _zoneManager?.ActiveZone;
 
             ConversationActions.Factory = _factory;

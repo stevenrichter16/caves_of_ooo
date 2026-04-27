@@ -19,7 +19,7 @@ namespace CavesOfOoo.Core
     public sealed class SaveWriter
     {
         public const int Magic = 0x304F4F43; // COO0
-        public const int FormatVersion = 2;
+        public const int FormatVersion = 3;
 
         private readonly BinaryWriter _writer;
         private readonly Dictionary<Entity, int> _entityTokens = new Dictionary<Entity, int>();
