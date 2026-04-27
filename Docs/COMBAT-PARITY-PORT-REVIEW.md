@@ -304,41 +304,70 @@ Spawns:
 
 Player-side: `MultiWeaponSkillBonus = +5` stat is added to the player on scenario apply (Phase G). Off-hand swings hit more reliably than the default `-2` penalty would allow.
 
-### PlayMode sanity sweep (attempted, BLOCKED by Unity domain-reload deferral)
+### PlayMode sanity sweep (executed, all scenarios pass)
 
-**Attempted.** Stopped Play mode, `refresh_unity {mode: force, compile: request, scope: all, wait_for_ready: true}`, confirmed `editor/state` reported `ready_for_tools: true` and `is_compiling: false`. Re-entered Play mode.
+**First attempt blocked** by Unity's editor-not-focused domain-reload deferral (initial assembly probe showed `CavesOfOoo.dll build 21:41:28` while disk had `22:05` — a stale runtime snapshot). After the user restarted the editor, the fresh instance loaded the current assembly (`build 22:05:41`, `Damage` type present, `GetOffHandHitBonus` present, 2 `ApplyDamage` overloads visible).
 
-**Blocked.** The reflection probe inside the new Play-mode session showed:
-- Loaded `CavesOfOoo.dll` build time: **21:41:28** (older — pre-Phase-C)
-- DLL on disk build time: **22:05** (current — has Phase C/F/G/H code)
-- `CombatSystem.ApplyDamage` overloads visible: **1** (the legacy int-only version)
-- `CavesOfOoo.Core.Damage` type: **MISSING**
-- `CombatSystem.GetOffHandHitBonus`: **MISSING**
+**The sweep then ran cleanly.** Three scenarios, raw output below.
 
-Unity's Play-mode runtime cached the assembly snapshot from when the editor most recently completed a domain reload **with focus**. With `editor.is_focused: false`, subsequent compiles update the on-disk DLL but Unity defers the in-memory domain reload that would replace the loaded assembly. The `editor_state` resource correctly reports `ready_for_tools: true` because the editor is healthy — but the running domain is stale relative to disk.
+#### Preflight
 
-This is **a known Unity behavior, not a project-side bug**. Workarounds:
-- Bring editor window to focus → triggers deferred reload (manual, not script-driven)
-- Restart the Unity Editor → fresh domain, fresh DLLs
-- Run tests via the test runner instead (which uses its own compilation path that doesn't suffer the same staleness)
+```
+isPlaying = True
+Player = "you", HasBody = True
+Factory has Snapjaw = True
+```
 
-### Verdict on the attempted sweep — honesty bounds
+#### Scenario 1 — Phase F (BeforeTakeDamage live)
 
-**Can verify (already verified by EditMode tests, no PlayMode needed):**
-- `BeforeTakeDamage` event fires, listeners can mutate damage, vetoing fires `DamageFullyResisted` — 8 tests in `BeforeTakeDamageTests.cs` (all green)
-- `MultiWeaponSkillBonus` stat lookup propagates through `PerformSingleAttack` to off-hand swings — 9 tests in `MultiWeaponPenaltyTests.cs` (all green) including a primary-hand-immunity counter-check
-- `CanBeDismembered` event fires only on chance-passed dismemberment, defenders can veto — 6 tests in `CanBeDismemberedTests.cs` (all green) including source-vs-defender counter-check
+Spawned StoneSkin Snapjaw (with `ShowcaseStoneSkinPart`) + control Snapjaw. Applied 10 damage to each:
 
-**Cannot verify (would have required a working PlayMode sweep):**
-- That the live bootstrap's specific Player entity (`Player = "you"`, Str 18, has Body) goes through the new code paths in real combat — the EditMode tests use synthetic entities; live entity could in principle have a different Part layout that bypasses the new code
-- That spawning a Snapjaw with one of the showcase Parts via `ctx.Spawn(...).At(...)` correctly attaches the part and the part's `HandleEvent` dispatches as expected — covered indirectly by EditMode tests using identical Part / event dispatch but not exercised against the bootstrap entity
+```
+PRE: StoneSkin HP=15, Control HP=15
+POST: StoneSkin HP=7  (delta=8,  expected 8 from listener -2)
+      Control    HP=5  (delta=10, expected 10 unchanged)
+```
 
-**Net assessment:** the EditMode test suite (2181 tests, all green) gives high confidence in the F/G/H mechanics. The blocked PlayMode sweep would have added a small amount of integration evidence but was not on the critical path. The playtest scenario itself is the better tool for human verification: launch it, attack the dummies, watch the message log for the showcase log lines.
+**Verdict:** ✅ `BeforeTakeDamage` fires, listener mutation propagates to HP decrement (Phase F intent), control confirms the listener is the cause of the −2.
 
-### Future workaround for blocked sweeps
+#### Scenario 2 — Phase G (MultiWeaponSkillBonus live)
 
-Per Methodology Template §7.2 ("Common pitfalls"), the stale-assembly trap is documented but the *editor-not-focused defers domain reload* variant is more subtle. CLAUDE.md `Unity MCP workflow` already covers `refresh_unity {mode: force}` for the basic stale case; the editor-focus variant should be added if it recurs:
+Probed `CombatSystem.GetOffHandHitBonus(player)` across three stat values:
 
-> If `editor.is_focused: false` AND a Play-mode reflection probe shows a build time older than the disk DLL, ask the user to focus the editor window or restart it. Domain reloads with the editor unfocused can be deferred even when `ready_for_tools` returns `true`.
+```
+PRE  (no stat):    GetOffHandHitBonus = -2 (expected -2)
+POST (stat=+5):    GetOffHandHitBonus = +3 (expected +3 = -2 + 5)
+POST (stat=-3):    GetOffHandHitBonus = -5 (expected -5 = -2 + -3)
+```
 
-This is a CLAUDE.md follow-up, not blocking for this commit.
+**Verdict:** ✅ stat lookup propagates correctly. Default constant preserved when no stat present; positive stat reduces (or over-corrects) penalty; negative stat stacks with base penalty for debuff scenarios.
+
+#### Scenario 3 — Phase H (CanBeDismembered live)
+
+30 trials each: Indestructible Snapjaw (with `ShowcaseIndestructiblePart`) vs. control Snapjaw, both at saturated dismemberment chance (damage = maxHP × 4 → 50% chance per attempt):
+
+```
+Trials: 30
+Indestructible severed: 0  (expected 0)
+Control severed: 14        (expected ~15 = 50% × 30; got 46.7%)
+```
+
+**Verdict:** ✅ veto path is perfect (zero severed across 30 trials), control confirms the chance roll is firing at expected rate without the veto. Counter-check holds — the veto isn't accidentally suppressed for the control.
+
+### Honesty bounds (Methodology Template §6.3)
+
+**Can verify (script-observable, exercised above):**
+- `BeforeTakeDamage` listener mutation reaches HP decrement
+- `GetOffHandHitBonus` stat lookup arithmetic
+- `CanBeDismembered` veto stops `body.Dismember()`
+- Bootstrap-spawned Snapjaw entities go through the new code paths
+- Showcase Parts attached via `entity.AddPart(...)` dispatch correctly through `HandleEvent`
+
+**Cannot verify (would require human eyes / screenshots):**
+- Visual feedback for crits / resistance / dismemberment events (currently no UI for any of these)
+- Whether the showcase scenario's MessageLog lines render legibly to a human player
+- Frame-rate / GC impact of the additional event allocations under sustained combat load
+
+### Future workaround documented in CLAUDE.md
+
+The "editor-focus-deferred-domain-reload" variant of the stale-assembly trap is now in `CLAUDE.md` under §Unity MCP workflow §Common pitfalls. Future sessions will recognize the symptom (Play-mode reflection probe shows older DLL build time than the on-disk DLL) and ask the user to focus or restart the editor up-front rather than burning ~15 min diagnosing. Caught here for the first time; documented to prevent recurrence.
