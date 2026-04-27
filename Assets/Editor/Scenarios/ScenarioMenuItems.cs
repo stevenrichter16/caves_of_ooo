@@ -72,6 +72,14 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_RuneCultistAmbush()
             => ScenarioRunner.Launch<RuneCultistAmbush>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Combat Parity Showcase (Phases A/C/D/E)", priority = 104)]
+        private static void Launch_CombatParityShowcase()
+            => ScenarioRunner.Launch<CombatParityShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Combat Hooks Showcase (Phases F/G/H)", priority = 105)]
+        private static void Launch_CombatHooksShowcase()
+            => ScenarioRunner.Launch<CombatHooksShowcase>();
+
         // =========================================================
         // AI Behavior
         // =========================================================

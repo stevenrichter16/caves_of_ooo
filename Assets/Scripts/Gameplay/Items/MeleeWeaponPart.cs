@@ -34,5 +34,16 @@ namespace CavesOfOoo.Core
         /// Stat used for damage bonus (usually "Strength").
         /// </summary>
         public string Stat = "Strength";
+
+        /// <summary>
+        /// Space-separated list of damage attributes this weapon contributes
+        /// to a successful hit's <see cref="Damage"/> object — e.g.,
+        /// <c>"Cutting LongBlades"</c> on a longsword, or <c>"Bludgeoning Cudgel"</c>
+        /// on a club. Mirrors Qud's <c>MeleeWeapon.Attributes</c>.
+        ///
+        /// In addition to these, the combat path always tags damage with
+        /// "Melee" and the weapon's <see cref="Stat"/> name.
+        /// </summary>
+        public string Attributes = "";
     }
 }
