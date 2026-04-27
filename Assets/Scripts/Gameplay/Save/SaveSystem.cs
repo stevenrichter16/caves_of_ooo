@@ -19,7 +19,7 @@ namespace CavesOfOoo.Core
     public sealed class SaveWriter
     {
         public const int Magic = 0x304F4F43; // COO0
-        public const int FormatVersion = 1;
+        public const int FormatVersion = 2;
 
         private readonly BinaryWriter _writer;
         private readonly Dictionary<Entity, int> _entityTokens = new Dictionary<Entity, int>();
@@ -275,6 +275,7 @@ namespace CavesOfOoo.Core
         public int WorldSeed;
         public string ActiveZoneID;
         public Entity Player;
+        public Entity World;
         public OverworldZoneManager ZoneManager;
         public TurnManager TurnManager;
         public int SelectedHotbarSlot;
@@ -285,7 +286,8 @@ namespace CavesOfOoo.Core
             OverworldZoneManager zoneManager,
             TurnManager turnManager,
             Entity player,
-            int selectedHotbarSlot = 0)
+            int selectedHotbarSlot = 0,
+            Entity world = null)
         {
             return new GameSessionState
             {
@@ -294,6 +296,7 @@ namespace CavesOfOoo.Core
                 WorldSeed = zoneManager != null ? zoneManager.WorldSeed : 0,
                 ActiveZoneID = zoneManager?.ActiveZone?.ZoneID,
                 Player = player,
+                World = world,
                 ZoneManager = zoneManager,
                 TurnManager = turnManager,
                 SelectedHotbarSlot = selectedHotbarSlot
@@ -313,6 +316,9 @@ namespace CavesOfOoo.Core
 
             writer.WriteCheck("Player");
             writer.WriteEntityReference(Player);
+
+            writer.WriteCheck("World");
+            writer.WriteEntityReference(World);
 
             writer.WriteCheck("ZoneManager");
             SaveGraphSerializer.SaveOverworldZoneManager(ZoneManager, writer);
@@ -345,6 +351,9 @@ namespace CavesOfOoo.Core
 
             reader.ExpectCheck("Player");
             state.Player = reader.ReadEntityReference();
+
+            reader.ExpectCheck("World");
+            state.World = reader.ReadEntityReference();
 
             reader.ExpectCheck("ZoneManager");
             state.ZoneManager = SaveGraphSerializer.LoadOverworldZoneManager(reader);

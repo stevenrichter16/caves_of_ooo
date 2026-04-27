@@ -36,6 +36,7 @@ namespace CavesOfOoo
         private Zone _zone;
         private TurnManager _turnManager;
         private Entity _player;
+        private Entity _world;
         private string _gameID = Guid.NewGuid().ToString("N");
         private static readonly char[] StartingBitTypes = { 'R', 'G', 'B', 'C', 'r', 'g', 'b', 'c', 'K', 'W', 'Y', 'M' };
         private static readonly string[] StartingTonicBlueprints =
@@ -169,6 +170,9 @@ namespace CavesOfOoo
                 });
                 if (!zoneGenerated)
                     return;
+
+                _world = new Entity { BlueprintName = "World" };
+                _world.SetTag("WorldEntity");
 
                 Debug.Log("[Bootstrap] Step 6/9: Creating player...");
                 bool playerCreated = PerformanceDiagnostics.MeasureStartupPhase("SetupPlayer", PerformanceMarkers.Bootstrap.SetupPlayer, () =>
@@ -539,7 +543,8 @@ namespace CavesOfOoo
                 _zoneManager,
                 _turnManager,
                 _player,
-                selectedHotbarSlot: 0);
+                selectedHotbarSlot: 0,
+                world: _world);
         }
 
         public void ApplyLoadedGame(GameSessionState state)
@@ -551,6 +556,7 @@ namespace CavesOfOoo
             _zoneManager = state.ZoneManager;
             _turnManager = state.TurnManager;
             _player = state.Player;
+            _world = state.World;
             _zone = _zoneManager?.ActiveZone;
 
             ConversationActions.Factory = _factory;
