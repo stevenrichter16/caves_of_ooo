@@ -513,3 +513,4 @@ test coverage.
 |---|---|---|---|
 | 2026-04-26 | Plan | ✅ | Plan document committed |
 | 2026-04-26 | M0 | ✅ | Verification sweep: 6 claims confirmed, 3 corrections (C1 PlayerEntity.Current static needed; C2 IfNot* family fails-OPEN with null contexts; C3 unknown predicates/actions fail-OPEN — load-time validation added to M1) |
+| 2026-04-26 | M1 | ✅ | Schema + StoryletRegistry shipped with load-time name validation (commit 2938000); 19 EditMode tests green; 2261/2261 total. Includes ConversationPredicates/Actions.IsRegistered accessors. |
