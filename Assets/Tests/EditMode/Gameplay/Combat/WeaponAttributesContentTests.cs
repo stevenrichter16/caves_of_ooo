@@ -86,6 +86,51 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
+        // FlamingSword — first elemental-carrier weapon
+        // (Tier-1 Quick Win; ties Phase C Attributes → Phase E HeatResistance)
+        // ====================================================================
+
+        [Test]
+        public void FlamingSword_HasCuttingFireLongBladesAttribute()
+        {
+            var sword = _harness.Factory.CreateEntity("FlamingSword");
+            Assert.IsNotNull(sword, "FlamingSword blueprint must exist");
+            var weapon = sword.GetPart<MeleeWeaponPart>();
+            Assert.IsNotNull(weapon, "FlamingSword must have a MeleeWeaponPart");
+            Assert.AreEqual("Cutting Fire LongBlades", weapon.Attributes,
+                "FlamingSword.Attributes should declare 'Cutting Fire LongBlades' " +
+                "so it carries both the physical class (Cutting/LongBlades) and the " +
+                "elemental type (Fire) into the Damage object on hit");
+        }
+
+        [Test]
+        public void FlamingSword_AttributesContain_Fire()
+        {
+            // Pinned separately from the exact-string test so a future reorder
+            // (e.g., "Fire Cutting LongBlades") doesn't silently strip Fire and
+            // turn this into a plain cutter.
+            var sword = _harness.Factory.CreateEntity("FlamingSword");
+            var weapon = sword.GetPart<MeleeWeaponPart>();
+            Assert.IsNotNull(weapon);
+            Assert.IsTrue(weapon.Attributes.Contains("Fire"),
+                "FlamingSword must contain 'Fire' in its Attributes — that's what " +
+                "routes its damage through HeatResistance (Phase E) on heat-resistant " +
+                "creatures like Glowmaw");
+        }
+
+        [Test]
+        public void FlamingSword_DoesNotHavePiercing_OrBludgeoning()
+        {
+            // Counter-check: physical-class is Cutting, not the others.
+            var sword = _harness.Factory.CreateEntity("FlamingSword");
+            var weapon = sword.GetPart<MeleeWeaponPart>();
+            Assert.IsFalse(weapon.Attributes.Contains("Piercing"),
+                "FlamingSword is Cutting, not Piercing");
+            Assert.IsFalse(weapon.Attributes.Contains("Bludgeoning"),
+                "FlamingSword is Cutting, not Bludgeoning");
+        }
+
+        // ====================================================================
         // Counter-checks: attributes don't leak across categories
         // ====================================================================
 
