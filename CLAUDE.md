@@ -166,6 +166,13 @@ Fix every 🟡 and 🔴 pre-commit. Defer 🧪/⚪ with a note in the doc.
 **Common pitfalls (§7.2):**
 - **Stale-assembly trap**: tests pass with the OLD code. Re-run after
   `refresh_unity`. The combat-port self-review hit this twice.
+- **Stale-assembly trap (Play-mode variant)**: if `editor.is_focused: false`,
+  Unity defers domain reloads even when `editor_state` reports
+  `ready_for_tools: true`. Symptom: a Play-mode reflection probe shows
+  a `CavesOfOoo.dll` build time older than the on-disk DLL, and new
+  types/methods are missing. **Fix:** ask the user to focus the editor
+  window or restart it; `refresh_unity {mode: force}` alone is not enough.
+  Met during the Phase F/G/H methodology-debt closure (2026-04-26).
 - **Test job init timeout** during recompile is normal — retry once
   after the editor settles (`sleep 3` if needed).
 - `int.TryParse(arg, out duration)` writes 0 on failure AND returns

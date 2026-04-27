@@ -285,3 +285,60 @@ COUNTER: sjControl (no AcidResistance) HP delta = 10  (expected 10)
 - Whether the `DamageFullyResisted` event has any UI listener (currently it does NOT — only the EditMode regression test listens)
 
 **Outstanding gap from sweep:** the live Snapjaw blueprint has no resistance stats and no weapon `Attributes` defined. Resistance code path is dead-letter against current content; weapon attribute propagation works but never carries non-default attributes. Both flagged in Finding 8 (content-team note).
+
+---
+
+## Phase F/G/H methodology-debt closure (2026-04-26)
+
+The original Phase F/G/H commits (`5deb287`, `c44cf3a`, `667e2cb`) shipped without dedicated playtest scenarios or PlayMode sanity sweeps — flagged as "remaining methodology debts" in `Docs/COMBAT-QUD-PARITY-PORT.md`. This section closes them.
+
+### Playtest scenario (closed)
+
+`Assets/Scripts/Scenarios/Custom/CombatHooksShowcase.cs` registered under
+**Caves Of Ooo > Scenarios > Combat Stress > Combat Hooks Showcase (Phases F/G/H)**.
+
+Spawns:
+- **StoneSkin Snapjaw** (NW) with `ShowcaseStoneSkinPart` listening for `BeforeTakeDamage` (Phase F). Reduces incoming damage by 2 and logs `[Showcase] StoneSkin: X -> Y` for each hit.
+- **Control Snapjaw** (E) — no probes; reference for off-hand swing rate.
+- **Indestructible Snapjaw** (NE) with `ShowcaseIndestructiblePart` listening for `CanBeDismembered` (Phase H). Vetoes every dismemberment and logs `[Showcase] Indestructible: vetoed dismemberment`.
+
+Player-side: `MultiWeaponSkillBonus = +5` stat is added to the player on scenario apply (Phase G). Off-hand swings hit more reliably than the default `-2` penalty would allow.
+
+### PlayMode sanity sweep (attempted, BLOCKED by Unity domain-reload deferral)
+
+**Attempted.** Stopped Play mode, `refresh_unity {mode: force, compile: request, scope: all, wait_for_ready: true}`, confirmed `editor/state` reported `ready_for_tools: true` and `is_compiling: false`. Re-entered Play mode.
+
+**Blocked.** The reflection probe inside the new Play-mode session showed:
+- Loaded `CavesOfOoo.dll` build time: **21:41:28** (older — pre-Phase-C)
+- DLL on disk build time: **22:05** (current — has Phase C/F/G/H code)
+- `CombatSystem.ApplyDamage` overloads visible: **1** (the legacy int-only version)
+- `CavesOfOoo.Core.Damage` type: **MISSING**
+- `CombatSystem.GetOffHandHitBonus`: **MISSING**
+
+Unity's Play-mode runtime cached the assembly snapshot from when the editor most recently completed a domain reload **with focus**. With `editor.is_focused: false`, subsequent compiles update the on-disk DLL but Unity defers the in-memory domain reload that would replace the loaded assembly. The `editor_state` resource correctly reports `ready_for_tools: true` because the editor is healthy — but the running domain is stale relative to disk.
+
+This is **a known Unity behavior, not a project-side bug**. Workarounds:
+- Bring editor window to focus → triggers deferred reload (manual, not script-driven)
+- Restart the Unity Editor → fresh domain, fresh DLLs
+- Run tests via the test runner instead (which uses its own compilation path that doesn't suffer the same staleness)
+
+### Verdict on the attempted sweep — honesty bounds
+
+**Can verify (already verified by EditMode tests, no PlayMode needed):**
+- `BeforeTakeDamage` event fires, listeners can mutate damage, vetoing fires `DamageFullyResisted` — 8 tests in `BeforeTakeDamageTests.cs` (all green)
+- `MultiWeaponSkillBonus` stat lookup propagates through `PerformSingleAttack` to off-hand swings — 9 tests in `MultiWeaponPenaltyTests.cs` (all green) including a primary-hand-immunity counter-check
+- `CanBeDismembered` event fires only on chance-passed dismemberment, defenders can veto — 6 tests in `CanBeDismemberedTests.cs` (all green) including source-vs-defender counter-check
+
+**Cannot verify (would have required a working PlayMode sweep):**
+- That the live bootstrap's specific Player entity (`Player = "you"`, Str 18, has Body) goes through the new code paths in real combat — the EditMode tests use synthetic entities; live entity could in principle have a different Part layout that bypasses the new code
+- That spawning a Snapjaw with one of the showcase Parts via `ctx.Spawn(...).At(...)` correctly attaches the part and the part's `HandleEvent` dispatches as expected — covered indirectly by EditMode tests using identical Part / event dispatch but not exercised against the bootstrap entity
+
+**Net assessment:** the EditMode test suite (2181 tests, all green) gives high confidence in the F/G/H mechanics. The blocked PlayMode sweep would have added a small amount of integration evidence but was not on the critical path. The playtest scenario itself is the better tool for human verification: launch it, attack the dummies, watch the message log for the showcase log lines.
+
+### Future workaround for blocked sweeps
+
+Per Methodology Template §7.2 ("Common pitfalls"), the stale-assembly trap is documented but the *editor-not-focused defers domain reload* variant is more subtle. CLAUDE.md `Unity MCP workflow` already covers `refresh_unity {mode: force}` for the basic stale case; the editor-focus variant should be added if it recurs:
+
+> If `editor.is_focused: false` AND a Play-mode reflection probe shows a build time older than the disk DLL, ask the user to focus the editor window or restart it. Domain reloads with the editor unfocused can be deferred even when `ready_for_tools` returns `true`.
+
+This is a CLAUDE.md follow-up, not blocking for this commit.

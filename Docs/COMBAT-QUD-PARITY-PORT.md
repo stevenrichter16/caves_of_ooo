@@ -844,7 +844,7 @@ These were originally bundled into Phase F before the sweep narrowed scope; they
 - **Terrain reactions** — fire spreading, ice freezing water, electricity arcing. Would integrate with the existing `MaterialReactions` system.
 - **Status-effect-from-damage-attribute** — e.g., taking Fire damage applies `Burning` effect. CoO-original (Qud doesn't do this from melee Fire damage). Could ship as a thin opt-in mechanism on weapons that have a `"BurnsOnHit"` attribute.
 
-### Remaining methodology debts
+### Remaining methodology debts (closed 2026-04-26)
 
-- **Manual playtest scenarios** — `CombatParityShowcase` (commit `02e08d1`) covers Phases A-E. Phases F, G, H lack dedicated playtest scenarios. Probably fine since they're event-hook/stat-tunable plumbing without immediately-visible game effect, but worth noting.
-- **PlayMode sanity sweep for F/G/H** — only ran for the A-E remediation. F/G/H are pure plumbing (no live-bootstrap-specific risk) so this is low-priority. Would be valuable if any of them later wire into player-visible content.
+- ✅ **Manual playtest scenario for F/G/H** — `Assets/Scripts/Scenarios/Custom/CombatHooksShowcase.cs` shipped, registered under "Caves Of Ooo / Scenarios / Combat Stress / Combat Hooks Showcase (Phases F/G/H)". See `COMBAT-PARITY-PORT-REVIEW.md` "Phase F/G/H methodology-debt closure" section.
+- ⚠️ **PlayMode sanity sweep for F/G/H** — attempted but BLOCKED by Unity's domain-reload-deferral when the editor window is unfocused (a known Unity quirk now documented in `CLAUDE.md`). EditMode tests (2181 green, including F/G/H integration tests) cover the verification surface; the playtest scenario is the practical human-verification tool. Net assessment in the review doc: the blocked sweep was not on the critical path.
