@@ -150,6 +150,22 @@ namespace CavesOfOoo.Core
         public virtual void OnTakeDamage(Entity target, GameEvent e) { }
 
         /// <summary>
+        /// Called BEFORE damage applies (after the dead-target guard, before
+        /// resistance and HP decrement). Listeners can mutate the
+        /// <see cref="Damage"/> object via <c>e.GetParameter("Damage")</c>
+        /// to add/remove attributes or reduce <c>Amount</c>. Mirrors the
+        /// Phase F <c>BeforeTakeDamage</c> event hook on
+        /// <see cref="CombatSystem.ApplyDamage"/>; this is the
+        /// Effect-system surface for that hook.
+        ///
+        /// To fully block damage, mutate <c>damage.Amount</c> to 0 — the
+        /// setter clamps to ≥ 0 so over-reduction is safe. The CombatSystem's
+        /// resistance code path then surfaces the attempt as
+        /// <c>DamageFullyResisted</c> instead of firing <c>TakeDamage</c>.
+        /// </summary>
+        public virtual void OnBeforeTakeDamage(Entity target, GameEvent e) { }
+
+        /// <summary>
         /// Return false to prevent the entity from acting this turn (stun, paralysis).
         /// </summary>
         public virtual bool AllowAction(Entity target) => true;
