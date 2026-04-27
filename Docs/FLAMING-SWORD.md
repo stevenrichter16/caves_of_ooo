@@ -237,12 +237,33 @@ Could pair with a similar `Cudgel` knockback or `Dagger` poison-tip.
 
 ## Tests
 
-`+6 new tests` (target):
+`+6 new tests`:
 - 3 blueprint-shape (in `WeaponAttributesContentTests.cs`)
 - 3 integration (new `FlamingSwordContentTests.cs`)
 
-Verification status: **inspection-confirmed; Unity-runtime confirmation
-pending stabilization.**
+### Final test results — ALL GREEN ✅
+
+After Unity recovered from the deferred-domain-reload trap, the full
+6-test subset ran cleanly via Unity MCP test runner (job
+`73c4406ec09745aa9162ba36a2d1154c`), 51ms total:
+
+| # | Test | Result |
+|---:|---|:-:|
+| 1 | `FlamingSword_HasCuttingFireLongBladesAttribute` | ✅ PASS |
+| 2 | `FlamingSword_AttributesContain_Fire` | ✅ PASS |
+| 3 | `FlamingSword_DoesNotHavePiercing_OrBludgeoning` | ✅ PASS |
+| 4 | `FlamingSword_AttributesViaCombatPath_TriggerHeatResistance` | ✅ PASS |
+| 5 | `NonFireDamage_OnHeatResistantTarget_NotReduced` | ✅ PASS |
+| 6 | `FlamingSword_OnGlowmaw_TakesLessDamageThan_ControlTarget` | ✅ PASS |
+
+**6 passed, 0 failed, 0 skipped, resultState: Passed.**
+
+The 🔵 Finding 1 (deferred verification) is closed. The
+inspection-level confidence held: zero post-hoc bugs surfaced when
+Unity finally ran the suite.
+
+Full EditMode regression sweep follow-up: if any unrelated tests fail,
+documented as a separate finding in the next session.
 
 
 ## Blueprint shape (proposed)
