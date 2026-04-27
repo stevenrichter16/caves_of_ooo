@@ -187,5 +187,21 @@ namespace CavesOfOoo.Tests.Scenarios
                 CavesOfOoo.Diagnostics.AIDebug.AIInspectorEnabled = false;
             }
         }
+
+        // ======================================================
+        // Combat showcases (Phase C/D/E/F/G/H + content)
+        // ======================================================
+
+        [Test] public void CombatHooksShowcase_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new CombatHooksShowcase().Apply(FreshContext()));
+
+        [Test] public void CombatParityShowcase_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new CombatParityShowcase().Apply(FreshContext()));
+
+        [Test] public void FlamingSwordShowcase_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new FlamingSwordShowcase().Apply(FreshContext()));
+
+        [Test] public void ElementalSwordsShowcase_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new ElementalSwordsShowcase().Apply(FreshContext()));
     }
 }
