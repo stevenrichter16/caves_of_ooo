@@ -83,7 +83,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "4" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "MaxStrengthBonus", "Value": "3" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "MaxStrengthBonus", "Value": "3" }, { "Key": "Attributes", "Value": "Piercing" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "10" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Steel" },
@@ -167,7 +167,8 @@
         { "Name": "Strength", "Value": 16 },
         { "Name": "Agility", "Value": 14 },
         { "Name": "Toughness", "Value": 14 },
-        { "Name": "XPValue", "Value": 15 }
+        { "Name": "XPValue", "Value": 15 },
+        { "Name": "ColdResistance", "Value": 25, "Min": -100, "Max": 200 }
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Snapjaws" },
@@ -385,7 +386,8 @@
         { "Name": "Hitpoints", "Value": 25, "Min": 0, "Max": 25 },
         { "Name": "Strength", "Value": 20 },
         { "Name": "Agility", "Value": 18 },
-        { "Name": "XPValue", "Value": 40 }
+        { "Name": "XPValue", "Value": 40 },
+        { "Name": "ColdResistance", "Value": 50, "Min": -100, "Max": 200 }
       ],
       "Tags": [
         { "Key": "Tier", "Value": "2" }
@@ -1159,7 +1161,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "5" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6" }, { "Key": "PenBonus", "Value": "1" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "Attributes", "Value": "Cutting LongBlades" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "15" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Steel" },
@@ -1303,7 +1305,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "8" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4+2" }, { "Key": "PenBonus", "Value": "2" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4+2" }, { "Key": "PenBonus", "Value": "2" }, { "Key": "Attributes", "Value": "Bludgeoning" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "8" }] }
       ],
       "Stats": [
@@ -1752,7 +1754,7 @@
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "16" }] },
         { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
         { "Name": "Handling", "Params": [{ "Key": "GripType", "Value": "TwoHand" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d4+1" }, { "Key": "PenBonus", "Value": "5" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d4+1" }, { "Key": "PenBonus", "Value": "5" }, { "Key": "Attributes", "Value": "Bludgeoning Cudgel" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "45" }] }
       ],
       "Stats": [
@@ -2373,7 +2375,8 @@
         { "Name": "Strength", "Value": 18 },
         { "Name": "Agility", "Value": 12 },
         { "Name": "Speed", "Value": 90 },
-        { "Name": "XPValue", "Value": 20 }
+        { "Name": "XPValue", "Value": 20 },
+        { "Name": "HeatResistance", "Value": 50, "Min": -100, "Max": 200 }
       ],
       "Tags": [
         { "Key": "Tier", "Value": "1" },

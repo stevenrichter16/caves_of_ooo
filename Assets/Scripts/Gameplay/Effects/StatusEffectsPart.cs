@@ -276,6 +276,12 @@ namespace CavesOfOoo.Core
                 return true;
             }
 
+            if (e.ID == "BeforeTakeDamage")
+            {
+                HandleBeforeTakeDamage(e);
+                return true;
+            }
+
             if (e.ID == "TakeDamage")
             {
                 HandleTakeDamage(e);
@@ -361,6 +367,22 @@ namespace CavesOfOoo.Core
             {
                 if (i < _effects.Count)
                     _effects[i].OnTakeDamage(ParentEntity, e);
+            }
+        }
+
+        /// <summary>
+        /// Tier 2.4: route Phase F's <c>BeforeTakeDamage</c> event to per-effect
+        /// dispatch. Each effect's <see cref="Effect.OnBeforeTakeDamage"/>
+        /// observes (and may mutate) the incoming <see cref="Damage"/> before
+        /// resistance and HP decrement. Iterates oldest-first since the
+        /// mutation order is "all effects had a turn"; reverse-iteration would
+        /// give newer effects a less direct view of the damage.
+        /// </summary>
+        private void HandleBeforeTakeDamage(GameEvent e)
+        {
+            for (int i = 0; i < _effects.Count; i++)
+            {
+                _effects[i].OnBeforeTakeDamage(ParentEntity, e);
             }
         }
 
