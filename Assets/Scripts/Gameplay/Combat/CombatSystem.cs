@@ -244,28 +244,56 @@ namespace CavesOfOoo.Core
                 return;
             }
 
-            // Log the hit before applying damage so the killing blow details are visible.
-            // Tier 2.1: nat-20 hits include the CRITICAL_HIT_TAG so the player sees
-            // the crit happen, not just the silent "Critical" attribute on Damage.
+            // Capture pre-damage HP. Phase F BeforeTakeDamage listeners
+            // (Stoneskin, etc.), Phase E elemental resistance, and the
+            // TakeDamage event can all mutate damage.Amount in-flight inside
+            // ApplyDamage — so the actual landed amount is the HP delta,
+            // NOT the pre-call damage.Amount we computed from dice rolls.
+            //
+            // Pre-fix this block emitted the hit log BEFORE ApplyDamage and
+            // used `damage.Amount` (raw) and `hpBefore - damage.Amount`
+            // (also raw). On a heat-resistant target hit by a Fire-tagged
+            // weapon, the log claimed e.g. "12 damage / 188 HP remaining"
+            // while the actual entity lost only 6 HP and sat at 194/200 —
+            // the HP bar told the truth, the log lied.
             int hpBefore = defender.GetStatValue("Hitpoints", 0);
-            int hpAfter = hpBefore - damage.Amount;
 
-            string hitVerb = naturalTwenty ? $"{CRITICAL_HIT_TAG}LY hits" : "hits";
-            MessageLog.Add($"{attackerName}{srcTag} {hitVerb} {defenderName}{partDesc} for {damage.Amount} damage!{(hpAfter > 0 ? $" ({hpAfter} HP remaining)" : "")}");
-
-            // Apply damage (typed overload — preferred path)
+            // Apply damage (typed overload — preferred path). Internally:
+            //   Phase F BeforeTakeDamage event (listeners can veto/mutate)
+            //   → Phase E ApplyResistances (HeatResistance etc.)
+            //   → TakeDamage event (more in-flight mutations possible)
+            //   → HP decrement (clamped to ≥ 0)
+            //   → HandleDeath if HP <= 0 (which logs "X is killed by Y!").
             ApplyDamage(defender, damage, attacker, zone);
 
-            // Floating damage number
+            int hpAfter = defender.GetStatValue("Hitpoints", 0);
+            int actualDamage = System.Math.Max(0, hpBefore - hpAfter);
+
+            // Tier 2.1: nat-20 hits include the CRITICAL_HIT_TAG so the player
+            // sees the crit happen, not just the silent "Critical" attribute on
+            // Damage. Note: on lethal blows the kill announcement (from
+            // HandleDeath inside ApplyDamage) precedes this hit line, so the
+            // order reads "X is killed by Y!" then "Y hits X for N damage!".
+            // The hit line still uses post-resistance actualDamage so the
+            // number is honest.
+            string hitVerb = naturalTwenty ? $"{CRITICAL_HIT_TAG}LY hits" : "hits";
+            MessageLog.Add($"{attackerName}{srcTag} {hitVerb} {defenderName}{partDesc} for {actualDamage} damage!{(hpAfter > 0 ? $" ({hpAfter} HP remaining)" : "")}");
+
+            // Floating damage number — uses actualDamage so the on-screen number
+            // matches the HP delta the player just observed on the HUD.
             Cell hitCell = zone.GetEntityCell(defender);
             if (hitCell != null)
-                AsciiFxBus.EmitFloatingNumber(zone, hitCell.X, hitCell.Y, damage.Amount, "&R");
+                AsciiFxBus.EmitFloatingNumber(zone, hitCell.X, hitCell.Y, actualDamage, "&R");
 
             if (hpAfter > 0)
             {
-                // Check for combat dismemberment (only on survivors)
+                // Check for combat dismemberment (only on survivors). Use
+                // actualDamage because the threshold formula is (damage / maxHP)
+                // — pre-resistance values would over-trigger dismemberment on
+                // heat-resistant creatures hit by Fire-tagged weapons (the
+                // Glowmaw shouldn't lose a limb to half-absorbed Fire damage).
                 if (hitPart != null)
-                    CheckCombatDismemberment(defender, defenderBody, hitPart, damage.Amount, zone, rng);
+                    CheckCombatDismemberment(defender, defenderBody, hitPart, actualDamage, zone, rng);
             }
         }
 
