@@ -213,6 +213,40 @@ namespace CavesOfOoo.Core
                 if (!int.TryParse(arg.Substring(colon + 1), out int min)) return false;
                 return HouseDramaRuntime.GetCorruption(arg.Substring(0, colon)) >= min;
             });
+
+            // ── Narrative state predicates ────────────────────────────────────
+
+            // arg: "key:op:value"  op ∈ { =, !=, <, >, <=, >= }
+            // Fail-closed: malformed args or missing state return false.
+            Register("IfFact", (speaker, listener, arg) =>
+            {
+                var ns = NarrativeStatePart.Current;
+                if (ns == null) return false;
+                var parts = arg.Split(':', 3);
+                if (parts.Length < 3) return false;
+                if (!int.TryParse(parts[2], out int threshold)) return false;
+                int actual = ns.GetFact(parts[0]);
+                string op = parts[1];
+                if (op == "=")  return actual == threshold;
+                if (op == "!=") return actual != threshold;
+                if (op == ">")  return actual >  threshold;
+                if (op == ">=") return actual >= threshold;
+                if (op == "<")  return actual <  threshold;
+                if (op == "<=") return actual <= threshold;
+                return false;
+            });
+
+            // arg: "topic:minTier"
+            // Fail-closed: malformed args or missing KnowledgePart return false.
+            Register("IfSpeakerKnows", (speaker, listener, arg) =>
+            {
+                int colon = arg.IndexOf(':');
+                if (colon < 0) return false;
+                if (!int.TryParse(arg.Substring(colon + 1), out int minTier)) return false;
+                var kp = speaker?.GetPart<KnowledgePart>();
+                if (kp == null) return false;
+                return kp.Knows(arg.Substring(0, colon), minTier);
+            });
         }
 
         private static string ResolveSettlementId(Entity speaker)

@@ -173,6 +173,9 @@ namespace CavesOfOoo
 
                 _world = new Entity { BlueprintName = "World" };
                 _world.SetTag("WorldEntity");
+                var narrativeState = new NarrativeStatePart();
+                _world.AddPart(narrativeState);
+                NarrativeStatePart.Current = narrativeState;
 
                 Debug.Log("[Bootstrap] Step 6/9: Creating player...");
                 bool playerCreated = PerformanceDiagnostics.MeasureStartupPhase("SetupPlayer", PerformanceMarkers.Bootstrap.SetupPlayer, () =>
@@ -557,6 +560,7 @@ namespace CavesOfOoo
             _turnManager = state.TurnManager;
             _player = state.Player;
             _world = state.World;
+            NarrativeStatePart.Current = _world?.GetPart<NarrativeStatePart>();
             _zone = _zoneManager?.ActiveZone;
 
             ConversationActions.Factory = _factory;

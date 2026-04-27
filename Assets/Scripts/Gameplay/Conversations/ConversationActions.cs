@@ -377,6 +377,49 @@ namespace CavesOfOoo.Core
                 string effect   = arg.Substring(colon + 1);
                 HouseDramaRuntime.ApplyCrossoverEffect(dramaId, effect);
             });
+
+            // ── Narrative state actions ───────────────────────────────────────
+
+            // arg: "key:value"
+            Register("SetFact", (speaker, listener, arg) =>
+            {
+                var ns = NarrativeStatePart.Current;
+                if (ns == null) return;
+                int colon = arg.IndexOf(':');
+                if (colon < 0) return;
+                if (!int.TryParse(arg.Substring(colon + 1), out int value)) return;
+                ns.SetFact(arg.Substring(0, colon), value);
+            });
+
+            // arg: "key:delta"
+            Register("AddFact", (speaker, listener, arg) =>
+            {
+                var ns = NarrativeStatePart.Current;
+                if (ns == null) return;
+                int colon = arg.IndexOf(':');
+                if (colon < 0) return;
+                if (!int.TryParse(arg.Substring(colon + 1), out int delta)) return;
+                ns.AddFact(arg.Substring(0, colon), delta);
+            });
+
+            // arg: "key"
+            Register("ClearFact", (speaker, listener, arg) =>
+            {
+                var ns = NarrativeStatePart.Current;
+                if (ns == null || string.IsNullOrEmpty(arg)) return;
+                ns.ClearFact(arg);
+            });
+
+            // arg: "Target:topic:tier"  Target ∈ {Listener, Speaker}
+            Register("Reveal", (speaker, listener, arg) =>
+            {
+                var parts = arg.Split(':', 3);
+                if (parts.Length < 3) return;
+                if (!int.TryParse(parts[2], out int tier)) return;
+                Entity target = parts[0] == "Speaker" ? speaker : listener;
+                var kp = target?.GetPart<KnowledgePart>();
+                kp?.Reveal(parts[1], tier);
+            });
         }
 
         private static string ResolveSettlementId(Entity speaker)

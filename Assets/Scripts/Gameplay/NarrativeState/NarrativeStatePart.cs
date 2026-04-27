@@ -14,6 +14,12 @@ namespace CavesOfOoo.Core
     {
         public override string Name => "NarrativeState";
 
+        /// <summary>
+        /// The active NarrativeStatePart for the current game session.
+        /// Set by GameBootstrap on fresh boot and on load. Null outside of play.
+        /// </summary>
+        public static NarrativeStatePart Current;
+
         private readonly FactBag _facts = new FactBag();
         private readonly List<string> _eventLog = new List<string>();
 
