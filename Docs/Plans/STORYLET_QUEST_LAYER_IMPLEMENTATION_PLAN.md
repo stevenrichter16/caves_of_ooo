@@ -159,10 +159,11 @@ quests from dialogue.
 
 | Gap | Affected milestone | Fix |
 |---|---|---|
-| `ConversationPredicates`/`Actions` may NRE on `IfFactionFeelingAtLeast`, `IfNotHostile` with null speaker/listener | M0 verification sweep | Audit `FactionManager.GetFeeling`/`IsHostile`; either guard for null OR add to "do not use from storylets" doc list |
-| No `IfPlayerHas*` family — `IfHaveItem` etc. fail-closed when `listener` is null | M5 conversation hooks | Add `IfPlayerHasItem`, `IfPlayerHasTag`, `IfPlayerHasProperty`, resolving player via `GameSessionState.Player` static (verify accessor) |
-| `GameSessionState` lacks `World` already addressed in M1 of prior plan; this plan does not need a parallel field for storylets — they ride on `World.Parts` | — | Already wired |
-| `StoryletPart.OnAfterLoad` must register the part as an `INarrativeReactor` on `NarrativeStatePart.Current` (load path skips `Initialize`) | M2 | Mirror `NarrativeStatePart`'s own pattern: register in both `Initialize` and `OnAfterLoad` |
+| `IfNotHostile` and other `IfNot*` auto-inversions fail-OPEN with null contexts (M0 finding C2) | M5 conversation hooks (allowlist doc) | Document the storylet-safe allowlist in `StoryletData.cs` xmldoc; storylet authors must avoid context-dependent predicates of either polarity |
+| Unknown predicates fail-OPEN (return `true`) — typos cause runaway storylets (M0 finding C3) | M1 schema validation | `StoryletRegistry.LoadFromJson` validates trigger/effect names against the predicate/action registries at load time and rejects/warns on unknown names |
+| No static `Player` accessor — `GameSessionState.Player` is an instance field (M0 finding C1) | M5 + cross-cutting | Introduce `PlayerEntity.Current` static (new file `Assets/Scripts/Core/PlayerEntity.cs`); wire in `GameBootstrap.OnAfterBootstrap` and `ApplyLoadedGame`; reset to null in test cleanup paths |
+| No `IfPlayerHas*` family — `IfHaveItem` etc. fail-closed when `listener` is null | M5 conversation hooks | Add `IfPlayerHasItem`, `IfPlayerHasTag`, `IfPlayerHasProperty`, resolving via `PlayerEntity.Current` (depends on the C1 fix above) |
+| `StoryletPart.OnAfterLoad` must register the part as an `INarrativeReactor` on `NarrativeStatePart.Current` (load path skips `Initialize` — confirmed M0) | M2 | Mirror `NarrativeStatePart`'s own pattern: register in both `Initialize` and `OnAfterLoad` |
 | First-tick race: `OnTickEnd` fires before `StoryletRegistry.LoadAll` completes | M3 | `LoadAll` runs in `OnAfterBootstrap` step 1c per existing pattern; bootstrap order already serializes this |
 | Conversation predicate/action registries call `Reset()` in tests | M5 | New entries register inside `EnsureInitialized()` like the narrative-state M3 commit (`0a845e5`) |
 
@@ -200,6 +201,65 @@ the narrative-state plan's §1.2 pattern.
 
 ---
 
+## M0 findings (sweep run on 2026-04-26)
+
+### Confirmed (no plan changes)
+
+- `FactionManager.GetFeeling`/`IsHostile` are null-safe — fail-closed to 0/false at `FactionManager.cs:168`
+- `NarrativeStatePart.RegisterReactor` is public + duplicate-guarded (`NarrativeStatePart.cs:51`)
+- `SaveGraphSerializer.LoadEntityBody` (`SaveSystem.cs:629`) does **not** call `Initialize()` — `OnAfterLoad` is the correct hook for reactor re-registration
+- `SaveWriter.FormatVersion = 2` (`SaveSystem.cs:22`); strict-equality reject at line 131 — v2→v3 bump is a hard break for v2 saves per pre-1.0 dev policy
+- `MessageLog.Add` is plain `List.Add` + delegate invoke — safe from any context including `OnTickEnd`
+- `ConversationPredicates.EnsureInitialized` (`ConversationPredicates.cs:20`) is the right registration seam; idempotent
+
+### Corrections (incorporated below)
+
+**C1 — No static `Player` accessor exists.** `GameSessionState.Player` is an instance field, not a static. The `IfPlayer*` family needs a new static accessor (mirroring `NarrativeStatePart.Current` and `TurnManager.World`). M5 scope expands: introduce `PlayerEntity.Current` (new file
+`Assets/Scripts/Core/PlayerEntity.cs`, simple `public static Entity Current;`)
+wired by `GameBootstrap` in `OnAfterBootstrap` and `ApplyLoadedGame`. Reset to
+null on `Reset()` paths used by tests.
+
+**C2 — `IfNot*` auto-inversion fails-OPEN for predicates that need a non-null listener/speaker.** `IfHaveItem` fails-closed to `false` when `listener == null`; auto-inversion turns that into `IfNotHaveItem` returning `true` always for storylets. The storylet allowlist must filter **both polarities** of context-dependent predicates. Specifically NOT safe from storylets:
+`IfHaveItem`/`IfNotHaveItem`, `IfHaveTag`/`IfNotHaveTag`, `IfHaveProperty`/`IfNotHaveProperty`, `IfHaveIntProperty`/`IfNotHaveIntProperty`, `IfHaveItemWithTag`/`IfNotHaveItemWithTag`, `IfStatAtLeast`/`IfNotStatAtLeast`, `IfSpeakerHaveTag`/`IfNot*`, `IfSpeakerHaveProperty`/`IfNot*`, `IfFactionFeelingAtLeast`/`IfNot*`, `IfNotHostile` (specifically — fails-OPEN with null contexts), `IfSettlementSiteStage`/`IfNot*`. The `IfPlayer*` family resolves this for inventory/tag/property checks.
+
+**C3 — Unknown predicates fail-OPEN.** `ConversationPredicates.Evaluate` returns `true` for unregistered names (`ConversationPredicates.cs:48`, with a `Debug.LogWarning`). A typo in a storylet trigger fires it forever. M1 scope expands: `StoryletRegistry.LoadFromJson` validates each storylet's trigger predicate names against `ConversationPredicates._predicates` keys at load time (or against a published "known names" snapshot) and rejects/warns on unknown names — fail-fast at content-load, not at trigger-eval. Same check for action names against `ConversationActions._actions`.
+
+**Storylet-safe predicate allowlist** (post-M5 — to be documented in `StoryletData.cs` xmldoc):
+
+```
+IfFact / IfNotFact
+IfReputationAtLeast / IfNotReputationAtLeast
+IfDramaActive / IfNotDramaActive
+IfPressurePointState / IfNotPressurePointState
+IfPathTaken / IfNotPathTaken
+IfWitnessKnows / IfNotWitnessKnows
+IfCorruptionAtLeast / IfNotCorruptionAtLeast
+IfPlayerHasItem / IfNotPlayerHasItem    (new in M5)
+IfPlayerHasTag / IfNotPlayerHasTag      (new in M5)
+IfPlayerHasProperty / IfNotPlayerHasProperty (new in M5)
+IfStoryletFired / IfNotStoryletFired    (new in M5)
+IfQuestActive / IfNotQuestActive        (new in M5)
+IfQuestStage / IfNotQuestStage          (new in M5)
+IfQuestComplete / IfNotQuestComplete    (new in M5)
+```
+
+**Storylet-safe action allowlist:**
+
+```
+SetFact, AddFact, ClearFact
+Reveal (with caveat: requires Speaker|Listener target — listener defaults
+        to player if PlayerEntity.Current is non-null, but storylet authors
+        should prefer SetFact on the player's KnowledgePart directly via
+        a future RevealToPlayer action; tracked as a follow-up)
+AddMessage
+ChangeFactionFeeling
+AdvancePressurePoint, RevealWitnessFact, AddCorruption,
+StartDrama, TriggerCrossover
+StartQuest, AdvanceQuest, CompleteQuest, FireStorylet (new in M5)
+```
+
+---
+
 ## Milestone breakdown (TDD)
 
 ### M1 — Schema + Registry
@@ -207,15 +267,25 @@ the narrative-state plan's §1.2 pattern.
 **Invariant:** A JSON file in `Resources/Content/Data/Storylets/` is loaded
 into `StoryletRegistry`; storylet IDs round-trip through `Get`/`GetAll`;
 malformed JSON does not throw; HouseDramaLoader-style `_loaded` semantics
-are preserved (no auto-reload after `Reset()` + populate).
+are preserved (no auto-reload after `Reset()` + populate); **trigger and
+effect names are validated against the conversation predicate/action
+registries at load time** (M0 finding C3) — unknown names rejected with a
+warning rather than fail-OPEN at trigger eval.
 
 **TDD plan:**
 1. Write failing tests: registry `LoadFromJson` registers single + multi
    storylets; missing ID skipped with warning; duplicate ID overwrites;
    malformed JSON does not throw; `Reset` then `Register` survives next
-   `Get` (the bug class fixed in `83e9522`)
+   `Get` (the bug class fixed in `83e9522`); **storylet with unknown
+   trigger predicate name is rejected with a warning** (new from C3);
+   storylet with unknown effect action name is rejected
 2. Implement `StoryletData`, `QuestData`, `QuestStageData`, `StoryletRegistry`
-3. Run loader tests against an empty `Resources/Content/Data/Storylets/`
+3. Add validation pass: for each loaded storylet, check every
+   `Triggers[].Key` against `ConversationPredicates._predicates` (or via a
+   new `ConversationPredicates.IsRegistered(name)` accessor) and every
+   `Effects[].Key` against `ConversationActions._actions`; emit warnings
+   and skip the storylet if any name is unknown
+4. Run loader tests against an empty `Resources/Content/Data/Storylets/`
 
 **Files created:**
 - `Assets/Scripts/Gameplay/Storylets/StoryletData.cs`
@@ -300,28 +370,41 @@ quests don't re-evaluate.
 
 ---
 
-### M5 — Conversation hooks + `IfPlayer*` family
+### M5 — Conversation hooks + `IfPlayer*` family + `PlayerEntity.Current`
 
 **Invariant:** Dialogue can gate choices on storylet/quest state and fire
 storylet/quest manipulations from action hooks. Storylets can gate on
-player inventory/tags without a listener context.
+player inventory/tags without a listener context. A static
+`PlayerEntity.Current` is set on bootstrap and on load.
 
 **TDD plan:**
-1. Write failing tests for new predicates: `IfStoryletFired:id`,
+1. Introduce `PlayerEntity` (new file `Assets/Scripts/Core/PlayerEntity.cs`):
+   `public static class PlayerEntity { public static Entity Current; public static void Reset() => Current = null; }`. Wire in
+   `GameBootstrap.OnAfterBootstrap` (after `_player` is created) and in
+   `ApplyLoadedGame` (after `_player = state.Player`). Reset null in test
+   cleanup paths that call `FactionManager.Reset()` etc.
+2. Write failing tests for new predicates: `IfStoryletFired:id`,
    `IfQuestActive:id`, `IfQuestStage:id:stageId`, `IfQuestComplete:id` —
    each correct on positive and negative cases; auto-inverted `IfNot*`
    covered for free; new `IfPlayerHasItem`, `IfPlayerHasTag`,
-   `IfPlayerHasProperty` resolving via `GameSessionState.Player`
-2. Write failing tests for new actions: `StartQuest:id` activates a quest
+   `IfPlayerHasProperty` resolving via `PlayerEntity.Current` (NOT the
+   `listener` argument)
+3. Write failing tests for new actions: `StartQuest:id` activates a quest
    from dialogue; `AdvanceQuest:id:stageId` jumps to a stage; `CompleteQuest:id`
    marks complete; `FireStorylet:id` triggers a one-shot manually
-3. Implement predicates/actions inside `EnsureInitialized()` (so they
+4. Add `ConversationPredicates.IsRegistered(name)` and
+   `ConversationActions.IsRegistered(name)` accessors used by M1's load-time
+   validation
+5. Implement predicates/actions inside `EnsureInitialized()` (so they
    survive `Reset()` like narrative-state M3)
 
-**Files modified:**
+**Files modified/created:**
+- `Assets/Scripts/Core/PlayerEntity.cs` (new)
+- `Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs` (+wire `PlayerEntity.Current`)
 - `Assets/Scripts/Gameplay/Conversations/ConversationPredicates.cs`
 - `Assets/Scripts/Gameplay/Conversations/ConversationActions.cs`
 - `Assets/Tests/EditMode/Gameplay/Storylets/StoryletConversationTests.cs`
+- `Assets/Tests/EditMode/Gameplay/Storylets/PlayerEntityTests.cs`
 
 ---
 
@@ -346,10 +429,12 @@ Per Methodology Template §5:
 
 ## Verification checklist
 
-- [ ] M0: FactionManager NRE risks audited; allowlist of storylet-safe
-  predicates/actions documented in `StoryletData.cs` xmldoc
+- [x] M0: FactionManager null-safety verified (fail-closed); 3 corrections
+  (C1 PlayerEntity.Current, C2 IfNot* fail-OPEN, C3 unknown-name fail-OPEN)
+  incorporated into M1/M5
 - [ ] M1: `StoryletRegistry.LoadFromJson` round-trips storylets; matches
-  `HouseDramaLoader` post-fix `_loaded` semantics
+  `HouseDramaLoader` post-fix `_loaded` semantics; **rejects storylets with
+  unknown trigger/effect names** (C3 fix)
 - [ ] M2: `StoryletPart` survives `Capture → Save → Load → ApplyLoadedGame`;
   `Current` re-set on both bootstrap AND load; reactor re-registered
 - [ ] M2: `SaveWriter.FormatVersion = 3`
@@ -360,7 +445,11 @@ Per Methodology Template §5:
 - [ ] M5: All new predicates and actions registered inside
   `EnsureInitialized()`; survive `ConversationPredicates.Reset()` and
   `ConversationActions.Reset()` paths
-- [ ] M5: `IfPlayerHas*` family resolves player without a listener
+- [ ] M5: `PlayerEntity.Current` set on bootstrap AND load; reset on test
+  cleanup; `IfPlayerHas*` family resolves via `PlayerEntity.Current` (not
+  `listener`) — closes the C1 finding
+- [ ] M5: `ConversationPredicates.IsRegistered`/`ConversationActions.IsRegistered`
+  exist and are consumed by M1's storylet-load validation
 - [ ] M6: End-to-end test passes; demo storylet visible in Play Mode
   (sets a fact via dialogue → tick → MessageLog announces fire)
 - [ ] All existing 2242 EditMode tests still green
@@ -423,3 +512,4 @@ test coverage.
 | Date | Milestone | Status | Notes |
 |---|---|---|---|
 | 2026-04-26 | Plan | ✅ | Plan document committed |
+| 2026-04-26 | M0 | ✅ | Verification sweep: 6 claims confirmed, 3 corrections (C1 PlayerEntity.Current static needed; C2 IfNot* family fails-OPEN with null contexts; C3 unknown predicates/actions fail-OPEN — load-time validation added to M1) |
