@@ -265,6 +265,73 @@ Unity finally ran the suite.
 Full EditMode regression sweep follow-up: if any unrelated tests fail,
 documented as a separate finding in the next session.
 
+## Manual playtest scenario
+
+Per Methodology Template §3.6, content with player-visible behavior gets
+a `Scenarios/Custom/<Name>.cs` so a human can load and exercise the
+feature in-game without needing to grind an actual playthrough into the
+right conditions.
+
+### Where to find it
+
+**Menu:** `Caves Of Ooo / Scenarios / Combat Stress / FlamingSword Showcase (Phase C × E)`
+
+After the menu click, Unity enters Play mode and the scenario applies on
+`GameBootstrap.OnAfterBootstrap`. Press `Cmd+Shift+R` to re-launch it
+without re-clicking the menu.
+
+### What it stages
+
+Three creatures, each with a `FlamingSwordDemoProbePart` that logs every
+incoming hit's full attribute list + the target's HeatResistance:
+
+| Position | Target | HeatResistance | Use this weapon | Demonstrates |
+|---|---|---:|---|---|
+| E (player+3, 0) | Glowmaw | 50 | FlamingSword | Fire damage **halved** |
+| NE (player+3, -2) | Snapjaw | 0 | FlamingSword | Fire damage **NOT reduced** (no HR) |
+| SE (player+3, +2) | Glowmaw | 50 | ShortSword (swap from inventory) | Non-Fire damage **NOT reduced** |
+
+All three creatures have HP padded to 200 so a half-dozen swings each
+land before any death. Player gets HP=200/200, Strength=24, FlamingSword
+equipped, ShortSword + 5 HealingTonics in inventory.
+
+### What to watch for in the message log
+
+Each `[FlameDemo]` line carries:
+- target name
+- the damage amount BEFORE Phase E resistance fires
+- a `FIRE` / `non-fire` flag
+- the target's HeatResistance value (live read)
+- the full attribute list
+
+Expected sequence (paraphrased):
+
+```
+--- swing FlamingSword east at Glowmaw ---
+[FlameDemo] glowmaw incoming: amount=8 FIRE HR=50 attrs=[Melee,Strength,Cutting,Fire,LongBlades]
+(Glowmaw HP drops by ~4 — HeatResistance halved the hit)
+
+--- swing FlamingSword northeast at Snapjaw ---
+[FlameDemo] snapjaw incoming: amount=8 FIRE HR=0 attrs=[Melee,Strength,Cutting,Fire,LongBlades]
+(Snapjaw HP drops by the full ~8 — no Heat resistance)
+
+--- swap to ShortSword via inventory, swing southeast at the other Glowmaw ---
+[FlameDemo] glowmaw incoming: amount=6 non-fire HR=50 attrs=[Melee,Strength,Cutting,LongBlades]
+(Glowmaw HP drops by the full ~6 — no Fire attribute; HeatResistance never fires)
+```
+
+That trifecta proves the chain end-to-end:
+- Fire attribute IS in the Damage object (per-hit log line shows it)
+- HeatResistance IS the stat that gets read (probe shows the live value)
+- The combination of both is what triggers reduction
+
+### Files
+
+| State | Path | Purpose |
+|---|---|---|
+| NEW | `Assets/Scripts/Scenarios/Custom/FlamingSwordShowcase.cs` | Scenario class + demo probe Part |
+| MOD | `Assets/Editor/Scenarios/ScenarioMenuItems.cs` | `[MenuItem]` registration at priority 106 |
+
 
 ## Blueprint shape (proposed)
 

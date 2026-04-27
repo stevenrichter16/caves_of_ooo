@@ -80,6 +80,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_CombatHooksShowcase()
             => ScenarioRunner.Launch<CombatHooksShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/FlamingSword Showcase (Phase C × E)", priority = 106)]
+        private static void Launch_FlamingSwordShowcase()
+            => ScenarioRunner.Launch<FlamingSwordShowcase>();
+
         // =========================================================
         // AI Behavior
         // =========================================================
