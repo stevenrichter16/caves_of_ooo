@@ -487,7 +487,7 @@ if (damage.Amount <= 0) return;  // resistance fully absorbed
 |---|---|---|
 | 1 | Resistance is applied in `CombatSystem.ApplyDamage`, not in a target-side `Part.HandleEvent("TakeDamage")` | Qud's `Physics.cs` runs resistance in a Part handler; our port lifts it to `CombatSystem` for centralization. Both produce the same result. Listeners that want *pre*-resistance damage would need to hook upstream of ApplyDamage; defer if needed. |
 | 2 | Order matches Qud (Acid → Heat → Cold → Electric) | Documented in case future work cares (e.g., a damage tagged Cold AND Fire chains both, with cold first). |
-| 3 | Skipped Qud's `BeforeApplyDamageEvent` chain | Not needed for resistance correctness; would land in a future event-upgrade phase. |
+| 3 | Skipped Qud's `BeforeApplyDamageEvent` chain in initial Phase E | **Subsequently addressed in Phase F** as `BeforeTakeDamage`. |
 
 ### Files changed (Phase E)
 
@@ -495,3 +495,356 @@ if (damage.Amount <= 0) return;  // resistance fully absorbed
 |---|---|
 | `Assets/Scripts/Gameplay/Combat/CombatSystem.cs` | `ApplyDamage` typed overload now applies resistances (with IgnoreResist bypass); two new private helpers: `ApplyResistances`, `ApplyResistanceFor` |
 | `Assets/Tests/EditMode/Gameplay/Combat/ResistanceTests.cs` | **new** — 13 spec + adversarial tests (positive resist, 100% immunity, low-damage min-1 clamp, negative resist vulnerability, type-mismatch no-op, IgnoreResist bypass, no-stat default 0, multi-type chaining, zero-damage edge, melee unaffected by elemental) |
+
+---
+
+## Self-review remediation pass (post-A/C/D/E)
+
+### Status: ✅ complete (commit `02e08d1`)
+
+After Phases A/C/D/E shipped without an in-phase self-review (Methodology Template §5 violation), a cold-eye review of those four phases was performed against the template. **11 findings logged** with severity markers; **6 fixed pre-commit**, 3 deferred, 2 architectural notes.
+
+See full findings doc: [`Docs/COMBAT-PARITY-PORT-REVIEW.md`](./COMBAT-PARITY-PORT-REVIEW.md).
+
+### Findings fixed
+
+| # | Severity | Finding | Fix |
+|---|:-:|---|---|
+| 1 | 🟡 | TakeDamage listeners couldn't mutate `damage.Amount` in-flight (captured-before-event) | Re-read `damage.Amount` AFTER event with `Math.Max(0)` clamp |
+| 2 | 🟡 | `NaturalTwenty_AutoPen_DoesNotFire_ForNonPlayerAttacker` threshold `< 50` allowed bug to slip through | Tightened to `< 5` |
+| 3 | 🟡 | `NonCriticalHit_DoesNotAddCriticalAttribute` was vacuous `nonCrit > crit` comparison | Strengthened to bound `critsObserved ≤ 25` |
+| 4 | 🟡 | Full resistance was silent (no event for "fully blocked") | Added `DamageFullyResisted` event firing |
+| 5 | 🔵 | Magic number `50` in `effectiveMaxStrBonus` | Extracted to `LEGACY_UNCAPPED_MAX_STR_BONUS` constant |
+| 6 | 🔵 | Doc snippet referenced `int.MaxValue / 2` instead of the actual constant | Updated doc |
+
+### Findings deferred
+
+| # | Severity | Finding | Why deferred |
+|---|:-:|---|---|
+| 7 | 🧪 | No test for stat-modification-based resistance (e.g., `StoneSkin` effect granting +25 cold resist) | Works but unpinned; revisit if a status-modifier bug surfaces |
+| 8 | 🧪 | Snapjaw blueprint (and others) define no resistance stats — Phase E is dead-letter against current content | Content-team note, not a code fix |
+| 9 | 🧪 | `bonus == maxBonus` boundary test for `RollPenetrations` | Minor edge case, low risk |
+
+### PlayMode sanity sweep verification
+
+Three scenarios verified end-to-end against the live `SampleScene.unity` bootstrap with raw output capture and explicit can-verify / cannot-verify honesty bounds:
+
+- **Scenario 1 — Phase A + C**: typed Damage flows through TakeDamage event with `[Melee, Strength]` attributes ✅
+- **Scenario 2 — Phase D**: 200 attacks → 11 crits at 6.7% rate, `[Melee, Strength, Critical]` attributes ✅
+- **Scenario 3 — Phase E + Finding 4**: 50% resist halves, 100% resist absorbs + DamageFullyResisted fires; counter-check confirms full damage passes when no resistance ✅
+
+### Playtest scenario
+
+`Assets/Scripts/Scenarios/Custom/CombatParityShowcase.cs` (commit `02e08d1`) registered under **Caves Of Ooo > Scenarios > Combat Stress > Combat Parity Showcase**. Spawns 3 soak Snapjaws + Heat-immune Snapjaw + Cold-vulnerable Snapjaw for human inspection of the new mechanics.
+
+### Files changed (remediation)
+
+| File | Change |
+|---|---|
+| `Assets/Scripts/Gameplay/Combat/CombatSystem.cs` | Findings 1, 4, 5 fixes (listener mutation propagation, DamageFullyResisted event, LEGACY_UNCAPPED_MAX_STR_BONUS constant) |
+| `Assets/Tests/EditMode/Gameplay/Combat/CriticalHitTests.cs` | Findings 2, 3 (tightened thresholds) |
+| `Assets/Tests/EditMode/Gameplay/Combat/CombatSelfReviewRegressionTests.cs` | **new** — 7 regression tests pinning the fixes |
+| `Assets/Scripts/Scenarios/Custom/CombatParityShowcase.cs` | **new** — playtest scenario |
+| `Assets/Editor/Scenarios/ScenarioMenuItems.cs` | Menu entry for the showcase |
+| `Docs/COMBAT-PARITY-PORT-REVIEW.md` | **new** — findings doc + sweep results |
+
+---
+
+## Phase F: `BeforeTakeDamage` event hook
+
+### Status: ✅ complete (commit `5deb287`)
+
+**Result:** added a pre-resistance event firing on the typed `ApplyDamage` path. Listeners can mutate damage in-flight (add/remove attributes, reduce Amount) or veto entirely. Vetoed damage fires `DamageFullyResisted` so observers see the attempt but `TakeDamage` doesn't fire and HP doesn't decrement. New tests: 8. Full suite: 2166/2166 green.
+
+### Qud reference
+
+`XRL.World.Parts/Physics.cs:3418` — `BeforeApplyDamageEvent.Check(damage, ParentObject, ...)` fires after resistance and lets handlers veto by returning false. We mirror the *intent* with our string-keyed event firing BEFORE resistance (so listeners see pre-resistance damage; matches our Phase E lift of resistance into `CombatSystem.ApplyDamage`).
+
+### Pre-impl verification sweep — TWO false-premise corrections
+
+The original Phase F scope ("per-attribute reactions: acid corrodes equipment, fire spreads, electricity arcs") did NOT survive the verification sweep. Qud's per-attribute behaviors live in **scattered non-combat systems**:
+- `LiquidAcid.cs:105` applies `ContainedAcidEating` to its container (not via damage)
+- `Physics.cs:3013` applies `Burning` during *flame ticks* (temperature-driven, NOT damage-driven)
+- Cold/freeze likewise temperature-driven
+
+There is no centralized "fire damage → Burning effect from melee" in Qud's combat path. Documented as scope correction #1 in the commit body.
+
+A second sweep correction: I planned `F.1` (4 "missing" `Is*Damage()` helpers — Poison/Bleeding/Mental/Explosion). Re-reading `XRL.World/Damage.cs:139-189` confirmed Qud only has the 7 instance helpers we ported in Phase C. Poison/Bleeding/etc. are AttributeSound entries, not instance methods. No parity gap. Dropped F.1.
+
+Final F scope: **just the BeforeTakeDamage event hook**.
+
+### Implementation in our port
+
+In `ApplyDamage(Entity, Damage, Entity, Zone)`, between the dead-target guard and resistance:
+
+```csharp
+var beforeTakeDamage = GameEvent.New("BeforeTakeDamage");
+beforeTakeDamage.SetParameter("Target", (object)target);
+beforeTakeDamage.SetParameter("Source", (object)source);
+beforeTakeDamage.SetParameter("Damage", (object)damage);
+if (!target.FireEvent(beforeTakeDamage))
+{
+    // Veto path — surface as fully-resisted so observers see the attempt
+    var fullyResistedVeto = GameEvent.New("DamageFullyResisted");
+    fullyResistedVeto.SetParameter("Target", (object)target);
+    fullyResistedVeto.SetParameter("Source", (object)source);
+    fullyResistedVeto.SetParameter("Damage", (object)damage);
+    target.FireEvent(fullyResistedVeto);
+    return;
+}
+// (resistance applies here, then TakeDamage fires)
+```
+
+Cancellation pattern matches the existing `BeforeMeleeAttack` flow at `CombatSystem.cs:43`: listeners return `false` from `Part.HandleEvent` → `target.FireEvent(...)` returns `false` → veto path runs.
+
+### Vetoed-damage contract
+
+The `Damage` object passed to `DamageFullyResisted` on a veto:
+- **Amount** is left unchanged (the value the attack WOULD have dealt before resistance, with any pre-veto listener mutations applied). Listeners that want to know "how much was blocked" can read `damage.Amount`.
+- **Attributes** reflect any pre-veto listener mutations.
+
+### Divergences captured (Phase F)
+
+| # | Divergence | Rationale |
+|---|---|---|
+| 1 | String-keyed `GameEvent.New("BeforeTakeDamage")` instead of Qud's typed `BeforeApplyDamageEvent.Check(...)` | Matches our existing event-system pattern; typed events would be a separate event-system upgrade phase. |
+| 2 | Fires BEFORE resistance, Qud's fires AFTER | Our resistance is centralized in `CombatSystem.ApplyDamage` (Phase E divergence #1), so "before" is the only place a listener can intervene before resistance is computed. |
+| 3 | Veto produces `DamageFullyResisted` event, Qud just returns from the handler | Surfacing the attempt to observers (UI, AI retaliation, achievements) is gameplay-valuable and costs one extra GameEvent allocation. |
+
+### Phase F self-review (Methodology Template §5)
+
+| # | Severity | Finding | Status |
+|---|:-:|---|---|
+| F-1 | 🧪 | Missing counter-check: "listener mutates attributes; downstream resistance picks up new attribute" was in original test plan but dropped when narrowing the file | **Fixed pre-commit** — added `BeforeTakeDamage_ListenerAddsFireAttribute_HeatResistanceApplies` (now 8/8) |
+| F-2 | 🔵 | Vetoed damage's Damage object contract was undocumented | **Fixed pre-commit** — inline contract docstring added in CombatSystem.cs |
+| F-3 | ⚪ | No `AfterTakeDamage` event symmetry | Architectural note; defer to future event-system phase |
+| F-4 | ⚪ | 4-5 GameEvent allocations per `ApplyDamage` now (BeforeTakeDamage + TakeDamage + DamageDealt + maybe DamageFullyResisted) | Acceptable for turn-based pace; would matter for an event-pool refactor |
+
+### Implementation log
+
+| Step | Result |
+|---|---|
+| Pre-impl sweep — false premise #1 caught (per-attribute reactions are scattered non-combat) | Scope re-narrowed to event hook |
+| Pre-impl sweep — false premise #2 caught (4 "missing" helpers don't exist in Qud either) | F.1 dropped |
+| RED tests in `BeforeTakeDamageTests.cs` (initially 7) | 4 of 7 RED, 3 trivially pass (no-op listener / dead target / no-Hitpoints — those scenarios should be unaffected by the new code) |
+| Implementation in `ApplyDamage` | 7/7 GREEN |
+| Self-review surfaced F-1 missing counter-check | Added 8th test pre-commit |
+| Final test count | 8/8 BeforeTakeDamage tests green |
+| Full EditMode suite | 2166/2166 green (was 2158; +8 net) |
+
+### Files changed (Phase F)
+
+| File | Change |
+|---|---|
+| `Assets/Scripts/Gameplay/Combat/CombatSystem.cs` | `ApplyDamage` typed overload now fires `BeforeTakeDamage` before resistance with veto path |
+| `Assets/Tests/EditMode/Gameplay/Combat/BeforeTakeDamageTests.cs` | **new** — 8 tests: mutation, veto, fires-before-resistance, dead-target guard, no-Hitpoints guard, no-op counter-check, source-vs-target counter-check, listener-adds-attribute downstream resist |
+
+---
+
+## Phase G: Stat-modulated off-hand penalty
+
+### Status: ✅ complete (commit `c44cf3a`)
+
+**Result:** the hard-coded `OFF_HAND_HIT_PENALTY = -2` constant is now consulted via a new `GetOffHandHitBonus(Entity)` method that adds the attacker's `MultiWeaponSkillBonus` stat. New tests: 9. Full suite: 2175/2175 green.
+
+### Qud reference
+
+`XRL.World.Parts/Combat.cs:775` — `getMeleeAttackChanceEvent.HandleFor(Attacker, weapon, chance, ...)` lets skill parts modify per-attack chance for off-hand swings. Default secondary-attack chance comes from `Sheeter.cs:109` (`TwoWeaponFightingSecondaryAttackChance` global config, default 75%).
+
+We mirror the *intent* (penalty/chance is listener-modifiable) with a stat-driven hook since we don't have a skill system yet.
+
+### Pre-impl verification sweep finding
+
+Qud's mechanism is "chance to attack at all" (default 75% gate that listeners modify), NOT a hit-bonus penalty. Our pre-Phase-G `OFF_HAND_HIT_PENALTY = -2` is itself a CoO-original mechanism. So Phase G does not change the underlying mechanism — it makes the existing CoO mechanism listener-modulatable via a stat.
+
+### Implementation in our port
+
+```csharp
+public static int GetOffHandHitBonus(Entity attacker)
+{
+    if (attacker == null) return OFF_HAND_HIT_PENALTY;
+    return OFF_HAND_HIT_PENALTY + attacker.GetStatValue("MultiWeaponSkillBonus", 0);
+}
+
+// In PerformSingleAttack:
+if (!isPrimary)
+    hitBonus += GetOffHandHitBonus(attacker);
+```
+
+### Divergences captured (Phase G)
+
+| # | Divergence | Rationale |
+|---|---|---|
+| 1 | Stat-driven (`MultiWeaponSkillBonus`), Qud is skill-driven | We don't have a skill system yet. Stat is a placeholder a future skill system would shift. CoO-original interpretation, not strict parity. Documented in test class xml-doc. |
+| 2 | Hit-bonus penalty, Qud is chance-to-attack gate | Our pre-existing mechanism; Phase G keeps it but exposes the listener hook. Migrating to chance-to-attack semantics would be a separate phase. |
+| 3 | No per-weapon "BalancedOffHand" attribute | Scope decision; flagged for future once weapon `Attributes` get richer downstream consumers. |
+
+### Phase G self-review (Methodology Template §5)
+
+| # | Severity | Finding | Status |
+|---|:-:|---|---|
+| G-1 | 🧪 | Counter-check missing: primary-hand swings unaffected by `MultiWeaponSkillBonus` (docstring claimed it but no test pinned it) | **Fixed pre-commit** — added `Integration_PrimaryHand_NotAffectedByMultiWeaponSkillBonus` (now 9/9) |
+| G-2 | ⚪ | Stat-driven approach is CoO-original placeholder for Qud's skill-driven approach | Already documented in test class xml-doc |
+| G-3 | ⚪ | Per-weapon "BalancedOffHand" attribute not added | Scope decision |
+
+### Implementation log
+
+| Step | Result |
+|---|---|
+| Pre-impl sweep — confirmed Qud's mechanism is skill-driven event chain | Decision: CoO-original stat hook is honest scope |
+| RED tests in `MultiWeaponPenaltyTests.cs` (initially 8) | All 8 fail compilation (`GetOffHandHitBonus` doesn't exist) |
+| Implementation: `GetOffHandHitBonus(Entity)` + caller update | 8/8 GREEN |
+| Self-review surfaced G-1 missing primary-hand counter-check | Added 9th test pre-commit |
+| Final test count | 9/9 MultiWeaponPenalty tests green |
+| Full EditMode suite | 2175/2175 green (was 2166; +9 net) |
+
+### Files changed (Phase G)
+
+| File | Change |
+|---|---|
+| `Assets/Scripts/Gameplay/Combat/CombatSystem.cs` | New `GetOffHandHitBonus(Entity)` method; `PerformSingleAttack` consults it instead of using the bare constant |
+| `Assets/Tests/EditMode/Gameplay/Combat/MultiWeaponPenaltyTests.cs` | **new** — 9 tests: default behavior, stat-zero counter-check, +2 cancels penalty, +5 over-correction, negative stacks, integration via PerformSingleAttack, primary-hand-immunity counter-check, large-stat overflow, null-attacker safety |
+
+---
+
+## Phase H: `CanBeDismembered` event hook
+
+### Status: ✅ complete (commit `667e2cb`)
+
+**Result:** `CheckCombatDismemberment` now fires `CanBeDismembered` after the chance roll passes; defender-side listeners can veto by returning false. Foundation for "Indestructible Bones" / mutation-granted limb immunity content. New tests: 6. Full suite: 2181/2181 green.
+
+### Qud reference
+
+- `XRL/IGameSystem.cs:637` — `CanBeDismemberedEvent` (per-call veto pattern)
+- `XRL.World.Parts/Body.cs:2498` — `BeforeDismemberEvent.Check(parentObject, Part, Where, Silent, obliterate)` (parallel pattern in the dismember flow)
+- `XRL.World.Parts/NoDamageExcept.cs:54` — example listener that vetoes dismemberment unless damage matches a specific tag
+
+### Pre-impl verification sweep — false-premise correction
+
+Originally scoped as "cutting → 1.5x sever, blunt → 0.5x sever" (damage-attribute-modulated dismemberment chance). **Sweep proved Qud doesn't do this.** Searching `qud_decompiled_project` for `HasAttribute.*Cutting` / `HasAttribute.*Bludg` returns one hit: `IsBludgeoningDamage()` inside `Damage.cs` itself, never consumed by combat code.
+
+Qud's combat dismemberment is:
+- **Skill-driven**: `Axe_Dismember.Dismember()` and `Axe_Decapitate.Decapitate()` proc on successful axe-skill hits
+- **Mod-driven**: `ModSerrated`, `ModNanon`, `ModGlazed` add dismember chance per-weapon
+- **Power-driven**: `DismemberAdjacentHostiles` is an explicit power
+- **Mutation-driven**: `Decarbonizer`
+
+None consult `Damage.Attributes`. Damage type doesn't affect dismemberment in Qud's combat path. Documented as scope correction in the commit body.
+
+The closest centralized Qud-parity hook is `CanBeDismemberedEvent`. That's what Phase H now ships.
+
+### Implementation in our port
+
+`CheckCombatDismemberment` — the chance computation is unchanged; after the chance roll passes, we fire the event:
+
+```csharp
+int roll = rng.Next(100);
+if (roll >= chance) return;  // chance roll failed — no event, no dismember
+
+// Phase H: fire CanBeDismembered to give listeners a chance to veto.
+var canBeDismembered = GameEvent.New("CanBeDismembered");
+canBeDismembered.SetParameter("Defender", (object)defender);
+canBeDismembered.SetParameter("BodyPart", (object)hitPart);
+canBeDismembered.SetParameter("Damage", damage);
+if (!defender.FireEvent(canBeDismembered))
+    return;  // veto — skip the actual dismemberment
+
+body.Dismember(hitPart, zone);
+```
+
+`CheckCombatDismemberment` was promoted from `private` to `public` so unit tests can target the dismemberment chance/veto path directly without plumbing through `PerformMeleeAttack`. Safe — pure function with no state other than the body and rng.
+
+### Divergences captured (Phase H)
+
+| # | Divergence | Rationale |
+|---|---|---|
+| 1 | String-keyed `GameEvent.New("CanBeDismembered")` instead of Qud's typed `CanBeDismemberedEvent` | Matches our existing event pattern; same as Phase F's choice. |
+| 2 | Event fires AFTER chance roll passed, not on every dismember-eligible hit | Mirrors Qud's "you'd be dismembered if not for X" semantics — listeners only fire when dismemberment was actually about to happen. Avoids spamming listeners. |
+| 3 | No port of Qud's dismemberment chance computation (skill, mod, power, mutation) | The CoO-original chance formula (DISMEMBER_BASE_CHANCE + scaled damage ratio, capped at 50%) stays. Qud's mechanisms would land in future phases when skills/mods exist. |
+
+### Phase H self-review (Methodology Template §5)
+
+| # | Severity | Finding | Status |
+|---|:-:|---|---|
+| H-1 | 🧪 | Source-vs-defender counter-check missing (Phase F had it; H should too) | **Fixed pre-commit** — added `CanBeDismembered_FiresOnDefender_NotOnAttacker` (now 6/6) |
+| H-2 | 🔵 | Test-only alias `CheckCombatDismembermentForTest` was redundant since the canonical method became public | **Fixed pre-commit** — alias removed; tests use canonical name |
+| H-3 | 🔵 | TDD step compression — RED→GREEN separation was implicit (compile errors when method missing) rather than a separate "method-exists-behavior-wrong" step | Process note for future reviewers; tests are functionally correct |
+
+### Implementation log
+
+| Step | Result |
+|---|---|
+| Pre-impl sweep — false premise caught (Qud doesn't do attribute-modulated dismem) | Scope re-narrowed to CanBeDismembered event hook |
+| RED tests in `CanBeDismemberedTests.cs` (initially 5) | All 5 fail compilation (referenced `CheckCombatDismembermentForTest` which didn't exist) |
+| Implementation: event firing in `CheckCombatDismemberment` + method promotion to public | 5/5 GREEN |
+| Self-review: H-1 source-vs-defender counter-check + H-2 redundant alias removal | Added 6th test, removed alias |
+| Final test count | 6/6 CanBeDismembered tests green |
+| Full EditMode suite | 2181/2181 green (was 2175; +6 net) |
+
+### Files changed (Phase H)
+
+| File | Change |
+|---|---|
+| `Assets/Scripts/Gameplay/Combat/CombatSystem.cs` | `CheckCombatDismemberment` promoted to public; fires `CanBeDismembered` event after chance roll passed; veto path skips `body.Dismember()` |
+| `Assets/Tests/EditMode/Gameplay/Combat/CanBeDismemberedTests.cs` | **new** — 6 tests: default dismemberment, veto listener, no-op counter-check, no-fire-on-below-threshold, no-fire-on-non-severable, source-vs-defender counter-check |
+
+---
+
+## Final port summary (post-Phase-H)
+
+### Test count progression
+
+| Milestone | Test count |
+|---|---:|
+| Pre-port (Phase 0 baseline) | 2087 |
+| After Phase 1 surgical | 2087 |
+| After Phase A | 2099 |
+| After Phase C | 2129 |
+| After Phase D + E | 2151 |
+| After self-review remediation | 2158 |
+| After Phase F | 2166 |
+| After Phase G | 2175 |
+| After Phase H | **2181** |
+
+Net delta over the port: **+94 tests**, all green. Zero regressions.
+
+### Commit history (audit/combat-deep-sweep branch)
+
+| Commit | Purpose |
+|---|---|
+| `e438fd4` | Phase 0 — branch map + prioritized backlog |
+| `cb5844b` | Phase 1 surgical audit — 15 specs for finished mechanics |
+| `85a0a25` | Phase A — `RollDamagePenetrations` Qud parity |
+| `4721630` | Phase C — Damage class foundation |
+| `14f8047` | Phase D + E — crits + resistances |
+| `02e08d1` | Self-review remediation pass (6 findings fixed + PlayMode sweep + playtest scenario) |
+| `5deb287` | Phase F — `BeforeTakeDamage` event hook |
+| `c44cf3a` | Phase G — stat-modulated off-hand penalty |
+| `667e2cb` | Phase H — `CanBeDismembered` event hook |
+
+### False premises caught by verification sweeps
+
+The Methodology Template §1.2 pre-impl verification discipline caught **three false premises** before any code was written:
+
+1. **Phase B** (Strength → damage): I claimed Qud adds Str to damage; sweep showed it doesn't. Phase B skipped entirely as already-at-parity.
+2. **Phase F** (per-attribute reactions): I claimed Qud has centralized "fire damage → Burning effect" wiring; sweep showed those behaviors are scattered across non-combat systems. Re-scoped to BeforeTakeDamage event.
+3. **Phase H** (cutting/blunt dismemberment): I claimed Qud modulates dismemberment chance by damage type; sweep showed it doesn't (the only `IsBludgeoningDamage()` reference is the helper itself). Re-scoped to `CanBeDismembered` event.
+
+These corrections saved an estimated **2-3 days** of work that would have shipped under "parity" but was actually CoO-original divergence.
+
+### Phases not done
+
+- **Phase B½** — small damage-path polish (`WeaponIgnoreStrength` tag, multi-stat selection, `AdjustDamageResult`/`AdjustDamageDieSize` caller args). Low-impact edge cases; flagged for future when content needs them.
+
+### Multi-phase work flagged for future
+
+These were originally bundled into Phase F before the sweep narrowed scope; they remain genuine gameplay extensions but are CoO-original (not Qud parity) and scattered across non-combat systems:
+
+- **Equipment durability + acid corrosion** — would need a durability system on `EquippablePart` and a TakeDamage listener that decrements durability when "Acid"-attributed damage hits.
+- **Terrain reactions** — fire spreading, ice freezing water, electricity arcing. Would integrate with the existing `MaterialReactions` system.
+- **Status-effect-from-damage-attribute** — e.g., taking Fire damage applies `Burning` effect. CoO-original (Qud doesn't do this from melee Fire damage). Could ship as a thin opt-in mechanism on weapons that have a `"BurnsOnHit"` attribute.
+
+### Remaining methodology debts
+
+- **Manual playtest scenarios** — `CombatParityShowcase` (commit `02e08d1`) covers Phases A-E. Phases F, G, H lack dedicated playtest scenarios. Probably fine since they're event-hook/stat-tunable plumbing without immediately-visible game effect, but worth noting.
+- **PlayMode sanity sweep for F/G/H** — only ran for the A-E remediation. F/G/H are pure plumbing (no live-bootstrap-specific risk) so this is low-priority. Would be valuable if any of them later wire into player-visible content.
