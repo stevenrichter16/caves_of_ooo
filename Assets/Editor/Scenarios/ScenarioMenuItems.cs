@@ -84,6 +84,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_FlamingSwordShowcase()
             => ScenarioRunner.Launch<FlamingSwordShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Elemental Swords Showcase (Fire + Ice matrix)", priority = 107)]
+        private static void Launch_ElementalSwordsShowcase()
+            => ScenarioRunner.Launch<ElementalSwordsShowcase>();
+
         // =========================================================
         // AI Behavior
         // =========================================================
