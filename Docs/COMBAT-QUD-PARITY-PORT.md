@@ -37,7 +37,7 @@ Test execution: `mcp__unity__run_tests` filtering on the relevant test class.
 | D | Critical hit damage scaling (nat-20 → AutoPen flag + crit pen bonus + "Critical" attribute) | ✅ **complete** |
 | E | Resistance stats (`ColdResistance`, `HeatResistance`, `AcidResistance`, `ElectricResistance`) — applied in `ApplyDamage` based on damage attributes | ✅ **complete** |
 | F | `BeforeTakeDamage` event hook (post-sweep narrowed scope; see Phase F note below) | ✅ **complete** |
-| G | Multiweapon hooks: off-hand penalty becomes tunable; `MultiWeaponSkillBonus` stat reduces it | ⏸ pending |
+| G | Multiweapon hooks: off-hand penalty becomes tunable; `MultiWeaponSkillBonus` stat reduces it | ✅ **complete** |
 | H | Dismemberment with damage-attribute interaction (cutting → 1.5x sever, blunt → 0.5x sever) | ⏸ pending |
 
 ### Phase F scope correction note (post-verification sweep)

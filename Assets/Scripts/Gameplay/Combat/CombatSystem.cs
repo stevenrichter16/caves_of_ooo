@@ -27,6 +27,24 @@ namespace CavesOfOoo.Core
         public const int OFF_HAND_HIT_PENALTY = -2;
 
         /// <summary>
+        /// Compute the hit-bonus adjustment applied to an off-hand (non-primary)
+        /// melee swing for the given attacker. Mirrors Qud's pattern of letting
+        /// skills modify per-weapon attack chance via <c>GetMeleeAttackChanceEvent</c>
+        /// (Combat.cs:775); we approximate with a stat-driven hook since we don't
+        /// have a skill system yet.
+        ///
+        /// Returns <see cref="OFF_HAND_HIT_PENALTY"/> + the attacker's
+        /// <c>MultiWeaponSkillBonus</c> stat (default 0). A future skill system
+        /// would set this stat per-skill-rank; equipment passives could also
+        /// modify it via stat shifts.
+        /// </summary>
+        public static int GetOffHandHitBonus(Entity attacker)
+        {
+            if (attacker == null) return OFF_HAND_HIT_PENALTY;
+            return OFF_HAND_HIT_PENALTY + attacker.GetStatValue("MultiWeaponSkillBonus", 0);
+        }
+
+        /// <summary>
         /// Sentinel-substitute used when a weapon's <c>MaxStrengthBonus</c> is set to
         /// <c>-1</c> (legacy "uncapped" sentinel from pre-Phase-A code). Mapped to a
         /// large-but-not-overflow value so the bonus-decay loop in <see cref="RollPenetrations"/>
@@ -129,9 +147,9 @@ namespace CavesOfOoo.Core
             int maxStrBonus = weapon?.MaxStrengthBonus ?? -1;
             string statName = weapon?.Stat ?? "Strength";
 
-            // Off-hand penalty
+            // Off-hand penalty (Phase G: stat-modulated via GetOffHandHitBonus)
             if (!isPrimary)
-                hitBonus += OFF_HAND_HIT_PENALTY;
+                hitBonus += GetOffHandHitBonus(attacker);
 
             string attackerName = attacker.GetDisplayName();
             string defenderName = defender.GetDisplayName();
