@@ -172,12 +172,21 @@ namespace CavesOfOoo.Core
                 return;
             }
 
-            // Damage
+            // Damage — build a typed Damage with attributes from the weapon
+            // (Phase C of the Qud-parity port). Attributes flow through ApplyDamage
+            // and are observable by listeners (Phase E will use them for resistances).
+            Damage damage = new Damage(0);
+            damage.AddAttribute("Melee");
+            damage.AddAttribute(statName);                      // e.g. "Strength"
+            if (weapon != null && !string.IsNullOrEmpty(weapon.Attributes))
+                damage.AddAttributes(weapon.Attributes);        // e.g. "Cutting LongBlades"
+
             int totalDamage = 0;
             for (int i = 0; i < penetrations; i++)
                 totalDamage += DiceRoller.Roll(damageDice, rng);
+            damage.Amount = totalDamage;
 
-            if (totalDamage <= 0)
+            if (damage.Amount <= 0)
             {
                 MessageLog.Add($"{attackerName}{srcTag} hits {defenderName}{partDesc} but deals no damage!");
                 return;
@@ -185,23 +194,23 @@ namespace CavesOfOoo.Core
 
             // Log the hit before applying damage so the killing blow details are visible
             int hpBefore = defender.GetStatValue("Hitpoints", 0);
-            int hpAfter = hpBefore - totalDamage;
+            int hpAfter = hpBefore - damage.Amount;
 
-            MessageLog.Add($"{attackerName}{srcTag} hits {defenderName}{partDesc} for {totalDamage} damage!{(hpAfter > 0 ? $" ({hpAfter} HP remaining)" : "")}");
+            MessageLog.Add($"{attackerName}{srcTag} hits {defenderName}{partDesc} for {damage.Amount} damage!{(hpAfter > 0 ? $" ({hpAfter} HP remaining)" : "")}");
 
-            // Apply damage
-            ApplyDamage(defender, totalDamage, attacker, zone);
+            // Apply damage (typed overload — preferred path)
+            ApplyDamage(defender, damage, attacker, zone);
 
             // Floating damage number
             Cell hitCell = zone.GetEntityCell(defender);
             if (hitCell != null)
-                AsciiFxBus.EmitFloatingNumber(zone, hitCell.X, hitCell.Y, totalDamage, "&R");
+                AsciiFxBus.EmitFloatingNumber(zone, hitCell.X, hitCell.Y, damage.Amount, "&R");
 
             if (hpAfter > 0)
             {
                 // Check for combat dismemberment (only on survivors)
                 if (hitPart != null)
-                    CheckCombatDismemberment(defender, defenderBody, hitPart, totalDamage, zone, rng);
+                    CheckCombatDismemberment(defender, defenderBody, hitPart, damage.Amount, zone, rng);
             }
         }
 
@@ -396,14 +405,19 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Apply damage to an entity. Fires TakeDamage event, reduces HP,
-        /// and checks for death.
+        /// Apply typed damage to an entity. Fires TakeDamage / DamageDealt events
+        /// (now carrying both <c>Amount</c> int and <c>Damage</c> object parameters),
+        /// reduces HP, and checks for death.
+        ///
+        /// This is the PRIMARY overload; the legacy int overload below wraps it.
+        /// Phase E will use <paramref name="damage"/>.Attributes here to apply
+        /// resistance stats before the HP decrement.
         /// </summary>
-        public static void ApplyDamage(Entity target, int amount, Entity source, Zone zone)
+        public static void ApplyDamage(Entity target, Damage damage, Entity source, Zone zone)
         {
             using (PerformanceMarkers.Combat.ApplyDamage.Auto())
             {
-                if (target == null || amount <= 0) return;
+                if (target == null || damage == null || damage.Amount <= 0) return;
 
                 // Two guards rolled into one: targets without a Hitpoints
                 // stat aren't damageable creatures (statues, props), and
@@ -424,10 +438,13 @@ namespace CavesOfOoo.Core
                 var hpStat = target.GetStat("Hitpoints");
                 if (hpStat == null || hpStat.BaseValue <= 0) return;
 
+                int amount = damage.Amount;
+
                 var takeDamage = GameEvent.New("TakeDamage");
                 takeDamage.SetParameter("Target", (object)target);
                 takeDamage.SetParameter("Source", (object)source);
                 takeDamage.SetParameter("Amount", amount);
+                takeDamage.SetParameter("Damage", (object)damage);     // Phase C: typed damage available to listeners
                 target.FireEvent(takeDamage);
 
                 hpStat.BaseValue -= amount;
@@ -443,6 +460,7 @@ namespace CavesOfOoo.Core
                     damageDealt.SetParameter("Attacker", (object)source);
                     damageDealt.SetParameter("Defender", (object)target);
                     damageDealt.SetParameter("Amount", amount);
+                    damageDealt.SetParameter("Damage", (object)damage); // Phase C
                     source.FireEvent(damageDealt);
                 }
 
@@ -451,6 +469,18 @@ namespace CavesOfOoo.Core
                     HandleDeath(target, source, zone);
                 }
             }
+        }
+
+        /// <summary>
+        /// Backward-compatible int overload. Wraps <paramref name="amount"/> in
+        /// a <see cref="Damage"/> with no attributes and forwards to the typed
+        /// overload. Existing call sites (status effects, mutations, traps, etc.)
+        /// continue to work; new code should use the typed overload directly so
+        /// damage attributes propagate.
+        /// </summary>
+        public static void ApplyDamage(Entity target, int amount, Entity source, Zone zone)
+        {
+            ApplyDamage(target, new Damage(amount), source, zone);
         }
 
         /// <summary>

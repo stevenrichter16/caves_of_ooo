@@ -31,11 +31,27 @@ Test execution: `mcp__unity__run_tests` filtering on the relevant test class.
 | Phase | Scope | Status |
 |---|---|---|
 | A | `RollDamagePenetrations` (3-roll set, exploding 1d10−2, per-set pens, set-decay, MaxBonus cap) | ✅ **complete** |
-| B | Strength bonus to damage (post-pen, with MaxStrengthBonus cap) | ⏸ pending |
-| C | Damage types (cutting/blunt/piercing; typed AV; weapon damage type) | ⏸ pending |
+| B | Strength bonus to damage (post-pen) | ⛔ **skipped — false premise** |
+| B½ | Damage path polish (`WeaponIgnoreStrength` tag, multi-stat selection, `AdjustDamage*` args, pen event hooks) | ⏸ deferred (low-impact edge cases) |
+| C | Damage class foundation — `Damage(int amount, List<string> attributes)` mirroring Qud's `XRL.World.Damage` | ✅ **complete** |
 | D | Critical hit damage scaling (nat-20 → AutoPen flag + crit damage) | ⏸ pending |
-| E | Off-hand penalty + multiweapon fighting (skill-aware scaling) | ⏸ pending |
-| F | Dismemberment with damage-type interaction (cutting → sever, blunt → fracture) | ⏸ pending |
+| E | Resistance stats (`ColdResistance`, `HeatResistance`, `AcidResistance`, etc.) — applied in `ApplyDamage` based on damage attributes | ⏸ pending |
+| F | Per-attribute reactions (acid corrodes equipment, fire spreads, electricity arcs, etc.) | ⏸ pending |
+| G | Off-hand penalty + multiweapon fighting (skill-aware scaling) | ⏸ pending |
+| H | Dismemberment with damage-attribute interaction (cutting → sever, blunt → fracture) | ⏸ pending |
+
+### Phase B correction note
+
+Originally I claimed Qud adds Strength mod to damage. **This was wrong.** Re-reading
+`Combat.cs` lines 1276-1304 carefully, the only `damage.Amount +=` in the damage path
+is the per-penetration BaseDamage roll. Qud's "Strength affects damage" is purely
+indirect — high Str → more penetrations → more damage dice rolled. No additive Str
+to damage exists in Qud, and our code already mirrors this behavior. Phase B as
+originally scoped has no work to do.
+
+The smaller Phase B-flavored gaps (WeaponIgnoreStrength tag, multi-stat selection,
+AdjustDamage* args, pen event hooks) are deferred as Phase B½. They're real but
+low-impact edge cases that don't block the Damage class foundation.
 
 ---
 
@@ -220,3 +236,126 @@ Five tests in `Assets/Tests/EditMode/Gameplay/Combat/CombatSystemSpecTests.cs` w
 | `Assets/Tests/EditMode/Gameplay/Combat/RollPenetrationsAdversarialTests.cs` | **new** — 7 mutation-resistance tests |
 | `Assets/Tests/EditMode/Gameplay/Combat/CombatSystemSpecTests.cs` | Removed 2 stale tests; updated 3 to new signature |
 | `Assets/Tests/EditMode/Gameplay/Combat/CombatSystemTests.cs` | Updated 2 legacy tests to new signature (renamed for clarity: PV→Bonus, AV→Target) |
+
+---
+
+## Phase C: `Damage` class foundation
+
+### Status: ✅ complete
+
+**Result:** typed `Damage` class created (mirror of `XRL.World.Damage`); `PerformSingleAttack` and `ApplyDamage` refactored to use it; backward-compat int overload preserved for 20+ legacy callers; `MeleeWeaponPart.Attributes` field added. New tests: 21 unit + 9 integration. Full suite: 2129/2129 green.
+
+### Qud reference
+
+`XRL.World/Damage.cs` (327 LOC):
+- `Amount` (int, with `Math.Max(0, value)` clamp on set)
+- `Attributes` (`List<string>`) — flexible tag set, **not** an enum
+- Methods: `AddAttribute`, `HasAttribute`, `HasAnyAttribute(List<string>)`, `AddAttributes(string)` (space-separated)
+- Type-check helpers: `IsColdDamage()`, `IsHeatDamage()`, `IsElectricDamage()`, `IsBludgeoningDamage()`, `IsAcidDamage()`, `IsLightDamage()`, `IsDisintegrationDamage()` — each checks for any of several alias attributes (e.g., Cold OR Ice OR Freeze)
+
+### Design decision: tags over enum
+
+Qud uses a flexible **tag set** rather than a single `DamageType` enum. A single piece of damage can have multiple attributes simultaneously:
+- A flaming sword: `["Melee", "Cutting", "Fire", "LongBlades", "Strength"]`
+- A poisoned arrow: `["Missile", "Piercing", "Poison", "Agility"]`
+- A psionic icebolt: `["Ranged", "Cold", "Mental", "Willpower"]`
+
+This gives us:
+- **Composable interactions** — fire-resistance applies to anything with "Fire" attribute, regardless of source weapon
+- **Stat tracking** — `damage.HasAttribute("Strength")` lets achievements/stats hook into damage source
+- **Cleaner event hooks** — listeners filter by attribute presence rather than enum match
+
+We mirror Qud's design directly.
+
+### What Phase C does NOT do
+
+- ❌ Resistance stats (`ColdResistance`, etc.) → **Phase E**
+- ❌ Per-attribute reactions (acid corrodes equipment, fire spreads, electricity arcs) → **Phase F**
+- ❌ Damage-type-specific dismemberment → **Phase H**
+- ❌ Critical-hit attribute (`damage.AddAttribute("Critical")`) → **Phase D**
+
+Phase C is just the foundation — the Damage class plumbing — so subsequent phases have something typed to flow through.
+
+### Implementation plan
+
+1. **New file:** `Assets/Scripts/Gameplay/Combat/Damage.cs`
+   - Mirrors `XRL.World/Damage.cs` field-for-field (Amount, Attributes, Has*, Is*Damage, AddAttribute, AddAttributes)
+   - Skip the static AttributeSounds dictionary (Unity-side concern, not parity-essential)
+   - Skip `[Serializable]` decorators; use our own SaveSystem path
+
+2. **`MeleeWeaponPart`** gains `Attributes` (string, space-separated, mirroring Qud)
+   - Default: empty
+   - Blueprint-loadable: `{ "Name": "MeleeWeapon", "Params": [{ "Key": "Attributes", "Value": "Cutting LongBlades" }] }`
+
+3. **`PerformSingleAttack`** builds typed Damage:
+   - `Damage damage = new Damage(0)` at top
+   - `damage.AddAttribute("Melee")`
+   - `damage.AddAttribute(weapon.Stat ?? "Strength")` — the stat used for pen
+   - `damage.AddAttributes(weapon.Attributes)` — weapon-defined attributes
+   - After damage roll: `damage.Amount = totalDamage`
+   - Pass `damage` to `ApplyDamage`
+
+4. **`ApplyDamage` overloads:**
+   ```csharp
+   // New primary — typed
+   public static void ApplyDamage(Entity target, Damage damage, Entity source, Zone zone)
+
+   // Legacy backward-compat wrapper
+   public static void ApplyDamage(Entity target, int amount, Entity source, Zone zone)
+       => ApplyDamage(target, new Damage(amount), source, zone);
+   ```
+   20+ existing callers continue to work via the int wrapper.
+
+5. **TakeDamage / DamageDealt events** gain a `"Damage"` parameter (carrying the Damage object). Existing `"Amount"` parameter stays for backward-compat.
+
+### Test plan
+
+**RED tests (`DamageTests.cs`):**
+- Constructor sets Amount; negative input clamps to 0
+- AddAttribute appends; HasAttribute returns true; non-added returns false
+- AddAttributes parses space-separated string
+- HasAnyAttribute returns true on intersection, false on disjoint
+- IsColdDamage matches "Cold", "Ice", "Freeze"; not "Heat"
+- IsHeatDamage matches "Fire", "Heat"; not "Cold"
+- (Same shape for Electric, Bludgeoning, Acid, Light, Disintegration)
+
+**Integration tests:**
+- `PerformMeleeAttack` causes a typed Damage to flow through ApplyDamage with correct attributes
+- Weapon's `Attributes` field propagates into the Damage
+- Default attributes always include "Melee" and the weapon's Stat name
+
+**Adversarial:**
+- Damage with empty attributes list — IsColdDamage etc. return false
+- Damage.Amount setter clamps negative to 0 (mutation: flip Math.Max → Math.Min)
+- AddAttribute with null/empty — does it append? Qud appends; we mirror
+- Backward-compat int overload preserves existing behavior bit-for-bit
+
+### Divergences captured (Phase C)
+
+| # | Divergence | Rationale |
+|---|---|---|
+| 1 | Skipped `[ModSensitiveCacheInit]` static constructor for `AttributeSounds` | Sound-effects mapping is a Unity-side concern (we have `AsciiFxBus` instead). Will revisit in Phase F if/when per-attribute SFX is desired. |
+| 2 | Skipped `[Serializable]` decorators (kept `[Serializable]` on `Damage` only as a marker) | Our SaveSystem uses its own serialization path via `ISaveSerializable` rather than `BinaryFormatter`. |
+| 3 | `AddAttribute` does NOT dedupe (matches Qud) | Some Qud code paths count duplicate tags. Documented in tests; can revisit if confusing in practice. |
+
+### Implementation log
+
+| Step | Result |
+|---|---|
+| RED tests in `DamageTests.cs` (21 tests) | Compile errors confirmed RED (type `Damage` not found) |
+| `Damage` class implemented | `Assets/Scripts/Gameplay/Combat/Damage.cs` (~150 LOC); 21/21 tests green on first run |
+| `MeleeWeaponPart.Attributes` field added | Auto-handled by `EntityFactory.ApplyParameters` reflection — no factory changes needed |
+| `PerformSingleAttack` refactored | Builds `Damage` with `["Melee", weapon.Stat, ...weapon.Attributes]`, sets `damage.Amount` from rolled total, passes typed `Damage` to `ApplyDamage` |
+| `ApplyDamage` overload split | New typed primary; legacy int wraps `new Damage(amount)` and forwards. Both `TakeDamage` and `DamageDealt` events now carry both legacy `"Amount"` int and new `"Damage"` object parameters |
+| Integration tests in `CombatDamageIntegrationTests.cs` (9 tests) | All green: typed flow, weapon attribute propagation, legacy `Amount` preserved, int overload still works, null/zero/negative damage no-ops, no aliasing across attacks |
+| Full EditMode suite | 2129/2129 green (was 2099 pre-Phase-C; net +30: 21 unit + 9 integration) |
+
+### Files changed (Phase C)
+
+| File | Change |
+|---|---|
+| `Assets/Scripts/Gameplay/Combat/Damage.cs` | **new** — Qud-parity Damage class with attributes list, type-check helpers |
+| `Assets/Scripts/Gameplay/Combat/CombatSystem.cs` | `PerformSingleAttack` builds typed Damage; `ApplyDamage` split into typed + int overloads; events carry both `Amount` and `Damage` parameters |
+| `Assets/Scripts/Gameplay/Items/MeleeWeaponPart.cs` | New `Attributes` field (space-separated string of damage attributes) |
+| `Assets/Tests/EditMode/Gameplay/Combat/DamageTests.cs` | **new** — 21 unit tests for the Damage class |
+| `Assets/Tests/EditMode/Gameplay/Combat/CombatDamageIntegrationTests.cs` | **new** — 9 integration + adversarial tests for the typed-Damage flow |
