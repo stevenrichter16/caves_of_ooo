@@ -38,7 +38,25 @@ Test execution: `mcp__unity__run_tests` filtering on the relevant test class.
 | E | Resistance stats (`ColdResistance`, `HeatResistance`, `AcidResistance`, `ElectricResistance`) — applied in `ApplyDamage` based on damage attributes | ✅ **complete** |
 | F | `BeforeTakeDamage` event hook (post-sweep narrowed scope; see Phase F note below) | ✅ **complete** |
 | G | Multiweapon hooks: off-hand penalty becomes tunable; `MultiWeaponSkillBonus` stat reduces it | ✅ **complete** |
-| H | Dismemberment with damage-attribute interaction (cutting → 1.5x sever, blunt → 0.5x sever) | ⏸ pending |
+| H | `CanBeDismembered` event hook (re-scoped after sweep — see Phase H note) | ✅ **complete** |
+
+### Phase H scope correction note (post-verification sweep)
+
+Originally scoped as "cutting → 1.5x sever, blunt → 0.5x sever" — i.e., damage-attribute-modulated dismemberment chance.
+
+**Verification sweep against Qud reference revealed this isn't how Qud does it.** Searching `qud_decompiled_project` for `HasAttribute.*Cutting` / `HasAttribute.*Bludg` returns **only one hit**: the `IsBludgeoningDamage()` helper inside `Damage.cs` itself, never consumed by combat code. Qud's combat dismemberment is:
+- **Skill-driven**: `Axe_Dismember.Dismember()` and `Axe_Decapitate.Decapitate()` proc on successful axe-skill hits
+- **Mod-driven**: `ModSerrated`, `ModNanon`, `ModGlazed` add dismember chance per-weapon
+- **Power-driven**: `DismemberAdjacentHostiles` is an explicit power
+- **Mutation-driven**: `Decarbonizer`
+
+None of these consult the `Damage` object's attributes. Damage type doesn't affect dismemberment in Qud's combat path.
+
+The closest centralized Qud-parity hook is `CanBeDismemberedEvent` (`IGameSystem.cs:637`), which lets parts veto dismemberment per-call. This is real Qud parity work (mirrors the `BeforeDismemberEvent` pattern at `Body.cs:2498`).
+
+**Phase H final scope:** add `CanBeDismembered` event hook to `CheckCombatDismemberment` so parts can veto a pending dismemberment. Mirrors Qud's `CanBeDismemberedEvent` / `BeforeDismemberEvent`. Foundation for future "TitaniumBones" / "Indestructible" content. ~30 min, ~5 tests with counter-checks.
+
+The originally-planned damage-attribute-modulated dismemberment is a CoO-original divergence. Defer until/unless gameplay design calls for it; if so, document as CoO-original per Methodology Template §4.2, NOT as parity.
 
 ### Phase F scope correction note (post-verification sweep)
 

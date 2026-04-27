@@ -839,8 +839,16 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Check if a combat hit should sever the struck body part.
         /// Only triggers on severable appendages. Chance scales with damage.
+        ///
+        /// Phase H: when the chance roll passes, fires <c>CanBeDismembered</c>
+        /// on the defender. Listeners can VETO by returning false from
+        /// HandleEvent. Mirrors Qud's <c>CanBeDismemberedEvent</c>
+        /// (`IGameSystem.cs:637`).
+        ///
+        /// Test-callable: kept public so unit tests can target the dismember
+        /// probability path directly without going through PerformMeleeAttack.
         /// </summary>
-        private static void CheckCombatDismemberment(Entity defender, Body body,
+        public static void CheckCombatDismemberment(Entity defender, Body body,
             BodyPart hitPart, int damage, Zone zone, Random rng)
         {
             if (!hitPart.IsSeverable()) return;
@@ -858,11 +866,21 @@ namespace CavesOfOoo.Core
             chance = Math.Min(chance, 50);
 
             int roll = rng.Next(100);
-            if (roll < chance)
-            {
-                body.Dismember(hitPart, zone);
-            }
+            if (roll >= chance) return;  // chance roll failed — no event, no dismember
+
+            // Phase H: fire CanBeDismembered to give listeners a chance to veto.
+            // Vetoing leaves the body part intact even though the chance roll
+            // would otherwise have severed it.
+            var canBeDismembered = GameEvent.New("CanBeDismembered");
+            canBeDismembered.SetParameter("Defender", (object)defender);
+            canBeDismembered.SetParameter("BodyPart", (object)hitPart);
+            canBeDismembered.SetParameter("Damage", damage);
+            if (!defender.FireEvent(canBeDismembered))
+                return;  // veto — skip the actual dismemberment
+
+            body.Dismember(hitPart, zone);
         }
+
 
         /// <summary>
         /// Tracks a weapon and which body part it's on for multi-weapon combat.
