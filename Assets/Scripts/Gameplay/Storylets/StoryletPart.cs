@@ -63,11 +63,51 @@ namespace CavesOfOoo.Storylets
             return new List<QuestState>(_quests.Values);
         }
 
-        // ── INarrativeReactor (M3 fills in dispatch) ──────────────────────────
+        // ── INarrativeReactor — single-pass dispatch ──────────────────────────
 
+        // Reused tick-scoped buffer to avoid per-tick allocations.
+        private readonly List<StoryletData> _eligibleScratch = new List<StoryletData>();
+
+        /// <summary>
+        /// Polled once per TickEnd via NarrativeStatePart's reactor list.
+        ///
+        /// Single-pass dispatch: snapshot eligibility at the top of the tick,
+        /// then fire effects. A storylet whose effect mutates the FactBag in
+        /// a way that flips ANOTHER storylet's predicate does NOT cause that
+        /// other storylet to fire this tick — the second one fires next tick.
+        /// This keeps test order deterministic and avoids the "infinite cascade
+        /// in one tick" footgun.
+        ///
+        /// Quest storylets (those with a non-null Quest sub-object) are skipped
+        /// here — M4 lands their dispatch.
+        /// </summary>
         public void OnTickEnd(NarrativeStatePart state)
         {
-            // M3 — trigger evaluation + dispatch.
+            _eligibleScratch.Clear();
+
+            var all = StoryletRegistry.GetAll();
+            for (int i = 0; i < all.Count; i++)
+            {
+                var s = all[i];
+                if (s == null || string.IsNullOrEmpty(s.ID)) continue;
+                if (s.IsQuest) continue;                              // M4 territory
+                if (s.OneShot && _firedStorylets.Contains(s.ID)) continue;
+
+                if (!ConversationPredicates.CheckAll(s.Triggers, null, null))
+                    continue;
+
+                _eligibleScratch.Add(s);
+            }
+
+            for (int i = 0; i < _eligibleScratch.Count; i++)
+            {
+                var s = _eligibleScratch[i];
+                ConversationActions.ExecuteAll(s.Effects, null, null);
+                if (s.OneShot)
+                    _firedStorylets.Add(s.ID);
+            }
+
+            _eligibleScratch.Clear();
         }
 
         // ── ISaveSerializable ─────────────────────────────────────────────────
