@@ -36,9 +36,29 @@ Test execution: `mcp__unity__run_tests` filtering on the relevant test class.
 | C | Damage class foundation — `Damage(int amount, List<string> attributes)` mirroring Qud's `XRL.World.Damage` | ✅ **complete** |
 | D | Critical hit damage scaling (nat-20 → AutoPen flag + crit pen bonus + "Critical" attribute) | ✅ **complete** |
 | E | Resistance stats (`ColdResistance`, `HeatResistance`, `AcidResistance`, `ElectricResistance`) — applied in `ApplyDamage` based on damage attributes | ✅ **complete** |
-| F | Per-attribute reactions (acid corrodes equipment, fire spreads, electricity arcs, etc.) | ⏸ pending |
-| G | Off-hand penalty + multiweapon fighting (skill-aware scaling) | ⏸ pending |
-| H | Dismemberment with damage-attribute interaction (cutting → sever, blunt → fracture) | ⏸ pending |
+| F | `BeforeTakeDamage` event hook (post-sweep narrowed scope; see Phase F note below) | ✅ **complete** |
+| G | Multiweapon hooks: off-hand penalty becomes tunable; `MultiWeaponSkillBonus` stat reduces it | ⏸ pending |
+| H | Dismemberment with damage-attribute interaction (cutting → 1.5x sever, blunt → 0.5x sever) | ⏸ pending |
+
+### Phase F scope correction note (post-verification sweep)
+
+Originally scoped as "per-attribute reactions" (acid corrodes equipment, fire spreads, electricity arcs).
+**Verification sweep against Qud reference revealed this isn't centralized in the damage path.**
+Qud's per-attribute behaviors live in scattered systems:
+- `LiquidAcid.cs:105` applies `ContainedAcidEating` to its container (not via damage)
+- `Physics.cs:3013` applies `Burning` during flame ticks (temperature-driven, not damage-driven)
+- Cold/freeze likewise temperature-driven
+
+**Second sweep correction.** I initially planned F.1 (4 "missing" `Is*Damage()` helpers — Poison/Bleeding/Mental/Explosion). Re-reading `XRL.World/Damage.cs:139-189` confirms Qud only has the 7 instance helpers we ported in Phase C — Poison/Bleeding/etc. are AttributeSound entries, not instance methods. No parity gap there.
+
+Similarly, F.2 (Poison/BleedResistance stats) would be a CoO-original extension, not parity, and would be dead-letter without content that emits typed `Damage` with those attributes. Deferred.
+
+Centralized damage-path gap that DOES have Qud parity:
+- **F.3 → renamed F**: `BeforeTakeDamage` event hook. Mirrors Qud's `BeforeApplyDamageEvent` (Physics.cs:3418): listeners can mutate damage or veto entirely. Lets future content (status effects, mutations, equipment) react to incoming damage without modifying `CombatSystem`. Useful as architectural plumbing even before any concrete listener uses it — Phase E's resistance code could itself be re-implemented as a BeforeTakeDamage listener in the future.
+
+Phase F final scope: **just the `BeforeTakeDamage` event hook**. ~30 min, ~5 tests including counter-checks.
+
+The other deferred work (equipment corrosion, terrain reactions, temperature spreading, status-effect-from-damage-attribute) is either scattered across non-combat systems or CoO-original. Flagged in the post-port punch-list.
 
 ### Phase B correction note
 

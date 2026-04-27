@@ -464,6 +464,40 @@ namespace CavesOfOoo.Core
                 var hpStat = target.GetStat("Hitpoints");
                 if (hpStat == null || hpStat.BaseValue <= 0) return;
 
+                // Phase F: BeforeTakeDamage event — fires BEFORE resistance.
+                // Listeners can mutate damage (e.g., add/remove attributes,
+                // reduce Amount) or VETO entirely by returning false from
+                // their HandleEvent. Mirrors Qud's BeforeApplyDamageEvent
+                // (Physics.cs:3418), which lets Part-side listeners modify
+                // or cancel incoming damage.
+                //
+                // Vetoed damage fires DamageFullyResisted (so observers know
+                // an attack was attempted) but does NOT fire TakeDamage and
+                // does not decrement HP. Mutations to damage.Amount propagate
+                // — the post-event re-read covers both this hook and the
+                // TakeDamage event below.
+                var beforeTakeDamage = GameEvent.New("BeforeTakeDamage");
+                beforeTakeDamage.SetParameter("Target", (object)target);
+                beforeTakeDamage.SetParameter("Source", (object)source);
+                beforeTakeDamage.SetParameter("Damage", (object)damage);
+                if (!target.FireEvent(beforeTakeDamage))
+                {
+                    // Veto — surface as fully-resisted so observers see the attempt.
+                    //
+                    // Contract for the Damage object on a vetoed DamageFullyResisted:
+                    //   • Amount is left unchanged (the value the attack WOULD have
+                    //     dealt before resistance, with any pre-veto listener
+                    //     mutations applied). Listeners that want to know "how
+                    //     much was blocked" can read damage.Amount.
+                    //   • Attributes reflect any pre-veto listener mutations.
+                    var fullyResistedVeto = GameEvent.New("DamageFullyResisted");
+                    fullyResistedVeto.SetParameter("Target", (object)target);
+                    fullyResistedVeto.SetParameter("Source", (object)source);
+                    fullyResistedVeto.SetParameter("Damage", (object)damage);
+                    target.FireEvent(fullyResistedVeto);
+                    return;
+                }
+
                 // Phase E: apply elemental resistances based on damage attributes.
                 // Mirrors XRL.World.Parts.Physics.cs:3351-3417. Damage with the
                 // "IgnoreResist" attribute bypasses all resistance entirely.
