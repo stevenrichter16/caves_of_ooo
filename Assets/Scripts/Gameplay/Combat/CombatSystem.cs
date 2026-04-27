@@ -164,7 +164,21 @@ namespace CavesOfOoo.Core
             int maxBonus = effectiveMaxStrBonus + penBonus;
             int av = hitPart != null ? GetPartAV(defender, hitPart) : GetAV(defender);
 
-            int penetrations = RollPenetrations(av, bonus, maxBonus, rng);
+            // Phase D: critical hits (nat-20). Mirror Qud's Combat.cs:1106-1140 —
+            // crit adds +1 to PenBonus and +1 to PenCapBonus, and sets the AutoPen
+            // flag (which forces pens = 1 if rolls fail AND the attacker is the player).
+            // We skip Qud's skill-based weaponCriticalModifier and the WeaponCriticalModifier
+            // event chain for now (those land in later phases when skills exist).
+            int critPenBonus = naturalTwenty ? 1 : 0;
+            int critMaxBonus = naturalTwenty ? 1 : 0;
+            bool autoPen = naturalTwenty;
+
+            int penetrations = RollPenetrations(av, bonus + critPenBonus, maxBonus + critMaxBonus, rng);
+
+            // AutoPen: if penetration failed AND we're a critical AND attacker is the player,
+            // force one penetration through. Mirrors Qud's `flag5 && Attacker.IsPlayer()` guard.
+            if (penetrations == 0 && autoPen && attacker.HasTag("Player"))
+                penetrations = 1;
 
             if (penetrations == 0)
             {
@@ -180,6 +194,8 @@ namespace CavesOfOoo.Core
             damage.AddAttribute(statName);                      // e.g. "Strength"
             if (weapon != null && !string.IsNullOrEmpty(weapon.Attributes))
                 damage.AddAttributes(weapon.Attributes);        // e.g. "Cutting LongBlades"
+            if (naturalTwenty)
+                damage.AddAttribute("Critical");                // Phase D: crit attribute
 
             int totalDamage = 0;
             for (int i = 0; i < penetrations; i++)
@@ -438,6 +454,14 @@ namespace CavesOfOoo.Core
                 var hpStat = target.GetStat("Hitpoints");
                 if (hpStat == null || hpStat.BaseValue <= 0) return;
 
+                // Phase E: apply elemental resistances based on damage attributes.
+                // Mirrors XRL.World.Parts.Physics.cs:3351-3417. Damage with the
+                // "IgnoreResist" attribute bypasses all resistance entirely.
+                if (!damage.HasAttribute("IgnoreResist"))
+                    ApplyResistances(target, damage);
+
+                if (damage.Amount <= 0) return;  // resistance fully absorbed
+
                 int amount = damage.Amount;
 
                 var takeDamage = GameEvent.New("TakeDamage");
@@ -481,6 +505,52 @@ namespace CavesOfOoo.Core
         public static void ApplyDamage(Entity target, int amount, Entity source, Zone zone)
         {
             ApplyDamage(target, new Damage(amount), source, zone);
+        }
+
+        /// <summary>
+        /// Apply elemental resistances to a damage instance based on the target's
+        /// resistance stats and the damage's type attributes. Mirrors
+        /// <c>XRL.World.Parts.Physics</c>'s resistance loop (lines 3351-3417).
+        ///
+        /// For each elemental type (Acid/Heat/Cold/Electric):
+        ///   • Positive resistance: damage *= (100 − resist) / 100, min 1 if not ≥100%
+        ///   • Negative resistance: damage *= (1 + |resist|/100) — vulnerability
+        ///   • 100% resistance fully absorbs (damage = 0)
+        ///
+        /// If a damage instance carries multiple type attributes (e.g., Cold AND Fire),
+        /// each applicable resistance fires in sequence. The order is fixed (Acid →
+        /// Heat → Cold → Electric) to match Qud's source.
+        /// </summary>
+        private static void ApplyResistances(Entity target, Damage damage)
+        {
+            if (damage.IsAcidDamage())     ApplyResistanceFor(target, damage, "AcidResistance");
+            if (damage.IsHeatDamage())     ApplyResistanceFor(target, damage, "HeatResistance");
+            if (damage.IsColdDamage())     ApplyResistanceFor(target, damage, "ColdResistance");
+            if (damage.IsElectricDamage()) ApplyResistanceFor(target, damage, "ElectricResistance");
+        }
+
+        /// <summary>
+        /// Apply a single resistance stat to a damage instance using Qud's formula.
+        /// </summary>
+        private static void ApplyResistanceFor(Entity target, Damage damage, string resistanceStatName)
+        {
+            if (damage.Amount <= 0) return;
+            int resist = target.GetStatValue(resistanceStatName, 0);
+            if (resist == 0) return;
+
+            if (resist > 0)
+            {
+                // Positive resistance reduces damage proportionally.
+                damage.Amount = (int)(damage.Amount * (100 - resist) / 100f);
+                // Min 1 unless resist is 100%+ (full immunity).
+                if (resist < 100 && damage.Amount < 1)
+                    damage.Amount = 1;
+            }
+            else
+            {
+                // Negative resistance = vulnerability. -50 means +50% damage.
+                damage.Amount += (int)(damage.Amount * (resist / -100f));
+            }
         }
 
         /// <summary>

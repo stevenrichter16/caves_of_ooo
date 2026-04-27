@@ -34,8 +34,8 @@ Test execution: `mcp__unity__run_tests` filtering on the relevant test class.
 | B | Strength bonus to damage (post-pen) | ⛔ **skipped — false premise** |
 | B½ | Damage path polish (`WeaponIgnoreStrength` tag, multi-stat selection, `AdjustDamage*` args, pen event hooks) | ⏸ deferred (low-impact edge cases) |
 | C | Damage class foundation — `Damage(int amount, List<string> attributes)` mirroring Qud's `XRL.World.Damage` | ✅ **complete** |
-| D | Critical hit damage scaling (nat-20 → AutoPen flag + crit damage) | ⏸ pending |
-| E | Resistance stats (`ColdResistance`, `HeatResistance`, `AcidResistance`, etc.) — applied in `ApplyDamage` based on damage attributes | ⏸ pending |
+| D | Critical hit damage scaling (nat-20 → AutoPen flag + crit pen bonus + "Critical" attribute) | ✅ **complete** |
+| E | Resistance stats (`ColdResistance`, `HeatResistance`, `AcidResistance`, `ElectricResistance`) — applied in `ApplyDamage` based on damage attributes | ✅ **complete** |
 | F | Per-attribute reactions (acid corrodes equipment, fire spreads, electricity arcs, etc.) | ⏸ pending |
 | G | Off-hand penalty + multiweapon fighting (skill-aware scaling) | ⏸ pending |
 | H | Dismemberment with damage-attribute interaction (cutting → sever, blunt → fracture) | ⏸ pending |
@@ -359,3 +359,100 @@ Phase C is just the foundation — the Damage class plumbing — so subsequent p
 | `Assets/Scripts/Gameplay/Items/MeleeWeaponPart.cs` | New `Attributes` field (space-separated string of damage attributes) |
 | `Assets/Tests/EditMode/Gameplay/Combat/DamageTests.cs` | **new** — 21 unit tests for the Damage class |
 | `Assets/Tests/EditMode/Gameplay/Combat/CombatDamageIntegrationTests.cs` | **new** — 9 integration + adversarial tests for the typed-Damage flow |
+
+---
+
+## Phase D: Critical hit damage scaling
+
+### Status: ✅ complete
+
+### Qud reference
+
+`XRL.World.Parts/Combat.cs:1106-1140, 1218-1228, 1247-1275`:
+- nat-20 (or skill-modified threshold) sets the critical flag
+- On critical: `+1` PenBonus, `+1` PenCapBonus, `flag5` (AutoPen) set
+- AutoPen forces pens=1 if rolls fail AND attacker is the player (`flag5 && Attacker.IsPlayer()`)
+- On successful critical pen: `damage.AddAttribute("Critical")`
+
+### Implementation in our port
+
+In `PerformSingleAttack`:
+
+```csharp
+int critPenBonus = naturalTwenty ? 1 : 0;
+int critMaxBonus = naturalTwenty ? 1 : 0;
+bool autoPen = naturalTwenty;
+
+int penetrations = RollPenetrations(av, bonus + critPenBonus, maxBonus + critMaxBonus, rng);
+
+// AutoPen — only fires for the player (mirrors Qud's IsPlayer guard)
+if (penetrations == 0 && autoPen && attacker.HasTag("Player"))
+    penetrations = 1;
+
+// ...damage build...
+if (naturalTwenty)
+    damage.AddAttribute("Critical");
+```
+
+### Divergences captured (Phase D)
+
+| # | Divergence | Rationale |
+|---|---|---|
+| 1 | Skipped `Skills.GetGenericSkill` weapon-critical-modifier chain | We don't have skills yet. Phase D restores the missing nat-20 mechanic without a skill system. Revisit when skills land. |
+| 2 | Skipped `WeaponCriticalModifier` / `AttackerCriticalModifier` event chain | These are listener-mutation hooks that need typed events to be ergonomic. Defer to a future event-system upgrade phase. |
+| 3 | No `CriticalHit` event firing | Listeners interested in crits can detect via `damage.HasAttribute("Critical")` on the existing `TakeDamage` / `DamageDealt` events. |
+
+### Files changed (Phase D)
+
+| File | Change |
+|---|---|
+| `Assets/Scripts/Gameplay/Combat/CombatSystem.cs` | `PerformSingleAttack`: added crit pen-bonus, AutoPen guard, "Critical" attribute |
+| `Assets/Tests/EditMode/Gameplay/Combat/CriticalHitTests.cs` | **new** — 5 spec tests (AutoPen for player, AutoPen blocked for non-player, Critical attribute, non-crit doesn't add, crit pen bonus smoke) |
+| `Assets/Tests/EditMode/Gameplay/Combat/CriticalHitAdversarialTests.cs` | **new** — 4 mutation-resistance tests (AutoPen produces exactly 1, doesn't cap successful pens, no Critical when pen fails, pen bonus is exactly 1) |
+
+---
+
+## Phase E: Resistance stats
+
+### Status: ✅ complete
+
+### Qud reference
+
+`XRL.World.Parts/Physics.cs:3351-3417` — four resistance loops in `HandleEvent` for `TakeDamage`:
+- `AcidResistance` reduces `IsAcidDamage()` damage
+- `HeatResistance` reduces `IsHeatDamage()` damage
+- `ColdResistance` reduces `IsColdDamage()` damage
+- `ElectricResistance` reduces `IsElectricDamage()` damage
+
+Formula (per type):
+- Positive resist: `damage.Amount = damage.Amount * (100 − resist) / 100`, with min-1 unless ≥100% resist
+- Negative resist: `damage.Amount += damage.Amount * (-resist / 100)` (vulnerability)
+- `IgnoreResist` attribute on damage bypasses all resistance
+
+### Implementation in our port
+
+In `ApplyDamage(Entity, Damage, Entity, Zone)`, immediately after the dead-target guard:
+
+```csharp
+if (!damage.HasAttribute("IgnoreResist"))
+    ApplyResistances(target, damage);
+
+if (damage.Amount <= 0) return;  // resistance fully absorbed
+```
+
+`ApplyResistances` dispatches each elemental check via `damage.IsXDamage()` helpers from Phase C, calling `ApplyResistanceFor(target, damage, "XResistance")` on matches. Order is fixed (Acid → Heat → Cold → Electric) to match Qud's source.
+
+### Divergences captured (Phase E)
+
+| # | Divergence | Rationale |
+|---|---|---|
+| 1 | Resistance is applied in `CombatSystem.ApplyDamage`, not in a target-side `Part.HandleEvent("TakeDamage")` | Qud's `Physics.cs` runs resistance in a Part handler; our port lifts it to `CombatSystem` for centralization. Both produce the same result. Listeners that want *pre*-resistance damage would need to hook upstream of ApplyDamage; defer if needed. |
+| 2 | Order matches Qud (Acid → Heat → Cold → Electric) | Documented in case future work cares (e.g., a damage tagged Cold AND Fire chains both, with cold first). |
+| 3 | Skipped Qud's `BeforeApplyDamageEvent` chain | Not needed for resistance correctness; would land in a future event-upgrade phase. |
+
+### Files changed (Phase E)
+
+| File | Change |
+|---|---|
+| `Assets/Scripts/Gameplay/Combat/CombatSystem.cs` | `ApplyDamage` typed overload now applies resistances (with IgnoreResist bypass); two new private helpers: `ApplyResistances`, `ApplyResistanceFor` |
+| `Assets/Tests/EditMode/Gameplay/Combat/ResistanceTests.cs` | **new** — 13 spec + adversarial tests (positive resist, 100% immunity, low-damage min-1 clamp, negative resist vulnerability, type-mismatch no-op, IgnoreResist bypass, no-stat default 0, multi-type chaining, zero-damage edge, melee unaffected by elemental) |
