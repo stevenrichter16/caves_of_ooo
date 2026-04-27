@@ -1493,6 +1493,30 @@
       ]
     },
     {
+      "Name": "StoneskinTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "stoneskin tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Message", "Value": "Your skin hardens to stone." }] },
+        { "Name": "StatusTonic", "Params": [
+          { "Key": "EffectName", "Value": "Stoneskin" },
+          { "Key": "EffectDuration", "Value": "30" },
+          { "Key": "EffectMagnitude", "Value": "2" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "25" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
       "Name": "Mushroom",
       "Inherits": "FoodItem",
       "Parts": [

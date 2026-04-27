@@ -25,10 +25,10 @@ namespace CavesOfOoo.Core
         /// </summary>
         public int Reduction;
 
-        public StoneskinEffect(int reduction = 2)
+        public StoneskinEffect(int reduction = 2, int duration = DURATION_INDEFINITE)
         {
             Reduction = reduction;
-            Duration = DURATION_INDEFINITE;
+            Duration = duration;
         }
 
         public override void OnApply(Entity target)

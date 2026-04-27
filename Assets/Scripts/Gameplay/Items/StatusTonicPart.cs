@@ -78,6 +78,13 @@ namespace CavesOfOoo.Core
                 case "frozeneffect":
                     return new FrozenEffect(
                         cold: EffectMagnitude > 0f ? EffectMagnitude : 1.0f);
+
+                case "stoneskin":
+                case "stone":
+                case "stoneskineffect":
+                    return new StoneskinEffect(
+                        reduction: EffectMagnitude > 0f ? (int)EffectMagnitude : 2,
+                        duration: EffectDuration > 0 ? EffectDuration : 30);
             }
 
             return null;
