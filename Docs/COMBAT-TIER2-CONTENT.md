@@ -136,9 +136,32 @@ Tests (5-7):
 
 ## Verification checklist
 
-- [ ] T2.1 commit: crit message visible in PlayMode swing
-- [ ] T2.2 commit: a `ShortSword` swing produces `Damage` with `Cutting` + `LongBlades`
-- [ ] T2.3 commit: Glowmaw with HeatResistance halves Fire damage
-- [ ] T2.4 commit: Stoneskin reduces damage by 2 + chains correctly with resistance
-- [ ] Full EditMode suite green after each commit
-- [ ] Doc updated with implementation log per Methodology §3
+- [x] T2.1 commit (`a70ac41`): crit message in MessageLog with `CRITICAL_HIT_TAG` constant. 2 tests, full suite 2183 green.
+- [x] T2.2 commit (`a9a8ada`): 4 weapon blueprints + 7 natural weapons declare `Attributes`. 8 tests, full suite 2191 green.
+- [x] T2.3 commit (`885e13a`): Glowmaw HeatResistance:50, Snapjaw ColdResistance:25, SnapjawHunter override:50. 6 tests, full suite 2197 green.
+- [x] T2.4 commit (`49f16ca`): `Effect.OnBeforeTakeDamage` virtual + `StatusEffectsPart` routing + `StoneskinEffect` class. 8 tests, full suite 2205 green.
+- [x] Full EditMode suite green after each commit (no regressions)
+- [x] Implementation log captured per-commit + this checklist
+
+## Final results
+
+| Sub | Commit | Tests added | Suite total | Notes |
+|---|---|---:|---:|---|
+| T2.1 | `a70ac41` | 2 | 2183 | Crit MessageLog feedback |
+| T2.2 | `a9a8ada` | 8 | 2191 | 4 weapons + 7 natural with Attributes |
+| T2.3 | `885e13a` | 6 | 2197 | 3 creatures with resistance stats |
+| T2.4 | `49f16ca` | 8 | 2205 | Stoneskin + Effect.OnBeforeTakeDamage |
+| **Total** | — | **+24** | — | All 4 sub-milestones independently revertable |
+
+Net: combat port is now player-visible — crits log, weapons carry typed
+attributes, themed creatures resist matching elements, and the first
+production listener (Stoneskin) demonstrates the BeforeTakeDamage pattern
+for future status effects (MagicShield, ScaleBark, etc.).
+
+## Deferrals flagged for future content / polish
+
+- More weapons need `Attributes` (Battleaxe, Sporeblade, EchoKnife, etc. — most exotic blueprints unset)
+- More creatures need resistance stats (current 3 is a starting set; ~50 more creatures exist)
+- No creature has *negative* resistance (vulnerability) yet — Phase E vulnerability path lacks gameplay validation
+- Stoneskin has no per-hit "absorbed!" log line (would add noise; deferred)
+- No visual feedback (color/particle) for crits / resisted / fully-resisted events
