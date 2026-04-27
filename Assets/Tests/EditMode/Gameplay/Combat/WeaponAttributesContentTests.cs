@@ -131,6 +131,51 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
+        // IceSword — Cold counterpart to FlamingSword
+        // (Tier-1 Quick Win; ties Phase C Attributes → Phase E ColdResistance)
+        // ====================================================================
+
+        [Test]
+        public void IceSword_HasCuttingIceLongBladesAttribute()
+        {
+            var sword = _harness.Factory.CreateEntity("IceSword");
+            Assert.IsNotNull(sword, "IceSword blueprint must exist");
+            var weapon = sword.GetPart<MeleeWeaponPart>();
+            Assert.IsNotNull(weapon, "IceSword must have a MeleeWeaponPart");
+            Assert.AreEqual("Cutting Ice LongBlades", weapon.Attributes,
+                "IceSword.Attributes should declare 'Cutting Ice LongBlades' " +
+                "so it carries both the physical class (Cutting/LongBlades) " +
+                "and the elemental type (Ice) into the Damage object on hit");
+        }
+
+        [Test]
+        public void IceSword_AttributesContain_Ice()
+        {
+            // Pinned separately from the exact-string test so a future reorder
+            // (e.g., "Ice Cutting LongBlades") doesn't silently strip Ice and
+            // turn this into a plain cutter.
+            var sword = _harness.Factory.CreateEntity("IceSword");
+            var weapon = sword.GetPart<MeleeWeaponPart>();
+            Assert.IsNotNull(weapon);
+            Assert.IsTrue(weapon.Attributes.Contains("Ice"),
+                "IceSword must contain 'Ice' in its Attributes — that's what " +
+                "routes its damage through ColdResistance (Phase E) on " +
+                "cold-resistant creatures like SnapjawHunter");
+        }
+
+        [Test]
+        public void IceSword_DoesNotHavePiercing_OrBludgeoning()
+        {
+            // Counter-check: physical-class is Cutting, not the others.
+            var sword = _harness.Factory.CreateEntity("IceSword");
+            var weapon = sword.GetPart<MeleeWeaponPart>();
+            Assert.IsFalse(weapon.Attributes.Contains("Piercing"),
+                "IceSword is Cutting, not Piercing");
+            Assert.IsFalse(weapon.Attributes.Contains("Bludgeoning"),
+                "IceSword is Cutting, not Bludgeoning");
+        }
+
+        // ====================================================================
         // Counter-checks: attributes don't leak across categories
         // ====================================================================
 

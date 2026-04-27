@@ -1927,6 +1927,43 @@
       ]
     },
     {
+      "Name": "IceSword",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "ice sword" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "6" }] },
+        { "Name": "MeleeWeapon", "Params": [
+          { "Key": "BaseDamage", "Value": "1d8" },
+          { "Key": "PenBonus", "Value": "2" },
+          { "Key": "Attributes", "Value": "Cutting Ice LongBlades" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "40" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor,Ice" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
       "Name": "EchoKnife",
       "Inherits": "MeleeWeapon",
       "Parts": [
