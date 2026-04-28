@@ -90,19 +90,20 @@ namespace CavesOfOoo.Scenarios.Custom
     ///   [OnHitDemo] {target} acquired Stunned
     ///   [OnHitDemo] {target} acquired Bleeding
     ///
-    /// Remove format (with inferred cause label):
+    /// Remove format:
     ///   [OnHitDemo] {target} lost Bleeding (save succeeded)
     ///   [OnHitDemo] {target} lost Stunned (duration expired)
+    ///   [OnHitDemo] {target} lost Confused (external)
     ///
-    /// **Cause inference**: <see cref="StatusEffectsPart"/>'s
-    /// <c>EffectRemoved</c> event doesn't carry a "cause" parameter, so
-    /// the probe uses a type-based heuristic: <see cref="BleedingEffect"/>
-    /// is the only effect in the codebase with `Duration =
-    /// DURATION_INDEFINITE` + a save-based recovery (Toughness vs
-    /// SaveTarget in <c>OnTurnEnd</c>). For the showcase scenario no
-    /// external code removes Bleeding, so a removed BleedingEffect is
-    /// always due to a successful save in practice. Other effects
-    /// (Stunned, Confused) end via duration tick.
+    /// Cause is read from the <c>EffectRemoved</c> event's <c>Cause</c>
+    /// parameter, which <see cref="StatusEffectsPart.SendRemoved"/>
+    /// populates from <see cref="Effect.LastRemovalCause"/>. Effects
+    /// with save-based recovery overwrite that field before setting
+    /// <c>Duration = 0</c>; external <c>RemoveEffect</c> callers tag
+    /// it as <see cref="Effect.CAUSE_EXTERNAL"/>; the default
+    /// (duration tick) is <see cref="Effect.CAUSE_DURATION_EXPIRED"/>.
+    /// Generic across all current and future Effect subclasses with
+    /// save mechanics — no per-type heuristic.
     ///
     /// Scenario-only Part. Production combat does not emit these lines.
     /// </summary>
@@ -120,15 +121,25 @@ namespace CavesOfOoo.Scenarios.Custom
             }
             else if (e.ID == "EffectRemoved" && e.GetParameter("Effect") is Effect removedEffect)
             {
-                // BleedingEffect ends only via save in normal play
-                // (DURATION_INDEFINITE + Toughness save in OnTurnEnd).
-                // Everything else ends via duration tick.
-                string cause = removedEffect is BleedingEffect
-                    ? "save succeeded"
-                    : "duration expired";
-                MessageLog.Add("[OnHitDemo] " + label + " lost " + removedEffect.DisplayName + " (" + cause + ")");
+                // GameEvent stores string params in a separate StringParameters
+                // dict; GetParameter<T> only reads the typed Parameters dict and
+                // misses them. Use GetStringParameter for the Cause field.
+                string causeRaw = e.GetStringParameter("Cause", Effect.CAUSE_DURATION_EXPIRED);
+                string causeLabel = HumanizeCause(causeRaw);
+                MessageLog.Add("[OnHitDemo] " + label + " lost " + removedEffect.DisplayName + " (" + causeLabel + ")");
             }
             return true;
+        }
+
+        private static string HumanizeCause(string causeRaw)
+        {
+            // Map machine-readable cause strings to readable log labels.
+            // Falls through to the raw string for unknown causes (forward-
+            // compatible with future cause constants added to Effect).
+            if (causeRaw == Effect.CAUSE_SAVE_SUCCEEDED) return "save succeeded";
+            if (causeRaw == Effect.CAUSE_DURATION_EXPIRED) return "duration expired";
+            if (causeRaw == Effect.CAUSE_EXTERNAL) return "external";
+            return causeRaw;
         }
     }
 }
