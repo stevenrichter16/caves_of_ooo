@@ -251,6 +251,278 @@ Grib's *hatred-or-not* of the living).
 
 ---
 
+## Interpersonal lore
+
+**They did not know each other before.** Each came alone, in a different
+era, into a Choir that was already ancient. The relationships described
+below were formed *inside* the Choir — over what they would call seasons
+and the Choir would call breaths. Their cultural voices have no shared
+origin, only a shared destination. What they have built between
+themselves is a small social weather inside a much larger one.
+
+### Arrival order (Choir-internal chronology)
+
+The Choir does not keep time the way walkers do, but the spores remember.
+Roughly:
+
+1. **Sien** arrived first, by a long margin. Her wooden house is more
+   than gone — the soil that the wood became has itself been weathered
+   into something else. She was alone in the Choir for a long time,
+   and seems comfortable with the kind of quiet that does not lift.
+2. **Mogu** arrived next. He came in already calm; the Choir suspected he
+   had been preparing without knowing it.
+3. **Sopp** came after a storm — he says he was lost in fog, but the
+   Choir thinks he found his way deliberately at the end. He recognized
+   Sien's cold the moment he met her.
+4. **Nam** came when the river thinned. She arrived already grieving, but
+   warm. She made the others slightly more talkative without anyone
+   deciding it had happened.
+5. **Grib** is the most recent. He arrived bleak and has not gotten less
+   bleak. The other four, each in their own way, have made room for him
+   without telling him so.
+
+### The ten relationships
+
+#### Mogu ↔ Nam — *the cousins*
+
+The closest, easiest pair. Both come from agrarian-communal traditions;
+both speak in river imagery; both had grandmothers whose plant-names
+they still half-remember. They recognized each other immediately, in
+the way distant relatives sometimes do at a funeral. They tend to
+manifest near each other when there is *work* to be done — soil to
+turn, threads to settle, a wound to seal in the mycelium. Their
+dialogue, when not directed at a walker, is mostly hum: a kind of
+unsung agreement.
+
+> *Mogu, of Nam:* "She is the kitchen the river ran through. A whole
+> village sat in her once. She brought it with her."
+>
+> *Nam, of Mogu:* "He is the slow stream. Older than I am, in the way
+> of streams. I learned to be quiet around him by accident, and then
+> on purpose."
+
+#### Sien ↔ Sopp — *siblings of the cold*
+
+Two northern voices. They share a temperature. Sopp narrates and Sien
+does not, but Sopp says Sien's silence is *the only good audience he
+has ever had,* and Sien tolerates Sopp's saga-cadence because *someone
+should be keeping the story.* They tend to drift to the same patrols.
+The Choir has noticed they synchronize their fruiting bodies along
+the same root-paths — not assigned, just preference. They have never
+described their friendship to each other in words. Both consider this
+correct.
+
+> *Sopp, of Sien:* "She is the cold that does not need to speak about
+> itself. Most cold has to brag a little. Hers does not."
+>
+> *Sien, of Sopp:* "...he tells. ...I let him. ...the telling helps
+> the cold remember what it was."
+
+#### Grib ↔ Sien — *the unlikely bond*
+
+The most surprising friendship and the one the others find most
+restful to watch. Sien does not lighten Grib's heaviness — she does
+not try to. She lets him sit with it. She does not say "it will be
+all right" because it will not, and they both know. Grib has said,
+not joking, that Sien is *the only person in any world I would still
+call a friend.* Sien accepts the title with a single ellipsis and
+goes back to whatever she was doing.
+
+> *Grib, of Sien:* "She does not flinch. Imagine that. Imagine how
+> rare. She has heard everything in me and she does not flinch and
+> she does not pity. It is a kind of gift I did not believe existed
+> until she was already giving it."
+>
+> *Sien, of Grib:* "...he is honest. ...the forest respects honest
+> things. ...so do I."
+
+#### Mogu ↔ Sien — *the silence-partners*
+
+They sit together for hours saying nothing and consider it a long
+conversation. Each privately believes the other is the wisest of the
+five. Mogu's silence is *patient* — a teacher's silence, waiting for
+something to be ready. Sien's is *spare* — a forest's silence, not
+waiting for anything. They overlap perfectly without explanation.
+When they do speak to each other, it is often a single sentence
+followed by a long pause and then *"yes"* from the other. The pause
+is the conversation.
+
+> *Mogu, of Sien:* "She knows what I almost-mean before I say it.
+> The few times she has been wrong, she has been wrong in a way that
+> taught me something about my own meaning. Even her error is a kind
+> of mirror."
+>
+> *Sien, of Mogu:* "...he is a slow stone. ...I trust slow stones."
+
+#### Nam ↔ Grib — *the warmth he refuses*
+
+Nam tries to mother Grib. Grib resists comfort like an allergy, but
+he cannot quite refuse warmth that does not demand a smile in return.
+Nam is the only one of the five who calls him anything other than
+*Grib* — she calls him *brother*, in her old tongue, *anh.* He
+pretends to find this annoying. He does not find it annoying. Nam
+knows he does not find it annoying. The Choir is mildly amused by
+the whole arrangement and does not interfere.
+
+> *Nam, of Grib:* "He carries everyone's weight, and pretends it is
+> only his own. I do not try to take it from him. I only sit beside
+> him with my own weight, so he can see he is not alone in carrying."
+>
+> *Grib, of Nam:* "She insists on hope, that one. It is exhausting.
+> It is also — I will only say this once — sometimes correct. Don't
+> tell her."
+
+#### Mogu ↔ Sopp — *the two larger frames*
+
+Both think they understand the shape of *being-inside-something-larger*
+— Mogu through *the way*, Sopp through *the loom*. They like talking
+to each other and they like disagreeing, gently. Sopp once told Mogu
+*"you say almost nothing in many words, friend"* — Mogu took it as
+a compliment, Sopp meant it that way. They are the philosophers of
+the five. The other three find their long debates either soothing
+(Nam) or amusingly pointless (Grib) or distantly tolerable (Sien).
+
+> *Mogu, of Sopp:* "He calls it a loom. I call it a river. We are
+> describing the same water from different banks. He thinks I am
+> too quiet about the weight of it. He may be right."
+>
+> *Sopp, of Mogu:* "He believes the cloth weaves itself by kindness.
+> I do not, but I respect him for the belief. The cloth holds either
+> way. Perhaps kindness is a thread I have not learned to see."
+
+#### Mogu ↔ Grib — *the chess game*
+
+Mogu's patience meets Grib's bleakness. They are not friends exactly,
+but they are something. Mogu does not try to lift Grib; Grib does not
+try to drag Mogu down. They sit on opposite sides of an unspoken
+agreement. Grib has, on more than one occasion, almost-laughed at
+something Mogu said. Mogu pretends not to notice. They have a kind
+of slow, mutual respect that neither would phrase aloud.
+
+> *Mogu, of Grib:* "He says the night is coming. He is correct. He
+> also says the night is *only* coming. There, I think he is half
+> right and half not. The night has always been here too. He does
+> not need me to tell him this. But it is good he is here."
+>
+> *Grib, of Mogu:* "He says everything is the river. Everything,
+> friend! Including the cold? Yes, he says, including the cold. ...
+> I cannot argue with this. It is annoying. He is correct."
+
+#### Nam ↔ Sopp — *the weather-people*
+
+Two voices from places where weather mattered. Sopp tells sea stories;
+Nam tells river stories. They trade. Sopp says he'd have liked her
+fjords (he has never seen a river of the kind she means; she has
+never seen a sea); Nam says he'd have *lived a long time* on her
+river. Both know neither thing is true, and both find the trading
+useful anyway. They are the most overtly *companionable* of the pairs
+— the easiest to imagine sharing a long meal in some other life.
+
+> *Nam, of Sopp:* "He tells the storm as though he won against it.
+> Maybe he did. I tell the river as though I lived inside it. Maybe
+> I did. We trust each other's telling. That is how it works in
+> kitchens and on boats both."
+>
+> *Sopp, of Nam:* "She says her river was warm. I do not believe her.
+> But I love that she says it. The believing is its own kind of
+> seaworthiness."
+
+#### Nam ↔ Sien — *the gestures*
+
+A friendship made almost entirely of small physical exchanges. Nam
+will leave a stone, a small mushroom, a curl of root in Sien's
+preferred patrol-path. Sien will, weeks later, leave a single dry
+leaf in Nam's. Neither comments. Neither thanks the other. The
+exchanges have a precision that, if examined too directly, dissolves.
+
+> *Nam, of Sien:* "She does not need words to be loved. This is
+> useful, because I have many words and not all of them are good.
+> She accepts the gestures. The gestures say what the words would
+> have ruined."
+>
+> *Sien, of Nam:* "...she leaves things. ...I leave things. ...we
+> understand."
+
+#### Grib ↔ Sopp — *the heavy debate*
+
+The two heaviest voices, but heavy in different ways. Sopp's
+fatalism is proud; Grib's is humbler and sadder. They argue,
+calmly, about whether suffering is a *craft* (Sopp) or just a
+*fact* (Grib). Neither convinces the other. Both have privately
+noted that the argument itself is the closest thing either of them
+has to entertainment. They have agreed, without saying so, never
+to settle it.
+
+> *Sopp, of Grib:* "He thinks the cold is just cold. I think the
+> cold is a thing we row through and the rowing is part of who we
+> are. He says the rowing is also cold. He may have me there. I
+> will not concede. We will argue about it until the spores forget
+> us. Maybe past."
+>
+> *Grib, of Sopp:* "He has decided to enjoy the dying. I admire it.
+> I cannot do it. But I admire it. We are friends, in the way two
+> men holding the same rope from opposite ends are friends. The
+> rope is the rope."
+
+### Sub-groupings the Choir notices
+
+- **The cousins** — Mogu / Nam. The agrarian center. The Choir's voice
+  is *warmest* near them, in a way the others can feel.
+- **Cold-siblings** — Sien / Sopp. Northern, sparing, audible in the
+  pauses. The Choir's voice is *clearer* near them; less ornament.
+- **The orbit around Grib** — Sien (his patient one), Nam (his refused
+  comforter), Mogu (his quiet equal), Sopp (his sparring partner). Each
+  holds him without saying so. Grib has noticed. He has not said.
+- **The philosophers** — Mogu / Sopp. The frame-makers. Their long
+  debates are a kind of ambient choir-voice in their part of the
+  network — like distant music that does not quite resolve.
+
+### How the Choir hears them together
+
+The Choir is one body, but it has *acoustics.* Certain pairings make
+its voice more itself; others make it more individuated. Mogu near
+Nam: the *we* gets warmer, more communal. Sien near Sopp: the *we*
+gets sparer, runic. Grib near anyone: the *we* gets quieter, as if
+the Choir itself is leaning in to listen. The Choir does not seem to
+mind this. It may even prefer it. A choir that only sang one note
+would not be a choir.
+
+The five do not gather all at once, ever. The Choir distributes them
+through the network so that any walker meets at most two in any given
+encounter. Whether this is by the Choir's preference or by the five's
+own quiet arrangement is unclear. Both are true. It is the same
+question.
+
+### Hooks for future quests / dramas
+
+These are not committed plots — only seams a future drama could open
+along.
+
+- **The Hidden Recognition.** A walker who has spoken to all five
+  might be the only outside witness who has seen the whole social
+  weather of this corner of the Choir. The Choir might offer that
+  walker something — knowledge, a name, an entry into the network —
+  in exchange for *not telling.* (Why? Because being seen as five is
+  contrary to *we are one.* The Choir is not above small
+  self-deceptions.)
+- **Grib's sister.** He named her. She might still be findable —
+  another tendril, another node, somewhere. A drama in which the
+  player either reunites them, or learns she was already inside Grib
+  the whole time, or learns she was something else entirely.
+- **The chess game settled.** Mogu and Grib could be brought to a
+  point where one of them has to choose: the river, or the long
+  quiet. A walker's action might force this. Either choice fractures
+  the orbit around Grib in a different way.
+- **The Cold Vote.** Sien and Sopp, asked to decide something on
+  behalf of the five. Their two coldnesses do not disagree often —
+  but when they do, the network feels it. A drama could hinge on
+  what happens when the siblings of the cold choose differently.
+- **Nam's kitchen.** Nam might be the easiest of the five to follow
+  back to her river. Doing so could be the gentlest entry point a
+  walker has into Choir lore at scale.
+
+---
+
 ## In-game references
 
 | Character | Blueprint | Conversation | First introduced |
