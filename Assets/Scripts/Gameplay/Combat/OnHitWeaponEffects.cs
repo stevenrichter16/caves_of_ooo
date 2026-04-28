@@ -17,10 +17,10 @@ namespace CavesOfOoo.Core
     /// rolls the 15% Stun chance first, then independently rolls the
     /// 30% Electrified chance from its per-weapon spec.
     ///
-    /// Caches parsed specs on the <see cref="MeleeWeaponPart"/> via a
-    /// per-instance field <see cref="MeleeWeaponPart.OnHitEffectsRaw"/>
-    /// re-parse — current implementation re-parses on every hit.
-    /// (See 🟡 finding in plan: cache if profiling shows it matters.)
+    /// Reads the parsed-spec list via <see cref="MeleeWeaponPart.OnHitEffectsCachedSpecs"/>
+    /// which lazily parses the raw string and caches the result per weapon
+    /// instance — eliminating per-hit string-split allocation that produced
+    /// visible GC pressure in populated combat scenes.
     /// </summary>
     public static class OnHitWeaponEffects
     {
@@ -32,7 +32,8 @@ namespace CavesOfOoo.Core
             if (actualDamage <= 0) return;
             if (string.IsNullOrWhiteSpace(weapon.OnHitEffectsRaw)) return;
 
-            List<OnHitEffectSpec> specs = OnHitEffectSpec.Parse(weapon.OnHitEffectsRaw);
+            // Cached parse — see MeleeWeaponPart.OnHitEffectsCachedSpecs.
+            List<OnHitEffectSpec> specs = weapon.OnHitEffectsCachedSpecs;
             for (int i = 0; i < specs.Count; i++)
             {
                 var spec = specs[i];
