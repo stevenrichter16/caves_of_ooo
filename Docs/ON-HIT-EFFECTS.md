@@ -64,7 +64,7 @@ Tunable; doc'd inline in `OnHitClassEffects.cs`:
 
 | Class | Effect | Chance | Duration / params |
 |---|---|---:|---|
-| Bludgeoning | Stunned | 15% | 1 turn |
+| Bludgeoning | Stunned | 15% | 2 turns *(was 1; bumped after playtest)* |
 | Cutting | Bleeding | 25% | save target 15, dice 1d2 |
 | Piercing | Confused | 10% | 2 turns |
 
