@@ -28,7 +28,9 @@ namespace CavesOfOoo.Core
     public static class OnHitClassEffects
     {
         // ---- Bludgeoning → Stunned ----
-        public const int BLUDGEONING_STUN_CHANCE_PERCENT = 15;
+        // *** DIAGNOSTIC: bumped from 15 → 98 to confirm the hook fires.
+        //     Revert to 15 once playtest confirms stun applications are visible.
+        public const int BLUDGEONING_STUN_CHANCE_PERCENT = 98;
         // Tuning history: started at 1 (one missed turn), bumped to 2 in
         // response to playtest feedback that "stun goes away before its
         // first turn" — the lone missed turn happened so fast in the log
@@ -38,7 +40,9 @@ namespace CavesOfOoo.Core
         public const int BLUDGEONING_STUN_DURATION = 2;
 
         // ---- Cutting → Bleeding ----
-        public const int CUTTING_BLEED_CHANCE_PERCENT = 25;
+        // *** DIAGNOSTIC: bumped from 25 → 98 to confirm the hook fires.
+        //     Revert to 25 once playtest confirms bleeding applications are visible.
+        public const int CUTTING_BLEED_CHANCE_PERCENT = 98;
         public const int CUTTING_BLEED_SAVE_TARGET = 15;
         public const string CUTTING_BLEED_DAMAGE_DICE = "1d2";
 
