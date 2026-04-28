@@ -81,18 +81,28 @@ namespace CavesOfOoo.Scenarios.Custom
     }
 
     /// <summary>
-    /// Showcase-only Part. Listens to <c>EffectApplied</c> and announces
-    /// every status effect that lands on the host entity, so the player
-    /// can read which on-hit hook fired per swing.
+    /// Showcase-only Part. Listens to <c>EffectApplied</c> and
+    /// <c>EffectRemoved</c> events on the host entity and announces
+    /// each via <see cref="MessageLog"/>, so the player can read which
+    /// on-hit hook fired and which removal cause ended each effect.
     ///
-    /// Format:
+    /// Apply format:
     ///   [OnHitDemo] {target} acquired Stunned
     ///   [OnHitDemo] {target} acquired Bleeding
-    ///   [OnHitDemo] {target} acquired Burning
     ///
-    /// EffectApplied fires inside StatusEffectsPart.ApplyEffectInternal
-    /// after the effect is added to the entity's effect list. We just read
-    /// the Effect parameter and announce by display name.
+    /// Remove format (with inferred cause label):
+    ///   [OnHitDemo] {target} lost Bleeding (save succeeded)
+    ///   [OnHitDemo] {target} lost Stunned (duration expired)
+    ///
+    /// **Cause inference**: <see cref="StatusEffectsPart"/>'s
+    /// <c>EffectRemoved</c> event doesn't carry a "cause" parameter, so
+    /// the probe uses a type-based heuristic: <see cref="BleedingEffect"/>
+    /// is the only effect in the codebase with `Duration =
+    /// DURATION_INDEFINITE` + a save-based recovery (Toughness vs
+    /// SaveTarget in <c>OnTurnEnd</c>). For the showcase scenario no
+    /// external code removes Bleeding, so a removed BleedingEffect is
+    /// always due to a successful save in practice. Other effects
+    /// (Stunned, Confused) end via duration tick.
     ///
     /// Scenario-only Part. Production combat does not emit these lines.
     /// </summary>
@@ -102,10 +112,21 @@ namespace CavesOfOoo.Scenarios.Custom
 
         public override bool HandleEvent(GameEvent e)
         {
-            if (e.ID == "EffectApplied" && e.GetParameter("Effect") is Effect effect)
+            string label = ParentEntity?.GetDisplayName() ?? "?";
+
+            if (e.ID == "EffectApplied" && e.GetParameter("Effect") is Effect appliedEffect)
             {
-                string label = ParentEntity?.GetDisplayName() ?? "?";
-                MessageLog.Add("[OnHitDemo] " + label + " acquired " + effect.DisplayName);
+                MessageLog.Add("[OnHitDemo] " + label + " acquired " + appliedEffect.DisplayName);
+            }
+            else if (e.ID == "EffectRemoved" && e.GetParameter("Effect") is Effect removedEffect)
+            {
+                // BleedingEffect ends only via save in normal play
+                // (DURATION_INDEFINITE + Toughness save in OnTurnEnd).
+                // Everything else ends via duration tick.
+                string cause = removedEffect is BleedingEffect
+                    ? "save succeeded"
+                    : "duration expired";
+                MessageLog.Add("[OnHitDemo] " + label + " lost " + removedEffect.DisplayName + " (" + cause + ")");
             }
             return true;
         }
