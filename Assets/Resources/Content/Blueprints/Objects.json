@@ -1903,7 +1903,8 @@
         { "Name": "MeleeWeapon", "Params": [
           { "Key": "BaseDamage", "Value": "1d8" },
           { "Key": "PenBonus", "Value": "2" },
-          { "Key": "Attributes", "Value": "Cutting Fire LongBlades" }
+          { "Key": "Attributes", "Value": "Cutting Fire LongBlades" },
+          { "Key": "OnHitEffectsRaw", "Value": "Burning,30,,5,1.0" }
         ]},
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "40" }] },
         { "Name": "Material", "Params": [
@@ -1940,7 +1941,8 @@
         { "Name": "MeleeWeapon", "Params": [
           { "Key": "BaseDamage", "Value": "1d8" },
           { "Key": "PenBonus", "Value": "2" },
-          { "Key": "Attributes", "Value": "Cutting Ice LongBlades" }
+          { "Key": "Attributes", "Value": "Cutting Ice LongBlades" },
+          { "Key": "OnHitEffectsRaw", "Value": "Frozen,30,,3,1.0" }
         ]},
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "40" }] },
         { "Name": "Material", "Params": [
@@ -1978,7 +1980,8 @@
           { "Key": "BaseDamage", "Value": "1d4+1" },
           { "Key": "PenBonus", "Value": "1" },
           { "Key": "MaxStrengthBonus", "Value": "3" },
-          { "Key": "Attributes", "Value": "Piercing Acid" }
+          { "Key": "Attributes", "Value": "Piercing Acid" },
+          { "Key": "OnHitEffectsRaw", "Value": "Acidic,30,,5,1.0" }
         ]},
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "30" }] },
         { "Name": "Material", "Params": [
@@ -2015,7 +2018,8 @@
         { "Name": "MeleeWeapon", "Params": [
           { "Key": "BaseDamage", "Value": "1d8+1" },
           { "Key": "PenBonus", "Value": "3" },
-          { "Key": "Attributes", "Value": "Bludgeoning Lightning Cudgel" }
+          { "Key": "Attributes", "Value": "Bludgeoning Lightning Cudgel" },
+          { "Key": "OnHitEffectsRaw", "Value": "Electrified,30,,3,1.0" }
         ]},
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "50" }] },
         { "Name": "Material", "Params": [
@@ -2172,7 +2176,7 @@
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "18" }] },
         { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
         { "Name": "Handling", "Params": [{ "Key": "GripType", "Value": "TwoHand" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d6+2" }, { "Key": "PenBonus", "Value": "5" }, { "Key": "Attributes", "Value": "Bludgeoning Cudgel Acid" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d6+2" }, { "Key": "PenBonus", "Value": "5" }, { "Key": "Attributes", "Value": "Bludgeoning Cudgel Acid" }, { "Key": "OnHitEffectsRaw", "Value": "Acidic,40,,5,1.5" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "55" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Steel" },

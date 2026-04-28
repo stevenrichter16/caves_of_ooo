@@ -96,6 +96,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_AcidicDaggerShowcase()
             => ScenarioRunner.Launch<AcidicDaggerShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/On-Hit Effects Showcase (class + per-weapon hooks)", priority = 110)]
+        private static void Launch_OnHitEffectsShowcase()
+            => ScenarioRunner.Launch<OnHitEffectsShowcase>();
+
         // =========================================================
         // AI Behavior
         // =========================================================
