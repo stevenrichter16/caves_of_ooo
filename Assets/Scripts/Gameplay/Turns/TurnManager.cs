@@ -19,6 +19,28 @@ namespace CavesOfOoo.Core
         public const int DefaultSpeed = 100;
 
         /// <summary>
+        /// Visual divider line emitted to the message log when an actor's turn
+        /// produces any new messages. Snapshot of <c>MessageLog.Count</c> is
+        /// taken when <see cref="CurrentActor"/> is assigned (i.e. turn start),
+        /// and re-compared at end of <see cref="EndTurn"/> — divider fires only
+        /// if anything was logged across the whole turn (action + status-effect
+        /// ticks + end-of-turn cleanup). Silent turns don't produce dividers,
+        /// so the log doesn't fill with consecutive blank dividers.
+        /// Width chosen to match a typical in-game message-panel column on the
+        /// 80×25 CP437 tilemap. Box-drawing double-line glyph (U+2550) reads as
+        /// medium-weight in the rendered font.
+        /// </summary>
+        private const string TURN_DIVIDER = "════════════════════════════════════════";
+
+        /// <summary>
+        /// MessageLog.Count snapshot taken at the start of the current actor's
+        /// turn. Compared against MessageLog.Count at the end of EndTurn() to
+        /// decide whether to emit the per-turn divider line. Reset when
+        /// CurrentActor changes.
+        /// </summary>
+        private int _turnStartMessageCount;
+
+        /// <summary>
         /// All entities participating in the turn order.
         /// </summary>
         private List<TurnEntry> _entries = new List<TurnEntry>();
@@ -172,6 +194,7 @@ namespace CavesOfOoo.Core
                     }
 
                     CurrentActor = actor;
+                    _turnStartMessageCount = MessageLog.Count;
 
                     // Qud-style pre-action event seam: status effects and other parts can
                     // block the action before AI/input executes.
@@ -220,6 +243,15 @@ namespace CavesOfOoo.Core
                 if (zone != null)
                     endTurn.SetParameter("Zone", (object)zone);
                 actor.FireEvent(endTurn);
+
+                // Compare against the snapshot taken when CurrentActor was
+                // assigned (turn START). Captures messages from the actor's
+                // action (logged BEFORE EndTurn fires — e.g. "you hit X" from
+                // PerformMeleeAttack), plus stun-block lines from
+                // BeginTakeAction, plus end-of-turn cleanup messages. Silent
+                // turns produce no divider.
+                if (MessageLog.Count > _turnStartMessageCount)
+                    MessageLog.Add(TURN_DIVIDER);
 
                 SpendEnergy(actor);
                 CurrentActor = null;
