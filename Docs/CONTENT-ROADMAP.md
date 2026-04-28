@@ -37,7 +37,8 @@
 
 | Commit | What |
 |---|---|
-| (`f1b906f`) | AcidicDagger + AR on CaveSlime (+50) and Scorpion (-50) + AcidicDaggerShowcase — fourth elemental weapon, completes the Fire/Ice/Lightning/Acid quartet |
+| (this branch) | Weapon-attribute backfill: all 17 unattributed weapons now declare physical-class + sub-class. **25/25 coverage**. DissolutionMaul gains Acid routing via Corrosive material. |
+| `f1b906f` | AcidicDagger + AR on CaveSlime (+50) and Scorpion (-50) + AcidicDaggerShowcase — fourth elemental weapon, completes the Fire/Ice/Lightning/Acid quartet |
 | `84f5622` | ThunderHammer + ER on StoneGolem (+50) and BrassHusk (-50) + ThunderHammerShowcase — first scenario to expose **negative resistance** in-game |
 | `183fbd1` | CONTENT-ROADMAP.md (this doc) |
 | `d00299b` | ElementalSwordsShowcase scenario + smoke tests for 4 combat showcases |
@@ -64,21 +65,32 @@
 - 💡 **CryoLance** — Piercing/Ice longblade, 1d6+2 with high crit
 - 💡 **EmberSpear** — Piercing/Fire, mid-tier polearm
 
-### Backfill weapon Attributes (cheap)
+### Backfill weapon Attributes — DONE (this branch)
 
-> Most existing weapons declare no `Attributes` string and so don't
-> participate in physical-class attribution. Backfilling each is ~1
-> blueprint line + 1 test.
+> Every melee weapon now declares an Attributes string. Pinned by
+> per-weapon blueprint-shape tests in `WeaponAttributesContentTests.cs`.
 
-- 📋 **LongSword** — `Cutting LongBlades`
-- 📋 **Battleaxe** — `Cutting Axe`
-- 📋 **Greatsword** — `Cutting LongBlades` (2H)
-- 📋 **Mace** — `Bludgeoning Cudgel`
-- 📋 **Spear** — `Piercing`
-- 📋 **Hatchet** — `Cutting Axe`
-- 📋 **Claymore** — `Cutting LongBlades`
-- 💡 **Sporeblade** — `Cutting LongBlades` + maybe a `Fungal` flag (already has `RotChoir` tag)
-- 💡 **ChoirSpine, OldWorldPipe, etc.** — case-by-case, may have lore-driven attributes
+- ✅ **LongSword** — `Cutting LongBlades`
+- ✅ **Battleaxe** — `Cutting Axe`
+- ✅ **Greatsword** — `Cutting LongBlades` (2H)
+- ✅ **Mace** — `Bludgeoning Cudgel`
+- ✅ **Spear** — `Piercing`
+- ✅ **Hatchet** — `Cutting Axe`
+- ✅ **Claymore** — `Cutting LongBlades`
+- ✅ **Sporeblade** — `Cutting LongBlades`
+- ✅ **EchoKnife** — `Cutting Sonic`
+- ✅ **ChoirSpine** — `Piercing`
+- ✅ **OldWorldPipe** — `Bludgeoning Cudgel`
+- ✅ **TemporalShard** — `Piercing`
+- ✅ **SeveranceEdge** — `Cutting LongBlades`
+- ✅ **GlassblownStiletto** — `Piercing`
+- ✅ **DissolutionMaul** — `Bludgeoning Cudgel Acid` (BONUS: routes through AcidResistance via Corrosive material tag)
+- ✅ **FirstRootGlaive** — `Cutting Glaive` (new sub-class)
+- ✅ **PalimpsestBlade** — `Cutting LongBlades`
+
+**Coverage:** 25/25 weapons declare Attributes (was 8/25). Future
+content that hooks on `damage.HasAttribute("Cutting")` etc. now fires
+correctly for every weapon in the game.
 
 ### Resistant creatures (matching elemental weapons)
 

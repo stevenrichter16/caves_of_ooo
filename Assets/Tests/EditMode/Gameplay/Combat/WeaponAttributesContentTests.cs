@@ -264,6 +264,144 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
+        // Backfill: every existing melee weapon declares Attributes
+        // (Tier-1 cleanup; closes the gap where most non-elemental weapons
+        // produced bare [Melee, Strength]-tagged damage with no physical-class
+        // info. Each test pins the exact Attributes string so a future
+        // refactor can't silently drop them.)
+        // ====================================================================
+
+        [Test]
+        public void LongSword_HasCuttingLongBladesAttribute()
+        {
+            var w = _harness.Factory.CreateEntity("LongSword").GetPart<MeleeWeaponPart>();
+            Assert.AreEqual("Cutting LongBlades", w.Attributes);
+        }
+
+        [Test]
+        public void Battleaxe_HasCuttingAxeAttribute()
+        {
+            var w = _harness.Factory.CreateEntity("Battleaxe").GetPart<MeleeWeaponPart>();
+            Assert.AreEqual("Cutting Axe", w.Attributes);
+        }
+
+        [Test]
+        public void Greatsword_HasCuttingLongBladesAttribute()
+        {
+            var w = _harness.Factory.CreateEntity("Greatsword").GetPart<MeleeWeaponPart>();
+            Assert.AreEqual("Cutting LongBlades", w.Attributes);
+        }
+
+        [Test]
+        public void Mace_HasBludgeoningCudgelAttribute()
+        {
+            var w = _harness.Factory.CreateEntity("Mace").GetPart<MeleeWeaponPart>();
+            Assert.AreEqual("Bludgeoning Cudgel", w.Attributes);
+        }
+
+        [Test]
+        public void Spear_HasPiercingAttribute()
+        {
+            var w = _harness.Factory.CreateEntity("Spear").GetPart<MeleeWeaponPart>();
+            Assert.AreEqual("Piercing", w.Attributes);
+        }
+
+        [Test]
+        public void Hatchet_HasCuttingAxeAttribute()
+        {
+            var w = _harness.Factory.CreateEntity("Hatchet").GetPart<MeleeWeaponPart>();
+            Assert.AreEqual("Cutting Axe", w.Attributes);
+        }
+
+        [Test]
+        public void Claymore_HasCuttingLongBladesAttribute()
+        {
+            var w = _harness.Factory.CreateEntity("Claymore").GetPart<MeleeWeaponPart>();
+            Assert.AreEqual("Cutting LongBlades", w.Attributes);
+        }
+
+        [Test]
+        public void Sporeblade_HasCuttingLongBladesAttribute()
+        {
+            var w = _harness.Factory.CreateEntity("Sporeblade").GetPart<MeleeWeaponPart>();
+            Assert.AreEqual("Cutting LongBlades", w.Attributes);
+        }
+
+        [Test]
+        public void EchoKnife_HasCuttingSonicAttribute()
+        {
+            // Sonic is currently a descriptive attribute — no IsSonicDamage()
+            // helper exists yet. Promotes the existing Sonic material tag to
+            // a Damage attribute so future Sonic-resistance content (or a
+            // SonicVulnerable Glass-shattering creature) has signal to read.
+            var w = _harness.Factory.CreateEntity("EchoKnife").GetPart<MeleeWeaponPart>();
+            Assert.AreEqual("Cutting Sonic", w.Attributes);
+        }
+
+        [Test]
+        public void ChoirSpine_HasPiercingAttribute()
+        {
+            var w = _harness.Factory.CreateEntity("ChoirSpine").GetPart<MeleeWeaponPart>();
+            Assert.AreEqual("Piercing", w.Attributes);
+        }
+
+        [Test]
+        public void OldWorldPipe_HasBludgeoningCudgelAttribute()
+        {
+            var w = _harness.Factory.CreateEntity("OldWorldPipe").GetPart<MeleeWeaponPart>();
+            Assert.AreEqual("Bludgeoning Cudgel", w.Attributes);
+        }
+
+        [Test]
+        public void TemporalShard_HasPiercingAttribute()
+        {
+            var w = _harness.Factory.CreateEntity("TemporalShard").GetPart<MeleeWeaponPart>();
+            Assert.AreEqual("Piercing", w.Attributes);
+        }
+
+        [Test]
+        public void SeveranceEdge_HasCuttingLongBladesAttribute()
+        {
+            var w = _harness.Factory.CreateEntity("SeveranceEdge").GetPart<MeleeWeaponPart>();
+            Assert.AreEqual("Cutting LongBlades", w.Attributes);
+        }
+
+        [Test]
+        public void GlassblownStiletto_HasPiercingAttribute()
+        {
+            var w = _harness.Factory.CreateEntity("GlassblownStiletto").GetPart<MeleeWeaponPart>();
+            Assert.AreEqual("Piercing", w.Attributes);
+        }
+
+        [Test]
+        public void DissolutionMaul_HasBludgeoningCudgelAcidAttribute()
+        {
+            // BONUS: DissolutionMaul carries Acid because its material tag is
+            // Corrosive. This makes it route through AcidResistance — a
+            // SECOND Acid-routing weapon alongside AcidicDagger. The
+            // integration assertion is in DissolutionMaul_AcidAttribute_*
+            // (in DissolutionMaulContentTests below).
+            var w = _harness.Factory.CreateEntity("DissolutionMaul").GetPart<MeleeWeaponPart>();
+            Assert.AreEqual("Bludgeoning Cudgel Acid", w.Attributes);
+        }
+
+        [Test]
+        public void FirstRootGlaive_HasCuttingGlaiveAttribute()
+        {
+            // Glaive is a new sub-class — no other glaives currently. Future
+            // polearm content can hook on this descriptor.
+            var w = _harness.Factory.CreateEntity("FirstRootGlaive").GetPart<MeleeWeaponPart>();
+            Assert.AreEqual("Cutting Glaive", w.Attributes);
+        }
+
+        [Test]
+        public void PalimpsestBlade_HasCuttingLongBladesAttribute()
+        {
+            var w = _harness.Factory.CreateEntity("PalimpsestBlade").GetPart<MeleeWeaponPart>();
+            Assert.AreEqual("Cutting LongBlades", w.Attributes);
+        }
+
+        // ====================================================================
         // Counter-checks: attributes don't leak across categories
         // ====================================================================
 
