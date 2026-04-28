@@ -287,6 +287,17 @@ namespace CavesOfOoo.Core
 
             if (hpAfter > 0)
             {
+                // On-hit class effects (Tier-2: Bludgeoning→Stunned, Cutting→Bleeding,
+                // Piercing→Confused). Reads damage attributes; rolls per-class
+                // probabilities; applies via target.ApplyEffect. Only fires on
+                // survivors — corpses don't bleed or get stunned.
+                OnHitClassEffects.Apply(damage, actualDamage, defender, attacker, zone, rng);
+
+                // Per-weapon on-hit overrides (FlamingSword→Burning, IceSword→Frozen, etc.).
+                // Stacks ON TOP of class effects: a Bludgeoning ThunderHammer can both
+                // stun AND electrify on the same hit, since the chance rolls are independent.
+                OnHitWeaponEffects.Apply(weapon, damage, actualDamage, defender, attacker, zone, rng);
+
                 // Check for combat dismemberment (only on survivors). Use
                 // actualDamage because the threshold formula is (damage / maxHP)
                 // — pre-resistance values would over-trigger dismemberment on

@@ -45,5 +45,24 @@ namespace CavesOfOoo.Core
         /// "Melee" and the weapon's <see cref="Stat"/> name.
         /// </summary>
         public string Attributes = "";
+
+        /// <summary>
+        /// Per-weapon on-hit status effects. Flat-string format mirroring
+        /// <see cref="MaterialPart"/>'s <c>MaterialTagsRaw</c>:
+        ///   <c>EffectName,ChancePercent,DamageDice,DurationTurns,Magnitude</c>
+        /// per spec, <c>;</c> between specs. Empty fields use the effect's
+        /// per-class defaults (see <see cref="OnHitEffectFactory"/>).
+        ///
+        /// Examples:
+        ///   <c>"Burning,30,,5,1.0"</c>            (single effect)
+        ///   <c>"Burning,30,,5,1.0;Stunned,5,,1,0"</c>  (two effects on one weapon)
+        ///   <c>"Acidic,40,,5,1.5"</c>             (DissolutionMaul: stronger acid)
+        ///
+        /// Applied by <see cref="OnHitWeaponEffects"/> from
+        /// <c>CombatSystem.PerformSingleAttack</c> after the class-based hooks
+        /// (Bludgeoning→Stunned etc.) and before dismemberment, so a weapon
+        /// can stack class + per-weapon effects on the same successful hit.
+        /// </summary>
+        public string OnHitEffectsRaw = "";
     }
 }

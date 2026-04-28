@@ -37,6 +37,7 @@
 
 | Commit | What |
 |---|---|
+| (this branch) | **Tier-2 OnHitEffects abstraction** — class-based hooks (Bludgeoning→Stun, Cutting→Bleed, Piercing→Confuse) + per-weapon overrides (FlamingSword→Burning, IceSword→Frozen, ThunderHammer→Electrified, AcidicDagger→Acidic, DissolutionMaul→Acidic). Activates the weapon-attribute backfill in live gameplay. |
 | `9c34cb0` | Weapon-attribute backfill: all 17 unattributed weapons now declare physical-class + sub-class. **25/25 coverage**. DissolutionMaul gains Acid routing via Corrosive material. |
 | `f1b906f` | AcidicDagger + AR on CaveSlime (+50) and Scorpion (-50) + AcidicDaggerShowcase — fourth elemental weapon, completes the Fire/Ice/Lightning/Acid quartet |
 | `84f5622` | ThunderHammer + ER on StoneGolem (+50) and BrassHusk (-50) + ThunderHammerShowcase — first scenario to expose **negative resistance** in-game |
@@ -134,11 +135,21 @@ correctly for every weapon in the game.
 > StoneskinTonic ship is the template (Phase F event hook + Effect class
 > + tonic blueprint + tests).
 
-### OnHitEffects abstraction
+### OnHitEffects abstraction — DONE (this branch)
 
-- 💡 **`MeleeWeaponPart.OnHitEffects` list** of `(Probability, EffectName, Magnitude, Duration)` tuples. On successful hit, roll each probability and apply the effect to the defender.
-- Unblocks: FlamingSword applies BurningEffect on hit, IceSword applies FrozenEffect, AcidicDagger applies AcidicEffect, Sporeblade applies a Fungal status.
-- Risk: tons of existing effects already exist; just need the wiring + a hook in `PerformSingleAttack` after `ApplyDamage`.
+- ✅ **`OnHitClassEffects` static utility** — class-based hooks
+  (Bludgeoning→15% Stun, Cutting→25% Bleed, Piercing→10% Confuse) hook
+  into `CombatSystem.PerformSingleAttack` post-`ApplyDamage`.
+- ✅ **`MeleeWeaponPart.OnHitEffectsRaw` field** — flat-string format
+  `"EffectName,ChancePercent,DamageDice,DurationTurns,Magnitude;..."`.
+  Wired on FlamingSword (Burning), IceSword (Frozen), ThunderHammer
+  (Electrified), AcidicDagger (Acidic), DissolutionMaul (Acidic at
+  higher magnitude). Sporeblade not yet wired — no thematic Effect class
+  for "Fungal status" exists; deferred.
+- Class + per-weapon hooks fire independently — elemental weapons
+  stack their elemental effect on top of their class effect (Cutting +
+  Burning, Bludgeoning + Electrified, etc.).
+- Showcase scenario: `Caves Of Ooo / Scenarios / Combat Stress / On-Hit Effects Showcase`.
 
 ### Light-emitting weapons / equipment
 
