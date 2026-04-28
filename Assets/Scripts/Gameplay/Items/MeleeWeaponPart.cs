@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
@@ -64,5 +66,40 @@ namespace CavesOfOoo.Core
         /// can stack class + per-weapon effects on the same successful hit.
         /// </summary>
         public string OnHitEffectsRaw = "";
+
+        // ---- Parser cache (perf) ----
+        // OnHitEffectSpec.Parse allocates a List + per-spec string[]s + a new
+        // OnHitEffectSpec each call. With OnHitWeaponEffects.Apply firing on
+        // every successful melee hit, re-parsing every hit produced visible
+        // GC pressure during populated-zone combat. Cache the parsed list
+        // per-weapon-instance and only re-parse when the raw string changes
+        // (~never in normal play; only on hot-reload or test mutation).
+        // Use the public OnHitEffectsCachedSpecs property instead of calling
+        // Parse directly.
+        private List<OnHitEffectSpec> _cachedOnHitEffectSpecs;
+        private string _cachedOnHitEffectsRawSnapshot;
+
+        /// <summary>
+        /// Lazily parsed and cached <see cref="OnHitEffectSpec"/> list for
+        /// this weapon's <see cref="OnHitEffectsRaw"/>. Returns the same
+        /// instance across calls until OnHitEffectsRaw changes. Returns an
+        /// empty list (the same shared instance) if OnHitEffectsRaw is null
+        /// or whitespace.
+        /// </summary>
+        public List<OnHitEffectSpec> OnHitEffectsCachedSpecs
+        {
+            get
+            {
+                // Cache invalidation: re-parse iff the raw string was
+                // mutated since the last parse. ReferenceEquals first for
+                // the common case where the field wasn't touched at all.
+                if (!System.Object.ReferenceEquals(OnHitEffectsRaw, _cachedOnHitEffectsRawSnapshot))
+                {
+                    _cachedOnHitEffectSpecs = OnHitEffectSpec.Parse(OnHitEffectsRaw);
+                    _cachedOnHitEffectsRawSnapshot = OnHitEffectsRaw;
+                }
+                return _cachedOnHitEffectSpecs;
+            }
+        }
     }
 }
