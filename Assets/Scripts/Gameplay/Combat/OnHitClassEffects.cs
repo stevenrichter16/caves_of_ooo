@@ -29,7 +29,13 @@ namespace CavesOfOoo.Core
     {
         // ---- Bludgeoning → Stunned ----
         public const int BLUDGEONING_STUN_CHANCE_PERCENT = 15;
-        public const int BLUDGEONING_STUN_DURATION = 1;
+        // Tuning history: started at 1 (one missed turn), bumped to 2 in
+        // response to playtest feedback that "stun goes away before its
+        // first turn" — the lone missed turn happened so fast in the log
+        // it felt like nothing fired. 2 turns matches StunnedEffect's
+        // default ctor and gives the stun perceptible weight without
+        // making 15% Bludgeoning hooks feel too punishing.
+        public const int BLUDGEONING_STUN_DURATION = 2;
 
         // ---- Cutting → Bleeding ----
         public const int CUTTING_BLEED_CHANCE_PERCENT = 25;
