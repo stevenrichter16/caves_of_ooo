@@ -92,6 +92,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_ThunderHammerShowcase()
             => ScenarioRunner.Launch<ThunderHammerShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/AcidicDagger Showcase (Acid + vulnerability)", priority = 109)]
+        private static void Launch_AcidicDaggerShowcase()
+            => ScenarioRunner.Launch<AcidicDaggerShowcase>();
+
         // =========================================================
         // AI Behavior
         // =========================================================

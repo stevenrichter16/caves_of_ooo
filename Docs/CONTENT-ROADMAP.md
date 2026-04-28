@@ -37,6 +37,7 @@
 
 | Commit | What |
 |---|---|
+| (this branch) | AcidicDagger + AR on CaveSlime (+50) and Scorpion (-50) + AcidicDaggerShowcase — fourth elemental weapon, completes the Fire/Ice/Lightning/Acid quartet |
 | `84f5622` | ThunderHammer + ER on StoneGolem (+50) and BrassHusk (-50) + ThunderHammerShowcase — first scenario to expose **negative resistance** in-game |
 | `183fbd1` | CONTENT-ROADMAP.md (this doc) |
 | `d00299b` | ElementalSwordsShowcase scenario + smoke tests for 4 combat showcases |
@@ -59,7 +60,7 @@
 - ✅ **FlamingSword** — 1d8 Cutting/Fire/LongBlades — `3261f1f`
 - ✅ **IceSword** — 1d8 Cutting/Ice/LongBlades — `9e2358a`
 - ✅ **ThunderHammer** — 1d8+1 Bludgeoning/Lightning/Cudgel + first vulnerability case (BrassHusk ER=-50, StoneGolem ER=+50) — `84f5622`
-- 📋 **AcidicDagger** — Piercing/Acid, 1d4+1, fast. Gates on something Acid-resistant (need to add).
+- ✅ **AcidicDagger** — 1d4+1 Piercing/Acid + AR on CaveSlime (+50) and Scorpion (-50) — this branch
 - 💡 **CryoLance** — Piercing/Ice longblade, 1d6+2 with high crit
 - 💡 **EmberSpear** — Piercing/Fire, mid-tier polearm
 
@@ -88,7 +89,8 @@
 - ✅ **SnapjawHunter** — ColdResistance 50 — exists
 - ✅ **StoneGolem** — ElectricResistance 50 — `84f5622`
 - ✅ **BrassHusk** — ElectricResistance −50 (vulnerability — first negative-resistance creature) — `84f5622`
-- 📋 **CaveSlime** — declare AcidResistance 50 (thematic; pairs with AcidicDagger). Could also add vulnerability somewhere.
+- ✅ **CaveSlime** — AcidResistance +50 — this branch
+- ✅ **Scorpion** — AcidResistance −50 (chitin dissolves) — this branch
 - 💡 **IceWight** — full ColdResistance 100 (immune to Ice, vulnerable to Fire)
 - 💡 **CharredHusk variant** — HeatResistance 100 + ColdVulnerability (-50)
 
