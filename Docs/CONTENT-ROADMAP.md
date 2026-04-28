@@ -37,7 +37,7 @@
 
 | Commit | What |
 |---|---|
-| (this branch) | Weapon-attribute backfill: all 17 unattributed weapons now declare physical-class + sub-class. **25/25 coverage**. DissolutionMaul gains Acid routing via Corrosive material. |
+| `9c34cb0` | Weapon-attribute backfill: all 17 unattributed weapons now declare physical-class + sub-class. **25/25 coverage**. DissolutionMaul gains Acid routing via Corrosive material. |
 | `f1b906f` | AcidicDagger + AR on CaveSlime (+50) and Scorpion (-50) + AcidicDaggerShowcase — fourth elemental weapon, completes the Fire/Ice/Lightning/Acid quartet |
 | `84f5622` | ThunderHammer + ER on StoneGolem (+50) and BrassHusk (-50) + ThunderHammerShowcase — first scenario to expose **negative resistance** in-game |
 | `183fbd1` | CONTENT-ROADMAP.md (this doc) |
