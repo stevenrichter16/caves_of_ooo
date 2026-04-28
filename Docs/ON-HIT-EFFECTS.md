@@ -204,28 +204,19 @@ Roadmap update; commit per §2.3 template; merge + push.
 
 ## Self-review
 
-### 🟡 Finding 1 — Unity test verification deferred to post-commit
+### ✅ Finding 1 — Unity test verification CLOSED (was 🟡)
 
-**File:** all of this branch
-**Severity:** 🟡 (yellow — tracked verification gap, not a known bug)
+After Unity recovered from the deferred-domain-reload trap, the full
+OnHit fixture + combat regression sweep ran cleanly:
 
-Unity's MCP plugin is in the `editor.is_focused: false` deferred-domain-
-reload trap (CLAUDE.md §7.2). Pings unanswered across 15+ retries.
-Implementation correctness is high-confidence by inspection:
-- Each new file uses only public APIs verified during the plan-mode
-  exploration (BleedingEffect/StunnedEffect/ConfusedEffect ctors,
-  Entity.ApplyEffect, StatusEffectsPart.HasEffect, Damage.IsBludgeoningDamage
-  + HasAttribute, EffectApplied event params)
-- The CombatSystem hook is a 2-line addition inside an existing
-  `if (hpAfter > 0)` block; it can't affect any other code path.
-- OnHitEffectFactory mirrors StatusTonicPart.CreateEffect's switch shape;
-  same alias conventions; pattern is proven in production.
-- JSON validated via `python3 json.load` — parses clean.
+| Run | Result |
+|---|---|
+| OnHitClassEffectsTests + OnHitWeaponEffectsTests | **30/30 pass in 136ms** (job `1a465e9b...`) |
+| Combat-adjacent regression sweep (14 fixtures including all 4 elemental weapons + Resistance + hit-log fix + OnHit + ScenarioCustomSmokeTests) | **154/154 pass in 582ms** (job `082a5ef0...`) |
 
-**Mitigation:** when Unity recovers, run the OnHit fixture + combat
-regression sweep + showcase smoke test; ship a follow-up commit only if
-anything's wrong. Pattern matches StoneskinTonic and FlamingSword
-scenario ships from prior sessions.
+All inspection-level claims held — zero post-hoc bugs. The 🟡 gap is
+closed. Pattern matched the StoneskinTonic and FlamingSword scenario
+ship precedent from prior sessions.
 
 ### 🟡 Finding 2 — `OnHitEffectSpec.DurationTurns` overloaded for BleedingEffect
 
