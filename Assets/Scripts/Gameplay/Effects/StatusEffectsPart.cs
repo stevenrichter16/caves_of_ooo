@@ -90,6 +90,11 @@ namespace CavesOfOoo.Core
             {
                 if (_effects[i] is T)
                 {
+                    // Public RemoveEffect → caller is doing external removal
+                    // (cure spell, dispel mutation, etc.). Tag the cause so the
+                    // EffectRemoved event distinguishes it from save-success
+                    // and duration-tick exits.
+                    _effects[i].LastRemovalCause = Effect.CAUSE_EXTERNAL;
                     RemoveEffectAt(i);
                     return true;
                 }
@@ -106,6 +111,7 @@ namespace CavesOfOoo.Core
             {
                 if (_effects[i].GetType() == effectType)
                 {
+                    _effects[i].LastRemovalCause = Effect.CAUSE_EXTERNAL;
                     RemoveEffectAt(i);
                     return true;
                 }
@@ -122,6 +128,7 @@ namespace CavesOfOoo.Core
             {
                 if (filter(_effects[i]))
                 {
+                    _effects[i].LastRemovalCause = Effect.CAUSE_EXTERNAL;
                     RemoveEffectAt(i);
                     return true;
                 }
@@ -137,6 +144,7 @@ namespace CavesOfOoo.Core
             int index = _effects.IndexOf(effect);
             if (index < 0)
                 return false;
+            effect.LastRemovalCause = Effect.CAUSE_EXTERNAL;
             RemoveEffectAt(index);
             return true;
         }
@@ -455,6 +463,10 @@ namespace CavesOfOoo.Core
             removed.SetParameter("Target", (object)ParentEntity);
             removed.SetParameter("Effect", (object)effect);
             removed.SetParameter("EffectType", effect.ClassName);
+            // Cause: "duration_expired" by default; effects with save-based
+            // recovery overwrite Effect.LastRemovalCause before setting
+            // Duration=0; public RemoveEffect overloads set CAUSE_EXTERNAL.
+            removed.SetParameter("Cause", effect.LastRemovalCause);
             ParentEntity.FireEvent(removed);
 
             TryStopAura(effect);

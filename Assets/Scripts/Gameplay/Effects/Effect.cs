@@ -34,6 +34,16 @@ namespace CavesOfOoo.Core
 
         public const int DURATION_INDEFINITE = -1;
 
+        // ---- Removal-cause constants (read from the EffectRemoved event by listeners) ----
+        // Effects that end themselves (e.g. via a save-based recovery in OnTurnEnd)
+        // overwrite LastRemovalCause before setting Duration = 0 so the removal event
+        // carries an accurate cause string. The default — duration tick to zero — is
+        // CAUSE_DURATION_EXPIRED. External callers (cure spells, dispel mutations)
+        // that invoke any RemoveEffect overload get CAUSE_EXTERNAL automatically.
+        public const string CAUSE_DURATION_EXPIRED = "duration_expired";
+        public const string CAUSE_SAVE_SUCCEEDED = "save_succeeded";
+        public const string CAUSE_EXTERNAL = "external";
+
         /// <summary>
         /// The entity this effect is currently on.
         /// Set by StatusEffectsPart when applied.
@@ -45,6 +55,17 @@ namespace CavesOfOoo.Core
         /// 0 = expired (will be cleaned up). -1 = indefinite.
         /// </summary>
         public int Duration;
+
+        /// <summary>
+        /// Why this effect ended. Defaults to <see cref="CAUSE_DURATION_EXPIRED"/>;
+        /// effects with custom recovery (e.g. <see cref="BleedingEffect"/>'s
+        /// Toughness save) overwrite this in their <c>OnTurnEnd</c> before
+        /// setting <c>Duration = 0</c>. Public <c>RemoveEffect</c> calls in
+        /// <see cref="StatusEffectsPart"/> set this to <see cref="CAUSE_EXTERNAL"/>
+        /// before cleanup. The value is included in the <c>EffectRemoved</c>
+        /// event's <c>Cause</c> parameter.
+        /// </summary>
+        public string LastRemovalCause = CAUSE_DURATION_EXPIRED;
 
         /// <summary>
         /// Human-readable name for UI display (e.g. "poisoned", "stunned").
