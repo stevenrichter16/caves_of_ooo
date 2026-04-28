@@ -1964,6 +1964,44 @@
       ]
     },
     {
+      "Name": "AcidicDagger",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "acidic dagger" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&G" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "4" }] },
+        { "Name": "MeleeWeapon", "Params": [
+          { "Key": "BaseDamage", "Value": "1d4+1" },
+          { "Key": "PenBonus", "Value": "1" },
+          { "Key": "MaxStrengthBonus", "Value": "3" },
+          { "Key": "Attributes", "Value": "Piercing Acid" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "30" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Acid" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 5, "Min": 0, "Max": 5 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
       "Name": "ThunderHammer",
       "Inherits": "MeleeWeapon",
       "Parts": [
@@ -2430,7 +2468,8 @@
       "Stats": [
         { "Name": "Hitpoints", "Value": 18, "Min": 0, "Max": 18 },
         { "Name": "Strength", "Value": 12 },
-        { "Name": "Speed", "Value": 70 }
+        { "Name": "Speed", "Value": 70 },
+        { "Name": "AcidResistance", "Value": 50, "Min": -100, "Max": 200 }
       ],
       "Tags": [
         { "Key": "Tier", "Value": "1" },
@@ -2543,7 +2582,8 @@
       "Stats": [
         { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 },
         { "Name": "Agility", "Value": 16 },
-        { "Name": "Speed", "Value": 110 }
+        { "Name": "Speed", "Value": 110 },
+        { "Name": "AcidResistance", "Value": -50, "Min": -100, "Max": 200 }
       ],
       "Tags": [
         { "Key": "Tier", "Value": "1" },

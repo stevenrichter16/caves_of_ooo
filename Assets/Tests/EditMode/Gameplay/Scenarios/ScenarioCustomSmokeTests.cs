@@ -206,5 +206,8 @@ namespace CavesOfOoo.Tests.Scenarios
 
         [Test] public void ThunderHammerShowcase_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new ThunderHammerShowcase().Apply(FreshContext()));
+
+        [Test] public void AcidicDaggerShowcase_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new AcidicDaggerShowcase().Apply(FreshContext()));
     }
 }

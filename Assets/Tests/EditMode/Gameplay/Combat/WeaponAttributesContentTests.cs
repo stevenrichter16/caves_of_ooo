@@ -220,6 +220,50 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
+        // AcidicDagger — Acid counterpart, Piercing class
+        // (Tier-1 Quick Win; ties Phase C Attributes → Phase E AcidResistance)
+        // ====================================================================
+
+        [Test]
+        public void AcidicDagger_HasPiercingAcidAttribute()
+        {
+            var dagger = _harness.Factory.CreateEntity("AcidicDagger");
+            Assert.IsNotNull(dagger, "AcidicDagger blueprint must exist");
+            var weapon = dagger.GetPart<MeleeWeaponPart>();
+            Assert.IsNotNull(weapon, "AcidicDagger must have a MeleeWeaponPart");
+            Assert.AreEqual("Piercing Acid", weapon.Attributes,
+                "AcidicDagger.Attributes should declare 'Piercing Acid' so it " +
+                "carries both the physical class (Piercing) and the elemental " +
+                "type (Acid) into the Damage object on hit");
+        }
+
+        [Test]
+        public void AcidicDagger_AttributesContain_Acid()
+        {
+            // Pinned separately so a future reorder doesn't silently strip
+            // Acid and turn this into a plain piercer.
+            var dagger = _harness.Factory.CreateEntity("AcidicDagger");
+            var weapon = dagger.GetPart<MeleeWeaponPart>();
+            Assert.IsNotNull(weapon);
+            Assert.IsTrue(weapon.Attributes.Contains("Acid"),
+                "AcidicDagger must contain 'Acid' in its Attributes — that's " +
+                "what routes its damage through AcidResistance (Phase E) on " +
+                "creatures with chemical-reactive- or chemical-inert-tagged stats");
+        }
+
+        [Test]
+        public void AcidicDagger_DoesNotHaveCutting_OrBludgeoning()
+        {
+            // Counter-check: physical-class is Piercing, not the others.
+            var dagger = _harness.Factory.CreateEntity("AcidicDagger");
+            var weapon = dagger.GetPart<MeleeWeaponPart>();
+            Assert.IsFalse(weapon.Attributes.Contains("Cutting"),
+                "AcidicDagger is Piercing, not Cutting");
+            Assert.IsFalse(weapon.Attributes.Contains("Bludgeoning"),
+                "AcidicDagger is Piercing, not Bludgeoning");
+        }
+
+        // ====================================================================
         // Counter-checks: attributes don't leak across categories
         // ====================================================================
 
