@@ -428,7 +428,7 @@ namespace CavesOfOoo.Core
             if (source != null)
                 before.SetParameter("Source", (object)source);
 
-            return ParentEntity.FireEvent(before);
+            return ParentEntity.FireEventAndRelease(before);
         }
 
         private void SendApplied(Effect effect, Entity source, Zone zone, bool forced)
@@ -442,7 +442,7 @@ namespace CavesOfOoo.Core
                 forceApplied.SetParameter("Forced", true);
                 if (source != null)
                     forceApplied.SetParameter("Source", (object)source);
-                ParentEntity.FireEvent(forceApplied);
+                ParentEntity.FireEventAndRelease(forceApplied);
             }
 
             var applied = GameEvent.New("EffectApplied");
@@ -452,7 +452,7 @@ namespace CavesOfOoo.Core
             applied.SetParameter("Forced", forced);
             if (source != null)
                 applied.SetParameter("Source", (object)source);
-            ParentEntity.FireEvent(applied);
+            ParentEntity.FireEventAndRelease(applied);
 
             TryStartAura(effect, zone);
         }
@@ -467,7 +467,7 @@ namespace CavesOfOoo.Core
             // recovery overwrite Effect.LastRemovalCause before setting
             // Duration=0; public RemoveEffect overloads set CAUSE_EXTERNAL.
             removed.SetParameter("Cause", effect.LastRemovalCause);
-            ParentEntity.FireEvent(removed);
+            ParentEntity.FireEventAndRelease(removed);
 
             TryStopAura(effect);
         }

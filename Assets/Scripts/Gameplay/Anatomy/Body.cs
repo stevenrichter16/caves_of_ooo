@@ -124,7 +124,10 @@ namespace CavesOfOoo.Core
             var e = GameEvent.New("BodyPartAdded");
             e.SetParameter("Part", (object)newPart);
             e.SetParameter("Manager", managerID);
-            ParentEntity?.FireEvent(e);
+            if (ParentEntity != null)
+                ParentEntity.FireEventAndRelease(e);
+            else
+                e.Release();
 
             return newPart;
         }
@@ -176,7 +179,10 @@ namespace CavesOfOoo.Core
                 var e = GameEvent.New("BodyPartsRemoved");
                 e.SetParameter("Manager", managerID);
                 e.SetParameter("Count", count);
-                ParentEntity?.FireEvent(e);
+                if (ParentEntity != null)
+                    ParentEntity.FireEventAndRelease(e);
+                else
+                    e.Release();
             }
 
             return count;
@@ -207,8 +213,11 @@ namespace CavesOfOoo.Core
             // Gate check
             var beforeEvent = GameEvent.New("BeforeDismember");
             beforeEvent.SetParameter("Part", (object)part);
-            if (ParentEntity != null && !ParentEntity.FireEvent(beforeEvent))
+            if (ParentEntity != null && !ParentEntity.FireEventAndRelease(beforeEvent))
                 return false;
+            // If ParentEntity was null we still need to release the rented event.
+            if (ParentEntity == null)
+                beforeEvent.Release();
 
             // Unequip everything on this part and children — drop to ground if zone provided
             UnequipSubtree(part, zone);
@@ -241,7 +250,10 @@ namespace CavesOfOoo.Core
             afterEvent.SetParameter("Mortal", part.Mortal);
             if (limbEntity != null)
                 afterEvent.SetParameter("SeveredLimbEntity", (object)limbEntity);
-            ParentEntity?.FireEvent(afterEvent);
+            if (ParentEntity != null)
+                ParentEntity.FireEventAndRelease(afterEvent);
+            else
+                afterEvent.Release();
 
             // Log
             string partName = part.GetDisplayName();
@@ -314,7 +326,10 @@ namespace CavesOfOoo.Core
             // Post event
             var e = GameEvent.New("LimbRegenerated");
             e.SetParameter("Part", (object)target.Part);
-            ParentEntity?.FireEvent(e);
+            if (ParentEntity != null)
+                ParentEntity.FireEventAndRelease(e);
+            else
+                e.Release();
 
             string partName = target.Part.GetDisplayName();
             string entityName = ParentEntity?.GetDisplayName() ?? "something";
