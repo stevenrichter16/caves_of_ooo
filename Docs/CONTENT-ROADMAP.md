@@ -37,6 +37,7 @@
 
 | Commit | What |
 |---|---|
+| `feat/elemental-tonics` | **4 elemental tonics** — AcidTonic, LightningTonic, FrostTonic, WaterTonic. Pure JSON + 24 tests; StatusTonicPart dispatcher already supported them. Completes Tier-1 status-tonic content row. |
 | `8aa469a` | **Tier-2 OnHitEffects abstraction** — class-based hooks (Bludgeoning→Stun, Cutting→Bleed, Piercing→Confuse) + per-weapon overrides (FlamingSword→Burning, IceSword→Frozen, ThunderHammer→Electrified, AcidicDagger→Acidic, DissolutionMaul→Acidic). Activates the weapon-attribute backfill in live gameplay. |
 | `9c34cb0` | Weapon-attribute backfill: all 17 unattributed weapons now declare physical-class + sub-class. **25/25 coverage**. DissolutionMaul gains Acid routing via Corrosive material. |
 | `f1b906f` | AcidicDagger + AR on CaveSlime (+50) and Scorpion (-50) + AcidicDaggerShowcase — fourth elemental weapon, completes the Fire/Ice/Lightning/Acid quartet |
@@ -114,10 +115,10 @@ correctly for every weapon in the game.
 > lookup. Each new tonic = 1 blueprint + 1 test.
 
 - ✅ **PoisonTonic, FireTonic, StoneskinTonic** — exist
-- 📋 **AcidTonic** — applies AcidicEffect on shatter
-- 📋 **LightningTonic** — applies ElectrifiedEffect (5 turns conductive)
-- 📋 **FrostTonic** — applies FrozenEffect (2 turns can't move)
-- 📋 **WaterTonic** — applies WetEffect (damps fire, conducts electricity)
+- ✅ **AcidTonic** — applies AcidicEffect — `feat/elemental-tonics`
+- ✅ **LightningTonic** — applies ElectrifiedEffect — `feat/elemental-tonics`
+- ✅ **FrostTonic** — applies FrozenEffect — `feat/elemental-tonics`
+- ✅ **WaterTonic** — applies WetEffect — `feat/elemental-tonics`
 - 💡 **BleedTonic** — applies BleedingEffect (DOT)
 - 💡 **CharredTonic** — applies CharredEffect (post-burn vulnerable state)
 
