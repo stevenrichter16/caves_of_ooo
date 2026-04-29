@@ -111,14 +111,18 @@ namespace CavesOfOoo.Rendering
                     if (request == null)
                         continue;
 
+                    // After this point every code path returns the request
+                    // to AsciiFxBus's pool via the `release:` label so a
+                    // future Rent reuses the same instance instead of
+                    // allocating. Tier-B Fix #1.
                     if (request.Type == AsciiFxRequestType.AuraStop)
                     {
                         RemoveAura(request.Anchor, request.Theme);
-                        continue;
+                        goto release;
                     }
 
                     if (_currentZone == null || request.Zone != _currentZone)
-                        continue;
+                        goto release;
 
                     switch (request.Type)
                     {
@@ -248,6 +252,9 @@ namespace CavesOfOoo.Rendering
                             });
                             break;
                     }
+
+                    release:
+                    AsciiFxBus.Release(request);
                 }
             }
         }
