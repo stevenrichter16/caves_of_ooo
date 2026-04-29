@@ -4805,6 +4805,76 @@
       ]
     },
     {
+      "Name": "SpikeTrap",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "spike trap" },
+          { "Key": "RenderString", "Value": "^" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" }
+        ]},
+        { "Name": "SpikeTrapTrigger", "Params": [
+          { "Key": "Damage", "Value": "12" },
+          { "Key": "ConsumeOnTrigger", "Value": "true" }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Trap", "Value": "" }
+      ]
+    },
+    {
+      "Name": "FireTrap",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "fire trap" },
+          { "Key": "RenderString", "Value": "^" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" }
+        ]},
+        { "Name": "FireTrapTrigger", "Params": [
+          { "Key": "Damage", "Value": "8" },
+          { "Key": "BurnIntensity", "Value": "1.5" },
+          { "Key": "ConsumeOnTrigger", "Value": "true" }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Trap", "Value": "" }
+      ]
+    },
+    {
+      "Name": "BearTrap",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "bear trap" },
+          { "Key": "RenderString", "Value": "^" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" }
+        ]},
+        { "Name": "BearTrapTrigger", "Params": [
+          { "Key": "Damage", "Value": "15" },
+          { "Key": "StunDuration", "Value": "1" },
+          { "Key": "BleedSaveTarget", "Value": "14" },
+          { "Key": "BleedDice", "Value": "1d2" },
+          { "Key": "ConsumeOnTrigger", "Value": "true" }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Trap", "Value": "" }
+      ]
+    },
+    {
       "Name": "RuneCultist",
       "Inherits": "Creature",
       "Parts": [
