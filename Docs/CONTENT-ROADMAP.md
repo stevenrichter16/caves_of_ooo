@@ -29,7 +29,7 @@
 
 ## Currently working on
 
-(none — pick from Tier 1 next)
+(none — pick next from Tier 1 elemental weapons or Tier 2 traps/locks)
 
 ---
 
@@ -37,6 +37,7 @@
 
 | Commit | What |
 |---|---|
+| `feat/throwable-consumables` | **Tier-2 Throwable consumables** — tonics shatter on impact with radius-1 AOE. Direct hit / miss / wall hit all shatter; bottle never lands. New `ApplyTonicAoe` helper; `ThrowableTonicsShowcase` scenario. 12 unit tests + smoke. |
 | `feat/elemental-tonics` | **4 elemental tonics** — AcidTonic, LightningTonic, FrostTonic, WaterTonic. Pure JSON + 24 tests; StatusTonicPart dispatcher already supported them. Completes Tier-1 status-tonic content row. |
 | `8aa469a` | **Tier-2 OnHitEffects abstraction** — class-based hooks (Bludgeoning→Stun, Cutting→Bleed, Piercing→Confuse) + per-weapon overrides (FlamingSword→Burning, IceSword→Frozen, ThunderHammer→Electrified, AcidicDagger→Acidic, DissolutionMaul→Acidic). Activates the weapon-attribute backfill in live gameplay. |
 | `9c34cb0` | Weapon-attribute backfill: all 17 unattributed weapons now declare physical-class + sub-class. **25/25 coverage**. DissolutionMaul gains Acid routing via Corrosive material. |
@@ -157,9 +158,9 @@ correctly for every weapon in the game.
 - 💡 **`LightSourcePart` propagation through equipment** — held FlamingSword glows red, held IceSword glows cyan. Currently LightSource lives on entities directly; need a "if equipped, project light from wielder's cell" pass.
 - Unblocks: torches, lanterns held in hand, glowing weapons.
 
-### Throwable consumables
+### Throwable consumables — DONE
 
-- 💡 **Tonics shatter on impact when thrown.** ThrowItemCommand already exists. Need: on-impact event → check StatusTonicPart → apply to creatures in target cell. Pairs with the elemental tonics above.
+- ✅ **Tonics shatter on impact when thrown** — `feat/throwable-consumables`. Radius-1 AOE around impact cell. Direct hit, miss, and wall hit all shatter; bottle never re-enters the zone. Pairs with the 4 elemental tonics: thrown FrostTonic freezes a 3×3 cluster, Water+Lightning combo hits everyone caught between, etc. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / Throwable Tonics Showcase`.
 
 ### Trap furniture
 
