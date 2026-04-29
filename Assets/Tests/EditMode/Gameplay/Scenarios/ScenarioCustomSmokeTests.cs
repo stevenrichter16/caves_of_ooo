@@ -215,5 +215,8 @@ namespace CavesOfOoo.Tests.Scenarios
 
         [Test] public void ThrowableTonicsShowcase_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new ThrowableTonicsShowcase().Apply(FreshContext()));
+
+        [Test] public void TrapFurnitureShowcase_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new TrapFurnitureShowcase().Apply(FreshContext()));
     }
 }

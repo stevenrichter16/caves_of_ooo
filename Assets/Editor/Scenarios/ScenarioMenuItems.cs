@@ -104,6 +104,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_ThrowableTonicsShowcase()
             => ScenarioRunner.Launch<ThrowableTonicsShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Trap Furniture Showcase (cell-stepped traps)", priority = 112)]
+        private static void Launch_TrapFurnitureShowcase()
+            => ScenarioRunner.Launch<TrapFurnitureShowcase>();
+
         // =========================================================
         // AI Behavior
         // =========================================================

@@ -37,6 +37,7 @@
 
 | Commit | What |
 |---|---|
+| `feat/trap-furniture` | **Tier-2 Trap furniture** — SpikeTrap, FireTrap, BearTrap. Three single-use mechanical floor traps reusing the existing TriggerOnStepPart pattern. 9 unit tests + smoke. |
 | `feat/throwable-consumables` | **Tier-2 Throwable consumables** — tonics shatter on impact with radius-1 AOE. Direct hit / miss / wall hit all shatter; bottle never lands. New `ApplyTonicAoe` helper; `ThrowableTonicsShowcase` scenario. 12 unit tests + smoke. |
 | `feat/elemental-tonics` | **4 elemental tonics** — AcidTonic, LightningTonic, FrostTonic, WaterTonic. Pure JSON + 24 tests; StatusTonicPart dispatcher already supported them. Completes Tier-1 status-tonic content row. |
 | `8aa469a` | **Tier-2 OnHitEffects abstraction** — class-based hooks (Bludgeoning→Stun, Cutting→Bleed, Piercing→Confuse) + per-weapon overrides (FlamingSword→Burning, IceSword→Frozen, ThunderHammer→Electrified, AcidicDagger→Acidic, DissolutionMaul→Acidic). Activates the weapon-attribute backfill in live gameplay. |
@@ -164,8 +165,9 @@ correctly for every weapon in the game.
 
 ### Trap furniture
 
-- 💡 **PressurePlate, FireTrap, SpikeTrap.** Cell-stepped events fire damage / status. Mechanically similar to AmbushPart but cell-bound.
-- 💡 **TripWire** — line of cells that all fire when stepped on.
+- ✅ **SpikeTrap, FireTrap, BearTrap** — `feat/trap-furniture`. Three single-use mechanical floor traps reusing the `TriggerOnStepPart` infrastructure. Spike: piercing damage. Fire: heat damage + BurningEffect, routes through HeatResistance. Bear: piercing damage + Stunned + Bleeding (full payload). Showcase: `Caves Of Ooo / Scenarios / Combat Stress / Trap Furniture Showcase`.
+- 💡 **PressurePlate** — reusable variant; rearm cooldown / armed-state. Deferred (single-use first).
+- 💡 **TripWire** — multi-cell line trigger. Deferred (single-cell first).
 
 ### Lock & key
 
