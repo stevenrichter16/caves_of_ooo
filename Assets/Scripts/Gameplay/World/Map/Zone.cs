@@ -31,6 +31,31 @@ namespace CavesOfOoo.Core
         /// </summary>
         private Dictionary<Entity, Cell> _entityCells = new Dictionary<Entity, Cell>();
 
+        /// <summary>
+        /// Tag membership index: tag -> set of entities currently in this
+        /// zone with that tag. Drops <see cref="GetEntitiesWithTagNonAlloc"/>
+        /// from O(N) full-zone scan to O(matches) iteration.
+        ///
+        /// <para><b>Sync model.</b> Built up on
+        /// <see cref="AddEntity"/> (first-time placement) and torn down on
+        /// <see cref="RemoveEntity"/>. Snapshot the entity's tag set at
+        /// add time. <see cref="MoveEntity"/> does NOT touch the index —
+        /// movement doesn't change tag membership.</para>
+        ///
+        /// <para><b>Runtime tag mutations.</b> If gameplay code mutates
+        /// <c>entity.Tags</c> AFTER the entity is in the zone (e.g. a
+        /// mutation grants a "Chimera" tag mid-play), the index won't
+        /// see the new tag. Callers performing such mutations should
+        /// invoke <see cref="NotifyEntityTagAdded"/> /
+        /// <see cref="NotifyEntityTagRemoved"/> to keep the index in
+        /// sync. The vast majority of tag queries (most importantly
+        /// "Creature" used by AI hostile-scan) hit tags set at blueprint
+        /// load — those are captured correctly by the add-time snapshot.
+        /// Tier-A scaling fix S1 — see Docs/PERF-SCALING-AUDIT.md.</para>
+        /// </summary>
+        private readonly Dictionary<string, HashSet<Entity>> _tagIndex
+            = new Dictionary<string, HashSet<Entity>>();
+
         public Zone(string zoneID = null)
         {
             ZoneID = zoneID ?? "Zone";
@@ -62,6 +87,11 @@ namespace CavesOfOoo.Core
             Cell cell = GetCell(x, y);
             if (cell == null) return false;
 
+            // Distinguish first-time add from a move so the tag index
+            // doesn't double-add. _entityCells is the source of truth
+            // for "is this entity currently in this zone."
+            bool isFreshAdd = !_entityCells.ContainsKey(entity);
+
             // Remove from old cell if already placed
             if (_entityCells.TryGetValue(entity, out Cell oldCell))
             {
@@ -70,6 +100,10 @@ namespace CavesOfOoo.Core
 
             cell.AddObject(entity);
             _entityCells[entity] = cell;
+
+            if (isFreshAdd)
+                IndexEntityTags(entity);
+
             EntityVersion++;
             return true;
         }
@@ -83,10 +117,82 @@ namespace CavesOfOoo.Core
             {
                 cell.RemoveObject(entity);
                 _entityCells.Remove(entity);
+                UnindexEntityTags(entity);
                 EntityVersion++;
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// Snapshot every tag the entity has and add it to the per-tag
+        /// index. Called once when the entity first enters the zone.
+        /// </summary>
+        private void IndexEntityTags(Entity entity)
+        {
+            if (entity.Tags == null) return;
+            foreach (var kvp in entity.Tags)
+            {
+                if (!_tagIndex.TryGetValue(kvp.Key, out var set))
+                {
+                    set = new HashSet<Entity>();
+                    _tagIndex[kvp.Key] = set;
+                }
+                set.Add(entity);
+            }
+        }
+
+        /// <summary>
+        /// Drop every tag association for an entity. Called on
+        /// <see cref="RemoveEntity"/>. Iterating the entity's current
+        /// tag set is safe even if it was mutated post-add — we just
+        /// remove from whichever sets the entity currently appears in.
+        /// Misses (tag exists in dict but entity isn't in it) are no-ops.
+        /// </summary>
+        private void UnindexEntityTags(Entity entity)
+        {
+            if (entity.Tags == null) return;
+            foreach (var kvp in entity.Tags)
+            {
+                if (_tagIndex.TryGetValue(kvp.Key, out var set))
+                    set.Remove(entity);
+            }
+            // Defensive: also scan the index for any tag set that still
+            // references the entity (handles runtime tag mutations that
+            // weren't reported via NotifyEntityTagRemoved). Cheap because
+            // _tagIndex.Count is bounded by distinct-tag count, not entity
+            // count.
+            foreach (var kvp in _tagIndex)
+                kvp.Value.Remove(entity);
+        }
+
+        /// <summary>
+        /// Hook for code that mutates <c>entity.Tags</c> at runtime
+        /// (mutations granting/revoking tags, conversation actions,
+        /// etc). Keeps the tag index in sync. No-op if the entity isn't
+        /// in this zone.
+        /// </summary>
+        public void NotifyEntityTagAdded(Entity entity, string tag)
+        {
+            if (entity == null || tag == null) return;
+            if (!_entityCells.ContainsKey(entity)) return;
+            if (!_tagIndex.TryGetValue(tag, out var set))
+            {
+                set = new HashSet<Entity>();
+                _tagIndex[tag] = set;
+            }
+            set.Add(entity);
+        }
+
+        /// <summary>
+        /// Companion to <see cref="NotifyEntityTagAdded"/> — call when
+        /// removing a tag from an entity already in the zone.
+        /// </summary>
+        public void NotifyEntityTagRemoved(Entity entity, string tag)
+        {
+            if (entity == null || tag == null) return;
+            if (_tagIndex.TryGetValue(tag, out var set))
+                set.Remove(entity);
         }
 
         /// <summary>
@@ -147,30 +253,35 @@ namespace CavesOfOoo.Core
 
         /// <summary>
         /// Get all entities with a specific tag (allocates a new list).
+        /// O(matches) via <see cref="_tagIndex"/>. Prefer
+        /// <see cref="GetEntitiesWithTagNonAlloc"/> for hot paths.
         /// </summary>
         public List<Entity> GetEntitiesWithTag(string tag)
         {
-            var result = new List<Entity>();
-            foreach (var entity in _entityCells.Keys)
-            {
-                if (entity.HasTag(tag))
-                    result.Add(entity);
-            }
+            if (!_tagIndex.TryGetValue(tag, out var set))
+                return new List<Entity>();
+            var result = new List<Entity>(set.Count);
+            foreach (var entity in set)
+                result.Add(entity);
             return result;
         }
 
         /// <summary>
         /// Non-allocating variant: fills an existing list with entities matching the tag.
         /// The list is cleared before filling.
+        ///
+        /// <para>O(matches) via <see cref="_tagIndex"/>. Pre-S1 this was
+        /// O(N) full-zone scan + per-entity HashSet lookup, which became
+        /// the AI scan bottleneck at >5k entities. Mostly hot for
+        /// <c>"Creature"</c> queries (BoredGoal / GuardGoal /
+        /// DormantGoal / FindNearestHostile).</para>
         /// </summary>
         public void GetEntitiesWithTagNonAlloc(string tag, List<Entity> result)
         {
             result.Clear();
-            foreach (var entity in _entityCells.Keys)
-            {
-                if (entity.HasTag(tag))
-                    result.Add(entity);
-            }
+            if (!_tagIndex.TryGetValue(tag, out var set)) return;
+            foreach (var entity in set)
+                result.Add(entity);
         }
 
         /// <summary>

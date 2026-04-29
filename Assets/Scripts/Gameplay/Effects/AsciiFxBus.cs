@@ -119,7 +119,16 @@ namespace CavesOfOoo.Core
         /// allocation under typical combat load.</para>
         /// </summary>
         private static readonly Stack<AsciiFxRequest> Pool = new Stack<AsciiFxRequest>(64);
-        private const int MaxPoolSize = 256;
+
+        /// <summary>
+        /// Pool ceiling — beyond this, Release drops requests on the
+        /// floor and Rent allocates fresh. Bumped from 256 → 1024 in
+        /// the scaling-prep audit (S2): a 100-damage hit emits 3
+        /// floating-number requests, beams emit 1, chain arcs emit
+        /// hop-count, projectiles emit per-step trail. Sustained
+        /// 5+ enemy combat with 50+ active FX easily blew past 256.
+        /// </summary>
+        private const int MaxPoolSize = 1024;
 
         /// <summary>
         /// Rent a fully-reset <see cref="AsciiFxRequest"/> from the pool,
