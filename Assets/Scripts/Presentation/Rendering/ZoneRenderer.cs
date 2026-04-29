@@ -657,13 +657,16 @@ namespace CavesOfOoo.Rendering
         /// "this cell is now empty" by writing the empty-glyph tile, so
         /// stale tiles don't accumulate.
         ///
-        /// <para><b>FOV / lightmap.</b> We still recompute these because a
-        /// non-player entity that emits light or blocks vision may have
-        /// moved, and the dirty cells alone don't tell us which derived
-        /// cells need updating. The cost (~one zone scan each) is small
-        /// compared to 2000 SetTiles. Player movement uses
-        /// <see cref="_fullDirty"/> instead, which goes through
-        /// <see cref="RenderZone"/>.</para>
+        /// <para><b>FOV / lightmap skipped.</b> Non-player entity moves do
+        /// not change visibility (FOV is anchored at the player) and rarely
+        /// change lighting (light sources are usually static torches /
+        /// campfires, not carried). Skipping the recompute on the
+        /// dirty-cell path saves a zone scan each per turn. Player
+        /// movement / zone load go through the full <see cref="_fullDirty"/>
+        /// path which still recomputes both. If a future feature adds
+        /// "carried torch" or another moving light source, add a
+        /// <c>_lightMapDirty</c> flag set when LightSourcePart owners
+        /// move, and recompute conditionally below.</para>
         ///
         /// <para><b>Caller invariant:</b> <see cref="_dirtyCells"/> is
         /// cleared by the LateUpdate caller after this returns.</para>
@@ -674,20 +677,11 @@ namespace CavesOfOoo.Rendering
             {
                 if (CurrentZone == null || _tilemap == null) return;
 
-                if (PlayerEntity != null)
-                {
-                    var playerCell = CurrentZone.GetEntityCell(PlayerEntity);
-                    if (playerCell != null)
-                    {
-                        using (PerformanceMarkers.Zone.ComputeFov.Auto())
-                            FieldOfView.Compute(CurrentZone, playerCell.X, playerCell.Y, FovRadius);
-                    }
-                }
-
+                // Lazy-init the lightmap so the first dirty render after a
+                // zone change still has a usable instance even if RenderZone
+                // hasn't run yet.
                 if (_lightMap == null)
                     _lightMap = new LightMap();
-                using (PerformanceMarkers.Zone.ComputeLightMap.Auto())
-                    _lightMap.Compute(CurrentZone);
 
                 PerformanceDiagnostics.RecordZoneRedraw(_dirtyCells.Count);
                 foreach (int key in _dirtyCells)
