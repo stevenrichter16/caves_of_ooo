@@ -11,6 +11,26 @@ namespace CavesOfOoo.Rendering
     {
         public const int SidebarLogMessageLimit = 30;
 
+        /// <summary>
+        /// Scratch buffer reused across <see cref="Build"/> calls so the
+        /// per-frame sidebar refresh doesn't allocate a fresh
+        /// <c>List&lt;MessageLog.Entry&gt;</c>. Cleared at the start of each
+        /// <see cref="BuildRecentLogEntries"/> call. Safe because the
+        /// returned <see cref="SidebarLogEntry"/> list is consumed
+        /// synchronously by <c>SidebarRenderer.Render</c> before the next
+        /// frame's Build call overwrites the buffer. Tier-B Fix #4.
+        /// </summary>
+        private static readonly List<MessageLog.Entry> _getRecentEntriesScratch =
+            new List<MessageLog.Entry>(SidebarLogMessageLimit);
+
+        /// <summary>
+        /// Pre-allocated entry list returned by
+        /// <see cref="BuildRecentLogEntries"/>. Reused per call (cleared
+        /// first). Same lifetime contract as <see cref="_getRecentEntriesScratch"/>.
+        /// </summary>
+        private static readonly List<SidebarLogEntry> _logEntryScratch =
+            new List<SidebarLogEntry>(SidebarLogMessageLimit);
+
         public static SidebarSnapshot Build(
             Entity player,
             Zone zone,
@@ -161,8 +181,11 @@ namespace CavesOfOoo.Rendering
 
         private static IReadOnlyList<SidebarLogEntry> BuildRecentLogEntries(int maxRecentMessages)
         {
-            var raw = MessageLog.GetRecentEntries(maxRecentMessages);
-            var entries = new List<SidebarLogEntry>();
+            var raw = _getRecentEntriesScratch;
+            MessageLog.GetRecentEntries(maxRecentMessages, raw);
+
+            var entries = _logEntryScratch;
+            entries.Clear();
             if (raw.Count == 0)
                 return entries;
 

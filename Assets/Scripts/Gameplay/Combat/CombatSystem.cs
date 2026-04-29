@@ -312,10 +312,24 @@ namespace CavesOfOoo.Core
         /// Gather all melee weapons from hand body parts.
         /// Primary hand weapon attacks first, then off-hands.
         /// Also includes natural MeleeWeaponPart on any body part's equipped default.
+        ///
+        /// <para><b>Allocation note (Tier-B Fix #3 in PERF-COMBAT-INVESTIGATION.md).</b>
+        /// Reuses a static scratch list to avoid allocating a fresh
+        /// <c>List&lt;WeaponSlot&gt;</c> per attack. Safe because combat is
+        /// turn-serial: one <see cref="PerformBodyPartAwareAttack"/> call
+        /// completes before the next begins. Caller must consume the
+        /// returned list before any nested combat call (none today). If a
+        /// future feature triggers nested melee resolution from inside an
+        /// attack, switch this to ArrayPool or gate re-entrance explicitly
+        /// (mirrors the same pattern used by
+        /// <c>MovementSystem._enteredCellScratch</c>).</para>
         /// </summary>
+        private static readonly List<WeaponSlot> _gatherWeaponsScratch = new List<WeaponSlot>(8);
+
         private static List<WeaponSlot> GatherMeleeWeapons(Entity attacker, Body body)
         {
-            var result = new List<WeaponSlot>();
+            var result = _gatherWeaponsScratch;
+            result.Clear();
             var parts = body.GetParts();
 
             // Find weapons in Hand body parts.
