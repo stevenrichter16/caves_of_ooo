@@ -113,6 +113,34 @@ namespace CavesOfOoo.Core
             return entries;
         }
 
+        /// <summary>
+        /// Non-allocating overload: fills <paramref name="output"/> with the
+        /// most recent <paramref name="count"/> entries instead of allocating
+        /// a fresh list. The output list is cleared first so callers can
+        /// reuse a static scratch buffer (see
+        /// <c>SidebarStateBuilder._getRecentEntriesScratch</c>) — useful for
+        /// per-frame paths like the sidebar log refresh.
+        ///
+        /// <para>Tier-B Fix #4 in PERF-COMBAT-INVESTIGATION.md. The
+        /// allocating overload above is kept for tests / external
+        /// consumers that capture the list reference.</para>
+        /// </summary>
+        public static void GetRecentEntries(int count, List<Entry> output)
+        {
+            if (output == null) return;
+            output.Clear();
+
+            int start = Math.Max(0, Messages.Count - count);
+            int length = Messages.Count - start;
+            for (int i = 0; i < length; i++)
+            {
+                int idx = start + i;
+                int tick = idx < Ticks.Count ? Ticks[idx] : 0;
+                int serial = idx < Serials.Count ? Serials[idx] : idx;
+                output.Add(new Entry(Messages[idx], tick, serial));
+            }
+        }
+
         public static List<Entry> GetAllEntries()
         {
             return GetRecentEntries(Messages.Count);
