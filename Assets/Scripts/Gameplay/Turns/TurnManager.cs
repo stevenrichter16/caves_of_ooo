@@ -27,10 +27,15 @@ namespace CavesOfOoo.Core
         /// ticks + end-of-turn cleanup). Silent turns don't produce dividers,
         /// so the log doesn't fill with consecutive blank dividers.
         /// Width chosen to match a typical in-game message-panel column on the
-        /// 80×25 CP437 tilemap. Box-drawing double-line glyph (U+2550) reads as
-        /// medium-weight in the rendered font.
+        /// 80×25 CP437 tilemap. Uses CP437 codepoint 0xCD (the box-drawing
+        /// double-horizontal "═" glyph) directly so the sidebar's narrow-text
+        /// tileset can render it as a real glyph. Earlier this string used
+        /// the Unicode equivalent U+2550, which falls outside the 0–255
+        /// CP437 cache and caused every divider char to fall back to the
+        /// '?' tile after triggering a 2ms atlas rebuild — sidebar render
+        /// stuttered ~200ms per combat turn until that miss path was fixed.
         /// </summary>
-        private const string TURN_DIVIDER = "════════════════════════════════════════";
+        private const string TURN_DIVIDER = "\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD";
 
         /// <summary>
         /// MessageLog.Count snapshot taken at the start of the current actor's
