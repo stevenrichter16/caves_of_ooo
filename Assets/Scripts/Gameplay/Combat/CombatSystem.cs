@@ -626,6 +626,15 @@ namespace CavesOfOoo.Core
                 {
                     HandleDeath(target, source, zone);
                 }
+                else if (zone != null)
+                {
+                    // Mark the target's cell dirty so on-hit visual effects
+                    // (damage flash, color change from new status effect,
+                    // etc.) render this frame without forcing a full redraw.
+                    var targetCell = zone.GetEntityCell(target);
+                    if (targetCell != null)
+                        ZoneRenderHooks.MarkCellDirty(targetCell, "Combat.Damage");
+                }
             }
         }
 
@@ -736,8 +745,28 @@ namespace CavesOfOoo.Core
             if (zone != null)
                 BroadcastDeathWitnessed(target, killer, zone, WitnessRadius);
 
+            // Capture the death cell BEFORE RemoveEntity so the renderer can
+            // be told to repaint it (corpse/blood splatter glyph, or simply
+            // "entity gone, show what's underneath"). Player death triggers
+            // a full redraw — the death screen UI may stomp arbitrary cells.
+            int? deathX = null, deathY = null;
+            if (zone != null)
+            {
+                var deathCell = zone.GetEntityCell(target);
+                if (deathCell != null)
+                {
+                    deathX = deathCell.X;
+                    deathY = deathCell.Y;
+                }
+            }
+
             if (zone != null)
                 zone.RemoveEntity(target);
+
+            if (target != null && target.HasTag("Player"))
+                ZoneRenderHooks.MarkFullDirty("Death.Player");
+            else if (deathX.HasValue && deathY.HasValue)
+                ZoneRenderHooks.MarkCellDirty(deathX.Value, deathY.Value, "Death");
         }
 
         /// <summary>Chebyshev radius for death-witness broadcast (M2.3).</summary>
