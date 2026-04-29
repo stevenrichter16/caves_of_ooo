@@ -50,13 +50,24 @@ namespace CavesOfOoo.Scenarios.Custom
                 .SetStat("Strength", 24)
                 .GiveItem("HealingTonic", 5);
 
-            // Place the three traps in a line east of the player.
+            // Clear the corridor first. The starting zone often spawns chests,
+            // items, or NPCs along the walkable path; without this, a chest
+            // squatting on the trap cell would block the player from stepping
+            // on the trap (chest is Solid, trap is Physics.Solid=false).
+            // ClearCell preserves the player and terrain, removes everything
+            // else. Cleared cells: every step from p.x+1..p.x+7 at p.y.
+            for (int dx = 1; dx <= 7; dx++)
+                ctx.World.ClearCell(p.x + dx, p.y);
+
+            // Place all three trap variants in a line east of the player.
+            // The empty cells between (offsets 1, 3, 5, 7) give the player
+            // breathing room to read the message log between triggers.
             var spikeTrap = ctx.Spawn("SpikeTrap").At(p.x + 2, p.y);
             var fireTrap = ctx.Spawn("FireTrap").At(p.x + 4, p.y);
             var bearTrap = ctx.Spawn("BearTrap").At(p.x + 6, p.y);
 
             MessageLog.Add("Trap Furniture Showcase: walk east through the corridor.");
-            MessageLog.Add("Three single-use traps wait — spike, fire, bear.");
+            MessageLog.Add("Three single-use trap variants wait — spike (^&w), fire (^&R), bear (^&y).");
         }
     }
 }
