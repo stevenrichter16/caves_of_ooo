@@ -139,7 +139,7 @@ namespace CavesOfOoo.Core
             beforeTrade.SetParameter("Trader", (object)trader);
             beforeTrade.SetParameter("Item", (object)item);
             beforeTrade.SetParameter("Price", price);
-            if (!buyer.FireEvent(beforeTrade))
+            if (!buyer.FireEventAndRelease(beforeTrade))
                 return false;
 
             // Transfer item

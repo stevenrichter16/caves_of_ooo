@@ -81,7 +81,8 @@ namespace CavesOfOoo.Core
             var list = new InventoryActionList();
             var e = GameEvent.New("GetInventoryActions");
             e.SetParameter("Actions", list);
-            target.FireEvent(e);
+            // Listeners populate `list` directly; event object is safe to release.
+            target.FireEventAndRelease(e);
             list.Sort();
             return list.Actions;
         }

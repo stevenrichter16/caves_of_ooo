@@ -132,7 +132,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             beforeEquip.SetParameter("Actor", (object)actor);
             beforeEquip.SetParameter("Item", (object)itemToEquip);
             beforeEquip.SetParameter("Slot", equippable.Slot);
-            if (!actor.FireEvent(beforeEquip))
+            if (!actor.FireEventAndRelease(beforeEquip))
             {
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
@@ -176,7 +176,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             afterEquip.SetParameter("Actor", (object)actor);
             afterEquip.SetParameter("Item", (object)itemToEquip);
             afterEquip.SetParameter("Slot", equippable.Slot);
-            actor.FireEvent(afterEquip);
+            actor.FireEventAndRelease(afterEquip);
 
             return InventoryCommandResult.Ok();
         }

@@ -81,7 +81,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var beforeDrop = GameEvent.New("BeforeDrop");
             beforeDrop.SetParameter("Actor", (object)actor);
             beforeDrop.SetParameter("Item", (object)_item);
-            if (!actor.FireEvent(beforeDrop))
+            if (!actor.FireEventAndRelease(beforeDrop))
             {
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
@@ -118,7 +118,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var afterDrop = GameEvent.New("AfterDrop");
             afterDrop.SetParameter("Actor", (object)actor);
             afterDrop.SetParameter("Item", (object)_item);
-            actor.FireEvent(afterDrop);
+            actor.FireEventAndRelease(afterDrop);
 
             return InventoryCommandResult.Ok();
         }

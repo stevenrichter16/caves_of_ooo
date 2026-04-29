@@ -2042,7 +2042,7 @@ namespace CavesOfOoo.Rendering
             var e = GameEvent.New("InventoryAction");
             e.SetParameter("Command", action.Command);
             e.SetParameter("Actor", (object)PlayerEntity);
-            target.FireEvent(e);
+            target.FireEventAndRelease(e);
 
             // If Chat started a conversation, open the dialogue UI —
             // ConversationPart doesn't open it itself.
@@ -2591,7 +2591,10 @@ namespace CavesOfOoo.Rendering
 
             PlayerEntity.FireEvent(cmd);
 
+            // Capture all post-fire reads before releasing the rented event.
             bool handled = cmd.Handled;
+            bool blocksTurnAdvance = cmd.GetParameter<bool>("BlocksTurnAdvance");
+            cmd.Release();
             _pendingAbility = null;
             _inputState = InputState.Normal;
 
@@ -2603,7 +2606,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (cmd.GetParameter<bool>("BlocksTurnAdvance"))
+            if (blocksTurnAdvance)
             {
                 _inputState = InputState.WaitingForFxResolution;
                 _lastMoveTime = Time.time;

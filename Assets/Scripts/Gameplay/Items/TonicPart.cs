@@ -104,7 +104,7 @@ namespace CavesOfOoo.Core
             applyEvent.SetParameter("Zone", (object)zone);
             applyEvent.SetParameter("Random", (object)rng);
             applyEvent.SetParameter("Source", (object)user);
-            ParentEntity.FireEvent(applyEvent);
+            ParentEntity.FireEventAndRelease(applyEvent);
 
             if (showUseMessage)
             {

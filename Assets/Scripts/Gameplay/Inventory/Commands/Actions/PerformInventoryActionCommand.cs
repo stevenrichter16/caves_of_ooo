@@ -59,7 +59,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             before.SetParameter("Actor", (object)actor);
             before.SetParameter("Item", (object)_item);
             before.SetParameter("Command", _actionCommand);
-            if (!actor.FireEvent(before))
+            if (!actor.FireEventAndRelease(before))
             {
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
@@ -74,7 +74,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
             if (zone != null)
                 actionEvent.SetParameter("Zone", (object)zone);
 
+            // Listeners may set actionEvent.Handled — read before release.
             bool handled = !_item.FireEvent(actionEvent) || actionEvent.Handled;
+            actionEvent.Release();
             if (!handled)
             {
                 return InventoryCommandResult.Fail(
@@ -87,7 +89,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             after.SetParameter("Actor", (object)actor);
             after.SetParameter("Item", (object)_item);
             after.SetParameter("Command", _actionCommand);
-            actor.FireEvent(after);
+            actor.FireEventAndRelease(after);
 
             return InventoryCommandResult.Ok();
         }

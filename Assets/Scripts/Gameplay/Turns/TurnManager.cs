@@ -203,7 +203,7 @@ namespace CavesOfOoo.Core
                     if (actorZone != null)
                         beginTakeAction.SetParameter("Zone", (object)actorZone);
 
-                    if (!actor.FireEvent(beginTakeAction))
+                    if (!actor.FireEventAndRelease(beginTakeAction))
                     {
                         EndTurn(actor, actorZone);
                         if (actor.HasTag("Player"))
@@ -223,7 +223,7 @@ namespace CavesOfOoo.Core
                     turnEvent.SetParameter("BeginTakeActionProcessed", true);
                     if (actorZone != null)
                         turnEvent.SetParameter("Zone", (object)actorZone);
-                    actor.FireEvent(turnEvent);
+                    actor.FireEventAndRelease(turnEvent);
 
                     EndTurn(actor, actorZone);
                 }
@@ -242,7 +242,7 @@ namespace CavesOfOoo.Core
                 var endTurn = GameEvent.New("EndTurn");
                 if (zone != null)
                     endTurn.SetParameter("Zone", (object)zone);
-                actor.FireEvent(endTurn);
+                actor.FireEventAndRelease(endTurn);
 
                 // Compare against the snapshot taken when CurrentActor was
                 // assigned (turn START). Captures messages from the actor's

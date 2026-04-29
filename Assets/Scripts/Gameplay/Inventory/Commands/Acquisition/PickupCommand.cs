@@ -87,7 +87,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var beforePickup = GameEvent.New("BeforePickup");
             beforePickup.SetParameter("Actor", (object)actor);
             beforePickup.SetParameter("Item", (object)_item);
-            if (!actor.FireEvent(beforePickup))
+            if (!actor.FireEventAndRelease(beforePickup))
             {
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
@@ -98,7 +98,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var beforeBeing = GameEvent.New("BeforeBeingPickedUp");
             beforeBeing.SetParameter("Actor", (object)actor);
             beforeBeing.SetParameter("Item", (object)_item);
-            if (!_item.FireEvent(beforeBeing))
+            if (!_item.FireEventAndRelease(beforeBeing))
             {
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
@@ -141,7 +141,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var afterPickup = GameEvent.New("AfterPickup");
             afterPickup.SetParameter("Actor", (object)actor);
             afterPickup.SetParameter("Item", (object)_item);
-            actor.FireEvent(afterPickup);
+            actor.FireEventAndRelease(afterPickup);
 
             return InventoryCommandResult.Ok();
         }

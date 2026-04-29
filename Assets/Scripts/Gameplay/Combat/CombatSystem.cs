@@ -76,7 +76,7 @@ namespace CavesOfOoo.Core
                 var beforeAttack = GameEvent.New("BeforeMeleeAttack");
                 beforeAttack.SetParameter("Attacker", (object)attacker);
                 beforeAttack.SetParameter("Defender", (object)defender);
-                if (!attacker.FireEvent(beforeAttack))
+                if (!attacker.FireEventAndRelease(beforeAttack))
                     return false;
 
                 var body = attacker.GetPart<Body>();
@@ -548,7 +548,7 @@ namespace CavesOfOoo.Core
                 beforeTakeDamage.SetParameter("Target", (object)target);
                 beforeTakeDamage.SetParameter("Source", (object)source);
                 beforeTakeDamage.SetParameter("Damage", (object)damage);
-                if (!target.FireEvent(beforeTakeDamage))
+                if (!target.FireEventAndRelease(beforeTakeDamage))
                 {
                     // Veto — surface as fully-resisted so observers see the attempt.
                     //
@@ -562,7 +562,7 @@ namespace CavesOfOoo.Core
                     fullyResistedVeto.SetParameter("Target", (object)target);
                     fullyResistedVeto.SetParameter("Source", (object)source);
                     fullyResistedVeto.SetParameter("Damage", (object)damage);
-                    target.FireEvent(fullyResistedVeto);
+                    target.FireEventAndRelease(fullyResistedVeto);
                     return;
                 }
 
@@ -581,7 +581,7 @@ namespace CavesOfOoo.Core
                     fullyResisted.SetParameter("Target", (object)target);
                     fullyResisted.SetParameter("Source", (object)source);
                     fullyResisted.SetParameter("Damage", (object)damage);
-                    target.FireEvent(fullyResisted);
+                    target.FireEventAndRelease(fullyResisted);
                     return;
                 }
 
@@ -590,12 +590,15 @@ namespace CavesOfOoo.Core
                 // (e.g., a "StoneSkin" effect that subtracts 2 from incoming damage).
                 // The captured amount is read AFTER the event so listener mutations
                 // propagate to the HP decrement. (Self-review Finding 1.)
+                // (Listeners read damage.Amount via the Damage object directly,
+                // not via event parameters, so the event itself can be released
+                // immediately after firing.)
                 var takeDamage = GameEvent.New("TakeDamage");
                 takeDamage.SetParameter("Target", (object)target);
                 takeDamage.SetParameter("Source", (object)source);
                 takeDamage.SetParameter("Amount", damage.Amount);
                 takeDamage.SetParameter("Damage", (object)damage);
-                target.FireEvent(takeDamage);
+                target.FireEventAndRelease(takeDamage);
 
                 // Re-read damage.Amount after listeners — it may have been mutated.
                 // Clamp at 0 so over-mutation can't heal the target.
@@ -616,7 +619,7 @@ namespace CavesOfOoo.Core
                     damageDealt.SetParameter("Defender", (object)target);
                     damageDealt.SetParameter("Amount", amount);
                     damageDealt.SetParameter("Damage", (object)damage); // Phase C
-                    source.FireEvent(damageDealt);
+                    source.FireEventAndRelease(damageDealt);
                 }
 
                 if (hpStat.BaseValue <= 0)
@@ -723,7 +726,7 @@ namespace CavesOfOoo.Core
             // resolve the zone. Non-spawner handlers (StatusEffectsPart,
             // GivesRepPart) ignore the extra parameter.
             died.SetParameter("Zone", (object)zone);
-            target.FireEvent(died);
+            target.FireEventAndRelease(died);
 
             // M2.3: broadcast the death to nearby Passive NPCs so they can
             // visibly react (wander-pace for 20 turns). Fires AFTER the Died
@@ -925,7 +928,7 @@ namespace CavesOfOoo.Core
             canBeDismembered.SetParameter("Defender", (object)defender);
             canBeDismembered.SetParameter("BodyPart", (object)hitPart);
             canBeDismembered.SetParameter("Damage", damage);
-            if (!defender.FireEvent(canBeDismembered))
+            if (!defender.FireEventAndRelease(canBeDismembered))
                 return;  // veto — skip the actual dismemberment
 
             body.Dismember(hitPart, zone);

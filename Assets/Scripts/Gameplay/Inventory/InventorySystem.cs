@@ -249,7 +249,10 @@ namespace CavesOfOoo.Core
             var e = GameEvent.New("GetInventoryActions");
             e.SetParameter("Actions", (object)actionList);
             e.SetParameter("Actor", (object)actor);
-            item.FireEvent(e);
+            // Listeners populate `actionList` (which we passed in) — the
+            // event object's parameters can be released safely; the list
+            // reference outlives it.
+            item.FireEventAndRelease(e);
             actionList.Sort();
             return actionList.Actions;
         }

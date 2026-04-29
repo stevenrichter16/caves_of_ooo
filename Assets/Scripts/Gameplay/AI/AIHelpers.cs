@@ -385,7 +385,9 @@ namespace CavesOfOoo.Core
                 }
 
                 entity.FireEvent(cmdEvent);
-                if (cmdEvent.Handled) return true;
+                bool handled = cmdEvent.Handled;
+                cmdEvent.Release();
+                if (handled) return true;
             }
             return false;
         }

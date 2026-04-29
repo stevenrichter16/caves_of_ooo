@@ -64,7 +64,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var beforeUnequip = GameEvent.New("BeforeUnequip");
             beforeUnequip.SetParameter("Actor", (object)actor);
             beforeUnequip.SetParameter("Item", (object)_item);
-            if (!actor.FireEvent(beforeUnequip))
+            if (!actor.FireEventAndRelease(beforeUnequip))
             {
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
@@ -93,7 +93,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var afterUnequip = GameEvent.New("AfterUnequip");
             afterUnequip.SetParameter("Actor", (object)actor);
             afterUnequip.SetParameter("Item", (object)_item);
-            actor.FireEvent(afterUnequip);
+            actor.FireEventAndRelease(afterUnequip);
 
             transaction.Do(
                 apply: null,
@@ -133,7 +133,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var beforeUnequip = GameEvent.New("BeforeUnequip");
             beforeUnequip.SetParameter("Actor", (object)actor);
             beforeUnequip.SetParameter("Item", (object)item);
-            if (!actor.FireEvent(beforeUnequip))
+            if (!actor.FireEventAndRelease(beforeUnequip))
                 return false;
 
             // Remove equip stat bonuses before detaching item.
@@ -152,7 +152,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var afterUnequip = GameEvent.New("AfterUnequip");
             afterUnequip.SetParameter("Actor", (object)actor);
             afterUnequip.SetParameter("Item", (object)item);
-            actor.FireEvent(afterUnequip);
+            actor.FireEventAndRelease(afterUnequip);
 
             transaction.Do(
                 apply: null,

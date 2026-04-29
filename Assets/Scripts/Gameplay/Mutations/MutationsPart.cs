@@ -362,7 +362,7 @@ namespace CavesOfOoo.Core
             rebuilding.SetParameter("Actor", (object)ParentEntity);
             rebuilding.SetParameter("Reason", rebuildReason);
             rebuilding.SetParameter("MutationCount", affected.Count);
-            ParentEntity.FireEvent(rebuilding);
+            ParentEntity.FireEventAndRelease(rebuilding);
 
             for (int i = 0; i < affected.Count; i++)
             {
@@ -534,7 +534,7 @@ namespace CavesOfOoo.Core
                 var granted = GameEvent.New("RandomBuyChimericBodyPartGranted");
                 granted.SetParameter("MutationClassName", selection.ClassName);
                 granted.SetParameter("MutationName", selection.Name);
-                ParentEntity.FireEvent(granted);
+                ParentEntity.FireEventAndRelease(granted);
             }
 
             return true;
@@ -896,7 +896,10 @@ namespace CavesOfOoo.Core
             e.SetParameter("BaseAmount", baseAmount);
             e.SetParameter("Amount", baseAmount);
             ParentEntity.FireEvent(e);
-            return e.GetIntParameter("Amount", baseAmount);
+            // Listeners may have mutated "Amount"; read before release.
+            int result = e.GetIntParameter("Amount", baseAmount);
+            e.Release();
+            return result;
         }
 
         private bool MatchesMorphotypeRestrictions(MutationDefinition definition)
