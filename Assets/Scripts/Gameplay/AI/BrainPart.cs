@@ -104,6 +104,84 @@ namespace CavesOfOoo.Core
             Staying = true;
         }
 
+        // --- Hostile target cache (Tier-A Fix #3) ---
+
+        /// <summary>
+        /// Cached result of the last <c>FindNearestHostile</c> scan. Populated
+        /// by <see cref="AIHelpers.FindNearestHostileCached"/> and validated
+        /// (cheap LOS + distance + faction check) on subsequent calls before
+        /// being trusted, so a target that died, walked out of sight, or
+        /// flipped factions is detected and re-scanned.
+        ///
+        /// <para>The cache turns a per-NPC O(N · LOS) zone scan into an
+        /// O(LOS) validation when targets stay stable, which they do for
+        /// most of combat. Re-validated every call; <see cref="_cachedHostileTtlTurnsLeft"/>
+        /// forces a periodic full re-scan so the AI doesn't permanently
+        /// stick to a non-optimal target if a closer hostile appears.</para>
+        /// </summary>
+        private Entity _cachedHostile;
+
+        /// <summary>
+        /// Turns remaining before the cached hostile is treated as stale and
+        /// the next call falls back to a full zone scan. Decremented on every
+        /// cache hit; reset to <see cref="HostileCacheTtlMax"/> on every full
+        /// scan (whether or not a target was found, so a "no hostile in
+        /// sight" answer is also cached for the same TTL).
+        /// </summary>
+        private int _cachedHostileTtlTurnsLeft;
+
+        /// <summary>
+        /// Max TTL — small enough that AI re-evaluates targets reasonably
+        /// often (catches "closer hostile just walked into sight"), large
+        /// enough that the per-turn AI cost is dominated by validation
+        /// rather than full scans. 4 turns is a starting point — playtest
+        /// and tune.
+        /// </summary>
+        public const int HostileCacheTtlMax = 4;
+
+        /// <summary>
+        /// True if there's a cached hostile within its TTL. Callers must
+        /// still validate it (alive, in zone, in LOS, hostile) before use —
+        /// see <see cref="AIHelpers.FindNearestHostileCached"/>.
+        /// </summary>
+        public bool HasFreshHostileCache =>
+            _cachedHostile != null && _cachedHostileTtlTurnsLeft > 0;
+
+        /// <summary>The cached hostile, or null. No validation — caller must verify.</summary>
+        public Entity GetCachedHostile() => _cachedHostile;
+
+        /// <summary>
+        /// Tick the TTL down by one. Call once per cache hit so the cache
+        /// expires after <see cref="HostileCacheTtlMax"/> consecutive hits.
+        /// </summary>
+        public void TickHostileCacheTtl()
+        {
+            if (_cachedHostileTtlTurnsLeft > 0)
+                _cachedHostileTtlTurnsLeft--;
+        }
+
+        /// <summary>
+        /// Replace the cached hostile and reset the TTL. Pass null to cache
+        /// "no hostile in sight" — the null answer is also TTL'd so we don't
+        /// re-scan every tick when the zone is empty.
+        /// </summary>
+        public void RefreshHostileCache(Entity hostile)
+        {
+            _cachedHostile = hostile;
+            _cachedHostileTtlTurnsLeft = HostileCacheTtlMax;
+        }
+
+        /// <summary>
+        /// Drop the cache. Call when the cached target failed validation
+        /// (died, left zone, lost LOS, faction shift) — the next call will
+        /// fall back to a fresh scan.
+        /// </summary>
+        public void InvalidateHostileCache()
+        {
+            _cachedHostile = null;
+            _cachedHostileTtlTurnsLeft = 0;
+        }
+
         // --- Debug Introspection (Phase 10) ---
 
         /// <summary>
