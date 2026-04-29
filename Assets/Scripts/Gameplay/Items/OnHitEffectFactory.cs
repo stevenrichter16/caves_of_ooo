@@ -72,8 +72,17 @@ namespace CavesOfOoo.Core
 
                 case "bleeding":
                 case "bleed":
+                    // Use Magnitude (cast to int) as the save-target DC.
+                    // Earlier this used DurationTurns, which has different
+                    // semantics (Bleeding has no fixed Duration — it's
+                    // indefinite, save-curable). Future content authoring
+                    // a "Bleeding,30,1d3,0,18" spec expects 18 to be the
+                    // save-target DC, not "duration". Latent bug surfaced
+                    // by adversarial tests; no in-game blueprint hits this
+                    // path today (class hooks construct BleedingEffect
+                    // directly with the proper saveTarget=15).
                     return new BleedingEffect(
-                        saveTarget: spec.DurationTurns > 0 ? spec.DurationTurns : 15,
+                        saveTarget: spec.Magnitude > 0f ? (int)spec.Magnitude : 15,
                         damageDice: string.IsNullOrWhiteSpace(spec.DamageDice) ? "1d2" : spec.DamageDice,
                         rng: rng);
 
