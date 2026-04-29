@@ -249,6 +249,8 @@ files, mostly visual) or `/Users/steven/qud-decompiled-project/`
 | `Docs/COMBAT-BRANCH-MAP.md` | Branch coverage map (per-method ✅/⚠️/❌) |
 | `Docs/COMBAT-TEST-BACKLOG.md` | Prioritized test entries with format `[#] (TARGET, SEVERITY, BUG_CLASS, PHASE)` |
 | `Docs/MCP_PlayMode_Testing_Strategy.md` | Live-bootstrap testing rules (Rule 1: never fire events via `execute_code`) |
+| `Docs/PERF-FOUNDATION.md` | Optimization patterns, anti-patterns, audit findings (read before adding any feature touching per-frame paths) |
+| `Docs/PERF-COMBAT-INVESTIGATION.md` | Original combat-perf audit (2026-04) — hypotheses + which were red herrings |
 | `qud_decompiled_project/` | In-repo Qud subset (visual effects only) |
 | `/Users/steven/qud-decompiled-project/` | Full Qud decompile (core game logic, 5368 files) |
 
@@ -264,6 +266,59 @@ files, mostly visual) or `/Users/steven/qud-decompiled-project/`
 
 ---
 
+## Performance — non-negotiables for new features
+
+Read `Docs/PERF-FOUNDATION.md` before adding any feature that touches
+the per-frame or per-turn paths. The strategies + audit history live
+there; the rules below are the always-on subset.
+
+1. **Profile before optimizing, profile after writing.** Use
+   `Unity.Profiling.ProfilerRecorder` over real gameplay (60-90s
+   window) — not isolated 5-call tests. Sort by **max**, not avg,
+   to catch spikes. The 70,000× perf bug we shipped a fix for in
+   2026-04-28 was invisible to isolated tests; only `[Perf] spike`
+   logs caught it.
+
+2. **Cache misses must be cheap.** Any `Dictionary<,>` lookup
+   followed by "compute and insert" must be cheap to miss — or
+   gated behind explicit invalidation, never per-call. Pre-populate
+   the cache for the full input domain or just return a fallback
+   on miss.
+
+3. **No allocations in hot paths.** `LateUpdate`, `Update`, turn
+   loops, per-cell render, per-NPC AI scan — none of these may
+   `new List<>` / `new Dictionary<>` / use LINQ. Use the scratch-list
+   pattern in `Docs/PERF-FOUNDATION.md §Pattern 1`.
+
+4. **Per-cell dirty hooks for visible changes.** If gameplay code
+   changes a cell's visible state (entity moved, color flash,
+   status applied), call `ZoneRenderHooks.MarkCellDirty(x, y, source)`.
+   Do not call the full-zone `MarkDirty` unless FOV / lightmap
+   actually needs recompute (player moved, light source moved).
+
+5. **Renderers gate work behind content fingerprint.** Sidebar,
+   hotbar, and any new UI panel must skip work when the snapshot
+   it would render is identical to the last frame's. See
+   `SidebarRenderer.ComputeSnapshotFingerprint` for the pattern.
+
+6. **`Application.runInBackground = true` for development.** This
+   is set in `ProjectSettings.asset` (`runInBackground: 1`). Without
+   it, the editor throttles to 10fps when the window loses focus —
+   indistinguishable from "the game is laggy" in a profiler. If
+   you ever see `cpu_frame_time = 100ms` with `cpu_main_thread = 0ms`,
+   this setting reverted.
+
+**Performance section required in feature plans.** When two or more
+of these apply, the feature's `Docs/<feature>.md` plan needs a
+**Performance** section citing which patterns it'll use:
+- Plumbs `ZoneRenderHooks` from gameplay
+- Allocates collections inside per-frame / per-turn methods
+- Adds a new cache (`Dictionary<,>` keyed by gameplay state)
+- Adds a new MonoBehaviour with `Update` / `LateUpdate`
+- Adds a new event listener that fires per-frame / per-turn
+
+---
+
 ## Final reminders
 
 - **Don't barrel into work after a false-premise correction.** Stop,
@@ -271,8 +326,6 @@ files, mostly visual) or `/Users/steven/qud-decompiled-project/`
 - **The audit cadence (gap-coverage → adversarial cold-eye) is what
   catches latent bugs.** Empirical: 0% on M-style code (already
   TDD'd), 12.5% on legacy code. See §3.9.
-- **GC pressure is acceptable in turn-based combat.** Don't reach
-  for event-pool optimizations unless a profiler shows a problem.
 - **You will be tempted to skip steps when the work feels small.**
   The combat port's three false premises were "small" features.
   Run the sweep anyway.

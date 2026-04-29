@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using CavesOfOoo.Core;
 
 namespace CavesOfOoo.Rendering
@@ -119,10 +120,34 @@ namespace CavesOfOoo.Rendering
             return xp + "/" + next;
         }
 
+        /// <summary>
+        /// Reusable scratch buffer for <see cref="ComposeDualLine"/>. Avoids
+        /// the 5-fragment string-concatenation chain that would allocate
+        /// 4 intermediate strings per vital line × 4 lines per sidebar
+        /// build × every-frame Build = significant GC pressure. The
+        /// builder is cleared at the start of each compose call.
+        /// </summary>
+        private static readonly StringBuilder _dualLineScratch = new StringBuilder(64);
+
         private static string ComposeDualLine(string leftLabel, string leftValue, string rightLabel, string rightValue)
         {
-            return leftLabel + " " + (leftValue ?? "-") + " | " + rightLabel + " " + (rightValue ?? "-");
+            _dualLineScratch.Clear();
+            _dualLineScratch.Append(leftLabel).Append(' ').Append(leftValue ?? "-")
+                            .Append(" | ")
+                            .Append(rightLabel).Append(' ').Append(rightValue ?? "-");
+            return _dualLineScratch.ToString();
         }
+
+        // Status-text cache: skip the sort + join when the effect set hasn't
+        // changed since the last frame. Idle play has the same effects every
+        // frame; combat changes them rarely (one effect-tick per turn).
+        // Comparing the per-effect TickEnds + display names catches both
+        // adds, removes, and tick decrements without rebuilding the string.
+        private static readonly List<string> _statusNamesScratch = new List<string>(8);
+        private static readonly HashSet<string> _statusSeenScratch =
+            new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        private static string _statusTextCache;
+        private static int _statusEffectsCacheHash;
 
         private static string BuildStatusText(Entity player)
         {
@@ -130,23 +155,45 @@ namespace CavesOfOoo.Rendering
             if (effectsPart == null || effectsPart.EffectCount <= 0)
                 return "-";
 
-            var names = new List<string>();
-            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             IReadOnlyList<Effect> effects = effectsPart.GetAllEffects();
+
+            // Cheap hash over (count, name, duration) to catch both list
+            // changes and visible state mutations (effect ticked down →
+            // duration shifted). False positives are fine — they just
+            // rebuild the string. False negatives would show stale status
+            // text; the per-effect Duration update on each tick prevents
+            // that.
+            int hash = effects.Count;
+            unchecked
+            {
+                for (int i = 0; i < effects.Count; i++)
+                {
+                    var e = effects[i];
+                    if (e == null) continue;
+                    hash = hash * 31 + (e.DisplayName != null ? e.DisplayName.GetHashCode() : 0);
+                    hash = hash * 31 + e.Duration;
+                }
+            }
+            if (hash == _statusEffectsCacheHash && _statusTextCache != null)
+                return _statusTextCache;
+
+            // Cache miss — rebuild. Reuse scratch list and hash set.
+            var names = _statusNamesScratch;
+            var seen = _statusSeenScratch;
+            names.Clear();
+            seen.Clear();
             for (int i = 0; i < effects.Count; i++)
             {
                 string name = effects[i]?.DisplayName;
                 if (string.IsNullOrWhiteSpace(name) || !seen.Add(name))
                     continue;
-
                 names.Add(name);
             }
 
-            if (names.Count == 0)
-                return "-";
-
-            names.Sort(StringComparer.OrdinalIgnoreCase);
-            return string.Join(", ", names);
+            string result = names.Count == 0 ? "-" : string.Join(", ", names);
+            _statusTextCache = result;
+            _statusEffectsCacheHash = hash;
+            return result;
         }
 
         private static LookSnapshot BuildFallbackFocus(Entity player, Zone zone)

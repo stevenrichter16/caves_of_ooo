@@ -30,6 +30,14 @@ namespace CavesOfOoo.Rendering
         private readonly List<ChainArcFxInstance> _chainArcs = new List<ChainArcFxInstance>();
         private readonly List<ColumnRiseFxInstance> _columnRises = new List<ColumnRiseFxInstance>();
         private readonly List<DustMoteFxInstance> _dustMotes = new List<DustMoteFxInstance>();
+
+        /// <summary>
+        /// Scratch buffer for <see cref="UpdateAuras"/>'s expired-key
+        /// collection. Reused across frames so per-frame FX updates don't
+        /// allocate a fresh List per call. Cleared at the start of every
+        /// UpdateAuras invocation. Safe because Update is single-threaded.
+        /// </summary>
+        private readonly List<AuraKey> _aurasToRemoveScratch = new List<AuraKey>(8);
         private const int MaxDustMotes = 2;
 
         private Zone _currentZone;
@@ -267,7 +275,8 @@ namespace CavesOfOoo.Rendering
                 if (_auras.Count == 0)
                     return;
 
-                var toRemove = new List<AuraKey>();
+                var toRemove = _aurasToRemoveScratch;
+                toRemove.Clear();
                 foreach (KeyValuePair<AuraKey, AuraEmitterInstance> kvp in _auras)
                 {
                     AuraEmitterInstance aura = kvp.Value;
