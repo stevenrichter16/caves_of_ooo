@@ -514,6 +514,98 @@
       ]
     },
     {
+      "Name": "AcidTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "acid tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&G" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Message", "Value": "Caustic green liquid hisses against your skin." }] },
+        { "Name": "StatusTonic", "Params": [
+          { "Key": "EffectName", "Value": "Acid" },
+          { "Key": "EffectMagnitude", "Value": "1" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "22" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "LightningTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "lightning tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Message", "Value": "Static crackles across your skin and hair stands on end." }] },
+        { "Name": "StatusTonic", "Params": [
+          { "Key": "EffectName", "Value": "Lightning" },
+          { "Key": "EffectMagnitude", "Value": "1" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "22" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "FrostTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "frost tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Message", "Value": "An ice-cold draught freezes you from the inside." }] },
+        { "Name": "StatusTonic", "Params": [
+          { "Key": "EffectName", "Value": "Frost" },
+          { "Key": "EffectMagnitude", "Value": "1" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "22" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "WaterTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "water tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&B" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Message", "Value": "Cool water soaks through your skin." }] },
+        { "Name": "StatusTonic", "Params": [
+          { "Key": "EffectName", "Value": "Water" },
+          { "Key": "EffectMagnitude", "Value": "1" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "12" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
       "Name": "Antidote",
       "Inherits": "TonicItem",
       "Parts": [
