@@ -63,6 +63,38 @@ namespace CavesOfOoo.Core
         public string ColorString;
         public float Lifetime;
         public float MoveInterval;
+
+        /// <summary>
+        /// Wipe all fields back to defaults. Called by
+        /// <see cref="AsciiFxBus.Rent"/> before handing a pooled instance
+        /// to a caller, so two consecutive rentals never see leaked state
+        /// from the previous request. Tier-B Fix #1.
+        /// </summary>
+        public void Reset()
+        {
+            Type = default;
+            Theme = default;
+            Zone = null;
+            Anchor = null;
+            Path = null;
+            X = 0;
+            Y = 0;
+            DX = 0;
+            DY = 0;
+            Radius = 0;
+            MaxRadius = 0;
+            Trail = false;
+            BlocksTurnAdvance = false;
+            Duration = 0f;
+            StepDuration = 0f;
+            Delay = 0f;
+            Height = 0;
+            LingerDuration = 0f;
+            Glyph = '\0';
+            ColorString = null;
+            Lifetime = 0f;
+            MoveInterval = 0f;
+        }
     }
 
     /// <summary>
@@ -72,6 +104,55 @@ namespace CavesOfOoo.Core
     public static class AsciiFxBus
     {
         private static readonly Queue<AsciiFxRequest> PendingRequests = new Queue<AsciiFxRequest>();
+
+        /// <summary>
+        /// Object pool for <see cref="AsciiFxRequest"/>. Each emit path
+        /// rents from this pool instead of allocating a fresh request;
+        /// <see cref="AsciiFxRenderer"/> calls <see cref="Release"/> after
+        /// processing each drained request. Bounded at <see cref="MaxPoolSize"/>
+        /// so a one-time burst (zone load, mass FX) doesn't grow the pool
+        /// indefinitely.
+        ///
+        /// <para>Tier-B Fix #1 in PERF-COMBAT-INVESTIGATION.md. Replaces
+        /// per-emit class allocations (~3-6 per damage number, plus
+        /// projectile / aura / beam allocs) with steady-state zero
+        /// allocation under typical combat load.</para>
+        /// </summary>
+        private static readonly Stack<AsciiFxRequest> Pool = new Stack<AsciiFxRequest>(64);
+        private const int MaxPoolSize = 256;
+
+        /// <summary>
+        /// Rent a fully-reset <see cref="AsciiFxRequest"/> from the pool,
+        /// or allocate a fresh one if the pool is empty. Caller fills the
+        /// fields it cares about and Enqueues the result.
+        /// </summary>
+        private static AsciiFxRequest Rent()
+        {
+            if (Pool.Count > 0)
+            {
+                var req = Pool.Pop();
+                req.Reset();
+                return req;
+            }
+            return new AsciiFxRequest();
+        }
+
+        /// <summary>
+        /// Return a consumed <see cref="AsciiFxRequest"/> to the pool.
+        /// Bounded — drops requests on the floor if the pool is full so a
+        /// burst of FX doesn't permanently inflate memory. Called by
+        /// <c>AsciiFxRenderer.ConsumeRequests</c> after the request has
+        /// been turned into a renderer-side instance.
+        /// </summary>
+        public static void Release(AsciiFxRequest request)
+        {
+            if (request == null) return;
+            if (Pool.Count >= MaxPoolSize) return;
+            // Don't reset here — Rent does it on retrieval. Skipping the
+            // reset on Release lets us drop the request on the floor with
+            // a single ref-decrement when the pool is full.
+            Pool.Push(request);
+        }
 
         public static void EmitProjectile(
             Zone zone,
@@ -88,16 +169,15 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < path.Count; i++)
                 copy.Add(path[i]);
 
-            PendingRequests.Enqueue(new AsciiFxRequest
-            {
-                Type = AsciiFxRequestType.Projectile,
-                Zone = zone,
-                Theme = theme,
-                Path = copy,
-                Trail = trail,
-                BlocksTurnAdvance = blocksTurnAdvance,
-                Delay = delay < 0f ? 0f : delay
-            });
+            var req = Rent();
+            req.Type = AsciiFxRequestType.Projectile;
+            req.Zone = zone;
+            req.Theme = theme;
+            req.Path = copy;
+            req.Trail = trail;
+            req.BlocksTurnAdvance = blocksTurnAdvance;
+            req.Delay = delay < 0f ? 0f : delay;
+            PendingRequests.Enqueue(req);
         }
 
         public static void EmitBurst(
@@ -111,16 +191,15 @@ namespace CavesOfOoo.Core
             if (zone == null || !zone.InBounds(x, y))
                 return;
 
-            PendingRequests.Enqueue(new AsciiFxRequest
-            {
-                Type = AsciiFxRequestType.Burst,
-                Zone = zone,
-                Theme = theme,
-                X = x,
-                Y = y,
-                BlocksTurnAdvance = blocksTurnAdvance,
-                Delay = delay < 0f ? 0f : delay
-            });
+            var req = Rent();
+            req.Type = AsciiFxRequestType.Burst;
+            req.Zone = zone;
+            req.Theme = theme;
+            req.X = x;
+            req.Y = y;
+            req.BlocksTurnAdvance = blocksTurnAdvance;
+            req.Delay = delay < 0f ? 0f : delay;
+            PendingRequests.Enqueue(req);
         }
 
         public static void EmitBeam(
@@ -140,18 +219,17 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < path.Count; i++)
                 copy.Add(path[i]);
 
-            PendingRequests.Enqueue(new AsciiFxRequest
-            {
-                Type = AsciiFxRequestType.Beam,
-                Zone = zone,
-                Theme = theme,
-                Path = copy,
-                DX = dx,
-                DY = dy,
-                Duration = duration,
-                BlocksTurnAdvance = blocksTurnAdvance,
-                Delay = delay < 0f ? 0f : delay
-            });
+            var req = Rent();
+            req.Type = AsciiFxRequestType.Beam;
+            req.Zone = zone;
+            req.Theme = theme;
+            req.Path = copy;
+            req.DX = dx;
+            req.DY = dy;
+            req.Duration = duration;
+            req.BlocksTurnAdvance = blocksTurnAdvance;
+            req.Delay = delay < 0f ? 0f : delay;
+            PendingRequests.Enqueue(req);
         }
 
         public static void EmitChargeOrbit(
@@ -166,17 +244,16 @@ namespace CavesOfOoo.Core
             if (zone == null || anchor == null || radius <= 0 || duration <= 0f)
                 return;
 
-            PendingRequests.Enqueue(new AsciiFxRequest
-            {
-                Type = AsciiFxRequestType.ChargeOrbit,
-                Zone = zone,
-                Anchor = anchor,
-                Theme = theme,
-                Radius = radius,
-                Duration = duration,
-                BlocksTurnAdvance = blocksTurnAdvance,
-                Delay = delay < 0f ? 0f : delay
-            });
+            var req = Rent();
+            req.Type = AsciiFxRequestType.ChargeOrbit;
+            req.Zone = zone;
+            req.Anchor = anchor;
+            req.Theme = theme;
+            req.Radius = radius;
+            req.Duration = duration;
+            req.BlocksTurnAdvance = blocksTurnAdvance;
+            req.Delay = delay < 0f ? 0f : delay;
+            PendingRequests.Enqueue(req);
         }
 
         public static void EmitRingWave(
@@ -192,18 +269,17 @@ namespace CavesOfOoo.Core
             if (zone == null || !zone.InBounds(x, y) || maxRadius <= 0 || stepDuration <= 0f)
                 return;
 
-            PendingRequests.Enqueue(new AsciiFxRequest
-            {
-                Type = AsciiFxRequestType.RingWave,
-                Zone = zone,
-                Theme = theme,
-                X = x,
-                Y = y,
-                MaxRadius = maxRadius,
-                StepDuration = stepDuration,
-                BlocksTurnAdvance = blocksTurnAdvance,
-                Delay = delay < 0f ? 0f : delay
-            });
+            var req = Rent();
+            req.Type = AsciiFxRequestType.RingWave;
+            req.Zone = zone;
+            req.Theme = theme;
+            req.X = x;
+            req.Y = y;
+            req.MaxRadius = maxRadius;
+            req.StepDuration = stepDuration;
+            req.BlocksTurnAdvance = blocksTurnAdvance;
+            req.Delay = delay < 0f ? 0f : delay;
+            PendingRequests.Enqueue(req);
         }
 
         public static void EmitChainArc(
@@ -221,16 +297,15 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < hops.Count; i++)
                 copy.Add(hops[i]);
 
-            PendingRequests.Enqueue(new AsciiFxRequest
-            {
-                Type = AsciiFxRequestType.ChainArc,
-                Zone = zone,
-                Theme = theme,
-                Path = copy,
-                StepDuration = hopDuration,
-                BlocksTurnAdvance = blocksTurnAdvance,
-                Delay = delay < 0f ? 0f : delay
-            });
+            var req = Rent();
+            req.Type = AsciiFxRequestType.ChainArc;
+            req.Zone = zone;
+            req.Theme = theme;
+            req.Path = copy;
+            req.StepDuration = hopDuration;
+            req.BlocksTurnAdvance = blocksTurnAdvance;
+            req.Delay = delay < 0f ? 0f : delay;
+            PendingRequests.Enqueue(req);
         }
 
         public static void EmitColumnRise(
@@ -247,19 +322,18 @@ namespace CavesOfOoo.Core
             if (zone == null || !zone.InBounds(x, y) || height <= 0 || stepDuration <= 0f)
                 return;
 
-            PendingRequests.Enqueue(new AsciiFxRequest
-            {
-                Type = AsciiFxRequestType.ColumnRise,
-                Zone = zone,
-                Theme = theme,
-                X = x,
-                Y = y,
-                Height = height,
-                StepDuration = stepDuration,
-                LingerDuration = lingerDuration,
-                BlocksTurnAdvance = blocksTurnAdvance,
-                Delay = delay < 0f ? 0f : delay
-            });
+            var req = Rent();
+            req.Type = AsciiFxRequestType.ColumnRise;
+            req.Zone = zone;
+            req.Theme = theme;
+            req.X = x;
+            req.Y = y;
+            req.Height = height;
+            req.StepDuration = stepDuration;
+            req.LingerDuration = lingerDuration;
+            req.BlocksTurnAdvance = blocksTurnAdvance;
+            req.Delay = delay < 0f ? 0f : delay;
+            PendingRequests.Enqueue(req);
         }
 
         public static void EmitParticle(
@@ -276,19 +350,18 @@ namespace CavesOfOoo.Core
             if (zone == null || !zone.InBounds(x, y) || lifetime <= 0f)
                 return;
 
-            PendingRequests.Enqueue(new AsciiFxRequest
-            {
-                Type = AsciiFxRequestType.Particle,
-                Zone = zone,
-                X = x,
-                Y = y,
-                Glyph = glyph,
-                ColorString = colorString,
-                Lifetime = lifetime,
-                DY = dy,
-                MoveInterval = moveInterval,
-                Delay = delay < 0f ? 0f : delay
-            });
+            var req = Rent();
+            req.Type = AsciiFxRequestType.Particle;
+            req.Zone = zone;
+            req.X = x;
+            req.Y = y;
+            req.Glyph = glyph;
+            req.ColorString = colorString;
+            req.Lifetime = lifetime;
+            req.DY = dy;
+            req.MoveInterval = moveInterval;
+            req.Delay = delay < 0f ? 0f : delay;
+            PendingRequests.Enqueue(req);
         }
 
         public static void EmitFloatingNumber(
@@ -320,13 +393,12 @@ namespace CavesOfOoo.Core
             if (zone == null || anchor == null)
                 return;
 
-            PendingRequests.Enqueue(new AsciiFxRequest
-            {
-                Type = AsciiFxRequestType.AuraStart,
-                Zone = zone,
-                Anchor = anchor,
-                Theme = theme
-            });
+            var req = Rent();
+            req.Type = AsciiFxRequestType.AuraStart;
+            req.Zone = zone;
+            req.Anchor = anchor;
+            req.Theme = theme;
+            PendingRequests.Enqueue(req);
         }
 
         public static void StopAura(Entity anchor, AsciiFxTheme theme)
@@ -334,12 +406,11 @@ namespace CavesOfOoo.Core
             if (anchor == null)
                 return;
 
-            PendingRequests.Enqueue(new AsciiFxRequest
-            {
-                Type = AsciiFxRequestType.AuraStop,
-                Anchor = anchor,
-                Theme = theme
-            });
+            var req = Rent();
+            req.Type = AsciiFxRequestType.AuraStop;
+            req.Anchor = anchor;
+            req.Theme = theme;
+            PendingRequests.Enqueue(req);
         }
 
         public static List<AsciiFxRequest> Drain()
@@ -352,7 +423,10 @@ namespace CavesOfOoo.Core
 
         public static void Clear()
         {
-            PendingRequests.Clear();
+            // Recycle dropped requests back into the pool so a Clear() that
+            // happens mid-combat doesn't permanently shrink the pool.
+            while (PendingRequests.Count > 0)
+                Release(PendingRequests.Dequeue());
         }
     }
 }
