@@ -752,7 +752,12 @@ namespace CavesOfOoo.Rendering
             TurnManager.EndTurn(PlayerEntity, CurrentZone);
             TurnManager.ProcessUntilPlayerTurn();
             MaterialSimSystem.TickMaterialEntities(CurrentZone);
-            RequestZoneRedraw("Turn.Advance");
+            // No `RequestZoneRedraw("Turn.Advance")` — the per-cell dirty
+            // hooks (MovementSystem, CombatSystem) flag exactly the cells
+            // that changed during the turn cycle. Player movement upgrades
+            // to full-zone dirty inside DirtyForMove, so FOV-changing turns
+            // still trigger RenderZone. Avoiding the unconditional full
+            // redraw is the bulk of Tier-A Fix #2's perf win.
         }
 
         private void TryUseStairs(bool goingDown)

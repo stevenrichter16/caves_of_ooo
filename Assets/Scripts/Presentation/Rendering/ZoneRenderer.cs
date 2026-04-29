@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CavesOfOoo.Core;
 using CavesOfOoo.Diagnostics;
@@ -112,7 +113,29 @@ namespace CavesOfOoo.Rendering
         /// thought container so both surfaces share the same space.
         /// </summary>
         public bool ShowThoughtLog { get; set; }
-        private bool _dirty = true;
+
+        /// <summary>
+        /// When true, the next frame triggers a full <see cref="RenderZone"/>
+        /// (clears tilemaps + recomputes FOV/lightmap + iterates all 80×25
+        /// cells). Used for FOV-changing events (player moved, zone loaded,
+        /// pause→unpaused) where per-cell tracking can't catch downstream
+        /// visibility changes.
+        /// </summary>
+        private bool _fullDirty = true;
+
+        /// <summary>
+        /// Per-cell dirty set for incremental rendering. Encoded as
+        /// <c>y * Zone.Width + x</c> for cheap HashSet membership without
+        /// allocating per-cell tuples or Vec2Int boxing. Pre-allocated once
+        /// and reused — <see cref="HashSet{T}.Clear"/> after each flush is
+        /// O(N) on the bucket count (which stays small in steady state).
+        ///
+        /// <para>Drained at <see cref="LateUpdate"/> in two paths:
+        /// (a) if <see cref="_fullDirty"/> wins, the set is just cleared
+        /// without iterating; (b) otherwise the cells are individually
+        /// rendered via <see cref="RenderDirtyCells"/>.</para>
+        /// </summary>
+        private readonly HashSet<int> _dirtyCells = new HashSet<int>();
         private int _lastFlashStamp;
         private float _flashUntil;
         private const float FlashDuration = 0.3f;
@@ -342,6 +365,13 @@ namespace CavesOfOoo.Rendering
             _popupFgTilemap = popupFgObj.AddComponent<Tilemap>();
             var popupFgRenderer = popupFgObj.AddComponent<TilemapRenderer>();
             popupFgRenderer.sortingOrder = 7;
+
+            // Wire up gameplay-side dirty hooks. Gameplay code (MovementSystem,
+            // CombatSystem) calls into ZoneRenderHooks without directly
+            // referencing this renderer, mirroring the existing
+            // SettlementRuntime.ZoneDirtyCallback pattern.
+            ZoneRenderHooks.CellDirtyCallback = MarkCellDirty;
+            ZoneRenderHooks.FullDirtyCallback = MarkDirty;
         }
 
         private void OnDestroy()
@@ -349,6 +379,14 @@ namespace CavesOfOoo.Rendering
             DestroyOwnedMaterial(ref _sidebarUiMaterial);
             DestroyOwnedMaterial(ref _hotbarUiMaterial);
             DestroyOwnedMaterial(ref _popupOverlayUiMaterial);
+
+            // Clear hook delegates pointing at this destroyed instance so a
+            // late callback (e.g. from a teardown order quirk) doesn't fire
+            // on a disposed component.
+            if (ZoneRenderHooks.CellDirtyCallback == (Action<int, int, string>)MarkCellDirty)
+                ZoneRenderHooks.CellDirtyCallback = null;
+            if (ZoneRenderHooks.FullDirtyCallback == (Action<string>)MarkDirty)
+                ZoneRenderHooks.FullDirtyCallback = null;
         }
 
         /// <summary>
@@ -366,7 +404,8 @@ namespace CavesOfOoo.Rendering
             _currentLookSnapshot = null;
             _worldCursorState = null;
             _cursorPlayer = null;
-            _dirty = true;
+            _fullDirty = true;
+            _dirtyCells.Clear();
             RefreshWaterCache();
 
             // Clear the fine-water tilemap so stale sub-tiles from the
@@ -407,10 +446,52 @@ namespace CavesOfOoo.Rendering
             using (PerformanceMarkers.Zone.MarkDirty.Auto())
             {
                 PerformanceDiagnostics.RecordMarkDirty(source);
-                _dirty = true;
+                _fullDirty = true;
                 _sidebarRenderer?.Invalidate();
             }
         }
+
+        /// <summary>
+        /// Mark a single cell as needing re-render on the next
+        /// <see cref="LateUpdate"/>. No-op if <see cref="_fullDirty"/> is
+        /// already set (the full redraw will cover this cell anyway).
+        /// Bounds-checks <c>(x, y)</c> against the current zone — out-of-bounds
+        /// coords are silently dropped rather than encoded into a hash bucket
+        /// that no cell would ever match.
+        ///
+        /// <para>Used by gameplay-side hooks
+        /// (<see cref="ZoneRenderHooks.MarkCellDirty(int,int,string)"/>) to
+        /// flag cells that changed during a turn without forcing a full
+        /// 2000-cell redraw.</para>
+        /// </summary>
+        public void MarkCellDirty(int x, int y, string source)
+        {
+            using (PerformanceMarkers.Zone.MarkDirty.Auto())
+            {
+                PerformanceDiagnostics.RecordMarkDirty(source);
+                _sidebarRenderer?.Invalidate();
+                if (_fullDirty) return; // full redraw will cover it
+                if (CurrentZone == null) return;
+                if (x < 0 || y < 0 || x >= Zone.Width || y >= Zone.Height) return;
+                _dirtyCells.Add(EncodeCellKey(x, y));
+            }
+        }
+
+        /// <summary>
+        /// Convenience overload for callers that already have a Cell.
+        /// Null-safe.
+        /// </summary>
+        public void MarkCellDirty(Cell cell, string source)
+        {
+            if (cell == null) return;
+            MarkCellDirty(cell.X, cell.Y, source);
+        }
+
+        /// <summary>
+        /// Encode (x, y) into a single int for HashSet keys. Width-bounded
+        /// (Zone.Width = 80) so this safely fits in 32 bits.
+        /// </summary>
+        private static int EncodeCellKey(int x, int y) => y * Zone.Width + x;
 
         private void LateUpdate()
         {
@@ -420,7 +501,7 @@ namespace CavesOfOoo.Rendering
                 PerformanceDiagnostics.BeginFrame(
                     MessageLog.TickProvider != null ? MessageLog.TickProvider() : 0,
                     Paused,
-                    _dirty);
+                    _fullDirty || _dirtyCells.Count > 0);
 
                 if (_mainCamera == null)
                     _mainCamera = Camera.main;
@@ -488,13 +569,22 @@ namespace CavesOfOoo.Rendering
                     if (_campfireEmberRenderer != null)
                         _campfireEmberRenderer.gameObject.SetActive(true);
                     _wasPaused = false;
-                    _dirty = true; // Force full redraw to restore bg/fx layers
+                    _fullDirty = true; // Force full redraw to restore bg/fx layers
                 }
 
-                if (_dirty && CurrentZone != null)
+                if (CurrentZone != null)
                 {
-                    RenderZone();
-                    _dirty = false;
+                    if (_fullDirty)
+                    {
+                        RenderZone();
+                        _fullDirty = false;
+                        _dirtyCells.Clear();
+                    }
+                    else if (_dirtyCells.Count > 0)
+                    {
+                        RenderDirtyCells();
+                        _dirtyCells.Clear();
+                    }
                 }
 
                 using (PerformanceMarkers.Zone.UpdateAmbientAnimations.Auto())
@@ -557,6 +647,55 @@ namespace CavesOfOoo.Rendering
                 }
 
                 RefreshWaterCache();
+            }
+        }
+
+        /// <summary>
+        /// Incremental render: only the cells in <see cref="_dirtyCells"/>.
+        /// Skips <c>ClearAllTiles</c> entirely and does not re-paint the
+        /// other ~2000 cells — <see cref="RenderCellCore"/> already handles
+        /// "this cell is now empty" by writing the empty-glyph tile, so
+        /// stale tiles don't accumulate.
+        ///
+        /// <para><b>FOV / lightmap.</b> We still recompute these because a
+        /// non-player entity that emits light or blocks vision may have
+        /// moved, and the dirty cells alone don't tell us which derived
+        /// cells need updating. The cost (~one zone scan each) is small
+        /// compared to 2000 SetTiles. Player movement uses
+        /// <see cref="_fullDirty"/> instead, which goes through
+        /// <see cref="RenderZone"/>.</para>
+        ///
+        /// <para><b>Caller invariant:</b> <see cref="_dirtyCells"/> is
+        /// cleared by the LateUpdate caller after this returns.</para>
+        /// </summary>
+        private void RenderDirtyCells()
+        {
+            using (PerformanceMarkers.Zone.RenderZone.Auto())
+            {
+                if (CurrentZone == null || _tilemap == null) return;
+
+                if (PlayerEntity != null)
+                {
+                    var playerCell = CurrentZone.GetEntityCell(PlayerEntity);
+                    if (playerCell != null)
+                    {
+                        using (PerformanceMarkers.Zone.ComputeFov.Auto())
+                            FieldOfView.Compute(CurrentZone, playerCell.X, playerCell.Y, FovRadius);
+                    }
+                }
+
+                if (_lightMap == null)
+                    _lightMap = new LightMap();
+                using (PerformanceMarkers.Zone.ComputeLightMap.Auto())
+                    _lightMap.Compute(CurrentZone);
+
+                PerformanceDiagnostics.RecordZoneRedraw(_dirtyCells.Count);
+                foreach (int key in _dirtyCells)
+                {
+                    int x = key % Zone.Width;
+                    int y = key / Zone.Width;
+                    RenderCell(x, y);
+                }
             }
         }
 
@@ -855,9 +994,9 @@ namespace CavesOfOoo.Rendering
                 return;
 
             if (Application.isPlaying)
-                Object.Destroy(material);
+                UnityEngine.Object.Destroy(material);
             else
-                Object.DestroyImmediate(material);
+                UnityEngine.Object.DestroyImmediate(material);
 
             material = null;
         }
