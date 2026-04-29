@@ -36,6 +36,42 @@ namespace CavesOfOoo.Core
                 target.ApplyEffect(new StunnedEffect(duration: 1), null, null);
         }
 
+        /// <summary>
+        /// Per-turn lightning damage tick. Damage =
+        /// <c>1 + floor(Charge × 1.5)</c>, attributed as <c>Lightning</c>
+        /// so it routes through <c>ElectricResistance</c> in
+        /// <see cref="CombatSystem.ApplyResistances"/>. Mirrors
+        /// <see cref="BurningEffect.OnTurnStart"/>'s damage tick to give
+        /// <see cref="ElectrifiedEffect"/> parity with Fire/Acid as a
+        /// damage-over-time effect — pre-fix it was a stun-only control
+        /// effect, asymmetric with the rest of the elemental row.
+        ///
+        /// <para>Skipped if charge is 0 (degenerate input — e.g. a
+        /// fully-decayed effect that hasn't been removed yet).</para>
+        /// </summary>
+        public override void OnTurnStart(Entity target, GameEvent context)
+        {
+            if (Charge <= 0f) return;
+            if (target == null) return;
+            if (target.GetStatValue("Hitpoints", 0) <= 0) return;
+
+            int amount = 1 + (int)System.Math.Floor(Charge * 1.5f);
+            if (amount <= 0) return;
+
+            var damage = new Damage(amount);
+            damage.AddAttribute("Lightning");
+
+            // Source is null — the original electrifier (player who threw a
+            // tonic, ThunderHammer wielder) isn't threaded through to the
+            // Effect today. Killing-blow attribution falls back to "killed by
+            // the electrified status" rather than the player. Tracked as a
+            // 🔵 follow-up; mirrors BurningEffect's IgnitionSource pattern
+            // when we wire StatusTonicPart / OnHitEffectFactory to thread
+            // the original source.
+            Zone zone = context?.GetParameter<Zone>("Zone");
+            CombatSystem.ApplyDamage(target, damage, source: null, zone);
+        }
+
         public override void OnRemove(Entity target)
         {
             MessageLog.Add(target.GetDisplayName() + " is no longer electrified.");
