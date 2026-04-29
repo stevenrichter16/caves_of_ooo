@@ -76,8 +76,8 @@ namespace CavesOfOoo.Core
             // Hostile-wake check: any hostile in sight radius.
             if (WakeOnHostileInSight && ParentBrain != null)
             {
-                var hostile = AIHelpers.FindNearestHostile(
-                    ParentEntity, CurrentZone, ParentBrain.SightRadius);
+                var hostile = AIHelpers.FindNearestHostileCached(
+                    ParentEntity, CurrentZone, ParentBrain.SightRadius, ParentBrain);
                 if (hostile != null)
                 {
                     ParentBrain.Target = hostile;

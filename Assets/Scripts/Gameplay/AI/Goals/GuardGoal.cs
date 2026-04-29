@@ -25,7 +25,7 @@ namespace CavesOfOoo.Core
         public override void TakeAction()
         {
             // Scan for hostiles
-            Entity hostile = AIHelpers.FindNearestHostile(ParentEntity, CurrentZone, ParentBrain.SightRadius);
+            Entity hostile = AIHelpers.FindNearestHostileCached(ParentEntity, CurrentZone, ParentBrain.SightRadius, ParentBrain);
             if (hostile != null)
             {
                 ParentBrain.Target = hostile;
