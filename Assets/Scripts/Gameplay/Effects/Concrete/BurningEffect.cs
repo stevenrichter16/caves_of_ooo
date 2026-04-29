@@ -88,11 +88,17 @@ namespace CavesOfOoo.Core
                 }
             }
 
-            // 2. Deal damage based on intensity tier
+            // 2. Deal damage based on intensity tier. Use the typed-Damage
+            // overload with the "Fire" attribute so HeatResistance routes
+            // correctly (the int overload strips attributes — pre-fix bug
+            // where fire-immune creatures still burned). Mirrors the on-hit
+            // weapon path which already routes through ApplyResistances.
             int damage = RollDamage();
             if (damage > 0)
             {
-                CombatSystem.ApplyDamage(target, damage, IgnitionSource, zone);
+                var fireDmg = new Damage(damage);
+                fireDmg.AddAttribute("Fire");
+                CombatSystem.ApplyDamage(target, fireDmg, IgnitionSource, zone);
                 MessageLog.Add(target.GetDisplayName() + " takes " + damage + " fire damage.");
             }
 

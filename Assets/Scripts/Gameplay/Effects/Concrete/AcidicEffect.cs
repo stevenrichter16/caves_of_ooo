@@ -35,12 +35,19 @@ namespace CavesOfOoo.Core
             if (!isOrganic)
                 return;
 
-            // Flat damage scaled by corrosion severity.
+            // Flat damage scaled by corrosion severity. Use the typed-Damage
+            // overload with the "Acid" attribute so AcidResistance routes
+            // correctly (the int overload strips attributes — pre-fix bug
+            // where acid-immune creatures still corroded, and acid-vulnerable
+            // ones like Scorpion didn't take amplified damage). Mirrors the
+            // on-hit weapon path.
             int damage = 1 + (int)System.Math.Floor(Corrosion * 4f);
             if (damage > 0 && target.GetStatValue("Hitpoints", 0) > 0)
             {
                 Zone zone = context?.GetParameter<Zone>("Zone");
-                CombatSystem.ApplyDamage(target, damage, null, zone);
+                var acidDmg = new Damage(damage);
+                acidDmg.AddAttribute("Acid");
+                CombatSystem.ApplyDamage(target, acidDmg, null, zone);
                 MessageLog.Add(target.GetDisplayName() + " takes " + damage + " acid damage.");
             }
 
