@@ -381,6 +381,112 @@ namespace CavesOfOoo.Tests
         // =========================================================
 
         // =========================================================
+        // Damage ticks fire through stun (fix/damage-ticks-through-stun)
+        //
+        // BearTrap pairs Stun(1) + Bleeding. Pre-fix, the player's turn
+        // immediately after the trap step was blocked by the stun, and
+        // the OnTurnStart loop never fired — so Bleeding never ticked
+        // its damage during the stunned turn. From the player's view,
+        // bleeding "did nothing" and felt like it never applied.
+        //
+        // Post-fix, OnTurnStart fires before the AllowAction block check,
+        // so Bleed/Burn/Poison ticks deal damage even while stunned.
+        // =========================================================
+
+        [Test]
+        public void BleedTicksDamage_EvenWhenStunBlocksTurn()
+        {
+            // Direct regression test for the user-reported bug. Apply
+            // Stun(1) + Bleeding, then drive a TakeTurn. Stun must block
+            // the action AND Bleeding must still tick damage in the same
+            // BeginTakeAction call.
+            var player = CreatePlayer(hp: 100);
+            player.ApplyEffect(new StunnedEffect(duration: 1));
+            // High SaveTarget so the OnTurnEnd save can't end the bleed
+            // mid-test — we want to isolate the OnTurnStart damage tick.
+            player.ApplyEffect(new BleedingEffect(saveTarget: 100, damageDice: "1d2", rng: new Random(0)));
+
+            int hpBefore = player.GetStatValue("HP");
+            var takeTurn = GameEvent.New("TakeTurn");
+            bool result = player.FireEvent(takeTurn);
+
+            Assert.IsFalse(result,
+                "Stun must still block the action (TakeTurn returns false).");
+            Assert.Less(player.GetStatValue("HP"), hpBefore,
+                "Bleeding MUST tick damage even when stun blocks the action. " +
+                "If this fails, BearTrap's Bleeding will appear to never tick " +
+                "while the player is stunned and players will think the trap " +
+                "doesn't work.");
+        }
+
+        [Test]
+        public void BurnTicksDamage_EvenWhenStunBlocksTurn()
+        {
+            // Symmetry check: Burning behaves the same as Bleeding —
+            // ticks damage even through stun.
+            var player = CreatePlayer(hp: 100);
+            // ThermalPart at FlameTemp so BurningEffect.OnApply doesn't
+            // need to backfill heat (separate fix).
+            var thermal = new ThermalPart { Temperature = 600f, FlameTemperature = 500f, AmbientDecayRate = 0f };
+            player.AddPart(thermal);
+            player.ApplyEffect(new StunnedEffect(duration: 1));
+            player.ApplyEffect(new BurningEffect(intensity: 1.5f, rng: new Random(0)));
+
+            int hpBefore = player.GetStatValue("HP");
+            var takeTurn = GameEvent.New("TakeTurn");
+            bool result = player.FireEvent(takeTurn);
+
+            Assert.IsFalse(result, "Stun must still block the action.");
+            Assert.Less(player.GetStatValue("HP"), hpBefore,
+                "Burning MUST tick damage even when stun blocks the action.");
+        }
+
+        [Test]
+        public void PoisonTicksDamage_EvenWhenStunBlocksTurn()
+        {
+            // Final symmetry check: Poison ticks through stun too.
+            var player = CreatePlayer(hp: 100);
+            player.ApplyEffect(new StunnedEffect(duration: 1));
+            player.ApplyEffect(new PoisonedEffect(5, "1d3", new Random(0)));
+
+            int hpBefore = player.GetStatValue("HP");
+            player.FireEvent(GameEvent.New("TakeTurn"));
+
+            Assert.Less(player.GetStatValue("HP"), hpBefore,
+                "Poison MUST tick damage even when stun blocks the action.");
+        }
+
+        [Test]
+        public void StunStillBlocksAction_WithDamageTickInSameTurn()
+        {
+            // Counter-check: even though damage ticks fire, the action
+            // itself MUST still be blocked. The "X is stunned and cannot
+            // act!" message must still appear.
+            MessageLog.Clear();
+            var player = CreatePlayer(hp: 100);
+            player.ApplyEffect(new StunnedEffect(duration: 1));
+            player.ApplyEffect(new BleedingEffect(saveTarget: 100, damageDice: "1d2", rng: new Random(0)));
+
+            var takeTurn = GameEvent.New("TakeTurn");
+            bool result = player.FireEvent(takeTurn);
+
+            Assert.IsFalse(result, "Action must be blocked.");
+            Assert.IsTrue(takeTurn.Handled, "Event must be marked Handled.");
+
+            bool foundCannotActMessage = false;
+            foreach (string msg in MessageLog.GetMessages())
+            {
+                if (msg.Contains("stunned and cannot act"))
+                {
+                    foundCannotActMessage = true;
+                    break;
+                }
+            }
+            Assert.IsTrue(foundCannotActMessage,
+                "The 'stunned and cannot act!' log message must still fire.");
+        }
+
+        // =========================================================
         // Burning + ThermalPart interaction
         //
         // Reported (after JustApplied fix #1+#2 shipped): Burning from
