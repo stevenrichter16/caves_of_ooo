@@ -56,6 +56,20 @@ namespace CavesOfOoo.Core
         public Entity CurrentActor { get; private set; }
 
         /// <summary>
+        /// Process-wide reference to the active <see cref="TurnManager"/> for
+        /// systems that need to query the current actor without an instance
+        /// hand-off (notably <see cref="StatusEffectsPart"/>'s mid-action
+        /// effect-application path).
+        ///
+        /// Set in the constructor, cleared by GameBootstrap on teardown so a
+        /// new game session doesn't read a stale reference. Tests can also
+        /// instantiate <c>new TurnManager()</c> freely — the most recent
+        /// instance wins, which mirrors production where exactly one
+        /// TurnManager exists per running game.
+        /// </summary>
+        public static TurnManager Active { get; private set; }
+
+        /// <summary>
         /// Total ticks elapsed.
         /// </summary>
         public int TickCount { get; private set; }
@@ -75,6 +89,18 @@ namespace CavesOfOoo.Core
         {
             public Entity Entity;
             public int Energy;
+        }
+
+        /// <summary>
+        /// Construct a new TurnManager and register it as the process-wide
+        /// <see cref="Active"/> instance. Mirroring Qud's "one game loop"
+        /// shape: only one TurnManager runs at a time, and effect
+        /// application paths can query the current actor through the static
+        /// without threading the instance through every call site.
+        /// </summary>
+        public TurnManager()
+        {
+            Active = this;
         }
 
         /// <summary>
