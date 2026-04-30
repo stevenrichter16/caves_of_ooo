@@ -380,6 +380,91 @@ namespace CavesOfOoo.Tests
         // Pre-fix regression pin
         // =========================================================
 
+        // =========================================================
+        // Burning + ThermalPart interaction
+        //
+        // Reported (after JustApplied fix #1+#2 shipped): Burning from
+        // FireTrap was being extinguished by ThermalPart.HandleEndTurn
+        // because the entity's Temperature was below FlameTemperature.
+        // The trap applied Burning without heating the entity, so
+        // ThermalPart's "if not hot, can't be burning" invariant
+        // immediately removed the effect.
+        // =========================================================
+
+        [Test]
+        public void BurningOnApply_RaisesEntityTemperature_AboveFlameTemperature()
+        {
+            // BurningEffect.OnApply must heat the entity above its
+            // FlameTemperature so ThermalPart's HandleEndTurn doesn't
+            // immediately extinguish it.
+            var player = CreatePlayer();
+            var thermal = new ThermalPart { Temperature = 25f, FlameTemperature = 500f, AmbientDecayRate = 0.05f };
+            player.AddPart(thermal);
+
+            player.ApplyEffect(new BurningEffect(intensity: 1.5f, rng: new Random(0)));
+
+            Assert.GreaterOrEqual(thermal.Temperature, thermal.FlameTemperature,
+                "BurningEffect.OnApply must heat the entity above FlameTemperature. " +
+                "If this fails, ThermalPart will extinguish the effect on the next EndTurn.");
+        }
+
+        [Test]
+        public void BurningFromFireTrap_SurvivesThermalPartEndTurnExtinguishCheck()
+        {
+            // Full integration: apply Burning mid-action, run player's
+            // EndTurn (which fires both StatusEffectsPart.HandleEndTurn
+            // AND ThermalPart.HandleEndTurn). Burning must survive both
+            // checks.
+            var player = CreatePlayer();
+            var thermal = new ThermalPart { Temperature = 25f, FlameTemperature = 500f, AmbientDecayRate = 0.05f };
+            player.AddPart(thermal);
+
+            var tm = BeginPlayerTurn(player);
+
+            player.ApplyEffect(new BurningEffect(intensity: 1.5f, rng: new Random(0)));
+            Assert.IsTrue(player.HasEffect<BurningEffect>(),
+                "Sanity: Burning is applied.");
+
+            tm.EndTurn(player);   // StatusEffectsPart.HandleEndTurn + ThermalPart.HandleEndTurn
+
+            Assert.IsTrue(player.HasEffect<BurningEffect>(),
+                "Burning must survive the apply turn's EndTurn — both the " +
+                "StatusEffectsPart JustApplied skip AND the ThermalPart " +
+                "extinguish-if-cold check. If this fails, the trap-step " +
+                "Burning bug has regressed.");
+        }
+
+        [Test]
+        public void BurningOnApply_DoesNotLowerExistingHotTemperature()
+        {
+            // Counter-check: if the entity is already hotter than
+            // FlameTemp + buffer (e.g., from a prior burn or external
+            // heat source), don't lower its Temperature.
+            var player = CreatePlayer();
+            var thermal = new ThermalPart { Temperature = 1000f, FlameTemperature = 500f };
+            player.AddPart(thermal);
+
+            player.ApplyEffect(new BurningEffect(intensity: 1.5f, rng: new Random(0)));
+
+            Assert.AreEqual(1000f, thermal.Temperature,
+                "If entity is already hotter than the burn threshold, " +
+                "Burning.OnApply must not cool it down.");
+        }
+
+        [Test]
+        public void BurningOnApply_NoThermalPart_DoesNotCrash()
+        {
+            // Counter-check: entities without ThermalPart (rare; some
+            // test setups, simple objects) must still apply Burning
+            // without crashing.
+            var player = CreatePlayer();
+            // Deliberately no ThermalPart added.
+
+            Assert.DoesNotThrow(
+                () => player.ApplyEffect(new BurningEffect(intensity: 1.5f, rng: new Random(0))));
+            Assert.IsTrue(player.HasEffect<BurningEffect>());
+        }
+
         [Test]
         public void StunDuration1_AppliedMidAction_DoesNotEvaporateSameTurn()
         {
