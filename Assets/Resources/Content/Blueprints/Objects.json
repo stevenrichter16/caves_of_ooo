@@ -2096,6 +2096,44 @@
       ]
     },
     {
+      "Name": "EmberSpear",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "ember spear" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "6" }] },
+        { "Name": "MeleeWeapon", "Params": [
+          { "Key": "BaseDamage", "Value": "1d6+1" },
+          { "Key": "PenBonus", "Value": "2" },
+          { "Key": "Attributes", "Value": "Piercing Fire" },
+          { "Key": "OnHitEffectsRaw", "Value": "Burning,30,,5,1.0" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "35" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor,Fire" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
       "Name": "AcidicDagger",
       "Inherits": "MeleeWeapon",
       "Parts": [
@@ -3206,6 +3244,44 @@
       "Tags": [
         { "Key": "Tier", "Value": "2" },
         { "Key": "BloodColor", "Value": "&C" }
+      ]
+    },
+    {
+      "Name": "CharredHusk",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "charred husk" },
+          { "Key": "RenderString", "Value": "H" },
+          { "Key": "ColorString", "Value": "&r" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "CharredFlesh" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "MaterialTagsRaw", "Value": "Charred,Undead,Brittle" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "Temperature", "Value": "120" },
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "FreezeTemperature", "Value": "-50" },
+          { "Key": "BrittleTemperature", "Value": "-100" },
+          { "Key": "HeatCapacity", "Value": "2.0" },
+          { "Key": "AmbientDecayRate", "Value": "0.0" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 24, "Min": 0, "Max": 24 },
+        { "Name": "Strength", "Value": 16 },
+        { "Name": "Agility", "Value": 8 },
+        { "Name": "Speed", "Value": 70 },
+        { "Name": "XPValue", "Value": 35 },
+        { "Name": "HeatResistance", "Value": 100, "Min": -100, "Max": 200 },
+        { "Name": "ColdResistance", "Value": -50, "Min": -100, "Max": 200 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "BloodColor", "Value": "&K" }
       ]
     },
 

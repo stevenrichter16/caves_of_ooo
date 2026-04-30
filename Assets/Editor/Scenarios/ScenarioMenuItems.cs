@@ -112,6 +112,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_CryoLanceShowcase()
             => ScenarioRunner.Launch<CryoLanceShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/EmberSpear Showcase (Heat-axis mirror)", priority = 114)]
+        private static void Launch_EmberSpearShowcase()
+            => ScenarioRunner.Launch<EmberSpearShowcase>();
+
         // =========================================================
         // AI Behavior
         // =========================================================

@@ -226,5 +226,106 @@ namespace CavesOfOoo.Tests
                 "IceWight's Cold/Heat resistances must not reduce or amplify Acid " +
                 "damage — different element.");
         }
+
+        // ====================================================================
+        // CharredHusk — second creature with FULL elemental immunity
+        // (HR=100), and second with negative resistance (CR=-50, Cold
+        // vulnerability). Heat-axis mirror of IceWight.
+        // ====================================================================
+
+        [Test]
+        public void CharredHusk_BlueprintExists_AndIsCreature()
+        {
+            var husk = _harness.Factory.CreateEntity("CharredHusk");
+            Assert.IsNotNull(husk,
+                "CharredHusk blueprint must exist in Objects.json.");
+            Assert.IsTrue(husk.HasTag("Creature"),
+                "CharredHusk must inherit Creature tag (Inherits: Creature).");
+        }
+
+        [Test]
+        public void CharredHusk_HasHeatResistance100()
+        {
+            // The second 100%-immune creature (IceWight is the first, on Cold).
+            // Mirrors IceWight's CR=100 on the Heat axis.
+            var husk = _harness.Factory.CreateEntity("CharredHusk");
+            int resist = husk.GetStatValue("HeatResistance", -999);
+            Assert.AreEqual(100, resist,
+                "CharredHusk should declare HeatResistance: 100 (full Fire immunity " +
+                "— a creature already burned to charcoal cannot be further harmed " +
+                "by fire).");
+        }
+
+        [Test]
+        public void CharredHusk_HasColdResistance_NegativeFifty()
+        {
+            // Mirror of IceWight's HR=-50 on the Cold axis. Charred flesh
+            // is brittle; cold makes it shatter.
+            var husk = _harness.Factory.CreateEntity("CharredHusk");
+            int resist = husk.GetStatValue("ColdResistance", -999);
+            Assert.AreEqual(-50, resist,
+                "CharredHusk should declare ColdResistance: -50 (Cold vulnerability " +
+                "— charred flesh is brittle and shatters under cold). Mirrors " +
+                "IceWight's HR=-50 on the inverse axis.");
+        }
+
+        // ====================================================================
+        // Behavioral: Fire damage is fully negated by CharredHusk's HR=100
+        // ====================================================================
+
+        [Test]
+        public void CharredHusk_FireDamage_FullyNegated()
+        {
+            var husk = _harness.Factory.CreateEntity("CharredHusk");
+            int hpBefore = husk.GetStat("Hitpoints").BaseValue;
+
+            var damage = new Damage(30);
+            damage.AddAttribute("Fire");
+            CombatSystem.ApplyDamage(husk, damage, source: null, zone: null);
+
+            int hpAfter = husk.GetStat("Hitpoints").BaseValue;
+            Assert.AreEqual(hpBefore, hpAfter,
+                "30 Fire damage * (100 - 100)/100 = 0 actual damage. " +
+                "HeatResistance=100 must fully negate Fire-attributed damage.");
+        }
+
+        // ====================================================================
+        // Behavioral: Cold damage is amplified 1.5× by CharredHusk's CR=-50
+        // ====================================================================
+
+        [Test]
+        public void CharredHusk_ColdDamage_AmplifiedByNegativeResistance()
+        {
+            var husk = _harness.Factory.CreateEntity("CharredHusk");
+            int hpBefore = husk.GetStat("Hitpoints").BaseValue;
+
+            var damage = new Damage(10);
+            damage.AddAttribute("Cold");
+            CombatSystem.ApplyDamage(husk, damage, source: null, zone: null);
+
+            int hpAfter = husk.GetStat("Hitpoints").BaseValue;
+            // 10 Cold * (100 - (-50))/100 = 10 * 1.5 = 15
+            Assert.AreEqual(hpBefore - 15, hpAfter,
+                "10 Cold damage * (100 - CR(-50))/100 = 15 actual damage. " +
+                "Negative ColdResistance must amplify Cold-attributed damage.");
+        }
+
+        [Test]
+        public void CharredHusk_AcidDamage_FullDamage_NoMatchingResist()
+        {
+            // Counter-check: CharredHusk's Heat/Cold resistances should NOT
+            // affect Acid damage — different element.
+            var husk = _harness.Factory.CreateEntity("CharredHusk");
+            int hpBefore = husk.GetStat("Hitpoints").BaseValue;
+
+            var damage = new Damage(10);
+            damage.AddAttribute("Acid");
+            CombatSystem.ApplyDamage(husk, damage, source: null, zone: null);
+
+            int hpAfter = husk.GetStat("Hitpoints").BaseValue;
+            Assert.AreEqual(hpBefore - 10, hpAfter,
+                "CharredHusk's Heat/Cold resistances must not reduce or amplify " +
+                "Acid damage — different element.");
+        }
     }
 }
