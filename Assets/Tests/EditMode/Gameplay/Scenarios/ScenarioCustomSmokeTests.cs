@@ -221,5 +221,8 @@ namespace CavesOfOoo.Tests.Scenarios
 
         [Test] public void CryoLanceShowcase_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new CryoLanceShowcase().Apply(FreshContext()));
+
+        [Test] public void EmberSpearShowcase_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new EmberSpearShowcase().Apply(FreshContext()));
     }
 }

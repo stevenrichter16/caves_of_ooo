@@ -283,6 +283,27 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
+        // EmberSpear — Heat-axis mirror of CryoLance
+        // (Tier-1 Quick Win; Piercing+Fire spear, no sub-class — matches
+        // the plain Spear blueprint pattern; CryoLance had LongBlades because
+        // a lance is a longblade-piercer hybrid, but a spear is just a spear)
+        // ====================================================================
+
+        [Test]
+        public void EmberSpear_HasPiercingFireAttribute()
+        {
+            var spear = _harness.Factory.CreateEntity("EmberSpear");
+            Assert.IsNotNull(spear, "EmberSpear blueprint must exist");
+            var weapon = spear.GetPart<MeleeWeaponPart>();
+            Assert.IsNotNull(weapon, "EmberSpear must have a MeleeWeaponPart");
+            Assert.AreEqual("Piercing Fire", weapon.Attributes,
+                "EmberSpear.Attributes should declare 'Piercing Fire' so it " +
+                "carries both the physical class (Piercing) and the elemental " +
+                "type (Fire) into the Damage object on hit. No sub-class — " +
+                "matches the plain Spear blueprint convention.");
+        }
+
+        // ====================================================================
         // Backfill: every existing melee weapon declares Attributes
         // (Tier-1 cleanup; closes the gap where most non-elemental weapons
         // produced bare [Melee, Strength]-tagged damage with no physical-class
