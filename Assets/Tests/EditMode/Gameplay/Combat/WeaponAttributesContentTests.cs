@@ -264,6 +264,25 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
+        // CryoLance — first Piercing-class elemental longblade
+        // (Tier-1 Quick Win; ties Phase C Attributes → Phase E ColdResistance
+        // through a Piercing weapon, distinct from IceSword's Cutting variant)
+        // ====================================================================
+
+        [Test]
+        public void CryoLance_HasPiercingIceLongBladesAttribute()
+        {
+            var lance = _harness.Factory.CreateEntity("CryoLance");
+            Assert.IsNotNull(lance, "CryoLance blueprint must exist");
+            var weapon = lance.GetPart<MeleeWeaponPart>();
+            Assert.IsNotNull(weapon, "CryoLance must have a MeleeWeaponPart");
+            Assert.AreEqual("Piercing Ice LongBlades", weapon.Attributes,
+                "CryoLance.Attributes should declare 'Piercing Ice LongBlades' " +
+                "so it carries both the physical class (Piercing/LongBlades) " +
+                "and the elemental type (Ice) into the Damage object on hit");
+        }
+
+        // ====================================================================
         // Backfill: every existing melee weapon declares Attributes
         // (Tier-1 cleanup; closes the gap where most non-elemental weapons
         // produced bare [Melee, Strength]-tagged damage with no physical-class
