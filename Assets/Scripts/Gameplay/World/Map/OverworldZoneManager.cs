@@ -45,7 +45,7 @@ namespace CavesOfOoo.Core
                 switch (poi.Type)
                 {
                     case POIType.Village:
-                        return CreateVillagePipeline(biome, poi);
+                        return CreateVillagePipeline(biome, poi, zoneID);
                     case POIType.Lair:
                         return CreateLairPipeline(biome, poi);
                     case POIType.MerchantCamp:
@@ -142,7 +142,7 @@ namespace CavesOfOoo.Core
             return pipeline;
         }
 
-        private ZoneGenerationPipeline CreateVillagePipeline(BiomeType biome, PointOfInterest poi)
+        private ZoneGenerationPipeline CreateVillagePipeline(BiomeType biome, PointOfInterest poi, string zoneID)
         {
             var pipeline = new ZoneGenerationPipeline();
             pipeline.AddBuilder(new VillageBuilder(biome, poi, SettlementManager));
@@ -167,6 +167,18 @@ namespace CavesOfOoo.Core
                 clearSolidEntities: true));
             pipeline.AddBuilder(new VillagePopulationBuilder(poi, SettlementManager));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
+
+            // Seed a House Drama into this village if any dramas are loaded.
+            // Uses WorldSeed XOR'd with the zone string ID hash (matching ZoneManager's
+            // own RNG seed formula) to deterministically assign a drama per village.
+            var dramaIds = HouseDramaRuntime.GetAllDramaIds();
+            if (dramaIds.Count > 0)
+            {
+                int zoneSeed = WorldSeed ^ zoneID.GetHashCode();
+                int pick = (zoneSeed & int.MaxValue) % dramaIds.Count;
+                pipeline.AddBuilder(new HouseDramaZoneBuilder(dramaIds[pick]));
+            }
+
             return pipeline;
         }
 

@@ -35,6 +35,18 @@ namespace CavesOfOoo.Core
             _actions[name] = func;
         }
 
+        /// <summary>
+        /// Returns true if an action with this name is registered. Used by
+        /// content loaders (e.g. StoryletRegistry) to fail-fast on unknown
+        /// action names at load time, since Execute() silently no-ops with
+        /// a warning for unknown names.
+        /// </summary>
+        public static bool IsRegistered(string name)
+        {
+            EnsureInitialized();
+            return !string.IsNullOrEmpty(name) && _actions.ContainsKey(name);
+        }
+
         public static void Execute(string name, Entity speaker, Entity listener, string argument)
         {
             EnsureInitialized();
@@ -324,6 +336,101 @@ namespace CavesOfOoo.Core
 
                 brain.PushGoal(new NoFightGoal(duration, wander: false));
                 MessageLog.Add($"{speaker.GetDisplayName()} stands down.");
+            });
+
+            // ── House Drama actions ───────────────────────────────────────────
+
+            // arg: "DramaID:PointID:NewState" or "DramaID:PointID:NewState:PathID"
+            Register("AdvancePressurePoint", (speaker, listener, arg) =>
+            {
+                var parts = arg.Split(':');
+                if (parts.Length < 3) return;
+                string pathId = parts.Length >= 4 ? parts[3] : null;
+                HouseDramaRuntime.AdvancePressurePoint(parts[0], parts[1], parts[2], pathId);
+            });
+
+            // arg: "DramaID:NpcID:FactID"
+            Register("RevealWitnessFact", (speaker, listener, arg) =>
+            {
+                var parts = arg.Split(':');
+                if (parts.Length < 3) return;
+                HouseDramaRuntime.RevealWitnessFact(parts[0], parts[1], parts[2]);
+            });
+
+            // arg: "DramaID:Amount"
+            Register("AddCorruption", (speaker, listener, arg) =>
+            {
+                int colon = arg.IndexOf(':');
+                if (colon < 0) return;
+                if (!int.TryParse(arg.Substring(colon + 1), out int amount)) return;
+                HouseDramaRuntime.AddCorruption(arg.Substring(0, colon), amount);
+            });
+
+            // arg: "DramaID"
+            Register("StartDrama", (speaker, listener, arg) =>
+            {
+                if (string.IsNullOrEmpty(arg)) return;
+                if (HouseDramaRuntime.IsDramaActive(arg)) return;
+                if (!HouseDramaRuntime.IsDramaRegistered(arg))
+                {
+                    var data = Data.HouseDramaLoader.Get(arg);
+                    if (data == null) return;
+                    HouseDramaRuntime.RegisterDrama(data);
+                }
+                HouseDramaRuntime.ActivateDrama(arg);
+            });
+
+            // arg: "DramaID:EffectString" — e.g. "Thresker:close:InheritanceHinge:SilentBargain"
+            Register("TriggerCrossover", (speaker, listener, arg) =>
+            {
+                int colon = arg.IndexOf(':');
+                if (colon < 0) return;
+                string dramaId = arg.Substring(0, colon);
+                string effect   = arg.Substring(colon + 1);
+                HouseDramaRuntime.ApplyCrossoverEffect(dramaId, effect);
+            });
+
+            // ── Narrative state actions ───────────────────────────────────────
+
+            // arg: "key:value"
+            Register("SetFact", (speaker, listener, arg) =>
+            {
+                var ns = NarrativeStatePart.Current;
+                if (ns == null) return;
+                int colon = arg.IndexOf(':');
+                if (colon < 0) return;
+                if (!int.TryParse(arg.Substring(colon + 1), out int value)) return;
+                ns.SetFact(arg.Substring(0, colon), value);
+            });
+
+            // arg: "key:delta"
+            Register("AddFact", (speaker, listener, arg) =>
+            {
+                var ns = NarrativeStatePart.Current;
+                if (ns == null) return;
+                int colon = arg.IndexOf(':');
+                if (colon < 0) return;
+                if (!int.TryParse(arg.Substring(colon + 1), out int delta)) return;
+                ns.AddFact(arg.Substring(0, colon), delta);
+            });
+
+            // arg: "key"
+            Register("ClearFact", (speaker, listener, arg) =>
+            {
+                var ns = NarrativeStatePart.Current;
+                if (ns == null || string.IsNullOrEmpty(arg)) return;
+                ns.ClearFact(arg);
+            });
+
+            // arg: "Target:topic:tier"  Target ∈ {Listener, Speaker}
+            Register("Reveal", (speaker, listener, arg) =>
+            {
+                var parts = arg.Split(':', 3);
+                if (parts.Length < 3) return;
+                if (!int.TryParse(parts[2], out int tier)) return;
+                Entity target = parts[0] == "Speaker" ? speaker : listener;
+                var kp = target?.GetPart<KnowledgePart>();
+                kp?.Reveal(parts[1], tier);
             });
         }
 

@@ -3207,6 +3207,158 @@
       ]
     },
     {
+      "Name": "Mogu",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Mogu" },
+          { "Key": "RenderString", "Value": "M" },
+          { "Key": "ColorString", "Value": "&g" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "12" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Mogu_1" }] },
+        { "Name": "GivesRep", "Params": [{ "Key": "Value", "Value": "15" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 },
+        { "Name": "Strength", "Value": 14 },
+        { "Name": "Toughness", "Value": 14 },
+        { "Name": "Willpower", "Value": 16 },
+        { "Name": "Ego", "Value": 16 },
+        { "Name": "XPValue", "Value": 40 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "RotChoir" },
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "BloodColor", "Value": "&g" }
+      ]
+    },
+    {
+      "Name": "Grib",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Grib" },
+          { "Key": "RenderString", "Value": "G" },
+          { "Key": "ColorString", "Value": "&G" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "12" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Grib_1" }] },
+        { "Name": "GivesRep", "Params": [{ "Key": "Value", "Value": "15" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 35, "Min": 0, "Max": 35 },
+        { "Name": "Strength", "Value": 16 },
+        { "Name": "Toughness", "Value": 16 },
+        { "Name": "Willpower", "Value": 14 },
+        { "Name": "Ego", "Value": 14 },
+        { "Name": "XPValue", "Value": 40 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "RotChoir" },
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "BloodColor", "Value": "&G" }
+      ]
+    },
+    {
+      "Name": "Nam",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Nam" },
+          { "Key": "RenderString", "Value": "N" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "2" }] },
+        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "13" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Nam_1" }] },
+        { "Name": "GivesRep", "Params": [{ "Key": "Value", "Value": "15" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 28, "Min": 0, "Max": 28 },
+        { "Name": "Strength", "Value": 13 },
+        { "Name": "Agility", "Value": 16 },
+        { "Name": "Toughness", "Value": 13 },
+        { "Name": "Willpower", "Value": 17 },
+        { "Name": "Ego", "Value": 16 },
+        { "Name": "XPValue", "Value": 40 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "RotChoir" },
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "BloodColor", "Value": "&y" }
+      ]
+    },
+    {
+      "Name": "Sien",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Sien" },
+          { "Key": "RenderString", "Value": "S" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "3" }] },
+        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "14" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Sien_1" }] },
+        { "Name": "GivesRep", "Params": [{ "Key": "Value", "Value": "15" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 26, "Min": 0, "Max": 26 },
+        { "Name": "Strength", "Value": 12 },
+        { "Name": "Agility", "Value": 14 },
+        { "Name": "Intelligence", "Value": 18 },
+        { "Name": "Willpower", "Value": 18 },
+        { "Name": "Ego", "Value": 18 },
+        { "Name": "XPValue", "Value": 40 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "RotChoir" },
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "BloodColor", "Value": "&W" }
+      ]
+    },
+    {
+      "Name": "Sopp",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Sopp" },
+          { "Key": "RenderString", "Value": "s" },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "4" }, { "Key": "DV", "Value": "0" }] },
+        { "Name": "Brain", "Params": [{ "Key": "SightRadius", "Value": "11" }, { "Key": "Wanders", "Value": "false" }] },
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Sopp_1" }] },
+        { "Name": "GivesRep", "Params": [{ "Key": "Value", "Value": "15" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 38, "Min": 0, "Max": 38 },
+        { "Name": "Strength", "Value": 17 },
+        { "Name": "Toughness", "Value": 18 },
+        { "Name": "Willpower", "Value": 12 },
+        { "Name": "Ego", "Value": 12 },
+        { "Name": "XPValue", "Value": 40 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "RotChoir" },
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "BloodColor", "Value": "&K" }
+      ]
+    },
+    {
       "Name": "IceWight",
       "Inherits": "Creature",
       "Parts": [

@@ -36,6 +36,7 @@ namespace CavesOfOoo
         private Zone _zone;
         private TurnManager _turnManager;
         private Entity _player;
+        private Entity _world;
         private string _gameID = Guid.NewGuid().ToString("N");
         private static readonly char[] StartingBitTypes = { 'R', 'G', 'B', 'C', 'r', 'g', 'b', 'c', 'K', 'W', 'Y', 'M' };
         private static readonly string[] StartingTonicBlueprints =
@@ -112,6 +113,14 @@ namespace CavesOfOoo
                     }
                 });
 
+                Debug.Log("[Bootstrap] Step 1c/9: Loading House Dramas...");
+                Data.HouseDramaLoader.LoadAll();
+                foreach (var drama in Data.HouseDramaLoader.GetAll())
+                    Core.HouseDramaRuntime.RegisterDrama(drama);
+
+                Debug.Log("[Bootstrap] Step 1d/9: Loading Storylets...");
+                Storylets.StoryletRegistry.LoadAll();
+
                 Debug.Log("[Bootstrap] Step 2/9: Initializing mutations...");
                 PerformanceDiagnostics.MeasureStartupPhase(
                     "InitializeMutations",
@@ -164,6 +173,18 @@ namespace CavesOfOoo
                 });
                 if (!zoneGenerated)
                     return;
+
+                _world = new Entity { BlueprintName = "World" };
+                _world.SetTag("WorldEntity");
+                var narrativeState = new NarrativeStatePart();
+                _world.AddPart(narrativeState);
+                NarrativeStatePart.Current = narrativeState;
+                TurnManager.World = _world;
+
+                var storyletPart = new Storylets.StoryletPart();
+                _world.AddPart(storyletPart);
+                Storylets.StoryletPart.Current = storyletPart;
+                narrativeState.RegisterReactor(storyletPart);
 
                 Debug.Log("[Bootstrap] Step 6/9: Creating player...");
                 bool playerCreated = PerformanceDiagnostics.MeasureStartupPhase("SetupPlayer", PerformanceMarkers.Bootstrap.SetupPlayer, () =>
@@ -534,7 +555,8 @@ namespace CavesOfOoo
                 _zoneManager,
                 _turnManager,
                 _player,
-                selectedHotbarSlot: 0);
+                selectedHotbarSlot: 0,
+                world: _world);
         }
 
         public void ApplyLoadedGame(GameSessionState state)
@@ -546,6 +568,24 @@ namespace CavesOfOoo
             _zoneManager = state.ZoneManager;
             _turnManager = state.TurnManager;
             _player = state.Player;
+            _world = state.World;
+            NarrativeStatePart.Current = _world?.GetPart<NarrativeStatePart>();
+            TurnManager.World = _world;
+
+            // Re-attach StoryletPart on the loaded world entity. If the save
+            // graph contained one (v3+), re-bind Current to it; otherwise
+            // attach a fresh one (defensive — required if a v3 save somehow
+            // omits the part). Re-register on the loaded NarrativeStatePart's
+            // reactor list because reactor registration is runtime-only and
+            // does not survive serialization.
+            Storylets.StoryletPart.Current = _world?.GetPart<Storylets.StoryletPart>();
+            if (_world != null && Storylets.StoryletPart.Current == null)
+            {
+                Storylets.StoryletPart.Current = new Storylets.StoryletPart();
+                _world.AddPart(Storylets.StoryletPart.Current);
+            }
+            if (NarrativeStatePart.Current != null && Storylets.StoryletPart.Current != null)
+                NarrativeStatePart.Current.RegisterReactor(Storylets.StoryletPart.Current);
             _zone = _zoneManager?.ActiveZone;
 
             ConversationActions.Factory = _factory;

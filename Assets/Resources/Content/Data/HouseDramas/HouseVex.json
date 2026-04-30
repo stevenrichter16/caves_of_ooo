@@ -1,0 +1,448 @@
+{
+  "Dramas": [
+    {
+      "ID": "Vex",
+      "Name": "House Vex",
+      "Craft": {
+        "Name": "Venom Distillation and Alchemy",
+        "DistinctiveProperty": "Extraction of jungle toxins into stable, potent essences used for medicine, dyes, and trade",
+        "MasterMarker": "Can synthesize antitoxins from venoms of competing species — a sign of deep understanding",
+        "MinimumPractitioners": 2,
+        "ActivePractitioners": 1,
+        "EmergingPractitioners": 1,
+        "CycleDuration": "one monsoon cycle",
+        "FailureCondition": "active practitioners below 2 for more than one cycle; all venom stores depleted"
+      },
+      "RootConflict": {
+        "Adversary": "House Vex's own greed and external pressure",
+        "AdversaryProject": "A weapons merchant (Kess Ballow) forcing the family to distill their finest toxins into assassination compounds",
+        "AdversaryAlignment": "CosmicB",
+        "NamedAntagonistId": "kess",
+        "SecretTruth": "The founder's original intent was healing; the venom trade began as medicine but is being weaponized by external demand",
+        "DisclosureStakes": "Exposing Kess's weapons operation brings legal trouble but restores the family's original mission; complying means slow corruption into a kill-for-hire operation"
+      },
+      "NpcRoles": [
+        {
+          "Id": "vorus",
+          "Role": "FoundationalDead",
+          "Variant": "idealized-origin",
+          "Alive": false,
+          "Age": 87,
+          "Wants": "For jungle venom to heal the sick, not harm the innocent",
+          "Fears": "That his life's work would become a tool of assassination",
+          "SelfDeception": "Believed the jungle itself would prevent misuse — that dangerous knowledge would naturally stay contained",
+          "ChangeCondition": "N/A — dead"
+        },
+        {
+          "Id": "lyra",
+          "Role": "LostDead",
+          "Variant": "tragic-accident",
+          "Alive": false,
+          "Age": 11,
+          "Wants": "To learn her grandfather's craft",
+          "Fears": "The needles and fangs in the distillery",
+          "SelfDeception": "Thought the bottles she opened were safe — all marked with symbols",
+          "ChangeCondition": "N/A — dead (died when she opened a mislabeled venom bottle three years ago)"
+        },
+        {
+          "Id": "theron",
+          "Role": "DiminishedHead",
+          "Variant": "grieving-parent",
+          "Alive": true,
+          "Age": 62,
+          "Wants": "To honor Vorus's original vision and never repeat Lyra's tragedy",
+          "Fears": "That refusing Kess will bring retaliation; that accepting will doom them anyway",
+          "SelfDeception": "Tells himself he can keep the family safe by meeting Kess's demands while secretly preparing to refuse",
+          "ChangeCondition": "Realizes that Kess's patience is finite — a choice must be made before the next monsoon"
+        },
+        {
+          "Id": "nyla",
+          "Role": "RisingInheritor",
+          "Variant": "ambitious-compromised",
+          "Alive": true,
+          "Age": 24,
+          "Wants": "To make the family wealthy and respected in the trade",
+          "Fears": "Being stuck in a jungle village forever, making medicine no one values",
+          "SelfDeception": "Believes Kess's poisons are 'legitimate commerce' — high-value work in a cutthroat market",
+          "ChangeCondition": "Confronted with proof that Kess uses the toxins to kill innocents; offered a competing buyer who values healing compounds at equal price"
+        },
+        {
+          "Id": "kess",
+          "Role": "NamedAntagonist",
+          "Variant": "pragmatic-ruthless",
+          "Alive": true,
+          "Age": 51,
+          "Wants": "The finest poisons the jungle can offer — a reliable supply chain for a growing assassination network",
+          "Fears": "Losing House Vex to moral squeamishness; a competing poison house undercutting his prices",
+          "SelfDeception": "Tells himself the people he hires to use the poisons made their own choices — he's just a merchant",
+          "ChangeCondition": "Competing poison merchant (Valdris) approaches House Vex with a higher offer for healing compounds; Theron accepts",
+          "AntagonistMotivation": "Profit maximization dressed as business necessity",
+          "AntagonistEmotionalStyle": "Charming to business partners, coldly transactional otherwise",
+          "AntagonistVulnerability": "Genuinely afraid of the jungle itself — relies on House Vex to filter its dangers into bottles",
+          "AntagonistLineWontCross": "Will not personally enter the distillery or jungle; his fear is too great",
+          "ChangedByCondition": "Offered a monopoly on Valdris's healing poisons (redirected to legitimate medical channels) at the same profit margin Kess currently demands",
+          "ChangedByReachable": true,
+          "ChangedByEvidenceTier": "material only"
+        },
+        {
+          "Id": "sael",
+          "Role": "SilencedHelper",
+          "Variant": "guilty-complicit",
+          "Alive": true,
+          "Age": 38,
+          "Wants": "To live peacefully with her choices and feed her family",
+          "Fears": "That speaking out will cost her her position and her family's security",
+          "SelfDeception": "Tells herself 'the poisons go out anyway; she's just a courier, not responsible for how they're used'",
+          "ChangeCondition": "Player demonstrates that Kess's customers include warlords known to target villages — makes her fear of complicity concrete"
+        }
+      ],
+      "WitnessMap": {
+        "Entries": [
+          {
+            "SubjectId": "theron",
+            "Knows": ["venom_trade_profitable", "lyra_died_from_venom", "vorus_original_intent_was_healing"],
+            "Suspects": ["kess_uses_poisons_for_murder"],
+            "DoesNotKnow": ["competing_merchant_valdris", "poisons_reach_warlords", "founder_letter_hidden"]
+          },
+          {
+            "SubjectId": "nyla",
+            "Knows": ["venom_trade_profitable", "kess_high_bidder"],
+            "Suspects": [],
+            "DoesNotKnow": ["lyra_tragedy_details", "vorus_intent", "kess_assassination_use", "competing_merchant_valdris", "founder_letter_hidden"]
+          },
+          {
+            "SubjectId": "kess",
+            "Knows": ["house_vex_reluctance", "venom_quality_superior", "therons_refusals_increasing"],
+            "Suspects": [],
+            "DoesNotKnow": ["competing_merchant_valdris", "founder_letter_hidden", "player_knows_his_crimes"]
+          },
+          {
+            "SubjectId": "sael",
+            "Knows": ["venom_trade_profitable", "kess_behavior_escalating", "theron_is_conflicted"],
+            "Suspects": ["kess_uses_poisons_darkly"],
+            "DoesNotKnow": ["vorus_original_intent", "lyra_death_details", "competing_merchant_valdris", "founder_letter_hidden"]
+          }
+        ],
+        "DangerousDisclosures": [
+          {
+            "Condition": "If kess_assassination_use revealed to Kess before the SuccessionHinge resolves",
+            "Consequence": "Kess burns the founder's letter and moves his operation to a different house; the chance to turn him is lost"
+          },
+          {
+            "Condition": "If competing_merchant_valdris revealed to Nyla before the SuccessionHinge resolves",
+            "Consequence": "Nyla contacts Valdris independently, negotiates a split supply arrangement, and locks Theron out of the decision"
+          }
+        ]
+      },
+      "PressurePoints": [
+        {
+          "Id": "VenomVault",
+          "Archetype": "Wound",
+          "Temporal": "Suspended",
+          "DominantAlignment": "Home",
+          "UrgencyTrigger": "Kess demands the entire monsoon harvest early, forcing the family to strip the jungle of specimens",
+          "UrgencyEffect": "Closes the Restored path; locks in TransformedA as the best achievable outcome",
+          "UrgencyTiming": "medium",
+          "TransitionRules": [
+            { "FromState": "active", "ToState": "resolved", "Condition": "SuccessionHinge resolved via any path" },
+            { "FromState": "active", "ToState": "failed", "Condition": "UrgencyTrigger fires before SuccessionHinge resolves" }
+          ],
+          "Paths": [
+            {
+              "Id": "RespectfulHarvest",
+              "PrimaryAlignment": "Home",
+              "EmotionalCostDescription": "Refuse Kess's demand; accept the risk of losing the contract",
+              "EmotionalCostMagnitude": 4,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "Trust", "Magnitude": 3, "Timing": "front-loaded" },
+                { "Type": "Time", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Restored", "Weight": 3 },
+                { "EndStateId": "TransformedA", "Weight": 1 }
+              ]
+            },
+            {
+              "Id": "Overharvest",
+              "PrimaryAlignment": "CosmicB",
+              "SecondaryAlignment": "Home",
+              "EmotionalCostDescription": "Strip the jungle to meet Kess's demand; short-term profit, long-term depletion",
+              "EmotionalCostMagnitude": 2,
+              "CorruptionContribution": 2,
+              "Costs": [
+                { "Type": "Ideology", "Magnitude": 2, "Timing": "front-loaded" },
+                { "Type": "LineagePurity", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "TransformedB", "Weight": 3 },
+                { "EndStateId": "Corrupted", "Weight": 1 }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "TaintedHeir",
+          "Archetype": "PreventedHelp",
+          "Temporal": "Suspended",
+          "DominantAlignment": "CosmicA",
+          "UrgencyTrigger": "Nyla negotiates directly with Kess for a personal profit-sharing arrangement",
+          "UrgencyEffect": "Nyla becomes Kess's advocate; Theron's authority fractures",
+          "UrgencyTiming": "short",
+          "TransitionRules": [
+            { "FromState": "active", "ToState": "resolved", "Condition": "Nyla is confronted with proof of Kess's assassination operations AND offered a competing buyer at equal profit" },
+            { "FromState": "active", "ToState": "failed", "Condition": "UrgencyTrigger fires before Nyla has this confrontation" }
+          ],
+          "Paths": [
+            {
+              "Id": "NylaAwakens",
+              "PrimaryAlignment": "CosmicA",
+              "EmotionalCostDescription": "Nyla realizes the poisons she's helped distill are used to kill; grief and shame follow",
+              "EmotionalCostMagnitude": 3,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "SelfEdit", "Magnitude": 2, "Timing": "front-loaded" },
+                { "Type": "Trust", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Restored", "Weight": 2 },
+                { "EndStateId": "TransformedA", "Weight": 2 }
+              ]
+            },
+            {
+              "Id": "NylaSideshifts",
+              "PrimaryAlignment": "CosmicB",
+              "EmotionalCostDescription": "Nyla commits fully to the high-profit path; Theron loses his ally",
+              "EmotionalCostMagnitude": 1,
+              "CorruptionContribution": 3,
+              "Costs": [
+                { "Type": "Ideology", "Magnitude": 1, "Timing": "front-loaded" },
+                { "Type": "Trust", "Magnitude": 1, "Timing": "front-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Corrupted", "Weight": 3 },
+                { "EndStateId": "TransformedB", "Weight": 1 }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "PoisonMerchant",
+          "Archetype": "SuccessionHinge",
+          "Temporal": "Imminent",
+          "DominantAlignment": "Variable",
+          "UrgencyTrigger": "Theron steps down; Nyla assumes full control and immediately renegotiates with Kess",
+          "UrgencyEffect": "Corrupted becomes the most likely outcome; Restored closes",
+          "UrgencyTiming": "long",
+          "TransitionRules": [
+            { "FromState": "active", "ToState": "resolved", "Condition": "Theron makes a final choice about Kess's arrangement after all evidence is known" },
+            { "FromState": "active", "ToState": "failed", "Condition": "UrgencyTrigger fires" }
+          ],
+          "Paths": [
+            {
+              "Id": "RebuildLegacy",
+              "PrimaryAlignment": "Home",
+              "EmotionalCostDescription": "Theron names Nyla co-leader only if she accepts the healing mission; Nyla must abandon profit maximization",
+              "EmotionalCostMagnitude": 4,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "Ideology", "Magnitude": 3, "Timing": "front-loaded" },
+                { "Type": "SelfEdit", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Restored", "Weight": 4 },
+                { "EndStateId": "TransformedA", "Weight": 1 }
+              ]
+            },
+            {
+              "Id": "CompromisedSustenance",
+              "PrimaryAlignment": "CosmicB",
+              "SecondaryAlignment": "Home",
+              "EmotionalCostDescription": "Theron keeps Kess's account but reroutes profits to medicine; the family survives on blood money",
+              "EmotionalCostMagnitude": 3,
+              "CorruptionContribution": 3,
+              "Costs": [
+                { "Type": "Ideology", "Magnitude": 2, "Timing": "ongoing" },
+                { "Type": "LineagePurity", "Magnitude": 3, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "TransformedB", "Weight": 3 },
+                { "EndStateId": "Corrupted", "Weight": 2 }
+              ]
+            },
+            {
+              "Id": "SeverKess",
+              "PrimaryAlignment": "CosmicA",
+              "EmotionalCostDescription": "Theron cuts ties with Kess; the family loses 70% of income but becomes morally clean",
+              "EmotionalCostMagnitude": 2,
+              "CorruptionContribution": 1,
+              "Costs": [
+                { "Type": "Trust", "Magnitude": 2, "Timing": "front-loaded" },
+                { "Type": "Time", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "TransformedA", "Weight": 3 },
+                { "EndStateId": "Extinct", "Weight": 1 }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "FounderLetter",
+          "Archetype": "HiddenEvidence",
+          "Temporal": "Latent",
+          "DominantAlignment": "Home",
+          "UrgencyTrigger": "Kess discovers the founder's letter; burns it to remove evidence of the original healing intent",
+          "UrgencyEffect": "Evidence of Vorus's true mission is lost; TransformedB and Corrupted become the only viable paths",
+          "UrgencyTiming": "immediate",
+          "TransitionRules": [
+            { "FromState": "active", "ToState": "resolved", "Condition": "Player reads Vorus's original letter (hidden in the distillery)" },
+            { "FromState": "active", "ToState": "failed", "Condition": "Kess is confronted about his use before the letter is found" }
+          ],
+          "HiddenEvidence": {
+            "Subtypes": ["Passive", "Gated"],
+            "CustodianId": "theron",
+            "GateCondition": "Locked in Theron's study; key is either obtained from Theron directly or hidden in the original distillery stones",
+            "RevealMethods": [
+              { "Alignment": "Home", "Method": "Ask Theron directly; he will share if he trusts the player's intent" },
+              { "Alignment": "CosmicA", "Method": "Search the distillery for the loose stone Vorus carved the letter into" }
+            ]
+          },
+          "Paths": [
+            {
+              "Id": "LetterUncovered",
+              "PrimaryAlignment": "Home",
+              "EmotionalCostDescription": "Reading Vorus's own words about the healing mission is bittersweet; it clarifies the family's duty",
+              "EmotionalCostMagnitude": 1,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "SelfEdit", "Magnitude": 1, "Timing": "front-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Restored", "Weight": 2 },
+                { "EndStateId": "TransformedA", "Weight": 2 }
+              ]
+            },
+            {
+              "Id": "LetterBurned",
+              "PrimaryAlignment": "CosmicB",
+              "EmotionalCostDescription": "The letter is destroyed; only profit-driven memory remains",
+              "EmotionalCostMagnitude": 2,
+              "CorruptionContribution": 3,
+              "Costs": [
+                { "Type": "Ideology", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Corrupted", "Weight": 3 },
+                { "EndStateId": "TransformedB", "Weight": 1 }
+              ]
+            }
+          ]
+        }
+      ],
+      "MemorialActs": [
+        {
+          "SubjectId": "vorus",
+          "Objects": ["AlchemyVial", "JournalBoundInLeather"],
+          "Interactions": [
+            { "Alignment": "Home", "Description": "Place a vial of healing salve in the vial holder — continue his work to cure the sick" },
+            { "Alignment": "CosmicA", "Description": "Open the journal to the section on universal antitoxins — his gift to healers everywhere" }
+          ]
+        },
+        {
+          "SubjectId": "lyra",
+          "Objects": ["ChildsCloak", "FamilyTokenRibbon"],
+          "Interactions": [
+            { "Alignment": "Home", "Description": "Hang her cloak in the distillery entrance — a reminder of the price of carelessness" },
+            { "Alignment": "CosmicA", "Description": "Plant a monsoon lily at the distillery threshold — where joy and danger meet" }
+          ]
+        }
+      ],
+      "Crossovers": [
+        {
+          "Type": "TruthPropagation",
+          "FromPointId": "FounderLetter",
+          "FromCondition": "state:resolved",
+          "ToPointId": "TaintedHeir",
+          "ToEffect": "reveal:nyla:vorus_original_intent",
+          "DerivedFromWitnessMap": true
+        },
+        {
+          "Type": "TruthPropagation",
+          "FromPointId": "FounderLetter",
+          "FromCondition": "state:resolved",
+          "ToPointId": "PoisonMerchant",
+          "ToEffect": "reveal:theron:founder_letter_hidden",
+          "DerivedFromWitnessMap": true
+        },
+        {
+          "Type": "Amplification",
+          "FromPointId": "TaintedHeir",
+          "FromCondition": "state:failed",
+          "ToPointId": "PoisonMerchant",
+          "ToEffect": "corruption:2",
+          "DerivedFromWitnessMap": false
+        },
+        {
+          "Type": "MutualExclusion",
+          "FromPointId": "VenomVault",
+          "FromCondition": "state:resolved",
+          "ToPointId": "FounderLetter",
+          "ToEffect": "close:FounderLetter:LetterBurned",
+          "DerivedFromWitnessMap": false
+        }
+      ],
+      "EndStates": [
+        {
+          "Id": "Restored",
+          "Name": "The Healer's Path",
+          "PathSignature": ["RespectfulHarvest", "NylaAwakens", "RebuildLegacy", "LetterUncovered"],
+          "Tag": "VexRestored",
+          "Rewards": ["VenomAntitoxin", "HouseVexReputation+3"],
+          "ExternalResonanceDescription": "House Vex becomes known across the basin as purveyors of genuine healing medicines; Kess's operation crumbles without their supply",
+          "ExternalResonanceScope": "basin-wide"
+        },
+        {
+          "Id": "TransformedA",
+          "Name": "The Reluctant Compromise",
+          "PathSignature": ["RespectfulHarvest", "NylaSideshifts", "SeverKess"],
+          "Tag": "VexTransformedA",
+          "Rewards": ["HouseVexReputation+1"],
+          "ExternalResonanceDescription": "House Vex survives as a smaller, struggling healing house; they lose prestige but maintain honor",
+          "ExternalResonanceScope": "house-local"
+        },
+        {
+          "Id": "TransformedB",
+          "Name": "The Profitable Shadow",
+          "PathSignature": ["Overharvest", "NylaSideshifts", "CompromisedSustenance", "LetterBurned"],
+          "Tag": "VexTransformedB",
+          "Rewards": ["HouseVexReputation-1"],
+          "ExternalResonanceDescription": "House Vex grows wealthier but earns whispered condemnation; insiders know what they've become",
+          "ExternalResonanceScope": "house-local"
+        },
+        {
+          "Id": "Extinct",
+          "Name": "The Severed Thread",
+          "PathSignature": ["RespectfulHarvest", "SeverKess", "LetterBurned"],
+          "Tag": "VexExtinct",
+          "Rewards": [],
+          "ExternalResonanceDescription": "House Vex collapses financially; Theron passes leadership to an outsider; the craft dies with the generation",
+          "ExternalResonanceScope": "regional"
+        },
+        {
+          "Id": "Corrupted",
+          "Name": "The Assassin's Arsenal",
+          "PathSignature": ["Overharvest", "NylaSideshifts", "CompromisedSustenance", "LetterBurned"],
+          "Tag": "VexCorrupted",
+          "Rewards": ["HouseVexReputation-3"],
+          "ExternalResonanceDescription": "House Vex becomes a subsidiary of Kess's assassination network; jungle venom becomes a tool of empire",
+          "ExternalResonanceScope": "basin-wide"
+        }
+      ],
+      "CorruptionGradient": {
+        "EarlyWarningSignal": "Kess delivers his first assassination contract request directly to Nyla, bypassing Theron",
+        "PointOfNoReturn": "CompromisedSustenance path taken in PoisonMerchant while Overharvest is already resolved"
+      }
+    }
+  ]
+}

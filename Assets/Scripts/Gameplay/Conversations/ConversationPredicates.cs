@@ -29,6 +29,23 @@ namespace CavesOfOoo.Core
             _predicates[name] = func;
         }
 
+        /// <summary>
+        /// Returns true if a predicate with this name is registered, OR if the
+        /// name is an auto-invertible "IfNot..." form whose base predicate
+        /// "If..." is registered. Used by content loaders (e.g. StoryletRegistry)
+        /// to fail-fast on unknown predicate names at load time, since
+        /// Evaluate() returns true for unknown names by default.
+        /// </summary>
+        public static bool IsRegistered(string name)
+        {
+            EnsureInitialized();
+            if (string.IsNullOrEmpty(name)) return false;
+            if (_predicates.ContainsKey(name)) return true;
+            if (name.StartsWith("IfNot") && name.Length > 5)
+                return _predicates.ContainsKey("If" + name.Substring(5));
+            return false;
+        }
+
         public static bool Evaluate(string name, Entity speaker, Entity listener, string argument)
         {
             EnsureInitialized();
@@ -173,6 +190,79 @@ namespace CavesOfOoo.Core
                     return false;
 
                 return site.Stage == stage;
+            });
+
+            // ── House Drama predicates ────────────────────────────────────────
+
+            // arg: "DramaID"
+            Register("IfDramaActive", (speaker, listener, arg) =>
+                HouseDramaRuntime.IsDramaActive(arg));
+
+            // arg: "DramaID:PointID:ExpectedState"
+            Register("IfPressurePointState", (speaker, listener, arg) =>
+            {
+                var parts = arg.Split(':');
+                if (parts.Length < 3) return false;
+                return HouseDramaRuntime.GetPressurePointState(parts[0], parts[1]) == parts[2];
+            });
+
+            // arg: "DramaID:PointID:ExpectedPathID"
+            Register("IfPathTaken", (speaker, listener, arg) =>
+            {
+                var parts = arg.Split(':');
+                if (parts.Length < 3) return false;
+                return HouseDramaRuntime.GetPathTaken(parts[0], parts[1]) == parts[2];
+            });
+
+            // arg: "DramaID:NpcID:FactID"
+            Register("IfWitnessKnows", (speaker, listener, arg) =>
+            {
+                var parts = arg.Split(':');
+                if (parts.Length < 3) return false;
+                return HouseDramaRuntime.WitnessKnows(parts[0], parts[1], parts[2]);
+            });
+
+            // arg: "DramaID:Score"
+            Register("IfCorruptionAtLeast", (speaker, listener, arg) =>
+            {
+                int colon = arg.IndexOf(':');
+                if (colon < 0) return false;
+                if (!int.TryParse(arg.Substring(colon + 1), out int min)) return false;
+                return HouseDramaRuntime.GetCorruption(arg.Substring(0, colon)) >= min;
+            });
+
+            // ── Narrative state predicates ────────────────────────────────────
+
+            // arg: "key:op:value"  op ∈ { =, !=, <, >, <=, >= }
+            // Fail-closed: malformed args or missing state return false.
+            Register("IfFact", (speaker, listener, arg) =>
+            {
+                var ns = NarrativeStatePart.Current;
+                if (ns == null) return false;
+                var parts = arg.Split(':', 3);
+                if (parts.Length < 3) return false;
+                if (!int.TryParse(parts[2], out int threshold)) return false;
+                int actual = ns.GetFact(parts[0]);
+                string op = parts[1];
+                if (op == "=")  return actual == threshold;
+                if (op == "!=") return actual != threshold;
+                if (op == ">")  return actual >  threshold;
+                if (op == ">=") return actual >= threshold;
+                if (op == "<")  return actual <  threshold;
+                if (op == "<=") return actual <= threshold;
+                return false;
+            });
+
+            // arg: "topic:minTier"
+            // Fail-closed: malformed args or missing KnowledgePart return false.
+            Register("IfSpeakerKnows", (speaker, listener, arg) =>
+            {
+                int colon = arg.IndexOf(':');
+                if (colon < 0) return false;
+                if (!int.TryParse(arg.Substring(colon + 1), out int minTier)) return false;
+                var kp = speaker?.GetPart<KnowledgePart>();
+                if (kp == null) return false;
+                return kp.Knows(arg.Substring(0, colon), minTier);
             });
         }
 

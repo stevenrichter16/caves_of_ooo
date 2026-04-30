@@ -1,0 +1,432 @@
+{
+  "Dramas": [
+    {
+      "ID": "Thresker",
+      "Name": "House Thresker",
+      "Craft": {
+        "Name": "Salt-Thresh Weaving",
+        "DistinctiveProperty": "Cloth woven with mineral-salt thread that resists rot and minor flame",
+        "MasterMarker": "Can produce the double-salt knot without a loom guide",
+        "MinimumPractitioners": 2,
+        "ActivePractitioners": 1,
+        "EmergingPractitioners": 1,
+        "CycleDuration": "one growing season",
+        "FailureCondition": "active practitioners below 2 for more than one season"
+      },
+      "RootConflict": {
+        "Adversary": "House Thresker itself — internal succession dispute",
+        "AdversaryProject": "Maren Thresker redirecting salt-weave materials to private trade while publicly claiming craft decline",
+        "AdversaryAlignment": "CosmicB",
+        "NamedAntagonistId": "maren",
+        "SecretTruth": "The craft is not dying; Maren has been diverting the family's salt stores to an outside merchant for three seasons",
+        "DisclosureStakes": "Revealing the diversion restores the craft but exposes Maren to exile or worse"
+      },
+      "NpcRoles": [
+        {
+          "Id": "aldric",
+          "Role": "FoundationalDead",
+          "Variant": "idealized-origin",
+          "Alive": false,
+          "Age": 71,
+          "Wants": "For the double-salt knot to outlive the family name",
+          "Fears": "That the craft will be reduced to a trade good",
+          "SelfDeception": "Believed Maren shared his values",
+          "ChangeCondition": "N/A — dead"
+        },
+        {
+          "Id": "senna",
+          "Role": "LostDead",
+          "Variant": "mourned-peer",
+          "Alive": false,
+          "Age": 34,
+          "Wants": "Had wanted to take the craft beyond the village",
+          "Fears": "Had feared becoming her mother's echo",
+          "SelfDeception": "Believed leaving would have saved the house",
+          "ChangeCondition": "N/A — dead"
+        },
+        {
+          "Id": "corvin",
+          "Role": "DiminishedHead",
+          "Variant": "strategic-compromised",
+          "Alive": true,
+          "Age": 58,
+          "Wants": "To keep the family intact at any cost",
+          "Fears": "That confronting Maren will fracture what remains",
+          "SelfDeception": "Believes willful blindness is the same as patience",
+          "ChangeCondition": "Shown evidence of the diversion by someone outside the family"
+        },
+        {
+          "Id": "petra",
+          "Role": "RisingInheritor",
+          "Variant": "earnest-blocked",
+          "Alive": true,
+          "Age": 19,
+          "Wants": "To learn the double-salt knot before the knowledge vanishes",
+          "Fears": "That she is too late — that the craft is already hollow",
+          "SelfDeception": "Thinks persistence alone will compensate for missing instruction",
+          "ChangeCondition": "Learns that the salt stores still exist and were diverted, not spent"
+        },
+        {
+          "Id": "maren",
+          "Role": "NamedAntagonist",
+          "Variant": "sympathetic-corrupt",
+          "Alive": true,
+          "Age": 44,
+          "Wants": "Financial security outside the family's collapsing status",
+          "Fears": "Being trapped in a dying lineage",
+          "SelfDeception": "Tells herself the craft was already dying before she started diverting",
+          "ChangeCondition": "Confronted with proof AND offered a path that does not destroy her",
+          "AntagonistMotivation": "Survival instinct dressed as pragmatism",
+          "AntagonistEmotionalStyle": "Cold warmth — affectionate until cornered",
+          "AntagonistVulnerability": "Genuine grief over Senna's death; Senna was the only one who understood her",
+          "AntagonistLineWontCross": "Will not implicate Petra in the scheme",
+          "ChangedByCondition": "Player reveals Senna's journal entry about Maren's potential, then offers the merchant contact as a legitimate trade partner rather than a secret",
+          "ChangedByReachable": true,
+          "ChangedByEvidenceTier": "emotional + material"
+        },
+        {
+          "Id": "holt",
+          "Role": "SilencedHelper",
+          "Variant": "complicit-witness",
+          "Alive": true,
+          "Age": 27,
+          "Wants": "To tell the truth without losing his position in the house",
+          "Fears": "Maren's retaliation if he speaks",
+          "SelfDeception": "Believes his silence is neutral",
+          "ChangeCondition": "Player demonstrates that Corvin already suspects — removes Holt's fear of being the one to break the family"
+        }
+      ],
+      "WitnessMap": {
+        "Entries": [
+          {
+            "SubjectId": "corvin",
+            "Knows": ["craft_declining"],
+            "Suspects": ["maren_diverting"],
+            "DoesNotKnow": ["salt_stores_intact", "senna_journal"]
+          },
+          {
+            "SubjectId": "petra",
+            "Knows": ["craft_declining"],
+            "Suspects": [],
+            "DoesNotKnow": ["maren_diverting", "salt_stores_intact", "senna_journal"]
+          },
+          {
+            "SubjectId": "maren",
+            "Knows": ["craft_declining", "maren_diverting", "salt_stores_intact"],
+            "Suspects": [],
+            "DoesNotKnow": ["senna_journal"]
+          },
+          {
+            "SubjectId": "holt",
+            "Knows": ["maren_diverting", "salt_stores_intact"],
+            "Suspects": [],
+            "DoesNotKnow": ["senna_journal"]
+          }
+        ],
+        "DangerousDisclosures": [
+          {
+            "Condition": "If maren_diverting is revealed to maren before InheritanceHinge resolves",
+            "Consequence": "Maren destroys the salt stores, making Restored impossible"
+          }
+        ]
+      },
+      "PressurePoints": [
+        {
+          "Id": "CraftWound",
+          "Archetype": "Wound",
+          "Temporal": "Suspended",
+          "DominantAlignment": "Home",
+          "UrgencyTrigger": "Petra attempts a double-salt knot alone and ruins the remaining thread",
+          "UrgencyEffect": "Closes the Restored path; TransformedA becomes the best achievable",
+          "UrgencyTiming": "medium",
+          "TransitionRules": [
+            { "FromState": "active", "ToState": "resolved", "Condition": "InheritanceHinge resolved via any path" },
+            { "FromState": "active", "ToState": "failed",   "Condition": "UrgencyTrigger fires before InheritanceHinge resolves" }
+          ],
+          "Paths": [
+            {
+              "Id": "TeachingPact",
+              "PrimaryAlignment": "Home",
+              "EmotionalCostDescription": "Corvin must admit he was pretending not to know",
+              "EmotionalCostMagnitude": 3,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "Trust",    "Magnitude": 2, "Timing": "front-loaded" },
+                { "Type": "SelfEdit", "Magnitude": 1, "Timing": "front-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Restored",    "Weight": 3 },
+                { "EndStateId": "TransformedA","Weight": 1 }
+              ]
+            },
+            {
+              "Id": "ExternalMentor",
+              "PrimaryAlignment": "CosmicA",
+              "EmotionalCostDescription": "Family accepts outside help — seen as admitting defeat",
+              "EmotionalCostMagnitude": 2,
+              "CorruptionContribution": 1,
+              "Costs": [
+                { "Type": "Ideology", "Magnitude": 2, "Timing": "front-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "TransformedA", "Weight": 3 },
+                { "EndStateId": "Restored",     "Weight": 1 }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "HoltSilenced",
+          "Archetype": "PreventedHelp",
+          "Temporal": "Suspended",
+          "DominantAlignment": "Home",
+          "UrgencyTrigger": "Maren notices Holt speaking privately with the player",
+          "UrgencyEffect": "Holt leaves the village; WitnessFact salt_stores_intact becomes unavailable from Holt",
+          "UrgencyTiming": "short",
+          "TransitionRules": [
+            { "FromState": "active", "ToState": "resolved", "Condition": "Player learns salt_stores_intact from any source" },
+            { "FromState": "active", "ToState": "failed",   "Condition": "UrgencyTrigger fires before player speaks to Holt" }
+          ],
+          "Paths": [
+            {
+              "Id": "HoltConfides",
+              "PrimaryAlignment": "Home",
+              "EmotionalCostDescription": "Holt risks Maren's anger and his place in the house",
+              "EmotionalCostMagnitude": 3,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "Trust", "Magnitude": 3, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Restored",    "Weight": 2 },
+                { "EndStateId": "TransformedA","Weight": 2 }
+              ]
+            },
+            {
+              "Id": "BypassHolt",
+              "PrimaryAlignment": "CosmicA",
+              "EmotionalCostDescription": "Player finds the ledger without Holt — he is never acknowledged",
+              "EmotionalCostMagnitude": 1,
+              "CorruptionContribution": 2,
+              "Costs": [
+                { "Type": "Time", "Magnitude": 2, "Timing": "front-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "TransformedB", "Weight": 2 },
+                { "EndStateId": "Corrupted",    "Weight": 1 }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "InheritanceHinge",
+          "Archetype": "SuccessionHinge",
+          "Temporal": "Imminent",
+          "DominantAlignment": "Variable",
+          "UrgencyTrigger": "Corvin makes Maren interim head without confrontation",
+          "UrgencyEffect": "Closes Restored; opens Corrupted path weight +2",
+          "UrgencyTiming": "long",
+          "TransitionRules": [
+            { "FromState": "active", "ToState": "resolved", "Condition": "Player speaks to Corvin after salt_stores_intact is known" },
+            { "FromState": "active", "ToState": "failed",   "Condition": "UrgencyTrigger fires" }
+          ],
+          "Paths": [
+            {
+              "Id": "CorvinConfronts",
+              "PrimaryAlignment": "Home",
+              "EmotionalCostDescription": "Corvin breaks his self-deception; family fractures briefly before healing",
+              "EmotionalCostMagnitude": 4,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "SelfEdit", "Magnitude": 3, "Timing": "front-loaded" },
+                { "Type": "Trust",    "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Restored",    "Weight": 4 },
+                { "EndStateId": "TransformedA","Weight": 1 }
+              ]
+            },
+            {
+              "Id": "SilentBargain",
+              "PrimaryAlignment": "CosmicB",
+              "SecondaryAlignment": "Home",
+              "EmotionalCostDescription": "Maren is allowed to stay if she stops diverting — silence becomes the price of peace",
+              "EmotionalCostMagnitude": 3,
+              "CorruptionContribution": 3,
+              "Costs": [
+                { "Type": "Ideology",      "Magnitude": 2, "Timing": "ongoing"       },
+                { "Type": "LineagePurity", "Magnitude": 2, "Timing": "back-loaded"   }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "TransformedB", "Weight": 3 },
+                { "EndStateId": "Corrupted",    "Weight": 2 }
+              ]
+            },
+            {
+              "Id": "ExileResolution",
+              "PrimaryAlignment": "CosmicA",
+              "EmotionalCostDescription": "Maren is exiled; the house is clean but diminished",
+              "EmotionalCostMagnitude": 2,
+              "CorruptionContribution": 1,
+              "Costs": [
+                { "Type": "Trust",    "Magnitude": 2, "Timing": "front-loaded" },
+                { "Type": "Violence", "Magnitude": 1, "Timing": "front-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "TransformedA", "Weight": 3 },
+                { "EndStateId": "Extinct",      "Weight": 1 }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "SennaLedger",
+          "Archetype": "HiddenEvidence",
+          "Temporal": "Latent",
+          "DominantAlignment": "CosmicA",
+          "UrgencyTrigger": "None — evidence is static unless Maren is warned",
+          "UrgencyEffect": "If maren_diverting revealed to Maren early, she burns the ledger",
+          "UrgencyTiming": "immediate",
+          "TransitionRules": [
+            { "FromState": "active", "ToState": "resolved", "Condition": "Player reads the ledger" },
+            { "FromState": "active", "ToState": "failed",   "Condition": "Maren warned before ledger is found" }
+          ],
+          "HiddenEvidence": {
+            "Subtypes": ["Passive", "Gated"],
+            "CustodianId": "maren",
+            "GateCondition": "Locked in Maren's workroom; key held by Maren or obtainable from Holt",
+            "RevealMethods": [
+              { "Alignment": "Home",    "Method": "Ask Holt for the key after he confides" },
+              { "Alignment": "CosmicA", "Method": "Find the ledger through the loose hearthstone Senna's journal describes" }
+            ]
+          },
+          "Paths": [
+            {
+              "Id": "LedgerRevealed",
+              "PrimaryAlignment": "CosmicA",
+              "EmotionalCostDescription": "Reading Senna's private accounts feels like trespass",
+              "EmotionalCostMagnitude": 1,
+              "CorruptionContribution": 0,
+              "Costs": [
+                { "Type": "Trust", "Magnitude": 1, "Timing": "front-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Restored",    "Weight": 2 },
+                { "EndStateId": "TransformedA","Weight": 2 }
+              ]
+            },
+            {
+              "Id": "LedgerBurned",
+              "PrimaryAlignment": "CosmicB",
+              "EmotionalCostDescription": "Evidence is gone; only testimony remains",
+              "EmotionalCostMagnitude": 2,
+              "CorruptionContribution": 3,
+              "Costs": [
+                { "Type": "Ideology", "Magnitude": 2, "Timing": "back-loaded" }
+              ],
+              "EndStateContributions": [
+                { "EndStateId": "Corrupted",    "Weight": 3 },
+                { "EndStateId": "TransformedB", "Weight": 1 }
+              ]
+            }
+          ]
+        }
+      ],
+      "MemorialActs": [
+        {
+          "SubjectId": "aldric",
+          "Objects": ["LoomFrame", "SaltPouch"],
+          "Interactions": [
+            { "Alignment": "Home",    "Description": "Oil the loom frame with salt-water as Aldric taught — it preserves the wood" },
+            { "Alignment": "CosmicA", "Description": "Leave the salt pouch open so the moisture evaporates — let it complete its cycle" }
+          ]
+        },
+        {
+          "SubjectId": "senna",
+          "Objects": ["TravelCloak", "JournalCover"],
+          "Interactions": [
+            { "Alignment": "Home",    "Description": "Fold the cloak and return it to the house — she belongs here" },
+            { "Alignment": "CosmicA", "Description": "Hang the cloak at the crossroads — where she was going, not where she stopped" }
+          ]
+        }
+      ],
+      "Crossovers": [
+        {
+          "Type": "TruthPropagation",
+          "FromPointId": "SennaLedger",
+          "FromCondition": "state:resolved",
+          "ToPointId": "InheritanceHinge",
+          "ToEffect": "reveal:corvin:salt_stores_intact",
+          "DerivedFromWitnessMap": true
+        },
+        {
+          "Type": "AntagonistReveal",
+          "FromPointId": "InheritanceHinge",
+          "FromCondition": "state:resolved",
+          "ToPointId": "HoltSilenced",
+          "ToEffect": "close:HoltSilenced:BypassHolt",
+          "DerivedFromWitnessMap": false
+        },
+        {
+          "Type": "Amplification",
+          "FromPointId": "HoltSilenced",
+          "FromCondition": "state:failed",
+          "ToPointId": "CraftWound",
+          "ToEffect": "corruption:2",
+          "DerivedFromWitnessMap": false
+        }
+      ],
+      "EndStates": [
+        {
+          "Id": "Restored",
+          "Name": "The Knot Holds",
+          "PathSignature": ["TeachingPact", "CorvinConfronts", "LedgerRevealed"],
+          "Tag": "ThreskerRestored",
+          "Rewards": ["SaltWeaveCloth", "HouseThreskerReputation+3"],
+          "ExternalResonanceDescription": "Salt-weave cloth reappears at the village market; other houses note House Thresker's recovery",
+          "ExternalResonanceScope": "regional"
+        },
+        {
+          "Id": "TransformedA",
+          "Name": "New Fiber",
+          "PathSignature": ["ExternalMentor", "ExileResolution"],
+          "Tag": "ThreskerTransformedA",
+          "Rewards": ["SaltWeaveCloth", "HouseThreskerReputation+1"],
+          "ExternalResonanceDescription": "The craft survives but changes hands in spirit — outsiders now shape it",
+          "ExternalResonanceScope": "house-local"
+        },
+        {
+          "Id": "TransformedB",
+          "Name": "The Comfortable Lie",
+          "PathSignature": ["SilentBargain", "LedgerBurned"],
+          "Tag": "ThreskerTransformedB",
+          "Rewards": ["HouseThreskerReputation-1"],
+          "ExternalResonanceDescription": "House Thresker appears stable; those who know say nothing",
+          "ExternalResonanceScope": "house-local"
+        },
+        {
+          "Id": "Extinct",
+          "Name": "Thread's End",
+          "PathSignature": ["ExileResolution", "LedgerBurned"],
+          "Tag": "ThreskerExtinct",
+          "Rewards": [],
+          "ExternalResonanceDescription": "House Thresker dissolves; the double-salt knot is lost",
+          "ExternalResonanceScope": "regional"
+        },
+        {
+          "Id": "Corrupted",
+          "Name": "Salt in the Wound",
+          "PathSignature": ["SilentBargain", "BypassHolt", "LedgerBurned"],
+          "Tag": "ThreskerCorrupted",
+          "Rewards": ["HouseThreskerReputation-3"],
+          "ExternalResonanceDescription": "The craft becomes a private commercial operation; salt-weave loses its distinctiveness within two seasons",
+          "ExternalResonanceScope": "basin-wide"
+        }
+      ],
+      "CorruptionGradient": {
+        "EarlyWarningSignal": "Maren begins pricing salt-weave samples with the merchant's marks visible on the backing",
+        "PointOfNoReturn": "SilentBargain path taken in InheritanceHinge while LedgerBurned is already resolved"
+      }
+    }
+  ]
+}

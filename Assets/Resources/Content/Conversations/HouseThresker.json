@@ -1,0 +1,654 @@
+{
+  "Conversations": [
+
+    {
+      "ID": "Drama_Thresker_DiminishedHead",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Corvin Thresker looks up from a knot he has been tying and untying. 'You're the traveler everyone's been talking about. Salt-weaving used to be what we were known for. Now I'm not sure what we're known for.'",
+          "Choices": [
+            {
+              "Text": "What happened to the craft?",
+              "Target": "CraftDecline"
+            },
+            {
+              "Text": "You don't seem sure about much.",
+              "Target": "Deflection"
+            },
+            {
+              "Text": "I heard your daughter Petra is still learning.",
+              "Target": "PetraHope",
+              "Predicates": [{ "Key": "IfDramaActive", "Value": "Thresker" }]
+            },
+            {
+              "Text": "I've found something you should see.",
+              "Target": "LedgerReveal",
+              "Predicates": [
+                { "Key": "IfDramaActive",        "Value": "Thresker" },
+                { "Key": "IfWitnessKnows",        "Value": "Thresker:corvin:salt_stores_intact" }
+              ]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "CraftDecline",
+          "Text": "'The salt stocks ran low. Happens in dry years, or when the trade routes change. We've had both.' He doesn't meet your eyes.",
+          "Choices": [
+            {
+              "Text": "That sounds like an excuse.",
+              "Target": "PressCorvin"
+            },
+            {
+              "Text": "Could you source salt from elsewhere?",
+              "Target": "AlternativeSalt"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "PressCorvin",
+          "Text": "'An excuse.' He repeats it flatly. 'No. It's an explanation. There's a difference.' But his hands stop moving on the knot.",
+          "Choices": [
+            {
+              "Text": "I don't think you believe that.",
+              "Target": "CorvinCracks",
+              "Predicates": [{ "Key": "IfWitnessKnows", "Value": "Thresker:corvin:salt_stores_intact" }]
+            },
+            {
+              "Text": "If you say so.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "CorvinCracks",
+          "Text": "'No,' he says quietly. 'I don't.' A long pause. 'Tell me what you know. All of it. I've been protecting this family by not asking. I'm done.'",
+          "Choices": [
+            {
+              "Text": "Lay out everything you've learned about Maren and the salt diversion.",
+              "Target": "CorvinConfrontsResolved",
+              "Actions": [
+                { "Key": "AdvancePressurePoint", "Value": "Thresker:InheritanceHinge:resolved:CorvinConfronts" },
+                { "Key": "AddMessage",           "Value": "Corvin listens without interrupting. When you finish, he is very still." }
+              ]
+            }
+          ]
+        },
+        {
+          "ID": "CorvinConfrontsResolved",
+          "Text": "'I'll speak to Maren today.' His voice is steady in the way of someone who has made a decision they will not revisit. 'Thank you. I know what this cost.'",
+          "Choices": [
+            {
+              "Text": "It was necessary.",
+              "Target": "End"
+            },
+            {
+              "Text": "What happens now?",
+              "Target": "CorvinAftermath"
+            }
+          ]
+        },
+        {
+          "ID": "CorvinAftermath",
+          "Text": "'That depends on Maren. And on Petra. And, if I'm honest, on whether I can hold this family together long enough to find out.' He picks up the knot again. This time his fingers move with purpose.",
+          "Choices": [
+            {
+              "Text": "Good luck.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AlternativeSalt",
+          "Text": "'We've looked. The mineral content has to be exact or the thread won't bind. Aldric spent years finding our source.' He says it like a door closing.",
+          "Choices": [
+            {
+              "Text": "What if someone found a second source?",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Deflection",
+          "Text": "'I'm sure about what matters. Family. Keeping the house standing.' He holds up the half-finished knot. 'I'm less sure about this.'",
+          "Choices": [
+            {
+              "Text": "What is that?",
+              "Target": "CraftDecline"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "PetraHope",
+          "Text": "'Petra tries. She has the patience for it, which is more than most.' A flicker of something — pride, or grief. 'What she doesn't have is enough thread left to practice on.'",
+          "Choices": [
+            {
+              "Text": "Why is there so little thread?",
+              "Target": "CraftDecline"
+            },
+            {
+              "Text": "She seems determined.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "LedgerReveal",
+          "Text": "Corvin stares at the ledger for a long time. 'This is Senna's hand. And these numbers...' He sets it down carefully, as if it might break. 'Maren has been selling our stocks.'",
+          "Choices": [
+            {
+              "Text": "For three seasons, at least.",
+              "Target": "CorvinCracks"
+            }
+          ]
+        },
+        {
+          "ID": "End",
+          "Text": "Corvin nods and returns to his knot.",
+          "Choices": []
+        }
+      ]
+    },
+
+    {
+      "ID": "Drama_Thresker_RisingInheritor",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Petra Thresker is crouched over a loom frame, squinting at the thread pattern. She stands when she hears you. 'Sorry. I was counting. The count matters.'",
+          "Choices": [
+            {
+              "Text": "What are you making?",
+              "Target": "CraftExplain"
+            },
+            {
+              "Text": "You seem worried.",
+              "Target": "PetraWorry"
+            },
+            {
+              "Text": "I think I know why your salt ran out.",
+              "Target": "PetraLearns",
+              "Predicates": [
+                { "Key": "IfDramaActive", "Value": "Thresker" },
+                { "Key": "IfWitnessKnows", "Value": "Thresker:corvin:salt_stores_intact" }
+              ]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "CraftExplain",
+          "Text": "'Salt-thresh weave. It's what House Thresker does. Did.' She corrects herself with a small wince. 'Father says the salt ran out. But grandfather Aldric used to say there was always salt if you knew where to look.'",
+          "Choices": [
+            {
+              "Text": "Did he say where?",
+              "Target": "AldricClue"
+            },
+            {
+              "Text": "Maybe the supply really is exhausted.",
+              "Target": "PetraDoubt"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AldricClue",
+          "Text": "'He kept records. Senna — my aunt, she died on the road two years ago — she kept them after him. But they're locked in Maren's workroom now. Maren said she'd catalog them. That was eight months ago.'",
+          "Choices": [
+            {
+              "Text": "That's worth looking into.",
+              "Target": "Start",
+              "Actions": [{ "Key": "AddMessage", "Value": "Petra gives you a careful look, as if deciding whether to hope." }]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "PetraDoubt",
+          "Text": "'Maybe. I keep thinking: if the craft was truly dying, wouldn't grandfather have warned us? He was obsessive about continuity.' She shrugs, but it's not a dismissive shrug.",
+          "Choices": [
+            {
+              "Text": "What would change if you found out he was right?",
+              "Target": "PetraHope"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "PetraHope",
+          "Text": "'Everything.' She says it without hesitation. 'I could actually learn it properly instead of practicing on scraps. I could teach someone else someday.' A pause. 'I want to be the person who didn't let it die.'",
+          "Choices": [
+            {
+              "Text": "Then find out the truth.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "PetraWorry",
+          "Text": "'I'm always worried. The count has to be exact or the salt doesn't bind. If I miscount, I waste thread we can't replace.' She holds up a small swatch with a slightly crooked pattern. 'And I miscounted.'",
+          "Choices": [
+            {
+              "Text": "What are you counting?",
+              "Target": "CraftExplain"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "PetraLearns",
+          "Text": "You tell her what you know. She listens without moving. When you finish, she is very still for a moment. Then: 'The salt is still there. She's been selling it.' Not a question.",
+          "Choices": [
+            {
+              "Text": "Yes.",
+              "Target": "PetraAfter",
+              "Actions": [
+                { "Key": "RevealWitnessFact", "Value": "Thresker:petra:maren_diverting" },
+                { "Key": "RevealWitnessFact", "Value": "Thresker:petra:salt_stores_intact" }
+              ]
+            }
+          ]
+        },
+        {
+          "ID": "PetraAfter",
+          "Text": "'Then the craft isn't dead.' She picks up the crooked swatch and straightens the edge with her thumbnail. 'It was just hidden from me.' Something settles in her expression. 'I need to talk to my father.'",
+          "Choices": [
+            {
+              "Text": "He needs to know too.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "End",
+          "Text": "Petra turns back to the loom. Her posture is different now — less braced.",
+          "Choices": []
+        }
+      ]
+    },
+
+    {
+      "ID": "Drama_Thresker_NamedAntagonist",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Maren Thresker is measuring cloth when you approach. She folds it with practiced efficiency before looking up. 'Traveler. What can I do for you?'",
+          "Choices": [
+            {
+              "Text": "Tell me about House Thresker's craft.",
+              "Target": "MarenCraft"
+            },
+            {
+              "Text": "You seem busy.",
+              "Target": "MarenBusy"
+            },
+            {
+              "Text": "I know about the salt diversion.",
+              "Target": "MarenConfronted",
+              "Predicates": [
+                { "Key": "IfDramaActive",    "Value": "Thresker" },
+                { "Key": "IfWitnessKnows",   "Value": "Thresker:corvin:salt_stores_intact" }
+              ]
+            },
+            {
+              "Text": "I want to talk about Senna.",
+              "Target": "MarenSenna",
+              "Predicates": [{ "Key": "IfDramaActive", "Value": "Thresker" }]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "MarenCraft",
+          "Text": "'Salt-thresh weaving. Beautiful, in its way. But it requires very specific materials that have become... difficult to source.' She says it smoothly, like something rehearsed.",
+          "Choices": [
+            {
+              "Text": "Difficult, or unavailable?",
+              "Target": "MarenPressed"
+            },
+            {
+              "Text": "Is there a future for it?",
+              "Target": "MarenFuture"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "MarenPressed",
+          "Text": "A very slight pause. 'Both. The distinction matters less than you might think when you're the one responsible for keeping a family housed and fed.' Her tone stays pleasant.",
+          "Choices": [
+            {
+              "Text": "And you're responsible for that?",
+              "Target": "MarenRole"
+            },
+            {
+              "Text": "I see.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "MarenRole",
+          "Text": "'Someone has to be. Corvin... loves this family. But love doesn't fill the larder.' She picks up the folded cloth again. 'Was there something specific you needed?'",
+          "Choices": [
+            {
+              "Text": "No. Thank you.",
+              "Target": "End"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "MarenFuture",
+          "Text": "'The craft has a past. Whether it has a future depends on factors outside anyone's control.' A smooth answer. Too smooth.",
+          "Choices": [
+            {
+              "Text": "Like what factors?",
+              "Target": "MarenPressed"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "MarenBusy",
+          "Text": "'Always. That's the nature of it.' She sets the cloth down. 'If you have questions, ask them. I find it more efficient than circling.'",
+          "Choices": [
+            {
+              "Text": "What's the cloth for?",
+              "Target": "MarenCraft"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "MarenSenna",
+          "Text": "The efficiency in her face goes somewhere else for a moment. 'Senna was... she was the only one in this family who understood that sometimes you have to choose your own survival. She just chose it by leaving. I stayed.' She says the last two words like a wound she checks periodically.",
+          "Choices": [
+            {
+              "Text": "What would she think of what you're doing?",
+              "Target": "MarenSennaDeep"
+            },
+            {
+              "Text": "Leaving isn't always cowardice.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "MarenSennaDeep",
+          "Text": "'She would tell me I was wrong. She was always wrong about the practical things.' A pause that runs too long. 'And right about the ones that mattered.' Maren sets the cloth down and doesn't pick it up again.",
+          "Choices": [
+            {
+              "Text": "There's still time to be right about this one.",
+              "Target": "MarenVulnerable",
+              "Predicates": [{ "Key": "IfWitnessKnows", "Value": "Thresker:corvin:salt_stores_intact" }]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "MarenVulnerable",
+          "Text": "She looks at you for a long time. 'You know.' Not a question. 'How much?'",
+          "Choices": [
+            {
+              "Text": "Enough. But I'm not here to destroy you.",
+              "Target": "MarenOffer"
+            },
+            {
+              "Text": "Everything.",
+              "Target": "MarenCornered"
+            }
+          ]
+        },
+        {
+          "ID": "MarenOffer",
+          "Text": "'Then what are you here to do?' Guarded. But listening.",
+          "Choices": [
+            {
+              "Text": "Help you find a way out that doesn't end with exile or worse.",
+              "Target": "MarenChangedPath",
+              "Actions": [
+                { "Key": "AdvancePressurePoint", "Value": "Thresker:InheritanceHinge:resolved:CorvinConfronts" },
+                { "Key": "RevealWitnessFact",    "Value": "Thresker:maren:senna_journal" },
+                { "Key": "AddMessage",           "Value": "You describe the merchant contact as a legitimate open partnership rather than a hidden arrangement." }
+              ]
+            }
+          ]
+        },
+        {
+          "ID": "MarenChangedPath",
+          "Text": "She is quiet for a long time. Then: 'If Corvin agrees to speak with them directly. Openly. No more of this.' She gestures at the folded cloth — the evidence of the diversion. 'Then... yes.'",
+          "Choices": [
+            {
+              "Text": "I'll arrange it.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "MarenCornered",
+          "Text": "Something shuts behind her eyes. 'Then you already know what comes next.' She picks up the cloth with finality. 'I'd like you to leave.'",
+          "Choices": [
+            {
+              "Text": "This isn't over.",
+              "Target": "End",
+              "Actions": [{ "Key": "AdvancePressurePoint", "Value": "Thresker:InheritanceHinge:active" }]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "MarenConfronted",
+          "Text": "The cloth goes still in her hands. 'Who told you.' Not a question — a reckoning.",
+          "Choices": [
+            {
+              "Text": "It doesn't matter who. What matters is what you do now.",
+              "Target": "MarenVulnerable"
+            },
+            {
+              "Text": "The ledger is very clear.",
+              "Target": "MarenVulnerable",
+              "Predicates": [{ "Key": "IfPathTaken", "Value": "Thresker:SennaLedger:LedgerRevealed" }]
+            }
+          ]
+        },
+        {
+          "ID": "End",
+          "Text": "Maren returns to her work without looking up.",
+          "Choices": []
+        }
+      ]
+    },
+
+    {
+      "ID": "Drama_Thresker_SilencedHelper",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Holt is stacking empty salt sacks near the storehouse wall. He notices you and straightens up quickly. 'Just doing inventory. Nothing interesting here.'",
+          "Choices": [
+            {
+              "Text": "You seem nervous.",
+              "Target": "HoltNervous"
+            },
+            {
+              "Text": "What do you know about the salt shortage?",
+              "Target": "HoltDeflects"
+            },
+            {
+              "Text": "I think Corvin already suspects the truth.",
+              "Target": "HoltOpening",
+              "Predicates": [
+                { "Key": "IfDramaActive",   "Value": "Thresker" },
+                { "Key": "IfPressurePointState", "Value": "Thresker:HoltSilenced:active" }
+              ]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "HoltNervous",
+          "Text": "'I'm not nervous, I'm cold. It's cold out here.' He isn't cold. The day is mild. He keeps glancing toward the main house.",
+          "Choices": [
+            {
+              "Text": "What are you watching for?",
+              "Target": "HoltWatching"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "HoltWatching",
+          "Text": "'Nothing. I'm not watching for anything.' A pause. 'Is Maren inside?'",
+          "Choices": [
+            {
+              "Text": "Why does it matter if Maren is inside?",
+              "Target": "HoltDeflects"
+            },
+            {
+              "Text": "You can tell me what you know.",
+              "Target": "HoltEdge"
+            }
+          ]
+        },
+        {
+          "ID": "HoltDeflects",
+          "Text": "'The salt shortage is what Corvin said it is. Supply problems. It happens.' He's reciting, not explaining. Every word is slightly too even.",
+          "Choices": [
+            {
+              "Text": "That's not what you believe.",
+              "Target": "HoltEdge"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "HoltEdge",
+          "Text": "He lowers his voice. 'I know what I know. And I know what happens to people in this house who say things that inconvenience Maren. She's not cruel. She's just... very good at making your situation worse without ever doing anything you can point to.'",
+          "Choices": [
+            {
+              "Text": "What if telling the truth didn't cost you anything?",
+              "Target": "HoltOpening"
+            },
+            {
+              "Text": "I understand. Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "HoltOpening",
+          "Text": "'What do you mean it doesn't cost me anything? Someone always pays.' But he's stopped stacking the sacks.",
+          "Choices": [
+            {
+              "Text": "Corvin already suspects Maren. If he asks you directly, your silence is already broken — you're just deciding who you protect.",
+              "Target": "HoltBreaks",
+              "Actions": [{ "Key": "AddMessage", "Value": "Holt looks at the main house for a long moment." }]
+            },
+            {
+              "Text": "Maybe it's worth paying this time.",
+              "Target": "HoltBreaks"
+            }
+          ]
+        },
+        {
+          "ID": "HoltBreaks",
+          "Text": "'The salt stores aren't empty.' He says it quickly, like pulling a splinter. 'They're in the lower cellar, behind the grain. Full crates. Maren's been moving them out at night — selling them to a merchant from the upland route. Three seasons.' He exhales. 'There. It's said.'",
+          "Choices": [
+            {
+              "Text": "Thank you, Holt. That took courage.",
+              "Target": "HoltAfter",
+              "Actions": [
+                { "Key": "RevealWitnessFact",    "Value": "Thresker:corvin:salt_stores_intact" },
+                { "Key": "AdvancePressurePoint", "Value": "Thresker:HoltSilenced:resolved:HoltConfides" },
+                { "Key": "AddMessage",           "Value": "You now know the salt stores are intact." }
+              ]
+            }
+          ]
+        },
+        {
+          "ID": "HoltAfter",
+          "Text": "'Courage.' He almost laughs. 'Ask me again in a week whether it was worth it.' But his shoulders are less rigid. 'There's a key to Maren's workroom in the lining of the old traveling satchel on the peg inside. Senna's satchel. In case that's useful.'",
+          "Choices": [
+            {
+              "Text": "It might be. Thank you.",
+              "Target": "End",
+              "Actions": [{ "Key": "RevealWitnessFact", "Value": "Thresker:corvin:maren_diverting" }]
+            }
+          ]
+        },
+        {
+          "ID": "End",
+          "Text": "Holt goes back to stacking sacks, but there is less urgency in it now.",
+          "Choices": []
+        }
+      ]
+    }
+
+  ]
+}

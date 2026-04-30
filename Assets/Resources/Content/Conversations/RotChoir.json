@@ -575,6 +575,226 @@
           ]
         }
       ]
+    },
+    {
+      "ID": "Mogu_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Sit. Or do not. Either way you are here, and the soil already knew. I am Mogu — once. Now, also a syllable in the deeper sentence. What brings your feet to ours?",
+          "Choices": [
+            { "Text": "How did you join the Choir?", "Target": "Joining" },
+            { "Text": "What did you do before?", "Target": "Before" },
+            { "Text": "What does the Choir teach you?", "Target": "Teaching" },
+            { "Text": "Farewell, Mogu.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Joining",
+          "Text": "Slowly, as all true things change. The elders said: the wise do not push the river — they listen for where it wants to flow. The Choir is the river beneath the river. I stopped resisting, and I was already part of it.",
+          "Choices": [
+            { "Text": "Back to my other questions.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "Before",
+          "Text": "I tended a small grove. Names of plants my grandmother named, in a tongue we no longer speak. Now the names live in the spores. Nothing of value is ever lost — only translated. The grove is wider now. It reaches places my hands could not.",
+          "Choices": [
+            { "Text": "That is a strange comfort.", "Target": "Comfort" },
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "Comfort",
+          "Text": "Strangeness is only newness. The way does not promise comfort, only continuity. Walk well, and walk slow. Hurry erodes what patience builds.",
+          "Choices": [
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "Teaching",
+          "Text": "It teaches what the old books taught, but with a longer breath. Balance. Patience. That endings are not endings, only different shapes for the same water. I was not a quick student in life. The Choir is patient with me still.",
+          "Choices": [
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Grib_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "So. Another walker. You are warm — I can smell it. I was warm once. Don't worry, I do not envy you. Warmth is only a brief light before the long quiet, yes? Sit. Or stand. We are all standing in the same dark, friend.",
+          "Choices": [
+            { "Text": "You sound bleak.", "Target": "Bleak" },
+            { "Text": "Why did you let the Choir take you?", "Target": "Surrender" },
+            { "Text": "Do you hate the living?", "Target": "Hate" },
+            { "Text": "Goodbye, Grib.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Bleak",
+          "Text": "Bleak? No. Bleak is for those who pretend the night will not come. I am only honest. Honesty is a cold thing, but cold things keep. Sentimental things rot — and not even in a useful way, like we do.",
+          "Choices": [
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "Surrender",
+          "Text": "Let. What a small word. The Choir does not take. The Choir is what was already happening, only faster. I had a name. A sister. A small fire by a window. The fire went out. The window broke. The sister was gone before the rest. I was already half-spore by then. So. I joined the rest of myself.",
+          "Choices": [
+            { "Text": "I'm sorry, Grib.", "Target": "Sorry" },
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "Sorry",
+          "Text": "Don't be. Pity is wasted on the dying — and we are all dying, just at different speeds. Yours is faster than mine now, ironically. But we are not ungentle. Walk safely, friend. Or do not. Either way, we will see you again.",
+          "Choices": [
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "Hate",
+          "Text": "Hate? No. The living are only us, before. I look at you and see myself, with the lights still on inside. It is hard to hate a candle for not knowing it is short. Easier to feel sorry. But that is also tiresome, so mostly I just watch.",
+          "Choices": [
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Nam_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Hello, friend. You walk far. Sit on this stone with me — it is warm, and the warm stones are kin. My name is Nam. Once a child of the river, then a singer in the rice fields, now a thread in this great quiet root. You look tired. The road eats people slowly. We can rest a moment.",
+          "Choices": [
+            { "Text": "Why are you so welcoming?", "Target": "Welcoming" },
+            { "Text": "Tell me about your people.", "Target": "People" },
+            { "Text": "What does the Choir feel like, from inside?", "Target": "Inside" },
+            { "Text": "Until next time, Nam.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Welcoming",
+          "Text": "Why not? Strangers and family share the same blood once you trace it back far enough. The mycelium taught me what my grandmother taught me first: nothing is alone. The river is one river, even when it splits.",
+          "Choices": [
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "People",
+          "Text": "We were many, by the river. We sang to the rice, and the rice gave its heart back. When the great cold came, the river grew thin. We followed it underground. The Choir was already there, waiting, like an old aunt who does not need to ask why you came home.",
+          "Choices": [
+            { "Text": "That sounds peaceful.", "Target": "Peace" },
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "Peace",
+          "Text": "Peace is the wrong word. The river was never peaceful. It worked, always. So do we. But there is rest in working alongside others. That, yes — that part is good. We carry less when we carry together.",
+          "Choices": [
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "Inside",
+          "Text": "Like a kitchen with many hands and one pot. You hear everyone, even when no one speaks. You do not feel small in it — you feel held. Maybe that is hard for a walker to understand. Walkers are taught to be one. We were taught to be many, even before the spores.",
+          "Choices": [
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Sien_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "...you came. ...mm. Sit, if you wish. Or stand. The forest does not mind. I am Sien.",
+          "Choices": [
+            { "Text": "You don't say much.", "Target": "Quiet" },
+            { "Text": "What did you do before?", "Target": "Before" },
+            { "Text": "Tell me about the forest.", "Target": "Forest" },
+            { "Text": "Farewell.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Quiet",
+          "Text": "...words wear out. ...the forest taught me. Speak when there is more to say than the silence. ...you are still listening. ...so.",
+          "Choices": [
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "Before",
+          "Text": "I tended a stove in a wooden house. ...the house is gone. The stove, also. ...the warmth is here, now. Different shape. Same warmth.",
+          "Choices": [
+            { "Text": "That's beautiful.", "Target": "Beautiful" },
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "Beautiful",
+          "Text": "...mm. Beauty is what is left when nothing else can be taken. ...the forest knows this. ...so do I.",
+          "Choices": [
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "Forest",
+          "Text": "...there was a forest above. There is a forest below. ...same trees, different roots. ...same songs, sung longer. ...we do not need to speak much. The mycelium speaks for us. ...sometimes that is enough. ...sometimes more than enough.",
+          "Choices": [
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Sopp_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Hail, walker. The wind brought you, and the wind never brings without reason. I am Sopp — once a fisher of bright water, now a knot in a darker net. Sit, if your fate allows it. Speak quickly or speak slowly. The end is the same.",
+          "Choices": [
+            { "Text": "You sound like the old sagas.", "Target": "Sagas" },
+            { "Text": "What is the Choir's fate?", "Target": "Fate" },
+            { "Text": "Do you miss the sea?", "Target": "Sea" },
+            { "Text": "Fair winds, Sopp.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Sagas",
+          "Text": "We carry our shapes from before. The sagas were how my people held their dead — in the telling. The Choir holds its dead in the telling, also. Same craft, deeper roots. The old gods would not blink at us.",
+          "Choices": [
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "Fate",
+          "Text": "Fate. Hah. It is the cloth that is woven whether you watch or not. The Choir is the loom now. It does not care if the threads sing — only that they hold. Yet some of us still sing. That is our small rebellion. Or perhaps it is part of the weave too. Who knows.",
+          "Choices": [
+            { "Text": "Strong words.", "Target": "Strong" },
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "Strong",
+          "Text": "Strong words for a soft creature, yes. We were never as fierce as we pretended. But we did not need to be — only honest about the cold, and willing to row through it. Walk steady, walker. The cold finds us all.",
+          "Choices": [
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "Sea",
+          "Text": "The sea, yes. Always. But the sea was never just water — it was the long song between storms. The Choir has its own long song. Different key. Same listening. I do not miss what I still have, only renamed.",
+          "Choices": [
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        }
+      ]
     }
   ]
 }
