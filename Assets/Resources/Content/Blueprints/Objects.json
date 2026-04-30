@@ -3098,44 +3098,6 @@
       ]
     },
     {
-      "Name": "IceWight",
-      "Inherits": "Creature",
-      "Parts": [
-        { "Name": "Render", "Params": [
-          { "Key": "DisplayName", "Value": "ice wight" },
-          { "Key": "RenderString", "Value": "W" },
-          { "Key": "ColorString", "Value": "&C" }
-        ]},
-        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "2" }] },
-        { "Name": "Material", "Params": [
-          { "Key": "MaterialID", "Value": "Ice" },
-          { "Key": "Combustibility", "Value": "0" },
-          { "Key": "MaterialTagsRaw", "Value": "Cold,Ice,Crystalline" }
-        ]},
-        { "Name": "Thermal", "Params": [
-          { "Key": "FlameTemperature", "Value": "200" },
-          { "Key": "HeatCapacity", "Value": "1.5" },
-          { "Key": "FreezeTemperature", "Value": "-20" },
-          { "Key": "BrittleTemperature", "Value": "-200" },
-          { "Key": "AmbientTemperature", "Value": "0" }
-        ]}
-      ],
-      "Stats": [
-        { "Name": "Hitpoints", "Value": 25, "Min": 0, "Max": 25 },
-        { "Name": "Strength", "Value": 14 },
-        { "Name": "Agility", "Value": 16 },
-        { "Name": "Toughness", "Value": 14 },
-        { "Name": "Speed", "Value": 90 },
-        { "Name": "XPValue", "Value": 25 },
-        { "Name": "ColdResistance", "Value": 100, "Min": -100, "Max": 200 },
-        { "Name": "HeatResistance", "Value": -50, "Min": -100, "Max": 200 }
-      ],
-      "Tags": [
-        { "Key": "Faction", "Value": "Wights" },
-        { "Key": "Tier", "Value": "2" }
-      ]
-    },
-    {
       "Name": "GlassScorpion",
       "Inherits": "Creature",
       "Parts": [
@@ -3237,7 +3199,9 @@
         { "Name": "Strength", "Value": 16 },
         { "Name": "Agility", "Value": 8 },
         { "Name": "Speed", "Value": 70 },
-        { "Name": "XPValue", "Value": 35 }
+        { "Name": "XPValue", "Value": 35 },
+        { "Name": "ColdResistance", "Value": 100, "Min": -100, "Max": 200 },
+        { "Name": "HeatResistance", "Value": -50, "Min": -100, "Max": 200 }
       ],
       "Tags": [
         { "Key": "Tier", "Value": "2" },
