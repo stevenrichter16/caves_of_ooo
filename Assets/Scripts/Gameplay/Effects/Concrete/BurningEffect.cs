@@ -127,13 +127,21 @@ namespace CavesOfOoo.Core
             // correctly (the int overload strips attributes — pre-fix bug
             // where fire-immune creatures still burned). Mirrors the on-hit
             // weapon path which already routes through ApplyResistances.
-            int damage = RollDamage();
-            if (damage > 0)
+            //
+            // Log the POST-resistance amount: ApplyDamage mutates
+            // fireDmg.Amount in place via ApplyResistances (CombatSystem.cs
+            // ~line 701), so reading fireDmg.Amount after the call gives
+            // the actually-applied damage. Logging the pre-resistance roll
+            // (the prior bug) misled players into thinking resistance
+            // wasn't firing — e.g., "takes 2 fire damage" appeared on a
+            // HR=50 target where the actual HP delta was 1.
+            int rolledAmount = RollDamage();
+            if (rolledAmount > 0)
             {
-                var fireDmg = new Damage(damage);
+                var fireDmg = new Damage(rolledAmount);
                 fireDmg.AddAttribute("Fire");
                 CombatSystem.ApplyDamage(target, fireDmg, IgnitionSource, zone);
-                MessageLog.Add(target.GetDisplayName() + " takes " + damage + " fire damage.");
+                MessageLog.Add(target.GetDisplayName() + " takes " + fireDmg.Amount + " fire damage.");
             }
 
             // 3. Emit heat to self (small reinforcement keeping temperature up)

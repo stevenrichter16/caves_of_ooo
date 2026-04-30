@@ -189,8 +189,114 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
+        // Log-message-reflects-post-resistance damage
+        //
+        // Reported during EmberSpear playtest: log line said "glowmaw takes 2
+        // fire damage" but glowmaw has HR=50, so the actual HP delta was 1.
+        // The DOT effects (Burning, Acidic) were logging the PRE-resistance
+        // roll, misleading players into thinking resistance wasn't firing.
+        //
+        // The fix reads Damage.Amount AFTER ApplyDamage returns —
+        // ApplyResistances mutates it in place (CombatSystem.cs:701).
+        // ====================================================================
+
+        [Test]
+        public void BurningEffect_OnTurnStartLog_ShowsPostResistanceDamage()
+        {
+            // Apply Burning to a HR=50 target. Pre-fix, the log would say
+            // "takes N fire damage" where N is the pre-resistance roll —
+            // misleading the player into thinking the resistance didn't
+            // fire. Post-fix, N is the actually-applied (halved) damage.
+            //
+            // We pin the relationship "log-displayed N == actual HP delta"
+            // rather than testing the exact number, since RollDamage is
+            // RNG-dependent.
+            MessageLog.Clear();
+            var resistant = MakeCreature(hp: 100, heatResistance: 50);
+            var burn = new BurningEffect(intensity: 5.0f, rng: new Random(7));
+            resistant.ApplyEffect(burn);
+
+            int hpBefore = resistant.GetStatValue("Hitpoints");
+            burn.OnTurnStart(resistant, MakeTickContext());
+            int hpAfter = resistant.GetStatValue("Hitpoints");
+            int actualDelta = hpBefore - hpAfter;
+
+            // Find the "takes X fire damage" message.
+            string fireMsg = null;
+            foreach (string m in MessageLog.GetMessages())
+            {
+                if (m.Contains("fire damage."))
+                {
+                    fireMsg = m;
+                    break;
+                }
+            }
+            Assert.IsNotNull(fireMsg,
+                "BurningEffect.OnTurnStart must log a 'takes X fire damage.' message.");
+
+            // Parse out the number. Format: "X takes N fire damage."
+            int loggedDamage = ExtractNumberBefore(fireMsg, "fire damage.");
+            Assert.AreEqual(actualDelta, loggedDamage,
+                "BurningEffect's log message must show the POST-resistance " +
+                "damage (matching the actual HP delta). Pre-fix: log showed " +
+                "the pre-resistance roll, misleading the player. " +
+                $"Got log='{fireMsg}', actualDelta={actualDelta}.");
+        }
+
+        [Test]
+        public void AcidicEffect_OnTurnStartLog_ShowsPostResistanceDamage()
+        {
+            // Mirror test for AcidicEffect on an AR=50 target.
+            MessageLog.Clear();
+            var resistant = MakeOrganicCreature(hp: 100, acidResistance: 50);
+            var acid = new AcidicEffect(corrosion: 1.0f);
+            resistant.ApplyEffect(acid);
+
+            int hpBefore = resistant.GetStatValue("Hitpoints");
+            acid.OnTurnStart(resistant, MakeTickContext());
+            int hpAfter = resistant.GetStatValue("Hitpoints");
+            int actualDelta = hpBefore - hpAfter;
+
+            string acidMsg = null;
+            foreach (string m in MessageLog.GetMessages())
+            {
+                if (m.Contains("acid damage."))
+                {
+                    acidMsg = m;
+                    break;
+                }
+            }
+            Assert.IsNotNull(acidMsg,
+                "AcidicEffect.OnTurnStart must log a 'takes X acid damage.' message.");
+
+            int loggedDamage = ExtractNumberBefore(acidMsg, "acid damage.");
+            Assert.AreEqual(actualDelta, loggedDamage,
+                "AcidicEffect's log message must show the POST-resistance " +
+                "damage (matching the actual HP delta). " +
+                $"Got log='{acidMsg}', actualDelta={actualDelta}.");
+        }
+
+        // ====================================================================
         // Helpers
         // ====================================================================
+
+        /// <summary>
+        /// Parse "... takes N suffix" → return N. Returns -1 if not parseable.
+        /// </summary>
+        private static int ExtractNumberBefore(string message, string suffix)
+        {
+            int idx = message.IndexOf(suffix);
+            if (idx <= 0) return -1;
+            // Walk backwards from suffix to collect digits.
+            int end = idx - 1;
+            while (end >= 0 && message[end] == ' ') end--;
+            int start = end;
+            while (start >= 0 && char.IsDigit(message[start])) start--;
+            start++;
+            if (start > end) return -1;
+            return int.Parse(message.Substring(start, end - start + 1));
+        }
+
 
         private static Entity MakeCreature(
             int hp = 100,
