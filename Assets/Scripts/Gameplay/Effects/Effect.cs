@@ -57,6 +57,28 @@ namespace CavesOfOoo.Core
         public int Duration;
 
         /// <summary>
+        /// True for one cycle if this effect was added to its owner's
+        /// <see cref="StatusEffectsPart"/> while the owner was mid-action
+        /// (between <c>BeginTakeAction</c> and <c>EndTurn</c>). The owner's
+        /// next <c>HandleEndTurn</c> tick skips this effect and clears the
+        /// flag — so an effect applied mid-action survives the apply turn
+        /// rather than evaporating in the very <c>EndTurn</c> that follows.
+        ///
+        /// Concretely: a player who steps onto <c>BearTrap</c> with
+        /// <c>StunnedEffect(1)</c> would otherwise tick 1 → 0 in the
+        /// EndTurn of the move action and never actually get stunned.
+        /// With this flag, the first EndTurn skips, the next EndTurn
+        /// ticks normally, and the stun blocks exactly one turn of
+        /// action — matching its <c>Duration</c> contract.
+        ///
+        /// This flag is NEVER serialized; on load it's always false. The
+        /// rare case of "saved between apply and EndTurn" reloads with
+        /// the apply turn already considered consumed, which is a small
+        /// acceptable edge.
+        /// </summary>
+        public bool JustApplied;
+
+        /// <summary>
         /// Why this effect ended. Defaults to <see cref="CAUSE_DURATION_EXPIRED"/>;
         /// effects with custom recovery (e.g. <see cref="BleedingEffect"/>'s
         /// Toughness save) overwrite this in their <c>OnTurnEnd</c> before

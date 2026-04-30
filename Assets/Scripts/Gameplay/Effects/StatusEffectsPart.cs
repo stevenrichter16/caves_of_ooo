@@ -14,6 +14,23 @@ namespace CavesOfOoo.Core
 
         private readonly List<Effect> _effects = new List<Effect>();
 
+        /// <summary>
+        /// True between <c>BeginTakeAction</c> and the end of <c>HandleEndTurn</c>
+        /// for the entity that owns this part. Used to mark
+        /// <see cref="Effect.JustApplied"/> on effects added mid-action so
+        /// their first <c>OnTurnEnd</c> is skipped — preventing same-turn
+        /// evaporation of trap/tonic/self-applied effects whose
+        /// <c>Duration</c> would otherwise tick to 0 in the very EndTurn
+        /// that wraps the action.
+        ///
+        /// Crucially, this is per-owner: when entity A attacks entity B
+        /// during A's turn, B's <c>_isOwnerActing</c> is false (B isn't
+        /// the one acting), so on-hit effects on B do NOT get
+        /// <see cref="Effect.JustApplied"/> set. Existing on-hit-melee
+        /// and AOE-spell behavior is unchanged.
+        /// </summary>
+        private bool _isOwnerActing;
+
         public override void Initialize()
         {
             // Keep effect handling first, matching Qud's "effects before parts" behavior.
@@ -71,6 +88,20 @@ namespace CavesOfOoo.Core
             }
 
             effect.Owner = ParentEntity;
+
+            // Mark the effect as "applied during owner's currently-active
+            // turn" — true only when this entity is between BeginTakeAction
+            // and EndTurn. The first OnTurnEnd will skip this effect and
+            // clear the flag. Prevents same-turn evaporation of effects
+            // applied via mid-action paths like:
+            //   - Stepping onto a trap (TriggerOnStepPart → ApplyEffect)
+            //   - Drinking a tonic on your own turn
+            //   - Self-targeting a buff mutation
+            // For other-applied effects (on-hit melee, AOE spells), the
+            // defender's _isOwnerActing is false (they're not the actor),
+            // so JustApplied stays false and existing behavior is preserved.
+            effect.JustApplied = _isOwnerActing;
+
             if (!effect.Apply(ParentEntity))
                 return false;
 
@@ -255,13 +286,22 @@ namespace CavesOfOoo.Core
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == "BeginTakeAction")
+            {
+                // Set _isOwnerActing first thing — even if HandleBeginTakeAction
+                // returns false (action blocked by stun/freeze/paralysis), we're
+                // still inside this owner's turn window and any effects added
+                // during the blocked turn (e.g., from a TakeDamage handler) need
+                // JustApplied set correctly. Cleared in HandleEndTurn.
+                _isOwnerActing = true;
                 return HandleBeginTakeAction(e);
+            }
 
             // Back-compat: some systems still drive effect start-of-turn on TakeTurn.
             if (e.ID == "TakeTurn")
             {
                 if (e.GetParameter<bool>("BeginTakeActionProcessed"))
                     return true;
+                _isOwnerActing = true;
                 return HandleBeginTakeAction(e);
             }
 
@@ -354,11 +394,26 @@ namespace CavesOfOoo.Core
 
         private void HandleEndTurn(GameEvent e)
         {
-            // Tick each effect
+            // Tick each effect — but skip any effect that was JustApplied
+            // during this same owner-turn cycle. Without this skip, an
+            // effect added mid-action (e.g., StunnedEffect(1) from a
+            // BearTrap step) would tick its OnTurnEnd in the very EndTurn
+            // that wraps the move, decrementing Duration 1 → 0 and being
+            // cleaned up before the next turn even starts. The flag is
+            // single-shot: cleared on the first tick attempt so the
+            // second EndTurn ticks normally.
             for (int i = _effects.Count - 1; i >= 0; i--)
             {
                 if (i < _effects.Count)
-                    _effects[i].OnTurnEnd(ParentEntity, e);
+                {
+                    var effect = _effects[i];
+                    if (effect.JustApplied)
+                    {
+                        effect.JustApplied = false;
+                        continue;
+                    }
+                    effect.OnTurnEnd(ParentEntity, e);
+                }
             }
 
             // Clean up expired effects
@@ -367,6 +422,13 @@ namespace CavesOfOoo.Core
                 if (_effects[i].Duration == 0)
                     RemoveEffectAt(i);
             }
+
+            // Owner's turn window closes here. Cleared after the tick
+            // loop so any effect application that happens DURING
+            // OnTurnEnd (rare — e.g., one effect's tick triggers another
+            // via FireEvent) still sees _isOwnerActing == true and gets
+            // JustApplied set correctly.
+            _isOwnerActing = false;
         }
 
         private void HandleTakeDamage(GameEvent e)
