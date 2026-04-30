@@ -109,8 +109,12 @@ CONSTRAINTS:
   • Length: 1500–3000 words total. Less = lazy; more = unread.
   • Be specific. "Add depth" is useless. Specific sample text is useful.
   • Save your output to:
-      /Users/steven/house_feature/caves_of_ooo/Docs/Lore/audits/YYYY-MM-DD-lore-audit.md
-    (use today's date; create the directory if missing).
+      /Users/steven/house_feature/caves_of_ooo/Docs/Lore/audits/YYYY-MM-DD-HHMM-lore-audit.md
+    where HHMM is the 24-hour zero-padded local-time hour and minute the
+    routine fires (e.g. 2026-04-30-0930-lore-audit.md for a 9:30 AM run,
+    2026-04-30-1430-lore-audit.md for 2:30 PM). Create the directory if
+    missing. The minute timestamp lets multiple same-day audits coexist
+    if you run the routine ad-hoc on top of its schedule.
 ```
 
 ---

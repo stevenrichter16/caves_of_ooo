@@ -6,12 +6,17 @@ routine (Claude Desktop Routines, GitHub Actions, or any other scheduler).
 The routine reads the canonical lore bible at
 `Docs/Lore/Palimpsest_Lore_Bible.md`, plus the in-game lore artifacts
 (`ROTCHOIR_VOICES.md`, `Assets/Resources/Content/Conversations/RotChoir.json`,
-and anything new in `Docs/Lore/`), and writes its findings here as a dated
-markdown file:
+and anything new in `Docs/Lore/`), and writes its findings here as a
+timestamped markdown file:
 
 ```
-Docs/Lore/audits/YYYY-MM-DD-lore-audit.md
+Docs/Lore/audits/YYYY-MM-DD-HHMM-lore-audit.md
 ```
+
+`HHMM` is the 24-hour zero-padded local time the routine fired
+(e.g. `2026-04-30-0930-lore-audit.md` for a 9:30 AM audit). Including
+the minute timestamp means same-day reruns don't clobber each other —
+useful when you trigger an ad-hoc audit alongside the scheduled one.
 
 Each audit is a *suggestion document*, not an edit. The routine never writes
 into the bible, the .json, the .md, or any code file directly. Acting on a
@@ -89,7 +94,7 @@ Docs/Lore/
 └── audits/
     ├── README.md                  # this file
     ├── ROUTINE_PROMPT.md          # the prompt the routine fires
-    └── YYYY-MM-DD-lore-audit.md   # one per audit run
+    └── YYYY-MM-DD-HHMM-lore-audit.md   # one per audit run
 ```
 
 The bible is the source of truth. Voice references (`ROTCHOIR_VOICES.md`)
