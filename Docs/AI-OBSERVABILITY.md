@@ -479,21 +479,223 @@ tools are mechanical.
 
 ---
 
-## 8. Open questions / things to validate before building
+## 8. Open questions — answered (Step 0 investigation)
 
-| Question | How to answer |
-|---|---|
-| Does the MCP custom-tools framework support the parameter shapes I want (filters, projection)? | Read `MCPForUnity/Server/src/...` and existing custom tools |
-| Is `Entity.FireEvent` hot-path-critical? Adding a record per call could matter. | Profile a typical 100-turn run before/after with all categories on |
-| Does `Stat` have a setter hook for capturing modifier-source changes? | Read `Assets/Scripts/Core/Stat.cs` — may need to add events |
-| Where exactly does `_combatRng` live, and is its determinism contract satisfied? | Audit before Tier 2 |
-
-These don't block Tier 1 D1/D2/D3 (the substrate + initial hooks). They become
-gating questions for full Tier 1 D4/D5 and especially Tier 2.
+| Question | Status | Answer |
+|---|---|---|
+| Does the MCP custom-tools framework support the parameter shapes I want (filters, projection)? | ✅ resolved | YES. C# `HandleCommand(JObject @params)` accepts arbitrary nested JSON at runtime. Schema declared via optional nested `Parameters` class with `[ToolParameter]` attributes — supports `string`, `integer`, `number`, `boolean`, `array`, `object` types (`ToolDiscoveryService.GetParameterType`). Nested-dict filters like `payload_match: {effect: "BleedingEffect"}` work. |
+| Is `Entity.FireEvent` hot-path-critical? Adding a record per call could matter. | ⏳ deferred to D1 verification | Profile during D1 spike (per CLAUDE.md "profile before optimizing"). Recording cost when category-disabled is one bool check + early return — should be ~5ns. Concern is when the category is ENABLED on a per-frame path. |
+| Does `Stat` have a setter hook for capturing modifier-source changes? | ⏳ deferred to D3 | Out of scope for first ship; Tier 1 captures effects/damage/turn boundaries which already cover ~90% of the bugs we've actually hit. |
+| Where exactly does `_combatRng` live, and is its determinism contract satisfied? | ⏳ Tier 2 only | Not relevant until `diag_replay_scenario` is on the table. Tier 1 doesn't need determinism. |
 
 ---
 
-## 9. Document maintenance
+## 9. Step 0 findings — concrete revisions to §3 architecture
+
+Step 0 was a no-code investigation of the `unity-mcp/MCPForUnity/` package
+to verify the architecture in §3 was actually buildable. Several
+assumptions were wrong; revisions below.
+
+### Revision 1 — No Python files
+
+**Original (§3 / §4):** ship Tier 1 as `MCPForUnity/CustomTools/diag_*.py`
+files, one per tool.
+
+**Reality:** custom tools live entirely in **Unity-side C#**. The Python
+server has a generic `/register-tools` HTTP endpoint plus an
+`execute_custom_tool` dispatcher, both implemented in
+`Server/src/services/custom_tool_service.py`. Unity registers tools at
+WebSocket-connect time via `WebSocketTransportClient.SendRegisterToolsAsync`
+(Transports/WebSocketTransportClient.cs:525-575), and Python forwards
+calls back to Unity via `send_with_unity_instance`.
+
+**Implication:** zero Python work. All ~860 LOC of Tier 1 code is C# in
+the Caves of Ooo project's own Unity scripts.
+
+### Revision 2 — `[McpForUnityTool]` attribute auto-discovery
+
+**Original:** unspecified registration mechanism.
+
+**Reality:** declared via `[McpForUnityTool("name", Description=...)]` on a
+class. `CommandRegistry.AutoDiscoverCommands` (Editor/Tools/CommandRegistry.cs:60+)
+scans `AppDomain.CurrentDomain.GetAssemblies()` for the attribute on Unity
+domain reload. Discovered tools auto-register with the Python bridge.
+
+Existing example: `unity-mcp/CustomTools/RoslynRuntimeCompilation/ManageRuntimeCompilation.cs`
+— ~700 LOC standalone tool, sits outside the unity-mcp package, gets
+auto-discovered.
+
+**Implication:** drop a `[McpForUnityTool]` C# class anywhere in the
+Unity project's compiled assemblies and it auto-registers. No central
+manifest file to update.
+
+### Revision 3 — Tool schema is via a nested `Parameters` class
+
+**Original:** unspecified.
+
+**Reality:** `ToolDiscoveryService.ExtractParameters` (line 153) looks for a
+**nested `Parameters` class** with `[ToolParameter]`-decorated properties.
+Type mapping in `GetParameterType` (line 189):
+
+```csharp
+typeof(string)              → "string"
+typeof(int)/typeof(long)    → "integer"
+typeof(float)/typeof(double)→ "number"
+typeof(bool)                → "boolean"
+IsArray | IEnumerable       → "array"
+otherwise                   → "object"   ← what we want for nested filter dicts
+```
+
+Pattern:
+
+```csharp
+[McpForUnityTool("diag_query",
+    Description = "Query the diag ring buffer with filters and projection.",
+    Group = "diagnostics")]
+public static class DiagQueryTool
+{
+    public class Parameters
+    {
+        [ToolParameter("Category filter: event, effect, damage, turn, material, ai")]
+        public string category { get; set; }
+
+        [ToolParameter("Kind filter (e.g. 'OnApply', 'EndTurn')")]
+        public string kind { get; set; }
+
+        [ToolParameter("Target entity ID or name")]
+        public string target { get; set; }
+
+        [ToolParameter("Nested payload-field filter, e.g. {\"effect\":\"BleedingEffect\"}")]
+        public Dictionary<string, object> payload_match { get; set; }
+
+        [ToolParameter("Field projection: only return these fields per record")]
+        public string[] fields { get; set; }
+
+        [ToolParameter("Max records (default 50, max 500)", Required = false, DefaultValue = "50")]
+        public int? limit { get; set; }
+    }
+
+    public static object HandleCommand(JObject @params)
+    {
+        // Read nested JSON via JObject — works regardless of schema strictness
+        string category = @params["category"]?.ToString();
+        var payloadMatch = @params["payload_match"] as JObject;
+        string effectFilter = payloadMatch?["effect"]?.ToString();
+        // ...
+        return new { meta = new {...}, data = filtered };
+    }
+}
+```
+
+The `Parameters` class is documentation for the LLM (gives type hints in
+the schema). The actual runtime parsing happens in `HandleCommand`'s
+`JObject` traversal. Nested JSON is not constrained by the schema — it
+flows through `parameters: dict` on the Python side and reaches Unity as
+`JObject @params`.
+
+**Implication:** my `payload_match: {effect: "BleedingEffect"}` design from
+§3 is buildable as-is. No flattening required.
+
+### Revision 4 — File layout
+
+**Original (§4):** unspecified split between runtime substrate and
+editor-side tool wrappers.
+
+**Reality:**
+
+| Layer | Location | Why |
+|---|---|---|
+| L0 substrate (`Diag.cs`, ring buffer, record API) | `Assets/Scripts/Diagnostics/` | Runtime-callable from gameplay code (StatusEffectsPart, CombatSystem hooks). Same assembly as `CavesOfOoo.asmdef`. |
+| L1 hooks | inline in their target source files | Each hook is `Diag.Record(...)`; needs runtime visibility |
+| L2 MCP tool wrappers (`DiagQueryTool.cs` etc.) | `Assets/Editor/Diagnostics/` | `[McpForUnityTool]` lives in `MCPForUnity.Editor.Tools` — editor-only namespace. Tools must be in an editor-side assembly. They call into the runtime `Diag` API for data. |
+
+Split is clean: **substrate is runtime, query surface is editor.** This
+matches the existing pattern (e.g., `Assets/Editor/Scenarios/ScenarioMenuItems.cs`
+calls into runtime `ScenarioRunner`).
+
+### Revision 5 — Group everything under `Group = "diagnostics"`
+
+**Reality:** `[McpForUnityTool]` has a `Group` attribute (defaults to
+`"core"`). Tools in non-core groups are hidden by default and enabled
+per-session via `manage_tools` meta-tool. The MCP server's instructions
+already reference this dynamic visibility model.
+
+**Implication:** stamp every diag tool with `Group = "diagnostics"`. They
+won't crowd the default tool list; we enable them when investigating.
+
+### Revision 6 — Calling pattern from `/tmp/mcp-call.sh`
+
+**Reality:** auto-registered tools become first-class MCP tools (line
+360 of `custom_tool_service.py`: `self._mcp.tool(name=definition.name, ...)(wrapped)`).
+They appear in `tools/list` and can be called directly — no
+`execute_custom_tool` wrapper needed.
+
+```bash
+# After the substrate ships:
+/tmp/mcp-call.sh diag_query '{"category":"effect","kind":"OnRemove","target":"player","payload_match":{"effect":"BleedingEffect"},"limit":5}'
+```
+
+Direct call. Same shape as `read_console`, `run_tests`, etc.
+
+### Revision 7 — `manage_tools` enables our group
+
+Before the first session that wants diag tools, one preflight call:
+
+```bash
+/tmp/mcp-call.sh manage_tools '{"action":"enable","groups":["diagnostics"]}'
+```
+
+(Confirmed: `manage_tools` is in the existing 43-tool list per Step 0 ToolSearch.)
+
+### Revisions to Tier 1 D1-D5 sub-milestones
+
+The D1-D5 ordering in §4 still holds. Concrete file deltas:
+
+| Original §4 path | Revised path |
+|---|---|
+| `Assets/Scripts/Diagnostics/Diag.cs` | unchanged ✅ |
+| `Assets/Scripts/Diagnostics/DiagSerializer.cs` | unchanged ✅ |
+| `Assets/Scripts/Diagnostics/DiagPersistence.cs` | unchanged ✅ |
+| `MCPForUnity/CustomTools/diag_query.py` (and all `*.py` siblings) | DELETED — wrong target; instead → |
+| (new) | `Assets/Editor/Diagnostics/DiagQueryTool.cs` |
+| (new) | `Assets/Editor/Diagnostics/DiagAssertTool.cs` |
+| (new) | `Assets/Editor/Diagnostics/DiagCountTool.cs` |
+| (new) | `Assets/Editor/Diagnostics/DiagInspectEntityTool.cs` |
+| (new) | `Assets/Editor/Diagnostics/DiagCausalChainTool.cs` |
+| (new) | `Assets/Editor/Diagnostics/DiagBufferStatusTool.cs` |
+| (new) | `Assets/Editor/Diagnostics/DiagSetChannelsTool.cs` |
+| (new) | `Assets/Editor/Diagnostics/DiagFlushTool.cs` |
+| (new) | `Assets/Editor/Diagnostics/DiagListSessionsTool.cs` |
+| (new) | `Assets/Editor/Diagnostics/DiagLoadSessionTool.cs` |
+
+**Net LOC estimate revised down:** ~860 → ~700, because the C# tool
+classes are thinner than equivalent Python wrappers (no marshalling
+boilerplate, no separate registration code).
+
+### Step 0 verdict
+
+**The architecture in §3 is buildable as-is, with the file-layout
+revisions above.** No design changes needed. All assumptions about
+parameter shapes, nested filters, projection, and direct MCP calling
+are confirmed by reading the actual unity-mcp source.
+
+The first-ship spike (Step 1 in the chat-side recommendation) is unblocked
+and can target:
+
+- `Assets/Scripts/Diagnostics/Diag.cs` (substrate, no hooks yet)
+- ONE hook in `StatusEffectsPart.RemoveEffectAt` (highest leverage for
+  the bear-trap deferred bug)
+- ONE tool: `Assets/Editor/Diagnostics/DiagQueryTool.cs`
+- One verification: walk onto bear trap, run `/tmp/mcp-call.sh diag_query
+  '{"category":"effect","kind":"OnRemove","limit":10}'`, see the captured
+  remove record
+
+If that round-trips successfully, all of Tier 1 is mechanical execution
+of the same pattern.
+
+---
+
+## 10. Document maintenance
 
 When the substrate ships:
 
