@@ -360,25 +360,43 @@ namespace CavesOfOoo.Core
 
         private bool HandleBeginTakeAction(GameEvent e)
         {
-            // Check if any effect blocks action (stun, paralysis)
-            for (int i = 0; i < _effects.Count; i++)
-            {
-                if (!_effects[i].AllowAction(ParentEntity))
-                {
-                    // Log that turn is skipped
-                    string name = ParentEntity.GetDisplayName();
-                    string effectName = _effects[i].DisplayName;
-                    MessageLog.Add(name + " is " + effectName + " and cannot act!");
-                    e.Handled = true;
-                    return false; // block the turn
-                }
-            }
-
-            // Fire OnTurnStart for each effect (poison damage, etc.)
+            // Fire OnTurnStart FIRST so damage-tick effects (poison, burn,
+            // bleed, acidic, electrified) deal their per-turn damage BEFORE
+            // the action-block check. Bodily processes don't pause for
+            // mental effects — bleeding still bleeds while you're stunned.
+            //
+            // Pre-fix, BearTrap's Stun(1) + Bleeding pairing gave the
+            // player NO visible feedback during the stunned turn (no
+            // "takes X bleed damage" message), making bleeding appear
+            // to never tick. Players reported "bleeding finishes the
+            // same turn it gets applied" — actually it was still active
+            // but ticked silently. This restores the expected roguelike
+            // semantic: damage-tick effects always tick at start of turn,
+            // and the action-block check only governs whether the entity
+            // can take a willed action (move/attack).
+            //
+            // Reverse iteration so an effect removing itself or another
+            // effect during OnTurnStart doesn't skip iterations.
             for (int i = _effects.Count - 1; i >= 0; i--)
             {
                 if (i < _effects.Count)
                     _effects[i].OnTurnStart(ParentEntity, e);
+            }
+
+            // After damage ticks, check if any effect blocks the action
+            // (stun, freeze, paralysis). If so, log the skipped-turn
+            // message and return false so TurnManager skips the actor's
+            // willed action. The damage ticks above have already fired.
+            for (int i = 0; i < _effects.Count; i++)
+            {
+                if (!_effects[i].AllowAction(ParentEntity))
+                {
+                    string name = ParentEntity.GetDisplayName();
+                    string effectName = _effects[i].DisplayName;
+                    MessageLog.Add(name + " is " + effectName + " and cannot act!");
+                    e.Handled = true;
+                    return false;
+                }
             }
 
             return true;
