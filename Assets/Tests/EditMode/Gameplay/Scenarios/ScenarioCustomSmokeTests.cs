@@ -218,5 +218,8 @@ namespace CavesOfOoo.Tests.Scenarios
 
         [Test] public void TrapFurnitureShowcase_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new TrapFurnitureShowcase().Apply(FreshContext()));
+
+        [Test] public void CryoLanceShowcase_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new CryoLanceShowcase().Apply(FreshContext()));
     }
 }

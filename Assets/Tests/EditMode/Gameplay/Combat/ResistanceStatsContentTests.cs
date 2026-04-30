@@ -123,5 +123,108 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(hpBefore - 10, hpAfter,
                 "Glowmaw's HeatResistance must not reduce Acid damage");
         }
+
+        // ====================================================================
+        // IceWight — first creature with FULL elemental immunity (CR=100)
+        // AND first with negative HeatResistance via the standard
+        // creature path (BrassHusk has ER=-50; IceWight is HR=-50, the
+        // mirror image: Cold-immune AND Fire-vulnerable).
+        // ====================================================================
+
+        [Test]
+        public void IceWight_BlueprintExists_AndIsCreature()
+        {
+            var iceWight = _harness.Factory.CreateEntity("IceWight");
+            Assert.IsNotNull(iceWight,
+                "IceWight blueprint must exist in Objects.json.");
+            Assert.IsTrue(iceWight.HasTag("Creature"),
+                "IceWight must inherit Creature tag (Inherits: Creature).");
+        }
+
+        [Test]
+        public void IceWight_HasColdResistance100()
+        {
+            // The new pin: first creature with 100% elemental resistance.
+            // Exercises the resistance ≥ 100 = total negation path.
+            var iceWight = _harness.Factory.CreateEntity("IceWight");
+            int resist = iceWight.GetStatValue("ColdResistance", -999);
+            Assert.AreEqual(100, resist,
+                "IceWight should declare ColdResistance: 100 (full Cold immunity — " +
+                "the thematic premise: a creature literally made of ice cannot be " +
+                "harmed by cold).");
+        }
+
+        [Test]
+        public void IceWight_HasHeatResistance_NegativeFifty()
+        {
+            // The mirror pin: a creature with NEGATIVE HeatResistance, so
+            // Fire damage is amplified 1.5×. Mirrors BrassHusk's ER=-50
+            // but on the Fire/Cold axis instead of Lightning.
+            var iceWight = _harness.Factory.CreateEntity("IceWight");
+            int resist = iceWight.GetStatValue("HeatResistance", -999);
+            Assert.AreEqual(-50, resist,
+                "IceWight should declare HeatResistance: -50 (Fire vulnerability — " +
+                "ice melts under heat). This is the mirror image of Glowmaw's " +
+                "HeatResistance: +50 and the flip side of BrassHusk's negative ER.");
+        }
+
+        // ====================================================================
+        // Behavioral: Cold damage is fully negated by IceWight's CR=100
+        // ====================================================================
+
+        [Test]
+        public void IceWight_ColdDamage_FullyNegated()
+        {
+            var iceWight = _harness.Factory.CreateEntity("IceWight");
+            int hpBefore = iceWight.GetStat("Hitpoints").BaseValue;
+
+            var damage = new Damage(30);
+            damage.AddAttribute("Cold");
+            CombatSystem.ApplyDamage(iceWight, damage, source: null, zone: null);
+
+            int hpAfter = iceWight.GetStat("Hitpoints").BaseValue;
+            Assert.AreEqual(hpBefore, hpAfter,
+                "30 Cold damage * (100 - 100)/100 = 0 actual damage. " +
+                "ColdResistance=100 must fully negate Cold-attributed damage.");
+        }
+
+        // ====================================================================
+        // Behavioral: Fire damage is amplified 1.5× by IceWight's HR=-50
+        // ====================================================================
+
+        [Test]
+        public void IceWight_FireDamage_AmplifiedByNegativeResistance()
+        {
+            var iceWight = _harness.Factory.CreateEntity("IceWight");
+            int hpBefore = iceWight.GetStat("Hitpoints").BaseValue;
+
+            var damage = new Damage(10);
+            damage.AddAttribute("Fire");
+            CombatSystem.ApplyDamage(iceWight, damage, source: null, zone: null);
+
+            int hpAfter = iceWight.GetStat("Hitpoints").BaseValue;
+            // 10 Fire * (100 - (-50))/100 = 10 * 1.5 = 15
+            Assert.AreEqual(hpBefore - 15, hpAfter,
+                "10 Fire damage * (100 - HR(-50))/100 = 15 actual damage. " +
+                "Negative HeatResistance must amplify Fire-attributed damage.");
+        }
+
+        [Test]
+        public void IceWight_AcidDamage_FullDamage_NoMatchingResist()
+        {
+            // Counter-check: IceWight's Cold/Heat resistances should NOT
+            // affect Acid damage — different element.
+            var iceWight = _harness.Factory.CreateEntity("IceWight");
+            int hpBefore = iceWight.GetStat("Hitpoints").BaseValue;
+
+            var damage = new Damage(10);
+            damage.AddAttribute("Acid");
+            CombatSystem.ApplyDamage(iceWight, damage, source: null, zone: null);
+
+            int hpAfter = iceWight.GetStat("Hitpoints").BaseValue;
+            Assert.AreEqual(hpBefore - 10, hpAfter,
+                "IceWight's Cold/Heat resistances must not reduce or amplify Acid " +
+                "damage — different element.");
+        }
     }
 }

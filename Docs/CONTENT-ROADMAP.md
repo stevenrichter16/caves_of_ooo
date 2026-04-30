@@ -37,6 +37,7 @@
 
 | Commit | What |
 |---|---|
+| `feat/cryolance-icewight` | **Tier-1 CryoLance + IceWight pair** — first Piercing-class elemental weapon (1d6+2 Piercing/Ice/LongBlades, PenBonus 3, Frozen on-hit) and first 100%-immune creature (CR=100, HR=-50). Pins the resistance ≥ 100 = total negation path AND the negative-HR creature path. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / CryoLance Showcase`. |
 | `feat/trap-furniture` | **Tier-2 Trap furniture** — SpikeTrap, FireTrap, BearTrap. Three single-use mechanical floor traps reusing the existing TriggerOnStepPart pattern. 9 unit tests + smoke. |
 | `feat/throwable-consumables` | **Tier-2 Throwable consumables** — tonics shatter on impact with radius-1 AOE. Direct hit / miss / wall hit all shatter; bottle never lands. New `ApplyTonicAoe` helper; `ThrowableTonicsShowcase` scenario. 12 unit tests + smoke. |
 | `feat/elemental-tonics` | **4 elemental tonics** — AcidTonic, LightningTonic, FrostTonic, WaterTonic. Pure JSON + 24 tests; StatusTonicPart dispatcher already supported them. Completes Tier-1 status-tonic content row. |
@@ -66,7 +67,7 @@
 - ✅ **IceSword** — 1d8 Cutting/Ice/LongBlades — `9e2358a`
 - ✅ **ThunderHammer** — 1d8+1 Bludgeoning/Lightning/Cudgel + first vulnerability case (BrassHusk ER=-50, StoneGolem ER=+50) — `84f5622`
 - ✅ **AcidicDagger** — 1d4+1 Piercing/Acid + AR on CaveSlime (+50) and Scorpion (-50) — `f1b906f`
-- 💡 **CryoLance** — Piercing/Ice longblade, 1d6+2 with high crit
+- ✅ **CryoLance** — 1d6+2 Piercing/Ice/LongBlades, PenBonus 3, Frozen on-hit — `feat/cryolance-icewight`
 - 💡 **EmberSpear** — Piercing/Fire, mid-tier polearm
 
 ### Backfill weapon Attributes — DONE (this branch)
@@ -107,7 +108,7 @@ correctly for every weapon in the game.
 - ✅ **BrassHusk** — ElectricResistance −50 (vulnerability — first negative-resistance creature) — `84f5622`
 - ✅ **CaveSlime** — AcidResistance +50 — `f1b906f`
 - ✅ **Scorpion** — AcidResistance −50 (chitin dissolves) — `f1b906f`
-- 💡 **IceWight** — full ColdResistance 100 (immune to Ice, vulnerable to Fire)
+- ✅ **IceWight** — ColdResistance 100 (full Cold immunity, FIRST 100%-immune creature) + HeatResistance −50 (Fire vulnerability) — `feat/cryolance-icewight`
 - 💡 **CharredHusk variant** — HeatResistance 100 + ColdVulnerability (-50)
 
 ### Status tonics (use existing StatusTonicPart dispatch)

@@ -108,6 +108,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_TrapFurnitureShowcase()
             => ScenarioRunner.Launch<TrapFurnitureShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/CryoLance Showcase (immunity + vulnerability)", priority = 113)]
+        private static void Launch_CryoLanceShowcase()
+            => ScenarioRunner.Launch<CryoLanceShowcase>();
+
         // =========================================================
         // AI Behavior
         // =========================================================
