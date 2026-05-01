@@ -264,6 +264,19 @@ public static class Diag
 - **`ActorId` and `TargetId` are both optional.** System-level events
   (e.g., `category="save", kind="WriteEntity"`) may use `actor=null`
   and put the relevant identity in `payload`.
+- **`PayloadJson` is eager.** The `payload` parameter passed to
+  `Diag.Record(...)` is **JSON-serialized synchronously inside the
+  Record call**. The substrate stores only the resulting string. This
+  matters because:
+  - Live entity references in the payload object don't go stale (the
+    snapshot is what's stored).
+  - There is a per-Record CPU cost for serialization (~1-5 µs per
+    typical record). Quantified in P9 and validated during D1.
+  - Calling `Diag.Record(..., payload: someEntity)` is fine — the
+    serializer captures the entity's name/ID/HP/etc. at Record time.
+  - **Anti-pattern:** never store the live `payload` object in a
+    captured closure expecting lazy serialization. The substrate
+    won't honor that.
 
 **Storage:** circular `Record[]` of 1024 entries (~250 KB at typical
 payload size). On overflow, oldest 512 spill to disk; the in-memory
@@ -279,24 +292,47 @@ and `Flush` are read-only over the buffer slice.
 Targeted `Diag.Record(...)` insertions at well-chosen call sites. Each
 hook is ~3-5 lines.
 
-The hooks split into three categories. **Universal hooks** capture
-broad activity for free; **per-system hooks** are added when each
-system gets observed; **combat hooks** are the first batch (Tier 1
-ships these). The substrate gives you universal coverage immediately,
-and you opt into deeper per-system hooks as their bugs become a
-recurring tax.
+The hooks split into **three taxonomies of leverage**, listed in
+descending order of "coverage you get for one hook":
 
-#### Universal hooks (Tier 1 — broad coverage of MANY systems for free)
+- **Meta-foundational hooks** capture activity from many systems
+  *without those systems knowing*. They sit at architectural choke
+  points (event dispatch, turn boundaries) where every consumer
+  routes. One hook → dozens of systems observed for free.
+- **System-foundational hooks** capture all activity in one
+  *foundational system that many features depend on*. Movement is the
+  example: the system itself is one body of code, but player input,
+  NPC AI, pet retrieval, scribe-flee, ambush triggers, and trap
+  stepping all drive through it.
+- **Per-system specific hooks** capture one system's internals.
+  Effects, damage, AI goals, save/load. Combat is the first batch
+  shipped in Tier 1.
 
-Hooking these few call sites captures an enormous amount of activity
-across all subsystems, because most Caves of Ooo systems route
-through `GameEvent` and the turn loop.
+You get the first two categories nearly for free in Tier 1 D2; you
+opt into per-system hooks as each system's bugs become a recurring
+debugging tax.
 
-| Location | What it captures | Category | Why universal |
+#### Meta-foundational hooks (Tier 1 — many systems observed for free)
+
+Most Caves of Ooo systems route through `GameEvent` and the
+`TurnManager` lifecycle. Hooking these two call sites captures an
+enormous amount of cross-system activity without any of those systems
+needing per-system hooks.
+
+| Location | What it captures | Category | Why meta |
 |---|---|---|---|
 | `Entity.FireEvent`, `FireEventAndRelease` | event ID, target, which Parts handled it (true/false) | `event` | Effects, AI, movement, ignition, witnessing, calm, ambush, conversations, save lifecycle hooks — many use GameEvent. **Hook this once → coverage of dozens of systems for free.** |
 | `TurnManager.EndTurn`, `BeginTakeAction`, `ProcessUntilPlayerTurn` | turn-boundary markers; CurrentActor; energy state | `turn` | The canonical time axis for any turn-driven analysis (combat, AI, effects, movement). |
-| `MovementSystem.TryMove` | from/to, blocking entity, success/blocked-by-what | `event` | Used by player input, NPC AI, pet retrieval, scribe-flee, ambush triggers, trap stepping. |
+
+#### System-foundational hooks (Tier 1 — one foundational system, many consumers)
+
+A foundational system that's in the path of many features. Hooking it
+gives **deep visibility into one system that has many consumers**, not
+the same shape of leverage as meta-foundational hooks but still high.
+
+| Location | What it captures | Category | Consumers |
+|---|---|---|---|
+| `MovementSystem.TryMove` | from/to, blocking entity, success/blocked-by-what | `event` | Player input, NPC AI, pet retrieval, scribe-flee, ambush triggers, trap stepping |
 
 **Critical design point:** these hooks **do not call other hooks**. A
 `Diag.Record` call must not produce a recursive cascade. Verified by
@@ -366,6 +402,25 @@ Registered via `MCPForUnity/CustomTools/`, callable from `/tmp/mcp-call.sh`
 - `fields=["TraceId","Kind","Turn","..."]` — projection (omits everything else)
 - `limit` (default 50, max 500), `cursor` — pagination
 
+**Response-size budget enforcement** (operationalizing P2):
+Every query tool checks the size of the JSON it would return BEFORE
+returning it. If the would-be response exceeds **100 KB** (~25k
+tokens), the tool refuses and returns instead:
+
+```json
+{
+  "meta": { ... },
+  "data": null,
+  "truncated": true,
+  "would_be_size_bytes": 248000,
+  "hint": "Response exceeded 100KB budget. Use cursor + smaller limit, narrow filters (since_turn / kind), use fields= to project, or pass budget_kb=500 to override (max 1000)."
+}
+```
+
+Override via optional `budget_kb` parameter on any query tool (default
+100, max 1000). The substrate truncates rather than streams — partial
+responses with stale data are worse than refusal.
+
 **Example calls — combat (bear-trap bleeding deferred bug):**
 
 ```bash
@@ -427,10 +482,40 @@ debugging pattern. Future per-system specialized tools (e.g.
 
 | Tool | Scope | Purpose |
 |---|---|---|
-| `diag_inspect_entity` | **Universal** | Full state dump: parts, stats (with modifier sources), effects (with all internal fields), tags, properties, last N events targeting this entity |
+| `diag_inspect_entity` | **Universal (general state)** | Live state dump of the entity itself: parts, stats (with modifier sources), effects (with all internal fields), tags, properties, plus last N records that name this entity |
 | `diag_diff_entity` | **Universal** | Field-level diff between turn N and turn M for one entity |
 | `diag_damage_history` | Combat (example) | Pre-aggregated damage records — input, each pipeline stage, final delta — across a window |
 | `diag_effect_lifecycle` | Combat (example) | All records for one effect type or instance: apply → ticks → remove |
+
+**`diag_inspect_entity` scope and the "relation" parameter:**
+
+`diag_inspect_entity` returns **the entity's general state** —
+runtime data structures (parts/stats/effects/tags/properties) plus
+recent records that mention this entity. It does NOT and should NOT
+return system-specific summaries (e.g., "active quest objectives,"
+"serializer cursor position"). System-specific views are queries via
+`diag_query` with a category filter, OR specialized tools per system
+(e.g. `diag_save_pipeline`, `diag_quest_state`).
+
+Including system-specific data in `diag_inspect_entity` would make
+its response size unbounded and tie the universal tool to every
+system's internals. **Stays general; system-specific data is a query.**
+
+For the "last N records that name this entity" part of the response,
+the `relation` parameter narrows which Records count as "naming" the
+entity:
+
+| `relation` | Includes records where |
+|---|---|
+| `"either"` (default) | `ActorId == entityId` OR `TargetId == entityId` |
+| `"actor"` | `ActorId == entityId` only |
+| `"target"` | `TargetId == entityId` only |
+| `"payload"` | `PayloadJson` mentions the entity ID (string match — slow; use sparingly) |
+
+A future Tier-2 extension API (`Diag.RegisterEntityInspector(category, ...)`)
+could let systems contribute to `diag_inspect_entity`'s output. **Out
+of scope for Tier 1.** Until then, system-specific entity views are
+their own specialized tools or `diag_query` calls.
 
 #### Channel control
 
@@ -503,6 +588,11 @@ Can ship the lower tiers first and let those harden before this.
   break gameplay. Wrap every hook in `try { } catch { /* swallow + warn */ }`.
 - **❌ Don't store entity object references in records.** Persist only IDs
   and serialized fields. Entity references go stale across save/load.
+- **❌ Don't pass mutating-payload objects expecting lazy serialization.**
+  `Diag.Record(...)` JSON-encodes synchronously. If you build a payload,
+  modify it after the call, then expect the recorded version to reflect
+  the modification — that's a bug in your hook, not the substrate.
+  (See §3 Layer 0 "PayloadJson is eager.")
 - **❌ Don't over-stamp.** Resist the urge to record every tick of every
   per-frame system. The ring buffer is finite; flooding it loses signal.
 
@@ -604,18 +694,56 @@ Each commits standalone, RED→GREEN per CLAUDE.md §2.1, full self-review.
 
 ### Verification (both criteria must pass)
 
-**Combat-depth criterion:** with Tier 1 shipped, I should be able to:
+**Combat-depth criterion (Tier-1 testable):** with Tier 1 shipped, I should be able to:
 
 1. Run `TrapFurnitureShowcase` to the bear-trap step.
 2. Issue 3 MCP calls (per the combat example in §3 above).
 3. Get a definitive answer about where `BleedingEffect` is being
    removed (or confirm it isn't).
 
-**Generality criterion:** I should be able to walk through §11's
-extension recipe and produce a working `category="save"` observability
-addition (in mock form, ~30 min) **without modifying any Tier 1 file**.
-If §11 instructions don't actually work end-to-end, the generality is
-illusory and the Tier 1 ship needs revision.
+**Substrate-genericity criterion (Tier-1 testable):** D1 ships with an
+EditMode test that exercises the substrate via the public API only,
+with **zero combat dependencies and a never-before-used category
+string**. The test:
+
+```csharp
+[Test]
+public void Diag_AcceptsArbitraryNewCategoryWithoutCodeChanges()
+{
+    Diag.SetChannel("smoke_test_category", true);
+    Diag.Record("smoke_test_category", "TestKind",
+        actor: null, target: null,
+        payload: new { foo = "bar", count = 7 });
+
+    var query = new DiagQueryRequest { Category = "smoke_test_category" };
+    var result = DiagQueryTool.Execute(query);
+
+    Assert.AreEqual(1, result.Records.Count);
+    Assert.AreEqual("TestKind", result.Records[0].Kind);
+    Assert.IsTrue(result.Records[0].PayloadJson.Contains("foo"));
+}
+
+[Test]
+public void Diag_AcceptsNullTurn_ForOutOfTurnEvents()
+{
+    // No TurnManager active; Turn should record as null.
+    Diag.Record("worldgen", "TestPlace", payload: new { x = 5, y = 8 });
+    var records = Diag.Snapshot(10);
+    Assert.IsNull(records.Last(r => r.Category == "worldgen").Turn);
+}
+```
+
+If those tests pass, the substrate is provably general at the API
+level. The architecture commits to "no substrate edits when adding a
+new system."
+
+**Forward commitment (verifiable on the next non-combat ship, NOT
+during Tier 1):** when the first non-combat system gains observability
+post-Tier-1, it must follow §10's recipe verbatim. If implementing it
+requires substrate, schema, or Tier-1-tool changes, **that's a bug
+filed against §10 (the recipe), not the system.** This is an
+architectural promise the doc takes on, not a Tier-1 acceptance gate
+— but it's how we'll know the generality is real, not paper.
 
 ---
 
@@ -636,23 +764,49 @@ tools are mechanical.
 
 ## 6. Tier 3 — beyond (parked, possibly never)
 
-- **Snapshot-diff anomaly detector** — auto-flag "HP changed without
-  DamageDealt event." Useful but high false-positive rate.
-- **What-if queries** — "what would damage be if HR were 25?" Requires
-  isolated ApplyResistances test harness. Niche.
-- **Full event-sourced replay** — record every input + RNG, replay to
-  produce byte-identical state. Mostly redundant once `diag_replay_scenario`
-  exists, since scenarios already provide deterministic setup.
+- **Snapshot-diff anomaly detector** — auto-flag *any* unexpected
+  state change: an entity field mutated without a corresponding cause
+  record in the same window. Generic across systems (HP without
+  damage, quest objective state without ObjectiveCompleted record,
+  inventory weight without pickup/drop, faction relationship without
+  reputation event). Useful but high false-positive rate; would need
+  per-category whitelisting of "expected silent mutations."
+- **What-if queries** — given a record, recompute the downstream
+  effect under a hypothetical input change ("what would damage be if
+  HR were 25?"). Generic in principle (rerun the pipeline trace with
+  a mutated input) but each system needs an isolated re-execution
+  harness. Niche.
+- **Full event-sourced replay** — record every input + RNG, replay
+  to produce byte-identical state. Mostly redundant once
+  `diag_replay_scenario` (Tier 2) exists, since scenarios already
+  provide deterministic setup.
 
 ---
 
 ## 7. Things this doc deliberately does NOT cover
 
 - **Performance observability.** Already covered by
-  `Docs/PERF-FOUNDATION.md`. Don't duplicate.
-- **Save/load observability.** Save tests already pin shape; not in scope.
+  `Docs/PERF-FOUNDATION.md`. Don't duplicate. (The diag substrate
+  itself MUST satisfy the perf rules in that doc — that's a build
+  constraint, not duplication.)
+- **A player-facing diagnostic UI.** This substrate is queried via
+  MCP from external sessions; we don't add a Unity Editor inspector
+  window or in-game overlay for it. (Note: this is **not** a
+  statement about whether the UI **system** can be observed — that's
+  one of the future `category="ui"` consumers in §3 Layer 1's
+  per-system table.)
 - **Build / CI observability.** Different audience (humans + CI bots).
-- **Player-facing UI.** This is for me, not them.
+- **Release-build / shipped-game observability.** Tier 1 + Tier 2
+  assume Unity Editor + the MCP server are running. Players running
+  a release build (post-Steam-release scenarios in
+  `Docs/CONTENT-ROADMAP.md` Tier 5) have no MCP query surface. The
+  substrate's `DiagPersistence` jsonl spill could in principle run in
+  release builds (it's plain file I/O), giving us **post-mortem
+  forensics** on bug reports — but a live query channel from a
+  shipped player to a debugger requires a separate transport (HTTP
+  endpoint, log-upload, etc.) that's not designed for here. Listed
+  as out-of-scope rather than impossible: revisit if release-build
+  bug volume justifies it.
 
 ---
 
@@ -882,30 +1036,49 @@ material/thermal, settlement, crafting, or any future system.
 **The substrate never changes.** Adding a new system is purely
 additive: new `Diag.Record` calls, optionally new specialized tools.
 
-### The 4-step recipe
+### The 5-step recipe
 
 #### Step 1 — Pick a category name
 
-Free-form lowercase string. Convention: short, system-scoped, singular.
+Free-form lowercase string with a few naming rules:
 
-Examples: `save`, `quest`, `worldgen`, `dialogue`, `ui`, `inventory`,
-`faction`, `material`, `settlement`, `crafting`, `ai`.
+- **≤ 20 characters** (informal limit; query verbosity grows with name length).
+- **Single lowercase word** preferred (`save`, `quest`, `dialogue`).
+  Use `snake_case` for multi-word (`material_sim`, not `materialsim`
+  or `material-sim`).
+- **System-scoped** (the system's domain), not action-scoped.
+  ✅ `quest` (covers all quest-related events).
+  ❌ `objective_completed` (kind, not category).
+- **Singular**, not plural. (`quest`, not `quests`.)
+- **Match existing prefixes if possible.** If the system already has
+  a `Debug.Log` prefix or namespace, reuse the lowercase form for
+  consistency: `[Combat]` → `combat`, `[Bootstrap]` → `bootstrap`,
+  `MaterialSim` namespace → `material_sim`.
+- **Avoid collisions with existing categories.** Run `grep
+  'Diag\.Record(' Assets/Scripts/` first to confirm yours is new.
 
-If the system already has a `Debug.Log` prefix (e.g., `[Combat]`,
-`[Bootstrap]`), reuse the lowercase form for consistency.
+Examples of good category names:
+`event`, `effect`, `damage`, `turn`, `save`, `quest`, `worldgen`,
+`dialogue`, `ui`, `inventory`, `faction`, `material`, `settlement`,
+`crafting`, `ai`, `bootstrap`.
 
-#### Step 2 — Decide on/off-by-default
+#### Step 2 — Decide on/off-by-default and on volume
 
 - **On by default** if the system is sparse (a few records per turn at
   most). E.g., `save`, `quest`, `dialogue` — fired on player choice
   or system events.
-- **Off by default** if the system is chatty (potentially hundreds of
-  records per turn). E.g., `material` (per-tile thermal), `ai`
-  (per-NPC goal-stack thrash). Flip on with `diag_set_channels` only
-  when investigating.
+- **Off by default** if the system is **chatty but bounded** (10s to
+  100s of records per turn typical). E.g., `material` (per-tile
+  thermal), `ai` (per-NPC goal-stack thrash). Flip on with
+  `diag_set_channels` only when investigating.
+- **Aggregate-first** if the system is **firehose-rate** (>100 events
+  per turn typical, or per-frame in extreme cases). Don't record
+  individual events even off-default — see the §10 Step 3
+  "high-frequency escape hatch" below. Examples: per-tile FOV
+  recompute, per-pixel lighting, per-frame UI input polling.
 
-If unsure: off-default and verify with profiling on the D1 success
-criterion (≤ 5 ns when disabled).
+If unsure: off-default. Verify with profiling on the D1 success
+criterion (≤ 5 ns when disabled, ~1-5 µs per Record call when enabled).
 
 #### Step 3 — Add `Diag.Record` calls at the system's key points
 
@@ -920,7 +1093,7 @@ Diag.Record(
     kind: "WriteEntity",
     actor: null,                    // system-level event, no actor
     target: entity,                 // the entity being serialized
-    payload: new {                  // anonymous object → JSON
+    payload: new {                  // anonymous object → JSON, eagerly serialized
         bytesWritten = 1234,
         partCount = entity.Parts.Count,
         effectCount = entity.GetPart<StatusEffectsPart>()?.EffectCount ?? 0
@@ -931,6 +1104,77 @@ Diag.Record(
 The hook **must not throw or block**. Recording is fail-soft (the
 substrate wraps every call in try/catch). Records are written; system
 proceeds.
+
+##### High-frequency escape hatch (Step 3a — for firehose-rate systems)
+
+If your system fires **> 100 events per turn typical** (per-tile
+thermal sim, per-frame UI polling, per-NPC AI scan in a populated
+zone), recording every event will blow the 1024-entry ring buffer
+in seconds and lose signal among noise. Don't do that.
+
+Instead, build an **in-system aggregator** and only `Diag.Record`
+summaries at natural boundaries:
+
+```csharp
+// In the firehose-rate system:
+private static int _reactionsFired = 0;
+private static int _reactionsSkipped = 0;
+private static Dictionary<string, int> _byReactionId = new();
+
+public static void EvaluateReactions(...)
+{
+    foreach (var reaction in candidates)
+    {
+        bool fired = TryFire(reaction);
+        if (fired) {
+            _reactionsFired++;
+            _byReactionId[reaction.Id] = _byReactionId.GetValueOrDefault(reaction.Id) + 1;
+        } else {
+            _reactionsSkipped++;
+        }
+        // NOTE: NOT calling Diag.Record per reaction.
+    }
+}
+
+// Called once per turn from the natural turn boundary
+// (e.g., MaterialSimSystem.TickEnd):
+public static void RecordTurnSummary()
+{
+    if (_reactionsFired == 0 && _reactionsSkipped == 0) return;
+    Diag.Record("material", "TurnSummary",
+        payload: new {
+            fired = _reactionsFired,
+            skipped = _reactionsSkipped,
+            top_reactions = _byReactionId
+                .OrderByDescending(kv => kv.Value)
+                .Take(5)
+                .ToDictionary(kv => kv.Key, kv => kv.Value)
+        });
+    _reactionsFired = 0;
+    _reactionsSkipped = 0;
+    _byReactionId.Clear();
+}
+```
+
+When deeper detail IS needed, gate per-event recording behind a
+**second, finer-grained channel**:
+
+```csharp
+if (Diag.IsChannelEnabled("material_verbose"))
+{
+    Diag.Record("material_verbose", "ReactionMatched",
+        target: target,
+        payload: new { reactionId, sourceState, ... });
+}
+```
+
+The investigator opts into the verbose channel only for the bug
+they're chasing. Default state: only summaries flow.
+
+**Why this matters:** without an aggregation tier, "off-by-default"
+isn't enough — turning the channel on swamps the buffer; turning it
+off loses the system entirely. The aggregator gives you "always-on
+summaries + opt-in verbose" instead of binary on/off.
 
 #### Step 4 — (Optional) Add specialized tools when a query becomes recurring
 
@@ -1067,105 +1311,124 @@ Before claiming a system is "observable," verify:
 
 ---
 
-## 11. Second-pass critique — what the generality revisions still don't fix
+## 11. Critique log — what's resolved, and what this third pass still doesn't catch
 
-This section tracks honest remaining issues after the §3/§4/§10
-generality pass. Listed for transparency rather than addressed
-inline because (a) most are minor; (b) some are forward-looking
-("verify after next ship") rather than fixable now; (c) burying
-them risks them being forgotten.
+This section is the rolling honesty ledger. Each pass through the doc
+adds a row showing what got fixed and what new issues surfaced.
 
-### Issues addressed inline during this pass
+### Resolution status of the §11 second-pass items (all 11)
 
-- ✅ LOC math reconciled (700 → 970).
-- ✅ `get_channels`/`set_channels` collapsed into one `DiagChannelsTool` with action parameter.
-- ✅ Save/load worked example hedged ("the actual SaveSystem method names will differ").
-- ✅ `Turn`-nullable query semantics specified (excluded from `since_turn`/`until_turn`; included via `since_unix_ms`).
-- ✅ Cause-ID threading mechanism specified (explicit / `using` scope / null fallback).
+After the third pass through the doc, every flagged issue is either
+addressed inline or has a deliberate "deferred with rationale"
+disposition.
 
-### Issues flagged but NOT addressed (rank-ordered by build risk)
+| # | Issue (from second pass) | Status | Where addressed |
+|---|---|---|---|
+| 🟡 1 | Generality criterion not Tier-1 testable | ✅ Reframed | §4 — split into Combat-depth criterion (Tier-1 testable) + Substrate-genericity criterion (Tier-1 testable via D1 substrate-only smoke test) + Forward commitment (verifiable on next non-combat ship, NOT a Tier-1 gate) |
+| 🟡 2 | Hook taxonomy fuzzy ("Universal" overloaded) | ✅ Refined | §3 Layer 1 — split into Meta-foundational (`Entity.FireEvent`, `TurnManager`) vs System-foundational (`MovementSystem.TryMove`) vs Per-system specific |
+| 🟡 3 | Category naming convention not pinned | ✅ Pinned | §10 Step 1 — ≤ 20 chars, lowercase, snake_case multi-word, system-scoped not action-scoped, singular, match Debug.Log prefix when one exists, grep for collisions |
+| 🟡 4 | High-frequency-system escape hatch missing | ✅ Added | §10 Step 3a — three-tier volume bucketing (sparse/chatty/firehose), worked example with in-system aggregator that records summaries at turn boundaries + opt-in `_verbose` channel for deep dives |
+| 🟡 5 | Specialized tools in Tier-1 LOC budget (already removed in second pass) | ✅ N/A | Already addressed in second pass; struck from the list |
+| 🟡 6 | `diag_inspect_entity` may need extension API | ✅ Clarified scope | §3 Layer 2 — explicitly limited to general entity state (parts/stats/effects/tags). System-specific data via `diag_query` with category filter, OR specialized tools. Tier-2 `RegisterEntityInspector` API documented but deferred. |
+| 🟡 7 | Payload-object lifetime / serialization timing | ✅ Pinned eager | §3 Layer 0 — `PayloadJson` is JSON-serialized synchronously inside `Diag.Record`. Cost ~1-5 µs/call. Plus anti-pattern entry: don't expect lazy serialization |
+| 🟡 8 | `inspect_entity` "targeting" semantics ambiguous | ✅ Defined | §3 Layer 2 — new `relation` parameter: `"either"` (default), `"actor"`, `"target"`, `"payload"`. Default is `ActorId == entityId OR TargetId == entityId` |
+| 🔵 9 | §6/§7 read combat-flavored | ✅ Generalized | §6 anomaly detector now system-agnostic (any field change without cause record). §7 distinguishes "we won't observe X" vs "we won't add UI for X." |
+| 🔵 10 | No cross-process / release-build story | ✅ Documented as deferred | §7 — explicit acknowledgment that release-build observability is out of scope. `DiagPersistence` jsonl spill could enable post-mortem forensics; live query channel for shipped players needs separate transport. Revisit if release-build bug volume justifies it. |
+| 🔵 11 | No response-size budget enforcement | ✅ Specified | §3 Layer 2 — every query tool checks would-be JSON size; refuses >100KB responses with `{ truncated: true, hint: ... }`. Override via `budget_kb` param (default 100, max 1000) |
 
-**🟡 1. The "generality criterion" in §4 verification is forward-looking, not a Tier-1 gate.**
+**Net: 11/11 second-pass issues addressed.** Doc grew 1186 → ~1500
+lines.
 
-I wrote: "I should be able to walk through §10's recipe and produce a
-working `category="save"` observability addition (in mock form, ~30 min)
-without modifying any Tier 1 file."
+### What this third pass introduced (new issues to track)
 
-This isn't testable inside Tier 1 — there's no second consumer yet.
-It's an architectural claim ("the substrate will generalize") that
-becomes verifiable only when the second non-combat ship lands. The
-honest reframe: **The first non-combat system shipped after Tier 1
-must follow §10's recipe verbatim. If implementing it requires
-substrate, schema, or tool changes, that's a bug filed against the
-recipe, NOT against the system.** That's a future commitment, not
-a Tier-1 acceptance gate.
+Honest gaps the third pass introduced or didn't catch. These are the
+seed for a hypothetical fourth pass; **none block Step 1 (the spike).**
 
-**🟡 2. Hook taxonomy is fuzzy: "Universal" mixes meta-hooks and high-leverage system hooks.**
+**🟡 12. The `using (Diag.WithCause(traceId))` scope (P4) is specified but not implemented.**
 
-In §3 Layer 1, I labeled three hooks "Universal":
-- `Entity.FireEvent` — TRUE universal (captures all GameEvent dispatch from any system; meta-level).
-- `TurnManager.EndTurn`/`BeginTakeAction` — TRUE universal (turn boundaries are system-agnostic).
-- `MovementSystem.TryMove` — NOT meta-universal; it's a single system that happens to be USED by many features.
+P4 names three cause-ID threading mechanisms (explicit param, ambient
+`using` scope, null fallback). The `using` mechanism would need a
+`[ThreadStatic]` field plus an `IDisposable` returning struct. That's
+cheap (~30 LOC), but it's an unflagged Tier-1 deliverable hiding
+inside §3 Layer 0's API. Add to the §4 file table (probably folded
+into `Diag.cs`) before D1.
 
-The sub-categories are different: Entity.FireEvent gives "many systems for free"; MovementSystem.TryMove gives "deep visibility into one system that has many consumers." Both are valuable but they're different leverage shapes. Current grouping is acceptable, but a future revision could split into "Tier-A meta hooks" vs "Tier-B high-leverage system hooks."
+**🟡 13. The "next-system gate" forward commitment (§4) is policy, not enforcement.**
 
-**🟡 3. Category naming convention not pinned.**
+§4 commits: "if the next non-combat system requires substrate or tool
+changes, that's a recipe bug." Good intent, but if I'm in a future
+session pressed for time, I might rationalize substrate edits as
+"small fixes." Counter-measure: when a non-combat system PR proposes
+substrate edits, the PR description must explicitly cite which §10
+recipe step is wrong and propose the recipe revision.
 
-§10 says categories are "free-form lowercase string." But long names like `combat_status_effects_lifecycle` would make queries verbose; short and clear (`effect`) is better. Convention to add to §10 Step 1: ≤ 16 chars, single-word lowercase preferred, snake_case if multi-word, match existing `Debug.Log` prefix when one exists.
+This is a process rule, not a code rule — flag for the next CLAUDE.md
+revision rather than this doc.
 
-**🟡 4. High-frequency-system escape hatch missing from §10.**
+**🟡 14. The high-frequency aggregator pattern (§10 Step 3a) has no test scaffolding.**
 
-Some systems fire 100+ events per turn even when "off-default" makes sense (e.g., per-tile thermal propagation, per-frame UI input polling). Just turning the channel on overflows the buffer; turning it off loses signal entirely. Recipe needs an escape clause: "if the system fires > 100 events per turn typical, build an in-system aggregator first (counts + summary statistics) and only `Diag.Record` summaries, not individual events."
+The §10 Step 3a worked example shows a static aggregator with
+`Dictionary<string, int>` accumulators. But it doesn't address:
+- How to TEST the aggregator (mock turn boundary, accumulate, verify summary).
+- What happens on domain reload (statics get reset; partial-turn accumulation lost).
+- How to handle multi-zone scenes (per-zone aggregators? global?).
 
-**🟡 5. Specialized tool examples (`diag_damage_history`, `diag_effect_lifecycle`) demoted to "examples" but their LOC is still in the Tier-1 budget.**
+Acceptable for now (firehose-rate observability isn't on the Tier 1
+critical path), but future-Claude implementing the second
+firehose-rate consumer should expand §10 Step 3a with a concrete
+testable shape.
 
-Wait — re-reading: I removed them from the Tier-1 file table entirely and noted they're a small follow-up commit. ✅ This is actually addressed correctly. Striking.
+**🟡 15. Anti-pattern list (§3 Layer 5) doesn't have an example for "categorize too narrowly."**
 
-**🟡 6. `diag_inspect_entity` is listed as Universal but its implementation may need system-specific extension points.**
+The category naming convention in §10 Step 1 says "system-scoped not
+action-scoped." But the anti-pattern list doesn't reinforce. A
+category like `objective_completed` (action) instead of `quest`
+(system) splinters queries — every kind needs its own diag_query
+call. Worth one sentence in §3 Layer 5.
 
-`diag_inspect_entity` returns "parts, stats (with modifier sources), effects, tags, properties, last N events." That's combat-friendly. For richer system-specific entity views (e.g., a save-debugging session might want "serializer cursor position," a quest-debugging session might want "active quest objectives"), the tool needs a way for systems to register custom inspectors.
+**🔵 16. The `relation` parameter on `diag_inspect_entity` (fix for #8) doesn't say what `"payload"` actually does for nested matches.**
 
-Concrete fix would be: `Diag.RegisterEntityInspector("save", entity => ...)` API. Tier 2 work; not Tier 1.
+I wrote: `"payload" — PayloadJson mentions the entity ID (string match — slow; use sparingly)`. But: does `"player"` substring-match against `"player_corpse"`? Probably not what the user wants. Either a regex-bounded match (`\bplayer\b`?) or accept the imprecision and document it.
 
-**🟡 7. `Diag.Record` payload-object lifetime.**
+Cosmetic; refine when first user hits it.
 
-I wrote: `payload: new { effects = ... }` — anonymous object, JSON-encoded. But when does the encoding happen? If lazy (at query time), the anonymous object captures live entity references that go stale. If eager (at Record time), there's a per-call serialization cost on the hot path.
+**🔵 17. Persistence format (`~/Library/Logs/CavesOfOoo/diag-{branch}-{timestamp}.jsonl`) still not specified.**
 
-**Right answer is eager.** Document this in §3 Layer 0: "`payload` is JSON-serialized SYNCHRONOUSLY inside `Diag.Record`; references go stale safely because the JSON snapshot is what's stored." Worth pinning.
+§4 D5 references it but no schema. Per-line JSON object? Newline-delimited records? File header with metadata? Rotation policy when size exceeds N MB? This becomes a real D5 design question; flagging now so I don't pretend it's pinned.
 
-**🟡 8. `DiagInspectEntityTool` "last N events targeting this entity" — query is undefined.**
+**🔵 18. The doc is now 1500 lines.**
 
-What does "targeting" mean? `Record.TargetId == entityId`? `Record.ActorId == entityId OR TargetId == entityId`? Just events that named this entity in any field? Spec ambiguous. Pick one and document: probably `ActorId == entityId OR TargetId == entityId`, with a `relation` parameter to narrow.
+P2 says "default response budget ≤ 5 KB." The doc itself, when served
+to a future Claude session as instructions, is ~50 KB just for the
+markdown. Token cost on each session is real. Worth a structural
+look post-spike: can §1 (self-critique of the FIRST proposal),
+§9 (Step 0 findings), and possibly the long §11 critique log be
+moved to a sibling `AI-OBSERVABILITY-HISTORY.md` so future-Claude
+can read the contract without the archaeology?
 
-**🔵 9. §6 (Tier 3) and §7 (out-of-scope) read combat-flavored.**
+### What this third pass deliberately did NOT do
 
-§6 example: "auto-flag X HP changed without DamageDealt event." With a general substrate, that's "any anomaly: entity field changed without a corresponding cause record." §7 lists "Player-facing UI" as out of scope, but UI is a system that COULD be observed (per the §3 "per-system" table). The "out of scope" really means "we won't add a player-facing UI for the diag system itself" — different meaning. Wording could be tighter.
-
-**🔵 10. No story for cross-process observability.**
-
-If the player runs a release build (no Unity Editor MCP), the substrate has no query surface. For Tier 1 / Tier 2 this is fine — debugging happens in Editor. But long-term (post-Steam-release scenarios in `Docs/CONTENT-ROADMAP.md` Tier 5), would players running a release-mode game have any way to capture diag for support? Out of scope now; flagging.
-
-**🔵 11. No quota / rate-limit on per-tool response size.**
-
-P2 says "≤ 5 KB default response budget" but there's no enforcement mechanism in the schema. A `diag_query` with no `limit` parameter could return 500 records × 2KB = 1MB. The default `limit=50` constrains it, but a careless caller can override. Worth adding: tools refuse to return responses > 100 KB, returning `{ truncated: true, hint: "use cursor or smaller limit" }` instead.
-
-### What this critique pass did NOT do
-
-- I did **not** verify any specific method names in the Caves of Ooo `SaveSystem` source. The §10 example is illustrative only.
-- I did **not** profile recording cost. P9 claims 5 ns when disabled; that's an estimate, validated during D1.
-- I did **not** test the §10 recipe end-to-end on a real second system. That's the §11 "second-pass critique 🟡 #1" — verifiable only when next non-combat ship lands.
-- I did **not** define the persistence format (jsonl schema, file rotation policy, max disk usage). Surfaced as a D5 design question.
+- I did **not** verify the example aggregator code (§10 Step 3a) compiles. It's pseudocode-grade.
+- I did **not** specify the persistence file format (#17 above).
+- I did **not** implement the `using` cause scope (#12 above).
+- I did **not** profile the eager-payload-serialization cost on a typical record (~1-5 µs is an estimate, validated during D1).
 
 ### Recommended posture for Step 1 (the spike)
 
-These remaining issues are **acceptable risks for the spike.** None block Tier 1 D1+D2 (substrate + universal hooks + one combat hook). They become real questions during D3-D5 and the first post-Tier-1 ship.
+The doc is now defensible as the contract for D1-D5. **No third-pass
+items block the spike.** Items 12-18 are post-spike refinements.
 
-Document priorities for the next revision pass (post-spike):
+If I'm building Step 1 next, the order is unchanged from the previous
+recommendation:
 
-1. Pin payload-lifetime semantics (🟡 #7) before any third party reads §3.
-2. Define `diag_inspect_entity` "targeting" (🟡 #8) before D4 implementation.
-3. Add high-frequency aggregation escape hatch to §10 (🟡 #4) before second non-combat ship.
-4. Rest can wait.
+1. Read `MCPForUnity/CustomTools/RoslynRuntimeCompilation/ManageRuntimeCompilation.cs` once more for the `[McpForUnityTool]` boilerplate I'll be copying.
+2. Build `Diag.cs` substrate (no hooks). Include the `using (Diag.WithCause(...))` scope from item #12.
+3. Add the `Diag_AcceptsArbitraryNewCategoryWithoutCodeChanges` and `Diag_AcceptsNullTurn_ForOutOfTurnEvents` tests from §4. Confirm both pass.
+4. Add ONE hook (`StatusEffectsPart.RemoveEffectAt`).
+5. Build `DiagQueryTool.cs` with budget enforcement (item #11/#fix).
+6. Verify: walk into bear trap, run `diag_query category=effect kind=OnRemove`, see the captured record.
+
+If that round-trip works, the architecture is real.
 
 ---
 
