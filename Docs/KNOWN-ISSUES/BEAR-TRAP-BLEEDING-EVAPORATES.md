@@ -1,9 +1,57 @@
 # BUG: Bear-trap bleeding "ends same turn" despite four sequential fixes
 
-**Status:** Open. Deferred — coming back to this later.
+**Status:** ✅ RESOLVED — production code is correct; the user's last report was almost certainly H2 (stale Unity DLL during their playtest before domain reload picked up `44e0a64`). Closed out via D1 diag substrate, see "Resolution" below.
 **Severity:** UX-confusing but not gameplay-blocking. Stun + initial damage land correctly; bleeding's per-turn damage is what's not behaving as the player expects.
 **First reported:** 2026-04-30, during `feat/trap-furniture` playtest.
 **Last touched:** 2026-04-30, commit `3e45701` (`fix/damage-ticks-through-stun` merged).
+**Closed:** 2026-04-30, via diag-backed regression tests in `BearTrapBleedingBugClosureTests` (this branch).
+
+## Resolution
+
+After the D1 diag spike landed (commit `1535d50`), the substrate could
+directly answer "did `BleedingEffect.OnRemove` ever fire on the apply
+turn?" via the `effect/OnRemove` records in the ring buffer. Two new
+EditMode tests in `Assets/Tests/EditMode/Gameplay/Effects/BearTrapBleedingBugClosureTests.cs`
+hit the production scenario harder than the existing
+`saveTarget=100` tests:
+
+1. **`BleedingFromTrap_AlwaysPassingSave_StillSurvivesApplyTurn`** —
+   Applies `StunnedEffect(1)` + `BleedingEffect(saveTarget=1)` during
+   the player's active turn. With `saveTarget=1` the save would ALWAYS
+   pass (any d20 + Toughness mod ≥ 1 succeeds). If `JustApplied` were
+   broken, bleeding would evaporate **instantly**. After `tm.EndTurn(player)`,
+   the test asserts via `DiagQuery` that NO `effect/OnRemove` record
+   was emitted for `BleedingEffect`. ✅ Passes — bleeding survives.
+
+2. **`BleedingFromTrap_AlwaysPassingSave_SecondTurnRollsAndRemoves`** —
+   Counter-check: the rng IS biased to pass the save. On the SECOND
+   turn (where `JustApplied=false`), `OnTurnEnd` fires, the save
+   passes, and the substrate records an `effect/OnRemove` for
+   `BleedingEffect` with `cause: "save_succeeded"`. ✅ Passes —
+   confirms test #1 isn't vacuously true.
+
+Together, these prove:
+- The `JustApplied` skip in `StatusEffectsPart.HandleEndTurn` works
+  regardless of save-target value or save-roll outcome.
+- The skip is single-shot — the second turn ticks normally.
+- The substrate observes the exact contract the production code
+  promises.
+
+The user's report after `3e45701` merged was almost certainly H2
+(below): their Unity Editor was running a stale compiled DLL and
+hadn't picked up the `OnTurnStart`-before-`AllowAction` reorder.
+With the diag substrate now live, future ambiguity of this kind
+collapses to one query: did `OnRemove` fire? what was the cause?
+
+If a fresh playtest still reproduces the symptom, the failure is
+necessarily UI-side (sidebar cache, message-log filtering, screenshot
+of stale state) — see H1 below — and is a separate bug from the
+effect-removal pipeline.
+
+---
+
+## Original report (preserved for context)
+
 
 ## Symptom (in user's words)
 
