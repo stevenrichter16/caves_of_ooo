@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -479,6 +480,27 @@ namespace CavesOfOoo.Core
             Effect effect = _effects[index];
             _effects.RemoveAt(index);
             effect.Remove(ParentEntity);
+
+            // Diag hook (D1.2): record the OnRemove with effect type, final
+            // duration, and the cause string set by the caller (one of
+            // CAUSE_DURATION_EXPIRED / CAUSE_SAVE_SUCCEEDED / CAUSE_EXTERNAL).
+            // Read BEFORE we null effect.Owner so the payload sees a coherent
+            // effect-state snapshot. Hook is a no-op when the "effect"
+            // channel is disabled (default-on per AI-OBSERVABILITY.md §3).
+            if (Diag.IsChannelEnabled("effect"))
+            {
+                Diag.Record(
+                    category: "effect",
+                    kind: "OnRemove",
+                    target: ParentEntity,
+                    payload: new
+                    {
+                        effect = effect.GetType().Name,
+                        duration = effect.Duration,
+                        cause = effect.LastRemovalCause
+                    });
+            }
+
             effect.Owner = null;
             SendRemoved(effect);
         }

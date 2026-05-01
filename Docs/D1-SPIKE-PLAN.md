@@ -665,12 +665,120 @@ If the user has no objections, default recommendations apply.
 
 | Step | Status | Notes |
 |---|---|---|
-| Plan written | ✅ | this commit |
-| User reviews plan | ⏳ | awaiting go |
-| D1.1 substrate | ⏳ | RED → GREEN |
-| D1.2 hook | ⏳ | RED → GREEN |
-| D1.3 query tool | ⏳ | RED → GREEN |
-| D1.4 live MCP round-trip | ⏳ | manual verification |
-| D1.5 perf benchmark | ⏳ | profile before / after |
-| D1.6 self-review + commits | ⏳ | per CLAUDE.md §2.3 |
-| Spike acceptance | ⏳ | gates 1, 2, 3 all pass |
+| Plan written | ✅ | e580cf8 |
+| User reviews plan | ✅ | "go" — defaults applied |
+| D1.1 substrate | ✅ | a5f02c9 — 7/7 GREEN |
+| D1.2 hook | ✅ | 685b1f2 — 8/8 GREEN, zero regressions in 93-test sweep |
+| D1.3 query tool | ✅ | 588f96c — 16/16 GREEN, 175/175 wider sweep |
+| D1.4 live MCP round-trip | ✅ | eeedb6c — filters + budget + meta block all verified live; SuccessResponse envelope fix landed inline |
+| D1.5 perf benchmark | ✅ | dbb66b5 — 3 stopwatch micro-benchmarks GREEN with healthy headroom |
+| D1.6 self-review + commits | ✅ | this commit |
+| Spike acceptance | ✅ | gates 1, 2, 3 all pass; see §10 |
+
+### D1.4 live verification log
+
+Performed against the running editor on `feat/diag-spike` after `588f96c`:
+
+| Scenario | Expected | Observed | Result |
+|---|---|---|---|
+| `tools/list` includes `diag_query` as first-class | ✅ | ❌ — only via `execute_custom_tool` wrapper | 🟡 Finding 4 |
+| `execute_custom_tool` with `tool_name="diag_query"` | response | ✅ | ✅ |
+| Inner response shape `{meta, data, truncated}` | meta block present | meta initially **dropped** by Python normalizer (it pulled my inner `data` field straight up to envelope's `data`, discarding sibling keys) | 🔴 → fixed |
+| Fix: wrap return in `SuccessResponse(null, data: payload)` | meta + data + truncated all reachable as `envelope.data.{meta,data,truncated}` | ✅ | ✅ |
+| 5 filter scenarios (no-filter, category=event, category=custom_cat, kind, limit=2) | each narrows correctly with sensible `meta.{returned_count, total_scanned}` | ✅ all 5 | ✅ |
+| Budget exceeded (50 records × 2KB payload, default 100KB budget) | `truncated=true`, `would_be_size_bytes`, hint, `data=null` | ✅ — 107KB payload, truncated, hint says "exceeded 100KB budget" with override instructions | ✅ |
+| Budget override (`budget_kb=500`) | 50 records returned, `truncated=false` | ✅ | ✅ |
+
+**🔴 → fixed inline:** the FastMCP Python service's `_normalize_response` (`Server/src/services/custom_tool_service.py:267-278`) extracts `response["data"]` directly when present, dropping sibling keys. Before fix: the LLM saw only the records array, no meta block, no truncated flag. After fix (wrap in `SuccessResponse`): the whole `{meta, data, truncated}` payload nests inside the envelope's `data`, preserving every field.
+
+**🟡 Finding 4** — `diag_query` is not auto-promoted to a first-class FastMCP tool despite `[McpForUnityTool]` registration; access is via `execute_custom_tool {tool_name: "diag_query"}`. The DiagQueryTool docstring claimed first-class status; that was overoptimistic for this build of MCPForUnity. Track for D3+ post-spike (the bash command in CLAUDE.md & this doc need updating; for now the wrapper path works fine).
+
+---
+
+## 10. Spike acceptance — final gate sweep
+
+All three gates from the original plan pass after D1.5/D1.6:
+
+### Gate 1 — Substrate
+| # | Invariant | Test | Status |
+|---|---|---|---|
+| 1 | Records survive arbitrary new categories | `Diag_AcceptsArbitraryNewCategoryWithoutCodeChanges` | ✅ |
+| 2 | Out-of-turn records carry `Turn=null` | `Diag_AcceptsNullTurn_ForOutOfTurnEvents` | ✅ |
+| 3 | Ring buffer wraps + tracks dropped count | `Diag_RingBuffer_OverwritesOldestOnOverflow` | ✅ |
+| 4 | Disabled channels don't record | `Diag_DisabledChannel_DoesNotRecord` | ✅ |
+| 5 | Payloads serialized eagerly | `Diag_PayloadIsEagerlySerialized` | ✅ |
+| + | Counter-checks 6 (enabled does record) + 7 (cycles handled) | `Diag_EnabledChannel_DoesRecord`, `Diag_PayloadWithCircularRef_DoesNotRecurse` | ✅ |
+
+### Gate 2 — Hook firing observable
+| # | Invariant | Test | Status |
+|---|---|---|---|
+| 8 | RemoveEffect produces an effect/OnRemove record | `RemoveEffect_ProducesDiagOnRemoveRecord` | ✅ |
+| | Record's TargetId matches the entity | (asserted in same test) | ✅ |
+| | Payload includes effect type name | (asserted in same test) | ✅ |
+
+### Gate 3 — JSON shape correct from outside
+| # | Invariant | Verified by | Status |
+|---|---|---|---|
+| 9-13 | Filter narrows by category/kind/target/actor/limit | `DiagQueryTests` 1-5, 8 | ✅ |
+| 14 | Records returned oldest-first | `DiagQuery_Records_ReturnedOldestFirst` | ✅ |
+| 15 | Tool reachable via MCP | D1.4 live verification (§9 above) | ✅ |
+| 16 | Inner response shape `{meta, data, truncated}` survives envelope | D1.4 + SuccessResponse fix | ✅ |
+| 17 | Budget enforcement produces actionable hint | D1.4 with 50×2KB payloads | ✅ |
+| 18 | Budget override allows larger response | D1.4 with `budget_kb=500` | ✅ |
+| 19 | Meta block populated with required fields | D1.4 inspection of `inner.meta` | ✅ |
+
+### Gate 4 (Performance, added D1.5)
+| # | Invariant | Test | Status |
+|---|---|---|---|
+| 20 | Disabled-channel overhead bounded | `Diag_DisabledChannelOverhead_BoundedPerCall` | ✅ ~200 ns/call |
+| 21 | Enabled-channel overhead bounded | `Diag_EnabledChannelOverhead_BoundedPerCall` | ✅ ~1.8 µs/call |
+| 22 | RemoveEffect with hook completes under budget | `RemoveEffect_With_Diag_Hook_CompletesUnderBudget` | ✅ ~5 ms / 1000 cycles |
+
+**Spike status: ACCEPTED.** Substrate is sound, hooks observable,
+external query plumbing works end-to-end, no observable perf
+regression. Ready to merge `feat/diag-spike` to `main` and start D2.
+
+---
+
+## 11. Aggregate self-review findings (D1.1 → D1.6)
+
+Severity per CLAUDE.md §5. Findings 1-9 already detailed in
+individual phase commit messages.
+
+| # | Sev | Finding | Disposition |
+|---|---|---|---|
+| 1 | 🟡 | D1.3 budget+meta tests deferred to D1.4 live verification | Closed: D1.4 verified the paths end-to-end |
+| 2 | 🔵 | DiagQuery.SnapshotCap=5000 magic number | Defer to D3 |
+| 3 | ⚪ | DiagQueryTool clamping duplicates DiagQuery clamping | Defer to D3 |
+| 4 | 🟡 | `diag_query` not auto-promoted to first-class FastMCP tool | Defer to D3 — wrapper path works |
+| 5 | 🟡 | AI-OBSERVABILITY.md spec didn't account for envelope nesting | Closed: doc updated in D1.6 |
+| 6 | 🔵 | Manual gameplay verification (bear-trap walk) scope-pruned | Closed: execute_code-seeded path covers same code |
+| 7 | 🟡 | Disabled-channel ceiling (200ns) close to observed cost; flake risk | Defer to D3 perf job |
+| 8 | 🟡 | D1.5 test 19 doesn't compare hook-on vs hook-off (true regression delta) | Defer to D3 — absolute ceiling test catches catastrophic regression |
+| 9 | 🔵 | D1.5 test 19 uses StunnedEffect only, not all effect types | Defer to D3 — payload uniform across effect types so coverage is OK |
+| 10 | ⚪ | One-line spec drift: AI-OBSERVABILITY.md called the inner type `Record`; substrate uses `Entry` (renamed in D1.1 due to C# naming conflict with `Record(...)` method) | Closed: not user-visible, only the LLM-facing JSON has key names which match `Entry`'s fields |
+
+**No 🔴 (must-fix-now) findings remain.** All 🟡 either closed in D1.4/D1.6 or deferred with explicit rationale.
+
+### Lessons learned
+
+1. **Read the bridge layer's source before assuming wire shape.**
+   The Python normalizer in `custom_tool_service.py` was non-obvious;
+   relying on the docstring claim that anonymous return objects
+   serialize 1:1 cost a debug cycle. For the next custom-tool ship,
+   look at `_normalize_response` first.
+2. **The `Record` struct vs `Record(...)` method conflict cost
+   ~5 minutes during D1.1.** Naming convention for internal types:
+   when the public API is verb-shaped (`Record`, `Snapshot`, `Apply`),
+   prefer noun-shaped internal types (`Entry`, `Filter`, `Result`)
+   to avoid C# name resolution conflicts.
+3. **EditModeTests asmdef has `overrideReferences: true`.** This
+   blocks Editor + Newtonsoft refs unless explicitly added. Drove
+   the runtime-side `DiagQuery` extraction in D1.3 — a clean
+   architectural split that probably should have been in the
+   plan from day one.
+4. **Stopwatch is fine for spike-level micro-benchmarks** as long
+   as the JIT warmup happens before the timing window starts and
+   thresholds are loose (orders of magnitude, not percentages).
+   ProfilerRecorder is for live gameplay where flake-resistance
+   matters.

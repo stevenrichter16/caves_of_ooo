@@ -377,8 +377,47 @@ to a new system** for the full recipe with a worked example.
 
 ### Layer 2 — Query tools (custom MCP)
 
-Registered via `MCPForUnity/CustomTools/`, callable from `/tmp/mcp-call.sh`
-(or from a future Claude session's tool registration).
+Registered via `[McpForUnityTool]` attribute on Editor-side static
+classes. Auto-discovered at WebSocket-connect time by
+`MCPForUnity.Editor.Tools.CommandRegistry`. The substrate plus the
+filter helper live runtime-side (`Assets/Scripts/Shared/Utilities/
+Diag.cs`, `DiagQuery.cs`); only the wrapper that adds the meta block
++ budget enforcement lives Editor-side
+(`Assets/Editor/Diagnostics/DiagQueryTool.cs`).
+
+**Calling convention** (post-D1.4 live verification — supersedes
+earlier doc claim of first-class FastMCP tools):
+
+```bash
+# Direct first-class is NOT auto-registered with FastMCP today.
+# Use the execute_custom_tool wrapper:
+/tmp/mcp-call.sh execute_custom_tool '{"tool_name":"diag_query","parameters":{"category":"effect"}}'
+```
+
+The wrapper path adds one extra envelope but is otherwise identical.
+Promotion to first-class is a D3 follow-up if/when the right
+registration trigger is found in MCPForUnity.
+
+**Response envelope** — every tool response gets wrapped by FastMCP's
+`MCPResponse` schema:
+
+```json
+{
+  "success": true,
+  "message": null,
+  "error": null,
+  "data": { ...inner payload below... },
+  "hint": null
+}
+```
+
+The Layer 2 contract describes the **inner payload** at
+`response.data.*`. Tool implementations return
+`new SuccessResponse(null, data: payload)` to nest correctly — a
+naked anonymous return with a `data` field would be flattened by
+the Python normalizer (`custom_tool_service._normalize_response`),
+discarding sibling keys like `meta` and `truncated`. Caught + fixed
+during D1.4; see `Docs/D1-SPIKE-PLAN.md` §9.
 
 #### Generic tools
 
@@ -405,7 +444,8 @@ Registered via `MCPForUnity/CustomTools/`, callable from `/tmp/mcp-call.sh`
 **Response-size budget enforcement** (operationalizing P2):
 Every query tool checks the size of the JSON it would return BEFORE
 returning it. If the would-be response exceeds **100 KB** (~25k
-tokens), the tool refuses and returns instead:
+tokens), the tool refuses and returns this inner payload (wrapped
+by the FastMCP envelope, so visible to the LLM at `response.data.*`):
 
 ```json
 {
@@ -423,22 +463,22 @@ responses with stale data are worse than refusal.
 
 **Example calls — combat (bear-trap bleeding deferred bug):**
 
+(After D1, only `diag_query` ships; `diag_assert`, `diag_causal_chain`,
+and `diag_inspect_record` are D2/D3. The example below uses the
+D1-shipped tool; substitute the others as they arrive. Note the
+`execute_custom_tool` wrapper described above.)
+
 ```bash
 # Was the bleeding effect ever removed during the apply turn?
-/tmp/mcp-call.sh diag_assert '{"category":"effect","kind":"OnRemove","target":"player","payload_match":{"effect":"BleedingEffect"},"since_turn":10,"until_turn":10}'
-# → { matched: true, first_trace_id: "abc...", count: 1 }   ← bug confirmed
-
-# What caused the removal?
-/tmp/mcp-call.sh diag_causal_chain '{"trace_id":"abc...","direction":"backward","limit":10}'
-# → ordered list ending at the cause
-
-# Inspect that root cause
-/tmp/mcp-call.sh diag_inspect_record '{"trace_id":"<root>"}'
-# → which Part called RemoveEffect, on what frame, with what message
+/tmp/mcp-call.sh execute_custom_tool '{"tool_name":"diag_query","parameters":{"category":"effect","kind":"OnRemove","target":"player","limit":50}}'
+# → response.data.data is an array of OnRemove records (filtered)
+# → look for one with PayloadJson matching {"effect":"BleedingEffect", ...}
+#   to confirm the bug pattern
 ```
 
-Three calls. Done. Replaces the entire 5-step diagnostic plan in
-`Docs/KNOWN-ISSUES/BEAR-TRAP-BLEEDING-EVAPORATES.md`.
+Once D2 ships (`diag_assert`, `diag_causal_chain`, `diag_inspect_record`)
+the same investigation collapses into three calls — predicate
+match, walk causes backward, inspect root.
 
 **Example calls — save/load drift (hypothetical, after `save` category ships):**
 
