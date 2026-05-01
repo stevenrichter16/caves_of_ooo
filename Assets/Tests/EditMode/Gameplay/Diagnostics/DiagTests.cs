@@ -192,6 +192,68 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
+        // D1.2 hook integration test
+        // (Verifies the StatusEffectsPart.RemoveEffectAt hook fires)
+        // ====================================================================
+
+        [Test]
+        public void RemoveEffect_ProducesDiagOnRemoveRecord()
+        {
+            // Set up: a creature with a Stunned effect, then remove it.
+            var entity = MakeMinimalCreature();
+            entity.ApplyEffect(new StunnedEffect(duration: 2));
+
+            // Sanity: the effect IS active
+            Assert.IsTrue(entity.HasEffect<StunnedEffect>(),
+                "Sanity: Stunned must be applied before we can test its removal");
+
+            // Pre-condition: ensure no spurious diag records before removal
+            int beforeCount = Diag.Snapshot(2000).Count;
+
+            // Trigger removal via the public API. This internally goes
+            // through StatusEffectsPart.RemoveEffectAt, which must fire
+            // the hook.
+            entity.RemoveEffect<StunnedEffect>();
+
+            // The hook must have produced a category=effect kind=OnRemove
+            // record targeting this entity.
+            var records = Diag.Snapshot(2000);
+            int diff = records.Count - beforeCount;
+            Assert.GreaterOrEqual(diff, 1,
+                "RemoveEffectAt must produce at least one new diag record. " +
+                $"Got {diff} new records (expected ≥ 1).");
+
+            bool foundOnRemove = false;
+            foreach (var r in records)
+            {
+                if (r.Category == "effect" &&
+                    r.Kind == "OnRemove" &&
+                    r.TargetId == entity.ID)
+                {
+                    foundOnRemove = true;
+                    Assert.IsTrue(r.PayloadJson.Contains("StunnedEffect"),
+                        $"OnRemove payload must include the effect type name. Got: {r.PayloadJson}");
+                    break;
+                }
+            }
+            Assert.IsTrue(foundOnRemove,
+                "Diag substrate must contain an effect/OnRemove record with " +
+                $"TargetId={entity.ID} (the entity whose effect was removed). " +
+                "If this fails, the hook in StatusEffectsPart.RemoveEffectAt didn't fire.");
+        }
+
+        private static Entity MakeMinimalCreature()
+        {
+            var e = new Entity { BlueprintName = "TestCreature", ID = "test-" + Guid.NewGuid().ToString("N").Substring(0, 6) };
+            e.Tags["Creature"] = "";
+            e.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 100, Max = 100, Owner = e };
+            e.Statistics["DV"] = new Stat { Name = "DV", BaseValue = 4, Owner = e };
+            e.AddPart(new RenderPart { DisplayName = "test creature" });
+            e.AddPart(new StatusEffectsPart());
+            return e;
+        }
+
+        // ====================================================================
         // Helper types
         // ====================================================================
 
