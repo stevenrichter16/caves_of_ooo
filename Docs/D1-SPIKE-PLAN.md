@@ -665,12 +665,30 @@ If the user has no objections, default recommendations apply.
 
 | Step | Status | Notes |
 |---|---|---|
-| Plan written | ✅ | this commit |
-| User reviews plan | ⏳ | awaiting go |
-| D1.1 substrate | ⏳ | RED → GREEN |
-| D1.2 hook | ⏳ | RED → GREEN |
-| D1.3 query tool | ⏳ | RED → GREEN |
-| D1.4 live MCP round-trip | ⏳ | manual verification |
+| Plan written | ✅ | e580cf8 |
+| User reviews plan | ✅ | "go" — defaults applied |
+| D1.1 substrate | ✅ | a5f02c9 — 7/7 GREEN |
+| D1.2 hook | ✅ | 685b1f2 — 8/8 GREEN, zero regressions in 93-test sweep |
+| D1.3 query tool | ✅ | 588f96c — 16/16 GREEN, 175/175 wider sweep |
+| D1.4 live MCP round-trip | ✅ | filters + budget + meta block all verified live; SuccessResponse envelope fix landed inline |
 | D1.5 perf benchmark | ⏳ | profile before / after |
 | D1.6 self-review + commits | ⏳ | per CLAUDE.md §2.3 |
 | Spike acceptance | ⏳ | gates 1, 2, 3 all pass |
+
+### D1.4 live verification log
+
+Performed against the running editor on `feat/diag-spike` after `588f96c`:
+
+| Scenario | Expected | Observed | Result |
+|---|---|---|---|
+| `tools/list` includes `diag_query` as first-class | ✅ | ❌ — only via `execute_custom_tool` wrapper | 🟡 Finding 4 |
+| `execute_custom_tool` with `tool_name="diag_query"` | response | ✅ | ✅ |
+| Inner response shape `{meta, data, truncated}` | meta block present | meta initially **dropped** by Python normalizer (it pulled my inner `data` field straight up to envelope's `data`, discarding sibling keys) | 🔴 → fixed |
+| Fix: wrap return in `SuccessResponse(null, data: payload)` | meta + data + truncated all reachable as `envelope.data.{meta,data,truncated}` | ✅ | ✅ |
+| 5 filter scenarios (no-filter, category=event, category=custom_cat, kind, limit=2) | each narrows correctly with sensible `meta.{returned_count, total_scanned}` | ✅ all 5 | ✅ |
+| Budget exceeded (50 records × 2KB payload, default 100KB budget) | `truncated=true`, `would_be_size_bytes`, hint, `data=null` | ✅ — 107KB payload, truncated, hint says "exceeded 100KB budget" with override instructions | ✅ |
+| Budget override (`budget_kb=500`) | 50 records returned, `truncated=false` | ✅ | ✅ |
+
+**🔴 → fixed inline:** the FastMCP Python service's `_normalize_response` (`Server/src/services/custom_tool_service.py:267-278`) extracts `response["data"]` directly when present, dropping sibling keys. Before fix: the LLM saw only the records array, no meta block, no truncated flag. After fix (wrap in `SuccessResponse`): the whole `{meta, data, truncated}` payload nests inside the envelope's `data`, preserving every field.
+
+**🟡 Finding 4** — `diag_query` is not auto-promoted to a first-class FastMCP tool despite `[McpForUnityTool]` registration; access is via `execute_custom_tool {tool_name: "diag_query"}`. The DiagQueryTool docstring claimed first-class status; that was overoptimistic for this build of MCPForUnity. Track for D3+ post-spike (the bash command in CLAUDE.md & this doc need updating; for now the wrapper path works fine).

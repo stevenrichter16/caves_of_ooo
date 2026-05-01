@@ -110,9 +110,10 @@ namespace CavesOfOoo.Editor.Diagnostics
                 });
                 var filtered = filterResult.Records;
 
-                // Build the response object. We construct THEN size-check —
-                // an alternative would be streaming with running size, but
-                // for a 100KB budget the simpler one-pass approach is fine.
+                // Build the inner response payload. We construct THEN size-
+                // check — an alternative would be streaming with running
+                // size, but for a 100KB budget the simpler one-pass
+                // approach is fine.
                 var responseData = new
                 {
                     meta = BuildMeta(filtered.Count, filterResult.TotalScanned),
@@ -121,13 +122,15 @@ namespace CavesOfOoo.Editor.Diagnostics
                 };
 
                 // Pre-flight size check (per AI-OBSERVABILITY.md §3 Layer 2
-                // budget enforcement)
+                // budget enforcement). Sized on the inner payload only —
+                // the SuccessResponse envelope adds ~50 bytes of overhead,
+                // negligible vs. the 100KB default budget.
                 string serialized = JsonConvert.SerializeObject(responseData);
                 int sizeBytes = serialized.Length;
                 int budgetBytes = budgetKb * 1024;
                 if (sizeBytes > budgetBytes)
                 {
-                    return new
+                    return new SuccessResponse(message: null, data: new
                     {
                         meta = BuildMeta(0, filterResult.TotalScanned),
                         data = (object)null,
@@ -136,10 +139,16 @@ namespace CavesOfOoo.Editor.Diagnostics
                         hint = $"Response of {sizeBytes / 1024}KB exceeded {budgetKb}KB budget. " +
                                "Use a smaller limit, narrow filters (category/kind/target), " +
                                $"or pass budget_kb=N (max {MaxBudgetKb}) to override.",
-                    };
+                    });
                 }
 
-                return responseData;
+                // Wrap in SuccessResponse so the FastMCP Python normalizer
+                // (custom_tool_service._normalize_response) places the
+                // whole {meta, data, truncated} object into the envelope's
+                // `data` field. Without this wrapping, the normalizer
+                // pulls out our inner `data` field and discards `meta`
+                // and `truncated`. See AI-OBSERVABILITY.md §3 Layer 2.
+                return new SuccessResponse(message: null, data: responseData);
             }
             catch (System.Exception ex)
             {
