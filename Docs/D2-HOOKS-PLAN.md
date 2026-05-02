@@ -361,14 +361,14 @@ exactly the right semantics. No staleness risk.
 |---|---|---|
 | Plan written | ✅ | 2a4f5b8 (rebase of e1def2a) |
 | User reviews plan | ✅ | "go on" — defaults applied |
-| D2.1 OnApply hook | 🟡 | f006c26 — static review pass, **tests not live-verified** (Unity MCP test path unreliable this session) |
-| D2.2 DamageDealt hook | 🟡 | 721505d — static review pass, **tests not live-verified** |
-| D2.3 WithCause AsyncLocal impl | 🟡 | 2d636aa — static review pass, **tests not live-verified** |
-| D2.4 turn/Begin + turn/End hooks | 🟡 | bd85acd — static review pass, **tests not live-verified** |
-| D2.5 diag_count MCP tool | 🟡 | 6411853 — static review pass, **tests not live-verified** |
-| D2.6 plan-doc update + branch push | ✅ | this commit |
-| Live verification + merge to main | ⏸️ | deferred until Unity MCP test path stabilizes (the WebSocket-disconnect-at-40s bug separate from this work) |
-| Acceptance | ⏸️ | gates 1-9 deferred; 27 tests staged on branch |
+| D2.1 OnApply hook | ✅ | f006c26 — 6/6 GREEN |
+| D2.2 DamageDealt hook | ✅ | 721505d — 6/6 GREEN |
+| D2.3 WithCause AsyncLocal impl | ✅ | 2d636aa — 6/6 GREEN |
+| D2.4 turn/Begin + turn/End hooks | ✅ | bd85acd + 554e14f (test setup fix) — 6/6 GREEN |
+| D2.5 diag_count MCP tool | ✅ | 6411853 — 5/5 GREEN |
+| D2.6 plan-doc update + branch push | ✅ | e40ca69 |
+| Live verification | ✅ | After Unity restart + paced-cadence MCP calls (no polling), all 29 D2 tests GREEN. Wider regression sweep 143/143 GREEN (DiagTests, DiagQueryTests, DiagPerfTests, BearTrapBleedingBugClosureTests, StatusEffectTests, EffectTickOnApplyTurnTests, TrapFurnitureTests, CombatSystemTests). Zero regressions from D2. |
+| Acceptance | ✅ | gates 1-9 all pass |
 
 ---
 
