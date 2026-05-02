@@ -232,6 +232,25 @@ namespace CavesOfOoo.Core
                     CurrentActor = actor;
                     _turnStartMessageCount = MessageLog.Count;
 
+                    // D2.4 diag hook (Docs/D2-HOOKS-PLAN.md §4 D2.4) —
+                    // turn boundary marker. Even blocked turns produce
+                    // a Begin record (paired with the End below); a
+                    // turn that's "spent" via stun-block is still a
+                    // turn that consumed energy.
+                    if (Diag.IsChannelEnabled("turn"))
+                    {
+                        Diag.Record(
+                            category: "turn",
+                            kind: "Begin",
+                            actor: actor,
+                            payload: new
+                            {
+                                entityId = actor?.ID,
+                                blueprintName = actor?.BlueprintName,
+                                hp = actor?.GetStatValue("Hitpoints", -1)
+                            });
+                    }
+
                     // Qud-style pre-action event seam: status effects and other parts can
                     // block the action before AI/input executes.
                     Zone actorZone = ResolveActorZone(actor);
@@ -279,6 +298,23 @@ namespace CavesOfOoo.Core
                 if (zone != null)
                     endTurn.SetParameter("Zone", (object)zone);
                 actor.FireEventAndRelease(endTurn);
+
+                // D2.4 diag hook — turn boundary marker (paired with
+                // turn/Begin above). Records ALL EndTurn calls, including
+                // those triggered after a blocked BeginTakeAction.
+                if (Diag.IsChannelEnabled("turn"))
+                {
+                    Diag.Record(
+                        category: "turn",
+                        kind: "End",
+                        actor: actor,
+                        payload: new
+                        {
+                            entityId = actor?.ID,
+                            blueprintName = actor?.BlueprintName,
+                            hp = actor?.GetStatValue("Hitpoints", -1)
+                        });
+                }
 
                 // Compare against the snapshot taken when CurrentActor was
                 // assigned (turn START). Captures messages from the actor's

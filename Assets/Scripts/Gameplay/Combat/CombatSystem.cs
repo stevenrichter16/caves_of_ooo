@@ -625,6 +625,29 @@ namespace CavesOfOoo.Core
                 if (hpAlias != null && !ReferenceEquals(hpAlias, hpStat))
                     hpAlias.BaseValue -= amount;
 
+                // D2.2 diag hook (Docs/D2-HOOKS-PLAN.md §4 D2.2).
+                // Records damage AFTER it lands. Broader than the
+                // DamageDealt event below — that event only fires when
+                // source != null, but environmental damage (traps,
+                // status DoT) also writes to the diag buffer. Payload
+                // captures post-damage HP and the lethal flag for
+                // turn-by-turn combat reconstruction.
+                if (Diag.IsChannelEnabled("damage"))
+                {
+                    Diag.Record(
+                        category: "damage",
+                        kind: "DamageDealt",
+                        actor: source,
+                        target: target,
+                        payload: new
+                        {
+                            amount = amount,
+                            hpAfter = hpStat.BaseValue,
+                            lethal = hpStat.BaseValue <= 0,
+                            attributes = damage.Attributes
+                        });
+                }
+
                 // Notify the attacker that damage was dealt (for on-hit effects like poison)
                 if (source != null)
                 {
