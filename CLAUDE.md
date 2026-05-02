@@ -153,6 +153,100 @@ Fix every 🟡 and 🔴 pre-commit. Defer 🧪/⚪ with a note in the doc.
 
 ---
 
+## Post-implementation cold-eye review (MANDATORY after every multi-commit feature)
+
+**Tests passing is necessary but not sufficient.** Green tests prove
+the code does what the test asserts; they don't prove the code is
+internally consistent, symmetric with neighbors, or matches the
+docs. Always run the four-question pass below AFTER tests are green
+and BEFORE you call the feature done. Empirically this caught four
+real issues in D2 (hook-position asymmetry, redundant payload field,
+test-coverage gap, doc-vs-impl drift) AFTER all 29 tests were green
+and AFTER the merge had landed on main.
+
+### Q1 — Symmetry check
+
+When you add a feature that mirrors an existing one (OnApply mirrors
+OnRemove, "Begin" mirrors "End", forward mirrors backward, etc.):
+**open both source files side-by-side and read them line-by-line.**
+Position of the new code relative to surrounding calls must match
+the existing one. Caught D2.1: OnApply was firing before
+`effect.Applied`, but D1.2's OnRemove fires after `effect.Remove` —
+asymmetric chronological position relative to the user-visible
+message-log entry.
+
+The check: *if I swap a record's category from "OnApply" to "OnRemove"
+in my head, would the surrounding code make equally good sense?*
+If no, one side is misplaced.
+
+### Q2 — Cross-feature consistency
+
+When you add multiple similar features in one ship (D2 added 5
+hooks + 1 tool), audit **every public-facing shape** — payload
+schemas, return types, parameter names, channel names — for naming
+convention. Make a mental table:
+
+```
+Hook            | category | kind          | actor | target | payload fields
+OnRemove        | effect   | OnRemove      | -     | yes    | effect, duration, cause
+OnApply         | effect   | OnApply       | yes   | yes    | effect, duration, justApplied, forced
+DamageDealt     | damage   | DamageDealt   | yes   | yes    | amount, hpAfter, lethal, attributes
+turn/Begin      | turn     | Begin         | yes   | -      | blueprintName, hp        ← had `entityId` redundant w/ ActorId
+turn/End        | turn     | End           | yes   | -      | blueprintName, hp        ← same
+```
+
+Each column should follow a consistent rule. If one row deviates,
+flag it. Caught D2.4: turn payload duplicated `entityId = actor.ID`
+in the payload while the other hooks correctly put IDs only in the
+top-level field.
+
+### Q3 — Counter-check completeness
+
+For every payload field with a non-trivial branch (boolean flags,
+enum-ish values, success/failure paths, optional vs default args),
+verify **each branch is asserted by a test**, including a counter-
+check per §3.4. Caught D2.1: the `forced` field had two paths
+(`ApplyEffect` → false, `ForceApplyEffect` → true), only the false
+path was implicitly tested. A buggy impl that hard-coded
+`forced = false` for both paths would have passed all 5 D2.1 tests.
+
+The check: list every non-trivial field in the payload and trace
+which test exercises which value. Gaps in the table become tests.
+
+### Q4 — Doc-vs-impl drift
+
+Open the design doc (`Docs/AI-OBSERVABILITY.md` for diag work,
+`Docs/<feature>.md` generally) and read each spec'd
+parameter / return shape / response field against the **actual
+shipped code**. Caught D2.5: AI-OBSERVABILITY.md's generic-tools
+table claimed `diag_count` returns `{ count: int }`, but the shipped
+tool returns
+`{ count, total_scanned, sample_first_trace_id, sample_first_kind, tool_version }`.
+
+Doc-vs-impl drift accumulates silently and turns living docs into
+useful-fiction. The fix is fast (5 minutes per ship); the cost of
+not doing it compounds.
+
+### Process
+
+1. Tests green ✓
+2. Merge to main ✓ (or about to)
+3. **STOP. Run the cold-eye pass.** Read all the diffs together, not
+   one-by-one.
+4. Found something? File a `fix/<thing>-cold-eye-review` branch
+   with a single self-contained fix-commit. Don't bury it in a
+   future feature commit. Push. Merge. Now done.
+5. Found nothing? Note "cold-eye review pass complete, 0 findings"
+   in the merge commit body so a future reader knows it actually
+   ran.
+
+**Self-directive: I MUST run this cold-eye pass after every
+multi-commit feature, even when tests are green and the merge
+feels clean. Tests-green-feels-clean is exactly the state where
+latent inconsistencies hide.**
+
+---
+
 ## Unity MCP workflow
 
 **Standard post-edit cycle:**
