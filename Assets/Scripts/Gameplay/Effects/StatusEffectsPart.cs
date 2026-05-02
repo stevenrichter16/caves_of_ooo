@@ -108,12 +108,21 @@ namespace CavesOfOoo.Core
                 return false;
 
             _effects.Add(effect);
+            effect.Applied(ParentEntity);
 
             // D2.1 diag hook (Docs/D2-HOOKS-PLAN.md §4 D2.1).
-            // Mirrors the OnRemove hook in RemoveEffectAt. Fires only on
-            // FRESH apply — the stack branch above (line ~70) returns
-            // before reaching here so re-application of an already-active
-            // effect type does not double-emit.
+            // Position mirror of D1.2's OnRemove hook in RemoveEffectAt:
+            // fires AFTER `effect.Applied(ParentEntity)` (which calls
+            // effect.OnApply → MessageLog.Add) and BEFORE SendApplied
+            // (which fires the EffectApplied event), so the buffer
+            // ordering is [user-visible message] → [diag record] →
+            // [downstream listeners]. Symmetric with OnRemove which is
+            // [user-visible message] → [diag record] → [SendRemoved].
+            //
+            // Stack branch at line ~70 returns BEFORE reaching here, so
+            // re-application of an already-active effect type does not
+            // double-emit (counter-checked by
+            // StackingReApplication_DoesNotEmitSecondOnApplyRecord).
             if (Diag.IsChannelEnabled("effect"))
             {
                 Diag.Record(
@@ -130,7 +139,6 @@ namespace CavesOfOoo.Core
                     });
             }
 
-            effect.Applied(ParentEntity);
             SendApplied(effect, source, zone, forced);
             return true;
         }

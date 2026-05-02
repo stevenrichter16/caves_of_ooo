@@ -245,7 +245,11 @@ namespace CavesOfOoo.Core
                             actor: actor,
                             payload: new
                             {
-                                entityId = actor?.ID,
+                                // ActorId is already populated by the `actor:`
+                                // arg above — don't duplicate. Payload-only
+                                // fields are blueprintName + hp at the boundary,
+                                // matching the D1.2/D2.1/D2.2 convention where
+                                // ID lives in the top-level field, not payload.
                                 blueprintName = actor?.BlueprintName,
                                 hp = actor?.GetStatValue("Hitpoints", -1)
                             });
@@ -310,7 +314,8 @@ namespace CavesOfOoo.Core
                         actor: actor,
                         payload: new
                         {
-                            entityId = actor?.ID,
+                            // ActorId already populated by `actor:` arg above —
+                            // see the matching turn/Begin hook for rationale.
                             blueprintName = actor?.BlueprintName,
                             hp = actor?.GetStatValue("Hitpoints", -1)
                         });
