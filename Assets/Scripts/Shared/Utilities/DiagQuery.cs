@@ -83,5 +83,66 @@ namespace CavesOfOoo.Diagnostics
                 TotalScanned = all.Count,
             };
         }
+
+        /// <summary>Aggregation result for <see cref="Count"/>.</summary>
+        public class CountResult
+        {
+            /// <summary>Number of records matching the filter (uncapped — counts up to <see cref="Diag.BufferCapacity"/>).</summary>
+            public int Count;
+
+            /// <summary>Total records scanned from the ring buffer (≥ <see cref="Count"/>).</summary>
+            public int TotalScanned;
+
+            /// <summary>TraceId of the first matching record, or null if no matches.</summary>
+            public string SampleFirstTraceId;
+
+            /// <summary>Kind of the first matching record, or null if no matches.</summary>
+            public string SampleFirstKind;
+        }
+
+        /// <summary>
+        /// Count records matching the filter without copying the full
+        /// records list. Token-cheap: returns the count plus a sample
+        /// trace-ID so the caller can follow up with <see cref="Apply"/>
+        /// on a specific match if needed.
+        ///
+        /// Unlike <see cref="Apply"/>, the count is uncapped — the
+        /// <see cref="Filter.Limit"/> is ignored. The scan ceiling is
+        /// the ring buffer's capacity itself.
+        ///
+        /// Plan ref: <c>Docs/D2-HOOKS-PLAN.md</c> §4 D2.5.
+        /// </summary>
+        public static CountResult Count(Filter filter)
+        {
+            filter ??= new Filter();
+
+            var all = Diag.Snapshot(SnapshotCap);
+
+            int count = 0;
+            string firstTraceId = null;
+            string firstKind = null;
+            for (int i = 0; i < all.Count; i++)
+            {
+                var rec = all[i];
+                if (filter.Category != null && rec.Category != filter.Category) continue;
+                if (filter.Kind != null && rec.Kind != filter.Kind) continue;
+                if (filter.Actor != null && rec.ActorId != filter.Actor) continue;
+                if (filter.Target != null && rec.TargetId != filter.Target) continue;
+                if (count == 0)
+                {
+                    firstTraceId = rec.TraceId;
+                    firstKind = rec.Kind;
+                }
+                count++;
+            }
+
+            return new CountResult
+            {
+                Count = count,
+                TotalScanned = all.Count,
+                SampleFirstTraceId = firstTraceId,
+                SampleFirstKind = firstKind,
+            };
+        }
     }
 }
