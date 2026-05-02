@@ -152,25 +152,28 @@ namespace CavesOfOoo.Tests
         [Test]
         public void BlockedTurn_StillProducesBothBeginAndEnd()
         {
-            // Apply a stun (Duration=2 so the JustApplied skip leaves it
-            // active for the next turn) and let TurnManager run a turn
-            // — BeginTakeAction returns false (action blocked), and the
-            // EndTurn cleanup path fires inside TurnManager itself.
-            // Both Begin AND End records must still appear.
+            // Apply a stun with enough duration to STAY active across the
+            // setup turn cycles, so the second ProcessUntilPlayerTurn sees
+            // it block BeginTakeAction. Earlier impl used duration=2 which
+            // ticked away during setup, leaving the second PUPT with no
+            // active stun (and therefore no "blocked turn" to verify).
+            //
+            // Tick budget consumed during setup:
+            //   - First PUPT iteration: stun blocks → internal EndTurn
+            //     ticks duration -1
+            //   - Explicit tm.EndTurn(player): another tick -1
+            // So duration=4 leaves duration=2 going into the second PUPT,
+            // ensuring the blocked-turn path is exercised.
             var player = MakePlayer();
-            player.ApplyEffect(new StunnedEffect(duration: 2));
+            player.ApplyEffect(new StunnedEffect(duration: 4));
 
             var tm = new TurnManager();
             tm.AddEntity(player);
-            tm.ProcessUntilPlayerTurn();
-            tm.EndTurn(player);
-            // At this point Stun.Duration ticked 2→1 (apply turn skipped).
-            // Process again — BeginTakeAction will be blocked by Stun(1).
-            // The TurnManager's internal flow runs EndTurn from line ~244
-            // when BeginTakeAction returns false.
+            tm.ProcessUntilPlayerTurn();   // blocked + internal EndTurn → Stun ticks 4→3
+            tm.EndTurn(player);            // explicit EndTurn → Stun ticks 3→2
             Diag.ResetAll();   // isolate this turn's records from setup noise
 
-            tm.ProcessUntilPlayerTurn();
+            tm.ProcessUntilPlayerTurn();   // Stun(2) still blocks → internal EndTurn fires
 
             var records = Diag.Snapshot(2000)
                 .Where(r => r.Category == "turn" && r.ActorId == player.ID)
@@ -182,7 +185,7 @@ namespace CavesOfOoo.Tests
                 "turn started; the action was blocked, but the boundary is real).");
             Assert.GreaterOrEqual(endCount, 1,
                 "Even a blocked turn must record a turn/End (TurnManager " +
-                "calls EndTurn from line ~244 when BeginTakeAction returns false). " +
+                "calls EndTurn internally when BeginTakeAction returns false). " +
                 $"Got Begin={beginCount}, End={endCount}");
         }
 
