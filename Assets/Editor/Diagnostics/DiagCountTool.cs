@@ -52,6 +52,12 @@ namespace CavesOfOoo.Editor.Diagnostics
 
             [ToolParameter("Filter by target Entity ID. Omit for all.", Required = false)]
             public string target { get; set; }
+
+            [ToolParameter("Lower-bound turn filter (inclusive). Records with Turn=null are EXCLUDED from any windowed query.", Required = false)]
+            public int? since_turn { get; set; }
+
+            [ToolParameter("Upper-bound turn filter (inclusive). Same null-Turn exclusion as since_turn.", Required = false)]
+            public int? until_turn { get; set; }
         }
 
         private const string ToolVersion = "diag_count/1";
@@ -68,6 +74,8 @@ namespace CavesOfOoo.Editor.Diagnostics
                     Kind = @params["kind"]?.ToString(),
                     Actor = @params["actor"]?.ToString(),
                     Target = @params["target"]?.ToString(),
+                    SinceTurn = @params["since_turn"]?.ToObject<int?>(),
+                    UntilTurn = @params["until_turn"]?.ToObject<int?>(),
                 });
 
                 return new SuccessResponse(message: null, data: new

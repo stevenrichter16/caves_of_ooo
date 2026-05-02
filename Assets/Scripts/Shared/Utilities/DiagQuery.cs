@@ -31,6 +31,26 @@ namespace CavesOfOoo.Diagnostics
             /// <summary>Filter by target entity ID (exact match). Null = no target filter.</summary>
             public string Target;
 
+            /// <summary>
+            /// Filter to records whose <see cref="Diag.Entry.Turn"/> is ≥ this
+            /// value. Null = no lower-bound filter.
+            ///
+            /// Records with <c>Turn=null</c> (out-of-turn events: worldgen,
+            /// save, bootstrap, UI) are <strong>EXCLUDED</strong> from any
+            /// query that uses <see cref="SinceTurn"/> or <see cref="UntilTurn"/>
+            /// — they have no turn to compare against. Use the wall-clock
+            /// filters (D4) to include null-Turn records in time-windowed
+            /// queries. Per <c>AI-OBSERVABILITY.md</c> §3 Layer 2.
+            /// </summary>
+            public int? SinceTurn;
+
+            /// <summary>
+            /// Filter to records whose <see cref="Diag.Entry.Turn"/> is ≤ this
+            /// value. Null = no upper-bound filter. Same null-Turn exclusion
+            /// rule as <see cref="SinceTurn"/>.
+            /// </summary>
+            public int? UntilTurn;
+
             /// <summary>Max records to return. Clamped to [1, 500] by <see cref="Apply"/>; default 50.</summary>
             public int Limit = 50;
         }
@@ -65,6 +85,7 @@ namespace CavesOfOoo.Diagnostics
             // SnapshotCap=5000 always returns the whole buffer.
             var all = Diag.Snapshot(SnapshotCap);
 
+            bool hasTurnWindow = filter.SinceTurn.HasValue || filter.UntilTurn.HasValue;
             var matched = new List<Diag.Entry>(limit);
             for (int i = 0; i < all.Count; i++)
             {
@@ -73,6 +94,12 @@ namespace CavesOfOoo.Diagnostics
                 if (filter.Kind != null && rec.Kind != filter.Kind) continue;
                 if (filter.Actor != null && rec.ActorId != filter.Actor) continue;
                 if (filter.Target != null && rec.TargetId != filter.Target) continue;
+                // Turn-window filter (D3.1). Records with Turn=null are
+                // EXCLUDED from any windowed query — they have no turn to
+                // compare against. AI-OBSERVABILITY.md §3 Layer 2.
+                if (hasTurnWindow && rec.Turn == null) continue;
+                if (filter.SinceTurn.HasValue && rec.Turn < filter.SinceTurn.Value) continue;
+                if (filter.UntilTurn.HasValue && rec.Turn > filter.UntilTurn.Value) continue;
                 matched.Add(rec);
                 if (matched.Count >= limit) break;
             }
@@ -118,6 +145,7 @@ namespace CavesOfOoo.Diagnostics
 
             var all = Diag.Snapshot(SnapshotCap);
 
+            bool hasTurnWindow = filter.SinceTurn.HasValue || filter.UntilTurn.HasValue;
             int count = 0;
             string firstTraceId = null;
             string firstKind = null;
@@ -128,6 +156,10 @@ namespace CavesOfOoo.Diagnostics
                 if (filter.Kind != null && rec.Kind != filter.Kind) continue;
                 if (filter.Actor != null && rec.ActorId != filter.Actor) continue;
                 if (filter.Target != null && rec.TargetId != filter.Target) continue;
+                // Turn-window filter (D3.1). Same null-Turn exclusion as Apply.
+                if (hasTurnWindow && rec.Turn == null) continue;
+                if (filter.SinceTurn.HasValue && rec.Turn < filter.SinceTurn.Value) continue;
+                if (filter.UntilTurn.HasValue && rec.Turn > filter.UntilTurn.Value) continue;
                 if (count == 0)
                 {
                     firstTraceId = rec.TraceId;
