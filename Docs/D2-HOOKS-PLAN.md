@@ -359,12 +359,65 @@ exactly the right semantics. No staleness risk.
 
 | Step | Status | Notes |
 |---|---|---|
-| Plan written | ⏳ | this commit |
-| User reviews plan | ⏳ | (or proceed by default) |
-| D2.1 OnApply hook | ⏳ | RED → GREEN |
-| D2.2 DamageDealt hook | ⏳ | RED → GREEN |
-| D2.3 WithCause AsyncLocal impl | ⏳ | RED → GREEN |
-| D2.4 turn/Begin + turn/End hooks | ⏳ | RED → GREEN |
-| D2.5 diag_count MCP tool | ⏳ | RED → GREEN |
-| D2.6 self-review + merge | ⏳ | per CLAUDE.md §2.3 |
-| Acceptance | ⏳ | gates 1-9 all pass |
+| Plan written | ✅ | 2a4f5b8 (rebase of e1def2a) |
+| User reviews plan | ✅ | "go on" — defaults applied |
+| D2.1 OnApply hook | 🟡 | f006c26 — static review pass, **tests not live-verified** (Unity MCP test path unreliable this session) |
+| D2.2 DamageDealt hook | 🟡 | 721505d — static review pass, **tests not live-verified** |
+| D2.3 WithCause AsyncLocal impl | 🟡 | 2d636aa — static review pass, **tests not live-verified** |
+| D2.4 turn/Begin + turn/End hooks | 🟡 | bd85acd — static review pass, **tests not live-verified** |
+| D2.5 diag_count MCP tool | 🟡 | 6411853 — static review pass, **tests not live-verified** |
+| D2.6 plan-doc update + branch push | ✅ | this commit |
+| Live verification + merge to main | ⏸️ | deferred until Unity MCP test path stabilizes (the WebSocket-disconnect-at-40s bug separate from this work) |
+| Acceptance | ⏸️ | gates 1-9 deferred; 27 tests staged on branch |
+
+---
+
+## 8. Static review summary (D2.6)
+
+All 5 sub-milestones (D2.1-D2.5) committed on `feat/diag-D2-hooks`.
+~110 prod LOC + ~410 test LOC across 27 new tests, matching the
+plan's estimate. One bug found during review (Tests 3a/3b in D2.1
+would hang `ProcessUntilPlayerTurn` without a Player tag — fixed
+in the same commit).
+
+**The branch is intentionally NOT yet merged to main.** Per
+CLAUDE.md self-audit checklist:
+
+> Did the test fail RED before this implementation? If you can't
+> recall, you compressed steps — note it in the self-review.
+
+Tests have been written and pass static review (imports, type
+match, trace-through against current source) but have not been
+executed in the Unity test runner because the MCP test-job path
+has been disconnecting at the ~40s mark this session (a separate
+upstream bug investigated and partially fixed in unity-mcp's
+`58288f3` PING_TIMEOUT 20→90s; remaining ~40s WebSocket lifespan
+is unresolved as of now).
+
+**Once the MCP test path stabilizes:**
+1. Run the full sweep: `DiagOnApplyHookTests`,
+   `DiagDamageHookTests`, `DiagWithCauseTests`, `DiagTurnHookTests`,
+   `DiagCountTests`, plus the regression suite (`DiagTests`,
+   `DiagQueryTests`, `DiagPerfTests`, `StatusEffectTests`,
+   `EffectTickOnApplyTurnTests`, `TrapFurnitureTests`,
+   `DamageTests`, `CombatSystemTests`, `BearTrapBleedingBugClosureTests`).
+2. Fix any RED tests, commit fixes on the branch.
+3. Merge `feat/diag-D2-hooks` to `main` with `--no-ff`.
+4. Push.
+5. Optionally update `Docs/AI-OBSERVABILITY.md` §3 Layer 2 to
+   include `diag_count` in the Generic Tools table.
+
+---
+
+## 9. D2 aggregate self-review (for the eventual merge commit)
+
+| # | Sev | Finding | Disposition |
+|---|---|---|---|
+| 1 | 🟡 | D2.1 Tests 3a/3b would hang without Player tag | Closed: tagged in same commit |
+| 2 | 🟡 | DiagQuery.Count duplicates 4 lines of filter loop with Apply | Defer to D3 — bodies will diverge further when Apply gets fields= projection |
+| 3 | 🟡 | diag_count not auto-promoted to first-class FastMCP tool | Defer to D3 (same blocker as diag_query, doc'd in D1.6 §11 #4) |
+| 4 | 🟡 | Tests not live-verified | Resolves at first MCP test sweep post-stabilization |
+| 5 | 🔵 | D2.4 turn channel could be noisy at scale (200 records / round at 100 NPCs) | Channel toggle exists; default-on for now |
+| 6 | 🔵 | D2.3 WithCause CauseScope per-call allocation | Acceptable; documented anti-pattern keeps it bounded |
+| 7 | 🔵 | D2.2 negative hpAfter for overkill displays as -95 in payload | Accurate; useful for crit diagnostics |
+| 8 | ⚪ | Field-naming consistency (entityId vs blueprintName camelCase) | Stylistic; matches the C# anonymous-object → JSON convention |
