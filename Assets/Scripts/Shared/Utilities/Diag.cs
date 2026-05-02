@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using CavesOfOoo.Core;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -209,7 +210,7 @@ namespace CavesOfOoo.Diagnostics
                     Turn = TryGetCurrentTurn(),
                     ActorId = actor?.ID,
                     TargetId = target?.ID,
-                    CauseTraceId = cause,
+                    CauseTraceId = cause ?? _currentCause.Value,
                     PayloadJson = payload != null
                         ? JsonConvert.SerializeObject(payload, _serializerSettings)
                         : null,
@@ -275,18 +276,41 @@ namespace CavesOfOoo.Diagnostics
             _channels.Clear();
             foreach (var cat in DefaultOnCategories)
                 _channels[cat] = true;
+            // Clear the ambient WithCause scope. Test isolation: a leaky
+            // scope in one test must not bleed into the next.
+            _currentCause.Value = null;
         }
 
         /// <summary>
         /// Set an ambient cause-trace-ID for nested <see cref="Record"/>
-        /// calls within the using-scope. <strong>D1.1 stub — no-op.</strong>
-        /// D2 wires up the [ThreadStatic] field and modifies <see cref="Record"/>
-        /// to read it as a fallback when <c>cause</c> isn't passed explicitly.
+        /// calls within the using-scope. Records inside the scope auto-link
+        /// to <paramref name="traceId"/> via their <c>CauseTraceId</c> field
+        /// unless an explicit <c>cause</c> argument overrides it.
+        ///
+        /// Implementation uses <see cref="AsyncLocal{T}"/> so concurrent
+        /// flows (TPL Tasks, async methods) don't interfere — each logical
+        /// call chain has its own ambient cause.
+        ///
+        /// Nesting: inner scope shadows outer; outer is restored on dispose.
+        ///
+        /// <strong>Anti-pattern:</strong> don't put scopes inside per-effect-tick
+        /// or per-cell-render paths — the <see cref="CauseScope"/> allocation
+        /// per call adds up. Use scopes at the level of "an attack" or
+        /// "a trap firing" (once per high-level action).
         /// </summary>
         public static IDisposable WithCause(string traceId)
         {
-            return _noopDisposable;
+            string previous = _currentCause.Value;
+            _currentCause.Value = traceId;
+            return new CauseScope(previous);
         }
+
+        /// <summary>
+        /// Current ambient cause-trace-ID set by an active
+        /// <see cref="WithCause"/> scope on the current async flow, or
+        /// <c>null</c> if no scope is active.
+        /// </summary>
+        public static string CurrentCause => _currentCause.Value;
 
         // ====================================================================
         // Internals
@@ -320,9 +344,35 @@ namespace CavesOfOoo.Diagnostics
                 _droppedCount++;
         }
 
-        // No-op IDisposable for the WithCause stub. Single boxed instance
-        // reused for every WithCause() call so we don't allocate per scope.
-        private static readonly IDisposable _noopDisposable = new NoopDisposable();
-        private sealed class NoopDisposable : IDisposable { public void Dispose() { } }
+        // ====================================================================
+        // WithCause ambient scope (D2.3)
+        // ====================================================================
+
+        // AsyncLocal so each logical call chain has its own ambient cause —
+        // concurrent Tasks / async methods don't interfere.
+        private static readonly AsyncLocal<string> _currentCause = new AsyncLocal<string>();
+
+        /// <summary>
+        /// IDisposable that restores the previous ambient cause when
+        /// disposed. Allocated per <see cref="WithCause"/> call (small
+        /// — one ref + one string field).
+        /// </summary>
+        private sealed class CauseScope : IDisposable
+        {
+            private readonly string _previous;
+            private bool _disposed;
+
+            public CauseScope(string previous)
+            {
+                _previous = previous;
+            }
+
+            public void Dispose()
+            {
+                if (_disposed) return;
+                _disposed = true;
+                _currentCause.Value = _previous;
+            }
+        }
     }
 }
