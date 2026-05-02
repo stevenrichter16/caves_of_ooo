@@ -30,11 +30,13 @@ namespace CavesOfOoo.Editor.Diagnostics
     /// {
     ///     matched: bool,
     ///     count: int,
-    ///     first_trace_id: string | null,
-    ///     first_kind: string | null,
+    ///     sample_first_trace_id: string | null,
+    ///     sample_first_kind: string | null,
     ///     tool_version: "diag_assert/1"
     /// }
     /// </code>
+    /// Field names mirror <c>diag_count</c> intentionally — they're
+    /// derived from the same <c>DiagQuery.CountResult</c>.
     /// </summary>
     [McpForUnityTool(
         name: "diag_assert",
@@ -84,8 +86,13 @@ namespace CavesOfOoo.Editor.Diagnostics
                 {
                     matched = result.Count > 0,
                     count = result.Count,
-                    first_trace_id = result.SampleFirstTraceId,
-                    first_kind = result.SampleFirstKind,
+                    // Field names must match diag_count's response (these
+                    // come from the same CountResult struct). Earlier
+                    // version used `first_trace_id` / `first_kind` — the
+                    // doc spec was inconsistent with diag_count and the
+                    // cold-eye pass caught it. AI-OBSERVABILITY.md updated.
+                    sample_first_trace_id = result.SampleFirstTraceId,
+                    sample_first_kind = result.SampleFirstKind,
                     tool_version = ToolVersion,
                 });
             }

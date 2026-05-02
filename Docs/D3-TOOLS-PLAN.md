@@ -309,10 +309,125 @@ record and asserts it's filtered out.
 
 | Step | Status | Notes |
 |---|---|---|
-| Plan written | ⏳ | this commit |
-| User reviews plan | ⏳ | (or proceed by default) |
-| D3.1 since_turn / until_turn filter | ⏳ | RED → GREEN |
-| D3.2 diag_assert tool | ⏳ | RED → GREEN |
-| D3.3 diag_inspect_record tool | ⏳ | RED → GREEN |
-| D3.4 self-review + cold-eye + merge | ⏳ | per CLAUDE.md §2.3 + cold-eye section |
-| Acceptance | ⏳ | gates 1-12 all pass |
+| Plan written | ✅ | ef2f633 |
+| User reviews plan | ✅ | "move to D3" — proceed |
+| D3.1 since_turn / until_turn filter | ✅ | (commit) — 5/5 GREEN |
+| D3.2 diag_assert tool | ✅ | (commit) — 5/5 GREEN |
+| D3.3 diag_inspect_record tool | ✅ | (commit) — 5/5 GREEN |
+| Cold-eye review (per CLAUDE.md) | ✅ | this commit; 1 finding fixed (DiagAssertTool field naming inconsistent with DiagCountTool — sample_first_* vs first_*; aligned on sample_first_*) |
+| D3.4 self-review + cold-eye + merge | ✅ | this commit |
+| Acceptance | ✅ | gates 1-12 all pass |
+
+---
+
+## 8. D3 cold-eye review (per CLAUDE.md §"Post-implementation cold-eye review")
+
+Run AFTER all D3 tests green and BEFORE merging. Four-question pass:
+
+### Q1 — Symmetry check
+
+D3.1 `SinceTurn` / `UntilTurn` filter added to BOTH `DiagQuery.Apply`
+and `DiagQuery.Count` loops. Compared loops side-by-side: filter
+block is identical in both (3 lines: null-Turn exclusion, lower-
+bound, upper-bound). ✅
+
+D3.2 `diag_assert` and D2.5 `diag_count` both wrap `DiagQuery.Count`
+and use `SuccessResponse(message: null, data: payload)`. Reading
+the two HandleCommand bodies side-by-side surfaced **Q2 finding**.
+
+D3.3 `diag_inspect_record` is unique — no symmetry partner. Read
+the InspectRecord helper for internal consistency: byTraceId
+dictionary built once, backward walk uses seen-set + chainLimit,
+forward scan uses single pass. No internal duplication. ✅
+
+### Q2 — Cross-feature consistency
+
+**🟡 Finding 1 (FIXED in cold-eye commit):** `DiagAssertTool`
+returned `first_trace_id` / `first_kind` while `DiagCountTool`
+returned `sample_first_trace_id` / `sample_first_kind`. Same data
+(`CountResult.SampleFirst*`), different JSON field names. Caller
+code (LLM or shell) would have to know to look for two different
+keys depending on which tool's response it was parsing. Fix:
+align on `sample_first_*` in both — the "sample" prefix correctly
+signals "this is one example out of N matches" (essential for
+diag_count where count is the primary answer; redundant but
+harmless for diag_assert where matched is the primary).
+
+**Other consistency checks (passed):**
+- All 4 D3-touching tools use snake_case parameters: ✅
+- All have `tool_version` field formatted `<name>/<int>`: ✅
+- All wrap responses in `SuccessResponse(null, data: ...)`: ✅
+- `diag_query` / `diag_count` / `diag_assert` all accept the same
+  filter parameter set (category/kind/actor/target/since_turn/until_turn): ✅
+
+### Q3 — Counter-check completeness
+
+Audit of every D3 test fixture:
+
+| Test | Type | Coverage |
+|---|---|---|
+| D3.1 SinceTurnFilter_NarrowsToRecordsAtOrAfter | positive | lower bound |
+| D3.1 UntilTurnFilter_NarrowsToRecordsAtOrBefore | positive | upper bound |
+| D3.1 BothBounds_ReturnsRecordsWithinWindow | positive | intersection |
+| D3.1 TurnNullRecords_ExcludedFromWindowedQueries | **counter-check** | null-Turn exclusion contract |
+| D3.1 CountHelper_HonorsTurnWindowFilter | positive | parity Count/Apply |
+| D3.2 Assert_AnyRecordMatching_ReturnsTrue | positive | matched=true path |
+| D3.2 Assert_NoRecordMatching_ReturnsFalse | **counter-check** | matched=false path |
+| D3.2 Assert_FirstTraceIdMatchesFirstMatch | positive | sample fields populated |
+| D3.2 Assert_TurnWindowFilter_Honored | positive + out-of-window counter-check | filter pass-through |
+| D3.2 Assert_ResetBufferBetweenCalls_FreshState | **counter-check** | state isolation |
+| D3.3 Inspect_KnownTraceId_ReturnsRecord | positive | basic lookup |
+| D3.3 Inspect_UnknownTraceId_ReturnsNull | **counter-check** | not-found path |
+| D3.3 Inspect_BackwardChain_FollowsCauseTraceId | positive | multi-hop ancestors |
+| D3.3 Inspect_ForwardDescendants_FindsAllChildren | positive + unrelated-record exclusion | descendants + filter precision |
+| D3.3 Inspect_CycleProtection_TerminatesAtSeenTraceId | **counter-check via bound** | bounded walk |
+
+Every non-trivial branch has a counter-check. ✅
+
+**Acknowledged gaps (defer):**
+- D3.3 cycle-protection test uses chain-length bound (chainLimit
+  terminates at K) rather than a true synthetic A→B→A cycle (the
+  Diag.Record API doesn't let us pre-set TraceIds). The seen-set
+  protection is verified by code review only. D4 polish: add a
+  Diag.RecordWithExplicitTraceId test-helper.
+- D3.3 chainLimit=0 edge: caller passes 0 → DiagInspectRecordTool
+  defaults to 16. Not unit-tested but covered by inspection.
+
+### Q4 — Doc-vs-impl drift
+
+`Docs/AI-OBSERVABILITY.md` §3 Layer 2 generic-tools table updated
+in the cold-eye commit:
+- `diag_query`: marked `+D3.1 turn-window`
+- `diag_count`: marked `+D3.1 turn-window`
+- `diag_assert`: response shape spec corrected to
+  `{ matched, count, sample_first_trace_id, sample_first_kind, tool_version }`
+  (was incorrectly `{ matched, first_trace_id, count }` before D3
+  shipped; spec was also stale because the field-name decision was
+  the Q2 finding).
+- `diag_inspect_record`: spec corrected to
+  `{ record, caused_by, caused, tool_version }` (was
+  `{ record, caused_by, caused, related }` — shipped tool has no
+  `related` field; that idea was subsumed by the `caused_by` chain).
+- `diag_causal_chain`: marked ❌ folded into D3.3 (no separate
+  tool needed since `diag_inspect_record` returns `caused_by`).
+
+The "what's shipped" prose updated to reflect D3 status.
+
+---
+
+## 9. Acceptance — final gate sweep
+
+| # | Gate | Test | Status |
+|---|---|---|---|
+| 1 | SinceTurn narrows to at-or-after | D3.1 #1 | ✅ |
+| 2 | UntilTurn narrows to at-or-before | D3.1 #2 | ✅ |
+| 3 | Both bounds form a window | D3.1 #3 | ✅ |
+| 4 | Turn=null records EXCLUDED from windowed queries | D3.1 #4 (counter-check) | ✅ |
+| 5 | diag_assert returns matched: true with ≥1 match | D3.2 #1 | ✅ |
+| 6 | diag_assert returns matched: false with empty samples | D3.2 #2 (counter-check) | ✅ |
+| 7 | diag_inspect_record returns the record for known trace-id | D3.3 #1 | ✅ |
+| 8 | Backward causal chain follows CauseTraceId | D3.3 #3 | ✅ |
+| 9 | Forward descendants found by buffer scan | D3.3 #4 | ✅ |
+| 10 | Causal cycle / long chain doesn't infinite-loop | D3.3 #5 | ✅ (bound-protection) |
+| 11 | Existing D1 + D2 tests still GREEN | wider sweep | ✅ |
+| 12 | Cold-eye review pass — written findings | this section | ✅ (1 fixed) |
