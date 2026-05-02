@@ -31,6 +31,26 @@ namespace CavesOfOoo.Diagnostics
             /// <summary>Filter by target entity ID (exact match). Null = no target filter.</summary>
             public string Target;
 
+            /// <summary>
+            /// Filter to records whose <see cref="Diag.Entry.Turn"/> is ≥ this
+            /// value. Null = no lower-bound filter.
+            ///
+            /// Records with <c>Turn=null</c> (out-of-turn events: worldgen,
+            /// save, bootstrap, UI) are <strong>EXCLUDED</strong> from any
+            /// query that uses <see cref="SinceTurn"/> or <see cref="UntilTurn"/>
+            /// — they have no turn to compare against. Use the wall-clock
+            /// filters (D4) to include null-Turn records in time-windowed
+            /// queries. Per <c>AI-OBSERVABILITY.md</c> §3 Layer 2.
+            /// </summary>
+            public int? SinceTurn;
+
+            /// <summary>
+            /// Filter to records whose <see cref="Diag.Entry.Turn"/> is ≤ this
+            /// value. Null = no upper-bound filter. Same null-Turn exclusion
+            /// rule as <see cref="SinceTurn"/>.
+            /// </summary>
+            public int? UntilTurn;
+
             /// <summary>Max records to return. Clamped to [1, 500] by <see cref="Apply"/>; default 50.</summary>
             public int Limit = 50;
         }
@@ -65,6 +85,7 @@ namespace CavesOfOoo.Diagnostics
             // SnapshotCap=5000 always returns the whole buffer.
             var all = Diag.Snapshot(SnapshotCap);
 
+            bool hasTurnWindow = filter.SinceTurn.HasValue || filter.UntilTurn.HasValue;
             var matched = new List<Diag.Entry>(limit);
             for (int i = 0; i < all.Count; i++)
             {
@@ -73,6 +94,12 @@ namespace CavesOfOoo.Diagnostics
                 if (filter.Kind != null && rec.Kind != filter.Kind) continue;
                 if (filter.Actor != null && rec.ActorId != filter.Actor) continue;
                 if (filter.Target != null && rec.TargetId != filter.Target) continue;
+                // Turn-window filter (D3.1). Records with Turn=null are
+                // EXCLUDED from any windowed query — they have no turn to
+                // compare against. AI-OBSERVABILITY.md §3 Layer 2.
+                if (hasTurnWindow && rec.Turn == null) continue;
+                if (filter.SinceTurn.HasValue && rec.Turn < filter.SinceTurn.Value) continue;
+                if (filter.UntilTurn.HasValue && rec.Turn > filter.UntilTurn.Value) continue;
                 matched.Add(rec);
                 if (matched.Count >= limit) break;
             }
@@ -118,6 +145,7 @@ namespace CavesOfOoo.Diagnostics
 
             var all = Diag.Snapshot(SnapshotCap);
 
+            bool hasTurnWindow = filter.SinceTurn.HasValue || filter.UntilTurn.HasValue;
             int count = 0;
             string firstTraceId = null;
             string firstKind = null;
@@ -128,6 +156,10 @@ namespace CavesOfOoo.Diagnostics
                 if (filter.Kind != null && rec.Kind != filter.Kind) continue;
                 if (filter.Actor != null && rec.ActorId != filter.Actor) continue;
                 if (filter.Target != null && rec.TargetId != filter.Target) continue;
+                // Turn-window filter (D3.1). Same null-Turn exclusion as Apply.
+                if (hasTurnWindow && rec.Turn == null) continue;
+                if (filter.SinceTurn.HasValue && rec.Turn < filter.SinceTurn.Value) continue;
+                if (filter.UntilTurn.HasValue && rec.Turn > filter.UntilTurn.Value) continue;
                 if (count == 0)
                 {
                     firstTraceId = rec.TraceId;
@@ -142,6 +174,102 @@ namespace CavesOfOoo.Diagnostics
                 TotalScanned = all.Count,
                 SampleFirstTraceId = firstTraceId,
                 SampleFirstKind = firstKind,
+            };
+        }
+
+        /// <summary>Result of <see cref="InspectRecord"/>: a record + its causal neighbors.</summary>
+        public class InspectResult
+        {
+            /// <summary>The record being inspected.</summary>
+            public Diag.Entry Record;
+
+            /// <summary>
+            /// Ordered ancestors: walking BACKWARD via
+            /// <see cref="Diag.Entry.CauseTraceId"/>. <c>CausedBy[0]</c>
+            /// is the immediate cause; <c>CausedBy[N-1]</c> is the root
+            /// of the chain (or where the buffer / cycle protection
+            /// stopped the walk).
+            /// </summary>
+            public List<Diag.Entry> CausedBy;
+
+            /// <summary>
+            /// Records whose <see cref="Diag.Entry.CauseTraceId"/> equals
+            /// this record's <see cref="Diag.Entry.TraceId"/>. Order
+            /// matches <see cref="Diag.Snapshot"/>'s oldest-first.
+            /// </summary>
+            public List<Diag.Entry> Caused;
+        }
+
+        private const int DefaultCausalChainLimit = 16;
+
+        /// <summary>
+        /// Walk the causal graph around the record identified by
+        /// <paramref name="traceId"/>. Returns the record itself plus
+        /// the backward chain via <see cref="Diag.Entry.CauseTraceId"/>
+        /// and the forward descendants found by buffer scan.
+        ///
+        /// Returns <c>null</c> when no record matches <paramref name="traceId"/>.
+        ///
+        /// Cycle protection: a <see cref="HashSet{T}"/> of seen trace-ids
+        /// terminates the backward walk if a record's CauseTraceId loops
+        /// back to one already visited. Synthetic cycles (A→B→A) are
+        /// counter-checked by tests.
+        ///
+        /// Buffer-overflow caveat: if an ancestor's record was overwritten
+        /// by ring-buffer rotation, the chain ends at the most recent
+        /// reachable ancestor; the missing record's TraceId stays in the
+        /// chain ONLY via its descendant's CauseTraceId field — we don't
+        /// invent placeholders.
+        ///
+        /// Plan ref: <c>Docs/D3-TOOLS-PLAN.md</c> §4 D3.3.
+        /// </summary>
+        public static InspectResult InspectRecord(
+            string traceId,
+            int causalChainLimit = DefaultCausalChainLimit)
+        {
+            if (string.IsNullOrEmpty(traceId)) return null;
+
+            var all = Diag.Snapshot(SnapshotCap);
+
+            // Index for O(1) lookups during the backward walk. Newest-write
+            // wins on the unlikely traceId collision (8-char Guid prefix
+            // gives ~16 bits → 65k slots, ring buffer is 1024, so
+            // collision probability is low).
+            var byTraceId = new Dictionary<string, Diag.Entry>(all.Count);
+            for (int i = 0; i < all.Count; i++)
+                byTraceId[all[i].TraceId] = all[i];
+
+            if (!byTraceId.TryGetValue(traceId, out var rec))
+                return null;
+
+            // Backward chain: follow CauseTraceId until null, unfound,
+            // cycle, or limit reached.
+            var causedBy = new List<Diag.Entry>();
+            var seen = new HashSet<string> { traceId };
+            string cursor = rec.CauseTraceId;
+            while (!string.IsNullOrEmpty(cursor) &&
+                   causedBy.Count < causalChainLimit &&
+                   seen.Add(cursor))
+            {
+                if (!byTraceId.TryGetValue(cursor, out var ancestor))
+                    break;
+                causedBy.Add(ancestor);
+                cursor = ancestor.CauseTraceId;
+            }
+
+            // Forward descendants: single-pass scan for records whose
+            // CauseTraceId == this record's TraceId. Order preserved
+            // (oldest-first) since Diag.Snapshot returns in that order.
+            var caused = new List<Diag.Entry>();
+            for (int i = 0; i < all.Count; i++)
+                if (all[i].CauseTraceId == traceId)
+                    caused.Add(all[i]);
+
+            return new InspectResult
+            {
+                Record = rec,
+                CausedBy = causedBy,
+                Caused = caused,
             };
         }
     }

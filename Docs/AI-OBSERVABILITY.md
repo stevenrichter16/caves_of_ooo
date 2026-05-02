@@ -423,12 +423,12 @@ during D1.4; see `Docs/D1-SPIKE-PLAN.md` §9.
 
 | Tool | Purpose | Returns | Shipped |
 |---|---|---|---|
-| `diag_query` | Filter ring buffer | `{ meta, data: [records], truncated, would_be_size_bytes? }` | ✅ D1.3 |
-| `diag_count` | Aggregation: how many records match a filter | `{ count, total_scanned, sample_first_trace_id, sample_first_kind, tool_version }` | ✅ D2.5 |
-| `diag_assert` | Predicate: at least one record matches? | `{ matched: bool, first_trace_id: string \| null, count: int }` | ⏳ D3 |
-| `diag_causal_chain` | Walk `CauseTraceId` links forward and backward from a record | Ordered list | ⏳ D3 |
-| `diag_inspect_record` | One record + its immediate causes & effects | `{ record, caused_by, caused, related }` | ⏳ D3 |
-| `diag_set_channels` | Toggle category recording at runtime | `{ channels: { name: bool, ... } }` | ⏳ D3 |
+| `diag_query` | Filter ring buffer (with `since_turn`/`until_turn` window) | `{ meta, data: [records], truncated, would_be_size_bytes? }` | ✅ D1.3, +D3.1 turn-window |
+| `diag_count` | Aggregation: how many records match a filter | `{ count, total_scanned, sample_first_trace_id, sample_first_kind, tool_version }` | ✅ D2.5, +D3.1 turn-window |
+| `diag_assert` | Predicate: at least one record matches? | `{ matched, count, sample_first_trace_id, sample_first_kind, tool_version }` | ✅ D3.2 |
+| `diag_inspect_record` | One record + its causal neighbors (ancestors via CauseTraceId, descendants via buffer scan) | `{ record, caused_by, caused, tool_version }` | ✅ D3.3 |
+| `diag_causal_chain` | (Subsumed by `diag_inspect_record`'s `caused_by` array) | — | ❌ folded into D3.3 |
+| `diag_set_channels` | Toggle category recording at runtime | `{ channels: { name: bool, ... } }` | ⏳ D4 |
 
 **Common parameters (all query tools):**
 - `category`, `kind`, `actor`, `target` — filters (string equality;
@@ -464,11 +464,10 @@ responses with stale data are worse than refusal.
 
 **Example calls — combat (bear-trap bleeding deferred bug):**
 
-(After D2, `diag_query` and `diag_count` ship. `diag_assert`,
-`diag_causal_chain`, `diag_inspect_record`, and `diag_set_channels`
-are D3. Hooks shipped: `effect/OnApply`, `effect/OnRemove`,
-`damage/DamageDealt`, `turn/Begin`, `turn/End`. The example below
-uses the D1/D2-shipped tools; substitute the others as they arrive.
+(After D3, `diag_query` (with `since_turn`/`until_turn`),
+`diag_count`, `diag_assert`, and `diag_inspect_record` ship.
+`diag_set_channels` is D4. Hooks shipped: `effect/OnApply`,
+`effect/OnRemove`, `damage/DamageDealt`, `turn/Begin`, `turn/End`.
 Note the `execute_custom_tool` wrapper described above.)
 
 ```bash

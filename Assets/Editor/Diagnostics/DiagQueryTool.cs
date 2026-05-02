@@ -59,6 +59,12 @@ namespace CavesOfOoo.Editor.Diagnostics
             [ToolParameter("Filter by actor Entity ID. Omit for all.", Required = false)]
             public string actor { get; set; }
 
+            [ToolParameter("Lower-bound turn filter (inclusive). Records with Turn=null are EXCLUDED from any windowed query — use unix_ms filters (D4) for those. Omit for no lower bound.", Required = false)]
+            public int? since_turn { get; set; }
+
+            [ToolParameter("Upper-bound turn filter (inclusive). Same null-Turn exclusion as since_turn. Omit for no upper bound.", Required = false)]
+            public int? until_turn { get; set; }
+
             [ToolParameter("Max records (default 50, max 500).", Required = false, DefaultValue = "50")]
             public int? limit { get; set; }
 
@@ -93,6 +99,8 @@ namespace CavesOfOoo.Editor.Diagnostics
                 string kind = @params["kind"]?.ToString();
                 string targetId = @params["target"]?.ToString();
                 string actorId = @params["actor"]?.ToString();
+                int? sinceTurn = @params["since_turn"]?.ToObject<int?>();
+                int? untilTurn = @params["until_turn"]?.ToObject<int?>();
                 int limit = ClampLimit(@params["limit"]?.ToObject<int?>() ?? DefaultLimit);
                 int budgetKb = ClampBudget(@params["budget_kb"]?.ToObject<int?>() ?? DefaultBudgetKb);
 
@@ -106,6 +114,8 @@ namespace CavesOfOoo.Editor.Diagnostics
                     Kind = kind,
                     Actor = actorId,
                     Target = targetId,
+                    SinceTurn = sinceTurn,
+                    UntilTurn = untilTurn,
                     Limit = limit,
                 });
                 var filtered = filterResult.Records;
