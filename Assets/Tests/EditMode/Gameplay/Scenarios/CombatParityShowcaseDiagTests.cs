@@ -41,8 +41,10 @@ namespace CavesOfOoo.Tests.Scenarios
     ///     amount=20 — proves the resistance code is what's blocking,
     ///     not a global "Fire damage doesn't fire diag" bug.
     ///   - Cold vulnerability: same Cold damage on a normal Snapjaw
-    ///     produces a diag record with amount=20 (no doubling) — proves
-    ///     the doubling came from ColdResistance=-100, not from a
+    ///     produces a diag record with amount=15 (the Snapjaw blueprint
+    ///     has ColdResistance=25, so 20 × 0.75 = 15). Critically NOT
+    ///     doubled to 40 — proves the doubling came from
+    ///     ColdResistance=-100 on the vulnerable Snapjaw, not from a
     ///     global "Cold damage always doubles" bug.
     ///
     /// Phases A and C aren't given dedicated tests here — A is "damage
@@ -259,7 +261,7 @@ namespace CavesOfOoo.Tests.Scenarios
         // ====================================================================
 
         [Test]
-        public void PhaseE_ColdOnNormalSnapjaw_FullDamageAppliesNotDoubled()
+        public void PhaseE_ColdOnNormalSnapjaw_DamageNotDoubled()
         {
             var ctx = _harness.CreateContext(playerBlueprint: "Player");
             new CombatParityShowcase().Apply(ctx);
@@ -276,9 +278,18 @@ namespace CavesOfOoo.Tests.Scenarios
             CombatSystem.ApplyDamage(normal, coldDamage, ctx.PlayerEntity, ctx.Zone);
 
             int hpAfter = normal.GetStatValue("Hitpoints");
-            Assert.AreEqual(hpBefore - 20, hpAfter,
-                $"Normal Snapjaw (no ColdResistance) must take exactly 20 Cold damage " +
-                $"(NOT doubled). hpBefore={hpBefore}, hpAfter={hpAfter}.");
+            int hpDelta = hpBefore - hpAfter;
+
+            // The Snapjaw blueprint has ColdResistance: 25 (Objects.json).
+            // Resistance formula: damage.Amount = 20 * (100 - 25) / 100 = 15.
+            // The PRIMARY contract being checked is "no doubling" — so we
+            // assert hpDelta <= 20 (NOT 40). Pinning the exact 15 also
+            // catches accidental regressions in the resistance formula.
+            Assert.AreEqual(15, hpDelta,
+                $"Normal Snapjaw with blueprint ColdResistance=25 must take " +
+                $"15 damage (Cold 20 reduced 25%). hpBefore={hpBefore}, " +
+                $"hpAfter={hpAfter}, hpDelta={hpDelta}. " +
+                $"If 40, the doubling bug from cold-vulnerability is leaking.");
 
             var damageRecords = DiagQuery.Apply(new DiagQuery.Filter
             {
@@ -288,9 +299,9 @@ namespace CavesOfOoo.Tests.Scenarios
                 Limit = 50,
             }).Records;
 
-            Assert.IsTrue(damageRecords[0].PayloadJson.Contains("\"amount\":20"),
-                $"Damage record must show amount=20 (no doubling). " +
-                $"Payload: {damageRecords[0].PayloadJson}");
+            Assert.IsTrue(damageRecords[0].PayloadJson.Contains("\"amount\":15"),
+                $"Damage record must show amount=15 (Cold 20 × 0.75 resistance reduction; " +
+                $"NOT doubled to 40). Payload: {damageRecords[0].PayloadJson}");
         }
 
         // ====================================================================
@@ -298,11 +309,20 @@ namespace CavesOfOoo.Tests.Scenarios
         // ====================================================================
 
         /// <summary>
-        /// Finds the first Snapjaw with NO HeatResistance and NO
-        /// ColdResistance stat — i.e., one of the 3 normal soak
-        /// Snapjaws spawned to the east. Used as the "control" for
-        /// resistance / vulnerability counter-checks and as the target
-        /// for nat-20 crit testing.
+        /// Finds the first "normal" soak Snapjaw — i.e., one of the 3
+        /// the showcase spawns east of the player without modified
+        /// resistance stats.
+        ///
+        /// IMPORTANT: the Snapjaw blueprint itself has
+        /// <c>ColdResistance: 25</c> baked in (Objects.json), so we
+        /// CAN'T filter by "no ColdResistance stat" — that would
+        /// exclude every Snapjaw including the soak ones. Instead we
+        /// filter by:
+        ///   1. No HeatResistance stat (heat-immune adds one post-spawn).
+        ///   2. ColdResistance.BaseValue != -100 (cold-vulnerable
+        ///      overrides the blueprint default to -100).
+        /// The 3 soak Snapjaws keep blueprint default ColdResistance=25
+        /// and never have HeatResistance, so they pass.
         /// </summary>
         private static Entity FindNormalSnapjaw(CavesOfOoo.Scenarios.ScenarioContext ctx)
         {
@@ -311,7 +331,8 @@ namespace CavesOfOoo.Tests.Scenarios
                     && e != ctx.PlayerEntity
                     && e.BlueprintName == "Snapjaw"
                     && !e.Statistics.ContainsKey("HeatResistance")
-                    && !e.Statistics.ContainsKey("ColdResistance"));
+                    && !(e.Statistics.ContainsKey("ColdResistance")
+                         && e.Statistics["ColdResistance"].BaseValue == -100));
         }
 
         /// <summary>
