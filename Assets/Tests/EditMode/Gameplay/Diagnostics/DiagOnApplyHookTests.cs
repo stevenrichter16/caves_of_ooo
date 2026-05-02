@@ -172,7 +172,39 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
-        // 5. Counter-check: stacking re-application does NOT emit
+        // 5. ForceApplyEffect path records `forced:true` in payload
+        //    (regular ApplyEffect records `forced:false`)
+        // ====================================================================
+
+        [Test]
+        public void ForceApplyEffect_PayloadIncludesForcedTrue()
+        {
+            var entity = MakeMinimalCreature();
+            entity.ForceApplyEffect(new StunnedEffect(duration: 2));
+
+            var records = Diag.Snapshot(2000);
+            var onApply = records.First(r => r.Category == "effect" && r.Kind == "OnApply");
+            Assert.IsTrue(onApply.PayloadJson.Contains("\"forced\":true"),
+                $"ForceApplyEffect must record forced=true. Got: {onApply.PayloadJson}");
+        }
+
+        [Test]
+        public void RegularApplyEffect_PayloadIncludesForcedFalse()
+        {
+            // Counter-check to test #5: confirms the `forced` flag actually
+            // distinguishes the two paths (without it, a buggy impl that
+            // always wrote forced=true would pass test #5 vacuously).
+            var entity = MakeMinimalCreature();
+            entity.ApplyEffect(new StunnedEffect(duration: 2));
+
+            var records = Diag.Snapshot(2000);
+            var onApply = records.First(r => r.Category == "effect" && r.Kind == "OnApply");
+            Assert.IsTrue(onApply.PayloadJson.Contains("\"forced\":false"),
+                $"Regular ApplyEffect must record forced=false. Got: {onApply.PayloadJson}");
+        }
+
+        // ====================================================================
+        // 6. Counter-check: stacking re-application does NOT emit
         //    a second OnApply record (the existing effect's OnStack
         //    handles it, returning true at StatusEffectsPart.cs:69-72)
         // ====================================================================

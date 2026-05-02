@@ -421,13 +421,14 @@ during D1.4; see `Docs/D1-SPIKE-PLAN.md` §9.
 
 #### Generic tools
 
-| Tool | Purpose | Returns |
-|---|---|---|
-| `diag_query` | Filter ring buffer | List of records with optional `fields` projection |
-| `diag_count` | Aggregation: how many records match a filter | `{ count: int }` |
-| `diag_assert` | Predicate: at least one record matches? | `{ matched: bool, first_trace_id: string \| null, count: int }` |
-| `diag_causal_chain` | Walk `CauseTraceId` links forward and backward from a record | Ordered list |
-| `diag_inspect_record` | One record + its immediate causes & effects | `{ record, caused_by, caused, related }` |
+| Tool | Purpose | Returns | Shipped |
+|---|---|---|---|
+| `diag_query` | Filter ring buffer | `{ meta, data: [records], truncated, would_be_size_bytes? }` | ✅ D1.3 |
+| `diag_count` | Aggregation: how many records match a filter | `{ count, total_scanned, sample_first_trace_id, sample_first_kind, tool_version }` | ✅ D2.5 |
+| `diag_assert` | Predicate: at least one record matches? | `{ matched: bool, first_trace_id: string \| null, count: int }` | ⏳ D3 |
+| `diag_causal_chain` | Walk `CauseTraceId` links forward and backward from a record | Ordered list | ⏳ D3 |
+| `diag_inspect_record` | One record + its immediate causes & effects | `{ record, caused_by, caused, related }` | ⏳ D3 |
+| `diag_set_channels` | Toggle category recording at runtime | `{ channels: { name: bool, ... } }` | ⏳ D3 |
 
 **Common parameters (all query tools):**
 - `category`, `kind`, `actor`, `target` — filters (string equality;
@@ -463,10 +464,12 @@ responses with stale data are worse than refusal.
 
 **Example calls — combat (bear-trap bleeding deferred bug):**
 
-(After D1, only `diag_query` ships; `diag_assert`, `diag_causal_chain`,
-and `diag_inspect_record` are D2/D3. The example below uses the
-D1-shipped tool; substitute the others as they arrive. Note the
-`execute_custom_tool` wrapper described above.)
+(After D2, `diag_query` and `diag_count` ship. `diag_assert`,
+`diag_causal_chain`, `diag_inspect_record`, and `diag_set_channels`
+are D3. Hooks shipped: `effect/OnApply`, `effect/OnRemove`,
+`damage/DamageDealt`, `turn/Begin`, `turn/End`. The example below
+uses the D1/D2-shipped tools; substitute the others as they arrive.
+Note the `execute_custom_tool` wrapper described above.)
 
 ```bash
 # Was the bleeding effect ever removed during the apply turn?
