@@ -176,5 +176,101 @@ namespace CavesOfOoo.Diagnostics
                 SampleFirstKind = firstKind,
             };
         }
+
+        /// <summary>Result of <see cref="InspectRecord"/>: a record + its causal neighbors.</summary>
+        public class InspectResult
+        {
+            /// <summary>The record being inspected.</summary>
+            public Diag.Entry Record;
+
+            /// <summary>
+            /// Ordered ancestors: walking BACKWARD via
+            /// <see cref="Diag.Entry.CauseTraceId"/>. <c>CausedBy[0]</c>
+            /// is the immediate cause; <c>CausedBy[N-1]</c> is the root
+            /// of the chain (or where the buffer / cycle protection
+            /// stopped the walk).
+            /// </summary>
+            public List<Diag.Entry> CausedBy;
+
+            /// <summary>
+            /// Records whose <see cref="Diag.Entry.CauseTraceId"/> equals
+            /// this record's <see cref="Diag.Entry.TraceId"/>. Order
+            /// matches <see cref="Diag.Snapshot"/>'s oldest-first.
+            /// </summary>
+            public List<Diag.Entry> Caused;
+        }
+
+        private const int DefaultCausalChainLimit = 16;
+
+        /// <summary>
+        /// Walk the causal graph around the record identified by
+        /// <paramref name="traceId"/>. Returns the record itself plus
+        /// the backward chain via <see cref="Diag.Entry.CauseTraceId"/>
+        /// and the forward descendants found by buffer scan.
+        ///
+        /// Returns <c>null</c> when no record matches <paramref name="traceId"/>.
+        ///
+        /// Cycle protection: a <see cref="HashSet{T}"/> of seen trace-ids
+        /// terminates the backward walk if a record's CauseTraceId loops
+        /// back to one already visited. Synthetic cycles (A→B→A) are
+        /// counter-checked by tests.
+        ///
+        /// Buffer-overflow caveat: if an ancestor's record was overwritten
+        /// by ring-buffer rotation, the chain ends at the most recent
+        /// reachable ancestor; the missing record's TraceId stays in the
+        /// chain ONLY via its descendant's CauseTraceId field — we don't
+        /// invent placeholders.
+        ///
+        /// Plan ref: <c>Docs/D3-TOOLS-PLAN.md</c> §4 D3.3.
+        /// </summary>
+        public static InspectResult InspectRecord(
+            string traceId,
+            int causalChainLimit = DefaultCausalChainLimit)
+        {
+            if (string.IsNullOrEmpty(traceId)) return null;
+
+            var all = Diag.Snapshot(SnapshotCap);
+
+            // Index for O(1) lookups during the backward walk. Newest-write
+            // wins on the unlikely traceId collision (8-char Guid prefix
+            // gives ~16 bits → 65k slots, ring buffer is 1024, so
+            // collision probability is low).
+            var byTraceId = new Dictionary<string, Diag.Entry>(all.Count);
+            for (int i = 0; i < all.Count; i++)
+                byTraceId[all[i].TraceId] = all[i];
+
+            if (!byTraceId.TryGetValue(traceId, out var rec))
+                return null;
+
+            // Backward chain: follow CauseTraceId until null, unfound,
+            // cycle, or limit reached.
+            var causedBy = new List<Diag.Entry>();
+            var seen = new HashSet<string> { traceId };
+            string cursor = rec.CauseTraceId;
+            while (!string.IsNullOrEmpty(cursor) &&
+                   causedBy.Count < causalChainLimit &&
+                   seen.Add(cursor))
+            {
+                if (!byTraceId.TryGetValue(cursor, out var ancestor))
+                    break;
+                causedBy.Add(ancestor);
+                cursor = ancestor.CauseTraceId;
+            }
+
+            // Forward descendants: single-pass scan for records whose
+            // CauseTraceId == this record's TraceId. Order preserved
+            // (oldest-first) since Diag.Snapshot returns in that order.
+            var caused = new List<Diag.Entry>();
+            for (int i = 0; i < all.Count; i++)
+                if (all[i].CauseTraceId == traceId)
+                    caused.Add(all[i]);
+
+            return new InspectResult
+            {
+                Record = rec,
+                CausedBy = causedBy,
+                Caused = caused,
+            };
+        }
     }
 }
