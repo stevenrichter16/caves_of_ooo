@@ -116,6 +116,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_EmberSpearShowcase()
             => ScenarioRunner.Launch<EmberSpearShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Locked Door Showcase (LK.3 bump-unlock)", priority = 115)]
+        private static void Launch_LockedDoorShowcase()
+            => ScenarioRunner.Launch<LockedDoorShowcase>();
+
         // =========================================================
         // AI Behavior
         // =========================================================

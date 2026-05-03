@@ -224,5 +224,8 @@ namespace CavesOfOoo.Tests.Scenarios
 
         [Test] public void EmberSpearShowcase_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new EmberSpearShowcase().Apply(FreshContext()));
+
+        [Test] public void LockedDoorShowcase_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new LockedDoorShowcase().Apply(FreshContext()));
     }
 }

@@ -1,3 +1,5 @@
+using CavesOfOoo.Diagnostics;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
@@ -64,58 +66,81 @@ namespace CavesOfOoo.Core
         {
             if (e.ID != "AttemptUnlock") return true;
 
-            // Already unlocked — pass-through, no further work.
-            // Pre-set the "Unlocked" flag so a re-entrant caller sees
-            // the existing state without thinking we just opened it
-            // (the IsLocked-was-true → false edge fired earlier).
+            var actor = e.GetParameter<Entity>("Actor");
+            bool succeeded;
+            Entity keyUsed = null;
+
             if (!IsLocked)
             {
-                e.SetParameter("Unlocked", true);
-                return true;
+                // Already unlocked — pass-through, no state change.
+                succeeded = true;
             }
-
-            // Empty KeyId = decoration lock (no real requirement).
-            // Treat any bump as opening it.
-            if (string.IsNullOrEmpty(KeyId))
+            else if (string.IsNullOrEmpty(KeyId))
             {
+                // Decoration lock — bump auto-opens.
                 IsLocked = false;
-                e.SetParameter("Unlocked", true);
-                return true;
+                succeeded = true;
             }
-
-            var actor = e.GetParameter<Entity>("Actor");
-            if (actor == null)
+            else if (actor == null)
             {
                 // Can't introspect inventory — refuse without panic.
-                e.SetParameter("Unlocked", false);
-                return true;
+                succeeded = false;
             }
-
-            var inv = actor.GetPart<InventoryPart>();
-            if (inv != null && inv.Objects != null)
+            else
             {
-                for (int i = 0; i < inv.Objects.Count; i++)
+                var inv = actor.GetPart<InventoryPart>();
+                if (inv != null && inv.Objects != null)
                 {
-                    var item = inv.Objects[i];
-                    if (item == null) continue;
-                    var key = item.GetPart<KeyPart>();
-                    if (key != null && key.KeyId == KeyId)
+                    for (int i = 0; i < inv.Objects.Count; i++)
                     {
-                        IsLocked = false;
-                        e.SetParameter("Unlocked", true);
-                        e.SetParameter("KeyUsed", (object)item);
-                        var actorName = actor.GetDisplayName();
-                        var lockedThing = ParentEntity?.GetDisplayName() ?? "lock";
-                        MessageLog.Add($"{actorName} unlocks the {lockedThing}.");
-                        return true;
+                        var item = inv.Objects[i];
+                        if (item == null) continue;
+                        var key = item.GetPart<KeyPart>();
+                        if (key != null && key.KeyId == KeyId)
+                        {
+                            IsLocked = false;
+                            keyUsed = item;
+                            break;
+                        }
                     }
                 }
+                succeeded = !IsLocked;
             }
 
-            // No matching key.
-            e.SetParameter("Unlocked", false);
-            var thing = ParentEntity?.GetDisplayName() ?? "lock";
-            MessageLog.Add($"The {thing} is locked.");
+            // Surface results on the event + log line + diag record.
+            e.SetParameter("Unlocked", succeeded);
+            if (keyUsed != null) e.SetParameter("KeyUsed", (object)keyUsed);
+
+            string thing = ParentEntity?.GetDisplayName() ?? "lock";
+            if (succeeded && keyUsed != null)
+            {
+                string actorName = actor?.GetDisplayName() ?? "someone";
+                MessageLog.Add($"{actorName} unlocks the {thing}.");
+            }
+            else if (!succeeded)
+            {
+                MessageLog.Add($"The {thing} is locked.");
+            }
+
+            // LK.4 diag hook: every unlock attempt is recorded so AI
+            // debugging can answer "did the player try to unlock X?"
+            // and "did the matching key actually fire?". Channel default-
+            // on per Diag.DefaultOnCategories.
+            if (Diag.IsChannelEnabled("furniture"))
+            {
+                Diag.Record(
+                    category: "furniture",
+                    kind: "UnlockAttempted",
+                    actor: actor,
+                    target: ParentEntity,
+                    payload: new
+                    {
+                        keyId = KeyId,
+                        succeeded,
+                        keyEntityId = keyUsed?.ID
+                    });
+            }
+
             return true;
         }
     }

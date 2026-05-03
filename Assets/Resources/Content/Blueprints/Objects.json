@@ -4245,6 +4245,61 @@
       ]
     },
     {
+      "Name": "LockedDoor",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "locked door" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Lock", "Params": [
+          { "Key": "KeyId", "Value": "iron" },
+          { "Key": "IsLocked", "Value": "true" }
+        ]}
+      ]
+    },
+    {
+      "Name": "LockedChest",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "locked chest" },
+          { "Key": "RenderString", "Value": "=" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Lock", "Params": [
+          { "Key": "KeyId", "Value": "iron" },
+          { "Key": "IsLocked", "Value": "true" }
+        ]},
+        { "Name": "Container", "Params": [{ "Key": "MaxItems", "Value": "10" }] }
+      ]
+    },
+    {
+      "Name": "IronKey",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "iron key" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Takeable", "Value": "true" },
+          { "Key": "Weight", "Value": "1" }
+        ]},
+        { "Name": "Key", "Params": [
+          { "Key": "KeyId", "Value": "iron" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "5" }] }
+      ]
+    },
+    {
       "Name": "Graveyard",
       "Inherits": "PhysicalObject",
       "Parts": [
