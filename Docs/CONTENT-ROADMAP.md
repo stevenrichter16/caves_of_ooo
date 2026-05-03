@@ -29,7 +29,7 @@
 
 ## Currently working on
 
-(none — Tier 1 fully closed; pick next from Tier 2 cohesive bundles or Tier 3 systems)
+(none — Tier 1 + Tier 2 combat content fully closed. 3 deferred Tier 2 items remain: Lockpicking, Consumable keys, Hunger.)
 
 ---
 
@@ -37,6 +37,7 @@
 
 | Commit | What |
 |---|---|
+| `feat/tier2-combat-closeout` | **Tier-2 combat content closeout** — 3 cohesive combat ships: (1) light-emitting equipment via LightMap.Compute Pass 2 walking equipped LightSourceParts (held FlamingSword glows red r4, IceSword cyan r4, ThunderHammer yellow r3); (2) PressurePlateTriggerPart — rearmable variant of TriggerOnStepPart that persists in zone after firing (vs one-shot SpikeTrap); (3) TripWireTriggerPart — multi-segment line trap where N entity-segments share a WireGroupId; stepping on any segment detonates the whole wire. 16 new tests across 3 fixtures (6+5+5). 4 false premises caught + corrected during pre-impl critical-review pass (LightMap doesn't walk inventory; TurnManager.CurrentTurn doesn't exist; PressurePlate cooldown over-engineered; Cell.GetEntitiesAtCell() invented). All 16 GREEN via Unity MCP. **Tier 2 has 3 outstanding 💡 items remaining** (Lockpicking, Consumable keys, Hunger; planned in detail in `Docs/TIER2-CLOSEOUT.md` for follow-on ships). |
 | `feat/tier1-content-closeout` | **Tier-1 closeout** — final ship for Tier 1: BleedTonic + CharredTonic (status tonics #9 and #10, with new dispatcher cases bringing StatusTonicPart up to 9 effect aliases) + ElementalCreatureZoo (QA layout for the 9-creature × 4-axis resistance matrix) + TonicTestBench (all 10 tonics on the floor for drink-and-observe via `effect/OnApply` diag). 20 new tests across 4 fixtures (5+6+4+5). **Tier 1 fully closed — 0 outstanding 💡/📋 items**. Showcases: `Caves Of Ooo / Scenarios / Combat Stress / Elemental Creature Zoo` and `Tonic Test Bench`. |
 | `feat/quest-system` | **Tier-3 Quest System v1** — completes the M4 placeholder in the pre-existing `StoryletPart` scaffold + ships the full QS.1-8 substrate: 4 conversation predicates + 4 lifecycle actions + 2 reward wrappers + M4 dispatch loop + QuestLogStateBuilder + QuestShowcase scenario + new `quest` diag channel. 49 new tests across 7 fixtures, 144/144 GREEN sweep. Two real production fixes during cycle: phantom-quest-bricking guard in StartQuest + LocalPlayer plumbing for tick-dispatch player-state predicates. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / Quest Showcase`. |
 | `feat/shopping-parity` | **Tier-2 Trading Qud-parity gap closeout** — `CanBeTradedEvent` + `NoTrade` tag (quest-item protection — fixes "sell your IronKey by mistake" bug) + trader-state validation (Burning/Stunned/Frozen/Dead refused) + `StartTradeEvent` session hook (future-content unblocker) + `MerchantShopShowcase` scenario + new `trade` diag channel (6th) with `Bought`/`Sold` records. 18 new tests across 3 fixtures. 72/72 GREEN sweep. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / Merchant Shop Showcase`. |
@@ -162,8 +163,8 @@ correctly for every weapon in the game.
 
 ### Light-emitting weapons / equipment
 
-- 💡 **`LightSourcePart` propagation through equipment** — held FlamingSword glows red, held IceSword glows cyan. Currently LightSource lives on entities directly; need a "if equipped, project light from wielder's cell" pass.
-- Unblocks: torches, lanterns held in hand, glowing weapons.
+- ✅ **`LightSourcePart` propagation through equipment** — held FlamingSword glows red (radius 4), held IceSword glows cyan (radius 4), held ThunderHammer glows yellow (radius 3). LightMap.Compute walks each zone entity's equipped items and adds light at the wielder's cell. — `feat/tier2-combat-closeout`
+- Unblocks: torches, lanterns held in hand, additional glowing weapons.
 
 ### Throwable consumables — DONE
 
@@ -172,8 +173,8 @@ correctly for every weapon in the game.
 ### Trap furniture
 
 - ✅ **SpikeTrap, FireTrap, BearTrap** — `feat/trap-furniture`. Three single-use mechanical floor traps reusing the `TriggerOnStepPart` infrastructure. Spike: piercing damage. Fire: heat damage + BurningEffect, routes through HeatResistance. Bear: piercing damage + Stunned + Bleeding (full payload). Showcase: `Caves Of Ooo / Scenarios / Combat Stress / Trap Furniture Showcase`.
-- 💡 **PressurePlate** — reusable variant; rearm cooldown / armed-state. Deferred (single-use first).
-- 💡 **TripWire** — multi-cell line trigger. Deferred (single-cell first).
+- ✅ **PressurePlate** — rearmable variant of TriggerOnStepPart. Fires every time someone steps onto the cell (vs SpikeTrap which consumes itself). EntityEnteredCell fires only on cell-CHANGE moves so a stationary actor doesn't re-trigger; deliberate ON-OFF-ON stepping is correct semantics. — `feat/tier2-combat-closeout`
+- ✅ **TripWire** — multi-segment line trap. Each cell of the wire is its own entity sharing a WireGroupId. Stepping on any segment detonates the whole wire — damages actors at every segment cell + removes all segments. — `feat/tier2-combat-closeout`
 
 ### Lock & key — DONE
 
