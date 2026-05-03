@@ -37,6 +37,7 @@
 
 | Commit | What |
 |---|---|
+| `feat/shopping-parity` | **Tier-2 Trading Qud-parity gap closeout** — `CanBeTradedEvent` + `NoTrade` tag (quest-item protection — fixes "sell your IronKey by mistake" bug) + trader-state validation (Burning/Stunned/Frozen/Dead refused) + `StartTradeEvent` session hook (future-content unblocker) + `MerchantShopShowcase` scenario + new `trade` diag channel (6th) with `Bought`/`Sold` records. 18 new tests across 3 fixtures. 72/72 GREEN sweep. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / Merchant Shop Showcase`. |
 | `feat/lock-and-key` | **Tier-2 Lock & Key v1** — `LockPart` + `KeyPart` + `LockedDoor` / `LockedChest` / `IronKey` blueprints. Bump-to-unlock via `PhysicsPart`'s solid-blocker check: walking into a locked door fires `AttemptUnlock`, `LockPart` matches the actor's inventory `KeyPart.KeyId` against its own, flips `IsLocked=false` + drops `Solid` on success. Master-key model (keys reusable). Adds `furniture/UnlockAttempted` diag channel (5th hook). 21 tests + showcase scenario. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / Locked Door Showcase`. |
 | `feat/emberspear-charredhusk` | **Tier-1 EmberSpear + CharredHusk pair** — Heat-axis mirror of CryoLance + IceWight. Second Piercing-class elemental weapon (1d6+1 Piercing/Fire, no sub-class, Burning on-hit) and second 100%-immune creature (HR=100, CR=-50). Resistance-extreme matrix is now symmetric across Cold and Heat axes. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / EmberSpear Showcase`. |
 | `feat/cryolance-icewight` | **Tier-1 CryoLance + IceWight pair** — first Piercing-class elemental weapon (1d6+2 Piercing/Ice/LongBlades, PenBonus 3, Frozen on-hit) and first 100%-immune creature (CR=100, HR=-50). Pins the resistance ≥ 100 = total negation path AND the negative-HR creature path. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / CryoLance Showcase`. |
@@ -198,9 +199,12 @@ correctly for every weapon in the game.
 - 💡 **NPC dialog → objective → reward loop.** Existing conversation system has the dialog half. Need: quest state on NPCs, completion checks, reward grants.
 - Pairs with: faction reputation effects, settlement plot.
 
-### Trading / Shopkeepers
+### Trading / Shopkeepers — DONE
 
-- 💡 **MerchantInventoryPart + Currency + price formula.** Existing Merchant creature blueprint exists; needs the actual trade UI + offer system.
+- ✅ **Trade system core (CommercePart + Drams + TradeSystem + TradeUI + ConversationActions.StartTrade + TradeStockBuilder + auto-injected [Let's trade.])** — pre-existing implementation with 18/18 unit tests GREEN.
+- ✅ **Qud-parity gap closeout** — `feat/shopping-parity` (SP.1-5). Adds: `CanBeTradedEvent` + `NoTrade` tag for quest-item protection (closes the "sell your dungeon key by mistake" bug); trader-state validation (Burning/Stunned/Frozen/Dead refused); `StartTradeEvent` session hook (future-content unblocker for identify/repair services); `MerchantShopShowcase` scenario at `Combat Stress / Merchant Shop Showcase`; new `trade` diag channel (`trade/Bought`, `trade/Sold` records with `perf` for resistance debugging). 18 new tests across 3 fixtures (CanBeTradedEventTests + TraderStateTests + MerchantShopShowcaseDiagTests).
+- 💡 **TraderCreditExtended** (Qud-parity polish — buy on credit; trader refuses further trade until debt paid). Deferred — playtest-driven priority.
+- 💡 **Service trades** (identify / repair / recharge — Qud has these, listeners on `StartTradeEvent`). Hook is in place; need Part-side listeners + service UI when content needs it.
 
 ### Spellbook / Mana / Scrolls
 
