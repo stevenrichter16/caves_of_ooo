@@ -124,6 +124,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_MerchantShopShowcase()
             => ScenarioRunner.Launch<MerchantShopShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Quest Showcase (QS.1-6 IronKey fetch)", priority = 117)]
+        private static void Launch_QuestShowcase()
+            => ScenarioRunner.Launch<QuestShowcase>();
+
         // =========================================================
         // AI Behavior
         // =========================================================

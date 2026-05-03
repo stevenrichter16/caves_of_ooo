@@ -37,6 +37,7 @@
 
 | Commit | What |
 |---|---|
+| `feat/quest-system` | **Tier-3 Quest System v1** — completes the M4 placeholder in the pre-existing `StoryletPart` scaffold + ships the full QS.1-8 substrate: 4 conversation predicates + 4 lifecycle actions + 2 reward wrappers + M4 dispatch loop + QuestLogStateBuilder + QuestShowcase scenario + new `quest` diag channel. 49 new tests across 7 fixtures, 144/144 GREEN sweep. Two real production fixes during cycle: phantom-quest-bricking guard in StartQuest + LocalPlayer plumbing for tick-dispatch player-state predicates. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / Quest Showcase`. |
 | `feat/shopping-parity` | **Tier-2 Trading Qud-parity gap closeout** — `CanBeTradedEvent` + `NoTrade` tag (quest-item protection — fixes "sell your IronKey by mistake" bug) + trader-state validation (Burning/Stunned/Frozen/Dead refused) + `StartTradeEvent` session hook (future-content unblocker) + `MerchantShopShowcase` scenario + new `trade` diag channel (6th) with `Bought`/`Sold` records. 18 new tests across 3 fixtures. 72/72 GREEN sweep. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / Merchant Shop Showcase`. |
 | `feat/lock-and-key` | **Tier-2 Lock & Key v1** — `LockPart` + `KeyPart` + `LockedDoor` / `LockedChest` / `IronKey` blueprints. Bump-to-unlock via `PhysicsPart`'s solid-blocker check: walking into a locked door fires `AttemptUnlock`, `LockPart` matches the actor's inventory `KeyPart.KeyId` against its own, flips `IsLocked=false` + drops `Solid` on success. Master-key model (keys reusable). Adds `furniture/UnlockAttempted` diag channel (5th hook). 21 tests + showcase scenario. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / Locked Door Showcase`. |
 | `feat/emberspear-charredhusk` | **Tier-1 EmberSpear + CharredHusk pair** — Heat-axis mirror of CryoLance + IceWight. Second Piercing-class elemental weapon (1d6+1 Piercing/Fire, no sub-class, Burning on-hit) and second 100%-immune creature (HR=100, CR=-50). Resistance-extreme matrix is now symmetric across Cold and Heat axes. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / EmberSpear Showcase`. |
@@ -194,10 +195,14 @@ correctly for every weapon in the game.
 
 - 💡 **AnvilSitePart + RecipeSystem.** Combine ingredients (ore + fuel + Forge interaction) → output items. Unblocks player-created elemental weapons (IceSword from steel + ice essence).
 
-### Quest System
+### Quest System — DONE (v1)
 
-- 💡 **NPC dialog → objective → reward loop.** Existing conversation system has the dialog half. Need: quest state on NPCs, completion checks, reward grants.
-- Pairs with: faction reputation effects, settlement plot.
+- ✅ **Quest substrate v1** — `feat/quest-system` (QS.1-8). NPC dialog → objective → reward loop end-to-end, building on the pre-existing `StoryletPart` scaffold (`QuestState`/`QuestData`/`QuestStageData` types + ISaveSerializable were already there; the M4 dispatch loop was a placeholder). This ship completes M4 + adds: 4 conversation predicates (`IfQuestActive`/`IfQuestStage`/`IfQuestNotStarted`/`IfQuestCompleted`); 4 lifecycle actions (`StartQuest`/`AdvanceQuestStage`/`CompleteQuest`/`FailQuest`); 2 reward action wrappers (`AwardXP`/`GiveDrams`); the M4 stage-trigger dispatch loop (single-pass deterministic, single-source-of-truth `StoryletPart.AdvanceQuestStage` + `StoryletPart.CompleteQuest` helpers); a `QuestLogStateBuilder` snapshot for the (forthcoming) UI; `QuestShowcase` scenario at `Combat Stress / Quest Showcase`; new `quest` diag channel (7th default-on) with `Started`/`StageAdvanced`/`Completed`/`Failed` records. 49 new tests across 7 fixtures. 144/144 GREEN sweep. **Real production fixes shipped during the cycle**: quest-id phantom-bricking guard (StartQuest now validates `StoryletRegistry.FindQuest` before adding to active dict); player-state predicate gap (added `StoryletPart.LocalPlayer` so tick-driven dispatch can evaluate `IfHaveItem` etc — was a critical gap that made tick triggers nearly useless for canonical quest content).
+- 💡 **Branching quests** (Stages → Dictionary, NextStageId field) — v2 unblocks non-linear quests.
+- 💡 **`IQuestSystem` abstract** for procedural quests — v2 unblocks "GolemQuestSystem"-style content with custom code per quest.
+- 💡 **Quest content authoring** — 5+ canonical quests (lost-letter, kill-N-snapjaws, fetch-rare-tonic, escort-NPC, named-target). Pairs with: faction rep, settlement plot.
+- 💡 **QuestLogUI MonoBehaviour rendering** — wires the QS.6 state-builder snapshot into a centered tilemap popup with `q` hotkey toggle.
+- 💡 **Failed-quest tracking** + "you already failed this" UI feedback — currently failed quests are silently retakeable.
 
 ### Trading / Shopkeepers — DONE
 

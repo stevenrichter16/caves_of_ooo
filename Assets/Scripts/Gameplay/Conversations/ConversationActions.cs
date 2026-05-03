@@ -432,6 +432,192 @@ namespace CavesOfOoo.Core
                 var kp = target?.GetPart<KnowledgePart>();
                 kp?.Reveal(parts[1], tier);
             });
+
+            // ── QS.3 quest-lifecycle actions ─────────────────────────────
+            // Per Docs/QUEST-SYSTEM.md. All four delegate to
+            // StoryletPart.Current. If the storylet system isn't
+            // bootstrapped (Current == null), each action is a no-op
+            // — defensive, mirrors the predicate side's behavior.
+
+            // StartQuest(questId) — adds quest to active dict at
+            // stage 0, fires stage-0 OnEnter effects immediately,
+            // records quest/Started diag. Idempotent: no-op if the
+            // quest is already active OR already completed (player
+            // can't re-take a finished quest).
+            Register("StartQuest", (speaker, listener, arg) =>
+            {
+                if (string.IsNullOrEmpty(arg)) return;
+                var sp = CavesOfOoo.Storylets.StoryletPart.Current;
+                if (sp == null) return;
+                if (sp.IsQuestActive(arg)) return;
+                if (sp.IsQuestCompleted(arg)) return;
+
+                // QS.3 cold-eye fix #4+#5: validate registry membership
+                // BEFORE adding to _quests. Without this, a typo in arg
+                // (or a save-game referencing a since-removed quest)
+                // would silently brick the slot — the QuestState would
+                // be added with no matching QuestData, IfQuestActive
+                // would return true forever, and AdvanceQuestStage would
+                // see Stages.Count=0 and auto-complete on first advance.
+                // Better: refuse to start, log a warning, leave the
+                // slot free for content fixes.
+                var quest = CavesOfOoo.Storylets.StoryletRegistry.FindQuest(arg);
+                if (quest == null)
+                {
+                    UnityEngine.Debug.LogWarning(
+                        $"[Conversation] StartQuest: unknown quest id '{arg}' " +
+                        $"(no matching QuestData in StoryletRegistry).");
+                    return;
+                }
+
+                int currentTurn = TurnManager.Active?.TickCount ?? 0;
+                var state = new CavesOfOoo.Storylets.QuestState
+                {
+                    QuestId = arg,
+                    CurrentStageIndex = 0,
+                    EnteredStageAtTurn = currentTurn,
+                };
+                sp.StartQuest(state);
+
+                if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
+                {
+                    CavesOfOoo.Diagnostics.Diag.Record(
+                        category: "quest", kind: "Started",
+                        actor: listener, payload: new { questId = arg });
+                }
+
+                // Fire stage-0 OnEnter effects immediately so the
+                // player sees the first scripted message ("deliver
+                // this letter to Marceline" etc) without waiting for
+                // a tick.
+                if (quest.Stages != null && quest.Stages.Count > 0
+                    && quest.Stages[0].OnEnter != null)
+                {
+                    ExecuteAll(quest.Stages[0].OnEnter, speaker, listener);
+                }
+            });
+
+            // AdvanceQuestStage(questId) — bump the current stage
+            // index by 1 and fire the new stage's OnEnter effects.
+            // If past the terminal stage, auto-complete the quest
+            // (StoryletPart.AdvanceQuestStage handles both branches +
+            // diag records). No-op on quests that aren't active.
+            //
+            // QS.3 cold-eye fix #3: pass listener as `actor` so the
+            // diag substrate records player-driven advances/completions
+            // distinctly from tick-driven ones (which pass null).
+            Register("AdvanceQuestStage", (speaker, listener, arg) =>
+            {
+                if (string.IsNullOrEmpty(arg)) return;
+                var sp = CavesOfOoo.Storylets.StoryletPart.Current;
+                if (sp == null) return;
+                if (!sp.IsQuestActive(arg)) return;
+
+                int currentTurn = TurnManager.Active?.TickCount ?? 0;
+                int newIndex = sp.AdvanceQuestStage(arg, currentTurn, actor: listener);
+                if (newIndex < 0) return;  // auto-completed
+
+                // Fire OnEnter for the NEW stage.
+                var quest = CavesOfOoo.Storylets.StoryletRegistry.FindQuest(arg);
+                if (quest != null && newIndex < quest.Stages.Count
+                    && quest.Stages[newIndex].OnEnter != null)
+                {
+                    ExecuteAll(quest.Stages[newIndex].OnEnter, speaker, listener);
+                }
+            });
+
+            // CompleteQuest(questId) — explicit completion (instead
+            // of letting AdvanceQuestStage auto-complete at the
+            // terminal stage). Useful when content wants to short-
+            // circuit a quest (e.g., player chooses an "abandon"
+            // branch but the system tracks it as completed).
+            //
+            // QS.3 cold-eye fix #1: delegates to the centralized
+            // StoryletPart.CompleteQuest helper so the quest/Completed
+            // diag is fired from ONE place — same as the
+            // AdvanceQuestStage auto-complete branch. Pre-fix the
+            // action duplicated the helper's payload shape; a future
+            // payload-shape change would have needed updates in both.
+            Register("CompleteQuest", (speaker, listener, arg) =>
+            {
+                if (string.IsNullOrEmpty(arg)) return;
+                var sp = CavesOfOoo.Storylets.StoryletPart.Current;
+                if (sp == null) return;
+                sp.CompleteQuest(arg, actor: listener);
+            });
+
+            // FailQuest(questId) — remove from active set without
+            // recording in completed. v1: failed quests can be
+            // retaken (the predicate side returns IfQuestNotStarted
+            // = true again). If playtest reveals the player needs
+            // "you already failed this" feedback, add a separate
+            // _failedQuests HashSet in a follow-on. Documented as
+            // 🟡 in Docs/QUEST-SYSTEM.md.
+            Register("FailQuest", (speaker, listener, arg) =>
+            {
+                if (string.IsNullOrEmpty(arg)) return;
+                var sp = CavesOfOoo.Storylets.StoryletPart.Current;
+                if (sp == null) return;
+                if (!sp.IsQuestActive(arg)) return;
+
+                sp.RemoveActiveQuest(arg);
+
+                if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
+                {
+                    CavesOfOoo.Diagnostics.Diag.Record(
+                        category: "quest", kind: "Failed",
+                        actor: listener, payload: new { questId = arg });
+                }
+            });
+
+            // ── QS.5 reward actions ──────────────────────────────────────
+            // Per Docs/QUEST-SYSTEM.md. Wraps existing infrastructure
+            // (LevelingSystem + TradeSystem) so quest content can grant
+            // XP and drams from a stage's OnEnter list — the canonical
+            // place to put rewards on a terminal stage's `OnEnter`.
+            //
+            // These are the v1 reward action set. Existing actions
+            // (GiveItem, ChangeFactionFeeling, AddFact, SetFact, Reveal)
+            // already cover the rest of the standard quest-reward
+            // surface. Future content authoring will surface the next
+            // necessary reward type.
+
+            // AwardXP(amount) — grant the listener (typically the
+            // player) `amount` XP and trigger the level-up check.
+            // Defensive: parse failures + non-positive amounts no-op
+            // so a typo in JSON content can't grant absurd XP.
+            Register("AwardXP", (speaker, listener, arg) =>
+            {
+                if (!int.TryParse(arg, out int amt) || amt <= 0) return;
+                if (listener == null) return;
+
+                var xp = listener.GetStat("Experience");
+                if (xp == null) return;
+                xp.BaseValue += amt;
+
+                MessageLog.Add($"You gain {amt} XP.");
+
+                // Trigger the level-up check. Zone passed as null —
+                // tick-driven advances may not have a zone reference.
+                // CheckLevelUp guards null zone for the FX path.
+                LevelingSystem.CheckLevelUp(listener, /*zone*/null);
+            });
+
+            // GiveDrams(amount) — grant the listener `amount` drams
+            // (CoO's currency, IntProperty "Drams"). Mirrors the
+            // shape of AwardXP — same parse-then-validate-then-mutate
+            // flow. Defensive against negative/zero (use TakeDrams
+            // for cost actions if/when added; not in v1).
+            Register("GiveDrams", (speaker, listener, arg) =>
+            {
+                if (!int.TryParse(arg, out int amt) || amt <= 0) return;
+                if (listener == null) return;
+
+                int before = TradeSystem.GetDrams(listener);
+                TradeSystem.SetDrams(listener, before + amt);
+
+                MessageLog.Add($"You receive {amt} drams.");
+            });
         }
 
         private static string ResolveSettlementId(Entity speaker)

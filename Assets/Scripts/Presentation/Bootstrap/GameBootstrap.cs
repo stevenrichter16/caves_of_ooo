@@ -209,6 +209,13 @@ namespace CavesOfOoo
                 if (!playerCreated)
                     return;
 
+                // QS.7 fix: thread the local player into StoryletPart so
+                // tick-driven dispatch can evaluate player-state predicates
+                // (IfHaveItem etc). Pre-fix, OnTickEnd passed null listener
+                // to predicate eval — quests with "player picks up X"
+                // triggers silently never advanced.
+                Storylets.StoryletPart.LocalPlayer = _player;
+
                 Debug.Log("[Bootstrap] Step 7/9: Setting up turns...");
                 PerformanceDiagnostics.MeasureStartupPhase("SetupTurns", PerformanceMarkers.Bootstrap.SetupTurns, () =>
                 {
@@ -584,6 +591,9 @@ namespace CavesOfOoo
                 Storylets.StoryletPart.Current = new Storylets.StoryletPart();
                 _world.AddPart(Storylets.StoryletPart.Current);
             }
+            // QS.7 fix: re-bind LocalPlayer on load (matches fresh-boot
+            // path above; needed for tick-dispatch player-state predicates).
+            Storylets.StoryletPart.LocalPlayer = _player;
             if (NarrativeStatePart.Current != null && Storylets.StoryletPart.Current != null)
                 NarrativeStatePart.Current.RegisterReactor(Storylets.StoryletPart.Current);
             _zone = _zoneManager?.ActiveZone;
