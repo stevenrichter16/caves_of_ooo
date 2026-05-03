@@ -37,6 +37,7 @@
 
 | Commit | What |
 |---|---|
+| `feat/lock-and-key` | **Tier-2 Lock & Key v1** — `LockPart` + `KeyPart` + `LockedDoor` / `LockedChest` / `IronKey` blueprints. Bump-to-unlock via `PhysicsPart`'s solid-blocker check: walking into a locked door fires `AttemptUnlock`, `LockPart` matches the actor's inventory `KeyPart.KeyId` against its own, flips `IsLocked=false` + drops `Solid` on success. Master-key model (keys reusable). Adds `furniture/UnlockAttempted` diag channel (5th hook). 21 tests + showcase scenario. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / Locked Door Showcase`. |
 | `feat/emberspear-charredhusk` | **Tier-1 EmberSpear + CharredHusk pair** — Heat-axis mirror of CryoLance + IceWight. Second Piercing-class elemental weapon (1d6+1 Piercing/Fire, no sub-class, Burning on-hit) and second 100%-immune creature (HR=100, CR=-50). Resistance-extreme matrix is now symmetric across Cold and Heat axes. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / EmberSpear Showcase`. |
 | `feat/cryolance-icewight` | **Tier-1 CryoLance + IceWight pair** — first Piercing-class elemental weapon (1d6+2 Piercing/Ice/LongBlades, PenBonus 3, Frozen on-hit) and first 100%-immune creature (CR=100, HR=-50). Pins the resistance ≥ 100 = total negation path AND the negative-HR creature path. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / CryoLance Showcase`. |
 | `feat/trap-furniture` | **Tier-2 Trap furniture** — SpikeTrap, FireTrap, BearTrap. Three single-use mechanical floor traps reusing the existing TriggerOnStepPart pattern. 9 unit tests + smoke. |
@@ -171,9 +172,11 @@ correctly for every weapon in the game.
 - 💡 **PressurePlate** — reusable variant; rearm cooldown / armed-state. Deferred (single-use first).
 - 💡 **TripWire** — multi-cell line trigger. Deferred (single-cell first).
 
-### Lock & key
+### Lock & key — DONE
 
-- 💡 **LockPart on doors/chests.** KeyPart on items. UnlockEvent on bump. Foundation for keyed dungeon progression.
+- ✅ **LockPart + KeyPart + LockedDoor/LockedChest/IronKey** — `feat/lock-and-key`. Bump-to-unlock via PhysicsPart's solid-blocker check; matching key in inventory flips `IsLocked=false` + drops Solid (next-bump walks through). Master-key model (keys reusable). Adds `furniture/UnlockAttempted` diag channel. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / Locked Door Showcase`. 21 tests across 4 fixtures + smoke.
+- 💡 **Lockpicking skill + lockpick item** — Lock & Key v2. Skill check vs lock difficulty; consumed lockpicks on fail. Deferred to its own ship.
+- 💡 **Single-use keys (`Consumable` flag on `KeyPart`)** — strip from inventory after first use. Deferred until playtest demands it.
 
 ### Hunger / Food
 
