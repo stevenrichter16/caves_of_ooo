@@ -123,6 +123,18 @@ namespace CavesOfOoo.Core
             var buyerInv = buyer.GetPart<InventoryPart>();
             if (buyerInv == null) return false;
 
+            // SP.2 (Docs/SHOPPING-PARITY.md): per-item veto. Items with
+            // a "NoTrade" tag (e.g., quest items, dungeon keys) refuse
+            // to be traded. Listeners can also veto by returning false
+            // from CanBeTraded HandleEvent — the firing-on-the-item-
+            // first design lets items self-protect without forcing
+            // buyer/seller logic to know about every quest state.
+            if (!CanBeTraded(item, buyer, trader, "Buy"))
+            {
+                MessageLog.Add($"You can't trade {item.GetDisplayName()}.");
+                return false;
+            }
+
             double perf = GetTradePerformance(buyer);
             int price = GetBuyPrice(item, perf, trader);
 
@@ -172,6 +184,14 @@ namespace CavesOfOoo.Core
             var sellerInv = seller.GetPart<InventoryPart>();
             if (sellerInv == null) return false;
 
+            // SP.2: per-item veto on sell side. Same shape as the buy
+            // path — quest items refuse to leave the player's bag.
+            if (!CanBeTraded(item, seller, trader, "Sell"))
+            {
+                MessageLog.Add($"You can't trade {item.GetDisplayName()}.");
+                return false;
+            }
+
             double perf = GetTradePerformance(seller);
             int price = GetSellPrice(item, perf, trader);
 
@@ -199,6 +219,39 @@ namespace CavesOfOoo.Core
 
             MessageLog.Add($"You sell {item.GetDisplayName()} for {price} drams.");
             return true;
+        }
+
+        /// <summary>
+        /// SP.2 (Docs/SHOPPING-PARITY.md): check whether an item can
+        /// be traded in the requested direction. Mirrors Qud's
+        /// <c>CanBeTradedEvent</c> (XRL.World.Parts.Inventory cite).
+        ///
+        /// Two veto paths:
+        ///   1. Items tagged <c>"NoTrade"</c> are refused outright
+        ///      (quest items, dungeon keys, soft-bound rewards).
+        ///   2. The <c>CanBeTraded</c> event fires on the item itself;
+        ///      any listener returning false from HandleEvent vetoes.
+        ///      This lets future Parts (e.g. a "BoundToOwner" Part)
+        ///      self-protect without modifying TradeSystem.
+        ///
+        /// Returns true if the item can be traded.
+        /// </summary>
+        public static bool CanBeTraded(Entity item, Entity actor, Entity trader, string direction)
+        {
+            if (item == null) return false;
+
+            // 1. Tag-based fast-path veto.
+            if (item.HasTag("NoTrade")) return false;
+
+            // 2. Event-based veto. Lets parts on the item refuse
+            // dynamically (a quest part might allow trade after the
+            // quest completes, etc.).
+            var canBeTraded = GameEvent.New("CanBeTraded");
+            canBeTraded.SetParameter("Item", (object)item);
+            canBeTraded.SetParameter("Actor", (object)actor);
+            canBeTraded.SetParameter("Trader", (object)trader);
+            canBeTraded.SetParameter("Direction", direction);
+            return item.FireEventAndRelease(canBeTraded);
         }
 
         /// <summary>
