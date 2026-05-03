@@ -357,5 +357,148 @@ namespace CavesOfOoo.Tests
             Assert.DoesNotThrow(() =>
                 ConversationActions.Execute("FailQuest", null, null, "Q1"));
         }
+
+        // ====================================================================
+        // 7. Cold-eye fix #4+#5: StartQuest with unknown questId is no-op
+        //    (does NOT add a phantom QuestState that bricks the slot)
+        // ====================================================================
+
+        [Test]
+        public void StartQuest_UnknownQuestId_DoesNotBrickActiveSlot()
+        {
+            // No RegisterTestQuest call — the registry has no
+            // QuestData for "Unknown".
+            StoryletPart.Current = new StoryletPart();
+            // Suppress the expected-warning log so the test output
+            // doesn't flag a "test logged warnings" failure.
+            UnityEngine.TestTools.LogAssert.ignoreFailingMessages = true;
+
+            ConversationActions.Execute("StartQuest", null, null, "Unknown");
+
+            Assert.IsFalse(StoryletPart.Current.IsQuestActive("Unknown"),
+                "StartQuest with an unknown questId must NOT add a phantom " +
+                "QuestState to _quests. Pre-fix this would silently brick the " +
+                "slot — IfQuestActive would return true forever and the real " +
+                "quest could never start (cold-eye fix #4).");
+            Assert.IsFalse(StoryletPart.Current.IsQuestCompleted("Unknown"),
+                "Phantom quest must NOT be completed either (cold-eye fix #5 " +
+                "verifies that the AdvanceQuestStage helper's "
+                + "stage 0+1 >= totalStages=0 auto-complete edge can't fire).");
+
+            UnityEngine.TestTools.LogAssert.ignoreFailingMessages = false;
+        }
+
+        // ====================================================================
+        // 8. Cold-eye fix #6: AdvanceQuestStage action at terminal stage
+        //    fires quest/Completed diag (not just the helper-level test)
+        // ====================================================================
+
+        [Test]
+        public void AdvanceQuestStage_AtTerminalStage_RecordsCompletedDiag()
+        {
+            RegisterTestQuest("Q1");  // 3 stages (0, 1, 2)
+            var sp = new StoryletPart();
+            sp.StartQuest(new QuestState
+            {
+                QuestId = "Q1",
+                CurrentStageIndex = 2,  // at terminal stage
+            });
+            StoryletPart.Current = sp;
+            Diag.ResetAll();
+
+            ConversationActions.Execute("AdvanceQuestStage", null, null, "Q1");
+
+            var records = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "quest",
+                Kind = "Completed",
+                Limit = 10,
+            }).Records;
+
+            Assert.AreEqual(1, records.Count,
+                "Auto-completion via AdvanceQuestStage action must fire " +
+                "exactly one quest/Completed diag (not zero, not two). " +
+                "Cold-eye fix #1: now centralized through " +
+                "StoryletPart.CompleteQuest helper, so this single record " +
+                "comes from ONE source.");
+            Assert.IsTrue(records[0].PayloadJson.Contains("\"questId\":\"Q1\""),
+                $"Payload questId. Got: {records[0].PayloadJson}");
+            Assert.IsTrue(records[0].PayloadJson.Contains("\"totalStages\":3"),
+                $"Payload totalStages. Got: {records[0].PayloadJson}");
+        }
+
+        // ====================================================================
+        // 9. Cold-eye fix #7: CompleteQuest + FailQuest on never-started
+        //    quests are no-ops (don't accidentally insert into _completedQuests)
+        // ====================================================================
+
+        [Test]
+        public void CompleteQuest_OnNeverStartedQuest_NoOp()
+        {
+            RegisterTestQuest("Q1");
+            StoryletPart.Current = new StoryletPart();
+            // No StartQuest call.
+
+            ConversationActions.Execute("CompleteQuest", null, null, "Q1");
+
+            Assert.IsFalse(StoryletPart.Current.IsQuestCompleted("Q1"),
+                "CompleteQuest on a never-started quest must be a no-op. " +
+                "Pre-fix the StoryletPart.MarkQuestCompleted call would " +
+                "have unconditionally added it to _completedQuests, " +
+                "preventing future StartQuest from working.");
+        }
+
+        [Test]
+        public void FailQuest_OnNeverStartedQuest_NoOp()
+        {
+            RegisterTestQuest("Q1");
+            StoryletPart.Current = new StoryletPart();
+
+            ConversationActions.Execute("FailQuest", null, null, "Q1");
+
+            Assert.IsFalse(StoryletPart.Current.IsQuestActive("Q1"),
+                "Quest never became active in the first place.");
+            Assert.IsFalse(StoryletPart.Current.IsQuestCompleted("Q1"),
+                "FailQuest on never-started quest must NOT touch the " +
+                "completed set.");
+            // No Diag.Record should fire either.
+            var records = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "quest",
+                Kind = "Failed",
+                Limit = 10,
+            }).Records;
+            Assert.AreEqual(0, records.Count,
+                "No-op FailQuest must not emit a quest/Failed record.");
+        }
+
+        // ====================================================================
+        // 10. Cold-eye fix #8: FailQuest fires quest/Failed diag
+        // ====================================================================
+
+        [Test]
+        public void FailQuest_RecordsQuestFailedDiag()
+        {
+            RegisterTestQuest("Q1");
+            var sp = new StoryletPart();
+            sp.StartQuest(new QuestState { QuestId = "Q1", CurrentStageIndex = 1 });
+            StoryletPart.Current = sp;
+            Diag.ResetAll();
+
+            ConversationActions.Execute("FailQuest", null, null, "Q1");
+
+            var records = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "quest",
+                Kind = "Failed",
+                Limit = 10,
+            }).Records;
+
+            Assert.AreEqual(1, records.Count,
+                $"FailQuest must emit exactly one quest/Failed diag. " +
+                $"Got {records.Count}.");
+            Assert.IsTrue(records[0].PayloadJson.Contains("\"questId\":\"Q1\""),
+                $"Payload questId. Got: {records[0].PayloadJson}");
+        }
     }
 }

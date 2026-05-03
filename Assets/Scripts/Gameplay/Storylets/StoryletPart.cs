@@ -111,6 +111,45 @@ namespace CavesOfOoo.Storylets
         }
 
         /// <summary>
+        /// QS.3 cold-eye fix #1: single source of truth for quest
+        /// completion side effects. Centralizes the
+        /// MarkQuestCompleted state mutation + the quest/Completed
+        /// diag record emission. Callers pass `actor` so the diag
+        /// substrate can record whether completion was player-driven
+        /// (CompleteQuest action passes listener) or world-driven
+        /// (AdvanceQuestStage's auto-complete passes null).
+        ///
+        /// Pre-fix: the action AND the AdvanceQuestStage helper each
+        /// emitted their own quest/Completed Diag.Record with
+        /// hand-rolled identical payloads. A future payload-shape
+        /// change would have needed updates in both places. Fix #1+#3
+        /// (Docs/QUEST-SYSTEM.md self-review): one place fires the
+        /// diag, one parameter shape, no drift.
+        ///
+        /// No-op (returns false) on unknown / already-completed quests
+        /// so callers don't double-fire.
+        /// </summary>
+        public bool CompleteQuest(string questId, Entity actor = null)
+        {
+            if (string.IsNullOrEmpty(questId)) return false;
+            if (!_quests.ContainsKey(questId)) return false;
+
+            var quest = StoryletRegistry.FindQuest(questId);
+            int totalStages = quest?.Stages?.Count ?? 0;
+
+            MarkQuestCompleted(questId);
+
+            if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
+            {
+                CavesOfOoo.Diagnostics.Diag.Record(
+                    category: "quest", kind: "Completed",
+                    actor: actor,
+                    payload: new { questId, totalStages });
+            }
+            return true;
+        }
+
+        /// <summary>
         /// QS.3: advance an active quest by one stage. If the new
         /// index is past the terminal stage (Stages.Count - 1), the
         /// quest auto-completes and is moved to the completed set.
@@ -122,8 +161,13 @@ namespace CavesOfOoo.Storylets
         /// dispatch loop in OnTickEnd can call into one path.
         /// Keeps the side effects (diag record, auto-completion,
         /// EnteredStageAtTurn update) on a single source of truth.
+        ///
+        /// QS.3 cold-eye fix #3: <paramref name="actor"/> is threaded
+        /// through to the auto-complete branch's diag record so the
+        /// substrate can record who triggered the advance (player
+        /// action passes listener; tick-driven dispatch passes null).
         /// </summary>
-        public int AdvanceQuestStage(string questId, int currentTurn)
+        public int AdvanceQuestStage(string questId, int currentTurn, Entity actor = null)
         {
             if (string.IsNullOrEmpty(questId)) return -1;
             if (!_quests.TryGetValue(questId, out var state)) return -1;
@@ -134,14 +178,10 @@ namespace CavesOfOoo.Storylets
             int newIndex = state.CurrentStageIndex + 1;
             if (newIndex >= totalStages)
             {
-                // Past the last stage — auto-complete.
-                MarkQuestCompleted(questId);
-                if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
-                {
-                    CavesOfOoo.Diagnostics.Diag.Record(
-                        category: "quest", kind: "Completed",
-                        payload: new { questId, totalStages });
-                }
+                // Past the last stage — auto-complete via the
+                // centralized helper. Diag record + state mutation
+                // both live there (cold-eye fix #1).
+                CompleteQuest(questId, actor);
                 return -1;  // sentinel: quest moved to completed
             }
 
@@ -153,6 +193,7 @@ namespace CavesOfOoo.Storylets
             {
                 CavesOfOoo.Diagnostics.Diag.Record(
                     category: "quest", kind: "StageAdvanced",
+                    actor: actor,
                     payload: new { questId, fromIndex = oldIndex, toIndex = newIndex });
             }
             return newIndex;

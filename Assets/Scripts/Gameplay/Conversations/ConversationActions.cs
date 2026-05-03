@@ -452,6 +452,24 @@ namespace CavesOfOoo.Core
                 if (sp.IsQuestActive(arg)) return;
                 if (sp.IsQuestCompleted(arg)) return;
 
+                // QS.3 cold-eye fix #4+#5: validate registry membership
+                // BEFORE adding to _quests. Without this, a typo in arg
+                // (or a save-game referencing a since-removed quest)
+                // would silently brick the slot — the QuestState would
+                // be added with no matching QuestData, IfQuestActive
+                // would return true forever, and AdvanceQuestStage would
+                // see Stages.Count=0 and auto-complete on first advance.
+                // Better: refuse to start, log a warning, leave the
+                // slot free for content fixes.
+                var quest = CavesOfOoo.Storylets.StoryletRegistry.FindQuest(arg);
+                if (quest == null)
+                {
+                    UnityEngine.Debug.LogWarning(
+                        $"[Conversation] StartQuest: unknown quest id '{arg}' " +
+                        $"(no matching QuestData in StoryletRegistry).");
+                    return;
+                }
+
                 int currentTurn = TurnManager.Active?.TickCount ?? 0;
                 var state = new CavesOfOoo.Storylets.QuestState
                 {
@@ -472,8 +490,7 @@ namespace CavesOfOoo.Core
                 // player sees the first scripted message ("deliver
                 // this letter to Marceline" etc) without waiting for
                 // a tick.
-                var quest = CavesOfOoo.Storylets.StoryletRegistry.FindQuest(arg);
-                if (quest != null && quest.Stages != null && quest.Stages.Count > 0
+                if (quest.Stages != null && quest.Stages.Count > 0
                     && quest.Stages[0].OnEnter != null)
                 {
                     ExecuteAll(quest.Stages[0].OnEnter, speaker, listener);
@@ -485,6 +502,10 @@ namespace CavesOfOoo.Core
             // If past the terminal stage, auto-complete the quest
             // (StoryletPart.AdvanceQuestStage handles both branches +
             // diag records). No-op on quests that aren't active.
+            //
+            // QS.3 cold-eye fix #3: pass listener as `actor` so the
+            // diag substrate records player-driven advances/completions
+            // distinctly from tick-driven ones (which pass null).
             Register("AdvanceQuestStage", (speaker, listener, arg) =>
             {
                 if (string.IsNullOrEmpty(arg)) return;
@@ -493,7 +514,7 @@ namespace CavesOfOoo.Core
                 if (!sp.IsQuestActive(arg)) return;
 
                 int currentTurn = TurnManager.Active?.TickCount ?? 0;
-                int newIndex = sp.AdvanceQuestStage(arg, currentTurn);
+                int newIndex = sp.AdvanceQuestStage(arg, currentTurn, actor: listener);
                 if (newIndex < 0) return;  // auto-completed
 
                 // Fire OnEnter for the NEW stage.
@@ -509,25 +530,20 @@ namespace CavesOfOoo.Core
             // of letting AdvanceQuestStage auto-complete at the
             // terminal stage). Useful when content wants to short-
             // circuit a quest (e.g., player chooses an "abandon"
-            // branch but the system tracks it as completed). No-op
-            // if the quest isn't active.
+            // branch but the system tracks it as completed).
+            //
+            // QS.3 cold-eye fix #1: delegates to the centralized
+            // StoryletPart.CompleteQuest helper so the quest/Completed
+            // diag is fired from ONE place — same as the
+            // AdvanceQuestStage auto-complete branch. Pre-fix the
+            // action duplicated the helper's payload shape; a future
+            // payload-shape change would have needed updates in both.
             Register("CompleteQuest", (speaker, listener, arg) =>
             {
                 if (string.IsNullOrEmpty(arg)) return;
                 var sp = CavesOfOoo.Storylets.StoryletPart.Current;
                 if (sp == null) return;
-                if (!sp.IsQuestActive(arg)) return;
-
-                var quest = CavesOfOoo.Storylets.StoryletRegistry.FindQuest(arg);
-                int totalStages = quest?.Stages?.Count ?? 0;
-                sp.MarkQuestCompleted(arg);
-
-                if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
-                {
-                    CavesOfOoo.Diagnostics.Diag.Record(
-                        category: "quest", kind: "Completed",
-                        actor: listener, payload: new { questId = arg, totalStages });
-                }
+                sp.CompleteQuest(arg, actor: listener);
             });
 
             // FailQuest(questId) — remove from active set without
