@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Shifting Zone — Inkbleed</title>
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    background: #02030a;
+    color: #8af;
+    font-family: 'Courier New', Consolas, monospace;
+    overflow: hidden;
+    height: 100vh;
+  }
+  #wrapper { padding: 18px; box-sizing: border-box; }
+  #hud {
+    color: #6ad;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #122036;
+    padding-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    text-shadow: 0 0 5px rgba(110, 170, 255, 0.35);
+  }
+  #hud .left, #hud .right { display: flex; gap: 22px; }
+  .label { color: #1a2a40; }
+  .stat { color: #aef; }
+  .warn { color: #f64 !important; animation: blink 0.5s steps(2) infinite; }
+  @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } }
+  #screen {
+    font-size: 14px;
+    line-height: 1.0;
+    white-space: pre;
+    text-shadow: 0 0 5px rgba(110, 170, 255, 0.35), 0 0 14px rgba(80, 150, 255, 0.18);
+  }
+  .scanlines {
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0,
+      rgba(0,0,0,0) 2px,
+      rgba(0,0,0,0.18) 3px,
+      rgba(0,0,0,0) 4px
+    );
+    pointer-events: none;
+  }
+  .vignette {
+    position: fixed; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 50%, rgba(0,0,0,0.85) 100%);
+    pointer-events: none;
+  }
+  a.back {
+    position: fixed; top: 14px; right: 18px;
+    color: #1a3050; font-size: 11px; letter-spacing: 2px;
+    text-decoration: none;
+  }
+  a.back:hover { color: #6ad; }
+</style>
+</head>
+<body>
+  <a href="index.html" class="back">&lt; ZONES</a>
+  <div id="wrapper">
+    <div id="hud">
+      <div class="left">
+        <span><span class="label">BLEED:</span> <span class="stat" id="hud-bleed">0.62</span></span>
+        <span><span class="label">INTEG:</span> <span class="stat" id="hud-integ">68%</span></span>
+        <span><span class="label">HR:</span> <span class="stat" id="hud-hr">71 BPM</span></span>
+        <span><span class="label">OP:</span> <span class="stat">DR HARLAN WEBB</span></span>
+      </div>
+      <div class="right">
+        <span><span class="label">DEPTH:</span> <span class="stat">125m</span></span>
+        <span><span class="label">WORDS-LOOSE:</span> <span class="stat" id="hud-words">12</span></span>
+        <span><span class="label">ZONE:</span> <span class="stat warn">INKBLEED</span></span>
+      </div>
+    </div>
+    <div id="screen"></div>
+  </div>
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+  <script>
+    const W = 110, H = 34;
+    const CX = Math.floor(W / 2), CY = Math.floor(H / 2);
+    const screen = document.getElementById('screen');
+
+    const ALPHA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const SYMBOLS = '.,;:!?\'"()[]{}*+-=/\\|~^&%$#@<>';
+
+    // Per-cell character + jitter rate
+    const cells = [];
+    const stability = []; // 0 (jittery) -> 1 (stable)
+    function init() {
+      for (let y = 0; y < H; y++) {
+        cells[y] = [];
+        stability[y] = [];
+        for (let x = 0; x < W; x++) {
+          cells[y][x] = randomChar();
+          stability[y][x] = Math.random() * 0.4;
+        }
+      }
+    }
+    function randomChar() {
+      if (Math.random() < 0.12) return ' ';
+      if (Math.random() < 0.78) return ALPHA[Math.floor(Math.random() * ALPHA.length)];
+      return SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+    }
+
+    // Fragments — short readable phrases that briefly stabilize and dissolve
+    let fragments = [];
+    const PHRASES = [
+      'REMEMBER',
+      'ERASE',
+      'WITNESS',
+      'I WAS HERE',
+      'NAME ME',
+      'FORGET',
+      'WRITTEN',
+      'UNWRITTEN',
+      'THE LAYER',
+      'THE LAYER BELOW',
+      'STILL HERE',
+      'YOU SAW',
+      'WAS IT TRUE',
+      'NOT YOURS',
+      'OURS NOW',
+      'THE SCRIBE LIED',
+      'PALIMPSEST'
+    ];
+
+    function maybeFragment() {
+      if (Math.random() < 0.12 && fragments.length < 4) {
+        const text = PHRASES[Math.floor(Math.random() * PHRASES.length)];
+        const x = Math.floor(Math.random() * (W - text.length - 4)) + 2;
+        const y = Math.floor(Math.random() * (H - 4)) + 2;
+        fragments.push({ text, x, y, age: 0, max: 22 + Math.floor(Math.random() * 16) });
+      }
+    }
+
+    let t = 0;
+
+    function render() {
+      maybeFragment();
+      fragments = fragments.filter(f => f.age < f.max);
+
+      // Per-tick: jitter cells based on stability
+      for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+          if (Math.random() > stability[y][x]) {
+            cells[y][x] = randomChar();
+          }
+        }
+      }
+
+      // Reset stability under fragments — those stabilize tiles to make text readable
+      const stabilityOverlay = [];
+      for (let y = 0; y < H; y++) {
+        stabilityOverlay[y] = new Array(W).fill(0);
+      }
+      for (const f of fragments) {
+        const lifeT = f.age / f.max;
+        const alpha = Math.sin(lifeT * Math.PI); // 0..1..0
+        if (alpha > 0.2) {
+          for (let i = 0; i < f.text.length; i++) {
+            const x = f.x + i, y = f.y;
+            if (x < 0 || x >= W || y < 0 || y >= H) continue;
+            cells[y][x] = f.text[i];
+            stabilityOverlay[y][x] = alpha;
+          }
+        }
+        f.age++;
+      }
+
+      // Render
+      let buffer = '';
+      for (let y = 0; y < H; y++) {
+        let prev = null, span = '';
+        for (let x = 0; x < W; x++) {
+          let ch = cells[y][x];
+          // Player marker
+          let isPlayer = false;
+          if (y === CY && x === CX) { ch = '@'; isPlayer = true; }
+          else if (y === CY && x === CX - 1) { ch = '<'; isPlayer = true; }
+          else if (y === CY && x === CX + 1) { ch = '>'; isPlayer = true; }
+
+          if (ch === '<') ch = '&lt;';
+          else if (ch === '>') ch = '&gt;';
+          else if (ch === '&') ch = '&amp;';
+
+          let color;
+          if (isPlayer) {
+            color = 'hsl(0, 0%, 95%)';
+          } else if (stabilityOverlay[y][x] > 0.3) {
+            // Fragment readable text — bright cyan/white
+            const l = 70 + stabilityOverlay[y][x] * 25;
+            color = `hsl(180, 80%, ${l.toFixed(0)}%)`;
+          } else {
+            // Background bleed — electric blue with brightness based on jitter density
+            const jitter = (Math.sin((x * 13 + y * 7 + t * 80) * 0.1) + 1) / 2;
+            const isSymbol = !ALPHA.includes(cells[y][x]) && cells[y][x] !== ' ';
+            if (cells[y][x] === ' ') {
+              color = 'hsl(220, 50%, 5%)';
+            } else if (isSymbol) {
+              // accent — magenta/red occasionally
+              if (Math.random() < 0.05) {
+                color = `hsl(${Math.floor(Math.random() * 30) + 350}, 70%, 55%)`;
+              } else {
+                color = `hsl(220, 60%, ${(35 + jitter * 25).toFixed(0)}%)`;
+              }
+            } else {
+              color = `hsl(220, ${(50 + jitter * 30).toFixed(0)}%, ${(40 + jitter * 30).toFixed(0)}%)`;
+            }
+          }
+
+          if (color === prev) span += ch;
+          else {
+            if (span.length) buffer += `<span style="color:${prev}">${span}</span>`;
+            span = ch; prev = color;
+          }
+        }
+        if (span.length) buffer += `<span style="color:${prev}">${span}</span>`;
+        buffer += '\n';
+      }
+      screen.innerHTML = buffer;
+
+      // HUD
+      document.getElementById('hud-bleed').textContent = (0.55 + Math.abs(Math.sin(t * 0.3)) * 0.2).toFixed(2);
+      document.getElementById('hud-integ').textContent = (65 + Math.floor(Math.cos(t * 0.2) * 8)) + '%';
+      document.getElementById('hud-hr').textContent = (74 + Math.floor(Math.sin(t * 0.5) * 6)) + ' BPM';
+      document.getElementById('hud-words').textContent = (8 + fragments.length * 4 + Math.floor(Math.random() * 3));
+
+      t += 0.07;
+    }
+
+    init();
+    setInterval(render, 80);
+    render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Caves of Ooo — Shifting Zone Demos</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 40px;
+    background: #050608;
+    color: #cfcfcf;
+    font-family: 'Courier New', Consolas, monospace;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+  h1 {
+    font-size: 22px;
+    margin: 0 0 4px 0;
+    color: #d8d4b8;
+    letter-spacing: 2px;
+  }
+  .subtitle {
+    color: #555;
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid #1a1c20;
+    padding-bottom: 16px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 18px;
+    max-width: 1200px;
+  }
+  .card {
+    background: #0a0c10;
+    border: 1px solid #181b22;
+    padding: 18px;
+    transition: border-color 0.2s, transform 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .card:hover {
+    border-color: #4a8;
+    transform: translateY(-2px);
+  }
+  .card .name {
+    color: #d8d4b8;
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .card .faction {
+    color: #6a8;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .card .desc {
+    color: #888;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .card.mycelial:hover { border-color: #7a8; }
+  .card.temporal:hover { border-color: #88a; }
+  .card.inkbleed:hover { border-color: #a48; }
+  .card.cathedral:hover { border-color: #a86; }
+  footer {
+    margin-top: 40px;
+    color: #444;
+    font-size: 11px;
+  }
+</style>
+</head>
+<body>
+  <h1>SHIFTING ZONE DEMOS</h1>
+  <div class="subtitle">CAVES OF OOO &middot; ANIMATED ASCII ZONE PROTOTYPES</div>
+
+  <div class="grid">
+    <a href="mycelial-deep.html" class="card mycelial">
+      <div class="name">THE MYCELIAL DEEP</div>
+      <div class="faction">CHOIR TERRITORY</div>
+      <div class="desc">Living terrain that breathes. Spore-tendrils drift; the stone pulses; periodic spore-bursts ripple outward from unseen Choir-nodes. Greens, ochres, dim purples.</div>
+    </a>
+
+    <a href="temporal-substrate.html" class="card temporal">
+      <div class="name">THE TEMPORAL SUBSTRATE</div>
+      <div class="faction">PALIMPSEST TERRITORY</div>
+      <div class="desc">Tiles flicker between past and present states. Ghost-layers of earlier terrain bleed through current geography. Bone-white, sepia, faded blue, ghostly cyan.</div>
+    </a>
+
+    <a href="inkbleed.html" class="card inkbleed">
+      <div class="name">INKBLEED</div>
+      <div class="faction">CORRUPTED PALIMPSEST</div>
+      <div class="desc">Inscriptions overflow their bounds. Letters drift, recombine, sometimes form readable fragments before dissolving. Black, electric ink-blue, warning red.</div>
+    </a>
+
+    <a href="hollow-cathedral.html" class="card cathedral">
+      <div class="name">THE HOLLOW CATHEDRAL</div>
+      <div class="faction">DEEPEST LAYER</div>
+      <div class="desc">Vast, sparse, sacred. The world thins. Pinpoint lights drift in slow currents; rare pillar-fragments stand against the dark. Deep purple, gold, near-black.</div>
+    </a>
+  </div>
+
+  <footer>Click any zone to view its dynamic ASCII renderer demo.</footer>
+</body>
+</html>

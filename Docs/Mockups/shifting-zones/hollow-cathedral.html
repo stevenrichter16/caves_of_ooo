@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Shifting Zone — The Hollow Cathedral</title>
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    background: #020104;
+    color: #c8a;
+    font-family: 'Courier New', Consolas, monospace;
+    overflow: hidden;
+    height: 100vh;
+  }
+  #wrapper { padding: 18px; box-sizing: border-box; }
+  #hud {
+    color: #846;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #1f1428;
+    padding-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    text-shadow: 0 0 4px rgba(180, 100, 200, 0.25);
+  }
+  #hud .left, #hud .right { display: flex; gap: 22px; }
+  .label { color: #2c1e36; }
+  .stat { color: #d8b8d0; }
+  .gold { color: #d8b070; }
+  #screen {
+    font-size: 14px;
+    line-height: 1.0;
+    white-space: pre;
+    text-shadow: 0 0 5px rgba(200, 160, 220, 0.25), 0 0 18px rgba(160, 100, 220, 0.12);
+  }
+  .scanlines {
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0,
+      rgba(0,0,0,0) 2px,
+      rgba(0,0,0,0.22) 3px,
+      rgba(0,0,0,0) 4px
+    );
+    pointer-events: none;
+  }
+  .vignette {
+    position: fixed; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 35%, rgba(0,0,0,0.95) 100%);
+    pointer-events: none;
+  }
+  a.back {
+    position: fixed; top: 14px; right: 18px;
+    color: #2c1e36; font-size: 11px; letter-spacing: 2px;
+    text-decoration: none;
+  }
+  a.back:hover { color: #846; }
+</style>
+</head>
+<body>
+  <a href="index.html" class="back">&lt; ZONES</a>
+  <div id="wrapper">
+    <div id="hud">
+      <div class="left">
+        <span><span class="label">DEPTH:</span> <span class="stat gold" id="hud-depth">2,418m</span></span>
+        <span><span class="label">LUX:</span> <span class="stat" id="hud-lux">0.04</span></span>
+        <span><span class="label">HR:</span> <span class="stat" id="hud-hr">52 BPM</span></span>
+        <span><span class="label">OP:</span> <span class="stat">DR HARLAN WEBB</span></span>
+      </div>
+      <div class="right">
+        <span><span class="label">TEMP:</span> <span class="stat" id="hud-temp">+11.2°C</span></span>
+        <span><span class="label">VOID:</span> <span class="stat" id="hud-void">VAST</span></span>
+        <span><span class="label">ZONE:</span> <span class="stat gold">HOLLOW CATHEDRAL</span></span>
+      </div>
+    </div>
+    <div id="screen"></div>
+  </div>
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+  <script>
+    const W = 110, H = 34;
+    const CX = Math.floor(W / 2), CY = Math.floor(H / 2);
+    const screen = document.getElementById('screen');
+
+    // Three layered elements:
+    // 1. Pinpoint stars/lights — slow drifting
+    // 2. Pillar fragments — sparse vertical lines that taper
+    // 3. Distant motes / dust — very dim, slow
+
+    let stars = [];
+    let pillars = [];
+    let motes = [];
+
+    function init() {
+      // Stars
+      for (let i = 0; i < 36; i++) {
+        stars.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          vx: (Math.random() - 0.5) * 0.05,
+          vy: (Math.random() - 0.5) * 0.03,
+          phase: Math.random() * Math.PI * 2,
+          gold: Math.random() < 0.18
+        });
+      }
+      // Pillars — 4-6 sparse vertical fragments
+      for (let i = 0; i < 5; i++) {
+        const x = Math.floor(Math.random() * (W - 6)) + 3;
+        const yTop = Math.floor(Math.random() * (H * 0.4));
+        const yBot = Math.floor(yTop + H * 0.35 + Math.random() * H * 0.3);
+        pillars.push({ x, yTop, yBot, phase: Math.random() * Math.PI * 2 });
+      }
+      // Motes — slow dust
+      for (let i = 0; i < 24; i++) {
+        motes.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          vx: (Math.random() - 0.5) * 0.08,
+          vy: (Math.random() - 0.5) * 0.04,
+        });
+      }
+    }
+
+    let t = 0;
+
+    function render() {
+      // grid of empty cells
+      const grid = [];
+      const colors = [];
+      for (let y = 0; y < H; y++) {
+        grid[y] = new Array(W).fill(' ');
+        colors[y] = new Array(W).fill('hsl(280,30%,3%)');
+      }
+
+      // Pillars first (under everything)
+      for (const p of pillars) {
+        const breath = (Math.sin(t * 0.18 + p.phase) + 1) / 2;
+        for (let y = p.yTop; y <= p.yBot; y++) {
+          if (y < 0 || y >= H) continue;
+          // Fade pillars at their tops/bottoms
+          const norm = (y - p.yTop) / Math.max(1, p.yBot - p.yTop);
+          const fade = Math.sin(norm * Math.PI); // bright in middle, fade at ends
+          if (fade < 0.2) continue;
+          const x = p.x;
+          // Choose char by intensity
+          let ch;
+          if (fade > 0.85) ch = '|';
+          else if (fade > 0.6) ch = '|';
+          else if (fade > 0.4) ch = ':';
+          else ch = '.';
+          // Sometimes — every other cell — show a little ornamentation
+          if (y === Math.floor((p.yTop + p.yBot) / 2)) ch = '+';
+          grid[y][x] = ch;
+          const l = 18 + fade * 28 + breath * 8;
+          colors[y][x] = `hsl(290,30%,${l.toFixed(0)}%)`;
+        }
+      }
+
+      // Motes — dim dust
+      for (const m of motes) {
+        m.x += m.vx; m.y += m.vy;
+        if (m.x < 0) m.x = W - 1;
+        if (m.x >= W) m.x = 0;
+        if (m.y < 0) m.y = H - 1;
+        if (m.y >= H) m.y = 0;
+        const x = Math.floor(m.x), y = Math.floor(m.y);
+        if (grid[y][x] === ' ') {
+          grid[y][x] = '.';
+          colors[y][x] = 'hsl(290,20%,12%)';
+        }
+      }
+
+      // Stars (top layer)
+      for (const s of stars) {
+        s.x += s.vx; s.y += s.vy;
+        s.phase += 0.05;
+        if (s.x < 0) s.x = W - 1;
+        if (s.x >= W) s.x = 0;
+        if (s.y < 0) s.y = H - 1;
+        if (s.y >= H) s.y = 0;
+        const x = Math.floor(s.x), y = Math.floor(s.y);
+        const twinkle = (Math.sin(s.phase) + 1) / 2;
+        let ch = '.';
+        if (twinkle > 0.85) ch = '*';
+        else if (twinkle > 0.55) ch = '+';
+        else if (twinkle > 0.3) ch = '\'';
+        grid[y][x] = ch;
+        if (s.gold) {
+          colors[y][x] = `hsl(45,70%,${(30 + twinkle * 50).toFixed(0)}%)`;
+        } else {
+          colors[y][x] = `hsl(280,40%,${(30 + twinkle * 50).toFixed(0)}%)`;
+        }
+      }
+
+      // Player — single solitary marker
+      grid[CY][CX] = '@';
+      colors[CY][CX] = 'hsl(45,90%,75%)';
+      // a faint halo cross
+      if (CY - 1 >= 0 && grid[CY-1][CX] === ' ') { grid[CY-1][CX] = "'"; colors[CY-1][CX] = 'hsl(45,60%,30%)'; }
+      if (CY + 1 < H && grid[CY+1][CX] === ' ') { grid[CY+1][CX] = '.'; colors[CY+1][CX] = 'hsl(45,60%,30%)'; }
+
+      // Render
+      let buffer = '';
+      for (let y = 0; y < H; y++) {
+        let prev = null, span = '';
+        for (let x = 0; x < W; x++) {
+          let ch = grid[y][x];
+          if (ch === '<') ch = '&lt;';
+          else if (ch === '>') ch = '&gt;';
+          else if (ch === '&') ch = '&amp;';
+          const c = colors[y][x];
+          if (c === prev) span += ch;
+          else {
+            if (span.length) buffer += `<span style="color:${prev}">${span}</span>`;
+            span = ch; prev = c;
+          }
+        }
+        if (span.length) buffer += `<span style="color:${prev}">${span}</span>`;
+        buffer += '\n';
+      }
+      screen.innerHTML = buffer;
+
+      // HUD — slow values; everything pulses gently
+      document.getElementById('hud-lux').textContent = (0.03 + Math.abs(Math.sin(t * 0.1)) * 0.025).toFixed(3);
+      document.getElementById('hud-hr').textContent = (50 + Math.floor(Math.sin(t * 0.4) * 3)) + ' BPM';
+      document.getElementById('hud-temp').textContent = (10.8 + Math.sin(t * 0.15) * 0.6).toFixed(1) + '°C';
+
+      t += 0.05;
+    }
+
+    init();
+    setInterval(render, 100);
+    render();
+  </script>
+</body>
+</html>

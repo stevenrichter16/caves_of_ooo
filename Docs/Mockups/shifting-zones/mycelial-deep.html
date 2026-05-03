@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Shifting Zone — The Mycelial Deep</title>
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    background: #050807;
+    color: #6a8;
+    font-family: 'Courier New', Consolas, monospace;
+    overflow: hidden;
+    height: 100vh;
+  }
+  #wrapper { padding: 18px; box-sizing: border-box; }
+  #hud {
+    color: #6a8;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #1f2a22;
+    padding-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    text-shadow: 0 0 4px rgba(120, 220, 140, 0.25);
+  }
+  #hud .left, #hud .right { display: flex; gap: 22px; }
+  .label { color: #2d4030; }
+  .stat { color: #8c5; }
+  #screen {
+    font-size: 14px;
+    line-height: 1.0;
+    white-space: pre;
+    text-shadow: 0 0 5px rgba(120, 200, 90, 0.35), 0 0 12px rgba(80, 200, 80, 0.15);
+  }
+  .scanlines {
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0,
+      rgba(0,0,0,0) 2px,
+      rgba(0,0,0,0.18) 3px,
+      rgba(0,0,0,0) 4px
+    );
+    pointer-events: none;
+  }
+  .vignette {
+    position: fixed; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 50%, rgba(0,0,0,0.85) 100%);
+    pointer-events: none;
+  }
+  a.back {
+    position: fixed; top: 14px; right: 18px;
+    color: #2a4030; font-size: 11px; letter-spacing: 2px;
+    text-decoration: none;
+  }
+  a.back:hover { color: #6a8; }
+</style>
+</head>
+<body>
+  <a href="index.html" class="back">&lt; ZONES</a>
+  <div id="wrapper">
+    <div id="hud">
+      <div class="left">
+        <span><span class="label">SPORE:</span> <span class="stat" id="hud-spore">0.42</span></span>
+        <span><span class="label">PRESS:</span> <span class="stat" id="hud-press">8.4 atm</span></span>
+        <span><span class="label">HR:</span> <span class="stat" id="hud-hr">71 BPM</span></span>
+        <span><span class="label">OP:</span> <span class="stat">DR HARLAN WEBB</span></span>
+      </div>
+      <div class="right">
+        <span><span class="label">DEPTH:</span> <span class="stat">125m</span></span>
+        <span><span class="label">CHOIR:</span> <span class="stat" id="hud-choir">NEAR</span></span>
+        <span><span class="label">ZONE:</span> <span class="stat">MYCELIAL DEEP</span></span>
+      </div>
+    </div>
+    <div id="screen"></div>
+  </div>
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+  <script>
+    const W = 110, H = 34;
+    const CX = Math.floor(W / 2), CY = Math.floor(H / 2);
+    const screen = document.getElementById('screen');
+
+    let t = 0;
+    let bursts = [];
+
+    function maybeBurst() {
+      if (Math.random() < 0.05 && bursts.length < 4) {
+        bursts.push({
+          x: Math.floor(Math.random() * W),
+          y: Math.floor(Math.random() * H),
+          age: 0,
+          max: 18 + Math.floor(Math.random() * 10)
+        });
+      }
+    }
+
+    function noise(x, y, time) {
+      return (
+        Math.sin(x * 0.13 + time * 0.55) * 0.45 +
+        Math.sin(y * 0.18 + time * 0.40) * 0.40 +
+        Math.sin((x + y) * 0.08 + time * 0.85) * 0.30 +
+        Math.sin(Math.sqrt(x*x + y*y) * 0.07 - time * 0.45) * 0.40 +
+        Math.sin(x * 0.04 + y * 0.05 + time * 0.20) * 0.50
+      );
+    }
+
+    function pickChar(v) {
+      if (v < 0.10) return ' ';
+      if (v < 0.18) return '.';
+      if (v < 0.27) return ':';
+      if (v < 0.36) return ';';
+      if (v < 0.48) return '*';
+      if (v < 0.60) return '%';
+      if (v < 0.74) return '#';
+      if (v < 0.88) return '&amp;';
+      return '@';
+    }
+
+    function escape(c) { return c === '&amp;' ? c : c; }
+
+    function render() {
+      maybeBurst();
+      bursts = bursts.filter(b => b.age < b.max);
+
+      let prevColor = null;
+      let buffer = '';
+      let span = '';
+
+      for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+          let n = noise(x, y, t);
+
+          for (const b of bursts) {
+            const dx = x - b.x, dy = y - b.y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            const wave = b.age - dist;
+            if (wave > -2 && wave < 4) {
+              n += Math.exp(-Math.abs(wave) * 0.6) * 1.0 * (1 - b.age / b.max);
+            }
+          }
+
+          const v = Math.max(0, Math.min(1, (n + 1.7) / 3.4));
+          let ch = pickChar(v);
+
+          // Player marker (3x1 cluster)
+          let isPlayer = false;
+          if (y === CY) {
+            if (x === CX - 1) { ch = '/'; isPlayer = true; }
+            else if (x === CX) { ch = 'o'; isPlayer = true; }
+            else if (x === CX + 1) { ch = '\\'; isPlayer = true; }
+          }
+          if (y === CY - 1 && x === CX) { ch = '*'; isPlayer = true; }
+
+          let h, s, l;
+          if (isPlayer) {
+            h = 50; s = 90; l = 78;
+          } else if (v < 0.25) {
+            h = 95; s = 35; l = 8 + v * 30;
+          } else if (v < 0.55) {
+            h = 85 - (v - 0.25) * 40; s = 45 + v * 15; l = 18 + v * 30;
+          } else if (v < 0.80) {
+            h = 55 + (v - 0.55) * 30; s = 60; l = 30 + v * 28;
+          } else {
+            // dense — purple-tinged 'choir' tones
+            h = 280 + (v - 0.8) * 30; s = 50; l = 40 + (v - 0.8) * 80;
+          }
+
+          const color = `hsl(${h.toFixed(0)},${s.toFixed(0)}%,${l.toFixed(0)}%)`;
+
+          if (color === prevColor) {
+            span += ch;
+          } else {
+            if (span.length) buffer += `<span style="color:${prevColor}">${span}</span>`;
+            span = ch;
+            prevColor = color;
+          }
+        }
+        if (span.length) buffer += `<span style="color:${prevColor}">${span}</span>`;
+        buffer += '\n';
+        span = '';
+        prevColor = null;
+      }
+
+      screen.innerHTML = buffer;
+
+      const sd = (Math.sin(t * 0.3) * 0.18 + 0.5).toFixed(2);
+      document.getElementById('hud-spore').textContent = sd;
+      document.getElementById('hud-hr').textContent = (68 + Math.floor(Math.sin(t * 0.5) * 4)) + ' BPM';
+      document.getElementById('hud-press').textContent = (8.4 + Math.sin(t * 0.2) * 0.3).toFixed(1) + ' atm';
+      document.getElementById('hud-choir').textContent = bursts.length > 1 ? 'VERY NEAR' : (bursts.length === 1 ? 'NEAR' : 'PRESENT');
+
+      for (const b of bursts) b.age++;
+      t += 0.06;
+    }
+
+    setInterval(render, 75);
+    render();
+  </script>
+</body>
+</html>

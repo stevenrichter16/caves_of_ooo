@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Shifting Zone — The Temporal Substrate</title>
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    background: #060708;
+    color: #aac;
+    font-family: 'Courier New', Consolas, monospace;
+    overflow: hidden;
+    height: 100vh;
+  }
+  #wrapper { padding: 18px; box-sizing: border-box; }
+  #hud {
+    color: #aac;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #1f2330;
+    padding-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    text-shadow: 0 0 4px rgba(160, 180, 240, 0.25);
+  }
+  #hud .left, #hud .right { display: flex; gap: 22px; }
+  .label { color: #2d3245; }
+  .stat { color: #c8d0e8; }
+  #screen {
+    font-size: 14px;
+    line-height: 1.0;
+    white-space: pre;
+    text-shadow: 0 0 4px rgba(180, 200, 255, 0.3), 0 0 14px rgba(140, 170, 230, 0.1);
+  }
+  .scanlines {
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0,
+      rgba(0,0,0,0) 2px,
+      rgba(0,0,0,0.18) 3px,
+      rgba(0,0,0,0) 4px
+    );
+    pointer-events: none;
+  }
+  .vignette {
+    position: fixed; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 50%, rgba(0,0,0,0.85) 100%);
+    pointer-events: none;
+  }
+  a.back {
+    position: fixed; top: 14px; right: 18px;
+    color: #2a3245; font-size: 11px; letter-spacing: 2px;
+    text-decoration: none;
+  }
+  a.back:hover { color: #aac; }
+</style>
+</head>
+<body>
+  <a href="index.html" class="back">&lt; ZONES</a>
+  <div id="wrapper">
+    <div id="hud">
+      <div class="left">
+        <span><span class="label">DRIFT:</span> <span class="stat" id="hud-drift">0.18</span></span>
+        <span><span class="label">LAYER:</span> <span class="stat" id="hud-layer">3 / 7</span></span>
+        <span><span class="label">HR:</span> <span class="stat" id="hud-hr">71 BPM</span></span>
+        <span><span class="label">OP:</span> <span class="stat">DR HARLAN WEBB</span></span>
+      </div>
+      <div class="right">
+        <span><span class="label">DEPTH:</span> <span class="stat">∞ (recursive)</span></span>
+        <span><span class="label">BLEED:</span> <span class="stat" id="hud-bleed">STABLE</span></span>
+        <span><span class="label">ZONE:</span> <span class="stat">TEMPORAL SUBSTRATE</span></span>
+      </div>
+    </div>
+    <div id="screen"></div>
+  </div>
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+  <script>
+    const W = 110, H = 34;
+    const CX = Math.floor(W / 2), CY = Math.floor(H / 2);
+    const screen = document.getElementById('screen');
+
+    // Each cell has TWO layered states (present / past). Periodically the
+    // layers crossfade or briefly invert.
+    const present = []; // base char + base hue
+    const past = [];    // ghost char + ghost hue
+    const ghostFlicker = []; // 0..1 — how much past bleeds into present right now
+
+    // Glyphs for present ("inscribed" geometry)
+    const PRESENT_CHARS = ['.', "'", '`', ',', ':', ';', '|', '-', '=', '+', '~', '/', '\\'];
+    // Glyphs for past — letter fragments
+    const PAST_CHARS = ['I', 'I', 'I', 'I', 'V', 'V', 'X', 'L', 'i', 'l', 't', 'r', 'n', 'm', '.', "'", '"'];
+
+    // Occasional "fragments" — short string overlays that flicker into existence
+    let fragments = [];
+    const FRAGMENT_TEXTS = [
+      'WAS', 'WAS HERE', 'BEFORE', 'AFTER', 'ECHO',
+      'THE BRIDGE', 'AGAIN', 'STILL', 'NOT YET',
+      'HE LIVED', 'SHE WROTE', 'THEY KNEW', 'WE FORGOT',
+      '. . .', 'HERE', 'HEAR', 'NEAR'
+    ];
+
+    function noise(x, y, time) {
+      return (
+        Math.sin(x * 0.11 + time * 0.40) * 0.5 +
+        Math.sin(y * 0.14 + time * 0.30) * 0.4 +
+        Math.sin((x - y) * 0.07 + time * 0.50) * 0.4
+      );
+    }
+
+    function init() {
+      for (let y = 0; y < H; y++) {
+        present[y] = [];
+        past[y] = [];
+        ghostFlicker[y] = [];
+        for (let x = 0; x < W; x++) {
+          present[y][x] = PRESENT_CHARS[Math.floor(Math.random() * PRESENT_CHARS.length)];
+          past[y][x] = PAST_CHARS[Math.floor(Math.random() * PAST_CHARS.length)];
+          ghostFlicker[y][x] = 0;
+        }
+      }
+    }
+
+    function maybeFragment() {
+      if (Math.random() < 0.06 && fragments.length < 3) {
+        const text = FRAGMENT_TEXTS[Math.floor(Math.random() * FRAGMENT_TEXTS.length)];
+        fragments.push({
+          text,
+          x: Math.floor(Math.random() * (W - text.length - 4)) + 2,
+          y: Math.floor(Math.random() * (H - 2)) + 1,
+          age: 0,
+          max: 28 + Math.floor(Math.random() * 18)
+        });
+      }
+    }
+
+    function maybeShiftCells() {
+      // Occasionally re-roll a tile's past or present (memory drift)
+      for (let i = 0; i < 14; i++) {
+        const x = Math.floor(Math.random() * W);
+        const y = Math.floor(Math.random() * H);
+        if (Math.random() < 0.5) {
+          past[y][x] = PAST_CHARS[Math.floor(Math.random() * PAST_CHARS.length)];
+        } else {
+          present[y][x] = PRESENT_CHARS[Math.floor(Math.random() * PRESENT_CHARS.length)];
+        }
+        // start a flicker
+        ghostFlicker[y][x] = 1;
+      }
+    }
+
+    let t = 0;
+
+    function render() {
+      maybeFragment();
+      maybeShiftCells();
+      fragments = fragments.filter(f => f.age < f.max);
+
+      // Build per-row character grid first, then write fragments into it.
+      const grid = [];
+      const colors = [];
+      for (let y = 0; y < H; y++) {
+        grid[y] = [];
+        colors[y] = [];
+        for (let x = 0; x < W; x++) {
+          const n = noise(x, y, t);
+          const v = (n + 1.3) / 2.6;
+          // Density gates whether tile is "thick" with inscription or sparse
+          let presentCh = present[y][x];
+          if (v < 0.18) presentCh = ' ';
+          else if (v < 0.30 && presentCh !== '.' && presentCh !== "'" && presentCh !== ',') presentCh = '.';
+
+          // Per-tile flicker: when ghostFlicker is high, the tile shows the past instead
+          const flicker = ghostFlicker[y][x];
+          let ch = presentCh;
+          let isGhost = false;
+          if (flicker > 0.5) { ch = past[y][x]; isGhost = true; }
+
+          // Player marker
+          let isPlayer = false;
+          if (y === CY && x === CX) { ch = '@'; isPlayer = true; }
+          else if (y === CY && x === CX - 1) { ch = '['; isPlayer = true; }
+          else if (y === CY && x === CX + 1) { ch = ']'; isPlayer = true; }
+
+          // Color
+          let h, s, l;
+          if (isPlayer) {
+            h = 200; s = 80; l = 82;
+          } else if (isGhost) {
+            // Sepia / dust
+            h = 35 + Math.random() * 8;
+            s = 25 + Math.random() * 15;
+            l = 35 + flicker * 25;
+          } else if (v < 0.25) {
+            h = 220; s = 20; l = 8 + v * 18;
+          } else if (v < 0.5) {
+            h = 215; s = 30; l = 22 + v * 25;
+          } else if (v < 0.75) {
+            h = 205; s = 35 + v * 10; l = 38 + v * 22;
+          } else {
+            h = 195; s = 40; l = 55 + (v - 0.75) * 80;
+          }
+
+          grid[y][x] = ch;
+          colors[y][x] = `hsl(${h.toFixed(0)},${s.toFixed(0)}%,${l.toFixed(0)}%)`;
+
+          // decay flicker
+          ghostFlicker[y][x] = Math.max(0, flicker - 0.08);
+        }
+      }
+
+      // Overlay fragments — they pulse in/out
+      for (const frag of fragments) {
+        const lifeT = frag.age / frag.max; // 0..1
+        // alpha curve: rise then fall
+        const alpha = Math.sin(lifeT * Math.PI);
+        for (let i = 0; i < frag.text.length; i++) {
+          const x = frag.x + i, y = frag.y;
+          if (x < 0 || x >= W || y < 0 || y >= H) continue;
+          if (alpha < 0.15) continue;
+          grid[y][x] = frag.text[i];
+          // amber/gold for fragments — like underlining text
+          const l = 50 + alpha * 35;
+          colors[y][x] = `hsl(40,60%,${l.toFixed(0)}%)`;
+        }
+        frag.age++;
+      }
+
+      // Stitch into HTML, run-grouping by color
+      let buffer = '';
+      for (let y = 0; y < H; y++) {
+        let prev = null, span = '';
+        for (let x = 0; x < W; x++) {
+          let ch = grid[y][x];
+          // escape special chars
+          if (ch === '<') ch = '&lt;';
+          else if (ch === '>') ch = '&gt;';
+          else if (ch === '&') ch = '&amp;';
+          const c = colors[y][x];
+          if (c === prev) span += ch;
+          else {
+            if (span.length) buffer += `<span style="color:${prev}">${span}</span>`;
+            span = ch; prev = c;
+          }
+        }
+        if (span.length) buffer += `<span style="color:${prev}">${span}</span>`;
+        buffer += '\n';
+      }
+      screen.innerHTML = buffer;
+
+      // HUD
+      const drift = (0.12 + Math.abs(Math.sin(t * 0.18)) * 0.15).toFixed(2);
+      document.getElementById('hud-drift').textContent = drift;
+      const layer = (3 + Math.floor(Math.sin(t * 0.07) * 2));
+      document.getElementById('hud-layer').textContent = layer + ' / 7';
+      document.getElementById('hud-hr').textContent = (68 + Math.floor(Math.sin(t * 0.5) * 3)) + ' BPM';
+      document.getElementById('hud-bleed').textContent = fragments.length > 1 ? 'BLEEDING' : 'STABLE';
+      t += 0.06;
+    }
+
+    init();
+    setInterval(render, 90);
+    render();
+  </script>
+</body>
+</html>
