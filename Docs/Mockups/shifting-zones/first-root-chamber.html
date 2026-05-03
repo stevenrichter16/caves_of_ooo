@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Shifting Zone — The First Root Chamber</title>
+<style>
+  :root { --bg:#0a0205; --hud:#a64; --hud-label:#3a1410; --hud-stat:#e8a880; }
+  html,body { margin:0; padding:0; background:var(--bg); color:var(--hud); font-family:'Menlo','Courier New',Consolas,monospace; overflow:hidden; height:100vh; height:100dvh; user-select:none; -webkit-user-select:none; touch-action:none; }
+  #wrapper { padding:14px; box-sizing:border-box; height:100vh; height:100dvh; display:flex; flex-direction:column; }
+  #hud { color:var(--hud); font-size:11px; letter-spacing:1.4px; margin-bottom:8px; border-bottom:1px solid #2a1010; padding-bottom:8px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px 16px; text-shadow:0 0 5px rgba(220,80,60,.3); flex-shrink:0; }
+  #hud .group { display:flex; gap:14px; flex-wrap:wrap; }
+  .label { color:var(--hud-label); } .stat { color:var(--hud-stat); }
+  .alert { color:#ff6040 !important; animation:pulse 1.4s steps(2) infinite; }
+  @keyframes pulse { 50% { opacity:.4; } }
+  #screen { font-size:13px; line-height:1.0; white-space:pre; text-shadow:0 0 5px rgba(220,80,40,.4),0 0 18px rgba(180,40,40,.16); cursor:crosshair; flex:1; overflow:hidden; }
+  #beat-bar { display:inline-block; width:100px; height:6px; background:#1a0608; border:1px solid #3a1418; vertical-align:middle; }
+  #beat-bar > span { display:block; height:100%; background:linear-gradient(90deg,#822,#f64); transition:width .18s ease-out; }
+  .scanlines { position:fixed; inset:0; background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 2px,rgba(0,0,0,.20) 3px,rgba(0,0,0,0) 4px); pointer-events:none; z-index:100; }
+  .vignette { position:fixed; inset:0; background:radial-gradient(ellipse at center,rgba(0,0,0,0) 35%,rgba(0,0,0,.95) 100%); pointer-events:none; z-index:99; }
+  .crt-glow { position:fixed; inset:0; box-shadow:inset 0 0 240px rgba(180,40,40,.10); pointer-events:none; z-index:98; }
+  .grand-pulse { position:fixed; inset:0; background:rgba(220,80,40,0); pointer-events:none; z-index:97; }
+  a.back { position:fixed; top:10px; right:14px; color:#3a1410; font-size:11px; letter-spacing:2px; text-decoration:none; z-index:200; padding:4px 8px; }
+  a.back:hover,a.back:active { color:#a64; }
+  .hint { position:fixed; bottom:8px; left:14px; color:#3a1410; font-size:10px; letter-spacing:1.5px; z-index:200; }
+</style>
+</head>
+<body>
+  <a href="index.html" class="back">&lt; ZONES</a>
+  <div id="wrapper">
+    <div id="hud">
+      <div class="group">
+        <span><span class="label">PROXIMITY:</span> <span class="stat alert" id="hud-prox">CONTACT</span></span>
+        <span><span class="label">CONSCIOUSNESS:</span> <span class="stat" id="hud-cons">REC. 4</span></span>
+        <span><span class="label">HR:</span> <span class="stat" id="hud-hr">94</span> <span id="beat-bar"><span></span></span></span>
+        <span><span class="label">OP:</span> <span class="stat">DR HARLAN WEBB</span></span>
+      </div>
+      <div class="group">
+        <span><span class="label">DEPTH:</span> <span class="stat">3,114m</span></span>
+        <span><span class="label">DREAM:</span> <span class="stat" id="hud-dream">SHALLOW</span></span>
+        <span><span class="label">ZONE:</span> <span class="stat alert">FIRST ROOT CHAMBER</span></span>
+      </div>
+    </div>
+    <div id="screen"></div>
+  </div>
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+  <div class="crt-glow"></div>
+  <div class="grand-pulse" id="grandPulse"></div>
+  <div class="hint">DRAG TO APPROACH &middot; THE THING IS LISTENING TO YOUR HEART</div>
+
+  <script>
+  'use strict';
+  const screen = document.getElementById('screen');
+  const grandPulseEl = document.getElementById('grandPulse');
+  const FONT_W = 7.81, FONT_H = 13;
+  let W=110, H=34, CX=55, CY=17;
+  let playerX=CX, playerY=CY+10, targetX=CX, targetY=CY+10;
+  let t=0;
+  let grandPulseLevel=0;
+  let thoughtPulses=[];
+
+  function computeSize() {
+    const w = window.innerWidth - 28;
+    const h = window.innerHeight - 80;
+    W = Math.max(50, Math.floor(w/FONT_W));
+    H = Math.max(18, Math.floor(h/FONT_H));
+    CX = Math.floor(W/2); CY = Math.floor(H/2);
+    if (playerY < CY+5) { playerY = CY+10; targetY = playerY; }
+    if (playerX>=W) playerX=W-1;
+  }
+
+  // Hashed gradient noise
+  function hash(x,y){ const s=Math.sin(x*127.1+y*311.7+13.5)*43758.5453; return s-Math.floor(s); }
+  function smooth(t){ return t*t*(3-2*t); }
+  function vnoise(x,y){
+    const xi=Math.floor(x), yi=Math.floor(y);
+    const xf=x-xi, yf=y-yi;
+    const a=hash(xi,yi), b=hash(xi+1,yi), c=hash(xi,yi+1), d=hash(xi+1,yi+1);
+    const u=smooth(xf), v=smooth(yf);
+    return a*(1-u)*(1-v)+b*u*(1-v)+c*(1-u)*v+d*u*v;
+  }
+  function fbm(x,y,t){
+    let v=0, amp=0.55, freq=1;
+    for(let i=0;i<3;i++){ v += vnoise(x*freq+t*0.05, y*freq+t*0.04) * amp; amp*=0.5; freq*=2.05; }
+    return v;
+  }
+
+  // Input
+  function setTarget(clientX, clientY){
+    const r = screen.getBoundingClientRect();
+    const x = Math.floor((clientX-r.left)/(r.width/W));
+    const y = Math.floor((clientY-r.top)/(r.height/H));
+    if (x>=0 && x<W && y>=0 && y<H){ targetX=x; targetY=y; }
+  }
+  let dragging=false;
+  screen.addEventListener('mousedown', e=>{ dragging=true; setTarget(e.clientX,e.clientY); });
+  window.addEventListener('mousemove', e=>{ if(dragging) setTarget(e.clientX,e.clientY); });
+  window.addEventListener('mouseup', ()=>dragging=false);
+  screen.addEventListener('touchstart', e=>{ const t=e.touches[0]; setTarget(t.clientX,t.clientY); e.preventDefault(); }, {passive:false});
+  screen.addEventListener('touchmove', e=>{ const t=e.touches[0]; setTarget(t.clientX,t.clientY); e.preventDefault(); }, {passive:false});
+
+  function maybeThought(){
+    // Bright "thoughts" pulse outward from the entity center periodically
+    if (Math.random() < 0.012){
+      thoughtPulses.push({ age:0, max: 28+((Math.random()*8)|0), strength: 0.5+Math.random()*0.5 });
+    }
+  }
+
+  function frame(){
+    maybeThought();
+    thoughtPulses = thoughtPulses.filter(p=>p.age<p.max);
+
+    // Player drift — heavier here, the chamber draws
+    playerX += (targetX-playerX)*0.10;
+    playerY += (targetY-playerY)*0.10;
+    const px=Math.round(playerX), py=Math.round(playerY);
+
+    // Grand pulse — slow, breathing rhythm of the entity
+    const phase = t * 0.12;
+    const breath = 0.5 + 0.5 * Math.sin(phase);
+    if (Math.sin(phase) > 0.95 && grandPulseLevel < 0.05){
+      grandPulseLevel = 1.0;
+    }
+    grandPulseLevel *= 0.92;
+    grandPulseEl.style.background = `rgba(220,80,40,${(grandPulseLevel*0.10).toFixed(3)})`;
+
+    // The First Root: a vast shape filling upper 2/3 of the screen.
+    // Tendril-mass with central bright "consciousness."
+    const entityCenterX = W/2;
+    const entityCenterY = H * 0.35;
+
+    let buf='';
+    for (let y=0;y<H;y++){
+      let prev=null, span='';
+      for (let x=0;x<W;x++){
+        // Distance from entity center
+        const dx = x - entityCenterX;
+        const dy = y - entityCenterY;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+
+        // Entity body — large radius with fbm-irregular boundary
+        const entityRadius = Math.min(W,H) * 0.42;
+        const irregularR = entityRadius * (0.85 + 0.15 * Math.sin(t*0.2 + Math.atan2(dy,dx)*4));
+        const inEntity = dist < irregularR;
+
+        // Density: high in center, falls off, tendrils extend
+        let density;
+        if (inEntity){
+          density = (1 - dist/irregularR) * 0.85 + breath * 0.15;
+          // add fbm texture
+          density += fbm(x*0.12, y*0.16, t) * 0.25;
+        } else {
+          // Outside — sparse tendrils
+          const tendril = fbm(x*0.05, y*0.07, t*0.5);
+          const tendrilReach = Math.max(0, 1 - (dist - irregularR)/8);
+          density = tendril * tendrilReach * 0.5;
+        }
+
+        // Thought pulse contribution — radial wave from center
+        for (const p of thoughtPulses){
+          const wave = p.age*1.2 - dist;
+          if (wave > -2 && wave < 4){
+            const contrib = Math.exp(-Math.abs(wave)*0.6) * (1 - p.age/p.max) * p.strength;
+            density += contrib * 0.7;
+          }
+        }
+
+        density = Math.max(0, Math.min(1.4, density));
+
+        // Pick char
+        let ch;
+        if (density < 0.06) ch = ' ';
+        else if (density < 0.14) ch = '.';
+        else if (density < 0.24) ch = ':';
+        else if (density < 0.36) ch = ';';
+        else if (density < 0.50) ch = '*';
+        else if (density < 0.65) ch = '%';
+        else if (density < 0.80) ch = '#';
+        else if (density < 1.00) ch = '&';
+        else ch = '@';
+
+        // Color: deep crimson core to dark green outer
+        let h_, s_, l_;
+        if (inEntity){
+          // Crimson + flesh tones, brighter near center
+          const coreT = 1 - dist/irregularR;
+          h_ = 350 - coreT*15;
+          s_ = 60 + coreT*15;
+          l_ = (10 + density*42 + grandPulseLevel*25) * (0.7 + breath*0.3);
+        } else {
+          // Outer tendrils: dark red-green
+          h_ = 0 + density*60;
+          s_ = 35 + density*15;
+          l_ = (6 + density*32) * (0.7 + breath*0.3);
+        }
+
+        // Player — exists in the lower portion, dwarfed
+        let isPlayer=false;
+        if (y===py){
+          if (x===px-1) { ch='/'; isPlayer=true; }
+          else if (x===px) { ch='@'; isPlayer=true; }
+          else if (x===px+1) { ch='\\'; isPlayer=true; }
+        }
+        if (isPlayer){ h_=50; s_=85; l_=72; }
+
+        if (ch==='<') ch='&lt;';
+        else if (ch==='>') ch='&gt;';
+        else if (ch==='&') ch='&amp;';
+
+        const color = `hsl(${(h_+360)%360|0},${s_|0}%,${l_|0}%)`;
+        if (color===prev) span += ch;
+        else { if (span) buf+=`<span style="color:${prev}">${span}</span>`; span=ch; prev=color; }
+      }
+      if (span) buf += `<span style="color:${prev}">${span}</span>`;
+      buf += '\n';
+    }
+    screen.innerHTML = buf;
+
+    for (const p of thoughtPulses) p.age++;
+
+    // HUD
+    const beat = (Math.sin(phase)+1)/2;
+    document.getElementById('beat-bar').firstElementChild.style.width = (beat*100)|0 + '%';
+    document.getElementById('hud-hr').textContent = (88 + Math.floor(beat*12) + thoughtPulses.length*3);
+    const cons = thoughtPulses.length >= 2 ? 'REC. 7+' : (thoughtPulses.length === 1 ? 'REC. 5' : 'REC. 4');
+    document.getElementById('hud-cons').textContent = cons;
+    document.getElementById('hud-dream').textContent = grandPulseLevel > 0.3 ? 'DEEP' : (thoughtPulses.length > 0 ? 'STIRRING' : 'SHALLOW');
+
+    t += 0.05;
+    requestAnimationFrame(frame);
+  }
+
+  computeSize();
+  window.addEventListener('resize', computeSize);
+  requestAnimationFrame(frame);
+  </script>
+</body>
+</html>

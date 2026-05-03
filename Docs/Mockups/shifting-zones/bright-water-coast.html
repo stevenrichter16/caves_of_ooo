@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Shifting Zone — The Bright-Water Coast</title>
+<style>
+  :root { --bg:#020812; --hud:#7ad; --hud-label:#1a2c3e; --hud-stat:#bcefff; }
+  html,body { margin:0; padding:0; background:var(--bg); color:var(--hud); font-family:'Menlo','Courier New',Consolas,monospace; overflow:hidden; height:100vh; height:100dvh; user-select:none; -webkit-user-select:none; touch-action:none; }
+  #wrapper { padding:14px; box-sizing:border-box; height:100vh; height:100dvh; display:flex; flex-direction:column; }
+  #hud { color:var(--hud); font-size:11px; letter-spacing:1.4px; margin-bottom:8px; border-bottom:1px solid #15263a; padding-bottom:8px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px 16px; text-shadow:0 0 4px rgba(140,200,255,.3); flex-shrink:0; }
+  #hud .group { display:flex; gap:14px; flex-wrap:wrap; }
+  .label { color:var(--hud-label); } .stat { color:var(--hud-stat); }
+  #screen { font-size:13px; line-height:1.0; white-space:pre; text-shadow:0 0 5px rgba(140,200,255,.4),0 0 18px rgba(80,160,255,.18); cursor:crosshair; flex:1; overflow:hidden; }
+  #tide-bar { display:inline-block; width:80px; height:6px; background:#0a1828; border:1px solid #1f3550; vertical-align:middle; }
+  #tide-bar > span { display:block; height:100%; background:linear-gradient(90deg,#264,#9df); transition:width .25s; }
+  .scanlines { position:fixed; inset:0; background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 2px,rgba(0,0,0,.18) 3px,rgba(0,0,0,0) 4px); pointer-events:none; z-index:100; }
+  .vignette { position:fixed; inset:0; background:radial-gradient(ellipse at center,rgba(0,0,0,0) 50%,rgba(0,0,0,.88) 100%); pointer-events:none; z-index:99; }
+  .crt-glow { position:fixed; inset:0; box-shadow:inset 0 0 220px rgba(80,160,255,.06); pointer-events:none; z-index:98; }
+  a.back { position:fixed; top:10px; right:14px; color:#1a2c3e; font-size:11px; letter-spacing:2px; text-decoration:none; z-index:200; padding:4px 8px; }
+  a.back:hover,a.back:active { color:#7ad; }
+  .hint { position:fixed; bottom:8px; left:14px; color:#1a2c3e; font-size:10px; letter-spacing:1.5px; z-index:200; }
+</style>
+</head>
+<body>
+  <a href="index.html" class="back">&lt; ZONES</a>
+  <div id="wrapper">
+    <div id="hud">
+      <div class="group">
+        <span><span class="label">TIDE:</span> <span class="stat" id="hud-tide">RISING</span> <span id="tide-bar"><span></span></span></span>
+        <span><span class="label">CURRENT:</span> <span class="stat" id="hud-current">+0.42 kt</span></span>
+        <span><span class="label">HR:</span> <span class="stat" id="hud-hr">68</span></span>
+        <span><span class="label">OP:</span> <span class="stat">DR HARLAN WEBB</span></span>
+      </div>
+      <div class="group">
+        <span><span class="label">DEPTH:</span> <span class="stat" id="hud-depth">28m</span></span>
+        <span><span class="label">SALINITY:</span> <span class="stat" id="hud-sal">3.8%</span></span>
+        <span><span class="label">SURF:</span> <span class="stat" id="hud-surf">MODERATE</span></span>
+        <span><span class="label">ZONE:</span> <span class="stat">BRIGHT-WATER COAST</span></span>
+      </div>
+    </div>
+    <div id="screen"></div>
+  </div>
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+  <div class="crt-glow"></div>
+  <div class="hint">DRAG TO SWIM &middot; WAVES FLOW &middot; FOAM BURSTS ON ROCK</div>
+
+  <script>
+  'use strict';
+  const screen = document.getElementById('screen');
+  const FONT_W = 7.81, FONT_H = 13;
+  let W=110, H=34, CX=55, CY=17;
+  let playerX=CX, playerY=CY, targetX=CX, targetY=CY;
+  let rocks=[];      // static rocky outcrops
+  let foamBursts=[]; // splash events
+  let t=0;
+  let tideLevel=0.5;
+
+  function computeSize() {
+    const w = window.innerWidth - 28;
+    const h = window.innerHeight - 80;
+    W = Math.max(50, Math.floor(w/FONT_W));
+    H = Math.max(18, Math.floor(h/FONT_H));
+    CX = Math.floor(W/2); CY = Math.floor(H/2);
+    initWorld();
+  }
+
+  function initWorld(){
+    rocks=[];
+    // Place rock clusters: 3-6 rough islands across the screen
+    const numClusters = Math.max(3, Math.floor(W/24));
+    for (let i=0;i<numClusters;i++){
+      const cx = ((Math.random()*W)|0);
+      const cy = ((Math.random()*H)|0);
+      const size = 3 + Math.floor(Math.random()*5);
+      for (let j=0;j<size;j++){
+        const ox = (Math.random()-0.5)*4;
+        const oy = (Math.random()-0.5)*3;
+        rocks.push({ x: Math.round(cx+ox), y: Math.round(cy+oy), big: Math.random()<0.4 });
+      }
+    }
+    if (playerX>=W) playerX=W-1; if (playerY>=H) playerY=H-1;
+  }
+
+  // Layered wave pattern — multiple horizontal flows at different speeds + amplitudes
+  function waveVal(x, y, time){
+    // Three layers — far slow, mid, near fast
+    const farX = (x*0.05) - time*0.4;
+    const midX = (x*0.10) - time*0.9;
+    const nearX = (x*0.18) - time*1.6;
+
+    const far = Math.sin(farX) * 0.5 + Math.sin(y*0.07 - time*0.2) * 0.3;
+    const mid = Math.sin(midX + y*0.18) * 0.45;
+    const near = Math.sin(nearX + Math.sin(y*0.3+time*0.5)*1.2) * 0.4;
+
+    return (far + mid + near) / 1.65;
+  }
+
+  function rockNear(x,y,radius=0){
+    for (const r of rocks){
+      const dx = x-r.x, dy = y-r.y;
+      const d2 = dx*dx + dy*dy;
+      const lim = radius + (r.big?1.4:0.7);
+      if (d2 <= lim*lim) return r;
+    }
+    return null;
+  }
+
+  function maybeFoam(){
+    // Foam bursts when waves crash into rocks
+    if (Math.random() < 0.15){
+      const r = rocks[(Math.random()*rocks.length)|0];
+      if (r){
+        const dx = (Math.random()-0.5)*4;
+        const dy = (Math.random()-0.5)*2;
+        foamBursts.push({ x: r.x+dx, y: r.y+dy, age:0, max: 12+((Math.random()*6)|0) });
+      }
+    }
+  }
+
+  // Input
+  function setTarget(clientX, clientY){
+    const r = screen.getBoundingClientRect();
+    const x = Math.floor((clientX-r.left)/(r.width/W));
+    const y = Math.floor((clientY-r.top)/(r.height/H));
+    if (x>=0 && x<W && y>=0 && y<H){ targetX=x; targetY=y; }
+  }
+  let dragging=false;
+  screen.addEventListener('mousedown', e=>{ dragging=true; setTarget(e.clientX,e.clientY); });
+  window.addEventListener('mousemove', e=>{ if(dragging) setTarget(e.clientX,e.clientY); });
+  window.addEventListener('mouseup', ()=>dragging=false);
+  screen.addEventListener('touchstart', e=>{ const t=e.touches[0]; setTarget(t.clientX,t.clientY); e.preventDefault(); }, {passive:false});
+  screen.addEventListener('touchmove', e=>{ const t=e.touches[0]; setTarget(t.clientX,t.clientY); e.preventDefault(); }, {passive:false});
+
+  function frame(){
+    maybeFoam();
+    foamBursts = foamBursts.filter(f=>f.age<f.max);
+
+    // Player drift — currents pull slightly
+    const currentDrag = Math.sin(t*0.3) * 0.06;
+    playerX += (targetX-playerX)*0.18 + currentDrag;
+    playerY += (targetY-playerY)*0.18;
+    playerX = Math.max(0, Math.min(W-1, playerX));
+    playerY = Math.max(0, Math.min(H-1, playerY));
+    const px=Math.round(playerX), py=Math.round(playerY);
+
+    tideLevel = 0.5 + 0.4 * Math.sin(t*0.04);
+
+    let buf='';
+    for (let y=0;y<H;y++){
+      let prev=null, span='';
+      for (let x=0;x<W;x++){
+        // Rock?
+        const rockHere = rockNear(x,y);
+
+        // Wave value at this cell
+        const wv = waveVal(x, y, t);
+        // Crash factor — higher near rocks
+        let crash = 0;
+        if (rockHere){
+          crash = 1.0;
+        } else {
+          const r = rockNear(x,y,2);
+          if (r){
+            const dx=x-r.x, dy=y-r.y, d=Math.sqrt(dx*dx+dy*dy);
+            crash = Math.max(0, 1 - d/2);
+          }
+        }
+        // Foam burst contribution
+        let foamHere = 0;
+        for (const f of foamBursts){
+          const dx=x-f.x, dy=y-f.y, d=Math.sqrt(dx*dx+dy*dy);
+          const wave = f.age*0.7 - d;
+          if (wave > -1.5 && wave < 2.5){
+            foamHere = Math.max(foamHere, Math.exp(-Math.abs(wave)*0.7) * (1-f.age/f.max));
+          }
+        }
+
+        let ch, color;
+
+        if (rockHere){
+          // Rock — dark, gritty
+          ch = rockHere.big ? '#' : '%';
+          const l = 14 + (rockHere.big ? 6 : 0);
+          color = `hsl(210,12%,${l}%)`;
+        } else {
+          // Open water
+          const v = wv + crash*0.4 + foamHere*0.8;
+          // Pick char
+          if (foamHere > 0.55){
+            ch = (foamHere > 0.8 ? '*' : (Math.random()<0.5 ? "'" : '"'));
+          } else if (crash > 0.4){
+            ch = v > 0.2 ? '~' : (v > 0 ? '=' : '-');
+          } else {
+            // Smooth water — choose by surface height
+            if (v > 0.5) ch = '~';
+            else if (v > 0.25) ch = '=';
+            else if (v > 0.05) ch = '-';
+            else if (v > -0.15) ch = '.';
+            else if (v > -0.35) ch = ',';
+            else ch = ' ';
+          }
+
+          // Color: deep blue at lows, lighter at peaks, white at foam
+          let h_, s_, l_;
+          if (foamHere > 0.5){
+            h_ = 200; s_ = 30; l_ = 75 + foamHere*15;
+          } else if (foamHere > 0.2){
+            h_ = 200; s_ = 40; l_ = 55 + foamHere*20;
+          } else {
+            const norm = (v + 1) / 2;
+            h_ = 210 - norm*15;
+            s_ = 50 + norm*25;
+            l_ = 8 + norm*45;
+          }
+          color = `hsl(${h_|0},${s_|0}%,${l_|0}%)`;
+        }
+
+        // Player marker (small swimmer)
+        let isPlayer=false;
+        if (y===py){
+          if (x===px-1) { ch='/'; isPlayer=true; }
+          else if (x===px) { ch='O'; isPlayer=true; }
+          else if (x===px+1) { ch='\\'; isPlayer=true; }
+        }
+        if (isPlayer) color = 'hsl(45,90%,82%)';
+
+        if (color===prev) span += ch;
+        else { if (span) buf+=`<span style="color:${prev}">${span}</span>`; span=ch; prev=color; }
+      }
+      if (span) buf += `<span style="color:${prev}">${span}</span>`;
+      buf += '\n';
+    }
+    screen.innerHTML = buf;
+
+    for (const f of foamBursts) f.age++;
+
+    // HUD
+    document.getElementById('hud-tide').textContent = tideLevel > 0.55 ? 'RISING' : (tideLevel > 0.45 ? 'STABLE' : 'EBBING');
+    document.getElementById('tide-bar').firstElementChild.style.width = (tideLevel*100)|0 + '%';
+    document.getElementById('hud-current').textContent = (Math.sin(t*0.3)*0.6).toFixed(2) + ' kt';
+    document.getElementById('hud-hr').textContent = (66 + Math.floor(Math.sin(t*0.5)*3) + Math.floor(foamBursts.length*0.7));
+    document.getElementById('hud-depth').textContent = (28 + Math.sin(t*0.04)*8).toFixed(0) + 'm';
+    document.getElementById('hud-sal').textContent = (3.7 + Math.sin(t*0.1)*0.2).toFixed(1) + '%';
+    document.getElementById('hud-surf').textContent = foamBursts.length>=3 ? 'HEAVY' : (foamBursts.length>=1 ? 'MODERATE' : 'LIGHT');
+
+    t += 0.06;
+    requestAnimationFrame(frame);
+  }
+
+  computeSize();
+  window.addEventListener('resize', computeSize);
+  requestAnimationFrame(frame);
+  </script>
+</body>
+</html>

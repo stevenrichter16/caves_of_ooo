@@ -2,72 +2,38 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Shifting Zone — The Temporal Substrate</title>
 <style>
-  html, body {
-    margin: 0; padding: 0;
-    background: #060708;
-    color: #aac;
-    font-family: 'Courier New', Consolas, monospace;
-    overflow: hidden;
-    height: 100vh;
-  }
-  #wrapper { padding: 18px; box-sizing: border-box; }
-  #hud {
-    color: #aac;
-    font-size: 13px;
-    letter-spacing: 1.5px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #1f2330;
-    padding-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
-    text-shadow: 0 0 4px rgba(160, 180, 240, 0.25);
-  }
-  #hud .left, #hud .right { display: flex; gap: 22px; }
-  .label { color: #2d3245; }
-  .stat { color: #c8d0e8; }
-  #screen {
-    font-size: 14px;
-    line-height: 1.0;
-    white-space: pre;
-    text-shadow: 0 0 4px rgba(180, 200, 255, 0.3), 0 0 14px rgba(140, 170, 230, 0.1);
-  }
-  .scanlines {
-    position: fixed; inset: 0;
-    background: repeating-linear-gradient(
-      to bottom,
-      rgba(0,0,0,0) 0,
-      rgba(0,0,0,0) 2px,
-      rgba(0,0,0,0.18) 3px,
-      rgba(0,0,0,0) 4px
-    );
-    pointer-events: none;
-  }
-  .vignette {
-    position: fixed; inset: 0;
-    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 50%, rgba(0,0,0,0.85) 100%);
-    pointer-events: none;
-  }
-  a.back {
-    position: fixed; top: 14px; right: 18px;
-    color: #2a3245; font-size: 11px; letter-spacing: 2px;
-    text-decoration: none;
-  }
-  a.back:hover { color: #aac; }
+  :root { --bg:#060708; --hud:#aac; --hud-label:#2d3245; --hud-stat:#c8d0e8; }
+  html,body { margin:0; padding:0; background:var(--bg); color:var(--hud); font-family:'Menlo','Courier New',Consolas,monospace; overflow:hidden; height:100vh; height:100dvh; user-select:none; -webkit-user-select:none; touch-action:none; }
+  #wrapper { padding:14px; box-sizing:border-box; height:100vh; height:100dvh; display:flex; flex-direction:column; }
+  #hud { color:var(--hud); font-size:11px; letter-spacing:1.4px; margin-bottom:8px; border-bottom:1px solid #1f2330; padding-bottom:8px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px 16px; text-shadow:0 0 4px rgba(160,180,240,.3); flex-shrink:0; }
+  #hud .group { display:flex; gap:14px; flex-wrap:wrap; }
+  .label { color:var(--hud-label); } .stat { color:var(--hud-stat); }
+  .alert { color:#e8c170; }
+  #screen { font-size:13px; line-height:1.0; white-space:pre; text-shadow:0 0 4px rgba(180,200,255,.32),0 0 14px rgba(140,170,230,.12); cursor:crosshair; flex:1; overflow:hidden; }
+  #layer-bar { display:inline-block; width:80px; height:6px; background:#0c0e16; border:1px solid #1f2535; vertical-align:middle; position:relative; }
+  #layer-bar > span { display:block; height:100%; background:linear-gradient(90deg,#445,#aac); }
+  .scanlines { position:fixed; inset:0; background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 2px,rgba(0,0,0,.18) 3px,rgba(0,0,0,0) 4px); pointer-events:none; z-index:100; }
+  .vignette { position:fixed; inset:0; background:radial-gradient(ellipse at center,rgba(0,0,0,0) 45%,rgba(0,0,0,.92) 100%); pointer-events:none; z-index:99; }
+  .crt-glow { position:fixed; inset:0; box-shadow:inset 0 0 220px rgba(160,180,240,.05); pointer-events:none; z-index:98; }
+  a.back { position:fixed; top:10px; right:14px; color:#2a3245; font-size:11px; letter-spacing:2px; text-decoration:none; z-index:200; padding:4px 8px; }
+  a.back:hover,a.back:active { color:#aac; }
+  .hint { position:fixed; bottom:8px; left:14px; color:#2a3245; font-size:10px; letter-spacing:1.5px; z-index:200; }
 </style>
 </head>
 <body>
   <a href="index.html" class="back">&lt; ZONES</a>
   <div id="wrapper">
     <div id="hud">
-      <div class="left">
+      <div class="group">
         <span><span class="label">DRIFT:</span> <span class="stat" id="hud-drift">0.18</span></span>
-        <span><span class="label">LAYER:</span> <span class="stat" id="hud-layer">3 / 7</span></span>
-        <span><span class="label">HR:</span> <span class="stat" id="hud-hr">71 BPM</span></span>
+        <span><span class="label">LAYER:</span> <span class="stat" id="hud-layer">3</span> / 7 <span id="layer-bar"><span></span></span></span>
+        <span><span class="label">HR:</span> <span class="stat" id="hud-hr">71</span></span>
         <span><span class="label">OP:</span> <span class="stat">DR HARLAN WEBB</span></span>
       </div>
-      <div class="right">
+      <div class="group">
         <span><span class="label">DEPTH:</span> <span class="stat">∞ (recursive)</span></span>
         <span><span class="label">BLEED:</span> <span class="stat" id="hud-bleed">STABLE</span></span>
         <span><span class="label">ZONE:</span> <span class="stat">TEMPORAL SUBSTRATE</span></span>
@@ -77,192 +43,211 @@
   </div>
   <div class="scanlines"></div>
   <div class="vignette"></div>
+  <div class="crt-glow"></div>
+  <div class="hint">DRAG TO PEEL LAYERS &middot; HOVER REVEALS PAST</div>
+
   <script>
-    const W = 110, H = 34;
-    const CX = Math.floor(W / 2), CY = Math.floor(H / 2);
-    const screen = document.getElementById('screen');
+  'use strict';
+  const screen = document.getElementById('screen');
+  const FONT_W = 7.81, FONT_H = 13;
+  let W=110, H=34, CX=55, CY=17;
+  let playerX=CX, playerY=CY, targetX=CX, targetY=CY;
+  let present=[], past=[], past2=[], flicker=[];
+  let fragments=[];
+  let t=0;
 
-    // Each cell has TWO layered states (present / past). Periodically the
-    // layers crossfade or briefly invert.
-    const present = []; // base char + base hue
-    const past = [];    // ghost char + ghost hue
-    const ghostFlicker = []; // 0..1 — how much past bleeds into present right now
+  const PRESENT_CHARS = ['.',"'",'`',',',':',';','|','-','=','+','~','/','\\'];
+  const PAST_CHARS = ['I','I','I','V','V','X','L','i','l','t','r','n','m','.',"'",'"'];
+  const PAST2_CHARS = ['x','o','*','+','=','-','.','`','i','t'];
+  const FRAGMENT_TEXTS = [
+    'WAS','WAS HERE','BEFORE','AFTER','ECHO',
+    'THE BRIDGE','AGAIN','STILL','NOT YET',
+    'HE LIVED','SHE WROTE','THEY KNEW','WE FORGOT',
+    '. . .','HERE','HEAR','NEAR','THEN','NOW',
+    'I REMEMBER','YOU FORGOT','WHEN','BEGINNING','END'
+  ];
 
-    // Glyphs for present ("inscribed" geometry)
-    const PRESENT_CHARS = ['.', "'", '`', ',', ':', ';', '|', '-', '=', '+', '~', '/', '\\'];
-    // Glyphs for past — letter fragments
-    const PAST_CHARS = ['I', 'I', 'I', 'I', 'V', 'V', 'X', 'L', 'i', 'l', 't', 'r', 'n', 'm', '.', "'", '"'];
+  function computeSize() {
+    const w = window.innerWidth - 28;
+    const h = window.innerHeight - 80;
+    W = Math.max(50, Math.floor(w/FONT_W));
+    H = Math.max(18, Math.floor(h/FONT_H));
+    CX = Math.floor(W/2); CY = Math.floor(H/2);
+    initGrid();
+  }
 
-    // Occasional "fragments" — short string overlays that flicker into existence
-    let fragments = [];
-    const FRAGMENT_TEXTS = [
-      'WAS', 'WAS HERE', 'BEFORE', 'AFTER', 'ECHO',
-      'THE BRIDGE', 'AGAIN', 'STILL', 'NOT YET',
-      'HE LIVED', 'SHE WROTE', 'THEY KNEW', 'WE FORGOT',
-      '. . .', 'HERE', 'HEAR', 'NEAR'
-    ];
-
-    function noise(x, y, time) {
-      return (
-        Math.sin(x * 0.11 + time * 0.40) * 0.5 +
-        Math.sin(y * 0.14 + time * 0.30) * 0.4 +
-        Math.sin((x - y) * 0.07 + time * 0.50) * 0.4
-      );
+  function initGrid(){
+    present=[]; past=[]; past2=[]; flicker=[];
+    for (let y=0;y<H;y++){
+      present[y]=[]; past[y]=[]; past2[y]=[]; flicker[y]=[];
+      for (let x=0;x<W;x++){
+        present[y][x]=PRESENT_CHARS[(Math.random()*PRESENT_CHARS.length)|0];
+        past[y][x]=PAST_CHARS[(Math.random()*PAST_CHARS.length)|0];
+        past2[y][x]=PAST2_CHARS[(Math.random()*PAST2_CHARS.length)|0];
+        flicker[y][x]=0;
+      }
     }
+    if (playerX>=W) playerX=W-1; if (playerY>=H) playerY=H-1;
+  }
 
-    function init() {
-      for (let y = 0; y < H; y++) {
-        present[y] = [];
-        past[y] = [];
-        ghostFlicker[y] = [];
-        for (let x = 0; x < W; x++) {
-          present[y][x] = PRESENT_CHARS[Math.floor(Math.random() * PRESENT_CHARS.length)];
-          past[y][x] = PAST_CHARS[Math.floor(Math.random() * PAST_CHARS.length)];
-          ghostFlicker[y][x] = 0;
-        }
+  function noise(x,y,time){
+    return Math.sin(x*0.11+time*0.40)*0.5
+         + Math.sin(y*0.14+time*0.30)*0.4
+         + Math.sin((x-y)*0.07+time*0.50)*0.4;
+  }
+
+  function maybeFragment(){
+    if (Math.random()<0.06 && fragments.length<3){
+      const text = FRAGMENT_TEXTS[(Math.random()*FRAGMENT_TEXTS.length)|0];
+      fragments.push({
+        text,
+        x: ((Math.random()*(W-text.length-6))|0)+3,
+        y: ((Math.random()*(H-2))|0)+1,
+        age: 0,
+        max: 30 + ((Math.random()*22)|0)
+      });
+    }
+  }
+
+  function maybeShiftCells(){
+    for (let i=0;i<14;i++){
+      const x=(Math.random()*W)|0, y=(Math.random()*H)|0;
+      if (Math.random()<0.5) past[y][x]=PAST_CHARS[(Math.random()*PAST_CHARS.length)|0];
+      else present[y][x]=PRESENT_CHARS[(Math.random()*PRESENT_CHARS.length)|0];
+      flicker[y][x]=1;
+    }
+  }
+
+  // Input
+  function setTarget(clientX, clientY){
+    const r = screen.getBoundingClientRect();
+    const x = Math.floor((clientX-r.left)/(r.width/W));
+    const y = Math.floor((clientY-r.top)/(r.height/H));
+    if (x>=0 && x<W && y>=0 && y<H){ targetX=x; targetY=y; }
+  }
+  let dragging=false;
+  screen.addEventListener('mousedown', e=>{ dragging=true; setTarget(e.clientX,e.clientY); });
+  window.addEventListener('mousemove', e=>{ if(dragging) setTarget(e.clientX,e.clientY); });
+  window.addEventListener('mouseup', ()=>dragging=false);
+  screen.addEventListener('touchstart', e=>{ const t=e.touches[0]; setTarget(t.clientX,t.clientY); e.preventDefault(); }, {passive:false});
+  screen.addEventListener('touchmove', e=>{ const t=e.touches[0]; setTarget(t.clientX,t.clientY); e.preventDefault(); }, {passive:false});
+  screen.addEventListener('mousemove', e=>{ // peel layers when hovering
+    const r = screen.getBoundingClientRect();
+    const x = Math.floor((e.clientX-r.left)/(r.width/W));
+    const y = Math.floor((e.clientY-r.top)/(r.height/H));
+    if (x>=0&&x<W&&y>=0&&y<H){
+      // gently push hover cells into ghost state
+      flicker[y][x]=Math.min(1, flicker[y][x]+0.5);
+      if (x+1<W) flicker[y][x+1]=Math.min(1, flicker[y][x+1]+0.3);
+      if (x>0) flicker[y][x-1]=Math.min(1, flicker[y][x-1]+0.3);
+    }
+  });
+
+  function frame(){
+    maybeFragment();
+    maybeShiftCells();
+    fragments = fragments.filter(f=>f.age<f.max);
+
+    // Ease player
+    playerX += (targetX-playerX)*0.18;
+    playerY += (targetY-playerY)*0.18;
+    const px=Math.round(playerX), py=Math.round(playerY);
+
+    const grid = [], colors = [];
+    for (let y=0;y<H;y++){ grid[y]=[]; colors[y]=[]; }
+
+    for (let y=0;y<H;y++){
+      for (let x=0;x<W;x++){
+        const n = noise(x,y,t);
+        const v = (n+1.3)/2.6;
+        // Player light radius pulls layers shallower (you can see the present clearly)
+        const dpx=x-px, dpy=y-py;
+        const dist = Math.sqrt(dpx*dpx+dpy*dpy);
+        const lightAtten = Math.max(0.25, 1 - Math.pow(dist/24, 1.5));
+
+        let presentCh = present[y][x];
+        if (v<0.18) presentCh = ' ';
+        else if (v<0.30 && presentCh!=='.' && presentCh!=="'" && presentCh!==',') presentCh='.';
+
+        const f = flicker[y][x];
+        let ch, isGhost=false, isDeep=false;
+        if (f > 0.85){ ch = past2[y][x]; isDeep = true; }
+        else if (f > 0.5){ ch = past[y][x]; isGhost = true; }
+        else { ch = presentCh; }
+
+        // Player marker
+        let isPlayer = false;
+        if (y===py && x===px){ ch='@'; isPlayer=true; }
+        else if (y===py && x===px-1){ ch='['; isPlayer=true; }
+        else if (y===py && x===px+1){ ch=']'; isPlayer=true; }
+
+        // Color
+        let h_,s_,l_;
+        if (isPlayer){ h_=200; s_=85; l_=85; }
+        else if (isDeep){ h_=15+Math.random()*10; s_=20+Math.random()*15; l_=18+f*15; }
+        else if (isGhost){ h_=35+Math.random()*8; s_=22+Math.random()*15; l_=30+f*25; }
+        else if (v<0.25){ h_=222; s_=18; l_=(7+v*22) * lightAtten; }
+        else if (v<0.50){ h_=215; s_=28; l_=(20+v*28) * lightAtten; }
+        else if (v<0.75){ h_=205; s_=33+v*10; l_=(36+v*22) * lightAtten; }
+        else { h_=195; s_=40; l_=(52+(v-.75)*60) * lightAtten; }
+
+        grid[y][x] = ch;
+        colors[y][x] = `hsl(${h_|0},${s_|0}%,${l_|0}%)`;
+        flicker[y][x] = Math.max(0, f - 0.06);
       }
     }
 
-    function maybeFragment() {
-      if (Math.random() < 0.06 && fragments.length < 3) {
-        const text = FRAGMENT_TEXTS[Math.floor(Math.random() * FRAGMENT_TEXTS.length)];
-        fragments.push({
-          text,
-          x: Math.floor(Math.random() * (W - text.length - 4)) + 2,
-          y: Math.floor(Math.random() * (H - 2)) + 1,
-          age: 0,
-          max: 28 + Math.floor(Math.random() * 18)
-        });
-      }
-    }
-
-    function maybeShiftCells() {
-      // Occasionally re-roll a tile's past or present (memory drift)
-      for (let i = 0; i < 14; i++) {
-        const x = Math.floor(Math.random() * W);
-        const y = Math.floor(Math.random() * H);
-        if (Math.random() < 0.5) {
-          past[y][x] = PAST_CHARS[Math.floor(Math.random() * PAST_CHARS.length)];
-        } else {
-          present[y][x] = PRESENT_CHARS[Math.floor(Math.random() * PRESENT_CHARS.length)];
-        }
-        // start a flicker
-        ghostFlicker[y][x] = 1;
-      }
-    }
-
-    let t = 0;
-
-    function render() {
-      maybeFragment();
-      maybeShiftCells();
-      fragments = fragments.filter(f => f.age < f.max);
-
-      // Build per-row character grid first, then write fragments into it.
-      const grid = [];
-      const colors = [];
-      for (let y = 0; y < H; y++) {
-        grid[y] = [];
-        colors[y] = [];
-        for (let x = 0; x < W; x++) {
-          const n = noise(x, y, t);
-          const v = (n + 1.3) / 2.6;
-          // Density gates whether tile is "thick" with inscription or sparse
-          let presentCh = present[y][x];
-          if (v < 0.18) presentCh = ' ';
-          else if (v < 0.30 && presentCh !== '.' && presentCh !== "'" && presentCh !== ',') presentCh = '.';
-
-          // Per-tile flicker: when ghostFlicker is high, the tile shows the past instead
-          const flicker = ghostFlicker[y][x];
-          let ch = presentCh;
-          let isGhost = false;
-          if (flicker > 0.5) { ch = past[y][x]; isGhost = true; }
-
-          // Player marker
-          let isPlayer = false;
-          if (y === CY && x === CX) { ch = '@'; isPlayer = true; }
-          else if (y === CY && x === CX - 1) { ch = '['; isPlayer = true; }
-          else if (y === CY && x === CX + 1) { ch = ']'; isPlayer = true; }
-
-          // Color
-          let h, s, l;
-          if (isPlayer) {
-            h = 200; s = 80; l = 82;
-          } else if (isGhost) {
-            // Sepia / dust
-            h = 35 + Math.random() * 8;
-            s = 25 + Math.random() * 15;
-            l = 35 + flicker * 25;
-          } else if (v < 0.25) {
-            h = 220; s = 20; l = 8 + v * 18;
-          } else if (v < 0.5) {
-            h = 215; s = 30; l = 22 + v * 25;
-          } else if (v < 0.75) {
-            h = 205; s = 35 + v * 10; l = 38 + v * 22;
-          } else {
-            h = 195; s = 40; l = 55 + (v - 0.75) * 80;
-          }
-
-          grid[y][x] = ch;
-          colors[y][x] = `hsl(${h.toFixed(0)},${s.toFixed(0)}%,${l.toFixed(0)}%)`;
-
-          // decay flicker
-          ghostFlicker[y][x] = Math.max(0, flicker - 0.08);
-        }
-      }
-
-      // Overlay fragments — they pulse in/out
-      for (const frag of fragments) {
-        const lifeT = frag.age / frag.max; // 0..1
-        // alpha curve: rise then fall
-        const alpha = Math.sin(lifeT * Math.PI);
-        for (let i = 0; i < frag.text.length; i++) {
-          const x = frag.x + i, y = frag.y;
-          if (x < 0 || x >= W || y < 0 || y >= H) continue;
-          if (alpha < 0.15) continue;
+    // Fragments overlay
+    for (const frag of fragments){
+      const lifeT = frag.age/frag.max;
+      const alpha = Math.sin(lifeT*Math.PI);
+      if (alpha > 0.18){
+        for (let i=0;i<frag.text.length;i++){
+          const x=frag.x+i, y=frag.y;
+          if (x<0||x>=W||y<0||y>=H) continue;
           grid[y][x] = frag.text[i];
-          // amber/gold for fragments — like underlining text
-          const l = 50 + alpha * 35;
-          colors[y][x] = `hsl(40,60%,${l.toFixed(0)}%)`;
+          const l = 50 + alpha*38;
+          colors[y][x] = `hsl(40,68%,${l|0}%)`;
         }
-        frag.age++;
       }
-
-      // Stitch into HTML, run-grouping by color
-      let buffer = '';
-      for (let y = 0; y < H; y++) {
-        let prev = null, span = '';
-        for (let x = 0; x < W; x++) {
-          let ch = grid[y][x];
-          // escape special chars
-          if (ch === '<') ch = '&lt;';
-          else if (ch === '>') ch = '&gt;';
-          else if (ch === '&') ch = '&amp;';
-          const c = colors[y][x];
-          if (c === prev) span += ch;
-          else {
-            if (span.length) buffer += `<span style="color:${prev}">${span}</span>`;
-            span = ch; prev = c;
-          }
-        }
-        if (span.length) buffer += `<span style="color:${prev}">${span}</span>`;
-        buffer += '\n';
-      }
-      screen.innerHTML = buffer;
-
-      // HUD
-      const drift = (0.12 + Math.abs(Math.sin(t * 0.18)) * 0.15).toFixed(2);
-      document.getElementById('hud-drift').textContent = drift;
-      const layer = (3 + Math.floor(Math.sin(t * 0.07) * 2));
-      document.getElementById('hud-layer').textContent = layer + ' / 7';
-      document.getElementById('hud-hr').textContent = (68 + Math.floor(Math.sin(t * 0.5) * 3)) + ' BPM';
-      document.getElementById('hud-bleed').textContent = fragments.length > 1 ? 'BLEEDING' : 'STABLE';
-      t += 0.06;
+      frag.age++;
     }
 
-    init();
-    setInterval(render, 90);
-    render();
+    // Render
+    let buf='';
+    for (let y=0;y<H;y++){
+      let prev=null, span='';
+      for (let x=0;x<W;x++){
+        let ch = grid[y][x];
+        if (ch==='<') ch='&lt;';
+        else if (ch==='>') ch='&gt;';
+        else if (ch==='&') ch='&amp;';
+        const c = colors[y][x];
+        if (c===prev) span += ch;
+        else { if (span) buf+=`<span style="color:${prev}">${span}</span>`; span=ch; prev=c; }
+      }
+      if (span) buf += `<span style="color:${prev}">${span}</span>`;
+      buf += '\n';
+    }
+    screen.innerHTML = buf;
+
+    // HUD
+    const drift = (0.12 + Math.abs(Math.sin(t*0.18))*0.18).toFixed(2);
+    document.getElementById('hud-drift').textContent = drift;
+    const layer = (3 + Math.floor(Math.sin(t*0.07)*2));
+    document.getElementById('hud-layer').textContent = layer;
+    document.getElementById('layer-bar').firstElementChild.style.width = (layer/7*100) + '%';
+    document.getElementById('hud-hr').textContent = (68 + Math.floor(Math.sin(t*0.5)*3));
+    const bleedEl = document.getElementById('hud-bleed');
+    if (fragments.length>=2){ bleedEl.textContent='BLEEDING'; bleedEl.classList.add('alert'); }
+    else { bleedEl.textContent='STABLE'; bleedEl.classList.remove('alert'); }
+    t += 0.06;
+    requestAnimationFrame(frame);
+  }
+
+  computeSize();
+  window.addEventListener('resize', computeSize);
+  requestAnimationFrame(frame);
   </script>
 </body>
 </html>

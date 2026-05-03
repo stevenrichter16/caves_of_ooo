@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Shifting Zone — The Half-Standing Spire</title>
+<style>
+  :root { --bg:#070605; --hud:#ba8; --hud-label:#3a2a20; --hud-stat:#e8c8a0; }
+  html,body { margin:0; padding:0; background:var(--bg); color:var(--hud); font-family:'Menlo','Courier New',Consolas,monospace; overflow:hidden; height:100vh; height:100dvh; user-select:none; -webkit-user-select:none; touch-action:none; }
+  #wrapper { padding:14px; box-sizing:border-box; height:100vh; height:100dvh; display:flex; flex-direction:column; }
+  #hud { color:var(--hud); font-size:11px; letter-spacing:1.4px; margin-bottom:8px; border-bottom:1px solid #2a2018; padding-bottom:8px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px 16px; text-shadow:0 0 4px rgba(220,180,140,.25); flex-shrink:0; }
+  #hud .group { display:flex; gap:14px; flex-wrap:wrap; }
+  .label { color:var(--hud-label); } .stat { color:var(--hud-stat); }
+  .warn { color:#ff6040 !important; animation:blink .6s steps(2) infinite; }
+  @keyframes blink { 50% { opacity:.3; } }
+  #screen { font-size:13px; line-height:1.0; white-space:pre; text-shadow:0 0 4px rgba(200,160,120,.30),0 0 14px rgba(80,140,200,.10); cursor:crosshair; flex:1; overflow:hidden; }
+  .scanlines { position:fixed; inset:0; background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 2px,rgba(0,0,0,.24) 3px,rgba(0,0,0,0) 4px); pointer-events:none; z-index:100; }
+  .vignette { position:fixed; inset:0; background:radial-gradient(ellipse at center,rgba(0,0,0,0) 50%,rgba(0,0,0,.88) 100%); pointer-events:none; z-index:99; }
+  .crt-glow { position:fixed; inset:0; box-shadow:inset 0 0 220px rgba(120,90,60,.06); pointer-events:none; z-index:98; }
+  .tremor { position:fixed; inset:0; pointer-events:none; z-index:50; }
+  a.back { position:fixed; top:10px; right:14px; color:#3a2a20; font-size:11px; letter-spacing:2px; text-decoration:none; z-index:200; padding:4px 8px; }
+  a.back:hover,a.back:active { color:#ba8; }
+  .hint { position:fixed; bottom:8px; left:14px; color:#3a2a20; font-size:10px; letter-spacing:1.5px; z-index:200; }
+</style>
+</head>
+<body>
+  <a href="index.html" class="back">&lt; ZONES</a>
+  <div id="wrapper">
+    <div id="hud">
+      <div class="group">
+        <span><span class="label">STRUCT:</span> <span class="stat" id="hud-struct">42%</span></span>
+        <span><span class="label">AETHERIC:</span> <span class="stat" id="hud-aether">RESID.</span></span>
+        <span><span class="label">HR:</span> <span class="stat" id="hud-hr">71</span></span>
+        <span><span class="label">OP:</span> <span class="stat">DR HARLAN WEBB</span></span>
+      </div>
+      <div class="group">
+        <span><span class="label">ALT:</span> <span class="stat">+218m</span></span>
+        <span><span class="label">DEAD-TECH:</span> <span class="stat" id="hud-tech">7 echoes</span></span>
+        <span><span class="label">TREMOR:</span> <span class="stat warn" id="hud-tremor">QUIESCENT</span></span>
+        <span><span class="label">ZONE:</span> <span class="stat">HALF-STANDING SPIRE</span></span>
+      </div>
+    </div>
+    <div id="screen"></div>
+  </div>
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+  <div class="crt-glow"></div>
+  <div class="hint">DRAG TO EXPLORE &middot; OLD-WORLD TECH STILL FLICKERS</div>
+
+  <script>
+  'use strict';
+  const screen = document.getElementById('screen');
+  const FONT_W = 7.81, FONT_H = 13;
+  let W=110, H=34, CX=55, CY=17;
+  let playerX=CX, playerY=CY, targetX=CX, targetY=CY;
+  let walls=[];        // architectural elements
+  let consoles=[];     // dead consoles that flicker
+  let dust=[];         // falling dust particles
+  let sparks=[];       // electrical sparks
+  let debris=[];       // static rubble
+  let t=0;
+  let tremorOffset=0, tremorIntensity=0;
+
+  // Tremor — periodically shake the screen
+  function maybeTremor(){
+    if (Math.random() < 0.005){ tremorIntensity = 0.5 + Math.random()*0.5; }
+    tremorIntensity *= 0.93;
+  }
+
+  function computeSize() {
+    const w = window.innerWidth - 28;
+    const h = window.innerHeight - 80;
+    W = Math.max(50, Math.floor(w/FONT_W));
+    H = Math.max(18, Math.floor(h/FONT_H));
+    CX = Math.floor(W/2); CY = Math.floor(H/2);
+    initWorld();
+  }
+
+  function initWorld(){
+    walls=[]; consoles=[]; dust=[]; sparks=[]; debris=[];
+
+    // Architectural walls — broken vertical structures
+    const numStructures = Math.max(3, Math.floor(W/22));
+    for (let i=0;i<numStructures;i++){
+      const baseX = ((Math.random()*W)|0);
+      const baseHeight = 8 + ((Math.random()*16)|0);
+      const top = ((Math.random()*(H-baseHeight))|0);
+      const broken = Math.random() < 0.7;  // most are broken
+      walls.push({ x: baseX, top, bottom: top+baseHeight, broken, breakAt: broken ? top + 2 + ((Math.random()*(baseHeight-3))|0) : -1, leans: (Math.random()-0.5)*1.5 });
+    }
+
+    // Floor debris
+    const floorY = H - 2;
+    for (let i=0;i<W;i++){
+      if (Math.random() < 0.55) debris.push({ x:i, y:floorY, ch: Math.random()<0.3?'#':'.', dim:Math.random() });
+      if (Math.random() < 0.35) debris.push({ x:i, y:floorY-1, ch: Math.random()<0.5?',':'.', dim:Math.random() });
+    }
+
+    // Dead consoles — small rectangles that flicker
+    const numConsoles = 3 + Math.floor(Math.random()*4);
+    for (let i=0;i<numConsoles;i++){
+      consoles.push({
+        x: ((Math.random()*(W-6))|0)+2,
+        y: ((Math.random()*(H-3))|0)+1,
+        w: 4+((Math.random()*4)|0),
+        h: 2,
+        flickerPhase: Math.random()*Math.PI*2,
+        flickerRate: 0.3 + Math.random()*1.2,
+        glyphPhase: 0
+      });
+    }
+
+    // Dust particles — fall slowly
+    for (let i=0;i<28;i++){
+      dust.push({ x:Math.random()*W, y:Math.random()*H, vy: 0.05+Math.random()*0.05, drift:(Math.random()-0.5)*0.03 });
+    }
+
+    // Electrical sparks
+    for (let i=0;i<8;i++){
+      sparks.push({
+        x:Math.random()*W, y:Math.random()*H,
+        active: false,
+        cooldown: Math.random()*100,
+        ch: '*'
+      });
+    }
+  }
+
+  // Input
+  function setTarget(clientX, clientY){
+    const r = screen.getBoundingClientRect();
+    const x = Math.floor((clientX-r.left)/(r.width/W));
+    const y = Math.floor((clientY-r.top)/(r.height/H));
+    if (x>=0 && x<W && y>=0 && y<H){ targetX=x; targetY=y; }
+  }
+  let dragging=false;
+  screen.addEventListener('mousedown', e=>{ dragging=true; setTarget(e.clientX,e.clientY); });
+  window.addEventListener('mousemove', e=>{ if(dragging) setTarget(e.clientX,e.clientY); });
+  window.addEventListener('mouseup', ()=>dragging=false);
+  screen.addEventListener('touchstart', e=>{ const t=e.touches[0]; setTarget(t.clientX,t.clientY); e.preventDefault(); }, {passive:false});
+  screen.addEventListener('touchmove', e=>{ const t=e.touches[0]; setTarget(t.clientX,t.clientY); e.preventDefault(); }, {passive:false});
+
+  // Random alphanumeric for dead-console flicker
+  const TECH_CHARS = ['0','1','*','+','-','=','#','%','/','\\','|',':',';','.','<','>'];
+  function techChar(){ return TECH_CHARS[(Math.random()*TECH_CHARS.length)|0]; }
+
+  function frame(){
+    maybeTremor();
+
+    // Player drift
+    playerX += (targetX-playerX)*0.16;
+    playerY += (targetY-playerY)*0.16;
+    const px=Math.round(playerX), py=Math.round(playerY);
+
+    // Tremor screen offset
+    if (tremorIntensity > 0.05){
+      const ox = (Math.random()-0.5) * tremorIntensity * 4;
+      const oy = (Math.random()-0.5) * tremorIntensity * 3;
+      screen.style.transform = `translate(${ox.toFixed(2)}px, ${oy.toFixed(2)}px)`;
+    } else {
+      screen.style.transform = '';
+    }
+
+    const grid=[], colors=[];
+    for (let y=0;y<H;y++){
+      grid[y] = new Array(W).fill(' ');
+      colors[y] = new Array(W).fill('hsl(30,20%,4%)');
+    }
+
+    // Walls — vertical lines, with breaks
+    for (const w of walls){
+      for (let y=w.top; y<w.bottom; y++){
+        if (y<0||y>=H) continue;
+        // Apply lean — shift x by progress * leans
+        const progress = (y - w.top) / (w.bottom - w.top);
+        const leanX = Math.round(w.x + progress * w.leans);
+        if (leanX<0||leanX>=W) continue;
+        // Skip the broken zone
+        if (w.broken && y >= w.breakAt && y < w.breakAt+2) continue;
+        let ch;
+        if (y === w.top) ch = '_';
+        else if (y === w.bottom-1) ch = '_';
+        else if (Math.random() < 0.04) ch = ',';   // damage marks
+        else ch = '|';
+        grid[y][leanX] = ch;
+        colors[y][leanX] = `hsl(28,${(15 + Math.random()*10)|0}%,${(22 + Math.random()*8)|0}%)`;
+      }
+      // Rubble at bottom
+      if (w.bottom < H){
+        for (let dx=-2; dx<=2; dx++){
+          const rx = w.x + dx;
+          if (rx<0||rx>=W) continue;
+          if (grid[w.bottom][rx] === ' ' && Math.random()<0.4){
+            grid[w.bottom][rx] = Math.random()<0.5 ? '#' : ',';
+            colors[w.bottom][rx] = `hsl(28,18%,${(16+Math.random()*8)|0}%)`;
+          }
+        }
+      }
+    }
+
+    // Debris on floor
+    for (const d of debris){
+      if (d.x<0||d.x>=W||d.y<0||d.y>=H) continue;
+      grid[d.y][d.x] = d.ch;
+      colors[d.y][d.x] = `hsl(28,15%,${(14+d.dim*10)|0}%)`;
+    }
+
+    // Dust — falling slowly
+    for (const p of dust){
+      p.y += p.vy + tremorIntensity*0.2;
+      p.x += p.drift;
+      if (p.y > H) { p.y = 0; p.x = Math.random()*W; }
+      if (p.x<0) p.x=W-1; if (p.x>=W) p.x=0;
+      const x=p.x|0, y=p.y|0;
+      if (grid[y][x] === ' '){
+        grid[y][x] = '.';
+        colors[y][x] = `hsl(35,12%,${(18+Math.random()*8)|0}%)`;
+      }
+    }
+
+    // Dead consoles — render as small block of dim chars; randomly flicker on
+    for (const c of consoles){
+      c.flickerPhase += c.flickerRate * 0.05;
+      const onChance = Math.max(0, Math.sin(c.flickerPhase));
+      const isLit = Math.random() < onChance * 0.4;
+      for (let dy=0; dy<c.h; dy++){
+        for (let dx=0; dx<c.w; dx++){
+          const x=c.x+dx, y=c.y+dy;
+          if (x<0||x>=W||y<0||y>=H) continue;
+          let ch;
+          if (isLit){
+            // Live — random alphanumeric
+            ch = techChar();
+            const l = 35 + Math.random()*30;
+            colors[y][x] = `hsl(200,75%,${l|0}%)`;
+          } else {
+            ch = '.';
+            colors[y][x] = 'hsl(200,30%,15%)';
+          }
+          grid[y][x] = ch;
+        }
+      }
+    }
+
+    // Sparks
+    for (const s of sparks){
+      s.cooldown--;
+      if (s.cooldown < 0){
+        s.active = !s.active;
+        s.cooldown = s.active ? 1+Math.random()*3 : 30+Math.random()*100;
+        if (s.active){
+          // Re-pick location near a console
+          if (consoles.length){
+            const c = consoles[(Math.random()*consoles.length)|0];
+            s.x = c.x + Math.random()*c.w;
+            s.y = c.y + Math.random()*c.h;
+          }
+        }
+      }
+      if (s.active){
+        const x=s.x|0, y=s.y|0;
+        if (x>=0&&x<W&&y>=0&&y<H){
+          grid[y][x] = Math.random()<0.5 ? '*' : '+';
+          colors[y][x] = `hsl(${190+Math.random()*30|0},90%,${75+Math.random()*15|0}%)`;
+          // small spark trail
+          if (Math.random()<0.4 && x+1<W){
+            grid[y][x+1] = '\'';
+            colors[y][x+1] = 'hsl(200,80%,55%)';
+          }
+        }
+      }
+    }
+
+    // Player
+    if (px>=0&&px<W&&py>=0&&py<H){
+      grid[py][px] = '@';
+      colors[py][px] = 'hsl(45,90%,80%)';
+      // small shadow under player
+      if (py+1<H && grid[py+1][px] === ' '){
+        grid[py+1][px] = '.';
+        colors[py+1][px] = 'hsl(35,40%,25%)';
+      }
+    }
+
+    // Render
+    let buf='';
+    for (let y=0;y<H;y++){
+      let prev=null, span='';
+      for (let x=0;x<W;x++){
+        let ch = grid[y][x];
+        if (ch==='<') ch='&lt;';
+        else if (ch==='>') ch='&gt;';
+        else if (ch==='&') ch='&amp;';
+        const c = colors[y][x];
+        if (c===prev) span += ch;
+        else { if (span) buf+=`<span style="color:${prev}">${span}</span>`; span=ch; prev=c; }
+      }
+      if (span) buf += `<span style="color:${prev}">${span}</span>`;
+      buf += '\n';
+    }
+    screen.innerHTML = buf;
+
+    // HUD
+    document.getElementById('hud-struct').textContent = (40 + Math.floor(Math.sin(t*0.15)*4) - Math.floor(tremorIntensity*8)) + '%';
+    document.getElementById('hud-hr').textContent = (70 + Math.floor(Math.sin(t*0.5)*3) + Math.floor(tremorIntensity*15));
+    let countLit = 0; for (const c of consoles) if (Math.random() < Math.max(0,Math.sin(c.flickerPhase))*0.4) countLit++;
+    document.getElementById('hud-tech').textContent = countLit + ' echoes';
+    const tremorLabel = tremorIntensity > 0.4 ? 'ACTIVE' : (tremorIntensity > 0.1 ? 'SETTLING' : 'QUIESCENT');
+    const tremEl = document.getElementById('hud-tremor');
+    tremEl.textContent = tremorLabel;
+    if (tremorIntensity>0.3) tremEl.classList.add('warn'); else tremEl.classList.remove('warn');
+    document.getElementById('hud-aether').textContent = countLit > 3 ? 'STRONG' : (countLit > 1 ? 'RESID.' : 'FAINT');
+
+    t += 0.06;
+    requestAnimationFrame(frame);
+  }
+
+  computeSize();
+  window.addEventListener('resize', computeSize);
+  requestAnimationFrame(frame);
+  </script>
+</body>
+</html>

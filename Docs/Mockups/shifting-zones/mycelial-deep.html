@@ -2,72 +2,39 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Shifting Zone — The Mycelial Deep</title>
 <style>
-  html, body {
-    margin: 0; padding: 0;
-    background: #050807;
-    color: #6a8;
-    font-family: 'Courier New', Consolas, monospace;
-    overflow: hidden;
-    height: 100vh;
-  }
-  #wrapper { padding: 18px; box-sizing: border-box; }
-  #hud {
-    color: #6a8;
-    font-size: 13px;
-    letter-spacing: 1.5px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #1f2a22;
-    padding-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
-    text-shadow: 0 0 4px rgba(120, 220, 140, 0.25);
-  }
-  #hud .left, #hud .right { display: flex; gap: 22px; }
-  .label { color: #2d4030; }
-  .stat { color: #8c5; }
-  #screen {
-    font-size: 14px;
-    line-height: 1.0;
-    white-space: pre;
-    text-shadow: 0 0 5px rgba(120, 200, 90, 0.35), 0 0 12px rgba(80, 200, 80, 0.15);
-  }
-  .scanlines {
-    position: fixed; inset: 0;
-    background: repeating-linear-gradient(
-      to bottom,
-      rgba(0,0,0,0) 0,
-      rgba(0,0,0,0) 2px,
-      rgba(0,0,0,0.18) 3px,
-      rgba(0,0,0,0) 4px
-    );
-    pointer-events: none;
-  }
-  .vignette {
-    position: fixed; inset: 0;
-    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 50%, rgba(0,0,0,0.85) 100%);
-    pointer-events: none;
-  }
-  a.back {
-    position: fixed; top: 14px; right: 18px;
-    color: #2a4030; font-size: 11px; letter-spacing: 2px;
-    text-decoration: none;
-  }
-  a.back:hover { color: #6a8; }
+  :root { --bg:#050807; --hud:#6a8; --hud-label:#2d4030; --hud-stat:#8c5; }
+  html,body { margin:0; padding:0; background:var(--bg); color:var(--hud); font-family:'Menlo','Courier New',Consolas,monospace; overflow:hidden; height:100vh; height:100dvh; user-select:none; -webkit-user-select:none; touch-action:none; }
+  #wrapper { padding:14px; box-sizing:border-box; height:100vh; height:100dvh; display:flex; flex-direction:column; }
+  #hud { color:var(--hud); font-size:11px; letter-spacing:1.4px; margin-bottom:8px; border-bottom:1px solid #1f2a22; padding-bottom:8px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px 16px; text-shadow:0 0 4px rgba(120,220,140,.25); flex-shrink:0; }
+  #hud .group { display:flex; gap:14px; flex-wrap:wrap; }
+  .label { color:var(--hud-label); } .stat { color:var(--hud-stat); }
+  .alert { color:#ff7b3b; animation:pulse 1.4s steps(2) infinite; }
+  @keyframes pulse { 50% { opacity:.4; } }
+  #screen { font-size:13px; line-height:1.0; white-space:pre; text-shadow:0 0 5px rgba(120,200,90,.4),0 0 13px rgba(80,200,80,.18); cursor:crosshair; flex:1; overflow:hidden; }
+  #pulse-bar { display:inline-block; width:60px; height:6px; background:#0a1810; border:1px solid #1f3322; vertical-align:middle; }
+  #pulse-bar > span { display:block; height:100%; background:linear-gradient(90deg,#3a5,#9d4); transition:width .2s; }
+  .scanlines { position:fixed; inset:0; background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 2px,rgba(0,0,0,.18) 3px,rgba(0,0,0,0) 4px); pointer-events:none; z-index:100; }
+  .vignette { position:fixed; inset:0; background:radial-gradient(ellipse at center,rgba(0,0,0,0) 45%,rgba(0,0,0,.9) 100%); pointer-events:none; z-index:99; }
+  .crt-glow { position:fixed; inset:0; box-shadow:inset 0 0 220px rgba(80,200,80,.06); pointer-events:none; z-index:98; }
+  a.back { position:fixed; top:10px; right:14px; color:#2a4030; font-size:11px; letter-spacing:2px; text-decoration:none; z-index:200; padding:4px 8px; }
+  a.back:hover,a.back:active { color:#6a8; }
+  .hint { position:fixed; bottom:8px; left:14px; color:#2a4030; font-size:10px; letter-spacing:1.5px; z-index:200; }
 </style>
 </head>
 <body>
   <a href="index.html" class="back">&lt; ZONES</a>
   <div id="wrapper">
     <div id="hud">
-      <div class="left">
+      <div class="group">
         <span><span class="label">SPORE:</span> <span class="stat" id="hud-spore">0.42</span></span>
         <span><span class="label">PRESS:</span> <span class="stat" id="hud-press">8.4 atm</span></span>
-        <span><span class="label">HR:</span> <span class="stat" id="hud-hr">71 BPM</span></span>
+        <span><span class="label">HR:</span> <span class="stat" id="hud-hr">71</span> <span id="pulse-bar"><span></span></span></span>
         <span><span class="label">OP:</span> <span class="stat">DR HARLAN WEBB</span></span>
       </div>
-      <div class="right">
+      <div class="group">
         <span><span class="label">DEPTH:</span> <span class="stat">125m</span></span>
         <span><span class="label">CHOIR:</span> <span class="stat" id="hud-choir">NEAR</span></span>
         <span><span class="label">ZONE:</span> <span class="stat">MYCELIAL DEEP</span></span>
@@ -77,126 +44,189 @@
   </div>
   <div class="scanlines"></div>
   <div class="vignette"></div>
+  <div class="crt-glow"></div>
+  <div class="hint">DRAG / TAP TO MOVE</div>
+
   <script>
-    const W = 110, H = 34;
-    const CX = Math.floor(W / 2), CY = Math.floor(H / 2);
-    const screen = document.getElementById('screen');
+  'use strict';
+  const screen = document.getElementById('screen');
+  const FONT_W = 7.81, FONT_H = 13;
+  let W=110, H=34, CX=55, CY=17;
+  let playerX=CX, playerY=CY, targetX=CX, targetY=CY;
+  let bursts=[], residue=null;
+  let t=0;
+  let hr=71, hrTarget=71;
 
-    let t = 0;
-    let bursts = [];
-
-    function maybeBurst() {
-      if (Math.random() < 0.05 && bursts.length < 4) {
-        bursts.push({
-          x: Math.floor(Math.random() * W),
-          y: Math.floor(Math.random() * H),
-          age: 0,
-          max: 18 + Math.floor(Math.random() * 10)
-        });
-      }
+  function computeSize() {
+    const w = window.innerWidth - 28;
+    const h = window.innerHeight - 80;
+    W = Math.max(50, Math.floor(w/FONT_W));
+    H = Math.max(18, Math.floor(h/FONT_H));
+    CX = Math.floor(W/2); CY = Math.floor(H/2);
+    if (residue==null || residue.length!==H) {
+      residue = []; for(let y=0;y<H;y++){ residue[y]=new Array(W).fill(0); }
+    } else {
+      // resize residue
+      for(let y=0;y<H;y++){ residue[y] = residue[y]||new Array(W).fill(0); residue[y].length = W; }
     }
+    if (playerX>=W) playerX=W-1; if (playerY>=H) playerY=H-1;
+    targetX = Math.min(targetX,W-1); targetY = Math.min(targetY,H-1);
+  }
 
-    function noise(x, y, time) {
-      return (
-        Math.sin(x * 0.13 + time * 0.55) * 0.45 +
-        Math.sin(y * 0.18 + time * 0.40) * 0.40 +
-        Math.sin((x + y) * 0.08 + time * 0.85) * 0.30 +
-        Math.sin(Math.sqrt(x*x + y*y) * 0.07 - time * 0.45) * 0.40 +
-        Math.sin(x * 0.04 + y * 0.05 + time * 0.20) * 0.50
-      );
+  // Hashed gradient noise (cheap pseudo-perlin)
+  function hash(x,y){ const s=Math.sin(x*127.1+y*311.7+13.5)*43758.5453; return s-Math.floor(s); }
+  function smooth(t){ return t*t*(3-2*t); }
+  function vnoise(x,y){
+    const xi=Math.floor(x), yi=Math.floor(y);
+    const xf=x-xi, yf=y-yi;
+    const a=hash(xi,yi), b=hash(xi+1,yi), c=hash(xi,yi+1), d=hash(xi+1,yi+1);
+    const u=smooth(xf), v=smooth(yf);
+    return a*(1-u)*(1-v)+b*u*(1-v)+c*(1-u)*v+d*u*v;
+  }
+  function fbm(x,y,t){
+    let v=0, amp=0.55, freq=1;
+    for(let i=0;i<4;i++){ v += vnoise(x*freq + t*0.18*freq, y*freq + t*0.11*freq) * amp; amp*=0.5; freq*=2.05; }
+    return v;
+  }
+
+  function maybeBurst(){
+    if (Math.random() < 0.04 && bursts.length < 4){
+      bursts.push({ x:Math.floor(Math.random()*W), y:Math.floor(Math.random()*H), age:0, max:24+Math.floor(Math.random()*14) });
     }
+  }
 
-    function pickChar(v) {
-      if (v < 0.10) return ' ';
-      if (v < 0.18) return '.';
-      if (v < 0.27) return ':';
-      if (v < 0.36) return ';';
-      if (v < 0.48) return '*';
-      if (v < 0.60) return '%';
-      if (v < 0.74) return '#';
-      if (v < 0.88) return '&amp;';
-      return '@';
-    }
+  const CHARS = [' ','.',':',';','*','%','#','&amp;','@'];
+  function pickChar(v){
+    if (v<.10) return ' ';
+    if (v<.18) return '.';
+    if (v<.27) return ':';
+    if (v<.36) return ';';
+    if (v<.48) return '*';
+    if (v<.60) return '%';
+    if (v<.74) return '#';
+    if (v<.88) return '&amp;';
+    return '@';
+  }
 
-    function escape(c) { return c === '&amp;' ? c : c; }
+  function escape(c){ return c==='&'?'&amp;':(c==='<'?'&lt;':(c==='>'?'&gt;':c)); }
 
-    function render() {
-      maybeBurst();
-      bursts = bursts.filter(b => b.age < b.max);
+  // Input — mouse / touch
+  function setTarget(clientX, clientY){
+    const r = screen.getBoundingClientRect();
+    const x = Math.floor((clientX-r.left)/(r.width/W));
+    const y = Math.floor((clientY-r.top)/(r.height/H));
+    if (x>=0 && x<W && y>=0 && y<H){ targetX=x; targetY=y; }
+  }
+  let dragging=false;
+  screen.addEventListener('mousedown', e=>{ dragging=true; setTarget(e.clientX,e.clientY); });
+  window.addEventListener('mousemove', e=>{ if(dragging) setTarget(e.clientX,e.clientY); });
+  window.addEventListener('mouseup', ()=>dragging=false);
+  screen.addEventListener('touchstart', e=>{ const t=e.touches[0]; setTarget(t.clientX,t.clientY); e.preventDefault(); }, {passive:false});
+  screen.addEventListener('touchmove', e=>{ const t=e.touches[0]; setTarget(t.clientX,t.clientY); e.preventDefault(); }, {passive:false});
 
-      let prevColor = null;
-      let buffer = '';
-      let span = '';
+  function frame(){
+    maybeBurst();
+    bursts = bursts.filter(b=>b.age<b.max);
 
-      for (let y = 0; y < H; y++) {
-        for (let x = 0; x < W; x++) {
-          let n = noise(x, y, t);
+    // Ease player toward target
+    playerX += (targetX-playerX) * 0.18;
+    playerY += (targetY-playerY) * 0.18;
+    const px = Math.round(playerX), py = Math.round(playerY);
 
-          for (const b of bursts) {
-            const dx = x - b.x, dy = y - b.y;
-            const dist = Math.sqrt(dx*dx + dy*dy);
-            const wave = b.age - dist;
-            if (wave > -2 && wave < 4) {
-              n += Math.exp(-Math.abs(wave) * 0.6) * 1.0 * (1 - b.age / b.max);
-            }
-          }
+    // Decay residue
+    for (let y=0;y<H;y++) for (let x=0;x<W;x++) residue[y][x] *= 0.92;
 
-          const v = Math.max(0, Math.min(1, (n + 1.7) / 3.4));
-          let ch = pickChar(v);
+    let buf='';
+    const breathe = 0.55 + 0.08 * Math.sin(t*0.6);
+    let burstActive = 0;
 
-          // Player marker (3x1 cluster)
-          let isPlayer = false;
-          if (y === CY) {
-            if (x === CX - 1) { ch = '/'; isPlayer = true; }
-            else if (x === CX) { ch = 'o'; isPlayer = true; }
-            else if (x === CX + 1) { ch = '\\'; isPlayer = true; }
-          }
-          if (y === CY - 1 && x === CX) { ch = '*'; isPlayer = true; }
+    for (let y=0; y<H; y++){
+      let prev=null, span='';
+      for (let x=0; x<W; x++){
+        // Domain-warped fBm
+        const wx = x*0.085 + 0.6*Math.sin(y*0.07 + t*0.18);
+        const wy = y*0.105 + 0.6*Math.cos(x*0.06 + t*0.12);
+        let n = fbm(wx, wy, t) * breathe;
 
-          let h, s, l;
-          if (isPlayer) {
-            h = 50; s = 90; l = 78;
-          } else if (v < 0.25) {
-            h = 95; s = 35; l = 8 + v * 30;
-          } else if (v < 0.55) {
-            h = 85 - (v - 0.25) * 40; s = 45 + v * 15; l = 18 + v * 30;
-          } else if (v < 0.80) {
-            h = 55 + (v - 0.55) * 30; s = 60; l = 30 + v * 28;
-          } else {
-            // dense — purple-tinged 'choir' tones
-            h = 280 + (v - 0.8) * 30; s = 50; l = 40 + (v - 0.8) * 80;
-          }
-
-          const color = `hsl(${h.toFixed(0)},${s.toFixed(0)}%,${l.toFixed(0)}%)`;
-
-          if (color === prevColor) {
-            span += ch;
-          } else {
-            if (span.length) buffer += `<span style="color:${prevColor}">${span}</span>`;
-            span = ch;
-            prevColor = color;
+        // Spore-burst contribution + residue
+        for (const b of bursts){
+          const dx=x-b.x, dy=y-b.y, dist=Math.sqrt(dx*dx+dy*dy);
+          const wave = b.age*0.9 - dist;
+          if (wave > -2 && wave < 4){
+            const contrib = Math.exp(-Math.abs(wave)*0.6) * (1 - b.age/b.max) * 0.55;
+            n += contrib;
+            if (contrib > 0.15) residue[y][x] = Math.max(residue[y][x], contrib*1.4);
+            burstActive = Math.max(burstActive, contrib);
           }
         }
-        if (span.length) buffer += `<span style="color:${prevColor}">${span}</span>`;
-        buffer += '\n';
-        span = '';
-        prevColor = null;
+        n += residue[y][x] * 0.4;
+
+        // Light radius — drop intensity outside a circle around player
+        const dpx = x-px, dpy = y-py;
+        const lightDist = Math.sqrt(dpx*dpx + dpy*dpy);
+        const lightAtten = Math.max(0.18, 1 - Math.pow(lightDist/22, 1.6));
+        n *= lightAtten;
+
+        let v = Math.max(0, Math.min(1, (n+0.02)*1.55));
+        let ch = pickChar(v);
+
+        // Player marker — small organic creature
+        let isPlayer = false;
+        if (y===py){
+          if (x===px-1) { ch='/'; isPlayer=true; }
+          else if (x===px) { ch='o'; isPlayer=true; }
+          else if (x===px+1) { ch='\\'; isPlayer=true; }
+        } else if (y===py-1 && x===px){ ch='*'; isPlayer=true; }
+
+        // Color
+        let h_, s_, l_;
+        if (isPlayer){
+          h_=50; s_=92; l_=78;
+        } else if (v<.06){
+          h_=120; s_=10; l_=4;
+        } else if (v<.25){
+          h_=92; s_=30; l_=8 + v*40;
+        } else if (v<.50){
+          h_=86 - (v-.25)*30; s_=42 + v*18; l_=20 + v*32;
+        } else if (v<.78){
+          h_=58 + (v-.5)*20; s_=58; l_=32 + v*30;
+        } else {
+          // dense — choir-purple bias
+          const w_ = (v-.78)/.22;
+          h_=70 + w_*220;
+          s_=55;
+          l_=42 + w_*22;
+        }
+        const color = `hsl(${h_|0},${s_|0}%,${l_|0}%)`;
+
+        if (color===prev) span += ch;
+        else { if (span) buf+=`<span style="color:${prev}">${span}</span>`; span=ch; prev=color; }
       }
-
-      screen.innerHTML = buffer;
-
-      const sd = (Math.sin(t * 0.3) * 0.18 + 0.5).toFixed(2);
-      document.getElementById('hud-spore').textContent = sd;
-      document.getElementById('hud-hr').textContent = (68 + Math.floor(Math.sin(t * 0.5) * 4)) + ' BPM';
-      document.getElementById('hud-press').textContent = (8.4 + Math.sin(t * 0.2) * 0.3).toFixed(1) + ' atm';
-      document.getElementById('hud-choir').textContent = bursts.length > 1 ? 'VERY NEAR' : (bursts.length === 1 ? 'NEAR' : 'PRESENT');
-
-      for (const b of bursts) b.age++;
-      t += 0.06;
+      if (span) buf += `<span style="color:${prev}">${span}</span>`;
+      buf += '\n';
     }
+    screen.innerHTML = buf;
 
-    setInterval(render, 75);
-    render();
+    // HUD
+    hrTarget = 68 + bursts.length*4 + Math.sin(t*0.5)*3;
+    hr += (hrTarget-hr)*0.08;
+    document.getElementById('hud-hr').textContent = Math.round(hr);
+    document.getElementById('pulse-bar').firstElementChild.style.width = Math.min(100, Math.max(20, (hr-55)*2.2)) + '%';
+    document.getElementById('hud-spore').textContent = (0.4 + breathe*0.18 + bursts.length*0.05).toFixed(2);
+    document.getElementById('hud-press').textContent = (8.4 + Math.sin(t*0.2)*0.3).toFixed(1) + ' atm';
+    const choirEl = document.getElementById('hud-choir');
+    if (bursts.length>=2) { choirEl.textContent='VERY NEAR'; choirEl.classList.add('alert'); }
+    else if (bursts.length===1) { choirEl.textContent='NEAR'; choirEl.classList.remove('alert'); }
+    else { choirEl.textContent='PRESENT'; choirEl.classList.remove('alert'); }
+
+    for (const b of bursts) b.age++;
+    t += 0.045;
+    requestAnimationFrame(frame);
+  }
+
+  computeSize();
+  window.addEventListener('resize', computeSize);
+  requestAnimationFrame(frame);
   </script>
 </body>
 </html>

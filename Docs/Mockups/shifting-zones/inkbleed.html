@@ -2,74 +2,38 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Shifting Zone — Inkbleed</title>
 <style>
-  html, body {
-    margin: 0; padding: 0;
-    background: #02030a;
-    color: #8af;
-    font-family: 'Courier New', Consolas, monospace;
-    overflow: hidden;
-    height: 100vh;
-  }
-  #wrapper { padding: 18px; box-sizing: border-box; }
-  #hud {
-    color: #6ad;
-    font-size: 13px;
-    letter-spacing: 1.5px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #122036;
-    padding-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
-    text-shadow: 0 0 5px rgba(110, 170, 255, 0.35);
-  }
-  #hud .left, #hud .right { display: flex; gap: 22px; }
-  .label { color: #1a2a40; }
-  .stat { color: #aef; }
-  .warn { color: #f64 !important; animation: blink 0.5s steps(2) infinite; }
-  @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } }
-  #screen {
-    font-size: 14px;
-    line-height: 1.0;
-    white-space: pre;
-    text-shadow: 0 0 5px rgba(110, 170, 255, 0.35), 0 0 14px rgba(80, 150, 255, 0.18);
-  }
-  .scanlines {
-    position: fixed; inset: 0;
-    background: repeating-linear-gradient(
-      to bottom,
-      rgba(0,0,0,0) 0,
-      rgba(0,0,0,0) 2px,
-      rgba(0,0,0,0.18) 3px,
-      rgba(0,0,0,0) 4px
-    );
-    pointer-events: none;
-  }
-  .vignette {
-    position: fixed; inset: 0;
-    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 50%, rgba(0,0,0,0.85) 100%);
-    pointer-events: none;
-  }
-  a.back {
-    position: fixed; top: 14px; right: 18px;
-    color: #1a3050; font-size: 11px; letter-spacing: 2px;
-    text-decoration: none;
-  }
-  a.back:hover { color: #6ad; }
+  :root { --bg:#02030a; --hud:#6ad; --hud-label:#1a2a40; --hud-stat:#aef; }
+  html,body { margin:0; padding:0; background:var(--bg); color:var(--hud); font-family:'Menlo','Courier New',Consolas,monospace; overflow:hidden; height:100vh; height:100dvh; user-select:none; -webkit-user-select:none; touch-action:none; }
+  #wrapper { padding:14px; box-sizing:border-box; height:100vh; height:100dvh; display:flex; flex-direction:column; }
+  #hud { color:var(--hud); font-size:11px; letter-spacing:1.4px; margin-bottom:8px; border-bottom:1px solid #122036; padding-bottom:8px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px 16px; text-shadow:0 0 5px rgba(110,170,255,.4); flex-shrink:0; }
+  #hud .group { display:flex; gap:14px; flex-wrap:wrap; }
+  .label { color:var(--hud-label); } .stat { color:var(--hud-stat); }
+  .warn { color:#ff5a3b !important; animation:blink .42s steps(2) infinite; }
+  @keyframes blink { 50% { opacity:.25; } }
+  #screen { font-size:13px; line-height:1.0; white-space:pre; text-shadow:0 0 5px rgba(110,170,255,.4),0 0 14px rgba(80,150,255,.2); cursor:crosshair; flex:1; overflow:hidden; }
+  .scanlines { position:fixed; inset:0; background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 2px,rgba(0,0,0,.18) 3px,rgba(0,0,0,0) 4px); pointer-events:none; z-index:100; }
+  .vignette { position:fixed; inset:0; background:radial-gradient(ellipse at center,rgba(0,0,0,0) 45%,rgba(0,0,0,.92) 100%); pointer-events:none; z-index:99; }
+  .crt-glow { position:fixed; inset:0; box-shadow:inset 0 0 220px rgba(110,170,255,.05); pointer-events:none; z-index:98; }
+  .crt-flicker { position:fixed; inset:0; background:rgba(110,170,255,0); pointer-events:none; z-index:101; transition:background-color .04s; }
+  a.back { position:fixed; top:10px; right:14px; color:#1a3050; font-size:11px; letter-spacing:2px; text-decoration:none; z-index:200; padding:4px 8px; }
+  a.back:hover,a.back:active { color:#6ad; }
+  .hint { position:fixed; bottom:8px; left:14px; color:#1a3050; font-size:10px; letter-spacing:1.5px; z-index:200; }
 </style>
 </head>
 <body>
   <a href="index.html" class="back">&lt; ZONES</a>
   <div id="wrapper">
     <div id="hud">
-      <div class="left">
+      <div class="group">
         <span><span class="label">BLEED:</span> <span class="stat" id="hud-bleed">0.62</span></span>
         <span><span class="label">INTEG:</span> <span class="stat" id="hud-integ">68%</span></span>
-        <span><span class="label">HR:</span> <span class="stat" id="hud-hr">71 BPM</span></span>
+        <span><span class="label">HR:</span> <span class="stat" id="hud-hr">71</span></span>
         <span><span class="label">OP:</span> <span class="stat">DR HARLAN WEBB</span></span>
       </div>
-      <div class="right">
+      <div class="group">
         <span><span class="label">DEPTH:</span> <span class="stat">125m</span></span>
         <span><span class="label">WORDS-LOOSE:</span> <span class="stat" id="hud-words">12</span></span>
         <span><span class="label">ZONE:</span> <span class="stat warn">INKBLEED</span></span>
@@ -79,162 +43,213 @@
   </div>
   <div class="scanlines"></div>
   <div class="vignette"></div>
+  <div class="crt-glow"></div>
+  <div class="crt-flicker" id="flicker"></div>
+  <div class="hint">DRAG TO MOVE &middot; YOUR PRESENCE STABILIZES NEARBY TEXT</div>
+
   <script>
-    const W = 110, H = 34;
-    const CX = Math.floor(W / 2), CY = Math.floor(H / 2);
-    const screen = document.getElementById('screen');
+  'use strict';
+  const screen = document.getElementById('screen');
+  const flickerEl = document.getElementById('flicker');
+  const FONT_W = 7.81, FONT_H = 13;
+  let W=110, H=34, CX=55, CY=17;
+  let playerX=CX, playerY=CY, targetX=CX, targetY=CY;
 
-    const ALPHA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-    const SYMBOLS = '.,;:!?\'"()[]{}*+-=/\\|~^&%$#@<>';
+  const ALPHA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const SYMBOLS = '.,;:!?\'"()[]{}*+-=/\\|~^&%$#@';
 
-    // Per-cell character + jitter rate
-    const cells = [];
-    const stability = []; // 0 (jittery) -> 1 (stable)
-    function init() {
-      for (let y = 0; y < H; y++) {
-        cells[y] = [];
-        stability[y] = [];
-        for (let x = 0; x < W; x++) {
-          cells[y][x] = randomChar();
-          stability[y][x] = Math.random() * 0.4;
-        }
+  let cells=[], decay=[], stability=[];
+
+  function computeSize() {
+    const w = window.innerWidth - 28;
+    const h = window.innerHeight - 80;
+    W = Math.max(50, Math.floor(w/FONT_W));
+    H = Math.max(18, Math.floor(h/FONT_H));
+    CX = Math.floor(W/2); CY = Math.floor(H/2);
+    initGrid();
+  }
+
+  function randomChar(){
+    const r = Math.random();
+    if (r<0.10) return ' ';
+    if (r<0.78) return ALPHA[(Math.random()*ALPHA.length)|0];
+    return SYMBOLS[(Math.random()*SYMBOLS.length)|0];
+  }
+
+  function initGrid(){
+    cells=[]; decay=[]; stability=[];
+    for (let y=0;y<H;y++){
+      cells[y]=[]; decay[y]=[]; stability[y]=[];
+      for (let x=0;x<W;x++){
+        cells[y][x]=randomChar();
+        decay[y][x]=0;
+        stability[y][x]=Math.random()*0.35;
       }
     }
-    function randomChar() {
-      if (Math.random() < 0.12) return ' ';
-      if (Math.random() < 0.78) return ALPHA[Math.floor(Math.random() * ALPHA.length)];
-      return SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+    if (playerX>=W) playerX=W-1; if (playerY>=H) playerY=H-1;
+  }
+
+  let fragments=[];
+  const PHRASES = [
+    'REMEMBER','ERASE','WITNESS','I WAS HERE','NAME ME',
+    'FORGET','WRITTEN','UNWRITTEN','THE LAYER','THE LAYER BELOW',
+    'STILL HERE','YOU SAW','WAS IT TRUE','NOT YOURS','OURS NOW',
+    'THE SCRIBE LIED','PALIMPSEST','WHO WROTE THIS','READ ME',
+    'INK FAILS','THE NAME WAS','ANCHOR ME','I FOUND IT'
+  ];
+
+  function maybeFragment(){
+    if (Math.random()<0.10 && fragments.length<4){
+      const text = PHRASES[(Math.random()*PHRASES.length)|0];
+      const x = ((Math.random()*(W-text.length-6))|0)+3;
+      const y = ((Math.random()*(H-4))|0)+2;
+      fragments.push({ text, x, y, age:0, max: 24+((Math.random()*18)|0) });
+    }
+  }
+
+  // Decay states: 0 = clean letter, 1 = smudged, 2 = broken, 3 = noise
+  function decayChar(ch, level){
+    if (level<=0) return ch;
+    if (level===1) {
+      // partial — sometimes lowercase, sometimes adjacent symbol
+      if (Math.random()<0.3) return ch.toLowerCase();
+      return ch;
+    }
+    if (level===2) return SYMBOLS[(Math.random()*SYMBOLS.length)|0];
+    return randomChar();
+  }
+
+  // Input
+  function setTarget(clientX, clientY){
+    const r = screen.getBoundingClientRect();
+    const x = Math.floor((clientX-r.left)/(r.width/W));
+    const y = Math.floor((clientY-r.top)/(r.height/H));
+    if (x>=0 && x<W && y>=0 && y<H){ targetX=x; targetY=y; }
+  }
+  let dragging=false;
+  screen.addEventListener('mousedown', e=>{ dragging=true; setTarget(e.clientX,e.clientY); });
+  window.addEventListener('mousemove', e=>{ if(dragging) setTarget(e.clientX,e.clientY); });
+  window.addEventListener('mouseup', ()=>dragging=false);
+  screen.addEventListener('touchstart', e=>{ const t=e.touches[0]; setTarget(t.clientX,t.clientY); e.preventDefault(); }, {passive:false});
+  screen.addEventListener('touchmove', e=>{ const t=e.touches[0]; setTarget(t.clientX,t.clientY); e.preventDefault(); }, {passive:false});
+
+  let t=0;
+  let glitchPulse=0;
+
+  function frame(){
+    maybeFragment();
+    fragments = fragments.filter(f=>f.age<f.max);
+
+    // Ease player
+    playerX += (targetX-playerX)*0.18;
+    playerY += (targetY-playerY)*0.18;
+    const px=Math.round(playerX), py=Math.round(playerY);
+
+    // Random screen-glitch event
+    if (Math.random() < 0.008) glitchPulse = 1.0;
+    glitchPulse *= 0.85;
+    flickerEl.style.background = `rgba(110,170,255,${(glitchPulse*0.18).toFixed(3)})`;
+
+    // Stability under fragments
+    const stabOver = [];
+    for (let y=0;y<H;y++) stabOver[y]=new Array(W).fill(0);
+
+    // Player calms nearby text
+    for (let dy=-3; dy<=3; dy++) for (let dx=-5; dx<=5; dx++){
+      const x=px+dx, y=py+dy;
+      if (x<0||x>=W||y<0||y>=H) continue;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      const calm = Math.max(0, 1 - dist/6);
+      stabOver[y][x] = Math.max(stabOver[y][x], calm * 0.7);
     }
 
-    // Fragments — short readable phrases that briefly stabilize and dissolve
-    let fragments = [];
-    const PHRASES = [
-      'REMEMBER',
-      'ERASE',
-      'WITNESS',
-      'I WAS HERE',
-      'NAME ME',
-      'FORGET',
-      'WRITTEN',
-      'UNWRITTEN',
-      'THE LAYER',
-      'THE LAYER BELOW',
-      'STILL HERE',
-      'YOU SAW',
-      'WAS IT TRUE',
-      'NOT YOURS',
-      'OURS NOW',
-      'THE SCRIBE LIED',
-      'PALIMPSEST'
-    ];
+    for (const f of fragments){
+      const lifeT = f.age/f.max;
+      const alpha = Math.sin(lifeT*Math.PI);
+      if (alpha>0.18){
+        for (let i=0;i<f.text.length;i++){
+          const x=f.x+i, y=f.y;
+          if (x<0||x>=W||y<0||y>=H) continue;
+          cells[y][x]=f.text[i];
+          stabOver[y][x]=Math.max(stabOver[y][x], alpha);
+        }
+      }
+      f.age++;
+    }
 
-    function maybeFragment() {
-      if (Math.random() < 0.12 && fragments.length < 4) {
-        const text = PHRASES[Math.floor(Math.random() * PHRASES.length)];
-        const x = Math.floor(Math.random() * (W - text.length - 4)) + 2;
-        const y = Math.floor(Math.random() * (H - 4)) + 2;
-        fragments.push({ text, x, y, age: 0, max: 22 + Math.floor(Math.random() * 16) });
+    // Jitter cells based on stability + global glitch
+    for (let y=0;y<H;y++){
+      for (let x=0;x<W;x++){
+        const s = stability[y][x] + stabOver[y][x] - glitchPulse*0.4;
+        if (Math.random() > s) cells[y][x] = randomChar();
+        // decay creeps up where instability is high
+        if (s < 0.4 && Math.random() < 0.04) decay[y][x] = Math.min(3, decay[y][x]+1);
+        if (s > 0.6 && Math.random() < 0.05) decay[y][x] = Math.max(0, decay[y][x]-1);
       }
     }
 
-    let t = 0;
+    // Render
+    let buf='';
+    for (let y=0;y<H;y++){
+      let prev=null, span='';
+      for (let x=0;x<W;x++){
+        let ch = cells[y][x];
+        const dec = decay[y][x];
+        ch = decayChar(ch, dec);
 
-    function render() {
-      maybeFragment();
-      fragments = fragments.filter(f => f.age < f.max);
+        // Player marker
+        let isPlayer=false;
+        if (y===py && x===px){ ch='@'; isPlayer=true; }
+        else if (y===py && x===px-1){ ch='<'; isPlayer=true; }
+        else if (y===py && x===px+1){ ch='>'; isPlayer=true; }
 
-      // Per-tick: jitter cells based on stability
-      for (let y = 0; y < H; y++) {
-        for (let x = 0; x < W; x++) {
-          if (Math.random() > stability[y][x]) {
-            cells[y][x] = randomChar();
-          }
+        if (ch==='<') ch='&lt;';
+        else if (ch==='>') ch='&gt;';
+        else if (ch==='&') ch='&amp;';
+
+        let color;
+        const sov = stabOver[y][x];
+        if (isPlayer){
+          color = 'hsl(180,100%,90%)';
+        } else if (sov > 0.4){
+          // stabilized fragment text
+          const l = 60 + sov*30;
+          color = `hsl(180,80%,${l|0}%)`;
+        } else if (cells[y][x]===' '){
+          color = 'hsl(220,50%,5%)';
+        } else {
+          // background ink-blue with noise
+          const jitter = (Math.sin((x*13+y*7+t*40)*0.1)+1)/2;
+          const isSymbol = !ALPHA.includes(cells[y][x]);
+          const distFromPlayer = Math.sqrt((x-px)*(x-px)+(y-py)*(y-py));
+          const playerProx = Math.max(0, 1 - distFromPlayer/14);
+          const baseHue = isSymbol ? 220 + (Math.random()<0.06 ? -180 : 0) : 220;
+          const sat = 55 + jitter*25;
+          const light = (20 + jitter*32 + playerProx*15) * (1 - dec*0.18);
+          color = `hsl(${(baseHue+360)%360},${sat|0}%,${light|0}%)`;
         }
+
+        if (color===prev) span += ch;
+        else { if (span) buf+=`<span style="color:${prev}">${span}</span>`; span=ch; prev=color; }
       }
-
-      // Reset stability under fragments — those stabilize tiles to make text readable
-      const stabilityOverlay = [];
-      for (let y = 0; y < H; y++) {
-        stabilityOverlay[y] = new Array(W).fill(0);
-      }
-      for (const f of fragments) {
-        const lifeT = f.age / f.max;
-        const alpha = Math.sin(lifeT * Math.PI); // 0..1..0
-        if (alpha > 0.2) {
-          for (let i = 0; i < f.text.length; i++) {
-            const x = f.x + i, y = f.y;
-            if (x < 0 || x >= W || y < 0 || y >= H) continue;
-            cells[y][x] = f.text[i];
-            stabilityOverlay[y][x] = alpha;
-          }
-        }
-        f.age++;
-      }
-
-      // Render
-      let buffer = '';
-      for (let y = 0; y < H; y++) {
-        let prev = null, span = '';
-        for (let x = 0; x < W; x++) {
-          let ch = cells[y][x];
-          // Player marker
-          let isPlayer = false;
-          if (y === CY && x === CX) { ch = '@'; isPlayer = true; }
-          else if (y === CY && x === CX - 1) { ch = '<'; isPlayer = true; }
-          else if (y === CY && x === CX + 1) { ch = '>'; isPlayer = true; }
-
-          if (ch === '<') ch = '&lt;';
-          else if (ch === '>') ch = '&gt;';
-          else if (ch === '&') ch = '&amp;';
-
-          let color;
-          if (isPlayer) {
-            color = 'hsl(0, 0%, 95%)';
-          } else if (stabilityOverlay[y][x] > 0.3) {
-            // Fragment readable text — bright cyan/white
-            const l = 70 + stabilityOverlay[y][x] * 25;
-            color = `hsl(180, 80%, ${l.toFixed(0)}%)`;
-          } else {
-            // Background bleed — electric blue with brightness based on jitter density
-            const jitter = (Math.sin((x * 13 + y * 7 + t * 80) * 0.1) + 1) / 2;
-            const isSymbol = !ALPHA.includes(cells[y][x]) && cells[y][x] !== ' ';
-            if (cells[y][x] === ' ') {
-              color = 'hsl(220, 50%, 5%)';
-            } else if (isSymbol) {
-              // accent — magenta/red occasionally
-              if (Math.random() < 0.05) {
-                color = `hsl(${Math.floor(Math.random() * 30) + 350}, 70%, 55%)`;
-              } else {
-                color = `hsl(220, 60%, ${(35 + jitter * 25).toFixed(0)}%)`;
-              }
-            } else {
-              color = `hsl(220, ${(50 + jitter * 30).toFixed(0)}%, ${(40 + jitter * 30).toFixed(0)}%)`;
-            }
-          }
-
-          if (color === prev) span += ch;
-          else {
-            if (span.length) buffer += `<span style="color:${prev}">${span}</span>`;
-            span = ch; prev = color;
-          }
-        }
-        if (span.length) buffer += `<span style="color:${prev}">${span}</span>`;
-        buffer += '\n';
-      }
-      screen.innerHTML = buffer;
-
-      // HUD
-      document.getElementById('hud-bleed').textContent = (0.55 + Math.abs(Math.sin(t * 0.3)) * 0.2).toFixed(2);
-      document.getElementById('hud-integ').textContent = (65 + Math.floor(Math.cos(t * 0.2) * 8)) + '%';
-      document.getElementById('hud-hr').textContent = (74 + Math.floor(Math.sin(t * 0.5) * 6)) + ' BPM';
-      document.getElementById('hud-words').textContent = (8 + fragments.length * 4 + Math.floor(Math.random() * 3));
-
-      t += 0.07;
+      if (span) buf += `<span style="color:${prev}">${span}</span>`;
+      buf += '\n';
     }
+    screen.innerHTML = buf;
 
-    init();
-    setInterval(render, 80);
-    render();
+    // HUD
+    document.getElementById('hud-bleed').textContent = (0.55 + Math.abs(Math.sin(t*0.3))*0.2 + glitchPulse*0.15).toFixed(2);
+    document.getElementById('hud-integ').textContent = (62 + Math.floor(Math.cos(t*0.2)*8) - Math.floor(glitchPulse*15)) + '%';
+    document.getElementById('hud-hr').textContent = (76 + Math.floor(Math.sin(t*0.5)*5) + Math.floor(glitchPulse*10));
+    document.getElementById('hud-words').textContent = (8 + fragments.length*4 + (Math.random()*4|0));
+
+    t += 0.07;
+    requestAnimationFrame(frame);
+  }
+
+  computeSize();
+  window.addEventListener('resize', computeSize);
+  requestAnimationFrame(frame);
   </script>
 </body>
 </html>

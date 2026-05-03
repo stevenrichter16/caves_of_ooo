@@ -2,59 +2,59 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Caves of Ooo — Shifting Zone Demos</title>
 <style>
   html, body {
     margin: 0;
-    padding: 40px;
+    padding: 28px 18px 60px;
     background: #050608;
     color: #cfcfcf;
-    font-family: 'Courier New', Consolas, monospace;
+    font-family: 'Menlo','Courier New', Consolas, monospace;
     min-height: 100vh;
     box-sizing: border-box;
   }
   h1 {
-    font-size: 22px;
+    font-size: 20px;
     margin: 0 0 4px 0;
     color: #d8d4b8;
     letter-spacing: 2px;
   }
   .subtitle {
     color: #555;
-    font-size: 13px;
+    font-size: 12px;
     letter-spacing: 1px;
-    margin-bottom: 32px;
+    margin-bottom: 26px;
     border-bottom: 1px solid #1a1c20;
-    padding-bottom: 16px;
+    padding-bottom: 14px;
   }
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    gap: 18px;
-    max-width: 1200px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+    max-width: 1400px;
   }
   .card {
     background: #0a0c10;
     border: 1px solid #181b22;
-    padding: 18px;
+    padding: 16px;
     transition: border-color 0.2s, transform 0.2s;
     text-decoration: none;
     color: inherit;
     display: block;
   }
-  .card:hover {
+  .card:hover, .card:active {
     border-color: #4a8;
     transform: translateY(-2px);
   }
   .card .name {
     color: #d8d4b8;
-    font-size: 16px;
+    font-size: 15px;
     letter-spacing: 1px;
     margin-bottom: 4px;
   }
   .card .faction {
-    color: #6a8;
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 2px;
     margin-bottom: 10px;
   }
@@ -63,10 +63,28 @@
     font-size: 12px;
     line-height: 1.5;
   }
+  .card.mycelial .faction { color: #6a8; }
   .card.mycelial:hover { border-color: #7a8; }
+  .card.temporal .faction { color: #88a; }
   .card.temporal:hover { border-color: #88a; }
+  .card.inkbleed .faction { color: #6ad; }
   .card.inkbleed:hover { border-color: #a48; }
+  .card.cathedral .faction { color: #a86; }
   .card.cathedral:hover { border-color: #a86; }
+  .card.water .faction { color: #7ad; }
+  .card.water:hover { border-color: #7ad; }
+  .card.saccharine .faction { color: #e8a; }
+  .card.saccharine:hover { border-color: #e8a; }
+  .card.firstroot .faction { color: #c64; }
+  .card.firstroot:hover { border-color: #c64; }
+  .card.spire .faction { color: #ba8; }
+  .card.spire:hover { border-color: #ba8; }
+  .section-label {
+    color: #444;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin: 28px 0 10px;
+  }
   footer {
     margin-top: 40px;
     color: #444;
@@ -78,32 +96,60 @@
   <h1>SHIFTING ZONE DEMOS</h1>
   <div class="subtitle">CAVES OF OOO &middot; ANIMATED ASCII ZONE PROTOTYPES</div>
 
+  <div class="section-label">— FOUNDATIONAL ZONES —</div>
   <div class="grid">
     <a href="mycelial-deep.html" class="card mycelial">
       <div class="name">THE MYCELIAL DEEP</div>
       <div class="faction">CHOIR TERRITORY</div>
-      <div class="desc">Living terrain that breathes. Spore-tendrils drift; the stone pulses; periodic spore-bursts ripple outward from unseen Choir-nodes. Greens, ochres, dim purples.</div>
+      <div class="desc">Living terrain that breathes. Spore-bursts ripple from unseen Choir-nodes; residue lingers; light radius reveals only what's near. Greens, ochres, dim purples shifting to choir-purple at density.</div>
     </a>
 
     <a href="temporal-substrate.html" class="card temporal">
       <div class="name">THE TEMPORAL SUBSTRATE</div>
       <div class="faction">PALIMPSEST TERRITORY</div>
-      <div class="desc">Tiles flicker between past and present states. Ghost-layers of earlier terrain bleed through current geography. Bone-white, sepia, faded blue, ghostly cyan.</div>
+      <div class="desc">Hover to peel layers — tiles flicker between present (geometric glyphs), past (sepia letter-fragments), and a deeper second past. Readable phrases bleed through as gold ghost-text.</div>
     </a>
 
     <a href="inkbleed.html" class="card inkbleed">
       <div class="name">INKBLEED</div>
       <div class="faction">CORRUPTED PALIMPSEST</div>
-      <div class="desc">Inscriptions overflow their bounds. Letters drift, recombine, sometimes form readable fragments before dissolving. Black, electric ink-blue, warning red.</div>
+      <div class="desc">Tile-level alphanumeric jitter; decay creeps where stability is low. Phrases stabilize and dissolve. Your presence calms nearby text. Random screen-glitch flashes.</div>
     </a>
 
     <a href="hollow-cathedral.html" class="card cathedral">
       <div class="name">THE HOLLOW CATHEDRAL</div>
       <div class="faction">DEEPEST LAYER</div>
-      <div class="desc">Vast, sparse, sacred. The world thins. Pinpoint lights drift in slow currents; rare pillar-fragments stand against the dark. Deep purple, gold, near-black.</div>
+      <div class="desc">Vast and sparse. Parallax stars (foreground bright, deep stars distant), ornamented pillars that breathe, drifting motes, floor-runes. Slow heartbeat pulses the whole frame.</div>
     </a>
   </div>
 
-  <footer>Click any zone to view its dynamic ASCII renderer demo.</footer>
+  <div class="section-label">— EXTENDED ZONES —</div>
+  <div class="grid">
+    <a href="bright-water-coast.html" class="card water">
+      <div class="name">THE BRIGHT-WATER COAST</div>
+      <div class="faction">SOPP'S DOMAIN</div>
+      <div class="desc">Three-layer parallax wave flow moves horizontally. Foam bursts on rocky outcrops. Tide rises and ebbs on a slow cycle. Currents pull the player. Deep blue to white-foam gradient.</div>
+    </a>
+
+    <a href="saccharine-concord.html" class="card saccharine">
+      <div class="name">THE SACCHARINE CONCORD</div>
+      <div class="faction">SUGAR-EDGE BIOME</div>
+      <div class="desc">Crystals shimmer (some gold, some rose). Syrup channels flow downward. Sparkles drift. Random radial bloom-events pulse outward. Movement is viscous. Bright pink, gold, cream-white.</div>
+    </a>
+
+    <a href="first-root-chamber.html" class="card firstroot">
+      <div class="name">THE FIRST ROOT CHAMBER</div>
+      <div class="faction">APEX CHOIR</div>
+      <div class="desc">A vast living entity fills the upper screen, its boundary irregular and breathing. The player is dwarfed below. Bright "thoughts" pulse outward from the consciousness-center. Crimson core to dark-green tendrils.</div>
+    </a>
+
+    <a href="half-standing-spire.html" class="card spire">
+      <div class="name">THE HALF-STANDING SPIRE</div>
+      <div class="faction">OLD-WORLD RUIN</div>
+      <div class="desc">Architectural ruins lean and break mid-height. Dust falls slowly. Dead consoles flicker with random glyphs and occasional sparks. Distant tremors shake the whole screen. Browns, electric-blue dead-tech.</div>
+    </a>
+  </div>
+
+  <footer>Tap any zone. Drag to move. Each demo is self-contained — no build, no server.</footer>
 </body>
 </html>

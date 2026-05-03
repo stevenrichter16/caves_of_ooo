@@ -2,74 +2,39 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Shifting Zone — The Hollow Cathedral</title>
 <style>
-  html, body {
-    margin: 0; padding: 0;
-    background: #020104;
-    color: #c8a;
-    font-family: 'Courier New', Consolas, monospace;
-    overflow: hidden;
-    height: 100vh;
-  }
-  #wrapper { padding: 18px; box-sizing: border-box; }
-  #hud {
-    color: #846;
-    font-size: 13px;
-    letter-spacing: 1.5px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #1f1428;
-    padding-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
-    text-shadow: 0 0 4px rgba(180, 100, 200, 0.25);
-  }
-  #hud .left, #hud .right { display: flex; gap: 22px; }
-  .label { color: #2c1e36; }
-  .stat { color: #d8b8d0; }
-  .gold { color: #d8b070; }
-  #screen {
-    font-size: 14px;
-    line-height: 1.0;
-    white-space: pre;
-    text-shadow: 0 0 5px rgba(200, 160, 220, 0.25), 0 0 18px rgba(160, 100, 220, 0.12);
-  }
-  .scanlines {
-    position: fixed; inset: 0;
-    background: repeating-linear-gradient(
-      to bottom,
-      rgba(0,0,0,0) 0,
-      rgba(0,0,0,0) 2px,
-      rgba(0,0,0,0.22) 3px,
-      rgba(0,0,0,0) 4px
-    );
-    pointer-events: none;
-  }
-  .vignette {
-    position: fixed; inset: 0;
-    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 35%, rgba(0,0,0,0.95) 100%);
-    pointer-events: none;
-  }
-  a.back {
-    position: fixed; top: 14px; right: 18px;
-    color: #2c1e36; font-size: 11px; letter-spacing: 2px;
-    text-decoration: none;
-  }
-  a.back:hover { color: #846; }
+  :root { --bg:#020104; --hud:#846; --hud-label:#2c1e36; --hud-stat:#d8b8d0; --gold:#d8b070; }
+  html,body { margin:0; padding:0; background:var(--bg); color:var(--hud); font-family:'Menlo','Courier New',Consolas,monospace; overflow:hidden; height:100vh; height:100dvh; user-select:none; -webkit-user-select:none; touch-action:none; }
+  #wrapper { padding:14px; box-sizing:border-box; height:100vh; height:100dvh; display:flex; flex-direction:column; }
+  #hud { color:var(--hud); font-size:11px; letter-spacing:1.4px; margin-bottom:8px; border-bottom:1px solid #1f1428; padding-bottom:8px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px 16px; text-shadow:0 0 4px rgba(180,100,200,.3); flex-shrink:0; }
+  #hud .group { display:flex; gap:14px; flex-wrap:wrap; }
+  .label { color:var(--hud-label); } .stat { color:var(--hud-stat); }
+  .gold { color:var(--gold); }
+  #screen { font-size:13px; line-height:1.0; white-space:pre; text-shadow:0 0 5px rgba(200,160,220,.3),0 0 18px rgba(160,100,220,.16); cursor:crosshair; flex:1; overflow:hidden; }
+  .scanlines { position:fixed; inset:0; background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 2px,rgba(0,0,0,.22) 3px,rgba(0,0,0,0) 4px); pointer-events:none; z-index:100; }
+  .vignette { position:fixed; inset:0; background:radial-gradient(ellipse at center,rgba(0,0,0,0) 32%,rgba(0,0,0,.97) 100%); pointer-events:none; z-index:99; }
+  .crt-glow { position:fixed; inset:0; box-shadow:inset 0 0 240px rgba(160,80,180,.07); pointer-events:none; z-index:98; }
+  .heartbeat-flash { position:fixed; inset:0; background:rgba(216,176,112,0); pointer-events:none; z-index:97; }
+  a.back { position:fixed; top:10px; right:14px; color:#2c1e36; font-size:11px; letter-spacing:2px; text-decoration:none; z-index:200; padding:4px 8px; }
+  a.back:hover,a.back:active { color:#846; }
+  .hint { position:fixed; bottom:8px; left:14px; color:#2c1e36; font-size:10px; letter-spacing:1.5px; z-index:200; }
 </style>
 </head>
 <body>
   <a href="index.html" class="back">&lt; ZONES</a>
   <div id="wrapper">
     <div id="hud">
-      <div class="left">
+      <div class="group">
         <span><span class="label">DEPTH:</span> <span class="stat gold" id="hud-depth">2,418m</span></span>
         <span><span class="label">LUX:</span> <span class="stat" id="hud-lux">0.04</span></span>
-        <span><span class="label">HR:</span> <span class="stat" id="hud-hr">52 BPM</span></span>
+        <span><span class="label">HR:</span> <span class="stat" id="hud-hr">52</span></span>
         <span><span class="label">OP:</span> <span class="stat">DR HARLAN WEBB</span></span>
       </div>
-      <div class="right">
+      <div class="group">
         <span><span class="label">TEMP:</span> <span class="stat" id="hud-temp">+11.2°C</span></span>
+        <span><span class="label">PRESSURE:</span> <span class="stat" id="hud-press">241 atm</span></span>
         <span><span class="label">VOID:</span> <span class="stat" id="hud-void">VAST</span></span>
         <span><span class="label">ZONE:</span> <span class="stat gold">HOLLOW CATHEDRAL</span></span>
       </div>
@@ -78,160 +43,229 @@
   </div>
   <div class="scanlines"></div>
   <div class="vignette"></div>
+  <div class="crt-glow"></div>
+  <div class="heartbeat-flash" id="heartbeat"></div>
+  <div class="hint">DRAG TO DRIFT &middot; THE WORLD IS LARGER THAN YOUR LIGHT</div>
+
   <script>
-    const W = 110, H = 34;
-    const CX = Math.floor(W / 2), CY = Math.floor(H / 2);
-    const screen = document.getElementById('screen');
+  'use strict';
+  const screen = document.getElementById('screen');
+  const heartbeatEl = document.getElementById('heartbeat');
+  const FONT_W = 7.81, FONT_H = 13;
+  let W=110, H=34, CX=55, CY=17;
+  let playerX=CX, playerY=CY, targetX=CX, targetY=CY;
+  let stars=[], deepStars=[], pillars=[], motes=[], runes=[];
+  let t=0;
+  let heartbeatPulse=0;
 
-    // Three layered elements:
-    // 1. Pinpoint stars/lights — slow drifting
-    // 2. Pillar fragments — sparse vertical lines that taper
-    // 3. Distant motes / dust — very dim, slow
+  function computeSize() {
+    const w = window.innerWidth - 28;
+    const h = window.innerHeight - 80;
+    W = Math.max(50, Math.floor(w/FONT_W));
+    H = Math.max(18, Math.floor(h/FONT_H));
+    CX = Math.floor(W/2); CY = Math.floor(H/2);
+    initWorld();
+  }
 
-    let stars = [];
-    let pillars = [];
-    let motes = [];
+  function initWorld(){
+    stars=[]; deepStars=[]; pillars=[]; motes=[]; runes=[];
+    // foreground stars (parallax 1.0 — drift with player)
+    for (let i=0;i<28;i++){
+      stars.push({
+        x:Math.random()*W, y:Math.random()*H,
+        vx:(Math.random()-0.5)*0.04, vy:(Math.random()-0.5)*0.025,
+        phase:Math.random()*Math.PI*2,
+        gold:Math.random()<0.18,
+        bright: 0.6+Math.random()*0.4
+      });
+    }
+    // deep stars (parallax 0.4 — distant)
+    for (let i=0;i<22;i++){
+      deepStars.push({
+        x:Math.random()*W, y:Math.random()*H,
+        vx:(Math.random()-0.5)*0.012, vy:(Math.random()-0.5)*0.008,
+        phase:Math.random()*Math.PI*2,
+        bright: 0.2+Math.random()*0.3
+      });
+    }
+    // pillars
+    const np = Math.max(3, Math.floor(W/22));
+    for (let i=0;i<np;i++){
+      const x = ((Math.random()*(W-6))|0)+3;
+      const yTop = ((Math.random()*(H*0.4))|0);
+      const yBot = ((yTop + H*0.35 + Math.random()*H*0.3)|0);
+      pillars.push({ x, yTop, yBot, phase:Math.random()*Math.PI*2 });
+    }
+    // motes
+    for (let i=0;i<20;i++){
+      motes.push({ x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-0.5)*0.07, vy:(Math.random()-0.5)*0.035 });
+    }
+    // floor runes — sparse glyphs in the lower third
+    const RUNE_CHARS = ['+','*','o','-','=','|',':',';','.'];
+    for (let i=0;i<8;i++){
+      runes.push({
+        x: ((Math.random()*W)|0),
+        y: H - 1 - ((Math.random()*5)|0),
+        char: RUNE_CHARS[(Math.random()*RUNE_CHARS.length)|0],
+        phase:Math.random()*Math.PI*2,
+        gold: Math.random()<0.3
+      });
+    }
+  }
 
-    function init() {
-      // Stars
-      for (let i = 0; i < 36; i++) {
-        stars.push({
-          x: Math.random() * W,
-          y: Math.random() * H,
-          vx: (Math.random() - 0.5) * 0.05,
-          vy: (Math.random() - 0.5) * 0.03,
-          phase: Math.random() * Math.PI * 2,
-          gold: Math.random() < 0.18
-        });
-      }
-      // Pillars — 4-6 sparse vertical fragments
-      for (let i = 0; i < 5; i++) {
-        const x = Math.floor(Math.random() * (W - 6)) + 3;
-        const yTop = Math.floor(Math.random() * (H * 0.4));
-        const yBot = Math.floor(yTop + H * 0.35 + Math.random() * H * 0.3);
-        pillars.push({ x, yTop, yBot, phase: Math.random() * Math.PI * 2 });
-      }
-      // Motes — slow dust
-      for (let i = 0; i < 24; i++) {
-        motes.push({
-          x: Math.random() * W,
-          y: Math.random() * H,
-          vx: (Math.random() - 0.5) * 0.08,
-          vy: (Math.random() - 0.5) * 0.04,
-        });
-      }
+  // Input
+  function setTarget(clientX, clientY){
+    const r = screen.getBoundingClientRect();
+    const x = Math.floor((clientX-r.left)/(r.width/W));
+    const y = Math.floor((clientY-r.top)/(r.height/H));
+    if (x>=0 && x<W && y>=0 && y<H){ targetX=x; targetY=y; }
+  }
+  let dragging=false;
+  screen.addEventListener('mousedown', e=>{ dragging=true; setTarget(e.clientX,e.clientY); });
+  window.addEventListener('mousemove', e=>{ if(dragging) setTarget(e.clientX,e.clientY); });
+  window.addEventListener('mouseup', ()=>dragging=false);
+  screen.addEventListener('touchstart', e=>{ const t=e.touches[0]; setTarget(t.clientX,t.clientY); e.preventDefault(); }, {passive:false});
+  screen.addEventListener('touchmove', e=>{ const t=e.touches[0]; setTarget(t.clientX,t.clientY); e.preventDefault(); }, {passive:false});
+
+  function frame(){
+    // Player drift (slower in cathedral — sacred space)
+    playerX += (targetX-playerX)*0.10;
+    playerY += (targetY-playerY)*0.10;
+    const px=Math.round(playerX), py=Math.round(playerY);
+
+    // Heartbeat — slow lub-dub, pulse the screen briefly
+    const heartCycle = (t*0.18) % (Math.PI*2);
+    if (heartCycle < 0.1 && heartbeatPulse < 0.05){
+      heartbeatPulse = 0.5;
+    }
+    heartbeatPulse *= 0.85;
+    heartbeatEl.style.background = `rgba(216,176,112,${(heartbeatPulse*0.06).toFixed(3)})`;
+
+    const grid=[], colors=[];
+    for (let y=0;y<H;y++){
+      grid[y] = new Array(W).fill(' ');
+      colors[y] = new Array(W).fill('hsl(280,30%,3%)');
     }
 
-    let t = 0;
+    // Deep stars (parallax low — drift slow regardless of player)
+    for (const s of deepStars){
+      s.x += s.vx; s.y += s.vy; s.phase += 0.025;
+      if (s.x<0) s.x=W-1; if (s.x>=W) s.x=0;
+      if (s.y<0) s.y=H-1; if (s.y>=H) s.y=0;
+      const x=s.x|0, y=s.y|0;
+      const tw = (Math.sin(s.phase)+1)/2;
+      grid[y][x] = '.';
+      colors[y][x] = `hsl(280,30%,${(8 + tw*s.bright*30)|0}%)`;
+    }
 
-    function render() {
-      // grid of empty cells
-      const grid = [];
-      const colors = [];
-      for (let y = 0; y < H; y++) {
-        grid[y] = new Array(W).fill(' ');
-        colors[y] = new Array(W).fill('hsl(280,30%,3%)');
-      }
-
-      // Pillars first (under everything)
-      for (const p of pillars) {
-        const breath = (Math.sin(t * 0.18 + p.phase) + 1) / 2;
-        for (let y = p.yTop; y <= p.yBot; y++) {
-          if (y < 0 || y >= H) continue;
-          // Fade pillars at their tops/bottoms
-          const norm = (y - p.yTop) / Math.max(1, p.yBot - p.yTop);
-          const fade = Math.sin(norm * Math.PI); // bright in middle, fade at ends
-          if (fade < 0.2) continue;
-          const x = p.x;
-          // Choose char by intensity
-          let ch;
-          if (fade > 0.85) ch = '|';
-          else if (fade > 0.6) ch = '|';
-          else if (fade > 0.4) ch = ':';
-          else ch = '.';
-          // Sometimes — every other cell — show a little ornamentation
-          if (y === Math.floor((p.yTop + p.yBot) / 2)) ch = '+';
-          grid[y][x] = ch;
-          const l = 18 + fade * 28 + breath * 8;
-          colors[y][x] = `hsl(290,30%,${l.toFixed(0)}%)`;
-        }
-      }
-
-      // Motes — dim dust
-      for (const m of motes) {
-        m.x += m.vx; m.y += m.vy;
-        if (m.x < 0) m.x = W - 1;
-        if (m.x >= W) m.x = 0;
-        if (m.y < 0) m.y = H - 1;
-        if (m.y >= H) m.y = 0;
-        const x = Math.floor(m.x), y = Math.floor(m.y);
-        if (grid[y][x] === ' ') {
-          grid[y][x] = '.';
-          colors[y][x] = 'hsl(290,20%,12%)';
-        }
-      }
-
-      // Stars (top layer)
-      for (const s of stars) {
-        s.x += s.vx; s.y += s.vy;
-        s.phase += 0.05;
-        if (s.x < 0) s.x = W - 1;
-        if (s.x >= W) s.x = 0;
-        if (s.y < 0) s.y = H - 1;
-        if (s.y >= H) s.y = 0;
-        const x = Math.floor(s.x), y = Math.floor(s.y);
-        const twinkle = (Math.sin(s.phase) + 1) / 2;
-        let ch = '.';
-        if (twinkle > 0.85) ch = '*';
-        else if (twinkle > 0.55) ch = '+';
-        else if (twinkle > 0.3) ch = '\'';
+    // Pillars
+    for (const p of pillars){
+      const breath = (Math.sin(t*0.18 + p.phase)+1)/2;
+      for (let y=p.yTop; y<=p.yBot; y++){
+        if (y<0||y>=H) continue;
+        const norm = (y - p.yTop) / Math.max(1, p.yBot - p.yTop);
+        const fade = Math.sin(norm*Math.PI);
+        if (fade<0.18) continue;
+        const x = p.x;
+        let ch;
+        if (fade>0.85) ch='|';
+        else if (fade>0.6) ch='|';
+        else if (fade>0.4) ch=':';
+        else ch='.';
+        if (y === ((p.yTop+p.yBot)/2)|0) ch='+';
+        // Capital ornamentation
+        if (y === p.yTop+1) ch = '=';
+        if (y === p.yBot-1) ch = '_';
         grid[y][x] = ch;
-        if (s.gold) {
-          colors[y][x] = `hsl(45,70%,${(30 + twinkle * 50).toFixed(0)}%)`;
-        } else {
-          colors[y][x] = `hsl(280,40%,${(30 + twinkle * 50).toFixed(0)}%)`;
-        }
+        const l = 16 + fade*30 + breath*8 + heartbeatPulse*30;
+        colors[y][x] = `hsl(290,32%,${l|0}%)`;
       }
-
-      // Player — single solitary marker
-      grid[CY][CX] = '@';
-      colors[CY][CX] = 'hsl(45,90%,75%)';
-      // a faint halo cross
-      if (CY - 1 >= 0 && grid[CY-1][CX] === ' ') { grid[CY-1][CX] = "'"; colors[CY-1][CX] = 'hsl(45,60%,30%)'; }
-      if (CY + 1 < H && grid[CY+1][CX] === ' ') { grid[CY+1][CX] = '.'; colors[CY+1][CX] = 'hsl(45,60%,30%)'; }
-
-      // Render
-      let buffer = '';
-      for (let y = 0; y < H; y++) {
-        let prev = null, span = '';
-        for (let x = 0; x < W; x++) {
-          let ch = grid[y][x];
-          if (ch === '<') ch = '&lt;';
-          else if (ch === '>') ch = '&gt;';
-          else if (ch === '&') ch = '&amp;';
-          const c = colors[y][x];
-          if (c === prev) span += ch;
-          else {
-            if (span.length) buffer += `<span style="color:${prev}">${span}</span>`;
-            span = ch; prev = c;
-          }
-        }
-        if (span.length) buffer += `<span style="color:${prev}">${span}</span>`;
-        buffer += '\n';
-      }
-      screen.innerHTML = buffer;
-
-      // HUD — slow values; everything pulses gently
-      document.getElementById('hud-lux').textContent = (0.03 + Math.abs(Math.sin(t * 0.1)) * 0.025).toFixed(3);
-      document.getElementById('hud-hr').textContent = (50 + Math.floor(Math.sin(t * 0.4) * 3)) + ' BPM';
-      document.getElementById('hud-temp').textContent = (10.8 + Math.sin(t * 0.15) * 0.6).toFixed(1) + '°C';
-
-      t += 0.05;
     }
 
-    init();
-    setInterval(render, 100);
-    render();
+    // Motes
+    for (const m of motes){
+      m.x += m.vx; m.y += m.vy;
+      if (m.x<0) m.x=W-1; if (m.x>=W) m.x=0;
+      if (m.y<0) m.y=H-1; if (m.y>=H) m.y=0;
+      const x=m.x|0, y=m.y|0;
+      if (grid[y][x] === ' '){
+        grid[y][x] = '.';
+        colors[y][x] = 'hsl(290,18%,12%)';
+      }
+    }
+
+    // Foreground stars
+    for (const s of stars){
+      s.x += s.vx; s.y += s.vy; s.phase += 0.05;
+      if (s.x<0) s.x=W-1; if (s.x>=W) s.x=0;
+      if (s.y<0) s.y=H-1; if (s.y>=H) s.y=0;
+      const x=s.x|0, y=s.y|0;
+      const tw = (Math.sin(s.phase)+1)/2;
+      let ch='.';
+      if (tw>0.85) ch='*';
+      else if (tw>0.55) ch='+';
+      else if (tw>0.3) ch="'";
+      grid[y][x] = ch;
+      const l = (28 + tw*55*s.bright + heartbeatPulse*20)|0;
+      if (s.gold){
+        colors[y][x] = `hsl(45,72%,${l}%)`;
+      } else {
+        colors[y][x] = `hsl(280,42%,${l}%)`;
+      }
+    }
+
+    // Floor runes — shimmer
+    for (const r of runes){
+      r.phase += 0.04;
+      const shimmer = (Math.sin(r.phase)+1)/2;
+      if (r.x<0||r.x>=W||r.y<0||r.y>=H) continue;
+      grid[r.y][r.x] = r.char;
+      const l = 28 + shimmer*35 + heartbeatPulse*30;
+      if (r.gold) colors[r.y][r.x] = `hsl(45,80%,${l|0}%)`;
+      else colors[r.y][r.x] = `hsl(290,40%,${l|0}%)`;
+    }
+
+    // Player — solitary gold @
+    if (px>=0&&px<W&&py>=0&&py<H){
+      grid[py][px] = '@';
+      colors[py][px] = 'hsl(45,92%,80%)';
+      // halo
+      if (py-1>=0 && grid[py-1][px]===' '){ grid[py-1][px] = "'"; colors[py-1][px] = 'hsl(45,60%,32%)'; }
+      if (py+1<H && grid[py+1][px]===' '){ grid[py+1][px] = '.'; colors[py+1][px] = 'hsl(45,60%,28%)'; }
+      if (px-1>=0 && grid[py][px-1]===' '){ grid[py][px-1] = '\''; colors[py][px-1] = 'hsl(45,55%,28%)'; }
+      if (px+1<W && grid[py][px+1]===' '){ grid[py][px+1] = '\''; colors[py][px+1] = 'hsl(45,55%,28%)'; }
+    }
+
+    // Render
+    let buf='';
+    for (let y=0;y<H;y++){
+      let prev=null, span='';
+      for (let x=0;x<W;x++){
+        let ch = grid[y][x];
+        if (ch==='<') ch='&lt;';
+        else if (ch==='>') ch='&gt;';
+        else if (ch==='&') ch='&amp;';
+        const c = colors[y][x];
+        if (c===prev) span += ch;
+        else { if (span) buf+=`<span style="color:${prev}">${span}</span>`; span=ch; prev=c; }
+      }
+      if (span) buf += `<span style="color:${prev}">${span}</span>`;
+      buf += '\n';
+    }
+    screen.innerHTML = buf;
+
+    // HUD
+    document.getElementById('hud-lux').textContent = (0.025 + Math.abs(Math.sin(t*0.1))*0.025 + heartbeatPulse*0.04).toFixed(3);
+    document.getElementById('hud-hr').textContent = (50 + Math.floor(Math.sin(t*0.4)*3));
+    document.getElementById('hud-temp').textContent = (10.8 + Math.sin(t*0.15)*0.6).toFixed(1) + '°C';
+    document.getElementById('hud-press').textContent = (240 + Math.sin(t*0.08)*4).toFixed(0) + ' atm';
+    t += 0.05;
+    requestAnimationFrame(frame);
+  }
+
+  computeSize();
+  window.addEventListener('resize', computeSize);
+  requestAnimationFrame(frame);
   </script>
 </body>
 </html>
