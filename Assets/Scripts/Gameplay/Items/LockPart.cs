@@ -73,10 +73,33 @@ namespace CavesOfOoo.Core
             // they don't have the key yet.
             if (e.ID == "GetInventoryActions")
             {
-                if (!IsLocked) return true;
                 var actions = e.GetParameter<InventoryActionList>("Actions");
-                if (actions != null)
+                bool addedUnlock = false;
+                if (IsLocked && actions != null)
+                {
                     actions.AddAction("Unlock", "unlock", "Unlock", 'u', 10);
+                    addedUnlock = true;
+                }
+                // Diag observability hook: tells us whether GetInventoryActions
+                // is reaching this entity's LockPart at runtime, and whether the
+                // Unlock entry was actually added to the action list. If you're
+                // looking at a "locked thing" in-game and don't see Unlock in
+                // the popup, query diag for furniture/GetInventoryActions to
+                // narrow whether the handler fired (issue is downstream UI) or
+                // didn't fire (issue is part wiring / target resolution).
+                if (Diag.IsChannelEnabled("furniture"))
+                {
+                    Diag.Record(
+                        category: "furniture", kind: "GetInventoryActions",
+                        target: ParentEntity,
+                        payload: new
+                        {
+                            isLocked = IsLocked,
+                            keyId = KeyId,
+                            addedUnlock,
+                            blueprint = ParentEntity != null ? ParentEntity.BlueprintName : null
+                        });
+                }
                 return true;
             }
 

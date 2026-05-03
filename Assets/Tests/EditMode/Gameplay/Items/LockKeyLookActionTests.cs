@@ -68,6 +68,76 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
+        // 0. BLUEPRINT path — the showcase spawns LockedDoor via the
+        //    Factory (blueprint loader), not via `new Entity` + AddPart.
+        //    This test pins the SAME path the runtime takes, so a
+        //    "Unlock entry doesn't appear in-game" report can be
+        //    distinguished from a unit-test-only artifact.
+        // ====================================================================
+
+        [Test]
+        public void LockedDoorShowcase_LiveResolveTarget_GatherActionsIncludesUnlock()
+        {
+            // Most-faithful runtime simulation: actually run the
+            // showcase scenario, then resolve the door's cell exactly
+            // the way 'l' look-mode does. If THIS fails but the
+            // previous tests pass, the issue is something
+            // showcase-spawn-side (e.g., the door cell ends up with
+            // a higher-render-layer entity that ResolveTarget picks
+            // over the door).
+            var ctx = _harness.CreateContext(playerBlueprint: "Player");
+            new CavesOfOoo.Scenarios.Custom.LockedDoorShowcase().Apply(ctx);
+
+            var p = ctx.Zone.GetEntityPosition(ctx.PlayerEntity);
+            // Showcase places the locked door 2 cells east of player.
+            var doorCell = ctx.Zone.GetCell(p.x + 2, p.y);
+            Assert.IsNotNull(doorCell, "Door cell must exist.");
+
+            var target = WorldInteractionSystem.ResolveTarget(doorCell);
+            Assert.IsNotNull(target,
+                "ResolveTarget on the door cell must return SOMETHING.");
+            Assert.AreEqual("LockedDoor", target.BlueprintName,
+                "ResolveTarget must pick the LockedDoor (not a different " +
+                "co-located entity). Cell occupants: " +
+                string.Join(",", doorCell.Objects.Select(o => o?.BlueprintName ?? "null")));
+
+            var actions = WorldInteractionSystem.GatherActions(target);
+            Assert.IsTrue(actions.Any(a => a.Command == "Unlock"),
+                "Showcase-spawned LockedDoor's GatherActions must include Unlock. " +
+                "Got: [" + string.Join(",", actions.Select(a => a.Command)) + "]");
+        }
+
+        [Test]
+        public void LockedDoor_FromBlueprint_GetInventoryActions_EmitsUnlockEntry()
+        {
+            // Use the harness factory so we exercise the same JSON-
+            // blueprint → CreatePart suffix-lookup path the showcase
+            // hits at runtime. If LockPart isn't attached / configured
+            // correctly by the loader, this test will fail where the
+            // manually-built test (1.) passes.
+            var ctx = _harness.CreateContext(playerBlueprint: "Player");
+            var door = _harness.Factory.CreateEntity("LockedDoor");
+
+            Assert.IsNotNull(door, "LockedDoor blueprint must instantiate.");
+            var lockPart = door.GetPart<LockPart>();
+            Assert.IsNotNull(lockPart,
+                "Blueprint loader must attach LockPart to LockedDoor. " +
+                "If null, the JSON `{ \"Name\": \"Lock\" }` isn't resolving " +
+                "to LockPart via the suffix-lookup path " +
+                "(EntityFactory.CreatePart line 230-249).");
+            Assert.IsTrue(lockPart.IsLocked,
+                "Blueprint LockedDoor must spawn locked.");
+
+            var actions = WorldInteractionSystem.GatherActions(door);
+            var unlock = actions.FirstOrDefault(a => a.Command == "Unlock");
+            Assert.IsNotNull(unlock,
+                "Blueprint-loaded LockedDoor must emit an Unlock entry " +
+                "in its GetInventoryActions response. If null, the LockPart " +
+                "is attached but its HandleEvent isn't being routed by " +
+                "the FireEvent dispatch — check Part registration order.");
+        }
+
+        // ====================================================================
         // 1. Entry visibility — locked entity emits "Unlock"
         // ====================================================================
 
