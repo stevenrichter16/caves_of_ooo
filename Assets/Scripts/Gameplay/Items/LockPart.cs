@@ -40,5 +40,83 @@ namespace CavesOfOoo.Core
         /// inventory. False = unlocked, no further interaction needed.
         /// </summary>
         public bool IsLocked = true;
+
+        /// <summary>
+        /// LK.3: handle AttemptUnlock fired by <c>PhysicsPart</c>'s
+        /// bump check when the actor walks into a locked entity.
+        ///
+        /// Reads from event:
+        ///   • <c>"Actor"</c> (Entity) — who's bumping. May be null
+        ///     defensively; we pass through without unlocking.
+        ///
+        /// Writes to event:
+        ///   • <c>"Unlocked"</c> (bool) — whether this attempt succeeded.
+        ///   • <c>"KeyUsed"</c> (Entity) — which inventory item matched
+        ///     (only set on success). Caller can read this to support
+        ///     consume-on-use keys later.
+        ///
+        /// Always returns <c>true</c> from HandleEvent — vetoing the
+        /// bump itself is the caller's job (PhysicsPart). LockPart
+        /// only mutates its <see cref="IsLocked"/> state and reports
+        /// the outcome.
+        /// </summary>
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID != "AttemptUnlock") return true;
+
+            // Already unlocked — pass-through, no further work.
+            // Pre-set the "Unlocked" flag so a re-entrant caller sees
+            // the existing state without thinking we just opened it
+            // (the IsLocked-was-true → false edge fired earlier).
+            if (!IsLocked)
+            {
+                e.SetParameter("Unlocked", true);
+                return true;
+            }
+
+            // Empty KeyId = decoration lock (no real requirement).
+            // Treat any bump as opening it.
+            if (string.IsNullOrEmpty(KeyId))
+            {
+                IsLocked = false;
+                e.SetParameter("Unlocked", true);
+                return true;
+            }
+
+            var actor = e.GetParameter<Entity>("Actor");
+            if (actor == null)
+            {
+                // Can't introspect inventory — refuse without panic.
+                e.SetParameter("Unlocked", false);
+                return true;
+            }
+
+            var inv = actor.GetPart<InventoryPart>();
+            if (inv != null && inv.Objects != null)
+            {
+                for (int i = 0; i < inv.Objects.Count; i++)
+                {
+                    var item = inv.Objects[i];
+                    if (item == null) continue;
+                    var key = item.GetPart<KeyPart>();
+                    if (key != null && key.KeyId == KeyId)
+                    {
+                        IsLocked = false;
+                        e.SetParameter("Unlocked", true);
+                        e.SetParameter("KeyUsed", (object)item);
+                        var actorName = actor.GetDisplayName();
+                        var lockedThing = ParentEntity?.GetDisplayName() ?? "lock";
+                        MessageLog.Add($"{actorName} unlocks the {lockedThing}.");
+                        return true;
+                    }
+                }
+            }
+
+            // No matching key.
+            e.SetParameter("Unlocked", false);
+            var thing = ParentEntity?.GetDisplayName() ?? "lock";
+            MessageLog.Add($"The {thing} is locked.");
+            return true;
+        }
     }
 }

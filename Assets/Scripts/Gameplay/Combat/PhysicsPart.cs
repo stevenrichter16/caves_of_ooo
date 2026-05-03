@@ -66,19 +66,43 @@ namespace CavesOfOoo.Core
                 if (other == ParentEntity) continue;
 
                 var otherPhysics = other.GetPart<PhysicsPart>();
-                if (otherPhysics != null && otherPhysics.Solid)
+                bool isSolid = (otherPhysics != null && otherPhysics.Solid)
+                               || other.HasTag("Solid");
+                if (!isSolid) continue;
+
+                // LK.3: bump-to-unlock. If the Solid blocker carries a
+                // LockPart, fire AttemptUnlock on it before vetoing.
+                // The LockPart consults the actor's inventory; on a
+                // successful match it flips IsLocked=false. We then
+                // also drop the blocker's Solid (so the next move can
+                // walk through), but keep the move blocked THIS turn —
+                // unlocking is the action; walking through is the
+                // next turn's action. This matches roguelike convention
+                // and keeps a single bump from skipping past the door.
+                var lockPart = other.GetPart<LockPart>();
+                if (lockPart != null && lockPart.IsLocked)
                 {
+                    var actor = e.GetParameter<Entity>("Actor");
+                    var attempt = GameEvent.New("AttemptUnlock");
+                    attempt.SetParameter("Actor", (object)actor);
+                    other.FireEventAndRelease(attempt);
+                    // Whether unlocked or not, this turn's move is
+                    // blocked (lockPart already updated IsLocked + logged).
+                    if (!lockPart.IsLocked)
+                    {
+                        // Successful unlock — drop Solid so future
+                        // bumps walk through. Still block THIS turn
+                        // so the player explicitly steps in next.
+                        if (otherPhysics != null) otherPhysics.Solid = false;
+                    }
                     e.SetParameter("Blocked", true);
                     e.SetParameter("BlockedBy", (object)other);
                     return false;
                 }
 
-                if (other.HasTag("Solid"))
-                {
-                    e.SetParameter("Blocked", true);
-                    e.SetParameter("BlockedBy", (object)other);
-                    return false;
-                }
+                e.SetParameter("Blocked", true);
+                e.SetParameter("BlockedBy", (object)other);
+                return false;
             }
             return true;
         }
