@@ -391,7 +391,8 @@ lockpicking.
 | Path | Change |
 |---|---|
 | `Scripts/Gameplay/World/LightMap.cs` | T2.2 — add Pass 2 (equipped-item walk) |
-| ~~`Scripts/Gameplay/Inventory/InventoryPart.cs`~~ | ~~T2.2 — bump `Zone.EntityVersion` on Equip / Unequip mutations~~ — **DEFERRED in T2.2 commit body**; see SCOPE DIVERGENCE in `cd355b5` and the inline 🟡 finding in `LightMap.cs:64-73`. v1 ships with next-move latency for new equipped lights. |
+| `Scripts/Gameplay/Inventory/InventoryPart.cs` | **CLOSED post-T2.5** — calls `EquipmentChangeBus.NotifyChanged(ParentEntity)` from all 4 mutation entry points (Equip / Unequip / EquipToBodyPart / UnequipFromBodyPart) plus the multi-slot variant. LightMap reads the bus version as part of its cache key — equipped lights are now visible on the very next Compute call, no entity-move required. Closes the T2.2 v1 🟡 finding. |
+| `Scripts/Gameplay/World/EquipmentChangeBus.cs` | **NEW (post-T2.5)** — neutral static notifier; pattern mirrors `AsciiFxBus`. Avoids the entity→zone resolution problem (Entity has no zone back-reference) by using a global monotonic counter. |
 | `Resources/Content/Blueprints/Objects.json` | T2.2 + T2.3 — add LightSource to 3 weapons; add PressurePlate blueprint |
 | `Docs/CONTENT-ROADMAP.md` | T2.5 — flips + Recently Shipped row |
 
@@ -427,12 +428,13 @@ shouldn't be (perf-critical path). Verification is via direct
 
 These are designed-in tradeoffs; fix or defer with a note per CLAUDE.md §5.
 
-- **🟡 T2.2 perf — light cache invalidation cost.** Bumping
-  EntityVersion on every equip/unequip means LightMap recomputes
-  fully on every equip even though only ONE wielder changed. v1
-  acceptable since equip/unequip is rare (player turn, intentional
-  action). If a future "auto-equip on pickup" feature lands, revisit
-  with a finer-grained `EquipmentVersion` field on Zone.
+- **✅ T2.2 cache invalidation — RESOLVED post-T2.5.** Initial v1
+  shipped with "next-move latency" (LightMap cached on
+  Zone.EntityVersion alone; equipping didn't bump it). Resolved by
+  introducing `EquipmentChangeBus` (a neutral static counter); LightMap
+  reads it as part of its cache key. Equipping is now visible
+  immediately on the next render frame. Two new tests pin both
+  directions (Equip and Unequip).
 - **🟡 T2.2 multi-equipped lights stack additively.** Two flaming
   swords dual-wielded = double light intensity at same cell. That's
   not necessarily wrong but is a content authoring tradeoff.
