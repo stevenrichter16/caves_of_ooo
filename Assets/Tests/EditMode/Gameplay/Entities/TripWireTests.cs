@@ -17,7 +17,11 @@ namespace CavesOfOoo.Tests
     public class TripWireTests
     {
         [SetUp]
-        public void Setup() => MessageLog.Clear();
+        public void Setup()
+        {
+            MessageLog.Clear();
+            AsciiFxBus.Clear();
+        }
 
         // ====================================================================
         // 1. Trip one segment → all 3 segments removed (group consumption)
@@ -122,7 +126,50 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
-        // 5. Faction filter (inherited): faction-mate stepping on the
+        // 5. End-to-end: trip wire damages occupants at OTHER segment cells
+        //    AND emits floating numbers for them too
+        //    Cold-eye Finding 9: pin the LINE-strike + visual-feedback
+        //    contract end-to-end. The user originally reported "tripwire
+        //    doesn't work" because the snapjaw at the FAR segment took
+        //    silent damage (no number, no message). After the
+        //    damage-numbers-on-ApplyDamage fix, the snapjaw's hit MUST
+        //    surface as a visible number. This test pins that.
+        // ====================================================================
+
+        [Test]
+        public void Trip_EmitsFloatingDamageNumber_ForEveryHitOccupant()
+        {
+            // 2 segments, victim planted at the far segment. Trip from
+            // the near segment. Both the tripper (player) at near cell
+            // AND the victim at the far cell take damage; both should
+            // emit floating numbers.
+            var zone = new Zone("TestZone");
+            MakeSegment(zone, 5, 5, "wire-A", damage: 10);
+            MakeSegment(zone, 7, 5, "wire-A", damage: 10);
+
+            var victim = MakeStepper(zone, 7, 5, hp: 50, id: "victim");
+            var tripper = MakeStepper(zone, 4, 5, hp: 100, id: "tripper");
+
+            AsciiFxBus.Clear();
+            MovementSystem.TryMove(tripper, zone, dx: 1, dy: 0);
+
+            var requests = AsciiFxBus.Drain();
+            // Damage 10 = 2 digits per hit; 2 hits = 4 Particle requests
+            // total (one per digit per damaged actor).
+            int particleCount = 0;
+            foreach (var r in requests)
+                if (r.Type == AsciiFxRequestType.Particle) particleCount++;
+
+            Assert.AreEqual(4, particleCount,
+                $"Trip on a 2-segment wire with damage=10 (two digits) damaging " +
+                $"two occupants (tripper + victim) must emit 4 Particles total " +
+                $"(2 actors × 2 digits each). Got {particleCount}. " +
+                $"If 2: only one actor got a number — collateral damage at the " +
+                $"non-tripped segment is invisible (the original user complaint).");
+        }
+
+        // ====================================================================
+        // 6. Faction filter (inherited): faction-mate stepping on the
         //    LAID segment doesn't trigger
         // ====================================================================
 

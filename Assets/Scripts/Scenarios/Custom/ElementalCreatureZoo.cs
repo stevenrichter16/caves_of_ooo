@@ -5,7 +5,7 @@ namespace CavesOfOoo.Scenarios.Custom
     /// <summary>
     /// QA-aid scenario placing all 9 elemental-resistance creatures in a
     /// labeled lineup around the player. No combat, no quests, no
-    /// scripted scripted action — purely "look at the lineup" content
+    /// scripted action — purely "look at the lineup" content
     /// verification for the elemental resistance matrix.
     ///
     /// Layout (relative to player p):
@@ -21,9 +21,11 @@ namespace CavesOfOoo.Scenarios.Custom
     ///    p+5,p+1: Scorpion         (AcidResistance  = -50)
     ///
     /// Player loadout: HP 999 (so they survive walking through the zoo),
-    /// elemental weapons in inventory (FlamingSword / IceSword /
-    /// ThunderHammer / AcidicDagger) so the player can swing each weapon
-    /// at each creature and observe damage scaling.
+    /// elemental weapons placed on the floor adjacent to the player
+    /// (FlamingSword north, IceSword northwest, ThunderHammer south,
+    /// AcidicDagger southwest — manual pickup so the player consciously
+    /// chooses which axis to test). The player can pick up any weapon
+    /// and swing it at adjacent creatures to observe damage scaling.
     ///
     /// Diag observability: nothing emitted on Apply itself (the scenario
     /// is purely layout). When the player swings, the existing damage/

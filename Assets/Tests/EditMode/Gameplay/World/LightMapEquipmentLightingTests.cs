@@ -190,7 +190,58 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
-        // 6. Null entries in EquippedItems dict → no crash
+        // 6.5. Cache-staleness invariant: stationary equip with NO move
+        //     does NOT update light on the next Compute call (until the
+        //     EntityVersion bumps via an entity move/add/remove). Pins the
+        //     0-1-frame-delay contract documented inline at LightMap.cs:64-73
+        //     and in TIER2-CLOSEOUT.md's 🟡 self-review finding.
+        //     Cold-eye Finding 6 (post-fix): the docstring's load-bearing
+        //     claim was previously unverified by tests.
+        // ====================================================================
+
+        [Test]
+        public void EquippedAfterFirstCompute_NotVisibleUntilEntityVersionBumps()
+        {
+            var zone = new Zone();
+            var wielder = MakeWielder();
+            zone.AddEntity(wielder, 10, 10);
+
+            var lightMap = new LightMap();
+            // First compute with no equipped lights → cell at ambient.
+            lightMap.Compute(zone);
+            Assert.AreEqual(lightMap.AmbientLevel, lightMap.GetBrightness(10, 10), 0.0001f,
+                "Precondition: no equipped lights → ambient.");
+
+            // Equip the FlamingSword. EquipmentChanged does NOT bump
+            // Zone.EntityVersion (that's the documented v1 limitation).
+            var sword = _harness.Factory.CreateEntity("FlamingSword");
+            wielder.GetPart<InventoryPart>().AddObject(sword);
+            wielder.GetPart<InventoryPart>().Equip(sword, "Hand");
+
+            // Compute again WITHOUT bumping EntityVersion. The cache
+            // short-circuit kicks in and the new equipped light is NOT
+            // visible yet. (This is the documented contract — if a future
+            // refactor adds equip-bumps EntityVersion, this test will
+            // catch the silent contract change.)
+            lightMap.Compute(zone);
+            Assert.AreEqual(lightMap.AmbientLevel, lightMap.GetBrightness(10, 10), 0.0001f,
+                "Stationary equip with no entity-move/add/remove must " +
+                "leave light cached at ambient until EntityVersion bumps. " +
+                "Documented in LightMap.cs:64-73 as 'next entity move' " +
+                "eventual consistency.");
+
+            // Move the wielder one cell — bumps EntityVersion. Compute
+            // recomputes and the equipped light becomes visible at the
+            // wielder's NEW cell.
+            zone.MoveEntity(wielder, 11, 10);
+            lightMap.Compute(zone);
+            Assert.Greater(lightMap.GetBrightness(11, 10), lightMap.AmbientLevel,
+                "After entity move (EntityVersion bumped), equipped " +
+                "FlamingSword's light becomes visible at the wielder's new cell.");
+        }
+
+        // ====================================================================
+        // 7. Null entries in EquippedItems dict → no crash
         // ====================================================================
 
         [Test]
