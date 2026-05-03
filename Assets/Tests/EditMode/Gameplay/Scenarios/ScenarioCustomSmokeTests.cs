@@ -230,5 +230,8 @@ namespace CavesOfOoo.Tests.Scenarios
 
         [Test] public void MerchantShopShowcase_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new MerchantShopShowcase().Apply(FreshContext()));
+
+        [Test] public void QuestShowcase_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new QuestShowcase().Apply(FreshContext()));
     }
 }

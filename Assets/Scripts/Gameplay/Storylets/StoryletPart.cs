@@ -23,6 +23,23 @@ namespace CavesOfOoo.Storylets
         /// </summary>
         public static StoryletPart Current;
 
+        /// <summary>
+        /// QS.7 fix: the local player entity, set by GameBootstrap so
+        /// tick-driven dispatch can evaluate player-state predicates
+        /// (IfHaveItem, IfReputationAtLeast, IfStatAtLeast etc).
+        ///
+        /// Pre-fix: <see cref="OnTickEnd"/> passed null/null to
+        /// <see cref="ConversationPredicates.CheckAll"/>, which made
+        /// any predicate that reads `listener` return false. Quests
+        /// that used "the player picks up X" as a stage trigger would
+        /// silently never advance via tick.
+        ///
+        /// Set null outside of play. Tick-driven predicates that
+        /// dereference this defensively skip when null (matching
+        /// the existing M3 null-listener convention).
+        /// </summary>
+        public static Entity LocalPlayer;
+
         private readonly HashSet<string> _firedStorylets = new HashSet<string>();
         private readonly Dictionary<string, QuestState> _quests = new Dictionary<string, QuestState>();
         // QS.2 (Docs/QUEST-SYSTEM.md): tracks quests the player has
@@ -238,7 +255,14 @@ namespace CavesOfOoo.Storylets
             _eligibleScratch.Clear();
             _eligibleQuestAdvances.Clear();
 
-            // Pass 1A: storylet eligibility (unchanged from M3).
+            // QS.7 fix: thread the local player through tick dispatch
+            // so player-state predicates (IfHaveItem, IfReputationAtLeast)
+            // can evaluate. LocalPlayer null = pre-bootstrap or test
+            // context that didn't set it; predicates that dereference
+            // listener defensively return false in that case.
+            Entity player = LocalPlayer;
+
+            // Pass 1A: storylet eligibility (M3, now with player listener).
             var all = StoryletRegistry.GetAll();
             for (int i = 0; i < all.Count; i++)
             {
@@ -247,7 +271,7 @@ namespace CavesOfOoo.Storylets
                 if (s.IsQuest) continue;  // quests handled in pass 1B
                 if (s.OneShot && _firedStorylets.Contains(s.ID)) continue;
 
-                if (!ConversationPredicates.CheckAll(s.Triggers, null, null))
+                if (!ConversationPredicates.CheckAll(s.Triggers, null, player))
                     continue;
 
                 _eligibleScratch.Add(s);
@@ -270,7 +294,7 @@ namespace CavesOfOoo.Storylets
                     || qs.CurrentStageIndex >= qd.Stages.Count) continue;
 
                 var stage = qd.Stages[qs.CurrentStageIndex];
-                if (!ConversationPredicates.CheckAll(stage.Triggers, null, null))
+                if (!ConversationPredicates.CheckAll(stage.Triggers, null, player))
                     continue;
 
                 _eligibleQuestAdvances.Add(qs.QuestId);
@@ -280,7 +304,7 @@ namespace CavesOfOoo.Storylets
             for (int i = 0; i < _eligibleScratch.Count; i++)
             {
                 var s = _eligibleScratch[i];
-                ConversationActions.ExecuteAll(s.Effects, null, null);
+                ConversationActions.ExecuteAll(s.Effects, null, player);
                 if (s.OneShot)
                     _firedStorylets.Add(s.ID);
             }
@@ -293,17 +317,17 @@ namespace CavesOfOoo.Storylets
             for (int i = 0; i < _eligibleQuestAdvances.Count; i++)
             {
                 string questId = _eligibleQuestAdvances[i];
-                int newIndex = AdvanceQuestStage(questId, currentTurn);
+                int newIndex = AdvanceQuestStage(questId, currentTurn, actor: player);
                 if (newIndex < 0) continue;  // auto-completed
 
-                // Fire OnEnter for the new stage, with null actor
-                // context (tick-driven advance has no speaker/listener).
+                // Fire OnEnter for the new stage. listener=player so
+                // GiveItem/AwardXP/GiveDrams target the right recipient.
                 var quest = StoryletRegistry.FindQuest(questId);
                 if (quest != null && newIndex < quest.Stages.Count
                     && quest.Stages[newIndex].OnEnter != null)
                 {
                     ConversationActions.ExecuteAll(
-                        quest.Stages[newIndex].OnEnter, null, null);
+                        quest.Stages[newIndex].OnEnter, null, player);
                 }
             }
 
