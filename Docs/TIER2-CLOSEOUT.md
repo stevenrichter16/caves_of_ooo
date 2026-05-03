@@ -391,7 +391,7 @@ lockpicking.
 | Path | Change |
 |---|---|
 | `Scripts/Gameplay/World/LightMap.cs` | T2.2 — add Pass 2 (equipped-item walk) |
-| `Scripts/Gameplay/Inventory/InventoryPart.cs` | T2.2 — bump `Zone.EntityVersion` on Equip / Unequip mutations |
+| ~~`Scripts/Gameplay/Inventory/InventoryPart.cs`~~ | ~~T2.2 — bump `Zone.EntityVersion` on Equip / Unequip mutations~~ — **DEFERRED in T2.2 commit body**; see SCOPE DIVERGENCE in `cd355b5` and the inline 🟡 finding in `LightMap.cs:64-73`. v1 ships with next-move latency for new equipped lights. |
 | `Resources/Content/Blueprints/Objects.json` | T2.2 + T2.3 — add LightSource to 3 weapons; add PressurePlate blueprint |
 | `Docs/CONTENT-ROADMAP.md` | T2.5 — flips + Recently Shipped row |
 
@@ -486,8 +486,10 @@ Three layers:
 
 3. **Manual playtest** via existing scenarios:
    - Equip FlamingSword → walk into a dark zone → confirm red glow
-   - Drop a PressurePlate (use `execute_code` or scenario) → walk
-     across it twice → confirm 2nd hit disarmed by cooldown
+   - Drop a PressurePlate (use `execute_code` or scenario) → step ON,
+     step OFF (one cell back), step ON again → confirm 2nd hit re-fires
+     (no cooldown is intentional v1 design — `EntityEnteredCell` only
+     fires on cell-change so a stationary actor doesn't loop)
    - 3-segment TripWire → step on segment 2 → confirm all 3 segments
      consumed + segment 1's cell occupant takes damage
 

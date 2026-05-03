@@ -29,7 +29,11 @@ namespace CavesOfOoo.Tests
     public class PressurePlateTests
     {
         [SetUp]
-        public void Setup() => MessageLog.Clear();
+        public void Setup()
+        {
+            MessageLog.Clear();
+            AsciiFxBus.Clear();
+        }
 
         // ====================================================================
         // 1. Positive: step on plate deals damage
@@ -147,7 +151,40 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
-        // 5. FactionMate filter (inherited from TriggerOnStepPart)
+        // 5. End-to-end: step on plate → floating damage number emits
+        //    Cold-eye Finding 9: pin the trap-→-ApplyDamage-→-floating-
+        //    number wiring at the integration level. Without this, a
+        //    refactor that bypasses ApplyDamage (e.g. direct HP decrement)
+        //    would silently regress the user-visible feature without
+        //    failing any other test.
+        // ====================================================================
+
+        [Test]
+        public void Step_EmitsFloatingDamageNumber()
+        {
+            var zone = new Zone("TestZone");
+            var plate = MakePlate(zone, 5, 5, damage: 8);
+            var stepper = MakeStepper(zone, 4, 5, hp: 50);
+
+            AsciiFxBus.Clear();
+            MovementSystem.TryMove(stepper, zone, dx: 1, dy: 0);
+
+            var requests = AsciiFxBus.Drain();
+            // Damage 8 = single-digit → 1 Particle for the floating number.
+            int particleCount = 0;
+            foreach (var r in requests)
+                if (r.Type == AsciiFxRequestType.Particle) particleCount++;
+
+            Assert.AreEqual(1, particleCount,
+                $"Stepping on the plate (damage=8, single-digit) must emit 1 " +
+                $"Particle for the floating damage number. Got {particleCount}. " +
+                $"If 0: ApplyDamage isn't being called by the plate (regression " +
+                $"in OnTrigger), or the floating-number emit was removed from " +
+                $"ApplyDamage.");
+        }
+
+        // ====================================================================
+        // 6. FactionMate filter (inherited from TriggerOnStepPart)
         // ====================================================================
 
         [Test]

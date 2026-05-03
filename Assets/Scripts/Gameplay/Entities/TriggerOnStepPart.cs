@@ -254,16 +254,28 @@ namespace CavesOfOoo.Core
 
         public TripWireTriggerPart()
         {
-            // Manual cleanup in OnTrigger — we remove the whole group
-            // ourselves, not just ParentEntity. ConsumeOnTrigger=false
-            // tells the base class not to also self-remove (else the
-            // base would double-call RemoveEntity for the segment
-            // whose OnTrigger we're inside).
-            ConsumeOnTrigger = false;
+            // Cold-eye Finding 4 (post-fix): the base class self-removes
+            // ParentEntity AFTER OnTrigger returns. Our OnTrigger removes
+            // sibling segments manually but skips ParentEntity (see
+            // `if (seg == ParentEntity) continue;` in OnTrigger), so the
+            // base class's removal is the single source-of-truth for
+            // ParentEntity cleanup. This avoids the prior double-remove
+            // foot-gun if a future maintainer toggles this field.
+            ConsumeOnTrigger = true;
         }
 
         protected override void OnTrigger(Entity actor, Zone zone)
         {
+            // Cold-eye Finding 2: emit the trigger flavor BEFORE the damage
+            // loop so it lands ahead of any "X is killed by Y!" lines that
+            // ApplyDamage→HandleDeath may produce. Cold-eye Finding 3:
+            // interpolate ParentEntity.GetDisplayName() so a content author
+            // can rename the wire (e.g. "razor wire", "brass tripthread")
+            // without needing a code change. Single line for the whole
+            // detonation matches the line-strike concept (one wire, one
+            // sound), distinct from per-segment trap message-per-step.
+            MessageLog.Add($"The {ParentEntity.GetDisplayName()} snaps taut!");
+
             // Snapshot all sibling segments in the zone (including self).
             // GetAllEntities allocates a fresh List<Entity> — fine for a
             // one-shot detonation event; not a hot path.
@@ -283,6 +295,18 @@ namespace CavesOfOoo.Core
             // segment from the zone. Snapshot Cell.Objects via ToArray
             // since CombatSystem.ApplyDamage may trigger a Death handler
             // that mutates the list (e.g. corpse spawn).
+            //
+            // Cold-eye Finding 4: skip ParentEntity in the manual cleanup
+            // and let the base class consume it via the standard
+            // ConsumeOnTrigger=true path. This makes the contract robust
+            // to a future maintainer flipping ConsumeOnTrigger — the base
+            // class will single-remove ParentEntity, and we never
+            // double-call RemoveEntity on the same segment. To keep
+            // backwards-compat for unit tests that pin "all segments
+            // removed", we still need ParentEntity removed by the time
+            // OnTrigger returns; ConsumeOnTrigger=true (set in ctor) +
+            // base class's post-OnTrigger zone.RemoveEntity(ParentEntity)
+            // handles that.
             foreach (var seg in allSegments)
             {
                 var segCell = zone.GetEntityCell(seg);
@@ -296,10 +320,9 @@ namespace CavesOfOoo.Core
                         dmg.AddAttribute(DamageAttribute);
                     CombatSystem.ApplyDamage(occ, dmg, ParentEntity, zone);
                 }
+                if (seg == ParentEntity) continue;
                 zone.RemoveEntity(seg);
             }
-
-            MessageLog.Add("The tripwire snaps taut!");
         }
     }
 
@@ -341,12 +364,21 @@ namespace CavesOfOoo.Core
 
         protected override void OnTrigger(Entity actor, Zone zone)
         {
+            // Cold-eye Finding 2/3: emit log line BEFORE ApplyDamage so the
+            // player narrative matches sibling traps (Spike/Fire/Bear emit
+            // their trigger flavor first, then the death announcement from
+            // HandleDeath comes second if the hit is lethal). Format mirrors
+            // SpikeTrap's "{actor} springs the {ParentEntity}!" — actor-first,
+            // exclamation, drama clause — so future renamed pressure plate
+            // content (e.g. "spiked plate", "crushing plate") narrates
+            // consistently with the rest of the trap family.
+            MessageLog.Add($"{actor.GetDisplayName()} steps on the " +
+                           $"{ParentEntity.GetDisplayName()}!");
+
             var dmg = new Damage(Damage);
             if (!string.IsNullOrEmpty(DamageAttribute))
                 dmg.AddAttribute(DamageAttribute);
             CombatSystem.ApplyDamage(actor, dmg, ParentEntity, zone);
-            MessageLog.Add($"{actor.GetDisplayName()} treads on the " +
-                           $"{ParentEntity.GetDisplayName()}.");
         }
     }
 
