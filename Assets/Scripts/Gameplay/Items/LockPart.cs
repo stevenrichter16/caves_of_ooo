@@ -64,6 +64,49 @@ namespace CavesOfOoo.Core
         /// </summary>
         public override bool HandleEvent(GameEvent e)
         {
+            // LK follow-on: surface an "[u]nlock" entry in the look-popup
+            // menu when this entity is currently locked. Mirrors the
+            // ContainerPart.GetInventoryActions pattern (Items/ContainerPart.cs:98-109).
+            // The actual key-check happens at execution time in the
+            // InventoryAction handler — entry is visible whenever locked
+            // so the player gets feedback ("the X is locked.") even if
+            // they don't have the key yet.
+            if (e.ID == "GetInventoryActions")
+            {
+                if (!IsLocked) return true;
+                var actions = e.GetParameter<InventoryActionList>("Actions");
+                if (actions != null)
+                    actions.AddAction("Unlock", "unlock", "Unlock", 'u', 10);
+                return true;
+            }
+
+            // LK follow-on: handle the Unlock command fired when the
+            // player picks the entry from the look popup. Re-uses the
+            // existing AttemptUnlock event so bump-unlock and menu-unlock
+            // share one code path. Single source of truth.
+            if (e.ID == "InventoryAction")
+            {
+                string command = e.GetStringParameter("Command");
+                if (command != "Unlock") return true;
+
+                var menuActor = e.GetParameter<Entity>("Actor");
+                var attempt = GameEvent.New("AttemptUnlock");
+                attempt.SetParameter("Actor", (object)menuActor);
+                ParentEntity.FireEventAndRelease(attempt);
+
+                // On successful unlock the parent's Solid flag (if any)
+                // drops so the actor can walk through next turn —
+                // matches the bump-unlock path in PhysicsPart.HandleBeforeMove.
+                if (!IsLocked && ParentEntity != null)
+                {
+                    var physics = ParentEntity.GetPart<PhysicsPart>();
+                    if (physics != null) physics.Solid = false;
+                }
+
+                e.Handled = true;
+                return false;
+            }
+
             if (e.ID != "AttemptUnlock") return true;
 
             var actor = e.GetParameter<Entity>("Actor");
