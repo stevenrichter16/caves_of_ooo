@@ -1,0 +1,91 @@
+using CavesOfOoo.Core;
+
+namespace CavesOfOoo.Skills
+{
+    /// <summary>
+    /// Abstract base for the per-skill runtime part. Concrete skills
+    /// (e.g. <c>AcrobaticsDodgePower</c>, future <c>LongBladesExpertise</c>)
+    /// extend this class. One instance is added to an entity's Parts list
+    /// when the entity learns the skill; removed when the skill is
+    /// unlearned. Mirrors Qud's <c>BaseSkill</c>
+    /// (XRL.World.Parts.Skill/BaseSkill.cs:9-153) — same lifecycle
+    /// (<see cref="AddSkill"/> / <see cref="RemoveSkill"/> hooks),
+    /// same pattern of one-class-per-skill, same <c>DisplayName</c>
+    /// abstract.
+    ///
+    /// <para><b>Lifecycle:</b>
+    /// <list type="number">
+    ///   <item><see cref="SkillsPart.AddSkill(BaseSkillPart, Entity, string)"/>
+    ///         attaches this part to the actor's Parts list (via
+    ///         <c>Entity.AddPart</c>), then calls <see cref="AddSkill"/>.</item>
+    ///   <item><see cref="AddSkill"/> applies the skill's effect (passive
+    ///         stat shift, registering an activated ability, etc.) — return
+    ///         <c>false</c> to abort and let the manager remove the part.</item>
+    ///   <item>While owned, the part receives normal Part events through
+    ///         <see cref="Part.HandleEvent"/>.</item>
+    ///   <item><see cref="SkillsPart.RemoveSkill"/> calls
+    ///         <see cref="RemoveSkill"/>, then detaches via <c>Entity.RemovePart</c>.</item>
+    /// </list></para>
+    ///
+    /// <para><b>Naming convention</b> (mirrors Qud + CoO mutation precedent):
+    /// concrete subclasses are named <c>&lt;Tree&gt;Skill</c> for the
+    /// tree-root marker (e.g. <c>AcrobaticsSkill</c>) and
+    /// <c>&lt;Tree&gt;&lt;Power&gt;Power</c> for individual powers (e.g.
+    /// <c>AcrobaticsDodgePower</c>). The <see cref="SkillData.Class"/> /
+    /// <see cref="PowerData.Class"/> JSON fields name the runtime class
+    /// directly so reflection lookup in <see cref="SkillsPart"/> can resolve
+    /// content → C# type without a separate registration step.</para>
+    /// </summary>
+    public abstract class BaseSkillPart : Part
+    {
+        /// <summary>
+        /// Human-readable name for UI rendering. Defaults to the
+        /// registry-supplied <see cref="SkillData.Name"/> /
+        /// <see cref="PowerData.Name"/> when looked up via Class; if the
+        /// registry doesn't know about this skill (e.g. test-only stub),
+        /// falls back to <c>GetType().Name</c>. Concrete subclasses can
+        /// override for hardcoded display names.
+        /// </summary>
+        public virtual string DisplayName
+        {
+            get
+            {
+                string className = GetType().Name;
+                if (SkillRegistry.TryGetSkillByClass(className, out var skill)
+                    && !string.IsNullOrWhiteSpace(skill.Name))
+                    return skill.Name;
+                if (SkillRegistry.TryGetPowerByClass(className, out var power)
+                    && !string.IsNullOrWhiteSpace(power.Name))
+                    return power.Name;
+                return className;
+            }
+        }
+
+        /// <summary>
+        /// Lifecycle hook fired when the actor acquires this skill.
+        /// Override to apply passive bonuses (stat shifts), register
+        /// activated abilities, hook combat events, etc. Return
+        /// <c>true</c> to confirm the skill is active; <c>false</c> to
+        /// signal a setup failure (the manager will roll back the
+        /// attachment). Default returns <c>true</c> — passive marker
+        /// skills don't need any setup.
+        /// </summary>
+        public virtual bool AddSkill(Entity entity)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Lifecycle hook fired when the actor loses this skill.
+        /// Override to undo whatever <see cref="AddSkill"/> applied
+        /// (remove stat shifts, deregister abilities, unhook events).
+        /// Return <c>true</c> to confirm clean teardown; <c>false</c> is
+        /// reserved for "skill couldn't be removed" but currently
+        /// unused — the manager always proceeds with detachment.
+        /// </summary>
+        public virtual bool RemoveSkill(Entity entity)
+        {
+            return true;
+        }
+    }
+}
