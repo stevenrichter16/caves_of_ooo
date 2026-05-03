@@ -239,5 +239,8 @@ namespace CavesOfOoo.Tests.Scenarios
 
         [Test] public void TonicTestBench_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new TonicTestBench().Apply(FreshContext()));
+
+        [Test] public void TripWireShowcase_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new TripWireShowcase().Apply(FreshContext()));
     }
 }
