@@ -111,10 +111,16 @@ namespace CavesOfOoo.Scenarios.Custom
             // stepper.
             SpawnWireSegment(ctx, p.x + 10, p.y, "wire-3");
 
-            MessageLog.Add("TripWire Showcase: walk east. Three wires lie in wait.");
-            MessageLog.Add("Wire-1 (cells x+2..x+4) — 3-segment LINE; snapjaw at x+4 takes damage too.");
-            MessageLog.Add("Wire-2 (cells x+7,x+8) — 2-segment, independent group.");
-            MessageLog.Add("Wire-3 (cell x+10) — degenerate 1-segment (content-author robustness).");
+            // Cold-eye Finding 7 (post-fix): use ctx.Log (which prefixes
+            // "[Scenario]") to match the convention of sibling-batch
+            // scenarios (ElementalCreatureZoo, TonicTestBench). Reserves
+            // un-prefixed MessageLog.Add for in-game messages from runtime
+            // systems, so a player skimming the log can distinguish
+            // scenario instructions from gameplay events.
+            ctx.Log("TripWire Showcase: walk east. Three wires lie in wait.");
+            ctx.Log("Wire-1 (cells x+2..x+4) — 3-segment LINE; snapjaw at x+4 takes damage too.");
+            ctx.Log("Wire-2 (cells x+7,x+8) — 2-segment, independent group.");
+            ctx.Log("Wire-3 (cell x+10) — degenerate 1-segment (content-author robustness).");
         }
 
         /// <summary>
