@@ -160,32 +160,50 @@ namespace CavesOfOoo.Storylets
 
         // ── INarrativeReactor — single-pass dispatch ──────────────────────────
 
-        // Reused tick-scoped buffer to avoid per-tick allocations.
+        // Reused tick-scoped buffers to avoid per-tick allocations.
         private readonly List<StoryletData> _eligibleScratch = new List<StoryletData>();
+        // QS.4: snapshot of (questId, advance-to-stage-index) pairs eligible
+        // to advance this tick. Snapshotting before mutating preserves
+        // single-pass deterministic semantics (a quest whose stage-N
+        // OnEnter flips stage-(N+1)'s trigger does NOT cascade to
+        // stage-(N+1) the same tick).
+        private readonly List<string> _eligibleQuestAdvances = new List<string>();
 
         /// <summary>
         /// Polled once per TickEnd via NarrativeStatePart's reactor list.
         ///
-        /// Single-pass dispatch: snapshot eligibility at the top of the tick,
-        /// then fire effects. A storylet whose effect mutates the FactBag in
-        /// a way that flips ANOTHER storylet's predicate does NOT cause that
-        /// other storylet to fire this tick — the second one fires next tick.
-        /// This keeps test order deterministic and avoids the "infinite cascade
-        /// in one tick" footgun.
+        /// Single-pass dispatch (M3 contract preserved through M4):
+        /// snapshot eligibility at the top of the tick, then fire effects.
+        /// A storylet/quest-stage whose effect mutates the FactBag in a way
+        /// that flips ANOTHER storylet/quest-stage's predicate does NOT
+        /// cause that other one to fire this tick — the second one fires
+        /// next tick. Keeps test order deterministic and avoids the
+        /// "infinite cascade in one tick" footgun.
         ///
-        /// Quest storylets (those with a non-null Quest sub-object) are skipped
-        /// here — M4 lands their dispatch.
+        /// QS.4 (Docs/QUEST-SYSTEM.md): quest dispatch loop. For each
+        /// active quest, evaluate the CURRENT stage's Triggers. If they
+        /// all pass, advance via the centralized AdvanceQuestStage helper
+        /// (which fires the quest/StageAdvanced or quest/Completed diag)
+        /// and execute the new stage's OnEnter effects.
+        ///
+        /// Tick-driven advances pass null/null for speaker/listener — same
+        /// constraint as M3's storylet effect dispatch. Content authors
+        /// should know that GiveItem-style player-targeted actions don't
+        /// have an actor context in tick-dispatch; those should live on
+        /// player-initiated AdvanceQuestStage actions instead.
         /// </summary>
         public void OnTickEnd(NarrativeStatePart state)
         {
             _eligibleScratch.Clear();
+            _eligibleQuestAdvances.Clear();
 
+            // Pass 1A: storylet eligibility (unchanged from M3).
             var all = StoryletRegistry.GetAll();
             for (int i = 0; i < all.Count; i++)
             {
                 var s = all[i];
                 if (s == null || string.IsNullOrEmpty(s.ID)) continue;
-                if (s.IsQuest) continue;                              // M4 territory
+                if (s.IsQuest) continue;  // quests handled in pass 1B
                 if (s.OneShot && _firedStorylets.Contains(s.ID)) continue;
 
                 if (!ConversationPredicates.CheckAll(s.Triggers, null, null))
@@ -194,6 +212,30 @@ namespace CavesOfOoo.Storylets
                 _eligibleScratch.Add(s);
             }
 
+            // Pass 1B (QS.4): quest stage-trigger eligibility. Snapshot
+            // QuestId only — we re-resolve QuestState in pass 2 because
+            // the dict can mutate during dispatch (auto-completions
+            // remove entries; intentional but means iterating a stale
+            // QuestState reference would be brittle).
+            var activeQuests = GetActiveQuests();
+            for (int i = 0; i < activeQuests.Count; i++)
+            {
+                var qs = activeQuests[i];
+                if (qs == null || string.IsNullOrEmpty(qs.QuestId)) continue;
+
+                var qd = StoryletRegistry.FindQuest(qs.QuestId);
+                if (qd == null) continue;
+                if (qs.CurrentStageIndex < 0
+                    || qs.CurrentStageIndex >= qd.Stages.Count) continue;
+
+                var stage = qd.Stages[qs.CurrentStageIndex];
+                if (!ConversationPredicates.CheckAll(stage.Triggers, null, null))
+                    continue;
+
+                _eligibleQuestAdvances.Add(qs.QuestId);
+            }
+
+            // Pass 2A: storylet effect dispatch.
             for (int i = 0; i < _eligibleScratch.Count; i++)
             {
                 var s = _eligibleScratch[i];
@@ -202,7 +244,30 @@ namespace CavesOfOoo.Storylets
                     _firedStorylets.Add(s.ID);
             }
 
+            // Pass 2B (QS.4): quest stage-advance dispatch. Goes through
+            // AdvanceQuestStage helper so auto-completion + diag records
+            // emit on a single source of truth (same path the
+            // AdvanceQuestStage conversation action uses).
+            int currentTurn = TurnManager.Active?.TickCount ?? 0;
+            for (int i = 0; i < _eligibleQuestAdvances.Count; i++)
+            {
+                string questId = _eligibleQuestAdvances[i];
+                int newIndex = AdvanceQuestStage(questId, currentTurn);
+                if (newIndex < 0) continue;  // auto-completed
+
+                // Fire OnEnter for the new stage, with null actor
+                // context (tick-driven advance has no speaker/listener).
+                var quest = StoryletRegistry.FindQuest(questId);
+                if (quest != null && newIndex < quest.Stages.Count
+                    && quest.Stages[newIndex].OnEnter != null)
+                {
+                    ConversationActions.ExecuteAll(
+                        quest.Stages[newIndex].OnEnter, null, null);
+                }
+            }
+
             _eligibleScratch.Clear();
+            _eligibleQuestAdvances.Clear();
         }
 
         // ── ISaveSerializable ─────────────────────────────────────────────────
