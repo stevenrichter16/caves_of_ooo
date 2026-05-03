@@ -128,6 +128,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_QuestShowcase()
             => ScenarioRunner.Launch<QuestShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Elemental Creature Zoo (T1.4 resistance matrix)", priority = 118)]
+        private static void Launch_ElementalCreatureZoo()
+            => ScenarioRunner.Launch<ElementalCreatureZoo>();
+
         // =========================================================
         // AI Behavior
         // =========================================================
