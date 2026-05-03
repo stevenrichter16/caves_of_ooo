@@ -209,6 +209,101 @@ namespace CavesOfOoo.Core
     }
 
     /// <summary>
+    /// TripWire: a multi-segment line trap. Each cell of the wire is its
+    /// own entity carrying a <see cref="TripWireTriggerPart"/>. All
+    /// segments belonging to the same wire share a non-empty
+    /// <see cref="WireGroupId"/>. When ANY segment is stepped on, the
+    /// segment scans the zone for siblings with the same group id, deals
+    /// damage at every sibling cell, and removes all segments in the
+    /// group (one-shot, line-coordinated).
+    ///
+    /// <para>Why N segments instead of one multi-cell entity: CoO
+    /// entities live at one cell. A multi-cell-entity abstraction is
+    /// out of scope; the per-segment + group-id pattern works without it.
+    /// See Docs/TIER2-CLOSEOUT.md §verification-sweep for the
+    /// architecture-constraint discussion.</para>
+    ///
+    /// <para>Faction filter: the inherited <see cref="TriggerFaction"/>
+    /// only protects the segment whose cell the actor STEPS ON; other
+    /// segments still detonate (line-of-3 wire stretched across an
+    /// alley fires when ANY actor crosses it, regardless of the
+    /// stepped-on segment's faction tag). Acceptable v1 — closer to
+    /// real tripwire physics than per-segment faction gating. Documented
+    /// as a ⚪ self-review finding.</para>
+    /// </summary>
+    public class TripWireTriggerPart : TriggerOnStepPart
+    {
+        /// <summary>Damage dealt at this segment's cell on detonation.
+        /// Default 10. Each segment damages whoever's at its cell when
+        /// the wire trips, so a 3-segment wire stretched across cells
+        /// (5,5)/(6,5)/(7,5) striking when an actor steps on (6,5)
+        /// deals damage to whatever's at all three cells.</summary>
+        public int Damage = 10;
+
+        /// <summary>Damage attribute attached to the strike. Default
+        /// "Piercing" — wires are taut and cutting. Empty string =
+        /// untyped damage.</summary>
+        public string DamageAttribute = "Piercing";
+
+        /// <summary>Group id linking segments into one wire. All
+        /// segments with the same WireGroupId fire together when any
+        /// one is tripped. Empty/whitespace = "no group" — the segment
+        /// fires only its own cell (degrades gracefully to a 1-cell
+        /// trap if a content author forgets to set the group).</summary>
+        public string WireGroupId = "";
+
+        public TripWireTriggerPart()
+        {
+            // Manual cleanup in OnTrigger — we remove the whole group
+            // ourselves, not just ParentEntity. ConsumeOnTrigger=false
+            // tells the base class not to also self-remove (else the
+            // base would double-call RemoveEntity for the segment
+            // whose OnTrigger we're inside).
+            ConsumeOnTrigger = false;
+        }
+
+        protected override void OnTrigger(Entity actor, Zone zone)
+        {
+            // Snapshot all sibling segments in the zone (including self).
+            // GetAllEntities allocates a fresh List<Entity> — fine for a
+            // one-shot detonation event; not a hot path.
+            var allSegments = new System.Collections.Generic.List<Entity>();
+            string groupId = WireGroupId;
+            bool hasGroup = !string.IsNullOrWhiteSpace(groupId);
+            foreach (var e in zone.GetAllEntities())
+            {
+                var seg = e.GetPart<TripWireTriggerPart>();
+                if (seg == null) continue;
+                if (hasGroup && seg.WireGroupId != groupId) continue;
+                if (!hasGroup && e != ParentEntity) continue;
+                allSegments.Add(e);
+            }
+
+            // Damage whoever's at each segment's cell + remove the
+            // segment from the zone. Snapshot Cell.Objects via ToArray
+            // since CombatSystem.ApplyDamage may trigger a Death handler
+            // that mutates the list (e.g. corpse spawn).
+            foreach (var seg in allSegments)
+            {
+                var segCell = zone.GetEntityCell(seg);
+                if (segCell == null) continue;
+                var occupants = segCell.Objects.ToArray();
+                foreach (var occ in occupants)
+                {
+                    if (occ == seg) continue;
+                    var dmg = new Damage(Damage);
+                    if (!string.IsNullOrEmpty(DamageAttribute))
+                        dmg.AddAttribute(DamageAttribute);
+                    CombatSystem.ApplyDamage(occ, dmg, ParentEntity, zone);
+                }
+                zone.RemoveEntity(seg);
+            }
+
+            MessageLog.Add("The tripwire snaps taut!");
+        }
+    }
+
+    /// <summary>
     /// Pressure plate: a rearmable variant of the spike-trap idea — a
     /// floor plate that fires every time someone steps onto it, instead
     /// of consuming itself like <see cref="SpikeTrapTriggerPart"/>.
