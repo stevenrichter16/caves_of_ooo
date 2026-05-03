@@ -132,6 +132,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_ElementalCreatureZoo()
             => ScenarioRunner.Launch<ElementalCreatureZoo>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Tonic Test Bench (T1.5 all 10 tonics)", priority = 119)]
+        private static void Launch_TonicTestBench()
+            => ScenarioRunner.Launch<TonicTestBench>();
+
         // =========================================================
         // AI Behavior
         // =========================================================

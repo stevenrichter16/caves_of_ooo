@@ -236,5 +236,8 @@ namespace CavesOfOoo.Tests.Scenarios
 
         [Test] public void ElementalCreatureZoo_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new ElementalCreatureZoo().Apply(FreshContext()));
+
+        [Test] public void TonicTestBench_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new TonicTestBench().Apply(FreshContext()));
     }
 }
