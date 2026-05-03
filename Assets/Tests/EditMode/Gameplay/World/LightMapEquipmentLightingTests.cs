@@ -190,18 +190,19 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
-        // 6.5. Cache-staleness invariant: stationary equip with NO move
-        //     does NOT update light on the next Compute call (until the
-        //     EntityVersion bumps via an entity move/add/remove). Pins the
-        //     0-1-frame-delay contract documented inline at LightMap.cs:64-73
-        //     and in TIER2-CLOSEOUT.md's 🟡 self-review finding.
-        //     Cold-eye Finding 6 (post-fix): the docstring's load-bearing
-        //     claim was previously unverified by tests.
+        // 6.5. Eager cache invalidation: stationary equip becomes visible on
+        //     the very NEXT Compute call. Closes the T2.2 v1 🟡 finding
+        //     where the LightMap cached on Zone.EntityVersion alone, leaving
+        //     equipment changes invisible until the next entity move.
+        //     Mechanism: InventoryPart's 4 mutation entry points each call
+        //     EquipmentChangeBus.NotifyChanged(ParentEntity); LightMap.Compute
+        //     reads EquipmentChangeBus.GlobalVersion as part of its cache key.
         // ====================================================================
 
         [Test]
-        public void EquippedAfterFirstCompute_NotVisibleUntilEntityVersionBumps()
+        public void StationaryEquip_VisibleOnNextCompute_NoEntityMoveRequired()
         {
+            EquipmentChangeBus.ResetForTests();
             var zone = new Zone();
             var wielder = MakeWielder();
             zone.AddEntity(wielder, 10, 10);
@@ -212,32 +213,59 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(lightMap.AmbientLevel, lightMap.GetBrightness(10, 10), 0.0001f,
                 "Precondition: no equipped lights → ambient.");
 
-            // Equip the FlamingSword. EquipmentChanged does NOT bump
-            // Zone.EntityVersion (that's the documented v1 limitation).
+            // Equip the FlamingSword. EquipmentChangeBus.NotifyChanged is
+            // called inside InventoryPart.Equip, which bumps GlobalVersion.
+            // No entity move, no manual cache reset.
             var sword = _harness.Factory.CreateEntity("FlamingSword");
             wielder.GetPart<InventoryPart>().AddObject(sword);
             wielder.GetPart<InventoryPart>().Equip(sword, "Hand");
 
-            // Compute again WITHOUT bumping EntityVersion. The cache
-            // short-circuit kicks in and the new equipped light is NOT
-            // visible yet. (This is the documented contract — if a future
-            // refactor adds equip-bumps EntityVersion, this test will
-            // catch the silent contract change.)
+            // Compute again WITHOUT bumping EntityVersion (no move).
+            // The new equipment-version cache key invalidates → recompute →
+            // equipped FlamingSword's light is visible immediately.
+            lightMap.Compute(zone);
+            Assert.Greater(lightMap.GetBrightness(10, 10), lightMap.AmbientLevel,
+                "Equipped FlamingSword's light must be visible on the very " +
+                "next Compute call after Equip — no entity-move required. " +
+                "If still ambient: the EquipmentChangeBus integration in " +
+                "LightMap.Compute is broken (cache key isn't reading the " +
+                "global version, OR InventoryPart.Equip isn't notifying).");
+        }
+
+        // ====================================================================
+        // 6.6. Counter-check: Unequip also invalidates the cache.
+        //     Pins that the bus fires on BOTH paths — equip AND unequip
+        //     — not just one direction.
+        // ====================================================================
+
+        [Test]
+        public void Unequip_BumpsEquipmentVersion_RemovesLightOnNextCompute()
+        {
+            EquipmentChangeBus.ResetForTests();
+            var zone = new Zone();
+            var wielder = MakeWielder();
+            var sword = _harness.Factory.CreateEntity("FlamingSword");
+            wielder.GetPart<InventoryPart>().AddObject(sword);
+            wielder.GetPart<InventoryPart>().Equip(sword, "Hand");
+            zone.AddEntity(wielder, 10, 10);
+
+            var lightMap = new LightMap();
+            lightMap.Compute(zone);
+            Assert.Greater(lightMap.GetBrightness(10, 10), lightMap.AmbientLevel,
+                "Precondition: equipped FlamingSword should be lighting up.");
+
+            // Unequip — this fires EquipmentChangeBus.NotifyChanged via
+            // InventoryPart.Unequip, bumping GlobalVersion.
+            wielder.GetPart<InventoryPart>().Unequip("Hand");
+
+            // Without an entity move. The next Compute must recompute
+            // (because GlobalVersion changed) and the cell drops to ambient
+            // (because nothing's equipped anymore).
             lightMap.Compute(zone);
             Assert.AreEqual(lightMap.AmbientLevel, lightMap.GetBrightness(10, 10), 0.0001f,
-                "Stationary equip with no entity-move/add/remove must " +
-                "leave light cached at ambient until EntityVersion bumps. " +
-                "Documented in LightMap.cs:64-73 as 'next entity move' " +
-                "eventual consistency.");
-
-            // Move the wielder one cell — bumps EntityVersion. Compute
-            // recomputes and the equipped light becomes visible at the
-            // wielder's NEW cell.
-            zone.MoveEntity(wielder, 11, 10);
-            lightMap.Compute(zone);
-            Assert.Greater(lightMap.GetBrightness(11, 10), lightMap.AmbientLevel,
-                "After entity move (EntityVersion bumped), equipped " +
-                "FlamingSword's light becomes visible at the wielder's new cell.");
+                "After Unequip the wielder's cell must drop to ambient on " +
+                "the next Compute. If still lit: Unequip isn't notifying " +
+                "the bus, OR LightMap isn't reading the version.");
         }
 
         // ====================================================================

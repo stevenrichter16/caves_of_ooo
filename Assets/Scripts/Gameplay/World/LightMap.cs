@@ -13,6 +13,10 @@ namespace CavesOfOoo.Core
         private float[,] _brightness;
         private Color[,] _tint;
         private int _lastEntityVersion = -1;
+        // Cache key also tracks EquipmentChangeBus.GlobalVersion so
+        // equipping/unequipping invalidates the LightMap cache immediately
+        // — closes the T2.2 cache-staleness 🟡 finding (commit cd355b5).
+        private int _lastEquipmentVersion = -1;
 
         /// <summary>
         /// Ambient light level for cells not reached by any light source.
@@ -33,9 +37,12 @@ namespace CavesOfOoo.Core
         /// </summary>
         public void Compute(Zone zone)
         {
-            if (zone.EntityVersion == _lastEntityVersion)
+            int currentEquipmentVersion = EquipmentChangeBus.GlobalVersion;
+            if (zone.EntityVersion == _lastEntityVersion
+                && currentEquipmentVersion == _lastEquipmentVersion)
                 return;
             _lastEntityVersion = zone.EntityVersion;
+            _lastEquipmentVersion = currentEquipmentVersion;
 
             // Reset to ambient with biome tint
             Color baseTint = zone.AmbientTint;
@@ -61,16 +68,12 @@ namespace CavesOfOoo.Core
             //     position. Radius/Intensity/LightColor come from the item's
             //     LightSourcePart, blueprinted on the weapon.
             //
-            // Cache caveat (T2.2 v1): the EntityVersion check above gates BOTH
-            // passes. Equipping/unequipping does NOT bump EntityVersion —
-            // InventoryPart.Equip/Unequip mutate EquippedItems but not
-            // _entityCells. Practical effect: the new equipped light becomes
-            // visible on the next entity move (typically within 0-1 player
-            // turns). For a stationary player who equips a torch and stares at
-            // unchanging walls, the glow appears after their next step.
-            // Documented as a 🟡 finding in Docs/TIER2-CLOSEOUT.md; revisit if
-            // playtest demands instant visibility (would add Zone.MarkEquipmentChanged
-            // bumped from all 4 InventoryPart mutation entry points).
+            // Cache invalidation: the cache key combines zone.EntityVersion
+            // (covers entity moves/adds/removes — Pass 1 light sources) with
+            // EquipmentChangeBus.GlobalVersion (covers equip/unequip events —
+            // Pass 2 equipped lights). Equipping a glowing weapon now
+            // updates the next render frame even if the wielder doesn't move.
+            // Closes the T2.2 v1 🟡 finding originally documented here.
             foreach (var entity in zone.GetReadOnlyEntities())
             {
                 // Pass 1: the entity itself is a light source.

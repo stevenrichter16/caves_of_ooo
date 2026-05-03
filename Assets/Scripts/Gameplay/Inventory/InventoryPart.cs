@@ -122,6 +122,10 @@ namespace CavesOfOoo.Core
                 physics.InInventory = null;
                 physics.Equipped = ParentEntity;
             }
+            // Notify subscribers (LightMap, future systems) that the
+            // wielder's equipment dictionary mutated. Closes the T2.2
+            // cache-staleness 🟡 finding — see EquipmentChangeBus.cs docstring.
+            EquipmentChangeBus.NotifyChanged(ParentEntity);
             return true;
         }
 
@@ -147,6 +151,11 @@ namespace CavesOfOoo.Core
                 physics.InInventory = null;
                 physics.Equipped = ParentEntity;
             }
+            // Multi-slot equip — same bus notification as the single-slot
+            // path. Bumps once for the whole equip op, not per-slot
+            // (subscribers don't care about the slot, only that equipment
+            // changed).
+            EquipmentChangeBus.NotifyChanged(ParentEntity);
             return true;
         }
 
@@ -187,6 +196,7 @@ namespace CavesOfOoo.Core
             }
             Objects.Add(item);
             RefreshHandlingCarryPenalty();
+            EquipmentChangeBus.NotifyChanged(ParentEntity);
             return true;
         }
 
@@ -206,6 +216,7 @@ namespace CavesOfOoo.Core
                 physics.InInventory = null;
                 physics.Equipped = ParentEntity;
             }
+            EquipmentChangeBus.NotifyChanged(ParentEntity);
             return true;
         }
 
@@ -226,6 +237,7 @@ namespace CavesOfOoo.Core
             }
             Objects.Add(item);
             RefreshHandlingCarryPenalty();
+            EquipmentChangeBus.NotifyChanged(ParentEntity);
             return true;
         }
 
