@@ -98,6 +98,17 @@ namespace CavesOfOoo.Core
                     return new BleedingEffect(
                         saveTarget: EffectDuration > 0 ? EffectDuration : 15,
                         damageDice: string.IsNullOrWhiteSpace(EffectDamageDice) ? "1d2" : EffectDamageDice);
+
+                case "char":
+                case "charred":
+                case "charredeffect":
+                    // CharredEffect is parameterless — it sets Duration to
+                    // DURATION_INDEFINITE and reduces the target's
+                    // MaterialPart.Combustibility by 70% on apply (restores
+                    // on remove). EffectMagnitude / EffectDuration on the
+                    // blueprint are intentionally ignored — the Charred
+                    // state is binary (you're either charred or you aren't).
+                    return new CharredEffect();
             }
 
             return null;
