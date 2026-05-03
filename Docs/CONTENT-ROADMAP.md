@@ -29,7 +29,7 @@
 
 ## Currently working on
 
-(none — pick next from Tier 1 elemental weapons or Tier 2 traps/locks)
+(none — Tier 1 fully closed; pick next from Tier 2 cohesive bundles or Tier 3 systems)
 
 ---
 
@@ -37,6 +37,7 @@
 
 | Commit | What |
 |---|---|
+| `feat/tier1-content-closeout` | **Tier-1 closeout** — final ship for Tier 1: BleedTonic + CharredTonic (status tonics #9 and #10, with new dispatcher cases bringing StatusTonicPart up to 9 effect aliases) + ElementalCreatureZoo (QA layout for the 9-creature × 4-axis resistance matrix) + TonicTestBench (all 10 tonics on the floor for drink-and-observe via `effect/OnApply` diag). 20 new tests across 4 fixtures (5+6+4+5). **Tier 1 fully closed — 0 outstanding 💡/📋 items**. Showcases: `Caves Of Ooo / Scenarios / Combat Stress / Elemental Creature Zoo` and `Tonic Test Bench`. |
 | `feat/quest-system` | **Tier-3 Quest System v1** — completes the M4 placeholder in the pre-existing `StoryletPart` scaffold + ships the full QS.1-8 substrate: 4 conversation predicates + 4 lifecycle actions + 2 reward wrappers + M4 dispatch loop + QuestLogStateBuilder + QuestShowcase scenario + new `quest` diag channel. 49 new tests across 7 fixtures, 144/144 GREEN sweep. Two real production fixes during cycle: phantom-quest-bricking guard in StartQuest + LocalPlayer plumbing for tick-dispatch player-state predicates. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / Quest Showcase`. |
 | `feat/shopping-parity` | **Tier-2 Trading Qud-parity gap closeout** — `CanBeTradedEvent` + `NoTrade` tag (quest-item protection — fixes "sell your IronKey by mistake" bug) + trader-state validation (Burning/Stunned/Frozen/Dead refused) + `StartTradeEvent` session hook (future-content unblocker) + `MerchantShopShowcase` scenario + new `trade` diag channel (6th) with `Bought`/`Sold` records. 18 new tests across 3 fixtures. 72/72 GREEN sweep. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / Merchant Shop Showcase`. |
 | `feat/lock-and-key` | **Tier-2 Lock & Key v1** — `LockPart` + `KeyPart` + `LockedDoor` / `LockedChest` / `IronKey` blueprints. Bump-to-unlock via `PhysicsPart`'s solid-blocker check: walking into a locked door fires `AttemptUnlock`, `LockPart` matches the actor's inventory `KeyPart.KeyId` against its own, flips `IsLocked=false` + drops `Solid` on success. Master-key model (keys reusable). Adds `furniture/UnlockAttempted` diag channel (5th hook). 21 tests + showcase scenario. Showcase: `Caves Of Ooo / Scenarios / Combat Stress / Locked Door Showcase`. |
@@ -126,14 +127,14 @@ correctly for every weapon in the game.
 - ✅ **LightningTonic** — applies ElectrifiedEffect — `feat/elemental-tonics`
 - ✅ **FrostTonic** — applies FrozenEffect — `feat/elemental-tonics`
 - ✅ **WaterTonic** — applies WetEffect — `feat/elemental-tonics`
-- 💡 **BleedTonic** — applies BleedingEffect (DOT)
-- 💡 **CharredTonic** — applies CharredEffect (post-burn vulnerable state)
+- ✅ **BleedTonic** — applies BleedingEffect (DOT) — `feat/tier1-content-closeout`
+- ✅ **CharredTonic** — applies CharredEffect (post-burn vulnerable state) — `feat/tier1-content-closeout`
 
 ### Lightweight scenarios
 
 - ✅ **FlamingSwordShowcase, ElementalSwordsShowcase** — exist
-- 📋 **ElementalCreatureZoo** — one of every resistance creature in a small zone, label them. Useful for content QA.
-- 💡 **TonicTestBench** — vials of every tonic on a shelf, bottles labeled. Drink-and-observe.
+- ✅ **ElementalCreatureZoo** — one of every resistance creature in a small zone, label them. Useful for content QA. — `feat/tier1-content-closeout`
+- ✅ **TonicTestBench** — vials of every tonic on a shelf, bottles labeled. Drink-and-observe. — `feat/tier1-content-closeout`
 
 ---
 
