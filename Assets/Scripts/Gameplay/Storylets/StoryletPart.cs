@@ -25,6 +25,11 @@ namespace CavesOfOoo.Storylets
 
         private readonly HashSet<string> _firedStorylets = new HashSet<string>();
         private readonly Dictionary<string, QuestState> _quests = new Dictionary<string, QuestState>();
+        // QS.2 (Docs/QUEST-SYSTEM.md): tracks quests the player has
+        // already completed so quest-not-started checks can rule out
+        // already-finished quests, and so quest-givers can offer
+        // post-completion dialogue. Persists via Save/Load.
+        private readonly HashSet<string> _completedQuests = new HashSet<string>();
 
         // ── Fired-storylet API ────────────────────────────────────────────────
 
@@ -61,6 +66,34 @@ namespace CavesOfOoo.Storylets
         public IReadOnlyList<QuestState> GetActiveQuests()
         {
             return new List<QuestState>(_quests.Values);
+        }
+
+        // QS.2 (Docs/QUEST-SYSTEM.md): completed-quest API. The
+        // `_completedQuests` set + `IsQuestCompleted` / `MarkQuestCompleted`
+        // helpers back the IfQuestCompleted + IfQuestNotStarted
+        // predicates plus the (forthcoming QS.3) CompleteQuest action.
+
+        public bool IsQuestCompleted(string questId)
+        {
+            return !string.IsNullOrEmpty(questId) && _completedQuests.Contains(questId);
+        }
+
+        /// <summary>
+        /// Move a quest from the active dict to the completed set.
+        /// Idempotent: calling on an already-completed quest is a no-op,
+        /// calling on a never-started quest just adds to completed
+        /// (defensive — content shouldn't rely on this branch).
+        /// </summary>
+        public void MarkQuestCompleted(string questId)
+        {
+            if (string.IsNullOrEmpty(questId)) return;
+            _quests.Remove(questId);
+            _completedQuests.Add(questId);
+        }
+
+        public IReadOnlyCollection<string> GetCompletedQuests()
+        {
+            return new List<string>(_completedQuests);
         }
 
         // ── INarrativeReactor — single-pass dispatch ──────────────────────────
@@ -126,6 +159,13 @@ namespace CavesOfOoo.Storylets
                 writer.Write(kvp.Value.CurrentStageIndex);
                 writer.Write(kvp.Value.EnteredStageAtTurn);
             }
+
+            // QS.2: completed-quest set. Append-after-quests so old
+            // save files (without this section) can still load — Load
+            // checks for end-of-section before reading.
+            writer.Write(_completedQuests.Count);
+            foreach (var id in _completedQuests)
+                writer.WriteString(id);
         }
 
         public void Load(SaveReader reader)
@@ -147,6 +187,26 @@ namespace CavesOfOoo.Storylets
                     EnteredStageAtTurn = reader.ReadInt()
                 };
                 _quests[key] = state;
+            }
+
+            // QS.2: completed-quest set. SaveReader.ReadInt wraps
+            // BinaryReader.ReadInt32 which THROWS EndOfStreamException
+            // on EOF (verified at SaveSystem.cs:151). For forward-compat
+            // with pre-QS.2 saves that didn't write this section, catch
+            // the EOF and default to an empty set. Quests-completed-
+            // pre-QS.2 didn't exist as a concept anyway, so empty is
+            // correct.
+            _completedQuests.Clear();
+            try
+            {
+                int completedCount = reader.ReadInt();
+                for (int i = 0; i < completedCount; i++)
+                    _completedQuests.Add(reader.ReadString());
+            }
+            catch (System.IO.EndOfStreamException)
+            {
+                // Pre-QS.2 save file — completed-quests section wasn't
+                // written. Leaving _completedQuests empty is correct.
             }
         }
     }
