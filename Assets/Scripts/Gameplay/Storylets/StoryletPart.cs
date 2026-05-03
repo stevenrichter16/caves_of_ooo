@@ -96,6 +96,68 @@ namespace CavesOfOoo.Storylets
             return new List<string>(_completedQuests);
         }
 
+        /// <summary>
+        /// QS.3: drop a quest from the active dict WITHOUT moving it
+        /// to the completed set. Used by the FailQuest action to
+        /// allow the player to re-take the quest later
+        /// (IfQuestNotStarted returns true again post-fail). v1:
+        /// no separate _failedQuests tracking — see
+        /// Docs/QUEST-SYSTEM.md self-review 🟡.
+        /// </summary>
+        public void RemoveActiveQuest(string questId)
+        {
+            if (string.IsNullOrEmpty(questId)) return;
+            _quests.Remove(questId);
+        }
+
+        /// <summary>
+        /// QS.3: advance an active quest by one stage. If the new
+        /// index is past the terminal stage (Stages.Count - 1), the
+        /// quest auto-completes and is moved to the completed set.
+        /// Returns the post-advance state's CurrentStageIndex (or
+        /// -1 if the quest wasn't active or was completed).
+        ///
+        /// Centralizes the stage-advance logic so both the
+        /// AdvanceQuestStage conversation action AND the QS.4
+        /// dispatch loop in OnTickEnd can call into one path.
+        /// Keeps the side effects (diag record, auto-completion,
+        /// EnteredStageAtTurn update) on a single source of truth.
+        /// </summary>
+        public int AdvanceQuestStage(string questId, int currentTurn)
+        {
+            if (string.IsNullOrEmpty(questId)) return -1;
+            if (!_quests.TryGetValue(questId, out var state)) return -1;
+
+            var quest = StoryletRegistry.FindQuest(questId);
+            int totalStages = quest?.Stages?.Count ?? 0;
+
+            int newIndex = state.CurrentStageIndex + 1;
+            if (newIndex >= totalStages)
+            {
+                // Past the last stage — auto-complete.
+                MarkQuestCompleted(questId);
+                if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
+                {
+                    CavesOfOoo.Diagnostics.Diag.Record(
+                        category: "quest", kind: "Completed",
+                        payload: new { questId, totalStages });
+                }
+                return -1;  // sentinel: quest moved to completed
+            }
+
+            int oldIndex = state.CurrentStageIndex;
+            state.CurrentStageIndex = newIndex;
+            state.EnteredStageAtTurn = currentTurn;
+
+            if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
+            {
+                CavesOfOoo.Diagnostics.Diag.Record(
+                    category: "quest", kind: "StageAdvanced",
+                    payload: new { questId, fromIndex = oldIndex, toIndex = newIndex });
+            }
+            return newIndex;
+        }
+
         // ── INarrativeReactor — single-pass dispatch ──────────────────────────
 
         // Reused tick-scoped buffer to avoid per-tick allocations.
