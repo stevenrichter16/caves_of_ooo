@@ -99,16 +99,57 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
-        // 3. Two-digit damage → two particles
+        // 3. Over-kill damage clamps to actual HP delta
+        //    Cold-eye Finding 5 (post-fix): the Math.Min(amount, hpBefore)
+        //    clamp at CombatSystem.ApplyDamage is now test-covered by
+        //    filtering Particle requests by char.IsDigit(req.Glyph). The
+        //    floating-number path emits digits ('0'-'9'); DeathSplatterFx
+        //    emits non-digit glyphs from the {'.', ',', '\'', '`', '~',
+        //    ';', '%', '*', ' '} palette (DeathSplatterFx.cs:13-15, 195).
+        //    A glyph-digit filter cleanly separates the two even when the
+        //    target dies and splatter fires alongside the floating number.
         // ====================================================================
-        //
-        // (Over-kill clamp test was dropped — testing it requires a dying
-        // target, but HandleDeath fires DeathSplatterFx which emits its own
-        // Particle requests, polluting the count. The clamp itself is
-        // provable by reading ApplyDamage's Math.Min(amount, hpBefore) call.
-        // If a future regression breaks the clamp, the floating number
-        // would visibly over-report on killing blows — caught by playtest.)
-        //
+
+        [Test]
+        public void ApplyDamage_OverKillDamage_DisplaysHpBeforeNotRawAmount()
+        {
+            // Damage = 10, target HP = 3 → target dies. The HUD shows HP
+            // drop from 3 to 0; the floating number must read "3" (clamped),
+            // not "10" (raw amount). Filter by digit glyphs to ignore the
+            // DeathSplatterFx particles that fire alongside.
+            var zone = new Zone("TestZone");
+            var target = MakeTarget(hp: 3);
+            zone.AddEntity(target, 7, 5);
+
+            var dmg = new Damage(10);
+            CombatSystem.ApplyDamage(target, dmg, source: null, zone: zone);
+
+            var requests = AsciiFxBus.Drain();
+            int digitParticles = 0;
+            string digitChars = "";
+            foreach (var r in requests)
+            {
+                if (r.Type != AsciiFxRequestType.Particle) continue;
+                if (!char.IsDigit(r.Glyph)) continue;
+                digitParticles++;
+                digitChars += r.Glyph;
+            }
+
+            // Clamped to "3" → 1 digit-glyph particle, glyph == '3'.
+            Assert.AreEqual(1, digitParticles,
+                $"Over-kill damage must display the HP delta as a single-digit " +
+                $"floating number ('3'), not the raw amount ('10' = 2 digits). " +
+                $"Got {digitParticles} digit particles, glyphs = '{digitChars}'. " +
+                $"If 2 digits ('10'): the Math.Min(amount, hpBefore) clamp at " +
+                $"CombatSystem.ApplyDamage was lost in a refactor — floating " +
+                $"numbers now over-report damage on every killing blow.");
+            Assert.AreEqual('3', digitChars[0],
+                $"The displayed digit must be '3' (clamped HP delta), " +
+                $"not '1' (the leading digit of '10'). Got '{digitChars[0]}'.");
+        }
+
+        // ====================================================================
+        // 4. Two-digit damage → two particles
         // ====================================================================
 
         [Test]
