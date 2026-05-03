@@ -279,11 +279,14 @@ namespace CavesOfOoo.Core
             string hitVerb = naturalTwenty ? $"{CRITICAL_HIT_TAG}LY hits" : "hits";
             MessageLog.Add($"{attackerName}{srcTag} {hitVerb} {defenderName}{partDesc} for {actualDamage} damage!{(hpAfter > 0 ? $" ({hpAfter} HP remaining)" : "")}");
 
-            // Floating damage number — uses actualDamage so the on-screen number
-            // matches the HP delta the player just observed on the HUD.
-            Cell hitCell = zone.GetEntityCell(defender);
-            if (hitCell != null)
-                AsciiFxBus.EmitFloatingNumber(zone, hitCell.X, hitCell.Y, actualDamage, "&R");
+            // Floating damage number now emitted from inside ApplyDamage
+            // (just above this method's call to ApplyDamage), so every damage
+            // path — including traps, effect ticks, and any future content
+            // that calls ApplyDamage directly — gets the same visual feedback.
+            // Removed the per-attack emit here to avoid double-numbering on
+            // melee swings; ApplyDamage uses min(amount, hpBefore) which
+            // matches the actualDamage value this code previously computed
+            // for melee, so the on-screen number is identical.
 
             if (hpAfter > 0)
             {
@@ -545,6 +548,12 @@ namespace CavesOfOoo.Core
                 // second damage call on a dying target trips it.
                 var hpStat = target.GetStat("Hitpoints");
                 if (hpStat == null || hpStat.BaseValue <= 0) return;
+                // Capture pre-decrement HP so the floating number we emit
+                // post-decrement uses the real player-visible delta (clamped
+                // at hpBefore so a 10-damage attack on a 3-HP target shows "3"
+                // rather than "10"). This also serves DamageDealt-event
+                // listeners that may need pre-decrement HP.
+                int hpBefore = hpStat.BaseValue;
 
                 // Phase F: BeforeTakeDamage event — fires BEFORE resistance.
                 // Listeners can mutate damage (e.g., add/remove attributes,
@@ -657,6 +666,30 @@ namespace CavesOfOoo.Core
                     damageDealt.SetParameter("Amount", amount);
                     damageDealt.SetParameter("Damage", (object)damage); // Phase C
                     source.FireEventAndRelease(damageDealt);
+                }
+
+                // Floating damage number — emit at the target's cell so EVERY
+                // damage path (melee swings, traps, effect ticks, mutations,
+                // future content) produces consistent visual feedback. Uses
+                // min(amount, hpBefore) so over-kill damage shows the actual
+                // HP delta the player observes on the HUD. Centralizing this
+                // here removes the duplicate emit that used to live in
+                // PerformSingleAttack — every ApplyDamage call now emits once,
+                // including the prior trap-damage path which silently dropped
+                // numbers (PressurePlate / TripWire / SpikeTrap / FireTrap /
+                // BearTrap, plus per-turn DOT ticks from BleedingEffect /
+                // BurningEffect / etc.).
+                if (zone != null)
+                {
+                    int displayedAmount = Math.Min(amount, hpBefore);
+                    if (displayedAmount > 0)
+                    {
+                        var targetCellForFx = zone.GetEntityCell(target);
+                        if (targetCellForFx != null)
+                            AsciiFxBus.EmitFloatingNumber(
+                                zone, targetCellForFx.X, targetCellForFx.Y,
+                                displayedAmount, "&R");
+                    }
                 }
 
                 if (hpStat.BaseValue <= 0)
