@@ -569,6 +569,55 @@ namespace CavesOfOoo.Core
                         actor: listener, payload: new { questId = arg });
                 }
             });
+
+            // ── QS.5 reward actions ──────────────────────────────────────
+            // Per Docs/QUEST-SYSTEM.md. Wraps existing infrastructure
+            // (LevelingSystem + TradeSystem) so quest content can grant
+            // XP and drams from a stage's OnEnter list — the canonical
+            // place to put rewards on a terminal stage's `OnEnter`.
+            //
+            // These are the v1 reward action set. Existing actions
+            // (GiveItem, ChangeFactionFeeling, AddFact, SetFact, Reveal)
+            // already cover the rest of the standard quest-reward
+            // surface. Future content authoring will surface the next
+            // necessary reward type.
+
+            // AwardXP(amount) — grant the listener (typically the
+            // player) `amount` XP and trigger the level-up check.
+            // Defensive: parse failures + non-positive amounts no-op
+            // so a typo in JSON content can't grant absurd XP.
+            Register("AwardXP", (speaker, listener, arg) =>
+            {
+                if (!int.TryParse(arg, out int amt) || amt <= 0) return;
+                if (listener == null) return;
+
+                var xp = listener.GetStat("Experience");
+                if (xp == null) return;
+                xp.BaseValue += amt;
+
+                MessageLog.Add($"You gain {amt} XP.");
+
+                // Trigger the level-up check. Zone passed as null —
+                // tick-driven advances may not have a zone reference.
+                // CheckLevelUp guards null zone for the FX path.
+                LevelingSystem.CheckLevelUp(listener, /*zone*/null);
+            });
+
+            // GiveDrams(amount) — grant the listener `amount` drams
+            // (CoO's currency, IntProperty "Drams"). Mirrors the
+            // shape of AwardXP — same parse-then-validate-then-mutate
+            // flow. Defensive against negative/zero (use TakeDrams
+            // for cost actions if/when added; not in v1).
+            Register("GiveDrams", (speaker, listener, arg) =>
+            {
+                if (!int.TryParse(arg, out int amt) || amt <= 0) return;
+                if (listener == null) return;
+
+                int before = TradeSystem.GetDrams(listener);
+                TradeSystem.SetDrams(listener, before + amt);
+
+                MessageLog.Add($"You receive {amt} drams.");
+            });
         }
 
         private static string ResolveSettlementId(Entity speaker)
