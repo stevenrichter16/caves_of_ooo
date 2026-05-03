@@ -209,6 +209,53 @@ namespace CavesOfOoo.Core
     }
 
     /// <summary>
+    /// Pressure plate: a rearmable variant of the spike-trap idea — a
+    /// floor plate that fires every time someone steps onto it, instead
+    /// of consuming itself like <see cref="SpikeTrapTriggerPart"/>.
+    ///
+    /// <para><b>Why no cooldown.</b> <c>EntityEnteredCell</c> fires only
+    /// on cell-CHANGE moves (verified during T2.1 sweep against
+    /// <see cref="MovementSystem.FireCellEnteredEvents"/>), so a stationary
+    /// actor doesn't re-trigger the plate. A player who deliberately
+    /// steps ON-OFF-ON-OFF takes repeated damage; that's correct
+    /// PressurePlate semantics, not a bug. If playtest later wants
+    /// debouncing for puzzle-state plates, add a <c>_actorsAlreadyOnPlate</c>
+    /// HashSet field that clears on TurnEnd. Don't reach for TurnManager
+    /// coupling — see Docs/TIER2-CLOSEOUT.md §self-review.</para>
+    /// </summary>
+    public class PressurePlateTriggerPart : TriggerOnStepPart
+    {
+        /// <summary>Damage dealt on each trigger. Default 8 — lighter
+        /// than one-shot traps because this fires repeatedly.</summary>
+        public int Damage = 8;
+
+        /// <summary>Damage attribute attached to the strike (e.g.
+        /// "Piercing" for a spiked plate, "Bludgeoning" for a crushing
+        /// plate). Empty string = untyped damage. Defaults to
+        /// "Bludgeoning" — generic stomp/crush flavor.</summary>
+        public string DamageAttribute = "Bludgeoning";
+
+        public PressurePlateTriggerPart()
+        {
+            // Don't consume on trigger — the plate persists for repeated
+            // stepping. EntityEnteredCell fires on cell-CHANGE only, so
+            // this can't loop on a stationary actor; only re-stepping
+            // produces a re-fire, which is the correct semantics.
+            ConsumeOnTrigger = false;
+        }
+
+        protected override void OnTrigger(Entity actor, Zone zone)
+        {
+            var dmg = new Damage(Damage);
+            if (!string.IsNullOrEmpty(DamageAttribute))
+                dmg.AddAttribute(DamageAttribute);
+            CombatSystem.ApplyDamage(actor, dmg, ParentEntity, zone);
+            MessageLog.Add($"{actor.GetDisplayName()} treads on the " +
+                           $"{ParentEntity.GetDisplayName()}.");
+        }
+    }
+
+    /// <summary>
     /// Bear trap: heavy piercing damage, briefly stuns, and starts
     /// bleeding. The dangerous trap — a player who steps on this is
     /// pinned for one turn while bleeding through several more.

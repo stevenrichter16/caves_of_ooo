@@ -5274,6 +5274,28 @@
       ]
     },
     {
+      "Name": "PressurePlate",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "pressure plate" },
+          { "Key": "RenderString", "Value": "^" },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" }
+        ]},
+        { "Name": "PressurePlateTrigger", "Params": [
+          { "Key": "Damage", "Value": "8" },
+          { "Key": "DamageAttribute", "Value": "Bludgeoning" }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Trap", "Value": "" }
+      ]
+    },
+    {
       "Name": "RuneCultist",
       "Inherits": "Creature",
       "Parts": [
