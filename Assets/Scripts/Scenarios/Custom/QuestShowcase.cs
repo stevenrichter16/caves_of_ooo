@@ -66,11 +66,13 @@ namespace CavesOfOoo.Scenarios.Custom
             for (int dx = 1; dx <= 6; dx++)
                 ctx.World.ClearCell(p.x + dx, p.y);
 
-            // Spawn Marceline 3 east (Villager blueprint — has
-            // ConversationPart we'll use for dialogue once content
-            // is wired). Showcase test bypasses dialogue and calls
-            // ConversationActions directly.
-            ctx.Spawn("Villager")
+            // Spawn Marceline 3 east. The Marceline blueprint
+            // (Villager variant) has a ConversationPart pointing to
+            // "Marceline_Quest" — that conversation tree's quest-
+            // gated choices wire StartQuest / AdvanceQuestStage
+            // back into the substrate so the player can drive the
+            // full quest loop in-game without bypassing dialogue.
+            ctx.Spawn("Marceline")
                 .WithStatMax("Hitpoints", 50)
                 .WithHpAbsolute(50)
                 .At(p.x + 3, p.y);
