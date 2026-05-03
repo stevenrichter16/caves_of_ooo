@@ -136,6 +136,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_TonicTestBench()
             => ScenarioRunner.Launch<TonicTestBench>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/TripWire Showcase (T2.4 multi-segment line)", priority = 120)]
+        private static void Launch_TripWireShowcase()
+            => ScenarioRunner.Launch<TripWireShowcase>();
+
         // =========================================================
         // AI Behavior
         // =========================================================
