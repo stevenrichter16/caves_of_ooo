@@ -123,6 +123,13 @@ namespace CavesOfOoo.Core
             var buyerInv = buyer.GetPart<InventoryPart>();
             if (buyerInv == null) return false;
 
+            // SP.3: trader must be in a state that allows trade.
+            if (TraderUnableToTrade(trader, out string reason))
+            {
+                MessageLog.Add($"The trader {reason}.");
+                return false;
+            }
+
             // SP.2 (Docs/SHOPPING-PARITY.md): per-item veto. Items with
             // a "NoTrade" tag (e.g., quest items, dungeon keys) refuse
             // to be traded. Listeners can also veto by returning false
@@ -184,6 +191,13 @@ namespace CavesOfOoo.Core
             var sellerInv = seller.GetPart<InventoryPart>();
             if (sellerInv == null) return false;
 
+            // SP.3: trader-state validation (mirrors buy path).
+            if (TraderUnableToTrade(trader, out string reason))
+            {
+                MessageLog.Add($"The trader {reason}.");
+                return false;
+            }
+
             // SP.2: per-item veto on sell side. Same shape as the buy
             // path — quest items refuse to leave the player's bag.
             if (!CanBeTraded(item, seller, trader, "Sell"))
@@ -219,6 +233,61 @@ namespace CavesOfOoo.Core
 
             MessageLog.Add($"You sell {item.GetDisplayName()} for {price} drams.");
             return true;
+        }
+
+        /// <summary>
+        /// SP.3 (Docs/SHOPPING-PARITY.md): check whether the trader is
+        /// in a state that allows trading. Returns true and a reason
+        /// string when the trader CAN'T trade. Mirrors Qud's
+        /// <c>TradeUI.cs:362-379</c> validation set, narrowed to the
+        /// states CoO actually has effects for.
+        ///
+        /// Refused states (any one):
+        ///   • Hitpoints ≤ 0 (dead)
+        ///   • <see cref="BurningEffect"/> (on fire — can't speak)
+        ///   • <see cref="StunnedEffect"/> (incapacitated)
+        ///   • <see cref="FrozenEffect"/> (frozen solid)
+        ///
+        /// The list is intentionally narrow — Confused, Calmed,
+        /// Bleeding etc. don't block trade. If playtest reveals more
+        /// states should refuse, add them here. Documented in
+        /// Docs/SHOPPING-PARITY.md self-review.
+        /// </summary>
+        public static bool TraderUnableToTrade(Entity trader, out string reason)
+        {
+            reason = null;
+            if (trader == null) { reason = "is missing"; return true; }
+
+            var hp = trader.GetStat("Hitpoints");
+            if (hp != null && hp.BaseValue <= 0) { reason = "is dead"; return true; }
+
+            var effects = trader.GetPart<StatusEffectsPart>();
+            if (effects != null)
+            {
+                if (effects.HasEffect<BurningEffect>())  { reason = "is on fire"; return true; }
+                if (effects.HasEffect<StunnedEffect>())  { reason = "is stunned"; return true; }
+                if (effects.HasEffect<FrozenEffect>())   { reason = "is frozen"; return true; }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// SP.3: fire <c>StartTradeEvent</c> on the trader. Mirrors
+        /// Qud's StartTradeEvent shape — listeners can veto the
+        /// session entirely (returning false) or set service flags
+        /// for future identify/repair/recharge content.
+        ///
+        /// Returns false if a listener vetoed; caller should
+        /// abort opening the trade UI.
+        /// </summary>
+        public static bool FireStartTradeEvent(Entity buyer, Entity trader)
+        {
+            if (trader == null) return false;
+            var ev = GameEvent.New("StartTrade");
+            ev.SetParameter("Buyer", (object)buyer);
+            ev.SetParameter("Trader", (object)trader);
+            return trader.FireEventAndRelease(ev);
         }
 
         /// <summary>
