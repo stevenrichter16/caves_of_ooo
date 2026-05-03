@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -175,6 +176,24 @@ namespace CavesOfOoo.Core
             SetDrams(trader, GetDrams(trader) + price);
 
             MessageLog.Add($"You buy {item.GetDisplayName()} for {price} drams.");
+
+            // SP.4 diag hook (Docs/SHOPPING-PARITY.md): every successful
+            // buy is recorded so AI debugging can answer "did the player
+            // actually trade for X?" and "what was the perf-adjusted price?".
+            if (Diag.IsChannelEnabled("trade"))
+            {
+                Diag.Record(
+                    category: "trade", kind: "Bought",
+                    actor: buyer, target: trader,
+                    payload: new
+                    {
+                        itemName = item.GetDisplayName(),
+                        itemId = item.ID,
+                        price,
+                        dramsAfter = GetDrams(buyer),
+                        perf
+                    });
+            }
             return true;
         }
 
@@ -232,6 +251,22 @@ namespace CavesOfOoo.Core
             SetDrams(trader, traderDrams - price);
 
             MessageLog.Add($"You sell {item.GetDisplayName()} for {price} drams.");
+
+            // SP.4 diag hook: mirrors the Buy path.
+            if (Diag.IsChannelEnabled("trade"))
+            {
+                Diag.Record(
+                    category: "trade", kind: "Sold",
+                    actor: seller, target: trader,
+                    payload: new
+                    {
+                        itemName = item.GetDisplayName(),
+                        itemId = item.ID,
+                        price,
+                        dramsAfter = GetDrams(seller),
+                        perf
+                    });
+            }
             return true;
         }
 

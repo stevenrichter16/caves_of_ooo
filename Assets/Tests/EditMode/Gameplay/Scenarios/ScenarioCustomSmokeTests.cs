@@ -227,5 +227,8 @@ namespace CavesOfOoo.Tests.Scenarios
 
         [Test] public void LockedDoorShowcase_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new LockedDoorShowcase().Apply(FreshContext()));
+
+        [Test] public void MerchantShopShowcase_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new MerchantShopShowcase().Apply(FreshContext()));
     }
 }

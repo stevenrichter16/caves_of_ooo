@@ -120,6 +120,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_LockedDoorShowcase()
             => ScenarioRunner.Launch<LockedDoorShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Merchant Shop Showcase (SP.2-4 trade)", priority = 116)]
+        private static void Launch_MerchantShopShowcase()
+            => ScenarioRunner.Launch<MerchantShopShowcase>();
+
         // =========================================================
         // AI Behavior
         // =========================================================
