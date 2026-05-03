@@ -606,6 +606,29 @@
       ]
     },
     {
+      "Name": "BleedTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "bleed tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&r" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Message", "Value": "Sharp pain blooms — your wounds reopen." }] },
+        { "Name": "StatusTonic", "Params": [
+          { "Key": "EffectName", "Value": "Bleeding" },
+          { "Key": "EffectDuration", "Value": "12" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "18" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
       "Name": "Antidote",
       "Inherits": "TonicItem",
       "Parts": [
