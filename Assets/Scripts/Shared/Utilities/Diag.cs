@@ -106,7 +106,7 @@ namespace CavesOfOoo.Diagnostics
         /// disabled until <see cref="SetChannel"/> turns them on.
         /// </summary>
         private static readonly string[] DefaultOnCategories =
-            { "event", "effect", "damage", "turn", "furniture", "trade", "quest" };
+            { "event", "effect", "damage", "turn", "furniture", "trade", "quest", "skill" };
 
         // ====================================================================
         // Storage
