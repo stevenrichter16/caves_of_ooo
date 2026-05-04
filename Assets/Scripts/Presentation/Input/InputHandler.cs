@@ -2057,6 +2057,17 @@ namespace CavesOfOoo.Rendering
             e.SetParameter("Actor", (object)PlayerEntity);
             target.FireEventAndRelease(e);
 
+            // If the action launched a Scene View (e.g. LookAtScenePart's
+            // "LookAtScene" → SceneViewManager.Activate, which fires
+            // OnActivated synchronously and sets _inputState = SceneOpen via
+            // HandleSceneActivated), the post-fire reset below would clobber
+            // SceneOpen back to LookMode. Bail early — same pattern as the
+            // Chat → DialogueOpen and OpenContainer → PickupOpen branches.
+            // Without this, [E] never reaches HandleSceneOpenInput and the
+            // player can't dismiss the scene.
+            if (SceneViewManager.IsActive)
+                return;
+
             // If Chat started a conversation, open the dialogue UI —
             // ConversationPart doesn't open it itself.
             if (ConversationManager.IsActive)
