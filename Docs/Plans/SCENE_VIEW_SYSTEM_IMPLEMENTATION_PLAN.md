@@ -421,7 +421,7 @@ system outcome.
 | Date | Milestone | Status | Notes |
 |---|---|---|---|
 | 2026-05-04 | Plan | ✅ Drafted | Plan document committed |
-| TBD | M1 | ⏳ Pending | — |
+| 2026-05-04 | M1 | ✅ Shipped | SceneViewManager static class + 15 EditMode tests. **Scope cut from plan**: TurnManager + InputHandler modifications deferred. Pre-impl verification sweep showed turn flow is naturally gated by input (no movement input → ProcessUntilPlayerTurn isn't called) — same pattern as how conversations work without TurnManager changes. InputHandler changes paired with SceneViewUI in M2 where there's actually something to handle the input. Cleaner cut per §1.3. |
 | TBD | M2 | ⏳ Pending | — |
 | TBD | M3 | ⏳ Pending | — |
 | TBD | M4 | ⏳ Pending | — |
