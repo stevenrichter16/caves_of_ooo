@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Caves of Ooo — Scene Views</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 28px 18px 60px;
+    background: #050608;
+    color: #cfcfcf;
+    font-family: 'Menlo','Courier New', Consolas, monospace;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+  h1 { font-size: 20px; margin: 0 0 4px; color: #d8d4b8; letter-spacing: 2px; }
+  .subtitle { color: #555; font-size: 12px; letter-spacing: 1px; margin-bottom: 26px; border-bottom: 1px solid #1a1c20; padding-bottom: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; max-width: 1400px; }
+  .card { background: #0a0c10; border: 1px solid #181b22; padding: 16px; transition: border-color .2s, transform .2s; text-decoration: none; color: inherit; display: block; }
+  .card:hover, .card:active { border-color: #c84; transform: translateY(-2px); }
+  .card .name { color: #d8d4b8; font-size: 15px; letter-spacing: 1px; margin-bottom: 4px; }
+  .card .tag { color: #c84; font-size: 10px; letter-spacing: 2px; margin-bottom: 10px; }
+  .card .desc { color: #888; font-size: 12px; line-height: 1.5; }
+  .nav { color: #555; font-size: 11px; margin-top: 24px; }
+  .nav a { color: #6a8; text-decoration: none; letter-spacing: 1.5px; }
+  .nav a:hover { color: #9d6; }
+</style>
+</head>
+<body>
+  <h1>SCENE VIEWS</h1>
+  <div class="subtitle">CAVES OF OOO &middot; HAND-AUTHORED ASCII ART FOR ATMOSPHERIC MOMENTS</div>
+
+  <div class="grid">
+    <a href="campfire.html" class="card">
+      <div class="name">CAMPFIRE</div>
+      <div class="tag">REST · LOOK · COOK · TALK</div>
+      <div class="desc">Animated probabilistic flame glyphs, rising spark particles, twinkling stars, occasional crackles and wind-gusts that briefly skew the flames. Hand-drawn logs, tent silhouette, distant trees. Rotating ambient text. Includes the dissolve-from-tilemap entry transition.</div>
+    </a>
+  </div>
+
+  <div class="nav"><a href="../shifting-zones/">&lt; SHIFTING ZONES</a></div>
+</body>
+</html>

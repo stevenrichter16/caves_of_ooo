@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Scene View — Campfire</title>
+<style>
+  :root { --bg:#06040a; --hud:#a76; --hud-label:#3a2418; --hud-stat:#d8a070; }
+  html,body { margin:0; padding:0; background:var(--bg); color:var(--hud); font-family:'Menlo','Courier New',Consolas,monospace; overflow:hidden; height:100vh; height:100dvh; user-select:none; -webkit-user-select:none; touch-action:none; }
+  #wrapper { padding:14px; box-sizing:border-box; height:100vh; height:100dvh; display:flex; flex-direction:column; }
+  #hud { color:var(--hud); font-size:11px; letter-spacing:1.4px; margin-bottom:10px; border-bottom:1px solid #2a1a14; padding-bottom:8px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px 16px; text-shadow:0 0 4px rgba(220,160,100,.25); flex-shrink:0; }
+  #hud .group { display:flex; gap:14px; flex-wrap:wrap; }
+  .label { color:var(--hud-label); } .stat { color:var(--hud-stat); }
+  button.btn { background:none; border:1px solid #4a2814; color:#d8a070; font-family:inherit; font-size:11px; letter-spacing:1.5px; padding:4px 10px; cursor:pointer; margin-left:4px; }
+  button.btn:hover, button.btn:active { background:#1a0e08; border-color:#7a4828;}
+  #screen-wrap { flex:1; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  #screen { font-size:14px; line-height:1.0; white-space:pre; text-shadow:0 0 5px rgba(255,180,80,.18),0 0 16px rgba(255,140,40,.10); }
+  /* CRT overlays — softer/warmer than the others (firelight ambience) */
+  .scanlines { position:fixed; inset:0; background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 2px,rgba(0,0,0,.20) 3px,rgba(0,0,0,0) 4px); pointer-events:none; z-index:100; }
+  .vignette { position:fixed; inset:0; background:radial-gradient(ellipse at 50% 60%,rgba(0,0,0,0) 25%,rgba(0,0,0,.95) 100%); pointer-events:none; z-index:99; }
+  .crt-glow { position:fixed; inset:0; box-shadow:inset 0 0 280px rgba(180,80,20,.10); pointer-events:none; z-index:98; }
+  /* Firelight flicker — subtle screen-wide warmth pulse synced to flame intensity */
+  .firelight { position:fixed; inset:0; background:rgba(255,140,30,0); pointer-events:none; z-index:97; }
+  a.back { position:fixed; top:10px; right:14px; color:#3a2418; font-size:11px; letter-spacing:2px; text-decoration:none; z-index:200; padding:4px 8px; }
+  a.back:hover,a.back:active { color:#a76; }
+  .hint { position:fixed; bottom:8px; left:14px; color:#3a2418; font-size:10px; letter-spacing:1.5px; z-index:200; max-width:60vw; }
+  .src { position:fixed; bottom:8px; right:14px; color:#3a2418; font-size:9px; letter-spacing:1.5px; z-index:200; }
+</style>
+</head>
+<body>
+  <a href="../shifting-zones/index.html" class="back">&lt; ZONES</a>
+  <div id="wrapper">
+    <div id="hud">
+      <div class="group">
+        <span><span class="label">SCENE:</span> <span class="stat">CAMPFIRE</span></span>
+        <span><span class="label">STATE:</span> <span class="stat" id="hud-state">RESTING</span></span>
+        <span><span class="label">FLAME:</span> <span class="stat" id="hud-flame">STEADY</span></span>
+        <span><span class="label">HR:</span> <span class="stat" id="hud-hr">62</span></span>
+      </div>
+      <div class="group">
+        <span><span class="label">TIME:</span> <span class="stat" id="hud-time">22:14 · NIGHT</span></span>
+        <span><span class="label">TEMP:</span> <span class="stat" id="hud-temp">+4.2°C</span></span>
+        <span><button class="btn" id="dissolve">REPLAY ENTRY ⥣</button><button class="btn" id="exit">EXIT ⤺</button></span>
+      </div>
+    </div>
+    <div id="screen-wrap"><div id="screen"></div></div>
+  </div>
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+  <div class="crt-glow"></div>
+  <div class="firelight" id="firelight"></div>
+  <div class="hint">PROBABILISTIC FLAME GLYPHS &middot; SPARK PARTICLES &middot; STAR TWINKLE &middot; OCCASIONAL CRACKLE + WIND-SLANT</div>
+  <div class="src">SCENE VIEW &middot; replaces tilemap on player command (e.g. "Look at campfire")</div>
+
+  <script>
+  'use strict';
+  /*
+   * CAMPFIRE SCENE VIEW
+   *
+   * In-game flow this prototypes:
+   *   1. Player adjacent to a Campfire entity, presses "Look" / "Sit"
+   *   2. Engine pauses gameplay, dissolves the tilemap from edges inward
+   *   3. This scene-view is rendered as a full-screen ASCII canvas
+   *   4. Flames animate, sparks rise, stars twinkle, ambient text rotates
+   *   5. Player presses [E] to return — reverse dissolve back to tilemap
+   *
+   * Composition is hand-authored (not procedural from world data) — that's
+   * the Caves-of-Qud-style "scene as poem" approach. Each scene is a
+   * separately-authored asset; you ship maybe 10-20 total so each one
+   * carries weight.
+   *
+   * Animation breakdown:
+   *   - Flame body: probabilistic per-cell glyph draw, weighted by
+   *     distance from fire-center and height-from-base. Hue gradient
+   *     yellow→orange→red→ember as you go up.
+   *   - Sparks: tracked particles spawning at flame core, drifting
+   *     up-and-out with gravity-resisted velocity, fading by age.
+   *   - Stars: 60 randomly-placed pinpoints, 6% gold; twinkle via per-
+   *     star sine phase.
+   *   - Crackles: random brief intensity spikes (1-frame-bright then
+   *     decay). Trigger an extra spark burst.
+   *   - Wind gusts: brief lateral skew of flame draw region.
+   *   - Logs/ground: completely static — they're the visual anchor.
+   *   - Scene text rotates every ~10 seconds.
+   */
+
+  const W = 80, H = 28;
+  const screen = document.getElementById('screen');
+  const firelightEl = document.getElementById('firelight');
+
+  // === COMPOSITION ===
+  const FIRE_CX = 40;          // x-center of fire
+  const LOG_TOP_Y = 16;        // top of logs (flames sit above this)
+  const GROUND_Y = 19;         // ground line
+  const SKY_BOTTOM = 8;        // stars only above this
+  const TEXT_Y = 22;           // ambient text row
+
+  // === STATIC SCENE GEOMETRY ===
+  // Logs — drawn beneath the flames, anchor of the scene
+  // (3 lines tall, roughly 30 wide centered on FIRE_CX)
+  const LOGS = [
+    "  __[=][==[=====[==]==[=====]==][=]__  ",
+    " /  | |   |     |   |     |   | |  \\  ",
+    " \\__|_|___|_____|___|_____|___|_|__/  "
+  ];
+  const LOGS_X = FIRE_CX - Math.floor(LOGS[0].length / 2);
+
+  // Ground — repeating ~ pattern across full width
+  function groundChar(x) {
+    const v = (Math.sin(x * 0.4) + Math.sin(x * 0.17 + 1.3)) / 2;
+    if (v > 0.4) return '~';
+    if (v > -0.2) return '-';
+    return '.';
+  }
+
+  // Tent silhouette on the left
+  const TENT_X = 5, TENT_Y = 14;
+  const TENT = [
+    "    /\\    ",
+    "   /  \\   ",
+    "  /    \\  ",
+    " /  /\\  \\ ",
+    "/__/  \\__\\"
+  ];
+
+  // Distant trees on the right (much dimmer)
+  const TREE_LINE = [
+    { x: 60, y: 16, h: 3, w: 1 },
+    { x: 64, y: 15, h: 4, w: 1 },
+    { x: 68, y: 16, h: 3, w: 1 },
+    { x: 72, y: 17, h: 2, w: 1 },
+    { x: 75, y: 16, h: 3, w: 1 }
+  ];
+
+  // === STARS ===
+  const stars = [];
+  for (let i = 0; i < 60; i++) {
+    stars.push({
+      x: Math.random() * W,
+      y: Math.random() * SKY_BOTTOM,
+      phase: Math.random() * Math.PI * 2,
+      rate: 0.025 + Math.random() * 0.04,
+      bright: 0.4 + Math.random() * 0.6,
+      gold: Math.random() < 0.06
+    });
+  }
+
+  // === SPARKS ===
+  const sparks = [];   // { x, y, vx, vy, age, max }
+
+  function spawnSpark(intensity = 1) {
+    sparks.push({
+      x: FIRE_CX - 2.5 + Math.random() * 5,
+      y: LOG_TOP_Y - 1 - Math.random() * 1.5,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: -0.20 - Math.random() * 0.14 * intensity,
+      age: 0,
+      max: 14 + Math.floor(Math.random() * 10 * intensity)
+    });
+  }
+
+  // === FLAME ===
+  // Probabilistic glyph by intensity (0..1, where 1 = densest core)
+  function flameChar(intensity) {
+    if (intensity < 0.05) return ' ';
+    const r = Math.random();
+    if (intensity > 0.85) {
+      if (r < 0.30) return '@';
+      if (r < 0.60) return '#';
+      if (r < 0.85) return '%';
+      return '&';
+    }
+    if (intensity > 0.60) {
+      if (r < 0.20) return '#';
+      if (r < 0.50) return '%';
+      if (r < 0.80) return '&';
+      return '*';
+    }
+    if (intensity > 0.35) {
+      if (r < 0.30) return '&';
+      if (r < 0.60) return '*';
+      if (r < 0.85) return '^';
+      return ',';
+    }
+    if (intensity > 0.15) {
+      if (r < 0.40) return '^';
+      if (r < 0.70) return '*';
+      if (r < 0.90) return ',';
+      return "'";
+    }
+    if (r < 0.50) return "'";
+    if (r < 0.80) return ',';
+    return '.';
+  }
+
+  function flameColor(heightFromBase, intensity) {
+    // Hue: yellow at base → orange → red → dim red at tip
+    let h_, s_, l_;
+    if (heightFromBase < 1) { h_ = 52; s_ = 100; l_ = 72; }
+    else if (heightFromBase < 2.5) { h_ = 38; s_ = 100; l_ = 60; }
+    else if (heightFromBase < 4) { h_ = 24; s_ = 95; l_ = 48; }
+    else if (heightFromBase < 5.5) { h_ = 14; s_ = 85; l_ = 38; }
+    else { h_ = 6; s_ = 70; l_ = 28; }
+    // Cell-level brightness variance
+    l_ *= 0.85 + Math.random() * 0.30;
+    // Intensity modulation
+    l_ *= 0.55 + intensity * 0.45;
+    return `hsl(${h_|0},${s_|0}%,${Math.min(85, l_)|0}%)`;
+  }
+
+  // === ANIMATION STATE ===
+  let t = 0;
+  let crackleLevel = 0;          // 0..1 — global flame intensity boost during crackle
+  let windGust = 0;              // -1..1 — lateral skew of flame region
+  let nextCrackle = 0;
+  let nextGust = 0;
+
+  // === DISSOLVE TRANSITION ===
+  // Mask values per cell: 0 = scene visible, 1 = pre-scene (jungle pattern)
+  let mask = null;
+  let dissolveActive = true;
+  let dissolveStart = 0;
+  const DISSOLVE_DURATION = 1.6; // seconds
+
+  function initMask() {
+    mask = new Float32Array(W * H);
+    for (let i = 0; i < mask.length; i++) mask[i] = 1;
+  }
+  function updateDissolve(now) {
+    if (!dissolveActive) return;
+    const elapsed = (now - dissolveStart) / 1000;
+    const progress = Math.min(1, elapsed / DISSOLVE_DURATION);
+    // Reveal from center outward (radial dissolve)
+    const cxx = W / 2, cyy = H / 2 + 2;
+    const maxR = Math.sqrt(cxx * cxx + cyy * cyy);
+    const reveal = progress * maxR * 1.2;
+    for (let y = 0; y < H; y++) {
+      for (let x = 0; x < W; x++) {
+        const dx = x - cxx, dy = y - cyy;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        // Soft edge at the reveal radius
+        const edge = reveal - d;
+        if (edge > 1) mask[y * W + x] = 0;
+        else if (edge > 0) mask[y * W + x] = Math.max(0, 1 - edge);
+      }
+    }
+    if (progress >= 1) dissolveActive = false;
+  }
+  function startDissolve() {
+    initMask();
+    dissolveActive = true;
+    dissolveStart = performance.now();
+  }
+
+  // Pre-dissolve placeholder pattern (looks like jungle tilemap)
+  function preChar(x, y) {
+    const v = (Math.sin(x * 0.5 + y * 0.7) + Math.sin(x * 0.3 - y * 0.2)) / 2;
+    if (v > 0.5) return '#';
+    if (v > 0.2) return '%';
+    if (v > -0.1) return '&';
+    if (v > -0.4) return '.';
+    return ' ';
+  }
+  function preColor(x, y) {
+    const v = (Math.sin(x * 0.5 + y * 0.7) + Math.sin(x * 0.3 - y * 0.2)) / 2;
+    const l = 18 + (v + 1) * 18;
+    return `hsl(120,90%,${l|0}%)`;
+  }
+
+  // === SCENE TEXT (rotates) ===
+  const TEXTS = [
+    '"The fire warms what your hands cannot reach.   The night, here, is only at your back."',
+    '"A log shifts. Embers complain in the language they have always spoken."',
+    '"The dark beyond the light is not absence. It is what the fire has not yet eaten."',
+    '"You count the small bones in your hands. The fire counts them with you."',
+    '"Somewhere, very close, an animal decides not to come closer. You do not see it."'
+  ];
+  let textIdx = 0;
+  let textPhase = 0; // 0..1 fade
+
+  // === RENDER ===
+  function render(nowMs) {
+    updateDissolve(nowMs);
+
+    // Crackles
+    if (t > nextCrackle) {
+      crackleLevel = 0.7 + Math.random() * 0.3;
+      nextCrackle = t + 3 + Math.random() * 4;
+      // burst of sparks
+      for (let i = 0; i < 4 + Math.random() * 5; i++) spawnSpark(crackleLevel + 0.4);
+    }
+    crackleLevel *= 0.92;
+
+    // Wind gusts
+    if (t > nextGust) {
+      windGust = (Math.random() - 0.5) * 1.5;
+      nextGust = t + 4 + Math.random() * 5;
+    }
+    windGust *= 0.96;
+
+    // Spark spawns
+    if (Math.random() < 0.4 + crackleLevel * 0.4) spawnSpark(1 + crackleLevel);
+
+    // Update sparks
+    for (const s of sparks) {
+      s.x += s.vx;
+      s.y += s.vy;
+      s.vy *= 0.985; // gravity-like resistance
+      s.age++;
+    }
+    for (let i = sparks.length - 1; i >= 0; i--) if (sparks[i].age >= sparks[i].max) sparks.splice(i, 1);
+
+    // Build the grid
+    const grid = [], colors = [];
+    for (let y = 0; y < H; y++) {
+      grid[y] = new Array(W).fill(' ');
+      colors[y] = new Array(W).fill('hsl(240,40%,3%)');
+    }
+
+    // === SKY ===
+    for (let y = 0; y < SKY_BOTTOM; y++) {
+      for (let x = 0; x < W; x++) {
+        // Sky gradient — slightly indigo at top, fading to dark
+        const yNorm = y / SKY_BOTTOM;
+        const l = 4 + yNorm * 2;
+        colors[y][x] = `hsl(245,40%,${l|0}%)`;
+      }
+    }
+    // Stars
+    for (const s of stars) {
+      s.phase += s.rate;
+      const tw = (Math.sin(s.phase) + 1) / 2;
+      const x = s.x | 0, y = s.y | 0;
+      let ch = '.';
+      if (tw > 0.85) ch = '*';
+      else if (tw > 0.55) ch = '+';
+      else if (tw > 0.30) ch = "'";
+      grid[y][x] = ch;
+      const l = 25 + tw * s.bright * 50;
+      colors[y][x] = s.gold
+        ? `hsl(45,75%,${l|0}%)`
+        : `hsl(220,30%,${l|0}%)`;
+    }
+
+    // === DISTANT TREES (background, dim) ===
+    for (const tr of TREE_LINE) {
+      for (let dy = 0; dy < tr.h; dy++) {
+        const y = tr.y - dy;
+        if (y < 0 || y >= H) continue;
+        const x = tr.x;
+        if (x < 0 || x >= W) continue;
+        // Trees in distance: very dark blue-violet
+        const ch = dy === tr.h - 1 ? 'T' : '|';
+        grid[y][x] = ch;
+        colors[y][x] = `hsl(260,25%,${10 + dy * 2}%)`;
+      }
+    }
+
+    // === TENT SILHOUETTE (left) ===
+    for (let row = 0; row < TENT.length; row++) {
+      const y = TENT_Y + row;
+      if (y < 0 || y >= H) continue;
+      for (let col = 0; col < TENT[row].length; col++) {
+        const ch = TENT[row][col];
+        if (ch === ' ') continue;
+        const x = TENT_X + col;
+        if (x < 0 || x >= W) continue;
+        // Tent: very dark — silhouette
+        // Add a subtle warm edge from firelight if facing fire
+        const dxFire = (x - FIRE_CX);
+        const facingFire = dxFire > 0; // tent left of fire — its right side faces fire
+        const edge = (col >= TENT[row].length - 2);
+        let l = 8;
+        let h_ = 25;
+        if (edge && facingFire) { l = 18; h_ = 22; } // warm-lit edge
+        grid[y][x] = ch;
+        colors[y][x] = `hsl(${h_},35%,${l}%)`;
+      }
+    }
+
+    // === GROUND LINE ===
+    for (let x = 0; x < W; x++) {
+      // Skip ground rendering where logs/tent occupy
+      const ch = groundChar(x);
+      // Ground brightens near fire (firelight pool)
+      const dx = x - FIRE_CX;
+      const distFire = Math.abs(dx);
+      const lit = Math.max(0, 1 - distFire / 22);
+      const baseH = 25, baseS = 35;
+      const l = 8 + lit * 22 + Math.sin(t * 5 + x * 0.4) * lit * 2;
+      grid[GROUND_Y][x] = ch;
+      colors[GROUND_Y][x] = `hsl(${baseH|0},${baseS|0}%,${l|0}%)`;
+    }
+    // Lit ground tiles below the flames (dapple effect)
+    for (let dy = 0; dy < 3; dy++) {
+      const y = GROUND_Y + dy + 1;
+      if (y >= H) continue;
+      for (let x = FIRE_CX - 16; x <= FIRE_CX + 16; x++) {
+        if (x < 0 || x >= W) continue;
+        const distFire = Math.sqrt((x - FIRE_CX) * (x - FIRE_CX) + (y - LOG_TOP_Y) * (y - LOG_TOP_Y));
+        const lit = Math.max(0, 1 - distFire / 18);
+        const flicker = Math.sin(t * 6 + x * 0.5 + y * 0.7) * 0.15 * lit;
+        if (lit > 0.15) {
+          if (grid[y][x] === ' ') {
+            grid[y][x] = lit > 0.5 ? '.' : ' ';
+          }
+          const l = 6 + (lit + flicker) * 22;
+          colors[y][x] = `hsl(${20 - lit * 5|0},${(50 + lit * 30)|0}%,${l|0}%)`;
+        }
+      }
+    }
+
+    // === LOGS (static, on top of ground) ===
+    for (let row = 0; row < LOGS.length; row++) {
+      const y = LOG_TOP_Y + row;
+      if (y >= H) continue;
+      for (let col = 0; col < LOGS[row].length; col++) {
+        const ch = LOGS[row][col];
+        if (ch === ' ') continue;
+        const x = LOGS_X + col;
+        if (x < 0 || x >= W) continue;
+        grid[y][x] = ch;
+        // Logs glow brighter at edges where fire touches them; vary slightly
+        const heatGlow = (Math.sin(t * 3 + col * 0.4) + 1) / 2;
+        const l = 14 + heatGlow * 8 + (row === 0 ? 6 : 0);  // top row brightest
+        const h_ = 22 - heatGlow * 4;
+        colors[y][x] = `hsl(${h_|0},45%,${l|0}%)`;
+      }
+    }
+    // Random ember glow on logs
+    if (Math.random() < 0.3) {
+      const erow = Math.floor(Math.random() * LOGS.length);
+      const ecol = Math.floor(Math.random() * LOGS[erow].length);
+      const x = LOGS_X + ecol, y = LOG_TOP_Y + erow;
+      if (x >= 0 && x < W && y >= 0 && y < H && LOGS[erow][ecol] !== ' ') {
+        colors[y][x] = `hsl(18,100%,55%)`;
+      }
+    }
+
+    // === FLAME BODY ===
+    const flameHeight = 6;
+    const flameHalfWidth = 5;
+    for (let dy = 0; dy < flameHeight; dy++) {
+      const y = LOG_TOP_Y - 1 - dy;
+      if (y < 0 || y >= H) continue;
+      for (let dx = -flameHalfWidth; dx <= flameHalfWidth; dx++) {
+        // Wind skew: shift flame columns sideways with height
+        const skew = windGust * dy * 0.4;
+        const x = Math.round(FIRE_CX + dx + skew);
+        if (x < 0 || x >= W) continue;
+        // Intensity: highest at center-base, falls off radially
+        const heightFactor = dy / flameHeight; // 0 = base, 1 = top
+        const distFromCenter = Math.abs(dx) / flameHalfWidth;
+        // Asymmetric falloff — narrows toward top
+        const widthAtHeight = 1 - heightFactor * 0.6;
+        const inFlame = (distFromCenter / Math.max(0.2, widthAtHeight)) <= 1;
+        if (!inFlame) continue;
+        let intensity = (1 - heightFactor * 0.85) * (1 - distFromCenter * 0.6);
+        intensity *= 1 + crackleLevel * 0.4;
+        // Cell-by-cell jitter via noise
+        intensity += (Math.sin(t * 4 + x * 0.7 + y * 1.1) + 1) * 0.08;
+        const ch = flameChar(intensity);
+        if (ch === ' ') continue;
+        grid[y][x] = ch;
+        colors[y][x] = flameColor(dy, intensity);
+      }
+    }
+
+    // === SPARKS (on top of flames + sky) ===
+    for (const s of sparks) {
+      const x = s.x | 0, y = s.y | 0;
+      if (x < 0 || x >= W || y < 0 || y >= H) continue;
+      const lifeT = s.age / s.max;
+      const fade = 1 - lifeT;
+      let ch;
+      if (fade > 0.7) ch = '*';
+      else if (fade > 0.4) ch = '+';
+      else if (fade > 0.2) ch = "'";
+      else ch = '.';
+      grid[y][x] = ch;
+      // Hue shifts from yellow → orange → dim red as it cools
+      const h_ = 50 - (1 - fade) * 35;
+      const l = 30 + fade * 50;
+      colors[y][x] = `hsl(${h_|0},90%,${l|0}%)`;
+    }
+
+    // === SCENE TEXT (centered, fading in/out) ===
+    textPhase += 0.0013; // phase moves slowly across rotation
+    const textCycleLen = 1.0;
+    const cyclePos = (textPhase % textCycleLen);
+    if (cyclePos < 0.005) textIdx = (textIdx + 1) % TEXTS.length;
+    let textAlpha;
+    if (cyclePos < 0.10) textAlpha = cyclePos / 0.10;       // fade in
+    else if (cyclePos > 0.85) textAlpha = (1 - cyclePos) / 0.15;  // fade out
+    else textAlpha = 1;
+    const text = TEXTS[textIdx];
+    if (textAlpha > 0.05) {
+      const tx = Math.max(0, Math.floor((W - text.length) / 2));
+      for (let i = 0; i < text.length && tx + i < W; i++) {
+        const ch = text[i];
+        if (ch === ' ') continue;
+        grid[TEXT_Y][tx + i] = ch;
+        const l = 30 + textAlpha * 35;
+        colors[TEXT_Y][tx + i] = `hsl(38,55%,${l|0}%)`;
+      }
+    }
+
+    // === UI PROMPTS ===
+    const promptY = H - 2;
+    const prompt = '[E] RETURN     [R] REST     [C] COOK     [T] TALK';
+    const px2 = Math.floor((W - prompt.length) / 2);
+    for (let i = 0; i < prompt.length && px2 + i < W; i++) {
+      const ch = prompt[i];
+      if (ch === ' ') continue;
+      grid[promptY][px2 + i] = ch;
+      colors[promptY][px2 + i] = ch === '[' || ch === ']' ? 'hsl(38,80%,55%)'
+        : (/[A-Z]/.test(ch) && i > 0 && (prompt[i - 1] === '[') ? 'hsl(50,95%,65%)'
+        : 'hsl(35,50%,40%)');
+    }
+    // Bracket-letter highlight pass — if char is between [ and ] make it bright
+    for (let i = 0; i < prompt.length; i++) {
+      if (prompt[i] === '[' && prompt[i + 2] === ']') {
+        const x = px2 + i + 1;
+        if (x >= 0 && x < W) colors[promptY][x] = 'hsl(50,95%,75%)';
+      }
+    }
+
+    // === DISSOLVE OVERLAY (mix scene with pre-pattern) ===
+    if (dissolveActive) {
+      for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+          const m = mask[y * W + x];
+          if (m > 0.5) {
+            grid[y][x] = preChar(x, y);
+            colors[y][x] = preColor(x, y);
+          } else if (m > 0.05) {
+            // Edge of dissolve — keep scene char but darken
+            const orig = colors[y][x];
+            // Quick darken via opacity-like override
+            colors[y][x] = `rgba(0,0,0,1)`;
+            // Keep the pre-char one frame longer at the boundary for a nice fade
+            if (Math.random() < m) {
+              grid[y][x] = preChar(x, y);
+              colors[y][x] = preColor(x, y);
+            }
+          }
+        }
+      }
+    }
+
+    // === COMPOSE BUFFER ===
+    let buf = '';
+    for (let y = 0; y < H; y++) {
+      let prev = null, span = '';
+      for (let x = 0; x < W; x++) {
+        let ch = grid[y][x];
+        if (ch === '<') ch = '&lt;';
+        else if (ch === '>') ch = '&gt;';
+        else if (ch === '&') ch = '&amp;';
+        const c = colors[y][x];
+        if (c === prev) span += ch;
+        else { if (span) buf += `<span style="color:${prev}">${span}</span>`; span = ch; prev = c; }
+      }
+      if (span) buf += `<span style="color:${prev}">${span}</span>`;
+      buf += '\n';
+    }
+    screen.innerHTML = buf;
+
+    // Firelight global pulse — synced to crackle + flame intensity
+    const baseGlow = 0.04 + crackleLevel * 0.10;
+    const pulse = Math.sin(t * 4) * 0.02 + Math.sin(t * 11) * 0.01;
+    firelightEl.style.background = `rgba(255,140,30,${(baseGlow + pulse).toFixed(3)})`;
+
+    // HUD
+    document.getElementById('hud-flame').textContent = crackleLevel > 0.3 ? 'CRACKLING' : (Math.abs(windGust) > 0.4 ? 'GUSTING' : 'STEADY');
+    document.getElementById('hud-hr').textContent = Math.round(60 + Math.sin(t * 0.4) * 2 + crackleLevel * 4);
+
+    t += 0.04;
+    requestAnimationFrame(render);
+  }
+
+  // === INPUT ===
+  document.getElementById('dissolve').addEventListener('click', e => { e.preventDefault(); startDissolve(); });
+  document.getElementById('exit').addEventListener('click', e => {
+    e.preventDefault();
+    // Reverse dissolve then redirect (or restart)
+    initMask();
+    dissolveActive = true;
+    dissolveStart = performance.now() - DISSOLVE_DURATION * 1000;
+    // Re-trigger forward dissolve after a short pause for visual demo
+    setTimeout(() => startDissolve(), 1600);
+  });
+  // Keyboard
+  window.addEventListener('keydown', e => {
+    if (e.key === 'e' || e.key === 'E') {
+      e.preventDefault();
+      document.getElementById('exit').click();
+    } else if (e.key === ' ') {
+      // Trigger crackle
+      crackleLevel = 1;
+      for (let i = 0; i < 8; i++) spawnSpark(1.4);
+    }
+  });
+
+  initMask();
+  startDissolve();
+  requestAnimationFrame(render);
+  </script>
+</body>
+</html>
