@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Shifting Zone — Jungle Chunk (Live)</title>
+<style>
+  :root { --bg:#021006; --hud:#6c8; --hud-label:#1a2e22; --hud-stat:#9d6; }
+  html,body { margin:0; padding:0; background:var(--bg); color:var(--hud); font-family:'Menlo','Courier New',Consolas,monospace; overflow:hidden; height:100vh; height:100dvh; user-select:none; -webkit-user-select:none; touch-action:none; }
+  #wrapper { padding:14px; box-sizing:border-box; height:100vh; height:100dvh; display:flex; flex-direction:column; }
+  #hud { color:var(--hud); font-size:11px; letter-spacing:1.4px; margin-bottom:10px; border-bottom:1px solid #1c2820; padding-bottom:8px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px 16px; text-shadow:0 0 4px rgba(110,220,140,.3); flex-shrink:0; }
+  #hud .group { display:flex; gap:14px; flex-wrap:wrap; }
+  .label { color:var(--hud-label); } .stat { color:var(--hud-stat); }
+  button.regen { background:none; border:1px solid #1c4030; color:#9d6; font-family:inherit; font-size:11px; letter-spacing:1.5px; padding:4px 10px; cursor:pointer; }
+  button.regen:hover, button.regen:active { background:#0c2018; border-color:#3a6;}
+  #screen-wrap { flex:1; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  #screen { font-size:14px; line-height:1.0; white-space:pre; text-shadow:0 0 4px rgba(120,255,140,.35),0 0 12px rgba(0,180,40,.18); cursor:crosshair; }
+  .scanlines { position:fixed; inset:0; background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 2px,rgba(0,0,0,.18) 3px,rgba(0,0,0,0) 4px); pointer-events:none; z-index:100; }
+  .vignette { position:fixed; inset:0; background:radial-gradient(ellipse at center,rgba(0,0,0,0) 50%,rgba(0,0,0,.85) 100%); pointer-events:none; z-index:99; }
+  .crt-glow { position:fixed; inset:0; box-shadow:inset 0 0 220px rgba(0,180,40,.06); pointer-events:none; z-index:98; }
+  a.back { position:fixed; top:10px; right:14px; color:#1a2e22; font-size:11px; letter-spacing:2px; text-decoration:none; z-index:200; padding:4px 8px; }
+  a.back:hover,a.back:active { color:#6c8; }
+  .hint { position:fixed; bottom:8px; left:14px; color:#1a2e22; font-size:10px; letter-spacing:1.5px; z-index:200; }
+  .src { position:fixed; bottom:8px; right:14px; color:#1a2e22; font-size:9px; letter-spacing:1.5px; z-index:200; }
+</style>
+</head>
+<body>
+  <a href="index.html" class="back">&lt; ZONES</a>
+  <div id="wrapper">
+    <div id="hud">
+      <div class="group">
+        <span><span class="label">SEED:</span> <span class="stat" id="hud-seed">0x4A2F</span></span>
+        <span><span class="label">CHUNK:</span> <span class="stat">JUNGLE 80×25</span></span>
+        <span><span class="label">CA-PASSES:</span> <span class="stat">2</span></span>
+        <span><span class="label">SEED%:</span> <span class="stat">48</span></span>
+        <span><span class="label">NOISE-T:</span> <span class="stat">0.47</span></span>
+      </div>
+      <div class="group">
+        <span><span class="label">TREES:</span> <span class="stat" id="hud-trees">—</span></span>
+        <span><span class="label">BUSHES:</span> <span class="stat" id="hud-bushes">—</span></span>
+        <span><span class="label">OPEN%:</span> <span class="stat" id="hud-open">—</span></span>
+        <span><button class="regen" id="regen">REGEN ⟲</button></span>
+      </div>
+    </div>
+    <div id="screen-wrap"><div id="screen"></div></div>
+  </div>
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+  <div class="crt-glow"></div>
+  <div class="hint">DRAG TO MOVE &middot; WIND ANIMATES GRASS &middot; TAP REGEN FOR NEW SEED</div>
+  <div class="src">SOURCE: Assets/Scripts/Gameplay/World/Generation/Builders/JungleBuilder.cs</div>
+
+  <script>
+  'use strict';
+  /*
+   * Faithful JS port of CavesOfOoo Jungle generation.
+   * Mirrors:
+   *   Assets/Scripts/Gameplay/World/Map/Zone.cs                      — 80×25 grid
+   *   Assets/Scripts/Gameplay/World/Generation/CellularAutomata.cs  — CA rules
+   *   Assets/Scripts/Gameplay/World/Generation/SimpleNoise.cs       — noise field
+   *   Assets/Scripts/Gameplay/World/Generation/Builders/JungleBuilder.cs
+   *   Assets/Resources/Content/Blueprints/Objects.json — VineWall / Grass / Tree / Bush blueprints
+   *   Assets/Scripts/Presentation/Rendering/QudColorParser.cs       — CGA color palette
+   *
+   * The CHUNK is generated with the exact same algorithm as the live game.
+   * The DYNAMIC layer (grass-glyph variants, wind ripples, tree rustle, light dapples)
+   * is layered on top without altering tile structure.
+   */
+
+  // === ZONE DIMENSIONS (Zone.cs:13) ===
+  const ZONE_W = 80, ZONE_H = 25;
+
+  // === JUNGLE BUILDER PARAMS (JungleBuilder.cs:18-22) ===
+  const SEED_CHANCE = 48;       // CA seed % (lower than caves' 55 → more open)
+  const CA_PASSES = 2;
+  const NOISE_THRESHOLD = 0.47;
+  const TREE_CHANCE = 0.10;
+  const BUSH_CHANCE = 0.08;     // Only if no tree (else-branch)
+
+  // === CELLULAR AUTOMATA (CellularAutomata.cs) ===
+  const BORN_LIST = [6, 7, 8];        // Qud defaults
+  const SURVIVE_LIST = [5, 6, 7, 8];
+  const BORDER_DEPTH = 2;             // Jungle uses depth 2
+  const SEED_BORDERS = true;
+
+  // === RENDER (Objects.json + QudColorParser.cs CGA palette) ===
+  // Grass:    "." color &g (DarkGreen)  bg ^g (DarkGreen)  variants "...,.'`"
+  // VineWall: "#" color &G (BrightGreen) bg ^g (DarkGreen)
+  // Tree:     "T" color &G (BrightGreen)
+  // Bush:     ";" color &G (BrightGreen)
+  const GRASS_VARIANTS = ['.', '.', '.', ',', '.', "'", '`'];
+
+  // CGA color palette in HSL space for hsl() output, matching QudColorParser exactly
+  // DarkGreen   rgb(0.00, 0.67, 0.00) → roughly #00ab00 → hsl(120, 100%, 33%)
+  // BrightGreen rgb(0.33, 1.00, 0.33) → roughly #54ff54 → hsl(120, 100%, 60%)
+  // DarkGreen bg slightly dimmed for contrast
+  const COLOR_GRASS_FG = 'hsl(120,100%,33%)';
+  const COLOR_GRASS_BG = '#063a06';   // darkened DarkGreen for the background field
+  const COLOR_VINE_FG = 'hsl(120,100%,55%)';
+  const COLOR_TREE_FG = 'hsl(120,100%,60%)';
+  const COLOR_BUSH_FG = 'hsl(120,90%,52%)';
+
+  // === SEEDED PRNG (mulberry32 — deterministic, matches via seed) ===
+  function mulberry32(seed) {
+    return function() {
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      let t = seed;
+      t = Math.imul(t ^ t >>> 15, t | 1);
+      t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  // Returns a function compatible with C# rng.Next(min,max) and rng.NextDouble()
+  function makeRng(seed) {
+    const rand = mulberry32(seed);
+    return {
+      nextDouble: () => rand(),
+      next: (min, maxExclusive) => Math.floor(rand() * (maxExclusive - min)) + min,
+    };
+  }
+
+  // === CellularAutomata.cs port ===
+  function generateCA(rng) {
+    let cells = new Array(ZONE_W * ZONE_H);
+    // Seed
+    for (let x = 0; x < ZONE_W; x++) {
+      for (let y = 0; y < ZONE_H; y++) {
+        const isBorder = x < BORDER_DEPTH || x >= ZONE_W - BORDER_DEPTH ||
+                         y < BORDER_DEPTH || y >= ZONE_H - BORDER_DEPTH;
+        if (SEED_BORDERS && isBorder) {
+          cells[y * ZONE_W + x] = 1;
+        } else {
+          cells[y * ZONE_W + x] = rng.next(1, 101) <= SEED_CHANCE ? 1 : 0;
+        }
+      }
+    }
+    // Passes
+    for (let p = 0; p < CA_PASSES; p++) cells = applyCAPass(cells);
+    return cells;
+  }
+  function applyCAPass(cells) {
+    const next = new Array(ZONE_W * ZONE_H);
+    for (let x = 0; x < ZONE_W; x++) {
+      for (let y = 0; y < ZONE_H; y++) {
+        const isBorder = x < BORDER_DEPTH || x >= ZONE_W - BORDER_DEPTH ||
+                         y < BORDER_DEPTH || y >= ZONE_H - BORDER_DEPTH;
+        if (SEED_BORDERS && isBorder) { next[y * ZONE_W + x] = 1; continue; }
+        const n = countNeighbors(cells, x, y);
+        if (cells[y * ZONE_W + x] === 1) {
+          next[y * ZONE_W + x] = SURVIVE_LIST.includes(n) ? 1 : 0;
+        } else {
+          next[y * ZONE_W + x] = BORN_LIST.includes(n) ? 1 : 0;
+        }
+      }
+    }
+    return next;
+  }
+  function countNeighbors(cells, cx, cy) {
+    let c = 0;
+    for (let dx = -1; dx <= 1; dx++) {
+      for (let dy = -1; dy <= 1; dy++) {
+        if (dx === 0 && dy === 0) continue;
+        const nx = cx + dx, ny = cy + dy;
+        if (nx < 0 || nx >= ZONE_W || ny < 0 || ny >= ZONE_H) c++;
+        else if (cells[ny * ZONE_W + nx] === 1) c++;
+      }
+    }
+    return c;
+  }
+
+  // === SimpleNoise.cs port ===
+  function noiseLayer(width, height, frequency, amplitude, rng) {
+    const baseW = ((width / frequency) | 0) + 2;
+    const baseH = ((height / frequency) | 0) + 2;
+    const baseN = new Float32Array(baseW * baseH);
+    for (let i = 0; i < baseN.length; i++) baseN[i] = rng.nextDouble();
+    return { baseN, baseW, baseH, frequency, amplitude };
+  }
+  function interpolateCos(a, b, t) {
+    const f = (1 - Math.cos(t * Math.PI)) * 0.5;
+    return a * (1 - f) + b * f;
+  }
+  function sampleLayer(layer, x, y) {
+    const sx = x / layer.frequency, sy = y / layer.frequency;
+    let ix = sx | 0, iy = sy | 0;
+    const fx = sx - ix, fy = sy - iy;
+    if (ix < 0) ix = 0; if (ix > layer.baseW - 2) ix = layer.baseW - 2;
+    if (iy < 0) iy = 0; if (iy > layer.baseH - 2) iy = layer.baseH - 2;
+    const top = interpolateCos(layer.baseN[iy * layer.baseW + ix], layer.baseN[iy * layer.baseW + ix + 1], fx);
+    const bot = interpolateCos(layer.baseN[(iy + 1) * layer.baseW + ix], layer.baseN[(iy + 1) * layer.baseW + ix + 1], fx);
+    return interpolateCos(top, bot, fy) * layer.amplitude;
+  }
+  function generateNoiseField(width, height, rng) {
+    const FREQ = [4, 16, 64], AMP = [1.0, 0.7, 0.4];
+    const layers = [];
+    for (let i = 0; i < 3; i++) layers.push(noiseLayer(width, height, FREQ[i], AMP[i], rng));
+    const field = new Float32Array(width * height);
+    let maxV = -Infinity, minV = Infinity;
+    for (let x = 0; x < width; x++) for (let y = 0; y < height; y++) {
+      let s = 0;
+      for (const l of layers) s += sampleLayer(l, x, y);
+      field[y * width + x] = s;
+      if (s > maxV) maxV = s;
+      if (s < minV) minV = s;
+    }
+    let range = maxV - minV; if (range < 0.0001) range = 1;
+    for (let i = 0; i < field.length; i++) field[i] = (field[i] - minV) / range;
+    return field;
+  }
+
+  // === JungleBuilder.cs port ===
+  // Tile codes: 0=void(borderwall), 1=vinewall, 2=grass, 3=grass+tree, 4=grass+bush
+  function buildJungle(seed) {
+    const rng = makeRng(seed);
+    const ca = generateCA(rng);
+    const noise = generateNoiseField(ZONE_W, ZONE_H, rng);
+    const tiles = new Uint8Array(ZONE_W * ZONE_H);
+
+    // Step 1: fill walls (tile=1)
+    for (let i = 0; i < tiles.length; i++) tiles[i] = 1;
+
+    // Step 2: carve open spaces — caOpen OR noise <= threshold
+    for (let x = 0; x < ZONE_W; x++) {
+      for (let y = 0; y < ZONE_H; y++) {
+        const idx = y * ZONE_W + x;
+        const caOpen = ca[idx] === 0;
+        const noiseOpen = noise[idx] <= NOISE_THRESHOLD;
+        if (caOpen || noiseOpen) {
+          tiles[idx] = 2; // grass
+          if (rng.nextDouble() < TREE_CHANCE) tiles[idx] = 3;       // tree
+          else if (rng.nextDouble() < BUSH_CHANCE) tiles[idx] = 4;  // bush
+        }
+      }
+    }
+    return tiles;
+  }
+
+  // === RENDERING ===
+  const screen = document.getElementById('screen');
+  let tiles = null;
+  let seed = (Math.random() * 0xFFFF) | 0;
+  let playerX = ZONE_W / 2 | 0, playerY = ZONE_H / 2 | 0;
+  let targetX = playerX, targetY = playerY;
+
+  // Animation state
+  let t = 0;
+  let windPhase = 0;
+  let rustles = [];   // { x, y, age, max } — tree rustle bursts
+  let dapples = [];   // { x, y, age, max, color } — light dapple events
+
+  function regenerate() {
+    seed = (Math.random() * 0xFFFFFF) | 0;
+    document.getElementById('hud-seed').textContent = '0x' + seed.toString(16).toUpperCase().padStart(4,'0');
+    tiles = buildJungle(seed);
+    // Find a grass tile near center for player
+    findOpenSpawn();
+    // Stats
+    let trees=0, bushes=0, open=0;
+    for (let i=0;i<tiles.length;i++){
+      if (tiles[i]===3) trees++;
+      else if (tiles[i]===4) bushes++;
+      if (tiles[i]>=2) open++;
+    }
+    document.getElementById('hud-trees').textContent = trees;
+    document.getElementById('hud-bushes').textContent = bushes;
+    document.getElementById('hud-open').textContent = ((open / (ZONE_W*ZONE_H))*100).toFixed(0) + '%';
+  }
+  function findOpenSpawn() {
+    for (let r = 0; r < 20; r++) {
+      for (let dy = -r; dy <= r; dy++) {
+        for (let dx = -r; dx <= r; dx++) {
+          const x = (ZONE_W/2|0) + dx, y = (ZONE_H/2|0) + dy;
+          if (x<0||x>=ZONE_W||y<0||y>=ZONE_H) continue;
+          if (tiles[y*ZONE_W + x] === 2) {
+            playerX = x; playerY = y; targetX = x; targetY = y;
+            return;
+          }
+        }
+      }
+    }
+  }
+
+  function maybeRustle() {
+    if (Math.random() < 0.05) {
+      // Find a random tree
+      const trees = [];
+      for (let i=0;i<tiles.length;i++) if (tiles[i]===3) trees.push(i);
+      if (trees.length) {
+        const idx = trees[(Math.random()*trees.length)|0];
+        rustles.push({ x: idx % ZONE_W, y: (idx/ZONE_W)|0, age: 0, max: 8 });
+      }
+    }
+  }
+  function maybeDapple() {
+    // Light dapples drift across canopy
+    if (Math.random() < 0.03 && dapples.length < 3) {
+      dapples.push({
+        x: Math.random() * ZONE_W,
+        y: Math.random() * ZONE_H,
+        vx: 0.04 + Math.random() * 0.06,
+        vy: 0.02,
+        age: 0, max: 80
+      });
+    }
+  }
+
+  // Pre-determined per-tile randomness (so glyph variants are stable per tile, not flickering randomly each frame)
+  let tileWindOffset = null;
+  function buildTilePhaseTable() {
+    tileWindOffset = new Float32Array(ZONE_W * ZONE_H);
+    for (let i=0;i<tileWindOffset.length;i++) tileWindOffset[i] = Math.random() * Math.PI * 2;
+  }
+
+  // Input
+  function setTarget(clientX, clientY) {
+    const r = screen.getBoundingClientRect();
+    const x = Math.floor((clientX-r.left) / (r.width/ZONE_W));
+    const y = Math.floor((clientY-r.top) / (r.height/ZONE_H));
+    if (x>=0 && x<ZONE_W && y>=0 && y<ZONE_H) {
+      // Don't walk into walls
+      const idx = y*ZONE_W + x;
+      if (tiles[idx] >= 2 && tiles[idx] !== 3) { // can stand on grass/bush, not tree
+        targetX = x; targetY = y;
+      }
+    }
+  }
+  let dragging = false;
+  screen.addEventListener('mousedown', e => { dragging = true; setTarget(e.clientX, e.clientY); });
+  window.addEventListener('mousemove', e => { if (dragging) setTarget(e.clientX, e.clientY); });
+  window.addEventListener('mouseup', () => dragging = false);
+  screen.addEventListener('touchstart', e => { const t=e.touches[0]; setTarget(t.clientX, t.clientY); e.preventDefault(); }, {passive:false});
+  screen.addEventListener('touchmove', e => { const t=e.touches[0]; setTarget(t.clientX, t.clientY); e.preventDefault(); }, {passive:false});
+
+  document.getElementById('regen').addEventListener('click', e => { e.preventDefault(); regenerate(); });
+
+  function frame() {
+    maybeRustle();
+    maybeDapple();
+    rustles = rustles.filter(r => r.age < r.max);
+    dapples = dapples.filter(d => d.age < d.max);
+
+    // Ease player toward target (one step per ~0.18 frames, so it feels live)
+    if (Math.abs(targetX - playerX) > 0.02) playerX += (targetX - playerX) * 0.2;
+    if (Math.abs(targetY - playerY) > 0.02) playerY += (targetY - playerY) * 0.2;
+    const px = Math.round(playerX), py = Math.round(playerY);
+
+    windPhase += 0.05;
+    // Wind moves L→R as a moving wave
+    const windFront = (windPhase * 8) % (ZONE_W + 12);
+
+    let buf = '';
+    for (let y = 0; y < ZONE_H; y++) {
+      let prev = null, span = '';
+      for (let x = 0; x < ZONE_W; x++) {
+        const idx = y * ZONE_W + x;
+        const tile = tiles[idx];
+        let ch, color;
+
+        if (tile === 0 || tile === 1) {
+          // VineWall
+          ch = '#';
+          color = COLOR_VINE_FG;
+          // Subtle pulse on vines along wind front
+          const distToFront = Math.abs(x - windFront);
+          if (distToFront < 1.5) color = 'hsl(120,100%,72%)';
+        } else if (tile === 2) {
+          // Grass — pick variant by per-tile phase + wind ripple
+          const phase = tileWindOffset[idx] + t * 0.6;
+          const rippleNear = Math.abs(x - windFront) < 2.5;
+          let variantIdx;
+          if (rippleNear) {
+            // During ripple, prefer flowing variants (',', '`', '\'')
+            variantIdx = 3 + Math.floor((phase * 1.7) % 4);
+            variantIdx = Math.min(variantIdx, GRASS_VARIANTS.length - 1);
+          } else {
+            // Mostly '.' with rare drift
+            const v = (Math.sin(phase) + 1) / 2;
+            if (v < 0.85) variantIdx = 0;
+            else if (v < 0.92) variantIdx = 3;
+            else if (v < 0.97) variantIdx = 5;
+            else variantIdx = 6;
+          }
+          ch = GRASS_VARIANTS[variantIdx];
+          // Brightness varies subtly
+          const lightness = 32 + (Math.sin(phase + x*0.3) + 1) * 4;
+          color = `hsl(120,100%,${lightness|0}%)`;
+        } else if (tile === 3) {
+          // Tree — sometimes brighter from rustle
+          ch = 'T';
+          color = COLOR_TREE_FG;
+          for (const r of rustles) {
+            const dx = x - r.x, dy = y - r.y;
+            if (Math.sqrt(dx*dx+dy*dy) < 1.5) {
+              const intensity = 1 - r.age / r.max;
+              const l = 60 + intensity * 25;
+              color = `hsl(120,100%,${l|0}%)`;
+              break;
+            }
+          }
+        } else if (tile === 4) {
+          // Bush — sway like grass but heavier
+          ch = ';';
+          const phase = tileWindOffset[idx] + t * 0.4;
+          const rippleNear = Math.abs(x - windFront) < 2.5;
+          if (rippleNear) {
+            ch = (Math.sin(phase * 2) > 0) ? ';' : ':';
+          }
+          color = COLOR_BUSH_FG;
+        }
+
+        // Light dapple
+        for (const d of dapples) {
+          const dx = x - d.x, dy = y - d.y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 4 && tile >= 2 && tile !== 3) {
+            const fade = (1 - dist/4) * (1 - d.age/d.max);
+            if (fade > 0.2) {
+              const l = 32 + fade * 35;
+              color = `hsl(60,100%,${l|0}%)`;
+            }
+          }
+        }
+
+        // Player marker
+        if (x === px && y === py) {
+          ch = '@';
+          color = 'hsl(50,95%,82%)';
+        }
+
+        if (ch === '<') ch = '&lt;';
+        else if (ch === '>') ch = '&gt;';
+        else if (ch === '&') ch = '&amp;';
+
+        if (color === prev) span += ch;
+        else { if (span) buf += `<span style="color:${prev}">${span}</span>`; span = ch; prev = color; }
+      }
+      if (span) buf += `<span style="color:${prev}">${span}</span>`;
+      buf += '\n';
+    }
+    screen.innerHTML = buf;
+
+    // Advance event ages
+    for (const r of rustles) r.age++;
+    for (const d of dapples) { d.x += d.vx; d.y += d.vy; d.age++; }
+    t += 0.06;
+    requestAnimationFrame(frame);
+  }
+
+  buildTilePhaseTable();
+  regenerate();
+  requestAnimationFrame(frame);
+  </script>
+</body>
+</html>
