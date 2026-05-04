@@ -260,6 +260,32 @@ namespace CavesOfOoo.Skills
                 t = asm.GetType(className);
                 if (t != null) return t;
             }
+
+            // Last resort: nested-type fallback. Walk every type in every
+            // loaded assembly and match by short Name. Required because
+            // test stubs nested inside fixture classes (e.g.
+            // BuySkillActionTests+SoftCorePower) aren't found by
+            // asm.GetType(shortName) — that only finds top-level types.
+            // Production content classes are always top-level so this
+            // path only matters for tests + future modded skills that
+            // ship as nested types. O(N types in domain) — acceptable
+            // because it's only hit on miss and only when string-overload
+            // AddSkill resolves a name that didn't match a top-level type.
+            foreach (var asm in System.AppDomain.CurrentDomain.GetAssemblies())
+            {
+                Type[] types;
+                try { types = asm.GetTypes(); }
+                catch { continue; } // Skip assemblies that fail reflection (rare).
+                for (int i = 0; i < types.Length; i++)
+                {
+                    if (types[i].Name == className
+                        && !types[i].IsAbstract
+                        && typeof(BaseSkillPart).IsAssignableFrom(types[i]))
+                    {
+                        return types[i];
+                    }
+                }
+            }
             return null;
         }
 
