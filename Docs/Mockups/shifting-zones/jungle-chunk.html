@@ -11,16 +11,18 @@
   #hud { color:var(--hud); font-size:11px; letter-spacing:1.4px; margin-bottom:10px; border-bottom:1px solid #1c2820; padding-bottom:8px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px 16px; text-shadow:0 0 4px rgba(110,220,140,.3); flex-shrink:0; }
   #hud .group { display:flex; gap:14px; flex-wrap:wrap; }
   .label { color:var(--hud-label); } .stat { color:var(--hud-stat); }
+  .stat.choir { color:#c8a; }
+  .stat.sun { color:#ed8; }
   button.regen { background:none; border:1px solid #1c4030; color:#9d6; font-family:inherit; font-size:11px; letter-spacing:1.5px; padding:4px 10px; cursor:pointer; }
   button.regen:hover, button.regen:active { background:#0c2018; border-color:#3a6;}
   #screen-wrap { flex:1; display:flex; align-items:center; justify-content:center; overflow:hidden; }
-  #screen { font-size:14px; line-height:1.0; white-space:pre; text-shadow:0 0 4px rgba(120,255,140,.35),0 0 12px rgba(0,180,40,.18); cursor:crosshair; }
+  #screen { font-size:14px; line-height:1.0; white-space:pre; text-shadow:0 0 4px rgba(120,255,140,.32),0 0 12px rgba(0,180,40,.16); cursor:crosshair; }
   .scanlines { position:fixed; inset:0; background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 2px,rgba(0,0,0,.18) 3px,rgba(0,0,0,0) 4px); pointer-events:none; z-index:100; }
   .vignette { position:fixed; inset:0; background:radial-gradient(ellipse at center,rgba(0,0,0,0) 50%,rgba(0,0,0,.85) 100%); pointer-events:none; z-index:99; }
   .crt-glow { position:fixed; inset:0; box-shadow:inset 0 0 220px rgba(0,180,40,.06); pointer-events:none; z-index:98; }
   a.back { position:fixed; top:10px; right:14px; color:#1a2e22; font-size:11px; letter-spacing:2px; text-decoration:none; z-index:200; padding:4px 8px; }
   a.back:hover,a.back:active { color:#6c8; }
-  .hint { position:fixed; bottom:8px; left:14px; color:#1a2e22; font-size:10px; letter-spacing:1.5px; z-index:200; }
+  .hint { position:fixed; bottom:8px; left:14px; color:#1a2e22; font-size:10px; letter-spacing:1.5px; z-index:200; max-width:60vw; }
   .src { position:fixed; bottom:8px; right:14px; color:#1a2e22; font-size:9px; letter-spacing:1.5px; z-index:200; }
 </style>
 </head>
@@ -29,11 +31,11 @@
   <div id="wrapper">
     <div id="hud">
       <div class="group">
-        <span><span class="label">SEED:</span> <span class="stat" id="hud-seed">0x4A2F</span></span>
+        <span><span class="label">SEED:</span> <span class="stat" id="hud-seed">—</span></span>
         <span><span class="label">CHUNK:</span> <span class="stat">JUNGLE 80×25</span></span>
-        <span><span class="label">CA-PASSES:</span> <span class="stat">2</span></span>
-        <span><span class="label">SEED%:</span> <span class="stat">48</span></span>
-        <span><span class="label">NOISE-T:</span> <span class="stat">0.47</span></span>
+        <span><span class="label">SUN-SHAFTS:</span> <span class="stat sun" id="hud-shafts">—</span></span>
+        <span><span class="label">CHOIR-PATCHES:</span> <span class="stat choir" id="hud-choir">—</span></span>
+        <span><span class="label">CREATURE:</span> <span class="stat" id="hud-crit">—</span></span>
       </div>
       <div class="group">
         <span><span class="label">TREES:</span> <span class="stat" id="hud-trees">—</span></span>
@@ -47,60 +49,31 @@
   <div class="scanlines"></div>
   <div class="vignette"></div>
   <div class="crt-glow"></div>
-  <div class="hint">DRAG TO MOVE &middot; WIND ANIMATES GRASS &middot; TAP REGEN FOR NEW SEED</div>
+  <div class="hint">DYNAMIC AREAS: clearings catch sunshafts &middot; vine clusters pulse &middot; choir-patches glow &middot; one creature wanders &middot; one tree has insects &middot; one calm spot dampens motion</div>
   <div class="src">SOURCE: Assets/Scripts/Gameplay/World/Generation/Builders/JungleBuilder.cs</div>
 
   <script>
   'use strict';
-  /*
-   * Faithful JS port of CavesOfOoo Jungle generation.
-   * Mirrors:
-   *   Assets/Scripts/Gameplay/World/Map/Zone.cs                      — 80×25 grid
-   *   Assets/Scripts/Gameplay/World/Generation/CellularAutomata.cs  — CA rules
-   *   Assets/Scripts/Gameplay/World/Generation/SimpleNoise.cs       — noise field
-   *   Assets/Scripts/Gameplay/World/Generation/Builders/JungleBuilder.cs
-   *   Assets/Resources/Content/Blueprints/Objects.json — VineWall / Grass / Tree / Bush blueprints
-   *   Assets/Scripts/Presentation/Rendering/QudColorParser.cs       — CGA color palette
-   *
-   * The CHUNK is generated with the exact same algorithm as the live game.
-   * The DYNAMIC layer (grass-glyph variants, wind ripples, tree rustle, light dapples)
-   * is layered on top without altering tile structure.
-   */
 
   // === ZONE DIMENSIONS (Zone.cs:13) ===
   const ZONE_W = 80, ZONE_H = 25;
 
   // === JUNGLE BUILDER PARAMS (JungleBuilder.cs:18-22) ===
-  const SEED_CHANCE = 48;       // CA seed % (lower than caves' 55 → more open)
+  const SEED_CHANCE = 48;
   const CA_PASSES = 2;
   const NOISE_THRESHOLD = 0.47;
   const TREE_CHANCE = 0.10;
-  const BUSH_CHANCE = 0.08;     // Only if no tree (else-branch)
+  const BUSH_CHANCE = 0.08;
 
   // === CELLULAR AUTOMATA (CellularAutomata.cs) ===
-  const BORN_LIST = [6, 7, 8];        // Qud defaults
+  const BORN_LIST = [6, 7, 8];
   const SURVIVE_LIST = [5, 6, 7, 8];
-  const BORDER_DEPTH = 2;             // Jungle uses depth 2
+  const BORDER_DEPTH = 2;
   const SEED_BORDERS = true;
 
-  // === RENDER (Objects.json + QudColorParser.cs CGA palette) ===
-  // Grass:    "." color &g (DarkGreen)  bg ^g (DarkGreen)  variants "...,.'`"
-  // VineWall: "#" color &G (BrightGreen) bg ^g (DarkGreen)
-  // Tree:     "T" color &G (BrightGreen)
-  // Bush:     ";" color &G (BrightGreen)
+  // Grass variants from Objects.json: "...,.'`"
   const GRASS_VARIANTS = ['.', '.', '.', ',', '.', "'", '`'];
 
-  // CGA color palette in HSL space for hsl() output, matching QudColorParser exactly
-  // DarkGreen   rgb(0.00, 0.67, 0.00) → roughly #00ab00 → hsl(120, 100%, 33%)
-  // BrightGreen rgb(0.33, 1.00, 0.33) → roughly #54ff54 → hsl(120, 100%, 60%)
-  // DarkGreen bg slightly dimmed for contrast
-  const COLOR_GRASS_FG = 'hsl(120,100%,33%)';
-  const COLOR_GRASS_BG = '#063a06';   // darkened DarkGreen for the background field
-  const COLOR_VINE_FG = 'hsl(120,100%,55%)';
-  const COLOR_TREE_FG = 'hsl(120,100%,60%)';
-  const COLOR_BUSH_FG = 'hsl(120,90%,52%)';
-
-  // === SEEDED PRNG (mulberry32 — deterministic, matches via seed) ===
   function mulberry32(seed) {
     return function() {
       seed |= 0; seed = seed + 0x6D2B79F5 | 0;
@@ -110,76 +83,50 @@
       return ((t ^ t >>> 14) >>> 0) / 4294967296;
     };
   }
-  // Returns a function compatible with C# rng.Next(min,max) and rng.NextDouble()
   function makeRng(seed) {
     const rand = mulberry32(seed);
-    return {
-      nextDouble: () => rand(),
-      next: (min, maxExclusive) => Math.floor(rand() * (maxExclusive - min)) + min,
-    };
+    return { nextDouble: () => rand(), next: (min, maxExclusive) => Math.floor(rand() * (maxExclusive - min)) + min };
   }
 
   // === CellularAutomata.cs port ===
   function generateCA(rng) {
     let cells = new Array(ZONE_W * ZONE_H);
-    // Seed
-    for (let x = 0; x < ZONE_W; x++) {
-      for (let y = 0; y < ZONE_H; y++) {
-        const isBorder = x < BORDER_DEPTH || x >= ZONE_W - BORDER_DEPTH ||
-                         y < BORDER_DEPTH || y >= ZONE_H - BORDER_DEPTH;
-        if (SEED_BORDERS && isBorder) {
-          cells[y * ZONE_W + x] = 1;
-        } else {
-          cells[y * ZONE_W + x] = rng.next(1, 101) <= SEED_CHANCE ? 1 : 0;
-        }
-      }
+    for (let x = 0; x < ZONE_W; x++) for (let y = 0; y < ZONE_H; y++) {
+      const isBorder = x < BORDER_DEPTH || x >= ZONE_W - BORDER_DEPTH || y < BORDER_DEPTH || y >= ZONE_H - BORDER_DEPTH;
+      cells[y * ZONE_W + x] = SEED_BORDERS && isBorder ? 1 : (rng.next(1, 101) <= SEED_CHANCE ? 1 : 0);
     }
-    // Passes
     for (let p = 0; p < CA_PASSES; p++) cells = applyCAPass(cells);
     return cells;
   }
   function applyCAPass(cells) {
     const next = new Array(ZONE_W * ZONE_H);
-    for (let x = 0; x < ZONE_W; x++) {
-      for (let y = 0; y < ZONE_H; y++) {
-        const isBorder = x < BORDER_DEPTH || x >= ZONE_W - BORDER_DEPTH ||
-                         y < BORDER_DEPTH || y >= ZONE_H - BORDER_DEPTH;
-        if (SEED_BORDERS && isBorder) { next[y * ZONE_W + x] = 1; continue; }
-        const n = countNeighbors(cells, x, y);
-        if (cells[y * ZONE_W + x] === 1) {
-          next[y * ZONE_W + x] = SURVIVE_LIST.includes(n) ? 1 : 0;
-        } else {
-          next[y * ZONE_W + x] = BORN_LIST.includes(n) ? 1 : 0;
-        }
-      }
+    for (let x = 0; x < ZONE_W; x++) for (let y = 0; y < ZONE_H; y++) {
+      const isBorder = x < BORDER_DEPTH || x >= ZONE_W - BORDER_DEPTH || y < BORDER_DEPTH || y >= ZONE_H - BORDER_DEPTH;
+      if (SEED_BORDERS && isBorder) { next[y * ZONE_W + x] = 1; continue; }
+      const n = countNeighbors(cells, x, y);
+      next[y * ZONE_W + x] = cells[y * ZONE_W + x] === 1 ? (SURVIVE_LIST.includes(n) ? 1 : 0) : (BORN_LIST.includes(n) ? 1 : 0);
     }
     return next;
   }
   function countNeighbors(cells, cx, cy) {
     let c = 0;
-    for (let dx = -1; dx <= 1; dx++) {
-      for (let dy = -1; dy <= 1; dy++) {
-        if (dx === 0 && dy === 0) continue;
-        const nx = cx + dx, ny = cy + dy;
-        if (nx < 0 || nx >= ZONE_W || ny < 0 || ny >= ZONE_H) c++;
-        else if (cells[ny * ZONE_W + nx] === 1) c++;
-      }
+    for (let dx = -1; dx <= 1; dx++) for (let dy = -1; dy <= 1; dy++) {
+      if (dx === 0 && dy === 0) continue;
+      const nx = cx + dx, ny = cy + dy;
+      if (nx < 0 || nx >= ZONE_W || ny < 0 || ny >= ZONE_H) c++;
+      else if (cells[ny * ZONE_W + nx] === 1) c++;
     }
     return c;
   }
 
   // === SimpleNoise.cs port ===
   function noiseLayer(width, height, frequency, amplitude, rng) {
-    const baseW = ((width / frequency) | 0) + 2;
-    const baseH = ((height / frequency) | 0) + 2;
+    const baseW = ((width / frequency) | 0) + 2, baseH = ((height / frequency) | 0) + 2;
     const baseN = new Float32Array(baseW * baseH);
     for (let i = 0; i < baseN.length; i++) baseN[i] = rng.nextDouble();
     return { baseN, baseW, baseH, frequency, amplitude };
   }
-  function interpolateCos(a, b, t) {
-    const f = (1 - Math.cos(t * Math.PI)) * 0.5;
-    return a * (1 - f) + b * f;
-  }
+  function interpolateCos(a, b, t) { const f = (1 - Math.cos(t * Math.PI)) * 0.5; return a * (1 - f) + b * f; }
   function sampleLayer(layer, x, y) {
     const sx = x / layer.frequency, sy = y / layer.frequency;
     let ix = sx | 0, iy = sy | 0;
@@ -200,8 +147,7 @@
       let s = 0;
       for (const l of layers) s += sampleLayer(l, x, y);
       field[y * width + x] = s;
-      if (s > maxV) maxV = s;
-      if (s < minV) minV = s;
+      if (s > maxV) maxV = s; if (s < minV) minV = s;
     }
     let range = maxV - minV; if (range < 0.0001) range = 1;
     for (let i = 0; i < field.length; i++) field[i] = (field[i] - minV) / range;
@@ -209,144 +155,318 @@
   }
 
   // === JungleBuilder.cs port ===
-  // Tile codes: 0=void(borderwall), 1=vinewall, 2=grass, 3=grass+tree, 4=grass+bush
   function buildJungle(seed) {
     const rng = makeRng(seed);
     const ca = generateCA(rng);
     const noise = generateNoiseField(ZONE_W, ZONE_H, rng);
     const tiles = new Uint8Array(ZONE_W * ZONE_H);
-
-    // Step 1: fill walls (tile=1)
     for (let i = 0; i < tiles.length; i++) tiles[i] = 1;
-
-    // Step 2: carve open spaces — caOpen OR noise <= threshold
-    for (let x = 0; x < ZONE_W; x++) {
-      for (let y = 0; y < ZONE_H; y++) {
-        const idx = y * ZONE_W + x;
-        const caOpen = ca[idx] === 0;
-        const noiseOpen = noise[idx] <= NOISE_THRESHOLD;
-        if (caOpen || noiseOpen) {
-          tiles[idx] = 2; // grass
-          if (rng.nextDouble() < TREE_CHANCE) tiles[idx] = 3;       // tree
-          else if (rng.nextDouble() < BUSH_CHANCE) tiles[idx] = 4;  // bush
-        }
+    for (let x = 0; x < ZONE_W; x++) for (let y = 0; y < ZONE_H; y++) {
+      const idx = y * ZONE_W + x;
+      const caOpen = ca[idx] === 0;
+      const noiseOpen = noise[idx] <= NOISE_THRESHOLD;
+      if (caOpen || noiseOpen) {
+        tiles[idx] = 2;
+        if (rng.nextDouble() < TREE_CHANCE) tiles[idx] = 3;
+        else if (rng.nextDouble() < BUSH_CHANCE) tiles[idx] = 4;
       }
     }
-    return tiles;
+    return { tiles, rng };
   }
 
-  // === RENDERING ===
-  const screen = document.getElementById('screen');
-  let tiles = null;
+  // === FEATURE DETECTION (post-generation) ===
+  // Flood-fill connected regions matching a predicate
+  function floodFillRegions(tiles, predicate) {
+    const W = ZONE_W, H = ZONE_H;
+    const visited = new Uint8Array(W * H);
+    const regions = [];
+    for (let i = 0; i < tiles.length; i++) {
+      if (visited[i] || !predicate(tiles[i])) continue;
+      const region = [];
+      const stack = [i];
+      while (stack.length) {
+        const idx = stack.pop();
+        if (visited[idx] || !predicate(tiles[idx])) continue;
+        visited[idx] = 1;
+        region.push(idx);
+        const x = idx % W, y = (idx / W) | 0;
+        if (x > 0) stack.push(idx - 1);
+        if (x < W - 1) stack.push(idx + 1);
+        if (y > 0) stack.push(idx - W);
+        if (y < H - 1) stack.push(idx + W);
+      }
+      regions.push(region);
+    }
+    regions.sort((a, b) => b.length - a.length);
+    return regions;
+  }
+
+  // Build set of indices for fast lookup
+  function buildSet(arr) { const s = new Set(arr); return s; }
+
+  // Compute centroid and bounding box of a region
+  function regionInfo(region) {
+    let sx = 0, sy = 0, minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    for (const idx of region) {
+      const x = idx % ZONE_W, y = (idx / ZONE_W) | 0;
+      sx += x; sy += y;
+      if (x < minX) minX = x; if (x > maxX) maxX = x;
+      if (y < minY) minY = y; if (y > maxY) maxY = y;
+    }
+    return { cx: sx / region.length, cy: sy / region.length, minX, maxX, minY, maxY, size: region.length };
+  }
+
+  // === DYNAMIC FEATURES ===
+  let chunk = null;          // { tiles, rng }
+  let openSet = null;        // Set<number> of grass-walkable indices
+  let openTrees = null;      // Set<number> of tree indices
+
+  let sunShafts = [];        // { cx, cy, angleDeg, halfWidth }
+  let vinePulses = [];       // { clusterSet:Set, originIdx, age, max }
+  let vineClusters = [];     // [Set, ...] connected vine clusters
+  let choirPatches = [];     // { cx, cy, radius, phase }
+  let creature = null;       // { x, y, trail:[{idx,age}] }
+  let insectTreeIdx = -1;
+  let insects = [];          // { angleOffset, radius, speed }
+  let stillness = null;      // { cx, cy, radius }
+  let lastCreatureMoveAt = 0;
+
   let seed = (Math.random() * 0xFFFF) | 0;
   let playerX = ZONE_W / 2 | 0, playerY = ZONE_H / 2 | 0;
   let targetX = playerX, targetY = playerY;
-
-  // Animation state
   let t = 0;
   let windPhase = 0;
-  let rustles = [];   // { x, y, age, max } — tree rustle bursts
-  let dapples = [];   // { x, y, age, max, color } — light dapple events
+  let tileWindOffset = null;
+  let windFrontX = -10;
 
   function regenerate() {
     seed = (Math.random() * 0xFFFFFF) | 0;
-    document.getElementById('hud-seed').textContent = '0x' + seed.toString(16).toUpperCase().padStart(4,'0');
-    tiles = buildJungle(seed);
-    // Find a grass tile near center for player
+    document.getElementById('hud-seed').textContent = '0x' + seed.toString(16).toUpperCase().padStart(4, '0');
+    chunk = buildJungle(seed);
+    const tiles = chunk.tiles;
+    const rng = chunk.rng;
+
+    // Open set (walkable: grass, bush — not tree, not wall)
+    openSet = new Set();
+    openTrees = new Set();
+    for (let i = 0; i < tiles.length; i++) {
+      if (tiles[i] === 2 || tiles[i] === 4) openSet.add(i);
+      if (tiles[i] === 3) openTrees.add(i);
+    }
+
+    // === SUN SHAFTS — pick top 1-3 grass clearings by size ===
+    const grassRegions = floodFillRegions(tiles, t => t === 2 || t === 4);
+    sunShafts = [];
+    const numShafts = Math.min(3, grassRegions.filter(r => r.length >= 8).length);
+    for (let i = 0; i < numShafts; i++) {
+      const info = regionInfo(grassRegions[i]);
+      sunShafts.push({
+        cx: info.cx,
+        cy: info.cy,
+        angleDeg: 50 + rng.nextDouble() * 30,  // angle from vertical
+        halfWidth: 0.8 + rng.nextDouble() * 0.6,
+        regionSet: new Set(grassRegions[i])
+      });
+    }
+
+    // === VINE CLUSTERS — pulses travel along them ===
+    const vineRegions = floodFillRegions(tiles, t => t === 1);
+    vineClusters = [];
+    for (const region of vineRegions) {
+      if (region.length >= 14) vineClusters.push(buildSet(region));
+    }
+    // No active pulses initially — they'll spawn
+
+    // === CHOIR INTRUSION PATCHES — 0-2 patches ===
+    choirPatches = [];
+    const numPatches = Math.floor(rng.nextDouble() * 3); // 0, 1, or 2
+    for (let i = 0; i < numPatches; i++) {
+      const cx = 4 + rng.nextDouble() * (ZONE_W - 8);
+      const cy = 2 + rng.nextDouble() * (ZONE_H - 4);
+      choirPatches.push({
+        cx, cy,
+        radius: 2.5 + rng.nextDouble() * 2,
+        phase: rng.nextDouble() * Math.PI * 2
+      });
+    }
+
+    // === CREATURE — wanders open tiles ===
+    if (openSet.size > 0) {
+      const arr = [...openSet];
+      const startIdx = arr[(rng.nextDouble() * arr.length) | 0];
+      creature = { x: startIdx % ZONE_W, y: (startIdx / ZONE_W) | 0, trail: [] };
+    } else {
+      creature = null;
+    }
+
+    // === INSECT CLUSTER — pick one tree ===
+    if (openTrees.size > 0) {
+      const arr = [...openTrees];
+      insectTreeIdx = arr[(rng.nextDouble() * arr.length) | 0];
+      const numIns = 4 + ((rng.nextDouble() * 3) | 0);
+      insects = [];
+      for (let i = 0; i < numIns; i++) {
+        insects.push({
+          angleOffset: rng.nextDouble() * Math.PI * 2,
+          radius: 1.5 + rng.nextDouble() * 1.4,
+          speed: 0.04 + rng.nextDouble() * 0.05,
+          ySquish: 0.55  // visual squash because cells are taller than wide
+        });
+      }
+    } else {
+      insectTreeIdx = -1;
+      insects = [];
+    }
+
+    // === STILLNESS POOL — fixed location with motion damping ===
+    if (openSet.size > 0) {
+      const arr = [...openSet];
+      const stillIdx = arr[(rng.nextDouble() * arr.length) | 0];
+      stillness = {
+        cx: stillIdx % ZONE_W,
+        cy: (stillIdx / ZONE_W) | 0,
+        radius: 4
+      };
+    }
+
+    // Find spawn for player on grass near center
     findOpenSpawn();
+    buildTilePhaseTable();
+
     // Stats
-    let trees=0, bushes=0, open=0;
-    for (let i=0;i<tiles.length;i++){
-      if (tiles[i]===3) trees++;
-      else if (tiles[i]===4) bushes++;
-      if (tiles[i]>=2) open++;
+    let trees = 0, bushes = 0, open = 0;
+    for (let i = 0; i < tiles.length; i++) {
+      if (tiles[i] === 3) trees++;
+      else if (tiles[i] === 4) bushes++;
+      if (tiles[i] >= 2) open++;
     }
     document.getElementById('hud-trees').textContent = trees;
     document.getElementById('hud-bushes').textContent = bushes;
-    document.getElementById('hud-open').textContent = ((open / (ZONE_W*ZONE_H))*100).toFixed(0) + '%';
+    document.getElementById('hud-open').textContent = ((open / (ZONE_W * ZONE_H)) * 100).toFixed(0) + '%';
+    document.getElementById('hud-shafts').textContent = sunShafts.length;
+    document.getElementById('hud-choir').textContent = choirPatches.length;
+    document.getElementById('hud-crit').textContent = creature ? 'TRACKED' : 'NONE';
   }
+
   function findOpenSpawn() {
+    const tiles = chunk.tiles;
     for (let r = 0; r < 20; r++) {
-      for (let dy = -r; dy <= r; dy++) {
-        for (let dx = -r; dx <= r; dx++) {
-          const x = (ZONE_W/2|0) + dx, y = (ZONE_H/2|0) + dy;
-          if (x<0||x>=ZONE_W||y<0||y>=ZONE_H) continue;
-          if (tiles[y*ZONE_W + x] === 2) {
-            playerX = x; playerY = y; targetX = x; targetY = y;
-            return;
-          }
+      for (let dy = -r; dy <= r; dy++) for (let dx = -r; dx <= r; dx++) {
+        const x = (ZONE_W / 2 | 0) + dx, y = (ZONE_H / 2 | 0) + dy;
+        if (x < 0 || x >= ZONE_W || y < 0 || y >= ZONE_H) continue;
+        if (tiles[y * ZONE_W + x] === 2) {
+          playerX = x; playerY = y; targetX = x; targetY = y;
+          return;
         }
       }
     }
   }
 
-  function maybeRustle() {
-    if (Math.random() < 0.05) {
-      // Find a random tree
-      const trees = [];
-      for (let i=0;i<tiles.length;i++) if (tiles[i]===3) trees.push(i);
-      if (trees.length) {
-        const idx = trees[(Math.random()*trees.length)|0];
-        rustles.push({ x: idx % ZONE_W, y: (idx/ZONE_W)|0, age: 0, max: 8 });
-      }
-    }
-  }
-  function maybeDapple() {
-    // Light dapples drift across canopy
-    if (Math.random() < 0.03 && dapples.length < 3) {
-      dapples.push({
-        x: Math.random() * ZONE_W,
-        y: Math.random() * ZONE_H,
-        vx: 0.04 + Math.random() * 0.06,
-        vy: 0.02,
-        age: 0, max: 80
-      });
-    }
-  }
-
-  // Pre-determined per-tile randomness (so glyph variants are stable per tile, not flickering randomly each frame)
-  let tileWindOffset = null;
   function buildTilePhaseTable() {
     tileWindOffset = new Float32Array(ZONE_W * ZONE_H);
-    for (let i=0;i<tileWindOffset.length;i++) tileWindOffset[i] = Math.random() * Math.PI * 2;
+    for (let i = 0; i < tileWindOffset.length; i++) tileWindOffset[i] = Math.random() * Math.PI * 2;
   }
 
-  // Input
+  // === CREATURE WANDER ===
+  function stepCreature() {
+    if (!creature) return;
+    const tiles = chunk.tiles;
+    // Push current to trail
+    creature.trail.push({ idx: creature.y * ZONE_W + creature.x, age: 0 });
+    if (creature.trail.length > 5) creature.trail.shift();
+    // Pick a random adjacent open tile
+    const opts = [];
+    const dirs = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+    for (const [dx, dy] of dirs) {
+      const nx = creature.x + dx, ny = creature.y + dy;
+      if (nx < 0 || nx >= ZONE_W || ny < 0 || ny >= ZONE_H) continue;
+      const tile = tiles[ny * ZONE_W + nx];
+      if (tile === 2 || tile === 4) opts.push([nx, ny]);
+    }
+    if (opts.length) {
+      const pick = opts[(Math.random() * opts.length) | 0];
+      creature.x = pick[0]; creature.y = pick[1];
+    }
+    for (const tr of creature.trail) tr.age++;
+  }
+
+  // === VINE PULSE — spawn occasionally on a random cluster ===
+  function maybeSpawnVinePulse() {
+    if (vineClusters.length === 0 || vinePulses.length >= 2) return;
+    if (Math.random() < 0.022) {
+      const cluster = vineClusters[(Math.random() * vineClusters.length) | 0];
+      const arr = [...cluster];
+      const origin = arr[(Math.random() * arr.length) | 0];
+      // Precompute BFS distances within the cluster
+      const distMap = new Map();
+      const queue = [origin];
+      distMap.set(origin, 0);
+      while (queue.length) {
+        const idx = queue.shift();
+        const d = distMap.get(idx);
+        const x = idx % ZONE_W, y = (idx / ZONE_W) | 0;
+        for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+          const nx = x + dx, ny = y + dy;
+          if (nx < 0 || nx >= ZONE_W || ny < 0 || ny >= ZONE_H) continue;
+          const nidx = ny * ZONE_W + nx;
+          if (cluster.has(nidx) && !distMap.has(nidx)) {
+            distMap.set(nidx, d + 1);
+            queue.push(nidx);
+          }
+        }
+      }
+      let maxD = 0;
+      for (const d of distMap.values()) if (d > maxD) maxD = d;
+      vinePulses.push({ distMap, age: 0, max: maxD + 6 });
+    }
+  }
+
+  // === INPUT ===
   function setTarget(clientX, clientY) {
     const r = screen.getBoundingClientRect();
-    const x = Math.floor((clientX-r.left) / (r.width/ZONE_W));
-    const y = Math.floor((clientY-r.top) / (r.height/ZONE_H));
-    if (x>=0 && x<ZONE_W && y>=0 && y<ZONE_H) {
-      // Don't walk into walls
-      const idx = y*ZONE_W + x;
-      if (tiles[idx] >= 2 && tiles[idx] !== 3) { // can stand on grass/bush, not tree
-        targetX = x; targetY = y;
-      }
+    const x = Math.floor((clientX - r.left) / (r.width / ZONE_W));
+    const y = Math.floor((clientY - r.top) / (r.height / ZONE_H));
+    if (x >= 0 && x < ZONE_W && y >= 0 && y < ZONE_H) {
+      const tile = chunk.tiles[y * ZONE_W + x];
+      if (tile === 2 || tile === 4) { targetX = x; targetY = y; }
     }
   }
   let dragging = false;
+  const screen = document.getElementById('screen');
   screen.addEventListener('mousedown', e => { dragging = true; setTarget(e.clientX, e.clientY); });
   window.addEventListener('mousemove', e => { if (dragging) setTarget(e.clientX, e.clientY); });
   window.addEventListener('mouseup', () => dragging = false);
-  screen.addEventListener('touchstart', e => { const t=e.touches[0]; setTarget(t.clientX, t.clientY); e.preventDefault(); }, {passive:false});
-  screen.addEventListener('touchmove', e => { const t=e.touches[0]; setTarget(t.clientX, t.clientY); e.preventDefault(); }, {passive:false});
-
+  screen.addEventListener('touchstart', e => { const tt = e.touches[0]; setTarget(tt.clientX, tt.clientY); e.preventDefault(); }, {passive: false});
+  screen.addEventListener('touchmove', e => { const tt = e.touches[0]; setTarget(tt.clientX, tt.clientY); e.preventDefault(); }, {passive: false});
   document.getElementById('regen').addEventListener('click', e => { e.preventDefault(); regenerate(); });
 
+  // === RENDER ===
   function frame() {
-    maybeRustle();
-    maybeDapple();
-    rustles = rustles.filter(r => r.age < r.max);
-    dapples = dapples.filter(d => d.age < d.max);
+    const tiles = chunk.tiles;
 
-    // Ease player toward target (one step per ~0.18 frames, so it feels live)
-    if (Math.abs(targetX - playerX) > 0.02) playerX += (targetX - playerX) * 0.2;
-    if (Math.abs(targetY - playerY) > 0.02) playerY += (targetY - playerY) * 0.2;
+    // Step creature every ~24 frames
+    if (t - lastCreatureMoveAt > 1.4) { stepCreature(); lastCreatureMoveAt = t; }
+
+    // Maybe spawn vine pulse
+    maybeSpawnVinePulse();
+    vinePulses = vinePulses.filter(p => p.age < p.max);
+
+    // Wind: drift slowly through the chunk; appears as a soft front
+    windPhase += 0.04;
+    windFrontX = ((windPhase * 6) % (ZONE_W + 14)) - 7;
+
+    // Ease player toward target
+    if (Math.abs(targetX - playerX) > 0.02) playerX += (targetX - playerX) * 0.20;
+    if (Math.abs(targetY - playerY) > 0.02) playerY += (targetY - playerY) * 0.20;
     const px = Math.round(playerX), py = Math.round(playerY);
 
-    windPhase += 0.05;
-    // Wind moves L→R as a moving wave
-    const windFront = (windPhase * 8) % (ZONE_W + 12);
+    // Sun shaft angle drifts very slowly (sun arc)
+    const sunDrift = Math.sin(t * 0.015) * 6;
+
+    // Pre-compute distance from stillness center for damping
+    const stillCx = stillness ? stillness.cx : -100;
+    const stillCy = stillness ? stillness.cy : -100;
+    const stillR = stillness ? stillness.radius : 0;
 
     let buf = '';
     for (let y = 0; y < ZONE_H; y++) {
@@ -354,74 +474,230 @@
       for (let x = 0; x < ZONE_W; x++) {
         const idx = y * ZONE_W + x;
         const tile = tiles[idx];
-        let ch, color;
+        let ch = ' ', color = '#000';
 
-        if (tile === 0 || tile === 1) {
+        // === STILLNESS DAMPING ===
+        const stillD = Math.sqrt((x - stillCx)*(x - stillCx) + (y - stillCy)*(y - stillCy));
+        const stillFactor = stillD < stillR ? Math.max(0.15, stillD / stillR) : 1.0;
+
+        // === BASE TILE ===
+        if (tile === 1) {
           // VineWall
           ch = '#';
-          color = COLOR_VINE_FG;
-          // Subtle pulse on vines along wind front
-          const distToFront = Math.abs(x - windFront);
-          if (distToFront < 1.5) color = 'hsl(120,100%,72%)';
+          color = 'hsl(120,100%,55%)';
+          // Vine pulse modulation
+          let pulseBoost = 0;
+          for (const p of vinePulses) {
+            const d = p.distMap.get(idx);
+            if (d == null) continue;
+            const wave = p.age - d;
+            if (wave > -1.5 && wave < 3) {
+              pulseBoost = Math.max(pulseBoost, Math.exp(-Math.abs(wave) * 0.7) * (1 - p.age / p.max));
+            }
+          }
+          if (pulseBoost > 0.1) {
+            const l = 55 + pulseBoost * 30;
+            color = `hsl(115,100%,${l|0}%)`;
+          }
         } else if (tile === 2) {
-          // Grass — pick variant by per-tile phase + wind ripple
-          const phase = tileWindOffset[idx] + t * 0.6;
-          const rippleNear = Math.abs(x - windFront) < 2.5;
+          // Grass — stable per-tile glyph cycling, modulated by wind front and stillness
+          const phase = tileWindOffset[idx] + t * 0.5 * stillFactor;
+          const distToFront = Math.abs(x - windFrontX);
+          const rippleNear = distToFront < 2.5 * stillFactor;
           let variantIdx;
           if (rippleNear) {
-            // During ripple, prefer flowing variants (',', '`', '\'')
-            variantIdx = 3 + Math.floor((phase * 1.7) % 4);
-            variantIdx = Math.min(variantIdx, GRASS_VARIANTS.length - 1);
+            variantIdx = 3 + Math.floor((phase * 1.6) % 4);
+            if (variantIdx >= GRASS_VARIANTS.length) variantIdx = GRASS_VARIANTS.length - 1;
           } else {
-            // Mostly '.' with rare drift
             const v = (Math.sin(phase) + 1) / 2;
-            if (v < 0.85) variantIdx = 0;
-            else if (v < 0.92) variantIdx = 3;
-            else if (v < 0.97) variantIdx = 5;
+            if (v < 0.92) variantIdx = 0;
+            else if (v < 0.96) variantIdx = 3;
+            else if (v < 0.98) variantIdx = 5;
             else variantIdx = 6;
           }
           ch = GRASS_VARIANTS[variantIdx];
-          // Brightness varies subtly
-          const lightness = 32 + (Math.sin(phase + x*0.3) + 1) * 4;
+          const lightness = 30 + (Math.sin(phase + x * 0.3) + 1) * 3;
           color = `hsl(120,100%,${lightness|0}%)`;
         } else if (tile === 3) {
-          // Tree — sometimes brighter from rustle
           ch = 'T';
-          color = COLOR_TREE_FG;
-          for (const r of rustles) {
-            const dx = x - r.x, dy = y - r.y;
-            if (Math.sqrt(dx*dx+dy*dy) < 1.5) {
-              const intensity = 1 - r.age / r.max;
-              const l = 60 + intensity * 25;
-              color = `hsl(120,100%,${l|0}%)`;
-              break;
-            }
-          }
+          color = 'hsl(120,100%,60%)';
         } else if (tile === 4) {
-          // Bush — sway like grass but heavier
           ch = ';';
-          const phase = tileWindOffset[idx] + t * 0.4;
-          const rippleNear = Math.abs(x - windFront) < 2.5;
-          if (rippleNear) {
-            ch = (Math.sin(phase * 2) > 0) ? ';' : ':';
-          }
-          color = COLOR_BUSH_FG;
+          const phase = tileWindOffset[idx] + t * 0.4 * stillFactor;
+          const rippleNear = Math.abs(x - windFrontX) < 2.5 * stillFactor;
+          if (rippleNear) ch = (Math.sin(phase * 2) > 0) ? ';' : ':';
+          color = 'hsl(120,90%,52%)';
         }
 
-        // Light dapple
-        for (const d of dapples) {
-          const dx = x - d.x, dy = y - d.y;
-          const dist = Math.sqrt(dx*dx + dy*dy);
-          if (dist < 4 && tile >= 2 && tile !== 3) {
-            const fade = (1 - dist/4) * (1 - d.age/d.max);
-            if (fade > 0.2) {
-              const l = 32 + fade * 35;
-              color = `hsl(60,100%,${l|0}%)`;
+        // === SUN SHAFTS — bright golden columns through clearings ===
+        for (const shaft of sunShafts) {
+          // The shaft is a slanted column passing through the centroid at angleDeg
+          const angle = (shaft.angleDeg + sunDrift) * Math.PI / 180;
+          // Project the point (x,y) onto the line perpendicular to the shaft direction
+          // Shaft direction unit vector
+          const dx = Math.sin(angle), dy = -Math.cos(angle); // direction the light travels (down + side)
+          // Perpendicular distance from line passing through (cx,cy)
+          const px2 = x - shaft.cx, py2 = y - shaft.cy;
+          const perpDist = Math.abs(px2 * dy - py2 * dx);
+          // Only paint sun on grass tiles within the clearing
+          if (perpDist < shaft.halfWidth && shaft.regionSet.has(idx)) {
+            const fade = 1 - perpDist / shaft.halfWidth;
+            const sunlit = Math.min(1, fade * 1.4);
+            // Shift color toward gold
+            const l = 38 + sunlit * 35;
+            color = `hsl(${52 + sunlit * 4|0},${(85 + sunlit * 10)|0}%,${l|0}%)`;
+            // Use brighter glyph variant
+            if (tile === 2 && sunlit > 0.5) ch = "'";
+          }
+        }
+
+        // === CHOIR INTRUSION — purplish pulse on patches ===
+        for (const patch of choirPatches) {
+          const dx2 = x - patch.cx, dy2 = y - patch.cy;
+          const d2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+          if (d2 < patch.radius) {
+            const pulse = (Math.sin(t * 1.2 + patch.phase) + 1) / 2;
+            const intensity = (1 - d2 / patch.radius) * (0.55 + pulse * 0.45);
+            if (intensity > 0.1) {
+              if (tile === 1) {
+                // Mycelial-corrupted vines: shift to purple
+                const l = 38 + intensity * 28;
+                color = `hsl(${290 - intensity * 10|0},${(60 + intensity * 20)|0}%,${l|0}%)`;
+                if (intensity > 0.6 && Math.sin(t * 2 + tileWindOffset[idx]) > 0) ch = '%';
+              } else if (tile === 2 || tile === 4) {
+                // Sickly grass — desaturated, slightly purple
+                const l = 22 + intensity * 14;
+                color = `hsl(${110 - intensity * 60|0},${(60 - intensity * 20)|0}%,${l|0}%)`;
+              } else if (tile === 3) {
+                // Tree — desaturated
+                color = `hsl(${100 - intensity * 30|0},60%,${(45 - intensity * 8)|0}%)`;
+              }
             }
           }
         }
 
-        // Player marker
+        if (color === prev) span += ch;
+        else { if (span) buf += `<span style="color:${prev}">${span}</span>`; span = ch; prev = color; }
+      }
+      if (span) buf += `<span style="color:${prev}">${span}</span>`;
+      buf += '\n';
+    }
+
+    // Convert string back to grid for overlay step (creature, insects, player)
+    // Easier: do overlays via direct innerHTML replacement at known positions
+    // We'll instead re-render with overlay layer; but since runs are colored,
+    // simplest is to do overlays during the main loop. Refactor:
+
+    // Rebuild with overlays
+    buf = '';
+    for (let y = 0; y < ZONE_H; y++) {
+      let prev = null, span = '';
+      for (let x = 0; x < ZONE_W; x++) {
+        const idx = y * ZONE_W + x;
+        const tile = tiles[idx];
+        let ch = ' ', color = '#000';
+
+        const stillD = Math.sqrt((x - stillCx)*(x - stillCx) + (y - stillCy)*(y - stillCy));
+        const stillFactor = stillD < stillR ? Math.max(0.15, stillD / stillR) : 1.0;
+
+        // BASE
+        if (tile === 1) {
+          ch = '#';
+          color = 'hsl(120,100%,55%)';
+          let pulseBoost = 0;
+          for (const p of vinePulses) {
+            const d = p.distMap.get(idx);
+            if (d == null) continue;
+            const wave = p.age - d;
+            if (wave > -1.5 && wave < 3) pulseBoost = Math.max(pulseBoost, Math.exp(-Math.abs(wave) * 0.7) * (1 - p.age / p.max));
+          }
+          if (pulseBoost > 0.1) {
+            const l = 55 + pulseBoost * 30;
+            color = `hsl(115,100%,${l|0}%)`;
+          }
+        } else if (tile === 2) {
+          const phase = tileWindOffset[idx] + t * 0.5 * stillFactor;
+          const rippleNear = Math.abs(x - windFrontX) < 2.5 * stillFactor;
+          let variantIdx;
+          if (rippleNear) {
+            variantIdx = 3 + Math.floor((phase * 1.6) % 4);
+            if (variantIdx >= GRASS_VARIANTS.length) variantIdx = GRASS_VARIANTS.length - 1;
+          } else {
+            const v = (Math.sin(phase) + 1) / 2;
+            if (v < 0.92) variantIdx = 0;
+            else if (v < 0.96) variantIdx = 3;
+            else if (v < 0.98) variantIdx = 5;
+            else variantIdx = 6;
+          }
+          ch = GRASS_VARIANTS[variantIdx];
+          const lightness = 30 + (Math.sin(phase + x * 0.3) + 1) * 3;
+          color = `hsl(120,100%,${lightness|0}%)`;
+        } else if (tile === 3) {
+          ch = 'T'; color = 'hsl(120,100%,60%)';
+        } else if (tile === 4) {
+          ch = ';';
+          const phase = tileWindOffset[idx] + t * 0.4 * stillFactor;
+          const rippleNear = Math.abs(x - windFrontX) < 2.5 * stillFactor;
+          if (rippleNear) ch = (Math.sin(phase * 2) > 0) ? ';' : ':';
+          color = 'hsl(120,90%,52%)';
+        }
+
+        // SUN SHAFTS
+        for (const shaft of sunShafts) {
+          const angle = (shaft.angleDeg + sunDrift) * Math.PI / 180;
+          const dx = Math.sin(angle), dy = -Math.cos(angle);
+          const px2 = x - shaft.cx, py2 = y - shaft.cy;
+          const perpDist = Math.abs(px2 * dy - py2 * dx);
+          if (perpDist < shaft.halfWidth && shaft.regionSet.has(idx)) {
+            const fade = 1 - perpDist / shaft.halfWidth;
+            const sunlit = Math.min(1, fade * 1.4);
+            const l = 38 + sunlit * 35;
+            color = `hsl(${52 + sunlit * 4|0},${(85 + sunlit * 10)|0}%,${l|0}%)`;
+            if (tile === 2 && sunlit > 0.5) ch = "'";
+          }
+        }
+
+        // CHOIR PATCHES
+        for (const patch of choirPatches) {
+          const dx2 = x - patch.cx, dy2 = y - patch.cy;
+          const d2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+          if (d2 < patch.radius) {
+            const pulse = (Math.sin(t * 1.2 + patch.phase) + 1) / 2;
+            const intensity = (1 - d2 / patch.radius) * (0.55 + pulse * 0.45);
+            if (intensity > 0.1) {
+              if (tile === 1) {
+                const l = 38 + intensity * 28;
+                color = `hsl(${(290 - intensity * 10)|0},${(60 + intensity * 20)|0}%,${l|0}%)`;
+                if (intensity > 0.6 && Math.sin(t * 2 + tileWindOffset[idx]) > 0) ch = '%';
+              } else if (tile === 2 || tile === 4) {
+                const l = 22 + intensity * 14;
+                color = `hsl(${(110 - intensity * 60)|0},${(60 - intensity * 20)|0}%,${l|0}%)`;
+              } else if (tile === 3) {
+                color = `hsl(${(100 - intensity * 30)|0},60%,${(45 - intensity * 8)|0}%)`;
+              }
+            }
+          }
+        }
+
+        // CREATURE TRAIL — slight grass disturbance behind it
+        if (creature) {
+          for (const tr of creature.trail) {
+            if (tr.idx === idx && (tile === 2 || tile === 4)) {
+              const fade = 1 - tr.age / 5;
+              if (fade > 0.2) {
+                ch = ',';
+                color = `hsl(80,${(50 + fade * 20)|0}%,${(28 + fade * 12)|0}%)`;
+              }
+            }
+          }
+          // CREATURE
+          if (creature.x === x && creature.y === y) {
+            ch = 'r';
+            color = 'hsl(35,80%,70%)';
+          }
+        }
+
+        // PLAYER
         if (x === px && y === py) {
           ch = '@';
           color = 'hsl(50,95%,82%)';
@@ -439,14 +715,151 @@
     }
     screen.innerHTML = buf;
 
-    // Advance event ages
-    for (const r of rustles) r.age++;
-    for (const d of dapples) { d.x += d.vx; d.y += d.vy; d.age++; }
+    // === INSECT OVERLAY — drawn as positioned spans on top of the grid ===
+    // (Done by directly modifying specific cells right before render? Easier to just
+    // overlay with absolute-positioned text. For simplicity, integrate into grid.)
+    // Done in the loop above — but we need a second pass to handle the orbiting positions.
+    // Simpler approach: paint insects by replacing characters at orbit positions in the buffer.
+    // Implementation: re-render with insect cells, since they're animated each frame.
+    if (insectTreeIdx >= 0 && insects.length) {
+      const tx = insectTreeIdx % ZONE_W, ty = (insectTreeIdx / ZONE_W) | 0;
+      const insectCells = [];
+      for (const ins of insects) {
+        const ang = ins.angleOffset + t * ins.speed * 6;
+        const ix = Math.round(tx + Math.cos(ang) * ins.radius);
+        const iy = Math.round(ty + Math.sin(ang) * ins.radius * ins.ySquish);
+        if (ix < 0 || ix >= ZONE_W || iy < 0 || iy >= ZONE_H) continue;
+        const idx = iy * ZONE_W + ix;
+        const tile = tiles[idx];
+        // Don't draw insects on walls
+        if (tile === 1) continue;
+        insectCells.push({ x: ix, y: iy, ch: '*', color: 'hsl(50,90%,75%)' });
+      }
+      if (insectCells.length) {
+        // Re-render with insects (cheap because we only flip a few cells)
+        // Build a full grid rebuild — alternative would be DOM patching, but full rebuild is simpler
+        const lines = buf.split('\n');
+        // For each insect, replace the corresponding character in `lines[y]`
+        // But lines contain HTML spans; doing a position replace is fragile.
+        // Instead: the simpler approach is to layer-render with absolute positioning OR just
+        // accept that we re-render the entire frame (which is what the outer loop already did).
+        // Easiest fix: do a final overlay pass building NEW buffer with insect overrides.
+        const insectMap = new Map();
+        for (const c of insectCells) insectMap.set(c.y * ZONE_W + c.x, c);
+
+        // Re-render quickly — same logic, but with insect override
+        let buf2 = '';
+        for (let y2 = 0; y2 < ZONE_H; y2++) {
+          let prev2 = null, span2 = '';
+          for (let x2 = 0; x2 < ZONE_W; x2++) {
+            const idx2 = y2 * ZONE_W + x2;
+            const inser = insectMap.get(idx2);
+            // Look up the original cell from previous render — doable but expensive. Just re-run minimal logic:
+            // Since this only affects ~4-7 cells, override and re-emit unchanged characters.
+            // Cheaper path: only re-render insect line IF we want minimum work.
+            // For simplicity, regenerate the whole buffer with insects integrated.
+            const tile = tiles[idx2];
+            let ch = ' ', color = '#000';
+
+            const sd = Math.sqrt((x2 - stillCx)*(x2 - stillCx) + (y2 - stillCy)*(y2 - stillCy));
+            const sf = sd < stillR ? Math.max(0.15, sd / stillR) : 1.0;
+
+            if (tile === 1) {
+              ch = '#'; color = 'hsl(120,100%,55%)';
+              let pb = 0;
+              for (const p of vinePulses) {
+                const d = p.distMap.get(idx2);
+                if (d == null) continue;
+                const wave = p.age - d;
+                if (wave > -1.5 && wave < 3) pb = Math.max(pb, Math.exp(-Math.abs(wave) * 0.7) * (1 - p.age / p.max));
+              }
+              if (pb > 0.1) color = `hsl(115,100%,${(55 + pb * 30)|0}%)`;
+            } else if (tile === 2) {
+              const phase = tileWindOffset[idx2] + t * 0.5 * sf;
+              const rippleNear = Math.abs(x2 - windFrontX) < 2.5 * sf;
+              let vi;
+              if (rippleNear) {
+                vi = 3 + Math.floor((phase * 1.6) % 4);
+                if (vi >= GRASS_VARIANTS.length) vi = GRASS_VARIANTS.length - 1;
+              } else {
+                const v = (Math.sin(phase) + 1) / 2;
+                if (v < 0.92) vi = 0;
+                else if (v < 0.96) vi = 3;
+                else if (v < 0.98) vi = 5;
+                else vi = 6;
+              }
+              ch = GRASS_VARIANTS[vi];
+              color = `hsl(120,100%,${(30 + (Math.sin(phase + x2 * 0.3) + 1) * 3)|0}%)`;
+            } else if (tile === 3) { ch = 'T'; color = 'hsl(120,100%,60%)'; }
+            else if (tile === 4) {
+              ch = ';';
+              const phase = tileWindOffset[idx2] + t * 0.4 * sf;
+              if (Math.abs(x2 - windFrontX) < 2.5 * sf) ch = (Math.sin(phase * 2) > 0) ? ';' : ':';
+              color = 'hsl(120,90%,52%)';
+            }
+            for (const shaft of sunShafts) {
+              const angle = (shaft.angleDeg + sunDrift) * Math.PI / 180;
+              const dxv = Math.sin(angle), dyv = -Math.cos(angle);
+              const px2v = x2 - shaft.cx, py2v = y2 - shaft.cy;
+              const perpDist = Math.abs(px2v * dyv - py2v * dxv);
+              if (perpDist < shaft.halfWidth && shaft.regionSet.has(idx2)) {
+                const fade = 1 - perpDist / shaft.halfWidth;
+                const sl = Math.min(1, fade * 1.4);
+                color = `hsl(${(52 + sl * 4)|0},${(85 + sl * 10)|0}%,${(38 + sl * 35)|0}%)`;
+                if (tile === 2 && sl > 0.5) ch = "'";
+              }
+            }
+            for (const patch of choirPatches) {
+              const dxp = x2 - patch.cx, dyp = y2 - patch.cy;
+              const dp = Math.sqrt(dxp * dxp + dyp * dyp);
+              if (dp < patch.radius) {
+                const pulse = (Math.sin(t * 1.2 + patch.phase) + 1) / 2;
+                const intensity = (1 - dp / patch.radius) * (0.55 + pulse * 0.45);
+                if (intensity > 0.1) {
+                  if (tile === 1) {
+                    color = `hsl(${(290 - intensity * 10)|0},${(60 + intensity * 20)|0}%,${(38 + intensity * 28)|0}%)`;
+                    if (intensity > 0.6 && Math.sin(t * 2 + tileWindOffset[idx2]) > 0) ch = '%';
+                  } else if (tile === 2 || tile === 4) {
+                    color = `hsl(${(110 - intensity * 60)|0},${(60 - intensity * 20)|0}%,${(22 + intensity * 14)|0}%)`;
+                  } else if (tile === 3) {
+                    color = `hsl(${(100 - intensity * 30)|0},60%,${(45 - intensity * 8)|0}%)`;
+                  }
+                }
+              }
+            }
+            if (creature) {
+              for (const tr of creature.trail) {
+                if (tr.idx === idx2 && (tile === 2 || tile === 4)) {
+                  const fade = 1 - tr.age / 5;
+                  if (fade > 0.2) { ch = ','; color = `hsl(80,${(50 + fade * 20)|0}%,${(28 + fade * 12)|0}%)`; }
+                }
+              }
+              if (creature.x === x2 && creature.y === y2) { ch = 'r'; color = 'hsl(35,80%,70%)'; }
+            }
+            if (inser) { ch = inser.ch; color = inser.color; }
+            if (x2 === px && y2 === py) { ch = '@'; color = 'hsl(50,95%,82%)'; }
+
+            if (ch === '<') ch = '&lt;';
+            else if (ch === '>') ch = '&gt;';
+            else if (ch === '&') ch = '&amp;';
+
+            if (color === prev2) span2 += ch;
+            else { if (span2) buf2 += `<span style="color:${prev2}">${span2}</span>`; span2 = ch; prev2 = color; }
+          }
+          if (span2) buf2 += `<span style="color:${prev2}">${span2}</span>`;
+          buf2 += '\n';
+        }
+        screen.innerHTML = buf2;
+      }
+    }
+
+    // Advance pulses
+    for (const p of vinePulses) p.age++;
+
     t += 0.06;
     requestAnimationFrame(frame);
   }
 
-  buildTilePhaseTable();
   regenerate();
   requestAnimationFrame(frame);
   </script>
