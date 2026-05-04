@@ -203,19 +203,22 @@ namespace CavesOfOoo.Tests.EditMode.Presentation.SceneViews
         // ---- Determinism ----
 
         [Test]
-        public void Render_IsDeterministic()
+        public void Render_IsDeterministic_AcrossInstancesWithSameSeed()
         {
-            // Static composition should be byte-identical between two
-            // back-to-back renders. (M3 introduces time-based variation.)
-            var first = new SceneCell[_renderer.Frame.Length];
-            System.Array.Copy(_renderer.Frame, first, first.Length);
-
-            _renderer.RenderCampfire();
-
-            for (int i = 0; i < first.Length; i++)
+            // M3 made flame glyphs and ember-glow RNG-driven, so back-to-back
+            // renders on the SAME instance no longer match (the RNG advances
+            // between calls). The right determinism contract for the same-
+            // composition snapshot is: two renderers constructed identically
+            // (same seed via default ctor) produce byte-identical first-render
+            // frames.
+            var a = new SceneRenderer(W, H);
+            a.RenderCampfire();
+            var b = new SceneRenderer(W, H);
+            b.RenderCampfire();
+            for (int i = 0; i < a.Frame.Length; i++)
             {
-                Assert.AreEqual(first[i].Glyph, _renderer.Frame[i].Glyph,
-                    $"Glyph at index {i} differs between renders");
+                Assert.AreEqual(a.Frame[i].Glyph, b.Frame[i].Glyph,
+                    $"Glyph at index {i} differs between same-seed renders");
             }
         }
 

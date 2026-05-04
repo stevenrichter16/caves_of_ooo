@@ -66,6 +66,10 @@ namespace CavesOfOoo.Rendering
             // composition.
             if (sceneID != "Campfire") return;
 
+            // Reconstruct the renderer so re-entries restart animation (sparks
+            // empty, t=0, fresh stars). Per plan §"Open Design Questions" #2:
+            // scenes are moments; revisits are new moments.
+            _sceneRenderer = new SceneRenderer(CanvasWidth, CanvasHeight);
             _isRendering = true;
             if (ZoneRenderer != null) ZoneRenderer.Paused = true;
             // Render once immediately so the player sees the scene without
@@ -82,10 +86,8 @@ namespace CavesOfOoo.Rendering
 
         private void Update()
         {
-            // M2 is a static composition — re-rendering each frame is
-            // redundant but harmless. M3 will introduce per-frame
-            // animation that requires Update-driven re-render.
             if (!_isRendering || Tilemap == null) return;
+            _sceneRenderer.Tick(Time.deltaTime);
             RenderToTilemap();
         }
 
