@@ -45,6 +45,14 @@ namespace CavesOfOoo.Rendering
         public float CrackleLevel => _crackleLevel;
         public float WindGust => _windGust;
 
+        // M4 dissolve transition. Forward dissolve: mask transitions all-1
+        // (pre-scene, world below shows through cleared overlay) to all-0
+        // (scene visible). Reverse: 0 → 1.
+        public const float DISSOLVE_DURATION = 1.6f;
+        public bool IsDissolving { get; private set; }
+        public bool DissolveIsReverse { get; private set; }
+        public float DissolveProgress { get; private set; }
+
         private const int DEFAULT_SEED = 12345;
         private const int STAR_COUNT = 60;
         private const int SKY_BOTTOM = 8;
@@ -52,12 +60,14 @@ namespace CavesOfOoo.Rendering
         private readonly System.Random _rng;
         private readonly Star[] _stars;
         private readonly List<Spark> _sparks = new List<Spark>(128);
+        private readonly float[] _mask;
 
         private float _t;
         private float _crackleLevel;
         private float _windGust;
         private float _nextCrackle;
         private float _nextGust;
+        private float _dissolveElapsed;
 
         public SceneRenderer(int width, int height) : this(width, height, DEFAULT_SEED) { }
 
@@ -69,6 +79,7 @@ namespace CavesOfOoo.Rendering
             Frame = new SceneCell[width * height];
             _rng = new System.Random(seed);
             _stars = new Star[STAR_COUNT];
+            _mask = new float[width * height];
             InitStars();
         }
 
@@ -147,6 +158,117 @@ namespace CavesOfOoo.Rendering
             DrawSparks();
             DrawSceneText();
             DrawPrompts();
+            // Dissolve composition pass — only runs while a transition is
+            // active. Overlay clears (Glyph=' ') cells where mask is high
+            // so the world tilemap below can show through; soft-edge cells
+            // darken the scene glyph for a fade.
+            if (IsDissolving) DrawDissolveOverlay();
+        }
+
+        /// <summary>
+        /// Begin a dissolve transition. <paramref name="reverse"/>=false is
+        /// the entry transition (mask 1 → 0, world being covered by scene).
+        /// reverse=true is the exit transition (mask 0 → 1, scene being
+        /// uncovered to reveal the world). Resets elapsed time to 0; mask
+        /// is initialized so a render before the first <see cref="UpdateDissolve"/>
+        /// call still composes coherently (forward init=1, reverse init=0).
+        /// </summary>
+        public void StartDissolve(bool reverse = false)
+        {
+            IsDissolving = true;
+            DissolveIsReverse = reverse;
+            DissolveProgress = 0f;
+            _dissolveElapsed = 0f;
+            float init = reverse ? 0f : 1f;
+            for (int i = 0; i < _mask.Length; i++) _mask[i] = init;
+        }
+
+        /// <summary>
+        /// Advance the dissolve transition by <paramref name="deltaTime"/>
+        /// seconds. Recomputes the mask field from the radial reveal radius.
+        /// Once <see cref="DissolveProgress"/> reaches 1, clears
+        /// <see cref="IsDissolving"/> — subsequent calls are no-ops.
+        /// </summary>
+        public void UpdateDissolve(float deltaTime)
+        {
+            if (!IsDissolving) return;
+            _dissolveElapsed += deltaTime;
+            DissolveProgress = Mathf.Clamp01(_dissolveElapsed / DISSOLVE_DURATION);
+
+            // JS: cxx = W/2, cyy = H/2 + 2 (offset down so the iris feels
+            // like it opens around the campfire/composition center, not
+            // dead-center of the canvas).
+            float cxx = Width * 0.5f;
+            float cyy = Height * 0.5f + 2f;
+            float maxR = Mathf.Sqrt(cxx * cxx + cyy * cyy);
+
+            // Reverse runs the iris backward — at p=0 it's fully open
+            // (effProgress=1), at p=1 it's fully closed (effProgress=0).
+            float effProgress = DissolveIsReverse
+                ? 1f - DissolveProgress
+                : DissolveProgress;
+            float reveal = effProgress * maxR * 1.2f;
+
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    float dx = x - cxx;
+                    float dy = y - cyy;
+                    float d = Mathf.Sqrt(dx * dx + dy * dy);
+                    float edge = reveal - d;
+                    float m;
+                    if (edge > 1f) m = 0f;             // inside revealed area
+                    else if (edge > 0f) m = 1f - edge; // soft edge fade
+                    else m = 1f;                        // outside reveal
+                    _mask[y * Width + x] = m;
+                }
+            }
+
+            if (DissolveProgress >= 1f) IsDissolving = false;
+        }
+
+        /// <summary>
+        /// Bounds-protected mask accessor. Returns 0 (scene visible) for
+        /// out-of-range coords rather than throwing.
+        /// </summary>
+        public float GetMask(int x, int y)
+        {
+            if (x < 0 || x >= Width || y < 0 || y >= Height) return 0f;
+            return _mask[y * Width + x];
+        }
+
+        private void DrawDissolveOverlay()
+        {
+            // Mask thresholds:
+            //   m > 0.5  → fully cleared (Glyph=' ', so world below shows)
+            //   m > 0.05 → soft edge: probabilistic clear OR darkened scene
+            //   else     → leave scene cell as drawn
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    float m = _mask[y * Width + x];
+                    int idx = y * Width + x;
+                    if (m > 0.5f)
+                    {
+                        Frame[idx].Glyph = ' ';
+                        Frame[idx].Foreground = Color.black;
+                    }
+                    else if (m > 0.05f)
+                    {
+                        if (_rng.NextDouble() < m)
+                        {
+                            Frame[idx].Glyph = ' ';
+                            Frame[idx].Foreground = Color.black;
+                        }
+                        else
+                        {
+                            Frame[idx].Foreground *= (1f - m);
+                        }
+                    }
+                }
+            }
         }
 
         // ====================================================================

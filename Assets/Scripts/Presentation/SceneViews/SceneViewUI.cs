@@ -32,6 +32,9 @@ namespace CavesOfOoo.Rendering
 
         private SceneRenderer _sceneRenderer;
         private bool _isRendering;
+        // M4: when true, Update is driving the exit (reverse) dissolve and
+        // will tear down rendering once the dissolve completes.
+        private bool _exitDissolveActive;
 
         private void Awake()
         {
@@ -70,17 +73,27 @@ namespace CavesOfOoo.Rendering
             // empty, t=0, fresh stars). Per plan §"Open Design Questions" #2:
             // scenes are moments; revisits are new moments.
             _sceneRenderer = new SceneRenderer(CanvasWidth, CanvasHeight);
+            _sceneRenderer.StartDissolve(reverse: false);
             _isRendering = true;
-            if (ZoneRenderer != null) ZoneRenderer.Paused = true;
-            // Render once immediately so the player sees the scene without
-            // a 1-frame delay.
+            _exitDissolveActive = false;
+            // Leave ZoneRenderer unpaused while the iris opens — the world
+            // tilemap below shows through cleared overlay cells, giving a
+            // true "world → scene" transition. We pause it once the forward
+            // dissolve completes (scene fully covers the screen anyway).
+            if (ZoneRenderer != null) ZoneRenderer.Paused = false;
             RenderToTilemap();
         }
 
         private void HandleDeactivated()
         {
-            _isRendering = false;
-            ClearTilemap();
+            // M4: don't tear down immediately — start the reverse dissolve
+            // and keep rendering until it completes. Update() handles the
+            // final cleanup once IsDissolving clears.
+            if (!_isRendering || _sceneRenderer == null) return;
+            _sceneRenderer.StartDissolve(reverse: true);
+            _exitDissolveActive = true;
+            // Unpause the world so it's visible underneath as the scene
+            // dissolves away.
             if (ZoneRenderer != null) ZoneRenderer.Paused = false;
         }
 
@@ -88,7 +101,27 @@ namespace CavesOfOoo.Rendering
         {
             if (!_isRendering || Tilemap == null) return;
             _sceneRenderer.Tick(Time.deltaTime);
+            if (_sceneRenderer.IsDissolving)
+                _sceneRenderer.UpdateDissolve(Time.deltaTime);
             RenderToTilemap();
+
+            // Post-render dissolve transitions
+            if (!_sceneRenderer.IsDissolving)
+            {
+                if (_exitDissolveActive)
+                {
+                    // DISSOLVING_OUT → IDLE: tear down rendering.
+                    _exitDissolveActive = false;
+                    _isRendering = false;
+                    ClearTilemap();
+                }
+                else if (ZoneRenderer != null && !ZoneRenderer.Paused)
+                {
+                    // DISSOLVING_IN → ACTIVE: scene now fully covers; pause
+                    // the world tilemap to skip its render work.
+                    ZoneRenderer.Paused = true;
+                }
+            }
         }
 
         private void RenderToTilemap()
