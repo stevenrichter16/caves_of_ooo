@@ -78,6 +78,37 @@ namespace CavesOfOoo.Core
                 case "frozeneffect":
                     return new FrozenEffect(
                         cold: EffectMagnitude > 0f ? EffectMagnitude : 1.0f);
+
+                case "stoneskin":
+                case "stone":
+                case "stoneskineffect":
+                    return new StoneskinEffect(
+                        reduction: EffectMagnitude > 0f ? (int)EffectMagnitude : 2,
+                        duration: EffectDuration > 0 ? EffectDuration : 30);
+
+                case "bleed":
+                case "bleeding":
+                case "bleedingeffect":
+                    // BleedingEffect ctor is (saveTarget, damageDice, rng).
+                    // The blueprint's EffectDuration int slot maps to
+                    // saveTarget (the DC for the per-turn save-vs-bleed
+                    // roll) — re-using a numeric content-author field
+                    // rather than adding a new one. Default 15 matches
+                    // the effect's own ctor default.
+                    return new BleedingEffect(
+                        saveTarget: EffectDuration > 0 ? EffectDuration : 15,
+                        damageDice: string.IsNullOrWhiteSpace(EffectDamageDice) ? "1d2" : EffectDamageDice);
+
+                case "char":
+                case "charred":
+                case "charredeffect":
+                    // CharredEffect is parameterless — it sets Duration to
+                    // DURATION_INDEFINITE and reduces the target's
+                    // MaterialPart.Combustibility by 70% on apply (restores
+                    // on remove). EffectMagnitude / EffectDuration on the
+                    // blueprint are intentionally ignored — the Charred
+                    // state is binary (you're either charred or you aren't).
+                    return new CharredEffect();
             }
 
             return null;

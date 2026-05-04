@@ -19,6 +19,33 @@ namespace CavesOfOoo.Core
         public const int DefaultSpeed = 100;
 
         /// <summary>
+        /// Visual divider line emitted to the message log when an actor's turn
+        /// produces any new messages. Snapshot of <c>MessageLog.Count</c> is
+        /// taken when <see cref="CurrentActor"/> is assigned (i.e. turn start),
+        /// and re-compared at end of <see cref="EndTurn"/> — divider fires only
+        /// if anything was logged across the whole turn (action + status-effect
+        /// ticks + end-of-turn cleanup). Silent turns don't produce dividers,
+        /// so the log doesn't fill with consecutive blank dividers.
+        /// Width chosen to match a typical in-game message-panel column on the
+        /// 80×25 CP437 tilemap. Uses CP437 codepoint 0xCD (the box-drawing
+        /// double-horizontal "═" glyph) directly so the sidebar's narrow-text
+        /// tileset can render it as a real glyph. Earlier this string used
+        /// the Unicode equivalent U+2550, which falls outside the 0–255
+        /// CP437 cache and caused every divider char to fall back to the
+        /// '?' tile after triggering a 2ms atlas rebuild — sidebar render
+        /// stuttered ~200ms per combat turn until that miss path was fixed.
+        /// </summary>
+        private const string TURN_DIVIDER = "\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD";
+
+        /// <summary>
+        /// MessageLog.Count snapshot taken at the start of the current actor's
+        /// turn. Compared against MessageLog.Count at the end of EndTurn() to
+        /// decide whether to emit the per-turn divider line. Reset when
+        /// CurrentActor changes.
+        /// </summary>
+        private int _turnStartMessageCount;
+
+        /// <summary>
         /// The singleton world entity to receive TickEnd events. Set by GameBootstrap.
         /// </summary>
         public static Entity World;
@@ -32,6 +59,20 @@ namespace CavesOfOoo.Core
         /// The entity currently taking a turn (null between turns).
         /// </summary>
         public Entity CurrentActor { get; private set; }
+
+        /// <summary>
+        /// Process-wide reference to the active <see cref="TurnManager"/> for
+        /// systems that need to query the current actor without an instance
+        /// hand-off (notably <see cref="StatusEffectsPart"/>'s mid-action
+        /// effect-application path).
+        ///
+        /// Set in the constructor, cleared by GameBootstrap on teardown so a
+        /// new game session doesn't read a stale reference. Tests can also
+        /// instantiate <c>new TurnManager()</c> freely — the most recent
+        /// instance wins, which mirrors production where exactly one
+        /// TurnManager exists per running game.
+        /// </summary>
+        public static TurnManager Active { get; private set; }
 
         /// <summary>
         /// Total ticks elapsed.
@@ -53,6 +94,18 @@ namespace CavesOfOoo.Core
         {
             public Entity Entity;
             public int Energy;
+        }
+
+        /// <summary>
+        /// Construct a new TurnManager and register it as the process-wide
+        /// <see cref="Active"/> instance. Mirroring Qud's "one game loop"
+        /// shape: only one TurnManager runs at a time, and effect
+        /// application paths can query the current actor through the static
+        /// without threading the instance through every call site.
+        /// </summary>
+        public TurnManager()
+        {
+            Active = this;
         }
 
         /// <summary>
@@ -177,6 +230,30 @@ namespace CavesOfOoo.Core
                     }
 
                     CurrentActor = actor;
+                    _turnStartMessageCount = MessageLog.Count;
+
+                    // D2.4 diag hook (Docs/D2-HOOKS-PLAN.md §4 D2.4) —
+                    // turn boundary marker. Even blocked turns produce
+                    // a Begin record (paired with the End below); a
+                    // turn that's "spent" via stun-block is still a
+                    // turn that consumed energy.
+                    if (Diag.IsChannelEnabled("turn"))
+                    {
+                        Diag.Record(
+                            category: "turn",
+                            kind: "Begin",
+                            actor: actor,
+                            payload: new
+                            {
+                                // ActorId is already populated by the `actor:`
+                                // arg above — don't duplicate. Payload-only
+                                // fields are blueprintName + hp at the boundary,
+                                // matching the D1.2/D2.1/D2.2 convention where
+                                // ID lives in the top-level field, not payload.
+                                blueprintName = actor?.BlueprintName,
+                                hp = actor?.GetStatValue("Hitpoints", -1)
+                            });
+                    }
 
                     // Qud-style pre-action event seam: status effects and other parts can
                     // block the action before AI/input executes.
@@ -185,7 +262,7 @@ namespace CavesOfOoo.Core
                     if (actorZone != null)
                         beginTakeAction.SetParameter("Zone", (object)actorZone);
 
-                    if (!actor.FireEvent(beginTakeAction))
+                    if (!actor.FireEventAndRelease(beginTakeAction))
                     {
                         EndTurn(actor, actorZone);
                         if (actor.HasTag("Player"))
@@ -205,7 +282,7 @@ namespace CavesOfOoo.Core
                     turnEvent.SetParameter("BeginTakeActionProcessed", true);
                     if (actorZone != null)
                         turnEvent.SetParameter("Zone", (object)actorZone);
-                    actor.FireEvent(turnEvent);
+                    actor.FireEventAndRelease(turnEvent);
 
                     EndTurn(actor, actorZone);
                 }
@@ -224,7 +301,34 @@ namespace CavesOfOoo.Core
                 var endTurn = GameEvent.New("EndTurn");
                 if (zone != null)
                     endTurn.SetParameter("Zone", (object)zone);
-                actor.FireEvent(endTurn);
+                actor.FireEventAndRelease(endTurn);
+
+                // D2.4 diag hook — turn boundary marker (paired with
+                // turn/Begin above). Records ALL EndTurn calls, including
+                // those triggered after a blocked BeginTakeAction.
+                if (Diag.IsChannelEnabled("turn"))
+                {
+                    Diag.Record(
+                        category: "turn",
+                        kind: "End",
+                        actor: actor,
+                        payload: new
+                        {
+                            // ActorId already populated by `actor:` arg above —
+                            // see the matching turn/Begin hook for rationale.
+                            blueprintName = actor?.BlueprintName,
+                            hp = actor?.GetStatValue("Hitpoints", -1)
+                        });
+                }
+
+                // Compare against the snapshot taken when CurrentActor was
+                // assigned (turn START). Captures messages from the actor's
+                // action (logged BEFORE EndTurn fires — e.g. "you hit X" from
+                // PerformMeleeAttack), plus stun-block lines from
+                // BeginTakeAction, plus end-of-turn cleanup messages. Silent
+                // turns produce no divider.
+                if (MessageLog.Count > _turnStartMessageCount)
+                    MessageLog.Add(TURN_DIVIDER);
 
                 SpendEnergy(actor);
                 CurrentActor = null;

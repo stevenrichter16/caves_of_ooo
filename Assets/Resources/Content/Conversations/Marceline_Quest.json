@@ -1,0 +1,81 @@
+{
+  "Conversations": [
+    {
+      "ID": "Marceline_Quest",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Hey. I'm Marceline. Lost my iron key somewhere east of here — I'd appreciate help finding it. There's drams and experience in it for you.",
+          "Choices": [
+            {
+              "Text": "[Take the quest.] I'll find your key.",
+              "Target": "QuestAccepted",
+              "Predicates": [
+                { "Key": "IfQuestNotStarted", "Value": "IronKeyShowcaseQuest" }
+              ],
+              "Actions": [
+                { "Key": "StartQuest", "Value": "IronKeyShowcaseQuest" }
+              ]
+            },
+            {
+              "Text": "[Status] Still looking for the key.",
+              "Target": "StillLooking",
+              "Predicates": [
+                { "Key": "IfQuestStage", "Value": "IronKeyShowcaseQuest:0" }
+              ]
+            },
+            {
+              "Text": "[Hand over the key.] Got it. Here you go.",
+              "Target": "QuestComplete",
+              "Predicates": [
+                { "Key": "IfQuestStage", "Value": "IronKeyShowcaseQuest:1" }
+              ],
+              "Actions": [
+                { "Key": "AdvanceQuestStage", "Value": "IronKeyShowcaseQuest" }
+              ]
+            },
+            {
+              "Text": "[Already finished.] Anything else?",
+              "Target": "AlreadyFinished",
+              "Predicates": [
+                { "Key": "IfQuestCompleted", "Value": "IronKeyShowcaseQuest" }
+              ]
+            },
+            {
+              "Text": "Bye.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "QuestAccepted",
+          "Text": "Sweet. The key should be a few cells east. Come back when you've got it.",
+          "Choices": [
+            { "Text": "On it.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "StillLooking",
+          "Text": "It's east of here. Pick it up and the rest takes care of itself.",
+          "Choices": [
+            { "Text": "Got it.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "QuestComplete",
+          "Text": "Thanks. Take this — drams and a bit of seasoned wisdom.",
+          "Choices": [
+            { "Text": "Anytime.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "AlreadyFinished",
+          "Text": "Not at the moment. Hang around if you like.",
+          "Choices": [
+            { "Text": "Bye.", "Target": "End" }
+          ]
+        }
+      ]
+    }
+  ]
+}

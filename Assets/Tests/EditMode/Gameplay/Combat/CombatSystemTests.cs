@@ -226,23 +226,26 @@ namespace CavesOfOoo.Tests
         // ========================
 
         [Test]
-        public void Penetrations_HighPV_AlwaysPenetrates()
+        public void Penetrations_HighBonus_ZeroTarget_AlwaysPenetrates()
         {
-            // PV 20 vs AV 0: every 1d8 + 20 > 0, so at least 3 penetrations
+            // Qud-parity (post-port): bonus=20 vs target=0; every roll [-1,8]+20 > 0
+            // means every set sweeps for several iterations before bonus decays.
+            // Expect >= 3 pens.
             var rng = new Random(42);
-            int pens = CombatSystem.RollPenetrations(20, 0, rng);
+            int pens = CombatSystem.RollPenetrations(0, 20, 50, rng);
             Assert.GreaterOrEqual(pens, 3);
         }
 
         [Test]
-        public void Penetrations_ZeroPV_LowAV_SomePenetrations()
+        public void Penetrations_ZeroBonus_LowTarget_SomePenetrations()
         {
-            // PV 0 vs AV 2: 1d8+0 > 2 means rolls 3-8 succeed (75% chance)
+            // Qud-parity (post-port): bonus=0 vs target=2; per-roll P(succ) ~ 60%
+            // (raw 5..10 with explosion). Across 50 trials, totalPens should be > 0.
             var rng = new Random(42);
             int totalPens = 0;
             for (int i = 0; i < 50; i++)
-                totalPens += CombatSystem.RollPenetrations(0, 2, rng);
-            Assert.Greater(totalPens, 0, "Should get some penetrations with PV0 vs AV2");
+                totalPens += CombatSystem.RollPenetrations(2, 0, 0, rng);
+            Assert.Greater(totalPens, 0, "Should get some penetrations with bonus=0 vs target=2");
         }
 
         // ========================

@@ -222,7 +222,7 @@ namespace CavesOfOoo.Data
             InitializeAnatomy(entity);
 
             // Fire creation event
-            entity.FireEvent(GameEvent.New("ObjectCreated"));
+            entity.FireEventAndRelease(GameEvent.New("ObjectCreated"));
 
             return entity;
         }

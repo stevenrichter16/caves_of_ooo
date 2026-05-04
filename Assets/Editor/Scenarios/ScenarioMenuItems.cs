@@ -72,6 +72,74 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_RuneCultistAmbush()
             => ScenarioRunner.Launch<RuneCultistAmbush>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Combat Parity Showcase (Phases A/C/D/E)", priority = 104)]
+        private static void Launch_CombatParityShowcase()
+            => ScenarioRunner.Launch<CombatParityShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Combat Hooks Showcase (Phases F/G/H)", priority = 105)]
+        private static void Launch_CombatHooksShowcase()
+            => ScenarioRunner.Launch<CombatHooksShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/FlamingSword Showcase (Phase C × E)", priority = 106)]
+        private static void Launch_FlamingSwordShowcase()
+            => ScenarioRunner.Launch<FlamingSwordShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Elemental Swords Showcase (Fire + Ice matrix)", priority = 107)]
+        private static void Launch_ElementalSwordsShowcase()
+            => ScenarioRunner.Launch<ElementalSwordsShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/ThunderHammer Showcase (Lightning + vulnerability)", priority = 108)]
+        private static void Launch_ThunderHammerShowcase()
+            => ScenarioRunner.Launch<ThunderHammerShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/AcidicDagger Showcase (Acid + vulnerability)", priority = 109)]
+        private static void Launch_AcidicDaggerShowcase()
+            => ScenarioRunner.Launch<AcidicDaggerShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/On-Hit Effects Showcase (class + per-weapon hooks)", priority = 110)]
+        private static void Launch_OnHitEffectsShowcase()
+            => ScenarioRunner.Launch<OnHitEffectsShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Throwable Tonics Showcase (AOE shatter)", priority = 111)]
+        private static void Launch_ThrowableTonicsShowcase()
+            => ScenarioRunner.Launch<ThrowableTonicsShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Trap Furniture Showcase (cell-stepped traps)", priority = 112)]
+        private static void Launch_TrapFurnitureShowcase()
+            => ScenarioRunner.Launch<TrapFurnitureShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/CryoLance Showcase (immunity + vulnerability)", priority = 113)]
+        private static void Launch_CryoLanceShowcase()
+            => ScenarioRunner.Launch<CryoLanceShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/EmberSpear Showcase (Heat-axis mirror)", priority = 114)]
+        private static void Launch_EmberSpearShowcase()
+            => ScenarioRunner.Launch<EmberSpearShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Locked Door Showcase (LK.3 bump-unlock)", priority = 115)]
+        private static void Launch_LockedDoorShowcase()
+            => ScenarioRunner.Launch<LockedDoorShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Merchant Shop Showcase (SP.2-4 trade)", priority = 116)]
+        private static void Launch_MerchantShopShowcase()
+            => ScenarioRunner.Launch<MerchantShopShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Quest Showcase (QS.1-6 IronKey fetch)", priority = 117)]
+        private static void Launch_QuestShowcase()
+            => ScenarioRunner.Launch<QuestShowcase>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Elemental Creature Zoo (T1.4 resistance matrix)", priority = 118)]
+        private static void Launch_ElementalCreatureZoo()
+            => ScenarioRunner.Launch<ElementalCreatureZoo>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Tonic Test Bench (T1.5 all 10 tonics)", priority = 119)]
+        private static void Launch_TonicTestBench()
+            => ScenarioRunner.Launch<TonicTestBench>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/TripWire Showcase (T2.4 multi-segment line)", priority = 120)]
+        private static void Launch_TripWireShowcase()
+            => ScenarioRunner.Launch<TripWireShowcase>();
+
         // =========================================================
         // AI Behavior
         // =========================================================

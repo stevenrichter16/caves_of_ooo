@@ -35,13 +35,26 @@ namespace CavesOfOoo.Core
             if (!isOrganic)
                 return;
 
-            // Flat damage scaled by corrosion severity.
-            int damage = 1 + (int)System.Math.Floor(Corrosion * 4f);
-            if (damage > 0 && target.GetStatValue("Hitpoints", 0) > 0)
+            // Flat damage scaled by corrosion severity. Use the typed-Damage
+            // overload with the "Acid" attribute so AcidResistance routes
+            // correctly (the int overload strips attributes — pre-fix bug
+            // where acid-immune creatures still corroded, and acid-vulnerable
+            // ones like Scorpion didn't take amplified damage). Mirrors the
+            // on-hit weapon path.
+            //
+            // Log the POST-resistance amount: ApplyDamage mutates
+            // acidDmg.Amount in place via ApplyResistances, so reading
+            // acidDmg.Amount after the call gives the actually-applied
+            // damage. Same fix as BurningEffect — pre-resistance logging
+            // misled players about whether resistance was firing.
+            int rolledAmount = 1 + (int)System.Math.Floor(Corrosion * 4f);
+            if (rolledAmount > 0 && target.GetStatValue("Hitpoints", 0) > 0)
             {
                 Zone zone = context?.GetParameter<Zone>("Zone");
-                CombatSystem.ApplyDamage(target, damage, null, zone);
-                MessageLog.Add(target.GetDisplayName() + " takes " + damage + " acid damage.");
+                var acidDmg = new Damage(rolledAmount);
+                acidDmg.AddAttribute("Acid");
+                CombatSystem.ApplyDamage(target, acidDmg, null, zone);
+                MessageLog.Add(target.GetDisplayName() + " takes " + acidDmg.Amount + " acid damage.");
             }
 
             // Acid degrades combustibility.

@@ -64,6 +64,15 @@ namespace CavesOfOoo.Core
                 // +1 MP for mutation advancement
                 entity.GainMP(1);
 
+                // ST.4: +1 SP for skill-tree progression. The grant is
+                // null-safe: NPCs / minor actors that don't carry an SP
+                // stat (no SkillsPart, no skill-economy participation)
+                // simply don't gain SP. Mirrors the HP / MP grants above
+                // — same null-check shape, same per-level cadence.
+                var spStat = entity.GetStat("SP");
+                if (spStat != null)
+                    spStat.BaseValue += 1;
+
                 // Level-up FX: yellow ring wave centered on player
                 if (zone != null)
                 {

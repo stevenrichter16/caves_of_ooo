@@ -27,6 +27,42 @@ namespace CavesOfOoo.Core
         public const int OFF_HAND_HIT_PENALTY = -2;
 
         /// <summary>
+        /// Compute the hit-bonus adjustment applied to an off-hand (non-primary)
+        /// melee swing for the given attacker. Mirrors Qud's pattern of letting
+        /// skills modify per-weapon attack chance via <c>GetMeleeAttackChanceEvent</c>
+        /// (Combat.cs:775); we approximate with a stat-driven hook since we don't
+        /// have a skill system yet.
+        ///
+        /// Returns <see cref="OFF_HAND_HIT_PENALTY"/> + the attacker's
+        /// <c>MultiWeaponSkillBonus</c> stat (default 0). A future skill system
+        /// would set this stat per-skill-rank; equipment passives could also
+        /// modify it via stat shifts.
+        /// </summary>
+        public static int GetOffHandHitBonus(Entity attacker)
+        {
+            if (attacker == null) return OFF_HAND_HIT_PENALTY;
+            return OFF_HAND_HIT_PENALTY + attacker.GetStatValue("MultiWeaponSkillBonus", 0);
+        }
+
+        /// <summary>
+        /// Marker substring inserted into the <see cref="MessageLog"/> hit line
+        /// when a melee attack lands as a critical (nat-20). Tests pin this
+        /// constant rather than the exact wording so future polish (color
+        /// codes, particle FX) can change the line without breaking tests.
+        /// </summary>
+        public const string CRITICAL_HIT_TAG = "CRITICAL";
+
+        /// <summary>
+        /// Sentinel-substitute used when a weapon's <c>MaxStrengthBonus</c> is set to
+        /// <c>-1</c> (legacy "uncapped" sentinel from pre-Phase-A code). Mapped to a
+        /// large-but-not-overflow value so the bonus-decay loop in <see cref="RollPenetrations"/>
+        /// terminates in bounded time. Qud weapons always have a real positive
+        /// MaxStrengthBonus; CoO will migrate to that pattern in Phase B½. See
+        /// <c>Docs/COMBAT-QUD-PARITY-PORT.md</c> Phase A divergence #1.
+        /// </summary>
+        public const int LEGACY_UNCAPPED_MAX_STR_BONUS = 50;
+
+        /// <summary>
         /// Perform a melee attack. Body-part-aware: attacks with each equipped weapon.
         /// Returns true if the attack was attempted.
         /// </summary>
@@ -40,7 +76,7 @@ namespace CavesOfOoo.Core
                 var beforeAttack = GameEvent.New("BeforeMeleeAttack");
                 beforeAttack.SetParameter("Attacker", (object)attacker);
                 beforeAttack.SetParameter("Defender", (object)defender);
-                if (!attacker.FireEvent(beforeAttack))
+                if (!attacker.FireEventAndRelease(beforeAttack))
                     return false;
 
                 var body = attacker.GetPart<Body>();
@@ -119,9 +155,9 @@ namespace CavesOfOoo.Core
             int maxStrBonus = weapon?.MaxStrengthBonus ?? -1;
             string statName = weapon?.Stat ?? "Strength";
 
-            // Off-hand penalty
+            // Off-hand penalty (Phase G: stat-modulated via GetOffHandHitBonus)
             if (!isPrimary)
-                hitBonus += OFF_HAND_HIT_PENALTY;
+                hitBonus += GetOffHandHitBonus(attacker);
 
             string attackerName = attacker.GetDisplayName();
             string defenderName = defender.GetDisplayName();
@@ -154,14 +190,31 @@ namespace CavesOfOoo.Core
 
             string partDesc = hitPart != null ? $" in the {hitPart.GetDisplayName()}" : "";
 
-            // Penetration — per-part AV when hit location is known
+            // Penetration — per-part AV when hit location is known.
+            // The MaxBonus cap is now applied INSIDE RollPenetrations (Qud-parity).
+            // Legacy weapons with MaxStrengthBonus = -1 (uncapped sentinel) get a
+            // sane large value to avoid integer overflow in the bonus-decay loop.
             int strMod = StatUtils.GetModifier(attacker, statName);
-            if (maxStrBonus >= 0 && strMod > maxStrBonus)
-                strMod = maxStrBonus;
-            int pv = strMod + penBonus;
+            int bonus = strMod + penBonus;
+            int effectiveMaxStrBonus = (maxStrBonus < 0) ? LEGACY_UNCAPPED_MAX_STR_BONUS : maxStrBonus;
+            int maxBonus = effectiveMaxStrBonus + penBonus;
             int av = hitPart != null ? GetPartAV(defender, hitPart) : GetAV(defender);
 
-            int penetrations = RollPenetrations(pv, av, rng);
+            // Phase D: critical hits (nat-20). Mirror Qud's Combat.cs:1106-1140 —
+            // crit adds +1 to PenBonus and +1 to PenCapBonus, and sets the AutoPen
+            // flag (which forces pens = 1 if rolls fail AND the attacker is the player).
+            // We skip Qud's skill-based weaponCriticalModifier and the WeaponCriticalModifier
+            // event chain for now (those land in later phases when skills exist).
+            int critPenBonus = naturalTwenty ? 1 : 0;
+            int critMaxBonus = naturalTwenty ? 1 : 0;
+            bool autoPen = naturalTwenty;
+
+            int penetrations = RollPenetrations(av, bonus + critPenBonus, maxBonus + critMaxBonus, rng);
+
+            // AutoPen: if penetration failed AND we're a critical AND attacker is the player,
+            // force one penetration through. Mirrors Qud's `flag5 && Attacker.IsPlayer()` guard.
+            if (penetrations == 0 && autoPen && attacker.HasTag("Player"))
+                penetrations = 1;
 
             if (penetrations == 0)
             {
@@ -169,36 +222,92 @@ namespace CavesOfOoo.Core
                 return;
             }
 
-            // Damage
+            // Damage — build a typed Damage with attributes from the weapon
+            // (Phase C of the Qud-parity port). Attributes flow through ApplyDamage
+            // and are observable by listeners (Phase E will use them for resistances).
+            Damage damage = new Damage(0);
+            damage.AddAttribute("Melee");
+            damage.AddAttribute(statName);                      // e.g. "Strength"
+            if (weapon != null && !string.IsNullOrEmpty(weapon.Attributes))
+                damage.AddAttributes(weapon.Attributes);        // e.g. "Cutting LongBlades"
+            if (naturalTwenty)
+                damage.AddAttribute("Critical");                // Phase D: crit attribute
+
             int totalDamage = 0;
             for (int i = 0; i < penetrations; i++)
                 totalDamage += DiceRoller.Roll(damageDice, rng);
+            damage.Amount = totalDamage;
 
-            if (totalDamage <= 0)
+            if (damage.Amount <= 0)
             {
                 MessageLog.Add($"{attackerName}{srcTag} hits {defenderName}{partDesc} but deals no damage!");
                 return;
             }
 
-            // Log the hit before applying damage so the killing blow details are visible
+            // Capture pre-damage HP. Phase F BeforeTakeDamage listeners
+            // (Stoneskin, etc.), Phase E elemental resistance, and the
+            // TakeDamage event can all mutate damage.Amount in-flight inside
+            // ApplyDamage — so the actual landed amount is the HP delta,
+            // NOT the pre-call damage.Amount we computed from dice rolls.
+            //
+            // Pre-fix this block emitted the hit log BEFORE ApplyDamage and
+            // used `damage.Amount` (raw) and `hpBefore - damage.Amount`
+            // (also raw). On a heat-resistant target hit by a Fire-tagged
+            // weapon, the log claimed e.g. "12 damage / 188 HP remaining"
+            // while the actual entity lost only 6 HP and sat at 194/200 —
+            // the HP bar told the truth, the log lied.
             int hpBefore = defender.GetStatValue("Hitpoints", 0);
-            int hpAfter = hpBefore - totalDamage;
 
-            MessageLog.Add($"{attackerName}{srcTag} hits {defenderName}{partDesc} for {totalDamage} damage!{(hpAfter > 0 ? $" ({hpAfter} HP remaining)" : "")}");
+            // Apply damage (typed overload — preferred path). Internally:
+            //   Phase F BeforeTakeDamage event (listeners can veto/mutate)
+            //   → Phase E ApplyResistances (HeatResistance etc.)
+            //   → TakeDamage event (more in-flight mutations possible)
+            //   → HP decrement (clamped to ≥ 0)
+            //   → HandleDeath if HP <= 0 (which logs "X is killed by Y!").
+            ApplyDamage(defender, damage, attacker, zone);
 
-            // Apply damage
-            ApplyDamage(defender, totalDamage, attacker, zone);
+            int hpAfter = defender.GetStatValue("Hitpoints", 0);
+            int actualDamage = System.Math.Max(0, hpBefore - hpAfter);
 
-            // Floating damage number
-            Cell hitCell = zone.GetEntityCell(defender);
-            if (hitCell != null)
-                AsciiFxBus.EmitFloatingNumber(zone, hitCell.X, hitCell.Y, totalDamage, "&R");
+            // Tier 2.1: nat-20 hits include the CRITICAL_HIT_TAG so the player
+            // sees the crit happen, not just the silent "Critical" attribute on
+            // Damage. Note: on lethal blows the kill announcement (from
+            // HandleDeath inside ApplyDamage) precedes this hit line, so the
+            // order reads "X is killed by Y!" then "Y hits X for N damage!".
+            // The hit line still uses post-resistance actualDamage so the
+            // number is honest.
+            string hitVerb = naturalTwenty ? $"{CRITICAL_HIT_TAG}LY hits" : "hits";
+            MessageLog.Add($"{attackerName}{srcTag} {hitVerb} {defenderName}{partDesc} for {actualDamage} damage!{(hpAfter > 0 ? $" ({hpAfter} HP remaining)" : "")}");
+
+            // Floating damage number now emitted from inside ApplyDamage
+            // (just above this method's call to ApplyDamage), so every damage
+            // path — including traps, effect ticks, and any future content
+            // that calls ApplyDamage directly — gets the same visual feedback.
+            // Removed the per-attack emit here to avoid double-numbering on
+            // melee swings; ApplyDamage uses min(amount, hpBefore) which
+            // matches the actualDamage value this code previously computed
+            // for melee, so the on-screen number is identical.
 
             if (hpAfter > 0)
             {
-                // Check for combat dismemberment (only on survivors)
+                // On-hit class effects (Tier-2: Bludgeoning→Stunned, Cutting→Bleeding,
+                // Piercing→Confused). Reads damage attributes; rolls per-class
+                // probabilities; applies via target.ApplyEffect. Only fires on
+                // survivors — corpses don't bleed or get stunned.
+                OnHitClassEffects.Apply(damage, actualDamage, defender, attacker, zone, rng);
+
+                // Per-weapon on-hit overrides (FlamingSword→Burning, IceSword→Frozen, etc.).
+                // Stacks ON TOP of class effects: a Bludgeoning ThunderHammer can both
+                // stun AND electrify on the same hit, since the chance rolls are independent.
+                OnHitWeaponEffects.Apply(weapon, damage, actualDamage, defender, attacker, zone, rng);
+
+                // Check for combat dismemberment (only on survivors). Use
+                // actualDamage because the threshold formula is (damage / maxHP)
+                // — pre-resistance values would over-trigger dismemberment on
+                // heat-resistant creatures hit by Fire-tagged weapons (the
+                // Glowmaw shouldn't lose a limb to half-absorbed Fire damage).
                 if (hitPart != null)
-                    CheckCombatDismemberment(defender, defenderBody, hitPart, totalDamage, zone, rng);
+                    CheckCombatDismemberment(defender, defenderBody, hitPart, actualDamage, zone, rng);
             }
         }
 
@@ -206,10 +315,24 @@ namespace CavesOfOoo.Core
         /// Gather all melee weapons from hand body parts.
         /// Primary hand weapon attacks first, then off-hands.
         /// Also includes natural MeleeWeaponPart on any body part's equipped default.
+        ///
+        /// <para><b>Allocation note (Tier-B Fix #3 in PERF-COMBAT-INVESTIGATION.md).</b>
+        /// Reuses a static scratch list to avoid allocating a fresh
+        /// <c>List&lt;WeaponSlot&gt;</c> per attack. Safe because combat is
+        /// turn-serial: one <see cref="PerformBodyPartAwareAttack"/> call
+        /// completes before the next begins. Caller must consume the
+        /// returned list before any nested combat call (none today). If a
+        /// future feature triggers nested melee resolution from inside an
+        /// attack, switch this to ArrayPool or gate re-entrance explicitly
+        /// (mirrors the same pattern used by
+        /// <c>MovementSystem._enteredCellScratch</c>).</para>
         /// </summary>
+        private static readonly List<WeaponSlot> _gatherWeaponsScratch = new List<WeaponSlot>(8);
+
         private static List<WeaponSlot> GatherMeleeWeapons(Entity attacker, Body body)
         {
-            var result = new List<WeaponSlot>();
+            var result = _gatherWeaponsScratch;
+            result.Clear();
             var parts = body.GetParts();
 
             // Find weapons in Hand body parts.
@@ -343,48 +466,69 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Roll penetrations: 3 rolls of 1d8+PV vs AV.
-        /// If all 3 succeed, roll again with PV-2 (diminishing returns).
+        /// Roll penetrations using Qud's algorithm
+        /// (mirrors <c>XRL.Rules.Stat.RollDamagePenetrations</c>, lines 160-203).
+        ///
+        /// Per set of 3 rolls of (<c>1d10 − 2</c>, exploding on raw 10):
+        ///   • Count successes (rolls with total &gt; <paramref name="targetInclusive"/>).
+        ///   • A set with ≥1 success awards EXACTLY 1 penetration (not per-roll).
+        ///   • Continue rolling new sets only if all 3 rolls in the set succeeded.
+        ///   • Bonus decays by 2 every set, regardless of success count.
+        ///
+        /// Effective per-roll bonus: <c>Math.Min(bonus, maxBonus)</c>.
+        ///
+        /// See <c>Docs/COMBAT-QUD-PARITY-PORT.md</c> Phase A for the parity rationale.
         /// </summary>
-        public static int RollPenetrations(int pv, int av, Random rng)
+        /// <param name="targetInclusive">AV (Armor Value). Rolls must STRICTLY exceed this.</param>
+        /// <param name="bonus">Total pen bonus (e.g., StatMod + weapon PenBonus + crit bonus).</param>
+        /// <param name="maxBonus">Cap on the bonus contribution per roll (mirrors weapon's MaxStrengthBonus).</param>
+        /// <param name="rng">Seeded RNG for replay safety in tests.</param>
+        public static int RollPenetrations(int targetInclusive, int bonus, int maxBonus, Random rng)
         {
-            int penetrations = 0;
-            int currentPV = pv;
-            int streak = 0;
-            int rollsInSet = 3;
+            int totalPens = 0;
+            int successesInSet = 3; // sentinel — enter the loop
 
-            for (int i = 0; i < rollsInSet; i++)
+            while (successesInSet == 3)
             {
-                int roll = DiceRoller.Roll(8, rng) + currentPV;
-                if (roll > av)
+                successesInSet = 0;
+                for (int i = 0; i < 3; i++)
                 {
-                    penetrations++;
-                    streak++;
-
-                    if (streak == rollsInSet)
+                    // 1d10 − 2 (range −1 to 8). Raw 10 (post-mod 8) explodes:
+                    // adds +8 to the running total and re-rolls. Explosions chain.
+                    int rawRoll = DiceRoller.Roll(10, rng) - 2;
+                    int explodeAccum = 0;
+                    while (rawRoll == 8)
                     {
-                        currentPV -= 2;
-                        streak = 0;
-                        rollsInSet = 3;
-                        i = -1;
-                        if (currentPV + 8 <= av)
-                            break;
+                        explodeAccum += 8;
+                        rawRoll = DiceRoller.Roll(10, rng) - 2;
                     }
+                    int dieResult = explodeAccum + rawRoll;
+                    int totalRoll = dieResult + Math.Min(bonus, maxBonus);
+                    if (totalRoll > targetInclusive)
+                        successesInSet++;
                 }
+                if (successesInSet >= 1)
+                    totalPens++;
+                bonus -= 2;
             }
 
-            return penetrations;
+            return totalPens;
         }
 
         /// <summary>
-        /// Apply damage to an entity. Fires TakeDamage event, reduces HP,
-        /// and checks for death.
+        /// Apply typed damage to an entity. Fires TakeDamage / DamageDealt events
+        /// (now carrying both <c>Amount</c> int and <c>Damage</c> object parameters),
+        /// reduces HP, and checks for death.
+        ///
+        /// This is the PRIMARY overload; the legacy int overload below wraps it.
+        /// Phase E will use <paramref name="damage"/>.Attributes here to apply
+        /// resistance stats before the HP decrement.
         /// </summary>
-        public static void ApplyDamage(Entity target, int amount, Entity source, Zone zone)
+        public static void ApplyDamage(Entity target, Damage damage, Entity source, Zone zone)
         {
             using (PerformanceMarkers.Combat.ApplyDamage.Auto())
             {
-                if (target == null || amount <= 0) return;
+                if (target == null || damage == null || damage.Amount <= 0) return;
 
                 // Two guards rolled into one: targets without a Hitpoints
                 // stat aren't damageable creatures (statues, props), and
@@ -404,18 +548,114 @@ namespace CavesOfOoo.Core
                 // second damage call on a dying target trips it.
                 var hpStat = target.GetStat("Hitpoints");
                 if (hpStat == null || hpStat.BaseValue <= 0) return;
+                // Capture pre-decrement HP so the floating number we emit
+                // post-decrement uses the real player-visible delta (clamped
+                // at hpBefore so a 10-damage attack on a 3-HP target shows "3"
+                // rather than "10"). This also serves DamageDealt-event
+                // listeners that may need pre-decrement HP.
+                int hpBefore = hpStat.BaseValue;
 
+                // Phase F: BeforeTakeDamage event — fires BEFORE resistance.
+                // Listeners can mutate damage (e.g., add/remove attributes,
+                // reduce Amount) or VETO entirely by returning false from
+                // their HandleEvent. Mirrors Qud's BeforeApplyDamageEvent
+                // (Physics.cs:3418), which lets Part-side listeners modify
+                // or cancel incoming damage.
+                //
+                // Vetoed damage fires DamageFullyResisted (so observers know
+                // an attack was attempted) but does NOT fire TakeDamage and
+                // does not decrement HP. Mutations to damage.Amount propagate
+                // — the post-event re-read covers both this hook and the
+                // TakeDamage event below.
+                var beforeTakeDamage = GameEvent.New("BeforeTakeDamage");
+                beforeTakeDamage.SetParameter("Target", (object)target);
+                beforeTakeDamage.SetParameter("Source", (object)source);
+                beforeTakeDamage.SetParameter("Damage", (object)damage);
+                if (!target.FireEventAndRelease(beforeTakeDamage))
+                {
+                    // Veto — surface as fully-resisted so observers see the attempt.
+                    //
+                    // Contract for the Damage object on a vetoed DamageFullyResisted:
+                    //   • Amount is left unchanged (the value the attack WOULD have
+                    //     dealt before resistance, with any pre-veto listener
+                    //     mutations applied). Listeners that want to know "how
+                    //     much was blocked" can read damage.Amount.
+                    //   • Attributes reflect any pre-veto listener mutations.
+                    var fullyResistedVeto = GameEvent.New("DamageFullyResisted");
+                    fullyResistedVeto.SetParameter("Target", (object)target);
+                    fullyResistedVeto.SetParameter("Source", (object)source);
+                    fullyResistedVeto.SetParameter("Damage", (object)damage);
+                    target.FireEventAndRelease(fullyResistedVeto);
+                    return;
+                }
+
+                // Phase E: apply elemental resistances based on damage attributes.
+                // Mirrors XRL.World.Parts.Physics.cs:3351-3417. Damage with the
+                // "IgnoreResist" attribute bypasses all resistance entirely.
+                if (!damage.HasAttribute("IgnoreResist"))
+                    ApplyResistances(target, damage);
+
+                if (damage.Amount <= 0)
+                {
+                    // Resistance fully absorbed. Surface a "fully resisted" event so
+                    // listeners (UI, AI retaliation, achievements) still see the attack
+                    // attempt even though no HP was lost. (Self-review Finding 4.)
+                    var fullyResisted = GameEvent.New("DamageFullyResisted");
+                    fullyResisted.SetParameter("Target", (object)target);
+                    fullyResisted.SetParameter("Source", (object)source);
+                    fullyResisted.SetParameter("Damage", (object)damage);
+                    target.FireEventAndRelease(fullyResisted);
+                    return;
+                }
+
+                // Phase C/E: fire TakeDamage with the typed Damage object BEFORE
+                // capturing amount, so listeners can mutate damage.Amount in-flight
+                // (e.g., a "StoneSkin" effect that subtracts 2 from incoming damage).
+                // The captured amount is read AFTER the event so listener mutations
+                // propagate to the HP decrement. (Self-review Finding 1.)
+                // (Listeners read damage.Amount via the Damage object directly,
+                // not via event parameters, so the event itself can be released
+                // immediately after firing.)
                 var takeDamage = GameEvent.New("TakeDamage");
                 takeDamage.SetParameter("Target", (object)target);
                 takeDamage.SetParameter("Source", (object)source);
-                takeDamage.SetParameter("Amount", amount);
-                target.FireEvent(takeDamage);
+                takeDamage.SetParameter("Amount", damage.Amount);
+                takeDamage.SetParameter("Damage", (object)damage);
+                target.FireEventAndRelease(takeDamage);
+
+                // Re-read damage.Amount after listeners — it may have been mutated.
+                // Clamp at 0 so over-mutation can't heal the target.
+                int amount = Math.Max(0, damage.Amount);
+                if (amount <= 0) return;
 
                 hpStat.BaseValue -= amount;
 
                 Stat hpAlias = target.GetStat("HP");
                 if (hpAlias != null && !ReferenceEquals(hpAlias, hpStat))
                     hpAlias.BaseValue -= amount;
+
+                // D2.2 diag hook (Docs/D2-HOOKS-PLAN.md §4 D2.2).
+                // Records damage AFTER it lands. Broader than the
+                // DamageDealt event below — that event only fires when
+                // source != null, but environmental damage (traps,
+                // status DoT) also writes to the diag buffer. Payload
+                // captures post-damage HP and the lethal flag for
+                // turn-by-turn combat reconstruction.
+                if (Diag.IsChannelEnabled("damage"))
+                {
+                    Diag.Record(
+                        category: "damage",
+                        kind: "DamageDealt",
+                        actor: source,
+                        target: target,
+                        payload: new
+                        {
+                            amount = amount,
+                            hpAfter = hpStat.BaseValue,
+                            lethal = hpStat.BaseValue <= 0,
+                            attributes = damage.Attributes
+                        });
+                }
 
                 // Notify the attacker that damage was dealt (for on-hit effects like poison)
                 if (source != null)
@@ -424,13 +664,105 @@ namespace CavesOfOoo.Core
                     damageDealt.SetParameter("Attacker", (object)source);
                     damageDealt.SetParameter("Defender", (object)target);
                     damageDealt.SetParameter("Amount", amount);
-                    source.FireEvent(damageDealt);
+                    damageDealt.SetParameter("Damage", (object)damage); // Phase C
+                    source.FireEventAndRelease(damageDealt);
+                }
+
+                // Floating damage number — emit at the target's cell so EVERY
+                // damage path (melee swings, traps, effect ticks, mutations,
+                // future content) produces consistent visual feedback. Uses
+                // min(amount, hpBefore) so over-kill damage shows the actual
+                // HP delta the player observes on the HUD. Centralizing this
+                // here removes the duplicate emit that used to live in
+                // PerformSingleAttack — every ApplyDamage call now emits once,
+                // including the prior trap-damage path which silently dropped
+                // numbers (PressurePlate / TripWire / SpikeTrap / FireTrap /
+                // BearTrap, plus per-turn DOT ticks from BleedingEffect /
+                // BurningEffect / etc.).
+                if (zone != null)
+                {
+                    int displayedAmount = Math.Min(amount, hpBefore);
+                    if (displayedAmount > 0)
+                    {
+                        var targetCellForFx = zone.GetEntityCell(target);
+                        if (targetCellForFx != null)
+                            AsciiFxBus.EmitFloatingNumber(
+                                zone, targetCellForFx.X, targetCellForFx.Y,
+                                displayedAmount, "&R");
+                    }
                 }
 
                 if (hpStat.BaseValue <= 0)
                 {
                     HandleDeath(target, source, zone);
                 }
+                else if (zone != null)
+                {
+                    // Mark the target's cell dirty so on-hit visual effects
+                    // (damage flash, color change from new status effect,
+                    // etc.) render this frame without forcing a full redraw.
+                    var targetCell = zone.GetEntityCell(target);
+                    if (targetCell != null)
+                        ZoneRenderHooks.MarkCellDirty(targetCell, "Combat.Damage");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Backward-compatible int overload. Wraps <paramref name="amount"/> in
+        /// a <see cref="Damage"/> with no attributes and forwards to the typed
+        /// overload. Existing call sites (status effects, mutations, traps, etc.)
+        /// continue to work; new code should use the typed overload directly so
+        /// damage attributes propagate.
+        /// </summary>
+        public static void ApplyDamage(Entity target, int amount, Entity source, Zone zone)
+        {
+            ApplyDamage(target, new Damage(amount), source, zone);
+        }
+
+        /// <summary>
+        /// Apply elemental resistances to a damage instance based on the target's
+        /// resistance stats and the damage's type attributes. Mirrors
+        /// <c>XRL.World.Parts.Physics</c>'s resistance loop (lines 3351-3417).
+        ///
+        /// For each elemental type (Acid/Heat/Cold/Electric):
+        ///   • Positive resistance: damage *= (100 − resist) / 100, min 1 if not ≥100%
+        ///   • Negative resistance: damage *= (1 + |resist|/100) — vulnerability
+        ///   • 100% resistance fully absorbs (damage = 0)
+        ///
+        /// If a damage instance carries multiple type attributes (e.g., Cold AND Fire),
+        /// each applicable resistance fires in sequence. The order is fixed (Acid →
+        /// Heat → Cold → Electric) to match Qud's source.
+        /// </summary>
+        private static void ApplyResistances(Entity target, Damage damage)
+        {
+            if (damage.IsAcidDamage())     ApplyResistanceFor(target, damage, "AcidResistance");
+            if (damage.IsHeatDamage())     ApplyResistanceFor(target, damage, "HeatResistance");
+            if (damage.IsColdDamage())     ApplyResistanceFor(target, damage, "ColdResistance");
+            if (damage.IsElectricDamage()) ApplyResistanceFor(target, damage, "ElectricResistance");
+        }
+
+        /// <summary>
+        /// Apply a single resistance stat to a damage instance using Qud's formula.
+        /// </summary>
+        private static void ApplyResistanceFor(Entity target, Damage damage, string resistanceStatName)
+        {
+            if (damage.Amount <= 0) return;
+            int resist = target.GetStatValue(resistanceStatName, 0);
+            if (resist == 0) return;
+
+            if (resist > 0)
+            {
+                // Positive resistance reduces damage proportionally.
+                damage.Amount = (int)(damage.Amount * (100 - resist) / 100f);
+                // Min 1 unless resist is 100%+ (full immunity).
+                if (resist < 100 && damage.Amount < 1)
+                    damage.Amount = 1;
+            }
+            else
+            {
+                // Negative resistance = vulnerability. -50 means +50% damage.
+                damage.Amount += (int)(damage.Amount * (resist / -100f));
             }
         }
 
@@ -473,7 +805,7 @@ namespace CavesOfOoo.Core
             // resolve the zone. Non-spawner handlers (StatusEffectsPart,
             // GivesRepPart) ignore the extra parameter.
             died.SetParameter("Zone", (object)zone);
-            target.FireEvent(died);
+            target.FireEventAndRelease(died);
 
             // M2.3: broadcast the death to nearby Passive NPCs so they can
             // visibly react (wander-pace for 20 turns). Fires AFTER the Died
@@ -483,8 +815,28 @@ namespace CavesOfOoo.Core
             if (zone != null)
                 BroadcastDeathWitnessed(target, killer, zone, WitnessRadius);
 
+            // Capture the death cell BEFORE RemoveEntity so the renderer can
+            // be told to repaint it (corpse/blood splatter glyph, or simply
+            // "entity gone, show what's underneath"). Player death triggers
+            // a full redraw — the death screen UI may stomp arbitrary cells.
+            int? deathX = null, deathY = null;
+            if (zone != null)
+            {
+                var deathCell = zone.GetEntityCell(target);
+                if (deathCell != null)
+                {
+                    deathX = deathCell.X;
+                    deathY = deathCell.Y;
+                }
+            }
+
             if (zone != null)
                 zone.RemoveEntity(target);
+
+            if (target != null && target.HasTag("Player"))
+                ZoneRenderHooks.MarkFullDirty("Death.Player");
+            else if (deathX.HasValue && deathY.HasValue)
+                ZoneRenderHooks.MarkCellDirty(deathX.Value, deathY.Value, "Death");
         }
 
         /// <summary>Chebyshev radius for death-witness broadcast (M2.3).</summary>
@@ -639,8 +991,16 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Check if a combat hit should sever the struck body part.
         /// Only triggers on severable appendages. Chance scales with damage.
+        ///
+        /// Phase H: when the chance roll passes, fires <c>CanBeDismembered</c>
+        /// on the defender. Listeners can VETO by returning false from
+        /// HandleEvent. Mirrors Qud's <c>CanBeDismemberedEvent</c>
+        /// (`IGameSystem.cs:637`).
+        ///
+        /// Test-callable: kept public so unit tests can target the dismember
+        /// probability path directly without going through PerformMeleeAttack.
         /// </summary>
-        private static void CheckCombatDismemberment(Entity defender, Body body,
+        public static void CheckCombatDismemberment(Entity defender, Body body,
             BodyPart hitPart, int damage, Zone zone, Random rng)
         {
             if (!hitPart.IsSeverable()) return;
@@ -658,11 +1018,21 @@ namespace CavesOfOoo.Core
             chance = Math.Min(chance, 50);
 
             int roll = rng.Next(100);
-            if (roll < chance)
-            {
-                body.Dismember(hitPart, zone);
-            }
+            if (roll >= chance) return;  // chance roll failed — no event, no dismember
+
+            // Phase H: fire CanBeDismembered to give listeners a chance to veto.
+            // Vetoing leaves the body part intact even though the chance roll
+            // would otherwise have severed it.
+            var canBeDismembered = GameEvent.New("CanBeDismembered");
+            canBeDismembered.SetParameter("Defender", (object)defender);
+            canBeDismembered.SetParameter("BodyPart", (object)hitPart);
+            canBeDismembered.SetParameter("Damage", damage);
+            if (!defender.FireEventAndRelease(canBeDismembered))
+                return;  // veto — skip the actual dismemberment
+
+            body.Dismember(hitPart, zone);
         }
+
 
         /// <summary>
         /// Tracks a weapon and which body part it's on for multi-weapon combat.

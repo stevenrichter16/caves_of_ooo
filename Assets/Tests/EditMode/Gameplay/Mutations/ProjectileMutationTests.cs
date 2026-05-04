@@ -74,7 +74,12 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(20, secondTarget.GetStatValue("Hitpoints", 20));
             Assert.IsTrue(firstTarget.HasEffect<BurningEffect>());
 
-            var requests = AsciiFxBus.Drain();
+            // Filter out Particle requests — those now include floating
+            // damage numbers emitted from inside CombatSystem.ApplyDamage
+            // (one Particle per digit). The structural assertions below
+            // care only about the Projectile / AuraStart sequence; Particles
+            // are a separate visual concern.
+            var requests = FilterStructural(AsciiFxBus.Drain());
             Assert.AreEqual(2, requests.Count);
             Assert.AreEqual(AsciiFxRequestType.Projectile, requests[0].Type);
             Assert.AreEqual(AsciiFxTheme.Fire, requests[0].Theme);
@@ -107,7 +112,9 @@ namespace CavesOfOoo.Tests
             Assert.Less(firstTarget.GetStatValue("Hitpoints", 20), 20);
             Assert.Less(secondTarget.GetStatValue("Hitpoints", 20), 20);
 
-            var requests = AsciiFxBus.Drain();
+            // Filter out Particle requests (floating damage numbers from
+            // ApplyDamage) — see comment on FireBolt test above.
+            var requests = FilterStructural(AsciiFxBus.Drain());
             Assert.AreEqual(3, requests.Count);
             Assert.AreEqual(AsciiFxRequestType.ChargeOrbit, requests[0].Type);
             Assert.AreEqual(AsciiFxTheme.Arcane, requests[0].Theme);
@@ -186,7 +193,9 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(diagonalNearTarget.HasEffect<StunnedEffect>());
             Assert.IsFalse(farTarget.HasEffect<StunnedEffect>());
 
-            var requests = AsciiFxBus.Drain();
+            // Filter out Particle requests (floating damage numbers from
+            // ApplyDamage) — see comment on FireBolt test above.
+            var requests = FilterStructural(AsciiFxBus.Drain());
             Assert.AreEqual(5, requests.Count);
             Assert.AreEqual(AsciiFxRequestType.ChargeOrbit, requests[0].Type);
             Assert.AreEqual(AsciiFxRequestType.RingWave, requests[1].Type);
@@ -222,13 +231,38 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(primary.HasEffect<StunnedEffect>());
             Assert.IsFalse(firstSecondary.HasEffect<StunnedEffect>());
 
-            var requests = AsciiFxBus.Drain();
+            // Filter out Particle requests (floating damage numbers from
+            // ApplyDamage) — see comment on FireBolt test above.
+            var requests = FilterStructural(AsciiFxBus.Drain());
             Assert.AreEqual(4, requests.Count);
             Assert.AreEqual(AsciiFxRequestType.ChainArc, requests[0].Type);
             Assert.AreEqual(4, requests[0].Path.Count);
             Assert.AreEqual(AsciiFxRequestType.Burst, requests[1].Type);
             Assert.AreEqual(AsciiFxRequestType.Burst, requests[2].Type);
             Assert.AreEqual(AsciiFxRequestType.Burst, requests[3].Type);
+        }
+
+        /// <summary>
+        /// Strip Particle-typed requests from a Drain() result. Particle
+        /// emissions now include the floating damage numbers fired from
+        /// inside CombatSystem.ApplyDamage (one Particle per digit, per hit
+        /// target). The structural FX assertions in this fixture care about
+        /// Projectile / Beam / RingWave / ChainArc / Burst / AuraStart /
+        /// ChargeOrbit — the higher-level animation primitives — not the
+        /// per-target damage-number Particles. Filtering here keeps the
+        /// existing structural assertions stable while letting the new
+        /// damage-number system layer cleanly on top.
+        /// </summary>
+        private static System.Collections.Generic.IList<AsciiFxRequest> FilterStructural(
+            System.Collections.Generic.IList<AsciiFxRequest> requests)
+        {
+            var result = new System.Collections.Generic.List<AsciiFxRequest>(requests.Count);
+            foreach (var r in requests)
+            {
+                if (r.Type == AsciiFxRequestType.Particle) continue;
+                result.Add(r);
+            }
+            return result;
         }
 
         private static Entity CreateCreature(string name, int hp)

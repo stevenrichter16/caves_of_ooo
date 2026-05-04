@@ -127,7 +127,7 @@ namespace CavesOfOoo.Core
                     var openEvent = GameEvent.New("OpenContainer");
                     openEvent.SetParameter("Actor", (object)actor);
                     openEvent.SetParameter("Container", (object)ParentEntity);
-                    actor.FireEvent(openEvent);
+                    actor.FireEventAndRelease(openEvent);
 
                     if (Contents.Count == 0)
                     {

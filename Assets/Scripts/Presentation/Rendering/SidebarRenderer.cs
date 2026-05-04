@@ -29,6 +29,29 @@ namespace CavesOfOoo.Rendering
         private int _maxLogScrollOffsetRows;
         private int _lastLogViewportHeight = -1;
 
+        // === Per-frame redraw gate (perf hot fix) ====================
+        // Profiler showed SidebarRender averaging 220ms/frame even when
+        // nothing changed — the entire sidebar was being cleared and
+        // re-tiled (background block + dividers + text + log entries +
+        // focus + vitals) every LateUpdate. With the play tilemap costing
+        // 0ms (per-cell dirty tracking) the sidebar dominated frame time.
+        //
+        // The fix: track whether any input (snapshot fingerprint, scroll
+        // offset, camera, flash state) has changed since the last render.
+        // If not, return early. Invalidate() forces a redraw next call.
+        // Caller (ZoneRenderer.MarkDirty / MarkCellDirty) already calls
+        // Invalidate on world changes, so combat / movement / damage
+        // already trigger sidebar redraws naturally.
+        private bool _needsRedraw = true;
+        private int _lastSnapshotFingerprint;
+        private float _lastCameraAspect = -1f;
+        private float _lastCameraSize = -1f;
+        private bool _lastFlashActive;
+        private float _lastFlashT;
+        private bool _lastShowedThoughts;
+        private int _lastSidebarWidthChars = -1;
+        private int _lastScrollOffset = -1;
+
         public GameplaySidebarRenderer(Tilemap tilemap, Tilemap backgroundTilemap, Transform gridTransform, float referenceZoom)
         {
             _tilemap = tilemap;
@@ -50,6 +73,7 @@ namespace CavesOfOoo.Rendering
             _cachedOldestCount = -1;
             _cachedLogLines.Clear();
             _visibleLogLines.Clear();
+            _needsRedraw = true;
         }
 
         public void Clear()
@@ -76,6 +100,7 @@ namespace CavesOfOoo.Rendering
                 return false;
 
             _logScrollOffsetRows = next;
+            _needsRedraw = true;
             return true;
         }
 
@@ -87,23 +112,47 @@ namespace CavesOfOoo.Rendering
                 return false;
 
             _logScrollOffsetRows = next;
+            _needsRedraw = true;
             return true;
         }
 
         public void ResetLogScroll()
         {
-            _logScrollOffsetRows = 0;
+            if (_logScrollOffsetRows != 0)
+            {
+                _logScrollOffsetRows = 0;
+                _needsRedraw = true;
+            }
         }
 
         public void Render(SidebarSnapshot snapshot, Camera camera, int sidebarWidthChars, bool flashActive, float flashT)
         {
             using (PerformanceMarkers.Ui.SidebarRender.Auto())
             {
-                PerformanceDiagnostics.RecordSidebarRender();
-                Clear();
-
                 if (_tilemap == null || _backgroundTilemap == null || _gridTransform == null || camera == null || sidebarWidthChars <= 0)
                     return;
+
+                // Per-frame skip: fast path for the common case where
+                // nothing about the sidebar's input changed since last
+                // frame. Saves ~220ms / frame in the steady state because
+                // the full re-tile-the-whole-sidebar pass below is the
+                // single most expensive thing in LateUpdate.
+                int fingerprint = ComputeSnapshotFingerprint(snapshot);
+                bool inputsUnchanged = !_needsRedraw
+                    && fingerprint == _lastSnapshotFingerprint
+                    && Mathf.Approximately(camera.aspect, _lastCameraAspect)
+                    && Mathf.Approximately(camera.orthographicSize, _lastCameraSize)
+                    && flashActive == _lastFlashActive
+                    && Mathf.Approximately(flashT, _lastFlashT)
+                    && (snapshot?.ThoughtEntries != null) == _lastShowedThoughts
+                    && sidebarWidthChars == _lastSidebarWidthChars
+                    && _logScrollOffsetRows == _lastScrollOffset;
+
+                if (inputsUnchanged)
+                    return; // tiles already on the tilemap from a previous frame
+
+                PerformanceDiagnostics.RecordSidebarRender();
+                Clear();
 
                 SidebarCameraMetrics metrics = GameplayViewportLayout.MeasureSidebarCamera(camera, _referenceZoom, sidebarWidthChars);
                 _gridTransform.localScale = new Vector3(metrics.Scale, metrics.Scale, 1f);
@@ -191,6 +240,109 @@ namespace CavesOfOoo.Rendering
             }
 
                 IsVisible = true;
+                _needsRedraw = false;
+                _lastSnapshotFingerprint = fingerprint;
+                _lastCameraAspect = camera.aspect;
+                _lastCameraSize = camera.orthographicSize;
+                _lastFlashActive = flashActive;
+                _lastFlashT = flashT;
+                _lastShowedThoughts = snapshot?.ThoughtEntries != null;
+                _lastSidebarWidthChars = sidebarWidthChars;
+                _lastScrollOffset = _logScrollOffsetRows;
+            }
+        }
+
+        /// <summary>
+        /// Cheap fingerprint over snapshot fields the sidebar visibly
+        /// renders. Catches the common changes (HP/MP tick, focus target
+        /// moved, new log line, vital flicker) so the Render fast-path can
+        /// detect "nothing visibly changed, skip the redraw."
+        ///
+        /// <para>Stable across snapshot rebuilds when nothing changed:
+        /// SidebarStateBuilder is a pure function of inputs, so identical
+        /// inputs always produce identical lists. We hash by content, not
+        /// by reference, since Build allocates fresh string instances.</para>
+        ///
+        /// <para>Not perfectly collision-free; collisions cause skipped
+        /// renders which look like "stale sidebar". The default-FNV-style
+        /// hash mixes well enough that real collisions are rare. Worst
+        /// case: user hits any key (which calls MarkDirty → Invalidate)
+        /// to force a refresh.</para>
+        /// </summary>
+        private static int ComputeSnapshotFingerprint(SidebarSnapshot snapshot)
+        {
+            if (snapshot == null) return 0;
+
+            unchecked
+            {
+                int hash = 17;
+
+                // Vital lines (HP, MP, AV, DV, WT, etc.) change often.
+                if (snapshot.VitalLines != null)
+                {
+                    hash = hash * 31 + snapshot.VitalLines.Count;
+                    for (int i = 0; i < snapshot.VitalLines.Count; i++)
+                    {
+                        var v = snapshot.VitalLines[i];
+                        hash = hash * 31 + (v != null ? v.GetHashCode() : 0);
+                    }
+                }
+
+                // Focus snapshot (hovered cell / creature stats / goal stack).
+                var focus = snapshot.FocusSnapshot;
+                if (focus != null)
+                {
+                    hash = hash * 31 + focus.X;
+                    hash = hash * 31 + focus.Y;
+                    hash = hash * 31 + (focus.Header != null ? focus.Header.GetHashCode() : 0);
+                    hash = hash * 31 + (focus.Summary != null ? focus.Summary.GetHashCode() : 0);
+                    hash = hash * 31 + (focus.LastThought != null ? focus.LastThought.GetHashCode() : 0);
+                    if (focus.DetailLines != null)
+                    {
+                        hash = hash * 31 + focus.DetailLines.Count;
+                        for (int i = 0; i < focus.DetailLines.Count; i++)
+                            hash = hash * 31 + (focus.DetailLines[i] != null ? focus.DetailLines[i].GetHashCode() : 0);
+                    }
+                    if (focus.GoalStackLines != null)
+                    {
+                        hash = hash * 31 + focus.GoalStackLines.Count;
+                        for (int i = 0; i < focus.GoalStackLines.Count; i++)
+                            hash = hash * 31 + (focus.GoalStackLines[i] != null ? focus.GoalStackLines[i].GetHashCode() : 0);
+                    }
+                }
+
+                // Log entries — newest-serial + count + text covers
+                // insert, dedupe-stack-grew, and edit-in-place changes.
+                // SidebarLogEntry is a struct so no null check needed.
+                if (snapshot.LogEntriesNewestFirst != null)
+                {
+                    hash = hash * 31 + snapshot.LogEntriesNewestFirst.Count;
+                    for (int i = 0; i < snapshot.LogEntriesNewestFirst.Count; i++)
+                    {
+                        var e = snapshot.LogEntriesNewestFirst[i];
+                        hash = hash * 31 + e.NewestSerial;
+                        hash = hash * 31 + e.Count;
+                        hash = hash * 31 + (e.Text != null ? e.Text.GetHashCode() : 0);
+                    }
+                }
+
+                // Thought-mode entries (Phase 10 't' overlay).
+                // SidebarThoughtEntry is a readonly struct.
+                if (snapshot.ThoughtEntries != null)
+                {
+                    hash = hash * 31 + snapshot.ThoughtEntries.Count;
+                    for (int i = 0; i < snapshot.ThoughtEntries.Count; i++)
+                    {
+                        var t = snapshot.ThoughtEntries[i];
+                        hash = hash * 31 + (t.Name != null ? t.Name.GetHashCode() : 0);
+                        hash = hash * 31 + (t.Thought != null ? t.Thought.GetHashCode() : 0);
+                    }
+                }
+
+                // Status / weather text shown above the sidebar log.
+                hash = hash * 31 + (snapshot.StatusText != null ? snapshot.StatusText.GetHashCode() : 0);
+
+                return hash;
             }
         }
 

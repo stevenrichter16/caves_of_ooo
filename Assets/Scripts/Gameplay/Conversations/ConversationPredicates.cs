@@ -264,6 +264,66 @@ namespace CavesOfOoo.Core
                 if (kp == null) return false;
                 return kp.Knows(arg.Substring(0, colon), minTier);
             });
+
+            // ── QS.2 quest predicates ────────────────────────────────────
+            // Per Docs/QUEST-SYSTEM.md. All read from the StoryletPart
+            // singleton. If the storylet system isn't bootstrapped yet
+            // (StoryletPart.Current == null), every predicate fails closed.
+
+            // IfQuestActive(questId) — is this quest currently in
+            // StoryletPart.Current's _quests dict?
+            Register("IfQuestActive", (speaker, listener, arg) =>
+                CavesOfOoo.Storylets.StoryletPart.Current != null
+                && CavesOfOoo.Storylets.StoryletPart.Current.IsQuestActive(arg));
+
+            // IfQuestCompleted(questId) — is this quest in the
+            // _completedQuests set? (Disjoint from active.)
+            Register("IfQuestCompleted", (speaker, listener, arg) =>
+                CavesOfOoo.Storylets.StoryletPart.Current != null
+                && CavesOfOoo.Storylets.StoryletPart.Current.IsQuestCompleted(arg));
+
+            // IfQuestNotStarted(questId) — true iff the player has
+            // never started OR completed this quest. NOT the same as
+            // !IfQuestActive (which would be true for completed quests
+            // too). Designed so quest-givers can hide "[Take this
+            // quest]" choices once the player either has it active OR
+            // has already completed it.
+            Register("IfQuestNotStarted", (speaker, listener, arg) =>
+            {
+                var sp = CavesOfOoo.Storylets.StoryletPart.Current;
+                if (sp == null) return true;  // pre-bootstrap = nothing started
+                return !sp.IsQuestActive(arg) && !sp.IsQuestCompleted(arg);
+            });
+
+            // IfQuestStage(questId:stageRef) — true iff quest is active
+            // AND its current stage matches `stageRef`. stageRef can be
+            // either a numeric stage index ("0", "1") or a string
+            // matching QuestStageData.ID. The stage-ID lookup requires
+            // resolving the storylet's QuestData via StoryletRegistry.
+            Register("IfQuestStage", (speaker, listener, arg) =>
+            {
+                if (string.IsNullOrEmpty(arg)) return false;
+                int colon = arg.IndexOf(':');
+                if (colon < 0) return false;
+                string questId = arg.Substring(0, colon);
+                string stageRef = arg.Substring(colon + 1);
+
+                var sp = CavesOfOoo.Storylets.StoryletPart.Current;
+                if (sp == null) return false;
+                var state = sp.GetQuestState(questId);
+                if (state == null) return false;
+
+                // Numeric stage index match (fastest path).
+                if (int.TryParse(stageRef, out int idx))
+                    return state.CurrentStageIndex == idx;
+
+                // String stage-ID match — resolve via registry.
+                var quest = CavesOfOoo.Storylets.StoryletRegistry.FindQuest(questId);
+                if (quest == null) return false;
+                if (state.CurrentStageIndex < 0
+                    || state.CurrentStageIndex >= quest.Stages.Count) return false;
+                return quest.Stages[state.CurrentStageIndex].ID == stageRef;
+            });
         }
 
         private static string ResolveSettlementId(Entity speaker)

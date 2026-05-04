@@ -27,7 +27,7 @@ namespace CavesOfOoo.Core
             if (ParentEntity.HasEffect<SittingEffect>())
             {
                 // 1a. Hostile in sight → stand up and fight.
-                Entity sittingHostile = AIHelpers.FindNearestHostile(ParentEntity, CurrentZone, ParentBrain.SightRadius);
+                Entity sittingHostile = AIHelpers.FindNearestHostileCached(ParentEntity, CurrentZone, ParentBrain.SightRadius, ParentBrain);
                 if (sittingHostile != null)
                 {
                     ParentEntity.RemoveEffect<SittingEffect>();
@@ -64,7 +64,7 @@ namespace CavesOfOoo.Core
             }
 
             // 2. Scan for hostiles
-            Entity hostile = AIHelpers.FindNearestHostile(ParentEntity, CurrentZone, ParentBrain.SightRadius);
+            Entity hostile = AIHelpers.FindNearestHostileCached(ParentEntity, CurrentZone, ParentBrain.SightRadius, ParentBrain);
             if (hostile != null)
             {
                 // Passive creatures do not initiate combat proactively. They WILL

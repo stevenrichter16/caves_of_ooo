@@ -50,6 +50,12 @@ namespace CavesOfOoo.Core
             int roll = DiceRoller.Roll(20, Rng) + toughMod;
             if (roll >= SaveTarget)
             {
+                // Mark the cause so the EffectRemoved event downstream
+                // can distinguish "saved out" from "duration expired" or
+                // "external dispel". Listeners read the Cause parameter
+                // from the event (StatusEffectsPart.SendRemoved). See
+                // Effect.LastRemovalCause docstring.
+                LastRemovalCause = CAUSE_SAVE_SUCCEEDED;
                 Duration = 0; // will be cleaned up
                 return;
             }

@@ -564,6 +564,22 @@ namespace CavesOfOoo.Rendering
         /// <summary>
         /// Get a narrow text tile for message rendering.
         /// Half the width of game tiles for a thinner, smaller look.
+        ///
+        /// <para><b>Cache-miss behavior (perf bug fix).</b> Atlas only
+        /// contains chars 0–255 (CP437 range). For Unicode chars outside
+        /// that range (e.g. <c>═</c> U+2550, <c>•</c> U+2022), this
+        /// returns the <c>?</c> fallback. We do NOT regenerate the atlas
+        /// on miss — earlier code did that, which cost ~2ms per call and
+        /// turned a 40-char turn divider into a 100ms+ sidebar render
+        /// stutter every turn during combat. Profiler showed
+        /// <c>DrawChar('═')</c> at 1.89ms each; <c>DrawChar('A')</c> at
+        /// 0.001ms each — a 1900× spread caused entirely by this miss
+        /// path. After this fix, both paths are the same speed.</para>
+        ///
+        /// <para>Callers that need a Unicode glyph rendered correctly
+        /// should map it to its CP437 equivalent before passing in
+        /// (e.g. <c>'═'</c> → <c>(char)0xCD</c>, <c>'─'</c> →
+        /// <c>(char)0xC4</c>).</para>
         /// </summary>
         public static Tile GetTextTile(char c)
         {
@@ -573,10 +589,10 @@ namespace CavesOfOoo.Rendering
             if (_textTileCache.TryGetValue(c, out Tile tile) && tile != null && tile.sprite != null)
                 return tile;
 
-            GenerateTextTileset();
-            if (_textTileCache.TryGetValue(c, out tile) && tile != null && tile.sprite != null)
-                return tile;
-
+            // Char not in atlas (typically a non-CP437 Unicode codepoint).
+            // Return the '?' fallback. Do NOT regenerate the atlas — the
+            // miss is permanent for that char until the atlas is rebuilt
+            // explicitly via ClearCache().
             _textTileCache.TryGetValue('?', out tile);
             return tile;
         }

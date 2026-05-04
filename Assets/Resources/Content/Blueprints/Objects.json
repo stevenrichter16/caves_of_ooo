@@ -83,7 +83,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "4" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "MaxStrengthBonus", "Value": "3" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "MaxStrengthBonus", "Value": "3" }, { "Key": "Attributes", "Value": "Piercing" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "10" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Steel" },
@@ -167,7 +167,8 @@
         { "Name": "Strength", "Value": 16 },
         { "Name": "Agility", "Value": 14 },
         { "Name": "Toughness", "Value": 14 },
-        { "Name": "XPValue", "Value": 15 }
+        { "Name": "XPValue", "Value": 15 },
+        { "Name": "ColdResistance", "Value": 25, "Min": -100, "Max": 200 }
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Snapjaws" },
@@ -247,7 +248,9 @@
         { "Name": "Agility", "Value": 18 },
         { "Name": "Toughness", "Value": 18 },
         { "Name": "Level", "Value": 1, "Min": 1, "Max": 50 },
-        { "Name": "Experience", "Value": 0, "Min": 0, "Max": 999999 }
+        { "Name": "Experience", "Value": 0, "Min": 0, "Max": 999999 },
+        { "Name": "SP", "Value": 0, "Min": 0, "Max": 999 },
+        { "Name": "DV", "Value": 0, "Min": -50, "Max": 200 }
       ],
       "Tags": [
         { "Key": "Player", "Value": "" },
@@ -385,7 +388,8 @@
         { "Name": "Hitpoints", "Value": 25, "Min": 0, "Max": 25 },
         { "Name": "Strength", "Value": 20 },
         { "Name": "Agility", "Value": 18 },
-        { "Name": "XPValue", "Value": 40 }
+        { "Name": "XPValue", "Value": 40 },
+        { "Name": "ColdResistance", "Value": 50, "Min": -100, "Max": 200 }
       ],
       "Tags": [
         { "Key": "Tier", "Value": "2" }
@@ -505,6 +509,143 @@
           { "Key": "EffectMagnitude", "Value": "1" }
         ]},
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "20" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "AcidTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "acid tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&G" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Message", "Value": "Caustic green liquid hisses against your skin." }] },
+        { "Name": "StatusTonic", "Params": [
+          { "Key": "EffectName", "Value": "Acid" },
+          { "Key": "EffectMagnitude", "Value": "1" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "22" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "LightningTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "lightning tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Message", "Value": "Static crackles across your skin and hair stands on end." }] },
+        { "Name": "StatusTonic", "Params": [
+          { "Key": "EffectName", "Value": "Lightning" },
+          { "Key": "EffectMagnitude", "Value": "1" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "22" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "FrostTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "frost tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Message", "Value": "An ice-cold draught freezes you from the inside." }] },
+        { "Name": "StatusTonic", "Params": [
+          { "Key": "EffectName", "Value": "Frost" },
+          { "Key": "EffectMagnitude", "Value": "1" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "22" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "WaterTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "water tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&B" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Message", "Value": "Cool water soaks through your skin." }] },
+        { "Name": "StatusTonic", "Params": [
+          { "Key": "EffectName", "Value": "Water" },
+          { "Key": "EffectMagnitude", "Value": "1" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "12" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "BleedTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "bleed tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&r" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Message", "Value": "Sharp pain blooms — your wounds reopen." }] },
+        { "Name": "StatusTonic", "Params": [
+          { "Key": "EffectName", "Value": "Bleeding" },
+          { "Key": "EffectDuration", "Value": "12" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "18" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "CharredTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "charred tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Message", "Value": "Bitter ash coats your tongue — your skin hardens against future fire." }] },
+        { "Name": "StatusTonic", "Params": [
+          { "Key": "EffectName", "Value": "Charred" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "30" }] }
       ],
       "Stats": [],
       "Tags": [
@@ -1015,7 +1156,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "8" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8" }, { "Key": "PenBonus", "Value": "2" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8" }, { "Key": "PenBonus", "Value": "2" }, { "Key": "Attributes", "Value": "Cutting LongBlades" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "25" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Steel" },
@@ -1050,7 +1191,7 @@
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "14" }] },
         { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
         { "Name": "Handling", "Params": [{ "Key": "GripType", "Value": "TwoHand" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d6" }, { "Key": "PenBonus", "Value": "3" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d6" }, { "Key": "PenBonus", "Value": "3" }, { "Key": "Attributes", "Value": "Cutting Axe" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "40" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Steel" },
@@ -1086,7 +1227,7 @@
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "12" }] },
         { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
         { "Name": "Handling", "Params": [{ "Key": "GripType", "Value": "TwoHand" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d12" }, { "Key": "PenBonus", "Value": "4" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d12" }, { "Key": "PenBonus", "Value": "4" }, { "Key": "Attributes", "Value": "Cutting LongBlades" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "50" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Steel" },
@@ -1159,7 +1300,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "5" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6" }, { "Key": "PenBonus", "Value": "1" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "Attributes", "Value": "Cutting LongBlades" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "15" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Steel" },
@@ -1192,7 +1333,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "10" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8+1" }, { "Key": "PenBonus", "Value": "3" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8+1" }, { "Key": "PenBonus", "Value": "3" }, { "Key": "Attributes", "Value": "Bludgeoning Cudgel" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "20" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Steel" },
@@ -1225,7 +1366,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "7" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6+1" }, { "Key": "PenBonus", "Value": "2" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6+1" }, { "Key": "PenBonus", "Value": "2" }, { "Key": "Attributes", "Value": "Piercing" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "18" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Steel" },
@@ -1258,7 +1399,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "6" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6" }, { "Key": "PenBonus", "Value": "2" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6" }, { "Key": "PenBonus", "Value": "2" }, { "Key": "Attributes", "Value": "Cutting Axe" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "12" }] }
       ],
       "Stats": [
@@ -1281,7 +1422,7 @@
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "14" }] },
         { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
         { "Name": "Handling", "Params": [{ "Key": "GripType", "Value": "TwoHand" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d8" }, { "Key": "PenBonus", "Value": "4" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d8" }, { "Key": "PenBonus", "Value": "4" }, { "Key": "Attributes", "Value": "Cutting LongBlades" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "65" }] }
       ],
       "Stats": [
@@ -1303,7 +1444,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "8" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4+2" }, { "Key": "PenBonus", "Value": "2" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4+2" }, { "Key": "PenBonus", "Value": "2" }, { "Key": "Attributes", "Value": "Bludgeoning" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "8" }] }
       ],
       "Stats": [
@@ -1491,6 +1632,30 @@
       ]
     },
     {
+      "Name": "StoneskinTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "stoneskin tonic" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Message", "Value": "Your skin hardens to stone." }] },
+        { "Name": "StatusTonic", "Params": [
+          { "Key": "EffectName", "Value": "Stoneskin" },
+          { "Key": "EffectDuration", "Value": "30" },
+          { "Key": "EffectMagnitude", "Value": "2" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "25" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
       "Name": "Mushroom",
       "Inherits": "FoodItem",
       "Parts": [
@@ -1560,6 +1725,19 @@
       ],
       "IntProps": [
         { "Key": "Drams", "Value": 100 }
+      ]
+    },
+    {
+      "Name": "Marceline",
+      "Inherits": "Villager",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Marceline" },
+          { "Key": "RenderString", "Value": "M" },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Marceline_Quest" }] }
       ]
     },
     {
@@ -1752,7 +1930,7 @@
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "16" }] },
         { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
         { "Name": "Handling", "Params": [{ "Key": "GripType", "Value": "TwoHand" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d4+1" }, { "Key": "PenBonus", "Value": "5" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d4+1" }, { "Key": "PenBonus", "Value": "5" }, { "Key": "Attributes", "Value": "Bludgeoning Cudgel" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "45" }] }
       ],
       "Stats": [
@@ -1775,7 +1953,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "3" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4+1" }, { "Key": "PenBonus", "Value": "1" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4+1" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "Attributes", "Value": "Piercing" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "12" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Bone" },
@@ -1807,7 +1985,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "9" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6" }, { "Key": "PenBonus", "Value": "2" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6" }, { "Key": "PenBonus", "Value": "2" }, { "Key": "Attributes", "Value": "Bludgeoning Cudgel" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "6" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Steel" },
@@ -1840,7 +2018,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "7" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8+1" }, { "Key": "PenBonus", "Value": "3" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8+1" }, { "Key": "PenBonus", "Value": "3" }, { "Key": "Attributes", "Value": "Cutting LongBlades" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "35" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Steel" },
@@ -1864,6 +2042,250 @@
       ]
     },
     {
+      "Name": "FlamingSword",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "flaming sword" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "6" }] },
+        { "Name": "MeleeWeapon", "Params": [
+          { "Key": "BaseDamage", "Value": "1d8" },
+          { "Key": "PenBonus", "Value": "2" },
+          { "Key": "Attributes", "Value": "Cutting Fire LongBlades" },
+          { "Key": "OnHitEffectsRaw", "Value": "Burning,30,,5,1.0" }
+        ]},
+        { "Name": "LightSource", "Params": [
+          { "Key": "Radius", "Value": "4" },
+          { "Key": "LightColor", "Value": "&R" },
+          { "Key": "Intensity", "Value": "0.8" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "40" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor,Fire" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "IceSword",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "ice sword" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "6" }] },
+        { "Name": "MeleeWeapon", "Params": [
+          { "Key": "BaseDamage", "Value": "1d8" },
+          { "Key": "PenBonus", "Value": "2" },
+          { "Key": "Attributes", "Value": "Cutting Ice LongBlades" },
+          { "Key": "OnHitEffectsRaw", "Value": "Frozen,30,,3,1.0" }
+        ]},
+        { "Name": "LightSource", "Params": [
+          { "Key": "Radius", "Value": "4" },
+          { "Key": "LightColor", "Value": "&C" },
+          { "Key": "Intensity", "Value": "0.7" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "40" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor,Ice" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "CryoLance",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "cryolance" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "5" }] },
+        { "Name": "MeleeWeapon", "Params": [
+          { "Key": "BaseDamage", "Value": "1d6+2" },
+          { "Key": "PenBonus", "Value": "3" },
+          { "Key": "Attributes", "Value": "Piercing Ice LongBlades" },
+          { "Key": "OnHitEffectsRaw", "Value": "Frozen,30,,3,1.0" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "45" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor,Ice" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 9, "Min": 0, "Max": 9 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "EmberSpear",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "ember spear" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "6" }] },
+        { "Name": "MeleeWeapon", "Params": [
+          { "Key": "BaseDamage", "Value": "1d6+1" },
+          { "Key": "PenBonus", "Value": "2" },
+          { "Key": "Attributes", "Value": "Piercing Fire" },
+          { "Key": "OnHitEffectsRaw", "Value": "Burning,30,,5,1.0" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "35" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor,Fire" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "AcidicDagger",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "acidic dagger" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&G" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "4" }] },
+        { "Name": "MeleeWeapon", "Params": [
+          { "Key": "BaseDamage", "Value": "1d4+1" },
+          { "Key": "PenBonus", "Value": "1" },
+          { "Key": "MaxStrengthBonus", "Value": "3" },
+          { "Key": "Attributes", "Value": "Piercing Acid" },
+          { "Key": "OnHitEffectsRaw", "Value": "Acidic,30,,5,1.0" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "30" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.8" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Acid" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 5, "Min": 0, "Max": 5 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "ThunderHammer",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "thunder hammer" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "12" }] },
+        { "Name": "MeleeWeapon", "Params": [
+          { "Key": "BaseDamage", "Value": "1d8+1" },
+          { "Key": "PenBonus", "Value": "3" },
+          { "Key": "Attributes", "Value": "Bludgeoning Lightning Cudgel" },
+          { "Key": "OnHitEffectsRaw", "Value": "Electrified,30,,3,1.0" }
+        ]},
+        { "Name": "LightSource", "Params": [
+          { "Key": "Radius", "Value": "3" },
+          { "Key": "LightColor", "Value": "&Y" },
+          { "Key": "Intensity", "Value": "0.6" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "50" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Steel" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "Conductivity", "Value": "0.95" },
+          { "Key": "Brittleness", "Value": "0.2" },
+          { "Key": "MaterialTagsRaw", "Value": "Metal,Conductor,Lightning" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "1500" },
+          { "Key": "HeatCapacity", "Value": "0.5" },
+          { "Key": "BrittleTemperature", "Value": "-150" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
       "Name": "EchoKnife",
       "Inherits": "MeleeWeapon",
       "Parts": [
@@ -1874,7 +2296,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "3" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4+3" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "HitBonus", "Value": "3" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4+3" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "HitBonus", "Value": "3" }, { "Key": "Attributes", "Value": "Cutting Sonic" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "30" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Crystal" },
@@ -1907,7 +2329,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "5" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6+2" }, { "Key": "PenBonus", "Value": "2" }, { "Key": "HitBonus", "Value": "2" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6+2" }, { "Key": "PenBonus", "Value": "2" }, { "Key": "HitBonus", "Value": "2" }, { "Key": "Attributes", "Value": "Piercing" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "40" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Crystal" },
@@ -1940,7 +2362,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "8" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8" }, { "Key": "PenBonus", "Value": "3" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8" }, { "Key": "PenBonus", "Value": "3" }, { "Key": "Attributes", "Value": "Cutting LongBlades" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "38" }] }
       ],
       "Stats": [
@@ -1962,7 +2384,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4+2" }, { "Key": "PenBonus", "Value": "2" }, { "Key": "HitBonus", "Value": "3" }, { "Key": "MaxStrengthBonus", "Value": "2" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4+2" }, { "Key": "PenBonus", "Value": "2" }, { "Key": "HitBonus", "Value": "3" }, { "Key": "MaxStrengthBonus", "Value": "2" }, { "Key": "Attributes", "Value": "Piercing" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "28" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Glass" },
@@ -1997,7 +2419,7 @@
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "18" }] },
         { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
         { "Name": "Handling", "Params": [{ "Key": "GripType", "Value": "TwoHand" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d6+2" }, { "Key": "PenBonus", "Value": "5" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d6+2" }, { "Key": "PenBonus", "Value": "5" }, { "Key": "Attributes", "Value": "Bludgeoning Cudgel Acid" }, { "Key": "OnHitEffectsRaw", "Value": "Acidic,40,,5,1.5" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "55" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Steel" },
@@ -2034,7 +2456,7 @@
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "11" }] },
         { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }, { "Key": "UsesSlots", "Value": "Hand,Hand" }] },
         { "Name": "Handling", "Params": [{ "Key": "GripType", "Value": "TwoHand" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d6+1" }, { "Key": "PenBonus", "Value": "4" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "2d6+1" }, { "Key": "PenBonus", "Value": "4" }, { "Key": "Attributes", "Value": "Cutting Glaive" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "60" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Wood" },
@@ -2067,7 +2489,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "6" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d10+1" }, { "Key": "PenBonus", "Value": "4" }, { "Key": "HitBonus", "Value": "1" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d10+1" }, { "Key": "PenBonus", "Value": "4" }, { "Key": "HitBonus", "Value": "1" }, { "Key": "Attributes", "Value": "Cutting LongBlades" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "70" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Steel" },
@@ -2293,7 +2715,8 @@
       "Stats": [
         { "Name": "Hitpoints", "Value": 18, "Min": 0, "Max": 18 },
         { "Name": "Strength", "Value": 12 },
-        { "Name": "Speed", "Value": 70 }
+        { "Name": "Speed", "Value": 70 },
+        { "Name": "AcidResistance", "Value": 50, "Min": -100, "Max": 200 }
       ],
       "Tags": [
         { "Key": "Tier", "Value": "1" },
@@ -2373,7 +2796,8 @@
         { "Name": "Strength", "Value": 18 },
         { "Name": "Agility", "Value": 12 },
         { "Name": "Speed", "Value": 90 },
-        { "Name": "XPValue", "Value": 20 }
+        { "Name": "XPValue", "Value": 20 },
+        { "Name": "HeatResistance", "Value": 50, "Min": -100, "Max": 200 }
       ],
       "Tags": [
         { "Key": "Tier", "Value": "1" },
@@ -2405,7 +2829,8 @@
       "Stats": [
         { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 },
         { "Name": "Agility", "Value": 16 },
-        { "Name": "Speed", "Value": 110 }
+        { "Name": "Speed", "Value": 110 },
+        { "Name": "AcidResistance", "Value": -50, "Min": -100, "Max": 200 }
       ],
       "Tags": [
         { "Key": "Tier", "Value": "1" },
@@ -2627,7 +3052,8 @@
         { "Name": "Hitpoints", "Value": 50, "Min": 0, "Max": 50 },
         { "Name": "Strength", "Value": 26 },
         { "Name": "Toughness", "Value": 24 },
-        { "Name": "Speed", "Value": 60 }
+        { "Name": "Speed", "Value": 60 },
+        { "Name": "ElectricResistance", "Value": 50, "Min": -100, "Max": 200 }
       ],
       "Tags": [
         { "Key": "Tier", "Value": "3" },
@@ -2775,7 +3201,8 @@
         { "Name": "Strength", "Value": 18 },
         { "Name": "Agility", "Value": 8 },
         { "Name": "Speed", "Value": 80 },
-        { "Name": "XPValue", "Value": 35 }
+        { "Name": "XPValue", "Value": 35 },
+        { "Name": "ElectricResistance", "Value": -50, "Min": -100, "Max": 200 }
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Palimpsest" },
@@ -3037,11 +3464,51 @@
         { "Name": "Strength", "Value": 16 },
         { "Name": "Agility", "Value": 8 },
         { "Name": "Speed", "Value": 70 },
-        { "Name": "XPValue", "Value": 35 }
+        { "Name": "XPValue", "Value": 35 },
+        { "Name": "ColdResistance", "Value": 100, "Min": -100, "Max": 200 },
+        { "Name": "HeatResistance", "Value": -50, "Min": -100, "Max": 200 }
       ],
       "Tags": [
         { "Key": "Tier", "Value": "2" },
         { "Key": "BloodColor", "Value": "&C" }
+      ]
+    },
+    {
+      "Name": "CharredHusk",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "charred husk" },
+          { "Key": "RenderString", "Value": "H" },
+          { "Key": "ColorString", "Value": "&r" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "CharredFlesh" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "MaterialTagsRaw", "Value": "Charred,Undead,Brittle" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "Temperature", "Value": "120" },
+          { "Key": "FlameTemperature", "Value": "9000" },
+          { "Key": "FreezeTemperature", "Value": "-50" },
+          { "Key": "BrittleTemperature", "Value": "-100" },
+          { "Key": "HeatCapacity", "Value": "2.0" },
+          { "Key": "AmbientDecayRate", "Value": "0.0" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 24, "Min": 0, "Max": 24 },
+        { "Name": "Strength", "Value": 16 },
+        { "Name": "Agility", "Value": 8 },
+        { "Name": "Speed", "Value": 70 },
+        { "Name": "XPValue", "Value": 35 },
+        { "Name": "HeatResistance", "Value": 100, "Min": -100, "Max": 200 },
+        { "Name": "ColdResistance", "Value": -50, "Min": -100, "Max": 200 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "BloodColor", "Value": "&K" }
       ]
     },
 
@@ -3850,6 +4317,64 @@
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
         { "Name": "Container", "Params": [{ "Key": "MaxItems", "Value": "10" }] }
+      ]
+    },
+    {
+      "Name": "LockedDoor",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "locked door" },
+          { "Key": "RenderString", "Value": "+" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Lock", "Params": [
+          { "Key": "KeyId", "Value": "iron" },
+          { "Key": "IsLocked", "Value": "true" }
+        ]}
+      ]
+    },
+    {
+      "Name": "LockedChest",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "locked chest" },
+          { "Key": "RenderString", "Value": "=" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Lock", "Params": [
+          { "Key": "KeyId", "Value": "iron" },
+          { "Key": "IsLocked", "Value": "true" }
+        ]},
+        { "Name": "Container", "Params": [{ "Key": "MaxItems", "Value": "10" }] }
+      ]
+    },
+    {
+      "Name": "IronKey",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "iron key" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Takeable", "Value": "true" },
+          { "Key": "Weight", "Value": "1" }
+        ]},
+        { "Name": "Key", "Params": [
+          { "Key": "KeyId", "Value": "iron" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "5" }] }
+      ],
+      "Tags": [
+        { "Key": "NoTrade", "Value": "" }
       ]
     },
     {
@@ -4678,6 +5203,98 @@
       ],
       "Tags": [
         { "Key": "Rune", "Value": "" }
+      ]
+    },
+    {
+      "Name": "SpikeTrap",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "spike trap" },
+          { "Key": "RenderString", "Value": "^" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" }
+        ]},
+        { "Name": "SpikeTrapTrigger", "Params": [
+          { "Key": "Damage", "Value": "12" },
+          { "Key": "ConsumeOnTrigger", "Value": "true" }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Trap", "Value": "" }
+      ]
+    },
+    {
+      "Name": "FireTrap",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "fire trap" },
+          { "Key": "RenderString", "Value": "^" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" }
+        ]},
+        { "Name": "FireTrapTrigger", "Params": [
+          { "Key": "Damage", "Value": "8" },
+          { "Key": "BurnIntensity", "Value": "1.5" },
+          { "Key": "ConsumeOnTrigger", "Value": "true" }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Trap", "Value": "" }
+      ]
+    },
+    {
+      "Name": "BearTrap",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "bear trap" },
+          { "Key": "RenderString", "Value": "^" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" }
+        ]},
+        { "Name": "BearTrapTrigger", "Params": [
+          { "Key": "Damage", "Value": "15" },
+          { "Key": "StunDuration", "Value": "1" },
+          { "Key": "BleedSaveTarget", "Value": "14" },
+          { "Key": "BleedDice", "Value": "1d2" },
+          { "Key": "ConsumeOnTrigger", "Value": "true" }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Trap", "Value": "" }
+      ]
+    },
+    {
+      "Name": "PressurePlate",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "pressure plate" },
+          { "Key": "RenderString", "Value": "^" },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" }
+        ]},
+        { "Name": "PressurePlateTrigger", "Params": [
+          { "Key": "Damage", "Value": "8" },
+          { "Key": "DamageAttribute", "Value": "Bludgeoning" }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Trap", "Value": "" }
       ]
     },
     {

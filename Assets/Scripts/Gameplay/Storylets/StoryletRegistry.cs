@@ -77,6 +77,22 @@ namespace CavesOfOoo.Storylets
             return _storylets.TryGetValue(id, out var data) ? data : null;
         }
 
+        /// <summary>
+        /// QS.2 (Docs/QUEST-SYSTEM.md): convenience accessor for the
+        /// `Quest` sub-object of a storylet, when the caller knows it
+        /// has one. Returns null if the storylet doesn't exist OR has
+        /// no Quest sub-object (i.e. is a one-shot storylet, not a
+        /// quest). Used by the IfQuestStage predicate to resolve
+        /// "questId:stageId" string lookups.
+        /// </summary>
+        public static QuestData FindQuest(string questId)
+        {
+            EnsureLoaded();
+            if (string.IsNullOrEmpty(questId)) return null;
+            if (!_storylets.TryGetValue(questId, out var data)) return null;
+            return data.IsQuest ? data.Quest : null;
+        }
+
         public static List<StoryletData> GetAll()
         {
             EnsureLoaded();

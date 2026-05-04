@@ -760,7 +760,12 @@ namespace CavesOfOoo.Rendering
             TurnManager.EndTurn(PlayerEntity, CurrentZone);
             TurnManager.ProcessUntilPlayerTurn();
             MaterialSimSystem.TickMaterialEntities(CurrentZone);
-            RequestZoneRedraw("Turn.Advance");
+            // No `RequestZoneRedraw("Turn.Advance")` — the per-cell dirty
+            // hooks (MovementSystem, CombatSystem) flag exactly the cells
+            // that changed during the turn cycle. Player movement upgrades
+            // to full-zone dirty inside DirtyForMove, so FOV-changing turns
+            // still trigger RenderZone. Avoiding the unconditional full
+            // redraw is the bulk of Tier-A Fix #2's perf win.
         }
 
         private void TryUseStairs(bool goingDown)
@@ -2050,7 +2055,7 @@ namespace CavesOfOoo.Rendering
             var e = GameEvent.New("InventoryAction");
             e.SetParameter("Command", action.Command);
             e.SetParameter("Actor", (object)PlayerEntity);
-            target.FireEvent(e);
+            target.FireEventAndRelease(e);
 
             // If Chat started a conversation, open the dialogue UI —
             // ConversationPart doesn't open it itself.
@@ -2599,7 +2604,10 @@ namespace CavesOfOoo.Rendering
 
             PlayerEntity.FireEvent(cmd);
 
+            // Capture all post-fire reads before releasing the rented event.
             bool handled = cmd.Handled;
+            bool blocksTurnAdvance = cmd.GetParameter<bool>("BlocksTurnAdvance");
+            cmd.Release();
             _pendingAbility = null;
             _inputState = InputState.Normal;
 
@@ -2611,7 +2619,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (cmd.GetParameter<bool>("BlocksTurnAdvance"))
+            if (blocksTurnAdvance)
             {
                 _inputState = InputState.WaitingForFxResolution;
                 _lastMoveTime = Time.time;

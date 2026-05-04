@@ -83,6 +83,12 @@ namespace CavesOfOoo.Core
             int oldY = currentCell.Y;
             zone.MoveEntity(entity, newX, newY);
 
+            // Notify renderer: old cell needs re-render (entity gone) and
+            // new cell needs re-render (entity arrived). For the player we
+            // also need a full redraw because FOV / lightmap visibility
+            // change can affect distant cells — see DirtyForMove below.
+            DirtyForMove(entity, oldX, oldY, newX, newY);
+
             // Fire AfterMove event
             var afterMove = GameEvent.New("AfterMove");
             afterMove.SetParameter("Actor", (object)entity);
@@ -130,6 +136,8 @@ namespace CavesOfOoo.Core
             int oldY = currentCell?.Y ?? -1;
             zone.MoveEntity(entity, x, y);
 
+            DirtyForMove(entity, oldX, oldY, x, y);
+
             // Fire AfterMove event
             var afterMove = GameEvent.New("AfterMove");
             afterMove.SetParameter("Actor", (object)entity);
@@ -143,6 +151,30 @@ namespace CavesOfOoo.Core
             FireCellEnteredEvents(entity, targetCell);
 
             return true;
+        }
+
+        /// <summary>
+        /// Notify the renderer that an entity moved. For the player, we
+        /// upgrade to a full-zone dirty flag because FOV / lightmap changes
+        /// when the player moves can flip visibility of arbitrary cells —
+        /// per-cell tracking can't catch that. Other entities mark only
+        /// their old + new cell.
+        ///
+        /// <para>Cell coords of -1 (no source cell) are dropped silently —
+        /// MarkCellDirty bounds-checks anyway, but skipping the call avoids
+        /// a no-op delegate dispatch on the rare "first placement" path.</para>
+        /// </summary>
+        private static void DirtyForMove(Entity entity, int oldX, int oldY, int newX, int newY)
+        {
+            if (entity != null && entity.HasTag("Player"))
+            {
+                ZoneRenderHooks.MarkFullDirty("Move.Player");
+                return;
+            }
+
+            if (oldX >= 0 && oldY >= 0)
+                ZoneRenderHooks.MarkCellDirty(oldX, oldY, "Move.Old");
+            ZoneRenderHooks.MarkCellDirty(newX, newY, "Move.New");
         }
 
         /// <summary>

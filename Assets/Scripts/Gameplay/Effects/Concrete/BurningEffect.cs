@@ -43,6 +43,40 @@ namespace CavesOfOoo.Core
             if (fuel == null)
                 Duration = System.Math.Max(1, (int)System.Math.Ceiling(Intensity * 3));
 
+            // Heat the entity just above FlameTemperature so it survives
+            // a few decay ticks. Without this, ThermalPart.HandleEndTurn
+            // immediately extinguishes the just-applied effect because
+            // the entity's Temperature is at ambient (~25), well below
+            // FlameTemp — the entity has the BurningEffect but isn't
+            // actually hot, so ThermalPart's "if you're not at flame
+            // temp, you're not burning" invariant kicks in and removes
+            // it.
+            //
+            // The canonical ignition path goes through ThermalPart.TryIgnite
+            // (heat → cross flame threshold → apply Burning), which leaves
+            // Temperature ≥ FlameTemp by definition. Mid-action paths
+            // (FireTrap, FlamingSword on-hit, ConflagrationMutation) skip
+            // the heating step and apply BurningEffect directly. This
+            // block backfills the missing heat.
+            //
+            // Buffer of +50 chosen to:
+            //   - Survive ~1-2 decay ticks at typical AmbientDecayRate
+            //     0.02-0.05 (decay drops Temp by ~10-25 per tick at
+            //     FlameTemp=500).
+            //   - Not exceed reasonable source temperatures, so it
+            //     doesn't break asymptotic-convergence invariants in
+            //     tests that fire radiant heat to a 500-joule source.
+            //   - Combined with BurningEffect.OnTurnStart's self-heat
+            //     (Intensity * 20 joules), keeps the entity hot enough
+            //     to support combustion for the effect's natural Duration.
+            var thermal = target.GetPart<ThermalPart>();
+            if (thermal != null)
+            {
+                float minTemp = thermal.FlameTemperature + 50f;
+                if (thermal.Temperature < minTemp)
+                    thermal.Temperature = minTemp;
+            }
+
             MessageLog.Add(target.GetDisplayName() + " catches fire!");
         }
 
@@ -88,12 +122,26 @@ namespace CavesOfOoo.Core
                 }
             }
 
-            // 2. Deal damage based on intensity tier
-            int damage = RollDamage();
-            if (damage > 0)
+            // 2. Deal damage based on intensity tier. Use the typed-Damage
+            // overload with the "Fire" attribute so HeatResistance routes
+            // correctly (the int overload strips attributes — pre-fix bug
+            // where fire-immune creatures still burned). Mirrors the on-hit
+            // weapon path which already routes through ApplyResistances.
+            //
+            // Log the POST-resistance amount: ApplyDamage mutates
+            // fireDmg.Amount in place via ApplyResistances (CombatSystem.cs
+            // ~line 701), so reading fireDmg.Amount after the call gives
+            // the actually-applied damage. Logging the pre-resistance roll
+            // (the prior bug) misled players into thinking resistance
+            // wasn't firing — e.g., "takes 2 fire damage" appeared on a
+            // HR=50 target where the actual HP delta was 1.
+            int rolledAmount = RollDamage();
+            if (rolledAmount > 0)
             {
-                CombatSystem.ApplyDamage(target, damage, IgnitionSource, zone);
-                MessageLog.Add(target.GetDisplayName() + " takes " + damage + " fire damage.");
+                var fireDmg = new Damage(rolledAmount);
+                fireDmg.AddAttribute("Fire");
+                CombatSystem.ApplyDamage(target, fireDmg, IgnitionSource, zone);
+                MessageLog.Add(target.GetDisplayName() + " takes " + fireDmg.Amount + " fire damage.");
             }
 
             // 3. Emit heat to self (small reinforcement keeping temperature up)

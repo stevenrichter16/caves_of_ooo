@@ -153,6 +153,100 @@ Fix every 🟡 and 🔴 pre-commit. Defer 🧪/⚪ with a note in the doc.
 
 ---
 
+## Post-implementation cold-eye review (MANDATORY after every multi-commit feature)
+
+**Tests passing is necessary but not sufficient.** Green tests prove
+the code does what the test asserts; they don't prove the code is
+internally consistent, symmetric with neighbors, or matches the
+docs. Always run the four-question pass below AFTER tests are green
+and BEFORE you call the feature done. Empirically this caught four
+real issues in D2 (hook-position asymmetry, redundant payload field,
+test-coverage gap, doc-vs-impl drift) AFTER all 29 tests were green
+and AFTER the merge had landed on main.
+
+### Q1 — Symmetry check
+
+When you add a feature that mirrors an existing one (OnApply mirrors
+OnRemove, "Begin" mirrors "End", forward mirrors backward, etc.):
+**open both source files side-by-side and read them line-by-line.**
+Position of the new code relative to surrounding calls must match
+the existing one. Caught D2.1: OnApply was firing before
+`effect.Applied`, but D1.2's OnRemove fires after `effect.Remove` —
+asymmetric chronological position relative to the user-visible
+message-log entry.
+
+The check: *if I swap a record's category from "OnApply" to "OnRemove"
+in my head, would the surrounding code make equally good sense?*
+If no, one side is misplaced.
+
+### Q2 — Cross-feature consistency
+
+When you add multiple similar features in one ship (D2 added 5
+hooks + 1 tool), audit **every public-facing shape** — payload
+schemas, return types, parameter names, channel names — for naming
+convention. Make a mental table:
+
+```
+Hook            | category | kind          | actor | target | payload fields
+OnRemove        | effect   | OnRemove      | -     | yes    | effect, duration, cause
+OnApply         | effect   | OnApply       | yes   | yes    | effect, duration, justApplied, forced
+DamageDealt     | damage   | DamageDealt   | yes   | yes    | amount, hpAfter, lethal, attributes
+turn/Begin      | turn     | Begin         | yes   | -      | blueprintName, hp        ← had `entityId` redundant w/ ActorId
+turn/End        | turn     | End           | yes   | -      | blueprintName, hp        ← same
+```
+
+Each column should follow a consistent rule. If one row deviates,
+flag it. Caught D2.4: turn payload duplicated `entityId = actor.ID`
+in the payload while the other hooks correctly put IDs only in the
+top-level field.
+
+### Q3 — Counter-check completeness
+
+For every payload field with a non-trivial branch (boolean flags,
+enum-ish values, success/failure paths, optional vs default args),
+verify **each branch is asserted by a test**, including a counter-
+check per §3.4. Caught D2.1: the `forced` field had two paths
+(`ApplyEffect` → false, `ForceApplyEffect` → true), only the false
+path was implicitly tested. A buggy impl that hard-coded
+`forced = false` for both paths would have passed all 5 D2.1 tests.
+
+The check: list every non-trivial field in the payload and trace
+which test exercises which value. Gaps in the table become tests.
+
+### Q4 — Doc-vs-impl drift
+
+Open the design doc (`Docs/AI-OBSERVABILITY.md` for diag work,
+`Docs/<feature>.md` generally) and read each spec'd
+parameter / return shape / response field against the **actual
+shipped code**. Caught D2.5: AI-OBSERVABILITY.md's generic-tools
+table claimed `diag_count` returns `{ count: int }`, but the shipped
+tool returns
+`{ count, total_scanned, sample_first_trace_id, sample_first_kind, tool_version }`.
+
+Doc-vs-impl drift accumulates silently and turns living docs into
+useful-fiction. The fix is fast (5 minutes per ship); the cost of
+not doing it compounds.
+
+### Process
+
+1. Tests green ✓
+2. Merge to main ✓ (or about to)
+3. **STOP. Run the cold-eye pass.** Read all the diffs together, not
+   one-by-one.
+4. Found something? File a `fix/<thing>-cold-eye-review` branch
+   with a single self-contained fix-commit. Don't bury it in a
+   future feature commit. Push. Merge. Now done.
+5. Found nothing? Note "cold-eye review pass complete, 0 findings"
+   in the merge commit body so a future reader knows it actually
+   ran.
+
+**Self-directive: I MUST run this cold-eye pass after every
+multi-commit feature, even when tests are green and the merge
+feels clean. Tests-green-feels-clean is exactly the state where
+latent inconsistencies hide.**
+
+---
+
 ## Unity MCP workflow
 
 **Standard post-edit cycle:**
@@ -257,6 +351,8 @@ files, mostly visual) or `/Users/steven/qud-decompiled-project/`
 | `Docs/COMBAT-BRANCH-MAP.md` | Branch coverage map (per-method ✅/⚠️/❌) |
 | `Docs/COMBAT-TEST-BACKLOG.md` | Prioritized test entries with format `[#] (TARGET, SEVERITY, BUG_CLASS, PHASE)` |
 | `Docs/MCP_PlayMode_Testing_Strategy.md` | Live-bootstrap testing rules (Rule 1: never fire events via `execute_code`) |
+| `Docs/PERF-FOUNDATION.md` | Optimization patterns, anti-patterns, audit findings (read before adding any feature touching per-frame paths) |
+| `Docs/PERF-COMBAT-INVESTIGATION.md` | Original combat-perf audit (2026-04) — hypotheses + which were red herrings |
 | `qud_decompiled_project/` | In-repo Qud subset (visual effects only) |
 | `/Users/steven/qud-decompiled-project/` | Full Qud decompile (core game logic, 5368 files) |
 
@@ -269,6 +365,59 @@ files, mostly visual) or `/Users/steven/qud-decompiled-project/`
 - **Architecture mirrors Qud:** Entity (bag of Parts) + GameEvent (string-keyed)
 - **CP437 tilemap** at runtime (80×25), Sprite-Lit-Default + Global Light 2D
 - **EditMode tests:** 2181+ NUnit tests, ~30s full suite
+
+---
+
+## Performance — non-negotiables for new features
+
+Read `Docs/PERF-FOUNDATION.md` before adding any feature that touches
+the per-frame or per-turn paths. The strategies + audit history live
+there; the rules below are the always-on subset.
+
+1. **Profile before optimizing, profile after writing.** Use
+   `Unity.Profiling.ProfilerRecorder` over real gameplay (60-90s
+   window) — not isolated 5-call tests. Sort by **max**, not avg,
+   to catch spikes. The 70,000× perf bug we shipped a fix for in
+   2026-04-28 was invisible to isolated tests; only `[Perf] spike`
+   logs caught it.
+
+2. **Cache misses must be cheap.** Any `Dictionary<,>` lookup
+   followed by "compute and insert" must be cheap to miss — or
+   gated behind explicit invalidation, never per-call. Pre-populate
+   the cache for the full input domain or just return a fallback
+   on miss.
+
+3. **No allocations in hot paths.** `LateUpdate`, `Update`, turn
+   loops, per-cell render, per-NPC AI scan — none of these may
+   `new List<>` / `new Dictionary<>` / use LINQ. Use the scratch-list
+   pattern in `Docs/PERF-FOUNDATION.md §Pattern 1`.
+
+4. **Per-cell dirty hooks for visible changes.** If gameplay code
+   changes a cell's visible state (entity moved, color flash,
+   status applied), call `ZoneRenderHooks.MarkCellDirty(x, y, source)`.
+   Do not call the full-zone `MarkDirty` unless FOV / lightmap
+   actually needs recompute (player moved, light source moved).
+
+5. **Renderers gate work behind content fingerprint.** Sidebar,
+   hotbar, and any new UI panel must skip work when the snapshot
+   it would render is identical to the last frame's. See
+   `SidebarRenderer.ComputeSnapshotFingerprint` for the pattern.
+
+6. **`Application.runInBackground = true` for development.** This
+   is set in `ProjectSettings.asset` (`runInBackground: 1`). Without
+   it, the editor throttles to 10fps when the window loses focus —
+   indistinguishable from "the game is laggy" in a profiler. If
+   you ever see `cpu_frame_time = 100ms` with `cpu_main_thread = 0ms`,
+   this setting reverted.
+
+**Performance section required in feature plans.** When two or more
+of these apply, the feature's `Docs/<feature>.md` plan needs a
+**Performance** section citing which patterns it'll use:
+- Plumbs `ZoneRenderHooks` from gameplay
+- Allocates collections inside per-frame / per-turn methods
+- Adds a new cache (`Dictionary<,>` keyed by gameplay state)
+- Adds a new MonoBehaviour with `Update` / `LateUpdate`
+- Adds a new event listener that fires per-frame / per-turn
 
 ---
 

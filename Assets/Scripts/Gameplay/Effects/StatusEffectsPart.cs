@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -71,11 +72,73 @@ namespace CavesOfOoo.Core
             }
 
             effect.Owner = ParentEntity;
+
+            // Mark the effect as "applied while this owner is the active
+            // turn-taker" — true only when TurnManager's CurrentActor is
+            // this entity. The first OnTurnEnd will skip this effect and
+            // clear the flag, so an effect applied mid-action survives
+            // the apply turn rather than evaporating in the very EndTurn
+            // that follows.
+            //
+            // Why query TurnManager.CurrentActor instead of tracking a
+            // local "_isOwnerActing" flag: StatusEffectsPart is lazily
+            // created by EnsureStatusEffectsPart on the FIRST effect
+            // application. If a player's first-ever effect comes from a
+            // trap (no prior poison/buff/etc.), the part doesn't exist
+            // when ProcessUntilPlayerTurn fires BeginTakeAction — so a
+            // local flag would never get set. CurrentActor is the
+            // canonical "who's acting" source on the TurnManager itself
+            // and is always correct regardless of part-creation order.
+            //
+            // Coverage:
+            //   - Trap step (player stepping during own turn):
+            //       CurrentActor == player == ParentEntity → JustApplied=true ✓
+            //   - On-hit melee (attacker A hits defender B):
+            //       CurrentActor == A, ParentEntity == B → JustApplied=false ✓
+            //   - AOE spell (caster C hits enemy E):
+            //       CurrentActor == C, ParentEntity == E → JustApplied=false ✓
+            //   - Self tonic on own turn:
+            //       CurrentActor == player == ParentEntity → JustApplied=true ✓
+            //   - Standalone test or no TurnManager:
+            //       Active == null → JustApplied=false (legacy behavior) ✓
+            var tm = TurnManager.Active;
+            effect.JustApplied = tm != null && tm.CurrentActor == ParentEntity;
+
             if (!effect.Apply(ParentEntity))
                 return false;
 
             _effects.Add(effect);
             effect.Applied(ParentEntity);
+
+            // D2.1 diag hook (Docs/D2-HOOKS-PLAN.md §4 D2.1).
+            // Position mirror of D1.2's OnRemove hook in RemoveEffectAt:
+            // fires AFTER `effect.Applied(ParentEntity)` (which calls
+            // effect.OnApply → MessageLog.Add) and BEFORE SendApplied
+            // (which fires the EffectApplied event), so the buffer
+            // ordering is [user-visible message] → [diag record] →
+            // [downstream listeners]. Symmetric with OnRemove which is
+            // [user-visible message] → [diag record] → [SendRemoved].
+            //
+            // Stack branch at line ~70 returns BEFORE reaching here, so
+            // re-application of an already-active effect type does not
+            // double-emit (counter-checked by
+            // StackingReApplication_DoesNotEmitSecondOnApplyRecord).
+            if (Diag.IsChannelEnabled("effect"))
+            {
+                Diag.Record(
+                    category: "effect",
+                    kind: "OnApply",
+                    target: ParentEntity,
+                    actor: source,
+                    payload: new
+                    {
+                        effect = effect.GetType().Name,
+                        duration = effect.Duration,
+                        justApplied = effect.JustApplied,
+                        forced = forced
+                    });
+            }
+
             SendApplied(effect, source, zone, forced);
             return true;
         }
@@ -90,6 +153,11 @@ namespace CavesOfOoo.Core
             {
                 if (_effects[i] is T)
                 {
+                    // Public RemoveEffect → caller is doing external removal
+                    // (cure spell, dispel mutation, etc.). Tag the cause so the
+                    // EffectRemoved event distinguishes it from save-success
+                    // and duration-tick exits.
+                    _effects[i].LastRemovalCause = Effect.CAUSE_EXTERNAL;
                     RemoveEffectAt(i);
                     return true;
                 }
@@ -106,6 +174,7 @@ namespace CavesOfOoo.Core
             {
                 if (_effects[i].GetType() == effectType)
                 {
+                    _effects[i].LastRemovalCause = Effect.CAUSE_EXTERNAL;
                     RemoveEffectAt(i);
                     return true;
                 }
@@ -122,6 +191,7 @@ namespace CavesOfOoo.Core
             {
                 if (filter(_effects[i]))
                 {
+                    _effects[i].LastRemovalCause = Effect.CAUSE_EXTERNAL;
                     RemoveEffectAt(i);
                     return true;
                 }
@@ -137,6 +207,7 @@ namespace CavesOfOoo.Core
             int index = _effects.IndexOf(effect);
             if (index < 0)
                 return false;
+            effect.LastRemovalCause = Effect.CAUSE_EXTERNAL;
             RemoveEffectAt(index);
             return true;
         }
@@ -276,6 +347,12 @@ namespace CavesOfOoo.Core
                 return true;
             }
 
+            if (e.ID == "BeforeTakeDamage")
+            {
+                HandleBeforeTakeDamage(e);
+                return true;
+            }
+
             if (e.ID == "TakeDamage")
             {
                 HandleTakeDamage(e);
@@ -314,25 +391,43 @@ namespace CavesOfOoo.Core
 
         private bool HandleBeginTakeAction(GameEvent e)
         {
-            // Check if any effect blocks action (stun, paralysis)
-            for (int i = 0; i < _effects.Count; i++)
-            {
-                if (!_effects[i].AllowAction(ParentEntity))
-                {
-                    // Log that turn is skipped
-                    string name = ParentEntity.GetDisplayName();
-                    string effectName = _effects[i].DisplayName;
-                    MessageLog.Add(name + " is " + effectName + " and cannot act!");
-                    e.Handled = true;
-                    return false; // block the turn
-                }
-            }
-
-            // Fire OnTurnStart for each effect (poison damage, etc.)
+            // Fire OnTurnStart FIRST so damage-tick effects (poison, burn,
+            // bleed, acidic, electrified) deal their per-turn damage BEFORE
+            // the action-block check. Bodily processes don't pause for
+            // mental effects — bleeding still bleeds while you're stunned.
+            //
+            // Pre-fix, BearTrap's Stun(1) + Bleeding pairing gave the
+            // player NO visible feedback during the stunned turn (no
+            // "takes X bleed damage" message), making bleeding appear
+            // to never tick. Players reported "bleeding finishes the
+            // same turn it gets applied" — actually it was still active
+            // but ticked silently. This restores the expected roguelike
+            // semantic: damage-tick effects always tick at start of turn,
+            // and the action-block check only governs whether the entity
+            // can take a willed action (move/attack).
+            //
+            // Reverse iteration so an effect removing itself or another
+            // effect during OnTurnStart doesn't skip iterations.
             for (int i = _effects.Count - 1; i >= 0; i--)
             {
                 if (i < _effects.Count)
                     _effects[i].OnTurnStart(ParentEntity, e);
+            }
+
+            // After damage ticks, check if any effect blocks the action
+            // (stun, freeze, paralysis). If so, log the skipped-turn
+            // message and return false so TurnManager skips the actor's
+            // willed action. The damage ticks above have already fired.
+            for (int i = 0; i < _effects.Count; i++)
+            {
+                if (!_effects[i].AllowAction(ParentEntity))
+                {
+                    string name = ParentEntity.GetDisplayName();
+                    string effectName = _effects[i].DisplayName;
+                    MessageLog.Add(name + " is " + effectName + " and cannot act!");
+                    e.Handled = true;
+                    return false;
+                }
             }
 
             return true;
@@ -340,11 +435,26 @@ namespace CavesOfOoo.Core
 
         private void HandleEndTurn(GameEvent e)
         {
-            // Tick each effect
+            // Tick each effect — but skip any effect that was JustApplied
+            // during this same owner-turn cycle. Without this skip, an
+            // effect added mid-action (e.g., StunnedEffect(1) from a
+            // BearTrap step) would tick its OnTurnEnd in the very EndTurn
+            // that wraps the move, decrementing Duration 1 → 0 and being
+            // cleaned up before the next turn even starts. The flag is
+            // single-shot: cleared on the first tick attempt so the
+            // second EndTurn ticks normally.
             for (int i = _effects.Count - 1; i >= 0; i--)
             {
                 if (i < _effects.Count)
-                    _effects[i].OnTurnEnd(ParentEntity, e);
+                {
+                    var effect = _effects[i];
+                    if (effect.JustApplied)
+                    {
+                        effect.JustApplied = false;
+                        continue;
+                    }
+                    effect.OnTurnEnd(ParentEntity, e);
+                }
             }
 
             // Clean up expired effects
@@ -361,6 +471,22 @@ namespace CavesOfOoo.Core
             {
                 if (i < _effects.Count)
                     _effects[i].OnTakeDamage(ParentEntity, e);
+            }
+        }
+
+        /// <summary>
+        /// Tier 2.4: route Phase F's <c>BeforeTakeDamage</c> event to per-effect
+        /// dispatch. Each effect's <see cref="Effect.OnBeforeTakeDamage"/>
+        /// observes (and may mutate) the incoming <see cref="Damage"/> before
+        /// resistance and HP decrement. Iterates oldest-first since the
+        /// mutation order is "all effects had a turn"; reverse-iteration would
+        /// give newer effects a less direct view of the damage.
+        /// </summary>
+        private void HandleBeforeTakeDamage(GameEvent e)
+        {
+            for (int i = 0; i < _effects.Count; i++)
+            {
+                _effects[i].OnBeforeTakeDamage(ParentEntity, e);
             }
         }
 
@@ -384,6 +510,27 @@ namespace CavesOfOoo.Core
             Effect effect = _effects[index];
             _effects.RemoveAt(index);
             effect.Remove(ParentEntity);
+
+            // Diag hook (D1.2): record the OnRemove with effect type, final
+            // duration, and the cause string set by the caller (one of
+            // CAUSE_DURATION_EXPIRED / CAUSE_SAVE_SUCCEEDED / CAUSE_EXTERNAL).
+            // Read BEFORE we null effect.Owner so the payload sees a coherent
+            // effect-state snapshot. Hook is a no-op when the "effect"
+            // channel is disabled (default-on per AI-OBSERVABILITY.md §3).
+            if (Diag.IsChannelEnabled("effect"))
+            {
+                Diag.Record(
+                    category: "effect",
+                    kind: "OnRemove",
+                    target: ParentEntity,
+                    payload: new
+                    {
+                        effect = effect.GetType().Name,
+                        duration = effect.Duration,
+                        cause = effect.LastRemovalCause
+                    });
+            }
+
             effect.Owner = null;
             SendRemoved(effect);
         }
@@ -398,7 +545,7 @@ namespace CavesOfOoo.Core
             if (source != null)
                 before.SetParameter("Source", (object)source);
 
-            return ParentEntity.FireEvent(before);
+            return ParentEntity.FireEventAndRelease(before);
         }
 
         private void SendApplied(Effect effect, Entity source, Zone zone, bool forced)
@@ -412,7 +559,7 @@ namespace CavesOfOoo.Core
                 forceApplied.SetParameter("Forced", true);
                 if (source != null)
                     forceApplied.SetParameter("Source", (object)source);
-                ParentEntity.FireEvent(forceApplied);
+                ParentEntity.FireEventAndRelease(forceApplied);
             }
 
             var applied = GameEvent.New("EffectApplied");
@@ -422,7 +569,7 @@ namespace CavesOfOoo.Core
             applied.SetParameter("Forced", forced);
             if (source != null)
                 applied.SetParameter("Source", (object)source);
-            ParentEntity.FireEvent(applied);
+            ParentEntity.FireEventAndRelease(applied);
 
             TryStartAura(effect, zone);
         }
@@ -433,7 +580,11 @@ namespace CavesOfOoo.Core
             removed.SetParameter("Target", (object)ParentEntity);
             removed.SetParameter("Effect", (object)effect);
             removed.SetParameter("EffectType", effect.ClassName);
-            ParentEntity.FireEvent(removed);
+            // Cause: "duration_expired" by default; effects with save-based
+            // recovery overwrite Effect.LastRemovalCause before setting
+            // Duration=0; public RemoveEffect overloads set CAUSE_EXTERNAL.
+            removed.SetParameter("Cause", effect.LastRemovalCause);
+            ParentEntity.FireEventAndRelease(removed);
 
             TryStopAura(effect);
         }

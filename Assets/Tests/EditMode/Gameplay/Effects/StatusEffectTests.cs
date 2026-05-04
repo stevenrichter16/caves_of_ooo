@@ -1077,21 +1077,37 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Effect_StunAndPoisonTogether_StunBlocksTurnButPoisonStillApplied()
+        public void Effect_StunAndPoisonTogether_PoisonTicksDamage_EvenWhenStunBlocksAction()
         {
-            // When stunned, TakeTurn is blocked. But poison ticks on TakeTurn too.
-            // The stun check happens first and blocks event propagation,
-            // so poison does NOT tick when stunned (this is correct — stun blocks everything).
+            // Per fix/damage-ticks-through-stun: damage-tick effects (poison,
+            // burn, bleed) fire OnTurnStart BEFORE the AllowAction block
+            // check, so they deal damage even while the entity is stunned.
+            // Stun blocks willed action (move/attack), not bodily processes.
+            //
+            // This flipped a previously-pinned "stun blocks everything"
+            // semantic. The pre-fix behavior gave traps that pair Stun
+            // + Bleed (e.g., BearTrap) zero feedback during the stunned
+            // turn — players thought the bleed never applied.
             var e = CreateCreature(hp: 100);
             e.ApplyEffect(new StunnedEffect(2));
             e.ApplyEffect(new PoisonedEffect(5, "1d3", new Random(42)));
 
             int hpBefore = e.GetStatValue("HP");
-            e.FireEvent(GameEvent.New("TakeTurn")); // Stun blocks turn
+            var takeTurn = GameEvent.New("TakeTurn");
+            bool result = e.FireEvent(takeTurn);
 
-            // Since stun blocks the event, poison OnTurnStart doesn't fire
-            Assert.AreEqual(hpBefore, e.GetStatValue("HP"),
-                "Stun should block all TakeTurn processing including poison");
+            // Action is still blocked (stun's contract).
+            Assert.IsFalse(result,
+                "TakeTurn must still return false when stun is active — willed action is blocked.");
+            Assert.IsTrue(takeTurn.Handled,
+                "Event must be marked Handled so TurnManager short-circuits the actor's action.");
+
+            // But poison damage MUST tick.
+            Assert.Less(e.GetStatValue("HP"), hpBefore,
+                "Poison must deal damage even when stun blocks the action — " +
+                "bodily processes don't pause for mental effects. If this asserts " +
+                "regresses to AreEqual, BearTrap's Bleeding will silently fail to " +
+                "tick while the player is stunned.");
         }
 
         private class EffectEventProbePart : Part
