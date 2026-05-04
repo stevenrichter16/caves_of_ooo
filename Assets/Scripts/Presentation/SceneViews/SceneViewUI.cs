@@ -22,6 +22,9 @@ namespace CavesOfOoo.Rendering
         [Tooltip("Optional reference to the world's ZoneRenderer. If null, it is auto-discovered via FindObjectOfType in Awake. The Paused flag is toggled on scene enter/exit.")]
         public ZoneRenderer ZoneRenderer;
 
+        [Tooltip("Optional reference to the gameplay camera's CameraFollow controller. If null, auto-discovered via FindObjectOfType in Awake. While a scene is open, the camera is switched to fullscreen UI view (SetUIView) so the SidebarCamera and HotbarCamera (both clear to Color.black) don't paint as black bars on the right and bottom of the scene composition.")]
+        public CameraFollow CameraFollow;
+
         [Header("Scene canvas")]
         [Tooltip("Full canvas width in tiles. The campfire scene uses 80.")]
         public int CanvasWidth = 80;
@@ -41,6 +44,8 @@ namespace CavesOfOoo.Rendering
             EnsureRenderer();
             if (ZoneRenderer == null)
                 ZoneRenderer = FindObjectOfType<ZoneRenderer>();
+            if (CameraFollow == null)
+                CameraFollow = FindObjectOfType<CameraFollow>();
         }
 
         private void EnsureRenderer()
@@ -81,6 +86,17 @@ namespace CavesOfOoo.Rendering
             // true "world → scene" transition. We pause it once the forward
             // dissolve completes (scene fully covers the screen anyway).
             if (ZoneRenderer != null) ZoneRenderer.Paused = false;
+            // Bug A fix: switch the gameplay camera to its full-screen UI
+            // view layout. Without this, the SidebarCamera and HotbarCamera
+            // (each clearing to Color.black) keep painting their rects on
+            // the right and bottom of the screen and look like black bars
+            // around the otherwise-correct scene. SetUIView also disables
+            // those two cameras and centers the gameplay camera on the
+            // scene canvas (gridWidth/2, gridHeight/2) with an ortho size
+            // sized to fit the scene. RestoreGameView (called once the
+            // reverse dissolve fully completes, in Update) puts the split
+            // sidebar/hotbar layout back.
+            if (CameraFollow != null) CameraFollow.SetUIView(CanvasWidth, CanvasHeight);
             RenderToTilemap();
         }
 
@@ -114,6 +130,13 @@ namespace CavesOfOoo.Rendering
                     _exitDissolveActive = false;
                     _isRendering = false;
                     ClearTilemap();
+                    // Bug A fix (paired with SetUIView in HandleActivated):
+                    // restore the split sidebar/hotbar layout AFTER the
+                    // reverse dissolve completes — not on HandleDeactivated,
+                    // because then the dissolve would play with the wrong
+                    // camera framing (the world would jump-cut from scene
+                    // framing back to player framing mid-iris).
+                    if (CameraFollow != null) CameraFollow.RestoreGameView();
                 }
                 else if (ZoneRenderer != null && !ZoneRenderer.Paused)
                 {
