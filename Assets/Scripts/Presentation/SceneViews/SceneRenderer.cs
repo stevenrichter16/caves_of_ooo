@@ -90,9 +90,9 @@ namespace CavesOfOoo.Rendering
         /// Does NOT touch the frame buffer; <see cref="RenderCampfire"/>
         /// reads the resulting state to draw.
         /// </summary>
-        public void Tick(float deltaT)
+        public void Tick(float deltaTime)
         {
-            _t += deltaT;
+            _t += deltaTime;
 
             if (_t > _nextCrackle)
             {
@@ -465,8 +465,8 @@ namespace CavesOfOoo.Rendering
                 int x = (int)s.X;
                 int y = (int)s.Y;
                 if (x < 0 || x >= Width || y < 0 || y >= Height) continue;
-                float life = s.Max <= 0 ? 1f : (s.Age / (float)s.Max);
-                float fade = 1f - life;
+                // Max is always ≥ 14 from SpawnSpark, so no zero-check needed.
+                float fade = 1f - (s.Age / (float)s.Max);
                 char ch =
                     fade > 0.7f ? '*' :
                     fade > 0.4f ? '+' :
