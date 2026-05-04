@@ -241,9 +241,15 @@ namespace CavesOfOoo.Rendering
         private void DrawDissolveOverlay()
         {
             // Mask thresholds:
-            //   m > 0.5  → fully cleared (Glyph=' ', so world below shows)
+            //   m > 0.5  → fully cleared (Glyph='\0' — transparent so world below shows)
             //   m > 0.05 → soft edge: probabilistic clear OR darkened scene
             //   else     → leave scene cell as drawn
+            //
+            // Sentinel: '\0' marks "intentionally transparent for dissolve",
+            // distinct from ' ' which marks "scene-blank but should occlude
+            // the world below". SceneViewUI.RenderToTilemap respects this
+            // distinction by clearing the tile only for '\0' and painting an
+            // opaque background tile for ' '.
             for (int y = 0; y < Height; y++)
             {
                 for (int x = 0; x < Width; x++)
@@ -252,14 +258,14 @@ namespace CavesOfOoo.Rendering
                     int idx = y * Width + x;
                     if (m > 0.5f)
                     {
-                        Frame[idx].Glyph = ' ';
+                        Frame[idx].Glyph = '\0';
                         Frame[idx].Foreground = Color.black;
                     }
                     else if (m > 0.05f)
                     {
                         if (_rng.NextDouble() < m)
                         {
-                            Frame[idx].Glyph = ' ';
+                            Frame[idx].Glyph = '\0';
                             Frame[idx].Foreground = Color.black;
                         }
                         else

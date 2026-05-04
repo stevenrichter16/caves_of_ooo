@@ -124,6 +124,15 @@ namespace CavesOfOoo.Rendering
             }
         }
 
+        // CP437 0xDB ('█' solid block) — used to paint an opaque background
+        // for cells the scene leaves blank (' '), so the world tilemap below
+        // the overlay is fully occluded while the scene is active. Cleared-by-
+        // dissolve cells use the '\0' sentinel and remain transparent so the
+        // world peeks through during the radial transition. See SceneRenderer
+        // .DrawDissolveOverlay for the producer side. Using Û explicitly
+        // (not the literal char) to avoid encoding ambiguity in source.
+        private const char SCENE_BACKGROUND_GLYPH = '\u00DB';
+
         private void RenderToTilemap()
         {
             _sceneRenderer.RenderCampfire();
@@ -140,9 +149,26 @@ namespace CavesOfOoo.Rendering
                         CanvasOrigin.y + (_sceneRenderer.Height - 1 - y),
                         0);
 
-                    if (cell.Glyph == ' ' || cell.Glyph == '\0')
+                    // '\0' = dissolve-cleared: transparent, world peeks through.
+                    if (cell.Glyph == '\0')
                     {
                         Tilemap.SetTile(pos, null);
+                        continue;
+                    }
+
+                    // ' ' = scene-blank: paint an opaque background block so
+                    // the world below doesn't bleed through during the active
+                    // (non-dissolving) phase. Without this, the many empty
+                    // cells in the campfire composition (sky between stars,
+                    // ground outside the firelight pool, areas around tent/
+                    // logs) would all be transparent and the player would
+                    // see the world map under the scene.
+                    if (cell.Glyph == ' ')
+                    {
+                        var bgTile = CP437TilesetGenerator.GetTile(SCENE_BACKGROUND_GLYPH);
+                        Tilemap.SetTile(pos, bgTile);
+                        Tilemap.SetTileFlags(pos, TileFlags.None);
+                        Tilemap.SetColor(pos, Color.black);
                         continue;
                     }
 
