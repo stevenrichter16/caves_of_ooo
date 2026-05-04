@@ -31,7 +31,12 @@ namespace CavesOfOoo.Core
 
         // Action wiring constants — kept stable so the InputHandler's
         // command-dispatch stays in sync and blueprint authors don't have
-        // to chase magic strings.
+        // to chase magic strings. Note: unlike ConversationPart (where
+        // Name=="Chat" and Command=="Chat" coincide), here Name=="Look"
+        // (the user-facing label) is distinct from Command=="LookAtScene"
+        // (the internal dispatch id) — "Look" is too generic a verb to
+        // reserve globally; "LookAtScene" disambiguates from any future
+        // examine/look actions on items, terrain, etc.
         private const string ACTION_COMMAND = "LookAtScene";
 
         public override bool HandleEvent(GameEvent e)
