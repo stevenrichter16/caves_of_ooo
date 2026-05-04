@@ -422,7 +422,8 @@ system outcome.
 |---|---|---|---|
 | 2026-05-04 | Plan | ✅ Drafted | Plan document committed |
 | 2026-05-04 | M1 | ✅ Shipped | SceneViewManager static class + 15 EditMode tests. **Scope cut from plan**: TurnManager + InputHandler modifications deferred. Pre-impl verification sweep showed turn flow is naturally gated by input (no movement input → ProcessUntilPlayerTurn isn't called) — same pattern as how conversations work without TurnManager changes. InputHandler changes paired with SceneViewUI in M2 where there's actually something to handle the input. Cleaner cut per §1.3. |
-| TBD | M2 | ⏳ Pending | — |
+| 2026-05-04 | M2 | ✅ Shipped | SceneRenderer pure-C# class + SceneViewUI MonoBehaviour + InputHandler integration. **Absorbed deferred M1 scope**: InputHandler InputState.SceneOpen + dispatch case + OnEnable/OnDisable subscriptions to SceneViewManager events. ZoneRenderer.Paused toggled from SceneViewUI on activate/deactivate. **Confirmed**: TurnManager untouched (still validated as unnecessary). 14 new EditMode tests cover frame-buffer correctness, log/ground/tent/star/flame/prompt placement, color heuristics, determinism, counter-checks. |
+| TBD | M3 | ⏳ Pending | — |
 | TBD | M3 | ⏳ Pending | — |
 | TBD | M4 | ⏳ Pending | — |
 | TBD | M5 | ⏳ Pending | — |

@@ -5,6 +5,7 @@ using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
+using CavesOfOoo.Rendering;
 using UnityEngine;
 
 namespace CavesOfOoo.Rendering
@@ -117,7 +118,8 @@ namespace CavesOfOoo.Rendering
             AwaitingAttackConfirm,
             FactionOpen,
             AnnouncementOpen,
-            WorldActionMenuOpen  // Phase 4d — look-mode click/Enter on a cell opens this
+            WorldActionMenuOpen,  // Phase 4d — look-mode click/Enter on a cell opens this
+            SceneOpen            // Scene View open (Look at campfire, etc.) — see SceneViewManager
         }
         private InputState _inputState = InputState.Normal;
 
@@ -461,6 +463,12 @@ namespace CavesOfOoo.Rendering
             if (_inputState == InputState.AnnouncementOpen)
             {
                 HandleAnnouncementInput();
+                return;
+            }
+
+            if (_inputState == InputState.SceneOpen)
+            {
+                HandleSceneOpenInput();
                 return;
             }
 
@@ -3282,6 +3290,53 @@ namespace CavesOfOoo.Rendering
             return !string.IsNullOrEmpty(tooltip.DisplayName)
                 ? tooltip.DisplayName
                 : ability.DisplayName;
+        }
+
+        // ====================================================================
+        // Scene View integration (M2)
+        // ====================================================================
+        // Subscribes to SceneViewManager events to flip _inputState into
+        // SceneOpen on activation. While SceneOpen, only [E] (exit) is
+        // recognized by HandleSceneOpenInput. This is the same pattern as
+        // DialogueOpen (gated by ConversationManager).
+        // Plan: Docs/Plans/SCENE_VIEW_SYSTEM_IMPLEMENTATION_PLAN.md M2
+
+        private InputState _stateBeforeSceneOpen = InputState.Normal;
+
+        private void OnEnable()
+        {
+            SceneViewManager.OnActivated += HandleSceneActivated;
+            SceneViewManager.OnDeactivated += HandleSceneDeactivated;
+        }
+
+        private void OnDisable()
+        {
+            SceneViewManager.OnActivated -= HandleSceneActivated;
+            SceneViewManager.OnDeactivated -= HandleSceneDeactivated;
+        }
+
+        private void HandleSceneActivated(string sceneID)
+        {
+            _stateBeforeSceneOpen = _inputState;
+            _inputState = InputState.SceneOpen;
+        }
+
+        private void HandleSceneDeactivated()
+        {
+            // Only restore if we transitioned through SceneOpen — otherwise
+            // some other state change took us elsewhere already.
+            if (_inputState == InputState.SceneOpen)
+                _inputState = _stateBeforeSceneOpen;
+        }
+
+        private void HandleSceneOpenInput()
+        {
+            // M2: only [E] dismisses the scene. M3 will add per-prompt
+            // handlers ([R] rest, [C] cook, [T] talk).
+            if (InputHelper.GetKeyDown(KeyCode.E) || InputHelper.GetKeyDown(KeyCode.Escape))
+            {
+                SceneViewManager.Deactivate();
+            }
         }
     }
 }
