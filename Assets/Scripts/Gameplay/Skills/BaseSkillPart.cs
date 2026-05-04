@@ -39,6 +39,26 @@ namespace CavesOfOoo.Skills
     public abstract class BaseSkillPart : Part
     {
         /// <summary>
+        /// Per-skill stat-shift tracker (lazy-init). Concrete passive
+        /// skills use this in their <c>AddSkill</c> hook to apply
+        /// stat bonuses, and call <c>RemoveStatShifts</c> in
+        /// <c>RemoveSkill</c> to roll them back. Mirrors Qud's
+        /// <c>BaseSkill.StatShifter</c> property
+        /// (used by Acrobatics_Dodge.cs:11 — <c>base.StatShifter.SetStatShift("DV", 2)</c>).
+        ///
+        /// <para><b>Lazy-init</b> because <see cref="Part.ParentEntity"/>
+        /// isn't set until the part is attached via <c>Entity.AddPart</c>.
+        /// First access creates the StatShifter bound to the current
+        /// ParentEntity. Re-accessing after detach/reattach to a
+        /// different entity would return the stale shifter — but
+        /// BaseSkillPart instances are owned by their entity for life
+        /// (RemoveSkill detaches + discards), so this isn't a real
+        /// hazard.</para>
+        /// </summary>
+        private StatShifter _statShifter;
+        public StatShifter StatShifter => _statShifter ??= new StatShifter(ParentEntity);
+
+        /// <summary>
         /// Human-readable name for UI rendering. Defaults to the
         /// registry-supplied <see cref="SkillData.Name"/> /
         /// <see cref="PowerData.Name"/> when looked up via Class; if the
