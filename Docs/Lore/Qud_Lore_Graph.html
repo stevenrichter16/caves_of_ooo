@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caves of Qud — Lore Graph</title>
+<style>
+  :root {
+    --bg: #0d100c;
+    --bg-2: #161a14;
+    --bg-3: #1f2418;
+    --ink: #e8e0c0;
+    --ink-dim: #a89d70;
+    --ink-faint: #5e5535;
+    --rule: #3a3a28;
+    --accent: #e0c878;
+
+    /* Faction / entity colours — chrome, sand, mutant green, blood, void */
+    --c-coven: #6a4a8a;          /* cosmic federation, deep violet */
+    --c-eaters: #d4b878;          /* gold, the ancient civilisation */
+    --c-ptoh: #2c1c3a;            /* darkling, near-black violet */
+    --c-girsh: #8a3030;           /* blood red, cosmic horrors */
+    --c-sultanate: #a04030;       /* maroon, fallen empire */
+    --c-mechanimists: #c8c8d0;    /* chrome silver */
+    --c-templar: #e8e0d0;         /* bone white, crusaders */
+    --c-barathrumites: #8a6a48;   /* dusty bronze, tinkerers */
+    --c-consortium: #6a9050;      /* sentient plants */
+    --c-sightless: #4068a0;       /* psionic deep blue */
+    --c-hindren: #c08090;         /* hindren rose */
+    --c-goatfolk: #b08060;        /* goat tan */
+    --c-joppa: #c89868;           /* villagers, warm earth */
+    --c-truekin: #88aabb;         /* arcology blue-grey */
+    --c-cross: #c4b08c;
+    --c-event: #6a3a2a;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+    overflow: hidden;
+  }
+
+  body { display: flex; flex-direction: column; }
+
+  header {
+    background: linear-gradient(to bottom, var(--bg-2), var(--bg));
+    border-bottom: 1px solid var(--rule);
+    padding: 0.6rem 1rem 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    z-index: 10;
+  }
+  h1 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: normal;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+  }
+  h1 em {
+    color: var(--ink-dim);
+    font-style: italic;
+    font-weight: normal;
+    letter-spacing: 0.05em;
+  }
+  .controls { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; font-size: 0.8rem; }
+  #search {
+    background: var(--bg-3);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    padding: 0.3rem 0.6rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    width: 12rem;
+    outline: none;
+    border-radius: 2px;
+  }
+  #search:focus { border-color: var(--accent); }
+  #search::placeholder { color: var(--ink-faint); font-style: italic; }
+  .filters { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .filters label {
+    color: var(--ink-dim);
+    cursor: pointer;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: color 0.2s;
+  }
+  .filters label:hover { color: var(--ink); }
+  .filters input[type=checkbox] { accent-color: var(--accent); cursor: pointer; }
+
+  main { flex: 1; display: flex; overflow: hidden; position: relative; }
+  #graph-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, var(--bg-2) 0%, var(--bg) 70%);
+  }
+  #graph { width: 100%; height: 100%; cursor: grab; }
+  #graph:active { cursor: grabbing; }
+
+  .node {
+    cursor: pointer;
+    stroke: var(--bg);
+    stroke-width: 1.5px;
+    transition: stroke-width 0.15s, opacity 0.2s;
+  }
+  .node:hover { stroke: var(--ink); stroke-width: 2.5px; }
+  .node.dimmed { opacity: 0.18; }
+  .node.selected { stroke: var(--accent); stroke-width: 3px; }
+  .node-label {
+    pointer-events: none;
+    fill: var(--ink-dim);
+    font-size: 9.5px;
+    font-family: inherit;
+    text-anchor: middle;
+    text-shadow: 0 0 4px var(--bg), 0 0 4px var(--bg), 0 0 4px var(--bg);
+    transition: opacity 0.2s, fill 0.2s;
+  }
+  .node-label.cosmic, .node-label.faction {
+    font-size: 12px;
+    fill: var(--ink);
+    letter-spacing: 0.05em;
+  }
+  .node-label.dimmed { opacity: 0.15; }
+  .node-label.highlighted { fill: var(--ink); }
+
+  .link {
+    stroke: var(--rule);
+    stroke-opacity: 0.55;
+    transition: stroke-opacity 0.2s, stroke 0.2s, stroke-width 0.2s;
+  }
+  .link.dimmed { stroke-opacity: 0.05; }
+  .link.highlighted { stroke-opacity: 0.9; stroke-width: 1.8px; }
+  .link.member { stroke: var(--rule); }
+  .link.opposition { stroke: var(--c-girsh); stroke-width: 2px; }
+  .link.imprisons { stroke: var(--c-ptoh); stroke-width: 1.8px; stroke-dasharray: 6,3; }
+  .link.predates { stroke: var(--c-eaters); stroke-dasharray: 1,3; }
+  .link.descendant-of { stroke: var(--accent); stroke-dasharray: 2,2; }
+  .link.crusade { stroke: var(--c-templar); stroke-dasharray: 4,2; }
+  .link.quest { stroke: var(--accent); stroke-width: 1.4px; stroke-dasharray: 4,2; }
+  .link.curse { stroke: var(--c-girsh); stroke-dasharray: 3,3; }
+  .link.race { stroke: var(--ink-faint); }
+  .link.location-of { stroke: var(--rule); stroke-dasharray: 6,3; }
+  .link.created { stroke: var(--c-eaters); stroke-width: 1.2px; }
+  .link.worships { stroke: var(--c-mechanimists); stroke-dasharray: 1,2; }
+
+  #details {
+    width: 26rem;
+    max-width: 40vw;
+    background: var(--bg-2);
+    border-left: 1px solid var(--rule);
+    overflow-y: auto;
+    padding: 1.4rem 1.6rem 4rem 1.6rem;
+    line-height: 1.55;
+    font-size: 0.94rem;
+    transition: width 0.2s;
+  }
+  #details::-webkit-scrollbar { width: 8px; }
+  #details::-webkit-scrollbar-track { background: var(--bg-2); }
+  #details::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+  #details::-webkit-scrollbar-thumb:hover { background: var(--ink-faint); }
+  #details h2 {
+    margin: 0 0 0.2rem 0;
+    font-size: 1.4rem;
+    font-weight: normal;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+  #details .meta {
+    color: var(--ink-faint);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  #details h3 {
+    margin: 1.2rem 0 0.4rem 0;
+    font-size: 0.78rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+  }
+  #details p { margin: 0 0 0.7rem 0; color: var(--ink); }
+  #details em { color: var(--ink-dim); font-style: italic; }
+  #details blockquote {
+    margin: 0.5rem 0;
+    padding: 0.4rem 0.9rem;
+    border-left: 2px solid var(--ink-faint);
+    color: var(--ink-dim);
+    font-style: italic;
+  }
+  #details ul { margin: 0.4rem 0 0.8rem 0; padding-left: 1.2rem; color: var(--ink-dim); }
+  #details ul li { margin-bottom: 0.2rem; }
+  #details ul li strong { color: var(--ink); font-weight: normal; }
+  #details a.related {
+    display: inline-block;
+    margin: 0.15rem 0.3rem 0.15rem 0;
+    padding: 0.15rem 0.5rem;
+    background: var(--bg-3);
+    color: var(--ink);
+    text-decoration: none;
+    border-radius: 2px;
+    font-size: 0.82rem;
+    border: 1px solid var(--rule);
+    transition: border-color 0.15s, background 0.15s;
+    cursor: pointer;
+  }
+  #details a.related:hover {
+    border-color: var(--accent);
+    background: var(--bg);
+  }
+
+  .welcome { color: var(--ink-dim); }
+  .welcome p { margin-bottom: 0.8rem; }
+  .welcome .legend { margin-top: 1.2rem; font-size: 0.85rem; }
+  .welcome .legend .swatch {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+  .welcome .legend > div { margin-bottom: 0.3rem; }
+  .welcome .stats {
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .zoom-controls {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    z-index: 5;
+  }
+  .zoom-controls button {
+    background: var(--bg-3);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    border-radius: 2px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .zoom-controls button:hover { border-color: var(--accent); background: var(--bg-2); }
+  .footer-info {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 1rem;
+    color: var(--ink-faint);
+    font-size: 0.75rem;
+    font-style: italic;
+    pointer-events: none;
+    z-index: 4;
+  }
+  @media (max-width: 800px) {
+    #details {
+      width: 100%; max-width: 100%;
+      position: absolute; right: 0; top: 0; bottom: 0;
+      transform: translateX(100%); transition: transform 0.2s;
+      z-index: 20;
+    }
+    #details.visible { transform: translateX(0); }
+    .filters { font-size: 0.72rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Caves of Qud <em>— lore graph</em></h1>
+  <div class="controls">
+    <input id="search" type="text" placeholder="Search nodes…" autocomplete="off">
+    <div class="filters" id="filters">
+      <label><input type="checkbox" checked data-type="cosmic"> Cosmic</label>
+      <label><input type="checkbox" checked data-type="faction"> Factions</label>
+      <label><input type="checkbox" checked data-type="character"> Characters</label>
+      <label><input type="checkbox" checked data-type="concept"> Concepts</label>
+      <label><input type="checkbox" checked data-type="artifact"> Artifacts</label>
+      <label><input type="checkbox" checked data-type="place"> Places</label>
+      <label><input type="checkbox" checked data-type="event"> Events</label>
+      <label><input type="checkbox" checked data-type="race"> Races</label>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div id="graph-container">
+    <svg id="graph"></svg>
+    <div class="zoom-controls">
+      <button id="zoom-in" title="Zoom in">+</button>
+      <button id="zoom-out" title="Zoom out">−</button>
+      <button id="zoom-reset" title="Reset view">⊙</button>
+    </div>
+    <div class="footer-info">drag · scroll-zoom · click for details</div>
+  </div>
+  <aside id="details">
+    <div id="details-content">
+      <div class="welcome">
+        <h2>Caves of Qud</h2>
+        <div class="meta">An interactive lore atlas</div>
+        <p>The world of <em>Caves of Qud</em> is a science-fantasy planet a billion years after a fallen interstellar civilisation. The <strong style="color:var(--c-eaters)">Eaters of Earth</strong> imprisoned the god <strong style="color:var(--c-ptoh)">Ptoh</strong> on behalf of an interstellar federation called <strong style="color:var(--c-coven)">the Coven</strong>. The Coven later levied an <strong>injunction</strong> on Qud — and the <strong style="color:var(--c-girsh)">Gyre</strong> began.</p>
+        <p>Click a node to read its lore. Drag to rearrange. Scroll to zoom.</p>
+
+        <h3>Legend</h3>
+        <div class="legend">
+          <div><span class="swatch" style="background:var(--c-coven)"></span>The Coven</div>
+          <div><span class="swatch" style="background:var(--c-eaters)"></span>The Eaters of Earth</div>
+          <div><span class="swatch" style="background:var(--c-ptoh)"></span>Ptoh / Darkling Star</div>
+          <div><span class="swatch" style="background:var(--c-girsh)"></span>The Girsh / Gyre</div>
+          <div><span class="swatch" style="background:var(--c-sultanate)"></span>The Sultanate</div>
+          <div><span class="swatch" style="background:var(--c-mechanimists)"></span>Mechanimists</div>
+          <div><span class="swatch" style="background:var(--c-templar)"></span>Putus Templar</div>
+          <div><span class="swatch" style="background:var(--c-barathrumites)"></span>Barathrumites</div>
+          <div><span class="swatch" style="background:var(--c-consortium)"></span>Consortium of Phyta</div>
+          <div><span class="swatch" style="background:var(--c-sightless)"></span>Seekers of the Sightless Way</div>
+          <div><span class="swatch" style="background:var(--c-hindren)"></span>Hindren</div>
+          <div><span class="swatch" style="background:var(--c-goatfolk)"></span>Goatfolk</div>
+          <div><span class="swatch" style="background:var(--c-truekin)"></span>True Kin / Arcologies</div>
+          <div><span class="swatch" style="background:var(--c-joppa)"></span>Joppa / Villages</div>
+        </div>
+
+        <h3>Shapes</h3>
+        <div class="legend">
+          <div>● <em>Cosmic / faction</em> — large solid circle</div>
+          <div>● <em>Character / event</em> — circle</div>
+          <div>■ <em>Concept</em> — square</div>
+          <div>▲ <em>Race</em> — triangle</div>
+          <div>✦ <em>Artifact</em> — small star</div>
+          <div>◯ <em>Place</em> — open ring</div>
+        </div>
+
+        <h3>Edges</h3>
+        <div class="legend">
+          <div>— grey solid: membership / classification</div>
+          <div>— dark violet dashed: imprisonment</div>
+          <div>— gold dashed: quest / connection</div>
+          <div>— gold dot: descendant / heir</div>
+          <div>— red dashed: curse / opposition</div>
+          <div>— bone dashed: crusade</div>
+          <div>— silver dotted: worship</div>
+        </div>
+
+        <div class="stats" id="stats"></div>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+const NODES = [
+  // ─── COSMIC ENTITIES ──────────────────────────────────────
+  { id: 'coven', label: 'The Coven', type: 'cosmic', group: 'coven',
+    factionLabel: 'Interstellar federation',
+    desc: `<p>An interstellar federation of spacefaring beings — a "thousand thousand worlds" — to which the Eaters of Earth belonged as peers. Now forgotten on Qud.</p>
+<p>When <strong>Ptoh</strong> ran afoul of the Coven, the Coven entrusted the Eaters with building a prison Ptoh could not spacefold out of. The Eaters were up to the task.</p>
+<p>Later, after some unknown transgression, the Coven placed an <strong>injunction</strong> on Qud — preventing the Eaters from leaving Earth or communicating with interstellar civilisation. The first widening of <strong>the Gyre</strong> appeared in Resheph's annals immediately after his attempt to found Starfarer's Quay to receive visitors from other worlds. The Gyre may be the injunction's enforcement mechanism.</p>` },
+  { id: 'eaters', label: 'The Eaters of Earth', type: 'cosmic', group: 'eaters',
+    factionLabel: 'Fallen interstellar civilisation',
+    desc: `<p>The impossibly-advanced forerunners to everything else in Qud. Their reach extended far beyond the planet — they were peers to the Coven, treating with a thousand thousand worlds.</p>
+<p>The Eaters built the <strong>Tomb</strong>, the <strong>Spindle</strong>, the <strong>becoming nooks</strong>, and the prison that holds Ptoh. Their cities lie in ruins; only fragments remain.</p>
+<p>The <strong>True Kin</strong> — humans who haven't significantly mutated — are recognised through genetics or upbringing as <strong>successors to the Eaters of Earth</strong>. The becoming nooks recognise them and let them install cybernetics.</p>
+<p>The Eaters were either at the end of their civilisation or in its last gasp when the <strong>Sultanate</strong> followed.</p>` },
+  { id: 'ptoh', label: 'Ptoh', type: 'cosmic', group: 'ptoh',
+    factionLabel: 'Imprisoned god (Spacefolder)',
+    desc: `<p>A godlike, Lovecraftian alien being from the <strong>Darkling Star</strong>, possessed of the power to fold space with thought.</p>
+<p>Ptoh was once part of the Coven but did something so awful that the Coven decided to imprison him on Qud. The Eaters built a prison Ptoh could not fold out of, and Ptoh has been held there for "eons," still there to this day.</p>
+<p>Ptoh has servants on the surface — most prominently <strong>Aoyg-No-Longer</strong>, found 40 strata deep in the taproot of <strong>Eyn Roj</strong> in the <strong>Cosmic Wood</strong>. The <strong>Seekers of the Sightless Way</strong> are psychics associated with Ptoh and the Darkling Star.</p>` },
+  { id: 'argent-fathers', label: 'The Argent Fathers', type: 'cosmic', group: 'mechanimists',
+    factionLabel: 'Six chrome-shaping creators',
+    desc: `<p>The six creator-figures of the Mechanimist religion. Credited with shaping the <strong>Kasaphescence</strong> into chrome, creating the <strong>baetyls</strong>, and breathing life into humanity.</p>
+<p>The six are named in Mechanimist liturgy:</p>
+<ul>
+  <li><strong>Shekhinah</strong> (first among Fathers) — breathed life into our flesh</li>
+  <li><strong>Dagon</strong> (the rhetorical)</li>
+  <li><strong>Bel</strong> (shield-Father)</li>
+  <li><strong>Carthax</strong> (silver-haired)</li>
+  <li><strong>Nisroch</strong> (ore-in-hand)</li>
+  <li><strong>Resheph</strong> (the Above) — also the Sultan</li>
+</ul>
+<p>Worshipped especially at the <strong>Six Day Stilt</strong>, the spiritual centre of the Mechanimist faith. Each has a chrome statue at the Stilt overlooking the sacred well.</p>` },
+  { id: 'star-beings', label: 'The Star Beings', type: 'cosmic', group: 'coven',
+    factionLabel: 'Coven enforcers',
+    desc: `<p>The cosmic agents who levied the curse of the <strong>Gyre</strong> on Qud as punishment for the misdeeds of the elder <em>saads</em> and sultans. <strong>Resheph</strong>, at <strong>Starfarer's Quay</strong>, consulted with mysterious strangers and learned this secret.</p>
+<p>Likely a manifestation or proxy of <strong>the Coven</strong>'s injunction.</p>` },
+
+  // ─── MAJOR EVENTS ─────────────────────────────────────────
+  { id: 'imprisonment', label: 'Ptoh\'s Imprisonment', type: 'event', group: 'event',
+    factionLabel: 'Eldest recorded event',
+    desc: `<p>Eons ago, the Coven entrusted the Eaters of Earth with building a prison from which <strong>Ptoh</strong> could not simply spacefold away. The Eaters succeeded.</p>
+<p>Ptoh has been held on Qud ever since, working through servants and the Sightless Way.</p>` },
+  { id: 'fall-eaters', label: 'The Fall of the Eaters', type: 'event', group: 'event',
+    factionLabel: 'End of the interstellar age',
+    desc: `<p>The end (or last gasp) of the age of the Eaters. The cause is unspecified by surviving records, but its result is clear: Qud's interstellar civilisation collapsed, leaving only ruins, becoming nooks, the Spindle, and the buried Tomb.</p>
+<p>The <strong>Sultanate of Qud</strong> followed — either as the last echo of the Eaters or a successor state.</p>` },
+  { id: 'injunction', label: 'The Coven\'s Injunction', type: 'event', group: 'event',
+    factionLabel: 'Cosmic prohibition',
+    desc: `<p>An injunction laid by the Coven on Qud in response to some unknown transgression — preventing the Eaters from leaving Earth or communicating with interstellar civilisation.</p>
+<p>Barathrum the Old has speculated that the <strong>Gyre</strong> may be the injunction's enforcement mechanism. The first recorded widening of the Gyre appeared immediately after Resheph's attempt to found <strong>Starfarer's Quay</strong> to receive visitors from other worlds.</p>` },
+  { id: 'gyre', label: 'The Gyre', type: 'event', group: 'girsh',
+    factionLabel: 'The cosmic curse / seven plagues',
+    desc: `<p>A curse on Qud, levied by the star beings as punishment for the misdeeds of the elder <em>saads</em> and sultans. The Gyre manifests as a series of <strong>seven plagues</strong>, first recorded in the days of Resheph.</p>
+<ul>
+  <li>The water poisoned with salt.</li>
+  <li>Girshlings ravaging fruit and wheat.</li>
+  <li>Tongues rotting in the mouths of kith and kin.</li>
+  <li>(Three more plagues across the centuries.)</li>
+  <li>The seventh plague: the <strong>Girsh Nephilim</strong> rising from their cradles on the Moon Stair, slouching toward Qud to eat its young.</li>
+</ul>
+<p>Named after Yeats's "The Second Coming." The Gyre widened repeatedly across Resheph's reign. He vowed to make right of it.</p>` },
+  { id: 'sultanate-rise', label: 'The Sultanate of Qud', type: 'event', group: 'sultanate',
+    factionLabel: 'Six rulers, ended 1000 years ago',
+    desc: `<p>A state that once controlled most (if not all) of Qud, ended 1,000 years ago. There were <strong>six Sultans</strong>, the first five of which are unique to each playthrough (procedurally generated).</p>
+<p>The sixth Sultan is <strong>Resheph</strong> — the only fixed sultan, with the same lore each playthrough.</p>
+<p>Resheph dissolved the Sultanate in 1 AR to lift the curse of the Gyre.</p>` },
+  { id: 'abdication', label: 'Resheph\'s Abdication', type: 'event', group: 'sultanate',
+    factionLabel: '1 AR — closing of the Tomb',
+    desc: `<p>In 1 AR, after consulting mysterious strangers at Starfarer's Quay and learning the secret of the Gyre, <strong>Resheph closed the gates to the Tomb of the Eaters, abdicated the throne, and dissolved the Sultanate</strong> — to lift the curse.</p>
+<p>The result is the present age of Qud: a wasteland of mutants, ruins, and faction-conflict, with the Tomb sealed and the Sultans entombed below.</p>` },
+
+  // ─── MAJOR FACTIONS ───────────────────────────────────────
+  { id: 'mechanimists', label: 'Mechanimists', type: 'faction', group: 'mechanimists',
+    factionLabel: 'Faction · Religious',
+    desc: `<p>A religious faction centred within Qud, mainly comprised of mutant humanoids. They worship the six <strong>Argent Fathers</strong>, especially <strong>Shekhinah</strong>, and revere the technological wonders of the ancient past.</p>
+<p>They gather at the <strong>Six Day Stilt</strong> at the edge of <strong>Moghra'yi</strong> (the Great Salt Desert) and at other late-game dungeons. Converts to the faith can be found scattered across the map.</p>
+<p>Pilgrims complete journeys to the temple, where <strong>Eschelstadt II</strong>, High Priest of the Stilt, oversees the sacred well and the six chrome statues.</p>` },
+  { id: 'templar', label: 'Putus Templar', type: 'faction', group: 'templar',
+    factionLabel: 'Faction · Antagonistic crusaders',
+    desc: `<p>An order of knights — sometimes called the <strong>Sons and Daughters</strong> — on a crusade to reclaim Qud from a supposed "mutant threat." One of the two main antagonistic factions in the game.</p>
+<p>Initially neutral toward true-kin player characters, but their base reputation with mutated humans is <em>-700</em>, the second lowest in the game (after the Girsh's -800).</p>
+<p>In frequent conflict with the <strong>Barathrumites</strong>, which the player participates in over the course of the main story.</p>` },
+  { id: 'barathrumites', label: 'Barathrumites', type: 'faction', group: 'barathrumites',
+    factionLabel: 'Faction · Tinkerers',
+    desc: `<p>A tinkerer-enclave mainly comprised of <strong>Urshiib</strong> — albino, quilled, triple-jointed bear-people — led by their namesake <strong>Barathrum the Old</strong>. They specialise in tinkering of various sorts.</p>
+<p>Their compound is at <strong>Grit Gate</strong>, three strata down. The Barathrumites are in frequent conflict with the Putus Templar; the player joins this conflict via the main quest <em>"A Canticle for Barathrum."</em></p>
+<p>One of their distinctive abilities is <strong>phasing</strong>.</p>` },
+  { id: 'consortium', label: 'Consortium of Phyta', type: 'faction', group: 'consortium',
+    factionLabel: 'Faction · Sentient plants',
+    desc: `<p>A consortium comprised of plant life. The Consortium represents the sentient plant life of Qud — from the stationary psychometric trees to the mobile and deadly <strong>Asphodel, King of the Council</strong>.</p>
+<p>They hold dominion over the more verdant regions of the map and are often at odds with factions that exploit the land. A fungal infection on any body slot grants -200 reputation with them.</p>
+<p>The Consortium will trade their most valuable item in their inventory/equipment for reputation.</p>` },
+  { id: 'sightless-way', label: 'Seekers of the Sightless Way', type: 'faction', group: 'sightless',
+    factionLabel: 'Faction · Psychics',
+    desc: `<p>A faction of psychics associated with <strong>Ptoh</strong> and his place of origin, the <strong>Darkling Star</strong>. Their dervishes attack using psionic weapons, which target the victim's mental armour (MA) instead of traditional armour (AV).</p>
+<p>Tiered roles include <em>seekers</em>, <em>hunters</em>, <em>dervishes</em>, and <em>high dervishes</em>.</p>
+<p>The most prominent named member: <strong>Aoyg-No-Longer</strong>, servant of Ptoh in the Cosmic Wood, found in the taproot of Eyn Roj 40 strata deep.</p>` },
+  { id: 'girsh-faction', label: 'The Girsh', type: 'faction', group: 'girsh',
+    factionLabel: 'Faction · Cosmic horrors',
+    desc: `<p>Cosmic-scale entities. During humanoid prehistory the greater Girsh roamed Outer Qud and humanoid communities were largely isolated. According to lore, <strong>Abram</strong>'s call to arms rallied his kinsmen and they drove the Girsh beneath the surface to the depths of Inner Qud, where they now roost.</p>
+<p>The <strong>Girsh Nephilim</strong> — Shug'ruith, Agolgot, Qas, Qon — are the seventh plague of the Gyre, slouching from their cradles on the Moon Stair toward Qud to eat its young.</p>
+<p>Their base reputation with the player is -800, the lowest in the game.</p>` },
+  // ─── THE SIX ARGENT FATHERS (individual) ─────────────────
+  { id: 'shekhinah', label: 'Shekhinah', type: 'character', group: 'mechanimists',
+    factionLabel: 'First among the Argent Fathers',
+    desc: `<p>The first and most important of the Argent Fathers in the Mechanimist religion. Shekhinah is reported to have <em>"breathed life into our flesh"</em>, while all the Argent Fathers were involved in the creation of machines and the ruins alike.</p>
+<p>The Mechanimist hymn <em>"O Glorious Shekhinah!"</em> is among the most-cited texts at the Six Day Stilt.</p>` },
+  { id: 'dagon', label: 'Dagon', type: 'character', group: 'mechanimists',
+    factionLabel: 'Argent Father — the rhetorical',
+    desc: `<p>The Argent Father of rhetoric and speech. One of the six chrome statues at the Six Day Stilt.</p>` },
+  { id: 'bel', label: 'Bel', type: 'character', group: 'mechanimists',
+    factionLabel: 'Argent Father — shield-Father',
+    desc: `<p>The shield-Father. One of the six chrome statues at the Six Day Stilt.</p>` },
+  { id: 'carthax', label: 'Carthax', type: 'character', group: 'mechanimists',
+    factionLabel: 'Argent Father — silver-haired',
+    desc: `<p>The silver-haired Argent Father. One of the six chrome statues at the Six Day Stilt.</p>` },
+  { id: 'nisroch', label: 'Nisroch', type: 'character', group: 'mechanimists',
+    factionLabel: 'Argent Father — ore-in-hand',
+    desc: `<p>The Argent Father with ore-in-hand. One of the six chrome statues at the Six Day Stilt.</p>` },
+
+  // ─── RESHEPH (Argent Father AND Sultan) ──────────────────
+  { id: 'resheph', label: 'Resheph', type: 'character', group: 'sultanate',
+    factionLabel: 'Sixth Sultan · Argent Father (the Above)',
+    desc: `<p><em>The Above, Ghost-in-Cerulean, the Coiled Lamb of Baetyls.</em> The last of the Sultans of Qud and one of the six Argent Fathers — making him a unique entity bridging the Sultanate and Mechanimist pantheons.</p>
+<p>Acting against a prohibition on the practice of worshipping the stars, Resheph led an army to the gates of <strong>Omonporch</strong>. There he defeated his brothers in battle and liberated its citizens, who crowned him Sultan of Qud.</p>
+<p><strong>3 BR:</strong> the Gyre widened. The first triad of plagues afflicted the land — water poisoned with salt, girshlings ravaging fruit and wheat, tongues rotting in the mouths of kith and kin. Resheph walked below the chrome arches and healed the sick.</p>
+<p><strong>1 BR:</strong> the Gyre widened again, and the final plague afflicted the land — Girsh Nephilim slouching toward Qud.</p>
+<p>At <strong>Starfarer's Quay</strong>, Resheph consulted with mysterious strangers and learned the <strong>secret of the Gyre</strong>: by cause of the misdeeds of the elder saads and sultans, star beings had levied a curse on Qud. He vowed to make right of this wrong.</p>
+<p><strong>1 AR:</strong> Resheph closed the gates to the <strong>Tomb of the Eaters</strong>, abdicated the throne, and dissolved the Sultanate to lift the curse. His own tomb at the top of the Tomb of the Eaters — 10 strata high — is <em>unfinished</em>: it contains no cherubim, and the <strong>Null Face</strong> can be freely taken from its reliquary, although doing so locks out all the other Sultan reliquaries.</p>` },
+  { id: 'five-sultans', label: 'The Five Procedural Sultans', type: 'character', group: 'sultanate',
+    factionLabel: 'Sultans 1–5 · procedurally generated',
+    desc: `<p>The first five Sultans of Qud are procedurally generated — unique to each playthrough, each with a legendary history that helps shape the world the player begins in. Their entombments fill out the lower levels of the <strong>Tomb of the Eaters</strong>, each guarded by cherubim and reliquaries.</p>
+<p>Their misdeeds (alongside those of the elder <em>saads</em>) are why the star beings levied the curse of the Gyre.</p>
+<p>By contrast, the sixth Sultan — <strong>Resheph</strong> — is fixed in every playthrough, with the same canonical story.</p>` },
+  { id: 'abram', label: 'Abram I', type: 'character', group: 'sultanate',
+    factionLabel: 'Legendary forebear · sometime Sultan',
+    desc: `<p>Legendary forebear in <em>Frivolous Lives, Vol. I</em>. Abram's descendants believe he was responsible for driving back the <strong>Girsh</strong> — <em>"Abram's call to arms rallied his kinsmen and under his sovereignty they drove the greater Girsh entities beneath the surface to the depths of Inner Qud at which they now roost"</em> — though the author casts doubt upon this belief.</p>
+<p><strong>Resheph</strong> later cleansed the marshlands and taught Abram to sow watervine along its fertile tracks.</p>` },
+
+  // ─── BARATHRUMITES — characters ──────────────────────────
+  { id: 'barathrum', label: 'Barathrum the Old', type: 'character', group: 'barathrumites',
+    factionLabel: 'Barathrumite founder',
+    desc: `<p>Founder, patriarch, and namesake of the Barathrumites. An elder Urshiib (albino, quilled, triple-jointed bear). Resides in <strong>Grit Gate</strong>, in his personal study.</p>
+<p>Speculates that the <strong>Coven</strong> placed an "injunction" on Qud in response to some unknown transgression, preventing the Eaters from leaving Earth or communicating with interstellar civilisation.</p>
+<p>The main quest <em>"A Canticle for Barathrum"</em> draws the player into the Barathrumites' conflict with the Putus Templar.</p>` },
+  { id: 'argyve', label: 'Argyve', type: 'character', group: 'joppa',
+    factionLabel: 'Tinkerer of Joppa',
+    desc: `<p>An old tinkerer in <strong>Joppa</strong>. Addresses the player as "apprentice" regardless of progress. His workshop provides fetch quests — and if the player starts in Joppa, his fetch quests lead to obtaining the artefact that kickstarts the entire main questline.</p>
+<p>If the player does not start in Joppa, Argyve is a corpse holding onto that item. He is the bridge from the starting village to the Barathrumites at Grit Gate.</p>
+<p>Argyve <em>"wishes to make contact with the legendary enclave of Tinkerers known as the Barathrumites with a compound at Grit Gate."</em></p>` },
+
+  // ─── JOPPA / VILLAGES ────────────────────────────────────
+  { id: 'mehmet', label: 'Mehmet', type: 'character', group: 'joppa',
+    factionLabel: 'Watervine farmer of Joppa',
+    desc: `<p>A legendary watervine farmer in <strong>Joppa</strong>, the starting village. Gives the player the optional quest <em>"What's Eating the Watervine?"</em> The player can perform the <strong>water ritual</strong> with him; he will teach <em>Harvestry</em> along with Joppa's signature dish, <strong>Apple Matz</strong>.</p>` },
+
+  // ─── MECHANIMIST CHARACTERS ──────────────────────────────
+  { id: 'eschelstadt', label: 'Eschelstadt II', type: 'character', group: 'mechanimists',
+    factionLabel: 'High Priest of the Stilt',
+    desc: `<p>High Priest of the <strong>Six Day Stilt</strong>. Oversees the sacred well and the chrome statues of the six Argent Fathers. Watches as converts complete their pilgrimage to the temple.</p>` },
+  { id: 'sheba', label: 'Sheba Hagadias', type: 'character', group: 'mechanimists',
+    factionLabel: 'Librarian of the Stilt',
+    desc: `<p>Librarian of the Six Day Stilt. Has a randomly-generated species each playthrough — sometimes a normal person, sometimes a Chrome Pyramid or a brooding mushroom. The player turns in books to her for XP.</p>` },
+
+  // ─── PTOH-ADJACENT ──────────────────────────────────────
+  { id: 'aoyg', label: 'Aoyg-No-Longer', type: 'character', group: 'sightless',
+    factionLabel: 'Servant of Ptoh in the Cosmic Wood',
+    desc: `<p>A unique legendary <strong>Seeker of the Sightless Way</strong>, servant of Ptoh, found in the taproot of <strong>Eyn Roj</strong> 40 strata deep — the Cosmic Wood within the tree-city of Chavvah.</p>
+<p>The most prominent named figure of the Sightless Way faction.</p>` },
+  { id: 'tau', label: 'Tau', type: 'character', group: 'sightless',
+    factionLabel: 'Psionic — the manifest psyche',
+    desc: `<p>A psionic figure whose psyche manifests in the Taproot of <strong>Eyn Roj</strong> as glowing soft, accompanied by Aoyg-No-Longer.</p>` },
+
+  // ─── BETHESDA SUSA / SUDDENLY ENCOUNTERED ────────────────
+  { id: 'saad-amus', label: 'Saad Amus, the Sky-Bear', type: 'character', group: 'truekin',
+    factionLabel: 'True-Kin saad · humanoid bear',
+    desc: `<p>The only individual <em>saad</em> physically encountered in Qud. A humanoid bear, explicitly <strong>True Kin</strong>, not a mutant. Found in the second level of the <em>Cryobarrio</em>, located within <strong>Bethesda Susa</strong>.</p>
+<p>Holds an axe that can ignore armour and a flume-flier that allows him to dash all the way across the screen for extra damage.</p>
+<p><em>Saads</em> are the legendary forebears whose misdeeds (alongside those of elder sultans) caused the star beings to curse Qud with the Gyre.</p>` },
+
+  // ─── HINDREN, GOATFOLK, OTHERS ───────────────────────────
+  { id: 'warden-indrix', label: 'Warden Indrix', type: 'character', group: 'goatfolk',
+    factionLabel: 'Goatfolk pariah · warden of Kyakukya',
+    desc: `<p>The warden of <strong>Kyakukya</strong>. A goatfolk and a pariah to his people. The goatfolk begin hostile to players, but Indrix is a member of the <em>Pariah</em> and <em>Fellowship of Wardens</em> factions, and begins neutral.</p>` },
+  { id: 'lulihart', label: 'Lulihart', type: 'character', group: 'hindren',
+    factionLabel: 'Hindren pariah',
+    desc: `<p>A hindren pariah. Tells the player the location of <strong>Bey Lah</strong>, the hidden hindren village in the flower fields. (Otherwise the player must find it by wandering.)</p>` },
+  { id: 'asphodel', label: 'Asphodel, King of the Council', type: 'character', group: 'consortium',
+    factionLabel: 'Consortium of Phyta · King of the Council',
+    desc: `<p>King of the Council of the Consortium of Phyta. Asphodel is a potted plant; xyr twelve <em>asphodelytes</em> are rooted in the ground, allowing them to fully weaponise their teleportation and Electrical Generation.</p>` },
+  // ─── PLACES ───────────────────────────────────────────────
+  { id: 'joppa', label: 'Joppa', type: 'place', group: 'joppa',
+    factionLabel: 'Starting village',
+    desc: `<p>The starting village in Caves of Qud. Home to <strong>Mehmet</strong>, <strong>Argyve</strong>, and the optional <em>"What's Eating the Watervine?"</em> quest. The player can perform the <strong>water ritual</strong> with the villagers and learn <em>Harvestry</em> and Joppa's signature dish, <strong>Apple Matz</strong>.</p>
+<p>The main quest leads from Joppa to <strong>Grit Gate</strong> via Argyve's fetch quests.</p>` },
+  { id: 'grit-gate', label: 'Grit Gate', type: 'place', group: 'barathrumites',
+    factionLabel: 'Barathrumite enclave',
+    desc: `<p>The legendary enclave of Tinkerers — the Barathrumite compound. <strong>Argyve</strong> wishes to make contact with them, and his quest line directs the player here.</p>
+<p>The main section of Grit Gate is down 3 strata, and north one screen. <strong>Barathrum the Old</strong> resides in his personal study within.</p>` },
+  { id: 'tomb-eaters', label: 'Tomb of the Eaters', type: 'place', group: 'sultanate',
+    factionLabel: 'Sealed sultan-tomb mega-dungeon',
+    desc: `<p>A sealed mega-dungeon — the burial complex of the six Sultans, sealed by Resheph in 1 AR. The endgame dungeon.</p>
+<p>The tomb has six sultan-strata — five Sultans entombed below, with Resheph's <em>unfinished</em> tomb at the top, 10 strata high. Resheph's tomb contains no cherubim and the <strong>Null Face</strong> can be freely taken from its reliquary, although doing so locks out all the other Sultan reliquaries.</p>
+<p>Closing the gates here was Resheph's act of dissolving the Sultanate to lift the curse of the Gyre.</p>` },
+  { id: 'six-day-stilt', label: 'Six Day Stilt', type: 'place', group: 'mechanimists',
+    factionLabel: 'Mechanimist temple-city',
+    desc: `<p>The spiritual centre of the Mechanimist faith. Sits at the centre of the <strong>Stiltgrounds</strong> at the edge of <strong>Moghra'yi</strong>, the Great Salt Desert.</p>
+<p>The player can witness converts completing their pilgrimage to the temple, where <strong>Eschelstadt II</strong> oversees the sacred well and the six chrome statues of the Argent Fathers. <strong>Sheba Hagadias</strong> is the Librarian.</p>` },
+  { id: 'moghrayi', label: 'Moghra\'yi', type: 'place', group: 'mechanimists',
+    factionLabel: 'The Great Salt Desert',
+    desc: `<p>The Great Salt Desert. Home to the Stiltgrounds, the Six Day Stilt, and various Mechanimist holdings. The salt of the desert is in some sense a memorial of the first plague of the Gyre — when the water of Qud was poisoned with salt.</p>` },
+  { id: 'bethesda-susa', label: 'Bethesda Susa', type: 'place', group: 'truekin',
+    factionLabel: 'Mid-game underground complex',
+    desc: `<p>A mid-game dungeon — a massive underground complex with multiple levels, increasingly dangerous enemies, locked sections, and environmental hazards (acid pools, temperature extremes). Reached via the quest <em>"Decoding the Signal."</em></p>
+<p>Within Bethesda Susa lies the <em>Cryobarrio</em>, where <strong>Saad Amus, the Sky-Bear</strong> can be encountered.</p>` },
+  { id: 'bey-lah', label: 'Bey Lah', type: 'place', group: 'hindren',
+    factionLabel: 'Hidden hindren village',
+    desc: `<p>An isolationist hindren village in the flower fields. Hidden — found by wandering, or by having <strong>Lulihart</strong> (hindren pariah) tell the player its location.</p>` },
+  { id: 'omonporch', label: 'Omonporch', type: 'place', group: 'sultanate',
+    factionLabel: 'Settlement at the base of the Spindle',
+    desc: `<p>A settlement at the base of the <strong>Spindle</strong>, located at the far west of the map.</p>
+<p>Where <strong>Resheph</strong> defeated his brothers in battle and was crowned Sultan of Qud — the act that began his reign and led, eventually, to the dissolution of the Sultanate.</p>` },
+  { id: 'spindle', label: 'The Spindle', type: 'place', group: 'eaters',
+    factionLabel: 'Ancient Eater structure to the heavens',
+    desc: `<p>An ancient structure that extends from the banana groves of Qud to the heavens above — built by the Eaters of Earth.</p>
+<p>Judging from the Spindle alone, the age of the Eaters was full of grandeur. Only their ruins remain now. Climbing the Spindle is one of the late-game journeys.</p>` },
+  { id: 'golgotha', label: 'Golgotha', type: 'place', group: 'cross',
+    factionLabel: 'Trash-heap mega-dungeon',
+    desc: `<p>A massive trash-heap dungeon — one of the most notorious challenges in the game. Filled with acid, sludge, oozes, and the powerful <strong>Slog</strong> at its bottom.</p>` },
+  { id: 'starfarers-quay', label: 'Starfarer\'s Quay', type: 'place', group: 'sultanate',
+    factionLabel: 'Resheph\'s outreach to the stars',
+    desc: `<p>The site where <strong>Resheph</strong> attempted to receive visitors from other worlds. There he consulted with mysterious strangers and learned the <strong>secret of the Gyre</strong> — that the misdeeds of elder saads and sultans had brought the curse upon Qud.</p>
+<p>Barathrum the Old believes the first widening of the Gyre appeared in Resheph's annals immediately after his attempt to found Starfarer's Quay — suggesting the Gyre is the <strong>Coven's injunction</strong> in enforcement.</p>` },
+  { id: 'cosmic-wood', label: 'The Cosmic Wood', type: 'place', group: 'sightless',
+    factionLabel: 'The realm of Ptoh\'s servants',
+    desc: `<p>The realm where Ptoh's servants gather. Reached via the trunk of the tree-city of Chavvah. <strong>Aoyg-No-Longer</strong> is found in the taproot of <strong>Eyn Roj</strong> 40 strata deep.</p>` },
+  { id: 'eyn-roj', label: 'Eyn Roj', type: 'place', group: 'sightless',
+    factionLabel: 'Trunk of the tree-city of Chavvah',
+    desc: `<p>Eyn Roj is the trunk of the tree-city of <strong>Chavvah</strong>. The Cosmic Wood begins in its branches; in its taproot, 40 strata deep, sits Aoyg-No-Longer.</p>
+<p>Tau's psyche manifests in the Taproot of Eyn Roj as glowing soft, accompanied by Aoyg.</p>` },
+  { id: 'darkling-star', label: 'The Darkling Star', type: 'place', group: 'ptoh',
+    factionLabel: 'Ptoh\'s home in space',
+    desc: `<p>The star where <strong>Ptoh</strong> originates. The Seekers of the Sightless Way are associated with Ptoh and the Darkling Star.</p>` },
+  { id: 'moon-stair', label: 'The Moon Stair', type: 'place', group: 'girsh',
+    factionLabel: 'Girsh Nephilim cradles',
+    desc: `<p>Where the Girsh Nephilim — Shug'ruith, Agolgot, Qas, Qon — sleep in their cradles. The seventh plague of the Gyre is the Nephilim slouching from the Moon Stair toward Qud to eat its young.</p>` },
+  { id: 'kyakukya', label: 'Kyakukya', type: 'place', group: 'cross',
+    factionLabel: 'Goatfolk village',
+    desc: `<p>A goatfolk village. <strong>Warden Indrix</strong> is its warden — a pariah to his people who begins neutral toward the player.</p>` },
+
+  // ─── THE THREE ARCOLOGIES ────────────────────────────────
+  { id: 'ekuemekiyye', label: 'Ekuemekiyye, the Holy City', type: 'place', group: 'truekin',
+    factionLabel: 'True-Kin arcology · Toxic Arboreta',
+    desc: `<p>The <strong>Toxic Arboreta of Ekuemekiyye, the Holy City</strong> — one of the three eco-domes from which True Kin originate.</p>
+<p>Castes from this arcology have extra resistance to bleeding effects and may choose <em>nocturnal apex</em> as their unique starting cybernetic.</p>` },
+  { id: 'ibul', label: 'Ibul', type: 'place', group: 'truekin',
+    factionLabel: 'True-Kin arcology · Ice-Sheathed',
+    desc: `<p>The <strong>Ice-Sheathed Arcology of Ibul</strong> — one of the three eco-domes from which True Kin originate.</p>
+<p>Castes from this arcology have exceptional cold resistance and may choose <em>cherubic visage</em> as their unique starting cybernetic.</p>` },
+  { id: 'yawningmoon', label: 'Yawningmoon', type: 'place', group: 'truekin',
+    factionLabel: 'True-Kin arcology · Crustal Mortars',
+    desc: `<p>The <strong>Crustal Mortars of Yawningmoon</strong> — one of the three eco-domes from which True Kin originate.</p>
+<p>Castes from this arcology have exceptional heat resistance and may choose <em>air current microsensor</em> as their unique starting cybernetic.</p>` },
+  // ─── CONCEPTS ─────────────────────────────────────────────
+  { id: 'becoming-nooks', label: 'Becoming Nooks', type: 'concept', group: 'eaters',
+    factionLabel: 'Eater cybernetic relics',
+    desc: `<p>Relics of the ancient Eater civilisation, allowing the trans-humanist civilisation to install <strong>cybernetic implants</strong>.</p>
+<p>True Kin are <em>recognised</em> by becoming nooks (their genetics or upbringing match the Eaters'); mutants are not. True Kin get a free implant at character creation and can install more cybernetics later through the nooks they encounter.</p>` },
+  { id: 'kasaphescence', label: 'Kasaphescence', type: 'concept', group: 'mechanimists',
+    factionLabel: 'Cosmological substance',
+    desc: `<p>The cosmological substance from which the Argent Fathers shaped <strong>chrome</strong>. Mechanimist liturgy holds that the Fathers' first act was the shaping of the Kasaphescence into chrome — and from chrome, the world's machines and ruins.</p>` },
+  { id: 'chrome', label: 'Chrome', type: 'concept', group: 'mechanimists',
+    factionLabel: 'The shaped substance',
+    desc: `<p>The product of the Argent Fathers' shaping of the Kasaphescence. The Mechanimists revere chrome as a sacred metal — the substance of the ancient ruins, of the chrome statues at the Six Day Stilt, and of Resheph's <em>chrome arches</em> beneath which he walked to heal the sick.</p>` },
+  { id: 'baetyls', label: 'The Baetyls', type: 'concept', group: 'mechanimists',
+    factionLabel: 'Created by the Argent Fathers',
+    desc: `<p>Created by the Argent Fathers. Resheph is named <strong>"the Coiled Lamb of Baetyls."</strong></p>
+<p>In real-world tradition, baetyls are sacred stones thought to be inhabited by deities; in Qud, they are part of the Mechanimist creation account.</p>` },
+  { id: 'spacefolding', label: 'Spacefolding', type: 'concept', group: 'ptoh',
+    factionLabel: 'Ptoh\'s power',
+    desc: `<p>The ability to fold space with thought — Ptoh's primary power, also possessed by other beings of the Coven. Ptoh's prison was specifically constructed by the Eaters so he could not spacefold out of it.</p>` },
+  { id: 'sightless-way-art', label: 'The Sightless Way', type: 'concept', group: 'sightless',
+    factionLabel: 'Psionic discipline',
+    desc: `<p>The psionic discipline of the Seekers. Practitioners attack with psionic weapons that target the victim's <em>mental armour</em> (MA) instead of regular armour (AV).</p>
+<p>Tied to <strong>Ptoh</strong> and the Darkling Star.</p>` },
+  { id: 'phasing', label: 'Phasing', type: 'concept', group: 'barathrumites',
+    factionLabel: 'Barathrumite ability',
+    desc: `<p>One of the distinctive Barathrumite abilities — the ability to shift through walls and other obstacles. The faction has many tinkered phasing devices.</p>` },
+  { id: 'water-ritual', label: 'The Water Ritual', type: 'concept', group: 'joppa',
+    factionLabel: 'Cultural exchange',
+    desc: `<p>A central social mechanic. Sharing water with an NPC builds reputation and may unlock the NPC's secret skills, recipes, or stories. Mehmet teaches <em>Harvestry</em> and <em>Apple Matz</em> through it.</p>` },
+  { id: 'cybernetics', label: 'Cybernetics', type: 'concept', group: 'truekin',
+    factionLabel: 'True Kin technology',
+    desc: `<p>The implants True Kin install via becoming nooks. True Kin do not have access to mutations; instead they advance through cybernetic implants, getting a free implant at character creation.</p>` },
+  { id: 'mutations', label: 'Mutations', type: 'concept', group: 'cross',
+    factionLabel: 'Mutant power-system',
+    desc: `<p>Mutated humans have access to mutations and can select several at character creation, gaining a mutation point at each level-up. The Putus Templar consider mutants a threat to be cleansed — base reputation -700 with mutated humans.</p>` },
+  { id: 'apple-matz', label: 'Apple Matz', type: 'concept', group: 'joppa',
+    factionLabel: 'Joppa\'s signature dish',
+    desc: `<p>Joppa's signature dish — taught by Mehmet through the water ritual.</p>` },
+
+  // ─── ARTIFACTS ────────────────────────────────────────────
+  { id: 'null-face', label: 'The Null Face', type: 'artifact', group: 'sultanate',
+    factionLabel: 'Resheph\'s reliquary',
+    desc: `<p>The reliquary contained in Resheph's <em>unfinished</em> tomb at the top of the Tomb of the Eaters. Because Resheph's tomb contains no cherubim, the Null Face can be <strong>freely taken</strong> from the reliquary — but doing so locks out all the other Sultan reliquaries.</p>
+<p>One of the central late-game choices: take the Null Face freely, or contest the cherubim of the lower tombs for the other Sultans' reliquaries.</p>` },
+  { id: 'cherubim', label: 'Cherubim', type: 'artifact', group: 'sultanate',
+    factionLabel: 'Tomb guardians',
+    desc: `<p>Guardians of the Sultan reliquaries. Each of the five lower sultan-tombs is guarded by cherubim. Resheph's unfinished tomb is the only one without cherubim — and the only one whose reliquary can be taken without contest.</p>` },
+  { id: 'reliquaries', label: 'The Sultan Reliquaries', type: 'artifact', group: 'sultanate',
+    factionLabel: 'Sultan-tomb treasures',
+    desc: `<p>The reliquaries of the six Sultans, sealed in the Tomb of the Eaters. Five are guarded by cherubim; Resheph's is unfinished and unguarded — but taking the Null Face from it locks out all the others.</p>` },
+  { id: 'flume-flier', label: 'The Flume-Flier', type: 'artifact', group: 'truekin',
+    factionLabel: 'Saad Amus\'s rider',
+    desc: `<p>The dashing-rider held by <strong>Saad Amus, the Sky-Bear</strong>. Allows him to dash all the way across the screen for extra damage. Paired with his armour-ignoring axe, Saad Amus is one of the most dangerous enemies in Bethesda Susa.</p>` },
+  { id: 'frivolous-lives', label: 'Frivolous Lives, Vol. I', type: 'artifact', group: 'cross',
+    factionLabel: 'In-world book · the Yewtarch\'s catalogue',
+    desc: `<p>An in-world book — <em>Frivolous Lives: Being the Foremost Catalogue of Humanoid Kings by the Baccata Yewtarch, Volume I.</em> Discusses Abram I and his descendants' belief that he drove back the Girsh — and casts doubt on this.</p>` },
+
+  // ─── RACES ────────────────────────────────────────────────
+  { id: 'urshiib', label: 'Urshiib', type: 'race', group: 'barathrumites',
+    factionLabel: 'Albino quilled bear-people',
+    desc: `<p>Albino, quilled, triple-jointed bears — immensely flexible. The Barathrumites are mainly comprised of Urshiib. They keep to themselves.</p>
+<p>Barathrum the Old is their elder.</p>` },
+  { id: 'hindren', label: 'Hindren', type: 'race', group: 'hindren',
+    factionLabel: 'Heavily-mutated deer',
+    desc: `<p>A species of heavily-mutated deer-people. The hindren of <strong>Bey Lah</strong> live in an isolationist village hidden in the flower fields. <strong>Lulihart</strong> is a hindren pariah.</p>` },
+  { id: 'goatfolk', label: 'Goatfolk', type: 'race', group: 'goatfolk',
+    factionLabel: 'Mutant goat-people',
+    desc: `<p>A faction of goat-people. They begin hostile to players. <strong>Warden Indrix</strong> is their famous pariah — warden of <strong>Kyakukya</strong>, member of the Pariah and Fellowship of Wardens factions.</p>` },
+  { id: 'true-kin', label: 'True Kin', type: 'race', group: 'truekin',
+    factionLabel: 'Unmutated humans · heirs of the Eaters',
+    desc: `<p>Humans who haven't significantly mutated. Through their genetics or upbringing, they are recognised as <strong>successors to the Eaters of Earth</strong>. Becoming nooks recognise them and let them install cybernetics.</p>
+<p>True Kin originate from one of the three arcologies: <strong>Ekuemekiyye</strong>, <strong>Ibul</strong>, <strong>Yawningmoon</strong>. Each arcology grants distinct caste-resistances and starting cybernetics.</p>
+<p>True Kin do not have access to mutations.</p>` },
+  { id: 'mutants', label: 'Mutated Humans', type: 'race', group: 'cross',
+    factionLabel: 'Mutated humans · the cursed inheritors',
+    desc: `<p>Humans whose genome the long centuries have warped. Have access to mutations at character creation and gain a mutation point each level-up. They cannot install cybernetics through becoming nooks (the nooks do not recognise them).</p>
+<p>The <strong>Putus Templar</strong> consider mutants a threat to be cleansed — base reputation -700.</p>` },
+  { id: 'asphodelytes', label: 'Asphodelytes', type: 'race', group: 'consortium',
+    factionLabel: 'Plant-people of the Consortium',
+    desc: `<p>The twelve <em>asphodelytes</em> rooted in the ground, allowing them to fully weaponise teleportation and Electrical Generation, accompany Asphodel, King of the Council.</p>` },
+  { id: 'girsh-nephilim', label: 'The Girsh Nephilim', type: 'race', group: 'girsh',
+    factionLabel: 'Cosmic horrors · seventh plague',
+    desc: `<p>The named Girsh greater entities — <strong>Shug'ruith, Agolgot, Qas, Qon</strong> — slumber in their cradles on the Moon Stair until the seventh plague of the Gyre, when they slouch toward Qud to eat its young.</p>
+<p>The Gyre wights are their lesser kin: <em>Gyre wight of Shug'ruith</em>, <em>Gyre wight of Agolgot</em>, <em>Gyre wight of Qas</em>, etc.</p>` },
+  { id: 'saads', label: 'The Saads', type: 'race', group: 'truekin',
+    factionLabel: 'Legendary forebears',
+    desc: `<p>The legendary forebears whose misdeeds (alongside those of elder sultans) caused the star beings to curse Qud with the Gyre. Their nature is opaque — only one is physically encountered: <strong>Saad Amus, the Sky-Bear</strong>, a humanoid bear and explicitly True Kin.</p>` },
+  // INSERT_NODES_HERE
+];
+const LINKS = [
+  // ─── COSMIC TIES ──────────────────────────────────────────
+  { source: 'eaters', target: 'coven', type: 'member' },
+  { source: 'ptoh', target: 'coven', type: 'opposition' },
+  { source: 'imprisonment', target: 'ptoh', type: 'imprisons' },
+  { source: 'imprisonment', target: 'eaters', type: 'member' },
+  { source: 'imprisonment', target: 'coven', type: 'member' },
+  { source: 'eaters', target: 'fall-eaters', type: 'member' },
+  { source: 'sultanate-rise', target: 'eaters', type: 'predates' },
+  { source: 'fall-eaters', target: 'sultanate-rise', type: 'predates' },
+  { source: 'injunction', target: 'coven', type: 'member' },
+  { source: 'injunction', target: 'eaters', type: 'curse' },
+  { source: 'gyre', target: 'star-beings', type: 'curse' },
+  { source: 'gyre', target: 'injunction', type: 'curse' },
+  { source: 'gyre', target: 'sultanate-rise', type: 'curse' },
+  { source: 'star-beings', target: 'coven', type: 'member' },
+  { source: 'abdication', target: 'sultanate-rise', type: 'member' },
+  { source: 'abdication', target: 'gyre', type: 'opposition' },
+  { source: 'abdication', target: 'tomb-eaters', type: 'location-of' },
+
+  // ─── ARGENT FATHERS — chrome-shaping creators ─────────────
+  { source: 'shekhinah', target: 'argent-fathers', type: 'member' },
+  { source: 'dagon', target: 'argent-fathers', type: 'member' },
+  { source: 'bel', target: 'argent-fathers', type: 'member' },
+  { source: 'carthax', target: 'argent-fathers', type: 'member' },
+  { source: 'nisroch', target: 'argent-fathers', type: 'member' },
+  { source: 'resheph', target: 'argent-fathers', type: 'member' },
+  { source: 'argent-fathers', target: 'mechanimists', type: 'worships' },
+  { source: 'mechanimists', target: 'shekhinah', type: 'worships' },
+  { source: 'argent-fathers', target: 'kasaphescence', type: 'created' },
+  { source: 'argent-fathers', target: 'chrome', type: 'created' },
+  { source: 'argent-fathers', target: 'baetyls', type: 'created' },
+  { source: 'argent-fathers', target: 'six-day-stilt', type: 'location-of' },
+  { source: 'kasaphescence', target: 'chrome', type: 'predates' },
+
+  // ─── SULTANATE ────────────────────────────────────────────
+  { source: 'resheph', target: 'sultanate-rise', type: 'member' },
+  { source: 'five-sultans', target: 'sultanate-rise', type: 'member' },
+  { source: 'abram', target: 'sultanate-rise', type: 'member' },
+  { source: 'resheph', target: 'omonporch', type: 'location-of' },
+  { source: 'resheph', target: 'starfarers-quay', type: 'location-of' },
+  { source: 'resheph', target: 'gyre', type: 'opposition' },
+  { source: 'resheph', target: 'abdication', type: 'member' },
+  { source: 'resheph', target: 'tomb-eaters', type: 'location-of' },
+  { source: 'resheph', target: 'star-beings', type: 'quest' },
+  { source: 'resheph', target: 'abram', type: 'quest' },
+  { source: 'resheph', target: 'baetyls', type: 'member' },
+  { source: 'five-sultans', target: 'tomb-eaters', type: 'location-of' },
+  { source: 'abram', target: 'girsh-faction', type: 'opposition' },
+
+  // ─── FACTIONS — main grouping ─────────────────────────────
+  { source: 'mechanimists', target: 'six-day-stilt', type: 'location-of' },
+  { source: 'mechanimists', target: 'moghrayi', type: 'location-of' },
+  { source: 'mechanimists', target: 'argent-fathers', type: 'worships' },
+  { source: 'templar', target: 'mechanimists', type: 'crusade' },
+  { source: 'templar', target: 'barathrumites', type: 'crusade' },
+  { source: 'templar', target: 'mutants', type: 'crusade' },
+  { source: 'barathrumites', target: 'grit-gate', type: 'location-of' },
+  { source: 'barathrumites', target: 'urshiib', type: 'race' },
+  { source: 'barathrumites', target: 'phasing', type: 'member' },
+  { source: 'consortium', target: 'asphodelytes', type: 'race' },
+  { source: 'sightless-way', target: 'ptoh', type: 'worships' },
+  { source: 'sightless-way', target: 'darkling-star', type: 'location-of' },
+  { source: 'sightless-way', target: 'cosmic-wood', type: 'location-of' },
+  { source: 'sightless-way', target: 'sightless-way-art', type: 'member' },
+  { source: 'girsh-faction', target: 'gyre', type: 'curse' },
+  { source: 'girsh-faction', target: 'moon-stair', type: 'location-of' },
+  { source: 'girsh-faction', target: 'girsh-nephilim', type: 'member' },
+
+  // ─── CHARACTER ↔ FACTION ─────────────────────────────────
+  { source: 'eschelstadt', target: 'mechanimists', type: 'member' },
+  { source: 'sheba', target: 'mechanimists', type: 'member' },
+  { source: 'eschelstadt', target: 'six-day-stilt', type: 'location-of' },
+  { source: 'sheba', target: 'six-day-stilt', type: 'location-of' },
+  { source: 'barathrum', target: 'barathrumites', type: 'member' },
+  { source: 'barathrum', target: 'urshiib', type: 'race' },
+  { source: 'barathrum', target: 'grit-gate', type: 'location-of' },
+  { source: 'barathrum', target: 'injunction', type: 'quest' },
+  { source: 'argyve', target: 'joppa', type: 'location-of' },
+  { source: 'argyve', target: 'barathrumites', type: 'quest' },
+  { source: 'argyve', target: 'grit-gate', type: 'quest' },
+  { source: 'mehmet', target: 'joppa', type: 'location-of' },
+  { source: 'mehmet', target: 'water-ritual', type: 'member' },
+  { source: 'mehmet', target: 'apple-matz', type: 'member' },
+  { source: 'aoyg', target: 'sightless-way', type: 'member' },
+  { source: 'aoyg', target: 'ptoh', type: 'member' },
+  { source: 'aoyg', target: 'cosmic-wood', type: 'location-of' },
+  { source: 'aoyg', target: 'eyn-roj', type: 'location-of' },
+  { source: 'tau', target: 'sightless-way', type: 'member' },
+  { source: 'tau', target: 'eyn-roj', type: 'location-of' },
+  { source: 'saad-amus', target: 'true-kin', type: 'race' },
+  { source: 'saad-amus', target: 'saads', type: 'member' },
+  { source: 'saad-amus', target: 'bethesda-susa', type: 'location-of' },
+  { source: 'saad-amus', target: 'flume-flier', type: 'member' },
+  { source: 'warden-indrix', target: 'goatfolk', type: 'race' },
+  { source: 'warden-indrix', target: 'kyakukya', type: 'location-of' },
+  { source: 'lulihart', target: 'hindren', type: 'race' },
+  { source: 'lulihart', target: 'bey-lah', type: 'location-of' },
+  { source: 'asphodel', target: 'consortium', type: 'member' },
+  { source: 'asphodel', target: 'asphodelytes', type: 'race' },
+
+  // ─── PLACE ↔ FACTION / CONCEPT ───────────────────────────
+  { source: 'tomb-eaters', target: 'eaters', type: 'member' },
+  { source: 'tomb-eaters', target: 'sultanate-rise', type: 'member' },
+  { source: 'tomb-eaters', target: 'reliquaries', type: 'member' },
+  { source: 'tomb-eaters', target: 'cherubim', type: 'member' },
+  { source: 'tomb-eaters', target: 'null-face', type: 'member' },
+  { source: 'six-day-stilt', target: 'moghrayi', type: 'location-of' },
+  { source: 'spindle', target: 'eaters', type: 'member' },
+  { source: 'spindle', target: 'omonporch', type: 'location-of' },
+  { source: 'starfarers-quay', target: 'star-beings', type: 'quest' },
+  { source: 'starfarers-quay', target: 'gyre', type: 'curse' },
+  { source: 'starfarers-quay', target: 'injunction', type: 'curse' },
+  { source: 'cosmic-wood', target: 'eyn-roj', type: 'location-of' },
+  { source: 'darkling-star', target: 'ptoh', type: 'member' },
+  { source: 'moon-stair', target: 'girsh-nephilim', type: 'location-of' },
+  { source: 'kyakukya', target: 'goatfolk', type: 'location-of' },
+  { source: 'bey-lah', target: 'hindren', type: 'location-of' },
+  { source: 'joppa', target: 'water-ritual', type: 'member' },
+  { source: 'joppa', target: 'apple-matz', type: 'member' },
+
+  // ─── ARCOLOGIES ──────────────────────────────────────────
+  { source: 'ekuemekiyye', target: 'true-kin', type: 'location-of' },
+  { source: 'ibul', target: 'true-kin', type: 'location-of' },
+  { source: 'yawningmoon', target: 'true-kin', type: 'location-of' },
+  { source: 'true-kin', target: 'eaters', type: 'descendant-of' },
+  { source: 'true-kin', target: 'becoming-nooks', type: 'member' },
+  { source: 'true-kin', target: 'cybernetics', type: 'member' },
+  { source: 'mutants', target: 'mutations', type: 'member' },
+  { source: 'becoming-nooks', target: 'eaters', type: 'member' },
+  { source: 'spacefolding', target: 'ptoh', type: 'member' },
+  { source: 'spacefolding', target: 'imprisonment', type: 'opposition' },
+
+  // ─── BIG THEMATIC TIES ────────────────────────────────────
+  { source: 'eaters', target: 'imprisonment', type: 'created' },
+  { source: 'eaters', target: 'becoming-nooks', type: 'created' },
+  { source: 'eaters', target: 'spindle', type: 'created' },
+  { source: 'eaters', target: 'tomb-eaters', type: 'created' },
+  { source: 'argent-fathers', target: 'shekhinah', type: 'member' },
+  { source: 'mechanimists', target: 'chrome', type: 'worships' },
+  { source: 'mechanimists', target: 'kasaphescence', type: 'worships' },
+  { source: 'mechanimists', target: 'baetyls', type: 'worships' },
+
+  // ─── GIRSH ────────────────────────────────────────────────
+  { source: 'girsh-nephilim', target: 'gyre', type: 'curse' },
+  { source: 'girsh-nephilim', target: 'moon-stair', type: 'location-of' },
+  { source: 'girsh-faction', target: 'abram', type: 'opposition' },
+
+  // ─── BOOK / FRIVOLOUS LIVES ──────────────────────────────
+  { source: 'frivolous-lives', target: 'abram', type: 'member' },
+  { source: 'frivolous-lives', target: 'girsh-faction', type: 'member' },
+
+  // ─── GOLGOTHA — sits cross-faction, but adjacent to Mechanimist territory
+  { source: 'golgotha', target: 'mechanimists', type: 'quest' },
+  { source: 'golgotha', target: 'consortium', type: 'opposition' },
+  // INSERT_LINKS_HERE
+];
+// </script>
+<script>
+(function () {
+  if (NODES.length === 0) {
+    console.log('Lore graph: waiting for data injection.');
+    return;
+  }
+
+  const FACTION_COLORS = {
+    coven: 'var(--c-coven)',
+    eaters: 'var(--c-eaters)',
+    ptoh: 'var(--c-ptoh)',
+    girsh: 'var(--c-girsh)',
+    sultanate: 'var(--c-sultanate)',
+    mechanimists: 'var(--c-mechanimists)',
+    templar: 'var(--c-templar)',
+    barathrumites: 'var(--c-barathrumites)',
+    consortium: 'var(--c-consortium)',
+    sightless: 'var(--c-sightless)',
+    hindren: 'var(--c-hindren)',
+    goatfolk: 'var(--c-goatfolk)',
+    joppa: 'var(--c-joppa)',
+    truekin: 'var(--c-truekin)',
+    cross: 'var(--c-cross)',
+    event: 'var(--c-event)'
+  };
+  function color(group) { return FACTION_COLORS[group] || 'var(--ink-dim)'; }
+
+  function radius(node) {
+    if (node.type === 'cosmic') return 22;
+    if (node.type === 'faction') return 18;
+    if (node.type === 'event') return 14;
+    if (node.type === 'character') return 8.5;
+    if (node.type === 'place') return 9;
+    if (node.type === 'race') return 8;
+    if (node.type === 'concept') return 7;
+    if (node.type === 'artifact') return 6.5;
+    return 7;
+  }
+
+  const svg = d3.select('#graph');
+  const container = document.getElementById('graph-container');
+  let width = container.clientWidth;
+  let height = container.clientHeight;
+  svg.attr('viewBox', [-width / 2, -height / 2, width, height]);
+  const zoomGroup = svg.append('g').attr('class', 'zoom-group');
+  const zoom = d3.zoom()
+    .scaleExtent([0.18, 5])
+    .on('zoom', (event) => zoomGroup.attr('transform', event.transform));
+  svg.call(zoom);
+
+  const nodeById = new Map(NODES.map(n => [n.id, n]));
+  const links = LINKS.map(l => Object.assign({}, l));
+
+  const simulation = d3.forceSimulation(NODES)
+    .force('link', d3.forceLink(links).id(d => d.id)
+      .distance(d => {
+        if (d.type === 'opposition') return 220;
+        if (d.type === 'imprisons') return 200;
+        if (d.type === 'predates') return 160;
+        if (d.type === 'member') {
+          const t = nodeById.get(typeof d.target === 'object' ? d.target.id : d.target);
+          if (t && (t.type === 'cosmic' || t.type === 'faction')) return 80;
+          return 90;
+        }
+        if (d.type === 'quest') return 130;
+        if (d.type === 'descendant-of') return 90;
+        return 100;
+      })
+      .strength(d => {
+        if (d.type === 'opposition') return 0.05;
+        if (d.type === 'predates') return 0.1;
+        if (d.type === 'member') return 0.7;
+        return 0.3;
+      })
+    )
+    .force('charge', d3.forceManyBody().strength(d => {
+      if (d.type === 'cosmic') return -1100;
+      if (d.type === 'faction') return -800;
+      if (d.type === 'event') return -700;
+      return -240;
+    }))
+    .force('center', d3.forceCenter(0, 0).strength(0.04))
+    .force('collide', d3.forceCollide().radius(d => radius(d) + 4).strength(0.7))
+    .force('x', d3.forceX(0).strength(0.02))
+    .force('y', d3.forceY(0).strength(0.02));
+
+  const linkSel = zoomGroup.append('g')
+    .attr('class', 'links')
+    .selectAll('line')
+    .data(links).enter()
+    .append('line')
+    .attr('class', d => `link ${d.type || ''}`);
+
+  const nodeSel = zoomGroup.append('g')
+    .attr('class', 'nodes')
+    .selectAll('path')
+    .data(NODES, d => d.id).enter()
+    .append('path')
+    .attr('class', d => `node node-${d.type}`)
+    .attr('d', d => shapeFor(d))
+    .attr('fill', d => color(d.group))
+    .call(drag(simulation))
+    .on('click', (event, d) => { event.stopPropagation(); selectNode(d); })
+    .on('mouseover', (event, d) => highlightNeighborhood(d))
+    .on('mouseout', () => clearHighlight());
+  nodeSel.append('title').text(d => d.label);
+
+  const labelSel = zoomGroup.append('g')
+    .attr('class', 'labels')
+    .selectAll('text')
+    .data(NODES).enter()
+    .append('text')
+    .attr('class', d => `node-label ${d.type}`)
+    .attr('dy', d => radius(d) + 11)
+    .text(d => d.label);
+
+  function shapeFor(d) {
+    const r = radius(d);
+    switch (d.type) {
+      case 'cosmic':
+      case 'faction':
+      case 'character':
+      case 'event':
+        return `M ${-r},0 a ${r},${r} 0 1,0 ${r * 2},0 a ${r},${r} 0 1,0 ${-r * 2},0 Z`;
+      case 'concept':
+        return `M ${-r},${-r} L ${r},${-r} L ${r},${r} L ${-r},${r} Z`;
+      case 'race': {
+        const r2 = r * 1.25;
+        const half = r2 * 0.866;
+        return `M 0,${-r2} L ${half},${r2 * 0.5} L ${-half},${r2 * 0.5} Z`;
+      }
+      case 'artifact': {
+        const r1 = r;
+        const r2 = r * 0.45;
+        return [
+          `M 0,${-r1}`, `L ${r2},${-r2}`, `L ${r1},0`, `L ${r2},${r2}`,
+          `L 0,${r1}`, `L ${-r2},${r2}`, `L ${-r1},0`, `L ${-r2},${-r2}`, 'Z'
+        ].join(' ');
+      }
+      case 'place': {
+        const r1 = r;
+        const r2 = r * 0.55;
+        return [
+          `M ${-r1},0`,
+          `a ${r1},${r1} 0 1,0 ${r1 * 2},0`,
+          `a ${r1},${r1} 0 1,0 ${-r1 * 2},0`,
+          `M ${-r2},0`,
+          `a ${r2},${r2} 0 1,1 ${r2 * 2},0`,
+          `a ${r2},${r2} 0 1,1 ${-r2 * 2},0`
+        ].join(' ');
+      }
+      default:
+        return `M ${-r},0 a ${r},${r} 0 1,0 ${r * 2},0 a ${r},${r} 0 1,0 ${-r * 2},0 Z`;
+    }
+  }
+
+  function drag(sim) {
+    function start(event, d) {
+      if (!event.active) sim.alphaTarget(0.3).restart();
+      d.fx = d.x; d.fy = d.y;
+    }
+    function dragged(event, d) { d.fx = event.x; d.fy = event.y; }
+    function end(event, d) {
+      if (!event.active) sim.alphaTarget(0);
+      d.fx = null; d.fy = null;
+    }
+    return d3.drag().on('start', start).on('drag', dragged).on('end', end);
+  }
+
+  simulation.on('tick', () => {
+    linkSel
+      .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+    nodeSel.attr('transform', d => `translate(${d.x},${d.y})`);
+    labelSel.attr('transform', d => `translate(${d.x},${d.y})`);
+  });
+
+  const neighbors = new Map();
+  NODES.forEach(n => neighbors.set(n.id, new Set([n.id])));
+  links.forEach(l => {
+    const s = typeof l.source === 'object' ? l.source.id : l.source;
+    const t = typeof l.target === 'object' ? l.target.id : l.target;
+    if (neighbors.has(s)) neighbors.get(s).add(t);
+    if (neighbors.has(t)) neighbors.get(t).add(s);
+  });
+
+  function highlightNeighborhood(d) {
+    const nbrs = neighbors.get(d.id) || new Set([d.id]);
+    nodeSel.classed('dimmed', n => !nbrs.has(n.id));
+    labelSel.classed('dimmed', n => !nbrs.has(n.id))
+            .classed('highlighted', n => nbrs.has(n.id));
+    linkSel
+      .classed('dimmed', l => {
+        const s = typeof l.source === 'object' ? l.source.id : l.source;
+        const t = typeof l.target === 'object' ? l.target.id : l.target;
+        return !(s === d.id || t === d.id);
+      })
+      .classed('highlighted', l => {
+        const s = typeof l.source === 'object' ? l.source.id : l.source;
+        const t = typeof l.target === 'object' ? l.target.id : l.target;
+        return s === d.id || t === d.id;
+      });
+  }
+  function clearHighlight() {
+    nodeSel.classed('dimmed', false);
+    labelSel.classed('dimmed', false).classed('highlighted', false);
+    linkSel.classed('dimmed', false).classed('highlighted', false);
+  }
+
+  const detailsEl = document.getElementById('details');
+  const detailsContent = document.getElementById('details-content');
+
+  function selectNode(d) {
+    nodeSel.classed('selected', n => n.id === d.id);
+    if (window.innerWidth < 800) detailsEl.classList.add('visible');
+    const groupColor = `style="color: var(--c-${d.group || 'cross'});"`;
+    const typeLabel = ({
+      cosmic: 'Cosmic entity', faction: 'Faction', character: 'Character',
+      concept: 'Concept', artifact: 'Artifact', place: 'Place',
+      event: 'Event', race: 'Race / species'
+    })[d.type] || d.type;
+    let html = `<h2 ${groupColor}>${escapeHtml(d.label)}</h2>`;
+    html += `<div class="meta">${typeLabel}${d.factionLabel ? ' · ' + escapeHtml(d.factionLabel) : ''}</div>`;
+    if (d.desc) html += d.desc;
+    const related = Array.from(neighbors.get(d.id) || []).filter(id => id !== d.id);
+    if (related.length) {
+      html += `<h3>Connected (${related.length})</h3>`;
+      const sorted = related
+        .map(id => nodeById.get(id))
+        .filter(Boolean)
+        .sort((a, b) => {
+          const order = { cosmic: 0, faction: 1, event: 2, character: 3, place: 4, race: 5, concept: 6, artifact: 7 };
+          return (order[a.type] || 9) - (order[b.type] || 9) || a.label.localeCompare(b.label);
+        });
+      sorted.forEach(n => {
+        html += `<a class="related" data-jump="${n.id}" style="border-left: 3px solid var(--c-${n.group || 'cross'});">${escapeHtml(n.label)}</a>`;
+      });
+    }
+    detailsContent.innerHTML = html;
+    detailsContent.querySelectorAll('a.related').forEach(a => {
+      a.addEventListener('click', () => {
+        const target = nodeById.get(a.dataset.jump);
+        if (target) { selectNode(target); centerOn(target); }
+      });
+    });
+  }
+
+  function centerOn(d) {
+    if (d.x == null) return;
+    const t = d3.zoomIdentity.translate(-d.x * 1.2, -d.y * 1.2).scale(1.2);
+    svg.transition().duration(600).call(zoom.transform, t);
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+  }
+
+  svg.on('click', () => { nodeSel.classed('selected', false); });
+
+  const activeTypes = new Set([
+    'cosmic', 'faction', 'character', 'concept', 'artifact', 'place', 'event', 'race'
+  ]);
+  document.getElementById('filters').addEventListener('change', (event) => {
+    const t = event.target.dataset.type;
+    if (event.target.checked) activeTypes.add(t); else activeTypes.delete(t);
+    applyFilters();
+  });
+
+  function applyFilters() {
+    const q = document.getElementById('search').value.trim().toLowerCase();
+    const visibleIds = new Set();
+    nodeSel.style('display', d => {
+      const typeOk = activeTypes.has(d.type);
+      const searchOk = !q || d.label.toLowerCase().includes(q) || (d.desc || '').toLowerCase().includes(q);
+      const ok = typeOk && searchOk;
+      if (ok) visibleIds.add(d.id);
+      return ok ? null : 'none';
+    });
+    labelSel.style('display', d => visibleIds.has(d.id) ? null : 'none');
+    linkSel.style('display', l => {
+      const s = typeof l.source === 'object' ? l.source.id : l.source;
+      const t = typeof l.target === 'object' ? l.target.id : l.target;
+      return (visibleIds.has(s) && visibleIds.has(t)) ? null : 'none';
+    });
+  }
+  document.getElementById('search').addEventListener('input', applyFilters);
+
+  document.getElementById('zoom-in').addEventListener('click', () =>
+    svg.transition().duration(250).call(zoom.scaleBy, 1.3));
+  document.getElementById('zoom-out').addEventListener('click', () =>
+    svg.transition().duration(250).call(zoom.scaleBy, 1 / 1.3));
+  document.getElementById('zoom-reset').addEventListener('click', () =>
+    svg.transition().duration(400).call(zoom.transform, d3.zoomIdentity));
+
+  window.addEventListener('resize', () => {
+    width = container.clientWidth;
+    height = container.clientHeight;
+    svg.attr('viewBox', [-width / 2, -height / 2, width, height]);
+  });
+
+  const stats = document.getElementById('stats');
+  if (stats) {
+    const counts = {};
+    NODES.forEach(n => { counts[n.type] = (counts[n.type] || 0) + 1; });
+    stats.innerHTML = `${NODES.length} nodes · ${links.length} links<br>` +
+      Object.entries(counts).map(([k,v]) => `${v} ${k}`).join(' · ');
+  }
+})();
+</script>
+
+</body>
+</html>
