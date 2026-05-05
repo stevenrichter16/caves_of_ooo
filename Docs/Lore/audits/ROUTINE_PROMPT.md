@@ -72,6 +72,17 @@ INPUTS to read each run (absolute paths):
   • The most recent file in /Users/steven/house_feature/caves_of_ooo/Docs/Lore/audits/
     (read it so you don't repeat suggestions made last week)
 
+  • The corpus now has a hand-maintained Tier-1 surface at
+    /Users/steven/house_feature/caves_of_ooo/Docs/Lore/Palimpsest_Primer.md,
+    a glossary at /Users/steven/house_feature/caves_of_ooo/Docs/Lore/Palimpsest_Glossary.md,
+    faction one-pagers in /Users/steven/house_feature/caves_of_ooo/Docs/Lore/Factions/,
+    and a starter-NPC list at /Users/steven/house_feature/caves_of_ooo/Docs/Lore/StarterNPCs.md.
+    Read these on each run for orientation. The audit may *propose*
+    refinements to surface text but should never directly rewrite it;
+    surface text is maintained by hand to preserve accessibility. See
+    /Users/steven/house_feature/caves_of_ooo/Docs/Lore/README.md for the
+    three-tier governance.
+
 OUTPUT each run, in this order:
 
   1. STATE SNAPSHOT. Date, file modification times, one-line summary of
