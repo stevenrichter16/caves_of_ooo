@@ -301,6 +301,11 @@ namespace CavesOfOoo.Core
                 // stun AND electrify on the same hit, since the chance rolls are independent.
                 OnHitWeaponEffects.Apply(weapon, damage, actualDamage, defender, attacker, zone, rng);
 
+                // Skill-driven on-hit effects (Cudgel_Bludgeon→Stun, LongBlades_Lacerate→Bleed, etc.).
+                // Reads attacker's SkillsPart and applies effects for any owned weapon-class powers.
+                // Stacks independently of class + weapon hooks above.
+                OnHitSkillEffects.Apply(damage, actualDamage, defender, attacker, zone, rng);
+
                 // Check for combat dismemberment (only on survivors). Use
                 // actualDamage because the threshold formula is (damage / maxHP)
                 // — pre-resistance values would over-trigger dismemberment on
