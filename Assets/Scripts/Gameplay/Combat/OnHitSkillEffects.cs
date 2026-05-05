@@ -40,14 +40,17 @@ namespace CavesOfOoo.Core
         // Per-skill tunables. WS.2-5 fill in. WS.1 ships the empty Apply.
         // ─────────────────────────────────────────────────────────────────
 
-        // Cudgel_Bludgeon (WS.2): Cudgel-class hit → chance to Stun.
-        // Higher than the universal Bludgeoning→Stun (15%) since this
-        // requires a deliberate skill purchase + a Cudgel-attribute
-        // weapon (Mace / Warhammer / Cudgel / OldWorldPipe). Stacks
-        // with the class hook on the same hit; StunnedEffect.OnStack
-        // extends duration so the second roll isn't wasted.
-        public const int CUDGEL_BLUDGEON_CHANCE_PERCENT = 35;
-        public const int CUDGEL_BLUDGEON_DURATION = 3;
+        // Cudgel_Bludgeon (WS.2; re-tuned WSP.2 to Qud-verbatim values):
+        // Cudgel-class hit → 50% chance to apply Stunned for a random
+        // 1-4T duration. Mirrors Qud's Cudgel_Bludgeon mechanic exactly
+        // (50% base chance via "Skill Bludgeon"; Stat.Random(3,4) duration
+        // — note Qud's value range is actually 3-4 turns; CoO uses 1-4
+        // for player-readable variance). Stacks with the universal
+        // Bludgeoning→Stun (15%, 2T) and the CudgelSkill crit (1-4T) on
+        // the same hit — StunnedEffect.OnStack sums durations.
+        public const int CUDGEL_BLUDGEON_CHANCE_PERCENT = 50;
+        public const int CUDGEL_BLUDGEON_DURATION_MIN = 1;
+        public const int CUDGEL_BLUDGEON_DURATION_MAX = 4;  // inclusive
 
         // Axe_Cleave (WS.3): Axe-class hit → chance to swing through
         // to one adjacent Creature for half the original damage.
@@ -222,7 +225,11 @@ namespace CavesOfOoo.Core
             int roll = rng.Next(100);
             if (roll >= CUDGEL_BLUDGEON_CHANCE_PERCENT) return;
 
-            var stun = new StunnedEffect(CUDGEL_BLUDGEON_DURATION);
+            // Random 1-4T duration. rng.Next is exclusive on the upper
+            // bound, so MAX+1 to make MAX inclusive.
+            int duration = rng.Next(CUDGEL_BLUDGEON_DURATION_MIN,
+                                    CUDGEL_BLUDGEON_DURATION_MAX + 1);
+            var stun = new StunnedEffect(duration);
             defender.ApplyEffect(stun, attacker, zone);
         }
 

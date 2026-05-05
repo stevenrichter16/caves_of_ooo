@@ -398,6 +398,50 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
+        // WSP.2 — Cudgel_Bludgeon re-tune to Qud-verbatim values
+        // (50% / 1-4T random duration). Pin the new constants + range.
+        // ====================================================================
+
+        [Test]
+        public void CudgelBludgeon_DurationIsRandomWithinRange()
+        {
+            // Across many seeds, the random 1-4T duration must produce
+            // both 1 and 4 as the min/max observations. If the range is
+            // accidentally clamped (e.g. only ever 3, like the WS.2
+            // pre-WSP.2 fixed-3T behavior), this test fails.
+            int minObserved = int.MaxValue;
+            int maxObserved = int.MinValue;
+            int observed = 0;
+            for (int seed = 0; seed < 300; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(Cudgel_Bludgeon));
+                var damage = new Damage(10);
+                damage.AddAttribute("Cudgel");
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                var stun = defender.GetPart<StatusEffectsPart>().GetEffect<StunnedEffect>();
+                if (stun != null)
+                {
+                    observed++;
+                    if (stun.Duration < minObserved) minObserved = stun.Duration;
+                    if (stun.Duration > maxObserved) maxObserved = stun.Duration;
+                }
+            }
+            Assert.GreaterOrEqual(observed, 1,
+                $"Across 300 seeds, expected at least one Cudgel_Bludgeon Stun. " +
+                $"None observed — chance gate is broken.");
+            Assert.LessOrEqual(minObserved, OnHitSkillEffects.CUDGEL_BLUDGEON_DURATION_MIN,
+                $"Min Cudgel_Bludgeon Stun duration must reach " +
+                $"{OnHitSkillEffects.CUDGEL_BLUDGEON_DURATION_MIN}. Observed: {minObserved}.");
+            Assert.GreaterOrEqual(maxObserved, OnHitSkillEffects.CUDGEL_BLUDGEON_DURATION_MAX,
+                $"Max Cudgel_Bludgeon Stun duration must reach " +
+                $"{OnHitSkillEffects.CUDGEL_BLUDGEON_DURATION_MAX}. Observed: {maxObserved}.");
+        }
+
+        // ====================================================================
         // WSP.1 — Tree-root crit behaviors. Each tree-root grants a
         // forced (no chance roll) effect when a critical hit lands with
         // a matching weapon class. Mirrors Qud's WeaponMadeCriticalHit
