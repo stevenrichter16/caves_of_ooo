@@ -73,6 +73,37 @@ namespace CavesOfOoo.Core
         public const int SHORTBLADES_JAB_CHANCE_PERCENT = 30;
         public const int SHORTBLADES_JAB_DURATION = 3;
 
+        // ─────────────────────────────────────────────────────────────────
+        // WSP.1 — Tree-root crit-only behaviors. Each tree-root grants
+        // an observable bonus when a critical hit lands with a matching
+        // weapon class. Mirrors Qud's WeaponMadeCriticalHit overrides
+        // (qud-decompiled-project/XRL.World.Parts.Skill/{Cudgel,Axe,
+        // LongBlades,ShortBlades}.cs). Owning a tree-root for 1 SP is
+        // now mechanically meaningful even before buying any powers.
+        // ─────────────────────────────────────────────────────────────────
+
+        // CudgelSkill on crit: random 1-4T Stunned (Qud uses Dazed; CoO
+        // doesn't have Dazed, so map to Stunned with the same duration shape).
+        public const int CUDGEL_CRIT_STUN_DURATION_MIN = 1;
+        public const int CUDGEL_CRIT_STUN_DURATION_MAX = 4;  // inclusive
+
+        // AxeSkill on crit: force-cleave at 100% chance (vs Axe_Cleave's
+        // 30% gated chance). Reuses the same adjacent-Creature lookup +
+        // half-damage shape — just bypasses the dice gate.
+
+        // LongBladesSkill on crit: force Bleed with stronger dice than
+        // Lacerate. Qud uses +2 penetration rolls (extra dice); CoO ports
+        // as a forced Bleed since the post-damage hook signature can't
+        // modify pre-damage rolls.
+        public const int LONGBLADES_CRIT_BLEED_SAVE_TARGET = 15;
+        public const string LONGBLADES_CRIT_BLEED_DAMAGE_DICE = "1d4";
+
+        // ShortBladesSkill on crit: force Bleed with light dice. Qud's
+        // Bleeding "1d2-1" doesn't translate cleanly (DiceRoller doesn't
+        // accept negative modifiers); use "1d2" as the closest equivalent.
+        public const int SHORTBLADES_CRIT_BLEED_SAVE_TARGET = 15;
+        public const string SHORTBLADES_CRIT_BLEED_DAMAGE_DICE = "1d2";
+
         /// <summary>
         /// Apply skill-driven on-hit effects. Same contract as
         /// <see cref="OnHitClassEffects.Apply"/>: short-circuits if any
@@ -143,6 +174,41 @@ namespace CavesOfOoo.Core
                 && damage.HasAttribute("Piercing"))
             {
                 TryShortBladesJab(defender, attacker, zone, rng);
+            }
+
+            // ─────────────────────────────────────────────────────────────
+            // WSP.1 — Tree-root crit behaviors. Gated on the "Critical"
+            // damage attribute (set by CombatSystem when a natural-20
+            // lands) + the matching weapon-class attribute + the actor
+            // owning the tree-root skill. Fires AS WELL AS any matching
+            // power branch above (e.g. a Mace crit by a fully-Cudgel-
+            // trained character runs Cudgel_Bludgeon's 50% Stun roll AND
+            // CudgelSkill's force-Stun-on-crit).
+            // ─────────────────────────────────────────────────────────────
+
+            bool isCrit = damage.HasAttribute("Critical");
+            if (isCrit)
+            {
+                if (skills.HasSkill(nameof(CudgelSkill))
+                    && damage.HasAttribute("Cudgel"))
+                {
+                    ApplyCudgelCrit(defender, attacker, zone, rng);
+                }
+                if (skills.HasSkill(nameof(AxeSkill))
+                    && damage.HasAttribute("Axe"))
+                {
+                    ApplyAxeCritCleave(actualDamage, defender, attacker, zone);
+                }
+                if (skills.HasSkill(nameof(LongBladesSkill))
+                    && damage.HasAttribute("LongBlades"))
+                {
+                    ApplyLongBladesCrit(defender, attacker, zone, rng);
+                }
+                if (skills.HasSkill(nameof(ShortBladesSkill))
+                    && damage.HasAttribute("Piercing"))
+                {
+                    ApplyShortBladesCrit(defender, attacker, zone, rng);
+                }
             }
         }
 
@@ -240,6 +306,80 @@ namespace CavesOfOoo.Core
 
             var confused = new ConfusedEffect(SHORTBLADES_JAB_DURATION);
             defender.ApplyEffect(confused, attacker, zone);
+        }
+
+        // ─────────────────────────────────────────────────────────────────
+        // WSP.1 — tree-root crit helpers. No chance roll: every Crit-tagged
+        // hit by an owner of the matching tree-root fires the effect.
+        // ─────────────────────────────────────────────────────────────────
+
+        // CudgelSkill on crit: random 1-4T Stunned. rng.Next(min, max+1)
+        // since Random.Next is exclusive on the upper bound.
+        private static void ApplyCudgelCrit(Entity defender, Entity attacker,
+            Zone zone, Random rng)
+        {
+            int duration = rng.Next(CUDGEL_CRIT_STUN_DURATION_MIN,
+                                    CUDGEL_CRIT_STUN_DURATION_MAX + 1);
+            var stun = new StunnedEffect(duration);
+            defender.ApplyEffect(stun, attacker, zone);
+        }
+
+        // AxeSkill on crit: force-cleave at 100% chance (no rng roll).
+        // Same adjacent-Creature lookup as TryAxeCleave; just executes
+        // the cleave unconditionally. Bails if zone is null or there's
+        // no adjacent Creature (a normal-game path: cleaving with no
+        // target connected just doesn't do anything).
+        private static void ApplyAxeCritCleave(int actualDamage, Entity defender,
+            Entity attacker, Zone zone)
+        {
+            if (zone == null) return;
+
+            var defPos = zone.GetEntityPosition(defender);
+            if (defPos.x < 0) return;
+
+            Entity cleaveTarget = null;
+            for (int dir = 0; dir < 8 && cleaveTarget == null; dir++)
+            {
+                var cell = zone.GetCellInDirection(defPos.x, defPos.y, dir);
+                if (cell == null) continue;
+                for (int i = 0; i < cell.Objects.Count; i++)
+                {
+                    var e = cell.Objects[i];
+                    if (e == null || e == attacker || e == defender) continue;
+                    if (!e.Tags.ContainsKey("Creature")) continue;
+                    cleaveTarget = e;
+                    break;
+                }
+            }
+            if (cleaveTarget == null) return;
+
+            int cleaveDamage = System.Math.Max(1, actualDamage / 2);
+            CombatSystem.ApplyDamage(cleaveTarget, cleaveDamage, attacker, zone);
+        }
+
+        // LongBladesSkill on crit: force Bleeding with stronger dice
+        // ("1d4" vs Lacerate's "1d3"). No chance roll; every crit
+        // applies Bleed.
+        private static void ApplyLongBladesCrit(Entity defender, Entity attacker,
+            Zone zone, Random rng)
+        {
+            var bleed = new BleedingEffect(
+                saveTarget: LONGBLADES_CRIT_BLEED_SAVE_TARGET,
+                damageDice: LONGBLADES_CRIT_BLEED_DAMAGE_DICE,
+                rng: rng);
+            defender.ApplyEffect(bleed, attacker, zone);
+        }
+
+        // ShortBladesSkill on crit: force Bleeding with light dice
+        // ("1d2"). No chance roll; every Piercing crit applies Bleed.
+        private static void ApplyShortBladesCrit(Entity defender, Entity attacker,
+            Zone zone, Random rng)
+        {
+            var bleed = new BleedingEffect(
+                saveTarget: SHORTBLADES_CRIT_BLEED_SAVE_TARGET,
+                damageDice: SHORTBLADES_CRIT_BLEED_DAMAGE_DICE,
+                rng: rng);
+            defender.ApplyEffect(bleed, attacker, zone);
         }
     }
 }

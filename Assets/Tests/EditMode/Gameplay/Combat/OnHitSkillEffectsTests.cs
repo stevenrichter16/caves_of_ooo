@@ -398,6 +398,240 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
+        // WSP.1 — Tree-root crit behaviors. Each tree-root grants a
+        // forced (no chance roll) effect when a critical hit lands with
+        // a matching weapon class. Mirrors Qud's WeaponMadeCriticalHit
+        // overrides on Cudgel/Axe/LongBlades/ShortBlades tree-roots.
+        // ====================================================================
+
+        // ── CudgelSkill on crit: random 1-4T Stunned ─────────────────────────
+
+        [Test]
+        public void CudgelCrit_WithCudgelSkillOwned_AlwaysAppliesStunned()
+        {
+            // Force-apply (no chance roll) — every crit must produce Stunned.
+            // Unlike the gated Cudgel_Bludgeon, the tree-root fires
+            // unconditionally on Cudgel-attribute Critical hits.
+            for (int seed = 0; seed < 50; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(CudgelSkill));
+                var damage = new Damage(10);
+                damage.AddAttribute("Cudgel");
+                damage.AddAttribute("Critical");
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                Assert.IsTrue(
+                    defender.GetPart<StatusEffectsPart>().HasEffect<StunnedEffect>(),
+                    $"Seed {seed}: CudgelSkill on Cudgel-Critical hit must always apply Stunned.");
+            }
+        }
+
+        [Test]
+        public void CudgelCrit_DurationIsRandom1To4()
+        {
+            // Range check across many seeds: at least one duration of 1
+            // and at least one of 4 must be observed (uniform across seeds).
+            // Lower bound: 1; upper bound: 4. Per Qud's Stat.Random(1, 4).
+            int minObserved = int.MaxValue;
+            int maxObserved = int.MinValue;
+            for (int seed = 0; seed < 200; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(CudgelSkill));
+                var damage = new Damage(10);
+                damage.AddAttribute("Cudgel");
+                damage.AddAttribute("Critical");
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                var stun = defender.GetPart<StatusEffectsPart>().GetEffect<StunnedEffect>();
+                if (stun != null)
+                {
+                    if (stun.Duration < minObserved) minObserved = stun.Duration;
+                    if (stun.Duration > maxObserved) maxObserved = stun.Duration;
+                }
+            }
+            Assert.LessOrEqual(minObserved, 1,
+                $"Across 200 seeds, the minimum CudgelSkill crit Stun duration " +
+                $"should hit 1. Observed minimum: {minObserved}.");
+            Assert.GreaterOrEqual(maxObserved, 4,
+                $"Across 200 seeds, the maximum should hit 4. Observed maximum: {maxObserved}.");
+        }
+
+        [Test]
+        public void NonCriticalCudgelHit_WithCudgelSkillOwned_DoesNotForceStun()
+        {
+            // Counter-check: same setup but no Critical attribute. The
+            // gated Cudgel_Bludgeon power isn't owned in this fixture
+            // (only the tree-root), so Stunned should be very rare —
+            // observe 0 across many seeds.
+            for (int seed = 0; seed < 100; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(CudgelSkill));
+                var damage = new Damage(10);
+                damage.AddAttribute("Cudgel");
+                // NO "Critical" attribute
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                Assert.IsFalse(
+                    defender.GetPart<StatusEffectsPart>().HasEffect<StunnedEffect>(),
+                    $"Seed {seed}: CudgelSkill (without Cudgel_Bludgeon) on a non-crit " +
+                    $"Cudgel hit must not stun — gate is the Critical attribute.");
+            }
+        }
+
+        // ── AxeSkill on crit: force-cleave at 100% ───────────────────────────
+
+        [Test]
+        public void AxeCrit_WithAxeSkillOwned_AlwaysCleavesAdjacent()
+        {
+            // Force-cleave on Axe Critical. Unlike Axe_Cleave's 30% gated
+            // chance, the tree-root tries cleave on every crit.
+            for (int seed = 0; seed < 50; seed++)
+            {
+                var (zone, defender, cleaveTarget, attacker) =
+                    MakeCleaveScenario(skipSkill: true);
+                attacker.GetPart<SkillsPart>().AddSkill(nameof(AxeSkill), source: "test");
+                int targetHpBefore = cleaveTarget.GetStatValue("Hitpoints");
+
+                var damage = new Damage(20);
+                damage.AddAttribute("Axe");
+                damage.AddAttribute("Cutting");
+                damage.AddAttribute("Critical");
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 20,
+                    defender, attacker, zone, rng: new Random(seed));
+
+                int targetHpAfter = cleaveTarget.GetStatValue("Hitpoints");
+                Assert.Less(targetHpAfter, targetHpBefore,
+                    $"Seed {seed}: AxeSkill on Axe-Critical hit must always cleave.");
+            }
+        }
+
+        [Test]
+        public void NonCriticalAxeHit_WithAxeSkillOwnedOnly_DoesNotCleave()
+        {
+            // Counter-check: same setup, no Critical attribute, Axe_Cleave
+            // (the gated power) NOT owned. Must observe 0 cleaves across seeds.
+            for (int seed = 0; seed < 50; seed++)
+            {
+                var (zone, defender, cleaveTarget, attacker) =
+                    MakeCleaveScenario(skipSkill: true);
+                attacker.GetPart<SkillsPart>().AddSkill(nameof(AxeSkill), source: "test");
+                int targetHpBefore = cleaveTarget.GetStatValue("Hitpoints");
+
+                var damage = new Damage(20);
+                damage.AddAttribute("Axe");
+                damage.AddAttribute("Cutting");
+                // NO "Critical"
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 20,
+                    defender, attacker, zone, rng: new Random(seed));
+
+                int targetHpAfter = cleaveTarget.GetStatValue("Hitpoints");
+                Assert.AreEqual(targetHpBefore, targetHpAfter,
+                    $"Seed {seed}: AxeSkill on a non-crit Axe hit (without Axe_Cleave) " +
+                    $"must not cleave — tree-root crit gate must hold.");
+            }
+        }
+
+        // ── LongBladesSkill on crit: force Bleed "1d4" ───────────────────────
+
+        [Test]
+        public void LongBladesCrit_WithLongBladesSkillOwned_AlwaysAppliesBleeding()
+        {
+            for (int seed = 0; seed < 50; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(LongBladesSkill));
+                var damage = new Damage(10);
+                damage.AddAttribute("LongBlades");
+                damage.AddAttribute("Cutting");
+                damage.AddAttribute("Critical");
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                Assert.IsTrue(
+                    defender.GetPart<StatusEffectsPart>().HasEffect<BleedingEffect>(),
+                    $"Seed {seed}: LongBladesSkill on LongBlades-Critical hit must always Bleed.");
+            }
+        }
+
+        [Test]
+        public void NonCriticalLongBladesHit_WithLongBladesSkillOwnedOnly_DoesNotForceBleed()
+        {
+            // Counter-check on the Critical-attribute gate.
+            for (int seed = 0; seed < 50; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(LongBladesSkill));
+                var damage = new Damage(10);
+                damage.AddAttribute("LongBlades");
+                damage.AddAttribute("Cutting");
+                // NO "Critical"
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                Assert.IsFalse(
+                    defender.GetPart<StatusEffectsPart>().HasEffect<BleedingEffect>(),
+                    $"Seed {seed}: LongBladesSkill (without Lacerate) on a non-crit " +
+                    $"LongBlades hit must not Bleed — gate is Critical.");
+            }
+        }
+
+        // ── ShortBladesSkill on crit: force Bleed "1d2" ──────────────────────
+
+        [Test]
+        public void ShortBladesCrit_WithShortBladesSkillOwned_AlwaysAppliesBleeding()
+        {
+            for (int seed = 0; seed < 50; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(ShortBladesSkill));
+                var damage = new Damage(10);
+                damage.AddAttribute("Piercing");
+                damage.AddAttribute("Critical");
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                Assert.IsTrue(
+                    defender.GetPart<StatusEffectsPart>().HasEffect<BleedingEffect>(),
+                    $"Seed {seed}: ShortBladesSkill on Piercing-Critical hit must always Bleed.");
+            }
+        }
+
+        [Test]
+        public void NonCriticalPiercingHit_WithShortBladesSkillOwnedOnly_DoesNotForceBleed()
+        {
+            for (int seed = 0; seed < 50; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(ShortBladesSkill));
+                var damage = new Damage(10);
+                damage.AddAttribute("Piercing");
+                // NO "Critical"
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                Assert.IsFalse(
+                    defender.GetPart<StatusEffectsPart>().HasEffect<BleedingEffect>(),
+                    $"Seed {seed}: ShortBladesSkill on a non-crit Piercing hit must " +
+                    $"not Bleed — Jab is the gated power, ShortBladesSkill needs Critical.");
+            }
+        }
+
+        // ====================================================================
         // WS.6b cold-eye 🟡 #2 — stacking integration: verify that calling
         // OnHitClassEffects.Apply AND OnHitSkillEffects.Apply in sequence
         // (the order CombatSystem.PerformSingleAttack uses) on the SAME
