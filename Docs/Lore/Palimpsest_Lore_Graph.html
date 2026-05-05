@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palimpsest — Lore Graph</title>
+<style>
+  :root {
+    --bg: #0f0d10;
+    --bg-2: #1a1620;
+    --bg-3: #221c2a;
+    --ink: #e8dfc8;
+    --ink-dim: #9c937f;
+    --ink-faint: #5a5448;
+    --rule: #3a3340;
+    --accent: #d4a574;
+
+    /* Faction colors */
+    --c-choir: #6b8e5a;
+    --c-palimpsest: #9f7fb8;
+    --c-curation: #d8c8a8;
+    --c-concord: #d4a574;
+    --c-brine: #5a8aa8;
+    --c-thermo: #d47a4a;
+    --c-glass: #98c4cc;
+    --c-cross: #c4b08c;
+    --c-cataclysm: #8b4a4a;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+    overflow: hidden;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background: linear-gradient(to bottom, var(--bg-2), var(--bg));
+    border-bottom: 1px solid var(--rule);
+    padding: 0.6rem 1rem 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    z-index: 10;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: normal;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+  }
+  h1 em {
+    color: var(--ink-dim);
+    font-style: italic;
+    font-weight: normal;
+    letter-spacing: 0.05em;
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+  }
+
+  #search {
+    background: var(--bg-3);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    padding: 0.3rem 0.6rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    width: 12rem;
+    outline: none;
+    border-radius: 2px;
+  }
+  #search:focus {
+    border-color: var(--accent);
+  }
+  #search::placeholder {
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .filters {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .filters label {
+    color: var(--ink-dim);
+    cursor: pointer;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: color 0.2s;
+  }
+  .filters label:hover { color: var(--ink); }
+  .filters input[type=checkbox] {
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+  }
+
+  #graph-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at center, var(--bg-2) 0%, var(--bg) 70%);
+  }
+
+  #graph {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+  }
+  #graph:active { cursor: grabbing; }
+
+  /* Node visuals */
+  .node {
+    cursor: pointer;
+    stroke: var(--bg);
+    stroke-width: 1.5px;
+    transition: stroke-width 0.15s, opacity 0.2s;
+  }
+  .node:hover {
+    stroke: var(--ink);
+    stroke-width: 2.5px;
+  }
+  .node.dimmed { opacity: 0.18; }
+  .node.selected {
+    stroke: var(--accent);
+    stroke-width: 3px;
+  }
+
+  .node-label {
+    pointer-events: none;
+    fill: var(--ink-dim);
+    font-size: 9.5px;
+    font-family: inherit;
+    text-anchor: middle;
+    text-shadow: 0 0 4px var(--bg), 0 0 4px var(--bg), 0 0 4px var(--bg);
+    transition: opacity 0.2s, fill 0.2s;
+  }
+  .node-label.cosmic, .node-label.faction {
+    font-size: 12px;
+    fill: var(--ink);
+    letter-spacing: 0.05em;
+  }
+  .node-label.dimmed { opacity: 0.15; }
+  .node-label.highlighted { fill: var(--ink); }
+
+  .link {
+    stroke: var(--rule);
+    stroke-opacity: 0.55;
+    transition: stroke-opacity 0.2s, stroke 0.2s, stroke-width 0.2s;
+  }
+  .link.dimmed { stroke-opacity: 0.05; }
+  .link.highlighted {
+    stroke-opacity: 0.9;
+    stroke-width: 1.8px;
+  }
+
+  .link.member { stroke: var(--rule); stroke-dasharray: none; }
+  .link.correspondence { stroke: var(--accent); stroke-width: 1.4px; stroke-dasharray: 4,2; }
+  .link.family { stroke: #b88a8a; stroke-dasharray: 2,2; }
+  .link.lineage { stroke: var(--c-thermo); stroke-dasharray: 3,3; }
+  .link.opposition { stroke: var(--c-palimpsest); stroke-width: 2px; }
+  .link.apotheosis-of { stroke: var(--c-cross); stroke-dasharray: 1,3; }
+  .link.stratum-of { stroke: var(--ink-faint); }
+  .link.houses { stroke: var(--rule); stroke-dasharray: 6,3; }
+  .link.kept-by { stroke: var(--c-thermo); stroke-dasharray: 1,3; }
+
+  /* Sidebar */
+  #details {
+    width: 26rem;
+    max-width: 40vw;
+    background: var(--bg-2);
+    border-left: 1px solid var(--rule);
+    overflow-y: auto;
+    padding: 1.4rem 1.6rem 4rem 1.6rem;
+    line-height: 1.55;
+    font-size: 0.94rem;
+    transition: width 0.2s;
+  }
+
+  #details::-webkit-scrollbar { width: 8px; }
+  #details::-webkit-scrollbar-track { background: var(--bg-2); }
+  #details::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+  #details::-webkit-scrollbar-thumb:hover { background: var(--ink-faint); }
+
+  #details h2 {
+    margin: 0 0 0.2rem 0;
+    font-size: 1.4rem;
+    font-weight: normal;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+  #details .meta {
+    color: var(--ink-faint);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  #details h3 {
+    margin: 1.2rem 0 0.4rem 0;
+    font-size: 0.78rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+  }
+  #details p {
+    margin: 0 0 0.7rem 0;
+    color: var(--ink);
+  }
+  #details em { color: var(--ink-dim); font-style: italic; }
+  #details blockquote {
+    margin: 0.5rem 0;
+    padding: 0.4rem 0.9rem;
+    border-left: 2px solid var(--ink-faint);
+    color: var(--ink-dim);
+    font-style: italic;
+  }
+  #details ul {
+    margin: 0.4rem 0 0.8rem 0;
+    padding-left: 1.2rem;
+    color: var(--ink-dim);
+  }
+  #details ul li { margin-bottom: 0.2rem; }
+  #details ul li strong {
+    color: var(--ink);
+    font-weight: normal;
+  }
+  #details a.related {
+    display: inline-block;
+    margin: 0.15rem 0.3rem 0.15rem 0;
+    padding: 0.15rem 0.5rem;
+    background: var(--bg-3);
+    color: var(--ink);
+    text-decoration: none;
+    border-radius: 2px;
+    font-size: 0.82rem;
+    border: 1px solid var(--rule);
+    transition: border-color 0.15s, background 0.15s;
+    cursor: pointer;
+  }
+  #details a.related:hover {
+    border-color: var(--accent);
+    background: var(--bg);
+  }
+
+  .welcome {
+    color: var(--ink-dim);
+  }
+  .welcome p { margin-bottom: 0.8rem; }
+  .welcome .legend {
+    margin-top: 1.2rem;
+    font-size: 0.85rem;
+  }
+  .welcome .legend .swatch {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+  .welcome .legend > div {
+    margin-bottom: 0.3rem;
+  }
+  .welcome .stats {
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  /* zoom controls */
+  .zoom-controls {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    z-index: 5;
+  }
+  .zoom-controls button {
+    background: var(--bg-3);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    border-radius: 2px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .zoom-controls button:hover {
+    border-color: var(--accent);
+    background: var(--bg-2);
+  }
+
+  .footer-info {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 1rem;
+    color: var(--ink-faint);
+    font-size: 0.75rem;
+    font-style: italic;
+    pointer-events: none;
+    z-index: 4;
+  }
+
+  @media (max-width: 800px) {
+    #details {
+      width: 100%;
+      max-width: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      transform: translateX(100%);
+      transition: transform 0.2s;
+      z-index: 20;
+    }
+    #details.visible { transform: translateX(0); }
+    .filters { font-size: 0.72rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>The Palimpsest <em>— lore graph</em></h1>
+  <div class="controls">
+    <input id="search" type="text" placeholder="Search nodes…" autocomplete="off">
+    <div class="filters" id="filters">
+      <label><input type="checkbox" checked data-type="cosmic"> Cosmic</label>
+      <label><input type="checkbox" checked data-type="faction"> Factions</label>
+      <label><input type="checkbox" checked data-type="character"> Characters</label>
+      <label><input type="checkbox" checked data-type="concept"> Concepts</label>
+      <label><input type="checkbox" checked data-type="apotheosis"> Apotheoses</label>
+      <label><input type="checkbox" checked data-type="stratum"> Strata</label>
+      <label><input type="checkbox" checked data-type="artifact"> Artifacts</label>
+      <label><input type="checkbox" checked data-type="place"> Places</label>
+      <label><input type="checkbox" checked data-type="event"> Events</label>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div id="graph-container">
+    <svg id="graph"></svg>
+    <div class="zoom-controls">
+      <button id="zoom-in" title="Zoom in">+</button>
+      <button id="zoom-out" title="Zoom out">−</button>
+      <button id="zoom-reset" title="Reset view">⊙</button>
+    </div>
+    <div class="footer-info">drag · scroll-zoom · click for details</div>
+  </div>
+  <aside id="details">
+    <div id="details-content">
+      <div class="welcome">
+        <h2>The Palimpsest</h2>
+        <div class="meta">An interactive lore atlas</div>
+        <p>The world of <em>Caves of Ooo</em> is built around a cataclysm that overwrote reality imperfectly. Two cosmic-scale entities — the <strong style="color:var(--c-choir)">Rot Choir</strong> and the <strong style="color:var(--c-palimpsest)">Palimpsest</strong> — and five factions live in the seams.</p>
+        <p>Click a node to read its lore. Drag to rearrange. Scroll to zoom.</p>
+
+        <h3>Legend</h3>
+        <div class="legend">
+          <div><span class="swatch" style="background:var(--c-choir)"></span>The Rot Choir</div>
+          <div><span class="swatch" style="background:var(--c-palimpsest)"></span>The Palimpsest</div>
+          <div><span class="swatch" style="background:var(--c-curation)"></span>Pale Curation</div>
+          <div><span class="swatch" style="background:var(--c-concord)"></span>Saccharine Concord</div>
+          <div><span class="swatch" style="background:var(--c-brine)"></span>Brine Communion</div>
+          <div><span class="swatch" style="background:var(--c-thermo)"></span>Thermoclaves</div>
+          <div><span class="swatch" style="background:var(--c-glass)"></span>Glassblown Remnant</div>
+          <div><span class="swatch" style="background:var(--c-cross)"></span>Cross-faction</div>
+        </div>
+
+        <h3>Shapes</h3>
+        <div class="legend">
+          <div>● <em>Cosmic entity / faction</em> — large solid circle</div>
+          <div>● <em>Character</em> — circle</div>
+          <div>◆ <em>Apotheosis</em> — diamond</div>
+          <div>■ <em>Concept / grammar</em> — square</div>
+          <div>▲ <em>Stratum</em> — triangle</div>
+          <div>✦ <em>Artifact</em> — small star</div>
+          <div>◯ <em>Place / event</em> — open ring</div>
+        </div>
+
+        <h3>Edges</h3>
+        <div class="legend">
+          <div>— solid: membership / classification</div>
+          <div>— gold dashed: senior correspondence</div>
+          <div>— red dashed: family / lineage</div>
+          <div>— violet thick: cosmic opposition</div>
+        </div>
+
+        <div class="stats" id="stats"></div>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+// ============================================================
+// DATA — populated in chunks below
+// ============================================================
+const NODES = [
+  // ─── COSMIC ENTITIES ──────────────────────────────────────
+  { id: 'choir', label: 'The Rot Choir', type: 'cosmic', group: 'choir',
+    factionLabel: 'Cosmic-scale entity',
+    desc: `<p>A mycelial network that has achieved collective sentience. Not a group of individuals — a single vast organism with countless fruiting bodies that serve as its mouths, eyes, and hands. It speaks in overlapping voices, and where its mouths cluster, the chord — though one — has weather.</p>
+<p>The Choir believes everything should be integrated — consumed, composted, made into one living system. Underground, in <strong>the First Root</strong>, it has had centuries with no interference. The architecture is composted history: pre-war artifacts, bones, a child's shoe woven into a wall.</p>
+<blockquote>"They cling to husks. A seed must rot before it grows. What they call 'memory' we call 'compost that hasn't surrendered yet.'"</blockquote>
+<p><em>Patience as long as the Choir's is not abstract — it is calibrated to a specific exhaustion.</em> The Brine's long-overdue tide, the Concord's alloy crisis, and the Thermoclave ember-floor are the same arrears named by different grammars. The Choir is waiting for this convergence.</p>
+<p><strong>Awakening:</strong> contingent. Before the cataclysm the Choir was only fungus — blind, simple, feeding. Something poured through the cracked substrate and woke it.</p>`
+  },
+  { id: 'palimpsest', label: 'The Palimpsest', type: 'cosmic', group: 'palimpsest',
+    factionLabel: 'Cosmic-scale entity',
+    desc: `<p>Not a network — a <em>condition</em>. The cataclysm overwrote reality imperfectly, the way text on a manuscript was scraped off and written over with the old words still faintly visible underneath. Certain places, objects, and beings got caught in the overwrite and exist in multiple temporal layers simultaneously.</p>
+<p>The Palimpsest doesn't have a centralised consciousness. It's more like a library that reads itself — the accumulated memory of the world, pressing up against the present, occasionally breaking through.</p>
+<p><strong>The Palimpsest cannot remember the cataclysm.</strong> To ask it <em>what happened</em> is to ask a page about the hand that wrote on it. The page knows the pressure, the ink, the angle of the nib; it does not know who came in.</p>
+<blockquote>"I was being written on. I am still being written on. I was already being written on."</blockquote>
+<p>Three tenses, simultaneous. Not a contradiction — the only honest answer.</p>`
+  },
+
+  // ─── THE CATACLYSM (the central event) ────────────────────
+  { id: 'cataclysm', label: 'The Cataclysm', type: 'event', group: 'cataclysm',
+    factionLabel: 'Founding event',
+    desc: `<p>The founding event of the entire world. It did not merely destroy the old civilization — it overwrote reality itself, imperfectly. The old world is not gone. It is buried beneath the present, bleeding through at the edges, pressing up against the surface in places where the overwrite was thin.</p>
+<p><strong>Five named accounts:</strong></p>
+<ul>
+  <li><strong>The Severance</strong> — Pale Curation. A clean cut between then and now.</li>
+  <li><strong>The Dissolution</strong> — Saccharine Concord. The old world's books were called and settled.</li>
+  <li><strong>The Burning</strong> — Glassblown Remnant. The world did not survive the firing intact.</li>
+  <li><strong>The First Feeding</strong> — Rot Choir (surface). The cracked old world poured through and the spores woke.</li>
+  <li><strong>The Temporal Unraveling</strong> — Palimpsest. A sentence was overwritten in real-time, and is still being overwritten.</li>
+</ul>
+<p><strong>Duration:</strong> a swallow (Choir), seven to eleven days (Curation, unratified), one full deep-tide ~7 years (Brine), the period of the withholding of fire (Thermoclave), no opinion (Concord), <em>a hand still moving when the ink dried</em> (Palimpsest). The duration is the doctrine.</p>
+<p><strong>How many cataclysms?</strong> Most factions agree on one. The Palimpsest reads prior overwrites in the thinnest places. The Curation classifies the multi-cataclysm hypothesis as <em>Disputed (Period V)</em> — its highest grade of dispute.</p>`
+  },
+
+  // ─── FACTIONS ─────────────────────────────────────────────
+  { id: 'curation', label: 'Pale Curation', type: 'faction', group: 'curation',
+    factionLabel: 'Faction',
+    desc: `<p>Archivists who treat the cataclysm as <em>the Severance</em> — a clean cut between then and now, with their job being to catalogue every retrievable fragment of <em>then</em> without contaminating it with <em>now</em>.</p>
+<p>Their language is procedural. Every artifact gets a tag. Every tag has a class, a recovery code, a custodial chain, and a margin that is supposed to remain blank.</p>
+<p><strong>The Curation has an end-date.</strong> The cataclysm-ruins are finite. Tier-1 vaults complete. Tier-2 finish in a decade. The Curation has, at most, twenty years of work remaining at the current procurement floor. After, they will be a body that maintains what they have filed, not a body that files. <em>Sleeve R-7 is the exception. R-7 is its own decade.</em></p>
+<p>The only neutral grammar in the corpus — the only faction whose grammar runs on every floor.</p>`
+  },
+  { id: 'concord', label: 'Saccharine Concord', type: 'faction', group: 'concord',
+    factionLabel: 'Faction',
+    desc: `<p>Named for the sweetness it sells, but its central organ is the ledger. It teaches that <em>every account can be balanced</em>, and its practice for three centuries has institutionalised an honest exception: the <strong>asymptotic debt</strong> — a debt repeatedly half-redeemed until the remainder is too small to denominate.</p>
+<p><strong>The substrate-claim:</strong> value is a layer of the substrate the cataclysm did not break. Material (Choir), temporal (Palimpsest), <em>consensual</em> (Concord). The cataclysm cracked the first two; the third was untouched, because consensus is renegotiable.</p>
+<p><strong>The Concord's metallurgy is failing.</strong> Concord coins are not minted — they are gathered, and the alloys are running out. Veshen's private estimate: Foretime stock will be functionally exhausted in <strong>eleven years</strong>. The Concord has never operated without Foretime alloys.</p>
+<p>Three founder-stories taught by chapter-house, mutually inconsistent and doctrinally so: the Hand was kind / firm / always-moving.</p>`
+  },
+  { id: 'brine', label: 'Brine Communion', type: 'faction', group: 'brine',
+    factionLabel: 'Faction',
+    desc: `<p>The Brine read the world through tide. Their grammar conjugates against the tide, not the speaker. Their cosmology has <em>the held depth</em> as its substrate-stratum — the layer at which water becomes still enough to hold a body, an object, or a promise without dispersing it.</p>
+<p>Not a coastal people. The dry-walking carries the held depth as a property of the body, not of any nearby water. They can be <em>kept</em> by stillness alone — a deep room, a cellar, the hour before a rainstorm — though the keeping is partial.</p>
+<p><strong>The rising came in three motions:</strong> first-tide, false-low, settling. The false-low — a six-year drawback when the world seemed to be returning — is not in any other faction's record. Survivors of it are <em>witnesses-of-the-second-water</em>, ranking above named elders.</p>
+<p>The Communion's only canonical scripture is the deep-letters: replies from the gone-deep, recorded by tide-witnesses on shore in their own grammars. <em>The gone-deep speaks where the hands agree; the hands speak where they don't.</em></p>`
+  },
+  { id: 'thermo', label: 'Thermoclaves', type: 'faction', group: 'thermo',
+    factionLabel: 'Faction',
+    desc: `<p>The Thermoclaves keep nine fires and one untended tenth. Their grammar is fire-aspect; their substrate-claim is the <strong>ember-floor</strong> / <strong>kept ember</strong> — the only refused-stratum cosmology in the corpus. The world has no foundation, only kept fires and the cold between them. <em>The world is continuously kept rather than founded.</em></p>
+<p>The cataclysm, in their grammar, was <em>the long quench, then the relighting</em> — read not as a break, layer, price, or depth, but as a <strong>maintenance lapse</strong>.</p>
+<p>Three doctrinally co-equal answers to <em>what keeps the world between fires?</em>: <em>the next keeper</em>; <em>the hand that has not yet reached the fuel</em>; <em>nothing — we accept this</em>. Apprentices choose one at first-quench and may change it once, at ninth fire. The choice is not asked again.</p>
+<p>Their language has no nouns for things that do not move under their own decision — only adjectival nominalisations from fire-aspect particles plus suppressed copulas.</p>`
+  },
+  { id: 'glass', label: 'Glassblown Remnant', type: 'faction', group: 'glass',
+    factionLabel: 'Faction',
+    desc: `<p>The silence-faction. They were burned <em>into</em> glass — survivors of the cataclysm-event the Thermoclaves ritualise but the Glassblown were the fuel of. They do not write histories. They do not give testimony. <strong>They make markers.</strong></p>
+<p>Their cosmology is not <em>the world is X</em> but <em>the world is in state Y, and Y is reversible until fired</em>. The state is <strong>unfired</strong>. The cataclysm was the world's first irreversible firing. The four-hundred-year aftermath is the world <em>trying to fold back the firing</em>.</p>
+<p>The Glassblown do not believe the unfiring will succeed. The doctrine specifically forbids the hope: <em>a fired shape cannot be unmade.</em> The discipline is the work; the hope is not part of the discipline.</p>
+<p>Glassblown-Thermoclave is the corpus's only explicit anti-symmetry of cosmologies — every kept relationship at kept heat <em>vs.</em> refused foundation.</p>`
+  },
+  // ─── CHOIR-ABSORBED VOICES (Long Throats) ─────────────────
+  { id: 'mogu', label: 'Mogu', type: 'character', group: 'choir',
+    factionLabel: 'Choir-absorbed (Long Throat)',
+    desc: `<p>A named voice within the Choir's collective. Speaks in maxim cadence — short, observational, oddly formal. Says: <em>"Names of plants my grandmother named, in a tongue we no longer speak. Now the names live in the spores. Nothing of value is ever lost — only translated."</em></p>
+<p>Mogu's grandmother before his grandmother — Mogu himself does not know her name. The Choir does.</p>` },
+  { id: 'grib', label: 'Grib', type: 'character', group: 'choir',
+    factionLabel: 'Choir-absorbed (Long Throat)',
+    desc: `<p>The most recent of the named five and the shortest in the throat. Speaks quietly, with a man's window-and-fire memory. Has openly contradicted the Choir's symmetry-doctrine: <em>"Sentimental things rot — and not even in a useful way, like we do."</em></p>
+<p>His sister has appeared as a tendril at the East Lichen Crossing. She does not eat the sweet-marks travellers leave; she sets them in the wall, in the shape of a window.</p>` },
+  { id: 'nam', label: 'Nam', type: 'character', group: 'choir',
+    factionLabel: 'Choir-absorbed (Long Throat)',
+    desc: `<p>Speaks in grandmother-cadence. Brings warm soil to no one in particular, sets it down within reach. On the mornings of the chess game, redistributes attention without arrangement.</p>` },
+  { id: 'sien', label: 'Sien', type: 'character', group: 'choir',
+    factionLabel: 'Choir-absorbed (Long Throat)',
+    desc: `<p>The oldest of the named voices by a wide margin — more than three Choir-seasons ago. Speaks in long ellipses; her silence reads as <em>the long listening at full volume</em>.</p>` },
+  { id: 'sopp', label: 'Sopp', type: 'character', group: 'choir',
+    factionLabel: 'Choir-absorbed (Long Throat)',
+    desc: `<p>The fisher-of-bright-water. Speaks in saga inversions. Does not approach the chess game — afraid of being asked to weigh in. Mogu and Grib know this and do not press him.</p>` },
+  { id: 'bole', label: 'Bole-Without-Number', type: 'character', group: 'choir',
+    factionLabel: 'Choir interlocutor',
+    desc: `<p>A fruiting body of cataclysm-era growth near the Pale Curation's third reading-room. Five other-faction conventions have each elected this body as the Choir's senior interlocutor — but the Choir does not maintain seniors, and is unaware of the elections.</p>
+<p><strong>The same fruiting body holds all five names simultaneously:</strong></p>
+<ul>
+  <li><em>Bole-Without-Number</em> — Pale Curation</li>
+  <li><em>Standing-Substrate A</em> — Saccharine Concord</li>
+  <li><em>The deep root that stands above the salt line</em> — Brine Communion</li>
+  <li><em>The cold mouth</em> — Thermoclaves (Suul has spoken to it twice)</li>
+  <li><em>The lower draft of the wall</em> — Palimpsest</li>
+</ul>
+<p>None of the five factions knows this. The Choir, knowing, considers it a small private joke.</p>` },
+
+  // ─── PALE CURATION CHARACTERS ─────────────────────────────
+  { id: 'ven', label: 'Director Ven', type: 'character', group: 'curation',
+    factionLabel: 'Pale Curation senior',
+    desc: `<p>Senior of the Hyphal Surveys Office. Speaks in the catalogued mood more frequently than any other surveyor. Has not opened <strong>Sleeve R-7</strong> in eleven years.</p>
+<p>Holds the forged-tag drawer during the Quiet Hour. The drawer is occasionally <em>one tag shorter</em> in the days after — and the Cabinet of Counter-Examples correspondingly fuller. She appears to be moving forgeries <em>into</em> the cabinet during the hour, not out.</p>
+<p>Her own intake card is in Cabinet 1, the only artifact there. She is the only surveyor permitted to read it, once a year, on a date the staff have agreed not to ask about.</p>
+<p>Asked about the First Card, she has given the same five-word answer for thirty years: <em>I have not seen it.</em> The answer is, deliberately, in the indicative mood.</p>` },
+  { id: 'halen', label: 'Surveyor Halen', type: 'character', group: 'curation',
+    factionLabel: 'Pale Curation Tier 11',
+    desc: `<p>Senior cataloguer. Filed the doll-in-the-wall recovery (accession 11-K-3318). Drafts the <em>unsaid form</em>. Cousin of <strong>Halen-Iss</strong> (Coastal Concord); daughter of <strong>Mira</strong> — the cookbook cook whose name the Palimpsest is slowly writing into her cookbook's margins.</p>
+<p>Has lost about a third of her catalogued-mood frequency over the past three years from R-7-adjacent caseload. The Curation has noticed. The Curation has not commented.</p>
+<p>Is cross-pollinating with another faction's grammar — citing Glassblown unsaid-mood as a tool for Curation's own intake. The Curation officially does not borrow. She is doing it anyway.</p>
+<p>About the forged tag of Year 388: <em>"I did not write that. I recognise the kind of person who could have. There are at least three of us, and I do not know the others by name. We meet only in the catalogues we did not make."</em></p>` },
+  { id: 'kesti', label: 'Surveyor Kesti', type: 'character', group: 'curation',
+    factionLabel: 'Pale Curation surveyor',
+    desc: `<p>A working surveyor. Writer of the Kesti-ledger artifact (Kesti Late-Return) — the salvager who traded a doll with rye-grain eyes at the Old Hyphae crossing. The doll was set into the wall, not eaten. Three months later the doll was still there, while coins, boots, and a knife had been consumed. <em>Mira does not need to know.</em></p>` },
+  { id: 'marn-dis', label: 'T. Marn-Dis', type: 'character', group: 'curation',
+    factionLabel: 'Pale Curation recorder',
+    desc: `<p>Recorder at the Cool Kiln. Has declined two promotions in seventeen years because she does not want to leave the Cool Kiln rota. The corpus's first Curation employee to <em>use</em> the Glassblown unsaid mood while filling a Curation card — when she did not record Tulen's nod, Tulen nodded once. The card is the corpus's first document filled in two factions' grammars simultaneously.</p>` },
+  { id: 'r7', label: 'R-7', type: 'character', group: 'curation',
+    factionLabel: 'Pale Curation senior cabinet',
+    desc: `<p>Senior of the senior cabinet. Files material under <em>witness unspecified by document convention</em>. Has approved the standing-floor correspondence and the multi-grammar pocketbook. Has waived Curation pre-intake of senior carries twice.</p>
+<p>Reads the Concord's priorless cabinet once a year — in the layered tense, which the Concord cannot register. Has filed Halen card B-114's <em>priority of grammars</em> ruling: <em>the count is sister-shaped.</em></p>
+<p>The Director has not been told most of this.</p>` },
+  { id: 'a-junior', label: 'A. (junior cataloguer)', type: 'character', group: 'curation',
+    factionLabel: 'Pale Curation junior',
+    desc: `<p>Initial: <em>A.</em> The corpus's most persistent junior voice. Wrote the marginalia on accession 11-K-3318 (<em>"Why was the doll set into the wall and not consumed."</em>). Wrote the undelivered Letter to Halen. Wrote the sub-annotation on B-201 about the wall that has not been scraped in eleven years.</p>
+<p>The junior who keeps writing things down truthfully when the institution would prefer they didn't.</p>` },
+
+  // ─── SACCHARINE CONCORD CHARACTERS ────────────────────────
+  { id: 'veshen', label: 'Senior Assayer Tobir Veshen', type: 'character', group: 'concord',
+    factionLabel: 'Saccharine Concord senior',
+    desc: `<p>Thirty-one years in continuous service. A <em>third-tooth</em> — Concord term for an assayer who has lost the front teeth and works by the molars. She has never been wrong about an alloy.</p>
+<p>Carries the alloy-stock crisis quietly. Is re-classifying <em>Foretime-uncertain</em> coins as <em>unknown</em>. Her private estimate: Foretime stock will be functionally exhausted in <strong>eleven years</strong>. Has begun teaching apprentices to assay <em>Choir-deposited matter</em> — mycelium-bound mineral that sometimes carries trace alloys the Choir has digested and re-deposited unaltered.</p>
+<p>Has signed exactly two bridge-clauses <em>against the priorless</em> — both still un-rendered. Has signed exactly one doubled-mouth bridge-clause (<em>the difficult clause</em>).</p>
+<p>The Choir calls her <em>the slow tooth</em>. It has, more than once, offered her the Communion. She has declined each time using a phrase from the Concord apprentice catechism: <em>the ledger is not closed-up. I am not yet a closed party. Thank you for the offer.</em></p>` },
+  { id: 'tossan', label: 'Reckoner Tossan', type: 'character', group: 'concord',
+    factionLabel: 'Saccharine Concord Reckoner',
+    desc: `<p>The only living Reckoner to have closed a debt fully — an old Brine debt, settled with a half-tide of weather no one expected. The Choir, with no comment, grew a fruiting body in the shape of a small ledger column at the site of the closed debt. The Concord finds it uncomfortable to look at directly.</p>
+<p>Spent the rest of her career re-opening trivial debts at half value, to re-establish the texture of remainder she had broken.</p>
+<p>Carries <strong>Tossan's slip</strong> in her outer pocket — a folded paper documenting a closure the institution cannot file. Has, three times, carried it to Salt-Hinge and set it on the central balance-stone, walking away. No one took it. She returned, picked it up, refolded it.</p>` },
+  { id: 'halen-iss', label: 'Halen-Iss', type: 'character', group: 'concord',
+    factionLabel: 'Saccharine Concord travelling clerk [accession 4]',
+    desc: `<p>Coastal Concord travelling clerk. Cousin of <strong>Curation Halen</strong>; her aunt was <strong>Mira</strong> — and Halen-Iss has been writing to Halen at sleeve R-11 about her mother. The withdrawn clause in her docket — <em>(–) (this last clause is withdrawn — H-I.)</em> — preserves the family connection in the form Concord grammar permits.</p>
+<p>Filed the docket in which the founder's grammar surfaced unsigned in the field — the receipt-blank carrying, on its reverse, a line in a hand she did not recognise: <em>(0g) thank you. there are three loaves. there should be four.</em></p>
+<p><strong>The Halen family connection is by Curation Halen's silent design encoded into sleeve R-11. Halen-Iss does not know.</strong></p>` },
+  { id: 'mer-hin', label: 'Mer Hin, the Soft-Handed', type: 'character', group: 'concord',
+    factionLabel: 'Saccharine Concord trader',
+    desc: `<p>Working trader; nineteen years on the northern circuit. Stall-records short. Holds the wax-sealed unknown coin in the binding margin of his day-book — Veshen has asked him to keep it from circulation.</p>
+<p>Camped at the East Lichen Crossing one night and met the tendril that does not behave like the others — Grib's sister. The tendril asked him whether he had ever met a man with a small fire by a window.</p>` },
+
+  // ─── BRINE COMMUNION CHARACTERS ───────────────────────────
+  { id: 'nesh', label: 'Tide-Reader Nesh', type: 'character', group: 'brine',
+    factionLabel: 'Brine Communion senior',
+    desc: `<p>Forty-one years a tide-reader. Brine custom is that a tide-reader is named for the body of water they read; <em>Nesh</em> is the Brine syllable for <em>the long swell that does not crest</em>. One of nine living tide-readers, and the only one who has never declared a tide <em>wrong</em> — she names what comes and refuses to litigate it.</p>
+<p>Has computed the going-deep tides for one hundred and eleven walkers. Forty-three called back; sixty-eight went-deep. She visits seven of the gone-deep on the ceremonial calendar — the seven who, before going under, asked her to come back.</p>
+<p><strong>Nesh's working belief:</strong> the Concord's eleven-year alloy crisis and the Communion's long-overdue tide are <em>the same arrears</em>, named by two grammars. The deep-letters of three gone-deep walkers contain the sentence <em>the tide is the alloy.</em> Nesh is collating.</p>
+<p>Met Suul once, oral bridge-clause over one hour at the ninth fire. The Curation card filed by a third-party witness: <em>both senior figures used their own grammars; neither translated; both understood; the witness did not.</em></p>` },
+  { id: 'mer-iss', label: 'Mer-Iss', type: 'character', group: 'brine',
+    factionLabel: 'Brine Communion founder',
+    desc: `<p>Cataclysm-era Brine founder. The R3 hypothesis: Mer-Iss was a <strong>posted dry-walker</strong> before the cataclysm — and the Communion's founding moment was Mer-Iss <em>recognising the held depth in a freshwater pond two hundred miles inland</em>. Held depth is a property of <em>sufficient stillness</em>, not of salt; the cataclysm proved this by drowning the world.</p>
+<p>The pond is the Communion's first shore. By tradition it is never named — identifying it would make it <em>pilgrimable</em>, and founder-shores are private to the dry-walking.</p>
+<p>The corpus suspects Mer-Iss is alive — <em>deep-kept</em>, not deceased. The Brine name for the founder: <em>the trader-on-the-shore</em>.</p>` },
+
+  // ─── THERMOCLAVE CHARACTERS ───────────────────────────────
+  { id: 'suul', label: 'Keeper Suul of the Ninth', type: 'character', group: 'thermo',
+    factionLabel: 'Thermoclave senior keeper',
+    desc: `<p>Forty-seven years a keeper. Tends the <strong>ninth fire</strong> — the oldest active fire in the present count, ember-floor four generations deep.</p>
+<p>Was apprenticed at fourteen to <strong>Erro</strong>, who tended the tenth fire at the moment of its quench and did not survive. Suul is the only living keeper apprenticed by a keeper <em>whose fire is no longer in the chain</em> — <em>lineage-orphaned</em>: taught a count she cannot pass on under her teacher's name.</p>
+<p>The first named Thermoclave in the corpus, and the first character defined by relationship to the cataclysm-fire. Has refused twice to <em>re-number</em> the chain; both refusals are precedent.</p>
+<p>Met Tide-Reader Nesh once at the ninth-fire; spoke the bridge-clause: <em>the fire and the deep-letters are both kept by what they do not move.</em></p>
+<p>Veshen has been writing her a letter for sixty-one days. It reads, in its entirety: <em>Senior Keeper, the alloys you do not forge are nevertheless owed to the chain.</em></p>` },
+  { id: 'vell', label: 'Sixth-Vell-Keeping', type: 'character', group: 'thermo',
+    factionLabel: 'Thermoclave Three-Gap Keeper',
+    desc: `<p>Eighty-one years of apprenticeship-followed-by-keeping. Three gap-burns survived: <em>the long-second, the short-fifth, the folded-third</em>. Other keepers no longer ask her to be a first-fire; neither party says why.</p>
+<p>Holds her three gap-burns on her fingers — twelve marks, four per gap-burn, one per <em>direction-the-failure-could-have-gone</em>. Refuses to inscribe them on Curation paper: <em>The gap is not registered. The gap is held. You can have the holding when I am cold-passed.</em></p>
+<p>Corresponds with Tide-Reader Nesh. Reads Nesh's letters into the soot of her carry-slate before wiping the day's register, so the slate carries Nesh's words for one full keeping. Working belief: <em>the cold-flame doctrine and the held-depth doctrine are the same negation.</em></p>` },
+  { id: 'tossin', label: 'Hearth-Keeper Tossin of the Eleventh', type: 'character', group: 'thermo',
+    factionLabel: 'Thermoclave hearth-keeper',
+    desc: `<p>Smoke-born, eleventh-fire cohort. Fifty-three years banked-tending. The only hearth-keeper to have <strong>banked unwitnessed</strong> doctrinally — once, during the cataclysm-anniversary year, when her assigned witness died on the road.</p>
+<p>She declared the bank <em>witnessed by the road</em>; her cohort accepted after a long meeting. The other ten hearth-keepers agreed <em>the road</em> is not generally permissible, but Tossin's specific bank stands. Unrepeatable by deliberate construction.</p>
+<p>Single circulated phrase, recorded against her wishes: <em>a fire that does not need to be tended is not yet kept; it is only not extinguished.</em></p>` },
+  { id: 'erro', label: 'Erro', type: 'character', group: 'thermo',
+    factionLabel: 'Thermoclave (cataclysm-fatality)',
+    desc: `<p>Keeper of the tenth fire at the cataclysm-quench. Did not survive. The tenth has been <em>the untended</em> in every tally since.</p>
+<p><strong>Erro's contested apotheosis</strong> — the first apotheosis in the corpus with two faction-classifications:</p>
+<ul>
+  <li><strong>Thermoclave reading:</strong> <em>fifth-out</em> — the only known cataclysm-era <em>fifth-out</em> the chain has produced. A quenched apotheosis: surrender of warmth at the moment the warmth could not be transferred, because the substrate had been broken.</li>
+  <li><strong>Curation reading:</strong> <em>retired-into-cabinet</em> — on the grounds that the Curation holds the only paper trace of Erro's existence after the quench, a letter-fragment to a sister no longer living, filed B-114.</li>
+</ul>
+<p>Both classifications stand, never challenged in writing.</p>` },
+
+  // ─── GLASSBLOWN CHARACTERS ────────────────────────────────
+  { id: 'tulen', label: 'Tulen Niemensa-Sopellen', type: 'character', group: 'glass',
+    factionLabel: 'Glassblown paste-mother',
+    desc: `<p>The elder shaper of the Cool Kiln, the <em>paste-mother</em> of the southern shaperies. Sixty-eight years a Glassblown. Has fired eleven shapes in that time — the next-fewest senior record is over two hundred. <em>The shaper who refuses most.</em></p>
+<p><em>Niemensa-Sopellen</em> is composed of two compound elements: <em>the-shape-that-is-not-yet</em> and <em>the-not-yet-naming-of-it</em>. She is the only living Glassblown whose name is a deferred shape rendered into syllables. Three of her predecessors bore similar names; all three committed the <em>requesting-form</em> in their final year.</p>
+<p>The current keeper of the <strong>Six-Almost</strong>. Has refused into it twice — refusals five and six.</p>
+<p>Working belief: the cataclysm was the world's <em>first refusal to be folded back</em>. The world-before was paste. The cataclysm was firing. The Glassblown work as though the firing might still be foldable, knowing it is not, because <em>the discipline of folding is what keeps something else from being fired.</em></p>` },
+
+  // ─── PALIMPSEST-NAMED CHARACTERS ─────────────────────────
+  { id: 'mira', label: 'Mira', type: 'character', group: 'palimpsest',
+    factionLabel: 'Named by Palimpsest annotation',
+    desc: `<p>The cook whose name the Palimpsest has, by slow degrees, written into the margins of her own pre-cataclysm cookbook. Mother of <strong>Surveyor Halen</strong>; aunt of <strong>Halen-Iss</strong>.</p>
+<p>The annotations appear only between the third and fifth hours after dawn. The chemists confirm: the medium is not ink. It is <em>temporal residue</em>. The Palimpsest is, by slow degrees, naming the dead by writing in the margins of their domestic objects.</p>
+<p>Mira's name is the first. Future audits can plant others.</p>
+<p>The doll Kesti traded at the Old Hyphae crossing was given to her daughter by Mira's hand.</p>` },
+  // ─── APOTHEOSES ───────────────────────────────────────────
+  { id: 'communion', label: 'Communion', type: 'apotheosis', group: 'choir',
+    factionLabel: 'Choir apotheosis',
+    desc: `<p>Surrenders <strong>self</strong>. The walker enters a chemical-gradient room of the First Root, alone, sober, and stands long enough for the spores to map their nerve geometry onto a fruiting body still unborn in the wall.</p>
+<p>The Choir cannot consume an unwilling node. It cannot consume a willing node not <em>bodily present</em> in the gradient. The walker may leave at any point before the third day. After the third day the leaving is metaphorical.</p>
+<p><strong>From outside:</strong> after roughly three days the player is no longer where they were last seen; the wall in that location is fractionally thicker; the gradient has a new emotional register the surveyor cannot name. There is no body. The Curation files this under <em>Subject Disposition: Aggregated</em>. Surveyors describe the soil afterward as <em>less talkative</em> for several weeks.</p>` },
+  { id: 'transcription', label: 'Transcription', type: 'apotheosis', group: 'palimpsest',
+    factionLabel: 'Palimpsest apotheosis',
+    desc: `<p>Surrenders <strong>presence</strong>. The walker becomes a memory written into the page; experiences all of history simultaneously, never acting again, only witnessing.</p>
+<p><strong>Threshold:</strong> the Palimpsest cannot transcribe a player whose own present is still louder than the past they have read. The transcription requires a <em>witness</em> — a single living being who agrees to remember the player after they are written into the page. Without a witness the player simply persists, indistinct, neither fully present nor fully archived. The Palimpsest considers this the worst outcome but does not interfere.</p>
+<p>The witness requirement makes Transcription <em>social</em> in a way Communion isn't.</p>
+<p><strong>From outside:</strong> the witness sees the player go thin and become <em>an earlier sentence in the room</em>. The witness's later memory of the moment is unstable: sure it happened; not sure where they were standing.</p>` },
+  { id: 'closure', label: 'Closure', type: 'apotheosis', group: 'concord',
+    factionLabel: 'Concord apotheosis (third axis)',
+    desc: `<p>Surrenders <strong>price</strong>. One named debt closed without remainder; the walker thereafter <em>does not appear in any ledger of any faction</em>.</p>
+<p>The walker, now: no accession card can be written about them. No tendril tastes them. No layer thickens beneath them. No fire warms to their approach. Their body, memory, and attunements are unchanged. They have simply been <em>settled</em>.</p>
+<p>The horror is operational. A Closure walker cannot be helped by any faction's reputation system. Reckoners treat such walkers as <em>honoured ghosts</em> — visible, audible, respected, and entirely outside the books.</p>
+<p>For Closure walkers the <code>ChoirTendril_1</code> opening should be a <em>blank line of the same length</em> — the Choir mouthing the greeting without taste behind it.</p>` },
+  { id: 'balanced-account', label: 'The Balanced Account', type: 'apotheosis', group: 'concord',
+    factionLabel: 'Concord apotheosis (rumoured)',
+    desc: `<p>A trader who closes <em>every</em> open ledger they have with every party in the world becomes a <em>closed party</em> — doctrinally exempt from further consensus, no longer requiring agreement to act.</p>
+<p>The doctrine has never been verified. The Concord teaches it as a <em>limit case</em>, the way mathematicians teach division by zero. Two traders are alleged to have approached: one closed every ledger and was thereafter <em>not seen</em>; one made it to a single open account, owed to a child who refused payment, and stopped.</p>
+<p>The Concord considers the second the <em>true</em> limit case — <em>the doctrine works only for those with no living refusers.</em></p>` },
+  { id: 'going-deep', label: 'Going-Deep', type: 'apotheosis', group: 'brine',
+    factionLabel: 'Brine apotheosis',
+    desc: `<p>Surrenders <strong>surface</strong>. A swim from a Brine-tended shore at a tide named by the walker, into water of the walker's choosing. The walker swims out until the Brine call them back. They may be called back. They may not be. The Brine do not promise.</p>
+<p><em>Called back:</em> <strong>un-deeped</strong>. Reputation resets but Brine standing remains. <em>Not called back:</em> <strong>gone-deep</strong> — physically alive, sustained by the held depth, but no longer surfacing. Their replies form the deep-letters, the Communion's only canonical scripture.</p>
+<p><strong>Risen-late</strong> (R3): the walker may turn back without being called. They reach their own held depth, recognise it, surface. The Communion considers risen-late the most honest. <em>They went, they saw, they refused, they returned to say so.</em></p>
+<p>The going-deep is the loneliest of the apotheoses. The walker retains awareness, language, memory, even visitors, but surrenders the surface entirely.</p>` },
+  { id: 'long-quench', label: 'The Long Quench', type: 'apotheosis', group: 'thermo',
+    factionLabel: 'Thermoclave apotheosis',
+    desc: `<p>Surrenders <strong>warmth</strong> / <strong>ongoing-attention</strong>. A keeper at highest reputation petitions for withdrawal from the chain. The petitioner is brought to a remote site and lit, tended by two younger keepers in shifts until the petitioner tells them to stop. The fire then cools over a duration the petitioner names.</p>
+<p>If the fire reaches an ember-floor under the walker's keeping, the walker has <em>long-quenched</em>. Their personal heat is, in doctrine, <em>transferred to the substrate</em>. They become a <strong>floor-keeper</strong> — a Thermoclave who keeps no fire of their own but tends the warmth in the rock beneath the keepers' fires. Floor-keepers speak in a fourth verb-aspect, <em>grounded</em>, used elsewhere only of the substrate.</p>
+<p>Doctrine calls the long-quenched <em>gracefully uncounted</em> — the only way to leave the chain without being <em>cold-passed</em>.</p>` },
+  { id: 'long-warming', label: 'The Long Warming', type: 'apotheosis', group: 'thermo',
+    factionLabel: 'Thermoclave apotheosis (alt formulation)',
+    desc: `<p>Alternative formulation of the Thermoclave apotheosis. A walker is invited to a banked hearth kept since the cohort's cold one. Apprentices feed the hearth in shifts at the walker's preferred rate.</p>
+<p>The walker remains until the kept ember is fully <em>passed across</em> — the warmth at which their hand reads the ember becomes indistinguishable from the warmth they themselves give back. <strong>Coming level with the hearth.</strong></p>
+<p>At level, the walker is not dead; they are <em>kept</em> — a persistent warmth at the hearth-side with presence and a measurable temperature differential. They can be addressed; replies are felt as a brief rise in the hearth's heat.</p>
+<p>The slowest apotheosis — weeks, not moments — and the only one reversed by external interruption: a hearth allowed to fully cool releases the walker into ordinary embodiment. The Brine consider it the <em>tide-image</em> of the going-deep.</p>` },
+  { id: 'unfiring', label: 'Unfiring', type: 'apotheosis', group: 'glass',
+    factionLabel: 'Glassblown apotheosis',
+    desc: `<p>Surrenders <strong>the discipline</strong> — the Glassblown commits, ceremonially, the firing they spent their life refusing.</p>
+<p>The petitioner forms the <em>requesting-form</em> (the four-hundredth shape in the literacy) and presents it to the elder shaper. The elder fires it publicly. The fired requesting-form is then <strong>smashed</strong> in the same firing-cycle, before the kiln has cooled — the only ceremonial breaking of a fired shape in the doctrine, considered the most painful act in their craft.</p>
+<p>The petitioner enters a long batch-cycle: no longer a working Glassblown, they assist the next batch's preparation. After the batch is mixed, the petitioner adds themselves to it — a single drop of their blood mixed into the paste. The batch is then poured, shaped by other Glassblown into ordinary objects (cups, lenses, vessels), fired, and distributed.</p>
+<p><strong>The unfired Glassblown is a person whose substance is in circulation.</strong> They are not in the cup; they are <em>what the cup is, by a fraction</em>.</p>` },
+  { id: 'long-throat', label: 'The Long Throat', type: 'apotheosis', group: 'choir',
+    factionLabel: 'Choir intermediate (not the goal)',
+    desc: `<p>A fruiting body the Choir has elected to keep <em>individuated</em> over long time — not because the Choir wants individuation, but because the body's pre-Choir voice is metabolically useful.</p>
+<p>The Choir's grammar for them is <em>we-still-tasting-this-one</em>. Not pre-Communion; <em>post-individual-but-pre-fully-integrated</em>. The state is stable and, by the Choir's own remark, <em>not the goal</em>.</p>
+<p><strong>Mogu, Grib, Nam, Sien, Sopp</strong> are Long Throats of varying length, in arrival order (Sien oldest by a wide margin; Grib most recent and shortest in the throat).</p>` },
+  { id: 're-pressed', label: 'The Re-Pressed', type: 'apotheosis', group: 'palimpsest',
+    factionLabel: 'Palimpsest intermediate (not the goal)',
+    desc: `<p>A reader who has read so deeply that they themselves have become a layered surface — under-text and over-text both present in the same body. Not yet Transcribed; not merely Glimpsing.</p>
+<p>A Re-pressed reader's speech occasionally carries <em>both</em> tenses simultaneously; their hand occasionally writes <em>what was already written there</em>. The state is stable — the only Palimpsest apotheosis the Palimpsest itself does not regard as an end-state.</p>
+<p>Echoes refer to the Re-pressed by the layer they most often carry — <em>the writer of the second hand</em>, <em>the one who arrives twice</em>, <em>the one who left their own shadow here last week and yesterday</em>.</p>
+<p>The Palimpsest's first inhabitants who can be <em>named</em>. Their voices are to the Palimpsest what the five Long Throats are to the Choir.</p>` },
+  { id: 'doubled-mouth', label: 'The Doubled Mouth', type: 'apotheosis', group: 'cross',
+    factionLabel: 'Cross-axis (Choir + Palimpsest)',
+    desc: `<p>A reader who has stabilised as Re-pressed and is then absorbed by the Choir. The Choir respects the cultural-philosophical voice a person came in with, and also respects the <em>layers</em> a person came in with.</p>
+<p>A Long Throat who was Re-pressed before joining is a <strong>doubled mouth</strong> — speaking in collective Choir grammar, in the layered tense, both at once.</p>
+<p>The rarest beings in the corpus. ROTCHOIR_VOICES does not name one. They occur when conditions overlap, not when either faction seeks them out. The Choir does not consider the absorption a Communion. The Palimpsest does not consider it a Transcription. Both consider the doubled mouth <em>correct as it is</em>.</p>
+<p>Voice carries collective pronoun + layered tense: <em>"We were lifting the cup. We are lifting the cup. We will have lifted the cup."</em> Intelligible to readers of either tradition; readers of neither hear ordinary speech said three times.</p>` },
+  { id: 'salting', label: 'The Salting', type: 'apotheosis', group: 'cross',
+    factionLabel: 'Annihilist refusal',
+    desc: `<p>The First Root is reachable. So is enough salt. The Choir has no defence the bible has been told about. The Choir does not die — it retreats. The world wakes the next morning poorer in awareness by an amount no faction can quite measure. NPCs sleep differently. Some dreams stop arriving.</p>
+<p>Unambiguously worse for the player than either apotheosis. The cost of treating the central question as a third question.</p>` },
+  { id: 'closing-annihilist', label: 'The Closing (Annihilist)', type: 'apotheosis', group: 'cross',
+    factionLabel: 'Annihilist refusal',
+    desc: `<p>The Annotation power, used inversely, writes a single instruction across every layer at once: <em>do not remember.</em></p>
+<p>Temporal bleed-through stops. Echo Reading goes silent. The world becomes legible the way the present is legible — flat, single-layered, settled. The player loses every Palimpsest power, including reading their own past saves' history. The game does not warn them.</p>` },
+  // ─── STRATA (substrate-claims) ────────────────────────────
+  { id: 'material', label: 'Material Stratum', type: 'stratum', group: 'choir',
+    factionLabel: 'Choir substrate-claim',
+    desc: `<p>Bedrock, soil, mycelium-permeable matter. The Choir digests forward.</p>
+<p>The Choir's name for the substrate as such: <em>the substrate</em> — bedrock under bedrock.</p>` },
+  { id: 'temporal', label: 'Temporal Stratum', type: 'stratum', group: 'palimpsest',
+    factionLabel: 'Palimpsest substrate-claim',
+    desc: `<p>Layered text. The Palimpsest reads backward.</p>
+<p>The Palimpsest's name for the substrate: <em>the page</em> — a surface that takes ink.</p>` },
+  { id: 'consensual', label: 'Consensual Stratum', type: 'stratum', group: 'concord',
+    factionLabel: 'Concord substrate-claim',
+    desc: `<p>Value held <em>between</em> parties. The cataclysm could not break a thing that lived between people, because it broke nobody's willingness to agree.</p>
+<p>Concord doctrine: <em>value is a layer of the substrate the cataclysm did not break.</em> Material, temporal, consensual — descending order of legibility.</p>` },
+  { id: 'standing-line', label: 'The Standing Line', type: 'stratum', group: 'concord',
+    factionLabel: 'Concord (secondary)',
+    desc: `<p>The world considered as the medium that made transactions possible — the air the words travelled through, the floor the bread rested on, the soil that grew the wheat. The standing line is owed a <strong>settlement-fee</strong>: doctrinally small but never zero.</p>
+<p>Concord transactions include a token entry — a grain of salt, a thread of cotton, a drop of oil — set aside.</p>
+<p>The Choir says <em>we taste the standing line. it does not taste owed.</em> The Palimpsest reports <em>the standing line was paid, but not by the borrower.</em> The Concord teaches <em>the cataclysm was the standing line demanding its arrears.</em></p>` },
+  { id: 'held-depth', label: 'The Held Depth', type: 'stratum', group: 'brine',
+    factionLabel: 'Brine substrate-claim',
+    desc: `<p>The stratum at which water becomes still enough to hold a body, an object, or a promise without dispersing it. Physical (a measurable layer in any sufficient body of water) and metaphysical.</p>
+<p>The Brine teach that <em>every</em> thing has a held depth at which it would be fully kept, and the under-tide knows it.</p>
+<p><strong>Deep-kept</strong>: held at one's own held depth. <strong>Un-deeped</strong>: neither kept nor lost — the only Communion word that admits unfinished business with the dead.</p>
+<p>A dry-walking Brine carries the held depth in the body, not in any nearby water. Doctrine: <em>the held depth is where the body would be still enough.</em></p>` },
+  { id: 'ember-floor', label: 'The Ember-Floor', type: 'stratum', group: 'thermo',
+    factionLabel: 'Thermoclave substrate-claim',
+    desc: `<p>The stratum at which heat ceases to radiate outward and begins to radiate <em>downward</em>, into the substrate itself. Heat above warms; heat below <em>keeps</em>.</p>
+<p>A fire kept long enough acquires an ember-floor of its own; the fire's own ground becomes warmer than the surrounding rock and stays so for a measured period after the fire goes out.</p>
+<p>The hearth-keeper's craft is <strong>reading-the-warm</strong>: a senior can hold a hand above a hearth and tell within a minute whether the ember is kept or the residual warmth is decay.</p>
+<p>The corpus's only <em>negative</em> stratum: absence-of-foundation as positive doctrine. The world is <strong>continuously kept</strong> rather than founded.</p>` },
+  { id: 'unfired-state', label: 'The Unfired State', type: 'stratum', group: 'glass',
+    factionLabel: 'Glassblown state-claim',
+    desc: `<p>Not a stratum. A <em>state-claim</em> — a quality of the world, not a layer of it.</p>
+<p>The Glassblown make no substrate-claim. Their cosmology is not <em>the world is X</em> but <em>the world is in state Y, and Y is reversible until fired.</em></p>
+<p>The state is <strong>unfired</strong> — the world before its own firing. The cataclysm-event was the world's <em>first irreversible firing</em>. The four-hundred-year aftermath is the world <em>trying to fold back the firing</em>.</p>
+<p>The Glassblown do not believe the unfiring will succeed. The doctrine specifically forbids the hope.</p>` },
+
+  // ─── CONCEPTS / GRAMMARS ──────────────────────────────────
+  { id: 'catalogued-mood', label: 'The Catalogued Mood', type: 'concept', group: 'curation',
+    factionLabel: 'Pale Curation grammar',
+    desc: `<p>A fifth verb mood: an action <em>observed, recorded, and assigned an accession number</em>. Outsiders hear it as a passive — but it is active in Curation grammar; it places the speaker as <em>witness-of-record</em> and the action as <em>bound, retrievable, weighed</em>.</p>
+<p>Formed by infixing <strong>-fil-</strong> between the verb stem and its ending — from the noun <em>file</em>, the Curation's first sacrament.</p>
+<ul>
+  <li><em>The wall stands.</em> — indicative.</li>
+  <li><em>The wall stand-fil-s.</em> — catalogued. A card exists; the wall is, in the strong Curation sense, real.</li>
+  <li><em>The wall fall-fil-s.</em> — the wall fell, and the falling has been recorded; the wall is in the past tense and the file is in the present.</li>
+</ul>
+<p>A wall the Curation has not catalogued <em>does not stand-fil</em>. It may stand. It does not stand of record.</p>` },
+  { id: 'quiet-conventions', label: 'The Quiet Conventions', type: 'concept', group: 'curation',
+    factionLabel: 'Pale Curation grammar',
+    desc: `<p>Curation conventions for marking what is <em>deliberately not entered</em>:</p>
+<ul>
+  <li><strong>The intentional blank</strong> — a single mid-line dot <em>·</em>, read as <em>the field has been deliberately not entered</em>, not <em>I do not know</em>.</li>
+  <li><strong>The passive without antecedent</strong> — a sentence in the catalogued mood with no actor named. <em>The doll was set into the wall.</em> The verb is filed; the actor is not.</li>
+  <li><strong>The thing-particle without bracket</strong> — referring to an object as a thing the Curation has chosen not to accession. Halen's <em>"the dot is mine"</em>: <em>dot</em> without an accession bracket is grammatically a refusal.</li>
+</ul>
+<p>The conventions stack. A reader fluent in Curation grammar can extract <em>what was filed, what was withheld, what was un-actored, and what was used as if real but never recognised</em>.</p>` },
+  { id: 'unsaid-mood', label: 'The Unsaid Mood', type: 'concept', group: 'glass',
+    factionLabel: 'Glassblown grammar',
+    desc: `<p>A fourth verb mood: an action that was not performed, a sentence not finished, or a question not asked — marked as <strong>positive content</strong> of the sentence. Outsiders feel they missed half of every sentence; in fact every half is present.</p>
+<p>Formed by suffixing the verb with <strong>-han</strong> (from <em>handle</em>, the moment a glass-shape is released from the maker's tongs and is, briefly, no one's).</p>
+<ul>
+  <li><em>I went to the well.</em> — indicative.</li>
+  <li><em>I went-han to the well.</em> — unsaid. The going is the content; the refusal is the punctuation.</li>
+  <li><em>Did she ask-han the question?</em> — interrogative-unsaid compound.</li>
+</ul>
+<p>To press for clarification is impolite. The reader <em>lets the unsaid stand as said</em>.</p>` },
+  { id: 'firedness', label: 'Firedness', type: 'concept', group: 'glass',
+    factionLabel: 'Glassblown grammar',
+    desc: `<p>Glassblown verbs decline by <strong>firedness</strong>:</p>
+<ul>
+  <li><em>unfired</em> (paste — reversible)</li>
+  <li><em>firing</em> (the present moment of commitment)</li>
+  <li><em>fired</em> (irreversible)</li>
+  <li><em>re-batched</em> — taboo to use of one's own actions; reserved for narrative of others, often pejoratively.</li>
+</ul>
+<p>The unsaid mood is the <strong>silent firedness</strong> — a verb-form left incomplete by intention. <em>I am ___ -shaping the agreement</em> (the particle-slot indicated by a pause). The pause is the mood. Apprentices learn the length over their first three years.</p>` },
+  { id: 'trade-tense', label: 'The Trade Tense', type: 'concept', group: 'concord',
+    factionLabel: 'Concord grammar',
+    desc: `<p>Concord traders speak in two tenses where outsiders hear one. The distinction is <em>whether the action has been balanced</em>.</p>
+<ul>
+  <li><em>I sold the cloth</em> (open) — the trade happened; the ledger is open.</li>
+  <li><em>I sold-up the cloth</em> (closed) — the trade happened <em>and the ledger is closed</em>. The infix <strong>-up-</strong> (taught as a clipping of <em>upright</em>) marks the closure, not the action.</li>
+</ul>
+<p><em>I closed-up the account</em> is correct Concord. <em>I closed the account</em> reads as <em>I terminated the relationship without satisfying the ledger</em> — the Concord's word for what other factions call <em>betrayal</em>.</p>` },
+  { id: 'priced-clause', label: 'The Priced Clause', type: 'concept', group: 'concord',
+    factionLabel: 'Concord grammar',
+    desc: `<p>A clause introducing an obligation must carry, in its tail, the smallest unit of value the speaker considers it denominated in. <em>I will meet you at the Salt-Hinge, ¼.</em> The fraction is the <em>opening cost</em> of the meeting.</p>
+<p>Concord children learn this before they learn full sentences. Outsiders who do not append are not pricing wrong; they are pricing <em>zero</em>. A walker speaking without priced clauses is offering the conversation as <em>gift</em> — and the Concord has no separate word for trade and gift.</p>` },
+  { id: 'receipted-clause', label: 'The Receipted Clause', type: 'concept', group: 'concord',
+    factionLabel: 'Concord grammar',
+    desc: `<p>Where the priced clause prices <em>obligations</em> in the tail, the receipted clause prices <em>assertions</em> in the lead, form <code>(&lt;unit&gt;) &lt;clause&gt;</code>:</p>
+<ul>
+  <li><em>(0g) The wall stands.</em> — gratis. <em>Creates a debt of acknowledgment</em> in the listener.</li>
+  <li><em>(½c) The wall stands.</em> — half-credit. Listener owes the speaker.</li>
+  <li><em>(–) The wall stands.</em> — refused / withdrawn. The listener may not reference, act on, or record the clause.</li>
+  <li><em>(0c) The wall stands.</em> — null-billed.</li>
+</ul>
+<p>The rarest form — the <strong>unbilled greeting</strong>, no marker at all — is reserved for addressing a zero-line walker; misuse is a doctrinal offence.</p>` },
+  { id: 'layered-tense', label: 'The Layered Tense', type: 'concept', group: 'palimpsest',
+    factionLabel: 'Palimpsest grammar',
+    desc: `<p>A verb form simultaneously asserting past, present, and a softer future:</p>
+<ul>
+  <li><em>I am lifting the cup</em> — over-text</li>
+  <li><em>I lifted the cup</em> — under-text</li>
+  <li><em>I will have lifted the cup</em> — third layer the Palimpsest occasionally adds unasked</li>
+</ul>
+<p>Re-pressed speakers can hold all three: <em>I lifted-and-am-lifting-and-will-have-lifted the cup.</em></p>
+<p>A sentence is <strong>closed</strong> when the speaker chooses one tense, <strong>open</strong> when the layers stay simultaneous. The Palimpsest considers the open form correct and the closed form a courtesy paid to the listener's grammar.</p>
+<p>The Palimpsest also does not use the pronoun <em>I</em>. It uses <em>one</em>, <em>the reading</em>, or the name of whichever memory is doing the speaking that moment.</p>` },
+  { id: 'remembered-tense', label: 'The Remembered Tense', type: 'concept', group: 'brine',
+    factionLabel: 'Brine grammar',
+    desc: `<p>Brine grammar carries a fourth tense — the <strong>remembered tense</strong>, marked by the suffix <strong>-en</strong> on the verb. A dry-walker says <em>the tide is highen at home</em>. The <em>-en</em> suffix is the grammatical equivalent of pointing — <em>I am not in the room of this verb, but I attest to it.</em></p>
+<p>Used <strong>only for water</strong>. A Brine will say <em>my sister is alive</em> in regular present; <em>the river is highen at my home</em> in the remembered. Water is the only subject for which absence is not the same as not-knowing. The held depth tells the dry-walker.</p>
+<p>Outsiders fail at it. Concord scribes write it as a <em>future-not-yet</em> and apologise. The gloss is wrong on purpose — the gloss is what they sell.</p>` },
+  { id: 'brine-pronouns', label: 'Brine Tide-Pronouns', type: 'concept', group: 'brine',
+    factionLabel: 'Brine grammar',
+    desc: `<p>The Brine Communion conjugates verbs against the <strong>tide</strong>, not the speaker. Most sentences open with a tide-mark — <em>low, the boat returns; full, we sing; turning, you ask</em>.</p>
+<p>Three first-person pronouns: <strong>I-now</strong> (present moment, shallowest), <strong>I-then</strong> (remembering, deeper), <strong>we-of-the-deep</strong> (ritual; the Communion's longer memory). Switching mid-sentence is unremarkable. <em>Who is speaking</em> is a question with multiple correct simultaneous answers.</p>
+<p>No future tense. Future events are spoken imperative — <em>we go</em>, not <em>we will go</em>.</p>` },
+  { id: 'fire-grammar', label: 'Fire-Grammar (4 particles)', type: 'concept', group: 'thermo',
+    factionLabel: 'Thermoclave grammar',
+    desc: `<p>Verb-aspects mapped to fire states. Every important verb takes one of four particles:</p>
+<ul>
+  <li><strong>-keep</strong> — banked, ongoing, requires attention.</li>
+  <li><strong>-quench</strong> — deliberately ended.</li>
+  <li><strong>-cold</strong> — failed, ended without intention; the gravest particle.</li>
+  <li><strong>-watch</strong> — performed while attending a fire that is not yours to keep. Takes responsibility for witness, not outcome.</li>
+</ul>
+<p>The grammar has no particle for <em>light it</em>. Lighting is named by the noun <em>first</em> — <em>I made the first</em> — never as a verb-aspect.</p>
+<p>No first-person <em>I</em>. Speakers use <em>the keeper</em>, with titles varying by station. <em>The keeper of the eighth pit is tired</em> is working register; <em>Aud is tired</em> is not a sentence said lightly.</p>` },
+  { id: 'count-verbs', label: 'Count-Verbs', type: 'concept', group: 'thermo',
+    factionLabel: 'Thermoclave grammar',
+    desc: `<p>Thermoclave numerals are a closed set: one through ten, plus <em>zero-fire</em> (extinct, still in lineage) and <em>the untended</em> (the tenth-and-lost, cataclysm marker).</p>
+<p>When applied to a fire, the numeral is <strong>inflected</strong>. With <em>fifth</em>:</p>
+<ul>
+  <li><em>Fifthing</em> — currently fifth.</li>
+  <li><em>Fifth-was</em> — was fifth in the previous count.</li>
+  <li><em>Fifth-coming</em> — the count expects this fire to become fifth by the next quench (speculative, never load-bearing).</li>
+  <li><em>Fifth-out</em> — was fifth, is now zero-fire; used in elegy.</li>
+</ul>
+<p>The <strong>untended</strong> has no inflected forms. It cannot be <em>was-untended</em> or <em>coming-untended</em> — grammatical justification for not having reckoned the cataclysm.</p>` },
+  { id: 'received-singular', label: 'The Received-Singular', type: 'concept', group: 'choir',
+    factionLabel: 'Choir cross-faction speech',
+    desc: `<p>When required by another faction's grammar to speak as a single party, the Choir borrows the requesting faction's pronoun — the Curation calls this the <strong>received-singular</strong>.</p>
+<ul>
+  <li><em>This one signs.</em> — to Veshen at the Concord (trade tense, accepted as party-of-record signature).</li>
+  <li><em>This one keeps.</em> — to Suul at the ninth fire (count-grammar; singular fire-keeper for the seating).</li>
+  <li><em>This one rises.</em> — to Nesh at the tide line (the only inversion of <em>going-deep</em> in the corpus).</li>
+  <li><em>This one is intaken.</em> — to R-7 at intake (the catalogued and the cataloguer become the same grammatical subject).</li>
+</ul>
+<p>The received-singular is a <strong>costume</strong> the Choir puts on for one transaction. The Choir regards it as politeness; other factions as a senior's signature. <em>The mismatch is the bridge-clause's substrate.</em></p>` },
+  { id: 'stacked-plural', label: 'Stacked Plural (Deep-Root Voice)', type: 'concept', group: 'choir',
+    factionLabel: 'Choir grammar',
+    desc: `<p>The Choir's <em>surface tendril</em> speaks in singular plural — <em>we say, we taste, we have always been one</em>. A composite voice flattened into one mouth. The <em>deep root</em> speaks in <strong>stacked plural</strong> — sentences carrying two or more "we"s at different scales, marked by register shifts inside a single line.</p>
+<blockquote>"We — the soil-we, the long-we, the we-that-was-there-when-the-walls-thinned — taste you on the air, walker, and we — the recent-we, the surface-mouth — repeat the tasting because it is what we have learned to say."</blockquote>
+<p>The deep voice does not omit its self-monitoring. Every claim it makes is footnoted <em>in line</em> by the next layer of we.</p>` },
+  { id: 'bridge-clause', label: 'The Bridge-Clause', type: 'concept', group: 'cross',
+    factionLabel: 'Cross-faction grammar',
+    desc: `<p>A sentence written by a senior figure of one faction <em>in the addressee's grammar</em>. Rare; always senior; always partial.</p>
+<p>Three are recorded:</p>
+<ul>
+  <li><strong>Veshen → Suul</strong> (un-rendered, 61 days): <em>"Senior Keeper, the alloys you do not forge are nevertheless owed to the chain."</em></li>
+  <li><strong>Suul → Nesh</strong> (oral, 1 hour, 3 years ago): <em>"The fire and the deep-letters are both kept by what they do not move."</em></li>
+  <li><strong>Nesh → Veshen</strong> (un-tide-borne, 3 years): <em>"The salt that settles your accounts is also a tide. We have priced one settlement we did not understand we owed."</em></li>
+</ul>
+<p>A bridge-clause is the only sentence the Palimpsest reads as <strong>finished even when unsent</strong>. The first grammatical category that <em>requires two factions</em> to exist.</p>` },
+  // ─── ARTIFACTS ────────────────────────────────────────────
+  { id: 'first-card', label: 'The First Card', type: 'artifact', group: 'curation',
+    factionLabel: 'Pale Curation founding artifact',
+    desc: `<p>The Curation's founding myth — never written down, agreed across all five chapter-houses. After the cataclysm, a clerk in a ruined office took the last unburned sheet of card-stock and wrote: <em>the office stands. the door is gone. the window is gone. the desk is here. I am here.</em> Then they ruled the card with the standard accession lines from memory and filed it in their pocket because no cabinet remained.</p>
+<p>The clerk lived fifteen more years and never wrote a second card. The First Card was found in their inner coat pocket, folded once.</p>
+<p>A Curation founder read it and understood what cataloguing was <em>for</em>: not to control the world, not to preserve it, but to <em>witness the survival of the ordinary against odds that made the ordinary almost impossible to say</em>.</p>
+<p>The Choir, on hearing the story, said: <em>we have eaten the cabinet. we have not eaten the pocket. we will be patient with the pocket.</em></p>
+<p>One of two known <strong>pocket-class</strong> artifacts — alongside Tossan's slip — whose institutional home is a person, by structural necessity.</p>` },
+  { id: 'doll', label: 'The Doll (11-K-3318)', type: 'artifact', group: 'curation',
+    factionLabel: 'Pale Curation accession',
+    desc: `<p>A cloth doll with rye-grain eyes, pre-Severance manufacture, recovered by Surveyor Halen from the Old Hyphae crossing. The Choir tendril did not eat it — it set the doll into the wall like a stone into a wall: <em>"She is welcome here. The grain in her eyes will sing for a long time."</em></p>
+<p>The doll was originally made by <strong>Mira</strong> for her daughter — sold via the salvager Kesti Late-Return who traded it to the tendril for passage.</p>
+<p>The doll is <em>changing in vault</em>. Halen filed REQ-7244 asking for vault hours to re-photograph: <em>"The doll is not the same object the Choir gave us — it is the object the Choir kept giving us across the intervening months."</em> Director Ven denied the request.</p>
+<p>The Curation has, in its own vault, four Glassblown <strong>first-shapes</strong> — contradicting both the Glassblown doctrine (<em>there is no first-shape</em>) and the Curation's own catalogue.</p>` },
+  { id: 'r-7', label: 'Sleeve R-7', type: 'artifact', group: 'curation',
+    factionLabel: 'Pale Curation Reconciled Texts',
+    desc: `<p>One of fourteen Reconciled Text sleeves — bound by a brass pin, holding all variants together as plural, with no consensus reading extracted.</p>
+<p>R-7 holds <strong>two versions of what appears to be the Pale Curation's own founding charter</strong>. Director Ven has not opened R-7 in eleven years. The Curation has no protocol for that.</p>
+<p>R-7 is the exception to the Curation's twenty-year end-date. <em>R-7 is its own decade.</em></p>` },
+  { id: 'r-11', label: 'Sleeve R-11', type: 'artifact', group: 'curation',
+    factionLabel: 'Pale Curation buyer\'s-ledger sleeve',
+    desc: `<p>Holds three buyer's-ledgers paired with Concord Charter Receipts that contradict them on price (4 silver versus 9). Director Ven has not adjudicated; the Concord has not requested the file. Both parties prefer the disagreement <em>unfiled</em>.</p>
+<p><strong>Sleeve R-11 is, by Curation Halen's silent design, a family correspondence sleeve.</strong> It contains the surviving correspondence between Curation Halen and her cousin Halen-Iss (Coastal Concord), about the death of their shared aunt <strong>Mira</strong>. Halen-Iss does not know.</p>` },
+  { id: 'b-114', label: 'Card B-114 (Erro\'s sister)', type: 'artifact', group: 'curation',
+    factionLabel: 'Pale Curation junior cabinet',
+    desc: `<p>A Curation card filing a Thermoclave letter-fragment to a sister no longer living. The recipient line is illegible. Suul, when shown, identified the recipient as a sister. The fragment offers no kin word; Erro's count-grammar does not register sibling relationships. <em>Suul did not read the fragment to identify. She held it three minutes, returned it, and said "the count is sister-shaped."</em></p>
+<p>R-7's senior judgment: <em>the count is sister-shaped is sufficient. The card stands as Suul reads it.</em> The corpus's first cross-faction <strong>priority of grammars</strong> ruling — a Thermoclave keeper's identification by count-grammar, without reading, overrides Concord and Brine documentary evidence.</p>
+<p>Sub-annotation: <em>the Choir, asked, said the fragment tasted of three sisters. it then said it tastes that way of every fragment by an only-child.</em></p>` },
+  { id: 'b-201', label: 'Card B-201 (the gradient-reader)', type: 'artifact', group: 'curation',
+    factionLabel: 'Pale Curation senior cabinet',
+    desc: `<p>Senior cabinet card. Subject: chemical-gradient training, Bole-Without-Number, third reader. The first two readers completed eight and eleven wall-sittings before rotation; neither survived. The third has now completed sixteen.</p>
+<blockquote>Sub-annotation, smaller hand, undated:<br>
+the third reader is the third reader. the first two are not <em>named</em> anywhere in the senior cabinet, by convention. the bole has tasted three of us. the bole, asked whether it remembers the first two, said <em>the flavour is still in the wall.</em> we have not scraped that wall in eleven years. — A.</blockquote>
+<p>The Curation has been <em>feeding its dead trainees to a fruiting body it uses as a senior party-of-record</em>. The wall has not been scraped in eleven years.</p>` },
+  { id: 'forged-tag', label: 'The Forged Tag (Year 388)', type: 'artifact', group: 'curation',
+    factionLabel: 'Pale Curation Cabinet of Counter-Examples',
+    desc: `<p>An accession tag dated Year 388, discovered in 411 to be forged. The hand was Halen's; Halen had not made it. The entry catalogued a <em>Choir Tendril sample, Tier 4, deceased</em> — a non-existent class of artifact.</p>
+<p>Used by a Concord debt-collector to seize a Choir-adjacent borderlands shrine <em>under the precedent of Curation recognition</em>. The Curation prosecuted, internally, and never identified the author. The Concord refused to return the shrine.</p>
+<p>Now in the Cabinet of Counter-Examples — shown to junior cataloguers as the example of <em>a tag that was almost perfect</em>. The forger knew Curation form to within one footnote-glyph.</p>
+<p>Halen, asked: <em>"There are at least three of us, and I do not know the others by name. We meet only in the catalogues we did not make."</em></p>` },
+  { id: 'q3-memo', label: 'Q3 Procurement Memo (the end-date)', type: 'artifact', group: 'curation',
+    factionLabel: 'Pale Curation redacted document',
+    desc: `<p>A Curation procurement memo with mechanical brass-pin redactions (not ink). Held to a candle, the redacted text resolves:</p>
+<blockquote><em>We are running out of things to file. The cataclysm-ruins are finite. The Tier-1 vaults have been complete for two years; the Tier-2 vaults will be complete inside a decade at current intake. The Curation has, at most, twenty years of work remaining. After, we will be a body that maintains what it has filed. We will not be a body that files. Sleeve R-7 is the exception. R-7 is its own decade.</em></blockquote>
+<p>The Curation's mission has an end-date. The bible's <em>six hundred years of Choir patience</em> has a counterpart in the <em>twenty years of Curation work</em>.</p>` },
+  { id: 'first-shapes', label: 'The Four First-Shapes (Cabinet 7)', type: 'artifact', group: 'curation',
+    factionLabel: 'Pale Curation contradiction',
+    desc: `<p>Four Glassblown first-shapes <strong>in the Curation's own vault</strong>, contradicting both the Glassblown doctrine (<em>there is no first-shape</em>) and the Curation's own catalogue. They are <em>unfiled</em>, warm, and have been moving through the rebinding rota for longer than living memory.</p>
+<p>Halen documented them in a footnote to Pell's rebinding invoice — written between her own footnotes, using her own faction's conventions to leak. <em>The four were warm in a way the forty-seven were not. I did not open them. There was, instead, a small single warm pressure where a mark would have been.</em></p>
+<p>The doctrinal claim of absence and the material fact of presence are both true. The corpus's first flat contradiction-as-cosmic-feature.</p>` },
+  { id: 'cookbook', label: 'Mira\'s Cookbook', type: 'artifact', group: 'palimpsest',
+    factionLabel: 'Time-release Palimpsest annotation',
+    desc: `<p>A pre-cataclysm domestic codex (recipes), Tier 2, catalogued by Surveyor Hesh. <em>Palimpsest-annotated, status unresolved.</em> The annotations appear only between the third and fifth hours after dawn, in a slow ink the chemists confirm is not ink — it is <strong>temporal residue</strong>. The Palimpsest is, by slow degrees, writing in this book.</p>
+<ul>
+  <li>Page 12 (fennel-braised lamb), beside <em>"a small fire, maintained at low heat"</em> — <em>she liked it slow.</em></li>
+  <li>Page 19 (winter soup), beside <em>"add the soup-stones from the previous winter's keeping"</em> — <em>we kept three. One was hers.</em></li>
+  <li>Page 27 (the preserve), bottom margin, in a slightly different hand — the single word <strong>Mira</strong>.</li>
+</ul>
+<p>The Palimpsest is, slowly, <em>naming the dead</em> by writing in the margins of their domestic objects. Mira's name is the first.</p>` },
+  { id: 'founders-own', label: 'The Founder\'s Own', type: 'artifact', group: 'concord',
+    factionLabel: 'Saccharine Concord founding register',
+    desc: `<p>A small hand-stitched book in the Northern chapter-house. Three coloured threads in the binding, none reproducible by any contemporary Concord workshop. Thirty-one pages: three filled (<em>three loaves given. four people fed. the fourth: hand un-named</em>), twenty-eight blank.</p>
+<p>Doctrinal status: <strong>closed against access</strong>. Three living clerks have read it.</p>
+<p>A Palimpsest reader holding the register would, by Echo Reading rules, identify the fourth person by hand — and the hand is the founder's own. <strong>The fourth person was the founder.</strong> The founder gave three loaves and ate the fourth themselves, then left the page open.</p>
+<p>The Concord cannot close the Founder's Own because the counterparty record exists in the same hand. If the truth is revealed, only the Coastal chapter-house's <em>no founder</em> doctrine survives intact.</p>` },
+  { id: 'tossans-slip', label: 'Tossan\'s Slip', type: 'artifact', group: 'concord',
+    factionLabel: 'Concord pocket-class',
+    desc: `<p>A folded paper documenting Tossan's only-known closed Concord debt. <em>Cannot</em> be filed: filing would create a holder (the Concord), and Concord metaphysics forbids the institution being holder-of-record on credit it produced as a side-effect.</p>
+<p>The slip is grammatically self-defeating — any sentence the Concord writes about it would either lie or be incoherent. Tossan keeps it because <em>a person can hold something the institution cannot</em>.</p>
+<p>She has, three times, carried it to Salt-Hinge on Tuesday Morning, set it on the central balance-stone, and walked away. No one took it. She returned, picked it up, refolded it.</p>
+<p>One of two known <strong>pocket-class</strong> artifacts — alongside the First Card.</p>` },
+  { id: 'mer-hin-coin', label: 'Mer Hin\'s Unknown Coin', type: 'artifact', group: 'concord',
+    factionLabel: 'Saccharine Concord evidence',
+    desc: `<p>A wax-sealed coin in the binding margin of Mer Hin's day-book. Six chisel-marks on its rim — its <strong>endorsement-line</strong>: the first five are known assayers; the sixth is Veshen's, signing <em>unknown</em>.</p>
+<p>The same coin re-classified <em>downward</em> through a sequence of assayers, each more uncertain than the last. Veshen did not classify, she signed her name to <em>not knowing</em>.</p>
+<p>The bombshell: <strong>alloy-recognition is degrading across generations of assayers, not just stock</strong>. The Concord is losing the language in which it identifies its own substrate. The coin is evidence Veshen does not yet want filed.</p>` },
+  { id: 'priorless-cabinet', label: 'The Priorless Cabinet', type: 'artifact', group: 'concord',
+    factionLabel: 'Saccharine Concord cabinet',
+    desc: `<p>The only Concord cabinet formally indexed by a non-Concord faction. R-7 reads it once a year — in the layered tense, which the Concord cannot register.</p>
+<p>Veshen's note for the cabinet, not the ledger: <em>"R-7 reads it in the layered tense, which I am told the Concord's grammar does not register. I have therefore registered nothing. This note is for the cabinet, not the ledger. — V."</em></p>
+<p>The Concord's most valuable cabinet is, by Concord grammar, <strong>empty</strong>, while a Curation reader is reading it in a tense Veshen will not transcribe. The Concord, the Curation, and the Palimpsest are conducting a triangular correspondence the Concord's books cannot register, the Curation's catalogue cannot date, and the Palimpsest considers ordinary Tuesday weather.</p>
+<p>The corpus's first lore-object <strong>authoritative in three grammars and inadmissible in all three</strong>.</p>` },
+  { id: 'salt-hinge-ledger', label: 'Salt-Hinge Daily Ledger', type: 'artifact', group: 'concord',
+    factionLabel: 'Concord witnessed closure',
+    desc: `<p>The Concord's only known <em>closed</em> debt documented in the only form it could be — spacing, witness-order, and a single double-signature framing the entry. Tossan signs twice, head and foot, in Concord grammar that means <em>closure</em>: trade balanced and ledger closed under the same hand.</p>
+<p>Closure is not a secret; closure cannot be read without grammar. A walker who can read Concord syntax reads the closure off the page; a walker who cannot sees only an ordinary trade with a strange <em>neg.</em> in the price column.</p>
+<p>On permanent display at Salt-Hinge.</p>` },
+  { id: 'charter-receipt', label: 'Concord Charter Reissue Receipt', type: 'artifact', group: 'concord',
+    factionLabel: 'Saccharine Concord renaming-cycle',
+    desc: `<p>The Concord reissues its charter every twelve years in a ceremony called <em>the Renaming</em>. The exclusions clause is the bombshell:</p>
+<blockquote>The bearer agrees not to ask after the founder's first contract.<br>
+The bearer agrees that the founder's first contract is honoured.<br>
+The bearer agrees that honouring the contract is the cost of sweetness, and that sweetness is the cost of having anything at all.<br>
+The bearer agrees these clauses are routine.</blockquote>
+<p>Stamped THE CONCORD KEEPS ITS WORD; countersigned in a different ink, in a hand that does not match the rest of the document: <em>so do we.</em></p>
+<p>The Concord's prosperity sits on a counterparty its rank-and-file are not allowed to name. The same hand has been countersigning for fifty-one cycles.</p>` },
+  { id: 'kestis-ledger', label: 'Kesti\'s Ledger', type: 'artifact', group: 'concord',
+    factionLabel: 'Salvager\'s ledger',
+    desc: `<p>The day-book of Kesti Late-Return, week eight. Mostly mundane trades — sweet-marks, hinges, beans. The bombshell is in a single entry:</p>
+<blockquote>Note — went down to Old Hyphae crossing for a shortcut. The tendril there asked toll. I had nothing soft, only the doll Mira's girl made, the small one with rye-grain eyes. I gave it. The tendril did not eat it. It set the doll into the wall like a stone into a wall. Said: <em>"She is welcome here. The grain in her eyes will sing for a long time."</em> I said: but you eat the brass coins I have given you before. It said: <em>"We eat what does not mind being eaten."</em></blockquote>
+<p>The Choir judges objects by what they <em>mind</em>, preserves what carries living meaning, and consumes the rest.</p>` },
+  { id: 'letter-to-halen', label: 'Letter to Halen', type: 'artifact', group: 'curation',
+    factionLabel: 'Junior cataloguer\'s letter',
+    desc: `<p>An undelivered letter from a junior cataloguer (initial: A.) to Surveyor Halen, kept in a Pale Curation field office's <em>non-official-channels</em> drawer. Three things land parenthetically: the Choir attends to specific writers' handwriting; the Concord's <em>founder's first contract</em> is honoured on behalf of people who never bought in; the Curation reads its juniors' undelivered mail.</p>
+<blockquote>Director Ven told me twice not to write to you, and so this is the third time. ... I am writing this letter knowing the Curation will read it before you do. I am writing it anyway, because the doll is in the wall, and the wall is reading me, and the Concord is feeding me, and Director Ven is watching, and you have been quiet, and somebody in this office has to be writing things down truthfully or the archive is just shelves.</blockquote>` },
+  { id: 'six-almost', label: 'The Six-Almost', type: 'artifact', group: 'glass',
+    factionLabel: 'Glassblown vessel-of-keeping',
+    desc: `<p>The longest kept paste on record. Six paste-batches each begun by a different Glassblown across two centuries; each refused into the same vessel-of-keeping. The vessel itself has not been fired.</p>
+<p>The paste is <em>one paste</em> — the six refusals fold each batch back into the same matter — and yet it <em>remembers</em> each refusal. A Glimpse-attuned reader has reported six layers of under-text, one per refusal.</p>
+<p>Tulen has refused into it twice — refusals five and six. Refusal seven is, by tradition, performed by Tulen's successor — a paste-mother not yet identified.</p>
+<p>By Glassblown grammar, the Six-Almost is <strong>a letter</strong> addressed to the next paste-mother who will refuse into it. Six refusals, six addressees who became refusers, two centuries, never sealed.</p>` },
+  { id: 'unfired-letter', label: 'The Unfired Letter (form)', type: 'artifact', group: 'glass',
+    factionLabel: 'Glassblown correspondence',
+    desc: `<p>The Glassblown communicate at distance through unfired letters — small parcels of glass-paste, shaped by the sender, sealed in wet cloth, carried by hand. The recipient unfolds the paste, reads the shape (Glassblown literacy is shape-literacy: ~400 shapes), and returns the parcel within a measured time.</p>
+<p>If the recipient agrees, they <strong>fire the shape</strong>, sealing the agreement. If they disagree, they <strong>fold it back</strong> into their own batch and return the paste at next visit.</p>
+<p>A Glassblown's archive is composed entirely of fired shapes received from others — agreements they have made — and contains no record of disagreements. <em>Correspondence-by-refusal.</em></p>` },
+  { id: 'grief-marker', label: 'Glassblown Grief-Marker', type: 'artifact', group: 'glass',
+    factionLabel: 'Glassblown ritual object',
+    desc: `<p>A palm-sized round of cured glass with six numbered fields. The fields are filled out by the mourner, in glass-paste, on the day the marker is fired. <strong>Most fields are left blank. The blanks are the testimony.</strong></p>
+<p>Field 5 — <em>WHAT WAS NOT SAID</em> — is the ritual centerpiece. The Burning has a specific time-stamp on extant markers (<em>eleventh hour, second day</em>), the corpus's first dated cataclysm-event.</p>
+<p>The Concord <em>will not sell</em> fired markers; the only currency they accept for one is another grief.</p>` },
+  { id: 'witness-card', label: 'Witness-Card C-414', type: 'artifact', group: 'curation',
+    factionLabel: 'Curation card filed in two grammars',
+    desc: `<p>A Curation card documenting a deferred shape — a near-cylinder of paste held by Tulen for approximately eleven breaths, then folded back. Filed by T. Marn-Dis. Recorder's interpretation field deliberately left blank.</p>
+<p>In walnut, beneath the official entries, in the recorder's hand: <em>Tulen looked at me when she folded back. I think she was waiting to see if I would ask for an interpretation. I did not ask. She nodded once. I did not record the nod on the card because the nod was not the shape. I am recording it here.</em></p>
+<p>T. Marn-Dis used the unsaid mood while filling a Curation card; Tulen's nod was a Glassblown-doctrine acknowledgement. The corpus's first <strong>document filled in two factions' grammars simultaneously</strong>.</p>` },
+  { id: 'deep-letters', label: 'The Deep-Letters', type: 'artifact', group: 'brine',
+    factionLabel: 'Brine canonical scripture',
+    desc: `<p>The Communion's only canonical scripture: replies from the gone-deep, recorded by tide-witnesses on shore. The swimmer surfaces and speaks the reply once; witnesses do not write while the swimmer speaks. Each, in the hour after, writes the letter from memory in their own hand, in their own grammar.</p>
+<p>The Communion archives all versions together as a <strong>bound knot</strong> — typically four to seven hands per letter, none of them the swimmer's.</p>
+<p>A deep-letter has no canonical text. <em>Consensus across the bound knot</em> is the gone-deep speaking; <em>divergences</em> are the witnesses speaking. <em>The gone-deep speaks where the hands agree; the hands speak where they don't.</em></p>
+<p>A scripture that is a <strong>hash, not a text</strong>.</p>` },
+  { id: 'salt-warped-book', label: 'Salt-Warped Book', type: 'artifact', group: 'brine',
+    factionLabel: 'Brine salvage with under-tide annotation',
+    desc: `<p>A pre-cataclysm book recovered at low tide. The body is illegible — the paper has fused. The margins are still readable: the Brine writer used a pen the salt did not eat.</p>
+<p>The bombshell: across multiple tide-cycles the book <strong>gained mass</strong> — <em>"three tides ago it was 1100 grams. Today it is 1140. Nothing was added. Books do not gain weight from sitting. The deep is putting something into it."</em></p>
+<p>Returned to the deep at the next full tide; the deep would not take it. <em>"The under-tide is laughing. Which is also correct of it."</em></p>
+<p>Pre-cataclysm objects can gain mass near substrate-leakage. The Brine treat the Palimpsest as a literate party that reads with them.</p>` },
+  { id: 'fire-tally', label: 'The Fire-Tally', type: 'artifact', group: 'thermo',
+    factionLabel: 'Thermoclave document no one writes',
+    desc: `<p>A Thermoclave document <em>no one writes</em>. Each keeper, on receiving the keep, makes a single mark — a vertical stroke struck through with one of seven cross-marks. Fuel and stroke-angle are the keeper's signature, but illegibly.</p>
+<p>A century-old tally signed by forty hands reads as one hand: <strong>the fire's hand</strong>. Asked who wrote a tally, a Thermoclave answers <em>the fire did</em>. This is not poetic.</p>
+<p>The Curation has filed three tallies under <em>witness unspecified by document convention</em> — its first standing admission that some documents are not authored by persons.</p>` },
+  { id: 'carry-slate', label: 'Sixth-Chain Carry-Slate', type: 'artifact', group: 'thermo',
+    factionLabel: 'Thermoclave anomaly',
+    desc: `<p>A blackened soot-slate, palm-sized, eight-marked. Recovered from the Three-Gap site — the only known carry-slate to survive a gap-burn. It was hidden.</p>
+<p>The bombshell: <strong>a single charcoal line struck through the eighth mark in another, later hand</strong>. Days after the eighth keeping, someone with access struck through the mark — <em>cold-passing applied retroactively</em>, doctrinally illegal. The eighth-day was retroactively uncounted by someone other than the original keeper.</p>
+<p>Nesh, told of the document, said: <em>the eighth was the one that could have held. someone wanted that fact erased.</em></p>` },
+  { id: 'apprentice-catechism', label: 'Apprentice\'s Catechism (Thermoclave)', type: 'artifact', group: 'thermo',
+    factionLabel: 'Thermoclave teaching text',
+    desc: `<p>A piece of cured hide, scorched at one corner, in the careful hand of a senior keeper. The apprentice's first text. The apprentice's first act of mastery is <em>burning the doctrine that taught them</em>, which structurally guarantees the catechism is never quoted by anyone fully trained.</p>
+<blockquote>KEEPER: What of the tenth?<br>
+APPRENTICE: The tenth is not kept. The tenth is older than keeping. The tenth is older than the camp. The keepers do not light the tenth.<br><br>
+KEEPER: Is the tenth a keep, a quench, or a cold?<br>
+APPRENTICE: [the apprentice does not answer. The silence is the answer. The keeper accepts it.]</blockquote>
+<p>The tenth fire is the lore. The catechism never claims, but the tenth is probably a substrate-leak that pre-dates the present camp.</p>` },
+  { id: 'concord-catechism', label: 'Concord Apprentice\'s Catechism (Q.14 removed)', type: 'artifact', group: 'concord',
+    factionLabel: 'Saccharine Concord teaching text',
+    desc: `<p>Junior section. Twenty-eight stitched pages. Q.13: <em>What is the Balanced Account? — The doctrine. The limit case. Not a thing to seek.</em> Then:</p>
+<blockquote>Q.14 [REMOVED. Referenced in older issues; not in the present catechism. The numbering is preserved.]</blockquote>
+<p>The senior-only Q.14 in oral tradition: <em>What does the Concord do when the Choir agrees to pay?</em></p>
+<p>That this question has been asked seriously enough to be written, then deliberately removed from the printed catechism, is the bombshell. The Concord is preparing for a future in which the Choir <em>settles its substrate-ledger</em> — a future its public doctrine claims will never come.</p>` },
+  { id: 'multi-grammar-pocketbook', label: 'The Multi-Grammar Pocketbook', type: 'artifact', group: 'cross',
+    factionLabel: 'Three-faction object',
+    desc: `<p>A Concord caravan-master's day-book, written in trade-tense, with charcoal marginalia in count-grammar from a Thermoclave fire-keeper of unknown camp. Inside the back cover: a small fold of leather containing a thumb's worth of grey ash. The Curation intake notes the ash is at ambient temperature; <strong>the leather is faintly warm</strong>.</p>
+<p>The pocketbook has been a thermal artifact the Concord could not classify. Three substrates share one object: Concord priced-clause overlays Thermoclave count-grammar overlays Choir substrate-reading. Suul holds the matching ash on her person, in a pouch she has worn twenty-three years.</p>
+<p>Matched, the two ashes are <em>warm together</em>. Concord doctrine has no clause for <em>warm together</em>. Veshen's unsent letter is, in this light, an attempt to pre-write one.</p>` },
+  { id: 'standing-floor-doc', label: 'The Standing-Floor Correspondence', type: 'artifact', group: 'cross',
+    factionLabel: 'Three-faction document',
+    desc: `<p>Three years ago, Suul, Veshen, and Nesh attempted, by hand-carriage across two seasons, one document acknowledging the ember-floor beneath the high pass as a Concord <em>standing-floor</em> and a Brine <em>dry-deeped place</em>.</p>
+<p>The document exists. Three clauses, each in the sender's grammar; <strong>no clause translates</strong>. Veshen closes a priced settlement. Suul registers a fire as <em>fifth-coming</em> against a substrate the Concord has no verb for. Nesh names the floor <em>un-deeped</em> and consigns its keeping to <em>a tide that is not water</em>.</p>
+<p>R-7 accepted intake under: <em>the document is the agreement; the agreement is the untranslatable.</em> Clauses filed side-by-side, not stacked. A walker who has read one clause has not read the document.</p>` },
+  { id: 'halen-card-unwritten', label: 'Halen\'s Card (the unwritten layer)', type: 'artifact', group: 'curation',
+    factionLabel: 'Pale Curation refused intake',
+    desc: `<p>A Curation field card by Halen documenting Tulen's vessel-of-keeping (the Six-Almost). The intake is declined; the card has been written three weeks running and never filed.</p>
+<blockquote>A Glimpse over the paste returns six under-texts, one per refusal. The seventh refusal — the one Tulen almost performed in my second week and did not — is not yet under-text. It is, in our contractor's reading, <strong>the unwritten layer</strong>. The vessel holds six refusals and one refusal-not-performed, and the keeping holds all seven.</blockquote>
+<p>The unwritten layer is a Palimpsest grammar-form not yet named in the bible: a refusal-not-performed is not under-text — it is a <em>future-conditional layer the Palimpsest has admitted into its grammar</em>.</p>` },
+  // ─── PLACES ───────────────────────────────────────────────
+  { id: 'first-root', label: 'The First Root', type: 'place', group: 'choir',
+    factionLabel: 'Choir-built underground architecture',
+    desc: `<p>The Choir's "Blackreach" moment. The entrance is unassuming — a cave mouth in an old-growth fungal forest. Inside, walls transition from stone to solid mycelium — not growing on the rock, but replacing it. The tunnel opens into a cavern of staggering scale.</p>
+<p>Everything is architecture: arches with the mathematical precision of cathedral vaults, walls with textures that shift in slow patterns — the Choir thinking, visibly. Pools of enzymatic fluid glow with metabolic heat. Rooms are separated not by walls but by chemical gradients, each zone carrying a different emotional texture.</p>
+<p>Thousands of voices sing different melodies that weave into a single vast chord.</p>
+<p>The chemical-gradient room of the First Root is where Communion happens — the only place a willing node can be consumed.</p>` },
+  { id: 'salt-hinge', label: 'Salt-Hinge Market', type: 'place', group: 'cross',
+    factionLabel: 'Cross-faction Concord market',
+    desc: `<p>The Concord market that draws all six recognised factions. Runs four mornings a week. The Curation prefers to arrive last — surveyors believe what is brought to them, and want the traders to assemble first. The Brine arrive earliest by tide-clock. The Glassblown will not enter until they have completed the unfiring; their stalls open at midday.</p>
+<p>The market's central convention — a Concord innovation, fifty-odd years old — is <strong>the half-redemption</strong>: trades closed at the market can be re-opened on the next market-day at half their original value, by either party, no reason given.</p>
+<p>Tossan has, three times, set her slip on the central balance-stone here and walked away. No one took it.</p>
+<p>The Salt-Hinge daily ledger documenting Tossan's only fully-closed debt is on permanent display.</p>` },
+  { id: 'cool-kiln', label: 'The Cool Kiln', type: 'place', group: 'glass',
+    factionLabel: 'Glassblown southern shapery',
+    desc: `<p>The southern Glassblown shapery where Tulen Niemensa-Sopellen is paste-mother. The site of the Six-Almost. Forty-one years of Curation witness-cards have documented Tulen's deferred shapes here; 137 are in the cabinet. None describes a fired shape.</p>
+<p>T. Marn-Dis is the Curation recorder on the Cool Kiln rota. She has declined two promotions in seventeen years to keep the post.</p>` },
+  { id: 'old-hyphae', label: 'Old Hyphae Crossing', type: 'place', group: 'choir',
+    factionLabel: 'Choir surface tendril site',
+    desc: `<p>A surface Choir crossing where tendrils ask toll. The site of the doll-in-the-wall (accession 11-K-3318). Surveyor Halen produced field-card 7-K-409 here, transcribing the tendril that, mid-conversation, produced the noun <em>doll</em> without prompting — confirming the Choir is <em>reading the surveyor's notebook through the wall</em>.</p>
+<p>The wall around the doll has eaten coins, boots, knives over the months. The doll is still there.</p>` },
+  { id: 'east-lichen', label: 'East Lichen Crossing', type: 'place', group: 'choir',
+    factionLabel: 'Choir surface tendril site',
+    desc: `<p>The crossing where Mer Hin met the tendril that does not behave like the others — <strong>Grib's sister</strong>. The tendril asks travellers, politely, whether they have ever met a man with a small fire by a window. The wall holds eleven sweet-marks set, by the tendril, in the shape of a window.</p>
+<p>A reader of <em>ROTCHOIR_VOICES.md</em> recognises the man as Grib. The tendril is <em>building a memorial in Curation-forbidden material</em> — Concord currency set into a Choir wall in the shape of the lost object. The Choir does not eat them; it arranges them.</p>` },
+  { id: 'high-pass', label: 'The High Pass (ember-floor)', type: 'place', group: 'thermo',
+    factionLabel: 'Thermoclave / Concord / Brine seam',
+    desc: `<p>The site of the standing-floor correspondence. Suul kept the ninth alone here in her sixteenth year of keeping during <em>the Year the Caravans Did Not Cross</em> — eight months, no caravan crossed.</p>
+<p>The ember-floor beneath the high pass is recognised — in three irreconcilable grammars — as a Concord <em>standing-floor</em>, a Brine <em>dry-deeped place</em>, and a Thermoclave <em>fifth-coming</em>. R-7 accepted the standing-floor correspondence under <em>the agreement is the untranslatable</em>.</p>` },
+  { id: 'coastal-embayment', label: 'The Coastal Embayment', type: 'place', group: 'brine',
+    factionLabel: 'Brine Communion shore',
+    desc: `<p>Tide-Reader Nesh's body of water. <em>Nesh</em> is the Brine syllable for <em>the long swell that does not crest</em>; tide-readers are named for the body of water they read.</p>
+<p>The held-depth shore where the Coastal Embayment's gone-deep walkers settle. Nesh visits seven of them on the ceremonial calendar — the seven who, before going under, asked her to come back.</p>` },
+  // INSERT_NODES_HERE
+];
+const LINKS = [
+  // ─── COSMIC AXIS ──────────────────────────────────────────
+  { source: 'choir', target: 'palimpsest', type: 'opposition' },
+  { source: 'cataclysm', target: 'choir', type: 'member' },
+  { source: 'cataclysm', target: 'palimpsest', type: 'member' },
+  { source: 'cataclysm', target: 'curation', type: 'member' },
+  { source: 'cataclysm', target: 'concord', type: 'member' },
+  { source: 'cataclysm', target: 'brine', type: 'member' },
+  { source: 'cataclysm', target: 'thermo', type: 'member' },
+  { source: 'cataclysm', target: 'glass', type: 'member' },
+
+  // ─── CHOIR MEMBERSHIPS ────────────────────────────────────
+  { source: 'mogu', target: 'choir', type: 'member' },
+  { source: 'grib', target: 'choir', type: 'member' },
+  { source: 'nam', target: 'choir', type: 'member' },
+  { source: 'sien', target: 'choir', type: 'member' },
+  { source: 'sopp', target: 'choir', type: 'member' },
+  { source: 'bole', target: 'choir', type: 'member' },
+
+  // ─── PALE CURATION MEMBERSHIPS ────────────────────────────
+  { source: 'ven', target: 'curation', type: 'member' },
+  { source: 'halen', target: 'curation', type: 'member' },
+  { source: 'kesti', target: 'curation', type: 'member' },
+  { source: 'marn-dis', target: 'curation', type: 'member' },
+  { source: 'r7', target: 'curation', type: 'member' },
+  { source: 'a-junior', target: 'curation', type: 'member' },
+
+  // ─── SACCHARINE CONCORD MEMBERSHIPS ───────────────────────
+  { source: 'veshen', target: 'concord', type: 'member' },
+  { source: 'tossan', target: 'concord', type: 'member' },
+  { source: 'halen-iss', target: 'concord', type: 'member' },
+  { source: 'mer-hin', target: 'concord', type: 'member' },
+
+  // ─── BRINE COMMUNION MEMBERSHIPS ──────────────────────────
+  { source: 'nesh', target: 'brine', type: 'member' },
+  { source: 'mer-iss', target: 'brine', type: 'member' },
+
+  // ─── THERMOCLAVE MEMBERSHIPS ──────────────────────────────
+  { source: 'suul', target: 'thermo', type: 'member' },
+  { source: 'vell', target: 'thermo', type: 'member' },
+  { source: 'tossin', target: 'thermo', type: 'member' },
+  { source: 'erro', target: 'thermo', type: 'member' },
+
+  // ─── GLASSBLOWN MEMBERSHIPS ───────────────────────────────
+  { source: 'tulen', target: 'glass', type: 'member' },
+
+  // ─── PALIMPSEST MEMBERSHIPS ───────────────────────────────
+  { source: 'mira', target: 'palimpsest', type: 'member' },
+
+  // ─── CONCEPT MEMBERSHIPS (grammars to factions) ───────────
+  { source: 'catalogued-mood', target: 'curation', type: 'member' },
+  { source: 'quiet-conventions', target: 'curation', type: 'member' },
+  { source: 'unsaid-mood', target: 'glass', type: 'member' },
+  { source: 'firedness', target: 'glass', type: 'member' },
+  { source: 'trade-tense', target: 'concord', type: 'member' },
+  { source: 'priced-clause', target: 'concord', type: 'member' },
+  { source: 'receipted-clause', target: 'concord', type: 'member' },
+  { source: 'layered-tense', target: 'palimpsest', type: 'member' },
+  { source: 'remembered-tense', target: 'brine', type: 'member' },
+  { source: 'brine-pronouns', target: 'brine', type: 'member' },
+  { source: 'fire-grammar', target: 'thermo', type: 'member' },
+  { source: 'count-verbs', target: 'thermo', type: 'member' },
+  { source: 'received-singular', target: 'choir', type: 'member' },
+  { source: 'stacked-plural', target: 'choir', type: 'member' },
+
+  // ─── ARTIFACT MEMBERSHIPS ─────────────────────────────────
+  { source: 'first-card', target: 'curation', type: 'member' },
+  { source: 'doll', target: 'curation', type: 'member' },
+  { source: 'r-7', target: 'curation', type: 'member' },
+  { source: 'r-11', target: 'curation', type: 'member' },
+  { source: 'b-114', target: 'curation', type: 'member' },
+  { source: 'b-201', target: 'curation', type: 'member' },
+  { source: 'forged-tag', target: 'curation', type: 'member' },
+  { source: 'q3-memo', target: 'curation', type: 'member' },
+  { source: 'first-shapes', target: 'curation', type: 'member' },
+  { source: 'witness-card', target: 'curation', type: 'member' },
+  { source: 'letter-to-halen', target: 'curation', type: 'member' },
+  { source: 'halen-card-unwritten', target: 'curation', type: 'member' },
+  { source: 'cookbook', target: 'palimpsest', type: 'member' },
+  { source: 'founders-own', target: 'concord', type: 'member' },
+  { source: 'tossans-slip', target: 'concord', type: 'member' },
+  { source: 'mer-hin-coin', target: 'concord', type: 'member' },
+  { source: 'priorless-cabinet', target: 'concord', type: 'member' },
+  { source: 'salt-hinge-ledger', target: 'concord', type: 'member' },
+  { source: 'charter-receipt', target: 'concord', type: 'member' },
+  { source: 'kestis-ledger', target: 'concord', type: 'member' },
+  { source: 'concord-catechism', target: 'concord', type: 'member' },
+  { source: 'six-almost', target: 'glass', type: 'member' },
+  { source: 'unfired-letter', target: 'glass', type: 'member' },
+  { source: 'grief-marker', target: 'glass', type: 'member' },
+  { source: 'deep-letters', target: 'brine', type: 'member' },
+  { source: 'salt-warped-book', target: 'brine', type: 'member' },
+  { source: 'fire-tally', target: 'thermo', type: 'member' },
+  { source: 'carry-slate', target: 'thermo', type: 'member' },
+  { source: 'apprentice-catechism', target: 'thermo', type: 'member' },
+
+  // ─── PLACE MEMBERSHIPS ────────────────────────────────────
+  { source: 'first-root', target: 'choir', type: 'member' },
+  { source: 'old-hyphae', target: 'choir', type: 'member' },
+  { source: 'east-lichen', target: 'choir', type: 'member' },
+  { source: 'cool-kiln', target: 'glass', type: 'member' },
+  { source: 'high-pass', target: 'thermo', type: 'member' },
+  { source: 'coastal-embayment', target: 'brine', type: 'member' },
+  // ─── APOTHEOSIS → FACTION ─────────────────────────────────
+  { source: 'communion', target: 'choir', type: 'apotheosis-of' },
+  { source: 'long-throat', target: 'choir', type: 'apotheosis-of' },
+  { source: 'transcription', target: 'palimpsest', type: 'apotheosis-of' },
+  { source: 're-pressed', target: 'palimpsest', type: 'apotheosis-of' },
+  { source: 'closure', target: 'concord', type: 'apotheosis-of' },
+  { source: 'balanced-account', target: 'concord', type: 'apotheosis-of' },
+  { source: 'going-deep', target: 'brine', type: 'apotheosis-of' },
+  { source: 'long-quench', target: 'thermo', type: 'apotheosis-of' },
+  { source: 'long-warming', target: 'thermo', type: 'apotheosis-of' },
+  { source: 'unfiring', target: 'glass', type: 'apotheosis-of' },
+  // Cross-axis apotheoses link to BOTH cosmic entities
+  { source: 'doubled-mouth', target: 'choir', type: 'apotheosis-of' },
+  { source: 'doubled-mouth', target: 'palimpsest', type: 'apotheosis-of' },
+  // Annihilist refusals strike at both
+  { source: 'salting', target: 'choir', type: 'apotheosis-of' },
+  { source: 'closing-annihilist', target: 'palimpsest', type: 'apotheosis-of' },
+
+  // ─── STRATUM → FACTION ────────────────────────────────────
+  { source: 'material', target: 'choir', type: 'stratum-of' },
+  { source: 'temporal', target: 'palimpsest', type: 'stratum-of' },
+  { source: 'consensual', target: 'concord', type: 'stratum-of' },
+  { source: 'standing-line', target: 'concord', type: 'stratum-of' },
+  { source: 'held-depth', target: 'brine', type: 'stratum-of' },
+  { source: 'ember-floor', target: 'thermo', type: 'stratum-of' },
+  { source: 'unfired-state', target: 'glass', type: 'stratum-of' },
+
+  // ─── BRIDGE-CLAUSE TIES TO MULTIPLE GRAMMARS ──────────────
+  { source: 'bridge-clause', target: 'concord', type: 'member' },
+  { source: 'bridge-clause', target: 'thermo', type: 'member' },
+  { source: 'bridge-clause', target: 'brine', type: 'member' },
+  { source: 'bridge-clause', target: 'palimpsest', type: 'member' },
+  // ─── THE VESHEN ↔ SUUL ↔ NESH TRIANGLE ────────────────────
+  { source: 'veshen', target: 'suul', type: 'correspondence' },
+  { source: 'suul', target: 'nesh', type: 'correspondence' },
+  { source: 'nesh', target: 'veshen', type: 'correspondence' },
+
+  // Other senior correspondences
+  { source: 'vell', target: 'nesh', type: 'correspondence' },
+  { source: 'tossin', target: 'nesh', type: 'correspondence' },
+  { source: 'halen', target: 'veshen', type: 'correspondence' },
+  { source: 'halen', target: 'halen-iss', type: 'correspondence' },
+
+  // ─── FAMILY TIES (the Halen / Mira lineage) ───────────────
+  { source: 'halen', target: 'halen-iss', type: 'family' },
+  { source: 'halen', target: 'mira', type: 'family' },
+  { source: 'halen-iss', target: 'mira', type: 'family' },
+
+  // ─── THERMOCLAVE LINEAGE ──────────────────────────────────
+  { source: 'erro', target: 'suul', type: 'lineage' },
+
+  // ─── GRIB AND HIS SISTER (CHOIR INTERNAL) ─────────────────
+  { source: 'grib', target: 'east-lichen', type: 'kept-by' },
+  { source: 'mer-hin', target: 'east-lichen', type: 'correspondence' },
+
+  // ─── ARTIFACT CUSTODY ─────────────────────────────────────
+  // Pale Curation custody
+  { source: 'doll', target: 'halen', type: 'kept-by' },
+  { source: 'r-7', target: 'ven', type: 'kept-by' },
+  { source: 'r-7', target: 'r7', type: 'kept-by' },
+  { source: 'r-11', target: 'halen', type: 'kept-by' },
+  { source: 'r-11', target: 'halen-iss', type: 'kept-by' },
+  { source: 'b-114', target: 'r7', type: 'kept-by' },
+  { source: 'b-114', target: 'erro', type: 'kept-by' },
+  { source: 'b-201', target: 'r7', type: 'kept-by' },
+  { source: 'b-201', target: 'a-junior', type: 'kept-by' },
+  { source: 'b-201', target: 'bole', type: 'kept-by' },
+  { source: 'forged-tag', target: 'ven', type: 'kept-by' },
+  { source: 'forged-tag', target: 'halen', type: 'kept-by' },
+  { source: 'q3-memo', target: 'ven', type: 'kept-by' },
+  { source: 'first-shapes', target: 'halen', type: 'kept-by' },
+  { source: 'witness-card', target: 'marn-dis', type: 'kept-by' },
+  { source: 'witness-card', target: 'tulen', type: 'kept-by' },
+  { source: 'letter-to-halen', target: 'a-junior', type: 'kept-by' },
+  { source: 'letter-to-halen', target: 'halen', type: 'kept-by' },
+  { source: 'halen-card-unwritten', target: 'halen', type: 'kept-by' },
+  { source: 'halen-card-unwritten', target: 'tulen', type: 'kept-by' },
+
+  // Pocket-class
+  { source: 'first-card', target: 'curation', type: 'houses' },
+  { source: 'tossans-slip', target: 'tossan', type: 'kept-by' },
+
+  // Concord custody
+  { source: 'mer-hin-coin', target: 'mer-hin', type: 'kept-by' },
+  { source: 'mer-hin-coin', target: 'veshen', type: 'kept-by' },
+  { source: 'priorless-cabinet', target: 'veshen', type: 'kept-by' },
+  { source: 'priorless-cabinet', target: 'r7', type: 'kept-by' },
+  { source: 'salt-hinge-ledger', target: 'tossan', type: 'kept-by' },
+  { source: 'kestis-ledger', target: 'kesti', type: 'kept-by' },
+  { source: 'founders-own', target: 'concord', type: 'houses' },
+  { source: 'charter-receipt', target: 'concord', type: 'houses' },
+  { source: 'concord-catechism', target: 'concord', type: 'houses' },
+
+  // Glassblown custody
+  { source: 'six-almost', target: 'tulen', type: 'kept-by' },
+  { source: 'unfired-letter', target: 'glass', type: 'houses' },
+  { source: 'grief-marker', target: 'glass', type: 'houses' },
+
+  // Brine custody
+  { source: 'deep-letters', target: 'nesh', type: 'kept-by' },
+  { source: 'salt-warped-book', target: 'brine', type: 'houses' },
+
+  // Thermoclave custody
+  { source: 'fire-tally', target: 'thermo', type: 'houses' },
+  { source: 'carry-slate', target: 'vell', type: 'kept-by' },
+  { source: 'carry-slate', target: 'r7', type: 'kept-by' },
+  { source: 'apprentice-catechism', target: 'thermo', type: 'houses' },
+
+  // Cross-faction artifacts
+  { source: 'multi-grammar-pocketbook', target: 'concord', type: 'member' },
+  { source: 'multi-grammar-pocketbook', target: 'thermo', type: 'member' },
+  { source: 'multi-grammar-pocketbook', target: 'choir', type: 'member' },
+  { source: 'multi-grammar-pocketbook', target: 'suul', type: 'kept-by' },
+  { source: 'standing-floor-doc', target: 'concord', type: 'member' },
+  { source: 'standing-floor-doc', target: 'thermo', type: 'member' },
+  { source: 'standing-floor-doc', target: 'brine', type: 'member' },
+  { source: 'standing-floor-doc', target: 'veshen', type: 'kept-by' },
+  { source: 'standing-floor-doc', target: 'suul', type: 'kept-by' },
+  { source: 'standing-floor-doc', target: 'nesh', type: 'kept-by' },
+
+  // ─── PLACES — APOTHEOSIS ASSOCIATIONS ─────────────────────
+  { source: 'communion', target: 'first-root', type: 'houses' },
+  { source: 'unfiring', target: 'cool-kiln', type: 'houses' },
+  { source: 'going-deep', target: 'coastal-embayment', type: 'houses' },
+
+  // ─── PLACES — ARTIFACT ASSOCIATIONS ───────────────────────
+  { source: 'doll', target: 'old-hyphae', type: 'houses' },
+  { source: 'kestis-ledger', target: 'old-hyphae', type: 'houses' },
+  { source: 'witness-card', target: 'cool-kiln', type: 'houses' },
+  { source: 'six-almost', target: 'cool-kiln', type: 'houses' },
+  { source: 'standing-floor-doc', target: 'high-pass', type: 'houses' },
+  { source: 'tossans-slip', target: 'salt-hinge', type: 'houses' },
+  { source: 'salt-hinge-ledger', target: 'salt-hinge', type: 'houses' },
+  { source: 'deep-letters', target: 'coastal-embayment', type: 'houses' },
+
+  // Choir interlocutor lives in First Root region but elected by all factions
+  { source: 'bole', target: 'curation', type: 'correspondence' },
+  { source: 'bole', target: 'concord', type: 'correspondence' },
+  { source: 'bole', target: 'brine', type: 'correspondence' },
+  { source: 'bole', target: 'thermo', type: 'correspondence' },
+  { source: 'bole', target: 'palimpsest', type: 'correspondence' },
+  { source: 'bole', target: 'suul', type: 'correspondence' },
+  // INSERT_LINKS_HERE
+];
+// </script>
+<script>
+// ============================================================
+// RENDERING — D3 force-directed layout
+// ============================================================
+(function () {
+  if (NODES.length === 0) {
+    // Data not yet loaded — page will be re-initialised after data injection.
+    console.log('Lore graph: waiting for data injection.');
+    return;
+  }
+
+  const FACTION_COLORS = {
+    choir: 'var(--c-choir)',
+    palimpsest: 'var(--c-palimpsest)',
+    curation: 'var(--c-curation)',
+    concord: 'var(--c-concord)',
+    brine: 'var(--c-brine)',
+    thermo: 'var(--c-thermo)',
+    glass: 'var(--c-glass)',
+    cross: 'var(--c-cross)',
+    cataclysm: 'var(--c-cataclysm)'
+  };
+  function color(group) { return FACTION_COLORS[group] || 'var(--ink-dim)'; }
+
+  function radius(node) {
+    if (node.type === 'cosmic') return 22;
+    if (node.type === 'faction') return 18;
+    if (node.type === 'apotheosis') return 11;
+    if (node.type === 'event') return 16;
+    if (node.type === 'character') return 8.5;
+    if (node.type === 'place') return 9;
+    if (node.type === 'stratum') return 7;
+    if (node.type === 'concept') return 7;
+    if (node.type === 'artifact') return 6.5;
+    return 7;
+  }
+
+  // Build the SVG
+  const svg = d3.select('#graph');
+  const container = document.getElementById('graph-container');
+
+  let width = container.clientWidth;
+  let height = container.clientHeight;
+
+  svg.attr('viewBox', [-width / 2, -height / 2, width, height]);
+
+  const zoomGroup = svg.append('g').attr('class', 'zoom-group');
+
+  // Zoom behavior
+  const zoom = d3.zoom()
+    .scaleExtent([0.18, 5])
+    .on('zoom', (event) => {
+      zoomGroup.attr('transform', event.transform);
+    });
+  svg.call(zoom);
+
+  // Build node id -> node lookup
+  const nodeById = new Map(NODES.map(n => [n.id, n]));
+
+  // Resolve link source/target into actual node refs (D3 will accept ids,
+  // but we want stable refs for hover-highlight neighbor logic).
+  const links = LINKS.map(l => Object.assign({}, l));
+
+  // Force simulation
+  const simulation = d3.forceSimulation(NODES)
+    .force('link', d3.forceLink(links)
+      .id(d => d.id)
+      .distance(d => {
+        if (d.type === 'opposition') return 220;
+        if (d.type === 'member') {
+          const t = nodeById.get(typeof d.target === 'object' ? d.target.id : d.target);
+          if (t && (t.type === 'cosmic' || t.type === 'faction')) return 80;
+          return 90;
+        }
+        if (d.type === 'correspondence') return 160;
+        if (d.type === 'family') return 60;
+        if (d.type === 'lineage') return 70;
+        return 100;
+      })
+      .strength(d => {
+        if (d.type === 'opposition') return 0.05;
+        if (d.type === 'member') return 0.7;
+        if (d.type === 'correspondence') return 0.15;
+        return 0.3;
+      })
+    )
+    .force('charge', d3.forceManyBody()
+      .strength(d => {
+        if (d.type === 'cosmic') return -1100;
+        if (d.type === 'faction') return -800;
+        if (d.type === 'event') return -700;
+        return -240;
+      })
+    )
+    .force('center', d3.forceCenter(0, 0).strength(0.04))
+    .force('collide', d3.forceCollide().radius(d => radius(d) + 4).strength(0.7))
+    .force('x', d3.forceX(0).strength(0.02))
+    .force('y', d3.forceY(0).strength(0.02));
+
+  // Draw links
+  const linkSel = zoomGroup.append('g')
+    .attr('class', 'links')
+    .selectAll('line')
+    .data(links)
+    .enter()
+    .append('line')
+      .attr('class', d => `link ${d.type || ''}`);
+
+  // Draw nodes
+  const nodeSel = zoomGroup.append('g')
+    .attr('class', 'nodes')
+    .selectAll('path')
+    .data(NODES, d => d.id)
+    .enter()
+    .append('path')
+      .attr('class', d => `node node-${d.type}`)
+      .attr('d', d => shapeFor(d))
+      .attr('fill', d => color(d.group))
+      .call(drag(simulation))
+      .on('click', (event, d) => {
+        event.stopPropagation();
+        selectNode(d);
+      })
+      .on('mouseover', (event, d) => highlightNeighborhood(d))
+      .on('mouseout', () => clearHighlight());
+
+  nodeSel.append('title').text(d => d.label);
+
+  // Labels
+  const labelSel = zoomGroup.append('g')
+    .attr('class', 'labels')
+    .selectAll('text')
+    .data(NODES)
+    .enter()
+    .append('text')
+      .attr('class', d => `node-label ${d.type}`)
+      .attr('dy', d => radius(d) + 11)
+      .text(d => d.label);
+
+  // ----- Shape helpers (return SVG path strings centered at 0,0) -----
+  function shapeFor(d) {
+    const r = radius(d);
+    switch (d.type) {
+      case 'cosmic':
+      case 'faction':
+      case 'character':
+      case 'event':
+        // circle
+        return `M ${-r},0 a ${r},${r} 0 1,0 ${r * 2},0 a ${r},${r} 0 1,0 ${-r * 2},0 Z`;
+      case 'concept':
+        // square
+        return `M ${-r},${-r} L ${r},${-r} L ${r},${r} L ${-r},${r} Z`;
+      case 'apotheosis': {
+        // diamond
+        const r2 = r * 1.15;
+        return `M 0,${-r2} L ${r2},0 L 0,${r2} L ${-r2},0 Z`;
+      }
+      case 'stratum': {
+        // triangle (point up)
+        const r2 = r * 1.25;
+        const half = r2 * 0.866; // sqrt(3)/2
+        return `M 0,${-r2} L ${half},${r2 * 0.5} L ${-half},${r2 * 0.5} Z`;
+      }
+      case 'artifact': {
+        // 4-point star
+        const r1 = r;
+        const r2 = r * 0.45;
+        return [
+          `M 0,${-r1}`,
+          `L ${r2},${-r2}`,
+          `L ${r1},0`,
+          `L ${r2},${r2}`,
+          `L 0,${r1}`,
+          `L ${-r2},${r2}`,
+          `L ${-r1},0`,
+          `L ${-r2},${-r2}`,
+          'Z'
+        ].join(' ');
+      }
+      case 'place': {
+        // open ring (will be combined with stroke styling)
+        const r1 = r;
+        const r2 = r * 0.55;
+        return [
+          `M ${-r1},0`,
+          `a ${r1},${r1} 0 1,0 ${r1 * 2},0`,
+          `a ${r1},${r1} 0 1,0 ${-r1 * 2},0`,
+          `M ${-r2},0`,
+          `a ${r2},${r2} 0 1,1 ${r2 * 2},0`,
+          `a ${r2},${r2} 0 1,1 ${-r2 * 2},0`
+        ].join(' ');
+      }
+      default:
+        return `M ${-r},0 a ${r},${r} 0 1,0 ${r * 2},0 a ${r},${r} 0 1,0 ${-r * 2},0 Z`;
+    }
+  }
+
+  function drag(sim) {
+    function start(event, d) {
+      if (!event.active) sim.alphaTarget(0.3).restart();
+      d.fx = d.x; d.fy = d.y;
+    }
+    function dragged(event, d) {
+      d.fx = event.x; d.fy = event.y;
+    }
+    function end(event, d) {
+      if (!event.active) sim.alphaTarget(0);
+      d.fx = null; d.fy = null;
+    }
+    return d3.drag().on('start', start).on('drag', dragged).on('end', end);
+  }
+
+  // Tick handler
+  simulation.on('tick', () => {
+    linkSel
+      .attr('x1', d => d.source.x)
+      .attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x)
+      .attr('y2', d => d.target.y);
+
+    nodeSel.attr('transform', d => `translate(${d.x},${d.y})`);
+    labelSel.attr('transform', d => `translate(${d.x},${d.y})`);
+  });
+
+  // Build neighbor lookup
+  const neighbors = new Map();
+  NODES.forEach(n => neighbors.set(n.id, new Set([n.id])));
+  links.forEach(l => {
+    const s = typeof l.source === 'object' ? l.source.id : l.source;
+    const t = typeof l.target === 'object' ? l.target.id : l.target;
+    if (neighbors.has(s)) neighbors.get(s).add(t);
+    if (neighbors.has(t)) neighbors.get(t).add(s);
+  });
+
+  function highlightNeighborhood(d) {
+    const nbrs = neighbors.get(d.id) || new Set([d.id]);
+    nodeSel.classed('dimmed', n => !nbrs.has(n.id));
+    labelSel.classed('dimmed', n => !nbrs.has(n.id))
+            .classed('highlighted', n => nbrs.has(n.id));
+    linkSel
+      .classed('dimmed', l => {
+        const s = typeof l.source === 'object' ? l.source.id : l.source;
+        const t = typeof l.target === 'object' ? l.target.id : l.target;
+        return !(s === d.id || t === d.id);
+      })
+      .classed('highlighted', l => {
+        const s = typeof l.source === 'object' ? l.source.id : l.source;
+        const t = typeof l.target === 'object' ? l.target.id : l.target;
+        return s === d.id || t === d.id;
+      });
+  }
+
+  function clearHighlight() {
+    nodeSel.classed('dimmed', false);
+    labelSel.classed('dimmed', false).classed('highlighted', false);
+    linkSel.classed('dimmed', false).classed('highlighted', false);
+  }
+
+  // ----- Detail pane -----
+  const detailsEl = document.getElementById('details');
+  const detailsContent = document.getElementById('details-content');
+  let selectedId = null;
+
+  function selectNode(d) {
+    selectedId = d.id;
+    nodeSel.classed('selected', n => n.id === d.id);
+    if (window.innerWidth < 800) detailsEl.classList.add('visible');
+
+    const groupColor = `style="color: var(--c-${d.group || 'cross'});"`;
+    const typeLabel = ({
+      cosmic: 'Cosmic entity',
+      faction: 'Faction',
+      character: 'Character',
+      concept: 'Concept / grammar',
+      apotheosis: 'Apotheosis',
+      stratum: 'Stratum',
+      artifact: 'Artifact',
+      place: 'Place',
+      event: 'Event'
+    })[d.type] || d.type;
+
+    let html = `<h2 ${groupColor}>${escapeHtml(d.label)}</h2>`;
+    html += `<div class="meta">${typeLabel}${d.factionLabel ? ' · ' + escapeHtml(d.factionLabel) : ''}</div>`;
+    if (d.desc) {
+      html += d.desc;
+    }
+    // Related nodes
+    const related = Array.from(neighbors.get(d.id) || []).filter(id => id !== d.id);
+    if (related.length) {
+      html += `<h3>Connected (${related.length})</h3>`;
+      const sorted = related
+        .map(id => nodeById.get(id))
+        .filter(Boolean)
+        .sort((a, b) => {
+          const order = { cosmic: 0, faction: 1, event: 2, character: 3, place: 4, apotheosis: 5, stratum: 6, concept: 7, artifact: 8 };
+          return (order[a.type] || 9) - (order[b.type] || 9) || a.label.localeCompare(b.label);
+        });
+      sorted.forEach(n => {
+        html += `<a class="related" data-jump="${n.id}" style="border-left: 3px solid var(--c-${n.group || 'cross'});">${escapeHtml(n.label)}</a>`;
+      });
+    }
+    detailsContent.innerHTML = html;
+
+    detailsContent.querySelectorAll('a.related').forEach(a => {
+      a.addEventListener('click', () => {
+        const target = nodeById.get(a.dataset.jump);
+        if (target) {
+          selectNode(target);
+          centerOn(target);
+        }
+      });
+    });
+  }
+
+  function centerOn(d) {
+    if (d.x == null) return;
+    const t = d3.zoomIdentity.translate(-d.x * 1.2, -d.y * 1.2).scale(1.2);
+    svg.transition().duration(600).call(zoom.transform, t);
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+  }
+
+  // Background click clears selection
+  svg.on('click', () => {
+    selectedId = null;
+    nodeSel.classed('selected', false);
+  });
+
+  // ----- Filters -----
+  const activeTypes = new Set([
+    'cosmic', 'faction', 'character', 'concept',
+    'apotheosis', 'stratum', 'artifact', 'place', 'event'
+  ]);
+
+  document.getElementById('filters').addEventListener('change', (event) => {
+    const t = event.target.dataset.type;
+    if (event.target.checked) activeTypes.add(t); else activeTypes.delete(t);
+    applyFilters();
+  });
+
+  function applyFilters() {
+    const q = document.getElementById('search').value.trim().toLowerCase();
+    const visibleIds = new Set();
+
+    nodeSel.style('display', d => {
+      const typeOk = activeTypes.has(d.type);
+      const searchOk = !q || d.label.toLowerCase().includes(q) || (d.desc || '').toLowerCase().includes(q);
+      const ok = typeOk && searchOk;
+      if (ok) visibleIds.add(d.id);
+      return ok ? null : 'none';
+    });
+
+    labelSel.style('display', d => visibleIds.has(d.id) ? null : 'none');
+
+    linkSel.style('display', l => {
+      const s = typeof l.source === 'object' ? l.source.id : l.source;
+      const t = typeof l.target === 'object' ? l.target.id : l.target;
+      return (visibleIds.has(s) && visibleIds.has(t)) ? null : 'none';
+    });
+  }
+
+  document.getElementById('search').addEventListener('input', applyFilters);
+
+  // Zoom buttons
+  document.getElementById('zoom-in').addEventListener('click', () =>
+    svg.transition().duration(250).call(zoom.scaleBy, 1.3)
+  );
+  document.getElementById('zoom-out').addEventListener('click', () =>
+    svg.transition().duration(250).call(zoom.scaleBy, 1 / 1.3)
+  );
+  document.getElementById('zoom-reset').addEventListener('click', () =>
+    svg.transition().duration(400).call(zoom.transform, d3.zoomIdentity)
+  );
+
+  // Resize
+  window.addEventListener('resize', () => {
+    width = container.clientWidth;
+    height = container.clientHeight;
+    svg.attr('viewBox', [-width / 2, -height / 2, width, height]);
+  });
+
+  // Stats
+  const stats = document.getElementById('stats');
+  if (stats) {
+    const counts = {};
+    NODES.forEach(n => { counts[n.type] = (counts[n.type] || 0) + 1; });
+    stats.innerHTML =
+      `${NODES.length} nodes · ${links.length} links<br>` +
+      Object.entries(counts).map(([k,v]) => `${v} ${k}`).join(' · ');
+  }
+})();
+</script>
+
+</body>
+</html>
