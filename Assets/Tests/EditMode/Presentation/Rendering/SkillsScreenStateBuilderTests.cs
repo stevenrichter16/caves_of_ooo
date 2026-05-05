@@ -41,7 +41,13 @@ namespace CavesOfOoo.Tests
         public void Build_EmptyRegistry_ReturnsEmptySnapshot()
         {
             var actor = MakeActor(sp: 50);
-            // No SkillRegistry init — registry is empty.
+            // Mark registry as initialized-but-empty. Without this,
+            // SkillRegistry.GetAllSkills() triggers EnsureInitialized which
+            // lazy-loads Acrobatics.json from Resources (production content),
+            // so the test would see 2 rows instead of 0. Calling
+            // InitializeFromJson("") clears state + sets _initialized=true,
+            // and LoadFromJson short-circuits on empty input.
+            SkillRegistry.InitializeFromJson("");
 
             var snapshot = SkillsScreenStateBuilder.Build(actor);
 
