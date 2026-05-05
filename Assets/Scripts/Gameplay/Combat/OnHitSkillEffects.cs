@@ -40,7 +40,14 @@ namespace CavesOfOoo.Core
         // Per-skill tunables. WS.2-5 fill in. WS.1 ships the empty Apply.
         // ─────────────────────────────────────────────────────────────────
 
-        // (filled in WS.2-5)
+        // Cudgel_Bludgeon (WS.2): Cudgel-class hit → chance to Stun.
+        // Higher than the universal Bludgeoning→Stun (15%) since this
+        // requires a deliberate skill purchase + a Cudgel-attribute
+        // weapon (Mace / Warhammer / Cudgel / OldWorldPipe). Stacks
+        // with the class hook on the same hit; StunnedEffect.OnStack
+        // extends duration so the second roll isn't wasted.
+        public const int CUDGEL_BLUDGEON_CHANCE_PERCENT = 35;
+        public const int CUDGEL_BLUDGEON_DURATION = 3;
 
         /// <summary>
         /// Apply skill-driven on-hit effects. Same contract as
@@ -74,7 +81,34 @@ namespace CavesOfOoo.Core
             var skills = attacker.GetPart<SkillsPart>();
             if (skills == null) return;
 
-            // (per-skill branches added in WS.2-5)
+            // Cudgel_Bludgeon (WS.2): Cudgel-attribute hit → chance to
+            // Stun for 3T. Distinct from the OnHitClassEffects 15%
+            // Bludgeoning→Stun roll: this fires on the Cudgel sub-class
+            // attribute specifically (so a wholly-Bludgeoning weapon
+            // like the basic Cudgel — yes the weapon is also named that
+            // — won't trigger this branch). Mace / Warhammer / OldWorldPipe
+            // carry both attributes and roll BOTH chances.
+            if (skills.HasSkill(nameof(Cudgel_Bludgeon))
+                && damage.HasAttribute("Cudgel"))
+            {
+                TryCudgelBludgeon(defender, attacker, zone, rng);
+            }
+
+            // (additional skill branches added in WS.3-5)
+        }
+
+        // ─────────────────────────────────────────────────────────────────
+        // Per-skill apply helpers
+        // ─────────────────────────────────────────────────────────────────
+
+        private static void TryCudgelBludgeon(Entity defender, Entity attacker,
+            Zone zone, Random rng)
+        {
+            int roll = rng.Next(100);
+            if (roll >= CUDGEL_BLUDGEON_CHANCE_PERCENT) return;
+
+            var stun = new StunnedEffect(CUDGEL_BLUDGEON_DURATION);
+            defender.ApplyEffect(stun, attacker, zone);
         }
     }
 }

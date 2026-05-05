@@ -111,7 +111,107 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
-        // Per-skill behavior tests fill in here as WS.2-5 land.
+        // WS.2 — Cudgel_Bludgeon: Cudgel-class hit + skill owned →
+        // CUDGEL_BLUDGEON_CHANCE_PERCENT (35%) chance to apply Stunned
+        // for CUDGEL_BLUDGEON_DURATION (3) turns.
+        // ====================================================================
+
+        [Test]
+        public void CudgelHit_WithBludgeonOwned_HasChance_ToApplyStunned()
+        {
+            // Positive: across many seeds, the 35% roll lands at least once.
+            // Loop tightly bounded — at 35% chance, P(no observation in 100
+            // tries) ≈ 4.4e-18. Test should always observe quickly.
+            bool observed = false;
+            for (int seed = 0; seed < 100 && !observed; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(Cudgel_Bludgeon));
+                var damage = new Damage(10);
+                damage.AddAttribute("Cudgel");
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                if (defender.GetPart<StatusEffectsPart>().HasEffect<StunnedEffect>())
+                    observed = true;
+            }
+            Assert.IsTrue(observed,
+                $"Across 100 seeds, at least one Cudgel-attribute hit by an actor with " +
+                $"Cudgel_Bludgeon owned should produce Stunned (chance " +
+                $"{OnHitSkillEffects.CUDGEL_BLUDGEON_CHANCE_PERCENT}%). " +
+                $"None observed — chance gate is broken or always rolls high.");
+        }
+
+        [Test]
+        public void CudgelHit_WithoutBludgeonOwned_NeverAppliesStunned()
+        {
+            // Counter-check: same setup as positive, but attacker DOESN'T
+            // own Cudgel_Bludgeon. The skill branch must be gated on
+            // ownership; otherwise the universal Bludgeoning class hook
+            // (which fires on the same swing in CombatSystem) would mask
+            // this gate breaking. We isolate by calling OnHitSkillEffects
+            // directly — class hook isn't fired here.
+            for (int seed = 0; seed < 100; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttacker();  // no skill added
+                var damage = new Damage(10);
+                damage.AddAttribute("Cudgel");
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<StunnedEffect>(),
+                    $"Seed {seed}: actor without Cudgel_Bludgeon must never apply " +
+                    $"Stunned via this hook — gating on SkillsPart.HasSkill is broken.");
+            }
+        }
+
+        [Test]
+        public void NonCudgelHit_WithBludgeonOwned_NeverAppliesStunned()
+        {
+            // Counter-check on the attribute side: skill IS owned, but
+            // the damage doesn't carry the "Cudgel" sub-class attribute
+            // (e.g. plain Bludgeoning, or Cutting). The skill branch must
+            // gate on damage.HasAttribute("Cudgel") so a LongSword swing
+            // by a Cudgel-trained character doesn't accidentally fire.
+            for (int seed = 0; seed < 100; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(Cudgel_Bludgeon));
+                var damage = new Damage(10);
+                damage.AddAttribute("Bludgeoning");  // class only, no sub-class
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<StunnedEffect>(),
+                    $"Seed {seed}: Bludgeoning-only damage (no Cudgel sub-class) " +
+                    $"must not trigger Cudgel_Bludgeon — attribute gate is broken.");
+            }
+
+            // Counter-check on a different sub-class: Cutting damage with
+            // the Cudgel skill owned must also never fire Cudgel_Bludgeon.
+            for (int seed = 0; seed < 100; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(Cudgel_Bludgeon));
+                var damage = new Damage(10);
+                damage.AddAttribute("Cutting");
+                damage.AddAttribute("LongBlades");
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<StunnedEffect>(),
+                    $"Seed {seed}: Cutting/LongBlades damage with Cudgel_Bludgeon owned " +
+                    $"must not fire Stunned — skill branches must be attribute-scoped.");
+            }
+        }
+
+        // ====================================================================
+        // WS.3-5 — additional skills' tests fill in here.
         // ====================================================================
 
         // ─────────────────────────────────────────────────────────────────
