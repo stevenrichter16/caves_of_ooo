@@ -119,6 +119,38 @@ namespace CavesOfOoo.Skills
             _entriesByClass.Clear();
         }
 
+        /// <summary>
+        /// Runs on every Play-mode entry (and on player start in a build).
+        /// Resets the static registry state so the next query lazy-reloads
+        /// from <c>Resources/Content/Data/Skills/</c>.
+        ///
+        /// <para><b>Why this is needed:</b> the registry's <c>_initialized</c>
+        /// flag and the four backing dictionaries are static, and Unity in
+        /// the editor doesn't reload the C# domain between EditMode test
+        /// runs and entering Play mode. Tests use
+        /// <see cref="InitializeFromJson"/> with synthetic JSON to seed
+        /// specific fixtures; that state can leak into Play mode and the
+        /// player sees only whatever the last EditMode test left behind
+        /// (the bug that surfaced as "I see only Dodge in the popup").
+        /// New JSON content added between Play sessions is also picked up
+        /// here — the registry can't have stale "1 tree" content when 5
+        /// JSON files are on disk.</para>
+        ///
+        /// <para><c>SubsystemRegistration</c> stage runs early in the Play
+        /// sequence, before any MonoBehaviour <c>Awake</c>, so the reset
+        /// lands before <c>GameBootstrap</c> or any popup-driver could
+        /// query a stale registry.</para>
+        /// </summary>
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetOnPlayStart()
+        {
+            _initialized = false;
+            _skillsByName.Clear();
+            _skillsByClass.Clear();
+            _powersByClass.Clear();
+            _entriesByClass.Clear();
+        }
+
         // ── Loading ──────────────────────────────────────────────────────
 
         /// <summary>
