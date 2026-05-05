@@ -65,6 +65,14 @@ namespace CavesOfOoo.Core
         public const int LONGBLADES_LACERATE_SAVE_TARGET = 15;
         public const string LONGBLADES_LACERATE_DAMAGE_DICE = "1d3";
 
+        // ShortBlades_Jab (WS.5): Piercing-class hit → chance to apply
+        // Confused for 3T. Stacks on top of the universal Piercing→Confused
+        // class hook (10%, 2T) — a dagger-trained character disorients
+        // harder. (Reframed from the genre-archetypal "extra off-hand
+        // attack" mechanic since CoO doesn't have dual-wielding in v1.)
+        public const int SHORTBLADES_JAB_CHANCE_PERCENT = 30;
+        public const int SHORTBLADES_JAB_DURATION = 3;
+
         /// <summary>
         /// Apply skill-driven on-hit effects. Same contract as
         /// <see cref="OnHitClassEffects.Apply"/>: short-circuits if any
@@ -128,7 +136,14 @@ namespace CavesOfOoo.Core
                 TryLongBladesLacerate(defender, attacker, zone, rng);
             }
 
-            // (additional skill branches added in WS.5)
+            // ShortBlades_Jab (WS.5): Piercing-attribute hit → chance
+            // to apply Confused. Stacks on top of OnHitClassEffects'
+            // 10% Piercing→Confused class hook.
+            if (skills.HasSkill(nameof(ShortBlades_Jab))
+                && damage.HasAttribute("Piercing"))
+            {
+                TryShortBladesJab(defender, attacker, zone, rng);
+            }
         }
 
         // ─────────────────────────────────────────────────────────────────
@@ -202,6 +217,18 @@ namespace CavesOfOoo.Core
                 damageDice: LONGBLADES_LACERATE_DAMAGE_DICE,
                 rng: rng);
             defender.ApplyEffect(bleed, attacker, zone);
+        }
+
+        // ShortBlades_Jab: same shape as Cudgel_Bludgeon but applies
+        // ConfusedEffect for SHORTBLADES_JAB_DURATION turns.
+        private static void TryShortBladesJab(Entity defender, Entity attacker,
+            Zone zone, Random rng)
+        {
+            int roll = rng.Next(100);
+            if (roll >= SHORTBLADES_JAB_CHANCE_PERCENT) return;
+
+            var confused = new ConfusedEffect(SHORTBLADES_JAB_DURATION);
+            defender.ApplyEffect(confused, attacker, zone);
         }
     }
 }

@@ -398,8 +398,75 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
-        // WS.5 — additional skills' tests fill in here.
+        // WS.5 — ShortBlades_Jab: Piercing-attribute hit + skill owned →
+        // SHORTBLADES_JAB_CHANCE_PERCENT (30%) chance to apply Confused
+        // for SHORTBLADES_JAB_DURATION (3) turns. Stacks with class hook.
         // ====================================================================
+
+        [Test]
+        public void PiercingHit_WithJabOwned_HasChance_ToApplyConfused()
+        {
+            bool observed = false;
+            for (int seed = 0; seed < 100 && !observed; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(ShortBlades_Jab));
+                var damage = new Damage(10);
+                damage.AddAttribute("Piercing");
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                if (defender.GetPart<StatusEffectsPart>().HasEffect<ConfusedEffect>())
+                    observed = true;
+            }
+            Assert.IsTrue(observed,
+                $"Across 100 seeds, a Piercing-attribute hit by a Jab-trained " +
+                $"actor should produce Confused (chance " +
+                $"{OnHitSkillEffects.SHORTBLADES_JAB_CHANCE_PERCENT}%).");
+        }
+
+        [Test]
+        public void PiercingHit_WithoutJabOwned_NeverAppliesConfused()
+        {
+            // Counter-check on ownership.
+            for (int seed = 0; seed < 100; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttacker();  // no skill
+                var damage = new Damage(10);
+                damage.AddAttribute("Piercing");
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<ConfusedEffect>(),
+                    $"Seed {seed}: actor without ShortBlades_Jab must never apply Confused.");
+            }
+        }
+
+        [Test]
+        public void NonPiercingHit_WithJabOwned_NeverAppliesConfused()
+        {
+            // Counter-check on attribute. A Bludgeoning + Cudgel hit
+            // (e.g. Mace) by a Jab-trained character must not fire Jab —
+            // the gate is the Piercing damage class.
+            for (int seed = 0; seed < 100; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(ShortBlades_Jab));
+                var damage = new Damage(10);
+                damage.AddAttribute("Bludgeoning");
+                damage.AddAttribute("Cudgel");  // not Piercing
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<ConfusedEffect>(),
+                    $"Seed {seed}: Bludgeoning/Cudgel damage must not fire Jab — " +
+                    $"skill must gate on Piercing class.");
+            }
+        }
 
         // Helper: build a 3-entity scene for cleave tests.
         // Layout (zone coords; player at center cleaves to NE adjacent):
