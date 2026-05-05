@@ -209,20 +209,21 @@ Five distinct layers:
   - `UI/GrimoirePickerUI.cs` — concrete shipped centered-popup UI for spell selection; mirrors closest to what we want
   - `Tests/.../Input/CenteredModalUIViewTests.cs` — test infrastructure for modal popups
 - New: `SkillsScreenStateBuilder` (snapshot of the skill tree with per-power purchase state — same state-builder convention as `QuestLogStateBuilder.cs`, which IS shipped).
-- New: `SkillsScreenUI` MonoBehaviour, modeled after `GrimoirePickerUI` (centered popup, hotkey toggle, list rendering).
-- Hotkey to open (`s` — needs to not collide with existing input map; verify before commit).
-- **Color codes per Qud's actual 2-axis convention** (not the 1-axis collapse from the draft):
-  - **Name color**: green if requirements met, gray if not.
-  - **Cost color**: cyan if affordable, red if not, omitted (— "[—sp]") if owned.
-  - White = owned (no cost/requirements badge needed).
-  - `FLAG_OBFUSCATED` items: render name as `???` if requirements not met.
+- New: `SkillsScreenUI` MonoBehaviour, modeled after `ContainerPickerUI` (centered FG/BG tilemap popup, scroll list, cursor + Enter to confirm). Originally drafted as `GrimoirePickerUI`-modeled; reading `GrimoirePickerUI` in the verification sweep showed it's state-only (rendering on `InventoryUI`), so the precedent shifted.
+- Hotkey to open: `KeyCode.X`. Originally drafted as `s`, but `s` collides with vi-style movement (alongside J/down). `X` is unbound throughout `InputHandler` (verified before commit). Inside the popup, `X` and `Esc` both close. Toggle precedent matches `ContainerPickerUI`'s G-toggle.
+- **Color codes per Qud's actual 2-axis convention** (verified against `PowerEntry.Render` + `IBaseSkillEntry`; shipped impl in `SkillsScreenUI.NameColor`/`CostColor`):
+  - **Owned**: name = white, cost-area shows literal `"owned"` (right-aligned). No Nsp.
+  - **Buyable**: name = `BrightGreen`; cost = `BrightCyan` (`Nsp`).
+  - **InsufficientSP**: name = `BrightGreen` (requirements ARE met, just unaffordable); cost = `BrightRed`.
+  - **RequirementsNotMet**: name = `Gray` if cursor on row else `DarkGray`; cost = `DarkGray`.
+  - `FLAG_OBFUSCATED` items: render name as `"???"` IFF state == RequirementsNotMet. Once requirements are met (or skill is acquired), real name is shown even with the flag set.
 - Tests: 5-6 in `SkillsScreenStateBuilderTests` — snapshot reflects current SP/owned/locked state; transitions when SP changes; transitions when prereqs become met; obfuscated-flag pre/post requirement met.
 - UI rendering itself is hard to unit-test — rely on state-builder snapshot pattern + the showcase scenario in ST.8 for visual verification.
 
 ### ST.8 — Showcase scenario + smoke test (1 commit)
 - New: `Scenarios/Custom/SkillTreeShowcase.cs`
-- Spawn player with HP 200, Strength 15, Agility 18, **6 SP** to start; print a guide
-- Player presses `s` → tree screen opens → buys Acrobatics → buys Dodge → exits → DV is +2
+- Spawn player with HP 200, Strength 18, Agility 14, **200 SP** to start; pre-buy Acrobatics so the popup surfaces both Owned and RequirementsNotMet states cleanly. Print walkthrough log.
+- Player presses `X` → tree screen opens → Acrobatics shows as Owned (white, "owned" tag) → Dodge shows as RequirementsNotMet (gray, gray cost; Agility 14 < 15) → Enter on Dodge logs "You don't have the Agility for Dodge."
 - Smoke test in `ScenarioCustomSmokeTests`
 - Manual playtest verifies the UI flow
 
@@ -307,9 +308,43 @@ Expected total: ~600 lines of new code + ~400 lines of tests + ~50 lines of JSON
 
 | Today | After ST v1 |
 |---|---|
-| Player levels up via XP, stats grow with `LevelingSystem`, no agency over advancement | + SP earned per level + skill-tree menu (`s`) + buy Acrobatics + Dodge for +2 DV |
+| Player levels up via XP, stats grow with `LevelingSystem`, no agency over advancement | + SP earned per level + skill-tree menu (`X`) + buy Acrobatics + Dodge for +2 DV |
 | Combat is determined by stats only (Strength/Agility/Toughness) | + skill-driven passive bonuses (DV from Dodge; future: damage from Axe_Cleave; future: utility from Tumble) |
 | Mutations are the only learnable abilities | + non-magical, non-mutation skill path. The Roguelike's "what kind of character do I want to make" question gets a real answer. |
 | Roadmap §"Skill trees" Tier 4 = 💡 | Tier 3 = ✅ (v1, narrow scope: 1 tree, 2 powers); Tier 4 reserved for v2 expansion |
 
 The architecture is **load-bearing for future content** — once the substrate is in, adding new skill trees is content work (JSON + a new C# class per power), not engine work. The Tier 3→Tier 4 progression mirrors how Qud organized its 173 skills incrementally.
+
+---
+
+## Implementation log (post-ship)
+
+| Sub-milestone | Commit | What shipped | Tests |
+|---|---|---|---|
+| ST.1 | (plan-only) | This doc + branch cut | n/a |
+| ST.2 | (data layer)  | `SkillData` + `PowerData` POCOs + `SkillRegistry` | + reg-load |
+| ST.3 | (SkillsPart) | `SkillsPart` manager + `BaseSkillPart` + diag `skill/Added`+`skill/Removed` | + part-tests |
+| ST.4 | (SP stat) | `SP` stat on Player + `LevelingSystem` +1-per-level | + level-up |
+| ST.5 | (Acrobatics) | `AcrobaticsSkill` + `AcrobaticsDodgePower` (passive +2 DV via `StatShifter`) | + DV-shift |
+| ST.6 | (BuySkillAction) | Gating + 9-value `FailureReason` enum + diag `skill/PurchaseAttempted` | + 14 tests |
+| ST.7a | `9143b30` | `SkillsScreenSnapshot` + `SkillsScreenStateBuilder` (pure data) | + 8 tests |
+| ST.7a-fix | `85a5fac` | Empty-registry test fix: explicit `InitializeFromJson("")` | (no new tests) |
+| ST.7b | `c811b79` | `SkillsScreenUI` MonoBehaviour + `KeyCode.X` hotkey + bootstrap wiring | (rendering, no EditMode tests) |
+| ST.8 | `e002529` | `SkillTreeShowcase` scenario + smoke test + UI-category menu entry | + 1 smoke |
+| ST.9 | (this commit) | Cold-eye fixes: Requires/Exclusion gating tests + IsObfuscated counter-checks + doc updates | + 2 tests + 2 assertions |
+
+**Cold-eye review outcome (ST.9):** delegated to fresh-eyes subagent
+per CLAUDE.md "Post-implementation cold-eye review". 7 findings
+returned: 0 🔴, 3 🟡, 2 🔵, 1 🧪, 1 ⚪. All addressed in ST.9 commit:
+
+- 🟡 #1 Requires/Exclusion gating uncovered by tests → +2 tests with counter-checks
+- 🟡 #2 Doc-vs-impl drift on hotkey (`s` → `X`) → plan doc patched
+- 🟡 #3 Doc-vs-impl drift on color rendering → plan doc patched
+- 🔵 #4 `Open()` docstring contradictory → reworded with deliberate-divergence note
+- 🔵 #5 "owned" tag not right-aligned with cost text → fixed via shared formula
+- 🧪 #6 IsObfuscated=false counter-checks missing on Owned + RequirementsNotMet → +2 assertions
+- ⚪ #7 Redundant `ResetForTests()` in test 7 → removed
+
+**Final test count for skill-tree feature:** 12 SkillsScreenStateBuilderTests + ~16 SkillsPartTests + ~14 BuySkillActionTests + 1 SkillTreeShowcase smoke = ~43 tests. All GREEN.
+
+**Roadmap update:** Tier 4 `Skill trees` entry → ✅ shipped (v1, narrow scope: 1 tree / 1 passive power). Tier 4 reserved for v2 content expansion (more trees, active abilities, water-ritual learning).

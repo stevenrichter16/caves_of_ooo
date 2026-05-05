@@ -243,7 +243,8 @@ correctly for every weapon in the game.
 
 ### Skill trees
 
-- 💡 **XP-gated skill unlocks.** LevelingSystem already grants XP. Need: skill graph, point allocation, stat/ability effects.
+- ✅ **v1 shipped (ST.1-9, 2026-05).** SP stat (+1 per level), `SkillRegistry` JSON-loaded skills, `SkillsPart` manager + `BaseSkillPart`, `BuySkillAction` (gating + diag), `SkillsScreenUI` (KeyCode.X popup with 4 row states), `SkillTreeShowcase` scenario. v1 content: 1 tree (Acrobatics) + 1 passive power (Dodge: +2 DV via StatShifter, Agility ≥ 15). See `Docs/SKILL-TREE-QUD-PARITY.md`.
+- 💡 **v2 expansion (Tier 4).** More trees (Axe, LongBlade, Tactics), active-ability powers (Berserk, Cleave), water-ritual learning, sub-class hooks (Cudgel, LongBlades). Each is content + per-power C# class — substrate is ready.
 
 ### Themed dungeon generator
 

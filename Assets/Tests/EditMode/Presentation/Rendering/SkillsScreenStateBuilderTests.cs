@@ -112,6 +112,11 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(1, snapshot.RowCount);
             Assert.AreEqual(SkillsScreenRowState.Owned, snapshot.Rows[0].State,
                 "Owned skill must report State=Owned regardless of cost / SP.");
+            Assert.IsFalse(snapshot.Rows[0].IsObfuscated,
+                "Owned skills must never render obfuscated — Obfuscated is " +
+                "the not-yet-met-requirements display, mutually exclusive " +
+                "with Owned. Counter-check guards against an EvaluateRowState " +
+                "bug that returned (Owned, true) for FLAG_OBFUSCATED skills.");
         }
 
         // ====================================================================
@@ -176,6 +181,11 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(SkillsScreenRowState.RequirementsNotMet, snapshot.Rows[1].State,
                 "Power's Agility >= 15 not met (actor has 14) → RequirementsNotMet, " +
                 "even though SP is plenty.");
+            Assert.IsFalse(snapshot.Rows[1].IsObfuscated,
+                "RequirementsNotMet WITHOUT FLAG_OBFUSCATED must keep " +
+                "IsObfuscated false. Counter-check guards against an " +
+                "EvaluateRowState bug where the obfuscatedFlag is " +
+                "miscomputed for non-flagged entries.");
         }
 
         // ====================================================================
@@ -207,8 +217,8 @@ namespace CavesOfOoo.Tests
                 "IsObfuscated flag must be true when name is hidden.");
 
             // Case 2: counter-check — requirements met (Agility 18 >= 18).
-            // Real name now visible.
-            SkillRegistry.ResetForTests();
+            // Real name now visible. (InitializeFromJson resets internally
+            // so an explicit ResetForTests() here would be redundant.)
             SkillRegistry.InitializeFromJson(json);
             var actorAtThreshold = MakeActor(sp: 100, agility: 18);
             var snapshotAt = SkillsScreenStateBuilder.Build(actorAtThreshold);
@@ -219,7 +229,93 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
-        // 8. Null actor → empty snapshot (defensive)
+        // 8. Power's Requires not owned → State == RequirementsNotMet
+        //    + counter-check: same setup with prereq added → State == Buyable
+        //
+        // Pins the Requires gating-helper behavior. Without these tests, a
+        // bug that hard-coded MeetsRequires => true would pass tests 1-7
+        // and silently desync the UI from BuySkillAction's purchase
+        // semantics (UI shows "Buyable", purchase fails with MissingPrereq).
+        // ====================================================================
+
+        [Test]
+        public void Build_PrereqMissing_RowStateRequirementsNotMet()
+        {
+            // Acrobatics (Cost=50) + a power that requires "AcrobaticsSkill".
+            string json = @"{""Skills"":[{
+                ""Name"":""Acrobatics"",""Class"":""AcrobaticsSkill"",""Cost"":50,
+                ""Powers"":[
+                    {""Name"":""GatedDodge"",""Class"":""AcrobaticsDodgePower"",
+                     ""Cost"":30,""Requires"":""AcrobaticsSkill""}
+                ]
+            }]}";
+            SkillRegistry.InitializeFromJson(json);
+
+            // Case 1: prereq NOT owned. SP plenty, no stat min, no exclusion —
+            // the only possible blocker is the Requires gate.
+            var actorMissing = MakeActor(sp: 100);
+            var snapshotMissing = SkillsScreenStateBuilder.Build(actorMissing);
+            Assert.AreEqual(SkillsScreenRowState.RequirementsNotMet,
+                snapshotMissing.Rows[1].State,
+                "Power requires AcrobaticsSkill, actor doesn't own it → RequirementsNotMet.");
+
+            // Case 2 (counter-check): prereq owned. Same actor + same registry,
+            // skill manually added → Requires gate now passes → Buyable.
+            var actorOwning = MakeActor(sp: 100);
+            actorOwning.GetPart<SkillsPart>().AddSkill(new AcrobaticsSkill());
+            var snapshotOwning = SkillsScreenStateBuilder.Build(actorOwning);
+            Assert.AreEqual(SkillsScreenRowState.Buyable,
+                snapshotOwning.Rows[1].State,
+                "Same setup with the required AcrobaticsSkill owned → Buyable. " +
+                "Counter-check pins that the gate is the Requires field, not " +
+                "an unrelated state.");
+        }
+
+        // ====================================================================
+        // 9. Power's Exclusion is owned → State == RequirementsNotMet
+        //    + counter-check: same setup without exclusion owned → State == Buyable
+        // ====================================================================
+
+        [Test]
+        public void Build_ExclusionOwned_RowStateRequirementsNotMet()
+        {
+            // Power has Exclusion="AcrobaticsSkill". Actor owning Acrobatics
+            // makes the exclusion fire. (Pretend "GatedDodge" is mutually
+            // exclusive with the Acrobatics tree — semantically odd but
+            // exercises the field correctly.)
+            string json = @"{""Skills"":[{
+                ""Name"":""Acrobatics"",""Class"":""AcrobaticsSkill"",""Cost"":50,
+                ""Powers"":[
+                    {""Name"":""GatedDodge"",""Class"":""AcrobaticsDodgePower"",
+                     ""Cost"":30,""Exclusion"":""AcrobaticsSkill""}
+                ]
+            }]}";
+
+            // Case 1: exclusion-skill IS owned → blocked.
+            SkillRegistry.InitializeFromJson(json);
+            var actorOwningBlocker = MakeActor(sp: 100);
+            actorOwningBlocker.GetPart<SkillsPart>().AddSkill(new AcrobaticsSkill());
+            var snapshotBlocked = SkillsScreenStateBuilder.Build(actorOwningBlocker);
+            Assert.AreEqual(SkillsScreenRowState.RequirementsNotMet,
+                snapshotBlocked.Rows[1].State,
+                "Power's Exclusion is owned → RequirementsNotMet. " +
+                "Even though SP is plenty and no other gate blocks, the " +
+                "presence of the exclusion-skill in the actor's inventory " +
+                "fires the !HasAnyExclusion check.");
+
+            // Case 2 (counter-check): exclusion-skill NOT owned → unblocked.
+            SkillRegistry.InitializeFromJson(json);
+            var actorClean = MakeActor(sp: 100);
+            var snapshotUnblocked = SkillsScreenStateBuilder.Build(actorClean);
+            Assert.AreEqual(SkillsScreenRowState.Buyable,
+                snapshotUnblocked.Rows[1].State,
+                "Same setup with the exclusion-skill NOT owned → Buyable. " +
+                "Counter-check pins that the gate is the Exclusion field; a " +
+                "bug that hard-coded HasAnyExclusion => true would fail this.");
+        }
+
+        // ====================================================================
+        // 10. Null actor → empty snapshot (defensive)
         // ====================================================================
 
         [Test]

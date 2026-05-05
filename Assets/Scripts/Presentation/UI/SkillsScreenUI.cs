@@ -80,9 +80,14 @@ namespace CavesOfOoo.Rendering
 
         /// <summary>
         /// Opens the skills screen for the given actor. Builds the snapshot
-        /// fresh from <see cref="SkillsScreenStateBuilder"/>, resets cursor +
-        /// scroll. Safe to call when already open (re-snapshots; cursor
-        /// preserved if still in range, else clamped to 0).
+        /// fresh from <see cref="SkillsScreenStateBuilder"/>, resets scroll
+        /// to top. <b>Cursor preserved</b> across re-opens if still in range,
+        /// else clamped to 0 — deliberate divergence from
+        /// <see cref="ContainerPickerUI.Open"/> which unconditionally resets
+        /// the cursor. Rationale: the buy-and-stay-open flow re-renders via
+        /// <see cref="RefreshSnapshot"/> after every purchase; if the user
+        /// closes and re-opens to the same row, preserving the cursor is
+        /// the lower-friction UX. Safe to call when already open.
         /// </summary>
         public void Open(Entity actor)
         {
@@ -295,8 +300,12 @@ namespace CavesOfOoo.Rendering
                     }
                     else if (row.State == SkillsScreenRowState.Owned)
                     {
-                        // Show "owned" tag (white) instead of cost
-                        DrawText(POPUP_W - 8, rowY, "owned", QudColorParser.White);
+                        // Show "owned" tag (white) instead of cost.
+                        // Right-align via the same formula used for cost text
+                        // above so the right margin reads cleanly when rows
+                        // mix Owned with Buyable / InsufficientSP states.
+                        const string ownedTag = "owned";
+                        DrawText(POPUP_W - 2 - ownedTag.Length, rowY, ownedTag, QudColorParser.White);
                     }
                 }
 
