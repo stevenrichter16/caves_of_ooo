@@ -398,6 +398,74 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
+        // WSP.3 — ShortBlades_Bloodletter: Piercing-attribute hit + skill
+        // owned → SHORTBLADES_BLOODLETTER_CHANCE_PERCENT (50%) chance to
+        // apply BleedingEffect with light dice ("1d2"). Stacks with
+        // ShortBlades_Jab + ShortBladesSkill crit-Bleed on the same hit.
+        // ====================================================================
+
+        [Test]
+        public void PiercingHit_WithBloodletterOwned_HasChance_ToApplyBleeding()
+        {
+            bool observed = false;
+            for (int seed = 0; seed < 50 && !observed; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(ShortBlades_Bloodletter));
+                var damage = new Damage(10);
+                damage.AddAttribute("Piercing");
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                if (defender.GetPart<StatusEffectsPart>().HasEffect<BleedingEffect>())
+                    observed = true;
+            }
+            Assert.IsTrue(observed,
+                $"Across 50 seeds, a Piercing hit by an actor with " +
+                $"ShortBlades_Bloodletter owned should produce Bleeding " +
+                $"(chance {OnHitSkillEffects.SHORTBLADES_BLOODLETTER_CHANCE_PERCENT}%).");
+        }
+
+        [Test]
+        public void PiercingHit_WithoutBloodletterOwned_NeverAppliesBleeding()
+        {
+            for (int seed = 0; seed < 100; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttacker();  // no skills
+                var damage = new Damage(10);
+                damage.AddAttribute("Piercing");
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<BleedingEffect>(),
+                    $"Seed {seed}: actor without ShortBlades_Bloodletter must not apply Bleeding.");
+            }
+        }
+
+        [Test]
+        public void NonPiercingHit_WithBloodletterOwned_NeverAppliesBleeding()
+        {
+            for (int seed = 0; seed < 100; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(ShortBlades_Bloodletter));
+                var damage = new Damage(10);
+                damage.AddAttribute("Cutting");
+                damage.AddAttribute("LongBlades");  // not Piercing
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<BleedingEffect>(),
+                    $"Seed {seed}: Cutting/LongBlades damage must not fire Bloodletter — " +
+                    $"skill must gate on the Piercing class.");
+            }
+        }
+
+        // ====================================================================
         // WSP.2 — Cudgel_Bludgeon re-tune to Qud-verbatim values
         // (50% / 1-4T random duration). Pin the new constants + range.
         // ====================================================================

@@ -76,6 +76,16 @@ namespace CavesOfOoo.Core
         public const int SHORTBLADES_JAB_CHANCE_PERCENT = 30;
         public const int SHORTBLADES_JAB_DURATION = 3;
 
+        // ShortBlades_Bloodletter (WSP.3): Piercing-class hit → 50%
+        // chance to apply Bleed with light dice. Mirrors Qud's
+        // ShortBlades_Bloodletter "1d2-1" behavior — CoO uses "1d2"
+        // (DiceRoller doesn't accept negative modifiers). Stacks
+        // freely with the WSP.1 ShortBladesSkill crit-Bleed and the
+        // ShortBlades_Jab Confused hook on the same hit.
+        public const int SHORTBLADES_BLOODLETTER_CHANCE_PERCENT = 50;
+        public const int SHORTBLADES_BLOODLETTER_SAVE_TARGET = 15;
+        public const string SHORTBLADES_BLOODLETTER_DAMAGE_DICE = "1d2";
+
         // ─────────────────────────────────────────────────────────────────
         // WSP.1 — Tree-root crit-only behaviors. Each tree-root grants
         // an observable bonus when a critical hit lands with a matching
@@ -177,6 +187,15 @@ namespace CavesOfOoo.Core
                 && damage.HasAttribute("Piercing"))
             {
                 TryShortBladesJab(defender, attacker, zone, rng);
+            }
+
+            // ShortBlades_Bloodletter (WSP.3): Piercing-attribute hit →
+            // chance to apply Bleed (light dice). Stacks with Jab + the
+            // WSP.1 crit-Bleed hook on the same swing.
+            if (skills.HasSkill(nameof(ShortBlades_Bloodletter))
+                && damage.HasAttribute("Piercing"))
+            {
+                TryShortBladesBloodletter(defender, attacker, zone, rng);
             }
 
             // ─────────────────────────────────────────────────────────────
@@ -313,6 +332,22 @@ namespace CavesOfOoo.Core
 
             var confused = new ConfusedEffect(SHORTBLADES_JAB_DURATION);
             defender.ApplyEffect(confused, attacker, zone);
+        }
+
+        // ShortBlades_Bloodletter: same shape as LongBlades_Lacerate but
+        // with light dice + a higher chance gate. The rng is forwarded
+        // into BleedingEffect so its tick rolls are deterministic.
+        private static void TryShortBladesBloodletter(Entity defender, Entity attacker,
+            Zone zone, Random rng)
+        {
+            int roll = rng.Next(100);
+            if (roll >= SHORTBLADES_BLOODLETTER_CHANCE_PERCENT) return;
+
+            var bleed = new BleedingEffect(
+                saveTarget: SHORTBLADES_BLOODLETTER_SAVE_TARGET,
+                damageDice: SHORTBLADES_BLOODLETTER_DAMAGE_DICE,
+                rng: rng);
+            defender.ApplyEffect(bleed, attacker, zone);
         }
 
         // ─────────────────────────────────────────────────────────────────
