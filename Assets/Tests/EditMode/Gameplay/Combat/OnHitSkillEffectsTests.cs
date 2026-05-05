@@ -324,7 +324,81 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
-        // WS.4-5 — additional skills' tests fill in here.
+        // WS.4 — LongBlades_Lacerate: LongBlades-attribute hit + skill
+        // owned → LONGBLADES_LACERATE_CHANCE_PERCENT (35%) chance to
+        // apply BleedingEffect with stronger dice (1d3 vs class hook's 1d2).
+        // ====================================================================
+
+        [Test]
+        public void LongBladesHit_WithLacerateOwned_HasChance_ToApplyBleeding()
+        {
+            bool observed = false;
+            for (int seed = 0; seed < 100 && !observed; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(LongBlades_Lacerate));
+                var damage = new Damage(10);
+                damage.AddAttribute("Cutting");
+                damage.AddAttribute("LongBlades");
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                if (defender.GetPart<StatusEffectsPart>().HasEffect<BleedingEffect>())
+                    observed = true;
+            }
+            Assert.IsTrue(observed,
+                $"Across 100 seeds, a LongBlades-attribute hit by an actor with " +
+                $"LongBlades_Lacerate owned should produce Bleeding (chance " +
+                $"{OnHitSkillEffects.LONGBLADES_LACERATE_CHANCE_PERCENT}%).");
+        }
+
+        [Test]
+        public void LongBladesHit_WithoutLacerateOwned_NeverAppliesBleeding()
+        {
+            // Counter-check on ownership.
+            for (int seed = 0; seed < 100; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttacker();  // no skill
+                var damage = new Damage(10);
+                damage.AddAttribute("Cutting");
+                damage.AddAttribute("LongBlades");
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<BleedingEffect>(),
+                    $"Seed {seed}: actor without LongBlades_Lacerate must not apply Bleeding.");
+            }
+        }
+
+        [Test]
+        public void NonLongBladesHit_WithLacerateOwned_NeverAppliesBleeding()
+        {
+            // Counter-check on attribute. A pure Cutting + Axe hit
+            // (e.g. Battleaxe) by a Lacerate-trained character must not
+            // fire LongBlades_Lacerate — the gate is the LongBlades
+            // sub-class, not the broader Cutting class.
+            for (int seed = 0; seed < 100; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(LongBlades_Lacerate));
+                var damage = new Damage(10);
+                damage.AddAttribute("Cutting");
+                damage.AddAttribute("Axe");  // not LongBlades
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng: new Random(seed));
+
+                Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<BleedingEffect>(),
+                    $"Seed {seed}: Cutting/Axe damage must not fire Lacerate — " +
+                    $"skill must gate on LongBlades sub-class attribute.");
+            }
+        }
+
+        // ====================================================================
+        // WS.5 — additional skills' tests fill in here.
         // ====================================================================
 
         // Helper: build a 3-entity scene for cleave tests.

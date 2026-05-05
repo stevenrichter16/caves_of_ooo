@@ -56,6 +56,15 @@ namespace CavesOfOoo.Core
         // seeded tests can pin the target.
         public const int AXE_CLEAVE_CHANCE_PERCENT = 30;
 
+        // LongBlades_Lacerate (WS.4): LongBlades-class hit → chance
+        // to apply Bleeding with stronger damage dice ("1d3" vs the
+        // class hook's "1d2"). Stacks on top of OnHitClassEffects'
+        // 25% Cutting→Bleed roll (BleedingEffect's OnStack semantics
+        // determine combination — duration extends, dice picks higher).
+        public const int LONGBLADES_LACERATE_CHANCE_PERCENT = 35;
+        public const int LONGBLADES_LACERATE_SAVE_TARGET = 15;
+        public const string LONGBLADES_LACERATE_DAMAGE_DICE = "1d3";
+
         /// <summary>
         /// Apply skill-driven on-hit effects. Same contract as
         /// <see cref="OnHitClassEffects.Apply"/>: short-circuits if any
@@ -111,7 +120,15 @@ namespace CavesOfOoo.Core
                 TryAxeCleave(actualDamage, defender, attacker, zone, rng);
             }
 
-            // (additional skill branches added in WS.4-5)
+            // LongBlades_Lacerate (WS.4): LongBlades-attribute hit →
+            // chance to apply Bleeding (stronger dice than class hook).
+            if (skills.HasSkill(nameof(LongBlades_Lacerate))
+                && damage.HasAttribute("LongBlades"))
+            {
+                TryLongBladesLacerate(defender, attacker, zone, rng);
+            }
+
+            // (additional skill branches added in WS.5)
         }
 
         // ─────────────────────────────────────────────────────────────────
@@ -167,6 +184,24 @@ namespace CavesOfOoo.Core
 
             int cleaveDamage = System.Math.Max(1, actualDamage / 2);
             CombatSystem.ApplyDamage(cleaveTarget, cleaveDamage, attacker, zone);
+        }
+
+        // LongBlades_Lacerate: same shape as Cudgel_Bludgeon but applies
+        // BleedingEffect with stronger dice. The rng is forwarded into
+        // the BleedingEffect ctor so its tick rolls also deterministic
+        // for tests (BleedingEffect's tick deals dice damage on
+        // start-of-turn).
+        private static void TryLongBladesLacerate(Entity defender, Entity attacker,
+            Zone zone, Random rng)
+        {
+            int roll = rng.Next(100);
+            if (roll >= LONGBLADES_LACERATE_CHANCE_PERCENT) return;
+
+            var bleed = new BleedingEffect(
+                saveTarget: LONGBLADES_LACERATE_SAVE_TARGET,
+                damageDice: LONGBLADES_LACERATE_DAMAGE_DICE,
+                rng: rng);
+            defender.ApplyEffect(bleed, attacker, zone);
         }
     }
 }
