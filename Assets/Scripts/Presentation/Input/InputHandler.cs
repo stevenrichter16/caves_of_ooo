@@ -117,7 +117,8 @@ namespace CavesOfOoo.Rendering
             AwaitingAttackConfirm,
             FactionOpen,
             AnnouncementOpen,
-            WorldActionMenuOpen  // Phase 4d — look-mode click/Enter on a cell opens this
+            WorldActionMenuOpen,  // Phase 4d — look-mode click/Enter on a cell opens this
+            SkillsScreenOpen      // ST.7b — KeyCode.X opens the skills/powers tree popup
         }
         private InputState _inputState = InputState.Normal;
 
@@ -243,6 +244,14 @@ namespace CavesOfOoo.Rendering
         private readonly PauseMenuController _pauseMenuController = new PauseMenuController();
 
         /// <summary>
+        /// ST.7b — skills screen UI (KeyCode.X → centered skill-tree popup).
+        /// Wired by <c>GameBootstrap</c>. The state-builder + snapshot are
+        /// pure-data and unit-tested in EditMode; this MonoBehaviour does
+        /// only rendering + per-frame keyboard dispatch.
+        /// </summary>
+        public SkillsScreenUI SkillsScreenUI { get; set; }
+
+        /// <summary>
         /// Public activation hook for the boot-menu modal — called from
         /// <c>GameBootstrap</c> at end-of-init. No-op if no save exists.
         /// </summary>
@@ -361,6 +370,20 @@ namespace CavesOfOoo.Rendering
                     if (_pauseMenuUI.IsOpen)
                         return;  // suppress other input while modal up
                 }
+
+                // ST.7b — KeyCode.X opens the skills screen. Gated on
+                // InputState.Normal so 'X' inside any other modal is owned
+                // by that modal (e.g. inventory item-action keys). The
+                // popup-overlay camera lifecycle follows the same enter-
+                // on-open / exit-on-close pattern as ContainerPickerUI.
+                if (SkillsScreenUI != null
+                    && InputHelper.GetKeyDown(KeyCode.X)
+                    && PlayerEntity != null)
+                {
+                    OpenSkillsScreen();
+                    _lastMoveTime = Time.time;
+                    return;
+                }
             }
 
             // Wait/skip turn (tap or hold) — placed BEFORE the general rate
@@ -419,6 +442,12 @@ namespace CavesOfOoo.Rendering
             if (_inputState == InputState.ContainerPickerOpen)
             {
                 HandleContainerPickerInput();
+                return;
+            }
+
+            if (_inputState == InputState.SkillsScreenOpen)
+            {
+                HandleSkillsScreenInput();
                 return;
             }
 
@@ -1392,6 +1421,49 @@ namespace CavesOfOoo.Rendering
             if (tookAny)
                 EndTurnAndProcess();
 
+            _inputState = InputState.Normal;
+
+            if (TryOpenAnnouncement())
+                return;
+
+            ExitCenteredPopupOverlayViewToGameplay();
+        }
+
+        // ─────────────────────────────────────────────────────────────────
+        // ST.7b — skills screen open/handle/close. Mirrors the
+        // OpenContainerPicker / HandleContainerPickerInput / Close trio
+        // but doesn't consume a turn (skills screen is meta-action).
+        // ─────────────────────────────────────────────────────────────────
+
+        private void OpenSkillsScreen()
+        {
+            if (SkillsScreenUI == null || PlayerEntity == null)
+                return;
+
+            EnterCenteredPopupOverlayView();
+            SkillsScreenUI.Open(PlayerEntity);
+            _inputState = InputState.SkillsScreenOpen;
+        }
+
+        private void HandleSkillsScreenInput()
+        {
+            if (SkillsScreenUI == null || !SkillsScreenUI.IsOpen)
+            {
+                CloseSkillsScreen();
+                return;
+            }
+
+            SkillsScreenUI.HandleInput();
+
+            if (!SkillsScreenUI.IsOpen)
+                CloseSkillsScreen();
+        }
+
+        private void CloseSkillsScreen()
+        {
+            // Skills screen is meta-action — no turn cost. Just restore
+            // input state + camera and pop any pending announcements
+            // (e.g. queued from a successful purchase).
             _inputState = InputState.Normal;
 
             if (TryOpenAnnouncement())

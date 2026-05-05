@@ -399,6 +399,20 @@ namespace CavesOfOoo
                     }
                     pauseMenuUI.PopupCamera = popupOverlayCamera;
                     inputHandler.PauseMenuUI = pauseMenuUI;
+
+                    // ST.7b — Skills screen (KeyCode.X → centered skill-tree popup).
+                    // Same wiring shape as PauseMenuUI: centered FG + BG tilemaps,
+                    // popup overlay camera. State-builder is pure-data (ST.7a).
+                    var skillsScreenUI = GetComponent<SkillsScreenUI>();
+                    if (skillsScreenUI == null)
+                        skillsScreenUI = gameObject.AddComponent<SkillsScreenUI>();
+                    if (ZoneRenderer != null)
+                    {
+                        skillsScreenUI.Tilemap = ZoneRenderer.CenteredPopupFgTilemap;
+                        skillsScreenUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
+                    }
+                    skillsScreenUI.PopupCamera = popupOverlayCamera;
+                    inputHandler.SkillsScreenUI = skillsScreenUI;
                 });
 
                 _turnManager.ProcessUntilPlayerTurn();
