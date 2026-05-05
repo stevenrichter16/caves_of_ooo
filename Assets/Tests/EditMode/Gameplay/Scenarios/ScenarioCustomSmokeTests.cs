@@ -242,5 +242,12 @@ namespace CavesOfOoo.Tests.Scenarios
 
         [Test] public void TripWireShowcase_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new TripWireShowcase().Apply(FreshContext()));
+
+        // ======================================================
+        // ST.8 — skill-tree popup (KeyCode.X)
+        // ======================================================
+
+        [Test] public void SkillTreeShowcase_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new SkillTreeShowcase().Apply(FreshContext()));
     }
 }

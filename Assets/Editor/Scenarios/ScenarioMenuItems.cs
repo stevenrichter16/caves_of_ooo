@@ -233,6 +233,14 @@ namespace CavesOfOoo.Editor.Scenarios
             => ScenarioRunner.Launch<PetDogFetchesBone>();
 
         // =========================================================
+        // UI (skill tree, etc.)
+        // =========================================================
+
+        [MenuItem("Caves Of Ooo/Scenarios/UI/Skill Tree Showcase (ST.8 — KeyCode.X popup)", priority = 500)]
+        private static void Launch_SkillTreeShowcase()
+            => ScenarioRunner.Launch<SkillTreeShowcase>();
+
+        // =========================================================
         // Debug (Phase 10)
         // =========================================================
 
