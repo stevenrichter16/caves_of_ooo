@@ -2,6 +2,65 @@ using NUnit.Framework;
 using CavesOfOoo.Core;
 using CavesOfOoo.Rendering;
 using CavesOfOoo.Skills;
+using CavesOfOoo.Tests.TestSupport;
+
+namespace CavesOfOoo.Tests
+{
+    /// <summary>
+    /// Live-integration regression for the skill-tree popup: the synthetic
+    /// MakeActor()-driven tests in <see cref="SkillsScreenStateBuilderTests"/>
+    /// all explicitly attach a <c>SkillsPart</c> via <c>e.AddPart(new SkillsPart())</c>,
+    /// which proved the state-builder's gating math but masked a real
+    /// integration bug: the live Player blueprint in
+    /// <c>Resources/Content/Blueprints/Objects.json</c> didn't list "Skills"
+    /// in its Parts array, so <c>SkillsScreenStateBuilder.Build(actor)</c>
+    /// short-circuited at the <c>actor.GetPart&lt;SkillsPart&gt;() == null</c>
+    /// guard and the in-game popup rendered "(no skills loaded)".
+    ///
+    /// This fixture goes through the EntityFactory + blueprint loader the
+    /// way the live game does. If the blueprint regresses (Skills entry
+    /// removed, renamed, etc.), this test fails before anyone playtests.
+    /// </summary>
+    [TestFixture]
+    public class SkillsScreenLiveBlueprintTests
+    {
+        private static ScenarioTestHarness _harness;
+
+        [OneTimeSetUp]
+        public void OneTimeSetUp() => _harness = new ScenarioTestHarness();
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown() => _harness?.Dispose();
+
+        [Test]
+        public void LivePlayerBlueprint_HasSkillsPartAttached()
+        {
+            var ctx = _harness.CreateContext(playerBlueprint: "Player");
+            var skills = ctx.PlayerEntity.GetPart<SkillsPart>();
+            Assert.IsNotNull(skills,
+                "Player blueprint must declare 'Skills' in its Parts array. " +
+                "Without it, SkillsScreenStateBuilder.Build short-circuits to " +
+                "an empty snapshot and the KeyCode.X popup renders blank in-game.");
+        }
+
+        [Test]
+        public void LivePlayerBlueprint_BuildSnapshot_HasNonEmptyRows()
+        {
+            // End-to-end: live blueprint → factory → SkillsScreenStateBuilder.
+            // Acrobatics.json under Resources/Content/Data/Skills/ provides
+            // 1 tree + 1 power, so the snapshot must have ≥2 rows. Counter-
+            // check guards the whole pipeline (blueprint Parts → registry
+            // initialization → state-builder iteration). A regression in
+            // any one step (e.g. Resources path drift, JSON malformed,
+            // SkillsPart removal) would zero out RowCount.
+            var ctx = _harness.CreateContext(playerBlueprint: "Player");
+            var snapshot = SkillsScreenStateBuilder.Build(ctx.PlayerEntity);
+            Assert.GreaterOrEqual(snapshot.RowCount, 2,
+                "Live player + initialized registry must produce ≥2 rows " +
+                "(Acrobatics tree + Dodge power from shipped content).");
+        }
+    }
+}
 
 namespace CavesOfOoo.Tests
 {
