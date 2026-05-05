@@ -244,7 +244,8 @@ correctly for every weapon in the game.
 ### Skill trees
 
 - ✅ **v1 shipped (ST.1-9, 2026-05).** SP stat (+1 per level), `SkillRegistry` JSON-loaded skills, `SkillsPart` manager + `BaseSkillPart`, `BuySkillAction` (gating + diag), `SkillsScreenUI` (KeyCode.X popup with 4 row states), `SkillTreeShowcase` scenario. v1 content: 1 tree (Acrobatics) + 1 passive power (Dodge: +2 DV via StatShifter, Agility ≥ 15). See `Docs/SKILL-TREE-QUD-PARITY.md`.
-- 💡 **v2 expansion (Tier 4).** More trees (Axe, LongBlade, Tactics), active-ability powers (Berserk, Cleave), water-ritual learning, sub-class hooks (Cudgel, LongBlades). Each is content + per-power C# class — substrate is ready.
+- ✅ **v1.5 — weapon-class skills shipped (WS.1-6, 2026-05).** 4 new trees (Cudgel, Axe, Long Blades, Short Blades) with 8 new skills (4 tree-roots + 4 foundational on-hit powers). All priced at **1 SP / no requirements** for accessibility. New `OnHitSkillEffects` static class hooked into `CombatSystem.PerformSingleAttack` post-`ApplyDamage`, parallel to the existing `OnHitClassEffects`. Skills: `Cudgel_Bludgeon` (35% Stunned 3T), `Axe_Cleave` (30% half-damage to adjacent), `LongBlades_Lacerate` (35% Bleed 1d3), `ShortBlades_Jab` (30% Confused 3T). All stack with the universal class hooks (Bludgeoning→Stun / Cutting→Bleed / Piercing→Confuse). See `Docs/WEAPON-SKILLS.md`.
+- 💡 **v2 expansion (Tier 4).** More powers per tree (Backswing, Decapitate, Riposte, Shank), active-abilities (Berserk, Hammer Toss), tactics tree, water-ritual learning, gear-granted skills (`SkillOnEquip`). Each is content + per-power C# class — substrate is ready.
 
 ### Themed dungeon generator
 

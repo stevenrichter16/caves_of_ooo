@@ -37,7 +37,7 @@ appears across many roguelikes/RPGs.
 | **Cudgel** | `CudgelSkill` (flavor) | `Cudgel_Bludgeon` | hit + `damage.HasAttribute("Cudgel")` | 35% chance → `StunnedEffect(3)` on defender |
 | **Axe** | `AxeSkill` (flavor) | `Axe_Cleave` | hit + `damage.HasAttribute("Axe")` | 30% chance → half-damage to one adjacent enemy of defender |
 | **LongBlades** | `LongBladesSkill` (flavor) | `LongBlades_Lacerate` | hit + `damage.HasAttribute("LongBlades")` | 35% chance → `BleedingEffect(saveTarget=15, "1d3")` on defender (additive over OnHitClassEffects' 25% Cutting→Bleed) |
-| **ShortBlades** | `ShortBladesSkill` (flavor) | `ShortBlades_Jab` | hit + `damage.HasAttribute("Piercing")` | +1 damage on hit (always; passive flat boost) |
+| **ShortBlades** | `ShortBladesSkill` (flavor) | `ShortBlades_Jab` | hit + `damage.HasAttribute("Piercing")` | 30% chance → `ConfusedEffect(3T)` on defender (reframed in WS.5 — see implementation log) |
 
 **Why "ShortBlades" tree on Piercing trigger:** Qud calls the
 short-blade tree "ShortBlades"; CoO weapons today carry the
@@ -70,10 +70,11 @@ with "actor without skill in identical setup → effect NOT applied."
 ## Per-skill C# class shape
 
 ```csharp
-// Tree-root (flavor; no behavior).
+// Tree-root (flavor; no behavior). Override Part.Name so the registry
+// lookup uses the C# class name as the canonical id.
 public class CudgelSkill : BaseSkillPart
 {
-    public override string ClassName => nameof(CudgelSkill);
+    public override string Name => nameof(CudgelSkill);
 }
 
 // Power: identity-only stub. The actual on-hit logic lives in
@@ -83,7 +84,7 @@ public class CudgelSkill : BaseSkillPart
 // at AddSkill time — they fire when combat resolves.
 public class Cudgel_Bludgeon : BaseSkillPart
 {
-    public override string ClassName => nameof(Cudgel_Bludgeon);
+    public override string Name => nameof(Cudgel_Bludgeon);
 }
 ```
 
@@ -101,7 +102,8 @@ public static class OnHitSkillEffects
     public const int LONGBLADES_LACERATE_SAVE_TARGET = 15;
     public const string LONGBLADES_LACERATE_DAMAGE_DICE = "1d3";
 
-    public const int SHORTBLADES_JAB_DAMAGE_BONUS = 1;
+    public const int SHORTBLADES_JAB_CHANCE_PERCENT = 30;
+    public const int SHORTBLADES_JAB_DURATION = 3;
 
     public static void Apply(Damage damage, int actualDamage,
         Entity defender, Entity attacker, Zone zone, Random rng)
@@ -143,13 +145,14 @@ One line. Same scope as OnHitClassEffects, fired immediately after.
 
 ## Pre-flagged self-review findings
 
-- **🟡 ShortBlades_Jab is a flat damage boost not a status apply** —
-  applies BEFORE `actualDamage` is computed, so the OnHitSkillEffects
-  signature (which gets `actualDamage` post-resistance) doesn't fit
-  it cleanly. WS.5 will either move Jab to a different hook (pre-
-  damage modifier) or reframe it (e.g. on Piercing hit, +1 future
-  attack to-hit for 1 turn via a buff effect). Decide in WS.5
-  pre-impl.
+- **🟢 ShortBlades_Jab reframed as ConfusedEffect apply (RESOLVED in WS.5)** —
+  the original "+1 flat damage" plan didn't fit the post-damage hook
+  signature. Resolution: reframe Jab as a 30% chance / 3T
+  `ConfusedEffect` apply on Piercing hit, mirroring the
+  Cudgel_Bludgeon and LongBlades_Lacerate "status apply" pattern.
+  Stacks on top of the universal Piercing→Confused class hook (10%, 2T).
+  See `ShortBlades_Jab.cs` docstring + WS.5 commit body for the full
+  rationale.
 - **🟡 Axe_Cleave adjacent-enemy lookup** — needs `Zone.GetEntitiesAt(x,y)`
   or equivalent. Read Zone API in WS.3 pre-impl.
 - **🔵 No tree-root skills with mechanics** — all 4 tree-roots are
@@ -193,4 +196,57 @@ Snapjaw, watch the message log for stun applications.
 | Today | After WS |
 |---|---|
 | 1 tree (Acrobatics), 1 power (Dodge — DV passive). Per-weapon damage classes apply OnHitClassEffects (Stun/Bleed/Confuse). | + 4 trees (Cudgel/Axe/LongBlades/ShortBlades). + 4 weapon-specific powers boosting your weapon's existing class hook. Each new skill is 1 SP — buyable from level 1 onward. |
-| Bludgeoning weapons stun at 15%, weapons feel mostly interchangeable beyond raw damage. | Cudgel hits stun MORE (35% on Cudgel-attribute hits vs. 15% on plain Bludgeoning). Axes cleave (hit adjacent enemies). LongBlades bleed harder. Daggers pierce armor. **Weapon class becomes a meaningful build choice.** |
+| Bludgeoning weapons stun at 15%, weapons feel mostly interchangeable beyond raw damage. | Cudgel hits stun MORE (35% on Cudgel-attribute hits vs. 15% on plain Bludgeoning). Axes cleave (hit adjacent enemies). LongBlades bleed harder. Daggers disorient on top of the universal Piercing→Confused. **Weapon class becomes a meaningful build choice.** |
+
+---
+
+## Implementation log (post-ship)
+
+| Sub-milestone | Commit | Content shipped | Tests added |
+|---|---|---|---|
+| WS.0 | `6591b62` | Plan to disk | n/a |
+| WS.1 | `6964508` | `OnHitSkillEffects` static class (empty Apply) + 1-line `CombatSystem.PerformSingleAttack` hook | +4 universal-scaffold tests |
+| WS.2 | `88fd0d7` | Cudgel tree (`CudgelSkill` + `Cudgel_Bludgeon`); 35% Stunned 3T on `damage.HasAttribute("Cudgel")` | +3 (positive + 2 counter-checks) |
+| WS.3 | `998dd1c` | Axe tree (`AxeSkill` + `Axe_Cleave`); 30% half-damage to first adjacent Creature on `damage.HasAttribute("Axe")` | +4 (positive + 2 counter-checks + no-adjacent edge) |
+| WS.4 | `50acd58` | Long Blades tree (`LongBladesSkill` + `LongBlades_Lacerate`); 35% Bleeding (1d3 dice) on `damage.HasAttribute("LongBlades")` | +3 |
+| WS.5 | `4a0e0c0` | Short Blades tree (`ShortBladesSkill` + `ShortBlades_Jab`); 30% Confused 3T on `damage.HasAttribute("Piercing")`. **Reframed from the +1-damage plan** since CoO has no dual-wielding to mirror Qud's off-hand-attempt semantics; status apply matches the WS.2/4 pattern. | +3 |
+| WS.6a | `ef5ac8b` | `SkillTreeShowcase` expanded to demo all 5 trees + 9 skills + walkthrough log + 4 weapons in inventory | smoke unchanged |
+| WS.6b | (this commit) | Cold-eye fixes: stacking integration test, doc-vs-impl drift patches (Jab matrix row, ClassName→Name template, plan flag resolved-state), `MakeAttackerWithSkill` typo-detection, RNG-ordering rationale on `TryAxeCleave` | +1 stacking integration test |
+
+**Cold-eye review outcome (WS.6b):** delegated to a fresh-eyes
+general-purpose subagent per CLAUDE.md "Post-implementation cold-eye
+review". 7 findings returned: 0 🔴, 3 🟡, 2 🔵, 1 🧪, 1 ⚪. Verified
+3 of the agent's claims against source per CLAUDE.md §5.4 before
+fixing. All findings addressed:
+
+- 🟡 #1 ShortBlades_Jab matrix row described the abandoned +1-damage
+  spec → patched to the shipped Confused apply + flagged the
+  pre-flagged 🟡 as RESOLVED.
+- 🟡 #2 stacking ("Mace fires both class + skill hooks on same hit")
+  was 🧪-promised in plan but no test landed → added
+  `Stacking_ClassHookPlusSkillHook_OnSameMaceHit_CanSumDurations`
+  — across 500 seeds, observe at least one Stunned with Duration > 3
+  (only achievable when both hooks fire and StunnedEffect.OnStack
+  sums durations).
+- 🟡 #3 plan template said `ClassName` but shipped code uses `Name` →
+  fixed snippet.
+- 🔵 #4 redundant `public override string Name => nameof(X)` in every
+  skill class — `Part.Name` defaults to `GetType().Name`. Noted; no
+  immediate action (mirrors precedent).
+- 🔵 #5 `TryAxeCleave` consumes RNG before adjacency check (vs the
+  3 sibling helpers) → inline-documented the deliberate-symmetry
+  rationale at `OnHitSkillEffects.cs:179-189`.
+- 🧪 #6 `MakeAttackerWithSkill` silently no-oped on typo → wrapped
+  with `Assert.IsTrue` so a typo'd skill class fails loud at fixture
+  time rather than at counter-check assertion time.
+- ⚪ #7 JSON formatting consistency → confirmed clean across the 4
+  weapon-class files (no fix needed).
+
+**Final state:** 4 weapon-class trees + Acrobatics = **5 trees / 9
+skills total** in the registry. Every weapon-class skill is **1 SP
+with no Minimum / Requires / Exclusion** per the user's directive.
+After this ship, 99/99 GREEN (was 96/96; +1 stacking test, +2 from
+the WS.5 ShortBlades_Jab branch's earlier deltas already counted).
+
+**Roadmap:** `CONTENT-ROADMAP.md` weapon-skills entry → see that
+doc's Recently Shipped section.

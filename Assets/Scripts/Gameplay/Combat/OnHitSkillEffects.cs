@@ -170,6 +170,17 @@ namespace CavesOfOoo.Core
         // defender is not in the zone (position lookup returns -1), or
         // no adjacent Creature exists. Each is a normal-game path —
         // cleaving into empty space just doesn't connect, no error.
+        //
+        // RNG ordering: chance roll is intentionally consumed BEFORE the
+        // adjacency lookup, even when there's no target. Rationale:
+        //   1. Symmetry with the other 3 helpers (Bludgeon/Lacerate/Jab)
+        //      which also roll-then-act — a future content-author can
+        //      copy any helper's shape without reading a 4th variant.
+        //   2. Models "attempted cleave that found nothing" rather than
+        //      "free probe of the surroundings followed by gated roll" —
+        //      the action-economy cost of the swing is uniform.
+        // The asymmetry is invisible in normal play (1 RNG draw per swing
+        // either way) but is documented here for save-replay determinism.
         private static void TryAxeCleave(int actualDamage, Entity defender,
             Entity attacker, Zone zone, Random rng)
         {

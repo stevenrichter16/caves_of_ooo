@@ -398,6 +398,64 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
+        // WS.6b cold-eye 🟡 #2 — stacking integration: verify that calling
+        // OnHitClassEffects.Apply AND OnHitSkillEffects.Apply in sequence
+        // (the order CombatSystem.PerformSingleAttack uses) on the SAME
+        // hit can produce a Stunned effect with summed duration. The plan
+        // claimed this stacks via StunnedEffect.OnStack += Duration; this
+        // test pins the claim end-to-end.
+        // ====================================================================
+
+        [Test]
+        public void Stacking_ClassHookPlusSkillHook_OnSameMaceHit_CanSumDurations()
+        {
+            // Mace = "Bludgeoning Cudgel" (both attributes). Class hook fires
+            // on Bludgeoning at 15% for 2T; skill hook fires on Cudgel at
+            // 35% for 3T. StunnedEffect.OnStack does Duration += incoming.Duration,
+            // so both rolls landing on the same hit produces Duration = 5.
+            //
+            // Across many seeds, observe at least one case where final
+            // Stunned.Duration > 3. That's only achievable when BOTH hooks
+            // fired (skill alone caps at 3, class alone caps at 2).
+            int maxObservedDuration = 0;
+            int observedBothFiredCount = 0;
+            for (int seed = 0; seed < 500; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(Cudgel_Bludgeon));
+                var damage = new Damage(10);
+                damage.AddAttribute("Bludgeoning");  // class hook gate
+                damage.AddAttribute("Cudgel");       // skill hook gate
+
+                // Same RNG instance threaded through both Apply calls,
+                // mirroring how CombatSystem.PerformSingleAttack does it.
+                var rng = new Random(seed);
+                OnHitClassEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng);
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng);
+
+                var stun = defender.GetPart<StatusEffectsPart>().GetEffect<StunnedEffect>();
+                if (stun != null)
+                {
+                    if (stun.Duration > maxObservedDuration)
+                        maxObservedDuration = stun.Duration;
+                    if (stun.Duration > 3) observedBothFiredCount++;
+                }
+            }
+
+            Assert.Greater(maxObservedDuration, 3,
+                $"Across 500 seeds, expected at least one case where both class " +
+                $"AND skill hooks fired on the same Mace hit (final Duration > 3). " +
+                $"Highest Duration observed: {maxObservedDuration}. If this stays " +
+                $"≤ 3, either OnHitClassEffects or OnHitSkillEffects didn't fire " +
+                $"its branch — stacking is broken.");
+            Assert.Greater(observedBothFiredCount, 0,
+                $"Observed {observedBothFiredCount} 'both fired' events; expected " +
+                $"at least 1 across 500 seeds. P(both fire) ≈ 5.25% per seed.");
+        }
+
+        // ====================================================================
         // WS.5 — ShortBlades_Jab: Piercing-attribute hit + skill owned →
         // SHORTBLADES_JAB_CHANCE_PERCENT (30%) chance to apply Confused
         // for SHORTBLADES_JAB_DURATION (3) turns. Stacks with class hook.
@@ -529,7 +587,16 @@ namespace CavesOfOoo.Tests
         private static Entity MakeAttackerWithSkill(string skillClass)
         {
             var e = MakeAttacker();
-            e.GetPart<SkillsPart>().AddSkill(skillClass, source: "test");
+            // Cold-eye 🧪 #5 fix: Assert the AddSkill succeeded so a typo
+            // in the test (e.g. nameof misspelled as a literal string) fails
+            // loud. Without this, a typo'd test would silently produce an
+            // attacker WITHOUT the skill, and counter-check tests would pass
+            // for the wrong reason ("no skill owned" rather than "gate
+            // upheld").
+            bool added = e.GetPart<SkillsPart>().AddSkill(skillClass, source: "test");
+            Assert.IsTrue(added,
+                $"MakeAttackerWithSkill: AddSkill('{skillClass}') returned false. " +
+                $"Likely a typo or the C# class doesn't exist yet (missing WS milestone?).");
             return e;
         }
     }
