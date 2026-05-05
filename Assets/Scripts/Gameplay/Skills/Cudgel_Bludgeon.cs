@@ -8,8 +8,9 @@ namespace CavesOfOoo.Skills
     /// <see cref="OnHitSkillEffects.Apply"/>, which checks
     /// <c>SkillsPart.HasSkill(nameof(Cudgel_Bludgeon))</c> and rolls a
     /// <see cref="OnHitSkillEffects.CUDGEL_BLUDGEON_CHANCE_PERCENT"/>
-    /// chance to apply <see cref="StunnedEffect"/> for
-    /// <see cref="OnHitSkillEffects.CUDGEL_BLUDGEON_DURATION"/> turns.
+    /// chance to apply <see cref="StunnedEffect"/> for a random
+    /// <see cref="OnHitSkillEffects.CUDGEL_BLUDGEON_DURATION_MIN"/>-<see cref="OnHitSkillEffects.CUDGEL_BLUDGEON_DURATION_MAX"/>
+    /// turn duration (3-4T per Qud parity, WSP.2 + WSP.4b retune).
     ///
     /// <para>This pattern (skill class as identity marker, behavior
     /// elsewhere) differs from <see cref="AcrobaticsDodgePower"/>'s

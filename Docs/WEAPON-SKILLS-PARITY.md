@@ -153,8 +153,70 @@ until crit — defender takes Bleeding 1d4 not 1d2. Etc.
 
 ## What gets observable to the player after this ship
 
-| Today (post-WS.1-6) | After WSP.1-3 |
+| Today (post-WS.1-6) | After WSP.1-4b |
 |---|---|
-| Tree-root skills (CudgelSkill / AxeSkill / LongBladesSkill / ShortBladesSkill) bought for 1 SP each → no observable effect; only powers are observable. | Each tree-root grants a crit-only bonus tied to the matching weapon class. Buying CudgelSkill alone is now mechanically meaningful — every natural-20 with a mace stuns. |
-| Cudgel_Bludgeon: 35% chance → Stunned 3T (CoO-original tuning). | Cudgel_Bludgeon: 50% / 1-4T random duration (verbatim Qud values). |
-| ShortBlades has 1 power (Jab → 30% Confused 3T). | ShortBlades has 2 powers — Jab + Bloodletter (50% Bleed every Piercing hit). Two-skill specialization. |
+| Tree-root skills (CudgelSkill / AxeSkill / LongBladesSkill / ShortBladesSkill) bought for 1 SP each → no observable effect; only powers are observable. | Each tree-root grants a crit-only bonus tied to the matching weapon class. Buying CudgelSkill alone is now mechanically meaningful — every natural-20 with a mace stuns 1-4T. |
+| Cudgel_Bludgeon: 35% chance → Stunned 3T (CoO-original tuning). | Cudgel_Bludgeon: 50% / 3-4T random (Qud verbatim per `Cudgel_Bludgeon.cs:56` — `Stat.Random(3, 4)`). |
+| ShortBlades has 1 power (Jab → 30% Confused 3T). | ShortBlades has 2 powers — Jab + Bloodletter (50% Bleed every Piercing hit). |
+| Single-Mace-crit caps Stun at ~5T (class+skill stack). | Single-Mace-crit can now stack to ~10T (class 2T + Bludgeon 3-4T + crit 1-4T) — 3 hooks fire on the same swing. |
+
+---
+
+## Implementation log (post-ship)
+
+| Sub-milestone | Commit | What shipped | Tests added |
+|---|---|---|---|
+| WSP.0 | `e93db2b` | Plan to disk; Tier 1/2/3 classification; pre-impl verification | n/a |
+| WSP.1 | `860ffb7` | 4 tree-root crit behaviors (`ApplyCudgelCrit` / `ApplyAxeCritCleave` / `ApplyLongBladesCrit` / `ApplyShortBladesCrit`); gate on `damage.HasAttribute("Critical")` + matching weapon-class attribute + tree-root ownership | +10 (8 positive/counter-check pairs + 1 duration-range + 1 force-cleave) |
+| WSP.2 | `019b357` | `Cudgel_Bludgeon` constant rename + helper update; chance 35→50%, fixed 3T → range MIN/MAX | +1 (range pin) |
+| WSP.3 | `bb45e94` | `ShortBlades_Bloodletter` new power: 50% Bleed `1d2` per Piercing hit; JSON content + identity-only stub + Apply branch + helper | +3 (positive + 2 counter-checks) |
+| WSP.4a | `4d5e59a` | `SkillTreeShowcase` expanded: pre-buys all 4 weapon-class tree-roots so WSP.1 crits fire on every weapon; walkthrough log enumerates every observable mechanic | smoke unchanged |
+| WSP.4b | (this commit) | Cold-eye fixes: tighten Cudgel_Bludgeon to Qud-verbatim 3-4T (was 1-4T variance); extract `ExecuteCleave` + `FindAdjacentCleaveTarget` helpers (deduplicate Axe_Cleave + AxeCritCleave); fix stale `<see cref>` in `Cudgel_Bludgeon.cs` docstring; clarify Qud-source-vs-CoO-port comments; +3-hook stacking test | +1 (3-hook stacking) |
+
+**Cold-eye review outcome (WSP.4b):** delegated to a fresh-eyes
+general-purpose subagent per CLAUDE.md "Post-implementation cold-eye
+review". 7 findings returned: 1 🔴, 2 🟡, 2 🧪, 1 🔵, 1 ⚪. Verified
+the contradictory-Qud-value claim by direct grep in qud-decompiled-
+project — the agent was right (Cudgel_Bludgeon = `Stat.Random(3, 4)`,
+CudgelSkill crit = `Stat.Random(1, 4)`). All findings addressed:
+
+- 🔴 #1 stale `<see cref="OnHitSkillEffects.CUDGEL_BLUDGEON_DURATION"/>`
+       in `Cudgel_Bludgeon.cs` docstring (constant deleted in WSP.2) →
+       updated to reference `_DURATION_MIN` / `_DURATION_MAX` + corrected
+       prose.
+- 🟡 #2 inline comments in `OnHitSkillEffects.cs` disagreed about Qud's
+       Cudgel_Bludgeon range (3-4T per source) vs my variance-extended
+       1-4T (WSP.2 deliberate) → tightened to Qud-verbatim 3-4T per
+       user's "mirror Qud functionality" directive; clarified BOTH
+       comment blocks (Cudgel_Bludgeon vs CudgelSkill-crit) cite their
+       respective Qud source line.
+- 🟡 #3 `MAX = 4 // inclusive` confusing because `Random.Next` is
+       exclusive on upper bound → kept the inclusive-semantics constants
+       since both call sites now consistently use `MAX + 1`; comment
+       clarified.
+- 🧪 #4 `TryAxeCleave` and `ApplyAxeCritCleave` were 22 lines of
+       byte-for-byte duplicate code → extracted `ExecuteCleave` (shared
+       core) + `FindAdjacentCleaveTarget` (the 8-direction Creature
+       lookup); both helpers now thin wrappers (gate vs no-gate).
+- 🧪 #5 stacking test only verified 2 hooks (class + skill);
+       worst-case 3-hook (class + skill + crit) was unverified despite
+       being a flagged design risk → new test
+       `Stacking_AllThreeHooks_OnMaceCrit_ProducesUpToTenTurnStun`
+       asserts `Duration > 8` is observable across 500 seeds AND
+       upper bound `Duration <= 10` (theoretical max).
+- 🔵 #6 doc post-ship implementation log missing → this section
+       (you are reading it).
+- ⚪ #7 JSON field-order across 5 weapon files — confirmed clean.
+
+**Final state:** 5 trees / 5 powers / 4 tree-root crit behaviors.
+~115 EditMode tests pass (was 96 pre-WSP). All weapon-class skills
+1 SP no-reqs. Live-verifiable via `Caves Of Ooo / Scenarios / UI /
+Skill Tree Showcase` — equip Mace, swing at target, ~7.5% of crits
+will produce 9+T of stacked Stun.
+
+**Roadmap:** `CONTENT-ROADMAP.md` Skill trees v1.5 entry stays ✅
+shipped; this WSP ship doesn't add a new tier — it deepens the
+existing v1.5 with Qud parity. v2 expansion bullet still tracks
+the deferred Tier 2/3 work (Expertise / Hammer / ShatteringBlows /
+Backswing / Hobble / Rejoinder; active abilities; LongBlades
+3-stance system; dual-wielding).

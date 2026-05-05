@@ -111,17 +111,19 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
-        // WS.2 — Cudgel_Bludgeon: Cudgel-class hit + skill owned →
-        // CUDGEL_BLUDGEON_CHANCE_PERCENT (35%) chance to apply Stunned
-        // for CUDGEL_BLUDGEON_DURATION (3) turns.
+        // WS.2 (re-tuned WSP.2 + WSP.4b) — Cudgel_Bludgeon: Cudgel-class
+        // hit + skill owned → CUDGEL_BLUDGEON_CHANCE_PERCENT (50%) chance
+        // to apply Stunned for a random
+        // [CUDGEL_BLUDGEON_DURATION_MIN, CUDGEL_BLUDGEON_DURATION_MAX]
+        // turn duration (3-4T per Qud Cudgel_Bludgeon.cs:56).
         // ====================================================================
 
         [Test]
         public void CudgelHit_WithBludgeonOwned_HasChance_ToApplyStunned()
         {
-            // Positive: across many seeds, the 35% roll lands at least once.
-            // Loop tightly bounded — at 35% chance, P(no observation in 100
-            // tries) ≈ 4.4e-18. Test should always observe quickly.
+            // Positive: across many seeds, the 50% roll lands at least once.
+            // Loop tightly bounded — at 50% chance, P(no observation in 100
+            // tries) ≈ 7.9e-31. Test should always observe quickly.
             bool observed = false;
             for (int seed = 0; seed < 100 && !observed; seed++)
             {
@@ -466,16 +468,18 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
-        // WSP.2 — Cudgel_Bludgeon re-tune to Qud-verbatim values
-        // (50% / 1-4T random duration). Pin the new constants + range.
+        // WSP.2 (re-tightened WSP.4b) — Cudgel_Bludgeon re-tune to
+        // Qud-verbatim values: 50% chance per Cudgel hit, random 3-4T
+        // duration per Qud Cudgel_Bludgeon.cs:56 (Stat.Random(3, 4)).
+        // Pin the constants + the range across many seeds.
         // ====================================================================
 
         [Test]
         public void CudgelBludgeon_DurationIsRandomWithinRange()
         {
-            // Across many seeds, the random 1-4T duration must produce
-            // both 1 and 4 as the min/max observations. If the range is
-            // accidentally clamped (e.g. only ever 3, like the WS.2
+            // Across many seeds, the random 3-4T duration must produce
+            // both 3 and 4 as the min/max observations. If the range is
+            // accidentally clamped (e.g. only ever 3, regressing to the
             // pre-WSP.2 fixed-3T behavior), this test fails.
             int minObserved = int.MaxValue;
             int maxObserved = int.MinValue;
@@ -757,12 +761,12 @@ namespace CavesOfOoo.Tests
         {
             // Mace = "Bludgeoning Cudgel" (both attributes). Class hook fires
             // on Bludgeoning at 15% for 2T; skill hook fires on Cudgel at
-            // 35% for 3T. StunnedEffect.OnStack does Duration += incoming.Duration,
-            // so both rolls landing on the same hit produces Duration = 5.
+            // 50% for 3-4T. StunnedEffect.OnStack does Duration += incoming.Duration,
+            // so both rolls landing on the same hit produces Duration = 5-6.
             //
             // Across many seeds, observe at least one case where final
-            // Stunned.Duration > 3. That's only achievable when BOTH hooks
-            // fired (skill alone caps at 3, class alone caps at 2).
+            // Stunned.Duration > 4. That's only achievable when BOTH hooks
+            // fired (skill alone caps at 4, class alone caps at 2).
             int maxObservedDuration = 0;
             int observedBothFiredCount = 0;
             for (int seed = 0; seed < 500; seed++)
@@ -786,19 +790,86 @@ namespace CavesOfOoo.Tests
                 {
                     if (stun.Duration > maxObservedDuration)
                         maxObservedDuration = stun.Duration;
-                    if (stun.Duration > 3) observedBothFiredCount++;
+                    // Skill alone caps at 4 (Cudgel_Bludgeon's 3-4T max);
+                    // class alone caps at 2. Duration > 4 is the
+                    // unambiguous "both fired" tracer.
+                    if (stun.Duration > 4) observedBothFiredCount++;
                 }
             }
 
-            Assert.Greater(maxObservedDuration, 3,
+            Assert.Greater(maxObservedDuration, 4,
                 $"Across 500 seeds, expected at least one case where both class " +
-                $"AND skill hooks fired on the same Mace hit (final Duration > 3). " +
+                $"AND skill hooks fired on the same Mace hit (final Duration > 4). " +
                 $"Highest Duration observed: {maxObservedDuration}. If this stays " +
-                $"≤ 3, either OnHitClassEffects or OnHitSkillEffects didn't fire " +
+                $"≤ 4, either OnHitClassEffects or OnHitSkillEffects didn't fire " +
                 $"its branch — stacking is broken.");
             Assert.Greater(observedBothFiredCount, 0,
                 $"Observed {observedBothFiredCount} 'both fired' events; expected " +
-                $"at least 1 across 500 seeds. P(both fire) ≈ 5.25% per seed.");
+                $"at least 1 across 500 seeds. P(both fire) ≈ 7.5% per seed.");
+        }
+
+        // ====================================================================
+        // WSP.4b cold-eye 🧪 #5 — 3-hook stacking integration: Mace crit
+        // by an actor owning CudgelSkill (tree-root) + Cudgel_Bludgeon
+        // (gated power) runs THREE Stun rolls on the same swing —
+        // OnHitClassEffects (15% / 2T), OnHitSkillEffects Cudgel_Bludgeon
+        // (50% / 3-4T), OnHitSkillEffects CudgelSkill crit (100% / 1-4T).
+        // Worst case: 2 + 4 + 4 = 10T. Plan flagged this as a design risk
+        // ("watch worst-case Stun feel"). This test pins the upper bound.
+        // ====================================================================
+
+        [Test]
+        public void Stacking_AllThreeHooks_OnMaceCrit_ProducesUpToTenTurnStun()
+        {
+            int maxObservedDuration = 0;
+            int observedAllThreeFiredCount = 0;
+            for (int seed = 0; seed < 500; seed++)
+            {
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(Cudgel_Bludgeon));
+                attacker.GetPart<SkillsPart>().AddSkill(nameof(CudgelSkill), source: "test");
+
+                var damage = new Damage(10);
+                damage.AddAttribute("Bludgeoning");  // class hook gate
+                damage.AddAttribute("Cudgel");       // skill hook gate
+                damage.AddAttribute("Critical");     // tree-root crit gate
+
+                var rng = new Random(seed);
+                OnHitClassEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng);
+                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                    defender, attacker, zone: null, rng);
+
+                var stun = defender.GetPart<StatusEffectsPart>().GetEffect<StunnedEffect>();
+                if (stun != null)
+                {
+                    if (stun.Duration > maxObservedDuration)
+                        maxObservedDuration = stun.Duration;
+                    // Tree-root crit always fires (100% on Critical).
+                    // Cudgel_Bludgeon at 50%, class at 15%. P(all 3) ≈ 7.5%.
+                    // Skill+crit alone caps at 4+4=8; class+crit caps at 2+4=6.
+                    // All three caps at 2+4+4=10 — Duration > 8 means all 3 fired.
+                    if (stun.Duration > 8) observedAllThreeFiredCount++;
+                }
+            }
+
+            // Always at least the crit Stun (1-4T). At minimum we observe
+            // a Stun every seed since Critical → CudgelSkill always fires.
+            Assert.GreaterOrEqual(maxObservedDuration, 4,
+                $"Critical CudgelSkill must always apply Stun. " +
+                $"Max observed: {maxObservedDuration}.");
+            // 3-hook upper bound: across 500 seeds, P(all 3 fire) ≈ 7.5% so
+            // ~37 cases expected. Asserting ≥ 1 is conservative.
+            Assert.Greater(observedAllThreeFiredCount, 0,
+                $"Across 500 seeds, expected at least one all-3-hooks-fire " +
+                $"event (Duration > 8). Observed: {observedAllThreeFiredCount}. " +
+                $"If 0, OnHitClassEffects/Bludgeon/CudgelSkill-crit aren't all wired.");
+            // Hard upper bound: theoretical max is 2+4+4 = 10T. Anything
+            // above that means an extra effect snuck in (or OnStack is bugged).
+            Assert.LessOrEqual(maxObservedDuration, 10,
+                $"Worst-case 3-hook Stun must be ≤ 10T " +
+                $"(2T class + 4T Bludgeon-max + 4T crit-max). " +
+                $"Observed max: {maxObservedDuration}.");
         }
 
         // ====================================================================

@@ -40,17 +40,17 @@ namespace CavesOfOoo.Core
         // Per-skill tunables. WS.2-5 fill in. WS.1 ships the empty Apply.
         // ─────────────────────────────────────────────────────────────────
 
-        // Cudgel_Bludgeon (WS.2; re-tuned WSP.2 to Qud-verbatim values):
+        // Cudgel_Bludgeon (WS.2; re-tuned to Qud-verbatim WSP.2 + WSP.4b):
         // Cudgel-class hit → 50% chance to apply Stunned for a random
-        // 1-4T duration. Mirrors Qud's Cudgel_Bludgeon mechanic exactly
-        // (50% base chance via "Skill Bludgeon"; Stat.Random(3,4) duration
-        // — note Qud's value range is actually 3-4 turns; CoO uses 1-4
-        // for player-readable variance). Stacks with the universal
-        // Bludgeoning→Stun (15%, 2T) and the CudgelSkill crit (1-4T) on
-        // the same hit — StunnedEffect.OnStack sums durations.
+        // 3-4T duration. Verbatim Qud Cudgel_Bludgeon.cs:56 —
+        // ApplyEffect(new Dazed(Stat.Random(3, 4), ...)) at base chance 50%.
+        // Distinct from CudgelSkill (tree-root crit) which uses
+        // Stat.Random(1, 4) per Qud Cudgel.cs:19. Stacks with the
+        // universal Bludgeoning→Stun (15%, 2T) and the CudgelSkill
+        // crit (1-4T) on the same hit — StunnedEffect.OnStack sums durations.
         public const int CUDGEL_BLUDGEON_CHANCE_PERCENT = 50;
-        public const int CUDGEL_BLUDGEON_DURATION_MIN = 1;
-        public const int CUDGEL_BLUDGEON_DURATION_MAX = 4;  // inclusive
+        public const int CUDGEL_BLUDGEON_DURATION_MIN = 3;
+        public const int CUDGEL_BLUDGEON_DURATION_MAX = 4;  // 3-4T per Qud Cudgel_Bludgeon.cs:56
 
         // Axe_Cleave (WS.3): Axe-class hit → chance to swing through
         // to one adjacent Creature for half the original damage.
@@ -95,10 +95,14 @@ namespace CavesOfOoo.Core
         // now mechanically meaningful even before buying any powers.
         // ─────────────────────────────────────────────────────────────────
 
-        // CudgelSkill on crit: random 1-4T Stunned (Qud uses Dazed; CoO
-        // doesn't have Dazed, so map to Stunned with the same duration shape).
+        // CudgelSkill on crit (tree-root): random 1-4T Stunned. Verbatim
+        // Qud Cudgel.cs:19 — ApplyEffect(new Dazed(Stat.Random(1, 4),...)).
+        // Note this is DIFFERENT from Cudgel_Bludgeon's 3-4T range above
+        // (which is the gated 50%-chance power, not the tree-root crit).
+        // CoO doesn't have a Dazed effect; map to Stunned (the closest
+        // analog — blocks AllowAction + applies DV penalty).
         public const int CUDGEL_CRIT_STUN_DURATION_MIN = 1;
-        public const int CUDGEL_CRIT_STUN_DURATION_MAX = 4;  // inclusive
+        public const int CUDGEL_CRIT_STUN_DURATION_MAX = 4;  // 1-4T per Qud Cudgel.cs:19
 
         // AxeSkill on crit: force-cleave at 100% chance (vs Axe_Cleave's
         // 30% gated chance). Reuses the same adjacent-Creature lookup +
@@ -281,11 +285,38 @@ namespace CavesOfOoo.Core
             int roll = rng.Next(100);
             if (roll >= AXE_CLEAVE_CHANCE_PERCENT) return;
 
-            var defPos = zone.GetEntityPosition(defender);
-            if (defPos.x < 0) return;
+            ExecuteCleave(actualDamage, defender, attacker, zone);
+        }
 
-            Entity cleaveTarget = null;
-            for (int dir = 0; dir < 8 && cleaveTarget == null; dir++)
+        // Shared core for Axe_Cleave (gated) + ApplyAxeCritCleave (forced).
+        // Direction-iteration order is deterministic so seeded tests can
+        // pin the cleave victim. Half-damage floor of 1 ensures even a
+        // low-damage cleave is non-trivial. Bails silently if zone is
+        // null, defender is not in zone, or no adjacent Creature exists.
+        // Extracted in WSP.4b to fix the cold-eye 🧪 #4 finding (gated
+        // and force-cleave were 22 lines of byte-for-byte duplication).
+        private static void ExecuteCleave(int actualDamage, Entity defender,
+            Entity attacker, Zone zone)
+        {
+            var target = FindAdjacentCleaveTarget(defender, attacker, zone);
+            if (target == null) return;
+
+            int cleaveDamage = System.Math.Max(1, actualDamage / 2);
+            CombatSystem.ApplyDamage(target, cleaveDamage, attacker, zone);
+        }
+
+        // Returns the first Creature entity adjacent to defender (in
+        // direction-iteration order N → NE → E → SE → S → SW → W → NW)
+        // that isn't the attacker themselves. Null if none found or if
+        // zone/position lookup fails.
+        private static Entity FindAdjacentCleaveTarget(Entity defender,
+            Entity attacker, Zone zone)
+        {
+            if (zone == null) return null;
+            var defPos = zone.GetEntityPosition(defender);
+            if (defPos.x < 0) return null;
+
+            for (int dir = 0; dir < 8; dir++)
             {
                 var cell = zone.GetCellInDirection(defPos.x, defPos.y, dir);
                 if (cell == null) continue;
@@ -294,14 +325,10 @@ namespace CavesOfOoo.Core
                     var e = cell.Objects[i];
                     if (e == null || e == attacker || e == defender) continue;
                     if (!e.Tags.ContainsKey("Creature")) continue;
-                    cleaveTarget = e;
-                    break;
+                    return e;
                 }
             }
-            if (cleaveTarget == null) return;
-
-            int cleaveDamage = System.Math.Max(1, actualDamage / 2);
-            CombatSystem.ApplyDamage(cleaveTarget, cleaveDamage, attacker, zone);
+            return null;
         }
 
         // LongBlades_Lacerate: same shape as Cudgel_Bludgeon but applies
@@ -367,36 +394,13 @@ namespace CavesOfOoo.Core
         }
 
         // AxeSkill on crit: force-cleave at 100% chance (no rng roll).
-        // Same adjacent-Creature lookup as TryAxeCleave; just executes
-        // the cleave unconditionally. Bails if zone is null or there's
-        // no adjacent Creature (a normal-game path: cleaving with no
-        // target connected just doesn't do anything).
+        // Delegates to the shared ExecuteCleave helper — same adjacency
+        // lookup + half-damage shape as TryAxeCleave, just bypasses the
+        // dice gate. Cold-eye 🧪 #4 (WSP.4b) extraction.
         private static void ApplyAxeCritCleave(int actualDamage, Entity defender,
             Entity attacker, Zone zone)
         {
-            if (zone == null) return;
-
-            var defPos = zone.GetEntityPosition(defender);
-            if (defPos.x < 0) return;
-
-            Entity cleaveTarget = null;
-            for (int dir = 0; dir < 8 && cleaveTarget == null; dir++)
-            {
-                var cell = zone.GetCellInDirection(defPos.x, defPos.y, dir);
-                if (cell == null) continue;
-                for (int i = 0; i < cell.Objects.Count; i++)
-                {
-                    var e = cell.Objects[i];
-                    if (e == null || e == attacker || e == defender) continue;
-                    if (!e.Tags.ContainsKey("Creature")) continue;
-                    cleaveTarget = e;
-                    break;
-                }
-            }
-            if (cleaveTarget == null) return;
-
-            int cleaveDamage = System.Math.Max(1, actualDamage / 2);
-            CombatSystem.ApplyDamage(cleaveTarget, cleaveDamage, attacker, zone);
+            ExecuteCleave(actualDamage, defender, attacker, zone);
         }
 
         // LongBladesSkill on crit: force Bleeding with stronger dice
