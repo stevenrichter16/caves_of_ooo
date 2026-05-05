@@ -211,8 +211,146 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
-        // WS.3-5 — additional skills' tests fill in here.
+        // WS.3 — Axe_Cleave: Axe-class hit + skill owned →
+        // AXE_CLEAVE_CHANCE_PERCENT (30%) chance to deal max(1, actualDamage/2)
+        // damage to one Creature entity adjacent to defender (excluding
+        // attacker). Picks first creature in direction-iteration order
+        // (N → NE → E → SE → S → SW → W → NW).
         // ====================================================================
+
+        [Test]
+        public void AxeHit_WithCleaveOwned_HasChance_ToDamageAdjacent()
+        {
+            // Positive: across many seeds, the 30% roll lands at least once.
+            // P(no observation in 100 tries at 30%) ≈ 3.2e-16. Loop tightly bounded.
+            bool observed = false;
+            for (int seed = 0; seed < 100 && !observed; seed++)
+            {
+                var (zone, defender, cleaveTarget, attacker) = MakeCleaveScenario();
+                int targetHpBefore = cleaveTarget.GetStatValue("Hitpoints");
+
+                var damage = new Damage(20);
+                damage.AddAttribute("Cutting");
+                damage.AddAttribute("Axe");
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 20,
+                    defender, attacker, zone, rng: new Random(seed));
+
+                int targetHpAfter = cleaveTarget.GetStatValue("Hitpoints");
+                if (targetHpAfter < targetHpBefore) observed = true;
+            }
+            Assert.IsTrue(observed,
+                $"Across 100 seeds, an Axe-attribute hit by a Cleave-trained " +
+                $"attacker should sometimes damage the adjacent Creature " +
+                $"(chance {OnHitSkillEffects.AXE_CLEAVE_CHANCE_PERCENT}%). " +
+                $"None observed — chance gate or adjacency lookup is broken.");
+        }
+
+        [Test]
+        public void AxeHit_WithoutCleaveOwned_NeverDamagesAdjacent()
+        {
+            // Counter-check: same setup, but attacker doesn't own Axe_Cleave.
+            // No skill branch should fire; adjacent target should never lose HP.
+            for (int seed = 0; seed < 100; seed++)
+            {
+                var (zone, defender, cleaveTarget, attacker) = MakeCleaveScenario(skipSkill: true);
+                int targetHpBefore = cleaveTarget.GetStatValue("Hitpoints");
+
+                var damage = new Damage(20);
+                damage.AddAttribute("Cutting");
+                damage.AddAttribute("Axe");
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 20,
+                    defender, attacker, zone, rng: new Random(seed));
+
+                int targetHpAfter = cleaveTarget.GetStatValue("Hitpoints");
+                Assert.AreEqual(targetHpBefore, targetHpAfter,
+                    $"Seed {seed}: actor without Axe_Cleave must never damage " +
+                    $"adjacent Creature via this hook — gating on SkillsPart.HasSkill is broken.");
+            }
+        }
+
+        [Test]
+        public void NonAxeHit_WithCleaveOwned_NeverDamagesAdjacent()
+        {
+            // Counter-check on attribute side: Cleave skill owned, but
+            // damage doesn't carry "Axe" sub-class (e.g. plain Cutting +
+            // LongBlades from a LongSword). Skill must gate on
+            // damage.HasAttribute("Axe") so a LongSword swing doesn't cleave.
+            for (int seed = 0; seed < 100; seed++)
+            {
+                var (zone, defender, cleaveTarget, attacker) = MakeCleaveScenario();
+                int targetHpBefore = cleaveTarget.GetStatValue("Hitpoints");
+
+                var damage = new Damage(20);
+                damage.AddAttribute("Cutting");
+                damage.AddAttribute("LongBlades");  // not Axe
+
+                OnHitSkillEffects.Apply(damage, actualDamage: 20,
+                    defender, attacker, zone, rng: new Random(seed));
+
+                int targetHpAfter = cleaveTarget.GetStatValue("Hitpoints");
+                Assert.AreEqual(targetHpBefore, targetHpAfter,
+                    $"Seed {seed}: Cutting/LongBlades damage must not cleave — " +
+                    $"Axe_Cleave must gate on the Axe sub-class attribute.");
+            }
+        }
+
+        [Test]
+        public void AxeCleave_WithNoAdjacent_NoOps_StillSucceedsRoll()
+        {
+            // Edge case: skill owned + Axe attribute + roll passes, but
+            // no adjacent Creature exists. The cleave roll succeeds but
+            // no damage is applied (silent no-op rather than NRE). Without
+            // this, sparse zones would crash on every successful Cleave roll.
+            for (int seed = 0; seed < 50; seed++)
+            {
+                var zone = new Zone();
+                var defender = MakeFighter();
+                var attacker = MakeAttackerWithSkill(nameof(Axe_Cleave));
+                zone.AddEntity(attacker, 5, 5);
+                zone.AddEntity(defender, 6, 5);
+                // Note: NO adjacent Creature to defender.
+
+                var damage = new Damage(20);
+                damage.AddAttribute("Cutting");
+                damage.AddAttribute("Axe");
+
+                Assert.DoesNotThrow(() =>
+                    OnHitSkillEffects.Apply(damage, actualDamage: 20,
+                        defender, attacker, zone, rng: new Random(seed)),
+                    $"Seed {seed}: cleave with no adjacent target must no-op silently.");
+            }
+        }
+
+        // ====================================================================
+        // WS.4-5 — additional skills' tests fill in here.
+        // ====================================================================
+
+        // Helper: build a 3-entity scene for cleave tests.
+        // Layout (zone coords; player at center cleaves to NE adjacent):
+        //   . . .
+        //   . D T   ← defender at (6,5), cleave target at (7,5)
+        //   . A .   ← attacker at (5,6) — diagonal to defender
+        //
+        // The cleave-target T is adjacent to defender D in direction E (idx 2).
+        // First-found-Creature-in-direction-order picks T deterministically.
+        private static (Zone zone, Entity defender, Entity cleaveTarget, Entity attacker)
+            MakeCleaveScenario(bool skipSkill = false)
+        {
+            var zone = new Zone();
+            var defender = MakeFighter();
+            var cleaveTarget = MakeFighter();
+            cleaveTarget.ID = "cleaveTarget";
+            var attacker = skipSkill ? MakeAttacker() : MakeAttackerWithSkill(nameof(Axe_Cleave));
+            attacker.Tags["Creature"] = "";  // so attacker is excluded from cleave-pick correctly
+
+            zone.AddEntity(attacker, 5, 6);
+            zone.AddEntity(defender, 6, 5);
+            zone.AddEntity(cleaveTarget, 7, 5);
+
+            return (zone, defender, cleaveTarget, attacker);
+        }
 
         // ─────────────────────────────────────────────────────────────────
         // Test fixtures

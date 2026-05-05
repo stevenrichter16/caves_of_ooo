@@ -49,6 +49,13 @@ namespace CavesOfOoo.Core
         public const int CUDGEL_BLUDGEON_CHANCE_PERCENT = 35;
         public const int CUDGEL_BLUDGEON_DURATION = 3;
 
+        // Axe_Cleave (WS.3): Axe-class hit → chance to swing through
+        // to one adjacent Creature for half the original damage.
+        // Picks the first Creature in direction-iteration order
+        // (N → NE → E → SE → S → SW → W → NW) — deterministic so
+        // seeded tests can pin the target.
+        public const int AXE_CLEAVE_CHANCE_PERCENT = 30;
+
         /// <summary>
         /// Apply skill-driven on-hit effects. Same contract as
         /// <see cref="OnHitClassEffects.Apply"/>: short-circuits if any
@@ -94,7 +101,17 @@ namespace CavesOfOoo.Core
                 TryCudgelBludgeon(defender, attacker, zone, rng);
             }
 
-            // (additional skill branches added in WS.3-5)
+            // Axe_Cleave (WS.3): Axe-attribute hit → chance to deal
+            // half-damage to one adjacent Creature. Different shape from
+            // a status apply: this damages a SECOND entity (the cleave
+            // victim) rather than re-rolling effects on the defender.
+            if (skills.HasSkill(nameof(Axe_Cleave))
+                && damage.HasAttribute("Axe"))
+            {
+                TryAxeCleave(actualDamage, defender, attacker, zone, rng);
+            }
+
+            // (additional skill branches added in WS.4-5)
         }
 
         // ─────────────────────────────────────────────────────────────────
@@ -109,6 +126,47 @@ namespace CavesOfOoo.Core
 
             var stun = new StunnedEffect(CUDGEL_BLUDGEON_DURATION);
             defender.ApplyEffect(stun, attacker, zone);
+        }
+
+        // Axe_Cleave: roll the chance gate; if it passes, find the first
+        // adjacent Creature (in direction-iteration order N → NE → E →
+        // SE → S → SW → W → NW) that isn't the attacker themselves, and
+        // damage it for max(1, actualDamage/2). Half-damage floor of 1
+        // ensures even a low-damage cleave is non-trivial.
+        //
+        // Bails silently if zone is null (no adjacency lookup possible),
+        // defender is not in the zone (position lookup returns -1), or
+        // no adjacent Creature exists. Each is a normal-game path —
+        // cleaving into empty space just doesn't connect, no error.
+        private static void TryAxeCleave(int actualDamage, Entity defender,
+            Entity attacker, Zone zone, Random rng)
+        {
+            if (zone == null) return;
+
+            int roll = rng.Next(100);
+            if (roll >= AXE_CLEAVE_CHANCE_PERCENT) return;
+
+            var defPos = zone.GetEntityPosition(defender);
+            if (defPos.x < 0) return;
+
+            Entity cleaveTarget = null;
+            for (int dir = 0; dir < 8 && cleaveTarget == null; dir++)
+            {
+                var cell = zone.GetCellInDirection(defPos.x, defPos.y, dir);
+                if (cell == null) continue;
+                for (int i = 0; i < cell.Objects.Count; i++)
+                {
+                    var e = cell.Objects[i];
+                    if (e == null || e == attacker || e == defender) continue;
+                    if (!e.Tags.ContainsKey("Creature")) continue;
+                    cleaveTarget = e;
+                    break;
+                }
+            }
+            if (cleaveTarget == null) return;
+
+            int cleaveDamage = System.Math.Max(1, actualDamage / 2);
+            CombatSystem.ApplyDamage(cleaveTarget, cleaveDamage, attacker, zone);
         }
     }
 }
