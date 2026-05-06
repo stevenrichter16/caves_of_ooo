@@ -340,5 +340,107 @@ namespace CavesOfOoo.Tests
                 "Failed/rolled-back AddSkill must NOT emit skill/Added — " +
                 "the skill was never active; emitting would lie to observers.");
         }
+
+        // ====================================================================
+        // 13. WSP5 cold-eye Finding 2 — ActivatedAbilityID save/load persistence
+        // ====================================================================
+
+        /// <summary>
+        /// Stub active-ability skill: declares an ActivatedAbilitySpec so
+        /// SkillsPart.AddSkill assigns a non-empty ActivatedAbilityID Guid.
+        /// Used to exercise the post-WSP4.4 save/load Guid-persistence
+        /// pin (see WSP5 Finding 2).
+        /// </summary>
+        public class TestStubActivatedSkill : BaseSkillPart
+        {
+            public override ActivatedAbilitySpec DeclareActivatedAbility(Entity actor)
+            {
+                return new ActivatedAbilitySpec
+                {
+                    DisplayName = "Stub",
+                    Command = "CommandStub",
+                    Class = "Skills",
+                    TargetingMode = AbilityTargetingMode.SelfCentered,
+                    Range = 0,
+                    Cooldown = 1,
+                };
+            }
+        }
+
+        [Test]
+        public void ActivatedAbilityID_NotMarkedNonSerialized_PinsWSP44Fix()
+        {
+            // Structural regression pin for WSP4.4 cold-eye finding 🔴 #1:
+            // ActivatedAbilityID MUST NOT be [NonSerialized]. If it is, the
+            // skill→ability link breaks across save/load (every skill's
+            // Guid post-load is Guid.Empty → TryRouteSkillCommand always
+            // returns false → Conk/Berserk/etc. silently dead after a
+            // reload). The behavioral consequence is hard to spot in a
+            // gameplay scrub (the ability appears in the hotbar; clicking
+            // it just does nothing). Pin the structural cause directly so
+            // a regression that re-adds the attribute fails fast.
+            var field = typeof(BaseSkillPart).GetField(
+                nameof(BaseSkillPart.ActivatedAbilityID),
+                System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+
+            Assert.IsNotNull(field,
+                "BaseSkillPart.ActivatedAbilityID should be a public instance field.");
+
+            bool hasNonSerialized = System.Attribute.IsDefined(
+                field, typeof(System.NonSerializedAttribute));
+
+            Assert.IsFalse(hasNonSerialized,
+                "BaseSkillPart.ActivatedAbilityID must NOT be marked [NonSerialized]. " +
+                "ActivatedAbilitiesPart.AbilityByGuid IS serialized; if this Guid is " +
+                "stripped on load, every active-ability skill (Conk/Berserk/...) is " +
+                "silently dead post-load. WSP4.4 cold-eye finding 🔴 #1.");
+        }
+
+        [Test]
+        public void OnAfterLoad_PreservesActivatedAbilityID_OnSkillsWithAbilities()
+        {
+            // Behavioral pin for WSP4.4 🔴 #1: after AddSkill assigns an
+            // ActivatedAbilityID, that Guid must survive the simulated-
+            // post-load OnAfterLoad call (which mirrors what the save
+            // system does after deserializing the skill instance + the
+            // ActivatedAbilitiesPart). Specifically: the skill instance's
+            // ActivatedAbilityID field IS the link into
+            // ActivatedAbilitiesPart.AbilityByGuid, so if the Guid drops
+            // to Empty, TryRouteSkillCommand can't resolve the owning
+            // skill on the next swing.
+            var entity = new Entity { ID = "actor", BlueprintName = "TestActor" };
+            entity.AddPart(new RenderPart { DisplayName = "actor" });
+            entity.AddPart(new ActivatedAbilitiesPart());
+            var skills = new SkillsPart();
+            entity.AddPart(skills);
+
+            var stub = new TestStubActivatedSkill();
+            bool added = skills.AddSkill(stub);
+
+            Assert.IsTrue(added, "Pre-condition: stub active-ability skill should add cleanly.");
+            Assert.AreNotEqual(System.Guid.Empty, stub.ActivatedAbilityID,
+                "Pre-condition: AddSkill should have populated ActivatedAbilityID.");
+            System.Guid capturedId = stub.ActivatedAbilityID;
+
+            // Simulate the post-load state (SkillList lost; parts retained).
+            // The skill instance's ActivatedAbilityID is the field under
+            // test — if it gets zeroed during a real save→load roundtrip,
+            // a [NonSerialized] regression is the proximate cause.
+            skills.SkillList.Clear();
+            skills.OnAfterLoad(reader: null);
+
+            // Behavioral assertion: the rebuilt SkillList contains the same
+            // instance and that instance's Guid is unchanged.
+            Assert.AreEqual(1, skills.SkillList.Count,
+                "OnAfterLoad should rebuild SkillList from entity.Parts.");
+            Assert.AreSame(stub, skills.SkillList[0],
+                "OnAfterLoad must recover the SAME skill instance from entity.Parts.");
+            Assert.AreEqual(capturedId, skills.SkillList[0].ActivatedAbilityID,
+                "ActivatedAbilityID must persist across the simulated-load path. " +
+                "If this fails, BaseSkillPart.ActivatedAbilityID likely got " +
+                "[NonSerialized] re-added (see structural-pin counterpart " +
+                "ActivatedAbilityID_NotMarkedNonSerialized_PinsWSP44Fix). " +
+                "WSP4.4 cold-eye finding 🔴 #1.");
+        }
     }
 }

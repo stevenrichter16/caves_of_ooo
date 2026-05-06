@@ -6,11 +6,16 @@ using CavesOfOoo.Skills;
 namespace CavesOfOoo.Tests
 {
     /// <summary>
-    /// WSP4.4 — Tree-root crit-hook tests for LongBladesSkill,
-    /// ShortBladesSkill, and LongBlades_Expertise. Closes the cold-eye
-    /// 🧪 #8 gap (the WSP3.4 / WSP4.0 fixtures covered Cudgel + Axe
-    /// tree-root crits but skipped LongBlades + ShortBlades) and
-    /// covers the new LongBlades_Expertise added in WSP4.4 (🔵 #5).
+    /// WSP4.4 — Tree-root crit-hook tests for LongBladesSkill and
+    /// ShortBladesSkill. Closes the cold-eye 🧪 #8 gap (the WSP3.4 /
+    /// WSP4.0 fixtures covered Cudgel + Axe tree-root crits but
+    /// skipped LongBlades + ShortBlades).
+    ///
+    /// <para>Also includes WSP4.5 defense-in-depth Critical-gate
+    /// counter-checks (Cudgel + Axe non-Critical hits don't fire) and
+    /// WSP4.4 🧪 #9 Cudgel_Hammer Body-but-no-equipped no-op coverage.
+    /// LongBlades_Expertise tests moved to SkillSystemTier2Tests.cs in
+    /// WSP5.1 alongside the other 3 Expertise tests (cold-eye Finding 5).</para>
     /// </summary>
     public class SkillTreeRootCritTests
     {
@@ -267,29 +272,10 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        // ════════════════════════════════════════════════════════════════
-        // LongBlades_Expertise: +2 to-hit when wielding LongBlades
-        // ════════════════════════════════════════════════════════════════
-
-        [Test]
-        public void LongBladesExpertise_WithLongBladesWeapon_AddsHitBonus()
-        {
-            var actor = MakeAttackerWithSkill(new LongBlades_Expertise());
-            var weapon = MakeWeapon("Cutting LongBlades");
-            Assert.AreEqual(LongBlades_Expertise.HIT_BONUS,
-                SkillEventDispatcher.GetSkillHitModifier(actor, weapon),
-                "LongBlades_Expertise must contribute HIT_BONUS when weapon has LongBlades attribute.");
-        }
-
-        [Test]
-        public void LongBladesExpertise_WithNonLongBladesWeapon_NoBonus()
-        {
-            var actor = MakeAttackerWithSkill(new LongBlades_Expertise());
-            var weapon = MakeWeapon("Cutting Axe");
-            Assert.AreEqual(0,
-                SkillEventDispatcher.GetSkillHitModifier(actor, weapon),
-                "LongBlades_Expertise must NOT contribute when weapon is Axe-class (not LongBlades).");
-        }
+        // (LongBlades_Expertise tests moved to SkillSystemTier2Tests.cs
+        // alongside the other 3 Expertise tests in WSP5.1 — see cold-eye
+        // Finding 5. The +to-hit Expertise group lives in the Tier-2
+        // passives fixture, not the tree-root crit-hooks fixture.)
 
         // ════════════════════════════════════════════════════════════════
         // Cold-eye 🧪 #9 — Cudgel_Hammer Body-but-no-equipped distinct path
