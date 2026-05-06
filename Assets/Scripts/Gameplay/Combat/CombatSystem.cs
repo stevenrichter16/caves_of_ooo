@@ -215,9 +215,15 @@ namespace CavesOfOoo.Core
             // Legacy weapons with MaxStrengthBonus = -1 (uncapped sentinel) get a
             // sane large value to avoid integer overflow in the bonus-decay loop.
             int strMod = StatUtils.GetModifier(attacker, statName);
-            int bonus = strMod + penBonus;
+            // WSP6.6 — Skill pen-bonus hook. Mirrors the to-hit hook
+            // (line 172). Sums OnGetPenetrationModifier across all owned
+            // skills; ShortBlades_Puncture returns +2 here when the
+            // wielded weapon has the Piercing attribute.
+            int skillPenBonus = CavesOfOoo.Skills.SkillEventDispatcher
+                .GetSkillPenetrationModifier(attacker, weapon);
+            int bonus = strMod + penBonus + skillPenBonus;
             int effectiveMaxStrBonus = (maxStrBonus < 0) ? LEGACY_UNCAPPED_MAX_STR_BONUS : maxStrBonus;
-            int maxBonus = effectiveMaxStrBonus + penBonus;
+            int maxBonus = effectiveMaxStrBonus + penBonus + skillPenBonus;
             int av = hitPart != null ? GetPartAV(defender, hitPart) : GetAV(defender);
 
             // Phase D: critical hits (nat-20). Mirror Qud's Combat.cs:1106-1140 —

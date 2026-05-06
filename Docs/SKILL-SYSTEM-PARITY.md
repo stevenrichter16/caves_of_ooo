@@ -184,12 +184,13 @@ scenario. Expected final test count: ~150+ EditMode tests passing.
 | WSP4.6 | `b453244` | Symmetry sweep across 22 skill files + 5 JSON content files. **Found:** Expertise group fully symmetric (now 4); on-hit-proc group symmetric except Axe_Cleave's intentional Zone-vs-Defender guard divergence; tree-root crit group symmetric; active-ability + on-miss groups follow expected per-semantic shapes; JSON cost split (Acrobatics 100/50 vs weapon-trees 1 SP) confirmed intentional + now documented above. | n/a |
 | WSP5    | `7dcfdbe` (merge) | Round-2 cold-eye on the WSP4 round (5 commits). Closed 5 findings: 🔴 LongBlades_Expertise reclassified as CoO-original Extension (Qud has no LongBlades_Expertise — verified via `find qud-decompiled-project -name "*Expertise*"`); 🟡 OnAfterLoad Guid-persistence test added (structural reflection + behavioral); 🟡 SKILL-SYSTEM-PARITY.md "+to-hit passives" count corrected (3→4); 🧪 AUTHORING-SKILLS.md Pattern 3 null-guard comment fixed (on-miss skills don't use chained `ctx?.Damage`); ⚪ LongBlades_Expertise tests relocated from CritTests to Tier2Tests. Two borderline doc-drift items also fixed (SkillCombatHelpers ShortBlades_Hobble active-version reference; BaseSkillPart forward-reference camelcase). | +4 |
 | WSP6.0  | (this commit) | Tier-3 plan section: Qud catalog gap survey, port-priority ranking by complexity (🟢/🟡/🔴), WSP6 candidate ordering. Stance-batch (LongBladesCore + 6 skills) deferred to WSP7+. | n/a |
-| WSP6.1  | (this commit) | Ship `Cudgel_Slam` — first Tier-3 active-ability port. Adjacent target pushed up to 3 cells in slam direction, blocked by solid (wall/creature/closed door). Wall hits roll bonus weapon damage and scale stun duration (1-4T). Mirrors Qud's `Cudgel_Slam.cs` mechanic family with simplified push semantics (no wall-destruction, no creature-chain — see plan §WSP6 candidates). 11 RED→GREEN tests + JSON content entry. | +1 |
+| WSP6.1  | `cef9fd3` (merge) | Ship `Cudgel_Slam` — first Tier-3 active-ability port. Adjacent target pushed up to 3 cells in slam direction, blocked by solid (wall/creature/closed door). Wall hits roll bonus weapon damage and scale stun duration (1-4T). Mirrors Qud's `Cudgel_Slam.cs` mechanic family with simplified push semantics (no wall-destruction, no creature-chain — see plan §WSP6 candidates). 12 RED→GREEN tests + JSON content entry. | +1 |
+| WSP6.6  | (this commit) | Ship `ShortBlades_Puncture` — first Tier-3 *passive* port + first new combat-event hook since the system shipped. Adds `OnGetPenetrationModifier` virtual to `BaseSkillPart` and `GetSkillPenetrationModifier` to `SkillEventDispatcher` per the §"Adding a new combat event" mechanical pattern. CombatSystem.PerformSingleAttack feeds the sum into both `bonus` and `maxBonus` for `RollPenetrations`. Puncture returns +2 when wielding a Piercing-attribute weapon. Mirrors Qud's `ShortBlades_Puncture` "AV - 2" mechanic (mathematically equivalent to "+2 pen bonus"). 9 RED→GREEN tests including a 200-seed statistical pin (with-Puncture deals strictly more total damage than without across the same RNG seeds) + JSON content entry. | +1 |
 
 **Final state of the skill SYSTEM:**
 
 - 5 trees registered (Acrobatics + 4 weapon classes)
-- 23 skill classes across all tiers (verified by `grep -l "class.*: BaseSkillPart" Skills/*.cs`):
+- 24 skill classes across all tiers (verified by `grep -l "class.*: BaseSkillPart" Skills/*.cs`):
   - 5 tree-roots (Acrobatics + 4 weapon classes)
   - 4 tree-root crit hooks (in the 4 weapon-class tree-root classes'
     `OnWeaponMadeCriticalHit`; AcrobaticsSkill is passive-only)
@@ -200,9 +201,11 @@ scenario. Expected final test count: ~150+ EditMode tests passing.
   - 4 +to-hit passives (Expertise × 4 weapon classes — including
     LongBlades_Expertise, the WSP4.4 CoO-original Extension; see §4.2
     classification rules)
+  - 1 +pen passive (ShortBlades_Puncture — shipped WSP6.6 with
+    the new `OnGetPenetrationModifier` hook)
   - 2 on-miss / on-dodge passives (Cudgel_Backswing, ShortBlades_Rejoinder)
   - 3 active abilities (Cudgel_Conk, Axe_Berserk, Cudgel_Slam — the
-    last shipped in WSP6.1 as the first Tier-3 batch port)
+    last two shipped in WSP6.1 as the first Tier-3 batch port)
   - 1 dodge passive (AcrobaticsDodgePower)
 - 5 new status effects shipped on top of CoO's effect machinery:
   Hobbled, ShatterArmor, Broken, Berserk (this ship), plus the
@@ -345,7 +348,15 @@ system, no ranged combat, no stance machine).
    Simplified-Qud port — Qud's wall-destruction + creature-chain
    variants deferred to v2 (need wall-AV system + chain-recursion
    semantics). 50T cooldown, requires Cudgel weapon equipped.
-2. ⏭️ **Axe_Decapitate** — finishing move active (next ship)
+2. ✅ **ShortBlades_Puncture** (shipped WSP6.6) — first Tier-3 passive
+   port. +2 penetration on every melee swing made with a Piercing-
+   attribute weapon. Required adding the new `OnGetPenetrationModifier`
+   hook (the first new combat virtual since the system shipped — the
+   §"Adding a new combat event" mechanical pattern is now exercised).
+   Match-classification per Qud's `ShortBlades_Puncture.cs`. The "AV - 2"
+   framing in Qud is mathematically equivalent to the "+2 pen" framing
+   in CoO; we use the latter because it's clearer at the call site.
+3. ⏭️ **Axe_Decapitate** — finishing move active (next ship)
 3. ⏭️ **Axe_Dismember** — crit-chance dismember passive
 4. ⏭️ **Axe_HookAndDrag** — pull-adjacent active
 5. ⏭️ **LongBladesDeathblow** — finishing move active
