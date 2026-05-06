@@ -12,6 +12,9 @@ namespace CavesOfOoo.Core
     {
         public override string DisplayName => "burning";
 
+        // WSP6.16 — TYPE_NEGATIVE backfill (see AcidicEffect.cs).
+        public override int GetEffectType() => TYPE_GENERAL | TYPE_NEGATIVE;
+
         public float Intensity;
         public Entity IgnitionSource;
         public System.Random Rng;

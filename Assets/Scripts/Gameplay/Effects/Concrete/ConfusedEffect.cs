@@ -8,6 +8,9 @@ namespace CavesOfOoo.Core
     {
         public override string DisplayName => "confused";
 
+        // WSP6.16 — TYPE_NEGATIVE backfill (see AcidicEffect.cs).
+        public override int GetEffectType() => TYPE_GENERAL | TYPE_NEGATIVE;
+
         private const int DV_PENALTY = 2;
         private const int AGI_PENALTY = 2;
 
