@@ -36,10 +36,10 @@ namespace CavesOfOoo.Tests
                 };
             }
 
-            public override void OnCommand(Entity actor)
+            public override void OnCommand(SkillEventContext ctx)
             {
                 OnCommandCount++;
-                LastCommandActor = actor;
+                LastCommandActor = ctx?.Attacker;
             }
         }
 

@@ -207,8 +207,13 @@ namespace CavesOfOoo.Skills
         /// implement the active behavior (e.g. Cudgel_Conk's targeted
         /// strike, Axe_Berserk's self-buff). The cooldown is applied
         /// by SkillsPart on successful invocation. Default no-op.
+        ///
+        /// <para>The context carries the actor as <see cref="SkillEventContext.Attacker"/>
+        /// (and as the Defender for self-buffs). Zone + Rng are
+        /// populated by the caller (input system or scenario test);
+        /// skills can use them for adjacency lookups, dice rolls, etc.</para>
         /// </summary>
-        public virtual void OnCommand(Entity actor)
+        public virtual void OnCommand(SkillEventContext ctx)
         {
         }
     }

@@ -231,7 +231,8 @@ namespace CavesOfOoo.Skills
         /// activation. Callers can use the bool to fall through to
         /// alternative dispatch paths (mutations, items, etc.).</para>
         /// </summary>
-        public bool TryRouteSkillCommand(string command)
+        public bool TryRouteSkillCommand(string command, Zone zone = null,
+            System.Random rng = null)
         {
             if (string.IsNullOrEmpty(command) || ParentEntity == null) return false;
             var abilities = ParentEntity.GetPart<ActivatedAbilitiesPart>();
@@ -249,7 +250,12 @@ namespace CavesOfOoo.Skills
                 // "still cooling down" message instead of "unknown command".
                 if (!ability.IsUsable) return false;
 
-                skill.OnCommand(ParentEntity);
+                var ctx = new SkillEventContext
+                {
+                    Attacker = ParentEntity, Defender = ParentEntity,
+                    Zone = zone, Rng = rng ?? new System.Random(),
+                };
+                skill.OnCommand(ctx);
 
                 // Apply cooldown after successful invocation. (If
                 // OnCommand wants to suppress the cooldown — e.g. on a

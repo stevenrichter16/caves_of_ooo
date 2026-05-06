@@ -66,5 +66,34 @@ namespace CavesOfOoo.Skills
             CombatSystem.ApplyDamage(target, cleaveDamage, attacker, zone);
             return true;
         }
+
+        /// <summary>
+        /// Returns the first equipped <see cref="MeleeWeaponPart"/> on
+        /// the actor whose Attributes string contains the given
+        /// substring (e.g. "Cudgel", "Axe", "Piercing"). Null if none
+        /// found. Used by active-ability skills (Cudgel_Conk,
+        /// Axe_Berserk, ShortBlades_Hobble's active version) to gate
+        /// command invocation on the right weapon being wielded.
+        /// </summary>
+        public static MeleeWeaponPart FindEquippedWeaponOfClass(
+            Entity actor, string requiredAttribute)
+        {
+            if (actor == null || string.IsNullOrEmpty(requiredAttribute)) return null;
+            var body = actor.GetPart<Body>();
+            if (body == null) return null;
+
+            MeleeWeaponPart found = null;
+            body.ForeachEquippedObject((item, bp) =>
+            {
+                if (found != null || item == null) return;
+                var w = item.GetPart<MeleeWeaponPart>();
+                if (w != null && !string.IsNullOrEmpty(w.Attributes)
+                    && w.Attributes.Contains(requiredAttribute))
+                {
+                    found = w;
+                }
+            });
+            return found;
+        }
     }
 }
