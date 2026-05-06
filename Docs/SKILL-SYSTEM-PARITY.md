@@ -185,18 +185,21 @@ scenario. Expected final test count: ~150+ EditMode tests passing.
 | WSP5    | `7dcfdbe` (merge) | Round-2 cold-eye on the WSP4 round (5 commits). Closed 5 findings: 🔴 LongBlades_Expertise reclassified as CoO-original Extension (Qud has no LongBlades_Expertise — verified via `find qud-decompiled-project -name "*Expertise*"`); 🟡 OnAfterLoad Guid-persistence test added (structural reflection + behavioral); 🟡 SKILL-SYSTEM-PARITY.md "+to-hit passives" count corrected (3→4); 🧪 AUTHORING-SKILLS.md Pattern 3 null-guard comment fixed (on-miss skills don't use chained `ctx?.Damage`); ⚪ LongBlades_Expertise tests relocated from CritTests to Tier2Tests. Two borderline doc-drift items also fixed (SkillCombatHelpers ShortBlades_Hobble active-version reference; BaseSkillPart forward-reference camelcase). | +4 |
 | WSP6.0  | (this commit) | Tier-3 plan section: Qud catalog gap survey, port-priority ranking by complexity (🟢/🟡/🔴), WSP6 candidate ordering. Stance-batch (LongBladesCore + 6 skills) deferred to WSP7+. | n/a |
 | WSP6.1  | `cef9fd3` (merge) | Ship `Cudgel_Slam` — first Tier-3 active-ability port. Adjacent target pushed up to 3 cells in slam direction, blocked by solid (wall/creature/closed door). Wall hits roll bonus weapon damage and scale stun duration (1-4T). Mirrors Qud's `Cudgel_Slam.cs` mechanic family with simplified push semantics (no wall-destruction, no creature-chain — see plan §WSP6 candidates). 12 RED→GREEN tests + JSON content entry. | +1 |
-| WSP6.6  | (this commit) | Ship `ShortBlades_Puncture` — first Tier-3 *passive* port + first new combat-event hook since the system shipped. Adds `OnGetPenetrationModifier` virtual to `BaseSkillPart` and `GetSkillPenetrationModifier` to `SkillEventDispatcher` per the §"Adding a new combat event" mechanical pattern. CombatSystem.PerformSingleAttack feeds the sum into both `bonus` and `maxBonus` for `RollPenetrations`. Puncture returns +2 when wielding a Piercing-attribute weapon. Mirrors Qud's `ShortBlades_Puncture` "AV - 2" mechanic (mathematically equivalent to "+2 pen bonus"). 9 RED→GREEN tests including a 200-seed statistical pin (with-Puncture deals strictly more total damage than without across the same RNG seeds) + JSON content entry. | +1 |
+| WSP6.6  | `d5a69b2` (merge) | Ship `ShortBlades_Puncture` — first Tier-3 *passive* port + first new combat-event hook since the system shipped. Adds `OnGetPenetrationModifier` virtual to `BaseSkillPart` and `GetSkillPenetrationModifier` to `SkillEventDispatcher` per the §"Adding a new combat event" mechanical pattern. CombatSystem.PerformSingleAttack feeds the sum into both `bonus` and `maxBonus` for `RollPenetrations`. Puncture returns +2 when wielding a Piercing-attribute weapon. Mirrors Qud's `ShortBlades_Puncture` "AV - 2" mechanic (mathematically equivalent to "+2 pen bonus"). 9 RED→GREEN tests including a 200-seed statistical pin (with-Puncture deals strictly more total damage than without across the same RNG seeds) + JSON content entry. | +1 |
+| WSP6.12 | (this commit) | Ship `Axe_Dismember` — Tier-3 passive that gives Axe-class hits a 3% chance per landed hit to force-dismember a random non-Mortal severable body part on the defender + apply BleedingEffect (saveTarget 35, "1d2"). Match port of Qud's `Axe_Dismember.cs:280-318`. Skips Mortal parts (head/heart) explicitly — that's `Axe_Decapitate`'s territory, deferred. Active version of the skill (the "CommandDismember" swing) is also deferred for v1. 7 RED→GREEN tests covering 5000-seed positive proc + 6 counter-checks (non-Axe / zero-damage / no-Body defender / null Defender / null Rng / Mortal-only candidates). | +1 |
 
 **Final state of the skill SYSTEM:**
 
 - 5 trees registered (Acrobatics + 4 weapon classes)
-- 24 skill classes across all tiers (verified by `grep -l "class.*: BaseSkillPart" Skills/*.cs`):
+- 25 skill classes across all tiers (verified by `grep -l "class.*: BaseSkillPart" Skills/*.cs`):
   - 5 tree-roots (Acrobatics + 4 weapon classes)
   - 4 tree-root crit hooks (in the 4 weapon-class tree-root classes'
     `OnWeaponMadeCriticalHit`; AcrobaticsSkill is passive-only)
-  - 8 power on-hit procs (`OnAttackerAfterAttack` overrides):
+  - 9 power on-hit procs (`OnAttackerAfterAttack` overrides):
     Cudgel_Bludgeon, Cudgel_Hammer, Cudgel_ShatteringBlows,
-    Axe_Cleave, LongBlades_Lacerate, ShortBlades_Jab,
+    Axe_Cleave, Axe_Dismember (shipped WSP6.12 — chance to
+    force-dismember non-Mortal limbs + Bleed),
+    LongBlades_Lacerate, ShortBlades_Jab,
     ShortBlades_Bloodletter, ShortBlades_Hobble
   - 4 +to-hit passives (Expertise × 4 weapon classes — including
     LongBlades_Expertise, the WSP4.4 CoO-original Extension; see §4.2
@@ -356,9 +359,18 @@ system, no ranged combat, no stance machine).
    Match-classification per Qud's `ShortBlades_Puncture.cs`. The "AV - 2"
    framing in Qud is mathematically equivalent to the "+2 pen" framing
    in CoO; we use the latter because it's clearer at the call site.
-3. ⏭️ **Axe_Decapitate** — finishing move active (next ship)
-3. ⏭️ **Axe_Dismember** — crit-chance dismember passive
-4. ⏭️ **Axe_HookAndDrag** — pull-adjacent active
+3. ✅ **Axe_Dismember** (shipped WSP6.12) — Tier-3 passive port. 3%
+   chance per Axe-attribute hit to force-dismember a random non-Mortal
+   severable body part + apply Bleeding (saveTarget 35, "1d2").
+   Match-classification per Qud's `Axe_Dismember.cs:280-318`. The
+   Mortal-skip branch reserves head/heart removal for the
+   `Axe_Decapitate` toggle (deferred). The active version of the
+   skill is also deferred — would be a Conk-shape swing with
+   force-dismember on hit.
+4. ⏭️ **Axe_Decapitate** — finishing-move toggle (redirects dismember
+   to Mortal parts; needs hook into CombatSystem.CheckCombatDismemberment
+   OR a new `BeforeDismember` event)
+5. ⏭️ **Axe_HookAndDrag** — pull-adjacent active
 5. ⏭️ **LongBladesDeathblow** — finishing move active
 6. ⏭️ **ShortBlades_Shank** — first-hit-of-turn passive
 7. ⏭️ **ShortBlades_Puncture** — pen-buff active
