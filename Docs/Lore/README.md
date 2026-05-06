@@ -9,8 +9,8 @@ The world's lore lives in three layers. Pick where you want to land.
 Start here. Plain English. No deep terms without a gloss.
 
 - **[Palimpsest_Primer.md](Palimpsest_Primer.md)** — what the world is,
-  in 250–500 words. The cataclysm, the two cosmic forces, the five
-  cultures, and the central choice.
+  in 250–500 words. The Overwriting, the two cosmic forces, the five
+  cultures plus the Sealhand Crusade, and the central choice.
 - **[Palimpsest_Glossary.md](Palimpsest_Glossary.md)** — every deep
   term in the corpus, with a plain-English label you can use instead.
   Reference, scanned not read.
@@ -44,6 +44,23 @@ the deep work.
 - **[Factions/SeahandCrusade.md](Factions/SeahandCrusade.md)** — the
   book-burners; forty years old and growing. *(v2 addition — the
   antagonist faction missing from v1.)*
+
+---
+
+---
+
+## World Design — Quest and ambient reference
+
+Working documents for quest designers and world-builders. Not player-
+facing surfaces; intended to be read before writing quests or ambient
+content.
+
+- **[Territories.md](Territories.md)** — faction territories as
+  countries: where each faction's land lies, who legitimately crosses
+  it and why, the six main trade routes, standing exceptions (where
+  one faction's people live inside another's land), active border
+  tensions between faction pairs, and notes for quest design. Start
+  here when writing any quest that crosses a faction border.
 
 ---
 
