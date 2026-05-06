@@ -163,10 +163,15 @@ namespace CavesOfOoo.Core
             string defenderName = defender.GetDisplayName();
             string srcTag = attackSourceDesc != null ? $" {attackSourceDesc}" : "";
 
-            // Hit roll: 1d20 + AgilityMod + HitBonus vs DV
+            // Hit roll: 1d20 + AgilityMod + HitBonus + SkillBonus vs DV
+            // WSP3.2: Skill-driven hit modifier. Sums OnGetToHitModifier
+            // across all of attacker's owned skills (Expertise contributes
+            // here in WSP3.4). Default 0 for skills that don't override.
             int hitRoll = DiceRoller.Roll(20, rng);
             int agilityMod = StatUtils.GetModifier(attacker, "Agility");
-            int totalHit = hitRoll + agilityMod + hitBonus;
+            int skillHitBonus = CavesOfOoo.Skills.SkillEventDispatcher
+                .GetSkillHitModifier(attacker, weapon);
+            int totalHit = hitRoll + agilityMod + hitBonus + skillHitBonus;
             int dv = GetDV(defender);
 
             bool naturalTwenty = hitRoll == 20;
@@ -179,6 +184,21 @@ namespace CavesOfOoo.Core
                 Cell defenderCell = zone.GetEntityCell(defender);
                 if (defenderCell != null)
                     AsciiFxBus.EmitParticle(zone, defenderCell.X, defenderCell.Y, '-', "&y", 0.15f);
+
+                // WSP3.2: fire miss-side skill events. Backswing
+                // (attacker-side) and Rejoinder (defender-side) override
+                // the matching virtual.
+                var missCtx = new CavesOfOoo.Skills.SkillEventContext
+                {
+                    Attacker = attacker, Defender = defender,
+                    Weapon = weapon, WeaponEntity = weapon?.ParentEntity,
+                    Damage = null, ActualDamage = 0,
+                    Zone = zone, Rng = rng,
+                };
+                CavesOfOoo.Skills.SkillEventDispatcher
+                    .AttackerMeleeMiss(attacker, missCtx);
+                CavesOfOoo.Skills.SkillEventDispatcher
+                    .DefenderAfterAttackMissed(defender, missCtx);
                 return;
             }
 
@@ -305,6 +325,28 @@ namespace CavesOfOoo.Core
                 // Reads attacker's SkillsPart and applies effects for any owned weapon-class powers.
                 // Stacks independently of class + weapon hooks above.
                 OnHitSkillEffects.Apply(damage, actualDamage, defender, attacker, zone, rng);
+
+                // WSP3.2: also fire the new per-skill virtual-override
+                // dispatcher (replaces OnHitSkillEffects.Apply once WSP3.3
+                // refactors the existing skills onto BaseSkillPart virtuals).
+                // Both run for now — virtuals default to no-op so no
+                // double-procs until WSP3.3 lands. The dispatcher fires
+                // AttackerAfterAttack universally + WeaponMadeCriticalHit
+                // only on Critical hits (mirrors Qud's tree-root crit hook).
+                var hitCtx = new CavesOfOoo.Skills.SkillEventContext
+                {
+                    Attacker = attacker, Defender = defender,
+                    Weapon = weapon, WeaponEntity = weapon?.ParentEntity,
+                    Damage = damage, ActualDamage = actualDamage,
+                    Zone = zone, Rng = rng,
+                };
+                CavesOfOoo.Skills.SkillEventDispatcher
+                    .AttackerAfterAttack(attacker, hitCtx);
+                if (damage.HasAttribute("Critical"))
+                {
+                    CavesOfOoo.Skills.SkillEventDispatcher
+                        .WeaponMadeCriticalHit(attacker, hitCtx);
+                }
 
                 // Check for combat dismemberment (only on survivors). Use
                 // actualDamage because the threshold formula is (damage / maxHP)
