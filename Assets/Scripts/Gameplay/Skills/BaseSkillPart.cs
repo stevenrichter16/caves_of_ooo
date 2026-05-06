@@ -167,5 +167,49 @@ namespace CavesOfOoo.Skills
         {
             return 0;
         }
+
+        // ─────────────────────────────────────────────────────────────────
+        // WSP3.5 — Activated-ability integration. Skills can declare a
+        // command (with cooldown + targeting) that gets registered on
+        // the actor's ActivatedAbilitiesPart automatically when the
+        // skill is added; cleaned up automatically when removed.
+        //
+        // Authoring an active-ability skill: subclass BaseSkillPart,
+        // override DeclareActivatedAbility to return a spec, override
+        // OnCommand to do the work. SkillsPart wires the lifecycle.
+        // ─────────────────────────────────────────────────────────────────
+
+        /// <summary>The Guid of this skill's registered activated ability,
+        /// if it declared one. <see cref="System.Guid.Empty"/> for
+        /// passive skills. Populated by
+        /// <see cref="SkillsPart.AddSkill(BaseSkillPart, string)"/> on
+        /// successful registration. NonSerialized — abilities re-register
+        /// on load via <see cref="SkillsPart.OnAfterLoad"/>.</summary>
+        [System.NonSerialized]
+        public System.Guid ActivatedAbilityID;
+
+        /// <summary>
+        /// Override to declare an activated ability. Return a non-null
+        /// <see cref="ActivatedAbilitySpec"/> to register on the actor's
+        /// <c>ActivatedAbilitiesPart</c>. Default returns null (passive
+        /// skill — no ability). Mirrors Qud's
+        /// <c>AddMyActivatedAbility(...)</c> call inside <c>AddSkill</c>.
+        /// </summary>
+        public virtual ActivatedAbilitySpec DeclareActivatedAbility(Entity actor)
+        {
+            return null;
+        }
+
+        /// <summary>
+        /// Invoked when the player (or AI) triggers this skill's
+        /// activated-ability command via
+        /// <see cref="SkillsPart.TryRouteSkillCommand"/>. Override to
+        /// implement the active behavior (e.g. Cudgel_Conk's targeted
+        /// strike, Axe_Berserk's self-buff). The cooldown is applied
+        /// by SkillsPart on successful invocation. Default no-op.
+        /// </summary>
+        public virtual void OnCommand(Entity actor)
+        {
+        }
     }
 }

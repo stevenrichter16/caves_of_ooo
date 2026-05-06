@@ -113,6 +113,31 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
+            // WSP3.5 — Activated-ability lifecycle. If the skill declares
+            // an ActivatedAbilitySpec, register it on the actor's
+            // ActivatedAbilitiesPart and stash the resulting Guid on the
+            // skill instance for later cleanup (see RemoveSkill).
+            // Passive skills return null from DeclareActivatedAbility;
+            // we silently skip them.
+            var spec = skill.DeclareActivatedAbility(ParentEntity);
+            if (spec != null && !string.IsNullOrEmpty(spec.Command))
+            {
+                var abilities = ParentEntity.GetPart<ActivatedAbilitiesPart>();
+                if (abilities != null)
+                {
+                    skill.ActivatedAbilityID = abilities.AddAbility(
+                        displayName: spec.DisplayName ?? skill.DisplayName,
+                        command: spec.Command,
+                        abilityClass: string.IsNullOrEmpty(spec.Class) ? "Skills" : spec.Class,
+                        targetingMode: spec.TargetingMode,
+                        range: spec.Range,
+                        sourceMutationClass: "");
+                    var entry = abilities.GetAbility(skill.ActivatedAbilityID);
+                    if (entry != null)
+                        entry.MaxCooldown = spec.Cooldown;
+                }
+            }
+
             EmitAddedDiag(skill, source);
             return true;
         }
@@ -168,11 +193,72 @@ namespace CavesOfOoo.Skills
             string displayName = skill.DisplayName;
 
             skill.RemoveSkill(ParentEntity);
+
+            // WSP3.5 — Activated-ability cleanup. If this skill registered
+            // an ability when it was added, drop it from the actor's
+            // ActivatedAbilitiesPart so the hotbar slot frees up and the
+            // command stops dispatching.
+            if (skill.ActivatedAbilityID != System.Guid.Empty)
+            {
+                var abilities = ParentEntity.GetPart<ActivatedAbilitiesPart>();
+                if (abilities != null)
+                    abilities.RemoveAbility(skill.ActivatedAbilityID);
+                skill.ActivatedAbilityID = System.Guid.Empty;
+            }
+
             SkillList.Remove(skill);
             ParentEntity.RemovePart(skill);
 
             EmitRemovedDiag(skillClass, displayName, cause);
             return true;
+        }
+
+        /// <summary>
+        /// WSP3.5 — Route an activated-ability command (e.g. "CommandConk")
+        /// to the owning skill's <see cref="BaseSkillPart.OnCommand"/>
+        /// override. Looks up the skill whose registered ability has a
+        /// matching <c>Command</c> string, checks usability (cooldown
+        /// elapsed), invokes <c>OnCommand</c>, and applies the cooldown.
+        ///
+        /// <para>Mirrors Qud's <c>CommandEvent</c> dispatch from
+        /// <c>InputManager</c> → <c>FireEvent</c> on the actor's parts;
+        /// here we centralize the lookup so the input layer doesn't need
+        /// to know which skill handles which command.</para>
+        ///
+        /// <para>Returns <c>true</c> if a skill consumed the command
+        /// (whether or not OnCommand succeeded internally); <c>false</c>
+        /// if no owned skill claims the command or its cooldown blocks
+        /// activation. Callers can use the bool to fall through to
+        /// alternative dispatch paths (mutations, items, etc.).</para>
+        /// </summary>
+        public bool TryRouteSkillCommand(string command)
+        {
+            if (string.IsNullOrEmpty(command) || ParentEntity == null) return false;
+            var abilities = ParentEntity.GetPart<ActivatedAbilitiesPart>();
+            if (abilities == null) return false;
+
+            for (int i = 0; i < SkillList.Count; i++)
+            {
+                var skill = SkillList[i];
+                if (skill == null || skill.ActivatedAbilityID == System.Guid.Empty) continue;
+                var ability = abilities.GetAbility(skill.ActivatedAbilityID);
+                if (ability == null || ability.Command != command) continue;
+
+                // Cooldown gate. Returning false here lets callers know
+                // the command was recognized but blocked — UI can show a
+                // "still cooling down" message instead of "unknown command".
+                if (!ability.IsUsable) return false;
+
+                skill.OnCommand(ParentEntity);
+
+                // Apply cooldown after successful invocation. (If
+                // OnCommand wants to suppress the cooldown — e.g. on a
+                // failed targeting popup — it can manually set
+                // ability.CooldownRemaining = 0 before returning.)
+                ability.CooldownRemaining = ability.MaxCooldown;
+                return true;
+            }
+            return false;
         }
 
         // ── Queries ──────────────────────────────────────────────────────
