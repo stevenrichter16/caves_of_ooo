@@ -175,7 +175,13 @@ scenario. Expected final test count: ~150+ EditMode tests passing.
 | WSP3.4 | `bed7bf6` | Ship 8 Tier-2 passive skills via new pattern: 3 Expertise (+to-hit), Hammer, ShatteringBlows, Hobble, Backswing, Rejoinder | +11 |
 | WSP3.5 | `9654586` | `BaseSkillPart` ActivatedAbility integration: `DeclareActivatedAbility` + `OnCommand` virtuals; `SkillsPart.AddSkill` auto-registers the ability + `RemoveSkill` cleans up; `TryRouteSkillCommand` routes commands with cooldown gate | +8 |
 | WSP3.6 | `2ffb017` | Ship 2 Tier-3 active abilities + new `BerserkEffect`: `Cudgel_Conk` (targeted strike + Stunned, 10T cd) + `Axe_Berserk` (self-buff +Str/-DV, 100T cd). `OnCommand` signature refactored to take `SkillEventContext` | +3 |
-| WSP3.7 | (this commit) | `Docs/AUTHORING-SKILLS.md` worked-examples guide; impl log + roadmap update | n/a |
+| WSP3.7 | `6a3381b` | `Docs/AUTHORING-SKILLS.md` worked-examples guide; impl log + roadmap update | n/a |
+| WSP4.0 | `3e8c80f` | Active-ability behavior tests (Conk/Berserk per-skill positives + guards) + recursion-guard pins for Backswing/Rejoinder | +7 |
+| WSP4.2 | `80e9822` | Cross-skill interaction tests: Hammer multi-equipment randomness, Hobbled+Berserk DV stacking, multi-Cudgel-on-same-hit, dispatcher class-gate counter-check | +5 |
+| WSP4.3 | (delegated) | Cold-eye agent reviewed all 22 skill files; 10 findings returned (1 🔴 + 3 🟡 + 3 🔵 + 2 🧪 + 1 ⚪) | n/a |
+| WSP4.4 | `61e257b` | Closed 7 cold-eye findings: drop `[NonSerialized]` on `ActivatedAbilityID` (🔴 #1 — save/load break); Conk RNG-fallback removal (🟡 #2); doc-contract on `TryRouteSkillCommand` fallback (🟡 #3); add `LongBlades_Expertise` (🔵 #5); inline comment on Conk Zone-asymmetry (🔵 #7); 8 new tree-root crit + Expertise tests (🧪 #8); Hammer Body-but-no-equipped distinct test (🧪 #9); doc-vs-impl null-guard idiom alignment (⚪ #10). Defense-in-depth: added `Critical` attribute checks to all 4 tree-root crit hooks. | +9 |
+| WSP4.5 | `4f84dbf` | Defense-in-depth symmetry: parallel non-Critical tests for CudgelSkill + AxeSkill (matching the LongBlades + ShortBlades pattern) | +2 |
+| WSP4.6 | (this commit) | Symmetry sweep across 22 skill files + 5 JSON content files. **Found:** Expertise group fully symmetric (now 4); on-hit-proc group symmetric except Axe_Cleave's intentional Zone-vs-Defender guard divergence; tree-root crit group symmetric; active-ability + on-miss groups follow expected per-semantic shapes; JSON cost split (Acrobatics 100/50 vs weapon-trees 1 SP) confirmed intentional + now documented above. | n/a |
 
 **Final state of the skill SYSTEM:**
 
@@ -207,6 +213,18 @@ shipped skill to use as a copy-template for each pattern.
 **Modifying an existing skill:** edit that skill's `.cs` file. No
 central dispatcher to update. Constants live in the owning class
 (e.g. `Cudgel_Bludgeon.CHANCE_PERCENT`).
+
+**SP-cost convention (intentional split, documented post-cold-eye):**
+- **Acrobatics tree** keeps Qud's actual SP cost (tree-root = 100,
+  Dodge power = 50) — Qud-parity for the original ST.5 ship.
+- **Weapon-class trees** (Cudgel / Axe / Long Blades / Short Blades)
+  use the user-requested "1 SP / no other requirement" cost for
+  every entry, per the WS.0 plan. This makes weapon skills
+  drastically cheaper than Acrobatics — by design — to incentivize
+  weapon specialization in the Tier 1 SP economy.
+The disparity is *not* a balance bug but a deliberate split between
+"Qud-parity Acrobatics" and "accessibility-tuned weapon trees."
+Future content can pick either tier.
 
 **Adding a new combat event** (if you need a hook the existing 5
 virtuals don't cover): add a new virtual on `BaseSkillPart`, add a
