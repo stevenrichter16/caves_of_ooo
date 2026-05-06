@@ -1,15 +1,58 @@
 # Starter NPCs
 
-> Seven young, ground-level faction-faces. The people a player would
+> Eight ground-level NPCs: seven faction-faces plus the village
+> quest-giver who introduces the world. The people a player would
 > meet *first* — not the elders, not the senior figures, not the
 > doctrine-makers. The shopkeepers, apprentices, foundlings, road-
-> walkers. Each is the door their faction opens.
+> walkers, and one retired surveyor waiting on a bench.
 >
 > **Status: Tier 1 introductions, not bible canon.** These NPCs are
 > *introduced by the surface*, not promoted from the audits. They
 > extrapolate from existing material but are not load-bearing on the
 > deeper corpus. Future audits or content commits may refine, replace,
 > or canonise any of them.
+
+---
+
+## Old Beren — The Lay Archivist (Reedhaven)
+
+**Faction.** None (retired Pale Curation; unaffiliated now).
+**First met.** Sitting on a low stone bench in front of his cottage on
+Reedhaven's south bank, watching the herons in the channel.
+
+Beren is in his late seventies — slight, dignified, with the careful
+hands of someone who did thirty years of precise work and now does small
+precise work. He was a Curation surveyor. He came home to
+**Reedhaven**, a marshy waterway village three days east of the
+Salt-Hinge, expecting to die quietly. He has not died. He is mildly
+annoyed about this.
+
+He keeps the village's only book — a hand-stitched volume of recipes,
+prayers, marsh-songs, and contracts going back a century — in his
+cottage's back room. The book is **incomplete**. Pages are missing.
+He has been waiting for someone to arrive who could go and find them.
+That is the player.
+
+He does not explain the whole world. He explains the problem in front
+of him: *four pages are missing. I know where three of them are. I am
+too old to walk the roads. You are not.* He gives the player a list,
+a letter of introduction to a Curation junior named A., and the first
+sweet-mark of his pension — formally placed in the palm, with a small
+bow.
+
+> *"Ah. You have come. Sit, traveller — the bench is dry today."*
+
+He does not ask who the player is. He was waiting for whoever came.
+His preferred greeting about the weather is accurate. He teaches the
+player to read marsh-rye stalks for water content — a kind of Echo
+Reading made plain. He tells you the missing pages matter *the way
+the village's hands matter to the village's body.*
+
+He is the Joppa equivalent. The Mehmet. The door into the world.
+
+**Status: introduced by v2 redesign (not yet load-bearing on the v1
+bible).** See [`v2/Opening.md`](../v2/Opening.md) for the full quest
+structure.
 
 ---
 
@@ -233,9 +276,11 @@ forgotten this conversation, but not the field-stone.
 
 ---
 
-*Tier-1 surface. Sub-milestone S4 of the simplification plan. Seven
-faction-faces, ~150–250 words each, ~1,750 words total.*
+*Tier-1 surface. Sub-milestone S4 of the simplification plan, extended
+by v2 incorporation. Eight NPCs: seven faction-faces (~150–250 words
+each) plus Old Beren the quest-giver.*
 
-*All seven NPCs are surface-introduced — extrapolated from existing
+*All eight NPCs are surface-introduced — extrapolated from existing
 audit material but not load-bearing on the bible. They are doors, not
-keystones.*
+keystones. Old Beren is a v2 invention; see `v2/Opening.md` for the
+full starter-village treatment.*

@@ -24,8 +24,8 @@
 
 | Deep term | Casual label | Notes |
 |---|---|---|
-| The cataclysm | The breaking | Four hundred years ago. The event that overwrote the old world imperfectly. |
-| The Severance / Dissolution / Burning / First Feeding / Temporal Unraveling | The breaking (six names) | Each faction calls it something different. The names disagree because the factions disagree on what happened. |
+| The cataclysm | The breaking / The Overwriting | Four hundred years ago. The event that overwrote the old world imperfectly. *The Overwriting* is the cross-faction everyday name (no one faction owns it); use it in narrative prose when you want a name all factions recognise. |
+| The Severance / Dissolution / Burning / First Feeding / Temporal Unraveling | The breaking (six faction names) | Each faction calls it something different. The names disagree because the factions disagree on what happened. All six coexist; none is official. |
 | The Long Between | The middle years | The six hundred years between the breaking and the present. Each faction counts them differently. |
 | The smoke-born | The smoke-born | The first generation born after the breaking — the twenty years of children no faction quite knows what to do with. (Already image-led; keep.) |
 | The thaw | The false dawn | A seventeen-year warming about eighty years after the breaking, when crops returned. It ended badly. |
@@ -83,7 +83,7 @@
 
 ---
 
-## §3 — The five human factions
+## §3 — The six human factions
 
 ### The Pale Curation
 
@@ -218,6 +218,21 @@
 | Unfired (child / sand / idea) | Unfired | The same word for a not-yet-named child, the raw material, and any uncommitted idea. Image-led; keep. |
 | Second-shape | Second-shape | A maker's mark identifying the artisan's order. There is **no first-shape** in any catalogue, anywhere — and yet the Curation has four warm vessels marked *first-shape* in its vault. |
 | Blanks | Blanks | Glassblown currency. Uninscribed, unfired grief-markers. |
+
+### The Sealhand Crusade
+
+*A v2 addition — not in the v1 bible. Surface canon only.*
+
+| Deep term | Casual label | Notes |
+|---|---|---|
+| The Sealhand Crusade | The Crusade / the book-burners | Forty years old. The faction that believes the Overwriting was incomplete and is trying to finish it. |
+| The Sealing | The sealing | The Sealhand's doctrine: all substrate-cracks sealed shut, all Choir tendrils cut, all readers stopped. |
+| The Sealmaster | Sealmaster | A Crusader who has sealed enough cracks to receive the title. Anointed with salt and ash. Two in the world today. |
+| Cold-coming | Cold-coming | The Ember Order's term for the Sealhand: a fire-less approach, incapable of keeping. |
+| Salting | Salting the soil | The Sealhand's practice of rendering Choir-grown soil permanently infertile with heavy salt. |
+| Iron-Hand Anselm | Anselm / Iron-Hand | The Crusade's leader. The fortieth Crusader; the first born after the Sealhand's founding. Lost his left hand to a Palimpsest reading at fifteen. |
+| Sealmaster Iro | Iro | The second Sealmaster. Former Curation surveyor. Runs the book-fires personally. |
+| The Burnt Houses | The strongholds / the ash-buildings | Three Sealhand fortified complexes in the northern flats, built on salted dead soil. |
 
 ---
 

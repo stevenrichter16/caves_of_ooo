@@ -33,13 +33,17 @@ the deep work.
 - **[Factions/BrineCommunion.md](Factions/BrineCommunion.md)** — the
   sea-people who carry the sea inland.
 - **[Factions/Thermoclaves.md](Factions/Thermoclaves.md)** — the
-  fire-keepers; the tenth fire tends itself.
+  fire-keepers (also called the Ember Order); the tenth fire tends
+  itself.
 - **[Factions/GlassblownRemnant.md](Factions/GlassblownRemnant.md)** —
   the silent glass-makers who refuse to make anything permanent.
 - **[Factions/RotChoir.md](Factions/RotChoir.md)** — the floor under
   your feet, awake and hungry.
 - **[Factions/ThePalimpsest.md](Factions/ThePalimpsest.md)** — the
   writing under the writing.
+- **[Factions/SeahandCrusade.md](Factions/SeahandCrusade.md)** — the
+  book-burners; forty years old and growing. *(v2 addition — the
+  antagonist faction missing from v1.)*
 
 ---
 
@@ -87,6 +91,15 @@ NPCs, and this index — *without* modifying the deep work. The deep
 work was preserved untouched; what was missing was a legible entrance.
 The simplification adds the entrance.
 
+The `v2/` redesign ([v2/README.md](v2/README.md)) went further: it
+rebuilt the world at *Caves of Qud's* level of accessibility — a
+single starter village (**Reedhaven**), a single quest-giver (**Old
+Beren**), and a new antagonist faction (**the Sealhand Crusade**).
+The strongest v2 inventions have been incorporated here (Sealhand
+faction page, Overwriting name, Ember Order alias, Old Beren NPC).
+The v2 directory remains as the full redesign for anyone who wants
+the playable-first framing.
+
 ---
 
 ## Conventions
@@ -107,21 +120,22 @@ The simplification adds the entrance.
 
 ```
 Docs/Lore/
-├── README.md                       ← you are here (S5)
+├── README.md                       ← you are here (S5, updated with v2 additions)
 ├── SIMPLIFICATION-PLAN.md          ← the plan that added Tier 1+2 surfaces
 │
-├── Palimpsest_Primer.md            ← Tier 1 surface (S2)
-├── Palimpsest_Glossary.md          ← Tier 1 reference (S1)
-├── StarterNPCs.md                  ← Tier 1 NPCs (S4)
+├── Palimpsest_Primer.md            ← Tier 1 surface (S2; updated: The Overwriting + Sealhand)
+├── Palimpsest_Glossary.md          ← Tier 1 reference (S1; updated: Overwriting + Sealhand entries)
+├── StarterNPCs.md                  ← Tier 1 NPCs (S4; updated: Old Beren added)
 │
 ├── Factions/                       ← Tier 2 (S3)
 │   ├── PaleCuration.md
 │   ├── SaccharineConcord.md
 │   ├── BrineCommunion.md
-│   ├── Thermoclaves.md
+│   ├── Thermoclaves.md             ← updated: Ember Order name added
 │   ├── GlassblownRemnant.md
 │   ├── RotChoir.md
-│   └── ThePalimpsest.md
+│   ├── ThePalimpsest.md
+│   └── SeahandCrusade.md          ← NEW (v2): the antagonist faction
 │
 ├── Palimpsest_Lore_Bible.md        ← Tier 3 canon
 ├── Palimpsest_Lore_Compendium.md   ← Tier 3 monolith

@@ -6,18 +6,17 @@
 
 ## What happened
 
-Four hundred years ago, the world broke.
-
-Not all at once, and not cleanly. The cataclysm overwrote the old world
-the way new writing overwrites a scraped page — the old letters still
-bleed through. Whole cities still half-exist; old roads still lead, *if
-you walk them at the right time of year*, to cities that fell before your
+Four hundred years ago, the world broke. Most people call it
+**the Overwriting** — the event that overwrote the old world the way
+new writing overwrites a scraped page, leaving the old letters bleeding
+through. Whole cities still half-exist; old roads still lead, *if you
+walk them at the right time of year*, to cities that fell before your
 great-grandmother was born.
 
-Six surviving factions remember the breaking in six different ways. They
-cannot agree even on how *long* it took. The disagreement is older than
-any of them and load-bearing — the world is held up, partly, by what is
-not settled.
+Six surviving factions remember the Overwriting in six different ways.
+They cannot agree even on how *long* it took. The disagreement is older
+than any of them and load-bearing — the world is held up, partly, by
+what is not settled.
 
 > *A palimpsest is a manuscript that's been scraped clean and written
 > over, with the older words still faintly visible. The world is named
@@ -47,11 +46,11 @@ preserves what the Choir digests. Neither is wrong. Both are right.
 
 ---
 
-## Five cultures
+## Five cultures — and one crusade
 
-Five human factions have organised themselves around the breaking. Each
-is its own tradition, with its own grammar and its own theory of what
-the world is *made of*.
+Five human factions have organised themselves around the Overwriting.
+Each is its own tradition, with its own grammar and its own theory of
+what the world is *made of*.
 
 - **The Pale Curation** — the archivists. They file every fragment of
   the past they can find, in a bureaucracy whose grammar has special
@@ -62,14 +61,23 @@ the world is *made of*.
 - **The Brine Communion** — the sea-people. They carry the sea inside
   them, even inland. Every body and every promise has, they teach, a
   still depth at which it would be perfectly *kept*.
-- **The Thermoclaves** — the fire-keepers. They tend nine fires. The
-  tenth tends itself, and is older than the camp.
+- **The Ember Order** — the fire-keepers (also called *the
+  Thermoclaves* in older liturgy). They tend nine fires. The tenth
+  tends itself, and is older than the camp.
 - **The Glassblown Remnant** — the silent glass-makers. They were
   burned, and now refuse to make anything permanent. They have a verb
   mood for sentences they choose not to finish.
 
 None of these grammars translate cleanly to each other. The factions
 write to each other anyway, awkwardly, in each other's voices.
+
+A sixth faction arrived forty years ago and changed everything:
+**the Sealhand Crusade** — book-burners and tendril-cutters who believe
+the Overwriting was incomplete, that the Choir and Palimpsest are both
+open wounds, and that the only cure is to seal the cracks shut. They
+recruit from loss and grow steadily. Every other faction now has a
+position toward them. The world was not at war forty years ago; it is
+slowly becoming one.
 
 ---
 
@@ -96,9 +104,9 @@ The lore is layered. Pick the layer that fits the time you have.
 
 - **Five minutes more.** [The Glossary](Palimpsest_Glossary.md) names
   every term you will meet, in plain language.
-- **Half an hour more.** Faction one-pagers (forthcoming in `Factions/`)
-  will unfold each of the five cultures, with people you might meet in
-  them.
+- **Half an hour more.** Faction one-pagers in `Factions/` unfold each
+  of the five cultures plus the Sealhand Crusade, with people you might
+  meet in them.
 - **Hours more.** The [Lore Bible](Palimpsest_Lore_Bible.md) is the
   canonical source. The [Compendium](Palimpsest_Lore_Compendium.md) is
   the editorial monolith — every audit's strongest material in one

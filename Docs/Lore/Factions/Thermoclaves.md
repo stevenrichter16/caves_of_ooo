@@ -1,4 +1,4 @@
-# The Thermoclaves
+# The Thermoclaves (Ember Order)
 
 > *The fire-keepers tend nine fires. The tenth tends itself.*
 
@@ -6,8 +6,10 @@
 
 ## What they are
 
-Fire-keepers. The Thermoclaves — *the fire-keepers* on first encounter
-— live in cohorts that maintain nine numbered fires continuously. Each
+Fire-keepers. The Thermoclaves — called **the Ember Order** in
+everyday speech, and *Thermoclaves* in older liturgy; they accept both
+names from outsiders without correction — live in cohorts that maintain
+nine numbered fires continuously. Each
 fire has a name, a tally, a temperament, and a keeper. Each cohort has
 a slate-soot register that is wiped at dawn, and a senior keeper who
 carries a small slate of strokes — one per day-of-keeping — forward
