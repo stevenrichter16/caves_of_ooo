@@ -74,6 +74,76 @@ namespace CavesOfOoo.Tests
         }
 
         // ════════════════════════════════════════════════════════════════
+        // CudgelSkill + AxeSkill: defense-in-depth Critical-attribute gate
+        // (parallel to the LongBlades + ShortBlades counter-checks below)
+        // ════════════════════════════════════════════════════════════════
+
+        [Test]
+        public void CudgelSkillCrit_OnNonCriticalCudgel_DoesNotStun()
+        {
+            // Defense-in-depth: even calling OnWeaponMadeCriticalHit
+            // directly with non-Critical damage must bail. The skill's
+            // own gate prevents leakage if the dispatcher ever
+            // accidentally fires WeaponMadeCriticalHit without a real crit.
+            for (int seed = 0; seed < 50; seed++)
+            {
+                var skill = new CudgelSkill();
+                var actor = MakeAttackerWithSkill(skill);
+                var defender = MakeFighter();
+                var damage = new Damage(10);
+                damage.AddAttribute("Cudgel");
+                // NO "Critical" attribute.
+                skill.OnWeaponMadeCriticalHit(new SkillEventContext
+                {
+                    Attacker = actor, Defender = defender,
+                    Damage = damage, ActualDamage = 10,
+                    Zone = null, Rng = new Random(seed),
+                });
+                Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<StunnedEffect>(),
+                    $"Seed {seed}: CudgelSkill.OnWeaponMadeCriticalHit must bail when " +
+                    $"the damage isn't Critical (defense-in-depth gate, WSP4.4).");
+            }
+        }
+
+        [Test]
+        public void AxeSkillCrit_OnNonCriticalAxe_DoesNotCleave()
+        {
+            // Defense-in-depth for the Axe tree-root cleave hook.
+            // Without a Zone, ExecuteCleave bails anyway, so we set up
+            // a minimal Zone with a viable cleave target and verify
+            // it's NOT damaged when Critical attribute is absent.
+            for (int seed = 0; seed < 50; seed++)
+            {
+                var skill = new AxeSkill();
+                var actor = MakeAttackerWithSkill(skill);
+                var defender = MakeFighter();
+                var cleaveTarget = MakeFighter();
+                cleaveTarget.ID = "cleave_target";
+                cleaveTarget.Statistics["Hitpoints"].BaseValue = 50;
+
+                var zone = new Zone();
+                zone.AddEntity(actor, 5, 5);
+                zone.AddEntity(defender, 6, 5);
+                zone.AddEntity(cleaveTarget, 7, 5);
+                int hpBefore = cleaveTarget.GetStatValue("Hitpoints");
+
+                var damage = new Damage(10);
+                damage.AddAttribute("Axe");
+                damage.AddAttribute("Cutting");
+                // NO "Critical".
+                skill.OnWeaponMadeCriticalHit(new SkillEventContext
+                {
+                    Attacker = actor, Defender = defender,
+                    Damage = damage, ActualDamage = 10,
+                    Zone = zone, Rng = new Random(seed),
+                });
+                Assert.AreEqual(hpBefore, cleaveTarget.GetStatValue("Hitpoints"),
+                    $"Seed {seed}: AxeSkill.OnWeaponMadeCriticalHit must bail when " +
+                    $"the damage isn't Critical — cleave-target HP must not change.");
+            }
+        }
+
+        // ════════════════════════════════════════════════════════════════
         // LongBladesSkill: force-Bleed on Critical LongBlades hit
         // ════════════════════════════════════════════════════════════════
 
