@@ -129,5 +129,38 @@ namespace CavesOfOoo.Skills
             }
             return total;
         }
+
+        /// <summary>
+        /// Returns the SUM of
+        /// <see cref="BaseSkillPart.OnGetPenetrationModifier"/> across all
+        /// owned skills. Used by
+        /// <see cref="CombatSystem.PerformSingleAttack"/> during the
+        /// penetration calculation — feeds into the <c>bonus</c> argument
+        /// of <see cref="CombatSystem.RollPenetrations"/> alongside the
+        /// Strength mod, weapon PenBonus, and crit pen bonus.
+        ///
+        /// <para>Mirrors the GetSkillHitModifier shape exactly. Added
+        /// alongside <see cref="BaseSkillPart.OnGetPenetrationModifier"/>
+        /// in WSP6.6 — the first new combat event added since the
+        /// initial system shipped, following the mechanical pattern
+        /// documented in <c>Docs/SKILL-SYSTEM-PARITY.md</c>
+        /// §"Adding a new combat event."</para>
+        /// </summary>
+        public static int GetSkillPenetrationModifier(Entity attacker,
+            MeleeWeaponPart weapon)
+        {
+            if (attacker == null) return 0;
+            var skills = attacker.GetPart<SkillsPart>();
+            if (skills == null) return 0;
+            var list = skills.SkillList;
+            int total = 0;
+            for (int i = 0; i < list.Count; i++)
+            {
+                var skill = list[i];
+                if (skill == null) continue;
+                total += skill.OnGetPenetrationModifier(attacker, weapon);
+            }
+            return total;
+        }
     }
 }

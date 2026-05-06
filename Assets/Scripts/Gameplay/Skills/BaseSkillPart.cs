@@ -168,6 +168,30 @@ namespace CavesOfOoo.Skills
             return 0;
         }
 
+        /// <summary>
+        /// Returns this skill's contribution to the attacker's
+        /// penetration bonus on melee swings. Summed across all owned
+        /// skills by <see cref="SkillEventDispatcher.GetSkillPenetrationModifier"/>.
+        /// <see cref="ShortBlades_Puncture"/> returns +2 here when the
+        /// wielded weapon has the Piercing attribute, mirroring Qud's
+        /// <c>ShortBlades_Puncture</c> "AV - 2" mechanic
+        /// (XRL.World.Parts.Skill/ShortBlades_Puncture.cs:18-23).
+        ///
+        /// <para>Default returns 0. Hook fires from
+        /// <see cref="CombatSystem.PerformSingleAttack"/> just before
+        /// <see cref="CombatSystem.RollPenetrations"/> — added to the
+        /// total <c>bonus</c> alongside Strength mod, weapon PenBonus,
+        /// and crit pen bonus. Uses the same shape as
+        /// <see cref="OnGetToHitModifier"/> per the §"Adding a new
+        /// combat event" mechanical pattern in
+        /// <c>Docs/SKILL-SYSTEM-PARITY.md</c>. Added in WSP6.6 to
+        /// support the first Tier-3 passive port.</para>
+        /// </summary>
+        public virtual int OnGetPenetrationModifier(Entity actor, MeleeWeaponPart weapon)
+        {
+            return 0;
+        }
+
         // ─────────────────────────────────────────────────────────────────
         // WSP3.5 — Activated-ability integration. Skills can declare a
         // command (with cooldown + targeting) that gets registered on
