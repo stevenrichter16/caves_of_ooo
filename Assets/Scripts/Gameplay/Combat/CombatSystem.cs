@@ -145,7 +145,7 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Perform a single melee attack with one weapon.
         /// </summary>
-        private static void PerformSingleAttack(Entity attacker, Entity defender,
+        public static void PerformSingleAttack(Entity attacker, Entity defender,
             MeleeWeaponPart weapon, bool isPrimary, Zone zone, Random rng,
             string attackSourceDesc = null)
         {
