@@ -161,3 +161,55 @@ Specific gates:
 Per sub-milestone: full skill-related test suite + compile zero errors.
 After WSP3.7: cold-eye delegation + manual playtest via the showcase
 scenario. Expected final test count: ~150+ EditMode tests passing.
+
+---
+
+## Implementation log (post-ship)
+
+| Sub-milestone | Commit | What shipped | Tests |
+|---|---|---|---|
+| WSP3.0 | `abdb2f5` | Plan to disk | n/a |
+| WSP3.1 | `c887a1e` | `SkillEventContext` + `SkillEventDispatcher` + 5 virtual hooks on `BaseSkillPart` (default no-op) | +7 |
+| WSP3.2 | `93ec5bf` | Wire `CombatSystem.PerformSingleAttack` to fire dispatcher events at 4 canonical points (post-damage, miss, crit, hit-bonus-sum). No behavior change yet | regression unchanged |
+| WSP3.3 | `9dfcdc7` | Refactor 9 existing skills onto virtuals; **delete** `OnHitSkillEffects.cs`. Each skill becomes one self-contained file. Test fixture migrated via `DispatchAttack` shim | regression unchanged |
+| WSP3.4 | `bed7bf6` | Ship 8 Tier-2 passive skills via new pattern: 3 Expertise (+to-hit), Hammer, ShatteringBlows, Hobble, Backswing, Rejoinder | +11 |
+| WSP3.5 | `9654586` | `BaseSkillPart` ActivatedAbility integration: `DeclareActivatedAbility` + `OnCommand` virtuals; `SkillsPart.AddSkill` auto-registers the ability + `RemoveSkill` cleans up; `TryRouteSkillCommand` routes commands with cooldown gate | +8 |
+| WSP3.6 | `2ffb017` | Ship 2 Tier-3 active abilities + new `BerserkEffect`: `Cudgel_Conk` (targeted strike + Stunned, 10T cd) + `Axe_Berserk` (self-buff +Str/-DV, 100T cd). `OnCommand` signature refactored to take `SkillEventContext` | +3 |
+| WSP3.7 | (this commit) | `Docs/AUTHORING-SKILLS.md` worked-examples guide; impl log + roadmap update | n/a |
+
+**Final state of the skill SYSTEM:**
+
+- 5 trees registered (Acrobatics + 4 weapon classes)
+- 22 skill classes across all tiers:
+  - 5 tree-roots
+  - 4 tree-root crit hooks (in the tree-root classes' `OnWeaponMadeCriticalHit`)
+  - 5 power on-hit procs (Bludgeon / Cleave / Lacerate / Jab / Bloodletter)
+  - 3 +to-hit passives (Expertise × 3 weapon classes)
+  - 3 advanced passives (Hammer, ShatteringBlows, Hobble passive)
+  - 2 on-miss / on-dodge passives (Backswing, Rejoinder)
+  - 2 active abilities (Conk, Berserk)
+- 5 new status effects shipped on top of CoO's effect machinery:
+  Hobbled, ShatterArmor, Broken, Berserk (this ship), plus the
+  existing Stunned/Bleeding/Confused/etc. consumed by the new skills
+- ~155+ EditMode tests passing (was 96 pre-WSP)
+
+**The system architecture mirrors Qud's** — each skill class is
+self-contained with `Register`/`HandleEvent`-style virtuals on
+`BaseSkillPart`, central `SkillEventDispatcher` routes events,
+active abilities declare via `DeclareActivatedAbility` exactly the
+way Qud's `AddMyActivatedAbility` works.
+
+**Authoring a new skill:** see `Docs/AUTHORING-SKILLS.md` —
+3 worked-example patterns (passive on-hit, on-miss/defender-side,
+active ability) + every available virtual hook documented + which
+shipped skill to use as a copy-template for each pattern.
+
+**Modifying an existing skill:** edit that skill's `.cs` file. No
+central dispatcher to update. Constants live in the owning class
+(e.g. `Cudgel_Bludgeon.CHANCE_PERCENT`).
+
+**Adding a new combat event** (if you need a hook the existing 5
+virtuals don't cover): add a new virtual on `BaseSkillPart`, add a
+new entry-point on `SkillEventDispatcher`, wire the call site.
+Pattern is mechanical — `WeaponMadeCriticalHit` is the most recent
+copy-template.
