@@ -432,10 +432,11 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static int GetAV(Entity entity)
         {
+            int totalAV;
             var body = entity.GetPart<Body>();
             if (body != null)
             {
-                int totalAV = 0;
+                totalAV = 0;
                 body.ForeachEquippedObject((item, bp) =>
                 {
                     var armor = item.GetPart<ArmorPart>();
@@ -447,12 +448,25 @@ namespace CavesOfOoo.Core
                 var naturalArmor = entity.GetPart<ArmorPart>();
                 if (naturalArmor != null)
                     totalAV += naturalArmor.AV;
-
-                return totalAV;
+            }
+            else
+            {
+                ArmorPart legacyArmor = GetEffectiveArmor(entity);
+                totalAV = legacyArmor?.AV ?? 0;
             }
 
-            ArmorPart legacyArmor = GetEffectiveArmor(entity);
-            return legacyArmor?.AV ?? 0;
+            // WSP2.1: ShatterArmorEffect subtracts AV per stack while active.
+            // Each stack contributes ShatterArmorEffect.AV_REDUCTION to the
+            // total reduction (Cudgel_ShatteringBlows applies one stack per proc).
+            // Clamp to non-negative — armor can be reduced to zero but not below.
+            var statusEffects = entity.GetPart<StatusEffectsPart>();
+            if (statusEffects != null)
+            {
+                var shatter = statusEffects.GetEffect<ShatterArmorEffect>();
+                if (shatter != null)
+                    totalAV -= ShatterArmorEffect.AV_REDUCTION * shatter.StackCount;
+            }
+            return System.Math.Max(0, totalAV);
         }
 
         /// <summary>
