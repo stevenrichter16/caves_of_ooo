@@ -107,5 +107,65 @@ namespace CavesOfOoo.Skills
         {
             return true;
         }
+
+        // ─────────────────────────────────────────────────────────────────
+        // WSP3 — Combat event hooks. Each override is the per-skill
+        // implementation of a Qud event. Default no-op; override only
+        // the events the skill cares about. Dispatched by
+        // <see cref="SkillEventDispatcher"/> from CombatSystem call sites.
+        //
+        // Authoring a new skill: subclass BaseSkillPart, override one or
+        // more of these virtuals. Read fields from the SkillEventContext;
+        // mutate state via the same paths the rest of CoO uses
+        // (Entity.ApplyEffect, CombatSystem.ApplyDamage, etc.).
+        // ─────────────────────────────────────────────────────────────────
+
+        /// <summary>
+        /// Fired AFTER a successful melee hit + damage application,
+        /// inside the survivor block (<c>hpAfter &gt; 0</c>). Most
+        /// per-skill on-hit procs (Cudgel_Bludgeon, LongBlades_Lacerate,
+        /// ShortBlades_Jab, ShortBlades_Bloodletter, Cudgel_Hammer,
+        /// Cudgel_ShatteringBlows, ShortBlades_Hobble) handle here.
+        /// Mirrors Qud's <c>"AttackerAfterAttack"</c> event.
+        /// </summary>
+        /// <param name="ctx">Event context — Attacker, Defender, Damage,
+        /// ActualDamage, Zone, Rng, Properties all populated.</param>
+        public virtual void OnAttackerAfterAttack(SkillEventContext ctx) { }
+
+        /// <summary>
+        /// Fired ONCE PER MISSED MELEE SWING, after the message is
+        /// logged. Cudgel_Backswing handles here for re-attack-on-miss.
+        /// Mirrors Qud's <c>"AttackerMeleeMiss"</c> event.
+        /// </summary>
+        public virtual void OnAttackerMeleeMiss(SkillEventContext ctx) { }
+
+        /// <summary>
+        /// Fired on the DEFENDER's skill list when an incoming attack
+        /// missed them. ShortBlades_Rejoinder handles here for free
+        /// counter-attacks. Mirrors Qud's <c>"DefenderAfterAttackMissed"</c>.
+        /// </summary>
+        public virtual void OnDefenderAfterAttackMissed(SkillEventContext ctx) { }
+
+        /// <summary>
+        /// Fired AFTER a critical hit lands. Tree-root skills typically
+        /// override this to apply their per-class crit effect (Cudgel:
+        /// stun, Axe: cleave, LongBlades: extra damage, ShortBlades: bleed).
+        /// Mirrors Qud's <c>WeaponMadeCriticalHit</c> virtual on tree-root
+        /// skill classes.
+        /// </summary>
+        public virtual void OnWeaponMadeCriticalHit(SkillEventContext ctx) { }
+
+        /// <summary>
+        /// Returns this skill's contribution to the attacker's to-hit
+        /// modifier. Summed across all owned skills by
+        /// <see cref="SkillEventDispatcher.GetSkillHitModifier"/>.
+        /// Cudgel_Expertise / Axe_Expertise / ShortBlades_Expertise return
+        /// +2/+2/+1 here when the wielded weapon matches their class.
+        /// Default returns 0. Mirrors Qud's <c>GetToHitModifierEvent</c>.
+        /// </summary>
+        public virtual int OnGetToHitModifier(Entity actor, MeleeWeaponPart weapon)
+        {
+            return 0;
+        }
     }
 }
