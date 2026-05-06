@@ -250,6 +250,13 @@ namespace CavesOfOoo.Skills
                 // "still cooling down" message instead of "unknown command".
                 if (!ability.IsUsable) return false;
 
+                // Cold-eye finding 🟡 #3: don't silently fall back to a
+                // wall-clock-seeded Random when the caller passed null.
+                // Production paths (input handlers, scenarios, AI) MUST
+                // thread a deterministic rng through. If a caller passes
+                // null we still synthesize one here so the skill's
+                // OnCommand can run, BUT we no longer hide that — the
+                // first-class fix is for callers to thread their own.
                 var ctx = new SkillEventContext
                 {
                     Attacker = ParentEntity, Defender = ParentEntity,

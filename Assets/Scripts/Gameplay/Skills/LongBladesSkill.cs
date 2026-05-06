@@ -24,7 +24,10 @@ namespace CavesOfOoo.Skills
 
         public override void OnWeaponMadeCriticalHit(SkillEventContext ctx)
         {
-            if (ctx?.Damage == null || !ctx.Damage.HasAttribute("LongBlades")) return;
+            if (ctx?.Damage == null) return;
+            // Defense-in-depth: only fire on actual crits.
+            if (!ctx.Damage.HasAttribute("Critical")) return;
+            if (!ctx.Damage.HasAttribute("LongBlades")) return;
             if (ctx.ActualDamage <= 0) return;
             if (ctx.Defender == null || ctx.Rng == null) return;
 

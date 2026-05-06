@@ -32,7 +32,14 @@ namespace CavesOfOoo.Skills
 
         public override void OnWeaponMadeCriticalHit(SkillEventContext ctx)
         {
-            if (ctx?.Damage == null || !ctx.Damage.HasAttribute("Cudgel")) return;
+            if (ctx?.Damage == null) return;
+            // Defense-in-depth: tree-root crit hooks should only fire
+            // on actual critical hits. CombatSystem.PerformSingleAttack
+            // already gates the dispatcher on damage.HasAttribute("Critical");
+            // checking again here makes the invariant explicit in the
+            // skill code and survives any dispatcher-level regression.
+            if (!ctx.Damage.HasAttribute("Critical")) return;
+            if (!ctx.Damage.HasAttribute("Cudgel")) return;
             if (ctx.ActualDamage <= 0) return;
             if (ctx.Defender == null || ctx.Rng == null) return;
 

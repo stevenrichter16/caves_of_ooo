@@ -41,7 +41,12 @@ namespace CavesOfOoo.Skills
 
         public override void OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null) return;
+            // Determinism: bail on null Rng instead of falling back to a
+            // wall-clock-seeded one — matches the early-out pattern of
+            // every other skill (Bludgeon/Hammer/ShatteringBlows/etc.).
+            // Cold-eye finding 🟡 #2: the previous `?? new System.Random()`
+            // injected nondeterminism asymmetric to siblings.
+            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return;
             var actor = ctx.Attacker;
 
             // Require a Cudgel-class weapon equipped.
@@ -52,6 +57,9 @@ namespace CavesOfOoo.Skills
                 return;
             }
 
+            // Conk needs Zone for the adjacency lookup. (Berserk's
+            // self-buff path doesn't need Zone — that asymmetry is by
+            // design, cold-eye 🔵 #7.)
             if (ctx.Zone == null) return;
             var target = SkillCombatHelpers.FindAdjacentCleaveTarget(actor, actor, ctx.Zone);
             if (target == null)
@@ -64,7 +72,7 @@ namespace CavesOfOoo.Skills
             CombatSystem.PerformSingleAttack(
                 attacker: actor, defender: target,
                 weapon: weapon, isPrimary: true,
-                zone: ctx.Zone, rng: ctx.Rng ?? new System.Random(),
+                zone: ctx.Zone, rng: ctx.Rng,
                 attackSourceDesc: "(Conk)");
             target.ApplyEffect(new StunnedEffect(STUN_DURATION), actor, ctx.Zone);
         }

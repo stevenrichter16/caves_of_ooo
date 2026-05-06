@@ -26,7 +26,10 @@ namespace CavesOfOoo.Skills
 
         public override void OnWeaponMadeCriticalHit(SkillEventContext ctx)
         {
-            if (ctx?.Damage == null || !ctx.Damage.HasAttribute("Piercing")) return;
+            if (ctx?.Damage == null) return;
+            // Defense-in-depth: only fire on actual crits.
+            if (!ctx.Damage.HasAttribute("Critical")) return;
+            if (!ctx.Damage.HasAttribute("Piercing")) return;
             if (ctx.ActualDamage <= 0) return;
             if (ctx.Defender == null || ctx.Rng == null) return;
 

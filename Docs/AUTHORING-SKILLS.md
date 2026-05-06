@@ -199,7 +199,12 @@ public class Axe_Berserk : BaseSkillPart
     // 2. Handle the command — runs when the player triggers it.
     public override void OnCommand(SkillEventContext ctx)
     {
-        if (ctx?.Attacker == null) return;
+        // Null-guard idiom for active abilities: explicit form mirrors
+        // the shipped skills (Cudgel_Conk, Axe_Berserk). The on-hit /
+        // on-miss skills use the chained `if (ctx?.Damage == null || ...)`
+        // form because they always need Damage; active-ability skills
+        // need Attacker but not Damage, hence the explicit check here.
+        if (ctx == null || ctx.Attacker == null) return;
         var actor = ctx.Attacker;
 
         // Gate on weapon class.

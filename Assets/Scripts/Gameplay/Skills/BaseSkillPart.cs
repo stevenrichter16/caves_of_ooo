@@ -183,9 +183,20 @@ namespace CavesOfOoo.Skills
         /// if it declared one. <see cref="System.Guid.Empty"/> for
         /// passive skills. Populated by
         /// <see cref="SkillsPart.AddSkill(BaseSkillPart, string)"/> on
-        /// successful registration. NonSerialized — abilities re-register
-        /// on load via <see cref="SkillsPart.OnAfterLoad"/>.</summary>
-        [System.NonSerialized]
+        /// successful registration.
+        ///
+        /// <para><b>Serialized</b> (no <c>[NonSerialized]</c>) — the
+        /// <see cref="ActivatedAbilitiesPart.AbilityByGuid"/> dictionary
+        /// IS serialized, so abilities survive save/load. If this Guid
+        /// were dropped on load, <see cref="SkillsPart.TryRouteSkillCommand"/>
+        /// would fail to find owned active-ability skills (every skill's
+        /// ID would be Guid.Empty after load) and the ability cleanup in
+        /// <see cref="SkillsPart.RemoveSkill"/> would orphan abilities.
+        /// Pre-WSP4.4 this was annotated <c>[NonSerialized]</c> with the
+        /// note "abilities re-register on load via OnAfterLoad" — but
+        /// OnAfterLoad doesn't actually re-register. The simpler fix is
+        /// to let the Guid persist (cold-eye finding 🔴 #1).</para>
+        /// </summary>
         public System.Guid ActivatedAbilityID;
 
         /// <summary>

@@ -19,7 +19,10 @@ namespace CavesOfOoo.Skills
 
         public override void OnWeaponMadeCriticalHit(SkillEventContext ctx)
         {
-            if (ctx?.Damage == null || !ctx.Damage.HasAttribute("Axe")) return;
+            if (ctx?.Damage == null) return;
+            // Defense-in-depth: only fire on actual crits.
+            if (!ctx.Damage.HasAttribute("Critical")) return;
+            if (!ctx.Damage.HasAttribute("Axe")) return;
             if (ctx.ActualDamage <= 0) return;
             // Force-cleave (no chance roll) — that's the tree-root's
             // crit-only bonus on top of any owned Axe_Cleave power.
