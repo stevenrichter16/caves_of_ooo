@@ -37,6 +37,15 @@ namespace CavesOfOoo.Skills
     /// so the dismember interaction would over-mirror. Documented per
     /// CLAUDE.md §4.2 as Match (mechanic family) + Divergent (scope
     /// trimmed to passive-only).</para>
+    ///
+    /// <para><b>Decapitate interaction (WSP6.18):</b> if the attacker
+    /// also owns <see cref="Axe_Decapitate"/>, the candidate pool
+    /// EXPANDS to include Mortal severable parts (Head, Heart). Without
+    /// Decapitate, Mortal parts are skipped. Mirrors Qud's
+    /// <c>Axe_Dismember.BodyPartIsDismemberable</c> branch
+    /// (XRL.World.Parts.Skill/Axe_Dismember.cs:129-138) where the
+    /// "include Mortal parts" decision is delegated to
+    /// <c>Axe_Decapitate.ShouldDecapitate</c>.</para>
     /// </summary>
     public class Axe_Dismember : BaseSkillPart
     {
@@ -54,19 +63,23 @@ namespace CavesOfOoo.Skills
 
             if (ctx.Rng.Next(100) >= CHANCE_PERCENT) return;
 
-            // Find severable body parts. Skip Mortal parts (Head, Heart,
-            // etc.) — that's Decapitate's job, gated separately. The
-            // remaining set is the Qud "Dismember-able-without-decap"
-            // pool: arms, legs, hands, feet, tails, etc.
+            // Find severable body parts. By default, skip Mortal parts
+            // (Head, Heart, etc.) — those require Decapitate. The Qud
+            // pattern (Axe_Dismember.BodyPartIsDismemberable:129-138)
+            // gates the Mortal-include on `Axe_Decapitate.ShouldDecapitate(actor)`,
+            // which CoO mirrors here. Without Decapitate owned: pool is
+            // arms/legs/hands/feet/tails/etc. With Decapitate owned: pool
+            // ALSO includes Head and any other Mortal severable parts.
             var body = ctx.Defender.GetPart<Body>();
             if (body == null) return;
 
+            bool allowMortal = Axe_Decapitate.ShouldDecapitate(ctx.Attacker);
             var candidates = new List<BodyPart>(8);
             foreach (var part in body.GetParts())
             {
                 if (part == null) continue;
                 if (!part.IsSeverable()) continue;
-                if (part.SeverRequiresDecapitate()) continue; // Mortal — skip
+                if (part.SeverRequiresDecapitate() && !allowMortal) continue;
                 candidates.Add(part);
             }
             if (candidates.Count == 0) return;
