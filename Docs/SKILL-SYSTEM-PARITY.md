@@ -188,12 +188,13 @@ scenario. Expected final test count: ~150+ EditMode tests passing.
 | WSP6.6  | `d5a69b2` (merge) | Ship `ShortBlades_Puncture` — first Tier-3 *passive* port + first new combat-event hook since the system shipped. Adds `OnGetPenetrationModifier` virtual to `BaseSkillPart` and `GetSkillPenetrationModifier` to `SkillEventDispatcher` per the §"Adding a new combat event" mechanical pattern. CombatSystem.PerformSingleAttack feeds the sum into both `bonus` and `maxBonus` for `RollPenetrations`. Puncture returns +2 when wielding a Piercing-attribute weapon. Mirrors Qud's `ShortBlades_Puncture` "AV - 2" mechanic (mathematically equivalent to "+2 pen bonus"). 9 RED→GREEN tests including a 200-seed statistical pin (with-Puncture deals strictly more total damage than without across the same RNG seeds) + JSON content entry. | +1 |
 | WSP6.12 | `89ffbef` (merge) | Ship `Axe_Dismember` — Tier-3 passive that gives Axe-class hits a 3% chance per landed hit to force-dismember a random non-Mortal severable body part on the defender + apply BleedingEffect (saveTarget 35, "1d2"). Match port of Qud's `Axe_Dismember.cs:280-318`. Skips Mortal parts (head/heart) explicitly — that's `Axe_Decapitate`'s territory, deferred. Active version of the skill (the "CommandDismember" swing) is also deferred for v1. 7 RED→GREEN tests covering 5000-seed positive proc + 6 counter-checks (non-Axe / zero-damage / no-Body defender / null Defender / null Rng / Mortal-only candidates). | +1 |
 | WSP6.16 | (this commit) | Backfill `TYPE_NEGATIVE` flag on 13 existing debuff effect classes (Acidic, Bleeding, Broken, Burning, Charred, Confused, Electrified, Frozen, Hobbled, Paralyzed, Poisoned, ShatterArmor, Stunned). Pre-WSP6.16 the `Effect.TYPE_NEGATIVE = 33554432` constant was scaffolded but unused — every CoO debuff defaulted to `TYPE_GENERAL` only. This backfill mirrors Qud's effect-type bitmask convention and enables the next-up `ShortBlades_Shank` port. One-line `GetEffectType` override per file, no behavior change for existing tests (verified: 306/306 sweep including all tonic tests still GREEN). | n/a |
-| WSP6.17 | (this commit) | Ship `ShortBlades_Shank` — Tier-3 active ability that swings at an adjacent target with `+2 penetration per negative status effect` on the target. Active fires PerformSingleAttack with the `(Shank)` log marker; the per-swing pen bonus is threaded through the WSP6.6 `OnGetPenetrationModifier` hook via a transient `_activePenBonus` field set/reset around the attack call (try/finally guards against leaks to non-Shank swings). Counts effects via `Effect.IsOfType(TYPE_NEGATIVE)` — the WSP6.16 backfill makes this query honest. Match port of Qud's `ShortBlades_Shank.cs:46-135`, including the ×2 magnitude and 10T cooldown. 14 RED→GREEN tests including the WSP6.16-specific "TYPE_NEGATIVE backfill counts what we expect" verification + a 200-seed statistical pin (Shank vs status-ridden target deals strictly more damage than Shank vs clean target). | +1 |
+| WSP6.17 | `803e7a7` (merge) | Ship `ShortBlades_Shank` — Tier-3 active ability that swings at an adjacent target with `+2 penetration per negative status effect` on the target. Active fires PerformSingleAttack with the `(Shank)` log marker; the per-swing pen bonus is threaded through the WSP6.6 `OnGetPenetrationModifier` hook via a transient `_activePenBonus` field set/reset around the attack call (try/finally guards against leaks to non-Shank swings). Counts effects via `Effect.IsOfType(TYPE_NEGATIVE)` — the WSP6.16 backfill makes this query honest. Match port of Qud's `ShortBlades_Shank.cs:46-135`, including the ×2 magnitude and 10T cooldown. 14 RED→GREEN tests including the WSP6.16-specific "TYPE_NEGATIVE backfill counts what we expect" verification + a 200-seed statistical pin (Shank vs status-ridden target deals strictly more damage than Shank vs clean target). | +1 |
+| WSP6.18 | (this commit) | Ship `Axe_Decapitate` as a **marker skill** — pure tag with `ShouldDecapitate(Entity)` static helper, no behavioral virtual overrides. Modifies `Axe_Dismember`'s candidate-pool gate so an owner's Dismember procs may target Mortal severable parts (Head, Heart) in addition to the default non-Mortal pool. Mirrors Qud's `Axe_Dismember.BodyPartIsDismemberable:129-138` delegation pattern. Scope-divergent from Qud (Qud's Decapitate is a true toggle; CoO simplifies to always-on while owned because the Toggleable infrastructure isn't yet plumbed in `ActivatedAbilitiesPart` — documented inline + as a 🔵 follow-up). 7 RED→GREEN tests including a marker-skill-invariant pin (reflection check that no behavioral virtuals are overridden) + a 5000-seed positive (Mortal-only defender + Dismember + Decapitate eventually fires). | +1 |
 
 **Final state of the skill SYSTEM:**
 
 - 5 trees registered (Acrobatics + 4 weapon classes)
-- 26 skill classes across all tiers (verified by `grep -l "class.*: BaseSkillPart" Skills/*.cs`):
+- 27 skill classes across all tiers (verified by `grep -l "class.*: BaseSkillPart" Skills/*.cs`):
   - 5 tree-roots (Acrobatics + 4 weapon classes)
   - 4 tree-root crit hooks (in the 4 weapon-class tree-root classes'
     `OnWeaponMadeCriticalHit`; AcrobaticsSkill is passive-only)
@@ -215,6 +216,10 @@ scenario. Expected final test count: ~150+ EditMode tests passing.
     `_activePenBonus` field set in OnCommand and reset in finally
     so the buff doesn't leak)
   - 1 dodge passive (AcrobaticsDodgePower)
+  - 1 marker skill (Axe_Decapitate — shipped WSP6.18; modifies
+    Axe_Dismember's candidate-pool gate to include Mortal severable
+    parts when owned. Pure tag — no behavioral virtual overrides;
+    the Q1 symmetry test pins this invariant)
 - 5 new status effects shipped on top of CoO's effect machinery:
   Hobbled, ShatterArmor, Broken, Berserk (this ship), plus the
   existing Stunned/Bleeding/Confused/etc. consumed by the new skills
@@ -380,9 +385,13 @@ system, no ranged combat, no stance machine).
    the WSP6.16 `TYPE_NEGATIVE` backfill on 13 existing debuff
    effect classes — Qud's effect-type bitmask convention is now
    honest in CoO. 10T cooldown, requires Piercing weapon equipped.
-5. ⏭️ **Axe_Decapitate** — finishing-move toggle (redirects dismember
-   to Mortal parts; needs hook into CombatSystem.CheckCombatDismemberment
-   OR a new `BeforeDismember` event)
+5. ✅ **Axe_Decapitate** (shipped WSP6.18) — Tier-3 marker-skill port.
+   Pure tag; no behavioral virtual overrides. Modifies
+   `Axe_Dismember`'s candidate-pool gate (Mortal parts allowed when
+   owned). Match port of Qud's `Axe_Dismember.BodyPartIsDismemberable`
+   delegation pattern. Scope-divergent — Qud's version is a true
+   toggle (CommandToggleDecapitate); CoO simplifies to always-on
+   pending the Toggleable infrastructure plumb-in.
 6. ⏭️ **Axe_HookAndDrag** — pull-adjacent active
 5. ⏭️ **LongBladesDeathblow** — finishing move active
 6. ⏭️ **ShortBlades_Shank** — first-hit-of-turn passive
