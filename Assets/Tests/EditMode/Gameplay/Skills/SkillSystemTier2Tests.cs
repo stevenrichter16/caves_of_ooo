@@ -148,6 +148,28 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(0, SkillEventDispatcher.GetSkillHitModifier(actor, weapon));
         }
 
+        // ── LongBlades_Expertise (CoO-original Extension; see WSP4.4 / WSP5.1) ──
+
+        [Test]
+        public void LongBladesExpertise_WithLongBladesWeapon_AddsHitBonus()
+        {
+            var actor = MakeAttackerWithSkill(new LongBlades_Expertise());
+            var weapon = MakeWeapon("Cutting LongBlades");
+            Assert.AreEqual(LongBlades_Expertise.HIT_BONUS,
+                SkillEventDispatcher.GetSkillHitModifier(actor, weapon),
+                "LongBlades_Expertise must contribute HIT_BONUS when weapon has LongBlades attribute.");
+        }
+
+        [Test]
+        public void LongBladesExpertise_WithNonLongBladesWeapon_NoBonus()
+        {
+            var actor = MakeAttackerWithSkill(new LongBlades_Expertise());
+            var weapon = MakeWeapon("Cutting Axe");
+            Assert.AreEqual(0,
+                SkillEventDispatcher.GetSkillHitModifier(actor, weapon),
+                "LongBlades_Expertise must NOT contribute when weapon is Axe-class (not LongBlades).");
+        }
+
         // ── Cudgel_ShatteringBlows ──────────────────────────────────────
 
         [Test]

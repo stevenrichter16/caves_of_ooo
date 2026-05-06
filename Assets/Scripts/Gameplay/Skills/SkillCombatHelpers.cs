@@ -72,8 +72,10 @@ namespace CavesOfOoo.Skills
         /// the actor whose Attributes string contains the given
         /// substring (e.g. "Cudgel", "Axe", "Piercing"). Null if none
         /// found. Used by active-ability skills (Cudgel_Conk,
-        /// Axe_Berserk, ShortBlades_Hobble's active version) to gate
-        /// command invocation on the right weapon being wielded.
+        /// Axe_Berserk) to gate command invocation on the right weapon
+        /// being wielded. (ShortBlades_Hobble used to be on this list,
+        /// but it shipped as an on-hit passive only — no `OnCommand`
+        /// override; WSP5.1 cleanup of cold-eye borderline (a).)
         /// </summary>
         public static MeleeWeaponPart FindEquippedWeaponOfClass(
             Entity actor, string requiredAttribute)

@@ -200,10 +200,14 @@ public class Axe_Berserk : BaseSkillPart
     public override void OnCommand(SkillEventContext ctx)
     {
         // Null-guard idiom for active abilities: explicit form mirrors
-        // the shipped skills (Cudgel_Conk, Axe_Berserk). The on-hit /
-        // on-miss skills use the chained `if (ctx?.Damage == null || ...)`
-        // form because they always need Damage; active-ability skills
-        // need Attacker but not Damage, hence the explicit check here.
+        // the shipped skills (Cudgel_Conk, Axe_Berserk). On-hit skills
+        // use the chained `if (ctx?.Damage == null || ...)` form because
+        // every on-hit skill needs Damage. Active-ability and on-miss
+        // skills don't have a Damage object (the miss path doesn't roll
+        // damage; activated abilities run before any swing) so they use
+        // the explicit `ctx == null || ctx.Attacker == null` form on the
+        // fields they actually consume. Rule of thumb: fail-fast on the
+        // fields your skill reads.
         if (ctx == null || ctx.Attacker == null) return;
         var actor = ctx.Attacker;
 

@@ -186,14 +186,20 @@ scenario. Expected final test count: ~150+ EditMode tests passing.
 **Final state of the skill SYSTEM:**
 
 - 5 trees registered (Acrobatics + 4 weapon classes)
-- 22 skill classes across all tiers:
-  - 5 tree-roots
-  - 4 tree-root crit hooks (in the tree-root classes' `OnWeaponMadeCriticalHit`)
-  - 5 power on-hit procs (Bludgeon / Cleave / Lacerate / Jab / Bloodletter)
-  - 3 +to-hit passives (Expertise × 3 weapon classes)
-  - 3 advanced passives (Hammer, ShatteringBlows, Hobble passive)
-  - 2 on-miss / on-dodge passives (Backswing, Rejoinder)
-  - 2 active abilities (Conk, Berserk)
+- 22 skill classes across all tiers (verified by `grep -l "class.*: BaseSkillPart" Skills/*.cs`):
+  - 5 tree-roots (Acrobatics + 4 weapon classes)
+  - 4 tree-root crit hooks (in the 4 weapon-class tree-root classes'
+    `OnWeaponMadeCriticalHit`; AcrobaticsSkill is passive-only)
+  - 8 power on-hit procs (`OnAttackerAfterAttack` overrides):
+    Cudgel_Bludgeon, Cudgel_Hammer, Cudgel_ShatteringBlows,
+    Axe_Cleave, LongBlades_Lacerate, ShortBlades_Jab,
+    ShortBlades_Bloodletter, ShortBlades_Hobble
+  - 4 +to-hit passives (Expertise × 4 weapon classes — including
+    LongBlades_Expertise, the WSP4.4 CoO-original Extension; see §4.2
+    classification rules)
+  - 2 on-miss / on-dodge passives (Cudgel_Backswing, ShortBlades_Rejoinder)
+  - 2 active abilities (Cudgel_Conk, Axe_Berserk)
+  - 1 dodge passive (AcrobaticsDodgePower)
 - 5 new status effects shipped on top of CoO's effect machinery:
   Hobbled, ShatterArmor, Broken, Berserk (this ship), plus the
   existing Stunned/Bleeding/Confused/etc. consumed by the new skills

@@ -7,12 +7,23 @@ namespace CavesOfOoo.Skills
     /// LongBlades-attribute weapon (LongSword / Greatsword / ShortSword
     /// / Claymore / Sporeblade / FlamingSword / IceSword / etc.).
     ///
-    /// <para>WSP4.4 cold-eye finding 🔵 #5 fix: the LongBlades tree was
-    /// missing the +to-hit Expertise that Cudgel / Axe / ShortBlades all
-    /// have, breaking the natural cross-tree symmetry the player perceives.
-    /// Mirrors Qud's LongBlades Expertise pattern (same +2 magnitude as
-    /// Cudgel/Axe; Qud's actual numeric is documented per-skill in
-    /// <c>qud-decompiled-project/XRL.World.Parts.Skill/</c>).</para>
+    /// <para>Self-contained per WSP3.3 — overrides
+    /// <see cref="BaseSkillPart.OnGetToHitModifier"/>. CombatSystem.PerformSingleAttack
+    /// sums modifiers from all owned skills via SkillEventDispatcher
+    /// during the hit-roll calculation; the +2 contribution feeds
+    /// directly into <c>totalHit</c>.</para>
+    ///
+    /// <para><b>Classification: CoO-original (Extension).</b> Qud has
+    /// Cudgel_Expertise / Axe_Expertise / ShortBlades_Expertise but no
+    /// LongBlades_Expertise — that genre slot is unfilled in the source.
+    /// CoO adds one to maintain the cross-tree +to-hit symmetry the
+    /// player perceives (every weapon-class root tree has a parallel
+    /// Expertise). Magnitude chosen at +2 to match Cudgel/Axe; Qud's
+    /// ShortBlades uses +1, but LongBlades-class weapons in CoO are
+    /// closer in feel to Cudgel/Axe (two-handed greatswords, claymores)
+    /// than to ShortBlades (daggers, stilettos), so +2 reads correctly.
+    /// Per CLAUDE.md §4.2 — Extension is the right tag here, not "Match"
+    /// or "verbatim port".</para>
     /// </summary>
     public class LongBlades_Expertise : BaseSkillPart
     {

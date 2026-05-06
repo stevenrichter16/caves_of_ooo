@@ -4,8 +4,8 @@ namespace CavesOfOoo.Skills
 {
     /// <summary>
     /// Abstract base for the per-skill runtime part. Concrete skills
-    /// (e.g. <c>AcrobaticsDodgePower</c>, future <c>LongBladesExpertise</c>)
-    /// extend this class. One instance is added to an entity's Parts list
+    /// (e.g. <c>AcrobaticsDodgePower</c>, <c>LongBlades_Expertise</c>,
+    /// <c>Cudgel_Conk</c>, <c>Axe_Berserk</c>) extend this class. One instance is added to an entity's Parts list
     /// when the entity learns the skill; removed when the skill is
     /// unlearned. Mirrors Qud's <c>BaseSkill</c>
     /// (XRL.World.Parts.Skill/BaseSkill.cs:9-153) — same lifecycle
