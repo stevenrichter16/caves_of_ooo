@@ -4,20 +4,35 @@ namespace CavesOfOoo.Skills
 {
     /// <summary>
     /// Tree-root marker for the Short Blades skill tree (daggers,
-    /// spears, choir spines, pointed thrust-class weapons).
-    /// Behavior in v1 lives on the powers; the tree-root is flavor-only.
+    /// spears, choir spines, pointed thrust-class weapons). Triggers
+    /// on the existing "Piercing" damage attribute (CoO's weapons don't
+    /// carry a "ShortBlades" sub-class today — the tree retains the
+    /// genre-conventional name for player legibility).
     ///
-    /// <para>The skill tree's gameplay TRIGGER is the existing
-    /// "Piercing" damage attribute on CoO weapons (the powers gate on
-    /// <c>damage.HasAttribute("Piercing")</c>). The tree retains its
-    /// genre-conventional name for player legibility.</para>
-    ///
-    /// <para>Per the user's "1 SP / no other requirement" directive,
-    /// this tree-root costs 1 SP and has no Minimum / Requires /
-    /// Exclusion.</para>
+    /// <para><b>Crit behavior (WSP3.3 — virtual override):</b> on every
+    /// critical hit landed with a Piercing-attribute weapon, applies
+    /// <see cref="BleedingEffect"/> with light dice
+    /// (<see cref="CRIT_BLEED_DAMAGE_DICE"/>). Per Qud's
+    /// <c>ShortBlades.WeaponMadeCriticalHit</c> — Qud uses "1d2-1"
+    /// which DiceRoller can't represent (negative modifier), so CoO
+    /// uses "1d2" as the closest equivalent.</para>
     /// </summary>
     public class ShortBladesSkill : BaseSkillPart
     {
         public override string Name => nameof(ShortBladesSkill);
+
+        public const int CRIT_BLEED_SAVE_TARGET = 15;
+        public const string CRIT_BLEED_DAMAGE_DICE = "1d2";
+
+        public override void OnWeaponMadeCriticalHit(SkillEventContext ctx)
+        {
+            if (ctx?.Damage == null || !ctx.Damage.HasAttribute("Piercing")) return;
+            if (ctx.ActualDamage <= 0) return;
+            if (ctx.Defender == null || ctx.Rng == null) return;
+
+            ctx.Defender.ApplyEffect(
+                new BleedingEffect(CRIT_BLEED_SAVE_TARGET, CRIT_BLEED_DAMAGE_DICE, ctx.Rng),
+                ctx.Attacker, ctx.Zone);
+        }
     }
 }

@@ -42,7 +42,7 @@ namespace CavesOfOoo.Tests
             // Defender == null → early-out. Pre-WS.2 there's nothing else
             // to verify, but this locks the null-safety contract.
             Assert.DoesNotThrow(() =>
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender: null, attacker: attacker, zone: null,
                     rng: new Random(1)));
         }
@@ -58,7 +58,7 @@ namespace CavesOfOoo.Tests
             // (Some weapons/effects can damage entities without a clear
             // attacker; a falling rock, an environmental hazard, etc.)
             Assert.DoesNotThrow(() =>
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender: defender, attacker: null, zone: null,
                     rng: new Random(1)));
         }
@@ -78,7 +78,7 @@ namespace CavesOfOoo.Tests
             damage.AddAttribute("Cudgel");
 
             Assert.DoesNotThrow(() =>
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender: defender, attacker: attacker, zone: null,
                     rng: new Random(1)));
 
@@ -102,7 +102,7 @@ namespace CavesOfOoo.Tests
 
             for (int seed = 0; seed < 100; seed++)
             {
-                OnHitSkillEffects.Apply(damage, actualDamage: 0,
+                DispatchAttack(damage, actualDamage: 0,
                     defender, attacker, zone: null, rng: new Random(seed));
             }
             Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<StunnedEffect>(),
@@ -132,7 +132,7 @@ namespace CavesOfOoo.Tests
                 var damage = new Damage(10);
                 damage.AddAttribute("Cudgel");
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 if (defender.GetPart<StatusEffectsPart>().HasEffect<StunnedEffect>())
@@ -141,7 +141,7 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(observed,
                 $"Across 100 seeds, at least one Cudgel-attribute hit by an actor with " +
                 $"Cudgel_Bludgeon owned should produce Stunned (chance " +
-                $"{OnHitSkillEffects.CUDGEL_BLUDGEON_CHANCE_PERCENT}%). " +
+                $"{Cudgel_Bludgeon.CHANCE_PERCENT}%). " +
                 $"None observed — chance gate is broken or always rolls high.");
         }
 
@@ -161,7 +161,7 @@ namespace CavesOfOoo.Tests
                 var damage = new Damage(10);
                 damage.AddAttribute("Cudgel");
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<StunnedEffect>(),
@@ -185,7 +185,7 @@ namespace CavesOfOoo.Tests
                 var damage = new Damage(10);
                 damage.AddAttribute("Bludgeoning");  // class only, no sub-class
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<StunnedEffect>(),
@@ -203,7 +203,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Cutting");
                 damage.AddAttribute("LongBlades");
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<StunnedEffect>(),
@@ -235,7 +235,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Cutting");
                 damage.AddAttribute("Axe");
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 20,
+                DispatchAttack(damage, actualDamage: 20,
                     defender, attacker, zone, rng: new Random(seed));
 
                 int targetHpAfter = cleaveTarget.GetStatValue("Hitpoints");
@@ -244,7 +244,7 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(observed,
                 $"Across 100 seeds, an Axe-attribute hit by a Cleave-trained " +
                 $"attacker should sometimes damage the adjacent Creature " +
-                $"(chance {OnHitSkillEffects.AXE_CLEAVE_CHANCE_PERCENT}%). " +
+                $"(chance {Axe_Cleave.CHANCE_PERCENT}%). " +
                 $"None observed — chance gate or adjacency lookup is broken.");
         }
 
@@ -262,7 +262,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Cutting");
                 damage.AddAttribute("Axe");
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 20,
+                DispatchAttack(damage, actualDamage: 20,
                     defender, attacker, zone, rng: new Random(seed));
 
                 int targetHpAfter = cleaveTarget.GetStatValue("Hitpoints");
@@ -288,7 +288,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Cutting");
                 damage.AddAttribute("LongBlades");  // not Axe
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 20,
+                DispatchAttack(damage, actualDamage: 20,
                     defender, attacker, zone, rng: new Random(seed));
 
                 int targetHpAfter = cleaveTarget.GetStatValue("Hitpoints");
@@ -319,7 +319,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Axe");
 
                 Assert.DoesNotThrow(() =>
-                    OnHitSkillEffects.Apply(damage, actualDamage: 20,
+                    DispatchAttack(damage, actualDamage: 20,
                         defender, attacker, zone, rng: new Random(seed)),
                     $"Seed {seed}: cleave with no adjacent target must no-op silently.");
             }
@@ -343,7 +343,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Cutting");
                 damage.AddAttribute("LongBlades");
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 if (defender.GetPart<StatusEffectsPart>().HasEffect<BleedingEffect>())
@@ -352,7 +352,7 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(observed,
                 $"Across 100 seeds, a LongBlades-attribute hit by an actor with " +
                 $"LongBlades_Lacerate owned should produce Bleeding (chance " +
-                $"{OnHitSkillEffects.LONGBLADES_LACERATE_CHANCE_PERCENT}%).");
+                $"{LongBlades_Lacerate.CHANCE_PERCENT}%).");
         }
 
         [Test]
@@ -367,7 +367,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Cutting");
                 damage.AddAttribute("LongBlades");
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<BleedingEffect>(),
@@ -390,7 +390,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Cutting");
                 damage.AddAttribute("Axe");  // not LongBlades
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<BleedingEffect>(),
@@ -417,7 +417,7 @@ namespace CavesOfOoo.Tests
                 var damage = new Damage(10);
                 damage.AddAttribute("Piercing");
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 if (defender.GetPart<StatusEffectsPart>().HasEffect<BleedingEffect>())
@@ -426,7 +426,7 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(observed,
                 $"Across 50 seeds, a Piercing hit by an actor with " +
                 $"ShortBlades_Bloodletter owned should produce Bleeding " +
-                $"(chance {OnHitSkillEffects.SHORTBLADES_BLOODLETTER_CHANCE_PERCENT}%).");
+                $"(chance {ShortBlades_Bloodletter.CHANCE_PERCENT}%).");
         }
 
         [Test]
@@ -439,7 +439,7 @@ namespace CavesOfOoo.Tests
                 var damage = new Damage(10);
                 damage.AddAttribute("Piercing");
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<BleedingEffect>(),
@@ -458,7 +458,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Cutting");
                 damage.AddAttribute("LongBlades");  // not Piercing
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<BleedingEffect>(),
@@ -491,7 +491,7 @@ namespace CavesOfOoo.Tests
                 var damage = new Damage(10);
                 damage.AddAttribute("Cudgel");
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 var stun = defender.GetPart<StatusEffectsPart>().GetEffect<StunnedEffect>();
@@ -505,12 +505,12 @@ namespace CavesOfOoo.Tests
             Assert.GreaterOrEqual(observed, 1,
                 $"Across 300 seeds, expected at least one Cudgel_Bludgeon Stun. " +
                 $"None observed — chance gate is broken.");
-            Assert.LessOrEqual(minObserved, OnHitSkillEffects.CUDGEL_BLUDGEON_DURATION_MIN,
+            Assert.LessOrEqual(minObserved, Cudgel_Bludgeon.DURATION_MIN,
                 $"Min Cudgel_Bludgeon Stun duration must reach " +
-                $"{OnHitSkillEffects.CUDGEL_BLUDGEON_DURATION_MIN}. Observed: {minObserved}.");
-            Assert.GreaterOrEqual(maxObserved, OnHitSkillEffects.CUDGEL_BLUDGEON_DURATION_MAX,
+                $"{Cudgel_Bludgeon.DURATION_MIN}. Observed: {minObserved}.");
+            Assert.GreaterOrEqual(maxObserved, Cudgel_Bludgeon.DURATION_MAX,
                 $"Max Cudgel_Bludgeon Stun duration must reach " +
-                $"{OnHitSkillEffects.CUDGEL_BLUDGEON_DURATION_MAX}. Observed: {maxObserved}.");
+                $"{Cudgel_Bludgeon.DURATION_MAX}. Observed: {maxObserved}.");
         }
 
         // ====================================================================
@@ -536,7 +536,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Cudgel");
                 damage.AddAttribute("Critical");
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 Assert.IsTrue(
@@ -561,7 +561,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Cudgel");
                 damage.AddAttribute("Critical");
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 var stun = defender.GetPart<StatusEffectsPart>().GetEffect<StunnedEffect>();
@@ -593,7 +593,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Cudgel");
                 // NO "Critical" attribute
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 Assert.IsFalse(
@@ -622,7 +622,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Cutting");
                 damage.AddAttribute("Critical");
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 20,
+                DispatchAttack(damage, actualDamage: 20,
                     defender, attacker, zone, rng: new Random(seed));
 
                 int targetHpAfter = cleaveTarget.GetStatValue("Hitpoints");
@@ -648,7 +648,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Cutting");
                 // NO "Critical"
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 20,
+                DispatchAttack(damage, actualDamage: 20,
                     defender, attacker, zone, rng: new Random(seed));
 
                 int targetHpAfter = cleaveTarget.GetStatValue("Hitpoints");
@@ -672,7 +672,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Cutting");
                 damage.AddAttribute("Critical");
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 Assert.IsTrue(
@@ -694,7 +694,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Cutting");
                 // NO "Critical"
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 Assert.IsFalse(
@@ -717,7 +717,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Piercing");
                 damage.AddAttribute("Critical");
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 Assert.IsTrue(
@@ -737,7 +737,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Piercing");
                 // NO "Critical"
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 Assert.IsFalse(
@@ -749,11 +749,11 @@ namespace CavesOfOoo.Tests
 
         // ====================================================================
         // WS.6b cold-eye 🟡 #2 — stacking integration: verify that calling
-        // OnHitClassEffects.Apply AND OnHitSkillEffects.Apply in sequence
-        // (the order CombatSystem.PerformSingleAttack uses) on the SAME
-        // hit can produce a Stunned effect with summed duration. The plan
-        // claimed this stacks via StunnedEffect.OnStack += Duration; this
-        // test pins the claim end-to-end.
+        // OnHitClassEffects.Apply AND the WSP3 SkillEventDispatcher in
+        // sequence (the order CombatSystem.PerformSingleAttack uses) on the
+        // SAME hit can produce a Stunned effect with summed duration. The
+        // plan claimed this stacks via StunnedEffect.OnStack += Duration;
+        // this test pins the claim end-to-end.
         // ====================================================================
 
         [Test]
@@ -782,7 +782,7 @@ namespace CavesOfOoo.Tests
                 var rng = new Random(seed);
                 OnHitClassEffects.Apply(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng);
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng);
 
                 var stun = defender.GetPart<StatusEffectsPart>().GetEffect<StunnedEffect>();
@@ -837,7 +837,7 @@ namespace CavesOfOoo.Tests
                 var rng = new Random(seed);
                 OnHitClassEffects.Apply(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng);
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng);
 
                 var stun = defender.GetPart<StatusEffectsPart>().GetEffect<StunnedEffect>();
@@ -889,7 +889,7 @@ namespace CavesOfOoo.Tests
                 var damage = new Damage(10);
                 damage.AddAttribute("Piercing");
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 if (defender.GetPart<StatusEffectsPart>().HasEffect<ConfusedEffect>())
@@ -898,7 +898,7 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(observed,
                 $"Across 100 seeds, a Piercing-attribute hit by a Jab-trained " +
                 $"actor should produce Confused (chance " +
-                $"{OnHitSkillEffects.SHORTBLADES_JAB_CHANCE_PERCENT}%).");
+                $"{ShortBlades_Jab.CHANCE_PERCENT}%).");
         }
 
         [Test]
@@ -912,7 +912,7 @@ namespace CavesOfOoo.Tests
                 var damage = new Damage(10);
                 damage.AddAttribute("Piercing");
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<ConfusedEffect>(),
@@ -934,7 +934,7 @@ namespace CavesOfOoo.Tests
                 damage.AddAttribute("Bludgeoning");
                 damage.AddAttribute("Cudgel");  // not Piercing
 
-                OnHitSkillEffects.Apply(damage, actualDamage: 10,
+                DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng: new Random(seed));
 
                 Assert.IsFalse(defender.GetPart<StatusEffectsPart>().HasEffect<ConfusedEffect>(),
@@ -991,6 +991,33 @@ namespace CavesOfOoo.Tests
             e.AddPart(new RenderPart { DisplayName = "attacker" });
             e.AddPart(new SkillsPart());
             return e;
+        }
+
+        /// <summary>
+        /// WSP3.3 migration shim: keep test bodies short by hiding the
+        /// SkillEventContext build behind a function with the same
+        /// argument shape as the deleted <c>OnHitSkillEffects.Apply</c>.
+        /// Routes through the new <see cref="SkillEventDispatcher"/> +
+        /// also fires <c>WeaponMadeCriticalHit</c> when the damage
+        /// carries the "Critical" attribute (so the WSP.1 tree-root crit
+        /// tests still exercise both the AfterAttack and WeaponMadeCriticalHit
+        /// branches in one call, as CombatSystem does).
+        /// </summary>
+        private static void DispatchAttack(Damage damage, int actualDamage,
+            Entity defender, Entity attacker, Zone zone, System.Random rng)
+        {
+            var ctx = new SkillEventContext
+            {
+                Attacker = attacker,
+                Defender = defender,
+                Damage = damage,
+                ActualDamage = actualDamage,
+                Zone = zone,
+                Rng = rng,
+            };
+            SkillEventDispatcher.AttackerAfterAttack(attacker, ctx);
+            if (damage != null && damage.HasAttribute("Critical"))
+                SkillEventDispatcher.WeaponMadeCriticalHit(attacker, ctx);
         }
 
         /// <summary>

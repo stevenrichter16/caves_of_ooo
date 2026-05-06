@@ -3,24 +3,41 @@ using CavesOfOoo.Core;
 namespace CavesOfOoo.Skills
 {
     /// <summary>
-    /// Cudgel-class on-hit Stun power. <b>Identity-only stub</b> — the
-    /// actual on-hit logic lives in
-    /// <see cref="OnHitSkillEffects.Apply"/>, which checks
-    /// <c>SkillsPart.HasSkill(nameof(Cudgel_Bludgeon))</c> and rolls a
-    /// <see cref="OnHitSkillEffects.CUDGEL_BLUDGEON_CHANCE_PERCENT"/>
-    /// chance to apply <see cref="StunnedEffect"/> for a random
-    /// <see cref="OnHitSkillEffects.CUDGEL_BLUDGEON_DURATION_MIN"/>-<see cref="OnHitSkillEffects.CUDGEL_BLUDGEON_DURATION_MAX"/>
-    /// turn duration (3-4T per Qud parity, WSP.2 + WSP.4b retune).
+    /// Cudgel-class on-hit Stun power. Self-contained per WSP3.3 — all
+    /// behavior + tunables live in this file; modifying the skill means
+    /// editing only this class.
     ///
-    /// <para>This pattern (skill class as identity marker, behavior
-    /// elsewhere) differs from <see cref="AcrobaticsDodgePower"/>'s
-    /// "OnAdd stat-shift, OnRemove undo" pattern because on-hit logic
-    /// fires DURING combat, not at AddSkill time. The class still
-    /// inherits BaseSkillPart so SkillsPart.HasSkill / Save serialization
-    /// work the same way.</para>
+    /// <para><b>Mechanic (Qud-verbatim):</b> on every Cudgel-attribute
+    /// hit (post-damage, defender survived), <see cref="CHANCE_PERCENT"/>
+    /// chance to apply <see cref="StunnedEffect"/> for a random
+    /// <see cref="DURATION_MIN"/>-<see cref="DURATION_MAX"/> turn duration.
+    /// Per Qud's <c>Cudgel_Bludgeon.cs:56</c> — base 50%
+    /// <c>"Skill Bludgeon"</c> chance, <c>Stat.Random(3, 4)</c> duration.</para>
+    ///
+    /// <para>Stacks independently of: the universal Bludgeoning class
+    /// hook (15% / 2T), the CudgelSkill tree-root crit hook (100% / 1-4T
+    /// on crit). StunnedEffect.OnStack sums durations, so a Mace crit
+    /// by an actor owning Cudgel + Cudgel_Bludgeon can pile up 8-10T
+    /// of stun from a single swing.</para>
     /// </summary>
     public class Cudgel_Bludgeon : BaseSkillPart
     {
         public override string Name => nameof(Cudgel_Bludgeon);
+
+        public const int CHANCE_PERCENT = 50;
+        public const int DURATION_MIN = 3;
+        public const int DURATION_MAX = 4;  // inclusive — per Qud Stat.Random(3, 4)
+
+        public override void OnAttackerAfterAttack(SkillEventContext ctx)
+        {
+            if (ctx?.Damage == null || !ctx.Damage.HasAttribute("Cudgel")) return;
+            if (ctx.ActualDamage <= 0) return;
+            if (ctx.Defender == null || ctx.Rng == null) return;
+
+            if (ctx.Rng.Next(100) >= CHANCE_PERCENT) return;
+
+            int duration = ctx.Rng.Next(DURATION_MIN, DURATION_MAX + 1);
+            ctx.Defender.ApplyEffect(new StunnedEffect(duration), ctx.Attacker, ctx.Zone);
+        }
     }
 }

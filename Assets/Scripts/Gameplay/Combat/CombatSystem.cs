@@ -321,18 +321,13 @@ namespace CavesOfOoo.Core
                 // stun AND electrify on the same hit, since the chance rolls are independent.
                 OnHitWeaponEffects.Apply(weapon, damage, actualDamage, defender, attacker, zone, rng);
 
-                // Skill-driven on-hit effects (Cudgel_Bludgeon→Stun, LongBlades_Lacerate→Bleed, etc.).
-                // Reads attacker's SkillsPart and applies effects for any owned weapon-class powers.
-                // Stacks independently of class + weapon hooks above.
-                OnHitSkillEffects.Apply(damage, actualDamage, defender, attacker, zone, rng);
-
-                // WSP3.2: also fire the new per-skill virtual-override
-                // dispatcher (replaces OnHitSkillEffects.Apply once WSP3.3
-                // refactors the existing skills onto BaseSkillPart virtuals).
-                // Both run for now — virtuals default to no-op so no
-                // double-procs until WSP3.3 lands. The dispatcher fires
-                // AttackerAfterAttack universally + WeaponMadeCriticalHit
-                // only on Critical hits (mirrors Qud's tree-root crit hook).
+                // Skill-driven on-hit effects (Cudgel_Bludgeon→Stun,
+                // LongBlades_Lacerate→Bleed, etc.). WSP3.3 — the previous
+                // OnHitSkillEffects.Apply central switch was deleted; each
+                // skill now overrides BaseSkillPart virtuals
+                // (OnAttackerAfterAttack / OnWeaponMadeCriticalHit) and
+                // SkillEventDispatcher routes the events to all owned skills.
+                // Tree-root WeaponMadeCriticalHit fires only on Critical hits.
                 var hitCtx = new CavesOfOoo.Skills.SkillEventContext
                 {
                     Attacker = attacker, Defender = defender,
