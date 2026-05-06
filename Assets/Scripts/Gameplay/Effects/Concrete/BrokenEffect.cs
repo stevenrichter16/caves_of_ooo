@@ -25,6 +25,9 @@ namespace CavesOfOoo.Core
     {
         public override string DisplayName => "broken";
 
+        // WSP6.16 — TYPE_NEGATIVE backfill (see AcidicEffect.cs).
+        public override int GetEffectType() => TYPE_GENERAL | TYPE_NEGATIVE;
+
         public BrokenEffect(int duration = DURATION_INDEFINITE)
         {
             Duration = duration;

@@ -9,6 +9,12 @@ namespace CavesOfOoo.Core
     {
         public override string DisplayName => "acidic";
 
+        // WSP6.16 — TYPE_NEGATIVE backfill so ShortBlades_Shank and
+        // similar "punish status-ridden targets" mechanics can count
+        // this effect as a debuff on the target. Mirrors Qud's
+        // effect-type bitmask convention.
+        public override int GetEffectType() => TYPE_GENERAL | TYPE_NEGATIVE;
+
         /// <summary>0..1. Higher values deal more damage per turn and decay slower.</summary>
         public float Corrosion;
 

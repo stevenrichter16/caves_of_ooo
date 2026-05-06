@@ -7,6 +7,9 @@ namespace CavesOfOoo.Core
     {
         public override string DisplayName => "paralyzed";
 
+        // WSP6.16 — TYPE_NEGATIVE backfill (see AcidicEffect.cs).
+        public override int GetEffectType() => TYPE_GENERAL | TYPE_NEGATIVE;
+
         private const int DV_PENALTY = 6;
 
         public ParalyzedEffect(int duration = 3)

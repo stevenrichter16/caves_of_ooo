@@ -186,12 +186,14 @@ scenario. Expected final test count: ~150+ EditMode tests passing.
 | WSP6.0  | (this commit) | Tier-3 plan section: Qud catalog gap survey, port-priority ranking by complexity (🟢/🟡/🔴), WSP6 candidate ordering. Stance-batch (LongBladesCore + 6 skills) deferred to WSP7+. | n/a |
 | WSP6.1  | `cef9fd3` (merge) | Ship `Cudgel_Slam` — first Tier-3 active-ability port. Adjacent target pushed up to 3 cells in slam direction, blocked by solid (wall/creature/closed door). Wall hits roll bonus weapon damage and scale stun duration (1-4T). Mirrors Qud's `Cudgel_Slam.cs` mechanic family with simplified push semantics (no wall-destruction, no creature-chain — see plan §WSP6 candidates). 12 RED→GREEN tests + JSON content entry. | +1 |
 | WSP6.6  | `d5a69b2` (merge) | Ship `ShortBlades_Puncture` — first Tier-3 *passive* port + first new combat-event hook since the system shipped. Adds `OnGetPenetrationModifier` virtual to `BaseSkillPart` and `GetSkillPenetrationModifier` to `SkillEventDispatcher` per the §"Adding a new combat event" mechanical pattern. CombatSystem.PerformSingleAttack feeds the sum into both `bonus` and `maxBonus` for `RollPenetrations`. Puncture returns +2 when wielding a Piercing-attribute weapon. Mirrors Qud's `ShortBlades_Puncture` "AV - 2" mechanic (mathematically equivalent to "+2 pen bonus"). 9 RED→GREEN tests including a 200-seed statistical pin (with-Puncture deals strictly more total damage than without across the same RNG seeds) + JSON content entry. | +1 |
-| WSP6.12 | (this commit) | Ship `Axe_Dismember` — Tier-3 passive that gives Axe-class hits a 3% chance per landed hit to force-dismember a random non-Mortal severable body part on the defender + apply BleedingEffect (saveTarget 35, "1d2"). Match port of Qud's `Axe_Dismember.cs:280-318`. Skips Mortal parts (head/heart) explicitly — that's `Axe_Decapitate`'s territory, deferred. Active version of the skill (the "CommandDismember" swing) is also deferred for v1. 7 RED→GREEN tests covering 5000-seed positive proc + 6 counter-checks (non-Axe / zero-damage / no-Body defender / null Defender / null Rng / Mortal-only candidates). | +1 |
+| WSP6.12 | `89ffbef` (merge) | Ship `Axe_Dismember` — Tier-3 passive that gives Axe-class hits a 3% chance per landed hit to force-dismember a random non-Mortal severable body part on the defender + apply BleedingEffect (saveTarget 35, "1d2"). Match port of Qud's `Axe_Dismember.cs:280-318`. Skips Mortal parts (head/heart) explicitly — that's `Axe_Decapitate`'s territory, deferred. Active version of the skill (the "CommandDismember" swing) is also deferred for v1. 7 RED→GREEN tests covering 5000-seed positive proc + 6 counter-checks (non-Axe / zero-damage / no-Body defender / null Defender / null Rng / Mortal-only candidates). | +1 |
+| WSP6.16 | (this commit) | Backfill `TYPE_NEGATIVE` flag on 13 existing debuff effect classes (Acidic, Bleeding, Broken, Burning, Charred, Confused, Electrified, Frozen, Hobbled, Paralyzed, Poisoned, ShatterArmor, Stunned). Pre-WSP6.16 the `Effect.TYPE_NEGATIVE = 33554432` constant was scaffolded but unused — every CoO debuff defaulted to `TYPE_GENERAL` only. This backfill mirrors Qud's effect-type bitmask convention and enables the next-up `ShortBlades_Shank` port. One-line `GetEffectType` override per file, no behavior change for existing tests (verified: 306/306 sweep including all tonic tests still GREEN). | n/a |
+| WSP6.17 | (this commit) | Ship `ShortBlades_Shank` — Tier-3 active ability that swings at an adjacent target with `+2 penetration per negative status effect` on the target. Active fires PerformSingleAttack with the `(Shank)` log marker; the per-swing pen bonus is threaded through the WSP6.6 `OnGetPenetrationModifier` hook via a transient `_activePenBonus` field set/reset around the attack call (try/finally guards against leaks to non-Shank swings). Counts effects via `Effect.IsOfType(TYPE_NEGATIVE)` — the WSP6.16 backfill makes this query honest. Match port of Qud's `ShortBlades_Shank.cs:46-135`, including the ×2 magnitude and 10T cooldown. 14 RED→GREEN tests including the WSP6.16-specific "TYPE_NEGATIVE backfill counts what we expect" verification + a 200-seed statistical pin (Shank vs status-ridden target deals strictly more damage than Shank vs clean target). | +1 |
 
 **Final state of the skill SYSTEM:**
 
 - 5 trees registered (Acrobatics + 4 weapon classes)
-- 25 skill classes across all tiers (verified by `grep -l "class.*: BaseSkillPart" Skills/*.cs`):
+- 26 skill classes across all tiers (verified by `grep -l "class.*: BaseSkillPart" Skills/*.cs`):
   - 5 tree-roots (Acrobatics + 4 weapon classes)
   - 4 tree-root crit hooks (in the 4 weapon-class tree-root classes'
     `OnWeaponMadeCriticalHit`; AcrobaticsSkill is passive-only)
@@ -207,8 +209,11 @@ scenario. Expected final test count: ~150+ EditMode tests passing.
   - 1 +pen passive (ShortBlades_Puncture — shipped WSP6.6 with
     the new `OnGetPenetrationModifier` hook)
   - 2 on-miss / on-dodge passives (Cudgel_Backswing, ShortBlades_Rejoinder)
-  - 3 active abilities (Cudgel_Conk, Axe_Berserk, Cudgel_Slam — the
-    last two shipped in WSP6.1 as the first Tier-3 batch port)
+  - 4 active abilities (Cudgel_Conk, Axe_Berserk, Cudgel_Slam, and
+    ShortBlades_Shank — the last shipped WSP6.17 as the second
+    consumer of the pen-modifier hook, using a transient per-swing
+    `_activePenBonus` field set in OnCommand and reset in finally
+    so the buff doesn't leak)
   - 1 dodge passive (AcrobaticsDodgePower)
 - 5 new status effects shipped on top of CoO's effect machinery:
   Hobbled, ShatterArmor, Broken, Berserk (this ship), plus the
@@ -367,10 +372,18 @@ system, no ranged combat, no stance machine).
    `Axe_Decapitate` toggle (deferred). The active version of the
    skill is also deferred — would be a Conk-shape swing with
    force-dismember on hit.
-4. ⏭️ **Axe_Decapitate** — finishing-move toggle (redirects dismember
+4. ✅ **ShortBlades_Shank** (shipped WSP6.17) — Tier-3 active port.
+   Adjacent-target swing with +2 penetration per negative status
+   effect on the target. First "transient buff" use of the
+   WSP6.6 `OnGetPenetrationModifier` hook (set in OnCommand,
+   reset in finally — no leak to non-Shank swings). Required
+   the WSP6.16 `TYPE_NEGATIVE` backfill on 13 existing debuff
+   effect classes — Qud's effect-type bitmask convention is now
+   honest in CoO. 10T cooldown, requires Piercing weapon equipped.
+5. ⏭️ **Axe_Decapitate** — finishing-move toggle (redirects dismember
    to Mortal parts; needs hook into CombatSystem.CheckCombatDismemberment
    OR a new `BeforeDismember` event)
-5. ⏭️ **Axe_HookAndDrag** — pull-adjacent active
+6. ⏭️ **Axe_HookAndDrag** — pull-adjacent active
 5. ⏭️ **LongBladesDeathblow** — finishing move active
 6. ⏭️ **ShortBlades_Shank** — first-hit-of-turn passive
 7. ⏭️ **ShortBlades_Puncture** — pen-buff active

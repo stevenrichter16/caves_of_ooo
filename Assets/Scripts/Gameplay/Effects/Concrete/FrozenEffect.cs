@@ -9,6 +9,9 @@ namespace CavesOfOoo.Core
     {
         public override string DisplayName => "frozen";
 
+        // WSP6.16 — TYPE_NEGATIVE backfill (see AcidicEffect.cs).
+        public override int GetEffectType() => TYPE_GENERAL | TYPE_NEGATIVE;
+
         /// <summary>
         /// 0..1. Any positive value locks the owner out of action. The
         /// field slowly thaws toward 0 in <see cref="OnTurnEnd"/>, and

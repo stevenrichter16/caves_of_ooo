@@ -20,6 +20,9 @@ namespace CavesOfOoo.Core
     {
         public override string DisplayName => "hobbled";
 
+        // WSP6.16 — TYPE_NEGATIVE backfill (see AcidicEffect.cs).
+        public override int GetEffectType() => TYPE_GENERAL | TYPE_NEGATIVE;
+
         public const int DV_PENALTY = 3;
 
         public HobbledEffect(int duration = 8)

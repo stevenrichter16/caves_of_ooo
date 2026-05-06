@@ -9,6 +9,9 @@ namespace CavesOfOoo.Core
     {
         public override string DisplayName => "electrified";
 
+        // WSP6.16 — TYPE_NEGATIVE backfill (see AcidicEffect.cs).
+        public override int GetEffectType() => TYPE_GENERAL | TYPE_NEGATIVE;
+
         /// <summary>Joules-equivalent charge. Higher = longer chain and stronger zap.</summary>
         public float Charge;
 

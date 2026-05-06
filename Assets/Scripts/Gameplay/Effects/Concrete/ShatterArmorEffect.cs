@@ -21,6 +21,9 @@ namespace CavesOfOoo.Core
     {
         public override string DisplayName => "shattered armor";
 
+        // WSP6.16 — TYPE_NEGATIVE backfill (see AcidicEffect.cs).
+        public override int GetEffectType() => TYPE_GENERAL | TYPE_NEGATIVE;
+
         /// <summary>AV reduction PER STACK. Fixed CoO value (Qud uses
         /// per-armor magnitude pools).</summary>
         public const int AV_REDUCTION = 2;
