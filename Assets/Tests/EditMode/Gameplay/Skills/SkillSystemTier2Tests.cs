@@ -1,6 +1,7 @@
 using System;
 using NUnit.Framework;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Anatomy;
 using CavesOfOoo.Skills;
 
 namespace CavesOfOoo.Tests
@@ -256,6 +257,235 @@ namespace CavesOfOoo.Tests
                 Assert.DoesNotThrow(() => skill.OnAttackerAfterAttack(ctx),
                     $"Seed {seed}: non-Cudgel hit with Hammer owned must not throw.");
             }
+        }
+
+        // ====================================================================
+        // Acceptance criteria — integration tests for Hammer-positive,
+        // Backswing-on-miss, Rejoinder-on-dodge. These require full
+        // body+inventory+weapon construction (Hammer) or PerformSingleAttack
+        // invocation through the dispatcher (Backswing/Rejoinder).
+        //
+        // Scoped to verify the WEAPON-SKILLS-PARITY-T2.md acceptance
+        // claims that were deferred in WSP3.4's commit body:
+        //   - Hammer: across many seeds, observe Broken on equipped item
+        //   - Backswing: across many seeds with deterministic miss,
+        //     observe re-attack ("(Backswing)" marker in message log)
+        //   - Rejoinder: defender-side counter-attack on missed incoming
+        //     ("(Rejoinder)" marker in message log)
+        // ====================================================================
+
+        /// <summary>Build a creature with a humanoid Body, Stats, Inventory,
+        /// and StatusEffectsPart. Mirrors the CombatSystemSpecTests pattern
+        /// — duplicated locally to keep the test fixture self-contained.</summary>
+        private static Entity MakeBodiedCreature(string name = "creature",
+            int strength = 16, int agility = 16, int hp = 50)
+        {
+            var e = new Entity { ID = name, BlueprintName = name };
+            e.Tags["Creature"] = "";
+            e.Statistics["Hitpoints"] = new Stat
+                { Owner = e, Name = "Hitpoints", BaseValue = hp, Min = 0, Max = hp };
+            e.Statistics["Strength"] = new Stat
+                { Owner = e, Name = "Strength", BaseValue = strength, Min = 1, Max = 50 };
+            e.Statistics["Agility"] = new Stat
+                { Owner = e, Name = "Agility", BaseValue = agility, Min = 1, Max = 50 };
+            e.Statistics["Toughness"] = new Stat
+                { Owner = e, Name = "Toughness", BaseValue = 16, Min = 1, Max = 50 };
+            e.Statistics["Speed"] = new Stat
+                { Owner = e, Name = "Speed", BaseValue = 100, Min = 25, Max = 200 };
+            e.Statistics["DV"] = new Stat
+                { Owner = e, Name = "DV", BaseValue = 0, Min = -50, Max = 50 };
+            e.AddPart(new RenderPart { DisplayName = name });
+            e.AddPart(new PhysicsPart { Solid = true });
+            e.AddPart(new ArmorPart());
+            e.AddPart(new InventoryPart { MaxWeight = 150 });
+            e.AddPart(new StatusEffectsPart());
+            var body = new Body();
+            e.AddPart(body);
+            body.SetBody(AnatomyFactory.CreateHumanoid());
+            return e;
+        }
+
+        /// <summary>Build a fresh weapon entity with the given attributes
+        /// string (e.g. "Bludgeoning Cudgel") + dice. Returns the entity
+        /// (caller calls EquipToBodyPart to put it in a hand).</summary>
+        private static Entity MakeWeaponEntity(string name, string dice,
+            string attributes, int penBonus = 0)
+        {
+            var e = new Entity { ID = name, BlueprintName = name };
+            e.Tags["Item"] = "";
+            e.AddPart(new RenderPart { DisplayName = name });
+            e.AddPart(new PhysicsPart { Takeable = true, Weight = 5 });
+            e.AddPart(new MeleeWeaponPart
+            {
+                BaseDamage = dice, PenBonus = penBonus,
+                Attributes = attributes,
+            });
+            e.AddPart(new EquippablePart { Slot = "Hand" });
+            e.AddPart(new StatusEffectsPart());  // for BrokenEffect target
+            return e;
+        }
+
+        // ── Cudgel_Hammer positive integration ──────────────────────────
+
+        [Test]
+        public void Hammer_WithEquippedDefender_AppliesBrokenAcrossSeeds()
+        {
+            // Acceptance: Given Cudgel_Hammer owned + Mace equipped + defender
+            // has at least one equipped item, when swinging across many seeds,
+            // then at least one swing produces BrokenEffect on the defender's
+            // equipped item.
+            var skill = new Cudgel_Hammer();
+            var actor = MakeAttackerWithSkill(skill);
+
+            // Defender has a Body with hands; equip an item in one hand so
+            // ForeachEquippedObject sees a candidate.
+            var defender = MakeBodiedCreature("defender");
+            var defenderItem = MakeWeaponEntity("test_blade", "1d4", "Cutting LongBlades");
+            var defenderBody = defender.GetPart<Body>();
+            var defenderHand = defenderBody.GetParts().Find(p => p.Type == "Hand");
+            Assert.IsNotNull(defenderHand, "Humanoid body must have a Hand body part.");
+            defender.GetPart<InventoryPart>().EquipToBodyPart(defenderItem, defenderHand);
+
+            bool observed = false;
+            for (int seed = 0; seed < 5000 && !observed; seed++)
+            {
+                var ctx = new SkillEventContext
+                {
+                    Attacker = actor, Defender = defender,
+                    Damage = MakeDamage("Cudgel"), ActualDamage = 10,
+                    Zone = null, Rng = new Random(seed),
+                };
+                skill.OnAttackerAfterAttack(ctx);
+                if (defenderItem.GetPart<StatusEffectsPart>().HasEffect<BrokenEffect>())
+                    observed = true;
+            }
+            Assert.IsTrue(observed,
+                $"Across 5000 seeds at 2% chance, Hammer should produce at least one " +
+                $"BrokenEffect on the defender's equipped item. " +
+                $"P(zero in 5000) = (0.98)^5000 ≈ 4e-44.");
+        }
+
+        private static Damage MakeDamage(params string[] attrs)
+        {
+            var d = new Damage(10);
+            foreach (var a in attrs) d.AddAttribute(a);
+            return d;
+        }
+
+        // ── Cudgel_Backswing on-miss integration ────────────────────────
+
+        [Test]
+        public void Backswing_OnMissedCudgelSwing_ReAttacksAcrossSeeds()
+        {
+            // Acceptance: Given Cudgel_Backswing owned + Cudgel weapon equipped +
+            // defender with very high DV (always misses), when swinging across
+            // many seeds via PerformSingleAttack, then at least one missed swing
+            // produces a "(Backswing)" message in the log (the re-attack).
+            var attacker = MakeBodiedCreature("attacker", strength: 16, agility: 5);
+            attacker.AddPart(new SkillsPart());
+            Assert.IsTrue(attacker.GetPart<SkillsPart>().AddSkill(new Cudgel_Backswing(), source: "test"));
+
+            var mace = MakeWeaponEntity("mace", "1d8+1", "Bludgeoning Cudgel", penBonus: 3);
+            var attackerHand = attacker.GetPart<Body>().GetParts().Find(p => p.Type == "Hand");
+            attacker.GetPart<InventoryPart>().EquipToBodyPart(mace, attackerHand);
+
+            // Defender with very high DV — give them a +25 DV armor piece
+            // baked into ArmorPart so GetDV returns ~30+ and the attacker
+            // (with low Agility) almost always misses.
+            var defender = MakeBodiedCreature("defender", agility: 16);
+            defender.GetPart<ArmorPart>().DV = 25;
+
+            var zone = new Zone();
+            zone.AddEntity(attacker, 5, 5);
+            zone.AddEntity(defender, 6, 5);
+
+            bool observedBackswing = false;
+            int totalMisses = 0;
+            for (int seed = 0; seed < 200 && !observedBackswing; seed++)
+            {
+                MessageLog.Clear();
+                CombatSystem.PerformSingleAttack(
+                    attacker, defender,
+                    mace.GetPart<MeleeWeaponPart>(), isPrimary: true,
+                    zone, new Random(seed),
+                    attackSourceDesc: null);
+                var recent = MessageLog.GetRecent(10);
+                foreach (var msg in recent)
+                {
+                    if (msg.Contains("misses")) totalMisses++;
+                    if (msg.Contains("(Backswing)"))
+                    {
+                        observedBackswing = true;
+                        break;
+                    }
+                }
+            }
+            Assert.Greater(totalMisses, 0,
+                "Setup sanity: across 200 seeds at high DV, expected at least one miss. " +
+                $"Observed {totalMisses}.");
+            Assert.IsTrue(observedBackswing,
+                $"Across 200 seeds with mostly-missing setup, expected at least one " +
+                $"\"(Backswing)\" marker in the message log (re-attack triggered). " +
+                $"Total misses observed: {totalMisses}.");
+        }
+
+        // ── ShortBlades_Rejoinder on-dodge integration ──────────────────
+
+        [Test]
+        public void Rejoinder_OnIncomingMiss_PlayerCounterAttacksAcrossSeeds()
+        {
+            // Acceptance: Given ShortBlades_Rejoinder owned + Piercing weapon
+            // equipped + an enemy whose attacks miss the player, when the miss
+            // resolves across many seeds, then at least one miss triggers the
+            // player's counter-attack (observable as "(Rejoinder)" in message log).
+            var player = MakeBodiedCreature("player", strength: 16, agility: 16);
+            player.AddPart(new SkillsPart());
+            player.GetPart<SkillsPart>().AddSkill(new ShortBlades_Rejoinder(), source: "test");
+
+            var dagger = MakeWeaponEntity("dagger", "1d4", "Piercing", penBonus: 1);
+            var playerHand = player.GetPart<Body>().GetParts().Find(p => p.Type == "Hand");
+            player.GetPart<InventoryPart>().EquipToBodyPart(dagger, playerHand);
+            // Bake high DV onto the player so the NPC's attacks mostly miss.
+            player.GetPart<ArmorPart>().DV = 25;
+
+            var npc = MakeBodiedCreature("npc", strength: 12, agility: 5);
+            var npcWeapon = MakeWeaponEntity("club", "1d6", "Bludgeoning", penBonus: 0);
+            var npcHand = npc.GetPart<Body>().GetParts().Find(p => p.Type == "Hand");
+            npc.GetPart<InventoryPart>().EquipToBodyPart(npcWeapon, npcHand);
+
+            var zone = new Zone();
+            zone.AddEntity(player, 5, 5);
+            zone.AddEntity(npc, 6, 5);
+
+            bool observedRejoinder = false;
+            int totalMisses = 0;
+            for (int seed = 0; seed < 200 && !observedRejoinder; seed++)
+            {
+                MessageLog.Clear();
+                // NPC attacks PLAYER — we expect mostly misses + occasional Rejoinder counters.
+                CombatSystem.PerformSingleAttack(
+                    attacker: npc, defender: player,
+                    weapon: npcWeapon.GetPart<MeleeWeaponPart>(), isPrimary: true,
+                    zone: zone, rng: new Random(seed),
+                    attackSourceDesc: null);
+                var recent = MessageLog.GetRecent(10);
+                foreach (var msg in recent)
+                {
+                    if (msg.Contains("misses")) totalMisses++;
+                    if (msg.Contains("(Rejoinder)"))
+                    {
+                        observedRejoinder = true;
+                        break;
+                    }
+                }
+            }
+            Assert.Greater(totalMisses, 0,
+                $"Setup sanity: across 200 seeds, expected ≥ 1 NPC miss on the player. " +
+                $"Observed {totalMisses}.");
+            Assert.IsTrue(observedRejoinder,
+                $"Across 200 seeds with mostly-missing NPC swings, expected ≥ 1 " +
+                $"\"(Rejoinder)\" marker (player counter-attack). " +
+                $"Total NPC misses: {totalMisses}.");
         }
     }
 }
