@@ -181,12 +181,15 @@ scenario. Expected final test count: ~150+ EditMode tests passing.
 | WSP4.3 | (delegated) | Cold-eye agent reviewed all 22 skill files; 10 findings returned (1 🔴 + 3 🟡 + 3 🔵 + 2 🧪 + 1 ⚪) | n/a |
 | WSP4.4 | `61e257b` | Closed 7 cold-eye findings: drop `[NonSerialized]` on `ActivatedAbilityID` (🔴 #1 — save/load break); Conk RNG-fallback removal (🟡 #2); doc-contract on `TryRouteSkillCommand` fallback (🟡 #3); add `LongBlades_Expertise` (🔵 #5); inline comment on Conk Zone-asymmetry (🔵 #7); 8 new tree-root crit + Expertise tests (🧪 #8); Hammer Body-but-no-equipped distinct test (🧪 #9); doc-vs-impl null-guard idiom alignment (⚪ #10). Defense-in-depth: added `Critical` attribute checks to all 4 tree-root crit hooks. | +9 |
 | WSP4.5 | `4f84dbf` | Defense-in-depth symmetry: parallel non-Critical tests for CudgelSkill + AxeSkill (matching the LongBlades + ShortBlades pattern) | +2 |
-| WSP4.6 | (this commit) | Symmetry sweep across 22 skill files + 5 JSON content files. **Found:** Expertise group fully symmetric (now 4); on-hit-proc group symmetric except Axe_Cleave's intentional Zone-vs-Defender guard divergence; tree-root crit group symmetric; active-ability + on-miss groups follow expected per-semantic shapes; JSON cost split (Acrobatics 100/50 vs weapon-trees 1 SP) confirmed intentional + now documented above. | n/a |
+| WSP4.6 | `b453244` | Symmetry sweep across 22 skill files + 5 JSON content files. **Found:** Expertise group fully symmetric (now 4); on-hit-proc group symmetric except Axe_Cleave's intentional Zone-vs-Defender guard divergence; tree-root crit group symmetric; active-ability + on-miss groups follow expected per-semantic shapes; JSON cost split (Acrobatics 100/50 vs weapon-trees 1 SP) confirmed intentional + now documented above. | n/a |
+| WSP5    | `7dcfdbe` (merge) | Round-2 cold-eye on the WSP4 round (5 commits). Closed 5 findings: 🔴 LongBlades_Expertise reclassified as CoO-original Extension (Qud has no LongBlades_Expertise — verified via `find qud-decompiled-project -name "*Expertise*"`); 🟡 OnAfterLoad Guid-persistence test added (structural reflection + behavioral); 🟡 SKILL-SYSTEM-PARITY.md "+to-hit passives" count corrected (3→4); 🧪 AUTHORING-SKILLS.md Pattern 3 null-guard comment fixed (on-miss skills don't use chained `ctx?.Damage`); ⚪ LongBlades_Expertise tests relocated from CritTests to Tier2Tests. Two borderline doc-drift items also fixed (SkillCombatHelpers ShortBlades_Hobble active-version reference; BaseSkillPart forward-reference camelcase). | +4 |
+| WSP6.0  | (this commit) | Tier-3 plan section: Qud catalog gap survey, port-priority ranking by complexity (🟢/🟡/🔴), WSP6 candidate ordering. Stance-batch (LongBladesCore + 6 skills) deferred to WSP7+. | n/a |
+| WSP6.1  | (this commit) | Ship `Cudgel_Slam` — first Tier-3 active-ability port. Adjacent target pushed up to 3 cells in slam direction, blocked by solid (wall/creature/closed door). Wall hits roll bonus weapon damage and scale stun duration (1-4T). Mirrors Qud's `Cudgel_Slam.cs` mechanic family with simplified push semantics (no wall-destruction, no creature-chain — see plan §WSP6 candidates). 11 RED→GREEN tests + JSON content entry. | +1 |
 
 **Final state of the skill SYSTEM:**
 
 - 5 trees registered (Acrobatics + 4 weapon classes)
-- 22 skill classes across all tiers (verified by `grep -l "class.*: BaseSkillPart" Skills/*.cs`):
+- 23 skill classes across all tiers (verified by `grep -l "class.*: BaseSkillPart" Skills/*.cs`):
   - 5 tree-roots (Acrobatics + 4 weapon classes)
   - 4 tree-root crit hooks (in the 4 weapon-class tree-root classes'
     `OnWeaponMadeCriticalHit`; AcrobaticsSkill is passive-only)
@@ -198,7 +201,8 @@ scenario. Expected final test count: ~150+ EditMode tests passing.
     LongBlades_Expertise, the WSP4.4 CoO-original Extension; see §4.2
     classification rules)
   - 2 on-miss / on-dodge passives (Cudgel_Backswing, ShortBlades_Rejoinder)
-  - 2 active abilities (Cudgel_Conk, Axe_Berserk)
+  - 3 active abilities (Cudgel_Conk, Axe_Berserk, Cudgel_Slam — the
+    last shipped in WSP6.1 as the first Tier-3 batch port)
   - 1 dodge passive (AcrobaticsDodgePower)
 - 5 new status effects shipped on top of CoO's effect machinery:
   Hobbled, ShatterArmor, Broken, Berserk (this ship), plus the
@@ -237,3 +241,118 @@ virtuals don't cover): add a new virtual on `BaseSkillPart`, add a
 new entry-point on `SkillEventDispatcher`, wire the call site.
 Pattern is mechanical — `WeaponMadeCriticalHit` is the most recent
 copy-template.
+
+---
+
+## Tier-3 — Qud-parity gap & next-up ports (WSP6+)
+
+The 22 shipped classes cover the **most-played** Qud powers per
+weapon tree (Bludgeon / Cleave / Lacerate / Jab / Hobble class core
+on-hit, Backswing / Rejoinder defensive, Conk / Berserk actives, the
+4 Expertise +to-hit passives, the 4 tree-root crit hooks). The full
+Qud catalog has ~50 weapon-tree skills across 4 classes. The list
+below classifies what's left, gated on whether porting needs new
+infrastructure.
+
+### Cudgel — 4 Qud powers not yet ported
+
+| Qud skill | What it does | Port complexity | Triage |
+|---|---|---|---|
+| `Cudgel_Slam` | Knockback + stun; if hits wall, bonus dmg | 🟡 Medium — needs zone movement | 🔵 **Next-up — WSP6** |
+| `Cudgel_ChargingStrike` | Move N cells then attack as one action | 🟡 Medium — multi-cell movement | 🔵 Tier-3 batch |
+| `Cudgel_SmashUp` | Toggle: each cudgel hit also breaks furniture in target's cell | 🟡 Medium — needs Furniture/Breakable system | ⚪ Defer — needs furniture-class checks |
+| `(Cudgel_Slam)` (variant) | Slam through walls if Strength-AV ≥ slamPower | 🔴 Hard — needs CoO wall-as-Object model | ⚪ Defer to v2 |
+
+### Axe — 3 Qud powers not yet ported
+
+| Qud skill | What it does | Port complexity | Triage |
+|---|---|---|---|
+| `Axe_Decapitate` | Active ability — finishing move, instant kill below HP threshold | 🟢 Easy — uses existing dismemberment | 🔵 **Tier-3 batch** |
+| `Axe_Dismember` | Crit chance to dismember random body part (parallel to AxeSkill's force-cleave on crit) | 🟢 Easy — uses CombatSystem.CheckCombatDismemberment | 🔵 Tier-3 batch |
+| `Axe_HookAndDrag` | Active ability — pull adjacent enemy 1 cell closer | 🟡 Medium — needs zone movement | 🔵 Tier-3 batch |
+
+### LongBlades — 9 Qud skills not yet ported
+
+The LongBlades tree is **architecturally different from Cudgel/Axe/
+ShortBlades** — Qud puts the actual mechanics in `LongBladesCore` (a
+Part installed when ANY LongBlades skill is owned), and the skills
+themselves are mostly markers that register activated abilities and
+sub-stance flags. This is a "Core+stances" pattern.
+
+| Qud skill | What it does | Port complexity | Triage |
+|---|---|---|---|
+| `LongBladesProficiency` | Marker; covered by existing `LongBlades_Expertise` | n/a | ✅ Functionally covered (CoO-Extension) |
+| `LongBladesAggressiveStance` | Active toggle — +pen, -hit when active | 🔴 Hard — needs LongBladesCore + stance-state machine | ⚪ Tier-3 stance-batch |
+| `LongBladesDefensiveStance` | Active toggle — +DV when active | 🔴 Hard — same | ⚪ Tier-3 stance-batch |
+| `LongBladesDuelingStance` | Active toggle — +hit + parry when active | 🔴 Hard — same | ⚪ Tier-3 stance-batch |
+| `LongBladesImproved*Stance` (×3) | Boost the corresponding stance's magnitude | 🔴 Hard — depends on stance batch | ⚪ Tier-3 stance-batch |
+| `LongBladesLunge` | Step + strike (gated on aggressive stance) | 🔴 Hard — depends on stance batch | ⚪ Tier-3 stance-batch |
+| `LongBladesSwipe` | AOE 3-cell arc attack | 🟡 Medium — adjacent-cells iteration | 🔵 Tier-3 batch (no stance dep) |
+| `LongBladesDeathblow` | Finishing move, instant kill below HP threshold | 🟢 Easy — same shape as Axe_Decapitate | 🔵 Tier-3 batch |
+
+### ShortBlades — 4 Qud powers not yet ported
+
+| Qud skill | What it does | Port complexity | Triage |
+|---|---|---|---|
+| `ShortBlades_Shank` | First strike of turn gets +damage | 🟢 Easy — per-turn flag + on-hit hook | 🔵 Tier-3 batch |
+| `ShortBlades_Puncture` | Active ability — pen bonus on next attack | 🟢 Easy — buff-style effect | 🔵 Tier-3 batch |
+| `ShortBlades_PointedCircle` | Active ability — AOE, attack all adjacent | 🟡 Medium — adjacent-cells iteration | 🔵 Tier-3 batch |
+
+### Other Qud weapon trees not in CoO
+
+CoO is currently melee-only. The Qud trees below are out of scope
+until the player gets a ranged-weapon equivalent:
+
+| Qud tree | CoO status |
+|---|---|
+| Pistol / Rifle | ⚪ Defer — needs ranged combat system |
+| HeavyWeapons | ⚪ Defer — needs heavy-weapon family |
+| Shield | ⚪ Defer — needs shield equipment slot |
+| Multiweapon | ⚪ Defer — needs dual-wielding |
+
+### Other Qud skill families not in CoO
+
+These are **utility/lifestyle** trees — not directly combat — and
+each is a multi-week port. None are in scope for the current parity
+push.
+
+| Qud tree | Purpose | Triage |
+|---|---|---|
+| Survival (×11 sub-skills) | Terrain-survival, camping | ⚪ Defer |
+| Tinkering (×9) | Crafting/disassembly | ⚪ Defer |
+| Cooking and Gathering (×6) | Food + fungal | ⚪ Defer |
+| Discipline (×6) | Mind/body buffs | ⚪ Defer |
+| Endurance (×7) | HP / stamina passives | 🔵 Some port-fits — esp. `Endurance_ShakeItOff` |
+| Customs (×3) | Etiquette/trade | ⚪ Defer |
+| Persuasion (×7) | Social/diplomacy | ⚪ Defer |
+| Physic (×4) | Medical | ⚪ Defer |
+| Tactics (×9) | Movement tricks | 🔵 Some port-fits — esp. `Tactics_Charge` |
+| TenfoldPath (×9) | Mental discipline | ⚪ Defer |
+| Nonlinearity (×1) | Time travel | ⚪ Defer |
+
+### WSP6 — Tier-3 batch (in flight)
+
+**Goal:** ship 3-5 high-value Tier-3 active abilities that don't
+require new architectural layers (no LongBladesCore, no Furniture
+system, no ranged combat, no stance machine).
+
+**WSP6 candidates** (in priority order):
+
+1. ✅ **Cudgel_Slam** (shipped WSP6.1) — knockback active. Mechanic:
+   adjacent target pushed up to 3 cells in slam direction; cells
+   blocked by solid terrain count as wall hits → bonus weapon-roll
+   damage + Stunned (1-4T scaling with cells crossed + walls hit).
+   Simplified-Qud port — Qud's wall-destruction + creature-chain
+   variants deferred to v2 (need wall-AV system + chain-recursion
+   semantics). 50T cooldown, requires Cudgel weapon equipped.
+2. ⏭️ **Axe_Decapitate** — finishing move active (next ship)
+3. ⏭️ **Axe_Dismember** — crit-chance dismember passive
+4. ⏭️ **Axe_HookAndDrag** — pull-adjacent active
+5. ⏭️ **LongBladesDeathblow** — finishing move active
+6. ⏭️ **ShortBlades_Shank** — first-hit-of-turn passive
+7. ⏭️ **ShortBlades_Puncture** — pen-buff active
+8. ⏭️ **ShortBlades_PointedCircle** — AOE adjacent active
+9. ⏭️ **LongBladesSwipe** — 3-cell arc AOE active
+
+The stance-batch (LongBladesCore + 3 stances + 3 improved + Lunge)
+is deferred to **WSP7+** as a separate multi-commit feature.
