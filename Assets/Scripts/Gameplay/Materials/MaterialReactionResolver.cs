@@ -250,8 +250,16 @@ namespace CavesOfOoo.Core
                         break;
 
                     case "DealDamage":
+                        // WSP7.4 — repurpose ReactionEffect.StringValue for the
+                        // damage element ("Heat" / "Cold" / "Electric" / "Acid"
+                        // / "Light" / ""). Empty string = untyped damage (status
+                        // quo, no resistance applies). All previously-shipped
+                        // reactions had StringValue="" so this is backward-
+                        // compatible; the per-reaction JSON migration in WSP7.4
+                        // updates each to specify the right element.
                         if (entity.GetStatValue("Hitpoints", 0) > 0)
-                            CombatSystem.ApplyDamage(entity, (int)fx.FloatValue, null, zone);
+                            CombatSystem.ApplyDamage(entity, (int)fx.FloatValue,
+                                fx.StringValue, source: null, zone);
                         break;
 
                     case "SpawnEntity":

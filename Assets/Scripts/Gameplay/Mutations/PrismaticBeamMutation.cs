@@ -93,7 +93,8 @@ namespace CavesOfOoo.Core
                 MessageLog.Add(
                     ParentEntity.GetDisplayName() + " lances " +
                     target.GetDisplayName() + " with prismatic light for " + damage + " damage!");
-                CombatSystem.ApplyDamage(target, damage, ParentEntity, zone);
+                // WSP7.4 — tag with Light so LightResistance applies (when implemented).
+                CombatSystem.ApplyDamage(target, damage, "Light", ParentEntity, zone);
             }
 
             CooldownMyActivatedAbility(ActivatedAbilityID, COOLDOWN);

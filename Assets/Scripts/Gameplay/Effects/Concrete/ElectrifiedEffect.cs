@@ -72,6 +72,10 @@ namespace CavesOfOoo.Core
             // when we wire StatusTonicPart / OnHitEffectFactory to thread
             // the original source.
             Zone zone = context?.GetParameter<Zone>("Zone");
+            // damage is already a typed Damage with the "Lightning"
+            // attribute set above (line 65) — uses the typed overload of
+            // ApplyDamage which fires ApplyResistances. Pre-WSP7.4 this
+            // was already correct (just verified during the WSP7.4 audit).
             CombatSystem.ApplyDamage(target, damage, source: null, zone);
         }
 
