@@ -413,6 +413,21 @@ namespace CavesOfOoo
                     }
                     skillsScreenUI.PopupCamera = popupOverlayCamera;
                     inputHandler.SkillsScreenUI = skillsScreenUI;
+
+                    // WSP8.0 — Ability manager (KeyCode.M → centered ability-list
+                    // popup). Same wiring shape as the skills screen — both share
+                    // the centered popup tilemaps + overlay camera. The state-
+                    // builder is pure-data + unit-tested in EditMode.
+                    var abilityManagerUI = GetComponent<AbilityManagerUI>();
+                    if (abilityManagerUI == null)
+                        abilityManagerUI = gameObject.AddComponent<AbilityManagerUI>();
+                    if (ZoneRenderer != null)
+                    {
+                        abilityManagerUI.Tilemap = ZoneRenderer.CenteredPopupFgTilemap;
+                        abilityManagerUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
+                    }
+                    abilityManagerUI.PopupCamera = popupOverlayCamera;
+                    inputHandler.AbilityManagerUI = abilityManagerUI;
                 });
 
                 _turnManager.ProcessUntilPlayerTurn();
