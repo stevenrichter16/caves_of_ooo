@@ -162,5 +162,42 @@ namespace CavesOfOoo.Skills
             }
             return total;
         }
+
+        /// <summary>
+        /// Returns the SUM of
+        /// <see cref="BaseSkillPart.OnGetSpellDamageModifier"/> across all
+        /// owned skills. Used by
+        /// <see cref="CavesOfOoo.Core.MutationDamageHelpers.ApplySpellDamage"/>
+        /// to fold magic-skill bonuses into the rolled spell damage
+        /// before resistance + delivery.
+        ///
+        /// <para>Mirrors the GetSkillHitModifier / GetSkillPenetrationModifier
+        /// shapes exactly (null-actor / null-SkillsPart guards, list
+        /// iteration with sum). Added in WSP7.0 to support the magic
+        /// & grimoire skill suite (Spellcraft, Pyromancy, Cryomancy,
+        /// Galvanism, Hydromancy, Corrosion, Photomancy, Empathy).</para>
+        ///
+        /// <para>The element + defender params let element-specific
+        /// skills gate their bonus (e.g. Pyromancy_Conflagration only
+        /// fires when elementAttribute == "Heat" AND defender has
+        /// BurningEffect).</para>
+        /// </summary>
+        public static int GetSpellDamageModifier(Entity attacker, Entity defender,
+            string elementAttribute, int baseDamage)
+        {
+            if (attacker == null) return 0;
+            var skills = attacker.GetPart<SkillsPart>();
+            if (skills == null) return 0;
+            var list = skills.SkillList;
+            int total = 0;
+            for (int i = 0; i < list.Count; i++)
+            {
+                var skill = list[i];
+                if (skill == null) continue;
+                total += skill.OnGetSpellDamageModifier(attacker, defender,
+                    elementAttribute, baseDamage);
+            }
+            return total;
+        }
     }
 }

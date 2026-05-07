@@ -11,6 +11,7 @@ namespace CavesOfOoo.Core
         protected override string DamageDice => "2d3";
         protected override string AbilityClass => "Physical Mutations";
         protected override string ImpactVerb => "impales";
+        protected override string ElementAttribute => "Cold";
 
         public override string Name => "IceShard";
         public override string MutationType => "Physical";

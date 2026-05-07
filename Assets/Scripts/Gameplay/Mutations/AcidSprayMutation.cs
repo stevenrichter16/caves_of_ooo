@@ -18,6 +18,7 @@ namespace CavesOfOoo.Core
         protected override string DamageDice => "1d4";
         protected override string AbilityClass => "Grimoire Spells";
         protected override string ImpactVerb => "douses";
+        protected override string ElementAttribute => "Acid";
 
         public override string Name => "Acid Spray";
         public override string MutationType => "Mental";

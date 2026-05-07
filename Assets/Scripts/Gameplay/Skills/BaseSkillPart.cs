@@ -192,6 +192,48 @@ namespace CavesOfOoo.Skills
             return 0;
         }
 
+        /// <summary>
+        /// Returns this skill's contribution to spell-damage modifier.
+        /// Summed across all owned skills by
+        /// <see cref="SkillEventDispatcher.GetSpellDamageModifier"/>.
+        /// Hook fires from
+        /// <see cref="CavesOfOoo.Core.MutationDamageHelpers.ApplySpellDamage"/>
+        /// before damage is applied — added to the rolled
+        /// <paramref name="baseDamage"/> before resistance is applied.
+        ///
+        /// <para>Consumers:
+        /// <list type="bullet">
+        ///   <item><c>SpellcraftSkill</c> returns +1 universally (any
+        ///         spell, any element — generic spell-power buff).</item>
+        ///   <item><c>Pyromancy_Conflagration</c> returns
+        ///         <c>baseDamage / 4</c> when <paramref name="elementAttribute"/>
+        ///         is "Heat" AND defender has BurningEffect (+25% Heat
+        ///         damage to Burning targets).</item>
+        ///   <item>Future elemental trees (Cryomancy / Galvanism / etc.)
+        ///         each return their gated bonus.</item>
+        /// </list></para>
+        ///
+        /// <para>Added in WSP7.0 — first new combat virtual since WSP6.6.
+        /// Follows the §"Adding a new combat event" mechanical pattern
+        /// in <c>Docs/SKILL-SYSTEM-PARITY.md</c>: virtual on
+        /// BaseSkillPart + matching aggregator on SkillEventDispatcher
+        /// + call site at the damage-application point. Default
+        /// returns 0.</para>
+        /// </summary>
+        /// <param name="attacker">The casting entity.</param>
+        /// <param name="defender">The damaged entity (so element-gated
+        /// skills can check the defender's effects, e.g. Burning).</param>
+        /// <param name="elementAttribute">"Heat" / "Cold" / "Electric"
+        /// / "Acid" / "Light" / "" (untyped). Element-specific skills
+        /// gate on this; universal skills (Spellcraft) ignore it.</param>
+        /// <param name="baseDamage">The pre-modifier damage roll, so
+        /// percent-based bonuses can compute their flat contribution.</param>
+        public virtual int OnGetSpellDamageModifier(Entity attacker, Entity defender,
+            string elementAttribute, int baseDamage)
+        {
+            return 0;
+        }
+
         // ─────────────────────────────────────────────────────────────────
         // WSP3.5 — Activated-ability integration. Skills can declare a
         // command (with cooldown + targeting) that gets registered on

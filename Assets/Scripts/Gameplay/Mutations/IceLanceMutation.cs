@@ -19,6 +19,7 @@ namespace CavesOfOoo.Core
         protected override string DamageDice => "1d6";
         protected override string AbilityClass => "Grimoire Spells";
         protected override string ImpactVerb => "impales";
+        protected override string ElementAttribute => "Cold";
 
         public override string Name => "Ice Lance";
         public override string MutationType => "Mental";

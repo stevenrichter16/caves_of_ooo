@@ -17,6 +17,15 @@ namespace CavesOfOoo.Core
         protected abstract string AbilityClass { get; }
         protected abstract string ImpactVerb { get; }
 
+        /// <summary>
+        /// Element attribute for the spell damage. Subclasses override
+        /// to supply "Heat" / "Cold" / "Electric" / "Acid" / "Light".
+        /// Default is empty string (untyped magic damage — still tagged
+        /// "Spell" but no resistance applies). Added in WSP7.0 so
+        /// elemental resistance + skill hooks gate properly.
+        /// </summary>
+        protected virtual string ElementAttribute => "";
+
         public override void Mutate(Entity entity, int level)
         {
             base.Mutate(entity, level);
@@ -85,7 +94,17 @@ namespace CavesOfOoo.Core
                     MessageLog.Add(
                         ParentEntity.GetDisplayName() + " " + ImpactVerb + " " +
                         target.GetDisplayName() + " for " + damage + " damage!");
-                    CombatSystem.ApplyDamage(target, damage, ParentEntity, zone);
+                    // WSP7.0 — Route through the spell-damage helper so:
+                    //   1. Damage is tagged "Spell" + element attribute
+                    //      (so HeatResistance / ColdResistance / etc. fire
+                    //      — pre-WSP7 these were silently bypassed because
+                    //      the int-overload of ApplyDamage built a Damage
+                    //      with no attributes).
+                    //   2. Skill-driven damage modifiers (Spellcraft_Empower,
+                    //      Pyromancy_Conflagration, etc.) fold in via
+                    //      SkillEventDispatcher.GetSpellDamageModifier.
+                    MutationDamageHelpers.ApplySpellDamage(
+                        target, damage, ElementAttribute, ParentEntity, zone);
                 }
 
                 if (target.GetStatValue("Hitpoints", 0) > 0)
