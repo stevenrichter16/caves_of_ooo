@@ -83,7 +83,8 @@ namespace CavesOfOoo.Core
                     MessageLog.Add(
                         ParentEntity.GetDisplayName() + " freezes " +
                         target.GetDisplayName() + " for " + damage + " damage!");
-                    CombatSystem.ApplyDamage(target, damage, ParentEntity, zone);
+                    // WSP7.4 — tag with Cold so ColdResistance applies.
+                    CombatSystem.ApplyDamage(target, damage, "Cold", ParentEntity, zone);
                 }
 
                 if (target.GetStatValue("Hitpoints", 0) > 0 && radius <= 1)

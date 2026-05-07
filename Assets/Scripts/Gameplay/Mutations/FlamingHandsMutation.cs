@@ -96,7 +96,8 @@ namespace CavesOfOoo.Core
                     {
                         string targetName = target.GetDisplayName();
                         MessageLog.Add($"{attackerName} blasts {targetName} with flames for {totalDamage} damage!");
-                        CombatSystem.ApplyDamage(target, totalDamage, ParentEntity, zone);
+                        // WSP7.4 — tag with Heat so HeatResistance applies.
+                        CombatSystem.ApplyDamage(target, totalDamage, "Heat", ParentEntity, zone);
 
                         // Participate in the material system: emit heat to the target
                         var heatEvent = GameEvent.New("ApplyHeat");

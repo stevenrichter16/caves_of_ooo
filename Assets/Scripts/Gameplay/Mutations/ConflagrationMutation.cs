@@ -85,7 +85,8 @@ namespace CavesOfOoo.Core
                     MessageLog.Add(
                         ParentEntity.GetDisplayName() + " engulfs " +
                         target.GetDisplayName() + " in flames for " + damage + " damage!");
-                    CombatSystem.ApplyDamage(target, damage, ParentEntity, zone);
+                    // WSP7.4 — tag with Heat so HeatResistance applies.
+                    CombatSystem.ApplyDamage(target, damage, "Heat", ParentEntity, zone);
                 }
 
                 // Apply BurningEffect and heat only if target survived

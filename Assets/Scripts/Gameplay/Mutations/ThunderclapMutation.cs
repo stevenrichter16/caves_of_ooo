@@ -96,7 +96,8 @@ namespace CavesOfOoo.Core
                     MessageLog.Add(
                         ParentEntity.GetDisplayName() + " jolts " +
                         target.GetDisplayName() + " for " + damage + " damage!");
-                    CombatSystem.ApplyDamage(target, damage, ParentEntity, zone);
+                    // WSP7.4 — tag with Electric so ElectricResistance applies.
+                    CombatSystem.ApplyDamage(target, damage, "Electric", ParentEntity, zone);
                 }
 
                 if (target.GetStatValue("Hitpoints", 0) > 0)

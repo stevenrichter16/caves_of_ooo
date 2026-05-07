@@ -94,7 +94,8 @@ namespace CavesOfOoo.Core
                 MessageLog.Add(
                     ParentEntity.GetDisplayName() + " scorches " +
                     target.GetDisplayName() + " for " + damage + " damage!");
-                CombatSystem.ApplyDamage(target, damage, ParentEntity, zone);
+                // WSP7.4 — tag with Heat so HeatResistance applies.
+                CombatSystem.ApplyDamage(target, damage, "Heat", ParentEntity, zone);
             }
 
             // 2. Per-cell heat pass: +150J to every ThermalPart entity in the

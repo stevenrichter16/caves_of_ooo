@@ -783,6 +783,44 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// Canonical "deal N damage of type X" API. Wraps the amount in a
+        /// <see cref="Damage"/> with the specified element attribute set,
+        /// then forwards to the typed overload — so
+        /// <see cref="ApplyResistances"/> sees the right
+        /// HeatResistance / ColdResistance / ElectricResistance /
+        /// AcidResistance stat and applies it correctly.
+        ///
+        /// <para>Added in WSP7.4 as the migration target for spell-side,
+        /// effect-tick, and material-reaction damage that previously
+        /// went through the int-overload (no attributes) and silently
+        /// bypassed the resistance pipeline. Use this overload for any
+        /// damage that "feels" elemental — fire spells, cold spells,
+        /// electric DoT ticks, acid-effect ticks, fire+ice reactions,
+        /// etc. Pass an empty string for non-elemental damage (effect-
+        /// tick from Bleeding / Poisoned, internal damage from material
+        /// shatter — these have no matching resistance system in CoO so
+        /// the int-overload is the right choice).</para>
+        ///
+        /// <para>Mirrors the convention of the existing single-element
+        /// resistance lookup in <see cref="ApplyResistances"/> (line
+        /// 793): "Heat" / "Cold" / "Electric" / "Acid" map to the
+        /// matching <c>DamageAttributeFlags</c> bit via
+        /// <see cref="Damage.AddAttribute"/>'s alias-aware handling
+        /// (Damage.cs:128-160). Aliases like "Fire" / "Ice" / "Freeze"
+        /// / "Lightning" / "Shock" all map to the canonical flag —
+        /// callers can use whichever string reads best at the call
+        /// site.</para>
+        /// </summary>
+        public static void ApplyDamage(Entity target, int amount,
+            string elementAttribute, Entity source, Zone zone)
+        {
+            var dmg = new Damage(amount);
+            if (!string.IsNullOrEmpty(elementAttribute))
+                dmg.AddAttribute(elementAttribute);
+            ApplyDamage(target, dmg, source, zone);
+        }
+
+        /// <summary>
         /// Apply elemental resistances to a damage instance based on the target's
         /// resistance stats and the damage's type attributes. Mirrors
         /// <c>XRL.World.Parts.Physics</c>'s resistance loop (lines 3351-3417).
