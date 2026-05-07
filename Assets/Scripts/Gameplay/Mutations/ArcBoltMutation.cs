@@ -20,6 +20,7 @@ namespace CavesOfOoo.Core
         protected override string DamageDice => "1d8";
         protected override string AbilityClass => "Grimoire Spells";
         protected override string ImpactVerb => "jolts";
+        protected override string ElementAttribute => "Electric";
 
         public override string Name => "Arc Bolt";
         public override string MutationType => "Mental";

@@ -17,6 +17,7 @@ namespace CavesOfOoo.Core
         protected override string DamageDice => "1d4";
         protected override string AbilityClass => "Grimoire Spells";
         protected override string ImpactVerb => "sears";
+        protected override string ElementAttribute => "Fire";
 
         public override string Name => "Kindle";
         public override string MutationType => "Mental";

@@ -11,6 +11,7 @@ namespace CavesOfOoo.Core
         protected override string DamageDice => "2d4";
         protected override string AbilityClass => "Physical Mutations";
         protected override string ImpactVerb => "scorches";
+        protected override string ElementAttribute => "Fire";  // → DamageAttributeFlags.Heat
 
         public override string Name => "FireBolt";
         public override string MutationType => "Physical";
