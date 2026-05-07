@@ -118,7 +118,8 @@ namespace CavesOfOoo.Rendering
             FactionOpen,
             AnnouncementOpen,
             WorldActionMenuOpen,  // Phase 4d — look-mode click/Enter on a cell opens this
-            SkillsScreenOpen      // ST.7b — KeyCode.X opens the skills/powers tree popup
+            SkillsScreenOpen,     // ST.7b — KeyCode.X opens the skills/powers tree popup
+            AbilityManagerOpen    // WSP8.0 — KeyCode.M opens the ability manager modal
         }
         private InputState _inputState = InputState.Normal;
 
@@ -250,6 +251,16 @@ namespace CavesOfOoo.Rendering
         /// only rendering + per-frame keyboard dispatch.
         /// </summary>
         public SkillsScreenUI SkillsScreenUI { get; set; }
+
+        /// <summary>
+        /// WSP8.0 — Ability manager UI (KeyCode.M opens a centered
+        /// modal that lists every owned ability with hotkey-binding +
+        /// activation controls). Mirrors Qud's
+        /// <c>AbilityManagerScreen</c>. Wired by <c>GameBootstrap</c>;
+        /// the state-builder + snapshot are pure-data and unit-tested
+        /// in EditMode.
+        /// </summary>
+        public AbilityManagerUI AbilityManagerUI { get; set; }
 
         /// <summary>
         /// Public activation hook for the boot-menu modal — called from
@@ -384,6 +395,19 @@ namespace CavesOfOoo.Rendering
                     _lastMoveTime = Time.time;
                     return;
                 }
+
+                // WSP8.0 — KeyCode.M opens the ability manager modal.
+                // Same gating pattern as the skills screen: only on
+                // InputState.Normal, only when the UI is wired + a
+                // player entity exists.
+                if (AbilityManagerUI != null
+                    && InputHelper.GetKeyDown(KeyCode.M)
+                    && PlayerEntity != null)
+                {
+                    OpenAbilityManager();
+                    _lastMoveTime = Time.time;
+                    return;
+                }
             }
 
             // Wait/skip turn (tap or hold) — placed BEFORE the general rate
@@ -448,6 +472,12 @@ namespace CavesOfOoo.Rendering
             if (_inputState == InputState.SkillsScreenOpen)
             {
                 HandleSkillsScreenInput();
+                return;
+            }
+
+            if (_inputState == InputState.AbilityManagerOpen)
+            {
+                HandleAbilityManagerInput();
                 return;
             }
 
@@ -1470,6 +1500,112 @@ namespace CavesOfOoo.Rendering
                 return;
 
             ExitCenteredPopupOverlayViewToGameplay();
+        }
+
+        // ─────────────────────────────────────────────────────────────────
+        // WSP8.0 — Ability manager UI integration. Mirrors the skills-
+        // screen open/handle/close trio, with one extra wrinkle: when the
+        // user activates an ability from the manager (Enter), the manager
+        // closes itself and invokes a callback that re-enters the
+        // existing TryActivateAbility direction-targeting flow. So a
+        // directional ability like Slam routes correctly through Enter
+        // in the manager → close → AwaitingDirection state.
+        // ─────────────────────────────────────────────────────────────────
+
+        private void OpenAbilityManager()
+        {
+            if (AbilityManagerUI == null || PlayerEntity == null) return;
+
+            EnterCenteredPopupOverlayView();
+            // Pass the activation callback so the manager can route
+            // Enter-on-row through our existing ability-cast pipeline.
+            AbilityManagerUI.Open(PlayerEntity, ActivateAbilityFromManager);
+            _inputState = InputState.AbilityManagerOpen;
+        }
+
+        private void HandleAbilityManagerInput()
+        {
+            if (AbilityManagerUI == null || !AbilityManagerUI.IsOpen)
+            {
+                CloseAbilityManager();
+                return;
+            }
+
+            AbilityManagerUI.HandleInput();
+
+            if (!AbilityManagerUI.IsOpen)
+                CloseAbilityManager();
+        }
+
+        private void CloseAbilityManager()
+        {
+            _inputState = InputState.Normal;
+            if (TryOpenAnnouncement()) return;
+            ExitCenteredPopupOverlayViewToGameplay();
+        }
+
+        /// <summary>
+        /// Callback the AbilityManagerUI fires when the user presses
+        /// Enter on a row. The UI closes itself first; this method then
+        /// looks up the ability + activates it via the same path that
+        /// number-key direct activation uses (TryActivateAbility, with
+        /// direction-targeting if needed).
+        /// </summary>
+        private void ActivateAbilityFromManager(System.Guid abilityID)
+        {
+            if (PlayerEntity == null) return;
+            var abilities = PlayerEntity.GetPart<ActivatedAbilitiesPart>();
+            if (abilities == null) return;
+            int slot = abilities.GetSlotForAbility(abilityID);
+            if (slot < 0)
+            {
+                // Unbound ability — activate by Guid directly. We can't
+                // reuse TryActivateAbility(slot) because that requires a
+                // bound slot. Inline the same usability + targeting logic.
+                ActivateAbilityByID(abilityID);
+                return;
+            }
+            // Bound ability — reuse the slot-based path so the existing
+            // selected-hotbar-slot UI updates fire.
+            _selectedHotbarSlot = slot;
+            SyncHotbarState();
+            TryActivateAbility(slot);
+        }
+
+        /// <summary>
+        /// Activate an unbound ability by Guid. Matches the behavior of
+        /// <see cref="TryActivateAbility"/> but skips the slot lookup
+        /// (the manager allows activating abilities that haven't been
+        /// hotkey-bound yet).
+        /// </summary>
+        private void ActivateAbilityByID(System.Guid abilityID)
+        {
+            var abilities = PlayerEntity.GetPart<ActivatedAbilitiesPart>();
+            if (abilities == null) return;
+            if (!abilities.AbilityByGuid.TryGetValue(abilityID, out var ability))
+                return;
+            if (ability == null) return;
+            if (!ability.IsUsable)
+            {
+                MessageLog.Add(GetAbilityDisplayName(ability) + " is on cooldown (" +
+                    ability.CooldownRemaining + " turns remaining).");
+                return;
+            }
+            Cell playerCell = CurrentZone?.GetEntityCell(PlayerEntity);
+            if (playerCell == null) return;
+
+            if (ability.TargetingMode == AbilityTargetingMode.SelfCentered)
+            {
+                ResolveAbilityCommand(ability, playerCell, 0, 0, null);
+                return;
+            }
+
+            // Directional ability — enter targeting mode. Same as the
+            // slot-based TryActivateAbility's directional path.
+            _pendingAbility = ability;
+            _inputState = InputState.AwaitingDirection;
+            SyncHotbarState();
+            MessageLog.Add(GetAbilityDisplayName(ability) + " - choose a direction.");
         }
 
         /// <summary>
