@@ -368,6 +368,71 @@ files, mostly visual) or `/Users/steven/qud-decompiled-project/`
 
 ---
 
+## Observability — every gate emits a diag record
+
+Before writing the production code for a new feature, decide which
+diag records it will emit. Don't punt this — the substrate
+(`Diag.cs`) and the MCP tools (`diag_query` / `diag_count` /
+`diag_assert` / `diag_inspect_record`) exist precisely so future
+"why didn't X happen?" debugging starts with a query, not with code
+grep + `execute_code` poking. If the records aren't there, the
+debug session degrades to detective work — which is what the
+WSP3-7 skill-system buildout did because the dispatch path was never
+instrumented.
+
+**The rule:** every action that can succeed OR fail emits a
+category-appropriate diag record on each branch. Specifically:
+
+1. **Every gate that can reject emits a record.** Cooldown checks,
+   weapon-class checks, line-of-sight checks, target-type checks,
+   resource-cost checks, etc. — each gets a `kind=Rejected` (or
+   similar) record with a `reason` field naming which gate fired.
+2. **Every successful action emits a record.** `kind=Routed` /
+   `kind=Casted` / `kind=Activated` etc. The record is the proof
+   the system worked end-to-end.
+3. **Use the standard categories.** `event`, `effect`, `damage`,
+   `turn`, `furniture`, `trade`, `quest`, `skill`, `ai` — listed in
+   `Diag.DefaultOnCategories`. Add new ones only when none fit.
+4. **Payload includes everything a debugger would want.** For a
+   skill: command name, skill class, display name, cooldown
+   remaining, reason for rejection. For damage: amount, attributes,
+   resistance reduction. For movement: from/to cells, blocked
+   reason if applicable. The payload is read by `diag_query`'s
+   PayloadJson — make it grep-friendly.
+
+**The verification workflow:**
+
+When a user reports a bug ("X doesn't work"), step 1 is:
+```
+diag_assert category=<area> kind=<expected_success_kind>
+```
+- `matched=false` → the success path never fires → investigate the
+  upstream pipeline (input dispatch, condition gates, etc.)
+- `matched=true` → the success path fires → investigate downstream
+  (effect resolution, target state, side-effect propagation)
+
+**The pattern that surfaced this rule (skill-system bug, 2026-05):**
+`SkillsPart.TryRouteSkillCommand` emitted `Added`/`Removed` records
+but had ZERO instrumentation on the activation pipeline. When the
+user reported "Slam doesn't hit," the right first query was
+`diag_assert category=skill kind=CommandRouted` → which would have
+returned `matched=false` and immediately pointed at the dispatch
+gap. Instead the diag stream was unhelpful (only Add/Remove
+records), so the debug session burned tool calls grepping +
+execute-coding. The fix added `CommandRouted` and `CommandRejected`
+emissions; future bugs in the activation pipeline now surface as
+expected.
+
+**Tests pin the emissions.** Like other contract-level invariants,
+diag emissions need test coverage so a future contributor can't
+silently drop them. Pattern: in the unit test for the action,
+`Diag.ResetAll()` then exercise the action then `DiagQuery.Apply`
+to assert the expected record fired. See
+`SkillsPartTests.HandleEvent_SuccessfulRoute_EmitsCommandRoutedDiag`
+for the canonical example.
+
+---
+
 ## Performance — non-negotiables for new features
 
 Read `Docs/PERF-FOUNDATION.md` before adding any feature that touches
