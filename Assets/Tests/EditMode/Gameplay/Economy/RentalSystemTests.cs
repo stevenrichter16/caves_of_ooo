@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Anatomy;
 
 namespace CavesOfOoo.Tests
 {
@@ -174,6 +175,20 @@ namespace CavesOfOoo.Tests
             var item = new Entity { BlueprintName = "TaggedNoCommerce" };
             item.Tags["Rentable"] = "";
             item.AddPart(new RenderPart { DisplayName = "tagged" });
+            Assert.That(RentalSystem.IsRentable(item), Is.False);
+        }
+
+        [Test]
+        public void IsRentable_StackableItem_False()
+        {
+            // Cold-eye-2 Finding 2: InventoryPart.AddObject auto-merges
+            // stacks (line 60-77) and consumes the source entity. A
+            // RentalPart attached to a stackable item would be orphaned
+            // on the consumed reference, leaving the merged stack
+            // silently un-flagged. Today's loaners aren't stackable,
+            // but the IsRentable guard prevents future regressions.
+            var item = CreateRentalWeapon();
+            item.AddPart(new StackerPart());
             Assert.That(RentalSystem.IsRentable(item), Is.False);
         }
 
@@ -394,6 +409,59 @@ namespace CavesOfOoo.Tests
             Assert.That(RentalSystem.TryReturn(renter, lessor, owned), Is.False);
             Assert.That(renter.GetPart<InventoryPart>().Objects, Does.Contain(owned));
             Assert.That(RentalSystem.GetInk(renter), Is.EqualTo(100));
+        }
+
+        // ── 7. Equipped-rental return (cold-eye-2 Finding 1) ─────────
+
+        private Entity CreateBodiedPlayer(int ink = 1000)
+        {
+            // Mirrors CudgelSlamTests.MakeBodiedCreature minus the
+            // skill plumbing — equip-aware fixture for the rental
+            // return path.
+            var p = CreatePlayer(ink);
+            var body = new Body();
+            p.AddPart(body);
+            body.SetBody(AnatomyFactory.CreateHumanoid());
+            return p;
+        }
+
+        private Entity CreateEquippableRentalWeapon(string name = "RentalSword", int value = 100)
+        {
+            var item = CreateRentalWeapon(name, value);
+            item.AddPart(new EquippablePart { Slot = "Hand" });
+            return item;
+        }
+
+        [Test]
+        public void TryReturn_EquippedRental_UnequipsThenReturnsAndRefunds()
+        {
+            // Cold-eye-2 Finding 1: the typical user case is rent →
+            // equip → fight → return. Pre-fix, RemoveObject would not
+            // find the equipped item in `Objects` and TryReturn would
+            // silently fail. This test pins the unequip-first fix.
+            var renter = CreateBodiedPlayer(ink: 1000);
+            var lessor = CreateLessor();
+            var item = CreateEquippableRentalWeapon();
+            lessor.GetPart<InventoryPart>().AddObject(item);
+            Assert.That(RentalSystem.TryRent(renter, lessor, item), Is.True);
+
+            var hand = renter.GetPart<Body>().GetParts().Find(b => b.Type == "Hand");
+            renter.GetPart<InventoryPart>().EquipToBodyPart(item, hand);
+            Assume.That(InventorySystem.IsEquipped(renter, item), Is.True,
+                "Fixture sanity: weapon must be equipped before the return.");
+
+            int paid = item.GetPart<RentalPart>().InkPaid;
+            int inkBefore = RentalSystem.GetInk(renter);
+            int expectedRefund = (int)System.Math.Floor(paid * RentalSystem.REFUND_FRACTION);
+
+            Assert.That(RentalSystem.TryReturn(renter, lessor, item), Is.True);
+
+            Assert.That(InventorySystem.IsEquipped(renter, item), Is.False,
+                "Item must have been unequipped as part of the return.");
+            Assert.That(lessor.GetPart<InventoryPart>().Objects, Does.Contain(item));
+            Assert.That(item.GetPart<RentalPart>(), Is.Null);
+            Assert.That(RentalSystem.GetInk(renter),
+                Is.EqualTo(inkBefore + expectedRefund));
         }
     }
 }

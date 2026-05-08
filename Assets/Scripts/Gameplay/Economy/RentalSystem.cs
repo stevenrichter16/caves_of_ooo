@@ -55,12 +55,21 @@ namespace CavesOfOoo.Core
 
         /// <summary>An item is rentable if it carries the "Rentable"
         /// tag and a <see cref="CommercePart"/> (so a buy price exists
-        /// to scale rental cost from).</summary>
+        /// to scale rental cost from). Stackable items are explicitly
+        /// rejected: <see cref="InventoryPart.AddObject"/> auto-merges
+        /// stacks (InventoryPart.cs:60-77) and the merge consumes the
+        /// source entity, which would orphan the <see cref="RentalPart"/>
+        /// on the consumed reference and leave the merged stack
+        /// silently un-flagged. Today's loaner blueprints are not
+        /// stackable, but the guard prevents a future regression if
+        /// `MeleeWeapon` ever gains a stackable child.</summary>
         public static bool IsRentable(Entity item)
         {
             if (item == null) return false;
             if (!item.HasTag("Rentable")) return false;
-            return item.GetPart<CommercePart>() != null;
+            if (item.GetPart<CommercePart>() == null) return false;
+            if (item.GetPart<StackerPart>() != null) return false;
+            return true;
         }
 
         public static bool IsRented(Entity item)
@@ -202,6 +211,21 @@ namespace CavesOfOoo.Core
 
             int refund = (int)Math.Floor(rental.InkPaid * REFUND_FRACTION);
 
+            // Cold-eye-2 Finding 1: the typical user case is "I rented
+            // a weapon, equipped it, fought, came back to return it."
+            // An equipped item lives in InventoryPart.EquippedItems,
+            // NOT in Objects, so the RemoveObject on the next line
+            // would silently fail. Mirror TradeSystem.SellToTrader:
+            // 239-243 — unequip first, then transfer.
+            if (InventorySystem.IsEquipped(renter, rentalItem))
+            {
+                if (!InventorySystem.UnequipItem(renter, rentalItem))
+                {
+                    MessageLog.Add($"You can't release {rentalItem.GetDisplayName()} right now.");
+                    return false;
+                }
+            }
+
             // WRS cold-eye Q1 (symmetry): mirror TryRent's rollback
             // shape exactly. The previous order — RemoveObject → strip
             // RentalPart → unconditional AddObject — had two latent
@@ -210,7 +234,11 @@ namespace CavesOfOoo.Core
             // stripped before the transfer was confirmed, so a failed
             // add left the player holding an untagged-but-unowned
             // weapon.
-            if (!renterInv.RemoveObject(rentalItem)) return false;
+            if (!renterInv.RemoveObject(rentalItem))
+            {
+                MessageLog.Add($"You can't release {rentalItem.GetDisplayName()} right now.");
+                return false;
+            }
             if (!lessorInv.AddObject(rentalItem))
             {
                 renterInv.AddObject(rentalItem);

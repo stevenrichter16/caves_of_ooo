@@ -436,3 +436,73 @@ them before. Harmless ordering drift; both list the same set.
 
 **Process: 1 finding fixed in this commit, 1 deferred with rationale.
 Cold-eye pass complete.**
+
+### Cold-eye review #2 — independent reviewer pass
+
+A second cold-eye pass via an independent agent (clean read of the
+diff, no prior context) caught two bugs the first pass missed.
+Tests-green-feels-clean is exactly when latent issues hide; this is
+why the second pass exists.
+
+🟡 **Finding cold-eye-2.1 — Equipped rental cannot be returned.**
+The typical user case for this feature is *rent → equip → fight →
+come back to return.* Pre-fix, `TryReturn` called
+`renterInv.RemoveObject(rentalItem)` directly, which only searches
+`InventoryPart.Objects` (line 96). Equipped items live in
+`InventoryPart.EquippedItems` and on the `BodyPart` graph — they are
+**not** in `Objects`. So `RemoveObject` returned false and `TryReturn`
+silently failed. `ReturnRentals` was strictly worse: it iterated only
+`inv.Objects`, so an equipped rental was invisible to the loop and
+the action printed *"You have no rentals to return here."* even with
+one in hand.
+
+Fix shipped:
+1. `TryReturn` now mirrors `TradeSystem.SellToTrader:239-243` — if
+   the item is equipped, unequip first, then transfer.
+2. `ReturnRentals` snapshots both `inv.Objects` and
+   `inv.EquippedItems.Values` (deduped) into a candidate list before
+   iterating, so equipped rentals are visible to the matcher.
+3. Two new tests:
+   `TryReturn_EquippedRental_UnequipsThenReturnsAndRefunds`
+   (RentalSystemTests) and `ReturnRentals_FindsEquippedRental`
+   (RentalActionsTests). Both use the `Body` + `AnatomyFactory.
+   CreateHumanoid` fixture pattern from `CudgelSlamTests`.
+
+🟡 **Finding cold-eye-2.2 — Stacker auto-merge would orphan
+RentalPart.** `InventoryPart.AddObject` (lines 60-77) auto-merges
+stackable items via `StackerPart.MergeFrom`, **consuming the source
+entity**. A `RentalPart` attached to a stacker source would be
+orphaned on the consumed reference, leaving the merged stack
+silently un-flagged — the player would have free use of the rental
+permanently and cannot return it (the `RemoveObject` lookup against
+the consumed reference would fail). Today's loaner blueprints
+declare no `Stacker`, but `MeleeWeapon` is the shared base — adding
+`Stacker` to a future child would silently regress the rental flow.
+
+Fix shipped:
+- `IsRentable` now rejects items with a `StackerPart`. New test
+  `IsRentable_StackableItem_False` asserts the guard.
+
+🔵 **Finding cold-eye-2.3 — Missing fail-message on TryReturn's
+renter-side `RemoveObject` failure.** With finding 2.1 fixed, the
+remaining `RemoveObject` failure path is a true edge case (post-
+unequip the item should always be in `Objects`), but for symmetry
+with the lessor-side rollback message, a `MessageLog.Add` was added.
+
+⚪ Other reviewer findings (declined):
+- *Faction modifier on refund.* Refund is anchored to `InkPaid` at
+  rent time, not recomputed against current reputation. Intended;
+  documented inline.
+- *Quartermaster lacks `AISelfPreservation`.* Intentional —
+  stationary NPC.
+- *`cost` vs `price` field name divergence in diag payload.* Same
+  observability category as deferred Finding C2.1; deferred together.
+
+**Test inventory after cold-eye-2:**
+- M1: 23 tests (was 21 — added `IsRentable_StackableItem_False`,
+  `TryReturn_EquippedRental_UnequipsThenReturnsAndRefunds`).
+- M2: 13 tests (was 12 — added `ReturnRentals_FindsEquippedRental`).
+- **Combined: 36 new EditMode tests.**
+
+**Process: 2 🟡 findings fixed in this commit, 1 🔵 fixed for
+symmetry. Cold-eye pass #2 complete.**

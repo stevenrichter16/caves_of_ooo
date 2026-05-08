@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Anatomy;
 
 namespace CavesOfOoo.Tests
 {
@@ -234,6 +235,44 @@ namespace CavesOfOoo.Tests
             var lessor = CreateLessor();
             Assert.DoesNotThrow(() =>
                 ConversationActions.Execute("ReturnRentals", lessor, player, ""));
+        }
+
+        [Test]
+        public void ReturnRentals_FindsEquippedRental()
+        {
+            // Cold-eye-2 Finding 1: the action's pre-fix iteration
+            // walked only `inv.Objects`, missing rentals the player
+            // had equipped. Selecting "Here you are" with an equipped
+            // rental printed "You have no rentals to return here."
+            // even though one was held.
+            var player = new Entity { BlueprintName = "Player" };
+            player.Tags["Creature"] = "";
+            player.Tags["Player"] = "";
+            player.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 20, Min = 0, Max = 20 };
+            player.Statistics["Ego"] = new Stat { Name = "Ego", BaseValue = 16, Min = 1, Max = 50 };
+            player.Statistics["Speed"] = new Stat { Name = "Speed", BaseValue = 100, Min = 25, Max = 200 };
+            player.AddPart(new RenderPart { DisplayName = "you" });
+            player.AddPart(new InventoryPart());
+            var body = new Body();
+            player.AddPart(body);
+            body.SetBody(AnatomyFactory.CreateHumanoid());
+            RentalSystem.SetInk(player, 1000);
+
+            var lessor = CreateLessor("Quartermaster");
+            var item = CreateRentalWeapon("LoanerSword");
+            item.AddPart(new EquippablePart { Slot = "Hand" });
+            lessor.GetPart<InventoryPart>().AddObject(item);
+
+            ConversationActions.Execute("RentItem", lessor, player, "LoanerSword");
+            var hand = player.GetPart<Body>().GetParts().Find(b => b.Type == "Hand");
+            player.GetPart<InventoryPart>().EquipToBodyPart(item, hand);
+            Assume.That(InventorySystem.IsEquipped(player, item), Is.True);
+
+            ConversationActions.Execute("ReturnRentals", lessor, player, "");
+
+            Assert.That(InventorySystem.IsEquipped(player, item), Is.False);
+            Assert.That(lessor.GetPart<InventoryPart>().Objects, Does.Contain(item));
+            Assert.That(item.GetPart<RentalPart>(), Is.Null);
         }
     }
 }

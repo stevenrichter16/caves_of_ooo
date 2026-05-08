@@ -672,14 +672,18 @@ namespace CavesOfOoo.Core
                 RentalSystem.TryRent(listener, speaker, stock);
             });
 
-            // ReturnRentals — iterate the listener's inventory and
-            // return every item whose RentalPart.LessorBlueprintName
-            // matches the speaker. Items rented from a different
-            // lessor are left alone — the v1 design has at most one
-            // Quartermaster blueprint, but the per-item check makes
-            // the action safe to use anywhere. Iterate in reverse so
-            // RemoveObject inside the loop doesn't shift later
-            // indices.
+            // ReturnRentals — collect every rental owed to the speaker
+            // (matched by RentalPart.LessorBlueprintName ==
+            // speaker.BlueprintName) and route each through
+            // RentalSystem.TryReturn. Walks BOTH carried and equipped
+            // items: the typical user case is "rented, equipped,
+            // fought, came back" so an equipped rental is the rule
+            // not the exception (cold-eye-2 Finding 1). TryReturn
+            // handles unequip-first internally, so the action just
+            // needs to enumerate.
+            //
+            // Snapshot the candidate list first because TryReturn
+            // mutates inv.Objects / inv.EquippedItems mid-loop.
             Register("ReturnRentals", (speaker, listener, arg) =>
             {
                 if (speaker == null || listener == null) return;
@@ -687,10 +691,20 @@ namespace CavesOfOoo.Core
                 var inv = listener.GetPart<InventoryPart>();
                 if (inv == null) return;
 
-                int returnedCount = 0;
-                for (int i = inv.Objects.Count - 1; i >= 0; i--)
+                var candidates = new List<Entity>();
+                for (int i = 0; i < inv.Objects.Count; i++)
+                    candidates.Add(inv.Objects[i]);
+                foreach (var equipped in inv.EquippedItems.Values)
                 {
-                    var item = inv.Objects[i];
+                    if (equipped == null) continue;
+                    if (!candidates.Contains(equipped))
+                        candidates.Add(equipped);
+                }
+
+                int returnedCount = 0;
+                for (int i = 0; i < candidates.Count; i++)
+                {
+                    var item = candidates[i];
                     var rental = item.GetPart<RentalPart>();
                     if (rental == null) continue;
                     if (rental.LessorBlueprintName != speaker.BlueprintName) continue;
