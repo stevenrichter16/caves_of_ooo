@@ -2,6 +2,7 @@ using System;
 using NUnit.Framework;
 using CavesOfOoo.Core;
 using CavesOfOoo.Core.Anatomy;
+using CavesOfOoo.Diagnostics;
 using CavesOfOoo.Skills;
 
 namespace CavesOfOoo.Tests
@@ -42,6 +43,7 @@ namespace CavesOfOoo.Tests
         {
             MessageLog.Clear();
             SkillRegistry.ResetForTests();
+            Diag.ResetAll();
         }
 
         // ── Fixture helpers (mirror CudgelSlamTests exactly) ─────────────
@@ -561,6 +563,121 @@ namespace CavesOfOoo.Tests
         // skills. Without this, Lunge's OnCommand sees dx=dy=0 from the
         // production path.
         // ════════════════════════════════════════════════════════════════
+
+        // ════════════════════════════════════════════════════════════════
+        // Observability: per-skill rejection paths emit SkillRejected
+        // diag records with the gate name in the reason field. Locks
+        // CLAUDE.md §Observability — every gate that can reject emits
+        // a record. The May-2026 live-run review surfaced this as
+        // Finding 2 (CommandRouted fired but per-skill rejections were
+        // silent — debuggers couldn't tell why a skill bailed).
+        // ════════════════════════════════════════════════════════════════
+
+        [Test]
+        public void Lunge_NoWeapon_EmitsSkillRejectedDiag_ReasonNoWeapon()
+        {
+            var attacker = MakeBodiedCreature("attacker"); // unarmed
+            var lunge = new LongBlades_Lunge();
+            attacker.GetPart<SkillsPart>().AddSkill(lunge, source: "test");
+
+            var defender = MakeBodiedCreature("defender");
+            var zone = new Zone();
+            zone.AddEntity(attacker, 5, 5);
+            zone.AddEntity(defender, 6, 5);
+
+            Diag.ResetAll(); // ignore the AddSkill record
+            lunge.OnCommand(new SkillEventContext
+            {
+                Attacker = attacker, Defender = attacker,
+                Zone = zone, Rng = new Random(42),
+                DirectionX = 1, DirectionY = 0,
+            });
+
+            var records = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "skill",
+                Kind = "SkillRejected",
+                Limit = 10,
+            }).Records;
+
+            Assert.AreEqual(1, records.Count,
+                "No-weapon Lunge must emit exactly 1 SkillRejected record.");
+            StringAssert.Contains("no_weapon", records[0].PayloadJson,
+                "Reason must be 'no_weapon' so debug queries can filter "
+                + "by gate type.");
+            StringAssert.Contains("LongBlades_Lunge", records[0].PayloadJson,
+                "Payload must include the skill class for tracing.");
+        }
+
+        [Test]
+        public void Lunge_NoDirection_EmitsSkillRejectedDiag_ReasonNoDirection()
+        {
+            var (attacker, defender, zone, lunge) = MakeLungeFixture();
+            zone.AddEntity(attacker, 5, 5);
+            zone.AddEntity(defender, 6, 5);
+
+            Diag.ResetAll();
+            lunge.OnCommand(new SkillEventContext
+            {
+                Attacker = attacker, Defender = attacker,
+                Zone = zone, Rng = new Random(42),
+                DirectionX = 0, DirectionY = 0, // explicit no-direction
+            });
+
+            var records = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "skill",
+                Kind = "SkillRejected",
+                Limit = 10,
+            }).Records;
+
+            Assert.AreEqual(1, records.Count);
+            StringAssert.Contains("no_direction", records[0].PayloadJson);
+        }
+
+        [Test]
+        public void Lunge_LineBlocked_EmitsSkillRejectedDiag_ReasonLineBlocked()
+        {
+            // Wall at distance 1 → TraceFirstImpact stops on the wall;
+            // HitEntity is null (walls are solid but don't satisfy the
+            // "Creature OR has-stat-Hitpoints" branches), so the reason
+            // should be "no_target" (line is empty before any object).
+            // Using a non-creature targetable object instead would
+            // surface "line_blocked" — which we test via
+            // Lunge_NonCreatureObjectInLine_NoStrike's diag side below.
+            var (attacker, defender, zone, lunge) = MakeLungeFixture();
+            zone.AddEntity(attacker, 5, 5);
+            zone.AddEntity(MakeWall(), 6, 5);
+            zone.AddEntity(defender, 7, 5);
+
+            Diag.ResetAll();
+            lunge.OnCommand(new SkillEventContext
+            {
+                Attacker = attacker, Defender = attacker,
+                Zone = zone, Rng = new Random(42),
+                DirectionX = 1, DirectionY = 0,
+            });
+
+            var records = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "skill",
+                Kind = "SkillRejected",
+                Limit = 10,
+            }).Records;
+
+            Assert.AreEqual(1, records.Count,
+                "Wall-blocked Lunge must emit exactly 1 SkillRejected.");
+            // Reason can be "no_target" or "line_blocked" depending on
+            // whether TraceFirstImpact returns a HitEntity for the wall.
+            // Walls have no Hitpoints stat / Thermal / Material parts so
+            // GetFirstTargetableObject returns null → HitEntity is null
+            // → reason is "no_target".
+            string payload = records[0].PayloadJson;
+            Assert.IsTrue(
+                payload.Contains("no_target") || payload.Contains("line_blocked"),
+                "Reason must be 'no_target' or 'line_blocked' for "
+                + "wall-blocked Lunge. Got payload: " + payload);
+        }
 
         [Test]
         public void Lunge_FiredViaGameEvent_DirectionParamsReachOnCommand()

@@ -75,13 +75,18 @@ namespace CavesOfOoo.Skills
             if (weapon == null)
             {
                 MessageLog.Add(actor.GetDisplayName() + " needs a long-blade-class weapon to lunge.");
+                EmitSkillRejectedDiag(ctx, "no_weapon");
                 return;
             }
 
             // Lunge needs Zone for line-trace + position lookup. Defense-
             // in-depth: tests + scenarios sometimes pass null in failure-
             // path coverage (Lunge_WithNullZone_NoOps_NoCrash).
-            if (ctx.Zone == null) return;
+            if (ctx.Zone == null)
+            {
+                EmitSkillRejectedDiag(ctx, "no_zone");
+                return;
+            }
 
             // Direction was set by SkillsPart.HandleEvent from the
             // GameEvent's DirectionX/Y params (set by
@@ -95,11 +100,16 @@ namespace CavesOfOoo.Skills
             if (dx == 0 && dy == 0)
             {
                 MessageLog.Add(actor.GetDisplayName() + " hesitates — no direction chosen.");
+                EmitSkillRejectedDiag(ctx, "no_direction");
                 return;
             }
 
             var actorPos = ctx.Zone.GetEntityPosition(actor);
-            if (actorPos.x < 0) return;
+            if (actorPos.x < 0)
+            {
+                EmitSkillRejectedDiag(ctx, "actor_not_in_zone");
+                return;
+            }
 
             // Line-trace LUNGE_RANGE cells in the chosen direction.
             // TraceFirstImpact stops on the first creature, targetable
@@ -117,8 +127,11 @@ namespace CavesOfOoo.Skills
                 // the line was blocked by a wall / non-creature object.
                 // The cooldown is still spent (applied by
                 // SkillsPart.TryRouteSkillCommand after we return) — a
-                // missed lunge is a missed lunge, no refund.
+                // missed lunge is a missed lunge, no refund. Diag reason
+                // distinguishes the two: "line_blocked" if a non-creature
+                // stopped the trace, "no_target" if the line was empty.
                 MessageLog.Add(actor.GetDisplayName() + "'s lunge finds nothing.");
+                EmitSkillRejectedDiag(ctx, target != null ? "line_blocked" : "no_target");
                 return;
             }
 

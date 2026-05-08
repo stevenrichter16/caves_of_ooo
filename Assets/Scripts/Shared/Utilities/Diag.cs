@@ -96,7 +96,18 @@ namespace CavesOfOoo.Diagnostics
         // Configuration
         // ====================================================================
 
-        private const int BufferSize = 1024;
+        // 8192 picked after a live-run review (May 2026) found 1024
+        // captured only ~20 seconds of village idling before the buffer
+        // started rotating — `dropped_records: 17733` after one short
+        // session. With 18 NPCs in a village × 2 records per turn (Begin
+        // + End) ≈ 36 records/turn, 1024 caps at 28 turns of history.
+        // 8192 lifts that to ~227 turns (a few minutes of real play),
+        // which is the realistic minimum window for "what happened just
+        // now?" debugging. Memory cost is ~800KB at typical Entry size
+        // — negligible. If this proves still-too-small for late-game
+        // debugging, bump to 16384 or add a turn-records-only verbose
+        // channel.
+        private const int BufferSize = 8192;
 
         /// <summary>
         /// Categories enabled by default. Per AI-OBSERVABILITY.md §3 Layer 1

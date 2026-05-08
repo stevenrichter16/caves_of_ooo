@@ -2,6 +2,7 @@ using System;
 using NUnit.Framework;
 using CavesOfOoo.Core;
 using CavesOfOoo.Core.Anatomy;
+using CavesOfOoo.Diagnostics;
 using CavesOfOoo.Skills;
 
 namespace CavesOfOoo.Tests
@@ -21,6 +22,7 @@ namespace CavesOfOoo.Tests
         {
             MessageLog.Clear();
             SkillRegistry.ResetForTests();
+            Diag.ResetAll();
         }
 
         // ── Fixture helpers (mirror ShortBladesShankTests/CudgelSlamTests) ─
@@ -234,6 +236,63 @@ namespace CavesOfOoo.Tests
         // ════════════════════════════════════════════════════════════════
         // Adversarial: null Rng / null Zone
         // ════════════════════════════════════════════════════════════════
+
+        // ════════════════════════════════════════════════════════════════
+        // Observability: per-skill rejections emit SkillRejected diag
+        // (Finding 2 of the May-2026 live-run review).
+        // ════════════════════════════════════════════════════════════════
+
+        [Test]
+        public void Flurry_NoAdjacentTarget_EmitsSkillRejectedDiag_ReasonNoTarget()
+        {
+            var (attacker, defender, zone, flurry) = MakeFlurryFixture();
+            zone.AddEntity(attacker, 5, 5);
+            zone.AddEntity(defender, 15, 15); // far away
+
+            Diag.ResetAll();
+            flurry.OnCommand(new SkillEventContext
+            {
+                Attacker = attacker, Defender = attacker,
+                Zone = zone, Rng = new Random(42),
+            });
+
+            var records = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "skill",
+                Kind = "SkillRejected",
+                Limit = 10,
+            }).Records;
+
+            Assert.AreEqual(1, records.Count);
+            StringAssert.Contains("no_target", records[0].PayloadJson);
+            StringAssert.Contains("ShortBlades_Flurry", records[0].PayloadJson);
+        }
+
+        [Test]
+        public void Flurry_NoWeapon_EmitsSkillRejectedDiag_ReasonNoWeapon()
+        {
+            var (attacker, defender, zone, flurry) =
+                MakeFlurryFixture(weaponAttributes: "Bludgeoning Cudgel");
+            zone.AddEntity(attacker, 5, 5);
+            zone.AddEntity(defender, 6, 5);
+
+            Diag.ResetAll();
+            flurry.OnCommand(new SkillEventContext
+            {
+                Attacker = attacker, Defender = attacker,
+                Zone = zone, Rng = new Random(42),
+            });
+
+            var records = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "skill",
+                Kind = "SkillRejected",
+                Limit = 10,
+            }).Records;
+
+            Assert.AreEqual(1, records.Count);
+            StringAssert.Contains("no_weapon", records[0].PayloadJson);
+        }
 
         [Test]
         public void Flurry_WithNullRng_NoOps_NoCrash()

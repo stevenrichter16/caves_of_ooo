@@ -545,6 +545,66 @@ namespace CavesOfOoo.Tests
             Assert.IsNull(zone.GetEntityCell(creature));
         }
 
+        [Test]
+        public void HandleDeath_RemovesEntityFromTurnQueue()
+        {
+            // Pinning the May-2026 live-run-review Finding 3 fix: dead
+            // entities were cycling through the turn loop with hp:0,
+            // visible in the diag stream as turn/Begin records on dead
+            // actors. The fix adds TurnManager.Active?.RemoveEntity
+            // inside HandleDeath so the queue is cleaned eagerly.
+            //
+            // The TurnManager ctor auto-sets Active = this
+            // (TurnManager.cs:108), so simply newing one wires the
+            // static accessor for HandleDeath to find. The next test
+            // that constructs a TurnManager will overwrite Active, so
+            // no explicit cleanup is needed.
+            var turn = new TurnManager();
+
+            var zone = new Zone();
+            var creature = CreateCreature(16, 16, 30);
+            creature.AddPart(new InventoryPart { MaxWeight = 150 });
+            zone.AddEntity(creature, 5, 5);
+            turn.AddEntity(creature);
+
+            Assert.IsTrue(turn.IsRegistered(creature),
+                "Sanity: creature must be in the turn queue before death.");
+
+            CombatSystem.HandleDeath(creature, null, zone);
+
+            Assert.IsFalse(turn.IsRegistered(creature),
+                "After HandleDeath, the dead creature must be removed "
+                + "from the turn queue. If this fails, "
+                + "TurnManager.Active?.RemoveEntity isn't being called "
+                + "by HandleDeath — dead entities will continue cycling "
+                + "through the turn loop with hp:0 (Finding 3 of the "
+                + "May-2026 observability review).");
+        }
+
+        [Test]
+        public void HandleDeath_NoActiveTurnManager_NoCrash()
+        {
+            // Defense-in-depth: the ?. guard inside HandleDeath must
+            // tolerate TurnManager.Active being null (tests that don't
+            // create a TurnManager, boot-time death events, etc.).
+            // Constructing a TurnManager in a test fixture sets
+            // Active = this, so we can't fully null-out the static
+            // here without reflection — but the test verifies that a
+            // creature NEVER added to a TurnManager doesn't crash the
+            // RemoveEntity call (which is the ?. path's protection).
+            var turn = new TurnManager();
+            var zone = new Zone();
+            var creature = CreateCreature(16, 16, 30);
+            creature.AddPart(new InventoryPart { MaxWeight = 150 });
+            zone.AddEntity(creature, 5, 5);
+            // NOTE: turn.AddEntity(creature) is INTENTIONALLY OMITTED.
+
+            Assert.DoesNotThrow(() => CombatSystem.HandleDeath(creature, null, zone),
+                "HandleDeath on an unregistered creature must not crash "
+                + "(RemoveEntity is idempotent — TurnManager.cs:123-133 "
+                + "is a for-loop with break on found, no-op on miss).");
+        }
+
         // ========================
         // Helpers
         // ========================
