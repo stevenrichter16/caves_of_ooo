@@ -64,12 +64,21 @@ namespace CavesOfOoo.Skills
             if (weapon == null)
             {
                 MessageLog.Add(actor.GetDisplayName() + " needs an axe equipped to whirlwind.");
+                EmitSkillRejectedDiag(ctx, "no_weapon");
                 return;
             }
 
-            if (ctx.Zone == null) return;
+            if (ctx.Zone == null)
+            {
+                EmitSkillRejectedDiag(ctx, "no_zone");
+                return;
+            }
             var actorPos = ctx.Zone.GetEntityPosition(actor);
-            if (actorPos.x < 0) return;
+            if (actorPos.x < 0)
+            {
+                EmitSkillRejectedDiag(ctx, "actor_not_in_zone");
+                return;
+            }
 
             // Snapshot adjacent creatures BEFORE swinging. PerformSingleAttack
             // can move/kill targets mid-loop (dismember, push effects,
@@ -96,6 +105,7 @@ namespace CavesOfOoo.Skills
             if (targets.Count == 0)
             {
                 MessageLog.Add(actor.GetDisplayName() + "'s whirlwind hits nothing.");
+                EmitSkillRejectedDiag(ctx, "no_target");
                 return;
             }
 

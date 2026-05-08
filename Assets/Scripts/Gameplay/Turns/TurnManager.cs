@@ -133,6 +133,20 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// True if <paramref name="entity"/> is registered in the turn
+        /// queue. Used by tests + diag tooling to probe queue
+        /// membership without exposing the underlying entry list.
+        /// Pinned by the May-2026 cold-eye-review fix that adds
+        /// <see cref="RemoveEntity"/> calls from
+        /// <see cref="CombatSystem.HandleDeath"/> — needed a way to
+        /// assert "yes, the dead creature is no longer scheduled."
+        /// </summary>
+        public bool IsRegistered(Entity entity)
+        {
+            return FindEntry(entity) != null;
+        }
+
+        /// <summary>
         /// Get the speed of an entity (from its Speed stat, or default).
         /// </summary>
         public int GetSpeed(Entity entity)

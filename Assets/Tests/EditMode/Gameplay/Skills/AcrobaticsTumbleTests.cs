@@ -2,6 +2,7 @@ using System;
 using NUnit.Framework;
 using CavesOfOoo.Core;
 using CavesOfOoo.Core.Anatomy;
+using CavesOfOoo.Diagnostics;
 using CavesOfOoo.Skills;
 
 namespace CavesOfOoo.Tests
@@ -20,6 +21,7 @@ namespace CavesOfOoo.Tests
         {
             MessageLog.Clear();
             SkillRegistry.ResetForTests();
+            Diag.ResetAll();
         }
 
         // ── Fixture helpers (mirror CudgelSlamTests) ─────────────────────
@@ -194,6 +196,37 @@ namespace CavesOfOoo.Tests
         // ════════════════════════════════════════════════════════════════
         // Adversarial: null Rng / null Zone
         // ════════════════════════════════════════════════════════════════
+
+        // ════════════════════════════════════════════════════════════════
+        // Observability: per-skill rejections emit SkillRejected diag
+        // (Finding 2 of the May-2026 live-run review).
+        // ════════════════════════════════════════════════════════════════
+
+        [Test]
+        public void Tumble_NoAdjacentCreature_EmitsSkillRejectedDiag_ReasonNoTarget()
+        {
+            var (actor, zone, tumble) = MakeTumbleFixture();
+            zone.AddEntity(actor, 5, 5);
+            // No creature adjacent.
+
+            Diag.ResetAll();
+            tumble.OnCommand(new SkillEventContext
+            {
+                Attacker = actor, Defender = actor,
+                Zone = zone, Rng = new Random(42),
+            });
+
+            var records = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "skill",
+                Kind = "SkillRejected",
+                Limit = 10,
+            }).Records;
+
+            Assert.AreEqual(1, records.Count);
+            StringAssert.Contains("no_target", records[0].PayloadJson);
+            StringAssert.Contains("Acrobatics_Tumble", records[0].PayloadJson);
+        }
 
         [Test]
         public void Tumble_WithNullRng_NoOps_NoCrash()

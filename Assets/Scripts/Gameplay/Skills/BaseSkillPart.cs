@@ -1,4 +1,5 @@
 using CavesOfOoo.Core;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Skills
 {
@@ -292,6 +293,62 @@ namespace CavesOfOoo.Skills
         /// </summary>
         public virtual void OnCommand(SkillEventContext ctx)
         {
+        }
+
+        /// <summary>
+        /// Emit a per-skill <c>skill/SkillRejected</c> diag record for
+        /// each gate that bails inside <see cref="OnCommand"/> — no
+        /// weapon equipped, no target adjacent, no direction supplied,
+        /// etc. Pairs with <see cref="SkillsPart"/>'s dispatch-layer
+        /// <c>CommandRouted</c>/<c>CommandRejected</c> emissions: when
+        /// both a CommandRouted AND a SkillRejected appear for the
+        /// same actor + turn, the dispatch succeeded but the skill
+        /// internally bailed — and the <c>reason</c> field names which
+        /// gate fired.
+        ///
+        /// <para>Locks in CLAUDE.md §Observability ("every gate that
+        /// can reject emits a record") at the per-skill layer. Without
+        /// this, a debug session asking "why didn't Flurry hit?" sees
+        /// only CommandRouted with no follow-up — can't distinguish
+        /// "no target adjacent" from "weapon-class gate failed" from
+        /// "swing landed but missed."</para>
+        ///
+        /// <para>Conventional <paramref name="reason"/> tags:
+        /// <list type="bullet">
+        ///   <item><c>"no_weapon"</c> — skill requires a weapon class
+        ///         the actor isn't wielding.</item>
+        ///   <item><c>"no_target"</c> — adjacent-target lookup found
+        ///         no creature.</item>
+        ///   <item><c>"no_direction"</c> — DirectionLine skill received
+        ///         dx=dy=0 (no direction picked).</item>
+        ///   <item><c>"no_zone"</c> — ctx.Zone was null (defense-in-
+        ///         depth path; mostly hit by tests + scenarios).</item>
+        ///   <item><c>"line_blocked"</c> — DirectionLine trace stopped
+        ///         on a wall or non-creature object before reaching a
+        ///         valid target.</item>
+        /// </list></para>
+        ///
+        /// <para>Static-friendly: actor is read from
+        /// <paramref name="ctx"/>.Attacker first, falling back to
+        /// <see cref="Part.ParentEntity"/> if ctx is malformed (the
+        /// per-skill rejection paths are themselves in malformed-input
+        /// territory, so be lenient).</para>
+        /// </summary>
+        protected void EmitSkillRejectedDiag(SkillEventContext ctx, string reason)
+        {
+            if (!Diag.IsChannelEnabled("skill")) return;
+            var actor = ctx?.Attacker ?? ParentEntity;
+            Diag.Record(
+                category: "skill",
+                kind: "SkillRejected",
+                actor: actor,
+                target: actor,
+                payload: new
+                {
+                    skillClass = GetType().Name,
+                    displayName = DisplayName,
+                    reason = reason ?? ""
+                });
         }
     }
 }

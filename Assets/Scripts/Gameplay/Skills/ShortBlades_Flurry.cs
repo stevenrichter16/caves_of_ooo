@@ -63,12 +63,21 @@ namespace CavesOfOoo.Skills
             if (weapon == null)
             {
                 MessageLog.Add(actor.GetDisplayName() + " needs a piercing-class weapon to flurry.");
+                EmitSkillRejectedDiag(ctx, "no_weapon");
                 return;
             }
 
-            if (ctx.Zone == null) return;
+            if (ctx.Zone == null)
+            {
+                EmitSkillRejectedDiag(ctx, "no_zone");
+                return;
+            }
             var actorPos = ctx.Zone.GetEntityPosition(actor);
-            if (actorPos.x < 0) return;
+            if (actorPos.x < 0)
+            {
+                EmitSkillRejectedDiag(ctx, "actor_not_in_zone");
+                return;
+            }
 
             // Find adjacent target (mirrors Shank's 8-dir lookup).
             Entity target = null;
@@ -89,6 +98,7 @@ namespace CavesOfOoo.Skills
             if (target == null)
             {
                 MessageLog.Add(actor.GetDisplayName() + " has nothing to flurry.");
+                EmitSkillRejectedDiag(ctx, "no_target");
                 return;
             }
 

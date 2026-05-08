@@ -933,6 +933,21 @@ namespace CavesOfOoo.Core
             if (zone != null)
                 zone.RemoveEntity(target);
 
+            // De-list the dead entity from the turn queue so it doesn't
+            // get scheduled for another turn. Without this, dead actors
+            // cycle through the turn loop with hp=0 (visible in the diag
+            // stream as turn/Begin records on hp:0 entities — the May
+            // 2026 live-run review surfaced this as Finding 3). The
+            // subsequent BeginTakeAction event is wasted work and the
+            // diag emission is noise.
+            //
+            // TurnManager.Active is null in tests + boot, so the ?.
+            // guard makes this safe pre-game and in synthetic fixtures
+            // that never set up a TurnManager. The instance method is
+            // idempotent (no-op if entity isn't in the queue) so calling
+            // it on entities that were never registered is fine.
+            TurnManager.Active?.RemoveEntity(target);
+
             if (target != null && target.HasTag("Player"))
                 ZoneRenderHooks.MarkFullDirty("Death.Player");
             else if (deathX.HasValue && deathY.HasValue)

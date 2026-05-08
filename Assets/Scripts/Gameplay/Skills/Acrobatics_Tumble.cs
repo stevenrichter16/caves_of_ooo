@@ -69,9 +69,17 @@ namespace CavesOfOoo.Skills
             if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return;
             var actor = ctx.Attacker;
 
-            if (ctx.Zone == null) return;
+            if (ctx.Zone == null)
+            {
+                EmitSkillRejectedDiag(ctx, "no_zone");
+                return;
+            }
             var actorPos = ctx.Zone.GetEntityPosition(actor);
-            if (actorPos.x < 0) return;
+            if (actorPos.x < 0)
+            {
+                EmitSkillRejectedDiag(ctx, "actor_not_in_zone");
+                return;
+            }
 
             // Find adjacent creature (mirrors Slam's 8-dir lookup).
             // Remember which direction we found them in so we know where
@@ -96,11 +104,16 @@ namespace CavesOfOoo.Skills
             if (target == null)
             {
                 MessageLog.Add(actor.GetDisplayName() + " has no one to tumble with.");
+                EmitSkillRejectedDiag(ctx, "no_target");
                 return;
             }
 
             var targetPos = ctx.Zone.GetEntityPosition(target);
-            if (targetPos.x < 0) return;
+            if (targetPos.x < 0)
+            {
+                EmitSkillRejectedDiag(ctx, "target_not_in_zone");
+                return;
+            }
 
             // Three-phase swap. Pull target OUT first so the actor's
             // destination is vacant; move actor; then re-add target on
