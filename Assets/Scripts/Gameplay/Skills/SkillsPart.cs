@@ -248,7 +248,13 @@ namespace CavesOfOoo.Skills
                 // Cooldown gate. Returning false here lets callers know
                 // the command was recognized but blocked — UI can show a
                 // "still cooling down" message instead of "unknown command".
-                if (!ability.IsUsable) return false;
+                if (!ability.IsUsable)
+                {
+                    EmitCommandRejectedDiag(command, skill,
+                        reason: "cooldown",
+                        cooldownRemaining: ability.CooldownRemaining);
+                    return false;
+                }
 
                 // Cold-eye finding 🟡 #3: don't silently fall back to a
                 // wall-clock-seeded Random when the caller passed null.
@@ -269,9 +275,65 @@ namespace CavesOfOoo.Skills
                 // failed targeting popup — it can manually set
                 // ability.CooldownRemaining = 0 before returning.)
                 ability.CooldownRemaining = ability.MaxCooldown;
+
+                EmitCommandRoutedDiag(command, skill);
                 return true;
             }
+
+            // No owned skill claims this command. Could be a mutation
+            // command (e.g. CommandFireBolt) or a typo. Diag records the
+            // unclaimed command so a future "why didn't my skill fire?"
+            // bug surfaces immediately via `diag_query category=skill
+            // kind=CommandRejected`.
+            EmitCommandRejectedDiag(command, skill: null,
+                reason: "no_match", cooldownRemaining: 0);
             return false;
+        }
+
+        // ── Diag plumbing for skill activation (added post-bug-fix) ──────
+        //
+        // The SkillsPart docstring already promised "AI-debug-substrate
+        // queries via diag_query category=skill" but only Add/Remove
+        // emitted records. The dispatch-bug fix added HandleEvent
+        // routing; without these instrumentation calls, a future bug in
+        // the activation pipeline would again be invisible to diag_query
+        // (the symptom — "rite fails to resolve" — would surface in
+        // MessageLog, but the cause would require code grep + execute_code
+        // poking, which is what this commit is fixing the workflow for).
+
+        private void EmitCommandRoutedDiag(string command, BaseSkillPart skill)
+        {
+            if (!Diag.IsChannelEnabled("skill")) return;
+            Diag.Record(
+                category: "skill",
+                kind: "CommandRouted",
+                actor: ParentEntity,
+                target: ParentEntity,
+                payload: new
+                {
+                    command,
+                    skillClass = skill.GetType().Name,
+                    displayName = skill.DisplayName,
+                });
+        }
+
+        private void EmitCommandRejectedDiag(string command, BaseSkillPart skill,
+            string reason, int cooldownRemaining)
+        {
+            if (!Diag.IsChannelEnabled("skill")) return;
+            Diag.Record(
+                category: "skill",
+                kind: "CommandRejected",
+                actor: ParentEntity,
+                target: ParentEntity,
+                payload: new
+                {
+                    command,
+                    reason,
+                    skillClass = skill?.GetType().Name ?? "",
+                    displayName = skill?.DisplayName ?? "",
+                    cooldownRemaining,
+                });
         }
 
         /// <summary>
