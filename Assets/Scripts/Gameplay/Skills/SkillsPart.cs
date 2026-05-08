@@ -232,7 +232,7 @@ namespace CavesOfOoo.Skills
         /// alternative dispatch paths (mutations, items, etc.).</para>
         /// </summary>
         public bool TryRouteSkillCommand(string command, Zone zone = null,
-            System.Random rng = null)
+            System.Random rng = null, int directionX = 0, int directionY = 0)
         {
             if (string.IsNullOrEmpty(command) || ParentEntity == null) return false;
             var abilities = ParentEntity.GetPart<ActivatedAbilitiesPart>();
@@ -263,10 +263,17 @@ namespace CavesOfOoo.Skills
                 // null we still synthesize one here so the skill's
                 // OnCommand can run, BUT we no longer hide that — the
                 // first-class fix is for callers to thread their own.
+                //
+                // DirectionX/Y propagate the InputHandler's
+                // AwaitingDirection capture into the SkillEventContext —
+                // DirectionLine actives (LongBlades_Lunge) read them in
+                // OnCommand. AdjacentCell + SelfCentered skills ignore
+                // them (defaulted 0).
                 var ctx = new SkillEventContext
                 {
                     Attacker = ParentEntity, Defender = ParentEntity,
                     Zone = zone, Rng = rng ?? new System.Random(),
+                    DirectionX = directionX, DirectionY = directionY,
                 };
                 skill.OnCommand(ctx);
 
@@ -386,8 +393,16 @@ namespace CavesOfOoo.Skills
             // OnCommand sees the same Zone the InputHandler passed.
             // The InputHandler's ResolveAbilityCommand sets these via
             // cmd.SetParameter (line 2809-2810 of InputHandler.cs).
+            //
+            // DirectionX/Y are also lifted from the event so the skill's
+            // SkillEventContext carries the player's chosen direction —
+            // DirectionLine actives (LongBlades_Lunge) consume them.
+            // GetIntParameter defaults to 0 when missing, which is the
+            // correct no-op for AdjacentCell + SelfCentered skills.
             Zone zone = e.GetParameter<Zone>("Zone");
             System.Random rng = e.GetParameter<System.Random>("RNG");
+            int dx = e.GetIntParameter("DirectionX");
+            int dy = e.GetIntParameter("DirectionY");
 
             // Route to the existing skill-command dispatcher. Returns
             // true if a skill consumed the command. Cooldown failures
@@ -396,7 +411,7 @@ namespace CavesOfOoo.Skills
             // a defense-in-depth path here means the event still goes
             // unhandled, which surfaces "The rite fails to resolve."
             // — better than silently swallowing the input).
-            if (TryRouteSkillCommand(e.ID, zone, rng))
+            if (TryRouteSkillCommand(e.ID, zone, rng, dx, dy))
             {
                 e.Handled = true;
                 return false; // stop propagation — the skill consumed it
