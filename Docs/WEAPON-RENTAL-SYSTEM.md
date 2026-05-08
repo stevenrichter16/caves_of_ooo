@@ -257,7 +257,54 @@ scenario).
 been executed** (no Unity in this environment). User must run
 `mcp__unity__refresh_unity` then `run_tests mode=EditMode` after pulling.
 
-### M2 — pending
+### M2 — Conversation actions: GiveInk / RentItem / ReturnRentals
+
+**Files shipped:**
+- MOD `Assets/Scripts/Gameplay/Conversations/ConversationActions.cs` (+~70 LOC)
+- NEW `Assets/Tests/EditMode/Gameplay/Economy/RentalActionsTests.cs`
+
+**Decisions:**
+- `GiveInk` mirrors `GiveDrams` exactly (parse-validate-mutate, no-op on
+  `<= 0` or non-numeric).
+- `RentItem` searches the speaker's inventory by blueprint name and
+  delegates to `RentalSystem.TryRent`. Player-visible failure messages
+  flow from `TryRent`'s existing `MessageLog.Add` calls.
+- `ReturnRentals` iterates the listener's inventory **in reverse** so
+  `RemoveObject` inside the loop doesn't shift later indices. Filters
+  by `RentalPart.LessorBlueprintName == speaker.BlueprintName`, so
+  rentals from a different Quartermaster are left alone (forward-
+  compatible with multiple lessor types in v2).
+
+**In-phase self-review:**
+
+🟡 Finding M2.1 — *RentItem stock-miss message is generic.*
+"Quartermaster has none of those left" fires both when the lessor
+never stocked the blueprint and when the player rented the last one.
+Acceptable: both wordings are truthful. If playtest reveals authors
+need to differentiate, split into "they never had that" vs "you took
+the last one". ⚪.
+
+🔵 Finding M2.2 — *ReturnRentals counts successful returns to suppress
+the "no rentals" message correctly.* Without the counter, calling
+`ReturnRentals` while the player held only foreign-lessor rentals would
+print nothing — silent UX. Counter shipped + tested.
+
+**Test inventory (12 new tests):**
+
+| Test | Counter-check |
+|---|---|
+| `GiveInk_ValidAmount_AddsInk` | — |
+| `GiveInk_NegativeAmount_NoOp` | counter |
+| `GiveInk_ZeroAmount_NoOp` | counter |
+| `GiveInk_NonNumericArg_NoOp` | counter |
+| `RentItem_StockPresent_RentsAndDeductsInk` | — |
+| `RentItem_BlueprintNotInStock_NoOp` | counter |
+| `RentItem_EmptyArg_NoOp` | counter |
+| `RentItem_PlayerCannotAfford_NoTransfer` | counter |
+| `ReturnRentals_HappyPath_ReturnsAllMatching` | — |
+| `ReturnRentals_DoesNotTouchOtherLessorsRentals` | counter |
+| `ReturnRentals_DoesNotTouchNonRentedItems` | counter |
+| `ReturnRentals_NoRentals_StillSafeToCall` | defensive |
 
 ### M3 — pending
 

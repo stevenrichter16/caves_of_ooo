@@ -618,6 +618,90 @@ namespace CavesOfOoo.Core
 
                 MessageLog.Add($"You receive {amt} drams.");
             });
+
+            // ── WRS.M2 weapon-rental actions ─────────────────────────
+            // Per Docs/WEAPON-RENTAL-SYSTEM.md. Mirror the GiveDrams
+            // shape for the Ink wallet, plus dialogue verbs that drive
+            // RentalSystem.TryRent / TryReturn from a conversation
+            // choice. Deliberately kept thin: the Quartermaster
+            // dialogue offers one choice per stocked blueprint
+            // (RentItem:RentalDagger etc.) instead of a list-picker UI,
+            // matching how Qud quest-reward menus are structured.
+
+            // GiveInk(amount) — grant the listener `amount` Ink.
+            // Same defensive shape as GiveDrams: parse, validate
+            // positive, mutate.
+            Register("GiveInk", (speaker, listener, arg) =>
+            {
+                if (!int.TryParse(arg, out int amt) || amt <= 0) return;
+                if (listener == null) return;
+
+                RentalSystem.AddInk(listener, amt);
+                MessageLog.Add($"You receive {amt} ink.");
+            });
+
+            // RentItem(blueprintName) — find the first item in the
+            // speaker's inventory whose blueprint matches `arg` and
+            // route through RentalSystem.TryRent. Silently no-ops if
+            // the speaker has no matching stock; TryRent itself emits
+            // the player-visible failure messages (insufficient ink,
+            // not rentable, etc.).
+            Register("RentItem", (speaker, listener, arg) =>
+            {
+                if (string.IsNullOrEmpty(arg)) return;
+                if (speaker == null || listener == null) return;
+
+                var speakerInv = speaker.GetPart<InventoryPart>();
+                if (speakerInv == null) return;
+
+                Entity stock = null;
+                for (int i = 0; i < speakerInv.Objects.Count; i++)
+                {
+                    if (speakerInv.Objects[i].BlueprintName == arg)
+                    {
+                        stock = speakerInv.Objects[i];
+                        break;
+                    }
+                }
+                if (stock == null)
+                {
+                    MessageLog.Add($"{speaker.GetDisplayName()} has none of those left.");
+                    return;
+                }
+
+                RentalSystem.TryRent(listener, speaker, stock);
+            });
+
+            // ReturnRentals — iterate the listener's inventory and
+            // return every item whose RentalPart.LessorBlueprintName
+            // matches the speaker. Items rented from a different
+            // lessor are left alone — the v1 design has at most one
+            // Quartermaster blueprint, but the per-item check makes
+            // the action safe to use anywhere. Iterate in reverse so
+            // RemoveObject inside the loop doesn't shift later
+            // indices.
+            Register("ReturnRentals", (speaker, listener, arg) =>
+            {
+                if (speaker == null || listener == null) return;
+
+                var inv = listener.GetPart<InventoryPart>();
+                if (inv == null) return;
+
+                int returnedCount = 0;
+                for (int i = inv.Objects.Count - 1; i >= 0; i--)
+                {
+                    var item = inv.Objects[i];
+                    var rental = item.GetPart<RentalPart>();
+                    if (rental == null) continue;
+                    if (rental.LessorBlueprintName != speaker.BlueprintName) continue;
+
+                    if (RentalSystem.TryReturn(listener, speaker, item))
+                        returnedCount++;
+                }
+
+                if (returnedCount == 0)
+                    MessageLog.Add("You have no rentals to return here.");
+            });
         }
 
         private static string ResolveSettlementId(Entity speaker)
