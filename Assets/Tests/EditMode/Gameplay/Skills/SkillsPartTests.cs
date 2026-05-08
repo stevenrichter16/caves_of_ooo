@@ -608,5 +608,122 @@ namespace CavesOfOoo.Tests
                 "Cooldown-blocked command must leave Handled=false so the " +
                 "event propagates and the failure surfaces.");
         }
+
+        // ====================================================================
+        // 15. Diag instrumentation — CommandRouted / CommandRejected
+        // ====================================================================
+        //
+        // The dispatch-bug fix would have been caught immediately by a
+        // diag_query if these records were already emitting. They are
+        // now. The bug surfaces as: "diag_count category=skill
+        // kind=CommandRouted" returns 0 when the player just pressed an
+        // ability keybind → red flag that activation isn't reaching
+        // OnCommand. Tests pin the emission so a future contributor
+        // can't silently drop the telemetry.
+
+        [Test]
+        public void HandleEvent_SuccessfulRoute_EmitsCommandRoutedDiag()
+        {
+            var entity = new Entity { ID = "actor" };
+            entity.AddPart(new RenderPart { DisplayName = "actor" });
+            entity.AddPart(new ActivatedAbilitiesPart());
+            var skills = new SkillsPart();
+            entity.AddPart(skills);
+            skills.AddSkill(new TestRecordingActivatedSkill());
+
+            Diag.ResetAll();
+            var ev = GameEvent.New("CommandTest");
+            entity.FireEvent(ev);
+            ev.Release();
+
+            var records = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "skill",
+                Kind = "CommandRouted",
+                Limit = 10,
+            }).Records;
+
+            Assert.AreEqual(1, records.Count,
+                "Successful command route must emit exactly 1 skill/CommandRouted diag record.");
+            string payload = records[0].PayloadJson;
+            StringAssert.Contains("CommandTest", payload,
+                "Payload must include the command string for filtering.");
+            StringAssert.Contains("TestRecordingActivatedSkill", payload,
+                "Payload must include the skill class name for tracing.");
+        }
+
+        [Test]
+        public void HandleEvent_NoMatchingSkill_EmitsCommandRejectedDiagWithNoMatchReason()
+        {
+            // Bug-pin: this is the diag record that would have caught the
+            // original dispatch bug. Pre-fix, `diag_count category=skill
+            // kind=CommandRejected reason=no_match` would have shown 0
+            // because the GameEvent never reached SkillsPart.HandleEvent
+            // at all. Post-fix, it emits when a Command* arrives that
+            // no owned skill claims (which is normal for mutation
+            // commands — but the diag stream still records the rejection
+            // for debuggability).
+            var entity = new Entity { ID = "actor" };
+            entity.AddPart(new RenderPart { DisplayName = "actor" });
+            entity.AddPart(new ActivatedAbilitiesPart());
+            var skills = new SkillsPart();
+            entity.AddPart(skills);
+            skills.AddSkill(new TestRecordingActivatedSkill());
+
+            Diag.ResetAll();
+            var ev = GameEvent.New("CommandFireBolt");  // mutation, not owned
+            entity.FireEvent(ev);
+            ev.Release();
+
+            var records = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "skill",
+                Kind = "CommandRejected",
+                Limit = 10,
+            }).Records;
+
+            Assert.AreEqual(1, records.Count,
+                "Unmatched Command* event must emit a CommandRejected diag.");
+            string payload = records[0].PayloadJson;
+            StringAssert.Contains("CommandFireBolt", payload);
+            StringAssert.Contains("no_match", payload,
+                "Reason must be 'no_match' so consumers can filter " +
+                "rejection types (no_match vs cooldown).");
+        }
+
+        [Test]
+        public void HandleEvent_CooldownBlocked_EmitsCommandRejectedDiagWithCooldownReason()
+        {
+            var entity = new Entity { ID = "actor" };
+            entity.AddPart(new RenderPart { DisplayName = "actor" });
+            entity.AddPart(new ActivatedAbilitiesPart());
+            var skills = new SkillsPart();
+            entity.AddPart(skills);
+            var skill = new TestRecordingActivatedSkill();
+            skills.AddSkill(skill);
+            var ability = entity.GetPart<ActivatedAbilitiesPart>()
+                .GetAbility(skill.ActivatedAbilityID);
+            ability.CooldownRemaining = 7;
+
+            Diag.ResetAll();
+            var ev = GameEvent.New("CommandTest");
+            entity.FireEvent(ev);
+            ev.Release();
+
+            var records = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "skill",
+                Kind = "CommandRejected",
+                Limit = 10,
+            }).Records;
+
+            Assert.AreEqual(1, records.Count);
+            string payload = records[0].PayloadJson;
+            StringAssert.Contains("cooldown", payload,
+                "Cooldown-blocked rejection reason must be 'cooldown'.");
+            StringAssert.Contains("\"cooldownRemaining\":7", payload,
+                "Payload must include the remaining cooldown so " +
+                "diag consumers can debug 'why is X still on cooldown' questions.");
+        }
     }
 }
