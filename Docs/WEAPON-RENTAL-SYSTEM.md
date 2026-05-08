@@ -306,6 +306,59 @@ print nothing — silent UX. Counter shipped + tested.
 | `ReturnRentals_DoesNotTouchNonRentedItems` | counter |
 | `ReturnRentals_NoRentals_StillSafeToCall` | defensive |
 
-### M3 — pending
+### M3 — Quartermaster NPC + conversation + RentalTestBench
+
+**Files shipped:**
+- MOD `Assets/Resources/Content/Blueprints/Objects.json` — adds
+  `Quartermaster` Creature blueprint and three rentable weapons
+  (`LoanerDagger`, `LoanerSpear`, `LoanerLongsword`), each tagged
+  `Rentable` and inheriting `MeleeWeapon`.
+- NEW `Assets/Resources/Content/Conversations/Quartermaster.json` —
+  4-node dialogue (`Start` → `Wares` / `Return` / `Explain` / `End`).
+  Auto-discovered by `ConversationLoader.LoadAll`.
+- NEW `Assets/Scripts/Scenarios/Custom/RentalTestBench.cs` — places
+  the Quartermaster two cells east of the player, stocks the rack,
+  grants 250 Ink, mirrors `MerchantShopShowcase.cs` style.
+
+**Decisions / divergences:**
+
+🔵 *Renamed Quartermaster.* The plan called it `InkboundQuartermaster`,
+but the Inkbound faction is from a different project (per
+`INKBOUND_LORE_REFERENCE.md`); CoO has no Inkbound faction. Using
+`Quartermaster` + `Faction = Villagers` matches the `Tinker` and
+`Merchant` precedent and avoids an undeclared faction reference.
+
+🔵 *Renamed weapons.* `RentalDagger` etc. → `LoanerDagger` etc. for
+in-fiction readability ("loaner dagger" reads naturally in the message
+log).
+
+🔵 *No predicate-gated `Return` choice.* The plan called for hiding
+the "I'm here to return a weapon" choice unless the player holds a
+rental. v1 ships without that gating; the action's no-rentals branch
+handles it gracefully via the M2.2 counter ("You have no rentals to
+return here."). Adding a predicate (e.g. `IfHaveTag:Rentable` on the
+inventory side) is a v2 polish item — `ConversationPredicates.cs`
+would need a new `IfHaveRental` predicate to express it.
+
+**Honesty bound — what I CAN'T verify here:**
+- I have no Unity in this environment, so the JSON parses (`python3 -c
+  "json.load(...)"` confirms syntactic validity, but Unity's
+  `JsonUtility.FromJson<ConversationFileData>` may differ on edge
+  cases — Unity's parser is stricter than CPython's about field
+  presence).
+- The blueprint inheritance chain (Quartermaster → Creature, Loaner*
+  → MeleeWeapon) is authored to match other entries in `Objects.json`
+  but is not compile-verified.
+- The `RentalTestBench` scenario uses `ctx.Spawn / ctx.Factory /
+  ctx.World.ClearCell` exactly as `MerchantShopShowcase` does, so the
+  surface area is the same.
+
+**User must run after pulling:**
+1. `mcp__unity__refresh_unity` (force-recompile + reimport).
+2. `mcp__unity__read_console types=[error]` — must be empty.
+3. `mcp__unity__run_tests mode=EditMode` — expect +32 tests over the
+   pre-WRS baseline; all green.
+4. Optional PlayMode sweep: load `Rental Test Bench` from the scenario
+   menu, bump the Quartermaster, rent + return + try-to-sell-elsewhere.
 
 ### Cold-eye review — pending
