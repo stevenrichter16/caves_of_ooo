@@ -2,18 +2,33 @@
 
 ## Status
 
-**Brainstorm in progress — 4/30 shipped.** Each ability sketches the
+**Brainstorm in progress — 19/30 shipped.** Each ability sketches the
 mechanic + targeting + flavor + a one-line "what makes this unique
 across the whole table." Candidates port one at a time using the
 WSP3.5 ActivatedAbility infrastructure proven in WSP6/WSP7.
 
 | # | Ability | Status | File |
 |---|---|---|---|
+| 1 | Cudgel_ChargingStrike | ✅ Shipped | `Cudgel_ChargingStrike.cs` |
+| 2 | Cudgel_GroundPound | ✅ Shipped | `Cudgel_GroundPound.cs` |
+| 3 | Cudgel_Disarm | ✅ Shipped | `Cudgel_Disarm.cs` |
 | 5 | Axe_Whirlwind | ✅ Shipped | `Axe_Whirlwind.cs` |
+| 6 | Axe_RendArmor | ✅ Shipped | `Axe_RendArmor.cs` |
 | 7 | LongBlades_Lunge | ✅ Shipped | `LongBlades_Lunge.cs` |
+| 10 | ShortBlades_Backstab | ✅ Shipped | `ShortBlades_Backstab.cs` |
 | 11 | ShortBlades_Flurry | ✅ Shipped | `ShortBlades_Flurry.cs` |
+| 12 | ShortBlades_Disengage | ✅ Shipped | `ShortBlades_Disengage.cs` |
 | 13 | Acrobatics_Tumble | ✅ Shipped | `Acrobatics_Tumble.cs` |
-| (others) | — | brainstorm only | — |
+| 14 | Acrobatics_Vault | ✅ Shipped | `Acrobatics_Vault.cs` |
+| 15 | Acrobatics_EvasiveRoll | ✅ Shipped | `Acrobatics_EvasiveRoll.cs` |
+| 17 | Spellcraft_ArcaneSurge | ✅ Shipped | `Spellcraft_ArcaneSurge.cs` |
+| 18 | Spellcraft_LeyTap | ✅ Shipped | `Spellcraft_LeyTap.cs` |
+| 19 | Pyromancy_Pyroclasm | ✅ Shipped | `Pyromancy_Pyroclasm.cs` |
+| 21 | Pyromancy_HeartFlame | ✅ Shipped | `Pyromancy_HeartFlame.cs` |
+| 22 | Cryomancy_Hibernate | ✅ Shipped | `Cryomancy_Hibernate.cs` |
+| 23 | Cryomancy_Frostbind | ✅ Shipped | `Cryomancy_Frostbind.cs` |
+| 26 | Galvanism_Overload | ✅ Shipped | `Galvanism_Overload.cs` |
+| 4, 8, 9, 16, 20, 24, 25, 27, 28, 29, 30 | — | brainstorm only | — |
 
 ## The constraint
 

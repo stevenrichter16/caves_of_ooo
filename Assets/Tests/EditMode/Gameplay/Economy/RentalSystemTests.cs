@@ -236,9 +236,11 @@ namespace CavesOfOoo.Tests
 
             Assert.That(RentalSystem.TryRent(renter, lessor, item), Is.True);
 
-            // Item moved
-            Assert.That(lessor.GetPart<InventoryPart>().Objects, Does.Not.Contain(item));
-            Assert.That(renter.GetPart<InventoryPart>().Objects, Does.Contain(item));
+            // Item moved. NUnit's Does.Contain has overload-resolution
+            // ambiguity with strings; Has.No.Member / Has.Member are
+            // unambiguous on collection<Entity>.
+            Assert.That(lessor.GetPart<InventoryPart>().Objects, Has.No.Member(item));
+            Assert.That(renter.GetPart<InventoryPart>().Objects, Has.Member(item));
             // Ink deducted by exactly the rental cost
             Assert.That(RentalSystem.GetInk(renter), Is.EqualTo(inkBefore - costBefore));
             // RentalPart records the transaction
@@ -260,8 +262,8 @@ namespace CavesOfOoo.Tests
 
             Assert.That(RentalSystem.TryRent(renter, lessor, item), Is.False);
 
-            Assert.That(lessor.GetPart<InventoryPart>().Objects, Does.Contain(item));
-            Assert.That(renter.GetPart<InventoryPart>().Objects, Does.Not.Contain(item));
+            Assert.That(lessor.GetPart<InventoryPart>().Objects, Has.Member(item));
+            Assert.That(renter.GetPart<InventoryPart>().Objects, Has.No.Member(item));
             Assert.That(item.GetPart<RentalPart>(), Is.Null);
             Assert.That(RentalSystem.GetInk(renter), Is.EqualTo(0));
         }
@@ -314,8 +316,8 @@ namespace CavesOfOoo.Tests
 
             Assert.That(RentalSystem.TryReturn(renter, lessor, item), Is.True);
 
-            Assert.That(renter.GetPart<InventoryPart>().Objects, Does.Not.Contain(item));
-            Assert.That(lessor.GetPart<InventoryPart>().Objects, Does.Contain(item));
+            Assert.That(renter.GetPart<InventoryPart>().Objects, Has.No.Member(item));
+            Assert.That(lessor.GetPart<InventoryPart>().Objects, Has.Member(item));
             Assert.That(item.GetPart<RentalPart>(), Is.Null,
                 "RentalPart must be removed so the item is rentable again.");
             Assert.That(RentalSystem.GetInk(renter),
@@ -339,7 +341,7 @@ namespace CavesOfOoo.Tests
 
             Assert.That(RentalSystem.TryReturn(renter, lessorB, item), Is.False);
 
-            Assert.That(renter.GetPart<InventoryPart>().Objects, Does.Contain(item),
+            Assert.That(renter.GetPart<InventoryPart>().Objects, Has.Member(item),
                 "Item must NOT have left the renter's inventory.");
             Assert.That(item.GetPart<RentalPart>(), Is.Not.Null,
                 "RentalPart must NOT have been stripped.");
@@ -370,7 +372,7 @@ namespace CavesOfOoo.Tests
 
             Assert.That(TradeSystem.CanBeTraded(item, renter, merchant, "Sell"), Is.False);
             Assert.That(TradeSystem.SellToTrader(renter, merchant, item), Is.False);
-            Assert.That(renter.GetPart<InventoryPart>().Objects, Does.Contain(item));
+            Assert.That(renter.GetPart<InventoryPart>().Objects, Has.Member(item));
             Assert.That(TradeSystem.GetDrams(renter), Is.EqualTo(dramsBefore));
         }
 

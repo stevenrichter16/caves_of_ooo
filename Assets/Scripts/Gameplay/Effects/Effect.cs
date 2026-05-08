@@ -214,6 +214,18 @@ namespace CavesOfOoo.Core
         public virtual bool AllowAction(Entity target) => true;
 
         /// <summary>
+        /// Return false to prevent the entity from moving (separate from
+        /// <see cref="AllowAction"/>, so a "rooted" effect can keep the
+        /// actor able to attack/cast in place but unable to move). Default
+        /// returns <see cref="AllowAction"/> so existing AllowAction-blocking
+        /// effects (Stunned, Frozen, Paralyzed) continue to block movement
+        /// without modification — the override is only meaningful for
+        /// effects that want to permit some actions while denying movement
+        /// (RootedEffect being the canonical case).
+        /// </summary>
+        public virtual bool AllowMovement(Entity target) => AllowAction(target);
+
+        /// <summary>
         /// Return a Qud color code to override the entity's render color while this
         /// effect is active. Return null for no override.
         /// </summary>

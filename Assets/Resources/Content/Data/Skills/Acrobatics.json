@@ -27,6 +27,26 @@
           "Description": "Active ability: swap positions with an adjacent creature. Hostile targets get dazed (Confused 1T); allies just trade places. No weapon required. 20-turn cooldown.",
           "Foreground": "g",
           "Detail": "G"
+        },
+        {
+          "Name": "Evasive Roll",
+          "Class": "Acrobatics_EvasiveRoll",
+          "Cost": 50,
+          "Attribute": "Agility",
+          "Minimum": "15",
+          "Description": "Active ability: roll free of one negative status effect on yourself (priority: Stunned > Frozen > Paralyzed > Bleeding > others). 60-turn cooldown.",
+          "Foreground": "g",
+          "Detail": "G"
+        },
+        {
+          "Name": "Vault",
+          "Class": "Acrobatics_Vault",
+          "Cost": 50,
+          "Attribute": "Agility",
+          "Minimum": "15",
+          "Description": "Active ability: leap 2 cells in a chosen direction, skipping over the cell at distance 1 (wall, creature, or open). 15-turn cooldown.",
+          "Foreground": "g",
+          "Detail": "G"
         }
       ]
     }

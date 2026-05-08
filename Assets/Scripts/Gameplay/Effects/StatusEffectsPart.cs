@@ -373,14 +373,20 @@ namespace CavesOfOoo.Core
 
         private bool HandleBeforeMove(GameEvent e)
         {
-            // Same scan as HandleBeginTakeAction — if any effect returns
-            // AllowAction=false, block the move. We DON'T re-log here
-            // because HandleBeginTakeAction already logged on the turn
-            // gate; a second "cannot act" per skipped-input key-press
-            // would spam the log.
+            // Movement-only blocking is via AllowMovement; full action-
+            // blocking via AllowAction (its default makes AllowMovement
+            // return AllowAction's result, so existing effects like
+            // Stunned/Frozen continue to block movement without changes).
+            // RootedEffect overrides AllowMovement => false but leaves
+            // AllowAction at its true default — actor can still attack
+            // / cast / use abilities, just not change cells.
+            //
+            // We DON'T re-log here because HandleBeginTakeAction already
+            // logged on the turn gate; a second "cannot act" per skipped-
+            // input key-press would spam the log.
             for (int i = 0; i < _effects.Count; i++)
             {
-                if (!_effects[i].AllowAction(ParentEntity))
+                if (!_effects[i].AllowMovement(ParentEntity))
                 {
                     e.Handled = true;
                     return false;

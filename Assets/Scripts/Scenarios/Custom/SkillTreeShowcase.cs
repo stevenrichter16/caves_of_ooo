@@ -25,27 +25,19 @@ namespace CavesOfOoo.Scenarios.Custom
     [Scenario(
         name: "Skill Tree Showcase",
         category: "UI",
-        description: "Skill-tree popup demo. 5 trees / 9 powers in registry. WSP.1 tree-root crit behaviors active + WSP8.2 actives wired (Lunge / Whirlwind / Flurry / Tumble). Inventory: one of every weapon type (4 base + 5 elemental).")]
+        description: "Skill-tree popup demo. 10 trees / 19 actives + passives. WSP.1 tree-root crit behaviors active + WSP8.2/8.3 actives wired (19 active abilities total). Inventory: one of every weapon type (4 base + 5 elemental).")]
     public class SkillTreeShowcase : IScenario
     {
         public void Apply(ScenarioContext ctx)
         {
             // === Player loadout: one of every weapon type in the game ===
-            // Base weapons (one per class) cover the tree-root crit
-            // behaviors + class-gated active abilities. The 5 elemental
-            // variants extend the base lineup with Phase-E elemental
-            // routing (Acid → AcidResistance) and the on-hit-effect
-            // status emissions (Burning / Frozen / Electrified / Acidic).
-            // After this ship, the player can rotate through any combo
-            // of weapon class × elemental flavor without switching
-            // scenarios.
             ctx.Player
                 .SetStatMax("Hitpoints", 200)
                 .SetHp(200)
                 .SetStatMax("Strength", 30)
                 .SetStat("Strength", 18)
                 .SetStat("Agility", 14)
-                .SetStat("SP", 200)
+                .SetStat("SP", 500) // Bumped to cover all 19 prebuys
                 // Base weapons — one per class.
                 .Equip("Mace")                  // Bludgeoning + Cudgel (equipped)
                 .GiveItem("Battleaxe", 1)       // Cutting + Axe
@@ -58,60 +50,73 @@ namespace CavesOfOoo.Scenarios.Custom
                 .GiveItem("AcidicDagger", 1)    // Piercing + ShortBlades + Acid
                 .GiveItem("DissolutionMaul", 1);// Bludgeoning + Cudgel + Acid
 
-            // === Pre-buy skills so every active is testable on swap ===
-            // 4 weapon-class tree-roots (WSP.1 crit behaviors) +
-            // Cudgel_Bludgeon (the canonical "stacked Stun" demo) +
-            // the 4 WSP8.2 actives (Lunge / Whirlwind / Flurry / Tumble).
-            // Active hotbar slots populate as the abilities are added,
-            // so the player can press 1-9 to fire each on the right
-            // weapon (gating still applies — Lunge needs LongBlades,
-            // Whirlwind needs Axe, etc.).
+            // === Pre-buy every shipped active so M (ability manager) ===
+            // === shows the full 19-ability lineup on first open. ===
             var skills = ctx.PlayerEntity?.GetPart<SkillsPart>();
             if (skills != null)
             {
+                // Tree roots (5 trees represented; LongBlades's crit
+                // behavior + Acrobatics's marker shape come for free).
                 skills.AddSkill("AcrobaticsSkill",       source: "scenario:prebuy");
                 skills.AddSkill("CudgelSkill",           source: "scenario:prebuy");
                 skills.AddSkill("AxeSkill",              source: "scenario:prebuy");
                 skills.AddSkill("LongBladesSkill",       source: "scenario:prebuy");
                 skills.AddSkill("ShortBladesSkill",      source: "scenario:prebuy");
+                // Existing passive (the canonical stacked-Stun demo).
                 skills.AddSkill("Cudgel_Bludgeon",       source: "scenario:prebuy");
-                // WSP8.2 — pre-buy the 4 new actives so the player can
-                // immediately test each on its weapon class.
+
+                // WSP8.2 actives — first 4 ports.
                 skills.AddSkill("LongBlades_Lunge",      source: "scenario:prebuy");
                 skills.AddSkill("Axe_Whirlwind",         source: "scenario:prebuy");
                 skills.AddSkill("ShortBlades_Flurry",    source: "scenario:prebuy");
                 skills.AddSkill("Acrobatics_Tumble",     source: "scenario:prebuy");
+
+                // WSP8.3 actives — 15 more ports (all 10 trees represented).
+                skills.AddSkill("Cudgel_ChargingStrike",   source: "scenario:prebuy");
+                skills.AddSkill("Cudgel_GroundPound",      source: "scenario:prebuy");
+                skills.AddSkill("Cudgel_Disarm",           source: "scenario:prebuy");
+                skills.AddSkill("Axe_RendArmor",           source: "scenario:prebuy");
+                skills.AddSkill("ShortBlades_Backstab",    source: "scenario:prebuy");
+                skills.AddSkill("ShortBlades_Disengage",   source: "scenario:prebuy");
+                skills.AddSkill("Acrobatics_EvasiveRoll",  source: "scenario:prebuy");
+                skills.AddSkill("Acrobatics_Vault",        source: "scenario:prebuy");
+                skills.AddSkill("Spellcraft_ArcaneSurge",  source: "scenario:prebuy");
+                skills.AddSkill("Spellcraft_LeyTap",       source: "scenario:prebuy");
+                skills.AddSkill("Pyromancy_Pyroclasm",     source: "scenario:prebuy");
+                skills.AddSkill("Pyromancy_HeartFlame",    source: "scenario:prebuy");
+                skills.AddSkill("Cryomancy_Frostbind",     source: "scenario:prebuy");
+                skills.AddSkill("Cryomancy_Hibernate",     source: "scenario:prebuy");
+                skills.AddSkill("Galvanism_Overload",      source: "scenario:prebuy");
             }
 
             // === Walk-through ===
-            ctx.Log("=== Skill Tree Showcase (WSP8.2) ===");
-            ctx.Log("Press X to open the skills screen — 5 trees / 9 powers visible.");
-            ctx.Log("Press M to open the ability manager (10 pre-bought).");
+            ctx.Log("=== Skill Tree Showcase (WSP8.3) ===");
+            ctx.Log("Press X to open the skills screen.");
+            ctx.Log("Press M to open the ability manager (19 actives pre-bought).");
             ctx.Log("");
             ctx.Log("Inventory: 9 weapons covering every type.");
-            ctx.Log("  Cudgel:     Mace [equipped], ThunderHammer (Lightning), DissolutionMaul (Acid)");
-            ctx.Log("  Axe:        Battleaxe");
-            ctx.Log("  LongBlades: LongSword, FlamingSword (Fire), IceSword (Cold)");
+            ctx.Log("  Cudgel:      Mace [equipped], ThunderHammer (Lightning), DissolutionMaul (Acid)");
+            ctx.Log("  Axe:         Battleaxe");
+            ctx.Log("  LongBlades:  LongSword, FlamingSword (Fire), IceSword (Cold)");
             ctx.Log("  ShortBlades: Dagger, AcidicDagger (Acid)");
             ctx.Log("");
-            ctx.Log("Tree-root crit behaviors (WSP.1) — every weapon's crit fires its class proc.");
-            ctx.Log("Per-power on-hit (every hit, gated by chance):");
-            ctx.Log("  Cudgel_Bludgeon (owned)        → 50% Stunned on Cudgel hit");
-            ctx.Log("  Axe_Cleave (1 SP)              → 30% half-damage cleave on Axe hit");
-            ctx.Log("  LongBlades_Lacerate (1 SP)     → 35% Bleeding 1d3 on LongBlades hit");
-            ctx.Log("  ShortBlades_Jab (1 SP)         → 30% Confused 3T on Piercing hit");
-            ctx.Log("  ShortBlades_Bloodletter (1 SP) → 50% Bleeding 1d2 on Piercing hit");
+            ctx.Log("Active abilities by tree (M to view, 1-9 to fire):");
+            ctx.Log("  Cudgel:      Slam, Conk, ChargingStrike, GroundPound, Disarm");
+            ctx.Log("  Axe:         Berserk, HookAndDrag, Whirlwind, RendArmor");
+            ctx.Log("  LongBlades:  Lunge");
+            ctx.Log("  ShortBlades: Shank, Flurry, Backstab, Disengage");
+            ctx.Log("  Acrobatics:  Tumble, EvasiveRoll, Vault");
+            ctx.Log("  Spellcraft:  ArcaneSurge, LeyTap");
+            ctx.Log("  Pyromancy:   Pyroclasm, HeartFlame");
+            ctx.Log("  Cryomancy:   Frostbind, Hibernate");
+            ctx.Log("  Galvanism:   Overload");
             ctx.Log("");
-            ctx.Log("Active abilities (press M to see / 1-9 to fire):");
-            ctx.Log("  Lunge      (LongBlades)  — DirectionLine, range 2 reach extension");
-            ctx.Log("  Whirlwind  (Axe)         — SelfCentered, hit ALL 8 adjacent");
-            ctx.Log("  Flurry     (Piercing)    — AdjacentCell, 3 strikes on one target");
-            ctx.Log("  Tumble     (Acrobatics)  — AdjacentCell swap (no weapon req)");
-            ctx.Log("");
-            ctx.Log("Suggested experiment: equip FlamingSword, hit a target. Watch for");
-            ctx.Log("  - LongBlades crit (Bleeding 1d4) + Cutting class crit hook");
-            ctx.Log("  - Per-weapon Burning on-hit (30% chance via OnHitWeaponEffects)");
-            ctx.Log("  - Lacerate 35% if you bought it (LongBlades-class hit)");
+            ctx.Log("Suggested experiments:");
+            ctx.Log("  - FlamingSword + Lunge: range 2 swing, +30% Burning on-hit chance");
+            ctx.Log("  - Battleaxe + Whirlwind: every 8-adjacent gets a strike");
+            ctx.Log("  - AcidicDagger + Flurry: 3 strikes, each rolling Acidic on-hit");
+            ctx.Log("  - LeyTap then any spell: HP drained + spell deals bonus damage");
+            ctx.Log("  - Hibernate: 10T self-stasis with 5%/turn heal");
         }
     }
 }
