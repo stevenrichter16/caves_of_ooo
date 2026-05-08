@@ -442,5 +442,171 @@ namespace CavesOfOoo.Tests
                 "ActivatedAbilityID_NotMarkedNonSerialized_PinsWSP44Fix). " +
                 "WSP4.4 cold-eye finding 🔴 #1.");
         }
+
+        // ====================================================================
+        // 14. HandleEvent — GameEvent command dispatch routes to OnCommand
+        // ====================================================================
+        //
+        // This pins the production input-dispatch path that the
+        // InputHandler's ResolveAbilityCommand uses (line 2819 of
+        // InputHandler.cs):
+        //
+        //     PlayerEntity.FireEvent(cmd);  // cmd.ID = "CommandSlam" etc.
+        //
+        // Pre-fix, only mutations had HandleEvent overrides for command
+        // names; skills' OnCommand was wired only via TryRouteSkillCommand
+        // which production code never called. The result: pressing Slam
+        // / Conk / Berserk / Shank / HookAndDrag prompted "choose a
+        // direction" then immediately reported "The rite fails to
+        // resolve." because cmd.Handled stayed false.
+        //
+        // The fix: SkillsPart.HandleEvent override that detects
+        // "Command*" event IDs and routes to TryRouteSkillCommand, which
+        // calls OnCommand + applies cooldown. These tests pin the
+        // integration end-to-end so the bug can't regress.
+
+        /// <summary>
+        /// Test stub that records OnCommand calls. Lets us verify
+        /// the GameEvent → SkillsPart.HandleEvent → TryRouteSkillCommand
+        /// → skill.OnCommand chain fires end-to-end.
+        /// </summary>
+        public class TestRecordingActivatedSkill : BaseSkillPart
+        {
+            public int OnCommandCallCount;
+            public SkillEventContext LastCtx;
+            public override ActivatedAbilitySpec DeclareActivatedAbility(Entity actor)
+            {
+                return new ActivatedAbilitySpec
+                {
+                    DisplayName = "Test", Command = "CommandTest",
+                    Class = "Skills",
+                    TargetingMode = AbilityTargetingMode.AdjacentCell,
+                    Range = 1, Cooldown = 5,
+                };
+            }
+            public override void OnCommand(SkillEventContext ctx)
+            {
+                OnCommandCallCount++;
+                LastCtx = ctx;
+            }
+        }
+
+        [Test]
+        public void HandleEvent_CommandMatchingOwnedSkill_RoutesToOnCommandAndMarksHandled()
+        {
+            var entity = new Entity { ID = "actor", BlueprintName = "TestActor" };
+            entity.AddPart(new RenderPart { DisplayName = "actor" });
+            entity.AddPart(new ActivatedAbilitiesPart());
+            var skills = new SkillsPart();
+            entity.AddPart(skills);
+            var skill = new TestRecordingActivatedSkill();
+            skills.AddSkill(skill);
+
+            // Fire the GameEvent the way InputHandler.ResolveAbilityCommand
+            // does (line 2808-2819). Set Zone + RNG params; check Handled
+            // post-fire.
+            var rng = new System.Random(42);
+            var cmd = GameEvent.New("CommandTest");
+            cmd.SetParameter("RNG", (object)rng);
+
+            bool result = entity.FireEvent(cmd);
+            bool handled = cmd.Handled;
+            cmd.Release();
+
+            Assert.AreEqual(1, skill.OnCommandCallCount,
+                "OnCommand must fire exactly once when the GameEvent's ID matches " +
+                "the skill's registered Command.");
+            Assert.IsTrue(handled,
+                "cmd.Handled must be true post-fire. Without this, " +
+                "InputHandler.ResolveAbilityCommand logs 'The rite fails to " +
+                "resolve.' and skill activations silently fail.");
+            Assert.AreSame(rng, skill.LastCtx.Rng,
+                "The RNG threaded through the GameEvent must reach OnCommand's " +
+                "ctx.Rng — otherwise skill RNG isn't deterministic from input.");
+        }
+
+        [Test]
+        public void HandleEvent_NonCommandEvent_DoesNotMarkHandled()
+        {
+            // Counter-check: events whose ID doesn't start with "Command"
+            // must NOT be intercepted. Otherwise SkillsPart would
+            // accidentally consume unrelated events (TakeDamage, EndTurn,
+            // etc.) and break their dispatch.
+            var entity = new Entity { ID = "actor" };
+            entity.AddPart(new RenderPart { DisplayName = "actor" });
+            entity.AddPart(new ActivatedAbilitiesPart());
+            var skills = new SkillsPart();
+            entity.AddPart(skills);
+            skills.AddSkill(new TestRecordingActivatedSkill());
+
+            var ev = GameEvent.New("EndTurn");
+            entity.FireEvent(ev);
+            bool handled = ev.Handled;
+            ev.Release();
+
+            Assert.IsFalse(handled,
+                "Non-Command events must NOT be marked Handled by SkillsPart " +
+                "— this would clobber the dispatch of EndTurn / TakeDamage / etc.");
+        }
+
+        [Test]
+        public void HandleEvent_CommandNotMatchingAnyOwnedSkill_DoesNotMarkHandled()
+        {
+            // Counter-check: Command events whose name doesn't match any
+            // owned skill must propagate. Otherwise SkillsPart would block
+            // mutation commands when a player has both skills + mutations.
+            var entity = new Entity { ID = "actor" };
+            entity.AddPart(new RenderPart { DisplayName = "actor" });
+            entity.AddPart(new ActivatedAbilitiesPart());
+            var skills = new SkillsPart();
+            entity.AddPart(skills);
+            skills.AddSkill(new TestRecordingActivatedSkill());  // owns CommandTest
+
+            // Fire a different command — represents "player has Slam (skill)
+            // AND FireBolt (mutation), pressed FireBolt's keybind."
+            var ev = GameEvent.New("CommandFireBolt");
+            entity.FireEvent(ev);
+            bool handled = ev.Handled;
+            ev.Release();
+
+            Assert.IsFalse(handled,
+                "Command events for unowned skills must NOT be marked Handled " +
+                "by SkillsPart — must propagate to mutations / other Parts.");
+        }
+
+        [Test]
+        public void HandleEvent_CommandOnCooldown_DoesNotMarkHandled()
+        {
+            // When the ability is on cooldown, TryRouteSkillCommand
+            // returns false. SkillsPart.HandleEvent leaves Handled=false
+            // so the event propagates (no other Part will claim it,
+            // and the InputHandler's "The rite fails to resolve."
+            // surfaces as the failure message — at least informative,
+            // even if the cooldown gate was already checked upstream).
+            var entity = new Entity { ID = "actor" };
+            entity.AddPart(new RenderPart { DisplayName = "actor" });
+            entity.AddPart(new ActivatedAbilitiesPart());
+            var skills = new SkillsPart();
+            entity.AddPart(skills);
+            var skill = new TestRecordingActivatedSkill();
+            skills.AddSkill(skill);
+
+            // Force cooldown ON.
+            var abilities = entity.GetPart<ActivatedAbilitiesPart>();
+            var ability = abilities.GetAbility(skill.ActivatedAbilityID);
+            ability.CooldownRemaining = 5;
+            Assert.IsFalse(ability.IsUsable, "Pre-condition: cooldown is active.");
+
+            var ev = GameEvent.New("CommandTest");
+            entity.FireEvent(ev);
+            bool handled = ev.Handled;
+            ev.Release();
+
+            Assert.AreEqual(0, skill.OnCommandCallCount,
+                "Cooldown-blocked command must NOT invoke OnCommand.");
+            Assert.IsFalse(handled,
+                "Cooldown-blocked command must leave Handled=false so the " +
+                "event propagates and the failure surfaces.");
+        }
     }
 }
