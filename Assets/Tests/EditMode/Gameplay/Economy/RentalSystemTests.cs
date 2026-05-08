@@ -179,17 +179,34 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void IsRentable_StackableItem_False()
+        public void IsRentable_StackableMaxAboveOne_False()
         {
-            // Cold-eye-2 Finding 2: InventoryPart.AddObject auto-merges
-            // stacks (line 60-77) and consumes the source entity. A
-            // RentalPart attached to a stackable item would be orphaned
-            // on the consumed reference, leaving the merged stack
-            // silently un-flagged. Today's loaners aren't stackable,
-            // but the IsRentable guard prevents future regressions.
+            // Cold-eye-2 Finding 2 (refined by cold-eye-3):
+            // InventoryPart.AddObject auto-merges stacks (line 60-77)
+            // and consumes the source entity. A RentalPart attached
+            // to a mergeable stack would be orphaned on the consumed
+            // reference, leaving the merged stack silently un-flagged.
+            // Default StackerPart.MaxStack is 99 — a Loaner blueprint
+            // that doesn't override it gets refused at runtime.
             var item = CreateRentalWeapon();
-            item.AddPart(new StackerPart());
+            item.AddPart(new StackerPart()); // default MaxStack = 99
             Assert.That(RentalSystem.IsRentable(item), Is.False);
+        }
+
+        [Test]
+        public void IsRentable_StackerCappedAtOne_True()
+        {
+            // Cold-eye-3: the base "Item" blueprint adds a Stacker by
+            // default, so EVERY weapon inherits one. The IsRentable
+            // gate must accept items whose Stacker is capped at 1
+            // (non-mergeable), or the entire feature is broken at the
+            // content level — TryRent would refuse all Loaner weapons.
+            // This test pins the positive case the production
+            // blueprints rely on (LoanerDagger / LoanerSpear /
+            // LoanerLongsword each declare Stacker { MaxStack: 1 }).
+            var item = CreateRentalWeapon();
+            item.AddPart(new StackerPart { MaxStack = 1 });
+            Assert.That(RentalSystem.IsRentable(item), Is.True);
         }
 
         [Test]

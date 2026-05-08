@@ -55,20 +55,24 @@ namespace CavesOfOoo.Core
 
         /// <summary>An item is rentable if it carries the "Rentable"
         /// tag and a <see cref="CommercePart"/> (so a buy price exists
-        /// to scale rental cost from). Stackable items are explicitly
-        /// rejected: <see cref="InventoryPart.AddObject"/> auto-merges
-        /// stacks (InventoryPart.cs:60-77) and the merge consumes the
-        /// source entity, which would orphan the <see cref="RentalPart"/>
-        /// on the consumed reference and leave the merged stack
-        /// silently un-flagged. Today's loaner blueprints are not
-        /// stackable, but the guard prevents a future regression if
-        /// `MeleeWeapon` ever gains a stackable child.</summary>
+        /// to scale rental cost from). Items whose <see cref="StackerPart"/>
+        /// can accept merges (<c>MaxStack &gt; 1</c>) are rejected:
+        /// <see cref="InventoryPart.AddObject"/> auto-merges stacks
+        /// (line 60-77) and the merge consumes the source entity,
+        /// which would orphan the <see cref="RentalPart"/> on the
+        /// consumed reference and leave the merged stack silently
+        /// un-flagged. Note that the base <c>Item</c> blueprint adds a
+        /// default <c>Stacker</c> (MaxStack=99), so EVERY weapon
+        /// inherits one — a Rentable blueprint MUST override
+        /// <c>Stacker.MaxStack = 1</c> for this gate to pass. Cold-eye-3
+        /// caught the inheritance trap.</summary>
         public static bool IsRentable(Entity item)
         {
             if (item == null) return false;
             if (!item.HasTag("Rentable")) return false;
             if (item.GetPart<CommercePart>() == null) return false;
-            if (item.GetPart<StackerPart>() != null) return false;
+            var stacker = item.GetPart<StackerPart>();
+            if (stacker != null && stacker.MaxStack > 1) return false;
             return true;
         }
 

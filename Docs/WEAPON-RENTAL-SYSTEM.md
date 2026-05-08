@@ -506,3 +506,77 @@ with the lessor-side rollback message, a `MessageLog.Add` was added.
 
 **Process: 2 🟡 findings fixed in this commit, 1 🔵 fixed for
 symmetry. Cold-eye pass #2 complete.**
+
+### Cold-eye review #3 — inheritance trap + meta-file format
+
+After being told "you missed core functionality initially, do another
+thorough review," a third pass turned up two more issues — one of
+which would have shipped a completely broken feature.
+
+🔴 **Finding cold-eye-3.1 — Stacker-inheritance bug: cold-eye-2.2's
+fix would have broken the entire feature.**
+
+The base `Item` blueprint declares `Stacker` (`Objects.json:18`).
+Every `Item` descendant — **including `MeleeWeapon` and therefore
+every Loaner blueprint** — inherits a `StackerPart` with the C#
+default `MaxStack = 99`. Cold-eye-2.2's `IsRentable` guard rejected
+items with *any* `StackerPart`, which means every production Loaner
+weapon would have failed `IsRentable` at runtime — `TryRent` would
+print *"isn't for rent"* and **the rental flow would never
+succeed**. The first reviewer claimed the bug was latent ("today's
+Loaner blueprints aren't stackable") but didn't trace the
+inheritance chain: `LoanerDagger → MeleeWeapon → Item → Stacker`.
+
+Why the original cold-eye-2.2 concern is still real: a player who
+rents a second copy of the same blueprint triggers
+`InventoryPart.AddObject`'s auto-merge (line 60-77). The merge calls
+`existingStacker.MergeFrom(newSource)` — the **existing** stacker's
+`MaxStack` decides whether the merge happens. With the default
+`MaxStack=99`, the merge succeeds, the source entity is consumed,
+and the new `RentalPart` is orphaned on the consumed reference.
+
+Fix shipped (two-sided):
+1. **`IsRentable` loosened** to reject only `StackerPart` instances
+   where `MaxStack > 1`. Items with a non-mergeable `Stacker`
+   (MaxStack=1) are accepted. This is the correct rule —
+   non-mergeable stackers are inert and harmless.
+2. **Each Loaner blueprint** (`LoanerDagger`, `LoanerSpear`,
+   `LoanerLongsword`) explicitly overrides
+   `Stacker { MaxStack: 1 }`. The blueprint loader (`Bake`,
+   `BlueprintLoader.cs:160-178`) merges params child-over-parent, so
+   the override takes effect.
+3. **Tests updated:**
+   - `IsRentable_StackableItem_False` renamed to
+     `IsRentable_StackableMaxAboveOne_False` (covers the default
+     MaxStack=99 case).
+   - **NEW** `IsRentable_StackerCappedAtOne_True` — pins the positive
+     case the production blueprints rely on.
+
+🟡 **Finding cold-eye-3.2 — `Quartermaster.json.meta` missing
+`TextScriptImporter` directive.**
+
+Existing JSON `.meta` files in `Assets/Resources/Content/Conversations/`
+include a `TextScriptImporter:` block that tells Unity how to import
+the file as a `TextAsset`. My .meta had only `fileFormatVersion` +
+`guid`. Unity's importer would regenerate the meta on first
+reimport, replacing my GUID with a fresh one — harmless because no
+reference uses the old GUID, but unprofessional. **Fix:** added the
+full importer directive to match the existing pattern.
+
+**Honest framing:** I rolled out an over-strict guard in cold-eye-2,
+the independent agent reviewer didn't catch it because they didn't
+trace blueprint inheritance, and only the user's "do another thorough
+review" prompt forced me to look harder. The lesson: a 🟡 fix can
+introduce a 🔴 if you don't check the actual content path. **Tests
+should cover the production blueprint instances, not just hand-rolled
+fixtures.** A future improvement would be an integration test that
+loads `LoanerDagger` via `EntityFactory.CreateEntity` and asserts
+`IsRentable == true`.
+
+**Test inventory after cold-eye-3:**
+- M1: 24 tests (was 23 — renamed one, added
+  `IsRentable_StackerCappedAtOne_True`).
+- M2: 13 tests (unchanged).
+- **Combined: 37 new EditMode tests.**
+
+**Process: 1 🔴 + 1 🟡 fixed. Cold-eye pass #3 complete.**
