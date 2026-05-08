@@ -1539,7 +1539,21 @@ namespace CavesOfOoo.Rendering
 
         private void CloseAbilityManager()
         {
-            _inputState = InputState.Normal;
+            // BUG FIX (cold-eye review): the UI's activation callback can
+            // transition _inputState to AwaitingDirection (for directional
+            // abilities like Slam, Conk, HookAndDrag — see
+            // ActivateAbilityFromManager / ActivateAbilityByID). If we
+            // unconditionally reset to Normal here, we overwrite that
+            // transition and the player can't actually input a direction
+            // — the next arrow key goes through normal movement instead
+            // of direction targeting. Only reset to Normal if we're still
+            // in AbilityManagerOpen at this point (i.e., the user
+            // closed without activating). Camera restoration runs
+            // unconditionally because both AwaitingDirection and Normal
+            // use the gameplay camera (the popup-overlay camera was
+            // installed when the manager opened).
+            if (_inputState == InputState.AbilityManagerOpen)
+                _inputState = InputState.Normal;
             if (TryOpenAnnouncement()) return;
             ExitCenteredPopupOverlayViewToGameplay();
         }

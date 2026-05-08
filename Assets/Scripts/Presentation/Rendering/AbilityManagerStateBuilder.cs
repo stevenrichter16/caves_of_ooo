@@ -103,5 +103,42 @@ namespace CavesOfOoo.Rendering
             if (hotkey == '0') return 9;
             return -1;
         }
+
+        /// <summary>
+        /// Synthesize a 1-line description for a row, covering binding +
+        /// usability state. <see cref="ActivatedAbility"/> doesn't carry
+        /// a Description field today (CoO simplification of Qud's
+        /// <c>ActivatedAbilityEntry.Description</c>) so the manager UI
+        /// generates a useful status string from the row's
+        /// <see cref="AbilityManagerRow.SlotIndex"/> +
+        /// <see cref="AbilityManagerRow.IsUsable"/> +
+        /// <see cref="AbilityManagerRow.CooldownRemaining"/>.
+        ///
+        /// <para>Returns:
+        /// <list type="bullet">
+        ///   <item>Bound + ready: <c>"Bound to [N] - ready to use."</c></item>
+        ///   <item>Bound + cooldown: <c>"Bound to [N] - cooldown: NT/MaxT."</c></item>
+        ///   <item>Unbound + ready: <c>"Unbound. Press 0-9 to assign a slot, Enter to cast."</c></item>
+        ///   <item>Unbound + cooldown: <c>"Unbound - cooldown: NT/MaxT."</c></item>
+        /// </list></para>
+        ///
+        /// <para>Public + static so tests can pin the per-row format
+        /// without spinning up the MonoBehaviour. The wording is part of
+        /// the player-facing UX contract — if a future contributor
+        /// changes it, the test catches the drift.</para>
+        /// </summary>
+        public static string BuildRowDescription(AbilityManagerRow row)
+        {
+            bool bound = row.SlotIndex >= 0;
+            if (bound && row.IsUsable)
+                return "Bound to [" + row.Hotkey + "] - ready to use.";
+            if (bound && !row.IsUsable)
+                return "Bound to [" + row.Hotkey + "] - cooldown: " +
+                       row.CooldownRemaining + "T / " + row.MaxCooldown + "T.";
+            if (!bound && row.IsUsable)
+                return "Unbound. Press 0-9 to assign a slot, Enter to cast.";
+            return "Unbound - cooldown: " +
+                   row.CooldownRemaining + "T / " + row.MaxCooldown + "T.";
+        }
     }
 }

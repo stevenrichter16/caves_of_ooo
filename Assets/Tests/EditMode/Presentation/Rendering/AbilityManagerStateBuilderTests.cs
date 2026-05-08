@@ -263,5 +263,111 @@ namespace CavesOfOoo.Tests
             Assert.IsNull(abilities.GetAbilityBySlot(0),
                 "Slot 0 should now return null from GetAbilityBySlot.");
         }
+
+        // ════════════════════════════════════════════════════════════════
+        // BuildRowDescription — per-row 1-line synthesis
+        // ════════════════════════════════════════════════════════════════
+        //
+        // The description row is part of the player-facing UX contract.
+        // These tests pin the wording so a future contributor can't
+        // silently reword the strings (which would inconsistently match
+        // the player's mental model of what a key press does).
+
+        [Test]
+        public void BuildRowDescription_BoundAndReady_ReturnsBoundReadyText()
+        {
+            var row = new AbilityManagerRow(
+                abilityID: System.Guid.NewGuid(),
+                displayName: "Slam",
+                sourceClass: "Skills",
+                hotkey: '1',
+                slotIndex: 0,
+                cooldownRemaining: 0,
+                maxCooldown: 50,
+                isUsable: true);
+            string desc = AbilityManagerStateBuilder.BuildRowDescription(row);
+            Assert.AreEqual("Bound to [1] - ready to use.", desc);
+        }
+
+        [Test]
+        public void BuildRowDescription_BoundAndOnCooldown_ShowsCooldownProgress()
+        {
+            var row = new AbilityManagerRow(
+                abilityID: System.Guid.NewGuid(),
+                displayName: "Slam",
+                sourceClass: "Skills",
+                hotkey: '1',
+                slotIndex: 0,
+                cooldownRemaining: 12,
+                maxCooldown: 50,
+                isUsable: false);
+            string desc = AbilityManagerStateBuilder.BuildRowDescription(row);
+            Assert.AreEqual("Bound to [1] - cooldown: 12T / 50T.", desc,
+                "Cooldown row should show remaining/max so player can " +
+                "estimate when to come back.");
+        }
+
+        [Test]
+        public void BuildRowDescription_UnboundAndReady_HintsToAssignAndCast()
+        {
+            var row = new AbilityManagerRow(
+                abilityID: System.Guid.NewGuid(),
+                displayName: "Berserk",
+                sourceClass: "Skills",
+                hotkey: '-',
+                slotIndex: -1,
+                cooldownRemaining: 0,
+                maxCooldown: 100,
+                isUsable: true);
+            string desc = AbilityManagerStateBuilder.BuildRowDescription(row);
+            Assert.AreEqual("Unbound. Press 0-9 to assign a slot, Enter to cast.", desc,
+                "Unbound + ready row should hint the two paths forward " +
+                "(bind to a slot OR activate directly via Enter).");
+        }
+
+        [Test]
+        public void BuildRowDescription_UnboundAndOnCooldown_ShowsCooldownProgress()
+        {
+            var row = new AbilityManagerRow(
+                abilityID: System.Guid.NewGuid(),
+                displayName: "Berserk",
+                sourceClass: "Skills",
+                hotkey: '-',
+                slotIndex: -1,
+                cooldownRemaining: 75,
+                maxCooldown: 100,
+                isUsable: false);
+            string desc = AbilityManagerStateBuilder.BuildRowDescription(row);
+            Assert.AreEqual("Unbound - cooldown: 75T / 100T.", desc);
+        }
+
+        [Test]
+        public void BuildRowDescription_AllRowsLessThan60Chars_FitInPopupWidth()
+        {
+            // The popup is 60 chars wide. The description row reserves
+            // 2 chars on each side for borders, so the description text
+            // itself has 56 chars. Verify all 4 description shapes fit.
+            const int maxLen = 56;
+
+            string[] descs = new[]
+            {
+                AbilityManagerStateBuilder.BuildRowDescription(new AbilityManagerRow(
+                    System.Guid.NewGuid(), "X", "Y", '1', 0, 0, 50, true)),
+                AbilityManagerStateBuilder.BuildRowDescription(new AbilityManagerRow(
+                    System.Guid.NewGuid(), "X", "Y", '0', 9, 999, 9999, false)),
+                AbilityManagerStateBuilder.BuildRowDescription(new AbilityManagerRow(
+                    System.Guid.NewGuid(), "X", "Y", '-', -1, 0, 100, true)),
+                AbilityManagerStateBuilder.BuildRowDescription(new AbilityManagerRow(
+                    System.Guid.NewGuid(), "X", "Y", '-', -1, 999, 9999, false)),
+            };
+
+            foreach (var desc in descs)
+            {
+                Assert.LessOrEqual(desc.Length, maxLen,
+                    "Description '" + desc + "' (" + desc.Length + " chars) " +
+                    "exceeds the popup width budget (" + maxLen + " chars). " +
+                    "The renderer's truncation tilde would kick in and clip the text.");
+            }
+        }
     }
 }

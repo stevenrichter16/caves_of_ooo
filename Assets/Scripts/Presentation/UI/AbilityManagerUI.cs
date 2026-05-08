@@ -346,11 +346,36 @@ namespace CavesOfOoo.Rendering
                         QudColorParser.Gray);
             }
 
+            // Description row — synthesized per-selection contextual
+            // help. ActivatedAbility doesn't carry a Description field
+            // today (CoO simplification of Qud's ActivatedAbilityEntry),
+            // so we generate a useful 1-line status string from the
+            // selected row's binding + cooldown state. Polishes the
+            // formerly-blank description row into a useful affordance.
+            int descSepY = contentY + visibleCount;
+            int descY = descSepY + 1;
+            if (totalRows > 0)
+            {
+                var sel = _snapshot.Rows[Mathf.Clamp(_cursorIndex, 0, totalRows - 1)];
+                // Description synthesis lives in the state-builder so
+                // the format is testable without MonoBehaviour setup
+                // (see AbilityManagerStateBuilderTests).
+                string desc = AbilityManagerStateBuilder.BuildRowDescription(sel);
+                int maxDescLen = POPUP_W - 4;
+                if (desc.Length > maxDescLen)
+                    desc = desc.Substring(0, maxDescLen - 1) + "~";
+                DrawText(2, descY, desc, QudColorParser.Gray);
+            }
+
             // Footer hint.
             int hintY = borderH;
             DrawText(0, hintY, "[Enter]use [0-9]bind [R]unbind [M/Esc]close",
                 QudColorParser.DarkGray);
         }
+
+        // BuildDescription was moved to AbilityManagerStateBuilder.BuildRowDescription
+        // so it's testable as pure-data formatting without MonoBehaviour setup.
+        // See AbilityManagerStateBuilderTests for the per-row format pins.
 
         private static Color HotkeyColor(AbilityManagerRow row)
         {
