@@ -78,6 +78,7 @@ namespace CavesOfOoo.Core
             public int MaxCarryWeight;
             public int TotalItems;
             public int Drams;
+            public int Ink;
         }
 
         /// <summary>
@@ -94,6 +95,7 @@ namespace CavesOfOoo.Core
             state.CarriedWeight = inventory.GetCarriedWeight();
             state.MaxCarryWeight = inventory.GetMaxCarryWeight();
             state.Drams = TradeSystem.GetDrams(actor);
+            state.Ink = RentalSystem.GetInk(actor);
             state.PlayerStats = BuildPlayerStats(actor);
 
             // Gather all items (carried + equipped) into one list, deduplicated

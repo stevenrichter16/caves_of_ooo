@@ -690,6 +690,49 @@ feature gap (Ink display, 🟡) and four observations / scope
 notes. No new bugs in shipped code. Total commits on branch: 8.
 Total cold-eye passes: 4.
 
+### M4 — wire-in: Quartermaster spawn + starting Ink + Ink display
+
+After the user asked *"are there actual NPCs in the world and actual
+methods for the player to get ink?"* the honest answer was no — the
+Quartermaster blueprint existed but was only spawned in
+`RentalTestBench`, and `GiveInk` was registered but used by no
+content. M4 closes that gap.
+
+**Decisions** (per user choice):
+- Quartermaster spawns **always**, in every village, alongside
+  Merchant. Reliable access > scarcity for a core mechanic.
+- Player starts with **50 Ink** (matches starting Drams = 50).
+  Enough to rent the dagger or spear; longsword (~48 ink at Ego 18)
+  is just barely affordable. Lossy refund (50%) makes Ink finite-
+  ish without being unwinnable.
+
+**Files shipped:**
+
+| File | Change |
+|---|---|
+| `Objects.json` (Player blueprint) | `IntProps += { Ink: 50 }` next to existing Drams=50. |
+| `VillagePopulationBuilder.cs:103-110` | Always spawn `Quartermaster`, call new `StockQuartermaster` helper. |
+| `VillagePopulationBuilder.cs:805+` | New `QuartermasterRentalStock` array + `StockQuartermaster` helper. Mirrors `StockMerchant` exactly. |
+| `InventoryScreenData.cs:80,96` | `ScreenState.Ink` field + `Build` populates from `RentalSystem.GetInk`. |
+| `InventoryUI.cs:2062-2066` | Header info string now shows `Wt:N/M $D iI`. |
+| `VillagePopulationBuilderTests.cs` | New test `BuildZone_SpawnsQuartermasterStockedWithLoaners` — loads real `Objects.json`, spawns a village, asserts Quartermaster exists, stocks 3 Loaners, each `IsRentable == true`. **Closes cold-eye-4.3** (no integration test for production blueprints) and pins cold-eye-3.1 (Stacker inheritance trap) against future regression. |
+
+**What this changes for a real player:**
+1. Spawn → 50 Ink already in wallet (visible in InventoryUI as `i 50`).
+2. Walk into any village → bump the Quartermaster (yellow `@`).
+3. Dialogue offers Wares / Return / Explain.
+4. Rent dagger (~12 ink) → equip → fight → return → 6 ink refund →
+   net 6 ink for one fight's loadout.
+
+**Sidebar Ink display deferred (cold-eye-4.1 partial close).**
+The InventoryUI header now shows Ink, which closes the
+"player can't see their balance" gap for the most common discovery
+path (opening inventory). Adding to the always-on sidebar would
+require restructuring the existing 4-line `WT/DR | …` layout; not
+done here. Tracked as 🔵 polish.
+
+**Process: feature wired in. Live-game functional.**
+
 | Pass | Type | Findings | Severity |
 |---|---|---|---|
 | 1 | Self (immediate) | rollback symmetry | 🟡 |

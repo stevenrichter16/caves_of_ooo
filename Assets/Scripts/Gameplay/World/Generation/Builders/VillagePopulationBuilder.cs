@@ -104,6 +104,14 @@ namespace CavesOfOoo.Core
             Entity merchant = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Merchant", settlementId);
             StockMerchant(merchant, factory);
 
+            // 1 Quartermaster (always) — see Docs/WEAPON-RENTAL-SYSTEM.md.
+            // Stocks one of each Loaner weapon (rentable for Ink). Sits
+            // alongside Merchant rather than gating behind a probability
+            // roll: the rental loop is the core mechanic the player needs
+            // reliable access to.
+            Entity quartermaster = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Quartermaster", settlementId);
+            StockQuartermaster(quartermaster, factory);
+
             // 0-1 Tinker (70% chance)
             if (rng.Next(100) < 70)
                 PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Tinker", settlementId);
@@ -813,6 +821,36 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < MerchantRepairStock.Length; i++)
             {
                 Entity item = TryCreateEntity(factory, MerchantRepairStock[i]);
+                if (item != null)
+                    inventory.AddObject(item);
+            }
+        }
+
+        // WRS.M4: blueprints the Quartermaster keeps on the rack. Each
+        // is tagged Rentable + has CommercePart (so RentalSystem.
+        // GetRentalCost can scale from buy price). Stacker is overridden
+        // to MaxStack=1 in the blueprint so AddObject's auto-merge
+        // doesn't orphan a freshly-attached RentalPart on a duplicate
+        // — see Docs/WEAPON-RENTAL-SYSTEM.md cold-eye-3.
+        private static readonly string[] QuartermasterRentalStock =
+        {
+            "LoanerDagger",
+            "LoanerSpear",
+            "LoanerLongsword"
+        };
+
+        private void StockQuartermaster(Entity quartermaster, EntityFactory factory)
+        {
+            if (quartermaster == null)
+                return;
+
+            var inventory = quartermaster.GetPart<InventoryPart>();
+            if (inventory == null)
+                return;
+
+            for (int i = 0; i < QuartermasterRentalStock.Length; i++)
+            {
+                Entity item = TryCreateEntity(factory, QuartermasterRentalStock[i]);
                 if (item != null)
                     inventory.AddObject(item);
             }
