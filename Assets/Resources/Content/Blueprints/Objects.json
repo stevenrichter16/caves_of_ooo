@@ -258,7 +258,8 @@
         { "Key": "SuppressCorpseDrops", "Value": "" }
       ],
       "IntProps": [
-        { "Key": "Drams", "Value": 50 }
+        { "Key": "Drams", "Value": 50 },
+        { "Key": "Ink", "Value": 50 }
       ]
     },
     {
@@ -1916,6 +1917,106 @@
       ],
       "IntProps": [
         { "Key": "Drams", "Value": 500 }
+      ]
+    },
+    {
+      "Name": "Quartermaster",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "quartermaster" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "2" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "8" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" },
+          { "Key": "Staying", "Value": "true" }
+        ]},
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Quartermaster_1" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 },
+        { "Name": "Strength", "Value": 14 },
+        { "Name": "Ego", "Value": 14 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Villagers" },
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" }
+      ]
+    },
+    {
+      "Name": "LoanerDagger",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "loaner dagger" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "3" }] },
+        { "Name": "Stacker", "Params": [{ "Key": "MaxStack", "Value": "1" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "Attributes", "Value": "Piercing" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "30" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 5, "Min": 0, "Max": 5 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "Rentable", "Value": "" }
+      ]
+    },
+    {
+      "Name": "LoanerSpear",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "loaner spear" },
+          { "Key": "RenderString", "Value": "|" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "5" }] },
+        { "Name": "Stacker", "Params": [{ "Key": "MaxStack", "Value": "1" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d6+1" }, { "Key": "PenBonus", "Value": "2" }, { "Key": "Attributes", "Value": "Piercing" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "55" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "Rentable", "Value": "" }
+      ]
+    },
+    {
+      "Name": "LoanerLongsword",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "loaner longsword" },
+          { "Key": "RenderString", "Value": "(" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "7" }] },
+        { "Name": "Stacker", "Params": [{ "Key": "MaxStack", "Value": "1" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d8+1" }, { "Key": "PenBonus", "Value": "3" }, { "Key": "Attributes", "Value": "Slashing" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "120" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 12, "Min": 0, "Max": 12 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "Rentable", "Value": "" }
       ]
     },
     {

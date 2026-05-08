@@ -1,0 +1,85 @@
+{
+  "Conversations": [
+    {
+      "ID": "Quartermaster_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Live and drink. The fight ahead favors the well-armed -- and I trade in steel, not coin. Bring me ink and you walk out with a blade for the day.",
+          "Choices": [
+            {
+              "Text": "Show me what's on the rack.",
+              "Target": "Wares"
+            },
+            {
+              "Text": "I'm here to return a weapon.",
+              "Target": "Return"
+            },
+            {
+              "Text": "How does this work?",
+              "Target": "Explain"
+            },
+            {
+              "Text": "Live and drink, quartermaster.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Explain",
+          "Text": "Simple. I lend, you fight, you bring the steel back. The price is in ink -- one part in four of what the blade would cost outright. Bring it back unbroken and I'll refund half the ink, no questions. Don't bring it back, and you keep the blade and I keep the ink. Lose it on the dying ground and we're both poorer.",
+          "Choices": [
+            {
+              "Text": "Show me what's on the rack.",
+              "Target": "Wares"
+            },
+            {
+              "Text": "Back.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Wares",
+          "Text": "A dagger, light and quick. A spear, for keeping things at arm's length. A longsword, for those who'd rather not run. Pick your weight.",
+          "Choices": [
+            {
+              "Text": "The loaner dagger.",
+              "Target": "Start",
+              "Actions": [{ "Key": "RentItem", "Value": "LoanerDagger" }]
+            },
+            {
+              "Text": "The loaner spear.",
+              "Target": "Start",
+              "Actions": [{ "Key": "RentItem", "Value": "LoanerSpear" }]
+            },
+            {
+              "Text": "The loaner longsword.",
+              "Target": "Start",
+              "Actions": [{ "Key": "RentItem", "Value": "LoanerLongsword" }]
+            },
+            {
+              "Text": "Never mind.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Return",
+          "Text": "Set them on the counter. I'll check the edge.",
+          "Choices": [
+            {
+              "Text": "Here you are.",
+              "Target": "Start",
+              "Actions": [{ "Key": "ReturnRentals", "Value": "" }]
+            },
+            {
+              "Text": "On second thought, never mind.",
+              "Target": "Start"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

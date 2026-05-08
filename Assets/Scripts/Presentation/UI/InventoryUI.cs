@@ -2059,9 +2059,13 @@ namespace CavesOfOoo.Rendering
                 DrawText(25, 0, "Tinkering", _panel == PANEL_TINKERING ? QudColorParser.White : QudColorParser.DarkGray);
                 DrawText(37, 0, "Abilities", _panel == PANEL_ABILITIES ? QudColorParser.White : QudColorParser.DarkGray);
 
-                // Weight and drams on right side of header
+                // Weight, drams, and ink on right side of header.
+                // Ink is the rental currency (Docs/WEAPON-RENTAL-SYSTEM.md);
+                // shown alongside drams so the player can plan rentals
+                // without first failing one to discover their balance.
                 string info = "Wt:" + _state.CarriedWeight + "/" + _state.MaxCarryWeight
-                            + " $" + _state.Drams;
+                            + " $" + _state.Drams
+                            + " i" + _state.Ink;
                 DrawText(W - info.Length - 1, 0, info, QudColorParser.Gray);
 
                 // Horizontal separators

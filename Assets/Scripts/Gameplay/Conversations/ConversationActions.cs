@@ -618,6 +618,104 @@ namespace CavesOfOoo.Core
 
                 MessageLog.Add($"You receive {amt} drams.");
             });
+
+            // ── WRS.M2 weapon-rental actions ─────────────────────────
+            // Per Docs/WEAPON-RENTAL-SYSTEM.md. Mirror the GiveDrams
+            // shape for the Ink wallet, plus dialogue verbs that drive
+            // RentalSystem.TryRent / TryReturn from a conversation
+            // choice. Deliberately kept thin: the Quartermaster
+            // dialogue offers one choice per stocked blueprint
+            // (RentItem:RentalDagger etc.) instead of a list-picker UI,
+            // matching how Qud quest-reward menus are structured.
+
+            // GiveInk(amount) — grant the listener `amount` Ink.
+            // Same defensive shape as GiveDrams: parse, validate
+            // positive, mutate.
+            Register("GiveInk", (speaker, listener, arg) =>
+            {
+                if (!int.TryParse(arg, out int amt) || amt <= 0) return;
+                if (listener == null) return;
+
+                RentalSystem.AddInk(listener, amt);
+                MessageLog.Add($"You receive {amt} ink.");
+            });
+
+            // RentItem(blueprintName) — find the first item in the
+            // speaker's inventory whose blueprint matches `arg` and
+            // route through RentalSystem.TryRent. Silently no-ops if
+            // the speaker has no matching stock; TryRent itself emits
+            // the player-visible failure messages (insufficient ink,
+            // not rentable, etc.).
+            Register("RentItem", (speaker, listener, arg) =>
+            {
+                if (string.IsNullOrEmpty(arg)) return;
+                if (speaker == null || listener == null) return;
+
+                var speakerInv = speaker.GetPart<InventoryPart>();
+                if (speakerInv == null) return;
+
+                Entity stock = null;
+                for (int i = 0; i < speakerInv.Objects.Count; i++)
+                {
+                    if (speakerInv.Objects[i].BlueprintName == arg)
+                    {
+                        stock = speakerInv.Objects[i];
+                        break;
+                    }
+                }
+                if (stock == null)
+                {
+                    MessageLog.Add($"{speaker.GetDisplayName()} has none of those left.");
+                    return;
+                }
+
+                RentalSystem.TryRent(listener, speaker, stock);
+            });
+
+            // ReturnRentals — collect every rental owed to the speaker
+            // (matched by RentalPart.LessorBlueprintName ==
+            // speaker.BlueprintName) and route each through
+            // RentalSystem.TryReturn. Walks BOTH carried and equipped
+            // items: the typical user case is "rented, equipped,
+            // fought, came back" so an equipped rental is the rule
+            // not the exception (cold-eye-2 Finding 1). TryReturn
+            // handles unequip-first internally, so the action just
+            // needs to enumerate.
+            //
+            // Snapshot the candidate list first because TryReturn
+            // mutates inv.Objects / inv.EquippedItems mid-loop.
+            Register("ReturnRentals", (speaker, listener, arg) =>
+            {
+                if (speaker == null || listener == null) return;
+
+                var inv = listener.GetPart<InventoryPart>();
+                if (inv == null) return;
+
+                var candidates = new List<Entity>();
+                for (int i = 0; i < inv.Objects.Count; i++)
+                    candidates.Add(inv.Objects[i]);
+                foreach (var equipped in inv.EquippedItems.Values)
+                {
+                    if (equipped == null) continue;
+                    if (!candidates.Contains(equipped))
+                        candidates.Add(equipped);
+                }
+
+                int returnedCount = 0;
+                for (int i = 0; i < candidates.Count; i++)
+                {
+                    var item = candidates[i];
+                    var rental = item.GetPart<RentalPart>();
+                    if (rental == null) continue;
+                    if (rental.LessorBlueprintName != speaker.BlueprintName) continue;
+
+                    if (RentalSystem.TryReturn(listener, speaker, item))
+                        returnedCount++;
+                }
+
+                if (returnedCount == 0)
+                    MessageLog.Add("You have no rentals to return here.");
+            });
         }
 
         private static string ResolveSettlementId(Entity speaker)
