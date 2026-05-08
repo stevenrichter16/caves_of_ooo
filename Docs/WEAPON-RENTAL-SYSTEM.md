@@ -580,3 +580,119 @@ loads `LoanerDagger` via `EntityFactory.CreateEntity` and asserts
 - **Combined: 37 new EditMode tests.**
 
 **Process: 1 🔴 + 1 🟡 fixed. Cold-eye pass #3 complete.**
+
+### Cold-eye review #4 — diminishing-returns mark
+
+After "keep reviewing until you hit diminishing returns" I did a
+fourth pass focused on areas not yet scrutinized: dialogue routing,
+inheritance behaviour of every part on the Loaner weapons, the full
+rent → equip → fight → return sequence, and UI surfaces for the new
+Ink resource. The findings below are all real, but most are scope
+expansions or external-system observations rather than correctness
+bugs in shipped code.
+
+🟡 **Finding cold-eye-4.1 (open) — Ink has no in-game display.**
+
+The InventoryUI header (`InventoryUI.cs:2062-2065`) shows weight +
+Drams. The sidebar (`SidebarStateBuilder.cs:49-53`) shows
+`WT/MaxWT  DR:NNN`. **Neither surface shows Ink.** A player can
+discover their Ink balance only via:
+- a `MessageLog` line when content prints it (`GiveInk` action,
+  `TryRent` failure quotes "You need X ink. You have Y."),
+- the testbench scenario's `ctx.Log`,
+- attempting a rental that fails.
+
+Without a persistent display, players cannot make informed rental
+decisions ("can I afford the longsword?") without first attempting
+and failing a rent. This is a real UX defect of the shipped feature.
+
+**Why I'm not fixing it in this pass:** the cold-eye review is for
+correctness of shipped code; adding a new UI field is a scope
+expansion. The minimal-blast-radius fix is:
+1. `InventoryScreenData.ScreenState`: add `public int Ink;`.
+2. `InventoryScreenData.Build`: `state.Ink = RentalSystem.GetInk(actor);`.
+3. `InventoryUI.cs:2063-2064`: append `" i" + _state.Ink` to the
+   header info string when `_state.Ink > 0` (progressive disclosure
+   keeps it invisible for players who haven't met the Quartermaster).
+4. Optionally: add to `SidebarStateBuilder` as an `IN:NNN` column.
+
+This should ship as M4 — a one-screen change. **Tracked here as the
+single most-impactful follow-on.**
+
+🔵 **Finding cold-eye-4.2 — `ConversationLoader` doesn't validate
+action names at load time.**
+
+`StoryletRegistry.cs:156-157` calls `ConversationActions.IsRegistered`
+to fail-fast on unknown action names. `ConversationLoader.cs` does
+**not** — a typo like `RentItm` in dialogue JSON would silently
+no-op at runtime when the choice is selected (`ConversationActions.
+Execute` line 60 logs a warning but doesn't crash). Not a bug in
+this branch's code (my JSON action names verified correct against
+the `Register` calls), but a CoO design observation worth noting in
+case future content adds typos.
+
+🔵 **Finding cold-eye-4.3 — No integration test loading
+`LoanerDagger` via `EntityFactory.CreateEntity`.**
+
+Every test uses hand-rolled fixtures. A test that loads the actual
+production blueprint and asserts `RentalSystem.IsRentable(loaner)
+== true` would have caught cold-eye-3.1 (the Stacker inheritance
+trap) at first ship rather than two reviews later. Two precedents:
+`AsciiWorldRenderPolicyTests.cs` and `EntitySystemTests.cs` both
+load real blueprints in EditMode. **Track as future work.**
+
+⚪ **Finding cold-eye-4.4 — Loaner weapons lack `Material` part.**
+
+`Dagger` (`Objects.json:88-99`) declares `Material` with
+`Combustibility`, `Conductivity`, `Brittleness`. Loaner weapons
+don't. Without Material, they may behave oddly under fire or
+electric damage. **Decline to fix:** `Warhammer` (`Objects.json:
+1922-1944`) also has no Material and ships in the live game without
+issue, so this is a CoO content convention question, not a defect.
+
+⚪ **Finding cold-eye-4.5 — No Quartermaster restock mechanism.**
+
+Once a Loaner is rented, the lessor's stock shrinks until returned.
+There's no auto-restock. Acceptable for v1; the testbench
+re-stocks on each entry. **Decline:** intended scope.
+
+⚪ **Finding cold-eye-4.6 — `Ink` is not conserved.**
+
+Renting destroys the player's Ink (no SetInk on lessor); returning
+creates Ink (no SetInk debit on lessor). This contrasts with Drams
+(`TradeSystem.cs:175-176`, perfectly conserved). **Decline:** the
+design intentionally treats Ink as a content-granted player
+resource, not a circulating currency — non-conservation is what
+makes the lossy-refund pacing work (each rent-return cycle costs
+the player 50% of the rental price). Documented in the doc's §1
+goal statement.
+
+**Walked-the-flow correctness summary** (mental simulation of full
+session):
+- Spawn → testbench grants 250 Ink → bump Quartermaster → rent
+  loaner dagger (cost ~14 Ink at Ego 16) → ink drops to 236 →
+  equip → fight → return to Quartermaster → "Here you are." →
+  unequip-first → transfer → refund 7 Ink → ink at 243.
+- Net cost of a rent-equip-return cycle: 7 Ink. Sensible.
+- Edge case: player rents two of the same blueprint → MaxStack=1
+  prevents the auto-merge orphan. Each item independently has its
+  own RentalPart. Both returnable.
+- Edge case: anti-exploit — try to sell a rental at any merchant →
+  CanBeTraded veto on RentalPart blocks it.
+
+✓ **Doc-vs-code drift check:**
+- `INK_PROP = "Ink"`, `RENTAL_FRACTION = 0.25`,
+  `REFUND_FRACTION = 0.50` — match RentalSystem.cs:24-30.
+- Test counts: 24 (M1) + 13 (M2) = 37 — match `grep -c "\[Test\]"`.
+
+**Diminishing returns: reached.** Pass 4 turned up one real shipped-
+feature gap (Ink display, 🟡) and four observations / scope
+notes. No new bugs in shipped code. Total commits on branch: 8.
+Total cold-eye passes: 4.
+
+| Pass | Type | Findings | Severity |
+|---|---|---|---|
+| 1 | Self (immediate) | rollback symmetry | 🟡 |
+| 2 | Independent agent | equipped-return + stacker | 🟡🟡 |
+| 3 | Re-prompted self | inheritance-trap, .meta | 🔴🟡 |
+| 4 | Diminishing returns | UI gap + 5 nits | 🟡⚪×5 |
