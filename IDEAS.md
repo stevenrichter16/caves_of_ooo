@@ -76,3 +76,33 @@
 
   - **Implementation phasing.** Smallest playable slice: **Rank 1 + Minor/Significant secrets only** — drop Hold-slots, drop House-collective response, drop Grave tier. Two-grade taxonomy, one verb (one-shot extraction), three-way target response, Credibility tracking. Estimated 2–3 milestones on top of the existing storylet system. Playtest. If the shape works, add Rank 2 + Grave + House-collective response in a second pass (~2 more milestones). Lineage-shaking, World-shaking, and Ranks 3–4 are deferred to the long-horizon roadmap, gated on content density rather than schedule. Whole system is buildable in the same authoring frame as House Drama — no new architectural layers required for v1.0.
 
+- **Prototype rentals — you're the field test.** Inversion of the standard rental loop in [`WEAPON_RENTAL_AND_INK_SYSTEM.md`](WEAPON_RENTAL_AND_INK_SYSTEM.md): instead of the player paying a Quartermaster Ink for a *reliable* loaner, a research-aligned faction (candidate hosts: the Saccharine Concord's "merchants of the possible," a Tinker splinter sect, or a new bloc dedicated to material science) hands the player a **deliberately-buggy prototype**. The faction *pays the player* — not in Ink, but in **progress unlocks**: tinker recipes, faction-reputation tiers, blueprint variants, eventually the production version of the prototype. The player isn't a customer; the player is the test pilot.
+
+  The mechanical core is **combat telemetry**. Each prototype carries an instrumented part (could ride alongside or extend `RentalPart`) that records hits landed, kills, misfires triggered, edge-case procs, self-damage, environmental interactions, target factions/materials encountered. Returning the prototype trades the dataset for tech. **Returning a prototype with no recorded combat is worth nothing** — the player has to actually use it to extract value. Returning early with rich data on a single quirk is worth more than returning late with thin data across many fights.
+
+  The "buggy on purpose" half is what makes the loop dramatic. Each prototype rolls 1–3 quirks from a table:
+  - **Misfire** — N% per swing the weapon hits the wielder instead of the target.
+  - **Elemental swap** — a fraction of hits applies fire/frost/electric/acid instead of the listed damage type, sometimes hostilely interacting with the wielder's armor.
+  - **Critical malfunction** — landing a critical hit triggers a self-damage burst, briefly stuns the wielder, or shatters one armor piece.
+  - **Reactive edge** — the weapon procs differently against specific factions or materials, and the player has to discover which through use.
+  - **Stat drift** — base damage wanders mid-encounter (1d4 instead of 1d6 once per fight) without warning.
+  - **Sympathetic resonance** — using the prototype near a friendly NPC has a small chance to apply its quirk to *them*.
+
+  Each quirk is a thing the faction wants data on. Triggering it during combat raises the data value of the return. **The player's incentive is to use the buggy weapon in conditions that surface its bugs** — the inverse of how players normally engage with broken gear.
+
+  Progression unlocks tier:
+  1. Recipes for crafting a *stabilized* version of the prototype line at a Tinker.
+  2. Discounted access to the next tier of prototype, so testing compounds.
+  3. Faction reputation gating further mechanic types (memory-eating, blackmail, bloc-level diplomacy) — the research faction's standing pays out in social access, not just gear.
+  4. **Eventually, the production version** as a permanent unlock. The weapon you stabilized through testing becomes craftable. There's a long arc here: a player's first prototype becomes their last build.
+
+  Open design questions worth marking before building:
+  - **Quirk visibility.** Disclosed upfront in dialogue, or discovered during combat? Disclosed is fairer; discovered is dramatic. Probably tier it: early prototypes are blind, later ones come with a partial datasheet as the faction grows to trust the player.
+  - **Lethal misfire risk.** RPG audiences tolerate self-damage but not random one-shot deaths. Either cap misfire damage as a fraction of max HP, or guarantee misfires are never lethal on a swing that would otherwise kill the target (so the player can still rely on the killing blow landing).
+  - **Anti-farming.** If data-value scales with edge-case triggers, players will set up artificial encounters to farm them. Throttle by per-encounter caps, or weight the dataset by *novelty* — a misfire in the same biome against the same faction twice is worth less than the first instance.
+  - **Faction tension.** Competing research factions could want the data exclusively. Returning a prototype to faction A but selling a copy of the dataset to faction B becomes a real political move (and a way the system folds into Bloc politics).
+  - **Failure return.** If the player loses or shatters the prototype mid-fight, the faction *still wants the partial data* — no "you wasted the run" cliff. Smaller unlock, plus an opportunity to research what *broke* the weapon, which itself is data.
+  - **Quirk regression.** Does each generation of prototype get *less* buggy as data accumulates, or do new quirks appear? Probably both: stabilized versions enter the recipe pool while the bleeding edge keeps pushing into new failure modes. Gives the faction a permanent reason to keep recruiting test pilots.
+
+  Pairs cleanly with the existing rental system: the same Quartermaster spawn slot in a village could be replaced by a **Prototyper** NPC for science-aligned settlements, sharing infrastructure (rental-part base, dialogue routing, anti-sale veto) while inverting the currency direction and the payoff. A village can have either a Quartermaster *or* a Prototyper, not both — choosing which faction got there first becomes a worldgen-level signal about that village's politics.
+
