@@ -202,9 +202,22 @@ namespace CavesOfOoo.Core
 
             int refund = (int)Math.Floor(rental.InkPaid * REFUND_FRACTION);
 
+            // WRS cold-eye Q1 (symmetry): mirror TryRent's rollback
+            // shape exactly. The previous order — RemoveObject → strip
+            // RentalPart → unconditional AddObject — had two latent
+            // bugs: (a) if the lessor's inventory rejected the add
+            // (over weight), the item was orphaned; (b) RentalPart was
+            // stripped before the transfer was confirmed, so a failed
+            // add left the player holding an untagged-but-unowned
+            // weapon.
             if (!renterInv.RemoveObject(rentalItem)) return false;
+            if (!lessorInv.AddObject(rentalItem))
+            {
+                renterInv.AddObject(rentalItem);
+                MessageLog.Add($"{lessor.GetDisplayName()} can't accept that right now.");
+                return false;
+            }
             rentalItem.RemovePart(rental);
-            lessorInv.AddObject(rentalItem);
 
             AddInk(renter, refund);
 

@@ -361,4 +361,78 @@ would need a new `IfHaveRental` predicate to express it.
 4. Optional PlayMode sweep: load `Rental Test Bench` from the scenario
    menu, bump the Quartermaster, rent + return + try-to-sell-elsewhere.
 
-### Cold-eye review — pending
+### Cold-eye review — 1 finding fixed, 1 deferred
+
+Run after M3 commit per CLAUDE.md "Post-implementation cold-eye review"
+section. Read all M1+M2+M3 diffs together.
+
+**Q1 — Symmetry check** (TryRent vs TryReturn read side-by-side)
+
+🟡 **Finding C1.1 — TryReturn lacked the rollback shape TryRent has.**
+TryRent (RentalSystem.cs:128-136 pre-fix) on `renterInv.AddObject`
+failure does `lessorInv.AddObject(item)` to restore state. TryReturn
+did **not** — it called `lessorInv.AddObject(rentalItem)` unconditionally,
+*and* called `rentalItem.RemovePart(rental)` BEFORE confirming the
+lessor accepted the item. Two latent bugs:
+  - (a) If the lessor's inventory rejected the add (over weight), the
+    item was orphaned (in neither inventory).
+  - (b) RentalPart was stripped before the transfer was confirmed, so
+    on a failed add the player would hold an untagged-but-unowned
+    weapon.
+The check the cold-eye pass uses: *if I swap "OnApply" with "OnRemove"
+in my head, would the surrounding code make equally good sense?* —
+applied here as "swap rent / return" and the answer was no.
+
+**Fix shipped** in this commit: TryReturn now mirrors TryRent's
+rollback exactly:
+```csharp
+if (!renterInv.RemoveObject(rentalItem)) return false;
+if (!lessorInv.AddObject(rentalItem))
+{
+    renterInv.AddObject(rentalItem);
+    MessageLog.Add($"{lessor.GetDisplayName()} can't accept that right now.");
+    return false;
+}
+rentalItem.RemovePart(rental);
+```
+Plus a new test `TryReturn_LessorOverWeight_RollsBackCleanly` that
+forces the lessor inventory to refuse and asserts (a) item restored
+to renter, (b) RentalPart still attached, (c) no refund.
+
+**Q2 — Cross-feature consistency** (compare diag payload shapes)
+
+🔵 **Finding C2.1 — RentalSystem diag payloads omit `perf`.**
+`TradeSystem.BuyFromTrader` records `{ itemName, itemId, price,
+dramsAfter, perf }` (TradeSystem.cs:188-195) so AI debugging can
+answer "did the faction modifier work?" RentalSystem records
+`{ itemName, itemId, cost, inkAfter }` — same shape minus `perf`.
+**Deferred** to a follow-on diff: it's an observability symmetry
+issue, not correctness, and the diff would touch every Diag.Record
+call. Tracked in this doc; not closing the cold-eye pass on this
+finding.
+
+**Q3 — Counter-check completeness**
+
+✓ `RentalPart.InkPaid` exercised via TryRent_HappyPath (records cost)
++ TryReturn_HappyPath (refund formula).
+✓ `RentalPart.LessorBlueprintName` exercised via TryRent_HappyPath
+(records blueprint) + TryReturn_WrongLessorBlueprint_Fails (counter).
+✓ `RentalPart.HandleEvent("CanBeTraded")` both branches:
+RentedItem_CannotBeSold (positive), NonRentedItem_CanStillBeSold
+(counter).
+✓ ConversationActions: every arg branch covered (valid / invalid /
+empty / negative / non-numeric / blueprint mismatch / lessor
+mismatch / no-rentals).
+
+**Q4 — Doc-vs-impl drift**
+
+✓ Constants in this doc (`INK_PROP = "Ink"`, `RENTAL_FRACTION = 0.25`,
+`REFUND_FRACTION = 0.50`) match `RentalSystem.cs:25-30`.
+✓ Test counts: M1 = 21 (was 20 + 1 from cold-eye fix), M2 = 12.
+Combined: **33** new EditMode tests.
+🔵 Minor — the M1 test inventory table ordered the sell-veto tests
+after `TryReturn_NonRentedItem_Fails`, but the source file inserts
+them before. Harmless ordering drift; both list the same set.
+
+**Process: 1 finding fixed in this commit, 1 deferred with rationale.
+Cold-eye pass complete.**

@@ -355,6 +355,33 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void TryReturn_LessorOverWeight_RollsBackCleanly()
+        {
+            // Cold-eye Q1 symmetry fix: when the lessor's inventory
+            // refuses the AddObject (over weight), TryReturn must
+            // restore the item to the renter, leave the RentalPart
+            // intact, and not refund Ink. Without the rollback the
+            // item would be orphaned and the rental flag stripped.
+            var renter = CreatePlayer(ink: 1000);
+            var lessor = CreateLessor();
+            var item = CreateRentalWeapon(value: 100);
+            lessor.GetPart<InventoryPart>().AddObject(item);
+            Assert.That(RentalSystem.TryRent(renter, lessor, item), Is.True);
+            int inkBefore = RentalSystem.GetInk(renter);
+
+            // Force the lessor inventory to refuse new items.
+            lessor.GetPart<InventoryPart>().MaxWeight = 0;
+
+            Assert.That(RentalSystem.TryReturn(renter, lessor, item), Is.False);
+            Assert.That(renter.GetPart<InventoryPart>().Objects, Does.Contain(item),
+                "Item must be restored to the renter on rollback.");
+            Assert.That(item.GetPart<RentalPart>(), Is.Not.Null,
+                "RentalPart must NOT have been stripped before the lessor accepted the item.");
+            Assert.That(RentalSystem.GetInk(renter), Is.EqualTo(inkBefore),
+                "No refund must have been issued on rollback.");
+        }
+
+        [Test]
         public void TryReturn_NonRentedItem_Fails()
         {
             // Counter-check: only items with a RentalPart can be
