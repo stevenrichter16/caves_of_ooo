@@ -274,6 +274,74 @@ namespace CavesOfOoo.Skills
             return false;
         }
 
+        /// <summary>
+        /// Route GameEvent-style command dispatch (the same path that
+        /// mutations use via their per-mutation HandleEvent overrides)
+        /// to the skill's <see cref="BaseSkillPart.OnCommand"/>. Without
+        /// this override, the InputHandler's
+        /// <c>ResolveAbilityCommand</c> path —
+        /// <c>FireEvent(GameEvent.New(ability.Command))</c> — fires into
+        /// the void for skills, because skills' command handling lives
+        /// behind the parallel <see cref="TryRouteSkillCommand"/>
+        /// mechanism that no production code calls.
+        ///
+        /// <para><b>Symptom of the missing override:</b> player presses
+        /// the keybind for Slam / Conk / Berserk / Shank / HookAndDrag,
+        /// gets the "choose a direction" prompt, presses a direction —
+        /// and sees "The rite fails to resolve." in the log. The
+        /// <c>cmd.Handled</c> flag stayed false because no Part
+        /// answered the GameEvent — mutations only handle THEIR own
+        /// command names; skills had no GameEvent listener at all.</para>
+        ///
+        /// <para><b>The fix:</b> on every event fired on the parent
+        /// entity, check if any owned skill's registered ability has a
+        /// matching <c>Command</c> string. If yes, route through
+        /// <see cref="TryRouteSkillCommand"/> with the event's Zone +
+        /// RNG parameters; mark the event Handled on success. The
+        /// existing <see cref="TryRouteSkillCommand"/> already handles
+        /// the cooldown gate + ctx construction + OnCommand invocation
+        /// + cooldown reset, so this override is a thin adapter.</para>
+        ///
+        /// <para>Returns <c>true</c> when no skill claimed the event
+        /// (so other Parts can still see it); returns <c>false</c> when
+        /// a skill consumed it (mirrors how mutations stop propagation
+        /// after they handle their command).</para>
+        /// </summary>
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e == null || string.IsNullOrEmpty(e.ID)) return true;
+
+            // Fast-path early-out for events that obviously aren't skill
+            // commands. CoO's command convention is "CommandX" (e.g.
+            // CommandSlam, CommandConk, CommandShank, CommandHookAndDrag,
+            // CommandAxeBerserk). Skipping non-Command events keeps the
+            // per-event dispatch overhead negligible — the FireEvent loop
+            // hits this method on EVERY event the entity receives.
+            if (!e.ID.StartsWith("Command", System.StringComparison.Ordinal))
+                return true;
+
+            // Pull Zone + RNG from the event params so the skill's
+            // OnCommand sees the same Zone the InputHandler passed.
+            // The InputHandler's ResolveAbilityCommand sets these via
+            // cmd.SetParameter (line 2809-2810 of InputHandler.cs).
+            Zone zone = e.GetParameter<Zone>("Zone");
+            System.Random rng = e.GetParameter<System.Random>("RNG");
+
+            // Route to the existing skill-command dispatcher. Returns
+            // true if a skill consumed the command. Cooldown failures
+            // return false — that's the correct semantic (the player
+            // already saw the cooldown gate in TryActivateAbility, but
+            // a defense-in-depth path here means the event still goes
+            // unhandled, which surfaces "The rite fails to resolve."
+            // — better than silently swallowing the input).
+            if (TryRouteSkillCommand(e.ID, zone, rng))
+            {
+                e.Handled = true;
+                return false; // stop propagation — the skill consumed it
+            }
+            return true; // not a skill command (or cooldown blocked) — let other Parts try
+        }
+
         // ── Queries ──────────────────────────────────────────────────────
 
         /// <summary>
