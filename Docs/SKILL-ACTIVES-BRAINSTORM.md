@@ -2,11 +2,18 @@
 
 ## Status
 
-**Brainstorm draft.** No code yet. Each ability sketches the
+**Brainstorm in progress — 4/30 shipped.** Each ability sketches the
 mechanic + targeting + flavor + a one-line "what makes this unique
-across the whole table." After review, candidates can be ported one
-at a time using the WSP3.5 ActivatedAbility infrastructure proven
-in WSP6/WSP7.
+across the whole table." Candidates port one at a time using the
+WSP3.5 ActivatedAbility infrastructure proven in WSP6/WSP7.
+
+| # | Ability | Status | File |
+|---|---|---|---|
+| 5 | Axe_Whirlwind | ✅ Shipped | `Axe_Whirlwind.cs` |
+| 7 | LongBlades_Lunge | ✅ Shipped | `LongBlades_Lunge.cs` |
+| 11 | ShortBlades_Flurry | ✅ Shipped | `ShortBlades_Flurry.cs` |
+| 13 | Acrobatics_Tumble | ✅ Shipped | `Acrobatics_Tumble.cs` |
+| (others) | — | brainstorm only | — |
 
 ## The constraint
 
@@ -133,7 +140,7 @@ consume-stacks vs trail-residue).
 - **Why unique:** the only execute-mechanic in the table. Phoenix
   isn't an active execute, it's a self-revive trigger.
 
-#### 5. Axe_Whirlwind
+#### 5. Axe_Whirlwind ✅ SHIPPED
 
 - **Targeting:** SelfCentered
 - **Mechanic:** spin-attack that hits ALL 8 adjacent creatures with
@@ -144,6 +151,9 @@ consume-stacks vs trail-residue).
 - **Why unique:** the only self-AOE multi-target FULL-DAMAGE attack.
   GroundPound is reduced damage + knockback; Pyroclasm consumes
   stacks. Whirlwind is "I get N free swings."
+- **Shipped as:** `Axe_Whirlwind.cs` — snapshot adjacent creatures
+  before swinging, then loop PerformSingleAttack on each. Marker tag
+  `(Whirlwind)`.
 
 #### 6. Axe_RendArmor
 
@@ -164,7 +174,7 @@ consume-stacks vs trail-residue).
 
 **Theme:** elegant fencing, parry-and-thrust, stance-based.
 
-#### 7. LongBlades_Lunge
+#### 7. LongBlades_Lunge ✅ SHIPPED
 
 - **Targeting:** Direction (player picks one of 8 directions)
 - **Mechanic:** strike a target up to `LUNGE_RANGE` (2) cells away
@@ -175,6 +185,11 @@ consume-stacks vs trail-residue).
 - **Why unique:** the only ability that extends ATTACK REACH without
   moving the actor. ChargingStrike moves the actor; Lunge extends
   the strike.
+- **Shipped as:** `LongBlades_Lunge.cs` (15 tests, GREEN). Plumbing:
+  `SkillEventContext.DirectionX/Y` + `SkillsPart.HandleEvent` lift
+  GameEvent direction params into the context (general infrastructure
+  for future DirectionLine actives). Branch
+  `feat/longblades-lunge`.
 
 #### 8. LongBlades_Riposte
 
@@ -226,7 +241,7 @@ consume-stacks vs trail-residue).
   geometry** (flanking — actor + ally on opposite sides). Tumble
   (Acrobatics) lets you position for it.
 
-#### 11. ShortBlades_Flurry
+#### 11. ShortBlades_Flurry ✅ SHIPPED
 
 - **Targeting:** AdjacentCell
 - **Mechanic:** make `FLURRY_STRIKE_COUNT` (3) quick weapon strikes
@@ -237,6 +252,9 @@ consume-stacks vs trail-residue).
   combat pipeline multiple times in one activation**. Whirlwind
   hits multiple TARGETS once; Flurry hits ONE target multiple
   times.
+- **Shipped as:** `ShortBlades_Flurry.cs` — Shank-style adjacent
+  lookup + 3-strike loop with HP≤0 short-circuit (no swinging at
+  corpses). Marker tag `(Flurry)`.
 
 #### 12. ShortBlades_Disengage
 
@@ -257,7 +275,7 @@ consume-stacks vs trail-residue).
 
 **Theme:** tumbler / monk / dodge-master.
 
-#### 13. Acrobatics_Tumble
+#### 13. Acrobatics_Tumble ✅ SHIPPED
 
 - **Targeting:** AdjacentCell
 - **Mechanic:** swap positions with the targeted creature (works on
@@ -267,6 +285,11 @@ consume-stacks vs trail-residue).
 - **Per Qud:** mirrors `Acrobatics_Tumble`.
 - **Why unique:** the only ability that **exchanges cells** with
   another creature.
+- **Shipped as:** `Acrobatics_Tumble.cs` — three-phase swap
+  (RemoveEntity target → MoveEntity actor → AddEntity target) so
+  destination is always vacant during each step. Hostile heuristic =
+  absence of `"Ally"` tag (mirrors ChainLightning's friendly-fire
+  check). No weapon class required — Acrobatics is unarmed.
 
 #### 14. Acrobatics_Vault
 

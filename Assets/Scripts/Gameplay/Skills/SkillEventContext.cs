@@ -63,5 +63,28 @@ namespace CavesOfOoo.Skills
         /// pattern (e.g. Cudgel_Bludgeon.cs:30 reads "Conking" to
         /// boost the Stun chance to 100%).</summary>
         public string Properties = "";
+
+        /// <summary>X-axis component of the player-chosen direction for
+        /// <see cref="AbilityTargetingMode.DirectionLine"/>-targeted
+        /// activated abilities. -1, 0, or 1. Plumbed in by
+        /// <see cref="SkillsPart.HandleEvent"/> from the GameEvent's
+        /// <c>"DirectionX"</c> param (set by
+        /// <c>InputHandler.ResolveAbilityCommand</c> after the
+        /// AwaitingDirection state captures the player's keypress).
+        ///
+        /// <para>Default 0 — passive skills + AdjacentCell-targeting
+        /// actives ignore this; only DirectionLine consumers
+        /// (e.g. <see cref="LongBlades_Lunge"/>) read it. Mirrors how
+        /// mutations like <see cref="CavesOfOoo.Core.ChainLightningMutation"/>
+        /// pull <c>e.GetIntParameter("DirectionX")</c> from their own
+        /// HandleEvent overrides; SkillEventContext centralizes the
+        /// extraction so every direction-targeting skill doesn't have
+        /// to duplicate the param lookup.</para>
+        /// </summary>
+        public int DirectionX = 0;
+
+        /// <summary>Y-axis component of the player-chosen direction.
+        /// See <see cref="DirectionX"/> for the full contract.</summary>
+        public int DirectionY = 0;
     }
 }
