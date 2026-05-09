@@ -288,6 +288,19 @@ namespace CavesOfOoo
                         shakeCamera.Shake(intensity, 0.1f);
                     };
 
+                    // Pass 4 §4A: HitStopController. CombatSystem reads
+                    // HitStopController.Instance to fire hit-stop on
+                    // crits/kills. AddComponent fires Awake → sets the
+                    // singleton. Idempotent if a previous component
+                    // already exists.
+                    if (GetComponent<CavesOfOoo.Presentation.Effects.HitStopController>() == null)
+                        gameObject.AddComponent<CavesOfOoo.Presentation.Effects.HitStopController>();
+
+                    // Pass 4 §4B: CrtToggleController. F12 toggles the
+                    // CRT phosphor Volume overlay on/off.
+                    if (GetComponent<CavesOfOoo.Presentation.Effects.CrtToggleController>() == null)
+                        gameObject.AddComponent<CavesOfOoo.Presentation.Effects.CrtToggleController>();
+
                     Debug.Log("[Bootstrap] Step 9/9: Wiring input...");
                     var inputHandler = GetComponent<InputHandler>();
                     if (inputHandler == null)

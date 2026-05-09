@@ -305,6 +305,22 @@ namespace CavesOfOoo.Core
             string hitVerb = naturalTwenty ? $"{CRITICAL_HIT_TAG}LY hits" : "hits";
             MessageLog.Add($"{attackerName}{srcTag} {hitVerb} {defenderName}{partDesc} for {actualDamage} damage!{(hpAfter > 0 ? $" ({hpAfter} HP remaining)" : "")}");
 
+            // Pass 4 §4A: hit-stop on big moments. Brief Time.timeScale=0
+            // freeze + camera-shake combo so kills and crits feel weighty.
+            // See Docs/GRAPHICS-PASS4.md §4A. The Light tier (every-hit
+            // freeze) is deliberately NOT wired — adds up to 80ms × every
+            // melee swing which becomes annoying. Medium fires on crits
+            // (~150ms), Heavy on kills (~250ms). Tested in
+            // HitStopControllerTests; integration via GameBootstrap.
+            var hitStop = CavesOfOoo.Presentation.Effects.HitStopController.Instance;
+            if (hitStop != null)
+            {
+                if (hpAfter <= 0)
+                    hitStop.PunchHeavy();
+                else if (naturalTwenty)
+                    hitStop.PunchMedium();
+            }
+
             // Floating damage number now emitted from inside ApplyDamage
             // (just above this method's call to ApplyDamage), so every damage
             // path — including traps, effect ticks, and any future content
