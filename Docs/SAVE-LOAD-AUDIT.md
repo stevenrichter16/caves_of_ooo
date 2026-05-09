@@ -12,14 +12,16 @@
 
 | Field | Value |
 |---|---|
-| **Current sub-milestone** | SL.1 — Plan to disk ✅ COMPLETE |
+| **Current sub-milestone** | SL.2 — Tier-3 simple-Part baseline ✅ COMPLETE |
 | **Last updated** | 2026-05-09 |
-| **Total tests added** | 0 (SL.1 is plan-only) |
-| **Total Part types audited** | 0 / ~62 |
-| **Real bugs found** | 0 (none yet — audit just starting) |
+| **Total tests added** | 14 (`Tier3SimplePartRoundTripTests.cs`) |
+| **Total Part types audited** | 9 / ~62 (Commerce, Physics*, Render, Equippable, Stacker, Examinable, Lifespan, Fuel, Material) |
+| **Real bugs found** | 0 |
 | **Real bugs fixed** | 0 |
-| **Contracts pinned** | 0 |
-| **Latest commit** | TBD on plan-to-disk merge |
+| **Contracts pinned** | 4 — see Findings log |
+| **Latest commit** | TBD on SL.2 merge |
+
+\* `PhysicsPart` simple fields verified; `InInventory` + `Equipped` Entity references deferred to SL.3.
 
 ---
 
@@ -124,8 +126,10 @@ Supported field types (from `SaveSystem.cs:WriteFieldValue`):
   on load via `EntityFactory`)
 - ✅ Arrays
 - ✅ `IList<T>` (List<T>)
+- ✅ `HashSet<T>` — **CORRECTED in SL.2.** The audit plan flagged this
+  as "likely unsupported" but `SaveSystem.cs:1635, 1685, 1750` does
+  support it. See Finding #1 below.
 - ⚠️ `IDictionary<K,V>` — need to verify
-- ❌ `HashSet<T>` — likely unsupported
 - ❌ Tuples — likely unsupported
 - ❌ Custom struct types — depends
 - ❌ Custom class types (non-Entity, non-Part) — depends
@@ -228,7 +232,7 @@ independently revertable, ships one complete testable behavior.
 This document. Sets up the audit, classifies Parts, defines the
 bug-class taxonomy, plans the sub-milestones.
 
-### SL.2 — Save/load test harness + Tier-3 simple-Part baseline
+### SL.2 — Save/load test harness + Tier-3 simple-Part baseline ✅ COMPLETE
 
 **Scope:** Build the reusable `RoundTripEntity` helper +
 `RoundTripPart` helper + audit the 5-10 simplest Tier-3 Parts
@@ -240,17 +244,31 @@ build confidence.
 
 **Targets:**
 - `RentalPart` (already done in `RentalSystemDeepAdversarialTests`)
-- `CommercePart`
-- `PhysicsPart`
-- `RenderPart`
-- `EquippablePart`
-- `MaterialPart`
-- `LifespanPart`
-- `FuelPart`
-- `StackerPart`
-- `ExaminablePart`
+- `CommercePart` ✅
+- `PhysicsPart` ✅ (simple fields; Entity refs → SL.3)
+- `RenderPart` ✅
+- `EquippablePart` ✅
+- `MaterialPart` ✅ (incl. `HashSet<string>` probe — see Findings #1, #2)
+- `LifespanPart` ✅
+- `FuelPart` ✅
+- `StackerPart` ✅
+- `ExaminablePart` ✅ (incl. unicode + special chars probe)
 
-**Expected:** All round-trip cleanly. ~10-12 tests.
+**Result:** All round-trip cleanly. **14 tests, 14 GREEN, 0 bugs found.**
+
+**Deliverables:**
+- `Assets/Tests/EditMode/TestSupport/PartRoundTripHelper.cs` — reusable
+  `RoundTripEntity` + `RoundTripEntityWithFactory` helpers.
+- `Assets/Tests/EditMode/Gameplay/Save/Tier3SimplePartRoundTripTests.cs`
+  — 14 adversarial round-trip tests covering 9 Parts.
+
+**Findings (see Findings log below):**
+- 🔵 #1 — `HashSet<T>` IS supported by reflection serializer (audit plan correction).
+- 🔵 #2 — `SaveSystem.cs:656` uses `entity.Parts.Add` direct, NOT `AddPart`,
+  so `Initialize()` is NOT called on load. Saved cache wins over re-derivation.
+- ⚪ #3 — `PhysicsPart.InInventory` + `Equipped` Entity refs deferred to SL.3.
+- ⚪ #4 — `MaterialPart` constants (5 floats) round-trip exactly at IEEE 754
+  boundary values (75.5, 100, 0.25, 1.75, 0).
 
 ### SL.3 — Tier-3 Parts with Entity references (HIGH BUG YIELD)
 
@@ -448,7 +466,11 @@ description, fix status.)
 
 | # | Severity | Part / Field | Description | Status |
 |---|---|---|---|---|
-| _none yet_ | | | | |
+| 1 | 🔵 | (audit plan, not a bug) `HashSet<T>` support | Audit plan listed `HashSet<T>` as "likely unsupported" by `WriteFieldValue`. Source survey at `SaveSystem.cs:1635, 1685, 1750` proves the type IS supported (it's an explicit branch in `CanSerializeType` + paired write/read paths). The probe test `MaterialPart.MaterialTags` round-trips correctly. | Plan corrected. No code change needed. |
+| 2 | 🔵 | `SaveSystem.cs:656` (load path) `Initialize()` does NOT run on load | The save load path uses `entity.Parts.Add(part)` direct, NOT `entity.AddPart(part)`. Only `AddPart` invokes `Initialize()`. **Implication:** any Part with derived state (`MaterialPart.MaterialTags` HashSet derived from `MaterialTagsRaw`, etc.) round-trips the SAVED state, NOT a re-derivation from the source. If the saved HashSet is mutated out of sync with the raw, the saved version wins. Pinned by `Adversarial_MaterialPart_LoadDoesNotCallInitialize_SavedCacheWinsOverDerivation`. | Contract pinned. No code change needed. |
+| 3 | ⚪ | `PhysicsPart.InInventory` / `PhysicsPart.Equipped` (`Entity` refs) | Skipped from SL.2 because Entity-reference round-trip needs an `EntityFactory` to resolve on load. Deferred to SL.3. | Deferred → SL.3. |
+| 4 | ⚪ | `FuelPart` 5-float boundary | Verified that `FuelMass=75.5f`, `MaxFuel=100f`, `BurnRate=0.25f`, `HeatOutput=1.75f`, `ExhaustProduct="AshPile"` round-trip with `Assert.AreEqual` (exact float equality, no tolerance). All five values are IEEE 754-representable. | Contract pinned. |
+| 5 | ⚪ | `ExaminablePart.Text` special-char round-trip | `"\"quoted\" with\nnewline + unicode: ñ ☆ → ✦"` round-trips byte-perfect. Counter-checks the SaveWriter UTF-8 string encoding for embedded quotes, newlines, multi-byte unicode codepoints. | Contract pinned. |
 
 ---
 
@@ -459,7 +481,7 @@ description, fix status.)
 | Sub-milestone | File | Tests | Real bugs found |
 |---|---|---|---|
 | SL.1 | (plan only) | 0 | 0 |
-| SL.2 | Tier3SimplePartRoundTripTests.cs | TBD | TBD |
+| SL.2 | Tier3SimplePartRoundTripTests.cs | **14** | **0** |
 | SL.3 | Tier3EntityReferenceRoundTripTests.cs | TBD | TBD |
 | SL.4 | Tier3CollectionRoundTripTests.cs | TBD | TBD |
 | SL.5 | Tier3PrivateStateRoundTripTests.cs | TBD | TBD |
@@ -467,7 +489,7 @@ description, fix status.)
 | SL.7 | Tier1ExplicitHandlerRoundTripTests.cs | TBD | TBD |
 | SL.8 | CrossPartReferenceRoundTripTests.cs | TBD | TBD |
 | SL.9 | MidStateRoundTripTests.cs | TBD | TBD |
-| **TOTAL** | | **0** | **0** |
+| **TOTAL** | | **14** | **0** |
 
 ---
 
@@ -497,11 +519,69 @@ collections) BEFORE the explicit handlers (lower yield).
 
 ---
 
+### SL.2 — Tier-3 simple-Part baseline
+
+**Q1 Symmetry (mirror checks):** The two `RoundTrip*` helpers in
+`PartRoundTripHelper.cs` are intentionally near-identical aside
+from the `factory:` argument — a future SL.3 contributor adding
+an Entity-reference test must not have to re-discover the
+plumbing. The helpers passed the "swap categories in your head"
+test: read either one and the surrounding pipeline still makes
+sense.
+
+**Q2 Cross-feature consistency:** Test naming follows
+`Adversarial_<Part>_<Field/Behavior>_<RoundTrips|Lost>` from
+ADVERSARIAL_TESTING.md. Reviewed all 14 tests against the table —
+all conform. The `_RoundTrips` / `_DerivesToHashSet_RoundTripsBoth`
+/ `_LoadDoesNotCallInitialize_SavedCacheWinsOverDerivation` suffixes
+make the asserted contract immediately legible from the test name.
+
+**Q3 Counter-check completeness:** Each "round-trips correctly"
+positive assertion has a counter-check:
+- `RenderPart.Visible = false` (non-default) — counter-checks a
+  buggy impl that always returned the default `true`.
+- `Adversarial_DefaultPart_RoundTripsToSameDefaults` —
+  counter-checks a buggy impl that fabricates non-default values
+  on load.
+- `Adversarial_MaterialPart_LoadDoesNotCallInitialize_SavedCacheWinsOverDerivation`
+  — counter-checks the alternative where `Initialize` runs on load.
+  If a future change adds an `entity.AddPart(part)` call to the
+  load path, this test breaks visibly.
+
+**Q4 Doc-vs-impl drift:** This document's Tier 3 / `WriteFieldValue`
+matrix originally listed `HashSet<T>` as "likely unsupported." The
+SL.2 source survey at `SaveSystem.cs:1635, 1685, 1750` corrected
+that. The matrix is now updated. The drift was caught BEFORE
+shipping any test that relied on the wrong assumption.
+
+**Adversarial-sweep self-check:** Probed bug surfaces SL-1
+(public field round-trip, 14 tests), SL-5 (HashSet<string>
+collection — 2 tests), SL-14 (default-value counter-check, 1 test),
+plus indirectly SL-13 (private state via Initialize-on-load probe,
+1 test). 4 of 16 surfaces pinned with counter-checks; remaining 12
+slated for SL.3-SL.10.
+
+**Lessons learned (false-premise corrections):**
+1. Initial audit-plan claim "HashSet<T> likely unsupported" was
+   wrong — caught by source survey, fixed in plan + matrix.
+2. Initial test for HashSet round-trip used empty `MaterialTagsRaw`
+   + `MaterialTags.Add(...)` directly. The test went RED on the
+   first run; debugging revealed `entity.AddPart(part)` calls
+   `Initialize()` which calls `MaterialTags.Clear()` before parsing
+   the (empty) raw. **The test was wrong, not the production code.**
+   Replaced with two corrected tests that exercise the actual
+   production pattern (`MaterialTagsRaw` non-empty + Initialize
+   parses on AddPart) plus an adversarial probe of the
+   Initialize-doesn't-run-on-load contract.
+
+---
+
 ## Commit history
 
 | Commit | Sub-milestone | Notes |
 |---|---|---|
 | TBD | SL.1 | Plan to disk |
+| TBD | SL.2 | Tier-3 simple-Part baseline (14 tests, 9 Parts, 0 bugs, 5 contracts pinned) |
 
 ---
 
