@@ -294,3 +294,58 @@
 
   Pairs with: **Root of the World** (Urqu's stake is *unmaking* the Root; Urqu is the cosmological antagonist of the player's final-act preservation path); **Spirits** (different entity class — drive-personifications vs. named hostile actor — but the Spirit of Bloodlust shares adjacency, since Urqu rewards atrocity and may use high-Bloodlust players as tools); **Catacombs** (deepest catacombs hold Urqu's older names; reading them is the player's main path to *recognizing* Urqu's hand in current events; the Catacombs entry's "unreadable plaques grow with the player" mechanic is one of Urqu's primary disclosure paths); **Sinkholes** (some Sealed Library catacombs contain Urqu-research that warped its scribes — a Sealed Library variant where the texts themselves are corrupted reads); **Memory-Eating** (the Choir's denial of Urqu is what lets *Urqu's mouthpieces* eat the witnesses — inverted memory-eating where the hostile entity does the consuming); **Held Breath** (Urqu bargains produce *exclusively* leverageable secrets — "I know what you traded to whom, and what it cost" — making bargains a feedstock for the player's blackmail mechanic, with all the moral weight that implies).
 
+---
+
+## Cultural Sources & Credits — running ledger
+
+This appendix records every real-world cultural, linguistic, geographical, or biological source the IDEAS entries above borrow from. The intent: keep credits **visible and maintainable**, give future authors a single place to check *"have we borrowed from X? what stance did we take?"*, and make ship-credit extraction straightforward when entries get implemented.
+
+**Principle.** When an IDEAS entry borrows from a real culture, language, geography, or biology, **add an entry to this ledger at the same time**. Borrowings should be visible, scoped, and credited — never absorbed silently. Entries that draw only from CoO-internal lore (Choir, Palimpsest, Pale Curation, Concord, etc.) are not listed here.
+
+**Format.** Per IDEAS entry that borrows: source(s), what was used, the authoring stance taken, and any required follow-up (research before authoring in-game text, naming caveats, etc.).
+
+---
+
+### Gin Frogs
+
+- **Biological source:** ***Stefania ginesi*** (Hylidae, Anura) — a real South American back-brooding frog, found on tepuis in Venezuela.
+- **What was used:** anatomical inspiration (the back-brood — females of the genus carry eggs and direct-developing froglets in/on dorsal skin); species epithet contracted into the in-game name "Gin Frogs."
+- **Stance:** real species cited explicitly in design notes; in-game name is a contraction of the binomial. **Biology only — no cultural attribution required.**
+- **Follow-up:** the genus *Stefania* contains ~20 species, each available as a real biological hook for variant Gin Frogs (desert / deep-cave / Choir-tended) keying off real epithets. Cite the source species when naming variants.
+
+### Root of the World
+
+- **Cultural source:** the **Pemon people** of the Guiana Highlands (Venezuela / Guyana / Brazil). Specifically the cosmology around **Mount Roraima** as the petrified stump of *Wazaka*, the Tree of Life, felled by *Makunaima* the trickster — and the *mawari* spirits the Pemon associate with tepuis.
+- **Geographical source:** the **tepuis** of Bolívar State, Venezuela (table-top sandstone mountains, billion-year-old, with endemic ecosystems).
+- **What was used:** the structural shape of the cosmology — felled cosmic tree → surviving as sacred mountain stump → root that sleeps beneath; tepui geology as the geographical grammar of the central boss site.
+- **Stance:** **inherit the structural shape, do NOT lift Pemon names** (Wazaka, Makunaima, mawari) into in-game text. CoO's own factions provide the in-fiction vocabulary.
+- **Follow-up required:** read primary Pemon ethnography (not Wikipedia) before authoring any in-game lore touching this material. Credit the Pemon people in shipped notes/credits regardless of whether names appear in-game.
+
+### Sinkholes
+
+- **Geographical sources:** real *simas* of the Venezuelan tepuis — **Sima Humboldt** and **Sima Mayor de Sarisariñama** (on Cerro Sarisariñama), **Sima Aonda** (on Auyán-tepui), **Sima de la Lluvia**, and others.
+- **Cultural sources (general, not tradition-specific in v1):** Indigenous Amazonian cosmologies (Pemon, Ye'kuana, Yanomami, and others) in which sinkholes can be read as portals to other worlds, sites of spiritual authority, or dwellings of named spirits.
+- **What was used:** physical archetype (vertical pocket biomes carved into highlands), endemic-floor concept, and the cosmological framing that sinkholes are *sites of moral significance*, not just dungeons.
+- **Stance:** **inherit structural intuitions**, drop real names of sites and traditions, do real reading on the source cosmologies before authoring any in-game lore that touches them.
+- **Follow-up required:** if any sinkhole archetype's lore gets authored as drawing from a *specific* Indigenous tradition (rather than the general physical archetype), that tradition must be researched in primary sources and credited at ship time.
+
+### Catacombs
+
+- **Cultural sources:** the **Paris catacombs** (limestone quarries repurposed as ossuaries from 1786 onward), **Roman early-Christian catacombs**, the **Capuchin Crypt** (Rome) decorative bone arrangements, and the layered necropoles of long-occupied historical settlements generally.
+- **What was used:** physical archetype (chambered burial networks built into pre-existing geology), generations-deep interment as compressed historical record, the political/theological role of *where* one chooses to be buried.
+- **Stance:** European Christian catacomb practices are **well-documented and lower-risk** to reference. The broader principle of burial-as-political-archive is widespread across cultures.
+- **Authoring caution:** specific funerary practices from any tradition (Catholic, Islamic, Jewish, Indigenous Amazonian, Egyptian, Etruscan, etc.) should be **researched before borrowing** — *don't* invent fake burial practices that read as a real culture's. CoO's own factions provide in-fiction funerary vocabulary.
+
+### Urqu
+
+- **Linguistic source:** **Quechua** (Andean language family). The word *urqu* (also *urcu*, *urku*) means "mountain" or "male." Selected by translating the Spanish prefix *Cerro* in *Cerro Sarisariñama* into Quechua.
+- **Conceptual source:** **Ye'kuana** (Cariban-language Indigenous people of Venezuela) legend that **an evil spirit inhabits caves on Cerro Sarisariñama, devouring humans, with the sonic signature *"sari... sari..."*** — which is the etymological origin of the mountain's own name.
+- **Geographical source:** **Cerro Sarisariñama**, 2,300m tepui in Jaua-Sarisariñama National Park at the far south-west of Bolívar State, Venezuela. The same tepui that hosts the Sinkholes entry's canonical *simas*.
+- **What was used:** the *name* (from Quechua), the *evil-spirit-in-caves concept and "sari... sari..." sonic signature* (from Ye'kuana legend), the *thematic linkage* between the named entity and the canonical sinkhole tepui (from real geography). Urqu's cosmological role (opposed to the Root) is CoO-original — invented, not borrowed.
+- **Stance:** **two distinct Indigenous sources are layered** — Quechua (Andean) for the name; Ye'kuana (Cariban, Venezuelan) for the concept. Both must be credited in shipped notes regardless of in-game name. Lore writing should lean into Ye'kuana legend specifics (caves, devouring, sonic cue) rather than imported Andean *apus* framing, which belongs to a different tradition.
+- **Follow-up required:** acknowledge **both source cultures** explicitly in any shipped credits or codex entry. Renaming Urqu before ship is *optional* — borrowing the name is itself a real act of source-honoring — but a CoO-native or Ye'kuana-onomatopoeic name (*Sari-Sari*, *the Stone-Below*, *the Throat*) remains defensible if a future authoring pass prefers it.
+
+---
+
+**Maintenance note.** This ledger should grow whenever a new IDEAS entry borrows from a real source. If an entry above isn't listed here, one of two things should be true: either the entry draws purely from CoO-internal lore, or *the ledger is out of date and needs updating*. Periodically re-audit by scanning IDEAS entries for proper nouns referring to real-world cultures, languages, places, or species, and confirming each is either credited here or explicitly CoO-original.
+
