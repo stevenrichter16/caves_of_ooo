@@ -21,7 +21,7 @@
 | **Pass** | 3 of N (incremental) |
 | **Last updated** | 2026-05-09 |
 | **Latest branch** | `feat/graphics-pass3-plan` |
-| **Sub-milestones complete** | 9 / 11 (3.B.1-3, 3.A.1-3, 3.C.1, 3.C.2 (data), 3.C.3 (tests)) |
+| **Sub-milestones complete** | 10 / 11 (3.B.1-4, 3.A.1-3, 3.C.1, 3.C.2 (data), 3.C.3 (tests)) |
 | **Real visible changes shipped** | Bloom on 5 status effects + flicker on 3 light blueprints + biome palette data layer pinned |
 | **Files modified this pass** | 16 (doc + 5 effects + parser + 2 parts + 3 test files + Objects.json + BiomePalette + 4 empty profiles) |
 
@@ -270,13 +270,13 @@ description, fix status.)
 | 3.B.1 Verify shader HDR | ✅ done (resolved by inspection) | n/a | — |
 | 3.B.2 HDR color codes in parser | ✅ done | 10 | TBD |
 | 3.B.3 Update effect colors | ✅ done | n/a (regression sweep 73/73) | TBD |
-| 3.B.4 Glow showcase scenario | ⏳ deferred (Pass 4) | 0 | — |
+| 3.B.4 Glow showcase scenario | ✅ done | 1 (smoke) | TBD |
 | 3.C.1 Biome aesthetic plan | ✅ in this doc | n/a | — |
 | 3.C.2 Per-biome data layer (BiomePalette + 4 empty profile assets) | ✅ done (pivot — see below) | 14 | TBD |
 | 3.C.3 Tests for biome palette data | ✅ done (14 tests) | 14 | TBD |
 | 3.C.4 BiomeColorPatcher MonoBehaviour + scene wire-in | ⏳ deferred (Pass 4) | 0 | — |
 | 3.C.5 Biome showcase scenario | ⏳ deferred (Pass 4) | 0 | — |
-| **TOTAL** | **9 / 11** | **31** | — |
+| **TOTAL** | **10 / 11** | **32** | — |
 
 ---
 
@@ -420,6 +420,8 @@ the verification sweep. Three premises checked + 1 corrected
 | `3a0e92d` (merge) / `4c31044` | 3.B.2 + 3.B.3 | HDR color codes (`&*X` triplet) + 5 effects switched (Burning/Acidic/Electrified/Frozen/Poisoned) |
 | `fbb93f3` (direct on main) | 3.A.1-3 | LightSourceFlickerPart + 7 tests + wired into Campfire/Torch/WatchLantern blueprints |
 | `db4bdef` (direct on main) | 3.C.2-3 | BiomePalette struct (data + 4 palettes + GetForBiome static) + 14 tests; runtime patcher deferred to Pass 4 |
+| `d7d401f` | Pass 3 wiring adversarial | 11 wiring tests proving end-to-end data flow (blueprint loader → factory → render event → HDR color override → bloom-threshold check) |
+| TBD | 3.B.4 | StatusEffectGlowShowcase scenario + menu entry + smoke test (5 status-effect Snapjaws + 1 control for visual bloom verification) |
 
 ---
 
