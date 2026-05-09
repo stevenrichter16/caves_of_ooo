@@ -421,7 +421,7 @@ the verification sweep. Three premises checked + 1 corrected
 | `fbb93f3` (direct on main) | 3.A.1-3 | LightSourceFlickerPart + 7 tests + wired into Campfire/Torch/WatchLantern blueprints |
 | `db4bdef` (direct on main) | 3.C.2-3 | BiomePalette struct (data + 4 palettes + GetForBiome static) + 14 tests; runtime patcher deferred to Pass 4 |
 | `d7d401f` | Pass 3 wiring adversarial | 11 wiring tests proving end-to-end data flow (blueprint loader → factory → render event → HDR color override → bloom-threshold check) |
-| TBD | 3.B.4 | StatusEffectGlowShowcase scenario + menu entry + smoke test (5 status-effect Snapjaws + 1 control for visual bloom verification) |
+| `9de2cd4` | 3.B.4 | StatusEffectGlowShowcase scenario + menu entry + smoke test (5 status-effect Snapjaws + 1 control for visual bloom verification) |
 
 ---
 
