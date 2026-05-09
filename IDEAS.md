@@ -641,6 +641,92 @@
 
   Cross-links: **The Preserved** (parent system; consciousness ambiguity is the load-bearing horror anchor); **The Imminent Archive** (parent entry; this resolves its open design question); **Pale Curation** (parent faction; bureaucratic-re-filing comedy + scientific-fascination quest); **Rot Choir** (preserved-player passage immunity); **Driving Bloom** (most dangerous adversarial interaction for preserved player); **Bower-Folk** (parallel resin-finalization horror, now active *while the player is alive*); **Catacomb-villagers** (village-specific responses to a preserved guest); **Tent-Right** (uniquely willing to help; salt-expert allies); **Saccharine Concord** (premium-priced un-preservation supplies; cynical pragmatism); **Bioluminescent Catacomb Economy** (Pale Curation chamber low-UV strain context); **Sima Pricklebrow / Bandfrog / Cascade-Lacer (Sarisariñama Bestiary)** (specific creatures that participate in Honey-Seal un-preservation comedy); **Lineage** (the long-term character traces become *generational* — a player who experienced preservation has descendants who can ask about the great-grandparent's "filed" period); **Tinker / crafting** (un-preservation reagents are a Tinker craft category).
 
+- **Carnivorous-plant digestive enzymes — resource brainstorm.** Append to the broader Drosera / carnivorous-plant content (full design in [`sarisarinama_drosera_design.md`](sarisarinama_drosera_design.md)). The plants' **digestive fluid** — the proteases, RNases, phosphatases, esterases, and antimicrobial peptides secreted alongside the sticky mucilage to break down trapped insects — is a real biological substance with **specific dissolving and antimicrobial properties.** Rotundifolia-genus extracts have been used in real European traditional medicine for respiratory ailments. The enzymes are *biologically distinct from* the sticky mucilage (which is the trapping agent); the enzymes are *what comes after the trap* — the slow external digestion. They are a *separate harvestable resource* from mucilage, with different properties and different storage requirements.
+
+  This entry brainstorms uses across the world and lore. The user's framing: *"I haven't figured out the use yet."* This is a generative pass — propose many directions, identify the strongest, leave the rest as authoring options.
+
+  **Real biological grounding.** Carnivorous-plant digestive enzymes:
+  - **Break down protein** (proteases) — soft tissue, muscle, skin, fungal cell walls (indirectly)
+  - **Break down RNA / DNA** (ribonucleases) — cellular contents
+  - **Break down phospholipids** (phospholipases) — cell membranes
+  - **Antimicrobial peptides** — actively kill bacteria and some fungi
+  - **Are produced continuously** while the trap is active, in small volumes per plant
+  - **Are species-specific** in chemistry — Drosera-genus enzymes differ from Nepenthes pitcher-plant enzymes differ from Venus flytrap enzymes — and CoO can lean into this with species-specific applications
+
+  ## Cluster A — Anti-preservation uses (load-bearing for the existing preservation system)
+
+  This is the cluster I'd argue is **strongest** because it directly resolves a pre-existing system's open mechanic.
+
+  - **Un-preservation reagent.** The Fully Preserved Player entry mentions "Tinker-crafted dissolving solution" for un-preservation — *carnivorous-plant digestive enzymes are exactly that solution.* Specifically:
+    - **Salt-Cured un-preservation** — enzyme-water bath softens the salt-encrusted skin and allows it to flush; faster than plain water alone.
+    - **Ink-Bathed un-preservation** — enzyme-oil suspension breaks down the iron-gall ink's protein bindings and lets the ink flush from tissue.
+    - **Honey-Sealed un-preservation** — enzymes break down the antimicrobial polysaccharide structure; the honey can then be salt-water-flushed.
+    - **Bog-Taken un-preservation** — strongest application; enzymes can reverse the tannin-binding of bog-preservation, freeing skin from leather-state.
+    - **Resin-Cast** — the enzymes do *not* dissolve hardened resin (real biology: resin is largely terpenoid, not protein). Cannot help here. Resin-Cast still needs external rescue.
+  - **Anti-Preserved combat coating.** Weapons coated in concentrated enzyme deal bonus damage to **The Preserved** (NPCs in the world who have been preserved long-term — Pale Curation officers' specimens that walk, hostile preserved figures the player encounters in cosmic-horror set-pieces). The enzymes break down what was *intended to last centuries* in seconds of contact. Pale Curation considers enzyme-coated weapons *abominations* — using one in a Pale Curation archive is a faction-rep catastrophe.
+  - **The Catcher's antithesis.** Catchers (per the Imminent Archive entry) carry preservation pots; an *enzyme-coated weapon* is the structural opposite — it un-preserves. A player carrying an enzyme-flask can dissolve a Catcher's thrown salt-pot mid-air (intercept mechanic), or coat themselves in dilute enzyme to reduce Being-Preserved status accumulation in real time.
+
+  ## Cluster B — Anti-Choir / anti-mycelial uses
+
+  - **Anti-Choir weapon coating.** Choir mycelium has fungal cell walls; Drosera proteases struggle directly with chitin but the antimicrobial peptides do real damage. **Enzyme-coated weapons are a niche but real Choir-counter.** The Choir's reaction to enzyme-bearing players is *interesting* — they don't avoid them like they avoid Choir-Iron carriers; they *examine* them. The enzymes that hurt the Choir are *also produced by another non-Choir distributed life-form (the plants),* which the Choir reads as tribal kinship.
+  - **Anti-Driving-Bloom field treatment.** The Driving Bloom's spore network is uniquely vulnerable to phospholipase enzymes. **Enzyme-spraying** (a Tinker-crafted misting tool) over a Bloomed area can *un-Bloom* infected NPCs in their early-stage. Catacomb-villagers cultivate Drosera *and* harvest enzyme reserves as the canonical Driving-Bloom defense. The plants intercept the spores; the enzymes treat the already-infected.
+
+  ## Cluster C — Crafting / industrial uses
+
+  - **Tanning / leatherwork.** Real-world parallel: papain and bromelain are commercially used as protein-tenderizing agents. Carnivorous-plant enzymes can soften hides, prepare leather, ready vellum/parchment for inscription. **Tinker craft category:** enzyme-treated leather goods have superior properties (suppleness, drape, take-ink-better) at a high enzyme-cost. Inkbound (if introduced) consider enzyme-prepared parchment the only worthy substrate for the highest-tier scriptorium work.
+  - **Vellum preparation.** Specific Inkbound parchment-grade requires enzyme-treatment to remove residual organics from the skin substrate.
+  - **Ink-component in dew-ink.** The bioluminescent dew-ink (per the Drosera design file) is enriched with enzymes for self-illuminating texts — the enzymes provide longer-lasting glow.
+
+  ## Cluster D — Medicinal uses
+
+  - **Wound debridement.** Real-world parallel: maggot therapy uses similar enzymatic action. Enzyme application to a necrotic wound *eats the necrotic tissue without harming live tissue* (the live tissue is protected by intact cell barriers; the dead tissue is open substrate). **Surface-village medics use enzyme paste for hard-to-treat wounds.** A surprisingly effective and gross-feeling healing item.
+  - **Cough / respiratory remedy.** Real-world parallel: *Drosera rotundifolia* extract has historical use in European traditional medicine for coughs. CoO can use this directly — *Drosera Tonic* as a respiratory-complaint cure with mild antimicrobial properties.
+  - **Anti-fungal topical.** Useful against Choir-spore exposure, against early-stage Driving-Bloom infection, against catacomb-fungal foot-rot.
+
+  ## Cluster E — Body disposal / forensic uses
+
+  - **Crime: making a body disappear.** Concentrated enzyme application *dissolves a body completely* over many hours. **No remains for Re-Membering.** No bones for tomb-plaque inscription. No memory left in flesh for the Choir to harvest. **The Palimpsest considers enzyme-dissolution of an unwilling body the gravest possible crime against memory.** The Concord, predictably, sells the service quietly.
+  - **Anti-Re-Membering weapon.** The Re-Membering ritual (per the existing entry) requires a body or substantial body-part to focus on. Enzyme-treatment of a corpse before Palimpsest can recover it *eliminates the Re-Membering option permanently.* This becomes a horror beat in story: the player who fails to recover an ally's body in time finds it has been enzyme-treated by a hostile faction.
+  - **Pale Curation paradox.** Pale Curation are preservers, but they sometimes need to *dispose of* poorly-filed specimens — entries that have decayed past viability, mistakes, scandals. *Carnivorous-plant enzymes are their tool.* A Pale Curation officer carrying enzyme vials is doing *anti-preservation work* on Pale Curation's behalf — visible cognitive dissonance to other observers, internally consistent to the officer. **This paradox is one of the strongest internal Pale Curation politics hooks in the world.**
+
+  ## Cluster F — Ritual / cosmological uses
+
+  - **Inkbound substrate-prep.** The Inkbound treat enzyme-application to a skin-page-in-preparation as one stage of the sacred ink-bath ritual.
+  - **Choir's substrate prep.** *Disturbing.* The Choir does not always want to consume immediately; sometimes it wants the body *softened* for slow integration. Choir cathedrals occasionally use Drosera enzymes as *a preparatory step before encasement.* The encasement ritual on a partially-enzyme-treated body is faster and more thorough — the Choir's tendrils penetrate already-broken tissue immediately. **A Drosera-enzyme bottle in a Choir cathedral is among the more disturbing single objects the player might encounter.** It implies a working relationship between Choir and plant kingdom that nobody ever explained.
+  - **Spirit of Apatheia ritual cleansing.** Enzymes' slow patient action makes them an Apatheia-aligned ritual ingredient. Apatheia practitioners use dilute enzyme-baths for ritual purification (a multi-day soak that gradually purges the body of accumulated grime, scars, residual preservation traces — slow and complete).
+  - **Body-reading reagent.** The Palimpsest applies enzymes to **Ink-Bathed corpses** to soften them for reading. The enzyme allows the scribe to gently pry the ink-saturated skin open like pages without tearing. **Ink-Bathed corpses without enzyme-treatment can only be read once, with damage; with enzyme-treatment, they can be read many times across centuries.** This makes enzymes structurally critical to the Palimpsest's long-term archival capacity.
+
+  ## Cluster G — Player consumable / horror uses
+
+  - **Drink it.** A bottle of digestive enzyme is *technically* drinkable in small quantities. Effects: severe stomach pain, vomiting, mild antimicrobial effect on gut parasites, a small amount of self-digestion that the body can tolerate. Drinking a *full flask*: severe self-digestion, internal damage, dangerous. **A Spirit-of-Bloodlust-aligned dark-bargain item:** the player can drink enzyme to gain a brief but significant combat damage bonus (the body is operating in panic-survival mode) at the cost of long-term internal injury. *Comedic-horror tier mechanic.*
+  - **Self-administration during forced preservation.** A player who is being forcibly preserved by Catchers (per the Imminent Archive entry) can apply enzyme to themselves in real time to slow the Being-Preserved counter accumulation. **Enzyme-as-emergency-aid** during a Catcher attack — but the enzyme stings, leaves visible patches on skin, reduces healing rate temporarily.
+
+  ## Faction stances (synthesizing across clusters)
+
+  - **Rot Choir** — *Reluctantly tolerates and quietly uses.* The enzymes hurt Choir mycelium but enable better encasement-prep; the Choir reads the plants as kindred-but-not-allies; the relationship is uneasy.
+  - **Driving Bloom** — Active enemy. Enzyme-spray un-Blooms infected NPCs.
+  - **Palimpsest** — *Sacred ingredient* for Ink-Bathed-corpse softening; *gravest crime* when used to dissolve a body before recovery. The internal contradiction is central to Palimpsest internal politics.
+  - **Pale Curation** — *Paradox.* Use enzymes for poorly-filed-specimen disposal; loathe enzymes used on properly-filed specimens. Officers carry enzyme vials reluctantly.
+  - **Saccharine Concord** — Trades the entire spectrum. Sells enzyme to medics, scribes, Catchers, criminals, Choir cultists, all without comment. The Concord's gray-market discreet-disposal service is an enzyme-driven business.
+  - **Bower-Folk** — Use enzymes to *clean* their preserved aesthetic installations periodically — gentle enzyme baths that remove dust and resurface the figure's beauty. Each cleaning is a quasi-ritual; a Bower-Folk village's *Cleaner* is a high-status role.
+  - **Catacomb-villagers** — Cultivate Drosera and harvest enzymes as canonical Driving-Bloom defense; use medically; trade with surface for materials they can't grow.
+  - **Tent-Right wasteland** — Wound-debridement use; enzyme is one of the few medicinal supplies that travels well; trade-good with surface villages.
+  - **Inkbound (if introduced)** — Sacred substrate-prep ingredient; required for highest-tier scriptorium parchment.
+  - **Spirit of Apatheia** — Ritual cleansing ingredient (slow, patient, complete).
+  - **Spirit of Inquiry** — Body-reading practice ingredient (Palimpsest-adjacent).
+  - **Spirit of Bloodlust** — Self-administration as combat-bonus dark bargain.
+  - **Imminent Archive Catchers** — *Loathe.* Enzymes un-do their work. A player carrying enzyme is recognizable to Catchers as *theologically unaligned* and may receive different (more aggressive? more fearful?) treatment.
+
+  ## Open design questions
+
+  - **Scarcity calibration.** Enzymes are produced in *small volumes* per Drosera plant. Should harvest be plant-destroying (kill the Drosera, get all enzymes) or plant-tending (small volume per visit; sustainable; long arc)? Probably tier it: small volume per visit is sustainable; full extraction destroys the plant and yields more, but reduces local Drosera population. Greatdews are protected (per Drosera entry); enzyme-extraction from a Greatdew is a major faction crime.
+  - **Species-specific enzymes.** Should the six Drosera species (per the Drosera design file) have different enzyme profiles? *Probably yes.* *D. magnifica* (Greatdew) yields the most potent enzymes; *D. meristocaulis* (Pebble-Sundew) yields the most-volumetric-per-plant; *D. spiralis* (Spiral-Bloom) yields enzymes best for Inkbound substrate-prep. Each species becomes mechanically distinct as a harvest target.
+  - **Storage and stability.** Enzymes degrade with time and exposure to heat / light / dry conditions. Storage requires specific containers (bone-vials, cool-cellar storage, enzyme-stable preservation media). The supply chain becomes a meaningful logistics consideration.
+  - **Enzymes from non-Drosera sources.** Real biology has many carnivorous plants — pitcher plants (Nepenthes), Venus flytraps (Dionaea), butterworts (Pinguicula), bladderworts (Utricularia). CoO could introduce additional carnivorous-plant species with species-specific enzyme profiles, expanding the design space. *Probably defer beyond v1*; the Drosera enzymes alone are a substantial design space.
+  - **The Catcher-enzyme conflict.** A formal mechanic where Catchers and enzyme-users have hostile recognition: should this be coded into the AI behaviour explicitly? *Probably yes* — the political opposition is too central to the design to leave to player imagination.
+
+  Cross-links: **The Preserved** (un-preservation reagent across all five methods); **The Imminent Archive** (enzyme-coated counter-tools; player self-application during Catcher attacks); **The Fully Preserved Player** (the canonical un-preservation tool the player needs); **Drosera (`sarisarinama_drosera_design.md`)** (parent design file; this entry deepens the enzyme-as-resource thread); **Rot Choir** (substrate-prep paradox; uneasy tolerance); **Driving Bloom** (enzyme-spray as un-Bloom treatment); **Palimpsest** (sacred Ink-Bathed-corpse softening; gravest crime when misused); **Pale Curation** (poorly-filed-specimen disposal paradox); **Saccharine Concord** (universal trader; gray-market discreet-disposal service); **Bower-Folk** (cleaning ritual); **Catacomb-villagers** (cultivation + harvest; Driving-Bloom defense); **Tent-Right** (wound debridement use); **Inkbound** (sacred substrate-prep); **Re-Membering** (anti-Re-Membering weapon when used on a corpse before recovery); **Memory Consumption + encasement** (Choir's substrate-prep use as disturbing alliance hook); **Spirits** (Apatheia / Inquiry / Bloodlust each find different enzyme uses).
+
 - **Stones with stake — minerals as relics, infusions, and faction currency.** A foundational system: certain minerals and rocks in CoO carry *real mechanical and political weight.* Some grant **enhanced magic** when held; some can be **infused into weapons** for permanent properties; some give **passive effects** by mere possession; some are **faction-coveted** for reasons that don't always reduce to "they're valuable." Stone is the world's slowest currency — it doesn't decay, doesn't merge, doesn't run out across a run, but it's also rare, heavy, and *every faction wants different ones for incompatible reasons.* The mineral economy operates underneath the drams economy and the ink economy in time-scale and gravitas: drams move daily, ink moves per-rental, **stones move per-life.**
 
   **Three categories of mineral function.**
