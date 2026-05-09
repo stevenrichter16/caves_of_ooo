@@ -366,7 +366,7 @@ the verification sweep. Three premises checked + 1 corrected
 |---|---|---|
 | `4af69b3` | 3.0 | Plan to disk |
 | `3a0e92d` (merge) / `4c31044` | 3.B.2 + 3.B.3 | HDR color codes (`&*X` triplet) + 5 effects switched (Burning/Acidic/Electrified/Frozen/Poisoned) |
-| TBD | 3.A.1-3 | LightSourceFlickerPart + 7 tests + wired into Campfire/Torch/WatchLantern blueprints |
+| `fbb93f3` (direct on main) | 3.A.1-3 | LightSourceFlickerPart + 7 tests + wired into Campfire/Torch/WatchLantern blueprints |
 
 ---
 
