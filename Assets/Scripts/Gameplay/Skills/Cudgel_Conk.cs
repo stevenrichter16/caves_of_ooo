@@ -54,17 +54,23 @@ namespace CavesOfOoo.Skills
             if (weapon == null)
             {
                 MessageLog.Add(actor.GetDisplayName() + " needs a cudgel-class weapon to conk.");
+                EmitSkillRejectedDiag(ctx, "no_weapon");
                 return;
             }
 
             // Conk needs Zone for the adjacency lookup. (Berserk's
             // self-buff path doesn't need Zone — that asymmetry is by
             // design, cold-eye 🔵 #7.)
-            if (ctx.Zone == null) return;
+            if (ctx.Zone == null)
+            {
+                EmitSkillRejectedDiag(ctx, "no_zone");
+                return;
+            }
             var target = SkillCombatHelpers.FindAdjacentCleaveTarget(actor, actor, ctx.Zone);
             if (target == null)
             {
                 MessageLog.Add(actor.GetDisplayName() + " swings at nothing.");
+                EmitSkillRejectedDiag(ctx, "no_target");
                 return;
             }
 

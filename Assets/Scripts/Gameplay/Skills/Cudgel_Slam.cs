@@ -68,13 +68,22 @@ namespace CavesOfOoo.Skills
             if (weapon == null)
             {
                 MessageLog.Add(actor.GetDisplayName() + " needs a cudgel-class weapon to slam.");
+                EmitSkillRejectedDiag(ctx, "no_weapon");
                 return;
             }
 
             // Slam needs Zone for adjacency lookup + push movement.
-            if (ctx.Zone == null) return;
+            if (ctx.Zone == null)
+            {
+                EmitSkillRejectedDiag(ctx, "no_zone");
+                return;
+            }
             var actorPos = ctx.Zone.GetEntityPosition(actor);
-            if (actorPos.x < 0) return;
+            if (actorPos.x < 0)
+            {
+                EmitSkillRejectedDiag(ctx, "actor_not_in_zone");
+                return;
+            }
 
             // Find adjacent target + remember which direction to slam in.
             // Iterate the same 8-dir order as FindAdjacentCleaveTarget for
@@ -100,6 +109,7 @@ namespace CavesOfOoo.Skills
             if (target == null)
             {
                 MessageLog.Add(actor.GetDisplayName() + " has nothing to slam.");
+                EmitSkillRejectedDiag(ctx, "no_target");
                 return;
             }
 

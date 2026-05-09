@@ -636,6 +636,219 @@ namespace CavesOfOoo.Tests
         // NOT trigger our skill.
         // ════════════════════════════════════════════════════════════════
 
+        // ════════════════════════════════════════════════════════════════
+        // Pre-WSP8.2 actives — same E2E shape, closes the symmetry gap
+        // surfaced by the May-2026 audit. These 5 actives predate the
+        // SkillRejected convention but use the same SkillsPart dispatch
+        // path, so the FireEvent-end-to-end + diag emissions must work
+        // identically.
+        // ════════════════════════════════════════════════════════════════
+
+        [Test]
+        public void E2E_Slam_DispatchesAndPushesTarget()
+        {
+            var atk = MakeBodied("atk");
+            Equip(atk, MakeWeapon("mace", "1d8+1", "Bludgeoning Cudgel"));
+            var skill = new Cudgel_Slam();
+            atk.GetPart<SkillsPart>().AddSkill(skill, source: "test");
+            var def = MakeBodied("def", hp: 100);
+            var zone = new Zone();
+            zone.AddEntity(atk, 5, 5); zone.AddEntity(def, 6, 5);
+
+            Diag.ResetAll();
+            bool handled = FireSkillCommand(atk, "CommandSlam", zone, new Random(0));
+
+            Assert.IsTrue(handled);
+            AssertRoutedTo("Cudgel_Slam");
+            var pos = zone.GetEntityPosition(def);
+            Assert.AreEqual(9, pos.x, "Slam pushes 3 cells when path is clear.");
+        }
+
+        [Test]
+        public void E2E_Slam_NoWeapon_EmitsSkillRejected()
+        {
+            var atk = MakeBodied("atk");
+            // No weapon equipped.
+            var skill = new Cudgel_Slam();
+            atk.GetPart<SkillsPart>().AddSkill(skill, source: "test");
+            var def = MakeBodied("def");
+            var zone = new Zone();
+            zone.AddEntity(atk, 5, 5); zone.AddEntity(def, 6, 5);
+
+            Diag.ResetAll();
+            FireSkillCommand(atk, "CommandSlam", zone, new Random(0));
+
+            var rejected = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "skill", Kind = "SkillRejected", Limit = 5
+            }).Records;
+            Assert.AreEqual(1, rejected.Count,
+                "Slam without a Cudgel weapon must emit SkillRejected (post-audit fix).");
+            StringAssert.Contains("no_weapon", rejected[0].PayloadJson);
+        }
+
+        [Test]
+        public void E2E_Conk_DispatchesAndStunsTarget()
+        {
+            var atk = MakeBodied("atk");
+            Equip(atk, MakeWeapon("mace", "1d8+1", "Bludgeoning Cudgel"));
+            var skill = new Cudgel_Conk();
+            atk.GetPart<SkillsPart>().AddSkill(skill, source: "test");
+            var def = MakeBodied("def");
+            var zone = new Zone();
+            zone.AddEntity(atk, 5, 5); zone.AddEntity(def, 6, 5);
+
+            Diag.ResetAll();
+            bool handled = FireSkillCommand(atk, "CommandConk", zone, new Random(0));
+
+            Assert.IsTrue(handled);
+            AssertRoutedTo("Cudgel_Conk");
+            Assert.IsTrue(def.GetPart<StatusEffectsPart>().HasEffect<StunnedEffect>(),
+                "Conk applies Stunned regardless of swing outcome.");
+        }
+
+        [Test]
+        public void E2E_Conk_NoTarget_EmitsSkillRejected()
+        {
+            var atk = MakeBodied("atk");
+            Equip(atk, MakeWeapon("mace", "1d8", "Bludgeoning Cudgel"));
+            var skill = new Cudgel_Conk();
+            atk.GetPart<SkillsPart>().AddSkill(skill, source: "test");
+            var zone = new Zone();
+            zone.AddEntity(atk, 5, 5); // no target
+
+            Diag.ResetAll();
+            FireSkillCommand(atk, "CommandConk", zone, new Random(0));
+            var rejected = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "skill", Kind = "SkillRejected", Limit = 5
+            }).Records;
+            Assert.AreEqual(1, rejected.Count);
+            StringAssert.Contains("no_target", rejected[0].PayloadJson);
+        }
+
+        [Test]
+        public void E2E_Berserk_DispatchesAndAppliesBuff()
+        {
+            var atk = MakeBodied("atk");
+            Equip(atk, MakeWeapon("axe", "1d8", "Cutting Axe"));
+            var skill = new Axe_Berserk();
+            atk.GetPart<SkillsPart>().AddSkill(skill, source: "test");
+
+            Diag.ResetAll();
+            bool handled = FireSkillCommand(atk, "CommandAxeBerserk", null, new Random(0));
+
+            Assert.IsTrue(handled);
+            AssertRoutedTo("Axe_Berserk");
+            Assert.IsTrue(atk.GetPart<StatusEffectsPart>().HasEffect<BerserkEffect>(),
+                "Berserk applies BerserkEffect to self.");
+        }
+
+        [Test]
+        public void E2E_Berserk_NoWeapon_EmitsSkillRejected()
+        {
+            var atk = MakeBodied("atk");
+            // No axe equipped.
+            var skill = new Axe_Berserk();
+            atk.GetPart<SkillsPart>().AddSkill(skill, source: "test");
+
+            Diag.ResetAll();
+            FireSkillCommand(atk, "CommandAxeBerserk", null, new Random(0));
+            var rejected = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "skill", Kind = "SkillRejected", Limit = 5
+            }).Records;
+            Assert.AreEqual(1, rejected.Count);
+            StringAssert.Contains("no_weapon", rejected[0].PayloadJson);
+        }
+
+        [Test]
+        public void E2E_HookAndDrag_DispatchesAndAppliesHooked()
+        {
+            var atk = MakeBodied("atk");
+            Equip(atk, MakeWeapon("axe", "1d8", "Cutting Axe"));
+            var skill = new Axe_HookAndDrag();
+            atk.GetPart<SkillsPart>().AddSkill(skill, source: "test");
+            var def = MakeBodied("def", hp: 100);
+            var zone = new Zone();
+            zone.AddEntity(atk, 5, 5); zone.AddEntity(def, 6, 5);
+
+            Diag.ResetAll();
+            bool handled = FireSkillCommand(atk, "CommandHookAndDrag", zone, new Random(0));
+
+            Assert.IsTrue(handled);
+            AssertRoutedTo("Axe_HookAndDrag");
+            Assert.IsTrue(def.GetPart<StatusEffectsPart>().HasEffect<HookedEffect>(),
+                "HookAndDrag applies HookedEffect to the adjacent target.");
+        }
+
+        [Test]
+        public void E2E_HookAndDrag_NoTarget_EmitsSkillRejected()
+        {
+            var atk = MakeBodied("atk");
+            Equip(atk, MakeWeapon("axe", "1d8", "Cutting Axe"));
+            var skill = new Axe_HookAndDrag();
+            atk.GetPart<SkillsPart>().AddSkill(skill, source: "test");
+            var zone = new Zone();
+            zone.AddEntity(atk, 5, 5); // no target
+
+            Diag.ResetAll();
+            FireSkillCommand(atk, "CommandHookAndDrag", zone, new Random(0));
+            var rejected = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "skill", Kind = "SkillRejected", Limit = 5
+            }).Records;
+            Assert.AreEqual(1, rejected.Count);
+            StringAssert.Contains("no_target", rejected[0].PayloadJson);
+        }
+
+        [Test]
+        public void E2E_Shank_DispatchesAndStrikes()
+        {
+            var atk = MakeBodied("atk");
+            Equip(atk, MakeWeapon("dagger", "1d4+1", "Piercing"));
+            var skill = new ShortBlades_Shank();
+            atk.GetPart<SkillsPart>().AddSkill(skill, source: "test");
+            var def = MakeBodied("def", hp: 100);
+            var zone = new Zone();
+            zone.AddEntity(atk, 5, 5); zone.AddEntity(def, 6, 5);
+
+            int hpBefore = def.GetStatValue("Hitpoints");
+            Diag.ResetAll();
+            bool handled = FireSkillCommand(atk, "CommandShank", zone, new Random(42));
+
+            Assert.IsTrue(handled);
+            AssertRoutedTo("ShortBlades_Shank");
+            Assert.LessOrEqual(def.GetStatValue("Hitpoints"), hpBefore,
+                "Shank fires PerformSingleAttack — defender HP should drop on hit.");
+        }
+
+        [Test]
+        public void E2E_Shank_NoTarget_EmitsSkillRejected()
+        {
+            var atk = MakeBodied("atk");
+            Equip(atk, MakeWeapon("dagger", "1d4", "Piercing"));
+            var skill = new ShortBlades_Shank();
+            atk.GetPart<SkillsPart>().AddSkill(skill, source: "test");
+            var zone = new Zone();
+            zone.AddEntity(atk, 5, 5); // no target
+
+            Diag.ResetAll();
+            FireSkillCommand(atk, "CommandShank", zone, new Random(0));
+            var rejected = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "skill", Kind = "SkillRejected", Limit = 5
+            }).Records;
+            Assert.AreEqual(1, rejected.Count);
+            StringAssert.Contains("no_target", rejected[0].PayloadJson);
+        }
+
+        // ════════════════════════════════════════════════════════════════
+        // Wrong-command-name: SkillsPart routes only matching commands.
+        // Pins the negative case — a command for a different skill must
+        // NOT trigger our skill.
+        // ════════════════════════════════════════════════════════════════
+
         [Test]
         public void E2E_WrongCommandName_DoesNotDispatchToOurSkill()
         {
