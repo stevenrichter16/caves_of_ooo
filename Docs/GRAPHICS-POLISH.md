@@ -11,11 +11,13 @@
 
 | Field | Value |
 |---|---|
-| **Pass** | 1 of N (incremental) |
+| **Pass** | 2 of N (incremental) |
 | **Last updated** | 2026-05-09 |
-| **Branch** | `feat/graphics-polish-pass1` |
-| **Files modified** | 3 (scene + Volume Profile + this doc) |
-| **New runtime cost** | post-processing pass on Main Camera (already URP-pipelined; bloom is the heaviest, mitigated by `threshold=1.05` so only HDR-emissive pixels bloom) |
+| **Latest branch** | `feat/graphics-polish-pass2` |
+| **Pass 1 commit** | `5189e21` (merge) |
+| **Pass 2 commit** | TBD |
+| **Files modified** | Pass 1: 3 (scene + Volume Profile + this doc); Pass 2: +5 (TorchFlicker.anim + .controller + Light2DFlicker.cs + asmdef change + this doc) |
+| **New runtime cost** | post-processing pass on Main Camera (Pass 1); per-frame Perlin sample per Light2DFlicker-equipped light (Pass 2 — negligible). |
 
 ---
 
@@ -148,4 +150,110 @@ Should profiler show >2ms post-processing time, the mitigations
 
 ---
 
-*End of pass 1 doc. Pass 2 plan TBD pending playtest feedback.*
+---
+
+# Pass 2 — Light2D flicker (Light2DFlicker MonoBehaviour + AnimationClip)
+
+Goal: give torches, lanterns, and fire FX a "living flame" feel via
+subtle intensity + outer-radius wobble on `Light2D` components.
+
+## What's been added in Pass 2
+
+### 1. `Assets/Scripts/Presentation/Rendering/Light2DFlicker.cs`
+
+Tiny MonoBehaviour (≈75 lines incl. comments) that:
+- Caches `Light2D.intensity` + `Light2D.pointLightOuterRadius` on Awake.
+- Per-Update samples two decoupled Perlin noise streams (one for
+  intensity, one for radius) and applies small wobble offsets.
+- Hashes the GameObject's world position to produce a deterministic
+  per-instance phase offset, so neighboring torches don't flicker
+  in lock-step.
+- Restores base values OnDisable (deterministic for screenshots).
+
+**Tuning:** `IntensityWobble` defaults to ±15%, `RadiusWobble` to
+±4%, `Speed` to 2.5 (≈candle pace; 4.0 ≈ torch; 1.2 ≈ ember).
+All sliders are exposed on the Inspector for per-light tuning.
+
+### 2. `Assets/Animations/TorchFlicker.anim`
+
+Hand-authored AnimationClip (1-second loop) with:
+- 8-keyframe `m_Intensity` curve (cycles 1.0 → 1.22 → 0.92 → 1.0).
+- 5-keyframe `m_PointLightOuterRadius` curve (cycles 4.0 → 4.15
+  → 3.92 → 4.08 → 4.0).
+
+This is an **alternate path** for designers who prefer Animator-
+driven keyframes over the script. Both produce equivalent visible
+output; the script is preferred at scene-setup time because it
+needs no Animator + Controller wiring.
+
+### 3. `Assets/Animations/TorchFlicker.controller`
+
+Skeletal AnimatorController with a single `Flicker` default state.
+**Note:** the MCP `controller_add_state` action created the state
+but did NOT auto-attach the .anim motion (returned `hasMotion: false`).
+Manual fix needed: open the controller in the Animator window and
+drag `TorchFlicker.anim` onto the Flicker state. Flagged as a 🟡
+finding for the MCP toolkit.
+
+### 4. `Assets/Scripts/CavesOfOoo.asmdef` — +1 reference
+
+Added `Unity.RenderPipelines.Universal.2D.Runtime` so any code
+under the project's main assembly can reference the `Light2D`
+class. Without this, Light2DFlicker.cs failed to compile with
+`CS0246: Light2D could not be found`. The package's asmdef has
+`autoReferenced: true`, but project-level asmdefs override
+auto-referencing — so the reference must be explicit.
+
+**Side-effect:** any future script in `Assets/Scripts/` can now
+use `Light2D` without per-script asmdef setup.
+
+## Tools exercised in Pass 2
+
+| Tool | Action(s) | Notes |
+|---|---|---|
+| `manage_animation` | `clip_create`, `clip_add_curve` ×2, `controller_create`, `controller_add_state`, `controller_get_info` | Asset creation works; controller-state-motion attachment did NOT (open finding). |
+
+## Pass 2 findings
+
+- **🟡 Pass-2-1:** `manage_animation`'s `controller_add_state` action
+  ignores the `motionPath` property in `properties` — the state is
+  created but `hasMotion: false`. Workaround: manual editor wiring,
+  OR write the AnimatorController YAML directly via Edit. Documented
+  as a manual-fix step for any future user. Recommend filing on the
+  MCP repo if this is reproducible.
+- **🟢 Pass-2-2:** Project's `CavesOfOoo.asmdef` did not reference the
+  URP 2D runtime, so `Light2D` was inaccessible to project code.
+  Added the reference; future Light2D-using scripts now compile.
+  The fix is mechanical and harmless; the only risk is a marginal
+  increase in compile-time dependencies for the main assembly.
+
+## Verification posture (Pass 2)
+
+**Can verify (script-observable):**
+- AnimationClip exists with 2 curves × 13 total keyframes.
+- AnimatorController exists with 1 layer + 1 default state.
+- Light2DFlicker.cs compiles cleanly with the asmdef reference.
+- Regression sweep across SL.2-4 + Rental + OnHit + Skill adversarial
+  groups: **110/110 GREEN** after the asmdef change.
+
+**Cannot verify (visual / feel):**
+- Whether the Perlin-noise tuning constants (IntensityWobble=0.15,
+  RadiusWobble=0.04, Speed=2.5) feel right under actual lighting.
+  Needs Play-mode playtest with a Light2D-equipped scene.
+
+## Pass 3 candidates (deferred)
+
+In rough priority order:
+
+1. **Wire Light2DFlicker into existing scenarios** that have lanterns
+   (LanternSitePart, settlement scenes). Validate the tuning visually.
+2. **VFX Graph asset for combat impacts** (still deferred from Pass 1).
+3. **Per-zone Volume overrides** for biome color grading.
+4. **Bloom-emissive bumps on status effect colors**.
+5. **Investigate the controller_add_state motion-attachment bug** in
+   the MCP toolkit; either fix upstream or document the workaround
+   more visibly.
+
+---
+
+*End of Pass 2. Pass 3 plan TBD pending playtest feedback.*
