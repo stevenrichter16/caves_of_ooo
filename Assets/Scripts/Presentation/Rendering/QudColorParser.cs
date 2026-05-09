@@ -29,6 +29,20 @@ namespace CavesOfOoo.Rendering
         public static readonly Color White       = new Color(1.00f, 1.00f, 1.00f); // Y
         public static readonly Color Transparent = new Color(0f, 0f, 0f, 0f);
 
+        // HDR (high-dynamic-range) variants — RGB values exceed 1.0 so the
+        // URP Bloom volume effect (threshold ~1.05 per Pass 1 plan) actually
+        // fires on these colors. Used for "glowing" status effects:
+        // Burning, Acidic, Electrified, Frozen, Poisoned. Status effects
+        // that should NOT bloom (Bleeding, etc.) keep their SDR codes.
+        // Triggered by the 3-char prefix &*X where X is the SDR code letter.
+        // See Docs/GRAPHICS.md § Pass 3 §3.B.2 for the contract.
+        public static readonly Color HdrBrightRed     = new Color(2.40f, 0.40f, 0.10f); // *R — burning
+        public static readonly Color HdrBrightGreen   = new Color(0.30f, 2.20f, 0.30f); // *G — acidic / poisoned
+        public static readonly Color HdrBrightYellow  = new Color(2.30f, 2.10f, 0.40f); // *Y — electric
+        public static readonly Color HdrBrightCyan    = new Color(0.30f, 2.00f, 2.40f); // *C — frozen
+        public static readonly Color HdrBrightMagenta = new Color(2.00f, 0.40f, 2.20f); // *M — arcane
+        public static readonly Color HdrWhite         = new Color(1.80f, 1.80f, 1.80f); // *W — sun-bright
+
         /// <summary>
         /// Parse a Qud color string like "&amp;Y" or "&amp;c" into a Unity Color.
         /// Returns white if unparseable.
@@ -38,18 +52,30 @@ namespace CavesOfOoo.Rendering
             if (string.IsNullOrEmpty(colorString) || colorString.Length < 2)
                 return Gray;
 
-            // Find the color code after '&'
+            // Find the color code after '&'. The HDR prefix is "&*X"
+            // (3 chars total): & followed by * followed by the SDR
+            // letter. SDR codes remain unchanged ("&X" — 2 chars).
             char code = ' ';
+            bool hdr = false;
             for (int i = 0; i < colorString.Length - 1; i++)
             {
                 if (colorString[i] == '&')
                 {
-                    code = colorString[i + 1];
+                    char next = colorString[i + 1];
+                    if (next == '*' && i + 2 < colorString.Length)
+                    {
+                        hdr = true;
+                        code = colorString[i + 2];
+                    }
+                    else
+                    {
+                        code = next;
+                    }
                     break;
                 }
             }
 
-            return CharToColor(code);
+            return hdr ? CharToHdrColor(code) : CharToColor(code);
         }
 
         /// <summary>
@@ -111,6 +137,31 @@ namespace CavesOfOoo.Rendering
                 case 'M': return BrightMagenta;
                 case 'C': return BrightCyan;
                 case 'Y': return White;
+
+                default:  return Gray;
+            }
+        }
+
+        /// <summary>
+        /// Convert a single color character to an HDR Unity Color (RGB
+        /// components can exceed 1.0). Used by the &amp;* prefix to opt
+        /// specific glyphs into URP Bloom — see GRAPHICS.md §3.B.2.
+        /// Falls back to Gray for unknown codes.
+        /// </summary>
+        public static Color CharToHdrColor(char c)
+        {
+            switch (c)
+            {
+                case 'R': return HdrBrightRed;
+                case 'G': return HdrBrightGreen;
+                case 'W':
+                case 'Y': return c == 'Y' ? HdrBrightYellow : HdrWhite;
+                // ^ &*Y → HdrBrightYellow (Y is the "yellow" SDR code in
+                //   this palette — see line 25 — White is &Y too, but
+                //   HDR yellow is the more useful semantic for glowing
+                //   electric effects). &*W → HdrWhite (sun-bright).
+                case 'M': return HdrBrightMagenta;
+                case 'C': return HdrBrightCyan;
 
                 default:  return Gray;
             }

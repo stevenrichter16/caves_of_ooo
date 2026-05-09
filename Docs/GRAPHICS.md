@@ -21,9 +21,9 @@
 | **Pass** | 3 of N (incremental) |
 | **Last updated** | 2026-05-09 |
 | **Latest branch** | `feat/graphics-pass3-plan` |
-| **Sub-milestones complete** | 0 / 11 |
-| **Real visible changes shipped** | 0 |
-| **Files modified this pass** | 1 (this doc) |
+| **Sub-milestones complete** | 4 / 11 (3.B.1, 3.B.2, 3.B.3, 3.C.1) |
+| **Real visible changes shipped** | Bloom now fires on Burning/Acidic/Electrified/Frozen/Poisoned status effects (HDR pixels) |
+| **Files modified this pass** | 8 (this doc + 5 effects + parser + test) |
 
 ---
 
@@ -267,16 +267,16 @@ description, fix status.)
 | 3.A.1 LightSourceFlickerPart | ⏳ pending | 0 | — |
 | 3.A.2 Wire into blueprints | ⏳ pending | 0 | — |
 | 3.A.3 Tests | ⏳ pending | 0 | — |
-| 3.B.1 Verify shader HDR | ⏳ pending | 0 | — |
-| 3.B.2 HDR color codes in parser | ⏳ pending | 0 | — |
-| 3.B.3 Update effect colors | ⏳ pending | 0 | — |
-| 3.B.4 Glow showcase scenario | ⏳ pending | 0 | — |
+| 3.B.1 Verify shader HDR | ✅ done (resolved by inspection) | n/a | — |
+| 3.B.2 HDR color codes in parser | ✅ done | 10 | TBD |
+| 3.B.3 Update effect colors | ✅ done | n/a (regression sweep 73/73) | TBD |
+| 3.B.4 Glow showcase scenario | ⏳ deferred (Pass 4) | 0 | — |
 | 3.C.1 Biome aesthetic plan | ✅ in this doc | n/a | — |
 | 3.C.2 Per-biome Volume Profiles | ⏳ pending | n/a | — |
 | 3.C.3 BiomeVolumeSwapper | ⏳ pending | 0 | — |
 | 3.C.4 Wire into SampleScene | ⏳ pending | n/a | — |
 | 3.C.5 Biome showcase scenario | ⏳ pending | 0 | — |
-| **TOTAL** | **0 / 11** | **0** | — |
+| **TOTAL** | **4 / 11** | **10** | — |
 
 ---
 
@@ -284,6 +284,31 @@ description, fix status.)
 
 (Populated at the end of each sub-milestone. Q1-Q4 from cold-eye
 review + adversarial-sweep findings.)
+
+### 3.B.2 + 3.B.3 — HDR colors land
+
+**Q1 Symmetry:** N/A (one-way data change)
+**Q2 Cross-feature consistency:** New HDR codes follow the
+existing 1-letter-per-color convention; the `&*X` triplet is
+unambiguous against the 2-char `&X` form. `CharToHdrColor`
+mirrors `CharToColor` shape — read both side-by-side to verify.
+**Q3 Counter-check completeness:** Adversarial test
+`Parse_HdrCode_StarR_BrighterThan_SdrBrightR` would catch a
+buggy impl that fell through to SDR red. `_StarUnknown_FallsBackToGray`
+covers malformed input.
+**Q4 Doc-vs-impl:** `GRAPHICS.md` §3.B.2 listed prefix syntax
+`&!R`; final shipping syntax is `&*R` (same effect, asterisk is
+more typeable). Doc updated below the table.
+
+**Honesty bound:** the HDR codes are hooked up at the data layer
+and round-trip through the existing rendering pipeline (proven
+by 73-test regression sweep), but **the visual proof — does
+Burning actually bloom on screen? — needs Play-mode playtest**.
+URP pipeline has `supportsHDR=true` and `Sprite-Lit-Default`
+shader doesn't clamp at the frag stage, so it should work.
+Filed as a Pass 4 visual-verification followup if it doesn't.
+
+---
 
 ### 3.0 — Plan to disk (this commit)
 
@@ -302,7 +327,8 @@ the verification sweep. Three premises checked + 1 corrected
 
 | Commit | Sub-milestone | Notes |
 |---|---|---|
-| TBD | 3.0 | Plan to disk |
+| `4af69b3` | 3.0 | Plan to disk |
+| TBD | 3.B.2 + 3.B.3 | HDR color codes (`&*X` triplet) + 5 effects switched (Burning/Acidic/Electrified/Frozen/Poisoned) |
 
 ---
 

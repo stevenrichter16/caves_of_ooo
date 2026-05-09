@@ -101,6 +101,6 @@ namespace CavesOfOoo.Core
             return false;
         }
 
-        public override string GetRenderColorOverride() => "&C";
+        public override string GetRenderColorOverride() => "&*C"; // HDR — see GRAPHICS.md §3.B.3
     }
 }
