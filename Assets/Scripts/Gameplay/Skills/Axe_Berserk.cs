@@ -45,6 +45,7 @@ namespace CavesOfOoo.Skills
             if (weapon == null)
             {
                 MessageLog.Add(actor.GetDisplayName() + " needs an axe equipped to go berserk.");
+                EmitSkillRejectedDiag(ctx, "no_weapon");
                 return;
             }
 
