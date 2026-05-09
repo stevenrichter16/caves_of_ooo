@@ -707,7 +707,7 @@ covered or extended; SL-1 + SL-5/14 also remain pinned from SL.2.
 |---|---|---|
 | `cb10cb1` (merge) / `4ac83c6` | SL.1 | Plan to disk |
 | `87ba763` (merge) / `1f79feb` | SL.2 | Tier-3 simple-Part baseline (14 tests, 9 Parts, 0 bugs, 5 contracts pinned) |
-| TBD | SL.3 | Tier-3 Entity-ref round-trip (10 tests, 2 Parts, 0 bugs, 6 contracts pinned, helper extended) |
+| `5f90a16` (merge) / `458b23a` | SL.3 | Tier-3 Entity-ref round-trip (10 tests, 2 Parts, 0 bugs, 6 contracts pinned, helper extended) |
 
 ---
 
