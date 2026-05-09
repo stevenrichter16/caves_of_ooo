@@ -23,8 +23,8 @@
 | **Pass** | 4 of N |
 | **Last updated** | 2026-05-09 |
 | **Branch** | `feat/graphics-pass4-overhaul` |
-| **Sub-milestones complete** | 0 / 8 |
-| **Real visible changes shipped** | 0 (yet) |
+| **Sub-milestones complete** | 5 / 8 (4A.1, 4A.2, 4A.3, 4B.1, 4B.2) |
+| **Real visible changes shipped** | HitStop on crits + kills + CRT phosphor toggle (F12) |
 
 ---
 
@@ -228,19 +228,81 @@ work in LDR — so visual change is guaranteed there.
 
 | Sub-milestone | Status | Tests | Commit |
 |---|---|---|---|
-| 4A.1 HitStopController | ⏳ pending | 0 | — |
-| 4A.2 Wire into combat | ⏳ pending | 0 | — |
-| 4A.3 Tests | ⏳ pending | 0 | — |
-| 4B.1 CRT Volume Profile | ⏳ pending | n/a | — |
-| 4B.2 CRT toggle hotkey | ⏳ pending | 0 | — |
-| 4C.1 WallShadowCasterApplier | ⏳ stretch | 0 | — |
-| 4C.2 Composite shadow caster | ⏳ stretch | n/a | — |
-| 4C.3 Tests + showcase | ⏳ stretch | 0 | — |
-| **TOTAL** | **0 / 8** | **0** | — |
+| 4A.1 HitStopController | ✅ done | 11 | TBD |
+| 4A.2 Wire into combat (crit + kill) | ✅ done | n/a (regression sweep 94/94) | TBD |
+| 4A.3 Tests | ✅ done | 11 | TBD |
+| 4B.1 CRT Volume Profile + 4 effects (Vignette, LensDistortion, FilmGrain, ChromaticAberration) | ✅ done | n/a | TBD |
+| 4B.2 CRT toggle hotkey (F12) + persistence | ✅ done | 4 | TBD |
+| 4C.1 WallShadowCasterApplier | ⏳ deferred (Pass 5) | 0 | — |
+| 4C.2 Composite shadow caster | ⏳ deferred (Pass 5) | n/a | — |
+| 4C.3 Tests + showcase | ⏳ deferred (Pass 5) | 0 | — |
+| **TOTAL** | **5 / 8** | **15** | — |
 
 ---
 
 ## Self-review log
+
+### 4A — HitStop (combat impact frames)
+
+**Q1 Symmetry:** the three Punch tiers (Light/Medium/Heavy) follow
+a clean ascending duration order; constants enforce ordering.
+**Q2 Cross-feature consistency:** singleton pattern matches the
+`HitStopController.Instance` lookup that `CombatSystem.cs:309`
+performs. AddComponent in `GameBootstrap` mirrors the pattern
+used for `InputHandler`, `ScreenFade`, `InventoryUI`, etc.
+**Q3 Counter-check completeness:** 11 tests cover:
+- Punch sets timeScale → 0 (positive case)
+- After enough realtime elapses, timeScale restored (positive)
+- Partial advance keeps freeze active (counter)
+- Nested longer punch extends (positive)
+- Nested shorter punch DOES NOT truncate (adversarial — would
+  catch a buggy impl that overwrites with latest value)
+- No-Punch-no-change (counter)
+- Zero/negative duration is no-op (defensive)
+- Constants are ordered Light < Medium < Heavy (sanity)
+- All 3 tier helpers map to the right durations (regression)
+
+**Q4 Doc-vs-impl drift:** Plan said singleton via Awake; impl ships
+that. Plan said combat hooks at line ~317; impl wired exactly there
+with the comment block citing both `naturalTwenty` (crit) and
+`hpAfter <= 0` (kill).
+
+**Honesty bound:** the freeze logic is fully verified by 11 tests.
+The visual effect (does combat actually feel weighty?) needs
+PlayMode playtest.
+
+---
+
+### 4B — CRT phosphor overlay
+
+**Q1 Symmetry:** the CRT Volume mirrors the existing `Global Volume`
+shape from Pass 1 (same Volume component config, same priority
+hierarchy). Distinguishing field: `priority: 1` vs Pass 1's `0` so
+when both active the CRT overlays the global grade.
+
+**Q2 Cross-feature consistency:** profile path naming
+(`CavesOfOoo_CrtVolume.asset`) matches the convention from Pass 1
+(`CavesOfOoo_VolumeProfile.asset`) and Pass 3
+(`CavesOfOoo_<Biome>.asset`).
+
+**Q3 Counter-check completeness:** 4 tests cover toggle behavior:
+- From-off-turns-on
+- From-on-turns-off
+- Two-toggles-returns-to-original
+- No-volume-bound is defensive (no-crash)
+
+**Q4 Doc-vs-impl drift:** Plan said hotkey F12; impl ships F12.
+Plan said PlayerPrefs persistence; impl ships that.
+
+**Honesty bound:** the toggle wiring is fully tested. Whether the
+CRT overlay actually LOOKS like a CRT vs just looking dim — that's
+PlayMode playtest. The 4 effects (Vignette boosted + rounded,
+LensDistortion subtle barrel, FilmGrain phosphor noise,
+ChromaticAberration slight RGB fringe) are the canonical CRT
+ingredient list. If the look isn't enough, custom shader is
+deferred to 4B.3 (Pass 5).
+
+---
 
 ### 4.0 — Plan to disk (this commit)
 
@@ -259,7 +321,8 @@ for every claim. Verified via grep before writing.
 
 | Commit | Sub-milestone | Notes |
 |---|---|---|
-| TBD | 4.0 | Pass 4 plan to disk |
+| `addec9b` | 4.0 | Pass 4 plan to disk |
+| TBD | 4A + 4B | HitStop (controller + combat wire + bootstrap) + CRT phosphor (Volume profile + toggle controller + bootstrap wire) |
 
 ---
 
