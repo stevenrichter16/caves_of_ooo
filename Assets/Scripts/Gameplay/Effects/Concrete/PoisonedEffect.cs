@@ -51,7 +51,7 @@ namespace CavesOfOoo.Core
             return false;
         }
 
-        public override string GetRenderColorOverride() => "&G";
+        public override string GetRenderColorOverride() => "&*G"; // HDR — see GRAPHICS.md §3.B.3
 
         public AsciiFxTheme GetAuraTheme() => AsciiFxTheme.Poison;
     }
