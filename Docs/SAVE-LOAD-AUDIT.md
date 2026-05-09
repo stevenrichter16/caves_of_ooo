@@ -12,14 +12,14 @@
 
 | Field | Value |
 |---|---|
-| **Current sub-milestone** | SL.3 — Tier-3 Entity-ref round-trip ✅ COMPLETE |
+| **Current sub-milestone** | SL.4 — Tier-3 collection round-trip ✅ COMPLETE |
 | **Last updated** | 2026-05-09 |
-| **Total tests added** | 14 (SL.2) + 10 (SL.3) = 24 |
-| **Total Part types audited** | 11 / ~62 (SL.2: 9; SL.3: PhysicsPart Entity refs + ContainerPart) |
+| **Total tests added** | 14 (SL.2) + 10 (SL.3) + 6 (SL.4) = 30 |
+| **Total Part types audited** | 12 / ~62 (SL.2: 9; SL.3: 2; SL.4: SkillsPart) |
 | **Real bugs found** | 0 |
 | **Real bugs fixed** | 0 |
-| **Contracts pinned** | 5 (SL.2) + 6 (SL.3) = 11 |
-| **Latest commit** | TBD on SL.3 merge |
+| **Contracts pinned** | 5 (SL.2) + 6 (SL.3) + 4 (SL.4) = 15 |
+| **Latest commit** | TBD on SL.4 merge |
 
 ---
 
@@ -334,21 +334,83 @@ can't conflate the two.
   use `WriteCollectionElement` which routes to `WriteEntityReference`
   for `Entity`-typed elements (`SaveSystem.cs:1767-1770`).
 
-### SL.4 — Tier-3 Parts with collections
+### SL.4 — Tier-3 Parts with collections ✅ COMPLETE
 
-**Scope:** Audit Parts holding `List<>`, `Dict<>`, arrays.
+**Scope:** Audit pure-Tier-3 Parts holding `List<>`, `Dict<>`,
+arrays, or `HashSet<>` of NON-Entity types.
 
-**Targets (preliminary scan):**
-- `Body` (already explicit handler — verify completeness)
-- `InventoryPart` (explicit; verify EquippedItems dict round-trip)
-- `MaterialPart` (lists of material tags)
-- `CampfirePart`, `OvenSitePart`, `WellSitePart` (settlement state)
-- `HouseDramaPart` (likely complex state)
-- `CorpsePart` (any inventory? loot list?)
+**Re-scoped during execution:** the preliminary list mixed many
+non-Tier-3 candidates. Source survey showed:
+- `Body`, `InventoryPart` are Tier-1 explicit handlers → SL.7
+- `MaterialPart.MaterialTags` (HashSet&lt;string&gt;) was already
+  pinned in SL.2 ✓
+- `ContainerPart.Contents` (List&lt;Entity&gt;) was already pinned in
+  SL.3 ✓
+- `MeleeWeaponPart.OnHitEffectsCachedSpecs` is a PROPERTY (not a
+  field), backing field `_cachedOnHitEffectSpecs` is private →
+  reflection skips both. The cache is lazily reparsed from
+  `OnHitEffectsRaw` after load. **No round-trip concern.**
+- `CampfirePart` / `OvenSitePart` / `WellSitePart` / `CorpsePart`
+  do NOT have public collection fields per source survey — flagged
+  as ⚪ "no SL.4 surface" (revisit in SL.5 for private state).
+- `HouseDramaPart` does have collections; deferred to a follow-up
+  HouseDrama-specific audit due to its size and the standalone
+  HouseDramaRuntime / DataLoader subsystem.
 
-**Expected:** Collection types are mostly supported via WriteFieldValue,
-but order-dependent state (e.g., List<X> where order matters) might
-flip on load. Some struct collections may break.
+**Targets (final):**
+- `SkillsPart.SkillList` (List&lt;BaseSkillPart&gt;) ✅ — Tier-3
+  with custom-class elements, depends on `OnAfterLoad` to rebuild
+  from `ParentEntity.Parts`.
+
+**Result:** 6 tests, 0 bugs found, 4 contracts pinned + helper
+extended.
+
+**Major helper extension (Finding #12):**
+The previous helpers (`RoundTripEntity`, `RoundTripEntityWithBodies`)
+both call `LoadEntityBody` directly on the primary entity, which
+**bypasses `OnAfterLoad` and `FinalizeLoad` for that entity**
+(those hooks run only inside `ReadEntityBodies`, which iterates
+`SaveReader._loadedEntities` — a list populated only by
+`ReadEntityReference` calls). For Parts whose correctness depends
+on those hooks (`SkillsPart`, `MutationsPart`), this gap means the
+loaded state has identity divergence between the convenience cache
+and the entity's Parts list.
+
+SL.4 added `RoundTripEntityViaTokenGraph` which queues the source
+as a token (via `WriteEntityReference`) and reads it back via
+`ReadEntityReference` + `ReadEntityBodies` — exactly mirroring
+production's `GameSessionState.Restore` flow. This helper invokes
+the post-load hooks correctly.
+
+**Deliverables:**
+- Modified `Assets/Tests/EditMode/TestSupport/PartRoundTripHelper.cs`
+  — added `RoundTripEntityViaTokenGraph` (production-faithful
+  primary-entity round-trip).
+- New `Assets/Tests/EditMode/Gameplay/Save/Tier3CollectionRoundTripTests.cs`
+  — 6 adversarial tests: empty SkillList round-trip (1), single-skill
+  round-trip with identity resolution (1), concrete-subtype preservation
+  (1), ParentEntity wiring (1), helper-distinction adversarial (1),
+  multi-skill / duplicate-rejection (1).
+
+**Findings (see Findings log below):**
+- 🟡 #12 — `RoundTripEntity` and `RoundTripEntityWithBodies` do NOT
+  invoke `OnAfterLoad`/`FinalizeLoad` on the primary entity's Parts.
+  Test-infra concern — production flow always primes via
+  `ReadEntityReference`. Pinned by adversarial test that exposes
+  the SkillList identity divergence under WithBodies; fixed by
+  `RoundTripEntityViaTokenGraph`.
+- 🔵 #13 — `WriteTypedObject`/`ReadTypedObject` (`SaveSystem.cs:1786-1820`)
+  preserves the concrete C# type for custom-class collection
+  elements. Pinned by `_PreservesConcreteSubtype_NotJustBaseSkillPart`.
+- 🔵 #14 — Loaded `BaseSkillPart.ParentEntity` correctly references
+  the loaded entity (not the source, not null). The Part-system load
+  path sets ParentEntity at `SaveSystem.cs:655`. Pinned by
+  `_LoadedSkill_HasParentEntityWired`.
+- 🔵 #15 — `SkillsPart.AddSkill` rejects duplicate skill types
+  (returns false). Pin pinned as a side-effect of the multi-skill
+  test — relevant to save/load because if AddSkill weren't
+  duplicate-safe, OnAfterLoad's rebuild-from-Parts would produce
+  duplicates after a save/load cycle.
 
 ### SL.5 — Tier-3 Parts with private/internal state
 
@@ -522,6 +584,10 @@ description, fix status.)
 | 9 | 🔵 | Token=0 sentinel reserved for null Entity ref | Null Entity values write `0` as the token; on load, `ReadEntityReference` returns `null` for token=0 (does NOT create a placeholder). Pinned by `Adversarial_PhysicsPart_NullEntityRefs_RoundTripAsNull`. | Contract pinned. |
 | 10 | 🔵 | `List<Entity>` count=0 round-trips as empty list, not null | `WriteFieldValue` IList path writes `-1` for null and the actual `count` for non-null (including 0). Read path returns null for count=-1 and a fresh `Activator.CreateInstance(type)` for count≥0. Pinned by `Adversarial_ContainerPart_EmptyContents_RoundTripsEmpty`. | Contract pinned. |
 | 11 | 🔵 | `List<Entity>` elements route through `WriteEntityReference` | `WriteCollectionElement` (`SaveSystem.cs:1767-1770`) routes `Entity`-typed elements to `WriteEntityReference`, so Entity items in lists get tokenized + queued for body-write the same way as direct `Entity` field refs. Pinned by `Adversarial_ContainerPart_Contents_FullHelper_RoundTripsAllItems`. | Contract pinned. |
+| 12 | 🟡 | `RoundTripEntity` + `RoundTripEntityWithBodies` helpers (test infra) do NOT invoke `OnAfterLoad`/`FinalizeLoad` on the primary entity | Both helpers call `LoadEntityBody` directly on a fresh Entity. Per `SaveSystem.cs:189-235`, `OnAfterLoad`/`FinalizeLoad` run only inside `ReadEntityBodies`, which iterates `_loadedEntities` (entities reached via `ReadEntityReference` — NOT the primary). For Parts whose correctness depends on these hooks (e.g. `SkillsPart.OnAfterLoad` rebuilds `SkillList` from `ParentEntity.Parts`), this gap produces silent identity divergence between the convenience cache and the entity's Parts. **Test-infra concern, not a production bug** — production's `GameSessionState.Restore` always primes the primary via `ReadEntityReference` so the hooks fire. | Helper extended (`SL.4 commit`): `RoundTripEntityViaTokenGraph` matches production by queuing the primary as a token. Pinned by `Adversarial_RoundTripEntityWithBodies_DoesNotInvokeOnAfterLoad_OnPrimary` + production-faithful tests using the new helper. |
+| 13 | 🔵 | Custom-class collection elements preserve concrete C# subtype on round-trip | `WriteTypedObject` (`SaveSystem.cs:1786-1801`) writes `GetTypeName(actualType)` when the actual type differs from the declared element type, so reflection-loaded `List<BaseSkillPart>` recovers `AcrobaticsSkill` instances (not abstract base instances). Pinned by `Adversarial_SkillsPart_PreservesConcreteSubtype_NotJustBaseSkillPart`. | Contract pinned. |
+| 14 | 🔵 | Loaded Parts have `ParentEntity` correctly wired to the loaded entity | `SaveSystem.cs:655` sets `part.ParentEntity = entity` during `LoadEntityBody`'s Part-loading loop. Pinned by `Adversarial_SkillsPart_LoadedSkill_HasParentEntityWired`. | Contract pinned. |
+| 15 | 🔵 | `SkillsPart.AddSkill` rejects duplicate skill types | `AddSkill` returns false when the entity already owns a skill of the same type. Relevant to save/load because OnAfterLoad rebuilds SkillList from ParentEntity.Parts — if AddSkill weren't duplicate-safe, the rebuild could produce duplicates. Pinned (as side-effect) by `Adversarial_SkillsPart_MultipleSkills_AllRoundTrip`. | Contract pinned. |
 
 ---
 
@@ -534,13 +600,13 @@ description, fix status.)
 | SL.1 | (plan only) | 0 | 0 |
 | SL.2 | Tier3SimplePartRoundTripTests.cs | **14** | **0** |
 | SL.3 | Tier3EntityReferenceRoundTripTests.cs | **10** | **0** |
-| SL.4 | Tier3CollectionRoundTripTests.cs | TBD | TBD |
+| SL.4 | Tier3CollectionRoundTripTests.cs | **6** | **0** |
 | SL.5 | Tier3PrivateStateRoundTripTests.cs | TBD | TBD |
 | SL.6 | EffectRoundTripTests.cs | TBD | TBD |
 | SL.7 | Tier1ExplicitHandlerRoundTripTests.cs | TBD | TBD |
 | SL.8 | CrossPartReferenceRoundTripTests.cs | TBD | TBD |
 | SL.9 | MidStateRoundTripTests.cs | TBD | TBD |
-| **TOTAL** | | **24** | **0** |
+| **TOTAL** | | **30** | **0** |
 
 ---
 
@@ -701,6 +767,64 @@ covered or extended; SL-1 + SL-5/14 also remain pinned from SL.2.
 
 ---
 
+### SL.4 — Tier-3 collection round-trip
+
+**Q1 Symmetry (mirror checks):** The new
+`RoundTripEntityViaTokenGraph` helper mirrors production's
+`GameSessionState.Restore` flow — read both side-by-side and the
+queue/dequeue/post-load-hook calls happen at the same relative
+position. The helper now offers three round-trip modes (bare,
+WithBodies, ViaTokenGraph) ordered by faithfulness; future
+contributors can pick the right one for their Part's needs.
+
+**Q2 Cross-feature consistency:** Test naming follows the
+established pattern. New finding-type encoded into test names:
+`_DoesNotInvokeOnAfterLoad_OnPrimary` makes the negated contract
+(what the helper DOES NOT do) immediately legible — useful as
+breaking-test bait for a future helper change.
+
+**Q3 Counter-check completeness:**
+- Empty SkillList counter-checks "buggy impl that always returns
+  `[]` regardless of saved state" (would pass single-skill but
+  not multi-skill).
+- Subtype preservation counter-checks a buggy reflection serializer
+  that always reads back as the declared base type (would FAIL on
+  the abstract `BaseSkillPart` since it can't be instantiated).
+- ParentEntity wiring counter-checks a buggy load path that
+  forgets `part.ParentEntity = entity`.
+- Helper-distinction adversarial test counter-checks a future
+  change that "fixes" WithBodies to invoke OnAfterLoad (which
+  would silently change the SL.2/SL.3 helper semantics).
+
+**Q4 Doc-vs-impl drift:** Audit doc's preliminary SL.4 target list
+included `Body`, `InventoryPart`, `MaterialPart`, `CampfirePart`,
+`OvenSitePart`, `WellSitePart`, `HouseDramaPart`, `CorpsePart`.
+Source survey re-scoped to `SkillsPart` only — most of the others
+are Tier-1 (SL.7) or already covered. **Significantly narrower
+final scope, with rationale for each exclusion.**
+
+**Adversarial-sweep self-check:** Probed bug surfaces SL-5 (Generic
+collection of custom-class), SL-13 (Part with private/derived state
+via OnAfterLoad), SL-16 (Part-with-Part reference / identity
+resolution). 6 tests, 4 contracts pinned, 1 test infra concern
+documented and mitigated.
+
+**Lessons learned (false-premise corrections):**
+1. Initial assumption that `MeleeWeaponPart.OnHitEffectsCachedSpecs`
+   would round-trip via reflection was wrong — verified via source
+   read that it's a property + private backing field, both invisible
+   to the reflection serializer. The lazy-cache pattern is the
+   correct design for this case.
+2. Discovered (NEW) that the previous `RoundTripEntity` /
+   `RoundTripEntityWithBodies` helpers don't run `OnAfterLoad` on
+   the primary entity — a gap that didn't matter for SL.2/SL.3 Parts
+   but matters for `SkillsPart`. Added `RoundTripEntityViaTokenGraph`
+   which routes the primary through the production token-graph load
+   flow. **All existing SL.2/SL.3 tests still pass with the OLD
+   helpers — they're correct for OnAfterLoad-independent Parts.**
+
+---
+
 ## Commit history
 
 | Commit | Sub-milestone | Notes |
@@ -708,6 +832,7 @@ covered or extended; SL-1 + SL-5/14 also remain pinned from SL.2.
 | `cb10cb1` (merge) / `4ac83c6` | SL.1 | Plan to disk |
 | `87ba763` (merge) / `1f79feb` | SL.2 | Tier-3 simple-Part baseline (14 tests, 9 Parts, 0 bugs, 5 contracts pinned) |
 | `5f90a16` (merge) / `458b23a` | SL.3 | Tier-3 Entity-ref round-trip (10 tests, 2 Parts, 0 bugs, 6 contracts pinned, helper extended) |
+| TBD | SL.4 | Tier-3 collection round-trip (6 tests, 1 Part — SkillsPart, 0 bugs, 4 contracts pinned, helper extended w/ ViaTokenGraph) |
 
 ---
 

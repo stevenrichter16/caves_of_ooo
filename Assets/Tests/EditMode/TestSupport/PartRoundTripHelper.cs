@@ -108,5 +108,43 @@ namespace CavesOfOoo.Tests
             SaveGraphSerializer.LoadEntityBody(loaded, reader);
             return loaded;
         }
+
+        /// <summary>
+        /// Production-faithful round-trip: the entity is serialized AS
+        /// AN ENTITY REFERENCE (token + queued body), exactly mirroring
+        /// how production restores entities through
+        /// <c>GameSessionState.Restore</c>'s
+        /// <c>reader.ReadEntityReference()</c> path. The returned
+        /// entity has had its full <c>OnAfterLoad</c> + <c>FinalizeLoad</c>
+        /// hooks invoked on every Part — matching production semantics.
+        ///
+        /// <para>Use this for SL.4+ tests where a Part's correctness
+        /// depends on the load-hook (e.g. <c>SkillsPart.OnAfterLoad</c>
+        /// rebuilds <c>SkillList</c> from <c>ParentEntity.Parts</c>;
+        /// without OnAfterLoad the SkillList holds a parallel set of
+        /// reflection-deserialized BaseSkillPart instances that don't
+        /// match the entity's own Parts list).</para>
+        ///
+        /// <para>Contrast with <see cref="RoundTripEntityWithBodies"/>:
+        /// the previous helper calls <c>LoadEntityBody</c> directly on
+        /// a fresh Entity, which BYPASSES OnAfterLoad/FinalizeLoad
+        /// because the primary entity is never in
+        /// <c>SaveReader._loadedEntities</c>. This helper queues the
+        /// entity via <c>WriteEntityReference</c> + reads it via
+        /// <c>ReadEntityReference</c>, so it IS in the loaded-entities
+        /// list and gets the post-load hooks.</para>
+        /// </summary>
+        public static Entity RoundTripEntityViaTokenGraph(Entity src)
+        {
+            using var stream = new MemoryStream();
+            var writer = new SaveWriter(stream);
+            writer.WriteEntityReference(src); // queue src as token
+            writer.WriteQueuedEntityBodies();
+            stream.Position = 0;
+            var reader = new SaveReader(stream, factory: null);
+            var primary = reader.ReadEntityReference(); // placeholder
+            reader.ReadEntityBodies(); // populates body + runs OnAfterLoad/FinalizeLoad
+            return primary;
+        }
     }
 }
