@@ -328,7 +328,7 @@ the verification sweep. Three premises checked + 1 corrected
 | Commit | Sub-milestone | Notes |
 |---|---|---|
 | `4af69b3` | 3.0 | Plan to disk |
-| TBD | 3.B.2 + 3.B.3 | HDR color codes (`&*X` triplet) + 5 effects switched (Burning/Acidic/Electrified/Frozen/Poisoned) |
+| `3a0e92d` (merge) / `4c31044` | 3.B.2 + 3.B.3 | HDR color codes (`&*X` triplet) + 5 effects switched (Burning/Acidic/Electrified/Frozen/Poisoned) |
 
 ---
 
