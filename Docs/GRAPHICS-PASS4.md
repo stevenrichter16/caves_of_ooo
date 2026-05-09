@@ -322,7 +322,7 @@ for every claim. Verified via grep before writing.
 | Commit | Sub-milestone | Notes |
 |---|---|---|
 | `addec9b` | 4.0 | Pass 4 plan to disk |
-| TBD | 4A + 4B | HitStop (controller + combat wire + bootstrap) + CRT phosphor (Volume profile + toggle controller + bootstrap wire) |
+| `53882b8` (merge) / `bb31c36` | 4A + 4B | HitStop (controller + combat wire + bootstrap) + CRT phosphor (Volume profile + toggle controller + bootstrap wire) |
 
 ---
 
