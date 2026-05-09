@@ -15,7 +15,7 @@
 | **Last updated** | 2026-05-09 |
 | **Latest branch** | `feat/graphics-polish-pass2` |
 | **Pass 1 commit** | `5189e21` (merge) |
-| **Pass 2 commit** | TBD |
+| **Pass 2 commit** | `4bdc9d2` (merge) / `b94fd5a` |
 | **Files modified** | Pass 1: 3 (scene + Volume Profile + this doc); Pass 2: +5 (TorchFlicker.anim + .controller + Light2DFlicker.cs + asmdef change + this doc) |
 | **New runtime cost** | post-processing pass on Main Camera (Pass 1); per-frame Perlin sample per Light2DFlicker-equipped light (Pass 2 — negligible). |
 
