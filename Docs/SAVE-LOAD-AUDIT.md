@@ -19,7 +19,7 @@
 | **Real bugs found** | 0 |
 | **Real bugs fixed** | 0 |
 | **Contracts pinned** | 4 — see Findings log |
-| **Latest commit** | TBD on SL.2 merge |
+| **Latest commit** | `87ba763` (SL.2 merge) |
 
 \* `PhysicsPart` simple fields verified; `InInventory` + `Equipped` Entity references deferred to SL.3.
 
@@ -580,8 +580,8 @@ slated for SL.3-SL.10.
 
 | Commit | Sub-milestone | Notes |
 |---|---|---|
-| TBD | SL.1 | Plan to disk |
-| TBD | SL.2 | Tier-3 simple-Part baseline (14 tests, 9 Parts, 0 bugs, 5 contracts pinned) |
+| `cb10cb1` (merge) / `4ac83c6` | SL.1 | Plan to disk |
+| `87ba763` (merge) / `1f79feb` | SL.2 | Tier-3 simple-Part baseline (14 tests, 9 Parts, 0 bugs, 5 contracts pinned) |
 
 ---
 
