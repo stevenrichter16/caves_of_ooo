@@ -33,7 +33,10 @@ specifics, open that section.
 5. **Counter-checks for every positive assertion.** Every "X happens"
    test pairs with "Y identical-setup-but-flag-flipped does NOT
    happen." Without counter-checks, "the test passes" can mean "the
-   precondition was vacuous." See §3.4.
+   precondition was vacuous." See §3.4. **Note:** counter-checks are
+   per-invariant pairs, distinct from the dedicated adversarial test
+   sweep (§Adversarial test sweep) which probes bug-class taxonomy
+   per-feature. Both gates apply.
 
 6. **Honesty bounds in every PlayMode / live report.** Explicit
    "can verify (script-observable)" and "cannot verify (visual / feel)"
@@ -244,6 +247,143 @@ not doing it compounds.
 multi-commit feature, even when tests are green and the merge
 feels clean. Tests-green-feels-clean is exactly the state where
 latent inconsistencies hide.**
+
+---
+
+## Adversarial test sweep (MANDATORY for any feature with non-trivial state, parser, or cross-actor flows)
+
+**This is a separate gate from the per-sub-milestone "step g"** — that
+step adds 1-3 mutation tests inline with the main suite (`Tests:` at
+the bottom of `<Feature>Tests.cs`). The gate documented here adds a
+**dedicated `<Feature>AdversarialTests.cs` file** with 20-60 tests
+targeting bug classes the happy-path + counter-checks tests can't see.
+
+The two are complementary, not redundant:
+- **Step g (per-invariant):** "if I flip the precondition, does the
+  test still fail?" — pairs with each positive assertion.
+- **This gate (per-feature):** "what bug classes could exist that no
+  per-invariant test would catch?" — driven by a taxonomy of surfaces,
+  not by the spec.
+
+Empirically:
+- Skill-system audit: **80 adversarial tests** found 0 bugs but caught
+  the **pre-WSP8.2 SkillRejected diag gap** (asymmetry between newer
+  and older actives) during the symmetry sub-pass.
+- Rental system: **43 adversarial tests** across two waves found 0
+  bugs in main, but the suite's existence proves invariants like
+  *RentalPart fields round-trip via reflection* + *CanBeTraded veto
+  vs post-return clearance* + *cross-village blueprint matching* —
+  contracts that were undocumented before the test pinned them.
+- On-hit effects: **21 adversarial tests** — the prior-shipment
+  comment in `OnHitEffectFactory.cs` explicitly credits adversarial
+  tests with surfacing the Bleeding-`Magnitude`-vs-`DurationTurns`
+  bug. **A real bug, found by this exact pattern.**
+
+### When to do this gate
+
+Run a dedicated adversarial sweep after a feature ships if **two or
+more** apply:
+
+- Feature touches **state atomicity** (ink + inventory transfer,
+  rent + cooldown, multi-step transactions where partial failure
+  needs rollback).
+- Feature has a **parser** (string → spec, JSON-driven, comma/
+  semicolon-delimited, blueprint-driven content).
+- Feature has **cross-actor flows** (renter / lessor, attacker /
+  defender, source / target, two-party state mutations).
+- Feature has **stacking semantics** (status effects, counters,
+  wallets, charge buffers — anywhere "X already has Y" matters).
+- Feature has **save/load reach** (Parts that survive serialization,
+  whether explicitly handled or via reflection fall-through).
+- Feature has **anti-exploit gates** (sell-veto, can't-double-rent,
+  faction-rep guards — anything where a clever player path could
+  break the design intent).
+- Feature has **probabilistic / RNG-gated behavior** (chance %,
+  effect rolls — boundaries at 0% / 100% / negative).
+- Feature has **diag emission contracts** (when does CommandRouted
+  fire? When SkillRejected? Both? Neither? Order matters.).
+
+### Bug-class taxonomy — surfaces to probe
+
+Use this as a checklist when designing the file. Not every category
+applies to every feature, but reading the list forces you to ask "is
+this surface present?"
+
+| Surface | Probe with |
+|---|---|
+| **State atomicity** | Force a partial-failure path (overweight inventory, missing currency); assert NO partial mutation |
+| **Rollback paths** | Same setup but rollback target — verify the system returns to pre-attempt state |
+| **Save/load reflection** | Round-trip the entity through `SaveGraphSerializer.SaveEntityBody`/`LoadEntityBody`; assert public fields preserved |
+| **Mid-execution death** | Snapshot stability: target dies on swing/tick 1, verify the loop's remaining iterations behave correctly |
+| **Cross-actor flows** | Two-party (renter ≠ lessor), three-party (drop-then-pickup-by-other), cross-instance (same blueprint, different ID) |
+| **Parser malformed inputs** | Null, empty, whitespace-only, only-delimiters, missing required field, non-numeric where int expected, gibberish, mixed-valid-with-malformed |
+| **Stacking semantics** | Re-apply already-present effect; verify NON-stacking returns true from `OnStack`; STACKING extends/accumulates correctly |
+| **Boundary inputs** | Null actor / target / argument across every public API; assert no crash |
+| **Conversation/dialogue actions** | `int.TryParse` failure paths, null listener, missing argument, non-existent blueprint name |
+| **Anti-exploit invariants** | Try the exploit (re-rent, sell-rental, return-to-wrong-actor); assert the gate holds |
+| **Probability boundaries** | chance=0 → never fires; chance=100 → always fires; chance<0 → filtered |
+| **Self-referential gates** | actor == target, ArcaneSurge-style skip-self via Guid (NOT command-name), "item already in inventory" |
+| **Cross-system aggregation** | Multiple modifier sources (skills × mutations) sum correctly via the dispatcher |
+| **Effect-name normalization** | Case-insensitive (`BURNING` ≡ `burning`), aliases (`fire` → BurningEffect), whitespace trim |
+| **Diag dispatch invariants** | Internal rejection emits BOTH `CommandRouted` AND `SkillRejected`; cooldown emits ONLY `CommandRejected`; non-matching events early-out |
+| **Cooldown / re-fire** | Overwrite vs accumulate; second-cast-during-buff-window |
+| **Duplicate add/remove** | AddSkill twice → false; RemoveSkill on unowned → false (idempotent) |
+| **Multi-instance** | Two physical entities with same blueprint name; verify cross-instance equivalence |
+
+### Pattern: a dedicated adversarial file
+
+```
+Assets/Tests/EditMode/.../<Feature>AdversarialTests.cs
+```
+
+Structure:
+- Class `public class <Feature>AdversarialTests`
+- Setup that resets relevant globals (`Diag.ResetAll()`,
+  `MessageLog.Clear()`, `SkillRegistry.ResetForTests()`)
+- Fixture helpers mirroring the per-feature test file
+- Sections grouped by bug class, separated by `// ════════════════`
+  comment banners
+- Each test method prefixed `Adversarial_*` for easy
+  group-name filtering
+- Comments explain WHAT bug class is being probed and WHY a buggy
+  impl would fail the test ("if a future change suppresses
+  CommandRouted on internal bail, queries lose the dispatch trace")
+
+Cumulative coverage measured per-system. The skill-system suite is
+the canonical example: 394 baseline + 109 E2E + 37 + 10 deep
+adversarial = 540+ tests across the surface.
+
+### Process
+
+1. Per-feature tests green ✓
+2. Cold-eye review pass complete ✓
+3. **STOP. Audit the bug-class taxonomy above.** Which surfaces does
+   this feature touch? Two or more → run the gate.
+4. Create `<Feature>AdversarialTests.cs`. Write 20-60 tests across
+   the applicable categories. Group by category. Comment intent.
+5. Run. Investigate every failure — failure means the test caught
+   a real bug, NOT that the test is wrong.
+6. Found a bug? File a `fix/<feature>-adversarial-finding` branch.
+   Single self-contained fix-commit. Update the source comment to
+   credit the adversarial test ("Latent bug surfaced by adversarial
+   tests — see <FileName>"). Push. Merge.
+7. Found nothing? Note "adversarial sweep complete, N tests, 0 bugs
+   found" in the merge commit body. Document the surfaces probed
+   so a future reader knows what's covered (and what isn't).
+
+**Honesty bound: 0 bugs found in an adversarial sweep does NOT
+prove the system is bug-free. Adversarial tests are bounded by the
+bug classes the author imagines. To find truly-novel bug classes
+you'd need fuzzing or property-based testing — out of scope of this
+gate. The gate's value is (a) catching the rare bug it does find +
+(b) creating regression targets so future changes break visibly.**
+
+**Self-directive: I MUST run this gate for any feature where two or
+more taxonomy surfaces apply, even when the per-feature tests are
+green and the cold-eye pass found nothing. The OnHit Bleeding bug
+proves the pattern catches real bugs the other gates miss; the
+absence-of-bugs in skill + rental sweeps creates regression
+infrastructure for future changes.**
 
 ---
 
