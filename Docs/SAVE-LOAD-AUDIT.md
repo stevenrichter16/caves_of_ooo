@@ -12,14 +12,14 @@
 
 | Field | Value |
 |---|---|
-| **Current sub-milestone** | SL.4 — Tier-3 collection round-trip ✅ COMPLETE |
+| **Current sub-milestone** | SL.5 — Tier-3 private/internal state ✅ COMPLETE |
 | **Last updated** | 2026-05-09 |
-| **Total tests added** | 14 (SL.2) + 10 (SL.3) + 6 (SL.4) = 30 |
-| **Total Part types audited** | 12 / ~62 (SL.2: 9; SL.3: 2; SL.4: SkillsPart) |
+| **Total tests added** | 14 (SL.2) + 10 (SL.3) + 6 (SL.4) + 7 (SL.5) = 37 |
+| **Total Part types audited** | 18 / ~62 (SL.2: 9; SL.3: 2; SL.4: 1; SL.5: 6 — DamageFlash, MeleeWeapon, 4× settlement-site) |
 | **Real bugs found** | 0 |
 | **Real bugs fixed** | 0 |
-| **Contracts pinned** | 5 (SL.2) + 6 (SL.3) + 4 (SL.4) = 15 |
-| **Latest commit** | `63d4dfa` (SL.4 merge) |
+| **Contracts pinned** | 5 (SL.2) + 6 (SL.3) + 4 (SL.4) + 4 (SL.5) = 19 |
+| **Latest commit** | TBD on SL.5 merge |
 
 ---
 
@@ -412,19 +412,73 @@ the post-load hooks correctly.
   duplicate-safe, OnAfterLoad's rebuild-from-Parts would produce
   duplicates after a save/load cycle.
 
-### SL.5 — Tier-3 Parts with private/internal state
+### SL.5 — Tier-3 Parts with private/internal state ✅ COMPLETE
 
 **Scope:** Audit Parts that use private fields for state that's
 NOT captured by public-field reflection.
 
-**Targets (preliminary scan):** any Part with `_lazyInit`,
-`_cachedX`, `private XState _state` patterns.
+**Audit-doc prediction:** "Highest probability of finding 🔴 bugs."
 
-**Expected:** Private state is silently lost. The fix pattern is
-either (a) make the field public, (b) use OnAfterLoad to re-derive,
-(c) implement ISaveSerializable.
+**Result: 0 bugs found.** All probed private state was correctly
+designed:
+- Derived caches (e.g., `MeleeWeaponPart._cachedOnHitEffectSpecs`)
+  rebuild lazily from public state; correct.
+- Visual frame counters (`_renderFrameCounter`) reset on load;
+  correct (no continuity needed).
+- One-shot proximity message flags (`_proximityMessageShown`)
+  reset on load; **intentional welcome-back behavior** per the
+  source-comment design.
+- Field-initialized enum caches (`_lastAppliedStage =
+  RepairStage.Fouled`) reset to the initializer value (NOT enum
+  default); correct because `Activator.CreateInstance` runs the
+  default constructor including field initializers.
+- `DamageFlashPart._flashFramesRemaining` resets on load — fresh
+  full-duration flash on next TakeDamage event, correct.
 
-**Highest probability of finding 🔴 bugs.**
+**Contracts pinned (4):**
+- 🔵 #16 — Private fields skipped by reflection serializer; reset
+  to default-or-initializer on load (per `BindingFlags.Instance |
+  BindingFlags.Public` at SaveSystem.cs:1593).
+- 🔵 #17 — `Activator.CreateInstance` runs the constructor +
+  field initializers, so private fields with initializers get
+  their initializer value (NOT type defaults). Pinned by
+  `_LanternSitePart_LastAppliedStage_ResetsToFieldInitializer`.
+- 🔵 #18 — Lazy-rebuild caches that derive from public state
+  (e.g., `MeleeWeaponPart.OnHitEffectsCachedSpecs`) work
+  correctly post-load: cache is null after reflection load, first
+  access triggers parse from public raw string. Pinned by
+  `_MeleeWeaponPart_PrivateLazyCache_RebuildsAfterLoad`.
+- 🔵 #19 — Settlement-site Parts (`LanternSitePart`,
+  `OvenSitePart`, `WellSitePart`) all share the same
+  private-state-resets-on-load pattern. Public fields
+  (`SettlementId`, `SiteId`) preserved; 4 private fields per Part
+  reset. Pinned by 3 separate tests + 1 cross-cutting field-
+  initializer test.
+
+**Targets audited:**
+- `DamageFlashPart` ✅ — `_flashFramesRemaining` private int
+- `LanternSitePart` ✅ — 4 private fields (counter, bool flag,
+  enum, bool)
+- `OvenSitePart` ✅ — 4 private fields
+- `WellSitePart` ✅ — 4 private fields
+- `MeleeWeaponPart` ✅ — `_cachedOnHitEffectSpecs` +
+  `_cachedOnHitEffectsRawSnapshot` lazy cache pair
+- `CampfirePart` ⚪ — same shape as Lantern/Oven/Well; covered by
+  the contract pinned for the others (not separately tested to
+  avoid redundancy)
+
+**Deliverables:**
+- New `Assets/Tests/EditMode/Gameplay/Save/Tier3PrivateStateRoundTripTests.cs`
+  — 7 adversarial tests using reflection helpers
+  (`GetPrivateField` / `SetPrivateField`) to peek at
+  reflection-skipped state.
+
+**Lesson:** the audit-doc's "highest bug probability" prediction
+turned out to be wrong for this codebase. All private state
+encountered was either derived (rebuilds correctly) or visual
+ephemera (resets are correct). This is a strong signal that the
+project's save-load discipline is solid — but the contract pinning
+remains valuable as regression protection.
 
 ### SL.6 — Effect round-trip audit
 
@@ -588,6 +642,10 @@ description, fix status.)
 | 13 | 🔵 | Custom-class collection elements preserve concrete C# subtype on round-trip | `WriteTypedObject` (`SaveSystem.cs:1786-1801`) writes `GetTypeName(actualType)` when the actual type differs from the declared element type, so reflection-loaded `List<BaseSkillPart>` recovers `AcrobaticsSkill` instances (not abstract base instances). Pinned by `Adversarial_SkillsPart_PreservesConcreteSubtype_NotJustBaseSkillPart`. | Contract pinned. |
 | 14 | 🔵 | Loaded Parts have `ParentEntity` correctly wired to the loaded entity | `SaveSystem.cs:655` sets `part.ParentEntity = entity` during `LoadEntityBody`'s Part-loading loop. Pinned by `Adversarial_SkillsPart_LoadedSkill_HasParentEntityWired`. | Contract pinned. |
 | 15 | 🔵 | `SkillsPart.AddSkill` rejects duplicate skill types | `AddSkill` returns false when the entity already owns a skill of the same type. Relevant to save/load because OnAfterLoad rebuilds SkillList from ParentEntity.Parts — if AddSkill weren't duplicate-safe, the rebuild could produce duplicates. Pinned (as side-effect) by `Adversarial_SkillsPart_MultipleSkills_AllRoundTrip`. | Contract pinned. |
+| 16 | 🔵 | Private/internal/protected fields skipped by reflection serializer | `SaveSystem.cs:1593` uses `BindingFlags.Instance \| BindingFlags.Public`, so any non-public field is silently dropped. After load, private fields are at their type-default values OR their field-initializer values (the latter via `Activator.CreateInstance`). | Contract pinned by 7 tests in `Tier3PrivateStateRoundTripTests`. |
+| 17 | 🔵 | `Activator.CreateInstance` runs default constructor + field initializers on load | `SaveSystem.cs:1138` constructs Parts via `Activator.CreateInstance(type)` which runs the default ctor (and any field initializers). So `private RepairStage _lastAppliedStage = RepairStage.Fouled;` gets `Fouled` after load, NOT `RepairStage.None` (enum default). | Pinned by `Adversarial_LanternSitePart_LastAppliedStage_ResetsToFieldInitializer`. |
+| 18 | 🔵 | Lazy-rebuild caches survive load via public-state derivation | Parts that cache derived state in private fields (e.g., `MeleeWeaponPart._cachedOnHitEffectSpecs` derived from public `OnHitEffectsRaw`) work correctly post-load: cache is null after reflection load → first property-getter access triggers parse → cache populated. | Pinned by `Adversarial_MeleeWeaponPart_PrivateLazyCache_RebuildsAfterLoad`. |
+| 19 | 🔵 | Settlement-site Parts share private-state-resets-on-load pattern | `LanternSitePart`, `OvenSitePart`, `WellSitePart` (and presumably `CampfirePart` by structural symmetry — not separately tested) all have identical private fields (`_renderFrameCounter`, `_proximityMessageShown`, `_lastAppliedStage`, `_auraStarted`). All round-trip identically: public IDs preserved, private state resets. | Pinned by 3 separate tests in `Tier3PrivateStateRoundTripTests`. |
 
 ---
 
@@ -601,12 +659,12 @@ description, fix status.)
 | SL.2 | Tier3SimplePartRoundTripTests.cs | **14** | **0** |
 | SL.3 | Tier3EntityReferenceRoundTripTests.cs | **10** | **0** |
 | SL.4 | Tier3CollectionRoundTripTests.cs | **6** | **0** |
-| SL.5 | Tier3PrivateStateRoundTripTests.cs | TBD | TBD |
+| SL.5 | Tier3PrivateStateRoundTripTests.cs | **7** | **0** |
 | SL.6 | EffectRoundTripTests.cs | TBD | TBD |
 | SL.7 | Tier1ExplicitHandlerRoundTripTests.cs | TBD | TBD |
 | SL.8 | CrossPartReferenceRoundTripTests.cs | TBD | TBD |
 | SL.9 | MidStateRoundTripTests.cs | TBD | TBD |
-| **TOTAL** | | **30** | **0** |
+| **TOTAL** | | **37** | **0** |
 
 ---
 
@@ -833,6 +891,7 @@ documented and mitigated.
 | `87ba763` (merge) / `1f79feb` | SL.2 | Tier-3 simple-Part baseline (14 tests, 9 Parts, 0 bugs, 5 contracts pinned) |
 | `5f90a16` (merge) / `458b23a` | SL.3 | Tier-3 Entity-ref round-trip (10 tests, 2 Parts, 0 bugs, 6 contracts pinned, helper extended) |
 | `63d4dfa` (merge) / `5577675` | SL.4 | Tier-3 collection round-trip (6 tests, 1 Part — SkillsPart, 0 bugs, 4 contracts pinned, helper extended w/ ViaTokenGraph) |
+| TBD | SL.5 | Tier-3 private/internal state (7 tests, 6 Parts probed, 0 bugs found despite "highest probability" prediction, 4 contracts pinned) |
 
 ---
 
