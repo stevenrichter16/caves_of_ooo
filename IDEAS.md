@@ -546,9 +546,32 @@
 
   1. Screen fade (visible: salt-sealing-the-eyes effect, ink-saturating-the-iris effect, honey-glazing depending on method).
   2. Black screen with a single line of text: ***"You are filed."***
-  3. The player wakes up on a slab in a **Pale Curation regional preservation chamber** — the closest to where they were Forced-Preserved. The chamber is dim (Pale Curation low-UV strain bio-light per the Bioluminescent Catacomb Economy entry). Around them, **rows of preserved figures** on similar slabs, motionless.
-  4. The Catcher who preserved them is somewhere in the chamber, *now cataloguing* — auditable in the world log: *"Sister Wenil: 'Subject preserved on the [date] by [self]. Salt-Cured. Quality assessment: excellent. Position in archive: row 12, slab 7.' "* The Catcher does not address the player. From the Catcher's perspective the work is done — preservation succeeded — and the player is now a *file*.
-  5. The player can move. With penalties.
+  3. **Kenshi-style displacement.** The player wakes up on a slab in a **Pale Curation preservation chamber** — and **it is not necessarily the chamber closest to where they were preserved.** Pale Curation runs preservation archives across the world, with regional outposts and central archives. *The Catcher's filing instructions determine where the player's preserved body is shipped.* Most cases: shipped to a regional archive one or two zones away (you wake up *displaced* but recoverable). Notable cases (high-value Catcher target, certain story moments, comedic-horror tier outcomes): shipped to **a distant central archive**, possibly multiple zones from where the player was preserved, possibly in a tepui or biome the player has never visited. **The "long way home" is the content.** This is explicitly designed in the spirit of Kenshi's kidnapping mechanic: you wake up far from your goals, your stuff, and your context, and the journey back IS the consequence.
+  4. Around the player on the slab: **rows of preserved figures**, motionless, on similar slabs, in a chamber the player has never seen before. The chamber is dim (Pale Curation low-UV strain bio-light per the Bioluminescent Catacomb Economy entry).
+  5. **Equipment is gone.** The Catcher (and the receiving Pale Curation officers) confiscated the player's inventory as "filing supplies" — weapons, armor, consumables, currency, all logged and stored. Most inventory items are held in a **filing-supplies room** within the same archive (recoverable during escape). Some items, especially preservation-related (salt vials, ink-pots, anything else they could re-use on you) are likely *expended* during your filing — irretrievably consumed. **The player begins the recovery arc with effectively empty inventory**, in a preserved body, in an unfamiliar zone.
+  6. The Catcher who preserved them may or may not be in this chamber — they were not necessarily transported with the body. World-log dialogue from the new chamber's local Pale Curation officers proceeds without recognition: *"Subject filed [date] by Sister Wenil of [original zone]. Salt-Cured. Quality assessment: excellent. Position in archive: row 12, slab 7. Filing complete."*
+  7. The player can move. With penalties.
+
+  **The long-way-home arc — Kenshi-style recovery.** The escape from the chamber is *step one* of a multi-step journey:
+
+  | Step | Activity | Mechanical interest |
+  |---|---|---|
+  | 1. Escape the slab | Sit up, get off the slab, navigate the chamber without being re-filed by patrolling officers | The Pale Curation re-filing comedy beat lives here |
+  | 2. Recover equipment | Find the filing-supplies room and retrieve gear (some items consumed as preservatives are gone) | Players who LEAVE before recovering equipment may regret it later — the gear is geographically anchored to this archive |
+  | 3. Escape the building | Navigate out of the archive complex, past Pale Curation administrative areas, security, possibly through the loading dock where supply caravans arrive | The player can also choose to investigate the archive (read records, find unique lore, identify other forcibly-preserved figures who might be conscious) |
+  | 4. Identify location | The player exits into a zone they may not recognize. World-map orientation becomes a mini-puzzle. NPCs in the surrounding settlement can identify the zone for the player (gestures-only dialogue still works for basic geography questions) | Real spatial dislocation — the player must figure out where they are |
+  | 5. Find un-preservation supplies | Travel to a settlement with the materials needed for their preservation method (water for Salt, oil for Ink, etc.). May require crossing zones | The preserved-state stealth bonus is genuinely useful here — the player traverses zones with reduced combat capacity but improved evasion |
+  | 6. Un-preserve | Apply the un-preservation method | Resin-Cast players cannot self-resolve here — must seek a rescue character |
+  | 7. Travel back | The player has completed the recovery but is now potentially zones away from where they were preserved. **Travel back is its own arc** — encounter NPCs they wouldn't have met, side-content along the way, faction reputation events triggered by the route | The "long way home" is where emergent stories live |
+
+  Each step takes real game-time and real planning. The total recovery arc could be several in-game days for a regional displacement, **a major multi-week character arc for a central-archive displacement.** Players will end up in zones they hadn't planned to visit, meeting NPCs they wouldn't have encountered, and *that's the point.*
+
+  **Variable distance — what determines where the player is shipped:**
+
+  - **Local archive** (1-2 zones away) — default Catcher disposition. Common case.
+  - **Regional archive** (3-5 zones away) — Catchers who specialize in "long-shipment" filing; or the player Forced-Preserved in a zone with no local archive (common in remote tepui slopes and dead-zone borders).
+  - **Central archive** (anywhere on the world map) — reserved for *high-value* preservation cases. Triggered by: player faction reputation in Pale Curation (paradoxically, **higher** reputation may mean the Catchers consider you "important enough for the central"); story-relevant moments where the displacement is narratively earned; specific named-Catcher behaviour patterns (Filer Pais — the clinical-and-documentary one — *always* ships to central, considers all preservation worth central archiving).
+  - **Honey-jar village larder edge case** — *not all preservation goes through Pale Curation infrastructure.* If the player is Forced-Preserved by a catacomb-village Catcher cell that holds Honey-Sealing tradition, the player may wake up *in a honey-jar in that village's larder*, labeled. The escape from the larder is the comedy-horror peak. The villagers may not realize the player is conscious; some will, with horror or fascination.
 
   **The preserved-but-active state — mechanical profile.**
 
@@ -819,6 +842,13 @@ This appendix records every real-world cultural, linguistic, geographical, or bi
 - **Follow-up:** if specific Christian theological resources are referenced in design (e.g., particular Patristic writings), credit them; otherwise the general public-domain Greek-philosophical context is the citation.
 
 ---
+
+### The Fully Preserved Player (geographic-displacement design pattern)
+
+- **Fictional inspiration:** **Kenshi** (Lo-Fi Games) — kidnapping mechanic where defeated characters wake up in cages far from their last location, stripped of equipment, and must escape, recover, and navigate back. The game-design pattern of *"displacement-as-defeat-consequence with the journey home as content"* is the structural inspiration for the Fully Preserved Player's long-way-home arc. *Fictional inspiration, not real-world cultural source* — recorded here per the running-ledger principle that all borrowings should be visible. Like the Falmer borrow under Catacomb-villagers, this is a genre-tribute / borrow, not a cultural-appropriation concern.
+- **What was used:** the *displacement* pattern (you wake up far from where you were defeated, with nothing, and the journey back is the actual content); the *equipment-stripping* pattern (your stuff is somewhere, recoverable but anchored); the *recovery-arc* pattern (the world has continued without you and you must re-engage with it under reduced circumstances).
+- **Stance:** acknowledge Kenshi as inspiration in shipped credits. The CoO Fully Preserved Player implementation is mechanically distinct (preservation is the consequence, not imprisonment; the stealth-improvement-while-preserved + the comedy-horror tonal layer + the cosmic-horror consciousness-ambiguity transfer are all CoO-original). Not all Kenshi-style displacement mechanics are appropriate to lift; the patient tonal register and the Pale Curation re-filing comedy are deliberately *not* Kenshi (Kenshi's tone is harsher and more militarized).
+- **Follow-up:** if specific Kenshi mechanics or content beyond the structural pattern get borrowed (cage-pick mechanics, named NPC types, specific equipment-recovery flows), credit those at ship time.
 
 ### The Preserved (biological preservation system)
 
