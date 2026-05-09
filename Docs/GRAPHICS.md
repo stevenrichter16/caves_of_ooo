@@ -21,9 +21,9 @@
 | **Pass** | 3 of N (incremental) |
 | **Last updated** | 2026-05-09 |
 | **Latest branch** | `feat/graphics-pass3-plan` |
-| **Sub-milestones complete** | 4 / 11 (3.B.1, 3.B.2, 3.B.3, 3.C.1) |
-| **Real visible changes shipped** | Bloom now fires on Burning/Acidic/Electrified/Frozen/Poisoned status effects (HDR pixels) |
-| **Files modified this pass** | 8 (this doc + 5 effects + parser + test) |
+| **Sub-milestones complete** | 7 / 11 (3.B.1-3, 3.A.1-3, 3.C.1) |
+| **Real visible changes shipped** | Bloom on Burning/Acidic/Electrified/Frozen/Poisoned + flicker on Campfire/Torch/WatchLantern |
+| **Files modified this pass** | 12 (doc + 5 effects + parser + flicker part + flicker tests + Objects.json + parser tests) |
 
 ---
 
@@ -264,9 +264,9 @@ description, fix status.)
 
 | Sub-milestone | Status | Tests | Commit |
 |---|---|---|---|
-| 3.A.1 LightSourceFlickerPart | ⏳ pending | 0 | — |
-| 3.A.2 Wire into blueprints | ⏳ pending | 0 | — |
-| 3.A.3 Tests | ⏳ pending | 0 | — |
+| 3.A.1 LightSourceFlickerPart | ✅ done | 7 | TBD |
+| 3.A.2 Wire into blueprints (Campfire/Torch/WatchLantern) | ✅ done | n/a | TBD |
+| 3.A.3 Tests | ✅ done | 7 | TBD |
 | 3.B.1 Verify shader HDR | ✅ done (resolved by inspection) | n/a | — |
 | 3.B.2 HDR color codes in parser | ✅ done | 10 | TBD |
 | 3.B.3 Update effect colors | ✅ done | n/a (regression sweep 73/73) | TBD |
@@ -276,7 +276,7 @@ description, fix status.)
 | 3.C.3 BiomeVolumeSwapper | ⏳ pending | 0 | — |
 | 3.C.4 Wire into SampleScene | ⏳ pending | n/a | — |
 | 3.C.5 Biome showcase scenario | ⏳ pending | 0 | — |
-| **TOTAL** | **4 / 11** | **10** | — |
+| **TOTAL** | **7 / 11** | **17** | — |
 
 ---
 
@@ -284,6 +284,43 @@ description, fix status.)
 
 (Populated at the end of each sub-milestone. Q1-Q4 from cold-eye
 review + adversarial-sweep findings.)
+
+### 3.A.1-3 — LightSourceFlickerPart
+
+**Q1 Symmetry:** New Part mirrors the public-fields shape of
+`Light2DFlicker` (Pass 2): `IntensityWobble` + `Speed` + cached
+`_phaseOffset` + cached `_baseIntensity`. Read both side-by-side
+— the constants and noise math are similar; the difference is
+that LightSourceFlickerPart targets `LightSourcePart.Intensity`
+(this project's actual lighting model) while Light2DFlicker
+targets `Light2D.intensity` (Unity's Light2D component, which
+this project doesn't runtime-spawn).
+
+**Q2 Cross-feature consistency:** Public-field tuning constants
+match the GRAPHICS.md plan: torch 0.18 + Speed 2.5, lantern 0.06
++ Speed 1.0, campfire 0.30 + Speed 1.5. Same naming
+(`IntensityWobble`, `Speed`) as Light2DFlicker so a tuning
+session for one Part informs the other.
+
+**Q3 Counter-check completeness:** 7 tests cover:
+- Defensive (no LightSourcePart → no-op).
+- Modulation actually fires.
+- Same ID → same trajectory (determinism).
+- Different IDs → desync.
+- Wobble bounded by IntensityWobble.
+- Without flicker, intensity is static (negative case).
+- Render event hook fires UpdateIntensityAt (production wiring).
+
+**Q4 Doc-vs-impl:** plan said "subscribe to Render or per-turn
+event"; implementation went with Render (the per-frame event
+that ZoneRenderer.cs:774 fires). Doc updated to reflect actual
+choice.
+
+**Honesty bound:** all flicker math + wiring proven by 7 tests.
+Visual feel ("does the campfire actually look like fire?")
+needs Play-mode playtest to verify.
+
+---
 
 ### 3.B.2 + 3.B.3 — HDR colors land
 
@@ -329,6 +366,7 @@ the verification sweep. Three premises checked + 1 corrected
 |---|---|---|
 | `4af69b3` | 3.0 | Plan to disk |
 | `3a0e92d` (merge) / `4c31044` | 3.B.2 + 3.B.3 | HDR color codes (`&*X` triplet) + 5 effects switched (Burning/Acidic/Electrified/Frozen/Poisoned) |
+| TBD | 3.A.1-3 | LightSourceFlickerPart + 7 tests + wired into Campfire/Torch/WatchLantern blueprints |
 
 ---
 
