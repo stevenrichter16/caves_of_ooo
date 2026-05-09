@@ -252,6 +252,13 @@ latent inconsistencies hide.**
 
 ## Adversarial test sweep (MANDATORY for any feature with non-trivial state, parser, or cross-actor flows)
 
+> **Full playbook: `ADVERSARIAL_TESTING.md` (project root).** That doc
+> is the deep how-to: bug-class taxonomy, strategies for new vs
+> existing features, code patterns, case studies, anti-patterns,
+> reusability guidance for other projects. THIS section is the
+> always-on trigger + checklist; open the playbook when you're
+> actually designing a sweep.
+
 **This is a separate gate from the per-sub-milestone "step g"** — that
 step adds 1-3 mutation tests inline with the main suite (`Tests:` at
 the bottom of `<Feature>Tests.cs`). The gate documented here adds a
@@ -490,6 +497,7 @@ files, mostly visual) or `/Users/steven/qud-decompiled-project/`
 | `Docs/COMBAT-AUDIT-PLAN.md` | Audit cadence pattern (Phases 0-4½ structure) |
 | `Docs/COMBAT-BRANCH-MAP.md` | Branch coverage map (per-method ✅/⚠️/❌) |
 | `Docs/COMBAT-TEST-BACKLOG.md` | Prioritized test entries with format `[#] (TARGET, SEVERITY, BUG_CLASS, PHASE)` |
+| `ADVERSARIAL_TESTING.md` (root) | Adversarial testing methodology playbook — bug-class taxonomy, new-vs-existing strategies, code patterns, case studies. Read before designing any adversarial sweep. |
 | `Docs/MCP_PlayMode_Testing_Strategy.md` | Live-bootstrap testing rules (Rule 1: never fire events via `execute_code`) |
 | `Docs/PERF-FOUNDATION.md` | Optimization patterns, anti-patterns, audit findings (read before adding any feature touching per-frame paths) |
 | `Docs/PERF-COMBAT-INVESTIGATION.md` | Original combat-perf audit (2026-04) — hypotheses + which were red herrings |
