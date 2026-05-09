@@ -19,7 +19,7 @@
 | **Real bugs found** | 0 |
 | **Real bugs fixed** | 0 |
 | **Contracts pinned** | 5 (SL.2) + 6 (SL.3) + 4 (SL.4) = 15 |
-| **Latest commit** | TBD on SL.4 merge |
+| **Latest commit** | `63d4dfa` (SL.4 merge) |
 
 ---
 
@@ -832,7 +832,7 @@ documented and mitigated.
 | `cb10cb1` (merge) / `4ac83c6` | SL.1 | Plan to disk |
 | `87ba763` (merge) / `1f79feb` | SL.2 | Tier-3 simple-Part baseline (14 tests, 9 Parts, 0 bugs, 5 contracts pinned) |
 | `5f90a16` (merge) / `458b23a` | SL.3 | Tier-3 Entity-ref round-trip (10 tests, 2 Parts, 0 bugs, 6 contracts pinned, helper extended) |
-| TBD | SL.4 | Tier-3 collection round-trip (6 tests, 1 Part — SkillsPart, 0 bugs, 4 contracts pinned, helper extended w/ ViaTokenGraph) |
+| `63d4dfa` (merge) / `5577675` | SL.4 | Tier-3 collection round-trip (6 tests, 1 Part — SkillsPart, 0 bugs, 4 contracts pinned, helper extended w/ ViaTokenGraph) |
 
 ---
 
