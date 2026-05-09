@@ -21,9 +21,9 @@
 | **Pass** | 3 of N (incremental) |
 | **Last updated** | 2026-05-09 |
 | **Latest branch** | `feat/graphics-pass3-plan` |
-| **Sub-milestones complete** | 7 / 11 (3.B.1-3, 3.A.1-3, 3.C.1) |
-| **Real visible changes shipped** | Bloom on Burning/Acidic/Electrified/Frozen/Poisoned + flicker on Campfire/Torch/WatchLantern |
-| **Files modified this pass** | 12 (doc + 5 effects + parser + flicker part + flicker tests + Objects.json + parser tests) |
+| **Sub-milestones complete** | 9 / 11 (3.B.1-3, 3.A.1-3, 3.C.1, 3.C.2 (data), 3.C.3 (tests)) |
+| **Real visible changes shipped** | Bloom on 5 status effects + flicker on 3 light blueprints + biome palette data layer pinned |
+| **Files modified this pass** | 16 (doc + 5 effects + parser + 2 parts + 3 test files + Objects.json + BiomePalette + 4 empty profiles) |
 
 ---
 
@@ -272,11 +272,11 @@ description, fix status.)
 | 3.B.3 Update effect colors | ✅ done | n/a (regression sweep 73/73) | TBD |
 | 3.B.4 Glow showcase scenario | ⏳ deferred (Pass 4) | 0 | — |
 | 3.C.1 Biome aesthetic plan | ✅ in this doc | n/a | — |
-| 3.C.2 Per-biome Volume Profiles | ⏳ pending | n/a | — |
-| 3.C.3 BiomeVolumeSwapper | ⏳ pending | 0 | — |
-| 3.C.4 Wire into SampleScene | ⏳ pending | n/a | — |
-| 3.C.5 Biome showcase scenario | ⏳ pending | 0 | — |
-| **TOTAL** | **7 / 11** | **17** | — |
+| 3.C.2 Per-biome data layer (BiomePalette + 4 empty profile assets) | ✅ done (pivot — see below) | 14 | TBD |
+| 3.C.3 Tests for biome palette data | ✅ done (14 tests) | 14 | TBD |
+| 3.C.4 BiomeColorPatcher MonoBehaviour + scene wire-in | ⏳ deferred (Pass 4) | 0 | — |
+| 3.C.5 Biome showcase scenario | ⏳ deferred (Pass 4) | 0 | — |
+| **TOTAL** | **9 / 11** | **31** | — |
 
 ---
 
@@ -284,6 +284,58 @@ description, fix status.)
 
 (Populated at the end of each sub-milestone. Q1-Q4 from cold-eye
 review + adversarial-sweep findings.)
+
+### 3.C.2 + 3.C.3 — Biome palette data layer
+
+**Strategy pivot from the original plan:** During 3.C
+implementation we observed that `manage_graphics.volume_add_effect`
+with a `profile_path` argument silently targets the existing
+"Global Volume" GameObject rather than the named profile asset
+— and clobbers existing effects in the process. (Pass 1's 4
+effects on Global Volume were temporarily lost; restored
+manually before commit.)
+
+The 4 empty `CavesOfOoo_<Biome>.asset` profile assets exist
+on disk but have no effects on them; populating them via the
+MCP toolkit is unreliable. Working around requires direct YAML
+editing — out of scope for this pass.
+
+**Pivot:** instead of 4 separate Volume Profile assets, ship a
+single `BiomePalette` struct + static lookup that holds
+biome-specific tuning constants. A future Pass 4 will write
+the runtime `BiomeColorPatcher` MonoBehaviour that finds the
+active Volume's ColorAdjustments + Vignette overrides and
+patches their parameters from `BiomePalette.GetForBiome()`.
+
+This is cleaner than 4 separate assets:
+- Easier to tune (one C# file vs 4 binary `.asset` files).
+- Diff-friendly version control.
+- Unit-testable (14 tests pin all 4 palette invariants).
+- No Volume-asset toolkit dependency.
+
+**Q1 Symmetry:** N/A (one-way data class)
+**Q2 Cross-feature consistency:** Field names map cleanly to
+URP Volume effect param names (ColorFilter →
+`ColorAdjustments.colorFilter`; Contrast →
+`ColorAdjustments.contrast`; etc.). Future Pass 4 patcher
+just maps 1:1.
+**Q3 Counter-check completeness:** 14 tests across:
+- 4 dispatch tests (one per biome).
+- 8 aesthetic invariants (Cave warm + reduced contrast/sat;
+  Cave strong vignette; Desert high contrast/sat; Desert
+  no vignette boost; Jungle green; Ruins desaturated;
+  Ruins cool).
+- 1 determinism test.
+- 1 distinctness adversarial (no two biomes share filters).
+**Q4 Doc-vs-impl drift:** Plan said "4 Volume Profile assets +
+swapper"; ship is "data struct + lookup" because of the MCP
+gap. Doc updated above with rationale.
+
+**Honesty bound:** the data layer is correct + tested. The
+visual application (does Cave actually look amber on screen?)
+needs the deferred Pass 4 patcher + Play-mode playtest.
+
+---
 
 ### 3.A.1-3 — LightSourceFlickerPart
 
@@ -367,6 +419,7 @@ the verification sweep. Three premises checked + 1 corrected
 | `4af69b3` | 3.0 | Plan to disk |
 | `3a0e92d` (merge) / `4c31044` | 3.B.2 + 3.B.3 | HDR color codes (`&*X` triplet) + 5 effects switched (Burning/Acidic/Electrified/Frozen/Poisoned) |
 | `fbb93f3` (direct on main) | 3.A.1-3 | LightSourceFlickerPart + 7 tests + wired into Campfire/Torch/WatchLantern blueprints |
+| TBD | 3.C.2-3 | BiomePalette struct (data + 4 palettes + GetForBiome static) + 14 tests; runtime patcher deferred to Pass 4 |
 
 ---
 
