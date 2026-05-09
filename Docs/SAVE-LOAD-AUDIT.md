@@ -12,16 +12,14 @@
 
 | Field | Value |
 |---|---|
-| **Current sub-milestone** | SL.2 — Tier-3 simple-Part baseline ✅ COMPLETE |
+| **Current sub-milestone** | SL.3 — Tier-3 Entity-ref round-trip ✅ COMPLETE |
 | **Last updated** | 2026-05-09 |
-| **Total tests added** | 14 (`Tier3SimplePartRoundTripTests.cs`) |
-| **Total Part types audited** | 9 / ~62 (Commerce, Physics*, Render, Equippable, Stacker, Examinable, Lifespan, Fuel, Material) |
+| **Total tests added** | 14 (SL.2) + 10 (SL.3) = 24 |
+| **Total Part types audited** | 11 / ~62 (SL.2: 9; SL.3: PhysicsPart Entity refs + ContainerPart) |
 | **Real bugs found** | 0 |
 | **Real bugs fixed** | 0 |
-| **Contracts pinned** | 4 — see Findings log |
-| **Latest commit** | `87ba763` (SL.2 merge) |
-
-\* `PhysicsPart` simple fields verified; `InInventory` + `Equipped` Entity references deferred to SL.3.
+| **Contracts pinned** | 5 (SL.2) + 6 (SL.3) = 11 |
+| **Latest commit** | TBD on SL.3 merge |
 
 ---
 
@@ -270,24 +268,71 @@ build confidence.
 - ⚪ #4 — `MaterialPart` constants (5 floats) round-trip exactly at IEEE 754
   boundary values (75.5, 100, 0.25, 1.75, 0).
 
-### SL.3 — Tier-3 Parts with Entity references (HIGH BUG YIELD)
+### SL.3 — Tier-3 Parts with Entity references ✅ COMPLETE
 
-**Scope:** Audit Parts that hold `public Entity Foo` fields. The
+**Scope:** Audit Tier-3 (reflection-serialized) Parts that hold
+`public Entity Foo` fields or generic collections of Entity. The
 save/load reference resolution is the highest-suspicion surface.
 
-**Targets (preliminary scan):**
-- `BurningEffect.IgnitionSource` (Effect, not Part — but same path)
-- `HookedEffect.Hooker` (Effect)
-- `RentalPart.LessorBlueprintName` (string, not Entity — already verified)
-- `LightSourcePart` — check for entity refs
-- `ConversationPart` — likely references speaker/listener
-- `GlowmawAmbushPart` — likely references the player
-- `SanctuaryPart` — references shrine entities?
-- Trigger parts that reference an "owner" or "trap-layer"
+**Re-scoped during execution:** the SL.3 preliminary target list
+mixed Tier-1 (explicit handler), Tier-3 (reflection), and Effect
+paths. The Effect-path targets (`BurningEffect.IgnitionSource`,
+`HookedEffect.Hooker`, `SittingEffect.Furniture`, base
+`Effect.Owner`) use a separate save flow with constructor bypass
+via `FormatterServices` — re-routed to SL.6. Tier-1 explicit
+handlers (`BrainPart.Target`, `BrainPart.PersonalEnemies`,
+`InventoryPart.Objects` / `EquippedItems`, `Body._Equipped` etc.)
+re-routed to SL.7. SL.3 focuses on the pure Tier-3 reflection path.
 
-**Expected:** Some references survive (via WriteEntityReference);
-some may not (private storage, lookup-on-load patterns). Real bugs
-likely.
+**Targets (final):**
+- `PhysicsPart.InInventory` ✅ (Entity, deferred from SL.2)
+- `PhysicsPart.Equipped` ✅ (Entity, deferred from SL.2)
+- `ContainerPart.Contents` ✅ (List&lt;Entity&gt;)
+- `ContainerPart` simple fields (Preposition, Locked, MaxItems) ✅
+
+**Result:** All round-trip cleanly **provided the Entity-body
+queue is flushed**. **10 tests, 0 bugs found**, 6 contracts pinned.
+
+**Major contract correction logged (Finding #6):**
+The bare `RoundTripEntity` helper (used in SL.2) does NOT
+round-trip Entity refs to populated entities — it produces empty
+placeholders. The full `RoundTripEntityWithBodies` helper (added
+in SL.3) flushes `WriteQueuedEntityBodies` on save and
+`ReadEntityBodies` on load, which is what production does. This
+distinction is now pinned by tests so that future contributors
+can't conflate the two.
+
+**Deliverables:**
+- Modified `Assets/Tests/EditMode/TestSupport/PartRoundTripHelper.cs`
+  — added `RoundTripEntityWithBodies`; corrected misleading
+  `RoundTripEntityWithFactory` docstring (the factory is NOT
+  consulted by `ReadEntityReference`).
+- New `Assets/Tests/EditMode/Gameplay/Save/Tier3EntityReferenceRoundTripTests.cs`
+  — 10 adversarial tests: bare-helper placeholder contract (1),
+  full-helper Entity-body round-trip (2 for `PhysicsPart`),
+  null-Entity counter-check (1), token-dedup (1) + counter-check
+  for distinct entities (1), `ContainerPart.Contents` full round-
+  trip (1) + empty counter-check (1), `ContainerPart` simple-
+  fields (1), cross-Part token-dedup (1).
+
+**Findings (see Findings log below):**
+- 🟡 #6 — `RoundTripEntity` does NOT round-trip Entity-ref bodies.
+  This was hidden behind the SL.2 "PhysicsPart Entity refs deferred"
+  note; SL.3 surfaced and pinned the contract.
+- 🔵 #7 — `EntityFactory` is NOT consulted by
+  `ReadEntityReference`. Used solely by `LoadOverworldZoneManager`
+  for full-game restore. Helper docstring corrected.
+- 🔵 #8 — Token dedup spans the whole save graph, not per-Part.
+  Two refs to the same source entity (whether on the same Part or
+  across Parts) load as a single Entity instance.
+- 🔵 #9 — Token=0 sentinel is reserved for null. Null Entity refs
+  round-trip as null (NOT as an empty placeholder).
+- 🔵 #10 — `List<Entity>` count=0 round-trips as a non-null empty
+  list, not as null. The `IList<T>` write path encodes `count` as
+  -1 for null vs 0 for empty (`SaveSystem.cs:1677, 1741-1743`).
+- 🔵 #11 — `ContainerPart.Contents` (List&lt;Entity&gt;) elements
+  use `WriteCollectionElement` which routes to `WriteEntityReference`
+  for `Entity`-typed elements (`SaveSystem.cs:1767-1770`).
 
 ### SL.4 — Tier-3 Parts with collections
 
@@ -471,6 +516,12 @@ description, fix status.)
 | 3 | ⚪ | `PhysicsPart.InInventory` / `PhysicsPart.Equipped` (`Entity` refs) | Skipped from SL.2 because Entity-reference round-trip needs an `EntityFactory` to resolve on load. Deferred to SL.3. | Deferred → SL.3. |
 | 4 | ⚪ | `FuelPart` 5-float boundary | Verified that `FuelMass=75.5f`, `MaxFuel=100f`, `BurnRate=0.25f`, `HeatOutput=1.75f`, `ExhaustProduct="AshPile"` round-trip with `Assert.AreEqual` (exact float equality, no tolerance). All five values are IEEE 754-representable. | Contract pinned. |
 | 5 | ⚪ | `ExaminablePart.Text` special-char round-trip | `"\"quoted\" with\nnewline + unicode: ñ ☆ → ✦"` round-trips byte-perfect. Counter-checks the SaveWriter UTF-8 string encoding for embedded quotes, newlines, multi-byte unicode codepoints. | Contract pinned. |
+| 6 | 🟡 | `RoundTripEntity` helper (test infrastructure) does NOT round-trip Entity-ref bodies | The bare helper writes the primary entity's body but NOT the queued referenced-entity bodies (no `WriteQueuedEntityBodies` / `ReadEntityBodies` calls). On load, Entity refs become empty placeholder Entities (token-stamped, ID=null, no Parts). **This is a TEST-INFRASTRUCTURE concern, not a production save bug** — production `SaveSystem` always calls the full pair via `GameSessionState.Capture/Restore`. SL.3 added `RoundTripEntityWithBodies` for the full graph round-trip and pinned the placeholder contract for the bare helper. | Helper extended (`SL.3 commit`); contract pinned by `Adversarial_PhysicsPart_InInventory_BareHelper_LoadsAsPlaceholder`. |
+| 7 | 🔵 | `EntityFactory` argument to `SaveReader` is NOT consulted by `ReadEntityReference` | `SaveSystem.cs:174-187` reads tokens from a per-reader `_entityTokens` cache. The factory is stored but only consulted by `LoadOverworldZoneManager` (`SaveSystem.cs:721`) for full-game restore. The audit-plan helper docstring previously implied the factory was needed for cross-entity ref resolution — corrected in SL.3. | Docstring corrected; misleading claim removed. |
+| 8 | 🔵 | Token dedup spans the entire save graph (not per-Part) | If entity X is referenced from PhysicsPart.InInventory AND ContainerPart.Contents[0], both refs share a single token via `_entityTokens`. On load, both fields point to the same loaded Entity instance (`AreSame` reference equality). Pinned by `Adversarial_ContainerWithItemAlsoReferencedByPhysicsParent_DedupesAcrossParts`. | Contract pinned. |
+| 9 | 🔵 | Token=0 sentinel reserved for null Entity ref | Null Entity values write `0` as the token; on load, `ReadEntityReference` returns `null` for token=0 (does NOT create a placeholder). Pinned by `Adversarial_PhysicsPart_NullEntityRefs_RoundTripAsNull`. | Contract pinned. |
+| 10 | 🔵 | `List<Entity>` count=0 round-trips as empty list, not null | `WriteFieldValue` IList path writes `-1` for null and the actual `count` for non-null (including 0). Read path returns null for count=-1 and a fresh `Activator.CreateInstance(type)` for count≥0. Pinned by `Adversarial_ContainerPart_EmptyContents_RoundTripsEmpty`. | Contract pinned. |
+| 11 | 🔵 | `List<Entity>` elements route through `WriteEntityReference` | `WriteCollectionElement` (`SaveSystem.cs:1767-1770`) routes `Entity`-typed elements to `WriteEntityReference`, so Entity items in lists get tokenized + queued for body-write the same way as direct `Entity` field refs. Pinned by `Adversarial_ContainerPart_Contents_FullHelper_RoundTripsAllItems`. | Contract pinned. |
 
 ---
 
@@ -482,14 +533,14 @@ description, fix status.)
 |---|---|---|---|
 | SL.1 | (plan only) | 0 | 0 |
 | SL.2 | Tier3SimplePartRoundTripTests.cs | **14** | **0** |
-| SL.3 | Tier3EntityReferenceRoundTripTests.cs | TBD | TBD |
+| SL.3 | Tier3EntityReferenceRoundTripTests.cs | **10** | **0** |
 | SL.4 | Tier3CollectionRoundTripTests.cs | TBD | TBD |
 | SL.5 | Tier3PrivateStateRoundTripTests.cs | TBD | TBD |
 | SL.6 | EffectRoundTripTests.cs | TBD | TBD |
 | SL.7 | Tier1ExplicitHandlerRoundTripTests.cs | TBD | TBD |
 | SL.8 | CrossPartReferenceRoundTripTests.cs | TBD | TBD |
 | SL.9 | MidStateRoundTripTests.cs | TBD | TBD |
-| **TOTAL** | | **14** | **0** |
+| **TOTAL** | | **24** | **0** |
 
 ---
 
@@ -576,12 +627,87 @@ slated for SL.3-SL.10.
 
 ---
 
+### SL.3 — Tier-3 Entity-ref round-trip
+
+**Q1 Symmetry (mirror checks):** The SL.3 helper
+`RoundTripEntityWithBodies` mirrors the production save flow used
+by `GameSessionState.Capture` / `Restore`:
+`SaveEntityBody` → `WriteQueuedEntityBodies` (save side) and
+`LoadEntityBody` → `ReadEntityBodies` (load side). Read both calls
+side-by-side: the queue/body-flush calls happen at the same
+relative position in both directions. Mirror check passes.
+
+**Q2 Cross-feature consistency:** Test naming follows
+`Adversarial_<Part>_<Field/Behavior>_<RoundTrips|...>` from
+ADVERSARIAL_TESTING.md. New suffix introduced this round:
+`_BareHelper_LoadsAsPlaceholder` and `_FullHelper_RoundTripsBody`
+to disambiguate which helper variant the test exercises. This
+makes the helper-dependency obvious from the test name (and the
+contract distinction obvious from the test pair).
+
+**Q3 Counter-check completeness:** Each positive assertion has
+a counter-check:
+- Bare-helper placeholder pinned by
+  `_BareHelper_LoadsAsPlaceholder`; full-helper body resolution
+  pinned by `_FullHelper_RoundTripsBody`. Cross-pair: would catch
+  a buggy impl that flipped helpers.
+- `_NullEntityRefs_RoundTripAsNull` counter-checks a buggy
+  impl that fabricates placeholders for token=0.
+- `_DifferentEntityRefs_LoadAsDistinctInstances` counter-checks
+  a buggy impl that always dedupes (would conflate distinct
+  entities).
+- `_EmptyContents_RoundTripsEmpty` counter-checks a buggy impl
+  that collapses count=0 to null on load.
+- `_ContainerWithItemAlsoReferencedByPhysicsParent_DedupesAcrossParts`
+  counter-checks per-Part token tables (would produce two
+  instances).
+
+**Q4 Doc-vs-impl drift:** This document's helper-API description
+in §"Implementation pattern" originally implied the factory
+argument was needed for cross-entity ref resolution. Source
+survey at `SaveSystem.cs:174-187, 721` proves the factory is NOT
+consulted by `ReadEntityReference` and is used solely by
+`LoadOverworldZoneManager`. The audit-plan helper section is
+unchanged here (it still describes the original `RoundTripEntity`
++ `RoundTripEntityWithFactory` pair); the new full helper has
+been documented in the helper file's docstring + Findings #6/#7.
+Recommend a follow-up update of the §"Implementation pattern"
+section in a future SL pass — flagged as ⚪ deferred.
+
+**Adversarial-sweep self-check:** Probed bug surfaces SL-4
+(Entity reference round-trip — primary target, 5 tests), SL-5
+(Generic collection of Entity, 3 tests), SL-7 (Object reference
+non-Entity — verified placeholder behavior, 1 test), and an
+implicit cross-Part cohesion probe (1 test). 4 of 16 surfaces
+covered or extended; SL-1 + SL-5/14 also remain pinned from SL.2.
+
+**Lessons learned (false-premise corrections):**
+1. Initial preliminary target list mixed Tier-1 + Tier-3 + Effect
+   paths. Source survey of SaveSystem.cs handler dispatch (line
+   1105+) clarified the boundary: Effects use `SaveEffect` /
+   `LoadEffect` with `FormatterServices` ctor bypass; Tier-1 has
+   explicit handlers; Tier-3 hits `WritePublicFields` reflection.
+   Re-scoped to pure Tier-3 BEFORE writing tests.
+2. Initial helper docstring claim "factory resolves cross-entity
+   references on load" was wrong — caught by source-grepping
+   `reader.Factory` usage. Corrected in helper docstring + audit
+   doc Findings #7.
+3. RED→GREEN cycle was COMPRESSED in SL.3: tests + helper edit
+   shipped together. Acceptable because (a) the helper is a thin
+   pass-through to two known-correct production methods; (b) the
+   contract distinction (bare vs full) is the actual
+   contribution, and that's pinned by the bare-helper placeholder
+   test. Documented as 🟡 in commit body.
+
+---
+
 ## Commit history
 
 | Commit | Sub-milestone | Notes |
 |---|---|---|
 | `cb10cb1` (merge) / `4ac83c6` | SL.1 | Plan to disk |
 | `87ba763` (merge) / `1f79feb` | SL.2 | Tier-3 simple-Part baseline (14 tests, 9 Parts, 0 bugs, 5 contracts pinned) |
+| TBD | SL.3 | Tier-3 Entity-ref round-trip (10 tests, 2 Parts, 0 bugs, 6 contracts pinned, helper extended) |
 
 ---
 
