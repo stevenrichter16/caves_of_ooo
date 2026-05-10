@@ -44,12 +44,21 @@ namespace CavesOfOoo.Core
         public const int HEAL_PERCENT_PER_TURN = 5;
         public const int RESISTANCE_BUFF = 100;
 
-        // Captured pre-hibernation values, restored on OnRemove. Public
-        // so tests can pin them, but no setter (immutable post-OnApply).
+        // Captured pre-hibernation values, restored on OnRemove.
         // Default -1 sentinel = "OnApply hasn't run yet"; OnRemove only
         // restores if these were captured.
-        public int PriorHeatResistance { get; private set; } = -1;
-        public int PriorColdResistance { get; private set; } = -1;
+        //
+        // <b>SL.6.4: must be public FIELDS, not properties with private
+        // setters.</b> SaveSystem.WritePublicFields walks
+        // `BindingFlags.Public | Instance` field set only — the
+        // compiler-generated backing field for a `{ get; private set; }`
+        // property is private, so it would be silently dropped on save.
+        // A creature that saved mid-hibernation would wake up with
+        // resistances stuck at the +100 buff because OnRemove sees the
+        // -1 sentinel post-load (the captured value didn't persist).
+        // Tests in EffectRoundTripPrivateStateTests pin this contract.
+        public int PriorHeatResistance = -1;
+        public int PriorColdResistance = -1;
 
         public HibernatingEffect(int duration = 10)
         {
