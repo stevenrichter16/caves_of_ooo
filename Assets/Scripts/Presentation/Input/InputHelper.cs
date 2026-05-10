@@ -68,6 +68,8 @@ namespace CavesOfOoo.Rendering
             { KeyCode.Semicolon, Key.Semicolon }, { KeyCode.Slash, Key.Slash },
             { KeyCode.Minus, Key.Minus }, { KeyCode.Equals, Key.Equals },
             { KeyCode.LeftBracket, Key.LeftBracket }, { KeyCode.RightBracket, Key.RightBracket },
+            { KeyCode.BackQuote, Key.Backquote }, { KeyCode.Quote, Key.Quote },
+            { KeyCode.Backslash, Key.Backslash },
         };
 
         /// <summary>

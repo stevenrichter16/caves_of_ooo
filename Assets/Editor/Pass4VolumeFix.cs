@@ -31,10 +31,20 @@ public static class Pass4VolumeFix
         StripExistingEffects(profile, PATH);
 
         // Bloom — Pass 1 tunings
+        // BLOOM TUNING NOTE — see Docs/GRAPHICS-PASS4.md fix for context.
+        // Tilemap.SetColor clamps to Color32 (LDR), so HDR codes from
+        // QudColorParser get clipped to [0, 1] before reaching the
+        // framebuffer. The brightest pixel a normal tilemap glyph
+        // can produce is roughly (1.0, 0.33, 0.33) (BrightRed). With
+        // threshold=1.05 (the original HDR-only target), bloom would
+        // never fire on tilemap-rendered glyphs at all. We lower
+        // threshold to 0.80 so SDR-bright glyphs (BrightRed,
+        // BrightYellow, etc.) bloom subtly. Scatter trimmed to 0.5
+        // to keep halos tight at this lower threshold.
         var bloom = AddPersistedComponent<Bloom>(profile, PATH);
-        bloom.threshold.overrideState = true; bloom.threshold.value = 1.05f;
-        bloom.intensity.overrideState = true; bloom.intensity.value = 0.45f;
-        bloom.scatter.overrideState = true; bloom.scatter.value = 0.6f;
+        bloom.threshold.overrideState = true; bloom.threshold.value = 0.80f;
+        bloom.intensity.overrideState = true; bloom.intensity.value = 0.55f;
+        bloom.scatter.overrideState = true; bloom.scatter.value = 0.5f;
         bloom.tint.overrideState = true; bloom.tint.value = new Color(1f, 0.92f, 0.78f, 1f);
 
         var vig = AddPersistedComponent<Vignette>(profile, PATH);
