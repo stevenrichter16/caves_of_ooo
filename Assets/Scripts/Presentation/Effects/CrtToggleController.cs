@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace CavesOfOoo.Presentation.Effects
 {
@@ -31,17 +32,31 @@ namespace CavesOfOoo.Presentation.Effects
 
         private void Awake()
         {
-            _crtVolume = GameObject.Find(CrtVolumeGameObjectName);
+            // CRITICAL: GameObject.Find DOES NOT return inactive
+            // GameObjects. The CRT Volume defaults to disabled (so
+            // post-processing doesn't fire until toggled on), so
+            // GameObject.Find always returns null on Bootstrap →
+            // _crtVolume stays null → hotkey is a permanent no-op.
+            // Use FindObjectsByType with FindObjectsInactive.Include
+            // to walk all Volumes regardless of active state.
+            var allVolumes = UnityEngine.Object.FindObjectsByType<Volume>(
+                FindObjectsInactive.Include, FindObjectsSortMode.None);
+            foreach (var v in allVolumes)
+            {
+                if (v.gameObject.name == CrtVolumeGameObjectName)
+                {
+                    _crtVolume = v.gameObject;
+                    break;
+                }
+            }
             if (_crtVolume == null)
             {
                 if (!_warnedMissing)
                 {
                     Debug.LogWarning($"[CrtToggle] No GameObject named "
-                        + $"'{CrtVolumeGameObjectName}' found in scene. "
-                        + "Toggle hotkey is a no-op. (Pass 4 §4B.1 ships "
-                        + "this GameObject in SampleScene; if you're in "
-                        + "a different scene, the toggle won't have a "
-                        + "Volume to flip.)");
+                        + $"'{CrtVolumeGameObjectName}' found in scene "
+                        + "(checked active + inactive). Toggle hotkey is "
+                        + "a no-op.");
                     _warnedMissing = true;
                 }
                 return;
