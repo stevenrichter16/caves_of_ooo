@@ -157,13 +157,13 @@ off (`\`) vs on.
 
 | Sub-milestone | Status | Tests | Commit |
 |---|---|---|---|
-| 7A.1 Piskel sprite generation | ✅ done (5 sprites: walls, floors, water, doors) | n/a | TBD |
-| 7A.2 Import + slice atlases | ✅ done (Pass7SpriteImporter Editor menu) | n/a | TBD |
-| 7B.1 EnvironmentSpriteRenderer | ✅ done | 3 | TBD |
-| 7B.2 SpriteEnvToggleController | ✅ done | 4 | TBD |
-| 7C.1 Tests | ✅ done | 7 | TBD |
-| 7C.2 Showcase + Play-mode visual verify | ✅ done (screenshot pass7_sprite_env_first.png) | n/a | TBD |
-| **TOTAL** | **6 / 6** | **7** | — |
+| 7A.1 Piskel sprite generation | ✅ done (5 sprites: walls, floors, water, doors) | n/a | d76f478 |
+| 7A.2 Import + slice atlases | ✅ done (Pass7SpriteImporter Editor menu) | n/a | d76f478 |
+| 7B.1 EnvironmentSpriteRenderer | ✅ done | 3 | d76f478 |
+| 7B.2 SpriteEnvToggleController | ✅ done | 4 | d76f478 |
+| 7C.1 Tests | ✅ done | 7 | d76f478 |
+| 7C.2 Showcase + Play-mode visual verify | ✅ done (screenshot pass7_sprite_env_first.png) | n/a | d76f478 |
+| **TOTAL** | **6 / 6** | **7** | merge: e3be601 |
 
 ---
 
