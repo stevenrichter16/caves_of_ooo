@@ -16,7 +16,12 @@ namespace CavesOfOoo.Presentation.Effects
     /// </summary>
     public class CrtToggleController : MonoBehaviour
     {
-        public KeyCode ToggleKey = KeyCode.F12;
+        // Default = Backquote (`/~ key, top-left of keyboard).
+        // Originally F12, but F12 on macOS is the Volume Up function
+        // key AND Unity Editor uses it for "Maximize Game View" — so
+        // it never reached the Update handler. Backquote has zero
+        // OS or editor conflicts and is easy to find.
+        public KeyCode ToggleKey = KeyCode.BackQuote;
         public string CrtVolumeGameObjectName = "CRT Volume";
 
         private const string PREFS_KEY = "CavesOfOoo.CrtEnabled";
