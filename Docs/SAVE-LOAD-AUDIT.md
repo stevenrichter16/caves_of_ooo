@@ -12,11 +12,11 @@
 
 | Field | Value |
 |---|---|
-| **Current sub-milestone** | SL.5 — Tier-3 private/internal state ✅ COMPLETE |
-| **Last updated** | 2026-05-09 |
+| **Current sub-milestone** | SL.6 — Effect round-trip audit (in progress) |
+| **Last updated** | 2026-05-10 |
 | **Total tests added** | 14 (SL.2) + 10 (SL.3) + 6 (SL.4) + 7 (SL.5) = 37 |
 | **Total Part types audited** | 18 / ~62 (SL.2: 9; SL.3: 2; SL.4: 1; SL.5: 6 — DamageFlash, MeleeWeapon, 4× settlement-site) |
-| **Real bugs found** | 0 |
+| **Real bugs found** | 0 (Part audit) — SL.6 verification sweep flags 1 likely Effect bug |
 | **Real bugs fixed** | 0 |
 | **Contracts pinned** | 5 (SL.2) + 6 (SL.3) + 4 (SL.4) + 4 (SL.5) = 19 |
 | **Latest commit** | `278558b` (SL.5 merge) |
@@ -480,21 +480,72 @@ ephemera (resets are correct). This is a strong signal that the
 project's save-load discipline is solid — but the contract pinning
 remains valuable as regression protection.
 
-### SL.6 — Effect round-trip audit
+### SL.6 — Effect round-trip audit (in progress)
 
 **Scope:** All `Effect` subclasses (~20).
 
-**Targets:**
-- BurningEffect (Intensity, IgnitionSource Entity ref, Rng — all 3)
-- BleedingEffect, PoisonedEffect (damageDice strings)
-- StunnedEffect, FrozenEffect, ParalyzedEffect (action-blocking)
-- HibernatingEffect (PriorHeatResistance, PriorColdResistance)
-- ShatterArmorEffect (StackCount)
-- HookedEffect (Hooker entity ref)
-- RootedEffect (just Duration; simple)
-- BerserkEffect (stat shifts)
-- CharredEffect, SmolderingEffect, AcidicEffect, ElectrifiedEffect, WetEffect
-- ConfusedEffect, HobbledEffect, BrokenEffect
+**Verification sweep (SaveSystem.cs:1178-1204):**
+```csharp
+SaveEffect:                      LoadEffect:
+  WriteString(typeName)            ResolveType(reader.ReadString())
+  effect.OnBeforeSave(writer)      FormatterServices.GetUninitializedObject  ⚠ ctor bypassed
+  Write(effect.Duration)           effect.Duration = reader.ReadInt()
+  WritePublicFields(filter Owner   ReadPublicFields  (no OnAfterLoad hook!)
+                    + Duration)
+  effect.OnAfterSave(writer)
+```
+
+`GetSerializablePublicFields` (SaveSystem.cs:1590-1607) walks
+`type.GetFields(Public | Instance)` only — **private fields and
+private-setter property backing fields are silently skipped on save**.
+`LoadEffect` has **no load-side hook** to mirror the save-side
+`OnAfterSave`, so any custom binary written via OnAfterSave can't
+be read back.
+
+**Tier classification:**
+- **Tier-A simple** (just Duration, no payload, no entity refs):
+  RootedEffect, BrokenEffect, SmolderingEffect, ConfusedEffect,
+  HobbledEffect, StunnedEffect, ParalyzedEffect — 7 effects
+- **Tier-A payload** (public fields + System.Random + damageDice):
+  WetEffect (Moisture), AcidicEffect (Corrosion), ElectrifiedEffect
+  (Charge), BleedingEffect (DamageDice + SaveTarget + Rng),
+  BerserkEffect, ShatterArmorEffect (StackCount) — 6 effects
+- **Tier-B entity refs** (creature pointer that must re-resolve):
+  BurningEffect (IgnitionSource), HookedEffect (Hooker) — 2 effects
+- **Tier-C non-default ctor / private state**:
+  PoisonedEffect, FrozenEffect (Cold), HibernatingEffect
+  (PriorHeatResistance/PriorColdResistance — **private setters**),
+  CharredEffect (`_originalCombustibility` — fully private) — 4 effects
+
+**🔴 Likely bug** (to be confirmed via RED test in SL.6.4):
+`HibernatingEffect` declares `public int PriorHeatResistance { get;
+private set; }` and `public int PriorColdResistance { get; private
+set; }`. Their compiler-generated backing fields are private, so
+WritePublicFields skips them. Loading a hibernating creature drops
+its prior resistances → on wake-up it can't restore them.
+
+**Sub-milestones:**
+- **SL.6.1** — Tier-A simple (7 effects, ~12 tests). Each: round-trip
+  Duration, stack-extends-duration semantic, one counter-check.
+- **SL.6.2** — Tier-A payload (6 effects, ~14 tests). Verify
+  payload fields survive (Moisture, Corrosion, Charge, DamageDice,
+  StackCount, BerserkEffect stat shifts). Pin System.Random
+  contract (saved as null, callers tolerate).
+- **SL.6.3** — Tier-B entity refs (2 effects, ~6 tests). Mirror
+  Tier3EntityReferenceRoundTripTests pattern: save world with
+  attacker+defender, defender has BurningEffect.IgnitionSource =
+  attacker, save+load entire graph, verify IgnitionSource still
+  points at the same entity ID.
+- **SL.6.4** — Tier-C (4 effects, ~10 tests). HibernatingEffect:
+  RED test → ship + production fix (convert properties to public
+  fields OR add OnAfterLoad hook). CharredEffect: pin design intent
+  (private state intentionally not preserved; OnApply re-captures).
+
+**Latest test infra:** Effect round-trip needs the
+`RoundTripEntityViaTokenGraph` helper from SL.4 (queues source
+entity + descendants, flushes WriteQueuedEntityBodies, and
+re-resolves references on load). Effects-on-entity tests use
+that path; pure-effect-shape tests can use a lighter helper.
 
 **Special focus:** entity references (IgnitionSource, Hooker) —
 do they round-trip via WriteEntityReference?
