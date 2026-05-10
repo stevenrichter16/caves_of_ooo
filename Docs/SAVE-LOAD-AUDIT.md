@@ -12,15 +12,16 @@
 
 | Field | Value |
 |---|---|
-| **Current sub-milestone** | SL.6 — Effect round-trip audit ✅ COMPLETE |
+| **Current sub-milestone** | SL.7 — Tier-1 explicit handlers ✅ COMPLETE |
 | **Last updated** | 2026-05-10 |
-| **Total tests added** | 14 (SL.2) + 10 (SL.3) + 6 (SL.4) + 7 (SL.5) + 34 (SL.6) = 71 |
-| **Total Part types audited** | 18 / ~62 |
-| **Total Effect types audited** | 18 / 25 (Tier-A simple ×7, Tier-A payload ×5, Tier-B ×2, Tier-C ×4) |
-| **Real bugs found** | **1** — `HibernatingEffect.PriorHeat/ColdResistance` were `{ get; private set; }` properties; backing fields private → silently dropped from save → mid-hibernation save+load corrupted creature resistances. |
-| **Real bugs fixed** | **1** — converted to public fields (commit `75f78e2`). RED→GREEN per CLAUDE.md §1.2. |
-| **Contracts pinned** | 5 (SL.2) + 6 (SL.3) + 4 (SL.4) + 4 (SL.5) + 8 (SL.6) = 27 |
-| **Latest commit** | `75f78e2` (SL.6.4) |
+| **Total tests added** | 14 (SL.2) + 10 (SL.3) + 6 (SL.4) + 7 (SL.5) + 34 (SL.6) + 39 (SL.7) = 110 |
+| **Total Part types audited** | 25 / ~62 (SL.2-5: 18; SL.7: +7 explicit handlers) |
+| **Total Effect types audited** | 18 / 25 |
+| **Real bugs found** | **1** (HibernatingEffect prior-resistance round-trip) |
+| **Real bugs fixed** | **1** (commit `75f78e2`) |
+| **🟡 cleanup candidates flagged** | **1** — MutationsPart wasted-bytes (saves type names that LoadMutationsPart discards; OnAfterLoad's Parts scan does the actual restore). Deferred to a future commit; current contracts pinned by SL.7.6 tests. |
+| **Contracts pinned** | 5 (SL.2) + 6 (SL.3) + 4 (SL.4) + 4 (SL.5) + 8 (SL.6) + 12 (SL.7) = 39 |
+| **Latest commit** | `63a40a6` (SL.7.6) |
 
 ---
 
@@ -551,18 +552,38 @@ that path; pure-effect-shape tests can use a lighter helper.
 **Special focus:** entity references (IgnitionSource, Hooker) —
 do they round-trip via WriteEntityReference?
 
-### SL.7 — Tier-1 explicit handlers — round-trip completeness
+### SL.7 — Tier-1 explicit handlers — round-trip completeness ✅ COMPLETE
 
-**Scope:** Verify explicit handlers preserve full state.
+**Scope:** Verify each explicit Save/Load handler preserves full state.
 
-**Targets:**
-- `SaveStatusEffectsPart` / `LoadStatusEffectsPart`
-- `SaveInventoryPart` / `LoadInventoryPart` (especially EquippedItems)
-- `SaveActivatedAbilitiesPart` (cooldowns, hotkey bindings)
-- `SaveBody` (anatomy tree, equipment slots)
-- `SaveBrainPart` (AI state, current goal, goal stack)
-- `SaveMutationsPart` (mutations + their state)
-- `SaveBitLockerPart` (already explicit; minor)
+**Verification sweep findings (file:line citations):**
+
+| # | Handler | Save → Load symmetry | Risk |
+|---|---|---|---|
+| 1 | `BitLockerPart` (SaveSystem.cs:1206-1235) | Snapshot-based; bits + recipes mirror | ⚪ |
+| 2 | `InventoryPart` (1237-1264) | MaxWeight + Objects + EquippedItems mirror | ⚪ |
+| 3 | `StatusEffectsPart` (1161-1176) | Effect count + SaveEffect/LoadEffect mirror | ⚪ |
+| 4 | `Body` (1304-1330) | Recursive; Body + DismemberedParts; OnAfterLoad re-propagates | ⚪ |
+| 5 | `ActivatedAbilitiesPart` (1266-1302) | AbilityList + SlotAssignments | 🟡 — Load allocates `new Guid[SlotCount=10]`, populates only from saved count. Pin contract: 3/5/10 slot configs round-trip |
+| 6 | `BrainPart` (1413-1487) | Many fields; goal-stack save filters DelegateGoals; parent-chain reconstructed serially on load | 🟡 — pin DelegateGoal-mid-stack scenario; verify Rng reset to fresh instance |
+| 7 | `MutationsPart` (1519-1562) | StartingMutations + MutationList type names + MutationMods + MutationGeneratedEquipment | 🔴 — **Save writes type names but Load discards them entirely.** Restoration depends on `OnAfterLoad` scanning ParentEntity.Parts for BaseMutation instances. Wasted bytes + opaque contract |
+
+**Sub-milestones (smallest-blast-radius-first — pin simpler symmetric
+handlers first; surface 🟡/🔴 contracts later):**
+
+- **SL.7.1** — Plan + verification sweep (this commit)
+- **SL.7.2** — Symmetric simple: `BitLockerPart`, `InventoryPart`,
+  `StatusEffectsPart` round-trip baselines (~12 tests in 3 fixtures)
+- **SL.7.3** — `Body` recursive contract (anatomy tree shape +
+  DismemberedParts) — ~5 tests
+- **SL.7.4** — `ActivatedAbilitiesPart` 🟡 — pin SlotAssignments
+  round-trip across 0/3/10 slot configurations (~6 tests)
+- **SL.7.5** — `BrainPart` 🟡 — pin Rng-reset, goal stack with
+  DelegateGoals, all field round-trips (~8 tests)
+- **SL.7.6** — `MutationsPart` 🔴 — pin the OnAfterLoad-rebuild
+  contract; if rebuild path works, document the wasted writes;
+  if it fails, surface the bug + fix (~6 tests)
+- **SL.7.7** — Cold-eye review + doc backfill + merge
 
 **Why last:** explicit handlers were written by humans aware of the
 state shape, so bug yield is lower. But the surface area is large —
