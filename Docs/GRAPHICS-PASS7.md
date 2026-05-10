@@ -27,7 +27,7 @@
 | **Pass** | 7 of N |
 | **Last updated** | 2026-05-09 |
 | **Branch** | `feat/graphics-pass7-sprite-env` |
-| **Sub-milestones complete** | 0 / 6 |
+| **Sub-milestones complete** | 6 / 6 |
 
 ---
 
@@ -157,13 +157,13 @@ off (`\`) vs on.
 
 | Sub-milestone | Status | Tests | Commit |
 |---|---|---|---|
-| 7A.1 Piskel sprite generation | ⏳ pending | n/a | — |
-| 7A.2 Import + slice atlases | ⏳ pending | n/a | — |
-| 7B.1 EnvironmentSpriteRenderer | ⏳ pending | 0 | — |
-| 7B.2 SpriteEnvToggleController | ⏳ pending | 0 | — |
-| 7C.1 Tests | ⏳ pending | 4 | — |
-| 7C.2 Showcase scenario + commit | ⏳ pending | 1 (smoke) | — |
-| **TOTAL** | **0 / 6** | **0** | — |
+| 7A.1 Piskel sprite generation | ✅ done (5 sprites: walls, floors, water, doors) | n/a | TBD |
+| 7A.2 Import + slice atlases | ✅ done (Pass7SpriteImporter Editor menu) | n/a | TBD |
+| 7B.1 EnvironmentSpriteRenderer | ✅ done | 3 | TBD |
+| 7B.2 SpriteEnvToggleController | ✅ done | 4 | TBD |
+| 7C.1 Tests | ✅ done | 7 | TBD |
+| 7C.2 Showcase + Play-mode visual verify | ✅ done (screenshot pass7_sprite_env_first.png) | n/a | TBD |
+| **TOTAL** | **6 / 6** | **7** | — |
 
 ---
 

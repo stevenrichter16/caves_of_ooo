@@ -311,6 +311,13 @@ namespace CavesOfOoo
                     biomePatcher.ZoneManager = _zoneManager;
                     biomePatcher.SetCurrentZone(_zone);
 
+                    // Pass 7 §7B.2: SpriteEnvToggleController.
+                    // Backslash key toggles the hybrid sprite
+                    // environment (walls/floors/water/doors as
+                    // pixel-art sprites instead of CP437 glyphs).
+                    if (GetComponent<CavesOfOoo.Presentation.Effects.SpriteEnvToggleController>() == null)
+                        gameObject.AddComponent<CavesOfOoo.Presentation.Effects.SpriteEnvToggleController>();
+
                     Debug.Log("[Bootstrap] Step 9/9: Wiring input...");
                     var inputHandler = GetComponent<InputHandler>();
                     if (inputHandler == null)
