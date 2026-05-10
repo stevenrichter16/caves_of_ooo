@@ -743,6 +743,9 @@ namespace CavesOfOoo.Rendering
                 if (_lightSourceHook != null)
                 {
                     bool isDungeon = ZoneIsDungeon(CurrentZone);
+                    // Pass 9 §9B: push player + zone so the player-held
+                    // torch can reposition to the player's current cell.
+                    _lightSourceHook.SetPlayerContext(PlayerEntity, CurrentZone);
                     _lightSourceHook.PostRender(Zone.Width, Zone.Height, isDungeon);
                 }
             }

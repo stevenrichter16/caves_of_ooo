@@ -73,6 +73,26 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void PlayerTorch_DefaultsEnabled()
+        {
+            // Pass 9 §9A — torch ships ON so dim dungeons aren't
+            // unwalkably dark. A future settings screen can flip it
+            // off for "true darkness" purists.
+            Assert.IsTrue(_hook.PlayerTorchEnabled,
+                "PlayerTorchEnabled defaults to true so dungeons are walkable.");
+            Assert.Greater(_hook.PlayerTorchOuterRadius, 0f);
+            Assert.Greater(_hook.PlayerTorchIntensity, 0f);
+        }
+
+        [Test]
+        public void SetPlayerContext_AcceptsNulls_NoCrash()
+        {
+            // Defensive contract — early-bootstrap calls may push null
+            // refs while the Player isn't yet populated.
+            Assert.DoesNotThrow(() => _hook.SetPlayerContext(null, null));
+        }
+
+        [Test]
         public void Tunables_HaveSaneDefaults()
         {
             // Adversarial: a zero outer-radius would mean an invisible

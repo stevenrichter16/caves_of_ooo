@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CavesOfOoo.Core;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
@@ -53,6 +54,18 @@ namespace CavesOfOoo.Presentation.Effects
         [Tooltip("Global Light 2D intensity when an outdoor zone is active.")]
         public float OutdoorAmbientIntensity = 1.0f;
 
+        [Header("Player torch (Pass 9 §9A)")]
+        [Tooltip("If true, spawn a persistent Light2D child that follows "
+            + "the player around the dungeon zone — a held-torch effect "
+            + "so dim zones become walkable without total darkness.")]
+        public bool PlayerTorchEnabled = true;
+        public float PlayerTorchIntensity = 1.4f;
+        public Color PlayerTorchColor = new Color(1.0f, 0.78f, 0.42f, 1f);
+        public float PlayerTorchOuterRadius = 6.5f;
+        public float PlayerTorchInnerRadius = 0.5f;
+        public float PlayerTorchFlickerSpeed = 8.0f;
+        public float PlayerTorchFlickerAmount = 0.12f;
+
         // ── Wiring ─────────────────────────────────────────────────
 
         private Transform _gridParent;
@@ -61,6 +74,14 @@ namespace CavesOfOoo.Presentation.Effects
 
         private readonly Dictionary<Vector3Int, SpawnedLight> _spawned = new();
         private readonly List<Vector3Int> _toRemove = new();
+
+        // Pass 9 — player torch state
+        private GameObject _playerTorchGo;
+        private Light2D _playerTorchLight;
+        // Player + zone are pushed in by ZoneRenderer each PostRender so
+        // we can position the torch at the player's current cell.
+        private Entity _playerEntity;
+        private Zone _activeZone;
 
         public bool IsInitialized { get; private set; }
 
@@ -84,6 +105,17 @@ namespace CavesOfOoo.Presentation.Effects
             IsInitialized = true;
         }
 
+        /// <summary>
+        /// Pass 9 §9B — push the current player + zone references in
+        /// each PostRender so the torch can reposition to the player's
+        /// cell. Cheap; both refs are POCOs.
+        /// </summary>
+        public void SetPlayerContext(Entity player, Zone zone)
+        {
+            _playerEntity = player;
+            _activeZone = zone;
+        }
+
         // ── Per-frame scan (called from ZoneRenderer.PostRender after
         //    EnvironmentSpriteRenderer has painted the overlay) ─────
 
@@ -102,8 +134,14 @@ namespace CavesOfOoo.Presentation.Effects
             if (!LightingEnabled || _overlayTilemap == null)
             {
                 RetireAll();
+                RetirePlayerTorch();
                 return;
             }
+
+            // Pass 9 §9A — player-held torch updates BEFORE we scan
+            // for stationary lights so they all use the same frame's
+            // position state.
+            UpdatePlayerTorch(isDungeon);
 
             // Track which cells currently host light-sources
             var seenThisFrame = new HashSet<Vector3Int>(_spawned.Count);
@@ -184,6 +222,50 @@ namespace CavesOfOoo.Presentation.Effects
             _spawned.Remove(cellPos);
         }
 
+        // ── Player torch (Pass 9) ────────────────────────────────
+
+        private void UpdatePlayerTorch(bool isDungeon)
+        {
+            // Spawn / retire torch based on dungeon state + toggle
+            bool wantTorch = PlayerTorchEnabled && isDungeon
+                && _playerEntity != null && _activeZone != null;
+            if (!wantTorch)
+            {
+                RetirePlayerTorch();
+                return;
+            }
+
+            if (_playerTorchGo == null)
+            {
+                _playerTorchGo = new GameObject("PlayerTorchLight");
+                _playerTorchGo.transform.SetParent(_gridParent != null ? _gridParent : transform, false);
+                _playerTorchLight = _playerTorchGo.AddComponent<Light2D>();
+                _playerTorchLight.lightType = Light2D.LightType.Point;
+                _playerTorchLight.color = PlayerTorchColor;
+                _playerTorchLight.intensity = PlayerTorchIntensity;
+                _playerTorchLight.pointLightInnerRadius = PlayerTorchInnerRadius;
+                _playerTorchLight.pointLightOuterRadius = PlayerTorchOuterRadius;
+                _playerTorchLight.falloffIntensity = 0.55f;
+            }
+
+            // Reposition to player's current cell (cell-center offset)
+            var (px, py) = _activeZone.GetEntityPosition(_playerEntity);
+            if (px >= 0 && py >= 0)
+            {
+                _playerTorchGo.transform.localPosition =
+                    new Vector3(px + 0.5f, py + 0.5f, 0f);
+            }
+        }
+
+        private void RetirePlayerTorch()
+        {
+            if (_playerTorchGo == null) return;
+            if (Application.isPlaying) Destroy(_playerTorchGo);
+            else DestroyImmediate(_playerTorchGo);
+            _playerTorchGo = null;
+            _playerTorchLight = null;
+        }
+
         private void RetireAll()
         {
             foreach (var kvp in _spawned)
@@ -203,6 +285,19 @@ namespace CavesOfOoo.Presentation.Effects
         {
             if (!LightingEnabled) return;
             float t = Time.time;
+
+            // Player torch flicker — same sin+Perlin recipe as
+            // campfires, slightly tighter amplitude so the player's
+            // own light feels steadier than environmental fires.
+            if (_playerTorchLight != null)
+            {
+                float sinComp = Mathf.Sin(t * PlayerTorchFlickerSpeed);
+                float perlin = Mathf.PerlinNoise(t * 1.7f, 0.31f) * 2f - 1f;
+                float flicker = (sinComp * 0.4f + perlin * 0.6f) * PlayerTorchFlickerAmount;
+                _playerTorchLight.intensity =
+                    PlayerTorchIntensity + PlayerTorchIntensity * flicker;
+            }
+
             foreach (var kvp in _spawned)
             {
                 var sl = kvp.Value;
