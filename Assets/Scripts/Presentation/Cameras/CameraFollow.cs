@@ -23,8 +23,13 @@ namespace CavesOfOoo.Rendering
         /// Desired number of world tiles visible vertically at normal gameplay zoom.
         /// Orthographic size is derived from this so default zoom is content-driven
         /// instead of relying on a raw magic number.
+        ///
+        /// Lowered from 34 → 24 on the 16×24 sprite branch so creatures + glyphs
+        /// both feel chunkier on screen. ~30% larger per cell. Each cell now ~44 px
+        /// at 720p (was ~32). Reverting this is one number — keeps the rest
+        /// content-driven.
         /// </summary>
-        public int TargetVisibleTileRows = 34;
+        public int TargetVisibleTileRows = 24;
 
         /// <summary>
         /// Legacy fallback if TargetVisibleTileRows is disabled or invalid.
