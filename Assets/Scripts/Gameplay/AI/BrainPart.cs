@@ -247,6 +247,53 @@ namespace CavesOfOoo.Core
             return node;
         }
 
+        /// <summary>
+        /// F.1.4 — returns true if <paramref name="a"/> and
+        /// <paramref name="b"/> are in the same party (one leads the other,
+        /// directly or transitively, OR they share an ancestor in the
+        /// leader chain — sibling followers under a common leader).
+        ///
+        /// <para><b>Cases:</b></para>
+        /// <list type="bullet">
+        ///   <item>a == b → true (trivial self-alignment).</item>
+        ///   <item>a.IsLedBy(b) → true (b is a's leader chain).</item>
+        ///   <item>b.IsLedBy(a) → true (a is b's leader chain).</item>
+        ///   <item>Both share a non-null final leader → true (siblings
+        ///         under a common root). Without the non-null check, two
+        ///         leader-less entities would both have <c>null</c> final
+        ///         leaders and falsely register as aligned.</item>
+        /// </list>
+        ///
+        /// <para>Used by <see cref="FactionManager.GetFeeling"/> to suppress
+        /// hostility between party members. Composable with
+        /// <see cref="IsPersonallyHostileTo"/> — personal hostility takes
+        /// precedence over party alignment (a vendetta against your leader
+        /// survives the leadership tie).</para>
+        ///
+        /// <para>Null-safe: returns false if either entity is null or
+        /// neither side has a BrainPart from which to walk the chain.</para>
+        /// </summary>
+        public static bool ArePartyAligned(Entity a, Entity b)
+        {
+            if (a == null || b == null) return false;
+            if (a == b) return true;
+
+            // Quick direct-link checks (cheap; common case).
+            var aBrain = a.GetPart<BrainPart>();
+            var bBrain = b.GetPart<BrainPart>();
+            if (aBrain != null && aBrain.IsLedBy(b)) return true;
+            if (bBrain != null && bBrain.IsLedBy(a)) return true;
+
+            // Sibling check: both walk up to the same non-null final leader.
+            // The non-null guard is critical — two unrelated leader-less
+            // entities both have null final leaders and would falsely
+            // register as aligned without it.
+            if (aBrain == null || bBrain == null) return false;
+            var aFinal = aBrain.GetFinalLeader();
+            var bFinal = bBrain.GetFinalLeader();
+            return aFinal != null && aFinal == bFinal;
+        }
+
         // Zone reference (set externally by GameBootstrap)
         public Zone CurrentZone;
 

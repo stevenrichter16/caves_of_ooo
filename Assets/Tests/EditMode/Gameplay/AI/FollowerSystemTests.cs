@@ -348,5 +348,202 @@ namespace CavesOfOoo.Tests
                 "Leader pointer set even without a back-roster.");
             // No assertion on roster — there's no BrainPart on leaderWithoutBrain.
         }
+
+        // ── F.1.4 — ArePartyAligned + FactionManager.GetFeeling guard ──
+
+        [Test]
+        public void ArePartyAligned_NoLeaders_ReturnsFalse()
+        {
+            // Counter-check: two unrelated entities are NOT party-aligned.
+            var a = ActorWithBrain("a");
+            var b = ActorWithBrain("b");
+
+            Assert.IsFalse(BrainPart.ArePartyAligned(a, b),
+                "Two unrelated entities with no leader/follower link are not aligned.");
+        }
+
+        [Test]
+        public void ArePartyAligned_DirectFollower_True()
+        {
+            var follower = ActorWithBrain("f");
+            var leader = ActorWithBrain("l");
+            Brain(follower).SetPartyLeader(leader);
+
+            Assert.IsTrue(BrainPart.ArePartyAligned(follower, leader),
+                "Follower aligned with their direct leader.");
+            Assert.IsTrue(BrainPart.ArePartyAligned(leader, follower),
+                "Bidirectional: leader aligned with their follower.");
+        }
+
+        [Test]
+        public void ArePartyAligned_TransitiveLeader_True()
+        {
+            // A→B→C: A aligned with C (and vice versa) via transitive chain.
+            var a = ActorWithBrain("a");
+            var b = ActorWithBrain("b");
+            var c = ActorWithBrain("c");
+            Brain(b).SetPartyLeader(a);
+            Brain(c).SetPartyLeader(b);
+
+            Assert.IsTrue(BrainPart.ArePartyAligned(a, c),
+                "Root A aligned with deep follower C.");
+            Assert.IsTrue(BrainPart.ArePartyAligned(c, a),
+                "Bidirectional.");
+        }
+
+        [Test]
+        public void ArePartyAligned_SiblingFollowers_True()
+        {
+            // Critical case: A and B both follow C. Neither leads the other,
+            // but they share a common ancestor → aligned (siblings in party).
+            var c = ActorWithBrain("c");  // root leader
+            var a = ActorWithBrain("a");
+            var b = ActorWithBrain("b");
+            Brain(a).SetPartyLeader(c);
+            Brain(b).SetPartyLeader(c);
+
+            Assert.IsTrue(BrainPart.ArePartyAligned(a, b),
+                "Sibling followers under the same leader are party-aligned.");
+            Assert.IsTrue(BrainPart.ArePartyAligned(b, a),
+                "Bidirectional.");
+        }
+
+        [Test]
+        public void ArePartyAligned_DeepSiblings_True()
+        {
+            // Deep tree: C→A and C→B→D. Are A and D aligned?
+            // A.GetFinalLeader() = C
+            // D.GetFinalLeader() = C
+            // Both share C → aligned.
+            var c = ActorWithBrain("c");
+            var a = ActorWithBrain("a");
+            var b = ActorWithBrain("b");
+            var d = ActorWithBrain("d");
+            Brain(a).SetPartyLeader(c);
+            Brain(b).SetPartyLeader(c);
+            Brain(d).SetPartyLeader(b);
+
+            Assert.IsTrue(BrainPart.ArePartyAligned(a, d),
+                "A (root.child) and D (root.child.child) share the root → aligned.");
+        }
+
+        [Test]
+        public void ArePartyAligned_Null_Safe()
+        {
+            var a = ActorWithBrain("a");
+            Assert.IsFalse(BrainPart.ArePartyAligned(null, a));
+            Assert.IsFalse(BrainPart.ArePartyAligned(a, null));
+            Assert.IsFalse(BrainPart.ArePartyAligned(null, null));
+        }
+
+        [Test]
+        public void ArePartyAligned_NoBrain_Safe()
+        {
+            // Adversarial: one entity has a Brain, the other doesn't.
+            // Neither walking IsLedBy nor GetFinalLeader can find a link,
+            // so → false. Mustn't NRE.
+            var withBrain = ActorWithBrain("a");
+            var withoutBrain = new Entity { ID = "b", BlueprintName = "NoBrain" };
+
+            Assert.IsFalse(BrainPart.ArePartyAligned(withBrain, withoutBrain));
+            Assert.IsFalse(BrainPart.ArePartyAligned(withoutBrain, withBrain));
+        }
+
+        [Test]
+        public void ArePartyAligned_SelfReference_Handled()
+        {
+            // ArePartyAligned(x, x) — x is trivially "aligned with self".
+            // FactionManager.GetFeeling already short-circuits to 100 for
+            // self at line 169, but the helper should also report true so
+            // it composes cleanly elsewhere.
+            var a = ActorWithBrain("a");
+            Assert.IsTrue(BrainPart.ArePartyAligned(a, a),
+                "An entity is trivially aligned with itself.");
+        }
+
+        [Test]
+        public void ArePartyAligned_UnrelatedEntities_FactionFeelingDeterminesNormally()
+        {
+            // Adversarial counter-check: ArePartyAligned must NOT spuriously
+            // ally unrelated entities. A buggy GetFinalLeader that returns
+            // some default (e.g. the same null reference) would falsely
+            // align everyone. Pin: two entities with no leader return
+            // null final-leader BOTH — but we should NOT treat that as
+            // "shared".
+            var a = ActorWithBrain("a");
+            var b = ActorWithBrain("b");
+
+            Assert.IsFalse(BrainPart.ArePartyAligned(a, b),
+                "Two leader-less entities are NOT aligned (both having null "
+                + "GetFinalLeader doesn't count as a 'shared' ancestor). "
+                + "Otherwise every NPC would be allied with every other NPC.");
+        }
+
+        // ── FactionManager.GetFeeling integration ──
+
+        [Test]
+        public void FactionManager_GetFeeling_PartyAligned_OverridesFactionHostility()
+        {
+            // The integration test: even when faction-feeling would normally
+            // be hostile, party alignment makes the feeling non-hostile.
+            //
+            // Setup: create two NPCs with no faction (faction feeling = 0,
+            // not hostile by default). Make them party-aligned. Confirm
+            // FactionManager.GetFeeling reports allied-positive.
+            var leader = ActorWithBrain("L");
+            var follower = ActorWithBrain("F");
+            Brain(follower).SetPartyLeader(leader);
+
+            int feeling = FactionManager.GetFeeling(follower, leader);
+            Assert.Greater(feeling, 0,
+                "Party-aligned entities get a positive feeling — explicitly "
+                + "above the HOSTILE_THRESHOLD so AIHelpers.IsValidHostileTarget "
+                + "won't target them.");
+
+            // Bidirectional
+            int feelingBack = FactionManager.GetFeeling(leader, follower);
+            Assert.Greater(feelingBack, 0);
+        }
+
+        [Test]
+        public void FactionManager_GetFeeling_PersonalHostility_OverridesPartyAlignment()
+        {
+            // Vendetta case: a follower whose leader directly attacked them
+            // is BOTH a follower AND personally hostile. PersonalEnemies takes
+            // precedence — they actively want to break the alliance.
+            //
+            // Note: this is unusual because SetPartyLeader Forgives on
+            // accept (clears PersonalEnemies of the leader). The only way
+            // to reach this state is to re-add the leader AFTER recruitment.
+            var leader = ActorWithBrain("L");
+            var follower = ActorWithBrain("F");
+            Brain(follower).SetPartyLeader(leader);
+
+            // Manual re-aggro after recruitment
+            Brain(follower).SetPersonallyHostile(leader);
+
+            int feeling = FactionManager.GetFeeling(follower, leader);
+            Assert.LessOrEqual(feeling, -10,
+                "PersonalEnemies overrides PartyLeader alignment. A follower "
+                + "who has been personally aggrieved retains hostility.");
+        }
+
+        [Test]
+        public void FactionManager_GetFeeling_NotPartyAligned_FollowsExistingLogic()
+        {
+            // Counter-check: two entities with no leader/follower link
+            // get the SAME GetFeeling result they would have without the
+            // F.1.4 guard. The party-aligned exception MUST NOT affect
+            // unrelated entities.
+            var a = ActorWithBrain("a");
+            var b = ActorWithBrain("b");
+
+            int feeling = FactionManager.GetFeeling(a, b);
+            Assert.AreEqual(0, feeling,
+                "No faction, no personal hostility, no party alignment → "
+                + "feeling=0 (the existing 'no info' default). Pin that the "
+                + "F.1.4 guard didn't accidentally change the default-feeling "
+                + "of unrelated entities.");
+        }
     }
 }
