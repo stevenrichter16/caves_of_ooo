@@ -48,6 +48,14 @@ namespace CavesOfOoo.Presentation.Effects
         public float ShrinePulseSpeed = 1.6f;
         public float ShrinePulseAmount = 0.15f;
 
+        [Header("Lantern (Pass 10 — `!` glyph + Lantern blueprint)")]
+        public float LanternBaseIntensity = 1.0f;
+        public Color LanternColor = new Color(1.0f, 0.85f, 0.45f, 1f);
+        public float LanternOuterRadius = 3.0f;
+        public float LanternInnerRadius = 0.3f;
+        public float LanternFlickerSpeed = 4.0f;
+        public float LanternFlickerAmount = 0.10f;
+
         [Header("Ambient")]
         [Tooltip("Global Light 2D intensity when a dungeon zone is active.")]
         public float DungeonAmbientIntensity = 0.45f;
@@ -93,7 +101,7 @@ namespace CavesOfOoo.Presentation.Effects
             public float Seed; // for per-light Perlin offset
         }
 
-        private enum LightKind { Campfire, Shrine }
+        private enum LightKind { Campfire, Shrine, Lantern }
 
         // ── Init ───────────────────────────────────────────────────
 
@@ -156,6 +164,7 @@ namespace CavesOfOoo.Presentation.Effects
                     LightKind kind;
                     if (t.name == "Campfire") kind = LightKind.Campfire;
                     else if (t.name == "Shrine") kind = LightKind.Shrine;
+                    else if (t.name == "Lantern") kind = LightKind.Lantern;
                     else continue;
 
                     seenThisFrame.Add(pos);
@@ -199,6 +208,13 @@ namespace CavesOfOoo.Presentation.Effects
                     light.pointLightInnerRadius = ShrineInnerRadius;
                     light.pointLightOuterRadius = ShrineOuterRadius;
                     light.falloffIntensity = 0.5f;
+                    break;
+                case LightKind.Lantern:
+                    light.color = LanternColor;
+                    light.intensity = LanternBaseIntensity;
+                    light.pointLightInnerRadius = LanternInnerRadius;
+                    light.pointLightOuterRadius = LanternOuterRadius;
+                    light.falloffIntensity = 0.7f;
                     break;
             }
 
@@ -318,6 +334,15 @@ namespace CavesOfOoo.Presentation.Effects
                         // Slow sine pulse → mystical breathing
                         float pulse = Mathf.Sin(t * ShrinePulseSpeed + sl.Seed) * ShrinePulseAmount;
                         sl.Light.intensity = ShrineBaseIntensity + ShrineBaseIntensity * pulse;
+                        break;
+                    }
+                    case LightKind.Lantern:
+                    {
+                        // Steady but with subtle wick variation — gentler
+                        // than campfire, more alive than shrine.
+                        float jitter = Mathf.PerlinNoise(t * LanternFlickerSpeed + sl.Seed, sl.Seed * 0.7f) * 2f - 1f;
+                        sl.Light.intensity =
+                            LanternBaseIntensity + LanternBaseIntensity * jitter * LanternFlickerAmount;
                         break;
                     }
                 }

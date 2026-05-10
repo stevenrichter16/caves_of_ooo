@@ -23,6 +23,9 @@ public static class Pass8SpriteImporter
         "Assets/Sprites/Environment/mushroom.png",
         "Assets/Sprites/Environment/gold_pile.png",
         "Assets/Sprites/Environment/chair.png",
+        // Pass 10 — per-blueprint disambiguation sprites
+        "Assets/Sprites/Environment/chest.png",
+        "Assets/Sprites/Environment/lantern.png",
     };
 
     [MenuItem("Caves Of Ooo/Tools/Pass 8 — Configure Sprite Expansion")]
