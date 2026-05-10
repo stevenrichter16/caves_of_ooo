@@ -12,14 +12,15 @@
 
 | Field | Value |
 |---|---|
-| **Current sub-milestone** | SL.6 — Effect round-trip audit (in progress) |
+| **Current sub-milestone** | SL.6 — Effect round-trip audit ✅ COMPLETE |
 | **Last updated** | 2026-05-10 |
-| **Total tests added** | 14 (SL.2) + 10 (SL.3) + 6 (SL.4) + 7 (SL.5) = 37 |
-| **Total Part types audited** | 18 / ~62 (SL.2: 9; SL.3: 2; SL.4: 1; SL.5: 6 — DamageFlash, MeleeWeapon, 4× settlement-site) |
-| **Real bugs found** | 0 (Part audit) — SL.6 verification sweep flags 1 likely Effect bug |
-| **Real bugs fixed** | 0 |
-| **Contracts pinned** | 5 (SL.2) + 6 (SL.3) + 4 (SL.4) + 4 (SL.5) = 19 |
-| **Latest commit** | `278558b` (SL.5 merge) |
+| **Total tests added** | 14 (SL.2) + 10 (SL.3) + 6 (SL.4) + 7 (SL.5) + 34 (SL.6) = 71 |
+| **Total Part types audited** | 18 / ~62 |
+| **Total Effect types audited** | 18 / 25 (Tier-A simple ×7, Tier-A payload ×5, Tier-B ×2, Tier-C ×4) |
+| **Real bugs found** | **1** — `HibernatingEffect.PriorHeat/ColdResistance` were `{ get; private set; }` properties; backing fields private → silently dropped from save → mid-hibernation save+load corrupted creature resistances. |
+| **Real bugs fixed** | **1** — converted to public fields (commit `75f78e2`). RED→GREEN per CLAUDE.md §1.2. |
+| **Contracts pinned** | 5 (SL.2) + 6 (SL.3) + 4 (SL.4) + 4 (SL.5) + 8 (SL.6) = 27 |
+| **Latest commit** | `75f78e2` (SL.6.4) |
 
 ---
 
@@ -480,7 +481,7 @@ ephemera (resets are correct). This is a strong signal that the
 project's save-load discipline is solid — but the contract pinning
 remains valuable as regression protection.
 
-### SL.6 — Effect round-trip audit (in progress)
+### SL.6 — Effect round-trip audit ✅ COMPLETE
 
 **Scope:** All `Effect` subclasses (~20).
 
