@@ -12,16 +12,17 @@
 
 | Field | Value |
 |---|---|
-| **Current sub-milestone** | SL.8 — Cross-Part reference integrity (in progress) |
+| **Current sub-milestone** | SL.8 — Cross-Part reference integrity ✅ COMPLETE |
 | **Last updated** | 2026-05-10 |
-| **Total tests added** | 14 (SL.2) + 10 (SL.3) + 6 (SL.4) + 7 (SL.5) + 34 (SL.6) + 39 (SL.7) = 110 |
-| **Total Part types audited** | 25 / ~62 (SL.2-5: 18; SL.7: +7 explicit handlers) |
+| **Total tests added** | 14 (SL.2) + 10 (SL.3) + 6 (SL.4) + 7 (SL.5) + 34 (SL.6) + 39 (SL.7) + 15 (SL.8) = 125 |
+| **Total Part types audited** | 25 / ~62 |
 | **Total Effect types audited** | 18 / 25 |
 | **Real bugs found** | **1** (HibernatingEffect prior-resistance round-trip) |
 | **Real bugs fixed** | **1** (commit `75f78e2`) |
-| **🟡 cleanup candidates flagged** | **1** — MutationsPart wasted-bytes (saves type names that LoadMutationsPart discards; OnAfterLoad's Parts scan does the actual restore). Deferred to a future commit; current contracts pinned by SL.7.6 tests. |
-| **Contracts pinned** | 5 (SL.2) + 6 (SL.3) + 4 (SL.4) + 4 (SL.5) + 8 (SL.6) + 12 (SL.7) = 39 |
-| **Latest commit** | `63a40a6` (SL.7.6) |
+| **🟡 cleanup candidates flagged** | **1** — MutationsPart wasted-bytes (saves type names that LoadMutationsPart discards). Deferred. |
+| **Behavioral invariants surfaced** | **1** — `InventoryPart.OnAfterLoad` CANONICALIZES `PhysicsPart` back-pointers based on which collection (`Objects[]` vs `EquippedItems[]`) the item sits in. Saved field values are overwritten — live inventory state is the source of truth. Pinned by SL.8.4. |
+| **Contracts pinned** | 5 (SL.2) + 6 (SL.3) + 4 (SL.4) + 4 (SL.5) + 8 (SL.6) + 12 (SL.7) + 5 (SL.8) = 44 |
+| **Latest commit** | `2b38b50` (SL.8.4) |
 
 ---
 
@@ -589,7 +590,7 @@ handlers first; surface 🟡/🔴 contracts later):**
 state shape, so bug yield is lower. But the surface area is large —
 do an end-of-audit pass to verify all public state is captured.
 
-### SL.8 — Cross-Part reference integrity + load order (in progress)
+### SL.8 — Cross-Part reference integrity + load order ✅ COMPLETE
 
 **Scope:** the SL.2-7 sweep pinned per-Part field round-trips. SL.8
 pins **reference identity across multiple Parts on the same save
