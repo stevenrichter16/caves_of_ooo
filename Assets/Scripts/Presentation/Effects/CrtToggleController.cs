@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using CavesOfOoo.Rendering;
 
 namespace CavesOfOoo.Presentation.Effects
 {
@@ -70,7 +71,14 @@ namespace CavesOfOoo.Presentation.Effects
         private void Update()
         {
             if (_crtVolume == null) return;
-            if (Input.GetKeyDown(ToggleKey))
+            // Use InputHelper which checks BOTH legacy Input AND the
+            // New Input System. Project's `activeInputHandler: 2`
+            // means both backends are present, but raw
+            // `Input.GetKeyDown` is unreliable when the New Input
+            // System is the primary path — InputHelper's wrapper
+            // checks `Keyboard.current[Key].wasPressedThisFrame` as
+            // a fallback.
+            if (InputHelper.GetKeyDown(ToggleKey))
             {
                 bool newState = !_crtVolume.activeSelf;
                 _crtVolume.SetActive(newState);
