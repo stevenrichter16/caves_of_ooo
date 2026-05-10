@@ -12,17 +12,17 @@
 
 | Field | Value |
 |---|---|
-| **Current sub-milestone** | SL.9 — Mid-state save scenarios (in progress) |
+| **Current sub-milestone** | SL.9 — Mid-state save scenarios ✅ COMPLETE |
 | **Last updated** | 2026-05-10 |
-| **Total tests added** | 14 (SL.2) + 10 (SL.3) + 6 (SL.4) + 7 (SL.5) + 34 (SL.6) + 39 (SL.7) + 15 (SL.8) = 125 |
+| **Total tests added** | 14 (SL.2) + 10 (SL.3) + 6 (SL.4) + 7 (SL.5) + 34 (SL.6) + 39 (SL.7) + 15 (SL.8) + 9 (SL.9) = 134 |
 | **Total Part types audited** | 25 / ~62 |
 | **Total Effect types audited** | 18 / 25 |
 | **Real bugs found** | **1** (HibernatingEffect prior-resistance round-trip) |
 | **Real bugs fixed** | **1** (commit `75f78e2`) |
 | **🟡 cleanup candidates flagged** | **1** — MutationsPart wasted-bytes (saves type names that LoadMutationsPart discards). Deferred. |
 | **Behavioral invariants surfaced** | **1** — `InventoryPart.OnAfterLoad` CANONICALIZES `PhysicsPart` back-pointers based on which collection (`Objects[]` vs `EquippedItems[]`) the item sits in. Saved field values are overwritten — live inventory state is the source of truth. Pinned by SL.8.4. |
-| **Contracts pinned** | 5 (SL.2) + 6 (SL.3) + 4 (SL.4) + 4 (SL.5) + 8 (SL.6) + 12 (SL.7) + 5 (SL.8) = 44 |
-| **Latest commit** | `2b38b50` (SL.8.4) |
+| **Contracts pinned** | 5 (SL.2) + 6 (SL.3) + 4 (SL.4) + 4 (SL.5) + 8 (SL.6) + 12 (SL.7) + 5 (SL.8) + 6 (SL.9) = 50 |
+| **Latest commit** | `9290670` (SL.9.2) |
 
 ---
 
@@ -646,7 +646,7 @@ silently.
   instance whose `InventoryPart.Objects[]` contains the item (~3 tests)
 - **SL.8.5** — Cold-eye + doc backfill + merge
 
-### SL.9 — Mid-state save scenarios (in progress)
+### SL.9 — Mid-state save scenarios ✅ COMPLETE
 
 **Scope:** Save WHILE state is in flux. The "happy path" round-trip
 (default state → save → load → still default) might work but
