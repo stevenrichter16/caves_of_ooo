@@ -1430,6 +1430,15 @@ namespace CavesOfOoo.Core
             writer.WriteString(brain.LastThought);
             writer.Write(brain.ThinkOutLoud);
 
+            // Followers F.1.3 — leader/follower data substrate.
+            // PartyLeader is a public Entity field → token-system ref.
+            // PartyMembers is a HashSet<Entity> → length-prefixed loop.
+            // SL.8 contract: identity preserved across save graph.
+            writer.WriteEntityReference(brain.PartyLeader);
+            writer.Write(brain.PartyMembers.Count);
+            foreach (Entity member in brain.PartyMembers)
+                writer.WriteEntityReference(member);
+
             List<GoalHandler> goals = brain.GetGoalsSnapshot();
             int serializableCount = 0;
             for (int i = 0; i < goals.Count; i++)
@@ -1472,6 +1481,20 @@ namespace CavesOfOoo.Core
             brain.LastThought = reader.ReadString();
             brain.ThinkOutLoud = reader.ReadBool();
             brain.Rng = new System.Random();
+
+            // Followers F.1.3 — mirror the save-side write at line 1432.
+            // PartyLeader entity ref then PartyMembers count + each entity ref.
+            // ReadPublicFields can't be used here because BrainPart has an
+            // explicit handler; field order must match the save side exactly.
+            brain.PartyLeader = reader.ReadEntityReference();
+            brain.PartyMembers.Clear();
+            int memberCount = reader.ReadInt();
+            for (int i = 0; i < memberCount; i++)
+            {
+                Entity member = reader.ReadEntityReference();
+                if (member != null)
+                    brain.PartyMembers.Add(member);
+            }
 
             int goalCount = reader.ReadInt();
             var goals = new List<GoalHandler>(goalCount);

@@ -14,6 +14,15 @@ namespace CavesOfOoo.Core
     {
         public const int HOSTILE_THRESHOLD = -10;
         public const int ALLIED_THRESHOLD = 50;
+        /// <summary>
+        /// Feeling magnitude returned for party-aligned entities (F.1.4).
+        /// Same magnitude as the self-feeling at <see cref="GetFeeling"/>
+        /// line 169 — well above <see cref="ALLIED_THRESHOLD"/> so
+        /// <see cref="IsAllied"/> reports true, and well above
+        /// <see cref="HOSTILE_THRESHOLD"/> so <see cref="IsHostile"/>
+        /// reports false.
+        /// </summary>
+        public const int ALLIED_FEELING = 100;
 
         /// <summary>
         /// Outer key = faction that feels, inner key = faction being felt about, value = feeling.
@@ -168,13 +177,27 @@ namespace CavesOfOoo.Core
             if (source == null || target == null) return 0;
             if (source == target) return 100; // self
 
-            // Per-entity hostility overrides faction feeling (bidirectional)
+            // Per-entity hostility overrides faction feeling (bidirectional).
+            // F.1.4 design choice: PersonalEnemies takes PRECEDENCE over
+            // party alignment. A follower who has been explicitly aggrieved
+            // by their leader retains hostility — vendetta beats loyalty.
+            // (Recruitment's Forgive step clears PersonalEnemies, so the
+            // only way to reach this state is to re-add the leader AFTER
+            // recruitment, e.g. by being attacked by them.)
             var sourceBrain = source.GetPart<BrainPart>();
             if (sourceBrain != null && sourceBrain.IsPersonallyHostileTo(target))
                 return -100;
             var targetBrain = target.GetPart<BrainPart>();
             if (targetBrain != null && targetBrain.IsPersonallyHostileTo(source))
                 return -100;
+
+            // F.1.4 — party-aligned creatures get an allied feeling, even
+            // when their faction rep would normally suggest hostility.
+            // Composable with PersonalEnemies above: vendetta beats this.
+            // See BrainPart.ArePartyAligned for the alignment definition
+            // (direct/transitive leader, or shared ancestor).
+            if (BrainPart.ArePartyAligned(source, target))
+                return ALLIED_FEELING;
 
             // Player reputation integration
             if (source.HasTag("Player"))

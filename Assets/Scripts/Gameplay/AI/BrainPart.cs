@@ -80,6 +80,220 @@ namespace CavesOfOoo.Core
             return target != null && PersonalEnemies.Contains(target);
         }
 
+        // --- Followers (Phase F.1.2) ---
+
+        /// <summary>
+        /// The entity this creature is following, if any. Set via
+        /// <see cref="SetPartyLeader"/> to preserve bidirectional integrity
+        /// with the leader's <see cref="PartyMembers"/>.
+        ///
+        /// <para>Mirrors Qud's <c>Brain.LeaderReference.Object</c> (see
+        /// <c>/Users/steven/qud-decompiled-project/XRL.World.Parts/Brain.cs:217</c>).</para>
+        /// </summary>
+        public Entity PartyLeader;
+
+        /// <summary>
+        /// Entities that are following this creature. Mirror of
+        /// <see cref="PartyLeader"/> on each follower's brain; maintained
+        /// automatically by <see cref="SetPartyLeader"/>.
+        ///
+        /// <para>Mirrors Qud's <c>Brain.PartyMembers</c> collection
+        /// (Brain.cs:229). CoO simplifies the per-member flags map to a
+        /// HashSet — flags can be added later via a parallel
+        /// <c>Dictionary&lt;Entity,int&gt;</c> when F.2's typed-allegiance
+        /// reasons require them.</para>
+        /// </summary>
+        public HashSet<Entity> PartyMembers = new HashSet<Entity>();
+
+        /// <summary>
+        /// Set this creature's leader, maintaining bidirectional state.
+        /// Mirrors Qud's <c>Brain.SetPartyLeader</c> (Brain.cs:895-948).
+        ///
+        /// <para><b>Rejected cases:</b>
+        /// <list type="bullet">
+        ///   <item>Self-reference (<c>newLeader == ParentEntity</c>) →
+        ///         returns false, no state change.</item>
+        ///   <item>Cycle creation (<c>newLeader.IsLedBy(ParentEntity)</c>
+        ///         transitively) → returns false, no state change.</item>
+        /// </list></para>
+        ///
+        /// <para><b>Side effects on accept:</b>
+        /// <list type="bullet">
+        ///   <item>Removes self from old leader's <see cref="PartyMembers"/>
+        ///         (if old leader exists and has a BrainPart).</item>
+        ///   <item>Assigns <see cref="PartyLeader"/> = newLeader.</item>
+        ///   <item>Adds self to new leader's <see cref="PartyMembers"/>
+        ///         (if newLeader has a BrainPart — leader-without-brain is
+        ///         tolerated for Qud parity).</item>
+        ///   <item><b>Forgive:</b> removes newLeader from
+        ///         <see cref="PersonalEnemies"/>, so a freshly-recruited
+        ///         creature doesn't re-aggro its new leader on the next
+        ///         tick. Mirrors Qud's <c>Forgive</c> step at Brain.cs:924.</item>
+        /// </list></para>
+        ///
+        /// <para>Setting the same leader twice is idempotent — no duplicate
+        /// roster entry, no spurious Forgive replay.</para>
+        ///
+        /// <returns>True if the leader was set (or no-op already-equal),
+        /// false if rejected.</returns>
+        /// </summary>
+        public bool SetPartyLeader(Entity newLeader)
+        {
+            // Self-reference: rejected.
+            if (newLeader != null && newLeader == ParentEntity)
+            {
+                Think("can't follow self");
+                return false;
+            }
+
+            // Idempotent: same leader → no-op success.
+            if (newLeader == PartyLeader)
+            {
+                return true;
+            }
+
+            // Cycle detection: if newLeader (or anyone in its chain) is led
+            // by this entity, accepting would create a loop.
+            // Walks newLeader's leader chain looking for ParentEntity.
+            if (newLeader != null && WouldCreateCycle(newLeader))
+            {
+                Think("leader cycle blocked");
+                return false;
+            }
+
+            // Remove self from old leader's roster (bidirectional mirror).
+            if (PartyLeader != null)
+            {
+                var oldLeaderBrain = PartyLeader.GetPart<BrainPart>();
+                if (oldLeaderBrain != null)
+                {
+                    oldLeaderBrain.PartyMembers.Remove(ParentEntity);
+                }
+            }
+
+            // Assign new leader.
+            PartyLeader = newLeader;
+
+            // Add self to new leader's roster.
+            if (newLeader != null)
+            {
+                var newLeaderBrain = newLeader.GetPart<BrainPart>();
+                if (newLeaderBrain != null)
+                {
+                    newLeaderBrain.PartyMembers.Add(ParentEntity);
+                }
+                // Forgive: clear the new leader from PersonalEnemies so the
+                // recruit doesn't immediately re-aggro.
+                PersonalEnemies.Remove(newLeader);
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Walks <paramref name="candidate"/>'s leader chain. Returns true
+        /// if accepting candidate as our leader would create a cycle
+        /// (candidate is led by us, directly or transitively).
+        /// </summary>
+        private bool WouldCreateCycle(Entity candidate)
+        {
+            // candidate's leader chain: does it contain ParentEntity?
+            var node = candidate.GetPart<BrainPart>()?.PartyLeader;
+            int safety = 64; // depth cap — prevents pathological infinite walks
+            while (node != null && safety-- > 0)
+            {
+                if (node == ParentEntity)
+                    return true;
+                node = node.GetPart<BrainPart>()?.PartyLeader;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Walks the leader chain looking for <paramref name="candidate"/>.
+        /// Returns true if this creature is led by candidate (directly
+        /// or transitively). Mirrors Qud's <c>Brain.IsLedBy</c>
+        /// (Brain.cs:1438).
+        /// </summary>
+        public bool IsLedBy(Entity candidate)
+        {
+            if (candidate == null) return false;
+            var node = PartyLeader;
+            int safety = 64;
+            while (node != null && safety-- > 0)
+            {
+                if (node == candidate) return true;
+                node = node.GetPart<BrainPart>()?.PartyLeader;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Walks the leader chain to the top. Returns the topmost entity
+        /// in the chain (the entity with no leader of its own). Returns
+        /// null if this creature has no leader. Mirrors Qud's
+        /// <c>Brain.GetFinalLeader</c> (Brain.cs:1623).
+        /// </summary>
+        public Entity GetFinalLeader()
+        {
+            var node = PartyLeader;
+            int safety = 64;
+            while (node != null && safety-- > 0)
+            {
+                var next = node.GetPart<BrainPart>()?.PartyLeader;
+                if (next == null) return node;
+                node = next;
+            }
+            return node;
+        }
+
+        /// <summary>
+        /// F.1.4 — returns true if <paramref name="a"/> and
+        /// <paramref name="b"/> are in the same party (one leads the other,
+        /// directly or transitively, OR they share an ancestor in the
+        /// leader chain — sibling followers under a common leader).
+        ///
+        /// <para><b>Cases:</b></para>
+        /// <list type="bullet">
+        ///   <item>a == b → true (trivial self-alignment).</item>
+        ///   <item>a.IsLedBy(b) → true (b is a's leader chain).</item>
+        ///   <item>b.IsLedBy(a) → true (a is b's leader chain).</item>
+        ///   <item>Both share a non-null final leader → true (siblings
+        ///         under a common root). Without the non-null check, two
+        ///         leader-less entities would both have <c>null</c> final
+        ///         leaders and falsely register as aligned.</item>
+        /// </list>
+        ///
+        /// <para>Used by <see cref="FactionManager.GetFeeling"/> to suppress
+        /// hostility between party members. Composable with
+        /// <see cref="IsPersonallyHostileTo"/> — personal hostility takes
+        /// precedence over party alignment (a vendetta against your leader
+        /// survives the leadership tie).</para>
+        ///
+        /// <para>Null-safe: returns false if either entity is null or
+        /// neither side has a BrainPart from which to walk the chain.</para>
+        /// </summary>
+        public static bool ArePartyAligned(Entity a, Entity b)
+        {
+            if (a == null || b == null) return false;
+            if (a == b) return true;
+
+            // Quick direct-link checks (cheap; common case).
+            var aBrain = a.GetPart<BrainPart>();
+            var bBrain = b.GetPart<BrainPart>();
+            if (aBrain != null && aBrain.IsLedBy(b)) return true;
+            if (bBrain != null && bBrain.IsLedBy(a)) return true;
+
+            // Sibling check: both walk up to the same non-null final leader.
+            // The non-null guard is critical — two unrelated leader-less
+            // entities both have null final leaders and would falsely
+            // register as aligned without it.
+            if (aBrain == null || bBrain == null) return false;
+            var aFinal = aBrain.GetFinalLeader();
+            var bFinal = bBrain.GetFinalLeader();
+            return aFinal != null && aFinal == bFinal;
+        }
+
         // Zone reference (set externally by GameBootstrap)
         public Zone CurrentZone;
 
