@@ -59,6 +59,7 @@ namespace CavesOfOoo.Rendering
         private Tilemap _tilemap;
         private Tilemap _bgTilemap;
         private Tilemap _fxTilemap;
+        private AnimatedEnvironmentRenderer _animatedEnvRenderer; // Pass 5
 
         /// <summary>
         /// Horizontal sub-cell tilemap overlaid on the main tilemap for
@@ -279,6 +280,17 @@ namespace CavesOfOoo.Rendering
             var fxRenderer = fxTilemapObj.AddComponent<TilemapRenderer>();
             fxRenderer.sortingOrder = 2; // bumped from 1 to make room for fine water at 1
             _asciiFxRenderer = new AsciiFxRenderer(_fxTilemap);
+
+            // Pass 5 §5A.3: animated-environment overlay layers
+            // (water UV scroll, grass vertex sway, fire flicker).
+            // Sits between fineWater (1) and FX (2) — we bump FX to
+            // 3 inside Init so the animated overlays slot at 2.
+            // See Docs/GRAPHICS-PASS5.md.
+            var animEnvObj = new GameObject("AnimatedEnvironmentRenderer");
+            animEnvObj.transform.SetParent(gridParent, false);
+            GameplayRenderLayers.SetLayerRecursive(animEnvObj, GameplayRenderLayers.WorldLayer);
+            _animatedEnvRenderer = animEnvObj.AddComponent<AnimatedEnvironmentRenderer>();
+            _animatedEnvRenderer.Init(gridParent, _tilemap, fxRenderer);
 
             var emberObj = new GameObject("CampfireEmbers");
             emberObj.transform.SetParent(gridParent, false);
@@ -647,6 +659,13 @@ namespace CavesOfOoo.Rendering
                 }
 
                 RefreshWaterCache();
+
+                // Pass 5 §5A: animated environment post-render.
+                // Re-routes water/grass/fire glyphs from the main
+                // tilemap to overlay tilemaps with shader-based
+                // animation. See Docs/GRAPHICS-PASS5.md.
+                if (_animatedEnvRenderer != null)
+                    _animatedEnvRenderer.PostRender(CurrentZone, Zone.Width, Zone.Height);
             }
         }
 

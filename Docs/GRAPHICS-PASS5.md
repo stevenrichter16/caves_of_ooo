@@ -26,7 +26,7 @@
 | **Pass** | 5 of N |
 | **Last updated** | 2026-05-09 |
 | **Branch** | `feat/graphics-pass5-animated-tiles` |
-| **Sub-milestones complete** | 0 / 5 |
+| **Sub-milestones complete** | 5 / 5 |
 
 ---
 
@@ -172,7 +172,7 @@ overlay to only the FOV (already computed for the main tilemap).
 
 | # | Severity | Item | Status |
 |---|---|---|---|
-| _none yet_ | | | |
+| 1 | 🟡 (caught + fixed) | Initial shader scrolled UV AFTER the atlas TRANSFORM_TEX, so `frac()` wrapped across the FULL CP437 sprite atlas instead of within the single glyph. Visible as cells cycling through unrelated glyphs (`}`, `~`, `(DEL)`, etc.) instead of the same glyph drifting. User reported "I see the glyphs in a pattern moving through the water" before the fix. Fix: move scroll to BEFORE the atlas-rect transform; vertex shader passes raw sprite-local UV; fragment shader scrolls in [0, 1] then maps to atlas. | Fixed in same pass. |
 
 ---
 
@@ -180,12 +180,12 @@ overlay to only the FOV (already computed for the main tilemap).
 
 | Sub-milestone | Status | Tests | Commit |
 |---|---|---|---|
-| 5A.1 Animated shader | ⏳ pending | 0 | — |
-| 5A.2 Three materials | ⏳ pending | n/a | — |
-| 5A.3 AnimatedEnvironmentRenderer | ⏳ pending | 0 | — |
-| 5A.4 Showcase scenario | ⏳ pending | 1 (smoke) | — |
-| 5A.5 Final tests + ship | ⏳ pending | n/a | — |
-| **TOTAL** | **0 / 5** | **0** | — |
+| 5A.1 Animated shader | ✅ done | 0 | TBD |
+| 5A.2 Three materials | ✅ done | n/a | TBD |
+| 5A.3 AnimatedEnvironmentRenderer | ✅ done | 8 | TBD |
+| 5A.4 Showcase scenario | ✅ done | 1 (smoke) | TBD |
+| 5A.5 Final tests + ship | ✅ done (51/51 sweep) | n/a | TBD |
+| **TOTAL** | **5 / 5** | **9** | — |
 
 ---
 
