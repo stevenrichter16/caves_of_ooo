@@ -284,62 +284,70 @@ namespace CavesOfOoo.Rendering
             fxRenderer.sortingOrder = 2; // bumped from 1 to make room for fine water at 1
             _asciiFxRenderer = new AsciiFxRenderer(_fxTilemap);
 
-            // Pass 5 §5A.3: animated-environment overlay layers
-            // (water UV scroll, grass vertex sway, fire flicker).
-            // Sits between fineWater (1) and FX (2) — we bump FX to
-            // 3 inside Init so the animated overlays slot at 2.
-            // See Docs/GRAPHICS-PASS5.md.
-            var animEnvObj = new GameObject("AnimatedEnvironmentRenderer");
-            animEnvObj.transform.SetParent(gridParent, false);
-            GameplayRenderLayers.SetLayerRecursive(animEnvObj, GameplayRenderLayers.WorldLayer);
-            _animatedEnvRenderer = animEnvObj.AddComponent<AnimatedEnvironmentRenderer>();
-            _animatedEnvRenderer.Init(gridParent, _tilemap, fxRenderer);
-
-            // Pass 6 §6A: motion-ghost trails. Sits between
-            // AnimatedEnvironment (sortingOrder 2) and FX (now 3
-            // post-Pass-5). Records last-known cell positions of
-            // entities and paints fading ghost glyphs at previous
-            // cells when entities move. See Docs/GRAPHICS-PASS6.md §6A.
-            var ghostObj = new GameObject("GlyphGhostRenderer");
-            ghostObj.transform.SetParent(gridParent, false);
-            GameplayRenderLayers.SetLayerRecursive(ghostObj, GameplayRenderLayers.WorldLayer);
-            _glyphGhostRenderer = ghostObj.AddComponent<GlyphGhostRenderer>();
-            _glyphGhostRenderer.Init(gridParent);
-
-            // Pass 7 §7B.1: hybrid sprite environment. Replaces
-            // wall/floor/water/door CP437 glyphs with 16×16 pixel-art
-            // sprites on a new overlay tilemap. Toggleable via the
-            // SpriteEnvToggleController (backslash hotkey, default ON).
-            // See Docs/GRAPHICS-PASS7.md.
-            var envSpriteObj = new GameObject("EnvironmentSpriteRenderer");
-            envSpriteObj.transform.SetParent(gridParent, false);
-            GameplayRenderLayers.SetLayerRecursive(envSpriteObj, GameplayRenderLayers.WorldLayer);
-            _envSpriteRenderer = envSpriteObj.AddComponent<EnvironmentSpriteRenderer>();
-            _envSpriteRenderer.Init(gridParent, _tilemap);
-
-            // Pass 8 §8E.1: Light2D point lights on campfire `*` and
-            // shrine `_` cells; biome-based ambient dim for dungeons;
-            // per-light flicker. See Docs/GRAPHICS-PASS8.md.
-            var lightHookObj = new GameObject("LightSourceSpriteHook");
-            lightHookObj.transform.SetParent(gridParent, false);
-            GameplayRenderLayers.SetLayerRecursive(lightHookObj, GameplayRenderLayers.WorldLayer);
-            _lightSourceHook = lightHookObj.AddComponent<CavesOfOoo.Presentation.Effects.LightSourceSpriteHook>();
-            // Find existing Global Light 2D in scene (Init for it is null-safe).
-            UnityEngine.Rendering.Universal.Light2D globalLight = null;
-            foreach (var l in UnityEngine.Object.FindObjectsByType<UnityEngine.Rendering.Universal.Light2D>(
-                FindObjectsInactive.Include, FindObjectsSortMode.None))
+            // GLYPHS-ONLY GATE: Pass 5-11 visual layers are gated
+            // behind GraphicsPolish.IsEnabled. When the master flag is
+            // false (the shipping default), none of these renderers
+            // are instantiated — the game renders pure CP437. Flip the
+            // constant in GraphicsPolish.cs to bring them all back.
+            if (CavesOfOoo.Presentation.Effects.GraphicsPolish.IsEnabled)
             {
-                if (l.lightType == UnityEngine.Rendering.Universal.Light2D.LightType.Global)
+                // Pass 5 §5A.3: animated-environment overlay layers
+                // (water UV scroll, grass vertex sway, fire flicker).
+                // Sits between fineWater (1) and FX (2) — we bump FX to
+                // 3 inside Init so the animated overlays slot at 2.
+                // See Docs/GRAPHICS-PASS5.md.
+                var animEnvObj = new GameObject("AnimatedEnvironmentRenderer");
+                animEnvObj.transform.SetParent(gridParent, false);
+                GameplayRenderLayers.SetLayerRecursive(animEnvObj, GameplayRenderLayers.WorldLayer);
+                _animatedEnvRenderer = animEnvObj.AddComponent<AnimatedEnvironmentRenderer>();
+                _animatedEnvRenderer.Init(gridParent, _tilemap, fxRenderer);
+
+                // Pass 6 §6A: motion-ghost trails. Sits between
+                // AnimatedEnvironment (sortingOrder 2) and FX (now 3
+                // post-Pass-5). Records last-known cell positions of
+                // entities and paints fading ghost glyphs at previous
+                // cells when entities move. See Docs/GRAPHICS-PASS6.md §6A.
+                var ghostObj = new GameObject("GlyphGhostRenderer");
+                ghostObj.transform.SetParent(gridParent, false);
+                GameplayRenderLayers.SetLayerRecursive(ghostObj, GameplayRenderLayers.WorldLayer);
+                _glyphGhostRenderer = ghostObj.AddComponent<GlyphGhostRenderer>();
+                _glyphGhostRenderer.Init(gridParent);
+
+                // Pass 7 §7B.1: hybrid sprite environment. Replaces
+                // wall/floor/water/door CP437 glyphs with 16×16 pixel-art
+                // sprites on a new overlay tilemap. Toggleable via the
+                // SpriteEnvToggleController (backslash hotkey, default ON).
+                // See Docs/GRAPHICS-PASS7.md.
+                var envSpriteObj = new GameObject("EnvironmentSpriteRenderer");
+                envSpriteObj.transform.SetParent(gridParent, false);
+                GameplayRenderLayers.SetLayerRecursive(envSpriteObj, GameplayRenderLayers.WorldLayer);
+                _envSpriteRenderer = envSpriteObj.AddComponent<EnvironmentSpriteRenderer>();
+                _envSpriteRenderer.Init(gridParent, _tilemap);
+
+                // Pass 8 §8E.1: Light2D point lights on campfire `*` and
+                // shrine `_` cells; biome-based ambient dim for dungeons;
+                // per-light flicker. See Docs/GRAPHICS-PASS8.md.
+                var lightHookObj = new GameObject("LightSourceSpriteHook");
+                lightHookObj.transform.SetParent(gridParent, false);
+                GameplayRenderLayers.SetLayerRecursive(lightHookObj, GameplayRenderLayers.WorldLayer);
+                _lightSourceHook = lightHookObj.AddComponent<CavesOfOoo.Presentation.Effects.LightSourceSpriteHook>();
+                // Find existing Global Light 2D in scene (Init for it is null-safe).
+                UnityEngine.Rendering.Universal.Light2D globalLight = null;
+                foreach (var l in UnityEngine.Object.FindObjectsByType<UnityEngine.Rendering.Universal.Light2D>(
+                    FindObjectsInactive.Include, FindObjectsSortMode.None))
                 {
-                    globalLight = l;
-                    break;
+                    if (l.lightType == UnityEngine.Rendering.Universal.Light2D.LightType.Global)
+                    {
+                        globalLight = l;
+                        break;
+                    }
                 }
+                // Pass overlay tilemap reference; need to fetch from env sprite renderer.
+                var overlayField = typeof(EnvironmentSpriteRenderer).GetField(
+                    "_overlayTilemap", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                var overlayTm = overlayField?.GetValue(_envSpriteRenderer) as Tilemap;
+                _lightSourceHook.Init(gridParent, overlayTm, globalLight);
             }
-            // Pass overlay tilemap reference; need to fetch from env sprite renderer.
-            var overlayField = typeof(EnvironmentSpriteRenderer).GetField(
-                "_overlayTilemap", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            var overlayTm = overlayField?.GetValue(_envSpriteRenderer) as Tilemap;
-            _lightSourceHook.Init(gridParent, overlayTm, globalLight);
 
             var emberObj = new GameObject("CampfireEmbers");
             emberObj.transform.SetParent(gridParent, false);
