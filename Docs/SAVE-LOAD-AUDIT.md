@@ -1,10 +1,33 @@
 # Save/Load Round-Trip Audit Across Parts
 
-> **Living plan + findings document.** Updated as the audit progresses.
+> **✅ AUDIT COMPLETE (2026-05-10).** 144 EditMode tests across 18
+> fixtures pin 60 contracts. 1 real bug found and fixed
+> (HibernatingEffect prior-resistance round-trip, SL.6.4). 1 🟡
+> cleanup deferred (MutationsPart wasted-bytes, SL.7.6). 1 behavioral
+> invariant surfaced (PhysicsPart canonicalization on load, SL.8.4).
+> Adversarial sweep (SL.10.2) probed 10 bug classes — all clean.
+>
 > See `ADVERSARIAL_TESTING.md` (root) for the methodology this audit
-> follows — particularly **Strategy B (existing features)** which
+> followed — particularly **Strategy B (existing features)** which
 > calls out save/load reflection paths as the **highest bug-yield
-> surface for legacy code**.
+> surface for legacy code**. The SL.6.4 finding (HibernatingEffect's
+> private-setter property silently dropped on save) is exactly the
+> kind of bug Strategy B targets.
+
+## TL;DR — what got pinned
+
+| Sub-milestone | Surface | Tests | Bugs | Findings |
+|---|---|---|---|---|
+| SL.2 | Tier-3 simple Parts (9 types) | 14 | 0 | baseline |
+| SL.3 | Tier-3 Entity-ref Parts (2 types) | 10 | 0 | flushing contract |
+| SL.4 | Tier-3 collection Parts (1 type) | 6 | 0 | TokenGraph helper |
+| SL.5 | Tier-3 private/internal-state Parts (6 types) | 7 | 0 | reset-to-default contract |
+| SL.6 | Effect round-trip (18 effects) | 34 | **1** 🔴→🟢 | HibernatingEffect property→field |
+| SL.7 | Tier-1 explicit handlers (7 types) | 39 | 0 | 1 🟡 cleanup deferred |
+| SL.8 | Cross-Part reference identity | 15 | 0 | PhysicsPart canonicalization invariant |
+| SL.9 | Mid-state save matrix | 9 | 0 | cooldown/duration/stack survive flux |
+| SL.10 | Adversarial sweep + closure | 10 | 0 | bug-class taxonomy clean |
+| **Total** | — | **144** | **1** | **3 noted** |
 
 ---
 
@@ -12,17 +35,18 @@
 
 | Field | Value |
 |---|---|
-| **Current sub-milestone** | SL.10 — Cold-eye + adversarial sweep + closure (in progress) |
+| **Current sub-milestone** | **SL.10 — ✅ AUDIT COMPLETE** |
 | **Last updated** | 2026-05-10 |
-| **Total tests added** | 14 (SL.2) + 10 (SL.3) + 6 (SL.4) + 7 (SL.5) + 34 (SL.6) + 39 (SL.7) + 15 (SL.8) + 9 (SL.9) = 134 |
-| **Total Part types audited** | 25 / ~62 |
-| **Total Effect types audited** | 18 / 25 |
-| **Real bugs found** | **1** (HibernatingEffect prior-resistance round-trip) |
+| **Total tests added** | 14+10+6+7+34+39+15+9+10 = **144** EditMode tests |
+| **Total Part types audited** | 25 / ~62 (key Tier-1 + selected Tier-3) |
+| **Total Effect types audited** | 18 / 25 (all common types; rare/showcase effects deferred) |
+| **Real bugs found** | **1** (HibernatingEffect prior-resistance round-trip — SL.6.4) |
 | **Real bugs fixed** | **1** (commit `75f78e2`) |
-| **🟡 cleanup candidates flagged** | **1** — MutationsPart wasted-bytes (saves type names that LoadMutationsPart discards). Deferred. |
+| **🟡 cleanup candidates flagged** | **1** — MutationsPart wasted-bytes (saves type names that LoadMutationsPart discards; OnAfterLoad's Parts scan does the actual restore). Deferred to a future commit; current contracts pinned. |
 | **Behavioral invariants surfaced** | **1** — `InventoryPart.OnAfterLoad` CANONICALIZES `PhysicsPart` back-pointers based on which collection (`Objects[]` vs `EquippedItems[]`) the item sits in. Saved field values are overwritten — live inventory state is the source of truth. Pinned by SL.8.4. |
-| **Contracts pinned** | 5 (SL.2) + 6 (SL.3) + 4 (SL.4) + 4 (SL.5) + 8 (SL.6) + 12 (SL.7) + 5 (SL.8) + 6 (SL.9) = 50 |
-| **Latest commit** | `9290670` (SL.9.2) |
+| **Adversarial sweep findings** | **0** — 10/10 SL.10.2 probes (circular refs, self-ref, scale 50+ effects / 100+ items, 3-level nesting, multi-round-trip, empty edges, token reuse) all green on first run. The save/load system handled every probe correctly. **Honesty bound:** zero adversarial findings does NOT prove the system bug-free; the SL.6.4 bug was found by Tier-classification tests, not by this sweep. |
+| **Contracts pinned** | 5+6+4+4+8+12+5+6+10 = **60** |
+| **Latest commit** | `4adba9b` (SL.10.2) |
 
 ---
 
@@ -675,7 +699,7 @@ single-effect tests.
 - **SL.9.2** — Mid-cooldown + mid-duration matrix (~8 tests)
 - **SL.9.3** — Cold-eye + doc + merge
 
-### SL.10 — Cold-eye + adversarial sweep + final document update (in progress)
+### SL.10 — Cold-eye + adversarial sweep + final document update ✅ COMPLETE
 
 Final pass per CLAUDE.md §"Cold-eye review" + §"Adversarial test
 sweep". Save/load hits 4+ taxonomy surfaces (state atomicity, parser,
