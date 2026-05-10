@@ -12,7 +12,7 @@
 
 | Field | Value |
 |---|---|
-| **Current sub-milestone** | SL.8 — Cross-Part reference integrity ✅ COMPLETE |
+| **Current sub-milestone** | SL.9 — Mid-state save scenarios (in progress) |
 | **Last updated** | 2026-05-10 |
 | **Total tests added** | 14 (SL.2) + 10 (SL.3) + 6 (SL.4) + 7 (SL.5) + 34 (SL.6) + 39 (SL.7) + 15 (SL.8) = 125 |
 | **Total Part types audited** | 25 / ~62 |
@@ -646,19 +646,34 @@ silently.
   instance whose `InventoryPart.Objects[]` contains the item (~3 tests)
 - **SL.8.5** — Cold-eye + doc backfill + merge
 
-### SL.9 — Mid-state save scenarios
+### SL.9 — Mid-state save scenarios (in progress)
 
-**Scope:** Save WHILE state is in flux:
-- Cooldown ticking down (CooldownRemaining > 0)
-- Effect mid-duration (Duration = 3)
-- HookedEffect mid-drag (turns remaining)
-- HeartFlame charges spent (1 of 3 used)
-- Burning at non-default intensity
-
-**Why valuable:** the "happy path" round-trip might work but
+**Scope:** Save WHILE state is in flux. The "happy path" round-trip
+(default state → save → load → still default) might work but
 mid-state has more surface area. A buggy impl might reset
 "transient" state to defaults (charges go back to 3, cooldown
-goes back to 0).
+goes back to 0, etc.).
+
+**Targets** (each pins a "save-while-flux" scenario):
+- Ability cooldown mid-tick: `CooldownRemaining = 4`, `MaxCooldown = 6`
+- Effect mid-duration: `Duration = 3` (lower than ctor default)
+- HookedEffect mid-drag: hooker still set, partway through duration
+- BurningEffect at non-default intensity (verified data-survives,
+  intensity-driven damage tick post-load)
+- StunnedEffect after a stack: post-OnStack Duration > pre-stack
+- ShatterArmorEffect.StackCount > 1 from chained shatter hits
+
+**Why pin separately from SL.6:** SL.6 verified each effect's
+data-shape round-trip with one canonical setup. SL.9 verifies the
+same effects in mid-state-flux + multi-effect combinations on
+the same actor (matrix multiplication of states). A bug that
+zeros out "non-default" fields on load would slip past SL.6's
+single-effect tests.
+
+**Sub-milestones:**
+- **SL.9.1** — Plan + this commit
+- **SL.9.2** — Mid-cooldown + mid-duration matrix (~8 tests)
+- **SL.9.3** — Cold-eye + doc + merge
 
 ### SL.10 — Cold-eye + adversarial sweep + final document update
 
