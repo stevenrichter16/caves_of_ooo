@@ -288,35 +288,59 @@ namespace CavesOfOoo
                         shakeCamera.Shake(intensity, 0.1f);
                     };
 
-                    // Pass 4 §4A: HitStopController. CombatSystem reads
-                    // HitStopController.Instance to fire hit-stop on
-                    // crits/kills. AddComponent fires Awake → sets the
-                    // singleton. Idempotent if a previous component
-                    // already exists.
-                    if (GetComponent<CavesOfOoo.Presentation.Effects.HitStopController>() == null)
-                        gameObject.AddComponent<CavesOfOoo.Presentation.Effects.HitStopController>();
+                    // GLYPHS-ONLY GATE: Pass 4 / 6 / 7 effect controllers
+                    // are gated behind GraphicsPolish.IsEnabled. When the
+                    // master flag is false (the shipping default), none
+                    // of these are added — pure CP437 gameplay. Flip the
+                    // constant in GraphicsPolish.cs to bring them back.
+                    // Also disables the URP Volume post-processing stack
+                    // (Pass 1-3 bloom / vignette / color grading / etc.)
+                    // by toggling all Volume components in the scene off.
+                    if (CavesOfOoo.Presentation.Effects.GraphicsPolish.IsEnabled)
+                    {
+                        // Pass 4 §4A: HitStopController. CombatSystem reads
+                        // HitStopController.Instance to fire hit-stop on
+                        // crits/kills. AddComponent fires Awake → sets the
+                        // singleton. Idempotent if a previous component
+                        // already exists.
+                        if (GetComponent<CavesOfOoo.Presentation.Effects.HitStopController>() == null)
+                            gameObject.AddComponent<CavesOfOoo.Presentation.Effects.HitStopController>();
 
-                    // Pass 4 §4B: CrtToggleController. F12 toggles the
-                    // CRT phosphor Volume overlay on/off.
-                    if (GetComponent<CavesOfOoo.Presentation.Effects.CrtToggleController>() == null)
-                        gameObject.AddComponent<CavesOfOoo.Presentation.Effects.CrtToggleController>();
+                        // Pass 4 §4B: CrtToggleController. F12 toggles the
+                        // CRT phosphor Volume overlay on/off.
+                        if (GetComponent<CavesOfOoo.Presentation.Effects.CrtToggleController>() == null)
+                            gameObject.AddComponent<CavesOfOoo.Presentation.Effects.CrtToggleController>();
 
-                    // Pass 6 §6B: BiomeColorPatcher. Reads active
-                    // zone's biome via WorldMap + applies the
-                    // BiomePalette to the global Volume's
-                    // ColorAdjustments + Vignette overrides.
-                    var biomePatcher = GetComponent<CavesOfOoo.Presentation.Rendering.BiomeColorPatcher>();
-                    if (biomePatcher == null)
-                        biomePatcher = gameObject.AddComponent<CavesOfOoo.Presentation.Rendering.BiomeColorPatcher>();
-                    biomePatcher.ZoneManager = _zoneManager;
-                    biomePatcher.SetCurrentZone(_zone);
+                        // Pass 6 §6B: BiomeColorPatcher. Reads active
+                        // zone's biome via WorldMap + applies the
+                        // BiomePalette to the global Volume's
+                        // ColorAdjustments + Vignette overrides.
+                        var biomePatcher = GetComponent<CavesOfOoo.Presentation.Rendering.BiomeColorPatcher>();
+                        if (biomePatcher == null)
+                            biomePatcher = gameObject.AddComponent<CavesOfOoo.Presentation.Rendering.BiomeColorPatcher>();
+                        biomePatcher.ZoneManager = _zoneManager;
+                        biomePatcher.SetCurrentZone(_zone);
 
-                    // Pass 7 §7B.2: SpriteEnvToggleController.
-                    // Backslash key toggles the hybrid sprite
-                    // environment (walls/floors/water/doors as
-                    // pixel-art sprites instead of CP437 glyphs).
-                    if (GetComponent<CavesOfOoo.Presentation.Effects.SpriteEnvToggleController>() == null)
-                        gameObject.AddComponent<CavesOfOoo.Presentation.Effects.SpriteEnvToggleController>();
+                        // Pass 7 §7B.2: SpriteEnvToggleController.
+                        // Backslash key toggles the hybrid sprite
+                        // environment (walls/floors/water/doors as
+                        // pixel-art sprites instead of CP437 glyphs).
+                        if (GetComponent<CavesOfOoo.Presentation.Effects.SpriteEnvToggleController>() == null)
+                            gameObject.AddComponent<CavesOfOoo.Presentation.Effects.SpriteEnvToggleController>();
+                    }
+                    else
+                    {
+                        // Disable any URP Volumes already in the scene
+                        // (Pass 1-3 added bloom + vignette + color grading
+                        // overrides on a global Volume). Disabling the
+                        // component means the renderer ignores its profile
+                        // overrides — pure SDR / no post.
+                        foreach (var v in UnityEngine.Object.FindObjectsByType<UnityEngine.Rendering.Volume>(
+                            FindObjectsInactive.Include, FindObjectsSortMode.None))
+                        {
+                            v.enabled = false;
+                        }
+                    }
 
                     Debug.Log("[Bootstrap] Step 9/9: Wiring input...");
                     var inputHandler = GetComponent<InputHandler>();
