@@ -61,6 +61,7 @@ namespace CavesOfOoo.Rendering
         private Tilemap _fxTilemap;
         private AnimatedEnvironmentRenderer _animatedEnvRenderer; // Pass 5
         private GlyphGhostRenderer _glyphGhostRenderer;           // Pass 6
+        private EnvironmentSpriteRenderer _envSpriteRenderer;     // Pass 7
 
         /// <summary>
         /// Horizontal sub-cell tilemap overlaid on the main tilemap for
@@ -303,6 +304,17 @@ namespace CavesOfOoo.Rendering
             GameplayRenderLayers.SetLayerRecursive(ghostObj, GameplayRenderLayers.WorldLayer);
             _glyphGhostRenderer = ghostObj.AddComponent<GlyphGhostRenderer>();
             _glyphGhostRenderer.Init(gridParent);
+
+            // Pass 7 §7B.1: hybrid sprite environment. Replaces
+            // wall/floor/water/door CP437 glyphs with 16×16 pixel-art
+            // sprites on a new overlay tilemap. Toggleable via the
+            // SpriteEnvToggleController (backslash hotkey, default ON).
+            // See Docs/GRAPHICS-PASS7.md.
+            var envSpriteObj = new GameObject("EnvironmentSpriteRenderer");
+            envSpriteObj.transform.SetParent(gridParent, false);
+            GameplayRenderLayers.SetLayerRecursive(envSpriteObj, GameplayRenderLayers.WorldLayer);
+            _envSpriteRenderer = envSpriteObj.AddComponent<EnvironmentSpriteRenderer>();
+            _envSpriteRenderer.Init(gridParent, _tilemap);
 
             var emberObj = new GameObject("CampfireEmbers");
             emberObj.transform.SetParent(gridParent, false);
@@ -691,6 +703,14 @@ namespace CavesOfOoo.Rendering
                 // See Docs/GRAPHICS-PASS6.md §6A.
                 if (_glyphGhostRenderer != null)
                     _glyphGhostRenderer.PostRender(_tilemap);
+
+                // Pass 7 §7B.1: hybrid sprite environment. Runs
+                // LAST so it can claim wall/floor/water glyphs
+                // from the main tilemap and re-paint as sprites.
+                // Skips no-op-ly if RenderingEnabled is false
+                // (toggled via SpriteEnvToggleController).
+                if (_envSpriteRenderer != null)
+                    _envSpriteRenderer.PostRender(CurrentZone, Zone.Width, Zone.Height);
             }
         }
 
