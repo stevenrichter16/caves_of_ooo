@@ -241,5 +241,138 @@ namespace CavesOfOoo.Tests
             Assert.AreSame(snap[1], snap[2].ParentHandler,
                 "Third goal's parent points at second.");
         }
+
+        // ── Followers F.1.3 — PartyLeader + PartyMembers round-trip ──
+
+        [Test]
+        public void BrainPart_PartyLeader_Null_RoundTripsAsNull()
+        {
+            var actor = new Entity { ID = "a", BlueprintName = "Test" };
+            actor.AddPart(new BrainPart());
+
+            var loaded = PartRoundTripHelper.RoundTripEntityViaTokenGraph(actor);
+            Assert.IsNull(loaded.GetPart<BrainPart>().PartyLeader,
+                "Fresh brain has null PartyLeader; round-trips as null.");
+        }
+
+        [Test]
+        public void BrainPart_PartyLeader_EntityRef_RoundTrips()
+        {
+            // F.1.3 — PartyLeader is a public Entity field, so it routes
+            // through WriteEntityReference (SaveSystem.cs:1421-style).
+            // Pin that the leader's body survives the token-graph flush.
+            var follower = new Entity { ID = "f", BlueprintName = "Follower" };
+            var leader = new Entity { ID = "l", BlueprintName = "Leader" };
+            var brain = new BrainPart();
+            follower.AddPart(brain);
+            brain.SetPartyLeader(leader);  // uses the F.1.2 path
+
+            var loaded = PartRoundTripHelper.RoundTripEntityViaTokenGraph(follower);
+            var lb = loaded.GetPart<BrainPart>();
+            Assert.IsNotNull(lb.PartyLeader);
+            Assert.AreEqual("l", lb.PartyLeader.ID,
+                "Leader ID round-trips via WriteEntityReference.");
+            Assert.AreEqual("Leader", lb.PartyLeader.BlueprintName,
+                "Leader body queued + flushed by token-graph helper.");
+        }
+
+        [Test]
+        public void BrainPart_PartyMembers_EmptyRoster_RoundTripsAsEmpty()
+        {
+            var actor = new Entity { ID = "a", BlueprintName = "Test" };
+            actor.AddPart(new BrainPart());
+
+            var loaded = PartRoundTripHelper.RoundTripEntityViaTokenGraph(actor);
+            Assert.AreEqual(0, loaded.GetPart<BrainPart>().PartyMembers.Count,
+                "Empty roster survives — NOT a null reference, NOT spurious entries.");
+        }
+
+        [Test]
+        public void BrainPart_PartyMembers_MultipleEntries_AllRoundTrip()
+        {
+            // Three followers under one leader. Pin all three survive
+            // count + entity refs + IDs.
+            var leader = new Entity { ID = "L", BlueprintName = "Leader" };
+            var lBrain = new BrainPart();
+            leader.AddPart(lBrain);
+            for (int i = 0; i < 3; i++)
+            {
+                var f = new Entity { ID = $"f{i}", BlueprintName = $"F{i}" };
+                var fBrain = new BrainPart();
+                f.AddPart(fBrain);
+                fBrain.SetPartyLeader(leader);
+            }
+            Assert.AreEqual(3, lBrain.PartyMembers.Count,
+                "Setup: leader has 3 party members pre-save.");
+
+            var loadedLeader = PartRoundTripHelper.RoundTripEntityViaTokenGraph(leader);
+            var loadedRoster = loadedLeader.GetPart<BrainPart>().PartyMembers;
+            Assert.AreEqual(3, loadedRoster.Count,
+                "All 3 followers' entity refs survive in the roster.");
+            // Convert to ID set for assertion (HashSet order is undefined).
+            var ids = new System.Collections.Generic.HashSet<string>();
+            foreach (var m in loadedRoster) ids.Add(m.ID);
+            Assert.IsTrue(ids.Contains("f0"));
+            Assert.IsTrue(ids.Contains("f1"));
+            Assert.IsTrue(ids.Contains("f2"));
+        }
+
+        [Test]
+        public void BrainPart_LeaderAndFollowerInSameGraph_ShareIdentity_OnLoad()
+        {
+            // SL.8 contract: when both leader L and follower F are in the
+            // SAME save graph, after round-trip the follower's PartyLeader
+            // must be the SAME loaded Entity instance as the leader (via
+            // the token system's reference dedupe). AreSame, not AreEqual.
+            var leader = new Entity { ID = "L", BlueprintName = "Leader" };
+            var lBrain = new BrainPart();
+            leader.AddPart(lBrain);
+
+            var follower = new Entity { ID = "F", BlueprintName = "Follower" };
+            var fBrain = new BrainPart();
+            follower.AddPart(fBrain);
+            fBrain.SetPartyLeader(leader);
+
+            // Round-trip the LEADER (not the follower) — follower is
+            // reachable via PartyMembers and queued by the token graph.
+            var loadedLeader = PartRoundTripHelper.RoundTripEntityViaTokenGraph(leader);
+            var loadedFollower = System.Linq.Enumerable.First(
+                loadedLeader.GetPart<BrainPart>().PartyMembers);
+
+            Assert.AreSame(loadedLeader, loadedFollower.GetPart<BrainPart>().PartyLeader,
+                "REFERENCE IDENTITY: follower's PartyLeader is the SAME "
+                + "loaded Entity instance as the round-trip primary leader. "
+                + "Per SL.8 contract — token system enforces by construction.");
+        }
+
+        [Test]
+        public void BrainPart_RoundTrip_Preserves_LeaderChainTransitively()
+        {
+            // A→B→C chain — all three in the save graph. After round-trip,
+            // C.IsLedBy(A) should still be true (chain walk works post-load).
+            var a = new Entity { ID = "A", BlueprintName = "A" };
+            var b = new Entity { ID = "B", BlueprintName = "B" };
+            var c = new Entity { ID = "C", BlueprintName = "C" };
+            a.AddPart(new BrainPart());
+            b.AddPart(new BrainPart());
+            c.AddPart(new BrainPart());
+            b.GetPart<BrainPart>().SetPartyLeader(a);
+            c.GetPart<BrainPart>().SetPartyLeader(b);
+
+            // Round-trip A (root). B and C are reachable via PartyMembers.
+            var loadedA = PartRoundTripHelper.RoundTripEntityViaTokenGraph(a);
+
+            // Find loaded B and C via the chain.
+            var aRoster = loadedA.GetPart<BrainPart>().PartyMembers;
+            var loadedB = System.Linq.Enumerable.First(aRoster);
+            var bRoster = loadedB.GetPart<BrainPart>().PartyMembers;
+            var loadedC = System.Linq.Enumerable.First(bRoster);
+
+            Assert.IsTrue(loadedC.GetPart<BrainPart>().IsLedBy(loadedA),
+                "Transitive leadership survives round-trip — C.IsLedBy(A) "
+                + "walks the leader chain post-load.");
+            Assert.AreSame(loadedA, loadedC.GetPart<BrainPart>().GetFinalLeader(),
+                "GetFinalLeader chain-walk reaches the loaded root.");
+        }
     }
 }
