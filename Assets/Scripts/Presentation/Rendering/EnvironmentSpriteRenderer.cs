@@ -84,6 +84,9 @@ namespace CavesOfOoo.Rendering
         // Pass 10 — per-blueprint disambiguation
         private Sprite _chestSprite;      // [ when blueprint contains "chest"
         private Sprite _lanternSprite;    // ! when blueprint contains "lantern"
+        // Pass 11 — round-out per-blueprint disambiguation
+        private Sprite _bedSprite;        // = when blueprint contains "Bed"
+        private Sprite _corpseSprite;     // % when blueprint contains "Corpse"/"Body"
 
         // Per-glyph cached Tile assets (TileBase wrapping each Sprite).
         // Reused across paints to avoid allocating Tile objects per cell.
@@ -112,6 +115,8 @@ namespace CavesOfOoo.Rendering
         // Pass 10 tiles
         private Tile _chestTile;
         private Tile _lanternTile;
+        private Tile _bedTile;
+        private Tile _corpseTile;
 
         private Tilemap _overlayTilemap;
         private Tilemap _mainTilemap;
@@ -165,6 +170,9 @@ namespace CavesOfOoo.Rendering
             // Pass 10
             _chestSprite      = LoadSingle("Assets/Sprites/Environment/chest.png");
             _lanternSprite    = LoadSingle("Assets/Sprites/Environment/lantern.png");
+            // Pass 11
+            _bedSprite        = LoadSingle("Assets/Sprites/Environment/bed.png");
+            _corpseSprite     = LoadSingle("Assets/Sprites/Environment/corpse.png");
 #endif
         }
 
@@ -250,6 +258,8 @@ namespace CavesOfOoo.Rendering
             // Pass 10 tiles
             _chestTile      = MakeTile(_chestSprite,      "Chest");
             _lanternTile    = MakeTile(_lanternSprite,    "Lantern");
+            _bedTile        = MakeTile(_bedSprite,        "Bed");
+            _corpseTile     = MakeTile(_corpseSprite,     "Corpse");
         }
 
         public void PostRender(Zone zone, int width, int height)
@@ -316,7 +326,29 @@ namespace CavesOfOoo.Rendering
             if (string.IsNullOrEmpty(bp)) return null;
             if (BlueprintIsChest(bp))   return _chestTile;
             if (BlueprintIsLantern(bp)) return _lanternTile;
+            if (BlueprintIsBed(bp))     return _bedTile;
+            if (BlueprintIsCorpse(bp))  return _corpseTile;
             return null;
+        }
+
+        private static bool BlueprintIsBed(string bp)
+        {
+            // Pass 11 — bed blueprints in Objects.json. Includes "Bed"
+            // exact match plus variants (StrawBed, RoyalBed, etc.).
+            // Distinct from "Bedroll" (carryable) — we EndsWith here
+            // so "Bedroll" doesn't spuriously claim a bed tile.
+            if (string.IsNullOrEmpty(bp)) return false;
+            return bp.EndsWith("Bed", System.StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static bool BlueprintIsCorpse(string bp)
+        {
+            // Pass 11 — corpse blueprints. Most named entities use the
+            // suffix "Corpse" (e.g. SnapjawCorpse). We match suffix to
+            // avoid colliding with names that have "corpse" in the
+            // middle (none currently, but safer if content grows).
+            if (string.IsNullOrEmpty(bp)) return false;
+            return bp.EndsWith("Corpse", System.StringComparison.OrdinalIgnoreCase);
         }
 
         private Tile ChooseTile(Zone zone, int x, int y, char glyph)

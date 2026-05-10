@@ -26,6 +26,9 @@ public static class Pass8SpriteImporter
         // Pass 10 — per-blueprint disambiguation sprites
         "Assets/Sprites/Environment/chest.png",
         "Assets/Sprites/Environment/lantern.png",
+        // Pass 11 — bed + corpse disambiguation
+        "Assets/Sprites/Environment/bed.png",
+        "Assets/Sprites/Environment/corpse.png",
     };
 
     [MenuItem("Caves Of Ooo/Tools/Pass 8 — Configure Sprite Expansion")]

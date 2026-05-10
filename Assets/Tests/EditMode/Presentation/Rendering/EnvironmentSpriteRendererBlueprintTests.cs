@@ -92,6 +92,66 @@ namespace CavesOfOoo.Tests
             Assert.IsFalse(InvokeIsLantern(""));
         }
 
+        // ── BlueprintIsBed (Pass 11) ──────────────────────────────
+
+        [Test]
+        public void Bed_ExactName_Matches()
+        {
+            Assert.IsTrue(InvokeIsBed("Bed"));
+        }
+
+        [Test]
+        public void Bed_StrawBed_Matches()
+        {
+            // Variant naming convention.
+            Assert.IsTrue(InvokeIsBed("StrawBed"));
+        }
+
+        [Test]
+        public void Bed_Bedroll_DoesNotMatch()
+        {
+            // Adversarial: "Bedroll" is a carryable item, not bed
+            // furniture. Suffix matching prevents the spurious claim.
+            Assert.IsFalse(InvokeIsBed("Bedroll"),
+                "Bedroll is a carryable, not bed furniture — must not match.");
+        }
+
+        [Test]
+        public void Bed_NullOrEmpty_DoesNotMatch()
+        {
+            Assert.IsFalse(InvokeIsBed(null));
+            Assert.IsFalse(InvokeIsBed(""));
+        }
+
+        // ── BlueprintIsCorpse (Pass 11) ───────────────────────────
+
+        [Test]
+        public void Corpse_SnapjawCorpse_Matches()
+        {
+            Assert.IsTrue(InvokeIsCorpse("SnapjawCorpse"));
+        }
+
+        [Test]
+        public void Corpse_HumanCorpse_Matches()
+        {
+            Assert.IsTrue(InvokeIsCorpse("HumanCorpse"));
+        }
+
+        [Test]
+        public void Corpse_Mushroom_DoesNotMatch()
+        {
+            // Counter-check: mushroom shares the `%` glyph with corpse
+            // but should never render as a corpse — wrong content.
+            Assert.IsFalse(InvokeIsCorpse("Mushroom"));
+        }
+
+        [Test]
+        public void Corpse_NullOrEmpty_DoesNotMatch()
+        {
+            Assert.IsFalse(InvokeIsCorpse(null));
+            Assert.IsFalse(InvokeIsCorpse(""));
+        }
+
         // ── Reflection helpers (the matchers are private static) ──
 
         private static bool InvokeIsChest(string bp)
@@ -106,6 +166,22 @@ namespace CavesOfOoo.Tests
         {
             var t = typeof(EnvironmentSpriteRenderer);
             var m = t.GetMethod("BlueprintIsLantern",
+                System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+            return (bool)m.Invoke(null, new object[] { bp });
+        }
+
+        private static bool InvokeIsBed(string bp)
+        {
+            var t = typeof(EnvironmentSpriteRenderer);
+            var m = t.GetMethod("BlueprintIsBed",
+                System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+            return (bool)m.Invoke(null, new object[] { bp });
+        }
+
+        private static bool InvokeIsCorpse(string bp)
+        {
+            var t = typeof(EnvironmentSpriteRenderer);
+            var m = t.GetMethod("BlueprintIsCorpse",
                 System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
             return (bool)m.Invoke(null, new object[] { bp });
         }
