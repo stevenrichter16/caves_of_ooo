@@ -13,13 +13,13 @@
 
 | Field | Value |
 |---|---|
-| **Phase** | F.1 — Leader/follower scaffolding |
+| **Phase** | F.1 — Leader/follower scaffolding ✅ COMPLETE |
 | **Last updated** | 2026-05-10 |
 | **Branch** | `feat/followers-f1-leader-scaffold` |
-| **Sub-milestones complete** | 0 / 6 |
+| **Sub-milestones complete** | 6 / 6 |
 | **Real bugs found** | 0 |
-| **Contracts pinned** | 0 |
-| **Tests added** | 0 |
+| **Contracts pinned** | 13 (5 in F.1.2, 1 in F.1.3, 3 in F.1.4, 2 in F.1.5, 2 in F.1.6 adversarial) |
+| **Tests added** | 61 EditMode tests across 3 fixtures |
 
 ---
 
@@ -286,13 +286,134 @@ CLAUDE.md §5):
 
 | Sub-milestone | Status | Tests | Commit |
 |---|---|---|---|
-| F.1.1 Plan + verification sweep | ⏳ | — | — |
-| F.1.2 PartyLeader + PartyMembers + SetPartyLeader | ⏳ | — | — |
-| F.1.3 Save/load round-trip | ⏳ | — | — |
-| F.1.4 Hostility guard | ⏳ | — | — |
-| F.1.5 FollowLeaderGoal | ⏳ | — | — |
-| F.1.6 Cold-eye + merge | ⏳ | — | — |
-| **TOTAL** | **0 / 6** | — | — |
+| F.1.1 Plan + verification sweep | ✅ | — | `4c7fa67` |
+| F.1.2 PartyLeader + PartyMembers + SetPartyLeader | ✅ | 20 | `acccdaf` |
+| F.1.3 Save/load round-trip | ✅ | 6 | `afc7cb3` |
+| F.1.4 Hostility guard | ✅ | 12 | `db2168f` |
+| F.1.5 FollowLeaderGoal | ✅ | 13 | `db60f05` |
+| F.1.6 Adversarial sweep + cold-eye + merge | ✅ | 10 | (this commit + merge) |
+| **TOTAL** | **6 / 6** | **61** | — |
+
+---
+
+## F.1.6 — Cold-eye review (CLAUDE.md §Q1-Q4)
+
+Run after all 5 implementation commits landed; before backfill + merge.
+
+### Q1 — Symmetry
+
+**SetPartyLeader maintains BOTH sides of the link.** Every accepted
+state change touches PartyLeader (upward pointer) AND PartyMembers
+(downward roster). Tested by
+`SetPartyLeader_AlsoAdds_ToLeadersPartyMembers` (positive) and
+`SetPartyLeader_ChangingLeader_RemovesFromOld_AddsToNew` (transition).
+
+**Save format mirrors load format byte-for-byte.** Both write/read
+`PartyLeader` (entity ref) then `PartyMembers.Count + each entity ref`
+in the same order, inserted at the same point (after `ThinkOutLoud`,
+before goals).
+
+**FactionManager.GetFeeling injection placed AFTER PersonalEnemies
+override.** Vendetta beats loyalty — matches Qud's `Forgive`-clears-
+hostility-on-recruit but-personal-grudge-takes-precedence-if-re-added
+semantic. Tested by
+`FactionManager_GetFeeling_PersonalHostility_OverridesPartyAlignment`.
+
+✅ Symmetry passes.
+
+### Q2 — Cross-feature consistency
+
+Five commits + one sweep, all following the same fixture pattern:
+
+```csharp
+var actor = new Entity { ID = "...", BlueprintName = "..." };
+actor.AddPart(new BrainPart());
+actor.GetPart<BrainPart>().SetPartyLeader(target);
+// → Assert on observable state (leader pointer, roster, hostility,
+//   round-trip identity, goal behavior)
+```
+
+- All Qud-mirrored symbols have Qud-style verb-naming
+  (SetPartyLeader, IsLedBy, GetFinalLeader) — consistent with prior
+  CoO classes like Cell.GetTopVisibleObject.
+- New goal subclass `FollowLeaderGoal` matches the `MoveToGoal` /
+  `WanderGoal` shape (public fields, Finished+TakeAction+GetDetails).
+- ALLIED_FEELING constant added alongside existing HOSTILE_THRESHOLD
+  + ALLIED_THRESHOLD — same style.
+
+✅ Consistency passes.
+
+### Q3 — Counter-check completeness
+
+Every positive contract has a counter-form:
+
+| Positive | Counter |
+|---|---|
+| Leader assignment succeeds | Cycle/self/null rejected |
+| IsLedBy walks chain | `IsLedBy_LeaderDoesNotLeadFollower` — direction matters |
+| GetFinalLeader returns root | Root entity returns null |
+| ArePartyAligned siblings | `Adversarial_UnrelatedEntities_FactionFeelingDeterminesNormally` — leader-less entities don't false-align |
+| Hostility guard non-hostile for party | `Adversarial_LeaderlessHostiles_StillHostile` — PersonalEnemies vendetta survives |
+| Round-trip preserves leader | `BrainPart_PartyLeader_Null_RoundTripsAsNull` — null also survives |
+| FollowLeaderGoal moves toward leader | `TakeAction_CloseEnough_NoMove` — already-arrived doesn't twitch |
+
+✅ Counter-checks complete.
+
+### Q4 — Doc-vs-impl drift
+
+Original plan vs. shipped reality:
+
+| Plan | Shipped | Drift? |
+|---|---|---|
+| `Entity PartyLeader` + `HashSet<Entity> PartyMembers` | Same | None |
+| `SetPartyLeader` bool returning false on reject | Same | None |
+| `IsLedBy` + `GetFinalLeader` chain-walkers | Same; added 64-depth safety cap | Documented in code comment |
+| Cycle detection + Forgive | Same | None |
+| Save/load via WriteEntityReference | Same; insertion point exactly where plan said | None |
+| `BrainPart.ArePartyAligned` static method | Renamed from instance `IsPartyAlignedWith` in plan to static — handles null on both sides cleanly. Doc was ambiguous; static was the better fit. | **Minor — clarify in docs** |
+| `ALLIED_FEELING` constant | Plan said "feeling well above threshold"; shipped value is 100 (matches self-feeling line 169). Constant lives in FactionManager.cs alongside HOSTILE_THRESHOLD / ALLIED_THRESHOLD. | None |
+| `FollowLeaderGoal` shape | Same | None |
+| Cross-zone leader handling | Same — graceful give-up via Finished()=true | None |
+
+**One minor drift (renamed helper) — backfilled into this doc.**
+
+### Cold-eye self-directive (CLAUDE.md "Self-directive")
+
+> *Run the cold-eye pass after every multi-commit feature, even when
+> tests are green and the merge feels clean.*
+
+Ran. **0 substantive findings.** One name-drift documented above.
+
+---
+
+## F.1.6 — Adversarial sweep results
+
+Per CLAUDE.md "Adversarial test sweep" gate — F.1 hits 4+ taxonomy
+surfaces (state atomicity, cross-actor flows, save/load reach, stacking
+semantics), so a dedicated sweep is mandatory.
+
+**`FollowerSystemAdversarialTests.cs` — 10 tests across 6 surfaces:**
+
+| Surface | Probe | Result |
+|---|---|---|
+| Scale | 20 followers under one leader — bidirectional integrity at scale | ✅ green |
+| Deep chain | 30-deep follower chain — IsLedBy + GetFinalLeader walk works | ✅ green |
+| Boundary | Distance exactly == CloseEnoughDistance is satisfied (inclusive) | ✅ green |
+| Boundary | Distance one-over is NOT satisfied (no flip) | ✅ green |
+| Rapid mutation | 10 leader swaps — no orphan entries in intermediate rosters | ✅ green |
+| Idempotence | toggle null/leader 5 times — final state consistent, no duplicate roster entries | ✅ green |
+| Mid-state save | Follower mid-pursuit with goal Age=7 — survives round-trip including goal | ✅ green |
+| Hostility guard | Leaderless hostiles stay hostile (guard didn't pacify everyone) | ✅ green |
+| Chain hostility | A→B→C with A-vs-C grudge: PersonalEnemies overrides chain alignment, B↔C unaffected | ✅ green |
+| Stale refs | Round-trip from follower-side — leader's loaded body has the loaded follower in roster (bidirectional integrity across the save graph regardless of which side is primary) | ✅ green |
+
+**0 bugs found.** Per CLAUDE.md honesty bound: zero adversarial
+findings does NOT prove the system bug-free. The contracts are pinned;
+future regressions will surface visibly.
+
+---
+
+*Updated as each sub-milestone shipped.*
 
 ---
 
