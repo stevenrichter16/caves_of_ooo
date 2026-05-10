@@ -12,16 +12,17 @@
 
 | Field | Value |
 |---|---|
-| **Current sub-milestone** | SL.7 — Tier-1 explicit handlers ✅ COMPLETE |
+| **Current sub-milestone** | SL.8 — Cross-Part reference integrity ✅ COMPLETE |
 | **Last updated** | 2026-05-10 |
-| **Total tests added** | 14 (SL.2) + 10 (SL.3) + 6 (SL.4) + 7 (SL.5) + 34 (SL.6) + 39 (SL.7) = 110 |
-| **Total Part types audited** | 25 / ~62 (SL.2-5: 18; SL.7: +7 explicit handlers) |
+| **Total tests added** | 14 (SL.2) + 10 (SL.3) + 6 (SL.4) + 7 (SL.5) + 34 (SL.6) + 39 (SL.7) + 15 (SL.8) = 125 |
+| **Total Part types audited** | 25 / ~62 |
 | **Total Effect types audited** | 18 / 25 |
 | **Real bugs found** | **1** (HibernatingEffect prior-resistance round-trip) |
 | **Real bugs fixed** | **1** (commit `75f78e2`) |
-| **🟡 cleanup candidates flagged** | **1** — MutationsPart wasted-bytes (saves type names that LoadMutationsPart discards; OnAfterLoad's Parts scan does the actual restore). Deferred to a future commit; current contracts pinned by SL.7.6 tests. |
-| **Contracts pinned** | 5 (SL.2) + 6 (SL.3) + 4 (SL.4) + 4 (SL.5) + 8 (SL.6) + 12 (SL.7) = 39 |
-| **Latest commit** | `63a40a6` (SL.7.6) |
+| **🟡 cleanup candidates flagged** | **1** — MutationsPart wasted-bytes (saves type names that LoadMutationsPart discards). Deferred. |
+| **Behavioral invariants surfaced** | **1** — `InventoryPart.OnAfterLoad` CANONICALIZES `PhysicsPart` back-pointers based on which collection (`Objects[]` vs `EquippedItems[]`) the item sits in. Saved field values are overwritten — live inventory state is the source of truth. Pinned by SL.8.4. |
+| **Contracts pinned** | 5 (SL.2) + 6 (SL.3) + 4 (SL.4) + 4 (SL.5) + 8 (SL.6) + 12 (SL.7) + 5 (SL.8) = 44 |
+| **Latest commit** | `2b38b50` (SL.8.4) |
 
 ---
 
@@ -589,17 +590,61 @@ handlers first; surface 🟡/🔴 contracts later):**
 state shape, so bug yield is lower. But the surface area is large —
 do an end-of-audit pass to verify all public state is captured.
 
-### SL.8 — Cross-Part reference integrity + load order
+### SL.8 — Cross-Part reference integrity + load order ✅ COMPLETE
 
-**Scope:** Tests verifying relationships across Parts survive
-round-trip.
+**Scope:** the SL.2-7 sweep pinned per-Part field round-trips. SL.8
+pins **reference identity across multiple Parts on the same save
+graph.** When the same Entity is referenced from two different
+fields (e.g. an item is in BOTH `InventoryPart.Objects[]` AND
+`InventoryPart.EquippedItems[slot]`), they MUST resolve to the
+same `Entity` instance after load — not two distinct copies that
+happen to share an ID.
 
-**Targets:**
-- Body's BodyPart tree ↔ InventoryPart's EquippedItems
-- Effect.Owner ↔ entity it's attached to
-- ActivatedAbilitiesPart ability Guids ↔ SkillsPart ActivatedAbilityID
-  field on each skill (proven to persist via WSP3.5 cold-eye fix)
-- Conversation refs back to NPC entities
+**Verification sweep findings (SaveSystem.cs:77-92, 174-187):**
+
+The token system enforces reference identity by construction:
+
+```csharp
+SaveWriter._entityTokens : Dictionary<Entity, int>   // by ref equality
+WriteEntityReference(e):
+  if (!_entityTokens.TryGetValue(e, out int token)) {
+    token = _nextEntityToken++;
+    _entityTokens[e] = token;
+    _entityQueue.Add(e);     // queued for a single body-write
+  }
+  Write(token);
+
+SaveReader._entityTokens : Dictionary<int, Entity>   // by token
+ReadEntityReference():
+  int token = ReadInt();
+  if (!_entityTokens.TryGetValue(token, out Entity e)) {
+    e = new Entity();
+    _entityTokens[token] = e;
+  }
+  return e;
+```
+
+So multiple writes of the same `Entity` reuse the same token; multiple
+reads of the same token return the same `Entity` placeholder. `ReadEntityBodies`
+then populates each placeholder. The contract is correct **by design**
+— SL.8's job is to pin it in tests so a future refactor can't break it
+silently.
+
+**Sub-milestones:**
+
+- **SL.8.1** — Plan + verification sweep (this commit)
+- **SL.8.2** — Same-entity-from-multiple-Parts identity: an item
+  in `InventoryPart.Objects[]` + `EquippedItems[slot]` + `BodyPart._Equipped`
+  must round-trip as a single shared instance (~6 tests)
+- **SL.8.3** — Effect.Owner cross-Part integrity: multiple effects
+  on the same actor all share `Owner == loaded actor`; an effect's
+  entity-ref payload (e.g. `BurningEffect.IgnitionSource`) and the
+  defender's `Owner` are distinct entities that both round-trip
+  correctly (~4 tests)
+- **SL.8.4** — `PhysicsPart.InInventory` ↔ owner Entity round-trip
+  identity: the item's owner pointer points at the SAME Entity
+  instance whose `InventoryPart.Objects[]` contains the item (~3 tests)
+- **SL.8.5** — Cold-eye + doc backfill + merge
 
 ### SL.9 — Mid-state save scenarios
 
