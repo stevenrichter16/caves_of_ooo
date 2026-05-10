@@ -125,18 +125,18 @@ screenshot of a campfire-lit dungeon.
 
 | Sub-milestone | Status | Tests | Commit |
 |---|---|---|---|
-| 8A.1 Sprites batch 1 (5) | ✅ done (stalagmite, boulder, stalactite, bush, cactus) | n/a | TBD |
-| 8A.2 Sprites batch 2 (5) | ✅ done (tree, campfire, shrine, stairs↓, stairs↑) | n/a | TBD |
-| 8A.3 Sprites batch 3 (5) | ✅ done (bones, barrel, mushroom, gold pile, chair) | n/a | TBD |
-| 8B.1 Renderer wiring | ✅ done | — | TBD |
-| 8B.2 Pass8SpriteImporter | ✅ done | n/a | TBD |
-| 8C Play-mode verify | ✅ done (pass8_demo_zoomed.png + pass8_demo_unlit.png) | — | TBD |
-| 8D Iterative polish | ✅ done (stalagmite/boulder/stalactite warm-stone palette) | — | TBD |
-| 8E.1 LightSourceSpriteHook | ✅ done | 6 | TBD |
-| 8E.2 Biome ambient dim | ✅ done (folded into LightSourceSpriteHook) | — | TBD |
-| 8E.3 Flicker controller | ✅ done (folded into LightSourceSpriteHook.Update) | — | TBD |
-| 8E.4 Tests + verify | ✅ done (pass8_lighting_test.png — campfires + shrine glowing) | 6 | TBD |
-| **TOTAL** | **11 / 11** | **6** | — |
+| 8A.1 Sprites batch 1 (5) | ✅ done (stalagmite, boulder, stalactite, bush, cactus) | n/a | 1af505e |
+| 8A.2 Sprites batch 2 (5) | ✅ done (tree, campfire, shrine, stairs↓, stairs↑) | n/a | 1af505e |
+| 8A.3 Sprites batch 3 (5) | ✅ done (bones, barrel, mushroom, gold pile, chair) | n/a | 1af505e |
+| 8B.1 Renderer wiring | ✅ done | — | 1af505e |
+| 8B.2 Pass8SpriteImporter | ✅ done | n/a | 1af505e |
+| 8C Play-mode verify | ✅ done (pass8_demo_zoomed.png + pass8_demo_unlit.png) | — | 1af505e |
+| 8D Iterative polish | ✅ done (stalagmite/boulder/stalactite warm-stone palette) | — | 1af505e |
+| 8E.1 LightSourceSpriteHook | ✅ done | 6 | 1af505e |
+| 8E.2 Biome ambient dim | ✅ done (folded into LightSourceSpriteHook) | — | 1af505e |
+| 8E.3 Flicker controller | ✅ done (folded into LightSourceSpriteHook.Update) | — | 1af505e |
+| 8E.4 Tests + verify | ✅ done (pass8_lighting_test.png — campfires + shrine glowing) | 6 | 1af505e |
+| **TOTAL** | **11 / 11** | **6** | merge: a4bcd22 |
 
 ---
 
