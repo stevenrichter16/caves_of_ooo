@@ -216,6 +216,9 @@ namespace CavesOfOoo.Tests.Scenarios
         [Test] public void StatusEffectGlowShowcase_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new StatusEffectGlowShowcase().Apply(FreshContext()));
 
+        [Test] public void AnimatedEnvironmentShowcase_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new AnimatedEnvironmentShowcase().Apply(FreshContext()));
+
         [Test] public void ThrowableTonicsShowcase_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new ThrowableTonicsShowcase().Apply(FreshContext()));
 

@@ -104,6 +104,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_StatusEffectGlowShowcase()
             => ScenarioRunner.Launch<StatusEffectGlowShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Animated Environment Showcase (Pass 5 water/grass/fire)", priority = 117)]
+        private static void Launch_AnimatedEnvironmentShowcase()
+            => ScenarioRunner.Launch<AnimatedEnvironmentShowcase>();
+
         [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Throwable Tonics Showcase (AOE shatter)", priority = 111)]
         private static void Launch_ThrowableTonicsShowcase()
             => ScenarioRunner.Launch<ThrowableTonicsShowcase>();
