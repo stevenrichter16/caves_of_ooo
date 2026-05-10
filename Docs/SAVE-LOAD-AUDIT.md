@@ -12,7 +12,7 @@
 
 | Field | Value |
 |---|---|
-| **Current sub-milestone** | SL.9 — Mid-state save scenarios ✅ COMPLETE |
+| **Current sub-milestone** | SL.10 — Cold-eye + adversarial sweep + closure (in progress) |
 | **Last updated** | 2026-05-10 |
 | **Total tests added** | 14 (SL.2) + 10 (SL.3) + 6 (SL.4) + 7 (SL.5) + 34 (SL.6) + 39 (SL.7) + 15 (SL.8) + 9 (SL.9) = 134 |
 | **Total Part types audited** | 25 / ~62 |
@@ -675,15 +675,32 @@ single-effect tests.
 - **SL.9.2** — Mid-cooldown + mid-duration matrix (~8 tests)
 - **SL.9.3** — Cold-eye + doc + merge
 
-### SL.10 — Cold-eye + adversarial sweep + final document update
+### SL.10 — Cold-eye + adversarial sweep + final document update (in progress)
 
-Final pass per CLAUDE.md §"Cold-eye review":
-- Q1: Do save/load handlers mirror their save vs load shapes?
-- Q2: Cross-Part schema consistency
-- Q3: Counter-check completeness for round-trip pairs
-- Q4: Doc-vs-impl drift
+Final pass per CLAUDE.md §"Cold-eye review" + §"Adversarial test
+sweep". Save/load hits 4+ taxonomy surfaces (state atomicity, parser,
+cross-actor flows, save/load reach), warranting a dedicated
+adversarial sweep.
 
-Finalize this doc with all findings + total counts.
+**Adversarial bug-class probes (SL.10.2):**
+
+| Surface | Probe |
+|---|---|
+| **Circular entity refs** | A.PhysicsPart.Equipped = B; B.PhysicsPart.Equipped = A — must round-trip without infinite loop or stack overflow; both back-pointers must resolve to the right loaded instance |
+| **Self-reference** | A's some entity-ref field points at A itself — must round-trip as a self-referential graph |
+| **Scale: many effects** | actor with 50+ status effects, each at distinct duration — all survive |
+| **Scale: many items** | inventory with 100+ items, each with PhysicsPart back-pointers — all survive |
+| **Deeply nested** | chest in actor's inventory; chest contains its own InventoryPart with another chest with another item (3+ levels deep) — all levels round-trip |
+| **Multi-round-trip** | save → load → modify → save → load — final state matches last modification, NOT first |
+| **Empty edges** | actor with zero parts, zero effects, zero items — round-trips as empty (not as freshly-defaulted) |
+| **Token reuse** | same Entity referenced 5+ times across different fields — single token, single loaded instance |
+
+**Sub-milestones:**
+- **SL.10.1** — Plan + adversarial-class taxonomy (this commit)
+- **SL.10.2** — Adversarial sweep file (~12-15 tests across the
+  taxonomy surfaces above)
+- **SL.10.3** — Final cold-eye sweep (Q1-Q4) + audit closure
+  (set status banner to ✅ AUDIT COMPLETE)
 
 ---
 
