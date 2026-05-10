@@ -81,6 +81,9 @@ namespace CavesOfOoo.Rendering
         private Sprite _mushroomSprite;   // %
         private Sprite _goldPileSprite;   // $
         private Sprite _chairSprite;      // h
+        // Pass 10 — per-blueprint disambiguation
+        private Sprite _chestSprite;      // [ when blueprint contains "chest"
+        private Sprite _lanternSprite;    // ! when blueprint contains "lantern"
 
         // Per-glyph cached Tile assets (TileBase wrapping each Sprite).
         // Reused across paints to avoid allocating Tile objects per cell.
@@ -106,6 +109,9 @@ namespace CavesOfOoo.Rendering
         private Tile _mushroomTile;
         private Tile _goldPileTile;
         private Tile _chairTile;
+        // Pass 10 tiles
+        private Tile _chestTile;
+        private Tile _lanternTile;
 
         private Tilemap _overlayTilemap;
         private Tilemap _mainTilemap;
@@ -156,6 +162,9 @@ namespace CavesOfOoo.Rendering
             _mushroomSprite   = LoadSingle("Assets/Sprites/Environment/mushroom.png");
             _goldPileSprite   = LoadSingle("Assets/Sprites/Environment/gold_pile.png");
             _chairSprite      = LoadSingle("Assets/Sprites/Environment/chair.png");
+            // Pass 10
+            _chestSprite      = LoadSingle("Assets/Sprites/Environment/chest.png");
+            _lanternSprite    = LoadSingle("Assets/Sprites/Environment/lantern.png");
 #endif
         }
 
@@ -238,6 +247,9 @@ namespace CavesOfOoo.Rendering
             _mushroomTile   = MakeTile(_mushroomSprite,   "Mushroom");
             _goldPileTile   = MakeTile(_goldPileSprite,   "GoldPile");
             _chairTile      = MakeTile(_chairSprite,      "Chair");
+            // Pass 10 tiles
+            _chestTile      = MakeTile(_chestSprite,      "Chest");
+            _lanternTile    = MakeTile(_lanternSprite,    "Lantern");
         }
 
         public void PostRender(Zone zone, int width, int height)
@@ -256,6 +268,25 @@ namespace CavesOfOoo.Rendering
                 for (int y = 0; y < height; y++)
                 {
                     var pos = new Vector3Int(x, y, 0);
+
+                    // Pass 10 — entity-based pre-pass. Chest + lantern
+                    // entities don't always paint their RenderString
+                    // glyph to the main tilemap (they share cells with
+                    // a Floor entity that wins the paint race), so the
+                    // glyph-only scan misses them. Look directly at
+                    // the cell's top entity and force-paint when its
+                    // blueprint matches a sprite-emitting kind.
+                    Tile entityTile = TryEntityBasedTile(zone, x, y);
+                    if (entityTile != null)
+                    {
+                        var c2 = _mainTilemap.GetColor(pos);
+                        _overlayTilemap.SetTile(pos, entityTile);
+                        _overlayTilemap.SetColor(pos, c2);
+                        _mainTilemap.SetTile(pos, null);
+                        _claimedThisFrame.Add(pos);
+                        continue;
+                    }
+
                     var existingTile = _mainTilemap.GetTile(pos);
                     if (existingTile == null) continue;
 
@@ -272,6 +303,20 @@ namespace CavesOfOoo.Rendering
                     _claimedThisFrame.Add(pos);
                 }
             }
+        }
+
+        /// <summary>
+        /// Pass 10 — entity-based override. Returns a Tile when the
+        /// cell hosts a chest / lantern blueprint, regardless of which
+        /// glyph the cell currently paints. Returns null otherwise.
+        /// </summary>
+        private Tile TryEntityBasedTile(Zone zone, int x, int y)
+        {
+            string bp = TopBlueprintNameAt(zone, x, y);
+            if (string.IsNullOrEmpty(bp)) return null;
+            if (BlueprintIsChest(bp))   return _chestTile;
+            if (BlueprintIsLantern(bp)) return _lanternTile;
+            return null;
         }
 
         private Tile ChooseTile(Zone zone, int x, int y, char glyph)
@@ -327,7 +372,52 @@ namespace CavesOfOoo.Rendering
                 case '$':  return _goldPileTile;   // gold pile
                 case 'h':  return _chairTile;      // chair, stool
             }
+
+            // Pass 10 — per-blueprint disambiguation for shared glyphs.
+            // For `[` (armor + chest) and `!` (potion + lantern), only
+            // claim the cell if the topmost entity's BlueprintName
+            // matches the sprite-emitting kind. Otherwise return null
+            // so the original CP437 glyph stays visible. This avoids
+            // making every armor look like a chest, and every potion
+            // look like a lantern.
+            if (glyph == '[' || glyph == '!')
+            {
+                string bp = TopBlueprintNameAt(zone, x, y);
+                if (bp == null) return null;
+                if (glyph == '[' && BlueprintIsChest(bp)) return _chestTile;
+                if (glyph == '!' && BlueprintIsLantern(bp)) return _lanternTile;
+            }
             return null;
+        }
+
+        private static string TopBlueprintNameAt(Zone zone, int x, int y)
+        {
+            if (zone == null) return null;
+            var c = zone.GetCell(x, y);
+            var top = c?.GetTopVisibleObject();
+            return top?.BlueprintName;
+        }
+
+        private static bool BlueprintIsChest(string bp)
+        {
+            // Chest blueprints in Objects.json:
+            //   Chest, LockedChest, MimicChest (per Pass 7 inventory).
+            return !string.IsNullOrEmpty(bp)
+                && bp.IndexOf("Chest", System.StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        private static bool BlueprintIsLantern(string bp)
+        {
+            // Pass 10 — lantern blueprints in Objects.json end with
+            // the word "Lantern" (e.g. WatchLantern, BrightLantern).
+            // The exact name "Lantern" also matches.
+            // We do NOT match prefix-style names like "LanternOil"
+            // (the fuel tonic) — those are consumables, not light
+            // sources, and rendering them as lit lanterns would be
+            // wrong. EndsWith("Lantern") is the correct gate.
+            if (string.IsNullOrEmpty(bp)) return false;
+            return bp.EndsWith("Lantern", System.StringComparison.OrdinalIgnoreCase)
+                || bp.Equals("Lantern", System.StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
