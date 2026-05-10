@@ -63,6 +63,7 @@ namespace CavesOfOoo.Rendering
         private GlyphGhostRenderer _glyphGhostRenderer;           // Pass 6
         private EnvironmentSpriteRenderer _envSpriteRenderer;     // Pass 7
         private CavesOfOoo.Presentation.Effects.LightSourceSpriteHook _lightSourceHook; // Pass 8
+        private CreatureSpriteRenderer _creatureSpriteRenderer;   // Phase A: 16×24
 
         /// <summary>
         /// Horizontal sub-cell tilemap overlaid on the main tilemap for
@@ -347,6 +348,20 @@ namespace CavesOfOoo.Rendering
                     "_overlayTilemap", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
                 var overlayTm = overlayField?.GetValue(_envSpriteRenderer) as Tilemap;
                 _lightSourceHook.Init(gridParent, overlayTm, globalLight);
+            }
+
+            // 16×24 CREATURE LAYER: independent of GraphicsPolish so we
+            // can A/B between pure CP437, Pass 1-11, and Qud-style
+            // creature sprites without coupling those visual stacks.
+            // See Assets/Scripts/Presentation/Effects/Sprites16x24.cs
+            // and CreatureSpriteRegistry.cs.
+            if (CavesOfOoo.Presentation.Effects.Sprites16x24.IsEnabled)
+            {
+                var creatureSpriteObj = new GameObject("CreatureSpriteRenderer");
+                creatureSpriteObj.transform.SetParent(gridParent, false);
+                GameplayRenderLayers.SetLayerRecursive(creatureSpriteObj, GameplayRenderLayers.WorldLayer);
+                _creatureSpriteRenderer = creatureSpriteObj.AddComponent<CreatureSpriteRenderer>();
+                _creatureSpriteRenderer.Init(gridParent, _tilemap);
             }
 
             var emberObj = new GameObject("CampfireEmbers");
@@ -756,6 +771,11 @@ namespace CavesOfOoo.Rendering
                     _lightSourceHook.SetPlayerContext(PlayerEntity, CurrentZone);
                     _lightSourceHook.PostRender(Zone.Width, Zone.Height, isDungeon);
                 }
+
+                // 16×24 creature layer — runs LAST so it can clear the
+                // glyph cells of any entity that has a sprite mapping.
+                if (_creatureSpriteRenderer != null)
+                    _creatureSpriteRenderer.PostRender(CurrentZone);
             }
         }
 
