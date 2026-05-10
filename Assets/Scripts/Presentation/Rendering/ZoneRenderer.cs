@@ -60,6 +60,7 @@ namespace CavesOfOoo.Rendering
         private Tilemap _bgTilemap;
         private Tilemap _fxTilemap;
         private AnimatedEnvironmentRenderer _animatedEnvRenderer; // Pass 5
+        private GlyphGhostRenderer _glyphGhostRenderer;           // Pass 6
 
         /// <summary>
         /// Horizontal sub-cell tilemap overlaid on the main tilemap for
@@ -292,6 +293,17 @@ namespace CavesOfOoo.Rendering
             _animatedEnvRenderer = animEnvObj.AddComponent<AnimatedEnvironmentRenderer>();
             _animatedEnvRenderer.Init(gridParent, _tilemap, fxRenderer);
 
+            // Pass 6 §6A: motion-ghost trails. Sits between
+            // AnimatedEnvironment (sortingOrder 2) and FX (now 3
+            // post-Pass-5). Records last-known cell positions of
+            // entities and paints fading ghost glyphs at previous
+            // cells when entities move. See Docs/GRAPHICS-PASS6.md §6A.
+            var ghostObj = new GameObject("GlyphGhostRenderer");
+            ghostObj.transform.SetParent(gridParent, false);
+            GameplayRenderLayers.SetLayerRecursive(ghostObj, GameplayRenderLayers.WorldLayer);
+            _glyphGhostRenderer = ghostObj.AddComponent<GlyphGhostRenderer>();
+            _glyphGhostRenderer.Init(gridParent);
+
             var emberObj = new GameObject("CampfireEmbers");
             emberObj.transform.SetParent(gridParent, false);
             GameplayRenderLayers.SetLayerRecursive(emberObj, GameplayRenderLayers.WorldLayer);
@@ -424,6 +436,11 @@ namespace CavesOfOoo.Rendering
             // previous zone don't leak into the new one. Cheap — the new
             // zone's water loop repaints every frame anyway.
             _fineWaterTilemap?.ClearAllTiles();
+
+            // Pass 6 §6A: tell the GlyphGhostRenderer about the new
+            // zone so it can clear its per-zone cache (last-known
+            // entity positions are not valid across zones).
+            _glyphGhostRenderer?.SetZone(zone);
 
             // Register campfire positions for free-floating ember rendering
             if (_campfireEmberRenderer != null)
@@ -666,6 +683,14 @@ namespace CavesOfOoo.Rendering
                 // animation. See Docs/GRAPHICS-PASS5.md.
                 if (_animatedEnvRenderer != null)
                     _animatedEnvRenderer.PostRender(CurrentZone, Zone.Width, Zone.Height);
+
+                // Pass 6 §6A: motion-ghost trails. Detects entity
+                // moves vs last-known cell + paints fading ghost
+                // glyphs at previous positions. Runs AFTER animated
+                // env so ghosts can render over animated overlays.
+                // See Docs/GRAPHICS-PASS6.md §6A.
+                if (_glyphGhostRenderer != null)
+                    _glyphGhostRenderer.PostRender(_tilemap);
             }
         }
 

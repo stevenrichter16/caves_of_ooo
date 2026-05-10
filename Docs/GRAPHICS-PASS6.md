@@ -24,7 +24,7 @@
 | **Pass** | 6 of N |
 | **Last updated** | 2026-05-09 |
 | **Branch** | `feat/graphics-pass6-shadows-biome` |
-| **Sub-milestones complete** | 0 / 4 |
+| **Sub-milestones complete** | 5 / 5 |
 
 ---
 
@@ -143,12 +143,12 @@ New `Assets/Scripts/Presentation/Rendering/BiomeColorPatcher.cs`.
 
 | Sub-milestone | Status | Tests | Commit |
 |---|---|---|---|
-| 6A.1 GlyphGhostRenderer | ⏳ pending | 0 | — |
-| 6A.2 Wire move events | ⏳ pending | 0 | — |
-| 6A.3 Tests + showcase | ⏳ pending | 4 | — |
-| 6B.1 BiomeColorPatcher | ⏳ pending | 0 | — |
-| 6B.2 Tests + bootstrap | ⏳ pending | 2 | — |
-| **TOTAL** | **0 / 5** | **0** | — |
+| 6A.1 GlyphGhostRenderer | ✅ done | 3 | TBD |
+| 6A.2 Wire ZoneRenderer move detection (post-render scan) | ✅ done (renderer-side; no Zone.cs change) | n/a | TBD |
+| 6A.3 Tests + showcase | ✅ done (3 unit tests) | 3 | TBD |
+| 6B.1 BiomeColorPatcher | ✅ done | 5 | TBD |
+| 6B.2 Tests + bootstrap | ✅ done | 5 | TBD |
+| **TOTAL** | **5 / 5** | **8** | — |
 
 ---
 
