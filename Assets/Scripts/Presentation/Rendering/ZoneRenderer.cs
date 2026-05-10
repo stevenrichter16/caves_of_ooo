@@ -62,6 +62,7 @@ namespace CavesOfOoo.Rendering
         private AnimatedEnvironmentRenderer _animatedEnvRenderer; // Pass 5
         private GlyphGhostRenderer _glyphGhostRenderer;           // Pass 6
         private EnvironmentSpriteRenderer _envSpriteRenderer;     // Pass 7
+        private CavesOfOoo.Presentation.Effects.LightSourceSpriteHook _lightSourceHook; // Pass 8
 
         /// <summary>
         /// Horizontal sub-cell tilemap overlaid on the main tilemap for
@@ -315,6 +316,30 @@ namespace CavesOfOoo.Rendering
             GameplayRenderLayers.SetLayerRecursive(envSpriteObj, GameplayRenderLayers.WorldLayer);
             _envSpriteRenderer = envSpriteObj.AddComponent<EnvironmentSpriteRenderer>();
             _envSpriteRenderer.Init(gridParent, _tilemap);
+
+            // Pass 8 §8E.1: Light2D point lights on campfire `*` and
+            // shrine `_` cells; biome-based ambient dim for dungeons;
+            // per-light flicker. See Docs/GRAPHICS-PASS8.md.
+            var lightHookObj = new GameObject("LightSourceSpriteHook");
+            lightHookObj.transform.SetParent(gridParent, false);
+            GameplayRenderLayers.SetLayerRecursive(lightHookObj, GameplayRenderLayers.WorldLayer);
+            _lightSourceHook = lightHookObj.AddComponent<CavesOfOoo.Presentation.Effects.LightSourceSpriteHook>();
+            // Find existing Global Light 2D in scene (Init for it is null-safe).
+            UnityEngine.Rendering.Universal.Light2D globalLight = null;
+            foreach (var l in UnityEngine.Object.FindObjectsByType<UnityEngine.Rendering.Universal.Light2D>(
+                FindObjectsInactive.Include, FindObjectsSortMode.None))
+            {
+                if (l.lightType == UnityEngine.Rendering.Universal.Light2D.LightType.Global)
+                {
+                    globalLight = l;
+                    break;
+                }
+            }
+            // Pass overlay tilemap reference; need to fetch from env sprite renderer.
+            var overlayField = typeof(EnvironmentSpriteRenderer).GetField(
+                "_overlayTilemap", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            var overlayTm = overlayField?.GetValue(_envSpriteRenderer) as Tilemap;
+            _lightSourceHook.Init(gridParent, overlayTm, globalLight);
 
             var emberObj = new GameObject("CampfireEmbers");
             emberObj.transform.SetParent(gridParent, false);
@@ -711,6 +736,15 @@ namespace CavesOfOoo.Rendering
                 // (toggled via SpriteEnvToggleController).
                 if (_envSpriteRenderer != null)
                     _envSpriteRenderer.PostRender(CurrentZone, Zone.Width, Zone.Height);
+
+                // Pass 8 §8E.1: scan the env sprite overlay for
+                // campfire/shrine tiles and attach Light2D point lights.
+                // Also dims the global light when in a dungeon zone.
+                if (_lightSourceHook != null)
+                {
+                    bool isDungeon = ZoneIsDungeon(CurrentZone);
+                    _lightSourceHook.PostRender(Zone.Width, Zone.Height, isDungeon);
+                }
             }
         }
 
@@ -735,6 +769,27 @@ namespace CavesOfOoo.Rendering
         /// <para><b>Caller invariant:</b> <see cref="_dirtyCells"/> is
         /// cleared by the LateUpdate caller after this returns.</para>
         /// </summary>
+        /// <summary>
+        /// Pass 8 §8E.2 — heuristic: a zone is "dungeon-dim" when it's
+        /// underground (z &gt; 0) OR its surface biome is Cave/Ruins.
+        /// Used by <see cref="LightSourceSpriteHook"/> to drop the
+        /// global ambient so point lights create contrast.
+        /// </summary>
+        private static bool ZoneIsDungeon(Zone zone)
+        {
+            if (zone == null || string.IsNullOrEmpty(zone.ZoneID)) return false;
+            var (_, _, z) = WorldMap.FromZoneID(zone.ZoneID);
+            if (z > 0) return true;
+            // Else check biome — but that requires WorldMap access here,
+            // which ZoneRenderer doesn't have. Use a name-pattern fallback:
+            // anything containing "Cave" or "Dungeon" or "Ruin" → dungeon.
+            string id = zone.ZoneID;
+            if (id.Contains("Cave", System.StringComparison.OrdinalIgnoreCase)) return true;
+            if (id.Contains("Dungeon", System.StringComparison.OrdinalIgnoreCase)) return true;
+            if (id.Contains("Ruin", System.StringComparison.OrdinalIgnoreCase)) return true;
+            return false;
+        }
+
         private void RenderDirtyCells()
         {
             using (PerformanceMarkers.Zone.RenderZone.Auto())

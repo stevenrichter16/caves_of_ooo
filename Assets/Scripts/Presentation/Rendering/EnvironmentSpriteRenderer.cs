@@ -63,6 +63,25 @@ namespace CavesOfOoo.Rendering
         private Sprite _doorClosedSprite;
         private Sprite _doorOpenSprite;
 
+        // Pass 8 sprite expansion — 15 additional glyph→sprite mappings
+        // for stalagmites, boulders, vegetation, fixtures, decorations,
+        // stairs, and the gold/bones decorations.
+        private Sprite _stalagmiteSprite; // ^
+        private Sprite _boulderSprite;    // o
+        private Sprite _stalactiteSprite; // |
+        private Sprite _bushSprite;       // ;
+        private Sprite _cactusSprite;     // t
+        private Sprite _treeSprite;       // T
+        private Sprite _campfireSprite;   // *
+        private Sprite _shrineSprite;     // _
+        private Sprite _stairsDownSprite; // >
+        private Sprite _stairsUpSprite;   // <
+        private Sprite _bonesSprite;      // ,
+        private Sprite _barrelSprite;     // 0
+        private Sprite _mushroomSprite;   // %
+        private Sprite _goldPileSprite;   // $
+        private Sprite _chairSprite;      // h
+
         // Per-glyph cached Tile assets (TileBase wrapping each Sprite).
         // Reused across paints to avoid allocating Tile objects per cell.
         private Tile[] _wallTiles;
@@ -70,6 +89,23 @@ namespace CavesOfOoo.Rendering
         private Tile _waterTile;
         private Tile _doorClosedTile;
         private Tile _doorOpenTile;
+
+        // Pass 8 tile cache
+        private Tile _stalagmiteTile;
+        private Tile _boulderTile;
+        private Tile _stalactiteTile;
+        private Tile _bushTile;
+        private Tile _cactusTile;
+        private Tile _treeTile;
+        private Tile _campfireTile;
+        private Tile _shrineTile;
+        private Tile _stairsDownTile;
+        private Tile _stairsUpTile;
+        private Tile _bonesTile;
+        private Tile _barrelTile;
+        private Tile _mushroomTile;
+        private Tile _goldPileTile;
+        private Tile _chairTile;
 
         private Tilemap _overlayTilemap;
         private Tilemap _mainTilemap;
@@ -103,7 +139,33 @@ namespace CavesOfOoo.Rendering
             _waterSprite = LoadSingle("Assets/Sprites/Environment/water_tile.png");
             _doorClosedSprite = LoadSingle("Assets/Sprites/Environment/door_closed.png");
             _doorOpenSprite = LoadSingle("Assets/Sprites/Environment/door_open.png");
+
+            // Pass 8 sprites
+            _stalagmiteSprite = LoadSingle("Assets/Sprites/Environment/stalagmite.png");
+            _boulderSprite    = LoadSingle("Assets/Sprites/Environment/boulder.png");
+            _stalactiteSprite = LoadSingle("Assets/Sprites/Environment/stalactite.png");
+            _bushSprite       = LoadSingle("Assets/Sprites/Environment/bush.png");
+            _cactusSprite     = LoadSingle("Assets/Sprites/Environment/cactus.png");
+            _treeSprite       = LoadSingle("Assets/Sprites/Environment/tree.png");
+            _campfireSprite   = LoadSingle("Assets/Sprites/Environment/campfire.png");
+            _shrineSprite     = LoadSingle("Assets/Sprites/Environment/shrine.png");
+            _stairsDownSprite = LoadSingle("Assets/Sprites/Environment/stairs_down.png");
+            _stairsUpSprite   = LoadSingle("Assets/Sprites/Environment/stairs_up.png");
+            _bonesSprite      = LoadSingle("Assets/Sprites/Environment/bones.png");
+            _barrelSprite     = LoadSingle("Assets/Sprites/Environment/barrel.png");
+            _mushroomSprite   = LoadSingle("Assets/Sprites/Environment/mushroom.png");
+            _goldPileSprite   = LoadSingle("Assets/Sprites/Environment/gold_pile.png");
+            _chairSprite      = LoadSingle("Assets/Sprites/Environment/chair.png");
 #endif
+        }
+
+        private static Tile MakeTile(Sprite s, string name)
+        {
+            if (s == null) return null;
+            var t = ScriptableObject.CreateInstance<Tile>();
+            t.sprite = s;
+            t.name = name;
+            return t;
         }
 
 #if UNITY_EDITOR
@@ -159,6 +221,23 @@ namespace CavesOfOoo.Rendering
                 _doorOpenTile.sprite = _doorOpenSprite;
                 _doorOpenTile.name = "DoorOpen";
             }
+
+            // Pass 8 tiles
+            _stalagmiteTile = MakeTile(_stalagmiteSprite, "Stalagmite");
+            _boulderTile    = MakeTile(_boulderSprite,    "Boulder");
+            _stalactiteTile = MakeTile(_stalactiteSprite, "Stalactite");
+            _bushTile       = MakeTile(_bushSprite,       "Bush");
+            _cactusTile     = MakeTile(_cactusSprite,     "Cactus");
+            _treeTile       = MakeTile(_treeSprite,       "Tree");
+            _campfireTile   = MakeTile(_campfireSprite,   "Campfire");
+            _shrineTile     = MakeTile(_shrineSprite,     "Shrine");
+            _stairsDownTile = MakeTile(_stairsDownSprite, "StairsDown");
+            _stairsUpTile   = MakeTile(_stairsUpSprite,   "StairsUp");
+            _bonesTile      = MakeTile(_bonesSprite,      "Bones");
+            _barrelTile     = MakeTile(_barrelSprite,     "Barrel");
+            _mushroomTile   = MakeTile(_mushroomSprite,   "Mushroom");
+            _goldPileTile   = MakeTile(_goldPileSprite,   "GoldPile");
+            _chairTile      = MakeTile(_chairSprite,      "Chair");
         }
 
         public void PostRender(Zone zone, int width, int height)
@@ -223,6 +302,31 @@ namespace CavesOfOoo.Rendering
             // Doors
             if (glyph == '+') return _doorClosedTile;
             if (glyph == '\'') return _doorOpenTile;
+
+            // Pass 8 — direct glyph→sprite map. Each glyph claimed here
+            // is unambiguous in the typical zone. Where multiple
+            // entities share a glyph (e.g. `%` is also corpse, `=` is
+            // also bed), the sprite chosen here is the most common
+            // representation; refining via per-entity blueprint lookup
+            // is a Pass 9 follow-up.
+            switch (glyph)
+            {
+                case '^':  return _stalagmiteTile; // stalagmite, spike trap
+                case 'o':  return _boulderTile;    // rock, compass stone
+                case '|':  return _stalactiteTile; // stalactite, reed
+                case ';':  return _bushTile;       // bush
+                case 't':  return _cactusTile;     // cactus
+                case 'T':  return _treeTile;       // tree
+                case '*':  return _campfireTile;   // campfire, brazier, rune
+                case '_':  return _shrineTile;     // shrine, altar
+                case '>':  return _stairsDownTile; // stairs down
+                case '<':  return _stairsUpTile;   // stairs up
+                case ',':  return _bonesTile;      // bones, rubble
+                case '0':  return _barrelTile;     // barrel
+                case '%':  return _mushroomTile;   // mushroom (also corpse — overload)
+                case '$':  return _goldPileTile;   // gold pile
+                case 'h':  return _chairTile;      // chair, stool
+            }
             return null;
         }
 

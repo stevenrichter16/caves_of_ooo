@@ -125,18 +125,18 @@ screenshot of a campfire-lit dungeon.
 
 | Sub-milestone | Status | Tests | Commit |
 |---|---|---|---|
-| 8A.1 Sprites batch 1 (5) | ⏳ | n/a | — |
-| 8A.2 Sprites batch 2 (5) | ⏳ | n/a | — |
-| 8A.3 Sprites batch 3 (5) | ⏳ | n/a | — |
-| 8B.1 Renderer wiring | ⏳ | — | — |
-| 8B.2 Pass8SpriteImporter | ⏳ | n/a | — |
-| 8C Play-mode verify | ⏳ | — | — |
-| 8D Iterative polish | ⏳ | — | — |
-| 8E.1 LightSourceSpriteHook | ⏳ | — | — |
-| 8E.2 Biome ambient dim | ⏳ | — | — |
-| 8E.3 Flicker controller | ⏳ | — | — |
-| 8E.4 Tests + verify | ⏳ | — | — |
-| **TOTAL** | **0 / 11** | — | — |
+| 8A.1 Sprites batch 1 (5) | ✅ done (stalagmite, boulder, stalactite, bush, cactus) | n/a | TBD |
+| 8A.2 Sprites batch 2 (5) | ✅ done (tree, campfire, shrine, stairs↓, stairs↑) | n/a | TBD |
+| 8A.3 Sprites batch 3 (5) | ✅ done (bones, barrel, mushroom, gold pile, chair) | n/a | TBD |
+| 8B.1 Renderer wiring | ✅ done | — | TBD |
+| 8B.2 Pass8SpriteImporter | ✅ done | n/a | TBD |
+| 8C Play-mode verify | ✅ done (pass8_demo_zoomed.png + pass8_demo_unlit.png) | — | TBD |
+| 8D Iterative polish | ✅ done (stalagmite/boulder/stalactite warm-stone palette) | — | TBD |
+| 8E.1 LightSourceSpriteHook | ✅ done | 6 | TBD |
+| 8E.2 Biome ambient dim | ✅ done (folded into LightSourceSpriteHook) | — | TBD |
+| 8E.3 Flicker controller | ✅ done (folded into LightSourceSpriteHook.Update) | — | TBD |
+| 8E.4 Tests + verify | ✅ done (pass8_lighting_test.png — campfires + shrine glowing) | 6 | TBD |
+| **TOTAL** | **11 / 11** | **6** | — |
 
 ---
 
