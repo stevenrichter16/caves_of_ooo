@@ -301,6 +301,16 @@ namespace CavesOfOoo
                     if (GetComponent<CavesOfOoo.Presentation.Effects.CrtToggleController>() == null)
                         gameObject.AddComponent<CavesOfOoo.Presentation.Effects.CrtToggleController>();
 
+                    // Pass 6 §6B: BiomeColorPatcher. Reads active
+                    // zone's biome via WorldMap + applies the
+                    // BiomePalette to the global Volume's
+                    // ColorAdjustments + Vignette overrides.
+                    var biomePatcher = GetComponent<CavesOfOoo.Presentation.Rendering.BiomeColorPatcher>();
+                    if (biomePatcher == null)
+                        biomePatcher = gameObject.AddComponent<CavesOfOoo.Presentation.Rendering.BiomeColorPatcher>();
+                    biomePatcher.ZoneManager = _zoneManager;
+                    biomePatcher.SetCurrentZone(_zone);
+
                     Debug.Log("[Bootstrap] Step 9/9: Wiring input...");
                     var inputHandler = GetComponent<InputHandler>();
                     if (inputHandler == null)
