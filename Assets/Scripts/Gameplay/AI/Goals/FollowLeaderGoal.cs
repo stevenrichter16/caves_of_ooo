@@ -17,14 +17,14 @@ namespace CavesOfOoo.Core
     /// <list type="bullet">
     ///   <item>Leader is null.</item>
     ///   <item>Leader has no <see cref="BrainPart"/> (no reachable zone).</item>
-    ///   <item>Leader's <see cref="BrainPart.CurrentZone"/> is null or
-    ///         differs from the follower's zone — cross-zone pursuit is
-    ///         <b>out of scope for F.1</b>; deferred to F.4+.</item>
+    ///   <item>Leader's <see cref="BrainPart.CurrentZone"/> is null
+    ///         (leader is unregistered / mid-destruction / malformed).</item>
     ///   <item><see cref="GoalHandler.Age"/> exceeds
     ///         <see cref="MaxAgeBeforeGiveUp"/> (defensive timeout).
-    ///         <see cref="TakeAction"/> resets Age to 0 while close-enough,
-    ///         so the timeout only fires when the follower has been
-    ///         continuously failing to reach the leader.</item>
+    ///         <see cref="TakeAction"/> resets Age to 0 while close-enough
+    ///         AND while cross-zone (zone realignment), so the timeout
+    ///         only fires when the follower has been continuously
+    ///         failing to reach a reachable leader.</item>
     /// </list>
     ///
     /// <para><b>Persistent semantics (F.2.6 fix):</b> the goal does NOT
@@ -36,6 +36,19 @@ namespace CavesOfOoo.Core
     /// (recruiter is by definition adjacent at recruit time → distance
     /// 1 ≤ default 2 → Finished). When close, <see cref="TakeAction"/>
     /// idles (no-op) and resets Age; when far, it steps toward.</para>
+    ///
+    /// <para><b>Persistent across cross-zone (post-F.2.7 audit fix):</b>
+    /// the goal does NOT finish when leader's zone differs from
+    /// follower's. The earlier F.1.5 design popped the goal on cross-
+    /// zone, which broke the "stranded follower" scenario: if F.2.7's
+    /// transit couldn't place the follower (no passable adjacent cell),
+    /// the goal popped on the next tick, and even when the player
+    /// returned to the follower's zone, nothing re-pushed it. The
+    /// follower stayed party-aligned but stopped following. The fix
+    /// matches the close-enough pattern: <see cref="TakeAction"/> idles
+    /// + resets Age when cross-zone; when zones realign, the goal
+    /// naturally resumes pursuit. Truly unreachable leaders still time
+    /// out via <see cref="MaxAgeBeforeGiveUp"/>.</para>
     ///
     /// <para><b>Qud parity:</b> Qud doesn't ship a dedicated
     /// FollowLeaderGoal — it composes the same observable behavior from
@@ -92,15 +105,13 @@ namespace CavesOfOoo.Core
             var leaderZone = leaderBrain.CurrentZone;
             if (leaderZone == null) return true;
 
-            // Cross-zone is out of scope for F.1 — give up if zones
-            // mismatch. F.4+ may add a zone-transition pursuit step.
-            if (leaderZone != CurrentZone) return true;
-
-            // Follow is persistent — do NOT finish on close-enough.
-            // TakeAction idles when close (and resets Age) so the goal
-            // stays on the stack and re-pursues when the leader moves.
-            // See class docstring's "Persistent semantics" section for
-            // why this changed from the original F.1.5 design.
+            // Follow is persistent — do NOT finish on close-enough
+            // (F.2.6 fix) OR on cross-zone (post-F.2.7 audit fix).
+            // TakeAction handles both states by idling + resetting Age,
+            // so the goal stays on the stack and re-pursues whenever
+            // the leader becomes reachable again. See class docstring's
+            // "Persistent semantics" + "Persistent across cross-zone"
+            // sections for the rationale.
             return false;
         }
 
@@ -113,7 +124,19 @@ namespace CavesOfOoo.Core
             var leaderBrain = Leader.GetPart<BrainPart>();
             if (leaderBrain == null) return;
             var leaderZone = leaderBrain.CurrentZone;
-            if (leaderZone == null || leaderZone != CurrentZone) return;
+            if (leaderZone == null) return;
+
+            // Cross-zone: idle (stay on stack) and reset Age. Goal
+            // resumes naturally if zones realign — e.g. F.2.7 transit
+            // bringing follower along, or player returning to the
+            // follower's zone. The Age reset preserves MaxAge for
+            // genuinely-unreachable leaders (continuous failure) but
+            // doesn't penalize a follower temporarily separated.
+            if (leaderZone != CurrentZone)
+            {
+                Age = 0;
+                return;
+            }
 
             if (WithinCloseEnoughDistance())
             {

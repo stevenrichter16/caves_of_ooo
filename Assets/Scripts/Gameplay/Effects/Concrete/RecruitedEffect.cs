@@ -61,12 +61,21 @@ namespace CavesOfOoo.Core
 
             // F.1.2's SetPartyLeader handles bidirectional mirror,
             // cycle detection, and Forgive (PersonalEnemies.Remove).
-            // Re-use; don't duplicate.
-            brain.SetPartyLeader(Recruiter);
+            // Re-use; don't duplicate. If SetPartyLeader rejects (self-ref,
+            // cycle), DON'T push the goal — the goal would target an entity
+            // that isn't actually the leader, leaving the follower visibly
+            // pursuing a non-leader. The Persuasion_Recruit veto chain
+            // catches most rejections upstream (Veto #3 self-target,
+            // Veto #6 follows-another); this is defense-in-depth for any
+            // future caller that bypasses the skill (other recruitment
+            // paths, direct ApplyEffect from mods, etc.).
+            // [Surfaced by post-F.2.7 audit, Finding #2.]
+            if (!brain.SetPartyLeader(Recruiter)) return;
 
             // Push the goal that drives moment-to-moment follow behavior.
             // F.1.5's FollowLeaderGoal handles termination on
-            // null/destroyed/cross-zone leader.
+            // null/destroyed/cross-zone leader (with F.2.6 persistent-
+            // follow semantics: idles when close, doesn't pop).
             brain.PushGoal(new FollowLeaderGoal { Leader = Recruiter });
 
             MessageLog.Add(target.GetDisplayName() + " joins " + Recruiter.GetDisplayName() + "!");

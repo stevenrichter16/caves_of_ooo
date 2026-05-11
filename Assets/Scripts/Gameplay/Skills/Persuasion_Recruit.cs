@@ -123,24 +123,22 @@ namespace CavesOfOoo.Skills
                 return;
             }
 
-            // Veto #7 — target is hostile (faction or two-way personal
-            // grudge). F.1.4's FactionManager.GetFeeling already accounts
-            // for both PersonalEnemies sides and party-alignment.
+            // Veto #7 — target is hostile (faction or personal grudge,
+            // either direction). F.1.4's FactionManager.GetFeeling
+            // checks BOTH actor->target AND target->actor PersonalEnemies
+            // BEFORE any other gate (FactionManager.cs:187-192) and
+            // returns -100 unconditionally on either grudge — that's
+            // strictly stronger than HOSTILE_THRESHOLD (-10), so this
+            // veto already covers the personal-grudge case.
+            //
+            // Earlier F.2.1 plan listed a separate Veto #8 "personal_grudge"
+            // here for defense-in-depth, but post-F.2.7 audit (Finding #3)
+            // confirmed it was unreachable dead code: GetFeeling never
+            // returns > HOSTILE_THRESHOLD when EITHER side has a grudge,
+            // so #7 always fires first.
             if (FactionManager.GetFeeling(target, actor) <= FactionManager.HOSTILE_THRESHOLD)
             {
                 EmitSkillRejectedDiag(ctx, "target_hostile");
-                return;
-            }
-
-            // Veto #8 — defender-side personal grudge. Mostly redundant
-            // with Veto #7 (PersonalEnemies feeds GetFeeling), but
-            // explicit for clarity + symmetry with Qud's CheckInfluence
-            // gate, and handles the edge case where GetFeeling might
-            // ignore PersonalEnemies due to a stronger override (e.g.
-            // ArePartyAligned overriding hostility).
-            if (brain.PersonalEnemies.Contains(actor))
-            {
-                EmitSkillRejectedDiag(ctx, "personal_grudge");
                 return;
             }
 
