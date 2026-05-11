@@ -29,11 +29,15 @@ namespace CavesOfOoo.Core
     ///   <item><c>"Snapjaws,Bandits"</c> — comma-delimited, each uses <see cref="Value"/></item>
     ///   <item><c>"Snapjaws:10,Bandits:-3"</c> — per-faction colon override</item>
     ///   <item><c>"FactionA,FactionB:7"</c> — mixed; FactionA uses Value, FactionB uses 7</item>
+    ///   <item><c>"*allvisiblefactions:N"</c> — wildcard, applies +N to EVERY known
+    ///         faction (post-audit-fix Finding #2 — Qud parity). Semantic note:
+    ///         "visible" in Qud means "in the player's awareness"; in CoO the
+    ///         equivalent is "any faction in <c>PlayerReputation</c>'s dict"
+    ///         since CoO doesn't yet have per-faction visibility tracking.</item>
     /// </list>
     ///
     /// <para><b>Deferred from Qud parity:</b></para>
     /// <list type="bullet">
-    ///   <item><c>*allvisiblefactions:N</c> wildcard — F.5+ content polish</item>
     ///   <item><c>DeepCopy</c> reset of <c>AppliedBonus</c> — CoO has no in-game cloning yet</item>
     ///   <item><c>SuspendingEvent</c> / <c>OnDestroyObjectEvent</c> unapply hooks —
     ///         the leader-null branch in <see cref="CheckApplyBonus"/> catches
@@ -106,11 +110,46 @@ namespace CavesOfOoo.Core
         private void ApplyBonus()
         {
             if (AppliedBonus) return;
-            // Apply BEFORE setting flag so a parse-failure (empty
-            // faction string) doesn't mark us applied with no actual
-            // effect — that would prevent re-apply later.
-            int appliedCount = ApplyDelta(positive: true);
-            if (appliedCount > 0) AppliedBonus = true;
+            // Quick parse check: bail without flag-set if Faction is
+            // entirely empty/whitespace. Avoids locking the Part into
+            // "fake applied" state where future calls would short-circuit.
+            if (!HasAnyApplicableEntry()) return;
+            // Post-audit fix (Finding #8): set AppliedBonus = true
+            // BEFORE applying deltas. If PlayerReputation.Modify throws
+            // partway through the loop, the flag is already set, so
+            // future CheckApplyBonus calls won't re-enter ApplyBonus
+            // and double-apply the successful portion. UnapplyBonus
+            // will reverse what's reversible on the next condition flip
+            // (best-effort symmetric path; full transactional rollback
+            // is heavier and out of scope).
+            AppliedBonus = true;
+            ApplyDelta(positive: true);
+        }
+
+        /// <summary>
+        /// Pre-flight check: does <see cref="Faction"/> contain at least
+        /// one entry that would produce an apply? Used by
+        /// <see cref="ApplyBonus"/> to gate the eager-flag set —
+        /// otherwise an empty string would lock us into AppliedBonus=true
+        /// with no actual rep flow.
+        /// </summary>
+        private bool HasAnyApplicableEntry()
+        {
+            if (string.IsNullOrWhiteSpace(Faction)) return false;
+            // *allvisiblefactions:N — always applicable if there are any factions tracked
+            if (Faction.StartsWith("*allvisiblefactions:")) return PlayerReputation.GetAll().Count > 0;
+            // Comma-delimited — at least one non-whitespace entry with a
+            // non-empty faction name (after :N strip if present)
+            string[] entries = Faction.Split(',');
+            for (int i = 0; i < entries.Length; i++)
+            {
+                string entry = entries[i].Trim();
+                if (string.IsNullOrEmpty(entry)) continue;
+                int colonIdx = entry.IndexOf(':');
+                string faction = colonIdx >= 0 ? entry.Substring(0, colonIdx).Trim() : entry;
+                if (!string.IsNullOrEmpty(faction)) return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -133,6 +172,29 @@ namespace CavesOfOoo.Core
         private int ApplyDelta(bool positive)
         {
             if (string.IsNullOrEmpty(Faction)) return 0;
+
+            // Post-audit fix (Finding #2 — Qud parity): handle the
+            // "*allvisiblefactions:N" wildcard. Mirrors Qud's
+            // GrantsRepAsFollower.cs:69-78. Applies the same delta to
+            // every faction currently tracked by PlayerReputation.
+            // CoO's "visible" semantic is "any faction the player has
+            // interacted with" (any faction in the rep dict) — closest
+            // approximation since CoO doesn't have per-faction
+            // visibility tracking.
+            if (Faction.StartsWith("*allvisiblefactions:"))
+            {
+                string suffix = Faction.Substring("*allvisiblefactions:".Length).Trim();
+                if (!int.TryParse(suffix, out int wildcardAmount)) wildcardAmount = Value;
+                int wcApplied = 0;
+                var allFactions = PlayerReputation.GetAll();
+                foreach (var kvp in allFactions)
+                {
+                    if (string.IsNullOrEmpty(kvp.Key)) continue;
+                    PlayerReputation.Modify(kvp.Key, positive ? wildcardAmount : -wildcardAmount, silent: true);
+                    wcApplied++;
+                }
+                return wcApplied;
+            }
 
             string[] entries = Faction.Split(',');
             int applied = 0;

@@ -61,14 +61,25 @@ namespace CavesOfOoo.Core
             if (actor == null) return baseLimit;
 
             var e = GameEvent.New(EVENT_ID);
-            e.SetParameter(PARAM_MEANS, means ?? "");
-            e.SetParameter(PARAM_LIMIT, baseLimit);
+            try
+            {
+                e.SetParameter(PARAM_MEANS, means ?? "");
+                e.SetParameter(PARAM_LIMIT, baseLimit);
 
-            actor.FireEvent(e);
+                actor.FireEvent(e);
 
-            int result = e.GetIntParameter(PARAM_LIMIT, baseLimit);
-            e.Release();
-            return result;
+                return e.GetIntParameter(PARAM_LIMIT, baseLimit);
+            }
+            finally
+            {
+                // Post-audit fix (Finding #1): try-finally ensures the
+                // event is released back to the pool even if FireEvent
+                // (or a listener's HandleEvent) throws. Without this,
+                // exceptional paths leak the event to GC instead of
+                // recycling — minor GC pressure, but the contract is
+                // cleaner.
+                e.Release();
+            }
         }
     }
 }
