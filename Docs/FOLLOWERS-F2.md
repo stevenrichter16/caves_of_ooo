@@ -13,13 +13,13 @@
 
 | Field | Value |
 |---|---|
-| **Phase** | F.2 — Recruitment ⏳ IN PROGRESS |
+| **Phase** | F.2 — Recruitment ✅ COMPLETE |
 | **Last updated** | 2026-05-10 |
-| **Branch** | `feat/followers-f2-recruitment` |
-| **Sub-milestones complete** | 4 / 5 |
+| **Branch** | `feat/followers-f2-recruitment` (merged) |
+| **Sub-milestones complete** | 5 / 5 |
 | **Real bugs found** | 0 |
-| **Contracts pinned** | 36 (RecruitedEffect 12 + Persuasion_Recruit 15 + Persuasion_Dismiss 9) |
-| **Tests added** | 36 EditMode tests across 3 new fixtures |
+| **Contracts pinned** | 55 (RecruitedEffect 12 + Persuasion_Recruit 15 + Persuasion_Dismiss 9 + adversarial 19) |
+| **Tests added** | 55 EditMode tests across 4 new fixtures |
 
 ---
 
@@ -459,9 +459,157 @@ Cold-eye review per CLAUDE.md §Q1-Q4:
 | F.2.1 Plan + verification sweep + design lockdowns | ✅ | — | `dc34e09` |
 | F.2.2 RecruitedEffect | ✅ | 12 | `6dbb6c7` |
 | F.2.3 Persuasion_Recruit skill | ✅ | 15 | `245eec3` |
-| F.2.4 Persuasion_Dismiss skill | ✅ | 9 | (this commit) |
-| F.2.5 Adversarial sweep + cold-eye + merge | ⏳ planned | — | — |
-| **TOTAL** | **0 / 5** | **—** | — |
+| F.2.4 Persuasion_Dismiss skill | ✅ | 9 | `08dc26b` |
+| F.2.5 Adversarial sweep + cold-eye + merge | ✅ | 19 | (this commit) |
+| **TOTAL** | **5 / 5** | **55** | — |
+
+---
+
+## F.2.5 — Cold-eye review (CLAUDE.md §Q1-Q4)
+
+Run after all 4 implementation commits landed; before adversarial sweep
++ merge.
+
+### Q1 — Symmetry
+
+**Persuasion_Recruit and Persuasion_Dismiss share the same OnCommand
+skeleton:** null-context guard → adjacency lookup → target-state checks
+→ effect mutation → success-diag emission. Pin: opening both files
+side-by-side, every veto follows the same shape (check → reject diag
+→ return).
+
+**RecruitedEffect.OnApply and OnRemove are inverses.** OnApply calls
+SetPartyLeader(Recruiter) + pushes FollowLeaderGoal; OnRemove pops the
+matching goal (predicate-search by Leader==Recruiter, not by saved
+reference) + clears PartyLeader IFF recruiter still leads. Adversarial
+test `Adversarial_OnRemove_FindsFollowLeaderGoal_BelowOtherGoals`
+pins the predicate-search half — works even when other goals layer on top.
+
+**Diag emission symmetric across the two skills:** Recruit emits
+`Recruited` on success / `SkillRejected reason=<tag>` on veto. Dismiss
+emits `Dismissed` on success / `SkillRejected reason=<tag>` on veto.
+Both use the existing BaseSkillPart `EmitSkillRejectedDiag` helper.
+
+✅ Symmetry passes.
+
+### Q2 — Cross-feature consistency
+
+All four pieces (RecruitedEffect, Persuasion_Recruit, Persuasion_Dismiss,
+adversarial sweep) follow the same fixture pattern: `MakeActor(id, ego,
+level)` for the test entity, `Zone` for the spatial container, `Diag.ResetAll()`
+in setup. Per-piece payload schemas:
+
+| Diag kind | Top-level fields | Payload fields |
+|---|---|---|
+| skill / SkillRejected | actor, target | skillClass, displayName, reason (+ d20/egoMod/roll/dc for roll_failed) |
+| skill / Recruited | actor, target | skillClass, d20, egoMod, roll, dc |
+| skill / Dismissed | actor, target | skillClass |
+
+The roll-failed `SkillRejected` carries diagnostic numbers in the
+payload — the verification flow per CLAUDE.md Observability ("payload
+includes everything a debugger would want"). Other rejections omit
+roll numbers since those don't exist at veto-fire time.
+
+✅ Consistency passes.
+
+### Q3 — Counter-check completeness
+
+Every Veto in Lockdown #2 has a positive test (the veto fires when
+the precondition is set) AND an implicit counter-check (no Recruited
+diag fires + state unchanged):
+
+| Veto | Positive | Counter |
+|---|---|---|
+| #1 null_context | Veto1_NullZone | (caught by null-safety test) |
+| #2 no_target | Veto2_NoAdjacentTarget | success-path tests fire #2 only when no defender |
+| #3 self_target | Veto3 (no path through picker → 0 self_target diags) | `Self can NEVER be recruited under any circumstance` |
+| #4 target_no_brain | Veto4_TargetWithoutBrain | success-path tests cover the with-brain case |
+| #5 already_recruited | Veto5_AlreadyRecruited | DismissThenReRecruit pins re-recruit-after-dismiss succeeds (clean state) |
+| #6 follows_another | Veto6 + asserts existing leader preserved | sibling-recruit (Adversarial_SiblingRecruits) covers same-recruiter case |
+| #7/#8 hostility | Veto7 + Veto8 | success path has neither |
+| roll_failed | RollFailure_EmitsRejected | RecruitSuccess_AppliesRecruitedEffect |
+
+Dismiss vetos have the same coverage pattern: each veto + at least one
+"happy path" or alternate-state counter-check.
+
+Roll math counter-checks: high-ego-vs-low-level (almost always succeeds
+≥15/30 over 30 seeds) AND low-ego-vs-high-level (impossible → 0/30).
+Edge-case adversarial: ego=1 vs lvl=30 → 0 successes guaranteed;
+ego=50 vs lvl=1 → 30/30 successes guaranteed.
+
+✅ Counter-checks complete.
+
+### Q4 — Doc-vs-impl drift
+
+Final constants vs Lockdown #1's table:
+
+| Constant | Doc | Impl | Match? |
+|---|---|---|---|
+| `RECRUIT_BASE_DC` / `BASE_DC` | 10 | `Persuasion_Recruit.BASE_DC = 10` | ✅ |
+| `RECRUIT_COOLDOWN_TURNS` / `COOLDOWN` | 25 | `Persuasion_Recruit.COOLDOWN = 25` | ✅ |
+| Dismiss cooldown | none | `Cooldown = 0` in spec | ✅ |
+
+Lockdown #5 doc spec'd diag kinds `RecruitRejected` and `DismissRejected`;
+impl uses the framework's existing `SkillRejected` umbrella with a
+`reason` field instead. Both work for diag_query (filter by
+category=skill, then inspect reason). This is a minor naming drift —
+flagged here for future reader.
+
+**🟡 Drift** — doc says `RecruitRejected` / `DismissRejected`; code
+emits `SkillRejected`. Behavioral parity preserved (reason field
+disambiguates), but doc should match code.
+
+### Cold-eye self-directive (CLAUDE.md "Self-directive")
+
+> *Run the cold-eye pass after every multi-commit feature, even when
+> tests are green and the merge feels clean.*
+
+Ran. **1 substantive finding** (Q4 doc-drift on rejected-kind naming;
+documented in-line here so a future reader knows code uses
+`SkillRejected` despite the Lockdown #5 plan saying `RecruitRejected`).
+0 latent code bugs.
+
+---
+
+## F.2.5 — Adversarial sweep results
+
+Per CLAUDE.md "Adversarial test sweep" gate — F.2 hits 7+ taxonomy
+surfaces (state atomicity, cross-actor flows, save/load reach,
+stacking semantics, anti-exploit gates, probability boundaries,
+diag dispatch invariants), so a dedicated sweep is mandatory.
+
+**`RecruitedEffectAdversarialTests.cs` — 19 tests across 10 surfaces:**
+
+| Surface | Probe | Result |
+|---|---|---|
+| State atomicity | Brainless target → no recruiter-side mutation | ✅ |
+| State atomicity | Null recruiter → no leader / no goal | ✅ |
+| Cross-actor | Chain recruit A→B→C — roster invariants | ✅ |
+| Cross-actor | Sibling recruits B and C share root A — party-aligned | ✅ |
+| Cross-actor | Dismissed follower drops from recruiter's roster | ✅ |
+| Save/load reach | Mid-pursuit (Age=7) round-trip preserves everything | ✅ |
+| Stacking | Double-apply → OnStack returns false (pinned contract) | ✅ |
+| Stacking | Double-dismiss → second call no-op (no crash) | ✅ |
+| Anti-exploit | Null dismisser rejected | ✅ |
+| Anti-exploit | Self-recruit pathological case → blocked at SetPartyLeader | ✅ |
+| Anti-exploit | Forgive: recruit clears prior PersonalEnemies vs recruiter | ✅ |
+| Probability | ego=1 vs lvl=30 → 0/30 successes (impossible) | ✅ |
+| Probability | ego=50 vs lvl=1 → 30/30 successes (guaranteed) | ✅ |
+| Diag dispatch | Each veto emits exactly 1 SkillRejected | ✅ |
+| Diag dispatch | Success path emits zero SkillRejected, one Recruited | ✅ |
+| Diag dispatch | roll_failed payload carries d20/egoMod/roll/dc | ✅ |
+| Goal stack | FollowLeaderGoal removable below other goals | ✅ |
+| Null-safety | All public APIs survive null inputs | ✅ |
+| Scale | 10 followers under one recruiter — consistent + clean teardown | ✅ |
+
+**0 bugs found.** Per CLAUDE.md honesty bound: zero adversarial
+findings does NOT prove the system bug-free. The contracts are pinned;
+future regressions will surface visibly with named tests.
+
+---
+
+*Updated as each sub-milestone ships.*
+
 
 ---
 
