@@ -17,7 +17,7 @@
 | **Phase** | F.3 — Slot system + faction-rep ⏳ IN PROGRESS |
 | **Last updated** | 2026-05-10 |
 | **Branch** | `feat/followers-f3-slot-system` |
-| **Sub-milestones complete** | 0 / 6 |
+| **Sub-milestones complete** | 1 / 6 (F.3.1 plan + sweep complete; blockers cleared) |
 | **Real bugs found** | — |
 | **Contracts pinned** | — |
 | **Tests added** | — |
@@ -62,13 +62,13 @@ Per CLAUDE.md §1.2. All file:line citations into the current CoO tree.
 | What I assumed | What's there | Status |
 |---|---|---|
 | CoO has a `PlayerReputation` static API with `Modify(faction, delta)` | Confirmed via `TradeSystem.cs:61`, `ConversationActions.cs:187, 192`. Static manager pattern. Signature: `PlayerReputation.Modify(string faction, int delta)`. | ⚪ confirmed |
-| CoO has a `PooledEvent` infrastructure equivalent to Qud's `GetCompanionLimitEvent` | **🔴 NOT CONFIRMED** — Qud uses `PooledEvent<T>` with cascade levels + handler dispatch. CoO's `GameEvent` shape may or may not match. Need to read `GameEvent.cs` before designing `GetCompanionLimitEvent`. **F.3.1 sweep step 1**. | 🔴 BLOCKER |
+| CoO has a `PooledEvent` infrastructure equivalent to Qud's `GetCompanionLimitEvent` | ✅ CONFIRMED. `GameEvent` uses a static `Pool` stack (`GameEvent.cs:18, 40-60`) with `Rent()`/`Release()` — same intent as Qud's `PooledEvent<T>`, different shape (one class with string ID + dynamic param dicts vs Qud's per-event-type generic). For F.3.2: `GetCompanionLimitEvent.GetFor(actor, means, baseLimit)` does `GameEvent.New("GetCompanionLimit", ...)` + `SetParameter("Limit", baseLimit)` + `actor.FireEvent(e)` + read back via `e.GetIntParameter("Limit", baseLimit)` + `e.Release()`. | ⚪ confirmed |
 | `BrainPart.CurrentZone` is queryable for the "same zone" check | Confirmed — F.1.5 already reads `leader.GetPart<BrainPart>()?.CurrentZone` (see `FollowLeaderGoal.Finished()`). | ⚪ confirmed |
 | `BrainPart.PartyMembers` is HashSet enumeration; deterministic? | HashSet enumeration order is NOT deterministic in .NET (implementation-defined). For F.3.3 slot-enforcement, can't rely on enumeration order for "oldest". **Decision**: F.3 v1 ships VETO mode (reject when at-limit), not auto-dismiss. Auto-dismiss deferred to F.5+ which would need a recruit-order tracking field. | 🟡 simplification |
 | Items can have Parts that listen for events | Confirmed — existing skill registration pattern (`SkillsPart`, `ActivatedAbilitiesPart`). CompanionCapacity equivalent would be an equippable item. **Defer the equippable item to F.5+ content**; F.3 ships the EVENT + SKILL-side bump only. | 🟡 scope-prune |
-| F.2.3's `Persuasion_Recruit` has a `HandleEvent` extension point | **🔴 NOT CONFIRMED** — `BaseSkillPart` may or may not auto-register `HandleEvent` for arbitrary event types. Need to read how `Cudgel_Conk` or another skill hooks events. **F.3.1 sweep step 2**. | 🔴 BLOCKER |
+| F.2.3's `Persuasion_Recruit` has a `HandleEvent` extension point | ✅ CONFIRMED. Every `Part` has a virtual `HandleEvent(GameEvent e)` (`Part.cs:49-52`). `Entity.FireEvent(e)` (`Entity.cs:255-265`) iterates ALL Parts and calls each one's `HandleEvent`. `SkillsPart.HandleEvent` is the canonical consumer (`SkillsPart.cs:379-419`) — filters by `e.ID.StartsWith("Command")` for skill-dispatch. For F.3.2: `Persuasion_Recruit` (which is itself a `BaseSkillPart`, attached to the actor) overrides `HandleEvent` to look for `e.ID == "GetCompanionLimit"` and bumps `Limit` by 1 when `Means == "Recruit"`. | ⚪ confirmed |
 
-**🔴 2 blockers** for the sweep step. Both need to clear before F.3.2 implementation lands.
+**Both blockers cleared.** F.3.2 design locked: CoO-idiomatic `GameEvent`-fired query (Option A from the sweep) — same shape as how `SkillsPart.HandleEvent` already dispatches commands, just inverse direction (skills listen + bump rather than dispatch + execute).
 
 ---
 
