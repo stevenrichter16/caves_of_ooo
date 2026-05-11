@@ -16,10 +16,10 @@
 | **Phase** | F.2 — Recruitment ⏳ IN PROGRESS |
 | **Last updated** | 2026-05-10 |
 | **Branch** | `feat/followers-f2-recruitment` |
-| **Sub-milestones complete** | 3 / 5 |
+| **Sub-milestones complete** | 4 / 5 |
 | **Real bugs found** | 0 |
-| **Contracts pinned** | 27 (RecruitedEffect lifecycle 12 + Persuasion_Recruit veto chain + roll math 15) |
-| **Tests added** | 27 EditMode tests across 2 new fixtures |
+| **Contracts pinned** | 36 (RecruitedEffect 12 + Persuasion_Recruit 15 + Persuasion_Dismiss 9) |
+| **Tests added** | 36 EditMode tests across 3 new fixtures |
 
 ---
 
@@ -458,8 +458,8 @@ Cold-eye review per CLAUDE.md §Q1-Q4:
 |---|---|---|---|
 | F.2.1 Plan + verification sweep + design lockdowns | ✅ | — | `dc34e09` |
 | F.2.2 RecruitedEffect | ✅ | 12 | `6dbb6c7` |
-| F.2.3 Persuasion_Recruit skill | ✅ | 15 | (this commit) |
-| F.2.4 Persuasion_Dismiss skill | ⏳ planned | — | — |
+| F.2.3 Persuasion_Recruit skill | ✅ | 15 | `245eec3` |
+| F.2.4 Persuasion_Dismiss skill | ✅ | 9 | (this commit) |
 | F.2.5 Adversarial sweep + cold-eye + merge | ⏳ planned | — | — |
 | **TOTAL** | **0 / 5** | **—** | — |
 
