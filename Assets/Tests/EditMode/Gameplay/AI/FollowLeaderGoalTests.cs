@@ -20,9 +20,13 @@ namespace CavesOfOoo.Tests
     /// <list type="bullet">
     ///   <item>Leader null → Finished()</item>
     ///   <item>Leader has no BrainPart (no zone to compare) → Finished()</item>
-    ///   <item>Leader in a different zone → Finished()</item>
-    ///   <item>Leader's CurrentZone is null (e.g. mid-transition) → Finished()</item>
-    ///   <item>MaxAge exceeded → Finished() (defensive timeout)</item>
+    ///   <item>Leader's CurrentZone is null (unregistered/destroyed) → Finished()</item>
+    ///   <item>Leader in a different (registered) zone → NOT Finished —
+    ///         persistent across cross-zone (post-F.2.7 audit fix).
+    ///         TakeAction idles + resets Age until zones realign.</item>
+    ///   <item>MaxAge exceeded → Finished() (defensive timeout —
+    ///         only accumulates when leader is reachable but the follower
+    ///         is failing to close distance; cross-zone idle resets Age)</item>
     ///   <item>Close enough to leader → NOT Finished — follow is
     ///         persistent (F.2.6 fix). TakeAction idles and resets Age
     ///         while close, but the goal stays on the stack so the
@@ -118,11 +122,15 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Finished_LeaderInDifferentZone_True()
+        public void Finished_LeaderInDifferentZone_False_PersistentAcrossZones()
         {
-            // Cross-zone is OUT OF SCOPE for F.1 — the goal gives up
-            // when zones don't match. F.4+ may revisit with a zone-
-            // transition pursuit mechanic.
+            // Post-F.2.7 audit fix: cross-zone is persistent. If the
+            // leader is in a different zone (e.g. F.2.7 transit failed
+            // to place the follower in the new zone), the goal stays
+            // on the stack and resumes pursuit when zones realign.
+            // Earlier F.1.5 design popped on cross-zone, which left
+            // stranded followers unable to re-pursue after the player
+            // returned to their zone.
             var zoneA = new Zone("A");
             var zoneB = new Zone("B");
             var follower = CreateCreature(zoneA, 5, 5, "f");
@@ -130,9 +138,36 @@ namespace CavesOfOoo.Tests
 
             var goal = PushGoal(follower, leader);
 
-            Assert.IsTrue(goal.Finished(),
-                "Leader in a different zone → goal finishes (F.1 limitation; "
-                + "cross-zone pursuit deferred to F.4+).");
+            Assert.IsFalse(goal.Finished(),
+                "Persistent-cross-zone contract: leader in a different "
+                + "registered zone → goal stays active. TakeAction idles "
+                + "+ resets Age until zones realign; truly-unreachable "
+                + "leaders still time out via MaxAgeBeforeGiveUp.");
+        }
+
+        [Test]
+        public void TakeAction_LeaderInDifferentZone_ResetsAge_NoMove()
+        {
+            // Counter-pair: when cross-zone, TakeAction idles (doesn't
+            // move the follower) AND resets Age (preserves MaxAge for
+            // genuinely-unreachable cases only).
+            var zoneA = new Zone("A");
+            var zoneB = new Zone("B");
+            var follower = CreateCreature(zoneA, 5, 5, "f");
+            var leader = CreateCreature(zoneB, 10, 10, "l");
+
+            var goal = PushGoal(follower, leader);
+            goal.Age = 75; // simulate having been separated for a while
+            var posBefore = zoneA.GetEntityPosition(follower);
+
+            goal.TakeAction();
+
+            Assert.AreEqual(0, goal.Age,
+                "TakeAction while cross-zone resets Age — separated " +
+                "followers don't accumulate timeout pressure.");
+            var posAfter = zoneA.GetEntityPosition(follower);
+            Assert.AreEqual((posBefore.x, posBefore.y), (posAfter.x, posAfter.y),
+                "TakeAction while cross-zone is idle — no movement.");
         }
 
         [Test]

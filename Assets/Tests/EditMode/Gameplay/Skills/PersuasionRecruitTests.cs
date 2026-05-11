@@ -215,29 +215,28 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Veto8_PersonalGrudge_EmitsRejected_PersonalGrudge()
+        public void TargetHostile_FromDefenderGrudge_EmitsRejected_TargetHostile()
         {
-            // Defender has a personal grudge against attacker.
-            // ArePartyAligned is false (no leader/follower yet), so the
-            // FactionManager's bidirectional PersonalEnemies check would
-            // surface as "target_hostile" via GetFeeling. This veto is
-            // checked AFTER target_hostile in the chain, so if the
-            // FactionManager check fires first, we never reach
-            // personal_grudge — and that's by design. This test pins the
-            // observable: a grudge always results in rejection.
+            // FactionManager.GetFeeling checks both sides of
+            // PersonalEnemies bidirectionally (FactionManager.cs:187-192),
+            // so a defender-side grudge surfaces as "target_hostile" via
+            // Veto #7. Post-F.2.7 audit (Finding #3) removed the separate
+            // "personal_grudge" veto as dead code; this test now pins
+            // the consolidated behavior — any grudge, either direction,
+            // produces "target_hostile" rejection.
             var (attacker, defender, zone, recruit) = MakeFixture();
             defender.GetPart<BrainPart>().PersonalEnemies.Add(attacker);
 
             recruit.OnCommand(Ctx(attacker, zone));
 
-            int hostileCount = CountDiag("SkillRejected", "target_hostile");
-            int grudgeCount = CountDiag("SkillRejected", "personal_grudge");
-            Assert.AreEqual(1, hostileCount + grudgeCount,
-                "Exactly one rejection — either target_hostile (via " +
-                "FactionManager.GetFeeling) or personal_grudge (direct " +
-                "PersonalEnemies check). Both correctly block recruit.");
-            Assert.AreEqual(0, CountDiag("Recruited"),
-                "No Recruited diag fires when there's a personal grudge.");
+            Assert.AreEqual(1, CountDiag("SkillRejected", "target_hostile"),
+                "Defender-side PersonalEnemies grudge surfaces as " +
+                "target_hostile via Veto #7's GetFeeling (which checks " +
+                "both directions).");
+            Assert.AreEqual(0, CountDiag("SkillRejected", "personal_grudge"),
+                "personal_grudge veto removed in post-F.2.7 audit — " +
+                "regression check that the dead branch hasn't been re-added.");
+            Assert.AreEqual(0, CountDiag("Recruited"));
             Assert.IsNull(defender.GetPart<BrainPart>().PartyLeader);
         }
 

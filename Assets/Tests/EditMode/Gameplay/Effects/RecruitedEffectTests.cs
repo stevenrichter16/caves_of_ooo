@@ -96,6 +96,29 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void OnApply_SetPartyLeaderRejects_DoesNotPushGoal()
+        {
+            // Post-F.2.7 audit Finding #2 (🔴): if SetPartyLeader rejects
+            // (cycle, self-ref), OnApply must NOT push the FollowLeaderGoal.
+            // Pre-fix behavior pushed the goal anyway, leaving the follower
+            // visibly pursuing an entity who wasn't actually their leader.
+            //
+            // Trigger: self-recruit. SetPartyLeader rejects newLeader == self.
+            // The Persuasion_Recruit veto chain catches this at Veto #3
+            // upstream, but the effect must be independently safe for any
+            // future caller that bypasses the skill (mods, tests, etc.).
+            var actor = ActorWithBrain("a");
+
+            actor.ApplyEffect(new RecruitedEffect(actor), source: actor, zone: null);
+
+            Assert.IsNull(Brain(actor).PartyLeader,
+                "Self-recruit: SetPartyLeader rejected — leader stays null.");
+            Assert.IsFalse(Brain(actor).HasGoal<FollowLeaderGoal>(),
+                "OnApply must NOT push FollowLeaderGoal when SetPartyLeader " +
+                "rejects. Regression test for post-F.2.7 audit Finding #2.");
+        }
+
+        [Test]
         public void OnApply_TargetWithoutBrain_NoOp()
         {
             // A target with no BrainPart can't be a follower. The effect
