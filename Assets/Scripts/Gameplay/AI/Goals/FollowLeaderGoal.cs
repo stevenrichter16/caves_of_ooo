@@ -20,11 +20,22 @@ namespace CavesOfOoo.Core
     ///   <item>Leader's <see cref="BrainPart.CurrentZone"/> is null or
     ///         differs from the follower's zone — cross-zone pursuit is
     ///         <b>out of scope for F.1</b>; deferred to F.4+.</item>
-    ///   <item>Follower is within <see cref="CloseEnoughDistance"/> of
-    ///         the leader (goal satisfied).</item>
     ///   <item><see cref="GoalHandler.Age"/> exceeds
-    ///         <see cref="MaxAgeBeforeGiveUp"/> (defensive timeout).</item>
+    ///         <see cref="MaxAgeBeforeGiveUp"/> (defensive timeout).
+    ///         <see cref="TakeAction"/> resets Age to 0 while close-enough,
+    ///         so the timeout only fires when the follower has been
+    ///         continuously failing to reach the leader.</item>
     /// </list>
+    ///
+    /// <para><b>Persistent semantics (F.2.6 fix):</b> the goal does NOT
+    /// finish when the follower is within
+    /// <see cref="CloseEnoughDistance"/>. Following is ongoing, not
+    /// one-shot — when the leader walks away the follower needs to
+    /// re-pursue. Early F.1.5 design finished on close-enough; that
+    /// broke recruit-from-adjacent because the goal popped on tick 1
+    /// (recruiter is by definition adjacent at recruit time → distance
+    /// 1 ≤ default 2 → Finished). When close, <see cref="TakeAction"/>
+    /// idles (no-op) and resets Age; when far, it steps toward.</para>
     ///
     /// <para><b>Qud parity:</b> Qud doesn't ship a dedicated
     /// FollowLeaderGoal — it composes the same observable behavior from
@@ -85,8 +96,12 @@ namespace CavesOfOoo.Core
             // mismatch. F.4+ may add a zone-transition pursuit step.
             if (leaderZone != CurrentZone) return true;
 
-            // Goal satisfied when close enough.
-            return WithinCloseEnoughDistance();
+            // Follow is persistent — do NOT finish on close-enough.
+            // TakeAction idles when close (and resets Age) so the goal
+            // stays on the stack and re-pursues when the leader moves.
+            // See class docstring's "Persistent semantics" section for
+            // why this changed from the original F.1.5 design.
+            return false;
         }
 
         public override void TakeAction()
@@ -100,7 +115,16 @@ namespace CavesOfOoo.Core
             var leaderZone = leaderBrain.CurrentZone;
             if (leaderZone == null || leaderZone != CurrentZone) return;
 
-            if (WithinCloseEnoughDistance()) return;
+            if (WithinCloseEnoughDistance())
+            {
+                // Idle when close enough. Reset Age so the
+                // MaxAgeBeforeGiveUp timeout only fires when the
+                // follower has been continuously failing to reach the
+                // leader (e.g. pathologically unreachable), not after
+                // 200 turns of happy following.
+                Age = 0;
+                return;
+            }
 
             // Look up positions fresh each tick — the leader can move.
             var myPos = CurrentZone.GetEntityPosition(ParentEntity);
