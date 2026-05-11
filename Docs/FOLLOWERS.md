@@ -34,10 +34,10 @@
 | **Current phase** | F.1 ✅ / F.2 ✅ / F.3 ✅ / F.4 not started |
 | **Phases planned** | F.1 → F.4+ (5 phases total + F.5+ polish queue) |
 | **Last updated** | 2026-05-11 |
-| **Cumulative tests** | 171 (F.1: 61 + F.2: 55 + F.3: 55) |
-| **Cumulative contracts pinned** | 136 (F.1: 13 + F.2: 55 + F.3: 68) |
-| **Real bugs surfaced + fixed** | 2 (F.2.2 `Entity.RemoveEffect(Effect)` overload mismatch; F.3 `ApplyBonus` partial-apply atomicity) |
-| **Audit passes run** | 2 (post-F.2.7 → 3 findings shipped; post-F.3 → 5 findings shipped) |
+| **Cumulative tests** | 174 (F.1: 61 + F.2: 55 + F.3: 58) |
+| **Cumulative contracts pinned** | 139 (F.1: 13 + F.2: 55 + F.3: 71) |
+| **Real bugs surfaced + fixed** | 3 (F.2.2 `Entity.RemoveEffect(Effect)` overload; F.3 `ApplyBonus` partial-apply atomicity; F.3.4 missing `Died` event hook for rep unapply on follower-death — audit pass 2) |
+| **Audit passes run** | 3 (post-F.2.7 → 3 findings; post-F.3 taxonomy → 5 findings; post-F.3 Qud-parity-first → 1 latent + 1 doc) |
 | **Reference codebase** | Qud (`/Users/steven/qud-decompiled-project/`) |
 
 ---
@@ -77,6 +77,7 @@ shippable + testable.
 | **F.2 audit** | 3 findings (1 🔴 latent + 2 🟡 correctness) | ✅ Shipped | +3 | `fix/follower-system-audit-pass` (merged `1b1cb8b`) |
 | **F.3** | Slot system + GrantsRepAsFollower + full Qud comma-delim syntax | ✅ Shipped | 55 | `feat/followers-f3-slot-system` (merged `5849c8d`) |
 | **F.3 audit** | 5 findings (1 🟡 atomicity + 1 🟡 Qud-parity restore + 3 🟡 defense-in-depth) | ✅ Shipped | +3 | `fix/follower-f3-audit-pass` (merged `2dec554`) |
+| **F.3 audit pass 2** (Qud-parity-first) | 1 🔴 missing `Died` hook (rep leaked on follower-death) + 1 🟡 doc clarification | ✅ Shipped | +3 | `fix/follower-f3-qud-parity-pass-2` (merged `a0bc85b`) |
 | **F.4** | Cross-zone pursuit + mutual defense + LeftBehindByPlayer | ⏳ Not started | — | TBD |
 | **F.5+** | Polish queue (Beguile/Rebuke paths, auto-dismiss-oldest, clones, Sifrah, etc.) | ⏳ Deferred | — | TBD |
 
@@ -374,6 +375,22 @@ Branch `fix/follower-f3-audit-pass` (merged `2dec554`). 19 audit findings triage
 | 8 | 🟡 | `ApplyBonus` partial-apply atomicity (real correctness gap) | Eager AppliedBonus flag + `HasAnyApplicableEntry` pre-flight — prevents re-entry double-apply on exception paths |
 
 10 findings deferred with documented rationale (Qud's `SyncTarget`/`DeepCopy`/`SuspendingEvent`/Sifrah subsystems not in CoO yet). 4 findings confirmed not-bugs or false alarms.
+
+## F.3 post-audit pass 2 (Qud-parity-first) — 1 latent bug + 1 doc fix
+
+Branch `fix/follower-f3-qud-parity-pass-2` (merged `a0bc85b`).
+Second audit pass with **Qud-parity-first emphasis** — read CoO impl
+side-by-side with Qud source, flag every drift. 14 findings surfaced;
+2 actionable:
+
+| # | Severity | Finding | Fix |
+|---|---|---|---|
+| 13 | 🔴 | `GrantsRepAsFollowerPart` missing entity-destroyed unapply. Qud hooks `OnDestroyObjectEvent` (`GrantsRepAsFollower.cs:158-162`). First audit pass deferred saying "CoO lacks these events" — that was WRONG: CoO fires `"Died"` on the dying entity (`CombatSystem.cs:916`). Killing your own follower leaked +N rep until the next zone-exit. | Added `"Died"` branch to `HandleEvent` → `UnapplyBonus()`. 3 regression tests. |
+| 2 | 🟡 | `Persuasion_Recruit.HandleEvent` missing Qud's `E.Actor == ParentObject` and `ActivatedAbilityID != Guid.Empty` guards | After analysis: both guards are unnecessary in CoO's actor-specific event dispatch (no cross-entity cascade) + detach-on-remove skill model. Doc-only fix: added explanatory docstring so a future reader doesn't add the guards thinking they were forgotten. |
+
+12 other findings: 1 architectural (Qud's two-pass dual-dispatch — CoO's single-pass works since no legacy listeners), 3 nit drifts (reason tags, parameter naming, wildcard semantic), 8 confirmed-not-bugs or already-documented deferrals.
+
+**Pass-2 lesson:** the first taxonomy-based audit (null safety, atomicity, etc.) missed the `"Died"` hook because its checklist didn't include "what events does Qud listen for that CoO might not?" The Qud-parity-first angle caught it. Worth running BOTH audit angles on future phases.
 
 ## Cold-eye review (F.3.6)
 
