@@ -143,6 +143,14 @@ namespace CavesOfOoo.Core
             currentZone.RemoveEntity(player);
             newZone.AddEntity(player, arriveX, arriveY);
 
+            // F.2.7 — bring followers along. Any PartyMember currently
+            // in the same zone as the leader gets teleported to a cell
+            // adjacent to the leader's arrival. Mirrors Qud's default
+            // companion behavior. Followers in OTHER zones (left behind
+            // earlier, or recruited elsewhere) are intentionally NOT
+            // dragged along — that's a separate scenario.
+            TransitPartyMembers(player, currentZone, newZone, arriveX, arriveY);
+
             return new ZoneTransitionResult
             {
                 Success = true,
@@ -150,6 +158,108 @@ namespace CavesOfOoo.Core
                 NewPlayerX = arriveX,
                 NewPlayerY = arriveY
             };
+        }
+
+        /// <summary>
+        /// F.2.7 — move all <see cref="BrainPart.PartyMembers"/> currently
+        /// in <paramref name="oldZone"/> to <paramref name="newZone"/>,
+        /// placing each at a passable cell adjacent to the leader's
+        /// arrival. Public for testability; the production caller is
+        /// inside <see cref="TransitionPlayer"/> /
+        /// <see cref="TransitionPlayerVertical"/>.
+        ///
+        /// <para>Iteration uses a snapshot of <c>PartyMembers</c> because
+        /// <see cref="Zone.RemoveEntity"/> / <see cref="Zone.AddEntity"/>
+        /// may indirectly mutate <c>PartyMembers</c> via downstream
+        /// event hooks (no current case but defense-in-depth — the
+        /// HashSet would throw if modified during enumeration).</para>
+        ///
+        /// <para>Followers whose <see cref="BrainPart.CurrentZone"/> is
+        /// not the old zone are skipped: they're in some other zone
+        /// already and shouldn't be teleport-yanked. (Their continuing
+        /// existence is handled separately when the player visits that
+        /// zone — the <see cref="HandleZoneTransition"/>-equivalent in
+        /// <c>InputHandler</c> rewires their <c>CurrentZone</c> on
+        /// arrival.)</para>
+        ///
+        /// <para>If no adjacent passable cell is available, that
+        /// follower is left behind. They'll re-enter the new zone the
+        /// next time the player crosses if/when the player passes
+        /// through their current zone.</para>
+        /// </summary>
+        public static void TransitPartyMembers(Entity leader, Zone oldZone, Zone newZone, int leaderX, int leaderY)
+        {
+            var brain = leader?.GetPart<BrainPart>();
+            if (brain?.PartyMembers == null || brain.PartyMembers.Count == 0) return;
+
+            // Snapshot — see method docstring.
+            var members = new System.Collections.Generic.List<Entity>(brain.PartyMembers);
+
+            for (int i = 0; i < members.Count; i++)
+            {
+                var member = members[i];
+                if (member == null) continue;
+                var memberBrain = member.GetPart<BrainPart>();
+                if (memberBrain == null) continue;
+                // Only transit followers currently in the OLD zone.
+                if (memberBrain.CurrentZone != oldZone) continue;
+                if (oldZone.GetEntityCell(member) == null) continue;
+
+                var (mx, my) = FindAdjacentPassableCell(newZone, leaderX, leaderY);
+                if (mx < 0) continue;
+
+                oldZone.RemoveEntity(member);
+                newZone.AddEntity(member, mx, my);
+                memberBrain.CurrentZone = newZone;
+                // InputHandler.HandleZoneTransition is responsible for
+                // re-registering the follower with TurnManager + setting
+                // brain.Rng — that loop iterates the NEW zone's creatures
+                // (which now includes the transferred follower), so we
+                // don't need to mirror that here.
+            }
+        }
+
+        /// <summary>
+        /// F.2.7 — search for a passable cell adjacent to
+        /// (<paramref name="cx"/>, <paramref name="cy"/>) in 8-direction
+        /// N→NE→E→...→NW order (deterministic for tests). Falls back to
+        /// a 3-ring spiral if no adjacent cell works. Returns (-1, -1)
+        /// if nothing's passable within radius 4 — defensively rare;
+        /// the caller leaves the follower behind in that case.
+        /// </summary>
+        private static (int x, int y) FindAdjacentPassableCell(Zone zone, int cx, int cy)
+        {
+            // 8-direction order matches SkillCombatHelpers.FindAdjacentCleaveTarget.
+            int[] dx = { 0, 1, 1, 1, 0, -1, -1, -1 };
+            int[] dy = { -1, -1, 0, 1, 1, 1, 0, -1 };
+            for (int i = 0; i < 8; i++)
+            {
+                int x = cx + dx[i];
+                int y = cy + dy[i];
+                if (!zone.InBounds(x, y)) continue;
+                var cell = zone.GetCell(x, y);
+                if (cell != null && cell.IsPassable())
+                    return (x, y);
+            }
+            // Wider spiral if none of the 8 immediate cells work.
+            for (int r = 2; r <= 4; r++)
+            {
+                for (int ox = -r; ox <= r; ox++)
+                {
+                    for (int oy = -r; oy <= r; oy++)
+                    {
+                        // Skip cells already searched (interior to the ring).
+                        if (System.Math.Abs(ox) < r && System.Math.Abs(oy) < r) continue;
+                        int x = cx + ox;
+                        int y = cy + oy;
+                        if (!zone.InBounds(x, y)) continue;
+                        var cell = zone.GetCell(x, y);
+                        if (cell != null && cell.IsPassable())
+                            return (x, y);
+                    }
+                }
+            }
+            return (-1, -1);
         }
 
         /// <summary>
@@ -279,6 +389,10 @@ namespace CavesOfOoo.Core
             // Execute the transfer
             currentZone.RemoveEntity(player);
             newZone.AddEntity(player, arriveX, arriveY);
+
+            // F.2.7 — bring followers along through stair transitions
+            // too. Symmetric with the horizontal path above.
+            TransitPartyMembers(player, currentZone, newZone, arriveX, arriveY);
 
             return new ZoneTransitionResult
             {

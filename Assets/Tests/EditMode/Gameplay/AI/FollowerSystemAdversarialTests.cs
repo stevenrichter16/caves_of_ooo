@@ -100,11 +100,16 @@ namespace CavesOfOoo.Tests
         // ════════════════════════════════════════════════════════
 
         [Test]
-        public void Adversarial_FollowLeaderGoal_ExactlyAtBoundary_IsFinished()
+        public void Adversarial_FollowLeaderGoal_ExactlyAtBoundary_StaysActive()
         {
-            // Boundary inclusive: distance == CloseEnoughDistance →
-            // satisfied. Off-by-one would either spin forever or stop
-            // a step too early.
+            // F.2.6 fix: follow is persistent. Even at exactly the
+            // boundary distance (== CloseEnoughDistance), the goal does
+            // NOT finish — it stays on the stack so the follower
+            // re-pursues if the leader moves away. The boundary still
+            // matters for TakeAction's idle-vs-step decision (covered
+            // by TakeAction_CloseEnough_NoMove and
+            // TakeAction_LeaderFar_MovesFollowerCloser); this test pins
+            // that Finished does NOT flip at the boundary.
             var zone = new Zone("z");
             var follower = CreateCreature(zone, 5, 5, "f");
             var leader = CreateCreature(zone, 7, 7, "l"); // Chebyshev=2
@@ -112,16 +117,18 @@ namespace CavesOfOoo.Tests
             var goal = new FollowLeaderGoal(leader) { CloseEnoughDistance = 2 };
             Brain(follower).PushGoal(goal);
 
-            Assert.IsTrue(goal.Finished(),
-                "Distance == CloseEnoughDistance is inclusive — goal "
-                + "satisfied. Catches an off-by-one in the comparison.");
+            Assert.IsFalse(goal.Finished(),
+                "Persistent-follow contract: Finished is independent of "
+                + "the CloseEnough boundary. Catches a regression that "
+                + "re-introduces the F.1.5 one-shot semantics that broke "
+                + "F.2.6 playtest.");
         }
 
         [Test]
-        public void Adversarial_FollowLeaderGoal_OneOverBoundary_NotFinished()
+        public void Adversarial_FollowLeaderGoal_OneOverBoundary_StaysActive()
         {
-            // Pair to the inclusive test — distance > CloseEnoughDistance
-            // is NOT satisfied (no rounding/inclusive-bound flip).
+            // Pair of the boundary test — also stays active when one
+            // cell beyond the boundary.
             var zone = new Zone("z");
             var follower = CreateCreature(zone, 5, 5, "f");
             var leader = CreateCreature(zone, 8, 8, "l"); // Chebyshev=3
@@ -130,9 +137,9 @@ namespace CavesOfOoo.Tests
             Brain(follower).PushGoal(goal);
 
             Assert.IsFalse(goal.Finished(),
-                "Distance one over CloseEnoughDistance → goal not satisfied. "
-                + "Catches an inclusive-bound flip (would treat distance>=N "
-                + "as satisfied when it should be ≤N).");
+                "Persistent-follow contract: Finished returns false on "
+                + "the far side of the boundary too — the goal lives on "
+                + "until the leader is null/cross-zone/dead/MaxAge.");
         }
 
         // ════════════════════════════════════════════════════════

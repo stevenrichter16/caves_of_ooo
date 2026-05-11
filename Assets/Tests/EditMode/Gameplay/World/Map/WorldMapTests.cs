@@ -903,6 +903,124 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(result.Success, result.ErrorReason ?? "Should find a passable cell even near border");
         }
 
+        // ================================================================
+        // F.2.7 — Party-member cross-zone transit (3 tests)
+        // ================================================================
+
+        [Test]
+        public void TransitionPlayer_BringsPartyMembersAlong()
+        {
+            // F.2.7 regression: a follower in the same zone as the leader
+            // must follow through the zone transition, not get left behind.
+            // Surfaced in F.2.6 playtest — user reported "follower no
+            // longer with me after I go to a different chunk".
+            var manager = CreateManager(42);
+            string startID = "Overworld.10.10.0";
+            Zone startZone = manager.GetZone(startID);
+
+            int px = 40, py = 12;
+            var player = PlacePlayer(startZone, px, py);
+            // Test's Creature blueprint doesn't include Brain; add it
+            // manually so the player has a PartyMembers set to mutate.
+            var playerBrain = new BrainPart();
+            player.AddPart(playerBrain);
+            playerBrain.CurrentZone = startZone;
+
+            // Make a follower entity, register it in the leader's party,
+            // and place it in the same zone.
+            var follower = new Entity { ID = "follower", BlueprintName = "Test" };
+            follower.Tags["Creature"] = "";
+            var followerBrain = new BrainPart();
+            follower.AddPart(followerBrain);
+            startZone.AddEntity(follower, px + 1, py); // adjacent
+            followerBrain.CurrentZone = startZone;
+            playerBrain.PartyMembers.Add(follower);
+
+            var result = ZoneTransitionSystem.TransitionPlayer(
+                player, startZone, TransitionDirection.East, px, py,
+                manager, manager.WorldMap);
+
+            Assert.IsTrue(result.Success, result.ErrorReason);
+            Assert.IsNull(startZone.GetEntityCell(follower),
+                "Follower must be removed from old zone — no orphan.");
+            Assert.IsNotNull(result.NewZone.GetEntityCell(follower),
+                "Follower must be present in the new zone.");
+            Assert.AreSame(result.NewZone, followerBrain.CurrentZone,
+                "Follower's BrainPart.CurrentZone updated to the new zone.");
+        }
+
+        [Test]
+        public void TransitionPlayer_LeavesNonPartyMembersBehind()
+        {
+            // Counter-check: only PartyMembers come along. A neutral
+            // bystander in the old zone stays there.
+            var manager = CreateManager(42);
+            string startID = "Overworld.10.10.0";
+            Zone startZone = manager.GetZone(startID);
+
+            int px = 40, py = 12;
+            var player = PlacePlayer(startZone, px, py);
+            var playerBrain = new BrainPart();
+            player.AddPart(playerBrain);
+            playerBrain.CurrentZone = startZone;
+
+            var bystander = new Entity { ID = "bystander", BlueprintName = "Test" };
+            bystander.Tags["Creature"] = "";
+            var bystanderBrain = new BrainPart();
+            bystander.AddPart(bystanderBrain);
+            startZone.AddEntity(bystander, px + 1, py);
+            bystanderBrain.CurrentZone = startZone;
+            // NOT added to player's PartyMembers.
+
+            var result = ZoneTransitionSystem.TransitionPlayer(
+                player, startZone, TransitionDirection.East, px, py,
+                manager, manager.WorldMap);
+
+            Assert.IsTrue(result.Success, result.ErrorReason);
+            Assert.IsNotNull(startZone.GetEntityCell(bystander),
+                "Non-PartyMember must NOT be teleported.");
+            Assert.IsNull(result.NewZone.GetEntityCell(bystander),
+                "Non-PartyMember must NOT appear in the new zone.");
+        }
+
+        [Test]
+        public void TransitionPlayer_FollowerInOtherZone_NotDragged()
+        {
+            // Counter-check: a follower whose CurrentZone is NOT the old
+            // zone (left behind earlier, recruited elsewhere) doesn't get
+            // teleport-yanked when the leader transits a different zone.
+            var manager = CreateManager(42);
+            string startID = "Overworld.10.10.0";
+            Zone startZone = manager.GetZone(startID);
+            string otherID = "Overworld.5.5.0";
+            Zone otherZone = manager.GetZone(otherID);
+
+            int px = 40, py = 12;
+            var player = PlacePlayer(startZone, px, py);
+            var playerBrain = new BrainPart();
+            player.AddPart(playerBrain);
+            playerBrain.CurrentZone = startZone;
+
+            // Follower lives in `otherZone`, not `startZone`.
+            var follower = new Entity { ID = "remoteFollower", BlueprintName = "Test" };
+            follower.Tags["Creature"] = "";
+            var followerBrain = new BrainPart();
+            follower.AddPart(followerBrain);
+            otherZone.AddEntity(follower, 20, 20);
+            followerBrain.CurrentZone = otherZone;
+            playerBrain.PartyMembers.Add(follower);
+
+            var result = ZoneTransitionSystem.TransitionPlayer(
+                player, startZone, TransitionDirection.East, px, py,
+                manager, manager.WorldMap);
+
+            Assert.IsTrue(result.Success);
+            Assert.IsNotNull(otherZone.GetEntityCell(follower),
+                "Remote-zone follower stays in their current zone.");
+            Assert.AreSame(otherZone, followerBrain.CurrentZone,
+                "Remote-zone follower's CurrentZone unchanged.");
+        }
+
         [Test]
         public void TransitionPlayer_RoundTrip_ReturnsCachedZone()
         {
