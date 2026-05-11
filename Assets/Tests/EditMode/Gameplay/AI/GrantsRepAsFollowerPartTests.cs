@@ -477,6 +477,74 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(40, PlayerReputation.Get("Bandits"));
         }
 
+        // ── F.3 audit pass 2: "Died" event hook (Qud-parity Finding #13) ──
+
+        [Test]
+        public void DiedEvent_OnFollower_UnappliesRep()
+        {
+            // Post-F.3-audit-pass-2 (Qud-parity Finding #13): a follower
+            // that dies must have its rep bonus reversed immediately, not
+            // leak until the next zone-exit CheckApplyBonus tick.
+            // CombatSystem.cs:916 fires "Died" on the dying entity;
+            // GrantsRepAsFollowerPart now listens for it.
+            var (player, npc, _) = MakeFollowerInZone("Snapjaws", 10);
+            var part = npc.GetPart<GrantsRepAsFollowerPart>();
+            part.CheckApplyBonus(player);
+            Assert.AreEqual(10, PlayerReputation.Get("Snapjaws"),
+                "Precondition: bonus applied.");
+            Assert.IsTrue(part.AppliedBonus);
+
+            // Fire the "Died" event on the follower (mirroring what
+            // CombatSystem does on death). The Part should unapply.
+            var died = GameEvent.New("Died");
+            died.SetParameter("Target", (object)npc);
+            npc.FireEventAndRelease(died);
+
+            Assert.AreEqual(0, PlayerReputation.Get("Snapjaws"),
+                "Follower died → rep unapplied immediately.");
+            Assert.IsFalse(part.AppliedBonus,
+                "AppliedBonus flag cleared on death.");
+        }
+
+        [Test]
+        public void DiedEvent_OnFollowerThatWasntApplied_NoOp()
+        {
+            // Counter-check: if the follower hadn't been applied yet
+            // (e.g., never co-located with the player), Died is a no-op
+            // (UnapplyBonus short-circuits when AppliedBonus=false).
+            var player = MakePlayer();
+            var npc = MakeNPC("npc", "Snapjaws", 10);
+            // NOT calling MakeFollowerInZone — npc is leader-less.
+
+            var died = GameEvent.New("Died");
+            died.SetParameter("Target", (object)npc);
+            Assert.DoesNotThrow(() => npc.FireEventAndRelease(died));
+            Assert.AreEqual(0, PlayerReputation.Get("Snapjaws"),
+                "Died on never-applied follower is a no-op.");
+        }
+
+        [Test]
+        public void DiedEvent_DoesNotDoubleUnapply()
+        {
+            // Counter-check: firing Died twice doesn't double-unapply
+            // (idempotency of UnapplyBonus pinned by F.3.4's
+            // Unapply_Idempotent_DoesNotStackOnRepeatCalls; this one
+            // pins it specifically via the Died event path).
+            var (player, npc, _) = MakeFollowerInZone("Snapjaws", 10);
+            npc.GetPart<GrantsRepAsFollowerPart>().CheckApplyBonus(player);
+            Assert.AreEqual(10, PlayerReputation.Get("Snapjaws"));
+
+            var died1 = GameEvent.New("Died");
+            died1.SetParameter("Target", (object)npc);
+            npc.FireEventAndRelease(died1);
+            var died2 = GameEvent.New("Died");
+            died2.SetParameter("Target", (object)npc);
+            npc.FireEventAndRelease(died2);
+
+            Assert.AreEqual(0, PlayerReputation.Get("Snapjaws"),
+                "Two Died events → still net-zero rep (no double-unapply).");
+        }
+
         [Test]
         public void NoGrantsPart_NoRepChange()
         {
