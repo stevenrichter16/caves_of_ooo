@@ -170,6 +170,21 @@ namespace CavesOfOoo.Skills
                 return;
             }
 
+            // Veto #8 — at companion limit. F.3.3 enforcement. Counts
+            // only followers with a RecruitedEffect installed by THIS
+            // actor (the "Recruit"-means filter — see
+            // GetCompanionLimitEvent.MEANS_RECRUIT). Other PartyMembers
+            // added via direct SetPartyLeader (faction allegiance, F.5+
+            // Beguile, etc.) don't count toward this means' slot pool.
+            int currentRecruits = CountRecruitedFollowers(actor);
+            int limit = GetCompanionLimitEvent.GetFor(
+                actor, GetCompanionLimitEvent.MEANS_RECRUIT, baseLimit: 0);
+            if (currentRecruits >= limit)
+            {
+                EmitSkillRejectedDiag(ctx, "at_companion_limit");
+                return;
+            }
+
             // Roll: d20 + StatUtils.GetModifier(actor, "Ego")
             //   vs DC = BASE_DC + max(target.Level - actor.Level, 0)
             int d20 = ctx.Rng.Next(1, 21); // [1, 20]
@@ -228,6 +243,29 @@ namespace CavesOfOoo.Skills
                         dc = dc
                     });
             }
+        }
+
+        /// <summary>
+        /// F.3.3 — count the actor's currently-Recruit'd followers. Walks
+        /// <see cref="BrainPart.PartyMembers"/> and filters to entities
+        /// that hold a <see cref="RecruitedEffect"/> with this actor as
+        /// the recruiter. Other PartyMembers (added via direct
+        /// <see cref="BrainPart.SetPartyLeader"/> from faction allegiance,
+        /// future Beguile path, etc.) are excluded — they don't consume
+        /// "Recruit"-means slots.
+        /// </summary>
+        private static int CountRecruitedFollowers(Entity actor)
+        {
+            var brain = actor?.GetPart<BrainPart>();
+            if (brain?.PartyMembers == null) return 0;
+            int n = 0;
+            foreach (var member in brain.PartyMembers)
+            {
+                if (member == null) continue;
+                var effect = member.GetEffect<RecruitedEffect>();
+                if (effect != null && effect.Recruiter == actor) n++;
+            }
+            return n;
         }
     }
 }

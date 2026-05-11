@@ -43,6 +43,7 @@ namespace CavesOfOoo.Tests
             e.AddPart(new PhysicsPart { Solid = true });
             e.AddPart(new StatusEffectsPart());
             e.AddPart(new BrainPart());
+            e.AddPart(new SkillsPart()); // F.3.3 — needed for HandleEvent dispatch + AddSkill in fixture tests
             return e;
         }
 
@@ -51,6 +52,10 @@ namespace CavesOfOoo.Tests
                         int levelDefender = 1)
         {
             var attacker = MakeActor("attacker", egoAttacker, levelAttacker);
+            // F.3.3 requires the skill to be registered on the actor so
+            // GetCompanionLimitEvent's slot bump fires — otherwise the
+            // at_companion_limit veto would block every recruit attempt.
+            attacker.GetPart<SkillsPart>().AddSkill(new Persuasion_Recruit(), source: "fixture");
             var defender = MakeActor("defender", ego: 10, level: levelDefender);
             var zone = new Zone();
             zone.AddEntity(attacker, 5, 5);
@@ -238,6 +243,136 @@ namespace CavesOfOoo.Tests
                 "regression check that the dead branch hasn't been re-added.");
             Assert.AreEqual(0, CountDiag("Recruited"));
             Assert.IsNull(defender.GetPart<BrainPart>().PartyLeader);
+        }
+
+        // ════════════════════════════════════════════════════════════════
+        // F.3.3 — slot enforcement (at_companion_limit veto)
+        // ════════════════════════════════════════════════════════════════
+
+        [Test]
+        public void AtLimit_VetoFires_NoEffectApplied()
+        {
+            // Actor has Persuasion_Recruit (= +1 slot) and already
+            // recruited 1 follower. A second recruit attempt must fire
+            // the at_companion_limit veto.
+            var attacker = MakeActor("attacker", ego: 22, level: 5);
+            attacker.GetPart<SkillsPart>().AddSkill(new Persuasion_Recruit(), source: "test");
+            var firstFollower = MakeActor("f1", ego: 10, level: 1);
+            firstFollower.ApplyEffect(new RecruitedEffect(attacker), source: attacker, zone: null);
+
+            var defender = MakeActor("d", ego: 10, level: 1);
+            var zone = new Zone();
+            zone.AddEntity(attacker, 5, 5);
+            zone.AddEntity(defender, 6, 5);
+            Diag.ResetAll();
+
+            new Persuasion_Recruit().OnCommand(Ctx(attacker, zone));
+
+            Assert.AreEqual(1, CountDiag("SkillRejected", "at_companion_limit"));
+            Assert.AreEqual(0, CountDiag("Recruited"));
+            Assert.IsFalse(defender.HasEffect<RecruitedEffect>(),
+                "At-limit recruit must NOT apply the effect.");
+        }
+
+        [Test]
+        public void BelowLimit_RecruitProceeds()
+        {
+            // Actor has the skill (+1 slot) and zero current followers.
+            // Recruit should proceed to the roll (not veto).
+            var attacker = MakeActor("attacker", ego: 22, level: 5);
+            attacker.GetPart<SkillsPart>().AddSkill(new Persuasion_Recruit(), source: "test");
+            var defender = MakeActor("d", ego: 10, level: 1);
+            var zone = new Zone();
+            zone.AddEntity(attacker, 5, 5);
+            zone.AddEntity(defender, 6, 5);
+            Diag.ResetAll();
+
+            new Persuasion_Recruit().OnCommand(Ctx(attacker, zone));
+
+            Assert.AreEqual(0, CountDiag("SkillRejected", "at_companion_limit"),
+                "Below-limit recruit must NOT fire at_companion_limit.");
+            // The roll may or may not succeed (probabilistic), but the
+            // veto path is clean.
+        }
+
+        [Test]
+        public void AfterDismissingFollower_NewRecruitProceeds()
+        {
+            // Counter-check (anti-exploit): dismissing a follower frees
+            // a slot. Subsequent recruit attempt is allowed (no veto).
+            var attacker = MakeActor("attacker", ego: 22, level: 5);
+            attacker.GetPart<SkillsPart>().AddSkill(new Persuasion_Recruit(), source: "test");
+            var firstFollower = MakeActor("f1", ego: 10, level: 1);
+            var firstEffect = new RecruitedEffect(attacker);
+            firstFollower.ApplyEffect(firstEffect, source: attacker, zone: null);
+
+            // Dismiss the first follower → slot freed.
+            firstEffect.Dismiss(attacker);
+
+            var defender = MakeActor("d", ego: 10, level: 1);
+            var zone = new Zone();
+            zone.AddEntity(attacker, 5, 5);
+            zone.AddEntity(defender, 6, 5);
+            Diag.ResetAll();
+
+            new Persuasion_Recruit().OnCommand(Ctx(attacker, zone));
+
+            Assert.AreEqual(0, CountDiag("SkillRejected", "at_companion_limit"),
+                "Slot was freed by dismiss — at_companion_limit must NOT fire.");
+        }
+
+        [Test]
+        public void LimitCheck_OnlyCountsRecruitedFollowers_NotPartyMembersFromOtherSources()
+        {
+            // PartyMembers can include entities added via direct
+            // SetPartyLeader (e.g., scripted faction allegiance,
+            // F.5+ Beguile path). The at_companion_limit check should
+            // ONLY count followers with a RecruitedEffect from THIS actor
+            // — they're the "Recruit"-means followers, the only ones
+            // the +1 slot from Persuasion_Recruit applies to.
+            var attacker = MakeActor("attacker", ego: 22, level: 5);
+            attacker.GetPart<SkillsPart>().AddSkill(new Persuasion_Recruit(), source: "test");
+
+            // Add a "follower" via direct SetPartyLeader (NOT via recruit).
+            var fakeFollower = MakeActor("fake", ego: 10, level: 1);
+            fakeFollower.GetPart<BrainPart>().SetPartyLeader(attacker);
+            // No RecruitedEffect — they're a follower-of-leader but not
+            // a "Recruit"-means follower.
+
+            var defender = MakeActor("d", ego: 10, level: 1);
+            var zone = new Zone();
+            zone.AddEntity(attacker, 5, 5);
+            zone.AddEntity(defender, 6, 5);
+            Diag.ResetAll();
+
+            new Persuasion_Recruit().OnCommand(Ctx(attacker, zone));
+
+            Assert.AreEqual(0, CountDiag("SkillRejected", "at_companion_limit"),
+                "Non-recruited PartyMembers don't count toward the Recruit slot limit.");
+        }
+
+        [Test]
+        public void LimitCheck_DoesNotCountFollowersFromOtherRecruiters()
+        {
+            // Counter-check: if Bob has a follower Carol (Bob recruited
+            // Carol), then Alice's recruit attempt is NOT blocked by
+            // Bob's followers. Slots are per-actor.
+            var alice = MakeActor("alice", ego: 22, level: 5);
+            alice.GetPart<SkillsPart>().AddSkill(new Persuasion_Recruit(), source: "test");
+            var bob = MakeActor("bob", ego: 22, level: 5);
+            var carol = MakeActor("carol", ego: 10, level: 1);
+            carol.ApplyEffect(new RecruitedEffect(bob), source: bob, zone: null);
+
+            var defender = MakeActor("d", ego: 10, level: 1);
+            var zone = new Zone();
+            zone.AddEntity(alice, 5, 5);
+            zone.AddEntity(defender, 6, 5);
+            Diag.ResetAll();
+
+            new Persuasion_Recruit().OnCommand(Ctx(alice, zone));
+
+            Assert.AreEqual(0, CountDiag("SkillRejected", "at_companion_limit"),
+                "Bob's recruit Carol does NOT count toward Alice's limit.");
         }
 
         // ════════════════════════════════════════════════════════════════

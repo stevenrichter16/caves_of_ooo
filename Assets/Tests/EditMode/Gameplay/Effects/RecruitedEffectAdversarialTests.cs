@@ -49,6 +49,7 @@ namespace CavesOfOoo.Tests
             e.AddPart(new PhysicsPart { Solid = true });
             e.AddPart(new StatusEffectsPart());
             e.AddPart(new BrainPart());
+            e.AddPart(new SkillsPart()); // F.3.3 — needed for slot-bump dispatch
             return e;
         }
 
@@ -306,6 +307,7 @@ namespace CavesOfOoo.Tests
             {
                 Diag.ResetAll();
                 var attacker = MakeActor("a", ego: 1, level: 1);
+                attacker.GetPart<SkillsPart>().AddSkill(new Persuasion_Recruit(), source: "test"); // F.3.3 slot bump
                 var defender = MakeActor("d", ego: 10, level: 30);
                 var zone = new Zone();
                 zone.AddEntity(attacker, 5, 5);
@@ -328,6 +330,7 @@ namespace CavesOfOoo.Tests
             {
                 Diag.ResetAll();
                 var attacker = MakeActor("a", ego: 50, level: 10);
+                attacker.GetPart<SkillsPart>().AddSkill(new Persuasion_Recruit(), source: "test"); // F.3.3 slot bump
                 var defender = MakeActor("d", ego: 10, level: 1);
                 var zone = new Zone();
                 zone.AddEntity(attacker, 5, 5);
@@ -354,6 +357,7 @@ namespace CavesOfOoo.Tests
             // We use a stranger-recruited target → trips
             // "already_recruited" only.
             var attacker = MakeActor("a", ego: 22);
+            attacker.GetPart<SkillsPart>().AddSkill(new Persuasion_Recruit(), source: "test"); // F.3.3 slot bump
             var defender = MakeActor("d");
             var stranger = MakeActor("s");
             var zone = new Zone();
@@ -379,6 +383,7 @@ namespace CavesOfOoo.Tests
             // post-roll branch. Forces a guaranteed-success setup:
             // Ego=50 vs Level=1.
             var attacker = MakeActor("a", ego: 50, level: 10);
+            attacker.GetPart<SkillsPart>().AddSkill(new Persuasion_Recruit(), source: "test"); // F.3.3 slot bump
             var defender = MakeActor("d", ego: 10, level: 1);
             var zone = new Zone();
             zone.AddEntity(attacker, 5, 5);
@@ -403,6 +408,7 @@ namespace CavesOfOoo.Tests
             // the recruit failed without rerunning. Test the payload
             // shape pinning.
             var attacker = MakeActor("a", ego: 8, level: 1); // mod = -4
+            attacker.GetPart<SkillsPart>().AddSkill(new Persuasion_Recruit(), source: "test"); // F.3.3 slot bump
             var defender = MakeActor("d", level: 20);
             var zone = new Zone();
             zone.AddEntity(attacker, 5, 5);
