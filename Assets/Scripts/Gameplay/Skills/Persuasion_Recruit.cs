@@ -176,9 +176,14 @@ namespace CavesOfOoo.Skills
             // GetCompanionLimitEvent.MEANS_RECRUIT). Other PartyMembers
             // added via direct SetPartyLeader (faction allegiance, F.5+
             // Beguile, etc.) don't count toward this means' slot pool.
+            //
+            // Post-audit fix (Finding #7): clamp limit to ≥0. Defends
+            // against a buggy listener returning a negative value via
+            // SetParameter — without the clamp, currentRecruits=0 >=
+            // limit=-1 would always fire the veto silently.
             int currentRecruits = CountRecruitedFollowers(actor);
-            int limit = GetCompanionLimitEvent.GetFor(
-                actor, GetCompanionLimitEvent.MEANS_RECRUIT, baseLimit: 0);
+            int limit = System.Math.Max(0, GetCompanionLimitEvent.GetFor(
+                actor, GetCompanionLimitEvent.MEANS_RECRUIT, baseLimit: 0));
             if (currentRecruits >= limit)
             {
                 EmitSkillRejectedDiag(ctx, "at_companion_limit");
@@ -258,9 +263,17 @@ namespace CavesOfOoo.Skills
         {
             var brain = actor?.GetPart<BrainPart>();
             if (brain?.PartyMembers == null) return 0;
+            // Post-audit fix (Finding #6): snapshot the HashSet before
+            // iterating. Defense-in-depth against any future code path
+            // where GetEffect<>() or a nested HandleEvent could mutate
+            // PartyMembers mid-loop (would throw InvalidOperationException
+            // on the foreach). The TransitPartyMembers helper in F.2.7
+            // uses the same snapshot pattern for the same reason.
+            var snapshot = new System.Collections.Generic.List<Entity>(brain.PartyMembers);
             int n = 0;
-            foreach (var member in brain.PartyMembers)
+            for (int i = 0; i < snapshot.Count; i++)
             {
+                var member = snapshot[i];
                 if (member == null) continue;
                 var effect = member.GetEffect<RecruitedEffect>();
                 if (effect != null && effect.Recruiter == actor) n++;

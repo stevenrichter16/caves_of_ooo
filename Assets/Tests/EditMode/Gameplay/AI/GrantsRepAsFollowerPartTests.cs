@@ -417,6 +417,66 @@ namespace CavesOfOoo.Tests
                 "Save/load is state-shadowing — does NOT re-fire rep modify.");
         }
 
+        // ── Qud-parity *allvisiblefactions wildcard (post-audit Finding #2) ──
+
+        [Test]
+        public void Wildcard_AllVisibleFactions_AppliesToEveryTrackedFaction()
+        {
+            // Seed PlayerReputation with multiple factions (Set, not Modify
+            // — Modify short-circuits on delta==0 per PlayerReputation.cs:75).
+            // Then apply "*allvisiblefactions:5" → every faction in the
+            // dict gets +5.
+            PlayerReputation.Set("Snapjaws", 0);
+            PlayerReputation.Set("Bandits", 0);
+            PlayerReputation.Set("Forest", 0);
+            var (player, npc, _) = MakeFollowerInZone("*allvisiblefactions:5", value: 0);
+
+            npc.GetPart<GrantsRepAsFollowerPart>().CheckApplyBonus(player);
+
+            Assert.AreEqual(5, PlayerReputation.Get("Snapjaws"),
+                "Wildcard applies +5 to Snapjaws.");
+            Assert.AreEqual(5, PlayerReputation.Get("Bandits"),
+                "Wildcard applies +5 to Bandits.");
+            Assert.AreEqual(5, PlayerReputation.Get("Forest"),
+                "Wildcard applies +5 to Forest.");
+        }
+
+        [Test]
+        public void Wildcard_AllVisibleFactions_Unapply_ReversesAll()
+        {
+            // The wildcard reverses correctly on unapply.
+            PlayerReputation.Set("Snapjaws", 0);
+            PlayerReputation.Set("Bandits", 0);
+            var (player, npc, _) = MakeFollowerInZone("*allvisiblefactions:5", value: 0);
+
+            var part = npc.GetPart<GrantsRepAsFollowerPart>();
+            part.CheckApplyBonus(player);
+            Assert.AreEqual(5, PlayerReputation.Get("Snapjaws"));
+
+            npc.GetPart<BrainPart>().SetPartyLeader(null);
+            part.CheckApplyBonus(null);
+
+            Assert.AreEqual(0, PlayerReputation.Get("Snapjaws"),
+                "Wildcard unapply reverses Snapjaws.");
+            Assert.AreEqual(0, PlayerReputation.Get("Bandits"),
+                "Wildcard unapply reverses Bandits.");
+        }
+
+        [Test]
+        public void Wildcard_AllVisibleFactions_NegativeValue_DecreasesAll()
+        {
+            // Negative wildcard delta (an annoying companion who annoys
+            // EVERYONE).
+            PlayerReputation.Set("Snapjaws", 50); // starts liked
+            PlayerReputation.Set("Bandits", 50);
+            var (player, npc, _) = MakeFollowerInZone("*allvisiblefactions:-10", value: 0);
+
+            npc.GetPart<GrantsRepAsFollowerPart>().CheckApplyBonus(player);
+
+            Assert.AreEqual(40, PlayerReputation.Get("Snapjaws"));
+            Assert.AreEqual(40, PlayerReputation.Get("Bandits"));
+        }
+
         [Test]
         public void NoGrantsPart_NoRepChange()
         {
