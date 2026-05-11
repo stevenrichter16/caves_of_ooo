@@ -23,7 +23,10 @@ namespace CavesOfOoo.Tests
     ///   <item>Leader in a different zone → Finished()</item>
     ///   <item>Leader's CurrentZone is null (e.g. mid-transition) → Finished()</item>
     ///   <item>MaxAge exceeded → Finished() (defensive timeout)</item>
-    ///   <item>Close enough to leader → Finished() (goal satisfied)</item>
+    ///   <item>Close enough to leader → NOT Finished — follow is
+    ///         persistent (F.2.6 fix). TakeAction idles and resets Age
+    ///         while close, but the goal stays on the stack so the
+    ///         follower re-pursues when the leader walks away.</item>
     /// </list>
     /// </summary>
     [TestFixture]
@@ -167,10 +170,14 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Finished_CloseEnough_True()
+        public void Finished_CloseEnough_False_PersistentFollow()
         {
-            // Goal is satisfied when the follower is within
-            // CloseEnoughDistance of the leader.
+            // F.2.6 fix: follow is persistent — when close-enough, the
+            // goal idles but does NOT finish. This is the contract that
+            // makes "recruit while adjacent, then walk away → follower
+            // pursues" actually work. The original F.1.5 design
+            // finished on close-enough and broke at recruit time
+            // because the recruiter is adjacent by definition.
             var zone = new Zone("z");
             var follower = CreateCreature(zone, 5, 5, "f");
             var leader = CreateCreature(zone, 6, 6, "l");
@@ -178,9 +185,34 @@ namespace CavesOfOoo.Tests
             var goal = PushGoal(follower, leader);
             goal.CloseEnoughDistance = 2;
 
-            Assert.IsTrue(goal.Finished(),
-                "Follower at Chebyshev distance 1 from leader → already "
-                + "within CloseEnoughDistance=2 → goal is satisfied.");
+            Assert.IsFalse(goal.Finished(),
+                "Persistent-follow contract: even though follower is at "
+                + "Chebyshev distance 1 ≤ CloseEnoughDistance=2, the goal "
+                + "does NOT finish — it stays on the stack so the follower "
+                + "re-pursues when the leader moves away.");
+        }
+
+        [Test]
+        public void TakeAction_CloseEnough_ResetsAge()
+        {
+            // F.2.6 contract: when close, TakeAction resets Age to 0
+            // so the MaxAgeBeforeGiveUp timeout only fires for
+            // genuinely-unreachable cases (continuous failure to reach).
+            // Counter-check pairing with Finished_MaxAgeExceeded_True:
+            // a happy follower never accumulates Age while close.
+            var zone = new Zone("z");
+            var follower = CreateCreature(zone, 5, 5, "f");
+            var leader = CreateCreature(zone, 6, 6, "l");
+
+            var goal = PushGoal(follower, leader);
+            goal.CloseEnoughDistance = 2;
+            goal.Age = 50; // simulate having been pursuing for a while
+
+            goal.TakeAction();
+
+            Assert.AreEqual(0, goal.Age,
+                "TakeAction while close-enough must reset Age — preserves "
+                + "the MaxAge defensive timeout for unreachable cases only.");
         }
 
         [Test]
@@ -199,6 +231,47 @@ namespace CavesOfOoo.Tests
         }
 
         // ── TakeAction(): movement ───────────────────────────────
+
+        [Test]
+        public void TakeAction_RecruitAdjacent_LeaderWalksAway_FollowerPursues()
+        {
+            // F.2.6 regression test. Pins the exact bug found via the
+            // RecruitShowcase playtest:
+            //   1. Player recruits scribe while adjacent (distance 1).
+            //   2. RecruitedEffect.OnApply pushes FollowLeaderGoal.
+            //   3. Player walks away.
+            //   4. Follower SHOULD pursue. Before the fix, the goal
+            //      finished on tick 1 (close-enough) and was gone.
+            var zone = new Zone("z");
+            var follower = CreateCreature(zone, 5, 5, "f");
+            var leader = CreateCreature(zone, 6, 5, "l"); // adjacent (distance 1)
+
+            var goal = PushGoal(follower, leader);
+            goal.CloseEnoughDistance = 2;
+
+            // Tick 1: adjacent. Goal idles, does NOT finish.
+            goal.TakeAction();
+            Assert.IsFalse(goal.Finished(),
+                "Persistent follow: goal does not finish even when adjacent at recruit time.");
+
+            // Leader walks away to distance 5.
+            zone.MoveEntity(leader, 10, 5);
+            Assert.IsFalse(goal.Finished(),
+                "Goal still active after leader moves.");
+
+            // Follower takes one step toward leader.
+            var posBefore = zone.GetEntityPosition(follower);
+            int distBefore = System.Math.Max(
+                System.Math.Abs(posBefore.x - 10),
+                System.Math.Abs(posBefore.y - 5));
+            goal.TakeAction();
+            var posAfter = zone.GetEntityPosition(follower);
+            int distAfter = System.Math.Max(
+                System.Math.Abs(posAfter.x - 10),
+                System.Math.Abs(posAfter.y - 5));
+            Assert.Less(distAfter, distBefore,
+                "Follower closed distance after leader walked away.");
+        }
 
         [Test]
         public void TakeAction_LeaderFar_MovesFollowerCloser()
