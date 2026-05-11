@@ -17,10 +17,12 @@
 | **Phase** | F.3 — Slot system + faction-rep ⏳ IN PROGRESS |
 | **Last updated** | 2026-05-10 |
 | **Branch** | `feat/followers-f3-slot-system` |
-| **Sub-milestones complete** | 3 / 6 |
+| **Phase** | F.3 — Slot system + faction-rep ✅ COMPLETE |
+| **Sub-milestones complete** | 6 / 6 |
 | **Real bugs found** | 0 |
-| **Contracts pinned** | 13 (8 query + 5 slot-enforcement) |
-| **Tests added** | 13 EditMode tests (8 new fixture + 5 added to existing) |
+| **Contracts pinned** | 65 (8 query + 5 slot-enforcement + 21 GrantsRep + 4 round-trip + 14 adversarial) |
+| **Tests added** | 52 EditMode tests across 3 new fixtures + 5 in existing |
+| **Qud-parity bonus** | Full comma-delimited `Faction` syntax shipped (plan deferred to F.5+; user emphasis on Qud parity earned the upgrade) |
 | **Real bugs found** | — |
 | **Contracts pinned** | — |
 | **Tests added** | — |
