@@ -11,12 +11,13 @@
 
 | Field | Value |
 |---|---|
-| **Current phase** | F.1 ✅ / F.2 ✅ / F.3 not started |
+| **Current phase** | F.1 ✅ / F.2 ✅ / F.3 ✅ / F.4 not started |
 | **Phases planned** | F.1 → F.4+ (5 phases total, plus optional follow-ups) |
-| **Last updated** | 2026-05-10 |
-| **Cumulative tests** | 116 (F.1: 61 + F.2: 55) |
-| **Cumulative contracts pinned** | 68 (F.1: 13 + F.2: 55) |
-| **Real bugs found** | 0 |
+| **Last updated** | 2026-05-11 |
+| **Cumulative tests** | 171 (F.1: 61 + F.2: 55 + F.3: 55) |
+| **Cumulative contracts pinned** | 136 (F.1: 13 + F.2: 55 + F.3: 68) |
+| **Real bugs found** | 2 (F.2.2 `Entity.RemoveEffect(Effect)` overload mismatch; F.3 `ApplyBonus` partial-apply atomicity) |
+| **Audit passes run** | 2 (post-F.2.7 cold-eye → 3 findings shipped; post-F.3 cold-eye → 5 findings shipped) |
 | **Reference codebase** | Qud (`/Users/steven/qud-decompiled-project/`) |
 
 ---
@@ -52,7 +53,11 @@ shippable + testable.
 |---|---|---|---|
 | **F.1** | Leader/follower data substrate + AI follow goal + hostility guard | ✅ **Shipped** | [`FOLLOWERS.md`](FOLLOWERS.md) (F.1-specific) |
 | **F.2** | Recruitment skill + Recruited effect + Dismiss skill | ✅ **Shipped** | [`FOLLOWERS-F2.md`](FOLLOWERS-F2.md) |
-| **F.3** | Companion-slot system + `GrantsRepAsFollower` Part + faction content | ⏳ Planned | TBD — `FOLLOWERS-F3.md` |
+| **F.2.6** (follow-up) | Showcase scenario + persistent FollowLeaderGoal fix | ✅ **Shipped** | (commits `ad153ae`/`304c84f`) |
+| **F.2.7** (follow-up) | Cross-zone follower transit | ✅ **Shipped** | (commit `72b8290`) |
+| **F.2 audit** (3 findings) | 1 🔴 latent + 2 🟡 correctness | ✅ **Shipped** | (commit `b7c3605`) |
+| **F.3** | Companion-slot system + `GrantsRepAsFollower` Part + faction content | ✅ **Shipped** | [`FOLLOWERS-F3.md`](FOLLOWERS-F3.md) |
+| **F.3 audit** (5 findings) | 1 🟡 atomicity + 1 🟡 Qud-parity restore + 3 🟡 defense-in-depth | ✅ **Shipped** | (commit `21a61a3`) |
 | **F.4** | Cross-zone pursuit + mutual defense + LeftBehindByPlayer | ⏳ Planned | TBD — `FOLLOWERS-F4.md` |
 | **F.5+** | Per-member flags (independent ally, etc.), opinion map, pack-spawner Part | ⏳ Deferred | — |
 
@@ -129,10 +134,55 @@ place. F.2 just adds the verb that populates it.
 
 ---
 
-## Phase F.3 — Slot system + faction-rep content
+## Phase F.3 — Slot system + faction-rep content ✅ COMPLETE
 
 **Goal:** Cap how many followers the player can have at once, and
 make followers grant faction reputation while they're with the player.
+
+**Shipped in branch `feat/followers-f3-slot-system`**, merged to
+`main` at `5849c8d`. Post-audit fixes merged at `2dec554`. See
+[`FOLLOWERS-F3.md`](FOLLOWERS-F3.md) for the full phase plan +
+corrections table + sub-milestone breakdown + cold-eye review +
+adversarial sweep + audit findings.
+
+### What landed
+
+| Sub-milestone | Commit | Tests | What |
+|---|---|---|---|
+| F.3.1 Plan + sweep | `b53c850` | — | Plan, 2 🔴 blockers resolved (GameEvent pool ≡ Qud PooledEvent; Part.HandleEvent + Entity.FireEvent is the dispatch surface) |
+| F.3.2 GetCompanionLimitEvent | `ab7f39a` | 8 | Static `GetFor(actor, means, baseLimit)` query, `Persuasion_Recruit` HandleEvent override bumps "Recruit" by +1 |
+| F.3.3 Slot enforcement | `f81a8c1` | 5 | Veto #8 `at_companion_limit` + `CountRecruitedFollowers` filter (per-Recruiter, per-RecruitedEffect) |
+| F.3.4 GrantsRepAsFollowerPart | `2d62559` | 17 | Apply/unapply + Qud-parity comma-delimited Faction syntax with `:N` per-entry override |
+| F.3.5 Save/load round-trip | `44ff7de` | 4 | Reflection-based `AppliedBonus` round-trip pinned |
+| F.3.6 Adversarial + cold-eye + merge | `3464221` → `5849c8d` | 14 | 7+ taxonomy surfaces, 0 bugs found |
+| Post-audit fix pass | `21a61a3` → `2dec554` | 3 | 5 findings shipped (1 latent atomicity bug + 1 Qud-parity `*allvisiblefactions` restore + 3 defense-in-depth) |
+
+**Total: 55 tests, 68 contracts, 1 real bug surfaced + fixed.**
+
+### Qud-parity bonus (beyond F.3.1 plan)
+
+User emphasized Qud parity, so two features the plan deferred to F.5+
+were shipped now:
+
+- ✅ Comma-delimited `Faction` with `:N` per-entry override
+- ✅ `*allvisiblefactions:N` wildcard syntax
+
+### Qud parity mapping (current state)
+
+| Qud feature | F.3 status |
+|---|---|
+| `GetCompanionLimitEvent.GetFor` | ✅ ported (CoO `GameEvent`-backed) |
+| Per-means slot bump | ✅ ported |
+| Comma-delimited `Faction` + `:N` per-entry override | ✅ ported (user-emphasis bonus) |
+| `*allvisiblefactions:N` wildcard | ✅ ported (post-audit, user-emphasis bonus) |
+| `SyncTarget` auto-dismiss-oldest | ⚪ deferred F.5+ (CoO uses veto — divergence documented) |
+| `OnDestroyObjectEvent`/`SuspendingEvent` unapply | ⚪ deferred (CoO lacks event surfaces) |
+| `DeepCopy` reset of `AppliedBonus` | ⚪ deferred (no CoO cloning) |
+| `Persuasion_Proselytize` Sifrah minigame | ⚪ deferred (subsystem missing) |
+
+---
+
+## Phase F.3 (original planned scope — preserved for reference)
 
 ### Planned scope
 

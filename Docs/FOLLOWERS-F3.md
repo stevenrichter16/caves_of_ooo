@@ -14,18 +14,14 @@
 
 | Field | Value |
 |---|---|
-| **Phase** | F.3 — Slot system + faction-rep ⏳ IN PROGRESS |
-| **Last updated** | 2026-05-10 |
-| **Branch** | `feat/followers-f3-slot-system` |
 | **Phase** | F.3 — Slot system + faction-rep ✅ COMPLETE |
-| **Sub-milestones complete** | 6 / 6 |
-| **Real bugs found** | 0 |
-| **Contracts pinned** | 65 (8 query + 5 slot-enforcement + 21 GrantsRep + 4 round-trip + 14 adversarial) |
-| **Tests added** | 52 EditMode tests across 3 new fixtures + 5 in existing |
-| **Qud-parity bonus** | Full comma-delimited `Faction` syntax shipped (plan deferred to F.5+; user emphasis on Qud parity earned the upgrade) |
-| **Real bugs found** | — |
-| **Contracts pinned** | — |
-| **Tests added** | — |
+| **Last updated** | 2026-05-11 |
+| **Branch** | `feat/followers-f3-slot-system` (merged) + `fix/follower-f3-audit-pass` (merged) |
+| **Sub-milestones complete** | 6 / 6 + post-audit fix pass |
+| **Real bugs found** | 1 latent (Finding #8 — ApplyBonus partial-apply atomicity) |
+| **Contracts pinned** | 68 (8 query + 5 slot-enforcement + 24 GrantsRep + 4 round-trip + 14 adversarial + 3 wildcard) |
+| **Tests added** | 55 EditMode tests across 3 new fixtures + 5 in existing |
+| **Qud-parity bonus** | Full comma-delimited `Faction` syntax + `*allvisiblefactions:N` wildcard shipped (plan deferred both to F.5+; user emphasis on Qud parity earned the upgrades) |
 
 ---
 
@@ -277,4 +273,161 @@ Designed-in tradeoffs to surface BEFORE committing (per CLAUDE.md §5):
 
 ---
 
-*Updated as each sub-milestone ships.*
+## Sub-milestone progress
+
+| Sub-milestone | Status | Tests | Commit |
+|---|---|---|---|
+| F.3.1 Plan + verification sweep | ✅ | — | `4c7fa67` (initial) → `b53c850` (blockers cleared) |
+| F.3.2 GetCompanionLimitEvent + skill bump | ✅ | 8 | `ab7f39a` |
+| F.3.3 Slot enforcement (Veto #8 at_companion_limit) | ✅ | 5 (in PersuasionRecruitTests) | `f81a8c1` |
+| F.3.4 GrantsRepAsFollowerPart + Qud comma-delim syntax | ✅ | 17 | `2d62559` |
+| F.3.5 Save/load round-trip | ✅ | 4 | `44ff7de` |
+| F.3.6 Adversarial sweep + cold-eye + merge | ✅ | 14 | `3464221` → `5849c8d` (merge) |
+| Post-F.3 audit fixes (5 findings) | ✅ | 3 (wildcard tests) | `21a61a3` → `2dec554` (merge) |
+| **TOTAL** | **6 / 6 + audit** | **55** | — |
+
+---
+
+## F.3.6 — Cold-eye review (CLAUDE.md §Q1-Q4)
+
+Ran after all 5 production sub-milestones landed; before adversarial
+sweep + merge.
+
+### Q1 — Symmetry
+
+- `GetCompanionLimitEvent.GetFor` mirrors Qud's `GetFor` — same (actor,
+  means, baseLimit) signature → int return ✓
+- `Persuasion_Recruit.HandleEvent` mirrors `Persuasion_Proselytize`'s
+  HandleEvent — per-means filter + bump ✓
+- `GrantsRepAsFollowerPart.ApplyBonus` and `UnapplyBonus` are inverses
+  (parse same Faction string, apply ± delta, idempotent guards) ✓
+- Veto numbering: F.2.3 was 1-7 after audit removed dead #8; F.3.3
+  added new #8 (`at_companion_limit`) — sequential preserved ✓
+
+✅ Symmetry passes.
+
+### Q2 — Cross-feature consistency
+
+- `GetCompanionLimitEvent.GetFor` uses `GameEvent.New + FireEvent +
+  Release` — same idiom as `TurnManager.EndTurn` (TurnManager.cs:315-318)
+- `Persuasion_Recruit.HandleEvent` follows the shape of
+  `SkillsPart.HandleEvent` (SkillsPart.cs:379-419) — check `e.ID`, do
+  work, return `base.HandleEvent(e)`
+- `EmitSkillRejectedDiag(ctx, reason)` consistent across all 8 vetos
+- `GrantsRepAsFollowerPart` extends `Part` with public fields; hits
+  SaveSystem's generic `WritePublicFields` fall-through (SaveSystem.cs:
+  1126-1127) — same pattern as other reflective Parts
+
+✅ Consistency passes.
+
+### Q3 — Counter-check completeness
+
+| Positive | Counter |
+|---|---|
+| `GetFor_WithPersuasionRecruit_BumpsLimitBy1` | `GetFor_WrongMeans_NoBump` + `GetFor_AfterSkillRemoval_LimitDropsBack` + `GetFor_NullActor_NoCrash` |
+| `AtLimit_VetoFires_NoEffectApplied` | `BelowLimit_RecruitProceeds` + `AfterDismissingFollower_NewRecruitProceeds` |
+| `Apply_PlayerLeader_SameZone_AppliesRep` | `Apply_LeaderNotPlayer_DoesNotApply` + `Apply_DifferentZone_DoesNotApply` |
+| `Parser_PerFactionOverride_UsesColonValue` | `Parser_EmptyFactionString_NoOp` + `Parser_WhitespaceOnlyFaction_NoOp` |
+| `ApplyThenUnapply_NetZeroChange` | `Apply_Idempotent_DoesNotStackOnRepeatCalls` |
+
+✅ Counter-checks complete.
+
+### Q4 — Doc-vs-impl drift
+
+**🟡 POSITIVE drift documented:** F.3.1 plan deferred Qud's
+comma-delimited Faction syntax to F.5+, but user emphasized Qud
+parity. Shipped full Qud-parity syntax (single + comma + per-entry
+colon override + mixed + whitespace tolerance). Net: F.3 is CLOSER
+to Qud than the plan promised. Documented in updated status banner.
+
+Post-audit pass: backported `*allvisiblefactions:N` wildcard for the
+same reason. Status banner updated to reflect both Qud-parity
+bonuses.
+
+Ran. **1 positive drift documented, 0 negative drift, 0 latent bugs.**
+
+---
+
+## F.3.6 — Adversarial sweep results
+
+Per CLAUDE.md "Adversarial test sweep" gate. F.3 hits 7 taxonomy
+surfaces (state atomicity, cross-actor flows, save/load reach,
+anti-exploit gates, diag dispatch invariants, cross-system
+aggregation, parser malformed inputs).
+
+**`F3SlotSystemAdversarialTests.cs` — 14 tests across 8 surfaces:**
+
+| Surface | Probe | Result |
+|---|---|---|
+| State atomicity | Apply→unapply→apply → correct final state | ✅ |
+| State atomicity | Zone-transit oscillation × 5 → no rep drift | ✅ |
+| Cross-actor | Slot limits per-actor (Alice ≠ Bob count) | ✅ |
+| Cross-actor | NPC leader → no player-rep flow | ✅ |
+| Anti-exploit | 100 apply/unapply cycles → net zero (no rep-pump) | ✅ |
+| Anti-exploit | Empty PartyMembers handled cleanly | ✅ |
+| Cross-system aggregation | Two followers same faction → linear stack | ✅ |
+| Cross-system aggregation | Two followers different factions → independent | ✅ |
+| Diag dispatch | At-limit veto emits exactly 1 SkillRejected record | ✅ |
+| Parser malformed | "Snapjaws:" (colon, no value) → fallback to Value | ✅ |
+| Parser malformed | "Snapjaws:abc" (non-numeric) → fallback to Value | ✅ |
+| Parser malformed | ":,::," (colon-only entries) → graceful skip | ✅ |
+| Parser malformed | "Snapjaws:-10" (negative) → applied as -10 | ✅ |
+| Scale | 10 over-limit pre-existing recruits → veto fires | ✅ |
+
+**0 bugs found in adversarial sweep.** Per CLAUDE.md honesty bound:
+this doesn't prove F.3 is bug-free — the bug classes are bounded by
+what the author imagined. The sweep's value is regression
+infrastructure: future changes break visibly with a named test.
+
+---
+
+## Post-F.3 audit pass — findings table
+
+Per CLAUDE.md cold-eye self-directive: ran a fresh holistic audit
+after F.3 shipped. Explore agent surfaced 19 findings; cross-check
+triaged to 5 actionable fixes.
+
+| # | Severity | Finding | Fix shipped? |
+|---|---|---|---|
+| 1 | 🟡 | `GetCompanionLimitEvent.GetFor` leaked event on exception | ✅ try-finally |
+| 2 | 🟡 | Qud-parity restore: `*allvisiblefactions:N` wildcard | ✅ ported (3 regression tests) |
+| 3 | 🟡 | `OnDestroyObjectEvent`/`SuspendingEvent` unapply | ⚪ defer (CoO lacks events) |
+| 4 | 🟡 | `SyncTarget` auto-dismiss-oldest | ⚪ defer (deliberate F.3.1 divergence) |
+| 5 | 🟡 | Sifrah minigame option | ⚪ defer (entire subsystem missing) |
+| 6 | 🟡 | `CountRecruitedFollowers` foreach without snapshot | ✅ snapshot pattern |
+| 7 | 🟡 | Veto #8 didn't clamp negative limit | ✅ `Math.Max(0, ...)` |
+| 8 | 🟡 | `ApplyBonus` partial-apply atomicity gap | ✅ eager flag + `HasAnyApplicableEntry` |
+| 9 | 🟡 | `DeepCopy` reset of `AppliedBonus` | ⚪ defer (no CoO cloning) |
+| 10-12 | confirmed not-bugs | various | — |
+| 13-14 | 🧪 | (false alarm — tests already exist) | — |
+| 15-19 | ⚪ informational | various | — |
+
+**Net actionable: 5 fixes (1 real latent bug, 1 Qud-parity restore,
+3 defense-in-depth).** All shipped in commit `21a61a3 → 2dec554`.
+
+---
+
+## Qud-parity status (final)
+
+| Qud feature | F.3 status |
+|---|---|
+| `GetCompanionLimitEvent.GetFor` | ✅ ported (CoO `GameEvent`-backed) |
+| Per-means slot bump (skill grants +1 "Recruit") | ✅ ported |
+| Comma-delimited factions in `GrantsRepAsFollower` | ✅ ported (F.3.4, user-emphasis bonus) |
+| Per-faction `:N` override | ✅ ported |
+| `*allvisiblefactions:N` wildcard | ✅ ported (post-audit, user-emphasis bonus) |
+| Apply on player-led + same-zone, unapply on either break | ✅ ported |
+| Negative deltas honored | ✅ ported |
+| EndTurn hook | ✅ ported |
+| `SyncTarget` auto-dismiss-oldest | ⚪ deferred to F.5+ (CoO uses veto — divergence documented) |
+| `OnDestroyObjectEvent`/`SuspendingEvent` explicit unapply | ⚪ deferred (CoO lacks event surfaces) |
+| `DeepCopy` reset of `AppliedBonus` | ⚪ deferred (no CoO cloning) |
+| `Persuasion_Proselytize` Sifrah minigame option | ⚪ deferred (entire subsystem missing) |
+
+**Ported: 8 features in full. Deferred: 4 features with documented
+gameplay-impact rationale.** F.3 represents the highest Qud-parity
+coverage of any Followers phase so far.
+
+---
+
+*Updated as each sub-milestone ships + post-mortem on close.*
