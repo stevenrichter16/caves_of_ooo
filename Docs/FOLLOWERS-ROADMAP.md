@@ -11,11 +11,11 @@
 
 | Field | Value |
 |---|---|
-| **Current phase** | F.1 ✅ COMPLETE / F.2 not started |
+| **Current phase** | F.1 ✅ / F.2 ✅ / F.3 not started |
 | **Phases planned** | F.1 → F.4+ (5 phases total, plus optional follow-ups) |
 | **Last updated** | 2026-05-10 |
-| **Cumulative tests** | 61 |
-| **Cumulative contracts pinned** | 13 |
+| **Cumulative tests** | 116 (F.1: 61 + F.2: 55) |
+| **Cumulative contracts pinned** | 68 (F.1: 13 + F.2: 55) |
 | **Real bugs found** | 0 |
 | **Reference codebase** | Qud (`/Users/steven/qud-decompiled-project/`) |
 
@@ -51,7 +51,7 @@ shippable + testable.
 | Phase | What ships | Status | Plan doc |
 |---|---|---|---|
 | **F.1** | Leader/follower data substrate + AI follow goal + hostility guard | ✅ **Shipped** | [`FOLLOWERS.md`](FOLLOWERS.md) (F.1-specific) |
-| **F.2** | Typed allegiance reasons + recruitment skill + Recruited effect + Dismiss action | ⏳ Planned | TBD — `FOLLOWERS-F2.md` |
+| **F.2** | Recruitment skill + Recruited effect + Dismiss skill | ✅ **Shipped** | [`FOLLOWERS-F2.md`](FOLLOWERS-F2.md) |
 | **F.3** | Companion-slot system + `GrantsRepAsFollower` Part + faction content | ⏳ Planned | TBD — `FOLLOWERS-F3.md` |
 | **F.4** | Cross-zone pursuit + mutual defense + LeftBehindByPlayer | ⏳ Planned | TBD — `FOLLOWERS-F4.md` |
 | **F.5+** | Per-member flags (independent ally, etc.), opinion map, pack-spawner Part | ⏳ Deferred | — |
