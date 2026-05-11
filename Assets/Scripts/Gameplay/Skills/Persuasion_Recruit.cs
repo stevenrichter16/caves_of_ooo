@@ -54,6 +54,34 @@ namespace CavesOfOoo.Skills
         /// d20 ≥ 10 vs a same-level target = coinflip baseline.</summary>
         public const int BASE_DC = 10;
 
+        /// <summary>Slot contribution per F.3.2 — owning Persuasion_Recruit
+        /// grants +1 "Recruit" companion slot. Bumped by the
+        /// <see cref="GetCompanionLimitEvent"/> query.</summary>
+        public const int RECRUIT_SLOT_BUMP = 1;
+
+        /// <summary>
+        /// F.3.2 — listen for <see cref="GetCompanionLimitEvent"/> and
+        /// bump the "Recruit" limit by 1. Idiomatic CoO event-dispatch:
+        /// Part.HandleEvent is called for every event fired on the parent
+        /// entity (see Entity.FireEvent). We check the ID and means,
+        /// modify the running limit, and return true to let other
+        /// listeners (future items, other skills) also contribute.
+        /// </summary>
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e != null && e.ID == GetCompanionLimitEvent.EVENT_ID)
+            {
+                string means = e.GetStringParameter(GetCompanionLimitEvent.PARAM_MEANS);
+                if (means == GetCompanionLimitEvent.MEANS_RECRUIT)
+                {
+                    int current = e.GetIntParameter(GetCompanionLimitEvent.PARAM_LIMIT);
+                    e.SetParameter(GetCompanionLimitEvent.PARAM_LIMIT,
+                        current + RECRUIT_SLOT_BUMP);
+                }
+            }
+            return base.HandleEvent(e);
+        }
+
         public override ActivatedAbilitySpec DeclareActivatedAbility(Entity actor)
         {
             return new ActivatedAbilitySpec

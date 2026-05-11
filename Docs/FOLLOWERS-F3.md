@@ -17,7 +17,10 @@
 | **Phase** | F.3 — Slot system + faction-rep ⏳ IN PROGRESS |
 | **Last updated** | 2026-05-10 |
 | **Branch** | `feat/followers-f3-slot-system` |
-| **Sub-milestones complete** | 1 / 6 (F.3.1 plan + sweep complete; blockers cleared) |
+| **Sub-milestones complete** | 2 / 6 |
+| **Real bugs found** | 0 |
+| **Contracts pinned** | 8 (GetCompanionLimitEvent shape + Persuasion_Recruit slot bump) |
+| **Tests added** | 8 EditMode tests in 1 new fixture |
 | **Real bugs found** | — |
 | **Contracts pinned** | — |
 | **Tests added** | — |
