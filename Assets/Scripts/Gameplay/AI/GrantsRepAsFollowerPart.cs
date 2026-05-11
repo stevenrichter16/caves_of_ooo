@@ -39,10 +39,23 @@ namespace CavesOfOoo.Core
     /// <para><b>Deferred from Qud parity:</b></para>
     /// <list type="bullet">
     ///   <item><c>DeepCopy</c> reset of <c>AppliedBonus</c> — CoO has no in-game cloning yet</item>
-    ///   <item><c>SuspendingEvent</c> / <c>OnDestroyObjectEvent</c> unapply hooks —
-    ///         the leader-null branch in <see cref="CheckApplyBonus"/> catches
-    ///         the leader-destroyed case; explicit unapply on self-destruction
-    ///         would require additional hooks CoO doesn't have yet</item>
+    ///   <item><c>SuspendingEvent</c> unapply hook — CoO has no game-suspend
+    ///         lifecycle event yet (save closes via SaveSystem, no
+    ///         "suspending" notification)</item>
+    /// </list>
+    ///
+    /// <para><b>Ported from Qud parity:</b></para>
+    /// <list type="bullet">
+    ///   <item>EndTurn re-evaluation hook</item>
+    ///   <item><c>OnDestroyObjectEvent</c> equivalent — CoO fires
+    ///         <c>"Died"</c> on the dying entity (CombatSystem.cs:916).
+    ///         <see cref="HandleEvent"/> listens for it and immediately
+    ///         <see cref="UnapplyBonus"/>s — without this, killing your
+    ///         own follower would leak +N rep until the next zone-exit
+    ///         CheckApplyBonus tick. Found by post-F.3-audit-pass-2
+    ///         Qud-parity review (the first audit deferred this saying
+    ///         "CoO lacks these events", which was wrong — `Died` is the
+    ///         CoO equivalent).</item>
     /// </list>
     /// </summary>
     public class GrantsRepAsFollowerPart : Part
@@ -232,6 +245,16 @@ namespace CavesOfOoo.Core
             {
                 var brain = ParentEntity?.GetPart<BrainPart>();
                 CheckApplyBonus(brain?.PartyLeader);
+            }
+            else if (e?.ID == "Died")
+            {
+                // Post-F.3-audit-pass-2 fix (Qud-parity Finding #13):
+                // CombatSystem.cs:916 fires "Died" on the dying entity.
+                // Without this hook, killing your own follower would leak
+                // +N rep until the next zone-exit CheckApplyBonus tick.
+                // Qud parity: GrantsRepAsFollower.cs:158-162 hooks
+                // OnDestroyObjectEvent for the same reason.
+                UnapplyBonus();
             }
             return base.HandleEvent(e);
         }

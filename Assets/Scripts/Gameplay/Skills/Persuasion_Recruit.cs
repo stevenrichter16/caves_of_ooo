@@ -66,6 +66,23 @@ namespace CavesOfOoo.Skills
         /// entity (see Entity.FireEvent). We check the ID and means,
         /// modify the running limit, and return true to let other
         /// listeners (future items, other skills) also contribute.
+        ///
+        /// <para><b>Qud-parity note (post-F.3-audit-pass-2 Finding #2):</b>
+        /// Qud's Persuasion_Proselytize.HandleEvent has two extra guards
+        /// beyond the means check — <c>E.Actor == ParentObject</c> and
+        /// <c>ActivatedAbilityID != Guid.Empty</c>. CoO omits both:</para>
+        /// <list type="bullet">
+        ///   <item>The actor-match guard is unnecessary in CoO because
+        ///         <c>actor.FireEvent(e)</c> only dispatches to the
+        ///         actor's OWN Parts (no cross-entity event cascade).
+        ///         If this Part receives the event, the actor IS the
+        ///         parent by construction.</item>
+        ///   <item>The ability-ID guard is unnecessary in CoO because
+        ///         CoO's <c>SkillsPart.RemoveSkill</c> detaches the
+        ///         Part entirely on removal — a detached Part doesn't
+        ///         receive events. Qud's pattern keeps the Part attached
+        ///         and uses the Guid as a "registered?" flag.</item>
+        /// </list>
         /// </summary>
         public override bool HandleEvent(GameEvent e)
         {
