@@ -340,6 +340,83 @@ namespace CavesOfOoo.Tests
             Assert.IsFalse(npc.GetPart<GrantsRepAsFollowerPart>().AppliedBonus);
         }
 
+        // ── F.3.5 — Save/load round-trip ─────────────────────────
+
+        [Test]
+        public void RoundTrip_PreservesFactionAndValue()
+        {
+            var npc = new Entity { ID = "npc", BlueprintName = "Test" };
+            npc.Tags["Creature"] = "";
+            npc.AddPart(new RenderPart { DisplayName = "n" });
+            npc.AddPart(new BrainPart());
+            npc.AddPart(new GrantsRepAsFollowerPart("Snapjaws:10,Bandits:-3", 5));
+
+            Entity loaded = PartRoundTripHelper.RoundTripEntity(npc);
+
+            var part = loaded.GetPart<GrantsRepAsFollowerPart>();
+            Assert.IsNotNull(part, "Part survives the reflection-based save round-trip.");
+            Assert.AreEqual("Snapjaws:10,Bandits:-3", part.Faction,
+                "Comma-delimited Faction string preserved.");
+            Assert.AreEqual(5, part.Value,
+                "Value preserved.");
+        }
+
+        [Test]
+        public void RoundTrip_PreservesAppliedBonusTrue()
+        {
+            // The Part's apply state (AppliedBonus = true) must survive
+            // the save round-trip. Otherwise the player would lose +N
+            // rep mid-game on save+load, and the unapply path would
+            // never fire (because AppliedBonus is false post-load).
+            var (player, npc, _) = MakeFollowerInZone("Snapjaws", 10);
+            npc.GetPart<GrantsRepAsFollowerPart>().CheckApplyBonus(player);
+            Assert.IsTrue(npc.GetPart<GrantsRepAsFollowerPart>().AppliedBonus,
+                "Precondition: AppliedBonus is true before save.");
+
+            Entity loaded = PartRoundTripHelper.RoundTripEntity(npc);
+
+            Assert.IsTrue(loaded.GetPart<GrantsRepAsFollowerPart>().AppliedBonus,
+                "AppliedBonus = true survives round-trip — players don't lose " +
+                "applied rep across save/load.");
+        }
+
+        [Test]
+        public void RoundTrip_PreservesAppliedBonusFalse()
+        {
+            // Counter-pair: AppliedBonus=false also round-trips.
+            var npc = new Entity { ID = "npc", BlueprintName = "Test" };
+            npc.Tags["Creature"] = "";
+            npc.AddPart(new RenderPart { DisplayName = "n" });
+            npc.AddPart(new BrainPart());
+            npc.AddPart(new GrantsRepAsFollowerPart("Snapjaws", 10));
+            Assert.IsFalse(npc.GetPart<GrantsRepAsFollowerPart>().AppliedBonus);
+
+            Entity loaded = PartRoundTripHelper.RoundTripEntity(npc);
+
+            Assert.IsFalse(loaded.GetPart<GrantsRepAsFollowerPart>().AppliedBonus);
+        }
+
+        [Test]
+        public void RoundTrip_DoesNotFire_PlayerReputationModify()
+        {
+            // The save graph must NOT call PlayerReputation.Modify
+            // during write or read — that would double-apply the bonus
+            // every load. The AppliedBonus flag is the state shadow;
+            // it survives without triggering a re-apply.
+            var (player, npc, _) = MakeFollowerInZone("Snapjaws", 10);
+            npc.GetPart<GrantsRepAsFollowerPart>().CheckApplyBonus(player);
+            Assert.AreEqual(10, PlayerReputation.Get("Snapjaws"),
+                "Precondition: applied → +10.");
+
+            Entity loaded = PartRoundTripHelper.RoundTripEntity(npc);
+
+            // After round-trip, the player's rep value is unchanged.
+            // The loaded Part still says AppliedBonus=true, but the
+            // serialization process itself didn't fire Modify.
+            Assert.AreEqual(10, PlayerReputation.Get("Snapjaws"),
+                "Save/load is state-shadowing — does NOT re-fire rep modify.");
+        }
+
         [Test]
         public void NoGrantsPart_NoRepChange()
         {
