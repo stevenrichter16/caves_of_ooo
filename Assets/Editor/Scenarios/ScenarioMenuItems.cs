@@ -240,6 +240,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_PetDogFetchesBone()
             => ScenarioRunner.Launch<PetDogFetchesBone>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Recruit Showcase (F.2 verb)", priority = 230)]
+        private static void Launch_RecruitShowcase()
+            => ScenarioRunner.Launch<RecruitShowcase>();
+
         // =========================================================
         // UI (skill tree, etc.)
         // =========================================================
