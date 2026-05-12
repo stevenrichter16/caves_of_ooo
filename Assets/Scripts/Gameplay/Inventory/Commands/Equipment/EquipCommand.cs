@@ -178,6 +178,12 @@ namespace CavesOfOoo.Core.Inventory.Commands
             afterEquip.SetParameter("Slot", equippable.Slot);
             actor.FireEventAndRelease(afterEquip);
 
+            // Item-enhancement on-equip hook (E.2.1). Iterates the item's
+            // IItemEnhancement Parts and calls each one's OnEquipped.
+            // Fires AFTER the AfterEquip event so enhancements that need
+            // post-equip state (final stats, slot occupied) see a settled world.
+            ItemEnhancementDispatch.DispatchOnEquip(actor, itemToEquip);
+
             return InventoryCommandResult.Ok();
         }
 

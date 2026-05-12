@@ -106,5 +106,32 @@ namespace CavesOfOoo.Core
         {
             return GetType().Name;
         }
+
+        // ── Content hooks (E.2 — concrete enhancements override) ───
+
+        /// <summary>Called when the parent item is the weapon used in a
+        /// successful melee hit. Override to react to combat (apply
+        /// status effects to the defender, modify damage, etc.).
+        /// Fired by <see cref="ItemEnhancementDispatch.DispatchOnHit"/>
+        /// from <c>CombatSystem.PerformSingleAttack</c>. Default no-op.
+        /// </summary>
+        public virtual void OnAttackerHit(
+            Entity defender, Entity attacker, Damage damage,
+            int actualDamage, Zone zone, System.Random rng)
+        { }
+
+        /// <summary>Called when the parent item is equipped by an actor.
+        /// Override to apply on-equip bonuses (stat bonuses, faction
+        /// rep, ongoing effects). Fired by
+        /// <see cref="ItemEnhancementDispatch.DispatchOnEquip"/> from
+        /// <c>EquipCommand</c> after the equip transaction commits.
+        /// Default no-op.</summary>
+        public virtual void OnEquipped(Entity actor, Entity item) { }
+
+        /// <summary>Called when the parent item is unequipped. Override
+        /// to reverse <see cref="OnEquipped"/> bonuses. Fired by
+        /// <see cref="ItemEnhancementDispatch.DispatchOnUnequip"/>
+        /// from <c>UnequipCommand</c>. Default no-op.</summary>
+        public virtual void OnUnequipped(Entity actor, Entity item) { }
     }
 }
