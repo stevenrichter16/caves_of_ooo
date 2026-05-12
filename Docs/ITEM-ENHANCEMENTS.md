@@ -38,7 +38,7 @@
 
 | Field | Value |
 |---|---|
-| **Current phase** | Plan only — no code shipped |
+| **Current phase** | E.1.1 sweep ✅ complete (both 🔴 blockers resolved); E.1.2 next |
 | **Phases planned** | E.1 → E.4 (4 phases + E.5+ polish queue) |
 | **Last updated** | 2026-05-11 |
 | **Cumulative tests** | 0 (planning) |
@@ -166,24 +166,35 @@ Plan target for each phase. ✅ = ported in plan; ⚪ = deferred; 🟡 = simplif
 
 ## Verification sweep
 
-Per CLAUDE.md §1.2. To be expanded with corrections during E.1.1.
+Per CLAUDE.md §1.2. E.1.1 sweep completed. Both original 🔴 blockers
+resolved; one architectural finding (Examiner Part missing) confirmed
+as already-deferred to E.5+ per plan.
 
 | What I assume | What's there | Status |
 |---|---|---|
-| CoO has a `Part` base class with `HandleEvent(GameEvent)` virtual override that fires on every event the parent entity receives | `Part.cs:49` confirmed (used by F.3 GrantsRepAsFollowerPart) | ⚪ confirmed |
-| CoO has `MeleeWeaponPart` on weapon Entities | Used by F.2.3 `Persuasion_Recruit` and skill tests; exists at `Assets/Scripts/Gameplay/Items/MeleeWeaponPart.cs` | ⚪ confirmed |
-| CoO has `Damage` events with `OnHitDealt` / `OnDamageDealt` listener surface | F.2 / on-hit effects use this; need to confirm exact event name during E.1 sweep | 🟡 partial confirmation |
-| `Entity.AddPart(part)` is the public add-Part API; safe to call during runtime | F.2 / F.3 already use this for `RecruitedEffect`, `GrantsRepAsFollowerPart` | ⚪ confirmed |
-| CoO has a JSON blueprint registry (`Objects.json`) where new item blueprints (minerals) can be authored | Confirmed via F.2 (Persuasion_Recruit doesn't need it — found via assembly walk); but enhancement Parts and mineral items will likely need it for content authoring | 🟡 confirmed but needs sweep |
-| CoO has a tinker-action / craft-action surface | **NOT CONFIRMED** — F.5+ Followers planning notes mentioned "Tinker / specialized NPC" but didn't dig. Need E.1 sweep step: does CoO have a `Tinker*` skill / Part / verb? | 🔴 BLOCKER for E.3 |
-| CoO has an inventory-action menu surface where the player can pick an item + enhancement to apply | F.2.4 plan flagged this gap ("WorldActionMenuUI exists but no follower-discovery hookup yet") | 🔴 BLOCKER for E.3 |
-| CoO has reflection-based Part save-load (SaveSystem.cs:1126 generic fall-through) | Confirmed via F.3.5 round-trip tests | ⚪ confirmed |
-| The 8-direction adjacency picker (`SkillCombatHelpers.FindAdjacentCleaveTarget`) works for "select an adjacent item" too (or a similar inventory-picker exists) | Need E.3 sweep | 🟡 unconfirmed |
+| `Part.HandleEvent(GameEvent e)` virtual override | `Part.cs:49` — `public virtual bool HandleEvent(GameEvent e)`. Return `true` continues propagation; `false` consumes. Used by F.3 GrantsRepAsFollowerPart already. | ⚪ confirmed |
+| Equip / unequip events | `EquipCommand.cs:131` fires `"BeforeEquip"` (vetoable); `EquipCommand.cs:175` fires `"AfterEquip"` (informational). Both carry `Actor`, `Item`, `Slot` parameters. **E.2.3 EnhancementLacquered + E.2.4 EnhancementEngraved hook here.** | ⚪ confirmed |
+| On-hit / damage-dealt event | `CombatSystem.cs:741` fires `"DamageDealt"` on the attacker. Parameters: `Attacker`, `Defender`, `Amount` (int), `Damage` (object — the full Damage struct). **E.2.2 EnhancementSerrated hooks here.** | ⚪ confirmed |
+| `MeleeWeaponPart.Attributes` field for damage-type filter | `MeleeWeaponPart.cs:49` — `public string Attributes = ""` (space-delimited, e.g. `"Cutting LongBlades"`). `IMeleeEnhancement.Applicable` will check via `Attributes.Contains(...)` or via the parsed `Damage.HasAttribute`. | ⚪ confirmed |
+| `Damage.HasAttribute(string)` for attribute filter | `Damage.cs:103` — `public bool HasAttribute(string name)`. Also `HasAnyAttribute(List<string>)` for multi-match. Damage carries fully-populated attribute list at hit-resolution time. | ⚪ confirmed |
+| Registry pattern template | `SkillRegistry.cs:26` — lazy-init via `EnsureInitialized()`, JSON-loaded from `Resources/Content/Data/Skills/*.json`. Four backing dicts: `_skillsByName`, `_skillsByClass`, `_powersByClass`, `_entriesByClass`. Lookup methods: `TryGetSkillByName`, `TryGetSkillByClass` (line 214-226). **`EnhancementFactory` will mirror this shape** but loads from `Resources/Content/Data/Enhancements/*.json` (TBD; E.1.3 may keep it code-side for v1, JSON in E.5+ content). | ⚪ confirmed |
+| `Diag.DefaultOnCategories` array | `Diag.cs:119` — `private static readonly string[] DefaultOnCategories = { "event", "effect", "damage", "turn", "furniture", "trade", "quest", "skill" }`. **E.1.5 adds `"enhancement"` here** + the channel starts on by default. | ⚪ confirmed |
+| `Diag.Record(category, kind, actor, target, payload)` | `Diag.cs:201` — exact signature `public static void Record(string category, string kind, Entity actor = null, Entity target = null, object payload = null, string cause = null)`. No-op if category disabled. | ⚪ confirmed |
+| OnHit reuse pattern (existing `OnHitClassEffects` + `OnHitWeaponEffects`) | `OnHitWeaponEffects.cs:27-28` — `Apply(weapon, damage, actualDamage, defender, attacker, zone, rng)` called from `CombatSystem.PerformSingleAttack` after damage. **E.2.2 EnhancementSerrated likely reuses this hook point** OR listens to `DamageDealt` directly (cleaner — keeps enhancement code self-contained). E.2 sweep will lock the choice in. | 🟡 design call deferred to E.2 |
+| Mineral item minimum Parts (carryable, not equippable) | `PhysicsPart { Takeable = true }` + `RenderPart`. **NO `EquippablePart`** — that's what marks it as a wieldable. `PickUpCommand` checks `PhysicsPart.Takeable` for inventory inclusion. | ⚪ confirmed |
+| Inventory-action surface (originally 🔴 blocker for E.3) | `PerformInventoryActionCommand.cs:70` — 3-event pattern: `"BeforeInventoryAction"` (vetoable), `"InventoryAction"` (handled=true means success), `"AfterInventoryAction"` (informational). Each carries `Actor`, `Item`, `Command`, `Zone`. **E.3.4 mineral-apply action wires here**: mineral items have a Part listening for `"InventoryAction"` with command `"ApplyEnhancement"`. | ✅ blocker resolved |
+| Tinker UX surface (originally 🔴 blocker for E.3) | The PerformInventoryActionCommand pattern IS the Tinker surface. Player → opens inventory on a mineral → selects "Apply Enhancement" → game prompts for a target item from inventory → mineral consumed + enhancement Part added to target. No new infra needed. | ✅ blocker resolved |
+| Reflection-based Part save-load (SL.6) | `SaveSystem.cs:1126` generic fall-through (already used by F.3 GrantsRepAsFollowerPart). All enhancement Parts use this; round-trip pinned by per-enhancement tests. | ⚪ confirmed |
+| `Examiner` Part (Qud's Difficulty/Complexity holder) | **Does not exist in CoO** — confirmed by file search. Already deferred to E.5+ per plan. No blocker for E.1-E.4. | ⚪ confirmed deferred |
 
-**🔴 2 blockers** to clear before E.3 implementation lands. Both are
-about the player-side application flow (how does the player USE the
-enhancement system in-game?). E.1 + E.2 ship the substrate; the
-player-exposure layer needs more sweep work before E.3.
+**Both original 🔴 blockers resolved.** The `PerformInventoryActionCommand`
+3-event pattern IS the tinker-action surface (inventory-action menu
+visibility comes free), and the inventory-action menu wiring is the
+same pattern. E.3 can proceed without new UI surface work.
+
+**One design call deferred to E.2:** whether `EnhancementSerrated` hooks `DamageDealt`
+directly (cleaner, enhancement-code-self-contained) or reuses
+`OnHitWeaponEffects` (existing shared dispatch). Will lock in during E.2.1 sweep.
 
 ---
 
