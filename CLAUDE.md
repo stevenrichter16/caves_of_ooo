@@ -248,6 +248,56 @@ multi-commit feature, even when tests are green and the merge
 feels clean. Tests-green-feels-clean is exactly the state where
 latent inconsistencies hide.**
 
+### Run BOTH audit angles — taxonomy AND Qud-parity-first
+
+The cold-eye review and the optional post-merge Explore-agent audit
+should run from **two distinct angles**, not one. A single angle
+has a fixed checklist and misses what the checklist doesn't ask
+about.
+
+**Angle A — Bug-class taxonomy** (the default):
+- Null safety, atomicity, iterator-vs-mutation, race conditions
+- Save/load reach, anti-exploit gates, diag dispatch
+- Counter-check completeness, dead-code sweep
+- Driven by the adversarial-test-sweep surface list
+
+**Angle B — Qud-parity-first** (the missing half):
+- Read the CoO impl and the matching Qud source side-by-side
+- For each line of CoO code, ask: "what does Qud do here, and am I
+  doing it the same way?"
+- Drift findings: 🔴 CRITICAL (gameplay-observable Qud contract
+  broken) / 🟡 NOTABLE (observable but acceptable) / 🔵 NIT
+  (no gameplay impact) / ⚪ DOCUMENTED (deliberate, already noted)
+- What events does Qud listen for that CoO might not?
+- What guards does Qud have that CoO is missing?
+- What helper methods / convenience wrappers exist in Qud's source
+  that CoO would silently lack?
+
+**Why both:** the F.3 Followers feature illustrated this empirically.
+The first audit pass ran Angle A and shipped 5 findings (all real),
+but deferred a 6th — "OnDestroyObjectEvent unapply hook" — as "CoO
+lacks these events." A second pass running Angle B re-checked that
+claim, found CoO DOES fire a `"Died"` event on the dying entity
+(CombatSystem.cs:916), and surfaced the real latent bug: killing your
+own follower leaked rep indefinitely. The taxonomy checklist didn't
+include "what events does Qud listen for that CoO might not?" — that's
+a Qud-parity question, not a bug-class taxonomy question.
+
+**Process:**
+1. Run Angle A first (it's the cheaper checklist — null safety,
+   atomicity, iterator safety — all easy to enumerate).
+2. **Then** run Angle B specifically (Explore-agent prompt that says
+   "Qud-parity-first" and lists the Qud reference files alongside the
+   CoO files). The two passes are complementary, not redundant.
+3. Triage findings from both into one fix branch. Note explicitly in
+   the merge commit which angle caught each finding so future audits
+   can be honest about what each pattern covers.
+
+**Self-directive: for any Qud-parity feature, I MUST run BOTH audit
+angles before declaring the phase complete. Skipping Angle B because
+"Angle A found nothing meaningful" is exactly how Qud-contract drift
+slips through — the taxonomy angle isn't looking for those.**
+
 ---
 
 ## Adversarial test sweep (MANDATORY for any feature with non-trivial state, parser, or cross-actor flows)
