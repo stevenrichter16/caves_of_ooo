@@ -38,7 +38,10 @@
 
 | Field | Value |
 |---|---|
-| **Current phase** | E.1.1 sweep ✅ complete (both 🔴 blockers resolved); E.1.2 next |
+| **Current phase** | E.1 ✅ shipped (54 tests, 0 bugs); E.2 next |
+| **Cumulative tests** | 54 |
+| **Real bugs surfaced + fixed** | 0 (E.1 substrate had minimal surface; real adversarial coverage in E.2+) |
+| **Audit passes run** | 1 in-phase cold-eye (E.1.5); formal post-feature both-angle audit deferred until E.2-E.3 ship concrete enhancement surface |
 | **Phases planned** | E.1 → E.4 (4 phases + E.5+ polish queue) |
 | **Last updated** | 2026-05-11 |
 | **Cumulative tests** | 0 (planning) |
@@ -90,7 +93,7 @@ not an architectural distinction.
 
 | Phase | What ships | Status | Tests (est) | Branch (planned) |
 |---|---|---|---|---|
-| **E.1** | `IItemEnhancement` infra + `EnhancementFactory` + Tinker hook | ⏳ Not started | 25-35 | `feat/item-enhancements-e1-infra` |
+| **E.1** | `IItemEnhancement` infra + `EnhancementFactory` + `ItemEnhancing.Apply` + `IMeleeEnhancement` + adversarial | ✅ Shipped | 54 (planned 25-35; bonus coverage) | `feat/item-enhancements-e1-infra` |
 | **E.2** | First 3 concrete enhancements (offensive + defensive + utility) | ⏳ Not started | 25-35 | `feat/item-enhancements-e2-first-three` |
 | **E.3** | 3 mineral items + `WantsMineralPart` + crafting workflow | ⏳ Not started | 30-40 | `feat/item-enhancements-e3-minerals` |
 | **E.4** | Showcase scenario + manual playtest closure | ⏳ Not started | 5-10 smoke | `feat/item-enhancements-e4-showcase` |
