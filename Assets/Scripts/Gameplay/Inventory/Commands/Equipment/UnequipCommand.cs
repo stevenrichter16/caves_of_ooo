@@ -95,6 +95,11 @@ namespace CavesOfOoo.Core.Inventory.Commands
             afterUnequip.SetParameter("Item", (object)_item);
             actor.FireEventAndRelease(afterUnequip);
 
+            // Item-enhancement on-unequip hook (E.2.1). Symmetric pair of
+            // EquipCommand's DispatchOnEquip — fires AFTER AfterUnequip so
+            // enhancements removing on-equip bonuses see settled state.
+            ItemEnhancementDispatch.DispatchOnUnequip(actor, _item);
+
             transaction.Do(
                 apply: null,
                 undo: () =>
@@ -153,6 +158,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
             afterUnequip.SetParameter("Actor", (object)actor);
             afterUnequip.SetParameter("Item", (object)item);
             actor.FireEventAndRelease(afterUnequip);
+
+            // Item-enhancement on-unequip hook (E.2.1).
+            ItemEnhancementDispatch.DispatchOnUnequip(actor, item);
 
             transaction.Do(
                 apply: null,

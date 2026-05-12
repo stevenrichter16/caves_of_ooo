@@ -343,6 +343,16 @@ namespace CavesOfOoo.Core
                 // stun AND electrify on the same hit, since the chance rolls are independent.
                 OnHitWeaponEffects.Apply(weapon, damage, actualDamage, defender, attacker, zone, rng);
 
+                // Item-enhancement on-hit hook (E.2.1). Iterates the weapon Entity's
+                // IItemEnhancement Parts (e.g. EnhancementSerrated → on-hit bleed)
+                // and calls each one's OnAttackerHit. Parallel to OnHitWeaponEffects.Apply
+                // above but distinct: per-weapon effects are blueprint-declared
+                // (OnHitEffectsRaw), enhancements are player-applied at runtime via
+                // ItemEnhancing.Apply. Mirrors Qud's IMeleeModification dispatch from
+                // XRL.World.Combat.MeleeAttack.
+                ItemEnhancementDispatch.DispatchOnHit(
+                    weapon?.ParentEntity, defender, attacker, damage, actualDamage, zone, rng);
+
                 // Skill-driven on-hit effects (Cudgel_Bludgeon→Stun,
                 // LongBlades_Lacerate→Bleed, etc.). WSP3.3 — the previous
                 // OnHitSkillEffects.Apply central switch was deleted; each
