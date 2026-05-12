@@ -38,15 +38,12 @@
 
 | Field | Value |
 |---|---|
-| **Current phase** | E.1 ✅ shipped (54 tests, 0 bugs); E.2 next |
-| **Cumulative tests** | 54 |
-| **Real bugs surfaced + fixed** | 0 (E.1 substrate had minimal surface; real adversarial coverage in E.2+) |
-| **Audit passes run** | 1 in-phase cold-eye (E.1.5); formal post-feature both-angle audit deferred until E.2-E.3 ship concrete enhancement surface |
+| **Current phase** | E.2 ✅ shipped (146 tests, 0 bugs); E.3 next |
+| **Cumulative tests** | 146 (E.1: 54 + E.2: 92) |
+| **Real bugs surfaced + fixed** | 0 |
+| **Audit passes run** | E.1.5 in-phase cold-eye; E.2.5 in-progress adversarial sweep + cold-eye |
 | **Phases planned** | E.1 → E.4 (4 phases + E.5+ polish queue) |
 | **Last updated** | 2026-05-11 |
-| **Cumulative tests** | 0 (planning) |
-| **Real bugs surfaced + fixed** | — |
-| **Audit passes run** | 0 |
 | **Reference codebase** | Qud (`/Users/steven/qud-decompiled-project/XRL.World.Parts/IModification.cs` + 237 `Mod*.cs` files) |
 | **Content reference** | `claude/ideas-gin-frogs` branch — `IDEAS.md` line 730 "Stones with Stake" |
 
@@ -94,7 +91,7 @@ not an architectural distinction.
 | Phase | What ships | Status | Tests (est) | Branch (planned) |
 |---|---|---|---|---|
 | **E.1** | `IItemEnhancement` infra + `EnhancementFactory` + `ItemEnhancing.Apply` + `IMeleeEnhancement` + adversarial | ✅ Shipped | 54 (planned 25-35; bonus coverage) | `feat/item-enhancements-e1-infra` |
-| **E.2** | First 3 concrete enhancements (offensive + defensive + utility) | ⏳ Not started | 25-35 | `feat/item-enhancements-e2-first-three` |
+| **E.2** | First 3 concrete enhancements (Serrated/Lacquered/Engraved) + ItemEnhancementDispatch + adversarial | ✅ Shipped | 92 (planned 25-35; bonus coverage incl. cross-enhancement) | `feat/item-enhancements-e2-first-three` |
 | **E.3** | 3 mineral items + `WantsMineralPart` + crafting workflow | ⏳ Not started | 30-40 | `feat/item-enhancements-e3-minerals` |
 | **E.4** | Showcase scenario + manual playtest closure | ⏳ Not started | 5-10 smoke | `feat/item-enhancements-e4-showcase` |
 | **E.5+** | Polish queue: architectural mode, combinatorial crafting, more minerals/factions, decay/corruption | ⏳ Deferred | — | TBD |
@@ -316,58 +313,96 @@ specialization. NO concrete enhancements yet — those land in E.2.
 
 ---
 
-# Phase E.2 — First 3 enhancements ⏳
+# Phase E.2 — First 3 enhancements ✅
 
 ## Goal
 
-Validate the E.1 pattern by shipping 3 concrete enhancements that
-exercise different event-hook categories. NOT mineral-sourced yet
-(that comes in E.3); just the enhancement Parts attached via
+Validated the E.1 pattern by shipping 3 concrete enhancements that
+exercise different event-hook categories (on-hit, on-equip/unequip,
+faction-rep). NOT mineral-sourced yet (that's E.3); attached via
 `ItemEnhancing.Apply` directly.
+
+## Verification sweep (completed before E.2.2)
+
+| Premise | Status | Source |
+|---|---|---|
+| `CombatSystem.PerformSingleAttack` has an `if (hpAfter > 0)` block already running on-hit pipelines (OnHitClassEffects, OnHitWeaponEffects) | ✅ confirmed | `CombatSystem.cs:333-344` |
+| `EquipCommand.cs` fires `AfterEquip` event at line 175-179 — clean insertion point for DispatchOnEquip | ✅ confirmed | `EquipCommand.cs:175-179` |
+| `UnequipCommand.cs` has TWO paths (`Execute` + `UnequipAndRemove`) — both need DispatchOnUnequip for throw-while-equipped coverage | ✅ confirmed | `UnequipCommand.cs:93-96, 152-155` |
+| `Part.ParentEntity` is the canonical "Part → its Entity" reference | ✅ confirmed | `Part.cs:13` |
+| `Damage.HasAttribute("Cutting")` is the canonical check for Cutting class | ✅ confirmed | `Damage.cs:99-103` |
+| `BleedingEffect(saveTarget, damageDice, rng)` is the ctor — defaults 15 / "1d2" / null | ✅ confirmed | `BleedingEffect.cs:20` |
+| `PlayerReputation.Modify(faction, delta, silent)` is the rep API | ✅ confirmed | `PlayerReputation.cs:73` |
+| Qud's `ModSerrated` is actually a **dismember** mod (3% chance), not a bleed mod | ⚠️ corrected | `qud-decompiled-project/XRL.World.Parts/ModSerrated.cs:109-113` |
+| Qud's `ModLacquered` is liquid-repulsion / rust-immunity — the +AV mod is `ModReinforced` | ⚠️ corrected | `qud-decompiled-project/XRL.World.Parts/ModLacquered.cs` + `ModReinforced.cs` |
+
+**Two false premises corrected during E.2 sweep (per CLAUDE.md §1.2
+"saved an estimated 2-3 days").** Documented as scope divergences in
+each enhancement's class doc.
 
 ## Three enhancements (one per category)
 
-### E.2.2 — `EnhancementSerrated` (offensive)
+### E.2.2 — `EnhancementSerrated` (offensive) ✅
 
 | | |
 |---|---|
-| Qud parity | `XRL.World.Parts/ModSerrated.cs` |
-| Effect | On-hit, X% chance to apply BleedingEffect to defender. Tier scales the chance. |
-| Restriction | Cutting weapons only (`IMeleeEnhancement` + `Damage.HasAttribute("Cutting")` filter in Applicable) |
-| Event hooks | Listen for the on-hit event the OnHitEffects feature already pipes through (verify exact name in E.2 sweep — likely `DamageDealt` or `OnDamage`) |
-| Tests | Apply succeeds on cutting weapon; rejected on bludgeoning; bleed fires on hit; tier scales chance; save/load round-trip |
+| Qud parity | `XRL.World.Parts/ModSerrated.cs` — name only; mechanic diverges (see below) |
+| Effect | OnAttackerHit: rolls tier-scaled chance (10% per tier, 1-4) → applies `BleedingEffect` to defender |
+| Restriction | Cutting melee weapons only (`IMeleeEnhancement` + `weapon.Attributes.Contains("Cutting")`) |
+| Event hooks | `OnAttackerHit` (via `ItemEnhancementDispatch.DispatchOnHit` from `CombatSystem.PerformSingleAttack`) |
+| Tests | 22 (Applicable filter, tier scaling, OnAttackerHit semantics, diag emission, round-trip, adversarial trigger-rate) |
+| Scope divergence | Qud's ModSerrated rolls a 3% dismember; CoO can't easily reach `CombatSystem.CheckCombatDismemberment` (private) from outside, so substituted bleed bonus. Documented in class doc. |
 
-### E.2.3 — `EnhancementLacquered` (defensive)
-
-| | |
-|---|---|
-| Qud parity | `XRL.World.Parts/ModLacquered.cs` |
-| Effect | +N AC while equipped + small (<10%) chance per turn to repair 1 HP of item damage |
-| Restriction | Armor or shield items |
-| Event hooks | `OnEquip`/`OnUnequip` for AC bonus; per-turn for self-repair |
-| Tests | AC bonus applied on equip + removed on unequip; tier scales repair chance; idempotent equip; save/load round-trip |
-
-### E.2.4 — `EnhancementEngraved` (utility)
+### E.2.3 — `EnhancementLacquered` (defensive) ✅
 
 | | |
 |---|---|
-| Qud parity | `XRL.World.Parts/ModEngraved.cs` |
-| Effect | On equip, +1 faction-rep with one named faction (the engraving's faction). On unequip, the bonus drops. |
-| Restriction | Any equippable item |
-| Event hooks | `OnEquip`/`OnUnequip` |
-| Tests | Apply succeeds; rep flows on equip; rep reverses on unequip; double-equip idempotent; save/load preserves the AppliedBonus flag (mirrors F.3.4 atomicity) |
+| Qud parity | `XRL.World.Parts/ModReinforced.cs` (mechanic) — kept name from `ModLacquered.cs` (thematic) |
+| Effect | OnEquipped: `ArmorPart.AV += Tier`; OnUnequipped: subtract back. Net change zero across cycle. |
+| Restriction | Armor only (`item.GetPart<ArmorPart>() != null`) |
+| Event hooks | `OnEquipped` + `OnUnequipped` (via `ItemEnhancementDispatch`) |
+| Tests | 17 (Applicable filter, tier scaling, AV mutation symmetry, atomicity flag, double-equip idempotent, unequip-without-equip guard, round-trip with AppliedBonus preserved) |
+| Scope divergence | Qud's ModLacquered = liquid-repulsion + rust-immunity. CoO doesn't have liquids/rust systems yet. Shipped the +AV mechanic from `ModReinforced` under the user-preferred "Lacquered" thematic name. |
 
-## Sub-milestones
+### E.2.4 — `EnhancementEngraved` (utility) ✅
 
-| # | What | Tests (est) |
-|---|---|---|
-| E.2.1 | Plan + sweep — confirm on-hit event surface, equip/unequip event surface | 0 |
-| E.2.2 | `EnhancementSerrated` + tests | 8-10 |
-| E.2.3 | `EnhancementLacquered` + tests | 7-9 |
-| E.2.4 | `EnhancementEngraved` + tests | 7-9 |
-| E.2.5 | Adversarial sweep + cold-eye + audit pass (BOTH angles — taxonomy AND Qud-parity-first) + merge | 5-8 + adversarial |
+| | |
+|---|---|
+| Qud parity | CoO-original mechanic (Qud has faction-sigil items but no direct rep-modifier mod) |
+| Effect | OnEquipped (player only): `PlayerReputation.Modify(Faction, +Tier*5)`. OnUnequipped: subtract back. NPC equipping is a no-op. |
+| Restriction | Any equippable item (`EquippablePart`) |
+| Event hooks | `OnEquipped` + `OnUnequipped` |
+| Tests | 18 (Applicable, tier scaling, player vs NPC equip gate, faction-unset no-op, double-equip atomicity, round-trip with Faction string + AppliedBonus) |
+| Atomicity | F.3.4 GrantsRepAsFollowerPart lesson — `AppliedBonus` flag set EAGERLY before the rep mutation, symmetric guard in unequip prevents subtract-without-apply on stale-loaded equipped state. |
 
-**E.2 ship target: 25-35 tests, ~250 LOC content.**
+## Sub-milestones (all shipped)
+
+| # | What | Tests | Status |
+|---|---|---|---|
+| E.2.1 | `ItemEnhancementDispatch` static helper + `OnAttackerHit`/`OnEquipped`/`OnUnequipped` virtual hooks on `IItemEnhancement` + hook into CombatSystem + EquipCommand + UnequipCommand | 13 | ✅ commit `62a6a45` |
+| E.2.2 | `EnhancementSerrated` + tests | 22 | ✅ shipped |
+| E.2.3 | `EnhancementLacquered` + tests | 17 | ✅ shipped |
+| E.2.4 | `EnhancementEngraved` + tests | 18 | ✅ shipped |
+| E.2.5 | `E2EnhancementsAdversarialTests` + cold-eye + merge | 22 | ✅ in-progress |
+
+**E.2 actual ship: 92 tests, ~600 LOC content + 1100 LOC tests.**
+
+## E.2 cold-eye review (Methodology Template §Q1-Q4)
+
+- **Q1 Symmetry** — Lacquered's OnUnequipped is structurally
+  symmetric to OnEquipped (subtract is the inverse of add); Engraved
+  same. Serrated has no symmetric pair (one-shot proc). Symmetry
+  check passes.
+- **Q2 Cross-feature consistency** — All three concrete enhancements
+  emit diag under `category="enhancement"`. Kinds: `BonusApplied`/
+  `BonusRemoved` (equip-style); `Triggered` (proc-style). Payload
+  shape is consistent: every record names `enhancement` + `tier`. No
+  divergence found.
+- **Q3 Counter-check completeness** — Each positive-assertion test
+  has a paired counter-check (Cutting↔Bludgeoning, player↔NPC,
+  faction-set↔faction-empty, double-equip↔no-op, etc.).
+- **Q4 Doc-vs-impl drift** — Class docs updated alongside code in
+  each commit. This doc-section update closes the design-doc loop.
 
 ---
 
