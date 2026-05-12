@@ -1,283 +1,458 @@
-# Caves of Ooo - Implementation Record
+# Caves of Ooo — Implementation Record
 
-A faithful remake of Caves of Qud's core systems in Unity 6 (6000.3.4f1).
-271 passing NUnit tests. Core simulation has zero Unity dependencies.
+A Qud-shaped roguelike in Unity 6 (6000.3.4f1). The core simulation has
+zero Unity dependencies; only `Scripts/Presentation/` touches
+MonoBehaviours.
 
----
+**Snapshot (2026-05-12):**
+- ~87,600 LOC across `Assets/Scripts/`, ~54,900 of that in `Gameplay/`
+- 4,069 `[Test]`/`[TestCase]` attributes across 312 EditMode test files
+- 220 blueprint entries in `Objects.json` (47 inherit `Creature`),
+  35 in `Mutations.json`
+- 9 conversation files / 378 dialogue nodes
+- 65 scenarios in `Scripts/Scenarios/Custom/` (all currently
+  developer-facing showcases, no shipped vertical slice)
 
-## Phase 1: Entity System
+This doc tracks what's actually playable / wired vs the deep parity
+plans in `Docs/QUD-PARITY.md`, `Docs/COMBAT-QUD-PARITY-PORT.md`,
+`Docs/SKILL-SYSTEM-PARITY.md`, etc.
 
-The foundational ECS-like architecture, faithful to Qud's `GameObject`/`IPart`/`GameEvent` pattern.
-
-### What was implemented
-
-- **Entity** (`Core/Entity.cs`) - Bag of Parts + Stats + Tags + Properties. No behavior of its own. Mirrors Qud's `GameObject`.
-- **Part** (`Core/Part.cs`) - Abstract component base. All behavior lives in Parts via `HandleEvent`/`WantEvent`. Mirrors Qud's `IPart`.
-- **GameEvent** (`Core/GameEvent.cs`) - String-ID event with typed parameter dictionaries (object, string, int). Pool-friendly `New()` factory. Mirrors Qud's `Event`.
-- **Stat** (`Core/Stat.cs`) - Named statistic: `Value = BaseValue + Bonus - Penalty + Boost`, clamped to `[Min, Max]`. Mirrors Qud's `Statistic`.
-- **Blueprint** (`Data/Blueprint.cs`) - JSON template with inheritance chain. Holds part configs, stats, tags, properties.
-- **BlueprintLoader** (`Data/BlueprintLoader.cs`) - Loads JSON, resolves inheritance via `Bake()`. Parent parts/stats/tags merge into children.
-- **EntityFactory** (`Data/EntityFactory.cs`) - Creates entities from blueprints. Uses reflection to instantiate Parts and set properties. `RegisterPartsFromAssembly()` auto-discovers Part subclasses.
-- **RenderPart** (`Core/RenderPart.cs`) - Data-only Part holding DisplayName, RenderString, ColorString, RenderLayer, Tile.
-
-### Blueprints defined
-
-Base templates: `PhysicalObject`, `Terrain`, `Wall`, `Item`, `MeleeWeapon`, `ArmorItem`, `Creature`
-
-### Tests
-
-18 tests in `EntitySystemTests.cs` covering entity creation, part add/remove/get, stat arithmetic, tag operations, event firing and handling, blueprint loading, inheritance resolution, and factory creation.
+**Status shorthand:** ✅ shipped & wired · ⚠️ shipped but no player
+surface · ⏸️ deferred · 🟡 partial · 📜 documented but not started
 
 ---
 
-## Phase 2: Grid and Rendering
+## Engine foundation (Phases 1-9, original architecture)
 
-The 80x25 zone grid and Unity tilemap rendering bridge.
+These phases established the simulation substrate. All are stable
+and load-bearing for everything that came later.
 
-### What was implemented
-
-- **Cell** (`Core/Cell.cs`) - Single tile position holding a stack of entities. Methods: `IsSolid()`, `IsWall()`, `IsPassable()`, `GetTopVisibleObject()` (highest RenderLayer).
-- **Zone** (`Core/Zone.cs`) - 80x25 grid of Cells. Entity tracking with position lookups. Constants: `Width=80`, `Height=25`. Methods: `AddEntity()`, `RemoveEntity()`, `MoveEntity()`, `GetEntityCell()`, `GetEntitiesWithTag()`.
-- **ZoneRenderer** (`Rendering/ZoneRenderer.cs`) - MonoBehaviour that renders Zone onto Unity Tilemap. Reads each cell's top entity's RenderPart, draws glyph in color. Y-axis inverted (cell y=0 is top, Unity y=0 is bottom). Only component bridging simulation to Unity.
-- **QudColorParser** (`Rendering/QudColorParser.cs`) - Parses Qud's `&r`, `&G`, `&Y` etc. color codes to Unity Colors. Full 16-color CGA palette.
-- **CP437TilesetGenerator** (`Rendering/CP437TilesetGenerator.cs`) - Generates CP437 character tiles at runtime for the tilemap.
-- **GameBootstrap** (`Rendering/GameBootstrap.cs`) - MonoBehaviour entry point. Loads blueprints from `Resources/Blueprints/Objects.json`, generates zone, wires renderer/input/turns.
-
-### Scene setup
-
-- `SampleScene.unity`: GameManager (GameBootstrap) -> ZoneGrid (Grid) -> ZoneTilemap (Tilemap + TilemapRenderer + ZoneRenderer)
-- Main Camera: orthographic, auto-sized to fit full 80x25 zone
-- Global Light 2D for URP
-
-### Tests
-
-20 tests in `GridSystemTests.cs` covering cell creation, entity stacking, solid/wall checks, zone bounds, entity movement, position lookups, tag queries, top visible object selection.
+| Phase | System | Status | Key files |
+|-------|--------|:------:|-----------|
+| 1 | Entity / Part / Event / Stat | ✅ | `Gameplay/Entities/Entity.cs`, `Part.cs`, `GameEvent.cs` |
+| 1 | Blueprint + Factory (reflection-based) | ✅ | `Data/Blueprint.cs`, `BlueprintLoader.cs`, `EntityFactory.cs` |
+| 2 | Cell / Zone (80×25) grid | ✅ | `Gameplay/World/Map/Zone.cs`, `Cell.cs` |
+| 2 | ZoneRenderer + CP437 tileset + QudColorParser | ✅ | `Presentation/Rendering/ZoneRenderer.cs` |
+| 3 | Energy-based TurnManager | ✅ | `Gameplay/Turns/TurnManager.cs` |
+| 3 | MovementSystem + PhysicsPart (bump-to-attack) | ✅ | `Gameplay/World/MovementSystem.cs` |
+| 4 | ZoneGenerationPipeline + builders (Cave/Desert/Jungle/Ruins) | ✅ | `Gameplay/World/Generation/` |
+| 4 | PopulationTable + ZoneManager caching | ✅ | `Data/Tables/`, `Gameplay/World/Map/ZoneManager.cs` |
+| 5 | Melee CombatSystem (hit / pen / damage / death) | ✅ | `Gameplay/Combat/CombatSystem.cs` |
+| 6 | InventoryPart + InventorySystem (pickup/drop/equip) | ✅ | `Gameplay/Inventory/` |
+| 7 | MutationsPart + ActivatedAbilitiesPart | ✅ | `Gameplay/Mutations/MutationsPart.cs` |
+| 8 | FactionManager + AIHelpers + BrainPart | ✅ | `Gameplay/AI/`, `Data/Factions/` |
+| 9 | WorldMap (10×10) + ZoneTransitionSystem + 4 biomes | ✅ | `Gameplay/World/Map/WorldMap.cs`, `WorldGenerator.cs` |
 
 ---
 
-## Phase 3: Turn System and Movement
+## Combat system — Qud-parity port (Phases A-H, 2026-04)
 
-Energy-based turn order and movement with event validation.
+10-phase deliberate port from Qud's `XRL.World.Combat`. All
+phases shipped, each with verification sweep + adversarial sweep +
+cold-eye review.
 
-### What was implemented
+| Phase | Surface | Status |
+|-------|---------|:------:|
+| A | Damage typed class + attribute list (replace int → `Damage` w/ tag list) | ✅ |
+| C | RollPenetrations Qud-faithful (1d10-2 exploding + per-set decay + MaxBonus cap) | ✅ |
+| D | OnHit class effects + weapon-attached effects | ✅ |
+| E | Resistances (Cold/Heat/Acid/Electric) + IgnoreResist bypass | ✅ |
+| F | BeforeTakeDamage hook + critical-hit pipeline | ✅ |
+| G | Anatomy / Body integration (severable limbs, natural weapons, dismember events) | ✅ |
+| H | Off-hand / multi-weapon penalty + methodology-debt closure | ✅ |
 
-- **TurnManager** (`Core/TurnManager.cs`) - Energy-based turn scheduling faithful to Qud. Each tick, entities gain `Speed` energy. At 1000 threshold, entity gets a turn. Player turn pauses for input (`WaitingForInput` flag). `ProcessUntilPlayerTurn()` runs all NPC turns deterministically.
-- **MovementSystem** (`Core/MovementSystem.cs`) - Static class. `TryMove()`/`TryMoveEx()` fire `BeforeMove` event (Parts can block), perform move, fire `AfterMove`. `TryMoveEx` returns `(moved, blockedBy)` for bump-to-attack detection.
-- **PhysicsPart** (`Core/PhysicsPart.cs`) - Handles `BeforeMove` event. Checks target cell for Solid entities and blocks movement. Sets `BlockedBy` parameter on the event. Also holds `Solid`, `Weight`, `Takeable`, `InInventory`, `Equipped` flags.
-- **InputHandler** (`Rendering/InputHandler.cs`) - MonoBehaviour converting key presses to game commands. Supports WASD, arrow keys, numpad 8-directional, and vi keys (hjklyubn). Rate-limited with `MoveRepeatDelay`. Only place Unity input touches simulation.
+**Known gap:** ranged combat (Qud's `Missile.cs`) is **not** ported.
+Engine is melee-only. See `Docs/COMBAT-QUD-PARITY-PORT.md` for full
+phase docs.
 
-### Tests
-
-11 tests in `TurnMovementTests.cs` covering energy accumulation, turn order by speed, movement success/failure, solid blocking, multi-entity turns, wait/skip turn.
-
----
-
-## Phase 4: Zone Generation
-
-Modular builder pipeline with cellular automata, noise, and population.
-
-### What was implemented
-
-- **IZoneBuilder** (`Core/IZoneBuilder.cs`) - Interface with `BuildZone()`, `Name`, `Priority`. Builders run in priority order.
-- **ZoneGenerationPipeline** (`Core/ZoneGenerationPipeline.cs`) - Sorts builders by priority, runs sequentially, retries on failure (up to 5 attempts with new seeds). `CreateCavePipeline()` factory method.
-- **CellularAutomata** (`Core/CellularAutomata.cs`) - Qud-faithful CA: `SeedChance=55`, `BornList=[6,7,8]`, `SurviveList=[5,6,7,8]`, `SeedBorders=true`, `BorderDepth=2`. Creates natural cave walls near edges.
-- **SimpleNoise** (`Core/SimpleNoise.cs`) - 2D value noise with cosine interpolation and octave layering. Used for terrain variation overlay.
-- **CaveBuilder** (`Core/Builders/CaveBuilder.cs`) - Priority 2000. Fills with walls, runs CA + noise, carves open spaces. Floor/Rubble placement with 80/15/5 distribution.
-- **BorderBuilder** (`Core/Builders/BorderBuilder.cs`) - Priority 1000. Places wall entities on zone perimeter. (Removed from overworld pipelines in Phase 9 to match Qud's seamless edges.)
-- **ConnectivityBuilder** (`Core/Builders/ConnectivityBuilder.cs`) - Priority 3000. Flood-fill to find reachable area, carve corridors to connect islands. Path widening at 75% chance. Ensures passable cells on all 4 zone edges for zone transitions (like Qud's ForceConnections + CaveMouth builders).
-- **PopulationBuilder** (`Core/Builders/PopulationBuilder.cs`) - Priority 4000. Spawns entities from a PopulationTable into random passable cells.
-- **PopulationTable** (`Data/PopulationTable.cs`) - Weighted encounter table. `Roll()` produces blueprint name list. Guaranteed MinCount + weight-based chance for extras. Factory methods: `CaveTier1()`, `DesertTier1()`, `JungleTier1()`, `RuinsTier1()`.
-- **ZoneManager** (`Core/ZoneManager.cs`) - Zone caching and generation. `GetZone()` generates on first request, returns cached thereafter. `SetActiveZone()`, `UnloadZone()`. `GetPipelineForZone()` is `protected virtual` for subclass routing.
-
-### Blueprints defined
-
-Terrain: `Floor`, `Rubble`, `Stalagmite`
-Walls: `Wall`
-
-### Tests
-
-18 tests in `ZoneGenerationTests.cs` covering CA generation, noise field properties, cave builder output, pipeline retry, connectivity, population spawning, zone manager caching.
+Reference docs: `Docs/COMBAT-QUD-PARITY-PORT.md`,
+`Docs/COMBAT-PARITY-PORT-REVIEW.md`, `Docs/COMBAT-BRANCH-MAP.md`.
 
 ---
 
-## Phase 5: Combat
+## Goal-stack AI — Qud-parity port
 
-Melee combat with Qud-faithful hit/penetration/damage formulas.
+| Phase | Surface | Status |
+|-------|---------|:------:|
+| 0 | GoalHandler base + BrainPart._goals (LIFO) + age tracking | ✅ |
+| 1 | A* pathfinding (`FindPath.cs`, pool-based, 2000-node cap) | ✅ |
+| 2 | StartingCell / Staying / WhenBoredReturnToOnce | ✅ |
+| 3 | AIBoredEvent + AIBehaviorPart base | ✅ (2 subclasses shipped) |
+| 4 | IdleQueryEvent + SittingEffect + ChairPart/BedPart | ✅ |
+| 5 | PushGoal / PushChildGoal / Pop / FailToParent / HasGoal | ✅ |
+| 5 | InsertGoalAfter and 12 other insertion overloads | ⏸️ (no production callers) |
+| 7 | AIShopper / AIPilgrim / AIShoreLounging | ⚠️ infra, no content |
+| 8 | Party / Follower system | ✅ (F.1-F.3 shipped) |
+| 12 | Calendar / world time | 📜 |
+| 13 | Zone lifecycle + NPC zone transitions | 🟡 (followers only) |
+| 14 | AI combat intelligence (target select / threat assessment) | 📜 |
 
-### What was implemented
+**Concrete goals shipped (24):** Bored, Command, Delegate,
+DisposeOfCorpse, Dormant, Flee, FleeLocation, FollowLeader, GoFetch,
+Guard, Kill, LayRune, MoveTo, MoveToExterior, MoveToInterior, NoFight,
+Pet, Retreat, Step, Wait, WanderDuration, Wander, WanderRandomly.
 
-- **CombatSystem** (`Core/CombatSystem.cs`) - Static class. Full Qud melee combat:
-  - **Hit roll**: `1d20 + AgilityMod + HitBonus >= DV` (defender's dodge value)
-  - **Penetration**: Up to 3 rolls of `1d8 + PV vs AV` with diminishing returns (each subsequent roll is harder)
-  - **Damage**: Per penetration, roll weapon's `BaseDamage` dice
-  - **Death**: When HP <= 0, fires `Died` event, removes entity from zone
-  - Events fired: `BeforeMeleeAttack`, `TakeDamage`, `Died`
-- **MeleeWeaponPart** (`Core/MeleeWeaponPart.cs`) - Holds `BaseDamage` (dice string), `PenBonus`, `HitBonus`, `MaxStrengthBonus`, `Stat` (governing attribute).
-- **ArmorPart** (`Core/ArmorPart.cs`) - Holds `AV` (armor value), `DV` (dodge value), `SpeedPenalty`.
-- **DiceRoller** (`Core/DiceRoller.cs`) - Parses and rolls `"NdS+M"` expressions. Supports `1d4`, `2d6+3`, `1d8-1`, etc.
-- **StatUtils** (`Core/StatUtils.cs`) - `GetModifier()`: Qud formula `(score - 16) / 2`.
-- **MessageLog** (`Core/MessageLog.cs`) - Combat message sink. `OnMessage` callback wired to `Debug.Log` by GameBootstrap.
-- **Bump-to-attack** in InputHandler: When movement is blocked by a Creature, automatically performs melee attack.
+**AI behavior parts shipped:** AIGuardPart (warden), AIWellVisitorPart
+(farmer), AIAmbushPart, AILayRunePart, AIRetrieverPart (magpie). M1-M6
+milestones in `Docs/QUD-PARITY.md` document the buildout.
 
-### Blueprints defined
-
-Weapons: `Dagger` (1d4, 4 weight, Hand slot), `LongSword` (1d8, 8 weight, Hand slot)
-Armor: `LeatherArmor` (AV:3, DV:-1, Body slot), `ChainMail` (AV:5, DV:-2, Body slot)
-
-### Tests
-
-32 tests in `CombatSystemTests.cs` covering hit/miss, DV calculation, AV calculation, penetration rolls, damage application, death handling, weapon stat bonuses, unarmed combat, message logging.
-
----
-
-## Phase 6: Inventory and Items
-
-Full inventory with pickup, drop, equip, unequip, and stat bonuses.
-
-### What was implemented
-
-- **InventoryPart** (`Core/InventoryPart.cs`) - Item container on entities. `MaxWeight` limit, `Objects` list, `EquippedItems` dict (slot -> entity). Methods: `AddObject()`, `RemoveObject()`, `Equip()`, `Unequip()`, `GetEquipped()`, `GetCarriedWeight()`.
-- **EquippablePart** (`Core/EquippablePart.cs`) - Marks items as equippable. `Slot` (Hand, Body, Head, etc.), `EquipBonuses` dict for stat modifications on equip.
-- **InventorySystem** (`Core/InventorySystem.cs`) - Static operations:
-  - `Pickup()` - Remove from zone, add to inventory (weight check)
-  - `Drop()` - Remove from inventory, add to zone at entity's feet
-  - `Equip()` - Move from inventory to equipment slot, apply stat bonuses
-  - `Unequip()` - Move from slot to inventory, remove stat bonuses
-  - `GetTakeableItemsAtFeet()` - Query items at entity's cell
-  - Full event chain: `BeforePickup`/`AfterPickup`, `BeforeDrop`/`AfterDrop`, `BeforeEquip`/`AfterEquip`, `BeforeUnequip`/`AfterUnequip`
-- **G key pickup** in InputHandler: Picks up first takeable item at feet, auto-equips if slot is empty.
-
-### Tests
-
-46 tests in `InventorySystemTests.cs` covering pickup, drop, equip, unequip, weight limits, slot management, stat bonuses on equip/unequip, auto-equip, stacking, event cancellation.
+Reference: `Docs/QUD-PARITY.md` §1-§14.
 
 ---
 
-## Phase 7: Mutations
+## Followers (F.1-F.3, 2026-05)
 
-Activated abilities with cooldowns, plus passive mutations.
+Multi-phase ship with audit-pass + Qud-parity-second-pass cadence.
 
-### What was implemented
+- F.1 — Leader/Follower scaffolding + FollowLeaderGoal + faction hostility guard
+- F.2 — Recruitment via `Persuasion_Recruit` activated ability + `RecruitedEffect`
+- F.2.7 — Cross-zone follower transit
+- F.3 — Slot system (`GetCompanionLimitEvent`) + `GrantsRepAsFollowerPart`
+- F.3 audit pass 2 — added `Died` hook for follower cleanup (Qud-parity finding)
 
-- **ActivatedAbility** (`Core/ActivatedAbility.cs`) - Data class: GUID ID, DisplayName, Command string, CooldownRemaining, MaxCooldown. `IsUsable` when cooldown is 0.
-- **ActivatedAbilitiesPart** (`Core/ActivatedAbilitiesPart.cs`) - Manages ability list on an entity. `AddAbility()`, `RemoveAbility()`, `GetAbilityBySlot()`, `TickCooldowns()` (called each turn).
-- **BaseMutation** (`Core/Mutations/BaseMutation.cs`) - Abstract Part base. `Mutate()`/`Unmutate()` lifecycle. Helper methods for registering activated abilities and managing cooldowns.
-- **MutationsPart** (`Core/MutationsPart.cs`) - Container Part. `AddMutation()`, `RemoveMutation()`, `GetMutation<T>()`. Parses `StartingMutations` string (`"ClassName:Level,..."`) using reflection.
-- **FlamingHandsMutation** (`Core/Mutations/FlamingHandsMutation.cs`) - Physical mutation. Activated ability with 10-turn cooldown. Deals `Level * 1d4` fire damage to all creatures in target adjacent cell. Fires `CommandFlamingHands` event, handles via `TakeDamage`.
-- **TelepathyMutation** (`Core/Mutations/TelepathyMutation.cs`) - Mental mutation. Passive: grants `+Level/2` (min 1) Ego stat bonus on mutate.
-- **RegenerationMutation** (`Core/Mutations/RegenerationMutation.cs`) - Physical mutation. Passive: heals `Level` HP per turn on `TakeTurn` event.
-- **Ability input** (keys 1-5) in InputHandler: Press number key, then direction to target. Escape cancels. Fires ability's Command event with TargetCell, Zone, RNG parameters.
-
-### Blueprints defined
-
-Player blueprint has `ActivatedAbilities` and `Mutations` parts with `StartingMutations: "FlamingHandsMutation:1"`.
-
-### Tests
-
-44 tests in `MutationSystemTests.cs` covering ability creation, cooldown ticking, slot assignment, mutation add/remove, flaming hands damage, telepathy stat bonus, regeneration healing, mutations part lifecycle, starting mutations parsing.
+Reference: `Docs/FOLLOWERS.md`.
 
 ---
 
-## Phase 8: Factions and AI
+## Skills system (WSP1-8, ~50 concrete skill classes)
 
-Faction relationship system and creature AI with line-of-sight.
+**Trees shipped (11):** Acrobatics, Axe, ShortBlades, LongBlades,
+Cudgel, Pyromancy, Cryomancy, Galvanism, Corrosion, Spellcraft,
+Persuasion.
 
-### What was implemented
+**Powers per tree:**
 
-- **FactionManager** (`Core/FactionManager.cs`) - Static global registry. Factions: Humanoids, Snapjaws, Apes, Robots, Fungi, etc. Faction feelings: `SetFactionFeeling(A, B, value)`. Thresholds: hostile at -10, allied at +50. `GetFeeling()` resolves entity→faction→target feeling chain.
-- **AIHelpers** (`Core/AIHelpers.cs`) - Static spatial utilities:
-  - `ChebyshevDistance()` - 8-directional distance
-  - `StepToward()`/`StepAway()` - Greedy 1-step movement
-  - `HasLineOfSight()` - Bresenham's line algorithm checking for solid/wall blockers
-  - `FindNearestHostile()` - Scans zone for hostile creatures within radius using faction feelings
-  - `FindHostilesInRadius()` - Returns all hostiles in range
-  - `RandomPassableDirection()` - For wandering
-- **BrainPart** (`Core/BrainPart.cs`) - AI state machine on `TakeTurn` event:
-  - **Idle**: Check for hostiles in sight range. If found, switch to Chase.
-  - **Wander**: Random cardinal movement. Periodically check for hostiles.
-  - **Chase**: Step toward target each turn. Attack if adjacent (bump-to-attack via MovementSystem). Lose target if out of sight range.
-  - Properties: `SightRadius`, `Wanders`, `WandersRandomly`, `CurrentZone`, `Rng`
+| Tree | Concrete skill powers |
+|------|----------------------|
+| Acrobatics | Dodge, EvasiveRoll, Tumble, Vault |
+| Axe | Expertise, Cleave, Berserk, Decapitate, Dismember, HookAndDrag, RendArmor, Whirlwind |
+| Cudgel | Expertise, Backswing, Bludgeon, ChargingStrike, Conk, Disarm, GroundPound, Hammer, ShatteringBlows, Slam |
+| LongBlades | Expertise, Lacerate, Lunge (stances ⏸) |
+| ShortBlades | Expertise, Bloodletter, Disengage, Flurry, Hobble, Jab, Puncture, Rejoinder, Shank |
+| Pyromancy | Charsplit, Cinder, HeartFlame |
+| Cryomancy | BrittleStrike, FrostRetort, Frostbind, Hibernate |
+| Galvanism | GroundStrike, Overload, ShockRetort |
+| Corrosion | AcidRetort, Etch |
+| Spellcraft | ArcaneSurge, Empower, LeyTap |
+| Persuasion | Recruit, Dismiss |
 
-### Blueprints modified
+**Wired:** Each skill is a `BaseSkillPart` with virtual overrides
+(`OnAttackerAfterAttack`, `OnGetToHitModifier`, etc.). Player has a
+skill screen (X key) and a hotbar; abilities route through
+`SkillsPart.HandleEvent`. Diag-instrumented (`CommandRouted` /
+`SkillRejected` / `CommandRejected`).
 
-`Creature` base blueprint: added `Brain` part (SightRadius=10, Wanders=true, WandersRandomly=true).
-`SnapjawHunter`: Brain SightRadius override to 15.
-All Snapjaw variants: faction tag `Snapjaws`.
+**Deferred:** Survival, Tinkering-as-skill-tree, Cooking, Discipline,
+ranged-weapon trees, LongBlades stance batch (6 powers).
 
-### Tests
-
-41 tests in `FactionAITests.cs` covering faction registration, feeling queries, hostility/alliance thresholds, line-of-sight, distance calculations, step-toward/away, hostile finding, brain state transitions, chase behavior, wander behavior, combat engagement.
-
----
-
-## Phase 9: World Map and Zone Transitions
-
-10x10 overworld with 4 biomes and seamless zone edge transitions.
-
-### What was implemented
-
-- **WorldMap** (`Core/WorldMap.cs`) - `BiomeType` enum: Cave, Desert, Jungle, Ruins. 10x10 grid of tiles. Utilities: `ToZoneID(x,y)` → `"Overworld.5.3"`, `FromZoneID()`, `IsOverworldZoneID()`, `GetAdjacentZoneID()` (null at world edges), `GetBiome()`, `InBounds()`.
-- **WorldGenerator** (`Core/WorldGenerator.cs`) - Static `Generate(seed)`. Uses `SimpleNoise.GenerateField(10, 10, rng, octaves: 2)` for biome assignment. Noise thresholds: [0, 0.25)=Cave, [0.25, 0.50)=Desert, [0.50, 0.75)=Jungle, [0.75, 1.0]=Ruins. Center (5,5) forced to Cave. Post-process ensures all 4 biomes present.
-- **ZoneTransitionSystem** (`Core/ZoneTransitionSystem.cs`) - Static class, faithful to Qud:
-  - `GetTransitionDirection()` - Detects which edge the player exits
-  - `GetArrivalPosition()` - Wraps to exact opposite edge: East→(0,y), West→(79,y), South→(x,0), North→(x,24)
-  - `TransitionPlayer()` - Full transition: compute adjacent zone ID, get/generate zone, spiral search for passable arrival cell, transfer player between zones
-  - No border walls. Transitions trigger when player moves out of bounds (like Qud's `Cell.GetCellFromDirectionGlobal`).
-- **OverworldZoneManager** (`Core/OverworldZoneManager.cs`) - Extends ZoneManager. Generates WorldMap from seed. Routes zone IDs through biome lookup for pipeline selection:
-  - Cave: CaveBuilder → ConnectivityBuilder → PopulationBuilder(CaveTier1)
-  - Desert: DesertBuilder → ConnectivityBuilder → PopulationBuilder(DesertTier1)
-  - Jungle: JungleBuilder → ConnectivityBuilder → PopulationBuilder(JungleTier1)
-  - Ruins: RuinsBuilder → ConnectivityBuilder → PopulationBuilder(RuinsTier1)
-- **DesertBuilder** (`Core/Builders/DesertBuilder.cs`) - Priority 2000. Mostly open Sand with noise-based SandstoneWall clusters (threshold 0.85) and scattered Rock (5%).
-- **JungleBuilder** (`Core/Builders/JungleBuilder.cs`) - Priority 2000. CA-based (SeedChance=48, more open than caves). Grass floors, VineWall walls, 10% Tree scatter.
-- **RuinsBuilder** (`Core/Builders/RuinsBuilder.cs`) - Priority 2000. Fills with StoneWall, carves 4-8 rectangular rooms (size 4-12), connects with L-shaped corridors. 15% Rubble in corridors.
-- **CameraFollow** (`Rendering/CameraFollow.cs`) - Positions camera to show entire 80x25 zone at once (Qud-style fixed screen). Auto-sizes orthographic camera. Snaps on zone transition.
-- **Zone transition wiring** in InputHandler: When `TryMoveEx` returns `(false, null)` (out of bounds), detect direction, call `TransitionPlayer`, rewire TurnManager/BrainParts/ZoneRenderer/CameraFollow for new zone.
-- **Edge connectivity** added to ConnectivityBuilder: Carves passable paths to at least one cell on each zone edge, like Qud's ForceConnections + CaveMouth builders.
-
-### Blueprints defined
-
-Terrain: `Sand` (. &W), `Grass` (. &g), `StoneFloor` (. &y)
-Walls: `SandstoneWall` (# &W), `VineWall` (# &G), `StoneWall` (# &w)
-Obstacles: `Rock` (o &y, solid), `Tree` (T &G, solid)
-
-### Tests
-
-41 tests in `WorldMapTests.cs` covering zone ID parsing, adjacency, world generation determinism, biome coverage, transition detection, arrival positions, player transfer, biome builders, overworld routing, full integration transitions.
+Reference: `Docs/SKILL-SYSTEM-PARITY.md`, `Docs/SKILL-TREE-QUD-PARITY.md`,
+`Docs/AUTHORING-SKILLS.md`.
 
 ---
 
-## Architecture Summary
+## Effects system (26 concrete)
 
-### Design rules
+Acidic, Berserk, Bleeding, Broken, Burning, Charred, Confused,
+Electrified, Frozen, HearthAura, Hibernating, Hobbled, Hooked,
+Paralyzed, Poisoned, Recruited, Rooted, ShatterArmor, Sitting,
+Smoldering, Steam, Stoneskin, Stunned, Wet, Witnessed.
 
-- **Core simulation has zero Unity dependencies.** Entity, Part, Event, Stat, Zone, Combat, AI, WorldMap — all pure C#. Only `Rendering/` touches MonoBehaviours.
-- **Event-driven behavior.** Parts communicate exclusively through GameEvent. No direct Part-to-Part coupling.
-- **Reflection-based factory.** EntityFactory discovers Part types at runtime, instantiates from JSON blueprints.
-- **Modular zone generation.** IZoneBuilder pipeline with priority ordering and retry. Subclass ZoneManager to route custom pipelines.
+- Flat durations only — no Qud-style parameterized variants
+  (`BurningIntensity(N)`)
+- TYPE_NEGATIVE / TYPE_GENERAL flagging honest (WSP6.16 backfill)
+- Save/load round-trip pinned (SL.6 audit)
+- Effect chaining (Wet → Frozen, Fire → Smoke) ⏸
 
-### File counts
+Reference: `Docs/qud-effects-analysis.md`,
+`Docs/EFFECT-TICK-ON-APPLY-TURN.md`.
 
-| Directory | Files | Purpose |
-|-----------|-------|---------|
-| `Scripts/Core/` | 20 | Simulation engine |
-| `Scripts/Core/Builders/` | 7 | Zone generation builders |
-| `Scripts/Core/Mutations/` | 3 | Mutation implementations |
-| `Scripts/Data/` | 4 | Blueprint loading, entity factory |
-| `Scripts/Rendering/` | 6 | Unity bridge (rendering, input, bootstrap) |
-| `Tests/EditMode/` | 9 | NUnit test suites |
-| `Resources/Blueprints/` | 1 | Blueprint JSON data |
+---
 
-### Test coverage
+## Mutations (30+ concrete classes)
 
-271 passing tests across 9 test files. All core systems have dedicated test suites running in Unity's EditMode test runner.
+**Activated:** FlamingHands, FireBolt, IceShard, IceLance, FrostNova,
+RimeNova, AcidSpray, PoisonSpit, ArcBolt, ChainLightning, Thunderclap,
+PrismaticBeam, EmberVein, KindleFlame, ChillDraft, DryingBreeze,
+ConjureWater, Conflagration, Hearthwarm, Quench, Calm, WardGleam.
 
-### All blueprint names
+**Passive:** Telepathy, Regeneration, UnstableGenome,
+IrritableGenome, Esper, Chimera, ExtraArmPrototype.
 
-**Templates:** PhysicalObject, Terrain, Wall, Item, MeleeWeapon, ArmorItem, Creature
-**Creatures:** Player, Snapjaw, SnapjawScavenger, SnapjawHunter
-**Weapons:** Dagger, LongSword
-**Armor:** LeatherArmor, ChainMail
-**Terrain:** Floor, Rubble, Sand, Grass, StoneFloor
-**Walls:** Wall, SandstoneWall, VineWall, StoneWall
-**Obstacles:** Stalagmite, Rock, Tree
+**Infrastructure:** `MutationRegistry`, `MutationDefinition`,
+`MutationCategoryDefinition`, `IRankedMutation`, ranked scaling,
+mutation-granted equipment tracker, modifier tracker, source-type
+(natural/granted/temporary).
+
+Reference: `Docs/Plans/COO_MUTATION_SYSTEM_IMPLEMENTATION_PLAN.md`.
+
+---
+
+## Items / equipment / handling
+
+- **Slots & grip:** Body / Hand / Head + `GripType` (OneHand /
+  TwoHand) + `HandlingPart` / `HandlingService`
+- **Categories:** Melee Weapons, Armor, Food, Tonics, Books, etc.
+- **Stacker:** runtime item stacking
+- **Containers:** `ContainerPart` (containers in zone + picker UI)
+- **Locks/Keys:** `LockPart` + `KeyPart` (LockedDoorShowcase scenario)
+- **Tonics:** healing, status (poison/fire/acid/lightning/frost/water/bleed/charred),
+  Cure (Antidote/BurnSalve/Panacea)
+- **Books:** examinable lore items (multiple in world-gen)
+- **Item enhancements (E.1, 2026-05):** `IItemEnhancement` substrate,
+  `EnhancementFactory` registry, slot-cap veto, `IMeleeEnhancement`
+  filter, Apply/Remove lifecycle. **No concrete enhancements
+  shipped yet** — substrate only.
+- **OnHitEffects:** weapon-attached effect spec + factory
+  (Flaming Sword, Ice Sword, Acidic Dagger, Cryolance, Thunder Hammer,
+  Emberspear all wired)
+
+Reference: `Docs/ITEM-ENHANCEMENTS.md`, `Docs/ON-HIT-EFFECTS.md`.
+
+---
+
+## Anatomy / Body
+
+`Body` + `BodyPart` + `BodyPartCategory` + `BodyPartType` +
+`Laterality` (left/right) + `NaturalWeaponFactory` +
+`SeveredLimbFactory` + `SeveredLimbPart`. Dismemberment via
+`Axe_Decapitate` / `Axe_Dismember` skills. Humanoid / quadruped /
+insectoid templates.
+
+---
+
+## Materials / thermal sim
+
+`MaterialPart`, `ThermalPart`, `FuelPart`, `LifespanPart`,
+`MaterialSimSystem`, `MaterialReactionResolver`. Reaction blueprints
+(JSON-loadable): `fire_plus_raw_meat` (cooking), `fire_plus_raw_starapple`,
+`fire_plus_fungal`, `cold_plus_metal`, `lightning_plus_conductor`.
+
+Reference: `Docs/qud-effects-analysis.md`, `Docs/Design/Mechanics/`.
+
+---
+
+## Tinkering
+
+`BitLockerPart` (bit currency), `TinkerItemPart`,
+`TinkerRecipe`/`TinkerRecipeRegistry`, `TinkerModificationRegistry`,
+`TinkeringService`, mods directory. Player-facing UI ⚠ (debug-only
+access for now).
+
+Reference: `Docs/COO_TINKERING_IMPLEMENTATION_PLAN.md`,
+`Docs/qud-tinkering-analysis.md`.
+
+---
+
+## Economy / trade / rentals
+
+- `CommercePart` (item value), `TradeSystem` + `TradeUI` (NPC buy/sell)
+- `RentalSystem` + `RentalPart` — rent weapons, return-veto, cooldown,
+  cross-village blueprint matching. Two adversarial sweeps, **0 bugs
+  found**, deep contract pinning.
+
+Reference: `Docs/WEAPON-RENTAL-SYSTEM.md`, `Docs/SHOPPING-PARITY.md`.
+
+---
+
+## Conversations / NPCs
+
+`ConversationManager`, `ConversationPart`, `ConversationActions`,
+`ConversationPredicates`. 9 JSON files / 378 nodes total:
+
+| File | Nodes |
+|------|------:|
+| FriendlyNPCs | 81 |
+| Factions | 71 |
+| RotChoir | 68 |
+| HouseThresker | 47 |
+| Palimpsest | 43 |
+| Villagers | 38 |
+| Wardens | 19 |
+| Marceline_Quest | 6 |
+| Quartermaster | 5 |
+
+**NPC blueprints with conversation hooks:** Elder, Villager, Tinker,
+Merchant, Warden, Farmer, Innkeeper, Scribe (+ faction-specific).
+World-state predicates exist but are not yet driving branching in
+shipped conversations.
+
+---
+
+## Settlements (village repair gameplay)
+
+`SettlementManager` + `SettlementRuntime` + 3 site types:
+`WellSitePart`, `OvenSitePart`, `LanternSitePart`. State machine:
+Fouled → Purified → TemporarilyPurified, with repair stages, method
+IDs, outcome tiers, problem types. `CampfirePart`, `SanctuaryPart`
+support sites. Settlement visuals + definitions JSON-driven.
+
+⚠ No quest hook — repair is a passive site mechanic; no NPC
+dispatches the player on the task and no rep reward.
+
+---
+
+## House Drama / Narrative State
+
+- `HouseDramaRuntime` + `HouseDramaPart` + `HouseDramaLoader` +
+  `HouseDramaData` — persistent NPC relationships, grudges
+- `NarrativeStatePart` + `KnowledgePart` + `FactBag` +
+  `QualityRegistry` + `INarrativeReactor` — fact-tracking substrate
+- 2 dramas shipped: HouseThresker (47 nodes), HouseVex
+- Witnessed effect surfaces narrative state (scribes record events)
+
+⚠ Loaded at bootstrap; no scenario player can complete to feel it.
+
+Reference: `Docs/HOUSE-DRAMA-SYSTEM.md`,
+`Docs/Plans/NARRATIVE_STATE_LAYER_IMPLEMENTATION_PLAN.md`.
+
+---
+
+## Storylets / Quests
+
+`StoryletPart` + `StoryletRegistry` + `StoryletData` + `QuestState`.
+1 storylet declared: `IronKeyQuest.json`. Quest log UI state-builder
+shipped (`QuestLogStateBuilder`).
+
+⚠ No quest-giver NPC dispatches the IronKeyQuest in any scenario yet.
+
+Reference: `Docs/QUEST-SYSTEM.md`,
+`Docs/Plans/STORYLET_QUEST_LAYER_IMPLEMENTATION_PLAN.md`.
+
+---
+
+## Save / Load (SL.1-SL.10, 144 tests, audit closed)
+
+`SaveSystem.cs` (1876 LOC). Full round-trip serialization via
+reflection + `ISaveSerializable`. Auto-discovers `Part` subclasses.
+Goal-stack restoration with custom fields. Static-factory re-wiring on
+cold load. 60 contracts pinned in SL.10 audit closure. 0 bugs found in
+adversarial sweep.
+
+**Player UI:** `BootMenuController` (Continue / New Game on launch),
+`PauseMenuController` (Save / Load via Tab), `DeathScreenController`
+(Continue from autosave / Start over). F5/F6 hotkeys prepared
+(`InputHandler.cs:80`) but ⚠ not wired.
+
+Reference: `Docs/SAVE-LOAD-AUDIT.md`,
+`Docs/SAVESYSTEM-DEEP-DIVE-AUDIT.md`.
+
+---
+
+## Trap / furniture / interaction
+
+`PressurePlatePart`, `TripWirePart`, `TriggerOnStepPart`,
+`LightSourceFlickerPart`, `ExaminablePart`, `TrapFurniturePart`.
+Showcases for each in `Scenarios/Custom/`.
+
+Reference: `Docs/TRAP-FURNITURE.md`.
+
+---
+
+## Presentation / UI
+
+Renderers (compute snapshot, gate on fingerprint):
+
+- `ZoneRenderer` (CP437 + per-cell dirty hooks)
+- `SidebarRenderer` (HP/MP/LV/XP/AV/DV/WT/DR + 30-line message log +
+  thoughts mode 't')
+- `HotbarRenderer` (skill / ability bindings)
+- `LookOverlayRenderer` ('L' key — examine + tile probe)
+- `WorldCursorRenderer`, `AnimatedEnvironmentRenderer`,
+  `EnvironmentSpriteRenderer`, `GlyphGhostRenderer`, `AsciiFxRenderer`
+- `BiomePalette` / `BiomeColorPatcher` (per-biome color tweaks)
+
+Modal UI:
+
+- InventoryUI (I), SkillsScreenUI (X), AbilityManagerUI (M),
+  DialogueUI, TradeUI, ContainerPickerUI, PickupUI,
+  GrimoirePickerUI, WorldActionMenuUI (right-click), FactionUI
+
+Input:
+
+- `InputHandler` (WASD/arrows/numpad/vi keys, bump-attack)
+- `SaveLoadInputController`, look-mode controller
+
+Effects layer:
+
+- `CrtToggleController`, `HitStopController`,
+  `SpriteEnvToggleController`, `LightSourceSpriteHook`
+
+---
+
+## Performance / observability
+
+- `Diag.cs` substrate + `DiagQuery` / `DiagCount` / `DiagAssert` /
+  `DiagInspectRecord` MCP tools
+- Every gate emits a category-appropriate diag record (skill, effect,
+  damage, turn, furniture, trade, quest, ai)
+- `ZoneRenderHooks.MarkCellDirty` for visible state changes
+- Snapshot-fingerprint gating on renderers
+- 70,000× perf bug surfaced + fixed (2026-04-28) via
+  `ProfilerRecorder` over 60-90s windows
+
+Reference: `Docs/PERF-FOUNDATION.md`, `Docs/AI-OBSERVABILITY.md`,
+`Docs/D1-SPIKE-PLAN.md`, `Docs/D2-HOOKS-PLAN.md`,
+`Docs/D3-TOOLS-PLAN.md`.
+
+---
+
+## Scenarios (65 — all developer-facing)
+
+`Scripts/Scenarios/Custom/`. Categories:
+
+- **Showcases:** ElementalSwords, FlamingSword, Cryolance,
+  ThunderHammer, EmberSpear, AcidicDagger, CombatHooks, CombatParity,
+  SkillTree, StatusEffectGlow, OnHitEffects, ThrowableTonics,
+  TrapFurniture, TripWire, LockedDoor, MerchantShop, MagpieFetchesGold,
+  PetDogFetchesBone, RuneCultistAmbush, Recruit, AnimatedEnvironment,
+  TonicTestBench, RentalTestBench, AcidicDagger
+- **AI demos:** ScribeSeeksShelter, ScribeWitnessesSnapjawKill,
+  IgnoredScribe, WoundedScribeFleesToShrine, PacifiedWarden,
+  CorneredWarden, CalmThenWitness, CalmTestSetup, WitnessLineOfSightWall,
+  WitnessRadiusBoundary, WitnessStacksOnSecondDeath, MimicSurprise,
+  SleepingTroll, VillageChildrenPetting, ElementalCreatureZoo,
+  FiveSnapjawAmbush, SnapjawBurial, SnapjawRingAmbush, StoutSnapjaw,
+  InspectAIGoals
+- **Test benches:** EmptyStartingZone, QuestShowcase
+
+**No shipped vertical-slice scenario** — none of the 65 form a
+20-30 minute experience arc with goal → friction → resolution.
+
+---
+
+## Known gaps (engine vs game)
+
+The honest tension flagged in `Docs/roadmap.md` is still live:
+
+- **No vertical slice / win condition / progression curve** — `IMPLEMENTED`
+  features compose into a sandbox, not a game.
+- **Ranged combat absent** — melee-only.
+- **NPCs cannot cross zones** (except followers via F.2.7).
+- **Status effects render as sidebar text only** — no glyph indicators.
+- **Tinkering accessible only via debug** — no in-game crafting UI.
+- **House Drama / Narrative State runtime exists but no scenario
+  surfaces it.**
+- **IronKeyQuest storylet declared but no NPC dispatches it.**
+- **F5/F6 quicksave prepared in code, not wired.**
+- **No experience / leveling / character creation** — players spawn
+  pre-built; can't spend skill points on entry.
+- **`IMPLEMENTED.md` itself was 1+ year stale before this rewrite** —
+  ground truth for engine state.
+
+---
+
+## Reference docs
+
+| Path | Topic |
+|------|-------|
+| `Docs/QUD-PARITY.md` | Goal-stack parity tracker + Methodology Template (§5162+) |
+| `Docs/COMBAT-QUD-PARITY-PORT.md` | 10-phase combat port |
+| `Docs/SKILL-SYSTEM-PARITY.md` | Skill infrastructure parity |
+| `Docs/SKILL-TREE-QUD-PARITY.md` | Skill content per tree |
+| `Docs/FOLLOWERS.md` | F.1-F.3 follower system |
+| `Docs/ITEM-ENHANCEMENTS.md` | E.1 weapon enchantment substrate |
+| `Docs/SAVE-LOAD-AUDIT.md` | SL.1-SL.10 audit closure |
+| `Docs/roadmap.md` | Strategic "what next" |
+| `Docs/CONTENT-ROADMAP.md` | Content-shaped roadmap |
+| `Docs/Status/IMPLEMENTED.md` | This file |
+| `ADVERSARIAL_TESTING.md` (root) | Adversarial sweep playbook |
