@@ -46,6 +46,12 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static bool Apply(Entity item, string enhancementName, int tier = 1)
         {
+            // E.3.4: auto-register all concrete IItemEnhancement subclasses
+            // on first call. No-op in test contexts that called
+            // ResetForTests (which suppresses auto-load to preserve
+            // test isolation).
+            EnhancementFactory.EnsureInitialized();
+
             if (item == null)
             {
                 EmitApplyFailed(null, enhancementName, tier, "null_item");

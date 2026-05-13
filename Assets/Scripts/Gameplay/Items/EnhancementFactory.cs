@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace CavesOfOoo.Core
 {
@@ -9,6 +11,16 @@ namespace CavesOfOoo.Core
     /// dict-based, case-insensitive lookup by class-name and
     /// display-name. Code-side registration only for v1; E.5+ may add
     /// JSON content-loading.
+    ///
+    /// <para><b>Auto-discovery (E.3.4):</b> <see cref="EnsureInitialized"/>
+    /// scans the loaded assemblies once and registers every concrete
+    /// <see cref="IItemEnhancement"/> subclass found. Production-side
+    /// callers (e.g. <see cref="ItemEnhancing.Apply"/>, Tinker mod
+    /// shims) call <see cref="EnsureInitialized"/> first; in tests,
+    /// <see cref="ResetForTests"/> sets the initialized flag to true so
+    /// auto-load is suppressed and the test opts into specific types.
+    /// Pattern mirrors <c>TinkerRecipeRegistry.EnsureInitialized</c>
+    /// (TinkerRecipeRegistry.cs:33-49).</para>
     ///
     /// <para><b>Qud parity:</b> mirrors
     /// <c>/Users/steven/qud-decompiled-project/XRL.World/ModificationFactory.cs</c>.
@@ -24,6 +36,54 @@ namespace CavesOfOoo.Core
 
         private static readonly Dictionary<string, Type> _byDisplayName =
             new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
+
+        /// <summary>Auto-discovery guard. Once set, <see cref="EnsureInitialized"/>
+        /// is a no-op. Set to true on:
+        /// <list type="bullet">
+        ///   <item>First production-side <see cref="EnsureInitialized"/> call (auto-load runs)</item>
+        ///   <item>Any <see cref="ResetForTests"/> call (auto-load suppressed for test isolation)</item>
+        /// </list></summary>
+        private static bool _initialized;
+
+        /// <summary>If not yet initialized, scan loaded assemblies once
+        /// and register every concrete <see cref="IItemEnhancement"/>
+        /// subclass. Idempotent. Tests that need a blank registry call
+        /// <see cref="ResetForTests"/> which sets the flag to true so
+        /// this call is a no-op until the next <see cref="ResetForTests"/>.</summary>
+        public static void EnsureInitialized()
+        {
+            if (_initialized) return;
+            _initialized = true;
+
+            // Walk every loaded assembly and find concrete IItemEnhancement
+            // subclasses. Defensive: skip assemblies that throw on type
+            // enumeration (some Unity assemblies do).
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            foreach (var asm in assemblies)
+            {
+                Type[] types;
+                try
+                {
+                    types = asm.GetTypes();
+                }
+                catch (ReflectionTypeLoadException ex)
+                {
+                    types = ex.Types.Where(t => t != null).ToArray();
+                }
+                catch
+                {
+                    continue;
+                }
+
+                foreach (var t in types)
+                {
+                    if (t == null) continue;
+                    if (t.IsAbstract) continue;
+                    if (!typeof(IItemEnhancement).IsAssignableFrom(t)) continue;
+                    Register(t);
+                }
+            }
+        }
 
         /// <summary>Register an enhancement type. Idempotent — re-registering
         /// the same type is a no-op. Null types and non-enhancement
@@ -105,12 +165,26 @@ namespace CavesOfOoo.Core
             }
         }
 
-        /// <summary>Test isolation — clears all registrations. Mirrors
-        /// <c>SkillRegistry.ResetForTests</c>.</summary>
+        /// <summary>Test isolation — clears all registrations AND sets
+        /// the <c>_initialized</c> flag to true so subsequent
+        /// <see cref="EnsureInitialized"/> calls don't auto-load.
+        /// Tests that want auto-discovery should call
+        /// <see cref="ForceReinitialize"/> instead.</summary>
         public static void ResetForTests()
         {
             _byClassName.Clear();
             _byDisplayName.Clear();
+            _initialized = true; // suppress auto-load — tests opt in explicitly
+        }
+
+        /// <summary>Test helper: clear registrations AND re-enable
+        /// auto-discovery on next <see cref="EnsureInitialized"/> call.
+        /// Used by tests that exercise the production auto-load path.</summary>
+        public static void ForceReinitialize()
+        {
+            _byClassName.Clear();
+            _byDisplayName.Clear();
+            _initialized = false;
         }
     }
 }

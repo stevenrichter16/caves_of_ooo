@@ -21,7 +21,17 @@ namespace CavesOfOoo.Core
                 { "mod_hardened_shell", () => new HardenedShellTinkerModification() },
                 { "hardened_shell", () => new HardenedShellTinkerModification() },
                 { "mod_duelist_cut", () => new DuelistCutTinkerModification() },
-                { "duelist_cut", () => new DuelistCutTinkerModification() }
+                { "duelist_cut", () => new DuelistCutTinkerModification() },
+
+                // E.3.4 mineral-infusion mods. Each shim delegates to the
+                // E.1 IItemEnhancement system via ItemEnhancing.Apply with
+                // a hardcoded tier matching the mineral blueprint's Tier tag.
+                { "mod_palesalt", () => new PaleSaltTinkerModification() },
+                { "palesalt", () => new PaleSaltTinkerModification() },
+                { "mod_choiriron", () => new ChoirIronTinkerModification() },
+                { "choiriron", () => new ChoirIronTinkerModification() },
+                { "mod_glowquartz", () => new GlowQuartzTinkerModification() },
+                { "glowquartz", () => new GlowQuartzTinkerModification() }
             };
 
         public static bool TryCreate(string id, out ITinkerModification modification)
