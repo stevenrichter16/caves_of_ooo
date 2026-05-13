@@ -73,6 +73,12 @@ namespace CavesOfOoo.Core
 
         public override string GetDisplayName() => "Glow-Quartz-tipped";
 
+        public override string GetEffectDescription()
+        {
+            // RadiusBonus set by TierConfigure (Tier * 1).
+            return $"Glow-Quartz: +{RadiusBonus} light radius while equipped";
+        }
+
         // --- Lifecycle ---------------------------------------------
 
         public override void TierConfigure()

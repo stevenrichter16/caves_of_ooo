@@ -2357,6 +2357,17 @@ namespace CavesOfOoo.Rendering
                     DrawText(x0, y, "Target blueprint: " + recipe.TargetBlueprint, QudColorParser.Gray);
                 else
                     DrawText(x0, y, "Target: (any compatible item)", QudColorParser.Gray);
+                y++;
+            }
+
+            // Effect summary (tier-agnostic). Lands as a player-facing
+            // "what does this do?" line under the technical metadata.
+            // Empty for recipes that don't declare one — falls through to
+            // no extra line.
+            if (!string.IsNullOrWhiteSpace(recipe.Description))
+            {
+                DrawText(x0, y, "Effect: " + recipe.Description,
+                    QudColorParser.BrightGreen);
             }
         }
 

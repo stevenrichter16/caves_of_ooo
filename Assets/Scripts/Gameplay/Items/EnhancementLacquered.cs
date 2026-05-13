@@ -79,6 +79,12 @@ namespace CavesOfOoo.Core
 
         public override string GetDisplayName() => "Lacquered";
 
+        public override string GetEffectDescription()
+        {
+            // AvBonus set by TierConfigure (Tier * 1 by default).
+            return $"Lacquered: +{AvBonus} armor while equipped";
+        }
+
         // --- Lifecycle ---------------------------------------------
 
         public override void TierConfigure()

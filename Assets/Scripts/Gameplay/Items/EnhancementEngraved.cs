@@ -80,6 +80,15 @@ namespace CavesOfOoo.Core
                 ? "Engraved"
                 : $"Engraved with the symbol of {Faction}";
 
+        public override string GetEffectDescription()
+        {
+            // Player-facing — RepDelta is set by TierConfigure (Tier * 5).
+            // If Faction is unset, the effect is a no-op; surface honestly.
+            if (string.IsNullOrEmpty(Faction))
+                return "Engraved: (no faction set — no rep effect)";
+            return $"Engraved: +{RepDelta} reputation with {Faction} while equipped";
+        }
+
         // --- Lifecycle ---------------------------------------------
 
         public override void TierConfigure()

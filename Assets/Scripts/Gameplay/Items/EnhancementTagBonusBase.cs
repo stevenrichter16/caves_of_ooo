@@ -56,6 +56,13 @@ namespace CavesOfOoo.Core
             BonusDamage = Tier * BONUS_DAMAGE_PER_TIER;
         }
 
+        public override string GetEffectDescription()
+        {
+            // Subclasses provide the tag (Undead / Fungal) and the
+            // display-name prefix; the base supplies the format.
+            return $"{GetDisplayName()}: +{BonusDamage} damage vs {TargetMaterialTag}-tagged enemies on hit";
+        }
+
         public override void OnAttackerHit(
             Entity defender, Entity attacker, Damage damage,
             int actualDamage, Zone zone, System.Random rng)

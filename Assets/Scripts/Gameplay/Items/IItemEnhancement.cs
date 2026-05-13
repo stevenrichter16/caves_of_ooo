@@ -107,6 +107,25 @@ namespace CavesOfOoo.Core
             return GetType().Name;
         }
 
+        /// <summary>
+        /// Tier-aware effect description shown when the player examines
+        /// an item carrying this enhancement (via
+        /// <c>ExaminablePart</c>). Override to surface specific
+        /// numbers — e.g. <c>"+4 damage vs Undead enemies"</c> once
+        /// <see cref="TierConfigure"/> has resolved <c>BonusDamage</c>.
+        /// Default returns <see cref="GetDisplayName"/>, which is at
+        /// least better than nothing for unhooked content.
+        ///
+        /// <para>Distinct from the recipe's tier-agnostic description
+        /// (<c>TinkerRecipe.Description</c>) — that one describes the
+        /// EFFECT KIND ("Bonus damage vs Undead"); this one describes
+        /// the SPECIFIC NUMBER on this instance ("+4 damage vs Undead").</para>
+        /// </summary>
+        public virtual string GetEffectDescription()
+        {
+            return GetDisplayName();
+        }
+
         // ── Content hooks (E.2 — concrete enhancements override) ───
 
         /// <summary>Called when the parent item is the weapon used in a

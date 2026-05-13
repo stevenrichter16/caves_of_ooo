@@ -95,6 +95,13 @@ namespace CavesOfOoo.Core
 
         public override string GetDisplayName() => "Serrated";
 
+        public override string GetEffectDescription()
+        {
+            // ChancePercent is set by TierConfigure; if uninitialized
+            // (Tier defaults to 1 ctor + Configure), it's already 10.
+            return $"Serrated: {ChancePercent}% chance to cause Bleeding on hit";
+        }
+
         // --- Lifecycle ---------------------------------------------
 
         public override void Configure()
