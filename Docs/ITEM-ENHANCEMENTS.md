@@ -38,10 +38,10 @@
 
 | Field | Value |
 |---|---|
-| **Current phase** | E.2 ✅ shipped (146 verified tests, 0 bugs); E.3 in-progress |
-| **Cumulative tests** | 165 (E.1: 54 + E.2: 89 + adversarial: 19 + 3 not-counted-by-NUnit) — Adversarial sweep verified 19/19 in c47d200 |
-| **Real bugs surfaced + fixed** | 1 doc-time compile fix (E.2.5 `StatusEffectsPart.Effects` → `GetAllEffects()`) — surfaced by Unity verification after reconnect; 0 *real* gameplay bugs |
-| **Audit passes run** | E.1.5 cold-eye; E.2.5 adversarial sweep + cold-eye; E.3.1 verification sweep (this commit) |
+| **Current phase** | E.3 ✅ shipped (257 verified tests, 0 gameplay bugs, 2 false premises caught by sweeps); E.4 next |
+| **Cumulative tests** | 257 across E.1 + E.2 + E.3 (54 + 92 + 111) — all green, no fixtures skipped |
+| **Real bugs surfaced + fixed** | 1 doc-time compile fix (E.2.5 `StatusEffectsPart.Effects` → `GetAllEffects()`); 1 substrate gap (production-side `EnhancementFactory` registration was missing — fixed in E.3.4 with `EnsureInitialized` auto-discovery); 0 *real* gameplay bugs |
+| **Audit passes run** | E.1.5 cold-eye; E.2.5 adversarial sweep + cold-eye; E.3.1 verification sweep (caught 2 aspirational mechanics before they cost code); E.3.6 adversarial sweep (20 tests, 0 bugs) + cold-eye |
 | **Phases planned** | E.1 → E.4 (4 phases + E.5+ polish queue) |
 | **Last updated** | 2026-05-11 |
 | **Reference codebase** | Qud (`/Users/steven/qud-decompiled-project/XRL.World.Parts/IModification.cs` + 237 `Mod*.cs` files) |
@@ -92,7 +92,7 @@ not an architectural distinction.
 |---|---|---|---|---|
 | **E.1** | `IItemEnhancement` infra + `EnhancementFactory` + `ItemEnhancing.Apply` + `IMeleeEnhancement` + adversarial | ✅ Shipped | 54 (planned 25-35; bonus coverage) | `feat/item-enhancements-e1-infra` |
 | **E.2** | First 3 concrete enhancements (Serrated/Lacquered/Engraved) + ItemEnhancementDispatch + adversarial | ✅ Shipped | 92 (planned 25-35; bonus coverage incl. cross-enhancement) | `feat/item-enhancements-e2-first-three` |
-| **E.3** | 3 mineral items (PaleSalt/ChoirIron/GlowQuartz) + 3 Enhancement Parts (tag-bonus, light-radius) + Tinker recipes + `WantsMineralPart` | ⏳ E.3.1 sweep complete | 60-90 (revised from 30-40) | `feat/item-enhancements-e3-minerals` |
+| **E.3** | 3 mineral items + 3 Enhancement Parts (tag-bonus base + Pale-Salt + Choir-Iron + Glow-Quartz) + EnhancementFactory auto-discovery + 3 Tinker recipe shims + `WantsMineralPart` + `MineralTradeService` + adversarial | ✅ Shipped | 111 (10 mineral content + 14 Glow-Quartz + 28 tag-bonus + 16 Tinker + 18 WantsMineralPart + 20 adversarial + 5 substrate touch-ups) | `feat/item-enhancements-e3-minerals` |
 | **E.4** | Showcase scenario + manual playtest closure | ⏳ Not started | 5-10 smoke | `feat/item-enhancements-e4-showcase` |
 | **E.5+** | Polish queue: architectural mode, combinatorial crafting, more minerals/factions, decay/corruption | ⏳ Deferred | — | TBD |
 
@@ -478,14 +478,14 @@ reward.
 
 ## Sub-milestones
 
-| # | What | Tests (est) | Status |
+| # | What | Tests | Status |
 |---|---|---|---|
-| E.3.1 | Verification sweep + plan-doc revisions (this commit) | 0 | ⏳ in-progress |
-| E.3.2 | Mineral item blueprints (`PaleSalt`, `ChoirIron`, `GlowQuartz` in Objects.json) + content-validation test | 4-6 | ⏳ pending |
-| E.3.3 | Three `Enhancement*` Parts + per-Part tests | 30-40 (tag-bonus needs counter-checks + tier scaling + round-trip per Part) | ⏳ pending |
-| E.3.4 | Tinker recipes for mineral → enhancement application + recipe-application path test | 6-10 | ⏳ pending |
-| E.3.5 | `WantsMineralPart` + faction-rep flow + tests | 8-12 | ⏳ pending |
-| E.3.6 | Adversarial sweep + BOTH-angle cold-eye + merge | 15-25 adversarial | ⏳ pending |
+| E.3.1 | Verification sweep + plan-doc revisions | 0 | ✅ commit `1771188` |
+| E.3.2 | Mineral item blueprints in Objects.json + content-validation | 10 | ✅ shipped |
+| E.3.3 | `EnhancementGlowQuartz` + `EnhancementTagBonusBase` + `EnhancementPaleSalt` + `EnhancementChoirIron` Parts + tests | 42 | ✅ shipped |
+| E.3.4 | Tinker recipe shims (3) + `EnhancementFactory.EnsureInitialized` auto-discovery + Recipes_V1.json entries | 16 | ✅ shipped |
+| E.3.5 | `WantsMineralPart` + `MineralTradeService` + 18 tests | 18 | ✅ shipped |
+| E.3.6 | Adversarial sweep + cold-eye review | 20 | ✅ shipped |
 
 **E.3 actual ship target: 60-90 tests (revised up from 35-50 since each
 Enhancement Part needs full tag-check counter-checks), ~500 LOC.**
