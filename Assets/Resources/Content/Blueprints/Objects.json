@@ -5439,6 +5439,63 @@
         { "Key": "Faction", "Value": "Cultists" },
         { "Key": "Tier", "Value": "2" }
       ]
+    },
+    {
+      "Name": "PaleSalt",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "pale-salt" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "12" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Mineral", "Value": "" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "ChoirIron",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "choir-iron ore" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "18" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Mineral", "Value": "" },
+        { "Key": "Tier", "Value": "3" }
+      ]
+    },
+    {
+      "Name": "GlowQuartz",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "glow-quartz" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "15" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Mineral", "Value": "" },
+        { "Key": "Tier", "Value": "2" }
+      ]
     }
   ]
 }
