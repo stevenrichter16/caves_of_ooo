@@ -33,15 +33,26 @@ namespace CavesOfOoo.Core
     ///   <item><term>4</term><description>+4</description></item>
     /// </list>
     ///
-    /// <para><b>Qud parity:</b> Qud has TWO related Mods:
-    /// <c>ModReinforced</c> grants +1 AV on a Body/Back armor (the +AV
-    /// mechanic CoO mirrors). <c>ModLacquered</c> grants liquid-repulsion
-    /// + rust-immunity (CoO doesn't have liquid/rust systems yet).
-    /// CoO's <c>EnhancementLacquered</c> borrows Qud's "Lacquered"
-    /// thematic name for armor enhancement but ships the AV-bonus
-    /// mechanic from <c>ModReinforced</c> — Qud's liquid mechanics
-    /// will land in a later phase if needed. Documented in
-    /// <c>Docs/ITEM-ENHANCEMENTS.md</c>.</para>
+    /// <para><b>Qud parity divergences (3, all documented):</b></para>
+    /// <list type="number">
+    ///   <item><b>Name swap:</b> CoO keeps Qud's "Lacquered" thematic
+    ///         name but ships the AV-bonus mechanic from
+    ///         <c>ModReinforced</c>. Qud's literal <c>ModLacquered</c>
+    ///         (liquid-repulsion + rust-immunity) requires liquid/rust
+    ///         systems CoO doesn't have yet.</item>
+    ///   <item><b>Mechanic swap:</b> see (1) — the +AV mechanic
+    ///         is faithful to ModReinforced.cs.</item>
+    ///   <item><b>Slot filter (E.4.2 cold-eye Finding #4):</b>
+    ///         Qud's <c>ModReinforced.ModificationApplicable</c>
+    ///         (ModReinforced.cs:23) calls
+    ///         <c>IModification.CheckWornSlot(Object, "Body", "Back")</c>
+    ///         — the +AV applies ONLY to body or back armor, not
+    ///         gauntlets / helms / boots. CoO's <see cref="Applicable"/>
+    ///         only checks <c>item.GetPart&lt;ArmorPart&gt;() != null</c>,
+    ///         accepting any armor. v1 acceptable because CoO doesn't
+    ///         yet differentiate slot-AV semantics; revisit when it does.</item>
+    /// </list>
+    /// All three documented in <c>Docs/ITEM-ENHANCEMENTS.md</c>.
     /// </summary>
     public class EnhancementLacquered : IItemEnhancement
     {

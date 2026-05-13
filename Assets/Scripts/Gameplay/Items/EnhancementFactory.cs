@@ -166,10 +166,20 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>Test isolation — clears all registrations AND sets
-        /// the <c>_initialized</c> flag to true so subsequent
-        /// <see cref="EnsureInitialized"/> calls don't auto-load.
-        /// Tests that want auto-discovery should call
-        /// <see cref="ForceReinitialize"/> instead.</summary>
+        /// the <c>_initialized</c> flag to <b>true</b> so subsequent
+        /// <see cref="EnsureInitialized"/> calls are NO-OPS.
+        ///
+        /// <para><b>⚠ Subtle semantics</b> (E.4.2 cold-eye Finding #3):
+        /// after <see cref="ResetForTests"/>, calling
+        /// <see cref="EnsureInitialized"/> does NOT re-populate the
+        /// registry. Tests that need auto-discovery must call
+        /// <see cref="ForceReinitialize"/> instead — that resets
+        /// <c>_initialized=false</c> so the next
+        /// <see cref="EnsureInitialized"/> actually runs the assembly
+        /// scan. Test fixtures that mix `Reset` + manual
+        /// <c>Register</c> calls (the common pattern) work as
+        /// expected because they don't rely on auto-discovery.</para>
+        /// </summary>
         public static void ResetForTests()
         {
             _byClassName.Clear();
