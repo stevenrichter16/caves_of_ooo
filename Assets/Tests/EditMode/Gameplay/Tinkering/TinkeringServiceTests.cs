@@ -233,6 +233,18 @@ namespace CavesOfOoo.Tests
             TinkerRecipeRegistry.InitializeFromJson(TestRecipesJson);
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            // Restore the registry to its pre-test state so a subsequent
+            // Play-mode session doesn't see the test-only recipes
+            // (craft_thorn_dagger / craft_plain_knife / craft_torch_from_scrap)
+            // leaking into the running game. ResetForTests sets
+            // _initialized=false so the next TryGetRecipe auto-loads
+            // the production JSON.
+            TinkerRecipeRegistry.ResetForTests();
+        }
+
         [Test]
         public void BitLocker_AddAndUseBits_WorksWithStringEncodedCosts()
         {

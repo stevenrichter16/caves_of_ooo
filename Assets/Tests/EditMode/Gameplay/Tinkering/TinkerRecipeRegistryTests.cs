@@ -15,6 +15,68 @@ namespace CavesOfOoo.Tests
             TinkerRecipeRegistry.ResetForTests();
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            // Defensive: leave registry in a clean-but-uninitialized state
+            // so the next caller (test or live Play) gets a fresh auto-load
+            // from the production JSON.
+            TinkerRecipeRegistry.ResetForTests();
+        }
+
+        // ── Regression pin against test-state pollution ───────────
+
+        [Test]
+        public void Production_Registry_HasNoTestOnlyRecipeIds()
+        {
+            // E.5.5 regression pin: the Tinker registry must NEVER serve
+            // recipes that only exist in test-fixture embedded JSON.
+            //
+            // Bug history: TinkeringServiceTests + TinkeringCommandTests
+            // call InitializeFromJson(TestRecipesJson) in their Setup,
+            // which loads test-only recipes
+            // (craft_thorn_dagger / craft_plain_knife / craft_torch_from_scrap).
+            // Both fixtures previously lacked a TearDown that called
+            // ResetForTests — so after they ran, the registry was left
+            // polluted with those test recipes. A live Play session
+            // querying the registry next saw a sparse 8-recipe set
+            // (test recipes + only the mod recipes shared between test
+            // and production) instead of the full ~50 production
+            // recipes — including the 3 mineral mods MISSING entirely
+            // because they're only in the production JSON.
+            //
+            // This test catches the regression by forcing a clean
+            // auto-load + asserting the test-only IDs are NOT present.
+            TinkerRecipeRegistry.ResetForTests();
+            TinkerRecipeRegistry.EnsureInitialized();
+
+            string[] testOnlyIds =
+            {
+                "craft_thorn_dagger",
+                "craft_torch_from_scrap",
+                "craft_plain_knife",
+            };
+            foreach (var id in testOnlyIds)
+            {
+                Assert.IsFalse(TinkerRecipeRegistry.TryGetRecipe(id, out _),
+                    $"Test-only recipe '{id}' must NOT exist in the " +
+                    "production registry. If this fails, either " +
+                    "(a) the production Recipes_V1.json accidentally " +
+                    "gained this entry, or (b) a previous test fixture " +
+                    "polluted the registry and forgot to clean up — " +
+                    "check Setup/TearDown symmetry on TinkeringServiceTests " +
+                    "+ TinkeringCommandTests.");
+            }
+
+            // Positive sibling: the 3 mineral mods MUST exist after a
+            // clean production auto-load. If they're missing, the bug
+            // is the inverse — production JSON was overwritten or
+            // truncated.
+            Assert.IsTrue(TinkerRecipeRegistry.TryGetRecipe("mod_palesalt_infuse", out _));
+            Assert.IsTrue(TinkerRecipeRegistry.TryGetRecipe("mod_choiriron_infuse", out _));
+            Assert.IsTrue(TinkerRecipeRegistry.TryGetRecipe("mod_glowquartz_infuse", out _));
+        }
+
         [Test]
         public void EnsureInitialized_HasBuildRecipeForEachCraftableMeleeWeaponBlueprint()
         {

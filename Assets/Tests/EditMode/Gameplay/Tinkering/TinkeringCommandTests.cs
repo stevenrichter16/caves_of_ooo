@@ -158,6 +158,15 @@ namespace CavesOfOoo.Tests
             TinkerRecipeRegistry.InitializeFromJson(TestRecipesJson);
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            // Same Tinker-registry test-pollution fix as in
+            // TinkeringServiceTests — clear test recipes so they don't
+            // leak into a subsequent Play-mode session.
+            TinkerRecipeRegistry.ResetForTests();
+        }
+
         [Test]
         public void CraftFromRecipeCommand_Succeeds_ThroughExecutor()
         {
