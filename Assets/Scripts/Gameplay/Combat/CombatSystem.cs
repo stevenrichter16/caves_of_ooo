@@ -236,11 +236,44 @@ namespace CavesOfOoo.Core
             bool autoPen = naturalTwenty;
 
             int penetrations = RollPenetrations(av, bonus + critPenBonus, maxBonus + critMaxBonus, rng);
+            int penetrationsBeforeAutoPen = penetrations;
 
             // AutoPen: if penetration failed AND we're a critical AND attacker is the player,
             // force one penetration through. Mirrors Qud's `flag5 && Attacker.IsPlayer()` guard.
             if (penetrations == 0 && autoPen && attacker.HasTag("Player"))
                 penetrations = 1;
+
+            // Penetration diag emission — surfaces the per-attack roll
+            // breakdown so observability tools can answer "did Sharp's
+            // +1 PenBonus contribute on this hit?" The payload exposes
+            // each summand independently (weapon PenBonus, strength
+            // modifier, skill bonus, crit bonus) plus the final
+            // penetration count + AutoPen-fired flag. Emitted per
+            // attack, not per die roll — the granularity matches what
+            // a debug query would ask for.
+            if (Diag.IsChannelEnabled("damage"))
+            {
+                string weaponName = weapon?.ParentEntity?.GetDisplayName() ?? "(natural)";
+                Diag.Record(
+                    category: "damage",
+                    kind: "Penetration",
+                    actor: attacker,
+                    target: defender,
+                    payload: new
+                    {
+                        weapon = weaponName,
+                        av = av,
+                        weaponPenBonus = penBonus,
+                        strMod = strMod,
+                        skillPenBonus = skillPenBonus,
+                        critPenBonus = critPenBonus,
+                        totalBonus = bonus + critPenBonus,
+                        maxBonus = maxBonus + critMaxBonus,
+                        naturalTwenty = naturalTwenty,
+                        penetrations = penetrations,
+                        autoPenForced = (penetrationsBeforeAutoPen == 0 && penetrations == 1 && autoPen)
+                    });
+            }
 
             if (penetrations == 0)
             {
