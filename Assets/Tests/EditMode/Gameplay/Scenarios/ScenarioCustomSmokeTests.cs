@@ -213,6 +213,9 @@ namespace CavesOfOoo.Tests.Scenarios
         [Test] public void OnHitEffectsShowcase_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new OnHitEffectsShowcase().Apply(FreshContext()));
 
+        [Test] public void ItemEnhancementShowcase_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new ItemEnhancementShowcase().Apply(FreshContext()));
+
         [Test] public void RecruitShowcase_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new RecruitShowcase().Apply(FreshContext()));
 

@@ -148,6 +148,36 @@ namespace CavesOfOoo.Tests
                 "ApplyTier MUST NOT re-fire Configure — that's ctor-time only.");
         }
 
+        [Test]
+        public void ApplyTier_DoesNotClobberStableFields_E42ColdEyeFinding5()
+        {
+            // E.4.2 cold-eye Finding #5: the Configure/TierConfigure split
+            // distinguishes ctor-time-stable fields from tier-scaled
+            // fields. A re-tier must NOT reset stable fields (else a
+            // future change moving stable-field init into TierConfigure
+            // would silently corrupt content state on retier).
+            //
+            // Uses EnhancementSerrated as the concrete sample: SaveTarget
+            // + DamageDice are set in Configure (ctor-time stable);
+            // ChancePercent is set in TierConfigure (tier-scaled).
+            var s = new EnhancementSerrated();
+            // Mutate a stable field as a content path would.
+            s.SaveTarget = 99;
+            s.DamageDice = "1d6";
+
+            s.ApplyTier(4);
+
+            Assert.AreEqual(99, s.SaveTarget,
+                "ApplyTier MUST NOT reset the stable SaveTarget field. " +
+                "If this fails, a future change moved stable init into " +
+                "TierConfigure — the Configure/TierConfigure contract is broken.");
+            Assert.AreEqual("1d6", s.DamageDice,
+                "ApplyTier MUST NOT reset the stable DamageDice field.");
+            // Tier-scaled field SHOULD update.
+            Assert.AreEqual(40, s.ChancePercent,
+                "ApplyTier(4) DOES update ChancePercent — that's the contract.");
+        }
+
         // ── Apply / Remove ───────────────────────────────────────
 
         [Test]

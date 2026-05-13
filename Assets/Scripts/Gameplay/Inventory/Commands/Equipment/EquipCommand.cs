@@ -182,7 +182,16 @@ namespace CavesOfOoo.Core.Inventory.Commands
             // IItemEnhancement Parts and calls each one's OnEquipped.
             // Fires AFTER the AfterEquip event so enhancements that need
             // post-equip state (final stats, slot occupied) see a settled world.
+            //
+            // E.4.2 cold-eye Finding #1 fix: wrap in transaction.Do so a
+            // subsequent rollback unfires the enhancement (concrete
+            // enhancements' AppliedBonus eager-flag makes the undo
+            // idempotent — calling OnUnequipped after OnEquipped subtracts
+            // exactly what was added).
             ItemEnhancementDispatch.DispatchOnEquip(actor, itemToEquip);
+            transaction.Do(
+                apply: null,
+                undo: () => ItemEnhancementDispatch.DispatchOnUnequip(actor, itemToEquip));
 
             return InventoryCommandResult.Ok();
         }

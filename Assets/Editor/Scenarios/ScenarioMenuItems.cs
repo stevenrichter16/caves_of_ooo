@@ -100,6 +100,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_OnHitEffectsShowcase()
             => ScenarioRunner.Launch<OnHitEffectsShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Items/Item Enhancement Showcase (Phase E.1–E.3 — minerals + Tinker + faction trade)", priority = 120)]
+        private static void Launch_ItemEnhancementShowcase()
+            => ScenarioRunner.Launch<ItemEnhancementShowcase>();
+
         [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Status Effect Glow Showcase (Pass 3 HDR bloom)", priority = 116)]
         private static void Launch_StatusEffectGlowShowcase()
             => ScenarioRunner.Launch<StatusEffectGlowShowcase>();

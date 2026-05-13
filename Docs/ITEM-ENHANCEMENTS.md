@@ -38,10 +38,10 @@
 
 | Field | Value |
 |---|---|
-| **Current phase** | E.3 ✅ shipped (257 verified tests, 0 gameplay bugs, 2 false premises caught by sweeps); E.4 next |
-| **Cumulative tests** | 257 across E.1 + E.2 + E.3 (54 + 92 + 111) — all green, no fixtures skipped |
-| **Real bugs surfaced + fixed** | 1 doc-time compile fix (E.2.5 `StatusEffectsPart.Effects` → `GetAllEffects()`); 1 substrate gap (production-side `EnhancementFactory` registration was missing — fixed in E.3.4 with `EnsureInitialized` auto-discovery); 0 *real* gameplay bugs |
-| **Audit passes run** | E.1.5 cold-eye; E.2.5 adversarial sweep + cold-eye; E.3.1 verification sweep (caught 2 aspirational mechanics before they cost code); E.3.6 adversarial sweep (20 tests, 0 bugs) + cold-eye |
+| **Current phase** | **E.4 ✅ shipped — feature complete**; E.5+ polish queue active |
+| **Cumulative tests** | **308** across E.1 + E.2 + E.3 + E.4 — all green, no fixtures skipped |
+| **Real bugs surfaced + fixed** | 1 doc-time compile fix (E.2.5); 1 substrate gap fixed (E.3.4 `EnsureInitialized` auto-discovery); 1 latent atomicity 🟡 fixed in E.4.2 (dispatcher not in transaction rollback); 0 *real* gameplay bugs across all 4 phases |
+| **Audit passes run** | E.1.5 cold-eye; E.2.5 adversarial sweep + cold-eye; E.3.1 verification sweep (caught 2 aspirational mechanics before they cost code); E.3.6 adversarial sweep (20 tests, 0 bugs) + cold-eye; **E.4.3 cumulative BOTH-angle cold-eye review (5 findings — 1 🟡 latent atomicity fixed; 1 🟡 hypothesis falsified with regression tests; 3 minor 🔵/🧪 cleanups)** |
 | **Phases planned** | E.1 → E.4 (4 phases + E.5+ polish queue) |
 | **Last updated** | 2026-05-11 |
 | **Reference codebase** | Qud (`/Users/steven/qud-decompiled-project/XRL.World.Parts/IModification.cs` + 237 `Mod*.cs` files) |
@@ -93,7 +93,7 @@ not an architectural distinction.
 | **E.1** | `IItemEnhancement` infra + `EnhancementFactory` + `ItemEnhancing.Apply` + `IMeleeEnhancement` + adversarial | ✅ Shipped | 54 (planned 25-35; bonus coverage) | `feat/item-enhancements-e1-infra` |
 | **E.2** | First 3 concrete enhancements (Serrated/Lacquered/Engraved) + ItemEnhancementDispatch + adversarial | ✅ Shipped | 92 (planned 25-35; bonus coverage incl. cross-enhancement) | `feat/item-enhancements-e2-first-three` |
 | **E.3** | 3 mineral items + 3 Enhancement Parts (tag-bonus base + Pale-Salt + Choir-Iron + Glow-Quartz) + EnhancementFactory auto-discovery + 3 Tinker recipe shims + `WantsMineralPart` + `MineralTradeService` + adversarial | ✅ Shipped | 111 (10 mineral content + 14 Glow-Quartz + 28 tag-bonus + 16 Tinker + 18 WantsMineralPart + 20 adversarial + 5 substrate touch-ups) | `feat/item-enhancements-e3-minerals` |
-| **E.4** | Showcase scenario + manual playtest closure | ⏳ Not started | 5-10 smoke | `feat/item-enhancements-e4-showcase` |
+| **E.4** | `ItemEnhancementShowcase` scenario + probe Part + menu entry + smoke test + BOTH-angle cold-eye review (5 findings → 1 latent 🟡 atomicity fix + 1 🟡 hypothesis pinned as already-correct + 3 minor cleanups) | ✅ Shipped | 9 (1 smoke + 4 transaction tests + 3 MaterialPart round-trip + 1 Configure-vs-TierConfigure pin) | `feat/item-enhancements-e4-showcase` |
 | **E.5+** | Polish queue: architectural mode, combinatorial crafting, more minerals/factions, decay/corruption | ⏳ Deferred | — | TBD |
 
 ---
@@ -492,28 +492,124 @@ Enhancement Part needs full tag-check counter-checks), ~500 LOC.**
 
 ---
 
-# Phase E.4 — Showcase + playtest ⏳
+# Phase E.4 — Showcase + playtest ✅
 
 ## Goal
 
-Manual-playtest validation. Player can:
+Manual-playtest validation + final cross-phase audit pass.
 
-1. Pick up a Mace + a Pale-Salt fragment + a Glow-Quartz fragment.
-2. Activate Tinker → select Mace → select Pale-Salt → mace now has `EnhancementPaleSalt`.
-3. Swing the mace at a Snapjaw → observe enhanced bleed effect.
-4. Activate Tinker → select Mace → select Glow-Quartz → mace gains a second enhancement (light-radius bump).
-5. Try to add a THIRD enhancement → rejected (`MAX_ENHANCEMENTS_PER_ITEM = 2`).
-6. Trade Choir-Iron to a Pale-Curation NPC → faction-rep with Pale Curation increases.
+Player flow (verifiable in the live game by spawning the scenario):
 
-## Sub-milestones
+1. Pick up minerals from inventory (pre-staged: 3 PaleSalt, 2 ChoirIron, 2 GlowQuartz).
+2. Walk to Tinker NPC W. Activate Tinker → select LongSword → select "Infuse with Pale-Salt" → weapon now has `EnhancementPaleSalt`.
+3. Swing the now pale-salt-edged LongSword at the SkeletalSentry N → observe TWO `[E4Demo]` log lines per swing (primary + bonus damage).
+4. Counter-check: swing the same weapon at the Snapjaw NE (no Undead tag) → only ONE `[E4Demo]` line, no bonus.
+5. Apply Choir-Iron via Tinker → second enhancement attaches (slot-cap=2 now full).
+6. Try to apply a THIRD enhancement → rejected with "Item already has the maximum number of enhancements."
+7. Apply Glow-Quartz to spare Mace via Tinker → equip Mace → observable light radius increase around player.
+8. Walk to Pale Curation Scribe SW. Trade Pale-Salt → "Your reputation with PaleCuration improves." Trade Choir-Iron → second improvement. Try to trade Glow-Quartz → "not_wanted" rejection.
 
-| # | What | Tests (est) |
-|---|---|---|
-| E.4.1 | `Scenarios/Custom/ItemEnhancementShowcase.cs` — preloaded player + minerals + NPCs | 1 smoke |
-| E.4.2 | Menu wiring + playtest validation report | 0 (manual) |
-| E.4.3 | Post-feature audit pass (BOTH angles) + final post-mortem in this doc | 0 + audit |
+## Sub-milestones (all shipped)
 
-**E.4 ship target: 1 smoke test + playtest closure + post-mortem.**
+| # | What | Tests | Status |
+|---|---|---|---|
+| E.4.1 | `ItemEnhancementShowcase.cs` + `ItemEnhancementDemoProbePart` + menu entry + smoke test | 1 smoke | ✅ commit `45c8c8a` |
+| E.4.2 | BOTH-angle cold-eye review + 5 findings addressed (1 latent 🟡 atomicity fix + 1 🟡 hypothesis falsified with pin tests + 3 minor cleanups) | 8 | ✅ shipped |
+| E.4.3 | Final doc closeout + cross-phase post-mortem + merge | 0 | ✅ this commit |
+
+## E.4.3 cross-phase post-mortem (BOTH-angle cold-eye review)
+
+The audit ran across the FULL E.1 + E.2 + E.3 + E.4 surface (16 source
+files + 16 test fixtures). 5 findings surfaced; all addressed inline
+in commit E.4.2.
+
+**Angle A — bug-class taxonomy:**
+
+- 🟡 **Finding #1 (FIXED)** — `EquipCommand` + `UnequipCommand` fire
+  `ItemEnhancementDispatch.DispatchOnEquip/Unequip` OUTSIDE the
+  `InventoryTransaction`, so a rollback after equip-success leaves
+  enhancement mutations permanent. Today no caller does that, but the
+  pattern matches the F.3.4 atomicity lesson. Fix: wrap each
+  dispatcher in `transaction.Do(apply: null, undo: () => DispatchOpposite(...))`.
+  The concrete enhancements' `AppliedBonus` eager-flag makes the
+  undo idempotent. 4 new tests in `EnhancementDispatchTransactionTests`.
+
+- 🟡 **Finding #2 (FALSIFIED)** — audit hypothesized that
+  `MaterialPart.MaterialTags` HashSet wouldn't survive save/load
+  reflection (`Initialize()` only fires on `AddPart`, not on load),
+  silently breaking Pale-Salt / Choir-Iron tag-bonus damage on
+  loaded saves. Wrote 3 RED-then-GREEN tests. ALL 3 PASS — the
+  reflection serializer evidently round-trips the HashSet directly.
+  The tests are now valuable regression pins on the actual
+  correct behavior; the audit hypothesis was wrong.
+
+- 🔵 **Finding #3 (FIXED)** — `EnhancementFactory.ResetForTests`
+  semantics were subtle: after `Reset`, `EnsureInitialized` becomes
+  a no-op. Docstring rewrite makes the gotcha explicit, with pointer
+  to `ForceReinitialize` for tests that want auto-discovery.
+
+- 🧪 **Finding #5 (FIXED)** — added test pinning that `ApplyTier(N)`
+  doesn't clobber Configure-set stable fields (SaveTarget, DamageDice
+  in EnhancementSerrated). Catches a future change accidentally
+  moving stable-field init into TierConfigure.
+
+**Angle B — Qud-parity-first:**
+
+- 🔵 **Finding #4 (FIXED)** — `EnhancementLacquered`'s Qud-parity
+  docstring overclaimed. Qud's `ModReinforced.ModificationApplicable`
+  restricts +AV to body/back slots; CoO's Applicable accepts any
+  ArmorPart. Docstring now enumerates 3 divergences (name swap +
+  mechanic swap + slot-filter divergence).
+
+- ⚪ **Finding #6 (documented)** — Qud's `WorksOnSelf=true` semantic
+  is intentionally not ported. CoO's `Apply(item)/OnEquipped(actor,item)`
+  signature distinction subsumes the concept.
+
+**Process check:** the E.4.3 audit ran BOTH angles per the
+CLAUDE.md "Run BOTH audit angles" directive. Angle A surfaced 3 of 5
+findings; Angle B surfaced 1 of 5; Angle A also surfaced the
+documented-but-fine ⚪ Finding #6. The split confirms the audit
+guidance — neither angle alone would have caught all 5.
+
+## Final feature post-mortem (E.1 → E.4)
+
+### What shipped
+
+| Layer | What |
+|---|---|
+| **E.1** | `IItemEnhancement` abstract base (Configure → ApplyTier → TierConfigure → Applicable → Apply → Remove lifecycle); `EnhancementFactory` registry with reflection auto-discovery; `ItemEnhancing.Apply/Remove` API with 6 rejection paths each emitting `enhancement/ApplyFailed` diag + reason; `IMeleeEnhancement` filter base; `ItemEnhancementDispatch` content-hook dispatcher with 3 hooks (OnAttackerHit, OnEquipped, OnUnequipped) + transactional rollback wiring (E.4.2 fix); slot-cap of 2 per item (Lockdown #6) |
+| **E.2** | 3 concrete enhancements covering distinct mechanical templates: `EnhancementSerrated` (Cutting-melee → tier-scaled bleed chance), `EnhancementLacquered` (armor → tier-scaled +AV with `AppliedBonus` atomicity), `EnhancementEngraved` (any equippable → tier-scaled faction rep with player-only gate + F.3.4 atomicity) |
+| **E.3** | 3 mineral blueprints (PaleSalt / ChoirIron / GlowQuartz) in Objects.json; `EnhancementTagBonusBase` abstract base for the bonus-damage-vs-tag pattern + 2 concrete subclasses (PaleSalt vs Undead, ChoirIron vs Fungal); `EnhancementGlowQuartz` (any equippable → LightSourcePart radius extension); 3 Tinker recipe shims bridging the older `ITinkerModification` system to the new `IItemEnhancement` system; Recipes_V1.json entries; `WantsMineralPart` + `MineralTradeService` for player↔NPC mineral trade |
+| **E.4** | `ItemEnhancementShowcase` scenario exercising the full loop; menu entry; smoke test; BOTH-angle cold-eye review with 5 findings addressed |
+
+### Counters
+
+| Counter | E.1 | E.2 | E.3 | E.4 | Total |
+|---|---|---|---|---|---|
+| Tests added | 54 | 92 | 111 | 9 | **308** |
+| Commits | 5 | 5 | 7 | 4 (incl. cold-eye fixes) | **21** |
+| Scope-prunes documented | 0 | 3 (Serrated dismember→bleed; Lacquered liquid-repel→AV; Engraved CoO-original) | 3 (PaleSalt preservation passive; ChoirIron aura passive; 4 lore-factions to E.5+) | 0 | **6** |
+| False premises caught BEFORE code | 0 | 2 (Qud ModSerrated≠Bleed mod; Qud ModLacquered=liquid-repel) | 2 (food-spoilage; Driving Bloom infection) | 0 | **4** |
+| Real gameplay bugs surfaced | 0 | 0 | 0 | 0 | **0** |
+| Substrate gaps fixed (in-flight) | 0 | 1 (StatusEffectsPart.Effects compile error) | 1 (EnhancementFactory production registration missing) | 1 (transaction.Do wrap on dispatcher) | **3** |
+
+### What's still open for E.5+
+
+- Player-facing dialog UI for `MineralTradeService.TryTrade` (service-layer ready)
+- 4 lore-faction stubs (DrivingBloom, CatacombVillagers, BowerFolk, TentRight)
+- Food-spoilage system → unlocks Pale-Salt's preservation passive
+- Driving Bloom effect / infection mechanic → unlocks Choir-Iron's anti-fungal aura
+- Per-recipe Tier reading from the consumed mineral's Tags (currently hardcoded in each shim)
+- `ITinkerModification` ↔ `IItemEnhancement` unification
+- Slot-filtered `EnhancementLacquered` matching Qud's body/back-only restriction
+- A proper PaleCuration NPC blueprint (currently the showcase inline-builds one)
+
+### Lessons that earned their place in CLAUDE.md
+
+- **§1.2 verification sweep is the highest-leverage step.** Caught 4 false premises across E.2 + E.3 BEFORE any code; saved an estimated 3-4 days of building against fictional APIs.
+- **§5 in-phase self-review with severity markers + fix 🟡+ pre-commit.** Caught the StatusEffectsPart compile error during E.2.5's Unity-reconnect verification.
+- **BOTH audit angles, not one.** The E.4.3 audit's split (3 findings from Angle A, 1 from Angle B, 1 documented-fine from A) confirms the F.3 Followers lesson — a single angle has blind spots.
+- **0 real gameplay bugs across 4 phases.** Not because the feature is trivial — it's 21 commits, 308 tests, 3 substrate gaps, 6 documented scope-prunes. The verification sweep + RED→GREEN per-sub-milestone + adversarial gate + cold-eye reviews compound into "the bugs got caught before they could ship."
 
 ---
 

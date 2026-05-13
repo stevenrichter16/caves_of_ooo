@@ -98,7 +98,14 @@ namespace CavesOfOoo.Core.Inventory.Commands
             // Item-enhancement on-unequip hook (E.2.1). Symmetric pair of
             // EquipCommand's DispatchOnEquip — fires AFTER AfterUnequip so
             // enhancements removing on-equip bonuses see settled state.
+            //
+            // E.4.2 cold-eye Finding #1 fix: wrap in transaction.Do so a
+            // rollback re-fires OnEquipped (concrete enhancements'
+            // AppliedBonus eager-flag makes the redo idempotent).
             ItemEnhancementDispatch.DispatchOnUnequip(actor, _item);
+            transaction.Do(
+                apply: null,
+                undo: () => ItemEnhancementDispatch.DispatchOnEquip(actor, _item));
 
             transaction.Do(
                 apply: null,
@@ -160,7 +167,13 @@ namespace CavesOfOoo.Core.Inventory.Commands
             actor.FireEventAndRelease(afterUnequip);
 
             // Item-enhancement on-unequip hook (E.2.1).
+            // E.4.2 cold-eye Finding #1 fix: wrap in transaction.Do so
+            // rollback re-fires OnEquipped (AppliedBonus eager-flag makes
+            // the redo idempotent).
             ItemEnhancementDispatch.DispatchOnUnequip(actor, item);
+            transaction.Do(
+                apply: null,
+                undo: () => ItemEnhancementDispatch.DispatchOnEquip(actor, item));
 
             transaction.Do(
                 apply: null,
