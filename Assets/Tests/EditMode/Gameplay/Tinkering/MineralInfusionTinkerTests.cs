@@ -170,6 +170,71 @@ namespace CavesOfOoo.Tests
 
         // ── ChoirIron: full recipe path ───────────────────────────
 
+        // ── E.5.1 deep-audit Bug #1 integration test ──────────────
+
+        [Test]
+        public void GlowQuartz_TinkerOnAlreadyEquippedItem_RadiusBumpsImmediately()
+        {
+            // E.5.1 deep-audit Bug #1: applying Glow-Quartz via Tinker
+            // to an item the crafter is CURRENTLY wielding should fire
+            // OnEquipped immediately, so the wielded weapon's light
+            // radius bumps without requiring an unequip/re-equip cycle.
+            //
+            // TinkeringService sets MineralInfusionTinkerModification.CurrentCrafter
+            // before calling the shim's Apply; the shim passes it as
+            // `wielder` to ItemEnhancing.Apply; ItemEnhancing.Apply detects
+            // the equipped state and fires OnEquipped on the new Part.
+            var player = CreatePlayerWithMineral("GlowQuartz");
+            player.GetPart<BitLockerPart>().LearnRecipe("mod_glowquartz_infuse");
+            var weapon = _harness.Factory.CreateEntity("LongSword");
+            var inv = player.GetPart<InventoryPart>();
+            inv.AddObject(weapon);
+
+            // Mark the weapon as equipped on the crafter — emulates the
+            // post-equip state EquipCommand would leave behind.
+            inv.EquippedItems["MainHand"] = weapon;
+
+            // Precondition: weapon has no LightSourcePart yet.
+            Assert.IsNull(weapon.GetPart<LightSourcePart>(),
+                "Pre-tinker: weapon has no LightSourcePart.");
+
+            bool ok = TinkeringService.TryApplyModification(
+                player, "mod_glowquartz_infuse", weapon, out string reason);
+            Assert.IsTrue(ok, reason);
+
+            // Post-tinker: GlowQuartz attached AND OnEquipped fired
+            // (so the LightSourcePart radius is +Tier=+2, not 0).
+            var enh = weapon.GetPart<EnhancementGlowQuartz>();
+            Assert.IsNotNull(enh);
+            Assert.IsTrue(enh.AppliedBonus,
+                "Bug #1 fix: OnEquipped fired on already-equipped item; " +
+                "AppliedBonus flag set. If this fails, the player would " +
+                "see no light-radius change until unequip+re-equip cycle.");
+            Assert.AreEqual(2, weapon.GetPart<LightSourcePart>().Radius,
+                "LightSourcePart created with +Tier=2 radius.");
+        }
+
+        [Test]
+        public void GlowQuartz_TinkerOnUnequippedItem_RadiusStaysBaseline()
+        {
+            // Counter-check: applying to an inventory item the crafter
+            // does NOT have equipped → OnEquipped does NOT fire (the
+            // bonus lands later when the player equips the item).
+            var player = CreatePlayerWithMineral("GlowQuartz");
+            player.GetPart<BitLockerPart>().LearnRecipe("mod_glowquartz_infuse");
+            var weapon = _harness.Factory.CreateEntity("LongSword");
+            player.GetPart<InventoryPart>().AddObject(weapon);
+            // No EquippedItems entry.
+
+            TinkeringService.TryApplyModification(
+                player, "mod_glowquartz_infuse", weapon, out _);
+
+            var enh = weapon.GetPart<EnhancementGlowQuartz>();
+            Assert.IsNotNull(enh);
+            Assert.IsFalse(enh.AppliedBonus,
+                "Not-equipped: AppliedBonus stays false until EquipCommand fires.");
+        }
+
         [Test]
         public void ChoirIron_RecipePath_AppliesEnhancement()
         {

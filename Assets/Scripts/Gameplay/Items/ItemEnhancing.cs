@@ -44,7 +44,18 @@ namespace CavesOfOoo.Core
         ///   <item><c>instantiation_failed</c> — <see cref="EnhancementFactory.Create"/> returned null</item>
         /// </list>
         /// </summary>
-        public static bool Apply(Entity item, string enhancementName, int tier = 1)
+        /// <summary>
+        /// Apply a named enhancement to an item at the given tier.
+        /// <para><b>Deep-audit fix (Bug #1):</b> if <paramref name="wielder"/>
+        /// is non-null AND the item is currently equipped on that wielder
+        /// (per <c>InventoryPart.EquippedItems</c>), the enhancement's
+        /// <see cref="IItemEnhancement.OnEquipped"/> hook fires
+        /// immediately after attachment so the gameplay-visible bonus
+        /// lands without a re-equip cycle. Callers that don't know who
+        /// holds the item (e.g. world-gen content path) pass null.</para>
+        /// </summary>
+        public static bool Apply(Entity item, string enhancementName, int tier = 1,
+            Entity wielder = null)
         {
             // E.3.4: auto-register all concrete IItemEnhancement subclasses
             // on first call. No-op in test contexts that called
@@ -93,6 +104,16 @@ namespace CavesOfOoo.Core
             item.AddPart(inst);
             inst.Apply(item);
 
+            // Deep-audit Bug #1 fix: if the item is currently equipped on
+            // the supplied wielder, fire OnEquipped immediately so the
+            // gameplay-visible bonus lands without requiring a re-equip
+            // cycle (player Tinker-applies Lacquered to a currently-worn
+            // armor → AV bumps now, not after unequip/re-equip).
+            if (wielder != null && IsItemEquippedOn(item, wielder))
+            {
+                inst.OnEquipped(wielder, item);
+            }
+
             if (Diag.IsChannelEnabled(DIAG_CATEGORY))
             {
                 Diag.Record(
@@ -114,7 +135,23 @@ namespace CavesOfOoo.Core
         /// the enhancement was found and removed. Emits
         /// <c>enhancement/Removed</c> on success.
         /// </summary>
-        public static bool Remove(Entity item, string enhancementName)
+        /// <summary>
+        /// Remove a named enhancement from an item. Returns true if
+        /// the enhancement was found and removed. Emits
+        /// <c>enhancement/Removed</c> on success.
+        ///
+        /// <para><b>Deep-audit fix (Bug #2):</b> if <paramref name="wielder"/>
+        /// is non-null AND the item is currently equipped on that wielder,
+        /// the enhancement's
+        /// <see cref="IItemEnhancement.OnUnequipped"/> hook fires BEFORE
+        /// the Part is detached — so the gameplay-visible bonus
+        /// (Lacquered AV, Engraved rep, GlowQuartz radius) is correctly
+        /// reversed. Without this hook fire, the bonus would stay
+        /// applied forever after the Part is gone (AppliedBonus flag
+        /// permanent, but Part destroyed).</para>
+        /// </summary>
+        public static bool Remove(Entity item, string enhancementName,
+            Entity wielder = null)
         {
             if (item == null || string.IsNullOrEmpty(enhancementName)) return false;
             if (!EnhancementFactory.TryGet(enhancementName, out var type)) return false;
@@ -124,6 +161,14 @@ namespace CavesOfOoo.Core
             {
                 if (item.Parts[i] is IItemEnhancement enh && enh.GetType() == type)
                 {
+                    // Deep-audit Bug #2 fix: if currently equipped on the
+                    // wielder, fire OnUnequipped FIRST so AppliedBonus
+                    // mutations roll back. Then enh.Remove + detach.
+                    if (wielder != null && IsItemEquippedOn(item, wielder))
+                    {
+                        enh.OnUnequipped(wielder, item);
+                    }
+
                     enh.Remove(item);
                     item.Parts.RemoveAt(i);
                     if (Diag.IsChannelEnabled(DIAG_CATEGORY))
@@ -137,6 +182,21 @@ namespace CavesOfOoo.Core
                     return true;
                 }
             }
+            return false;
+        }
+
+        /// <summary>Check whether <paramref name="item"/> is currently
+        /// equipped on <paramref name="wielder"/>. Walks
+        /// <c>InventoryPart.EquippedItems</c> — the canonical state the
+        /// equip system maintains. Returns false if wielder has no
+        /// InventoryPart or item is not in EquippedItems values.</summary>
+        private static bool IsItemEquippedOn(Entity item, Entity wielder)
+        {
+            if (item == null || wielder == null) return false;
+            var inv = wielder.GetPart<InventoryPart>();
+            if (inv == null || inv.EquippedItems == null) return false;
+            foreach (var kvp in inv.EquippedItems)
+                if (kvp.Value == item) return true;
             return false;
         }
 

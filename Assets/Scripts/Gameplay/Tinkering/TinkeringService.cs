@@ -199,7 +199,24 @@ namespace CavesOfOoo.Core
                 return false;
             }
 
-            if (!modification.Apply(targetItem, out reason))
+            // E.5.1 deep-audit Bug #1 plumbing: set the crafter context
+            // for ITinkerModification implementations that need to know
+            // who is crafting (MineralInfusionTinkerModification reads
+            // this to pass as `wielder` to ItemEnhancing.Apply, so that
+            // tinker-on-currently-worn-item fires OnEquipped immediately).
+            // try/finally guarantees the thread-static is cleared even
+            // if modification.Apply throws.
+            MineralInfusionTinkerModification.CurrentCrafter = crafter;
+            bool applied;
+            try
+            {
+                applied = modification.Apply(targetItem, out reason);
+            }
+            finally
+            {
+                MineralInfusionTinkerModification.CurrentCrafter = null;
+            }
+            if (!applied)
             {
                 bitLocker.AddBits(cost);
                 RestoreIngredient(inventory, consumedIngredient);
