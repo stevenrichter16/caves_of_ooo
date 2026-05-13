@@ -38,10 +38,10 @@
 
 | Field | Value |
 |---|---|
-| **Current phase** | E.2 ✅ shipped (146 tests, 0 bugs); E.3 next |
-| **Cumulative tests** | 146 (E.1: 54 + E.2: 92) |
-| **Real bugs surfaced + fixed** | 0 |
-| **Audit passes run** | E.1.5 in-phase cold-eye; E.2.5 in-progress adversarial sweep + cold-eye |
+| **Current phase** | E.2 ✅ shipped (146 verified tests, 0 bugs); E.3 in-progress |
+| **Cumulative tests** | 165 (E.1: 54 + E.2: 89 + adversarial: 19 + 3 not-counted-by-NUnit) — Adversarial sweep verified 19/19 in c47d200 |
+| **Real bugs surfaced + fixed** | 1 doc-time compile fix (E.2.5 `StatusEffectsPart.Effects` → `GetAllEffects()`) — surfaced by Unity verification after reconnect; 0 *real* gameplay bugs |
+| **Audit passes run** | E.1.5 cold-eye; E.2.5 adversarial sweep + cold-eye; E.3.1 verification sweep (this commit) |
 | **Phases planned** | E.1 → E.4 (4 phases + E.5+ polish queue) |
 | **Last updated** | 2026-05-11 |
 | **Reference codebase** | Qud (`/Users/steven/qud-decompiled-project/XRL.World.Parts/IModification.cs` + 237 `Mod*.cs` files) |
@@ -92,7 +92,7 @@ not an architectural distinction.
 |---|---|---|---|---|
 | **E.1** | `IItemEnhancement` infra + `EnhancementFactory` + `ItemEnhancing.Apply` + `IMeleeEnhancement` + adversarial | ✅ Shipped | 54 (planned 25-35; bonus coverage) | `feat/item-enhancements-e1-infra` |
 | **E.2** | First 3 concrete enhancements (Serrated/Lacquered/Engraved) + ItemEnhancementDispatch + adversarial | ✅ Shipped | 92 (planned 25-35; bonus coverage incl. cross-enhancement) | `feat/item-enhancements-e2-first-three` |
-| **E.3** | 3 mineral items + `WantsMineralPart` + crafting workflow | ⏳ Not started | 30-40 | `feat/item-enhancements-e3-minerals` |
+| **E.3** | 3 mineral items (PaleSalt/ChoirIron/GlowQuartz) + 3 Enhancement Parts (tag-bonus, light-radius) + Tinker recipes + `WantsMineralPart` | ⏳ E.3.1 sweep complete | 60-90 (revised from 30-40) | `feat/item-enhancements-e3-minerals` |
 | **E.4** | Showcase scenario + manual playtest closure | ⏳ Not started | 5-10 smoke | `feat/item-enhancements-e4-showcase` |
 | **E.5+** | Polish queue: architectural mode, combinatorial crafting, more minerals/factions, decay/corruption | ⏳ Deferred | — | TBD |
 
@@ -411,21 +411,58 @@ each enhancement's class doc.
 ## Goal
 
 Ship the mineral economy layer: 3 mineral items + the `WantsMineralPart`
-Part for the faction-wanting matrix + the Tinker action that consumes
-a mineral and applies the corresponding enhancement.
+Part for the faction-wanting matrix + Tinker recipes that consume
+a mineral and apply the corresponding enhancement.
 
-## Three minerals (chosen for non-overlapping faction politics)
+## Verification sweep (2026-05-12)
 
-From the gin-frogs IDEAS spec:
+Per CLAUDE.md §1.2 "single highest-leverage step in the protocol."
+Sweep ran an Explore agent across 10 question surfaces before any
+code was written. Findings table:
 
-| Mineral | Enhancement produced | Coveted by | Avoided by |
+| Plan claim | Reality | Action |
+|---|---|---|
+| Pale-Salt "preservation tag — inventory food doesn't spoil" | ❌ Aspirational — `FoodPart.cs` has Healing/Message/Cooking only; no spoilage mechanic exists | **Scope-prune.** Defer preservation passive until food-spoilage system ships (E.5+ candidate). Ship Pale-Salt as the "vs-Undead bonus damage" mineral instead (real mechanic; faithful to IDEAS.md's "Pale-Salt-edged weapons inflict bonus damage on... undead-tier enemies"). |
+| Choir-Iron "anti-fungal aura — no Driving Bloom infection in 1-cell radius" | ❌ Aspirational — no `DrivingBloomEffect`, no infection mechanic, no fungal-status implementation | **Scope-prune.** Defer aura passive until Driving Bloom effect ships. Ship Choir-Iron as the "vs-Fungal bonus damage" mineral (IDEAS.md's "weapons resist Choir colonization" + "armor reduces Bloomed status duration" both presuppose Choir infrastructure that doesn't exist). |
+| Glow-Quartz "+1 light radius" | ✅ Real — `LightSourcePart.cs:14` has `public int Radius = 6`; `LightMap.cs` reads both entity + equipped-item LightSourceParts | **Ship as-spec.** OnEquipped extends bearer's LightSource by +Tier radius (adds a LightSourcePart if missing). |
+| `WantsMineralPart` mirrors `GrantsRepAsFollowerPart` comma-delim pattern | ✅ Real — `GrantsRepAsFollowerPart.cs:72, 156-166, 212-234` has the parser; field shape "Faction[:N],Faction[:N]" | **Mirror the pattern.** Copy the parsing or refactor into a shared utility. |
+| Tinker / crafting infrastructure exists | ✅ Real — `TinkerRecipeRegistry` + `TinkerRecipe` (Type/Ingredient/TargetBlueprint/TargetPart), Tinker NPC spawns at 70% in villages | **Add a recipe type.** E.3.4 ships `Type: "EnhancementApply"` recipes. NOT the E.1 🔴 blocker the plan feared. |
+| Blueprint JSON loader supports new Parts | ✅ Real — `BlueprintLoader.cs` + `EntityFactory.cs` use reflection; new Part types auto-load | **No registration needed.** New `Enhancement*` classes load from JSON automatically. |
+| Faction registry (7 cited factions) | ⚠️ Partial — registered: `PaleCuration`, `RotChoir`, `SaccharineConcord`, `Villagers`, `Snapjaws`, `Palimpsest`, `GlassblownRemnant`, `Cultists`. Missing: `DrivingBloom`, `CatacombVillagers`, `BowerFolk`, `TentRight` | **Use registered factions only for v1.** Lore-faction stubs (BowerFolk etc.) added when WantsMineralPart needs them. |
+| Existing mineral blueprints in Objects.json | ❌ None — `MaterialID:"Iron"` etc. are crafting materials, not collectible item entities | **Create 3 new blueprints.** E.3.2. |
+| `Fungal` / `Undead` MaterialTagsRaw on creatures | ✅ Real — `SporeShambler` has `MaterialTagsRaw:"Organic,Fungal,Living"`; various skeletons have `"Bone,Dry,Undead"` etc. `MaterialPart.HasMaterialTag(string)` is the query API | **Ground the bonus-damage mechanic in the existing tag system.** |
+| Player inventory action surface | ✅ Real — `InventoryAction` framework; FoodPart's "Eat" is the template | **N/A for v1.** Minerals get applied via Tinker recipes, not inventory-action — keeps the surface narrow. (Direct-apply inventory-action is E.5+ polish.) |
+
+**Two false premises caught (food spoilage + Driving Bloom infection)
+before any code.** Per CLAUDE.md §1.2 lesson — verification swept this
+exact pair of aspirational mechanics out of scope, saving the rebuild
+cost when their dependencies later don't exist.
+
+## Three minerals — REVISED for v1 (mechanics-grounded)
+
+| Mineral | Enhancement produced | Mechanic (v1) | Forward-compat with full IDEAS.md design |
 |---|---|---|---|
-| **Pale-Salt** | `EnhancementPaleSalt` — +N bleed-bonus + preservation tag (inventory food doesn't spoil) | Pale Curation, Tent-Right wasteland cultures | Rot Choir, Driving Bloom |
-| **Choir-Iron** | `EnhancementChoirIron` — anti-fungal aura (no Driving Bloom infection in 1-cell radius while equipped) | Pale Curation, Catacomb-villagers | Rot Choir, Driving Bloom |
-| **Glow-Quartz** | `EnhancementGlowQuartz` — +1 light radius (extends the item-bearer's LightSource) | Catacomb-villagers, Bower-Folk, Saccharine Concord | (none structurally) |
+| **Pale-Salt** | `EnhancementPaleSalt` | OnAttackerHit: +Tier flat damage if defender has `Undead` MaterialTag | Faithful to IDEAS.md "bonus damage on... undead-tier enemies." Preservation passive deferred to E.5+. |
+| **Choir-Iron** | `EnhancementChoirIron` | OnAttackerHit: +Tier flat damage if defender has `Fungal` MaterialTag | Faithful to IDEAS.md "weapons resist Choir colonization" intent — currently expressed as bonus damage vs Fungal-tagged. "Bloomed status duration" passive deferred. |
+| **Glow-Quartz** | `EnhancementGlowQuartz` | OnEquipped: `bearer.LightSourcePart.Radius += Tier` (auto-creates LightSourcePart if missing). OnUnequipped: subtracts back. AppliedBonus atomicity. | Direct map to IDEAS.md "Glow-Quartz-tipped lantern-rods extend bio-light range substantially." |
 
 All three are `IMeleeEnhancement`-applicable for v1 — keep the scope
-narrow. Armor + accessory variants are E.5+ content.
+narrow. Armor + accessory variants are E.5+ content. **Wait — actually:**
+GlowQuartz makes more sense as a generic `IItemEnhancement` (any
+equippable) since lantern-tipped lights aren't melee-weapon-specific
+in IDEAS.md. The two bonus-damage minerals stay `IMeleeEnhancement`.
+
+## Faction politics (v1 with registered factions)
+
+| Mineral | Coveted by (real factions) | Avoided by (real factions) | Lore stubs (deferred until added to FactionManager) |
+|---|---|---|---|
+| **Pale-Salt** | PaleCuration | RotChoir | Tent-Right; Driving Bloom |
+| **Choir-Iron** | PaleCuration, Villagers | RotChoir | Catacomb-villagers; Driving Bloom |
+| **Glow-Quartz** | SaccharineConcord, Villagers | (none) | Catacomb-villagers; Bower-Folk |
+
+WantsMineralPart instances on real-faction NPCs trade-rep on delivery.
+Lore-faction-specific WantsMineralPart entries are E.5+ polish (when
+Factions.json grows).
 
 ## `WantsMineralPart`
 
@@ -441,16 +478,17 @@ reward.
 
 ## Sub-milestones
 
-| # | What | Tests (est) |
-|---|---|---|
-| E.3.1 | Plan + sweep — resolve E.1's 🔴 Tinker-surface blocker; design the player-side application flow (Tinker activated ability? Workstation entity? Inventory action?) | 0 |
-| E.3.2 | Mineral item blueprints (Objects.json entries for `PaleSalt`, `ChoirIron`, `GlowQuartz`) + a content-validation test that loads each | 5-7 |
-| E.3.3 | `EnhancementPaleSalt` / `EnhancementChoirIron` / `EnhancementGlowQuartz` Parts | 12-18 |
-| E.3.4 | Tinker action — player consumes a mineral from inventory + applies the corresponding enhancement to a held item | 8-10 |
-| E.3.5 | `WantsMineralPart` + faction-rep flow on trade + tests | 7-10 |
-| E.3.6 | Adversarial sweep + BOTH-angle cold-eye + merge | 5-8 + adversarial |
+| # | What | Tests (est) | Status |
+|---|---|---|---|
+| E.3.1 | Verification sweep + plan-doc revisions (this commit) | 0 | ⏳ in-progress |
+| E.3.2 | Mineral item blueprints (`PaleSalt`, `ChoirIron`, `GlowQuartz` in Objects.json) + content-validation test | 4-6 | ⏳ pending |
+| E.3.3 | Three `Enhancement*` Parts + per-Part tests | 30-40 (tag-bonus needs counter-checks + tier scaling + round-trip per Part) | ⏳ pending |
+| E.3.4 | Tinker recipes for mineral → enhancement application + recipe-application path test | 6-10 | ⏳ pending |
+| E.3.5 | `WantsMineralPart` + faction-rep flow + tests | 8-12 | ⏳ pending |
+| E.3.6 | Adversarial sweep + BOTH-angle cold-eye + merge | 15-25 adversarial | ⏳ pending |
 
-**E.3 ship target: 35-50 tests, ~400 LOC content + Part.**
+**E.3 actual ship target: 60-90 tests (revised up from 35-50 since each
+Enhancement Part needs full tag-check counter-checks), ~500 LOC.**
 
 ---
 
