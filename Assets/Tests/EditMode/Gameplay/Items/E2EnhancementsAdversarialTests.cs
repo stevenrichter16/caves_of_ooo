@@ -257,7 +257,7 @@ namespace CavesOfOoo.Tests
             // Bleed effect should still be a single instance after stack.
             var effects = defender.GetPart<StatusEffectsPart>();
             int bleedCount = 0;
-            foreach (var eff in effects.Effects)
+            foreach (var eff in effects.GetAllEffects())
                 if (eff is BleedingEffect) bleedCount++;
             Assert.AreEqual(1, bleedCount,
                 "Stack consolidates to a single BleedingEffect instance, " +
