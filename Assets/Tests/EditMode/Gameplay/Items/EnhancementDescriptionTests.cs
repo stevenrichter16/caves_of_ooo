@@ -193,16 +193,49 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void TinkerRecipe_NonMineralRecipe_DescriptionMayBeEmpty()
+        public void TinkerRecipe_AllModRecipes_HaveDescriptions()
         {
-            // Counter-check: Sharp (non-mineral) recipe doesn't (yet) have
-            // a Description set. Pinned so adding one later is a deliberate
-            // act. Empty / null are both acceptable.
+            // Post-E.5.3-follow-up: every Mod-type recipe in production
+            // now has a Description for player legibility. Pin this so
+            // future Mod recipes added to the JSON don't slip in without
+            // a description.
+            TinkerRecipeRegistry.ResetForTests();
+            string[] modIds = {
+                "mod_sharp_melee",
+                "mod_reinforced_plating_armor",
+                "mod_flexweave_armor",
+                "mod_hardened_shell_armor",
+                "mod_duelist_cut_armor",
+                "mod_palesalt_infuse",
+                "mod_choiriron_infuse",
+                "mod_glowquartz_infuse",
+            };
+            foreach (var id in modIds)
+            {
+                Assert.IsTrue(TinkerRecipeRegistry.TryGetRecipe(id, out var recipe),
+                    $"Recipe '{id}' exists.");
+                Assert.IsFalse(string.IsNullOrWhiteSpace(recipe.Description),
+                    $"Recipe '{id}' must have a non-empty Description.");
+            }
+        }
+
+        [Test]
+        public void TinkerRecipe_SharpDescription_MentionsPenetration()
+        {
             TinkerRecipeRegistry.ResetForTests();
             Assert.IsTrue(TinkerRecipeRegistry.TryGetRecipe(
                 "mod_sharp_melee", out var recipe));
-            Assert.IsTrue(string.IsNullOrWhiteSpace(recipe.Description),
-                "Sharp recipe Description is currently empty by design.");
+            StringAssert.Contains("penetration", recipe.Description.ToLowerInvariant());
+        }
+
+        [Test]
+        public void TinkerRecipe_FlexweaveDescription_MentionsDvAndTradeoff()
+        {
+            TinkerRecipeRegistry.ResetForTests();
+            Assert.IsTrue(TinkerRecipeRegistry.TryGetRecipe(
+                "mod_flexweave_armor", out var recipe));
+            StringAssert.Contains("DV", recipe.Description);
+            StringAssert.Contains("AV", recipe.Description);
         }
     }
 }
