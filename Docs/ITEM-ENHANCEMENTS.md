@@ -38,7 +38,7 @@
 
 | Field | Value |
 |---|---|
-| **Current phase** | **E.5.1 deep-audit ✅ shipped — 3 real bugs found + fixed**; E.5+ polish queue active |
+| **Current phase** | **E.5.2 mineral-only cost ✅ shipped** — mineral recipes are now free of bit cost (the mineral IS the substrate cost). Post-E.5.1 user-feedback fix. |
 | **Cumulative tests** | **322** across E.1 + E.2 + E.3 + E.4 + E.5.1 — all green, no fixtures skipped |
 | **Real bugs surfaced + fixed** | E.2.5 compile fix; E.3.4 substrate gap (auto-discovery); E.4.2 latent atomicity (dispatcher transaction wrap); **E.5.1 deep audit caught 3 more REAL bugs**: (1) Apply-to-already-equipped didn't fire OnEquipped → Lacquered/Engraved/GlowQuartz silently no-op on Tinker-to-worn-item; (2) Remove-from-equipped didn't fire OnUnequipped → bonus stayed applied after Part destroyed; (3) DispatchOnHit iterator skipped parts when a hook self-removed. **First two are gameplay-visible silent failures** in the Tinker flow. |
 | **Audit passes run** | E.1.5 cold-eye; E.2.5 adversarial sweep + cold-eye; E.3.1 verification sweep; E.3.6 adversarial sweep; E.4.3 cumulative BOTH-angle cold-eye (5 findings); **E.5.1 second-round deep audit (12 RED tests written first — 3 confirmed bugs RED→GREEN + 4 pinned-as-correct invariants + 1 cross-system integration + plumbed Tinker shim through to OnEquipped firing)** |
