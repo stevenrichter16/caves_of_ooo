@@ -53,6 +53,19 @@ namespace CavesOfOoo.Diagnostics
 
             /// <summary>Max records to return. Clamped to [1, 500] by <see cref="Apply"/>; default 50.</summary>
             public int Limit = 50;
+
+            /// <summary>
+            /// Filter by <see cref="Diag.Entry.CauseTraceId"/> (exact match).
+            /// Null = no cause filter.
+            ///
+            /// <para>Use case: per-attack correlation. CombatSystem.PerformSingleAttack
+            /// wraps its body in <c>Diag.WithCause(attackId)</c>, so every record
+            /// emitted during a single attack (HitRoll, Penetration, DamageRoll,
+            /// PreDamageMutation, ResistanceApplied, DamageDealt) shares the same
+            /// CauseTraceId. Filtering by that ID returns the deterministic
+            /// per-attack record set — no timestamp-window matching needed.</para>
+            /// </summary>
+            public string CauseTraceId;
         }
 
         /// <summary>Result of <see cref="Apply"/> — filtered records plus stats.</summary>
@@ -94,6 +107,7 @@ namespace CavesOfOoo.Diagnostics
                 if (filter.Kind != null && rec.Kind != filter.Kind) continue;
                 if (filter.Actor != null && rec.ActorId != filter.Actor) continue;
                 if (filter.Target != null && rec.TargetId != filter.Target) continue;
+                if (filter.CauseTraceId != null && rec.CauseTraceId != filter.CauseTraceId) continue;
                 // Turn-window filter (D3.1). Records with Turn=null are
                 // EXCLUDED from any windowed query — they have no turn to
                 // compare against. AI-OBSERVABILITY.md §3 Layer 2.

@@ -386,6 +386,143 @@ namespace CavesOfOoo.Tests
                 "No mutation + no veto → no diag fired.");
         }
 
+        // ════════════════════════════════════════════════════════════════
+        // Per-attack correlation via CauseTraceId (one attackId per swing)
+        // ════════════════════════════════════════════════════════════════
+
+        [Test]
+        public void AllAttackRecords_ShareCauseTraceId_WithinOneAttack()
+        {
+            // The core correlation contract: PerformSingleAttack wraps
+            // its body in Diag.WithCause(attackId), so every record
+            // emitted during the attack (HitRoll, Penetration, DamageRoll,
+            // potentially PreDamageMutation / ResistanceApplied, and
+            // DamageDealt) shares the same CauseTraceId. Filter by
+            // CauseTraceId returns the deterministic per-attack record set.
+            var zone = new Zone();
+            var attacker = MakeFighter("attacker");
+            attacker.Tags["Player"] = "";
+            var defender = MakeFighter("defender");
+            zone.AddEntity(attacker, 5, 5);
+            zone.AddEntity(defender, 6, 5);
+
+            // Run one swing.
+            Diag.ResetAll();
+            CombatSystem.PerformMeleeAttack(attacker, defender, zone,
+                new System.Random(0));
+
+            // All damage-category records from this swing should have the
+            // SAME CauseTraceId (whatever attackId was generated).
+            var all = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "damage",
+                Limit = 50,
+            }).Records;
+            Assert.Greater(all.Count, 0,
+                "At least one damage record should fire per swing.");
+
+            // Pick the first record's CauseTraceId; all subsequent records
+            // in the same attack must match it.
+            string firstCause = all[0].CauseTraceId;
+            Assert.IsNotNull(firstCause,
+                "PerformSingleAttack must set an ambient cause.");
+            Assert.IsNotEmpty(firstCause);
+
+            for (int i = 1; i < all.Count; i++)
+            {
+                Assert.AreEqual(firstCause, all[i].CauseTraceId,
+                    $"Record #{i} (kind={all[i].Kind}) has a different " +
+                    $"CauseTraceId — per-attack correlation is broken.");
+            }
+        }
+
+        [Test]
+        public void TwoSeparateAttacks_HaveDifferentCauseTraceIds()
+        {
+            // Counter-check: two distinct PerformSingleAttack invocations
+            // MUST produce different attackIds (no cross-attack collision).
+            var zone = new Zone();
+            var attacker = MakeFighter("attacker");
+            attacker.Tags["Player"] = "";
+            var defender = MakeFighter("defender");
+            zone.AddEntity(attacker, 5, 5);
+            zone.AddEntity(defender, 6, 5);
+
+            // First swing.
+            Diag.ResetAll();
+            CombatSystem.PerformMeleeAttack(attacker, defender, zone,
+                new System.Random(0));
+            var firstSwing = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "damage",
+                Limit = 50,
+            }).Records;
+            string firstCause = firstSwing[0].CauseTraceId;
+
+            // Second swing.
+            Diag.ResetAll();
+            CombatSystem.PerformMeleeAttack(attacker, defender, zone,
+                new System.Random(1));
+            var secondSwing = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "damage",
+                Limit = 50,
+            }).Records;
+            string secondCause = secondSwing[0].CauseTraceId;
+
+            Assert.AreNotEqual(firstCause, secondCause,
+                "Each PerformSingleAttack must generate a unique attackId.");
+        }
+
+        [Test]
+        public void Filter_ByCauseTraceId_ReturnsOnlyMatchingAttackRecords()
+        {
+            // Pin the filter behavior — running two attacks back-to-back
+            // then filtering by one attack's cause must return ONLY that
+            // attack's records.
+            var zone = new Zone();
+            var attacker = MakeFighter("attacker");
+            attacker.Tags["Player"] = "";
+            var defender = MakeFighter("defender");
+            zone.AddEntity(attacker, 5, 5);
+            zone.AddEntity(defender, 6, 5);
+
+            Diag.ResetAll();
+            CombatSystem.PerformMeleeAttack(attacker, defender, zone,
+                new System.Random(0));
+            CombatSystem.PerformMeleeAttack(attacker, defender, zone,
+                new System.Random(1));
+
+            // All damage records — should span TWO attacks.
+            var all = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "damage",
+                Limit = 100,
+            }).Records;
+            var allCauses = new System.Collections.Generic.HashSet<string>();
+            foreach (var r in all)
+                if (r.CauseTraceId != null) allCauses.Add(r.CauseTraceId);
+            Assert.AreEqual(2, allCauses.Count,
+                "Two attacks → two distinct cause trace IDs.");
+
+            // Pick one cause; filter must return only its records.
+            string targetCause = null;
+            foreach (var c in allCauses) { targetCause = c; break; }
+            var oneAttack = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "damage",
+                CauseTraceId = targetCause,
+                Limit = 100,
+            }).Records;
+            Assert.Greater(oneAttack.Count, 0);
+            foreach (var r in oneAttack)
+                Assert.AreEqual(targetCause, r.CauseTraceId,
+                    "Filter result contains only the requested attack's records.");
+            // The other attack's records must be excluded.
+            Assert.Less(oneAttack.Count, all.Count,
+                "Single-attack filter returns fewer records than the unfiltered query.");
+        }
+
         [Test]
         public void NaturalAttack_PenetrationDiag_ShowsZeroWeaponPenBonus()
         {

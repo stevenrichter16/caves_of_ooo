@@ -149,6 +149,16 @@ namespace CavesOfOoo.Core
             MeleeWeaponPart weapon, bool isPrimary, Zone zone, Random rng,
             string attackSourceDesc = null)
         {
+            // Per-attack correlation ID. WithCause sets the ambient
+            // CauseTraceId for every Diag.Record fired during this method
+            // — HitRoll → Penetration → DamageRoll → PreDamageMutation →
+            // ResistanceApplied → DamageDealt all share this single ID.
+            // Queries can filter by CauseTraceId to pull one attack's
+            // full record set deterministically (no more
+            // timestamp-window matcher noise).
+            string attackId = System.Guid.NewGuid().ToString("N").Substring(0, 8);
+            using var _attackCause = Diag.WithCause(attackId);
+
             string damageDice = weapon?.BaseDamage ?? "1d2";
             int hitBonus = weapon?.HitBonus ?? 0;
             int penBonus = weapon?.PenBonus ?? 0;
