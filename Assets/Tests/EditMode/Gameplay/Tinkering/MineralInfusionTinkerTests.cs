@@ -36,7 +36,7 @@ namespace CavesOfOoo.Tests
       ""DisplayName"": ""Infuse with Pale-Salt"",
       ""Blueprint"": ""mod_palesalt"",
       ""Type"": ""Mod"",
-      ""Cost"": ""BC"",
+      ""Cost"": """",
       ""Ingredient"": ""PaleSalt"",
       ""TargetPart"": ""MeleeWeapon"",
       ""NumberMade"": 1
@@ -46,7 +46,7 @@ namespace CavesOfOoo.Tests
       ""DisplayName"": ""Infuse with Choir-Iron"",
       ""Blueprint"": ""mod_choiriron"",
       ""Type"": ""Mod"",
-      ""Cost"": ""BBC"",
+      ""Cost"": """",
       ""Ingredient"": ""ChoirIron"",
       ""TargetPart"": ""MeleeWeapon"",
       ""NumberMade"": 1
@@ -56,7 +56,7 @@ namespace CavesOfOoo.Tests
       ""DisplayName"": ""Tip with Glow-Quartz"",
       ""Blueprint"": ""mod_glowquartz"",
       ""Type"": ""Mod"",
-      ""Cost"": ""BC"",
+      ""Cost"": """",
       ""Ingredient"": ""GlowQuartz"",
       ""TargetPart"": ""Equippable"",
       ""NumberMade"": 1
@@ -120,12 +120,18 @@ namespace CavesOfOoo.Tests
         // ── PaleSalt: full recipe path ────────────────────────────
 
         [Test]
-        public void PaleSalt_RecipePath_AppliesEnhancement_ConsumesMineral_SpendsBits()
+        public void PaleSalt_RecipePath_AppliesEnhancement_ConsumesMineral_NoBitsSpent()
         {
+            // Design choice (post-E.5.1 user feedback): mineral recipes
+            // have ZERO bit cost — the mineral IS the cost. Pre-E.5.1
+            // this test expected 1B + 1C to be spent on top of the
+            // mineral consumption; that redundant cost was dropped.
             var player = CreatePlayerWithMineral("PaleSalt");
             var inv = player.GetPart<InventoryPart>();
             var bits = player.GetPart<BitLockerPart>();
             bits.LearnRecipe("mod_palesalt_infuse");
+            int bitsBeforeB = bits.GetBitCount('B');
+            int bitsBeforeC = bits.GetBitCount('C');
 
             // Create a Cutting melee weapon, add to inventory.
             var weapon = _harness.Factory.CreateEntity("LongSword");
@@ -139,11 +145,10 @@ namespace CavesOfOoo.Tests
                 "EnhancementPaleSalt attached.");
             Assert.AreEqual(2, weapon.GetPart<EnhancementPaleSalt>().Tier,
                 "Tier 2 baked into the shim (matches mineral blueprint).");
-            // Recipe cost is "BC" (1 B + 1 C); player started with "BBCC" (2 B + 2 C).
-            Assert.AreEqual(1, bits.GetBitCount('B'),
-                "Bit B was spent (started with 2, recipe cost 1, expect 1 remaining).");
-            Assert.AreEqual(1, bits.GetBitCount('C'),
-                "Bit C was spent similarly.");
+            Assert.AreEqual(bitsBeforeB, bits.GetBitCount('B'),
+                "Mineral recipes are FREE of bit cost — B unchanged.");
+            Assert.AreEqual(bitsBeforeC, bits.GetBitCount('C'),
+                "Mineral recipes are FREE of bit cost — C unchanged.");
             // Mineral should be consumed (no PaleSalt left in inventory).
             bool stillHasMineral = false;
             foreach (var item in inv.Objects)
@@ -236,11 +241,61 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void MineralRecipes_HaveZeroBitCost_ByDesign()
+        {
+            // Design-pin: post-user-feedback (E.5.1 follow-up) mineral
+            // recipes are mineral-only. Cost field is intentionally
+            // empty so the mineral itself IS the entire substrate cost.
+            // If a future change re-introduces bits to these recipes,
+            // this test breaks visibly and forces deliberate justification.
+            Assert.IsTrue(TinkerRecipeRegistry.TryGetRecipe(
+                "mod_palesalt_infuse", out var pale));
+            Assert.IsTrue(string.IsNullOrEmpty(pale.Cost),
+                "Pale-Salt recipe: cost is empty by design (mineral-only).");
+
+            Assert.IsTrue(TinkerRecipeRegistry.TryGetRecipe(
+                "mod_choiriron_infuse", out var iron));
+            Assert.IsTrue(string.IsNullOrEmpty(iron.Cost),
+                "Choir-Iron recipe: cost is empty by design.");
+
+            Assert.IsTrue(TinkerRecipeRegistry.TryGetRecipe(
+                "mod_glowquartz_infuse", out var quartz));
+            Assert.IsTrue(string.IsNullOrEmpty(quartz.Cost),
+                "Glow-Quartz recipe: cost is empty by design.");
+        }
+
+        [Test]
+        public void MineralRecipe_AppliesWithZeroBits_InLocker()
+        {
+            // Counter-check: a player with NO bits at all can still
+            // apply a mineral recipe, because the recipe doesn't need
+            // any. (Pre-fix this test would have failed at the
+            // BitLocker.HasBits gate.)
+            var player = new Entity { BlueprintName = "Player", ID = "p" };
+            player.Tags["Player"] = "";
+            player.AddPart(new InventoryPart());
+            player.AddPart(new BitLockerPart());
+            // Note: NO bits added.
+            player.GetPart<BitLockerPart>().LearnRecipe("mod_palesalt_infuse");
+            var mineral = _harness.Factory.CreateEntity("PaleSalt");
+            player.GetPart<InventoryPart>().AddObject(mineral);
+            var weapon = _harness.Factory.CreateEntity("LongSword");
+            player.GetPart<InventoryPart>().AddObject(weapon);
+
+            bool ok = TinkeringService.TryApplyModification(
+                player, "mod_palesalt_infuse", weapon, out string reason);
+
+            Assert.IsTrue(ok, reason);
+            Assert.IsNotNull(weapon.GetPart<EnhancementPaleSalt>());
+        }
+
+        [Test]
         public void ChoirIron_RecipePath_AppliesEnhancement()
         {
+            // Post-mineral-only-cost: no extra bits needed; the mineral
+            // is the entire cost.
             var player = CreatePlayerWithMineral("ChoirIron");
             player.GetPart<BitLockerPart>().LearnRecipe("mod_choiriron_infuse");
-            player.GetPart<BitLockerPart>().AddBits("B"); // BBC total now
             var weapon = _harness.Factory.CreateEntity("LongSword");
             player.GetPart<InventoryPart>().AddObject(weapon);
 
