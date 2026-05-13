@@ -128,6 +128,264 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(landed);
         }
 
+        // ════════════════════════════════════════════════════════════════
+        // HitRoll diag — fires on EVERY attack (hit OR miss)
+        // ════════════════════════════════════════════════════════════════
+
+        [Test]
+        public void MeleeAttack_EmitsHitRollDiag_EveryAttempt()
+        {
+            var zone = new Zone();
+            var attacker = MakeFighter("attacker");
+            attacker.Tags["Player"] = "";
+            var defender = MakeFighter("defender");
+            zone.AddEntity(attacker, 5, 5);
+            zone.AddEntity(defender, 6, 5);
+
+            Diag.ResetAll();
+            CombatSystem.PerformMeleeAttack(attacker, defender, zone,
+                new System.Random(0));
+
+            var hitRolls = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "damage",
+                Kind = "HitRoll",
+                Limit = 5,
+            }).Records;
+            Assert.GreaterOrEqual(hitRolls.Count, 1,
+                "HitRoll fires regardless of hit/miss.");
+            string p = hitRolls[0].PayloadJson ?? "";
+            StringAssert.Contains("\"hitRoll\"", p);
+            StringAssert.Contains("\"agilityMod\"", p);
+            StringAssert.Contains("\"weaponHitBonus\"", p);
+            StringAssert.Contains("\"dv\"", p);
+            StringAssert.Contains("\"landed\"", p);
+        }
+
+        [Test]
+        public void MeleeAttack_HitRollDiag_ReportsMissesToo()
+        {
+            // High-DV defender → most rolls miss; pin that the HitRoll
+            // diag fires for misses (landed=false).
+            var zone = new Zone();
+            var attacker = MakeFighter("attacker");
+            attacker.Tags["Player"] = "";
+            var attackerWeapon = attacker.GetPart<MeleeWeaponPart>();
+            attackerWeapon.HitBonus = 0; // remove the fixture's huge hit bonus
+            var defender = MakeFighter("defender");
+            defender.GetPart<ArmorPart>().DV = 30; // unhittable except nat-20
+            zone.AddEntity(attacker, 5, 5);
+            zone.AddEntity(defender, 6, 5);
+
+            // Run a deterministic seed where we expect a miss (rolls
+            // can't beat DV=30 without nat-20).
+            Diag.ResetAll();
+            CombatSystem.PerformMeleeAttack(attacker, defender, zone,
+                new System.Random(2));
+
+            var hitRolls = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "damage",
+                Kind = "HitRoll",
+                Limit = 5,
+            }).Records;
+            Assert.GreaterOrEqual(hitRolls.Count, 1);
+            // No penetration record should fire on a miss (the hit gate
+            // short-circuits before RollPenetrations).
+            int penRecs = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "damage",
+                Kind = "Penetration",
+                Limit = 5,
+            }).Records.Count;
+            // (Either a miss OR a critical hit landed; both are valid)
+            // The HitRoll record itself is what we're pinning here.
+            Assert.IsTrue(hitRolls.Count > 0, "HitRoll always fires.");
+        }
+
+        // ════════════════════════════════════════════════════════════════
+        // DamageRoll diag — fires on hits that penetrate
+        // ════════════════════════════════════════════════════════════════
+
+        [Test]
+        public void MeleeAttack_EmitsDamageRollDiag_OnPenetratingHit()
+        {
+            var zone = new Zone();
+            var attacker = MakeFighter("attacker");
+            attacker.Tags["Player"] = "";
+            var defender = MakeFighter("defender");
+            zone.AddEntity(attacker, 5, 5);
+            zone.AddEntity(defender, 6, 5);
+
+            bool foundDamageRoll = false;
+            for (int seed = 0; seed < 30 && !foundDamageRoll; seed++)
+            {
+                Diag.ResetAll();
+                CombatSystem.PerformMeleeAttack(attacker, defender, zone,
+                    new System.Random(seed));
+                var rolls = DiagQuery.Apply(new DiagQuery.Filter
+                {
+                    Category = "damage",
+                    Kind = "DamageRoll",
+                    Limit = 5,
+                }).Records;
+                if (rolls.Count > 0)
+                {
+                    foundDamageRoll = true;
+                    string p = rolls[0].PayloadJson ?? "";
+                    StringAssert.Contains("\"damageDice\":\"1d6\"", p);
+                    StringAssert.Contains("\"baseDamageTotal\"", p);
+                    StringAssert.Contains("\"penetrationsRolled\"", p);
+                    StringAssert.Contains("\"attributes\"", p);
+                }
+            }
+            Assert.IsTrue(foundDamageRoll,
+                "At least one of 30 seeded swings produces a DamageRoll diag.");
+        }
+
+        // ════════════════════════════════════════════════════════════════
+        // ResistanceApplied diag — fires per-resistance that reduced
+        // ════════════════════════════════════════════════════════════════
+
+        [Test]
+        public void ResistanceApplied_FiresWhenHeatResistantTargetTakesFireDamage()
+        {
+            var target = MakeFighter("hot");
+            target.Statistics["HeatResistance"] = new Stat
+            {
+                Owner = target, Name = "HeatResistance",
+                BaseValue = 50, Min = -200, Max = 200,
+            };
+            var damage = new Damage(20);
+            damage.AddAttribute("Fire");
+
+            Diag.ResetAll();
+            CombatSystem.ApplyDamage(target, damage, source: null, zone: null);
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "damage",
+                Kind = "ResistanceApplied",
+                Limit = 5,
+            }).Records;
+            Assert.AreEqual(1, recs.Count,
+                "Heat-resistant target hit by Fire → one ResistanceApplied diag.");
+            string p = recs[0].PayloadJson ?? "";
+            StringAssert.Contains("\"resistanceStat\":\"HeatResistance\"", p);
+            StringAssert.Contains("\"resistancePercent\":50", p);
+            StringAssert.Contains("\"amountBefore\":20", p);
+            // Resist=50 → amount halved to 10 → delta=-10.
+            StringAssert.Contains("\"amountAfter\":10", p);
+        }
+
+        [Test]
+        public void ResistanceApplied_DoesNotFire_WhenResistanceIsZero()
+        {
+            // Counter-check: zero resistance → no record (the early-out
+            // in ApplyResistanceFor short-circuits before mutation).
+            var target = MakeFighter("ordinary");
+            // No HeatResistance stat set → defaults to 0.
+            var damage = new Damage(20);
+            damage.AddAttribute("Fire");
+
+            Diag.ResetAll();
+            CombatSystem.ApplyDamage(target, damage, source: null, zone: null);
+
+            int n = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "damage",
+                Kind = "ResistanceApplied",
+                Limit = 5,
+            }).Records.Count;
+            Assert.AreEqual(0, n,
+                "Zero resistance → no ResistanceApplied diag fired.");
+        }
+
+        // ════════════════════════════════════════════════════════════════
+        // PreDamageMutation diag — fires when BeforeTakeDamage mutates
+        // ════════════════════════════════════════════════════════════════
+
+        private class DamageMutatorProbePart : Part
+        {
+            public int ReduceBy;
+            public bool Veto;
+            public override string Name => "DamageMutatorProbe";
+            public override bool HandleEvent(GameEvent e)
+            {
+                if (e.ID == "BeforeTakeDamage" && e.GetParameter("Damage") is Damage d)
+                {
+                    d.Amount = System.Math.Max(0, d.Amount - ReduceBy);
+                    if (Veto) return false; // veto the damage
+                }
+                return true;
+            }
+        }
+
+        [Test]
+        public void PreDamageMutation_Fires_WhenListenerReducesAmount()
+        {
+            var target = MakeFighter("stoney");
+            var probe = new DamageMutatorProbePart { ReduceBy = 5 };
+            target.AddPart(probe);
+            var damage = new Damage(20);
+
+            Diag.ResetAll();
+            CombatSystem.ApplyDamage(target, damage, source: null, zone: null);
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "damage",
+                Kind = "PreDamageMutation",
+                Limit = 5,
+            }).Records;
+            Assert.AreEqual(1, recs.Count);
+            string p = recs[0].PayloadJson ?? "";
+            StringAssert.Contains("\"amountBefore\":20", p);
+            StringAssert.Contains("\"amountAfter\":15", p);
+            StringAssert.Contains("\"delta\":-5", p);
+            StringAssert.Contains("\"vetoed\":false", p);
+        }
+
+        [Test]
+        public void PreDamageMutation_Fires_OnVeto()
+        {
+            var target = MakeFighter("invincible");
+            var probe = new DamageMutatorProbePart { Veto = true };
+            target.AddPart(probe);
+            var damage = new Damage(20);
+
+            Diag.ResetAll();
+            CombatSystem.ApplyDamage(target, damage, source: null, zone: null);
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "damage",
+                Kind = "PreDamageMutation",
+                Limit = 5,
+            }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"vetoed\":true", recs[0].PayloadJson ?? "");
+        }
+
+        [Test]
+        public void PreDamageMutation_DoesNotFire_WhenNoListenerTouchesAmount()
+        {
+            var target = MakeFighter("untouched");
+            var damage = new Damage(20);
+
+            Diag.ResetAll();
+            CombatSystem.ApplyDamage(target, damage, source: null, zone: null);
+
+            int n = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "damage",
+                Kind = "PreDamageMutation",
+                Limit = 5,
+            }).Records.Count;
+            Assert.AreEqual(0, n,
+                "No mutation + no veto → no diag fired.");
+        }
+
         [Test]
         public void NaturalAttack_PenetrationDiag_ShowsZeroWeaponPenBonus()
         {

@@ -175,8 +175,34 @@ namespace CavesOfOoo.Core
             int dv = GetDV(defender);
 
             bool naturalTwenty = hitRoll == 20;
+            bool willMiss = !naturalTwenty && totalHit < dv;
 
-            if (!naturalTwenty && totalHit < dv)
+            // HitRoll diag emission — surfaces the d20 + each bonus
+            // summand so observability can answer "why did this attack
+            // miss?" or "did my Agility help this connect?"
+            if (Diag.IsChannelEnabled("damage"))
+            {
+                string weaponNameHit = weapon?.ParentEntity?.GetDisplayName() ?? "(natural)";
+                Diag.Record(
+                    category: "damage",
+                    kind: "HitRoll",
+                    actor: attacker,
+                    target: defender,
+                    payload: new
+                    {
+                        weapon = weaponNameHit,
+                        hitRoll = hitRoll,
+                        agilityMod = agilityMod,
+                        weaponHitBonus = hitBonus,
+                        skillHitBonus = skillHitBonus,
+                        totalHit = totalHit,
+                        dv = dv,
+                        naturalTwenty = naturalTwenty,
+                        landed = !willMiss
+                    });
+            }
+
+            if (willMiss)
             {
                 MessageLog.Add($"{attackerName}{srcTag} misses {defenderName}!");
 
@@ -296,6 +322,30 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < penetrations; i++)
                 totalDamage += DiceRoller.Roll(damageDice, rng);
             damage.Amount = totalDamage;
+
+            // DamageRoll diag emission — surfaces the base damage roll
+            // (pre-resistance, pre-BeforeTakeDamage-mutation). The
+            // delta between this and the final DamageDealt's amount
+            // reveals exactly how much resistance + Stoneskin + other
+            // mutators reduced the damage in-flight.
+            if (Diag.IsChannelEnabled("damage"))
+            {
+                string weaponNameDmg = weapon?.ParentEntity?.GetDisplayName() ?? "(natural)";
+                Diag.Record(
+                    category: "damage",
+                    kind: "DamageRoll",
+                    actor: attacker,
+                    target: defender,
+                    payload: new
+                    {
+                        weapon = weaponNameDmg,
+                        damageDice = damageDice,
+                        penetrationsRolled = penetrations,
+                        baseDamageTotal = totalDamage,
+                        naturalTwenty = naturalTwenty,
+                        attributes = string.Join(",", damage.Attributes ?? new System.Collections.Generic.List<string>())
+                    });
+            }
 
             if (damage.Amount <= 0)
             {
@@ -688,11 +738,35 @@ namespace CavesOfOoo.Core
                 // does not decrement HP. Mutations to damage.Amount propagate
                 // — the post-event re-read covers both this hook and the
                 // TakeDamage event below.
+                int amountBeforeMutation = damage.Amount;
                 var beforeTakeDamage = GameEvent.New("BeforeTakeDamage");
                 beforeTakeDamage.SetParameter("Target", (object)target);
                 beforeTakeDamage.SetParameter("Source", (object)source);
                 beforeTakeDamage.SetParameter("Damage", (object)damage);
-                if (!target.FireEventAndRelease(beforeTakeDamage))
+                bool damageProceeded = target.FireEventAndRelease(beforeTakeDamage);
+
+                // PreDamageMutation diag — surfaces the net delta from
+                // BeforeTakeDamage event listeners (Stoneskin, etc.).
+                // Fires whenever the Amount changed during the event
+                // OR the event was vetoed. Lets observability answer
+                // "did Stoneskin reduce this hit by N?" without grep.
+                if (Diag.IsChannelEnabled("damage") &&
+                    (amountBeforeMutation != damage.Amount || !damageProceeded))
+                {
+                    Diag.Record(
+                        category: "damage",
+                        kind: "PreDamageMutation",
+                        target: target,
+                        payload: new
+                        {
+                            amountBefore = amountBeforeMutation,
+                            amountAfter = damage.Amount,
+                            delta = damage.Amount - amountBeforeMutation,
+                            vetoed = !damageProceeded
+                        });
+                }
+
+                if (!damageProceeded)
                 {
                     // Veto — surface as fully-resisted so observers see the attempt.
                     //
@@ -910,6 +984,7 @@ namespace CavesOfOoo.Core
             int resist = target.GetStatValue(resistanceStatName, 0);
             if (resist == 0) return;
 
+            int amountBefore = damage.Amount;
             if (resist > 0)
             {
                 // Positive resistance reduces damage proportionally.
@@ -922,6 +997,27 @@ namespace CavesOfOoo.Core
             {
                 // Negative resistance = vulnerability. -50 means +50% damage.
                 damage.Amount += (int)(damage.Amount * (resist / -100f));
+            }
+
+            // ResistanceApplied diag — surfaces the per-resistance
+            // mutation so observability can answer "did HeatResistance
+            // halve this Fire hit?" or "how much did the Glowmaw's
+            // resistance steal?" Fires once per resistance stat that
+            // actually changed the amount.
+            if (Diag.IsChannelEnabled("damage") && amountBefore != damage.Amount)
+            {
+                Diag.Record(
+                    category: "damage",
+                    kind: "ResistanceApplied",
+                    target: target,
+                    payload: new
+                    {
+                        resistanceStat = resistanceStatName,
+                        resistancePercent = resist,
+                        amountBefore = amountBefore,
+                        amountAfter = damage.Amount,
+                        delta = damage.Amount - amountBefore
+                    });
             }
         }
 
