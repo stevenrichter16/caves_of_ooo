@@ -80,9 +80,26 @@ namespace CavesOfOoo.Core
             string name = ParentEntity?.GetDisplayName() ?? "something";
             string article = GetArticle(name);
             string baseLine = $"You see {article}{name}.";
-            if (string.IsNullOrWhiteSpace(Text))
-                return baseLine;
-            return baseLine + " " + Text.Trim();
+            if (!string.IsNullOrWhiteSpace(Text))
+                baseLine += " " + Text.Trim();
+
+            // Item Enhancements (E.1–E.5): append per-enhancement effect
+            // lines so the player sees what each attached IItemEnhancement
+            // does. Tier-aware text comes from each enhancement's
+            // GetEffectDescription override. Items with no enhancements
+            // (the vast majority) produce no extra output here.
+            if (ParentEntity?.Parts != null)
+            {
+                for (int i = 0; i < ParentEntity.Parts.Count; i++)
+                {
+                    if (ParentEntity.Parts[i] is IItemEnhancement enh)
+                    {
+                        baseLine += "\n  • " + enh.GetEffectDescription();
+                    }
+                }
+            }
+
+            return baseLine;
         }
 
         private static string GetArticle(string name)
