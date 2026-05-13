@@ -298,6 +298,104 @@ angles before declaring the phase complete. Skipping Angle B because
 "Angle A found nothing meaningful" is exactly how Qud-contract drift
 slips through — the taxonomy angle isn't looking for those.**
 
+### Hypothesis-driven deep audit — write RED tests BEFORE re-reading code
+
+Both Angle A (taxonomy) and Angle B (Qud-parity-first) re-read existing
+code looking for problems. That mode has a blind spot: **bugs hide
+where the code looks right.** When the first audit pass declares "0
+findings" but the feature is non-trivial, a third pass is warranted —
+and the most effective methodology for it isn't more re-reading.
+It's **hypothesis-driven RED-test authoring**.
+
+**The methodology:** write the RED tests against hypothesized gaps
+FIRST, then implement the minimum fix until each goes GREEN.
+
+**The process:**
+
+1. Step away from the code. Ask: *what does the player actually do
+   that the per-phase tests don't simulate?* Generate hypotheses
+   from player-flow, not from re-reading source. Examples that
+   surface real bugs:
+   - "What if the player applies a content-time mutation to an
+     already-equipped item?" → Apply-to-already-equipped silent no-op
+   - "What if a hook removes itself during dispatch?" → iterator skip
+   - "What if a service is called with a negative reward?" → pin contract
+   - "What if a stack has exactly count=1 at the boundary?" → pin boundary
+2. Write **one RED test per hypothesis**. State the hypothesis in
+   the test's docstring so future readers know what was being probed.
+3. Run the tests. The ones that fail RED are confirmed bugs. The
+   ones that go GREEN are **pinned-as-correct invariants** —
+   regression infrastructure for free, since the test exists in
+   case a future change breaks the contract.
+4. Fix the RED bugs with the minimum change to flip each to GREEN.
+   No speculative cleanup, no refactoring drift.
+5. Commit with explicit per-test classification: "N confirmed bugs
+   (RED→GREEN), M pinned-as-correct (already passes), K cross-system
+   integration." The classification is honest about what each test
+   does.
+
+**Why this beats re-reading:**
+
+- Re-reading suffers from confirmation bias — code that *looked*
+  correct on first read tends to look correct on second read.
+- Re-reading audits are structured around the code's organization
+  (file by file, class by class). Bugs that span multiple files
+  (cross-system) or live in the gap between two "correct" units
+  (Apply attaches a Part / OnEquipped fires on equip — but Apply on
+  an already-equipped item never re-fires OnEquipped) hide from
+  per-file re-reads.
+- RED-test authoring forces concrete scenario thinking. "What if
+  the player does X then Y?" maps directly to a test setup. The
+  re-read frame "is this code correct?" doesn't.
+- Even when hypotheses turn out to be wrong, the pinned-correct
+  test is permanent regression infrastructure — strictly more
+  valuable than a re-read pass that finds nothing.
+
+**Empirical evidence (Item Enhancements E.5.1):**
+
+The E.4.3 audit ran BOTH angles and shipped 5 findings (1 latent
+🟡 fixed, 1 🟡 hypothesis falsified, 3 minor cleanups). It
+declared "0 real gameplay bugs." Honest at the time of writing.
+
+Then the user prompted "do another run of code review." Instead of
+re-reading, I generated 8 player-flow hypotheses and wrote 12 RED
+tests. Result: **3 confirmed bugs (2 gameplay-visible silent
+failures + 1 theoretical-but-real iterator bug), 4 pinned-as-
+correct invariants, 1 cross-system integration check.** The
+gameplay-visible silent failure was apply-Lacquered-to-currently-
+worn-armor → AV bonus didn't land until re-equip cycle. That bug
+existed for the entire shipped feature surface; both prior cold-eye
+passes missed it because the per-phase mental model was "Apply is
+content-time, OnEquipped is equip-time" — no overlap considered.
+The hypothesis "what if the player applies during the equip-time
+window?" surfaced it on the first try.
+
+**When to run this pass:**
+
+- After every multi-commit feature where the first audit pass
+  declared "0 findings" or "no real bugs" — that's exactly the
+  state where this pass is most valuable
+- After every cold-eye that surfaced only `🔵` / `🧪` / `⚪`
+  findings (i.e. no `🟡` or `🔴`) — the audit may have run a
+  re-read pattern that the code's organization can defeat
+- For any feature with cross-system flows (item ↔ inventory ↔
+  combat ↔ NPC) where bugs live between systems
+
+**Honesty bound:** this methodology is bounded by the hypotheses
+the author can generate. It won't find a bug that nobody thinks to
+hypothesize about. But it has a much higher ceiling than re-reading
+— player-flow questions are easier to brainstorm than "what's
+wrong in this 200-line file." Pair it with the fuzzing/property-
+based testing pattern (out of scope of this guide) for the
+truly-novel bug surface.
+
+**Self-directive: when a cold-eye pass declares "0 real bugs" on a
+non-trivial feature, I MUST run the hypothesis-driven deep audit
+before declaring the feature complete. Generate 6-12 player-flow
+hypotheses, write RED tests for each, classify the results
+honestly. Even if all 12 turn GREEN, the regression pins are
+permanent infrastructure.**
+
 ---
 
 ## Adversarial test sweep (MANDATORY for any feature with non-trivial state, parser, or cross-actor flows)
