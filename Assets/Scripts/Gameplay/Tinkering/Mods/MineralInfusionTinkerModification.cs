@@ -9,6 +9,18 @@ namespace CavesOfOoo.Core
     /// name + tier; the base wires the rest through
     /// <see cref="ItemEnhancing.Apply"/>.
     ///
+    /// <para><b>E.5.1 deep-audit Bug #1 fix:</b> the shim now sets a
+    /// thread-static <see cref="CurrentCrafter"/> just before invoking
+    /// <see cref="Apply"/>, and reads it back to pass as the
+    /// <c>wielder</c> argument to <see cref="ItemEnhancing.Apply"/>.
+    /// This lets a Tinker-applied enhancement on an already-equipped
+    /// item fire OnEquipped immediately, so the gameplay-visible
+    /// bonus (Lacquered AV, GlowQuartz radius, etc.) lands without
+    /// requiring a re-equip cycle. <c>TinkeringService.TryApplyModification</c>
+    /// sets the context; ITinkerModification.Apply reads it. The
+    /// thread-static is reset to null on exit so the channel doesn't
+    /// leak across calls.</para>
+    ///
     /// <para><b>Two parallel modification systems — bridging the gap:</b>
     /// CoO has both <see cref="ITinkerModification"/> (older,
     /// directly tied to the Tinker recipe + bit-cost flow) and the
@@ -49,6 +61,15 @@ namespace CavesOfOoo.Core
         /// (e.g. "pale-salt-edged", "glow-quartz-tipped"). Mirrors the
         /// existing SharpTinkerModification "sharp X" convention.</summary>
         protected abstract string DisplayAdjective { get; }
+
+        /// <summary>E.5.1 deep-audit Bug #1 plumbing: TinkeringService
+        /// sets this just before invoking <see cref="Apply"/> so the
+        /// shim can pass the crafter as the <c>wielder</c> argument to
+        /// <see cref="ItemEnhancing.Apply"/>. Reset to null on
+        /// TryApplyModification exit. Thread-static so a future
+        /// multi-threaded crafter pipeline doesn't cross-contaminate.</summary>
+        [System.ThreadStatic]
+        public static Entity CurrentCrafter;
 
         public bool CanApply(Entity item, out string reason)
         {
@@ -104,7 +125,13 @@ namespace CavesOfOoo.Core
             if (!CanApply(item, out reason))
                 return false;
 
-            if (!ItemEnhancing.Apply(item, EnhancementName, Tier))
+            // E.5.1 deep-audit Bug #1: pass CurrentCrafter as the wielder
+            // so that if the crafter is currently wielding this item
+            // (e.g. tinker-on-equipped-armor), the OnEquipped hook fires
+            // immediately and the bonus lands without a re-equip cycle.
+            // CurrentCrafter is null in non-Tinker callers — ItemEnhancing.Apply
+            // gracefully no-ops the wielder branch in that case.
+            if (!ItemEnhancing.Apply(item, EnhancementName, Tier, wielder: CurrentCrafter))
             {
                 // Apply emitted enhancement/ApplyFailed already with a
                 // reason. Surface a generic recipe-level message here.

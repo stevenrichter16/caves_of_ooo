@@ -38,10 +38,10 @@
 
 | Field | Value |
 |---|---|
-| **Current phase** | **E.4 ✅ shipped — feature complete**; E.5+ polish queue active |
-| **Cumulative tests** | **308** across E.1 + E.2 + E.3 + E.4 — all green, no fixtures skipped |
-| **Real bugs surfaced + fixed** | 1 doc-time compile fix (E.2.5); 1 substrate gap fixed (E.3.4 `EnsureInitialized` auto-discovery); 1 latent atomicity 🟡 fixed in E.4.2 (dispatcher not in transaction rollback); 0 *real* gameplay bugs across all 4 phases |
-| **Audit passes run** | E.1.5 cold-eye; E.2.5 adversarial sweep + cold-eye; E.3.1 verification sweep (caught 2 aspirational mechanics before they cost code); E.3.6 adversarial sweep (20 tests, 0 bugs) + cold-eye; **E.4.3 cumulative BOTH-angle cold-eye review (5 findings — 1 🟡 latent atomicity fixed; 1 🟡 hypothesis falsified with regression tests; 3 minor 🔵/🧪 cleanups)** |
+| **Current phase** | **E.5.1 deep-audit ✅ shipped — 3 real bugs found + fixed**; E.5+ polish queue active |
+| **Cumulative tests** | **322** across E.1 + E.2 + E.3 + E.4 + E.5.1 — all green, no fixtures skipped |
+| **Real bugs surfaced + fixed** | E.2.5 compile fix; E.3.4 substrate gap (auto-discovery); E.4.2 latent atomicity (dispatcher transaction wrap); **E.5.1 deep audit caught 3 more REAL bugs**: (1) Apply-to-already-equipped didn't fire OnEquipped → Lacquered/Engraved/GlowQuartz silently no-op on Tinker-to-worn-item; (2) Remove-from-equipped didn't fire OnUnequipped → bonus stayed applied after Part destroyed; (3) DispatchOnHit iterator skipped parts when a hook self-removed. **First two are gameplay-visible silent failures** in the Tinker flow. |
+| **Audit passes run** | E.1.5 cold-eye; E.2.5 adversarial sweep + cold-eye; E.3.1 verification sweep; E.3.6 adversarial sweep; E.4.3 cumulative BOTH-angle cold-eye (5 findings); **E.5.1 second-round deep audit (12 RED tests written first — 3 confirmed bugs RED→GREEN + 4 pinned-as-correct invariants + 1 cross-system integration + plumbed Tinker shim through to OnEquipped firing)** |
 | **Phases planned** | E.1 → E.4 (4 phases + E.5+ polish queue) |
 | **Last updated** | 2026-05-11 |
 | **Reference codebase** | Qud (`/Users/steven/qud-decompiled-project/XRL.World.Parts/IModification.cs` + 237 `Mod*.cs` files) |

@@ -44,17 +44,16 @@ namespace CavesOfOoo.Core
             Damage damage, int actualDamage, Zone zone, Random rng)
         {
             if (weaponItem == null) return;
-            // Cache count locally — enhancements should not mutate the
-            // Parts list during dispatch, but iterating by index lets us
-            // tolerate if one ever does (skips would be the worst case).
-            var parts = weaponItem.Parts;
-            if (parts == null) return;
-            for (int i = 0; i < parts.Count; i++)
+            // E.5.1 deep-audit Bug #3 fix: take a snapshot of the
+            // enhancements list BEFORE iterating so a hook that mutates
+            // weaponItem.Parts (e.g. self-removing, or chaining
+            // ItemEnhancing.Apply/Remove on the same item) cannot skip
+            // the next part. The previous index-based iteration silently
+            // skipped the part right-shifted into the just-vacated slot.
+            var snapshot = SnapshotEnhancements(weaponItem);
+            for (int i = 0; i < snapshot.Count; i++)
             {
-                if (parts[i] is IItemEnhancement enh)
-                {
-                    enh.OnAttackerHit(defender, attacker, damage, actualDamage, zone, rng);
-                }
+                snapshot[i].OnAttackerHit(defender, attacker, damage, actualDamage, zone, rng);
             }
         }
 
@@ -68,14 +67,11 @@ namespace CavesOfOoo.Core
         public static void DispatchOnEquip(Entity actor, Entity item)
         {
             if (item == null) return;
-            var parts = item.Parts;
-            if (parts == null) return;
-            for (int i = 0; i < parts.Count; i++)
+            // Snapshot list — same Bug #3 protection.
+            var snapshot = SnapshotEnhancements(item);
+            for (int i = 0; i < snapshot.Count; i++)
             {
-                if (parts[i] is IItemEnhancement enh)
-                {
-                    enh.OnEquipped(actor, item);
-                }
+                snapshot[i].OnEquipped(actor, item);
             }
         }
 
@@ -89,15 +85,31 @@ namespace CavesOfOoo.Core
         public static void DispatchOnUnequip(Entity actor, Entity item)
         {
             if (item == null) return;
+            // Snapshot list — same Bug #3 protection.
+            var snapshot = SnapshotEnhancements(item);
+            for (int i = 0; i < snapshot.Count; i++)
+            {
+                snapshot[i].OnUnequipped(actor, item);
+            }
+        }
+
+        /// <summary>Capture the current <see cref="IItemEnhancement"/>
+        /// Parts of an item into a separate list so iteration is
+        /// resilient to Parts-list mutation during dispatch (E.5.1 Bug #3).
+        /// Allocation is acceptable — Parts list size for items is
+        /// bounded by <see cref="ItemEnhancing.MAX_ENHANCEMENTS_PER_ITEM"/>
+        /// (= 2), and combat dispatch is per-swing, not per-frame.</summary>
+        private static System.Collections.Generic.List<IItemEnhancement>
+            SnapshotEnhancements(Entity item)
+        {
+            var result = new System.Collections.Generic.List<IItemEnhancement>();
+            if (item?.Parts == null) return result;
             var parts = item.Parts;
-            if (parts == null) return;
             for (int i = 0; i < parts.Count; i++)
             {
-                if (parts[i] is IItemEnhancement enh)
-                {
-                    enh.OnUnequipped(actor, item);
-                }
+                if (parts[i] is IItemEnhancement enh) result.Add(enh);
             }
+            return result;
         }
     }
 }
