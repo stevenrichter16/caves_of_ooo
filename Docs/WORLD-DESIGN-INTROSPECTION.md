@@ -1,13 +1,27 @@
 # World Design Introspection — Honest Critique
 
-**Date:** 2026-05-13
+**Date:** 2026-05-13 (revised same day after user correction)
 **Sibling docs:** `WORLD-ENVIRONMENT-OVERHAUL.md` (brainstorm),
-  `W1-WORLD-CEMENT-PLAN.md` (locked plan).
+  `W1-WORLD-CEMENT-PLAN.md` (locked plan),
+  `PROJECT-IDENTITY.md` (CoO is RPG, not roguelike).
 
 The brainstorm doc was synthesis + path-proposal. This doc is the
 introspection layer — what I actually think about the IDEAS.md
 design and the path I proposed. Optimized for honesty, not
 cheerleading. If something concerns me, it lives here.
+
+> **Revision note (post-RPG clarification):** the original v1 of
+> this doc raised a "Roguelike-vs-RPG tension" concern (numbered
+> #3 in the original draft). The user clarified explicitly that
+> **Caves of Ooo is an RPG, not a roguelike** (now pinned in
+> `Docs/PROJECT-IDENTITY.md`, `CLAUDE.md`, and `MEMORY.md`). With
+> that correction, the entire concern collapses. The Urqu /
+> Spirit / Memory-Eating systems work *as IDEAS.md describes them*
+> — no permadeath conflict, no meta-progression layer needed, no
+> scope pivot required. Concern #3 below is preserved as a
+> struck-through record of the misunderstanding, not as active
+> critique. The revised overall take section at the bottom reflects
+> the corrected reading.
 
 ---
 
@@ -149,30 +163,30 @@ keeps the room navigable even with no light source; only the
 bright light. This preserves the atmosphere without bricking
 players who don't manage lumen-economy well.
 
-### 3. Roguelike-vs-RPG tension
+### ~~3. Roguelike-vs-RPG tension~~ — **STRUCK. CoO is RPG.**
 
-IDEAS.md repeatedly notes "RPG-only" or "permadeath incompatible"
-for some systems (Urqu Pacts, Memory-Eating consequences, Spirit
-Pacts that brand the character). CoO is currently roguelike-
-shaped: runs end with death.
+> ~~IDEAS.md repeatedly notes "RPG-only" or "permadeath
+> incompatible" for some systems (Urqu Pacts, Memory-Eating
+> consequences, Spirit Pacts that brand the character). CoO is
+> currently roguelike-shaped: runs end with death.~~
 
-If a player dies mid-Urqu-Pact, what happens? Three options:
-- **A.** Run ends; Pact resets on next run. **Pact-weight is
-  light** — feels less than the design intends.
-- **B.** Run ends but Pact persists to next run. **Now we have
-  meta-progression.** That's a major design pivot.
-- **C.** Death isn't permadeath (RPG mode). **Roguelike CoO is
-  abandoned.** Even bigger pivot.
+**This concern was based on a wrong premise.** Per
+`PROJECT-IDENTITY.md`, **CoO is an RPG, not a roguelike.**
+Character persists, death is recoverable via save/load, all
+permanent narrative choices carry full weight without the
+roguelike "next run resets it" escape hatch.
 
-The design doc hints at (B) (lineage / descendant-readable
-burial), which is meta-progression-flavored. But the engine
-doesn't currently support cross-run state.
+The cosmic-actor design (Urqu Pacts, Spirit Pacts, Memory-Eating
+consequences, lineage / descendant-readable burial) works
+**exactly as IDEAS.md describes**. No design pivot, no
+meta-progression layer to bolt on, no scope shift needed.
 
-**I don't think this needs solving for W.2–W.11.** Environment
-cement doesn't depend on the cosmic-actor layer. But the user
-should know: **the IDEAS.md endgame design implies a meta-
-progression layer that CoO doesn't have yet.** That's its own
-project.
+The lesson here is for me: when a design doc says "RPG-only," and
+you don't know the game's genre, **ask before assuming the game is
+not an RPG.** I read CoO's ASCII / 80×25 / Qud-parity aesthetic as
+implying roguelike, and surfaced a false tension. The user's
+correction is now pinned in three files so this misreading can't
+recur.
 
 ### 4. Faction-redistribution risks narrative coherence
 
@@ -309,32 +323,46 @@ adding to each phase's "verification sweep" checklist.**
 
 ---
 
-## My honest overall take
+## My honest overall take (REVISED post-RPG clarification)
 
-The IDEAS.md design is **the best world-design synthesis I've seen
-for a roguelike of this scope.** The thesis is coherent. The
-faction-cosmology mapping is load-bearing. The mineral system
-already proved it scales. The vertical grammar plugs into the
-engine without architectural rewrites.
+The IDEAS.md design is **the best world-design synthesis I've
+seen for an RPG of this scope**, and it's an even better fit than
+I originally credited it. With the corrected RPG framing:
 
-What it ISN'T is a finished spec. It's a *seed* the size of three
-or four games. The work of implementing it is a year's project,
-not a 17-day path.
+- The cosmic-actor layer (Urqu, Spirits, Pacts) works as written.
+  Permanent character choices have full narrative weight by
+  default — no engine pivot needed.
+- Lineage / descendant-readable burial is a *within-game* arc the
+  player can shape, not a cross-run gimmick.
+- Faction reputation is full commitment, not a per-run wager.
+- Memory-Eating is a character-event the player carries, not a
+  run-ending failure.
 
-My proposed path picks the **environment-cement subset** — the
-terrain + first faction debut + first mineral context — because
-that's the smallest slice that makes the world *feel* tepui-shaped.
-Everything else (Urqu, Spirits, Pacts, preservation methods, Blocs,
-Sects, Witnesses, Memory-Marble + 5 more minerals) is downstream
-of that foundation. Trying to ship them now would mean fragmented
-half-systems that don't compose.
+The remaining concerns (#1 scope, #2 light-economy UX, #4 faction-
+redistribution audit, #5 Root-at-10,10 vs new-cell, #6 plaques
+wall-of-text, #7-10 about my own path) **all still stand** — they
+are engine/UX/design-discipline concerns, not roguelike-vs-RPG
+concerns. The RPG correction doesn't change them.
 
-**My recommendation:** ship W.2-W.4 first (5-7 days). Pause. Look
-at the result. If the player walks into a tepui-top zone, descends
-into a Stranded Settlement sinkhole, reads catacomb plaques, and
-the experience makes the world feel different — we're on the right
-track. Then W.5-W.6 (PaleCuration debut + light economy) ships
-next. Then re-evaluate the path.
+### What it ISN'T
+
+A finished spec. It's a *seed* the size of three or four games.
+The work of implementing it fully is a year's project, not a
+17-day path. My proposed path picks the **environment-cement
+subset** — the terrain + first faction debut + first mineral
+context — because that's the smallest slice that makes the world
+*feel* tepui-shaped. Everything else (Urqu, Spirits, Pacts,
+preservation methods, Blocs, Sects, Witnesses, Memory-Marble +
+5 more minerals) is downstream of that foundation.
+
+### My recommendation
+
+Ship W.2-W.4 first (5-7 days). Pause. Look at the result. If the
+player walks into a tepui-top zone, descends into a Stranded
+Settlement sinkhole, reads catacomb plaques, and the experience
+makes the world feel different — we're on the right track. Then
+W.5-W.6 (PaleCuration debut + light economy) ships next. Then
+re-evaluate the path.
 
 If at W.4 the experience feels flat (the plaques don't pop, the
 sinkhole is just-a-cave-with-extra-steps, the player doesn't
@@ -343,6 +371,17 @@ shipping more. The path is designed to fail early if the design
 doesn't work, not to commit us to 30 days of building toward
 something the player won't feel.
 
-That's my honest take. The design is strong. The path is
-defensible. The pace should respect player-experience checkpoints
-more than the doc's phase numbering implies.
+The design is strong. The path is defensible. The pace should
+respect player-experience checkpoints more than the doc's phase
+numbering implies. And **the RPG framing makes the cosmic-actor
+cosmology a feature, not a problem.**
+
+### Meta-lesson for future Claude sessions
+
+Genre assumptions seep into design critique silently. CoO's
+aesthetic (ASCII tilemap, 80×25 grid, CP437 glyphs, Qud-parity
+port) reads as roguelike-coded to anyone who hasn't been told
+otherwise. When evaluating any future design, **check
+`PROJECT-IDENTITY.md` first** — and if a design choice only
+makes sense under one framing, surface that explicitly before
+writing critique that assumes the other.

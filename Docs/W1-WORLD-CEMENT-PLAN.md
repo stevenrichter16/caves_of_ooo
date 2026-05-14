@@ -3,6 +3,11 @@
 **Date:** 2026-05-13
 **Status:** Plan locked. W.2 next.
 
+> **Genre framing:** CoO is an **RPG, not a roguelike**
+> (`Docs/PROJECT-IDENTITY.md`). All phase plans assume character
+> persistence and save/load. Cosmic-actor mechanics (Urqu Pacts,
+> Spirit Pacts, Memory-Eating) carry full permanent weight.
+
 This is the action-oriented sibling of `WORLD-ENVIRONMENT-OVERHAUL.md`.
 That doc was the brainstorm; this doc captures the locked-in answers
 + concrete sub-milestone breakdowns for the first 3 phases (W.2–W.4).

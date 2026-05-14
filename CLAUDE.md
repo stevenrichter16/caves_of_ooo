@@ -656,6 +656,12 @@ files, mostly visual) or `/Users/steven/qud-decompiled-project/`
 
 ## Project specifics (auto-memory)
 
+- **🎮 Genre: RPG, NOT roguelike.** Character persists across save/load.
+  Death is recoverable. Pacts/Brands/Marks carry full permanent narrative
+  weight. World state persists. See `Docs/PROJECT-IDENTITY.md` for the
+  authoritative statement. Anywhere a design appears to assume roguelike
+  conventions (permadeath, run-based reset, meta-progression layer), the
+  assumption is **wrong** — re-read with RPG framing.
 - **Game scene:** `Assets/Scenes/SampleScene.unity` (NOT `Assets/game.unity`)
 - **Unity 6** (6000.3.4f1) at `/Users/steven/caves-of-ooo/`
 - **Architecture mirrors Qud:** Entity (bag of Parts) + GameEvent (string-keyed)

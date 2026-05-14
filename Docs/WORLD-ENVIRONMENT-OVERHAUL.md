@@ -3,6 +3,12 @@
 **Started:** 2026-05-13
 **Status:** Brainstorm — no code yet. Pre-decision document.
 
+> **Genre framing:** Caves of Ooo is an **RPG, not a roguelike.**
+> Authoritative: `Docs/PROJECT-IDENTITY.md`. Every design choice
+> in this doc assumes character persistence, save/load
+> recoverability, and full weight on permanent narrative
+> commitments (Pacts, Brands, Marks, faction-reputation).
+
 ## Goal — "lock into cementing the environment"
 
 The world pivots to a setting built around **tepuis, catacombs,
