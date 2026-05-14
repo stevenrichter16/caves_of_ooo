@@ -76,3 +76,36 @@ assumptions, this identity statement is also embedded in:
 If any future doc proposes a design that *only* makes sense under
 roguelike framing, that's a red flag — surface it as a question
 before shipping.
+
+---
+
+## 🤖 Working model — Claude does the coding
+
+A companion fact, pinned for the same reason. **The user (steven)
+is not hand-coding any of this game.** Claude writes the production
+code, the tests, the docs, the JSON content, the scenarios.
+
+This is project-shaping information because:
+
+- **Time estimates compress.** Human-pace "5-7 days" reads as
+  agent-pace "1-2 calendar days of focused session work." Don't
+  estimate as if a human is typing.
+- **Methodology speed-up.** TDD per-sub-milestone, cold-eye
+  reviews, adversarial sweeps all still happen — they just run
+  faster because the agent isn't context-switching at human speed.
+- **What gates pacing.** The bottleneck is usually (a) Unity reload
+  cycles, (b) user-review checkpoints between phases, (c) MCP
+  disconnects. Not coding speed.
+- **What estimates should look like.** "Agent-work hours: X. User
+  review checkpoints: N. Calendar time: Y days (if focused)." Three
+  numbers, not one.
+
+Pinned in:
+
+- `CLAUDE.md` (project specifics)
+- `~/.claude/projects/.../MEMORY.md`
+- (this file)
+
+When estimating new work in `Docs/W*-PLAN.md` etc., prefer
+agent-hours + review-checkpoints + calendar-days. Avoid "N days of
+focused work" without context.

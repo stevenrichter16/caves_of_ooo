@@ -662,6 +662,14 @@ files, mostly visual) or `/Users/steven/qud-decompiled-project/`
   authoritative statement. Anywhere a design appears to assume roguelike
   conventions (permadeath, run-based reset, meta-progression layer), the
   assumption is **wrong** — re-read with RPG framing.
+- **🤖 Claude does ALL the coding.** The user (steven) is not hand-coding
+  any of this game. Claude writes the production code, the tests, the
+  docs. Time estimates that read like "5-7 days of focused work" should
+  be re-read as agent-pace, not human-pace — typically 3-4x faster on
+  pure coding hours, modulated by Unity reload cycles + user-review
+  pauses between phases. **Do not estimate timelines as if a human is
+  typing.** Estimate by agent-work-hours and surface user-review
+  checkpoints separately.
 - **Game scene:** `Assets/Scenes/SampleScene.unity` (NOT `Assets/game.unity`)
 - **Unity 6** (6000.3.4f1) at `/Users/steven/caves-of-ooo/`
 - **Architecture mirrors Qud:** Entity (bag of Parts) + GameEvent (string-keyed)
