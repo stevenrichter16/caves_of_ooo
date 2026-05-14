@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -35,11 +36,23 @@ namespace CavesOfOoo.Core
         public static bool TryMove(Entity entity, Zone zone, int dx, int dy)
         {
             var currentCell = zone.GetEntityCell(entity);
-            if (currentCell == null) return false;
+            if (currentCell == null)
+            {
+                // Detached entity. Emit Blocked without preceding Attempt
+                // (we have no source coordinates to record).
+                Diag.Record("movement", "Blocked", actor: entity, payload: new
+                {
+                    reason = "NoCurrentCell",
+                    dx,
+                    dy,
+                });
+                return false;
+            }
 
             int newX = currentCell.X + dx;
             int newY = currentCell.Y + dy;
 
+            // Delegated to TryMoveTo — emissions happen there. No double-record.
             return TryMoveTo(entity, zone, newX, newY);
         }
 
@@ -50,15 +63,59 @@ namespace CavesOfOoo.Core
         public static (bool moved, Entity blockedBy) TryMoveEx(Entity entity, Zone zone, int dx, int dy)
         {
             var currentCell = zone.GetEntityCell(entity);
-            if (currentCell == null) return (false, null);
+            if (currentCell == null)
+            {
+                // Detached entity (not placed in the zone). Emit Blocked with reason.
+                Diag.Record("movement", "Blocked", actor: entity, payload: new
+                {
+                    reason = "NoCurrentCell",
+                    dx,
+                    dy,
+                });
+                return (false, null);
+            }
 
             int newX = currentCell.X + dx;
             int newY = currentCell.Y + dy;
 
-            if (!zone.InBounds(newX, newY)) return (false, null);
+            // Emit Attempt now that we know the source cell + intended target.
+            Diag.Record("movement", "Attempt", actor: entity, payload: new
+            {
+                fromX = currentCell.X,
+                fromY = currentCell.Y,
+                toX = newX,
+                toY = newY,
+                dx,
+                dy,
+                entryPoint = "TryMoveEx",
+            });
+
+            if (!zone.InBounds(newX, newY))
+            {
+                Diag.Record("movement", "Blocked", actor: entity, payload: new
+                {
+                    reason = "OutOfBounds",
+                    fromX = currentCell.X,
+                    fromY = currentCell.Y,
+                    toX = newX,
+                    toY = newY,
+                });
+                return (false, null);
+            }
 
             var targetCell = zone.GetCell(newX, newY);
-            if (targetCell == null) return (false, null);
+            if (targetCell == null)
+            {
+                Diag.Record("movement", "Blocked", actor: entity, payload: new
+                {
+                    reason = "NoTargetCell",
+                    fromX = currentCell.X,
+                    fromY = currentCell.Y,
+                    toX = newX,
+                    toY = newY,
+                });
+                return (false, null);
+            }
 
             // Fire BeforeMove event
             var beforeMove = GameEvent.New("BeforeMove");
@@ -73,6 +130,16 @@ namespace CavesOfOoo.Core
             {
                 // Check if something blocked us
                 var blocker = beforeMove.GetParameter<Entity>("BlockedBy");
+                Diag.Record("movement", "Blocked", actor: entity, target: blocker, payload: new
+                {
+                    reason = blocker != null ? "BlockedByEntity" : "VetoedByEvent",
+                    fromX = currentCell.X,
+                    fromY = currentCell.Y,
+                    toX = newX,
+                    toY = newY,
+                    blockerId = blocker?.ID,
+                    blockerBlueprint = blocker?.BlueprintName,
+                });
                 beforeMove.Release();
                 return (false, blocker);
             }
@@ -101,6 +168,19 @@ namespace CavesOfOoo.Core
 
             FireCellEnteredEvents(entity, targetCell);
 
+            // Emit Completed last, so listener-induced side-effects (death,
+            // cell-entered runes) still fire above the Completed record in
+            // turn order — useful when correlating subsequent events to the
+            // triggering move.
+            Diag.Record("movement", "Completed", actor: entity, payload: new
+            {
+                fromX = oldX,
+                fromY = oldY,
+                toX = newX,
+                toY = newY,
+                isPlayer = entity?.HasTag("Player") ?? false,
+            });
+
             return (true, null);
         }
 
@@ -110,11 +190,50 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static bool TryMoveTo(Entity entity, Zone zone, int x, int y)
         {
-            if (!zone.InBounds(x, y)) return false;
-
+            // Source cell may be null (first-placement path). We emit
+            // Attempt before any early-return so OOB blocks are still
+            // visible — but with fromX/fromY = -1 sentinel when no source.
             var currentCell = zone.GetEntityCell(entity);
+            int fromX = currentCell?.X ?? -1;
+            int fromY = currentCell?.Y ?? -1;
+
+            Diag.Record("movement", "Attempt", actor: entity, payload: new
+            {
+                fromX,
+                fromY,
+                toX = x,
+                toY = y,
+                dx = currentCell != null ? x - currentCell.X : 0,
+                dy = currentCell != null ? y - currentCell.Y : 0,
+                entryPoint = "TryMoveTo",
+            });
+
+            if (!zone.InBounds(x, y))
+            {
+                Diag.Record("movement", "Blocked", actor: entity, payload: new
+                {
+                    reason = "OutOfBounds",
+                    fromX,
+                    fromY,
+                    toX = x,
+                    toY = y,
+                });
+                return false;
+            }
+
             var targetCell = zone.GetCell(x, y);
-            if (targetCell == null) return false;
+            if (targetCell == null)
+            {
+                Diag.Record("movement", "Blocked", actor: entity, payload: new
+                {
+                    reason = "NoTargetCell",
+                    fromX,
+                    fromY,
+                    toX = x,
+                    toY = y,
+                });
+                return false;
+            }
 
             // Fire BeforeMove event — parts can block this
             var beforeMove = GameEvent.New("BeforeMove");
@@ -128,8 +247,23 @@ namespace CavesOfOoo.Core
             }
 
             bool allowed = entity.FireEvent(beforeMove);
+            if (!allowed)
+            {
+                var blocker = beforeMove.GetParameter<Entity>("BlockedBy");
+                Diag.Record("movement", "Blocked", actor: entity, target: blocker, payload: new
+                {
+                    reason = blocker != null ? "BlockedByEntity" : "VetoedByEvent",
+                    fromX,
+                    fromY,
+                    toX = x,
+                    toY = y,
+                    blockerId = blocker?.ID,
+                    blockerBlueprint = blocker?.BlueprintName,
+                });
+                beforeMove.Release();
+                return false;
+            }
             beforeMove.Release();
-            if (!allowed) return false;
 
             // Perform the move
             int oldX = currentCell?.X ?? -1;
@@ -149,6 +283,16 @@ namespace CavesOfOoo.Core
             entity.FireEventAndRelease(afterMove);
 
             FireCellEnteredEvents(entity, targetCell);
+
+            // Emit Completed last, after side-effect events have fired.
+            Diag.Record("movement", "Completed", actor: entity, payload: new
+            {
+                fromX = oldX,
+                fromY = oldY,
+                toX = x,
+                toY = y,
+                isPlayer = entity?.HasTag("Player") ?? false,
+            });
 
             return true;
         }

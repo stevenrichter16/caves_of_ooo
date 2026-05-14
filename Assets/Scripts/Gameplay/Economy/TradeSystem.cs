@@ -116,18 +116,35 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static bool BuyFromTrader(Entity buyer, Entity trader, Entity item)
         {
-            if (buyer == null || trader == null || item == null) return false;
+            // Every reject path emits a diag record with a reason field so
+            // a debug session asking "why didn't the buy happen?" can find
+            // it without grepping production code. See methodology rule
+            // "Every gate that can reject emits a record."
+            if (buyer == null || trader == null || item == null)
+            {
+                EmitTradeRejected(buyer, trader, item, "Buy", "NullArg", 0);
+                return false;
+            }
 
             var traderInv = trader.GetPart<InventoryPart>();
-            if (traderInv == null) return false;
+            if (traderInv == null)
+            {
+                EmitTradeRejected(buyer, trader, item, "Buy", "TraderHasNoInventory", 0);
+                return false;
+            }
 
             var buyerInv = buyer.GetPart<InventoryPart>();
-            if (buyerInv == null) return false;
+            if (buyerInv == null)
+            {
+                EmitTradeRejected(buyer, trader, item, "Buy", "BuyerHasNoInventory", 0);
+                return false;
+            }
 
             // SP.3: trader must be in a state that allows trade.
             if (TraderUnableToTrade(trader, out string reason))
             {
                 MessageLog.Add($"The trader {reason}.");
+                EmitTradeRejected(buyer, trader, item, "Buy", "TraderUnable:" + reason, 0);
                 return false;
             }
 
@@ -140,6 +157,7 @@ namespace CavesOfOoo.Core
             if (!CanBeTraded(item, buyer, trader, "Buy"))
             {
                 MessageLog.Add($"You can't trade {item.GetDisplayName()}.");
+                EmitTradeRejected(buyer, trader, item, "Buy", "NoTrade", 0);
                 return false;
             }
 
@@ -150,6 +168,7 @@ namespace CavesOfOoo.Core
             if (buyerDrams < price)
             {
                 MessageLog.Add("You can't afford that!");
+                EmitTradeRejected(buyer, trader, item, "Buy", "InsufficientDrams", price);
                 return false;
             }
 
@@ -160,14 +179,22 @@ namespace CavesOfOoo.Core
             beforeTrade.SetParameter("Item", (object)item);
             beforeTrade.SetParameter("Price", price);
             if (!buyer.FireEventAndRelease(beforeTrade))
+            {
+                EmitTradeRejected(buyer, trader, item, "Buy", "BeforeTradeVetoed", price);
                 return false;
+            }
 
             // Transfer item
-            if (!traderInv.RemoveObject(item)) return false;
+            if (!traderInv.RemoveObject(item))
+            {
+                EmitTradeRejected(buyer, trader, item, "Buy", "TraderRemoveObjectFailed", price);
+                return false;
+            }
             if (!buyerInv.AddObject(item))
             {
                 traderInv.AddObject(item);
                 MessageLog.Add($"You can't carry {item.GetDisplayName()}: too heavy!");
+                EmitTradeRejected(buyer, trader, item, "Buy", "BuyerAddObjectFailed:Weight", price);
                 return false;
             }
 
@@ -202,18 +229,33 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static bool SellToTrader(Entity seller, Entity trader, Entity item)
         {
-            if (seller == null || trader == null || item == null) return false;
+            // Mirror of BuyFromTrader: every reject path emits a diag
+            // record with a reason field.
+            if (seller == null || trader == null || item == null)
+            {
+                EmitTradeRejected(seller, trader, item, "Sell", "NullArg", 0);
+                return false;
+            }
 
             var traderInv = trader.GetPart<InventoryPart>();
-            if (traderInv == null) return false;
+            if (traderInv == null)
+            {
+                EmitTradeRejected(seller, trader, item, "Sell", "TraderHasNoInventory", 0);
+                return false;
+            }
 
             var sellerInv = seller.GetPart<InventoryPart>();
-            if (sellerInv == null) return false;
+            if (sellerInv == null)
+            {
+                EmitTradeRejected(seller, trader, item, "Sell", "SellerHasNoInventory", 0);
+                return false;
+            }
 
             // SP.3: trader-state validation (mirrors buy path).
             if (TraderUnableToTrade(trader, out string reason))
             {
                 MessageLog.Add($"The trader {reason}.");
+                EmitTradeRejected(seller, trader, item, "Sell", "TraderUnable:" + reason, 0);
                 return false;
             }
 
@@ -222,6 +264,7 @@ namespace CavesOfOoo.Core
             if (!CanBeTraded(item, seller, trader, "Sell"))
             {
                 MessageLog.Add($"You can't trade {item.GetDisplayName()}.");
+                EmitTradeRejected(seller, trader, item, "Sell", "NoTrade", 0);
                 return false;
             }
 
@@ -232,6 +275,7 @@ namespace CavesOfOoo.Core
             if (traderDrams < price)
             {
                 MessageLog.Add("The trader can't afford that!");
+                EmitTradeRejected(seller, trader, item, "Sell", "TraderInsufficientDrams", price);
                 return false;
             }
 
@@ -239,11 +283,18 @@ namespace CavesOfOoo.Core
             if (InventorySystem.IsEquipped(seller, item))
             {
                 if (!InventorySystem.UnequipItem(seller, item))
+                {
+                    EmitTradeRejected(seller, trader, item, "Sell", "UnequipFailed", price);
                     return false;
+                }
             }
 
             // Transfer item
-            if (!sellerInv.RemoveObject(item)) return false;
+            if (!sellerInv.RemoveObject(item))
+            {
+                EmitTradeRejected(seller, trader, item, "Sell", "SellerRemoveObjectFailed", price);
+                return false;
+            }
             traderInv.AddObject(item);
 
             // Transfer currency
@@ -356,6 +407,33 @@ namespace CavesOfOoo.Core
             canBeTraded.SetParameter("Trader", (object)trader);
             canBeTraded.SetParameter("Direction", direction);
             return item.FireEventAndRelease(canBeTraded);
+        }
+
+        /// <summary>
+        /// Emit a trade-rejected diag record. Used by every reject path
+        /// in Buy/Sell so a debug query can answer "why didn't the trade
+        /// happen?" without grepping source. The <paramref name="direction"/>
+        /// is "Buy" or "Sell"; <paramref name="reason"/> names the gate
+        /// that vetoed (e.g., "InsufficientDrams", "NoTrade",
+        /// "TraderUnable:is on fire"). Per the methodology rule "every
+        /// gate that can reject emits a record."
+        /// </summary>
+        private static void EmitTradeRejected(
+            Entity actor, Entity trader, Entity item,
+            string direction, string reason, int price)
+        {
+            if (!Diag.IsChannelEnabled("trade")) return;
+            Diag.Record(
+                category: "trade", kind: "Rejected",
+                actor: actor, target: trader,
+                payload: new
+                {
+                    direction,
+                    reason,
+                    itemName = item?.GetDisplayName(),
+                    itemId = item?.ID,
+                    price,
+                });
         }
 
         /// <summary>
