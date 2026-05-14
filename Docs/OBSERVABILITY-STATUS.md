@@ -1,6 +1,6 @@
 # Observability — Status & Stopping Point
 
-**As of:** 2026-05-13 (after `4065aae`).
+**As of:** 2026-05-13 (after the mechanics-coverage push).
 
 This is the always-on entry point for the diag/observability surface.
 For deep how-to, see `AI-OBSERVABILITY.md`. This doc tracks **what
@@ -62,11 +62,75 @@ var attackRecords = DiagQuery.Apply(new DiagQuery.Filter {
 | `enhancement` | `Applied`, `ApplyFailed`, `Removed`, `BonusApplied`, `BonusRemoved`, `Triggered` | `ItemEnhancing.Apply/Remove`, concrete enhancement `OnEquipped`/`OnUnequipped`/`OnAttackerHit` hooks |
 | `mineral-trade` | `Traded`, `Rejected` | `MineralTradeService.TryTrade` |
 
+### Movement diag (new, post-mechanics-coverage)
+
+| Category | Kinds | Fired by |
+|---|---|---|
+| `movement` | `Attempt`, `Blocked`, `Completed` | `MovementSystem.TryMove`, `TryMoveTo`, `TryMoveEx` |
+
+Every entry point emits `Attempt` then either `Blocked` (with
+`reason` ∈ {OutOfBounds, NoCurrentCell, NoTargetCell,
+BlockedByEntity, VetoedByEvent} + `blockerId` when known) or
+`Completed` (with `isPlayer` flag for full-zone-dirty marking
+debug). `TryMove` delegates to `TryMoveTo` — only one set of
+records per call; `entryPoint` field in `Attempt` distinguishes
+which overload was invoked.
+
+### Trade diag (extended, post-mechanics-coverage)
+
+| Category | Kinds | Fired by |
+|---|---|---|
+| `trade` | `Bought`, `Sold`, **`Rejected`** *(NEW)* | `TradeSystem.BuyFromTrader`, `SellToTrader` |
+
+Pre-fix: 8 reject paths in Buy + Sell were silent. Post-fix
+every reject path emits `trade/Rejected` with `direction` (Buy
+or Sell) + `reason` ∈ {NullArg, TraderHasNoInventory,
+BuyerHasNoInventory, TraderUnable:{is dead|is on fire|...},
+NoTrade, InsufficientDrams, BeforeTradeVetoed,
+TraderRemoveObjectFailed, BuyerAddObjectFailed:Weight, etc.}.
+
+### Leveling diag (NEW, post-mechanics-coverage)
+
+| Category | Kinds | Fired by |
+|---|---|---|
+| `leveling` | `Awarded`, `Rejected`, `LeveledUp` | `LevelingSystem.AwardKillXP`, `CheckLevelUp` |
+
+- `Awarded`: xpGained + xpBefore/xpAfter + currentLevel + xpToNext
+- `Rejected`: reason ∈ {NullArg, VictimHasNoXPValue, KillerHasNoExperienceStat}
+- `LeveledUp`: one per level transition (multi-level overflow
+  emits one record each) with prevLevel/newLevel, xpThresholdCrossed,
+  xpRemaining, hpMaxBefore/After, healedToFull, gainedMP, gainedSP
+
+### Inventory diag (NEW, post-mechanics-coverage)
+
+| Category | Kinds | Fired by |
+|---|---|---|
+| `inventory` | `Pickup`, `Drop`, `DropPartial`, `Equip`, `Unequip`, `AutoEquip`, `Rejected` | `InventorySystem` facade |
+
+Every mutation goes through the facade. Success → corresponding
+kind. Failure → `Rejected` with `operation` (which facade method),
+`errorCode` (Validation/Execution/Exception), `errorMessage` (the
+same string the UI surfaces), and `validationCode` (the
+`InventoryValidationErrorCode` enum value: NotOwned, NotTakeable,
+InvalidActor, InsufficientStrength, …).
+
+### Tinkering diag (extended, post-mechanics-coverage)
+
+| Category | Kinds | Fired by |
+|---|---|---|
+| `enhancement` | `Applied`, `ApplyFailed`, `Removed`, ... + **`Crafted`/`CraftRejected`**, **`ApplyModSucceeded`/`ApplyModRejected`**, **`Disassembled`/`DisassembleRejected`** *(NEW)* | `TinkeringService.TryCraft/TryApplyModification/TryDisassemble` |
+
+Pre-fix: 20+ silent reject paths in the three Try* methods.
+Post-fix every call emits exactly one record with `reason`
+matching the UI message (e.g. "Crafter is missing.", "Not enough
+bits.", "You must own the target item.").
+
 ### Other categories on by default
 
 `event`, `effect`, `damage`, `turn`, `furniture`, `trade`,
-`quest`, `skill`, `enhancement`, `mineral-trade` — see
-`Diag.DefaultOnCategories` (`Diag.cs:119`).
+`quest`, `skill`, `enhancement`, `mineral-trade`, `movement`,
+`inventory`, `leveling` — see `Diag.DefaultOnCategories`
+(`Diag.cs:119`).
 
 ---
 
@@ -119,8 +183,10 @@ attack-pathway damage without forcing them through a fake
 - **EquipBonusUtility.ApplyEquipBonuses** runs on equip/unequip
   but no diag fires. A record-on-stat-mutation would help debug
   "why did my Strength jump 4 points?"
-- **Item drops** — `InventoryPart.RemoveObject` doesn't emit a
-  drop record. Currently observable via MessageLog only.
+- ~~**Item drops** — `InventoryPart.RemoveObject` doesn't emit a
+  drop record. Currently observable via MessageLog only.~~
+  **CLOSED post-mechanics-coverage:** facade `Drop` emits
+  `inventory/Drop`; `inventory/Rejected` emits on every reject.
 
 ---
 
@@ -132,27 +198,62 @@ attack-pathway damage without forcing them through a fake
 | `DiagTests.cs` | n | Core ring buffer + filter mechanics |
 | Skill-system diag tests | scattered | `CommandRouted`/`CommandRejected` emissions |
 | Enhancement diag tests | scattered | Within each `Enhancement*Tests.cs` |
+| **`CombatObservabilityTests.cs`** *(NEW)* | 7 | End-to-end pipeline dumps; full / miss / resist / multi-resist / veto / crit / two-attack isolation |
+| **`MovementObservabilityTests.cs`** *(NEW)* | 9 | Attempt/Blocked/Completed contract; reasons OOB/Solid/Veto/NoCurrentCell; no double-emission on TryMove → TryMoveTo |
+| **`TradeObservabilityTests.cs`** *(NEW)* | 9 | Bought/Sold success + Rejected on InsufficientDrams/NoTrade/TraderUnable/NullArg |
+| **`LevelingObservabilityTests.cs`** *(NEW)* | 8 | Awarded/Rejected/LeveledUp; multi-level overflow emits one LeveledUp per transition |
+| **`InventoryObservabilityTests.cs`** *(NEW)* | 8 | Pickup/Drop/Rejected; null-args across all 5 facade methods; **surface gap: PickupCommand has no adjacency check** |
+| **`TinkeringObservabilityTests.cs`** *(NEW)* | 8 | Crafted/Disassembled success + Rejected paths with reason matching UI |
+| **`EffectsObservabilityTests.cs`** *(NEW)* | 8 | OnApply/OnRemove; stacking no-double-emission; force-apply flag; **surface observation: FrozenEffect auto-removes BurningEffect** |
 
 ---
 
-## Stopping point: 2026-05-13 (commit 4065aae)
+## Stopping point: 2026-05-13 (mechanics-coverage push)
 
-The combat damage pipeline is **complete** end-to-end:
-HitRoll → Penetration → DamageRoll → PreDamageMutation →
-ResistanceApplied → DamageDealt, all deterministically
-correlatable via `CauseTraceId`.
+The systematic observability-driven mechanics-coverage push closed
+seven major systems:
 
-Empirically verified in the user's live combat session:
-- 17 sharp longsword swings successfully decomposed
-- Sharp mod's `+1 weaponPenBonus` confirmed in every penetration roll
-- Cross-attack correlation via `f25d5a23` returned exactly 4 records
-  for one swing — no bleed-tick interleave, no timestamp guessing
+| System | Coverage | Tests |
+|---|---|---|
+| Combat damage pipeline | 6 kinds + CauseTraceId correlation (4065aae) | 7 new + 13 prior |
+| Movement | NEW `movement/Attempt|Blocked|Completed` | 9 |
+| Trade | EXTENDED with `trade/Rejected` (8 reject paths) | 9 |
+| Leveling | NEW `leveling/Awarded|Rejected|LeveledUp` | 8 |
+| Inventory facade | NEW `inventory/<op>` + `Rejected` | 8 |
+| Tinkering Try* | EXTENDED with `<op>Rejected` (20+ paths) | 8 |
+| Status effects | Existed; now pinned by observability tests | 8 |
+| **Total new** | | **57 tests** |
 
-**Pick up here:** the next high-value addition is the non-melee
-damage `DirectApply` record (above), which would let queries
-distinguish bleed/burn/trap damage from attack damage without the
+### Surface gaps found during test development
+
+1. **`PickupCommand.Validate` has no adjacency check.** Pickup
+   from any zone position succeeds. The UI gates this via
+   `GetTakeableItemsAtFeet` but a skill/code path could call
+   directly. Pinned as a regression-check in
+   `InventoryObservabilityTests.SurfaceGap_PickupHasNoAdjacencyCheck_EmitsPickup`.
+2. **`FrozenEffect.OnApply` auto-removes `BurningEffect`** via
+   `target.RemoveEffect<BurningEffect>()`. The diag stream
+   surfaces this as a 3-record set per Frozen-onto-Burning apply.
+   Pinned in
+   `EffectsObservabilityTests.FrozenOnBurning_AppliesAndAutoRemovesBurning_DocumentedSideEffect`.
+3. **`TinkeringService` had 20+ silent reject paths** — every
+   `return false` did not emit a diag record. Closed.
+
+### Empirical regression sweep result
+
+441/441 tests pass across all 13 related fixture groups
+(observability + trade + leveling + inventory + tinkering +
+diag + the new fixtures).
+
+**Pick up here:** the next high-value addition is the **non-melee
+damage `DirectApply` record**, which would let queries distinguish
+bleed/burn/trap damage from attack damage without the
 `attributes:[]` heuristic. Cost: ~20 LOC + 3 tests.
 
-After that, the AI-decision records are the biggest remaining
+After that, the **AI-decision records** are the biggest remaining
 observability blind spot — "why did the NPC stand still?" is
 currently un-debuggable without log-grep.
+
+Also queued: **EquipBonusUtility.ApplyEquipBonuses** stat-mutation
+diag (`equipment/StatBonusApplied`), so a future "why did my
+Strength jump 4 points?" debug starts with a query, not a grep.

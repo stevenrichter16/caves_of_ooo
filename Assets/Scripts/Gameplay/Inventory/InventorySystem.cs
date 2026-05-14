@@ -4,6 +4,7 @@ using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Core.Inventory.Planning;
 using CavesOfOoo.Core.Anatomy;
 using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -11,11 +12,59 @@ namespace CavesOfOoo.Core
     /// Inventory facade and compatibility layer.
     /// Query helpers stay here, while all mutating operations route through
     /// ExecuteCommand(...) and transactional command implementations.
+    ///
+    /// <para>Observability: every facade entry point that mutates state
+    /// emits a diag record under category="inventory". Success path uses
+    /// kind="Pickup"/"Drop"/"Equip"/"Unequip"/etc.; failure path uses
+    /// kind="Rejected" with reason + errorMessage in payload. Per the
+    /// methodology rule "every gate that can reject emits a record" —
+    /// queryable via <c>diag_query category=inventory</c>.</para>
     /// </summary>
     public static class InventorySystem
     {
         private static readonly InventoryCommandExecutor CommandExecutor = new InventoryCommandExecutor();
         private static readonly EquipPlanner BodyEquipPlanner = new EquipPlanner();
+
+        /// <summary>
+        /// Emit a diag record describing the outcome of a facade-level
+        /// inventory operation. Success → record with `kind` (Pickup,
+        /// Drop, Equip, Unequip, AutoEquip, etc.); failure → kind=Rejected
+        /// with errorCode + errorMessage in payload.
+        /// </summary>
+        private static void EmitInventoryResult(
+            string kindOnSuccess,
+            InventoryCommandResult result,
+            Entity actor,
+            Entity item)
+        {
+            if (!Diag.IsChannelEnabled("inventory")) return;
+            if (result.Success)
+            {
+                Diag.Record(
+                    category: "inventory", kind: kindOnSuccess,
+                    actor: actor, target: item,
+                    payload: new
+                    {
+                        itemName = item?.GetDisplayName(),
+                        itemId = item?.ID,
+                    });
+            }
+            else
+            {
+                Diag.Record(
+                    category: "inventory", kind: "Rejected",
+                    actor: actor, target: item,
+                    payload: new
+                    {
+                        operation = kindOnSuccess,
+                        errorCode = result.ErrorCode.ToString(),
+                        errorMessage = result.ErrorMessage,
+                        validationCode = result.Validation?.ErrorCode.ToString(),
+                        itemName = item?.GetDisplayName(),
+                        itemId = item?.ID,
+                    });
+            }
+        }
 
         /// <summary>
         /// Refactor seam: execute an inventory command through the new
@@ -33,6 +82,7 @@ namespace CavesOfOoo.Core
         public static bool Pickup(Entity actor, Entity item, Zone zone)
         {
             var result = ExecuteCommand(new PickupCommand(item), actor, zone);
+            EmitInventoryResult("Pickup", result, actor, item);
             return result.Success;
         }
 
@@ -43,6 +93,7 @@ namespace CavesOfOoo.Core
         public static bool Drop(Entity actor, Entity item, Zone zone)
         {
             var result = ExecuteCommand(new DropCommand(item), actor, zone);
+            EmitInventoryResult("Drop", result, actor, item);
             return result.Success;
         }
 
@@ -53,6 +104,7 @@ namespace CavesOfOoo.Core
         public static bool DropPartial(Entity actor, Entity item, int count, Zone zone)
         {
             var result = ExecuteCommand(new DropPartialCommand(item, count), actor, zone);
+            EmitInventoryResult("DropPartial", result, actor, item);
             return result.Success;
         }
 
@@ -79,6 +131,7 @@ namespace CavesOfOoo.Core
         public static bool Equip(Entity actor, Entity item, BodyPart targetBodyPart = null)
         {
             var result = ExecuteCommand(new EquipCommand(item, targetBodyPart), actor);
+            EmitInventoryResult("Equip", result, actor, item);
             return result.Success;
         }
 
@@ -89,6 +142,7 @@ namespace CavesOfOoo.Core
         public static bool UnequipItem(Entity actor, Entity item)
         {
             var result = ExecuteCommand(new UnequipCommand(item), actor);
+            EmitInventoryResult("Unequip", result, actor, item);
             return result.Success;
         }
 
@@ -155,6 +209,7 @@ namespace CavesOfOoo.Core
         public static bool AutoEquip(Entity actor, Entity item)
         {
             var result = ExecuteCommand(new AutoEquipCommand(item), actor);
+            EmitInventoryResult("AutoEquip", result, actor, item);
             return result.Success;
         }
 

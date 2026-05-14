@@ -1,12 +1,21 @@
 using System;
 using System.Collections.Generic;
 using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
     /// <summary>
     /// Application service for craft/disassemble actions.
     /// Keeps UI and input thin while rules stay centralized and testable.
+    ///
+    /// <para>Observability: every public Try* entry point emits a diag
+    /// record under <c>category="enhancement"</c> when it returns,
+    /// regardless of outcome. Success → <c>Crafted</c>/<c>ApplyModSucceeded</c>/
+    /// <c>Disassembled</c>; failure → <c>CraftRejected</c>/<c>ApplyModRejected</c>/
+    /// <c>DisassembleRejected</c> with the same <c>reason</c> string the UI
+    /// surfaces. Closes the silent-reject gap: pre-fix, 20+ reject paths
+    /// returned false with no diag trace.</para>
     /// </summary>
     public static class TinkeringService
     {
@@ -17,6 +26,30 @@ namespace CavesOfOoo.Core
         }
 
         public static bool TryCraft(
+            Entity crafter,
+            EntityFactory factory,
+            string recipeId,
+            out List<Entity> crafted,
+            out string reason)
+        {
+            bool ok = TryCraftInternal(crafter, factory, recipeId, out crafted, out reason);
+            if (Diag.IsChannelEnabled("enhancement"))
+            {
+                Diag.Record(
+                    category: "enhancement",
+                    kind: ok ? "Crafted" : "CraftRejected",
+                    actor: crafter,
+                    payload: new
+                    {
+                        recipeId,
+                        reason,
+                        craftedCount = crafted?.Count ?? 0,
+                    });
+            }
+            return ok;
+        }
+
+        private static bool TryCraftInternal(
             Entity crafter,
             EntityFactory factory,
             string recipeId,
@@ -116,6 +149,31 @@ namespace CavesOfOoo.Core
         }
 
         public static bool TryApplyModification(
+            Entity crafter,
+            string recipeId,
+            Entity targetItem,
+            out string reason)
+        {
+            bool ok = TryApplyModificationInternal(crafter, recipeId, targetItem, out reason);
+            if (Diag.IsChannelEnabled("enhancement"))
+            {
+                Diag.Record(
+                    category: "enhancement",
+                    kind: ok ? "ApplyModSucceeded" : "ApplyModRejected",
+                    actor: crafter,
+                    target: targetItem,
+                    payload: new
+                    {
+                        recipeId,
+                        reason,
+                        targetItem = targetItem?.GetDisplayName(),
+                        targetBlueprint = targetItem?.BlueprintName,
+                    });
+            }
+            return ok;
+        }
+
+        private static bool TryApplyModificationInternal(
             Entity crafter,
             string recipeId,
             Entity targetItem,
@@ -236,6 +294,31 @@ namespace CavesOfOoo.Core
         }
 
         public static bool TryDisassemble(
+            Entity crafter,
+            Entity item,
+            out string yieldedBits,
+            out string reason)
+        {
+            bool ok = TryDisassembleInternal(crafter, item, out yieldedBits, out reason);
+            if (Diag.IsChannelEnabled("enhancement"))
+            {
+                Diag.Record(
+                    category: "enhancement",
+                    kind: ok ? "Disassembled" : "DisassembleRejected",
+                    actor: crafter,
+                    target: item,
+                    payload: new
+                    {
+                        reason,
+                        item = item?.GetDisplayName(),
+                        itemBlueprint = item?.BlueprintName,
+                        yieldedBits,
+                    });
+            }
+            return ok;
+        }
+
+        private static bool TryDisassembleInternal(
             Entity crafter,
             Entity item,
             out string yieldedBits,
