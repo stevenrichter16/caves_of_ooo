@@ -125,11 +125,45 @@ Post-fix every call emits exactly one record with `reason`
 matching the UI message (e.g. "Crafter is missing.", "Not enough
 bits.", "You must own the target item.").
 
+### DirectApply diag (NEW, second wave)
+
+| Category | Kind | Fired by |
+|---|---|---|
+| `damage` | `DirectApply` | `CombatSystem.ApplyDamage` when no upstream `WithCause` scope exists (i.e., NOT inside `PerformSingleAttack`) |
+
+Bleed ticks, burn ticks, trap damage, environmental hazards,
+and direct mutation/spell hits now emit `damage/DirectApply`
+**before** the existing damage flow, opening a fresh
+`Diag.WithCause` scope so downstream `PreDamageMutation` /
+`ResistanceApplied` / `DamageDealt` records share an 8-char
+trace id. Payload: `amount`, `attributes`, `hasSource`.
+
+Replaces the `attributes:[]` heuristic — a clean filter for
+"all non-melee damage" is now `category=damage kind=DirectApply`.
+For "all melee" use `category=damage kind=HitRoll` and chase the
+`CauseTraceId`.
+
+### AI diag (NEW, second wave)
+
+| Category | Kinds | Fired by |
+|---|---|---|
+| `ai` | `GoalPushed`, `GoalPopped`, `GoalSelected`, `TurnSkipped` | `BrainPart` |
+
+- `GoalPushed`: every PushGoal call with `goal` (type name), `details`, `stackDepth`
+- `GoalPopped`: every RemoveGoal call with `goal`, `details`, `stackDepthAfter`
+- `GoalSelected`: top-of-stack at start of each AI turn with `goal`, `details`, `age`, `stackDepth`, `hasTarget`
+- `TurnSkipped`: early-return paths (`reason` ∈ {NoZone, NotInZone, InConversation}) with `goalStackDepth` + `topGoal`
+
+The "why is the NPC standing still?" question now answers via
+`diag_query category=ai actor=<npc>`. Player frames are NOT
+emitted (would flood the buffer — see HandleTakeTurn:Player tag
+early-return).
+
 ### Other categories on by default
 
 `event`, `effect`, `damage`, `turn`, `furniture`, `trade`,
 `quest`, `skill`, `enhancement`, `mineral-trade`, `movement`,
-`inventory`, `leveling` — see `Diag.DefaultOnCategories`
+`inventory`, `leveling`, `ai` — see `Diag.DefaultOnCategories`
 (`Diag.cs:119`).
 
 ---
@@ -141,23 +175,12 @@ ship that fills out a specific observability blind spot.
 
 ### Non-melee damage paths
 
-- **Effect-tick damage** (`BleedingEffect`, `BurningEffect`, etc. —
-  the per-turn damage these apply doesn't go through
-  `PerformSingleAttack`, so it gets `DamageDealt` but NOT the
-  upstream `HitRoll`/`Penetration`/`DamageRoll` records). Pattern:
-  bleed ticks emit `attributes: []` on `DamageDealt`, which is the
-  current way to filter them out.
-- **Trap damage** (`SpikeTrapPart`, `PressurePlatePart`, …) — also
-  bypasses the attack pipeline. Some traps already emit
-  `furniture/Triggered`; the damage they deal goes through
-  `ApplyDamage` only.
-- **Environmental damage** (acid pools, lava, fire-on-cell). Same
-  shape — no upstream attack record, just `DamageDealt`.
-
-A small unified emission — `damage/DirectApply` with
-`{source, reason, amount}` — would distinguish these from
-attack-pathway damage without forcing them through a fake
-`PerformSingleAttack` synthetic.
+~~Effect-tick / trap / environmental damage emitted only `DamageDealt`
+with `attributes:[]`.~~ **CLOSED in the second wave** — every
+`ApplyDamage` call that's NOT inside `PerformSingleAttack` now
+emits `damage/DirectApply` at the top of the method, opening a
+shared cause scope. Bleed/burn/trap/environmental damage are
+queryable by `category=damage kind=DirectApply`.
 
 ### Skill-system gaps
 
@@ -171,12 +194,13 @@ attack-pathway damage without forcing them through a fake
 
 ### AI decision records
 
-- **GoalHandler decisions** — `BrainPart` selects goals each turn
-  but doesn't emit a `ai/GoalSelected` record. Knowing "why is the
-  NPC standing still?" requires log-grep and brain-state probing.
+- ~~**GoalHandler decisions** — `BrainPart` selects goals each turn
+  but doesn't emit a `ai/GoalSelected` record.~~ **CLOSED in the
+  second wave** — BrainPart now emits `ai/GoalSelected`,
+  `ai/GoalPushed`, `ai/GoalPopped`, `ai/TurnSkipped`.
 - **Pathfinding rejections** — when an AI can't reach a target,
   no diag fires. Surface as `ai/PathFailed` with `from`, `to`,
-  `reason` (no path / blocked / out of range).
+  `reason` (no path / blocked / out of range). Still open.
 
 ### Inventory + equipment events
 
@@ -205,13 +229,15 @@ attack-pathway damage without forcing them through a fake
 | **`InventoryObservabilityTests.cs`** *(NEW)* | 8 | Pickup/Drop/Rejected; null-args across all 5 facade methods; **surface gap: PickupCommand has no adjacency check** |
 | **`TinkeringObservabilityTests.cs`** *(NEW)* | 8 | Crafted/Disassembled success + Rejected paths with reason matching UI |
 | **`EffectsObservabilityTests.cs`** *(NEW)* | 8 | OnApply/OnRemove; stacking no-double-emission; force-apply flag; **surface observation: FrozenEffect auto-removes BurningEffect** |
+| **`DirectApplyDamageObservabilityTests.cs`** *(NEW, second wave)* | 8 | DirectApply emission + shared CauseTraceId with downstream records; bleed-tick as the non-melee signal; scope-leak counter-check |
+| **`AIObservabilityTests.cs`** *(NEW, second wave)* | 8 | GoalPushed/Popped/Selected/TurnSkipped; Bored auto-fallback; player-frame flood guard; multi-turn isolation |
 
 ---
 
-## Stopping point: 2026-05-13 (mechanics-coverage push)
+## Stopping point: 2026-05-14 (mechanics-coverage push, second wave)
 
 The systematic observability-driven mechanics-coverage push closed
-seven major systems:
+nine major systems across two waves (2026-05-13 → 2026-05-14):
 
 | System | Coverage | Tests |
 |---|---|---|
@@ -222,7 +248,9 @@ seven major systems:
 | Inventory facade | NEW `inventory/<op>` + `Rejected` | 8 |
 | Tinkering Try* | EXTENDED with `<op>Rejected` (20+ paths) | 8 |
 | Status effects | Existed; now pinned by observability tests | 8 |
-| **Total new** | | **57 tests** |
+| **Non-melee damage** *(2nd wave)* | NEW `damage/DirectApply` (auto-opens cause scope) | 8 |
+| **AI decisions** *(2nd wave)* | NEW `ai/GoalSelected|Pushed|Popped|TurnSkipped` | 8 |
+| **Total new** | | **73 tests** |
 
 ### Surface gaps found during test development
 
@@ -241,19 +269,21 @@ seven major systems:
 
 ### Empirical regression sweep result
 
-441/441 tests pass across all 13 related fixture groups
-(observability + trade + leveling + inventory + tinkering +
-diag + the new fixtures).
+**502/502** tests pass across all 17 related fixture groups:
+- 1st wave (441/441): observability + trade + leveling + inventory +
+  tinkering + diag + the wave-1 fixtures.
+- 2nd wave (+ DirectApply + AI + PenetrationDiag + AIBehaviorPart):
+  **502/502** total post-DirectApply+AI emissions. Zero regressions.
 
-**Pick up here:** the next high-value addition is the **non-melee
-damage `DirectApply` record**, which would let queries distinguish
-bleed/burn/trap damage from attack damage without the
-`attributes:[]` heuristic. Cost: ~20 LOC + 3 tests.
-
-After that, the **AI-decision records** are the biggest remaining
-observability blind spot — "why did the NPC stand still?" is
-currently un-debuggable without log-grep.
-
-Also queued: **EquipBonusUtility.ApplyEquipBonuses** stat-mutation
-diag (`equipment/StatBonusApplied`), so a future "why did my
-Strength jump 4 points?" debug starts with a query, not a grep.
+**Pick up here:** remaining gaps from this doc:
+- **Pathfinding rejections** — `ai/PathFailed` with from/to/reason.
+  Pairs naturally with the AI-decision records this wave added.
+  Cost: ~20 LOC + 3 tests.
+- **EquipBonusUtility.ApplyEquipBonuses** stat-mutation diag
+  (`equipment/StatBonusApplied`), so a future "why did my
+  Strength jump 4 points?" debug starts with a query, not a grep.
+- **Skill cooldown progression** (`skill/CooldownAdvanced` per
+  turn) — currently requires inspecting SkillsPart state via
+  `execute_code`.
+- **Power-cost deduction** — when a skill spends MP/charges, no
+  record fires.

@@ -495,13 +495,39 @@ namespace CavesOfOoo.Core
             goal.ParentBrain = this;
             _goals.Add(goal);
             goal.OnPush();
+            if (Diag.IsChannelEnabled("ai"))
+            {
+                Diag.Record(
+                    category: "ai", kind: "GoalPushed",
+                    actor: ParentEntity,
+                    payload: new
+                    {
+                        goal = goal.GetType().Name,
+                        details = goal.GetDetails(),
+                        stackDepth = _goals.Count,
+                    });
+            }
         }
 
         /// <summary>Remove a specific goal from the stack.</summary>
         public void RemoveGoal(GoalHandler goal)
         {
             if (_goals.Remove(goal))
+            {
                 goal.OnPop();
+                if (Diag.IsChannelEnabled("ai"))
+                {
+                    Diag.Record(
+                        category: "ai", kind: "GoalPopped",
+                        actor: ParentEntity,
+                        payload: new
+                        {
+                            goal = goal.GetType().Name,
+                            details = goal.GetDetails(),
+                            stackDepthAfter = _goals.Count,
+                        });
+                }
+            }
         }
 
         /// <summary>Clear all goals from the stack.</summary>
@@ -510,6 +536,26 @@ namespace CavesOfOoo.Core
             for (int i = _goals.Count - 1; i >= 0; i--)
                 _goals[i].OnPop();
             _goals.Clear();
+        }
+
+        /// <summary>
+        /// Emit an <c>ai/TurnSkipped</c> diag record. Used by every
+        /// HandleTakeTurn early-return path that's NOT the player frame
+        /// (which would flood the buffer). Lets a debug query answer
+        /// "why didn't this NPC act last turn?" without log-grep.
+        /// </summary>
+        private void EmitTurnSkipped(string reason)
+        {
+            if (!Diag.IsChannelEnabled("ai")) return;
+            Diag.Record(
+                category: "ai", kind: "TurnSkipped",
+                actor: ParentEntity,
+                payload: new
+                {
+                    reason,
+                    goalStackDepth = _goals.Count,
+                    topGoal = _goals.Count > 0 ? _goals[_goals.Count - 1].GetType().Name : null,
+                });
         }
 
         /// <summary>Check if any goal of type T is on the stack.</summary>
@@ -594,14 +640,31 @@ namespace CavesOfOoo.Core
             using (PerformanceMarkers.Turns.AiTakeTurn.Auto())
             {
                 // Guard: no zone or not in zone (dead/removed)
-                if (CurrentZone == null) return true;
-                if (CurrentZone.GetEntityCell(ParentEntity) == null) return true;
+                if (CurrentZone == null)
+                {
+                    EmitTurnSkipped("NoZone");
+                    return true;
+                }
+                if (CurrentZone.GetEntityCell(ParentEntity) == null)
+                {
+                    EmitTurnSkipped("NotInZone");
+                    return true;
+                }
 
                 // Skip turn when in conversation
-                if (InConversation) return true;
+                if (InConversation)
+                {
+                    EmitTurnSkipped("InConversation");
+                    return true;
+                }
 
                 // Safety: skip player entities
-                if (ParentEntity.HasTag("Player")) return true;
+                if (ParentEntity.HasTag("Player"))
+                {
+                    // No emission — player frame is not an "AI skip"; this
+                    // path runs every frame and would flood the diag stream.
+                    return true;
+                }
 
                 // Ensure RNG exists
                 if (Rng == null) Rng = new Random();
@@ -640,9 +703,27 @@ namespace CavesOfOoo.Core
                 for (int i = 0; i < _goals.Count; i++)
                     _goals[i].Age++;
 
-                // Execute top goal
+                // Execute top goal — emit GoalSelected first so a debug
+                // session asking "what goal did this NPC pick this turn?"
+                // can resolve it without inspecting the stack.
                 int stackSize = _goals.Count;
-                _goals[stackSize - 1].TakeAction();
+                var topGoal = _goals[stackSize - 1];
+                if (Diag.IsChannelEnabled("ai"))
+                {
+                    Diag.Record(
+                        category: "ai", kind: "GoalSelected",
+                        actor: ParentEntity,
+                        target: Target,
+                        payload: new
+                        {
+                            goal = topGoal.GetType().Name,
+                            details = topGoal.GetDetails(),
+                            age = topGoal.Age,
+                            stackDepth = stackSize,
+                            hasTarget = Target != null,
+                        });
+                }
+                topGoal.TakeAction();
 
                 // Child-chain execution: if TakeAction pushed a child, execute it immediately.
                 // This ensures BoredGoal -> KillGoal -> attack all happen in one tick.

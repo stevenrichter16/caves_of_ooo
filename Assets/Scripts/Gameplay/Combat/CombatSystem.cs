@@ -729,6 +729,37 @@ namespace CavesOfOoo.Core
                 // second damage call on a dying target trips it.
                 var hpStat = target.GetStat("Hitpoints");
                 if (hpStat == null || hpStat.BaseValue <= 0) return;
+
+                // Direct-apply detection. If no upstream `Diag.WithCause`
+                // scope is active, this damage didn't go through
+                // `PerformSingleAttack` — it's an effect tick (Bleeding /
+                // Burning), trap damage (SpikeTrap / PressurePlate),
+                // environmental hazard, or a mutation/spell direct hit.
+                // Emit a `DirectApply` record at the top and open a fresh
+                // cause scope so the downstream `PreDamageMutation` /
+                // `ResistanceApplied` / `DamageDealt` records share an
+                // 8-char trace id. A query for
+                // `damage/DirectApply` returns exactly the non-melee
+                // damage stream — no more `attributes:[]` heuristic.
+                System.IDisposable directApplyScope = null;
+                if (Diag.CurrentCause == null && Diag.IsChannelEnabled("damage"))
+                {
+                    string traceId = Guid.NewGuid().ToString("N").Substring(0, 8);
+                    directApplyScope = Diag.WithCause(traceId);
+                    Diag.Record(
+                        category: "damage",
+                        kind: "DirectApply",
+                        actor: source,
+                        target: target,
+                        payload: new
+                        {
+                            amount = damage.Amount,
+                            attributes = damage.Attributes,
+                            hasSource = source != null,
+                        });
+                }
+                try
+                {
                 // Capture pre-decrement HP so the floating number we emit
                 // post-decrement uses the real player-visible delta (clamped
                 // at hpBefore so a 10-damage attack on a 3-HP target shows "3"
@@ -909,6 +940,15 @@ namespace CavesOfOoo.Core
                     var targetCell = zone.GetEntityCell(target);
                     if (targetCell != null)
                         ZoneRenderHooks.MarkCellDirty(targetCell, "Combat.Damage");
+                }
+                }
+                finally
+                {
+                    // Close the DirectApply cause scope if we opened one.
+                    // The using-pattern restoration here is critical:
+                    // without disposal, the trace id would leak into the
+                    // next caller's records.
+                    directApplyScope?.Dispose();
                 }
             }
         }
