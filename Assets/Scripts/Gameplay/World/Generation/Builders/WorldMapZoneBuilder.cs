@@ -92,6 +92,18 @@ namespace CavesOfOoo.Core
             var biome = _worldMap.GetBiome(worldX, worldY);
             var (glyph, color, displayName) = GetBiomeRender(biome);
 
+            // If this world-cell has a POI, override the glyph + color
+            // + display-name with the POI's marker. The POI marker is
+            // the player-visible signal of a settlement / lair / etc.
+            var poi = _worldMap.GetPOI(worldX, worldY);
+            if (poi != null)
+            {
+                var (poiGlyph, poiColor, poiName) = GetPOIRender(poi);
+                glyph = poiGlyph;
+                color = poiColor;
+                displayName = poiName;
+            }
+
             var e = new Entity { BlueprintName = "WorldMapCell" };
             e.Tags["WorldMapCell"] = "";
             e.AddPart(new RenderPart
@@ -128,6 +140,26 @@ namespace CavesOfOoo.Core
                 case BiomeType.Jungle: return ("%", "&g", "jungle region");
                 case BiomeType.Ruins:  return ("o", "&y", "ruins region");
                 default:               return ("?", "&w", "unknown region");
+            }
+        }
+
+        /// <summary>
+        /// POI → (glyph, color, displayName). The display name
+        /// includes the POI's <c>Name</c> so the cell examine surfaces
+        /// "Kyakukya village" / "Snapjaw lair" rather than the
+        /// generic biome label.
+        /// </summary>
+        public static (string glyph, string color, string displayName) GetPOIRender(PointOfInterest poi)
+        {
+            if (poi == null) return ("?", "&w", "unknown POI");
+            string name = poi.Name ?? "";
+            switch (poi.Type)
+            {
+                case POIType.Village:      return ("!", "&Y", $"{name} village");
+                case POIType.Lair:         return ("&", "&R", $"{name} lair");
+                case POIType.MerchantCamp: return ("$", "&G", $"{name} merchant camp");
+                case POIType.RiverChunk:   return ("~", "&C", "river");
+                default:                   return ("?", "&w", name);
             }
         }
     }
