@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -175,14 +176,41 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Tick all cooldowns down by 1 (called each turn).
+        /// Tick all cooldowns down by 1 (called each turn). Emits
+        /// <c>skill/CooldownAdvanced</c> per ability that decrements,
+        /// and <c>skill/CooldownReady</c> on the transition to 0
+        /// (the user-visible "now usable again" signal). Closes the
+        /// "why is my skill still on cooldown?" gap noted in
+        /// OBSERVABILITY-STATUS.md — debug starts with a query, not
+        /// state probing via <c>execute_code</c>.
         /// </summary>
         public void TickCooldowns()
         {
+            bool diagOn = Diag.IsChannelEnabled("skill");
             for (int i = 0; i < AbilityList.Count; i++)
             {
-                if (AbilityList[i].CooldownRemaining > 0)
-                    AbilityList[i].CooldownRemaining--;
+                var ab = AbilityList[i];
+                if (ab.CooldownRemaining <= 0) continue;
+
+                int before = ab.CooldownRemaining;
+                ab.CooldownRemaining--;
+                int after = ab.CooldownRemaining;
+
+                if (!diagOn) continue;
+
+                Diag.Record(
+                    category: "skill",
+                    kind: after == 0 ? "CooldownReady" : "CooldownAdvanced",
+                    actor: ParentEntity,
+                    payload: new
+                    {
+                        ability = ab.DisplayName,
+                        @class = ab.Class,
+                        command = ab.Command,
+                        before,
+                        after,
+                        maxCooldown = ab.MaxCooldown,
+                    });
             }
         }
 

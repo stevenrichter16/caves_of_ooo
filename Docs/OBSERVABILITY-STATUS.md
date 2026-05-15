@@ -164,6 +164,25 @@ failed A* search with reason ∈ {NullZone, OutOfBounds, NoPath,
 Exhausted} + from/to coords + expanded-node-count + maxNodes.
 Successful pathfinds are silent.
 
+### Skill cooldown diag (NEW, fifth wave)
+
+| Category | Kinds | Fired by |
+|---|---|---|
+| `skill` | `CooldownAdvanced`, `CooldownReady` | `ActivatedAbilitiesPart.TickCooldowns` |
+
+Every per-turn cooldown tick that decrements an ability's
+`CooldownRemaining > 0` emits one record. `CooldownAdvanced`
+fires while remaining > 0; `CooldownReady` fires on the
+transition to 0 (the user-visible "your skill is usable again"
+moment). Idle abilities (CR=0) are silent — no flood.
+
+Payload: `ability` (display), `class`, `command`, `before`,
+`after`, `maxCooldown`.
+
+Closes the "why is my skill still on cooldown?" gap — debug
+starts with `diag_query category=skill kind=CooldownAdvanced
+actor=<id>` not `execute_code` state probing.
+
 ### Equipment diag (NEW, fourth wave)
 
 | Category | Kinds | Fired by |
@@ -253,6 +272,7 @@ queryable by `category=damage kind=DirectApply`.
 | **`DirectApplyDamageObservabilityTests.cs`** *(NEW, second wave)* | 8 | DirectApply emission + shared CauseTraceId with downstream records; bleed-tick as the non-melee signal; scope-leak counter-check |
 | **`AIObservabilityTests.cs`** *(NEW, waves 2+3)* | 12 | 8 GoalSelected/Pushed/Popped/TurnSkipped + 4 PathFailed (NullZone/OutOfBounds/NoPath + success-silent counter-check) |
 | **`EquipmentObservabilityTests.cs`** *(NEW, fourth wave)* | 7 | StatBonusApplied + Removed; multi-bonus per item; SpeedPenalty for armor; stat-not-present counter-check; malformed-entry counter-check; symmetric round trip |
+| **`SkillCooldownObservabilityTests.cs`** *(NEW, fifth wave)* | 6 | CooldownAdvanced / Ready emissions; idle-tick silence; full 3→2→1→0 ladder; multi-ability isolation; payload propagation |
 
 ---
 
@@ -274,7 +294,8 @@ nine major systems across two waves (2026-05-13 → 2026-05-14):
 | **AI decisions** *(2nd wave)* | NEW `ai/GoalSelected|Pushed|Popped|TurnSkipped` | 8 |
 | **Pathfinding** *(3rd wave)* | NEW `ai/PathFailed` on FindPath.Search failures | 4 |
 | **Equipment bonuses** *(4th wave)* | NEW `equipment/StatBonus*` + `SpeedPenalty*` | 7 |
-| **Total new** | | **84 tests** |
+| **Skill cooldowns** *(5th wave)* | NEW `skill/CooldownAdvanced` + `CooldownReady` | 6 |
+| **Total new** | | **90 tests** |
 
 ### Surface gaps found during test development
 
@@ -298,13 +319,15 @@ nine major systems across two waves (2026-05-13 → 2026-05-14):
   Tinkering / Effects): 57 new + 384 prior = 441/441.
 - Wave 2 (DirectApply + AI): 16 new + scope verification = 458/458.
 - Wave 3 (PathFailed): 4 new = 462/462.
-- Wave 4 (Equipment): 7 new + 502 prior = **513/513.**
+- Wave 4 (Equipment): 7 new + 502 prior = 513/513.
+- Wave 5 (SkillCooldown): 6 new + SkillsPart + Wsp83 = **207/207**
+  on a focused-fixture sweep.
 
-Zero regressions across all four waves.
+Zero regressions across all five waves.
 
 **Pick up here:** remaining gaps from this doc:
-- **Skill cooldown progression** (`skill/CooldownAdvanced` per
+- ~~**Skill cooldown progression** (`skill/CooldownAdvanced` per
   turn) — currently requires inspecting SkillsPart state via
-  `execute_code`.
+  `execute_code`.~~ **CLOSED wave 5.**
 - **Power-cost deduction** — when a skill spends MP/charges, no
   record fires.
