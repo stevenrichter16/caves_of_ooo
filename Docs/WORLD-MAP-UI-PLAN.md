@@ -308,7 +308,73 @@ playtest can inspect the rendering.
 - Update `OBSERVABILITY-STATUS.md` with the new `worldmap` category
 - Update this doc with the implementation log
 
-### WM.8+ — DEFERRED (not in this push)
+### WM.8 — Input wiring: `<` / `>` → world map (player-exercisable)
+
+**Branch:** `feat/world-map-input`
+**Status:** complete (2026-05-15). 4 commits, 9 new tests
+(8 resolver + 1 smoke), 240/240 in the combined regression sweep.
+Cold-eye review (Q1–Q4) complete, 0 findings.
+
+**Implementation log:**
+
+| Sub | Commit | Tests | Notes |
+|---|---|---|---|
+| plan | `6b8a490` | — | This section + verification sweep |
+| WM.8.1 | `afa9228` | +8 | `TryWorldMapVertical` resolver + `EnsureWorldMapTravelCostPart` auto-attach in Ascend |
+| WM.8.2 | `650df76` | +0 | `InputHandler.TryUseStairs` no-stairs fallthrough. Integration shim — verified via WM.8.1 resolver tests + symmetric structure + 24/24 input/traversal regression. **Scope note:** the plan said "PlayMode sanity sweep" but MonoBehaviour keyboard input is not EditMode-testable; substituted reading-verification + the WM.8.3 showcase as the §3.6 manual surface (documented, not drift) |
+| WM.8.3 | `821976a` | +1 | `WorldMapShowcase` scenario + "World" menu submenu + smoke test |
+
+**Manual playtest (the WM.8.2 input verification surface):**
+`Caves Of Ooo/Scenarios/World/World Map Showcase` → press `<` →
+arrive on worldmap at the Kyakukya `!` → walk (10 ticks/step,
+fog clears) → press `>` → descend → re-ascend → descend onto
+origin → exact-cell restore. `diag_query category=worldmap`
+shows Ascended/Stepped/Descended.
+
+**Goal:** Make the world map reachable from the keyboard. Until
+now the engine accepts `WorldMapTraversal.Ascend/Descend` calls but
+nothing invokes them — the feature is inert from the player's seat.
+
+**Verification sweep (complete):**
+
+| Premise | Status | Source |
+|---|---|---|
+| `<` = Shift+Comma → `TryUseStairs(goingDown:false)`; `>` = Shift+Period → `TryUseStairs(goingDown:true)` | ✅ confirmed | `InputHandler.cs:719-735` |
+| `TryUseStairs` checks for `StairsDownPart`/`StairsUpPart` in the cell; if none → "no stairs here" message + early return | ✅ confirmed | `InputHandler.cs:822-859` |
+| Successful vertical transition → `HandleZoneTransition(result)` + `EndTurnAndProcess()` rewires TurnManager / renderer / camera / settlement runtime | ✅ confirmed | `InputHandler.cs:746-807, 822-858` |
+| `HandleZoneTransition` already handles arbitrary `result.NewZone` — works for the worldmap zone with no changes (it's just a Zone) | ✅ confirmed | `InputHandler.cs:746-807` |
+| No new `InputState` needed — walking on the worldmap zone is normal movement; the worldmap IS a Zone | ✅ confirmed | `InputHandler.cs:103-123` enum has no map state, and movement on any zone is `InputState.Normal` |
+| `WorldMapTraversal.Ascend` auto-creates `WorldMapPart` via `EnsureWorldMapPart`; an analogous `EnsureWorldMapTravelCostPart` is the spot to attach the 10-tick cost so it applies from first ascend | ✅ confirmed | `WorldMapTraversal.cs:65, 215` |
+| Qud's `CmdMoveU` unifies stairs + worldmap: ascend uses stairs-up if present, else flies to worldmap when at surface (Z≤10, not in building) | ✅ confirmed | `XRLCore.cs:1329-1405` |
+
+**Design:** Qud-faithful unified `<`/`>`. `TryUseStairs` keeps its
+existing stairs behavior; when **no stairs** are present it falls
+through to a new pure resolver
+`WorldMapTraversal.TryWorldMapVertical(player, zone, goingDown,
+zoneManager)`:
+
+- `goingDown == false` (`<` ascend) AND zone is a ground Overworld
+  zone at z==0 → `Ascend`
+- `goingDown == true` (`>` descend) AND zone IS the worldmap zone →
+  `Descend`
+- otherwise → `Fail` (InputHandler shows the existing
+  "no stairs here" message)
+
+No new keybinding, no new InputState. The worldmap becomes
+reachable purely as a fallback of the existing stairs keys —
+exactly Qud's model.
+
+| Sub | Work | Tests |
+|---|---|---|
+| WM.8.1 | `WorldMapTraversal.TryWorldMapVertical` pure resolver + `EnsureWorldMapTravelCostPart` auto-attach in `Ascend` | 8 (ascend-from-ground, descend-from-worldmap, refuse ascend-from-underground z>0, refuse descend-from-ground, refuse ascend-already-on-worldmap, null-safety ×2, cost-part auto-attached) |
+| WM.8.2 | `InputHandler.TryUseStairs` fallthrough to `TryWorldMapVertical` when no stairs | PlayMode sanity sweep (MonoBehaviour input not unit-testable) — preflight + ascend + walk + descend + honesty bounds |
+| WM.8.3 | `WorldMapShowcase.cs` scenario (player at center, all cells visited) + menu entry + `ScenarioCustomSmokeTests` smoke | 1 smoke test |
+
+**Performance:** no per-frame additions. `TryWorldMapVertical` is
+called only on a `<`/`>` keypress with no stairs (discrete player
+action). `EnsureWorldMapTravelCostPart` runs once per ascend.
+
+### WM.9+ — DEFERRED (not in this push)
 
 - **Get-lost mechanic** (Qud `TerrainTravel:179-211`) — random chance
   on travel that drops player to a random sub-zone with a Lost effect.

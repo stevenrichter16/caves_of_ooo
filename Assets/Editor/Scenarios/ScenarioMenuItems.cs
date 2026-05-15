@@ -257,6 +257,14 @@ namespace CavesOfOoo.Editor.Scenarios
             => ScenarioRunner.Launch<SkillTreeShowcase>();
 
         // =========================================================
+        // World (WM.8)
+        // =========================================================
+
+        [MenuItem("Caves Of Ooo/Scenarios/World/World Map Showcase (WM.8 — < ascend / > descend)", priority = 550)]
+        private static void Launch_WorldMapShowcase()
+            => ScenarioRunner.Launch<WorldMapShowcase>();
+
+        // =========================================================
         // Debug (Phase 10)
         // =========================================================
 

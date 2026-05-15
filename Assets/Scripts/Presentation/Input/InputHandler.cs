@@ -836,6 +836,25 @@ namespace CavesOfOoo.Rendering
 
             if (!hasStairs)
             {
+                // No stairs — fall through to world-map traversal,
+                // mirroring Qud's CmdMoveU/CmdMoveD unification
+                // (XRLCore.cs:1329-1426). `<` from a surface ground
+                // zone flies to the world map; `>` from the world map
+                // descends back. WorldMapTraversal.TryWorldMapVertical
+                // returns a failed result when neither applies, in
+                // which case we show the existing "no stairs" message.
+                if (ZoneManager != null)
+                {
+                    var wmResult = WorldMapTraversal.TryWorldMapVertical(
+                        PlayerEntity, CurrentZone, goingDown, ZoneManager);
+                    if (wmResult.Success)
+                    {
+                        HandleZoneTransition(wmResult);
+                        EndTurnAndProcess();
+                        return;
+                    }
+                }
+
                 MessageLog.Add(goingDown
                     ? "There are no stairs leading down here."
                     : "There are no stairs leading up here.");
