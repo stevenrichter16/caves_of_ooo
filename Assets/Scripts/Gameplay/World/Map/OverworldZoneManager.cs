@@ -25,6 +25,12 @@ namespace CavesOfOoo.Core
 
         protected override ZoneGenerationPipeline GetPipelineForZone(string zoneID)
         {
+            // World-map zone: a singular Zone the player physically
+            // inhabits when they ascend. ZoneID has no dots — see
+            // WorldMap.WorldMapZoneID. Mirrors Qud's IsWorldMap pattern.
+            if (WorldMap.IsWorldMapZoneID(zoneID))
+                return CreateWorldMapPipeline();
+
             if (!WorldMap.IsOverworldZoneID(zoneID))
                 return base.GetPipelineForZone(zoneID);
 
@@ -88,6 +94,20 @@ namespace CavesOfOoo.Core
             var pipeline = ZoneGenerationPipeline.CreateCavePipeline(PopulationTable.GetBiomeTable(BiomeType.Cave, tier));
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
             pipeline.AddBuilder(new StartingNeighborhoodBuilder());
+            return pipeline;
+        }
+
+        /// <summary>
+        /// Pipeline for the singular world-map zone the player ascends
+        /// into via <c>WorldMapTraversal.Ascend</c>. The builder embeds
+        /// the 20×20 logical worldmap inside the 80×25 zone with
+        /// impassable wall borders. Mirrors Qud's pattern (the world
+        /// map IS a Zone, not a modal UI).
+        /// </summary>
+        private ZoneGenerationPipeline CreateWorldMapPipeline()
+        {
+            var pipeline = new ZoneGenerationPipeline();
+            pipeline.AddBuilder(new WorldMapZoneBuilder(WorldMap));
             return pipeline;
         }
 

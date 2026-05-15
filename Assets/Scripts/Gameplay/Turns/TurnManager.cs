@@ -187,6 +187,24 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// Advance the global clock by <paramref name="additionalTicks"/>
+        /// WITHOUT running an energy-allocation loop or giving any actor
+        /// a turn. Used for non-tactical time elapsing — e.g., the
+        /// player taking a single step on the world-map zone represents
+        /// many in-world ticks of long-distance travel. Mirrors Qud's
+        /// <c>Game.TimeTicks += N</c> pattern (TerrainTravel.cs:222-264)
+        /// where each parasang step burns ticks without spawning per-tick
+        /// NPC actions.
+        ///
+        /// <para>Negative or zero values are no-ops.</para>
+        /// </summary>
+        public void AdvanceClock(int additionalTicks)
+        {
+            if (additionalTicks <= 0) return;
+            TickCount += additionalTicks;
+        }
+
+        /// <summary>
         /// Process turns until we need player input or run out of actors.
         /// Call this in the game loop. Returns the entity that needs input
         /// (typically the player), or null if all NPC turns were processed.
