@@ -1,322 +1,192 @@
-# 02 — Geography: the world's macro-shape
+# 02 — Geography: a network of places (v2)
 
-> Phase 2 of the lore project. **Commits the world's geography** — macro-shape, biome distribution, the central tepui's position, named regions, travel scale, and the zone-relationship graph.
+> Phase 2 of the lore project, **version 2**. Commits the world's geography as a **hand-authored network of strongly-characterized places**, not a global geometry.
 >
-> Builds directly on Phase 1's cosmological spine. The geography is *not arbitrary* — every region's character is a consequence of where it sits relative to where the Tree fell. The world's shape *is* the Tree's fossil.
+> Builds on Phase 1's cosmological spine. The geography is *not arbitrary* — it is the Tree's fossil, ~1080 years on — but it is **experienced as places and journeys, not as a map-shape.**
+
+---
+
+## Phase 2 v2 — revisions log
+
+**v1 committed a concentric ring world (Heart / Veins / Spread / Sodden / Beating / Hush). v2 drops the concentric model entirely.**
+
+Reason (from the player-experience critique the user requested): a global geometry — circle, wedges, rings — optimizes for *coherence viewed from orbit*, a problem the player does not have. CoO is a zone-graph game on an 80×25 tilemap; the player experiences **a sequence of places and the journeys between them**, never a god's-eye map. Concentric rings imposed a backtracking tax, a circumferential-travel "spoke" problem, a one-way funnel, content-density inversion, and a two-coordinate cognitive load that players would never actually hold.
+
+**v2 keeps "concentric" only as a *narrative feeling*** — a per-place authored *Strangeness Tier* (1-5) producing the sense of "things get stranger as you travel toward the truth" *without* a literal coordinate. The world is built as a network: ~30 authored places, deliberate travel edges, characterful shortcuts, interpenetrating factions, and Urqu as a *scattered infection of places and routes* rather than a geometric region.
+
+The v1 anchor locations (founding catacomb-village, central Pale Curation archive, etc.) are **preserved and re-homed** into the network model below.
 
 ---
 
 ## The two creative bets, surfaced for redirect
 
-**Bet 1 — The world is concentric, centered on the Root of the World.** It is not a continent or an archipelago in the conventional sense; it is *the Tree's anatomy fossilized*, organized in rough rings around the petrified stump. Biomes radiate outward. The closer to the Root, the more densely the Tree's substrate persists (catacombs, bio-light, mycelial networks, divine presence). The further from the Root, the more the cosmological substrate thins. *The macro-organization of the world is the Tree's macro-organization, ~1080 years on.*
+**Bet 1 — The world is a network of authored places, not a shape.** No circle, no rings, no wedges. ~30 named places, each justifying its existence by being distinct. A deliberate travel graph connects them. The Root of the World is the *gravitational narrative center* — stakes escalate as the player approaches the truth — *without being a literal Euclidean centerpoint everything funnels into.*
 
-**Bet 2 — The world has no clean edge; it fades into the Hush.** Where naming was always weakest (the canopy was thinnest there pre-Felling, so the Tree's holding-grip was lightest), the world's substrate thins after the Felling into a zone called **the Hush** — progressive cosmological slippage, where Urqu's failed-incarnation attempts are most audible, where things-stop-being-themselves over hours. *Few cross the Hush and return.* This is the world's cosmic-horror frontier. It is *not* a "you cannot go there" wall — players can attempt it — but it is *the edge of coherence*, and the rules of being thin.
+**Bet 2 — "Distance from the Root" is an authored Strangeness Tier, not a coordinate.** Each place carries a designer tag (Tier 1-5). Tier governs substrate-density, cosmic-horror intensity, divine presence, and Urqu-bleed *baseline*. This gives the concentric *feeling* (the world gets stranger as you go deeper) while letting the designer place a strange thing early or a calm thing late if pacing demands. The progression is *narrative-radial, not geographic-radial.*
 
 If either bet doesn't match your reading, stop me here.
 
 ---
 
-## I. The macro-shape — concentric rings around the Root
+## I. Strangeness Tiers — the narrative-radial feeling
 
-The world is organized as **six concentric rings** plus the central anchor. *The shape is not literal — the rings are not perfect circles; the geology is varied; rivers cut across; tepuis dot the rings unevenly.* But the cosmological organization is concentric. Imagine the fossilized cross-section of an old tree, looked at from above: the rings are the Tree's growth-rings, made geographic.
+Each place is authored with a Strangeness Tier. The tier is *felt*, not *measured*. It governs:
 
-| Layer | Working name | Distance from Root | Defining feature |
-|---|---|---|---|
-| **Center** | **The Root of the World** (the Heart's center) | 0 | The petrified stump; canonical final-boss site |
-| **Ring 1** | **The Heart** | ~0-50 km | Dense catacomb networks; the founding catacomb-village; the deepest Choir Cathedral; the chamber where the Rooted lies in his embrace-pose |
-| **Ring 2** | **The Veins** | ~50-200 km | River-lands and inner-wood; the Tree's veins flow densest here; the central Pale Curation archive (where the Salted lies); high concentration of lesser tepuis |
-| **Ring 3** | **The Spread** | ~200-800 km | Broad civilization band; surface villages; lesser tepuis; the Palimpsest's primary archive; the Saccharine Concord's central exchange; most of the world's population lives here |
-| **Ring 4** | **The Sodden** | ~800-1200 km | Bog biome; the flood-residue zone; Bog-Taken bodies emerge from peat; isolated villages on raised ground; few catacomb networks penetrate this depth |
-| **Ring 5** | **The Beating** | ~1200-2000 km | Wasteland; raw-sun zone; Tent-Right hospitality culture; salt-flats and salt-mines; few permanent settlements; long sight-lines and harsh conditions |
-| **Ring 6** | **The Hush** | ~2000+ km | The world's edge; cosmological substrate thins; naming-slippage intensifies; Urqu's failed-incarnation attempts are loudest and longest; few who enter return |
+| Tier | Feel | Substrate | Divine presence | Urqu-bleed baseline |
+|---|---|---|---|---|
+| **1** | Recovered post-Felling civilization. The Tree is deep myth. Mundane, lived-in, ordinary danger only. | Thin / absent | None | None |
+| **2** | The Felling is felt as history. Faction politics visible. Mild substrate-weirdness at the edges. | Light | Rumored | Rare |
+| **3** | Substrate-dense. The strange is normal here. Catacomb networks. A god's presence is *plausible*. | Heavy | Possible | Occasional |
+| **4** | Near-truth. Reality thin. A god is *present*. The cosmic horror is immediate, not atmospheric. | Saturated | Present | Frequent |
+| **5** | The Root itself, or deep-Urqu places. Endgame. The rules of being are negotiable. | Total | Definitive | Continuous |
 
-**Distances are illustrative**, not strictly numerical — actual game-zone distance is whatever the engine supports. The point is *relative* — the Spread is much larger than the Heart, the Beating is enormous, and the Hush is *open-ended*. The player traverses from outer rings toward inner rings as the game progresses; the final approach to the Renewal ritual (or the Choir's deepest Cathedral, or wherever the player's chosen ending requires) is *the final ascent to the Heart*.
+**Players never see the number.** They feel it: the bio-light gets brighter, the NPCs get stranger, the air gets wrong, the *sari... sari...* gets louder. A player can tell they've gone "deep" without a coordinate, because the *places* tell them.
 
-### Why concentric?
-
-Because the Tree was a tree. Trees have growth rings. The Tree's holding-power, while it lived, *radiated* — strongest at the trunk, weakest at the canopy's edge. The post-Felling world preserves that radial logic in *cosmological persistence*. Closer to where the trunk fell, the substrate is densest; further away, thinner. This is not a metaphor — it is the literal cosmological fact of the post-Felling world.
-
-A player crossing the Hush feels physically wrong in a way they cannot quite name. A player approaching the Heart feels the substrate *thicken* — bio-light grows brighter, dreams grow stranger, NPCs grow stranger.
+Critically: **tier is not tied to travel distance.** A Tier-4 place can be a day's walk from a Tier-1 place if the lore and pacing want that (a catacomb mouth in a quiet farming valley). This is the entire point of dropping concentric — *the designer controls the strangeness curve by authoring, not by geometry.*
 
 ---
 
-## II. The Root of the World — center
+## II. The places (~30, authored)
 
-Already canonical from Phase 1 and the IDEAS.md tepui-thread. Brief refresh:
+Organized by Strangeness Tier for this document's clarity. *In the game, they are a network, not a list.* Names are working/CoO-native (no cultural lifts); some open for Phase 7 polish.
 
-- **The petrified stump of the Tree.** A vast flat-topped sandstone tepui, visible from most of the Heart and parts of the Veins on clear days (atmospheric conditions usually obscure long sight-lines, but on certain rare days the central tepui *is the horizon's mountain*).
-- **Beneath it sleeps the First Root.** Player must reach the Root's chamber to perform any of the three ending rituals.
-- **Surface ascent**: the central tepui's surface is climbable. Lower slopes, mid-slopes, summit zones, with biomes layered per the existing Sinkholes IDEAS entry mapping.
-- **Cave descent**: the central tepui's sinkholes are the world's largest. The deepest Choir Cathedral is here. The Rooted's chamber is here, adjacent to the Root.
-- **The Heart's geography is *the Tree's anatomy in cross-section.*** Players who study geology can read where the Tree's specific limbs once attached.
+### Tier 1 — the recovered world (early game)
 
----
+1. **Sill** *(recommended player start)* — a Tier-1 surface village on a slow river. Farming, fishing, a shrine to a *local* post-Felling river-god (the Tree is a children's story here). The player's home or arrival point. Tutorial-tier content. A Saccharine Concord trade-post operates here; a single itinerant Palimpsest scribe passes through seasonally.
+2. **Gantry** — a Tier-1 surface town at a road-crossing. Larger than Sill. Multi-faction presence at low strength: a Concord exchange-floor, a Pale Curation filer-clerk (mundane records, not preservation), a Tent-Right caravan rest-stop. The player's first taste of faction-politics-as-paperwork.
+3. **Cinderhold** — a Tier-1/2 mining town. Iron and Black-Gall extraction (per Stones with Stake). Hard-bitten, practical. Concord-dominated economy; first place the player can buy mineral infusions.
+4. **Tine** — a Tier-1 fishing village on a large lake (a flood-remnant that *did* drain, unlike the Sodden). Quiet. A retired Palimpsest scribe lives here; first deep lore-NPC the player can find if they go looking.
 
-## III. The Heart (Ring 1)
+### Tier 2 — the world that remembers (early-mid game)
 
-The immediate surroundings of the central tepui — approximately the first ~50 km radius.
+5. **Quillhold** — Tier-2 city built around the **Palimpsest's Primary Archive.** The Reader is most-channellable here (commit to a long transcription job; the scribe's voice changes). Major faction-quest hub. Bookbinders, scribes, the smell of Black-Gall ink everywhere.
+6. **Tally** — Tier-2 commercial city, the **Saccharine Concord's Central Exchange.** The Counter operates here personally (meeting-fee gated). The world's debt clearinghouse. Caravan routes radiate from here — *Tally is the travel-graph's busiest node.*
+7. **Posy** — Tier-2 settlement, the **Founding Bower-Folk Village.** The Bower is on permanent Resin-Cast display as the central installation; pilgrimage destination. Aesthetic reputation economy. Eerie-beautiful.
+8. **Wellmeet** — Tier-2 wasteland-edge town, a major **Tent-Right hub.** The three-day oath is law here. Salt-trade originates nearby. Gateway to the harder wasteland places.
+9. **Marrowstye** — Tier-2 town with a Pale Curation regional preservation chamber. *Mundane* preservation work (the dead of nearby villages, salt-cured for fees). An Imminent Archive Catcher cell operates from a disused wing — the village's unwanted-quest-hook (per IDEAS.md Imminent Archive entry).
+10. **Sumphold** — Tier-2 raised-ground town at the edge of the bog country. Boat-builders, peat-cutters. Gateway to the Sodden places. Bog-Taken bodies are *casually known* here — pulled from peat, catalogued by a resident Palimpsest expedition, sometimes sold (controversially) to the Concord.
 
-### Character
+### Tier 3 — the substrate-dense world (mid game)
 
-The Heart is **substrate-dense.** Catacomb networks are everywhere underground; bio-light glows from cracks in stone; mycelial threads grow on the surface as well as below. The air smells faintly of fungus and old wood. **The substrate is loud here** — the Six gods' presences are felt as ambient cosmological weight, even by non-affinity-aligned players.
+11. **Olderdeep** — Tier-3, the **Founding Catacomb-village.** The Rooted lies in its patch-chamber, frozen in his embrace-pose, the founding plume erupting from his torso, his arms reaching for the wall that separates him from the Root. Listening Tradition dominant. The catacomb-village network's theological center. Player meets the Rooted by sleeping on the patch (= sleeping in his arms).
+12. **The Salt-Vault** — Tier-3, the **Central Pale Curation Archive.** The Salted lies here, Salt-Cured, conscious, file updated annually ("Status: continuing"). Mass-preservation chambers; the deepest indexed-corpse library. Adjacent to a Palimpsest scribe-station (the Reader and the Salted are *neighbors who haven't spoken in centuries* — the estrangement is literal proximity).
+13. **The first Sealed Library** — Tier-3, a Sealed-Library-archetype sinkhole holding pre-Felling texts. *Its location is something the Palimpsest deliberately un-remembered* (see Phase 3, the Lost Persecution). The player rediscovering it is major quest content.
+14. **Lampwell** — Tier-3 large catacomb-village hub, Bioluminescent-economy capital. The biggest lantern-beetle hatcheries and Glow-Quartz veins in the world (per Bioluminescent Catacomb Economy + Stones with Stake). Concord-allied (the Patch-Bright archetype from `catacomb_village_design.md`). Light-trade center.
+15. **The Drowned Ledger** — Tier-3 Sodden bog-village that holds the **pre-Felling preserved humans** in its peat (per Phase 2 v1). The Palimpsest's most careful, slowest, oldest excavation. The world's only physically-intact pre-Felling witnesses lie here. Extremely lore-significant.
+16. **Thresk** — Tier-3 contested town. *No single faction dominates.* Choir tendrils grow in the lower quarter; a Pale Curation chapter holds the upper; a Tent-Right caravan-clan keeps a permanent camp; the Concord brokers between all three. **The model interpenetrated place** — faction politics live here, not in tidy territories.
 
-### Population
+### Tier 4 — near the truth (mid-late game)
 
-Sparse on the surface. The Heart's surface zones are *unfriendly to ordinary habitation* — the substrate's density makes everything slightly strange. Most Heart-population is underground: catacomb villages (per `catacomb_village_design.md`), Choir cathedrals, Pale Curation outposts.
+17. **The Deepest Cathedral** — Tier-4, the **deepest Choir Cathedral.** The Wedded's original body lies here, mostly woman-shaped after a millennium, partially substrate-incorporated. Pilgrimage-with-offering to meet her. Choir-saturated; non-Choir-aligned players are in danger here. The substrate sometimes forms her old face.
+18. **Spivenor** — Tier-4 catacomb-village hub, the **Spore-Wedded archetype** (per `catacomb_village_design.md`) — openly Choir-integrated. Politically charged; a player's Choir-reputation gates entry. Wall-Caught players (per IDEAS.md) are welcomed here as candidates-for-inclusion.
+19. **The Quiet's Door** — Tier-4 access point to **The Quiet** (the hostile-isolated catacomb-village archetype). Almost-impossible early-game access; a major reputation investment. The most-rewarding catacomb content for players who earn it.
+20. **The Last Counter** — Tier-4 frontier outpost where the Concord's reach ends. *"We cannot guarantee delivery beyond this point."* Final-supply station before Urqu-bleeding deep places. Structurally funny; thematically a threshold.
 
-### Anchor locations
+### Tier 5 — the Root and the endgame
 
-- **The Root of the World** — center.
-- **The Founding Catacomb-village.** Oldest known catacomb settlement. *The Rooted lies in its patch-chamber, frozen in his embrace-pose, the founding fungal plume erupting from his torso. The wall he reaches for separates his chamber from the Root's chamber.* Population mid-sized but disproportionately influential. Listening Tradition dominant. Other catacomb-villages across the world send envoys here for major theological consultation. *(Open: specific name. Phase 7.)*
-- **The Deepest Choir Cathedral.** The Wedded's original body lies here, partially substrate-incorporated. Player must perform pilgrimage with appropriate offering to meet her. Accessible via a single specific sinkhole archetype (Choir Cathedral, per Sinkholes IDEAS entry) in the Heart. *(Open: specific name.)*
-- **The Felling-Site.** The clearing where the Six performed the act ~1080 years ago. Now a sacred location at the Root of the World's surface base. The six positions where the Firsts stood are still marked by *bare ground* — no plant grows where a First's feet were; the empty seventh position is a *circle of intense Urqu-substrate slippage* where the air feels wrong. *(Critical mid-late-game location.)*
+21. **The Felling-Site** — Tier-5, at the Root of the World's surface base. The six positions where the Firsts stood are still bare ground (no plant grows there). **The empty seventh position is a single point of intense Urqu-slippage where the air is wrong.** Major late-game encounter; the cosmological hinge.
+22. **The Root of the World** — Tier-5, the petrified stump; beneath it, the First Root sleeps. All three ending-rituals happen here. The game's terminal location. The Rooted's chamber is just inside, behind the wall he reaches for; the Wedded's deepest substrate threads reach here; the Reader's oldest archives reference it; *every god's deepest content converges here — but as a designed dramatic sequence, not a geometric funnel.*
 
-### Travel
+### The scattered Urqu-infection (cross-tier — not a place, a property)
 
-Travel within the Heart is slow because of substrate-density. Players move at reduced speed in many Heart zones; ambient bio-light disorients; NPCs warn against haste. *The Heart wants to be passed through patiently.*
+Urqu is **distributed.** Not a region. Specific places and routes carry an *Urqu-bleed* value:
 
----
+- **Slip** — a Tier-3 town whose east quarter is *going Hush.* Names slip there. The townsfolk have a vocabulary for it ("don't go east-of-the-well after dark; you might not come back you"). A whole settlement living next to a localized unsaying.
+- **The Unsaying** — a Tier-4 former town, now mostly Hush-bled, abandoned, *still partly inhabited by people who are no longer entirely themselves* (half-Urqu hermits, per the v1 Hush concept, now relocated into this distributed model). Late-game.
+- **Urqu-bleeding routes** — certain travel edges (see §III) carry Urqu-bleed: a road that wasn't there last season, a river-bend that forgets which way it flows, a catacomb tunnel that loops. These are *route properties*, scattered, unpredictable, far more frightening than a mappable wedge.
+- **The empty seventh at the Felling-Site** — the single highest Urqu-bleed *point* in the world. Not a zone. A position. (Per Phase 1 — the seventh First's empty place.)
 
-## IV. The Veins (Ring 2)
-
-The wider zone where the Tree's vein-rivers run most densely — ~50-200 km from the Root.
-
-### Character
-
-The Veins are *the river-lands.* The rivers running here are *literally the Tree's veins* — the cataclysm's water-flow followed the dead Tree's circulatory pathways. Rivers in the Veins are not normal rivers: their water carries faint substrate-weight; bathing in a Vein-river is mildly Choir-Touched; certain fish are *partially mycelial* without the Driving Bloom's hostility (a different fungal symbiosis the Choir tolerates).
-
-**The Inner Wood** — old forest that grew in the Veins' first centuries post-Felling. Mature, dim, lit partly by bioluminescent canopy growth as well as filtered sun. Many lesser tepuis dot the Inner Wood, each with its own sinkholes.
-
-### Population
-
-Moderate. The Veins are inhabitable but slightly weird. Many small surface villages along the river-veins. Several catacomb-villages in the lesser tepuis' sinkholes. The Veins are where most of CoO's mid-game content sits.
-
-### Anchor locations
-
-- **The Central Pale Curation Archive.** The deepest Pale Curation chamber, in the Veins — built into a lesser tepui whose sinkhole connects to a vast Salt-Curing complex. **The Salted lies here**, Salt-Cured perfectly conscious. Annual file-update ceremonies happen at this archive. *(Open: specific name. Phase 7.)*
-- **The first Sealed Library.** One of the major hidden Palimpsest sub-archives from the Generation 5-6 Lost Persecution. Located in a Sealed Library archetype sinkhole within the Veins. Contains pre-Felling texts unavailable elsewhere.
-- **The Vein-Crossing.** A major trade-hub city where six of the Tree's largest veins (rivers) intersect. The Saccharine Concord's secondary exchange operates here. Mid-game player content hub. *(Open: name.)*
-
-### Travel
-
-River travel is the dominant mode in the Veins. Players who have boat access move faster here than on foot. The Concord's major caravan routes pass through the Vein-Crossing; players can hire passage in either direction.
+**Design consequence:** the player cannot map Urqu and route around it. It is a *weather of places and roads*, correlated loosely with Strangeness Tier and tightly with the player's own incomplete-act ratio (per Phase 1 — completing things weakens Urqu locally; abandoning things feeds it). *The player's behavior shapes where the infection spreads.* This is the strongest mechanical hook in the geography.
 
 ---
 
-## V. The Spread (Ring 3)
+## III. The travel graph — deliberate edges, characterful shortcuts
 
-The broad civilization band — ~200-800 km from the Root. **Most of CoO's population lives here.**
+The world is a **graph**, not a continuous map. Each place connects to 2-4 others by default. Travel is *between places*; the journey itself is content (encounters, route-properties, Urqu-bleed).
 
-### Character
+### Edge types
 
-Mature post-Felling surface civilization. Lesser tepuis dot the Spread but less densely than in the Veins. Forests, grasslands, and farmland alternate. **The leaf-light is gone here** — sun is the only light source above ground. Catacomb networks exist but are smaller, more isolated, more independent.
+- **Roads** (Tier 1-2 places) — safe, fast, Concord-patrolled near Tally. The default early-game edge.
+- **River-veins** (Tier 2-3) — boat routes; faster than roads where they exist; mildly Choir-Touched water (per Phase 2 v1's Veins concept, now a route-property not a region).
+- **Catacomb tunnels** (Tier 3-4) — village-to-village underground; gated by inter-village reputation and Tongue-translation services (per `catacomb_village_design.md`); bypass surface entirely; *can be faster or slower than surface depending on the route's Urqu-bleed.*
+- **Concord caravans** — hireable passage along the busy radial-feeling arteries. The Concord's economic power *is* this: they run the long edges no one else can. Tally is the caravan hub.
+- **Wall-Catching** (per IDEAS.md) — Choir-Cathedral to Choir-Cathedral displacement. *Roulette fast-travel* — the Choir routes the player; destination is the Choir's choice. Voluntary-exploit grammar per the IDEAS entry.
+- **Branchwork route-knowledge** (per IDEAS.md) — for players who have fed the Branchwork in N places, shortest-path consultation between known places. Non-coercive; costs nutrients.
+- **Door-sinkholes** (per Sinkholes IDEAS entry, the Door archetype) — rare wormhole edges connecting distant places directly. The closest thing to true fast-travel. Each Door is a discovered, named, finite resource.
 
-The Spread is the world that *adapted* to the post-Felling conditions. Surface settlements developed cultures that don't reference the Tree directly — many Spread-dwellers know the Felling happened but treat it as deep myth, *not their primary cosmological frame.* They serve gods of harvest, river, household — local gods who emerged in the post-Felling centuries to fill the gap left by the Six's withdrawal from public leadership.
+**Lateral travel is solved by design**, not geometry: there *are* lateral edges (catacombs, rivers, caravans, Doors, Branchwork) because they were authored in. No backtracking tax, because the graph isn't a ring.
 
-### Population
+### The graph's gravitational shape
 
-The majority. Multiple surface cities, hundreds of villages, scattered hermitages.
+It is *loosely* radial in *feeling* — Tier-1 places cluster "outward" in the player's mental model, Tier-5 "inward" — but **the graph has cross-tier shortcuts everywhere.** A Door-sinkhole can drop a Tier-1 player at a Tier-4 place's threshold (and nearly kill them — a real risk/reward). A catacomb tunnel can connect a Tier-2 town directly to Olderdeep (Tier-3) bypassing the surface. *The narrative-radial feeling survives; the geometric tax does not.*
 
-### Anchor locations
+### Tally as the hub
 
-- **The Palimpsest's Primary Archive.** A large city built around the central Palimpsest scriptorium. **The Reader is most present here** — scribes who do deep archival work in the Primary Archive are most likely to channel the Reader's voice. Player can meet the Reader by committing fully to a long transcription job. *(Open: name. Phase 7.)*
-- **The Saccharine Concord's Central Exchange.** A major commercial city, possibly the same as the Vein-Crossing in the Veins or a separate city in the Spread proper. **The Counter operates from here personally** — he is accessible to most players who reach the Exchange and have sufficient drams for a meeting fee. *(Open: name, and whether one city or two.)*
-- **The Founding Bower-Folk Village.** Located in the Spread (intentionally outside the Heart's substrate-density, because the Bower-Folk's aesthetic work requires *normal substrate*, not Choir-thickened atmosphere). **The Bower is on permanent Resin-Cast display here as the central installation.** Players make pilgrimage to see her. *(Open: name.)*
-- **Multiple Inkbound enclaves** (if Phase 4 introduces them). Likely in the Spread, near or adjacent to Palimpsest archives.
-
-### Travel
-
-Standard surface travel. Roads in better condition than other rings. Multi-day inter-village journeys are routine. Caravans frequent. The Spread is the most navigable region.
-
----
-
-## VI. The Sodden (Ring 4)
-
-The bog biome — ~800-1200 km from the Root.
-
-### Character
-
-The Sodden is *the flood-residue.* During the cataclysm, the Tree's blood-flood rose; it eventually receded across the Veins and Spread; but in the Sodden it never fully drained. The land is **permanently saturated**, peat-soaked, intermittently flooded. Standing water everywhere. Dead trees rising from bog-pools. **Bog-Taken bodies emerge from peat continuously** — the dead of the cataclysm, still surfacing a thousand years later.
-
-The light is *bog-light* — diffuse, brown-tinged, indirect. The substrate is acidic enough that mycelial growth is restricted (the Choir penetrates the Sodden but slowly, with effort). Catacomb networks here are *waterlogged*; catacomb-villages are rare and unique — they live in elevated chambers or on raised mounds, isolated from the broader catacomb-village network.
-
-### Population
-
-Low. Bog-villages exist on raised ground (kettle hills, ancient roots-now-petrified). Most are isolationist by default; the Sodden is hard to leave and harder to enter.
-
-### Anchor locations
-
-- **The Pre-Felling Floodline.** A specific named hill — a ring of high ground that marks where the flood's maximum reach was. Pre-Felling pottery and tools are found here; the Palimpsest sends expeditions occasionally. *(Open: name.)*
-- **A specific bog-village** that holds the most-preserved Bog-Taken corpses in the world. Lore-significance: certain Bog-Taken in this village's bog are *pre-Felling humans*, preserved by accident for the entire 1080-year duration. They are the world's only physically-intact pre-Felling witnesses. The Palimpsest has been *very carefully* excavating them across centuries. *(Open: name.)*
-
-### Travel
-
-Slow. Boat travel for some sections, wading for others. Local guides essential. Routes shift seasonally with bog-water levels.
+The Saccharine Concord's Central Exchange (**Tally**, Tier-2) is the **practical center of the travel graph** — most caravan edges originate here; most players route through it repeatedly. This is *deliberate*: it makes the Concord (and the Counter) structurally central to the player's life without making the Root structurally central to traversal. **The economic hub and the narrative center are different places.** That separation is the core fix v2 delivers — v1's error was making the cosmological center also the traversal center.
 
 ---
 
-## VII. The Beating (Ring 5)
+## IV. Factions interpenetrate
 
-The wasteland — ~1200-2000 km from the Root.
+No faction owns a region. Faction *presence* is a per-place property at varying strength:
 
-### Character
+- Most major places have **2-4 faction presences** at different strengths (Thresk is the archetype — Choir/Pale Curation/Tent-Right/Concord all present, none dominant).
+- A handful of places are **strongholds** (Quillhold = Palimpsest; the Salt-Vault = Pale Curation; the Deepest Cathedral = Choir; Posy = Bower-Folk; Wellmeet = Tent-Right; Olderdeep = catacomb-villagers/the Rooted).
+- **Strongholds are rare on purpose.** Faction politics lives in the *mixed* places, where presence is contested and the player's choices shift the local balance.
 
-The Beating is **raw sun without canopy.** Pre-Felling, the Tree's canopy was thinnest here — far from the trunk, the Tree's reach attenuated. Post-Felling, this is the zone that experienced the rawest cosmic change: no leaf-light, no substrate-protection, just sun and stone and salt.
-
-The land is *high-altitude semi-arid plateau* mixed with salt-flats. Sparse vegetation. Hardy fauna. Long sight-lines. Heat by day, deep cold by night. **The Beating is where surface humans had to evolve new cultural framings to survive.**
-
-### Population
-
-Tent-Right culture (per IDEAS.md) is the dominant cultural form. Population spread thin across vast spaces — small mobile encampments, semi-permanent salt-mining sites, occasional larger trading towns at key wells or crossroads.
-
-### Anchor locations
-
-- **The First Tent.** The legendary site where the three-day hospitality oath was first sworn, in Generation 2 post-Felling. Now a major Tent-Right cultural and political hub. Pilgrimages happen here. *(Open: name.)*
-- **The Great Salt Plain.** Largest of the wasteland salt-flats. Major Pale-Salt mining operations here. Trade caravans for the salt economy originate here. The Saccharine Concord has a significant presence; Tent-Right culture is the *political authority*, the Concord operates with *guest rights.*
-- **A pre-Felling ruin.** The Beating contains the most surviving pre-Felling ruins because *the Tree's canopy didn't shield this zone* — the cataclysm didn't bury it under flood-mud. Several pre-Felling cities are now archaeological sites, partially excavated. Major Palimpsest research interest. *(Open: specific ruin location and name.)*
-
-### Travel
-
-Long. Caravans are the dominant mode. Solo travel is dangerous. **Tent-Right hospitality is essential infrastructure** — without the three-day-oath network, the Beating would be impassable.
+The Six gods' geographic relationships are now *place-relationships*: the Reader (Quillhold + distributed everywhere) and the Salted (the Salt-Vault) are physically near (the Salt-Vault's Palimpsest scribe-station) — *their estrangement is literal proximity*, which lands harder than v1's cross-ring separation.
 
 ---
 
-## VIII. The Hush (Ring 6) — the world's edge
+## V. Travel scale and the journey-as-content
 
-### Character
+- **A short hop** (adjacent places, good edge) — a play-session's fraction; minor encounter chance
+- **A journey** (2-4 edges) — a play session; route-properties and Urqu-bleed matter; planning matters
+- **An expedition** (deep into Tier 4-5, or across many places) — multi-session; major preparation; the Last Counter exists for exactly this
+- **The final approach** (to the Root) — a *designed dramatic sequence*, not a commute; the world tightening around the player by authoring, not by funnel-geometry
 
-The Hush is **where the world's substrate runs out.** Beyond the Beating, the cosmological coherence that the Tree's holding-power once provided thins to nothing. The Hush is *not space* — there is land, there is stone, there is sky — but *what land, what stone, what sky* is no longer stable.
-
-In the Hush:
-- **Names slip.** A traveler's name may stop being their name after hours in the Hush. They may forget it. They may speak it and hear someone else's name come out. NPCs encountered in the Hush often have ambiguous identities — *they are who they say they are, but they are also not.*
-- **Objects become weird.** Tools, weapons, food carried into the Hush slowly *forget what they are.* A bread loaf may become bread-like-but-not-bread after a day. A knife may stop cutting. *Possessions degrade not physically but cosmologically.*
-- **Urqu manifestations are continuous.** The Hush is the only region where the *sari... sari...* sound is *constant* rather than intermittent. The world's substrate is so thin that Urqu's failed-incarnation attempts blur into a near-continuous failed-being-born.
-- **Distance does not work normally.** Walking for an hour might cover an inch. Walking for a minute might cover miles. *The Hush rejects the cosmological function of measure.* Maps do not work here.
-
-### Population
-
-Effectively none. *Hush-dwellers exist* but they are *not entirely themselves anymore.* Long-term Hush residents become **half-Urqu** — partially incorporated into the empty seventh's failed-incarnation field. They speak, they think, they have memories — but everything about them is *attenuated*, drifting toward non-existence.
-
-There are stories of **Hush-Edge hermits** who live on the boundary between the Beating and the Hush, who have been there for centuries, who are no longer recognizable as the humans they were. They are pursued by certain late-game quest content. Meeting one is a major encounter.
-
-### Anchor locations
-
-- **The Edge of Coherence.** A specific zone where the Beating gives way to the Hush. The Saccharine Concord runs a *single outpost* here, called something like *the Last Counter* or *the Watchstone*, where traders who have business in the Hush can purchase final supplies. Beyond this point, *the Concord cannot guarantee delivery.* *(Open: name.)*
-- **What's deep in the Hush** *(open; this is the largest single open question in Phase 2)*. Possibilities I'll surface for redirect:
-  - **Nothing.** The Hush continues indefinitely; eventually the substrate is so thin nothing exists. Cosmic horror by withdrawal.
-  - **Something.** *Pre-Felling artifacts; lost civilizations; trapped beings; the Tree's original seed* — something the cataclysm pushed to the edges of coherence. Renewal-ending content. The player who survives deep Hush travel finds something load-bearing for the late game.
-  - **Urqu's near-incarnation core.** The Hush gets *worse* the deeper you go, until reaching some kind of *almost-Urqu* — a near-complete failed-birth that can be encountered, possibly bargained with, possibly resolved.
-
-*Phase 6 (Plot) will commit which.* Strong recommendation: **Something.** A pre-Felling artifact zone at deep-Hush. Renewal-aligned content gated heavily.
-
-### Travel
-
-Theoretical only. Most players will not enter the Hush. Those who do are doing endgame content. Each step is *cosmologically expensive* in ways the player can feel.
+The journey is *content*, not a loading screen. Every edge can carry: an encounter, a route-property (Urqu-bleed, weather, faction patrol), a discoverable side-place, a companion conversation. **The graph being authored means every edge can be made to matter.**
 
 ---
 
-## IX. Travel and movement
+## VI. What this commits and what stays open
 
-### Distance scales (illustrative)
+### Locked in (Phase 2 v2)
 
-- **Day** — typical inter-village trip within a ring
-- **Week** — crossing a ring's interior (e.g., traveling from one major Spread city to another)
-- **Month** — crossing from one ring to an adjacent ring (e.g., Spread to Sodden)
-- **Season** — major radial journey (e.g., outer Beating to the Heart)
-- **Year+** — extreme journeys (Hush expeditions; circumnavigating the rings)
+- The world is a hand-authored network of ~30 places, not a global geometry
+- Strangeness Tier (1-5) is an authored per-place tag producing the narrative-radial feeling without coordinates
+- The travel graph has deliberate edges + characterful shortcuts (roads, rivers, catacombs, caravans, Wall-Catching, Branchwork, Doors); lateral travel solved by design
+- Tally (Concord Central Exchange) is the *traversal hub*; the Root is the *narrative center*; **these are deliberately different places**
+- Factions interpenetrate; strongholds are rare; politics lives in mixed places
+- Urqu is a *scattered infection of places and routes*, not a geometric region; correlated loosely with Tier, tightly with the player's incomplete-act ratio
+- All v1 anchor locations preserved and re-homed (Olderdeep = founding catacomb-village/Rooted; the Salt-Vault = Salted; the Deepest Cathedral = Wedded; Quillhold = Palimpsest/Reader; Tally = Concord/Counter; Posy = Bower-Folk/Bower; the Felling-Site; the Root)
+- Recommended player start: **Sill** (Tier-1 river village)
 
-### Modes
+### Open (Phases 3-7)
 
-- **Foot** — universal default
-- **River boat** — in the Veins; some Sodden routes
-- **Caravan** — Spread and Beating
-- **Catacomb network** — underground travel between catacomb-villages; faster than surface in some routes, slower in others; requires village-village reputation and Tongue translation services
-- **Wall-Catching** — Choir-tendril-network displacement (per IDEAS.md The Wall-Caught entry); the Choir routes the player to a different Choir Cathedral; roulette fast-travel
-- **The Branchwork's route-knowledge** — non-coercive slime-mold-intelligence consultation; for players who have fed the Branchwork in N zones (per IDEAS.md), shortest-path navigation available
-
-### Hub-and-spoke structure
-
-The world is *not a flat travel-network.* It is concentrated around named hubs in each ring:
-
-- **The Heart:** the Founding Catacomb-village + the Felling-Site
-- **The Veins:** the Vein-Crossing + the Central Pale Curation Archive
-- **The Spread:** the Palimpsest's Primary Archive + the Concord's Central Exchange + the Founding Bower-Folk Village
-- **The Sodden:** the Pre-Felling Floodline + a specific bog-village hub
-- **The Beating:** the First Tent + the Great Salt Plain
-- **The Hush:** the Edge of Coherence outpost
-
-Travel is *between hubs* in the typical case. Hub-to-hub routes are *known*; off-route travel is *exploration* with its own risks and rewards.
-
----
-
-## X. The world's macro-progression — radial gameplay
-
-The game's macro-progression is *radial*: the player begins in an outer ring and gradually moves inward toward the Heart, with the final approach to the Root being *the last journey.*
-
-### Where the player starts
-
-*(Open per Phase 3 — History will commit, but the canonical possibilities are:)*
-
-- **A Spread surface village** — the player as ordinary post-Felling civilization; gradual discovery of the inner rings' weirdness
-- **A Beating wasteland encampment** — the player as wasteland-survivor under Tent-Right hospitality; long journey inward toward the Heart
-- **A Sodden bog-village** — the player as bog-isolated; emergence into the broader world
-- **The Hush edge** — the player as Hush-survivor recovering from cosmic damage; *extremely unusual starting position; would imply backstory involving prior Hush travel*
-
-**My recommendation:** A **Spread village** start, allowing the player to gradually discover the inner rings' weirdness as they journey toward the Heart. This is the most accessible narrative arc. The player begins in the *most-recovered* part of the post-Felling world and travels toward the *least-recovered* — meeting the Six gods along the way.
-
-### The radial progression
-
-| Game stage | Player position | Content |
-|---|---|---|
-| Early | Spread (Ring 3) | Surface-civilization tutorial; first faction-quest exposure; light foreshadowing |
-| Mid | Veins (Ring 2) | River-lands; first meeting with one of the Six (likely the Counter or the Reader); inter-faction politics begin to matter |
-| Mid-late | Heart (Ring 1) | Catacomb networks; meeting the Rooted and the Wedded; the substrate-density forces tonal shift |
-| Late | The Root | Final approach; ending-ritual; the player's choice |
-| Postgame / endgame side content | Sodden, Beating, Hush | Lateral exploration; deep history; pre-Felling artifacts; the Hush expedition for Renewal-aligned content |
-
-*Players are not strictly required to follow this progression* — sandbox exploration is permitted — but it is the canonical macro-arc.
-
----
-
-## XI. What this commits and what stays open
-
-### Locked in (Phase 2 commitments)
-
-- The world is concentric, centered on the Root of the World
-- Six rings + center: Root, Heart, Veins, Spread, Sodden, Beating, Hush
-- The Hush is the world's cosmic-horror frontier — substrate thins, naming slips, distance malfunctions
-- Major anchor locations per ring (founding catacomb-village, central Pale Curation archive, Palimpsest primary archive, Concord central exchange, founding Bower-Folk village, first Tent, etc.)
-- Travel scales: day / week / month / season / year+
-- The hub-and-spoke structure for travel
-- Radial macro-progression: player starts in the Spread (recommended), journeys toward the Heart
-- The Felling-Site as a specific named location within the Heart, at the Root's surface base, with the *empty seventh position* still marked by Urqu-substrate slippage
-
-### Open (Phases 3-7 will commit)
-
-- Specific names for major anchor cities/villages (Phase 7 — Characters, possibly Phase 3 — History)
-- Whether the Concord's Central Exchange is in the Veins or the Spread (or both — two exchanges)
-- What lies in the deep Hush (Phase 6 — Plot, strong recommendation: pre-Felling artifacts)
-- The pre-Felling civilization's specific cities, ruins, technology (Phase 3 — History)
-- The player's exact starting village (Phase 3, recommendation: Spread)
-- Localized geography within rings (forests, mountain ranges, specific lakes/rivers)
-- The Inkbound enclave locations if Phase 4 introduces them
+- Final names for places (Phase 7 polish; working names committed)
+- The deep-Urqu content at the Unsaying / what a fully Hush-bled place contains (Phase 6)
+- Pre-Felling civilization's specific ruins and their locations (Phase 3)
+- Whether the player's start is fixed (Sill) or character-creation-variable (Phase 3 / Phase 6)
+- The Door-sinkhole network's specific connections (Phase 6)
+- Localized geography within/around major places (ongoing)
 
 ### What this lets Phase 3+ build on
 
-- **Phase 3 (History)** has the geographic context for every major event — the Felling was at the central tepui, the Lost Persecution happened in a specific ring, the cataclysm flood receded across the rings in a specific pattern
-- **Phase 4 (Factions)** has each faction's geographic anchor — and the inter-faction politics now have *physical distance* as a meaningful factor (the Reader is in the Spread; the Salted is in the Veins; their century-deep estrangement is also *literal geographic separation*)
-- **Phase 5 (Spirits)** has Urqu's geographic intensity gradient — Spirit manifestations correlate with distance from the Root and from the Hush
-- **Phase 6 (Plot)** has the radial macro-progression as the main quest's spine; the deep Hush as endgame content; the Felling-Site as a major late-game encounter
-- **Phase 7 (Characters)** can place named characters in specific rings; major NPC homes can be assigned
+- **Phase 3 (History)** places every event at a *named place* in the network (the Felling at the Felling-Site; the Lost Persecution's Sealed Libraries hidden across specific Tier-3 places; faction foundings at the strongholds)
+- **Phase 4 (Factions)** has per-place presence to work with — faction politics is *local and contested*, not territorial
+- **Phase 5 (Spirits)** has Urqu's distributed-infection model; Spirit manifestations are place-and-route properties
+- **Phase 6 (Plot)** has the narrative-radial progression (Sill → inward by Strangeness Tier) and the designed final-approach sequence
+- **Phase 7 (Characters)** can home named NPCs at specific places
 
 ---
 
-## XII. Tonal balance check
+## VII. Tonal balance check
 
-- **Biological horror** persists — the substrate's literal physical effect on the player (Choir-Touched water in the Veins; Bog-Taken bodies emerging from peat in the Sodden; the substrate-density of the Heart causing slow disorientation).
-- **Cosmic horror** is *anchored geographically* — the Hush is the cosmic-horror frontier; the world's edge fading into Urqu's failed-incarnations is one of the strongest single horror beats in the project; the geographic-scale concentric organization makes the player's journey toward the Root *feel like approaching a wound that has been growing for a thousand years.*
-- **Comedy** is preserved by faction-character — the Concord's Last Counter outpost ("we cannot guarantee delivery beyond this point") is structurally funny; Pale-Salt mining bureaucracy in the Beating is funny; the Bower-Folk villages with their Resin-Cast pilgrimage are funny *and* horrifying.
+- **Biological horror** persists, now place-specific: Choir-Touched river-veins, the Wedded's substrate-body at the Deepest Cathedral, Bog-Taken peat at the Drowned Ledger, the Rooted's plume at Olderdeep.
+- **Cosmic horror** is *sharper* in v2 than v1 — Urqu as a scattered, unmappable infection of places and roads (you cannot route around it; your own incomplete acts spread it) is far more frightening than a mappable wedge or outer ring. **Slip** (a town whose east quarter is going Hush, with a local vocabulary for it) is a stronger single image than the entire v1 Hush ring.
+- **Comedy** preserved: the Last Counter's disclaimer, the Marrowstye unwanted-Catcher-cell quest, faction-politics-as-paperwork in Gantry, the Concord brokering between three factions who hate each other in Thresk.
 
 ---
 
-*Phase 2 status: complete. Two committed creative bets. Seven open questions for Phases 3-7. Foundation set for Phase 3 (History).*
+*Phase 2 v2 status: complete. Concentric model dropped. Place-first network committed. Two creative bets. Foundation set for Phase 3 (History).*
