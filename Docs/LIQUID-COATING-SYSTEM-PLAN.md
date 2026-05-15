@@ -1,0 +1,578 @@
+# Liquid Coating System — Qud-Parity Migration Plan
+
+**Branch:** `feat/liquid-coating-system`
+**Date:** 2026-05-15
+**Status:** Planning only. No code yet. Two critical self-reviews at
+the bottom (§A, §B) per the brief.
+
+> **Genre framing:** CoO is an **RPG, not a roguelike**
+> (`Docs/PROJECT-IDENTITY.md`). Liquid coatings are a moment-to-moment
+> tactical layer that persists through save/load, not a run-scoped
+> gimmick.
+
+---
+
+## 0. The question, answered
+
+> *"Do pools of liquid on the ground transfer that liquid onto the
+> player/NPCs, and does being coated change how other elements affect
+> the player (e.g. wet → electric amplified)?"*
+
+**Today, in Caves of Ooo:**
+
+| Capability | Status | Evidence |
+|---|---|---|
+| (a) Liquid on the ground | **YES, partial** | `WaterPuddle` entity carries `MaterialPart{Water, tags=Liquid,Water}`, placed by `RiverBuilder.cs:103`. No volume/depth model, no `Cell` liquid field (`Cell.cs:10-49`), water-only. |
+| (b) Transfer to entities on contact | **NO** | `MovementSystem` fires `AfterMove`/`EntityEnteredCell` (`MovementSystem.cs:142-240`) but **zero** listeners coat the mover. `WaterPuddle` has no step trigger. Standing in water applies no `WetEffect`. |
+| (c) Coating modifies damage/resistance | **PARTIAL** | `CombatSystem.ApplyResistances` (`CombatSystem.cs:980-986`) is stat-only. The **single** coupling is `ElectrifiedEffect.OnApply` doubling `Charge` when `WetEffect.Moisture>0.2` (`ElectrifiedEffect.cs:29-34`). Not general; no oil/acid/cold coupling; no `MaterialPart`-based damage modifier. |
+
+So: the canonical "step in water → wet → electric amplified" chain is
+**half-built**. Wet *does* amplify electric (one hard-coded special
+case), but **nothing makes you wet by stepping in a puddle**, and the
+amplification isn't a reusable system. This plan closes (b) and
+generalizes (c) to Qud parity.
+
+---
+
+## 1. Reference — how Qud actually does it (verification sweep)
+
+Sourced from `/Users/steven/qud-decompiled-project/`. Every row is a
+load-bearing premise this plan depends on; cited so any claim is
+verifiable.
+
+| # | Premise | Qud source |
+|---|---|---|
+| 1 | A puddle IS a GameObject carrying a `LiquidVolume` part; `MaxVolume == -1` ⇒ "open volume" (ground pool). | `LiquidVolume.cs:25, 65, 4529` |
+| 2 | `LiquidVolume.ComponentLiquids` is `Dictionary<string,int>` in parts-per-1000; `Volume` in drams; depth thresholds `WADE=200`, `SWIM=2000`. | `LiquidVolume.cs:60-89, 40-42, 4534-4567` |
+| 3 | Liquids are flyweight `BaseLiquid` subclasses, one shared instance, auto-registered by reflecting `[IsLiquid]` types in `LiquidVolume.Init()`. | `BaseLiquid.cs:16`; `LiquidVolume.cs:1112-1132`; `IsLiquid.cs` |
+| 4 | Per-liquid data knobs: `PureElectricalConductivity`/`MixedElectricalConductivity`, `Combustibility`, `FlameTemperature`, `FreezeTemperature`, `Temperature`, `Fluidity`(→`Viscosity`), `Adsorbence`, `Evaporativity`, `Staining`/`Cleansing`, `SlipperyWhenWet`/`StickyWhenWet`, `FreezeObject1/2/3`. | `BaseLiquid.cs:22-128, 143` |
+| 5 | Water: `Pure=0`, **`Mixed=100`**, `Combustibility=-50`. Oil: `Combustibility=90`, `FlameTemperature=250`. Acid overrides `SmearOn/SmearOnTick`→`ApplyAcid`. Honey: `StickyWhenWet=true` (the shipped "slows you" liquid). | `LiquidWater.cs:21-38`; `LiquidOil.cs:20-39`; `LiquidAcid.cs:181-198`; `LiquidHoney.cs:13-39` |
+| 6 | **Transfer:** puddle's `LiquidVolume` handles `ObjectEnteredCellEvent` → `ProcessContact` → exposure cap = `Strength+Toughness+bodyparts` → wade/swim branch → `LiquidInContact` → `obj.ApplyEffect(new LiquidCovered(splitVolume))`. | `LiquidVolume.cs:2559, 2580, 2184, 2224, 2238/2328, 2160-2181` |
+| 7 | The coat is the `LiquidCovered` *effect* holding a split-off `LiquidVolume`; re-coat **merges (`MixWith`), non-stacking**; per-turn `ProcessDynamics` partitions into drip(`Fluidity`)/evaporate(`Evaporativity`)/stain(`Staining`→`LiquidStained`)/cleanse; removes self at `Volume<=0`. | `LiquidCovered.cs:32, 140-169, 210-342, 439-446` |
+| 8 | **Electric+wet:** `LiquidCovered.HandleEvent(GetElectricalConductivityEvent)` raises the creature's conductivity to the coat's (`MinValue`, pass 3). `Physics.ApplyDischarge` picks chain targets by highest conductivity & recurses; damage degrades ×4/5 per hop. Amplification = chain-targeting + propagation, not a flat ×. | `LiquidCovered.cs:381-388`; `LiquidVolume.cs:5094-5120`; `Physics.cs:1795,1807,1978,2038-2056` |
+| 9 | **Fire+oil:** `ProcessExposure` thermal transfer; oil coat (`Combustibility≥50`) on a burning creature adds temperature; oil-soaked items get `FlameTemperature`←250 (ignite near flame). | `LiquidVolume.cs:2677, 2702-2722, 5138`; `Physics.cs:626, 4138` |
+| 10 | **Fire+wet:** water `Combustibility=-50` reduces heat gain + boosts cooling in `ProcessExposure` — damps/extinguishes (thermal tug-of-war, not a hard block). | `LiquidVolume.cs:2719-2722, 5264-5278` |
+| 11 | **Acid coat:** `LiquidAcid.SmearOn/SmearOnTick`→`ApplyAcid` deals scaling `"Acid"` `TakeDamage` **every turn the coat persists**; `ConsiderDangerousToContact` flags AI/trade. | `LiquidAcid.cs:181-198, 33` |
+| 12 | **Cold+wet:** open `LiquidVolume` handles `FrozeEvent`; liquids with `FreezeObject*` die→solid (lava→boulder); water has none → `SlipperyWhenFrozen` ice. | `LiquidVolume.cs:3865-3898`; `LiquidWater.cs:32`; `BaseLiquid.cs:402-423` |
+| 13 | Coating mediates element interaction by answering **query events** (`GetElectricalConductivityEvent`, `GetMaximumLiquidExposureEvent`) + per-liquid `SmearOn*`/`ObjectEnteredCell` overrides — *not* a cell check and *not* a `TakeDamage` hook on the damage itself. | `LiquidCovered.cs:381,439`; `GetElectricalConductivityEvent.cs`; `BaseLiquid.cs:402` |
+| 14 | Expandability seam: a new liquid is one `[IsLiquid] : BaseLiquid` class with data + optional `SmearOn*`/`ObjectEnteredCell`/`Froze` overrides; auto-discovered. No table edit. | `LiquidHoney.cs` end-to-end; `LiquidVolume.cs:1112-1132` |
+
+**No false premises detected.** One deliberate divergence is recorded
+in §4 (CoO uses `GameEvent` string-keyed dispatch + the `Effect`
+damage hooks, not Qud's `MinEvent` 3-pass query bus + discharge-arc
+engine — see Architecture §4).
+
+---
+
+## 2. What CoO already has (the substrate we build on)
+
+| CoO asset | Shape | Reuse for |
+|---|---|---|
+| `MaterialPart` (`MaterialPart.cs:10`) | `MaterialID` + scalar `Combustibility/Conductivity/...` + `MaterialTags` | Tag the puddle entity; not the coat model |
+| `MaterialReactionResolver` (`MaterialReactionResolver.cs:24`) | JSON-driven, entity-vs-self-state (SourceState×TargetTag→effects) | The JSON-loading + reaction-output pattern to mirror for `LiquidDefinition` loading |
+| `WetEffect` (`WetEffect.cs:8`) | `Moisture` 0–1, evaporates, suppresses ignition >0.35 | Keep as-is in phase 1; water-coat refreshes it so pinned tests stay green |
+| `ElectrifiedEffect` (`ElectrifiedEffect.cs:29-34`) | `Charge`; ×2 + Duration+1 if `WetEffect.Moisture>0.2` | The existing wet→electric coupling; generalized in LQ.5 |
+| `AcidicEffect`, `BurningEffect`, `FrozenEffect`, `SteamEffect`, `CharredEffect`, `SmolderingEffect` | per-turn effects | Follow-on effects liquids apply |
+| `Effect` base `OnBeforeTakeDamage`/`OnTakeDamage` (`Effect.cs:193-209`, routed `StatusEffectsPart.cs:474-495`) | only `StoneskinEffect` uses it today | **The CoO-native damage hook seam** for coating-modifies-damage |
+| `EquipBonusUtility` apply/remove + `equipment/StatBonus*` diag (shipped) | symmetric stat-bonus apply/reverse with diag | The exact pattern for stat/resistance liquids |
+| `MovementSystem` `EntityEnteredCell` on cell occupants (`MovementSystem.cs:202-240`) | fires on non-mover occupants when something enters | **The transfer trigger** — the puddle is an occupant |
+| `MaterialReactions/*.json` loader convention | `Resources/Content/Data/...` reflectionless JSON | The `LiquidDefinitions/*.json` loader |
+| `Diag` + `diag_query` (we shipped 14 categories) | observability substrate | New `liquid` diag category |
+| `StatusTonicPart` + `ThrowItemCommand.ApplyTonicAoe` (`ThrowItemCommand.cs:395`) | thrown tonic → 3×3 direct effect, no puddle | LQ.5 stretch: thrown liquid leaves a pool |
+
+---
+
+## 3. The 3 recommended stat/resistance liquids (+ the foundation)
+
+The **foundation** is the `LiquidCovered` substrate (LQ.2–LQ.4). The
+canonical Qud-parity liquids — **Water / Oil / Acid** — are
+implemented in LQ.5 to prove the foundation carries the real
+mechanics (electric amplify, fire spread, ongoing acid). The brief
+asks for **3 liquids that modify resistances/stats**; these are LQ.6
+content demonstrating the foundation expands by data alone:
+
+| Liquid | Coat effect (while covered) | Trade-off | Demonstrates |
+|---|---|---|---|
+| **Brine** (salt water) | **+15 HeatResistance** (damp, fire-resistant) | **−15 ElectricResistance** (salt conducts — synergizes with the wet→electric chain) | resistance delta + interaction synergy |
+| **Pitch** (tar) | **−2 Agility, −3 DV** (sticky, slow, easier to hit) | **Combustibility surge** (flammable like oil — fire is lethal while pitched) | stat debuff + element vulnerability |
+| **Carapace-Ichor** (mystic ooze) | **+4 AV** (hardens to a shell) | **−20 ColdResistance** (brittle — freezing shatters the shell for bonus cold damage) | stat buff + a designed vulnerability |
+
+Each is a row of data in `LiquidDefinitions` (`StatModifiers[]` +
+`ResistanceModifiers[]`). A 4th/5th liquid = a new JSON row + (only
+if it needs behavior the knobs can't express) one optional override
+hook — exactly Qud's `LiquidHoney` seam (premise #14). The
+apply/reverse of the stat deltas reuses the **already-shipped**
+`equipment/StatBonus*` symmetric pattern, so the +/− is guaranteed to
+net-zero on coat removal and is observable in the diag stream.
+
+---
+
+## 4. Architecture decisions (Qud → CoO mapping)
+
+We mirror Qud's **conceptual architecture**, not its `LiquidVolume`
+dram/proportion engine (porting that verbatim is a multi-week change
+and collides with CoO's `MaterialPart`). The faithful-but-CoO-native
+mapping:
+
+| Qud | CoO mirror | Why |
+|---|---|---|
+| `LiquidVolume` part on puddle GameObject, `MaxVolume=-1` | **`LiquidPoolPart`** on the puddle entity: `LiquidId` + `Volume` (single scalar, no parts-per-1000 mixing in phase 1) | Reuses existing puddle entities; single-component pools cover 100% of phase-1 content; mixing is a documented deferral |
+| `BaseLiquid` flyweight + `[IsLiquid]` reflection | **`LiquidDefinition`** records loaded from `Resources/Content/Data/LiquidDefinitions/*.json` via a `LiquidRegistry` (mirror `MaterialReactionResolver` loader) | CoO already JSON-loads content reflectionlessly; data-driven = expand-by-data (the brief's core ask) |
+| `LiquidCovered` effect carrying a split `LiquidVolume` | **`LiquidCoveredEffect : Effect`** carrying `LiquidId` + `Amount`; non-stacking `OnStack` merges; `OnTurnStart` drips/evaporates; `Apply`/`Remove` apply/reverse stat+resist deltas | CoO's `Effect` base is the native coat carrier; mirrors `ProcessDynamics` |
+| `ProcessContact` on `ObjectEnteredCellEvent` | `LiquidPoolPart.HandleEvent("EntityEnteredCell")` → exposure(`Strength+Toughness`) → `ApplyEffect(new LiquidCoveredEffect(...))` | CoO already fires `EntityEnteredCell` on the puddle (it's a cell occupant) — premise (b) closed with no MovementSystem change |
+| `GetElectricalConductivityEvent` (MinEvent 3-pass) answered by coat | `LiquidCoveredEffect.OnBeforeTakeDamage` amplifies `Lightning`-attribute damage by the liquid's `Conductivity`; **plus** keep the existing `ElectrifiedEffect.OnApply` path (now reading `LiquidCoveredEffect` OR `WetEffect`) | CoO has no discharge-arc engine; the `Effect` damage hook is the equivalent seam. Chain-to-adjacent is deferred (§7) |
+| Per-liquid `SmearOn/SmearOnTick` (acid ongoing dmg) | `LiquidCoveredEffect.OnTurnStart` reads `LiquidDefinition.PerTurnDamage{amount,type}` and `ApplyDamage`s | Data-driven follow-on; acid = a JSON row, not a subclass |
+| Water `Combustibility=-50` damps fire | `LiquidCoveredEffect.OnBeforeTakeDamage` reduces `Fire` damage when the coat liquid has `FireDampen>0`; refreshes `WetEffect` so `ThermalPart.TryIgnite` suppression (`ThermalPart.cs:116-122`) still fires | Reuses the existing ignition-suppression; adds the damage-time reduction Qud gets from `ProcessExposure` |
+| Slippery/Sticky `ObjectEnteredCell` | `LiquidPoolPart` applies a `StuckEffect`/slip on enter when `LiquidDefinition.Sticky/Slippery` | Honey-class behavior, data-flagged |
+
+**Phase-1 deliberate divergences (documented, not drift):**
+
+1. **No parts-per-1000 mixing.** Pools & coats are single-liquid.
+   `MixWith` becomes "stronger liquid wins, amounts add." Qud's
+   mixed-conductivity math collapses to the pure value. Revisit if
+   content needs blends.
+2. **No discharge-arc chaining.** Wet amplifies the *victim's*
+   electric damage; it does not yet leap to adjacent wet creatures.
+   Deferred to LQ.8 (CoO has no `ApplyDischarge` analog; building one
+   is its own feature).
+3. **`WetEffect` coexists with `LiquidCoveredEffect` in phase 1.**
+   Water-coat refreshes `WetEffect.Moisture` so the **pinned**
+   `ElectrifiedEffectDamageTests` + `MaterialPrimitivesPhaseATests`
+   invariants stay green untouched. A later sub-milestone (LQ.9,
+   deferred) can fold `WetEffect` into `LiquidCoveredEffect`. This is
+   the smallest-blast-radius migration.
+4. **Exposure model simplified.** Coat amount =
+   `clamp(poolVolume, 0, Strength+Toughness)` rather than Qud's
+   per-body-part adsorbence distribution. Body-part granularity is a
+   documented deferral.
+
+---
+
+## 5. Sub-milestones (smallest blast radius first)
+
+Each commits as one reviewable change, independently revertable,
+ships one complete testable behavior. RED→GREEN→counter-check→
+adversarial→review→commit per CLAUDE.md §1.4/§5.
+
+### LQ.1 — Plan + branch (this commit)
+- `Docs/LIQUID-COATING-SYSTEM-PLAN.md` (this file, incl. §A/§B reviews)
+- Branch `feat/liquid-coating-system` from `main`
+
+### LQ.2 — `LiquidDefinition` + `LiquidRegistry` (data layer) — ~10 tests
+- `LiquidDefinition` record: `Id, DisplayName, Adjective,
+  Conductivity, Combustibility, FireDampen, FlameTemperature,
+  Adsorbence, Fluidity, Evaporativity, Staining, Slippery, Sticky,
+  PerTurnDamage{amount,type}, StatModifiers[]{stat,delta},
+  ResistanceModifiers[]{stat,delta}, FollowOnEffect`
+- `LiquidRegistry` loads `Resources/Content/Data/LiquidDefinitions/*.json`
+  mirroring `MaterialReactionResolver.cs:24-57` (priority, reset-for-tests)
+- Seed JSON: `water`, `oil`, `acid` (canonical) — stat/resist liquids
+  land in LQ.6
+- Tests: registry loads, `Get(id)` round-trips, unknown→null,
+  malformed-json tolerated, `ResetForTests` clears (mirror the
+  TinkerRecipeRegistry pollution-guard we already fixed),
+  water has Conductivity high + Combustibility negative, oil
+  Combustibility high, acid has PerTurnDamage acid
+
+### LQ.3 — `LiquidPoolPart` + puddle blueprints — ~8 tests
+- `LiquidPoolPart{LiquidId, Volume}` on the puddle entity; save/load
+  via reflection (pin like `MaterialPartRoundTripTests`)
+- Blueprints: extend `WaterPuddle` + add `OilSlick`, `AcidPool`
+  (Objects.json) — Render glyph/color per liquid adjective
+- Pool builders: keep `RiverBuilder` (water); add an optional
+  hazard-pool placement seam (used by the LQ.7 scenario, not
+  worldgen yet)
+- Tests: part round-trips, blueprint→LiquidPoolPart wiring, pool
+  glyph matches definition, null-liquid-id safe
+
+### LQ.4 — Transfer-on-contact (closes gap **b**) — ~12 tests
+- `LiquidPoolPart.HandleEvent("EntityEnteredCell")`: when a
+  Creature enters the pool's cell → exposure =
+  `clamp(Volume,0,Str+Tough)` → `target.ApplyEffect(new
+  LiquidCoveredEffect(LiquidId, exposure), source:pool)`
+- `LiquidCoveredEffect : Effect`: non-stacking (`OnStack` →
+  stronger-wins + amount add), `OnTurnStart` drips
+  (`-Fluidity`)/evaporates (`-Evaporativity`, scaled by
+  `ThermalPart.Temperature`), removes self at Amount≤0; water-coat
+  also ensures/refreshes `WetEffect` (divergence #3)
+- Counter-checks: non-Creature (item) entering pool NOT coated;
+  pool with Volume 0 doesn't coat; leaving the pool doesn't
+  re-coat; coat evaporates to removal
+- Adversarial: null entity, entity with no StatusEffectsPart
+  (auto-create path), two pools same cell (last-wins merge),
+  re-enter same pool (merge not stack)
+- Tests pin: step in water → `LiquidCoveredEffect(water)` present
+  AND `WetEffect` present (parity invariant preserved)
+
+### LQ.5 — Consequences: electric / fire / acid (generalizes gap **c**) — ~14 tests
+- `LiquidCoveredEffect.OnBeforeTakeDamage`:
+  - damage has `Lightning` attr + coat `Conductivity≥threshold` →
+    `amount = round(amount * (1 + Conductivity/100))`
+  - damage has `Fire` attr + coat `FireDampen>0` →
+    `amount = round(amount * (1 - FireDampen/100))`
+  - damage has `Fire` attr + coat `Combustibility≥50` →
+    `amount = round(amount * (1 + Combustibility/200))`
+- `LiquidCoveredEffect.OnTurnStart` applies `PerTurnDamage`
+  (acid coat → Acid damage/turn) + `FollowOnEffect` (oil coat near
+  fire → BurningEffect intensifies; keep existing
+  `oil_plus_fire.json` reaction untouched)
+- `ElectrifiedEffect.OnApply` generalized: read
+  `LiquidCoveredEffect` conductivity OR legacy `WetEffect.Moisture`
+  (keeps `ElectrifiedEffectDamageTests` green — verify, don't
+  rewrite)
+- Counter-checks: dry creature no amplification; non-Lightning
+  damage on wet unchanged; Fire on wet reduced AND on oiled
+  increased (two opposite branches both asserted); acid coat ticks
+  damage, water coat does not
+- Adversarial: amount=0 no-op, negative FireDampen ignored,
+  multiplier never heals (clamp ≥0)
+
+### LQ.6 — The 3 stat/resistance liquids (expandability proof) — ~12 tests
+- Add `brine`, `pitch`, `carapace-ichor` JSON rows
+  (StatModifiers/ResistanceModifiers only — zero new C#)
+- `LiquidCoveredEffect.Apply` applies the deltas; `Remove` reverses
+  them — **reuse the `EquipBonusUtility` symmetric pattern + emit
+  the same `equipment/StatBonus*`-style diag** (or new
+  `liquid/StatModApplied`/`Removed`)
+- Counter-checks (the §3 trade-offs): Brine coat → +HeatRes AND
+  −ElectricRes simultaneously; Pitch → −Agility/−DV AND fire-amped;
+  Ichor → +AV AND −ColdRes; **net-zero on removal** for every stat
+  (the EquipBonus invariant)
+- Adversarial: stack-then-remove nets zero; coat removed by
+  evaporation reverses deltas; save/load mid-coat preserves applied
+  deltas exactly once (no double-apply on load)
+- **Expandability test:** add a 4th liquid via JSON-only in the
+  test, assert it coats + applies its delta with no C# change
+  (proves the brief's "expand to more than 3" requirement)
+
+### LQ.7 — Observability + scenario + final sweep — ~6 tests
+- New `liquid` diag category: `Coated` (entity, liquidId, amount,
+  source), `CoatExpired` (entity, liquidId), `CoatModifiedDamage`
+  (attr, before, after, liquidId), `CoatStatApplied`/`Removed`
+- `LiquidHazardShowcase` scenario: player + an oil slick, a water
+  pool, an acid pool, a brine pool in a row; torch + a shock tonic
+  in inventory → walk the row, get coated, observe diag + the
+  electric-on-wet / fire-on-oil / acid-tick / stat-delta in the log
+- Menu entry + `ScenarioCustomSmokeTests` smoke
+- Combined regression sweep across all `Liquid*Tests` +
+  `MaterialSystemTests` + `MaterialReaction*Tests` +
+  `ElectrifiedEffectDamageTests` + `MaterialPrimitivesPhaseATests` +
+  `SaveGraphRoundTripTests` (must stay green — divergence #3 is the
+  guard)
+- Update `OBSERVABILITY-STATUS.md` (+`liquid` category) + this doc
+  (implementation log)
+- Cold-eye review (Q1–Q4) + adversarial sweep
+  (`LiquidCoatingAdversarialTests.cs`, 20–40 tests: parser
+  malformed, stacking/merge, save reflection, mid-evaporation
+  death, two-pool atomicity, exposure boundary 0/Str+Tough,
+  probability-free so no RNG boundary)
+
+### LQ.8+ — DEFERRED (explicitly out of this push)
+- Electric **chain-to-adjacent** (Qud `ApplyDischarge` arc engine) —
+  its own feature; needs a CoO conductivity-graph walk
+- Parts-per-1000 **liquid mixing** + mixed conductivity math
+- Per-**body-part** adsorbence distribution
+- Liquid **flow/spread sim** (pools spreading, drying into stains as
+  `LiquidStained`)
+- **Freeze-into-solid** (lava→boulder, water→slippery ice cell)
+- Thrown-tonic **leaves a pool** instead of direct 3×3
+  (`ThrowItemCommand.ApplyTonicAoe` change)
+- Folding `WetEffect` entirely into `LiquidCoveredEffect` (LQ.9)
+
+---
+
+## 6. Performance section (required — touches per-turn + per-move)
+
+| Risk | Mitigation |
+|---|---|
+| `LiquidPoolPart.HandleEvent("EntityEnteredCell")` fires per move into a pool cell | Already the existing `EntityEnteredCell` dispatch (`MovementSystem.cs:202-240`) — no new per-frame hook. Gated by `e.ID == "EntityEnteredCell"` early-out. Pools are sparse. |
+| `LiquidCoveredEffect.OnTurnStart`/`OnBeforeTakeDamage` per coated entity per turn | Bounded: an entity carries ≤1 coat (non-stacking). `OnBeforeTakeDamage` is a few int multiplies, no allocation. Mirror `StoneskinEffect`'s existing hook cost. |
+| `LiquidRegistry` JSON load | One-time at boot, mirrors `MaterialReactionResolver` (already in the codebase, profiled). `ResetForTests` guard prevents test pollution into Play. |
+| Stat-delta apply/remove allocation | Reuse `EquipBonusUtility` pattern — `stat.Bonus +=/−=`, no collections. |
+| Diag emission per coat/tick | Gated by `Diag.IsChannelEnabled("liquid")`; zero alloc when off (same as the 14 shipped categories). |
+
+No new MonoBehaviour, no new per-frame `Update`, no new cache, no
+`ZoneRenderHooks` plumbing (the puddle entity already marks its cell
+dirty via the standard render path).
+
+---
+
+## 7. Reusable utilities (don't reinvent)
+
+| Utility | Path | Used for |
+|---|---|---|
+| `MaterialReactionResolver` loader | `Materials/MaterialReactionResolver.cs:24-57` | Pattern for `LiquidRegistry` JSON load + ResetForTests |
+| `Effect` base `OnBeforeTakeDamage`/`OnTakeDamage` | `Effects/Effect.cs:193-209` | `LiquidCoveredEffect` damage modification seam |
+| `StatusEffectsPart.ApplyEffect` + auto-create | `Effects/StatusEffectsPart.cs:38` | Coat application path (null-safe) |
+| `EquipBonusUtility` apply/reverse + `equipment/StatBonus*` diag | `Inventory/.../EquipBonusUtility.cs` | Stat/resist delta apply+reverse symmetry + observability |
+| `WetEffect` + `ThermalPart.TryIgnite` suppression | `WetEffect.cs`; `ThermalPart.cs:116-122` | Preserve fire-suppression parity (divergence #3) |
+| `MovementSystem` `EntityEnteredCell` dispatch | `Turns/MovementSystem.cs:202-240` | Transfer trigger (already fires; no change) |
+| `Diag` + `diag_query` | `Shared/Utilities/Diag.cs` | `liquid` category (15th) |
+| `ScenarioContext`/`[Scenario]`/smoke pattern | `Scenarios/...`; `ScenarioCustomSmokeTests.cs` | LQ.7 showcase |
+| `MaterialPartRoundTripTests` pattern | tests | `LiquidPoolPart`/coat save-reflection pin |
+
+---
+
+## 8. Observability plan (every gate emits a record)
+
+Per CLAUDE.md "every action that can succeed OR fail emits a record":
+
+- `liquid/Coated` — entity coated (entity, liquidId, amount, source pool id, exposureCap)
+- `liquid/CoatRejected` — entity entered pool but not coated (reason: NotCreature / PoolEmpty / NullTarget)
+- `liquid/CoatTick` — per-turn drip/evaporate (liquidId, amountBefore, amountAfter)
+- `liquid/CoatExpired` — coat reached 0 (liquidId, turnsLasted)
+- `liquid/DamageModified` — OnBeforeTakeDamage changed a number (attr, before, after, liquidId, reason: Conductive/FireDampen/Combustible)
+- `liquid/StatModApplied` / `liquid/StatModRemoved` — stat/resist delta on apply/remove (stat, delta, bonusBefore, bonusAfter) — mirrors the shipped `equipment/StatBonus*`
+
+Tests pin every emission (the skill-system rule: a future contributor
+can't silently drop them).
+
+---
+
+## 9. Pre-flagged self-review findings (fix or defer pre-commit)
+
+- **🟡 WetEffect duplication.** Phase 1 has BOTH `WetEffect` and a
+  `LiquidCoveredEffect(water)`. This is a deliberate divergence (#3)
+  to keep pinned tests green, but it's a real "two sources of wet"
+  smell. Mitigation: water-coat is the *only* writer of WetEffect in
+  the new path; LQ.9 (deferred) unifies. Documented in the commit.
+- **🟡 Conductivity multiplier vs Qud's chain model.** CoO amplifies
+  the victim's own electric damage; Qud chains the arc. These are
+  *not* mechanically identical. Accept for phase 1 (parity of
+  "wet = more electric"), flag LQ.8 for the true arc.
+- **🟡 Exposure simplification.** `clamp(Volume,0,Str+Tough)` is
+  coarser than Qud's body-part adsorbence. Accept; the player-felt
+  behavior (tougher = holds more coat, drips over turns) is
+  preserved.
+- **🔵 Stat-delta double-apply on save/load.** The EquipBonus pattern
+  applies on Apply; load re-instantiates the effect. Must ensure the
+  delta is applied exactly once (Apply on coat-attach, NOT on
+  deserialize). LQ.6 has an explicit save/load adversarial test.
+- **🔵 Acid-vs-MaterialReaction overlap.** `acid_plus_organic.json`
+  reaction already exists. The new acid *coat* PerTurnDamage must not
+  double-dip with the reaction. LQ.5 counter-check asserts a single
+  damage source per turn.
+- **⚪ Mixing deferred.** Single-liquid pools/coats. Documented.
+
+---
+
+## §A. Critical self-review #1 — "Is the architecture right?"
+
+*Adversarial read of the plan as if I'm a reviewer who wants it to
+fail.*
+
+**A1. "You're not actually porting Qud — you're building a parallel
+system and calling it parity."**
+Partly fair. Qud's `LiquidVolume` is a dram-quantity, multi-component,
+flowing fluid sim; my `LiquidPoolPart` is a single-id scalar. The
+honest claim is **mechanical parity of the player-observable
+behaviors** (step in water → wet → electric amplified; oil → burns;
+acid → ticking damage; coat dries over turns; coat modifies
+resistances), **not** code-structure parity. The plan already says
+this in §4 ("mirror conceptual architecture, not the engine") and
+classes the gaps as divergences with deferral IDs. **Verdict:**
+acceptable *iff* the doc's title/claim is "Qud-parity *behavior*
+migration," not "LiquidVolume port." Action: §0 and §4 already frame
+it this way; keep that framing in commit messages. The CLAUDE.md
+parity rule (§4.2 "Classify honestly — Match/Extension/Divergent/
+CoO-original") is satisfied because every divergence is enumerated
+(#1–#4) with a reason and a deferral.
+
+**A2. "The transfer trigger is wrong — `EntityEnteredCell` fires on
+*non-mover occupants*, so the pool reacts when something enters its
+cell. But what about the player *standing still in a pool* across
+turns, or a pool that flows onto a standing creature?"**
+This is a real hole. Premise (b)'s research said `EntityEnteredCell`
+fires on the puddle when a creature enters the puddle's cell — good
+for *walking into* a pool. But Qud also coats via `EnteredCellEvent`
+for the *puddle moving onto* a creature and via standing (the coat
+re-applies while submerged). My LQ.4 only handles walk-in. **Action:
+LQ.4 must also (i) coat on the puddle's own placement if a creature
+is already in the cell (builder/scenario path), and (ii) decide
+whether standing still re-coats.** Qud re-coats while in contact;
+phase 1 can apply once-on-enter + the coat persists/dries (simpler,
+still parity-of-feel because the coat lasts several turns). Add an
+explicit LQ.4 test: "stand in pool 5 turns → still coated (coat
+hasn't fully evaporated because contact, OR documented as
+once-on-enter)." **The plan must pick one and pin it.** Decision:
+**once-on-enter + persistent dry-down**, with a re-coat only on
+re-entry. Document as divergence #5. *(This is the single biggest
+correction from review #1 — folded into §5 LQ.4 and §4.)*
+
+**A3. "ElectrifiedEffect.OnApply already does wet→electric. If LQ.5
+generalizes it to read LiquidCoveredEffect, you risk
+double-amplifying: once via OnApply charge-double, once via
+LiquidCoveredEffect.OnBeforeTakeDamage conductivity multiply."**
+Sharp. If water-coat refreshes `WetEffect` (divergence #3) AND
+`LiquidCoveredEffect.OnBeforeTakeDamage` also multiplies Lightning,
+an electrified+wet creature gets hit twice. **Action: LQ.5 must make
+the two paths mutually exclusive** — either (a)
+`LiquidCoveredEffect.OnBeforeTakeDamage` does NOT touch Lightning
+when an `ElectrifiedEffect` is present (Electrified owns that), or
+(b) remove the `ElectrifiedEffect.OnApply` charge-double and route
+ALL electric amplification through `LiquidCoveredEffect`, updating
+`ElectrifiedEffectDamageTests` deliberately (a SCOPE DIVERGENCE
+commit). Option (b) is cleaner long-term but breaks the "keep pinned
+tests green untouched" promise of divergence #3. **Decision:
+phase-1 = option (a)** (LiquidCovered yields Lightning to
+ElectrifiedEffect; it only amplifies *direct* lightning damage that
+isn't already going through an ElectrifiedEffect tick). Documented as
+divergence #6 + an explicit LQ.5 counter-check
+"`Electrified+Wet`_does_not_double_amplify". *(Second major
+correction — without this the feature ships a 4× electric bug.)*
+
+**A4. "Sub-milestone ordering: LQ.5 (consequences) depends on LQ.4
+(coat exists). But LQ.6 (stat liquids) also needs LQ.4's
+Apply/Remove symmetry. Is LQ.5 before LQ.6 correct?"**
+Yes — LQ.5 proves the *interaction* hooks (damage modify) on the
+canonical liquids; LQ.6 proves the *stat* hooks on new content. They
+touch different `LiquidCoveredEffect` methods
+(`OnBeforeTakeDamage`/`OnTurnStart` vs `Apply`/`Remove`), so they're
+independently revertable. Ordering is fine. **Verdict:** no change.
+
+**A5. "What breaks downstream?" Save format.**
+`LiquidPoolPart` + `LiquidCoveredEffect` add serialized fields. CoO
+just bumped save FormatVersion 3→4 for the world map. This is another
+bump (→5) OR additive reflection (MaterialPart-style, which
+round-trips without a version bump — premise: `MaterialPartRoundTrip
+Tests` proves reflection fall-through works). **Action: prefer the
+reflection-additive path (no FormatVersion bump)** — LQ.3/LQ.6 add a
+save round-trip test mirroring `MaterialPartRoundTripTests`. If a
+field can't round-trip via reflection, *then* bump. Documented as an
+LQ.3 acceptance criterion.
+
+**Review #1 net:** architecture is sound; **three concrete
+corrections** folded back in — (A2) once-on-enter contact model as
+divergence #5, (A3) electric double-amplify guard as divergence #6 +
+counter-check, (A5) prefer reflection-additive save over a
+FormatVersion bump.
+
+---
+
+## §B. Critical self-review #2 — "Will this actually ship, and is it
+testable + Qud-faithful enough?"
+
+*Second pass, different angle: delivery risk, test integrity, and the
+parity bar.*
+
+**B1. Test-cascade risk (empirically observed this session).** The
+world-map work repeatedly hit "unknown blueprint" cascades because
+zone pipelines pull dozens of blueprints. LQ.3/LQ.4 spawn pool
+entities and coat *creatures* — any test that generates a real zone
+or a real creature will hit the same cascade. **Action: every
+Liquid* test must use bare hand-built `Entity` + `Zone` fixtures
+(the pattern that finally worked: `new Zone("X")` + minimal
+inline-JSON blueprints), NOT `OverworldZoneManager.GetZone`.** Add
+this as an explicit testing-convention note in LQ.2. Without it,
+the sub-milestones will burn the same hours the world-map ones did.
+*(Concrete delivery-risk mitigation from lived experience.)*
+
+**B2. Is the `OnBeforeTakeDamage` seam real?** Review claims only
+`StoneskinEffect` uses it. I must verify the *signature* and that
+`StatusEffectsPart` actually routes it to multiple effects (not
+just the first). The research cited `Effect.cs:193-209` +
+`StatusEffectsPart.cs:474-495`. **Action: LQ.5's FIRST step is a
+verification-sweep micro-task — read those exact lines, confirm
+`OnBeforeTakeDamage` is called for *every* effect in the list and
+that mutating `damage.Amount` propagates (the combat port's false-
+premise lesson: "Qud has X" must be verified by reading).** If the
+hook only fires for one effect or doesn't propagate amount, the
+whole §4 electric/fire mapping is invalid and must move to a
+`CombatSystem.ApplyResistances` extension instead. This is the
+single highest-leverage pre-code check. Flag it BLOCKING for LQ.5.
+
+**B3. Parity bar — "is wet→electric *actually* like Qud?"** Qud's
+feel is *the arc leaps between wet things and chains*. My phase-1
+delivers *the wet creature takes more electric damage*. A player
+who knows Qud will notice the chain is missing. **Is that
+acceptable "parity"?** Honest answer: it's **parity of the
+coating→vulnerability rule**, not of the *discharge spectacle*. The
+brief says "we want the foundation … so we can expand very easily."
+The foundation (coat carries conductivity; damage path reads it) is
+exactly what the chain feature (LQ.8) would build on — the
+`LiquidCoveredEffect.Conductivity` query is the same seam Qud's
+`ApplyDischarge` reads. **Verdict:** acceptable *and* correctly
+sequenced — but the LQ.7 doc + commit must state plainly "chaining
+is LQ.8; phase 1 is the conductivity foundation," so we don't
+overclaim parity (CLAUDE.md §4.2: overclaimed parity is a bug).
+Action: add an explicit "Parity classification" table to the LQ.7
+doc update — Match / Extension / Divergent / Deferred per behavior.
+
+**B4. The 3 stat liquids — do they earn their place, or are they
+filler?** Re-examined against the brief ("liquids that affect
+resistances, stats such as defense, offense"). Brine (+HeatRes/
+−ElectricRes), Pitch (−Agi/−DV + flammable), Ichor (+AV/−ColdRes).
+Each (i) modifies a *resistance or combat stat*, (ii) carries a
+*designed trade-off* (so it's a tactical choice, RPG-appropriate per
+PROJECT-IDENTITY), (iii) requires **zero new C#** (pure JSON) —
+which is the literal proof of the "expand by data" requirement. The
+LQ.6 "add a 4th liquid in-test, JSON-only, assert it works" test is
+the *executable proof* of expandability. **Verdict:** they earn it;
+they're not filler — they're the requirement's acceptance criteria.
+One refinement: Pitch's "Combustibility surge" overlaps oil — to
+keep them distinct, **Pitch's identity = the stat debuff (slow/
+sticky), oil's = the fire interaction.** Make Pitch's flammability a
+*smaller* combustibility than oil so they're not redundant. Folded
+into §3.
+
+**B5. Scope realism.** 7 sub-milestones, ~70 tests + a 20–40 test
+adversarial sweep, across data layer + part + effect + combat hook +
+content + observability + scenario. Comparable to the world-map
+feature (8 sub-milestones, 57 tests) which shipped cleanly this
+session. The MCP-flakiness tax is real but survivable with the
+resilient-script + 10s-spacing discipline already in use. **Verdict:
+realistically ~1.5–2 focused sessions.** No scope cut needed, but
+LQ.8+ deferral list is the pressure valve if a sub-milestone blows
+up.
+
+**B6. Did review #1's corrections actually get folded in?** Checking:
+A2 (once-on-enter) → yes, divergence #5 + LQ.4 ("decide & pin").
+A3 (double-amplify) → yes, divergence #6 + LQ.5 counter-check.
+A5 (save reflection) → yes, LQ.3 acceptance criterion. All three
+traceable. **Verdict:** review loop closed.
+
+**Review #2 net:** delivery is realistic; **two more corrections** —
+(B2) make "verify the `OnBeforeTakeDamage` routing by reading the
+exact lines" a BLOCKING first step of LQ.5 (false-premise guard),
+and (B4) differentiate Pitch from oil so the 3 stat liquids aren't
+redundant. Test-cascade discipline (B1) and the parity-classification
+honesty table (B3) are added as explicit acceptance criteria.
+
+---
+
+## 10. Net plan after both reviews (the corrected spec)
+
+Folded corrections:
+
+- **Divergence #5** — coating is **once-on-enter + persistent
+  dry-down**; re-coat only on re-entry (not while standing). Pinned
+  by an LQ.4 "stand 5 turns" test.
+- **Divergence #6** — `LiquidCoveredEffect` **yields Lightning to a
+  present `ElectrifiedEffect`** (no double-amplify); only amplifies
+  direct lightning when no ElectrifiedEffect owns the hit. Pinned by
+  an LQ.5 counter-check.
+- **LQ.3 acceptance** — save via **reflection-additive** (no
+  FormatVersion bump) with a `MaterialPartRoundTripTests`-style pin;
+  bump only if reflection can't carry a field.
+- **LQ.5 BLOCKING step 0** — read `Effect.cs:193-209` +
+  `StatusEffectsPart.cs:474-495`, confirm `OnBeforeTakeDamage` fires
+  for *every* effect and amount-mutation propagates, BEFORE writing
+  the damage-modify code. If false → reroute via
+  `CombatSystem.ApplyResistances` extension (documented pivot).
+- **All Liquid* tests** use bare `Entity`/`Zone` + minimal inline
+  JSON fixtures (no `OverworldZoneManager.GetZone`) — the
+  test-cascade discipline.
+- **§3 refinement** — Pitch's combustibility < oil's; Pitch's
+  identity is the stat debuff, oil's is fire interaction (distinct
+  roles).
+- **LQ.7 doc** — ship a **Parity classification table**
+  (Match/Extension/Divergent/Deferred per behavior) so parity isn't
+  overclaimed.
+
+This is the spec to implement when the user greenlights LQ.2.
+Planning is complete: the architecture is Qud-behavior-faithful, the
+divergences are enumerated with deferral IDs, the 3 stat liquids are
+the executable acceptance criteria for "expand by data," and two
+adversarial self-reviews surfaced and folded **five** concrete
+corrections (A2, A3, A5, B2, B4) plus two acceptance disciplines
+(B1, B3).
