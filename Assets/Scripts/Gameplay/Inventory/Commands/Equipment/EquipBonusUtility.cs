@@ -1,5 +1,15 @@
+using CavesOfOoo.Diagnostics;
+
 namespace CavesOfOoo.Core.Inventory.Commands
 {
+    /// <summary>
+    /// Applies / removes stat bonuses + speed penalty when an item is
+    /// equipped or unequipped. Each individual stat-bonus change emits
+    /// one diag record under <c>category="equipment"</c> so a future
+    /// "why did my Strength jump 4 points?" debug starts with a query
+    /// (<c>diag_query category=equipment kind=StatBonusApplied
+    /// target=&lt;stat-name&gt;</c>) rather than a code-grep.
+    /// </summary>
     internal static class EquipBonusUtility
     {
         public static void ApplyEquipBonuses(Entity actor, EquippablePart equippable, bool apply)
@@ -30,10 +40,29 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     if (stat == null)
                         continue;
 
+                    int bonusBefore = stat.Bonus;
                     if (apply)
                         stat.Bonus += amount;
                     else
                         stat.Bonus -= amount;
+
+                    if (Diag.IsChannelEnabled("equipment"))
+                    {
+                        Diag.Record(
+                            category: "equipment",
+                            kind: apply ? "StatBonusApplied" : "StatBonusRemoved",
+                            actor: actor,
+                            target: item,
+                            payload: new
+                            {
+                                statName,
+                                delta = apply ? amount : -amount,
+                                bonusBefore,
+                                bonusAfter = stat.Bonus,
+                                item = item?.GetDisplayName(),
+                                itemBlueprint = item?.BlueprintName,
+                            });
+                    }
                 }
             }
 
@@ -48,10 +77,28 @@ namespace CavesOfOoo.Core.Inventory.Commands
             if (speed == null)
                 return;
 
+            int penaltyBefore = speed.Penalty;
             if (apply)
                 speed.Penalty += armor.SpeedPenalty;
             else
                 speed.Penalty -= armor.SpeedPenalty;
+
+            if (Diag.IsChannelEnabled("equipment"))
+            {
+                Diag.Record(
+                    category: "equipment",
+                    kind: apply ? "SpeedPenaltyApplied" : "SpeedPenaltyRemoved",
+                    actor: actor,
+                    target: item,
+                    payload: new
+                    {
+                        delta = apply ? armor.SpeedPenalty : -armor.SpeedPenalty,
+                        penaltyBefore,
+                        penaltyAfter = speed.Penalty,
+                        item = item.GetDisplayName(),
+                        itemBlueprint = item.BlueprintName,
+                    });
+            }
         }
     }
 }

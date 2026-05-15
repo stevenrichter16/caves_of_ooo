@@ -147,7 +147,7 @@ For "all melee" use `category=damage kind=HitRoll` and chase the
 
 | Category | Kinds | Fired by |
 |---|---|---|
-| `ai` | `GoalPushed`, `GoalPopped`, `GoalSelected`, `TurnSkipped` | `BrainPart` |
+| `ai` | `GoalPushed`, `GoalPopped`, `GoalSelected`, `TurnSkipped`, `PathFailed` | `BrainPart` + `FindPath.Search` |
 
 - `GoalPushed`: every PushGoal call with `goal` (type name), `details`, `stackDepth`
 - `GoalPopped`: every RemoveGoal call with `goal`, `details`, `stackDepthAfter`
@@ -159,12 +159,32 @@ The "why is the NPC standing still?" question now answers via
 emitted (would flood the buffer — see HandleTakeTurn:Player tag
 early-return).
 
+`PathFailed` (added with FindPath instrumentation) fires on every
+failed A* search with reason ∈ {NullZone, OutOfBounds, NoPath,
+Exhausted} + from/to coords + expanded-node-count + maxNodes.
+Successful pathfinds are silent.
+
+### Equipment diag (NEW, fourth wave)
+
+| Category | Kinds | Fired by |
+|---|---|---|
+| `equipment` | `StatBonusApplied`, `StatBonusRemoved`, `SpeedPenaltyApplied`, `SpeedPenaltyRemoved` | `EquipBonusUtility.ApplyEquipBonuses` |
+
+When `InventorySystem.Equip` / `UnequipItem` runs, each parsed
+stat:amount pair in the item's `EquippablePart.EquipBonuses`
+emits one record with `statName`, `delta`, `bonusBefore`,
+`bonusAfter`, `item`, `itemBlueprint`. Symmetric on unequip.
+Armor with non-zero `SpeedPenalty` emits a separate
+`SpeedPenaltyApplied`/`Removed` record. The "why did my Strength
+jump 4 points?" debug now answers via `diag_query
+category=equipment kind=StatBonusApplied`.
+
 ### Other categories on by default
 
 `event`, `effect`, `damage`, `turn`, `furniture`, `trade`,
 `quest`, `skill`, `enhancement`, `mineral-trade`, `movement`,
-`inventory`, `leveling`, `ai` — see `Diag.DefaultOnCategories`
-(`Diag.cs:119`).
+`inventory`, `leveling`, `ai`, `equipment` — see
+`Diag.DefaultOnCategories` (`Diag.cs:119`).
 
 ---
 
@@ -204,12 +224,13 @@ queryable by `category=damage kind=DirectApply`.
 
 ### Inventory + equipment events
 
-- **EquipBonusUtility.ApplyEquipBonuses** runs on equip/unequip
-  but no diag fires. A record-on-stat-mutation would help debug
-  "why did my Strength jump 4 points?"
+- ~~**EquipBonusUtility.ApplyEquipBonuses** runs on equip/unequip
+  but no diag fires.~~ **CLOSED wave 4:** emits
+  `equipment/StatBonusApplied|Removed` and
+  `equipment/SpeedPenaltyApplied|Removed` per stat-bonus change.
 - ~~**Item drops** — `InventoryPart.RemoveObject` doesn't emit a
   drop record. Currently observable via MessageLog only.~~
-  **CLOSED post-mechanics-coverage:** facade `Drop` emits
+  **CLOSED wave 1:** facade `Drop` emits
   `inventory/Drop`; `inventory/Rejected` emits on every reject.
 
 ---
@@ -230,7 +251,8 @@ queryable by `category=damage kind=DirectApply`.
 | **`TinkeringObservabilityTests.cs`** *(NEW)* | 8 | Crafted/Disassembled success + Rejected paths with reason matching UI |
 | **`EffectsObservabilityTests.cs`** *(NEW)* | 8 | OnApply/OnRemove; stacking no-double-emission; force-apply flag; **surface observation: FrozenEffect auto-removes BurningEffect** |
 | **`DirectApplyDamageObservabilityTests.cs`** *(NEW, second wave)* | 8 | DirectApply emission + shared CauseTraceId with downstream records; bleed-tick as the non-melee signal; scope-leak counter-check |
-| **`AIObservabilityTests.cs`** *(NEW, second wave)* | 8 | GoalPushed/Popped/Selected/TurnSkipped; Bored auto-fallback; player-frame flood guard; multi-turn isolation |
+| **`AIObservabilityTests.cs`** *(NEW, waves 2+3)* | 12 | 8 GoalSelected/Pushed/Popped/TurnSkipped + 4 PathFailed (NullZone/OutOfBounds/NoPath + success-silent counter-check) |
+| **`EquipmentObservabilityTests.cs`** *(NEW, fourth wave)* | 7 | StatBonusApplied + Removed; multi-bonus per item; SpeedPenalty for armor; stat-not-present counter-check; malformed-entry counter-check; symmetric round trip |
 
 ---
 
@@ -250,7 +272,9 @@ nine major systems across two waves (2026-05-13 → 2026-05-14):
 | Status effects | Existed; now pinned by observability tests | 8 |
 | **Non-melee damage** *(2nd wave)* | NEW `damage/DirectApply` (auto-opens cause scope) | 8 |
 | **AI decisions** *(2nd wave)* | NEW `ai/GoalSelected|Pushed|Popped|TurnSkipped` | 8 |
-| **Total new** | | **73 tests** |
+| **Pathfinding** *(3rd wave)* | NEW `ai/PathFailed` on FindPath.Search failures | 4 |
+| **Equipment bonuses** *(4th wave)* | NEW `equipment/StatBonus*` + `SpeedPenalty*` | 7 |
+| **Total new** | | **84 tests** |
 
 ### Surface gaps found during test development
 
@@ -269,19 +293,16 @@ nine major systems across two waves (2026-05-13 → 2026-05-14):
 
 ### Empirical regression sweep result
 
-**502/502** tests pass across all 17 related fixture groups:
-- 1st wave (441/441): observability + trade + leveling + inventory +
-  tinkering + diag + the wave-1 fixtures.
-- 2nd wave (+ DirectApply + AI + PenetrationDiag + AIBehaviorPart):
-  **502/502** total post-DirectApply+AI emissions. Zero regressions.
+**513/513** tests pass across all 18 related fixture groups.
+- Wave 1 (Combat / Movement / Commerce / Leveling / Inventory /
+  Tinkering / Effects): 57 new + 384 prior = 441/441.
+- Wave 2 (DirectApply + AI): 16 new + scope verification = 458/458.
+- Wave 3 (PathFailed): 4 new = 462/462.
+- Wave 4 (Equipment): 7 new + 502 prior = **513/513.**
+
+Zero regressions across all four waves.
 
 **Pick up here:** remaining gaps from this doc:
-- **Pathfinding rejections** — `ai/PathFailed` with from/to/reason.
-  Pairs naturally with the AI-decision records this wave added.
-  Cost: ~20 LOC + 3 tests.
-- **EquipBonusUtility.ApplyEquipBonuses** stat-mutation diag
-  (`equipment/StatBonusApplied`), so a future "why did my
-  Strength jump 4 points?" debug starts with a query, not a grep.
 - **Skill cooldown progression** (`skill/CooldownAdvanced` per
   turn) — currently requires inspecting SkillsPart state via
   `execute_code`.
