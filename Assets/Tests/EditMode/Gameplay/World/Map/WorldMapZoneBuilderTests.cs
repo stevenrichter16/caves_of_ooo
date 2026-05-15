@@ -187,44 +187,57 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void WorldMapZoneBuilder_BiomeGlyph_MatchesWorldMapBiome()
+        public void WorldMapZoneBuilder_AllFourBiomesPresent()
         {
-            var (zone, _, worldMap) = BuildWorldMapZone();
+            // Verify the underlying WorldMap data has all 4 biomes. The
+            // builder renders POI cells with the POI marker instead of
+            // the biome glyph (see WM.6), so we don't assert on the
+            // zone entity's glyph here — only on the WorldMap data.
+            // The center cell is verified separately in
+            // WorldMapPOIRenderingTests.WorldMapZoneBuilder_CenterCell_RendersWithVillageMarker.
+            var (_, _, worldMap) = BuildWorldMapZone();
 
-            // Center cell should be Cave (WorldGenerator hard-pins (10,10) to Cave)
-            var (cx, cy) = WorldMap.WorldCellToZoneCell(10, 10);
-            var centerCell = zone.GetCell(cx, cy);
-            var (caveGlyph, caveColor, _) = WorldMapZoneBuilder.GetBiomeRender(BiomeType.Cave);
-
-            bool found = false;
-            foreach (var obj in centerCell.Objects)
-            {
-                var render = obj.GetPart<RenderPart>();
-                if (render == null) continue;
-                if (obj.GetPart<WorldMapCellPart>() == null) continue;
-                Assert.AreEqual(caveGlyph, render.RenderString,
-                    "Center (10,10) is a Cave biome — should render with cave glyph.");
-                Assert.AreEqual(caveColor, render.ColorString);
-                found = true;
-            }
-            Assert.IsTrue(found, "Center cell should have a renderable terrain.");
-
-            // Counter-check: at least one Desert, Jungle, Ruins cell renders
-            // with its biome glyph. Walk the entire embedded region to find one
-            // of each.
             var biomesSeen = new System.Collections.Generic.HashSet<BiomeType>();
             for (int wy = 0; wy < WorldMap.Height; wy++)
             {
                 for (int wx = 0; wx < WorldMap.Width; wx++)
                 {
-                    var biome = worldMap.GetBiome(wx, wy);
-                    biomesSeen.Add(biome);
+                    biomesSeen.Add(worldMap.GetBiome(wx, wy));
                 }
             }
-            // WorldGenerator.EnsureAllBiomes guarantees all 4 are present
+            Assert.IsTrue(biomesSeen.Contains(BiomeType.Cave));
             Assert.IsTrue(biomesSeen.Contains(BiomeType.Desert));
             Assert.IsTrue(biomesSeen.Contains(BiomeType.Jungle));
             Assert.IsTrue(biomesSeen.Contains(BiomeType.Ruins));
+        }
+
+        [Test]
+        public void WorldMapZoneBuilder_NonPOICell_RendersBiomeGlyph()
+        {
+            // Find a non-POI cell empirically (the per-seed generation
+            // determines which cells get POIs) and assert it renders
+            // with the biome glyph, not a POI marker.
+            var (zone, _, worldMap) = BuildWorldMapZone();
+            int nonPOIx = -1, nonPOIy = -1;
+            for (int wy = 0; wy < WorldMap.Height && nonPOIx < 0; wy++)
+                for (int wx = 0; wx < WorldMap.Width; wx++)
+                    if (!worldMap.HasPOI(wx, wy))
+                    {
+                        nonPOIx = wx; nonPOIy = wy; break;
+                    }
+            Assert.GreaterOrEqual(nonPOIx, 0);
+
+            var (zx, zy) = WorldMap.WorldCellToZoneCell(nonPOIx, nonPOIy);
+            var cell = zone.GetCell(zx, zy);
+            var biome = worldMap.GetBiome(nonPOIx, nonPOIy);
+            var (expectedGlyph, _, _) = WorldMapZoneBuilder.GetBiomeRender(biome);
+            foreach (var obj in cell.Objects)
+            {
+                if (obj.GetPart<WorldMapCellPart>() == null) continue;
+                Assert.AreEqual(expectedGlyph, obj.GetPart<RenderPart>().RenderString);
+                return;
+            }
+            Assert.Fail("Non-POI cell should have a WorldMapCellPart entity.");
         }
 
         [Test]

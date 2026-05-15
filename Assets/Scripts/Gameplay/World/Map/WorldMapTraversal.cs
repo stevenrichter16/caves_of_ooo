@@ -1,3 +1,5 @@
+using CavesOfOoo.Diagnostics;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
@@ -87,6 +89,23 @@ namespace CavesOfOoo.Core
             currentZone.RemoveEntity(player);
             worldMap.AddEntity(player, targetX, targetY);
 
+            if (Diag.IsChannelEnabled("worldmap"))
+            {
+                Diag.Record(
+                    category: "worldmap", kind: "Ascended",
+                    actor: player,
+                    payload: new
+                    {
+                        fromZoneID = part.LastZoneIDOnSurface,
+                        fromZoneX = part.LastZoneX,
+                        fromZoneY = part.LastZoneY,
+                        toWorldX = wx,
+                        toWorldY = wy,
+                        toZoneCellX = targetX,
+                        toZoneCellY = targetY,
+                    });
+            }
+
             return new ZoneTransitionResult
             {
                 Success = true,
@@ -164,6 +183,23 @@ namespace CavesOfOoo.Core
 
             currentZone.RemoveEntity(player);
             targetZone.AddEntity(player, arriveX, arriveY);
+
+            if (Diag.IsChannelEnabled("worldmap"))
+            {
+                Diag.Record(
+                    category: "worldmap", kind: "Descended",
+                    actor: player,
+                    payload: new
+                    {
+                        fromWorldX = destWorldX,
+                        fromWorldY = destWorldY,
+                        toZoneID = targetZoneID,
+                        toZoneX = arriveX,
+                        toZoneY = arriveY,
+                        usedSavedLocation = part != null && part.HasSavedSurface
+                            && part.LastZoneIDOnSurface == targetZoneID,
+                    });
+            }
 
             return new ZoneTransitionResult
             {

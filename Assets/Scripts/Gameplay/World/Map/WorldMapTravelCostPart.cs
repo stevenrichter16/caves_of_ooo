@@ -1,3 +1,5 @@
+using CavesOfOoo.Diagnostics;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
@@ -37,6 +39,24 @@ namespace CavesOfOoo.Core
 
             // Advance the global clock — no actor-energy ticks.
             TurnManager.Active?.AdvanceClock(WorldMapStepTurns);
+
+            if (Diag.IsChannelEnabled("worldmap"))
+            {
+                int newX = e.GetIntParameter("NewX");
+                int newY = e.GetIntParameter("NewY");
+                var (worldX, worldY) = WorldMap.ZoneCellToWorldCell(newX, newY);
+                Diag.Record(
+                    category: "worldmap", kind: "Stepped",
+                    actor: ParentEntity,
+                    payload: new
+                    {
+                        toZoneX = newX,
+                        toZoneY = newY,
+                        toWorldX = worldX,
+                        toWorldY = worldY,
+                        turnsCost = WorldMapStepTurns,
+                    });
+            }
             return true;
         }
     }

@@ -2,7 +2,21 @@
 
 **Branch:** `feat/world-map-ui`
 **Date:** 2026-05-14
-**Status:** Planning. WM.1 commits this doc + branch cut.
+**Status:** WM.1 → WM.7 complete (7 commits, 47 new tests).
+202/202 in full regression sweep across all WM + Save + Diag fixtures.
+
+## Implementation log
+
+| Sub | Commit | Tests | Highlights |
+|---|---|---|---|
+| WM.1 | `d4b9c93` | — | Plan to disk, branch cut from main |
+| WM.2 | `dbdccb2` | +10 | ZoneID `"WorldMap"`, builder, offset constants, coord translators |
+| WM.3 | `a7961b7` | +11 | `WorldMapPart`, Ascend/Descend, LastZoneIDOnSurface restore |
+| WM.4 | `5b569eb` | +7 | `TurnManager.AdvanceClock`, `WorldMapTravelCostPart` (10 ticks/step) |
+| WM.5 | `8c2a027` | +8 | `Visited[20,20]` fog-of-war + save/load (FormatVersion 3→4) |
+| WM.6 | `48caa21` | +7 | POI markers (`!` village, `&` lair, `$` merchant, `~` river) |
+| WM.7 | (this commit) | +4 | `worldmap/Ascended|Descended|Stepped` diag emissions |
+| **Total** | **7 commits** | **+47** | |
 
 > **Genre framing:** CoO is an **RPG, not a roguelike**
 > (`Docs/PROJECT-IDENTITY.md`). The world map is a persistent feature
