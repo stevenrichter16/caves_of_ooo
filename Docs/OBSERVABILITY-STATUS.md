@@ -276,10 +276,16 @@ queryable by `category=damage kind=DirectApply`.
 
 ---
 
-## Stopping point: 2026-05-14 (mechanics-coverage push, second wave)
+## Stopping point: 2026-05-14 (mechanics-coverage push, complete)
+
+**Status:** Pushed to remote as
+`feat/observability-driven-mechanics-coverage` (5 commits,
++90 tests, +13 diag categories, 12 systems instrumented).
+Branch URL:
+`https://github.com/stevenrichter16/caves_of_ooo/tree/feat/observability-driven-mechanics-coverage`
 
 The systematic observability-driven mechanics-coverage push closed
-nine major systems across two waves (2026-05-13 → 2026-05-14):
+nine major systems across five waves (2026-05-13 → 2026-05-14):
 
 | System | Coverage | Tests |
 |---|---|---|
