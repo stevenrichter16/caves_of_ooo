@@ -261,5 +261,12 @@ namespace CavesOfOoo.Tests.Scenarios
 
         [Test] public void SkillTreeShowcase_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new SkillTreeShowcase().Apply(FreshContext()));
+
+        // ======================================================
+        // WM.8 — world-map traversal showcase
+        // ======================================================
+
+        [Test] public void WorldMapShowcase_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new WorldMapShowcase().Apply(FreshContext()));
     }
 }
