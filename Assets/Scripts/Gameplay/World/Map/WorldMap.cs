@@ -12,11 +12,40 @@ namespace CavesOfOoo.Core
     /// 20x20 grid of biome types representing the overworld.
     /// Each cell maps to one zone. Zone IDs use format "Overworld.X.Y.Z"
     /// where Z=0 is the surface and Z>0 are underground levels.
+    ///
+    /// <para>The player can also physically inhabit a special
+    /// "world-map zone" (ZoneID = <see cref="WorldMapZoneID"/>) which
+    /// embeds the 20×20 logical grid inside a standard 80×25 Zone with
+    /// offsets <see cref="WorldMapXOffset"/>, <see cref="WorldMapYOffset"/>.
+    /// See <see cref="WorldCellToZoneCell"/> for the translation.
+    /// Mirrors Qud's pattern: world map IS a zone, distinguished by
+    /// having no dots in its ZoneID.</para>
     /// </summary>
     public class WorldMap
     {
         public const int Width = 20;
         public const int Height = 20;
+
+        /// <summary>
+        /// ZoneID for the singleton world-map zone. Distinct from
+        /// "Overworld.X.Y.Z" by having no dots — mirrors Qud's
+        /// <c>Zone.IsWorldMap() = ZoneID.IndexOf('.') == -1</c>.
+        /// </summary>
+        public const string WorldMapZoneID = "WorldMap";
+
+        /// <summary>
+        /// Horizontal offset where the 20-wide logical world map starts
+        /// inside the 80-wide world-map zone. The 20×20 region occupies
+        /// cells [30..49] × [3..22], surrounded by impassable walls.
+        /// </summary>
+        public const int WorldMapXOffset = 30;
+
+        /// <summary>
+        /// Vertical offset where the 20-tall logical world map starts
+        /// inside the 25-tall world-map zone. Top rows 0-2 are reserved
+        /// for a HUD strip; bottom rows 23-24 for a biome legend.
+        /// </summary>
+        public const int WorldMapYOffset = 3;
 
         public BiomeType[,] Tiles;
         public PointOfInterest[,] POIs;
@@ -151,6 +180,46 @@ namespace CavesOfOoo.Core
         public static int GetDepth(string zoneID)
         {
             return FromZoneID(zoneID).z;
+        }
+
+        // ── World-map zone helpers (Qud-style) ──────────────────────
+
+        /// <summary>
+        /// Check if a zone ID refers to the world-map zone (singular).
+        /// Mirrors Qud's <c>Zone.IsWorldMap()</c> — a worldmap ZoneID
+        /// has no dots, distinguishing it from "Overworld.X.Y.Z".
+        /// </summary>
+        public static bool IsWorldMapZoneID(string zoneID)
+        {
+            return zoneID == WorldMapZoneID;
+        }
+
+        /// <summary>
+        /// Translate a logical world-map coordinate (0..19) into the
+        /// zone cell coordinate (0..79 x 0..24) on the embedded 20×20
+        /// grid. Returns (-1, -1) if the input is out of bounds.
+        /// Inverse: <see cref="ZoneCellToWorldCell"/>.
+        /// </summary>
+        public static (int zoneX, int zoneY) WorldCellToZoneCell(int worldX, int worldY)
+        {
+            if (worldX < 0 || worldX >= Width || worldY < 0 || worldY >= Height)
+                return (-1, -1);
+            return (worldX + WorldMapXOffset, worldY + WorldMapYOffset);
+        }
+
+        /// <summary>
+        /// Translate a zone cell coordinate on the world-map zone into
+        /// the logical world-map coordinate (0..19). Returns (-1, -1)
+        /// if the input falls outside the embedded 20×20 region.
+        /// Inverse: <see cref="WorldCellToZoneCell"/>.
+        /// </summary>
+        public static (int worldX, int worldY) ZoneCellToWorldCell(int zoneX, int zoneY)
+        {
+            int wx = zoneX - WorldMapXOffset;
+            int wy = zoneY - WorldMapYOffset;
+            if (wx < 0 || wx >= Width || wy < 0 || wy >= Height)
+                return (-1, -1);
+            return (wx, wy);
         }
     }
 }
