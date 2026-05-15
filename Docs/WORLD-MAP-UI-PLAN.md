@@ -311,7 +311,25 @@ playtest can inspect the rendering.
 ### WM.8 — Input wiring: `<` / `>` → world map (player-exercisable)
 
 **Branch:** `feat/world-map-input`
-**Status:** in progress (2026-05-15)
+**Status:** complete (2026-05-15). 4 commits, 9 new tests
+(8 resolver + 1 smoke), 240/240 in the combined regression sweep.
+Cold-eye review (Q1–Q4) complete, 0 findings.
+
+**Implementation log:**
+
+| Sub | Commit | Tests | Notes |
+|---|---|---|---|
+| plan | `6b8a490` | — | This section + verification sweep |
+| WM.8.1 | `afa9228` | +8 | `TryWorldMapVertical` resolver + `EnsureWorldMapTravelCostPart` auto-attach in Ascend |
+| WM.8.2 | `650df76` | +0 | `InputHandler.TryUseStairs` no-stairs fallthrough. Integration shim — verified via WM.8.1 resolver tests + symmetric structure + 24/24 input/traversal regression. **Scope note:** the plan said "PlayMode sanity sweep" but MonoBehaviour keyboard input is not EditMode-testable; substituted reading-verification + the WM.8.3 showcase as the §3.6 manual surface (documented, not drift) |
+| WM.8.3 | `821976a` | +1 | `WorldMapShowcase` scenario + "World" menu submenu + smoke test |
+
+**Manual playtest (the WM.8.2 input verification surface):**
+`Caves Of Ooo/Scenarios/World/World Map Showcase` → press `<` →
+arrive on worldmap at the Kyakukya `!` → walk (10 ticks/step,
+fog clears) → press `>` → descend → re-ascend → descend onto
+origin → exact-cell restore. `diag_query category=worldmap`
+shows Ascended/Stepped/Descended.
 
 **Goal:** Make the world map reachable from the keyboard. Until
 now the engine accepts `WorldMapTraversal.Ascend/Descend` calls but
