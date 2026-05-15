@@ -67,6 +67,10 @@ namespace CavesOfOoo.Core
             part.LastZoneX = srcCell.X;
             part.LastZoneY = srcCell.Y;
 
+            // Auto-attach the travel-cost Part so worldmap steps burn
+            // the 10-tick cost without explicit PlayerBuilder wiring.
+            EnsureWorldMapTravelCostPart(player);
+
             // Resolve the worldmap zone (built on demand) and target cell.
             Zone worldMap = zoneManager.GetZone(WorldMap.WorldMapZoneID);
             if (worldMap == null)
@@ -210,6 +214,63 @@ namespace CavesOfOoo.Core
             };
         }
 
+        /// <summary>
+        /// Resolve a vertical-traversal intent (`&lt;` ascend / `&gt;`
+        /// descend) into a world-map transition. This is the testable
+        /// seam the InputHandler stairs-fallback calls when the player
+        /// pressed `&lt;`/`&gt;` and there are NO stairs in the cell.
+        /// Mirrors Qud's CmdMoveU/CmdMoveD unification (XRLCore.cs:
+        /// 1329-1426): the same keys do stairs OR worldmap depending
+        /// on context.
+        ///
+        /// <list type="bullet">
+        ///   <item><paramref name="goingDown"/>==false (`&lt;` ascend):
+        ///   if on a ground Overworld zone at z==0 →
+        ///   <see cref="Ascend"/>. Refused from underground (z&gt;0)
+        ///   or already on the world map.</item>
+        ///   <item><paramref name="goingDown"/>==true (`&gt;` descend):
+        ///   if on the world-map zone → <see cref="Descend"/>.
+        ///   Refused from a ground zone.</item>
+        /// </list>
+        ///
+        /// <para>On refusal returns a failed
+        /// <see cref="ZoneTransitionResult"/> so the InputHandler can
+        /// fall back to its existing "no stairs here" message.</para>
+        /// </summary>
+        public static ZoneTransitionResult TryWorldMapVertical(
+            Entity player,
+            Zone currentZone,
+            bool goingDown,
+            ZoneManager zoneManager)
+        {
+            if (player == null || currentZone == null || zoneManager == null)
+                return Fail("No vertical world-map traversal available here.");
+
+            bool onWorldMap = WorldMap.IsWorldMapZoneID(currentZone.ZoneID);
+
+            if (goingDown)
+            {
+                // `>` — only meaningful FROM the world-map zone.
+                if (!onWorldMap)
+                    return Fail("No vertical world-map traversal available here.");
+                return Descend(player, currentZone, zoneManager);
+            }
+
+            // `<` — ascend to the world map from a surface ground zone.
+            if (onWorldMap)
+                return Fail("Already on the world map.");
+
+            var (wx, wy, wz) = WorldMap.FromZoneID(currentZone.ZoneID);
+            // Must be a valid Overworld coordinate at the surface (z==0).
+            // Underground zones (z>0) require StairsUp first — Qud's
+            // CmdMoveU only flies to the worldmap when at/above surface.
+            if (wx < 0 || wx >= WorldMap.Width || wy < 0 || wy >= WorldMap.Height
+                || wz != 0)
+                return Fail("No vertical world-map traversal available here.");
+
+            return Ascend(player, currentZone, zoneManager);
+        }
+
         // ── helpers ──────────────────────────────────────────────────
 
         private static WorldMapPart EnsureWorldMapPart(Entity player)
@@ -221,6 +282,19 @@ namespace CavesOfOoo.Core
                 player.AddPart(part);
             }
             return part;
+        }
+
+        /// <summary>
+        /// Auto-attach a <see cref="WorldMapTravelCostPart"/> to the
+        /// player if absent so the 10-tick per-step travel cost applies
+        /// from the first ascend onward — no PlayerBuilder wiring
+        /// needed. Idempotent.
+        /// </summary>
+        private static void EnsureWorldMapTravelCostPart(Entity player)
+        {
+            if (player == null) return;
+            if (player.GetPart<WorldMapTravelCostPart>() == null)
+                player.AddPart(new WorldMapTravelCostPart());
         }
 
         private static ZoneTransitionResult Fail(string reason)
