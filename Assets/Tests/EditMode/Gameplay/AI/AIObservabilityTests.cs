@@ -252,6 +252,93 @@ namespace CavesOfOoo.Tests
                 "Player frames must not emit AI diag records (would flood the buffer).");
         }
 
+        // ─── FindPath PathFailed records ─────────────────────────
+
+        [Test]
+        public void FindPath_NullZone_EmitsPathFailedNullZone()
+        {
+            FindPath.Search(null, 0, 0, 5, 5);
+
+            DumpAIRecords("null-zone pathfind");
+
+            var records = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "ai", Kind = "PathFailed", Limit = 20,
+            }).Records;
+            Assert.AreEqual(1, records.Count);
+            StringAssert.Contains("\"reason\":\"NullZone\"", records[0].PayloadJson);
+        }
+
+        [Test]
+        public void FindPath_OutOfBounds_EmitsPathFailedOutOfBounds()
+        {
+            var zone = new Zone("AIZone");
+            FindPath.Search(zone, -5, -5, 100, 100);
+
+            DumpAIRecords("out-of-bounds pathfind");
+
+            var records = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "ai", Kind = "PathFailed", Limit = 20,
+            }).Records;
+            Assert.AreEqual(1, records.Count);
+            StringAssert.Contains("\"reason\":\"OutOfBounds\"", records[0].PayloadJson);
+        }
+
+        [Test]
+        public void FindPath_SameCell_DoesNotEmit_SuccessIsSilent()
+        {
+            // Counter-check: success paths must NOT emit PathFailed.
+            // Same-cell is a trivial success short-circuit.
+            var zone = new Zone("AIZone");
+            var result = FindPath.Search(zone, 5, 5, 5, 5);
+            Assert.IsTrue(result.Usable);
+
+            DumpAIRecords("same-cell pathfind (silent success)");
+
+            var records = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "ai", Limit = 20,
+            }).Records;
+            Assert.AreEqual(0, records.Count,
+                "Successful pathfind must be silent to avoid flooding " +
+                "the buffer on populated zones with many AI ticks.");
+        }
+
+        [Test]
+        public void FindPath_BlockedByWalls_EmitsPathFailedNoPath()
+        {
+            // Build a tiny zone with a wall ring around the start so the
+            // pathfind cannot reach a goal on the other side.
+            var zone = new Zone("AIZone");
+            // Surround (5,5) with Solid walls at distance 1.
+            for (int dy = -1; dy <= 1; dy++)
+            {
+                for (int dx = -1; dx <= 1; dx++)
+                {
+                    if (dx == 0 && dy == 0) continue;
+                    var wall = new Entity { ID = $"wall{dx}_{dy}", BlueprintName = "Wall" };
+                    wall.Tags["Solid"] = "";
+                    wall.AddPart(new PhysicsPart { Solid = true });
+                    zone.AddEntity(wall, 5 + dx, 5 + dy);
+                }
+            }
+            // Goal is far away
+            var result = FindPath.Search(zone, 5, 5, 20, 15);
+            Assert.IsFalse(result.Usable);
+
+            DumpAIRecords("walled-in pathfind (NoPath)");
+
+            var records = DiagQuery.Apply(new DiagQuery.Filter
+            {
+                Category = "ai", Kind = "PathFailed", Limit = 20,
+            }).Records;
+            Assert.AreEqual(1, records.Count);
+            StringAssert.Contains("\"reason\":\"NoPath\"", records[0].PayloadJson);
+            StringAssert.Contains("\"fromX\":5", records[0].PayloadJson);
+            StringAssert.Contains("\"toY\":15", records[0].PayloadJson);
+        }
+
         [Test]
         public void TwoTurns_SameNPC_GoalSelectedFiresTwice()
         {

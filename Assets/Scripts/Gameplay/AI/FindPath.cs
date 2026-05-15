@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -58,10 +59,18 @@ namespace CavesOfOoo.Core
         {
             var result = new FindPath { Usable = false, Steps = new List<(int, int)>() };
 
-            if (zone == null) return result;
-            if (!zone.InBounds(startX, startY) || !zone.InBounds(goalX, goalY)) return result;
+            if (zone == null)
+            {
+                EmitPathFailed(null, startX, startY, goalX, goalY, "NullZone", 0, maxNodes);
+                return result;
+            }
+            if (!zone.InBounds(startX, startY) || !zone.InBounds(goalX, goalY))
+            {
+                EmitPathFailed(zone, startX, startY, goalX, goalY, "OutOfBounds", 0, maxNodes);
+                return result;
+            }
 
-            // Same cell
+            // Same cell — success short-circuit. No emission (success is silent).
             if (startX == goalX && startY == goalY)
             {
                 result.Usable = true;
@@ -176,8 +185,38 @@ namespace CavesOfOoo.Core
                 }
             }
 
-            // No path found
+            // No path found — either OpenSet was exhausted (NoPath) or
+            // we hit maxNodes (Exhausted). Distinguish in the diag for
+            // tuning visibility — Exhausted means raise maxNodes; NoPath
+            // means the goal is genuinely unreachable.
+            string reason = expanded >= maxNodes ? "Exhausted" : "NoPath";
+            EmitPathFailed(zone, startX, startY, goalX, goalY, reason, expanded, maxNodes);
             return result;
+        }
+
+        /// <summary>
+        /// Emit an <c>ai/PathFailed</c> diag record. Used by every
+        /// FindPath.Search failure path so a debug session can answer
+        /// "why can't this NPC reach its target?" without re-running.
+        /// Success paths are intentionally silent — emitting per
+        /// successful pathfind would flood the buffer on populated zones.
+        /// </summary>
+        private static void EmitPathFailed(Zone zone, int startX, int startY,
+            int goalX, int goalY, string reason, int expanded, int maxNodes)
+        {
+            if (!Diag.IsChannelEnabled("ai")) return;
+            Diag.Record(
+                category: "ai",
+                kind: "PathFailed",
+                payload: new
+                {
+                    reason,
+                    fromX = startX, fromY = startY,
+                    toX = goalX, toY = goalY,
+                    expanded,
+                    maxNodes,
+                    zone = zone?.ZoneID,
+                });
         }
 
         /// <summary>Chebyshev distance scaled by 10 (matching cardinal cost).</summary>
