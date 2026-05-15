@@ -70,6 +70,12 @@ namespace CavesOfOoo.Core
             if (worldMap == null)
                 return Fail("Failed to construct world-map zone.");
 
+            // Mark the destination world-cell as visited for fog-of-war.
+            // The cast checks IsOverworldZoneManager because only it owns
+            // the live WorldMap instance.
+            if (zoneManager is OverworldZoneManager oz)
+                oz.WorldMap?.MarkVisited(wx, wy);
+
             var (targetX, targetY) = WorldMap.WorldCellToZoneCell(wx, wy);
             // Sanity-check the target is passable (the builder guarantees this
             // for the 20×20 region; if not, fall back to nearest passable).

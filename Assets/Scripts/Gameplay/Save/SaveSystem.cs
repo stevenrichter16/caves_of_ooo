@@ -19,7 +19,10 @@ namespace CavesOfOoo.Core
     public sealed class SaveWriter
     {
         public const int Magic = 0x304F4F43; // COO0
-        public const int FormatVersion = 3;
+        // v3 → v4: added WorldMap.Visited[,] fog-of-war bitmap.
+        // Bumping is acceptable on the world-map-UI feature branch;
+        // older saves will be rejected by ReadHeader's strict check.
+        public const int FormatVersion = 4;
 
         private readonly BinaryWriter _writer;
         private readonly Dictionary<Entity, int> _entityTokens = new Dictionary<Entity, int>();
@@ -893,6 +896,11 @@ namespace CavesOfOoo.Core
                     SavePointOfInterest(map.POIs[x, y], writer);
                 }
             }
+            // FormatVersion 4: Visited bitmap for fog-of-war.
+            // Written in row-major order matching the Tiles loop above.
+            for (int x = 0; x < WorldMap.Width; x++)
+                for (int y = 0; y < WorldMap.Height; y++)
+                    writer.Write(map.Visited[x, y]);
         }
 
         private static WorldMap LoadWorldMap(SaveReader reader)
@@ -909,6 +917,13 @@ namespace CavesOfOoo.Core
                     map.POIs[x, y] = LoadPointOfInterest(reader);
                 }
             }
+            // FormatVersion 4: Visited bitmap. ReadHeader's strict
+            // version check at SaveReader.ReadHeader (line ~131) means
+            // we only reach here for v4+ saves, so the bitmap is always
+            // present.
+            for (int x = 0; x < WorldMap.Width; x++)
+                for (int y = 0; y < WorldMap.Height; y++)
+                    map.Visited[x, y] = reader.ReadBool();
             return map;
         }
 

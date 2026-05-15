@@ -49,6 +49,15 @@ namespace CavesOfOoo.Core
 
         public BiomeType[,] Tiles;
         public PointOfInterest[,] POIs;
+
+        /// <summary>
+        /// Per-cell visited flag for fog-of-war on the world-map zone.
+        /// Set true the first time the player ascends onto that cell
+        /// (see <see cref="WorldMapTraversal.Ascend"/>). Defaults to
+        /// all false on a freshly-generated map. Persisted via
+        /// <c>SaveSystem.SaveWorldMap</c>.
+        /// </summary>
+        public bool[,] Visited;
         public int Seed;
 
         public WorldMap(int seed)
@@ -56,6 +65,28 @@ namespace CavesOfOoo.Core
             Seed = seed;
             Tiles = new BiomeType[Width, Height];
             POIs = new PointOfInterest[Width, Height];
+            Visited = new bool[Width, Height];
+        }
+
+        /// <summary>
+        /// Mark a world-map cell as visited. Out-of-bounds inputs are
+        /// silently ignored. Idempotent — re-marking a visited cell is
+        /// a no-op.
+        /// </summary>
+        public void MarkVisited(int x, int y)
+        {
+            if (!InBounds(x, y)) return;
+            Visited[x, y] = true;
+        }
+
+        /// <summary>
+        /// Check whether the player has visited a world-map cell.
+        /// Out-of-bounds inputs return false.
+        /// </summary>
+        public bool IsVisited(int x, int y)
+        {
+            if (!InBounds(x, y)) return false;
+            return Visited[x, y];
         }
 
         public BiomeType GetBiome(int x, int y)
