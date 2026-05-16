@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using System.Text;
+using CavesOfOoo.Diagnostics;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
@@ -48,6 +52,24 @@ namespace CavesOfOoo.Core
         /// downstream consequence hooks (LQ.5+). Clamped to ≥ 0.</summary>
         public int Amount;
 
+        /// <summary>
+        /// LQ.6: flat record of EXACTLY the stat deltas currently pushed
+        /// onto the wearer ("StatName:delta,StatName:delta") so removal
+        /// reverses precisely — even after a stronger-wins id swap
+        /// (<see cref="OnStack"/>) changes <see cref="LiquidId"/>, or the
+        /// shared flyweight changes. A plain <c>string</c> rather than a
+        /// <c>List</c> deliberately: it round-trips through the same
+        /// reflection save path that already carries
+        /// <see cref="LiquidId"/> (proven LQ.4) with no
+        /// <c>FormatVersion</c> bump and no <c>List</c>-round-trip risk,
+        /// mirroring the <c>EquipBonuses</c> flat-string convention.
+        /// Empty = nothing applied. <see cref="OnApply"/> is never re-run
+        /// on load, so a non-empty value loaded from a save means the
+        /// deltas are already baked into the (separately round-tripped)
+        /// <c>Stat.Bonus</c> — never double-applied.
+        /// </summary>
+        public string AppliedModsRaw = "";
+
         /// <summary>A coat at/above this <see cref="LiquidDefinition.Conductivity"/>
         /// amplifies incoming Lightning damage, and lets a conductive
         /// NON-water coat double an <see cref="ElectrifiedEffect"/>'s
@@ -92,10 +114,12 @@ namespace CavesOfOoo.Core
             if (target != null)
                 MessageLog.Add(target.GetDisplayName() + " is covered in " + DisplayName + ".");
             RefreshWaterCoupling(target);
+            ApplyStatModifiers(target);
         }
 
         public override void OnRemove(Entity target)
         {
+            ReverseStatModifiers(target);
             if (target != null)
                 MessageLog.Add("The " + DisplayName + " coating wears off " + target.GetDisplayName() + ".");
         }
@@ -112,9 +136,22 @@ namespace CavesOfOoo.Core
         {
             if (incoming is LiquidCoveredEffect other)
             {
-                if (other.LiquidId != LiquidId && other.Amount > Amount)
+                bool idChanges = other.LiquidId != LiquidId && other.Amount > Amount;
+                if (idChanges)
+                {
+                    // The dominant liquid is changing. Reverse the
+                    // OUTGOING liquid's stat deltas BEFORE the id swap
+                    // (ReverseStatModifiers reads AppliedModsRaw, not the
+                    // def, so it's exact regardless of registry state),
+                    // then apply the INCOMING liquid's deltas after.
+                    // Without this, a brine→pitch merge would leak
+                    // brine's +HeatRes forever.
+                    ReverseStatModifiers(Owner);
                     LiquidId = other.LiquidId;
+                }
                 Amount += other.Amount;
+                if (idChanges)
+                    ApplyStatModifiers(Owner);
                 RefreshWaterCoupling(Owner);
                 return true;
             }
@@ -221,6 +258,80 @@ namespace CavesOfOoo.Core
                     damage.Amount = (int)System.Math.Round(
                         damage.Amount * (1.0 + def.Combustibility / 200.0));
             }
+        }
+
+        /// <summary>
+        /// LQ.6: push the coat's <see cref="LiquidDefinition.StatModifiers"/>
+        /// + <see cref="LiquidDefinition.ResistanceModifiers"/> onto the
+        /// wearer's stats using the symmetric <c>Stat.Bonus</c> pattern
+        /// (mirrors <c>EquipBonusUtility.ApplyEquipBonuses</c>), recording
+        /// EXACTLY what landed into <see cref="AppliedModsRaw"/> so
+        /// <see cref="ReverseStatModifiers"/> nets it to zero on removal.
+        /// Idempotent: a non-empty <see cref="AppliedModsRaw"/> means the
+        /// deltas are already applied (re-coat / post-load), so this is a
+        /// no-op — guarantees no double-apply.
+        /// </summary>
+        private void ApplyStatModifiers(Entity target)
+        {
+            if (target == null) return;
+            if (!string.IsNullOrEmpty(AppliedModsRaw)) return; // already applied
+            if (!LiquidRegistry.IsInitialized) return;
+            var def = LiquidRegistry.Get(LiquidId);
+            if (def == null) return;
+
+            var applied = new StringBuilder();
+            AccumulateMods(target, def.StatModifiers, applied);
+            AccumulateMods(target, def.ResistanceModifiers, applied);
+            AppliedModsRaw = applied.ToString();
+
+            if (AppliedModsRaw.Length > 0)
+                Diag.Record("liquid", "StatModApplied", target, null,
+                    new { liquidId = LiquidId, mods = AppliedModsRaw });
+        }
+
+        private static void AccumulateMods(
+            Entity target, List<LiquidStatMod> mods, StringBuilder applied)
+        {
+            if (mods == null) return;
+            for (int i = 0; i < mods.Count; i++)
+            {
+                var m = mods[i];
+                if (m == null || string.IsNullOrEmpty(m.Stat) || m.Delta == 0)
+                    continue;
+                var stat = target.GetStat(m.Stat);
+                if (stat == null) continue; // stat absent on this entity — skip
+                stat.Bonus += m.Delta;
+                if (applied.Length > 0) applied.Append(',');
+                applied.Append(m.Stat).Append(':').Append(m.Delta);
+            }
+        }
+
+        /// <summary>
+        /// LQ.6: undo exactly the deltas recorded in
+        /// <see cref="AppliedModsRaw"/> (NOT re-derived from the def —
+        /// exact even after an id swap or registry reset) and clear the
+        /// record. Symmetric with <see cref="ApplyStatModifiers"/> so the
+        /// wearer's stats net to zero when the coat ends (dry-down,
+        /// cure, save→load→expire).
+        /// </summary>
+        private void ReverseStatModifiers(Entity target)
+        {
+            if (target == null || string.IsNullOrEmpty(AppliedModsRaw)) return;
+            string[] pairs = AppliedModsRaw.Split(',');
+            for (int i = 0; i < pairs.Length; i++)
+            {
+                string p = pairs[i];
+                int colon = p.IndexOf(':');
+                if (colon < 0) continue;
+                string name = p.Substring(0, colon);
+                if (!int.TryParse(p.Substring(colon + 1), out int delta)) continue;
+                var stat = target.GetStat(name);
+                if (stat != null) stat.Bonus -= delta;
+            }
+            string undone = AppliedModsRaw;
+            AppliedModsRaw = "";
+            Diag.Record("liquid", "StatModRemoved", target, null,
+                new { liquidId = LiquidId, mods = undone });
         }
 
         /// <summary>

@@ -2,7 +2,7 @@
 
 **Branch:** `feat/liquid-coating-system`
 **Date:** 2026-05-15
-**Status:** LQ.1–LQ.5 SHIPPED. LQ.6–LQ.7 pending. Two critical
+**Status:** LQ.1–LQ.6 SHIPPED. LQ.7 pending. Two critical
 self-reviews at the bottom (§A, §B) per the brief; per-phase
 implementation log at §11.
 
@@ -732,3 +732,73 @@ SaveGraphRoundTrip). 178 total green.
   (OnApply additive-OR conductive-coat clause)
 - NEW `Assets/Tests/EditMode/Gameplay/Materials/LiquidConsequencesTests.cs`
   (15 tests)
+
+### LQ.6 — The 3 stat/resistance liquids + expandability — SHIPPED
+
+**Premise verification (§A5 save claim) — VERIFIED TRUE.**
+`SaveSystem.SaveEffect:1193-1199` calls
+`WritePublicFields(effect, …, exclude Owner/Duration)`;
+`LoadEffect:1202-1218` uses
+`FormatterServices.GetUninitializedObject` (ctor + OnApply NOT
+re-run on load) then `ReadPublicFields`. `WriteFieldValue` supports
+`int`+`string` (:12,:18). So `LiquidId`/`Amount`/`AppliedModsRaw`
+round-trip reflectively with no `FormatVersion` bump — LQ.4's
+"reflection-additive" claim is true in code, and LQ.6's
+no-double-apply rests on it.
+
+**What shipped**
+- `LiquidCoveredEffect` stat-modifier engine: `ApplyStatModifiers`
+  pushes `def.StatModifiers`+`ResistanceModifiers` via the symmetric
+  `Stat.Bonus += delta` pattern (mirrors
+  `EquipBonusUtility.ApplyEquipBonuses`), recording EXACTLY what
+  landed into a flat `AppliedModsRaw` string;
+  `ReverseStatModifiers` undoes that record (not re-derived from the
+  def → exact after id-swap / registry reset). Wired into
+  OnApply/OnRemove; OnStack reverses-outgoing-then-applies-incoming
+  on a stronger-wins id swap (no leak). Idempotent (non-empty
+  `AppliedModsRaw` ⇒ no-op) ⇒ no double-apply on re-coat or load.
+  Emits `liquid/StatModApplied` + `liquid/StatModRemoved`.
+- `AppliedModsRaw` is a flat `string` (not a `List`) deliberately:
+  round-trips on the proven `LiquidId` reflection path, no
+  `List`-round-trip risk, mirrors the `EquipBonuses` convention.
+- 3 JSON-only liquids (zero new C#): `brine` (+15 HeatRes / −15
+  ElectricRes, conductive), `pitch` (−2 Agi / −3 DV, Combustibility
+  90 ⇒ Fire-amped via LQ.5), `carapace-ichor` (+4 AV / −20 ColdRes).
+
+**RED→GREEN** — 70/70 (16 LQ.6 + LQ.4 16 + LQ.5 15 + Registry/Pool)
++ 82 regression (SaveGraphRoundTrip, all 4 EffectRoundTrip*,
+ElectrifiedEffectDamage, CombatSystem). 152 green. The
+EffectRoundTrip*+SaveGraph pass with the new `AppliedModsRaw` field
+proves the no-double-apply save contract.
+
+**Self-review (§5)**
+- 🟡 → tracked to LQ.7: `LiquidRegistry` is NOT bootstrapped at
+  runtime (no `Resources.LoadAll("Content/Data/LiquidDefinitions")`
+  in `GameBootstrap`). The 6 JSON liquids are inert in-game until
+  wired. NOT a defect in LQ.6's deliverable (engine+content+tests
+  use inline JSON per §B1) — it is precisely the LQ.7 sub-milestone
+  ("observability + scenario + final sweep" needs the registry
+  live). Fixing it here = doing LQ.7's work = scope creep, so
+  deferred with an explicit owner rather than "fix pre-commit".
+- 🧪 RED→GREEN compression — tests + production written together;
+  the observed first compile would have been a member-not-found RED
+  (`AppliedModsRaw`/`ApplyStatModifiers` didn't exist) but I did not
+  observe it independently. Same honesty note as LQ.5; the GREEN
+  regression suite's value is unaffected.
+- ⚪ `quicksilver` (the expandability proof's 4th liquid) is
+  test-only inline JSON; real >3 content is future, not LQ.6 scope.
+- Q1 symmetry ✓ (Apply/Reverse symmetric; OnStack id-swap
+  reverse-then-apply ordered correctly) / Q3 counter-checks ✓ (each
+  trade-off buff+debuff together, net-zero ×6 stats, water-no-mods,
+  absent-stat graceful, expandability, re-coat no-double, id-swap,
+  save/load exactly-once) / Q4 doc-vs-impl ✓.
+
+**Files**
+- MOD `Assets/Scripts/Gameplay/Materials/LiquidCoveredEffect.cs`
+  (+AppliedModsRaw, +ApplyStatModifiers/AccumulateMods/
+  ReverseStatModifiers, OnApply/OnRemove/OnStack wiring)
+- NEW `Assets/Resources/Content/Data/LiquidDefinitions/brine.json`
+- NEW `Assets/Resources/Content/Data/LiquidDefinitions/pitch.json`
+- NEW `Assets/Resources/Content/Data/LiquidDefinitions/carapace-ichor.json`
+- NEW `Assets/Tests/EditMode/Gameplay/Materials/LiquidStatModifierTests.cs`
+  (16 tests)
