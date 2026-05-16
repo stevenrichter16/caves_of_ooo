@@ -271,5 +271,8 @@ namespace CavesOfOoo.Tests.Scenarios
 
         [Test] public void LiquidHazardShowcase_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new LiquidHazardShowcase().Apply(FreshContext()));
+
+        [Test] public void LiquidSpellTestBench_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new LiquidSpellTestBench().Apply(FreshContext()));
     }
 }
