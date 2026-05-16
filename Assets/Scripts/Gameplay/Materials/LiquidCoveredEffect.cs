@@ -245,7 +245,16 @@ namespace CavesOfOoo.Core
             var def = LiquidRegistry.Get(LiquidId);
             if (def == null) return;
 
-            if (damage.HasAttribute("Lightning"))
+            // Detect element by the alias-collapsing FLAG, not a literal
+            // string: real spells/weapons tag "Electric"/"Heat"/"Ice"
+            // (ArcBolt→Electric, Conflagration→Heat, IceSword→Ice), and
+            // Damage.HasAttribute is a raw List.Contains. Mirror the
+            // canonical detector CombatSystem.ApplyResistances:983-985
+            // uses (IsHeatDamage/IsElectricDamage) so the coat layer and
+            // the resistance layer agree on what "fire"/"electric" means.
+            // ("Lightning"/"Fire" still collapse to these flags, so the
+            // pre-fix LQ.5 suite stays green.)
+            if (damage.IsElectricDamage())
             {
                 // Divergence #6: yield to a present ElectrifiedEffect.
                 if (target.GetEffect<ElectrifiedEffect>() != null) return;
@@ -255,7 +264,7 @@ namespace CavesOfOoo.Core
                 return; // a strike is one element; skip the Fire branch
             }
 
-            if (damage.HasAttribute("Fire"))
+            if (damage.IsHeatDamage())
             {
                 if (def.FireDampen > 0)
                     damage.Amount = (int)System.Math.Round(

@@ -893,3 +893,58 @@ expand beyond 3" — is fully answered:
   6 enumerated divergences (no ppt mixing, water→Wet, stronger-wins,
   once-on-enter, Electrified-owns-Lightning) each documented + pinned.
 ~75 new tests; LQ.8+ scope explicitly deferred (§5 LQ.8+).
+
+---
+
+## 12. Post-ship fix — element-alias detection (🔴 latent bug)
+
+**Surfaced** while building the spell test bench (the user asked for
+a scenario to cast spells at coated NPCs).
+
+**Bug.** LQ.5 `LiquidCoveredEffect.OnBeforeTakeDamage` detected
+elements with literal `damage.HasAttribute("Lightning")` /
+`HasAttribute("Fire")`. `Damage.HasAttribute` is a raw
+`List<string>.Contains`, but the damage layer uses an
+alias-collapsing flag system and **every real spell/weapon tags the
+canonical alias**, not those literals: `ArcBoltMutation`→`"Electric"`,
+`ConflagrationMutation`→`"Heat"`, `IceSword`/`CryoLance`→`"Ice"`.
+Net effect: the entire LQ.5 amplify/dampen layer (and LQ.6 pitch's
+fire-amp trade-off) was **inert against all real spells and elemental
+weapons** — it only fired for the exact strings `"Lightning"`/`"Fire"`,
+which essentially nothing in real content uses (and `ElectrifiedEffect`
+tags `"Lightning"` but divergence #6 makes the coat yield there
+anyway).
+
+**Why the LQ.5 suite was green.** Every LQ.5/LQ.6 test
+hand-constructed `new Damage(n); d.AddAttribute("Lightning"|"Fire")`
+— the literal the buggy code happened to match. The per-invariant
+counter-checks all used the same literal, so they were vacuous on
+the element-detection axis. Classic "the test pinned the wrong
+string" gap; the dedicated adversarial sweep didn't probe attribute
+*aliasing* because that surface wasn't in the taxonomy list.
+
+**Fix.** Switch to the flag predicates the canonical neighbor uses:
+`HasAttribute("Lightning")`→`IsElectricDamage()`,
+`HasAttribute("Fire")`→`IsHeatDamage()` — exactly how
+`CombatSystem.ApplyResistances:983-985` routes resistance, so the
+coat layer and the resistance layer now agree on what "fire"/
+"electric" means. `"Lightning"`/`"Fire"` collapse to the same flags
+so the pre-fix LQ.5 suite stays green (backward-compatible widening).
+
+**Tests.** `LiquidCoatElementAliasTests.cs` — 4 RED→GREEN
+(`"Electric"`/`"Heat"`/`"Shock"`/`"Electricity"` now interact),
+3 backward-compat/counter-checks (literal still works, Cold NOT
+touched, div #6 yield survives the switch). RED confirmed on the
+pre-fix impl before the change. Regression 148/148 GREEN
+(alias + LQ.5 + LQ.4/6/7 suites + ElectrifiedEffectDamage +
+CombatSystem).
+
+**Methodology note (Angle B — Qud-parity-first).** This is the
+finding the cold-eye review's Angle A taxonomy missed: "what does
+the neighbor (`ApplyResistances`) do, and am I doing it the same
+way?" would have caught it. Logged so future audits add
+"attribute-alias normalization vs the canonical detector" to the
+bug-class checklist for any damage-attribute-reading feature.
+
+**Files** — MOD `LiquidCoveredEffect.cs` (2 predicate swaps + the
+why-comment); NEW `LiquidCoatElementAliasTests.cs` (7 tests).
