@@ -48,6 +48,16 @@ namespace CavesOfOoo.Core
         /// downstream consequence hooks (LQ.5+). Clamped to ≥ 0.</summary>
         public int Amount;
 
+        /// <summary>A coat at/above this <see cref="LiquidDefinition.Conductivity"/>
+        /// amplifies incoming Lightning damage, and lets a conductive
+        /// NON-water coat double an <see cref="ElectrifiedEffect"/>'s
+        /// charge the same way <see cref="WetEffect"/> does. 0–100 scale.</summary>
+        public const int CONDUCTIVITY_AMPLIFY_THRESHOLD = 50;
+
+        /// <summary>A coat at/above this <see cref="LiquidDefinition.Combustibility"/>
+        /// amplifies incoming Fire damage (oil, pitch). 0–100 scale.</summary>
+        public const int COMBUSTIBLE_AMPLIFY_THRESHOLD = 50;
+
         public LiquidCoveredEffect(string liquidId = "", int amount = 0)
         {
             LiquidId = liquidId ?? "";
@@ -135,6 +145,81 @@ namespace CavesOfOoo.Core
             {
                 Amount = 0;
                 Duration = 0; // StatusEffectsPart.HandleEndTurn cleans up
+            }
+        }
+
+        /// <summary>
+        /// LQ.5: a coat with a <see cref="LiquidDefinition.PerTurnDamage"/>
+        /// (acid) deals that damage at the owner's turn start, attributed
+        /// by Type so it routes through the matching resistance in
+        /// <see cref="CombatSystem.ApplyResistances"/>. Mirrors
+        /// <see cref="ElectrifiedEffect.OnTurnStart"/>'s tick shape.
+        ///
+        /// <para><b>FollowOnEffect deferred (⚪).</b> No shipped liquid
+        /// sets it; "oil coat near fire → BurningEffect" needs
+        /// reaction-system coupling (the existing untouched
+        /// <c>oil_plus_fire.json</c>) that is bigger than LQ.5 — see
+        /// §11 LQ.5 scope-prune.</para>
+        /// </summary>
+        public override void OnTurnStart(Entity target, GameEvent context)
+        {
+            if (target == null) return;
+            if (!LiquidRegistry.IsInitialized) return;
+            var def = LiquidRegistry.Get(LiquidId);
+            if (def == null || def.PerTurnDamage == null) return;
+            if (def.PerTurnDamage.Amount <= 0) return;
+            if (target.GetStatValue("Hitpoints", 0) <= 0) return;
+
+            var dmg = new Damage(def.PerTurnDamage.Amount);
+            if (!string.IsNullOrEmpty(def.PerTurnDamage.Type))
+                dmg.AddAttribute(def.PerTurnDamage.Type);
+            var zone = context?.GetParameter<Zone>("Zone");
+            CombatSystem.ApplyDamage(target, dmg, source: null, zone);
+        }
+
+        /// <summary>
+        /// LQ.5: a coat changes how elemental damage lands, BEFORE
+        /// resistance. Verified blocking-step-0: CombatSystem fires
+        /// <c>BeforeTakeDamage</c> then re-reads <c>Damage.Amount</c>
+        /// for the HP decrement (<see cref="CombatSystem"/>:751-836;
+        /// dispatch <see cref="StatusEffectsPart"/>:491-497 fires this
+        /// for every effect). The <c>Damage.Amount</c> setter clamps
+        /// ≥ 0, so an over-dampen can never heal.
+        ///
+        /// <para><b>Divergence #6 (no double-amplify).</b> When an
+        /// <see cref="ElectrifiedEffect"/> is present it OWNS electric
+        /// amplification (doubles its own Charge on apply when
+        /// wet/conductive, ticks its own Lightning damage).
+        /// LiquidCovered only amplifies *direct* Lightning when no
+        /// ElectrifiedEffect is on the target — prevents the 4× bug.</para>
+        /// </summary>
+        public override void OnBeforeTakeDamage(Entity target, GameEvent e)
+        {
+            if (target == null || e == null) return;
+            var damage = e.GetParameter<Damage>("Damage");
+            if (damage == null || damage.Amount <= 0) return;
+            if (!LiquidRegistry.IsInitialized) return;
+            var def = LiquidRegistry.Get(LiquidId);
+            if (def == null) return;
+
+            if (damage.HasAttribute("Lightning"))
+            {
+                // Divergence #6: yield to a present ElectrifiedEffect.
+                if (target.GetEffect<ElectrifiedEffect>() != null) return;
+                if (def.Conductivity >= CONDUCTIVITY_AMPLIFY_THRESHOLD)
+                    damage.Amount = (int)System.Math.Round(
+                        damage.Amount * (1.0 + def.Conductivity / 100.0));
+                return; // a strike is one element; skip the Fire branch
+            }
+
+            if (damage.HasAttribute("Fire"))
+            {
+                if (def.FireDampen > 0)
+                    damage.Amount = (int)System.Math.Round(
+                        damage.Amount * (1.0 - def.FireDampen / 100.0));
+                if (def.Combustibility >= COMBUSTIBLE_AMPLIFY_THRESHOLD)
+                    damage.Amount = (int)System.Math.Round(
+                        damage.Amount * (1.0 + def.Combustibility / 200.0));
             }
         }
 

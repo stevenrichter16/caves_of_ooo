@@ -2,7 +2,7 @@
 
 **Branch:** `feat/liquid-coating-system`
 **Date:** 2026-05-15
-**Status:** LQ.1–LQ.4 SHIPPED. LQ.5–LQ.7 pending. Two critical
+**Status:** LQ.1–LQ.5 SHIPPED. LQ.6–LQ.7 pending. Two critical
 self-reviews at the bottom (§A, §B) per the brief; per-phase
 implementation log at §11.
 
@@ -664,3 +664,71 @@ tests stayed green.
 - MOD `Assets/Scripts/Shared/Utilities/Diag.cs` (+`"liquid"` channel)
 - NEW `Assets/Tests/EditMode/Gameplay/Materials/LiquidCoatingTests.cs`
   (16 tests)
+
+### LQ.5 — Consequences: electric / fire / acid — SHIPPED
+
+**BLOCKING step 0 (false-premise guard, §B4) — VERIFIED TRUE.**
+`StatusEffectsPart.HandleBeforeTakeDamage:491-497` iterates **all**
+`_effects` → `OnBeforeTakeDamage` fires for every effect.
+`CombatSystem.cs:751-836` passes `damage` by reference into the
+`BeforeTakeDamage` event then **re-reads `damage.Amount` at
+:831-833** (`Math.Max(0,…)` clamp) for the HP decrement; my hook
+runs BEFORE `ApplyResistances` (:797-801) — exactly the planned
+order. No reroute needed.
+
+**What shipped**
+- `LiquidCoveredEffect.OnBeforeTakeDamage` — Lightning ⇒
+  `×(1+Conductivity/100)`; Fire ⇒ `×(1−FireDampen/100)` then (if
+  `Combustibility≥50`) `×(1+Combustibility/200)`. Consts
+  `CONDUCTIVITY_/COMBUSTIBLE_AMPLIFY_THRESHOLD=50`.
+- **Divergence #6 enforced**: target has `ElectrifiedEffect` ⇒
+  Lightning branch yields entirely (Electrified owns electric
+  amplification). Pinned by
+  `ElectrifiedPlusWaterCoat_DoesNotDoubleAmplify` (== electrified+wet,
+  not 2×).
+- `LiquidCoveredEffect.OnTurnStart` — `PerTurnDamage` tick (acid →
+  Acid/turn) via `CombatSystem.ApplyDamage`, mirroring
+  `ElectrifiedEffect.OnTurnStart`.
+- `ElectrifiedEffect.OnApply` — additive **OR**: charge doubles on
+  `moist || conductiveCoat`. Water coats already satisfy `moist`
+  (div #3 WetEffect) so all 8 `ElectrifiedEffectDamageTests` stay
+  green untouched; the clause only newly fires for conductive
+  NON-water coats — pinned by `ConductiveCoat_DoublesElectrifiedCharge`.
+
+**Scope-prune (§1.3)** — `FollowOnEffect` deferred ⚪: no shipped
+liquid sets it; "oil near fire → Burning" needs reaction-system
+coupling (untouched `oil_plus_fire.json`) bigger than LQ.5. Field
+stays on `LiquidDefinition`; hook is a documented no-op until a
+content+reaction follow-up.
+
+**RED→GREEN** — RED was a compile error (`CS0103` missing
+`using CavesOfOoo.Diagnostics` in the new test file). GREEN after
+fix: 65/65 (15 LQ.5 + 8 pinned Electrified + LQ.4 suite) + 113
+regression (CombatSystem/Spec, MaterialSystem,
+MaterialReactionPhaseCRE, AcidTonic, LightningTonic,
+SaveGraphRoundTrip). 178 total green.
+
+**Self-review (§5)**
+- 🧪 RED→GREEN compression — tests + production written together;
+  observed RED was the test file's compile error, not an
+  independently-observed behavioral RED (a pre-impl compile would
+  have been a member-not-found RED, equivalent per §2.1, but not
+  separately observed). Honesty note.
+- ⚪ Observability via the existing `damage` channel — no new
+  `liquid/*` emission by design: `CombatSystem.cs:763-777` already
+  emits `damage/PreDamageMutation` (amountBefore/After/delta)
+  whenever an effect mutates `Damage.Amount` during
+  `BeforeTakeDamage`, so water/oil amplification is query-observable;
+  acid ticks emit their own `damage` records via `ApplyDamage`.
+  Documented choice, not a gap.
+- Q1 symmetry ✓ / Q3 counter-checks ✓ (dry vs coated, dampen vs
+  amplify both branches, acid-ticks vs water-doesn't, div-#6 yield)
+  / Q4 doc-vs-impl ✓.
+
+**Files**
+- MOD `Assets/Scripts/Gameplay/Materials/LiquidCoveredEffect.cs`
+  (+OnBeforeTakeDamage, +OnTurnStart, +2 threshold consts)
+- MOD `Assets/Scripts/Gameplay/Effects/Concrete/ElectrifiedEffect.cs`
+  (OnApply additive-OR conductive-coat clause)
+- NEW `Assets/Tests/EditMode/Gameplay/Materials/LiquidConsequencesTests.cs`
+  (15 tests)
