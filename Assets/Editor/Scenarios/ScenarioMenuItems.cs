@@ -104,6 +104,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_LiquidHazardShowcase()
             => ScenarioRunner.Launch<LiquidHazardShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Liquid Spell Test Bench (cast spells at coated NPCs)", priority = 112)]
+        private static void Launch_LiquidSpellTestBench()
+            => ScenarioRunner.Launch<LiquidSpellTestBench>();
+
         [MenuItem("Caves Of Ooo/Scenarios/Items/Item Enhancement Showcase (Phase E.1–E.3 — minerals + Tinker + faction trade)", priority = 120)]
         private static void Launch_ItemEnhancementShowcase()
             => ScenarioRunner.Launch<ItemEnhancementShowcase>();
