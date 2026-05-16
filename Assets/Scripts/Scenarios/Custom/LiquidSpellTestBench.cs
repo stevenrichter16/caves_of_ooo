@@ -4,57 +4,82 @@ namespace CavesOfOoo.Scenarios.Custom
 {
     /// <summary>
     /// Liquid Spell Test Bench (manual QA) — cast elemental spells at
-    /// NPCs that are pre-coated AND standing in pools of their liquid,
-    /// to see exactly how the coat re-weights the spell.
+    /// stationary, permanently-coated NPCs and watch each coat re-weight
+    /// the spell.
+    ///
+    /// <para><b>v2 rebuild (after a diag audit of the v1 run).</b> The
+    /// v1 bench was correct in mechanics but unobservable: coats dried
+    /// in ~1-2 turns (water Fluidity 30 + Evap 20), Snapjaw dummies
+    /// wandered and brawled (156 melee exchanges, 81 re-coats), and
+    /// Snapjaw lacks HeatResistance/ElectricResistance/ColdResistance/
+    /// AV/DV so the LQ.6 stat liquids applied nothing. Diag showed only
+    /// 2 PreDamageMutation across 215 hits — the coat was almost never
+    /// present at impact. This rebuild fixes the HARNESS (the mechanics
+    /// were already proven by `damage/PreDamageMutation` turn 410:
+    /// Fire 3→4, 4→6 = ×1.45 Combustibility amp).</para>
+    ///
+    /// Three harness fixes:
+    ///   1. <c>.NotRegisteredForTurns()</c> → the dummy never takes a
+    ///      turn → never gets EndTurn → the coat never dries. Combined
+    ///      with a huge coat Amount it is effectively permanent for any
+    ///      manual session.
+    ///   2. <c>.Passive().NotRegisteredForTurns()</c> → it never moves
+    ///      or fights — a clean stationary subject.
+    ///   3. Resistance/combat stats injected directly onto the entity
+    ///      (Snapjaw's blueprint lacks them, so `WithStat` would no-op)
+    ///      so brine (+HeatRes/−ElecRes), pitch (−Agi/−DV) and
+    ///      carapace-ichor (+AV/−ColdRes) deltas actually land and the
+    ///      Cold-on-ichor amplification works via ColdResistance.
     ///
     /// Layout (player at p, casts EAST):
     ///
-    ///                     [Brine NW]                         (ArcBolt here)
-    ///   [Player p] →  [Dry] [Water] [Oil] [Pitch]            (Conflagration line)
-    ///                     [Ichor SW] [Acid SW2]              (IceLance / passive)
+    ///   p.y-2:                 [Brine]            (ArcBolt → Electric)
+    ///   p.y  : [Player] → [Dry][Water][Oil][Pitch]  (Conflagration line)
+    ///   p.y+2:                 [Ichor]            (IceLance → Cold)
     ///
-    /// The **comparison row is on the player's exact row** so a single
-    /// eastward Conflagration (Heat AoE) wave passes through Dry → Water
-    /// → Oil → Pitch and you see the SAME spell deal four different
-    /// numbers in one cast:
+    /// The comparison line is on the player's exact row, so ONE eastward
+    /// Conflagration (Heat AoE) wave shows the SAME spell deal four
+    /// different numbers:
     ///   - Dry   : baseline
-    ///   - Water : Heat DAMPENED (FireDampen 40 → ×0.6)
-    ///   - Oil   : Heat AMPLIFIED (Combustibility 90 → ×1.45)
-    ///   - Pitch : Heat AMPLIFIED (Combustibility 90) + the target is
-    ///             also −2 Agi / −3 DV from the LQ.6 coat
+    ///   - Water : Heat ×0.6  (FireDampen 40)
+    ///   - Oil   : Heat ×1.45 (Combustibility 90)
+    ///   - Pitch : Heat ×1.45 (Combustibility 90) + the target is also
+    ///             −2 Agi / −3 DV from the LQ.6 stat coat
+    /// Off-row directional targets:
+    ///   - Brine (NW), ArcBolt → Electric ×2 (Conductivity 100) AND the
+    ///     coat's −15 ElectricResistance compounding via resistance.
+    ///   - Carapace-Ichor (SW), IceLance → Cold amplified by the coat's
+    ///     −20 ColdResistance (+4 AV is the upside; try a Melee swing).
     ///
-    /// Directional spells for the off-row targets:
-    ///   - ArcBolt (Electric) NW at Brine: Conductivity 100 ×2 AND the
-    ///     coat's −15 ElectricResistance compounding — the hardest hit.
-    ///     (Also try ArcBolt at Water: ×2 + WetEffect.)
-    ///   - IceLance (Cold) SW at Carapace-Ichor: the coat's −20
-    ///     ColdResistance makes cold land harder (+4 AV is the upside).
-    ///   - Acid pool dummy (SW2): no spell needed — its coat ticks Acid
-    ///     damage every turn; watch its HP fall on its own.
+    /// <para><b>Read it two ways.</b> (1) The floating number / HP-bar
+    /// drop vs the Dry control for the same spell. (2) The authoritative
+    /// confirmation — query the diag the tool emits:
+    /// <c>diag_query category=damage kind=PreDamageMutation</c> shows
+    /// <c>amountBefore/amountAfter/delta</c> per coat-modified hit;
+    /// <c>diag_query category=liquid</c> shows Coated/StatModApplied.
+    /// The probe also prints a <c>[SpellTest]</c> line per incoming hit
+    /// with the element + live resistances + coat label.</para>
     ///
-    /// Every dummy carries <see cref="SpellTestProbePart"/>, which logs
-    /// each incoming hit's element + the live HeatRes/ElecRes/ColdRes so
-    /// you can read the lever per cast. Compare a coated dummy's HP drop
-    /// to the Dry control's for the same spell.
-    ///
-    /// Honesty bound: the coat re-weight happens pre-resistance
-    /// (BeforeTakeDamage); the probe line shows raw incoming + the
-    /// resistance snapshot, but the authoritative result is the actual
-    /// HP delta / floating number — read THAT against the Dry control.
-    /// Dummies are neutral high-HP Snapjaws so they survive many casts;
-    /// they may shuffle — re-aim as needed (pools re-coat on re-entry).
+    /// Honesty bound: the coat re-weight is pre-resistance; the probe's
+    /// printed <c>in=</c> is the amount at probe time (ordering vs the
+    /// coat hook is not guaranteed), so trust the HP delta / the
+    /// PreDamageMutation diag for the exact figure. Script-verified via
+    /// smoke; the in-editor feel is yours to judge.
     /// </summary>
     [Scenario(
         name: "Liquid Spell Test Bench",
         category: "Combat",
-        description: "Pre-coated NPCs standing in water/oil/pitch/brine/ichor/acid pools + a Dry control, with ArcBolt/Conflagration/IceLance/AcidSpray granted. Cast and compare coated vs dry.")]
+        description: "Stationary, permanently-coated, stat-bearing NPCs (water/oil/pitch/brine/ichor) + a Dry control, with ArcBolt/Conflagration/IceLance/AcidSpray granted. Cast and compare coated vs dry; confirm via diag_query PreDamageMutation.")]
     public class LiquidSpellTestBench : IScenario
     {
+        // Huge so the coat is effectively permanent even if some passive
+        // sim loop ever ticks dry-down on an unregistered entity.
+        private const int PERMA_COAT = 100000;
+
         public void Apply(ScenarioContext ctx)
         {
             var p = ctx.Zone.GetEntityPosition(ctx.PlayerEntity);
 
-            // Beefy caster with the elemental spell kit.
             ctx.Player
                 .SetStatMax("Hitpoints", 999)
                 .SetHp(999)
@@ -66,51 +91,63 @@ namespace CavesOfOoo.Scenarios.Custom
                 .AddMutation("AcidSprayMutation", level: 5)      // Acid, aimed
                 .GiveItem("HealingTonic", 5);
 
-            // ── Conflagration comparison line (player's row) ──
-            // One eastward Heat wave → 4 different numbers.
-            Dummy(ctx, null, 0, p.x + 2, p.y);          // Dry control
-            Dummy(ctx, "water", 60, p.x + 4, p.y);      // Heat ↓ / Electric ↑
-            Dummy(ctx, "oil", 60, p.x + 6, p.y);        // Heat ↑↑
-            Dummy(ctx, "pitch", 60, p.x + 8, p.y);      // Heat ↑ + Agi/DV ↓
+            // Conflagration comparison line — one Heat wave, 4 numbers.
+            Dummy(ctx, null, p.x + 2, p.y);          // Dry control
+            Dummy(ctx, "water", p.x + 4, p.y);       // Heat ×0.6 / Electric ×2
+            Dummy(ctx, "oil", p.x + 6, p.y);         // Heat ×1.45
+            Dummy(ctx, "pitch", p.x + 8, p.y);       // Heat ×1.45 + Agi/DV ↓
 
-            // ── Directional targets (off rows) ──
-            Dummy(ctx, "brine", 60, p.x + 4, p.y - 2);  // Electric ↑ + −ElecRes
-            Dummy(ctx, "carapace-ichor", 60, p.x + 4, p.y + 2); // Cold ↑ / +AV
-            Dummy(ctx, "acid", 60, p.x + 6, p.y + 2);   // passive Acid tick
+            // Directional off-row targets.
+            Dummy(ctx, "brine", p.x + 4, p.y - 2);          // ArcBolt: ×2 + −ElecRes
+            Dummy(ctx, "carapace-ichor", p.x + 4, p.y + 2); // IceLance: −ColdRes / +AV
 
-            ctx.Log("=== Liquid Spell Test Bench ===");
-            ctx.Log("Spells: ArcBolt (Electric), Conflagration (Heat AoE),");
-            ctx.Log("        IceLance (Cold), AcidSpray (Acid).");
-            ctx.Log("ROW (your row, east): Dry | Water | Oil | Pitch —");
+            ctx.Log("=== Liquid Spell Test Bench (v2 — permanent coats, stationary) ===");
+            ctx.Log("Spells: ArcBolt(Electric) Conflagration(Heat AoE) IceLance(Cold) AcidSpray.");
+            ctx.Log("YOUR ROW east: Dry | Water | Oil | Pitch —");
             ctx.Log("  one Conflagration wave = 4 different fire numbers.");
-            ctx.Log("NW Brine: ArcBolt → ×2 conductivity + −15 ElecRes.");
-            ctx.Log("SW Ichor: IceLance → amplified (−20 ColdRes), +4 AV.");
-            ctx.Log("SW Acid : no spell — its coat ticks Acid every turn.");
-            ctx.Log("Read [SpellTest] lines; compare each coated HP drop to Dry.");
+            ctx.Log("NW Brine: ArcBolt → Electric ×2 (Conductivity) + −15 ElecRes.");
+            ctx.Log("SW Ichor: IceLance → Cold amplified (−20 ColdRes); +4 AV vs melee.");
+            ctx.Log("Coats are PERMANENT here (dummies never take a turn).");
+            ctx.Log("Confirm exact numbers: diag_query category=damage kind=PreDamageMutation");
+            ctx.Log("…and diag_query category=liquid (Coated / StatModApplied).");
         }
 
         /// <summary>
-        /// Spawn a neutral high-HP dummy, pre-apply its liquid coat
-        /// (<paramref name="liquidId"/> null = the Dry control), surround
-        /// it with a 5-cell pool cluster of that liquid so it reads as
-        /// "standing in a pool" and re-coats if it shuffles, and attach
-        /// the probe.
+        /// Spawn a stationary, turn-unregistered, stat-bearing dummy,
+        /// inject the combat/resistance stats Snapjaw's blueprint lacks
+        /// (so every liquid's deltas are observable), pre-apply a huge
+        /// permanent coat (<paramref name="liquidId"/> null = the Dry
+        /// control), ring it with a cosmetic pool, and attach the probe.
         /// </summary>
-        private static void Dummy(ScenarioContext ctx, string liquidId, int amount, int x, int y)
+        private static void Dummy(ScenarioContext ctx, string liquidId, int x, int y)
         {
             var npc = ctx.Spawn("Snapjaw")
-                .WithStatMax("Hitpoints", 300)
-                .WithHpAbsolute(300)
+                .WithStatMax("Hitpoints", 4000)
+                .WithHpAbsolute(4000)   // survive heavy repeated casting
+                .Passive()
+                .NotRegisteredForTurns() // never moves, never fights, coat never dries
                 .At(x, y);
             if (npc == null) return;
+
+            // Inject the stats Snapjaw's blueprint doesn't carry, so the
+            // LQ.6 stat/resistance coats land and ApplyResistances can
+            // read them. BaseValue 0 → the coat delta IS the value.
+            void Stat(string n, int v) => npc.Statistics[n] =
+                new Stat { Owner = npc, Name = n, BaseValue = v, Min = -200, Max = 400 };
+            Stat("HeatResistance", 0);
+            Stat("ColdResistance", 0);
+            Stat("ElectricResistance", 0);
+            Stat("AV", 0);
+            Stat("DV", 0);
+            if (npc.GetStat("Agility") == null) Stat("Agility", 14);
 
             npc.AddPart(new SpellTestProbePart { CoatLabel = liquidId ?? "dry" });
 
             if (string.IsNullOrEmpty(liquidId))
                 return; // Dry control: no coat, no pool.
 
-            // Surround with a pool cluster (center + 4 orthogonal) so the
-            // dummy is visibly IN the liquid (and re-coats on re-entry).
+            // Cosmetic pool ring (the "surrounded by liquid" the bench is
+            // for). Functionally the coat below is what spells react to.
             int[,] cells = { { 0, 0 }, { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
             for (int i = 0; i < cells.GetLength(0); i++)
             {
@@ -118,23 +155,23 @@ namespace CavesOfOoo.Scenarios.Custom
                 { ID = $"{liquidId}Pool_{x}_{y}_{i}", BlueprintName = liquidId + "Pool" };
                 pool.AddPart(new RenderPart { DisplayName = liquidId + " pool", RenderString = "~" });
                 pool.AddPart(new PhysicsPart { Solid = false });
-                pool.AddPart(new LiquidPoolPart { LiquidId = liquidId, Volume = amount + 40 });
+                pool.AddPart(new LiquidPoolPart { LiquidId = liquidId, Volume = PERMA_COAT });
                 ctx.Zone.AddEntity(pool, x + cells[i, 0], y + cells[i, 1]);
             }
 
-            // Pre-apply the coat so spells work immediately (no need to
-            // herd the dummy onto a pool first — transfer-on-contact is
-            // exercised by the Liquid Hazard Showcase instead).
-            npc.ApplyEffect(new LiquidCoveredEffect(liquidId, amount), source: null, zone: ctx.Zone);
+            // Permanent pre-applied coat — spells react immediately and
+            // it never dries (dummy is turn-unregistered + huge Amount).
+            npc.ApplyEffect(new LiquidCoveredEffect(liquidId, PERMA_COAT), source: null, zone: ctx.Zone);
         }
     }
 
     /// <summary>
     /// Showcase-only probe. On every incoming hit logs the element, the
-    /// raw amount the dummy is about to take, the live elemental
-    /// resistances (so the LQ.6 stat coats are visible), and the coat
-    /// label — so the spell × liquid lever is readable per cast.
-    /// Production combat does not emit these lines.
+    /// amount the dummy is about to take, the live elemental resistances
+    /// (so the LQ.6 stat coats are visible), and the coat label — so the
+    /// spell × liquid lever is readable per cast. Production combat does
+    /// not emit these lines; the authoritative figures are the HP delta
+    /// and the <c>damage/PreDamageMutation</c> diag record.
     /// </summary>
     public class SpellTestProbePart : Part
     {
