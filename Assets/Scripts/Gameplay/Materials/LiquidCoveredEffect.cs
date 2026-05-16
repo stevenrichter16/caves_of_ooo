@@ -120,6 +120,12 @@ namespace CavesOfOoo.Core
         public override void OnRemove(Entity target)
         {
             ReverseStatModifiers(target);
+            // Observability contract (every gate emits a record):
+            // LQ.4 emits liquid/Coated on apply; this is the paired
+            // terminal record so a query can confirm a coat's full
+            // lifecycle (Coated → … → CoatExpired) without a grep.
+            Diag.Record("liquid", "CoatExpired", target, null,
+                new { liquidId = LiquidId, cause = LastRemovalCause });
             if (target != null)
                 MessageLog.Add("The " + DisplayName + " coating wears off " + target.GetDisplayName() + ".");
         }

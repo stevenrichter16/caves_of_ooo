@@ -100,6 +100,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_OnHitEffectsShowcase()
             => ScenarioRunner.Launch<OnHitEffectsShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Liquid Hazard Showcase (coat → elemental + stat)", priority = 111)]
+        private static void Launch_LiquidHazardShowcase()
+            => ScenarioRunner.Launch<LiquidHazardShowcase>();
+
         [MenuItem("Caves Of Ooo/Scenarios/Items/Item Enhancement Showcase (Phase E.1–E.3 — minerals + Tinker + faction trade)", priority = 120)]
         private static void Launch_ItemEnhancementShowcase()
             => ScenarioRunner.Launch<ItemEnhancementShowcase>();

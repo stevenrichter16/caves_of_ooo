@@ -113,6 +113,26 @@ namespace CavesOfOoo
                     }
                 });
 
+                Debug.Log("[Bootstrap] Step 1b'/9: Initializing liquid definitions...");
+                PerformanceDiagnostics.MeasureStartupPhase("LoadLiquidDefinitions", PerformanceMarkers.Bootstrap.LoadMaterialReactions, () =>
+                {
+                    TextAsset[] liquidAssets = Resources.LoadAll<TextAsset>("Content/Data/LiquidDefinitions");
+                    if (liquidAssets != null && liquidAssets.Length > 0)
+                    {
+                        var jsonSources = new System.Collections.Generic.List<string>(liquidAssets.Length);
+                        for (int i = 0; i < liquidAssets.Length; i++)
+                            jsonSources.Add(liquidAssets[i].text);
+
+                        LiquidRegistry.InitializeFromJsonSources(jsonSources);
+                        Debug.Log($"[Bootstrap] Loaded {liquidAssets.Length} liquid file(s), {LiquidRegistry.Count} liquid(s) total.");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("[Bootstrap] No liquid definition files found, liquid coatings will be inert.");
+                        LiquidRegistry.InitializeFromJsonSources(null);
+                    }
+                });
+
                 Debug.Log("[Bootstrap] Step 1c/9: Loading House Dramas...");
                 Data.HouseDramaLoader.LoadAll();
                 foreach (var drama in Data.HouseDramaLoader.GetAll())

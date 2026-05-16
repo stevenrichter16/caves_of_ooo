@@ -62,11 +62,25 @@ var attackRecords = DiagQuery.Apply(new DiagQuery.Filter {
 | `enhancement` | `Applied`, `ApplyFailed`, `Removed`, `BonusApplied`, `BonusRemoved`, `Triggered` | `ItemEnhancing.Apply/Remove`, concrete enhancement `OnEquipped`/`OnUnequipped`/`OnAttackerHit` hooks |
 | `mineral-trade` | `Traded`, `Rejected` | `MineralTradeService.TryTrade` |
 
+### Liquid coating diag (LQ.4–LQ.7)
+
+| Category | Kinds | Fired by |
+|---|---|---|
+| `liquid` | `Coated`, `CoatRejected` (reason: NullActor/NotACreature/RegistryUninitialized/NoLiquidId/UnknownLiquid/PoolEmpty/ZeroExposure), `StatModApplied`, `StatModRemoved`, `CoatExpired` | `LiquidPoolPart.HandleEvent` (transfer-on-contact gates); `LiquidCoveredEffect` Apply/Reverse stat mods + OnRemove lifecycle |
+
+> **Note (LQ.5 design choice):** liquid damage *amplification*
+> (water→Lightning, oil→Fire) is NOT a separate `liquid` record — it
+> mutates `Damage.Amount` during `BeforeTakeDamage`, so it surfaces on
+> the existing `damage/PreDamageMutation` record (`CombatSystem.cs:763`)
+> with the before/after/delta. A dedicated `liquid/CoatModifiedDamage`
+> (proposed in the plan) was deliberately not added — it would
+> duplicate `PreDamageMutation`.
+
 ### Other categories on by default
 
 `event`, `effect`, `damage`, `turn`, `furniture`, `trade`,
-`quest`, `skill`, `enhancement`, `mineral-trade` — see
-`Diag.DefaultOnCategories` (`Diag.cs:119`).
+`quest`, `skill`, `enhancement`, `mineral-trade`, `worldmap`,
+`liquid` — see `Diag.DefaultOnCategories` (`Diag.cs:119`).
 
 ---
 

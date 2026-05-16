@@ -2,9 +2,9 @@
 
 **Branch:** `feat/liquid-coating-system`
 **Date:** 2026-05-15
-**Status:** LQ.1–LQ.6 SHIPPED. LQ.7 pending. Two critical
-self-reviews at the bottom (§A, §B) per the brief; per-phase
-implementation log at §11.
+**Status:** ✅ COMPLETE — LQ.1–LQ.7 SHIPPED & merged to main. Two
+critical self-reviews at the bottom (§A, §B) per the brief; per-phase
+implementation log + cold-eye review at §11.
 
 > **Genre framing:** CoO is an **RPG, not a roguelike**
 > (`Docs/PROJECT-IDENTITY.md`). Liquid coatings are a moment-to-moment
@@ -802,3 +802,94 @@ proves the no-double-apply save contract.
 - NEW `Assets/Resources/Content/Data/LiquidDefinitions/carapace-ichor.json`
 - NEW `Assets/Tests/EditMode/Gameplay/Materials/LiquidStatModifierTests.cs`
   (16 tests)
+
+### LQ.7 — Observability + bootstrap + scenario + sweep — SHIPPED
+
+**What shipped**
+- `GameBootstrap` Step 1b': `Resources.LoadAll<TextAsset>(
+  "Content/Data/LiquidDefinitions")` →
+  `LiquidRegistry.InitializeFromJsonSources` (mirrors the
+  MaterialReactions block) — closes the LQ.6 🟡; all 6 JSON liquids
+  are now live in-game, not just in tests.
+- `liquid/CoatExpired` diag in `LiquidCoveredEffect.OnRemove`
+  (payload `{liquidId, cause=LastRemovalCause}`) — the paired
+  terminal record so `liquid` lifecycle is queryable end-to-end
+  (`Coated → StatModApplied → … → StatModRemoved → CoatExpired`).
+- `LiquidHazardShowcase` scenario (water→oil→acid→brine pool row +
+  `LiquidDemoProbePart` narrating coat id/amount/live resistances) +
+  menu entry (Combat Stress, priority 111) + smoke test.
+- `LiquidCoatingAdversarialTests.cs` — **28** tests across the
+  mandatory taxonomy (parser-malformed AppliedModsRaw, stacking/
+  merge incl. equal-amount determinism + weaker-no-thrash + swap
+  chains, save/load reflection reach, mid-evaporation death, two-pool
+  atomicity, multi-instance independence, exposure boundaries,
+  null-safety on every public hook, unknown-id graceful,
+  registry-reset-mid-life, diag dispatch invariants, idempotent
+  remove). **0 bugs found** — value is the regression pins (honesty
+  bound: bounded by imagined bug classes per ADVERSARIAL_TESTING.md).
+- Docs: `CONTENT-ROADMAP.md` Recently-shipped row;
+  `OBSERVABILITY-STATUS.md` +`liquid` category table.
+
+**Combined regression sweep — 253/253 GREEN**
+`LiquidCoatingAdversarial` + all 5 `Liquid*Tests` + `MaterialSystem`
++ `MaterialReaction{PhaseCRE,ResolverPhaseB}` +
+`MaterialPrimitivesPhaseA` + `ElectrifiedEffectDamage` (divergence #3
+guard) + `SaveGraphRoundTrip` + `ScenarioCustomSmoke` (incl. the new
+showcase). Clean compile (0 console errors).
+
+**Cold-eye review (CLAUDE.md Q1–Q4) — feature-wide, post-green**
+- Q1 symmetry ✓ — `ApplyStatModifiers`↔`ReverseStatModifiers`,
+  `Coated`↔`CoatExpired`, `StatModApplied`↔`StatModRemoved`, OnStack
+  id-swap = reverse-then-apply (ordered correctly). ⚪ deliberate
+  asymmetry: `RefreshWaterCoupling` is NOT reversed in OnRemove —
+  WetEffect has its own independent evaporation timer (divergence
+  #3); the coat drying must not instantly dry moisture. Documented,
+  not a bug.
+- Q2 cross-feature consistency 🔵 — every `liquid` payload leads with
+  `liquidId` (consistent). `Coated` uses actor=mover/target=pool
+  (cross-entity interaction) while `StatMod*`/`CoatExpired` use
+  actor=creature/target=null (creature-internal). Defensible
+  semantic split; flagged for a future reader, no gameplay impact.
+- Q3 counter-checks ✓ — every non-trivial branch paired (water/
+  non-water, Lightning±Electrified, Fire dampen/amp, stat apply/
+  reverse net-zero, id-swap vs weaker-no-thrash, save single/double).
+  🔵 carryover: per-reason `CoatRejected` payload still only
+  `PoolEmpty`-pinned (LQ.4 finding); behaviorally covered, accept.
+- Q4 doc-vs-impl 🔵→fixed — plan §5 LQ.7 listed a
+  `CoatModifiedDamage` diag; impl deliberately omits it (LQ.5 ⚪:
+  `damage/PreDamageMutation` already carries before/after/delta).
+  Drift killed by documenting the choice here + in
+  OBSERVABILITY-STATUS.md.
+- **No 🔴/🟡.** Feature is internally consistent across LQ.4–LQ.7.
+
+**Files**
+- MOD `Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs`
+  (Step 1b' LiquidDefinitions load)
+- MOD `Assets/Scripts/Gameplay/Materials/LiquidCoveredEffect.cs`
+  (+`liquid/CoatExpired` in OnRemove)
+- NEW `Assets/Scripts/Scenarios/Custom/LiquidHazardShowcase.cs`
+  (+`LiquidDemoProbePart`)
+- MOD `Assets/Editor/Scenarios/ScenarioMenuItems.cs` (menu entry 111)
+- NEW `Assets/Tests/EditMode/Gameplay/Materials/LiquidCoatingAdversarialTests.cs`
+  (28 tests)
+- MOD `Assets/Tests/EditMode/Gameplay/Scenarios/ScenarioCustomSmokeTests.cs`
+  (showcase smoke)
+- MOD `Docs/CONTENT-ROADMAP.md`, `Docs/OBSERVABILITY-STATUS.md`,
+  this doc
+
+### Feature summary (LQ.1–LQ.7)
+
+The brief — "do pools transfer liquid onto the player, does it affect
+how other elements treat them; Qud-parity; 3 stat/resistance liquids;
+expand beyond 3" — is fully answered:
+- **Transfer:** ✅ step in a pool → `LiquidCoveredEffect` (LQ.4).
+- **Consequences:** ✅ water amps Lightning / damps Fire, oil amps
+  Fire, acid ticks, conductive coat supercharges Electrified (LQ.5).
+- **3 stat/resistance liquids:** ✅ brine/pitch/carapace-ichor with
+  designed trade-offs, net-zero on removal (LQ.6).
+- **Expand beyond 3:** ✅ a 4th liquid is one JSON row, zero C# —
+  pinned by `Expandability_FourthLiquid_JsonOnly` (LQ.6).
+- **Qud-parity:** behavior-faithful to `BaseLiquid`/`LiquidCovered`;
+  6 enumerated divergences (no ppt mixing, water→Wet, stronger-wins,
+  once-on-enter, Electrified-owns-Lightning) each documented + pinned.
+~75 new tests; LQ.8+ scope explicitly deferred (§5 LQ.8+).
