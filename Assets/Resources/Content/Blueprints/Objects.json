@@ -3828,10 +3828,66 @@
           { "Key": "Combustibility", "Value": "0" },
           { "Key": "MaterialTagsRaw", "Value": "Liquid,Water" }
         ]},
+        { "Name": "LiquidPool", "Params": [
+          { "Key": "LiquidId", "Value": "water" },
+          { "Key": "Volume", "Value": "120" }
+        ]},
         { "Name": "Thermal", "Params": [
           { "Key": "Temperature", "Value": "15" },
           { "Key": "FlameTemperature", "Value": "9000" },
           { "Key": "VaporTemperature", "Value": "100" },
+          { "Key": "HeatCapacity", "Value": "2.0" }
+        ]}
+      ]
+    },
+    {
+      "Name": "OilSlick",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "oil slick" },
+          { "Key": "RenderString", "Value": "~" },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Oil" },
+          { "Key": "Combustibility", "Value": "90" },
+          { "Key": "MaterialTagsRaw", "Value": "Liquid,Oil" }
+        ]},
+        { "Name": "LiquidPool", "Params": [
+          { "Key": "LiquidId", "Value": "oil" },
+          { "Key": "Volume", "Value": "80" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "Temperature", "Value": "20" },
+          { "Key": "FlameTemperature", "Value": "250" },
+          { "Key": "HeatCapacity", "Value": "1.5" }
+        ]}
+      ]
+    },
+    {
+      "Name": "AcidPool",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "pool of acid" },
+          { "Key": "RenderString", "Value": "~" },
+          { "Key": "ColorString", "Value": "&G" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Acid" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "MaterialTagsRaw", "Value": "Liquid,Acid" }
+        ]},
+        { "Name": "LiquidPool", "Params": [
+          { "Key": "LiquidId", "Value": "acid" },
+          { "Key": "Volume", "Value": "60" }
+        ]},
+        { "Name": "Thermal", "Params": [
+          { "Key": "Temperature", "Value": "18" },
+          { "Key": "FlameTemperature", "Value": "9000" },
           { "Key": "HeatCapacity", "Value": "2.0" }
         ]}
       ]

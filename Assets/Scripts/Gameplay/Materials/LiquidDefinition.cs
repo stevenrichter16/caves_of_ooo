@@ -1,0 +1,111 @@
+using System;
+using System.Collections.Generic;
+
+namespace CavesOfOoo.Core
+{
+    /// <summary>
+    /// Data-only definition of a liquid (LQ.2). Mirrors Qud's
+    /// flyweight <c>BaseLiquid</c> (one shared definition per liquid
+    /// type), but JSON-driven instead of <c>[IsLiquid]</c>-reflected —
+    /// matching CoO's <see cref="MaterialReactionBlueprint"/> loading
+    /// convention so a new liquid is a JSON row, not a C# class.
+    ///
+    /// <para>Unity <see cref="UnityEngine.JsonUtility"/> cannot
+    /// deserialize <c>Dictionary</c> or nested generics beyond
+    /// <c>List&lt;[Serializable]&gt;</c>, so the modifier collections
+    /// are <c>List&lt;LiquidStatMod&gt;</c> and per-turn damage is a
+    /// nested <c>[Serializable]</c> class — the same shape that works
+    /// for <see cref="MaterialReactionBlueprint"/>.</para>
+    /// </summary>
+    [Serializable]
+    public class LiquidDefinition
+    {
+        /// <summary>Stable lookup key (e.g. "water", "oil", "acid").</summary>
+        public string Id;
+
+        /// <summary>Human-readable noun ("water").</summary>
+        public string DisplayName;
+
+        /// <summary>Coat adjective shown on the creature ("wet",
+        /// "oily", "acid-covered").</summary>
+        public string Adjective;
+
+        /// <summary>Pool glyph + CGA color (for LQ.3 puddle render).</summary>
+        public string Glyph = "~";
+        public string Color = "&c";
+
+        /// <summary>Electric-damage amplification driver (Qud's
+        /// MixedElectricalConductivity). Water ~100, oil 0.</summary>
+        public int Conductivity;
+
+        /// <summary>Fire-damage amplification driver (Qud's
+        /// Combustibility). Oil 90, water negative.</summary>
+        public int Combustibility;
+
+        /// <summary>Percent fire-damage REDUCTION while coated
+        /// (water damps fire). 0 = none.</summary>
+        public int FireDampen;
+
+        /// <summary>Ignition point for the coat/soaked items
+        /// (Qud's FlameTemperature). 99999 = won't ignite.</summary>
+        public int FlameTemperature = 99999;
+
+        /// <summary>How readily it coats per contact (Qud's
+        /// Adsorbence). 100 = fully.</summary>
+        public int Adsorbence = 100;
+
+        /// <summary>Drip-off amount per turn (Qud's Fluidity).</summary>
+        public int Fluidity;
+
+        /// <summary>Evaporation amount per turn (Qud's
+        /// Evaporativity).</summary>
+        public int Evaporativity;
+
+        /// <summary>Stain conversion rate (LQ.8 deferred — carried
+        /// now so the data shape is stable).</summary>
+        public int Staining;
+
+        /// <summary>Pool applies a slip on enter (LQ.5).</summary>
+        public bool Slippery;
+
+        /// <summary>Pool applies stuck/slow on enter (honey-class,
+        /// LQ.5/LQ.6).</summary>
+        public bool Sticky;
+
+        /// <summary>Ongoing damage each turn the coat persists
+        /// (acid-class). Null/zero = no tick.</summary>
+        public LiquidPerTurnDamage PerTurnDamage;
+
+        /// <summary>Combat-stat deltas applied while coated, reversed
+        /// on removal (LQ.6 stat liquids — pitch, ichor).</summary>
+        public List<LiquidStatMod> StatModifiers;
+
+        /// <summary>Resistance-stat deltas applied while coated,
+        /// reversed on removal (LQ.6 — brine, ichor).</summary>
+        public List<LiquidStatMod> ResistanceModifiers;
+
+        /// <summary>Optional status-effect name applied while coated
+        /// (LQ.5). Empty = none.</summary>
+        public string FollowOnEffect;
+    }
+
+    [Serializable]
+    public class LiquidPerTurnDamage
+    {
+        public int Amount;
+        public string Type;
+    }
+
+    [Serializable]
+    public class LiquidStatMod
+    {
+        public string Stat;
+        public int Delta;
+    }
+
+    [Serializable]
+    public class LiquidDefinitionCollection
+    {
+        public List<LiquidDefinition> Liquids;
+    }
+}

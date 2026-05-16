@@ -25,9 +25,27 @@ namespace CavesOfOoo.Core
         {
             MessageLog.Add(target.GetDisplayName() + " is electrified!");
 
-            // Wet targets receive amplified charge (and the effect lingers longer).
+            // Wet targets receive amplified charge (and the effect lingers
+            // longer). LQ.5 generalization (additive OR): a conductive
+            // liquid coat amplifies charge the same way moisture does.
+            // Water coats already satisfy `moist` via divergence #3's
+            // WetEffect, so every pinned ElectrifiedEffectDamageTests
+            // stays green (none add a coat); this clause only newly fires
+            // for conductive NON-water coats (brine, …).
             var wet = target.GetEffect<WetEffect>();
-            if (wet != null && wet.Moisture > 0.2f)
+            bool moist = wet != null && wet.Moisture > 0.2f;
+
+            bool conductiveCoat = false;
+            var coat = target.GetEffect<LiquidCoveredEffect>();
+            if (coat != null && LiquidRegistry.IsInitialized)
+            {
+                var ldef = LiquidRegistry.Get(coat.LiquidId);
+                if (ldef != null &&
+                    ldef.Conductivity >= LiquidCoveredEffect.CONDUCTIVITY_AMPLIFY_THRESHOLD)
+                    conductiveCoat = true;
+            }
+
+            if (moist || conductiveCoat)
             {
                 Charge *= 2f;
                 Duration += 1;
