@@ -1,3 +1,5 @@
+using CavesOfOoo.Diagnostics;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
@@ -46,6 +48,92 @@ namespace CavesOfOoo.Core
         {
             if (Volume < 0) Volume = 0;
             ApplyDefinitionRender();
+        }
+
+        /// <summary>
+        /// LQ.4 transfer-on-contact (closes plan gap (b)). When a
+        /// <c>Creature</c> steps into this pool's cell,
+        /// <see cref="MovementSystem.FireCellEnteredEvents"/> fires
+        /// <c>EntityEnteredCell</c> on this pool (a non-mover occupant);
+        /// we coat the mover with a <see cref="LiquidCoveredEffect"/>.
+        ///
+        /// <para><b>Divergence #5 (once-on-enter).</b> The event fires
+        /// only on the move INTO the cell — standing still or leaving
+        /// does not re-coat. Re-entry merges via
+        /// <see cref="LiquidCoveredEffect.OnStack"/>, never stacks.</para>
+        ///
+        /// <para><b>Exposure = clamp(Volume, 0, Strength+Toughness).</b>
+        /// A bigger, sturdier creature picks up more of a deep pool but
+        /// a shallow pool only ever transfers what's in it. A statless
+        /// creature (cap 0) is a documented degenerate no-coat.</para>
+        ///
+        /// <para><b>Observability (CLAUDE.md §Observability).</b> Every
+        /// branch emits a <c>liquid</c> diag record: <c>Coated</c> on
+        /// success, <c>CoatRejected</c> with a <c>reason</c> on each
+        /// gate (NullActor / NotACreature / RegistryUninitialized /
+        /// NoLiquidId / UnknownLiquid / PoolEmpty / ZeroExposure).</para>
+        /// </summary>
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID != "EntityEnteredCell") return true;
+
+            var mover = e.GetParameter<Entity>("Actor");
+            if (mover == null)
+            {
+                Diag.Record("liquid", "CoatRejected", null, ParentEntity,
+                    new { reason = "NullActor", liquidId = LiquidId, volume = Volume });
+                return true;
+            }
+
+            // Items, projectiles, furniture — only creatures get coated.
+            if (!mover.Tags.ContainsKey("Creature"))
+            {
+                Diag.Record("liquid", "CoatRejected", mover, ParentEntity,
+                    new { reason = "NotACreature", liquidId = LiquidId, volume = Volume });
+                return true;
+            }
+
+            if (!LiquidRegistry.IsInitialized)
+            {
+                Diag.Record("liquid", "CoatRejected", mover, ParentEntity,
+                    new { reason = "RegistryUninitialized", liquidId = LiquidId, volume = Volume });
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(LiquidId))
+            {
+                Diag.Record("liquid", "CoatRejected", mover, ParentEntity,
+                    new { reason = "NoLiquidId", liquidId = LiquidId, volume = Volume });
+                return true;
+            }
+
+            if (LiquidRegistry.Get(LiquidId) == null)
+            {
+                Diag.Record("liquid", "CoatRejected", mover, ParentEntity,
+                    new { reason = "UnknownLiquid", liquidId = LiquidId, volume = Volume });
+                return true;
+            }
+
+            if (Volume <= 0)
+            {
+                Diag.Record("liquid", "CoatRejected", mover, ParentEntity,
+                    new { reason = "PoolEmpty", liquidId = LiquidId, volume = Volume });
+                return true;
+            }
+
+            int cap = mover.GetStatValue("Strength", 0) + mover.GetStatValue("Toughness", 0);
+            int exposure = Volume < cap ? Volume : cap; // clamp(Volume, 0, cap); Volume > 0
+            if (exposure <= 0)
+            {
+                Diag.Record("liquid", "CoatRejected", mover, ParentEntity,
+                    new { reason = "ZeroExposure", liquidId = LiquidId, volume = Volume, cap });
+                return true;
+            }
+
+            mover.ApplyEffect(new LiquidCoveredEffect(LiquidId, exposure), ParentEntity, null);
+            Diag.Record("liquid", "Coated", mover, ParentEntity,
+                new { liquidId = LiquidId, amount = exposure, volume = Volume, cap });
+            return true;
         }
 
         /// <summary>

@@ -99,7 +99,7 @@ namespace CavesOfOoo.Core
             afterMove.SetParameter("NewY", newY);
             entity.FireEventAndRelease(afterMove);
 
-            FireCellEnteredEvents(entity, targetCell);
+            FireCellEnteredEvents(entity, currentCell, targetCell);
 
             return (true, null);
         }
@@ -148,7 +148,7 @@ namespace CavesOfOoo.Core
             afterMove.SetParameter("NewY", y);
             entity.FireEventAndRelease(afterMove);
 
-            FireCellEnteredEvents(entity, targetCell);
+            FireCellEnteredEvents(entity, currentCell, targetCell);
 
             return true;
         }
@@ -198,10 +198,33 @@ namespace CavesOfOoo.Core
         /// double-fires the <c>"Died"</c> event, and can double-spawn
         /// corpses via <c>CorpsePart</c>. Catches the CR-01 finding from
         /// the M6 review.</para>
+        ///
+        /// <para><b>Cell-CHANGE only (LQ.4 latent-bug fix).</b> Returns
+        /// early when <paramref name="sourceCell"/> is the same cell as
+        /// <paramref name="targetCell"/> (a no-op <c>TryMove(0,0)</c> /
+        /// blocked-into-self). Before this guard the dispatch fired even
+        /// when the mover never changed cells, so a creature issuing a
+        /// zero-delta move while standing on a rune/mine/pressure-plate
+        /// re-triggered it, and a creature standing in a liquid pool
+        /// re-coated every such call. The cell-CHANGE contract was
+        /// previously only true by caller-convention (the AI/input never
+        /// issues a 0,0 move) and was *documented as guaranteed* in
+        /// <see cref="PressurePlateTriggerPart"/> ("EntityEnteredCell
+        /// fires only on cell-CHANGE moves") — this makes it true in
+        /// code. A null <paramref name="sourceCell"/> (first placement)
+        /// is treated as a genuine entry and still fires. Compared by
+        /// coordinate, not reference, so it is robust regardless of
+        /// whether <c>GetCell</c> returns a stable wrapper.</para>
         /// </summary>
-        private static void FireCellEnteredEvents(Entity mover, Cell targetCell)
+        private static void FireCellEnteredEvents(Entity mover, Cell sourceCell, Cell targetCell)
         {
             if (targetCell == null) return;
+            // Cell-CHANGE only: a move that didn't change cells is not an
+            // "enter". sourceCell == null (first placement) IS an entry.
+            if (sourceCell != null
+                && sourceCell.X == targetCell.X
+                && sourceCell.Y == targetCell.Y)
+                return;
             var occupants = targetCell.Objects;
             if (occupants.Count == 0) return;
             // Fast path: only occupant is the mover itself — no dispatch

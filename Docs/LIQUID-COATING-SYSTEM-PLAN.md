@@ -2,8 +2,9 @@
 
 **Branch:** `feat/liquid-coating-system`
 **Date:** 2026-05-15
-**Status:** Planning only. No code yet. Two critical self-reviews at
-the bottom (§A, §B) per the brief.
+**Status:** LQ.1–LQ.4 SHIPPED. LQ.5–LQ.7 pending. Two critical
+self-reviews at the bottom (§A, §B) per the brief; per-phase
+implementation log at §11.
 
 > **Genre framing:** CoO is an **RPG, not a roguelike**
 > (`Docs/PROJECT-IDENTITY.md`). Liquid coatings are a moment-to-moment
@@ -576,3 +577,90 @@ the executable acceptance criteria for "expand by data," and two
 adversarial self-reviews surfaced and folded **five** concrete
 corrections (A2, A3, A5, B2, B4) plus two acceptance disciplines
 (B1, B3).
+
+---
+
+## 11. Implementation log (per phase, per CLAUDE.md rule #3)
+
+### LQ.2 — `LiquidDefinition` + `LiquidRegistry` — SHIPPED (`0cc6611`)
+Data layer: `[Serializable] LiquidDefinition` (flyweight), static
+`LiquidRegistry` (JsonUtility loader, later-wins, malformed→warn+skip),
+3 JSON defs (water/oil/acid). 15 tests.
+
+### LQ.3 — `LiquidPoolPart` + puddle blueprints — SHIPPED (`ece5c35`)
+`LiquidPoolPart : Part` (LiquidId/Volume, data-driven render from
+def Glyph/Color, null-safe). WaterPuddle wired + OilSlick/AcidPool
+blueprints. 12 tests. Folded the 5 pre-impl critical-review findings
+(F1 render-from-fields, F2 part-vs-blueprint ownership, F3 flyweight
+immutability contract + pinned test, F4 JsonUtility omitted-default
+coverage, F5 within-file dup-Id).
+
+### LQ.4 — Transfer-on-contact (closes gap **b**) — SHIPPED
+
+**What shipped**
+- `LiquidCoveredEffect : Effect` — `LiquidId`/`Amount` (plain public,
+  reflection-round-trippable, no FormatVersion bump per §A5);
+  `DisplayName` live from def `Adjective`; `OnApply`/`OnStack`
+  refresh `WetEffect` only when id=="water" (divergence #3);
+  `OnStack` = stronger-wins-id + amounts-add, always returns true
+  (merge-not-stack, divergence #1); `OnTurnEnd` dries by
+  `Fluidity+Evaporativity` (heat-accelerated like `WetEffect`),
+  removes self at Amount≤0 (divergence #5 dry-down half).
+- `LiquidPoolPart.HandleEvent("EntityEnteredCell")` — gates
+  (NullActor / NotACreature / RegistryUninitialized / NoLiquidId /
+  UnknownLiquid / PoolEmpty / ZeroExposure), each emitting a
+  `liquid/CoatRejected` diag; success emits `liquid/Coated`.
+  `exposure = clamp(Volume, 0, Strength+Toughness)`.
+- `Diag.DefaultOnCategories` += `"liquid"`.
+
+**RED→GREEN**
+RED: `LiquidCoatingTests.StandingStill_DoesNotReCoat` failed
+(Expected 30, was 60) — a no-op `TryMove(0,0)` re-fired
+`EntityEnteredCell`. GREEN after the MovementSystem fix below; full
+suite 43/43 (16 LiquidCoating + 15 LiquidRegistry + 12 LiquidPool)
++ 175 regression GREEN (movement/trigger/pressure-plate/electrified/
+save-round-trip/material/effect-round-trip).
+
+**SCOPE DIVERGENCE — MovementSystem cell-change latent-bug fix**
+The plan scoped LQ.4 as one `LiquidPoolPart` handler. The
+once-on-enter test (divergence #5) surfaced a **pre-existing latent
+bug**: `MovementSystem.FireCellEnteredEvents` (`MovementSystem.cs`
+TryMoveEx:102 / TryMoveTo:151) fired `EntityEnteredCell`
+unconditionally — even when `currentCell == targetCell` (a 0-delta
+move). The cell-CHANGE contract was **caller-convention-only** yet
+already *documented as guaranteed* in
+`PressurePlateTriggerPart.cs:334-336` ("EntityEnteredCell fires only
+on cell-CHANGE moves … verified during T2.1 sweep") — doc-vs-impl
+drift. Fix: `FireCellEnteredEvents` takes `sourceCell` and
+coordinate-compares for an early-out (null source = first-placement
+entry, still fires). This makes the documented contract true in
+code and fixes a real double-trigger for runes/mines/pressure-plates
+on a literal 0,0 move. All 105 movement/trigger/rune regression
+tests stayed green.
+
+**Self-review (CLAUDE.md §5)**
+- 🟡→fixed: Q2 cross-feature payload-shape consistency — `NoLiquidId`
+  `CoatRejected` payload omitted `liquidId`; now all `CoatRejected`
+  payloads share `{reason, liquidId, volume}` (+`cap` for
+  ZeroExposure as legitimate extra debug info).
+- 🔵 noted: per-reason `CoatRejected` diag (NullActor / NotACreature
+  / RegistryUninitialized / NoLiquidId / UnknownLiquid /
+  ZeroExposure) is behaviorally tested but only `PoolEmpty` is
+  diag-payload-pinned; the dedicated `<Feature>AdversarialTests.cs`
+  (scheduled LQ.7) pins each reason.
+- 🧪 noted: `LiquidCoveredEffect` reflection save round-trip is
+  inferred from plain-public-fields parity with `WetEffect`/
+  `LiquidPoolPart` (EffectRoundTrip* groups green) but not yet
+  pinned by a LiquidCovered-specific round-trip test → LQ.7.
+- ⚪ noted: `OnStack` amount-add is uncapped (plan divergence #1
+  "amounts add"); gameplay-tuning concern, deferred.
+
+**Files**
+- NEW `Assets/Scripts/Gameplay/Materials/LiquidCoveredEffect.cs`
+- MOD `Assets/Scripts/Gameplay/Materials/LiquidPoolPart.cs`
+  (+`HandleEvent`, +`using CavesOfOoo.Diagnostics`)
+- MOD `Assets/Scripts/Gameplay/Turns/MovementSystem.cs`
+  (cell-CHANGE guard — scope-divergence latent-bug fix)
+- MOD `Assets/Scripts/Shared/Utilities/Diag.cs` (+`"liquid"` channel)
+- NEW `Assets/Tests/EditMode/Gameplay/Materials/LiquidCoatingTests.cs`
+  (16 tests)
