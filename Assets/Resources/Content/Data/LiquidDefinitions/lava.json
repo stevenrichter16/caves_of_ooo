@@ -1,0 +1,26 @@
+{
+  "Liquids": [
+    {
+      "Id": "lava",
+      "DisplayName": "lava",
+      "Adjective": "lava-covered",
+      "Glyph": "~",
+      "Color": "&R",
+      "Conductivity": 90,
+      "Combustibility": 0,
+      "FireDampen": 0,
+      "FlameTemperature": 99999,
+      "Adsorbence": 100,
+      "Fluidity": 15,
+      "Evaporativity": 0,
+      "Staining": 0,
+      "Slippery": false,
+      "Sticky": false,
+      "PerTurnDamage": { "Amount": 8, "Type": "Heat" },
+      "ResistanceModifiers": [
+        { "Stat": "HeatResistance", "Delta": -25 }
+      ],
+      "FollowOnEffect": ""
+    }
+  ]
+}
