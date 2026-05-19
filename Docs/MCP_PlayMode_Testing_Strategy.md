@@ -340,7 +340,7 @@ The liquid bench's three dead ends, each → a rule below:
   proving the coat layer ×2 and the resistance layer −15 ElecRes
   compound correctly end-to-end). Conclusive in one launch.
 
-### The seven rules
+### The eight rules
 
 1. **Synthetic, not manual.** `Apply()` applies the stimulus
    directly to every subject (e.g.
@@ -377,6 +377,23 @@ The liquid bench's three dead ends, each → a rule below:
    The *real* proof is a live Play run + diag audit. Keep the branch
    unmerged until the live matrix comes back complete and correct.
    (Honesty bound, CLAUDE.md §6.3: "smoke green" ≠ "mechanic works".)
+8. **Stamp every run; the diag buffer can outlive the Play session.**
+   When the project has *Reload Domain on Enter Play Mode* disabled
+   (Caves of Ooo does), `Diag`'s static ring buffer **persists across
+   Play sessions** — last session's `MatrixAudit` records are still
+   there next launch. A reader that dedups by `(subject,case)` will
+   silently show **stale prior-run numbers** and you'll "verify" a
+   ghost. Emit a per-run `runId` (GUID) on every cell **and** a
+   `MatrixAuditRun` marker; the audit query is then: newest
+   `MatrixAuditRun` → its `runId` → filter `MatrixAudit` to that
+   `runId`. Caught for real in LX.3: the live table showed the 4 new
+   liquids + ichor at a flat ×1.00 while *direct* live measurement
+   (snapshot→ApplyDamage→measure on the same dummies) proved them
+   exact (lava ×1.90/×1.25, gel ×2.00, ichor ×1.20, sap ×1.35) — the
+   mechanic was perfect; the *reader* was fooled by v3.1-session
+   leftovers in the persisted buffer. Corollary: when in doubt,
+   cross-check the diag matrix against a direct in-`execute_code`
+   measurement — it bypasses the buffer entirely.
 
 ### Where to apply it (not just new features)
 

@@ -948,3 +948,188 @@ bug-class checklist for any damage-attribute-reading feature.
 
 **Files** — MOD `LiquidCoveredEffect.cs` (2 predicate swaps + the
 why-comment); NEW `LiquidCoatElementAliasTests.cs` (7 tests).
+
+---
+
+## 13. LX — Qud-liquid expansion: Lava / Gel / Sap / Honey
+
+**Status:** PLANNED (LX.1). The LQ.6 "expand by data alone" thesis,
+exercised for real: 4 more Qud liquids as **JSON-only content, zero
+new C#**, surfaced + verified through the v3.1 self-auditing bench
+(first real application of the `Docs/MCP_PlayMode_Testing_Strategy.md`
+§Deterministic-Self-Auditing-Scenarios pattern).
+
+### 13.1 Goal & scope
+
+Add `lava`, `gel`, `sap`, `honey` using only the LiquidDefinition
+knobs the LQ.5/LQ.6 engine **already consumes**
+(`Conductivity`, `Combustibility`, `FireDampen`, `PerTurnDamage`,
+`StatModifiers`, `ResistanceModifiers`, `Fluidity`, `Evaporativity`).
+No engine changes. Out of scope: any liquid needing un-wired knobs
+(`Slippery`/`Sticky`/`Staining`/`FollowOnEffect`) for its *primary*
+character, or new mechanics.
+
+### 13.2 Verification sweep (Qud `XRL.Liquids/` → CoO wired knobs)
+
+| Qud class | Qud ctor values (cited) | CoO mapping | Drift / decision |
+|---|---|---|---|
+| `LiquidLava` | `Temperature=1000`, `MixedElectricalConductivity=90`, `ConsiderDangerousToContact=true`; drink → `TakeDamage(…, "Heat")`, reads `HeatResistance` (LiquidLava.cs:25,32,117,224) | `Conductivity:90`, `PerTurnDamage{8,"Heat"}`, **CoO** `ResistanceModifiers HeatResistance:-25` | **Documented divergence:** Qud burns via the temperature sim; we model the burn as the scalar `PerTurnDamage` tick — *identical precedent to our acid divergence* (plan §4 #1). The −HeatRes is a CoO design echo of carapace-ichor's −ColdRes (lava-soaked ⇒ fire bites harder). |
+| `LiquidGel` | `MixedElectricalConductivity=100`, `Fluidity=5`, `Evaporativity=1`, `SlipperyWhenWet` (LiquidGel.cs) | `Conductivity:100`, `Fluidity:5`, `Evaporativity:1`, `Slippery:true` (data-stable, cosmetic till LQ.8) | Pure conductor; a non-water/non-brine Electric-amp coat. Slippery carried for shape only — character comes from the wired `Conductivity`. |
+| `LiquidSap` | `Combustibility=70`, `Fluidity=3`, `Evaporativity=1`, `FlameTemperature=250`, `InterruptAutowalk` (LiquidSap.cs) | `Combustibility:70`, `Fluidity:3`, `Evaporativity:1`, `FlameTemperature:250`, **CoO** `StatModifiers Agility:-2`, `Sticky:true` | Qud's stickiness (`Sticky`) is un-wired in CoO; the "slowed in sap" character is delivered via the **wired** `StatModifiers` path — the exact technique pitch uses. |
+| `LiquidHoney` | `Combustibility=60`, `Adsorbence=25`, `Fluidity=10`, `Evaporativity=1` (LiquidHoney.cs) | `Combustibility:60`, `Adsorbence:25`, `Fluidity:10`, **CoO** `StatModifiers Agility:-2,DV:-3`, `Sticky:true` | Same: canonical sticky-slow via wired `StatModifiers` (Qud `Sticky` cosmetic till LQ.8). |
+
+No false premises: the wired-knob set was re-confirmed by grep
+against `LiquidCoveredEffect.cs` (only Conductivity / Combustibility /
+FireDampen / PerTurnDamage / StatModifiers / ResistanceModifiers /
+Fluidity / Evaporativity are read); `Slippery`/`Sticky`/`Staining`/
+`FollowOnEffect` have **zero** gameplay consumers today.
+
+### 13.3 Scope-prune (rejected liquids + rationale)
+
+- **Slime/Goo/Ooze/Sludge** — primary trait is movement/prone
+  (`ObjectGoingProne`,`GetNavigationWeight`) ⇒ cosmetic till the
+  LQ.8 movement milestone. Cut.
+- **Blood/Wine/Cider** — drink/flavor-centric (`Drank` override),
+  ~no wired-knob character as a coat. Cut.
+- **Salt/Algae** — value is freeze-to-solid (Halite, `FreezeObject*`)
+  ⇒ explicitly LQ.8-deferred. Cut.
+- **BrainBrine/Putrescence** — confusion/sickness needs
+  `FollowOnEffect` (⚪-deferred LQ.5 hook). Revisit post-FollowOnEffect.
+- **Convalessence** — healing pool; needs ~1 new knob
+  (negative `PerTurnDamage`/`PerTurnHeal`). High-flavor follow-up,
+  not this JSON-only ship. Cut with a note.
+- **NeutronFlux/ProteanGunk/Cloning** — Qud reality/mutation/clone
+  systems (`SmearOn`,`ProcessTurns`,`MixingWith`); large C#, low ROI.
+  Cut.
+
+### 13.4 The 4 liquids (Qud-informed, CoO-tuned)
+
+| id | Glyph/Color | Conductivity | Combustibility | FireDampen | PerTurnDamage | StatModifiers | ResistanceModifiers | Fluidity/Evap |
+|---|---|---|---|---|---|---|---|---|
+| `lava` | `~` `&R` | 90 | 0 | 0 | `{8,"Heat"}` | – | `HeatResistance:-25` | 15 / 0 |
+| `gel` | `~` `&c` | 100 | 0 | 0 | – | – | – | 5 / 1 |
+| `sap` | `~` `&w` | 0 | 70 | 0 | – | `Agility:-2` | – | 3 / 1 |
+| `honey` | `~` `&Y` | 0 | 60 | 0 | – | `Agility:-2,DV:-3` | – | 10 / 1 |
+
+Expected single-hit bench matrix (end-to-end factor) — **CORRECTED
+in LX.3 (the original line below mis-stated sap/honey):**
+- `lava`: Electric ×1.90 (Cond 90), Heat ×1.25 (−25 HeatRes); the
+  8/turn PerTurnDamage tick is a *separate* turn mechanic, NOT in
+  the single-hit matrix cell.
+- `gel`: Electric ×2.00 (Cond 100).
+- `sap`: Heat **×1.35** (Combustibility 70 — sap IS flammable, same
+  branch as oil/pitch) + −2 Agility on coat, net-zero on removal.
+- `honey`: Heat **×1.30** (Combustibility 60) + −2 Agi/−3 DV.
+
+> ❌ Original LX.1 line (kept for the doc-vs-impl honesty trail):
+> *"sap/honey all elements ≈1.0 (no element knob)"* — WRONG. sap/honey
+> carry Combustibility (70/60), an element knob, so they amplify Heat
+> exactly like oil/pitch. Caught by the LX.3 cold-eye Q4 pass; the
+> shipped values are the corrected ones above.
+
+### 13.5 Sub-milestones (smallest blast radius first)
+
+- **LX.1** — this plan + sweep (doc commit).
+- **LX.2** — 4 JSON files (+`.meta`) + `LiquidExpansionContentTests.cs`:
+  RED = read each file from disk, load, assert knobs (fails before
+  files exist) → GREEN. Behavior pins + counter-checks: lava ticks
+  Heat (`OnTurnStart`) + amplifies Electric; gel Electric ×~2;
+  sap/honey reduce Agility on coat and **net-zero on removal**
+  (EquipBonus invariant); counter: gel has no StatModifiers, sap has
+  no Electric interaction. Adversarial: unknown-stat skip, registry
+  reset mid-coat still nets zero. RED→GREEN, regression sweep,
+  commit.
+- **LX.3** — add the 4 to the `LiquidSpellTestBench` rig (+ extend
+  the `ClearCell` corridor) so the matrix auto-audits them; compile;
+  smoke; **live diag audit** (validate-before-merge per §7 of the
+  self-auditing playbook); cold-eye Q1–Q4; roadmap + §13 impl log;
+  commit + merge to main + push.
+
+### 13.6 Performance
+
+None. No new per-frame/per-turn path: `lava` reuses the
+already-shipped `OnTurnStart` `PerTurnDamage` tick (same as acid);
+the rest are pure data read in the existing `OnBeforeTakeDamage`/
+`OnApply` paths. No new caches, MonoBehaviours, or event listeners.
+
+### 13.7 Pre-flagged self-review
+
+- **🟡 lava PerTurnDamage scalar vs Qud temperature sim** — same
+  acknowledged divergence as acid; document, don't port the temp sim
+  (LQ.8-class). Pin lava's Heat-tick with a test.
+- **🔵 sap/honey use StatModifiers for "sticky" because `Sticky` is
+  un-wired** — deliberate (matches pitch). Note in §13 impl log so a
+  future reader doesn't "fix" it by wiring Sticky and double-applying.
+- **⚪ gel `Slippery:true` is cosmetic today** — carried for data-
+  shape stability; documented, not a gap.
+- **🧪 RED discipline** — content RED is a real on-disk file-load
+  failure before the JSON exists (compile-able, observable), not a
+  compressed step.
+
+### 13.8 Implementation log (LX.1–LX.3) — incl. a hard cold-eye finding
+
+**LX.1** (`b5de653`) plan+sweep. **LX.2** (`2266503`) 4 JSON files +
+`LiquidExpansionContentTests` (4 content-shape RED→GREEN confirmed
+RED on disk before files existed; 8 behavior/counter/adversarial
+pins). 101/101 liquid regression.
+
+**LX.3 — the honest part.** Adding the 4 liquids to the
+self-auditing bench and running the validate-before-merge live audit
+exposed **two latent bugs in the bench itself, and a hard truth about
+every prior "conclusive" matrix in this system's history:**
+
+1. **Bench `RunMatrixAudit` had never produced valid data.** It runs
+   synchronously in scenario `Apply()`, which executes *before*
+   GameBootstrap Step-1b' finishes loading `LiquidDefinitions`. With
+   the registry uninitialized, every coat's `OnApply`/
+   `OnBeforeTakeDamage` early-returns → the whole matrix records a
+   phantom **×1.00**, indistinguishable from "no interaction" (a
+   textbook Rule-4 violation *inside the Rule-4 exemplar*). Every
+   earlier "matrix table" reported as validation (incl. v3.1's
+   "conclusive" 6-liquid table) was actually **stale persisted-buffer
+   data from earlier *manual-cast* sessions** (this project has
+   domain-reload-on-play off, so `Diag`'s static buffer survives
+   Play→Edit→Play). The mechanic was *always* correct — proven
+   repeatedly by *direct* `execute_code` snapshot→ApplyDamage→measure
+   on the live dummies (water 200, lava 190/125, gel 200, sap 135,
+   honey 130, ichor 120 — all exact). My "the bench proves it"
+   claims were not. This is the canonical "tests-green-feels-clean
+   is where latent bugs hide" lesson; it was only exposed because the
+   Rule-8 `runId` scoping forced the first *clean* read.
+2. **Persisted-buffer staleness** (the Rule-8 gap): a reader deduping
+   by `(liquid,element)` silently shows last-session numbers.
+
+**Fixes shipped in LX.3:**
+- `EnsureLiquidRegistry()` at the **top of `Apply()`** (mirrors
+  GameBootstrap Step-1b' `Resources.LoadAll`) so the registry is live
+  *before any dummy is coated* — bootstrap-order-independent.
+- Loud Rule-4 abort in `RunMatrixAudit`: if the registry is still
+  unavailable, emit `MatrixAuditSkipped(reason=registry_unavailable)`
+  and run **nothing** — never phantom ×1.00.
+- Rule-8 `runId` GUID on every `MatrixAudit` cell + a
+  `MatrixAuditRun` marker; the audit query scopes to the newest run.
+- Display rounding nit fixed (`(int)(1.9f*100)`=189 → `Math.Round`).
+- Methodology hardened: `Docs/MCP_PlayMode_Testing_Strategy.md`
+  Rule 8 (+ its "cross-check against direct `execute_code`
+  measurement" corollary) and the CLAUDE.md always-on mirror.
+
+**Final clean verification (runId-scoped, registry-ensured,
+cross-checked vs direct measurement — the real one):**
+`cells=40/40`; dry 100×4; water 60/200; oil 145; pitch 145;
+brine 85/230; ichor Cold 120; **lava 125/190; gel 200; sap 135;
+honey 130** — every cell exactly the spec.
+
+**Cold-eye Q1–Q4:** Q1 ✓ (JSON mirror the brine template;
+EnsureLiquidRegistry mirrors GameBootstrap; runId mirrors the
+Skipped record). Q2 ✓ (all payloads carry `runId`; Hint() covers
+every interacting cell). Q3 ✓ (content counter-checks + the `dry`
+control row). **Q4 → fixed** (the §13.4 "sap/honey ≈1.0" doc error,
+corrected above with the honesty trail). No 🔴/🟡 remain in the
+*mechanic*; the bench bugs are fixed and re-verified clean.
+
+**Honesty bound:** the LX *liquids* are conclusively correct (direct
+measurement + the now-trustworthy bench agree). The sobering part is
+that the self-auditing bench — the very instrument built to make
+these audits trustworthy — was itself silently broken until this
+milestone; it is the strongest possible argument for Rule 8's
+direct-measurement cross-check, and that corollary is now codified.

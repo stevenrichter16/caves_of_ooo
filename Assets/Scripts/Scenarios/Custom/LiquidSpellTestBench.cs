@@ -83,6 +83,20 @@ namespace CavesOfOoo.Scenarios.Custom
 
         public void Apply(ScenarioContext ctx)
         {
+            // v3.2 CRITICAL (Rule 4 + Rule 8 fallout): scenario Apply()
+            // can run BEFORE GameBootstrap's Step-1b' LiquidDefinitions
+            // load completes. If so, every coat's OnApply/OnBeforeTakeDamage
+            // early-returns on !LiquidRegistry.IsInitialized and the WHOLE
+            // matrix records a phantom ×1.00 — indistinguishable from "no
+            // interaction" (the exact Rule-4 failure mode). This was the
+            // LX.3 bug: the bench's RunMatrixAudit had NEVER produced valid
+            // data; prior "good" tables were stale persisted-buffer reads
+            // from manual-cast sessions. Make the bench self-sufficient:
+            // ensure the registry is loaded BEFORE any dummy is coated, so
+            // OnApply stat-mods (lava −HeatRes, ichor −ColdRes) and
+            // OnBeforeTakeDamage element re-weight both see a live registry.
+            EnsureLiquidRegistry();
+
             var p = ctx.Zone.GetEntityPosition(ctx.PlayerEntity);
 
             ctx.Player
@@ -103,7 +117,7 @@ namespace CavesOfOoo.Scenarios.Custom
             // ElementalCreatureZoo pattern: clear the dummy row + the two
             // adjacent rows (covers every dummy cell AND its orthogonal
             // cosmetic-pool-ring cell) across the full span.
-            for (int dx = 1; dx <= 14; dx++)
+            for (int dx = 1; dx <= 22; dx++)
             {
                 ctx.World.ClearCell(p.x + dx, p.y);
                 ctx.World.ClearCell(p.x + dx, p.y - 1);
@@ -121,6 +135,12 @@ namespace CavesOfOoo.Scenarios.Custom
                 ("pitch",          Dummy(ctx, "pitch",          p.x + 8,  p.y)),
                 ("brine",          Dummy(ctx, "brine",          p.x + 10, p.y)),
                 ("carapace-ichor", Dummy(ctx, "carapace-ichor", p.x + 12, p.y)),
+                // LX — Qud-liquid expansion (JSON-only): auto-audited
+                // by the same synthetic matrix, no new test code.
+                ("lava",           Dummy(ctx, "lava",           p.x + 14, p.y)),
+                ("gel",            Dummy(ctx, "gel",            p.x + 16, p.y)),
+                ("sap",            Dummy(ctx, "sap",            p.x + 18, p.y)),
+                ("honey",          Dummy(ctx, "honey",          p.x + 20, p.y)),
             };
 
             RunMatrixAudit(ctx, rig);
@@ -143,9 +163,57 @@ namespace CavesOfOoo.Scenarios.Custom
         /// per cell. ElectrifiedEffect is stripped before the Electric
         /// cell so divergence #6 can never suppress the conductivity amp.
         /// </summary>
+        /// <summary>
+        /// Make the bench bootstrap-order-independent: if GameBootstrap
+        /// hasn't loaded the liquid defs yet, load them here exactly the
+        /// way it does (Step 1b': Resources.LoadAll the
+        /// LiquidDefinitions folder → InitializeFromJsonSources).
+        /// Idempotent — a later GameBootstrap load just replaces with
+        /// identical content.
+        /// </summary>
+        private static void EnsureLiquidRegistry()
+        {
+            if (LiquidRegistry.IsInitialized && LiquidRegistry.Count > 0)
+                return;
+            var assets = UnityEngine.Resources.LoadAll<UnityEngine.TextAsset>(
+                "Content/Data/LiquidDefinitions");
+            if (assets == null || assets.Length == 0) return;
+            var srcs = new List<string>(assets.Length);
+            for (int i = 0; i < assets.Length; i++) srcs.Add(assets[i].text);
+            LiquidRegistry.InitializeFromJsonSources(srcs);
+        }
+
         private static void RunMatrixAudit(ScenarioContext ctx, List<(string coat, Entity npc)> rig)
         {
-            MessageLog.Add("───── [MatrixAudit] synthetic element matrix (base=" + BASE + ") ─────");
+            // v3.2 robustness: the Diag ring buffer can PERSIST across
+            // Play sessions when the project has domain-reload-on-play
+            // disabled (this one does). Without a per-run id, a stale
+            // older-run record is indistinguishable from this run's, so
+            // a reader that dedups by (liquid,element) can silently show
+            // last-session's numbers. Stamp every cell with a fresh
+            // runId and emit a MatrixAuditRun marker so the audit query
+            // is `kind=MatrixAuditRun` (newest) → its runId →
+            // `MatrixAudit` filtered to that runId. (Self-auditing
+            // playbook Rule 8.)
+            string runId = System.Guid.NewGuid().ToString("N").Substring(0, 8);
+            Diag.Record("liquid", "MatrixAuditRun", actor: null, target: null,
+                payload: new { runId, baseAmount = BASE, rigSize = rig.Count });
+            MessageLog.Add("───── [MatrixAudit] run " + runId + " (base=" + BASE + ") ─────");
+
+            // Rule 4 (loud precondition): if the registry is STILL
+            // unavailable (Resources missing), abort the WHOLE audit
+            // loudly — never emit phantom ×1.00 rows that read as
+            // "no interaction". This is the guard whose absence made
+            // the LX.3 pre-registry-init bug invisible.
+            if (!LiquidRegistry.IsInitialized || LiquidRegistry.Count == 0)
+            {
+                MessageLog.Add("[MatrixAudit] ABORT — LiquidRegistry unavailable; "
+                    + "matrix NOT run (would be phantom ×1.00).");
+                Diag.Record("liquid", "MatrixAuditSkipped", actor: null, target: null,
+                    payload: new { runId, reason = "registry_unavailable", scope = "all" });
+                return;
+            }
+
             foreach (var (coat, npc) in rig)
             {
                 // Robustness (v3.1): a dummy that failed to place into
@@ -156,7 +224,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 {
                     MessageLog.Add($"[MatrixAudit] {coat,-15} SPAWN-FAILED — cell blocked, NOT audited");
                     Diag.Record("liquid", "MatrixAuditSkipped", actor: npc, target: null,
-                        payload: new { liquid = coat, reason = "spawn_failed" });
+                        payload: new { runId, liquid = coat, reason = "spawn_failed" });
                     continue;
                 }
                 foreach (var elem in Elements)
@@ -184,15 +252,19 @@ namespace CavesOfOoo.Scenarios.Custom
                     Diag.Record("liquid", "MatrixAudit", actor: npc, target: null,
                         payload: new
                         {
+                            runId,
                             liquid = coat,
                             element = elem,
                             baseAmount = BASE,
                             dealt,
-                            factorPctOfBase = (int)(factor * 100),
+                            // Round, don't truncate: (int)(1.9f*100) is
+                            // 189 not 190 (float). Mechanic is exact; this
+                            // keeps the readout exact too.
+                            factorPctOfBase = (int)System.Math.Round(factor * 100.0),
                         });
                 }
             }
-            MessageLog.Add("───── [MatrixAudit] complete ─────");
+            MessageLog.Add("───── [MatrixAudit] run " + runId + " complete ─────");
         }
 
         /// <summary>Human-readable expectation per (liquid,element) so
@@ -209,6 +281,11 @@ namespace CavesOfOoo.Scenarios.Custom
                 case "brine/Electric": return "expect >2.00 (Cond ×2 + −15 ElecRes)";
                 case "brine/Heat": return "expect <1.00 (+15 HeatRes)";
                 case "carapace-ichor/Cold": return "expect >1.00 (−20 ColdRes)";
+                case "lava/Electric": return "expect ~1.90 (Conductivity 90)";
+                case "lava/Heat": return "expect ~1.25 (−25 HeatRes); +8/turn tick is SEPARATE (not in this single-hit cell)";
+                case "gel/Electric": return "expect ~2.00 (Conductivity 100)";
+                case "sap/Heat": return "expect ~1.35 (Combust 70)";
+                case "honey/Heat": return "expect ~1.30 (Combust 60)";
                 case "dry/Heat":
                 case "dry/Electric":
                 case "dry/Cold":
