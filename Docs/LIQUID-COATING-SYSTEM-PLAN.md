@@ -1251,3 +1251,55 @@ listeners.
 - **🧪 RED discipline** — content RED is a real on-disk file-load
   failure before the JSON exists (compile-able, observable).
 - **⚪ Five deferred special-features** (§14.4) — tracked, not lost.
+
+### 14.8 Implementation log (LL.1–LL.3)
+
+**LL.1** (`5333e50`) plan+sweep. **LL.2** (`dcfaddb`) 5 JSON +
+`LiquidLoreContentTests` (5 content-shape RED→GREEN confirmed RED on
+disk before files; 7 behavior/counter/adversarial pins). 89/89.
+**LL.3** rig + live audit + this log.
+
+**Q4 doc-vs-impl correction (the §13.4-style honesty trail).**
+§14.2 (written in LL.1) listed `lumen-slime` `Conductivity 40` and
+`bog-mire` `Conductivity 20`. `CONDUCTIVITY_AMPLIFY_THRESHOLD = 50`,
+so 40/20 would be **inert data** (a looks-like-a-knob-does-nothing
+Rule-4 hygiene violation). **Shipped both at `Conductivity 0`** —
+lumen's mechanic is the −3 DV glow-beacon; bog's is FireDampen 50 +
+tannic tick + −2 Agi. The §14.2 table values above are the *original
+plan*; the *shipped* values are Conductivity 0 for both. Caught by
+the LL.2 pre-impl sweep, recorded here per Q4.
+
+**All-100%-by-design caveat (Rule 4, the LX.3 lesson applied).**
+The single-hit matrix only re-weights damage. `sundew-mucilage`,
+`choir-wort`, and `lumen-slime` are **stat/tick liquids** — their
+mechanics are StatModifiers (−Agi/−DV/−Tough) and OnTurnStart
+PerTurnDamage, which the single-hit matrix *structurally cannot
+show*. Their matrix rows are a legitimate, **documented** ×1.00
+(the bench Hint() lines say "1.00 by design — effect is X
+(StatMod/OnTurnStart)") — NOT the LX.3 phantom-100 bug. Verified by
+the Rule-8 direct cross-check below, not by the matrix alone.
+
+**Final verification (runId-scoped + direct cross-check):**
+`cells=60/60`, `skipped=0`. Matrix-visible re-weights exact:
+`iron-gall-ink` Electric ×1.60 (Cond 60), `bog-mire` Heat ×0.50
+(FireDampen 50); existing 10 unchanged. Direct `execute_code`
+measurement on the live dummies confirmed the non-matrix mechanics
+exact: sundew −4 Agi/−5 DV; choir-wort −3 Tough + 4/turn Acid tick;
+lumen −3 DV; iron-gall-ink 2/turn tick; bog-mire −2 Agi + 1/turn
+tick. All net-zero on removal (LiquidLoreContentTests pins).
+
+**Cold-eye Q1–Q4:** Q1 ✓ (JSON mirror brine/lava template; rig +
+Hint mirror LX). Q2 ✓ (identical schema; Acid-type + StatModifiers
+consistent with shipped liquids; runId on all payloads). Q3 ✓
+(content counter-checks + the dry control row + the direct
+cross-check). **Q4 → fixed** (the lumen/bog Conductivity correction +
+the all-100%-by-design caveat, both recorded above). No 🔴/🟡 in the
+*mechanic*; the two 🟡 pre-flags (lumen −DV is a CoO-tuned reading;
+choir-wort uses Acid for enzymatic digestion) are documented
+interpretive choices, not defects.
+
+**Honesty bound:** the 5 liquids are conclusively correct (matrix +
+direct measurement agree). The lore *special-features* (§14.4) are
+NOT shipped — these are the wired *gameplay shadows* of the canon,
+faithful within the wired-knob model, with the richer features
+tracked as ⚪ follow-ups.

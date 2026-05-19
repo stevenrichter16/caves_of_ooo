@@ -117,7 +117,7 @@ namespace CavesOfOoo.Scenarios.Custom
             // ElementalCreatureZoo pattern: clear the dummy row + the two
             // adjacent rows (covers every dummy cell AND its orthogonal
             // cosmetic-pool-ring cell) across the full span.
-            for (int dx = 1; dx <= 22; dx++)
+            for (int dx = 1; dx <= 32; dx++)
             {
                 ctx.World.ClearCell(p.x + dx, p.y);
                 ctx.World.ClearCell(p.x + dx, p.y - 1);
@@ -141,6 +141,13 @@ namespace CavesOfOoo.Scenarios.Custom
                 ("gel",            Dummy(ctx, "gel",            p.x + 16, p.y)),
                 ("sap",            Dummy(ctx, "sap",            p.x + 18, p.y)),
                 ("honey",          Dummy(ctx, "honey",          p.x + 20, p.y)),
+                // LL — lore-grounded liquids (tepui-thread canon),
+                // JSON-only; auto-audited by the same synthetic matrix.
+                ("iron-gall-ink",  Dummy(ctx, "iron-gall-ink",  p.x + 22, p.y)),
+                ("sundew-mucilage",Dummy(ctx, "sundew-mucilage",p.x + 24, p.y)),
+                ("choir-wort",     Dummy(ctx, "choir-wort",     p.x + 26, p.y)),
+                ("lumen-slime",    Dummy(ctx, "lumen-slime",    p.x + 28, p.y)),
+                ("bog-mire",       Dummy(ctx, "bog-mire",       p.x + 30, p.y)),
             };
 
             RunMatrixAudit(ctx, rig);
@@ -286,6 +293,16 @@ namespace CavesOfOoo.Scenarios.Custom
                 case "gel/Electric": return "expect ~2.00 (Conductivity 100)";
                 case "sap/Heat": return "expect ~1.35 (Combust 70)";
                 case "honey/Heat": return "expect ~1.30 (Combust 60)";
+                // LL — only ink/Electric + bog/Heat re-weight a single
+                // hit. sundew/choir-wort/lumen are stat/tick liquids:
+                // their effect is in liquid/StatModApplied + OnTurnStart,
+                // NOT this damage matrix — a 1.00 row there is CORRECT,
+                // not "broken" (the all-cells-100 honesty caveat).
+                case "iron-gall-ink/Electric": return "expect ~1.60 (Conductivity 60)";
+                case "bog-mire/Heat": return "expect ~0.50 (FireDampen 50)";
+                case "sundew-mucilage/Heat": return "1.00 by design — slow is −Agi/−DV (StatMod), not a hit re-weight";
+                case "choir-wort/Heat": return "1.00 by design — effect is −Tough + Acid tick (StatMod/OnTurnStart)";
+                case "lumen-slime/Electric": return "1.00 by design — effect is −DV glow-beacon (StatMod)";
                 case "dry/Heat":
                 case "dry/Electric":
                 case "dry/Cold":
