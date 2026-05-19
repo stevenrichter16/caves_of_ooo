@@ -34,6 +34,17 @@ namespace CavesOfOoo.Scenarios.Custom
     /// zero turn dependency, zero div-#6 interference. Relaunch to
     /// re-run.</para>
     ///
+    /// <para><b>v3.1.</b> v3's live diag audit caught a scenario bug:
+    /// the hardcoded spawn offsets landed on SampleScene decor so only
+    /// 2 of 6 dummies actually placed, and the audit reported the
+    /// unspawned four as phantom "×1.00" rows. Fixed two ways: (1) clear
+    /// the corridor before spawning (the proven ElementalCreatureZoo
+    /// pattern) on a single collision-free row; (2) the audit now
+    /// verifies <see cref="Zone.GetEntityPosition"/> ≥ 0 per dummy and
+    /// emits a loud <c>SPAWN-FAILED</c> line + <c>liquid/MatrixAuditSkipped</c>
+    /// instead of a misleading ×1.00 — a spawn failure can never again
+    /// masquerade as "no interaction".</para>
+    ///
     /// The dummies are still real, stationary, permanently-coated and
     /// stat-bearing, so manual casting still works as a secondary check
     /// (the player keeps the ArcBolt/Conflagration/IceLance/AcidSpray
@@ -85,20 +96,36 @@ namespace CavesOfOoo.Scenarios.Custom
                 .AddMutation("AcidSprayMutation", level: 5)
                 .GiveItem("HealingTonic", 5);
 
-            // (coatId, dummy) — Dry control first as the baseline row.
+            // v3.1: clear the corridor BEFORE spawning. v3's hardcoded
+            // offsets landed on SampleScene decor/walls so most dummies
+            // never placed (diag proved only 2 of 6 spawned) and the
+            // audit reported phantom 100% rows. Mirror the proven
+            // ElementalCreatureZoo pattern: clear the dummy row + the two
+            // adjacent rows (covers every dummy cell AND its orthogonal
+            // cosmetic-pool-ring cell) across the full span.
+            for (int dx = 1; dx <= 14; dx++)
+            {
+                ctx.World.ClearCell(p.x + dx, p.y);
+                ctx.World.ClearCell(p.x + dx, p.y - 1);
+                ctx.World.ClearCell(p.x + dx, p.y + 1);
+            }
+
+            // Single clean row, 2 apart. Off-row positions are gone —
+            // v3 is self-auditing so player-aim positioning is moot, and
+            // one row is trivially clearable + collision-free.
             var rig = new List<(string coat, Entity npc)>
             {
-                ("dry",            Dummy(ctx, null,             p.x + 2, p.y)),
-                ("water",          Dummy(ctx, "water",          p.x + 4, p.y)),
-                ("oil",            Dummy(ctx, "oil",            p.x + 6, p.y)),
-                ("pitch",          Dummy(ctx, "pitch",          p.x + 8, p.y)),
-                ("brine",          Dummy(ctx, "brine",          p.x + 4, p.y - 2)),
-                ("carapace-ichor", Dummy(ctx, "carapace-ichor", p.x + 4, p.y + 2)),
+                ("dry",            Dummy(ctx, null,             p.x + 2,  p.y)),
+                ("water",          Dummy(ctx, "water",          p.x + 4,  p.y)),
+                ("oil",            Dummy(ctx, "oil",            p.x + 6,  p.y)),
+                ("pitch",          Dummy(ctx, "pitch",          p.x + 8,  p.y)),
+                ("brine",          Dummy(ctx, "brine",          p.x + 10, p.y)),
+                ("carapace-ichor", Dummy(ctx, "carapace-ichor", p.x + 12, p.y)),
             };
 
             RunMatrixAudit(ctx, rig);
 
-            ctx.Log("=== Liquid Spell Test Bench (v3 — self-auditing) ===");
+            ctx.Log("=== Liquid Spell Test Bench (v3.1 — self-auditing) ===");
             ctx.Log("A full synthetic matrix just ran (see [MatrixAudit] lines).");
             ctx.Log("Confirm in diag: diag_query category=liquid kind=MatrixAudit");
             ctx.Log("  and diag_query category=damage kind=PreDamageMutation.");
@@ -121,7 +148,17 @@ namespace CavesOfOoo.Scenarios.Custom
             MessageLog.Add("───── [MatrixAudit] synthetic element matrix (base=" + BASE + ") ─────");
             foreach (var (coat, npc) in rig)
             {
-                if (npc == null) continue;
+                // Robustness (v3.1): a dummy that failed to place into
+                // the zone must NOT be audited — otherwise a spawn
+                // failure masquerades as "100% no interaction" (exactly
+                // the phantom-row bug v3 shipped). Report it loudly.
+                if (npc == null || ctx.Zone.GetEntityPosition(npc).x < 0)
+                {
+                    MessageLog.Add($"[MatrixAudit] {coat,-15} SPAWN-FAILED — cell blocked, NOT audited");
+                    Diag.Record("liquid", "MatrixAuditSkipped", actor: npc, target: null,
+                        payload: new { liquid = coat, reason = "spawn_failed" });
+                    continue;
+                }
                 foreach (var elem in Elements)
                 {
                     // Div-#6 bypass: a synthetic raw hit must never be
