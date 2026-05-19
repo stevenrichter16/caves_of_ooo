@@ -948,3 +948,110 @@ bug-class checklist for any damage-attribute-reading feature.
 
 **Files** — MOD `LiquidCoveredEffect.cs` (2 predicate swaps + the
 why-comment); NEW `LiquidCoatElementAliasTests.cs` (7 tests).
+
+---
+
+## 13. LX — Qud-liquid expansion: Lava / Gel / Sap / Honey
+
+**Status:** PLANNED (LX.1). The LQ.6 "expand by data alone" thesis,
+exercised for real: 4 more Qud liquids as **JSON-only content, zero
+new C#**, surfaced + verified through the v3.1 self-auditing bench
+(first real application of the `Docs/MCP_PlayMode_Testing_Strategy.md`
+§Deterministic-Self-Auditing-Scenarios pattern).
+
+### 13.1 Goal & scope
+
+Add `lava`, `gel`, `sap`, `honey` using only the LiquidDefinition
+knobs the LQ.5/LQ.6 engine **already consumes**
+(`Conductivity`, `Combustibility`, `FireDampen`, `PerTurnDamage`,
+`StatModifiers`, `ResistanceModifiers`, `Fluidity`, `Evaporativity`).
+No engine changes. Out of scope: any liquid needing un-wired knobs
+(`Slippery`/`Sticky`/`Staining`/`FollowOnEffect`) for its *primary*
+character, or new mechanics.
+
+### 13.2 Verification sweep (Qud `XRL.Liquids/` → CoO wired knobs)
+
+| Qud class | Qud ctor values (cited) | CoO mapping | Drift / decision |
+|---|---|---|---|
+| `LiquidLava` | `Temperature=1000`, `MixedElectricalConductivity=90`, `ConsiderDangerousToContact=true`; drink → `TakeDamage(…, "Heat")`, reads `HeatResistance` (LiquidLava.cs:25,32,117,224) | `Conductivity:90`, `PerTurnDamage{8,"Heat"}`, **CoO** `ResistanceModifiers HeatResistance:-25` | **Documented divergence:** Qud burns via the temperature sim; we model the burn as the scalar `PerTurnDamage` tick — *identical precedent to our acid divergence* (plan §4 #1). The −HeatRes is a CoO design echo of carapace-ichor's −ColdRes (lava-soaked ⇒ fire bites harder). |
+| `LiquidGel` | `MixedElectricalConductivity=100`, `Fluidity=5`, `Evaporativity=1`, `SlipperyWhenWet` (LiquidGel.cs) | `Conductivity:100`, `Fluidity:5`, `Evaporativity:1`, `Slippery:true` (data-stable, cosmetic till LQ.8) | Pure conductor; a non-water/non-brine Electric-amp coat. Slippery carried for shape only — character comes from the wired `Conductivity`. |
+| `LiquidSap` | `Combustibility=70`, `Fluidity=3`, `Evaporativity=1`, `FlameTemperature=250`, `InterruptAutowalk` (LiquidSap.cs) | `Combustibility:70`, `Fluidity:3`, `Evaporativity:1`, `FlameTemperature:250`, **CoO** `StatModifiers Agility:-2`, `Sticky:true` | Qud's stickiness (`Sticky`) is un-wired in CoO; the "slowed in sap" character is delivered via the **wired** `StatModifiers` path — the exact technique pitch uses. |
+| `LiquidHoney` | `Combustibility=60`, `Adsorbence=25`, `Fluidity=10`, `Evaporativity=1` (LiquidHoney.cs) | `Combustibility:60`, `Adsorbence:25`, `Fluidity:10`, **CoO** `StatModifiers Agility:-2,DV:-3`, `Sticky:true` | Same: canonical sticky-slow via wired `StatModifiers` (Qud `Sticky` cosmetic till LQ.8). |
+
+No false premises: the wired-knob set was re-confirmed by grep
+against `LiquidCoveredEffect.cs` (only Conductivity / Combustibility /
+FireDampen / PerTurnDamage / StatModifiers / ResistanceModifiers /
+Fluidity / Evaporativity are read); `Slippery`/`Sticky`/`Staining`/
+`FollowOnEffect` have **zero** gameplay consumers today.
+
+### 13.3 Scope-prune (rejected liquids + rationale)
+
+- **Slime/Goo/Ooze/Sludge** — primary trait is movement/prone
+  (`ObjectGoingProne`,`GetNavigationWeight`) ⇒ cosmetic till the
+  LQ.8 movement milestone. Cut.
+- **Blood/Wine/Cider** — drink/flavor-centric (`Drank` override),
+  ~no wired-knob character as a coat. Cut.
+- **Salt/Algae** — value is freeze-to-solid (Halite, `FreezeObject*`)
+  ⇒ explicitly LQ.8-deferred. Cut.
+- **BrainBrine/Putrescence** — confusion/sickness needs
+  `FollowOnEffect` (⚪-deferred LQ.5 hook). Revisit post-FollowOnEffect.
+- **Convalessence** — healing pool; needs ~1 new knob
+  (negative `PerTurnDamage`/`PerTurnHeal`). High-flavor follow-up,
+  not this JSON-only ship. Cut with a note.
+- **NeutronFlux/ProteanGunk/Cloning** — Qud reality/mutation/clone
+  systems (`SmearOn`,`ProcessTurns`,`MixingWith`); large C#, low ROI.
+  Cut.
+
+### 13.4 The 4 liquids (Qud-informed, CoO-tuned)
+
+| id | Glyph/Color | Conductivity | Combustibility | FireDampen | PerTurnDamage | StatModifiers | ResistanceModifiers | Fluidity/Evap |
+|---|---|---|---|---|---|---|---|---|
+| `lava` | `~` `&R` | 90 | 0 | 0 | `{8,"Heat"}` | – | `HeatResistance:-25` | 15 / 0 |
+| `gel` | `~` `&c` | 100 | 0 | 0 | – | – | – | 5 / 1 |
+| `sap` | `~` `&w` | 0 | 70 | 0 | – | `Agility:-2` | – | 3 / 1 |
+| `honey` | `~` `&Y` | 0 | 60 | 0 | – | `Agility:-2,DV:-3` | – | 10 / 1 |
+
+Expected v3.1-bench matrix (end-to-end factor):
+`lava` Heat ≈ baseline + 8/turn tick, Electric ≈2.0 (Cond 90 → ×1.9),
+Heat slightly amplified by −25 HeatRes; `gel` Electric ≈2.0;
+`sap`/`honey` all elements ≈1.0 (no element knob) but the coat
+applies −Agility(/−DV), net-zero on removal.
+
+### 13.5 Sub-milestones (smallest blast radius first)
+
+- **LX.1** — this plan + sweep (doc commit).
+- **LX.2** — 4 JSON files (+`.meta`) + `LiquidExpansionContentTests.cs`:
+  RED = read each file from disk, load, assert knobs (fails before
+  files exist) → GREEN. Behavior pins + counter-checks: lava ticks
+  Heat (`OnTurnStart`) + amplifies Electric; gel Electric ×~2;
+  sap/honey reduce Agility on coat and **net-zero on removal**
+  (EquipBonus invariant); counter: gel has no StatModifiers, sap has
+  no Electric interaction. Adversarial: unknown-stat skip, registry
+  reset mid-coat still nets zero. RED→GREEN, regression sweep,
+  commit.
+- **LX.3** — add the 4 to the `LiquidSpellTestBench` rig (+ extend
+  the `ClearCell` corridor) so the matrix auto-audits them; compile;
+  smoke; **live diag audit** (validate-before-merge per §7 of the
+  self-auditing playbook); cold-eye Q1–Q4; roadmap + §13 impl log;
+  commit + merge to main + push.
+
+### 13.6 Performance
+
+None. No new per-frame/per-turn path: `lava` reuses the
+already-shipped `OnTurnStart` `PerTurnDamage` tick (same as acid);
+the rest are pure data read in the existing `OnBeforeTakeDamage`/
+`OnApply` paths. No new caches, MonoBehaviours, or event listeners.
+
+### 13.7 Pre-flagged self-review
+
+- **🟡 lava PerTurnDamage scalar vs Qud temperature sim** — same
+  acknowledged divergence as acid; document, don't port the temp sim
+  (LQ.8-class). Pin lava's Heat-tick with a test.
+- **🔵 sap/honey use StatModifiers for "sticky" because `Sticky` is
+  un-wired** — deliberate (matches pitch). Note in §13 impl log so a
+  future reader doesn't "fix" it by wiring Sticky and double-applying.
+- **⚪ gel `Slippery:true` is cosmetic today** — carried for data-
+  shape stability; documented, not a gap.
+- **🧪 RED discipline** — content RED is a real on-disk file-load
+  failure before the JSON exists (compile-able, observable), not a
+  compressed step.
