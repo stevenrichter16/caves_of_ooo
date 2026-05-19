@@ -1011,11 +1011,21 @@ Fluidity / Evaporativity are read); `Slippery`/`Sticky`/`Staining`/
 | `sap` | `~` `&w` | 0 | 70 | 0 | – | `Agility:-2` | – | 3 / 1 |
 | `honey` | `~` `&Y` | 0 | 60 | 0 | – | `Agility:-2,DV:-3` | – | 10 / 1 |
 
-Expected v3.1-bench matrix (end-to-end factor):
-`lava` Heat ≈ baseline + 8/turn tick, Electric ≈2.0 (Cond 90 → ×1.9),
-Heat slightly amplified by −25 HeatRes; `gel` Electric ≈2.0;
-`sap`/`honey` all elements ≈1.0 (no element knob) but the coat
-applies −Agility(/−DV), net-zero on removal.
+Expected single-hit bench matrix (end-to-end factor) — **CORRECTED
+in LX.3 (the original line below mis-stated sap/honey):**
+- `lava`: Electric ×1.90 (Cond 90), Heat ×1.25 (−25 HeatRes); the
+  8/turn PerTurnDamage tick is a *separate* turn mechanic, NOT in
+  the single-hit matrix cell.
+- `gel`: Electric ×2.00 (Cond 100).
+- `sap`: Heat **×1.35** (Combustibility 70 — sap IS flammable, same
+  branch as oil/pitch) + −2 Agility on coat, net-zero on removal.
+- `honey`: Heat **×1.30** (Combustibility 60) + −2 Agi/−3 DV.
+
+> ❌ Original LX.1 line (kept for the doc-vs-impl honesty trail):
+> *"sap/honey all elements ≈1.0 (no element knob)"* — WRONG. sap/honey
+> carry Combustibility (70/60), an element knob, so they amplify Heat
+> exactly like oil/pitch. Caught by the LX.3 cold-eye Q4 pass; the
+> shipped values are the corrected ones above.
 
 ### 13.5 Sub-milestones (smallest blast radius first)
 
@@ -1055,3 +1065,71 @@ the rest are pure data read in the existing `OnBeforeTakeDamage`/
 - **🧪 RED discipline** — content RED is a real on-disk file-load
   failure before the JSON exists (compile-able, observable), not a
   compressed step.
+
+### 13.8 Implementation log (LX.1–LX.3) — incl. a hard cold-eye finding
+
+**LX.1** (`b5de653`) plan+sweep. **LX.2** (`2266503`) 4 JSON files +
+`LiquidExpansionContentTests` (4 content-shape RED→GREEN confirmed
+RED on disk before files existed; 8 behavior/counter/adversarial
+pins). 101/101 liquid regression.
+
+**LX.3 — the honest part.** Adding the 4 liquids to the
+self-auditing bench and running the validate-before-merge live audit
+exposed **two latent bugs in the bench itself, and a hard truth about
+every prior "conclusive" matrix in this system's history:**
+
+1. **Bench `RunMatrixAudit` had never produced valid data.** It runs
+   synchronously in scenario `Apply()`, which executes *before*
+   GameBootstrap Step-1b' finishes loading `LiquidDefinitions`. With
+   the registry uninitialized, every coat's `OnApply`/
+   `OnBeforeTakeDamage` early-returns → the whole matrix records a
+   phantom **×1.00**, indistinguishable from "no interaction" (a
+   textbook Rule-4 violation *inside the Rule-4 exemplar*). Every
+   earlier "matrix table" reported as validation (incl. v3.1's
+   "conclusive" 6-liquid table) was actually **stale persisted-buffer
+   data from earlier *manual-cast* sessions** (this project has
+   domain-reload-on-play off, so `Diag`'s static buffer survives
+   Play→Edit→Play). The mechanic was *always* correct — proven
+   repeatedly by *direct* `execute_code` snapshot→ApplyDamage→measure
+   on the live dummies (water 200, lava 190/125, gel 200, sap 135,
+   honey 130, ichor 120 — all exact). My "the bench proves it"
+   claims were not. This is the canonical "tests-green-feels-clean
+   is where latent bugs hide" lesson; it was only exposed because the
+   Rule-8 `runId` scoping forced the first *clean* read.
+2. **Persisted-buffer staleness** (the Rule-8 gap): a reader deduping
+   by `(liquid,element)` silently shows last-session numbers.
+
+**Fixes shipped in LX.3:**
+- `EnsureLiquidRegistry()` at the **top of `Apply()`** (mirrors
+  GameBootstrap Step-1b' `Resources.LoadAll`) so the registry is live
+  *before any dummy is coated* — bootstrap-order-independent.
+- Loud Rule-4 abort in `RunMatrixAudit`: if the registry is still
+  unavailable, emit `MatrixAuditSkipped(reason=registry_unavailable)`
+  and run **nothing** — never phantom ×1.00.
+- Rule-8 `runId` GUID on every `MatrixAudit` cell + a
+  `MatrixAuditRun` marker; the audit query scopes to the newest run.
+- Display rounding nit fixed (`(int)(1.9f*100)`=189 → `Math.Round`).
+- Methodology hardened: `Docs/MCP_PlayMode_Testing_Strategy.md`
+  Rule 8 (+ its "cross-check against direct `execute_code`
+  measurement" corollary) and the CLAUDE.md always-on mirror.
+
+**Final clean verification (runId-scoped, registry-ensured,
+cross-checked vs direct measurement — the real one):**
+`cells=40/40`; dry 100×4; water 60/200; oil 145; pitch 145;
+brine 85/230; ichor Cold 120; **lava 125/190; gel 200; sap 135;
+honey 130** — every cell exactly the spec.
+
+**Cold-eye Q1–Q4:** Q1 ✓ (JSON mirror the brine template;
+EnsureLiquidRegistry mirrors GameBootstrap; runId mirrors the
+Skipped record). Q2 ✓ (all payloads carry `runId`; Hint() covers
+every interacting cell). Q3 ✓ (content counter-checks + the `dry`
+control row). **Q4 → fixed** (the §13.4 "sap/honey ≈1.0" doc error,
+corrected above with the honesty trail). No 🔴/🟡 remain in the
+*mechanic*; the bench bugs are fixed and re-verified clean.
+
+**Honesty bound:** the LX *liquids* are conclusively correct (direct
+measurement + the now-trustworthy bench agree). The sobering part is
+that the self-auditing bench — the very instrument built to make
+these audits trustworthy — was itself silently broken until this
+milestone; it is the strongest possible argument for Rule 8's
+direct-measurement cross-check, and that corollary is now codified.

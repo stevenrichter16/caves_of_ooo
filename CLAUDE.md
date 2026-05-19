@@ -568,7 +568,7 @@ emits one **machine-checkable diag record per cell**. One press of
 Play → a complete `diag_query`-able audit. No aiming, no RNG, no
 reading floating numbers.
 
-The seven rules (detail in the playbook):
+The eight rules (detail in the playbook):
 
 1. **Synthetic, not manual** — `Apply()` applies the stimulus
    directly, never the player.
@@ -589,6 +589,13 @@ The seven rules (detail in the playbook):
    proof is a live Play run + diag audit; keep the branch unmerged
    until the live matrix is confirmed correct. "Smoke green" ≠
    "mechanic works" (§6.3).
+8. **Stamp every run; the diag buffer outlives the Play session.**
+   With domain-reload-on-play off (CoO), `Diag`'s buffer persists
+   across sessions — a reader deduping by (subject,case) shows STALE
+   prior-run numbers. Emit a per-run `runId` + a `MatrixAuditRun`
+   marker; scope the query to the newest run. When in doubt,
+   cross-check the matrix against a direct `execute_code`
+   measurement (bypasses the buffer). Caught for real in LX.3.
 
 **Applies retroactively too** — elemental resistance grids, on-hit
 procs, trade pricing, effect durations, etc. A self-auditing bench
