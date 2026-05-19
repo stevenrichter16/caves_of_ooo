@@ -118,7 +118,10 @@ For features matching two or more of:
    → `manage_editor stop` → summary table with honesty bounds.
 
 7. **Manual playtest scenario** for visual/feel-dependent features
-   (§3.6): a `Scenarios/Custom/<Name>.cs` + menu entry.
+   (§3.6): a `Scenarios/Custom/<Name>.cs` + menu entry. **If the
+   mechanic is *measurable* (numbers, not just feel), make it a
+   Deterministic Self-Auditing Scenario — see the dedicated section
+   below.**
 
 ---
 
@@ -542,6 +545,64 @@ infrastructure for future changes.**
 
 ---
 
+## Deterministic self-auditing scenarios (use for any *measurable* mechanic)
+
+> **Full playbook + case study: `Docs/MCP_PlayMode_Testing_Strategy.md`
+> §Deterministic Self-Auditing Scenarios.** That doc is the deep
+> how-to (the seven rules, the liquid-bench v1→v3.1 case study, the
+> anti-patterns). THIS is the always-on trigger.
+
+When a feature's behavior is **measurable** (damage numbers, stat/
+resistance deltas, prices, durations, cooldowns — anything that fits
+a table), the manual playtest scenario (workflow step 7) MUST be
+*self-auditing*, not player-exercised. Manual aiming/RNG is an
+unreliable measurement instrument **and it hides bugs** — the liquid
+bench needed 3 failed harness designs before a deterministic matrix
+caught a spawn bug the manual versions had hidden for three
+iterations.
+
+**The pattern:** the scenario's `Apply()` programmatically applies a
+known stimulus to every subject (incl. a control), measures the
+end-to-end delta, restores state (immortal, re-runnable rigs), and
+emits one **machine-checkable diag record per cell**. One press of
+Play → a complete `diag_query`-able audit. No aiming, no RNG, no
+reading floating numbers.
+
+The seven rules (detail in the playbook):
+
+1. **Synthetic, not manual** — `Apply()` applies the stimulus
+   directly, never the player.
+2. **Snapshot → stimulate → measure → restore** — measure the whole
+   pipeline end-to-end; restore so rigs are immortal.
+3. **Always include a control row** — a baseline subject with no
+   treatment.
+4. **Guard preconditions LOUDLY** — verify each subject is actually
+   set up; on failure emit an explicit `…Skipped`/`FAILED` record,
+   **never a value that looks like a neutral pass** (the
+   phantom-`×1.00` spawn bug is the cautionary tale).
+5. **One machine-checkable diag record per cell** — the audit is a
+   query, not log/screenshot scraping.
+6. **Neutralize known confounds** before each measurement (strip
+   interfering effects, freeze decay), and document each.
+7. **Validate-before-merge** — the EditMode smoke only proves
+   `Apply()` doesn't throw (no runtime registries there). The real
+   proof is a live Play run + diag audit; keep the branch unmerged
+   until the live matrix is confirmed correct. "Smoke green" ≠
+   "mechanic works" (§6.3).
+
+**Applies retroactively too** — elemental resistance grids, on-hit
+procs, trade pricing, effect durations, etc. A self-auditing bench
+turns "the unit tests probably cover this" into a one-launch
+end-to-end query that also exercises bootstrap + content JSON + the
+full runtime the unit tests stub out.
+
+**Self-directive: when building a manual scenario for a measurable
+mechanic, I MUST make it self-auditing per this section, not a
+player-exercised demo — and I MUST hold the merge until a live diag
+audit confirms the matrix, because the smoke test cannot.**
+
+---
+
 ## Unity MCP workflow
 
 **Standard post-edit cycle:**
@@ -646,7 +707,7 @@ files, mostly visual) or `/Users/steven/qud-decompiled-project/`
 | `Docs/COMBAT-BRANCH-MAP.md` | Branch coverage map (per-method ✅/⚠️/❌) |
 | `Docs/COMBAT-TEST-BACKLOG.md` | Prioritized test entries with format `[#] (TARGET, SEVERITY, BUG_CLASS, PHASE)` |
 | `ADVERSARIAL_TESTING.md` (root) | Adversarial testing methodology playbook — bug-class taxonomy, new-vs-existing strategies, code patterns, case studies. Read before designing any adversarial sweep. |
-| `Docs/MCP_PlayMode_Testing_Strategy.md` | Live-bootstrap testing rules (Rule 1: never fire events via `execute_code`) |
+| `Docs/MCP_PlayMode_Testing_Strategy.md` | Live-bootstrap testing rules (Rule 1: never fire events via `execute_code`) + **Deterministic Self-Auditing Scenarios playbook** (the liquid-bench v1→v3.1 case study) |
 | `Docs/PERF-FOUNDATION.md` | Optimization patterns, anti-patterns, audit findings (read before adding any feature touching per-frame paths) |
 | `Docs/PERF-COMBAT-INVESTIGATION.md` | Original combat-perf audit (2026-04) — hypotheses + which were red herrings |
 | `qud_decompiled_project/` | In-repo Qud subset (visual effects only) |

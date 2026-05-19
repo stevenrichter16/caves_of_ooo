@@ -282,3 +282,121 @@ The starting zone (Overworld.10.10.0) contains:
 - **Settlement structures**: campfire, fouled well, cracked oven, lanterns
 - **NPCs (Villagers faction, friendly)**: elder, villager, merchant, scribe, warden, farmer, tinker, well-keeper
 - **Stairs down**: (50, 15) -- leads to depth 1 with hostile creatures
+
+---
+
+## Deterministic Self-Auditing Scenarios (test-design pattern)
+
+> **Origin:** the Liquid Spell Test Bench (v1 → v3.1, 2026-05). A
+> manual "cast spells at coated NPCs" scenario went through three
+> failed harness designs before this pattern made it actually
+> auditable — and on its first correct run it instantly caught a
+> latent spawn bug the manual versions had hidden for three
+> iterations. Generalize this; it applies to most measurable
+> mechanics, old and new.
+
+### The principle
+
+When a mechanic is **measurable** (damage numbers, stat deltas,
+resistances, prices, cooldowns, durations — anything you could put
+in a table), do **not** build a manual scenario that depends on the
+player exercising it by hand (aiming spells, walking into things,
+swinging weapons, RNG rolls). Manual exercise is an unreliable
+measurement instrument and it *hides* bugs.
+
+Instead: the scenario's `Apply()` runs a **deterministic synthetic
+test matrix** — it programmatically applies a known stimulus to
+every subject (including a control), measures the end-to-end result,
+and emits one **machine-checkable diag record per cell**. One press
+of Play → a complete, queryable audit via
+`diag_query category=<x> kind=<MatrixAudit-style-kind>`. No aiming,
+no RNG, no eyeballing floating combat numbers. Re-runnable by
+relaunch; the scenario is permanent regression infrastructure.
+
+### Why manual scenarios fail as audit instruments (the case study)
+
+The liquid bench's three dead ends, each → a rule below:
+
+- **v1:** coats dried in ~2 turns and Snapjaw dummies wandered/
+  brawled. Diag: 2 useful records across 215 hits. *Player-paced
+  exercise can't hold preconditions stable.* → Rules 2, 6.
+- **v2:** dummies frozen + permanently coated, but Snapjaw lacked
+  the resistance stats, so LQ.6 liquids applied nothing; and
+  `Conflagration` is a radius blast, not a piercing line, so casts
+  only ever hit the nearest dummy (26 hits on water, 0 on the other
+  five). *Manual aim + subject setup are confounds.* → Rules 1, 3.
+- **v3:** deterministic synthetic matrix — and on run #1 it produced
+  `water 0.60/2.00`, `pitch 1.45` (mechanically perfect) while
+  `oil/brine/ichor/dry` read a flat `×1.00`. That contrast instantly
+  isolated a **spawn bug**: hardcoded offsets landed on the compass
+  stones documented in *Spawn Area Reference* above
+  (`(41,11),(45,11),(43,9),(43,13)` → `p.x+2/p.x+6/p.y±2` blocked),
+  so 4 of 6 dummies never placed and the audit reported them as
+  phantom `×1.00`. The manual v1/v2 runs had hidden this for three
+  iterations. → Rules 4, 7.
+- **v3.1:** clear the corridor before spawning + a placement guard
+  that prints `SPAWN-FAILED` instead of a phantom value. Run #1:
+  `records=24, skipped=0`, every cell exact (`brine/Electric 229%`
+  proving the coat layer ×2 and the resistance layer −15 ElecRes
+  compound correctly end-to-end). Conclusive in one launch.
+
+### The seven rules
+
+1. **Synthetic, not manual.** `Apply()` applies the stimulus
+   directly to every subject (e.g.
+   `CombatSystem.ApplyDamage(npc, new Damage(BASE){+attr}, …)`),
+   never the player. Removes aim / range / weapon-AI / RNG variance.
+2. **Snapshot → stimulate → measure → restore.** Measure the
+   end-to-end delta (HP, stat, price…), then restore state so
+   subjects are immortal and the matrix is infinitely re-runnable in
+   one session. The delta captures the *whole* pipeline, not one
+   layer (this is how `brine/Electric` revealed coat×resistance
+   compounding).
+3. **Always include a control row.** A "dry"/baseline subject with
+   no treatment. Every treated cell is read against a known-neutral
+   reference; a global regression shows as the control moving too.
+4. **Guard preconditions loudly — a setup failure must never look
+   like a neutral pass.** Verify each subject is actually
+   set up (spawned/placed/coated/equipped) before measuring; on
+   failure emit an explicit `…Skipped`/`SPAWN-FAILED` record, never a
+   value that resembles "no effect". The phantom-`×1.00` bug is the
+   cautionary tale: a blocked spawn read identically to a working
+   no-interaction cell.
+5. **Emit one machine-checkable diag record per cell** (inputs +
+   measured factor). The audit is then a `diag_query`, not log-
+   scraping or screenshot-reading. Pair with a readable
+   `[MatrixAudit]`-style log line for at-a-glance use.
+6. **Neutralize known confounds before each measurement.** Strip
+   interfering state (e.g. the bench strips `ElectrifiedEffect` so
+   divergence-#6 can't suppress conductivity; freezes subjects off
+   the turn loop so coats don't decay mid-measurement). Document each
+   neutralization and why.
+7. **Validate-before-merge.** The scenario's EditMode smoke test only
+   proves `Apply()` doesn't throw — the EditMode harness has no
+   runtime registries/bootstrap, so the matrix is meaningless there.
+   The *real* proof is a live Play run + diag audit. Keep the branch
+   unmerged until the live matrix comes back complete and correct.
+   (Honesty bound, CLAUDE.md §6.3: "smoke green" ≠ "mechanic works".)
+
+### Where to apply it (not just new features)
+
+Any measurable mechanic with a small input space is a candidate —
+including already-shipped ones whose only coverage is unit tests:
+elemental resistances (attribute × resistance grid), on-hit effects
+(weapon-class × proc), damage attributes/penetration, trade pricing
+(faction × item × disposition), tonic/effect durations, skill
+cooldowns, stat-shift stacking. A self-auditing bench turns "I think
+the unit tests cover this" into a one-launch end-to-end query that
+also exercises bootstrap + content JSON + the full runtime pipeline
+the unit tests stub out.
+
+### Anti-patterns
+
+- Relying on the player to aim/trigger the mechanic ("cast at the
+  thing") — unreliable, low coverage, hides setup bugs.
+- Reading floating combat numbers / screenshots instead of a diag
+  record — not machine-checkable, not regression-grade.
+- Hardcoding spawn offsets without consulting *Spawn Area Reference*
+  or clearing cells (the v3 bug). Prefer cleared corridors / safe
+  placement terminals, and always keep Rule 4's guard as the net.
+- Asserting the mechanic works off the smoke test alone (Rule 7).
