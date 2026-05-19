@@ -1133,3 +1133,173 @@ that the self-auditing bench — the very instrument built to make
 these audits trustworthy — was itself silently broken until this
 milestone; it is the strongest possible argument for Rule 8's
 direct-measurement cross-check, and that corollary is now codified.
+
+---
+
+## 14. LL — Lore-grounded liquids (tepui-thread canon)
+
+**Status:** PLANNED (LL.1). Five new liquids drawn from the
+`claude/ideas-gin-frogs` lore strand (the **Felled Tree** cosmology),
+each anchored to a specific faction / cosmological function /
+preservation-method, shipped JSON-only through the LQ.5/6 engine and
+auto-verified by the v3.2 self-auditing bench.
+
+> **Lore sources (cited, branch `origin/claude/ideas-gin-frogs`):**
+> `Lore/00_Canon.md` §Layer 4 (factions), §Layer 8 (preservation/
+> memory magic), §Layer 9 (symbolism: Ink/Salt/Dew/Mucilage/Honey/
+> Light/Bone/Root); `Lore/01_Spine.md` §II (the seven cosmological
+> functions — Memory/Substrate/Preservation/Beauty/Exchange/Roots +
+> the empty seventh, Naming/Urqu); `IDEAS.md` "The Preserved" (five
+> preservation methods + iron-gall ink corrosiveness), "Bioluminescent
+> Catacomb Economy" (luminous slime), `sarisarinama_drosera_design.md`
+> (Drosera mucilage). No new lore is invented here — these are
+> *mechanical readings of existing canon.*
+
+### 14.1 Goal & scope
+
+Add 5 liquids using only the **wired** LiquidDefinition knobs
+(Conductivity, Combustibility, FireDampen, PerTurnDamage,
+StatModifiers, ResistanceModifiers, Fluidity, Evaporativity) — zero
+new C#, exactly the LX pattern. Each liquid's *richer* lore special-
+feature (true light emission, a preservation system, FollowOnEffect
+statuses) is **explicitly scope-pruned to a documented ⚪ follow-up**
+(§14.4) — the wired knobs deliver a faithful *gameplay shadow* of the
+lore today, the same way pitch/sap deliver "sticky" via StatModifiers
+because `Sticky` is unwired.
+
+### 14.2 The five liquids (lore → mechanic)
+
+| id | Lore anchor (cited) | Glyph/Color | Wired knobs (the mechanic) | Special feature it *evokes* |
+|---|---|---|---|---|
+| `iron-gall-ink` | Palimpsest/Inkbound; the **Ink-Bathed** preservation method; "iron-gall ink penetrates every tissue… **slowly corrosive** (per Black-Gall)"; the rental-currency Ink shares the iron-gall source (IDEAS "The Preserved"; Canon §L9 Ink). | `~` `&K` | `Conductivity 60` (iron-salt solution conducts — lore-true), `PerTurnDamage {2,"Acid"}` (slow Black-Gall corrosion), `Fluidity 8`, `Evaporativity 4` | Memory/"the body becomes readable" — the Palimpsest reading-mechanic is the deferred feature; the corrosive conductive black coat is today's shadow. |
+| `sundew-mucilage` | Drosera carnivorous flora; the **Dew/Mucilage** motif ("glistening trap-as-life", "the patient predator"); the Resin-Cast preservation analog (`sarisarinama_drosera_design.md`; Canon §L9 Dew/Mucilage). | `~` `&G` | `StatModifiers Agility -4, DV -5` (the game's strongest entrapment — beats honey/sap), `Sticky true`, `Combustibility 20`, `Fluidity 2`, `Evaporativity 1` (viscous, persists) | Escalating root-you-in-place entrapment (deferred); today: the hardest stat-slow, net-zero on removal. |
+| `choir-wort` | Rot Choir; **external digestion**, "the wet rustle", spore-borne substrate-eating (Canon §L4 Choir, §L9 Tendril). | `~` `&g` | `PerTurnDamage {4,"Acid"}` (being externally digested), `StatModifiers Toughness -3` (the digestion weakens), `Combustibility 10` | "Un-preservation" / Choir-Touched status (deferred FollowOnEffect); today: a digesting coat that saps Toughness. |
+| `lumen-slime` | Bioluminescent Catacomb Economy — "luminous slime… applied as paint… glows"; the catacomb light medium; Urqu's opposite; Pale-Curation UV hazard (IDEAS "Bioluminescent…"; Canon §L9 Light). | `~` `&C` | `Conductivity 40` (wet bio-film), `StatModifiers DV -3` (you glow → a beacon, easier to hit in the dark — the CoO-tuned reading) | True light emission + the preservation-UV-degrade interaction (deferred — needs a LightSource/preservation hook); today: conductive glow-beacon. |
+| `bog-mire` | The **Bog-Taken** preservation method; the bog biome ("anaerobic peat, high tannic acid", brown, centuries-deep visible cemetery) (IDEAS "The Preserved"; Canon §L2 Bog, §L6 burial). | `~` `&y` | `FireDampen 50` (waterlogged peat smothers fire — 2nd-strongest after water), `PerTurnDamage {1,"Acid"}` (tannic sting), `StatModifiers Agility -2` (wading the mire), `Conductivity 20` | Passive centuries-preservation (deferred); today: a fire-smothering, faintly-tannic, slowing coat. |
+
+All `PerTurnDamage.Type="Acid"` → routes through the proven
+`IsAcidDamage` flag + `AcidResistance` (acid.json precedent). No Id
+collisions (verified vs the 10 existing). Glyph/Color follow Canon
+§L9 color symbolism (Ink=black `&K`, dew=pale green `&G`, Choir=
+green-violet `&g`, bio-light=cool cyan `&C`, bog=brown `&y`).
+
+### 14.3 Verification sweep
+
+| Premise | Status |
+|---|---|
+| Only Conductivity/Combustibility/FireDampen/PerTurnDamage/StatModifiers/ResistanceModifiers/Fluidity/Evaporativity are engine-wired | ✅ re-confirmed (LX grep of `LiquidCoveredEffect.cs`) |
+| `PerTurnDamage.Type="Acid"` valid (flag-mapped, AcidResistance) | ✅ acid.json precedent + `Damage.GetFlagForAttribute` |
+| No Id collision (5 new vs 10 existing) | ✅ verified (`ls LiquidDefinitions/`) |
+| GameBootstrap Step-1b' auto-loads new `*.json` | ✅ LQ.7; bench also self-ensures (v3.2 `EnsureLiquidRegistry`) |
+| Self-auditing bench auto-audits new rig rows; runId-scoped read mandatory (Rule 8) | ✅ v3.2; LL.3 follows the codified procedure |
+| Lore citations resolve on `origin/claude/ideas-gin-frogs` | ✅ files read this session |
+
+### 14.4 Scope-prune — deferred lore special-features (⚪, documented)
+
+Each is the liquid's *richest* lore feature, deliberately NOT in this
+JSON-only ship (needs new C#/systems; tracked, not lost):
+- `iron-gall-ink`: the Palimpsest "Ink-Bathed body is *readable*"
+  memory-archaeology mechanic → needs the memory/preservation system.
+- `sundew-mucilage`: escalating *root-in-place* entrapment (can't
+  move at all past a threshold) → needs a movement-lock hook
+  (`AllowMovement` exists on `Effect`; a future LL.x).
+- `choir-wort`: "Choir-Touched" status + literal un-preservation →
+  needs FollowOnEffect (the ⚪-deferred LQ.5 hook) + preservation sys.
+- `lumen-slime`: true light emission (catacomb economy) + UV-degrades-
+  preserved-material → needs a LightSource/preservation hook.
+- `bog-mire`: passive centuries-preservation of the *coated entity* →
+  needs the preservation system.
+
+### 14.5 Sub-milestones
+
+- **LL.1** — this plan + sweep (doc commit).
+- **LL.2** — 5 JSON (+`.meta`) + `LiquidLoreContentTests.cs`: RED
+  (disk-load knob asserts, fails before files) → GREEN; behavior
+  pins + counter-checks (ink corrosive-tick + conductive; sundew
+  −4 Agi/−5 DV net-zero on removal + counter no-Electric; choir-wort
+  Acid-tick + −3 Tough; lumen Electric-amp + −3 DV; bog FireDampen
+  reduces Heat + tannic tick + −2 Agi); adversarial (absent-stat
+  skip, registry-reset-mid-coat net-zero). RED→GREEN, regression,
+  commit.
+- **LL.3** — add 5 to `LiquidSpellTestBench` rig + extend ClearCell
+  corridor; compile; smoke; live **runId-scoped** matrix + a direct
+  `execute_code` cross-check (Rule 8 corollary — the LX.3 lesson);
+  cold-eye Q1–Q4; §14 impl log + roadmap; commit + merge to main.
+
+### 14.6 Performance
+
+None. `choir-wort`/`ink`/`bog` reuse the shipped `OnTurnStart`
+PerTurnDamage tick (acid path); everything else is data read in the
+existing `OnBeforeTakeDamage`/`OnApply`. No new caches/MonoBehaviours/
+listeners.
+
+### 14.7 Pre-flagged self-review
+
+- **🟡 `lumen-slime` −DV is a CoO-tuned reading, not literal lore.**
+  Lore says lumen-slime *glows*; we have no light/stealth stat, so
+  "you're a lit beacon → −DV (easier to hit)" is the wired shadow.
+  Document the interpretive leap in the §14 impl log so it isn't
+  mistaken for canon; the true light-emission is the ⚪ deferral.
+- **🟡 `choir-wort` Acid-typed digestion** — the Choir digests
+  enzymatically, not "acid"; we reuse the Acid flag because it's the
+  only wired damage-type that routes through a resistance and matches
+  "dissolving you". Documented divergence (mirrors how we model
+  acid/lava ticks). Not Choir-Touched (that's the ⚪ FollowOnEffect).
+- **🔵 `sundew-mucilage` −4/−5 is the strongest stat-debuff shipped.**
+  Intentional (it's THE trap). Flag for playtest balance; per-liquid
+  StatModifiers make retuning a JSON edit.
+- **🧪 RED discipline** — content RED is a real on-disk file-load
+  failure before the JSON exists (compile-able, observable).
+- **⚪ Five deferred special-features** (§14.4) — tracked, not lost.
+
+### 14.8 Implementation log (LL.1–LL.3)
+
+**LL.1** (`5333e50`) plan+sweep. **LL.2** (`dcfaddb`) 5 JSON +
+`LiquidLoreContentTests` (5 content-shape RED→GREEN confirmed RED on
+disk before files; 7 behavior/counter/adversarial pins). 89/89.
+**LL.3** rig + live audit + this log.
+
+**Q4 doc-vs-impl correction (the §13.4-style honesty trail).**
+§14.2 (written in LL.1) listed `lumen-slime` `Conductivity 40` and
+`bog-mire` `Conductivity 20`. `CONDUCTIVITY_AMPLIFY_THRESHOLD = 50`,
+so 40/20 would be **inert data** (a looks-like-a-knob-does-nothing
+Rule-4 hygiene violation). **Shipped both at `Conductivity 0`** —
+lumen's mechanic is the −3 DV glow-beacon; bog's is FireDampen 50 +
+tannic tick + −2 Agi. The §14.2 table values above are the *original
+plan*; the *shipped* values are Conductivity 0 for both. Caught by
+the LL.2 pre-impl sweep, recorded here per Q4.
+
+**All-100%-by-design caveat (Rule 4, the LX.3 lesson applied).**
+The single-hit matrix only re-weights damage. `sundew-mucilage`,
+`choir-wort`, and `lumen-slime` are **stat/tick liquids** — their
+mechanics are StatModifiers (−Agi/−DV/−Tough) and OnTurnStart
+PerTurnDamage, which the single-hit matrix *structurally cannot
+show*. Their matrix rows are a legitimate, **documented** ×1.00
+(the bench Hint() lines say "1.00 by design — effect is X
+(StatMod/OnTurnStart)") — NOT the LX.3 phantom-100 bug. Verified by
+the Rule-8 direct cross-check below, not by the matrix alone.
+
+**Final verification (runId-scoped + direct cross-check):**
+`cells=60/60`, `skipped=0`. Matrix-visible re-weights exact:
+`iron-gall-ink` Electric ×1.60 (Cond 60), `bog-mire` Heat ×0.50
+(FireDampen 50); existing 10 unchanged. Direct `execute_code`
+measurement on the live dummies confirmed the non-matrix mechanics
+exact: sundew −4 Agi/−5 DV; choir-wort −3 Tough + 4/turn Acid tick;
+lumen −3 DV; iron-gall-ink 2/turn tick; bog-mire −2 Agi + 1/turn
+tick. All net-zero on removal (LiquidLoreContentTests pins).
+
+**Cold-eye Q1–Q4:** Q1 ✓ (JSON mirror brine/lava template; rig +
+Hint mirror LX). Q2 ✓ (identical schema; Acid-type + StatModifiers
+consistent with shipped liquids; runId on all payloads). Q3 ✓
+(content counter-checks + the dry control row + the direct
+cross-check). **Q4 → fixed** (the lumen/bog Conductivity correction +
+the all-100%-by-design caveat, both recorded above). No 🔴/🟡 in the
+*mechanic*; the two 🟡 pre-flags (lumen −DV is a CoO-tuned reading;
+choir-wort uses Acid for enzymatic digestion) are documented
+interpretive choices, not defects.
+
+**Honesty bound:** the 5 liquids are conclusively correct (matrix +
+direct measurement agree). The lore *special-features* (§14.4) are
+NOT shipped — these are the wired *gameplay shadows* of the canon,
+faithful within the wired-knob model, with the richer features
+tracked as ⚪ follow-ups.
