@@ -156,5 +156,158 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(hp0, c.GetStatValue("Hitpoints"),
                 "Lightning alias should also be nullified by Electric immunity");
         }
+
+        // ════════════════ LA.3 — Choir-Mirror Mucilage (ReflectPercent) ════════════════
+
+        [Test]
+        public void ChoirMirrorMucilage_Json_Reflects50Percent()
+        {
+            // §L4: the Choir's "external digestion" is bidirectional.
+            // What is taken in is also given back. Mirror-mucilage
+            // declares ReflectPercent=50.
+            var d = LoadFromFile("choir-mirror-mucilage");
+            Assert.AreEqual(50, d.ReflectPercent,
+                "choir-mirror-mucilage reflects 50% of incoming damage");
+            Assert.AreEqual("mirror-glazed", d.Adjective);
+            Assert.IsTrue(d.Sticky, "mucilage is sticky (it is mucilage)");
+        }
+
+        [Test]
+        public void ChoirMirrorCoat_AttackerTakesReflectedDamage()
+        {
+            // Behavior pin: when a melee/spell hit lands on a mirror-
+            // coated target for N damage, the attacker takes N*pct/100
+            // back via a separate ApplyDamage call.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""choir-mirror-mucilage"", ""Adjective"":""mirror-glazed"",
+                ""Fluidity"":4, ""Evaporativity"":3,
+                ""ReflectPercent"":50 } ] }");
+            var defender = MakeCreature(hpMax: 200);
+            var attacker = MakeCreature(hpMax: 200);
+            defender.ApplyEffect(new LiquidCoveredEffect("choir-mirror-mucilage", 30));
+            int attackerHpBefore = attacker.GetStatValue("Hitpoints");
+            int defenderHpBefore = defender.GetStatValue("Hitpoints");
+            // Attacker hits defender for 40.
+            CombatSystem.ApplyDamage(defender, new Damage(40), attacker, null);
+            int attackerLost = attackerHpBefore - attacker.GetStatValue("Hitpoints");
+            Assert.AreEqual(20, attackerLost,
+                "attacker takes 50% of 40 = 20 damage back");
+            Assert.AreEqual(40, defenderHpBefore - defender.GetStatValue("Hitpoints"),
+                "defender still takes the full 40 (reflect doesn't substitute)");
+        }
+
+        [Test]
+        public void ChoirMirrorCoat_NullSource_NoReflect_Counter()
+        {
+            // Counter / cycle-breaker prep: environmental damage with
+            // null source (a trap, a status-tick) must NOT reflect.
+            // Without this gate, the second cycle of two-mirror-coated
+            // entities would infinite-loop (the reflected hit's null
+            // source is the very thing this guard tests).
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""choir-mirror-mucilage"", ""Adjective"":""mirror-glazed"",
+                ""Fluidity"":4, ""Evaporativity"":3,
+                ""ReflectPercent"":50 } ] }");
+            var defender = MakeCreature(hpMax: 200);
+            defender.ApplyEffect(new LiquidCoveredEffect("choir-mirror-mucilage", 30));
+            int hp0 = defender.GetStatValue("Hitpoints");
+            CombatSystem.ApplyDamage(defender, new Damage(40), source: null, zone: null);
+            Assert.AreEqual(hp0 - 40, defender.GetStatValue("Hitpoints"),
+                "defender takes the hit (null source = environmental)");
+            // No crash; no reflect emitted.
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "liquid", Kind = "DamageReflected", Limit = 5 }).Records;
+            Assert.AreEqual(0, recs.Count, "null-source hit does not reflect");
+        }
+
+        [Test]
+        public void ChoirMirrorCoat_TwoMirrors_CycleBreakerHolds_Adversarial()
+        {
+            // Adversarial: two mirror-coated entities. Attacker hits
+            // defender for 40. Defender reflects 20 back. Attacker's
+            // OWN mirror coat would naively reflect 50% of 20 = 10 back,
+            // and on and on — infinite loop. The cycle-breaker
+            // (source=null on reflected damage) must prevent the second
+            // bounce.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""choir-mirror-mucilage"", ""Adjective"":""mirror-glazed"",
+                ""Fluidity"":4, ""Evaporativity"":3,
+                ""ReflectPercent"":50 } ] }");
+            var defender = MakeCreature(hpMax: 200);
+            var attacker = MakeCreature(hpMax: 200);
+            defender.ApplyEffect(new LiquidCoveredEffect("choir-mirror-mucilage", 30));
+            attacker.ApplyEffect(new LiquidCoveredEffect("choir-mirror-mucilage", 30));
+            int attackerHpBefore = attacker.GetStatValue("Hitpoints");
+            CombatSystem.ApplyDamage(defender, new Damage(40), attacker, null);
+            int attackerLost = attackerHpBefore - attacker.GetStatValue("Hitpoints");
+            // Exactly one reflect — defender→attacker for 20. Attacker's
+            // mirror sees Source=null on the reflected hit, bails, no
+            // further bounce.
+            Assert.AreEqual(20, attackerLost,
+                "exactly one reflect: defender→attacker for 20, no infinite bounce");
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "liquid", Kind = "DamageReflected", Limit = 10 }).Records;
+            Assert.AreEqual(1, recs.Count,
+                "exactly one DamageReflected record (the first hop)");
+        }
+
+        [Test]
+        public void NonReflectCoat_TakesHit_NoReflect_Counter()
+        {
+            // Counter: a coat without ReflectPercent (water) does not
+            // reflect — sanity check that the gate is conditional.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""water"", ""Adjective"":""wet"",
+                ""Fluidity"":30, ""Evaporativity"":20 } ] }");
+            var defender = MakeCreature(hpMax: 200);
+            var attacker = MakeCreature(hpMax: 200);
+            defender.ApplyEffect(new LiquidCoveredEffect("water", 30));
+            int attackerHpBefore = attacker.GetStatValue("Hitpoints");
+            CombatSystem.ApplyDamage(defender, new Damage(40), attacker, null);
+            Assert.AreEqual(attackerHpBefore, attacker.GetStatValue("Hitpoints"),
+                "water coat does NOT reflect");
+        }
+
+        [Test]
+        public void ChoirMirrorCoat_SelfDamage_DoesNotReflect_Counter()
+        {
+            // Counter: an entity damaging itself (Source==Target — e.g.
+            // a poison tick that passes self as Source) must not reflect
+            // onto itself. Self-reflect would be a confusing zero-effect
+            // re-application via ApplyDamage of the reduced amount.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""choir-mirror-mucilage"", ""Adjective"":""mirror-glazed"",
+                ""Fluidity"":4, ""Evaporativity"":3,
+                ""ReflectPercent"":50 } ] }");
+            var c = MakeCreature(hpMax: 200);
+            c.ApplyEffect(new LiquidCoveredEffect("choir-mirror-mucilage", 30));
+            int hp0 = c.GetStatValue("Hitpoints");
+            CombatSystem.ApplyDamage(c, new Damage(20), source: c, zone: null);
+            Assert.AreEqual(hp0 - 20, c.GetStatValue("Hitpoints"),
+                "self-damage lands once, no self-reflect");
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "liquid", Kind = "DamageReflected", Limit = 5 }).Records;
+            Assert.AreEqual(0, recs.Count, "Source==Target does not reflect");
+        }
+
+        [Test]
+        public void ChoirMirrorCoat_ReflectFires_EmitsDiag()
+        {
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""choir-mirror-mucilage"", ""Adjective"":""mirror-glazed"",
+                ""Fluidity"":4, ""Evaporativity"":3,
+                ""ReflectPercent"":50 } ] }");
+            var defender = MakeCreature(hpMax: 200);
+            var attacker = MakeCreature(hpMax: 200);
+            defender.ApplyEffect(new LiquidCoveredEffect("choir-mirror-mucilage", 30));
+            CombatSystem.ApplyDamage(defender, new Damage(60), attacker, null);
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "liquid", Kind = "DamageReflected", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"liquidId\":\"choir-mirror-mucilage\"", recs[0].PayloadJson);
+            StringAssert.Contains("\"originalAmount\":60", recs[0].PayloadJson);
+            StringAssert.Contains("\"reflectedAmount\":30", recs[0].PayloadJson);
+            StringAssert.Contains("\"percent\":50", recs[0].PayloadJson);
+        }
     }
 }

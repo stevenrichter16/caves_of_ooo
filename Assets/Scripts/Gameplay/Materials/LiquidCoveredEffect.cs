@@ -375,6 +375,71 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// LA.3 damage-reflect (choir-mirror-mucilage). Fires on the POST-
+        /// resistance "TakeDamage" event (CombatSystem.cs:824-829), so the
+        /// reflect amount is the damage that ACTUALLY landed (a fully-
+        /// resisted hit returns early at CombatSystem.cs:803 and never
+        /// reaches us — sensible: nothing to mirror).
+        ///
+        /// <para><b>Cycle-breaker (🟡 pre-flagged).</b> The reflected
+        /// damage is dealt with <c>source: null</c>. The attacker's own
+        /// LiquidCoveredEffect.OnTakeDamage sees Source=null and bails
+        /// (the early-out below) — so two mirror-coated entities cannot
+        /// infinitely bounce. Tested explicitly in LA.3 adversarial.</para>
+        ///
+        /// <para><b>Source resolution.</b> The TakeDamage event carries
+        /// "Source" (Entity) but not "Zone". We resolve the zone from
+        /// <see cref="SettlementRuntime.ActiveZone"/>; in EditMode tests
+        /// the static is unset (null), and <see cref="CombatSystem.ApplyDamage"/>
+        /// tolerates a null zone (gated FX, gated HandleDeath corpse). The
+        /// production runtime sets ActiveZone before turns advance.</para>
+        /// </summary>
+        public override void OnTakeDamage(Entity target, GameEvent e)
+        {
+            if (target == null || e == null) return;
+            if (!LiquidRegistry.IsInitialized) return;
+            var def = LiquidRegistry.Get(LiquidId);
+            if (def == null || def.ReflectPercent <= 0) return;
+
+            // Cycle-breaker: a reflected hit comes through ApplyDamage with
+            // source=null, so we bail before recursing.
+            var source = e.GetParameter<Entity>("Source");
+            if (source == null) return;
+
+            // Self-damage (an entity hitting itself, e.g. acid-tick on
+            // self) shouldn't reflect.
+            if (ReferenceEquals(source, target)) return;
+
+            var damage = e.GetParameter<Damage>("Damage");
+            if (damage == null || damage.Amount <= 0) return;
+
+            int reflect = (damage.Amount * def.ReflectPercent) / 100;
+            if (reflect <= 0) return;
+
+            // Reflect as a fresh, untyped damage instance — the original
+            // element flags don't carry, so a Heat reflect doesn't get
+            // double-amplified by another coat. Mirror is mirror; what
+            // bounces off is "the punishment for striking," not the
+            // element that did the striking.
+            var reflectDmg = new Damage(reflect);
+
+            // Emit BEFORE the recursive ApplyDamage so the diag order
+            // reads chronologically (reflect-from-A then damage-on-B,
+            // not damage-on-B then reflect-from-A).
+            Diag.Record("liquid", "DamageReflected", target, source,
+                new
+                {
+                    liquidId = LiquidId,
+                    originalAmount = damage.Amount,
+                    reflectedAmount = reflect,
+                    percent = def.ReflectPercent
+                });
+
+            CombatSystem.ApplyDamage(source, reflectDmg, source: null,
+                SettlementRuntime.ActiveZone);
+        }
+
+        /// <summary>
         /// LQ.6: push the coat's <see cref="LiquidDefinition.StatModifiers"/>
         /// + <see cref="LiquidDefinition.ResistanceModifiers"/> onto the
         /// wearer's stats using the symmetric <c>Stat.Bonus</c> pattern

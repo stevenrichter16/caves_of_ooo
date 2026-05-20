@@ -113,6 +113,15 @@ namespace CavesOfOoo.Core
         /// Wired by <c>LiquidCoveredEffect.OnBeforeTakeDamage</c>
         /// (veined-pulse-mycelium).</summary>
         public string ImmuneElement;
+
+        /// <summary>LA: if &gt; 0, X% of the damage that lands on the wearer
+        /// is dealt back to the attacker on a separate <c>ApplyDamage</c>
+        /// call with <c>source=null</c> — the null source is the
+        /// cycle-breaker that prevents two mirror-coated entities from
+        /// infinitely bouncing damage. 0 = no reflect.
+        /// Wired by <c>LiquidCoveredEffect.OnTakeDamage</c>
+        /// (choir-mirror-mucilage).</summary>
+        public int ReflectPercent;
     }
 
     [Serializable]
