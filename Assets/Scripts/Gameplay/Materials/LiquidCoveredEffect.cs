@@ -70,6 +70,19 @@ namespace CavesOfOoo.Core
         /// </summary>
         public string AppliedModsRaw = "";
 
+        /// <summary>
+        /// LB.4 attachment-tracking flag for the lantern-beetle ichor
+        /// path. True iff <see cref="OnApply"/> *added* a fresh
+        /// <see cref="LightSourcePart"/> to the wearer (because the
+        /// liquid def declared <c>LightRadius &gt; 0</c> AND the wearer
+        /// did not already have a LightSourcePart — held lanterns are
+        /// respected). <see cref="OnRemove"/> only strips the
+        /// LightSourcePart when this flag is set, so a player carrying
+        /// their own lantern keeps it after the coat ends. Public for
+        /// reflection save round-trip (mirrors AppliedModsRaw).
+        /// </summary>
+        public bool AddedLightSource;
+
         /// <summary>A coat at/above this <see cref="LiquidDefinition.Conductivity"/>
         /// amplifies incoming Lightning damage, and lets a conductive
         /// NON-water coat double an <see cref="ElectrifiedEffect"/>'s
@@ -115,10 +128,12 @@ namespace CavesOfOoo.Core
                 MessageLog.Add(target.GetDisplayName() + " is covered in " + DisplayName + ".");
             RefreshWaterCoupling(target);
             ApplyStatModifiers(target);
+            ApplyLightSource(target);
         }
 
         public override void OnRemove(Entity target)
         {
+            RemoveLightSource(target);
             ReverseStatModifiers(target);
             // Observability contract (every gate emits a record):
             // LQ.4 emits liquid/Coated on apply; this is the paired
@@ -380,6 +395,53 @@ namespace CavesOfOoo.Core
         /// Null-safe: a stack-merge on an orphaned effect (no Owner) is
         /// a no-op rather than a crash.
         /// </summary>
+        /// <summary>
+        /// LB.4: if the liquid def declares a <c>LightRadius &gt; 0</c>
+        /// (lantern-beetle ichor) and the wearer doesn't already have a
+        /// <see cref="LightSourcePart"/>, attach a fresh one. Sets
+        /// <see cref="AddedLightSource"/> so <see cref="RemoveLightSource"/>
+        /// only strips a LightSourcePart we added (don't pickpocket a
+        /// player's held lantern). Idempotent: re-coat with non-empty
+        /// AppliedModsRaw doesn't re-attach (OnApply guard upstream;
+        /// here we additionally guard with the flag).
+        /// </summary>
+        private void ApplyLightSource(Entity target)
+        {
+            if (target == null) return;
+            if (AddedLightSource) return;
+            if (!LiquidRegistry.IsInitialized) return;
+            var def = LiquidRegistry.Get(LiquidId);
+            if (def == null || def.LightRadius <= 0) return;
+            if (target.GetPart<LightSourcePart>() != null) return; // respect held lantern
+            target.AddPart(new LightSourcePart
+            {
+                Radius = def.LightRadius,
+                LightColor = string.IsNullOrEmpty(def.LightColor) ? "&Y" : def.LightColor,
+            });
+            AddedLightSource = true;
+            Diag.Record("liquid", "LightApplied", target, null,
+                new { liquidId = LiquidId, radius = def.LightRadius,
+                      color = def.LightColor });
+        }
+
+        /// <summary>
+        /// LB.4: paired terminal of <see cref="ApplyLightSource"/>.
+        /// Only strips the LightSourcePart if we added it (AddedLightSource
+        /// flag). Round-tripped via save reflection (the flag is public).
+        /// </summary>
+        private void RemoveLightSource(Entity target)
+        {
+            if (target == null || !AddedLightSource) return;
+            var light = target.GetPart<LightSourcePart>();
+            if (light != null)
+            {
+                target.RemovePart(light);
+                Diag.Record("liquid", "LightRemoved", target, null,
+                    new { liquidId = LiquidId });
+            }
+            AddedLightSource = false;
+        }
+
         private void RefreshWaterCoupling(Entity target)
         {
             if (target == null) return;

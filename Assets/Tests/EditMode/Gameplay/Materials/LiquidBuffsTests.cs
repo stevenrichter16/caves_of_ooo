@@ -104,6 +104,73 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(0, c.GetStatValue("AcidResistance"));
         }
 
+        // ════════════════ LB.4 — Lantern-beetle ichor (LightSourcePart attach) ════════════════
+
+        [Test]
+        public void LanternBeetle_Json_EmitsLight()
+        {
+            var d = LoadFromFile("lantern-beetle-ichor");
+            Assert.AreEqual(6, d.LightRadius, "lantern-beetle radius");
+            Assert.AreEqual("&Y", d.LightColor, "warm amber");
+            Assert.AreEqual("lantern-lit", d.Adjective);
+        }
+
+        [Test]
+        public void LanternBeetleCoat_AttachesLightSourcePart_OnApply()
+        {
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""lantern-beetle-ichor"", ""Adjective"":""lantern-lit"",
+                ""Fluidity"":5, ""Evaporativity"":3,
+                ""LightRadius"":6, ""LightColor"":""&Y"" } ] }");
+            var c = MakeCreature();
+            Assert.IsNull(c.GetPart<LightSourcePart>(), "no light before coat");
+            var fx = c.GetPart<StatusEffectsPart>();
+            fx.ApplyEffect(new LiquidCoveredEffect("lantern-beetle-ichor", 30));
+            var ls = c.GetPart<LightSourcePart>();
+            Assert.IsNotNull(ls, "coat attaches a LightSourcePart");
+            Assert.AreEqual(6, ls.Radius);
+            Assert.AreEqual("&Y", ls.LightColor);
+            fx.RemoveEffect<LiquidCoveredEffect>();
+            Assert.IsNull(c.GetPart<LightSourcePart>(), "coat removes its LightSourcePart");
+        }
+
+        [Test]
+        public void LanternBeetleCoat_RespectsHeldLantern_DoesNotPickpocket()
+        {
+            // Counter / hardness: if the wearer already has a
+            // LightSourcePart (they're carrying a lantern), the coat
+            // must NOT add a second one — and on removal must NOT strip
+            // the pre-existing one.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""lantern-beetle-ichor"", ""Adjective"":""lantern-lit"",
+                ""Fluidity"":5, ""Evaporativity"":3,
+                ""LightRadius"":6, ""LightColor"":""&Y"" } ] }");
+            var c = MakeCreature();
+            c.AddPart(new LightSourcePart { Radius = 3, LightColor = "&R" }); // held lantern
+            var fx = c.GetPart<StatusEffectsPart>();
+            fx.ApplyEffect(new LiquidCoveredEffect("lantern-beetle-ichor", 30));
+            var ls = c.GetPart<LightSourcePart>();
+            Assert.IsNotNull(ls, "held lantern still present");
+            Assert.AreEqual(3, ls.Radius, "coat must NOT overwrite (3 = held, not 6 = coat)");
+            Assert.AreEqual("&R", ls.LightColor);
+            fx.RemoveEffect<LiquidCoveredEffect>();
+            ls = c.GetPart<LightSourcePart>();
+            Assert.IsNotNull(ls, "removal must NOT pickpocket the held lantern");
+            Assert.AreEqual(3, ls.Radius);
+        }
+
+        [Test]
+        public void NonLanternCoat_AttachesNoLight()
+        {
+            // Counter: water doesn't emit light.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""water"", ""Adjective"":""wet"", ""FireDampen"":40,
+                ""Fluidity"":30, ""Evaporativity"":20 } ] }");
+            var c = MakeCreature();
+            c.ApplyEffect(new LiquidCoveredEffect("water", 30));
+            Assert.IsNull(c.GetPart<LightSourcePart>(), "non-lantern coat = no light");
+        }
+
         // ════════════════ LB.3 — Convalessence (signed PerTurnDamage) ════════════════
 
         [Test]
