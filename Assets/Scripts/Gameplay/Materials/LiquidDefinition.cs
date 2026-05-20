@@ -133,6 +133,17 @@ namespace CavesOfOoo.Core
         /// Wired by <c>LiquidCoveredEffect.OnTurnStart/OnTurnEnd</c>
         /// (felling-counter-resin).</summary>
         public bool HpRewindOnTurnEnd;
+
+        /// <summary>LA: if true, every hit (with a non-null Source) shoves
+        /// the wearer 1 cell directly opposite the attacker via
+        /// <c>Zone.MoveEntity</c>. Threshold-greeting / Drosera rejection
+        /// (§L6). Blocked cells / out-of-bounds = no-op (MoveEntity
+        /// returns false; no crash). Resolves the zone via
+        /// <c>SettlementRuntime.ActiveZone</c>; a null zone (EditMode
+        /// without a built scene) silently skips knockback.
+        /// Wired by <c>LiquidCoveredEffect.OnTakeDamage</c>
+        /// (pebble-sundew-dew).</summary>
+        public bool KnockbackOnHit;
     }
 
     [Serializable]

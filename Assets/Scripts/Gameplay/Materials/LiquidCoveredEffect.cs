@@ -405,57 +405,47 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// LA.3 damage-reflect (choir-mirror-mucilage). Fires on the POST-
-        /// resistance "TakeDamage" event (CombatSystem.cs:824-829), so the
-        /// reflect amount is the damage that ACTUALLY landed (a fully-
-        /// resisted hit returns early at CombatSystem.cs:803 and never
-        /// reaches us — sensible: nothing to mirror).
-        ///
-        /// <para><b>Cycle-breaker (🟡 pre-flagged).</b> The reflected
-        /// damage is dealt with <c>source: null</c>. The attacker's own
-        /// LiquidCoveredEffect.OnTakeDamage sees Source=null and bails
-        /// (the early-out below) — so two mirror-coated entities cannot
-        /// infinitely bounce. Tested explicitly in LA.3 adversarial.</para>
-        ///
-        /// <para><b>Source resolution.</b> The TakeDamage event carries
-        /// "Source" (Entity) but not "Zone". We resolve the zone from
-        /// <see cref="SettlementRuntime.ActiveZone"/>; in EditMode tests
-        /// the static is unset (null), and <see cref="CombatSystem.ApplyDamage"/>
-        /// tolerates a null zone (gated FX, gated HandleDeath corpse). The
-        /// production runtime sets ActiveZone before turns advance.</para>
+        /// Post-damage event hook (CombatSystem.cs:824-829). The damage
+        /// has already passed BeforeTakeDamage + ApplyResistances; an
+        /// Amount &gt; 0 means the hit is about to land. Dispatches to
+        /// each absurd-mechanic branch in turn — both can fire on the
+        /// same hit (a coat that both reflects AND knocks back would do
+        /// both; no shipped liquid declares both today).
         /// </summary>
         public override void OnTakeDamage(Entity target, GameEvent e)
         {
             if (target == null || e == null) return;
             if (!LiquidRegistry.IsInitialized) return;
             var def = LiquidRegistry.Get(LiquidId);
-            if (def == null || def.ReflectPercent <= 0) return;
+            if (def == null) return;
 
-            // Cycle-breaker: a reflected hit comes through ApplyDamage with
-            // source=null, so we bail before recursing.
+            TryReflectDamage(target, e, def);
+            TryKnockback(target, e, def);
+        }
+
+        /// <summary>
+        /// LA.3 damage-reflect (choir-mirror-mucilage). The reflected
+        /// damage is dealt as a fresh untyped <see cref="Damage"/> with
+        /// <c>source: null</c> — the null source is the cycle-breaker
+        /// that prevents two mirror-coated entities from infinitely
+        /// bouncing damage. Self-damage (Source==Target) does not
+        /// reflect. Reflect amount is the POST-resistance value (a
+        /// fully-resisted hit early-outs at CombatSystem.cs:803 and
+        /// never reaches us — sensible: nothing to mirror).
+        /// </summary>
+        private void TryReflectDamage(Entity target, GameEvent e, LiquidDefinition def)
+        {
+            if (def.ReflectPercent <= 0) return;
             var source = e.GetParameter<Entity>("Source");
             if (source == null) return;
-
-            // Self-damage (an entity hitting itself, e.g. acid-tick on
-            // self) shouldn't reflect.
             if (ReferenceEquals(source, target)) return;
-
             var damage = e.GetParameter<Damage>("Damage");
             if (damage == null || damage.Amount <= 0) return;
-
             int reflect = (damage.Amount * def.ReflectPercent) / 100;
             if (reflect <= 0) return;
-
-            // Reflect as a fresh, untyped damage instance — the original
-            // element flags don't carry, so a Heat reflect doesn't get
-            // double-amplified by another coat. Mirror is mirror; what
-            // bounces off is "the punishment for striking," not the
-            // element that did the striking.
             var reflectDmg = new Damage(reflect);
-
-            // Emit BEFORE the recursive ApplyDamage so the diag order
-            // reads chronologically (reflect-from-A then damage-on-B,
-            // not damage-on-B then reflect-from-A).
+            // Emit BEFORE the recursive ApplyDamage so diag order reads
+            // chronologically (reflect-from-A then damage-on-B).
             Diag.Record("liquid", "DamageReflected", target, source,
                 new
                 {
@@ -464,10 +454,52 @@ namespace CavesOfOoo.Core
                     reflectedAmount = reflect,
                     percent = def.ReflectPercent
                 });
-
             CombatSystem.ApplyDamage(source, reflectDmg, source: null,
                 SettlementRuntime.ActiveZone);
         }
+
+        /// <summary>
+        /// LA.5 knockback (pebble-sundew-dew). Threshold-greeting (§L6):
+        /// every hit shoves the wearer 1 cell directly opposite the
+        /// attacker. Computes dx/dy as <c>sign(targetPos - sourcePos)</c>
+        /// — diagonals included (a hit from the NW shoves SE). Uses
+        /// <see cref="SettlementRuntime.ActiveZone"/> to resolve the
+        /// zone (the TakeDamage event doesn't carry one); null zone =
+        /// silent no-op so EditMode tests without a scene don't crash.
+        /// <see cref="Zone.MoveEntity"/> returns false if the
+        /// destination is out-of-bounds or has a non-walkable cell —
+        /// also a silent no-op (the diag's <c>moved</c> field records
+        /// whether it landed).
+        /// </summary>
+        private void TryKnockback(Entity target, GameEvent e, LiquidDefinition def)
+        {
+            if (!def.KnockbackOnHit) return;
+            var source = e.GetParameter<Entity>("Source");
+            if (source == null) return;
+            if (ReferenceEquals(source, target)) return;
+            var zone = SettlementRuntime.ActiveZone;
+            if (zone == null) return;
+            var tPos = zone.GetEntityPosition(target);
+            var sPos = zone.GetEntityPosition(source);
+            // GetEntityPosition returns (-1,-1) when not found — bail on
+            // either: knockback requires both to be placed in the zone.
+            if (tPos.x < 0 || sPos.x < 0) return;
+            int dx = SignOf(tPos.x - sPos.x);
+            int dy = SignOf(tPos.y - sPos.y);
+            if (dx == 0 && dy == 0) return; // same cell — no direction
+            int nx = tPos.x + dx, ny = tPos.y + dy;
+            bool moved = zone.MoveEntity(target, nx, ny);
+            Diag.Record("liquid", "Knockback", target, source,
+                new
+                {
+                    liquidId = LiquidId,
+                    fromX = tPos.x, fromY = tPos.y,
+                    toX = nx, toY = ny,
+                    moved
+                });
+        }
+
+        private static int SignOf(int n) => n > 0 ? 1 : (n < 0 ? -1 : 0);
 
         /// <summary>
         /// LQ.6: push the coat's <see cref="LiquidDefinition.StatModifiers"/>

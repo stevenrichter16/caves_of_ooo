@@ -504,5 +504,200 @@ namespace CavesOfOoo.Tests
             Assert.Less(coat.Amount, beforeAmount,
                 "dry-down ran AFTER rewind (Amount decremented)");
         }
+
+        // ════════════════ LA.5 — Pebble-Sundew Dew (KnockbackOnHit) ════════════════
+
+        private static Entity MakeCreatureInZone(Zone zone, int x, int y, int hpMax = 200)
+        {
+            var e = new Entity { ID = "z" + x + "_" + y, BlueprintName = "C" };
+            e.Tags["Creature"] = "";
+            void S(string n, int v, int max = 400) => e.Statistics[n] =
+                new Stat { Owner = e, Name = n, BaseValue = v, Min = -200, Max = max };
+            S("Hitpoints", hpMax, hpMax); S("Toughness", 12);
+            S("Agility", 14); S("DV", 6); S("AV", 0);
+            S("HeatResistance", 0); S("ColdResistance", 0);
+            S("ElectricResistance", 0); S("AcidResistance", 0);
+            e.AddPart(new RenderPart { DisplayName = "z" });
+            e.AddPart(new StatusEffectsPart());
+            zone.AddEntity(e, x, y);
+            return e;
+        }
+
+        [Test]
+        public void PebbleSundewDew_Json_DeclaresKnockback()
+        {
+            var d = LoadFromFile("pebble-sundew-dew");
+            Assert.IsTrue(d.KnockbackOnHit,
+                "pebble-sundew declares KnockbackOnHit");
+            Assert.AreEqual("dew-greeting", d.Adjective);
+            Assert.IsTrue(d.Slippery, "dew is slippery (a wet morning leaf)");
+        }
+
+        [Test]
+        public void PebbleSundewCoat_HitShovesWearerOppositeAttacker()
+        {
+            // Behavior pin: attacker at (3,5), defender at (5,5).
+            // Hit → defender moves to (6,5) (east, opposite attacker).
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""pebble-sundew-dew"", ""Adjective"":""dew-greeting"",
+                ""Fluidity"":6, ""Evaporativity"":4,
+                ""KnockbackOnHit"":true } ] }");
+            var zone = new Zone("KbTest");
+            SettlementRuntime.ActiveZone = zone;
+            try
+            {
+                var defender = MakeCreatureInZone(zone, 5, 5);
+                var attacker = MakeCreatureInZone(zone, 3, 5);
+                defender.ApplyEffect(new LiquidCoveredEffect("pebble-sundew-dew", 30));
+                CombatSystem.ApplyDamage(defender, new Damage(10), attacker, zone);
+                var pos = zone.GetEntityPosition(defender);
+                Assert.AreEqual(6, pos.x, "defender shoved east, opposite attacker at 3,5");
+                Assert.AreEqual(5, pos.y);
+            }
+            finally { SettlementRuntime.Reset(); }
+        }
+
+        [Test]
+        public void PebbleSundewCoat_DiagonalAttack_ShovesDiagonally()
+        {
+            // Attacker NW of defender (4,4) vs (5,5) → shove SE to (6,6).
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""pebble-sundew-dew"", ""Adjective"":""dew-greeting"",
+                ""Fluidity"":6, ""Evaporativity"":4,
+                ""KnockbackOnHit"":true } ] }");
+            var zone = new Zone("KbTest");
+            SettlementRuntime.ActiveZone = zone;
+            try
+            {
+                var defender = MakeCreatureInZone(zone, 5, 5);
+                var attacker = MakeCreatureInZone(zone, 4, 4);
+                defender.ApplyEffect(new LiquidCoveredEffect("pebble-sundew-dew", 30));
+                CombatSystem.ApplyDamage(defender, new Damage(10), attacker, zone);
+                var pos = zone.GetEntityPosition(defender);
+                Assert.AreEqual(6, pos.x, "diagonal: SE");
+                Assert.AreEqual(6, pos.y);
+            }
+            finally { SettlementRuntime.Reset(); }
+        }
+
+        [Test]
+        public void PebbleSundewCoat_BlockedCell_NoCrash_NoMove_Counter()
+        {
+            // Counter / hardness: knockback into out-of-bounds is a
+            // graceful no-op (Zone.MoveEntity returns false). Place
+            // defender at the east edge (Zone.Width-1) so the knockback
+            // destination is out of bounds.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""pebble-sundew-dew"", ""Adjective"":""dew-greeting"",
+                ""Fluidity"":6, ""Evaporativity"":4,
+                ""KnockbackOnHit"":true } ] }");
+            var zone = new Zone("KbTest");
+            SettlementRuntime.ActiveZone = zone;
+            try
+            {
+                int edgeX = Zone.Width - 1; // east edge
+                var defender = MakeCreatureInZone(zone, edgeX, 5);
+                var attacker = MakeCreatureInZone(zone, edgeX - 2, 5);
+                defender.ApplyEffect(new LiquidCoveredEffect("pebble-sundew-dew", 30));
+                Assert.DoesNotThrow(() =>
+                    CombatSystem.ApplyDamage(defender, new Damage(10), attacker, zone));
+                var pos = zone.GetEntityPosition(defender);
+                Assert.AreEqual(edgeX, pos.x, "defender stayed put (edge of zone)");
+                // Diag emitted with moved=false so observers can see attempts.
+                var recs = DiagQuery.Apply(new DiagQuery.Filter
+                { Category = "liquid", Kind = "Knockback", Limit = 5 }).Records;
+                Assert.AreEqual(1, recs.Count, "knockback attempt is logged");
+                StringAssert.Contains("\"moved\":false", recs[0].PayloadJson);
+            }
+            finally { SettlementRuntime.Reset(); }
+        }
+
+        [Test]
+        public void PebbleSundewCoat_NullSource_NoKnockback_Counter()
+        {
+            // Counter: environmental damage (null source) doesn't shove.
+            // Required so a status-tick (acid coat) doesn't yo-yo the
+            // wearer around the map.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""pebble-sundew-dew"", ""Adjective"":""dew-greeting"",
+                ""Fluidity"":6, ""Evaporativity"":4,
+                ""KnockbackOnHit"":true } ] }");
+            var zone = new Zone("KbTest");
+            SettlementRuntime.ActiveZone = zone;
+            try
+            {
+                var defender = MakeCreatureInZone(zone, 5, 5);
+                defender.ApplyEffect(new LiquidCoveredEffect("pebble-sundew-dew", 30));
+                CombatSystem.ApplyDamage(defender, new Damage(10), source: null, zone);
+                var pos = zone.GetEntityPosition(defender);
+                Assert.AreEqual(5, pos.x, "null source = no shove");
+                Assert.AreEqual(5, pos.y);
+            }
+            finally { SettlementRuntime.Reset(); }
+        }
+
+        [Test]
+        public void PebbleSundewCoat_NullZone_NoCrash_Counter()
+        {
+            // Counter: EditMode without an active zone (SettlementRuntime.
+            // ActiveZone == null) doesn't crash. Knockback silently skips.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""pebble-sundew-dew"", ""Adjective"":""dew-greeting"",
+                ""Fluidity"":6, ""Evaporativity"":4,
+                ""KnockbackOnHit"":true } ] }");
+            SettlementRuntime.Reset(); // ensure null
+            var defender = MakeCreature(hpMax: 200);
+            var attacker = MakeCreature(hpMax: 200);
+            defender.ApplyEffect(new LiquidCoveredEffect("pebble-sundew-dew", 30));
+            Assert.DoesNotThrow(() =>
+                CombatSystem.ApplyDamage(defender, new Damage(10), attacker, null));
+        }
+
+        [Test]
+        public void NonKnockbackCoat_HitDoesNotMoveWearer_Counter()
+        {
+            // Counter: water coat (no KnockbackOnHit) → no shove.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""water"", ""Adjective"":""wet"",
+                ""Fluidity"":30, ""Evaporativity"":20 } ] }");
+            var zone = new Zone("KbTest");
+            SettlementRuntime.ActiveZone = zone;
+            try
+            {
+                var defender = MakeCreatureInZone(zone, 5, 5);
+                var attacker = MakeCreatureInZone(zone, 3, 5);
+                defender.ApplyEffect(new LiquidCoveredEffect("water", 30));
+                CombatSystem.ApplyDamage(defender, new Damage(10), attacker, zone);
+                var pos = zone.GetEntityPosition(defender);
+                Assert.AreEqual(5, pos.x, "water doesn't knock back");
+            }
+            finally { SettlementRuntime.Reset(); }
+        }
+
+        [Test]
+        public void PebbleSundewCoat_KnockbackFires_EmitsDiag()
+        {
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""pebble-sundew-dew"", ""Adjective"":""dew-greeting"",
+                ""Fluidity"":6, ""Evaporativity"":4,
+                ""KnockbackOnHit"":true } ] }");
+            var zone = new Zone("KbTest");
+            SettlementRuntime.ActiveZone = zone;
+            try
+            {
+                var defender = MakeCreatureInZone(zone, 5, 5);
+                var attacker = MakeCreatureInZone(zone, 3, 5);
+                defender.ApplyEffect(new LiquidCoveredEffect("pebble-sundew-dew", 30));
+                CombatSystem.ApplyDamage(defender, new Damage(10), attacker, zone);
+                var recs = DiagQuery.Apply(new DiagQuery.Filter
+                { Category = "liquid", Kind = "Knockback", Limit = 5 }).Records;
+                Assert.AreEqual(1, recs.Count);
+                StringAssert.Contains("\"liquidId\":\"pebble-sundew-dew\"", recs[0].PayloadJson);
+                StringAssert.Contains("\"fromX\":5", recs[0].PayloadJson);
+                StringAssert.Contains("\"toX\":6", recs[0].PayloadJson);
+                StringAssert.Contains("\"moved\":true", recs[0].PayloadJson);
+            }
+            finally { SettlementRuntime.Reset(); }
+        }
     }
 }
