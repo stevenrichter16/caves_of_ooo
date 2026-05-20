@@ -117,7 +117,7 @@ namespace CavesOfOoo.Scenarios.Custom
             // ElementalCreatureZoo pattern: clear the dummy row + the two
             // adjacent rows (covers every dummy cell AND its orthogonal
             // cosmetic-pool-ring cell) across the full span.
-            for (int dx = 1; dx <= 32; dx++)
+            for (int dx = 1; dx <= 42; dx++)
             {
                 ctx.World.ClearCell(p.x + dx, p.y);
                 ctx.World.ClearCell(p.x + dx, p.y - 1);
@@ -148,6 +148,21 @@ namespace CavesOfOoo.Scenarios.Custom
                 ("choir-wort",     Dummy(ctx, "choir-wort",     p.x + 26, p.y)),
                 ("lumen-slime",    Dummy(ctx, "lumen-slime",    p.x + 28, p.y)),
                 ("bog-mire",       Dummy(ctx, "bog-mire",       p.x + 30, p.y)),
+                // LB — buff coats (positive lore-liquids). Most are
+                // stat/tick/light/anchor liquids whose mechanics the
+                // damage matrix can't see by design — the new TickAudit/
+                // LightAudit/DeathAnchorAudit probes show them.
+                // Spacing 1 for the LB block — zone is 80 wide (the
+                // wall is at x=79 ⇒ p.x+40), so spacing-2 would push
+                // bower-resin onto the wall and fail. Pools are
+                // non-solid so stacked pool-rings between adjacent
+                // dummies are fine. Player at p.x=39 ⇒ these sit at
+                // x=71..75, well inside bounds.
+                ("tepuibone-slurry",     Dummy(ctx, "tepuibone-slurry",     p.x + 32, p.y)),
+                ("convalessence",        Dummy(ctx, "convalessence",        p.x + 33, p.y)),
+                ("lantern-beetle-ichor", Dummy(ctx, "lantern-beetle-ichor", p.x + 34, p.y)),
+                ("memory-bath",          Dummy(ctx, "memory-bath",          p.x + 35, p.y)),
+                ("bower-resin-amber",    Dummy(ctx, "bower-resin-amber",    p.x + 36, p.y)),
             };
 
             RunMatrixAudit(ctx, rig);
@@ -270,8 +285,108 @@ namespace CavesOfOoo.Scenarios.Custom
                             factorPctOfBase = (int)System.Math.Round(factor * 100.0),
                         });
                 }
+
+                // ──── LB.7 audit dimensions (Rule-8 corollary) ────
+                // The single-hit matrix can't see tick/light/anchor
+                // mechanics. Three per-dummy probes follow it; each is
+                // a synthetic-stimulus-then-restore (Rule 2) so the
+                // dummy is left in its pre-probe state.
+                RunTickAudit(ctx, runId, coat, npc);
+                RunLightAudit(runId, coat, npc);
+                RunDeathAnchorAudit(ctx, runId, coat, npc);
             }
             MessageLog.Add("───── [MatrixAudit] run " + runId + " complete ─────");
+        }
+
+        /// <summary>
+        /// TickAudit — synthetic OnTurnStart per coat. Snapshot HP, set
+        /// to ~half-Max (so heal has room AND damage doesn't kill),
+        /// fire OnTurnStart, measure signed delta (positive = heal,
+        /// negative = damage taken), restore HP. Records
+        /// <c>liquid/TickAudit</c> per cell. Skips dry control.
+        /// </summary>
+        private static void RunTickAudit(ScenarioContext ctx, string runId, string coat, Entity npc)
+        {
+            var fx = npc.GetPart<StatusEffectsPart>();
+            var lc = fx?.GetEffect<LiquidCoveredEffect>();
+            if (lc == null) return; // dry control
+            var hp = npc.GetStat("Hitpoints");
+            if (hp == null) return;
+            int original = hp.BaseValue;
+            int testStart = hp.Max / 2;
+            hp.BaseValue = testStart;
+            lc.OnTurnStart(npc, GameEvent.New("BeginTakeAction"));
+            int delta = hp.BaseValue - testStart; // + heal, − damage
+            hp.BaseValue = original; // restore — immortal rig
+            string label = delta > 0 ? "heal" : delta < 0 ? "damage" : "none";
+            string sign = delta > 0 ? "+" : delta < 0 ? "" : " ";
+            MessageLog.Add(string.Format(
+                "[TickAudit]   {0,-21} Δ={1}{2,3}  ({3})", coat, sign, delta, label));
+            Diag.Record("liquid", "TickAudit", actor: npc, target: null,
+                payload: new { runId, liquid = coat, delta, kind = label });
+        }
+
+        /// <summary>
+        /// LightAudit — read the live <c>LightSourcePart</c> on each
+        /// coated dummy. Records radius/color (or 0 if absent). Records
+        /// <c>liquid/LightAudit</c>. Skips dry control.
+        /// </summary>
+        private static void RunLightAudit(string runId, string coat, Entity npc)
+        {
+            if (npc.GetPart<SpellTestProbePart>()?.CoatLabel == "dry") return;
+            var light = npc.GetPart<LightSourcePart>();
+            int radius = light?.Radius ?? 0;
+            string color = light?.LightColor ?? "";
+            MessageLog.Add(string.Format(
+                "[LightAudit]  {0,-21} radius={1}  color={2}", coat, radius, color));
+            Diag.Record("liquid", "LightAudit", actor: npc, target: null,
+                payload: new { runId, liquid = coat, radius, color, present = light != null });
+        }
+
+        /// <summary>
+        /// DeathAnchorAudit — only when the coat declares
+        /// <c>DeathAnchorPercent &gt; 0</c>. Snapshot HP, drop to 1,
+        /// apply a massive fatal Damage, observe whether the anchor
+        /// fired (HP &gt; 0 post-hit + coat's AnchorConsumed=true).
+        /// Re-apply the same coat afterward (the probe consumes the
+        /// original, so the bench's other consumers see a coated
+        /// dummy). Records <c>liquid/DeathAnchorAudit</c>.
+        /// </summary>
+        private static void RunDeathAnchorAudit(ScenarioContext ctx, string runId, string coat, Entity npc)
+        {
+            var fx = npc.GetPart<StatusEffectsPart>();
+            var lc = fx?.GetEffect<LiquidCoveredEffect>();
+            if (lc == null) return;
+            if (!LiquidRegistry.IsInitialized) return;
+            var def = LiquidRegistry.Get(lc.LiquidId);
+            if (def == null || def.DeathAnchorPercent <= 0) return; // non-anchor liquids: skip
+            var hp = npc.GetStat("Hitpoints");
+            if (hp == null) return;
+
+            int original = hp.BaseValue;
+            string liquidId = lc.LiquidId;
+            int amount = lc.Amount;
+            hp.BaseValue = 1; // make the next hit lethal
+            var dmg = new Damage(999999);
+            CombatSystem.ApplyDamage(npc, dmg, source: null, zone: ctx.Zone);
+            bool triggered = hp.BaseValue > 1;
+            int restoredTo = hp.BaseValue;
+            // Re-arm the dummy for downstream visitors: restore HP,
+            // REMOVE the consumed coat (otherwise OnStack on the
+            // dead-flagged instance would just merge our fresh one into
+            // it — AnchorConsumed=true would persist), then re-apply a
+            // truly fresh coat. NotRegisteredForTurns dummies never get
+            // an EndTurn cleanup so we must do it ourselves.
+            hp.BaseValue = original;
+            fx.RemoveEffect<LiquidCoveredEffect>();
+            npc.ApplyEffect(new LiquidCoveredEffect(liquidId, amount), source: null, zone: ctx.Zone);
+
+            MessageLog.Add(string.Format(
+                "[DeathAnchorAudit] {0,-15} triggered={1}  restoredTo={2}",
+                coat, triggered, restoredTo));
+            Diag.Record("liquid", "DeathAnchorAudit", actor: npc, target: null,
+                payload: new { runId, liquid = coat, triggered, restoredTo,
+                               percent = def.DeathAnchorPercent });
         }
 
         /// <summary>Human-readable expectation per (liquid,element) so
@@ -303,6 +418,33 @@ namespace CavesOfOoo.Scenarios.Custom
                 case "sundew-mucilage/Heat": return "1.00 by design — slow is −Agi/−DV (StatMod), not a hit re-weight";
                 case "choir-wort/Heat": return "1.00 by design — effect is −Tough + Acid tick (StatMod/OnTurnStart)";
                 case "lumen-slime/Electric": return "1.00 by design — effect is −DV glow-beacon (StatMod)";
+                // LB — buff coats: most have NO single-hit re-weight
+                // (tick/light/anchor — see Tick/Light/DeathAnchorAudit).
+                case "tepuibone-slurry/Heat":
+                case "tepuibone-slurry/Cold":
+                case "tepuibone-slurry/Electric":
+                case "tepuibone-slurry/Acid":
+                    return "expect ~0.75 (+25 to each elemental Resistance)";
+                case "convalessence/Heat":
+                case "convalessence/Electric":
+                case "convalessence/Cold":
+                case "convalessence/Acid":
+                    return "1.00 by design — heal is OnTurnStart (see TickAudit)";
+                case "lantern-beetle-ichor/Heat":
+                case "lantern-beetle-ichor/Electric":
+                case "lantern-beetle-ichor/Cold":
+                case "lantern-beetle-ichor/Acid":
+                    return "1.00 by design — effect is attached LightSourcePart (see LightAudit)";
+                case "memory-bath/Heat":
+                case "memory-bath/Electric":
+                case "memory-bath/Cold":
+                case "memory-bath/Acid":
+                    return "1.00 by design — death-anchor triggers only on lethal hits (see DeathAnchorAudit)";
+                case "bower-resin-amber/Heat":
+                case "bower-resin-amber/Electric":
+                case "bower-resin-amber/Cold":
+                case "bower-resin-amber/Acid":
+                    return "1.00 in matrix — +DV/+AV apply upstream of synthetic ApplyDamage (LX.3 AV-blind caveat)";
                 case "dry/Heat":
                 case "dry/Electric":
                 case "dry/Cold":
