@@ -104,6 +104,38 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(0, c.GetStatValue("AcidResistance"));
         }
 
+        // ════════════════ LB.6 — Bower-resin amber (wired half) ════════════════
+
+        [Test]
+        public void BowerResinAmber_Json_DefensiveAura()
+        {
+            var d = LoadFromFile("bower-resin-amber");
+            var s = Mods(d.StatModifiers);
+            Assert.AreEqual(3, s["DV"], "+3 DV");
+            Assert.AreEqual(2, s["AV"], "+2 AV");
+            Assert.AreEqual("amber-cast", d.Adjective);
+            Assert.AreEqual(40, d.Combustibility, "amber is flammable (lore: resin)");
+            Assert.IsTrue(d.Sticky);
+        }
+
+        [Test]
+        public void BowerResinAmberCoat_AppliesDefensiveAura_NetZero()
+        {
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""bower-resin-amber"", ""Adjective"":""amber-cast"",
+                ""Combustibility"":40, ""Fluidity"":3, ""Evaporativity"":1, ""Sticky"":true,
+                ""StatModifiers"":[ { ""Stat"":""DV"", ""Delta"":3 },
+                                    { ""Stat"":""AV"", ""Delta"":2 } ] } ] }");
+            var c = MakeCreature();
+            var fx = c.GetPart<StatusEffectsPart>();
+            fx.ApplyEffect(new LiquidCoveredEffect("bower-resin-amber", 30));
+            Assert.AreEqual(9, c.GetStatValue("DV"),  "DV 6→9 (+3)");
+            Assert.AreEqual(2, c.GetStatValue("AV"),  "AV 0→2 (+2)");
+            fx.RemoveEffect<LiquidCoveredEffect>();
+            Assert.AreEqual(6, c.GetStatValue("DV"));
+            Assert.AreEqual(0, c.GetStatValue("AV"));
+        }
+
         // ════════════════ LB.5 — Memory-Bath (killing-blow interception) ════════════════
 
         [Test]
