@@ -309,5 +309,200 @@ namespace CavesOfOoo.Tests
             StringAssert.Contains("\"reflectedAmount\":30", recs[0].PayloadJson);
             StringAssert.Contains("\"percent\":50", recs[0].PayloadJson);
         }
+
+        // ════════════════ LA.4 — Felling-Counter Resin (HpRewindOnTurnEnd) ════════════════
+
+        [Test]
+        public void FellingCounterResin_Json_DeclaresHpRewind()
+        {
+            // §L3: Felling-Counter Antikythera — pre-Felling time-tech.
+            // The coat's mechanic is "this turn didn't happen for HP."
+            var d = LoadFromFile("felling-counter-resin");
+            Assert.IsTrue(d.HpRewindOnTurnEnd,
+                "felling-counter declares HpRewindOnTurnEnd");
+            Assert.AreEqual("time-locked", d.Adjective);
+        }
+
+        [Test]
+        public void FellingCounterCoat_RewindsDamageTakenDuringTurn()
+        {
+            // Behavior pin: apply coat at full HP (snapshot taken). Take
+            // damage. OnTurnEnd → HP restored to snapshot.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""felling-counter-resin"", ""Adjective"":""time-locked"",
+                ""Fluidity"":5, ""Evaporativity"":3,
+                ""HpRewindOnTurnEnd"":true } ] }");
+            var c = MakeCreature(hpMax: 200);
+            var coat = new LiquidCoveredEffect("felling-counter-resin", 30);
+            c.ApplyEffect(coat);
+            int snapshotHp = c.GetStatValue("Hitpoints");
+            // Wound the wearer mid-turn.
+            CombatSystem.ApplyDamage(c, new Damage(80), null, null);
+            Assert.AreEqual(snapshotHp - 80, c.GetStatValue("Hitpoints"),
+                "damage lands during the turn");
+            // End of turn: rewind.
+            coat.OnTurnEnd(c);
+            Assert.AreEqual(snapshotHp, c.GetStatValue("Hitpoints"),
+                "HP restored to pre-turn snapshot");
+            Assert.AreEqual(snapshotHp, coat.RewindSnapshotHp,
+                "snapshot value preserved (read for next-turn comparison)");
+        }
+
+        [Test]
+        public void FellingCounterCoat_OnTurnStart_ResnapshotsHp()
+        {
+            // Multi-turn pin: snapshot refreshes each turn start, so
+            // damage taken last turn is locked in (the OnTurnEnd from
+            // last turn ran), and damage this turn gets rewound.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""felling-counter-resin"", ""Adjective"":""time-locked"",
+                ""Fluidity"":5, ""Evaporativity"":3,
+                ""HpRewindOnTurnEnd"":true } ] }");
+            var c = MakeCreature(hpMax: 200);
+            var coat = new LiquidCoveredEffect("felling-counter-resin", 30);
+            c.ApplyEffect(coat);
+            // Pretend we took permanent damage last turn:
+            c.GetStat("Hitpoints").BaseValue = 150;
+            // New turn starts:
+            coat.OnTurnStart(c, GameEvent.New("BeginTakeAction"));
+            Assert.AreEqual(150, coat.RewindSnapshotHp,
+                "snapshot refreshes to current HP at OnTurnStart");
+            // Take more damage this turn:
+            CombatSystem.ApplyDamage(c, new Damage(40), null, null);
+            Assert.AreEqual(110, c.GetStatValue("Hitpoints"));
+            // End-of-turn rewind → back to 150, not 200:
+            coat.OnTurnEnd(c);
+            Assert.AreEqual(150, c.GetStatValue("Hitpoints"),
+                "rewind targets the OnTurnStart snapshot, not the OnApply snapshot");
+        }
+
+        [Test]
+        public void FellingCounterCoat_RewindCappedAtMax()
+        {
+            // Pin: rewind can't exceed Stat.Max. If somehow snapshot > Max
+            // (e.g., Max was lowered between snapshot and OnTurnEnd), the
+            // restore caps at Max — same pattern LB.3 uses for heals.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""felling-counter-resin"", ""Adjective"":""time-locked"",
+                ""Fluidity"":5, ""Evaporativity"":3,
+                ""HpRewindOnTurnEnd"":true } ] }");
+            var c = MakeCreature(hpMax: 200);
+            var coat = new LiquidCoveredEffect("felling-counter-resin", 30);
+            c.ApplyEffect(coat);
+            // Artificially set snapshot to 500 (impossible normally, but
+            // tests the cap path).
+            coat.RewindSnapshotHp = 500;
+            c.GetStat("Hitpoints").BaseValue = 100;
+            coat.OnTurnEnd(c);
+            Assert.AreEqual(200, c.GetStatValue("Hitpoints"),
+                "rewind capped at Stat.Max");
+        }
+
+        [Test]
+        public void FellingCounterCoat_IntraTurnHeal_NotUndone_Counter()
+        {
+            // Counter: if the wearer ENDED the turn with MORE HP than
+            // the snapshot (intra-turn healing), the rewind preserves
+            // the heal — rewind only undoes NET damage. Otherwise
+            // felling-counter would be a heal-eater, which it isn't.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""felling-counter-resin"", ""Adjective"":""time-locked"",
+                ""Fluidity"":5, ""Evaporativity"":3,
+                ""HpRewindOnTurnEnd"":true } ] }");
+            var c = MakeCreature(hpMax: 400);
+            c.GetStat("Hitpoints").BaseValue = 100;
+            var coat = new LiquidCoveredEffect("felling-counter-resin", 30);
+            c.ApplyEffect(coat); // snapshot = 100
+            // Heal mid-turn (no damage taken).
+            c.GetStat("Hitpoints").BaseValue = 180;
+            coat.OnTurnEnd(c);
+            Assert.AreEqual(180, c.GetStatValue("Hitpoints"),
+                "intra-turn heal preserved — rewind only undoes net damage");
+        }
+
+        [Test]
+        public void FellingCounterCoat_DeadAtTurnEnd_NoResurrect_Counter()
+        {
+            // Counter: don't resurrect. A wearer who died mid-turn
+            // (HP ≤ 0 at OnTurnEnd) stays dead. The Memory-Bath
+            // (LB.5) is the path for one-shot resurrection; felling-
+            // counter only undoes damage on a still-alive wearer.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""felling-counter-resin"", ""Adjective"":""time-locked"",
+                ""Fluidity"":5, ""Evaporativity"":3,
+                ""HpRewindOnTurnEnd"":true } ] }");
+            var c = MakeCreature(hpMax: 200);
+            var coat = new LiquidCoveredEffect("felling-counter-resin", 30);
+            c.ApplyEffect(coat);
+            // Snapshot is 200. Kill the wearer (bypass ApplyDamage, set
+            // HP directly to simulate post-death state).
+            c.GetStat("Hitpoints").BaseValue = 0;
+            coat.OnTurnEnd(c);
+            Assert.AreEqual(0, c.GetStatValue("Hitpoints"),
+                "rewind does not resurrect — dead stays dead");
+        }
+
+        [Test]
+        public void NonRewindCoat_DamageStays_Counter()
+        {
+            // Counter: a coat without HpRewindOnTurnEnd does NOT undo
+            // damage. Pinning the conditional.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""water"", ""Adjective"":""wet"",
+                ""Fluidity"":30, ""Evaporativity"":20 } ] }");
+            var c = MakeCreature(hpMax: 200);
+            var coat = new LiquidCoveredEffect("water", 30);
+            c.ApplyEffect(coat);
+            CombatSystem.ApplyDamage(c, new Damage(50), null, null);
+            int afterHit = c.GetStatValue("Hitpoints");
+            coat.OnTurnEnd(c);
+            Assert.AreEqual(afterHit, c.GetStatValue("Hitpoints"),
+                "non-rewind coat (water) does not restore HP");
+        }
+
+        [Test]
+        public void FellingCounterCoat_RewindFires_EmitsDiag()
+        {
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""felling-counter-resin"", ""Adjective"":""time-locked"",
+                ""Fluidity"":5, ""Evaporativity"":3,
+                ""HpRewindOnTurnEnd"":true } ] }");
+            var c = MakeCreature(hpMax: 200);
+            var coat = new LiquidCoveredEffect("felling-counter-resin", 30);
+            c.ApplyEffect(coat);
+            CombatSystem.ApplyDamage(c, new Damage(60), null, null);
+            coat.OnTurnEnd(c);
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "liquid", Kind = "HpRewound", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"liquidId\":\"felling-counter-resin\"", recs[0].PayloadJson);
+            StringAssert.Contains("\"hpBefore\":140", recs[0].PayloadJson); // 200-60=140
+            StringAssert.Contains("\"hpAfter\":200", recs[0].PayloadJson);
+            StringAssert.Contains("\"gained\":60", recs[0].PayloadJson);
+        }
+
+        [Test]
+        public void FellingCounterCoat_RewindRunsBeforeDryDown_Sequencing()
+        {
+            // Sequencing pin (pre-flagged 🟡 in §16.7): the rewind must
+            // run BEFORE the dry-down. Otherwise a coat that exactly
+            // dried-down to 0 this turn would have its rewind skipped
+            // (Duration=0 might cause early exit). Verify both run.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""felling-counter-resin"", ""Adjective"":""time-locked"",
+                ""Fluidity"":5, ""Evaporativity"":3,
+                ""HpRewindOnTurnEnd"":true } ] }");
+            var c = MakeCreature(hpMax: 200);
+            var coat = new LiquidCoveredEffect("felling-counter-resin", 30);
+            c.ApplyEffect(coat);
+            int beforeAmount = coat.Amount;
+            CombatSystem.ApplyDamage(c, new Damage(50), null, null);
+            coat.OnTurnEnd(c);
+            // Both happened: HP restored AND Amount decremented.
+            Assert.AreEqual(c.GetStat("Hitpoints").Max, c.GetStatValue("Hitpoints"),
+                "rewind happened");
+            Assert.Less(coat.Amount, beforeAmount,
+                "dry-down ran AFTER rewind (Amount decremented)");
+        }
     }
 }

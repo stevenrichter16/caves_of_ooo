@@ -122,6 +122,17 @@ namespace CavesOfOoo.Core
         /// Wired by <c>LiquidCoveredEffect.OnTakeDamage</c>
         /// (choir-mirror-mucilage).</summary>
         public int ReflectPercent;
+
+        /// <summary>LA: if true, the coat snapshots HP at
+        /// <c>OnApply</c>/<c>OnTurnStart</c> and writes it back at
+        /// <c>OnTurnEnd</c> BEFORE the dry-down — damage taken during
+        /// the turn is undone (felling-counter resin, Antikythera-style
+        /// time-tech, §L3). Only undoes net damage (a higher current HP
+        /// from intra-turn healing is preserved); does not resurrect
+        /// (a dead wearer at OnTurnEnd is not revived).
+        /// Wired by <c>LiquidCoveredEffect.OnTurnStart/OnTurnEnd</c>
+        /// (felling-counter-resin).</summary>
+        public bool HpRewindOnTurnEnd;
     }
 
     [Serializable]

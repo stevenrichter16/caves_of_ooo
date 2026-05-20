@@ -93,6 +93,17 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool AnchorConsumed;
 
+        /// <summary>
+        /// LA.4 felling-counter snapshot. The HP value to write back at
+        /// <c>OnTurnEnd</c> when <see cref="LiquidDefinition.HpRewindOnTurnEnd"/>
+        /// is true. Set by <c>OnApply</c> and refreshed by <c>OnTurnStart</c>
+        /// (so each turn snapshots independently). The sentinel <c>-1</c>
+        /// means "no snapshot taken yet" — rewind early-outs. Public for
+        /// reflection save round-trip (mirrors AppliedModsRaw /
+        /// AddedLightSource / AnchorConsumed).
+        /// </summary>
+        public int RewindSnapshotHp = -1;
+
         /// <summary>A coat at/above this <see cref="LiquidDefinition.Conductivity"/>
         /// amplifies incoming Lightning damage, and lets a conductive
         /// NON-water coat double an <see cref="ElectrifiedEffect"/>'s
@@ -139,6 +150,7 @@ namespace CavesOfOoo.Core
             RefreshWaterCoupling(target);
             ApplyStatModifiers(target);
             ApplyLightSource(target);
+            SnapshotHpForRewind(target);
         }
 
         public override void OnRemove(Entity target)
@@ -191,6 +203,13 @@ namespace CavesOfOoo.Core
 
         public override void OnTurnEnd(Entity target)
         {
+            // LA.4: rewind FIRST, before dry-down. The lore intent is
+            // "this turn didn't happen" — so the dry-down still runs
+            // (a turn of liquid evaporating IS metabolic, not damage),
+            // but the HP delta is undone. ApplyHpRewind is a no-op if
+            // the def doesn't declare HpRewindOnTurnEnd.
+            ApplyHpRewind(target);
+
             int dry = 1;
             if (LiquidRegistry.IsInitialized)
             {
@@ -234,7 +253,18 @@ namespace CavesOfOoo.Core
             if (target == null) return;
             if (!LiquidRegistry.IsInitialized) return;
             var def = LiquidRegistry.Get(LiquidId);
-            if (def == null || def.PerTurnDamage == null) return;
+            if (def == null) return;
+
+            // LA.4: re-snapshot HP at every turn start (overwrites any
+            // OnApply snapshot from the same instance). The rewind that
+            // fires at OnTurnEnd will then undo any damage taken DURING
+            // this turn. Runs BEFORE the PerTurnDamage tick below so the
+            // snapshot is the pre-tick HP — a tick that damages (acid)
+            // gets rewound; a tick that heals (convalessence) does not
+            // (because rewind only undoes NET damage; see ApplyHpRewind).
+            SnapshotHpForRewind(target);
+
+            if (def.PerTurnDamage == null) return;
             int amt = def.PerTurnDamage.Amount;
             if (amt == 0) return;
             if (target.GetStatValue("Hitpoints", 0) <= 0) return;
@@ -573,6 +603,60 @@ namespace CavesOfOoo.Core
             if (target == null) return;
             if (LiquidId != "water") return;
             target.ApplyEffect(new WetEffect(1.0f), null, null);
+        }
+
+        /// <summary>
+        /// LA.4: record the wearer's current HP into
+        /// <see cref="RewindSnapshotHp"/> when the def declares
+        /// <c>HpRewindOnTurnEnd</c>. Called from OnApply and OnTurnStart
+        /// — each fresh snapshot overwrites the previous so the rewind
+        /// always targets "the start of this turn" (or apply-time if no
+        /// turn has elapsed yet). No-op when the def is missing /
+        /// doesn't declare rewind / the wearer has no Hitpoints stat.
+        /// </summary>
+        private void SnapshotHpForRewind(Entity target)
+        {
+            if (target == null) return;
+            if (!LiquidRegistry.IsInitialized) return;
+            var def = LiquidRegistry.Get(LiquidId);
+            if (def == null || !def.HpRewindOnTurnEnd) return;
+            var hp = target.GetStat("Hitpoints");
+            if (hp == null) return;
+            RewindSnapshotHp = hp.BaseValue;
+        }
+
+        /// <summary>
+        /// LA.4: write <see cref="RewindSnapshotHp"/> back to the wearer's
+        /// Hitpoints at OnTurnEnd, capped at <c>Stat.Max</c>. Only undoes
+        /// NET damage: if current HP is already at/above the snapshot
+        /// (e.g. mid-turn potion), the rewind is a no-op so the intra-
+        /// turn heal is preserved. Refuses to resurrect a wearer who
+        /// died this turn (current HP ≤ 0 → no rewind). Emits
+        /// <c>liquid/HpRewound</c> on every actual write.
+        /// </summary>
+        private void ApplyHpRewind(Entity target)
+        {
+            if (target == null) return;
+            if (!LiquidRegistry.IsInitialized) return;
+            var def = LiquidRegistry.Get(LiquidId);
+            if (def == null || !def.HpRewindOnTurnEnd) return;
+            if (RewindSnapshotHp <= 0) return; // no snapshot, or snapshot was already dead
+            var hp = target.GetStat("Hitpoints");
+            if (hp == null) return;
+            if (hp.BaseValue <= 0) return; // don't resurrect (current iteration: dead stays dead)
+            int before = hp.BaseValue;
+            int restored = System.Math.Min(RewindSnapshotHp, hp.Max);
+            if (restored <= before) return; // current HP at/above snapshot — preserve intra-turn heal
+            hp.BaseValue = restored;
+            Diag.Record("liquid", "HpRewound", target, null,
+                new
+                {
+                    liquidId = LiquidId,
+                    hpBefore = before,
+                    hpAfter = restored,
+                    snapshot = RewindSnapshotHp,
+                    gained = restored - before
+                });
         }
     }
 }
