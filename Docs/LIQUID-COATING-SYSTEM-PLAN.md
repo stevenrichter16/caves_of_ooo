@@ -1465,3 +1465,78 @@ v3.3/v3.4 corrections are recorded here, not silently fixed).
 (matrix + 3 probes + direct measurement agree). The
 rep-multiplier hook for Bower-resin is the only deferred
 special-feature (⚪), tracked per §15.4 / §15.7.
+
+---
+
+## 16. LA — Absurd-property liquids (5 qualitatively-new mechanics)
+
+**Status:** PLANNED (LA.1). 5 liquids each with a **qualitatively new
+mechanic**, not just another stat/resistance knob. Each picks a
+different fault-line in the combat model so they stack as orthogonal
+strategic options. All lore-grounded in the tepui-thread canon.
+
+### 16.1 The five (lore → mechanic)
+
+| id | Lore anchor | Mechanic |
+|---|---|---|
+| `veined-pulse-mycelium` | Branchwork distributed cognition (§L5) — routes around obstacles | **Total elemental immunity**: one named element forced to 0 damage (not "resisted" — *nullified*) |
+| `choir-mirror-mucilage` | Choir external digestion is *bidirectional* (§L4) | **Damage reflect**: X% of incoming damage dealt back at attacker (Source=null on reflected hit → no infinite bounce) |
+| `felling-counter-resin` | Felling-Counter Antikythera artifact (§L3) — pre-Felling time-tech | **HP rewind**: snapshot HP at OnTurnStart; OnTurnEnd writes it back. Damage taken DURING the turn is undone |
+| `pebble-sundew-dew` | Catacomb dewstep — threshold-greeting (§L6) + Drosera | **Knockback**: every hit shoves the wearer 1 cell opposite the attacker (threshold-rejection of violence) |
+| `held-breath-lacquer` | Held Breath / Apatheia total non-violence (§L8) | **Undying + Pacifist**: fatal hits set Amount=0 (no anchor consumption — permanent); AllowAction returns false (can't attack) |
+
+### 16.2 Verification sweep (engine hooks — all confirmed)
+
+| Premise | Confirmed at | Detail |
+|---|---|---|
+| `Effect.OnTakeDamage(Entity, GameEvent)` virtual, overridable | `Effect.cs:193` | Fires AFTER damage applied; perfect for reflect/knockback |
+| `Effect.AllowAction(Entity) => true` overridable | `Effect.cs:214` | Held-Breath BlockAction override |
+| `"TakeDamage"` event carries `Source` (Entity) + `Damage` (typed) | `CombatSystem.cs:824-829` | Reflect/knockback read attacker from event |
+| `StatusEffectsPart.HandleTakeDamage` reverse-iterates `_effects[i].OnTakeDamage(parent, e)` | `StatusEffectsPart.cs:474-479` | Reverse-order = self-removal safe |
+| `Zone.MoveEntity(entity, newX, newY) → bool` | `Zone.cs:201` | Knockback teleport (returns false if blocked) |
+| `CavesOfOoo.Core.SettlementRuntime.ActiveZone` static | `SettlementRuntime.cs:7` | Effects can resolve zone without event-param plumbing |
+
+### 16.3 Engine extensions (5 small additions)
+
+1. **`ImmuneElement` string** (LA.2). `OnBeforeTakeDamage` checks `damage.Is{Heat,Cold,Electric,Acid}Damage()` matching the def; if so `damage.Amount = 0` and return. Emits `liquid/ElementImmunity` diag.
+2. **`ReflectPercent` int** (LA.3). Override `LiquidCoveredEffect.OnTakeDamage`: read `Source` from event; if non-null AND amount > 0, deal `Damage(amt*pct/100)` back with `source: null` (cycle-breaker). Emits `liquid/DamageReflected`.
+3. **`HpRewindOnTurnEnd` bool + `RewindSnapshotHp` int** (LA.4). `OnApply` and `OnTurnStart` set `RewindSnapshotHp = currentHp`. `OnTurnEnd` (BEFORE the existing dry-down) — if flag set and snapshot ≥ 0, write HP back. Emits `liquid/HpRewound`.
+4. **`KnockbackOnHit` bool** (LA.5). Override `OnTakeDamage`: get `Source`; resolve zone via `SettlementRuntime.ActiveZone`; compute dx/dy = sign of myPos − srcPos; `zone.MoveEntity(target, x+dx, y+dy)`. Skip if same cell / null source / move blocked. Emits `liquid/Knockback`.
+5. **`PreventDeath` bool + `BlockAction` bool** (LA.6). `OnBeforeTakeDamage`: if PreventDeath && Amount ≥ HP → Amount = 0 (no AnchorConsumed flag — permanent). Override `AllowAction(target)`: if BlockAction return false.
+
+### 16.4 Bench audit dimensions (5 new probes)
+
+Each mirrors the LB Rule-2 pattern (snapshot → stimulate → measure → restore):
+
+- **ImmunityAudit** (`liquid/ImmunityAudit`): apply each element's synthetic hit at base=100; observe Amount post-mutation; if `ImmuneElement` matches → expect 0.
+- **ReflectAudit** (`liquid/ReflectAudit`): synthetic attacker (or null-source for "no reflect target" counter) hits the dummy; observe `damage/PreDamageMutation` on the attacker (the reflect path fires its own ApplyDamage → its own PreDamageMutation cycle).
+- **RewindAudit** (`liquid/RewindAudit`): snapshot HP → OnTurnStart (records snapshot) → wound dummy (set HP lower) → OnTurnEnd → observe HP restored to snapshot.
+- **KnockbackAudit** (`liquid/KnockbackAudit`): place synthetic attacker; snapshot dummy pos → ApplyDamage → check pos changed by 1 in the opposite direction → teleport back.
+- **UndyingAudit** (`liquid/UndyingAudit`): fatal hit doesn't kill (HP > 0 after); `coat.AllowAction(npc)` returns false.
+
+### 16.5 Sub-milestones (smallest blast radius first; ordered by independence)
+
+- **LA.1** — this plan + sweep (doc commit).
+- **LA.2** — Veined Pulse Mycelium + `ImmuneElement` engine (smallest: 3-line OnBeforeTakeDamage early-out). RED→GREEN+counter+adversarial; commit.
+- **LA.3** — Choir-Mirror Mucilage + `ReflectPercent` + OnTakeDamage override + cycle-breaker. RED→GREEN+counter (null-source no reflect)+adversarial (no infinite loop).
+- **LA.4** — Felling-Counter Resin + `HpRewindOnTurnEnd` + snapshot field + OnTurnStart/OnTurnEnd hooks (sequenced BEFORE the existing dry-down). RED→GREEN.
+- **LA.5** — Pebble-Sundew Dew + `KnockbackOnHit` + OnTakeDamage move via Zone.MoveEntity. RED→GREEN+counter (blocked cell = no move + no crash).
+- **LA.6** — Held-Breath Lacquer + `PreventDeath` + `BlockAction` + AllowAction override. RED→GREEN+counter+adversarial (repeated fatal hits each nullified).
+- **LA.7** — Bench rig (5 new at p.x+37..+41) + 5 new probes + live runId-scoped audit + Rule-8 direct cross-check + cold-eye Q1–Q4 + §16 impl log + roadmap + merge.
+
+### 16.6 Performance
+
+None. All extensions are event-driven hooks. `OnTakeDamage` already
+fires per damage event regardless; we're adding logic conditional on
+def fields. Knockback uses one `Zone.MoveEntity` call per hit at most
+(O(1)). Rewind uses one int snapshot per turn.
+
+### 16.7 Pre-flagged self-review
+
+- **🟡 Reflect cycle-breaker** — the reflected damage MUST pass `source: null` to break a two-mirror infinite loop. Tested explicitly.
+- **🟡 Knockback into blocked cell** — `Zone.MoveEntity` returns false; the entity stays put. No crash, no error log. Document.
+- **🟡 Rewind sequencing vs dry-down** — both fire in OnTurnEnd. Rewind must run BEFORE Amount decrement (a dried-to-zero coat doesn't get one last rewind before vanishing — that's the intended behavior — but we still need careful ordering: write HP back, THEN do the standard dry-down). Documented + tested.
+- **🟡 Held-Breath BlockAction in bench** — bench dummies are NotRegisteredForTurns so AllowAction is never consulted in normal play; the UndyingAudit probe directly calls `coat.AllowAction(npc)` for verification.
+- **🔵 Status-effect typing** — these are still all `LiquidCoveredEffect` instances; the absurd mechanics are read off the `LiquidDefinition` via flags. Same OnStack/merge rules apply. Documented.
+- **🧪 RED discipline** — content RED via on-disk file load; behavior RED before each engine extension is wired.
+- **⚪ AllowAction enforcement on the player** — the bench can't directly test that Held-Breath blocks the player's action loop (that requires a turn-registered player taking input). The probe calls `coat.AllowAction(npc)` directly to verify the override returns false; verifying that the player's input system reads this is out of bench scope.
