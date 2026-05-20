@@ -210,14 +210,37 @@ namespace CavesOfOoo.Core
             if (!LiquidRegistry.IsInitialized) return;
             var def = LiquidRegistry.Get(LiquidId);
             if (def == null || def.PerTurnDamage == null) return;
-            if (def.PerTurnDamage.Amount <= 0) return;
+            int amt = def.PerTurnDamage.Amount;
+            if (amt == 0) return;
             if (target.GetStatValue("Hitpoints", 0) <= 0) return;
 
-            var dmg = new Damage(def.PerTurnDamage.Amount);
-            if (!string.IsNullOrEmpty(def.PerTurnDamage.Type))
-                dmg.AddAttribute(def.PerTurnDamage.Type);
-            var zone = context?.GetParameter<Zone>("Zone");
-            CombatSystem.ApplyDamage(target, dmg, source: null, zone);
+            if (amt > 0)
+            {
+                // Damage path (existing — acid/lava/ink/choir/bog).
+                var dmg = new Damage(amt);
+                if (!string.IsNullOrEmpty(def.PerTurnDamage.Type))
+                    dmg.AddAttribute(def.PerTurnDamage.Type);
+                var zone = context?.GetParameter<Zone>("Zone");
+                CombatSystem.ApplyDamage(target, dmg, source: null, zone);
+                return;
+            }
+
+            // LB.3 heal path: signed PerTurnDamage (convalessence). The
+            // Damage.Amount setter clamps ≥ 0 so we can't route through
+            // ApplyDamage — heal via direct HP add, capped to Max
+            // (mirrors how Stat.Bonus modifications respect Max via
+            // Stat.Value's compute). Emit liquid/HealTick for symmetry
+            // with the damage tick's observability.
+            int heal = -amt;
+            var hp = target.GetStat("Hitpoints");
+            if (hp == null) return;
+            int before = hp.BaseValue;
+            int after = System.Math.Min(before + heal, hp.Max);
+            int gained = after - before;
+            hp.BaseValue = after;
+            Diag.Record("liquid", "HealTick", actor: target, target: null,
+                payload: new { liquidId = LiquidId, requested = heal, gained,
+                               hpBefore = before, hpAfter = after });
         }
 
         /// <summary>

@@ -104,6 +104,76 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(0, c.GetStatValue("AcidResistance"));
         }
 
+        // ════════════════ LB.3 — Convalessence (signed PerTurnDamage) ════════════════
+
+        [Test]
+        public void Convalessence_Json_HealsViaNegativePerTurnDamage()
+        {
+            var d = LoadFromFile("convalessence");
+            Assert.IsNotNull(d.PerTurnDamage);
+            Assert.AreEqual(-4, d.PerTurnDamage.Amount, "negative Amount = heal");
+            Assert.AreEqual("convalescing", d.Adjective);
+        }
+
+        [Test]
+        public void ConvalessenceCoat_HealsOnTurnStart_CappedAtMax()
+        {
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""convalessence"", ""Adjective"":""convalescing"",
+                ""Fluidity"":20, ""Evaporativity"":15,
+                ""PerTurnDamage"":{ ""Amount"":-4, ""Type"":""Acid"" } } ] }");
+            // Wound the target so heal has room.
+            var c = MakeCreature(hpMax: 100);
+            c.GetStat("Hitpoints").BaseValue = 50;
+            var coat = new LiquidCoveredEffect("convalessence", 30);
+            c.ApplyEffect(coat);
+            coat.OnTurnStart(c, GameEvent.New("BeginTakeAction"));
+            Assert.AreEqual(54, c.GetStatValue("Hitpoints"),
+                "convalessence +4/turn (50 + |−4| = 54)");
+            // Cap at Max.
+            c.GetStat("Hitpoints").BaseValue = 99;
+            coat.OnTurnStart(c, GameEvent.New("BeginTakeAction"));
+            Assert.AreEqual(100, c.GetStatValue("Hitpoints"),
+                "heal caps at Stat.Max (would have gone to 103)");
+        }
+
+        [Test]
+        public void ConvalessenceCoat_HealTick_EmitsLiquidHealTickDiag()
+        {
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""convalessence"", ""Adjective"":""convalescing"",
+                ""Fluidity"":20, ""Evaporativity"":15,
+                ""PerTurnDamage"":{ ""Amount"":-4, ""Type"":""Acid"" } } ] }");
+            var c = MakeCreature();
+            c.GetStat("Hitpoints").BaseValue = 200;
+            var coat = new LiquidCoveredEffect("convalessence", 30);
+            c.ApplyEffect(coat);
+            coat.OnTurnStart(c, GameEvent.New("BeginTakeAction"));
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "liquid", Kind = "HealTick", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count, "one HealTick per heal");
+            StringAssert.Contains("\"liquidId\":\"convalessence\"", recs[0].PayloadJson);
+            StringAssert.Contains("\"gained\":4", recs[0].PayloadJson);
+        }
+
+        [Test]
+        public void Acid_StillDamages_AfterSignedSwitch_BackwardCompat()
+        {
+            // Counter: positive PerTurnDamage must still go through the
+            // damage path (a buggy "always-heal" impl would heal here).
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""acid"", ""Adjective"":""acid-covered"",
+                ""Fluidity"":20, ""Evaporativity"":15,
+                ""PerTurnDamage"":{ ""Amount"":3, ""Type"":""Acid"" } } ] }");
+            var c = MakeCreature();
+            int before = c.GetStatValue("Hitpoints");
+            var coat = new LiquidCoveredEffect("acid", 30);
+            c.ApplyEffect(coat);
+            coat.OnTurnStart(c, GameEvent.New("BeginTakeAction"));
+            Assert.Less(c.GetStatValue("Hitpoints"), before,
+                "positive PerTurnDamage still damages (backward-compat)");
+        }
+
         [Test]
         public void TepuiboneCoat_DoesNotTick_AndIsNotConductive()
         {
