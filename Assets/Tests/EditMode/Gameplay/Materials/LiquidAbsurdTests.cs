@@ -699,5 +699,168 @@ namespace CavesOfOoo.Tests
             }
             finally { SettlementRuntime.Reset(); }
         }
+
+        // ════════════════ LA.6 — Held-Breath Lacquer (PreventDeath + BlockAction) ════════════════
+
+        [Test]
+        public void HeldBreathLacquer_Json_DeclaresUndyingPacifist()
+        {
+            // §L8: Held Breath / Apatheia — total non-violence. Lacquer
+            // declares BOTH PreventDeath (cannot die) AND BlockAction
+            // (cannot strike).
+            var d = LoadFromFile("held-breath-lacquer");
+            Assert.IsTrue(d.PreventDeath, "held-breath prevents death");
+            Assert.IsTrue(d.BlockAction, "held-breath blocks action");
+            Assert.AreEqual("breath-held", d.Adjective);
+        }
+
+        [Test]
+        public void HeldBreathCoat_FatalHit_AmountForcedToZero()
+        {
+            // Behavior pin: fatal hit on a held-breath wearer →
+            // damage.Amount=0 → HP unchanged. Distinct from Memory-Bath
+            // which RESTORES HP; held-breath just refuses death.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""held-breath-lacquer"", ""Adjective"":""breath-held"",
+                ""Fluidity"":2, ""Evaporativity"":1,
+                ""PreventDeath"":true, ""BlockAction"":true } ] }");
+            var c = MakeCreature(hpMax: 200);
+            c.GetStat("Hitpoints").BaseValue = 30; // low HP
+            c.ApplyEffect(new LiquidCoveredEffect("held-breath-lacquer", 30));
+            CombatSystem.ApplyDamage(c, new Damage(999), null, null);
+            Assert.AreEqual(30, c.GetStatValue("Hitpoints"),
+                "fatal hit nullified — HP unchanged (no restore)");
+        }
+
+        [Test]
+        public void HeldBreathCoat_RepeatedFatalHits_AllNullified_Permanent()
+        {
+            // Key adversarial: distinct from Memory-Bath (LB.5) which is
+            // one-shot. Held-breath has NO consumption — it persists
+            // until the coat dries down. Three fatal hits, all nullified.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""held-breath-lacquer"", ""Adjective"":""breath-held"",
+                ""Fluidity"":2, ""Evaporativity"":1,
+                ""PreventDeath"":true, ""BlockAction"":true } ] }");
+            var c = MakeCreature(hpMax: 200);
+            c.GetStat("Hitpoints").BaseValue = 30;
+            c.ApplyEffect(new LiquidCoveredEffect("held-breath-lacquer", 30));
+            for (int i = 0; i < 3; i++)
+                CombatSystem.ApplyDamage(c, new Damage(999), null, null);
+            Assert.AreEqual(30, c.GetStatValue("Hitpoints"),
+                "all 3 fatal hits nullified (held-breath is permanent, not one-shot)");
+            // 3 DeathPrevented records — one per fatal hit, no AnchorConsumed
+            // (which would have prevented re-trigger in the LB.5 pattern).
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "liquid", Kind = "DeathPrevented", Limit = 10 }).Records;
+            Assert.AreEqual(3, recs.Count, "three DeathPrevented records — no consumption");
+        }
+
+        [Test]
+        public void HeldBreathCoat_NonFatalHit_DamageStill_Lands()
+        {
+            // Counter / boundary: only FATAL hits are nullified. A
+            // non-fatal hit (10 damage on 200 HP) lands normally — the
+            // wearer isn't immortal in the "no damage" sense, just in
+            // the "cannot die" sense.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""held-breath-lacquer"", ""Adjective"":""breath-held"",
+                ""Fluidity"":2, ""Evaporativity"":1,
+                ""PreventDeath"":true, ""BlockAction"":true } ] }");
+            var c = MakeCreature(hpMax: 200);
+            c.ApplyEffect(new LiquidCoveredEffect("held-breath-lacquer", 30));
+            int before = c.GetStatValue("Hitpoints");
+            CombatSystem.ApplyDamage(c, new Damage(40), null, null);
+            Assert.AreEqual(before - 40, c.GetStatValue("Hitpoints"),
+                "non-fatal hit lands as normal (40 damage taken)");
+        }
+
+        [Test]
+        public void HeldBreathCoat_AllowAction_ReturnsFalse()
+        {
+            // Behavior pin: BlockAction → AllowAction returns false.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""held-breath-lacquer"", ""Adjective"":""breath-held"",
+                ""Fluidity"":2, ""Evaporativity"":1,
+                ""PreventDeath"":true, ""BlockAction"":true } ] }");
+            var c = MakeCreature(hpMax: 200);
+            var coat = new LiquidCoveredEffect("held-breath-lacquer", 30);
+            c.ApplyEffect(coat);
+            Assert.IsFalse(coat.AllowAction(c),
+                "held-breath blocks action (pacifist clause)");
+        }
+
+        [Test]
+        public void NonHeldBreathCoat_AllowAction_ReturnsTrue_Counter()
+        {
+            // Counter: water coat doesn't block action.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""water"", ""Adjective"":""wet"",
+                ""Fluidity"":30, ""Evaporativity"":20 } ] }");
+            var c = MakeCreature(hpMax: 200);
+            var coat = new LiquidCoveredEffect("water", 30);
+            c.ApplyEffect(coat);
+            Assert.IsTrue(coat.AllowAction(c),
+                "water coat does NOT block action");
+        }
+
+        [Test]
+        public void NonPreventDeathCoat_FatalHit_Kills_Counter()
+        {
+            // Counter: a non-PreventDeath coat (water) doesn't prevent
+            // death — fatal hit lands.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""water"", ""Adjective"":""wet"",
+                ""Fluidity"":30, ""Evaporativity"":20 } ] }");
+            var c = MakeCreature(hpMax: 200);
+            c.GetStat("Hitpoints").BaseValue = 30;
+            c.ApplyEffect(new LiquidCoveredEffect("water", 30));
+            CombatSystem.ApplyDamage(c, new Damage(999), null, null);
+            Assert.LessOrEqual(c.GetStatValue("Hitpoints"), 0,
+                "water coat doesn't prevent death — fatal hit lands");
+        }
+
+        [Test]
+        public void HeldBreathCoat_DeathPrevented_EmitsDiag()
+        {
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""held-breath-lacquer"", ""Adjective"":""breath-held"",
+                ""Fluidity"":2, ""Evaporativity"":1,
+                ""PreventDeath"":true, ""BlockAction"":true } ] }");
+            var c = MakeCreature(hpMax: 200);
+            c.GetStat("Hitpoints").BaseValue = 50;
+            c.ApplyEffect(new LiquidCoveredEffect("held-breath-lacquer", 30));
+            CombatSystem.ApplyDamage(c, new Damage(999), null, null);
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "liquid", Kind = "DeathPrevented", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"liquidId\":\"held-breath-lacquer\"", recs[0].PayloadJson);
+            StringAssert.Contains("\"wouldHaveDealt\":999", recs[0].PayloadJson);
+            StringAssert.Contains("\"hpAtPrevention\":50", recs[0].PayloadJson);
+        }
+
+        [Test]
+        public void HeldBreathCoat_BeatsDeathAnchor_NoConsumption_Adversarial()
+        {
+            // Adversarial: a coat with BOTH PreventDeath and
+            // DeathAnchorPercent (theoretical — no shipped liquid does)
+            // must let PreventDeath fire first, so the anchor isn't
+            // burned on a hit PreventDeath already nullifies. Pins the
+            // documented order: immunity → PreventDeath → DeathAnchor.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""dual-undying"", ""Adjective"":""dual-undying"",
+                ""Fluidity"":2, ""Evaporativity"":1,
+                ""PreventDeath"":true,
+                ""DeathAnchorPercent"":50 } ] }");
+            var c = MakeCreature(hpMax: 200);
+            c.GetStat("Hitpoints").BaseValue = 30;
+            var coat = new LiquidCoveredEffect("dual-undying", 30);
+            c.ApplyEffect(coat);
+            CombatSystem.ApplyDamage(c, new Damage(999), null, null);
+            Assert.IsFalse(coat.AnchorConsumed,
+                "PreventDeath fired first → anchor NOT consumed");
+            Assert.AreEqual(30, c.GetStatValue("Hitpoints"),
+                "PreventDeath nullified (HP unchanged — no anchor restore to 100)");
+        }
     }
 }

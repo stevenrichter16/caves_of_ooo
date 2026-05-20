@@ -144,6 +144,28 @@ namespace CavesOfOoo.Core
         /// Wired by <c>LiquidCoveredEffect.OnTakeDamage</c>
         /// (pebble-sundew-dew).</summary>
         public bool KnockbackOnHit;
+
+        /// <summary>LA: if true, fatal incoming damage is forced to
+        /// <c>Amount=0</c> — permanently, with no consumption (distinct
+        /// from <see cref="DeathAnchorPercent"/> which is one-shot). The
+        /// wearer becomes effectively undying for as long as the coat
+        /// persists. Pairs with <see cref="BlockAction"/> for the
+        /// "Held Breath / Apatheia" total-non-violence configuration
+        /// (§L8): the coat refuses to die but also refuses to act.
+        /// Wired by <c>LiquidCoveredEffect.OnBeforeTakeDamage</c>
+        /// (held-breath-lacquer).</summary>
+        public bool PreventDeath;
+
+        /// <summary>LA: if true, the coat overrides
+        /// <see cref="LiquidCoveredEffect.AllowAction"/> to return false
+        /// — the wearer cannot take any action (attack, cast, move
+        /// IF the action-loop consults AllowAction). Held Breath /
+        /// Apatheia total-pacifism. Wearer can still be hit; pairs with
+        /// <see cref="PreventDeath"/> for the "I cannot die, but I will
+        /// not strike" configuration.
+        /// Wired by <c>LiquidCoveredEffect.AllowAction</c>
+        /// (held-breath-lacquer).</summary>
+        public bool BlockAction;
     }
 
     [Serializable]

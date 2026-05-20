@@ -346,6 +346,30 @@ namespace CavesOfOoo.Core
                 }
             }
 
+            // LA.6 PreventDeath (held-breath-lacquer): nullify any
+            // lethal hit, permanently, with NO consumption — distinct
+            // from DeathAnchorPercent (one-shot). The wearer is undying
+            // for as long as the coat persists. Pairs with BlockAction
+            // for the "I cannot die, but I will not strike" config.
+            // Fires BEFORE the death-anchor so a coat with both wouldn't
+            // burn its anchor on a hit that PreventDeath already
+            // nullifies (no shipped liquid has both today; ordering
+            // documented for future multi-mechanic coats).
+            if (def.PreventDeath)
+            {
+                int hp = target.GetStatValue("Hitpoints", 0);
+                if (hp > 0 && damage.Amount >= hp)
+                {
+                    int wouldHaveDealt = damage.Amount; // capture before zero-ing
+                    damage.Amount = 0;
+                    Diag.Record("liquid", "DeathPrevented", target, null,
+                        new { liquidId = LiquidId,
+                              wouldHaveDealt,
+                              hpAtPrevention = hp });
+                    return; // hit fully consumed
+                }
+            }
+
             // LB.5 death-anchor: if the coat declares DeathAnchorPercent
             // and this hit is lethal, consume the coat to restore HP to
             // Max*pct/100 and fully nullify the damage. The existing
@@ -500,6 +524,24 @@ namespace CavesOfOoo.Core
         }
 
         private static int SignOf(int n) => n > 0 ? 1 : (n < 0 ? -1 : 0);
+
+        /// <summary>
+        /// LA.6 BlockAction (held-breath-lacquer): when the def declares
+        /// <c>BlockAction</c>, the wearer cannot take any action. Pairs
+        /// with <c>PreventDeath</c> for the "Held Breath / Apatheia"
+        /// configuration: cannot be killed, cannot strike (§L8).
+        /// Returning false here mirrors the contract documented at
+        /// <see cref="Effect.AllowAction"/> — the AI / input pipeline
+        /// reads this through <c>StatusEffectsPart.AllowAction</c>.
+        /// </summary>
+        public override bool AllowAction(Entity target)
+        {
+            if (target == null) return true;
+            if (!LiquidRegistry.IsInitialized) return true;
+            var def = LiquidRegistry.Get(LiquidId);
+            if (def == null) return true;
+            return !def.BlockAction;
+        }
 
         /// <summary>
         /// LQ.6: push the coat's <see cref="LiquidDefinition.StatModifiers"/>
