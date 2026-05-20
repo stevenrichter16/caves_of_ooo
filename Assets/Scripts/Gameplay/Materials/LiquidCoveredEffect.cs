@@ -293,6 +293,29 @@ namespace CavesOfOoo.Core
             var def = LiquidRegistry.Get(LiquidId);
             if (def == null) return;
 
+            // LA.2 element immunity (veined-pulse-mycelium): a coat
+            // declaring ImmuneElement nullifies (Amount→0) damage carrying
+            // the matching element flag — distinct from resistance, which
+            // scales. Match via Damage.Is{Element}Damage() so aliases
+            // (Lightning→Electric, Fire→Heat) collapse the same way Fix-1
+            // (LQ.5) established. Fires BEFORE death-anchor: an immune
+            // element shouldn't burn the one-shot resurrection.
+            if (!string.IsNullOrEmpty(def.ImmuneElement))
+            {
+                bool immuneHit =
+                    (def.ImmuneElement == "Electric" && damage.IsElectricDamage()) ||
+                    (def.ImmuneElement == "Heat"     && damage.IsHeatDamage())     ||
+                    (def.ImmuneElement == "Cold"     && damage.IsColdDamage())     ||
+                    (def.ImmuneElement == "Acid"     && damage.IsAcidDamage());
+                if (immuneHit)
+                {
+                    damage.Amount = 0;
+                    Diag.Record("liquid", "ElementImmunity", target, null,
+                        new { liquidId = LiquidId, element = def.ImmuneElement });
+                    return; // hit fully consumed; no further branches
+                }
+            }
+
             // LB.5 death-anchor: if the coat declares DeathAnchorPercent
             // and this hit is lethal, consume the coat to restore HP to
             // Max*pct/100 and fully nullify the damage. The existing

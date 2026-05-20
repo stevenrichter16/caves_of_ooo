@@ -103,6 +103,16 @@ namespace CavesOfOoo.Core
         /// <c>Max * percent / 100</c>, consumes the coat. 0 = no anchor.
         /// Wired by <c>LiquidCoveredEffect.OnBeforeTakeDamage</c>.</summary>
         public int DeathAnchorPercent;
+
+        /// <summary>LA: if non-empty, incoming damage carrying the matching
+        /// elemental flag is fully nullified (Amount→0). Distinct from
+        /// resistance, which scales. One of "Heat", "Cold", "Electric",
+        /// "Acid" — matched via <c>Damage.Is{Element}Damage()</c> so the
+        /// alias-collapse precedent (Lightning→Electric, Fire→Heat, etc.)
+        /// applies automatically. Empty = no immunity.
+        /// Wired by <c>LiquidCoveredEffect.OnBeforeTakeDamage</c>
+        /// (veined-pulse-mycelium).</summary>
+        public string ImmuneElement;
     }
 
     [Serializable]
