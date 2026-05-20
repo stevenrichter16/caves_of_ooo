@@ -93,6 +93,17 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool AnchorConsumed;
 
+        /// <summary>
+        /// LA.4 felling-counter snapshot. The HP value to write back at
+        /// <c>OnTurnEnd</c> when <see cref="LiquidDefinition.HpRewindOnTurnEnd"/>
+        /// is true. Set by <c>OnApply</c> and refreshed by <c>OnTurnStart</c>
+        /// (so each turn snapshots independently). The sentinel <c>-1</c>
+        /// means "no snapshot taken yet" — rewind early-outs. Public for
+        /// reflection save round-trip (mirrors AppliedModsRaw /
+        /// AddedLightSource / AnchorConsumed).
+        /// </summary>
+        public int RewindSnapshotHp = -1;
+
         /// <summary>A coat at/above this <see cref="LiquidDefinition.Conductivity"/>
         /// amplifies incoming Lightning damage, and lets a conductive
         /// NON-water coat double an <see cref="ElectrifiedEffect"/>'s
@@ -139,6 +150,7 @@ namespace CavesOfOoo.Core
             RefreshWaterCoupling(target);
             ApplyStatModifiers(target);
             ApplyLightSource(target);
+            SnapshotHpForRewind(target);
         }
 
         public override void OnRemove(Entity target)
@@ -191,6 +203,13 @@ namespace CavesOfOoo.Core
 
         public override void OnTurnEnd(Entity target)
         {
+            // LA.4: rewind FIRST, before dry-down. The lore intent is
+            // "this turn didn't happen" — so the dry-down still runs
+            // (a turn of liquid evaporating IS metabolic, not damage),
+            // but the HP delta is undone. ApplyHpRewind is a no-op if
+            // the def doesn't declare HpRewindOnTurnEnd.
+            ApplyHpRewind(target);
+
             int dry = 1;
             if (LiquidRegistry.IsInitialized)
             {
@@ -234,7 +253,18 @@ namespace CavesOfOoo.Core
             if (target == null) return;
             if (!LiquidRegistry.IsInitialized) return;
             var def = LiquidRegistry.Get(LiquidId);
-            if (def == null || def.PerTurnDamage == null) return;
+            if (def == null) return;
+
+            // LA.4: re-snapshot HP at every turn start (overwrites any
+            // OnApply snapshot from the same instance). The rewind that
+            // fires at OnTurnEnd will then undo any damage taken DURING
+            // this turn. Runs BEFORE the PerTurnDamage tick below so the
+            // snapshot is the pre-tick HP — a tick that damages (acid)
+            // gets rewound; a tick that heals (convalessence) does not
+            // (because rewind only undoes NET damage; see ApplyHpRewind).
+            SnapshotHpForRewind(target);
+
+            if (def.PerTurnDamage == null) return;
             int amt = def.PerTurnDamage.Amount;
             if (amt == 0) return;
             if (target.GetStatValue("Hitpoints", 0) <= 0) return;
@@ -293,6 +323,53 @@ namespace CavesOfOoo.Core
             var def = LiquidRegistry.Get(LiquidId);
             if (def == null) return;
 
+            // LA.2 element immunity (veined-pulse-mycelium): a coat
+            // declaring ImmuneElement nullifies (Amount→0) damage carrying
+            // the matching element flag — distinct from resistance, which
+            // scales. Match via Damage.Is{Element}Damage() so aliases
+            // (Lightning→Electric, Fire→Heat) collapse the same way Fix-1
+            // (LQ.5) established. Fires BEFORE death-anchor: an immune
+            // element shouldn't burn the one-shot resurrection.
+            if (!string.IsNullOrEmpty(def.ImmuneElement))
+            {
+                bool immuneHit =
+                    (def.ImmuneElement == "Electric" && damage.IsElectricDamage()) ||
+                    (def.ImmuneElement == "Heat"     && damage.IsHeatDamage())     ||
+                    (def.ImmuneElement == "Cold"     && damage.IsColdDamage())     ||
+                    (def.ImmuneElement == "Acid"     && damage.IsAcidDamage());
+                if (immuneHit)
+                {
+                    damage.Amount = 0;
+                    Diag.Record("liquid", "ElementImmunity", target, null,
+                        new { liquidId = LiquidId, element = def.ImmuneElement });
+                    return; // hit fully consumed; no further branches
+                }
+            }
+
+            // LA.6 PreventDeath (held-breath-lacquer): nullify any
+            // lethal hit, permanently, with NO consumption — distinct
+            // from DeathAnchorPercent (one-shot). The wearer is undying
+            // for as long as the coat persists. Pairs with BlockAction
+            // for the "I cannot die, but I will not strike" config.
+            // Fires BEFORE the death-anchor so a coat with both wouldn't
+            // burn its anchor on a hit that PreventDeath already
+            // nullifies (no shipped liquid has both today; ordering
+            // documented for future multi-mechanic coats).
+            if (def.PreventDeath)
+            {
+                int hp = target.GetStatValue("Hitpoints", 0);
+                if (hp > 0 && damage.Amount >= hp)
+                {
+                    int wouldHaveDealt = damage.Amount; // capture before zero-ing
+                    damage.Amount = 0;
+                    Diag.Record("liquid", "DeathPrevented", target, null,
+                        new { liquidId = LiquidId,
+                              wouldHaveDealt,
+                              hpAtPrevention = hp });
+                    return; // hit fully consumed
+                }
+            }
+
             // LB.5 death-anchor: if the coat declares DeathAnchorPercent
             // and this hit is lethal, consume the coat to restore HP to
             // Max*pct/100 and fully nullify the damage. The existing
@@ -349,6 +426,121 @@ namespace CavesOfOoo.Core
                     damage.Amount = (int)System.Math.Round(
                         damage.Amount * (1.0 + def.Combustibility / 200.0));
             }
+        }
+
+        /// <summary>
+        /// Post-damage event hook (CombatSystem.cs:824-829). The damage
+        /// has already passed BeforeTakeDamage + ApplyResistances; an
+        /// Amount &gt; 0 means the hit is about to land. Dispatches to
+        /// each absurd-mechanic branch in turn — both can fire on the
+        /// same hit (a coat that both reflects AND knocks back would do
+        /// both; no shipped liquid declares both today).
+        /// </summary>
+        public override void OnTakeDamage(Entity target, GameEvent e)
+        {
+            if (target == null || e == null) return;
+            if (!LiquidRegistry.IsInitialized) return;
+            var def = LiquidRegistry.Get(LiquidId);
+            if (def == null) return;
+
+            TryReflectDamage(target, e, def);
+            TryKnockback(target, e, def);
+        }
+
+        /// <summary>
+        /// LA.3 damage-reflect (choir-mirror-mucilage). The reflected
+        /// damage is dealt as a fresh untyped <see cref="Damage"/> with
+        /// <c>source: null</c> — the null source is the cycle-breaker
+        /// that prevents two mirror-coated entities from infinitely
+        /// bouncing damage. Self-damage (Source==Target) does not
+        /// reflect. Reflect amount is the POST-resistance value (a
+        /// fully-resisted hit early-outs at CombatSystem.cs:803 and
+        /// never reaches us — sensible: nothing to mirror).
+        /// </summary>
+        private void TryReflectDamage(Entity target, GameEvent e, LiquidDefinition def)
+        {
+            if (def.ReflectPercent <= 0) return;
+            var source = e.GetParameter<Entity>("Source");
+            if (source == null) return;
+            if (ReferenceEquals(source, target)) return;
+            var damage = e.GetParameter<Damage>("Damage");
+            if (damage == null || damage.Amount <= 0) return;
+            int reflect = (damage.Amount * def.ReflectPercent) / 100;
+            if (reflect <= 0) return;
+            var reflectDmg = new Damage(reflect);
+            // Emit BEFORE the recursive ApplyDamage so diag order reads
+            // chronologically (reflect-from-A then damage-on-B).
+            Diag.Record("liquid", "DamageReflected", target, source,
+                new
+                {
+                    liquidId = LiquidId,
+                    originalAmount = damage.Amount,
+                    reflectedAmount = reflect,
+                    percent = def.ReflectPercent
+                });
+            CombatSystem.ApplyDamage(source, reflectDmg, source: null,
+                SettlementRuntime.ActiveZone);
+        }
+
+        /// <summary>
+        /// LA.5 knockback (pebble-sundew-dew). Threshold-greeting (§L6):
+        /// every hit shoves the wearer 1 cell directly opposite the
+        /// attacker. Computes dx/dy as <c>sign(targetPos - sourcePos)</c>
+        /// — diagonals included (a hit from the NW shoves SE). Uses
+        /// <see cref="SettlementRuntime.ActiveZone"/> to resolve the
+        /// zone (the TakeDamage event doesn't carry one); null zone =
+        /// silent no-op so EditMode tests without a scene don't crash.
+        /// <see cref="Zone.MoveEntity"/> returns false if the
+        /// destination is out-of-bounds or has a non-walkable cell —
+        /// also a silent no-op (the diag's <c>moved</c> field records
+        /// whether it landed).
+        /// </summary>
+        private void TryKnockback(Entity target, GameEvent e, LiquidDefinition def)
+        {
+            if (!def.KnockbackOnHit) return;
+            var source = e.GetParameter<Entity>("Source");
+            if (source == null) return;
+            if (ReferenceEquals(source, target)) return;
+            var zone = SettlementRuntime.ActiveZone;
+            if (zone == null) return;
+            var tPos = zone.GetEntityPosition(target);
+            var sPos = zone.GetEntityPosition(source);
+            // GetEntityPosition returns (-1,-1) when not found — bail on
+            // either: knockback requires both to be placed in the zone.
+            if (tPos.x < 0 || sPos.x < 0) return;
+            int dx = SignOf(tPos.x - sPos.x);
+            int dy = SignOf(tPos.y - sPos.y);
+            if (dx == 0 && dy == 0) return; // same cell — no direction
+            int nx = tPos.x + dx, ny = tPos.y + dy;
+            bool moved = zone.MoveEntity(target, nx, ny);
+            Diag.Record("liquid", "Knockback", target, source,
+                new
+                {
+                    liquidId = LiquidId,
+                    fromX = tPos.x, fromY = tPos.y,
+                    toX = nx, toY = ny,
+                    moved
+                });
+        }
+
+        private static int SignOf(int n) => n > 0 ? 1 : (n < 0 ? -1 : 0);
+
+        /// <summary>
+        /// LA.6 BlockAction (held-breath-lacquer): when the def declares
+        /// <c>BlockAction</c>, the wearer cannot take any action. Pairs
+        /// with <c>PreventDeath</c> for the "Held Breath / Apatheia"
+        /// configuration: cannot be killed, cannot strike (§L8).
+        /// Returning false here mirrors the contract documented at
+        /// <see cref="Effect.AllowAction"/> — the AI / input pipeline
+        /// reads this through <c>StatusEffectsPart.AllowAction</c>.
+        /// </summary>
+        public override bool AllowAction(Entity target)
+        {
+            if (target == null) return true;
+            if (!LiquidRegistry.IsInitialized) return true;
+            var def = LiquidRegistry.Get(LiquidId);
+            if (def == null) return true;
+            return !def.BlockAction;
         }
 
         /// <summary>
@@ -485,6 +677,60 @@ namespace CavesOfOoo.Core
             if (target == null) return;
             if (LiquidId != "water") return;
             target.ApplyEffect(new WetEffect(1.0f), null, null);
+        }
+
+        /// <summary>
+        /// LA.4: record the wearer's current HP into
+        /// <see cref="RewindSnapshotHp"/> when the def declares
+        /// <c>HpRewindOnTurnEnd</c>. Called from OnApply and OnTurnStart
+        /// — each fresh snapshot overwrites the previous so the rewind
+        /// always targets "the start of this turn" (or apply-time if no
+        /// turn has elapsed yet). No-op when the def is missing /
+        /// doesn't declare rewind / the wearer has no Hitpoints stat.
+        /// </summary>
+        private void SnapshotHpForRewind(Entity target)
+        {
+            if (target == null) return;
+            if (!LiquidRegistry.IsInitialized) return;
+            var def = LiquidRegistry.Get(LiquidId);
+            if (def == null || !def.HpRewindOnTurnEnd) return;
+            var hp = target.GetStat("Hitpoints");
+            if (hp == null) return;
+            RewindSnapshotHp = hp.BaseValue;
+        }
+
+        /// <summary>
+        /// LA.4: write <see cref="RewindSnapshotHp"/> back to the wearer's
+        /// Hitpoints at OnTurnEnd, capped at <c>Stat.Max</c>. Only undoes
+        /// NET damage: if current HP is already at/above the snapshot
+        /// (e.g. mid-turn potion), the rewind is a no-op so the intra-
+        /// turn heal is preserved. Refuses to resurrect a wearer who
+        /// died this turn (current HP ≤ 0 → no rewind). Emits
+        /// <c>liquid/HpRewound</c> on every actual write.
+        /// </summary>
+        private void ApplyHpRewind(Entity target)
+        {
+            if (target == null) return;
+            if (!LiquidRegistry.IsInitialized) return;
+            var def = LiquidRegistry.Get(LiquidId);
+            if (def == null || !def.HpRewindOnTurnEnd) return;
+            if (RewindSnapshotHp <= 0) return; // no snapshot, or snapshot was already dead
+            var hp = target.GetStat("Hitpoints");
+            if (hp == null) return;
+            if (hp.BaseValue <= 0) return; // don't resurrect (current iteration: dead stays dead)
+            int before = hp.BaseValue;
+            int restored = System.Math.Min(RewindSnapshotHp, hp.Max);
+            if (restored <= before) return; // current HP at/above snapshot — preserve intra-turn heal
+            hp.BaseValue = restored;
+            Diag.Record("liquid", "HpRewound", target, null,
+                new
+                {
+                    liquidId = LiquidId,
+                    hpBefore = before,
+                    hpAfter = restored,
+                    snapshot = RewindSnapshotHp,
+                    gained = restored - before
+                });
         }
     }
 }

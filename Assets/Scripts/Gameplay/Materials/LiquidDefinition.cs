@@ -103,6 +103,69 @@ namespace CavesOfOoo.Core
         /// <c>Max * percent / 100</c>, consumes the coat. 0 = no anchor.
         /// Wired by <c>LiquidCoveredEffect.OnBeforeTakeDamage</c>.</summary>
         public int DeathAnchorPercent;
+
+        /// <summary>LA: if non-empty, incoming damage carrying the matching
+        /// elemental flag is fully nullified (Amount→0). Distinct from
+        /// resistance, which scales. One of "Heat", "Cold", "Electric",
+        /// "Acid" — matched via <c>Damage.Is{Element}Damage()</c> so the
+        /// alias-collapse precedent (Lightning→Electric, Fire→Heat, etc.)
+        /// applies automatically. Empty = no immunity.
+        /// Wired by <c>LiquidCoveredEffect.OnBeforeTakeDamage</c>
+        /// (veined-pulse-mycelium).</summary>
+        public string ImmuneElement;
+
+        /// <summary>LA: if &gt; 0, X% of the damage that lands on the wearer
+        /// is dealt back to the attacker on a separate <c>ApplyDamage</c>
+        /// call with <c>source=null</c> — the null source is the
+        /// cycle-breaker that prevents two mirror-coated entities from
+        /// infinitely bouncing damage. 0 = no reflect.
+        /// Wired by <c>LiquidCoveredEffect.OnTakeDamage</c>
+        /// (choir-mirror-mucilage).</summary>
+        public int ReflectPercent;
+
+        /// <summary>LA: if true, the coat snapshots HP at
+        /// <c>OnApply</c>/<c>OnTurnStart</c> and writes it back at
+        /// <c>OnTurnEnd</c> BEFORE the dry-down — damage taken during
+        /// the turn is undone (felling-counter resin, Antikythera-style
+        /// time-tech, §L3). Only undoes net damage (a higher current HP
+        /// from intra-turn healing is preserved); does not resurrect
+        /// (a dead wearer at OnTurnEnd is not revived).
+        /// Wired by <c>LiquidCoveredEffect.OnTurnStart/OnTurnEnd</c>
+        /// (felling-counter-resin).</summary>
+        public bool HpRewindOnTurnEnd;
+
+        /// <summary>LA: if true, every hit (with a non-null Source) shoves
+        /// the wearer 1 cell directly opposite the attacker via
+        /// <c>Zone.MoveEntity</c>. Threshold-greeting / Drosera rejection
+        /// (§L6). Blocked cells / out-of-bounds = no-op (MoveEntity
+        /// returns false; no crash). Resolves the zone via
+        /// <c>SettlementRuntime.ActiveZone</c>; a null zone (EditMode
+        /// without a built scene) silently skips knockback.
+        /// Wired by <c>LiquidCoveredEffect.OnTakeDamage</c>
+        /// (pebble-sundew-dew).</summary>
+        public bool KnockbackOnHit;
+
+        /// <summary>LA: if true, fatal incoming damage is forced to
+        /// <c>Amount=0</c> — permanently, with no consumption (distinct
+        /// from <see cref="DeathAnchorPercent"/> which is one-shot). The
+        /// wearer becomes effectively undying for as long as the coat
+        /// persists. Pairs with <see cref="BlockAction"/> for the
+        /// "Held Breath / Apatheia" total-non-violence configuration
+        /// (§L8): the coat refuses to die but also refuses to act.
+        /// Wired by <c>LiquidCoveredEffect.OnBeforeTakeDamage</c>
+        /// (held-breath-lacquer).</summary>
+        public bool PreventDeath;
+
+        /// <summary>LA: if true, the coat overrides
+        /// <see cref="LiquidCoveredEffect.AllowAction"/> to return false
+        /// — the wearer cannot take any action (attack, cast, move
+        /// IF the action-loop consults AllowAction). Held Breath /
+        /// Apatheia total-pacifism. Wearer can still be hit; pairs with
+        /// <see cref="PreventDeath"/> for the "I cannot die, but I will
+        /// not strike" configuration.
+        /// Wired by <c>LiquidCoveredEffect.AllowAction</c>
+        /// (held-breath-lacquer).</summary>
+        public bool BlockAction;
     }
 
     [Serializable]
