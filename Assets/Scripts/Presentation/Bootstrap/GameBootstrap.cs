@@ -226,6 +226,11 @@ namespace CavesOfOoo
                 Storylets.StoryletPart.Current = storyletPart;
                 narrativeState.RegisterReactor(storyletPart);
 
+                // G.3 — attach the gas-dispersal driver to World so it
+                // receives TickEnd. The static GasSystem.OnTickEnd does
+                // the actual work; this Part is just the event router.
+                _world.AddPart(new GasSystemPart());
+
                 Debug.Log("[Bootstrap] Step 6/9: Creating player...");
                 bool playerCreated = PerformanceDiagnostics.MeasureStartupPhase("SetupPlayer", PerformanceMarkers.Bootstrap.SetupPlayer, () =>
                 {

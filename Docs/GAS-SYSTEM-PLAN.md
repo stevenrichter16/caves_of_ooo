@@ -356,3 +356,127 @@ including all liquid suites + scenario smoke): all green.
 - NEW `Assets/Tests/EditMode/Gameplay/Materials/GasPoolPartTests.cs`
 - MOD `Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs` (+18 lines: Step 1b'' for GasRegistry)
 - MOD `Assets/Scripts/Shared/Utilities/Diag.cs` (+"gas" to DefaultOnCategories)
+
+### G.3+G.4 (this commit) — Dispersal + Merge
+
+**Status:** ✅ COMPLETE. Combined in one commit because the merge logic
+fires *during* the spread step, not as a separate pass — splitting
+them into separate commits would mean G.3 spawns new gas in every
+destination cell (wrong) until G.4 lands. The two are tightly coupled.
+
+**Shipped:**
+- `Assets/Scripts/Gameplay/Materials/GasSystem.cs` — Static dispersal +
+  merge engine. Public API: `OnTickEnd(zone)` (entry from TickEnd
+  listener), `ProcessGasBehavior(gas, zone)` (per-gas tick),
+  `GetDispersalRate(pool)` (with `CreatorModifyGasDispersal` event hook
+  for G.7 GasTumbler), `IsMergeCompatible(a, b)` (same GasType + same
+  ColorString — Qud parity), `MergeChunk(src, dst, chunk)` (port of Qud
+  `MergeToGas`), `Dissipate(gas, pool, zone, cause)`, `SetRngForTests`.
+- `Assets/Scripts/Gameplay/Materials/GasSystemPart.cs` — Singleton Part
+  on the World entity. Listens to TickEnd → calls
+  `GasSystem.OnTickEnd(SettlementRuntime.ActiveZone)`. Mirrors
+  `NarrativeStatePart.cs:62-77` event-routing pattern.
+- `Assets/Tests/EditMode/Gameplay/Materials/GasSystemTests.cs` —
+  33 tests across 2 sections (unit + integration).
+
+**Modified:**
+- `GameBootstrap.cs`: attach `GasSystemPart` to World right after
+  `NarrativeStatePart` and `StoryletPart`.
+- `GasSystem.Merged` diag record's payload includes `donorType /
+  receiverType / donorColor / receiverColor` so the
+  `IsMergeCompatible` gate's correctness is observable in diag without
+  grep (caught by 2 RED → GREEN cycles during testing).
+
+**Constants ported from Qud (each cites the Qud line):**
+| Constant | Value | Qud source |
+|---|---|---|
+| `BASE_SPREAD_CHANCE` | 25 | `Gas.cs:226` |
+| `LOW_DENSITY_THRESHOLD` | 10 | `Gas.cs:313` |
+| `LOW_DENSITY_DISSIPATE_CHANCE` | 50 | `Gas.cs:313` |
+| `MAX_SPREAD_CHUNK` | 30 | `Gas.cs:273` |
+| `MIN_DISPERSAL_RATE` | 1 | `Gas.cs:344` |
+| `MAX_DISPERSAL_RATE` | 3 | `Gas.cs:344` |
+
+**Tests (33 total, all GREEN):**
+
+*PART I — Unit (no RNG dependence):*
+- `IsMergeCompatible`: same type+color → true; different type → false;
+  different color → false; null side → false
+- `MergeChunk`: density moves, chunk-larger-than-src clamps,
+  negative-chunk no-op, level max wins, level-low doesn't downgrade,
+  seeping ORs, seeping-not-lost-counter, creator inherit when null,
+  creator preserved when set
+- `Dissipate`: removes entity, emits diag with cause
+- `GetDispersalRate`: result in [MIN, MAX], CreatorModifyEvent
+  amplifies (via stub `GasDispersalRateDoubler` Part)
+- `ProcessGasBehavior`: unstable decays, stable+walled doesn't decay,
+  zero-density dissipates, null gas / null zone don't crash
+
+*PART II — Integration (seeded `Random(42)`):*
+- `OnTickEnd`: null zone, empty zone — no crash
+- `OnTickEnd_UnstableGas_EventuallyDissipates` — unstable gas drains
+  within 500 ticks (took fewer than 100)
+- `OnTickEnd_GasSpreadsToAdjacentCells_OverTime` — high-density gas
+  emits ≥1 `gas/Spread` records over 100 ticks
+- `OnTickEnd_GasBlockedBySolid_DoesNotSpread` — surround with walls,
+  gas count outside the wall ring stays 0 over 30 ticks
+- `OnTickEnd_SeepingGas_PassesThroughSolidEventually` — same setup +
+  `Seeping=true`, gas escapes within 100 ticks
+- `OnTickEnd_TwoIncompatibleGases_NoCrossTypeMerges` — adjacent
+  Poison + Cryo: many merges fire (poison-poison and cryo-cryo from
+  spread spawns) but NONE cross types — counted by
+  `donorType != receiverType` in diag payload
+- `OnTickEnd_SameTypeDifferentColor_NoCrossColorMerges` — same shape
+  for color identity (Qud parity: color is part of merge key)
+- `OnTickEnd_DispersalEmitsDispersedDiag` — one Dispersed per gas per tick
+- `OnTickEnd_NewlySpawnedGas_DoesNotProcessSameTick` — snapshot
+  iteration safety: spread spawns count for NEXT tick, not this one
+
+**IMPLEMENTATION NOTES (risks verified before writing code)**
+1. `NarrativeStatePart.cs:62-77` is the TickEnd-listener template. Copied
+   shape (private static int EventID + WantEvent + HandleEvent).
+2. `Cell.IsSolid()` (Cell.cs:87-95) checks any object with "Solid" tag —
+   the gate for non-seeping spread.
+3. `Zone.GetEntitiesWithTag("Gas")` uses the tag index from G.2
+   (Zone.cs:259-267) — O(matches), not O(N).
+4. Snapshot-iterate pattern: allocate a `List` once per tick. Mid-tick
+   spawns are NOT in the snapshot (they'll process next tick).
+   Mirrors Qud's `XRLCore` `WantTurnTick` dispatch.
+5. `System.Random.Next(int max)` is virtual — `SetRngForTests` swaps
+   it cleanly for deterministic-seed tests.
+
+**SCOPE DIVERGENCE FROM THE PLAN — none.**
+
+**G.3+G.4 SELF-REVIEW (CLAUDE.md §5)**
+- 🟡 (resolved) Initial test assertions for "no cross-type merges"
+  failed because intra-species merges (poison-poison from spread
+  spawns) emit Merged records too, and my assertion was "Merged.Count == 0".
+  Real RED, fixed by enriching the diag payload with `donorType /
+  receiverType / donorColor / receiverColor` and asserting on
+  `donorType != receiverType` count instead. The gate itself
+  (`IsMergeCompatible`) was correct all along — the test was wrong.
+- 🟡 (resolved) Initial spread test counted live entities post-loop;
+  but spread spawns are themselves unstable and dissipate before the
+  loop ends. Fixed by asserting on the `gas/Spread` diag count
+  (records every spread that EVER happened) instead.
+- 🔵 Iteration snapshot is `List<Entity>` — one allocation per tick.
+  Profile in G.12 if it shows up; for now the per-turn cost is
+  acceptable (matches Zone.GetAllEntities convention).
+- 🔵 `CreatorModifyGasDispersal` event surface exists but no Part
+  consumes it yet (GasTumbler is G.7). Tested via a stub
+  `GasDispersalRateDoubler` so the seam is verified.
+- 🔵 `GasSpawned` event from §7 of plan — NOT yet emitted. Deferred
+  to G.7 where it'd matter for grenade-detonate observability.
+- 🧪 RED → GREEN cycle observed (33 tests, 3 RED, fixed, re-ran 33/33 GREEN).
+- ⚪ Wind, phase, AI nav — deferred per plan §7.
+
+**Tests:** 33 new GREEN. Full regression sweep (11 suites, 326 tests):
+all green.
+
+**Files:**
+- NEW `Assets/Scripts/Gameplay/Materials/GasSystem.cs` (the engine)
+- NEW `Assets/Scripts/Gameplay/Materials/GasSystemPart.cs` (TickEnd router)
+- NEW `Assets/Tests/EditMode/Gameplay/Materials/GasSystemTests.cs`
+  (33 tests + `GasDispersalRateDoubler` test stub)
+- MOD `Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs`
+  (+3 lines: attach GasSystemPart to World)
