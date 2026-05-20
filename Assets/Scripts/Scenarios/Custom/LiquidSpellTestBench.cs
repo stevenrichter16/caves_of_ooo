@@ -97,6 +97,15 @@ namespace CavesOfOoo.Scenarios.Custom
             // OnBeforeTakeDamage element re-weight both see a live registry.
             EnsureLiquidRegistry();
 
+            // LA.7: ReflectAudit + KnockbackAudit fire ApplyDamage paths
+            // that resolve the zone via SettlementRuntime.ActiveZone (the
+            // TakeDamage event doesn't carry one). GameBootstrap sets this
+            // when the scene loads, but if scenario.Apply runs before that
+            // (or in a slim test harness) the LA probes would silent-skip.
+            // Idempotent pin: explicit set to ctx.Zone here is correct in
+            // every path that runs Apply.
+            SettlementRuntime.ActiveZone = ctx.Zone;
+
             var p = ctx.Zone.GetEntityPosition(ctx.PlayerEntity);
 
             ctx.Player
@@ -122,6 +131,21 @@ namespace CavesOfOoo.Scenarios.Custom
                 ctx.World.ClearCell(p.x + dx, p.y);
                 ctx.World.ClearCell(p.x + dx, p.y - 1);
                 ctx.World.ClearCell(p.x + dx, p.y + 1);
+            }
+            // LA.7: second row for the 5 absurd-property coats. The
+            // primary row (p.y) is full (LB ends at p.x+36 and zone wall
+            // is x=79 = p.x+40), so LA goes on a separate row 3 rows
+            // above the player — clear of the cosmetic pool rings of
+            // the primary row (which extend to p.y±1). Clears the LA
+            // row + its two adjacent rows for pool rings. KnockbackAudit
+            // needs the cell south of each LA dummy to be walkable; the
+            // south-pool-ring's cell is non-solid so the move lands fine.
+            int laY = p.y - 3;
+            for (int dx = 1; dx <= 8; dx++)
+            {
+                ctx.World.ClearCell(p.x + dx, laY);
+                ctx.World.ClearCell(p.x + dx, laY - 1);
+                ctx.World.ClearCell(p.x + dx, laY + 1);
             }
 
             // Single clean row, 2 apart. Off-row positions are gone —
@@ -163,6 +187,17 @@ namespace CavesOfOoo.Scenarios.Custom
                 ("lantern-beetle-ichor", Dummy(ctx, "lantern-beetle-ichor", p.x + 34, p.y)),
                 ("memory-bath",          Dummy(ctx, "memory-bath",          p.x + 35, p.y)),
                 ("bower-resin-amber",    Dummy(ctx, "bower-resin-amber",    p.x + 36, p.y)),
+                // LA — absurd-property coats. Five qualitatively-new
+                // mechanics; the matrix-audit single-hit catches immunity
+                // (×0.00 on the immune element) but reflect/rewind/
+                // knockback/undying need dedicated probes (run per-dummy
+                // inside the audit loop). Separate row (p.y-3) because
+                // the primary row is full.
+                ("veined-pulse-mycelium",Dummy(ctx, "veined-pulse-mycelium",p.x + 2,  laY)),
+                ("choir-mirror-mucilage",Dummy(ctx, "choir-mirror-mucilage",p.x + 3,  laY)),
+                ("felling-counter-resin",Dummy(ctx, "felling-counter-resin",p.x + 4,  laY)),
+                ("pebble-sundew-dew",    Dummy(ctx, "pebble-sundew-dew",    p.x + 5,  laY)),
+                ("held-breath-lacquer",  Dummy(ctx, "held-breath-lacquer",  p.x + 6,  laY)),
             };
 
             RunMatrixAudit(ctx, rig);
@@ -294,6 +329,17 @@ namespace CavesOfOoo.Scenarios.Custom
                 RunTickAudit(ctx, runId, coat, npc);
                 RunLightAudit(runId, coat, npc);
                 RunDeathAnchorAudit(ctx, runId, coat, npc);
+
+                // ──── LA.7 audit dimensions ────
+                // Five more probes for the absurd-property coats. Each
+                // gates on the relevant def flag (skip non-applicable
+                // coats). Snapshot-stimulate-restore per Rule 2; the
+                // dummy is left in its pre-probe state.
+                RunImmunityAudit(ctx, runId, coat, npc);
+                RunReflectAudit(ctx, runId, coat, npc);
+                RunRewindAudit(runId, coat, npc);
+                RunKnockbackAudit(ctx, runId, coat, npc);
+                RunUndyingAudit(ctx, runId, coat, npc);
             }
             MessageLog.Add("───── [MatrixAudit] run " + runId + " complete ─────");
         }
@@ -389,6 +435,235 @@ namespace CavesOfOoo.Scenarios.Custom
                                percent = def.DeathAnchorPercent });
         }
 
+        /// <summary>
+        /// LA.7 ImmunityAudit — only when the coat declares
+        /// <c>ImmuneElement</c>. Snapshot HP, fire a fixed-base hit of the
+        /// declared element, observe whether the coat nullified it
+        /// (HP unchanged ⇒ immunity fired). Records
+        /// <c>liquid/ImmunityAudit</c> with the observed factor.
+        /// </summary>
+        private static void RunImmunityAudit(ScenarioContext ctx, string runId, string coat, Entity npc)
+        {
+            var fx = npc.GetPart<StatusEffectsPart>();
+            var lc = fx?.GetEffect<LiquidCoveredEffect>();
+            if (lc == null) return;
+            if (!LiquidRegistry.IsInitialized) return;
+            var def = LiquidRegistry.Get(lc.LiquidId);
+            if (def == null || string.IsNullOrEmpty(def.ImmuneElement)) return;
+
+            var hp = npc.GetStat("Hitpoints");
+            if (hp == null) return;
+            int hp0 = hp.BaseValue;
+
+            var dmg = new Damage(BASE);
+            dmg.AddAttribute(def.ImmuneElement);
+            CombatSystem.ApplyDamage(npc, dmg, source: null, zone: ctx.Zone);
+            int dealt = hp0 - hp.BaseValue;
+            hp.BaseValue = hp0; // restore — immortal rig
+
+            bool nullified = dealt == 0;
+            MessageLog.Add(string.Format(
+                "[ImmunityAudit] {0,-21} elem={1,-8}  base={2}  dealt={3,4}  nullified={4}",
+                coat, def.ImmuneElement, BASE, dealt, nullified));
+            Diag.Record("liquid", "ImmunityAudit", actor: npc, target: null,
+                payload: new { runId, liquid = coat, element = def.ImmuneElement,
+                               baseAmount = BASE, dealt, nullified });
+        }
+
+        /// <summary>
+        /// LA.7 ReflectAudit — only when the coat declares
+        /// <c>ReflectPercent &gt; 0</c>. Spawn a synthetic attacker
+        /// adjacent to the dummy, snapshot attacker HP, hit the dummy
+        /// (with attacker as Source), observe attacker HP loss = the
+        /// reflect kick. Restore + remove attacker.
+        /// </summary>
+        private static void RunReflectAudit(ScenarioContext ctx, string runId, string coat, Entity npc)
+        {
+            var fx = npc.GetPart<StatusEffectsPart>();
+            var lc = fx?.GetEffect<LiquidCoveredEffect>();
+            if (lc == null) return;
+            if (!LiquidRegistry.IsInitialized) return;
+            var def = LiquidRegistry.Get(lc.LiquidId);
+            if (def == null || def.ReflectPercent <= 0) return;
+
+            var npcHp = npc.GetStat("Hitpoints");
+            if (npcHp == null) return;
+            int npcHp0 = npcHp.BaseValue;
+
+            // Synthetic attacker: bare entity with Hitpoints + RenderPart,
+            // placed 2 cells away (the dummy's own pool ring covers ±1
+            // around it, so spawn outside the ring to avoid collision).
+            var npcPos = ctx.Zone.GetEntityPosition(npc);
+            int attX = npcPos.x;          // perpendicular to the LA row
+            int attY = npcPos.y - 2;      // 2 north of the dummy
+            var atk = new Entity { ID = "ReflectAtk_" + coat, BlueprintName = "ReflectAtk" };
+            atk.Tags["Creature"] = "";
+            atk.Statistics["Hitpoints"] = new Stat
+            { Owner = atk, Name = "Hitpoints", BaseValue = 1000, Max = 1000, Min = -200 };
+            atk.AddPart(new RenderPart { DisplayName = "a", RenderString = "a" });
+            ctx.Zone.AddEntity(atk, attX, attY);
+
+            int atkHp0 = atk.GetStat("Hitpoints").BaseValue;
+
+            CombatSystem.ApplyDamage(npc, new Damage(BASE), source: atk, zone: ctx.Zone);
+            int atkLost = atkHp0 - atk.GetStat("Hitpoints").BaseValue;
+            int npcLost = npcHp0 - npcHp.BaseValue;
+
+            // Restore both before removing the attacker.
+            npcHp.BaseValue = npcHp0;
+            ctx.Zone.RemoveEntity(atk);
+
+            int expected = (BASE * def.ReflectPercent) / 100;
+            MessageLog.Add(string.Format(
+                "[ReflectAudit] {0,-21} npcLost={1,3}  atkLost={2,3}  (expected {3})",
+                coat, npcLost, atkLost, expected));
+            Diag.Record("liquid", "ReflectAudit", actor: npc, target: atk,
+                payload: new { runId, liquid = coat, percent = def.ReflectPercent,
+                               baseAmount = BASE, expectedReflect = expected,
+                               actualReflect = atkLost });
+        }
+
+        /// <summary>
+        /// LA.7 RewindAudit — only when the coat declares
+        /// <c>HpRewindOnTurnEnd</c>. Snapshot HP, fire OnTurnStart (which
+        /// re-snapshots), drop HP by a fixed wound, fire OnTurnEnd (which
+        /// rewinds), observe HP restored. Doesn't touch Amount (the
+        /// dry-down decrement is acceptable on the immortal rig — the
+        /// dummy has hp/4000 of headroom).
+        /// </summary>
+        private static void RunRewindAudit(string runId, string coat, Entity npc)
+        {
+            var fx = npc.GetPart<StatusEffectsPart>();
+            var lc = fx?.GetEffect<LiquidCoveredEffect>();
+            if (lc == null) return;
+            if (!LiquidRegistry.IsInitialized) return;
+            var def = LiquidRegistry.Get(lc.LiquidId);
+            if (def == null || !def.HpRewindOnTurnEnd) return;
+
+            var hp = npc.GetStat("Hitpoints");
+            if (hp == null) return;
+            int hp0 = hp.BaseValue;
+
+            // Step 1: OnTurnStart snapshots current HP.
+            lc.OnTurnStart(npc, GameEvent.New("BeginTakeAction"));
+            int snapshot = lc.RewindSnapshotHp;
+
+            // Step 2: wound the dummy.
+            const int WOUND = 200;
+            hp.BaseValue = hp0 - WOUND;
+            int wounded = hp.BaseValue;
+
+            // Step 3: OnTurnEnd rewinds.
+            lc.OnTurnEnd(npc);
+            int afterRewind = hp.BaseValue;
+
+            // Restore to original HP regardless (Amount may have dried
+            // down, but the dummy has 4000 HP buffer).
+            hp.BaseValue = hp0;
+
+            bool rewound = afterRewind > wounded;
+            MessageLog.Add(string.Format(
+                "[RewindAudit]  {0,-21} snap={1}  wounded={2}  afterRewind={3}  rewound={4}",
+                coat, snapshot, wounded, afterRewind, rewound));
+            Diag.Record("liquid", "RewindAudit", actor: npc, target: null,
+                payload: new { runId, liquid = coat, snapshot, wounded,
+                               afterRewind, rewound });
+        }
+
+        /// <summary>
+        /// LA.7 KnockbackAudit — only when the coat declares
+        /// <c>KnockbackOnHit</c>. Spawn a synthetic attacker NORTH of
+        /// the dummy, hit the dummy, observe the dummy moved SOUTH (the
+        /// row above the LA row is cleared so this lands), restore the
+        /// dummy's position, remove the attacker.
+        /// </summary>
+        private static void RunKnockbackAudit(ScenarioContext ctx, string runId, string coat, Entity npc)
+        {
+            var fx = npc.GetPart<StatusEffectsPart>();
+            var lc = fx?.GetEffect<LiquidCoveredEffect>();
+            if (lc == null) return;
+            if (!LiquidRegistry.IsInitialized) return;
+            var def = LiquidRegistry.Get(lc.LiquidId);
+            if (def == null || !def.KnockbackOnHit) return;
+
+            var startPos = ctx.Zone.GetEntityPosition(npc);
+            if (startPos.x < 0) return;
+
+            // Attacker NORTH of the dummy (one row up).
+            int attX = startPos.x;
+            int attY = startPos.y - 1;
+            var atk = new Entity { ID = "KnockAtk_" + coat, BlueprintName = "KnockAtk" };
+            atk.Tags["Creature"] = "";
+            atk.Statistics["Hitpoints"] = new Stat
+            { Owner = atk, Name = "Hitpoints", BaseValue = 100, Max = 100 };
+            atk.AddPart(new RenderPart { DisplayName = "k", RenderString = "k" });
+            // Place the attacker; if the cell isn't walkable for some
+            // reason, AddEntity returns false — abort this probe.
+            if (!ctx.Zone.AddEntity(atk, attX, attY))
+            {
+                MessageLog.Add(string.Format(
+                    "[KnockbackAudit] {0,-21} SKIPPED — attacker cell ({1},{2}) blocked",
+                    coat, attX, attY));
+                return;
+            }
+
+            var hp = npc.GetStat("Hitpoints");
+            int hp0 = hp != null ? hp.BaseValue : 0;
+            CombatSystem.ApplyDamage(npc, new Damage(10), source: atk, zone: ctx.Zone);
+            if (hp != null) hp.BaseValue = hp0; // restore HP (the 10-dmg hit landed)
+
+            var endPos = ctx.Zone.GetEntityPosition(npc);
+            bool moved = endPos.x != startPos.x || endPos.y != startPos.y;
+
+            // Restore dummy to its starting cell + remove attacker.
+            if (moved) ctx.Zone.MoveEntity(npc, startPos.x, startPos.y);
+            ctx.Zone.RemoveEntity(atk);
+
+            MessageLog.Add(string.Format(
+                "[KnockbackAudit] {0,-21} from=({1},{2}) to=({3},{4})  moved={5}",
+                coat, startPos.x, startPos.y, endPos.x, endPos.y, moved));
+            Diag.Record("liquid", "KnockbackAudit", actor: npc, target: atk,
+                payload: new { runId, liquid = coat,
+                               fromX = startPos.x, fromY = startPos.y,
+                               toX = endPos.x, toY = endPos.y, moved });
+        }
+
+        /// <summary>
+        /// LA.7 UndyingAudit — only when the coat declares
+        /// <c>PreventDeath</c>. Drop HP to 1, fire a massive fatal hit,
+        /// observe HP unchanged (PreventDeath nullified), then verify
+        /// <c>coat.AllowAction(npc)</c> returns false when BlockAction
+        /// is also set. Restore HP to original.
+        /// </summary>
+        private static void RunUndyingAudit(ScenarioContext ctx, string runId, string coat, Entity npc)
+        {
+            var fx = npc.GetPart<StatusEffectsPart>();
+            var lc = fx?.GetEffect<LiquidCoveredEffect>();
+            if (lc == null) return;
+            if (!LiquidRegistry.IsInitialized) return;
+            var def = LiquidRegistry.Get(lc.LiquidId);
+            if (def == null || !def.PreventDeath) return;
+
+            var hp = npc.GetStat("Hitpoints");
+            if (hp == null) return;
+            int hp0 = hp.BaseValue;
+
+            hp.BaseValue = 1;
+            CombatSystem.ApplyDamage(npc, new Damage(999999), source: null, zone: ctx.Zone);
+            bool survived = hp.BaseValue > 0;
+            int afterHit = hp.BaseValue;
+            hp.BaseValue = hp0; // restore
+
+            bool blocksAction = !lc.AllowAction(npc);
+
+            MessageLog.Add(string.Format(
+                "[UndyingAudit] {0,-21} fatal-hit-survived={1}  hpAfter={2}  blocksAction={3}",
+                coat, survived, afterHit, blocksAction));
+            Diag.Record("liquid", "UndyingAudit", actor: npc, target: null,
+                payload: new { runId, liquid = coat, survived, hpAfter = afterHit,
+                               blocksAction });
+        }
+
         /// <summary>Human-readable expectation per (liquid,element) so
         /// the log line is self-checking at a glance. The MEASURED
         /// factor is authoritative; this is just orientation.</summary>
@@ -445,6 +720,38 @@ namespace CavesOfOoo.Scenarios.Custom
                 case "bower-resin-amber/Cold":
                 case "bower-resin-amber/Acid":
                     return "1.00 in matrix — +DV/+AV apply upstream of synthetic ApplyDamage (LX.3 AV-blind caveat)";
+                // LA — absurd-property coats. Most mechanics fire on
+                // probes that need a Source / dedicated stimulus (reflect/
+                // knockback/rewind/undying), so they read ~1.00 in the
+                // single-hit matrix — see Immunity/Reflect/Rewind/
+                // Knockback/UndyingAudit. The exception: veined-pulse's
+                // ImmuneElement IS visible in the matrix (Electric ⇒ 0.00).
+                case "veined-pulse-mycelium/Electric":
+                    return "expect 0.00 — ImmuneElement nullifies (see ImmunityAudit)";
+                case "veined-pulse-mycelium/Heat":
+                case "veined-pulse-mycelium/Cold":
+                case "veined-pulse-mycelium/Acid":
+                    return "1.00 by design — only Electric is immune";
+                case "choir-mirror-mucilage/Heat":
+                case "choir-mirror-mucilage/Electric":
+                case "choir-mirror-mucilage/Cold":
+                case "choir-mirror-mucilage/Acid":
+                    return "1.00 in matrix — reflect needs a Source (see ReflectAudit)";
+                case "felling-counter-resin/Heat":
+                case "felling-counter-resin/Electric":
+                case "felling-counter-resin/Cold":
+                case "felling-counter-resin/Acid":
+                    return "1.00 in matrix — rewind is OnTurnEnd (see RewindAudit)";
+                case "pebble-sundew-dew/Heat":
+                case "pebble-sundew-dew/Electric":
+                case "pebble-sundew-dew/Cold":
+                case "pebble-sundew-dew/Acid":
+                    return "1.00 in matrix — knockback needs a Source (see KnockbackAudit)";
+                case "held-breath-lacquer/Heat":
+                case "held-breath-lacquer/Electric":
+                case "held-breath-lacquer/Cold":
+                case "held-breath-lacquer/Acid":
+                    return "1.00 in matrix — non-fatal hits land normally (see UndyingAudit)";
                 case "dry/Heat":
                 case "dry/Electric":
                 case "dry/Cold":
