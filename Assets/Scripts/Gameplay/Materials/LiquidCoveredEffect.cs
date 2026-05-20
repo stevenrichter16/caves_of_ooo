@@ -332,11 +332,18 @@ namespace CavesOfOoo.Core
             // element shouldn't burn the one-shot resurrection.
             if (!string.IsNullOrEmpty(def.ImmuneElement))
             {
+                // LA-followup fix: case-insensitive compare. Content
+                // authors will type "electric" / "Electric" / "ELECTRIC"
+                // interchangeably; canonical PascalCase ("Electric") is
+                // the convention, but a typo shouldn't silently disable
+                // immunity. Mirrors the spirit of Damage attribute alias
+                // collapse (Lightning→Electric) even though the Damage
+                // helpers themselves are case-sensitive.
                 bool immuneHit =
-                    (def.ImmuneElement == "Electric" && damage.IsElectricDamage()) ||
-                    (def.ImmuneElement == "Heat"     && damage.IsHeatDamage())     ||
-                    (def.ImmuneElement == "Cold"     && damage.IsColdDamage())     ||
-                    (def.ImmuneElement == "Acid"     && damage.IsAcidDamage());
+                    (IsElementMatch(def.ImmuneElement, "Electric") && damage.IsElectricDamage()) ||
+                    (IsElementMatch(def.ImmuneElement, "Heat")     && damage.IsHeatDamage())     ||
+                    (IsElementMatch(def.ImmuneElement, "Cold")     && damage.IsColdDamage())     ||
+                    (IsElementMatch(def.ImmuneElement, "Acid")     && damage.IsAcidDamage());
                 if (immuneHit)
                 {
                     damage.Amount = 0;
@@ -524,6 +531,21 @@ namespace CavesOfOoo.Core
         }
 
         private static int SignOf(int n) => n > 0 ? 1 : (n < 0 ? -1 : 0);
+
+        /// <summary>
+        /// LA-followup case-insensitive compare for LA.2's
+        /// <see cref="LiquidDefinition.ImmuneElement"/>. Caught by an
+        /// adversarial test (lowercase/uppercase variants) — see
+        /// LiquidAbsurdAdversarialTests.Adversarial_ImmuneElement_*Case_StillMatches.
+        /// Empty/null on either side returns false (an unset
+        /// ImmuneElement is "no immunity," not "match all").
+        /// </summary>
+        private static bool IsElementMatch(string declared, string canonical)
+        {
+            if (string.IsNullOrEmpty(declared) || string.IsNullOrEmpty(canonical))
+                return false;
+            return string.Equals(declared, canonical, System.StringComparison.OrdinalIgnoreCase);
+        }
 
         /// <summary>
         /// LA.6 BlockAction (held-breath-lacquer): when the def declares
