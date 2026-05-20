@@ -302,5 +302,57 @@ Every gate emits a `gas/...` record:
 
 > Filled in per phase as commits land.
 
-### G.1 (this commit)
-Plan to disk. Branch `feat/gas-system` from main.
+### G.1
+Plan to disk. Branch `feat/gas-system` from main. Commit `8a0e371`.
+
+### G.2 (this commit) — Foundation
+
+**Status:** ✅ COMPLETE. The minimum viable gas-system slice: per-cell
+entity with state + render, factory rejects bad inputs gracefully,
+density mutations fire an event. No dispersal yet, no behavior yet.
+
+**Shipped:**
+- `Assets/Scripts/Gameplay/Materials/GasDefinition.cs` — `[Serializable]` data class (Id/DisplayName/Adjective/GasType/Glyph/Color/DefaultDensity/DefaultLevel/Seeping/Stable/BehaviorKind) + `GasDefinitionCollection` JSON wrapper. Mirror of `LiquidDefinition`.
+- `Assets/Scripts/Gameplay/Materials/GasRegistry.cs` — Static registry mirroring `LiquidRegistry` exactly (Initialize / InitializeFromJsonSources / ResetForTests / Get / IsInitialized / Count + malformed-JSON resilience).
+- `Assets/Scripts/Gameplay/Materials/GasPoolPart.cs` — Universal "I am gas" Part. Public fields for save round-trip. `Density` is a property with a setter that clamps to ≥ 0, suppresses zero-delta mutations, and fires `"GasDensityChange"` event with `OldValue`/`NewValue` params (mirroring Qud `Gas.cs:50-55`). `Initialize()` applies def.Glyph/Color to the entity's RenderPart via `ApplyDefinitionRender` (mirror of `LiquidPoolPart`).
+- `Assets/Scripts/Gameplay/Materials/GasFactory.cs` — Static `SpawnGas(zone, x, y, gasId, density=-1, level=-1, creator=null)` returns the spawned `Entity` on success or null on any rejection (4 rejection paths: RegistryUninitialized / UnknownGas / NullZone / CellOutOfBounds). Each rejection emits a `gas/SpawnRejected` diag with reason; success emits `gas/Created`.
+- `Assets/Resources/Content/Data/GasDefinitions/poison-vapor.json` — First content row (GasType=Poison, Glyph=°, Color=&g, DefaultDensity=100, no behavior wired yet — `BehaviorKind=""`).
+- Bootstrap wiring: `GameBootstrap.cs` Step 1b'' loads `Resources/Content/Data/GasDefinitions/*.json` mirroring Step 1b' (LiquidDefinitions).
+- "gas" added to `Diag.DefaultOnCategories` so diag emissions survive.
+
+**Tests (22 total, all GREEN):**
+- Registry: uninitialized state, single-JSON init, malformed-JSON resilience, late-row-wins on Id collision
+- Content: `poison-vapor.json` parses with expected shape
+- SpawnGas rejections (4): RegistryUninitialized, UnknownGas, NullZone, CellOutOfBounds — each emits the right reason
+- SpawnGas happy-path: all 3 Parts attached, Render pulled from def, PhysicsPart non-solid, defaults inherited, density/level overrides win, placed at requested cell, Gas tag applied, Creator carried through, Created diag emitted with all payload fields
+- Density property: negative clamps to 0, mutation fires event with old/new values, zero-delta is silent (no event), 0→-5 clamps to 0 with no event
+
+**IMPLEMENTATION NOTES (risks verified before writing code)**
+1. `LiquidRegistry.cs` is the loader template — copied shape exactly (Initialize / InitializeFromJsonSources / AppendJson / Get / ResetForTests / IsInitialized / Count).
+2. `LiquidPoolPart.ApplyDefinitionRender` is the render-pull template — copied shape (null-safe registry/id/render-part checks).
+3. `Zone.AddEntity` returns bool; `false` means out-of-bounds or invalid cell. Factory uses this for the CellOutOfBounds rejection path.
+4. `Entity.AddPart` is the canonical attach point; tags via `entity.Tags["Gas"] = ""` follows the existing convention.
+5. `GameEvent.SetParameter("OldValue", (object)int)` boxes the int for the parameter dictionary — same pattern other density-style events use.
+6. `Diag.IsChannelEnabled("gas")` gated on `DefaultOnCategories` — confirmed RED first (5 diag tests failed with `Count: 0`), then GREEN after adding "gas" to the array.
+
+**SCOPE DIVERGENCE FROM THE PLAN — none.**
+
+**G.2 SELF-REVIEW (CLAUDE.md §5)**
+- 🟡 (resolved) Diag channel — caught by the first RED run (5 diag-related tests failed with `Count: 0` because the "gas" channel wasn't in `Diag.DefaultOnCategories`). Fix was a 1-line addition. Logged here so future bring-up-of-new-channel work doesn't repeat the gap.
+- 🔵 Density setter fires event on `0 → useDensity` at spawn — looks like an accidental event for the spawn delta. Intentional: any listener subscribing to GasDensityChange will see the initial density assignment as "appeared with N density." If that's undesirable, callers can attach the GasPoolPart with `_density = useDensity` directly (bypassing the setter); the factory uses the setter so the spawn IS observable. Tested via `SpawnGas_HappyPath_*` chains.
+- 🔵 Render colors not applied through `ColorString` field on `GasPoolPart` — the Part stores `ColorString` for merge identity (G.4) and dispersal-cycle re-render (G.3), while the entity's `RenderPart.ColorString` is what actually renders. Two copies that must stay in sync; documented in the Part's doc-comment. Tested via `SpawnGas_DefaultsCopyFromDef` (pool.ColorString matches def.Color).
+- 🧪 RED → GREEN observed — initial run produced 5 RED tests with concrete failure messages (`Expected: 1 But was: 0` on the diag-pin tests). Fixed by adding "gas" to `DefaultOnCategories`; re-ran 22/22 GREEN.
+- ⚪ Wind, phase, AI nav — deferred per §7 self-review.
+
+**Tests:** 22 new GREEN. Full regression sweep (10 suites, 275 tests
+including all liquid suites + scenario smoke): all green.
+
+**Files:**
+- NEW `Assets/Scripts/Gameplay/Materials/GasDefinition.cs`
+- NEW `Assets/Scripts/Gameplay/Materials/GasRegistry.cs`
+- NEW `Assets/Scripts/Gameplay/Materials/GasPoolPart.cs`
+- NEW `Assets/Scripts/Gameplay/Materials/GasFactory.cs`
+- NEW `Assets/Resources/Content/Data/GasDefinitions/poison-vapor.json`
+- NEW `Assets/Tests/EditMode/Gameplay/Materials/GasPoolPartTests.cs`
+- MOD `Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs` (+18 lines: Step 1b'' for GasRegistry)
+- MOD `Assets/Scripts/Shared/Utilities/Diag.cs` (+"gas" to DefaultOnCategories)

@@ -1,0 +1,123 @@
+using CavesOfOoo.Diagnostics;
+
+namespace CavesOfOoo.Core
+{
+    /// <summary>
+    /// G.2 — static helper for spawning gas cloud entities. Mirrors
+    /// Qud's <c>GameObject.Create("PoisonGas")</c> → blueprint factory
+    /// path, condensed to one method that:
+    /// <list type="number">
+    ///   <item>Looks up the <see cref="GasDefinition"/> in the registry</item>
+    ///   <item>Builds an <see cref="Entity"/> with the standard 3 Parts
+    ///         (RenderPart, PhysicsPart{Solid=false}, GasPoolPart)</item>
+    ///   <item>Copies the def's tuning onto the GasPoolPart
+    ///         (Density / Level / Seeping / Stable / GasType / Color / Creator)</item>
+    ///   <item>Places the entity in the zone at (x, y) via
+    ///         <see cref="Zone.AddEntity"/></item>
+    ///   <item>Emits a <c>gas/Created</c> diag record for observability</item>
+    /// </list>
+    ///
+    /// <para>The behavior sibling Part (<c>GasPoisonPart</c>,
+    /// <c>GasCryoPart</c>, etc.) is attached in G.5+ based on
+    /// <see cref="GasDefinition.BehaviorKind"/>. G.2 ships with that
+    /// field read but unused — the gas is visually present but
+    /// behaviorally inert.</para>
+    ///
+    /// <para>Failure modes (return null, emit diag with reason):
+    /// <list type="bullet">
+    ///   <item>Registry uninitialized</item>
+    ///   <item>Unknown <paramref name="gasId"/></item>
+    ///   <item>Null zone</item>
+    ///   <item>Cell out-of-bounds (Zone.AddEntity returns false)</item>
+    /// </list>
+    /// </para>
+    /// </summary>
+    public static class GasFactory
+    {
+        /// <summary>
+        /// Spawn a gas cloud at (<paramref name="x"/>, <paramref name="y"/>)
+        /// in <paramref name="zone"/>. Returns the spawned entity on
+        /// success, null on any failure (with a <c>gas/SpawnRejected</c>
+        /// diag record carrying the reason).
+        /// </summary>
+        /// <param name="density">Density override; -1 = use
+        /// <see cref="GasDefinition.DefaultDensity"/></param>
+        /// <param name="level">Level override; -1 = use
+        /// <see cref="GasDefinition.DefaultLevel"/></param>
+        public static Entity SpawnGas(Zone zone, int x, int y, string gasId,
+            int density = -1, int level = -1, Entity creator = null)
+        {
+            if (!GasRegistry.IsInitialized)
+            {
+                Diag.Record("gas", "SpawnRejected", creator, null,
+                    new { reason = "RegistryUninitialized", gasId, x, y });
+                return null;
+            }
+
+            var def = GasRegistry.Get(gasId);
+            if (def == null)
+            {
+                Diag.Record("gas", "SpawnRejected", creator, null,
+                    new { reason = "UnknownGas", gasId, x, y });
+                return null;
+            }
+
+            if (zone == null)
+            {
+                Diag.Record("gas", "SpawnRejected", creator, null,
+                    new { reason = "NullZone", gasId, x, y });
+                return null;
+            }
+
+            int useDensity = density < 0 ? def.DefaultDensity : density;
+            int useLevel = level < 0 ? def.DefaultLevel : level;
+
+            var entity = new Entity
+            {
+                ID = $"gas_{gasId}_{x}_{y}_{System.Guid.NewGuid().ToString("N").Substring(0, 6)}",
+                BlueprintName = gasId + "Cloud",
+            };
+            entity.Tags["Gas"] = "";
+
+            entity.AddPart(new RenderPart
+            {
+                DisplayName = def.DisplayName ?? gasId,
+                RenderString = string.IsNullOrEmpty(def.Glyph) ? "°" : def.Glyph,
+                ColorString = string.IsNullOrEmpty(def.Color) ? "&w" : def.Color,
+            });
+            entity.AddPart(new PhysicsPart { Solid = false });
+
+            // GasPoolPart created with default Density=0 then assigned
+            // — using the property setter would emit a DensityChange
+            // event for the spawn delta, which is misleading (the gas
+            // didn't change from a prior density, it was just born).
+            // The post-Initialize assignment via the setter is the
+            // legitimate "spawn density" emit point.
+            var pool = new GasPoolPart
+            {
+                GasId = gasId,
+                Level = useLevel,
+                Seeping = def.Seeping,
+                Stable = def.Stable,
+                GasType = string.IsNullOrEmpty(def.GasType) ? "BaseGas" : def.GasType,
+                ColorString = string.IsNullOrEmpty(def.Color) ? "&w" : def.Color,
+                Creator = creator,
+            };
+            entity.AddPart(pool);
+            pool.Density = useDensity; // fires GasDensityChange (0 → useDensity)
+
+            if (!zone.AddEntity(entity, x, y))
+            {
+                Diag.Record("gas", "SpawnRejected", creator, null,
+                    new { reason = "CellOutOfBounds", gasId, x, y });
+                return null;
+            }
+
+            Diag.Record("gas", "Created", creator, entity,
+                new { gasId, density = useDensity, level = useLevel, x, y,
+                      gasType = pool.GasType, seeping = pool.Seeping, stable = pool.Stable });
+
+            return entity;
+        }
+    }
+}
