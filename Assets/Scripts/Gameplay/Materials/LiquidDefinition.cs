@@ -87,6 +87,22 @@ namespace CavesOfOoo.Core
         /// <summary>Optional status-effect name applied while coated
         /// (LQ.5). Empty = none.</summary>
         public string FollowOnEffect;
+
+        /// <summary>LB: if &gt; 0, the coat attaches a
+        /// <c>LightSourcePart</c> with this radius (lantern-beetle
+        /// ichor). 0 = no light. Wired by
+        /// <c>LiquidCoveredEffect.OnApply/OnRemove</c>.</summary>
+        public int LightRadius;
+
+        /// <summary>LB: color code (e.g. "&amp;Y") for the attached
+        /// LightSourcePart. Ignored when <see cref="LightRadius"/> is 0.</summary>
+        public string LightColor;
+
+        /// <summary>LB: if &gt; 0, the coat intercepts a killing blow
+        /// (memory-bath one-shot resurrection). Restores HP to
+        /// <c>Max * percent / 100</c>, consumes the coat. 0 = no anchor.
+        /// Wired by <c>LiquidCoveredEffect.OnBeforeTakeDamage</c>.</summary>
+        public int DeathAnchorPercent;
     }
 
     [Serializable]

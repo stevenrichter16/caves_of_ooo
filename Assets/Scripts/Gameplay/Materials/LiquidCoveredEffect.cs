@@ -70,6 +70,29 @@ namespace CavesOfOoo.Core
         /// </summary>
         public string AppliedModsRaw = "";
 
+        /// <summary>
+        /// LB.4 attachment-tracking flag for the lantern-beetle ichor
+        /// path. True iff <see cref="OnApply"/> *added* a fresh
+        /// <see cref="LightSourcePart"/> to the wearer (because the
+        /// liquid def declared <c>LightRadius &gt; 0</c> AND the wearer
+        /// did not already have a LightSourcePart — held lanterns are
+        /// respected). <see cref="OnRemove"/> only strips the
+        /// LightSourcePart when this flag is set, so a player carrying
+        /// their own lantern keeps it after the coat ends. Public for
+        /// reflection save round-trip (mirrors AppliedModsRaw).
+        /// </summary>
+        public bool AddedLightSource;
+
+        /// <summary>
+        /// LB.5 one-shot guard: true once the coat has consumed itself
+        /// to anchor a killing blow (Memory-Bath). Prevents re-trigger
+        /// within the same turn (e.g. two fatal hits in one round)
+        /// while <c>Duration=0</c> waits for the EndTurn cleanup. Public
+        /// for reflection save round-trip (mirrors AppliedModsRaw /
+        /// AddedLightSource).
+        /// </summary>
+        public bool AnchorConsumed;
+
         /// <summary>A coat at/above this <see cref="LiquidDefinition.Conductivity"/>
         /// amplifies incoming Lightning damage, and lets a conductive
         /// NON-water coat double an <see cref="ElectrifiedEffect"/>'s
@@ -115,10 +138,12 @@ namespace CavesOfOoo.Core
                 MessageLog.Add(target.GetDisplayName() + " is covered in " + DisplayName + ".");
             RefreshWaterCoupling(target);
             ApplyStatModifiers(target);
+            ApplyLightSource(target);
         }
 
         public override void OnRemove(Entity target)
         {
+            RemoveLightSource(target);
             ReverseStatModifiers(target);
             // Observability contract (every gate emits a record):
             // LQ.4 emits liquid/Coated on apply; this is the paired
@@ -210,14 +235,37 @@ namespace CavesOfOoo.Core
             if (!LiquidRegistry.IsInitialized) return;
             var def = LiquidRegistry.Get(LiquidId);
             if (def == null || def.PerTurnDamage == null) return;
-            if (def.PerTurnDamage.Amount <= 0) return;
+            int amt = def.PerTurnDamage.Amount;
+            if (amt == 0) return;
             if (target.GetStatValue("Hitpoints", 0) <= 0) return;
 
-            var dmg = new Damage(def.PerTurnDamage.Amount);
-            if (!string.IsNullOrEmpty(def.PerTurnDamage.Type))
-                dmg.AddAttribute(def.PerTurnDamage.Type);
-            var zone = context?.GetParameter<Zone>("Zone");
-            CombatSystem.ApplyDamage(target, dmg, source: null, zone);
+            if (amt > 0)
+            {
+                // Damage path (existing — acid/lava/ink/choir/bog).
+                var dmg = new Damage(amt);
+                if (!string.IsNullOrEmpty(def.PerTurnDamage.Type))
+                    dmg.AddAttribute(def.PerTurnDamage.Type);
+                var zone = context?.GetParameter<Zone>("Zone");
+                CombatSystem.ApplyDamage(target, dmg, source: null, zone);
+                return;
+            }
+
+            // LB.3 heal path: signed PerTurnDamage (convalessence). The
+            // Damage.Amount setter clamps ≥ 0 so we can't route through
+            // ApplyDamage — heal via direct HP add, capped to Max
+            // (mirrors how Stat.Bonus modifications respect Max via
+            // Stat.Value's compute). Emit liquid/HealTick for symmetry
+            // with the damage tick's observability.
+            int heal = -amt;
+            var hp = target.GetStat("Hitpoints");
+            if (hp == null) return;
+            int before = hp.BaseValue;
+            int after = System.Math.Min(before + heal, hp.Max);
+            int gained = after - before;
+            hp.BaseValue = after;
+            Diag.Record("liquid", "HealTick", actor: target, target: null,
+                payload: new { liquidId = LiquidId, requested = heal, gained,
+                               hpBefore = before, hpAfter = after });
         }
 
         /// <summary>
@@ -244,6 +292,34 @@ namespace CavesOfOoo.Core
             if (!LiquidRegistry.IsInitialized) return;
             var def = LiquidRegistry.Get(LiquidId);
             if (def == null) return;
+
+            // LB.5 death-anchor: if the coat declares DeathAnchorPercent
+            // and this hit is lethal, consume the coat to restore HP to
+            // Max*pct/100 and fully nullify the damage. The existing
+            // damage/PreDamageMutation diag fires automatically because
+            // CombatSystem re-reads damage.Amount after the event
+            // (verified BLOCKING-STEP-0 in LX.5). Duration=0 queues the
+            // coat for EndTurn cleanup; AnchorConsumed prevents
+            // re-trigger inside the same dispatch window (two fatal
+            // hits one turn must NOT both anchor).
+            if (def.DeathAnchorPercent > 0 && !AnchorConsumed)
+            {
+                int hp = target.GetStatValue("Hitpoints", 0);
+                if (hp > 0 && damage.Amount >= hp)
+                {
+                    var hpStat = target.GetStat("Hitpoints");
+                    int restored = (hpStat.Max * def.DeathAnchorPercent) / 100;
+                    if (restored < hp) restored = hp; // never reduce
+                    damage.Amount = 0;
+                    hpStat.BaseValue = restored;
+                    AnchorConsumed = true;
+                    Duration = 0; // EndTurn cleanup will remove the (now-spent) coat
+                    Diag.Record("liquid", "DeathAnchored", target, null,
+                        new { liquidId = LiquidId, restoredTo = restored,
+                              percent = def.DeathAnchorPercent });
+                    return; // skip the element branches — the hit is consumed
+                }
+            }
 
             // Detect element by the alias-collapsing FLAG, not a literal
             // string: real spells/weapons tag "Electric"/"Heat"/"Ice"
@@ -357,6 +433,53 @@ namespace CavesOfOoo.Core
         /// Null-safe: a stack-merge on an orphaned effect (no Owner) is
         /// a no-op rather than a crash.
         /// </summary>
+        /// <summary>
+        /// LB.4: if the liquid def declares a <c>LightRadius &gt; 0</c>
+        /// (lantern-beetle ichor) and the wearer doesn't already have a
+        /// <see cref="LightSourcePart"/>, attach a fresh one. Sets
+        /// <see cref="AddedLightSource"/> so <see cref="RemoveLightSource"/>
+        /// only strips a LightSourcePart we added (don't pickpocket a
+        /// player's held lantern). Idempotent: re-coat with non-empty
+        /// AppliedModsRaw doesn't re-attach (OnApply guard upstream;
+        /// here we additionally guard with the flag).
+        /// </summary>
+        private void ApplyLightSource(Entity target)
+        {
+            if (target == null) return;
+            if (AddedLightSource) return;
+            if (!LiquidRegistry.IsInitialized) return;
+            var def = LiquidRegistry.Get(LiquidId);
+            if (def == null || def.LightRadius <= 0) return;
+            if (target.GetPart<LightSourcePart>() != null) return; // respect held lantern
+            target.AddPart(new LightSourcePart
+            {
+                Radius = def.LightRadius,
+                LightColor = string.IsNullOrEmpty(def.LightColor) ? "&Y" : def.LightColor,
+            });
+            AddedLightSource = true;
+            Diag.Record("liquid", "LightApplied", target, null,
+                new { liquidId = LiquidId, radius = def.LightRadius,
+                      color = def.LightColor });
+        }
+
+        /// <summary>
+        /// LB.4: paired terminal of <see cref="ApplyLightSource"/>.
+        /// Only strips the LightSourcePart if we added it (AddedLightSource
+        /// flag). Round-tripped via save reflection (the flag is public).
+        /// </summary>
+        private void RemoveLightSource(Entity target)
+        {
+            if (target == null || !AddedLightSource) return;
+            var light = target.GetPart<LightSourcePart>();
+            if (light != null)
+            {
+                target.RemovePart(light);
+                Diag.Record("liquid", "LightRemoved", target, null,
+                    new { liquidId = LiquidId });
+            }
+            AddedLightSource = false;
+        }
+
         private void RefreshWaterCoupling(Entity target)
         {
             if (target == null) return;

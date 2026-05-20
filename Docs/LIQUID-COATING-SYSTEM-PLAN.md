@@ -1303,3 +1303,165 @@ direct measurement agree). The lore *special-features* (§14.4) are
 NOT shipped — these are the wired *gameplay shadows* of the canon,
 faithful within the wired-knob model, with the richer features
 tracked as ⚪ follow-ups.
+
+---
+
+## 15. LB — Buff coats: 5 positive lore-liquids + bench audit dimensions
+
+**Status:** PLANNED (LB.1). 5 positive-only liquids from the
+`claude/ideas-gin-frogs` lore + **3 engine extensions** + **3 new
+bench audit dimensions** so the self-auditing bench can verify
+non-damage mechanics (tick / light / death-anchor) — turning the
+matrix into a complete buff-and-debuff observatory.
+
+### 15.1 The five liquids (positive-only; lore-cited)
+
+| id | Lore anchor | Mechanic |
+|---|---|---|
+| `tepuibone-slurry` | Canon §L2 "Tepuibone — rarest stone, from the Root of the World"; the Tree's substance | StatModifiers `AV +6, Toughness +4`; ResistanceModifiers `Heat/Cold/Electric/AcidResistance +25` each. **Pure JSON.** |
+| `convalessence` | Canon §L1 "The First Root… is alive. It dreams." Trace of the Tree's life-substrate weeping through substrate | **Per-turn HEAL** (signed PerTurnDamage = negative). Engine ext. |
+| `lantern-beetle-ichor` | Canon §L7 "Lantern-beetle jars as universal mobile-light objects"; IDEAS Bioluminescent Catacomb Economy | **Emits cell light** (attaches `LightSourcePart` on coat). New def fields `LightRadius`, `LightColor`. Engine ext. |
+| `memory-bath` | Canon §L8 "**Re-Membering** (Palimpsest): gathering scattered memory to re-instantiate"; structural opposite of Choir consumption | **One-shot death anchor** — killing-blow interception heals to a fraction, self-removes. New def field `DeathAnchorPercent`. Engine ext. |
+| `bower-resin-amber` | Canon §L4 Bower-Folk + §L9 gold/amber + Resin-Cast preservation | `StatModifiers DV +3, AV +2` (aesthetic defensive aura). **Wired half only;** rep-multiplier ⚪ deferred. |
+
+### 15.2 Verification sweep (premises, all confirmed)
+
+| Premise | Status | Citation |
+|---|---|---|
+| `LightSourcePart` has `Radius/LightColor/Intensity` fields, attaches as a regular `Part` | ✅ | `LightSourcePart.cs:7-24` |
+| `PerTurnDamage` guard `Amount <= 0` currently blocks heal — change to `== 0` + branch by sign | ✅ | `LiquidCoveredEffect.cs:213` |
+| `Damage.Amount` setter clamps ≥0 — heals MUST use direct HP-add, not ApplyDamage | ✅ | `Damage.cs:83-87` |
+| `"Died"` fires at `CombatSystem.cs:1065` — but Memory-Bath uses `OnBeforeTakeDamage` killing-blow interception (no new event needed); `damage/PreDamageMutation` records the mutation automatically (LX.5 path) | ✅ | `CombatSystem.cs:751-836` |
+| `Stat.Max = 30` default — heal caps with `Math.Min(BaseValue + amount, Max)` | ✅ | `Stat.cs:17-22` |
+| Bench's `RunMatrixAudit` already handles negative `PreDamageMutation` deltas (Tepuibone resistances will show as `<100%` cells) | ✅ | LX.3 (brine Heat 85%, water Heat 60% precedent) |
+
+### 15.3 Engine extensions (the new C# — all small, focused)
+
+1. **Signed PerTurnDamage** (~20 LOC + tests). In
+   `LiquidCoveredEffect.OnTurnStart`: guard `Amount == 0`, then if
+   `Amount > 0` → existing ApplyDamage path; if `Amount < 0` →
+   direct HP-add `hp.BaseValue = Math.Min(hp.BaseValue + (-Amount),
+   hp.Max)`, emit `liquid/HealTick` diag (mirror the damage tick's
+   observability). Backward-compatible: positive Amount unchanged.
+
+2. **LightSourcePart attach** (~30 LOC + tests). New
+   `LiquidDefinition` fields `int LightRadius = 0; string LightColor
+   = "";`. `LiquidCoveredEffect.OnApply` — if `def.LightRadius > 0`
+   and target lacks `LightSourcePart`, add one with the def's
+   Radius/Color, track the addition. `OnRemove` — remove the part we
+   added (don't strip a pre-existing one). Idempotent. Emits
+   `liquid/LightApplied`/`liquid/LightRemoved`.
+
+3. **Killing-blow interception (death-anchor)** (~40 LOC + tests).
+   New `LiquidDefinition` field `int DeathAnchorPercent = 0` (0 =
+   no anchor). `LiquidCoveredEffect.OnBeforeTakeDamage` adds at the
+   top: if `DeathAnchorPercent > 0` and `damage.Amount >= currentHp`
+   → mutate `damage.Amount = 0`, restore `HP = max(currentHp, Max *
+   pct/100)`, remove self from owner's `StatusEffectsPart`, emit
+   `liquid/DeathAnchored` diag. The existing
+   `damage/PreDamageMutation` fires for the amount mutation too —
+   the death-anchor is queryable via two diag channels. One-shot:
+   the coat is consumed.
+
+### 15.4 Bench audit dimensions (new probes; Rule-8 corollary)
+
+The single-hit matrix can't show ticks, light, or death-anchor.
+Three new probes augment `RunMatrixAudit` (each per-dummy, after the
+4-element matrix):
+
+- **TickAudit** (`liquid/TickAudit`): snapshot HP → `coat.OnTurnStart(npc, ctx)` → measure delta (signed) → restore HP. Records `{runId, liquid, dealt, expected}`. For convalessence: dealt = `-N` (heal); for acid/lava/ink/choir/bog: dealt = `+N`. Bench log: `[TickAudit] convalessence Δ=−3 (heal)`.
+- **LightAudit** (`liquid/LightAudit`): after coat applied, read `npc.GetPart<LightSourcePart>()` — record `{runId, liquid, radius, color}` or `{radius:0}` if absent. Bench log: `[LightAudit] lantern-beetle-ichor radius=6 color=&Y`.
+- **DeathAnchorAudit** (`liquid/DeathAnchorAudit`): if `def.DeathAnchorPercent > 0`, snapshot HP, deal fatal damage (huge `Damage` amount) → observe whether interception fired (HP > 0 post-hit + coat absent), record outcome; then re-apply coat for subsequent tests. For non-anchor liquids: trivially `triggered=false`. Bench log: `[DeathAnchorAudit] memory-bath triggered=true hpAfter=N`.
+
+### 15.5 Sub-milestones (smallest blast radius first)
+
+- **LB.1** — this plan + sweep (doc commit).
+- **LB.2** — Tepuibone-slurry JSON + content/behavior tests (pure JSON; the buff-coat-pattern proof: +AV/+Tough/+resistances all wired). RED→GREEN+counter+adversarial; commit.
+- **LB.3** — Signed-PerTurnDamage engine extension + Convalessence JSON + TickAudit probe + `liquid/HealTick` & `liquid/TickAudit` diags. RED→GREEN (RED test asserts convalessence heals via OnTurnStart; backward-compat counter: acid still damages). Commit.
+- **LB.4** — LightSourcePart attach engine extension + Lantern-beetle ichor JSON + LightAudit probe + `liquid/LightApplied` diag. RED→GREEN (RED test asserts lantern coat → npc has LightSourcePart; counter: water coat doesn't). Commit.
+- **LB.5** — Killing-blow interception engine extension + Memory-Bath JSON + DeathAnchorAudit probe + `liquid/DeathAnchored` diag. RED→GREEN (RED test asserts fatal hit on memory-bath coated → HP restored; counter: same hit on water-coated → dies). Commit.
+- **LB.6** — Bower-resin amber JSON (wired half: +DV/+AV); rep-multiplier deferred ⚪ with the §14.4-style trail. Pure JSON. Commit.
+- **LB.7** — Add 5 to bench rig (+ ClearCell corridor extend); live runId-scoped matrix (now 20 liquids) + TickAudit + LightAudit + DeathAnchorAudit; Rule-8 direct cross-check; cold-eye Q1–Q4; §15 impl log; CONTENT-ROADMAP; merge to main + push.
+
+### 15.6 Performance
+
+None. All new code is event-driven (OnApply/OnRemove/OnTurnStart/OnBeforeTakeDamage). No new per-frame allocations; no MonoBehaviours; LightSourcePart attach is one-time per coat-apply, not per-frame.
+
+### 15.7 Pre-flagged self-review
+
+- **🟡 Convalessence cap-to-Max** — heal stops at `Stat.Max`; an entity with `Max=30` and a base of 30 sees no heal. Expected. Document.
+- **🟡 Memory-Bath one-shot** — the coat is consumed by the interception. Re-coat to re-arm. Players need to know; bench log line states this.
+- **🟡 LightSourcePart "don't strip pre-existing"** — the coat must only remove a LightSourcePart it ADDED, not the player's held lantern. Implementation: track a flag/ID on the coat (`_addedLightSource:bool`); only strip if true. Tested explicitly.
+- **🟡 Bower-resin rep-multiplier deferred** — half the lore is missing today; honesty trail in §14.4 style + a "[Note: rep is deferred]" in the §15 impl log.
+- **🔵 AV-in-matrix question** — pre-existing `carapace-ichor +4 AV` doesn't visibly reduce damage in the matrix (LX.3 ichor/Heat=100). AV may be applied upstream of `ApplyDamage`. Tepuibone's +AV may or may not show in matrix cells; the **direct-stat cross-check** via Rule-8 *will* show it. Document the AV-matrix-blindness honestly in LB.7.
+- **🧪 RED discipline** — content RED via on-disk file load; engine extensions via behavior assertions on the new mechanics (RED before adding the code, GREEN after).
+- **⚪ Bower-Folk rep-multiplier**, the rich Re-Membering ritual, full lumen-light economy interactions — all tracked, not lost.
+
+### 15.8 Implementation log (LB.1–LB.7)
+
+**LB.1** (`c098d7f`) plan + 6-premise sweep. **LB.2** wip (`b8f29b7`)
+→ verified after Unity reconnect: tepuibone-slurry pure JSON, AV+6/
+Tough+4/+25×4 resistances. **LB.3** (`86267cd`) signed PerTurnDamage
+(`Amount==0` guard, branch by sign; negative → direct HP add capped
+to Max) + Convalessence (+4/turn heal) + liquid/HealTick diag.
+**LB.4** (`1c06cf3`) LightSourcePart attach with `AddedLightSource`
+flag (held-lantern respected — counter-test passes) + Lantern-beetle
+ichor (radius 6, color &Y) + liquid/LightApplied/Removed.
+**LB.5** (`fae64cc`) killing-blow interception in OnBeforeTakeDamage
+(mutates `damage.Amount=0`, restores HP to Max*pct/100, sets
+`AnchorConsumed=true`, `Duration=0`) + Memory-Bath (50% anchor) +
+liquid/DeathAnchored. **LB.6** (`8d99da2`) Bower-resin amber wired
+half (+3 DV / +2 AV); rep-multiplier ⚪ deferred.
+
+**LB.7 bench audit dimensions.** Added 3 per-dummy probes after the
+matrix-element loop:
+- **TickAudit**: snapshot HP → set to Max/2 → `coat.OnTurnStart` →
+  measure signed delta → restore. Records `liquid/TickAudit
+  {liquid,delta,kind}`. Live results: convalessence +4 (heal), lava
+  −10 (8 Heat amplified by lava's own −25 HeatRes), iron-gall-ink
+  −2, choir-wort −4, bog-mire −1, all others 0.
+- **LightAudit**: read live `LightSourcePart.Radius/Color`. Records
+  `liquid/LightAudit`. Only lantern-beetle-ichor shows light
+  (radius=6, color=&Y) — every other liquid 0.
+- **DeathAnchorAudit**: only when `def.DeathAnchorPercent > 0`.
+  Snapshot HP → drop to 1 → fatal Damage(999999) → observe
+  intercept → RemoveEffect (true re-arm) → re-apply fresh coat.
+  Records `liquid/DeathAnchorAudit {triggered,restoredTo,percent}`.
+  Memory-bath: `triggered=True restoredTo=2000` (50% of Max 4000).
+
+**v3.3 robustness — DeathAnchorAudit re-arm.** First live run showed
+`memb: coat=memory-bath anch=True` post-probe: the re-apply was
+hitting the consumed coat's OnStack, which merged Amount and kept
+`AnchorConsumed=true`. Fixed by calling
+`fx.RemoveEffect<LiquidCoveredEffect>()` BEFORE the fresh ApplyEffect
+(NotRegisteredForTurns dummies never EndTurn-cleanup the
+Duration=0 carcass on their own). Second run confirmed
+`anch=False` — true re-arm.
+
+**v3.4 bench-layout correction.** The first LB rig used spacing-2
+starting at p.x+32. Zone is 80 wide, wall at x=79, player at x=39 ⇒
+p.x+40 (bower-resin) was on the wall (`MatrixAuditSkipped
+reason=spawn_failed`, exactly the LB.5 Rule-4 guard catching it).
+Switched LB block to spacing-1 (p.x+32..+36) — non-solid pools
+stack-overlap fine with bog-mire's ring; 0 skipped on re-launch.
+
+**Final verification (runId-scoped + direct cross-check):**
+20 dummies × 4 elements = 80 cells, 0 skipped, all 3 new audit
+dimensions firing correctly. Direct execute_code cross-check
+confirmed: tepuibone AV=6/HR=25, bower DV=3/AV=2, lantern
+LightSourcePart radius=6, memory-bath re-armed (anch=False),
+convalessence coat present.
+
+**Cold-eye Q1–Q4:** Q1 ✓ symmetry (3 probes consistent shape;
+Apply/Remove LightSource paired like Apply/Reverse StatModifiers).
+Q2 ✓ cross-feature consistency (all new diags carry runId; new
+JSON fields follow the LiquidDefinition shape; Hint() additions use
+the existing "1.00 by design" pattern). Q3 ✓ (held-lantern counter,
+water-counter, non-fatal counter, one-shot counter, signed PerTurn
+backward-compat counter). Q4 ✓ (no doc-vs-impl drift in LB;
+v3.3/v3.4 corrections are recorded here, not silently fixed).
+
+**Honesty bound:** the 5 LB liquids are conclusively correct
+(matrix + 3 probes + direct measurement agree). The
+rep-multiplier hook for Bower-resin is the only deferred
+special-feature (⚪), tracked per §15.4 / §15.7.
