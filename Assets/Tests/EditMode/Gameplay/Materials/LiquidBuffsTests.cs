@@ -104,6 +104,111 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(0, c.GetStatValue("AcidResistance"));
         }
 
+        // ════════════════ LB.5 — Memory-Bath (killing-blow interception) ════════════════
+
+        [Test]
+        public void MemoryBath_Json_HasDeathAnchor()
+        {
+            var d = LoadFromFile("memory-bath");
+            Assert.AreEqual(50, d.DeathAnchorPercent, "memory-bath anchors at 50% Max");
+            Assert.AreEqual("memory-bathed", d.Adjective);
+        }
+
+        [Test]
+        public void MemoryBathCoat_InterceptsKillingBlow_RestoresHpToHalf()
+        {
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""memory-bath"", ""Adjective"":""memory-bathed"",
+                ""Fluidity"":4, ""Evaporativity"":2,
+                ""DeathAnchorPercent"":50 } ] }");
+            var c = MakeCreature(hpMax: 200);
+            c.GetStat("Hitpoints").BaseValue = 30; // wounded, low HP
+            var coat = new LiquidCoveredEffect("memory-bath", 30);
+            c.ApplyEffect(coat);
+            // Fatal hit: 999 damage (HP is 30).
+            var d = new Damage(999); d.AddAttribute("Heat");
+            CombatSystem.ApplyDamage(c, d, null, null);
+            Assert.Greater(c.GetStatValue("Hitpoints"), 0,
+                "death-anchor must prevent the kill");
+            Assert.AreEqual(100, c.GetStatValue("Hitpoints"),
+                "restored to Max*50% (200*0.5 = 100)");
+            Assert.IsTrue(coat.AnchorConsumed, "one-shot consumed");
+            Assert.AreEqual(0, coat.Duration, "coat queued for EndTurn cleanup");
+        }
+
+        [Test]
+        public void MemoryBath_AnchorIsOneShot_SecondFatalHit_NotIntercepted()
+        {
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""memory-bath"", ""Adjective"":""memory-bathed"",
+                ""Fluidity"":4, ""Evaporativity"":2,
+                ""DeathAnchorPercent"":50 } ] }");
+            var c = MakeCreature(hpMax: 200);
+            c.GetStat("Hitpoints").BaseValue = 30;
+            c.ApplyEffect(new LiquidCoveredEffect("memory-bath", 30));
+            // First fatal hit → anchored to 100.
+            CombatSystem.ApplyDamage(c, new Damage(999), null, null);
+            Assert.AreEqual(100, c.GetStatValue("Hitpoints"));
+            // Second fatal hit in the same dispatch window → NO anchor
+            // (one-shot), HP drops to 0.
+            CombatSystem.ApplyDamage(c, new Damage(999), null, null);
+            Assert.LessOrEqual(c.GetStatValue("Hitpoints"), 0,
+                "second fatal hit not anchored (one-shot)");
+        }
+
+        [Test]
+        public void NonAnchorCoat_FatalHit_Kills_Counter()
+        {
+            // Counter: a water coat does NOT have DeathAnchorPercent →
+            // a fatal hit kills as normal.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""water"", ""Adjective"":""wet"", ""FireDampen"":40,
+                ""Fluidity"":30, ""Evaporativity"":20 } ] }");
+            var c = MakeCreature(hpMax: 200);
+            c.GetStat("Hitpoints").BaseValue = 30;
+            c.ApplyEffect(new LiquidCoveredEffect("water", 30));
+            CombatSystem.ApplyDamage(c, new Damage(999), null, null);
+            Assert.LessOrEqual(c.GetStatValue("Hitpoints"), 0,
+                "water coat doesn't anchor — fatal hit lands");
+        }
+
+        [Test]
+        public void MemoryBath_NonFatalHit_DoesNotTriggerAnchor()
+        {
+            // The anchor must trigger ONLY on a killing blow, not on
+            // any hit. A 10-damage hit on 200 HP must pass through
+            // normally and leave the coat intact.
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""memory-bath"", ""Adjective"":""memory-bathed"",
+                ""Fluidity"":4, ""Evaporativity"":2,
+                ""DeathAnchorPercent"":50 } ] }");
+            var c = MakeCreature(hpMax: 200);
+            var coat = new LiquidCoveredEffect("memory-bath", 30);
+            c.ApplyEffect(coat);
+            CombatSystem.ApplyDamage(c, new Damage(10), null, null);
+            Assert.Less(c.GetStatValue("Hitpoints"), 400, "the hit landed");
+            Assert.IsFalse(coat.AnchorConsumed, "anchor not triggered by non-fatal hits");
+            Assert.AreNotEqual(0, coat.Duration, "coat still active");
+        }
+
+        [Test]
+        public void MemoryBath_DeathAnchored_EmitsDiag()
+        {
+            LiquidRegistry.Initialize(@"{ ""Liquids"":[
+              { ""Id"":""memory-bath"", ""Adjective"":""memory-bathed"",
+                ""Fluidity"":4, ""Evaporativity"":2,
+                ""DeathAnchorPercent"":50 } ] }");
+            var c = MakeCreature(hpMax: 200);
+            c.GetStat("Hitpoints").BaseValue = 30;
+            c.ApplyEffect(new LiquidCoveredEffect("memory-bath", 30));
+            CombatSystem.ApplyDamage(c, new Damage(999), null, null);
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "liquid", Kind = "DeathAnchored", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"restoredTo\":100", recs[0].PayloadJson);
+            StringAssert.Contains("\"percent\":50", recs[0].PayloadJson);
+        }
+
         // ════════════════ LB.4 — Lantern-beetle ichor (LightSourcePart attach) ════════════════
 
         [Test]

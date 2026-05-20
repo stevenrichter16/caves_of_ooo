@@ -83,6 +83,16 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool AddedLightSource;
 
+        /// <summary>
+        /// LB.5 one-shot guard: true once the coat has consumed itself
+        /// to anchor a killing blow (Memory-Bath). Prevents re-trigger
+        /// within the same turn (e.g. two fatal hits in one round)
+        /// while <c>Duration=0</c> waits for the EndTurn cleanup. Public
+        /// for reflection save round-trip (mirrors AppliedModsRaw /
+        /// AddedLightSource).
+        /// </summary>
+        public bool AnchorConsumed;
+
         /// <summary>A coat at/above this <see cref="LiquidDefinition.Conductivity"/>
         /// amplifies incoming Lightning damage, and lets a conductive
         /// NON-water coat double an <see cref="ElectrifiedEffect"/>'s
@@ -282,6 +292,34 @@ namespace CavesOfOoo.Core
             if (!LiquidRegistry.IsInitialized) return;
             var def = LiquidRegistry.Get(LiquidId);
             if (def == null) return;
+
+            // LB.5 death-anchor: if the coat declares DeathAnchorPercent
+            // and this hit is lethal, consume the coat to restore HP to
+            // Max*pct/100 and fully nullify the damage. The existing
+            // damage/PreDamageMutation diag fires automatically because
+            // CombatSystem re-reads damage.Amount after the event
+            // (verified BLOCKING-STEP-0 in LX.5). Duration=0 queues the
+            // coat for EndTurn cleanup; AnchorConsumed prevents
+            // re-trigger inside the same dispatch window (two fatal
+            // hits one turn must NOT both anchor).
+            if (def.DeathAnchorPercent > 0 && !AnchorConsumed)
+            {
+                int hp = target.GetStatValue("Hitpoints", 0);
+                if (hp > 0 && damage.Amount >= hp)
+                {
+                    var hpStat = target.GetStat("Hitpoints");
+                    int restored = (hpStat.Max * def.DeathAnchorPercent) / 100;
+                    if (restored < hp) restored = hp; // never reduce
+                    damage.Amount = 0;
+                    hpStat.BaseValue = restored;
+                    AnchorConsumed = true;
+                    Duration = 0; // EndTurn cleanup will remove the (now-spent) coat
+                    Diag.Record("liquid", "DeathAnchored", target, null,
+                        new { liquidId = LiquidId, restoredTo = restored,
+                              percent = def.DeathAnchorPercent });
+                    return; // skip the element branches — the hit is consumed
+                }
+            }
 
             // Detect element by the alias-collapsing FLAG, not a literal
             // string: real spells/weapons tag "Electric"/"Heat"/"Ice"
