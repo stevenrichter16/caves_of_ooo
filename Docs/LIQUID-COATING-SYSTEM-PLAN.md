@@ -1586,3 +1586,59 @@ Single-hit matrix cross-check (5 LA coats × 4 elements = 20 rows): veined-pulse
 - 🔵 Single-element ImmuneElement field → still 🔵 (no shipped liquid wants dual-immunity; documented in the field comment)
 
 **Net delta:** +5 liquids, +5 engine extensions (4 bools + 1 string + 1 int snapshot field), +38 unit tests, +5 bench audit dimensions, ~1100 LOC across production + tests + bench.
+
+### 16.9 SCOPE DIVERGENCE from §16.5 (LA.7 bench layout)
+
+The plan (§16.5 sub-milestone LA.7) said: "Bench rig (5 new at p.x+37..+41) + 5 new probes."
+
+What shipped: 5 new LA entries on a **separate row at p.y - 3**, positions
+**p.x + 2..p.x + 6** (spacing 1), with its own corridor-clear loop.
+
+**Why diverged:** the primary row (p.y) is already full. LB ends at
+p.x+36; the SampleScene wall is at x=79 = p.x+40 (per the LB.7
+comment); so positions p.x+37..p.x+41 would have pushed the last
+2 LA dummies onto the wall and x=80 is out of bounds. Two of the 5
+intended LA dummies would have hit the Rule-4 `MatrixAuditSkipped`
+spawn-failed path.
+
+**Citations:** LiquidSpellTestBench.cs lines 130-137 (LB block
+ending at p.x+36 with comment "wall is at x=79"); Zone.cs:13
+(`Width = 80` constant).
+
+**Trade-off:** The separate row is a clean win — no wall collision,
+all 5 dummies spawn, and the KnockbackAudit's "shove the dummy
+perpendicular into the cleared adjacent row" actually has a known-
+clear target cell (the cleared p.y-2 / p.y-4 rows above and below
+the LA row).
+
+**Caught by:** noticed during writing — would not have been caught
+by the EditMode smoke (which doesn't validate spawn positions
+against zone width). Same class of bug as the v3 hardcoded-offsets
+that landed on decor (LX.3 self-audit Rule 4); the lesson held.
+
+### 16.10 LA-followup fix (commit `fix/la-followup`)
+
+Post-merge cold-eye revealed gaps against CLAUDE.md mandatory
+gates. This follow-up branch closes them:
+
+| Gap (per CLAUDE.md) | Fix |
+|---|---|
+| No dedicated adversarial sweep file (taxonomy MUST when ≥2 surfaces apply) | NEW `LiquidAbsurdAdversarialTests.cs` — 18 taxonomy probes + 12 hypothesis-driven player-flow probes + 2 case-sensitivity REDs + 1 design-choice pin (no-clamp on `ReflectPercent > 100`). 34 tests total. |
+| No hypothesis-driven deep audit after cold-eye-declares-0 (MUST per CLAUDE.md self-directive) | 12 player-flow hypothesis tests in the same file (`Hypothesis_*`). All GREEN ⇒ pinned-as-correct invariants. |
+| Save/load reach not probed (taxonomy "save/load reflection" surface) | 3 save/load round-trip tests pin `RewindSnapshotHp` (incl. the `-1` sentinel) survives serialization + the rewind still fires correctly after a save/load cycle. |
+| Scope divergence not flagged | §16.9 above. |
+
+**Confirmed RED→GREEN bug:** `ImmuneElement` was case-sensitive
+(`def.ImmuneElement == "Electric"` literal compare). A JSON author
+writing `"electric"` or `"ELECTRIC"` would silently get no immunity.
+Fixed with case-insensitive `OrdinalIgnoreCase` compare via a new
+`IsElementMatch` private helper. The other 4 element-token sites in
+the engine (`Damage.GetFlagForAttribute`, `Damage.HasAttribute`,
+etc.) remain case-sensitive — that's a broader convention
+(canonical PascalCase) we're not changing here; the LA fix is local
+to the LiquidCoveredEffect immunity gate where content-author UX is
+the priority.
+
+**Post-fix regression:** 293/293 across 15 suites. The case-
+sensitivity fix is the ONLY behavioral change in this commit; all
+other tests are pin-as-correct regressions.
