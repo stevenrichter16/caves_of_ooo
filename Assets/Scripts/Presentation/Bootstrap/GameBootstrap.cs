@@ -133,6 +133,26 @@ namespace CavesOfOoo
                     }
                 });
 
+                Debug.Log("[Bootstrap] Step 1b''/9: Initializing gas definitions...");
+                PerformanceDiagnostics.MeasureStartupPhase("LoadGasDefinitions", PerformanceMarkers.Bootstrap.LoadMaterialReactions, () =>
+                {
+                    TextAsset[] gasAssets = Resources.LoadAll<TextAsset>("Content/Data/GasDefinitions");
+                    if (gasAssets != null && gasAssets.Length > 0)
+                    {
+                        var jsonSources = new System.Collections.Generic.List<string>(gasAssets.Length);
+                        for (int i = 0; i < gasAssets.Length; i++)
+                            jsonSources.Add(gasAssets[i].text);
+
+                        GasRegistry.InitializeFromJsonSources(jsonSources);
+                        Debug.Log($"[Bootstrap] Loaded {gasAssets.Length} gas file(s), {GasRegistry.Count} gas(es) total.");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("[Bootstrap] No gas definition files found, gas clouds will be inert.");
+                        GasRegistry.InitializeFromJsonSources(null);
+                    }
+                });
+
                 Debug.Log("[Bootstrap] Step 1c/9: Loading House Dramas...");
                 Data.HouseDramaLoader.LoadAll();
                 foreach (var drama in Data.HouseDramaLoader.GetAll())
