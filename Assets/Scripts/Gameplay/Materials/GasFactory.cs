@@ -150,6 +150,7 @@ namespace CavesOfOoo.Core
                 case "Cryo":      return new GasCryoPart();      // G.8b
                 case "Sleep":     return new GasSleepPart();     // G.8c
                 case "FungalSpores": return new GasFungalSporesPart(); // G.8d
+                case "Plasma":    return new GasPlasmaPart();    // G.8e
                 default:
                     // Unknown kinds log but don't crash — same resilient
                     // posture as the registry's malformed-JSON path.

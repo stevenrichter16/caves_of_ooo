@@ -1339,3 +1339,147 @@ Each sub-milestone:
 - ⚪ **Toughness save** — out of scope; use a deterministic
   `infectionChance = GasLevel * Toughness_modifier_scaled` instead
   of a rolled save. Documented.
+
+---
+
+### G.8e (this commit) — GasPlasmaPart + CoatedInPlasmaEffect (gas-as-coat hybrid)
+
+**Status:** ✅ COMPLETE. The **sixth and final** gas behavior type,
+and the only **gas-as-coat hybrid**: the gas applies an Effect (the
+"coat") that OUTLASTS the cloud, like a liquid coating but delivered
+by a gas. CoO port of Qud `XRL.World.Parts.GasPlasma` +
+`XRL.World.Effects.CoatedInPlasma`.
+
+**What makes plasma distinct from the other 5 gases:**
+- **Duration scales with cloud DENSITY, not intake.** A density-100
+  cloud coats for `Random(40, 60)` turns (Qud GasPlasma.cs:104:
+  `Random(density*2/5, density*3/5)`). Walk through thick plasma →
+  long coat. The other gases scale effect strength by Level/intake.
+- **The coat is a triple-resistance debuff:** −100 Heat / Cold /
+  Electric resistance. With CoO's resistance math `(100-R)/100`,
+  −100 → ~200% elemental damage. You become a glass cannon's
+  dream target.
+- **Refresh-on-reapply takes the LARGER Duration** (Qud
+  CoatedInPlasma.cs:71-73) — the OPPOSITE of FungalInfection's
+  preserve-the-stage-clock semantic. Denser re-coat extends.
+- **Burns off liquid coats on apply** (Qud:
+  `RemoveAllEffects<LiquidCovered>`) — plasma vaporizes the water/
+  blood/oil film.
+
+**Why GasPlasmaPart does NOT `RemoveEffect` first** (unlike GasPoison
+which removes-then-reapplies to refresh): doing so would
+unapply+reapply the resistance shift, re-capturing the
+already-shifted values as the new "prior" → corrupting the restore
+to −200/−300/… on each re-entry. Instead refresh is delegated to
+`CoatedInPlasmaEffect.OnStack` (take larger Duration, NO re-shift).
+`StatusEffectsPart.ApplyEffect` routes a same-type re-apply straight
+to `OnStack` and discards the incoming WITHOUT calling its OnApply
+(StatusEffectsPart.cs:65-72) — so the shift can never double.
+
+**Why a `StatsApplied` bool, not HibernatingEffect's `-1` sentinel:**
+HibernatingEffect captures `Prior… = GetStatValue` and guards
+OnRemove with `Prior >= 0`. That sentinel MISFIRES on a creature
+with a genuinely negative resistance (e.g. a fire-vulnerable beast
+at −1 HeatResistance): the restore is skipped and the −100 shift
+leaks permanently. CoatedInPlasma captures `stat.BaseValue` (the
+base, composing cleanly with Bonus/Penalty layers) and guards with a
+dedicated `StatsApplied` bool. The `Coat_NegativePriorResistance_
+RoundTripsCorrectly` test pins exactly this: −1 prior → −101 coated
+→ restored to −1.
+
+**Shipped:**
+- `CoatedInPlasmaEffect`: OnApply burns liquid coat + applies the
+  triple −100 shift (capture-then-subtract, idempotent via
+  StatsApplied); OnRemove restores; OnStack takes larger Duration
+  without re-shift. Public fields (StatsApplied + 3 PriorX) for save
+  round-trip.
+- `GasPlasmaPart`: filter chain via `RunFilterChain` (so
+  GasImmunity/non-creature/mask gates apply) + density-scaled
+  `ComputeDuration` (pure, testable) → `ApplyEffect` → gas/Applied
+  diag (payload carries `density` + `coatDuration`).
+- `plasma-gas.json` content (GasType=Plasma, Color=&R).
+- `GasFactory.CreateBehaviorPart` += "Plasma" case.
+- Showcase already extended with the fungal column in the prior
+  commit; plasma is exercised via the bench in G.12.
+
+**RED → GREEN cycle observed (true assertion-level RED):**
+1. Stubs: `CoatedInPlasmaEffect.OnApply/OnRemove {}`,
+   `OnStack => false`; `GasPlasmaPart.ApplyGas => false`
+   (`ComputeDuration` implemented up front as a pure function).
+2. Wrote 20 tests.
+3. Ran → **12 RED with specific assertion messages** (e.g.
+   `Expected: -80 But was: 20`, `Expected: True But was: False`, two
+   NREs on `.Duration` of a null effect), 8 GREEN (3 ComputeDuration
+   pure + SpawnGas-attach + null-safety + 2 counters).
+4. Implemented `CoatedInPlasmaEffect` (capture/restore + burn-off +
+   larger-duration stack) and `GasPlasmaPart.ApplyGas`.
+5. Ran → 20/20 GREEN.
+6. Added 4 inline mutation-resistance tests (step g) → 24/24 GREEN.
+
+**Test breakdown (24 total, all GREEN):**
+- ComputeDuration pure (3): density-100 range, zero-density, low-floor
+- CoatedInPlasmaEffect direct (6): triple penalty, restore,
+  negative-prior round-trip, liquid burn-off, OnStack larger,
+  OnStack smaller-no-shrink, OnStack no-double-shift
+- GasPlasmaPart dispatch (7): factory attach, ApplyGas lands,
+  density scales duration, reapply extends not double-shift,
+  GasImmunity vetoes, per-turn dispatch, Applied diag
+- Cross-system (1): plasma-coated takes amplified Heat damage
+  (exercises CombatSystem resistance math end-to-end)
+- Cross-type isolation + null (2): null target no crash, doesn't
+  apply other effects
+- Mutation-resistance / step g (4): null-incoming OnStack,
+  OnRemove-without-apply no-shift, negative-density returns zero,
+  double-instance single-shift
+
+**IMPLEMENTATION NOTES (risks verified before writing code)**
+1. `LiquidCoveredEffect(string id="", int amount=0)` ctor matches
+   the burn-off test's `new LiquidCoveredEffect("water", 30)`.
+2. `Stat.Value = BaseValue + Bonus - Penalty + Boost`; capturing
+   and shifting `BaseValue` is the right lever (verified Stat.cs:31).
+3. `StatusEffectsPart.ApplyEffect` routes same-type re-apply to
+   `existing.OnStack(incoming)` and returns immediately on `true` —
+   incoming discarded, its OnApply never fires (StatusEffectsPart.cs:
+   65-72). Load-bearing for the no-double-shift contract.
+4. OnApply runs via `effect.Applied()` (line 111) AFTER `_effects.Add`
+   (line 110); all removal loops are indexed → removing a DIFFERENT
+   effect type (LiquidCovered) inside OnApply is iterator-safe.
+
+**SCOPE DIVERGENCE FROM THE PLAN — none.**
+
+**G.8e SELF-REVIEW (CLAUDE.md §5) + cold-eye (Q1-Q4)**
+- 🔵 (deliberate) Captures `stat.BaseValue` not computed `GetStatValue`
+  (diverges from HibernatingEffect) — composes with Bonus/Penalty
+  layers AND round-trips negatives. Strictly better; documented.
+- 🔵 ctor `owner` param is overwritten by `StatusEffectsPart`
+  (`effect.Owner = ParentEntity`) on the applied path — decorative,
+  harmless, pre-existing pattern across all effects.
+- 🧪 Save/load round-trip of the 4 public fields is asserted-by-design
+  (public, not private-backed properties) but not yet test-covered.
+  Deferred to the G.12 gas-wide adversarial sweep (save/load reach is
+  a listed surface there).
+- ⚪ Qud-divergence: skip "temperature blocked from returning to
+  ambient" + "firefighting quartered" — CoO has neither system.
+  Documented in the Effect doc-comment.
+- Cold-eye Q1 (symmetry): OnApply ApplyStats ↔ OnRemove UnapplyStats
+  symmetric; liquid burn-off is correctly one-directional (no
+  un-burn). Q2 (cross-feature): gas/Applied payload field naming
+  consistent with GasPoison (gasId/gasType/gasLevel/intake), plus
+  plasma-specific density/coatDuration. Q3 (counter-completeness):
+  StatsApplied true/false paths both tested; Duration larger/smaller/
+  null all tested. Q4 (doc-vs-impl): docstring claims (−100 triple,
+  burn-off, larger-duration) all match impl. 0 findings.
+
+**Tests:** 24 new GREEN. Full regression (13 suites, 251 tests):
+all green.
+
+**Files:**
+- NEW `Assets/Scripts/Gameplay/Effects/Concrete/CoatedInPlasmaEffect.cs`
+- NEW `Assets/Scripts/Gameplay/Materials/GasPlasmaPart.cs`
+- NEW `Assets/Resources/Content/Data/GasDefinitions/plasma-gas.json`
+- NEW `Assets/Tests/EditMode/Gameplay/Materials/GasPlasmaPartTests.cs`
+- MOD `Assets/Scripts/Gameplay/Materials/GasFactory.cs` (+Plasma case)
+
+**G.8 milestone COMPLETE** — all 6 gas behavior types shipped:
+Poison (G.5), Stun + Confusion (G.8a), Cryo (G.8b), Sleep (G.8c),
+FungalSpores (G.8d), Plasma (G.8e). Next: G.9 outgassing-on-fire.
