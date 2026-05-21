@@ -480,3 +480,151 @@ all green.
   (33 tests + `GasDispersalRateDoubler` test stub)
 - MOD `Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs`
   (+3 lines: attach GasSystemPart to World)
+
+### G.5 (this commit) — First behaving gas: Poison
+
+**Status:** ✅ COMPLETE. First gas type that actually does something
+to creatures. The gas system is now player-visible: walking into a
+poison-vapor cloud takes damage and applies a lingering effect.
+
+**Architecture (Qud parity, IGasBehavior tree):**
+
+```
+Part (CoO base)
+├── GasPoolPart                  (G.2 — universal state)
+└── IGasBehaviorPart             (G.5 — abstract; BaseGas accessor)
+    └── IObjectGasBehaviorPart   (G.5 — abstract; ApplyGas dispatch)
+        └── GasPoisonPart        (G.5 — concrete; first behavior)
+```
+
+**Two dispatch paths (Qud parity):**
+1. **On-entry** — `EntityEnteredCell` event fires on the gas entity
+   (the same event LiquidPoolPart listens to). The Part calls
+   `ApplyGas(entrant, zone)`. Mirrors Qud
+   `IObjectGasBehavior.HandleEvent(ObjectEnteredCellEvent)`.
+2. **Per-turn** — `GasSystem.OnTickEnd` extended with
+   `DispatchPerTurnApply` — after each gas's dispersal, it calls the
+   behavior Part's `ApplyToCell(cell, zone)` which iterates the cell's
+   objects. Mirrors Qud `IObjectGasBehavior.TurnTick`.
+
+**Filter pipeline (Qud parity, 5 gates in CoO):**
+1. `target != self` (gas can't gas itself)
+2. `target.Tags.ContainsKey("Creature")` — non-creatures get
+   `gas/ApplyVetoed reason="NotACreature"`
+3. `CheckGasCanAffect` event veto — fires on target, listeners
+   (G.6 GasImmunityPart) return false from HandleEvent to veto. Emits
+   `gas/ApplyVetoed reason="GasImmunity"`
+4. `GetRespiratoryPerformance` event — fires on target, listeners
+   (G.6 GasMaskPart) reduce "Intake" param. 0 intake = vetoed
+   (`reason="ZeroIntake"`); otherwise scales immediate damage
+5. Apply `PoisonedByGasEffect` (Duration random 1-10, DamagePerTurn =
+   `GasLevel * 2`) + immediate damage = `ceil((intake+1)/20)` (floor 1)
+
+**PoisonedByGasEffect (lingering tick):**
+The gas's per-turn dose covers creatures STANDING IN the cloud; this
+effect handles creatures who walked OUT. Qud parity: the effect's
+`OnTurnStart` SUPPRESSES the tick when the target's current cell still
+contains a matching-type gas (the cloud's own per-turn covers them).
+Outside the cloud, the effect ticks `DamagePerTurn` until Duration
+expires.
+
+**Tests (20 total, all GREEN):**
+
+*PART I — Factory wiring (3 tests):*
+- BehaviorKind="Poison" attaches `GasPoisonPart` (accessible via
+  abstract bases)
+- Empty BehaviorKind → no behavior Part (visual-only gas)
+- Unknown BehaviorKind → no crash, no Part, warning logged
+
+*PART II — Filter chain (8 tests):*
+- ApplyGas on Creature → immediate damage + effect applied
+- ApplyGas on non-Creature → vetoed with `NotACreature` reason
+- Self-target → no-op (gas can't gas itself)
+- Null target → no crash
+- TestGasImmunity stub for matching type → vetoed with `GasImmunity`
+  reason; no damage, no effect
+- Counter: immunity for different type doesn't block
+- TestRespiratoryReducer (-90 intake) → effect still applies; damage
+  hits the 1-floor
+- Counter: full mask (-100 intake) → `ZeroIntake` veto; no effect
+
+*PART III — Per-turn dispatch via GasSystem.OnTickEnd (2 tests):*
+- Creature in gas cell → effect applied after one OnTickEnd
+- Creature in different cell → no effect
+
+*PART IV — PoisonedByGasEffect tick semantics (5 tests):*
+- In matching-type gas cell → tick SUPPRESSED (no damage)
+- Outside cloud → tick deals damage
+- In DIFFERENT-type gas cell (cryo while gas-poisoned) → tick still
+  fires (suppression matches by GasType, not "any gas")
+- OnStack: larger Duration + larger DamagePerTurn win
+- Counter: smaller incoming doesn't downgrade
+
+*PART V — Diag observability (2 tests):*
+- `gas/Applied` record fires with full payload
+- `EntityEnteredCell` event triggers ApplyGas (on-entry dispatch pin)
+
+**IMPLEMENTATION NOTES (risks verified before writing code)**
+1. `Entity.FireEvent(GameEvent)` returns false when any Part's
+   `HandleEvent` returns false (Entity.cs:255-265) — this is the veto
+   semantics the filter chain depends on.
+2. `Entity.FireEventAndRelease(GameEvent)` releases the event to the
+   pool after firing — used for the `CheckGasCanAffect` veto query
+   where I don't need post-fire param read.
+3. For `GetRespiratoryPerformance` I use `FireEvent` then
+   `e.GetParameter` then `e.Release()` — needed because I read params
+   AFTER firing.
+4. `StatusEffectsPart.RemoveEffect<PoisonedByGasEffect>()` before
+   applying a new one — refreshes Duration (Qud parity), avoids
+   tick-stacking on re-entry.
+5. The Effect's `IsInMatchingGasCell` check uses
+   `Zone.GetEntityPosition` + `GetCell.Objects` + GasType comparison.
+   Resilient: null zone, null cell, missing GasPoolPart all handled.
+
+**SCOPE DIVERGENCE FROM THE PLAN — none.**
+
+**G.5 SELF-REVIEW (CLAUDE.md §5)**
+- 🟡 (resolved) Respires tag — plan §3.6 noted opt-in `Respires` tag
+  on creatures. Shipping with implicit-respires (any Creature) — G.5
+  matches Qud's gates with one CoO-side adjustment: until robot/undead
+  blueprints exist, every Creature respires. The opt-out path is to
+  add a `NonRespires` tag in a future blueprint and add the gate to
+  `CheckIsCreature` (one line in IObjectGasBehaviorPart).
+- 🟡 (resolved) `PoisonedByGasEffect` separate from `PoisonedEffect`
+  — intentional. The two have different damage credit (Owner = gas
+  Creator vs tonic source), different stack semantics (max-wins vs
+  duration-adds), and different cure paths (a future "anti-gas tonic"
+  would target one but not the other).
+- 🔵 RNG injection — `GasPoisonPart.TestRng` is a static for test
+  determinism. Production uses `_defaultRng = new System.Random()`.
+  Same shape as existing `PoisonedEffect.Rng`.
+- 🔵 Per-turn dispatch fires AFTER dispersal in `OnTickEnd` — so a
+  gas that dissipates this tick doesn't get a per-turn dose. Right
+  call: a dissipating cloud is by definition too thin to deliver a
+  meaningful dose.
+- 🧪 RED → GREEN observed (test file authored, 20 tests, 20 GREEN
+  first compile-pass — no real bugs surfaced this commit, mostly
+  pin-as-correct invariants).
+- ⚪ AI nav weight (G.11), GasMaskPart proper (G.6), GasImmunityPart
+  proper (G.6) — out of scope, stubbed in tests so the event surface
+  is verified.
+
+**Tests:** 20 new GREEN. Full regression sweep (11 suites,
+322 tests): all green. G.5 introduces a new event listener
+(IObjectGasBehaviorPart on EntityEnteredCell) but it's gated to the
+"EntityEnteredCell" event only, so no per-frame cost.
+
+**Files:**
+- NEW `Assets/Scripts/Gameplay/Materials/IGasBehaviorPart.cs`
+- NEW `Assets/Scripts/Gameplay/Materials/IObjectGasBehaviorPart.cs`
+- NEW `Assets/Scripts/Gameplay/Materials/GasPoisonPart.cs`
+- NEW `Assets/Scripts/Gameplay/Effects/Concrete/PoisonedByGasEffect.cs`
+- NEW `Assets/Tests/EditMode/Gameplay/Materials/GasPoisonPartTests.cs`
+  (20 tests + 2 test-support Parts: TestGasImmunity / TestRespiratoryReducer)
+- MOD `Assets/Scripts/Gameplay/Materials/GasFactory.cs` (+30 lines: read
+  def.BehaviorKind, attach the matching Part via `CreateBehaviorPart`
+  switch)
+- MOD `Assets/Scripts/Gameplay/Materials/GasSystem.cs` (+20 lines: per-
+  turn `DispatchPerTurnApply` after each gas's dispersal)
+- MOD `Assets/Resources/Content/Data/GasDefinitions/poison-vapor.json`
+  (BehaviorKind: "" → "Poison")

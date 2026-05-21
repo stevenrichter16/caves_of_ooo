@@ -104,6 +104,16 @@ namespace CavesOfOoo.Core
                 Creator = creator,
             };
             entity.AddPart(pool);
+
+            // G.5 — attach the behavior Part keyed by def.BehaviorKind.
+            // Empty string = visual-only gas (no per-creature effect),
+            // intentional for G.2/G.3 content stubs. The factory is the
+            // ONE place that translates the JSON tag → concrete C# Part,
+            // mirroring how MaterialPart routes a material tag → behavior.
+            var behavior = CreateBehaviorPart(def.BehaviorKind);
+            if (behavior != null)
+                entity.AddPart(behavior);
+
             pool.Density = useDensity; // fires GasDensityChange (0 → useDensity)
 
             if (!zone.AddEntity(entity, x, y))
@@ -115,9 +125,33 @@ namespace CavesOfOoo.Core
 
             Diag.Record("gas", "Created", creator, entity,
                 new { gasId, density = useDensity, level = useLevel, x, y,
-                      gasType = pool.GasType, seeping = pool.Seeping, stable = pool.Stable });
+                      gasType = pool.GasType, seeping = pool.Seeping, stable = pool.Stable,
+                      behaviorKind = def.BehaviorKind });
 
             return entity;
+        }
+
+        /// <summary>Map a <see cref="GasDefinition.BehaviorKind"/> string
+        /// to the concrete behavior Part. Returns null for empty/unknown
+        /// kinds — the gas is then visual-only. Mirrors the StatusTonicPart
+        /// effect-name → C# class switch (StatusTonicPart.cs:35-84) so
+        /// content authors can add a new gas variety as one JSON row +
+        /// one switch case (one C# class per BehaviorKind).</summary>
+        private static IGasBehaviorPart CreateBehaviorPart(string behaviorKind)
+        {
+            if (string.IsNullOrEmpty(behaviorKind)) return null;
+            // G.5 ships with one kind. G.8 will fan this out to Cryo /
+            // Stun / Sleep / Confusion / FungalSpores / Plasma.
+            switch (behaviorKind)
+            {
+                case "Poison": return new GasPoisonPart();
+                default:
+                    // Unknown kinds log but don't crash — same resilient
+                    // posture as the registry's malformed-JSON path.
+                    UnityEngine.Debug.LogWarning(
+                        $"[GasFactory] Unknown BehaviorKind '{behaviorKind}'; gas will be visual-only.");
+                    return null;
+            }
         }
     }
 }
