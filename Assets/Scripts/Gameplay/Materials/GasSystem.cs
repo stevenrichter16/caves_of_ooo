@@ -63,8 +63,8 @@ namespace CavesOfOoo.Core
         public static void SetRngForTests(System.Random rng) => _rng = rng ?? new System.Random();
 
         /// <summary>One TickEnd pass: iterate every gas pool in the zone
-        /// and run dispersal on it. Snapshot-then-iterate so mid-pass
-        /// spawn/remove don't corrupt iteration.</summary>
+        /// and run dispersal + per-turn-apply on it. Snapshot-then-iterate
+        /// so mid-pass spawn/remove don't corrupt iteration.</summary>
         public static void OnTickEnd(Zone zone)
         {
             if (zone == null) return;
@@ -75,7 +75,29 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < snapshot.Count; i++)
             {
                 ProcessGasBehavior(snapshot[i], zone);
+                // G.5: after dispersal, dispatch the per-turn apply pass
+                // to any IObjectGasBehaviorPart sibling. Skipped when the
+                // gas dissipated mid-dispersal (the in-zone check inside
+                // DispatchPerTurnApply protects).
+                DispatchPerTurnApply(snapshot[i], zone);
             }
+        }
+
+        /// <summary>G.5 — per-turn dose for creatures currently in the
+        /// gas's cell. Skipped if the gas dissipated during its own
+        /// dispersal this tick. Mirror of Qud's
+        /// <c>IObjectGasBehavior.TurnTick → ApplyGas(Cell)</c>
+        /// (IObjectGasBehavior.cs:43-51).</summary>
+        private static void DispatchPerTurnApply(Entity gas, Zone zone)
+        {
+            if (gas == null || zone == null) return;
+            var pos = zone.GetEntityPosition(gas);
+            if (pos.x < 0) return; // dissipated during this tick's ProcessGasBehavior
+            var behavior = gas.GetPart<IObjectGasBehaviorPart>();
+            if (behavior == null) return; // visual-only gas (no behavior Part)
+            var cell = zone.GetCell(pos.x, pos.y);
+            if (cell == null) return;
+            behavior.ApplyToCell(cell, zone);
         }
 
         /// <summary>
