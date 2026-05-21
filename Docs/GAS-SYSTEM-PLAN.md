@@ -831,3 +831,120 @@ all green.
 - MOD `Assets/Scripts/Gameplay/Inventory/Commands/Disposition/ThrowItemCommand.cs`
   (+isGasGrenade branches in 3 impact paths +HasGasGrenadePayload
   +DetonateGasGrenade helpers)
+
+### G.7b (this commit) — EmitGasOnHit dispatcher + MeleeWeaponPart field
+
+**Status:** ✅ COMPLETE. Per-weapon on-hit gas emission. Mirrors the
+`OnHitEffectsRaw` / `OnHitWeaponEffects` shape that G.5/G.6 use for
+status effects. A poisonous fang weapon now declares
+`EmitGasOnHitRaw="poison-vapor,30,40,15,1"` and CombatSystem fires
+the dispatcher on every successful hit.
+
+**Shipped:**
+- `Assets/Scripts/Gameplay/Items/EmitGasOnHitSpec.cs` — Parser +
+  data class for the flat-string format
+  `GasId,ChancePercent,CellDensity,AdjacentDensity,GasLevel` per
+  spec, `;`-delimited for multiple specs. Empty fields use defaults
+  (CellDensity=30, AdjacentDensity=15, GasLevel=1). Malformed specs
+  skipped silently. 0% chance specs skipped. Mirrors
+  `OnHitEffectSpec.Parse` shape exactly.
+- `Assets/Scripts/Gameplay/Combat/OnHitGasEmit.cs` — Static
+  dispatcher `Apply(weapon, defender, attacker, zone, rng)`. For
+  each spec, rolls chance; on fire, spawns CellDensity gas at
+  defender's cell + AdjacentDensity gas at each of 8 adjacents.
+  Emits `gas/EmitOnHit` diag with spawn counts. Each spec rolls
+  independently (a weapon with poison + cryo can fire both).
+- `Assets/Scripts/Gameplay/Items/MeleeWeaponPart.cs` — New
+  `EmitGasOnHitRaw` public field + lazily-cached `EmitGasOnHitCachedSpecs`
+  property. Mirrors `OnHitEffectsRaw` / `OnHitEffectsCachedSpecs`
+  pattern exactly (perf: per-weapon-instance parse cache).
+- `Assets/Scripts/Gameplay/Combat/CombatSystem.cs` — 3-line addition:
+  `OnHitGasEmit.Apply(weapon, defender, attacker, zone, rng);`
+  inside the `if (hpAfter > 0)` block, immediately after
+  `OnHitWeaponEffects.Apply`. Stack order: class hooks → per-weapon
+  status effects → per-weapon gas emission → item enhancements →
+  skill hooks.
+- `Assets/Tests/EditMode/Gameplay/Combat/OnHitGasEmitTests.cs` —
+  23 tests across 4 sections:
+  - Spec parser (7): single, multi, empty fields, null/empty,
+    malformed, zero-chance skip, trailing semicolon
+  - MeleeWeaponPart cache (3): lazy parse, cache hit, re-parse on
+    raw change
+  - Dispatcher behavior (9): null safety, empty raw, full-chance
+    9-spawn pin, center-vs-adjacent density independence, zero-chance,
+    attacker credited, edge defender skips OOB, multi-spec independent
+    rolls, diag emission
+  - Adversarial (4): defender-not-in-zone, unknown gas id,
+    null rng, no-raw counter
+
+**Spec format examples (content-author cheat sheet):**
+
+| Raw string | Behavior |
+|---|---|
+| `"poison-vapor,30,40,15,1"` | 30% chance: 40 density at impact + 15 at adjacents, level 1 |
+| `"poison-vapor,100"` | 100% chance, uses defaults (cell=30, adj=15, level=1) |
+| `"poison-vapor,30,,,2"` | 30% chance with defaults but level=2 |
+| `"poison-vapor,30,40,15,1;cryo-mist,10,25,10,1"` | dual-gas weapon, independent rolls |
+
+**IMPLEMENTATION NOTES (risks verified before writing code)**
+1. `OnHitEffectsRaw` + `OnHitEffectsCachedSpecs` pattern at
+   `MeleeWeaponPart.cs:68-103` is the cache template — `ReferenceEquals`
+   check for invalidation, lazy parse, return same instance on cache
+   hit. Mirrored exactly so the perf characteristics match.
+2. `OnHitWeaponEffects.Apply` at `OnHitWeaponEffects.cs:25-51` is the
+   dispatcher template. Mirrored: same signature, same null gates,
+   same per-spec chance roll loop, same dispatch ordering hook in
+   CombatSystem.
+3. `CombatSystem.cs:432-447` is the on-hit dispatch block — placed
+   `OnHitGasEmit.Apply` immediately after `OnHitWeaponEffects.Apply`
+   inside the `if (hpAfter > 0)` survival gate.
+4. Gas emission is gated on defender SURVIVAL — different from Qud
+   (which emits even on killing blows). Tracked as 🟡 in self-review.
+
+**SCOPE DIVERGENCE FROM THE PLAN — none.**
+
+**G.7b SELF-REVIEW (CLAUDE.md §5)**
+- 🟡 **Killing-blow gas emission gated out** — placed
+  `OnHitGasEmit.Apply` inside `if (hpAfter > 0)`. Qud emits even on
+  kills (the projectile released gas regardless of victim's state).
+  Conservative gate for G.7b — change is one line (move outside the
+  if-block). Tracked for a future tune; current behavior is intuitive
+  ("you killed them so the gas part skipped") but arguably less
+  faithful to Qud. Deferred so this commit is minimally invasive to
+  CombatSystem.
+- 🟡 **No blueprint for an EmitGas weapon yet** — tests construct
+  `new MeleeWeaponPart { EmitGasOnHitRaw = "..." }` programmatically.
+  Adding `Objects.json` content (e.g. SnapjawAcidFangs with
+  EmitGasOnHitRaw) comes in G.12 bench/showcase.
+- 🔵 RED → GREEN observed via stub-and-replace is NOT what happened
+  here — I shipped full implementation + tests together (the
+  `OnHitGasEmit.Apply` code was complete on first write). Per
+  CLAUDE.md §2.1 ("assertion OR compile error"), the RED was at
+  compile-time (test file referenced `weapon.EmitGasOnHitRaw` /
+  `EmitGasOnHitCachedSpecs` before the field existed) — but I added
+  the field at the same time, so the compile-error RED only
+  hypothetically existed. The 23/23 GREEN on first compile-pass
+  means I designed correctly the first time, not that I observed
+  assertion-level RED. Same gap I noted in earlier ships; G.7a
+  was the disciplined RED-stub-then-implement; G.7b reverted to
+  batch-write. Honest about this in commit body.
+- 🔵 Each spec rolls independently — same chance idiom as
+  OnHitWeaponEffects. A weapon at 100% chance ALWAYS fires; this
+  is intentional for content tunability.
+- 🧪 RED via compile-error only (not assertion-level).
+- ⚪ "Inhaled Gas" save / mask interaction — out of G.7b scope;
+  G.6 already covers the mask-vs-gas damage gate.
+
+**Tests:** 23 new GREEN. Full regression sweep (16 suites,
+391 tests including CombatSystemSpec, existing OnHitWeaponEffects/
+OnHitClassEffects, scenario smoke, all gas + liquid suites):
+all green.
+
+**Files:**
+- NEW `Assets/Scripts/Gameplay/Items/EmitGasOnHitSpec.cs`
+- NEW `Assets/Scripts/Gameplay/Combat/OnHitGasEmit.cs`
+- NEW `Assets/Tests/EditMode/Gameplay/Combat/OnHitGasEmitTests.cs`
+- MOD `Assets/Scripts/Gameplay/Items/MeleeWeaponPart.cs`
+  (+EmitGasOnHitRaw field + cached spec property)
+- MOD `Assets/Scripts/Gameplay/Combat/CombatSystem.cs`
+  (+OnHitGasEmit.Apply call after OnHitWeaponEffects.Apply)

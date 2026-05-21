@@ -436,6 +436,13 @@ namespace CavesOfOoo.Core
                 // stun AND electrify on the same hit, since the chance rolls are independent.
                 OnHitWeaponEffects.Apply(weapon, damage, actualDamage, defender, attacker, zone, rng);
 
+                // G.7b: per-weapon on-hit gas emission. Independent chance rolls
+                // per spec parallel to OnHitWeaponEffects. Spawns a 3×3 gas
+                // cloud centered on the defender's cell. Stacks with the above
+                // (a poisonous-fang sword that's also FlamingSword could fire
+                // Burning AND emit poison gas on the same hit).
+                OnHitGasEmit.Apply(weapon, defender, attacker, zone, rng);
+
                 // Item-enhancement on-hit hook (E.2.1). Iterates the weapon Entity's
                 // IItemEnhancement Parts (e.g. EnhancementSerrated → on-hit bleed)
                 // and calls each one's OnAttackerHit. Parallel to OnHitWeaponEffects.Apply
