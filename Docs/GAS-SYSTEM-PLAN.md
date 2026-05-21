@@ -1483,3 +1483,188 @@ all green.
 **G.8 milestone COMPLETE** — all 6 gas behavior types shipped:
 Poison (G.5), Stun + Confusion (G.8a), Cryo (G.8b), Sleep (G.8c),
 FungalSpores (G.8d), Plasma (G.8e). Next: G.9 outgassing-on-fire.
+
+---
+
+### G.9 — BurnOffGasPart (PLAN)
+
+**Status:** PLANNED. The reverse coupling of the gas system: where the
+prior phases had gas *cause* effects, G.9 has *fire cause gas*. A
+flammable/volatile entity that takes fire damage "burns off" gas at
+its cell — a peat-bog releasing methane when torched, a fungal pod
+venting spores when burned, a chemical drum outgassing when heated.
+Hits all 5 CLAUDE.md major-feature criteria (fire+gas systems, new
+content, Qud-parity claim, RNG/threshold failure mode, player-visible).
+
+#### Verification sweep
+
+| Premise | Status | Source / correction |
+|---|---|---|
+| Qud `BurnOffGas` accumulates `DamageTriggerTypes` damage over its lifetime; on `DamageTaken >= DamagePer` (default 10) rolls `Chance.in100()` and spawns `Stat.Roll(Number)` copies of `Blueprint` at the current cell; while-loop drains multi-threshold hits | ✅ confirmed | `qud BurnOffGas.cs:66-117` |
+| Qud listens to `BeforeTookDamage` | ⚠️ **adapted** | CoO hooks **`TakeDamage`** (post-resistance, fires on the target only when damage lands). Deliberate divergence: outgas ∝ damage *actually taken*; a fire-immune entity (HeatResistance 100) takes 0 → no outgas. The Qud doc-comment's own wording — "takes a total of DamagePer ... damage" — favors this. |
+| CoO Parts listen via `HandleEvent(GameEvent)`, no explicit registration | ✅ confirmed | `GasMaskPart.cs:46-76` listens to `BeforeTakeDamage` the same way |
+| `Damage.HasAttribute(name)` / `.Amount` / `.Attributes` | ✅ confirmed | `Damage.cs:57,99` |
+| Zone resolution for a Part during a damage event | ✅ confirmed | `TakeDamage` carries no Zone → use `SettlementRuntime.ActiveZone` (the G.8d.3 contagion fallback). `zone.GetEntityPosition(e)`; `pos.x < 0` ⇒ not in zone. |
+| `GasFactory.SpawnGas(zone, x, y, gasId, density=-1, level=-1, creator=null)` | ✅ confirmed | `GasFactory.cs:47` |
+| `SettlementRuntime.ActiveZone { get; set; }` public static settable | ✅ confirmed | `SettlementRuntime.cs:7` — tests set it directly |
+| `DiceRoller.Roll(Number, rng)` rolls the `Number` formula | 🔴 **FALSE PREMISE** | `DicePattern = ^(\d+)d(\d+)([+-]\d+)?$` **requires** the `d`. `Roll("1")` returns **0** — Qud's `Number` default `"1"` is a plain int. A naive port spawns ZERO gas. **Fix:** `RollNumber(s, rng)` helper — `int.TryParse` first, then `DiceRoller.Roll`, else 0. Pinned by a `Number="1" → exactly 1` test. |
+| `@population-table` Blueprint feature | ⚪ **scope-pruned** | CoO gas spawns by `gasId`; no population tables for gas. Drop. |
+
+**No design-changing false premises** — the DiceRoller gap is an
+internal impl detail (a 4-line helper), not a scope/design change.
+Documented here + in the commit body per §1.2.
+
+#### Architecture (CoO-adapted)
+
+**`BurnOffGasPart : Part`** — lives on a creature/object entity (NOT
+on a gas cloud; it's the inverse of the IObjectGasBehaviorPart family).
+
+| Field | Default | Purpose |
+|---|---|---|
+| `DamageTaken` | 0 | accumulator (public for save round-trip) |
+| `DamagePer` | 10 | damage threshold per spawn cycle |
+| `Chance` | 100 | percent-in-100 to actually spawn per threshold crossing |
+| `Number` | "1" | how many to spawn — plain int OR dice formula |
+| `DamageTriggerTypes` | "Heat;Fire" | `;`-delimited attribute tags that count |
+| `GasId` | "" | which gas to spawn (empty ⇒ no-op, Qud parity) |
+| `GasDensity` | -1 | density override (-1 ⇒ gas default) |
+| `GasLevel` | -1 | level override (-1 ⇒ gas default) |
+
+`HandleEvent` on `"TakeDamage"`:
+1. Read `Damage`; null ⇒ bail.
+2. `AttributesMatch` — split `DamageTriggerTypes` on `;`; any
+   `damage.HasAttribute(t)`? No ⇒ silent early-out (every non-fire
+   hit fires TakeDamage; a diag here would be noise).
+3. `DamageTaken += damage.Amount`.
+4. `while (DamageTaken >= DamagePer)`: `DamageTaken -= DamagePer`;
+   roll `Chance`; on fail emit `gas/BurnOffChanceFailed` + continue;
+   on pass resolve zone+cell, spawn `RollNumber(Number)` copies of
+   `GasId`, emit `gas/BurnOff`.
+
+Helpers: `RollNumber(string, rng)` (int-first, the false-premise fix);
+`AttributesMatch(Damage, triggerTypes)`. `TestRng` static for
+deterministic Chance/Number rolls (mirrors the gas-behavior parts).
+
+#### Observability (every gate emits)
+
+- `gas/BurnOff` — a spawn cycle succeeded (payload: gasId, count,
+  x, y, triggerAttribute, damagePer).
+- `gas/BurnOffChanceFailed` — the Chance gate rejected a threshold
+  crossing (payload: chance, gasId). So "why didn't it outgas?" is a
+  query, not a grep.
+- Attribute-mismatch + below-threshold are silent (not rejections of
+  an *attempted* outgas — just irrelevant/partial events).
+
+#### Sub-milestones (smallest blast radius first)
+
+- **G.9** (this commit) — `BurnOffGasPart` + helpers + true
+  assertion-level RED→GREEN tests + counter-checks + inline
+  adversarial (step g). The mechanic, fully TDD'd, integration-tested
+  through `CombatSystem.ApplyDamage` (proves the event actually
+  reaches the Part in the real combat flow).
+- Observable wiring (showcase probe or a flammable-creature
+  blueprint) folded into the G.12 self-auditing bench, where the
+  whole gas surface is exercised live.
+
+#### Pre-flagged self-review findings
+
+- ⚪ **`TakeDamage` vs `BeforeTookDamage`** — CoO-deliberate; documented
+  in the Part doc-comment + sweep table.
+- 🔵 **Zone via `SettlementRuntime.ActiveZone`** — correct for CoO's
+  single-active-zone combat; an entity damaged outside the active
+  zone won't outgas there. Consistent with the G.8d.3 contagion
+  fallback. Documented.
+- 🔵 **`DamageTaken` drains even when the Chance gate fails** (Qud
+  parity: the while-loop subtracts before the `continue`). A
+  Chance=50 part doesn't "save up" missed rolls. Counter-tested.
+- 🧪 **Save/load round-trip** of `DamageTaken` (public field) —
+  asserted-by-design; deferred to the G.12 gas-wide adversarial sweep.
+
+---
+
+### G.9 (this commit) — BurnOffGasPart (outgassing-on-fire)
+
+**Status:** ✅ COMPLETE. The inverse coupling — fire damage taken by an
+entity spawns gas at its cell. CoO port of Qud
+`XRL.World.Parts.BurnOffGas`.
+
+**Shipped:**
+- `BurnOffGasPart : Part` — accumulates trigger-type damage, threshold
+  while-loop with Chance gate + Number roll, spawns `GasId` at the
+  entity's cell via `GasFactory.SpawnGas`. `RollNumber` helper
+  (int-first, then `DiceRoller`) + `FirstMatchingTrigger` helper.
+  `TestRng` static for deterministic rolls.
+- 18 tests across 5 sections, all integration-tested through
+  `CombatSystem.ApplyDamage` (proves the `TakeDamage` event reaches
+  the Part in the real combat flow).
+
+**Verification sweep caught a FALSE PREMISE (CLAUDE.md §1.2):**
+`DiceRoller.Roll` regex is `^(\d+)d(\d+)([+-]\d+)?$` — it REQUIRES the
+`d`. Qud's `BurnOffGas.Number` default is the plain string `"1"`, so
+`DiceRoller.Roll("1")` returns **0** → a naive port spawns NOTHING.
+Fixed with the int-first `RollNumber` helper; pinned by
+`BurnOff_Number1_SpawnsExactlyOne` (the test fails RED with
+`Expected: 1 But was: 0` if the int-first path is removed). This is
+exactly the class of "small feature" bug the sweep exists to catch —
+it would have shipped a silently-inert Part.
+
+**RED → GREEN cycle (true assertion-level RED):**
+1. Stub `HandleEvent => true` (no accumulate, no spawn).
+2. Wrote 18 tests.
+3. Ran → **10 RED** with specific assertions (all spawn/accumulate/
+   diag: `Expected: 1/2/3 But was: 0`), 8 GREEN (counters + adversarial
+   that pass vacuously on the stub).
+4. Implemented `HandleEvent` + `RollNumber` + `FirstMatchingTrigger`.
+5. Ran → 18/18 GREEN. Regression 241/241 (13 gas+combat suites).
+
+**Test breakdown (18, all GREEN):**
+- Accumulate + threshold (5): at-threshold spawns, below doesn't,
+  accumulates across hits, large hit multi-crosses, Fire attribute
+- Number roll (4): `"1"`→1 (FALSE-PREMISE PIN), `"3"`→3, `"2d1"`→2,
+  garbage→0+drained
+- Chance + GasId + diag (4): Chance 0 never-spawns-but-drains, empty
+  GasId no-op, BurnOff diag (count=2), BurnOffChanceFailed diag
+- Counters (2): Cold doesn't accumulate, Bludgeoning doesn't trigger
+- Adversarial (3): null Damage param, no ActiveZone, not-in-zone
+
+**IMPLEMENTATION NOTES (risks verified before writing code)**
+1. Qud `BeforeTookDamage` → CoO `TakeDamage` (post-resistance) —
+   deliberate divergence, documented in the Part doc-comment.
+2. `TakeDamage` carries no Zone → `SettlementRuntime.ActiveZone`
+   (settable in tests, the G.8d.3 fallback). `pos.x < 0` = not in zone.
+3. `DamageTaken` drains BEFORE the Chance/spawn gates (Qud parity:
+   subtract then `continue`) — a failed roll still consumes the
+   threshold. Counter-tested.
+4. `Damage.HasAttribute` / `.Amount` confirmed (Damage.cs:57,99);
+   Part event dispatch confirmed via GasMaskPart (BeforeTakeDamage).
+
+**SCOPE DIVERGENCE FROM THE PLAN**
+- Qud's `@population-table` Blueprint feature dropped (CoO gas spawns
+  by `gasId`; no population tables for gas). Documented in the sweep.
+
+**G.9 SELF-REVIEW (CLAUDE.md §5) + cold-eye (Q1–Q4)**
+- ⚪ `TakeDamage` vs `BeforeTookDamage` — CoO-deliberate; documented.
+- 🔵 Zone via `ActiveZone` — correct for single-active-zone combat;
+  an entity damaged outside the active zone won't outgas there.
+- 🔵 `DamageTaken` drains on a failed Chance roll (Qud parity).
+  Counter-tested.
+- 🔵 Diag-coord naming: `gas/BurnOff` uses `x`/`y` — matches the
+  `GasFactory.SpawnGas` primitive's own diag. The G.8d.3 contagion
+  uses `spawnX`/`spawnY` (a pre-existing split); BurnOff sides with
+  the spawn primitive. Future normalization candidate, not blocking.
+- 🧪 Save/load round-trip of `DamageTaken` — deferred to G.12.
+- Cold-eye Q1 (no mirror; complementary to EmitGasOnHit), Q2 (payload
+  naming above), Q3 (every branch counter-tested), Q4 (doc-vs-impl
+  clean): 0 blocking findings.
+
+**Observable wiring** (BurnOffGasPart on a flammable creature
+blueprint / showcase probe) folded into the G.12 self-auditing bench,
+where the whole gas surface runs live.
+
+**Tests:** +18 (BurnOffGasPartTests). Regression 241/241 across 13
+gas+combat suites. All green.
+
+**Files:**
+- NEW `Assets/Scripts/Gameplay/Materials/BurnOffGasPart.cs`
+- NEW `Assets/Tests/EditMode/Gameplay/Materials/BurnOffGasPartTests.cs`
+- MOD `Docs/GAS-SYSTEM-PLAN.md` (G.9 plan + implementation log)
