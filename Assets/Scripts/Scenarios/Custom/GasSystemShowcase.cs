@@ -47,6 +47,12 @@ namespace CavesOfOoo.Scenarios.Custom
             ("confusion-vapor", "CONFUSION", "&M"),
             ("cryo-mist",       "CRYO",      "&C"),
             ("sleep-vapor",     "SLEEP",     "&B"),
+            // G.8d — fungal spores: probabilistic infection (chance
+            // scales vs Toughness). The downwind snapjaw may take a
+            // few turns to actually catch it, then progresses through
+            // the multi-stage infection + becomes a contagion vector
+            // itself (Blooming/Terminal hosts release more spore gas).
+            ("fungal-spores",   "FUNGAL",    "&G"),
         };
 
         public void Apply(ScenarioContext ctx)
@@ -62,7 +68,10 @@ namespace CavesOfOoo.Scenarios.Custom
 
             // Clear a wide corridor east of the player so gas can be
             // seen + dummies can be placed without bumping decor.
-            int corridorWidth = 50; // p.x+1 .. p.x+50
+            // 6 strips at p.x+8 + i*8 → last (fungal, i=5) at p.x+48,
+            // its dummy at p.x+49. 56 leaves headroom for contagion
+            // spread east of the fungal strip.
+            int corridorWidth = 56;
             for (int dx = 1; dx <= corridorWidth; dx++)
             {
                 for (int dy = -2; dy <= 2; dy++)
@@ -102,11 +111,13 @@ namespace CavesOfOoo.Scenarios.Custom
             }
 
             ctx.Log("=== Gas System Showcase ===");
-            ctx.Log("Walk EAST through 5 gas types (poison → stun → confusion → cryo → sleep).");
+            ctx.Log("Walk EAST through 6 gas types (poison → stun → confusion → cryo → sleep → fungal).");
             ctx.Log("First column (p.x+3..+5): bare / masked / poison-immune snapjaws.");
             ctx.Log("Each gas strip: 3 cells of cloud + 1 passive snapjaw downwind.");
-            ctx.Log("Watch [Applied] / [PoisonTick] / [Knockback] log lines.");
-            ctx.Log("Diag: diag_query category=gas (Created/Dispersed/Spread/Applied/Merged/...).");
+            ctx.Log("FUNGAL is probabilistic — the snapjaw may take a few turns to catch it,");
+            ctx.Log("  then progresses Incubation→Symptomatic→Blooming→Terminal + spreads spores.");
+            ctx.Log("Watch [Applied] / [PoisonTick] / [Knockback] / [Contagion] log lines.");
+            ctx.Log("Diag: diag_query category=gas (Created/Dispersed/Spread/Applied/Merged/Contagion/...).");
             ctx.Log("Relaunch the scenario to reset.");
         }
 
