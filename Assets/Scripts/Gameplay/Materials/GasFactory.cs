@@ -144,7 +144,10 @@ namespace CavesOfOoo.Core
             // Stun / Sleep / Confusion / FungalSpores / Plasma.
             switch (behaviorKind)
             {
-                case "Poison": return new GasPoisonPart();
+                case "Poison":    return new GasPoisonPart();
+                case "Stun":      return new GasStunPart();      // G.8a
+                case "Confusion": return new GasConfusionPart(); // G.8a
+                case "Cryo":      return new GasCryoPart();      // G.8b
                 default:
                     // Unknown kinds log but don't crash — same resilient
                     // posture as the registry's malformed-JSON path.

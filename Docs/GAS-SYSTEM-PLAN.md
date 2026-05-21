@@ -948,3 +948,193 @@ all green.
   (+EmitGasOnHitRaw field + cached spec property)
 - MOD `Assets/Scripts/Gameplay/Combat/CombatSystem.cs`
   (+OnHitGasEmit.Apply call after OnHitWeaponEffects.Apply)
+
+### G.8a (this commit) — GasStunPart + GasConfusionPart
+
+**Status:** ✅ COMPLETE. Two new `IObjectGasBehaviorPart` subclasses,
+both reusing existing CoO status effects (`StunnedEffect`,
+`ConfusedEffect`). No new Effect classes. Smallest G.8 slice; pinned
+the filter-chain extraction so G.8b/c/d/e can reuse it.
+
+**Shipped:**
+- Filter-chain refactor in `IObjectGasBehaviorPart.RunFilterChain` —
+  extracted from GasPoisonPart's inline gates. Returns intake on
+  success, -1 on veto (with diag already emitted by the failing gate).
+  Reused by all three Part subclasses (GasPoisonPart updated to use
+  the helper).
+- `GasStunPart`: applies `StunnedEffect(duration = Level × 2)`; no
+  immediate damage (stun is incapacitation, not exposure); refresh-
+  on-reapply via `RemoveEffect<StunnedEffect>()` first.
+- `GasConfusionPart`: applies `ConfusedEffect(duration = Level × 4)`;
+  no immediate damage; refresh-on-reapply.
+- 2 JSON content files: `stun-vapor.json` (GasType=Stun, Color=&Y),
+  `confusion-vapor.json` (GasType=Confusion, Color=&M).
+- `GasFactory.CreateBehaviorPart` extended: 2 new switch cases for
+  "Stun" and "Confusion".
+- 16 tests across 4 sections.
+
+**Test breakdown (16 total, all GREEN first compile-pass):**
+- PART I — Factory wiring (2): BehaviorKind=Stun/Confusion attaches
+  the right Part
+- PART II — Stun behavior (6): apply lands StunnedEffect, no
+  damage counter, refresh-not-stack, non-Creature vetoed, GasImmunity
+  vetoes, diag emission
+- PART III — Confusion behavior (4): apply lands ConfusedEffect,
+  Level scales duration, no damage, GasMask vetoes, per-turn
+  dispatch from GasSystem
+- PART IV — Cross-type isolation (3): stun gas doesn't apply
+  Confused, confusion gas doesn't apply Stunned, type-specific
+  immunity is per-gas (Stun immunity doesn't block Confusion)
+
+**IMPLEMENTATION NOTES (risks verified before writing code)**
+1. `StunnedEffect(int duration = 2)` and `ConfusedEffect(int duration
+   = 4)` already exist with default Duration values; the new Parts
+   inject Level-scaled durations.
+2. Filter-chain extraction is conservative — `IObjectGasBehaviorPart`
+   already had `CheckIsCreature`, `CheckCanAffect`, and
+   `GetRespiratoryPerformance` as `protected` helpers; the new
+   `RunFilterChain` just composes them in the standard order.
+3. GasPoisonPart refactor: 13 lines of inline gates → 2 lines via
+   helper. G.5's 20 tests all still pass — refactor preserved
+   behavior exactly.
+4. `CreateBehaviorPart` switch: added 2 cases between "Poison" and
+   the default branch. Order doesn't matter (no fallthrough).
+
+**SCOPE DIVERGENCE FROM THE PLAN — none.**
+
+**G.8a SELF-REVIEW (CLAUDE.md §5)**
+- 🟡 **Filter-chain refactor done WITHIN G.8a** — technically
+  expands scope (touches GasPoisonPart from G.5). Justified because
+  3 more sibling Parts are coming in G.8b/c/d/e and would each
+  duplicate the chain. Tested via the G.5 regression (poison tests
+  all still GREEN after refactor) before adding the new Parts.
+- 🔵 No "Gas" attribute on the immediate-damage side — these gases
+  don't deal direct damage at all, so the G.6 GasMask BeforeTakeDamage
+  gate doesn't apply. Intake reduction (via GetRespiratoryPerformance)
+  is the only gas-mask path for these gases. Documented in the Part
+  doc-comments.
+- 🔵 Refresh-on-reapply is the consistent contract across all gas
+  behavior subclasses now (Poison, Stun, Confusion). Pin: this is
+  why the per-turn dispatch in GasSystem doesn't tick-stack the
+  effect — every per-turn call refreshes Duration.
+- 🧪 RED via compile-error (test file referenced GasStunPart /
+  GasConfusionPart before files existed). Same gap as G.7b — batch-
+  write instead of stub-and-replace. The G.7a discipline was the
+  one true assertion-level RED in the gas system so far.
+- ⚪ Sleep, FungalSpores, Plasma — out of G.8a scope; each needs a
+  new Effect class so they ship as separate sub-milestones.
+
+**Tests:** 16 new GREEN. Full regression sweep (11 suites,
+270 tests including all gas + liquid + scenario + combat suites
++ the refactored GasPoisonPart): all green. The refactor preserved
+the G.5 behavior intact.
+
+**Files:**
+- NEW `Assets/Scripts/Gameplay/Materials/GasStunPart.cs`
+- NEW `Assets/Scripts/Gameplay/Materials/GasConfusionPart.cs`
+- NEW `Assets/Resources/Content/Data/GasDefinitions/stun-vapor.json`
+- NEW `Assets/Resources/Content/Data/GasDefinitions/confusion-vapor.json`
+- NEW `Assets/Tests/EditMode/Gameplay/Materials/GasStunConfusionTests.cs`
+- MOD `Assets/Scripts/Gameplay/Materials/IObjectGasBehaviorPart.cs`
+  (+RunFilterChain helper extracted from GasPoisonPart)
+- MOD `Assets/Scripts/Gameplay/Materials/GasPoisonPart.cs`
+  (use the new helper — 13 lines → 2 lines)
+- MOD `Assets/Scripts/Gameplay/Materials/GasFactory.cs`
+  (+Stun + Confusion switch cases)
+
+### G.8b (this commit) — GasCryoPart (architecturally different)
+
+**Status:** ✅ COMPLETE. Cryo gas — the architectural outlier of the
+gas tree. Bypasses the Creature gate AND the respiratory gate
+(cryo damages via temperature, not inhalation). Affects any
+Hitpoints-bearing entity. Pinned by tests against both Creatures
+and non-Creature damageables (crates).
+
+**Why architecturally different (Qud parity):**
+Qud's `GasCryo` extends `IGasBehavior` directly, NOT
+`IObjectGasBehavior` — because cryo doesn't need the cell-iteration
++ ApplyGas-per-object pipeline; it just damages everything in its
+cell. CoO's G.8b compromises: still extends
+`IObjectGasBehaviorPart` (to reuse GasSystem's per-turn dispatch
+loop) but overrides `ApplyGas` to use a slimmer filter chain:
+  1. self-guard
+  2. target has Hitpoints (any damageable)
+  3. CheckCanAffect (GasImmunity vetoes per-type)
+  — no CheckIsCreature, no GetRespiratoryPerformance
+
+**Shipped:**
+- `GasCryoPart`: applies `coldDamage = Density / 5` (min 1) +
+  `FrozenEffect` with Cold = `GasLevel × 0.30` (clamped 0..1).
+  Damage carries BOTH "Cold" AND "Gas" attributes — Cold routes
+  through future ColdResistance; Gas lets GasMask scale via the
+  BeforeTakeDamage gate.
+- `cryo-mist.json` content (GasType=Cryo, Color=&C, Density 100).
+- `GasFactory.CreateBehaviorPart` += "Cryo" case.
+- 12 tests across 7 sections.
+
+**Test breakdown (12 total, all GREEN first compile-pass):**
+- Factory wiring (1): BehaviorKind=Cryo attaches GasCryoPart
+- Damage + Effect (3): cold damage proportional to density, FrozenEffect
+  applied, high-Level clamps Cold to 1.0
+- Architectural divergence (2): affects non-Creature with Hitpoints,
+  skips no-Hitpoints entity
+- G.6 integration (2): GasImmunity for "Cryo" vetoes, GasMask scales
+  damage via Gas attribute
+- Per-turn dispatch (1): GasSystem.OnTickEnd reaches GasCryoPart even
+  though its filter chain differs
+- Diag observability (1): gas/Applied payload
+- Cross-type counter (1): doesn't apply Stun/Confused/Poison effects
+- BurningEffect interaction (1): FrozenEffect.OnApply extinguishes
+  active BurningEffect — pin the existing cross-effect contract from
+  the cryo angle
+
+**IMPLEMENTATION NOTES (risks verified before writing code)**
+1. `FrozenEffect(float cold = 1.0f)` already exists with ctor clamp
+   (`> 1.0 → 1.0`, `< 0 → 0`). Pin via the high-Level test.
+2. `FrozenEffect.OnApply` removes any active `BurningEffect` —
+   pre-existing contract. Pinned cross-effect interaction explicitly.
+3. CoO doesn't have a Scenery tag (Qud's IsScenery check). Using
+   "has Hitpoints" as the damageable-entity gate. Wider than Qud's
+   gate (Qud filters out !IsScenery + still applies regardless;
+   we filter on Hitpoints existence). Functionally similar.
+4. GasMask's BeforeTakeDamage gate fires when damage carries "Gas"
+   attribute — verified by the side-by-side masked-vs-bare test.
+5. The slimmer filter chain is a CONSCIOUS divergence from G.5/G.8a.
+   GasCryoPart deliberately doesn't call `RunFilterChain` because
+   that helper enforces Creature + respiratory gates.
+
+**SCOPE DIVERGENCE FROM THE PLAN — none.**
+
+**G.8b SELF-REVIEW (CLAUDE.md §5)**
+- 🟡 **Architectural compromise** — Qud's GasCryo inherits
+  `IGasBehavior` directly (no ApplyGas-per-object iteration). CoO
+  inherits `IObjectGasBehaviorPart` so it picks up the per-turn
+  dispatch loop free, then overrides ApplyGas to skip the Creature/
+  respiratory gates. Slight Qud divergence; documented in the Part
+  doc-comments. Could change later if a non-iteration gas variant
+  ships (e.g. a global aura gas).
+- 🟡 **Hitpoints-as-gate vs Qud's IsScenery** — CoO uses "has
+  Hitpoints stat" as the damageable gate. Qud uses "!IsScenery"
+  (which permits damageable scenery via TakeDamage). Functionally
+  similar for the entities CoO has today; could diverge if CoO
+  introduces a Scenery tag for damageable furniture.
+- 🔵 RNG isn't injected here — cryo damage is deterministic (no
+  per-hit random). GasLevel × density math is the only variability.
+- 🔵 Refresh-on-reapply for FrozenEffect: I call
+  `RemoveEffect<FrozenEffect>()` first, then apply. This INVALIDATES
+  the FrozenEffect's intrinsic stack semantic (`Cold += incoming *
+  0.5`). Conscious choice to match the Poison/Stun/Confusion refresh
+  pattern. Documented in Part doc-comment.
+- 🧪 RED via compile-error (batch-write). Same gap as G.7b/G.8a.
+- ⚪ Sleep / FungalSpores / Plasma — out of G.8b scope.
+
+**Tests:** 12 new GREEN. Full regression sweep (13 suites,
+298 tests including all gas + liquid + combat + scenario suites):
+all green.
+
+**Files:**
+- NEW `Assets/Scripts/Gameplay/Materials/GasCryoPart.cs`
+- NEW `Assets/Resources/Content/Data/GasDefinitions/cryo-mist.json`
+- NEW `Assets/Tests/EditMode/Gameplay/Materials/GasCryoPartTests.cs`
+- MOD `Assets/Scripts/Gameplay/Materials/GasFactory.cs`
+  (+Cryo switch case)
