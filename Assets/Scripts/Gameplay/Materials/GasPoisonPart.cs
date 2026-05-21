@@ -42,20 +42,11 @@ namespace CavesOfOoo.Core
 
         public override bool ApplyGas(Entity target, Zone zone)
         {
-            if (BaseGas == null) return false;
-            if (target == null) return false;
-            if (target == ParentEntity) return false; // self-guard
-            if (!CheckIsCreature(target)) return false;
-            if (!CheckCanAffect(target)) return false;
-
-            int intake = GetRespiratoryPerformance(target, BASE_INTAKE);
-            if (intake <= 0)
-            {
-                Diag.Record("gas", "ApplyVetoed", BaseGas.Creator, target,
-                    new { gasId = BaseGas.GasId, gasType = BaseGas.GasType,
-                          reason = "ZeroIntake" });
-                return false;
-            }
+            // G.8a refactor: filter-chain logic extracted into the
+            // shared RunFilterChain helper on IObjectGasBehaviorPart so
+            // G.8 sibling Parts (Stun, Confusion, etc.) reuse it.
+            int intake = RunFilterChain(target, BASE_INTAKE);
+            if (intake < 0) return false;
 
             // Refresh-on-reapply (Qud GasPoison.cs:118 RemoveEffect first).
             // Avoids tick-stacking — re-entering the cloud each turn just

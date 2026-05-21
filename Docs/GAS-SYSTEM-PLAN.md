@@ -948,3 +948,96 @@ all green.
   (+EmitGasOnHitRaw field + cached spec property)
 - MOD `Assets/Scripts/Gameplay/Combat/CombatSystem.cs`
   (+OnHitGasEmit.Apply call after OnHitWeaponEffects.Apply)
+
+### G.8a (this commit) — GasStunPart + GasConfusionPart
+
+**Status:** ✅ COMPLETE. Two new `IObjectGasBehaviorPart` subclasses,
+both reusing existing CoO status effects (`StunnedEffect`,
+`ConfusedEffect`). No new Effect classes. Smallest G.8 slice; pinned
+the filter-chain extraction so G.8b/c/d/e can reuse it.
+
+**Shipped:**
+- Filter-chain refactor in `IObjectGasBehaviorPart.RunFilterChain` —
+  extracted from GasPoisonPart's inline gates. Returns intake on
+  success, -1 on veto (with diag already emitted by the failing gate).
+  Reused by all three Part subclasses (GasPoisonPart updated to use
+  the helper).
+- `GasStunPart`: applies `StunnedEffect(duration = Level × 2)`; no
+  immediate damage (stun is incapacitation, not exposure); refresh-
+  on-reapply via `RemoveEffect<StunnedEffect>()` first.
+- `GasConfusionPart`: applies `ConfusedEffect(duration = Level × 4)`;
+  no immediate damage; refresh-on-reapply.
+- 2 JSON content files: `stun-vapor.json` (GasType=Stun, Color=&Y),
+  `confusion-vapor.json` (GasType=Confusion, Color=&M).
+- `GasFactory.CreateBehaviorPart` extended: 2 new switch cases for
+  "Stun" and "Confusion".
+- 16 tests across 4 sections.
+
+**Test breakdown (16 total, all GREEN first compile-pass):**
+- PART I — Factory wiring (2): BehaviorKind=Stun/Confusion attaches
+  the right Part
+- PART II — Stun behavior (6): apply lands StunnedEffect, no
+  damage counter, refresh-not-stack, non-Creature vetoed, GasImmunity
+  vetoes, diag emission
+- PART III — Confusion behavior (4): apply lands ConfusedEffect,
+  Level scales duration, no damage, GasMask vetoes, per-turn
+  dispatch from GasSystem
+- PART IV — Cross-type isolation (3): stun gas doesn't apply
+  Confused, confusion gas doesn't apply Stunned, type-specific
+  immunity is per-gas (Stun immunity doesn't block Confusion)
+
+**IMPLEMENTATION NOTES (risks verified before writing code)**
+1. `StunnedEffect(int duration = 2)` and `ConfusedEffect(int duration
+   = 4)` already exist with default Duration values; the new Parts
+   inject Level-scaled durations.
+2. Filter-chain extraction is conservative — `IObjectGasBehaviorPart`
+   already had `CheckIsCreature`, `CheckCanAffect`, and
+   `GetRespiratoryPerformance` as `protected` helpers; the new
+   `RunFilterChain` just composes them in the standard order.
+3. GasPoisonPart refactor: 13 lines of inline gates → 2 lines via
+   helper. G.5's 20 tests all still pass — refactor preserved
+   behavior exactly.
+4. `CreateBehaviorPart` switch: added 2 cases between "Poison" and
+   the default branch. Order doesn't matter (no fallthrough).
+
+**SCOPE DIVERGENCE FROM THE PLAN — none.**
+
+**G.8a SELF-REVIEW (CLAUDE.md §5)**
+- 🟡 **Filter-chain refactor done WITHIN G.8a** — technically
+  expands scope (touches GasPoisonPart from G.5). Justified because
+  3 more sibling Parts are coming in G.8b/c/d/e and would each
+  duplicate the chain. Tested via the G.5 regression (poison tests
+  all still GREEN after refactor) before adding the new Parts.
+- 🔵 No "Gas" attribute on the immediate-damage side — these gases
+  don't deal direct damage at all, so the G.6 GasMask BeforeTakeDamage
+  gate doesn't apply. Intake reduction (via GetRespiratoryPerformance)
+  is the only gas-mask path for these gases. Documented in the Part
+  doc-comments.
+- 🔵 Refresh-on-reapply is the consistent contract across all gas
+  behavior subclasses now (Poison, Stun, Confusion). Pin: this is
+  why the per-turn dispatch in GasSystem doesn't tick-stack the
+  effect — every per-turn call refreshes Duration.
+- 🧪 RED via compile-error (test file referenced GasStunPart /
+  GasConfusionPart before files existed). Same gap as G.7b — batch-
+  write instead of stub-and-replace. The G.7a discipline was the
+  one true assertion-level RED in the gas system so far.
+- ⚪ Sleep, FungalSpores, Plasma — out of G.8a scope; each needs a
+  new Effect class so they ship as separate sub-milestones.
+
+**Tests:** 16 new GREEN. Full regression sweep (11 suites,
+270 tests including all gas + liquid + scenario + combat suites
++ the refactored GasPoisonPart): all green. The refactor preserved
+the G.5 behavior intact.
+
+**Files:**
+- NEW `Assets/Scripts/Gameplay/Materials/GasStunPart.cs`
+- NEW `Assets/Scripts/Gameplay/Materials/GasConfusionPart.cs`
+- NEW `Assets/Resources/Content/Data/GasDefinitions/stun-vapor.json`
+- NEW `Assets/Resources/Content/Data/GasDefinitions/confusion-vapor.json`
+- NEW `Assets/Tests/EditMode/Gameplay/Materials/GasStunConfusionTests.cs`
+- MOD `Assets/Scripts/Gameplay/Materials/IObjectGasBehaviorPart.cs`
+  (+RunFilterChain helper extracted from GasPoisonPart)
+- MOD `Assets/Scripts/Gameplay/Materials/GasPoisonPart.cs`
+  (use the new helper — 13 lines → 2 lines)
+- MOD `Assets/Scripts/Gameplay/Materials/GasFactory.cs`
+  (+Stun + Confusion switch cases)

@@ -135,5 +135,35 @@ namespace CavesOfOoo.Core
             if (intake > baseIntake) intake = baseIntake;
             return intake;
         }
+
+        /// <summary>G.8a refactor — run the full filter chain (null-safe
+        /// → self-guard → Creature → CheckGasCanAffect → respiratory
+        /// intake). Returns the computed Intake (0..baseIntake) on
+        /// success, -1 if any gate vetoed (with the corresponding
+        /// <c>gas/ApplyVetoed</c> diag already emitted by the failed
+        /// gate). Subclasses call this then post-process (apply
+        /// effect, deal immediate damage, etc.).
+        ///
+        /// <para>Extracted from <see cref="GasPoisonPart.ApplyGas"/>
+        /// for reuse by G.8 GasStunPart/GasConfusionPart/etc. — keeps
+        /// the filter chain in ONE place so a future gate change (e.g.
+        /// the deferred Respires tag) only touches this method.</para>
+        /// </summary>
+        protected int RunFilterChain(Entity target, int baseIntake = 100)
+        {
+            if (BaseGas == null) return -1;
+            if (target == null || target == ParentEntity) return -1;
+            if (!CheckIsCreature(target)) return -1;
+            if (!CheckCanAffect(target)) return -1;
+            int intake = GetRespiratoryPerformance(target, baseIntake);
+            if (intake <= 0)
+            {
+                Diag.Record("gas", "ApplyVetoed", BaseGas.Creator, target,
+                    new { gasId = BaseGas.GasId, gasType = BaseGas.GasType,
+                          reason = "ZeroIntake" });
+                return -1;
+            }
+            return intake;
+        }
     }
 }
