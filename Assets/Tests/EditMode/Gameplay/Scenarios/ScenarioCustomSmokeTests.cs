@@ -274,5 +274,8 @@ namespace CavesOfOoo.Tests.Scenarios
 
         [Test] public void LiquidSpellTestBench_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new LiquidSpellTestBench().Apply(FreshContext()));
+
+        [Test] public void GasSystemShowcase_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new GasSystemShowcase().Apply(FreshContext()));
     }
 }

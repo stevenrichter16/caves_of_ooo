@@ -108,6 +108,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_LiquidSpellTestBench()
             => ScenarioRunner.Launch<LiquidSpellTestBench>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Gas System Showcase (walk through 5 gas types + see defenses)", priority = 113)]
+        private static void Launch_GasSystemShowcase()
+            => ScenarioRunner.Launch<GasSystemShowcase>();
+
         [MenuItem("Caves Of Ooo/Scenarios/Items/Item Enhancement Showcase (Phase E.1–E.3 — minerals + Tinker + faction trade)", priority = 120)]
         private static void Launch_ItemEnhancementShowcase()
             => ScenarioRunner.Launch<ItemEnhancementShowcase>();
