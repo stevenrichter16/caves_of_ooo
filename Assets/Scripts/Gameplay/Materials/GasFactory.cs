@@ -148,6 +148,7 @@ namespace CavesOfOoo.Core
                 case "Stun":      return new GasStunPart();      // G.8a
                 case "Confusion": return new GasConfusionPart(); // G.8a
                 case "Cryo":      return new GasCryoPart();      // G.8b
+                case "Sleep":     return new GasSleepPart();     // G.8c
                 default:
                     // Unknown kinds log but don't crash — same resilient
                     // posture as the registry's malformed-JSON path.
