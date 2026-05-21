@@ -1041,3 +1041,100 @@ the G.5 behavior intact.
   (use the new helper — 13 lines → 2 lines)
 - MOD `Assets/Scripts/Gameplay/Materials/GasFactory.cs`
   (+Stun + Confusion switch cases)
+
+### G.8b (this commit) — GasCryoPart (architecturally different)
+
+**Status:** ✅ COMPLETE. Cryo gas — the architectural outlier of the
+gas tree. Bypasses the Creature gate AND the respiratory gate
+(cryo damages via temperature, not inhalation). Affects any
+Hitpoints-bearing entity. Pinned by tests against both Creatures
+and non-Creature damageables (crates).
+
+**Why architecturally different (Qud parity):**
+Qud's `GasCryo` extends `IGasBehavior` directly, NOT
+`IObjectGasBehavior` — because cryo doesn't need the cell-iteration
++ ApplyGas-per-object pipeline; it just damages everything in its
+cell. CoO's G.8b compromises: still extends
+`IObjectGasBehaviorPart` (to reuse GasSystem's per-turn dispatch
+loop) but overrides `ApplyGas` to use a slimmer filter chain:
+  1. self-guard
+  2. target has Hitpoints (any damageable)
+  3. CheckCanAffect (GasImmunity vetoes per-type)
+  — no CheckIsCreature, no GetRespiratoryPerformance
+
+**Shipped:**
+- `GasCryoPart`: applies `coldDamage = Density / 5` (min 1) +
+  `FrozenEffect` with Cold = `GasLevel × 0.30` (clamped 0..1).
+  Damage carries BOTH "Cold" AND "Gas" attributes — Cold routes
+  through future ColdResistance; Gas lets GasMask scale via the
+  BeforeTakeDamage gate.
+- `cryo-mist.json` content (GasType=Cryo, Color=&C, Density 100).
+- `GasFactory.CreateBehaviorPart` += "Cryo" case.
+- 12 tests across 7 sections.
+
+**Test breakdown (12 total, all GREEN first compile-pass):**
+- Factory wiring (1): BehaviorKind=Cryo attaches GasCryoPart
+- Damage + Effect (3): cold damage proportional to density, FrozenEffect
+  applied, high-Level clamps Cold to 1.0
+- Architectural divergence (2): affects non-Creature with Hitpoints,
+  skips no-Hitpoints entity
+- G.6 integration (2): GasImmunity for "Cryo" vetoes, GasMask scales
+  damage via Gas attribute
+- Per-turn dispatch (1): GasSystem.OnTickEnd reaches GasCryoPart even
+  though its filter chain differs
+- Diag observability (1): gas/Applied payload
+- Cross-type counter (1): doesn't apply Stun/Confused/Poison effects
+- BurningEffect interaction (1): FrozenEffect.OnApply extinguishes
+  active BurningEffect — pin the existing cross-effect contract from
+  the cryo angle
+
+**IMPLEMENTATION NOTES (risks verified before writing code)**
+1. `FrozenEffect(float cold = 1.0f)` already exists with ctor clamp
+   (`> 1.0 → 1.0`, `< 0 → 0`). Pin via the high-Level test.
+2. `FrozenEffect.OnApply` removes any active `BurningEffect` —
+   pre-existing contract. Pinned cross-effect interaction explicitly.
+3. CoO doesn't have a Scenery tag (Qud's IsScenery check). Using
+   "has Hitpoints" as the damageable-entity gate. Wider than Qud's
+   gate (Qud filters out !IsScenery + still applies regardless;
+   we filter on Hitpoints existence). Functionally similar.
+4. GasMask's BeforeTakeDamage gate fires when damage carries "Gas"
+   attribute — verified by the side-by-side masked-vs-bare test.
+5. The slimmer filter chain is a CONSCIOUS divergence from G.5/G.8a.
+   GasCryoPart deliberately doesn't call `RunFilterChain` because
+   that helper enforces Creature + respiratory gates.
+
+**SCOPE DIVERGENCE FROM THE PLAN — none.**
+
+**G.8b SELF-REVIEW (CLAUDE.md §5)**
+- 🟡 **Architectural compromise** — Qud's GasCryo inherits
+  `IGasBehavior` directly (no ApplyGas-per-object iteration). CoO
+  inherits `IObjectGasBehaviorPart` so it picks up the per-turn
+  dispatch loop free, then overrides ApplyGas to skip the Creature/
+  respiratory gates. Slight Qud divergence; documented in the Part
+  doc-comments. Could change later if a non-iteration gas variant
+  ships (e.g. a global aura gas).
+- 🟡 **Hitpoints-as-gate vs Qud's IsScenery** — CoO uses "has
+  Hitpoints stat" as the damageable gate. Qud uses "!IsScenery"
+  (which permits damageable scenery via TakeDamage). Functionally
+  similar for the entities CoO has today; could diverge if CoO
+  introduces a Scenery tag for damageable furniture.
+- 🔵 RNG isn't injected here — cryo damage is deterministic (no
+  per-hit random). GasLevel × density math is the only variability.
+- 🔵 Refresh-on-reapply for FrozenEffect: I call
+  `RemoveEffect<FrozenEffect>()` first, then apply. This INVALIDATES
+  the FrozenEffect's intrinsic stack semantic (`Cold += incoming *
+  0.5`). Conscious choice to match the Poison/Stun/Confusion refresh
+  pattern. Documented in Part doc-comment.
+- 🧪 RED via compile-error (batch-write). Same gap as G.7b/G.8a.
+- ⚪ Sleep / FungalSpores / Plasma — out of G.8b scope.
+
+**Tests:** 12 new GREEN. Full regression sweep (13 suites,
+298 tests including all gas + liquid + combat + scenario suites):
+all green.
+
+**Files:**
+- NEW `Assets/Scripts/Gameplay/Materials/GasCryoPart.cs`
+- NEW `Assets/Resources/Content/Data/GasDefinitions/cryo-mist.json`
+- NEW `Assets/Tests/EditMode/Gameplay/Materials/GasCryoPartTests.cs`
+- MOD `Assets/Scripts/Gameplay/Materials/GasFactory.cs`
+  (+Cryo switch case)
