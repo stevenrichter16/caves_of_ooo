@@ -8,6 +8,11 @@
           "Text": "Halt, traveler. I am the warden of this village. The watch lantern is out and the nights have gotten bold. What do you need?",
           "Choices": [
             {
+              "Text": "Good to see you again, warden.",
+              "Target": "Remembered",
+              "Predicates": [{ "Key": "IfFact", "Value": "dev_met_warden:>=:1" }]
+            },
+            {
               "Text": "What happened to the watch lantern?",
               "Target": "LanternTrouble",
               "Predicates": [{ "Key": "IfSettlementSiteStage", "Value": "VillageLantern:Fouled" }]
@@ -55,7 +60,8 @@
             },
             {
               "Text": "Farewell.",
-              "Target": "End"
+              "Target": "End",
+              "Actions": [{ "Key": "SetFact", "Value": "dev_met_warden:1" }]
             }
           ]
         },
@@ -191,6 +197,20 @@
               "Target": "Start"
             }
           ]
+        },
+        {
+          "ID": "Remembered",
+          "Text": "Ah, you again. The lantern's still on my mind, but it eases me to see a familiar face. Anything I can help with?",
+          "Choices": [
+            {
+              "Text": "Are there any threats nearby?",
+              "Target": "Threats"
+            },
+            {
+              "Text": "Just checking in. Farewell.",
+              "Target": "End"
+            }
+          ]
         }
       ]
     },
@@ -202,8 +222,14 @@
           "Text": "Halt, traveler. I am the warden of this village. State your business.",
           "Choices": [
             {
+              "Text": "Good to see you again, warden.",
+              "Target": "Remembered",
+              "Predicates": [{ "Key": "IfFact", "Value": "dev_met_warden:>=:1" }]
+            },
+            {
               "Text": "I'm just passing through.",
-              "Target": "PassingThrough"
+              "Target": "PassingThrough",
+              "Actions": [{ "Key": "SetFact", "Value": "dev_met_warden:1" }]
             },
             {
               "Text": "Tell me about this village.",
@@ -294,6 +320,20 @@
             },
             {
               "Text": "Thanks for the warning.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Remembered",
+          "Text": "Ah, you again. The roads are still rough but it eases me to see a familiar face. Anything I can help with?",
+          "Choices": [
+            {
+              "Text": "Are there any threats nearby?",
+              "Target": "Threats"
+            },
+            {
+              "Text": "Just checking in. Farewell.",
               "Target": "End"
             }
           ]
