@@ -156,6 +156,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             Cell landingCell;
             bool consumedOnImpact = false;
             bool isThrowableTonic = HasThrowablePayload(itemToThrow);
+            bool isGasGrenade = HasGasGrenadePayload(itemToThrow);
 
             if (hitTarget != null)
             {
@@ -165,6 +166,18 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     // The hit creature is in the AOE so it gets the effect.
                     landingCell = trace.ImpactCell ?? zone.GetEntityCell(hitTarget);
                     ApplyTonicAoe(actor, itemToThrow, landingCell, zone, rng);
+                    consumedOnImpact = true;
+                    landingCell = null;
+                }
+                else if (isGasGrenade)
+                {
+                    // G.7a: gas grenade detonates on the hit cell (or
+                    // the target's cell as fallback), spawning a 3×3
+                    // gas cloud. The hit creature is in the cloud and
+                    // takes immediate gas damage on the next ApplyGas
+                    // pass. Friendly fire is intentional.
+                    landingCell = trace.ImpactCell ?? zone.GetEntityCell(hitTarget);
+                    DetonateGasGrenade(actor, itemToThrow, landingCell, zone);
                     consumedOnImpact = true;
                     landingCell = null;
                 }
@@ -191,6 +204,17 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     consumedOnImpact = true;
                     landingCell = null;
                 }
+                else if (isGasGrenade)
+                {
+                    // G.7a: grenade hits a wall — detonate at last
+                    // traversable cell. Some of the 3×3 cells may be
+                    // inside the wall; gas there is still spawned and
+                    // dispersal handles non-seeping containment.
+                    MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()}; it strikes an obstacle and detonates.");
+                    DetonateGasGrenade(actor, itemToThrow, impactCell, zone);
+                    consumedOnImpact = true;
+                    landingCell = null;
+                }
                 else
                 {
                     MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()}, but it strikes an obstacle.");
@@ -209,6 +233,20 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     else
                         MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()}.");
                     ApplyTonicAoe(actor, itemToThrow, impactCell, zone, rng);
+                    consumedOnImpact = true;
+                    landingCell = null;
+                }
+                else if (isGasGrenade)
+                {
+                    // G.7a: missed throw — grenade lands and detonates
+                    // wherever it stopped. Fumble fires at the thrower's
+                    // feet (friendly fire — they're now coated in their
+                    // own gas).
+                    if (impactCell == actorCell)
+                        MessageLog.Add($"{actor.GetDisplayName()} fumbles {itemToThrow.GetDisplayName()}; it detonates at their feet.");
+                    else
+                        MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()}; it detonates.");
+                    DetonateGasGrenade(actor, itemToThrow, impactCell, zone);
                     consumedOnImpact = true;
                     landingCell = null;
                 }
@@ -372,6 +410,33 @@ namespace CavesOfOoo.Core.Inventory.Commands
         {
             var tonic = item?.GetPart<TonicPart>();
             return tonic != null && tonic.HasThrowablePayload();
+        }
+
+        /// <summary>G.7a — true if the item carries a
+        /// <see cref="GasGrenadePart"/>. Parallel to
+        /// <see cref="HasThrowablePayload"/>: both produce a "shatter on
+        /// impact" item that consumes itself + triggers AOE. The two are
+        /// mutually exclusive in current content (no item is both a
+        /// tonic and a grenade), but if a future item carries both, the
+        /// tonic branch wins by code order in the impact dispatch.</summary>
+        private static bool HasGasGrenadePayload(Entity item)
+        {
+            return item?.GetPart<GasGrenadePart>() != null;
+        }
+
+        /// <summary>G.7a — delegate the 3×3 spawn to the Part. Parallel
+        /// in shape to <see cref="ApplyTonicAoe"/>: take the item +
+        /// center + zone, do the AOE work, return.</summary>
+        private static void DetonateGasGrenade(Entity actor, Entity item, Cell center, Zone zone)
+        {
+            var grenade = item?.GetPart<GasGrenadePart>();
+            if (grenade == null || center == null || zone == null) return;
+            int spawned = grenade.Detonate(actor, center, zone);
+            string itemName = item.GetDisplayName() ?? "gas grenade";
+            if (spawned > 0)
+                MessageLog.Add($"{itemName} releases a cloud of gas.");
+            else
+                MessageLog.Add($"{itemName} detonates with no effect.");
         }
 
         /// <summary>

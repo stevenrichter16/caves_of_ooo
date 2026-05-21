@@ -101,5 +101,43 @@ namespace CavesOfOoo.Core
                 return _cachedOnHitEffectSpecs;
             }
         }
+
+        /// <summary>
+        /// G.7b — per-weapon on-hit gas emission spec, in the same
+        /// flat-string idiom as <see cref="OnHitEffectsRaw"/>:
+        /// <c>"GasId,ChancePercent,CellDensity,AdjacentDensity,GasLevel"</c>
+        /// per spec, semicolon-delimited for multiple specs.
+        ///
+        /// Examples:
+        ///   <c>"poison-vapor,30,40,15,1"</c>            (poisonous fang)
+        ///   <c>"cryo-mist,20,25,10,2"</c>               (frost claws)
+        ///   <c>"poison-vapor,30,,,1;cryo-mist,10,,,1"</c>  (dual-gas)
+        ///
+        /// Applied by <see cref="OnHitGasEmit.Apply"/> from
+        /// <c>CombatSystem.PerformSingleAttack</c> after
+        /// <see cref="OnHitWeaponEffects.Apply"/>. Each spec's
+        /// ChancePercent rolls independently.
+        /// </summary>
+        public string EmitGasOnHitRaw = "";
+
+        // Parser cache for EmitGasOnHitRaw — mirrors OnHitEffectsRaw's
+        // pattern. Same perf reason (per-hit dispatcher).
+        private List<EmitGasOnHitSpec> _cachedEmitGasOnHitSpecs;
+        private string _cachedEmitGasOnHitRawSnapshot;
+
+        /// <summary>Lazily parsed + cached <see cref="EmitGasOnHitSpec"/>
+        /// list mirroring <see cref="OnHitEffectsCachedSpecs"/>.</summary>
+        public List<EmitGasOnHitSpec> EmitGasOnHitCachedSpecs
+        {
+            get
+            {
+                if (!System.Object.ReferenceEquals(EmitGasOnHitRaw, _cachedEmitGasOnHitRawSnapshot))
+                {
+                    _cachedEmitGasOnHitSpecs = EmitGasOnHitSpec.Parse(EmitGasOnHitRaw);
+                    _cachedEmitGasOnHitRawSnapshot = EmitGasOnHitRaw;
+                }
+                return _cachedEmitGasOnHitSpecs;
+            }
+        }
     }
 }
