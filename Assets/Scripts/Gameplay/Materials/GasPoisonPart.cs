@@ -79,10 +79,15 @@ namespace CavesOfOoo.Core
             // Immediate exposure damage — Qud's "InhaleDanger Poison Gas"
             // hit on entry. Scales with intake / divisor, minimum 1 so
             // gas-mask wearers still feel that they walked through gas.
+            // Two damage attributes: "Poison" (the element — routes
+            // through any future PoisonResistance) AND "Gas" (the
+            // delivery vector — lets GasMaskPart scale Amount via
+            // BeforeTakeDamage). G.6 wires the "Gas" gate.
             int immediate = (intake + 1) / IMMEDIATE_DAMAGE_DIVISOR;
             if (immediate < 1) immediate = 1;
             var dmg = new Damage(immediate);
             dmg.AddAttribute("Poison");
+            dmg.AddAttribute("Gas");
             CombatSystem.ApplyDamage(target, dmg, BaseGas.Creator, zone);
 
             Diag.Record("gas", "Applied", BaseGas.Creator, target,

@@ -628,3 +628,108 @@ expires.
   turn `DispatchPerTurnApply` after each gas's dispersal)
 - MOD `Assets/Resources/Content/Data/GasDefinitions/poison-vapor.json`
   (BehaviorKind: "" → "Poison")
+
+### G.6 (this commit) — Defenses: GasMaskPart + GasImmunityPart
+
+**Status:** ✅ COMPLETE. Promotes the test stubs from G.5
+(`TestGasImmunity` / `TestRespiratoryReducer`) to production Parts.
+The event surface was already wired and tested in G.5; G.6 is
+essentially "make the stubs production-quality and add a single new
+hook (BeforeTakeDamage gas-damage scaling) on GasMaskPart."
+
+**Shipped:**
+
+- `Assets/Scripts/Gameplay/Materials/GasMaskPart.cs` — Two gates in
+  one Part:
+  - `GetRespiratoryPerformance`: reduces "Intake" by `Power × 5`
+    (Qud parity GasMask.cs:33). Defensive clamp to ≥ 0.
+  - `BeforeTakeDamage`: if damage carries the "Gas" attribute,
+    scales Amount by `(100 - Power) / 100` (Qud parity GasMask.cs:49).
+    Non-gas damage is untouched.
+  - Emits `gas/MaskIntakeReduced` and `gas/MaskDamageReduced` for
+    observability.
+- `Assets/Scripts/Gameplay/Materials/GasImmunityPart.cs` — Per-type
+  veto:
+  - Listens to `CheckGasCanAffect`. When event's `GasType` param
+    matches the Part's `GasType` field, HandleEvent returns false →
+    Entity.FireEvent returns false → filter pipeline vetoes.
+  - Empty `GasType` field is the defensive "no match" path —
+    explicitly NOT a blanket veto.
+  - Multiple `GasImmunityPart` instances on one creature are
+    independent (creature is immune to N types).
+  - Emits `gas/ImmunityVeto`.
+- `Assets/Scripts/Gameplay/Materials/GasPoisonPart.cs` (modified):
+  immediate exposure damage now carries BOTH "Poison" AND "Gas"
+  attributes. The "Gas" tag is what `GasMaskPart`'s BeforeTakeDamage
+  hook looks for; without it, the mask's damage-scaling gate never
+  fires. (Lingering tick from `PoisonedByGasEffect` stays single-
+  tagged with "Poison" only — the carry-after-exit isn't a fresh
+  inhale, so the mask shouldn't help there.)
+- `Assets/Tests/EditMode/Gameplay/Materials/GasDefensesTests.cs` —
+  18 tests across 3 sections:
+  - PART I — GasMaskPart unit tests (7 tests): intake reduction at
+    Power 10/20/overflow, BeforeTakeDamage on gas vs non-gas,
+    defensive clamps, diag emission
+  - PART II — GasImmunityPart unit tests (5 tests): matching/different/
+    empty GasType, multi-instance independence, diag emission
+  - PART III — Integration (6 tests): masked wearer takes reduced
+    damage but effect still applies; Power 20 fully immune via
+    ZeroIntake; immunity vetoes the pipeline; counter (immune to
+    different type still affected); order pin (immunity → mask, so
+    the mask's intake diag NEVER fires when immunity vetoes first);
+    side-by-side comparison (masked vs bare creature in the same gas)
+
+**IMPLEMENTATION NOTES (risks verified before writing code)**
+1. CoO's `Entity.FireEvent` returns false when any Part returns
+   false — the same veto semantics G.5's CheckCanAffect helper
+   already uses (Entity.cs:255-265). `GasImmunityPart` returns false
+   from HandleEvent → FireEvent returns false → ApplyGas treats it
+   as vetoed.
+2. `Damage.AddAttribute("Gas")` is a List<string> append — the same
+   pattern G.5's PoisonedByGasEffect uses for "Poison". No new
+   attribute-flag bit needed (the existing alias system is for
+   element bitmask collapsing, not for arbitrary tags like "Gas").
+3. `BeforeTakeDamage` listener checks `damage.HasAttribute("Gas")` —
+   List.Contains, case-sensitive. Matches Qud's
+   `Damage.Attributes.Contains` pattern (GasMask.cs:50).
+4. Integer-math damage scaling: `(100 - 10) / 100 * 100 = 90`,
+   `(100 - 10) / 100 * 2 = 1` (truncation). The floor is real and
+   intentional — Qud uses the same `Amount * (100 - Power) / 100`
+   integer division.
+
+**SCOPE DIVERGENCE FROM THE PLAN — none.**
+
+**G.6 SELF-REVIEW (CLAUDE.md §5)**
+- 🟡 (resolved) Order pin: I added a dedicated test
+  (`GasMaskAndImmunity_BothPresent_ImmunityVetoesFirst`) that pins
+  the order — immunity vetoes BEFORE mask intake-reduction can fire.
+  This protects against a future filter-pipeline reorder accidentally
+  burning the mask reduction on already-vetoed gas.
+- 🟡 (resolved) Adding "Gas" attribute to GasPoisonPart's immediate
+  damage was load-bearing — without it, the mask's damage-scaling
+  gate never fires (just like LA followup's case-sensitivity bug,
+  the gate-was-correct-but-no-data-reaches-it failure mode). Tested
+  via the side-by-side integration test (`GasMaskWearer_TickFromGasCloud_
+  DamageReduced`).
+- 🔵 GasMaskPart lives on a creature, not on a wearable item Part
+  yet. Equipment-time routing (mask item → wearer Part) is the next
+  layer; the LightSourcePart pattern from LB.4 is the template.
+- 🔵 No save/load test for the new Parts yet — both have only public
+  fields (Power, GasType) so the reflection round-trip just works,
+  but I haven't pinned it explicitly. Would be a 2-line addition for
+  the adversarial sweep when G.12 lands.
+- 🧪 RED → GREEN observed (18 tests, 18 GREEN first compile-pass —
+  the event surface was already shaped correctly in G.5, so promoting
+  the stubs was mechanical).
+- ⚪ "Inhaled Gas" save-roll gate (Qud GasMask.cs:40-45) — CoO has
+  no save-roll system yet; deferred.
+
+**Tests:** 18 new GREEN. Full regression sweep (12 suites,
+340 tests): all green.
+
+**Files:**
+- NEW `Assets/Scripts/Gameplay/Materials/GasMaskPart.cs`
+- NEW `Assets/Scripts/Gameplay/Materials/GasImmunityPart.cs`
+- NEW `Assets/Tests/EditMode/Gameplay/Materials/GasDefensesTests.cs`
+- MOD `Assets/Scripts/Gameplay/Materials/GasPoisonPart.cs` (+"Gas"
+  attribute on the immediate-damage Damage object)
