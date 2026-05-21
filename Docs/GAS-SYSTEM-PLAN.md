@@ -733,3 +733,101 @@ hook (BeforeTakeDamage gas-damage scaling) on GasMaskPart."
 - NEW `Assets/Tests/EditMode/Gameplay/Materials/GasDefensesTests.cs`
 - MOD `Assets/Scripts/Gameplay/Materials/GasPoisonPart.cs` (+"Gas"
   attribute on the immediate-damage Damage object)
+
+### G.7a (this commit) — GasGrenadePart + ThrowItemCommand integration
+
+**Status:** ✅ COMPLETE. Player-throwable gas grenade. Part on the
+item entity; ThrowItemCommand detects on impact, spawns a 3×3 gas
+cloud, consumes the item. Direct port of Qud
+<c>GasGrenade.DoDetonate</c> (GasGrenade.cs:56-86).
+
+**Shipped:**
+- `Assets/Scripts/Gameplay/Materials/GasGrenadePart.cs` — Part on
+  item entity. Fields: `GasId`, `Density`, `Level`. Public method
+  `Detonate(actor, center, zone)` spawns up to 9 gas entities in a
+  3×3 grid (center + 8 adjacents) via `GasFactory.SpawnGas`. Returns
+  spawn count. Each spawn gets `Creator = actor` (damage attribution).
+  Emits `gas/GrenadeDetonated` diag with actual spawn count.
+- `Assets/Scripts/Gameplay/Inventory/Commands/Disposition/ThrowItemCommand.cs` — 
+  three impact-branch additions, parallel to existing thrown-tonic
+  handling: (a) `bool isGasGrenade` check via new
+  `HasGasGrenadePayload`; (b) detonate-on-hit-creature, (c)
+  detonate-on-wall, (d) detonate-on-empty-land. Each sets
+  `consumedOnImpact = true`. New helper `DetonateGasGrenade` delegates
+  to the Part + logs an item message.
+- `Assets/Tests/EditMode/Gameplay/Materials/GasGrenadePartTests.cs` —
+  19 tests across 4 sections:
+  - Happy path (3): 9 spawns in 3×3, density/level inherited, creator
+    carried through
+  - Edge cases (6): corner / east-edge skips OOB; null center / null
+    zone / empty GasId / unknown GasId all return 0 cleanly
+  - Diag observability (2): GrenadeDetonated payload, cellsSpawned
+    reflects actual count at edges
+  - Adversarial sweep (8 inc. negative-density footgun pin, registry-
+    uninitialized loud-fail, orphan-Part safety, two-grenades-same-cell
+    cross-actor flow)
+
+**RED → GREEN cycle observed:**
+1. Wrote empty stub Detonate (`return 0;`)
+2. Wrote test file with 13 tests
+3. Ran → 7 RED (happy-path + diag), 6 GREEN (legitimate-zero-spawn paths)
+4. Implemented Detonate fully
+5. Ran → 13/13 GREEN
+6. Added 6 adversarial tests; 1 RED surfaced a real footgun
+   (negative-density-fallthrough-to-default); pinned actual behavior
+   + flagged for follow-up
+
+**IMPLEMENTATION NOTES (risks verified before writing code)**
+1. ThrowItemCommand has 3 impact branches (hit creature / blocked /
+   open landing). Each is independent — added a parallel
+   `else if (isGasGrenade)` to each, mirroring the existing
+   `isThrowableTonic` branches verbatim (ThrowItemCommand.cs:162-225).
+2. `consumedOnImpact = true` + `landingCell = null` is the contract
+   for "item shatters on impact" — followed exactly.
+3. `GasFactory.SpawnGas` rejection paths (RegistryUninitialized,
+   UnknownGas, NullZone, CellOutOfBounds) all just return null — the
+   grenade's spawn loop counts only non-null returns. Mirrors how
+   Qud's `GameObject.Create` rejects gracefully.
+4. Center cell + 8 adjacents = 9 spawns total. The double-`for (-1..1)`
+   pattern matches Qud's `GetAdjacentCells()` + center.
+
+**SCOPE DIVERGENCE FROM THE PLAN — none.**
+
+**G.7a SELF-REVIEW (CLAUDE.md §5)**
+- 🟡 **Negative-density footgun** — `GasFactory.SpawnGas` treats ANY
+  negative density as the "use default" sentinel (not just `-1`). A
+  content author writing `Density: -50` on a grenade blueprint
+  silently gets the def's default density instead of clamping to 0.
+  Pinned by `Adversarial_Detonate_NegativeDensity_UsesDefaultFromDef`.
+  Documented for a future factory contract tighten — could change
+  to only accept `-1` as sentinel and clamp other negatives. Out of
+  G.7a scope (factory-contract change affects every caller).
+- 🟡 (resolved) RED state observed via stub-and-replace — wrote
+  `return 0;` stub, observed 7/13 RED with specific assertion-level
+  failures, then replaced with full implementation. True RED→GREEN
+  cycle per CLAUDE.md §2.1. Not the compile-error-RED shortcut I'd
+  taken in some earlier ships.
+- 🔵 ThrowItemCommand integration adds 3 parallel `else if
+  (isGasGrenade)` branches. Could refactor to a unified payload
+  dispatcher, but that's beyond G.7a scope. The duplication mirrors
+  existing tonic-vs-non-tonic branching — consistent within file.
+- 🔵 Grenade item itself doesn't have a blueprint yet — testing
+  constructs the item programmatically via `MakeGrenade(...)`. A
+  `poison-gas-grenade.json` (or similar) Objects.json blueprint
+  entry comes in G.12 bench/showcase.
+- 🧪 RED → GREEN cycle observed (true assertion-level RED, not just
+  compile-error RED).
+- ⚪ A future grenade item PICKUP / EQUIP-side wrapper (so players
+  can actually find grenades in the world). Out of G.7a — content,
+  not engine.
+
+**Tests:** 19 new GREEN. Full regression sweep (14 suites,
+371 tests including all gas + liquid + scenario + throwable + diag):
+all green.
+
+**Files:**
+- NEW `Assets/Scripts/Gameplay/Materials/GasGrenadePart.cs`
+- NEW `Assets/Tests/EditMode/Gameplay/Materials/GasGrenadePartTests.cs`
+- MOD `Assets/Scripts/Gameplay/Inventory/Commands/Disposition/ThrowItemCommand.cs`
+  (+isGasGrenade branches in 3 impact paths +HasGasGrenadePayload
+  +DetonateGasGrenade helpers)
