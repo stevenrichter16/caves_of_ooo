@@ -1138,3 +1138,107 @@ all green.
 - NEW `Assets/Tests/EditMode/Gameplay/Materials/GasCryoPartTests.cs`
 - MOD `Assets/Scripts/Gameplay/Materials/GasFactory.cs`
   (+Cryo switch case)
+
+### G.8c (this commit) — GasSleepPart + AsleepByGasEffect
+
+**Status:** ✅ COMPLETE. Sleep gas — adds the first new gas-specific
+Effect class (the prior G.8 gases all reused existing CoO effects).
+The Effect has a wake-on-damage twist that distinguishes it from
+the otherwise-similar GasStunPart pattern.
+
+**Why a new Effect class** (not reuse `HibernatingEffect`):
+`HibernatingEffect` is a SELF-BUFF (heals + buffs HeatResistance +
+ColdResistance to 100). Sleep-from-gas is a DEBUFF — blocks action,
+no heals, no resistance buff. Conflating them would either:
+(a) make sleep gas heal its victim (wrong);
+(b) require complex branching in HibernatingEffect to know if it's
+self-applied vs gas-applied.
+A new Effect class with the right contract is the clean answer.
+
+**Shipped:**
+- `AsleepByGasEffect`:
+  - `AllowAction() => false` (blocks turn, same contract as
+    StunnedEffect/HibernatingEffect)
+  - `OnTakeDamage` — wakes on any non-zero damage by setting
+    Duration = 0. Zero-damage (fully resisted) hits do NOT wake
+    (Counter-tested).
+  - `OnStack` — take max Duration. Mirrors PoisonedByGasEffect.
+  - OnApply/OnRemove message-log lines.
+- `GasSleepPart`: standard filter chain via RunFilterChain, applies
+  `AsleepByGasEffect(Level × 3 turns)`. No immediate damage.
+- `sleep-vapor.json` content (GasType=Sleep, Color=&B).
+- `GasFactory.CreateBehaviorPart` += "Sleep" case.
+- 16 tests across 4 sections.
+
+**RED → GREEN cycle observed (true assertion-level RED):**
+1. Wrote stub `AsleepByGasEffect.AllowAction() => true` and
+   stub `GasSleepPart.ApplyGas() => false`
+2. Wrote 16 tests
+3. Ran → **9 RED with specific assertion messages**, 7 GREEN
+   (the legitimate-false-return paths like non-Creature counter,
+   immunity counter, no-damage-counter)
+4. Implemented AsleepByGasEffect fully + GasSleepPart fully
+5. Ran → 16/16 GREEN
+
+This is the disciplined RED→GREEN cycle CLAUDE.md prescribes
+(matching G.7a's discipline). I noted in G.7b/G.8a/G.8b that I'd
+slipped to compile-error-only RED; G.8c gets back to true
+assertion-level RED.
+
+**Test breakdown (16 total, all GREEN):**
+- AsleepByGasEffect direct (5): AllowAction blocks, damage wakes,
+  zero-damage doesn't wake, OnStack max-wins, OnStack no-downgrade
+- Factory + filter chain (3): BehaviorKind wired, ApplyGas lands,
+  Level scales Duration
+- Standard contracts (3): no immediate damage, refresh-on-reapply,
+  non-Creature vetoed
+- G.6 integration (1): GasImmunity vetoes
+- System integration (2): per-turn dispatch, Applied diag
+- Cross-type counter (1): doesn't apply other effects
+- Integration (1): asleep + take-hit → Duration drops to 0
+
+**IMPLEMENTATION NOTES (risks verified before writing code)**
+1. `HibernatingEffect` exists but is a self-buff (heals + buffs
+   resistances) — wrong semantics for sleep-from-gas. Confirmed by
+   reading HibernatingEffect.cs fully.
+2. `Effect.OnTakeDamage(Entity, GameEvent)` is virtual — the wake
+   path overrides it. The event's `"Damage"` param is read via
+   `GameEvent.GetParameter<Damage>("Damage")` (matches
+   PoisonedByGasEffect's pattern).
+3. `Duration = 0` is the self-removal sentinel (StatusEffectsPart
+   sweeps Duration=0 effects on EndTurn). Pinned by integration
+   test (asleep + hit → Duration=0).
+4. Zero-damage hit is detected by `damage.Amount <= 0` — fully
+   resisted hits return early at CombatSystem.cs:803 with
+   Amount=0 and never fire TakeDamage. The OnTakeDamage gate is
+   belt-and-suspenders (if a future code path fires TakeDamage
+   with Amount=0, the gate still suppresses the wake).
+
+**SCOPE DIVERGENCE FROM THE PLAN — none.**
+
+**G.8c SELF-REVIEW (CLAUDE.md §5)**
+- 🟡 (resolved) New Effect class instead of reusing HibernatingEffect
+  — discussed above; the right call. Documented in the Effect's
+  doc-comment.
+- 🟡 (resolved) Damage wake-gate uses `Amount <= 0` for the
+  counter. A buggy impl that used `Amount > 0` ("damage that
+  succeeded") could be defeated by a 0-damage hit; the counter test
+  pins this.
+- 🔵 No RNG injected — sleep duration is `Level × DURATION_PER_LEVEL`,
+  deterministic.
+- 🔵 Wake-on-damage path uses `OnTakeDamage` (post-resistance event,
+  fires only when Amount > 0 reached the HP decrement) — that's the
+  right event for "damage actually landed."
+- 🧪 RED → GREEN observed — 9 specific assertion failures →
+  implementation → 16/16 GREEN.
+- ⚪ FungalSpores, Plasma — out of G.8c scope.
+
+**Tests:** 16 new GREEN. Full regression (13 suites, 298 tests):
+all green.
+
+**Files:**
+- NEW `Assets/Scripts/Gameplay/Effects/Concrete/AsleepByGasEffect.cs`
+- NEW `Assets/Scripts/Gameplay/Materials/GasSleepPart.cs`
+- NEW `Assets/Resources/Content/Data/GasDefinitions/sleep-vapor.json`
+- NEW `Assets/Tests/EditMode/Gameplay/Materials/GasSleepPartTests.cs`
+- MOD `Assets/Scripts/Gameplay/Materials/GasFactory.cs` (+Sleep case)
