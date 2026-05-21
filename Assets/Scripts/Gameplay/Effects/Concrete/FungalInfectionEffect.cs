@@ -137,9 +137,84 @@ namespace CavesOfOoo.Core
                 CombatSystem.ApplyDamage(target, d, source: null, zone: zone);
             }
 
+            // G.8d.3 — contagion: at Blooming+ stages, the host
+            // periodically releases spore gas at their cell. RED stub
+            // — implementation in next step.
+            TrySpawnContagion(target, after, context);
+
             // Self-expire on Expired stage.
             if (after == InfectionStage.Expired)
                 Duration = 0;
+        }
+
+        // G.8d.3 — contagion tunings.
+        public const int BLOOMING_CONTAGION_CADENCE = 3;
+        public const int BLOOMING_CONTAGION_DENSITY = 30;
+        public const int TERMINAL_CONTAGION_CADENCE = 2;
+        public const int TERMINAL_CONTAGION_DENSITY = 50;
+        public const string CONTAGION_GAS_ID = "fungal-spores";
+        public const int CONTAGION_GAS_LEVEL = 1;
+
+        /// <summary>G.8d.3 contagion mechanic. At Blooming + Terminal
+        /// stages, the host periodically releases spore gas at their
+        /// cell. The spores can infect ADJACENT creatures (the
+        /// gas-dispersal + GasFungalSporesPart.ApplyGas path handles
+        /// the spread). Self-immunity is enforced downstream — the
+        /// host's `already infected` check in GasFungalSporesPart
+        /// short-circuits re-infection by their own spores.
+        ///
+        /// <para>Mirrors Qud's `SporePuffer` mechanic where the host
+        /// becomes a periodic-gas-emitter once the infection blooms.
+        /// CoO simplification: instead of a separate Part attached on
+        /// stage transition, the same FungalInfectionEffect handles
+        /// the periodic spawn from inside its OnTurnStart.</para>
+        /// </summary>
+        protected virtual void TrySpawnContagion(Entity host, InfectionStage stage, GameEvent context)
+        {
+            int cadence, density, stageStart;
+            switch (stage)
+            {
+                case InfectionStage.Blooming:
+                    cadence = BLOOMING_CONTAGION_CADENCE;
+                    density = BLOOMING_CONTAGION_DENSITY;
+                    stageStart = STAGE_SYMPTOMATIC_END; // Blooming starts here
+                    break;
+                case InfectionStage.Terminal:
+                    cadence = TERMINAL_CONTAGION_CADENCE;
+                    density = TERMINAL_CONTAGION_DENSITY;
+                    stageStart = STAGE_BLOOMING_END;
+                    break;
+                default:
+                    return; // Incubation / Symptomatic / Expired: no contagion
+            }
+
+            int turnsInStage = TurnsInfected - stageStart;
+            if (turnsInStage < 0) return; // defensive
+            if (turnsInStage % cadence != 0) return;
+
+            // Zone resolution: context first, then ActiveZone fallback
+            // (mirrors PoisonedByGasEffect / damage-tick path).
+            var zone = context?.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone;
+            if (zone == null) return;
+
+            var pos = zone.GetEntityPosition(host);
+            if (pos.x < 0) return; // host not in zone
+
+            // Spawn fungal-spores gas at host's cell. Creator = host
+            // (provenance: downstream infections trace back here).
+            GasFactory.SpawnGas(zone, pos.x, pos.y, CONTAGION_GAS_ID,
+                density: density, level: CONTAGION_GAS_LEVEL, creator: host);
+
+            Diag.Record("gas", "Contagion", host, null,
+                new
+                {
+                    stage = stage.ToString(),
+                    turnsInfected = TurnsInfected,
+                    cadence,
+                    spawnDensity = density,
+                    spawnX = pos.x,
+                    spawnY = pos.y,
+                });
         }
 
         public override bool OnStack(Effect incoming)
