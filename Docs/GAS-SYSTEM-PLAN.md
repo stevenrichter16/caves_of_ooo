@@ -1242,3 +1242,100 @@ all green.
 - NEW `Assets/Resources/Content/Data/GasDefinitions/sleep-vapor.json`
 - NEW `Assets/Tests/EditMode/Gameplay/Materials/GasSleepPartTests.cs`
 - MOD `Assets/Scripts/Gameplay/Materials/GasFactory.cs` (+Sleep case)
+
+### G.8d — GasFungalSporesPart + FungalInfectionEffect (PLAN)
+
+**Status:** PLANNED. Multi-stage infection state machine + gas-side
+dispatcher. Hits all 5 CLAUDE.md major-feature criteria (multi-system,
+new content, Qud-parity claim, non-obvious state-machine failure mode,
+player-visible).
+
+#### Verification sweep
+
+| Premise | Confirmed at | Detail |
+|---|---|---|
+| Qud `GasFungalSpores.ApplyGas` does TWO things: applies `SporeCloudPoison` (short tick effect) + rolls Toughness save vs `10 + GasLevel/3`; on fail applies `FungalSporeInfection` for Duration=`Random(20,30)×120` real or `Random(8,10)` fake. | `qud GasFungalSpores.cs:83-188` | ✓ verified |
+| Qud's `FungalSporeInfection` is 351 lines: grows a `MeleeWeapon` on Hand body parts, `Armor` on Body/Feet/Head/Hands — a *huge* anatomy-system integration. The infection literally turns the host's body into a fungus over time. | `qud FungalSporeInfection.cs:200-299` | ✓ verified; **out of scope for CoO** (no body-part-equip-grown-item system) |
+| Qud filters in ApplyGas: target != self, target != Creator, `CheckGasCanAffectEvent`, `CanApplySpores` event veto, `ApplySpores` event veto, `ImmuneToFungus` tag, `PhaseMatches`, has Toughness stat, NOT already infected. | `qud GasFungalSpores.cs:85-127` | ✓ verified |
+| `SporeCloudPoison` is the short-tick effect applied alongside the long infection — separate effect class (122 lines). | `qud SporeCloudPoison.cs` | ✓ verified |
+| CoO `IObjectGasBehaviorPart.RunFilterChain` covers self-guard + Creature + CheckGasCanAffect + respiratory intake — most of the Qud filter chain. | `IObjectGasBehaviorPart.cs:106-128` (G.8a refactor) | ✓ — reuse |
+| CoO has no `Toughness`-save rolling system, no `ImmuneToFungus` tag, no body-part-grown-item infrastructure. | survey | ✓ — simplify |
+
+**Scope-prune (CLAUDE.md §1.3):**
+- CoO has no anatomy-system body-part-grown-item infrastructure.
+  Mirroring Qud's "fungus armor grows on Body" 1:1 would touch the
+  entire Body/Equipment system. **Defer indefinitely.**
+- Qud's Toughness-save roll is a substitute for "infection is
+  resistible." CoO equivalent: scale infection chance by gas level
+  vs target Toughness stat (no separate save-roll subsystem).
+- The portable Qud-parity feature is the **multi-stage state
+  machine** — incubation → symptomatic → blooming → terminal.
+  Contagion (Stage 2+ host releases spore gas at their cell) routes
+  through the existing gas system, no separate "contagious" code path.
+
+#### Architecture (CoO-adapted)
+
+**`FungalInfectionEffect`** — multi-stage state machine. Single
+Effect class with internal Stage int field 0..3:
+
+| Stage | Turn range | Behavior |
+|---|---|---|
+| 0 INCUBATION | 0-9 | Silent; "your skin itches" message at turns 0/5/9 |
+| 1 SYMPTOMATIC | 10-19 | 1 dmg/turn (Fungal-tagged); -1 Toughness stat shift |
+| 2 BLOOMING | 20-29 | 2 dmg/turn; -2 Toughness; **spawn fungal-spores gas at host's cell every 3 turns (the contagion mechanic)** |
+| 3 TERMINAL | 30-39 | 3 dmg/turn; -3 Toughness; spawn spore gas every 2 turns |
+| Expires at turn 40 | | Effect self-removes; stat shifts restored on OnRemove |
+
+**`GasFungalSporesPart`** — IObjectGasBehaviorPart subclass. ApplyGas
+filter chain (uses `RunFilterChain` from G.8a refactor) +
+infection-chance roll. On success, apply `FungalInfectionEffect`.
+Refresh-on-reapply: existing infection doesn't reset (don't reset
+the player's stage clock by walking through fresh spores). Diag:
+gas/Applied + gas/InfectionPrevented (counter-check: target already
+infected).
+
+#### Sub-milestones (smallest blast radius first)
+
+- **G.8d.1** — `FungalInfectionEffect` state machine + tests
+  (effect class only, no gas dispatcher yet). Stat-shift Apply/Remove
+  pattern from `HibernatingEffect` (LB.4 idiom). Pin: stage
+  transitions at turn boundaries; tick damage per stage; Toughness
+  decrement per stage.
+- **G.8d.2** — `GasFungalSporesPart` + `fungal-spores.json` content +
+  factory wiring + tests (Part-only, no contagion yet).
+- **G.8d.3** — Contagion: Stage 2+ effect's OnTurnStart spawns
+  fungal-spores gas at host's cell. Verify the natural loop:
+  infected creature spawns gas → gas spreads → adjacent creatures
+  inhale + roll for infection.
+
+Each sub-milestone:
+- RED→GREEN cycle with **true assertion-level RED** (stub first,
+  observe failures, then implement) — matching G.7a / G.8c
+  discipline.
+- Counter-checks per assertion.
+- Adversarial inline (CLAUDE.md §5 step g): null safety,
+  re-application semantics, boundary stages.
+- Severity-marked self-review in commit body.
+- Update §16 G.8d log same commit.
+
+#### Pre-flagged 🟡 findings
+
+- 🟡 **No body-part-grown-equipment** — CoO's `FungalInfectionEffect`
+  is a flat stat-shift + tick effect. Qud's grows an armor/weapon
+  item. Documented in the Effect's doc-comment as a Qud-divergence
+  point.
+- 🟡 **Stage timing is short** — 40 turns total vs Qud's
+  2400-3600. Tuned for CoO's RPG-but-not-MMO scale. Could lengthen
+  if playtest finds it too aggressive.
+- 🟡 **Refresh-on-reapply is non-standard for this Effect** — other
+  gas effects refresh Duration on reapply, but FungalInfection
+  should NOT (a player already in Stage 2 shouldn't get reset to
+  Stage 0 by walking through fresh spores). OnStack returns true
+  (consumed) but doesn't change the existing instance's state.
+- 🔵 **Contagion gas re-uses the same GasFungalSporesPart**
+  applier — symmetric with Qud's design where the "blooming" host
+  becomes a SporePuffer that spawns the same gas the original cloud
+  did.
+- ⚪ **Toughness save** — out of scope; use a deterministic
+  `infectionChance = GasLevel * Toughness_modifier_scaled` instead
+  of a rolled save. Documented.
