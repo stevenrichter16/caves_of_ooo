@@ -142,6 +142,12 @@ namespace CavesOfOoo.Core
                 }
             }
 
+            // Sync the cloud glyph to its (decayed/spread) density + mark
+            // the cell dirty so the renderer repaints it. Done before the
+            // dissipation check while the gas is still placed; if it then
+            // dissipates, Dissipate marks the cell dirty again (cell → floor).
+            GasVisuals.Refresh(gas, pool, zone);
+
             // Dissipation — Qud Gas.cs:313 ("50 + windSpeed" for thin gas).
             if (pool.Density <= 0 ||
                 (pool.Density <= LOW_DENSITY_THRESHOLD &&
@@ -190,6 +196,8 @@ namespace CavesOfOoo.Core
                           donorType = pool.GasType, receiverType = existing.GasType,
                           donorColor = pool.ColorString, receiverColor = existing.ColorString,
                           windSpeed, dir, windBiased = (windDirIndex >= 0 && dir == windDirIndex) });
+                // Receiver grew — resync its glyph + repaint its cell.
+                GasVisuals.Refresh(existing.ParentEntity, existing, zone);
                 return;
             }
 
@@ -267,9 +275,13 @@ namespace CavesOfOoo.Core
         public static void Dissipate(Entity gas, GasPoolPart pool, Zone zone, string cause)
         {
             if (gas == null || zone == null) return;
+            var pos = zone.GetEntityPosition(gas); // capture before removal
             Diag.Record("gas", "Dissipated", pool?.Creator, gas,
                 new { gasId = pool?.GasId, density = pool?.Density ?? 0, cause });
             zone.RemoveEntity(gas);
+            // Repaint the now-gas-free cell (it falls back to floor/contents).
+            if (pos.x >= 0)
+                ZoneRenderHooks.MarkCellDirty(pos.x, pos.y, "GasDissipate");
         }
 
         // ──────────── Helpers ────────────

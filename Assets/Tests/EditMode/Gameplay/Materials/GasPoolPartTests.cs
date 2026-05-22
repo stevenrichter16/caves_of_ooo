@@ -176,7 +176,11 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("GasFactoryTest");
             var gas = GasFactory.SpawnGas(zone, 5, 5, "poison-vapor");
             var render = gas.GetPart<RenderPart>();
-            Assert.AreEqual("°", render.RenderString, "glyph from def");
+            // Glyph is now DENSITY-driven (gas visuals: ░▒▓ shade by density),
+            // so it's the shade for DefaultDensity=100 (dark ▓), NOT the def's
+            // "°". Color + display name are still pulled from the def.
+            Assert.AreEqual(GasVisuals.GlyphForDensity(100).ToString(), render.RenderString,
+                "glyph is the density-shade block, not the def glyph");
             Assert.AreEqual("&g", render.ColorString, "color from def");
             Assert.AreEqual("poison vapor", render.DisplayName);
         }

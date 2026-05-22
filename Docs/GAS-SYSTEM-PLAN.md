@@ -2116,3 +2116,42 @@ change — each is a deliberate CoO simplification):
 pinned; 4 doc-accuracy corrections. The open design/balance questions
 (Toughness saves, cryo magnitude, plasma non-creature coat) are
 surfaced for a deliberate decision, not silently changed.
+
+---
+
+## Gas cloud visuals (post-review fix)
+
+**🔴 Gas clouds were invisible in-game.** The renderer only repaints
+cells flagged via `ZoneRenderHooks.MarkCellDirty`, and NOTHING in the
+gas system ever flagged a gas cell — so a fully-simulated cloud sat in
+the zone but its cell was never redrawn (it showed only on an
+unrelated full repaint, e.g. the player moving → FOV recompute).
+Reported by the user ("I don't see any visual for the gas clouds").
+
+**Fix + Qud-style look:** new `GasVisuals` helper —
+- `GlyphForDensity` maps density to a CP437 **shade block** (`░` light
+  / `▒` medium / `▓` dark, chars 176/177/178) — Qud's "densely packed
+  dots": thin fringe → dense core. Glyph encodes DENSITY; the gas's
+  color still encodes TYPE (poison green, stun yellow, …).
+- `Refresh(gas, pool, zone)` syncs the entity's `RenderString` to its
+  density AND calls `MarkCellDirty` so the renderer actually repaints.
+- Wired at every gas visual change: `GasFactory.SpawnGas` (new/spread/
+  grenade/contagion clouds all funnel through here), `GasSystem.
+  ProcessGasBehavior` (after decay/spread), `Dissipate` (cell → floor),
+  and the merge branch (receiver grew). Single choke point: all spawns
+  go through SpawnGas.
+
+Layering was already correct — gas `RenderLayer` 0 sorts above floor
+(added later, same layer) but below creatures (higher layer), so a
+monster standing in a cloud still draws on top.
+
+**Tests:** `GasVisualsTests` (12) — density→glyph brackets + monotonic
+counter, `Refresh` sets glyph + marks the cell dirty (pins the
+repaint), null-safety, GasFactory integration (dense→▓, thin→░, color
+still from def). Updated `SpawnGas_RenderPart_PulledFromDef` (glyph is
+now density-driven; color/display still from def). RED→GREEN (6 stub
+failures → 12/12); full gas regression 126/126.
+
+**Perf:** `Refresh` is a glyph compare + a HashSet add per gas cell per
+turn (turn-based, not per-frame; clouds are small) — within
+PERF-FOUNDATION budget; no allocations.

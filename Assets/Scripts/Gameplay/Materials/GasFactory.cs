@@ -123,6 +123,11 @@ namespace CavesOfOoo.Core
                 return null;
             }
 
+            // Set the density-scaled cloud glyph (░▒▓) + mark the cell dirty
+            // so the renderer actually paints the new cloud (gas cells are
+            // otherwise never flagged for repaint).
+            GasVisuals.Refresh(entity, pool, zone);
+
             Diag.Record("gas", "Created", creator, entity,
                 new { gasId, density = useDensity, level = useLevel, x, y,
                       gasType = pool.GasType, seeping = pool.Seeping, stable = pool.Stable,
