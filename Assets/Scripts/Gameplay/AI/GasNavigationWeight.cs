@@ -61,8 +61,17 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>True if the actor carries a <see cref="GasImmunityPart"/>
-        /// matching <paramref name="gasType"/> (case-insensitive). Iterates
-        /// all Parts so multi-immunity creatures are handled.</summary>
+        /// matching <paramref name="gasType"/>. Iterates all Parts so
+        /// multi-immunity creatures are handled.
+        ///
+        /// <para><b>Case-SENSITIVE</b> (<c>Ordinal</c>) — MUST match
+        /// <see cref="GasImmunityPart.HandleEvent"/>'s case-sensitive
+        /// <c>==</c> (GasImmunityPart.cs:42), or a case-mismatched immunity
+        /// string makes a creature nav-immune (won't path around the gas)
+        /// while still being dosed by ApplyGas — it would walk into gas it
+        /// isn't protected from. Surfaced by GasCrossPhaseAuditTests.H9.
+        /// (If immunity matching ever goes case-insensitive, change BOTH
+        /// here AND GasImmunityPart together.)</para></summary>
         private static bool IsImmune(Entity actor, string gasType)
         {
             if (string.IsNullOrEmpty(gasType)) return false;
@@ -70,7 +79,7 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < parts.Count; i++)
                 if (parts[i] is GasImmunityPart imm
                     && !string.IsNullOrEmpty(imm.GasType)
-                    && string.Equals(imm.GasType, gasType, System.StringComparison.OrdinalIgnoreCase))
+                    && string.Equals(imm.GasType, gasType, System.StringComparison.Ordinal))
                     return true;
             return false;
         }

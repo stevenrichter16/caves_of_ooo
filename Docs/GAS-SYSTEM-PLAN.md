@@ -2040,3 +2040,79 @@ All planned phases shipped. Final state:
   found + fixed by the audit gates (Density save round-trip; gasbench
   diag category).
 - Self-auditing bench + showcase scenarios for manual play.
+
+---
+
+## Cross-phase review (post-G.11) — findings
+
+A comprehensive two-angle review after G.11: (A) a hypothesis-driven
+deep audit (`GasCrossPhaseAuditTests`, 10 tests) probing cross-system /
+save-load / boundary flows the per-phase tests don't simulate, and
+(B) a read-based Qud-parity + logic-error pass over all 14 CoO gas
+files vs their 12 Qud counterparts.
+
+### 🔴/🟡 — 1 confirmed bug (FIXED)
+
+**🟡→🔴 Immunity case-sensitivity divergence (cross-system).**
+`GasNavigationWeight.IsImmune` (G.11) matched GasType with
+`OrdinalIgnoreCase`, but `GasImmunityPart.HandleEvent` (the ApplyGas
+veto) is deliberately case-SENSITIVE (`==`, GasImmunityPart.cs:42).
+Under a case mismatch (`GasImmunityPart{GasType="poison"}` vs gas
+`"Poison"`) a creature was nav-immune (won't path around the cloud)
+but NOT apply-immune (still dosed) — it walks into gas it isn't
+protected from. **Fixed:** aligned the G.11 helper to the established
+case-sensitive convention (the newer code yields to the documented
+one). Surfaced by the read-based audit; my hypothesis pass missed it
+(H3 used exact case). Pinned by `GasCrossPhaseAuditTests.H9`.
+
+### Pinned-correct invariants (0 bugs, permanent regression infra)
+
+`GasCrossPhaseAuditTests` H1-H8 + H10 all GREEN — pinning: gas-effect
+stat shifts (CoatedInPlasma -100 resist, FungalInfection stage clock)
+survive save/load without loss or double-apply (H1-H2); nav-immunity
+and apply-immunity agree on exact case (H3); the dispersal boundary at
+the low-density threshold is strictly `>` (H4); a dangling Creator
+disperses without NRE (H5); wind toward the zone edge stays in bounds
+(H6); overlapping different-type gases dose independently (H7);
+GasMask reduces gas ENTRY damage but NOT the lingering Poison DoT —
+the inhalation-filter model (H8, design pin); sleep gas doses via the
+per-turn tick dispatch (H10, filled a coverage asymmetry).
+
+### Doc-vs-impl drift corrected (Qud-parity divergences that were
+under-flagged as "SCOPE DIVERGENCE — none")
+
+The read-based audit found several CoO adaptations that are
+defensible but were not flagged in their phase logs. They are
+behavior-correct for CoO; documenting here for accuracy (no behavior
+change — each is a deliberate CoO simplification):
+
+- ⚪ **GasPlasma gates on Creature + respiratory intake** (via
+  `RunFilterChain`); Qud's plasma coats non-creatures/items too
+  (GasPlasma.cs:77-99). CoO items lack resistance stats, so coating
+  them is meaningless — the gate is acceptable. (Note: GasCryo uses a
+  slim chain that DOES hit any Hitpoints-bearer; plasma could align if
+  desired — deferred design call.)
+- ⚪ **GasConfusion / GasSleep apply unconditionally**; Qud gates both
+  on a `MakeSave("Toughness", …)` (GasConfusion.cs:147, GasSleep.cs:161).
+  CoO has no save-roll subsystem (same reason FungalSpores' save was
+  cut, plan §G.8d). A high-Toughness creature can't shrug these off in
+  CoO. **Open design question:** port a Toughness-scaled resist?
+- ⚪ **GasCryo deals `Density/5` HP/tick (~20 at density 100)** vs Qud's
+  flat `1` + a `TemperatureChange`. CoO has no thermal coupling, so it
+  substitutes direct HP damage — far more lethal per tick. The formula
+  is in the plan (§G.8b) but the 20× magnitude wasn't flagged. **Open
+  balance question.**
+- ⚪ **GasStun duration = `Level×2`**, Qud uses respiratory intake; CoO
+  targets the `Creature` tag, Qud targets `Brain != null`. Minor
+  formula/scope drift, the chosen CoO formula.
+
+### 🔵 nits (no action)
+- "Poison" damage attribute routes to no resistance (no PoisonResistance
+  stat yet) — doc-comment already hedges "future PoisonResistance".
+- GasMask is active while the Part exists (equip-routing is "the next
+  layer", documented).
+
+**Review verdict:** 1 real cross-system bug found + fixed; 9 invariants
+pinned; 4 doc-accuracy corrections. The open design/balance questions
+(Toughness saves, cryo magnitude, plasma non-creature coat) are
+surfaced for a deliberate decision, not silently changed.
