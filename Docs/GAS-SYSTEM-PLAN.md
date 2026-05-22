@@ -1668,3 +1668,144 @@ gas+combat suites. All green.
 - NEW `Assets/Scripts/Gameplay/Materials/BurnOffGasPart.cs`
 - NEW `Assets/Tests/EditMode/Gameplay/Materials/BurnOffGasPartTests.cs`
 - MOD `Docs/GAS-SYSTEM-PLAN.md` (G.9 plan + implementation log)
+
+---
+
+### G.10 — Wind coupling (PLAN)
+
+**Status:** PLANNED. Wind biases gas dispersal — a stiff easterly blows
+clouds east, thins them faster, and makes them spread more often. The
+Qud-parity meat of the original G.10 stub.
+
+#### Verification sweep
+
+| Premise | Status | Source / correction |
+|---|---|---|
+| Qud wind affects dispersal in 4 places: **frequency** `(25 + windSpeed).in100()`, **attempt count** `Random(1 + windSpeed/30, 4 + windSpeed/20)`, **direction** `(windSpeed.in100() && 90.in100()) ? windDir : random`, **thin-gas dissipation** `(50 + windSpeed).in100()` | ✅ confirmed | `qud Gas.cs:214-313` |
+| `parentZone.CurrentWindSpeed` (int 0-100) + `parentZone.CurrentWindDirection` (string "N".."NW") | ✅ confirmed | `qud Gas.cs:216-217`, `Zone.cs` |
+| Qud gates the whole thing behind `GlobalConfig.GetBoolSetting("WindAffectsGasDispersal")` | ⚠️ **adapted** | CoO has no GlobalConfig. **Implicit gate:** `windSpeed` defaults to 0, and every wind term is `+windSpeed` / `windSpeed.in100()` — so 0 reproduces today's behavior EXACTLY. No global setting needed. |
+| CoO `GasSystem.ProcessGasBehavior` already mirrors the no-wind base (BASE_SPREAD_CHANCE=25, LOW_DENSITY_DISSIPATE_CHANCE=50, attempts `Next(1,5)`) with `// G.10 will plumb wind here` markers | ✅ confirmed | `GasSystem.cs:32-51,127-139` |
+| CoO `Zone` has no wind fields; `GetCell`/`InBounds`/`GetEntitiesWithTag` exist | ✅ confirmed | `Zone.cs` (clean add) |
+| Qud has a `BlowAwayGas` part (the original stub proposed one) | 🔴 **FALSE — does not exist** | grep of the full decompile found only UI `*Window*` files. `BlowAwayGasPart` would be **CoO-original**, not parity. **Scope-pruned** (see below). |
+
+#### Scope-prune (CLAUDE.md §1.3)
+
+**`BlowAwayGasPart` cut from G.10.** It has no Qud equivalent (the
+stub conflated "wind" with a hypothetical push-Part). The wind-
+dispersal bias already delivers the "environment moves the gas" feel
+with full Qud parity. A push-gas Part is a CoO-original content hook —
+deferred indefinitely; can be a fast follow-up if playtest wants it.
+This keeps G.10 a clean, parity-true, single-responsibility commit.
+
+#### Architecture (CoO-adapted)
+
+**`Zone` fields:** `public int CurrentWindSpeed = 0;` (0-100, clamped
+≥0 at read) + `public string CurrentWindDirection = "";` ("N".."NW";
+"" / unrecognized ⇒ no directional bias).
+
+**`GasSystem` pure helpers** (testable without flaky RNG):
+- `WindDirectionToIndex(string) → int` — "N"=0…"NW"=7 (trim+upper),
+  else -1.
+- `PickSpreadDirection(windSpeed, windDirIndex, rng) → int 0-7` — with
+  prob `(windSpeed/100)×0.9` returns windDirIndex; else uniform random.
+  `windSpeed≤0 || windDirIndex<0` ⇒ always random. (Qud Gas.cs:231)
+- `ComputeSpreadAttempts(windSpeed, rng) → int` — `Random(1 +
+  windSpeed/30, 4 + windSpeed/20)` inclusive. (Qud Gas.cs:229)
+
+**Plumb into `ProcessGasBehavior`:** read+clamp windSpeed; frequency
+`Next(100) < BASE_SPREAD_CHANCE + windSpeed`; attempts via
+`ComputeSpreadAttempts`; pass windSpeed+windDirIndex to `TrySpreadOnce`
+→ `PickSpreadDirection`; dissipation `Next(100) <
+LOW_DENSITY_DISSIPATE_CHANCE + windSpeed`. Add `windSpeed`/`windDir`
+to the `gas/Spread` diag payload for observability.
+
+#### Sub-milestones
+
+- **G.10** (one commit) — Zone wind fields + 3 pure helpers + 4 plumb
+  points + tests. True assertion-level RED (stub the helpers, observe
+  failures, implement). Pure-helper tests prove the math
+  deterministically (scripted RNG); integration tests prove the
+  plumbing (windSpeed=100 guarantees spread / faster dissipation;
+  windSpeed=0 reproduces baseline — counter).
+
+#### Pre-flagged self-review findings
+
+- ⚪ No `WindAffectsGasDispersal` global gate — windSpeed=0 default is
+  the implicit gate; documented.
+- ⚪ `BlowAwayGasPart` scope-pruned (CoO-original, no parity) —
+  documented above.
+- 🔵 Wind read from `zone.CurrentWindSpeed`/`Direction` per
+  ProcessGasBehavior call; no per-tick caching (per-turn cost, not
+  per-frame — acceptable per PERF-FOUNDATION).
+- 🧪 Wind fields' save/load reach — Zone serialization; deferred to
+  G.12 sweep.
+
+---
+
+### G.10 (this commit) — Wind coupling
+
+**Status:** ✅ COMPLETE. Wind biases gas dispersal — frequency, attempt
+count, spread direction, and thin-gas dissipation all scale with
+`Zone.CurrentWindSpeed`. CoO port of Qud `Gas.cs:214-313`.
+
+**Shipped:**
+- `Zone.CurrentWindSpeed` (int, 0) + `CurrentWindDirection` (string, "").
+- `GasSystem` pure helpers: `WindDirectionToIndex`, `PickSpreadDirection`
+  (the (windSpeed/100)×0.9 downwind bias), `ComputeSpreadAttempts`
+  (`Random(1 + ws/30, 4 + ws/20)`).
+- 4 plumb points in `ProcessGasBehavior`/`TrySpreadOnce`: frequency
+  `Next(100) < 25 + ws`, attempts, direction, dissipation
+  `Next(100) < 50 + ws`. windSpeed clamped ≥0.
+- `gas/Spread` + `gas/Merged` diags carry `windSpeed`/`dir`/`windBiased`.
+- 17 tests (pure helpers + integration + adversarial).
+
+**SCOPE DIVERGENCE FROM THE PLAN**
+- `BlowAwayGasPart` cut — the verification sweep found it has **no Qud
+  equivalent** (grep hit only UI `*Window*` files). It was a CoO-original
+  the stub conflated with "wind." The dispersal bias delivers the
+  environmental-movement feel with full parity; a push-gas Part is a
+  deferred CoO-original. Documented in the G.10 PLAN scope-prune.
+- No `WindAffectsGasDispersal` global gate (CoO has no GlobalConfig) —
+  windSpeed=0 default is the implicit gate; reproduces pre-G.10
+  dispersal exactly (proven by the 254/254 baseline regression).
+
+**RED → GREEN cycle (true assertion-level RED):**
+1. Stubbed the 3 helpers (`WindDirectionToIndex => -1`,
+   `PickSpreadDirection => rng.Next(8)`, `ComputeSpreadAttempts =>
+   rng.Next(1,5)`); left `ProcessGasBehavior` un-plumbed.
+2. Wrote 17 tests.
+3. Ran → **8 RED** (direction map, bias, attempt range, statistical
+   bias, east-spread), 9 GREEN (baseline-preserving + adversarial).
+4. Implemented the helper bodies + the 4 plumb points.
+5. Ran → 17/17 GREEN. Regression 254/254 (13 gas suites).
+
+**Test breakdown (17, all GREEN):**
+- WindDirectionToIndex (3): all 8, case-insensitive/trim, invalid→-1
+- PickSpreadDirection (6): both-rolls-pass→wind, 90-fail→random,
+  speed-fail→random, no-wind→random (baseline), invalid-idx→random,
+  statistical east bias (~900/1000)
+- ComputeSpreadAttempts (2): no-wind [1,4] (baseline), high-wind [4,9]
+- Integration (3): high-wind guarantees spread, guarantees thin-gas
+  dissipation (both seed-INDEPENDENT — chance > 100), east-bias spread
+- Zone defaults + adversarial (3): defaults 0/"", negative speed
+  no-crash, invalid direction no-crash
+
+**G.10 SELF-REVIEW (§5) + cold-eye (Q1-Q4)**
+- ⚪ No global wind gate / `BlowAwayGasPart` cut — both documented above.
+- 🔵 Wind read per-call (no caching) — per-turn cost, acceptable.
+- 🧪 Wind fields' save/load reach — deferred to G.12.
+- Cold-eye Q1/Q2 **caught an asymmetry**: `gas/Spread` recorded
+  `windSpeed`/`windBiased` but the sibling `gas/Merged` (the other
+  outcome of the same wind-picked attempt) did not. Fixed in this
+  commit — both now carry the wind context. Q3 (every branch
+  counter-tested incl. baseline at windSpeed=0), Q4 (doc-vs-impl
+  clean): 0 remaining findings.
+
+**Tests:** +17 (GasWindCouplingTests). Regression 254/254 across 13
+gas suites. All green.
+
+**Files:**
+- MOD `Assets/Scripts/Gameplay/World/Map/Zone.cs` (+2 wind fields)
+- MOD `Assets/Scripts/Gameplay/Materials/GasSystem.cs` (3 helpers + 4 plumb points + diag)
+- NEW `Assets/Tests/EditMode/Gameplay/Materials/GasWindCouplingTests.cs`
+- MOD `Docs/GAS-SYSTEM-PLAN.md` (G.10 plan + implementation log)

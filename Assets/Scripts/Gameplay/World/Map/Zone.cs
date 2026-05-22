@@ -22,6 +22,24 @@ namespace CavesOfOoo.Core
         public Color AmbientTint = Color.white;
 
         /// <summary>
+        /// G.10 — prevailing wind strength, 0-100. Biases gas dispersal
+        /// (frequency, attempt count, direction, thin-gas dissipation) in
+        /// <see cref="GasSystem.ProcessGasBehavior"/>. Mirrors Qud's
+        /// <c>Zone.CurrentWindSpeed</c> (Gas.cs:216). Default 0 reproduces
+        /// the pre-G.10 no-wind dispersal EXACTLY — it is the implicit
+        /// gate (CoO has no <c>WindAffectsGasDispersal</c> global setting).
+        /// </summary>
+        public int CurrentWindSpeed = 0;
+
+        /// <summary>
+        /// G.10 — prevailing wind direction: "N","NE","E","SE","S","SW",
+        /// "W","NW". Empty / unrecognized ⇒ no directional bias (spread
+        /// stays uniform-random even if <see cref="CurrentWindSpeed"/> &gt; 0).
+        /// Mirrors Qud's <c>Zone.CurrentWindDirection</c> (Gas.cs:217).
+        /// </summary>
+        public string CurrentWindDirection = "";
+
+        /// <summary>
         /// The grid of cells, stored as [x, y].
         /// </summary>
         public Cell[,] Cells = new Cell[Width, Height];

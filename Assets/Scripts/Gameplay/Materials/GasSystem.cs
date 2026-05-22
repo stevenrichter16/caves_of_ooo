@@ -113,6 +113,13 @@ namespace CavesOfOoo.Core
             var pos = zone.GetEntityPosition(gas);
             if (pos.x < 0) return; // already removed by a chained dispersal
 
+            // G.10 — read prevailing wind. Clamp ≥0 so a stray negative
+            // value behaves like no wind (every term is additive, so
+            // windSpeed=0 reproduces the pre-G.10 dispersal exactly).
+            int windSpeed = zone.CurrentWindSpeed;
+            if (windSpeed < 0) windSpeed = 0;
+            int windDirIndex = WindDirectionToIndex(zone.CurrentWindDirection);
+
             // Decay (unstable only) — Qud Gas.cs:222-224.
             if (!pool.Stable)
             {
@@ -123,31 +130,34 @@ namespace CavesOfOoo.Core
                     new { gasId = pool.GasId, before, after = pool.Density, rate });
             }
 
-            // Spread roll — Qud Gas.cs:226.
-            if (pool.Density > LOW_DENSITY_THRESHOLD && _rng.Next(100) < BASE_SPREAD_CHANCE)
+            // Spread roll — Qud Gas.cs:226 ("25 + windSpeed").
+            if (pool.Density > LOW_DENSITY_THRESHOLD &&
+                _rng.Next(100) < BASE_SPREAD_CHANCE + windSpeed)
             {
-                int attempts = _rng.Next(1, 5); // 1..4 inclusive (Qud Gas.cs:229)
+                int attempts = ComputeSpreadAttempts(windSpeed, _rng); // Qud Gas.cs:229
                 for (int i = 0; i < attempts; i++)
                 {
                     if (pool.Density <= 0) break;
-                    TrySpreadOnce(gas, pool, pos.x, pos.y, zone);
+                    TrySpreadOnce(gas, pool, pos.x, pos.y, zone, windSpeed, windDirIndex);
                 }
             }
 
-            // Dissipation — Qud Gas.cs:313.
+            // Dissipation — Qud Gas.cs:313 ("50 + windSpeed" for thin gas).
             if (pool.Density <= 0 ||
-                (pool.Density <= LOW_DENSITY_THRESHOLD && _rng.Next(100) < LOW_DENSITY_DISSIPATE_CHANCE))
+                (pool.Density <= LOW_DENSITY_THRESHOLD &&
+                 _rng.Next(100) < LOW_DENSITY_DISSIPATE_CHANCE + windSpeed))
             {
                 Dissipate(gas, pool, zone, pool.Density <= 0 ? "ZeroDensity" : "LowDensityFlicker");
             }
         }
 
-        /// <summary>One spread attempt — pick a direction, check
-        /// passability, then either merge into an existing compatible gas
-        /// (G.4) or spawn a new gas at the destination.</summary>
-        private static void TrySpreadOnce(Entity gas, GasPoolPart pool, int x, int y, Zone zone)
+        /// <summary>One spread attempt — pick a direction (wind-biased per
+        /// G.10), check passability, then either merge into an existing
+        /// compatible gas (G.4) or spawn a new gas at the destination.</summary>
+        private static void TrySpreadOnce(Entity gas, GasPoolPart pool, int x, int y, Zone zone,
+            int windSpeed, int windDirIndex)
         {
-            int dir = _rng.Next(8);
+            int dir = PickSpreadDirection(windSpeed, windDirIndex, _rng);
             int nx = x + DX[dir], ny = y + DY[dir];
             if (!zone.InBounds(nx, ny)) return;
             var destCell = zone.GetCell(nx, ny);
@@ -178,7 +188,8 @@ namespace CavesOfOoo.Core
                           donorAfter = pool.Density,
                           receiverBefore = before, receiverAfter = existing.Density,
                           donorType = pool.GasType, receiverType = existing.GasType,
-                          donorColor = pool.ColorString, receiverColor = existing.ColorString });
+                          donorColor = pool.ColorString, receiverColor = existing.ColorString,
+                          windSpeed, dir, windBiased = (windDirIndex >= 0 && dir == windDirIndex) });
                 return;
             }
 
@@ -201,7 +212,8 @@ namespace CavesOfOoo.Core
             pool.Density -= chunk;
             Diag.Record("gas", "Spread", pool.Creator, gas,
                 new { gasId = pool.GasId, fromX = x, fromY = y,
-                      toX = nx, toY = ny, chunk, donorAfter = pool.Density });
+                      toX = nx, toY = ny, chunk, donorAfter = pool.Density,
+                      windSpeed, dir, windBiased = (windDirIndex >= 0 && dir == windDirIndex) });
         }
 
         /// <summary>Decay rate per tick. Listens to
@@ -275,6 +287,53 @@ namespace CavesOfOoo.Core
                 if (IsMergeCompatible(src, otherPool)) return otherPool;
             }
             return null;
+        }
+
+        // ──────────── G.10 wind helpers (pure, deterministic) ────────────
+
+        /// <summary>Map a wind-direction string to a DX/DY index (0-7), or
+        /// -1 if empty/unrecognized. N=0, NE=1, E=2, SE=3, S=4, SW=5, W=6,
+        /// NW=7 — matches the <see cref="DX"/>/<see cref="DY"/> order.</summary>
+        public static int WindDirectionToIndex(string dir)
+        {
+            if (string.IsNullOrWhiteSpace(dir)) return -1;
+            switch (dir.Trim().ToUpperInvariant())
+            {
+                case "N": return 0;
+                case "NE": return 1;
+                case "E": return 2;
+                case "SE": return 3;
+                case "S": return 4;
+                case "SW": return 5;
+                case "W": return 6;
+                case "NW": return 7;
+                default: return -1;
+            }
+        }
+
+        /// <summary>Pick a spread direction index (0-7). With probability
+        /// <c>(windSpeed/100) × 0.9</c> returns <paramref name="windDirIndex"/>
+        /// (downwind); otherwise a uniform-random direction. windSpeed ≤ 0
+        /// or windDirIndex &lt; 0 ⇒ always random. Qud Gas.cs:231.</summary>
+        public static int PickSpreadDirection(int windSpeed, int windDirIndex, System.Random rng)
+        {
+            // && short-circuits: a failed speed roll skips the 90 roll
+            // (matches Qud's `num.in100() && 90.in100()` evaluation order).
+            if (windSpeed > 0 && windDirIndex >= 0
+                && rng.Next(100) < windSpeed && rng.Next(100) < 90)
+                return windDirIndex;
+            return rng.Next(8);
+        }
+
+        /// <summary>Per-tick spread attempt count, wind-scaled:
+        /// <c>Random(1 + windSpeed/30, 4 + windSpeed/20)</c> inclusive.
+        /// Qud Gas.cs:229. windSpeed clamped ≥0 by the caller.</summary>
+        public static int ComputeSpreadAttempts(int windSpeed, System.Random rng)
+        {
+            int min = 1 + windSpeed / 30;
+            int max = 4 + windSpeed / 20;
+            if (max < min) max = min;
+            return rng.Next(min, max + 1); // inclusive upper
         }
     }
 }
