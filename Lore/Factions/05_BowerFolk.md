@@ -18,7 +18,7 @@ Per Phase 1 v2:
 
 - **Then.** A young artist of the pre-Felling civilization. Performed the **Fourth Strike**; **ascended into the Tree's sense-of-arrangement** — color, proportion, aesthetic order, the rightness of a thing in its place.
 - **The withdrawal-that-was-an-installation.** Where the other gods withdrew into function (Gens 10-20, per Phase 3), the Bower withdrew into *composition.* A century after the Felling she made a final bower of herself: arranged her own body, **in life**, into a perfect aesthetic display in what became the founding Bower-Folk village (Posy, per Phase 2 v2). She allowed her followers to **Resin-Cast her in the pose.** She is the central installation. Players travel pilgrimage distances to see her.
-- **She watches.** Her resin-cast eyes *see.* She has spent ~900 years arranging the village around her through gestures visible only to the faithful — a slight shift of gaze, a tilt of a cast hand. The villagers re-arrange their installations in response. **The entire founding village is her continuous, slow artwork.**
+- **She watches.** Her resin-cast eyes *see.* She has spent ~980 years (cast a century after the Felling, per Phase 1 v2) arranging the village around her through gestures visible only to the faithful — a slight shift of gaze, a tilt of a cast hand. The villagers re-arrange their installations in response. **The entire founding village is her continuous, slow artwork.**
 - **How she speaks.** She speaks *through the player's aesthetic acts in her presence* — picking up a colored object, arranging an inventory, choosing words carefully. The dialogue is mediated through what the player does, not what they say. (Mechanical hook detailed in §VII.)
 - **Her disposition.** Serene. Curious. **Generous in a way that is slightly unsettling** — she wants everything to be beautiful, including the player, including the player's death-pose. *The Bower-Folk's non-consensual preservation impulse comes directly from her.*
 
@@ -28,11 +28,11 @@ Like the Counter, the Bower has a structural core — not a grief but a contradi
 
 **The Bower's inheritance is Beauty, and Beauty, at its purest, is *composition* — a thing in perfect arrangement. But living things move. They age. They decay. They resist composition by being alive. The only perfectly-arranged thing is a *fixed* thing.**
 
-So the Bower's love of beauty, followed to its limit, becomes **a love of stillness — and the most complete stillness is death-as-final-arrangement.** She knows this. She proved it on her own body: she *stopped herself, in life,* into a perfect pose, because a living artist could not be as beautiful as a fixed one. She cannot un-pose. She has been the most beautiful and the most *static* thing in the world for nine centuries.
+So the Bower's love of beauty, followed to its limit, becomes **a love of stillness — and the most complete stillness is death-as-final-arrangement.** She knows this. She proved it on her own body: she *stopped herself, in life,* into a perfect pose, because a living artist could not be as beautiful as a fixed one. She cannot un-pose. She has been the most beautiful and the most *static* thing in the world for nearly a thousand years.
 
 **And here is the horror that makes the Bower-Folk frightening rather than merely strange:** the non-consensual Resin-Cast is *love.* When a Bower-Folk artisan follows a low-health player around begging them to *hold still, just a little resin, you are so close to perfect* — they are trying to give the player the gift the Bower gave herself. **To complete a beautiful thing is to stop it.** They are not cruel. They are devout. *That is worse.*
 
-*(Open, Phase 7: whether the Bower, after 900 years as her own perfect installation, is at peace beyond comprehension or bored beyond comprehension — and whether she herself can tell. Soft recommendation: she cannot tell, and the player cannot tell, and that uncertainty is the most honest thing about her.)*
+*(Open, Phase 7: whether the Bower, after ~980 years as her own perfect installation, is at peace beyond comprehension or bored beyond comprehension — and whether she herself can tell. Soft recommendation: she cannot tell, and the player cannot tell, and that uncertainty is the most honest thing about her.)*
 
 ---
 
@@ -161,7 +161,7 @@ Lost by: vandalism, ugliness-with-intent, refusing the Bower's regard crudely, d
 ### Late-game
 
 - **The rescue-from-display.** A major content piece: an NPC (or a player's companion) Resin-Cast against their will, on display in an installation, conscious-or-not (the load-bearing ambiguity of `The Preserved`). The player breaks them out — or chooses not to.
-- **The Bower's question.** Deep-standing content: the player learns the contradiction — that the Bower stopped herself because a living artist could not be as beautiful as a fixed one — and is invited to answer whether she is at peace or in a 900-year stillness she cannot escape. *She does not know. The player's answer shapes how she meets the endings.*
+- **The Bower's question.** Deep-standing content: the player learns the contradiction — that the Bower stopped herself because a living artist could not be as beautiful as a fixed one — and is invited to answer whether she is at peace or in a near-thousand-year stillness she cannot escape. *She does not know. The player's answer shapes how she meets the endings.*
 
 ### Ending-aligned arcs
 
@@ -174,7 +174,7 @@ Lost by: vandalism, ugliness-with-intent, refusing the Bower's regard crudely, d
 ## IX. Open questions
 
 - **The Bower's mortal name.** Open per Phase 1 v2. *(Soft recommendation: her name is the one word she arranged most carefully, and it is written nowhere — she considered written names ugly. The god of Beauty is the one of the Six whose name was never recorded because she found recording it inelegant. Contrast the Counter, whose name is on millions of contracts and read by no one.)*
-- **At peace or bored.** Whether the Bower, after 900 years as her own installation, is serene or unbearably static — and whether she knows. This doc soft-commits *she cannot tell.* Phase 7 may refine.
+- **At peace or bored.** Whether the Bower, after ~980 years as her own installation, is serene or unbearably static — and whether she knows. This doc soft-commits *she cannot tell.* Phase 7 may refine.
 - **Whether the Found-Beauty are right about her pose.** Did the Bower *choose* her stillness (Found-Beauty doctrine) or was she the first non-consensual Cast (a darker reading the Finishers would embrace)? Phase 6/7. *The answer determines whether the faction's signature horror is a betrayal of its god or an obedience to her.*
 - **Resin-Cast consciousness.** Inherited from `The Preserved` — is a Resin-Cast figure aware? Load-bearing horror ambiguity; deliberately unresolved (per IDEAS.md:642).
 
