@@ -124,5 +124,41 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(GasVisuals.SHADE_LIGHT.ToString(), gas.GetPart<RenderPart>().RenderString,
                 "thin spawn shows the light shade ░");
         }
+
+        // ════════════════ Background tint (fills the cell) ════════════════
+
+        [Test]
+        public void ToBackgroundCode_ConvertsForegroundToBackground()
+        {
+            Assert.AreEqual("^g", GasVisuals.ToBackgroundCode("&g"));
+            Assert.AreEqual("^Y", GasVisuals.ToBackgroundCode("&Y"));
+            Assert.AreEqual("", GasVisuals.ToBackgroundCode(""));
+            Assert.AreEqual("", GasVisuals.ToBackgroundCode("nocode"));
+        }
+
+        [Test]
+        public void Refresh_SetsBackgroundTint_FromGasColor()
+        {
+            // The cell-background tint is what makes a cloud read as a
+            // filled colored rectangle even when the foreground stipple is
+            // sparse + dimmed by ambient light.
+            var e = new Entity { ID = "g", BlueprintName = "Cloud" };
+            e.AddPart(new RenderPart { RenderString = "?" });
+            var pool = new GasPoolPart { GasId = "vis-gas", ColorString = "&g" };
+            e.AddPart(pool);
+            pool.Density = 100;
+            GasVisuals.Refresh(e, pool, null);
+            Assert.AreEqual("^g", e.GetPart<RenderPart>().BackgroundColor,
+                "gas cell gets a background tint matching its type color");
+        }
+
+        [Test]
+        public void SpawnGas_SetsBackgroundTint()
+        {
+            var zone = new Zone("VisBg");
+            var gas = GasFactory.SpawnGas(zone, 5, 5, "vis-gas", density: 100);
+            Assert.AreEqual("^g", gas.GetPart<RenderPart>().BackgroundColor,
+                "spawned gas has a colored cell background (&g → ^g)");
+        }
     }
 }

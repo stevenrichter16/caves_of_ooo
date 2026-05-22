@@ -284,5 +284,42 @@ namespace CavesOfOoo.Tests
             Assert.IsNotNull(sleeper.GetEffect<AsleepByGasEffect>(),
                 "per-turn tick dispatch doses a creature standing in sleep gas");
         }
+
+        // ════════════════════════════════════════════════════════════
+        // H11 — CONFIRMED BUG (found while diagnosing "gas invisible"):
+        // GasPoolPart.Stable is documented as "persist indefinitely", but
+        // the low-density dissipation flickered stable gas out anyway (it
+        // spreads thin, then the edges dissipate). A stable, non-decaying,
+        // non-spreading (≤threshold) cloud must persist. Fixed by gating
+        // the low-density dissipation on !Stable.
+        // ════════════════════════════════════════════════════════════
+        [Test]
+        public void H11_StableGas_PersistsAtLowDensity()
+        {
+            var z = new Zone("AxH11");
+            GasSystem.SetRngForTests(new System.Random(1));
+            var gas = GasFactory.SpawnGas(z, 40, 12, "ax-poison",
+                density: GasSystem.LOW_DENSITY_THRESHOLD - 2); // 8, ≤ threshold, won't spread
+            gas.GetPart<GasPoolPart>().Stable = true;
+            for (int t = 0; t < 50; t++) GasSystem.OnTickEnd(z);
+            int cnt = 0;
+            foreach (var e in z.GetAllEntities()) if (e.Tags.ContainsKey("Gas")) cnt++;
+            Assert.AreEqual(1, cnt, "stable low-density gas persists (no flicker-out)");
+            Assert.AreEqual(GasSystem.LOW_DENSITY_THRESHOLD - 2,
+                gas.GetPart<GasPoolPart>().Density, "stable gas neither decays nor dissipates");
+        }
+
+        [Test]
+        public void H11b_NonStableLowDensityGas_DissipatesQuickly_Counter()
+        {
+            var z = new Zone("AxH11b");
+            GasSystem.SetRngForTests(new System.Random(1));
+            GasFactory.SpawnGas(z, 40, 12, "ax-poison",
+                density: GasSystem.LOW_DENSITY_THRESHOLD - 2); // NOT stable
+            for (int t = 0; t < 50; t++) GasSystem.OnTickEnd(z);
+            int cnt = 0;
+            foreach (var e in z.GetAllEntities()) if (e.Tags.ContainsKey("Gas")) cnt++;
+            Assert.AreEqual(0, cnt, "non-stable low-density gas DOES dissipate (counter to H11)");
+        }
     }
 }

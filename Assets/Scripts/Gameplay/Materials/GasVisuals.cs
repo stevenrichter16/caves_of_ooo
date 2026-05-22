@@ -52,13 +52,32 @@ namespace CavesOfOoo.Core
             if (gas == null || pool == null) return;
             var render = gas.GetPart<RenderPart>();
             if (render != null)
+            {
                 render.RenderString = GlyphForDensity(pool.Density).ToString();
+                // Tint the cell BACKGROUND with the gas color so a cloud
+                // reads as a filled colored rectangle even when the
+                // foreground stipple (░) is sparse and dimmed by ambient
+                // light. Foreground "&X" → background "^X" (the renderer's
+                // background-color format, QudColorParser.ParseBackground).
+                render.BackgroundColor = ToBackgroundCode(pool.ColorString);
+            }
             if (zone != null)
             {
                 var pos = zone.GetEntityPosition(gas);
                 if (pos.x >= 0)
                     ZoneRenderHooks.MarkCellDirty(pos.x, pos.y, "Gas");
             }
+        }
+
+        /// <summary>Convert a foreground color string ("&g") to the
+        /// renderer's background-color format ("^g"). "" if no code found.</summary>
+        public static string ToBackgroundCode(string colorString)
+        {
+            if (string.IsNullOrEmpty(colorString)) return "";
+            for (int i = 0; i < colorString.Length - 1; i++)
+                if (colorString[i] == '&')
+                    return "^" + colorString[i + 1];
+            return "";
         }
     }
 }

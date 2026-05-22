@@ -149,8 +149,12 @@ namespace CavesOfOoo.Core
             GasVisuals.Refresh(gas, pool, zone);
 
             // Dissipation — Qud Gas.cs:313 ("50 + windSpeed" for thin gas).
+            // Stable gas is EXEMPT from the low-density flicker-out: per the
+            // GasPoolPart.Stable contract ("persist indefinitely"), a stable
+            // cloud must not vanish just because spreading thinned it. Only a
+            // true zero-density (fully spread away) removes a stable cloud.
             if (pool.Density <= 0 ||
-                (pool.Density <= LOW_DENSITY_THRESHOLD &&
+                (!pool.Stable && pool.Density <= LOW_DENSITY_THRESHOLD &&
                  _rng.Next(100) < LOW_DENSITY_DISSIPATE_CHANCE + windSpeed))
             {
                 Dissipate(gas, pool, zone, pool.Density <= 0 ? "ZeroDensity" : "LowDensityFlicker");
