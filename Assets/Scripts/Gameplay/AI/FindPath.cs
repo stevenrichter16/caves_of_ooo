@@ -53,8 +53,14 @@ namespace CavesOfOoo.Core
         /// are treated as passable. Use for combat approach (KillGoal) where the attacker
         /// should path through allied creatures. If false (default), cells with
         /// PhysicsPart.Solid entities are impassable (correct for furniture walks).</param>
+        /// <param name="actor">G.11 — when non-null, cells holding gas the
+        /// actor isn't immune to get an extra A* step cost
+        /// (<see cref="GasNavigationWeight.ForCell"/>), so the path routes
+        /// AROUND gas clouds. null (default) = no gas weighting, identical
+        /// to the pre-G.11 pathfinder (the implicit gate for existing
+        /// callers).</param>
         public static FindPath Search(Zone zone, int startX, int startY, int goalX, int goalY,
-            int maxNodes = 2000, bool ignoreCreatures = false)
+            int maxNodes = 2000, bool ignoreCreatures = false, Entity actor = null)
         {
             var result = new FindPath { Usable = false, Steps = new List<(int, int)>() };
 
@@ -127,18 +133,21 @@ namespace CavesOfOoo.Core
 
                     if (Pool[neighborIdx].InClosed) continue;
 
+                    // Fetch the neighbor cell once — reused for the
+                    // passability check AND the G.11 gas penalty.
+                    var neighborCell = zone.GetCell(nx, ny);
+
                     // Goal cell is always considered passable (we want to path TO it)
                     if (neighborIdx != goalIdx)
                     {
-                        var cell = zone.GetCell(nx, ny);
-                        if (cell == null) continue;
-                        if (!cell.IsPassable()) continue;
+                        if (neighborCell == null) continue;
+                        if (!neighborCell.IsPassable()) continue;
 
                         // When not ignoring creatures, also check PhysicsPart.Solid.
                         // Cell.IsPassable() only checks the "Solid" tag (walls), but
                         // creatures have PhysicsPart.Solid=true without the tag.
                         // This prevents furniture-walk A* from routing through NPCs.
-                        if (!ignoreCreatures && IsCellBlockedByCreature(cell))
+                        if (!ignoreCreatures && IsCellBlockedByCreature(neighborCell))
                             continue;
                     }
 
@@ -151,7 +160,13 @@ namespace CavesOfOoo.Core
                             continue; // Can't squeeze diagonally between two walls
                     }
 
+                    // G.11: gas-avoidance penalty. Only when an actor is
+                    // supplied (existing actor-less callers are unchanged).
+                    // Soft cost — routes around gas but still traverses a
+                    // gas-only route to the goal.
                     int tentativeG = Pool[currentIdx].G + Cost[dir];
+                    if (actor != null && neighborCell != null)
+                        tentativeG += GasNavigationWeight.ForCell(neighborCell, actor);
 
                     if (!Pool[neighborIdx].InOpen)
                     {

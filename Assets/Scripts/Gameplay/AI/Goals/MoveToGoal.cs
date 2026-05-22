@@ -82,7 +82,8 @@ namespace CavesOfOoo.Core
 
         private bool ComputePath(int fromX, int fromY)
         {
-            var result = FindPath.Search(CurrentZone, fromX, fromY, TargetX, TargetY);
+            var result = FindPath.Search(CurrentZone, fromX, fromY, TargetX, TargetY,
+                actor: ParentEntity); // G.11: route around gas the creature isn't immune to
             if (!result.Usable || result.Steps.Count == 0)
             {
                 _path = null;

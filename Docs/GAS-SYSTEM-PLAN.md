@@ -1930,10 +1930,108 @@ audit gates already surfaced and fixed.
 
 ---
 
-## GAS SYSTEM COMPLETE (G.1–G.10, G.12)
+### G.11 — AI gas-avoidance navigation (PLAN + LOG)
 
-All planned phases shipped except G.11 (AI gas-avoidance navigation),
-which the user explicitly deferred. Final state:
+**Status:** ✅ COMPLETE. Smart creatures path AROUND gas clouds —
+density-scaled, immunity-aware — by adding a per-cell penalty to the
+A* step cost. Gas is avoided when a clear detour exists, but traversed
+when it's the only route (gas is a soft cost, never a hard wall).
+
+#### Verification sweep
+
+| Premise | Status | Source |
+|---|---|---|
+| Qud weights gas cells via `GetNavigationWeightEvent` / `GetAdjacentNavigationWeightEvent`; gas parts call `E.MinWeight(StepValue(Density)/2 + 20, 60)` (cell) and `/10 + 4` (adjacent), gated on `!IgnoreGases && !Unbreathing && PhaseMatches && IsAffectable(Actor)` (immunity-aware); dumb actors get a flat `MinWeight(3)` | ✅ confirmed | `qud GasConfusion.cs:30-66`, `AvoidMovingOnto.cs` |
+| CoO A* `FindPath.Search` computes step cost at `tentativeG = G + Cost[dir]` (cardinal 10 / diagonal 14); takes NO actor | ✅ confirmed | `FindPath.cs:154` |
+| `FindPath.Search` callers: MoveToGoal:85, WanderGoal:58, AIHelpers:406 — each has the navigating creature (`ParentEntity` / `entity`) | ✅ confirmed | grep |
+| `GasImmunityPart.GasType` string is the immunity key (matches `GasPoolPart.GasType`) | ✅ confirmed | `GasImmunityPart.cs:35` |
+| `Cell.Objects` is a public `List<Entity>`; `Entity.Parts` enumerable for multi-immunity | ✅ confirmed | `Cell.cs:49` |
+| Firing a `GetNavigationWeight` event per A* node would allocate in the hot path | ⚠️ **perf-adapted** | CoO has no nav-weight cache (Qud's `E.Uncacheable`). Direct alloc-free helper instead of per-node events (PERF-FOUNDATION §No allocations in hot paths). |
+
+#### Architecture (CoO-adapted)
+
+- **`GasNavigationWeight.ForCell(Cell, Entity actor) → int`** — pure,
+  alloc-free. Max over the cell's gases of `BASE_PENALTY + Density /
+  DENSITY_DIVISOR` capped at `MAX_PENALTY`, skipping any gas whose
+  GasType the actor is immune to (iterates `actor.Parts` for
+  `GasImmunityPart`). 0 for null cell/actor or no gas.
+- **`FindPath.Search(..., Entity actor = null)`** — new trailing optional
+  param. When `actor != null`, `tentativeG += GasNavigationWeight.ForCell
+  (neighborCell, actor)`. **`actor == null` reproduces the pre-G.11
+  pathfinder EXACTLY** (the implicit gate — every existing caller that
+  doesn't pass an actor is byte-for-byte unchanged).
+- Wire the 3 callers to pass the creature.
+
+**Perf:** the penalty is a method call + cell-object iteration per
+expanded node, only when `actor != null`. No allocations. A* is
+per-NPC-per-turn (not per-frame). Acceptable per PERF-FOUNDATION.
+
+#### Constants (tunable, test-pinned)
+`BASE_PENALTY = 15` (even thin harmful gas is mildly avoided),
+`DENSITY_DIVISOR = 4` (density 100 → +25), `MAX_PENALTY = 90` (a max
+cloud cell costs ~100 vs 10 clear → strong avoidance, finite so forced
+traversal still works).
+
+#### Qud-divergences (documented)
+- ⚪ No smart/dumb split (Qud's `E.Smart`) — all AI creatures path
+  around gas in v1. A future `BrainPart` flag could add the dumb-flat
+  path.
+- ⚪ No `Unbreathing` exemption (robots/undead) — v1 is immunity-aware
+  only (GasImmunityPart). Documented deferral.
+- ⚪ No separate adjacent-cell weight (Qud's `GetAdjacentNavigation
+  WeightEvent`) — CoO weights only the entered cell. The A* detour
+  emerges from per-cell penalties without a separate adjacency term.
+
+#### Sub-milestone
+- **G.11** (one commit) — `GasNavigationWeight` + `FindPath` actor param
+  + 3 caller wirings + RED→GREEN tests (unit penalty + A* integration:
+  paths around gas, immune actor goes through, no-actor unchanged, gas-
+  only-route still traverses) + adversarial.
+
+#### Implementation log
+
+**RED → GREEN (true assertion-level RED):** stubbed `ForCell => 0`,
+wired the actor param + the 3 callers. 12 tests → **5 RED** (the 4
+ForCell positive tests + `Search_WithActor_PathsAroundGas`, which went
+straight through gas at penalty 0), 7 GREEN (no-gas/null/immune expect
+0; no-actor + immune-actor + gas-only-route pass coincidentally on the
+stub). Implemented `ForCell` → 12/12 GREEN.
+
+**Test breakdown (12):** ForCell (7) — no-gas, null cell/actor,
+non-immune positive (=BASE+density/4), immune-to-type=0, immune-to-
+DIFFERENT-type still positive (counter), denser→higher, capped at MAX;
+integration (5) — no-actor straight-through (back-compat), with-actor
+detours, immune-actor straight-through, gas-only-route still traverses
+(soft cost, not a wall), no-gas actor-param is a no-op (counter).
+
+**Regression:** 99/99 across AI + gas suites (FindPath/MoveToGoal/
+WanderGoal/AIHelpers signature change broke nothing — the `actor=null`
+default keeps every existing caller byte-identical).
+
+**G.11 SELF-REVIEW (§5) + cold-eye:**
+- ⚪ smart/dumb split, Unbreathing exemption, adjacent-cell weight all
+  deferred (documented Qud-divergences above).
+- 🔵 Perf: alloc-free `ForCell` (no LINQ/event), invoked only when
+  `actor != null`; A* is per-NPC-per-turn. Acceptable per PERF-FOUNDATION.
+- 🔵 The goal cell now gets a `GetCell` fetch (was skipped pre-G.11);
+  harmless — the gas penalty on the destination is identical for all
+  candidate paths so it can't change the chosen route. Cell fetch
+  hoisted so non-goal cells aren't fetched twice.
+- Cold-eye Q1-Q4: actor param mirrors the existing `ignoreCreatures`
+  optional-param convention; immunity branches + gas/no-gas + cap all
+  counter-tested; constants match doc. 0 findings.
+
+**Files:**
+- NEW `Assets/Scripts/Gameplay/AI/GasNavigationWeight.cs`
+- MOD `Assets/Scripts/Gameplay/AI/FindPath.cs` (+`actor` param + penalty hook + hoisted cell fetch)
+- MOD `Assets/Scripts/Gameplay/AI/Goals/MoveToGoal.cs` / `WanderGoal.cs` / `AIHelpers.cs` (+actor)
+- NEW `Assets/Tests/EditMode/Gameplay/AI/GasNavigationWeightTests.cs` (12 tests)
+
+---
+
+## GAS SYSTEM COMPLETE (G.1–G.11, G.12)
+
+All planned phases shipped. Final state:
 - 6 gas behavior types (Poison, Stun, Confusion, Cryo, Sleep,
   FungalSpores, Plasma) + dispersal/merge/dissipation engine + wind
   coupling + outgassing-on-fire + defenses (mask/immunity) + throwable

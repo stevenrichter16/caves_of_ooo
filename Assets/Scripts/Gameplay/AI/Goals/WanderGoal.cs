@@ -55,7 +55,8 @@ namespace CavesOfOoo.Core
                     if (rx == myPos.x && ry == myPos.y)
                         continue;
 
-                    var path = FindPath.Search(zone, myPos.x, myPos.y, rx, ry);
+                    var path = FindPath.Search(zone, myPos.x, myPos.y, rx, ry,
+                        actor: ParentEntity); // G.11: wander avoids gas
                     if (!path.Usable)
                         continue;
 

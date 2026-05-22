@@ -403,7 +403,8 @@ namespace CavesOfOoo.Core
             // needed, so we naturally handle moving targets.
             // ignoreCreatures=true: combat approach should route around walls but
             // through creature-occupied cells (creatures move, paths recompute).
-            var path = FindPath.Search(zone, myX, myY, targetX, targetY, ignoreCreatures: true);
+            var path = FindPath.Search(zone, myX, myY, targetX, targetY, ignoreCreatures: true,
+                actor: entity); // G.11: combat approach prefers gas-free cells
             if (path.Usable && path.Steps.Count > 0)
             {
                 var (pdx, pdy) = path.Steps[0];
