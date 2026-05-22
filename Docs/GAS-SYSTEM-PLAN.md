@@ -1809,3 +1809,52 @@ gas suites. All green.
 - MOD `Assets/Scripts/Gameplay/Materials/GasSystem.cs` (3 helpers + 4 plumb points + diag)
 - NEW `Assets/Tests/EditMode/Gameplay/Materials/GasWindCouplingTests.cs`
 - MOD `Docs/GAS-SYSTEM-PLAN.md` (G.10 plan + implementation log)
+
+---
+
+### G.12 — Adversarial sweep + bench + cold-eye (IN PROGRESS)
+
+The closing audit milestone. Three gates: a dedicated adversarial
+sweep, a deterministic self-auditing bench, and the cold-eye review
+(both angles).
+
+#### G.12a (this commit) — Adversarial sweep + 🔴 save-bug fix
+
+`GasSystemAdversarialTests.cs` — **28 tests** across the bug-class
+taxonomy: state atomicity (MergeChunk conservation/capping, Density
+clamp, max-Level), parser malformed inputs (registry/factory: unknown/
+null/empty id, uninitialized, malformed JSON, empty array), boundary/
+null safety (ProcessGasBehavior/OnTickEnd/Dissipate null args),
+mid-tick death (thin gas dissipates mid-tick; snapshot-iterate chained
+spread), cross-actor (creator-in-own-gas IS affected — Qud GasPoison
+parity; null creator), stacking (all 4 gas effects' OnStack:
+PoisonedByGas/AsleepByGas max-duration, FungalInfection preserve-clock,
+CoatedInPlasma larger-duration), save/load reach (GasPoolPart +
+BurnOffGasPart public-field round-trips), probability boundaries
+(negative wind → random, attempts ≥ 1), multi-instance independence.
+
+**🔴 FOUND A REAL BUG (CLAUDE.md adversarial gate working as designed):**
+`Adversarial_GasPoolPart_Density_RoundTrips` failed RED
+(`Expected: 77 But was: 0`). `GasPoolPart.Density` is a property backed
+by a **private** `_density`; `SaveGraphSerializer.WritePublicFields`
+walks public FIELDS only, so the backing field was dropped on save —
+**every gas cloud reloaded at Density 0 and dissipated on the next
+tick** (save inside a poison cloud → cloud gone on reload). This was a
+latent G.2 bug, live since the foundation, invisible to all 254 prior
+gas tests (none round-tripped a cloud).
+
+**Fix:** made `_density` public so `WritePublicFields` captures it;
+`Density` stays a property for the runtime clamp + `GasDensityChange`
+event. Source comment credits the adversarial test. 28/28 GREEN; full
+gas regression 282/282.
+
+**Honesty bound:** 0 further bugs across the other 27 probes does NOT
+prove the system bug-free — bounded by imagined bug classes. The
+27 green probes are now permanent regression infrastructure pinning
+MergeChunk conservation, parser robustness, the stacking contracts,
+and the public-field round-trips.
+
+**Files:**
+- MOD `Assets/Scripts/Gameplay/Materials/GasPoolPart.cs` (`_density` → public; save-bug fix)
+- NEW `Assets/Tests/EditMode/Gameplay/Materials/GasSystemAdversarialTests.cs` (28 tests)
+- MOD `Docs/GAS-SYSTEM-PLAN.md` (G.12a log)

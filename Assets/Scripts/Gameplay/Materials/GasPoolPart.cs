@@ -69,7 +69,16 @@ namespace CavesOfOoo.Core
                 }
             }
         }
-        private int _density;
+
+        // Save-backing field for the Density property. MUST be public:
+        // SaveGraphSerializer.WritePublicFields (Save path) walks public
+        // FIELDS only, and a property's private backing field is silently
+        // dropped — which reloaded every gas cloud at Density 0, so it
+        // dissipated on the next tick (save inside a cloud → cloud gone).
+        // Latent save bug surfaced by GasSystemAdversarialTests
+        // (Adversarial_GasPoolPart_Density_RoundTrips). Mutate via the
+        // Density property to keep the clamp + GasDensityChange event.
+        public int _density;
 
         /// <summary>Power tier of the gas (Qud parity). Drives effect
         /// magnitude in G.5+ (e.g. PoisonGas Level 2 deals 4/turn vs
