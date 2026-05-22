@@ -1858,3 +1858,87 @@ and the public-field round-trips.
 - MOD `Assets/Scripts/Gameplay/Materials/GasPoolPart.cs` (`_density` → public; save-bug fix)
 - NEW `Assets/Tests/EditMode/Gameplay/Materials/GasSystemAdversarialTests.cs` (28 tests)
 - MOD `Docs/GAS-SYSTEM-PLAN.md` (G.12a log)
+
+#### G.12b (this commit) — Self-auditing bench + deterministic validation
+
+`GasDispersalTestBench` — a self-auditing scenario (per the
+`MCP_PlayMode_Testing_Strategy.md` playbook). One launch runs three
+deterministic audit dimensions and emits one `gasbench/*` diag record
+per cell (runId-stamped, Rule-8): **ApplyAudit** (all 6 behavior gas
+types dose a fresh dummy), **DispersalAudit** (one cloud's lifecycle:
+decay → spread → dissipate, seeded RNG), **DefenseAudit** (bare/masked/
+immune). Loud Rule-4 precondition: aborts with `MatrixAuditSkipped` if
+the registry is unavailable — never a phantom all-zero matrix.
+
+**Validated DETERMINISTICALLY in EditMode** (`GasDispersalTestBench
+AuditTests`, 4 tests) rather than via a live Play run. The bench's
+`EnsureGasRegistry` loads the defs via `Resources.LoadAll` (which works
+in the EditMode harness), so the audit test runs the FULL matrix and
+asserts the diag records — superior to a live Play audit: CI-friendly,
+focus-independent, and it pins the matrix logic as a regression target.
+
+**Why not the live Play audit (Rule 7):** attempted it via the menu
+item; Play mode entered and GameBootstrap ran (console showed "Loaded
+7 gas file(s)") but crawled because the editor window isn't focused in
+this autonomous context (the documented deferred-domain-reload trap —
+needs user focus). The EditMode-harness validation is the equivalent
+proof and doesn't depend on focus.
+
+**🔵 SECOND latent issue caught by the audit test:** the bench's
+`gasbench` diag category was not in `Diag.DefaultOnCategories`, so
+every bench record was silently dropped (`IsChannelEnabled` early-out)
+— a live run would have produced a phantom-EMPTY matrix. Added
+`"gasbench"` to the enabled list. Same bug-class as the G.5 "gas"
+channel gap; the deterministic audit test surfaced it immediately
+(0 records → fix → 4/4).
+
+**Files:**
+- NEW `Assets/Scripts/Scenarios/Custom/GasDispersalTestBench.cs`
+- NEW `Assets/Tests/EditMode/Gameplay/Scenarios/GasDispersalTestBenchAuditTests.cs` (4 tests)
+- MOD `Assets/Scripts/Shared/Utilities/Diag.cs` (+`"gasbench"` category)
+- MOD `Assets/Editor/Scenarios/ScenarioMenuItems.cs` (menu entry)
+- MOD `Assets/Tests/EditMode/Gameplay/Scenarios/ScenarioCustomSmokeTests.cs` (smoke test)
+
+#### G.12c — Cold-eye review (both angles)
+
+**Angle A (bug-class taxonomy):** delivered as the 28-test adversarial
+sweep (G.12a) — null safety, atomicity, parser, mid-tick death,
+stacking, save/load, probability. Found + fixed the Density save bug.
+The audit test (G.12b) found the gasbench-category gap. Net: **2 latent
+bugs surfaced + fixed**, 27 + 4 probes pinned as regression
+infrastructure.
+
+**Angle B (Qud-parity-first):** confirmed across the port —
+`ProcessGasBehavior` ↔ Gas.cs:204-319 (dispersal + wind), `IsMerge
+Compatible` ↔ Gas.IsGasMergeable, `RunFilterChain` ↔ GasPoison.cs:96
+(self-guard only, **creator NOT excluded** — verified, matches Qud),
+`BurnOffGasPart` ↔ BurnOffGas.cs, wind ↔ Gas.cs:214-313. Documented
+divergences (all CoO-deliberate, no gameplay-contract break):
+- ⚪ No `Temporary`/`Phase` carry-over on spread (Gas.cs:302-303) — CoO
+  has neither system.
+- ⚪ No `GasPressureOut/In` equalization for Stable gas (Gas.cs:257-258)
+  — CoO `Stable` = no-decay only; stable gas still spreads normally.
+- ⚪ No `WindAffectsGasDispersal` global gate — windSpeed=0 default is
+  the implicit gate.
+- ⚪ `BlowAwayGasPart` cut (no Qud equivalent).
+- ⚪ Creator-exclusion is GasFungalSpores-specific in Qud; CoO relies on
+  the already-infected check for the contagion path (functionally
+  equivalent; a thrown-spore-grenade-creator edge differs negligibly).
+
+**Cold-eye verdict:** 0 NEW findings beyond the 2 the adversarial +
+audit gates already surfaced and fixed.
+
+---
+
+## GAS SYSTEM COMPLETE (G.1–G.10, G.12)
+
+All planned phases shipped except G.11 (AI gas-avoidance navigation),
+which the user explicitly deferred. Final state:
+- 6 gas behavior types (Poison, Stun, Confusion, Cryo, Sleep,
+  FungalSpores, Plasma) + dispersal/merge/dissipation engine + wind
+  coupling + outgassing-on-fire + defenses (mask/immunity) + throwable
+  grenades + on-hit emission.
+- ~310 gas tests (incl. 28 adversarial + 4 bench-audit). 2 latent bugs
+  found + fixed by the audit gates (Density save round-trip; gasbench
+  diag category).
+- Self-auditing bench + showcase scenarios for manual play.

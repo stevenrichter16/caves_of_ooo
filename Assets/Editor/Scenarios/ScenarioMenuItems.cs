@@ -112,6 +112,10 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_GasSystemShowcase()
             => ScenarioRunner.Launch<GasSystemShowcase>();
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Gas Dispersal Test Bench (self-auditing: diag_query category=gasbench)", priority = 114)]
+        private static void Launch_GasDispersalTestBench()
+            => ScenarioRunner.Launch<GasDispersalTestBench>();
+
         [MenuItem("Caves Of Ooo/Scenarios/Items/Item Enhancement Showcase (Phase E.1–E.3 — minerals + Tinker + faction trade)", priority = 120)]
         private static void Launch_ItemEnhancementShowcase()
             => ScenarioRunner.Launch<ItemEnhancementShowcase>();

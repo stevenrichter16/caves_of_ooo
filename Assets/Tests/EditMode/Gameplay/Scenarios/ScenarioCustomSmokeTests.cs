@@ -277,5 +277,8 @@ namespace CavesOfOoo.Tests.Scenarios
 
         [Test] public void GasSystemShowcase_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new GasSystemShowcase().Apply(FreshContext()));
+
+        [Test] public void GasDispersalTestBench_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new GasDispersalTestBench().Apply(FreshContext()));
     }
 }
