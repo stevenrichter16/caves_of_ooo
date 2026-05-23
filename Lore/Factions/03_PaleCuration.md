@@ -1,5 +1,7 @@
 # 04.03 — Pale Curation
 
+> **Authority:** Phase-history faction document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
+>
 > Phase 4.03 of the lore project. Third per-faction design doc. **Salted-founded; the preservation infrastructure of the world; parent of the Imminent Archive Catchers** (`Lore/Factions/09_ImminentArchive.md`).
 >
 > Where the Palimpsest holds memory in *record* and the Choir dissolves it into *substrate*, Pale Curation holds memory in *the preserved body itself.* The vessel is the message. This is the precise doctrinal inverse of the Palimpsest — and the reason the Salted and the Reader, once comrades, have not spoken in ~1010 years.
@@ -128,7 +130,7 @@ Preservation directly opposes consumption. Salt-Cured bodies resist mycelial dis
 The deepest internal matter. Covered fully in `09_ImminentArchive.md`. The essential fact for Pale Curation: **the Catchers are the Salted's theological children, and she will not disown them, and she will not endorse them, and her silence is the faction's open wound.**
 
 - The Catchers' founding logic (~Gen 27) is *the Salted's own act extended*: she preserved herself while alive; therefore pre-mortem preservation is sanctioned. **The mainline rejects the conclusion but cannot deny the premise** — the Salted *did* preserve herself alive.
-- **Why the Salted will not rule.** Open at Phase 1 level; this doc commits a soft answer (Phase 6 may refine): *her silence is not indecision; it is guilt.* She knows the Catchers are her reflection. She knows her self-preservation created them. She cannot disown them (they are doing what she did); she cannot endorse them (what they do to the unwilling is monstrous). So she is silent — and her silence is a wound she shares, in shape, with the Reader's silence. **The two ancient comrades both refusing to settle a matter involving both their factions is the closest thing to coordination they have managed in a thousand years.** *They are, even estranged, still synchronized in their grief.*
+- **Why the Salted will not rule.** Later canon keeps this answer: *her silence is not indecision; it is guilt.* She knows the Catchers are her reflection. She knows her self-preservation created them. She cannot disown them (they are doing what she did); she cannot endorse them (what they do to the unwilling is monstrous). So she is silent — and her silence is a wound she shares, in shape, with the Reader's silence. **The two ancient comrades both refusing to settle a matter involving both their factions is the closest thing to coordination they have managed in a thousand years.** *They are, even estranged, still synchronized in their grief.*
 
 ### Saccharine Concord — major partner
 
@@ -225,7 +227,7 @@ Lost by:
 ### Late-game arc
 
 - **The Reader-Salted reconciliation (Pale Curation side).** The player builds trust with the Salted. The first messenger between the two gods in a thousand years (the Palimpsest side has the Estrangement-Bearers; the Pale Curation side has *no one* — the Salted has no equivalent sub-sect because she ordered none; *the player is the first to even attempt it from her side*).
-- **The seventh's-body quest.** If the Sorters' grail is pursued to its end, the player may find — or definitively fail to find — the seventh's body. *This is one of the most consequential Pale Curation arcs* and ties directly into whether the Renewal ending's Naming-inheritance can be filled by a found-and-preserved seventh (per Phase 1 v2's Naming-inheritance options; Phase 6 commits).
+- **The seventh's-body quest.** If the Sorters' grail is pursued to its end, the player may find — or definitively fail to find — a body they believe could serve as the seventh vessel. Later canon frames any such use as a **flawed vessel-path** Renewal, not the true answer Naro understood.
 
 ### Ending-aligned arcs
 
@@ -235,11 +237,11 @@ Lost by:
 
 ---
 
-## IX. Open questions
+## IX. Later settlements and writing notes
 
-- **The Salted's mortal name.** Open per Phase 1 v2. *(Soft recommendation: her name **is** on her file — but the file's lead-line is "[unrecorded]" for her last words, not her name. Her name is known; her last words are not. The contrast with the Reader, whose name is publicly remembered, and the Wedded, whose name is forgotten: the Salted's name is *filed.* Of course it is.)*
-- **Why exactly the Salted will not rule on the Catchers.** This doc commits the soft answer (guilt; they are her reflection). Phase 6 may refine — e.g., whether a player can *make* her rule, and what it would cost her.
-- **Whether the seventh's body exists and can be found.** Phase 6 commits. *(Ties to the Sorter grail and the Renewal Naming-inheritance. Strong recommendation: leave it genuinely uncertain until very late; the Sorters may be right or may have spent centuries on a body that never existed.)*
+- **The Salted's mortal name.** Later canon names her **Othren**. Her name is filed; her last words remain "[unrecorded]."
+- **Why exactly the Salted will not rule on the Catchers.** Settled as guilt: they are her reflection. Whether a player can force a ruling, and what it costs her, remains a quest-design choice.
+- **Whether the seventh's body exists and can be found.** Keep this genuinely uncertain until very late. If the player uses a found/preserved vessel for Renewal, it belongs to the flawed vessel-path, not the true practice-path.
 - **The contents of the Salted's rare non-"continuing" file-lines.** Over ~600 years, the annual ceremony has *occasionally* recorded something other than "Status: continuing." What those lines say is open. *(Soft recommendation: the player can read the full file at high reputation; the rare deviating lines, read in sequence, tell a fragmentary thousand-year story of the Salted's grief — and at least one of them is, unmistakably, about the Reader.)*
 - **Whether Stone Burial and Pale Curation can ever reconcile.** Open. Probably not; the doctrinal opposition is total.
 

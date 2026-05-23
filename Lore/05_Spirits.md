@@ -1,5 +1,7 @@
 # 05 — Spirits & Cosmic Actors
 
+> **Authority:** Phase-history document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
+>
 > Phase 5 of the lore project. The **cosmic-actor layer**: the entities that are neither factions (Phase 4) nor gods (the Six, Phase 1). Covers the three Spirits (Inquiry / Bloodlust / Apatheia), Urqu deepened, the First Root's agency, the Tree's residual presence, the Branchwork, and the lesser place-bound entities.
 >
 > Inherits: Phase 1 (the Felling; the Six; Urqu as the unborn seventh god), Phase 2 v2 (Strangeness Tiers; Urqu as a distributed infection of places), Phase 3 (the Thinning; the Great Manifestation), Phase 4 (the factions' stances on the Spirits; the Bloom as Urqu's agriculture; Tent-Right's oath as anti-Urqu field).

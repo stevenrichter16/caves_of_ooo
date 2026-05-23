@@ -1,5 +1,7 @@
 # 04.02 — The Palimpsest
 
+> **Authority:** Phase-history faction document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
+>
 > Phase 4.02 of the lore project. Second per-faction design doc. **Structural mirror to the Rot Choir** (`Lore/Factions/01_RotChoir.md`) — the central rivalry's other side.
 >
 > Where the Choir is *patient hunger* and *substrate kindness*, the Palimpsest is *tired grief* and *desperate care*. Both are responses to the same loss: the world's memory shattered when the Tree fell. They disagree fundamentally about whether memory should be **held** (Palimpsest) or **eaten** (Choir).
@@ -16,7 +18,7 @@ The Palimpsest is the **first-ascended faction** by Strike-order (the First Stri
 
 Per Phase 1 v2:
 
-- **Then.** A pre-Felling scholar. *(Their pre-Felling specialty is open — Phase 7; soft recommendation: a transcriber of oral histories, someone who already spent their mortal life recording what others said. The ascension would then be the *intensification* of what they already were.)* The Tree's dreams summoned them; they gathered at the Felling-Site; they took the First Strike. **In the moment of striking they ascended into Memory** — the Tree's capacity for naming-and-recording, the function by which things stay coherent through time.
+- **Then.** A pre-Felling scholar. Later canon names them **Maeleth**. Their exact pre-Felling specialty remains a writing-detail seed; the strongest version is a transcriber of oral histories, someone who already spent their mortal life recording what others said. The Tree's dreams summoned them; they gathered at the Felling-Site; they took the First Strike. **In the moment of striking they ascended into Memory** — the Tree's capacity for naming-and-recording, the function by which things stay coherent through time.
 - **The first year.** The Reader did not pause to grieve. Within hours of the Felling — *while the cataclysm was still beginning, the flood not yet at its crest, the leaf-light failing for the first time* — the Reader was already *recording.* The Palimpsest's earliest continuous archive begins literally that first day, with first-person accounts of the Felling itself, transcribed in shaking handwriting on bark and salvaged stone. **The Reader understood Memory immediately and worked desperately to record the cataclysm before it became unrecorded.** The other Five took weeks or years to begin their distinctive work. The Reader was working in the first hour.
 - **The withdrawal (Gen 12-15, ~years 360-450).** Per Phase 3, the Reader was the second of the Six to begin the long transformation into pure function (after the Wedded's earlier substrate-distribution). The Reader's withdrawal was *gradual* — they kept a body for ~360 years, increasingly distributed in their attention, until the body itself became more *a habit they kept* than a self they inhabited. The body died (or was retired; the Palimpsest's archive is uncharacteristically vague on this) somewhere between Gen 12 and Gen 15. **The Reader has not had a body in ~700 years.**
 - **Now.** **The Reader exists across every Palimpsest archive in the world.** Their consciousness is distributed through inscription — every sufficiently-significant Palimpsest record carries a thread of their attention; every long transcription job pulls more of their attention to one place. When a Palimpsest scribe transcribes a dying elder's final testimony, *the Reader is there*, in the work itself. When a sealed file is opened by a senior archivist, the Reader sees what is inside. When an Ink-Bathed body is read by a Body-Reader, the Reader reads through the scribe's eyes.
@@ -181,21 +183,13 @@ The Bloom kills scribes specifically. *Bloomed scribes produce parody-scribe fal
 
 - **The Bloom-detection protocols are themselves a major Palimpsest internal system.** A Field Scribe who returns with records that fail detection is *isolated*, not condemned — they may have been infected and recovered, or may be Bloomed unaware. The protocol is to preserve them in a sealed-but-recoverable state until the Choir can examine them (the Choir-Palimpsest cooperation on Bloom matters is one of the rare warm contacts between the two).
 
-### Inkbound (open) — possibly the strongest internal Palimpsest debate
+### Inkbound — committed Palimpsest sub-sect
 
-**Phase 4 commits whether to introduce the Inkbound; this section is the lead-in to that decision.**
+`10_Inkbound.md` commits the decision this section originally deferred: the Inkbound are **not** a separate faction. They are the Body-Readers and Silent Order understood together as the Palimpsest's most extreme sub-sect.
 
-The Inkbound, if introduced, would be a Palimpsest-adjacent faction that *takes the body-as-archive principle to a sacred extreme* — the skin-page Ink-Bathed scribe tradition (per IDEAS.md): scribes who in death become the manuscript. The Reader's own Body-Reader sub-tradition is the *Palimpsest's* version of this practice; the Inkbound would be a *splinter that went further.*
+The Inkbound take the body-as-archive principle to a sacred extreme — the skin-page Ink-Bathed scribe tradition (per IDEAS.md): scribes who in death become the manuscript. The Reader's own Body-Reader sub-tradition is the Palimpsest's version of this practice; the Inkbound name is the internal label for the sect that goes furthest.
 
-Three possible relationships:
-
-- **Sub-sect of Palimpsest.** The Inkbound are *not* a separate faction; they are the Body-Readers' deeper practice, with the Silent Order as the most extreme expression. **No Phase 4.10 doc needed; fold their content into here.**
-- **Separate faction, splintered from Palimpsest.** A historical schism (probably Gen 7-9, after the Pale Curation Schism but before the First Persecution) produced the Inkbound as a distinct institution. **Phase 4.10 needed.** They would be partial-Naming-heirs (per Phase 1 v2 "Bet 6 retroactively"), tracing to a sub-First who performed only a symbolic strike.
-- **Separate faction, not Palimpsest-descended.** They emerged from somewhere else entirely. **Less satisfying given the Phase 1 v2 framing; not recommended.**
-
-**My recommendation:** *sub-sect of Palimpsest.* The Body-Readers + the Silent Order, viewed together, *are* the Inkbound. Folding them in keeps the faction count tight, makes the existing Inkbound IDEAS.md content canonical without a new doc, and lets the Inkbound's most-sacred-practice content live inside the Palimpsest's structure (which is doctrinally appropriate — it's an *extreme version of Palimpsest practice*, not a different project). The "partial Naming-heirs" framing can still apply within Palimpsest: the Body-Readers + Silent Order *as a sub-sect* are the Naming-adjacent partial-inheritors.
-
-*Phase 4.10 will commit. Strong recommendation: fold in.* If you disagree, push back now and I write the standalone doc.
+The "partial Naming-heirs" framing can still apply inside the Palimpsest: the Body-Readers + Silent Order as a sub-sect are Naming-adjacent partial-inheritors, but they do not create a new institutional surface.
 
 ---
 
@@ -216,7 +210,7 @@ Three possible relationships:
 
 In rough chronological order:
 
-1. **The seasonal scribe at Sill** (Phase 3 inciting context). The player's first Palimpsest contact. The scribe's name is open (Phase 7). They are unassuming, robed plainly, with ink-stained fingers. *They are the first NPC who can explain the sari... sari... when Sill hears it.*
+1. **The seasonal scribe at Sill** (Phase 3 inciting context). The player's first Palimpsest contact. Their exact name is a writing-detail seed. They are unassuming, robed plainly, with ink-stained fingers. *They are the first NPC who can explain the sari... sari... when Sill hears it.*
 2. **Witness contracts.** Early-game: Field Scribes pay drams for the player to deliver witness-accounts — testimonies the scribe can transcribe. This is the player's first paid Palimpsest work.
 3. **Quillhold arrival.** Mid-game. The Primary Archive. Multiple available activities: archive-work paid contracts, body-reading observation, Re-Membering ritual attendance, dialogue with senior Archive-Masters. *The player can be hired as a temporary scribe* (a multi-quest arc).
 4. **The Reader's first channel.** At sufficient Palimpsest reputation and during a sufficiently-deep archival task, the player will be addressed *directly* by the Reader through whichever scribe is the channel. The voice is older, vaster, addresses the player by name (if the player has had their name witnessed-and-transcribed in any Palimpsest record — which they will have if they did the early-game witness contracts).
@@ -282,8 +276,8 @@ Through *named scribes* in a *recognizable hierarchy.* The Palimpsest is the mos
 ### Late-game arc (Tier 3-4; high reputation)
 
 - **The Salt-Vault scribe-station.** The player meets the Estrangement-Bearers. They explain the practice — the one-sided correspondence, the Reader's silence, the Salted's silence. **The player can offer to carry a message.** The Estrangement-Bearers have never had an outsider offer this before; their response is complicated. (Some will refuse to give a message; some will offer one tentatively; the player must build their trust.)
-- **The Reader-Salted mediation arc.** A long, multi-quest arc. The player must build deep trust with the Reader (through high-reputation Palimpsest work) and with the Salted (through Pale Curation work, including possibly bringing her a preserved body of personal significance). When both gods trust the player, they will *allow* the player to speak a single sentence each addressed to the other. *Whether this initiates reconciliation is open* — Phase 6 commits.
-- **The Lost Library rediscovery.** Multi-quest. The player follows Searcher leads, develops new investigation methods, ultimately rediscovers a Lost Library. **The contents matter enormously** — pre-Felling texts, possibly the truth about the Seventh, possibly the truth about why the Tree commanded its felling. *Phase 6 commits the specific contents.*
+- **The Reader-Salted mediation arc.** A long, multi-quest arc. The player must build deep trust with the Reader (through high-reputation Palimpsest work) and with the Salted (through Pale Curation work, including possibly bringing her a preserved body of personal significance). Later canon makes reconciliation a true-Renewal consequence; this arc is the player-facing route to making that possible.
+- **The Lost Library rediscovery.** Multi-quest. The player follows Searcher leads, develops new investigation methods, ultimately rediscovers a Lost Library. **The contents matter enormously** — pre-Felling texts, the truth about Naro, and possibly the Tree's recorded reason for commanding the Felling.
 - **The Unforgetting confrontation.** If the player has been Mainline-aligned, the Unforgetting may attempt to *take* the rediscovered Library by force. If the player has been Unforgetting-aligned, the Mainline may attempt to *re-seal* the Library before it can be read. The player's choice here is faction-defining.
 - **The Reader's verdict on the Unforgetting.** Late. The Reader has not channeled an explicit position on the Unforgetting in ~30 years. *If the player reaches sufficient depth, the Reader can be asked.* The Reader's answer determines the Unforgetting's institutional fate.
 
@@ -295,15 +289,15 @@ Through *named scribes* in a *recognizable hierarchy.* The Palimpsest is the mos
 
 ---
 
-## IX. Open questions
+## IX. Later settlements and writing notes
 
-- **The Reader's mortal name.** Open per Phase 1 v2. *(Per the Choir doc's recommendation: leave the Wedded's mortal name forgotten by everyone. The Reader's case is different — the Reader is the god of Memory; their name **should** be remembered. Soft recommendation: their name **is** remembered, in every Palimpsest archive, and is publicly known. The contrast with the Wedded's forgotten name is itself meaningful — the god of Memory remembers themselves; the god of Substrate cannot.)*
-- **The Reader's pre-Felling specialty.** Probably a transcriber of oral histories; Phase 7 commits.
-- **Whether the Reader-Salted reconciliation is achievable in a single run.** Phase 6 commits. *(Soft recommendation: yes, in principle, but it requires player work measured in *most of a run*; most players will not achieve it; the players who do experience one of the most-emotionally-loaded moments in the game.)*
-- **Whether the Reader ever spoke with the Counter privately.** Phase 6 commits. *(Soft recommendation: yes, once; the only record is in a sealed Palimpsest file the player can find late.)*
-- **The contents of the Lost Libraries.** Phase 6 commits. *(Strong recommendation: pre-Felling texts that bear on the Seventh question; possibly the Tree's actual recorded reason for the Felling.)*
-- **The Inkbound's status — sub-sect or separate faction.** Phase 4.10 commits. *(My recommendation: sub-sect — Body-Readers + Silent Order; no separate doc needed.)*
-- **The Reader's true position on the Unforgetting.** Phase 6 commits. *(Open recommendation: the Reader's response, when finally given, surprises the Mainline — perhaps the Reader's wound includes *desire* to undo the un-remembering, and the Reader has been unable to bring themselves to authorize it.)*
+- **The Reader's mortal name.** Later canon names them **Maeleth**, remembered everywhere.
+- **The Reader's pre-Felling specialty.** Still a writing-detail seed; strongest version remains transcriber of oral histories.
+- **Reader-Salted reconciliation.** Achievable through the true-Renewal route; most runs should never reach it.
+- **Whether the Reader ever spoke with the Counter privately.** Keep as a sealed-file writing seed unless a quest needs the scene.
+- **The contents of the Lost Libraries.** Later canon points them toward Naro, the Reader's cover-up, and the Tree's actual reason for the Felling.
+- **The Inkbound's status.** Settled: Palimpsest sub-sect, not a separate faction.
+- **The Reader's true position on the Unforgetting.** Keep as a late Palimpsest arc-state: the Reader's response can still surprise the Mainline, but it is no longer a future lore-phase blocker.
 
 ---
 
@@ -315,4 +309,4 @@ Through *named scribes* in a *recognizable hierarchy.* The Palimpsest is the mos
 
 ---
 
-*Phase 4.02 — Palimpsest — status: complete. Pair with `01_RotChoir.md` complete. Central rivalry committed. Next pair: Pale Curation (4.03) + Imminent Archive Catchers (4.09); both Salted-traceable. Checkpoint moment.*
+*Phase 4.02 — Palimpsest — status: complete as phase history. Pair with `01_RotChoir.md` complete. Central rivalry committed; later canon folds the Inkbound into this faction.*

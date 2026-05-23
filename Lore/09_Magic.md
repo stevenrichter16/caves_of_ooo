@@ -1,5 +1,7 @@
 # 09 — Magic & Metaphysics
 
+> **Authority:** Phase-history document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
+>
 > Phase 9 of the lore project. The **synthesis of power** — how magic works in CoO, unifying the systems earlier phases designed piecemeal (Memory Consumption, Re-Membering, the Held Breath, preservation, Spirit-Pacts, stone-infusion, Urqu-bargains, Choir/Bloom status effects) into one coherent metaphysics grounded in the Phase 5 cosmology.
 >
 > Inherits all prior phases; most directly Phase 5 (the world is *bound* over a pre-Tree chaos; Naming is the binding; the Spirits are pre-Tree drives) and Phase 6 (incompletion = Urqu's substrate; the completion-ratio as the world-lever).

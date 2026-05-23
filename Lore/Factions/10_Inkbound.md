@@ -1,6 +1,8 @@
 # 04.10 — The Inkbound (formalization)
 
-> Phase 4.10 of the lore project. **A decision record, not a faction treatment.** This doc exists to *commit* the open question the Palimpsest doc (`02` §"Inkbound (open)") deferred to Phase 4: **are the Inkbound a separate faction or a Palimpsest sub-sect?** It closes Phase 4.
+> **Authority:** Phase-history faction document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
+>
+> Phase 4.10 of the lore project. **A decision record, not a faction treatment.** This doc records the decision the Palimpsest doc originally deferred: **are the Inkbound a separate faction or a Palimpsest sub-sect?** It closes Phase 4.
 >
 > **Committed: the Inkbound are a Palimpsest sub-sect.** There is no separate Inkbound institution, no separate founding god, no separate doctrine. Their content is canonical *inside* the Palimpsest's structure. This doc records the decision, the rationale, and the cross-references — and exists primarily so a future reader looking for "the Inkbound faction" finds the redirect rather than assuming an unwritten doc is missing.
 
@@ -61,11 +63,11 @@ This is a vow within the sect, not a new institution. An Inkbound is a Silent-Or
 
 ---
 
-## IV. Open questions (deferred to later phases)
+## IV. Implementation and writing notes
 
-- **The skin-page vow as player content.** Can the player take the Inkbound vow — commit their own (eventual) death-body to Ink-Bath and the archive? A Lineage-tier end-of-run choice (per IDEAS.md Lineage cross-links: method-specific descendant-readability). Phase 6/7.
-- **Whether an Inkbound's read-aloud voice is the Reader's.** `02` §279 leaves the voice-shift ambiguous (the Body-Reader's voice "may or may not be the Reader's"). For the Inkbound specifically — a scribe reading *another Inkbound's* skin-page — does the Reader speak doubly? Phase 7 (god-voice authoring).
-- **Naming-adjacency payoff.** If the Inkbound are the Palimpsest's partial-Naming-heirs (§I), does that matter at the Renewal Naming-inheritance choice (per Phase 1 v2 / Spine §350)? Could an Ink-Bathed, fully-read, perfectly-named body be a *candidate vessel* for the seventh Naming? Phase 6 — potentially a significant late-game thread. *(Soft flag: a "Re-Membered person becomes the seventh god" path already exists per Spine §352; an Inkbound skin-page scribe is the most completely-named dead in the world, which makes them a natural candidate for that path's most potent variant.)*
+- **The skin-page vow as player content.** Can the player take the Inkbound vow — commit their own eventual death-body to Ink-Bath and the archive? Treat as a Lineage-tier end-of-run choice.
+- **Whether an Inkbound's read-aloud voice is the Reader's.** `02` §279 leaves the voice-shift ambiguous (the Body-Reader's voice "may or may not be the Reader's"). For the Inkbound specifically — a scribe reading *another Inkbound's* skin-page — does the Reader speak doubly? This is god-voice authoring work.
+- **Naming-adjacency payoff.** If the Inkbound are the Palimpsest's partial-Naming-heirs (§I), they can matter as a potent variant of the flawed vessel-path Renewal: an Ink-Bathed, fully-read, perfectly-named body is a natural candidate vessel for the seventh Naming, but still a vessel, and therefore still cracked.
 
 ---
 
@@ -79,4 +81,4 @@ This is a vow within the sect, not a new institution. An Inkbound is a Silent-Or
 
 ---
 
-*Phase 4.10 — Inkbound — status: complete (decision record; committed as a Palimpsest sub-sect — Body-Readers + Silent Order + the skin-page vow; `02_Palimpsest.md` is canonical). Pair 5 (Driving Bloom + Inkbound) complete. **Phase 4 (Factions Deepened) COMPLETE** — all nine faction surfaces documented (01 Choir, 02 Palimpsest, 03 Pale Curation, 04 Concord, 05 Bower-Folk, 06 Catacomb-villagers, 07 Tent-Right, 08 Driving Bloom, 09 Imminent Archive) plus this Inkbound fold-in (10). Next: Phase 5 — Spirits & cosmic actors. Major checkpoint.*
+*Phase 4.10 — Inkbound — status: complete as phase history (decision record; committed as a Palimpsest sub-sect — Body-Readers + Silent Order + the skin-page vow; `02_Palimpsest.md` is canonical). **Phase 4 (Factions Deepened) complete** — all nine faction surfaces documented plus this Inkbound fold-in.*

@@ -1,5 +1,7 @@
 # 02 — Geography: a network of places (v2)
 
+> **Authority:** Phase-history document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
+>
 > Phase 2 of the lore project, **version 2**. Commits the world's geography as a **hand-authored network of strongly-characterized places**, not a global geometry.
 >
 > Builds on Phase 1's cosmological spine. The geography is *not arbitrary* — it is the Tree's fossil, ~1080 years on — but it is **experienced as places and journeys, not as a map-shape.**

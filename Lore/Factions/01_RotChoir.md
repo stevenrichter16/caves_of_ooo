@@ -1,5 +1,7 @@
 # 04.01 — The Rot Choir
 
+> **Authority:** Phase-history faction document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
+>
 > Phase 4 of the lore project. **One design doc per major faction.** This is the first.
 >
 > Builds on Phase 1 (the Spine), Phase 2 v2 (place-network), and Phase 3 (History). Per-faction docs commit: founding doctrine, current institutional form, leadership, internal sects, geographic anchors, inter-faction relationships, player-facing surface, and quest spine.
@@ -19,7 +21,7 @@
 7. **Tent-Right** — wasteland survivor culture; not god-founded; the three-day oath.
 8. **Driving Bloom** — Choir heresy; written *after* the Choir doc so its internal logic lands harder.
 9. **Imminent Archive Catchers** — Pale Curation splinter; written after Pale Curation so its theology lands harder.
-10. **Inkbound** — *Phase 4 will commit whether to introduce them or fold their content into Palimpsest.* The Phase 1 v2 "Bet 6 retroactive" framing (partial Naming-heirs) is on the table; final decision after the Palimpsest doc is written.
+10. **Inkbound** — committed in `10_Inkbound.md` as a Palimpsest sub-sect, not a separate faction.
 
 **Per-doc structure** (committed here for consistency):
 - **Founding** — the god, the ascension moment, the immediate post-Felling work
@@ -30,7 +32,7 @@
 - **Internal sects and variations** — the doctrinal disagreements, the regional dialects, the breakaways still inside the tent
 - **Player-facing surface** — what the player encounters; reputation system; quest-giver pattern; rewards
 - **Quest spine** — early / mid / late content; the canonical arc; the Consume/Preserve/Renewal-aligned variations
-- **Open questions** — what Phase 6 (Plot) and Phase 7 (Characters) still need to commit
+- **Implementation and writing notes** — unresolved delivery details after the canon lock
 
 ---
 
@@ -81,7 +83,7 @@ Doctrine is uniform on paper. The substrate is large and old; sub-positions exis
 
 ### The Driving Bloom is *not* a Choir sub-position
 
-Per Phase 3 and IDEAS.md: the Driving Bloom (Gen 32 breakaway) is *not* a Choir internal disagreement. It is **expelled.** The Choir suppresses the Bloom because the Bloom's hijack-individuals doctrine is the *opposite* of dissolution-into-substrate. The Bloom became Choir only in superficial mycelial-form; the Choir treats it as a perversion to be ended. See `Lore/Factions/08_DrivingBloom.md` (forthcoming) for the Bloom's view of itself.
+Per Phase 3 and IDEAS.md: the Driving Bloom (Gen 32 breakaway) is *not* a Choir internal disagreement. It is **expelled.** The Choir suppresses the Bloom because the Bloom's hijack-individuals doctrine is the *opposite* of dissolution-into-substrate. The Bloom became Choir only in superficial mycelial-form; the Choir treats it as a perversion to be ended. See `Lore/Factions/08_DrivingBloom.md` for the Bloom's view of itself.
 
 ---
 
@@ -185,9 +187,9 @@ The Choir's ~120-year internal war. The Bloom is, biologically, *Choir* — same
 - **Most of the war is invisible to the surface.** Two substrate-networks fighting in the dark, in the deep catacombs, by competitive growth, by enzyme deployment, by encasement-of-Bloomed-bodies (the Choir consumes Bloom infections preferentially, treating them as the highest-priority substrate-material).
 - **The Choir-Bloom war is one of the few situations where the Choir cooperates openly with surface factions.** The Choir will *help* a Pale Curation party clean out a Bloomed village — Choir tendrils handle the substrate-rot; Pale Curation handles the surviving humans (some of whom they preserve, some of whom they evacuate). This is the rare "good guy" Choir moment that complicates player loyalties.
 
-### Inkbound (if introduced) — even more enemy than Palimpsest
+### Inkbound — even more enemy than Palimpsest
 
-If Phase 4 commits Inkbound as a separate faction, they would be *more* hostile to the Choir than the Palimpsest is. The Inkbound's skin-page scribes (Ink-Bathed bodies that *are* the manuscript) are an *especially* offensive form of memory-hardening to the Choir — *living substrate willingly turned into permanent record.* The Choir's response would be quiet but absolute hostility. Not pursued (we have not committed the Inkbound), but flagged.
+The Inkbound are not a separate faction; `10_Inkbound.md` commits them as a Palimpsest sub-sect. They are still *more* offensive to the Choir than ordinary Palimpsest practice. The Inkbound's skin-page scribes (Ink-Bathed bodies that *are* the manuscript) are an especially hard form of memory-hardening — *living substrate willingly turned into permanent record.* The Choir's response is quiet but absolute hostility.
 
 ---
 
@@ -288,14 +290,14 @@ The Choir's rewards are doctrinally consistent — *substrate-integration*, in e
 
 ---
 
-## IX. Open questions
+## IX. Implementation and writing notes
 
-- **The Wedded's ultimate true position.** Is she truly committed to Consume, or has her old kindness (the woman she was) produced a kind of long-buried doubt? The Quiet Faction's existence suggests *some* substrate-mind nodes have heard doubt in her residual voice. Phase 6 (Plot) commits.
+- **The Wedded's ultimate true position.** Later canon keeps Selen strongly Consume-aligned but conditionally persuadable toward Renewal through the Quiet Faction / mycelial-substrate concession path. Her old kindness is not a reversal; it is the reason the persuasion is possible.
 - **What the Wedded and the Rooted actually say to each other.** They communicate constantly through substrate. The content of those communications is mostly unknown to other characters. Are they reconciled? In ongoing argument? Co-conspiring? *Late-game lore-reveal candidate, possibly through the Rooted's dream-channel to the Listening villages.*
 - **The Quiet Faction's true size.** Open whether they are a tiny minority or a substantial-but-quiet plurality. If the latter, the Choir's position on the Root may be far less unified than the surface understands.
-- **Whether voluntary integration is *fully* reversible.** Per IDEAS.md voluntary Wall-Catching exploit, the cost ceiling rises with each visit. Open: at 100% Wall-Bound, is there ANY path back, or is integration absolute? *Phase 6 commits.* (Strong recommendation: integration at 100% is absolute *for the run*; the next run's player can encounter the previously-integrated player as a substrate-elder.)
-- **The Wedded's name.** The original mortal name. Open at Phase 1 level. *Phase 7 — Characters.* (Soft recommendation: leave her name *forgotten by everyone* — even the Reader doesn't remember; even the substrate doesn't carry the name forward; this is the cosmic-horror beat that a thousand years dissolves even the name of a god. *The Quiet Faction whispers that they almost-remember it.*)
-- **Whether the Driving Bloom can be folded back into the Choir.** A late-game player-mediated reconciliation is conceivable but absolutely unsupported by the Choir's current doctrine. Phase 6 commits whether to make this a path.
+- **Whether voluntary integration is *fully* reversible.** Per IDEAS.md voluntary Wall-Catching exploit, the cost ceiling rises with each visit. Current design recommendation: integration at 100% is absolute *for the run*; the next run's player can encounter the previously-integrated player as a substrate-elder.
+- **The Wedded's name.** Later canon names her **Selen** and makes the loss of that name load-bearing: everyone has forgotten it except the Counter.
+- **Whether the Driving Bloom can be folded back into the Choir.** Final canon treats the Bloom as "no one home": it can be biologically suppressed or, after true Renewal, reduced to an ordinary disease, but not reconciled as a faction.
 
 ---
 
@@ -307,4 +309,4 @@ The Choir's rewards are doctrinally consistent — *substrate-integration*, in e
 
 ---
 
-*Phase 4.01 — Rot Choir — status: complete. Foundation set for Palimpsest doc (4.02) as the structural mirror.*
+*Phase 4.01 — Rot Choir — status: complete as phase history. Foundation set for Palimpsest doc (4.02) as the structural mirror.*

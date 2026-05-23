@@ -1,6 +1,8 @@
 # 00 — Canon: the current state of the tepui-thread world
 
-> Phase 0 of the lore project. **Audit and crystallization** of everything currently canonical in IDEAS.md and its companion design docs. No new creative material in this document — only synthesis, with `(open)` markers where decisions have not been made.
+> **Authority:** Phase-history document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
+>
+> Phase 0 of the lore project. **Audit and crystallization** of what was then treated as canonical in IDEAS.md and its companion design docs. No new creative material in this document — only synthesis, with `(open)` markers where decisions had not yet been made. Later canon, especially `Lore/10_Bible.md`, supersedes this audit where decisions changed.
 >
 > This file is the foundation. Every later lore document refers back to here. When a contradiction surfaces in Phase 1+, this is where the resolution gets recorded.
 
@@ -30,7 +32,7 @@ The thread inherits from CoO's existing universe (the Choir / Palimpsest / Pale 
 
 **Time after the Felling.** The world is in a post-cataclysmic state. The Felling was not recent — generations have passed — but the *aftermath* is still active: Urqu is *what survives* of the Felling event (or what was *born* from the violence, or what was *unbound* by the loss of the Tree's containing presence). The Felling is **historical-feeling but cosmologically-still-unfolding.**
 
-**The three endings.** The player's main-quest arc resolves into one of three possible endings, tracked by the existing `KnowsThreeEndings` player property. *What the three endings ARE is open* — Phase 1 will commit. The faction-readings of the Root suggest the rough shape:
+**The three endings.** The player's main-quest arc resolves into one of three possible endings, tracked by the existing `KnowsThreeEndings` player property. Later canon commits them as **Consume**, **Preserve**, and **Renewal**. The Phase-0 faction-readings of the Root suggested the rough shape:
 - **Consume the Root** (Choir, partially Concord, partially Driving Bloom)
 - **Preserve the Root** (Palimpsest, Inkbound, Pale Curation in their own way)
 - **Some third path** *(open — could be wake the First Root, could be re-enact the Felling consciously, could be something else entirely)*
@@ -82,7 +84,7 @@ The thread inherits from CoO's existing universe (the Choir / Palimpsest / Pale 
 - **Pale-Salt** comes from wasteland salt-flats
 - **Glow-Quartz, Memory-Marble, Mute-Stone** are mined locally in various tepui zones
 - **Sari-Pyrite** clusters in Urqu-active zones (subtle indicator)
-- **Bower-Lapis** — *(open which region)*
+- **Bower-Starstone** — *(open which region)*
 - **Choir-Iron, Black-Gall, Spore-Block** — *(open which region; could be anywhere)*
 
 **Many-Trunk.** A single-organism forest exists somewhere (a tepui valley, per the IDEAS entry). *(Specific location open.)*
@@ -111,11 +113,11 @@ The thread inherits from CoO's existing universe (the Choir / Palimpsest / Pale 
 - **Pale Curation** emerged from a Palimpsest schism — preservation became more important than cataloging
 - **Saccharine Concord** emerged when trade became possible across post-Felling zones
 - **Catacomb-villages** emerged as people descended into sinkholes to escape something (the Felling itself? a later war? a famine?)
-- **Inkbound** *(if introduced)* emerged from a Palimpsest-adjacent literary tradition
+- **Inkbound** emerged from a Palimpsest-adjacent literary tradition and is later committed as a Palimpsest sub-sect
 
-*(All of the above is the most likely shape per the IDEAS.md cross-links, but Phase 3 will commit.)*
+*(All of the above is the Phase-0 sketch; later history and faction docs settle the current canon.)*
 
-**The Sealed Library catacombs.** Some Palimpsest sub-archives were hidden in sinkholes "to outlast a now-forgotten persecution." This implies a historical persecution event — the Palimpsest knows it happened but has lost some of the details. *(Phase 3 will commit who persecuted whom and when.)*
+**The Sealed Library catacombs.** Some Palimpsest sub-archives were hidden in sinkholes "to outlast a now-forgotten persecution." This implies a historical persecution event — the Palimpsest knows it happened but has lost some of the details. Later history commits the Lost Persecution frame.
 
 **The Driving Bloom heresy.** The Driving Bloom is a Choir breakaway sect that rejected the Choir's dissolution-into-substrate doctrine in favor of direct mind-hijack. This is a *recent* schism in cosmological time — the Choir still actively suppresses it. *(Phase 3: how recent, what triggered it.)*
 
@@ -143,7 +145,7 @@ The thread inherits from CoO's existing universe (the Choir / Palimpsest / Pale 
 
 **Bower-Folk.** Aestheticist culture/faction. Build elaborate decorated installations; value beauty over utility; collectors of colors. Resin-Cast preservation specialists. *Disposition: largely peaceful; may attempt non-consensual aesthetic preservation on players whose death-pose is "perfect" or whose preserved appearance is unusually beautiful.*
 
-**Inkbound** *(currently optional in canon; flagged as "if introduced")*. Scholarly archival faction; writes everything. The skin-page Ink-Bathed scribe tradition is theirs. They believe Urqu is *an unread letter*. *(Phase 4 will commit whether to introduce them or fold their content into Palimpsest.)*
+**Inkbound.** Later committed as a Palimpsest sub-sect, not a separate faction. The skin-page Ink-Bathed scribe tradition is theirs. They believe Urqu is *an unread letter*.
 
 **Driving Bloom.** Hostile fungal heresy. Choir breakaway. Cordyceps-style mind-hijack. Suppressed by the Choir. Player encounters as a corrupting infection. *Disposition: hostile to all; player must seek Choir help to cure infection (forced alliance dynamic).*
 
@@ -157,11 +159,11 @@ The thread inherits from CoO's existing universe (the Choir / Palimpsest / Pale 
 
 - **A surface village faction.** Surface villages exist (Tent-Right is one; the Catacomb-villagers entry mentions surface-adjacent villages). Whether they constitute a *unified* faction or are simply unaffiliated settlements is *(open)*.
 - **The Branchwork (Physarum slime-mold intelligence).** Not a faction in the social-organizational sense, but a distributed non-Choir intelligence. *Disposition: consultative; rewards alliance with route-knowledge.*
-- **Houses, Blocs, Sects.** The Blocs and Houses systems from earlier IDEAS entries are partially fleshed out but not directly tied to the tepui-thread yet. *(Phase 4 will integrate or scope-cut.)*
+- **Houses, Blocs, Sects.** The Blocs and Houses systems from earlier IDEAS entries are partially fleshed out but not directly tied to the tepui-thread yet. Treat as broader-system backlog unless a later phase adopts a specific piece.
 
 ### What is open
 
-- **Inkbound: in or out?** The "if introduced" flag is doing a lot of work. *(Phase 4.)*
+- **Inkbound status.** Later settled as Palimpsest sub-sect.
 - **Houses and Blocs integration.** *(Phase 4.)*
 - **Faction leadership.** No major faction has named leaders yet. *(Phase 4 / Phase 7.)*
 - **Inter-faction relationship matrix.** Implied throughout but never formalized. *(Phase 4.)*
@@ -190,7 +192,7 @@ The Spirits are **mechanically rivals.** High affinity with one suppresses the o
 
 ### What is open
 
-- **Whether more Spirits exist.** The Spirits entry's open question #1 anticipated more — Hunger, Mercy, Restraint, Sleep. *(Phase 5 will decide for v1.)*
+- **Whether more Spirits exist.** Later canon commits Inquiry, Bloodlust, and Apatheia as the core three; other candidates remain backlog only.
 - **The First Root's agency.** *(Phase 1 / Phase 5.)*
 - **Urqu's relationship to other dimensions of evil.** Is there *more* than Urqu? Multiple hostile cosmic actors? *(Phase 5.)*
 - **Named lesser entities.** Are there small spirits attached to specific tepuis, bogs, sinkholes? *(Phase 5.)*
@@ -397,7 +399,7 @@ The tepui-thread is **a coherent strand** within CoO's larger universe — it do
 - The combat system, skill trees, weapon mechanics (existing infrastructure)
 - The House Drama, Quest, Storylet systems (existing)
 - The currency (Drams), surface-village structure, Tinker mechanics
-- The existing Inkbound lore reference (`INKBOUND_LORE_REFERENCE.md`) is a separate import from another project and is NOT directly canonical to the tepui-thread; the IDEAS.md Inkbound mentions are flagged "if introduced" and would be a new integration
+- The existing Inkbound lore reference (`INKBOUND_LORE_REFERENCE.md`) is a separate import from another project and is not directly canonical to the tepui-thread; the later tepui-thread Inkbound are committed as a Palimpsest sub-sect in `Lore/Factions/10_Inkbound.md`
 
 **What the tepui-thread adds:**
 - The Tree / Felling / Root / First Root cosmology — a unifying mythological frame
@@ -428,9 +430,9 @@ The tepui-thread is **a coherent strand** within CoO's larger universe — it do
 
 ## Layer 12 — Open questions, ordered by load-bearingness
 
-These are the questions Phase 1+ will answer. Listed in rough dependency order (questions higher up constrain questions lower).
+These are the questions later phases answer. Listed in rough dependency order (questions higher up constrain questions lower).
 
-### The big four (Phase 1 will commit)
+### The big four (answered by later phases)
 
 1. **What was the Felling, in concrete terms?** Was it an event, an action by a being, a slow process? Who or what *did* it?
 2. **What is the First Root, concretely?** Sleeping organism? Vessel for divinity? Metaphor for a forgotten compact? Mechanically: what changes if it wakes?
@@ -494,15 +496,15 @@ This Phase 0 audit covers content from the following files:
 | `catacomb_village_design.md` | Deep-dive catacomb-village design doc (13 sections, 5 archetypal village examples) |
 | `WEAPON_RENTAL_AND_INK_SYSTEM.md` | Design doc for the shipped Ink-Rental system |
 | `Docs/WEAPON-RENTAL-SYSTEM.md` | Engineering record of the shipped Ink-Rental implementation |
-| `INKBOUND_LORE_REFERENCE.md` | (Pre-existing — imported from a separate project; NOT canonically integrated with the tepui-thread; the "Inkbound" mentions in tepui-thread IDEAS.md entries are flagged "if introduced") |
+| `INKBOUND_LORE_REFERENCE.md` | Pre-existing import from a separate project; not directly canonical to the tepui-thread. Current tepui-thread Inkbound canon lives in `Lore/Factions/10_Inkbound.md` as a Palimpsest sub-sect. |
 | `FACTION_SYSTEM.md` | (Pre-existing — broader CoO faction-system documentation) |
 | `Docs/*` | Many pre-existing CoO design docs (combat, skills, quest system, etc.) that the tepui-thread inherits from |
 
 ---
 
-## Where Phase 1 will start
+## Where Phase 1 started
 
-Phase 1 commits the cosmological spine — the answers to the big four questions in Layer 12. It produces `Lore/01_Spine.md` and locks in:
+Phase 1 committed the cosmological spine — the answers to the big four questions in Layer 12. It produced `Lore/01_Spine.md` and locked in:
 - The Felling: what it was, who did it, why
 - The First Root: what it is concretely
 - Urqu: what it is concretely

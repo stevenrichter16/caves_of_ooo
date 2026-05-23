@@ -297,7 +297,7 @@ These map onto the **lower slopes of a tepui** in the Root of the World ascent.
 
 **Combat behaviour.** Passive. Calls heavily — useful as **soundscape fauna** (a player navigating an unmapped tepui slope can locate streams by Tepui Bronze calls).
 
-**Lore significance.** **Newly-described** in real life — gives CoO an aesthetic-narrative hook: Tepui Bronzes are "still being discovered" by surface-faction biologists. The Palimpsest pays a small premium for new specimens (every catalog entry is precious). Inkbound (if introduced) treats new species as new sentences in the world's text.
+**Lore significance.** **Newly-described** in real life — gives CoO an aesthetic-narrative hook: Tepui Bronzes are "still being discovered" by surface-faction biologists. The Palimpsest pays a small premium for new specimens (every catalog entry is precious). The Inkbound sub-sect treats new species as new sentences in the world's text.
 
 **Cross-links:** **Palimpsest**, **Inkbound** (new sentences in the text).
 

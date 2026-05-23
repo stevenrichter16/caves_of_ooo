@@ -1,5 +1,7 @@
 # 04.08 — The Driving Bloom
 
+> **Authority:** Phase-history faction document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
+>
 > Phase 4.08 of the lore project. Eighth per-faction design doc, written *last among the antagonist factions and deliberately after the Choir doc* (`01`) so its heresy lands against established orthodoxy. **The headless faction; the Choir's discarded will; compulsion without a mind behind it.** Paired with the Inkbound formalization (`10`) — together they close Phase 4: the Bloom is the faction with *no god*, the Inkbound the sub-faction that *folds into another's god*.
 >
 > The Driving Bloom is an **IDEAS.md faction** (the fungal hostile breakaway; *Ophiocordyceps*-inspired; entry at IDEAS.md:399) now grounded in the Phase 1 v2 cosmology and the Choir's substrate-war (`01` §"Driving Bloom — actively suppressed").
@@ -72,7 +74,7 @@ The Bloom is *anti-anchored* — it has no capital, no stronghold, no Posy or Ta
 ## V. Inter-faction relationships
 
 - **Rot Choir** — **the defining relationship: civil war within one body.** The Bloom is biologically Choir (same mycelium, spore-form, encasement-capability) but doctrinally its opposite (per `01` §181-186). The Choir's substrate-mind treats the Bloom as a **necrosis within itself** and consumes Bloom infections preferentially (highest-priority substrate-material). **This is the rare situation where the Choir cooperates openly with surface factions** — the Choir handles the substrate-rot, Pale Curation handles the surviving humans (per `01` §186). *The "good guy" Choir moment that complicates player loyalties: the cosmic-horror cannibal-god is, against the Bloom, the lesser evil and an actual ally.*
-- **Urqu — the agriculture, the darkest thread.** **The Bloom multiplies incompletion** (every Bloomed host abandons their unfinished acts; §II), and incompletion is Urqu's substrate (Phase 1 v2). So the Bloom *feeds Urqu* — not as a servant (it has no mind to serve), but as *unwitting agriculture.* Whether this is coincidence or whether Urqu's incarnation-pressure *caused* the Gen 32 breakaway (the unborn seventh reaching into the Choir and tearing off the part that would forget) is the doc's central open question (§IX). **Soft creative bet: Urqu did not direct the breakaway, but the breakaway is *why Urqu has been doubling since the Thinning began* (per Phase 3) — the Bloom is a 120-year-old engine of incompletion that arrived exactly when the Root's field began to weaken, and the two accelerations are the same curve.** *(The Choir, having a conscience, may understand this; the Bloom never will.)*
+- **Urqu — the agriculture, the darkest thread.** **The Bloom multiplies incompletion** (every Bloomed host abandons their unfinished acts; §II), and incompletion is Urqu's substrate (Phase 1 v2). So the Bloom *feeds Urqu* — not as a servant (it has no mind to serve), but as *unwitting agriculture.* Later canon settles the relation as pressure-loop, not intent: Urqu did not direct the breakaway, but the breakaway is *why Urqu has been doubling since the Thinning began* (per Phase 3) — the Bloom is a 120-year-old engine of incompletion that arrived exactly when the Root's field began to weaken, and the two accelerations are the same curve. *(The Choir, having a conscience, may understand this; the Bloom never will.)*
 - **Pale Curation** — the human cleanup partner in Choir-Bloom war zones (per `01` §186); preservation is a Bloom-defense (Pale-Salt damages it, per IDEAS.md:807). Pale Curation's preservation-cosmology is *anti-Bloom by nature* — a fully preserved body cannot be driven.
 - **Catacomb-villagers** — the Bloom's primary victims and its most expert defenders. Villages cultivate Drosera rings + harvest enzyme reserves as the canonical defense (per `catacomb_village_design.md`); the Warden role exists partly to fight Bloom incursions; a Bloomed village is the villagers' deepest dread.
 - **Saccharine Concord** — **the moral scandal (per `04`).** The Concord *trades with the Bloom* — quietly, materials and transport — because neutrality requires refusing no business, and because there is no one in the Bloom to refuse *to*, which the Counter uses as a fig leaf. *This is the Concord's deepest compromise and the thing the Closed Accounts sect revolts against (`04` §VI). The Bloom cannot trade — it has no mind — so what the Concord "trades with" is Bloom-aligned humans (§VI), which is worse.*
@@ -149,16 +151,16 @@ There are humans who *side with* the Bloom — not Bloomed (compelled) but *will
 
 - **Consume.** The Choir wins totally — including against the Bloom; the Bloom is absorbed into the new Tree-Choir like everything else. *The Bloom is the one faction that has no stake in any ending because it has no one to have a stake — but Consume is the only ending that definitively ends it, because only the Choir can.*
 - **Preserve.** The Sleeping World is sealed and still; a preserved/arrested world is *anti-Bloom by nature* (nothing to drive). The Bloom persists only in unsealed pockets, slowly starved.
-- **Renewal.** **The load-bearing Bloom-question for the endgame:** if Renewal fills the seventh and dissolves Urqu (per Phase 1 v2), and if the Bloom is Urqu's agriculture, *does Renewal end the Bloom?* **Soft bet: Renewal removes the Bloom's cosmic purpose (Urqu no longer needs feeding) but not its biology — the Bloom becomes an ordinary, mortal, killable disease instead of an accelerating cosmic engine.** The most hopeful reading: in the renewed world, the Bloom is *just a fungus again,* and the world can finally win against it. *(Phase 6 commits.)*
+- **Renewal.** Later canon settles the Bloom-question: Renewal removes the Bloom's cosmic purpose (Urqu no longer needs feeding) but not its biology. The Bloom becomes an ordinary, mortal, killable disease instead of an accelerating cosmic engine. The most hopeful reading: in the renewed world, the Bloom is *just a fungus again,* and the world can finally win against it.
 
 ---
 
-## IX. Open questions
+## IX. Later settlements and implementation notes
 
-- **Did Urqu cause the Gen 32 breakaway?** This doc's central open question. Soft bet: *no direct causation, but the same curve* — the breakaway and Urqu's doubling are the same acceleration, and the Bloom is Urqu's unwitting agriculture. Phase 6 commits whether the link is causal or correlative.
-- **Can a Bloomed person be saved past early stage?** The encasement-cure works early (per IDEAS.md:399). Is there *any* late-stage rescue, or is late-stage Bloom a mercy-kill only? Affects the Bloomed-village set-piece's emotional stakes. Phase 6.
-- **What is the Bloom's "optimal dispersal position"?** In *Ophiocordyceps*, the host climbs to an optimal height. What does the CoO Bloom drive its hosts *toward*? Soft bet: toward Urqu-bleeding sites and high open places (maximizing both spore-dispersal and incompletion-yield). Phase 6 / level-design.
-- **Does Renewal end the Bloom?** Soft bet: removes its cosmic purpose, not its biology (it becomes a normal disease). Phase 6.
+- **Did Urqu cause the Gen 32 breakaway?** Settled as no direct intention: the breakaway and Urqu's doubling are the same acceleration, and the Bloom is Urqu's unwitting agriculture.
+- **Can a Bloomed person be saved past early stage?** Implementation note. The encasement-cure works early (per IDEAS.md:399). Any late-stage rescue should be rare, costly, and tied to the Bloomed-village set-piece's emotional stakes.
+- **What is the Bloom's "optimal dispersal position"?** Level-design note. Strongest bet: toward Urqu-bleeding sites and high open places, maximizing both spore-dispersal and incompletion-yield.
+- **Does Renewal end the Bloom?** Settled: it removes the cosmic acceleration, not the biological disease.
 
 ---
 
@@ -170,4 +172,4 @@ There are humans who *side with* the Bloom — not Bloomed (compelled) but *will
 
 ---
 
-*Phase 4.08 — Driving Bloom — status: complete. The headless faction; no god, no doctrine, no dialogue; the Choir's discarded will and Urqu's unwitting agriculture. Pairs with the Inkbound formalization (4.10), which closes Phase 4.*
+*Phase 4.08 — Driving Bloom — status: complete as phase history. The headless faction; no god, no doctrine, no dialogue; the Choir's discarded will and Urqu's unwitting agriculture.*

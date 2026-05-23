@@ -1,5 +1,7 @@
 # 04.09 — The Imminent Archive (the Catchers)
 
+> **Authority:** Phase-history faction document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
+>
 > Phase 4.09 of the lore project. Per-faction doc, written **out of order** (paired with `03_PaleCuration.md`) because the Catchers' theology only lands against their parent faction.
 >
 > **The Catchers are Pale Curation's expelled splinter** — the sect that preserves the wounded *while still alive.* The full player-facing mechanics live in IDEAS.md (the *Imminent Archive* entry, the *Fully Preserved Player* entry, the Kenshi-displacement model). This doc is the **faction-tier** layer: founding, doctrine, structure, the Salted-silence question, named Catchers, and how the sect sits in the world's politics.
@@ -67,7 +69,7 @@ This faction doc supplies the *who and why* behind those mechanics.
 
 Everything about the Catchers reduces to one fact: **the Salted has never ruled on them, and her silence is why they exist.**
 
-Per `03_PaleCuration.md`, the soft-committed answer (Phase 6 may refine): **her silence is not indecision; it is guilt.**
+Per `03_PaleCuration.md` and later canon: **her silence is not indecision; it is guilt.**
 
 - She knows the Catchers are her theological children. Her self-preservation created them.
 - She cannot **disown** them: they are doing, to others, a version of what she did to herself. To condemn them is to condemn the act that defines her god-form.
@@ -76,7 +78,7 @@ Per `03_PaleCuration.md`, the soft-committed answer (Phase 6 may refine): **her 
 
 **The structural parallel to the Reader.** The Salted's silence on the Catchers and the Reader's silence on the Palimpsest's parallel question (the Catchers preserve before final-memory can be archived, which the Palimpsest doctrinally opposes — yet the Reader has also never ruled) is *the closest thing to coordination the two estranged gods have managed in a thousand years* (per `02` and `03`). **Both ancient comrades are refusing to settle a matter that involves both their factions.** They are not speaking. They are not cooperating. And yet, on this one matter, *they are synchronized in their refusal* — as if grief had taught them the same silence. A player who notices this is noticing something profound about the two gods: even estranged, they move together.
 
-**What the player can do with the silence.** Open (Phase 6). Candidates:
+**What the player can do with the silence.** Quest-design candidates:
 - The player can attempt to *make the Salted rule.* This would require forcing her to confront her guilt — possibly the hardest single conversation in the Pale Curation arc. If she ruled *against* the Catchers, the sect would lose its only theological cover and the mainline could finally evict them. If she ruled *for* them, the Catchers would become a sanctioned Pale Curation practice — a horror.
 - The player can leave the silence intact (the default; the world's stable, terrible compromise).
 - The player can *expose the silence's nature* (the guilt) to the mainline, changing how the faction understands its own founder.
@@ -92,11 +94,11 @@ The Catchers are *individuals*, encountered by name (per IDEAS.md — the world-
 - The canonical first Catcher the player encounters (per IDEAS.md examples). Operates from the Marrowstye cell (Phase 2 v2).
 - **Gentle and sad.** She preserves the way a hospice worker tends the dying — with tenderness, apology, conviction that she is helping. Her world-log dialogue is soft: *"Hold still. You are too valuable to lose."* / *"The salt sets best while you are still warm."* / *"Don't run. The honey hasn't started yet."*
 - **Her trauma:** she survived the edge of a *recent* Urqu manifestation (not the Great Manifestation — a smaller, Thinning-era one) in which she watched a child un-named. She has been a Catcher since. *She believes, sincerely, that catching the dying is the only mercy left in a world that unmakes people.*
-- **The player's relationship with her can develop across a run.** If the player escapes her preservation and survives, she will remember. If they meet again, she is *apologetic* but undeterred. If the player kills her, the mainline quietly approves — but Sister Wenil, dying, will say something the player carries afterward. *(Soft recommendation, Phase 7: her last words are an apology — to the player, for failing to save them.)*
+- **The player's relationship with her can develop across a run.** If the player escapes her preservation and survives, she will remember. If they meet again, she is *apologetic* but undeterred. If the player kills her, the mainline quietly approves — but Sister Wenil, dying, will say something the player carries afterward. Strongest version: her last words are an apology to the player for failing to save them.
 
 ### Brother Kavin — the missionary
 
-- Operates from a regional cell (open which place; Phase 7). **Enthusiastic and missionary.** Where Wenil is gentle, Kavin is *evangelical* — he believes pre-mortem preservation is *good news* and wants to share it. His world-log dialogue is bright, eager, almost joyful: *"You're hurt! Let me help! This won't take long and you'll thank me forever!"*
+- Operates from a regional cell; the exact place is a writing / level-design detail. **Enthusiastic and missionary.** Where Wenil is gentle, Kavin is *evangelical* — he believes pre-mortem preservation is *good news* and wants to share it. His world-log dialogue is bright, eager, almost joyful: *"You're hurt! Let me help! This won't take long and you'll thank me forever!"*
 - **The most disturbing Catcher** precisely because he is the most cheerful. He does not understand why people flee. He genuinely cannot comprehend that being preserved alive is not a gift.
 - He ships his preservations to *regional* archives (per the Fully Preserved Player variable-distance model) — he believes the displacement is part of the gift (*"you'll wake somewhere safe!"*).
 
@@ -104,7 +106,7 @@ The Catchers are *individuals*, encountered by name (per IDEAS.md — the world-
 
 - Operates from near the Salt-Vault itself (the most dangerous Catcher to encounter — closest to the central archive). **Clinical and documentary.** Pais narrates the player's preservation as if dictating to a scribe: *"Subject ambulatory at 30% capacity. Beginning salt application. Note resistance — common, not significant. Subject attempting flight. Filing as Salt-Cured, central archive, priority."*
 - **Pais always ships to the central archive** (per the Fully Preserved Player variable-distance model) — Pais considers *every* preservation worthy of central filing. Meeting Pais means accepting central-archive-displacement risk: the player who reaches 100% Being-Preserved with Pais wakes up at the central archive, the farthest possible displacement.
-- Pais is the *least* emotional Catcher and the *most* committed — Pais has no trauma-narrative the player can find, only a chillingly complete conviction. *(Or: Pais's trauma is so deep it has been filed away, indexed, and never spoken of — which would be the most Pale-Curation thing imaginable. Phase 7 commits.)*
+- Pais is the *least* emotional Catcher and the *most* committed — Pais has no trauma-narrative the player can find, only a chillingly complete conviction. Strongest version: Pais's trauma is so deep it has been filed away, indexed, and never spoken of — the most Pale-Curation answer imaginable.
 
 ---
 
@@ -128,7 +130,7 @@ The Concord sells **Catcher-detection charms** (per IDEAS.md — "warns of nearb
 
 ### Tent-Right — the one place Catchers cannot operate
 
-Per IDEAS.md and `07` (forthcoming): **Catchers cannot operate in Tent-Right settlements.** The three-day hospitality oath supersedes all preservation work; a Catcher who threw a pot at a guest would be killed for breaking hospitality, and they know it. **The wasteland is the one safe place for a wounded player** — Tent-Right will defend them, including against Catchers. *This makes the Beating a refuge in a specific, mechanical way.*
+Per IDEAS.md and `07_TentRight.md`: **Catchers cannot operate in Tent-Right settlements.** The three-day hospitality oath supersedes all preservation work; a Catcher who threw a pot at a guest would be killed for breaking hospitality, and they know it. **The wasteland is the one safe place for a wounded player** — Tent-Right will defend them, including against Catchers. *This makes the Beating a refuge in a specific, mechanical way.*
 
 ### Catacomb-villagers — village-by-village
 
@@ -151,7 +153,7 @@ The Catchers have no formal sub-sects (they barely have formal structure), but t
 - **The Gentle cells** (Wenil-type) — preserve as mercy; apologetic; tender.
 - **The Missionary cells** (Kavin-type) — preserve as good-news; evangelical; cheerful.
 - **The Clinical cells** (Pais-type) — preserve as procedure; documentary; un-emotional; ship to central.
-- **The Penitent cells** — *(new; flag for Phase 7)* — Catchers who have begun to *doubt* the doctrine, who continue the practice out of inertia or fear of admitting a thousand savings were wrong. The seed of a Catcher-reform or Catcher-collapse arc. A player who finds a Penitent cell finds the sect's own internal heresy — the possibility that the Catchers might *stop.*
+- **The Penitent cells** — Catchers who have begun to *doubt* the doctrine, who continue the practice out of inertia or fear of admitting a thousand savings were wrong. The seed of a Catcher-reform or Catcher-collapse arc. A player who finds a Penitent cell finds the sect's own internal heresy — the possibility that the Catchers might *stop.*
 
 ---
 
@@ -166,12 +168,12 @@ The Catchers have no formal sub-sects (they barely have formal structure), but t
 
 ---
 
-## X. Open questions
+## X. Later settlements and writing notes
 
-- **Whether the Salted can be made to rule, and what it costs her.** Phase 6. *(Soft recommendation: yes, but only at the cost of forcing her to name her guilt aloud for the first time in 270 years — and her ruling, whichever way it goes, breaks something. Ruling against the Catchers ends the sect but also, in a sense, ends her ability to honor her own founding act. Ruling for them sanctions a horror. Either ruling is a tragedy; the player choosing to make her rule is choosing which tragedy.)*
-- **Filer Pais's trauma.** Phase 7. *(Soft recommendation: filed and never spoken of — the most Pale-Curation answer.)*
-- **Sister Wenil's last words.** Phase 7. *(Soft recommendation: an apology to the player, for failing to save them.)*
-- **Whether the Penitent cells can reform the whole sect.** Phase 6. *(Open. A non-violent end to the Catcher threat is one of the most satisfying possible resolutions; whether it's achievable in a single run is the design question.)*
+- **Whether the Salted can be made to rule, and what it costs her.** Quest-design note: yes is the strongest path, but only at the cost of forcing her to name her guilt aloud for the first time in 270 years. Either ruling breaks something.
+- **Filer Pais's trauma.** Writing note: filed and never spoken of.
+- **Sister Wenil's last words.** Writing note: an apology to the player for failing to save them.
+- **Whether the Penitent cells can reform the whole sect.** Quest-design note. A non-violent end to the Catcher threat is one of the most satisfying possible resolutions; whether it is achievable in a single run remains a design choice.
 - **What happens to the Catchers in each of the three endings.** Per Phase 1 v2: Renewal dissolves them (no more emergency to preserve against). Consume makes them irrelevant (the Choir's new Tree consumes the preservation question). Preserve *entrenches* them (the world endures broken; the Great-Manifestation-fear persists; the Catchers persist with it). *Notably, Preserve — the ending Pale Curation mainline wants — is the ending in which Pale Curation's own heretical children survive longest.*
 
 ---
@@ -184,4 +186,4 @@ The Catchers have no formal sub-sects (they barely have formal structure), but t
 
 ---
 
-*Phase 4.09 — Imminent Archive (the Catchers) — status: complete. Pair 2 (Pale Curation + Catchers) complete. Both Salted-traceable; the silence-as-guilt thread now binds them. Next pair: Saccharine Concord (4.04) + Tent-Right (4.07). Checkpoint moment.*
+*Phase 4.09 — Imminent Archive (the Catchers) — status: complete as phase history. Pair 2 (Pale Curation + Catchers) complete. Both Salted-traceable; the silence-as-guilt thread now binds them.*

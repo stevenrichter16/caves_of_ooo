@@ -1,5 +1,7 @@
 # 04.05 — The Bower-Folk
 
+> **Authority:** Phase-history faction document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
+>
 > Phase 4.05 of the lore project. Fifth per-faction design doc. **The Bower; Posy as the founding installation-village; aesthetic value as an organizing principle.** Paired with the Catacomb-villagers thin doc (`06`) — the two factions whose deepest content already lives in older design files (`The Preserved`/Resin-Cast in IDEAS.md; `catacomb_village_design.md`), now grounded in the tepui-thread cosmology.
 >
 > The Bower-Folk are an **IDEAS.md faction** (the aestheticist faction; bowerbird-inspired; entry at IDEAS.md:401) now tied to a founding god (the Bower, Fourth Strike) and the preservation-horror system (`The Preserved`, `The Imminent Archive`, `The Fully Preserved Player`).
@@ -32,7 +34,7 @@ So the Bower's love of beauty, followed to its limit, becomes **a love of stilln
 
 **And here is the horror that makes the Bower-Folk frightening rather than merely strange:** the non-consensual Resin-Cast is *love.* When a Bower-Folk artisan follows a low-health player around begging them to *hold still, just a little resin, you are so close to perfect* — they are trying to give the player the gift the Bower gave herself. **To complete a beautiful thing is to stop it.** They are not cruel. They are devout. *That is worse.*
 
-*(Open, Phase 7: whether the Bower, after ~980 years as her own perfect installation, is at peace beyond comprehension or bored beyond comprehension — and whether she herself can tell. Soft recommendation: she cannot tell, and the player cannot tell, and that uncertainty is the most honest thing about her.)*
+Whether the Bower, after ~980 years as her own perfect installation, is at peace beyond comprehension or bored beyond comprehension remains an intentional character ambiguity. Strongest version: she cannot tell, and the player cannot tell, and that uncertainty is the most honest thing about her.
 
 ---
 
@@ -95,8 +97,8 @@ Per Phase 2 v2:
 
 ## V. Inter-faction relationships
 
-- **Saccharine Concord** — the **price-of-beauty argument** (per `04`). The Counter says everything has a price; the Bower says some beauty is priceless. Their gods argue across centuries; their agents trade endlessly with that argument echoing through every transaction. The Concord sells the Bower-Folk volume (pigments, Bower-Lapis, Glow-Quartz, per IDEAS.md:824) and considers them irrational consumers; the Bower-Folk consider the Concord vulgar.
-- **Pale Curation** — **the deepest and most uncomfortable kinship.** Both preserve bodies; both fill chambers with the still dead. But they are *opposites in motive*: Pale Curation preserves for **memory** (the body is an index, per `03`); the Bower-Folk preserve for **beauty** (the body is a composition). Pale Curation refuses to file Bower-Lapis as "too aesthetic" (per IDEAS.md:822) — the institutional snub encodes the rivalry. The Salted (preservation) and the Bower (arrangement) have a long diplomatic tension (per Phase 1 v2): *a preserved body is both an index and an installation, and they cannot agree which it is first.*
+- **Saccharine Concord** — the **price-of-beauty argument** (per `04`). The Counter says everything has a price; the Bower says some beauty is priceless. Their gods argue across centuries; their agents trade endlessly with that argument echoing through every transaction. The Concord sells the Bower-Folk volume (pigments, Bower-Starstone, Glow-Quartz, per IDEAS.md:824) and considers them irrational consumers; the Bower-Folk consider the Concord vulgar.
+- **Pale Curation** — **the deepest and most uncomfortable kinship.** Both preserve bodies; both fill chambers with the still dead. But they are *opposites in motive*: Pale Curation preserves for **memory** (the body is an index, per `03`); the Bower-Folk preserve for **beauty** (the body is a composition). Pale Curation refuses to file Bower-Starstone as "too aesthetic" (per IDEAS.md:822) — the institutional snub encodes the rivalry. The Salted (preservation) and the Bower (arrangement) have a long diplomatic tension (per Phase 1 v2): *a preserved body is both an index and an installation, and they cannot agree which it is first.*
 - **Imminent Archive Catchers** — **eerie sibling-faction.** The Catchers preserve the *living* out of fear and guilt (per `09`); the Bower-Folk preserve the *nearly-dead* out of love. *Both throw preservative on a low-health player* — and the player, in the moment, may not be able to tell which faction is doing it or why. The two horrors rhyme, with opposite emotional cores (terror vs. devotion). Phase 4 established this kinship is *eerie*, and the Catcher doc (`09`) flags it from the other side.
 - **Rot Choir** — fascinated by each other and incompatible. The Choir consumes and integrates; the Bower arrests and fixes. To the Choir a Resin-Cast figure is a *refusal of the substrate* (a body that will never decay into the cycle); to the Bower the Choir is *the enemy of composition* (it dissolves arrangement back into undifferentiated growth). They mostly avoid each other. Choir-Touched skin, however, the Bower-Folk find *beautiful* (the faint mycelial pattern, per IDEAS.md:691) — an aesthetic appreciation that horrifies the Choir-fearful.
 - **Palimpsest** — quiet alignment of sensibility (both treat the dead with reverence) but a real disagreement: the Palimpsest wants the dead *readable* (Ink-Bath, per `02`); the Bower-Folk want them *beautiful*. A Body-Reader and a Caster looking at the same corpse want incompatible things from it.
@@ -137,7 +139,7 @@ Lost by: vandalism, ugliness-with-intent, refusing the Bower's regard crudely, d
 
 ### Rewards
 
-- **Aesthetic items unavailable elsewhere** (per IDEAS.md:401) — Bower-Lapis-set objects, rare-pigment goods, beautiful weapons that trade damage for *dialogue-currency* value (per IDEAS.md:805).
+- **Aesthetic items unavailable elsewhere** (per IDEAS.md:401) — Bower-Starstone-set objects, rare-pigment goods, beautiful weapons that trade damage for *dialogue-currency* value (per IDEAS.md:805).
 - **Access to the most visually significant locations** the Bower-Folk control.
 - **The Cleaner's enzyme craft** — gentle un-preservation and resurfacing (ties into `The Fully Preserved Player` un-preservation tooling).
 - **The Bower's regard** — at high standing, to be *seen* by the Bower; aesthetic blessings; her negotiated input on a Renewal world (§VIII).
@@ -171,11 +173,11 @@ Lost by: vandalism, ugliness-with-intent, refusing the Bower's regard crudely, d
 
 ---
 
-## IX. Open questions
+## IX. Later settlements and writing notes
 
-- **The Bower's mortal name.** Open per Phase 1 v2. *(Soft recommendation: her name is the one word she arranged most carefully, and it is written nowhere — she considered written names ugly. The god of Beauty is the one of the Six whose name was never recorded because she found recording it inelegant. Contrast the Counter, whose name is on millions of contracts and read by no one.)*
-- **At peace or bored.** Whether the Bower, after ~980 years as her own installation, is serene or unbearably static — and whether she knows. This doc soft-commits *she cannot tell.* Phase 7 may refine.
-- **Whether the Found-Beauty are right about her pose.** Did the Bower *choose* her stillness (Found-Beauty doctrine) or was she the first non-consensual Cast (a darker reading the Finishers would embrace)? Phase 6/7. *The answer determines whether the faction's signature horror is a betrayal of its god or an obedience to her.*
+- **The Bower's mortal name.** Later canon names her **Ylaes**. Her name is heard but never written.
+- **At peace or bored.** Keep the ambiguity: she cannot tell, and the player cannot tell.
+- **Whether the Found-Beauty are right about her pose.** Did the Bower *choose* her stillness (Found-Beauty doctrine) or was she the first non-consensual Cast (a darker reading the Finishers would embrace)? Keep as an intentional faction mystery; the answer determines whether the faction's signature horror is a betrayal of its god or an obedience to her.
 - **Resin-Cast consciousness.** Inherited from `The Preserved` — is a Resin-Cast figure aware? Load-bearing horror ambiguity; deliberately unresolved (per IDEAS.md:642).
 
 ---

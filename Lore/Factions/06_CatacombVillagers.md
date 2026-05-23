@@ -1,5 +1,7 @@
 # 04.06 — The Catacomb-villagers (the Rooted's people)
 
+> **Authority:** Phase-history faction document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
+>
 > Phase 4.06 of the lore project. **Deliberately thin.** The catacomb-villagers already have a full, ship-ready design treatment in **`catacomb_village_design.md`** (515 lines: demographics, roles, customs, architecture, cosmology, dialect, fauna, commerce, five archetypal villages, politics, cultural-source credits). This doc does **not** duplicate it. It does three things only:
 >
 > 1. Grounds the existing design file in the Phase 1 v2 cosmology (the Rooted as founding god).
@@ -65,7 +67,7 @@ Per Phase 3, the Thinning (Gens 34-36) is the Root's holding-field weakening and
 
 - **Consume.** The Choir consumes the Root; the Rooted *fades* (per Phase 1 v2). The bio-light — his dream — would go out across every village at once. **The Spore-Wedded archetype welcomes this; every other village experiences it as the death of their god and their light.** This is among the most affecting Consume-path consequences.
 - **Preserve.** The Root is sealed; the Rooted holds his pose, holds the field, *forever.* The villages continue as they are. The Asleep Tradition's ideal.
-- **Renewal.** **The Rooted is the gatekeeper.** His agreement requires the player to convince him the Root will not be destroyed in waking (per Phase 1 v2 / Spine §348). Because he is the only one who can speak with the Root directly, **a player who has reached the Rooted in Olderdeep knows what the Root itself wants** — the single most load-bearing piece of information for the Renewal choice. *(Whether the Root wants to wake is the Phase 6 commit, per Spine §348.)*
+- **Renewal.** **The Rooted is the gatekeeper.** His agreement requires the player to convince him the Root will not be destroyed in waking (per Phase 1 v2 / Spine §348). Because he is the only one who can speak with the Root directly, **a player who has reached the Rooted in Olderdeep knows what the Root itself wants** — the single most load-bearing piece of information for the Renewal choice. Later canon settles the true practice-path: the Root wakes without fear only when the world no longer asks it to hold alone.
 
 ---
 
@@ -81,13 +83,13 @@ Per Phase 3, the Thinning (Gens 34-36) is the Root's holding-field weakening and
 
 ---
 
-## V. Open questions (additive only)
+## V. Implementation and writing notes
 
-The design file's open questions (§XI: number of named villages, world-map distribution, inter-village travel time, apprenticeship-as-player-class, dialect-as-mechanic, the Catcher-cell pattern, procedural cultural drift) all stand. **Phase-level additions:**
+The design file's open questions (§XI: number of named villages, world-map distribution, inter-village travel time, apprenticeship-as-player-class, dialect-as-mechanic, the Catcher-cell pattern, procedural cultural drift) all stand as implementation or writing tasks. **Additive notes:**
 
-- **Can the player reach the Rooted, and what is that scene?** Olderdeep is committed (Phase 2 v2) but the Rooted-encounter — a god who is a fungal-plumed body listening at the Root-wall, speaking through propagating dream — needs Phase 7 authoring. It is the Renewal-gate scene; it is also potentially the most visually arresting god-encounter in the game.
-- **Do villages know the bio-light is the Rooted's dream, or only the Listening Tradition?** Phase 6/7. *(Soft recommendation: only the Listening and Tending Traditions believe it literally; to most villagers it is metaphor they half-believe — until the Thinning makes the light flicker, and the metaphor starts looking like fact.)*
-- **What do the Plaque-Tenders' omen-records show during the Thinning?** A concrete content hook — the villages as early-warning system. Phase 6.
+- **Can the player reach the Rooted, and what is that scene?** Yes as a committed late-game route; the exact authored encounter remains writing work. It is the Renewal-gate scene and potentially the most visually arresting god-encounter in the game.
+- **Do villages know the bio-light is the Rooted's dream, or only the Listening Tradition?** Recommendation: only the Listening and Tending Traditions believe it literally; to most villagers it is metaphor they half-believe until the Thinning makes the light flicker and the metaphor starts looking like fact.
+- **What do the Plaque-Tenders' omen-records show during the Thinning?** Concrete content hook: the villages as early-warning system.
 
 ---
 
@@ -99,4 +101,4 @@ The design file's open questions (§XI: number of named villages, world-map dist
 
 ---
 
-*Phase 4.06 — Catacomb-villagers — status: complete (thin doc; `catacomb_village_design.md` remains canonical for villager detail). Pair 4 (Bower-Folk + Catacomb-villagers) complete. Remaining Phase 4: Pair 5 — Driving Bloom (4.08) + Inkbound formalization (4.10, fold-in as Palimpsest sub-sect per the `02` committed recommendation). Checkpoint moment.*
+*Phase 4.06 — Catacomb-villagers — status: complete as phase history (thin doc; `catacomb_village_design.md` remains canonical for villager detail). Pair 4 (Bower-Folk + Catacomb-villagers) complete; later canon keeps the Rooted / bio-light settlement.*

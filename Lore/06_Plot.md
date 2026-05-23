@@ -1,5 +1,7 @@
 # 06 — Plot
 
+> **Authority:** Phase-history document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
+>
 > Phase 6 of the lore project. The **synthesis phase.** Everything the earlier phases deferred with "Phase 6 commits" is decided here, and the pieces are assembled into a navigable main quest spine. This is the capstone narrative document; Phase 7 (Characters) and Phase 10 (Lore Bible) hang off it.
 >
 > Inherits *all* prior phases. The load-bearing inheritances: Phase 1 (the Felling; the Six; Urqu as the unborn seventh; the three endings), Phase 3 (the Thinning as inciting situation; four candidate causes; the player starts at Sill treating cosmology as myth), Phase 4 (every faction's ending-stance and turn-point), Phase 5 (the world predates the Tree; the Spirits as pre-Tree drives; incompletion as Urqu's substrate; the Root's one volitional act).

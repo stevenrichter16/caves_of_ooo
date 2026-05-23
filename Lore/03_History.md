@@ -1,5 +1,7 @@
 # 03 — History: the thousand years between the Felling and the player
 
+> **Authority:** Phase-history document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
+>
 > Phase 3 of the lore project. **Commits the post-Felling timeline** — pre-Felling civilization, the Felling's place in history, the Lost Persecution, faction-emergence dates, the major events across ~1080 years, and **the defining situation at the player's arrival.**
 >
 > Builds on Phase 1 (the Spine) and Phase 2 v2 (the place-network). History is told *as the factions remember it* — and the factions disagree, and some of them have deliberately forgotten. There is no neutral chronicle. The Palimpsest's archive is the closest thing to one, and the Palimpsest censored its own memory once (see §IV).

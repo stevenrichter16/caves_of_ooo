@@ -19,23 +19,23 @@ the single most load-bearing document (the Felling, the Six, Urqu).
 
 ## What's here
 
-- **`00`–`09`** — the ten phase documents (Spine, Geography, History, Spirits,
+- **`00`–`09`** — phase-history documents (Spine, Geography, History, Spirits,
   Plot, Characters, Material Culture, Magic, plus the Phase-0 Canon audit).
   *(There is no `04_*.md` at root — Phase 4 is the `Factions/` directory.)*
-- **`Factions/`** — the ten faction deep-dives (`01` Rot Choir … `10` Inkbound).
+- **`Factions/`** — phase-history faction deep-dives (`01` Rot Choir … `10` Inkbound).
 - **`Characters/`** — reserved for future per-character deep-dives.
 
 Companion design files live in the repo root: `catacomb_village_design.md`,
 `sarisarinama_bestiary_design.md`, `sarisarinama_drosera_design.md`,
-`LINEAGE-DESIGN.md`, and the `IDEAS.md` tepui-thread (the mechanical seeds the
-phase docs build on).
+`LINEAGE-DESIGN.md`. `IDEAS.md` is a raw backlog and source ledger; its entries
+are canon only where adopted by a phase document or `10_Bible.md`.
 
 ## Conflict rule
 
-Later phases supersede earlier ones; the faction docs supersede the Spine's
-faction-stubs; the Bible's canon lock (`10_Bible.md` §IV) supersedes all on
-matters of bare fact. `00_Canon.md` is an audit map, not an authority, where it
-predates a later commit.
+The Bible's canon lock (`10_Bible.md` §IV) supersedes all on matters of bare
+fact. Phase documents and faction docs are development history unless explicitly
+marked current. `00_Canon.md` is an audit map, not an authority, where it
+predates a later commit; `IDEAS.md` is backlog, not canon authority.
 
 ## Status
 

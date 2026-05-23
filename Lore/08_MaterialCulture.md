@@ -1,10 +1,12 @@
 # 08 — Material Culture
 
+> **Authority:** Phase-history document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
+>
 > Phase 8 of the lore project. The **stuff of the world** — currency, writing-surfaces, light, preservatives, stone, food, dress, dwelling, craft, art — synthesized across all factions and grounded in the now-complete cosmology.
 >
 > Inherits all prior phases. Builds *directly on top of* two existing material-culture treatments and does **not** duplicate them:
 > - **`catacomb_village_design.md`** — canonical for *all* catacomb-villager material culture (architecture, food, textile, light, craft, commerce). This doc points to it.
-> - **IDEAS.md** — canonical for the cross-cutting material systems already designed: the Bioluminescent Catacomb Economy (light-as-currency), Stones with Stake (the mineral palette), The Preserved (the five preservation methods), the currency set (Drams / Ink / Lumen-hours / Stones / Reputation / Spirit-affinity, per `00_Canon.md` Layer 6).
+> - **IDEAS.md** — raw backlog for the cross-cutting material systems adopted here: the Bioluminescent Catacomb Economy (light-as-currency), Stones with Stake (the mineral palette), The Preserved (the five preservation methods), the currency set (Drams / Ink / Lumen-hours / Stones / Reputation / Spirit-affinity, per `00_Canon.md` Layer 6). This doc and `Lore/10_Bible.md` are the authority for what was accepted.
 >
 > **What Phase 8 adds:** (1) the *material grammar* — the principle that ties all of it to the cosmology; (2) the material culture of the factions `00_Canon.md` Layer 6 marks **"(open)"** — surface villages, Palimpsest, Pale Curation, Concord, Bower-Folk, Tent-Right, Choir; (3) three cross-cut treatments (cuisine, dress-as-signaling, art) that span factions.
 >
@@ -100,11 +102,11 @@ Fully designed (Stones with Stake, IDEAS.md). **Phase 8 adds the consolidated co
 - **Tepuibone** — sandstone from the Root itself; the heaviest stone; **anti-Urqu** (it *remembers what the Tree was*). The First-Root-Chip is the unique final-act fragment.
 - **Memory-Marble / Mute-Stone / Tepuibone** — the three name-holding, anti-Unsaying materials (per Phase 5): they resist Urqu *because they hold their names hardest.* The material correlate of the Tent-Right oath.
 - **Choir-Iron / Pale-Salt / Spore-Block** — the anti-fungal defensive palette (anti-Choir, anti-Bloom).
-- **Bower-Lapis** — the aesthetic stone (Bower-Folk); Pale Curation refuses to file it (*too aesthetic*).
+- **Bower-Starstone** — the aesthetic stone (Bower-Folk); Pale Curation refuses to file it (*too aesthetic*).
 - **Sari-Pyrite** — resonates with Urqu; the dark-bargain stone.
 - **Glow-Quartz** — bio-light amplifier; the catacomb-villager aspiration.
 
-**The fingerprint, sharpest here:** a chamber's wall-mineral reveals its faction *before dialogue* (per IDEAS.md) — Memory-Marble = Palimpsest; Pale-Salt = Pale Curation/preservers; Spore-Block + Choir-Iron = anti-Choir defense; Bower-Lapis = Bower-Folk; Glow-Quartz = a prosperous catacomb-village.
+**The fingerprint, sharpest here:** a chamber's wall-mineral reveals its faction *before dialogue* (per IDEAS.md) — Memory-Marble = Palimpsest; Pale-Salt = Pale Curation/preservers; Spore-Block + Choir-Iron = anti-Choir defense; Bower-Starstone = Bower-Folk; Glow-Quartz = a prosperous catacomb-village.
 
 ---
 
@@ -147,7 +149,7 @@ Compact profiles — dress, food, dwelling, craft, art — for the factions `00_
 ### Bower-Folk — *arranged & colored*
 
 - **Dwelling:** Posy and the installations; every surface composed; the dwelling *is* the artwork (the Bower arranges the village through gestures, `05`).
-- **Dress:** the most elaborate in the world — pigment, Bower-Lapis, rare-spectrum bio-light woven in; a Bower-Folk artisan dresses to be *seen*, and judges others by their eye. They make the colors everyone else trades for.
+- **Dress:** the most elaborate in the world — pigment, Bower-Starstone, rare-spectrum bio-light woven in; a Bower-Folk artisan dresses to be *seen*, and judges others by their eye. They make the colors everyone else trades for.
 - **Food:** plated, arranged, eaten as much by sight as taste; a Bower-Folk meal is a composition (and may be inedible-but-beautiful, which they consider a fair trade).
 - **Craft & art:** *all of it.* The Bower-Folk are the world's source of pigment, arrangement, display, and the Resin-Cast (beauty-as-arrest, the horror). Their Cleaners resurface the dead with enzyme-baths.
 - **Cosmological tell:** the worthless-but-striking outranks the precious-but-plain (the aesthetic-reputation system, `05`); status is not buyable, which maddens the Concord.
@@ -199,7 +201,7 @@ A consolidated read-table — *how the player identifies allegiance at a glance*
 | ink-stained robes, marginalia on the cuffs | Palimpsest scribe |
 | pale, gloved, high-collared, dust-averse | Pale Curation officer |
 | portable wealth, signet, travel-ready | Concord broker |
-| elaborate pigment, Bower-Lapis, woven bio-light | Bower-Folk artisan |
+| elaborate pigment, Bower-Starstone, woven bio-light | Bower-Folk artisan |
 | woven layers, salt-pale, a guest-cloth carried | Tent-Right |
 | garments slowly overgrown with substrate | Choir-integrated |
 | pale skin, near-white eyes, mycelial-fiber, beetle-jar | catacomb-villager (per design file) |

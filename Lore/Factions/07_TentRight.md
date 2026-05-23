@@ -1,5 +1,7 @@
 # 04.07 — Tent-Right (the wasteland hospitality culture)
 
+> **Authority:** Phase-history faction document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
+>
 > Phase 4.07 of the lore project. Per-faction doc, paired with the Saccharine Concord (`04`) — the two factions defined by *travel and the spaces between settlements*, connected by the Beating salt-trade.
 >
 > **Tent-Right is the only major faction that is not god-founded.** They are *the people the Tree did not name* (per Phase 1 v2). And out of that absence they built — without inheritance, without a god, from nothing but necessity and each other — **a mortal reinvention of the missing seventh inheritance.** This doc contains the strongest cosmological payoff in the faction set: Tent-Right and Urqu are the two unnamed, and they are cosmic mirror-images of each other.
@@ -179,7 +181,7 @@ Lost by: **breaking hospitality (catastrophic — the single worst reputation lo
 
 - **The cosmological discovery.** The player and the Namers piece it together: the oath is mortal Naming; Tent-Right is Urqu's mirror; the unnamed people reinvented the missing seventh inheritance. **One of the most satisfying lore-revelations in the game** — and it recontextualizes the humble wasteland faction as cosmologically central.
 - **The First Tent.** The pilgrimage; the monument to the choice; the deepest expression of Tent-Right's culture.
-- **The Urqu-kinship encounter.** A player who has understood the mirror may be able to *approach Urqu differently* — not as the other factions do (defense, dread, bargaining-with-mouthpieces) but as *kin.* The Namers may know how to *speak* to Urqu as the unnamed-sibling. *(Open — Phase 6 — whether this is a real mechanic; strong recommendation: yes, a Tent-Right-gated dialogue option with Urqu's mouthpieces that no other path provides.)*
+- **The Urqu-kinship encounter.** A player who has understood the mirror may approach Urqu differently — not as the other factions do (defense, dread, bargaining-with-mouthpieces) but as *kin.* Later canon makes this the true practice-path's deepest insight: Tent-Right does not defeat Urqu, it answers the unnamed sibling.
 
 ### Ending-aligned arcs
 
@@ -189,11 +191,11 @@ Lost by: **breaking hospitality (catastrophic — the single worst reputation lo
 
 ---
 
-## IX. Open questions
+## IX. Later settlements and implementation notes
 
-- **Whether Tent-Right can "speak to Urqu as kin."** Phase 6. *(Strong recommendation: yes — a Tent-Right-gated Urqu-dialogue path no other faction provides; the Namers know how; it does not let the player command Urqu but lets them *understand* it, which is its own late-game key.)*
-- **Whether the oath-as-Renewal-Naming requires the oath to literally spread world-wide first, or whether the ritual-offer is symbolic.** Phase 6. *(Soft recommendation: symbolic at the ritual, but the post-Renewal world then adopts it — the Wide-Tent universalists' dream realized as the new world's naming-function.)*
-- **The Namers' full theory and how complete it gets.** Phase 6 / Phase 7.
+- **Tent-Right can "speak to Urqu as kin."** Settled as a true-Renewal key. It should not let the player command Urqu; it lets them understand and answer it.
+- **Oath-as-Renewal-Naming.** Settled as symbolic at the ritual, then literalized after true Renewal when the post-Renewal world adopts the practice. The Wide-Tent universalists' dream becomes the new world's naming-function.
+- **The Namers' full theory and how complete it gets.** Implementation/writing note: decide how much of the theory is directly explained versus inferred through rites, hospitality failures, and Urqu encounters.
 - **Whether there are pre-Felling Tent-Right-equivalents.** Open. *(Soft recommendation: no — hospitality-as-survival is a post-Felling invention, born of the wasteland's necessity; the pre-Felling Tree-civilization, held coherent by the Tree, never needed it. The oath is genuinely new in the world — the one wholly post-Felling cosmological innovation, made by mortals, not gods.)* **This is a strong thematic point: the gods inherited their functions from the dying Tree; Tent-Right invented theirs. The newest cosmological force in the world is the one no god made.**
 
 ---
@@ -206,4 +208,4 @@ Lost by: **breaking hospitality (catastrophic — the single worst reputation lo
 
 ---
 
-*Phase 4.07 — Tent-Right — status: complete. Pair 3 (Saccharine Concord + Tent-Right) complete. The Concord's "everything has a price" and Tent-Right's "the oath is priceless" are now the two poles of the world's value-economy; and Tent-Right is committed as the secret key to the most complete Renewal. Next pair: Bower-Folk (4.05) + Catacomb-villagers (4.06, thin doc). Checkpoint moment.*
+*Phase 4.07 — Tent-Right — status: complete as phase history. Pair 3 (Saccharine Concord + Tent-Right) complete. The Concord's "everything has a price" and Tent-Right's "the oath is priceless" are now the two poles of the world's value-economy; later canon keeps Tent-Right as the secret key to true Renewal.*

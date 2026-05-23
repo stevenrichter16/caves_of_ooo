@@ -1,5 +1,7 @@
 # 07 — Characters
 
+> **Authority:** Phase-history document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
+>
 > Phase 7 of the lore project. The **cast.** Commits the Six's mortal names, the Seventh (Naro) as a character, the key named NPCs per faction, the child-arc specifics deferred from Phase 6, and the player character-origin menu.
 >
 > Inherits all prior phases; most directly Phase 1 (the Six), Phase 4 (faction structure + the name-seeds and named-NPC stubs each faction doc planted), Phase 6 (Naro, the child-path, the origin menu, the player as an ordinary person of the recovered world).

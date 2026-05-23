@@ -1,5 +1,7 @@
 # 04.04 — The Saccharine Concord
 
+> **Authority:** Phase-history faction document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
+>
 > Phase 4.04 of the lore project. Fourth per-faction design doc. **The Counter; Tally as the traversal hub; the world's pragmatic spine.** Paired with Tent-Right (`07`) — the two factions most defined by *travel and the spaces between settlements*, connected by the Beating salt-trade.
 >
 > The Concord is the **existing CoO faction** ("merchants of the possible," post-cataclysm rubble-traders, per `INKBOUND_LORE_REFERENCE.md` / Factions.json) now grounded in the tepui-thread cosmology: the cataclysm is the Felling, the rubble they trade is the broken world, and their founding god is the Counter.
@@ -16,7 +18,7 @@ The Saccharine Concord is the **fifth-ascended faction** by Strike-order (the Fi
 
 Per Phase 1 v2:
 
-- **Then.** A pragmatist. *(Pre-Felling specialty open — Phase 7; soft recommendation: a keeper-of-accounts, a person who in their mortal life already tracked who-owed-what — the ascension intensifying what they already were, as with the Reader.)* Summoned by the Tree's dreams; took the **Fifth Strike**; **ascended into Exchange** — the Tree's understanding of *value-flowing-between*: trade, debt, balance, the resolution of accounts.
+- **Then.** A pragmatist. Later canon names him **Tovreth**. His exact pre-Felling specialty remains a writing-detail seed; the strongest version is a keeper-of-accounts, a person who in their mortal life already tracked who-owed-what. Summoned by the Tree's dreams; took the **Fifth Strike**; **ascended into Exchange** — the Tree's understanding of *value-flowing-between*: trade, debt, balance, the resolution of accounts.
 - **The first years.** The Counter understood his inheritance immediately and acted on it within five years — recognizing that the cataclysm's scattered survivors needed *trade* to live (food across drowned regions, knowledge across factions, materials across distances). The first inter-region caravan, year 5, is the Concord's founding event.
 - **The thing that did not happen — the withdrawal.** The other five gods withdrew into their function across Gens 10-20 (per Phase 3). **The Counter did not withdraw.** He kept working. *His refusal to stop is his transformation.* He did not disperse into substrate (Wedded), into archives (Reader), into a salt-cured body (Salted), into a resin pose (Bower), into a fungal patch (Rooted). **He stayed a working god, in a body that increasingly looks like it should have stopped, and he never stopped.**
 - **Now.** He runs the Concord *personally.* Every major contract requires his signature. He has not slept in ~900 years. He experiences time differently — he sees every exchange in the world simultaneously; he tracks every debt in his head with perfect precision. He drinks a black stimulant tea, brewed and re-brewed for centuries, that keeps him upright. **He looks like a Salt-Cured corpse who refused to admit he was dead** — and he is, in a real sense, the most *mortal-looking* of the Six precisely because he refused the transformations that made the others into archives and substrate and salt. He is a god wearing the worn-out body of the man he was.
@@ -180,12 +182,12 @@ Lost by: defaulting on debts, breaking contracts, fraud against the Concord, the
 
 ---
 
-## IX. Open questions
+## IX. Later settlements and writing notes
 
-- **The Counter's mortal name.** Open per Phase 1 v2. *(Soft recommendation: his name is on every contract he has ever signed — millions of them — and is therefore the most-written name in the world and also the most-ignored. People sign with the Counter without reading the name. The god of Exchange's name is everywhere and nowhere, like a copyright line.)*
-- **Whether the Counter approves of the Bloom-trade or merely tolerates it.** This doc soft-commits *despises-it.* Phase 6 may refine.
-- **What the Counter says in the three-minutes-a-year scene.** Phase 7. *(Soft recommendation: something about the woman who became the Choir — the Wedded — whom he knew, before, when they were both mortal and the Tree still stood. The Counter is the only one of the Six who might still speak of the Wedded as a person. The kindness, from the other direction.)*
-- **Whether the player can resolve the Counter's contradiction short of Renewal.** Phase 6. *(Open. Probably not — the contradiction is structural; only Renewal balances the ledger. But a player might be able to give him a single balanced account — settle one perfect debt — which would be a small, real mercy.)*
+- **The Counter's mortal name.** Later canon names him **Tovreth**. His name is on every contract he has ever signed and is therefore the most-written name in the world and also the most-ignored.
+- **Whether the Counter approves of the Bloom-trade or merely tolerates it.** Current canon treats this as tolerated and despised, not endorsed.
+- **What the Counter says in the three-minutes-a-year scene.** Writing seed: something about Selen, the woman who became the Wedded, whose name only he still keeps.
+- **Whether the player can resolve the Counter's contradiction short of Renewal.** Structural answer: no full resolution short of Renewal. A player might still give him one perfect debt settled, which is a small, real mercy.
 
 ---
 

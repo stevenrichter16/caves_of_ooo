@@ -1,8 +1,10 @@
 # 10 — The Lore Bible
 
+> **Authority:** Current canon authority. This file supersedes `Lore/00_Canon.md` through `Lore/09_Magic.md`, the Phase 4 faction documents, and `IDEAS.md` wherever they conflict.
+>
 > Phase 10 of the lore project. The **capstone and master reference.** This is the document to read *first* (for orientation) and *consult* (for the canonical facts everything else must agree with). It indexes the whole corpus, locks the spine of canon, supplies the ending epilogues, runs the final cross-corpus consistency pass, and consolidates the cultural-sources ledger.
 >
-> The lore project is **complete** at Phase 10. Ten phase documents (`00`–`09`), ten faction documents (`Factions/01`–`10`), and the companion design files (catacomb villages, bestiary, drosera, lineage, and the IDEAS.md thread) together form the canon. This file ties them into one navigable whole.
+> The lore project is **complete** at Phase 10. Ten phase documents (`00`–`09`), ten faction documents (`Factions/01`–`10`), and the companion design files (catacomb villages, bestiary, drosera, lineage) form the canon where aligned with this Bible. `IDEAS.md` is a raw backlog and source ledger; its ideas are canon only where a phase document or this Bible adopts them.
 
 ---
 
@@ -23,7 +25,7 @@ For a new contributor, read in this order:
 5. **`Factions/01`–`10`** — the ten faction deep-dives (read `01` Rot Choir first; it sets the per-faction template).
 6. **`05_Spirits.md`** → **`06_Plot.md`** — the cosmic actors and the main quest synthesis (the Big commits live in `06`).
 7. **`07_Characters.md`** → **`08_MaterialCulture.md`** → **`09_Magic.md`** — the cast, the stuff, and how power works.
-8. **Companion design files** (`catacomb_village_design.md`, `sarisarinama_bestiary_design.md`, `sarisarinama_drosera_design.md`, `LINEAGE-DESIGN.md`, and the `IDEAS.md` tepui-thread) — the deep mechanical/content layers the phase docs build on.
+8. **Companion design files** (`catacomb_village_design.md`, `sarisarinama_bestiary_design.md`, `sarisarinama_drosera_design.md`, `LINEAGE-DESIGN.md`) — the deep mechanical/content layers the phase docs build on. Read `IDEAS.md` as raw backlog and source ledger, not as canon authority.
 
 *Conflict rule: later phases supersede earlier ones; the faction docs supersede the Spine's faction-stubs; this Bible's §IV supersedes all on matters of bare fact. `00_Canon.md` is an audit map, not an authority, where it predates a later commit.*
 
@@ -67,7 +69,7 @@ For a new contributor, read in this order:
 
 | File | Covers |
 |---|---|
-| `IDEAS.md` | the tepui-thread idea backlog + Cultural Sources ledger; the mechanical seeds of every system |
+| `IDEAS.md` | raw tepui-thread idea backlog + Cultural Sources ledger; canon only where adopted by phase docs / this Bible |
 | `catacomb_village_design.md` | **canonical** for all catacomb-villager material/social culture (515 lines) |
 | `sarisarinama_bestiary_design.md` | the fauna (Sari-Snakes, Sima-Stewards, Bandfrogs, eyeless apex predators, etc.) |
 | `sarisarinama_drosera_design.md` | the carnivorous flora + enzymes |
@@ -195,7 +197,7 @@ Every structural borrowing, with the standing rule: **inherit structural shapes 
 | *Ophiocordyceps* (+ *The Last of Us* awareness) | Driving Bloom | n/a (biology) | real biology; the faction-politics framing is CoO-original |
 | *Physarum polycephalum* | the Branchwork | n/a (biology) | real biology |
 | Pando (aspen) | Many-Trunk | n/a (biology) | real biology |
-| Real mineralogy; lapis lazuli (named-differently) | Stones with Stake | mixed | property-source only; **no culturally-loaded stone names in-game** (no "lapis," "jade," etc.) |
+| Real mineralogy; lapis lazuli inspiration for Bower-Starstone | Stones with Stake | mixed | property-source only; **no culturally-loaded stone names in-game** (no "lapis," "jade," etc.) |
 | Voynich, Antikythera | the Unread Codex / artifacts | n/a (historical objects) | pattern only |
 | Falmer (Skyrim), Kenshi (kidnapping) | villager visual basis; preserved-player displacement | n/a (fiction) | structural inspiration; CoO-original execution |
 
