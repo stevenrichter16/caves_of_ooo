@@ -91,9 +91,16 @@ namespace CavesOfOoo.Core
         /// could flip an existing cloud).</summary>
         public bool Seeping;
 
-        /// <summary>If true, density does NOT decay over time during
-        /// dispersal (G.3). Stable gases still spread but persist
-        /// indefinitely. Inherited from the definition at spawn.</summary>
+        /// <summary>If true, this gas is ANCHORED: it neither decays nor
+        /// spreads nor dissipates — a fixed, persistent hazard that stays
+        /// exactly where it was placed (G.3). Inherited from the definition
+        /// at spawn. <para><b>Why no-spread.</b> A "persist indefinitely"
+        /// cloud that still spread would fan out into unboundedly many
+        /// never-removed gas entities (density is conserved per spread, but
+        /// the entity COUNT grows until it freezes the sim). Anchoring
+        /// stable gas keeps it bounded; see GasShowcaseProliferationTests +
+        /// the spread gate in <see cref="GasSystem.ProcessGasBehavior"/>.
+        /// Drifting/expanding clouds use unstable gas (the default).</para></summary>
         public bool Stable;
 
         /// <summary>Qud's <c>GasType</c> — merge-compatibility key.

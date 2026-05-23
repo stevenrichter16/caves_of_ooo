@@ -16,8 +16,9 @@ namespace CavesOfOoo.Scenarios.Custom
     ///   ░░░░░░░░░░░░░░░░░░ °°°°° ░░░ °°°°° ░░░ °°°°° ░░░ °°°°° ░░░ °°°°° ░░░
     ///   [unmask][mask][imm] •      [d]       [d]       [d]       [d]
     /// </code>
-    /// Each gas pool is a 3-cell strip (so dispersal makes them grow over
-    /// time). Each strip has 1 dummy (passive Snapjaw with 800 HP) so
+    /// Each gas pool is a 3-cell strip. The strips are STABLE (anchored),
+    /// so they stay fixed in place for the whole showcase rather than
+    /// spreading/dissipating. Each strip has 1 dummy (passive Snapjaw with 800 HP) so
     /// the player can compare effects on a creature vs themselves.
     /// The poison strip has THREE dummies (bare, masked, immune) so
     /// G.6 defenses are visible side-by-side.</para>
@@ -77,18 +78,27 @@ namespace CavesOfOoo.Scenarios.Custom
             }
 
             // Defenses column — at p.x+3..+5, one dummy per defense
-            // configuration. All sit in the poison strip's path so
-            // they share the cloud + the player can compare HP/effects.
-            // (The poison strip starts at p.x+5.)
-            //   p.x+3 : bare snapjaw  (no defense)
-            //   p.x+4 : masked snapjaw (GasMaskPart Power=10)
-            //   p.x+5 : immune snapjaw (GasImmunityPart GasType=Poison)
-            //   This trio gets enveloped when poison disperses west.
+            // configuration, EACH standing in its own anchored poison
+            // cloud so G.6 defenses are visible side-by-side from turn 0.
+            //   p.x+3 : bare snapjaw  (no defense)     → full poison
+            //   p.x+4 : masked snapjaw (GasMaskPart)   → reduced intake
+            //   p.x+5 : immune snapjaw (GasImmunityPart)→ vetoed entirely
+            // (Pre-anchor this trio sat WEST of the strip and relied on
+            // poison spreading over to envelop them — but anchored gas no
+            // longer spreads, so we now seed a poison cloud directly on
+            // each cell. Same outcome, no dependence on dispersal.)
             var bareSnapjaw = SpawnDummy(ctx, p.x + 3, p.y, "bare");
             var maskedSnapjaw = SpawnDummy(ctx, p.x + 4, p.y, "masked");
             maskedSnapjaw?.AddPart(new GasMaskPart { Power = 10 });
             var immuneSnapjaw = SpawnDummy(ctx, p.x + 5, p.y, "poison-immune");
             immuneSnapjaw?.AddPart(new GasImmunityPart { GasType = "Poison" });
+            for (int dxDef = 3; dxDef <= 5; dxDef++)
+            {
+                var defGas = GasFactory.SpawnGas(ctx.Zone, p.x + dxDef, p.y, "poison-vapor",
+                    density: CLOUD_DENSITY, level: CLOUD_LEVEL, creator: ctx.PlayerEntity);
+                var dgp = defGas?.GetPart<GasPoolPart>();
+                if (dgp != null) dgp.Stable = true;
+            }
 
             // Place each gas strip — 3 cells wide, 1 cell tall.
             // Strip i centered at (p.x + 8 + i*8, p.y).
@@ -103,14 +113,18 @@ namespace CavesOfOoo.Scenarios.Custom
                     var gasEnt = GasFactory.SpawnGas(ctx.Zone, stripX + dx, p.y, id,
                         density: CLOUD_DENSITY, level: CLOUD_LEVEL,
                         creator: ctx.PlayerEntity);
-                    // SHOWCASE clouds are STABLE so they don't vanish while
-                    // you walk through them. In normal play, gas spreads
-                    // into thin children that dissipate within a few turns —
-                    // fine for a thrown grenade, but it cleared the demo
-                    // strips in ~5 moves. Stable clouds never decay or
-                    // flicker out (the !Stable dissipation gate), so the gas
-                    // lingers (spreading out) for the whole showcase.
-                    // (Real gameplay gas stays non-Stable and disperses.)
+                    // SHOWCASE clouds are STABLE (anchored) so they don't
+                    // vanish while you walk through them. In normal play, gas
+                    // is unstable: it spreads into thin children that
+                    // dissipate within a few turns — fine for a thrown
+                    // grenade, but it cleared the demo strips in ~5 moves.
+                    // Stable gas neither decays, spreads, NOR dissipates, so
+                    // each strip stays a fixed 3-cell hazard for the whole
+                    // showcase. (Anchoring is REQUIRED: a persistent cloud
+                    // that still spread proliferated into hundreds of gas
+                    // entities and froze the editor — see GasSystem's spread
+                    // gate + GasShowcaseProliferationTests. Real gameplay gas
+                    // stays non-Stable and disperses.)
                     var gp = gasEnt?.GetPart<GasPoolPart>();
                     if (gp != null) gp.Stable = true;
                 }

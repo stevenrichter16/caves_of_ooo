@@ -131,7 +131,16 @@ namespace CavesOfOoo.Core
             }
 
             // Spread roll — Qud Gas.cs:226 ("25 + windSpeed").
-            if (pool.Density > LOW_DENSITY_THRESHOLD &&
+            // Stable gas is ANCHORED: it does not spread (nor decay, nor
+            // dissipate — see below). A stable cloud is a fixed, persistent
+            // hazard that stays exactly where it was placed. Without this
+            // gate, a stable cloud spread (density > threshold) yet was
+            // exempt from dissipation, so a field of stable clouds
+            // proliferated into hundreds of never-removed gas entities and
+            // froze the editor — the 2026-05-23 showcase crash (18 seeds →
+            // 236 entities in 30 ticks). See GasShowcaseProliferationTests.
+            if (!pool.Stable &&
+                pool.Density > LOW_DENSITY_THRESHOLD &&
                 _rng.Next(100) < BASE_SPREAD_CHANCE + windSpeed)
             {
                 int attempts = ComputeSpreadAttempts(windSpeed, _rng); // Qud Gas.cs:229
@@ -150,9 +159,12 @@ namespace CavesOfOoo.Core
 
             // Dissipation — Qud Gas.cs:313 ("50 + windSpeed" for thin gas).
             // Stable gas is EXEMPT from the low-density flicker-out: per the
-            // GasPoolPart.Stable contract ("persist indefinitely"), a stable
-            // cloud must not vanish just because spreading thinned it. Only a
-            // true zero-density (fully spread away) removes a stable cloud.
+            // GasPoolPart.Stable contract (anchored / "persist indefinitely"),
+            // a stable cloud must not vanish. Combined with the no-decay and
+            // no-spread gates above, a stable cloud's density never changes,
+            // so this branch is effectively unreachable for stable gas (the
+            // `pool.Density <= 0` arm never trips) — it persists forever in
+            // place. Only unstable gas flickers out at low density.
             if (pool.Density <= 0 ||
                 (!pool.Stable && pool.Density <= LOW_DENSITY_THRESHOLD &&
                  _rng.Next(100) < LOW_DENSITY_DISSIPATE_CHANCE + windSpeed))

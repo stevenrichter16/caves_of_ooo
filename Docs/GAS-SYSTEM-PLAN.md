@@ -2155,3 +2155,73 @@ failures → 12/12); full gas regression 126/126.
 **Perf:** `Refresh` is a glyph compare + a HashSet add per gas cell per
 turn (turn-based, not per-frame; clouds are small) — within
 PERF-FOUNDATION budget; no allocations.
+
+## Stable-gas proliferation crash (post-visuals fix)
+
+**🔴 The showcase froze the editor "once the player gets damaged by the
+gas."** Reported by the user. The visuals fix above had exposed a
+second problem: the showcase made every cloud `gp.Stable = true` so it
+wouldn't vanish while the player walked through. But CoO's `Stable`
+semantic was **"persist indefinitely AND still spread"** — a design
+contradiction. Stable gas:
+- is exempt from time-decay (correct),
+- is exempt from low-density dissipation (so it never goes away),
+- **but still rolled to SPREAD** (density > `LOW_DENSITY_THRESHOLD`), and
+- spawned children that **inherited `Stable`** (so children also spread
+  and also never dissipated).
+
+Spreading conserves density but grows the **entity COUNT**. With nothing
+ever removing a stable cloud, 18 seed clouds fanned out without bound;
+each `TickEnd` then reprocessed all of them (spread roll + per-cell
+apply + per-cell repaint). The per-turn cost climbed until the editor
+hung. "Once the player gets damaged" was a **correlate, not the cause**:
+by the time the player walked ~8 tiles east into the first cloud, the
+stable gas had had ~8 ticks to proliferate.
+
+**Diagnosis was data-driven, not live** (a live repro risks re-hanging
+the editor). A headless bounded rig — `GasShowcaseProliferationTests` —
+reproduced the showcase setup and ticked 30×:
+- `StableShowcaseGas_DoesNotProliferateUnbounded`: **18 → 236 entities**
+  in 30 ticks (RED — and still climbing).
+- `NonStableShowcaseGas_DissipatesAndStaysBounded`: same layout w/o the
+  flag stays bounded (counter-check → the flag is the cause).
+- `PlayerStandingInStablePoison_…NoCrashOrUnboundedGrowth`: the
+  self-sourced damage path (`source == target == player`, gas creator =
+  the player) does **not** recurse or crash — ruling out the
+  damage-event path the user's wording first suggested.
+
+**Fix:** gate the spread roll on `!pool.Stable` in
+`GasSystem.ProcessGasBehavior`. `Stable` now means **anchored**: a fixed
+hazard that neither decays, spreads, nor dissipates — it stays exactly
+where placed. The three "stable is exempt" gates (decay / spread /
+dissipation) are now symmetric on `!pool.Stable`. Real gameplay gas is
+unaffected (every shipped gas blueprint is `Stable:false`; the **only**
+`Stable=true` user in the entire codebase is the showcase).
+
+**⚪ Qud-parity divergence (documented, deliberate).** Angle-B review
+against `Gas.cs:220-313` shows Qud's `Stable` is **not** "anchored":
+
+| Aspect | Qud `Gas.cs` | CoO (orig, buggy) | CoO (this fix) |
+|---|---|---|---|
+| Time-decay | exempt if Stable | exempt | exempt |
+| Spread roll | **still spreads** | still spreads | **anchored (no spread)** |
+| Spread target | **empty cells only** (`IsEmpty()`, else pressure events) | any cell (merges) | n/a (no spread) |
+| Children inherit Stable | **no** (non-stable children) | **yes** (→ proliferation) | n/a (no children) |
+| Low-density dissipate | **not exempt** (can dissipate) | exempt (never dies) | exempt (anchored) |
+
+Qud bounds proliferation via *empty-cells-only* spread + *non-stable
+children* + *still-dissipates*; the net effect is a non-decaying cloud
+that still disperses and eventually clears. CoO's anchored `Stable` is a
+**CoO-original primitive** (a permanent fixed hazard — lava vent,
+permanent toxic pool) that intentionally diverges, because the
+showcase needs gas that persists *in place* for the whole demo, which
+Qud's dispersing `Stable` would not provide. If a future port needs
+Qud's exact `Stable` semantics, add a distinct flag rather than
+reinterpreting this one (the docstring on `GasPoolPart.Stable` says so).
+
+**Tests:** `ProcessGasBehavior_StableGas_DoesNotSpread_OpenZone` (RED:
+40 cells → GREEN: 1) + `…UnstableGas_DoesSpread…_Counter`; plus the 3
+`GasShowcaseProliferationTests`. Full gas regression **285/285**;
+existing `ProcessGasBehavior_StableGas_DensityUnchangedByDecay` still
+green (it walls off spread anyway — the anchor makes that moot but not
+wrong).

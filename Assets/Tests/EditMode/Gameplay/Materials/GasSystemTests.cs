@@ -316,6 +316,44 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void ProcessGasBehavior_StableGas_DoesNotSpread_OpenZone()
+        {
+            // Anchored-Stable invariant (crash fix 2026-05-23): Stable gas
+            // is a FIXED hazard — it neither decays NOR spreads. Before the
+            // fix, stable gas spread (density > LOW_DENSITY_THRESHOLD) but
+            // was exempt from dissipation, so a showcase of stable clouds
+            // proliferated into hundreds of never-removed entities and froze
+            // the editor (18 seeds → 236 entities in 30 ticks). Open zone
+            // (no walls): a stable cloud must remain a single entity.
+            var zone = new Zone("StableNoSpread");
+            GasFactory.SpawnGas(zone, 10, 10, "stable-vapor", density: 300);
+            for (int i = 0; i < 50; i++)
+                GasSystem.OnTickEnd(zone);
+            Assert.AreEqual(1, zone.GetEntitiesWithTag("Gas").Count,
+                "stable gas is anchored — it does not spread into new cells");
+        }
+
+        [Test]
+        public void ProcessGasBehavior_UnstableGas_DoesSpread_OpenZone_Counter()
+        {
+            // Counter-check (§3.4): the SAME open-zone setup with UNSTABLE
+            // gas DOES spawn at least one child via spread — proving the
+            // no-spread assertion above is the Stable flag's doing, not a
+            // dead/blocked zone.
+            var zone = new Zone("UnstableSpreads");
+            GasFactory.SpawnGas(zone, 10, 10, "poison-vapor", density: 300);
+            int peak = 1;
+            for (int i = 0; i < 50; i++)
+            {
+                GasSystem.OnTickEnd(zone);
+                int c = zone.GetEntitiesWithTag("Gas").Count;
+                if (c > peak) peak = c;
+            }
+            Assert.Greater(peak, 1,
+                "unstable gas spreads to at least one new cell in an open zone");
+        }
+
+        [Test]
         public void ProcessGasBehavior_ZeroDensity_Dissipates()
         {
             var zone = new Zone("DispersalTest");
