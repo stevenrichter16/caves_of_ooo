@@ -47,7 +47,7 @@ Do **not** reveal in the first two hours:
 
 Allowed early language:
 
-- "sari... sari..." as a sound.
+- One faint `sari...` sound, used sparingly.
 - "the old Tree" as children's-story vocabulary.
 - "the Root" as folk religion.
 - "the Six" as oath-language and festival idiom.
@@ -91,19 +91,26 @@ Opening inventory:
 - One personal token from home, used later as a promise / memory anchor.
 - No faction allegiance.
 
-### Initial Stats To Track Quietly
+### Initial State To Track Quietly
 
-These are not presented as big systems yet:
+Keep first-slice tracking small. These are not presented as big systems yet.
+
+Slice-local variables:
 
 - `AcceptedObligationCount`.
 - `CompletedObligationCount`.
 - `AbandonedObligationCount`.
 - `SillTrust`.
-- `PalimpsestNotice`.
-- `ChoirNotice`.
-- `ConcordInterest`.
-- `CatcherAttention`.
 - `ThinningLocalSill`.
+- `TavinTriageState`.
+- `ThreadClueRecovered`.
+
+Durable hand-off flags:
+
+- `PalimpsestLeadOpened`.
+- `ConcordDebtOrInterest`.
+- `CatcherEncounterSeen`.
+- `ChoirThreadDisposition`.
 
 The first two hours should make completion feel like care, not bookkeeping.
 
@@ -114,16 +121,35 @@ The first two hours should make completion feel like care, not bookkeeping.
 | Time | Beat | Player Experience | Primary System |
 |---|---|---|---|
 | 0-10 min | Morning in Sill | ordinary life, festival prep | movement, talk, inspect |
-| 10-25 min | Three small errands | promises matter, charms are domestic | quest acceptance, inventory |
+| 10-25 min | One setup task + optional errands | promises matter, charms are domestic | quest acceptance, inventory |
 | 25-40 min | Failed flower charm | whimsy breaks | everyday magic, inspect |
 | 40-60 min | Witness gathering | same event, conflicting meanings | dialogue, testimony |
 | 60-80 min | First under-place trip | ecology, danger, material recovery | light, combat/avoidance |
 | 80-100 min | Wounded NPC / Catcher scare | kindness as horror | triage choice, faction tension |
-| 100-115 min | Choir thread | biological mystery, first faction fork | sample handling |
+| 100-115 min | Choir thread | biological mystery, first faction fork | thread clue handling |
 | 115-120 min | Festival ending | beauty with one wrong note | consequence summary |
 
-The time ranges should survive player speed variation. Critical path is about
-70 minutes; optional dialogue and exploration fill the rest.
+The time ranges should survive player speed variation. The MVP golden path is
+about 90-100 minutes; optional dialogue, errands, and cave exploration fill the
+rest.
+
+### MVP Golden Path
+
+This is the buildable first-session cut. Everything outside this path is
+optional, reactive, or later content:
+
+1. Perform one pleasant flower-patch charm in the meadow.
+2. Complete one non-counted festival setup step that grants the needed cave tool
+   or light source.
+3. See the crescent-shaped flower failure and inspect the wrong patch.
+4. Collect or resolve enough witness information to point toward the well.
+5. Enter the irrigation cave, bypass or fight the Gin Frog, and recover Tavin's
+   broken reed-hook plus the pale thread clue.
+6. Resolve the well-mouth pressure scene, choose what happens to the thread
+   clue, and see the festival end with one wrong note.
+
+The optional errands should modify warmth, trust, and visual omissions. They
+should not block the player from reaching the cave or ending the slice.
 
 ---
 
@@ -137,7 +163,7 @@ affectionate, uninterested in panic.
 Function:
 
 - Introduces domestic charm-work.
-- Gives one accepted obligation.
+- Gives one non-counted setup step, plus optional obligations around town.
 - Measures Sill's ordinary values: finish what you said you would do.
 
 Sample line:
@@ -195,7 +221,7 @@ irrigation worker who went below the well to check a clogged channel.
 Function:
 
 - Forces the player to act under pressure.
-- Can be healed, preserved, rescued later, or lost.
+- Can be healed, preserved, or become a later rescue lead.
 
 ### Choir Tendril
 
@@ -204,7 +230,7 @@ Not an NPC conversation yet. A biological presence.
 Function:
 
 - Shows that "the Choir" is not just rumor.
-- Creates a sample-handling choice.
+- Creates a thread-clue handling choice.
 - Sets up later Choir contact.
 
 ---
@@ -238,10 +264,26 @@ Lore seed:
 - Someone jokes, "The Six can argue later. Today they can let us have flowers."
 - No explanation follows.
 
-### Beat 2: Three Small Errands (10-25 min)
+### Beat 2: Setup Step And Optional Errands (10-25 min)
 
-Give the player three optional errands, but make one required for critical path.
-Each errand is an accepted obligation if the player explicitly says yes.
+Give the player one required, non-counted setup step and three truly optional
+errands. Each optional errand is an accepted obligation only if the player
+explicitly says yes.
+
+Required setup step - **Ready the Festival Light**
+
+- Acquire or arrange a light source needed for both the meadow and the cave
+  approach: lantern-beetle jar, borrowed lamp, or equivalent.
+- This teaches item handling without becoming a promise-tracking test.
+- The player can get the light from Elder Mara, the river storehouse, or the
+  Concord cart. The Concord version can create debt only if the player chooses
+  credit.
+
+System:
+
+- Basic item pickup / placement.
+- Light-bearing object.
+- No obligation count.
 
 Errand A - **Return the Borrowed Shears**
 
@@ -268,7 +310,9 @@ System:
 
 Errand C - **Lantern-Beetle Jar**
 
-- Fetch a beetle jar from the Concord cart or river storehouse.
+- Fetch an extra beetle jar from the Concord cart or river storehouse.
+- This improves the festival lighting but is not required if the setup step
+  already supplied a light source.
 - The player can pay, borrow, barter, or promise later payment.
 
 System:
@@ -281,6 +325,8 @@ Completion-ratio rule:
 
 - Only accepted errands count.
 - Declining an errand is not incompletion.
+- The required setup step never increments accepted, completed, or abandoned
+  obligation counts.
 - Forgetting or abandoning an accepted errand increments only a local hidden
   flag, not a punitive global meter.
 
@@ -295,8 +341,8 @@ Failure image:
 - Most of the meadow blooms.
 - One crescent-shaped patch blooms wrong.
 - The flowers are pale, stemless, and scentless.
-- Inspecting them shows they have no generated name in the usual UI place.
-- A faint sound plays or is described: `sari... sari...`
+- Inspecting them shows a blank or unstable name field in the usual UI place.
+- Nearby sound briefly dampens, as if the meadow forgot how loud it should be.
 
 Player options:
 
@@ -309,7 +355,7 @@ Player options:
 NPC readings:
 
 - Elder: "Bad soil. Bad timing. Do not frighten the children."
-- Scribe: "Say that sound again, exactly as you heard it."
+- Scribe: "Tell me what went quiet, exactly as you noticed it."
 - Trader: "I have a charm for this. Mostly for this."
 - Child: "It forgot what it was."
 
@@ -340,15 +386,15 @@ Player can:
 
 Consequences:
 
-- Honest accounts: `PalimpsestNotice +1`, later better explanation.
+- Honest accounts: `PalimpsestLeadOpened`, later better explanation.
 - Smoothed accounts: `SillTrust +1`, weaker Palimpsest lead.
-- False account: `ConcordInterest +1`, `PalimpsestNotice -1` if discovered.
+- False account: `ConcordDebtOrInterest`, Palimpsest friction if discovered.
 
 Important:
 
 - The scribe should not say "Urqu."
-- The scribe may say: "There are old records of this sound. Not here. Not in
-  living memory."
+- The scribe may say: "There are old records of this kind of quiet. Not here.
+  Not in living memory."
 
 ### Beat 5: First Under-Place Trip (60-80 min)
 
@@ -398,9 +444,10 @@ Combat lesson:
 
 Loot / clue:
 
-- `Memory-Marble fleck` or local equivalent.
+- `Pale record-stone chip`, later identifiable as low-grade Memory-Marble
+  residue.
 - `Tavin's broken reed-hook`.
-- `Pale thread sample` from fungus near the wall.
+- `Pale thread clue` from fungus near the wall.
 
 ### Beat 6: Return With Pressure (80-100 min)
 
@@ -409,7 +456,7 @@ On the way back or at the well-mouth, the player finds Tavin injured.
 State:
 
 - Tavin is alive, low HP, frightened, partially unable to say what happened.
-- He repeats a broken phrase: "It said my name wrong."
+- He repeats a broken phrase: "I heard someone trying to say it."
 
 Sister Wenil arrives.
 
@@ -426,26 +473,32 @@ Player choices:
 1. **Heal Tavin above threshold**
    - Use tonic, warm cloth, glow-porridge if saved, or fetch help.
    - Wenil backs off, apologetic.
-   - `CatcherAttention +1`, `SillTrust +1`.
+   - `TavinTriageState = Healed`.
+   - Durable flag: `CatcherEncounterSeen`.
+   - `SillTrust +1`.
 
-2. **Physically stop Wenil**
+2. **Interrupt Wenil**
    - Shove, disarm, threaten, or fight.
-   - She retreats or can be killed depending combat tuning.
-   - Mainline Pale Curation later quietly approves, but Sill may be shaken.
+   - She retreats wounded or shaken, but this first encounter should not include
+     a killable Wenil branch.
+   - `TavinTriageState = Interrupted`.
+   - Sill may be shaken, and Wenil remembers the player.
 
 3. **Let Wenil preserve Tavin**
    - Tavin becomes a later rescue / recovery lead in Marrowstye.
    - This is not a game over or hard fail.
    - The player learns that "saved" can mean something horrifying.
+   - `TavinTriageState = Preserved`.
 
-4. **Call the scribe**
-   - The scribe objects: Tavin's last memory is not final.
-   - Wenil replies: "That is why I am early."
-   - Faction conflict without exposition.
+Support options:
 
-5. **Do nothing**
-   - Wenil preserves Tavin.
-   - The player is not punished mechanically, but Sill reacts.
+- **Call the scribe** before choosing.
+  - The scribe objects: Tavin's last memory is not final.
+  - Wenil replies: "That is why I am early."
+  - Faction conflict without exposition.
+- **Delay too long**.
+  - Wenil preserves Tavin.
+  - The player is not punished mechanically, but Sill reacts.
 
 Sample Wenil lines:
 
@@ -459,39 +512,44 @@ Design note:
 
 - This scene is the first proof that horror in this setting often comes wearing
   the shape of care.
+- Save killable Catcher branches and Pale Curation approval/disapproval for a
+  second Catcher encounter after the player understands preservation better.
 
 ### Beat 7: The Choir Thread (100-115 min)
 
 After Tavin is handled, the recovered cave material stabilizes most of the
-festival charm. But the wrong flower patch exposes a thin, pale mycelial thread
-running toward the well.
+festival charm. But the wrong flower patch exposes the same thin, pale mycelial
+thread the player noticed in the cave, now running toward the well.
 
-Player choice: what happens to the thread sample?
+Player choice: what happens to the thread clue?
 
 Options:
 
 1. **Give it to the Palimpsest scribe**
    - Scribe preserves it in a small Memory-Marble dish.
-   - `PalimpsestNotice +1`.
+   - Durable flag: `PalimpsestLeadOpened`.
    - Later Quillhold lead.
 
 2. **Burn it**
    - Immediate local safety.
-   - `ChoirNotice -1` or hostile notice later.
+   - `ChoirThreadDisposition = Burned`.
+   - Future Choir distrust seed.
    - Elder approves if frightened.
 
 3. **Bury it near the meadow**
    - Village folk-practice choice.
-   - Subtle `ChoirNotice +1`.
+   - `ChoirThreadDisposition = Buried`.
+   - Subtle Choir route seed.
    - The wrong flowers may bloom again at night.
 
 4. **Sell it to the Concord trader**
-   - `ConcordInterest +1`.
+   - Durable flag: `ConcordDebtOrInterest`.
    - Later the trader resells the information.
    - Sill may lose control of the story.
 
 5. **Keep it**
    - Unlocks later dream / inventory event.
+   - `ChoirThreadDisposition = Kept`.
    - Small risk of Choir-Touched trace.
 
 The Choir still does not speak directly. The player should feel watched by
@@ -513,15 +571,15 @@ Final image:
 - Flowers bloom across Sill.
 - People relax.
 - For one minute, the world is exactly as charming as it should be.
-- At the edge of the meadow, one flower loses its name.
-- The player hears a single faint `sari...`
+- At the edge of the meadow, one flower's name field empties.
+- The player hears the slice's single clear `sari...`
 
 End-of-slice quest leads:
 
 - **Palimpsest:** travel with or write to the seasonal scribe.
 - **Marrowstye / Catchers:** follow Tavin if preserved, or investigate Wenil.
 - **Choir:** trace the tendril below Sill.
-- **Concord:** ask who buys Hush charms and fungal samples.
+- **Concord:** ask who buys Hush charms and pale thread clues.
 - **Local:** help Sill prepare a stronger charm before the next festival.
 
 ---
@@ -535,12 +593,12 @@ End-of-slice quest leads:
 | Tell witness truth | scribe trusts player | Palimpsest route seed |
 | Smooth witness truth | village stays calmer | local trust route seed |
 | Buy Hush charm | trader is useful but suspect | Concord route seed |
-| Kill / stop Wenil | protects Tavin from preservation | Pale Curation mainline hook |
+| Interrupt Wenil | protects Tavin from preservation this time | Catcher memory hook |
 | Let Wenil preserve Tavin | horror consequence, not fail | Marrowstye rescue hook |
-| Burn Choir sample | decisive local safety | future Choir distrust |
-| Preserve sample | knowledge route | Palimpsest analysis |
-| Sell sample | profit and leakage | Concord complication |
-| Keep sample | mystery route | future dream / Choir-Touched trace |
+| Burn thread clue | decisive local safety | future Choir distrust |
+| Preserve thread clue | knowledge route | Palimpsest analysis |
+| Sell thread clue | profit and leakage | Concord complication |
+| Keep thread clue | mystery route | future dream / Choir-Touched trace |
 
 No choice should be labeled good or evil.
 
@@ -548,21 +606,27 @@ No choice should be labeled good or evil.
 
 ## 8. Systems Introduced In Order
 
+Required MVP systems:
+
 1. Movement and inspection.
 2. Dialogue with local tone.
 3. Everyday charm as property modifier.
-4. Accepted obligation tracking.
-5. Basic item delivery.
-6. Perishable / light-bearing object.
-7. Simple trade and debt.
-8. Failed charm investigation.
-9. Witness account collection.
-10. Low-light exploration.
-11. First ecological creature encounter.
-12. Harvest / sample handling.
-13. Injured NPC triage.
-14. Faction intervention under pressure.
-15. Consequence state in a village event.
+4. Basic item pickup / placement.
+5. Light-bearing object.
+6. Optional accepted obligation tracking.
+7. Failed charm investigation.
+8. Witness lead collection.
+9. Low-light exploration.
+10. First ecological creature encounter.
+11. Injured NPC triage.
+12. Consequence state in a village event.
+
+Optional first-slice systems:
+
+- Perishable item handling.
+- Simple trade and debt.
+- Harvest / clue handling.
+- Faction intervention under pressure.
 
 Avoid introducing:
 
@@ -572,6 +636,7 @@ Avoid introducing:
 - Multiple gods.
 - World map.
 - Formal ending language.
+- Killable faction representatives.
 
 ---
 
@@ -602,8 +667,8 @@ Avoid introducing:
 - Glow-porridge.
 - Lantern-beetle jar.
 - Hush charm, flawed.
-- Memory-Marble fleck.
-- Pale thread sample.
+- Pale record-stone chip.
+- Pale thread clue.
 - Reed-hook.
 - Basic tonic.
 
@@ -644,12 +709,13 @@ If Tavin is preserved:
 - The player gets a later rescue / un-preservation objective.
 - Sill does not treat this as simple death.
 
-If Wenil is killed:
+If Wenil is interrupted:
 
 - Sill is frightened.
 - Palimpsest wants an account.
-- Pale Curation mainline later records a hidden approval.
-- Catcher cells remember.
+- Wenil retreats and remembers.
+- Later Catcher branches can decide whether this becomes approval, anger, or
+  recruitment pressure.
 
 If the player destroys all evidence:
 
@@ -673,12 +739,12 @@ If the player destroys all evidence:
 - Gin Frog brood armor.
 - Pale fungal thread.
 - Wenil's preservative pot.
-- Tavin's partial inability to hold his own name.
+- Tavin's partial inability to hold what he heard.
 
 ### Cosmic Horror
 
 - Name missing from flower.
-- `sari... sari...`
+- One faint `sari...`
 - The sense that a local failure has too much weight.
 - The wrongness persists after the practical fix.
 
@@ -697,11 +763,11 @@ Comedy should not deflate the horror. It should make Sill feel alive.
 
 The slice is working if a first-time player can say:
 
-- "I know how small charms work."
+- "I know small charms can change local conditions."
 - "I care whether the festival succeeds."
 - "The scribe, trader, Catcher, and Choir thread all felt different."
 - "I made at least one choice I expect to matter later."
-- "I heard `sari... sari...`, but I do not fully know what it means."
+- "I heard one faint `sari...`, but I do not fully know what it means."
 - "The world feels charming enough that the threat to it matters."
 
 The slice is failing if:
