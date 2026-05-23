@@ -413,6 +413,15 @@ namespace CavesOfOoo
                     inventoryUI.EntityFactory = _factory;
                     inputHandler.InventoryUI = inventoryUI;
 
+                    // Q1 — quest log overlay (KeyCode.Q). Pulls StoryletPart.Current
+                    // for state, so it only needs the shared tilemap.
+                    var questLogUI = GetComponent<QuestLogUI>();
+                    if (questLogUI == null)
+                        questLogUI = gameObject.AddComponent<QuestLogUI>();
+                    if (ZoneRenderer != null)
+                        questLogUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
+                    inputHandler.QuestLogUI = questLogUI;
+
                     var pickupUI = GetComponent<PickupUI>();
                     if (pickupUI == null)
                         pickupUI = gameObject.AddComponent<PickupUI>();

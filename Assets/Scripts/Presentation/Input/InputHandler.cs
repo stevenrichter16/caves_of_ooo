@@ -119,7 +119,8 @@ namespace CavesOfOoo.Rendering
             AnnouncementOpen,
             WorldActionMenuOpen,  // Phase 4d — look-mode click/Enter on a cell opens this
             SkillsScreenOpen,     // ST.7b — KeyCode.X opens the skills/powers tree popup
-            AbilityManagerOpen    // WSP8.0 — KeyCode.M opens the ability manager modal
+            AbilityManagerOpen,   // WSP8.0 — KeyCode.M opens the ability manager modal
+            QuestLogOpen          // Q1 — KeyCode.Q opens the quest log overlay
         }
         private InputState _inputState = InputState.Normal;
 
@@ -190,6 +191,9 @@ namespace CavesOfOoo.Rendering
         /// The inventory UI component. Set by GameBootstrap.
         /// </summary>
         public InventoryUI InventoryUI { get; set; }
+
+        /// <summary>Q1 — the quest log overlay (opened by 'q').</summary>
+        public QuestLogUI QuestLogUI { get; set; }
 
         /// <summary>
         /// The pickup UI component. Set by GameBootstrap.
@@ -457,6 +461,12 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            if (_inputState == InputState.QuestLogOpen)
+            {
+                HandleQuestLogInput();
+                return;
+            }
+
             if (_inputState == InputState.PickupOpen)
             {
                 HandlePickupInput();
@@ -562,6 +572,14 @@ namespace CavesOfOoo.Rendering
             if (InputHelper.GetKeyDown(KeyCode.I))
             {
                 OpenInventory();
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            // Open quest log (Q key) — Q1
+            if (InputHelper.GetKeyDown(KeyCode.Q))
+            {
+                OpenQuestLog();
                 _lastMoveTime = Time.time;
                 return;
             }
@@ -2874,6 +2892,39 @@ namespace CavesOfOoo.Rendering
             _inputState = InputState.InventoryOpen;
             if (ZoneRenderer != null) ZoneRenderer.Paused = true;
             if (CameraFollow != null) CameraFollow.SetUIView(FullscreenUiGridWidth, FullscreenUiGridHeight);
+        }
+
+        // ── Q1: Quest Log overlay (KeyCode.Q) — mirrors OpenInventory ──
+        private void OpenQuestLog()
+        {
+            if (QuestLogUI == null) return;
+            QuestLogUI.Open();
+            _inputState = InputState.QuestLogOpen;
+            if (ZoneRenderer != null) ZoneRenderer.Paused = true;
+            if (CameraFollow != null) CameraFollow.SetUIView(FullscreenUiGridWidth, FullscreenUiGridHeight);
+        }
+
+        private void HandleQuestLogInput()
+        {
+            if (QuestLogUI == null || !QuestLogUI.IsOpen)
+            {
+                CloseQuestLog();
+                return;
+            }
+            QuestLogUI.HandleInput();
+            if (!QuestLogUI.IsOpen)
+                CloseQuestLog();
+        }
+
+        private void CloseQuestLog()
+        {
+            _inputState = InputState.Normal;
+            if (CameraFollow != null) CameraFollow.RestoreGameView();
+            if (ZoneRenderer != null)
+            {
+                ZoneRenderer.Paused = false;
+                ZoneRenderer.MarkDirty("UI.QuestLog.Close");
+            }
         }
 
         private void HandleInventoryInput()

@@ -38,16 +38,31 @@ namespace CavesOfOoo.Rendering
                 if (s == null || string.IsNullOrEmpty(s.QuestId)) continue;
 
                 string stageId = string.Empty;
+                IReadOnlyList<QuestLogStageRow> stages = System.Array.Empty<QuestLogStageRow>();
                 var quest = StoryletRegistry.FindQuest(s.QuestId);
-                if (quest != null
-                    && s.CurrentStageIndex >= 0
-                    && s.CurrentStageIndex < quest.Stages.Count)
+                if (quest != null && quest.Stages != null)
                 {
-                    stageId = quest.Stages[s.CurrentStageIndex].ID ?? string.Empty;
+                    // Full ordered stage rows with per-row status (Qud-parity:
+                    // mirrors XRL.UI.QuestLog per-stage decoration). Stages
+                    // before the current index are Done, the current index is
+                    // Current, later stages Pending. Forward-compatible with
+                    // the flat-step model (Q3): there, no row is Current.
+                    var rows = new List<QuestLogStageRow>(quest.Stages.Count);
+                    for (int j = 0; j < quest.Stages.Count; j++)
+                    {
+                        var status = j < s.CurrentStageIndex ? QuestLogStageStatus.Done
+                            : j == s.CurrentStageIndex ? QuestLogStageStatus.Current
+                            : QuestLogStageStatus.Pending;
+                        rows.Add(new QuestLogStageRow(quest.Stages[j].ID ?? string.Empty, status));
+                    }
+                    stages = rows;
+
+                    if (s.CurrentStageIndex >= 0 && s.CurrentStageIndex < quest.Stages.Count)
+                        stageId = quest.Stages[s.CurrentStageIndex].ID ?? string.Empty;
                 }
 
                 active.Add(new QuestLogActiveEntry(
-                    s.QuestId, stageId, s.CurrentStageIndex, s.EnteredStageAtTurn));
+                    s.QuestId, stageId, s.CurrentStageIndex, s.EnteredStageAtTurn, stages));
             }
 
             var completedSet = part.GetCompletedQuests();

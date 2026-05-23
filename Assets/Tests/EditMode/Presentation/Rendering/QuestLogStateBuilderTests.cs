@@ -219,5 +219,101 @@ namespace CavesOfOoo.Tests
                 "CurrentStageId is empty when registry can't resolve it. " +
                 "The renderer can show '?' or just the index.");
         }
+
+        // ====================================================================
+        // 7. Stages list: full per-stage rows with Done/Current/Pending
+        //    status (Qud-parity, forward-compatible with the flat-step
+        //    model). The renderer shows the whole objective list, not just
+        //    the current step (Docs/QUEST-LOG-UI.md).
+        // ====================================================================
+
+        [Test]
+        public void Build_ActiveEntry_PopulatesAllStagesWithStatus()
+        {
+            var quest = new StoryletData
+            {
+                ID = "Q1",
+                Quest = new QuestData
+                {
+                    Stages = new List<QuestStageData>
+                    {
+                        new QuestStageData { ID = "intro" },
+                        new QuestStageData { ID = "fetch_key" },
+                        new QuestStageData { ID = "deliver" },
+                    },
+                },
+            };
+            StoryletRegistry.Register(quest);
+
+            var sp = new StoryletPart();
+            sp.StartQuest(new QuestState
+            {
+                QuestId = "Q1",
+                CurrentStageIndex = 1, // "fetch_key"
+                EnteredStageAtTurn = 3,
+            });
+
+            var entry = QuestLogStateBuilder.Build(sp).Active.First(e => e.QuestId == "Q1");
+
+            Assert.AreEqual(3, entry.Stages.Count,
+                "Stages must list ALL stages of the quest, not just the current one.");
+            // Stage 0 (before current) = Done; stage 1 (current) = Current;
+            // stage 2 (after current) = Pending.
+            Assert.AreEqual("intro", entry.Stages[0].StageId);
+            Assert.AreEqual(QuestLogStageStatus.Done, entry.Stages[0].Status,
+                "Stages before the current index render as Done (✓).");
+            Assert.AreEqual("fetch_key", entry.Stages[1].StageId);
+            Assert.AreEqual(QuestLogStageStatus.Current, entry.Stages[1].Status,
+                "The stage AT the current index renders as Current (►).");
+            Assert.AreEqual("deliver", entry.Stages[2].StageId);
+            Assert.AreEqual(QuestLogStageStatus.Pending, entry.Stages[2].Status,
+                "Stages after the current index render as Pending (·).");
+        }
+
+        [Test]
+        public void Build_ActiveEntry_FirstStage_NoneDone()
+        {
+            // Counter-check: at stage 0, NOTHING is Done — the first row is
+            // Current and the rest Pending. (A buggy "i <= current => Done"
+            // would wrongly mark the current stage Done.)
+            var quest = new StoryletData
+            {
+                ID = "Q1",
+                Quest = new QuestData
+                {
+                    Stages = new List<QuestStageData>
+                    {
+                        new QuestStageData { ID = "a" },
+                        new QuestStageData { ID = "b" },
+                    },
+                },
+            };
+            StoryletRegistry.Register(quest);
+
+            var sp = new StoryletPart();
+            sp.StartQuest(new QuestState { QuestId = "Q1", CurrentStageIndex = 0 });
+
+            var entry = QuestLogStateBuilder.Build(sp).Active.First(e => e.QuestId == "Q1");
+
+            Assert.AreEqual(QuestLogStageStatus.Current, entry.Stages[0].Status);
+            Assert.AreEqual(QuestLogStageStatus.Pending, entry.Stages[1].Status);
+            Assert.IsFalse(entry.Stages.Any(r => r.Status == QuestLogStageStatus.Done),
+                "At the first stage, no row should be Done.");
+        }
+
+        [Test]
+        public void Build_QuestNotInRegistry_EmptyStages()
+        {
+            // Defensive: unresolvable quest → empty Stages (not null), so
+            // the renderer can iterate without a null check.
+            var sp = new StoryletPart();
+            sp.StartQuest(new QuestState { QuestId = "GhostQuest", CurrentStageIndex = 2 });
+
+            var entry = QuestLogStateBuilder.Build(sp).Active.First(e => e.QuestId == "GhostQuest");
+
+            Assert.IsNotNull(entry.Stages, "Stages must be empty, not null.");
+            Assert.AreEqual(0, entry.Stages.Count,
+                "Unresolvable quest contributes no stage rows.");
+        }
     }
 }
