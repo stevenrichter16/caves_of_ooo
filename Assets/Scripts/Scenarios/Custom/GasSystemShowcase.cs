@@ -35,11 +35,7 @@ namespace CavesOfOoo.Scenarios.Custom
         description: "Walk east through 5 gas types (poison, stun, confusion, cryo, sleep). See defenses (mask, immunity) side-by-side in the poison strip.")]
     public class GasSystemShowcase : IScenario
     {
-        // Density 900 — ~3× the old 300 so the clouds linger ~3× longer
-        // before dispersal thins them below the flicker-out gate. Decay is
-        // rate-based, so a denser cloud takes proportionally more turns to
-        // clear (it still clears — not Stable).
-        private const int CLOUD_DENSITY = 900;
+        private const int CLOUD_DENSITY = 300;
         private const int CLOUD_LEVEL = 1;
 
         private static readonly (string id, string label, string color)[] GasStrips = new[]
@@ -104,15 +100,19 @@ namespace CavesOfOoo.Scenarios.Custom
                 int stripX = p.x + 8 + i * 8;
                 for (int dx = -1; dx <= 1; dx++)
                 {
-                    // High starting density so the clouds linger ~3× longer
-                    // before dispersing — gas decay is rate-based, so a
-                    // denser cloud takes proportionally more turns to thin
-                    // out. The gas still disperses + clears (it's not
-                    // Stable); it just stays visible long enough to walk
-                    // through while the world ticks.
-                    GasFactory.SpawnGas(ctx.Zone, stripX + dx, p.y, id,
+                    var gasEnt = GasFactory.SpawnGas(ctx.Zone, stripX + dx, p.y, id,
                         density: CLOUD_DENSITY, level: CLOUD_LEVEL,
                         creator: ctx.PlayerEntity);
+                    // SHOWCASE clouds are STABLE so they don't vanish while
+                    // you walk through them. In normal play, gas spreads
+                    // into thin children that dissipate within a few turns —
+                    // fine for a thrown grenade, but it cleared the demo
+                    // strips in ~5 moves. Stable clouds never decay or
+                    // flicker out (the !Stable dissipation gate), so the gas
+                    // lingers (spreading out) for the whole showcase.
+                    // (Real gameplay gas stays non-Stable and disperses.)
+                    var gp = gasEnt?.GetPart<GasPoolPart>();
+                    if (gp != null) gp.Stable = true;
                 }
                 // Passive Snapjaw east of the strip, in the cloud's path.
                 SpawnDummy(ctx, stripX + 1, p.y, label.ToLowerInvariant() + "-victim");
