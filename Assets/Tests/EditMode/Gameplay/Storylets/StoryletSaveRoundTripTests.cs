@@ -15,12 +15,16 @@ namespace CavesOfOoo.Tests
         // ── FormatVersion bump (M2) ───────────────────────────────────────────
 
         [Test]
-        public void SaveWriter_FormatVersion_IsThree()
+        public void SaveWriter_FormatVersion_IsCurrentSchemaVersion()
         {
-            // Bumped 2→3 in M2 to accommodate the new StoryletPart on the
-            // world entity. Per pre-1.0 dev policy, v2 saves are intentionally
-            // invalidated.
-            Assert.AreEqual(3, SaveWriter.FormatVersion);
+            // Tripwire pinning the current save schema version. Was 2→3 in
+            // M2 (StoryletPart on the world entity); later bumped to 4. Per
+            // pre-1.0 dev policy, older saves are intentionally invalidated
+            // (SaveReader strict-rejects a mismatched version). Bump this
+            // deliberately + review save migration whenever the constant
+            // changes. (Refreshed from a stale "==3" pin that had been red
+            // on main since the 3→4 bump — unrelated to the Q3 quest work.)
+            Assert.AreEqual(4, SaveWriter.FormatVersion);
         }
 
         // counter-check: a fabricated v2-version header must reject on load
