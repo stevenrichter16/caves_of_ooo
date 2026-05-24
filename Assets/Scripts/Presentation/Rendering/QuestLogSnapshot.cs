@@ -59,6 +59,28 @@ namespace CavesOfOoo.Rendering
         }
     }
 
+    /// <summary>Q3.4 — one objective within an active quest's CURRENT stage,
+    /// with its done state. Objectives are stage-scoped, so the snapshot
+    /// only carries the current stage's. <see cref="Done"/> drives the
+    /// renderer's marker (done vs pending); <see cref="Optional"/> tags a
+    /// non-gating objective. Hidden-and-unfinished objectives are filtered
+    /// out by the builder (revealed only once finished).</summary>
+    public readonly struct QuestLogObjectiveRow
+    {
+        public readonly string ObjectiveId;
+        public readonly string Text;
+        public readonly bool Done;
+        public readonly bool Optional;
+
+        public QuestLogObjectiveRow(string objectiveId, string text, bool done, bool optional)
+        {
+            ObjectiveId = objectiveId ?? string.Empty;
+            Text = text ?? string.Empty;
+            Done = done;
+            Optional = optional;
+        }
+    }
+
     /// <summary>
     /// One row in the Active section of the quest log: the quest's
     /// ID, the current stage's ID (if resolvable from the registry),
@@ -77,19 +99,26 @@ namespace CavesOfOoo.Rendering
         /// <summary>Ordered stage rows with status. Empty when the quest
         /// blueprint isn't resolvable from the registry (defensive).</summary>
         public readonly IReadOnlyList<QuestLogStageRow> Stages;
+        /// <summary>Q3.4 — the CURRENT stage's objectives (done/pending),
+        /// for the renderer to show as sub-rows under the current stage.
+        /// Empty when the current stage has no objectives (legacy linear
+        /// stage) or Hidden-unfinished ones were filtered out.</summary>
+        public readonly IReadOnlyList<QuestLogObjectiveRow> CurrentObjectives;
 
         public QuestLogActiveEntry(
             string questId,
             string currentStageId,
             int currentStageIndex,
             int enteredStageAtTurn,
-            IReadOnlyList<QuestLogStageRow> stages = null)
+            IReadOnlyList<QuestLogStageRow> stages = null,
+            IReadOnlyList<QuestLogObjectiveRow> currentObjectives = null)
         {
             QuestId = questId ?? string.Empty;
             CurrentStageId = currentStageId ?? string.Empty;
             CurrentStageIndex = currentStageIndex;
             EnteredStageAtTurn = enteredStageAtTurn;
             Stages = stages ?? System.Array.Empty<QuestLogStageRow>();
+            CurrentObjectives = currentObjectives ?? System.Array.Empty<QuestLogObjectiveRow>();
         }
     }
 }

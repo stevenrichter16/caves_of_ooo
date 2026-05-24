@@ -39,6 +39,8 @@ namespace CavesOfOoo.Rendering
 
                 string stageId = string.Empty;
                 IReadOnlyList<QuestLogStageRow> stages = System.Array.Empty<QuestLogStageRow>();
+                IReadOnlyList<QuestLogObjectiveRow> currentObjectives =
+                    System.Array.Empty<QuestLogObjectiveRow>();
                 var quest = StoryletRegistry.FindQuest(s.QuestId);
                 if (quest != null && quest.Stages != null)
                 {
@@ -58,11 +60,33 @@ namespace CavesOfOoo.Rendering
                     stages = rows;
 
                     if (s.CurrentStageIndex >= 0 && s.CurrentStageIndex < quest.Stages.Count)
-                        stageId = quest.Stages[s.CurrentStageIndex].ID ?? string.Empty;
+                    {
+                        var stage = quest.Stages[s.CurrentStageIndex];
+                        stageId = stage.ID ?? string.Empty;
+
+                        // Q3.4: the current stage's objectives as done/pending
+                        // sub-rows. Hidden-and-unfinished are filtered (revealed
+                        // only once finished). Done = in the finished set.
+                        if (stage.Objectives != null && stage.Objectives.Count > 0)
+                        {
+                            var objRows = new List<QuestLogObjectiveRow>(stage.Objectives.Count);
+                            for (int k = 0; k < stage.Objectives.Count; k++)
+                            {
+                                var o = stage.Objectives[k];
+                                if (o == null || string.IsNullOrEmpty(o.ID)) continue;
+                                bool done = s.FinishedObjectives != null
+                                    && s.FinishedObjectives.Contains(o.ID);
+                                if (o.Hidden && !done) continue; // hidden until finished
+                                objRows.Add(new QuestLogObjectiveRow(o.ID, o.Text, done, o.Optional));
+                            }
+                            currentObjectives = objRows;
+                        }
+                    }
                 }
 
                 active.Add(new QuestLogActiveEntry(
-                    s.QuestId, stageId, s.CurrentStageIndex, s.EnteredStageAtTurn, stages));
+                    s.QuestId, stageId, s.CurrentStageIndex, s.EnteredStageAtTurn,
+                    stages, currentObjectives));
             }
 
             var completedSet = part.GetCompletedQuests();

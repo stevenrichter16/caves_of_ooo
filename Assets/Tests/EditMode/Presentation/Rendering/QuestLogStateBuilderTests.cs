@@ -315,5 +315,103 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(0, entry.Stages.Count,
                 "Unresolvable quest contributes no stage rows.");
         }
+
+        // ====================================================================
+        // Q3.4 — current-stage objective sub-rows (CurrentObjectives)
+        // ====================================================================
+
+        private static StoryletData QuestWithObjectives(string id,
+            params QuestObjectiveData[] stage0Objectives)
+        {
+            var s0 = new QuestStageData { ID = "s0" };
+            s0.Objectives.AddRange(stage0Objectives);
+            return new StoryletData
+            {
+                ID = id,
+                Quest = new QuestData
+                {
+                    Stages = new List<QuestStageData> { s0, new QuestStageData { ID = "s1" } },
+                },
+            };
+        }
+
+        [Test]
+        public void Build_CurrentStageObjectives_PopulatedWithDoneStatus()
+        {
+            StoryletRegistry.Register(QuestWithObjectives("Q1",
+                new QuestObjectiveData { ID = "a", Text = "Do A" },
+                new QuestObjectiveData { ID = "b", Text = "Do B" }));
+            var sp = new StoryletPart();
+            sp.StartQuest(new QuestState { QuestId = "Q1", CurrentStageIndex = 0 });
+            sp.GetQuestState("Q1").FinishedObjectives.Add("a");
+
+            var entry = QuestLogStateBuilder.Build(sp).Active.First(e => e.QuestId == "Q1");
+
+            Assert.AreEqual(2, entry.CurrentObjectives.Count,
+                "the current stage's objectives appear as sub-rows");
+            var a = entry.CurrentObjectives.First(o => o.ObjectiveId == "a");
+            var b = entry.CurrentObjectives.First(o => o.ObjectiveId == "b");
+            Assert.IsTrue(a.Done, "finished objective → Done");
+            Assert.AreEqual("Do A", a.Text);
+            Assert.IsFalse(b.Done, "unfinished objective → not Done");
+        }
+
+        [Test]
+        public void Build_HiddenUnfinishedObjective_FilteredUntilDone()
+        {
+            StoryletRegistry.Register(QuestWithObjectives("Q1",
+                new QuestObjectiveData { ID = "visible" },
+                new QuestObjectiveData { ID = "secret", Hidden = true }));
+            var sp = new StoryletPart();
+            sp.StartQuest(new QuestState { QuestId = "Q1", CurrentStageIndex = 0 });
+
+            var entry = QuestLogStateBuilder.Build(sp).Active.First(e => e.QuestId == "Q1");
+            Assert.AreEqual(1, entry.CurrentObjectives.Count,
+                "hidden + unfinished objective is filtered out of the log");
+            Assert.AreEqual("visible", entry.CurrentObjectives[0].ObjectiveId);
+
+            // Counter: finishing the hidden objective reveals it (Done).
+            sp.GetQuestState("Q1").FinishedObjectives.Add("secret");
+            var entry2 = QuestLogStateBuilder.Build(sp).Active.First(e => e.QuestId == "Q1");
+            Assert.IsTrue(entry2.CurrentObjectives.Any(o => o.ObjectiveId == "secret" && o.Done),
+                "a hidden objective is revealed once finished");
+        }
+
+        [Test]
+        public void Build_NoObjectivesStage_EmptyCurrentObjectives()
+        {
+            // Counter-check: a legacy linear stage (no objectives) yields an
+            // empty (non-null) CurrentObjectives so the renderer skips cleanly.
+            var quest = new StoryletData
+            {
+                ID = "Q1",
+                Quest = new QuestData
+                {
+                    Stages = new List<QuestStageData>
+                    { new QuestStageData { ID = "s0" }, new QuestStageData { ID = "s1" } },
+                },
+            };
+            StoryletRegistry.Register(quest);
+            var sp = new StoryletPart();
+            sp.StartQuest(new QuestState { QuestId = "Q1", CurrentStageIndex = 0 });
+
+            var entry = QuestLogStateBuilder.Build(sp).Active.First(e => e.QuestId == "Q1");
+            Assert.IsNotNull(entry.CurrentObjectives);
+            Assert.AreEqual(0, entry.CurrentObjectives.Count);
+        }
+
+        [Test]
+        public void Build_OptionalObjective_FlaggedOptional()
+        {
+            StoryletRegistry.Register(QuestWithObjectives("Q1",
+                new QuestObjectiveData { ID = "req" },
+                new QuestObjectiveData { ID = "opt", Optional = true }));
+            var sp = new StoryletPart();
+            sp.StartQuest(new QuestState { QuestId = "Q1", CurrentStageIndex = 0 });
+
+            var entry = QuestLogStateBuilder.Build(sp).Active.First(e => e.QuestId == "Q1");
+            Assert.IsTrue(entry.CurrentObjectives.First(o => o.ObjectiveId == "opt").Optional);
+            Assert.IsFalse(entry.CurrentObjectives.First(o => o.ObjectiveId == "req").Optional);
+        }
     }
 }

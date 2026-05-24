@@ -144,6 +144,25 @@ namespace CavesOfOoo.Rendering
                                 ? "(stage " + (j + 1) + ")" : row.StageId;
                             DrawText(8, y, label, c);
                             y++;
+
+                            // Q3.4: under the CURRENT stage, list its objectives
+                            // as indented done/pending sub-rows.
+                            if (row.Status == QuestLogStageStatus.Current
+                                && e.CurrentObjectives.Count > 0)
+                            {
+                                for (int k = 0; k < e.CurrentObjectives.Count && y < H - 4; k++)
+                                {
+                                    var o = e.CurrentObjectives[k];
+                                    char og = o.Done ? GLYPH_DONE : GLYPH_PENDING;
+                                    Color oc = o.Done ? ColDone : ColPending;
+                                    DrawChar(10, y, og, oc);
+                                    string olabel = !string.IsNullOrEmpty(o.Text) ? o.Text
+                                        : (!string.IsNullOrEmpty(o.ObjectiveId) ? o.ObjectiveId : "(objective)");
+                                    if (o.Optional) olabel += " (optional)";
+                                    DrawText(12, y, olabel, oc);
+                                    y++;
+                                }
+                            }
                         }
                     }
                     y++; // blank line between quests

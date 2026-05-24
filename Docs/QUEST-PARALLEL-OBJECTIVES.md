@@ -181,6 +181,25 @@ investigated; this one was a test-expectation error, the production logic
 is correct.) The genuine coverage win was the **diag-emission pin** — the
 `quest/ObjectiveFinished` contract had no test before this sweep.
 
+## Q3.4 — quest-log objective sub-rows (DONE, 2026-05-23)
+
+Extended the Q1 quest log so the CURRENT stage expands into its objectives.
+- `QuestLogObjectiveRow {ObjectiveId, Text, Done, Optional}` +
+  `QuestLogActiveEntry.CurrentObjectives` (snapshot, additive optional
+  ctor arg — Q1 tests unaffected).
+- `QuestLogStateBuilder`: builds the current stage's objective rows;
+  `Done` = in `FinishedObjectives`; **Hidden + unfinished filtered out**
+  (revealed once finished).
+- `QuestLogUI`: renders objectives indented under the current stage —
+  `*` green (done) / `-` grey (pending), `(optional)` suffix, via the
+  legible `GetTextTile` path.
+- **Tests:** 4 (`QuestLogStateBuilderTests`) — done-status, hidden-until-
+  done (+counter), no-objectives→empty, optional flag. Suite 174/174.
+- **PlayMode-verified:** screenshot shows the current stage expanding to
+  `* Cross the candy bridge` (green) / `- Find the iron key` (grey) /
+  `- Loot the chest (optional)`, with a completed quest below. Legible
+  text; persistent HUD band at the bottom (expected, all overlays).
+
 ## PlayMode runtime verification (Q3, 2026-05-23)
 
 EditMode tests stub `TurnManager`/bootstrap/content-load; a live PlayMode
