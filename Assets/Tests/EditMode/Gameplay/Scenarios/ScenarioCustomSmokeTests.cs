@@ -280,5 +280,22 @@ namespace CavesOfOoo.Tests.Scenarios
 
         [Test] public void GasDispersalTestBench_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new GasDispersalTestBench().Apply(FreshContext()));
+
+        // ======================================================
+        // Q3.5 — quest system self-auditing bench
+        // ======================================================
+
+        [Test]
+        public void QuestSystemBench_Applies_WithoutThrowing()
+        {
+            // The bench is a Play-mode self-auditing matrix; in EditMode the
+            // world singletons (StoryletPart.Current / NarrativeStatePart.Current)
+            // are absent, so its Rule-4 precondition guards fire and it returns
+            // cleanly WITHOUT throwing. This smoke proves that guard path is
+            // exception-safe and the scenario type + registry/builder calls
+            // resolve. Behavior is proven by the live Play run (17/0) — see
+            // Docs/QUEST-CONTENT-AND-BENCH.md.
+            Assert.DoesNotThrow(() => new QuestSystemBench().Apply(FreshContext()));
+        }
     }
 }

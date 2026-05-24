@@ -1,0 +1,56 @@
+{
+  "Storylets": [
+    {
+      "ID": "EnchiridionQuest",
+      "OneShot": false,
+      "Tracked": true,
+      "Triggers": [],
+      "Effects": [],
+      "Quest": {
+        "Accomplishment": "You recovered the Enchiridion and returned it to its rightful guardian.",
+        "Stages": [
+          {
+            "ID": "recover",
+            "Triggers": [],
+            "OnEnter": [],
+            "Objectives": [
+              {
+                "ID": "find_enchiridion",
+                "Text": "Find the Enchiridion",
+                "Optional": false,
+                "Hidden": false,
+                "Triggers": [ { "Key": "IfHaveItem", "Value": "Enchiridion" } ],
+                "OnEnter": [ { "Key": "AwardXP", "Value": "150" } ]
+              },
+              {
+                "ID": "best_the_guardian",
+                "Text": "Best the guardian of the tomb",
+                "Optional": false,
+                "Hidden": false,
+                "Triggers": [ { "Key": "IfFact", "Value": "guardian_bested:1" } ],
+                "OnEnter": []
+              },
+              {
+                "ID": "loot_the_vault",
+                "Text": "Loot the hidden vault",
+                "Optional": true,
+                "Hidden": false,
+                "Triggers": [ { "Key": "IfHaveItem", "Value": "VaultKey" } ],
+                "OnEnter": [ { "Key": "GiveDrams", "Value": "25" } ]
+              }
+            ]
+          },
+          {
+            "ID": "return_to_guardian",
+            "Triggers": [],
+            "OnEnter": [
+              { "Key": "AwardXP", "Value": "300" },
+              { "Key": "GiveDrams", "Value": "100" }
+            ],
+            "Objectives": []
+          }
+        ]
+      }
+    }
+  ]
+}
