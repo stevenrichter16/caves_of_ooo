@@ -178,6 +178,20 @@ namespace CavesOfOoo.Storylets
                     payload: new { questId, totalStages });
             }
             FireQuestEvent("QuestCompleted", questId);
+
+            // Q7: record the quest's accomplishment (deed text) into the
+            // narrative event log — hagiograph-style history (Qud parity:
+            // JournalAPI.AddAccomplishment on FinishQuest). `quest` is the
+            // blueprint QuestData (registry), still valid after completion.
+            var accomplishment = quest?.Accomplishment;
+            if (!string.IsNullOrEmpty(accomplishment))
+            {
+                NarrativeStatePart.Current?.LogEvent(accomplishment);
+                if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
+                    CavesOfOoo.Diagnostics.Diag.Record(
+                        category: "quest", kind: "Accomplishment", actor: actor,
+                        payload: new { questId, accomplishment });
+            }
             return true;
         }
 

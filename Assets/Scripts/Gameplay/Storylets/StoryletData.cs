@@ -28,6 +28,11 @@ namespace CavesOfOoo.Storylets
     public class QuestData
     {
         public List<QuestStageData> Stages = new List<QuestStageData>();
+        /// <summary>Q7 (Docs/QUEST-ACCOMPLISHMENTS.md) — flavor "deed" text
+        /// recorded into the narrative event log when the quest completes
+        /// (Qud Quest.Accomplishment / hagiograph parity). Empty/absent ⇒
+        /// no accomplishment is logged. JsonUtility-deserialized.</summary>
+        public string Accomplishment;
     }
 
     [Serializable]
