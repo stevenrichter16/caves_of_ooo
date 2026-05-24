@@ -151,6 +151,53 @@ proven `GetTextTile` + marker path).
 - Files: `ConversationActions.cs`, `ConversationPredicates.cs`, NEW
   `QuestObjectiveConversationTests.cs`.
 
+**Q3 — adversarial sweep (DONE, CLAUDE.md gate).** Dedicated
+`QuestObjectiveAdversarialTests` (21 tests) — the gate applies (≥2
+surfaces: parser, state atomicity, stacking, save/load reach, diag).
+Surfaces probed:
+- **Parser** (action `questId:objId[~…]`, predicate `questId:objId`):
+  empty-objId-after-colon, double/trailing `~` (skip empties), null/
+  whitespace, predicate malformed → false.
+- **Boundary**: null/empty questId+objId, inactive quest, no-objectives
+  stage, `CurrentStageIndex` out-of-bounds (no crash).
+- **Stacking**: re-finish → false; same objId across stages tracked
+  per-stage (cleared on advance).
+- **Save/load reach**: orphan objectives-section key (corrupt save) loads
+  without crash; objectives cleared-on-advance round-trip empty; 50-
+  objective set round-trips; finished-state is registry-independent.
+- **Diag emission** (was an untested coverage gap): `quest/ObjectiveFinished`
+  fires once on a real finish; no-op paths (not-found / inactive) emit
+  nothing.
+- **Dispatch**: cross-quest finishing; **single-pass cascade-prevention**
+  (advance doesn't finish the new stage's objective the same tick); Hidden
+  non-Optional counts as required; all-Optional stage advances on any finish.
+
+**Result: 0 production bugs.** The sweep surfaced exactly **1 bug — in a
+test, not the code**: `Dispatch_…NoCascade…` initially built a 3-stage
+quest but expected completion after 2 ticks (off-by-one — tick 2 only
+reaches the last stage). The cascade-prevention it was actually probing
+PASSED; fixed the test to a 2-stage quest. (Per CLAUDE.md: every failure
+investigated; this one was a test-expectation error, the production logic
+is correct.) The genuine coverage win was the **diag-emission pin** — the
+`quest/ObjectiveFinished` contract had no test before this sweep.
+
+## Test-coverage audit (all Qx phases)
+
+| Phase | Tests | Notes |
+|---|---|---|
+| Q1 Quest Log UI | `QuestLogStateBuilderTests` (9) | state/status/counter/defensive; renderer is PlayMode-screenshot-verified (presentation glue, not unit-tested) |
+| Q3.1 data model | `QuestParallelObjectivesModelTests` (6) | JSON deserialize + omitted-counter + save round-trip + pre-Q3 back-compat |
+| Q3.2 dispatch/API | `QuestObjectiveDispatchTests` (8) | mark/advance/optional/idempotent/not-in-stage/OnEnter/tick/legacy |
+| Q3.3 conversation | `QuestObjectiveConversationTests` (7) | single+`~`multi finish / advance / malformed / predicate ±/auto-inverse |
+| Q3 adversarial | `QuestObjectiveAdversarialTests` (21) | parser/boundary/stacking/save-reach/diag/dispatch |
+
+Quest/storylet suite total **162/162 GREEN** (incl. the pre-existing
+FormatVersion fix). Q3 objective feature: **42 tests**. Q2 (display names)
+was skipped by user choice. **Still deferred** (not regressions, scoped
+out): Q3.4 quest-log objective sub-rows, Q3.5 content example + live
+PlayMode bench (the bench is where objective rewards/OnEnter get an
+end-to-end runtime check beyond the unit stubs).
+
 **Pre-existing fix (separate commit):** `SaveWriter_FormatVersion_IsThree`
 asserted `==3` but the constant is `4` on main (bumped after the M2 test,
 never updated — red on main, unrelated to Q3). Refreshed to track the
