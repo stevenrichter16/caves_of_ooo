@@ -181,6 +181,28 @@ investigated; this one was a test-expectation error, the production logic
 is correct.) The genuine coverage win was the **diag-emission pin** — the
 `quest/ObjectiveFinished` contract had no test before this sweep.
 
+## PlayMode runtime verification (Q3, 2026-05-23)
+
+EditMode tests stub `TurnManager`/bootstrap/content-load; a live PlayMode
+check exercised the full runtime. Seeded a 2-stage quest — stage 0 with a
+required objective `kill` (OnEnter `SetFact boss_defeated:1`) + an optional
+`loot`; stage 1 terminal — then finished `kill` via the REAL
+`ConversationActions.Execute("FinishObjective", …, "RuntimeQ:kill")` path
+and ticked. Result (all expected):
+
+```
+stageAfterKill=1 | bossFact=1 | lootFinished=False | completed=True
+diag: objFin=1, stgAdv=1, comp=1 | player(LocalPlayer)=True
+```
+
+Confirms in the live runtime: `StoryletPart.Current`/`LocalPlayer`
+wiring; the conversation action → `FinishObjective` → stage advance;
+per-objective `OnEnter` effects actually run (`SetFact` landed in
+`NarrativeStatePart.Current`); optional-doesn't-gate; the tick dispatch
+completing the quest via the legacy (no-objective) s1 path; and all three
+`quest/*` diag records emitted by the real `Diag`. (Disposable session;
+no content/scene committed.)
+
 ## Test-coverage audit (all Qx phases)
 
 | Phase | Tests | Notes |
