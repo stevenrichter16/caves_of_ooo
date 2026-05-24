@@ -282,6 +282,15 @@ namespace CavesOfOoo.Core
                 CavesOfOoo.Storylets.StoryletPart.Current != null
                 && CavesOfOoo.Storylets.StoryletPart.Current.IsQuestCompleted(arg));
 
+            // Q6: IfQuestFailed(questId) — has the player failed this quest
+            // (and not since re-taken or completed it)? Auto-inverse
+            // IfNotQuestFailed via the IfNot* mechanism. Lets a quest-giver
+            // branch to "you failed me" dialogue. (Failed quests remain
+            // re-takeable: IfQuestNotStarted is intentionally unchanged.)
+            Register("IfQuestFailed", (speaker, listener, arg) =>
+                CavesOfOoo.Storylets.StoryletPart.Current != null
+                && CavesOfOoo.Storylets.StoryletPart.Current.IsQuestFailed(arg));
+
             // IfQuestNotStarted(questId) — true iff the player has
             // never started OR completed this quest. NOT the same as
             // !IfQuestActive (which would be true for completed quests

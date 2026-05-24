@@ -47,6 +47,11 @@ namespace CavesOfOoo.Storylets
         // already-finished quests, and so quest-givers can offer
         // post-completion dialogue. Persists via Save/Load.
         private readonly HashSet<string> _completedQuests = new HashSet<string>();
+        // Q6 (Docs/QUEST-FAILED-TRACKING.md): quests the player has failed.
+        // Distinct from never-started so quest-givers can show "you failed
+        // this" dialogue (via IfQuestFailed). Cleared on re-StartQuest
+        // (re-take) and on completion. Persists via Save/Load.
+        private readonly HashSet<string> _failedQuests = new HashSet<string>();
 
         // ── Fired-storylet API ────────────────────────────────────────────────
 
@@ -82,6 +87,8 @@ namespace CavesOfOoo.Storylets
             // double-fire. The state assignment itself stays unconditional.
             bool isNew = !_quests.ContainsKey(state.QuestId);
             _quests[state.QuestId] = state;
+            // Q6: re-taking a previously-failed quest clears its failed flag.
+            _failedQuests.Remove(state.QuestId);
             if (isNew) FireQuestEvent("QuestStarted", state.QuestId);
         }
 
@@ -111,6 +118,8 @@ namespace CavesOfOoo.Storylets
             if (string.IsNullOrEmpty(questId)) return;
             _quests.Remove(questId);
             _completedQuests.Add(questId);
+            // Q6: completed-wins — a completed quest is not "failed".
+            _failedQuests.Remove(questId);
         }
 
         public IReadOnlyCollection<string> GetCompletedQuests()
@@ -184,6 +193,7 @@ namespace CavesOfOoo.Storylets
             if (string.IsNullOrEmpty(questId)) return false;
             if (!_quests.ContainsKey(questId)) return false;
             RemoveActiveQuest(questId);
+            _failedQuests.Add(questId); // Q6: track the failure
             if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
             {
                 CavesOfOoo.Diagnostics.Diag.Record(
@@ -192,6 +202,19 @@ namespace CavesOfOoo.Storylets
             }
             FireQuestEvent("QuestFailed", questId);
             return true;
+        }
+
+        /// <summary>Q6: has the player failed this quest (and not since
+        /// re-taken or completed it)? Backs the IfQuestFailed predicate.</summary>
+        public bool IsQuestFailed(string questId)
+        {
+            return !string.IsNullOrEmpty(questId) && _failedQuests.Contains(questId);
+        }
+
+        /// <summary>Q6: snapshot of failed quest IDs (for save + queries).</summary>
+        public IReadOnlyCollection<string> GetFailedQuests()
+        {
+            return new List<string>(_failedQuests);
         }
 
         // ── Q4.1: quest lifecycle GameEvents (reaction hook) ──────────────────
@@ -546,6 +569,13 @@ namespace CavesOfOoo.Storylets
                     foreach (var oid in fo)
                         writer.WriteString(oid);
             }
+
+            // Q6: failed-quest set. Another trailing section (after the Q3
+            // objectives section) with its own EOF guard in Load — pre-Q6
+            // saves load with an empty set, no format break.
+            writer.Write(_failedQuests.Count);
+            foreach (var id in _failedQuests)
+                writer.WriteString(id);
         }
 
         public void Load(SaveReader reader)
@@ -613,6 +643,20 @@ namespace CavesOfOoo.Storylets
             {
                 // Pre-Q3 save — no finished-objectives section. Quests keep
                 // their default empty FinishedObjectives. Correct.
+            }
+
+            // Q6: failed-quest section (trailing, EOF-defensive). Pre-Q6
+            // saves (no section) load with an empty failed set.
+            _failedQuests.Clear();
+            try
+            {
+                int failedCount = reader.ReadInt();
+                for (int i = 0; i < failedCount; i++)
+                    _failedQuests.Add(reader.ReadString());
+            }
+            catch (System.IO.EndOfStreamException)
+            {
+                // Pre-Q6 save — no failed-quests section. Empty is correct.
             }
         }
     }
