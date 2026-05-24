@@ -358,6 +358,21 @@ namespace CavesOfOoo.Storylets
             writer.Write(_completedQuests.Count);
             foreach (var id in _completedQuests)
                 writer.WriteString(id);
+
+            // Q3: per-quest finished-objectives (current stage). A SEPARATE
+            // trailing section (not inline in the quest loop) so the
+            // pre-Q3 byte layout is unchanged and old saves load via the
+            // EOF guard in Load(). Keyed by the same dict key as _quests.
+            writer.Write(_quests.Count);
+            foreach (var kvp in _quests)
+            {
+                writer.WriteString(kvp.Key);
+                var fo = kvp.Value.FinishedObjectives;
+                writer.Write(fo?.Count ?? 0);
+                if (fo != null)
+                    foreach (var oid in fo)
+                        writer.WriteString(oid);
+            }
         }
 
         public void Load(SaveReader reader)
@@ -399,6 +414,32 @@ namespace CavesOfOoo.Storylets
             {
                 // Pre-QS.2 save file — completed-quests section wasn't
                 // written. Leaving _completedQuests empty is correct.
+                // (Pre-QS.2 also predates Q3, so the objectives section
+                // below is absent too; its own EOF guard handles that.)
+            }
+
+            // Q3: finished-objectives section (trailing, EOF-defensive for
+            // pre-Q3 saves — same forward-compat pattern as completed-quests).
+            // Match entries into the already-loaded _quests by key; default
+            // (empty set) stands for quests not present in this section.
+            try
+            {
+                int qoCount = reader.ReadInt();
+                for (int i = 0; i < qoCount; i++)
+                {
+                    string key = reader.ReadString();
+                    int objCount = reader.ReadInt();
+                    var set = new HashSet<string>();
+                    for (int j = 0; j < objCount; j++)
+                        set.Add(reader.ReadString());
+                    if (_quests.TryGetValue(key, out var st))
+                        st.FinishedObjectives = set;
+                }
+            }
+            catch (System.IO.EndOfStreamException)
+            {
+                // Pre-Q3 save — no finished-objectives section. Quests keep
+                // their default empty FinishedObjectives. Correct.
             }
         }
     }
