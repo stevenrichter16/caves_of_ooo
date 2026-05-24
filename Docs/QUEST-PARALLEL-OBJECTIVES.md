@@ -97,3 +97,40 @@ proven `GetTextTile` + marker path).
   pre-Q3 back-compat). First 5 ran GREEN; pre-Q3 test added post-review.
 - Files: `StoryletData.cs`, `QuestState.cs`, `StoryletPart.cs` (Save/Load),
   NEW `QuestParallelObjectivesModelTests.cs`.
+
+**Q3.2 — dispatch + API (DONE).**
+- `StoryletPart.FinishObjective(questId, objId, actor)`: marks finished
+  (idempotent), runs the objective's `OnEnter` (player = listener),
+  emits `quest/ObjectiveFinished`, then advances the stage via
+  `AdvanceQuestStage` when `AllRequiredObjectivesFinished` (Optional
+  objectives don't gate — Qud `CheckQuestFinishState` parity).
+  `IsObjectiveFinished`. `AdvanceQuestStage` now clears
+  `FinishedObjectives` (objectives are stage-scoped).
+- `OnTickEnd` pass 1B branches: objective-based stage → snapshot each
+  unfinished objective whose `Triggers` pass; no-objective stage →
+  unchanged legacy stage-trigger advance. New pass 2C finishes the
+  snapshot. Single-pass discipline preserved (advance doesn't cascade
+  into the new stage's objectives the same tick).
+- **CLAUDE.md self-review (§5):**
+  - 🔵 documented edge: if the LAST required objective and an Optional
+    one are both eligible the same tick, whether the optional's OnEnter
+    runs is declaration-order-dependent (finishing the last required
+    advances+clears, dropping not-yet-processed snapshot entries).
+    Required objectives always all finish before advance. Acceptable v1;
+    a deferred refinement could defer advancement to after the batch.
+  - ⚪ `~`-delimited multi-finish (Qud `FinishQuestStep`) deferred to the
+    Q3.3 conversation action (it will split + call `FinishObjective` per id).
+  - ✅ Symmetry (pass 2C mirrors 2B; ObjectiveFinished diag matches the
+    StageAdvanced/Completed shape), counter-checks (optional-doesn't-gate;
+    no-objective-legacy-unchanged; idempotent; not-in-stage), doc-vs-impl,
+    Qud-parity (`FinishObjective` ≈ `FinishQuestStep`+`CheckQuestFinishState`).
+- **Tests:** 8 (`QuestObjectiveDispatchTests`) — mark / advance+clear /
+  optional-doesn't-gate / idempotent / not-in-stage / OnEnter-runs /
+  tick-finishes+advances / no-objective-legacy-unchanged.
+- Files: `StoryletPart.cs` (FinishObjective + dispatch), NEW
+  `QuestObjectiveDispatchTests.cs`.
+
+**Pre-existing fix (separate commit):** `SaveWriter_FormatVersion_IsThree`
+asserted `==3` but the constant is `4` on main (bumped after the M2 test,
+never updated — red on main, unrelated to Q3). Refreshed to track the
+current version (renamed `…_IsCurrentSchemaVersion`, asserts 4).

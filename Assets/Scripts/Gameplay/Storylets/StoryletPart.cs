@@ -205,6 +205,9 @@ namespace CavesOfOoo.Storylets
             int oldIndex = state.CurrentStageIndex;
             state.CurrentStageIndex = newIndex;
             state.EnteredStageAtTurn = currentTurn;
+            // Q3: objectives are scoped to their stage — the new stage
+            // starts with none finished.
+            state.FinishedObjectives.Clear();
 
             if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
             {
@@ -214,6 +217,85 @@ namespace CavesOfOoo.Storylets
                     payload: new { questId, fromIndex = oldIndex, toIndex = newIndex });
             }
             return newIndex;
+        }
+
+        /// <summary>Q3.2 — finish an objective in a quest's CURRENT stage.
+        /// No-op (returns false) if the quest isn't active, the objective
+        /// isn't in the current stage, or it's already finished
+        /// (idempotent). On a newly-finished objective: runs its OnEnter
+        /// effects (player = listener for rewards), emits
+        /// <c>quest/ObjectiveFinished</c>, then advances the stage if all
+        /// non-<see cref="QuestObjectiveData.Optional"/> objectives are now
+        /// finished (mirrors Qud's CheckQuestFinishState — optional steps
+        /// don't gate). Shared by the conversation FinishObjective action
+        /// (Q3.3) and the tick dispatch.</summary>
+        public bool FinishObjective(string questId, string objectiveId, Entity actor = null)
+        {
+            if (string.IsNullOrEmpty(questId) || string.IsNullOrEmpty(objectiveId)) return false;
+            if (!_quests.TryGetValue(questId, out var state)) return false;
+
+            var quest = StoryletRegistry.FindQuest(questId);
+            if (quest?.Stages == null) return false;
+            if (state.CurrentStageIndex < 0 || state.CurrentStageIndex >= quest.Stages.Count)
+                return false;
+            var stage = quest.Stages[state.CurrentStageIndex];
+            if (stage.Objectives == null || stage.Objectives.Count == 0) return false;
+
+            // The objective must belong to the CURRENT stage.
+            QuestObjectiveData obj = null;
+            for (int i = 0; i < stage.Objectives.Count; i++)
+                if (stage.Objectives[i].ID == objectiveId) { obj = stage.Objectives[i]; break; }
+            if (obj == null) return false;
+
+            if (!state.FinishedObjectives.Add(objectiveId))
+                return false; // already finished — idempotent
+
+            // Per-objective effects (Qud per-step reward parity). Player is
+            // the listener so AwardXP/GiveDrams/GiveItem target the player.
+            if (obj.OnEnter != null && obj.OnEnter.Count > 0)
+                ConversationActions.ExecuteAll(obj.OnEnter, null, actor ?? LocalPlayer);
+
+            if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
+                CavesOfOoo.Diagnostics.Diag.Record(
+                    category: "quest", kind: "ObjectiveFinished", actor: actor,
+                    payload: new { questId, objectiveId, stageId = stage.ID });
+
+            // Stage advances once all non-Optional objectives are finished.
+            if (AllRequiredObjectivesFinished(stage, state))
+            {
+                int currentTurn = TurnManager.Active?.TickCount ?? 0;
+                int newIndex = AdvanceQuestStage(questId, currentTurn, actor);
+                if (newIndex >= 0 && newIndex < quest.Stages.Count
+                    && quest.Stages[newIndex].OnEnter != null)
+                {
+                    ConversationActions.ExecuteAll(
+                        quest.Stages[newIndex].OnEnter, null, actor ?? LocalPlayer);
+                }
+            }
+            return true;
+        }
+
+        /// <summary>Q3.2 — has the given objective been finished in the
+        /// quest's current stage? Backs the IfObjectiveFinished predicate
+        /// (Q3.3) + the quest log (Q3.4).</summary>
+        public bool IsObjectiveFinished(string questId, string objectiveId)
+        {
+            if (_quests.TryGetValue(questId, out var state))
+                return state.FinishedObjectives.Contains(objectiveId);
+            return false;
+        }
+
+        /// <summary>True iff every non-Optional objective in the stage is in
+        /// the finished set. An all-Optional stage is trivially complete.</summary>
+        private static bool AllRequiredObjectivesFinished(QuestStageData stage, QuestState state)
+        {
+            for (int i = 0; i < stage.Objectives.Count; i++)
+            {
+                var o = stage.Objectives[i];
+                if (o.Optional) continue;
+                if (!state.FinishedObjectives.Contains(o.ID)) return false;
+            }
+            return true;
         }
 
         // ── INarrativeReactor — single-pass dispatch ──────────────────────────
@@ -226,6 +308,13 @@ namespace CavesOfOoo.Storylets
         // OnEnter flips stage-(N+1)'s trigger does NOT cascade to
         // stage-(N+1) the same tick).
         private readonly List<string> _eligibleQuestAdvances = new List<string>();
+        // Q3.2: snapshot of (questId, objectiveId) pairs whose objective
+        // triggers passed this tick — finished in pass 2. Same single-pass
+        // discipline as _eligibleQuestAdvances (snapshot before mutating, so
+        // an objective finish that advances the stage doesn't cascade into
+        // the new stage's objectives the same tick).
+        private readonly List<(string questId, string objId)> _eligibleObjectiveFinishes
+            = new List<(string, string)>();
 
         /// <summary>
         /// Polled once per TickEnd via NarrativeStatePart's reactor list.
@@ -254,6 +343,7 @@ namespace CavesOfOoo.Storylets
         {
             _eligibleScratch.Clear();
             _eligibleQuestAdvances.Clear();
+            _eligibleObjectiveFinishes.Clear();
 
             // QS.7 fix: thread the local player through tick dispatch
             // so player-state predicates (IfHaveItem, IfReputationAtLeast)
@@ -294,10 +384,28 @@ namespace CavesOfOoo.Storylets
                     || qs.CurrentStageIndex >= qd.Stages.Count) continue;
 
                 var stage = qd.Stages[qs.CurrentStageIndex];
-                if (!ConversationPredicates.CheckAll(stage.Triggers, null, player))
-                    continue;
 
-                _eligibleQuestAdvances.Add(qs.QuestId);
+                if (stage.Objectives != null && stage.Objectives.Count > 0)
+                {
+                    // Q3.2: objective-based stage. Snapshot each UNFINISHED
+                    // objective whose own Triggers all pass. (Stage advance
+                    // happens in pass 2 when the last required one finishes.)
+                    for (int j = 0; j < stage.Objectives.Count; j++)
+                    {
+                        var obj = stage.Objectives[j];
+                        if (obj == null || string.IsNullOrEmpty(obj.ID)) continue;
+                        if (qs.FinishedObjectives.Contains(obj.ID)) continue;
+                        if (!ConversationPredicates.CheckAll(obj.Triggers, null, player)) continue;
+                        _eligibleObjectiveFinishes.Add((qs.QuestId, obj.ID));
+                    }
+                }
+                else
+                {
+                    // Legacy stage-trigger path (unchanged) — advance when
+                    // the stage's own Triggers pass.
+                    if (ConversationPredicates.CheckAll(stage.Triggers, null, player))
+                        _eligibleQuestAdvances.Add(qs.QuestId);
+                }
             }
 
             // Pass 2A: storylet effect dispatch.
@@ -331,8 +439,19 @@ namespace CavesOfOoo.Storylets
                 }
             }
 
+            // Pass 2C (Q3.2): objective finishes. FinishObjective runs the
+            // objective's OnEnter + advances the stage when the last
+            // required objective is done. Snapshotted in pass 1B, so an
+            // advance here does NOT evaluate the new stage this tick.
+            for (int i = 0; i < _eligibleObjectiveFinishes.Count; i++)
+            {
+                var pair = _eligibleObjectiveFinishes[i];
+                FinishObjective(pair.questId, pair.objId, player);
+            }
+
             _eligibleScratch.Clear();
             _eligibleQuestAdvances.Clear();
+            _eligibleObjectiveFinishes.Clear();
         }
 
         // ── ISaveSerializable ─────────────────────────────────────────────────
