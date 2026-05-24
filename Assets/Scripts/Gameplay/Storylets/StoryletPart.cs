@@ -77,7 +77,12 @@ namespace CavesOfOoo.Storylets
         public void StartQuest(QuestState state)
         {
             if (state == null || string.IsNullOrEmpty(state.QuestId)) return;
+            // Q4.1: fire QuestStarted only on a genuinely new start (not a
+            // re-StartQuest of an already-active quest), so reactors don't
+            // double-fire. The state assignment itself stays unconditional.
+            bool isNew = !_quests.ContainsKey(state.QuestId);
             _quests[state.QuestId] = state;
+            if (isNew) FireQuestEvent("QuestStarted", state.QuestId);
         }
 
         public IReadOnlyList<QuestState> GetActiveQuests()
@@ -163,7 +168,54 @@ namespace CavesOfOoo.Storylets
                     actor: actor,
                     payload: new { questId, totalStages });
             }
+            FireQuestEvent("QuestCompleted", questId);
             return true;
+        }
+
+        /// <summary>Q4.1: drop an active quest WITHOUT completing it, emit
+        /// the quest/Failed diag, and fire the QuestFailed event — the
+        /// single source for failure side effects (the FailQuest
+        /// conversation action delegates here, mirroring how the
+        /// CompleteQuest action delegates to <see cref="CompleteQuest"/>).
+        /// No-op (returns false) on an inactive quest. v1: failed quests
+        /// can be re-taken (no _failedQuests set — see QUEST-SYSTEM.md 🟡).</summary>
+        public bool FailQuest(string questId, Entity actor = null)
+        {
+            if (string.IsNullOrEmpty(questId)) return false;
+            if (!_quests.ContainsKey(questId)) return false;
+            RemoveActiveQuest(questId);
+            if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
+            {
+                CavesOfOoo.Diagnostics.Diag.Record(
+                    category: "quest", kind: "Failed", actor: actor,
+                    payload: new { questId });
+            }
+            FireQuestEvent("QuestFailed", questId);
+            return true;
+        }
+
+        // ── Q4.1: quest lifecycle GameEvents (reaction hook) ──────────────────
+        // Fired on LocalPlayer (Qud IQuestEvent parity: dispatched to the
+        // player so player Parts can react — e.g. open a door on
+        // QuestCompleted). Null-guarded: pre-bootstrap / tests with no
+        // LocalPlayer skip the event but keep the diag record. Divergence
+        // (documented, Docs/QUEST-EVENTS.md): CoO dispatches player-only;
+        // Qud also dispatches to global systems (deferred until a consumer
+        // needs World).
+        private static void FireQuestEvent(string eventId, string questId,
+            string objectiveId = null, int fromIndex = -1, int toIndex = -1)
+        {
+            var player = LocalPlayer;
+            if (player == null) return;
+            var e = GameEvent.New(eventId);
+            e.SetParameter("QuestId", questId);
+            if (objectiveId != null) e.SetParameter("ObjectiveId", objectiveId);
+            if (fromIndex >= 0)
+            {
+                e.SetParameter("FromIndex", fromIndex);
+                e.SetParameter("ToIndex", toIndex);
+            }
+            player.FireEventAndRelease(e);
         }
 
         /// <summary>
@@ -216,6 +268,7 @@ namespace CavesOfOoo.Storylets
                     actor: actor,
                     payload: new { questId, fromIndex = oldIndex, toIndex = newIndex });
             }
+            FireQuestEvent("QuestStageAdvanced", questId, fromIndex: oldIndex, toIndex: newIndex);
             return newIndex;
         }
 
@@ -259,6 +312,7 @@ namespace CavesOfOoo.Storylets
                 CavesOfOoo.Diagnostics.Diag.Record(
                     category: "quest", kind: "ObjectiveFinished", actor: actor,
                     payload: new { questId, objectiveId, stageId = stage.ID });
+            FireQuestEvent("QuestObjectiveFinished", questId, objectiveId);
 
             // Stage advances once all non-Optional objectives are finished.
             if (AllRequiredObjectivesFinished(stage, state))

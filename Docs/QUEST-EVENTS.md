@@ -78,10 +78,46 @@ event or their own triggers). Note in the docstring.
   params; counter-checks: `LocalPlayer == null` → no throw + diag still
   fires; no-op lifecycle paths (re-finish, inactive) fire no event.
 
-## Self-review / adversarial / Files / Tests
-
-- (filled when Q4.1 lands)
-
 ## Implementation log
 
-- (not started)
+**Q4.1 — quest GameEvents (DONE).**
+- `StoryletPart.FireQuestEvent(eventId, questId, objId?, from?, to?)`
+  helper — fires on `LocalPlayer` (null-guarded), string params via the
+  `SetParameter(string,string)` overload (→ `GetStringParameter`), indices
+  via `SetParameter(string,int)` (→ `GetIntParameter`).
+- Fires: `QuestStarted` (StartQuest, only on a genuinely-new start),
+  `QuestObjectiveFinished` (FinishObjective), `QuestStageAdvanced`
+  (AdvanceQuestStage advance branch, with From/ToIndex), `QuestCompleted`
+  (CompleteQuest), `QuestFailed` (new `StoryletPart.FailQuest`).
+- **Refactor:** added `StoryletPart.FailQuest(questId, actor)` (remove +
+  quest/Failed diag + QuestFailed event); the `FailQuest` conversation
+  action now delegates to it (mirrors the CompleteQuest action), so failure
+  side-effects live in ONE place. (Resolved the plan's 🟡.)
+
+### Self-review (§5)
+- ✅ Symmetry: events fire right after the matching diag; `FailQuest`
+  mirrors `CompleteQuest` (single-source + action delegates).
+- ✅ Cross-feature consistency: all 5 events share the param vocabulary
+  (`QuestId`/`ObjectiveId`/`FromIndex`/`ToIndex`) + typed overloads.
+- ✅ Counter-checks: no-`LocalPlayer` → event skipped but diag still fires
+  (+ no throw); no-op finish → no event; re-start → no re-fire.
+- 🔵 The `QuestStarted` EVENT fires from `StoryletPart.StartQuest` (the
+  single path all starts go through), while the quest/Started DIAG is
+  emitted by the StartQuest *conversation action* — so for Started alone,
+  diag + event aren't co-located (the other 4 co-locate in StoryletPart).
+  Event placement is correct (single source); the diag placement is
+  pre-existing. Left as-is to avoid a double-emit risk.
+- **Adversarial:** a dedicated file is NOT warranted — Q4.1 is a thin
+  additive event-firing layer; its surfaces (diag emission = the events
+  themselves; boundary = null LocalPlayer; no-op paths; re-fire) are all
+  covered by the 8 tests + counter-checks.
+
+### Files
+- MOD `StoryletPart.cs`: `FireQuestEvent` helper + `FailQuest` + 5 fire calls
+- MOD `ConversationActions.cs`: `FailQuest` action delegates to `StoryletPart.FailQuest`
+- NEW `QuestEventTests.cs`: 8 tests (capturing Part as LocalPlayer)
+
+### Tests
+8 (`QuestEventTests`): each of the 5 events fires with correct params;
+no-refire-on-restart; no-LocalPlayer-no-throw-diag-still-fires;
+no-op-finish-no-event.

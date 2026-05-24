@@ -558,16 +558,12 @@ namespace CavesOfOoo.Core
                 if (string.IsNullOrEmpty(arg)) return;
                 var sp = CavesOfOoo.Storylets.StoryletPart.Current;
                 if (sp == null) return;
-                if (!sp.IsQuestActive(arg)) return;
-
-                sp.RemoveActiveQuest(arg);
-
-                if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
-                {
-                    CavesOfOoo.Diagnostics.Diag.Record(
-                        category: "quest", kind: "Failed",
-                        actor: listener, payload: new { questId = arg });
-                }
+                // Q4.1: delegate to StoryletPart.FailQuest — the single
+                // source for the remove + quest/Failed diag + QuestFailed
+                // event (mirrors how this action's CompleteQuest sibling
+                // delegates to StoryletPart.CompleteQuest). The inactive-
+                // quest guard now lives inside FailQuest.
+                sp.FailQuest(arg, actor: listener);
             });
 
             // Q3.3: FinishObjective(questId:objId[~objId2~...]) — finish one
