@@ -40,8 +40,10 @@ QuestState {                          // EXISTING + one new field
 
 **API:** `FinishObjective(questId, objId, actor)`,
 `IsObjectiveFinished(questId, objId)`.
-**Conversation:** `FinishObjective` action; `IfObjectiveFinished` /
-`IfObjectiveNotFinished` predicates (keep `IfQuest*`).
+**Conversation:** `FinishObjective` action (arg `questId:objId[~objId2…]`,
+`~`-multi-finish); `IfObjectiveFinished` predicate (arg `questId:objId`) +
+its auto-inverse `IfNotObjectiveFinished` (the registry's IfNot* mechanism
+— *not* `IfObjectiveNotFinished`). Keep `IfQuest*`.
 **Quest Log (Q1):** the current stage expands to show its objectives as
 Done/Pending sub-rows (snapshot/builder enhancement; renderer reuses the
 proven `GetTextTile` + marker path).
@@ -129,6 +131,25 @@ proven `GetTextTile` + marker path).
   tick-finishes+advances / no-objective-legacy-unchanged.
 - Files: `StoryletPart.cs` (FinishObjective + dispatch), NEW
   `QuestObjectiveDispatchTests.cs`.
+
+**Q3.3 — conversation integration (DONE).**
+- `ConversationActions.FinishObjective` (arg `questId:objId[~objId2…]`):
+  splits the `~`-list (Qud `FinishQuestStep("a~b~c")` parity) and calls
+  `StoryletPart.Current.FinishObjective` per id with `listener` as actor.
+  Null/`:`-less arg → no-op.
+- `ConversationPredicates.IfObjectiveFinished` (arg `questId:objId`) →
+  `IsObjectiveFinished`; auto-inverse `IfNotObjectiveFinished` via the
+  IfNot* mechanism (verified — `StartsWith("IfNot")` strips to the `If`
+  base + negates).
+- **Self-review (§5):** mirrors the `AdvanceQuestStage` action +
+  `IfQuestStage` predicate patterns (arg `questId:…`, `StoryletPart.Current`,
+  listener=actor). Counter-checks: malformed-arg no-op; predicate
+  false-when-unfinished; auto-inverse both directions. No 🔴/🟡.
+- **Tests:** 7 (`QuestObjectiveConversationTests`) — single + `~`-multi
+  finish, all-required-advances, malformed no-op, predicate true/false,
+  auto-inverse.
+- Files: `ConversationActions.cs`, `ConversationPredicates.cs`, NEW
+  `QuestObjectiveConversationTests.cs`.
 
 **Pre-existing fix (separate commit):** `SaveWriter_FormatVersion_IsThree`
 asserted `==3` but the constant is `4` on main (bumped after the M2 test,

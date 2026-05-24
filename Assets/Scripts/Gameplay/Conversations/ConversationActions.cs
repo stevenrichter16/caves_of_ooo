@@ -570,6 +570,30 @@ namespace CavesOfOoo.Core
                 }
             });
 
+            // Q3.3: FinishObjective(questId:objId[~objId2~...]) — finish one
+            // or more objectives in the quest's current stage from dialogue.
+            // The ~-delimited list mirrors Qud's FinishQuestStep("a~b~c").
+            // Each call runs the objective's OnEnter + advances the stage
+            // when all non-Optional objectives are done (StoryletPart owns
+            // that logic). listener = the player (reward target / diag actor).
+            Register("FinishObjective", (speaker, listener, arg) =>
+            {
+                if (string.IsNullOrEmpty(arg)) return;
+                int colon = arg.IndexOf(':');
+                if (colon < 0) return;
+                string questId = arg.Substring(0, colon);
+                string objList = arg.Substring(colon + 1);
+                var sp = CavesOfOoo.Storylets.StoryletPart.Current;
+                if (sp == null) return;
+                var ids = objList.Split('~');
+                for (int i = 0; i < ids.Length; i++)
+                {
+                    var id = ids[i];
+                    if (!string.IsNullOrEmpty(id))
+                        sp.FinishObjective(questId, id, actor: listener);
+                }
+            });
+
             // ── QS.5 reward actions ──────────────────────────────────────
             // Per Docs/QUEST-SYSTEM.md. Wraps existing infrastructure
             // (LevelingSystem + TradeSystem) so quest content can grant
