@@ -5,19 +5,45 @@
 > (not dialogue) — `FinishQuestStepWhenSlain` / `CompleteQuestOnTaken` /
 > `QuestStarter`. Each is an `IPart` on an object that, on a world event,
 > calls `StoryletPart.Current.FinishObjective` (the Q3.2 API). **Status:
-> Q5.1 in progress.**
+> Q5.1 ✅. M1 (Taken event) ✅. Q5.2/Q5.3 in progress — Taken-only scope.**
 
 ## Verification sweep (events available)
 
 | World hook | CoO event | Status |
 |---|---|---|
 | **slain** | `"Died"` fired on the dying entity (`CombatSystem.cs:1072`, params `Target`/`Killer`/`Zone`); dispatched to all parts via `Entity.FireEvent` (no `WantEvent` gate) | ✅ exists → **Q5.1** |
-| taken / picked up | (none — no `"Taken"`/`"PickedUp"` event in production) | ❌ → defer Q5.2 |
-| created / seen / on-screen | (none of Qud's `Created`/`Seen`/`OnScreen` exist) | ❌ → defer Q5.3 |
+| taken / picked up | **FALSE-PREMISE CORRECTION (verified 2026-05-24):** CoO already has item-side `"BeforeBeingPickedUp"` + actor-side `"BeforePickup"`/`"AfterPickup"` (`PickupCommand`), and equip/drop lifecycle events — only the *item-side after-acquisition* hook was missing. The original sweep searched for the literal strings `"Taken"`/`"PickedUp"` and missed the existing surface. | ✅ → **M1 adds `"Taken"`** |
+| created / seen / on-screen | (none of Qud's `Created`/`Seen`/`OnScreen` exist — these need per-render/per-turn hooks) | ⚪ deferred (Taken-only scope) |
 
-So Q5 ships the **slain** Part now (the most universal objective — "kill
-X"); take/spawn-triggered Parts are deferred until those events exist
-(adding a pickup event is its own change, out of Q5 scope).
+So Q5.1 shipped the **slain** Part. The take-triggered Parts were
+documented as blocked on a missing pickup event — **that premise was
+wrong** (see the corrected row above). M1 adds the one genuinely-missing
+piece (an item-side `Taken` after-event) so Q5.2/Q5.3 can hook it. The
+zone-presence triggers (Created/Seen/OnScreen) remain deferred by the
+chosen Taken-only scope (they'd touch perf-sensitive per-render/per-turn
+paths — `Docs/PERF-FOUNDATION.md`).
+
+## M1 — item-side `"Taken"` event (Q5.2/Q5.3 prerequisite)
+
+The two **acquisition** commands fire `"Taken"` ON THE ITEM after a
+*successful* add, naming the taker:
+
+| Choke point | Source | Fires |
+|---|---|---|
+| Ground pickup | `PickupCommand.cs` (after `AddObject`, before AutoEquip) | `Taken` on item — `Actor`=taker, `Item`=self |
+| Container/corpse take | `TakeFromContainerCommand.cs` (after `AddObject`) | same shape |
+
+CoO analog of Qud's item-side `TakenEvent` (the Parts in
+`XRL.World.Parts/QuestStarter.cs` + `CompleteQuestOnTaken.cs` hook it).
+Naming note: `"Taken"` (vs CoO's `Before…`/`After…` convention) is the
+Qud-parity name; it unifies ground-pickup + container-take and is
+item-side like the existing `"BeforeBeingPickedUp"`. Fired before
+AutoEquip so "taken" = acquisition, independent of auto-equip.
+
+**Tests (`ItemTakenEventTests`, 6):** pickup fires Taken with taker;
+container-take fires Taken; overweight pickup + locked container fire
+NONE (counter-checks); item-side-not-actor-side (mutation); two items →
+own Taken each, no crosstalk (cross-instance).
 
 ## Q5.1 — `FinishObjectiveWhenSlain`
 

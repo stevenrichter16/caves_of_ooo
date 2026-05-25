@@ -131,6 +131,15 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 apply: null,
                 undo: () => inventory.RemoveObject(_item));
 
+            // Fire item-side Taken AFTER a successful add (CoO analog of Qud's
+            // TakenEvent). World-object quest Parts (CompleteObjectiveOnTaken /
+            // QuestStarter) live on the item and hook this. Fires before
+            // AutoEquip so "taken" reflects acquisition independent of equip.
+            var taken = GameEvent.New("Taken");
+            taken.SetParameter("Actor", (object)actor);
+            taken.SetParameter("Item", (object)_item);
+            _item.FireEventAndRelease(taken);
+
             MessageLog.Add($"{actor.GetDisplayName()} picks up {_item.GetDisplayName()}.");
 
             // Preserve auto-equip-on-pickup behavior through command-native flow.

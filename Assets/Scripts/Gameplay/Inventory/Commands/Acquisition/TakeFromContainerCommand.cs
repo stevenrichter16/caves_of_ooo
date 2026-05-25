@@ -128,6 +128,14 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 apply: null,
                 undo: () => inventory.RemoveObject(_item));
 
+            // Fire item-side Taken AFTER a successful add — same contract as
+            // PickupCommand so world-object quest Parts react to acquisition
+            // from a container/corpse, not just the ground.
+            var taken = GameEvent.New("Taken");
+            taken.SetParameter("Actor", (object)context.Actor);
+            taken.SetParameter("Item", (object)_item);
+            _item.FireEventAndRelease(taken);
+
             MessageLog.Add($"You take {_item.GetDisplayName()} from the {_container.GetDisplayName()}.");
             return InventoryCommandResult.Ok();
         }
