@@ -152,6 +152,17 @@ atomicity, no iterator mutation, counter-check completeness all clean). Angle
 B Qud-parity-first — surfaced the `IfHaveItem`-trigger-vs-`CompleteObjectiveOnTaken`
 relationship (documented above); no QuestStarted handler needed.
 
+**Integration / rule-7 validation (DONE, 2026-05-24).** `QuestTakenIntegrationTests`
+(3 tests) drives the FULL production chain — the real `PickupCommand` fires
+the M1 `Taken` event, the item's Part hooks it, routing to the real
+`StoryletPart`: real-pickup→objective-finished, real-pickup→quest-started,
+and the non-player-pickup counter-check, all through the actual command
+layer the pickup UI invokes (not synthetic events). This closes the
+M1↔M2/M3 seam without a bespoke PlayMode scenario — every component on the
+path is production code. (Honesty bound: the live input/bootstrap layer
+isn't separately scripted; it only sets `StoryletPart.LocalPlayer = _player`,
+GameBootstrap.cs:262.)
+
 ## Status
 Q5.1 ✅. M1 (`"Taken"` event) ✅. Q5.2 (`CompleteObjectiveOnTaken`) ✅.
 Q5.3 (`QuestStarter`) ✅. Scope: **Taken-only** (user-chosen). Equip/drop +
