@@ -297,5 +297,15 @@ namespace CavesOfOoo.Tests.Scenarios
             // Docs/QUEST-CONTENT-AND-BENCH.md.
             Assert.DoesNotThrow(() => new QuestSystemBench().Apply(FreshContext()));
         }
+
+        [Test]
+        public void QuestWorldPartsBench_Applies_WithoutThrowing()
+        {
+            // Like QuestSystemBench, a Play-mode self-auditing matrix. In
+            // EditMode the world singletons are absent so its Rule-4 guards
+            // fire and it returns cleanly. Behavior is proven by the live Play
+            // run — see Docs/QUEST-WORLD-PARTS.md.
+            Assert.DoesNotThrow(() => new QuestWorldPartsBench().Apply(FreshContext()));
+        }
     }
 }

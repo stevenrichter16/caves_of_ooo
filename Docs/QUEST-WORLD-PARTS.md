@@ -163,6 +163,20 @@ path is production code. (Honesty bound: the live input/bootstrap layer
 isn't separately scripted; it only sets `StoryletPart.LocalPlayer = _player`,
 GameBootstrap.cs:262.)
 
+**Live self-auditing bench (DONE, 2026-05-24; workflow step 7).**
+`QuestWorldPartsBench` (`Assets/Scripts/Scenarios/Custom/`) — one press of
+Play drives a 3-required-objective quest through ALL three world-side
+mechanisms in the LIVE runtime (real `ScenarioContext`, real zone, real
+`PickupCommand`, real `StoryletPart`): QuestStarter scroll → quest starts;
+CompleteObjectiveOnTaken relic → objective finished; FinishObjectiveWhenSlain
+guard → objective finished; direct FinishObjective (convo path) → advance.
+Emits one `questbench/Cell` diag per assertion (+ a CONTROL row), stamped
+`bench=worldparts` + a per-run `runId`. **Live run validated: 7 cells, 0
+fails (runId acdaa33b), console clean** — the rule-7 proof that the Parts
+work attached to real entities driven by the real command in the bootstrapped
+runtime, not just EditMode fixtures. Re-runnable (unique per-run IDs). Smoke:
+`ScenarioCustomSmokeTests.QuestWorldPartsBench_Applies_WithoutThrowing`.
+
 ## Status
 Q5.1 ✅. M1 (`"Taken"` event) ✅. Q5.2 (`CompleteObjectiveOnTaken`) ✅.
 Q5.3 (`QuestStarter`) ✅. Scope: **Taken-only** (user-chosen). Equip/drop +
