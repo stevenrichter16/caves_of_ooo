@@ -1,0 +1,83 @@
+{
+  "Conversations": [
+    {
+      "ID": "RootBeerGuy_Quest",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Name's Root Beer Guy — detective, at your service. And I'm stumped: I've misplaced my notebook somewhere here in the village. Whole case is in there. Help me crack it?",
+          "Choices": [
+            {
+              "Text": "[Accept] I'll find your notebook.",
+              "Target": "Accepted",
+              "Predicates": [
+                { "Key": "IfQuestNotStarted", "Value": "RootBeerGuyCase" }
+              ],
+              "Actions": [
+                { "Key": "StartQuest", "Value": "RootBeerGuyCase" }
+              ]
+            },
+            {
+              "Text": "[Status] Still searching.",
+              "Target": "Searching",
+              "Predicates": [
+                { "Key": "IfQuestStage", "Value": "RootBeerGuyCase:find" }
+              ]
+            },
+            {
+              "Text": "[Return it] Found your notebook.",
+              "Target": "Solved",
+              "Predicates": [
+                { "Key": "IfQuestStage", "Value": "RootBeerGuyCase:report" }
+              ],
+              "Actions": [
+                { "Key": "CompleteQuest", "Value": "RootBeerGuyCase" },
+                { "Key": "AwardXP", "Value": "150" },
+                { "Key": "GiveDrams", "Value": "60" }
+              ]
+            },
+            {
+              "Text": "[Done] Any other cases?",
+              "Target": "Done",
+              "Predicates": [
+                { "Key": "IfQuestCompleted", "Value": "RootBeerGuyCase" }
+              ]
+            },
+            {
+              "Text": "Goodbye.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Accepted",
+          "Text": "A partner! Outstanding. It's somewhere in the village — check the buildings. Bring it here when you've got it.",
+          "Choices": [
+            { "Text": "On the case.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Searching",
+          "Text": "Keep at it, partner. A good detective never quits mid-case.",
+          "Choices": [
+            { "Text": "Right.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Solved",
+          "Text": "That's the one! Case closed. Here — a little something for your trouble, and you've earned the experience besides.",
+          "Choices": [
+            { "Text": "Glad to help.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Done",
+          "Text": "Nothing open at the moment, partner. I'll holler if a new case turns up.",
+          "Choices": [
+            { "Text": "Goodbye.", "Target": "End" }
+          ]
+        }
+      ]
+    }
+  ]
+}

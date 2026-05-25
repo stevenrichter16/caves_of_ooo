@@ -1,0 +1,36 @@
+{
+  "Storylets": [
+    {
+      "ID": "RootBeerGuyCase",
+      "OneShot": false,
+      "Tracked": true,
+      "Triggers": [],
+      "Effects": [],
+      "Quest": {
+        "Accomplishment": "You cracked the Case of the Missing Notebook and returned it to Root Beer Guy.",
+        "Stages": [
+          {
+            "ID": "find",
+            "Triggers": [],
+            "OnEnter": [],
+            "Objectives": [
+              {
+                "ID": "find_notebook",
+                "Text": "Find Root Beer Guy's detective notebook",
+                "Optional": false,
+                "Hidden": false,
+                "Triggers": [ { "Key": "IfHaveItem", "Value": "DetectiveNotebook" } ],
+                "OnEnter": []
+              }
+            ]
+          },
+          {
+            "ID": "report",
+            "Triggers": [ { "Key": "IfFact", "Value": "rbg_report_guard:>=:1" } ],
+            "OnEnter": []
+          }
+        ]
+      }
+    }
+  ]
+}

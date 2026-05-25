@@ -162,6 +162,12 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < villagerCount; i++)
                 PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
 
+            // Starting-village-only: place a quest-giver + his lost item so the
+            // player meets a complete, robust fetch quest in NORMAL PLAY (not a
+            // dev scenario). See Docs/QUEST-IN-WORLD.md.
+            if (zone.ZoneID == StartingVillageZoneId)
+                PlaceStartingVillageQuestGiver(zone, factory, rng, interiorCells, openCells, settlementId);
+
             return true;
         }
 
@@ -869,6 +875,41 @@ namespace CavesOfOoo.Core
             var conversation = entity?.GetPart<ConversationPart>();
             if (conversation != null && !string.IsNullOrEmpty(conversationId))
                 conversation.ConversationID = conversationId;
+        }
+
+        /// <summary>
+        /// Starting-village-only: place a quest-giver (Root Beer Guy) + his lost
+        /// notebook so the player encounters a complete fetch quest in NORMAL
+        /// PLAY — not a dev scenario. The notebook carries
+        /// <c>CompleteObjectiveOnTaken</c> (Q5.2 instant fast-path); the quest
+        /// objective ALSO has an <c>IfHaveItem:DetectiveNotebook</c> trigger so
+        /// completion is order-independent (robust even if the player grabs the
+        /// notebook before accepting the quest — no soft-lock). The quest +
+        /// dialogue auto-load from RootBeerGuyCase.json / RootBeerGuy_Quest.json.
+        /// See Docs/QUEST-IN-WORLD.md. Fail-soft: no-ops if cells/NPC unavailable.
+        /// </summary>
+        private void PlaceStartingVillageQuestGiver(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> interiorCells, List<(int x, int y)> openCells, string settlementId)
+        {
+            Entity giver = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
+            if (giver == null) return;
+            SetConversation(giver, "RootBeerGuy_Quest");
+            var render = giver.GetPart<RenderPart>();
+            if (render != null) { render.DisplayName = "Root Beer Guy"; render.RenderString = "r"; render.ColorString = "&r"; }
+
+            // The lost notebook — built directly (no blueprint) so it carries the
+            // quest Part. BlueprintName "DetectiveNotebook" makes IfHaveItem match.
+            if (openCells.Count == 0) return;
+            int idx = rng.Next(openCells.Count);
+            var (nx, ny) = openCells[idx];
+            openCells.RemoveAt(idx);
+
+            var notebook = new Entity { ID = "DetectiveNotebook", BlueprintName = "DetectiveNotebook" };
+            notebook.Tags["Item"] = "";
+            notebook.AddPart(new RenderPart { DisplayName = "detective notebook", RenderString = "=", ColorString = "&w" });
+            notebook.AddPart(new PhysicsPart { Takeable = true, Weight = 1 });
+            notebook.AddPart(new CavesOfOoo.Storylets.CompleteObjectiveOnTaken { Quest = "RootBeerGuyCase", Objective = "find_notebook" });
+            zone.AddEntity(notebook, nx, ny);
         }
 
         private List<(int x, int y)> GatherOpenCells(Zone zone)
