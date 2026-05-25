@@ -1,0 +1,44 @@
+{
+  "Storylets": [
+    {
+      "ID": "CinnamonBunFavor",
+      "OneShot": false,
+      "Tracked": true,
+      "Triggers": [],
+      "Effects": [],
+      "Quest": {
+        "Accomplishment": "You recovered Cinnamon Bun's scorched keepsake and drove the soot gremlin out of the bakery.",
+        "Stages": [
+          {
+            "ID": "errands",
+            "Triggers": [],
+            "OnEnter": [],
+            "Objectives": [
+              {
+                "ID": "recover_keepsake",
+                "Text": "Recover the scorched keepsake",
+                "Optional": false,
+                "Hidden": false,
+                "Triggers": [ { "Key": "IfFact", "Value": "cbq_external:>=:1" } ],
+                "OnEnter": []
+              },
+              {
+                "ID": "drive_off_gremlin",
+                "Text": "Drive off the soot gremlin",
+                "Optional": false,
+                "Hidden": false,
+                "Triggers": [ { "Key": "IfFact", "Value": "cbq_external:>=:1" } ],
+                "OnEnter": []
+              }
+            ]
+          },
+          {
+            "ID": "report",
+            "Triggers": [ { "Key": "IfFact", "Value": "cbq_external:>=:1" } ],
+            "OnEnter": []
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -307,5 +307,15 @@ namespace CavesOfOoo.Tests.Scenarios
             // run — see Docs/QUEST-WORLD-PARTS.md.
             Assert.DoesNotThrow(() => new QuestWorldPartsBench().Apply(FreshContext()));
         }
+
+        [Test]
+        public void QuestCinnamonBunPlayable_Applies_WithoutThrowing()
+        {
+            // The playable-quest scenario spawns an NPC + keepsake + gremlin
+            // and wires the Q5 Parts. Smoke proves the spawn/wire code runs
+            // cleanly; the full loop is proven by the live Play run — see
+            // Docs/QUEST-PLAYABLE-CINNAMONBUN.md.
+            Assert.DoesNotThrow(() => new QuestCinnamonBunPlayable().Apply(FreshContext()));
+        }
     }
 }

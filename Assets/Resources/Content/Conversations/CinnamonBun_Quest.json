@@ -1,0 +1,83 @@
+{
+  "Conversations": [
+    {
+      "ID": "CinnamonBun_Quest",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Oh! Hello there. I'm Cinnamon Bun. Things have gone a bit sideways at the bakery — a soot gremlin got in, and in the fuss it knocked my late wife's keepsake somewhere out east. Could you help an old bun out?",
+          "Choices": [
+            {
+              "Text": "[Accept] I'll find the keepsake and run off the gremlin.",
+              "Target": "Accepted",
+              "Predicates": [
+                { "Key": "IfQuestNotStarted", "Value": "CinnamonBunFavor" }
+              ],
+              "Actions": [
+                { "Key": "StartQuest", "Value": "CinnamonBunFavor" }
+              ]
+            },
+            {
+              "Text": "[Status] Still working on it.",
+              "Target": "Status",
+              "Predicates": [
+                { "Key": "IfQuestStage", "Value": "CinnamonBunFavor:errands" }
+              ]
+            },
+            {
+              "Text": "[Report] The keepsake's safe and the gremlin's gone.",
+              "Target": "Thanks",
+              "Predicates": [
+                { "Key": "IfQuestStage", "Value": "CinnamonBunFavor:report" }
+              ],
+              "Actions": [
+                { "Key": "CompleteQuest", "Value": "CinnamonBunFavor" },
+                { "Key": "AwardXP", "Value": "250" },
+                { "Key": "GiveDrams", "Value": "100" }
+              ]
+            },
+            {
+              "Text": "[Done] Anything else I can do?",
+              "Target": "Done",
+              "Predicates": [
+                { "Key": "IfQuestCompleted", "Value": "CinnamonBunFavor" }
+              ]
+            },
+            {
+              "Text": "Goodbye.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Accepted",
+          "Text": "Oh, bless you! The gremlin skittered off east — the keepsake can't be far from wherever it's gotten to. Come back when it's done.",
+          "Choices": [
+            { "Text": "I'm on it.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Status",
+          "Text": "Take your time... well, not TOO much time. That gremlin's awfully sooty, and the keepsake's awfully dear.",
+          "Choices": [
+            { "Text": "Right.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Thanks",
+          "Text": "You found it! And the bakery's quiet again. Here — some drams for your trouble, and a little hard-won wisdom besides. Thank you, truly.",
+          "Choices": [
+            { "Text": "Happy to help.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Done",
+          "Text": "You've done plenty already, friend. The cinnamon rolls are on the house whenever you like.",
+          "Choices": [
+            { "Text": "Goodbye.", "Target": "End" }
+          ]
+        }
+      ]
+    }
+  ]
+}
