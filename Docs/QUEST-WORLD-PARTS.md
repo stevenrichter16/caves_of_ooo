@@ -177,7 +177,26 @@ work attached to real entities driven by the real command in the bootstrapped
 runtime, not just EditMode fixtures. Re-runnable (unique per-run IDs). Smoke:
 `ScenarioCustomSmokeTests.QuestWorldPartsBench_Applies_WithoutThrowing`.
 
+## Content authorability (verified 2026-05-24)
+All three Parts are attachable to entity blueprints via JSON with field
+config — **no code changes, no special-casing**. EntityFactory
+auto-registers every Part type (`RegisterPartsFromAssembly`,
+EntityFactory.cs:62) and sets public fields by name via reflection
+(`ApplyParameters`, EntityFactory.cs:255). So a designer writes, e.g.:
+
+```json
+{ "Name": "TheEnchiridion", "Parts": [
+  { "Name": "Render", "Params": [ { "Key": "RenderString", "Value": "*" } ] },
+  { "Name": "CompleteObjectiveOnTaken", "Params": [
+      { "Key": "Quest", "Value": "EnchiridionQuest" },
+      { "Key": "Objective", "Value": "find_enchiridion" } ] } ] }
+```
+
+Pinned by `QuestWorldPartsBlueprintTests` (4 tests): each Part attaches with
+its fields; distinct instances don't share Part state.
+
 ## Status
 Q5.1 ✅. M1 (`"Taken"` event) ✅. Q5.2 (`CompleteObjectiveOnTaken`) ✅.
-Q5.3 (`QuestStarter`) ✅. Scope: **Taken-only** (user-chosen). Equip/drop +
-zone-presence triggers deferred (see Deferred section).
+Q5.3 (`QuestStarter`) ✅. Live bench ✅. Content-authorable ✅. Scope:
+**Taken-only** (user-chosen). Equip/drop + zone-presence triggers deferred
+(see Deferred section).
