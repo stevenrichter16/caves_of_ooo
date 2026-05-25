@@ -1,0 +1,30 @@
+{
+  "Conversations": [
+    {
+      "ID": "Warren_Quest",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "You there! Dirt gnomes have dug a warren right under my turnip patch and they keep nipping my ankles. Three of the grubby little things, at least. Could you clear them out for me?",
+          "Choices": [
+            { "Text": "[Accept] I'll clear the gnomes.", "Target": "Accepted",
+              "Predicates": [ { "Key": "IfQuestNotStarted", "Value": "ClearTheWarren" } ],
+              "Actions": [ { "Key": "StartQuest", "Value": "ClearTheWarren" } ] },
+            { "Text": "[Status] Still rooting them out.", "Target": "Searching",
+              "Predicates": [ { "Key": "IfQuestStage", "Value": "ClearTheWarren:clear" } ] },
+            { "Text": "[Report] The warren is cleared.", "Target": "Thanks",
+              "Predicates": [ { "Key": "IfQuestStage", "Value": "ClearTheWarren:report" } ],
+              "Actions": [ { "Key": "CompleteQuest", "Value": "ClearTheWarren" }, { "Key": "AwardXP", "Value": "150" }, { "Key": "GiveDrams", "Value": "60" } ] },
+            { "Text": "[Done] Turnips safe these days?", "Target": "Done",
+              "Predicates": [ { "Key": "IfQuestCompleted", "Value": "ClearTheWarren" } ] },
+            { "Text": "Goodbye.", "Target": "End" }
+          ]
+        },
+        { "ID": "Accepted", "Text": "Glob bless you. They're down in the burrows on the edge of town — nasty, biting things. Come back when they're routed.", "Choices": [ { "Text": "On it.", "Target": "End" } ] },
+        { "ID": "Searching", "Text": "Still hear them scuffling under the rows. Keep at it, please!", "Choices": [ { "Text": "Right.", "Target": "End" } ] },
+        { "ID": "Thanks", "Text": "Not a gnome left! My turnips thank you, and so do my ankles. Here — for your trouble.", "Choices": [ { "Text": "Happy to help.", "Target": "End" } ] },
+        { "ID": "Done", "Text": "Best harvest in years, thanks to you. Safe travels, friend.", "Choices": [ { "Text": "Bye.", "Target": "End" } ] }
+      ]
+    }
+  ]
+}

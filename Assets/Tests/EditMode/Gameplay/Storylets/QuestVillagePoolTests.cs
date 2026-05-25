@@ -29,18 +29,32 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void PickVillageQuest_EveryPickIsInThePool_AndBothAreReachable()
+        public void Pool_HasNoDuplicates()
         {
-            var pool = new HashSet<string> { "CrunchyLocket", "HiddenShrine" };
+            var pool = VillagePopulationBuilder.VillageQuestPoolIds;
+            Assert.AreEqual(pool.Count, pool.Distinct().Count(),
+                "the pool must not contain duplicate quest IDs (a dupe wastes a slot + skews the pick)");
+        }
+
+        [Test]
+        public void PickVillageQuest_EveryPickIsInThePool_AndAllAreReachable()
+        {
+            // Pool-agnostic: derive expectations from the actual pool so this
+            // test survives future pool growth untouched. Across many distinct
+            // zone IDs every pool quest must appear at least once (the pick
+            // distributes) and no pick may fall outside the pool.
+            var pool = VillagePopulationBuilder.VillageQuestPoolIds;
+            var poolSet = pool.ToList();
             var seen = new HashSet<string>();
             for (int x = 0; x < 20; x++)
                 for (int y = 0; y < 20; y++)
                 {
                     string q = VillagePopulationBuilder.PickVillageQuest($"Overworld.{x}.{y}.0");
-                    Assert.Contains(q, pool.ToList(), "every pick must be a pool quest");
+                    Assert.Contains(q, poolSet, "every pick must be a pool quest");
                     seen.Add(q);
                 }
-            Assert.AreEqual(2, seen.Count, "across many villages BOTH pool quests appear (the pick distributes)");
+            Assert.AreEqual(pool.Count, seen.Count,
+                "across many villages EVERY pool quest appears (all reachable; the pick distributes)");
         }
 
         // ════════════════ content integrity ════════════════
@@ -89,9 +103,28 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void ClearTheWarren_KillObjective_PollsCounterFact()
+        {
+            // The kill-N counter quest: the objective must poll the SHARED
+            // counter fact via IfFact:>=:3 (order-independent), matching the
+            // fact the builder's 3 AddFactWhenSlain gnomes increment.
+            // String const mirrors VillagePopulationBuilder.PlaceWarrenQuest
+            // (the builder↔content seam).
+            var q = LoadQuest("ClearTheWarren");
+            var rout = q.Quest.Stages[0].Objectives.FirstOrDefault(o => o.ID == "rout_gnomes");
+            Assert.IsNotNull(rout, "the kill-N objective the builder's counter mobs drive must exist");
+            var iffact = rout.Triggers.FirstOrDefault(t => t.Key == "IfFact");
+            Assert.IsNotNull(iffact, "rout_gnomes must poll IfFact (order-independent counter, NOT Part-only)");
+            Assert.AreEqual("warren_gnomes_routed:>=:3", iffact.Value,
+                "IfFact must match the shared fact AddFactWhenSlain sets on the 3 placed gnomes, threshold 3");
+            Assert.AreEqual(3, iffact.Value.Split(':').Length, "IfFact arg is key:OP:threshold (3 parts)");
+            Assert.IsFalse(string.IsNullOrEmpty(q.Quest.Accomplishment), "has a Q7 accomplishment deed");
+        }
+
+        [Test]
         public void PoolConversations_ActionsAndPredicates_AreRegistered()
         {
-            foreach (var convoId in new[] { "Crunchy_Quest", "Pilgrim_Quest" })
+            foreach (var convoId in new[] { "Crunchy_Quest", "Pilgrim_Quest", "Warren_Quest" })
             {
                 var c = LoadConvo(convoId);
                 foreach (var node in c.Nodes)

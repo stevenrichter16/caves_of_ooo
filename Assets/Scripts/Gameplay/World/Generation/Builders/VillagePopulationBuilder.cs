@@ -977,7 +977,7 @@ namespace CavesOfOoo.Core
         /// village hosts ONE, picked by a stable zone-ID hash. Quests + dialogue
         /// auto-load from Resources. Expand the pool to reduce cross-village
         /// repetition. Docs/QUEST-DESIGN-CATALOG.md.</summary>
-        private static readonly string[] VillageQuestPool = { "CrunchyLocket", "HiddenShrine" };
+        private static readonly string[] VillageQuestPool = { "CrunchyLocket", "HiddenShrine", "ClearTheWarren" };
 
         /// <summary>Deterministically pick the pool quest for a village by its
         /// zone ID (stable per zone, like the per-village House Drama pick).
@@ -985,13 +985,21 @@ namespace CavesOfOoo.Core
         public static string PickVillageQuest(string zoneId)
             => VillageQuestPool[((zoneId ?? "").GetHashCode() & int.MaxValue) % VillageQuestPool.Length];
 
+        /// <summary>Read-only view of the distributable pool, for tests/tools.
+        /// Lets the pool-distribution test assert its invariants
+        /// (every pick is in the pool, all entries are reachable, no dupes)
+        /// without hard-coding the pool size — so the test survives future
+        /// pool growth untouched.</summary>
+        public static IReadOnlyList<string> VillageQuestPoolIds => VillageQuestPool;
+
         private void PlaceDistributedVillageQuest(Zone zone, EntityFactory factory, System.Random rng,
             List<(int x, int y)> interiorCells, List<(int x, int y)> openCells, string settlementId)
         {
             switch (PickVillageQuest(zone.ZoneID))
             {
-                case "CrunchyLocket": PlaceCrunchyLocketQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
-                default:              PlacePilgrimShrineQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
+                case "CrunchyLocket":  PlaceCrunchyLocketQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
+                case "ClearTheWarren": PlaceWarrenQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
+                default:               PlacePilgrimShrineQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
             }
         }
 
@@ -1038,6 +1046,40 @@ namespace CavesOfOoo.Core
             shrine.AddPart(new PhysicsPart { Solid = false });
             shrine.AddPart(new CavesOfOoo.Storylets.QuestMarkerTriggerPart { Fact = "shrine_reached", Value = 1 });
             zone.AddEntity(shrine, x, y);
+        }
+
+        /// <summary>Pool quest — Clear the Warren (kill-N counter). Giver + THREE
+        /// "dirt gnome" mobs (Snapjaw reskinned), each carrying
+        /// <c>AddFactWhenSlain</c> on the SHARED <c>warren_gnomes_routed</c> fact.
+        /// Slaying all three — in any order, by any killer (player, warden) —
+        /// drives the <c>IfFact:warren_gnomes_routed:>=:3</c> objective; the fact
+        /// persists and the objective is polled by the tick, so the kills count
+        /// whether they happen before OR after accepting (no soft-lock). This is
+        /// the first WORLD use of the Q5.5 counter primitive. The fact + threshold
+        /// MUST match ClearTheWarren.json (builder↔content seam, pinned by
+        /// QuestVillagePoolTests + this builder's placement test). Fail-soft.</summary>
+        private void PlaceWarrenQuest(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> interiorCells, List<(int x, int y)> openCells, string settlementId)
+        {
+            Entity giver = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
+            if (giver == null) return;
+            SetConversation(giver, "Warren_Quest");
+            var r = giver.GetPart<RenderPart>();
+            if (r != null) { r.DisplayName = "frazzled farmer"; r.RenderString = "f"; r.ColorString = "&w"; }
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (openCells.Count == 0) return;
+                int gi = rng.Next(openCells.Count);
+                var (gx, gy) = openCells[gi];
+                openCells.RemoveAt(gi);
+                Entity gnome = TryCreateEntity(factory, "Snapjaw");
+                if (gnome == null) continue;
+                gnome.AddPart(new CavesOfOoo.Storylets.AddFactWhenSlain { Fact = "warren_gnomes_routed", Amount = 1 });
+                var gr = gnome.GetPart<RenderPart>();
+                if (gr != null) { gr.DisplayName = "dirt gnome"; gr.RenderString = "g"; gr.ColorString = "&y"; }
+                zone.AddEntity(gnome, gx, gy);
+            }
         }
 
         private List<(int x, int y)> GatherOpenCells(Zone zone)

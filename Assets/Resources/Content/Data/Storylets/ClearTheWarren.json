@@ -1,0 +1,21 @@
+{
+  "Storylets": [
+    {
+      "ID": "ClearTheWarren",
+      "OneShot": false, "Tracked": true, "Triggers": [], "Effects": [],
+      "Quest": {
+        "Accomplishment": "You cleared the dirt gnomes from the warren beneath the village.",
+        "Stages": [
+          {
+            "ID": "clear", "Triggers": [], "OnEnter": [],
+            "Objectives": [
+              { "ID": "rout_gnomes", "Text": "Rout the dirt gnomes (3)", "Optional": false, "Hidden": false,
+                "Triggers": [ { "Key": "IfFact", "Value": "warren_gnomes_routed:>=:3" } ], "OnEnter": [] }
+            ]
+          },
+          { "ID": "report", "Triggers": [ { "Key": "IfFact", "Value": "warren_report_guard:>=:1" } ], "OnEnter": [] }
+        ]
+      }
+    }
+  ]
+}

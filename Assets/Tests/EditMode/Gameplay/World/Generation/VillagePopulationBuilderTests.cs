@@ -96,12 +96,80 @@ namespace CavesOfOoo.Tests
             }
         }
 
+        // ── Pool quests (Docs/QUEST-POOL-EXPANSION.md) ─────────────────────
+        // Non-starting villages host one pool quest, picked by zone-ID hash.
+        // To exercise a SPECIFIC pool quest's placement we scan for a zone ID
+        // that the deterministic pick maps to that quest, then build it.
+
+        private static string FindZoneForQuest(string questId)
+        {
+            for (int x = 0; x < 20; x++)
+                for (int y = 0; y < 20; y++)
+                {
+                    string z = $"Overworld.{x}.{y}.0";
+                    if (z == "Overworld.10.10.0") continue; // starting village is special-cased
+                    if (VillagePopulationBuilder.PickVillageQuest(z) == questId)
+                        return z;
+                }
+            return null;
+        }
+
+        private void BuildVillage(string zoneId, out Zone zone)
+        {
+            var poi = new PointOfInterest(POIType.Village, "Test Village", "Villagers");
+            var villageBuilder = new VillageBuilder(BiomeType.Cave, poi);
+            var populationBuilder = new VillagePopulationBuilder(poi);
+            zone = new Zone(zoneId);
+            Assert.IsTrue(villageBuilder.BuildZone(zone, _factory, new Random(7)));
+            Assert.IsTrue(populationBuilder.BuildZone(zone, _factory, new Random(7)));
+        }
+
+        [Test]
+        public void BuildZone_WarrenVillage_PlacesThreeCounterMobsSharingTheFact()
+        {
+            // SM1: the kill-N quest must spawn exactly 3 mobs, each carrying an
+            // AddFactWhenSlain on the SAME fact the JSON objective polls. This
+            // pins the builder side of the builder↔content seam (the JSON side
+            // is pinned by QuestVillagePoolTests.ClearTheWarren_*).
+            string z = FindZoneForQuest("ClearTheWarren");
+            Assert.IsNotNull(z, "a non-starting zone must map to ClearTheWarren (pool must contain it + be reachable)");
+
+            BuildVillage(z, out var zone);
+
+            int counterMobs = 0;
+            foreach (var e in zone.GetAllEntities())
+            {
+                var p = e.GetPart<CavesOfOoo.Storylets.AddFactWhenSlain>();
+                if (p != null && p.Fact == "warren_gnomes_routed")
+                {
+                    counterMobs++;
+                    Assert.AreEqual(1, p.Amount, "each gnome increments the shared counter by 1");
+                }
+            }
+            Assert.AreEqual(3, counterMobs,
+                "the warren quest places exactly 3 counter gnomes sharing warren_gnomes_routed " +
+                "(so IfFact:warren_gnomes_routed:>=:3 is winnable by clearing them)");
+        }
+
         private static Entity FindByBlueprint(Zone zone, string blueprintName)
         {
             var entities = zone.GetAllEntities();
             for (int i = 0; i < entities.Count; i++)
             {
                 if (entities[i].BlueprintName == blueprintName)
+                    return entities[i];
+            }
+
+            return null;
+        }
+
+        private static Entity FindByConversation(Zone zone, string conversationId)
+        {
+            var entities = zone.GetAllEntities();
+            for (int i = 0; i < entities.Count; i++)
+            {
+                var convo = entities[i].GetPart<ConversationPart>();
+                if (convo != null && convo.ConversationID == conversationId)
                     return entities[i];
             }
 

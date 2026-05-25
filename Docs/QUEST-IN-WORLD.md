@@ -18,11 +18,13 @@
 > quest from a pool, picked deterministically by zone ID
 > (`VillagePopulationBuilder.PickVillageQuest`, mirroring the per-village House
 > Drama assignment) — so the player finds varied quests *while exploring*, one
-> per village, no hub crowding. v1 pool: **Crunchy's Lost Locket** (fetch) +
-> **The Hidden Shrine** (reach). Expand the pool to cut cross-village
-> repetition. Pick is unit-tested (deterministic + both reachable); content
-> integrity-tested; **live-validated** — `Overworld.5.5.0` generated with
-> Crunchy_Quest, matching its pick. Starting village keeps RootBeerGuy + BMO.
+> per village, no hub crowding. Pool (growing — see
+> `Docs/QUEST-POOL-EXPANSION.md`): **Crunchy's Lost Locket** (fetch), **The
+> Hidden Shrine** (reach), **Clear the Warren** (kill-N counter, the first
+> world use of `AddFactWhenSlain`). Pick is unit-tested (deterministic + all
+> reachable, **pool-agnostic** so it survives growth); content integrity-tested
+> per quest; builder placement-tested (the warren village spawns exactly 3
+> counter gnomes). Starting village keeps RootBeerGuy + BMO.
 
 ## What the player does
 Start a new game → you spawn in the starting village (`Overworld.10.10.0`).
