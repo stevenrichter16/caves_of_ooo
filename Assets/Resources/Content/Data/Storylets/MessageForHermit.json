@@ -1,0 +1,21 @@
+{
+  "Storylets": [
+    {
+      "ID": "MessageForHermit",
+      "OneShot": false, "Tracked": true, "Triggers": [], "Effects": [],
+      "Quest": {
+        "Accomplishment": "You carried the baker's warning to the hermit at the village edge.",
+        "Stages": [
+          {
+            "ID": "deliver", "Triggers": [], "OnEnter": [],
+            "Objectives": [
+              { "ID": "deliver_message", "Text": "Carry the baker's message to the hermit", "Optional": false, "Hidden": false,
+                "Triggers": [ { "Key": "IfFact", "Value": "hermit_message_delivered:>=:1" } ], "OnEnter": [] }
+            ]
+          },
+          { "ID": "report", "Triggers": [ { "Key": "IfFact", "Value": "hermit_report_guard:>=:1" } ], "OnEnter": [] }
+        ]
+      }
+    }
+  ]
+}

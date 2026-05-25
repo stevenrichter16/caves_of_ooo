@@ -1,0 +1,29 @@
+{
+  "Conversations": [
+    {
+      "ID": "CandyCitizen",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Oh — is it tax time already? Peppermint Butler sent you, didn't he. Always something with that treasury.",
+          "Choices": [
+            { "Text": "[Collect] Your candy tax, please.", "Target": "Paid",
+              "Predicates": [
+                { "Key": "IfQuestActive", "Value": "TheCandyTax" },
+                { "Key": "IfNotSpeakerHaveProperty", "Value": "candy_taxed" }
+              ],
+              "Actions": [
+                { "Key": "AddFact", "Value": "candy_taxes_collected:1" },
+                { "Key": "SetSpeakerProperty", "Value": "candy_taxed:1" }
+              ] },
+            { "Text": "[Already paid] Carry on, citizen.", "Target": "AlreadyPaid",
+              "Predicates": [ { "Key": "IfSpeakerHaveProperty", "Value": "candy_taxed" } ] },
+            { "Text": "Goodbye.", "Target": "End" }
+          ]
+        },
+        { "ID": "Paid", "Text": "Fine, fine — here's my share. Tell the Princess I paid first, would you?", "Choices": [ { "Text": "Noted.", "Target": "End" } ] },
+        { "ID": "AlreadyPaid", "Text": "I already paid! Honestly, the bookkeeping in this town.", "Choices": [ { "Text": "So you did.", "Target": "End" } ] }
+      ]
+    }
+  ]
+}

@@ -151,6 +151,48 @@ namespace CavesOfOoo.Tests
                 "(so IfFact:warren_gnomes_routed:>=:3 is winnable by clearing them)");
         }
 
+        [Test]
+        public void BuildZone_CandyTaxVillage_PlacesGiverAndThreeTaxableCitizens()
+        {
+            // SM2: the collect-N dialogue quest must spawn the giver
+            // (CandyTax_Quest) + exactly 3 citizens sharing the CandyCitizen
+            // conversation (each contributes once to the counter).
+            string z = FindZoneForQuest("TheCandyTax");
+            Assert.IsNotNull(z, "a non-starting zone must map to TheCandyTax (pool must contain it + be reachable)");
+
+            BuildVillage(z, out var zone);
+
+            Assert.IsNotNull(FindByConversation(zone, "CandyTax_Quest"),
+                "the Candy Tax giver (Peppermint Butler) must be placed");
+
+            int citizens = 0;
+            foreach (var e in zone.GetAllEntities())
+            {
+                var convo = e.GetPart<ConversationPart>();
+                if (convo != null && convo.ConversationID == "CandyCitizen") citizens++;
+            }
+            Assert.AreEqual(3, citizens,
+                "exactly 3 candy citizens (shared CandyCitizen convo) so IfFact:candy_taxes_collected:>=:3 is winnable");
+        }
+
+        [Test]
+        public void BuildZone_HermitVillage_PlacesGiverAndRecipient()
+        {
+            // SM3: the deliver quest must spawn BOTH the giver (Baker_Quest) and
+            // the recipient (Hermit_Quest) in the same village — the recipient
+            // carries the completion, so it must exist for the quest to be
+            // winnable.
+            string z = FindZoneForQuest("MessageForHermit");
+            Assert.IsNotNull(z, "a non-starting zone must map to MessageForHermit (pool must contain it + be reachable)");
+
+            BuildVillage(z, out var zone);
+
+            Assert.IsNotNull(FindByConversation(zone, "Baker_Quest"),
+                "the deliver-quest giver (worried baker) must be placed");
+            Assert.IsNotNull(FindByConversation(zone, "Hermit_Quest"),
+                "the recipient (the hermit) must be placed — it carries the SetFact completion");
+        }
+
         private static Entity FindByBlueprint(Zone zone, string blueprintName)
         {
             var entities = zone.GetAllEntities();

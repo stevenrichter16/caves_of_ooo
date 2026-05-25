@@ -1,0 +1,30 @@
+{
+  "Conversations": [
+    {
+      "ID": "CandyTax_Quest",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Ahem. Peppermint Butler, at your service — and at the Princess's. The treasury is light this quarter and three citizens are dawdling on their candy tax. Would you collect it from them for me?",
+          "Choices": [
+            { "Text": "[Accept] I'll collect the tax.", "Target": "Accepted",
+              "Predicates": [ { "Key": "IfQuestNotStarted", "Value": "TheCandyTax" } ],
+              "Actions": [ { "Key": "StartQuest", "Value": "TheCandyTax" } ] },
+            { "Text": "[Status] Still collecting.", "Target": "Collecting",
+              "Predicates": [ { "Key": "IfQuestStage", "Value": "TheCandyTax:collect" } ] },
+            { "Text": "[Report] The tax is collected.", "Target": "Thanks",
+              "Predicates": [ { "Key": "IfQuestStage", "Value": "TheCandyTax:report" } ],
+              "Actions": [ { "Key": "CompleteQuest", "Value": "TheCandyTax" }, { "Key": "AwardXP", "Value": "140" }, { "Key": "GiveDrams", "Value": "70" } ] },
+            { "Text": "[Done] Treasury looking healthier?", "Target": "Done",
+              "Predicates": [ { "Key": "IfQuestCompleted", "Value": "TheCandyTax" } ] },
+            { "Text": "Goodbye.", "Target": "End" }
+          ]
+        },
+        { "ID": "Accepted", "Text": "Splendid. There are three of them about town — you'll know them by their grumbling. A firm but polite word should do it. Bring back what they owe.", "Choices": [ { "Text": "Understood.", "Target": "End" } ] },
+        { "ID": "Collecting", "Text": "Still a citizen or two short, I take it. Do be thorough — the Princess notices these things.", "Choices": [ { "Text": "On it.", "Target": "End" } ] },
+        { "ID": "Thanks", "Text": "Every dram accounted for. The Princess will hear of your diligence — and here is your cut, fair and square.", "Choices": [ { "Text": "A pleasure.", "Target": "End" } ] },
+        { "ID": "Done", "Text": "The treasury thanks you, as do I. Good day.", "Choices": [ { "Text": "Bye.", "Target": "End" } ] }
+      ]
+    }
+  ]
+}

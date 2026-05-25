@@ -1,0 +1,25 @@
+{
+  "Conversations": [
+    {
+      "ID": "Hermit_Quest",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Hm? A visitor. The village rarely sends anyone up my hill. Speak, then — the wind's getting cold.",
+          "Choices": [
+            { "Text": "[Deliver] The baker dreamed of the old flood again.", "Target": "Received",
+              "Predicates": [
+                { "Key": "IfQuestActive", "Value": "MessageForHermit" },
+                { "Key": "IfFact", "Value": "hermit_message_delivered:<:1" }
+              ],
+              "Actions": [ { "Key": "SetFact", "Value": "hermit_message_delivered:1" } ] },
+            { "Text": "Just passing through.", "Target": "Passing" },
+            { "Text": "Goodbye.", "Target": "End" }
+          ]
+        },
+        { "ID": "Received", "Text": "...the old flood. So. I had hoped that dream had drowned with the rest. Tell the baker I heard, and that I'll do what must be done. Go safely down the hill.", "Choices": [ { "Text": "I will.", "Target": "End" } ] },
+        { "ID": "Passing", "Text": "Then pass. The hill keeps its own counsel.", "Choices": [ { "Text": "Farewell.", "Target": "End" } ] }
+      ]
+    }
+  ]
+}

@@ -977,7 +977,7 @@ namespace CavesOfOoo.Core
         /// village hosts ONE, picked by a stable zone-ID hash. Quests + dialogue
         /// auto-load from Resources. Expand the pool to reduce cross-village
         /// repetition. Docs/QUEST-DESIGN-CATALOG.md.</summary>
-        private static readonly string[] VillageQuestPool = { "CrunchyLocket", "HiddenShrine", "ClearTheWarren" };
+        private static readonly string[] VillageQuestPool = { "CrunchyLocket", "HiddenShrine", "ClearTheWarren", "TheCandyTax", "MessageForHermit" };
 
         /// <summary>Deterministically pick the pool quest for a village by its
         /// zone ID (stable per zone, like the per-village House Drama pick).
@@ -999,6 +999,8 @@ namespace CavesOfOoo.Core
             {
                 case "CrunchyLocket":  PlaceCrunchyLocketQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
                 case "ClearTheWarren": PlaceWarrenQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
+                case "TheCandyTax":    PlaceCandyTaxQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
+                case "MessageForHermit": PlaceMessageForHermitQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
                 default:               PlacePilgrimShrineQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
             }
         }
@@ -1080,6 +1082,59 @@ namespace CavesOfOoo.Core
                 if (gr != null) { gr.DisplayName = "dirt gnome"; gr.RenderString = "g"; gr.ColorString = "&y"; }
                 zone.AddEntity(gnome, gx, gy);
             }
+        }
+
+        /// <summary>Pool quest — The Candy Tax (collect-N via dialogue). Giver
+        /// (Peppermint Butler) + THREE "candy citizen" NPCs that SHARE the
+        /// <c>CandyCitizen</c> conversation. Each citizen's collect choice is
+        /// gated <c>IfNotSpeakerHaveProperty:candy_taxed</c> and sets that
+        /// property on collect, so each ENTITY contributes to the
+        /// <c>candy_taxes_collected</c> AddFact counter exactly once (re-talking
+        /// a paid citizen can't farm it). The objective polls
+        /// <c>IfFact:candy_taxes_collected:>=:3</c> — order-independent. First
+        /// world use of the dialogue counter. Fail-soft.</summary>
+        private void PlaceCandyTaxQuest(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> interiorCells, List<(int x, int y)> openCells, string settlementId)
+        {
+            Entity giver = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
+            if (giver == null) return;
+            SetConversation(giver, "CandyTax_Quest");
+            var r = giver.GetPart<RenderPart>();
+            if (r != null) { r.DisplayName = "Peppermint Butler"; r.RenderString = "P"; r.ColorString = "&W"; }
+
+            for (int i = 0; i < 3; i++)
+            {
+                Entity citizen = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
+                if (citizen == null) return;
+                SetConversation(citizen, "CandyCitizen");
+                var cr = citizen.GetPart<RenderPart>();
+                if (cr != null) { cr.DisplayName = "candy citizen"; cr.RenderString = "c"; cr.ColorString = "&m"; }
+            }
+        }
+
+        /// <summary>Pool quest — A Message for the Hermit (deliver / talk-to).
+        /// Giver (worried baker) + RECIPIENT (the hermit), both placed in the
+        /// village. The hermit's <c>Hermit_Quest</c> dialogue carries the
+        /// completion: its [Deliver] choice is gated <c>IfQuestActive</c> +
+        /// <c>IfFact:hermit_message_delivered:&lt;:1</c> and runs
+        /// <c>SetFact:hermit_message_delivered:1</c>. The objective polls
+        /// <c>IfFact:hermit_message_delivered:>=:1</c> — you can only deliver
+        /// after accepting (no soft-lock) and can't re-deliver. First world use
+        /// of the deliver/talk-to archetype. Fail-soft.</summary>
+        private void PlaceMessageForHermitQuest(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> interiorCells, List<(int x, int y)> openCells, string settlementId)
+        {
+            Entity giver = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
+            if (giver == null) return;
+            SetConversation(giver, "Baker_Quest");
+            var r = giver.GetPart<RenderPart>();
+            if (r != null) { r.DisplayName = "worried baker"; r.RenderString = "b"; r.ColorString = "&w"; }
+
+            Entity hermit = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
+            if (hermit == null) return;
+            SetConversation(hermit, "Hermit_Quest");
+            var hr = hermit.GetPart<RenderPart>();
+            if (hr != null) { hr.DisplayName = "the hermit"; hr.RenderString = "h"; hr.ColorString = "&K"; }
         }
 
         private List<(int x, int y)> GatherOpenCells(Zone zone)

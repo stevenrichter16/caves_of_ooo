@@ -145,3 +145,62 @@ never placed until now). Pool 2 → 3.
   tests). SM1 adds no *new* primitive surface — only world wiring (config),
   pinned by the builder placement test. No dedicated adversarial file needed.
 - **§5 self-review:** see commit body.
+
+### SM2 — TheCandyTax (collect-N via dialogue) — authored (pending live verify)
+First world use of the `AddFact` **dialogue** counter. Pool 3 → 4.
+- **Content:** `TheCandyTax.json` (objective `collect_taxes` polls
+  `IfFact:candy_taxes_collected:>=:3`; sentinel report stage). `CandyTax_Quest.json`
+  (Peppermint Butler giver). `CandyCitizen.json` (shared by 3 citizens; collect
+  choice gated `IfQuestActive` + `IfNotSpeakerHaveProperty:candy_taxed`, runs
+  `AddFact:candy_taxes_collected:1` + `SetSpeakerProperty:candy_taxed:1`).
+- **Production:** pool += `TheCandyTax` + switch + `PlaceCandyTaxQuest` (giver +
+  3 citizens sharing `CandyCitizen`).
+- **Tests:** content-integrity (objective seam + the once-gate at content level),
+  builder placement (giver + exactly 3 citizens), and a **dialogue-flow** suite
+  `QuestCandyTaxDialogueTests` (collect increments once; **re-talk doesn't
+  double-count**; collect-before-accept hidden; 3 citizens → counter 3).
+
+### SM3 — MessageForHermit (deliver / talk-to) — authored (pending live verify)
+First world use of the deliver / talk-to-NPC-Y archetype. Pool 4 → 5 (final).
+- **Content:** `MessageForHermit.json` (objective `deliver_message` polls
+  `IfFact:hermit_message_delivered:>=:1`; sentinel report stage). `Baker_Quest.json`
+  (worried-baker giver). `Hermit_Quest.json` (recipient; [Deliver] gated
+  `IfQuestActive` + `IfFact:hermit_message_delivered:<:1`, runs
+  `SetFact:hermit_message_delivered:1`).
+- **Production:** pool += `MessageForHermit` + switch + `PlaceMessageForHermitQuest`
+  (giver + hermit recipient).
+- **Tests:** content-integrity (objective + recipient seam), builder placement
+  (giver + recipient), and a **dialogue-flow** suite `QuestDeliverDialogueTests`
+  (deliver sets the fact; deliver-before-accept hidden; **re-deliver hidden**).
+
+---
+
+## ⚠️ VERIFICATION STATUS (honesty bound — read before merging to main)
+
+A Unity editor transient ("ping not answered", ~likely a focus-throttle while
+the machine was idle overnight) made the editor unresponsive partway through
+this wave. As a result:
+
+| | Compiled | Targeted run | Full regression | Live diag audit |
+|---|---|---|---|---|
+| **SM1** ClearTheWarren | ✅ | ✅ 10/10 | ⏳ deferred | ⏳ pending |
+| **SM2** TheCandyTax | ⏳ static-only | ⏳ | ⏳ | ⏳ |
+| **SM3** MessageForHermit | ⏳ static-only | ⏳ | ⏳ | ⏳ |
+
+**Static verification done for all three** (Unity-independent, high confidence):
+- All conversation actions/predicates used are **registered** (incl. the
+  auto-inverse `IfNotSpeakerHaveProperty`); `IfFact` `<`/`>=` ops confirmed.
+- Every cross-file **seam** (fact / quest-ID / convo-ID / objective / stage)
+  grep-verified consistent between producer and consumer.
+- New builder methods mirror the GREEN `PlaceWarrenQuest`; new dialogue tests
+  mirror the compiling `MarcelineQuestDialogueTests`; all referenced APIs
+  (`ConversationManager`, `ChoiceData`, `NarrativeStatePart` in `CavesOfOoo.Core`)
+  confirmed present with matching signatures.
+
+**Required before merging the branch to main:** `refresh_unity` → `read_console`
+clean → full EditMode suite green (incl. `QuestCandyTaxDialogueTests`,
+`QuestDeliverDialogueTests`, `QuestVillagePoolTests`,
+`VillagePopulationBuilderTests`) → live diag audit of a fresh world (5 pool
+quests reachable; a warren village spawns 3 counter gnomes; kill them →
+`warren_gnomes_routed==3`). The branch `feat/quest-pool-warren` holds all 3 SM
+commits; **main is untouched** until this passes.

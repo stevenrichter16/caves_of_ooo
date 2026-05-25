@@ -122,9 +122,88 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void TheCandyTax_CollectObjective_PollsTheDialogueCounter()
+        {
+            // The collect-N dialogue counter quest: the objective polls the
+            // AddFact counter via IfFact:>=:3. The fact MUST match the AddFact
+            // the CandyCitizen conversation increments (content↔content seam).
+            var q = LoadQuest("TheCandyTax");
+            var collect = q.Quest.Stages[0].Objectives.FirstOrDefault(o => o.ID == "collect_taxes");
+            Assert.IsNotNull(collect, "the collect-N objective must exist");
+            var iffact = collect.Triggers.FirstOrDefault(t => t.Key == "IfFact");
+            Assert.IsNotNull(iffact, "collect_taxes must poll IfFact (order-independent)");
+            Assert.AreEqual("candy_taxes_collected:>=:3", iffact.Value,
+                "IfFact must match the counter the CandyCitizen dialogue AddFacts, threshold 3");
+            Assert.AreEqual(3, iffact.Value.Split(':').Length, "IfFact arg is key:OP:threshold (3 parts)");
+            Assert.IsFalse(string.IsNullOrEmpty(q.Quest.Accomplishment), "has a Q7 accomplishment deed");
+        }
+
+        [Test]
+        public void CandyCitizen_CollectChoice_GatedOncePerCitizen()
+        {
+            // Pin the once-per-citizen gate at the CONTENT level: the collect
+            // choice must require BOTH the quest active AND the speaker NOT yet
+            // taxed, and must SetSpeakerProperty so re-talk is gated out.
+            var c = LoadConvo("CandyCitizen");
+            var start = c.Nodes.FirstOrDefault(n => n.ID == "Start");
+            Assert.IsNotNull(start, "CandyCitizen needs a Start node");
+            var collect = start.Choices.FirstOrDefault(ch => ch.Text.StartsWith("[Collect"));
+            Assert.IsNotNull(collect, "Start must offer a [Collect...] choice");
+
+            var preds = collect.Predicates.Select(p => p.Key).ToList();
+            Assert.Contains("IfQuestActive", preds, "collect requires the quest active (no collect-before-accept)");
+            Assert.Contains("IfNotSpeakerHaveProperty", preds, "collect requires the citizen NOT already taxed");
+
+            var acts = collect.Actions.ToDictionary(a => a.Key, a => a.Value);
+            Assert.IsTrue(acts.ContainsKey("AddFact") && acts["AddFact"] == "candy_taxes_collected:1",
+                "collect increments the shared counter by 1");
+            Assert.IsTrue(acts.ContainsKey("SetSpeakerProperty") && acts["SetSpeakerProperty"].StartsWith("candy_taxed"),
+                "collect marks THIS citizen taxed so IfNotSpeakerHaveProperty hides it next time");
+        }
+
+        [Test]
+        public void MessageForHermit_DeliverObjective_PollsTheDeliveredFact()
+        {
+            // The deliver quest: the objective polls the fact the RECIPIENT's
+            // dialogue SetFacts. The fact MUST match Hermit_Quest's SetFact
+            // (giver-quest ↔ recipient-dialogue seam).
+            var q = LoadQuest("MessageForHermit");
+            var deliver = q.Quest.Stages[0].Objectives.FirstOrDefault(o => o.ID == "deliver_message");
+            Assert.IsNotNull(deliver, "the deliver objective must exist");
+            var iffact = deliver.Triggers.FirstOrDefault(t => t.Key == "IfFact");
+            Assert.IsNotNull(iffact, "deliver_message must poll IfFact (order-independent)");
+            Assert.AreEqual("hermit_message_delivered:>=:1", iffact.Value,
+                "IfFact must match the fact the hermit's [Deliver] choice SetFacts");
+            Assert.AreEqual(3, iffact.Value.Split(':').Length, "IfFact arg is key:OP:threshold (3 parts)");
+            Assert.IsFalse(string.IsNullOrEmpty(q.Quest.Accomplishment), "has a Q7 accomplishment deed");
+        }
+
+        [Test]
+        public void HermitRecipient_DeliverChoice_GatedAndSetsFact()
+        {
+            // Pin the recipient seam at content level: the deliver choice must
+            // require the quest active AND not-yet-delivered, and SetFact the
+            // exact fact the objective polls.
+            var c = LoadConvo("Hermit_Quest");
+            var start = c.Nodes.FirstOrDefault(n => n.ID == "Start");
+            Assert.IsNotNull(start, "Hermit_Quest needs a Start node");
+            var deliver = start.Choices.FirstOrDefault(ch => ch.Text.StartsWith("[Deliver"));
+            Assert.IsNotNull(deliver, "Start must offer a [Deliver...] choice");
+
+            var preds = deliver.Predicates.Select(p => p.Key).ToList();
+            Assert.Contains("IfQuestActive", preds, "deliver requires the quest active (no deliver-before-accept)");
+            Assert.Contains("IfFact", preds, "deliver requires not-yet-delivered (IfFact:<:1) so it can't re-fire");
+
+            var setFact = deliver.Actions.FirstOrDefault(a => a.Key == "SetFact");
+            Assert.IsNotNull(setFact, "deliver must SetFact");
+            Assert.AreEqual("hermit_message_delivered:1", setFact.Value,
+                "SetFact must set the exact fact the objective polls");
+        }
+
+        [Test]
         public void PoolConversations_ActionsAndPredicates_AreRegistered()
         {
-            foreach (var convoId in new[] { "Crunchy_Quest", "Pilgrim_Quest", "Warren_Quest" })
+            foreach (var convoId in new[] { "Crunchy_Quest", "Pilgrim_Quest", "Warren_Quest", "CandyTax_Quest", "CandyCitizen", "Baker_Quest", "Hermit_Quest" })
             {
                 var c = LoadConvo(convoId);
                 foreach (var node in c.Nodes)

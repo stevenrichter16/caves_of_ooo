@@ -1,0 +1,30 @@
+{
+  "Conversations": [
+    {
+      "ID": "Baker_Quest",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Oh, thank goodness — a traveler with sturdy legs. There's a hermit who keeps to the hill at the edge of town, and I've had a dream-warning I must get to him before nightfall. My ovens can't be left. Would you carry word to him?",
+          "Choices": [
+            { "Text": "[Accept] I'll carry your message.", "Target": "Accepted",
+              "Predicates": [ { "Key": "IfQuestNotStarted", "Value": "MessageForHermit" } ],
+              "Actions": [ { "Key": "StartQuest", "Value": "MessageForHermit" } ] },
+            { "Text": "[Status] On my way to him.", "Target": "Waiting",
+              "Predicates": [ { "Key": "IfQuestStage", "Value": "MessageForHermit:deliver" } ] },
+            { "Text": "[Report] The hermit has your warning.", "Target": "Thanks",
+              "Predicates": [ { "Key": "IfQuestStage", "Value": "MessageForHermit:report" } ],
+              "Actions": [ { "Key": "CompleteQuest", "Value": "MessageForHermit" }, { "Key": "AwardXP", "Value": "120" }, { "Key": "GiveDrams", "Value": "50" } ] },
+            { "Text": "[Done] Rest easy, baker.", "Target": "Done",
+              "Predicates": [ { "Key": "IfQuestCompleted", "Value": "MessageForHermit" } ] },
+            { "Text": "Goodbye.", "Target": "End" }
+          ]
+        },
+        { "ID": "Accepted", "Text": "Bless you. Tell him: 'the baker dreamed of the old flood again.' He'll know what it means. Up the hill, past the last fence.", "Choices": [ { "Text": "I'll find him.", "Target": "End" } ] },
+        { "ID": "Waiting", "Text": "Please hurry — the light's already slanting. He's up the hill at the edge of town.", "Choices": [ { "Text": "Going now.", "Target": "End" } ] },
+        { "ID": "Thanks", "Text": "He knows, then. Oh, that's a weight off me. Here — fresh from the oven, and a little coin besides. Thank you, truly.", "Choices": [ { "Text": "Glad to help.", "Target": "End" } ] },
+        { "ID": "Done", "Text": "Sleep comes easier knowing he's warned. Safe roads, friend.", "Choices": [ { "Text": "Bye.", "Target": "End" } ] }
+      ]
+    }
+  ]
+}
