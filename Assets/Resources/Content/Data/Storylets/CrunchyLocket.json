@@ -1,0 +1,21 @@
+{
+  "Storylets": [
+    {
+      "ID": "CrunchyLocket",
+      "OneShot": false, "Tracked": true, "Triggers": [], "Effects": [],
+      "Quest": {
+        "Accomplishment": "You recovered Crunchy's lost locket and returned it.",
+        "Stages": [
+          {
+            "ID": "find", "Triggers": [], "OnEnter": [],
+            "Objectives": [
+              { "ID": "find_locket", "Text": "Find Crunchy's lost locket", "Optional": false, "Hidden": false,
+                "Triggers": [ { "Key": "IfHaveItem", "Value": "CrunchyLocket" } ], "OnEnter": [] }
+            ]
+          },
+          { "ID": "report", "Triggers": [ { "Key": "IfFact", "Value": "crunchy_report_guard:>=:1" } ], "OnEnter": [] }
+        ]
+      }
+    }
+  ]
+}

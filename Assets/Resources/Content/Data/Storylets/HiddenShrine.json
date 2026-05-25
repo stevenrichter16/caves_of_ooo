@@ -1,0 +1,21 @@
+{
+  "Storylets": [
+    {
+      "ID": "HiddenShrine",
+      "OneShot": false, "Tracked": true, "Triggers": [], "Effects": [],
+      "Quest": {
+        "Accomplishment": "You found the hidden shrine the pilgrim sought.",
+        "Stages": [
+          {
+            "ID": "seek", "Triggers": [], "OnEnter": [],
+            "Objectives": [
+              { "ID": "reach_shrine", "Text": "Find the hidden shrine in this settlement", "Optional": false, "Hidden": false,
+                "Triggers": [ { "Key": "IfFact", "Value": "shrine_reached:>=:1" } ], "OnEnter": [] }
+            ]
+          },
+          { "ID": "report", "Triggers": [ { "Key": "IfFact", "Value": "shrine_report_guard:>=:1" } ], "OnEnter": [] }
+        ]
+      }
+    }
+  ]
+}

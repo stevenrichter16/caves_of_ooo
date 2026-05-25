@@ -12,8 +12,17 @@
 > `bmo_stump_reached`, polled by the `reach_stump` objective (`IfFact`,
 > order-independent). Showcases the Tier-3 reach-location primitive in normal
 > play. Live-validated 10/10 in a fresh session. Two quests now reachable at
-> spawn (a fetch+kill and a reach-location) — further quests should be
-> distributed to other villages/dungeons to avoid crowding the hub.
+> spawn (a fetch+kill and a reach-location).
+>
+> **Distribution — a village quest pool.** Non-starting villages each host ONE
+> quest from a pool, picked deterministically by zone ID
+> (`VillagePopulationBuilder.PickVillageQuest`, mirroring the per-village House
+> Drama assignment) — so the player finds varied quests *while exploring*, one
+> per village, no hub crowding. v1 pool: **Crunchy's Lost Locket** (fetch) +
+> **The Hidden Shrine** (reach). Expand the pool to cut cross-village
+> repetition. Pick is unit-tested (deterministic + both reachable); content
+> integrity-tested; **live-validated** — `Overworld.5.5.0` generated with
+> Crunchy_Quest, matching its pick. Starting village keeps RootBeerGuy + BMO.
 
 ## What the player does
 Start a new game → you spawn in the starting village (`Overworld.10.10.0`).

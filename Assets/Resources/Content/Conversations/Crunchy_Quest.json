@@ -1,0 +1,30 @@
+{
+  "Conversations": [
+    {
+      "ID": "Crunchy_Quest",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Oh, thank goodness, a traveler! I'm Crunchy. I've lost my locket somewhere here in town — it's all I have of my old life as a cookie. Could you find it?",
+          "Choices": [
+            { "Text": "[Accept] I'll find your locket.", "Target": "Accepted",
+              "Predicates": [ { "Key": "IfQuestNotStarted", "Value": "CrunchyLocket" } ],
+              "Actions": [ { "Key": "StartQuest", "Value": "CrunchyLocket" } ] },
+            { "Text": "[Status] Still searching.", "Target": "Searching",
+              "Predicates": [ { "Key": "IfQuestStage", "Value": "CrunchyLocket:find" } ] },
+            { "Text": "[Return it] Here's your locket.", "Target": "Thanks",
+              "Predicates": [ { "Key": "IfQuestStage", "Value": "CrunchyLocket:report" } ],
+              "Actions": [ { "Key": "CompleteQuest", "Value": "CrunchyLocket" }, { "Key": "AwardXP", "Value": "130" }, { "Key": "GiveDrams", "Value": "55" } ] },
+            { "Text": "[Done] Hello again.", "Target": "Done",
+              "Predicates": [ { "Key": "IfQuestCompleted", "Value": "CrunchyLocket" } ] },
+            { "Text": "Goodbye.", "Target": "End" }
+          ]
+        },
+        { "ID": "Accepted", "Text": "Bless you. It's small and silver — could be anywhere in town. Come back when you've got it.", "Choices": [ { "Text": "On it.", "Target": "End" } ] },
+        { "ID": "Searching", "Text": "Still out there somewhere. Keep looking, please!", "Choices": [ { "Text": "Right.", "Target": "End" } ] },
+        { "ID": "Thanks", "Text": "My locket! Oh, you wonderful soul. Here — a little something for your kindness.", "Choices": [ { "Text": "Happy to help.", "Target": "End" } ] },
+        { "ID": "Done", "Text": "I'll treasure it always. Thank you, friend.", "Choices": [ { "Text": "Bye.", "Target": "End" } ] }
+      ]
+    }
+  ]
+}

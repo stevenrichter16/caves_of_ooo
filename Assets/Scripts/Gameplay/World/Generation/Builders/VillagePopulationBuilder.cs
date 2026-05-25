@@ -170,6 +170,15 @@ namespace CavesOfOoo.Core
                 PlaceStartingVillageQuestGiver(zone, factory, rng, interiorCells, openCells, settlementId); // RootBeerGuy: fetch + kill
                 PlaceBmoQuest(zone, factory, rng, interiorCells, openCells, settlementId);                  // BMO: reach-a-location
             }
+            else
+            {
+                // Non-starting villages each get ONE quest from a pool, picked
+                // deterministically by zone ID (mirrors the per-village House
+                // Drama assignment, OverworldZoneManager.cs:194-200) — so the
+                // player finds varied quests while exploring, one per village,
+                // with no hub crowding. Docs/QUEST-IN-WORLD.md.
+                PlaceDistributedVillageQuest(zone, factory, rng, interiorCells, openCells, settlementId);
+            }
 
             return true;
         }
@@ -962,6 +971,73 @@ namespace CavesOfOoo.Core
             stump.AddPart(new PhysicsPart { Solid = false });
             stump.AddPart(new CavesOfOoo.Storylets.QuestMarkerTriggerPart { Fact = "bmo_stump_reached", Value = 1 });
             zone.AddEntity(stump, mx, my);
+        }
+
+        /// <summary>The distributable village-quest pool. Each non-starting
+        /// village hosts ONE, picked by a stable zone-ID hash. Quests + dialogue
+        /// auto-load from Resources. Expand the pool to reduce cross-village
+        /// repetition. Docs/QUEST-DESIGN-CATALOG.md.</summary>
+        private static readonly string[] VillageQuestPool = { "CrunchyLocket", "HiddenShrine" };
+
+        /// <summary>Deterministically pick the pool quest for a village by its
+        /// zone ID (stable per zone, like the per-village House Drama pick).
+        /// Public + static so the assignment is unit-testable.</summary>
+        public static string PickVillageQuest(string zoneId)
+            => VillageQuestPool[((zoneId ?? "").GetHashCode() & int.MaxValue) % VillageQuestPool.Length];
+
+        private void PlaceDistributedVillageQuest(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> interiorCells, List<(int x, int y)> openCells, string settlementId)
+        {
+            switch (PickVillageQuest(zone.ZoneID))
+            {
+                case "CrunchyLocket": PlaceCrunchyLocketQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
+                default:              PlacePilgrimShrineQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
+            }
+        }
+
+        /// <summary>Pool quest — Crunchy's Lost Locket (fetch). Giver + a locket
+        /// (IfHaveItem + CompleteObjectiveOnTaken).</summary>
+        private void PlaceCrunchyLocketQuest(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> interiorCells, List<(int x, int y)> openCells, string settlementId)
+        {
+            Entity giver = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
+            if (giver == null) return;
+            SetConversation(giver, "Crunchy_Quest");
+            var r = giver.GetPart<RenderPart>();
+            if (r != null) { r.DisplayName = "Crunchy"; r.RenderString = "c"; r.ColorString = "&w"; }
+
+            if (openCells.Count == 0) return;
+            int idx = rng.Next(openCells.Count);
+            var (x, y) = openCells[idx];
+            openCells.RemoveAt(idx);
+            var locket = new Entity { ID = "CrunchyLocket", BlueprintName = "CrunchyLocket" };
+            locket.Tags["Item"] = "";
+            locket.AddPart(new RenderPart { DisplayName = "silver locket", RenderString = "*", ColorString = "&Y" });
+            locket.AddPart(new PhysicsPart { Takeable = true, Weight = 1 });
+            locket.AddPart(new CavesOfOoo.Storylets.CompleteObjectiveOnTaken { Quest = "CrunchyLocket", Objective = "find_locket" });
+            zone.AddEntity(locket, x, y);
+        }
+
+        /// <summary>Pool quest — The Hidden Shrine (reach-a-location). Giver + a
+        /// shrine marker (QuestMarkerTriggerPart → IfFact).</summary>
+        private void PlacePilgrimShrineQuest(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> interiorCells, List<(int x, int y)> openCells, string settlementId)
+        {
+            Entity giver = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
+            if (giver == null) return;
+            SetConversation(giver, "Pilgrim_Quest");
+            var r = giver.GetPart<RenderPart>();
+            if (r != null) { r.DisplayName = "pilgrim"; r.RenderString = "p"; r.ColorString = "&w"; }
+
+            if (openCells.Count == 0) return;
+            int idx = rng.Next(openCells.Count);
+            var (x, y) = openCells[idx];
+            openCells.RemoveAt(idx);
+            var shrine = new Entity { ID = "HiddenShrineMarker", BlueprintName = "HiddenShrineMarker" };
+            shrine.AddPart(new RenderPart { DisplayName = "hidden shrine", RenderString = "+", ColorString = "&m" });
+            shrine.AddPart(new PhysicsPart { Solid = false });
+            shrine.AddPart(new CavesOfOoo.Storylets.QuestMarkerTriggerPart { Fact = "shrine_reached", Value = 1 });
+            zone.AddEntity(shrine, x, y);
         }
 
         private List<(int x, int y)> GatherOpenCells(Zone zone)

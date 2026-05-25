@@ -1,0 +1,30 @@
+{
+  "Conversations": [
+    {
+      "ID": "Pilgrim_Quest",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Peace, wanderer. I am a pilgrim, and I seek a hidden shrine said to rest somewhere in this very settlement. My old knees can't search it out. Would you find it for me?",
+          "Choices": [
+            { "Text": "[Accept] I'll find the shrine.", "Target": "Accepted",
+              "Predicates": [ { "Key": "IfQuestNotStarted", "Value": "HiddenShrine" } ],
+              "Actions": [ { "Key": "StartQuest", "Value": "HiddenShrine" } ] },
+            { "Text": "[Status] Still seeking.", "Target": "Seeking",
+              "Predicates": [ { "Key": "IfQuestStage", "Value": "HiddenShrine:seek" } ] },
+            { "Text": "[Report] I found the shrine.", "Target": "Blessed",
+              "Predicates": [ { "Key": "IfQuestStage", "Value": "HiddenShrine:report" } ],
+              "Actions": [ { "Key": "CompleteQuest", "Value": "HiddenShrine" }, { "Key": "AwardXP", "Value": "130" }, { "Key": "GiveDrams", "Value": "45" } ] },
+            { "Text": "[Done] Peace, pilgrim.", "Target": "Done",
+              "Predicates": [ { "Key": "IfQuestCompleted", "Value": "HiddenShrine" } ] },
+            { "Text": "Goodbye.", "Target": "End" }
+          ]
+        },
+        { "ID": "Accepted", "Text": "The spirits guide you. Look in the quiet corners of the settlement. Return when you have found it.", "Choices": [ { "Text": "I will.", "Target": "End" } ] },
+        { "ID": "Seeking", "Text": "It is near. Walk the settlement's edges; you will feel it.", "Choices": [ { "Text": "Right.", "Target": "End" } ] },
+        { "ID": "Blessed", "Text": "You found it! Bless you, traveler — take this offering, and the spirits' favor besides.", "Choices": [ { "Text": "Thank you.", "Target": "End" } ] },
+        { "ID": "Done", "Text": "Go in peace, friend. The shrine watches over us now.", "Choices": [ { "Text": "Bye.", "Target": "End" } ] }
+      ]
+    }
+  ]
+}
