@@ -61,10 +61,21 @@ when the quest isn't active or the objective isn't in the current stage
 objective-not-in-current-stage → no-op; empty Quest/Objective → no-op;
 non-"Died" event → no-op; killer threaded as actor.
 
-## Deferred
-- **Q5.2** `CompleteObjectiveOnTaken` — needs a `"Taken"`/pickup event.
-- **Q5.3** `QuestStarter` (auto-start on created/seen/taken) — needs those
-  triggers. (Quests currently start via dialogue or tick predicates.)
+## Deferred (post-Taken-only scope)
+- **Equip/Unequip/Dropped triggers** for `CompleteObjectiveOnTaken` (Qud
+  hooks these too) — CoO's equip/drop fire actor-side `AfterEquip`/`AfterDrop`,
+  so an item-side variant would need new item-side events. Out of the
+  Taken-only scope.
+- **Zone-presence triggers** `Created`/`Seen`/`OnScreen` for `QuestStarter`
+  — need per-render/per-turn hooks (perf-sensitive; PERF-FOUNDATION.md).
+- **`QuestStarted` immediate-complete handler** (Qud's CompleteQuestOnTaken
+  completes if you ALREADY HOLD the item when the quest starts). CoO covers
+  this case DIFFERENTLY (and arguably better): the objective's polled
+  `IfHaveItem` trigger (e.g. `EnchiridionQuest.find_enchiridion`) finishes
+  it on the next tick. `CompleteObjectiveOnTaken` is the event-driven
+  fast-path; `IfHaveItem` is the declarative polled fallback. They compose
+  safely (FinishObjective is idempotent), so no QuestStarted handler is
+  needed. See "when to use which" below.
 
 ## Implementation log
 
@@ -87,7 +98,61 @@ non-"Died" event → no-op; killer threaded as actor.
   path is covered without a bespoke combat PlayMode run.
 - Suite 180/180 GREEN; 0 CS errors.
 
+**Q5.2 — CompleteObjectiveOnTaken (DONE, 2026-05-24).**
+- New `Part` (`Assets/Scripts/Gameplay/Storylets/CompleteObjectiveOnTaken.cs`),
+  `Quest`/`Objective` public string fields. `HandleEvent`: on the M1 `"Taken"`
+  event, routes to `StoryletPart.Current?.FinishObjective(Quest, Objective,
+  actor: taker)`. Mirrors Q5.1's FinishObjectiveWhenSlain.
+- **Player gate (Qud parity — the key difference from Q5.1):** only the
+  PLAYER taking the item counts. Qud's `CompleteQuest` gates on
+  `Actor.IsPlayer()`; CoO maps that to `taker == StoryletPart.LocalPlayer`
+  with a non-null LocalPlayer guard (so the null==null pre-bootstrap trap
+  can't sneak a completion through).
+- **Tests:** 9 (`QuestObjectiveTakenPartTests`) — by-player finishes; by-NPC
+  / null-taker / no-LocalPlayer do NOT (player-gate counter-checks);
+  last-required advances; no-active-quest / not-in-stage / empty-fields →
+  no-op-no-throw; non-Taken ignored.
+- **When to use vs `IfHaveItem` objective trigger:** `CompleteObjectiveOnTaken`
+  = instant, event-driven completion on the take action (good when the item
+  is then consumed/transformed). `IfHaveItem` objective trigger = polled,
+  declarative, catches already-holding + any acquisition path. Use either or
+  both (they're idempotent together).
+
+**Q5.3 — QuestStarter (DONE, 2026-05-24).**
+- New `Part` (`Assets/Scripts/Gameplay/Storylets/QuestStarter.cs`): on the
+  M1 `"Taken"` event (player only), `StoryletPart.Current.StartQuest(Quest)`.
+  The world-side complement to dialogue "take the quest" choices.
+- **Qud→CoO mapping:** Qud `IfFinishedQuestStep` → `IfQuestCompleted` (CoO
+  tracks completed quests permanently, not finished objectives); Qud
+  `Activated` + self-removal → an `Activated` flag (a flag, not a Part
+  removal, avoids mutating the entity's part list mid event-dispatch — the
+  CLAUDE.md iterator hazard). Player gate as in Q5.2.
+- **Fires once ever:** the `Activated` guard matters for the fail→re-take
+  case — without it, re-grabbing the item after failing would restart the
+  quest (StartQuest re-activates a failed quest). `Activated` round-trips
+  (public bool → SaveSystem WritePublicFields), so a spent starter stays
+  spent across save/load.
+- **Tests:** 9 (`QuestStarterPartTests`) — by-player starts; by-NPC / null /
+  no-LocalPlayer don't; fires-once-no-restart-after-fail; IfQuestCompleted
+  gate (met → starts, unmet → doesn't); empty-quest / non-Taken no-op.
+
+**Adversarial sweep (DONE, 2026-05-24).** `QuestTakenWorldPartsAdversarialTests`
+(14 tests) — 0 bugs. Surfaces: save/load reflection (both Parts + `Activated`
+round-trip via `SaveSystem.WritePublicFields`); cross-actor / multi-instance
+(two starters same quest; two complete-items same objective; composite item
+with both Parts); malformed event params (no Actor / null Current); re-fire /
+atomicity (repeated Taken fires once; idempotent re-take); boundary
+(whitespace quest, all-null). **Two initial "failures" were test-expectation
+errors** (asserted completion where a 2-stage quest only advances to the
+terminal stage) — corrected to single-stage quests; production behavior was
+correct (already pinned by `QuestObjectiveHypothesisTests` + the Q3.5 bench).
+
+**Cold-eye review (both angles):** Angle A taxonomy — 0 🔴/🟡 (null safety,
+atomicity, no iterator mutation, counter-check completeness all clean). Angle
+B Qud-parity-first — surfaced the `IfHaveItem`-trigger-vs-`CompleteObjectiveOnTaken`
+relationship (documented above); no QuestStarted handler needed.
+
 ## Status
-Q5.1 ✅. Q5.2 (`CompleteObjectiveOnTaken`) + Q5.3 (`QuestStarter`) remain
-**deferred** — they need pickup / created-seen-taken events that don't
-exist in CoO yet (adding those is out of Q5 scope).
+Q5.1 ✅. M1 (`"Taken"` event) ✅. Q5.2 (`CompleteObjectiveOnTaken`) ✅.
+Q5.3 (`QuestStarter`) ✅. Scope: **Taken-only** (user-chosen). Equip/drop +
+zone-presence triggers deferred (see Deferred section).
