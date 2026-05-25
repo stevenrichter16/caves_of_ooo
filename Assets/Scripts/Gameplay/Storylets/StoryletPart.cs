@@ -163,7 +163,8 @@ namespace CavesOfOoo.Storylets
         public bool CompleteQuest(string questId, Entity actor = null)
         {
             if (string.IsNullOrEmpty(questId)) return false;
-            if (!_quests.ContainsKey(questId)) return false;
+            if (!_quests.ContainsKey(questId))
+            { EmitQuestRejected("CompleteQuest", "quest_not_active", questId, actor: actor); return false; }
 
             var quest = StoryletRegistry.FindQuest(questId);
             int totalStages = quest?.Stages?.Count ?? 0;
@@ -205,7 +206,8 @@ namespace CavesOfOoo.Storylets
         public bool FailQuest(string questId, Entity actor = null)
         {
             if (string.IsNullOrEmpty(questId)) return false;
-            if (!_quests.ContainsKey(questId)) return false;
+            if (!_quests.ContainsKey(questId))
+            { EmitQuestRejected("FailQuest", "quest_not_active", questId, actor: actor); return false; }
             RemoveActiveQuest(questId);
             _failedQuests.Add(questId); // Q6: track the failure
             if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
@@ -253,6 +255,20 @@ namespace CavesOfOoo.Storylets
                 e.SetParameter("ToIndex", toIndex);
             }
             player.FireEventAndRelease(e);
+        }
+
+        /// <summary>Observability (CLAUDE.md): every quest gate that can reject
+        /// emits a <c>quest/Rejected</c> record naming the gate + reason, so a
+        /// "why didn't my quest advance?" debug session starts with a diag_query
+        /// (category=quest kind=Rejected) instead of grep + execute_code. Mirrors
+        /// the skill-system SkillRejected fix the rule was written for.</summary>
+        private static void EmitQuestRejected(string gate, string reason, string questId,
+            string objectiveId = null, Entity actor = null)
+        {
+            if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
+                CavesOfOoo.Diagnostics.Diag.Record(
+                    category: "quest", kind: "Rejected", actor: actor,
+                    payload: new { gate, reason, questId, objectiveId });
         }
 
         /// <summary>
@@ -322,23 +338,27 @@ namespace CavesOfOoo.Storylets
         public bool FinishObjective(string questId, string objectiveId, Entity actor = null)
         {
             if (string.IsNullOrEmpty(questId) || string.IsNullOrEmpty(objectiveId)) return false;
-            if (!_quests.TryGetValue(questId, out var state)) return false;
+            if (!_quests.TryGetValue(questId, out var state))
+            { EmitQuestRejected("FinishObjective", "quest_not_active", questId, objectiveId, actor); return false; }
 
             var quest = StoryletRegistry.FindQuest(questId);
-            if (quest?.Stages == null) return false;
+            if (quest?.Stages == null)
+            { EmitQuestRejected("FinishObjective", "no_quest_definition", questId, objectiveId, actor); return false; }
             if (state.CurrentStageIndex < 0 || state.CurrentStageIndex >= quest.Stages.Count)
-                return false;
+            { EmitQuestRejected("FinishObjective", "stage_out_of_range", questId, objectiveId, actor); return false; }
             var stage = quest.Stages[state.CurrentStageIndex];
-            if (stage.Objectives == null || stage.Objectives.Count == 0) return false;
+            if (stage.Objectives == null || stage.Objectives.Count == 0)
+            { EmitQuestRejected("FinishObjective", "stage_has_no_objectives", questId, objectiveId, actor); return false; }
 
             // The objective must belong to the CURRENT stage.
             QuestObjectiveData obj = null;
             for (int i = 0; i < stage.Objectives.Count; i++)
                 if (stage.Objectives[i].ID == objectiveId) { obj = stage.Objectives[i]; break; }
-            if (obj == null) return false;
+            if (obj == null)
+            { EmitQuestRejected("FinishObjective", "objective_not_in_current_stage", questId, objectiveId, actor); return false; }
 
             if (!state.FinishedObjectives.Add(objectiveId))
-                return false; // already finished — idempotent
+            { EmitQuestRejected("FinishObjective", "already_finished", questId, objectiveId, actor); return false; }
 
             // Per-objective effects (Qud per-step reward parity). Player is
             // the listener so AwardXP/GiveDrams/GiveItem target the player.
