@@ -43,6 +43,25 @@ objective also logs.
 - A player-facing "accomplishments / journal" screen — out of scope (the
   data is queryable via `NarrativeStatePart.EventLog`).
 
+## Self-review (Methodology Template §5)
+*(Added retroactively in the QUEST-METHODOLOGY-AUDIT.md pass — the
+counter-checks existed in `QuestAccomplishmentTests`; this records the §5
+review the doc had omitted.)*
+- 🔵 Single completion choke point: both the explicit `CompleteQuest`
+  action AND the auto-complete (last objective/stage) route through
+  `CompleteQuest`, so the accomplishment logs exactly once on either path —
+  not duplicated. Pinned by `AutoComplete_ViaLastObjective_LogsAccomplishment`
+  + `CompleteQuest_Idempotent_LogsAccomplishmentOnce`.
+- ✓ Counter-checks: no-accomplishment quest → nothing logged
+  (`CompleteQuest_NoAccomplishment_LogsNothing`); null `NarrativeStatePart`
+  → no throw (`CompleteQuest_NullNarrativeState_NoThrow`); re-complete logs
+  once (idempotent). Every positive assertion is paired.
+- 🧪 No player-facing journal UI yet — the deed is `EventLog`-queryable
+  only. Deferred (documented above); not a correctness gap.
+- ✓ Observability: `CompleteQuest` emits `quest/Accomplishment`; the gate's
+  reject path now emits `quest/Rejected` (observability-alignment fix, see
+  QUEST-METHODOLOGY-AUDIT.md). No 🔴/🟡.
+
 ## Implementation log
 - **Q7.1 (DONE, 2026-05-24):** `QuestData.Accomplishment` +
   `CompleteQuest` logs to `NarrativeStatePart` + `quest/Accomplishment`
