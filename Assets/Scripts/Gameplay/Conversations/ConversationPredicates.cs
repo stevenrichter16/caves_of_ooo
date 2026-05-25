@@ -348,6 +348,24 @@ namespace CavesOfOoo.Core
                 if (sp == null) return false;
                 return sp.IsObjectiveFinished(arg.Substring(0, colon), arg.Substring(colon + 1));
             });
+
+            // Q5.7 (Docs/QUEST-DESIGN-CATALOG.md) — the TIMED primitive. True
+            // while the quest's CURRENT stage is no older than <maxTurns> turns
+            // (now - EnteredStageAtTurn <= maxTurns). Gate a success objective on
+            // it ("escape within N turns"); once the window lapses it goes false
+            // so the objective can no longer auto-complete. arg = "questId:maxTurns".
+            Register("IfStageAgeAtMost", (speaker, listener, arg) =>
+            {
+                if (string.IsNullOrEmpty(arg)) return false;
+                int colon = arg.IndexOf(':');
+                if (colon < 0) return false;
+                if (!int.TryParse(arg.Substring(colon + 1), out int maxTurns)) return false;
+                var sp = CavesOfOoo.Storylets.StoryletPart.Current;
+                var state = sp?.GetQuestState(arg.Substring(0, colon));
+                if (state == null) return false;
+                int now = TurnManager.Active?.TickCount ?? 0;
+                return (now - state.EnteredStageAtTurn) <= maxTurns;
+            });
         }
 
         private static string ResolveSettlementId(Entity speaker)

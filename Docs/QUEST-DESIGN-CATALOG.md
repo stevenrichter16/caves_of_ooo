@@ -77,16 +77,19 @@ ones share just **3 small primitives** (counter, location-trigger, deadline).
 
 ---
 
-## Part C — Highest-leverage primitives to add next
-Building these 3 unlocks the whole Tier-3 column (counters, exploration,
-timed) — each is a small, well-precedented addition:
-1. **`AddFactWhenSlain`** (+ optional `AddFactOnTaken`) — increment-on-event;
-   mirrors `SetFactWhenSlain` but calls `AddFact`. Unlocks kill-N / collect-N.
-2. **`QuestMarkerTriggerPart : TriggerOnStepPart`** — `SetFact` when the
-   player steps on a placed marker. Unlocks reach-location / explore.
-3. **`IfStageAgeAtMost` predicate** (reads `EnteredStageAtTurn` vs current
-   turn). Unlocks timed/deadline (pair with a tick `FailQuest`).
+## Part C — The Tier-3 primitives — ✅ BUILT
+All three shipped (`QuestExtendedPrimitiveTests`, 15 tests, the established
+Q5.4 pattern), so the whole Tier-3 column is now buildable:
+1. ✅ **`AddFactWhenSlain`** — increment-on-death; mirrors `SetFactWhenSlain`
+   but calls `AddFact`. Kill-N / clear-N (N mobs share a fact →
+   `IfFact:fact:>=:N`). Proven by the 3-kills→3 test.
+2. ✅ **`QuestMarkerTriggerPart : TriggerOnStepPart`** — `SetFact` when the
+   PLAYER steps on a placed marker (player-gated; `ConsumeOnTrigger=false` so a
+   passing NPC can't despawn it). Reach-location / explore.
+3. ✅ **`IfStageAgeAtMost` predicate** (`questId:maxTurns`, reads
+   `EnteredStageAtTurn` vs current turn). Timed gating — gate a success
+   objective on it; once the window lapses it goes false. (Active fail-on-
+   timeout would still want a tick `FailQuest` — a follow-up.)
 
-Recommendation: build the 3 primitives (each ~1 Part/predicate + tests, the
-established Q5.4 pattern), then author quests #2–#8 (Tier 1–2, no new code) as
-the first content wave.
+Next: author quests #2–#8 (Tier 1–2, no new code) + the Tier-3 ones (#9–#12)
+now that the primitives exist, as the first content wave.
