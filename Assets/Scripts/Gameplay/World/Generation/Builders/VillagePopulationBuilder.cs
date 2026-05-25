@@ -910,6 +910,24 @@ namespace CavesOfOoo.Core
             notebook.AddPart(new PhysicsPart { Takeable = true, Weight = 1 });
             notebook.AddPart(new CavesOfOoo.Storylets.CompleteObjectiveOnTaken { Quest = "RootBeerGuyCase", Objective = "find_notebook" });
             zone.AddEntity(notebook, nx, ny);
+
+            // The soot gremlin — slaying it (by ANYONE: player, warden, etc.)
+            // sets rbg_gremlin_routed via SetFactWhenSlain. The quest's
+            // drive_off_gremlin objective polls that fact (IfFact), so the kill
+            // counts whether it happens before OR after the player accepts —
+            // order-independent, no soft-lock (Docs/QUEST-IN-WORLD.md, Q5.4).
+            if (openCells.Count == 0) return;
+            int gidx = rng.Next(openCells.Count);
+            var (gx, gy) = openCells[gidx];
+            openCells.RemoveAt(gidx);
+            Entity gremlin = TryCreateEntity(factory, "Snapjaw");
+            if (gremlin != null)
+            {
+                gremlin.AddPart(new CavesOfOoo.Storylets.SetFactWhenSlain { Fact = "rbg_gremlin_routed", Value = 1 });
+                var gr = gremlin.GetPart<RenderPart>();
+                if (gr != null) { gr.DisplayName = "soot gremlin"; gr.ColorString = "&K"; }
+                zone.AddEntity(gremlin, gx, gy);
+            }
         }
 
         private List<(int x, int y)> GatherOpenCells(Zone zone)

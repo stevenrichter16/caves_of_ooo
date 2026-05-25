@@ -21,6 +21,14 @@
                 "Hidden": false,
                 "Triggers": [ { "Key": "IfHaveItem", "Value": "DetectiveNotebook" } ],
                 "OnEnter": []
+              },
+              {
+                "ID": "drive_off_gremlin",
+                "Text": "Drive off the soot gremlin",
+                "Optional": false,
+                "Hidden": false,
+                "Triggers": [ { "Key": "IfFact", "Value": "rbg_gremlin_routed:>=:1" } ],
+                "OnEnter": []
               }
             ]
           },

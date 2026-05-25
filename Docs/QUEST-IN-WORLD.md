@@ -9,10 +9,14 @@
 ## What the player does
 Start a new game → you spawn in the starting village (`Overworld.10.10.0`).
 **Root Beer Guy** (the `r`) is placed among the villagers; his **detective
-notebook** (`=`) is dropped somewhere in the village.
+notebook** (`=`) is dropped somewhere in the village, and a **soot gremlin**
+(a dark `s`) is loose nearby.
 1. Talk to Root Beer Guy (`c` + direction) → "[Accept]" → quest starts.
-2. Explore the buildings, find the notebook, pick it up (`G`).
-3. Return to Root Beer Guy → "[Return it]" → quest completes, **+150 XP,
+2. Find the notebook and pick it up (`G`) — finishes *find the notebook*.
+3. Slay the soot gremlin (bump-attack; the warden may help) — finishes
+   *drive off the soot gremlin*. Either objective first; both can even be
+   done *before* accepting (order-independent).
+4. Return to Root Beer Guy → "[Return it]" → quest completes, **+150 XP,
    +60 drams**, accomplishment logged.
 
 ## How it's wired (smallest-blast-radius path)
@@ -55,14 +59,32 @@ never set) so it doesn't auto-complete before the player returns — the
 dialogue `CompleteQuest` is the sole completion (controlled timing is fine
 here: the NPC is always present, no soft-lock).
 
-## Known limitation — world KILL objectives
-There is **no robust polled kill-detection predicate** (`IfActorDead` is
-referenced in a Q3.1 parse-test but is NOT registered). `FinishObjectiveWhenSlain`
-no-ops if the quest isn't active, so a *world* kill objective could soft-lock
-(player kills the mob before accepting). That's why this first world quest is
-fetch-only. **Future:** add an `IfActorDead` predicate or a `SetFactWhenSlain`
-Part (mirror of `FinishObjectiveWhenSlain` that sets a fact) + an `IfFact`
-trigger — then world kill/clear objectives become order-independent too.
+## Q5.4 — world KILL objectives (RESOLVED)
+World kill objectives were initially blocked: there's no robust polled
+kill-detection predicate (`IfActorDead` is referenced in a Q3.1 parse-test
+but was never registered), and `FinishObjectiveWhenSlain` no-ops if the quest
+isn't active — so a *world* kill objective could soft-lock (player kills the
+mob before accepting).
+
+**Fix — `SetFactWhenSlain` Part** (`Assets/Scripts/Gameplay/Storylets/`): the
+kill-side analog of `IfHaveItem`. On `"Died"` it sets a persisted narrative
+fact (no killer gate — "X is dead, regardless of who killed it"). Pair it with
+an `IfFact:<fact>:>=:1` objective trigger and the kill completes the objective
+**order-independently** — before OR after accepting — because the fact persists
+and the objective is finished by the polled tick dispatch, not an event that
+needs the quest already active.
+
+Root Beer Guy's case is now **fetch + kill**: the starting village also spawns
+a **soot gremlin** carrying `SetFactWhenSlain { Fact = "rbg_gremlin_routed" }`,
+and the `drive_off_gremlin` objective polls `IfFact:rbg_gremlin_routed:>=:1`.
+Anyone can kill it (player, the village warden) at any time and the objective
+still completes when the quest is active — no soft-lock. (`FinishObjectiveWhenSlain`
+remains the instant, quest-active path; `SetFactWhenSlain` is the robust polled
+one. An entity can carry both.)
+
+**Tests:** `SetFactWhenSlainTests` (10) — incl. `KillBeforeAccept_ThenAccept_…`
+proving order-independence. Live fetch+kill loop in a fresh starting village:
+14/14, 0 fails (runId 9a02443f).
 
 ## Validation
 - **EditMode content-integrity** (`QuestRootBeerGuyContentTests`, 3 tests):

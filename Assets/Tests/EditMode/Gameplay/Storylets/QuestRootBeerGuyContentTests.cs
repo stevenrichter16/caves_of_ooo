@@ -24,7 +24,9 @@ namespace CavesOfOoo.Tests
     {
         private const string QuestId = "RootBeerGuyCase";
         private const string ObjFind = "find_notebook";
+        private const string ObjSlay = "drive_off_gremlin";
         private const string ItemBlueprint = "DetectiveNotebook";
+        private const string SlainFact = "rbg_gremlin_routed";
         private const string ConversationId = "RootBeerGuy_Quest";
 
         private static StoryletData LoadQuest()
@@ -63,6 +65,20 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(ItemBlueprint, have.Value, "IfHaveItem must match the notebook blueprint the builder places");
 
             Assert.IsFalse(string.IsNullOrEmpty(q.Quest.Accomplishment), "has a Q7 accomplishment deed");
+        }
+
+        [Test]
+        public void Quest_HasRobustKillObjective_PollingTheSlainFact()
+        {
+            // The kill objective must poll the SetFactWhenSlain fact via IfFact
+            // (order-independent: the gremlin can die before OR after accept).
+            var q = LoadQuest();
+            var slay = q.Quest.Stages[0].Objectives.FirstOrDefault(o => o.ID == ObjSlay);
+            Assert.IsNotNull(slay, "the kill objective the builder's SetFactWhenSlain gremlin drives must exist");
+            var iffact = slay.Triggers.FirstOrDefault(t => t.Key == "IfFact");
+            Assert.IsNotNull(iffact, "drive_off_gremlin must poll an IfFact (NOT a Part-only/sentinel objective) for order-independence");
+            Assert.AreEqual($"{SlainFact}:>=:1", iffact.Value,
+                "IfFact must match the fact SetFactWhenSlain sets on the placed gremlin (builder<->content seam)");
         }
 
         [Test]
