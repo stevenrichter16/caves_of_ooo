@@ -1,0 +1,36 @@
+{
+  "Storylets": [
+    {
+      "ID": "BmoCartridge",
+      "OneShot": false,
+      "Tracked": true,
+      "Triggers": [],
+      "Effects": [],
+      "Quest": {
+        "Accomplishment": "You tracked down BMO's lost game cartridge at the old stump.",
+        "Stages": [
+          {
+            "ID": "search",
+            "Triggers": [],
+            "OnEnter": [],
+            "Objectives": [
+              {
+                "ID": "reach_stump",
+                "Text": "Find the old stump out past the village",
+                "Optional": false,
+                "Hidden": false,
+                "Triggers": [ { "Key": "IfFact", "Value": "bmo_stump_reached:>=:1" } ],
+                "OnEnter": []
+              }
+            ]
+          },
+          {
+            "ID": "report",
+            "Triggers": [ { "Key": "IfFact", "Value": "bmo_report_guard:>=:1" } ],
+            "OnEnter": []
+          }
+        ]
+      }
+    }
+  ]
+}

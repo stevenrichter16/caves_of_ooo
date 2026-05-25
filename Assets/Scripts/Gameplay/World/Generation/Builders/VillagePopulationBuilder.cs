@@ -162,11 +162,14 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < villagerCount; i++)
                 PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
 
-            // Starting-village-only: place a quest-giver + his lost item so the
-            // player meets a complete, robust fetch quest in NORMAL PLAY (not a
-            // dev scenario). See Docs/QUEST-IN-WORLD.md.
+            // Starting-village-only: place the world quests so the player meets
+            // complete, robust quests in NORMAL PLAY (not a dev scenario). See
+            // Docs/QUEST-IN-WORLD.md + Docs/QUEST-DESIGN-CATALOG.md.
             if (zone.ZoneID == StartingVillageZoneId)
-                PlaceStartingVillageQuestGiver(zone, factory, rng, interiorCells, openCells, settlementId);
+            {
+                PlaceStartingVillageQuestGiver(zone, factory, rng, interiorCells, openCells, settlementId); // RootBeerGuy: fetch + kill
+                PlaceBmoQuest(zone, factory, rng, interiorCells, openCells, settlementId);                  // BMO: reach-a-location
+            }
 
             return true;
         }
@@ -928,6 +931,37 @@ namespace CavesOfOoo.Core
                 if (gr != null) { gr.DisplayName = "soot gremlin"; gr.ColorString = "&K"; }
                 zone.AddEntity(gremlin, gx, gy);
             }
+        }
+
+        /// <summary>
+        /// Starting-village-only: BMO's Lost Cartridge — a REACH-A-LOCATION quest
+        /// (Docs/QUEST-DESIGN-CATALOG.md #11). Places BMO (quest-giver) + an "old
+        /// stump" marker carrying <c>QuestMarkerTriggerPart</c>: walking onto the
+        /// stump (player only) sets <c>bmo_stump_reached</c>, which the
+        /// reach_stump objective polls (IfFact) — order-independent. Showcases
+        /// the Tier-3 reach-location primitive in normal play. Fail-soft.
+        /// </summary>
+        private void PlaceBmoQuest(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> interiorCells, List<(int x, int y)> openCells, string settlementId)
+        {
+            Entity bmo = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
+            if (bmo == null) return;
+            SetConversation(bmo, "BMO_Quest");
+            var br = bmo.GetPart<RenderPart>();
+            if (br != null) { br.DisplayName = "BMO"; br.RenderString = "b"; br.ColorString = "&c"; }
+
+            // The "old stump" — a reach-location marker. Non-solid so the player
+            // can step onto its cell; QuestMarkerTriggerPart (player-gated,
+            // persistent) sets the fact on arrival.
+            if (openCells.Count == 0) return;
+            int idx = rng.Next(openCells.Count);
+            var (mx, my) = openCells[idx];
+            openCells.RemoveAt(idx);
+            var stump = new Entity { ID = "OldStump", BlueprintName = "OldStump" };
+            stump.AddPart(new RenderPart { DisplayName = "old stump", RenderString = "o", ColorString = "&y" });
+            stump.AddPart(new PhysicsPart { Solid = false });
+            stump.AddPart(new CavesOfOoo.Storylets.QuestMarkerTriggerPart { Fact = "bmo_stump_reached", Value = 1 });
+            zone.AddEntity(stump, mx, my);
         }
 
         private List<(int x, int y)> GatherOpenCells(Zone zone)

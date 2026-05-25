@@ -1,0 +1,75 @@
+{
+  "Conversations": [
+    {
+      "ID": "BMO_Quest",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Oh no oh no. BMO lost a game cartridge! I think it rolled away to the old stump, east past the edge of the village. Will you go look for BMO? Please?",
+          "Choices": [
+            {
+              "Text": "[Accept] I'll search the old stump.",
+              "Target": "Accepted",
+              "Predicates": [
+                { "Key": "IfQuestNotStarted", "Value": "BmoCartridge" }
+              ],
+              "Actions": [
+                { "Key": "StartQuest", "Value": "BmoCartridge" }
+              ]
+            },
+            {
+              "Text": "[Status] Still looking.",
+              "Target": "Looking",
+              "Predicates": [
+                { "Key": "IfQuestStage", "Value": "BmoCartridge:search" }
+              ]
+            },
+            {
+              "Text": "[Report] Found it at the stump!",
+              "Target": "Found",
+              "Predicates": [
+                { "Key": "IfQuestStage", "Value": "BmoCartridge:report" }
+              ],
+              "Actions": [
+                { "Key": "CompleteQuest", "Value": "BmoCartridge" },
+                { "Key": "AwardXP", "Value": "120" },
+                { "Key": "GiveDrams", "Value": "40" }
+              ]
+            },
+            {
+              "Text": "[Done] Hi again, BMO.",
+              "Target": "Done",
+              "Predicates": [
+                { "Key": "IfQuestCompleted", "Value": "BmoCartridge" }
+              ]
+            },
+            {
+              "Text": "Goodbye, BMO.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Accepted",
+          "Text": "Yay! The stump is east, just past the buildings. BMO will wait right here. Be careful!",
+          "Choices": [ { "Text": "I'll be back.", "Target": "End" } ]
+        },
+        {
+          "ID": "Looking",
+          "Text": "The old stump, east of here! BMO believes in you.",
+          "Choices": [ { "Text": "Okay.", "Target": "End" } ]
+        },
+        {
+          "ID": "Found",
+          "Text": "You found it! BMO is so happy! Here, take this — and some game time on the house.",
+          "Choices": [ { "Text": "Anytime, BMO.", "Target": "End" } ]
+        },
+        {
+          "ID": "Done",
+          "Text": "Who wants to play video games? ...Later, maybe. Thank you, friend!",
+          "Choices": [ { "Text": "Bye, BMO.", "Target": "End" } ]
+        }
+      ]
+    }
+  ]
+}

@@ -5,6 +5,15 @@
 > village** by the generation pipeline, so a fresh game drops the player
 > next to a complete, robust fetch quest. **Status: done, live-validated
 > 13/13 in a fresh session.**
+>
+> **Second world quest — "BMO's Lost Cartridge" (reach-a-location).** The
+> starting village also places BMO (quest-giver) + an "old stump" marker
+> carrying `QuestMarkerTriggerPart`: walking onto it (player only) sets
+> `bmo_stump_reached`, polled by the `reach_stump` objective (`IfFact`,
+> order-independent). Showcases the Tier-3 reach-location primitive in normal
+> play. Live-validated 10/10 in a fresh session. Two quests now reachable at
+> spawn (a fetch+kill and a reach-location) — further quests should be
+> distributed to other villages/dungeons to avoid crowding the hub.
 
 ## What the player does
 Start a new game → you spawn in the starting village (`Overworld.10.10.0`).
