@@ -20,6 +20,13 @@ namespace CavesOfOoo.Tests
             MessageLog.Clear();
         }
 
+        // Clear the ConversationLoader static cache after each test so a partial
+        // Register/LoadFromJson doesn't leak (with _loaded=true) into a later
+        // in-editor playtest (domain-reload-off). GameBootstrap also force-loads
+        // now, but cleaning up at the source is correct hygiene.
+        [TearDown]
+        public void TearDown() => ConversationLoader.Reset();
+
         // ========================
         // Helpers
         // ========================

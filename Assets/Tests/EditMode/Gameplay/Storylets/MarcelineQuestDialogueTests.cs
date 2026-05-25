@@ -71,6 +71,9 @@ namespace CavesOfOoo.Tests
         public void TearDown()
         {
             ConversationManager.EndConversation();
+            // Clear the partial ConversationLoader cache so it doesn't leak
+            // (with _loaded=true) into a later in-editor playtest.
+            CavesOfOoo.Data.ConversationLoader.Reset();
             StoryletPart.Current = null;
             StoryletPart.LocalPlayer = null;
             NarrativeStatePart.Current = null;

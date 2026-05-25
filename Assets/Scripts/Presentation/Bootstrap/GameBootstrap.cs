@@ -161,6 +161,16 @@ namespace CavesOfOoo
                 Debug.Log("[Bootstrap] Step 1d/9: Loading Storylets...");
                 Storylets.StoryletRegistry.LoadAll();
 
+                // Force a fresh conversation load too (parity with the loaders
+                // above). ConversationLoader is lazy-loaded on first Get, but its
+                // static cache + _loaded flag PERSIST across Play sessions
+                // (domain-reload-off). EditMode tests that Register/LoadFromJson a
+                // single conversation leave _loaded=true with a partial cache, so
+                // a subsequent in-editor playtest would lazily skip LoadAll and
+                // most conversations would be "not found". LoadAll() clears +
+                // reloads every file, guaranteeing the full set at game start.
+                Data.ConversationLoader.LoadAll();
+
                 Debug.Log("[Bootstrap] Step 2/9: Initializing mutations...");
                 PerformanceDiagnostics.MeasureStartupPhase(
                     "InitializeMutations",
