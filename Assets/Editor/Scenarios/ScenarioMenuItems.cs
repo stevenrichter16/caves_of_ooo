@@ -265,6 +265,22 @@ namespace CavesOfOoo.Editor.Scenarios
             => ScenarioRunner.Launch<RecruitShowcase>();
 
         // =========================================================
+        // Quests
+        // =========================================================
+
+        [MenuItem("Caves Of Ooo/Scenarios/Quests/Playable — Cinnamon Bun's Favor", priority = 240)]
+        private static void Launch_QuestCinnamonBunPlayable()
+            => ScenarioRunner.Launch<QuestCinnamonBunPlayable>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Quests/Quest System Bench (self-auditing: diag_query category=questbench)", priority = 241)]
+        private static void Launch_QuestSystemBench()
+            => ScenarioRunner.Launch<QuestSystemBench>();
+
+        [MenuItem("Caves Of Ooo/Scenarios/Quests/Quest World Parts Bench (self-auditing: diag_query category=questbench)", priority = 242)]
+        private static void Launch_QuestWorldPartsBench()
+            => ScenarioRunner.Launch<QuestWorldPartsBench>();
+
+        // =========================================================
         // UI (skill tree, etc.)
         // =========================================================
 
