@@ -208,6 +208,33 @@ namespace CavesOfOoo.Tests
                 "the stat-gated quest giver must be placed");
         }
 
+        private static void AssertGiverBeacon(Zone zone, string convoId, string expectedQuest)
+        {
+            var giver = FindByConversation(zone, convoId);
+            Assert.IsNotNull(giver, convoId + " giver must be placed");
+            var beacon = giver.GetPart<CavesOfOoo.Storylets.QuestBeaconPart>();
+            Assert.IsNotNull(beacon, convoId + " giver must carry a QuestBeaconPart (discoverability)");
+            Assert.AreEqual(expectedQuest, beacon.Quest,
+                "the beacon must reference the quest the giver offers (builder↔beacon seam)");
+        }
+
+        [Test]
+        public void BuildZone_QuestGivers_CarryMatchingBeacons()
+        {
+            // Discoverability: every quest OFFERER carries a QuestBeaconPart
+            // referencing the quest it offers (so the render hook can highlight
+            // it while offerable). Covers a pool giver + both starting-village
+            // givers; the other pool givers use the identical placement pattern.
+            string warren = FindZoneForQuest("ClearTheWarren");
+            Assert.IsNotNull(warren);
+            BuildVillage(warren, out var warrenZone);
+            AssertGiverBeacon(warrenZone, "Warren_Quest", "ClearTheWarren");
+
+            BuildVillage("Overworld.10.10.0", out var startZone);
+            AssertGiverBeacon(startZone, "RootBeerGuy_Quest", "RootBeerGuyCase");
+            AssertGiverBeacon(startZone, "BMO_Quest", "BmoCartridge");
+        }
+
         private static Entity FindByBlueprint(Zone zone, string blueprintName)
         {
             var entities = zone.GetAllEntities();

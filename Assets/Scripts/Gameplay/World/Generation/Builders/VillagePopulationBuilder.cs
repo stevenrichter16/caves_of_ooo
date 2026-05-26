@@ -906,6 +906,7 @@ namespace CavesOfOoo.Core
             Entity giver = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
             if (giver == null) return;
             SetConversation(giver, "RootBeerGuy_Quest");
+            giver.AddPart(new CavesOfOoo.Storylets.QuestBeaconPart { Quest = "RootBeerGuyCase" });
             var render = giver.GetPart<RenderPart>();
             if (render != null) { render.DisplayName = "Root Beer Guy"; render.RenderString = "r"; render.ColorString = "&r"; }
 
@@ -956,6 +957,7 @@ namespace CavesOfOoo.Core
             Entity bmo = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
             if (bmo == null) return;
             SetConversation(bmo, "BMO_Quest");
+            bmo.AddPart(new CavesOfOoo.Storylets.QuestBeaconPart { Quest = "BmoCartridge" });
             var br = bmo.GetPart<RenderPart>();
             if (br != null) { br.DisplayName = "BMO"; br.RenderString = "b"; br.ColorString = "&c"; }
 
@@ -1014,6 +1016,7 @@ namespace CavesOfOoo.Core
             Entity giver = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
             if (giver == null) return;
             SetConversation(giver, "Crunchy_Quest");
+            giver.AddPart(new CavesOfOoo.Storylets.QuestBeaconPart { Quest = "CrunchyLocket" });
             var r = giver.GetPart<RenderPart>();
             if (r != null) { r.DisplayName = "Crunchy"; r.RenderString = "c"; r.ColorString = "&w"; }
 
@@ -1037,6 +1040,7 @@ namespace CavesOfOoo.Core
             Entity giver = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
             if (giver == null) return;
             SetConversation(giver, "Pilgrim_Quest");
+            giver.AddPart(new CavesOfOoo.Storylets.QuestBeaconPart { Quest = "HiddenShrine" });
             var r = giver.GetPart<RenderPart>();
             if (r != null) { r.DisplayName = "pilgrim"; r.RenderString = "p"; r.ColorString = "&w"; }
 
@@ -1067,6 +1071,7 @@ namespace CavesOfOoo.Core
             Entity giver = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
             if (giver == null) return;
             SetConversation(giver, "Warren_Quest");
+            giver.AddPart(new CavesOfOoo.Storylets.QuestBeaconPart { Quest = "ClearTheWarren" });
             var r = giver.GetPart<RenderPart>();
             if (r != null) { r.DisplayName = "frazzled farmer"; r.RenderString = "f"; r.ColorString = "&w"; }
 
@@ -1100,6 +1105,7 @@ namespace CavesOfOoo.Core
             Entity giver = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
             if (giver == null) return;
             SetConversation(giver, "CandyTax_Quest");
+            giver.AddPart(new CavesOfOoo.Storylets.QuestBeaconPart { Quest = "TheCandyTax" });
             var r = giver.GetPart<RenderPart>();
             if (r != null) { r.DisplayName = "Peppermint Butler"; r.RenderString = "P"; r.ColorString = "&W"; }
 
@@ -1128,6 +1134,7 @@ namespace CavesOfOoo.Core
             Entity giver = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
             if (giver == null) return;
             SetConversation(giver, "Baker_Quest");
+            giver.AddPart(new CavesOfOoo.Storylets.QuestBeaconPart { Quest = "MessageForHermit" });
             var r = giver.GetPart<RenderPart>();
             if (r != null) { r.DisplayName = "worried baker"; r.RenderString = "b"; r.ColorString = "&w"; }
 
@@ -1152,6 +1159,7 @@ namespace CavesOfOoo.Core
             Entity giver = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
             if (giver == null) return;
             SetConversation(giver, "Strongman_Quest");
+            giver.AddPart(new CavesOfOoo.Storylets.QuestBeaconPart { Quest = "StrongestInOoo" });
             var r = giver.GetPart<RenderPart>();
             if (r != null) { r.DisplayName = "panicked candy citizen"; r.RenderString = "p"; r.ColorString = "&R"; }
         }
