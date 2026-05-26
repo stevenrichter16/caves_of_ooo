@@ -180,3 +180,46 @@ state mutation + save reach.)
 `Build_ActiveEntry_FirstStage_NoneDone`,
 `Build_QuestNotInRegistry_EmptyStages`); existing 6 retained (additive
 enrichment). **9/9 GREEN confirmed** (run `65fb3884…`); compile 0 CS errors.
+
+---
+
+## Live objective progress for counter/collect-N objectives (2026-05-25)
+
+**Gap:** counter/collect objectives (the kill-N + collect-N pool quests, see
+`Docs/QUEST-POOL-EXPANSION.md`) showed only static text + a binary done/pending
+marker — "Rout the dirt gnomes (3)" with no live "1 of 3" feedback. The player
+couldn't see progress until the whole objective flipped to done.
+
+**Fix (presentation-only, automatic, zero content-schema change):** an objective
+that gates on `IfFact:<fact>:>=:N` **with N > 1** is a counter. `QuestLogStateBuilder`
+parses that trigger, reads the live fact via `NarrativeStatePart`, and surfaces
+`Current`/`Target` (current clamped to `[0, Target]`) on `QuestLogObjectiveRow`.
+`QuestLogUI` appends `" (Current/Target)"`. So the log now shows **"Rout the
+dirt gnomes (1/3)"** ticking up as you kill them.
+
+**Why N > 1 only:** single-target objectives (`>=:1` kill-1 / reach / fetch via
+`IfHaveItem`) are *not* counters — "(0/1)/(1/1)" is noise, and the done/pending
+marker already conveys them. Only genuine multi-counters get the suffix.
+
+**Design notes:**
+- `Build(StoryletPart, NarrativeStatePart narrativeState = null)` — the new param
+  is optional + defaults to `NarrativeStatePart.Current`, so the sole production
+  caller (`QuestLogUI.Rebuild`) is unchanged and tests inject an explicit state
+  (no singleton pollution). `QuestLogObjectiveRow`'s new fields are optional
+  ctor args → backward-compatible.
+- Counter objective text dropped its redundant static "(N)" suffix
+  (`ClearTheWarren` / `TheCandyTax` JSON) so the live "(c/t)" isn't doubled.
+
+**Tests:** `QuestLogStateBuilderTests` +6 (live progress; clamp-to-target;
+zero-when-unset; **counter-checks**: single-target `>=:1` → no progress,
+non-`IfFact` fetch → no progress; null-state no-crash). **19/19 green.**
+Content text change benign (`QuestVillagePoolTests` 11/11). Regression chunk
+(other `Build` caller `QuestShowcaseDiagTests` + sibling state-builders +
+village builder) 12/12. **Live (rule 7):** real `ClearTheWarren.json` through the
+runtime builder with `warren_gnomes_routed=2` → `rout_gnomes: hasProgress=True
+2/3` — the shipped content's trigger parses into live progress.
+
+**Files:** MOD `QuestLogSnapshot.cs` (+`HasProgress`/`Current`/`Target`),
+`QuestLogStateBuilder.cs` (+`narrativeState` param, `TryGetCounter` parse),
+`QuestLogUI.cs` (+progress suffix), `ClearTheWarren.json` + `TheCandyTax.json`
+(drop static count), `QuestLogStateBuilderTests.cs` (+6).

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CavesOfOoo.Core;       // NarrativeStatePart (live counter facts)
 using CavesOfOoo.Storylets;
 
 namespace CavesOfOoo.Rendering
@@ -25,10 +26,14 @@ namespace CavesOfOoo.Rendering
         /// blueprint isn't in the registry (defensive — a save
         /// could reference content that's been removed).
         /// </summary>
-        public static QuestLogSnapshot Build(StoryletPart part)
+        public static QuestLogSnapshot Build(StoryletPart part, NarrativeStatePart narrativeState = null)
         {
             if (part == null)
                 return new QuestLogSnapshot(null, null);
+
+            // Counter/collect objectives show live progress read from facts.
+            // Default to the world singleton; tests pass an explicit instance.
+            narrativeState ??= NarrativeStatePart.Current;
 
             var activeStates = part.GetActiveQuests();
             var active = new List<QuestLogActiveEntry>(activeStates.Count);
@@ -77,7 +82,20 @@ namespace CavesOfOoo.Rendering
                                 bool done = s.FinishedObjectives != null
                                     && s.FinishedObjectives.Contains(o.ID);
                                 if (o.Hidden && !done) continue; // hidden until finished
-                                objRows.Add(new QuestLogObjectiveRow(o.ID, o.Text, done, o.Optional));
+
+                                // Live progress for counter/collect objectives:
+                                // read the IfFact:<fact>:>=:N trigger + current
+                                // fact value → "(Current/Target)" in the UI.
+                                bool hasProgress = false; int current = 0, target = 0;
+                                if (TryGetCounter(o, out string fact, out int n))
+                                {
+                                    hasProgress = true; target = n;
+                                    int raw = narrativeState != null ? narrativeState.GetFact(fact) : 0;
+                                    current = raw < 0 ? 0 : (raw > n ? n : raw); // clamp [0, n]
+                                }
+
+                                objRows.Add(new QuestLogObjectiveRow(
+                                    o.ID, o.Text, done, o.Optional, hasProgress, current, target));
                             }
                             currentObjectives = objRows;
                         }
@@ -95,6 +113,30 @@ namespace CavesOfOoo.Rendering
                 completed.Add(id);
 
             return new QuestLogSnapshot(active, completed);
+        }
+
+        /// <summary>
+        /// Parse a counter/collect objective's progress source: an
+        /// <c>IfFact:&lt;fact&gt;:&gt;=:N</c> trigger with N &gt; 1. Returns the
+        /// fact key + threshold. Only the <c>&gt;=</c> form qualifies (every
+        /// counter/collect objective uses it); single-target (N == 1) and
+        /// non-IfFact objectives return false so they show no counter.
+        /// </summary>
+        private static bool TryGetCounter(QuestObjectiveData o, out string fact, out int target)
+        {
+            fact = null; target = 0;
+            if (o?.Triggers == null) return false;
+            for (int i = 0; i < o.Triggers.Count; i++)
+            {
+                var t = o.Triggers[i];
+                if (t == null || t.Key != "IfFact" || string.IsNullOrEmpty(t.Value)) continue;
+                var parts = t.Value.Split(':');
+                if (parts.Length != 3 || parts[1] != ">=") continue;
+                if (!int.TryParse(parts[2], out int n) || n <= 1) continue;
+                fact = parts[0]; target = n;
+                return true;
+            }
+            return false;
         }
     }
 }

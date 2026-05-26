@@ -27,6 +27,13 @@ namespace CavesOfOoo.Tests
         public void SetUp()
         {
             StoryletRegistry.Reset();
+            NarrativeStatePart.Current = null; // hygiene: progress reads facts
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            NarrativeStatePart.Current = null;
         }
 
         // ====================================================================
@@ -412,6 +419,129 @@ namespace CavesOfOoo.Tests
             var entry = QuestLogStateBuilder.Build(sp).Active.First(e => e.QuestId == "Q1");
             Assert.IsTrue(entry.CurrentObjectives.First(o => o.ObjectiveId == "opt").Optional);
             Assert.IsFalse(entry.CurrentObjectives.First(o => o.ObjectiveId == "req").Optional);
+        }
+
+        // ====================================================================
+        // Live objective progress (counter / collect-N objectives)
+        //
+        // A counter objective gates on IfFact:<fact>:>=:<N>. The builder reads
+        // the current fact value and surfaces current/target so the renderer
+        // can show "Rout the dirt gnomes (1/3)" live. Only multi-counters
+        // (Target > 1) get progress — single-target objectives (kill-1, reach,
+        // fetch) stay clean.
+        // ====================================================================
+
+        private static QuestObjectiveData CounterObjective(
+            string id, string text, string fact, string op, int threshold)
+        {
+            var o = new QuestObjectiveData { ID = id, Text = text };
+            o.Triggers.Add(new ConversationParam { Key = "IfFact", Value = $"{fact}:{op}:{threshold}" });
+            return o;
+        }
+
+        [Test]
+        public void Build_CounterObjective_PopulatesLiveProgress()
+        {
+            StoryletRegistry.Register(QuestWithObjectives("Q1",
+                CounterObjective("rout", "Rout the gnomes", "gnomes_routed", ">=", 3)));
+            var ns = new NarrativeStatePart();
+            ns.SetFact("gnomes_routed", 1);
+            var sp = new StoryletPart();
+            sp.StartQuest(new QuestState { QuestId = "Q1", CurrentStageIndex = 0 });
+
+            var o = QuestLogStateBuilder.Build(sp, ns)
+                .Active.First(e => e.QuestId == "Q1")
+                .CurrentObjectives.First(x => x.ObjectiveId == "rout");
+
+            Assert.IsTrue(o.HasProgress, "an IfFact:>=:N (N>1) objective shows live progress");
+            Assert.AreEqual(1, o.Current, "Current reflects the live fact value");
+            Assert.AreEqual(3, o.Target, "Target is the threshold from the trigger");
+        }
+
+        [Test]
+        public void Build_CounterProgress_ClampsCurrentToTarget()
+        {
+            // If the fact overshoots the threshold (e.g. an extra kill), the
+            // displayed Current must clamp to Target — never "(5/3)".
+            StoryletRegistry.Register(QuestWithObjectives("Q1",
+                CounterObjective("rout", "Rout the gnomes", "gnomes_routed", ">=", 3)));
+            var ns = new NarrativeStatePart();
+            ns.SetFact("gnomes_routed", 5);
+            var sp = new StoryletPart();
+            sp.StartQuest(new QuestState { QuestId = "Q1", CurrentStageIndex = 0 });
+
+            var o = QuestLogStateBuilder.Build(sp, ns)
+                .Active.First(e => e.QuestId == "Q1").CurrentObjectives.First();
+            Assert.AreEqual(3, o.Current, "Current clamps to Target for display");
+            Assert.AreEqual(3, o.Target);
+        }
+
+        [Test]
+        public void Build_CounterProgress_ZeroWhenFactUnset()
+        {
+            StoryletRegistry.Register(QuestWithObjectives("Q1",
+                CounterObjective("rout", "Rout the gnomes", "gnomes_routed", ">=", 3)));
+            var ns = new NarrativeStatePart(); // fact never set → 0
+            var sp = new StoryletPart();
+            sp.StartQuest(new QuestState { QuestId = "Q1", CurrentStageIndex = 0 });
+
+            var o = QuestLogStateBuilder.Build(sp, ns)
+                .Active.First(e => e.QuestId == "Q1").CurrentObjectives.First();
+            Assert.IsTrue(o.HasProgress);
+            Assert.AreEqual(0, o.Current, "unset fact reads 0 → (0/3)");
+        }
+
+        [Test]
+        public void Build_SingleTargetObjective_NoProgress()
+        {
+            // Counter-check: IfFact:>=:1 (single kill / reach) is NOT a counter
+            // — showing "(0/1)/(1/1)" is noise. HasProgress must be false so the
+            // renderer just shows done/pending.
+            StoryletRegistry.Register(QuestWithObjectives("Q1",
+                CounterObjective("slay", "Slay the beast", "beast_slain", ">=", 1)));
+            var ns = new NarrativeStatePart();
+            var sp = new StoryletPart();
+            sp.StartQuest(new QuestState { QuestId = "Q1", CurrentStageIndex = 0 });
+
+            var o = QuestLogStateBuilder.Build(sp, ns)
+                .Active.First(e => e.QuestId == "Q1").CurrentObjectives.First();
+            Assert.IsFalse(o.HasProgress, "single-target (threshold 1) objectives show no counter");
+        }
+
+        [Test]
+        public void Build_NonCounterObjective_NoProgress()
+        {
+            // Counter-check: a fetch objective gates on IfHaveItem (not IfFact)
+            // → no parseable counter → no progress.
+            var fetch = new QuestObjectiveData { ID = "find", Text = "Find the locket" };
+            fetch.Triggers.Add(new ConversationParam { Key = "IfHaveItem", Value = "Locket" });
+            StoryletRegistry.Register(QuestWithObjectives("Q1", fetch));
+            var ns = new NarrativeStatePart();
+            var sp = new StoryletPart();
+            sp.StartQuest(new QuestState { QuestId = "Q1", CurrentStageIndex = 0 });
+
+            var o = QuestLogStateBuilder.Build(sp, ns)
+                .Active.First(e => e.QuestId == "Q1").CurrentObjectives.First();
+            Assert.IsFalse(o.HasProgress, "non-IfFact objectives carry no counter progress");
+            Assert.AreEqual(0, o.Target);
+        }
+
+        [Test]
+        public void Build_CounterObjective_NullNarrativeState_NoCrash_ZeroCurrent()
+        {
+            // Defensive: no narrative state (pre-bootstrap) → no crash; the
+            // counter still shows its target with Current=0.
+            StoryletRegistry.Register(QuestWithObjectives("Q1",
+                CounterObjective("rout", "Rout the gnomes", "gnomes_routed", ">=", 3)));
+            var sp = new StoryletPart();
+            sp.StartQuest(new QuestState { QuestId = "Q1", CurrentStageIndex = 0 });
+
+            QuestLogObjectiveRow o = default;
+            Assert.DoesNotThrow(() => o = QuestLogStateBuilder.Build(sp, null)
+                .Active.First(e => e.QuestId == "Q1").CurrentObjectives.First());
+            Assert.IsTrue(o.HasProgress);
+            Assert.AreEqual(0, o.Current);
+            Assert.AreEqual(3, o.Target);
         }
     }
 }

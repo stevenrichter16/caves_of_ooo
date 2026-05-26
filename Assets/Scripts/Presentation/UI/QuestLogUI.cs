@@ -158,6 +158,8 @@ namespace CavesOfOoo.Rendering
                                     DrawChar(10, y, og, oc);
                                     string olabel = !string.IsNullOrEmpty(o.Text) ? o.Text
                                         : (!string.IsNullOrEmpty(o.ObjectiveId) ? o.ObjectiveId : "(objective)");
+                                    // Live counter for collect/kill-N objectives ("(1/3)").
+                                    if (o.HasProgress) olabel += " (" + o.Current + "/" + o.Target + ")";
                                     if (o.Optional) olabel += " (optional)";
                                     DrawText(12, y, olabel, oc);
                                     y++;

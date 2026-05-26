@@ -9,7 +9,7 @@
           {
             "ID": "collect", "Triggers": [], "OnEnter": [],
             "Objectives": [
-              { "ID": "collect_taxes", "Text": "Collect the candy tax from 3 citizens (3)", "Optional": false, "Hidden": false,
+              { "ID": "collect_taxes", "Text": "Collect the candy tax from the townsfolk", "Optional": false, "Hidden": false,
                 "Triggers": [ { "Key": "IfFact", "Value": "candy_taxes_collected:>=:3" } ], "OnEnter": [] }
             ]
           },

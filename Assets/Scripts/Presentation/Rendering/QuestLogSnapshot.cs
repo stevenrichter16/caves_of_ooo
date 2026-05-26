@@ -71,13 +71,28 @@ namespace CavesOfOoo.Rendering
         public readonly string Text;
         public readonly bool Done;
         public readonly bool Optional;
+        /// <summary>True for a counter/collect objective (gates on
+        /// <c>IfFact:&lt;fact&gt;:&gt;=:N</c> with N &gt; 1). Drives the
+        /// renderer's live "(Current/Target)" suffix. False for single-target
+        /// (threshold 1) and non-IfFact objectives — they stay clean.</summary>
+        public readonly bool HasProgress;
+        /// <summary>Live fact value, clamped to [0, <see cref="Target"/>] for
+        /// display. Only meaningful when <see cref="HasProgress"/>.</summary>
+        public readonly int Current;
+        /// <summary>The counter threshold from the objective's IfFact trigger.
+        /// Only meaningful when <see cref="HasProgress"/>.</summary>
+        public readonly int Target;
 
-        public QuestLogObjectiveRow(string objectiveId, string text, bool done, bool optional)
+        public QuestLogObjectiveRow(string objectiveId, string text, bool done, bool optional,
+            bool hasProgress = false, int current = 0, int target = 0)
         {
             ObjectiveId = objectiveId ?? string.Empty;
             Text = text ?? string.Empty;
             Done = done;
             Optional = optional;
+            HasProgress = hasProgress;
+            Current = current;
+            Target = target;
         }
     }
 
