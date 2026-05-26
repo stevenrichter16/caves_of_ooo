@@ -91,5 +91,11 @@ Q5.4 pattern), so the whole Tier-3 column is now buildable:
    objective on it; once the window lapses it goes false. (Active fail-on-
    timeout would still want a tick `FailQuest` — a follow-up.)
 
-Next: author quests #2–#8 (Tier 1–2, no new code) + the Tier-3 ones (#9–#12)
-now that the primitives exist, as the first content wave.
+**First content wave — SHIPPED** (`Docs/QUEST-POOL-EXPANSION.md`): the village
+pool grew 2 → 5, adding **Clear the Warren** (kill-N counter, ≈ #10 — first
+world use of `AddFactWhenSlain`), **The Candy Tax** (collect-N via dialogue, #4),
+and **A Message for the Hermit** (deliver / talk-to, Tier-1). Each a distinct
+mechanic; all live-verified + merged.
+
+Next: the remaining catalog quests (#2 Vampire's Errand, #3 Enchiridion,
+#5–#8, #12 timed) as a second wave — most are Tier 1–2 (no new code).

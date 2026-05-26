@@ -18,10 +18,13 @@
 > quest from a pool, picked deterministically by zone ID
 > (`VillagePopulationBuilder.PickVillageQuest`, mirroring the per-village House
 > Drama assignment) — so the player finds varied quests *while exploring*, one
-> per village, no hub crowding. Pool (growing — see
-> `Docs/QUEST-POOL-EXPANSION.md`): **Crunchy's Lost Locket** (fetch), **The
-> Hidden Shrine** (reach), **Clear the Warren** (kill-N counter, the first
-> world use of `AddFactWhenSlain`). Pick is unit-tested (deterministic + all
+> per village, no hub crowding. Pool of **5** (see
+> `Docs/QUEST-POOL-EXPANSION.md`), each a distinct mechanic: **Crunchy's Lost
+> Locket** (fetch), **The Hidden Shrine** (reach), **Clear the Warren** (kill-N
+> counter — first world use of `AddFactWhenSlain`), **The Candy Tax** (collect-N
+> via dialogue — `AddFact` counter, once-per-citizen gate), **A Message for the
+> Hermit** (deliver / talk-to NPC Y). The pick distributes evenly (~77–82 of 399
+> zones each, live-audited). Pick is unit-tested (deterministic + all
 > reachable, **pool-agnostic** so it survives growth); content integrity-tested
 > per quest; builder placement-tested (the warren village spawns exactly 3
 > counter gnomes). Starting village keeps RootBeerGuy + BMO.
