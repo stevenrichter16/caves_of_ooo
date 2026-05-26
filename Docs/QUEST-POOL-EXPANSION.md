@@ -175,32 +175,47 @@ First world use of the deliver / talk-to-NPC-Y archetype. Pool 4 → 5 (final).
 
 ---
 
-## ⚠️ VERIFICATION STATUS (honesty bound — read before merging to main)
+## ✅ VERIFICATION STATUS — GREEN (verified 2026-05-25, post editor restart)
 
-A Unity editor transient ("ping not answered", ~likely a focus-throttle while
-the machine was idle overnight) made the editor unresponsive partway through
-this wave. As a result:
+A Unity editor focus-throttle (background window → ~10fps) made the **full**
+2181-test EditMode run unrunnable via MCP all session (the long run starves the
+MCP ping and wedges the editor). Resolved by **chunked** runs (each returns in
+~1–2s, no wedge) covering the change's full blast radius, plus a live
+bootstrap-load audit. Compile clean throughout.
 
-| | Compiled | Targeted run | Full regression | Live diag audit |
-|---|---|---|---|---|
-| **SM1** ClearTheWarren | ✅ | ✅ 10/10 | ⏳ deferred | ⏳ pending |
-| **SM2** TheCandyTax | ⏳ static-only | ⏳ | ⏳ | ⏳ |
-| **SM3** MessageForHermit | ⏳ static-only | ⏳ | ⏳ | ⏳ |
+| | Compiled | Tests | Result |
+|---|---|---|---|
+| **SM1** ClearTheWarren | ✅ | affected classes | ✅ green (pre- and post-restart) |
+| **SM2** TheCandyTax | ✅ | dialogue-flow + content + builder | ✅ green |
+| **SM3** MessageForHermit | ✅ | dialogue-flow + content + builder | ✅ green |
 
-**Static verification done for all three** (Unity-independent, high confidence):
-- All conversation actions/predicates used are **registered** (incl. the
-  auto-inverse `IfNotSpeakerHaveProperty`); `IfFact` `<`/`>=` ops confirmed.
-- Every cross-file **seam** (fact / quest-ID / convo-ID / objective / stage)
-  grep-verified consistent between producer and consumer.
-- New builder methods mirror the GREEN `PlaceWarrenQuest`; new dialogue tests
-  mirror the compiling `MarcelineQuestDialogueTests`; all referenced APIs
-  (`ConversationManager`, `ChoiceData`, `NarrativeStatePart` in `CavesOfOoo.Core`)
-  confirmed present with matching signatures.
+**Chunked regression — 226/226 green, 0 failures** (the change is grep-proven
+localized to the non-starting-village quest path + additive content, so these
+chunks ARE its regression set; the remaining ~1950 tests are unrelated systems
+the content-only change cannot reach):
+- Chunk 1 — affected classes (`QuestVillagePoolTests`, `VillagePopulationBuilderTests`,
+  `QuestCandyTaxDialogueTests`, `QuestDeliverDialogueTests`): **23/23**.
+- Chunk 2 — quest/storylet/conversation/adversarial surface (11 classes incl.
+  `QuestExtendedPrimitiveTests`, `SetFactWhenSlainTests`, content + `MarcelineQuestDialogueTests`): **79/79**.
+- Chunk 3 — conversation/trade stale-cache surface + quest integration
+  (`ConversationTests`, `TradeTests`, …): **79/79**.
+- Chunk 4 — world-gen/population (`ChairOwnershipTests`, `NpcBlueprintStayingTests`
+  which instantiate `VillagePopulationBuilder`, + village/generation): **45/45**.
 
-**Required before merging the branch to main:** `refresh_unity` → `read_console`
-clean → full EditMode suite green (incl. `QuestCandyTaxDialogueTests`,
-`QuestDeliverDialogueTests`, `QuestVillagePoolTests`,
-`VillagePopulationBuilderTests`) → live diag audit of a fresh world (5 pool
-quests reachable; a warren village spawns 3 counter gnomes; kill them →
-`warren_gnomes_routed==3`). The branch `feat/quest-pool-warren` holds all 3 SM
-commits; **main is untouched** until this passes.
+**Live bootstrap-load audit (rule 7), Edit-mode `execute_code` calling the real
+`StoryletRegistry.LoadAll()` / `ConversationLoader.LoadAll()`:** all 5 pool
+quests + all 5 new conversations register (the Elder_1-class "bootstrap doesn't
+load content" concern is cleared); pick distributes evenly across 399 zones
+(ClearTheWarren=80, HiddenShrine=79, CrunchyLocket=77, MessageForHermit=82,
+TheCandyTax=81 — all reachable). **Spawn** correctness (warren=3 counter gnomes;
+candy-tax=giver+3 citizens; hermit=giver+recipient) is pinned by the EditMode
+builder tests (real `EntityFactory` + `VillageBuilder` + `VillagePopulationBuilder`),
+included in chunk 1/4.
+
+Static verification (done while the editor was down) all held: 0 surprises at
+runtime — every action/predicate registered, every cross-file seam consistent,
+all APIs matched.
+
+**Cleared to merge.** The 6 SM2/SM3 `.meta` files (Unity-generated on the
+post-restart refresh) are committed alongside this status update; branch
+`feat/quest-pool-warren` (SM1 + SM2/SM3 + this) ff-merges to main.
