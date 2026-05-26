@@ -201,9 +201,44 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void StrongestInOoo_LiftChoice_StatGated_AndRewardsReputation()
+        {
+            // The stat-gated quest: the lift choice must require Strength 18+
+            // (IfStatAtLeast) and the report must reward faction reputation
+            // (ChangeFactionFeeling). Pins the design at content level.
+            var q = LoadQuest("StrongestInOoo");
+            Assert.IsFalse(string.IsNullOrEmpty(q.Quest.Accomplishment), "has a Q7 accomplishment deed");
+
+            var c = LoadConvo("Strongman_Quest");
+            var start = c.Nodes.FirstOrDefault(n => n.ID == "Start");
+            Assert.IsNotNull(start);
+
+            var lift = start.Choices.FirstOrDefault(ch => ch.Text.StartsWith("[Lift"));
+            Assert.IsNotNull(lift, "Start must offer a [Lift...] choice");
+            var stat = lift.Predicates.FirstOrDefault(p => p.Key == "IfStatAtLeast");
+            Assert.IsNotNull(stat, "lift must be gated by IfStatAtLeast");
+            Assert.AreEqual("Strength:18", stat.Value, "the gate is Strength 18");
+
+            // the come-back branch uses the auto-inverse
+            var weak = start.Choices.FirstOrDefault(ch => ch.Text.StartsWith("[I'm not strong"));
+            Assert.IsNotNull(weak, "there must be a too-weak (come-back) branch");
+            Assert.IsTrue(weak.Predicates.Any(p => p.Key == "IfNotStatAtLeast"),
+                "the come-back branch uses the IfNotStatAtLeast auto-inverse (mutually exclusive with lift)");
+
+            var report = start.Choices.FirstOrDefault(ch => ch.Text.StartsWith("[Report"));
+            Assert.IsNotNull(report, "there must be a report choice");
+            var rep = report.Actions.FirstOrDefault(a => a.Key == "ChangeFactionFeeling");
+            Assert.IsNotNull(rep, "report must reward faction reputation");
+            Assert.IsTrue(rep.Value.StartsWith("SaccharineConcord:Player:"),
+                "rep reward grants the player standing with SaccharineConcord");
+            Assert.IsTrue(report.Actions.Any(a => a.Key == "CompleteQuest" && a.Value == "StrongestInOoo"),
+                "report completes the quest");
+        }
+
+        [Test]
         public void PoolConversations_ActionsAndPredicates_AreRegistered()
         {
-            foreach (var convoId in new[] { "Crunchy_Quest", "Pilgrim_Quest", "Warren_Quest", "CandyTax_Quest", "CandyCitizen", "Baker_Quest", "Hermit_Quest" })
+            foreach (var convoId in new[] { "Crunchy_Quest", "Pilgrim_Quest", "Warren_Quest", "CandyTax_Quest", "CandyCitizen", "Baker_Quest", "Hermit_Quest", "Strongman_Quest" })
             {
                 var c = LoadConvo(convoId);
                 foreach (var node in c.Nodes)

@@ -18,16 +18,19 @@
 > quest from a pool, picked deterministically by zone ID
 > (`VillagePopulationBuilder.PickVillageQuest`, mirroring the per-village House
 > Drama assignment) — so the player finds varied quests *while exploring*, one
-> per village, no hub crowding. Pool of **5** (see
+> per village, no hub crowding. Pool of **6** (see
 > `Docs/QUEST-POOL-EXPANSION.md`), each a distinct mechanic: **Crunchy's Lost
 > Locket** (fetch), **The Hidden Shrine** (reach), **Clear the Warren** (kill-N
 > counter — first world use of `AddFactWhenSlain`), **The Candy Tax** (collect-N
 > via dialogue — `AddFact` counter, once-per-citizen gate), **A Message for the
-> Hermit** (deliver / talk-to NPC Y). The pick distributes evenly (~77–82 of 399
-> zones each, live-audited). Pick is unit-tested (deterministic + all
-> reachable, **pool-agnostic** so it survives growth); content integrity-tested
-> per quest; builder placement-tested (the warren village spawns exactly 3
-> counter gnomes). Starting village keeps RootBeerGuy + BMO.
+> Hermit** (deliver / talk-to NPC Y), **Strongest in Ooo** (stat-gated feat —
+> `IfStatAtLeast:Strength:18` + an `IfNotStatAtLeast` come-back branch, rewards
+> `SaccharineConcord` reputation). All 6 reachable + distributed (live-audited).
+> Pick is unit-tested (deterministic + all reachable, **pool-agnostic** so it
+> survives growth); content integrity-tested per quest; builder placement-tested
+> (the warren village spawns exactly 3 counter gnomes). Counter/collect
+> objectives show **live progress** in the quest log ("(1/3)"). Starting village
+> keeps RootBeerGuy + BMO.
 
 ## What the player does
 Start a new game → you spawn in the starting village (`Overworld.10.10.0`).

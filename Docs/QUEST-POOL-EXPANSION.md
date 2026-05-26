@@ -173,6 +173,30 @@ First world use of the deliver / talk-to-NPC-Y archetype. Pool 4 → 5 (final).
   (giver + recipient), and a **dialogue-flow** suite `QuestDeliverDialogueTests`
   (deliver sets the fact; deliver-before-accept hidden; **re-deliver hidden**).
 
+### SM6 — Strongest in Ooo (stat-gated feat + reputation reward) — ✅ shipped
+A second-wave addition (pool 5 → 6). First world use of BOTH a **stat gate**
+(`IfStatAtLeast`) and a **faction-reputation reward** (`ChangeFactionFeeling`)
+in a quest — RPG depth (a feat you grow into; standing that moves).
+- **Content:** `StrongestInOoo.json` (2-stage: `prove` objective `free_them`
+  polls `IfFact:strongman_lifted:>=:1`; sentinel `report`). `Strongman_Quest.json`
+  (panicked candy citizen): `[Lift the boulder]` gated `IfQuestStage:prove` +
+  `IfStatAtLeast:Strength:18` → `SetFact:strongman_lifted:1`; `[I'm not strong
+  enough]` via the **`IfNotStatAtLeast` auto-inverse** (mutually exclusive, no
+  soft-lock — train and return); `[Report]` → CompleteQuest + 160 XP + 50 drams
+  + `ChangeFactionFeeling:SaccharineConcord:Player:8`.
+- **Production:** pool += `StrongestInOoo` + switch + `PlaceStrongmanQuest`
+  (single giver — the feat IS the dialogue stat-check, no world object).
+- **Tests:** `QuestStrongmanDialogueTests` (4): accept-only pristine; too-weak →
+  come-back branch (counter-check, quest stays active); Str 18 (inclusive) →
+  lift shown + sets fact; report → completes + **rep increased**
+  (`PlayerReputation.Get` before/after). Content-integrity (stat gate + inverse
+  + rep reward) + builder placement. **22/22 affected + 44/44 regression chunk**
+  (incl. the `VillagePopulationBuilder`-instantiating suites). RED→GREEN
+  (caught a *test* bug first: a bare Entity has no Strength stat — `SetStatValue`
+  only updates existing stats — fixed by creating the `Stat`; production correct).
+- **Live (rule 7):** `StrongestInOoo` + `Strongman_Quest` register via bootstrap
+  `LoadAll`; pool size 6, all reachable (47–87 of 399 zones each).
+
 ---
 
 ## ✅ VERIFICATION STATUS — GREEN (verified 2026-05-25, post editor restart)

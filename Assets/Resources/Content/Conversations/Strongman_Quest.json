@@ -1,0 +1,40 @@
+{
+  "Conversations": [
+    {
+      "ID": "Strongman_Quest",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Help — please! A gumdrop boulder rolled off the candy cliffs and pinned my friend against the wall. It's far too heavy for me. You look strong... could you lift it off her?",
+          "Choices": [
+            { "Text": "[Accept] I'll try to lift it.", "Target": "Accepted",
+              "Predicates": [ { "Key": "IfQuestNotStarted", "Value": "StrongestInOoo" } ],
+              "Actions": [ { "Key": "StartQuest", "Value": "StrongestInOoo" } ] },
+            { "Text": "[Lift the boulder] Stand back.", "Target": "Lifted",
+              "Predicates": [
+                { "Key": "IfQuestStage", "Value": "StrongestInOoo:prove" },
+                { "Key": "IfStatAtLeast", "Value": "Strength:18" }
+              ],
+              "Actions": [ { "Key": "SetFact", "Value": "strongman_lifted:1" } ] },
+            { "Text": "[I'm not strong enough yet] Give me time.", "Target": "TooWeak",
+              "Predicates": [
+                { "Key": "IfQuestStage", "Value": "StrongestInOoo:prove" },
+                { "Key": "IfNotStatAtLeast", "Value": "Strength:18" }
+              ] },
+            { "Text": "[Report] Your friend is free.", "Target": "Grateful",
+              "Predicates": [ { "Key": "IfQuestStage", "Value": "StrongestInOoo:report" } ],
+              "Actions": [ { "Key": "CompleteQuest", "Value": "StrongestInOoo" }, { "Key": "AwardXP", "Value": "160" }, { "Key": "GiveDrams", "Value": "50" }, { "Key": "ChangeFactionFeeling", "Value": "SaccharineConcord:Player:8" } ] },
+            { "Text": "[Done] Keep her safe.", "Target": "Done",
+              "Predicates": [ { "Key": "IfQuestCompleted", "Value": "StrongestInOoo" } ] },
+            { "Text": "Goodbye.", "Target": "End" }
+          ]
+        },
+        { "ID": "Accepted", "Text": "Oh, thank you! She's just over there under the boulder. Grab it low and heave — if you've got the strength for it.", "Choices": [ { "Text": "Stand back.", "Target": "End" } ] },
+        { "ID": "Lifted", "Text": "With a roar you get your shoulder under the gumdrop boulder and HEAVE — it rolls aside! She scrambles free, gasping her thanks. Go tell her brother you did it.", "Choices": [ { "Text": "Glad I could help.", "Target": "End" } ] },
+        { "ID": "TooWeak", "Text": "You strain against it, but the boulder won't budge — not yet. Come back when you've built more muscle, please. She can breathe, but only just.", "Choices": [ { "Text": "I'll get stronger.", "Target": "End" } ] },
+        { "ID": "Grateful", "Text": "You're a hero of the Saccharine Concord today. Take this for your trouble — and know the candy folk won't forget it.", "Choices": [ { "Text": "Take care of her.", "Target": "End" } ] },
+        { "ID": "Done", "Text": "She's resting easy now, thanks to you. The Concord remembers its friends.", "Choices": [ { "Text": "Bye.", "Target": "End" } ] }
+      ]
+    }
+  ]
+}

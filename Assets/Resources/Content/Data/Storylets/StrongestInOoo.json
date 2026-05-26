@@ -1,0 +1,21 @@
+{
+  "Storylets": [
+    {
+      "ID": "StrongestInOoo",
+      "OneShot": false, "Tracked": true, "Triggers": [], "Effects": [],
+      "Quest": {
+        "Accomplishment": "You lifted the fallen gumdrop boulder and freed the trapped candy citizen.",
+        "Stages": [
+          {
+            "ID": "prove", "Triggers": [], "OnEnter": [],
+            "Objectives": [
+              { "ID": "free_them", "Text": "Lift the gumdrop boulder (needs Strength 18)", "Optional": false, "Hidden": false,
+                "Triggers": [ { "Key": "IfFact", "Value": "strongman_lifted:>=:1" } ], "OnEnter": [] }
+            ]
+          },
+          { "ID": "report", "Triggers": [ { "Key": "IfFact", "Value": "strongman_report_guard:>=:1" } ], "OnEnter": [] }
+        ]
+      }
+    }
+  ]
+}

@@ -91,11 +91,15 @@ Q5.4 pattern), so the whole Tier-3 column is now buildable:
    objective on it; once the window lapses it goes false. (Active fail-on-
    timeout would still want a tick `FailQuest` — a follow-up.)
 
-**First content wave — SHIPPED** (`Docs/QUEST-POOL-EXPANSION.md`): the village
-pool grew 2 → 5, adding **Clear the Warren** (kill-N counter, ≈ #10 — first
-world use of `AddFactWhenSlain`), **The Candy Tax** (collect-N via dialogue, #4),
-and **A Message for the Hermit** (deliver / talk-to, Tier-1). Each a distinct
-mechanic; all live-verified + merged.
+**Content wave — SHIPPED** (`Docs/QUEST-POOL-EXPANSION.md`): the village pool
+grew 2 → 6, adding **Clear the Warren** (kill-N counter, ≈ #10 — first world use
+of `AddFactWhenSlain`), **The Candy Tax** (collect-N via dialogue, #4), **A
+Message for the Hermit** (deliver / talk-to, Tier-1), and **Strongest in Ooo**
+(#8 — stat-gated feat via `IfStatAtLeast` + `IfNotStatAtLeast`, rewards faction
+reputation). Each a distinct mechanic; all live-verified + merged. Plus the
+quest log now shows **live counter progress** ("(1/3)") for collect/kill-N
+objectives (`Docs/QUEST-LOG-UI.md`).
 
-Next: the remaining catalog quests (#2 Vampire's Errand, #3 Enchiridion,
-#5–#8, #12 timed) as a second wave — most are Tier 1–2 (no new code).
+Next: the remaining catalog quests (#2 Vampire's Errand, #3 Enchiridion, #5
+Ice King's Letter, #6 Repair the Well [settlement integration], #7 Lemongrab's
+Decree [StartAttack/FailQuest], #12 timed) — most Tier 1–2 (no new code).

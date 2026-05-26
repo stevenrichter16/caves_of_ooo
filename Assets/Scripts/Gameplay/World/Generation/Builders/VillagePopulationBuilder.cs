@@ -977,7 +977,7 @@ namespace CavesOfOoo.Core
         /// village hosts ONE, picked by a stable zone-ID hash. Quests + dialogue
         /// auto-load from Resources. Expand the pool to reduce cross-village
         /// repetition. Docs/QUEST-DESIGN-CATALOG.md.</summary>
-        private static readonly string[] VillageQuestPool = { "CrunchyLocket", "HiddenShrine", "ClearTheWarren", "TheCandyTax", "MessageForHermit" };
+        private static readonly string[] VillageQuestPool = { "CrunchyLocket", "HiddenShrine", "ClearTheWarren", "TheCandyTax", "MessageForHermit", "StrongestInOoo" };
 
         /// <summary>Deterministically pick the pool quest for a village by its
         /// zone ID (stable per zone, like the per-village House Drama pick).
@@ -1001,6 +1001,7 @@ namespace CavesOfOoo.Core
                 case "ClearTheWarren": PlaceWarrenQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
                 case "TheCandyTax":    PlaceCandyTaxQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
                 case "MessageForHermit": PlaceMessageForHermitQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
+                case "StrongestInOoo": PlaceStrongmanQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
                 default:               PlacePilgrimShrineQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
             }
         }
@@ -1135,6 +1136,24 @@ namespace CavesOfOoo.Core
             SetConversation(hermit, "Hermit_Quest");
             var hr = hermit.GetPart<RenderPart>();
             if (hr != null) { hr.DisplayName = "the hermit"; hr.RenderString = "h"; hr.ColorString = "&K"; }
+        }
+
+        /// <summary>Pool quest — Strongest in Ooo (STAT-GATED feat). A single
+        /// giver (panicked candy citizen); the "lift the gumdrop boulder" choice
+        /// is gated <c>IfStatAtLeast:Strength:18</c> in dialogue, with an
+        /// <c>IfNotStatAtLeast</c> come-back-stronger branch (no world object —
+        /// the feat IS the stat check). Completion rewards XP + drams + faction
+        /// reputation (<c>ChangeFactionFeeling:SaccharineConcord:Player</c>) —
+        /// first world use of a stat gate AND a rep reward in a quest. No
+        /// soft-lock: too weak → train + return. Fail-soft.</summary>
+        private void PlaceStrongmanQuest(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> interiorCells, List<(int x, int y)> openCells, string settlementId)
+        {
+            Entity giver = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
+            if (giver == null) return;
+            SetConversation(giver, "Strongman_Quest");
+            var r = giver.GetPart<RenderPart>();
+            if (r != null) { r.DisplayName = "panicked candy citizen"; r.RenderString = "p"; r.ColorString = "&R"; }
         }
 
         private List<(int x, int y)> GatherOpenCells(Zone zone)

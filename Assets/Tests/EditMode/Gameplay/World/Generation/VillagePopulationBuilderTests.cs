@@ -193,6 +193,21 @@ namespace CavesOfOoo.Tests
                 "the recipient (the hermit) must be placed — it carries the SetFact completion");
         }
 
+        [Test]
+        public void BuildZone_StrongmanVillage_PlacesTheGiver()
+        {
+            // SM6: the stat-gated quest places its giver (Strongman_Quest).
+            // The "lift" is a dialogue stat-check, so no world object is needed
+            // — just the giver must spawn for the quest to be reachable.
+            string z = FindZoneForQuest("StrongestInOoo");
+            Assert.IsNotNull(z, "a non-starting zone must map to StrongestInOoo (pool must contain it + be reachable)");
+
+            BuildVillage(z, out var zone);
+
+            Assert.IsNotNull(FindByConversation(zone, "Strongman_Quest"),
+                "the stat-gated quest giver must be placed");
+        }
+
         private static Entity FindByBlueprint(Zone zone, string blueprintName)
         {
             var entities = zone.GetAllEntities();
