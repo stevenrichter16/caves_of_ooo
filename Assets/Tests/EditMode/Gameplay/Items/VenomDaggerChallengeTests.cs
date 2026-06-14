@@ -3,6 +3,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using CavesOfOoo.Core;
+using CavesOfOoo.Data;   // EntityFactory lives here, not in .Core
 
 namespace CavesOfOoo.Tests
 {
