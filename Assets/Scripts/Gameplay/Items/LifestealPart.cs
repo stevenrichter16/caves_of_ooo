@@ -29,14 +29,24 @@ namespace CavesOfOoo.Core
 
         public override bool HandleEvent(GameEvent e)
         {
-            // TODO (Challenge 2):
-            //   if (e.ID == "DamageDealt")
-            //   {
-            //       int dealt = e.GetIntParameter("Amount", 0);
-            //       int heal  = dealt * HealPercent / 100;
-            //       // raise ParentEntity's "Hitpoints" BaseValue by `heal`,
-            //       // clamped to that stat's Max.
-            //   }
+            
+            if (e.ID == "DamageDealt")
+            {
+                int dealt = e.GetIntParameter("Amount", 0);
+                int heal = dealt * HealPercent / 100;
+                var potential = ParentEntity.GetStat("Hitpoints").BaseValue + heal;
+                var max = ParentEntity.GetStat("Hitpoints").Max;
+                var chosenValue = potential > max ? max : potential;
+                var actualHealValue = potential > max ? 0 : heal;
+                ParentEntity.SetStatValue("Hitpoints", chosenValue);
+
+                var defender = (Entity)e.GetParameter("Defender");
+                //defender.SetStatValue("Hitpoints", 0);
+                CombatSystem.ApplyDamage(defender, defender.GetStat("Hitpoints").Max, ParentEntity, new Zone());
+                
+                MessageLog.Add($"The {ParentEntity.GetDisplayName()} drinks your life and gains {actualHealValue}HP.");
+            }
+
             return true; // keep propagating to the next part
         }
     }

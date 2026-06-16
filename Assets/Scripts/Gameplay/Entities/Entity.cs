@@ -51,7 +51,7 @@ namespace CavesOfOoo.Core
         public bool RemovePart(Part part)
         {
             if (Parts.Remove(part))
-            {
+            { 
                 part.Remove();
                 part.ParentEntity = null;
                 return true;
