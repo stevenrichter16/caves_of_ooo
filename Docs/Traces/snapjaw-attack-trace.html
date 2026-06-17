@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Snapjaw → Player · Melee Attack Trace (Debugger)</title>
+<style>
+  :root{
+    --bg:#1e1e1e; --bg2:#252526; --bg3:#2d2d30; --panel:#1e1e1e;
+    --border:#3c3c3c; --text:#d4d4d4; --dim:#858585; --accent:#569cd6;
+    --kw:#c586c0; --str:#ce9178; --num:#b5cea8; --type:#4ec9b0; --fn:#dcdcaa;
+    --comment:#6a9955; --yellow:#ffd166; --green:#6a9955; --red:#f48771;
+    --cyan:#4ec9b0; --purple:#c586c0; --linehl:#2a2d2e; --activeln:#3a3d2a;
+    --bp:#e51400; --hp:#f48771;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;}
+  body{
+    background:var(--bg); color:var(--text); font-family:"Segoe UI",system-ui,sans-serif;
+    font-size:13px; display:flex; flex-direction:column; height:100vh; overflow:hidden;
+  }
+  code,pre,.mono{font-family:"Cascadia Code","Fira Code",Consolas,"SF Mono",monospace;}
+
+  /* ---- Title bar ---- */
+  header{
+    background:linear-gradient(180deg,#2d2d30,#252526); border-bottom:1px solid var(--border);
+    padding:8px 14px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  }
+  header h1{font-size:14px;margin:0;font-weight:600;letter-spacing:.2px;}
+  header h1 .s{color:var(--cyan)} header h1 .p{color:var(--yellow)}
+  .scenario{display:flex;gap:6px;flex-wrap:wrap;}
+  .chip{background:var(--bg3);border:1px solid var(--border);border-radius:10px;
+    padding:1px 8px;font-size:11px;color:var(--dim);}
+  .chip b{color:var(--text);font-weight:600;}
+
+  /* ---- Toolbar ---- */
+  .toolbar{background:var(--bg2);border-bottom:1px solid var(--border);
+    padding:5px 12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .btn{background:var(--bg3);color:var(--text);border:1px solid var(--border);
+    border-radius:4px;padding:4px 10px;cursor:pointer;font-size:12px;display:flex;
+    align-items:center;gap:6px;user-select:none;}
+  .btn:hover{background:#37373d;border-color:#4c4c4c;}
+  .btn:disabled{opacity:.4;cursor:default;}
+  .btn .ico{font-size:13px;}
+  .btn.primary{background:#0e639c;border-color:#1177bb;color:#fff;}
+  .btn.primary:hover{background:#1177bb;}
+  .seg{display:flex;border:1px solid var(--border);border-radius:5px;overflow:hidden;}
+  .seg .tabbtn{background:var(--bg3);border:0;color:var(--dim);padding:4px 14px;cursor:pointer;font-size:12px;}
+  .seg .tabbtn.active{background:#0e639c;color:#fff;}
+  .counter{margin-left:auto;color:var(--dim);font-size:12px;}
+  .counter b{color:var(--yellow);}
+  .progress{height:3px;background:var(--bg3);border-radius:2px;width:160px;overflow:hidden;}
+  .progress>div{height:100%;background:var(--accent);transition:width .2s;}
+
+  /* ---- Main split ---- */
+  .views{flex:1;min-height:0;position:relative;}
+  .view{position:absolute;inset:0;display:none;}
+  .view.active{display:flex;}
+
+  /* DEBUGGER VIEW grid */
+  #debugView{flex-direction:column;}
+  .dbg-top{flex:1;min-height:0;display:grid;grid-template-columns:250px 1fr 290px;}
+  .pane{border-right:1px solid var(--border);display:flex;flex-direction:column;min-height:0;overflow:hidden;}
+  .pane:last-child{border-right:0;}
+  .pane-h{background:var(--bg3);padding:5px 10px;font-size:11px;text-transform:uppercase;
+    letter-spacing:.6px;color:var(--dim);border-bottom:1px solid var(--border);
+    display:flex;justify-content:space-between;align-items:center;flex:0 0 auto;}
+  .pane-b{overflow:auto;flex:1;min-height:0;}
+
+  /* Call stack */
+  .frame{padding:6px 10px;border-bottom:1px solid #2a2a2a;font-size:12px;cursor:default;}
+  .frame.top{background:var(--activeln);border-left:3px solid var(--yellow);}
+  .frame.top::before{content:"➜ ";color:var(--yellow);}
+  .frame .fn{font-family:Consolas,monospace;color:var(--fn);}
+  .frame .fn .ty{color:var(--type);}
+  .frame .loc{display:block;color:var(--dim);font-size:11px;font-family:Consolas,monospace;margin-top:2px;}
+  .frame.fade{opacity:.55;}
+
+  /* Source editor */
+  .editor-tabs{display:flex;background:var(--bg2);border-bottom:1px solid var(--border);flex:0 0 auto;}
+  .editor-tab{padding:6px 14px;font-size:12px;background:var(--bg);border-right:1px solid var(--border);
+    color:var(--text);display:flex;gap:8px;align-items:center;}
+  .editor-tab .dot{color:var(--type);}
+  .code{flex:1;overflow:auto;padding:6px 0;background:var(--bg);}
+  .cline{display:flex;font-family:Consolas,"Cascadia Code",monospace;font-size:12.5px;
+    line-height:1.55;white-space:pre;}
+  .cline .gutter{flex:0 0 54px;text-align:right;padding-right:8px;color:#5a5a5a;user-select:none;
+    position:relative;}
+  .cline .bp{position:absolute;left:8px;top:50%;transform:translateY(-50%);width:9px;height:9px;
+    border-radius:50%;background:var(--bp);}
+  .cline .txt{padding:0 14px 0 6px;flex:1;}
+  .cline.active{background:var(--activeln);}
+  .cline.active .gutter{color:var(--yellow);}
+  .cline.active .arrow{position:absolute;right:2px;color:var(--yellow);}
+  .cline.hlcall{background:#2a2d2e;}
+  /* token colors */
+  .tk{color:var(--kw)} .ts{color:var(--str)} .tn{color:var(--num)}
+  .tt{color:var(--type)} .tf{color:var(--fn)} .tc{color:var(--comment);font-style:italic}
+  .step-note{flex:0 0 auto;border-top:1px solid var(--border);background:#202a35;
+    padding:8px 12px;font-size:12px;color:#cfe3f5;line-height:1.5;}
+  .step-note b{color:var(--yellow);}
+  .step-note .ph{display:inline-block;font-size:10px;text-transform:uppercase;letter-spacing:.5px;
+    background:#0e639c;color:#fff;border-radius:8px;padding:0 7px;margin-right:8px;}
+
+  /* Variables */
+  .vargroup-h{background:#262626;padding:3px 10px;font-size:11px;color:var(--dim);
+    border-bottom:1px solid #2a2a2a;letter-spacing:.4px;}
+  .var{display:grid;grid-template-columns:1fr auto;gap:6px;padding:4px 10px;border-bottom:1px solid #232323;
+    font-family:Consolas,monospace;font-size:12px;align-items:baseline;}
+  .var .nm{color:#9cdcfe;}
+  .var .nm .ty{color:var(--type);font-size:11px;}
+  .var .vl{color:var(--num);text-align:right;}
+  .var .vl.s{color:var(--str);} .var .vl.b{color:var(--kw);} .var .vl.o{color:var(--type);}
+  .var.changed{background:#3a2f1a;animation:flash .9s ease;}
+  .var.changed .vl{color:var(--yellow);font-weight:600;}
+  @keyframes flash{0%{background:#5c4a1f}100%{background:#3a2f1a}}
+
+  /* Console */
+  .dbg-bottom{flex:0 0 232px;border-top:1px solid var(--border);display:flex;flex-direction:column;min-height:0;}
+  .console-tabs{display:flex;background:var(--bg3);flex:0 0 auto;border-bottom:1px solid var(--border);}
+  .console-tab{padding:5px 14px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;
+    color:var(--dim);cursor:pointer;border-right:1px solid var(--border);}
+  .console-tab.active{color:#fff;background:var(--bg);border-bottom:2px solid var(--accent);}
+  .console-tab .badge{background:#444;border-radius:8px;padding:0 6px;margin-left:6px;font-size:10px;}
+  .console{flex:1;overflow:auto;padding:6px 10px;font-family:Consolas,monospace;font-size:12px;background:#181818;}
+  .cl{padding:2px 0;display:flex;gap:8px;line-height:1.4;border-bottom:1px solid #202020;}
+  .cl .tag{flex:0 0 auto;font-size:10px;border-radius:3px;padding:0 5px;height:16px;line-height:16px;font-weight:600;}
+  .cl.event .tag{background:#1b3a4b;color:#4ec9b0;}
+  .cl.diag .tag{background:#3a2b4b;color:#c586c0;}
+  .cl.log .tag{background:#2b3a2b;color:#9ccc9c;}
+  .cl.hp .tag{background:#4b2222;color:#f48771;}
+  .cl .body{flex:1;color:#cfcfcf;white-space:pre-wrap;}
+  .cl .k{color:#9cdcfe;} .cl .v{color:#b5cea8;} .cl .vs{color:#ce9178;}
+  .cl.fresh{animation:freshrow 1s ease;}
+  @keyframes freshrow{0%{background:#2a2a14}100%{background:transparent}}
+  .console-empty{color:#555;padding:12px;font-style:italic;}
+
+  /* ---- GRAPH VIEW ---- */
+  #graphView{overflow:auto;background:radial-gradient(circle at 30% 0%,#232830,#1a1a1a);}
+  .graph-wrap{padding:30px 40px;min-width:760px;position:relative;}
+  .graph-legend{position:sticky;top:0;display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px;
+    background:rgba(20,20,20,.7);padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:11px;z-index:5;}
+  .graph-legend span{display:flex;align-items:center;gap:6px;color:var(--dim);}
+  .lg-box{width:14px;height:10px;border-radius:2px;display:inline-block;}
+  .gcols{display:flex;gap:60px;}
+  .spine{display:flex;flex-direction:column;gap:0;align-items:flex-start;flex:0 0 auto;}
+  .gnode{position:relative;border:1px solid var(--border);background:var(--bg2);border-radius:7px;
+    padding:8px 12px;width:300px;cursor:pointer;transition:.15s;z-index:2;}
+  .gnode:hover{border-color:var(--accent);}
+  .gnode .ph{font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--dim);}
+  .gnode .ttl{font-size:12px;color:var(--text);font-weight:600;margin-top:1px;}
+  .gnode .sub{font-family:Consolas,monospace;font-size:11px;color:var(--cyan);margin-top:3px;}
+  .gnode.done{opacity:.85;border-color:#3a5a3a;}
+  .gnode.done::after{content:"✓";position:absolute;top:6px;right:9px;color:var(--green);font-size:12px;}
+  .gnode.current{border-color:var(--yellow);box-shadow:0 0 0 2px rgba(255,209,102,.35);background:#2c2a1f;}
+  .gnode.current .ttl{color:var(--yellow);}
+  .connector{width:2px;height:22px;background:var(--border);margin-left:150px;}
+  .connector.done{background:#3a5a3a;}
+  .branch{display:flex;align-items:center;gap:8px;margin:2px 0 2px 0;padding-left:312px;
+    margin-top:-46px;margin-bottom:18px;height:34px;}
+  .branch .barrow{color:#6a4a4a;font-family:monospace;}
+  .bnode{border:1px dashed #6a4a4a;border-radius:6px;padding:4px 10px;background:#241c1c;width:210px;}
+  .bnode .ttl{font-size:11px;color:#f4a08c;font-weight:600;}
+  .bnode .sub{font-family:Consolas,monospace;font-size:10px;color:#b07a6a;margin-top:2px;}
+  .ghint{position:fixed;bottom:14px;right:18px;background:var(--bg2);border:1px solid var(--border);
+    border-radius:6px;padding:6px 10px;font-size:11px;color:var(--dim);}
+
+  /* footer keys */
+  .keys{background:var(--bg2);border-top:1px solid var(--border);padding:3px 12px;font-size:11px;color:var(--dim);
+    display:flex;gap:16px;flex-wrap:wrap;flex:0 0 auto;}
+  .keys kbd{background:var(--bg3);border:1px solid var(--border);border-bottom-width:2px;border-radius:3px;
+    padding:0 5px;font-family:Consolas,monospace;color:var(--text);}
+  .scrollbar::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar{width:11px;height:11px}
+  ::-webkit-scrollbar-track{background:#1e1e1e}
+  ::-webkit-scrollbar-thumb{background:#424242;border-radius:5px;border:2px solid #1e1e1e}
+  ::-webkit-scrollbar-thumb:hover{background:#555}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span class="s">snapjaw</span> ⟶ <span class="p">player</span> · Melee Attack Trace</h1>
+  <div class="scenario" id="scenario"></div>
+</header>
+
+<div class="toolbar">
+  <div class="seg">
+    <button class="tabbtn active" data-view="debugView">🐞 Debugger</button>
+    <button class="tabbtn" data-view="graphView">🕸 Flow Graph</button>
+  </div>
+  <span style="width:1px;height:20px;background:var(--border);margin:0 4px;"></span>
+  <button class="btn" id="btnRestart" title="Restart (R)"><span class="ico">⟲</span>Restart</button>
+  <button class="btn" id="btnBack" title="Step Back (←)"><span class="ico">◀</span>Step Back</button>
+  <button class="btn primary" id="btnStep" title="Step Into (→ / F11)"><span class="ico">▶</span>Step</button>
+  <button class="btn" id="btnRun" title="Continue to end (C)"><span class="ico">⏩</span>Continue</button>
+  <div class="counter">
+    <span>Step <b id="stepNum">1</b> / <span id="stepTot">20</span></span>
+    <div class="progress"><div id="progBar"></div></div>
+  </div>
+</div>
+
+<div class="views">
+  <!-- ================= DEBUGGER VIEW ================= -->
+  <div class="view active" id="debugView">
+    <div class="dbg-top">
+      <!-- Call stack -->
+      <div class="pane">
+        <div class="pane-h">Call Stack</div>
+        <div class="pane-b" id="callstack"></div>
+      </div>
+      <!-- Source -->
+      <div class="pane" style="border-left:1px solid var(--border)">
+        <div class="editor-tabs">
+          <div class="editor-tab"><span class="dot">◆</span><span id="fileTab">CombatSystem.cs</span></div>
+        </div>
+        <div class="code" id="code"></div>
+        <div class="step-note" id="note"></div>
+      </div>
+      <!-- Variables -->
+      <div class="pane" style="border-left:1px solid var(--border)">
+        <div class="pane-h">Variables <span id="causeId" style="color:var(--purple);text-transform:none;letter-spacing:0;"></span></div>
+        <div class="pane-b" id="vars"></div>
+      </div>
+    </div>
+    <!-- Console -->
+    <div class="dbg-bottom">
+      <div class="console-tabs">
+        <div class="console-tab active" data-con="all">All <span class="badge" id="b-all">0</span></div>
+        <div class="console-tab" data-con="diag">Diag Stream <span class="badge" id="b-diag">0</span></div>
+        <div class="console-tab" data-con="event">GameEvents <span class="badge" id="b-event">0</span></div>
+        <div class="console-tab" data-con="log">Message Log <span class="badge" id="b-log">0</span></div>
+      </div>
+      <div class="console" id="console"></div>
+    </div>
+  </div>
+
+  <!-- ================= GRAPH VIEW ================= -->
+  <div class="view" id="graphView">
+    <div class="graph-wrap">
+      <div class="graph-legend">
+        <span><i class="lg-box" style="background:var(--bg2);border:1px solid var(--border)"></i> pending</span>
+        <span><i class="lg-box" style="background:#2c2a1f;border:1px solid var(--yellow)"></i> current</span>
+        <span><i class="lg-box" style="background:var(--bg2);border:1px solid #3a5a3a"></i> executed</span>
+        <span><i class="lg-box" style="background:#241c1c;border:1px dashed #6a4a4a"></i> branch / early-exit (not taken in this run)</span>
+        <span style="color:var(--accent)">click any node → jump the debugger there</span>
+      </div>
+      <div id="spine" class="spine"></div>
+    </div>
+    <div class="ghint">Scenario outcome: <b style="color:var(--yellow)">HIT → 1 penetration → 3 dmg → player survives (27 HP), starts bleeding</b></div>
+  </div>
+</div>
+
+<div class="keys">
+  <span><kbd>→</kbd> / <kbd>F11</kbd> Step Into</span>
+  <span><kbd>←</kbd> Step Back</span>
+  <span><kbd>C</kbd> Continue</span>
+  <span><kbd>R</kbd> Restart</span>
+  <span><kbd>G</kbd> toggle Graph/Debugger</span>
+  <span style="margin-left:auto;color:#555">Read-only trace generated from verified source — file:line refs are real breakpoint targets.</span>
+</div>
+
+<script>
+"use strict";
+/* =====================================================================
+   Snapjaw melee-attack trace data.
+   Every file/line/method/field below was verified against the live
+   Caves of Ooo source on branch claude/snap-jaw-attack-trace-ort6eb.
+   Deterministic scenario chosen so one walk-through tells a full story:
+     snapjaw (HP15 STR16 AGI14, claw 1d4 pen+1) is adjacent to the
+     player (HP30 AV2 DV8). d20=14 -> hits; 1 penetration; rolls 3 dmg;
+     HP 30->27; Lifesteal heals snapjaw; Bleeding applied. Player lives.
+   ===================================================================== */
+
+const SCENARIO = [
+  {l:"attacker", v:"snapjaw", t:"Entity"},
+  {l:"HP", v:"15"}, {l:"STR", v:"16 (+0)"}, {l:"AGI", v:"14 (−1)"},
+  {l:"weapon", v:"SnapjawClaw 1d4 pen+1"},
+  {l:"·", v:"vs"},
+  {l:"defender", v:"player", t:"Entity"},
+  {l:"HP", v:"30"}, {l:"AV", v:"2"}, {l:"DV", v:"8"},
+];
+
+// Token-coloring is intentionally lightweight (keyword/type/string/number/comment).
+const KW = ["public","private","static","void","bool","int","string","return","new","if","else","using","var","for","while","null","true","false","override","case","switch","this"];
+const TYPES = ["Entity","Zone","Random","Body","MeleeWeaponPart","GameEvent","Damage","Stat","BrainPart","BoredGoal","KillGoal","CombatSystem","DiceRoller","StatUtils","Diag","AIHelpers","FactionManager","TurnManager","MessageLog","AsciiFxBus","ZoneRenderHooks","OnHitClassEffects","BleedingEffect","LifestealPart","SkillEventDispatcher","AIState","Guid"];
+
+// each step: file, ln(active), code(start+lines), bps[], stack[ {fn, loc, ty?} ] top-first,
+// vars[ {n, ty, v, cls?, ch?} ], out[ {type, ...} ] (NEW console lines this step), note, node
+const STEPS = [
+{
+  file:"TurnManager.cs", node:"n_turn",
+  start:305, ln:313, bps:[313],
+  stack:[ {ty:"TurnManager", fn:"ProcessUntilPlayerTurn()", loc:"TurnManager.cs:212"} ],
+  code:
+`        // Energy-based scheduler: snapjaw reached Energy >= 1000,
+        // FindNextActor() (line 242) returned it, CurrentActor is set.
+        var turnEvent = GameEvent.New("TakeTurn");
+        turnEvent.SetParameter("BeginTakeActionProcessed", true);
+        if (actorZone != null)
+            turnEvent.SetParameter("Zone", (object)actorZone);
+        actor.FireEventAndRelease(turnEvent);   // ⟵ dispatch to the actor's Parts`,
+  vars:[
+    {n:"actor", ty:"Entity", v:'"snapjaw" #4271', cls:"o", ch:true},
+    {n:"actor.Energy", ty:"int", v:"1000", ch:true},
+    {n:"CurrentActor", ty:"Entity", v:'"snapjaw" #4271', cls:"o"},
+    {n:"turnEvent.ID", ty:"string", v:'"TakeTurn"', cls:"s", ch:true},
+  ],
+  out:[
+    {type:"diag", cat:"turn", kind:"Begin", actor:"snapjaw", pay:'blueprintName="Snapjaw" hp=15'},
+    {type:"event", name:"TakeTurn", on:"snapjaw"},
+  ],
+  note:`<span class="ph">turn</span>The scheduler hands the snapjaw its turn. <b>TurnManager.ProcessUntilPlayerTurn()</b> picks the highest-energy actor via <b>FindNextActor()</b> (TurnManager.cs:242), records a <code>turn/Begin</code> diag, then fires the string-keyed <code>"TakeTurn"</code> GameEvent at the entity. Set a breakpoint here to confirm the right actor is acting.`
+},
+{
+  file:"BrainPart.cs", node:"n_brain",
+  start:585, ln:587, bps:[587],
+  stack:[
+    {ty:"BrainPart", fn:'HandleEvent(GameEvent e)', loc:"BrainPart.cs:585"},
+    {ty:"Entity", fn:'FireEventAndRelease(GameEvent)', loc:"Entity.cs"},
+    {ty:"TurnManager", fn:"ProcessUntilPlayerTurn()", loc:"TurnManager.cs:313", fade:true},
+  ],
+  code:
+`        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID == "TakeTurn")
+                return HandleTakeTurn();
+            return true;
+        }`,
+  vars:[
+    {n:"this", ty:"BrainPart", v:"snapjaw.Brain", cls:"o"},
+    {n:"e.ID", ty:"string", v:'"TakeTurn"', cls:"s", ch:true},
+    {n:"Passive", ty:"bool", v:"false", cls:"b"},
+    {n:"Target", ty:"Entity", v:"null", cls:"b"},
+  ],
+  out:[],
+  note:`<span class="ph">ai</span>The event is delivered to the snapjaw's Parts. <b>BrainPart</b> is the AI part; its <b>HandleEvent</b> recognises <code>"TakeTurn"</code> and routes into <b>HandleTakeTurn()</b>. The Entity is just a bag of Parts — behaviour lives in the Part that answers the event.`
+},
+{
+  file:"BrainPart.cs", node:"n_brain",
+  start:637, ln:645, bps:[645],
+  stack:[
+    {ty:"BrainPart", fn:'HandleTakeTurn()', loc:"BrainPart.cs:592"},
+    {ty:"BrainPart", fn:'HandleEvent(GameEvent e)', loc:"BrainPart.cs:588", fade:true},
+    {ty:"TurnManager", fn:"ProcessUntilPlayerTurn()", loc:"TurnManager.cs:313", fade:true},
+  ],
+  code:
+`            // A default BoredGoal always sits at the bottom of the stack.
+            EnsureBoredGoal();                 // BrainPart.cs:637
+            // Execute the top goal of the stack for this turn.
+            int stackSize = _goals.Count;
+            _goals[stackSize - 1].TakeAction(); // ⟵ top goal acts`,
+  vars:[
+    {n:"_goals.Count", ty:"int", v:"1", ch:true},
+    {n:"_goals[0]", ty:"Goal", v:"BoredGoal", cls:"o", ch:true},
+    {n:"stackSize", ty:"int", v:"1", ch:true},
+  ],
+  out:[],
+  note:`<span class="ph">ai</span>The brain runs a <b>goal stack</b>. With no target yet, only the default <b>BoredGoal</b> is on the stack, so its <b>TakeAction()</b> runs. After it pushes a child goal, the child-chain loop (BrainPart.cs:650) will execute the child in the same turn.`
+},
+{
+  file:"BoredGoal.cs", node:"n_bored",
+  start:67, ln:80, bps:[68,80],
+  stack:[
+    {ty:"BoredGoal", fn:'TakeAction()', loc:"BoredGoal.cs:24"},
+    {ty:"BrainPart", fn:'HandleTakeTurn()', loc:"BrainPart.cs:645", fade:true},
+  ],
+  code:
+`            Entity hostile = AIHelpers.FindNearestHostileCached(
+                ParentEntity, CurrentZone, ParentBrain.SightRadius, ParentBrain);
+            if (hostile != null)
+            {
+                bool canInitiate = !ParentBrain.Passive
+                    || ParentBrain.IsPersonallyHostileTo(hostile);
+                if (canInitiate || ShouldFlee())
+                {
+                    ParentBrain.Target = hostile;        // lock the target
+                    PushChildGoal(new KillGoal(hostile)); // ⟵ escalate to kill`,
+  vars:[
+    {n:"hostile", ty:"Entity", v:'"player" #1', cls:"o", ch:true},
+    {n:"SightRadius", ty:"int", v:"10"},
+    {n:"canInitiate", ty:"bool", v:"true", cls:"b", ch:true},
+    {n:"ParentBrain.Passive", ty:"bool", v:"false", cls:"b"},
+    {n:"ParentBrain.Target", ty:"Entity", v:'"player" #1', cls:"o", ch:true},
+  ],
+  out:[
+    {type:"diag", cat:"ai", kind:"Acquire", actor:"snapjaw", pay:'target="player" feeling=−100'},
+  ],
+  note:`<span class="ph">ai</span>The bored snapjaw scans for hostiles. <b>AIHelpers.FindNearestHostileCached</b> walks the zone's creatures and calls <b>FactionManager.IsHostile(snapjaw, player)</b> for each (next step). Finding the player, and being non-Passive, it sets <b>Target</b> and pushes a <b>KillGoal</b> onto the stack.`
+},
+{
+  file:"FactionManager.cs", node:"n_faction",
+  start:218, ln:222, bps:[222],
+  stack:[
+    {ty:"FactionManager", fn:'IsHostile(Entity source, Entity target)', loc:"FactionManager.cs:220"},
+    {ty:"AIHelpers", fn:'FindNearestHostile(Entity, Zone, int)', loc:"AIHelpers.cs:217", fade:true},
+    {ty:"BoredGoal", fn:'TakeAction()', loc:"BoredGoal.cs:68", fade:true},
+  ],
+  code:
+`        public static bool IsHostile(Entity source, Entity target)
+        {
+            return GetFeeling(source, target) <= HOSTILE_THRESHOLD; // -10
+        }
+        //   GetFeeling("Snapjaws","Player") == -100  (Factions.json default)
+        //   -100 <= -10  ->  true`,
+  vars:[
+    {n:"source.Faction", ty:"string", v:'"Snapjaws"', cls:"s"},
+    {n:"target", ty:"Entity", v:'"player" (Player tag)', cls:"o"},
+    {n:"GetFeeling(...)", ty:"int", v:"−100", ch:true},
+    {n:"HOSTILE_THRESHOLD", ty:"int", v:"−10"},
+    {n:"return", ty:"bool", v:"true", cls:"b", ch:true},
+  ],
+  out:[],
+  note:`<span class="ph">ai</span>Hostility is data-driven. The snapjaw's <code>Faction=Snapjaws</code> tag and the player's <code>Player</code> tag resolve to a faction feeling of <b>−100</b> (seeded in Factions.json / FactionManager.Initialize). −100 ≤ −10 ⇒ hostile. Personal vendettas (IsPersonallyHostileTo) would override this.`
+},
+{
+  file:"KillGoal.cs", node:"n_kill",
+  start:38, ln:57, bps:[54,57],
+  stack:[
+    {ty:"KillGoal", fn:'TakeAction()', loc:"KillGoal.cs:38"},
+    {ty:"BrainPart", fn:'HandleTakeTurn() [child-chain]', loc:"BrainPart.cs:650", fade:true},
+  ],
+  code:
+`            if (ShouldFlee()) { Think("low hp, breaking off attack"); FailToParent(); return; }
+
+            if (AIHelpers.IsAdjacent(myPos.x, myPos.y, targetPos.x, targetPos.y))
+            {
+                Think($"attacking {Target.GetDisplayName()}");
+                CombatSystem.PerformMeleeAttack(ParentEntity, Target, CurrentZone, Rng);
+            }
+            else { /* TryUseRangedAbility / TryApproachWithPathfinding */ }`,
+  vars:[
+    {n:"myPos", ty:"(x,y)", v:"(12, 8)", cls:"o"},
+    {n:"targetPos", ty:"(x,y)", v:"(13, 8)", cls:"o"},
+    {n:"IsAdjacent(...)", ty:"bool", v:"true", cls:"b", ch:true},
+    {n:"ShouldFlee()", ty:"bool", v:"false (HP 15/15)", cls:"b"},
+    {n:"CurrentState", ty:"AIState", v:"Chase", cls:"o", ch:true},
+  ],
+  out:[
+    {type:"diag", cat:"ai", kind:"Think", actor:"snapjaw", pay:'note="attacking player"'},
+  ],
+  note:`<span class="ph">ai</span>The <b>KillGoal</b> is the decision point: not fleeing, and <b>AIHelpers.IsAdjacent</b> is true (snapjaw at 12,8 / player at 13,8), so instead of pathfinding it calls <b>CombatSystem.PerformMeleeAttack(snapjaw, player, zone, rng)</b>. This is the AI→combat boundary — a great breakpoint.`
+},
+{
+  file:"CombatSystem.cs", node:"n_perform",
+  start:69, ln:76, bps:[76,85],
+  stack:[
+    {ty:"CombatSystem", fn:'PerformMeleeAttack(attacker, defender, zone, rng)', loc:"CombatSystem.cs:69"},
+    {ty:"KillGoal", fn:'TakeAction()', loc:"KillGoal.cs:57", fade:true},
+  ],
+  code:
+`        public static bool PerformMeleeAttack(Entity attacker, Entity defender, Zone zone, Random rng)
+        {
+            if (attacker == null || defender == null) return false;
+            var beforeAttack = GameEvent.New("BeforeMeleeAttack");
+            beforeAttack.SetParameter("Attacker", (object)attacker);
+            beforeAttack.SetParameter("Defender", (object)defender);
+            if (!attacker.FireEventAndRelease(beforeAttack)) return false; // cancellable
+            var body = attacker.GetPart<Body>();
+            return body != null ? PerformBodyPartAwareAttack(attacker, defender, body, zone, rng)
+                                : PerformLegacyAttack(attacker, defender, zone, rng);`,
+  vars:[
+    {n:"attacker", ty:"Entity", v:'"snapjaw" #4271', cls:"o"},
+    {n:"defender", ty:"Entity", v:'"player" #1', cls:"o"},
+    {n:"BeforeMeleeAttack", ty:"bool", v:"true (not vetoed)", cls:"b", ch:true},
+    {n:"body", ty:"Body", v:"snapjaw.Body", cls:"o", ch:true},
+  ],
+  out:[
+    {type:"event", name:"BeforeMeleeAttack", on:"snapjaw"},
+  ],
+  note:`<span class="ph">combat</span>Entry into the combat system. It fires the <b>cancellable</b> <code>"BeforeMeleeAttack"</code> event (a listener could veto by returning false). The snapjaw has a <b>Body</b> part, so it routes to <b>PerformBodyPartAwareAttack</b> rather than the legacy path.`
+},
+{
+  file:"CombatSystem.cs", node:"n_gather",
+  start:95, ln:103, bps:[98,103],
+  stack:[
+    {ty:"CombatSystem", fn:'PerformBodyPartAwareAttack(...)', loc:"CombatSystem.cs:95"},
+    {ty:"CombatSystem", fn:'PerformMeleeAttack(...)', loc:"CombatSystem.cs:85", fade:true},
+  ],
+  code:
+`            var weapons = GatherMeleeWeapons(attacker, body);  // hands + natural weapons
+            for (int i = 0; i < weapons.Count; i++)
+            {
+                bool isPrimary = weapons[i].IsPrimary;
+                PerformSingleAttack(attacker, defender, weapons[i].Weapon,
+                                    isPrimary, zone, rng);   // ⟵ one swing per weapon
+            }`,
+  vars:[
+    {n:"weapons.Count", ty:"int", v:"1", ch:true},
+    {n:"weapons[0].Weapon", ty:"MeleeWeaponPart", v:"claw (NaturalWeapon)", cls:"o", ch:true},
+    {n:"weapons[0].IsPrimary", ty:"bool", v:"true", cls:"b"},
+  ],
+  out:[],
+  note:`<span class="ph">combat</span><b>GatherMeleeWeapons</b> (CombatSystem.cs:506) inspects the snapjaw's Hand body parts. With nothing equipped it falls back to the <b>NaturalWeapon</b> prop → <code>SnapjawClaw</code>, built by <b>NaturalWeaponFactory.Create</b> as a <b>MeleeWeaponPart</b> { BaseDamage="1d4", PenBonus=1, Attributes="Cutting Animal" }. One weapon ⇒ one <b>PerformSingleAttack</b>.`
+},
+{
+  file:"CombatSystem.cs", node:"n_single",
+  start:159, ln:160, bps:[160],
+  stack:[
+    {ty:"CombatSystem", fn:'PerformSingleAttack(attacker, defender, weapon, isPrimary, zone, rng)', loc:"CombatSystem.cs:148"},
+    {ty:"CombatSystem", fn:'PerformBodyPartAwareAttack(...)', loc:"CombatSystem.cs:103", fade:true},
+  ],
+  code:
+`            string attackId = Guid.NewGuid().ToString("N").Substring(0, 8);
+            using var _attackCause = Diag.WithCause(attackId);   // correlates all records
+            string damageDice = weapon?.BaseDamage ?? "1d2";     // "1d4"
+            int hitBonus = weapon?.HitBonus ?? 0;                // 0
+            int penBonus = weapon?.PenBonus ?? 0;                // 1
+            int maxStrBonus = weapon?.MaxStrengthBonus ?? -1;    // -1 (legacy uncapped)
+            string statName = weapon?.Stat ?? "Strength";        // "Strength"`,
+  vars:[
+    {n:"attackId", ty:"string", v:'"a7f3c1d9"', cls:"s", ch:true},
+    {n:"damageDice", ty:"string", v:'"1d4"', cls:"s", ch:true},
+    {n:"penBonus", ty:"int", v:"1", ch:true},
+    {n:"hitBonus", ty:"int", v:"0"},
+    {n:"statName", ty:"string", v:'"Strength"', cls:"s"},
+  ],
+  out:[],
+  note:`<span class="ph">combat</span>One swing. The first line mints a per-attack correlation id and <b>Diag.WithCause(attackId)</b> stamps it onto <i>every</i> diag record that follows — so <code>diag_query</code> can pull this attack's whole record set by <code>CauseTraceId</code>. Weapon stats are read off the <b>MeleeWeaponPart</b>.`
+},
+{
+  file:"CombatSystem.cs", node:"n_hit",
+  start:180, ln:188, bps:[180,188],
+  stack:[
+    {ty:"CombatSystem", fn:'PerformSingleAttack(...)', loc:"CombatSystem.cs:188"},
+    {ty:"CombatSystem", fn:'PerformBodyPartAwareAttack(...)', loc:"CombatSystem.cs:103", fade:true},
+  ],
+  code:
+`            int hitRoll = DiceRoller.Roll(20, rng);                       // 14
+            int agilityMod = StatUtils.GetModifier(attacker, "Agility");  // (14-16)/2 = -1
+            int skillHitBonus = SkillEventDispatcher.GetSkillHitModifier(attacker, weapon); // 0
+            int totalHit = hitRoll + agilityMod + hitBonus + skillHitBonus; // 14-1+0+0 = 13
+            int dv = GetDV(defender);                                      // 8
+            bool naturalTwenty = hitRoll == 20;                           // false
+            bool willMiss = !naturalTwenty && totalHit < dv;              // 13<8 -> false`,
+  vars:[
+    {n:"hitRoll", ty:"int", v:"14  (1d20)", ch:true},
+    {n:"agilityMod", ty:"int", v:"−1", ch:true},
+    {n:"totalHit", ty:"int", v:"13", ch:true},
+    {n:"dv", ty:"int", v:"8", ch:true},
+    {n:"naturalTwenty", ty:"bool", v:"false", cls:"b"},
+    {n:"willMiss", ty:"bool", v:"false → HIT", cls:"b", ch:true},
+  ],
+  out:[
+    {type:"diag", cat:"damage", kind:"HitRoll", actor:"snapjaw", pay:'weapon="claw" hitRoll=14 agilityMod=−1 totalHit=13 dv=8 naturalTwenty=false landed=true'},
+  ],
+  note:`<span class="ph">damage</span>The to-hit check: <code>1d20 + AgilityMod + weaponHitBonus + skillHitBonus</code> vs the defender's <b>DV</b>. Here 13 ≥ 8 ⇒ the swing lands. A <code>damage/HitRoll</code> diag records every summand so you can later answer "why did it (not) connect?". <i>(Branch: if willMiss, it logs a miss + fires AttackerMeleeMiss and returns.)</i>`
+},
+{
+  file:"CombatSystem.cs", node:"n_loc",
+  start:242, ln:245, bps:[245],
+  stack:[
+    {ty:"CombatSystem", fn:'PerformSingleAttack(...)', loc:"CombatSystem.cs:245"},
+  ],
+  code:
+`            BodyPart hitPart = null;
+            Body defenderBody = defender.GetPart<Body>();
+            if (defenderBody != null)
+                hitPart = SelectHitLocation(defenderBody, rng);  // weighted by TargetWeight
+            string partDesc = hitPart != null ? $" in the {hitPart.GetDisplayName()}" : "";`,
+  vars:[
+    {n:"defenderBody", ty:"Body", v:"player.Body", cls:"o"},
+    {n:"hitPart", ty:"BodyPart", v:'"chest"', cls:"o", ch:true},
+    {n:"partDesc", ty:"string", v:'" in the chest"', cls:"s", ch:true},
+  ],
+  out:[],
+  note:`<span class="ph">combat</span>The hit is localised to a body part via <b>SelectHitLocation</b> (CombatSystem.cs:1226), a weighted random over the defender's body parts (<code>TargetWeight</code>). The chosen part both flavours the message ("in the chest") and selects which armor's AV applies next.`
+},
+{
+  file:"CombatSystem.cs", node:"n_pen",
+  start:253, ln:274, bps:[274,314],
+  stack:[
+    {ty:"CombatSystem", fn:'RollPenetrations(targetInclusive, bonus, maxBonus, rng)', loc:"CombatSystem.cs:674"},
+    {ty:"CombatSystem", fn:'PerformSingleAttack(...)', loc:"CombatSystem.cs:274", fade:true},
+  ],
+  code:
+`            int strMod = StatUtils.GetModifier(attacker, statName);   // STR16 -> +0
+            int bonus  = strMod + penBonus + skillPenBonus;           // 0 + 1 + 0 = 1
+            int av = hitPart != null ? GetPartAV(defender, hitPart) : GetAV(defender); // 2
+            // RollPenetrations: each "set" = 3x (1d10-2, raw 10 explodes) + min(bonus,maxBonus),
+            //   must STRICTLY exceed av; >=1 success in a set => +1 penetration; bonus -= 2 each set
+            int penetrations = RollPenetrations(av, bonus + critPenBonus, maxBonus + critMaxBonus, rng);`,
+  vars:[
+    {n:"strMod", ty:"int", v:"+0", ch:true},
+    {n:"penBonus", ty:"int", v:"1"},
+    {n:"bonus", ty:"int", v:"1", ch:true},
+    {n:"av", ty:"int", v:"2  (player armor)", ch:true},
+    {n:"penetrations", ty:"int", v:"1", ch:true},
+  ],
+  out:[
+    {type:"diag", cat:"damage", kind:"Penetration", actor:"snapjaw", pay:'av=2 weaponPenBonus=1 strMod=0 totalBonus=1 penetrations=1 autoPenForced=false'},
+  ],
+  note:`<span class="ph">damage</span>Armor is beaten by <b>penetration</b>, not subtraction. <b>RollPenetrations</b> rolls sets of three exploding <code>1d10−2</code> dice + bonus, each needing to strictly exceed the defender's <b>AV (2)</b>; one success per set ⇒ +1 penetration, and the bonus decays by 2 each set. Result: <b>1 penetration</b>. <i>(Branch: 0 penetrations ⇒ "fails to penetrate!" and return — no damage.)</i>`
+},
+{
+  file:"CombatSystem.cs", node:"n_droll",
+  start:320, ln:333, bps:[333,360],
+  stack:[
+    {ty:"CombatSystem", fn:'PerformSingleAttack(...)', loc:"CombatSystem.cs:333"},
+  ],
+  code:
+`            Damage damage = new Damage(0);
+            damage.AddAttribute("Melee");
+            damage.AddAttribute(statName);                 // "Strength"
+            if (!string.IsNullOrEmpty(weapon.Attributes))
+                damage.AddAttributes(weapon.Attributes);   // "Cutting Animal"
+            int totalDamage = 0;
+            for (int i = 0; i < penetrations; i++)
+                totalDamage += DiceRoller.Roll(damageDice, rng);   // 1x 1d4 -> 3
+            damage.Amount = totalDamage;`,
+  vars:[
+    {n:"penetrations", ty:"int", v:"1"},
+    {n:"DiceRoller.Roll(\"1d4\")", ty:"int", v:"3", ch:true},
+    {n:"damage.Amount", ty:"int", v:"3", ch:true},
+    {n:"damage.Attributes", ty:"List", v:'[Melee, Strength, Cutting, Animal]', cls:"o", ch:true},
+  ],
+  out:[
+    {type:"diag", cat:"damage", kind:"DamageRoll", actor:"snapjaw", pay:'damageDice="1d4" penetrationsRolled=1 baseDamageTotal=3 attributes="Melee,Strength,Cutting,Animal"'},
+  ],
+  note:`<span class="ph">damage</span>A <b>Damage</b> object is built and tagged with attributes that drive everything downstream (resistances, on-hit effects). The dice are rolled <i>once per penetration</i> — here a single <code>1d4 = 3</code>. The <b>Cutting</b> attribute (from the claw) is what will trigger Bleeding later. <i>(Branch: amount ≤ 0 ⇒ "deals no damage!" and return.)</i>`
+},
+{
+  file:"CombatSystem.cs", node:"n_apply",
+  start:759, ln:763, bps:[763],
+  stack:[
+    {ty:"CombatSystem", fn:'ApplyDamage(target, damage, source, zone)', loc:"CombatSystem.cs:715"},
+    {ty:"CombatSystem", fn:'PerformSingleAttack(...)', loc:"CombatSystem.cs:386", fade:true},
+  ],
+  code:
+`            var hpStat = target.GetStat("Hitpoints");
+            if (hpStat == null || hpStat.BaseValue <= 0) return;  // already dead / no HP
+            int hpBefore = hpStat.BaseValue;                      // 30
+            var beforeTakeDamage = GameEvent.New("BeforeTakeDamage");
+            beforeTakeDamage.SetParameter("Damage", (object)damage);
+            bool damageProceeded = target.FireEventAndRelease(beforeTakeDamage); // mutate/veto`,
+  vars:[
+    {n:"target", ty:"Entity", v:'"player" #1', cls:"o"},
+    {n:"hpBefore", ty:"int", v:"30", ch:true},
+    {n:"damage.Amount", ty:"int", v:"3"},
+    {n:"damageProceeded", ty:"bool", v:"true (not vetoed)", cls:"b", ch:true},
+  ],
+  out:[
+    {type:"event", name:"BeforeTakeDamage", on:"player"},
+  ],
+  note:`<span class="ph">damage</span>Handing off to <b>ApplyDamage</b>. First it fires <code>"BeforeTakeDamage"</code> on the <b>target</b> — this is the mutation/veto hook (Stoneskin, Barrier, etc. can lower <code>damage.Amount</code> or cancel). No such effect here, so <code>damageProceeded=true</code>. A <code>PreDamageMutation</code> diag fires only if the amount changed or was vetoed.`
+},
+{
+  file:"CombatSystem.cs", node:"n_resist",
+  start:807, ln:808, bps:[808,815],
+  stack:[
+    {ty:"CombatSystem", fn:'ApplyResistances(target, damage)', loc:"CombatSystem.cs:987"},
+    {ty:"CombatSystem", fn:'ApplyDamage(...)', loc:"CombatSystem.cs:808", fade:true},
+  ],
+  code:
+`            if (!damage.HasAttribute("IgnoreResist"))
+                ApplyResistances(target, damage);
+            //   IsAcid/Heat/Cold/Electric? -> scale by *Resistance stat.
+            //   claw damage is "Cutting Animal" (non-elemental) -> unchanged.
+            if (damage.Amount <= 0) { /* DamageFullyResisted -> return */ }`,
+  vars:[
+    {n:"damage.Attributes", ty:"List", v:"[Melee,Strength,Cutting,Animal]", cls:"o"},
+    {n:"isElemental", ty:"bool", v:"false", cls:"b", ch:true},
+    {n:"damage.Amount", ty:"int", v:"3 (unchanged)"},
+  ],
+  out:[],
+  note:`<span class="ph">damage</span><b>ApplyResistances</b> only scales damage carrying an elemental tag (Acid/Heat/Cold/Electric) against the matching <code>*Resistance</code> stat. The claw is physical ("Cutting Animal"), so nothing applies and amount stays 3. (If the snapjaw bit you with <i>Cold</i>, the player's ColdResistance would bite in here, emitting <code>ResistanceApplied</code>.)`
+},
+{
+  file:"CombatSystem.cs", node:"n_hp",
+  start:831, ln:843, bps:[843,858],
+  stack:[
+    {ty:"CombatSystem", fn:'ApplyDamage(...)', loc:"CombatSystem.cs:843"},
+    {ty:"CombatSystem", fn:'PerformSingleAttack(...)', loc:"CombatSystem.cs:386", fade:true},
+  ],
+  code:
+`            var takeDamage = GameEvent.New("TakeDamage");
+            takeDamage.SetParameter("Amount", damage.Amount);
+            target.FireEventAndRelease(takeDamage);
+            int amount = Math.Max(0, damage.Amount);              // 3
+            hpStat.BaseValue -= amount;                           // 30 -> 27   ⟵ HP LOSS
+            // Diag.Record("damage","DamageDealt", amount, hpAfter, lethal)`,
+  vars:[
+    {n:"amount", ty:"int", v:"3", ch:true},
+    {n:"hpStat.BaseValue", ty:"int", v:"27  (was 30)", cls:"", ch:true},
+    {n:"lethal", ty:"bool", v:"false  (27 > 0)", cls:"b", ch:true},
+  ],
+  out:[
+    {type:"event", name:"TakeDamage", on:"player"},
+    {type:"hp", text:"player HP  30 → 27  (−3)"},
+    {type:"diag", cat:"damage", kind:"DamageDealt", actor:"snapjaw", pay:'amount=3 hpAfter=27 lethal=false attributes="Melee,Strength,Cutting,Animal"'},
+  ],
+  note:`<span class="ph">damage</span><b>The actual HP mutation.</b> After a final <code>"TakeDamage"</code> event, <code>hpStat.BaseValue -= 3</code> takes the player from 30 → 27. The <code>damage/DamageDealt</code> diag is the canonical "it happened" record (<code>amount, hpAfter, lethal</code>). Set a breakpoint on line 843 to watch HP change.`
+},
+{
+  file:"LifestealPart.cs", node:"n_life",
+  start:30, ln:36, bps:[33,36],
+  stack:[
+    {ty:"LifestealPart", fn:'HandleEvent(GameEvent e)', loc:"LifestealPart.cs:30"},
+    {ty:"CombatSystem", fn:'ApplyDamage() — fires DamageDealt on source', loc:"CombatSystem.cs:875", fade:true},
+  ],
+  code:
+`        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID == "DamageDealt")
+            {
+                int dealt = e.GetIntParameter("Amount", 0);   // 3
+                int heal  = dealt * HealPercent / 100;        // 3 * 50 / 100 = 1
+                // ... heal the snapjaw (clamped to max HP) ...`,
+  vars:[
+    {n:"e.ID", ty:"string", v:'"DamageDealt"', cls:"s", ch:true},
+    {n:"HealPercent", ty:"int", v:"50"},
+    {n:"dealt", ty:"int", v:"3", ch:true},
+    {n:"heal", ty:"int", v:"1", ch:true},
+    {n:"snapjaw HP", ty:"int", v:"15 → 15 (capped)", ch:true},
+  ],
+  out:[
+    {type:"event", name:"DamageDealt", on:"snapjaw (source)"},
+    {type:"diag", cat:"effect", kind:"Lifesteal", actor:"snapjaw", pay:'dealt=3 healed=1 hp=15/15'},
+  ],
+  note:`<span class="ph">aftermath</span>Why this matters for snapjaws specifically: after HP loss, <b>ApplyDamage</b> fires <code>"DamageDealt"</code> on the <b>source</b> (CombatSystem.cs:875). The snapjaw's <b>LifestealPart</b> (from its blueprint, HealPercent=50) listens for that event and heals 50% of damage dealt — here +1, capped at its max 15. Pure event-driven behaviour: combat code never references Lifesteal.`
+},
+{
+  file:"CombatSystem.cs", node:"n_fx",
+  start:894, ln:901, bps:[901,915],
+  stack:[
+    {ty:"CombatSystem", fn:'ApplyDamage(...)', loc:"CombatSystem.cs:901"},
+  ],
+  code:
+`            int displayedAmount = Math.Min(amount, hpBefore);   // 3
+            var targetCell = zone.GetEntityCell(target);
+            AsciiFxBus.EmitFloatingNumber(zone, targetCell.X, targetCell.Y,
+                                          displayedAmount, "&R");  // red "3" rises
+            // ... if HP>0:
+            ZoneRenderHooks.MarkCellDirty(targetCell, "Combat.Damage"); // redraw player cell`,
+  vars:[
+    {n:"displayedAmount", ty:"int", v:"3", ch:true},
+    {n:"targetCell", ty:"Cell", v:"(13, 8)", cls:"o"},
+    {n:'color', ty:"string", v:'"&R" (red)', cls:"s"},
+  ],
+  out:[
+    {type:"event", name:"AsciiFxBus.EmitFloatingNumber", on:'"3" @ (13,8) red'},
+    {type:"event", name:"ZoneRenderHooks.MarkCellDirty", on:'(13,8) "Combat.Damage"'},
+  ],
+  note:`<span class="ph">aftermath</span>Presentation fan-out. <b>AsciiFxBus.EmitFloatingNumber</b> spawns the rising red "3" particle (overkill is clamped via <code>Min(amount, hpBefore)</code>). <b>ZoneRenderHooks.MarkCellDirty</b> flags only the player's cell for redraw — which also invalidates the sidebar HP bar via its fingerprint gate. <i>(Branch: if HP ≤ 0, HandleDeath runs instead — death message, XP, drops, "Died" event, witness broadcast, remove from zone.)</i>`
+},
+{
+  file:"OnHitClassEffects.cs", node:"n_bleed",
+  start:59, ln:62, bps:[62],
+  stack:[
+    {ty:"OnHitClassEffects", fn:'Apply(damage, dmg, defender, attacker, zone, rng)', loc:"OnHitClassEffects.cs:59"},
+    {ty:"CombatSystem", fn:'PerformSingleAttack() [survivor path]', loc:"CombatSystem.cs:432", fade:true},
+  ],
+  code:
+`            if (damage.HasAttribute("Cutting"))
+                TryApplyBleeding(defender, attacker, zone, rng);
+            //   -> OnHitEffectFactory.Create("bleeding", ...) => new BleedingEffect(...)
+            //   -> defender.ApplyEffect(bleeding, source: attacker)
+            //   -> BleedingEffect.OnApply(): MessageLog.Add(name + " is bleeding!")`,
+  vars:[
+    {n:"damage.HasAttribute(\"Cutting\")", ty:"bool", v:"true", cls:"b", ch:true},
+    {n:"effect", ty:"Effect", v:"BleedingEffect", cls:"o", ch:true},
+    {n:"applied", ty:"bool", v:"true", cls:"b", ch:true},
+  ],
+  out:[
+    {type:"log", text:"player is bleeding!"},
+    {type:"event", name:"ApplyEffect", on:"player ← BleedingEffect"},
+    {type:"diag", cat:"effect", kind:"OnApply", target:"player", pay:'effect="BleedingEffect" justApplied=true forced=false'},
+  ],
+  note:`<span class="ph">aftermath</span>The survivor-only on-hit pass. Because the damage carries <b>Cutting</b>, <b>OnHitClassEffects</b> applies <b>BleedingEffect</b> via <b>OnHitEffectFactory.Create</b> → <b>StatusEffectsPart.ApplyEffect</b>. <b>OnApply</b> logs "player is bleeding!" and an <code>effect/OnApply</code> diag fires. (If already bleeding, <code>OnStack</code> would merge instead of re-applying.)`
+},
+{
+  file:"CombatSystem.cs", node:"n_msg",
+  start:388, ln:399, bps:[399],
+  stack:[
+    {ty:"CombatSystem", fn:'PerformSingleAttack(...)', loc:"CombatSystem.cs:399"},
+    {ty:"...", fn:'unwinding → PerformMeleeAttack → KillGoal → BrainPart → TurnManager.EndTurn()', loc:"", fade:true},
+  ],
+  code:
+`            int hpAfter = defender.GetStatValue("Hitpoints", 0);          // 27
+            int actualDamage = Math.Max(0, hpBefore - hpAfter);          // 3
+            string hitVerb = naturalTwenty ? "CRITICALLY hits" : "hits";
+            MessageLog.Add($"{attackerName} {hitVerb} {defenderName}{partDesc} " +
+                $"for {actualDamage} damage!" +
+                (hpAfter > 0 ? $" ({hpAfter} HP remaining)" : ""));`,
+  vars:[
+    {n:"hpAfter", ty:"int", v:"27"},
+    {n:"actualDamage", ty:"int", v:"3", ch:true},
+    {n:"hitVerb", ty:"string", v:'"hits"', cls:"s"},
+  ],
+  out:[
+    {type:"log", text:"snapjaw hits player in the chest for 3 damage! (27 HP remaining)"},
+  ],
+  note:`<span class="ph">combat</span>The player-facing summary line is written last, from the real HP delta. The stack now unwinds: <b>PerformSingleAttack → PerformBodyPartAwareAttack → PerformMeleeAttack → KillGoal.TakeAction → BrainPart → TurnManager</b>, which ends the snapjaw's turn and continues the scheduler. <b style="color:var(--green)">Trace complete.</b>`
+},
+];
+
+/* ===================== Flow-graph node model ===================== */
+const NODES = [
+  {id:"n_turn",   ph:"turn",     ttl:"Scheduler grants turn",        sub:"TurnManager.FireEvent(\"TakeTurn\")"},
+  {id:"n_brain",  ph:"ai",       ttl:"Brain handles turn",           sub:"BrainPart.HandleTakeTurn()"},
+  {id:"n_bored",  ph:"ai",       ttl:"Scan for hostiles",            sub:"BoredGoal → FindNearestHostile"},
+  {id:"n_faction",ph:"ai",       ttl:"Faction hostility check",      sub:"FactionManager.IsHostile() = true"},
+  {id:"n_kill",   ph:"ai",       ttl:"Adjacent → attack",            sub:"KillGoal.TakeAction()"},
+  {id:"n_perform",ph:"combat",   ttl:"Enter combat",                 sub:"CombatSystem.PerformMeleeAttack()"},
+  {id:"n_gather", ph:"combat",   ttl:"Gather weapons",               sub:"GatherMeleeWeapons → SnapjawClaw"},
+  {id:"n_single", ph:"combat",   ttl:"Single swing setup",           sub:"PerformSingleAttack + Diag.WithCause"},
+  {id:"n_hit",    ph:"damage",   ttl:"Hit roll vs DV",               sub:"1d20+mods=13 ≥ DV 8 → HIT", branch:{ttl:"MISS",sub:"log miss · AttackerMeleeMiss · return"}},
+  {id:"n_loc",    ph:"combat",   ttl:"Select hit location",          sub:"SelectHitLocation → chest"},
+  {id:"n_pen",    ph:"damage",   ttl:"Penetration vs AV",            sub:"RollPenetrations(av=2) = 1", branch:{ttl:"NO PENETRATION",sub:'"fails to penetrate!" · return'}},
+  {id:"n_droll",  ph:"damage",   ttl:"Roll damage",                  sub:"1d4 = 3  (+attributes)"},
+  {id:"n_apply",  ph:"damage",   ttl:"ApplyDamage: BeforeTakeDamage", sub:"veto/mutate hook (not vetoed)"},
+  {id:"n_resist", ph:"damage",   ttl:"Apply resistances",            sub:"non-elemental → unchanged"},
+  {id:"n_hp",     ph:"damage",   ttl:"HP −= amount",                 sub:"30 → 27 · DamageDealt diag", branch:{ttl:"LETHAL → HandleDeath",sub:"msg · XP · drops · Died · witnesses · remove"}},
+  {id:"n_life",   ph:"aftermath",ttl:"Lifesteal reacts",             sub:'LifestealPart on "DamageDealt" +1'},
+  {id:"n_fx",     ph:"aftermath",ttl:"FX + redraw",                  sub:"floating \"3\" · MarkCellDirty"},
+  {id:"n_bleed",  ph:"aftermath",ttl:"On-hit: Bleeding",             sub:"Cutting → BleedingEffect applied"},
+  {id:"n_msg",    ph:"combat",   ttl:"Message + unwind",             sub:"MessageLog.Add → end turn"},
+];
+
+/* ===================== Rendering ===================== */
+let cur = 0;
+const $ = s => document.querySelector(s);
+
+function tokenize(line){
+  // returns HTML with span classes; comment wins whole-line
+  const ci = line.indexOf("//");
+  let codePart = line, comment = "";
+  if(ci>=0){ codePart = line.slice(0,ci); comment = line.slice(ci); }
+  // split keeping delimiters
+  const out = [];
+  const re = /("(?:[^"\\]|\\.)*"|\b\d+(?:d\d+)?\b|[A-Za-z_][A-Za-z0-9_]*|\s+|[^\sA-Za-z0-9_"]+)/g;
+  let m;
+  while((m = re.exec(codePart))){
+    const t = m[0];
+    if(/^\s+$/.test(t)){ out.push(esc(t)); continue; }
+    if(/^"/.test(t)){ out.push(`<span class="ts">${esc(t)}</span>`); continue; }
+    if(/^\d/.test(t)){ out.push(`<span class="tn">${esc(t)}</span>`); continue; }
+    if(/^[A-Za-z_]/.test(t)){
+      if(KW.includes(t)) out.push(`<span class="tk">${esc(t)}</span>`);
+      else if(TYPES.includes(t)) out.push(`<span class="tt">${esc(t)}</span>`);
+      else {
+        // function call if followed by (
+        const rest = codePart.slice(re.lastIndex);
+        if(/^\s*\(/.test(rest)) out.push(`<span class="tf">${esc(t)}</span>`);
+        else out.push(esc(t));
+      }
+      continue;
+    }
+    out.push(esc(t));
+  }
+  let html = out.join("");
+  if(comment) html += `<span class="tc">${esc(comment)}</span>`;
+  return html;
+}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function renderCode(step){
+  $("#fileTab").textContent = step.file;
+  const lines = step.code.split("\n");
+  const wrap = $("#code");
+  wrap.innerHTML = "";
+  lines.forEach((ln, i)=>{
+    const lineNo = step.start + i;
+    const row = document.createElement("div");
+    row.className = "cline" + (lineNo===step.ln?" active":"");
+    const g = document.createElement("div");
+    g.className = "gutter";
+    if(step.bps && step.bps.includes(lineNo)){
+      const bp = document.createElement("span"); bp.className="bp"; g.appendChild(bp);
+    }
+    g.appendChild(document.createTextNode(lineNo));
+    if(lineNo===step.ln){ const a=document.createElement("span"); a.className="arrow"; a.textContent="▶"; g.appendChild(a); }
+    const t = document.createElement("div");
+    t.className="txt"; t.innerHTML = tokenize(ln) || "&nbsp;";
+    row.appendChild(g); row.appendChild(t);
+    wrap.appendChild(row);
+  });
+  const active = wrap.querySelector(".cline.active");
+  if(active) active.scrollIntoView({block:"center", behavior:"smooth"});
+}
+
+function renderStack(step){
+  const el = $("#callstack"); el.innerHTML="";
+  step.stack.forEach((f,i)=>{
+    const d = document.createElement("div");
+    d.className = "frame" + (i===0?" top":"") + (f.fade?" fade":"");
+    const fn = document.createElement("span"); fn.className="fn";
+    if(f.ty) fn.innerHTML = `<span class="ty">${esc(f.ty)}</span>.${esc(f.fn)}`;
+    else fn.textContent = f.fn;
+    d.appendChild(fn);
+    if(f.loc){ const l=document.createElement("span"); l.className="loc"; l.textContent=f.loc; d.appendChild(l); }
+    el.appendChild(d);
+  });
+}
+
+function renderVars(step){
+  const el = $("#vars"); el.innerHTML="";
+  const gh = document.createElement("div"); gh.className="vargroup-h"; gh.textContent="Locals";
+  el.appendChild(gh);
+  step.vars.forEach(v=>{
+    const d = document.createElement("div");
+    d.className = "var" + (v.ch?" changed":"");
+    const n = document.createElement("div"); n.className="nm";
+    n.innerHTML = esc(v.n) + (v.ty?` <span class="ty">: ${esc(v.ty)}</span>`:"");
+    const val = document.createElement("div"); val.className="vl "+(v.cls||"");
+    val.textContent = v.v;
+    d.appendChild(n); d.appendChild(val); el.appendChild(d);
+  });
+  $("#causeId").textContent = cur>=8 ? "cause: a7f3c1d9" : "";
+}
+
+/* console accumulation */
+let conFilter="all";
+function consoleRows(uptoStep){
+  const rows=[];
+  for(let i=0;i<=uptoStep;i++){
+    (STEPS[i].out||[]).forEach(o=> rows.push({...o, step:i}));
+  }
+  return rows;
+}
+function renderConsole(){
+  const rows = consoleRows(cur);
+  const counts={all:rows.length,diag:0,event:0,log:0};
+  rows.forEach(r=>{ if(r.type==="diag")counts.diag++; else if(r.type==="event")counts.event++; else if(r.type==="log"||r.type==="hp")counts.log++; });
+  $("#b-all").textContent=counts.all; $("#b-diag").textContent=counts.diag;
+  $("#b-event").textContent=counts.event; $("#b-log").textContent=counts.log;
+  const el=$("#console"); el.innerHTML="";
+  let shown=0;
+  rows.forEach(r=>{
+    if(conFilter!=="all"){
+      if(conFilter==="diag" && r.type!=="diag") return;
+      if(conFilter==="event" && r.type!=="event") return;
+      if(conFilter==="log" && !(r.type==="log"||r.type==="hp")) return;
+    }
+    shown++;
+    const d=document.createElement("div");
+    d.className="cl "+r.type+(r.step===cur?" fresh":"");
+    const tag=document.createElement("span"); tag.className="tag";
+    const body=document.createElement("span"); body.className="body";
+    if(r.type==="diag"){
+      tag.textContent="DIAG";
+      body.innerHTML=`<span class="k">${r.cat}/${r.kind}</span>  `+
+        (r.actor?`actor=<span class="vs">${esc(r.actor)}</span> `:"")+
+        (r.target?`target=<span class="vs">${esc(r.target)}</span> `:"")+
+        `{ ${esc(r.pay)} }`;
+    } else if(r.type==="event"){
+      tag.textContent="EVENT";
+      body.innerHTML=`<span class="k">${esc(r.name)}</span>  →  <span class="vs">${esc(r.on)}</span>`;
+    } else if(r.type==="hp"){
+      tag.textContent="HP"; body.textContent=r.text;
+    } else {
+      tag.textContent="LOG"; body.textContent='"'+r.text+'"';
+    }
+    d.appendChild(tag); d.appendChild(body); el.appendChild(d);
+  });
+  if(shown===0){ const e=document.createElement("div"); e.className="console-empty"; e.textContent="(no "+conFilter+" output yet)"; el.appendChild(e); }
+  el.scrollTop=el.scrollHeight;
+}
+
+function renderGraph(){
+  const sp=$("#spine"); sp.innerHTML="";
+  const curNode = STEPS[cur].node;
+  // mark nodes that have been reached
+  const reached = new Set(STEPS.slice(0,cur+1).map(s=>s.node));
+  NODES.forEach((n,i)=>{
+    const node=document.createElement("div");
+    node.className="gnode"+(n.id===curNode?" current": (reached.has(n.id)?" done":""));
+    node.innerHTML=`<div class="ph">${n.ph}</div><div class="ttl">${esc(n.ttl)}</div><div class="sub">${esc(n.sub)}</div>`;
+    node.onclick=()=>{ const idx=STEPS.findIndex(s=>s.node===n.id); if(idx>=0){cur=idx;render();switchView("debugView");} };
+    sp.appendChild(node);
+    if(i<NODES.length-1){
+      const c=document.createElement("div"); c.className="connector"+(reached.has(NODES[i+1].id)?" done":""); sp.appendChild(c);
+    }
+    if(n.branch){
+      const b=document.createElement("div"); b.className="branch";
+      b.innerHTML=`<span class="barrow">└▶</span><div class="bnode"><div class="ttl">⨯ ${esc(n.branch.ttl)}</div><div class="sub">${esc(n.branch.sub)}</div></div>`;
+      sp.appendChild(b);
+    }
+  });
+}
+
+function render(){
+  const step=STEPS[cur];
+  renderCode(step); renderStack(step); renderVars(step); renderConsole(); renderGraph();
+  $("#note").innerHTML=step.note;
+  $("#stepNum").textContent=cur+1;
+  $("#progBar").style.width=((cur+1)/STEPS.length*100)+"%";
+  $("#btnBack").disabled=cur===0;
+  $("#btnStep").disabled=cur===STEPS.length-1;
+  $("#btnRun").disabled=cur===STEPS.length-1;
+}
+
+/* ===================== Controls ===================== */
+function step(){ if(cur<STEPS.length-1){cur++;render();} }
+function back(){ if(cur>0){cur--;render();} }
+function restart(){ cur=0; render(); }
+let runTimer=null;
+function run(){
+  if(runTimer){clearInterval(runTimer);runTimer=null;$("#btnRun").innerHTML='<span class="ico">⏩</span>Continue';return;}
+  $("#btnRun").innerHTML='<span class="ico">⏸</span>Pause';
+  runTimer=setInterval(()=>{ if(cur>=STEPS.length-1){clearInterval(runTimer);runTimer=null;$("#btnRun").innerHTML='<span class="ico">⏩</span>Continue';return;} step(); },900);
+}
+function switchView(id){
+  document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id===id));
+  document.querySelectorAll(".seg .tabbtn").forEach(b=>b.classList.toggle("active",b.dataset.view===id));
+}
+
+$("#btnStep").onclick=step; $("#btnBack").onclick=back;
+$("#btnRestart").onclick=restart; $("#btnRun").onclick=run;
+document.querySelectorAll(".seg .tabbtn").forEach(b=> b.onclick=()=>switchView(b.dataset.view));
+document.querySelectorAll(".console-tab").forEach(t=> t.onclick=()=>{
+  conFilter=t.dataset.con;
+  document.querySelectorAll(".console-tab").forEach(x=>x.classList.toggle("active",x===t));
+  renderConsole();
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight"||e.key==="F11"){e.preventDefault();step();}
+  else if(e.key==="ArrowLeft"){e.preventDefault();back();}
+  else if(e.key.toLowerCase()==="c"){run();}
+  else if(e.key.toLowerCase()==="r"){restart();}
+  else if(e.key.toLowerCase()==="g"){
+    const onDbg=$("#debugView").classList.contains("active");
+    switchView(onDbg?"graphView":"debugView");
+  }
+});
+
+/* scenario chips */
+(function(){
+  const el=$("#scenario");
+  SCENARIO.forEach(c=>{
+    if(c.l==="·"){ const s=document.createElement("span"); s.style.color="#666"; s.style.alignSelf="center"; s.textContent="vs"; el.appendChild(s); return; }
+    const d=document.createElement("span"); d.className="chip";
+    d.innerHTML=`${esc(c.l)}: <b>${esc(c.v)}</b>`+(c.t?` <span style="color:var(--type)">${esc(c.t)}</span>`:"");
+    el.appendChild(d);
+  });
+  $("#stepTot").textContent=STEPS.length;
+})();
+
+render();
+</script>
+</body>
+</html>
