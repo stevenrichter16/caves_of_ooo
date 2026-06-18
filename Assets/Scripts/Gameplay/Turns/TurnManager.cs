@@ -239,6 +239,17 @@ namespace CavesOfOoo.Core
 
                 while (true)
                 {
+                    // Freeze guard (mid-turn player death). If the player is no
+                    // longer in the turn queue — killed during ANOTHER actor's
+                    // turn (a lifesteal drain, a normal NPC blow, an effect tick)
+                    // — there is no player turn left to reach, and the player
+                    // branch at the bottom of this loop can never fire. Without
+                    // this, the loop spins through NPC turns forever (hard freeze).
+                    // Return so the per-frame death-screen handler in InputHandler
+                    // takes over. (Mirrors the _entries.Count == 0 bail below.)
+                    if (_entries.Count > 0 && !HasPlayerInQueue())
+                        return null;
+
                     Entity actor = FindNextActor();
 
                     if (actor == null)
@@ -393,6 +404,7 @@ namespace CavesOfOoo.Core
         {
             TurnEntry best = null;
             int bestEnergy = ActionThreshold - 1;
+            var you = _entries.Find(entry => entry.Entity.GetPart<RenderPart>().DisplayName == "you") ?? null;
 
             for (int i = 0; i < _entries.Count; i++)
             {
@@ -421,6 +433,23 @@ namespace CavesOfOoo.Core
                     return _entries[i];
             }
             return null;
+        }
+
+        /// <summary>
+        /// True if any entry in the turn queue is the player. Used by
+        /// <see cref="ProcessUntilPlayerTurn"/> to detect a player removed
+        /// mid-loop (death during another actor's turn) and bail out instead
+        /// of spinning through NPC turns forever.
+        /// </summary>
+        private bool HasPlayerInQueue()
+        {
+            for (int i = 0; i < _entries.Count; i++)
+            {
+                var ent = _entries[i].Entity;
+                if (ent != null && ent.HasTag("Player"))
+                    return true;
+            }
+            return false;
         }
 
         private Zone ResolveActorZone(Entity actor)

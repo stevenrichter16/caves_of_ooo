@@ -39,10 +39,7 @@ namespace CavesOfOoo.Core
                 var chosenValue = potential > max ? max : potential;
                 var actualHealValue = potential > max ? 0 : heal;
                 ParentEntity.SetStatValue("Hitpoints", chosenValue);
-
-                var defender = (Entity)e.GetParameter("Defender");
-                //defender.SetStatValue("Hitpoints", 0);
-                CombatSystem.ApplyDamage(defender, defender.GetStat("Hitpoints").Max, ParentEntity, new Zone());
+                
                 
                 MessageLog.Add($"The {ParentEntity.GetDisplayName()} drinks your life and gains {actualHealValue}HP.");
             }
