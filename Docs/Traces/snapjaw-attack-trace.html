@@ -298,6 +298,9 @@
   .ask-foot input{flex:1;background:#1e1e1e;border:1px solid var(--border);border-radius:5px;color:var(--text);
     padding:7px 9px;font-size:12px;}
   .ask-note{color:var(--dim);font-size:11px;line-height:1.5;}
+  .ask-file-hint{margin-top:8px;padding:8px;border:1px solid #5a4a1a;background:#26210f;border-radius:4px;color:#d6c98a;}
+  .ask-file-hint code{background:#1a1a1a;padding:1px 4px;border-radius:3px;color:#ce9178;}
+  .ask-cmd{margin:6px 0;padding:6px 8px;background:#1a1a1a;border-radius:3px;color:#9cdcfe;font-size:11px;white-space:pre-wrap;word-break:break-all;user-select:all;}
   .ask-err{color:#f48771;font-size:12px;}
   .ask-key-row{display:flex;gap:6px;margin:8px 0;}
   .ask-key-row input{flex:1;background:#1e1e1e;border:1px solid var(--border);border-radius:5px;color:var(--text);padding:6px 8px;font-size:12px;}
@@ -960,10 +963,17 @@ async function xpStream(ansEl, citesEl){
   renderAnswer(ansEl, citesEl, blocks);
   return blocks.map(b=>b.text||"").join("");
 }
+function xpFileHint(){
+  if(location.protocol!=="file:") return "";
+  return '<div class="ask-note ask-file-hint">⚠ You opened this from <code>file://</code>. The Explain / Ask call should still work, but if it fails with a <b>network / "Failed to fetch" / CORS</b> error (not a <code>401</code>), serve the file over a real localhost origin instead:'+
+    '<pre class="ask-cmd">cd '+esc(location.pathname.replace(/[^/]*$/,"")||".")+' \&\& python3 -m http.server 8000</pre>'+
+    'then open <code>http://localhost:8000/'+esc(location.pathname.replace(/^.*\//,""))+'</code>. (A <code>401</code> just means a bad key &mdash; re-paste it.)</div>';
+}
 function xpKeyPrompt(targetEl, retry){
   targetEl.innerHTML =
     '<div class="ask-note">Set your Anthropic API key to use Explain / Ask. It is stored <b>only in this browser</b> (localStorage) and sent directly to api.anthropic.com from your machine. Use on a trusted device only.</div>'+
-    '<div class="ask-key-row"><input id="askKeyInput" type="password" placeholder="sk-ant-..." /><button class="xp-btn primary" id="askKeySave">Save key</button></div>';
+    '<div class="ask-key-row"><input id="askKeyInput" type="password" placeholder="sk-ant-..." /><button class="xp-btn primary" id="askKeySave">Save key</button></div>'+
+    xpFileHint();
   $("#askKeySave").onclick=()=>{ const v=$("#askKeyInput").value.trim(); if(v){ xpSetKey(v); retry(); } };
   const ki=$("#askKeyInput"); if(ki){ ki.focus(); ki.addEventListener("keydown",e=>{ if(e.key==="Enter"){e.preventDefault(); $("#askKeySave").click();} }); }
 }
@@ -987,8 +997,10 @@ async function xpDrive(refs){
     $("#askBody").scrollTop=$("#askBody").scrollHeight;
   }catch(err){
     refs.ans.classList.remove("ask-stream-cursor");
-    refs.ans.innerHTML='<span class="ask-err">'+esc(String(err.message||err))+'</span>';
-    if(String(err).indexOf("401")>=0){ const p=document.createElement("div"); refs.ans.appendChild(p); xpKeyPrompt(p, ()=>xpDrive(refs)); }
+    const msg=String(err.message||err);
+    refs.ans.innerHTML='<span class="ask-err">'+esc(msg)+'</span>';
+    if(msg.indexOf("401")>=0){ const p=document.createElement("div"); refs.ans.appendChild(p); xpKeyPrompt(p, ()=>xpDrive(refs)); }
+    else if(/Failed to fetch|NetworkError|CORS/i.test(msg)){ const h=xpFileHint(); if(h){ const p=document.createElement("div"); p.innerHTML=h; refs.ans.appendChild(p); } }
   }
 }
 function runExplainAsk(mode, question){
