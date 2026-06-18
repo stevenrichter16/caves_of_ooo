@@ -259,6 +259,50 @@
     font-family:Consolas,monospace;font-size:11px;color:#7aa6c2;z-index:1;}
   .peek-file b{color:#dcdcaa;}
   .peek-multi{color:#c77;padding:4px 12px;font-size:11px;font-style:italic;border-bottom:1px solid var(--border);}
+  /* Explain / Ask feature */
+  .xp-pop{position:fixed;z-index:1700;display:none;flex-direction:column;gap:6px;width:330px;
+    background:#252526;border:1px solid #4a4a4a;border-radius:7px;box-shadow:0 6px 22px rgba(0,0,0,.6);padding:8px;}
+  .xp-pop.show{display:flex;}
+  .xp-sel{font-size:10px;color:var(--dim);font-family:Consolas,monospace;max-height:30px;overflow:hidden;
+    white-space:nowrap;text-overflow:ellipsis;}
+  .xp-row{display:flex;gap:6px;align-items:center;}
+  .xp-btn{background:var(--bg3);color:var(--text);border:1px solid var(--border);border-radius:5px;
+    padding:5px 10px;cursor:pointer;font-size:12px;white-space:nowrap;}
+  .xp-btn:hover{background:#37373d;}
+  .xp-btn.primary{background:#0e639c;border-color:#1177bb;color:#fff;}
+  .xp-btn.primary:hover{background:#1177bb;}
+  .xp-row input{flex:1;background:#1e1e1e;border:1px solid var(--border);border-radius:5px;color:var(--text);
+    padding:5px 8px;font-size:12px;min-width:0;}
+  .ask-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1750;display:none;}
+  .ask-backdrop.show{display:block;}
+  .ask{position:fixed;z-index:1800;right:18px;top:56px;bottom:40px;width:min(560px,93vw);display:none;
+    flex-direction:column;background:#1e1e1e;border:1px solid #4a4a4a;border-radius:8px;
+    box-shadow:0 14px 50px rgba(0,0,0,.6);overflow:hidden;}
+  .ask.show{display:flex;}
+  .ask-bar{display:flex;align-items:center;gap:8px;background:#2d2d30;border-bottom:1px solid var(--border);padding:7px 10px;}
+  .ask-bar .ttl{font-size:13px;font-weight:600;color:#cfe3f5;flex:1;}
+  .ask-body{flex:1;overflow:auto;padding:12px 14px;font-size:13px;line-height:1.6;color:#d4d4d4;}
+  .ask-turn{margin-bottom:14px;}
+  .ask-q{background:#202a35;border-left:3px solid var(--accent);padding:6px 10px;border-radius:4px;margin:0 0 8px;
+    color:#cfe3f5;font-size:12px;white-space:pre-wrap;}
+  .ask-ans{white-space:pre-wrap;}
+  .ask-ans sup{color:#4ec9b0;cursor:default;font-weight:700;font-size:10px;padding:0 1px;}
+  .ask-cites{margin-top:10px;border-top:1px dashed var(--border);padding-top:7px;}
+  .ask-cites-h{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--dim);margin-bottom:4px;}
+  .ask-cite{font-size:11px;font-family:Consolas,monospace;padding:2px 0;display:flex;gap:8px;align-items:baseline;}
+  .ask-cite .n{color:#4ec9b0;flex:0 0 auto;}
+  .ask-cite .loc{color:#9ad0ea;flex:0 0 auto;}
+  .ask-cite .q{color:#ce9178;}
+  .ask-unverified{margin-top:8px;color:#f4c06a;font-size:11px;}
+  .ask-foot{border-top:1px solid var(--border);padding:8px 10px;display:flex;gap:6px;background:#252526;flex:0 0 auto;}
+  .ask-foot input{flex:1;background:#1e1e1e;border:1px solid var(--border);border-radius:5px;color:var(--text);
+    padding:7px 9px;font-size:12px;}
+  .ask-note{color:var(--dim);font-size:11px;line-height:1.5;}
+  .ask-err{color:#f48771;font-size:12px;}
+  .ask-key-row{display:flex;gap:6px;margin:8px 0;}
+  .ask-key-row input{flex:1;background:#1e1e1e;border:1px solid var(--border);border-radius:5px;color:var(--text);padding:6px 8px;font-size:12px;}
+  .ask-stream-cursor::after{content:"▋";color:#4ec9b0;animation:blink 1s steps(2) infinite;}
+  @keyframes blink{0%{opacity:1}50%{opacity:0}}
 </style>
 </head>
 <body>
@@ -364,6 +408,29 @@
     <button id="peekClose" class="mini-btn" style="margin-left:auto">✕ close (Esc)</button>
   </div>
   <div class="peek-body" id="peekBody"></div>
+</div>
+
+<!-- Explain / Ask -->
+<div class="xp-pop" id="xpPop">
+  <div class="xp-sel" id="xpSel"></div>
+  <div class="xp-row">
+    <button class="xp-btn primary" id="xpExplain">✦ Explain</button>
+    <input id="xpAsk" placeholder="Ask about this code…" autocomplete="off" />
+    <button class="xp-btn" id="xpSend">Ask</button>
+  </div>
+</div>
+<div class="ask-backdrop" id="askBackdrop"></div>
+<div class="ask" id="askPanel">
+  <div class="ask-bar">
+    <span class="ttl" id="askTitle">✦ Explain / Ask</span>
+    <button class="mini-btn" id="askKeyBtn" title="set / clear API key">⚙ key</button>
+    <button class="mini-btn" id="askClose">✕</button>
+  </div>
+  <div class="ask-body" id="askBody"></div>
+  <div class="ask-foot">
+    <input id="askFollow" placeholder="Ask a follow-up about this selection…" autocomplete="off" />
+    <button class="xp-btn primary" id="askFollowBtn">Send</button>
+  </div>
 </div>
 
 <script>
@@ -766,7 +833,13 @@ document.querySelectorAll(".console-tab").forEach(t=> t.onclick=()=>{
   renderConsole();
 });
 document.addEventListener("keydown",e=>{
-  if(e.key==="Escape"){ if($("#peek").classList.contains("show")){ e.preventDefault(); closePeek(); } return; }
+  const typing=/^(INPUT|TEXTAREA)$/.test((e.target&&e.target.tagName)||"")||(e.target&&e.target.isContentEditable);
+  if(e.key==="Escape"){
+    if($("#askPanel").classList.contains("show")){ e.preventDefault(); xpClose(); return; }
+    if($("#peek").classList.contains("show")){ e.preventDefault(); closePeek(); return; }
+    hidePop(); return;
+  }
+  if(typing) return;
   if(e.key==="ArrowRight"||e.key==="F11"){e.preventDefault();step();}
   else if(e.key==="ArrowLeft"){e.preventDefault();back();}
   else if(e.key==="Home"){e.preventDefault();cur=0;render();}
@@ -793,6 +866,182 @@ document.addEventListener("keydown",e=>{
   });
   $("#stepTot").textContent=STEPS.length;
 })();
+
+/* ===================== Explain / Ask (Claude, citations-grounded) ===================== */
+const XP_MODEL = "claude-opus-4-8";
+const XP_URL = "https://api.anthropic.com/v1/messages";
+const XP_LS = "coo_explain_key";
+const XP_SYS = "You are a code explainer embedded in a step-through debugger for the Caves of Ooo (Unity / C#) codebase. Answer ONLY from the provided documents, which contain verbatim source code. Cite the exact lines you rely on. Refer only to identifiers, types, methods, parameters, and fields that actually appear in the documents. If something needed to answer is not present in the documents, say \"not shown in the provided context\" — never guess and never describe an API, field, or behavior that does not appear in the documents. If the question cannot be answered from the documents, say so plainly. Be concise and concrete: name the exact method and line rather than speaking generally. Finish with a short \"Unknowns:\" line listing anything you could not determine from the provided context (write \"Unknowns: none\" if nothing).";
+const xpGetKey = ()=>{ try{return localStorage.getItem(XP_LS)||"";}catch(e){return "";} };
+const xpSetKey = (k)=>{ try{localStorage.setItem(XP_LS,k);}catch(e){} };
+const xpClearKey = ()=>{ try{localStorage.removeItem(XP_LS);}catch(e){} };
+let POP_GROUND=null, askConvo=[];
+
+function xpDocBlock(title, code){
+  return {type:"document", source:{type:"text", media_type:"text/plain", data:code},
+          title:String(title).slice(0,95), citations:{enabled:true}};
+}
+function currentGround(){
+  const sel=window.getSelection();
+  if(!sel || sel.isCollapsed) return null;
+  const text=sel.toString().trim();
+  if(text.length<2) return null;
+  const a=sel.anchorNode; if(!a) return null;
+  const inCode=$("#code").contains(a), inPeek=$("#peekBody").contains(a);
+  if(!inCode && !inPeek) return null;
+  let code, title;
+  if(inPeek && peekStack.length){ const d=DEFS[peekStack[peekStack.length-1]][0]; code=d.code; title=d.crumb+"  "+d.file+":"+d.start; }
+  else { const s=STEPS[cur]; code=s.code; const end=s.start+s.code.split("\n").length-1; title=s.file+":"+s.start+"-"+end+"  "+s.crumb; }
+  const docs=[ xpDocBlock(title, code) ];
+  // include verbatim bodies of methods the selection calls (deep grounding)
+  if(typeof DEFS!=="undefined"){
+    let added=0;
+    for(const nm of Object.keys(DEFS)){
+      if(added>=5) break;
+      if(new RegExp("\\b"+nm+"\\b").test(text)){ const d=DEFS[nm][0]; docs.push(xpDocBlock(d.crumb+"  "+d.file+":"+d.start, d.code)); added++; }
+    }
+  }
+  return {selText:text, docs};
+}
+function xpUserTurn(mode, question, selText){
+  const base="The highlighted selection (taken from the first document) is:\n\n<selection>\n"+selText+"\n</selection>\n\n";
+  return mode==="explain"
+    ? base+"Explain what this selection does and how it relates to the surrounding code in the provided documents. Cite the exact lines you rely on."
+    : base+"Question: "+question+"\n\nAnswer using only the provided documents, and cite the exact lines you rely on.";
+}
+function renderAnswer(ansEl, citesEl, blocks){
+  let n=0; const foot=[]; let html="";
+  for(const b of blocks){
+    html += esc(b.text||"");
+    if(b.citations && b.citations.length){
+      let sup=""; for(const c of b.citations){ n++; foot.push({n,c}); sup+="["+n+"]"; }
+      html += "<sup>"+sup+"</sup>";
+    }
+  }
+  ansEl.innerHTML = html || "…";
+  if(foot.length){
+    citesEl.innerHTML = '<div class="ask-cites-h">Citations (verbatim quoted source)</div>' + foot.map(f=>{
+      const c=f.c, loc=esc(c.document_title||("document "+c.document_index));
+      const rng=(c.start_char_index!=null)?(" @"+c.start_char_index+"–"+c.end_char_index):"";
+      return '<div class="ask-cite"><span class="n">['+f.n+']</span><span class="loc">'+loc+rng+'</span><span class="q">'+esc((c.cited_text||"").trim())+'</span></div>';
+    }).join("");
+  } else citesEl.innerHTML="";
+}
+async function xpStream(ansEl, citesEl){
+  const blocks=[];
+  const res = await fetch(XP_URL, {
+    method:"POST",
+    headers:{ "content-type":"application/json", "x-api-key":xpGetKey(),
+              "anthropic-version":"2023-06-01", "anthropic-dangerous-direct-browser-access":"true" },
+    body: JSON.stringify({ model:XP_MODEL, max_tokens:2000, stream:true, system:XP_SYS, messages:askConvo })
+  });
+  if(!res.ok){ let m; try{ m=(await res.json()).error?.message; }catch(e){} throw new Error("API "+res.status+(m?": "+m:"")); }
+  const reader=res.body.getReader(), dec=new TextDecoder(); let buf="";
+  ansEl.classList.add("ask-stream-cursor");
+  while(true){
+    const {value,done}=await reader.read(); if(done) break;
+    buf += dec.decode(value,{stream:true});
+    let i;
+    while((i=buf.indexOf("\n"))>=0){
+      const line=buf.slice(0,i).trim(); buf=buf.slice(i+1);
+      if(!line.startsWith("data:")) continue;
+      const data=line.slice(5).trim(); if(!data||data==="[DONE]") continue;
+      let ev; try{ ev=JSON.parse(data); }catch(e){ continue; }
+      if(ev.type==="content_block_start") blocks[ev.index]={text:"",citations:[]};
+      else if(ev.type==="content_block_delta"){
+        const b=blocks[ev.index]||(blocks[ev.index]={text:"",citations:[]});
+        if(ev.delta.type==="text_delta") b.text+=ev.delta.text;
+        else if(ev.delta.type==="citations_delta" && ev.delta.citation) b.citations.push(ev.delta.citation);
+        renderAnswer(ansEl, citesEl, blocks);
+      } else if(ev.type==="error") throw new Error(ev.error?.message||"stream error");
+    }
+  }
+  ansEl.classList.remove("ask-stream-cursor");
+  renderAnswer(ansEl, citesEl, blocks);
+  return blocks.map(b=>b.text||"").join("");
+}
+function xpKeyPrompt(targetEl, retry){
+  targetEl.innerHTML =
+    '<div class="ask-note">Set your Anthropic API key to use Explain / Ask. It is stored <b>only in this browser</b> (localStorage) and sent directly to api.anthropic.com from your machine. Use on a trusted device only.</div>'+
+    '<div class="ask-key-row"><input id="askKeyInput" type="password" placeholder="sk-ant-..." /><button class="xp-btn primary" id="askKeySave">Save key</button></div>';
+  $("#askKeySave").onclick=()=>{ const v=$("#askKeyInput").value.trim(); if(v){ xpSetKey(v); retry(); } };
+  const ki=$("#askKeyInput"); if(ki){ ki.focus(); ki.addEventListener("keydown",e=>{ if(e.key==="Enter"){e.preventDefault(); $("#askKeySave").click();} }); }
+}
+function xpOpen(){ $("#askPanel").classList.add("show"); $("#askBackdrop").classList.add("show"); }
+function xpClose(){ $("#askPanel").classList.remove("show"); $("#askBackdrop").classList.remove("show"); }
+function xpAppendTurn(qLabel){
+  const turn=document.createElement("div"); turn.className="ask-turn";
+  const q=document.createElement("div"); q.className="ask-q"; q.textContent=qLabel;
+  const ans=document.createElement("div"); ans.className="ask-ans";
+  const cites=document.createElement("div"); cites.className="ask-cites";
+  turn.appendChild(q); turn.appendChild(ans); turn.appendChild(cites);
+  $("#askBody").appendChild(turn); $("#askBody").scrollTop=$("#askBody").scrollHeight;
+  return {ans,cites};
+}
+async function xpDrive(refs){
+  if(!xpGetKey()){ xpKeyPrompt(refs.ans, ()=>xpDrive(refs)); return; }
+  refs.ans.textContent="…";
+  try{
+    const text=await xpStream(refs.ans, refs.cites);
+    askConvo.push({role:"assistant", content:[{type:"text", text}]});
+    $("#askBody").scrollTop=$("#askBody").scrollHeight;
+  }catch(err){
+    refs.ans.classList.remove("ask-stream-cursor");
+    refs.ans.innerHTML='<span class="ask-err">'+esc(String(err.message||err))+'</span>';
+    if(String(err).indexOf("401")>=0){ const p=document.createElement("div"); refs.ans.appendChild(p); xpKeyPrompt(p, ()=>xpDrive(refs)); }
+  }
+}
+function runExplainAsk(mode, question){
+  const g=POP_GROUND; if(!g) return;
+  if(mode==="ask" && !question) return;
+  hidePop(); xpOpen(); $("#askBody").innerHTML="";
+  $("#askTitle").textContent = mode==="explain" ? "✦ Explain selection" : "✦ Ask about selection";
+  askConvo=[{ role:"user", content:[ ...g.docs, {type:"text", text:xpUserTurn(mode, question, g.selText)} ] }];
+  xpDrive(xpAppendTurn(mode==="explain" ? "Explain this selection" : question));
+}
+function xpFollow(){
+  const q=$("#askFollow").value.trim(); if(!q || !askConvo.length) return;
+  $("#askFollow").value="";
+  askConvo.push({ role:"user", content:[{type:"text", text:q}] });
+  xpDrive(xpAppendTurn(q));
+}
+function xpKeyStatus(){
+  xpOpen(); $("#askBody").innerHTML=""; $("#askTitle").textContent="✦ API key";
+  const has=!!xpGetKey();
+  const d=document.createElement("div");
+  d.innerHTML='<div class="ask-note">'+(has?"A key is set (stored in this browser).":"No key set.")+' Keys live only in localStorage and are sent directly to api.anthropic.com.</div>'+
+    '<div class="ask-key-row"><input id="askKeyInput" type="password" placeholder="sk-ant-..." /><button class="xp-btn primary" id="askKeySave">Save</button>'+(has?'<button class="xp-btn" id="askKeyClear">Clear</button>':'')+'</div>';
+  $("#askBody").appendChild(d);
+  $("#askKeySave").onclick=()=>{ const v=$("#askKeyInput").value.trim(); if(v){ xpSetKey(v); $("#askBody").innerHTML='<div class="ask-note">Key saved. Highlight code and press Explain or ask a question.</div>'; } };
+  const cl=$("#askKeyClear"); if(cl) cl.onclick=()=>{ xpClearKey(); $("#askBody").innerHTML='<div class="ask-note">Key cleared.</div>'; };
+}
+function maybeShowPop(){
+  const g=currentGround();
+  if(!g){ hidePop(); return; }
+  POP_GROUND=g;
+  const sel=window.getSelection(); const rect=sel.getRangeAt(0).getBoundingClientRect();
+  $("#xpSel").textContent="“"+g.selText.replace(/\s+/g," ").slice(0,64)+(g.selText.length>64?"…":"")+"”";
+  $("#xpAsk").value="";
+  const pop=$("#xpPop"); pop.classList.add("show");
+  const pw=pop.offsetWidth, ph=pop.offsetHeight;
+  let left=rect.left, top=rect.bottom+6;
+  if(left+pw>window.innerWidth-8) left=window.innerWidth-8-pw;
+  if(left<8) left=8;
+  if(top+ph>window.innerHeight-8) top=Math.max(8, rect.top-6-ph);
+  pop.style.left=left+"px"; pop.style.top=top+"px";
+}
+function hidePop(){ $("#xpPop").classList.remove("show"); }
+
+$("#xpExplain").onclick=()=>runExplainAsk("explain");
+$("#xpSend").onclick=()=>runExplainAsk("ask", $("#xpAsk").value.trim());
+$("#xpAsk").addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); runExplainAsk("ask", $("#xpAsk").value.trim()); } });
+$("#askClose").onclick=xpClose; $("#askBackdrop").onclick=xpClose;
+$("#askKeyBtn").onclick=xpKeyStatus;
+$("#askFollowBtn").onclick=xpFollow;
+$("#askFollow").addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); xpFollow(); } });
+document.addEventListener("mouseup", e=>{ if(e.target.closest && e.target.closest("#xpPop")) return; setTimeout(maybeShowPop, 0); });
+document.addEventListener("mousedown", e=>{ if(e.target.closest && e.target.closest("#xpPop")) return; hidePop(); });
+window.addEventListener("scroll", hidePop, true);
 
 render();
 </script>
