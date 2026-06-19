@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PaperSkin · BeforeTakeDamage / damage-event Trace (Debugger)</title>
+<style>
+  :root{
+    --bg:#1e1e1e; --bg2:#252526; --bg3:#2d2d30; --panel:#1e1e1e;
+    --border:#3c3c3c; --text:#d4d4d4; --dim:#858585; --accent:#569cd6;
+    --kw:#c586c0; --str:#ce9178; --num:#b5cea8; --type:#4ec9b0; --fn:#dcdcaa;
+    --comment:#6a9955; --yellow:#ffd166; --green:#6a9955; --red:#f48771;
+    --cyan:#4ec9b0; --purple:#c586c0; --linehl:#2a2d2e; --activeln:#3a3d2a;
+    --bp:#e51400; --hp:#f48771;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;}
+  body{
+    background:var(--bg); color:var(--text); font-family:"Segoe UI",system-ui,sans-serif;
+    font-size:13px; display:flex; flex-direction:column; height:100vh; overflow:hidden;
+  }
+  code,pre,.mono{font-family:"Cascadia Code","Fira Code",Consolas,"SF Mono",monospace;}
+
+  /* ---- Title bar ---- */
+  header{
+    background:linear-gradient(180deg,#2d2d30,#252526); border-bottom:1px solid var(--border);
+    padding:8px 14px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  }
+  header h1{font-size:14px;margin:0;font-weight:600;letter-spacing:.2px;}
+  header h1 .s{color:var(--cyan)} header h1 .p{color:var(--yellow)}
+  .scenario{display:flex;gap:6px;flex-wrap:wrap;}
+  .chip{background:var(--bg3);border:1px solid var(--border);border-radius:10px;
+    padding:1px 8px;font-size:11px;color:var(--dim);}
+  .chip b{color:var(--text);font-weight:600;}
+
+  /* ---- Toolbar ---- */
+  .toolbar{background:var(--bg2);border-bottom:1px solid var(--border);
+    padding:5px 12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .btn{background:var(--bg3);color:var(--text);border:1px solid var(--border);
+    border-radius:4px;padding:4px 10px;cursor:pointer;font-size:12px;display:flex;
+    align-items:center;gap:6px;user-select:none;}
+  .btn:hover{background:#37373d;border-color:#4c4c4c;}
+  .btn:disabled{opacity:.4;cursor:default;}
+  .btn .ico{font-size:13px;}
+  .btn.primary{background:#0e639c;border-color:#1177bb;color:#fff;}
+  .btn.primary:hover{background:#1177bb;}
+  .seg{display:flex;border:1px solid var(--border);border-radius:5px;overflow:hidden;}
+  .seg .tabbtn{background:var(--bg3);border:0;color:var(--dim);padding:4px 14px;cursor:pointer;font-size:12px;}
+  .seg .tabbtn.active{background:#0e639c;color:#fff;}
+  .counter{margin-left:auto;color:var(--dim);font-size:12px;}
+  .counter b{color:var(--yellow);}
+  .progress{height:3px;background:var(--bg3);border-radius:2px;width:160px;overflow:hidden;}
+  .progress>div{height:100%;background:var(--accent);transition:width .2s;}
+  .timeline{display:flex;gap:1px;width:330px;height:12px;align-items:stretch;}
+  .timeline .tick{flex:1 1 auto;border-radius:1px;opacity:.42;cursor:pointer;min-width:2px;}
+  .timeline .tick.done{opacity:.95;}
+  .timeline .tick.cur{opacity:1;outline:1px solid #fff;outline-offset:0;}
+  .timeline .tick:hover{opacity:1;}
+  .toast{position:fixed;bottom:42px;left:50%;transform:translateX(-50%) translateY(14px);
+    background:#0e639c;color:#fff;padding:6px 14px;border-radius:5px;font-size:12px;font-family:Consolas,monospace;
+    box-shadow:0 4px 16px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;z-index:2000;}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .cline .gutter{cursor:pointer;}
+  .hv.xhl{background:#264f78;color:#fff;border-radius:2px;}
+  /* expandable Variables panel */
+  #vars .dt-row{white-space:pre;line-height:1.6;padding:1px 8px 1px 4px;}
+  #vars .dt-row.obj{cursor:pointer;}
+  #vars .dt-row.obj:hover{background:#2a2d2e;}
+  #vars .dt-row.var-changed{background:#3a2f1a;box-shadow:inset 2px 0 0 var(--yellow);}
+  #vars .dt-row.var-changed .dt-val,#vars .dt-row.var-changed .dt-summary{color:var(--yellow);}
+  #vars .tw{display:inline-block;width:14px;text-align:center;color:#8a8a8a;user-select:none;}
+  #vars .dt-key{color:#9cdcfe;} #vars .dt-eq{color:#808080;} #vars .dt-type{color:#4ec9b0;opacity:.8;}
+  #vars .dt-val.s{color:#ce9178;} #vars .dt-val.n{color:#b5cea8;} #vars .dt-val.b{color:#569cd6;} #vars .dt-val.o{color:#4ec9b0;}
+  .mini-btn{background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:3px;
+    font-size:10px;padding:1px 7px;cursor:pointer;text-transform:none;letter-spacing:0;}
+  .mini-btn:hover{background:#37373d;color:var(--text);}
+
+  /* ---- Main split ---- */
+  .views{flex:1;min-height:0;position:relative;}
+  .view{position:absolute;inset:0;display:none;}
+  .view.active{display:flex;}
+
+  /* DEBUGGER VIEW grid */
+  #debugView{flex-direction:column;}
+  .dbg-top{flex:1;min-height:0;display:grid;grid-template-columns:250px 1fr 290px;}
+  .pane{border-right:1px solid var(--border);display:flex;flex-direction:column;min-height:0;overflow:hidden;}
+  .pane:last-child{border-right:0;}
+  .pane-h{background:var(--bg3);padding:5px 10px;font-size:11px;text-transform:uppercase;
+    letter-spacing:.6px;color:var(--dim);border-bottom:1px solid var(--border);
+    display:flex;justify-content:space-between;align-items:center;flex:0 0 auto;}
+  .pane-b{overflow:auto;flex:1;min-height:0;}
+
+  /* Call stack */
+  .frame{padding:6px 10px;border-bottom:1px solid #2a2a2a;font-size:12px;cursor:default;}
+  .frame.top{background:var(--activeln);border-left:3px solid var(--yellow);}
+  .frame.top::before{content:"➜ ";color:var(--yellow);}
+  .frame .fn{font-family:Consolas,monospace;color:var(--fn);}
+  .frame .fn .ty{color:var(--type);}
+  .frame .loc{display:block;color:var(--dim);font-size:11px;font-family:Consolas,monospace;margin-top:2px;}
+  .frame.fade{opacity:.55;}
+
+  /* Source editor */
+  .editor-tabs{display:flex;background:var(--bg2);border-bottom:1px solid var(--border);flex:0 0 auto;}
+  .editor-tab{padding:6px 14px;font-size:12px;background:var(--bg);border-right:1px solid var(--border);
+    color:var(--text);display:flex;gap:8px;align-items:center;}
+  .editor-tab .dot{color:var(--type);}
+  .editor-range{margin-left:auto;color:var(--dim);font-size:11px;padding:6px 12px;font-family:Consolas,monospace;}
+  .breadcrumb{background:#202020;border-bottom:1px solid var(--border);padding:4px 12px;font-size:11px;
+    color:#7aa6c2;font-family:Consolas,monospace;display:flex;gap:7px;align-items:center;flex:0 0 auto;
+    white-space:nowrap;overflow:auto;}
+  .breadcrumb .pth{color:#5f7e92;}
+  .breadcrumb .sep{color:#4a4a4a;}
+  .breadcrumb .crm{color:#9ad0ea;}
+  .breadcrumb .crm b{color:#dcdcaa;font-weight:600;}
+  .code{flex:1;overflow:auto;padding:6px 0;background:var(--bg);}
+  /* hover datatips */
+  /* files-in-session list */
+  .filerow{display:flex;justify-content:space-between;align-items:center;padding:3px 10px;cursor:pointer;
+    font-family:Consolas,monospace;font-size:11.5px;border-bottom:1px solid #232323;color:#b8c6cf;}
+  .filerow:hover{background:#2a2d2e;}
+  .filerow.cur{background:var(--activeln);color:#fff;border-left:3px solid var(--yellow);padding-left:7px;}
+  .filerow .ct{background:#333;border-radius:8px;padding:0 6px;font-size:10px;color:#9ad0ea;}
+  .hv{border-bottom:1px dotted #5c6b78;border-radius:2px;}
+  .hv:hover{background:#264f78;color:#fff;}
+  .datatip{position:fixed;z-index:1000;background:#252526;border:1px solid #4a4a4a;border-radius:5px;
+    box-shadow:0 6px 24px rgba(0,0,0,.6);font-family:Consolas,"Cascadia Code",monospace;font-size:12px;
+    color:#d4d4d4;max-width:540px;max-height:64vh;overflow:auto;padding:5px 10px 7px 4px;}
+  .dt-row{white-space:pre;line-height:1.6;}
+  .dt-row.obj{cursor:pointer;border-radius:3px;}
+  .dt-row.obj:hover{background:#2a2d2e;}
+  .dt-row .tw{display:inline-block;width:14px;text-align:center;color:#8a8a8a;user-select:none;}
+  .dt-key{color:#9cdcfe;} .dt-eq{color:#808080;} .dt-type{color:#4ec9b0;opacity:.85;}
+  .dt-summary{color:#c8c8c8;}
+  .dt-val.s{color:#ce9178;} .dt-val.n{color:#b5cea8;} .dt-val.b{color:#569cd6;} .dt-val.o{color:#4ec9b0;}
+  .cline{display:flex;font-family:Consolas,"Cascadia Code",monospace;font-size:12.5px;
+    line-height:1.55;white-space:pre;}
+  .cline .gutter{flex:0 0 54px;text-align:right;padding-right:8px;color:#5a5a5a;user-select:none;
+    position:relative;}
+  .cline .bp{position:absolute;left:8px;top:50%;transform:translateY(-50%);width:9px;height:9px;
+    border-radius:50%;background:var(--bp);}
+  .cline .txt{padding:0 14px 0 6px;flex:1;}
+  .cline.active{background:var(--activeln);}
+  .cline.active .gutter{color:var(--yellow);}
+  .cline.active .arrow{position:absolute;right:2px;color:var(--yellow);}
+  .cline.hlcall{background:#2a2d2e;}
+  /* token colors */
+  .tk{color:var(--kw)} .ts{color:var(--str)} .tn{color:var(--num)}
+  .tt{color:var(--type)} .tf{color:var(--fn)} .tc{color:var(--comment);font-style:italic}
+  .step-note{flex:0 0 auto;border-top:1px solid var(--border);background:#202a35;
+    padding:8px 12px;font-size:12px;color:#cfe3f5;line-height:1.5;}
+  .step-note b{color:var(--yellow);}
+  .step-note .ph{display:inline-block;font-size:10px;text-transform:uppercase;letter-spacing:.5px;
+    background:#0e639c;color:#fff;border-radius:8px;padding:0 7px;margin-right:8px;}
+
+  /* Variables */
+  .vargroup-h{background:#262626;padding:3px 10px;font-size:11px;color:var(--dim);
+    border-bottom:1px solid #2a2a2a;letter-spacing:.4px;}
+  .var{display:grid;grid-template-columns:1fr auto;gap:6px;padding:4px 10px;border-bottom:1px solid #232323;
+    font-family:Consolas,monospace;font-size:12px;align-items:baseline;}
+  .var .nm{color:#9cdcfe;}
+  .var .nm .ty{color:var(--type);font-size:11px;}
+  .var .vl{color:var(--num);text-align:right;}
+  .var .vl.s{color:var(--str);} .var .vl.b{color:var(--kw);} .var .vl.o{color:var(--type);}
+  .var.changed{background:#3a2f1a;animation:flash .9s ease;}
+  .var.changed .vl{color:var(--yellow);font-weight:600;}
+  @keyframes flash{0%{background:#5c4a1f}100%{background:#3a2f1a}}
+
+  /* Console */
+  .dbg-bottom{flex:0 0 232px;border-top:1px solid var(--border);display:flex;flex-direction:column;min-height:0;}
+  .console-tabs{display:flex;background:var(--bg3);flex:0 0 auto;border-bottom:1px solid var(--border);}
+  .console-tab{padding:5px 14px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;
+    color:var(--dim);cursor:pointer;border-right:1px solid var(--border);}
+  .console-tab.active{color:#fff;background:var(--bg);border-bottom:2px solid var(--accent);}
+  .console-tab .badge{background:#444;border-radius:8px;padding:0 6px;margin-left:6px;font-size:10px;}
+  .console{flex:1;overflow:auto;padding:6px 10px;font-family:Consolas,monospace;font-size:12px;background:#181818;}
+  .cl{padding:2px 0;display:flex;gap:8px;line-height:1.4;border-bottom:1px solid #202020;}
+  .cl .tag{flex:0 0 auto;font-size:10px;border-radius:3px;padding:0 5px;height:16px;line-height:16px;font-weight:600;}
+  .cl.event .tag{background:#1b3a4b;color:#4ec9b0;}
+  .cl.diag .tag{background:#3a2b4b;color:#c586c0;}
+  .cl.log .tag{background:#2b3a2b;color:#9ccc9c;}
+  .cl.hp .tag{background:#4b2222;color:#f48771;}
+  .cl .body{flex:1;color:#cfcfcf;white-space:pre-wrap;}
+  .cl .k{color:#9cdcfe;} .cl .v{color:#b5cea8;} .cl .vs{color:#ce9178;}
+  .cl.fresh{animation:freshrow 1s ease;}
+  @keyframes freshrow{0%{background:#2a2a14}100%{background:transparent}}
+  .console-empty{color:#555;padding:12px;font-style:italic;}
+
+  /* ---- GRAPH VIEW ---- */
+  #graphView{overflow:auto;background:radial-gradient(circle at 30% 0%,#232830,#1a1a1a);}
+  .graph-wrap{padding:30px 40px;min-width:760px;position:relative;}
+  .graph-legend{position:sticky;top:0;display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px;
+    background:rgba(20,20,20,.7);padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:11px;z-index:5;}
+  .graph-legend span{display:flex;align-items:center;gap:6px;color:var(--dim);}
+  .lg-box{width:14px;height:10px;border-radius:2px;display:inline-block;}
+  .gcols{display:flex;gap:60px;}
+  .spine{display:flex;flex-direction:column;gap:0;align-items:flex-start;flex:0 0 auto;}
+  .gnode{position:relative;border:1px solid var(--border);background:var(--bg2);border-radius:7px;
+    padding:8px 12px;width:300px;cursor:pointer;transition:.15s;z-index:2;}
+  .gnode:hover{border-color:var(--accent);}
+  .gnode .ph{font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--dim);}
+  .gnode .ttl{font-size:12px;color:var(--text);font-weight:600;margin-top:1px;}
+  .gnode .sub{font-family:Consolas,monospace;font-size:11px;color:var(--cyan);margin-top:3px;}
+  .gnode.done{opacity:.85;border-color:#3a5a3a;}
+  .gnode.done::after{content:"✓";position:absolute;top:6px;right:9px;color:var(--green);font-size:12px;}
+  .gnode.current{border-color:var(--yellow);box-shadow:0 0 0 2px rgba(255,209,102,.35);background:#2c2a1f;}
+  .gnode.current .ttl{color:var(--yellow);}
+  .gnode.bug{border-color:#e51400;background:#2a1717;}
+  .gnode.bug .ph{color:#ff6b5e;font-weight:700;}
+  .gnode.bug .ttl{color:#ff8a7e;}
+  .gnode.bug.current{box-shadow:0 0 0 2px rgba(229,20,0,.5);}
+  .step-note.bug{background:#2a1414;border-top-color:#e51400;color:#f6cfca;}
+  .step-note.bug b{color:#ff8a7e;}
+  .connector{width:2px;height:22px;background:var(--border);margin-left:150px;}
+  .connector.done{background:#3a5a3a;}
+  .branch{display:flex;align-items:center;gap:8px;margin:2px 0 2px 0;padding-left:312px;
+    margin-top:-46px;margin-bottom:18px;height:34px;}
+  .branch .barrow{color:#6a4a4a;font-family:monospace;}
+  .bnode{border:1px dashed #6a4a4a;border-radius:6px;padding:4px 10px;background:#241c1c;width:210px;}
+  .bnode .ttl{font-size:11px;color:#f4a08c;font-weight:600;}
+  .bnode .sub{font-family:Consolas,monospace;font-size:10px;color:#b07a6a;margin-top:2px;}
+  .ghint{position:fixed;bottom:14px;right:18px;background:var(--bg2);border:1px solid var(--border);
+    border-radius:6px;padding:6px 10px;font-size:11px;color:var(--dim);}
+
+  /* footer keys */
+  .keys{background:var(--bg2);border-top:1px solid var(--border);padding:3px 12px;font-size:11px;color:var(--dim);
+    display:flex;gap:16px;flex-wrap:wrap;flex:0 0 auto;}
+  .keys kbd{background:var(--bg3);border:1px solid var(--border);border-bottom-width:2px;border-radius:3px;
+    padding:0 5px;font-family:Consolas,monospace;color:var(--text);}
+  .scrollbar::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar{width:11px;height:11px}
+  ::-webkit-scrollbar-track{background:#1e1e1e}
+  ::-webkit-scrollbar-thumb{background:#424242;border-radius:5px;border:2px solid #1e1e1e}
+  ::-webkit-scrollbar-thumb:hover{background:#555}
+  /* go-to-definition links */
+  .tf.lnk{cursor:alias;text-decoration:underline dotted rgba(220,220,170,.45);text-underline-offset:2px;}
+  .tf.lnk:hover{text-decoration:underline solid #dcdcaa;background:#2d2d22;}
+  /* newcomer context box */
+  .ctxbox{flex:0 0 auto;border-bottom:1px solid var(--border);background:#16241c;}
+  .ctxhead{padding:5px 12px;font-size:11px;color:#8fd6a8;cursor:pointer;display:flex;align-items:center;gap:8px;
+    text-transform:uppercase;letter-spacing:.5px;user-select:none;}
+  .ctxhead:hover{background:#1b2c22;}
+  .ctxhead .ctxtog{margin-left:auto;color:#6fae86;}
+  .ctxbody{padding:8px 13px 10px;font-size:12px;line-height:1.55;color:#cfe8d8;max-height:32vh;overflow:auto;border-top:1px solid #244;}
+  .ctxbody p{margin:0 0 7px;} .ctxbody p:last-child{margin-bottom:0;}
+  .ctxbody b{color:#bff0d0;} .ctxbody code{background:#0e1a13;color:#9be0b4;padding:0 4px;border-radius:3px;font-family:Consolas,monospace;}
+  .ctxbox.collapsed .ctxbody{display:none;}
+  /* peek definition modal */
+  .peek-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1500;display:none;}
+  .peek-backdrop.show{display:block;}
+  .peek{position:fixed;z-index:1600;left:50%;top:50%;transform:translate(-50%,-50%);display:none;
+    width:min(900px,86vw);max-height:84vh;background:#1e1e1e;border:1px solid #4a4a4a;border-radius:7px;
+    box-shadow:0 12px 48px rgba(0,0,0,.6);flex-direction:column;overflow:hidden;}
+  .peek.show{display:flex;}
+  .peek-bar{display:flex;align-items:center;gap:10px;background:#2d2d30;border-bottom:1px solid var(--border);padding:6px 10px;}
+  .peek-title{font-family:Consolas,monospace;font-size:12px;color:#9ad0ea;}
+  .peek-title b{color:#dcdcaa;}
+  .peek-body{overflow:auto;background:var(--bg);}
+  .peek-file{position:sticky;top:0;background:#202020;border-bottom:1px solid var(--border);padding:3px 12px;
+    font-family:Consolas,monospace;font-size:11px;color:#7aa6c2;z-index:1;}
+  .peek-file b{color:#dcdcaa;}
+  .peek-multi{color:#c77;padding:4px 12px;font-size:11px;font-style:italic;border-bottom:1px solid var(--border);}
+  /* Explain / Ask feature */
+  .xp-pop{position:fixed;z-index:1700;display:none;flex-direction:column;gap:6px;width:330px;
+    background:#252526;border:1px solid #4a4a4a;border-radius:7px;box-shadow:0 6px 22px rgba(0,0,0,.6);padding:8px;}
+  .xp-pop.show{display:flex;}
+  .xp-sel{font-size:10px;color:var(--dim);font-family:Consolas,monospace;max-height:30px;overflow:hidden;
+    white-space:nowrap;text-overflow:ellipsis;}
+  .xp-row{display:flex;gap:6px;align-items:center;}
+  .xp-btn{background:var(--bg3);color:var(--text);border:1px solid var(--border);border-radius:5px;
+    padding:5px 10px;cursor:pointer;font-size:12px;white-space:nowrap;}
+  .xp-btn:hover{background:#37373d;}
+  .xp-btn.primary{background:#0e639c;border-color:#1177bb;color:#fff;}
+  .xp-btn.primary:hover{background:#1177bb;}
+  .xp-row input{flex:1;background:#1e1e1e;border:1px solid var(--border);border-radius:5px;color:var(--text);
+    padding:5px 8px;font-size:12px;min-width:0;}
+  .ask-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1750;display:none;}
+  .ask-backdrop.show{display:block;}
+  .ask{position:fixed;z-index:1800;right:18px;top:56px;bottom:40px;width:min(560px,93vw);display:none;
+    flex-direction:column;background:#1e1e1e;border:1px solid #4a4a4a;border-radius:8px;
+    box-shadow:0 14px 50px rgba(0,0,0,.6);overflow:hidden;}
+  .ask.show{display:flex;}
+  .ask-bar{display:flex;align-items:center;gap:8px;background:#2d2d30;border-bottom:1px solid var(--border);padding:7px 10px;}
+  .ask-bar .ttl{font-size:13px;font-weight:600;color:#cfe3f5;flex:1;}
+  .ask-body{flex:1;overflow:auto;padding:12px 14px;font-size:13px;line-height:1.6;color:#d4d4d4;}
+  .ask-turn{margin-bottom:14px;}
+  .ask-q{background:#202a35;border-left:3px solid var(--accent);padding:6px 10px;border-radius:4px;margin:0 0 8px;
+    color:#cfe3f5;font-size:12px;white-space:pre-wrap;}
+  .ask-ans{white-space:pre-wrap;}
+  .ask-ans sup{color:#4ec9b0;cursor:default;font-weight:700;font-size:10px;padding:0 1px;}
+  .ask-cites{margin-top:10px;border-top:1px dashed var(--border);padding-top:7px;}
+  .ask-cites-h{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--dim);margin-bottom:4px;}
+  .ask-cite{font-size:11px;font-family:Consolas,monospace;padding:2px 0;display:flex;gap:8px;align-items:baseline;}
+  .ask-cite .n{color:#4ec9b0;flex:0 0 auto;}
+  .ask-cite .loc{color:#9ad0ea;flex:0 0 auto;}
+  .ask-cite .q{color:#ce9178;}
+  .ask-unverified{margin-top:8px;color:#f4c06a;font-size:11px;}
+  .ask-foot{border-top:1px solid var(--border);padding:8px 10px;display:flex;gap:6px;background:#252526;flex:0 0 auto;}
+  .ask-foot input{flex:1;background:#1e1e1e;border:1px solid var(--border);border-radius:5px;color:var(--text);
+    padding:7px 9px;font-size:12px;}
+  .ask-note{color:var(--dim);font-size:11px;line-height:1.5;}
+  .ask-file-hint{margin-top:8px;padding:8px;border:1px solid #5a4a1a;background:#26210f;border-radius:4px;color:#d6c98a;}
+  .ask-file-hint code{background:#1a1a1a;padding:1px 4px;border-radius:3px;color:#ce9178;}
+  .ask-cmd{margin:6px 0;padding:6px 8px;background:#1a1a1a;border-radius:3px;color:#9cdcfe;font-size:11px;white-space:pre-wrap;word-break:break-all;user-select:all;}
+  .ask-err{color:#f48771;font-size:12px;}
+  .ask-key-row{display:flex;gap:6px;margin:8px 0;}
+  .ask-key-row input{flex:1;background:#1e1e1e;border:1px solid var(--border);border-radius:5px;color:var(--text);padding:6px 8px;font-size:12px;}
+  .ask-stream-cursor::after{content:"▋";color:#4ec9b0;animation:blink 1s steps(2) infinite;}
+  @keyframes blink{0%{opacity:1}50%{opacity:0}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span class="p">PaperSkinEffect</span> · <span class="s">BeforeTakeDamage</span> &amp; the damage-taking events</h1>
+  <div class="scenario" id="scenario"></div>
+</header>
+
+<div class="toolbar">
+  <div class="seg">
+    <button class="tabbtn active" data-view="debugView">🐞 Debugger</button>
+    <button class="tabbtn" data-view="graphView">🕸 Flow Graph</button>
+  </div>
+  <span style="width:1px;height:20px;background:var(--border);margin:0 4px;"></span>
+  <button class="btn" id="btnRestart" title="Restart (R)"><span class="ico">⟲</span>Restart</button>
+  <button class="btn" id="btnBack" title="Step Back (←)"><span class="ico">◀</span>Step Back</button>
+  <button class="btn primary" id="btnStep" title="Step Into (→ / F11)"><span class="ico">▶</span>Step</button>
+  <button class="btn" id="btnRun" title="Continue to end (C)"><span class="ico">⏩</span>Continue</button>
+  <div class="counter">
+    <span>Step <b id="stepNum">1</b> / <span id="stepTot">20</span></span>
+    <div class="timeline" id="timeline" title="click a tick to jump"></div>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+
+<div class="views">
+  <!-- ================= DEBUGGER VIEW ================= -->
+  <div class="view active" id="debugView">
+    <div class="dbg-top">
+      <!-- Call stack -->
+      <div class="pane">
+        <div class="pane-h">Call Stack</div>
+        <div class="pane-b" id="callstack" style="flex:1 1 58%"></div>
+        <div class="pane-h" style="border-top:1px solid var(--border)">Files in session <span id="fileCount" style="color:var(--num)"></span></div>
+        <div class="pane-b" id="filelist" style="flex:1 1 42%"></div>
+      </div>
+      <!-- Source -->
+      <div class="pane" style="border-left:1px solid var(--border)">
+        <div class="editor-tabs">
+          <div class="editor-tab"><span class="dot">◆</span><span id="fileTab">CombatSystem.cs</span></div>
+          <div class="editor-range" id="editorRange"></div>
+        </div>
+        <div class="breadcrumb" id="breadcrumb"></div>
+        <div class="ctxbox" id="ctxbox">
+          <div class="ctxhead" id="ctxhead">🧭 New here? — context for this step<span class="ctxtog" id="ctxtog">▾</span></div>
+          <div class="ctxbody" id="ctxbody"></div>
+        </div>
+        <div class="code" id="code"></div>
+        <div class="step-note" id="note"></div>
+      </div>
+      <!-- Variables -->
+      <div class="pane" style="border-left:1px solid var(--border)">
+        <div class="pane-h">Variables <span id="causeId" style="color:var(--purple);text-transform:none;letter-spacing:0;"></span>
+          <button id="varToggle" class="mini-btn" style="margin-left:auto" title="expand / collapse all">⊞ expand all</button></div>
+        <div class="pane-b" id="vars"></div>
+      </div>
+    </div>
+    <!-- Console -->
+    <div class="dbg-bottom">
+      <div class="console-tabs">
+        <div class="console-tab active" data-con="all">All <span class="badge" id="b-all">0</span></div>
+        <div class="console-tab" data-con="diag">Diag Stream <span class="badge" id="b-diag">0</span></div>
+        <div class="console-tab" data-con="event">GameEvents <span class="badge" id="b-event">0</span></div>
+        <div class="console-tab" data-con="log">Message Log <span class="badge" id="b-log">0</span></div>
+      </div>
+      <div class="console" id="console"></div>
+    </div>
+  </div>
+
+  <!-- ================= GRAPH VIEW ================= -->
+  <div class="view" id="graphView">
+    <div class="graph-wrap">
+      <div class="graph-legend">
+        <span><i class="lg-box" style="background:var(--bg2);border:1px solid var(--border)"></i> pending</span>
+        <span><i class="lg-box" style="background:#2c2a1f;border:1px solid var(--yellow)"></i> current</span>
+        <span><i class="lg-box" style="background:var(--bg2);border:1px solid #3a5a3a"></i> executed</span>
+        <span><i class="lg-box" style="background:#241c1c;border:1px dashed #6a4a4a"></i> branch / early-exit (not taken in this run)</span>
+        <span style="color:var(--accent)">click any node → jump the debugger there</span>
+      </div>
+      <div id="spine" class="spine"></div>
+    </div>
+    <div class="ghint">Real outcome: <b style="color:#ff8a7e">HIT → 3 dmg (HP 500→497) → 🔴 LifestealPart re-entrancy deals max HP → player DIES · HandleDeath ×2 · hit log misreports 500</b></div>
+  </div>
+</div>
+
+<div class="keys">
+  <span><kbd>→</kbd> / <kbd>F11</kbd> Step Into</span>
+  <span><kbd>←</kbd> Step Back</span>
+  <span><kbd>C</kbd> Continue</span>
+  <span><kbd>R</kbd> Restart</span>
+  <span><kbd>G</kbd> toggle Graph/Debugger</span>
+  <span><kbd>Home</kbd>/<kbd>End</kbd> first/last</span>
+  <span style="color:#7aa6c2">💡 Variables panel & hover popups expand nested objects/lists (⊞ expand all) · click a line number or stack frame to copy its breakpoint · click a timeline tick to jump</span>
+  <span style="margin-left:auto;color:#555">⌘/Ctrl-click a method to peek its full definition. Verbatim source from branch main (PaperSkin.cs) + worktree. Walks how an OnBeforeTakeDamage mutation reaches HP — and why PaperSkin's logs misled.</span>
+</div>
+
+<div class="peek-backdrop" id="peekBackdrop"></div>
+<div class="peek" id="peek">
+  <div class="peek-bar">
+    <button id="peekBack" class="mini-btn">◀ back</button>
+    <span class="peek-title" id="peekTitle"></span>
+    <button id="peekClose" class="mini-btn" style="margin-left:auto">✕ close (Esc)</button>
+  </div>
+  <div class="peek-body" id="peekBody"></div>
+</div>
+
+<!-- Explain / Ask -->
+<div class="xp-pop" id="xpPop">
+  <div class="xp-sel" id="xpSel"></div>
+  <div class="xp-row">
+    <button class="xp-btn primary" id="xpExplain">✦ Explain</button>
+    <input id="xpAsk" placeholder="Ask about this code…" autocomplete="off" />
+    <button class="xp-btn" id="xpSend">Ask</button>
+  </div>
+</div>
+<div class="ask-backdrop" id="askBackdrop"></div>
+<div class="ask" id="askPanel">
+  <div class="ask-bar">
+    <span class="ttl" id="askTitle">✦ Explain / Ask</span>
+    <button class="mini-btn" id="askKeyBtn" title="set / clear API key">⚙ key</button>
+    <button class="mini-btn" id="askClose">✕</button>
+  </div>
+  <div class="ask-body" id="askBody"></div>
+  <div class="ask-foot">
+    <input id="askFollow" placeholder="Ask a follow-up about this selection…" autocomplete="off" />
+    <button class="xp-btn primary" id="askFollowBtn">Send</button>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* =====================================================================
+   PaperSkin / BeforeTakeDamage damage-event trace data.
+   Every file/line/method/field below was extracted VERBATIM from the
+   live Caves of Ooo source (PaperSkin.cs from origin/main; CombatSystem,
+   StatusEffectsPart, Effect, Entity, DamageFlashPart, Stoneskin from the
+   worktree — CombatSystem is byte-identical to main).
+   Scenario: a target (HP 20) with PaperSkinEffect (Increase=5) active
+   takes a physical Damage{Amount=3, [Melee,Cutting]} hit. PaperSkin's
+   OnBeforeTakeDamage mutates the shared Damage object 3 -> 8 (this WORKS);
+   its two MessageLog lines misreport it (logged after the +=, plus a
+   phantom 'to 13'), which is the real (cosmetic) bug. HP 20 -> 12,
+   floating number 8 — both the correctly-mutated value.
+   ===================================================================== */
+
+const SCENARIO = [{"l":"target","v":"creature","t":"Entity"},{"l":"HP","v":"20"},{"l":"effect","v":"PaperSkin +5 🐞"},{"l":"·","v":"vs"},{"l":"incoming","v":"Damage 3"},{"l":"attrs","v":"Melee Cutting"},{"l":"contrast","v":"Stoneskin −2"}];
+
+const KW = ["public","private","protected","internal","static","void","bool","int","string","return","new","if","else","using","var","for","while","null","true","false","override","virtual","abstract","case","switch","this","break","continue","is"];
+const TYPES = ["Entity","Zone","GameEvent","Damage","Stat","Effect","StatusEffectsPart","PaperSkinEffect","StoneskinEffect","DamageFlashPart","CombatSystem","MessageLog","AsciiFxBus","Part","List","Dictionary","Math","DamageAttributeFlags","Action"];
+
+const STEPS = [{"file":"CombatSystem.cs","path":"Assets/Scripts/Gameplay/Combat/CombatSystem.cs","crumb":"CavesOfOoo.Core › CombatSystem › ApplyDamage()","node":"n_entry","bug":false,"start":728,"ln":744,"bps":[738,744,758],"code":"//   ApplyDamage_OnAlreadyDeadTarget_DoesNotReFireDeath\n//\n// The double-HandleDeath consequences are concrete and\n// exploitable: duplicate XP award, duplicate equipment +\n// inventory drops (item duplication), duplicate Died event\n// → potential double corpse spawn, duplicate \"killed\"\n// message, duplicate witness broadcast. Worse than M6\n// CR-01 because it isn't gated on co-location — any\n// second damage call on a dying target trips it.\nvar hpStat = target.GetStat(\"Hitpoints\");\nif (hpStat == null || hpStat.BaseValue <= 0) return;\n// Capture pre-decrement HP so the floating number we emit\n// post-decrement uses the real player-visible delta (clamped\n// at hpBefore so a 10-damage attack on a 3-HP target shows \"3\"\n// rather than \"10\"). This also serves DamageDealt-event\n// listeners that may need pre-decrement HP.\nint hpBefore = hpStat.BaseValue;\n\n// Phase F: BeforeTakeDamage event — fires BEFORE resistance.\n// Listeners can mutate damage (e.g., add/remove attributes,\n// reduce Amount) or VETO entirely by returning false from\n// their HandleEvent. Mirrors Qud's BeforeApplyDamageEvent\n// (Physics.cs:3418), which lets Part-side listeners modify\n// or cancel incoming damage.\n//\n// Vetoed damage fires DamageFullyResisted (so observers know\n// an attack was attempted) but does NOT fire TakeDamage and\n// does not decrement HP. Mutations to damage.Amount propagate\n// — the post-event re-read covers both this hook and the\n// TakeDamage event below.\nint amountBeforeMutation = damage.Amount;\nvar beforeTakeDamage = GameEvent.New(\"BeforeTakeDamage\");\nbeforeTakeDamage.SetParameter(\"Target\", (object)target);\nbeforeTakeDamage.SetParameter(\"Source\", (object)source);\nbeforeTakeDamage.SetParameter(\"Damage\", (object)damage);\nbool damageProceeded = target.FireEventAndRelease(beforeTakeDamage);\n\n// PreDamageMutation diag — surfaces the net delta from\n// BeforeTakeDamage event listeners (Stoneskin, etc.).\n// Fires whenever the Amount changed during the event","stack":[{"ty":"CombatSystem","fn":"ApplyDamage(target, damage, source, zone)","loc":"CombatSystem.cs:715"},{"ty":"CombatSystem","fn":"PerformSingleAttack(...)","loc":"CombatSystem.cs:386","fade":true}],"vars":[{"n":"target","ty":"Entity","v":"\"creature\" #7","cls":"o"},{"n":"damage.Amount","ty":"int","v":"3","ch":true},{"n":"hpStat.BaseValue","ty":"int","v":"20"},{"n":"hpBefore","ty":"int","v":"20","ch":true},{"n":"amountBeforeMutation","ty":"int","v":"3","ch":true}],"out":[],"note":"<span class=\"ph\">damage</span><b>ApplyDamage</b> is the single funnel every hit flows through. It first runs the <b>re-entrancy guard</b> (737-738: bail if <code>BaseValue &le; 0</code>), captures <code>hpBefore = 20</code> (744), then snapshots <b><code>amountBeforeMutation = damage.Amount</code></b> (758) — the value <i>before</i> any effect touches it. Hold onto this snapshot: it's what the <code>PreDamageMutation</code> diag later compares against to prove a mutation happened.","hover":{"target":{"k":"obj","t":"Entity","s":"creature #7  (the target)","c":[{"key":"ID","k":"sca","t":"int","v":"7"},{"key":"BlueprintName","k":"sca","t":"string","v":"\"Creature\""},{"key":"DisplayName","k":"sca","t":"string","v":"\"creature\""},{"key":"Statistics","k":"obj","t":"Dictionary<string,Stat>","s":"Count = 4","c":[{"key":"Hitpoints","k":"obj","t":"Stat","s":"Value = 20","c":[{"key":"BaseValue","k":"sca","t":"int","v":"20"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"20"}]},{"key":"Strength","k":"obj","t":"Stat","s":"Value = 16","c":[{"key":"BaseValue","k":"sca","t":"int","v":"16"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"16"}]},{"key":"Agility","k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"12"}]}]},{"key":"Parts","k":"obj","t":"List<Part>","s":"Count = 6","c":[{"key":"[0]","k":"sca","t":"RenderPart","v":"glyph \"c\""},{"key":"[1]","k":"sca","t":"Body","v":"6 parts"},{"key":"[2]","k":"sca","t":"StatsPart","v":"4 stats"},{"key":"[3]","k":"sca","t":"DamageFlashPart","v":"_flashFramesRemaining=0"},{"key":"[4]","k":"obj","t":"StatusEffectsPart","s":"_effects.Count = 1","c":[{"key":"_effects","k":"obj","t":"List<Effect>","s":"Count = 1","c":[{"key":"[0]","k":"obj","t":"PaperSkinEffect","s":"paperskin  (Increase=5)  🐞","c":[{"key":"DisplayName","k":"sca","t":"string","v":"\"paperskin\""},{"key":"Increase","k":"sca","t":"int","v":"5"},{"key":"Duration","k":"sca","t":"int","v":"5"}]}]}]},{"key":"[5]","k":"sca","t":"…","v":"…"}]}]},"hpBefore":{"k":"sca","t":"int","v":"20"},"amountBeforeMutation":{"k":"sca","t":"int","v":"3"},"damage":{"k":"obj","t":"Damage","s":"Amount = 3   (ref #D1)","c":[{"key":"_Amount","k":"sca","t":"int","v":"3"},{"key":"Amount","k":"sca","t":"int","v":"3"},{"key":"Attributes","k":"obj","t":"List<string>","s":"Count = 2","c":[{"key":"[0]","k":"sca","t":"string","v":"\"Melee\""},{"key":"[1]","k":"sca","t":"string","v":"\"Cutting\""}]},{"key":"AttributeFlags","k":"sca","t":"DamageAttributeFlags","v":"None"}]},"hpStat":{"k":"obj","t":"Stat","s":"Value = 20","c":[{"key":"BaseValue","k":"sca","t":"int","v":"20"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"20"}]},"beforeTakeDamage":{"k":"obj","t":"GameEvent","s":"ID = \"BeforeTakeDamage\"","c":[{"key":"ID","k":"sca","t":"string","v":"\"BeforeTakeDamage\""},{"key":"Parameters","k":"obj","t":"Dictionary<string,object>","s":"Count = 3","c":[{"key":"Target","k":"sca","t":"Entity","v":"creature #7"},{"key":"Source","k":"sca","t":"Entity","v":"attacker"},{"key":"Damage","k":"sca","t":"Damage","v":"Amount = 3  (ref #D1)"}]},{"key":"IntParameters","k":"obj","t":"Dictionary<string,int>","s":"Count = 0","c":[]}]}},"ctx":"<p><b>What you're looking at.</b> <code>ApplyDamage</code> in <code>CombatSystem</code> — the single function every source of damage in the game flows through (melee, traps, poison, effect ticks). If anything loses HP, it passes here.</p><p><b>Why we start here.</b> Your question is “does PaperSkin actually change the damage?” The honest way to answer is to watch the one <code>Damage</code> object travel through this function and see exactly where it is (and isn't) changed.</p><p><b>In this code.</b> Two things to bank for later: line 738 bails out early if the target is already dead (a re-entrancy guard), and line 758 saves <code>amountBeforeMutation = damage.Amount</code> — a snapshot of the damage <i>before</i> any effect can touch it. That snapshot is the yardstick the engine later uses to prove a mutation happened.</p><p><b>Terms.</b> A <b>Damage</b> object is a small bag holding an integer <code>Amount</code> plus descriptive tags (Melee, Cutting…). It's a <b>reference type</b>, meaning everyone who holds it holds the <i>same</i> object — remember that; it's the crux of the whole bug.</p>"},{"file":"CombatSystem.cs","path":"Assets/Scripts/Gameplay/Combat/CombatSystem.cs","crumb":"CavesOfOoo.Core › CombatSystem › ApplyDamage()","node":"n_fire_btd","bug":false,"start":750,"ln":763,"bps":[762,763],"code":"// (Physics.cs:3418), which lets Part-side listeners modify\n// or cancel incoming damage.\n//\n// Vetoed damage fires DamageFullyResisted (so observers know\n// an attack was attempted) but does NOT fire TakeDamage and\n// does not decrement HP. Mutations to damage.Amount propagate\n// — the post-event re-read covers both this hook and the\n// TakeDamage event below.\nint amountBeforeMutation = damage.Amount;\nvar beforeTakeDamage = GameEvent.New(\"BeforeTakeDamage\");\nbeforeTakeDamage.SetParameter(\"Target\", (object)target);\nbeforeTakeDamage.SetParameter(\"Source\", (object)source);\nbeforeTakeDamage.SetParameter(\"Damage\", (object)damage);\nbool damageProceeded = target.FireEventAndRelease(beforeTakeDamage);\n\n// PreDamageMutation diag — surfaces the net delta from\n// BeforeTakeDamage event listeners (Stoneskin, etc.).\n// Fires whenever the Amount changed during the event\n// OR the event was vetoed. Lets observability answer\n// \"did Stoneskin reduce this hit by N?\" without grep.\nif (Diag.IsChannelEnabled(\"damage\") &&\n    (amountBeforeMutation != damage.Amount || !damageProceeded))\n{","stack":[{"ty":"CombatSystem","fn":"ApplyDamage(...)","loc":"CombatSystem.cs:763"}],"vars":[{"n":"damage","ty":"Damage","v":"Amount=3  (ref #D1)","cls":"o"},{"n":"beforeTakeDamage","ty":"GameEvent","v":"\"BeforeTakeDamage\"","cls":"o","ch":true},{"n":"damageProceeded","ty":"bool","v":"(pending fire…)","cls":"b"}],"out":[{"type":"event","name":"BeforeTakeDamage","on":"creature (the TARGET)"}],"note":"<span class=\"ph\">damage</span>The <b>first damage-taking event</b>. A <code>\"BeforeTakeDamage\"</code> GameEvent is built and the <i>same</i> <code>Damage</code> reference is stored under <code>SetParameter(\"Damage\", damage)</code> (762) — no copy, so any listener that writes <code>damage.Amount</code> writes the object this method keeps using. <code>FireEventAndRelease</code> (763) dispatches it to the target's Parts and returns whether it was vetoed. <i>Branch: a listener returning false ⇒ <code>damageProceeded=false</code> ⇒ DamageFullyResisted, no HP loss (786-802).</i>","hover":{"damage":{"k":"obj","t":"Damage","s":"Amount = 3   (ref #D1)","c":[{"key":"_Amount","k":"sca","t":"int","v":"3"},{"key":"Amount","k":"sca","t":"int","v":"3"},{"key":"Attributes","k":"obj","t":"List<string>","s":"Count = 2","c":[{"key":"[0]","k":"sca","t":"string","v":"\"Melee\""},{"key":"[1]","k":"sca","t":"string","v":"\"Cutting\""}]},{"key":"AttributeFlags","k":"sca","t":"DamageAttributeFlags","v":"None"}]},"beforeTakeDamage":{"k":"obj","t":"GameEvent","s":"ID = \"BeforeTakeDamage\"","c":[{"key":"ID","k":"sca","t":"string","v":"\"BeforeTakeDamage\""},{"key":"Parameters","k":"obj","t":"Dictionary<string,object>","s":"Count = 3","c":[{"key":"Target","k":"sca","t":"Entity","v":"creature #7"},{"key":"Source","k":"sca","t":"Entity","v":"attacker"},{"key":"Damage","k":"sca","t":"Damage","v":"Amount = 3  (ref #D1)"}]},{"key":"IntParameters","k":"obj","t":"Dictionary<string,int>","s":"Count = 0","c":[]}]},"damageProceeded":{"k":"sca","t":"bool","v":"(pending fire…)"},"target":{"k":"obj","t":"Entity","s":"creature #7  (the target)","c":[{"key":"ID","k":"sca","t":"int","v":"7"},{"key":"BlueprintName","k":"sca","t":"string","v":"\"Creature\""},{"key":"DisplayName","k":"sca","t":"string","v":"\"creature\""},{"key":"Statistics","k":"obj","t":"Dictionary<string,Stat>","s":"Count = 4","c":[{"key":"Hitpoints","k":"obj","t":"Stat","s":"Value = 20","c":[{"key":"BaseValue","k":"sca","t":"int","v":"20"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"20"}]},{"key":"Strength","k":"obj","t":"Stat","s":"Value = 16","c":[{"key":"BaseValue","k":"sca","t":"int","v":"16"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"16"}]},{"key":"Agility","k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"12"}]}]},{"key":"Parts","k":"obj","t":"List<Part>","s":"Count = 6","c":[{"key":"[0]","k":"sca","t":"RenderPart","v":"glyph \"c\""},{"key":"[1]","k":"sca","t":"Body","v":"6 parts"},{"key":"[2]","k":"sca","t":"StatsPart","v":"4 stats"},{"key":"[3]","k":"sca","t":"DamageFlashPart","v":"_flashFramesRemaining=0"},{"key":"[4]","k":"obj","t":"StatusEffectsPart","s":"_effects.Count = 1","c":[{"key":"_effects","k":"obj","t":"List<Effect>","s":"Count = 1","c":[{"key":"[0]","k":"obj","t":"PaperSkinEffect","s":"paperskin  (Increase=5)  🐞","c":[{"key":"DisplayName","k":"sca","t":"string","v":"\"paperskin\""},{"key":"Increase","k":"sca","t":"int","v":"5"},{"key":"Duration","k":"sca","t":"int","v":"5"}]}]}]},{"key":"[5]","k":"sca","t":"…","v":"…"}]}]}},"ctx":"<p><b>What you're looking at.</b> The engine firing its first damage hook, <code>\"BeforeTakeDamage\"</code>. This is the official moment where effects get to <i>change or cancel</i> incoming damage before any HP is lost.</p><p><b>When it runs.</b> Every single hit, right after the dead-target guard and before resistance/HP.</p><p><b>In this code (the key line).</b> Line 762, <code>SetParameter(\"Damage\", damage)</code>, puts the <i>same</i> Damage object into the event — not a copy. So when PaperSkin later writes <code>damage.Amount</code>, it writes the very object this function keeps using. Line 763 sends the event to the target and returns whether anyone vetoed it.</p><p><b>Terms.</b> A <b>GameEvent</b> is a labelled message. <b>Firing</b> it = delivering it to an entity's parts. A <b>veto</b> is a listener returning false to cancel the action — here it would mean “block this damage entirely.”</p>"},{"file":"Entity.cs","path":"Assets/Scripts/Gameplay/Entities/Entity.cs","crumb":"CavesOfOoo.Core › Entity › FireEvent()","node":"n_fireevent","bug":false,"start":246,"ln":259,"bps":[257,259],"code":"}\n\n// --- Event System ---\n\n/// <summary>\n/// Fire an event on this entity. All parts get a chance to handle it.\n/// Returns true if no part stopped propagation (event was not \"consumed\").\n/// Returns false if a part returned false from HandleEvent (event was consumed).\n/// </summary>\npublic bool FireEvent(GameEvent e)\n{\n    for (int i = 0; i < Parts.Count; i++)\n    {\n        if (!Parts[i].HandleEvent(e))\n            return false;\n        if (e.Handled)\n            return false;\n    }\n    return true;\n}\n\n/// <summary>\n/// Fire an event and immediately release it to the pool.\n/// Only use when the caller does NOT read event parameters after firing.\n/// </summary>\npublic bool FireEventAndRelease(GameEvent e)\n{\n    bool result = FireEvent(e);\n    e.Release();","stack":[{"ty":"Entity","fn":"FireEvent(GameEvent e)","loc":"Entity.cs:255"},{"ty":"Entity","fn":"FireEventAndRelease(GameEvent e)","loc":"Entity.cs:271","fade":true},{"ty":"CombatSystem","fn":"ApplyDamage(...) — line 763","loc":"CombatSystem.cs:763","fade":true}],"vars":[{"n":"e","ty":"GameEvent","v":"\"BeforeTakeDamage\"","cls":"o"},{"n":"Parts.Count","ty":"int","v":"6"},{"n":"i","ty":"int","v":"4 → StatusEffectsPart","ch":true}],"out":[],"note":"<span class=\"ph\">event</span>How a string-keyed event becomes behaviour: <b>FireEvent</b> walks the target's Parts in order and calls <code>HandleEvent(e)</code> on each (259), stopping if any returns false or sets <code>e.Handled</code>. The target carries a <b>StatusEffectsPart</b> (where active effects like PaperSkin live), so the loop is about to reach it. <b>FireEventAndRelease</b> (271) wraps this and returns the pooled event afterward.","hover":{"e":{"k":"obj","t":"GameEvent","s":"ID = \"BeforeTakeDamage\"","c":[{"key":"ID","k":"sca","t":"string","v":"\"BeforeTakeDamage\""},{"key":"Parameters","k":"obj","t":"Dictionary<string,object>","s":"Count = 3","c":[{"key":"Target","k":"sca","t":"Entity","v":"creature #7"},{"key":"Source","k":"sca","t":"Entity","v":"attacker"},{"key":"Damage","k":"sca","t":"Damage","v":"Amount = 3  (ref #D1)"}]},{"key":"IntParameters","k":"obj","t":"Dictionary<string,int>","s":"Count = 0","c":[]}]},"i":{"k":"sca","t":"int","v":"4 → StatusEffectsPart"}},"ctx":"<p><b>What you're looking at.</b> <code>Entity.FireEvent</code> — the plumbing that actually delivers a message to a creature's parts. Every “fires an event” you read elsewhere ends up running this loop.</p><p><b>When it runs.</b> <code>ApplyDamage</code> just called it to deliver <code>\"BeforeTakeDamage\"</code> to the target.</p><p><b>In this code.</b> It walks the entity's <code>Parts</code> list in order, calling <code>HandleEvent(e)</code> on each (259); any part can stop the chain by returning false. One of those parts is the <b>StatusEffectsPart</b>, which holds the creature's active effects — that's where PaperSkin lives, and it's next.</p><p><b>The big idea.</b> A creature here is just a <b>list of Parts</b>. It has no behaviour of its own; things happen only because an event is walked across that list and some part reacts. There is no central “damage AI” — just parts answering messages.</p>"},{"file":"StatusEffectsPart.cs","path":"Assets/Scripts/Gameplay/Effects/StatusEffectsPart.cs","crumb":"CavesOfOoo.Core › StatusEffectsPart › HandleEvent()","node":"n_sep_route","bug":false,"start":309,"ln":352,"bps":[350,352],"code":"    for (int i = 0; i < _effects.Count; i++)\n    {\n        string color = _effects[i].GetRenderColorOverride();\n        if (color != null)\n            return color;\n    }\n    return null;\n}\n\npublic override bool HandleEvent(GameEvent e)\n{\n    if (e.ID == \"BeginTakeAction\")\n        return HandleBeginTakeAction(e);\n\n    // Back-compat: some systems still drive effect start-of-turn on TakeTurn.\n    if (e.ID == \"TakeTurn\")\n    {\n        if (e.GetParameter<bool>(\"BeginTakeActionProcessed\"))\n            return true;\n        return HandleBeginTakeAction(e);\n    }\n\n    // Block movement when any active effect denies action. Defense in\n    // depth against paths that call MovementSystem.TryMove directly\n    // (e.g. InputHandler's player-move path) without first going\n    // through the TurnManager's BeginTakeAction gate.\n    //\n    // Without this, a frozen player could still press a direction\n    // key and move — the \"X is frozen and cannot act!\" log from\n    // HandleBeginTakeAction would appear on their skipped turn,\n    // but the next input frame would slip through because\n    // BeforeMove has no AllowAction consultation upstream.\n    if (e.ID == \"BeforeMove\")\n        return HandleBeforeMove(e);\n\n    if (e.ID == \"EndTurn\")\n    {\n        HandleEndTurn(e);\n        return true;\n    }\n\n    if (e.ID == \"BeforeTakeDamage\")\n    {\n        HandleBeforeTakeDamage(e);\n        return true;\n    }\n\n    if (e.ID == \"TakeDamage\")\n    {\n        HandleTakeDamage(e);\n        return true;\n    }\n\n    if (e.ID == \"Died\")\n    {","stack":[{"ty":"StatusEffectsPart","fn":"HandleEvent(GameEvent e)","loc":"StatusEffectsPart.cs:318"},{"ty":"Entity","fn":"FireEvent(...) — Parts[4]","loc":"Entity.cs:259","fade":true}],"vars":[{"n":"e.ID","ty":"string","v":"\"BeforeTakeDamage\"","cls":"s","ch":true},{"n":"_effects.Count","ty":"int","v":"1  (PaperSkin)","ch":true}],"out":[],"note":"<span class=\"ph\">event</span><b>StatusEffectsPart</b> is the Part that owns a creature's active effects (poison, stoneskin, paperskin…). Its <code>HandleEvent</code> is a router: it matches <code>e.ID</code> against the events it cares about and forwards. Line 350-352 matches <code>\"BeforeTakeDamage\"</code> and calls <b>HandleBeforeTakeDamage(e)</b>. (Right below, 356-360 routes the later <code>\"TakeDamage\"</code> to <code>HandleTakeDamage</code> — two distinct hooks, two distinct routes.)","hover":{"e":{"k":"obj","t":"GameEvent","s":"ID = \"BeforeTakeDamage\"","c":[{"key":"ID","k":"sca","t":"string","v":"\"BeforeTakeDamage\""},{"key":"Parameters","k":"obj","t":"Dictionary<string,object>","s":"Count = 3","c":[{"key":"Target","k":"sca","t":"Entity","v":"creature #7"},{"key":"Source","k":"sca","t":"Entity","v":"attacker"},{"key":"Damage","k":"sca","t":"Damage","v":"Amount = 3  (ref #D1)"}]},{"key":"IntParameters","k":"obj","t":"Dictionary<string,int>","s":"Count = 0","c":[]}]}},"ctx":"<p><b>What you're looking at.</b> <code>StatusEffectsPart</code> — the one part that owns a creature's <i>active effects</i> (poison, stoneskin, paperskin, frozen…). Think of it as the status-effect shelf.</p><p><b>When it runs.</b> The FireEvent loop (previous step) just handed it the <code>\"BeforeTakeDamage\"</code> message.</p><p><b>In this code.</b> Its <code>HandleEvent</code> is a switchboard: it compares <code>e.ID</code> to the events it cares about and forwards each to a handler. Line 350 matches <code>\"BeforeTakeDamage\"</code> → <code>HandleBeforeTakeDamage</code>. (Just below, line 356 routes the later <code>\"TakeDamage\"</code> to a <i>different</i> handler — two separate hooks in the damage timeline, don't conflate them.)</p><p><b>Terms.</b> An <b>effect</b> is a temporary modifier attached to a creature with its own lifetime and callbacks. <code>_effects</code> is just the list of those currently on this creature — here, one: PaperSkin.</p>"},{"file":"StatusEffectsPart.cs","path":"Assets/Scripts/Gameplay/Effects/StatusEffectsPart.cs","crumb":"CavesOfOoo.Core › StatusEffectsPart › HandleBeforeTakeDamage()","node":"n_sep_loop","bug":false,"start":482,"ln":495,"bps":[493,495],"code":"\n/// <summary>\n/// Tier 2.4: route Phase F's <c>BeforeTakeDamage</c> event to per-effect\n/// dispatch. Each effect's <see cref=\"Effect.OnBeforeTakeDamage\"/>\n/// observes (and may mutate) the incoming <see cref=\"Damage\"/> before\n/// resistance and HP decrement. Iterates oldest-first since the\n/// mutation order is \"all effects had a turn\"; reverse-iteration would\n/// give newer effects a less direct view of the damage.\n/// </summary>\nprivate void HandleBeforeTakeDamage(GameEvent e)\n{\n    for (int i = 0; i < _effects.Count; i++)\n    {\n        _effects[i].OnBeforeTakeDamage(ParentEntity, e);\n    }\n}\n\nprivate bool HandleRender(GameEvent e)\n{\n    for (int i = 0; i < _effects.Count; i++)\n    {\n        if (!_effects[i].Render(e))\n            return false;\n    }\n","stack":[{"ty":"StatusEffectsPart","fn":"HandleBeforeTakeDamage(GameEvent e)","loc":"StatusEffectsPart.cs:491"},{"ty":"StatusEffectsPart","fn":"HandleEvent(...) — line 352","loc":"StatusEffectsPart.cs:352","fade":true}],"vars":[{"n":"_effects.Count","ty":"int","v":"1"},{"n":"i","ty":"int","v":"0","ch":true},{"n":"_effects[0]","ty":"Effect","v":"PaperSkinEffect","cls":"o","ch":true}],"out":[],"note":"<span class=\"ph\">event</span>This is the fan-out to every active effect. The loop runs <b>oldest-first</b> (493) and calls <code>_effects[i].OnBeforeTakeDamage(ParentEntity, e)</code> (495) on each. Whatever an effect does to the shared <code>Damage</code> object here lands <i>before</i> resistance and HP. The target has one effect — PaperSkin — so its <code>OnBeforeTakeDamage</code> is next. <i>(With two effects, e.g. PaperSkin + Stoneskin, both run and their changes stack.)</i>","hover":{"i":{"k":"sca","t":"int","v":"0"},"ParentEntity":{"k":"obj","t":"Entity","s":"creature #7  (the target)","c":[{"key":"ID","k":"sca","t":"int","v":"7"},{"key":"BlueprintName","k":"sca","t":"string","v":"\"Creature\""},{"key":"DisplayName","k":"sca","t":"string","v":"\"creature\""},{"key":"Statistics","k":"obj","t":"Dictionary<string,Stat>","s":"Count = 4","c":[{"key":"Hitpoints","k":"obj","t":"Stat","s":"Value = 20","c":[{"key":"BaseValue","k":"sca","t":"int","v":"20"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"20"}]},{"key":"Strength","k":"obj","t":"Stat","s":"Value = 16","c":[{"key":"BaseValue","k":"sca","t":"int","v":"16"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"16"}]},{"key":"Agility","k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"12"}]}]},{"key":"Parts","k":"obj","t":"List<Part>","s":"Count = 6","c":[{"key":"[0]","k":"sca","t":"RenderPart","v":"glyph \"c\""},{"key":"[1]","k":"sca","t":"Body","v":"6 parts"},{"key":"[2]","k":"sca","t":"StatsPart","v":"4 stats"},{"key":"[3]","k":"sca","t":"DamageFlashPart","v":"_flashFramesRemaining=0"},{"key":"[4]","k":"obj","t":"StatusEffectsPart","s":"_effects.Count = 1","c":[{"key":"_effects","k":"obj","t":"List<Effect>","s":"Count = 1","c":[{"key":"[0]","k":"obj","t":"PaperSkinEffect","s":"paperskin  (Increase=5)  🐞","c":[{"key":"DisplayName","k":"sca","t":"string","v":"\"paperskin\""},{"key":"Increase","k":"sca","t":"int","v":"5"},{"key":"Duration","k":"sca","t":"int","v":"5"}]}]}]},{"key":"[5]","k":"sca","t":"…","v":"…"}]}]},"e":{"k":"obj","t":"GameEvent","s":"ID = \"BeforeTakeDamage\"","c":[{"key":"ID","k":"sca","t":"string","v":"\"BeforeTakeDamage\""},{"key":"Parameters","k":"obj","t":"Dictionary<string,object>","s":"Count = 3","c":[{"key":"Target","k":"sca","t":"Entity","v":"creature #7"},{"key":"Source","k":"sca","t":"Entity","v":"attacker"},{"key":"Damage","k":"sca","t":"Damage","v":"Amount = 3  (ref #D1)"}]},{"key":"IntParameters","k":"obj","t":"Dictionary<string,int>","s":"Count = 0","c":[]}]}},"ctx":"<p><b>What you're looking at.</b> The fan-out: <code>HandleBeforeTakeDamage</code> gives every active effect a chance to modify the incoming damage.</p><p><b>When it runs.</b> Immediately after the route in the previous step.</p><p><b>In this code.</b> A simple loop (493) calls <code>OnBeforeTakeDamage</code> on each effect (495), oldest first. Whatever an effect writes to the shared <code>Damage</code> object happens here — before resistance, before HP. With one effect on the target, this calls PaperSkin once. With several, they'd each run and their changes would stack on the same object.</p><p><b>Why this matters.</b> This is the exact seam where “a status effect changes a hit” physically happens. Stoneskin reducing damage and PaperSkin increasing it are both <i>just</i> an override invoked from this one line.</p>"},{"file":"Effect.cs","path":"Assets/Scripts/Gameplay/Effects/Effect.cs","crumb":"CavesOfOoo.Core › Effect › OnBeforeTakeDamage()","node":"n_effect_base","bug":false,"start":186,"ln":209,"bps":[209],"code":"{\n    OnTurnEnd(target);\n}\n\n/// <summary>\n/// Called when the entity takes damage.\n/// </summary>\npublic virtual void OnTakeDamage(Entity target, GameEvent e) { }\n\n/// <summary>\n/// Called BEFORE damage applies (after the dead-target guard, before\n/// resistance and HP decrement). Listeners can mutate the\n/// <see cref=\"Damage\"/> object via <c>e.GetParameter(\"Damage\")</c>\n/// to add/remove attributes or reduce <c>Amount</c>. Mirrors the\n/// Phase F <c>BeforeTakeDamage</c> event hook on\n/// <see cref=\"CombatSystem.ApplyDamage\"/>; this is the\n/// Effect-system surface for that hook.\n///\n/// To fully block damage, mutate <c>damage.Amount</c> to 0 — the\n/// setter clamps to ≥ 0 so over-reduction is safe. The CombatSystem's\n/// resistance code path then surfaces the attempt as\n/// <c>DamageFullyResisted</c> instead of firing <c>TakeDamage</c>.\n/// </summary>\npublic virtual void OnBeforeTakeDamage(Entity target, GameEvent e) { }\n\n/// <summary>\n/// Return false to prevent the entity from acting this turn (stun, paralysis).\n/// </summary>\npublic virtual bool AllowAction(Entity target) => true;\n\n/// <summary>\n/// Return false to prevent the entity from moving (separate from\n/// <see cref=\"AllowAction\"/>, so a \"rooted\" effect can keep the","stack":[{"ty":"Effect","fn":"OnBeforeTakeDamage(Entity target, GameEvent e)  [virtual]","loc":"Effect.cs:209"},{"ty":"StatusEffectsPart","fn":"HandleBeforeTakeDamage(...) — line 495","loc":"StatusEffectsPart.cs:495","fade":true}],"vars":[{"n":"(base)","ty":"Effect","v":"virtual no-op { }","cls":"o"}],"out":[],"note":"<span class=\"ph\">event</span>The <b>contract</b>. <code>Effect.OnBeforeTakeDamage</code> is a <b>virtual no-op</b> (209) — most effects ignore the hook. An effect opts in by <i>overriding</i> it, and the doc-comment (195-208) spells out the rule: mutate the damage via <code>e.GetParameter(\"Damage\")</code> and write <code>damage.Amount</code>; the setter clamps to &ge; 0 so over-reduction is safe. PaperSkin and Stoneskin are two such overrides — compare them in the next steps.","hover":{"target":{"k":"obj","t":"Entity","s":"creature #7  (the target)","c":[{"key":"ID","k":"sca","t":"int","v":"7"},{"key":"BlueprintName","k":"sca","t":"string","v":"\"Creature\""},{"key":"DisplayName","k":"sca","t":"string","v":"\"creature\""},{"key":"Statistics","k":"obj","t":"Dictionary<string,Stat>","s":"Count = 4","c":[{"key":"Hitpoints","k":"obj","t":"Stat","s":"Value = 20","c":[{"key":"BaseValue","k":"sca","t":"int","v":"20"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"20"}]},{"key":"Strength","k":"obj","t":"Stat","s":"Value = 16","c":[{"key":"BaseValue","k":"sca","t":"int","v":"16"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"16"}]},{"key":"Agility","k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"12"}]}]},{"key":"Parts","k":"obj","t":"List<Part>","s":"Count = 6","c":[{"key":"[0]","k":"sca","t":"RenderPart","v":"glyph \"c\""},{"key":"[1]","k":"sca","t":"Body","v":"6 parts"},{"key":"[2]","k":"sca","t":"StatsPart","v":"4 stats"},{"key":"[3]","k":"sca","t":"DamageFlashPart","v":"_flashFramesRemaining=0"},{"key":"[4]","k":"obj","t":"StatusEffectsPart","s":"_effects.Count = 1","c":[{"key":"_effects","k":"obj","t":"List<Effect>","s":"Count = 1","c":[{"key":"[0]","k":"obj","t":"PaperSkinEffect","s":"paperskin  (Increase=5)  🐞","c":[{"key":"DisplayName","k":"sca","t":"string","v":"\"paperskin\""},{"key":"Increase","k":"sca","t":"int","v":"5"},{"key":"Duration","k":"sca","t":"int","v":"5"}]}]}]},{"key":"[5]","k":"sca","t":"…","v":"…"}]}]},"e":{"k":"obj","t":"GameEvent","s":"ID = \"BeforeTakeDamage\"","c":[{"key":"ID","k":"sca","t":"string","v":"\"BeforeTakeDamage\""},{"key":"Parameters","k":"obj","t":"Dictionary<string,object>","s":"Count = 3","c":[{"key":"Target","k":"sca","t":"Entity","v":"creature #7"},{"key":"Source","k":"sca","t":"Entity","v":"attacker"},{"key":"Damage","k":"sca","t":"Damage","v":"Amount = 3  (ref #D1)"}]},{"key":"IntParameters","k":"obj","t":"Dictionary<string,int>","s":"Count = 0","c":[]}]}},"ctx":"<p><b>What you're looking at.</b> The <b>base class</b> <code>Effect</code> and its <code>OnBeforeTakeDamage</code> method — the template every concrete effect inherits.</p><p><b>The key fact.</b> In the base class this method is an empty <code>{ }</code> (line 209) — it does nothing. Effects that want to alter damage must <b>override</b> it. So “does this effect change damage?” always comes down to “did it override this method, and what did it write?”</p><p><b>In this code.</b> The doc-comment (195-208) is the contract: reach the damage with <code>e.GetParameter(\"Damage\")</code> and assign <code>damage.Amount</code>; the setter clamps to ≥ 0 so you can't go negative. PaperSkin and Stoneskin are two overrides that follow this contract in opposite directions.</p><p><b>Terms.</b> <b>virtual</b> = a method subclasses are allowed to replace. <b>override</b> = a subclass actually replacing it. A <b>no-op</b> is a method that intentionally does nothing.</p>"},{"file":"PaperSkin.cs","path":"Assets/Scripts/Gameplay/Effects/Concrete/PaperSkin.cs","crumb":"CavesOfOoo.Core › PaperSkinEffect › OnBeforeTakeDamage()","node":"n_paper","bug":false,"start":16,"ln":29,"bps":[27,29],"code":"        {\n            MessageLog.Add(target.GetDisplayName() + \"'s skin thins to paper.\");\n        }\n\n        public override void OnRemove(Entity target)\n        {\n            MessageLog.Add(target.GetDisplayName() + \"'s skin thickens.\");\n        }\n\n        public override void OnBeforeTakeDamage(Entity target, GameEvent e)\n        {\n            if (e.GetParameter(\"Damage\") is Damage damage)\n            {\n                damage.Amount += Increase;\n                MessageLog.Add(\"Original damage: \" + damage.Amount);\n                MessageLog.Add($\"Damage increased from {damage.Amount} to {damage.Amount + Increase}.\");\n            }\n            \n        }\n    }\n}","stack":[{"ty":"PaperSkinEffect","fn":"OnBeforeTakeDamage(Entity target, GameEvent e)","loc":"PaperSkin.cs:25"},{"ty":"StatusEffectsPart","fn":"HandleBeforeTakeDamage(...) — line 495","loc":"StatusEffectsPart.cs:495","fade":true}],"vars":[{"n":"Increase","ty":"int","v":"5"},{"n":"damage  (e.GetParameter)","ty":"Damage","v":"ref #D1  (same object)","cls":"o","ch":true},{"n":"damage.Amount  (before)","ty":"int","v":"3"},{"n":"damage.Amount  (after +=)","ty":"int","v":"8","cls":"","ch":true}],"out":[],"note":"<span class=\"ph\">damage</span><b>The mutation — and it works.</b> <code>e.GetParameter(\"Damage\") is Damage damage</code> (27) pulls the <i>same</i> reference (#D1) the CombatSystem still holds. <code>damage.Amount += Increase</code> (29) runs the <code>Amount</code> setter on that shared object: <b>3 → 8</b>. There is no reassignment back to the event needed — it's one object, mutated in place. From here the object truly carries 8, and everything downstream (HP, the floating number) will use 8. <i>So the incoming damage really is increased.</i>","hover":{"Increase":{"k":"sca","t":"int","v":"5"},"target":{"k":"obj","t":"Entity","s":"creature #7  (the target)","c":[{"key":"ID","k":"sca","t":"int","v":"7"},{"key":"BlueprintName","k":"sca","t":"string","v":"\"Creature\""},{"key":"DisplayName","k":"sca","t":"string","v":"\"creature\""},{"key":"Statistics","k":"obj","t":"Dictionary<string,Stat>","s":"Count = 4","c":[{"key":"Hitpoints","k":"obj","t":"Stat","s":"Value = 20","c":[{"key":"BaseValue","k":"sca","t":"int","v":"20"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"20"}]},{"key":"Strength","k":"obj","t":"Stat","s":"Value = 16","c":[{"key":"BaseValue","k":"sca","t":"int","v":"16"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"16"}]},{"key":"Agility","k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"12"}]}]},{"key":"Parts","k":"obj","t":"List<Part>","s":"Count = 6","c":[{"key":"[0]","k":"sca","t":"RenderPart","v":"glyph \"c\""},{"key":"[1]","k":"sca","t":"Body","v":"6 parts"},{"key":"[2]","k":"sca","t":"StatsPart","v":"4 stats"},{"key":"[3]","k":"sca","t":"DamageFlashPart","v":"_flashFramesRemaining=0"},{"key":"[4]","k":"obj","t":"StatusEffectsPart","s":"_effects.Count = 1","c":[{"key":"_effects","k":"obj","t":"List<Effect>","s":"Count = 1","c":[{"key":"[0]","k":"obj","t":"PaperSkinEffect","s":"paperskin  (Increase=5)  🐞","c":[{"key":"DisplayName","k":"sca","t":"string","v":"\"paperskin\""},{"key":"Increase","k":"sca","t":"int","v":"5"},{"key":"Duration","k":"sca","t":"int","v":"5"}]}]}]},{"key":"[5]","k":"sca","t":"…","v":"…"}]}]},"damage":{"k":"obj","t":"Damage","s":"Amount = 8   (ref #D1)","c":[{"key":"_Amount","k":"sca","t":"int","v":"8"},{"key":"Amount","k":"sca","t":"int","v":"8"},{"key":"Attributes","k":"obj","t":"List<string>","s":"Count = 2","c":[{"key":"[0]","k":"sca","t":"string","v":"\"Melee\""},{"key":"[1]","k":"sca","t":"string","v":"\"Cutting\""}]},{"key":"AttributeFlags","k":"sca","t":"DamageAttributeFlags","v":"None"}]},"e":{"k":"obj","t":"GameEvent","s":"ID = \"BeforeTakeDamage\"","c":[{"key":"ID","k":"sca","t":"string","v":"\"BeforeTakeDamage\""},{"key":"Parameters","k":"obj","t":"Dictionary<string,object>","s":"Count = 3","c":[{"key":"Target","k":"sca","t":"Entity","v":"creature #7"},{"key":"Source","k":"sca","t":"Entity","v":"attacker"},{"key":"Damage","k":"sca","t":"Damage","v":"Amount = 8  (ref #D1)"}]},{"key":"IntParameters","k":"obj","t":"Dictionary<string,int>","s":"Count = 0","c":[]}]}},"ctx":"<p><b>What you're looking at.</b> Your effect, <code>PaperSkinEffect.OnBeforeTakeDamage</code> — and specifically the line that does the real work.</p><p><b>The verdict up front.</b> This line is <b>correct</b>. <code>e.GetParameter(\"Damage\") is Damage damage</code> (27) grabs the <i>same</i> Damage object the CombatSystem is holding, and <code>damage.Amount += Increase</code> (29) adds 5 to it: <b>3 becomes 8</b>. Because it's one shared object, there's nothing to “save back” — the change is instantly visible everywhere.</p><p><b>So why did it look broken?</b> It isn't, mechanically. The damage really is increased to 8, and (you'll see) HP drops by 8 and the on-screen number is 8. The confusion is entirely created by the two log lines in the <i>next</i> step.</p><p><b>Terms.</b> <code>x += 5</code> means “add 5 to x.” <b>Reference</b> = a handle to one shared object; writing through any handle changes the single underlying object.</p>"},{"file":"PaperSkin.cs","path":"Assets/Scripts/Gameplay/Effects/Concrete/PaperSkin.cs","crumb":"CavesOfOoo.Core › PaperSkinEffect › OnBeforeTakeDamage()","node":"n_paperbug","bug":true,"start":16,"ln":31,"bps":[30,31],"code":"        {\n            MessageLog.Add(target.GetDisplayName() + \"'s skin thins to paper.\");\n        }\n\n        public override void OnRemove(Entity target)\n        {\n            MessageLog.Add(target.GetDisplayName() + \"'s skin thickens.\");\n        }\n\n        public override void OnBeforeTakeDamage(Entity target, GameEvent e)\n        {\n            if (e.GetParameter(\"Damage\") is Damage damage)\n            {\n                damage.Amount += Increase;\n                MessageLog.Add(\"Original damage: \" + damage.Amount);\n                MessageLog.Add($\"Damage increased from {damage.Amount} to {damage.Amount + Increase}.\");\n            }\n            \n        }\n    }\n}","stack":[{"ty":"PaperSkinEffect","fn":"OnBeforeTakeDamage(...)","loc":"PaperSkin.cs:31"}],"vars":[{"n":"damage.Amount","ty":"int","v":"8  (already increased)","ch":true},{"n":"Increase","ty":"int","v":"5"},{"n":"damage.Amount + Increase","ty":"int","v":"13  (phantom — never applied)","cls":"","ch":true}],"out":[{"type":"log","text":"Original damage: 8        ← logged AFTER +=, so it is NOT the original (3)"},{"type":"log","text":"Damage increased from 8 to 13.   ← \"from\" is post-mutation; \"to\" adds Increase a 2nd time, only in the string"}],"note":"<span class=\"ph\" style=\"background:#7a1d1d\">🐞 BUG</span><b>This is what fooled you — the logs, not the math.</b> Both <code>MessageLog</code> lines run <i>after</i> <code>damage.Amount</code> is already 8. Line 30 prints <code>\"Original damage: 8\"</code> but mislabels it — the real original was 3. Line 31 prints <code>\"from 8 to 13\"</code>: the <code>from</code> is the already-increased 8, and <code>to = damage.Amount + Increase = 13</code> is a number <b>never written to the object</b>. The object stays <b>8</b>. So the log advertises 13, the HUD shows 8, and it <i>looks</i> like the mutation didn't take — when in fact 8 is the correctly-mutated value and 13 is fiction. <b>Fix:</b> capture <code>int original = damage.Amount;</code> <i>before</i> the <code>+=</code>, then log <code>original → damage.Amount</code>.","hover":{"Increase":{"k":"sca","t":"int","v":"5"},"target":{"k":"obj","t":"Entity","s":"creature #7  (the target)","c":[{"key":"ID","k":"sca","t":"int","v":"7"},{"key":"BlueprintName","k":"sca","t":"string","v":"\"Creature\""},{"key":"DisplayName","k":"sca","t":"string","v":"\"creature\""},{"key":"Statistics","k":"obj","t":"Dictionary<string,Stat>","s":"Count = 4","c":[{"key":"Hitpoints","k":"obj","t":"Stat","s":"Value = 20","c":[{"key":"BaseValue","k":"sca","t":"int","v":"20"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"20"}]},{"key":"Strength","k":"obj","t":"Stat","s":"Value = 16","c":[{"key":"BaseValue","k":"sca","t":"int","v":"16"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"16"}]},{"key":"Agility","k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"12"}]}]},{"key":"Parts","k":"obj","t":"List<Part>","s":"Count = 6","c":[{"key":"[0]","k":"sca","t":"RenderPart","v":"glyph \"c\""},{"key":"[1]","k":"sca","t":"Body","v":"6 parts"},{"key":"[2]","k":"sca","t":"StatsPart","v":"4 stats"},{"key":"[3]","k":"sca","t":"DamageFlashPart","v":"_flashFramesRemaining=0"},{"key":"[4]","k":"obj","t":"StatusEffectsPart","s":"_effects.Count = 1","c":[{"key":"_effects","k":"obj","t":"List<Effect>","s":"Count = 1","c":[{"key":"[0]","k":"obj","t":"PaperSkinEffect","s":"paperskin  (Increase=5)  🐞","c":[{"key":"DisplayName","k":"sca","t":"string","v":"\"paperskin\""},{"key":"Increase","k":"sca","t":"int","v":"5"},{"key":"Duration","k":"sca","t":"int","v":"5"}]}]}]},{"key":"[5]","k":"sca","t":"…","v":"…"}]}]},"damage":{"k":"obj","t":"Damage","s":"Amount = 8   (ref #D1)","c":[{"key":"_Amount","k":"sca","t":"int","v":"8"},{"key":"Amount","k":"sca","t":"int","v":"8"},{"key":"Attributes","k":"obj","t":"List<string>","s":"Count = 2","c":[{"key":"[0]","k":"sca","t":"string","v":"\"Melee\""},{"key":"[1]","k":"sca","t":"string","v":"\"Cutting\""}]},{"key":"AttributeFlags","k":"sca","t":"DamageAttributeFlags","v":"None"}]},"e":{"k":"obj","t":"GameEvent","s":"ID = \"BeforeTakeDamage\"","c":[{"key":"ID","k":"sca","t":"string","v":"\"BeforeTakeDamage\""},{"key":"Parameters","k":"obj","t":"Dictionary<string,object>","s":"Count = 3","c":[{"key":"Target","k":"sca","t":"Entity","v":"creature #7"},{"key":"Source","k":"sca","t":"Entity","v":"attacker"},{"key":"Damage","k":"sca","t":"Damage","v":"Amount = 8  (ref #D1)"}]},{"key":"IntParameters","k":"obj","t":"Dictionary<string,int>","s":"Count = 0","c":[]}]}},"ctx":"<p><b>What you're looking at.</b> The actual defect — and it's <i>not</i> in the damage math. It's the two <code>MessageLog.Add</code> lines that run right after the damage was already increased.</p><p><b>Walk the numbers (Increase = 5, original = 3).</b> By the time these lines run, <code>damage.Amount</code> is already <b>8</b>. Line 30 prints <code>\"Original damage: 8\"</code> — but 8 is the <i>new</i> value, not the original 3, so the label is a lie. Line 31 prints <code>\"Damage increased from 8 to 13\"</code>: the <code>from</code> is the post-increment 8, and <code>to</code> is <code>damage.Amount + Increase = 13</code>, a number the code computes <i>only for the string</i> and never stores anywhere.</p><p><b>Why this produced your three symptoms.</b> The log advertises 13; the HUD and HP show the true 8; so it looks like “the mutation didn't take and the number is the pre-mutated amount.” In reality 8 is the mutated amount and 13 never existed.</p><p><b>The fix.</b> Capture the value before changing it: <code>int original = damage.Amount;</code> then <code>damage.Amount += Increase;</code> then log <code>original → damage.Amount</code>. (We're only depicting this — your game code is unchanged.)</p>"},{"file":"StoneskinEffect.cs","path":"Assets/Scripts/Gameplay/Effects/Concrete/StoneskinEffect.cs","crumb":"CavesOfOoo.Core › StoneskinEffect › OnBeforeTakeDamage()","node":"n_stone","bug":false,"start":35,"ln":46,"bps":[44,46],"code":"        {\n            MessageLog.Add(target.GetDisplayName() + \"'s skin hardens to stone.\");\n        }\n\n        public override void OnRemove(Entity target)\n        {\n            MessageLog.Add(target.GetDisplayName() + \"'s stoneskin fades.\");\n        }\n\n        public override void OnBeforeTakeDamage(Entity target, GameEvent e)\n        {\n            if (e.GetParameter(\"Damage\") is Damage damage)\n            {\n                // Damage.Amount setter clamps to ≥ 0 — over-reduction is safe.\n                damage.Amount -= Reduction;\n            }\n        }\n    }\n}\n","stack":[{"ty":"StoneskinEffect","fn":"OnBeforeTakeDamage(Entity target, GameEvent e)","loc":"StoneskinEffect.cs:44"},{"ty":"(sibling — shown for comparison, not in this target's loop)","fn":"","loc":"","fade":true}],"vars":[{"n":"Reduction","ty":"int","v":"2"},{"n":"damage  (e.GetParameter)","ty":"Damage","v":"ref (same object)","cls":"o"},{"n":"damage.Amount  (-= Reduction)","ty":"int","v":"e.g. 3 → 1","ch":true}],"out":[],"note":"<span class=\"ph\">contrast</span><b>The working sibling.</b> <code>StoneskinEffect</code> — the opposite of PaperSkin — uses the <i>identical</i> hook and the <i>identical</i> object-mutation pattern: <code>damage.Amount -= Reduction</code> (51). Mechanically PaperSkin's <code>+= Increase</code> is exactly as correct as this. The only difference is that Stoneskin doesn't print misleading \"from/to\" lines around the write. <i>This step is shown side-by-side so you can see the mutation contract is the same — your bug is purely the surrounding logs.</i>","hover":{"Reduction":{"k":"sca","t":"int","v":"2"},"target":{"k":"obj","t":"Entity","s":"creature #7  (the target)","c":[{"key":"ID","k":"sca","t":"int","v":"7"},{"key":"BlueprintName","k":"sca","t":"string","v":"\"Creature\""},{"key":"DisplayName","k":"sca","t":"string","v":"\"creature\""},{"key":"Statistics","k":"obj","t":"Dictionary<string,Stat>","s":"Count = 4","c":[{"key":"Hitpoints","k":"obj","t":"Stat","s":"Value = 20","c":[{"key":"BaseValue","k":"sca","t":"int","v":"20"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"20"}]},{"key":"Strength","k":"obj","t":"Stat","s":"Value = 16","c":[{"key":"BaseValue","k":"sca","t":"int","v":"16"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"16"}]},{"key":"Agility","k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"12"}]}]},{"key":"Parts","k":"obj","t":"List<Part>","s":"Count = 6","c":[{"key":"[0]","k":"sca","t":"RenderPart","v":"glyph \"c\""},{"key":"[1]","k":"sca","t":"Body","v":"6 parts"},{"key":"[2]","k":"sca","t":"StatsPart","v":"4 stats"},{"key":"[3]","k":"sca","t":"DamageFlashPart","v":"_flashFramesRemaining=0"},{"key":"[4]","k":"obj","t":"StatusEffectsPart","s":"_effects.Count = 1","c":[{"key":"_effects","k":"obj","t":"List<Effect>","s":"Count = 1","c":[{"key":"[0]","k":"obj","t":"PaperSkinEffect","s":"paperskin  (Increase=5)  🐞","c":[{"key":"DisplayName","k":"sca","t":"string","v":"\"paperskin\""},{"key":"Increase","k":"sca","t":"int","v":"5"},{"key":"Duration","k":"sca","t":"int","v":"5"}]}]}]},{"key":"[5]","k":"sca","t":"…","v":"…"}]}]},"damage":{"k":"obj","t":"Damage","s":"Amount = 8   (ref #D1)","c":[{"key":"_Amount","k":"sca","t":"int","v":"8"},{"key":"Amount","k":"sca","t":"int","v":"8"},{"key":"Attributes","k":"obj","t":"List<string>","s":"Count = 2","c":[{"key":"[0]","k":"sca","t":"string","v":"\"Melee\""},{"key":"[1]","k":"sca","t":"string","v":"\"Cutting\""}]},{"key":"AttributeFlags","k":"sca","t":"DamageAttributeFlags","v":"None"}]},"e":{"k":"obj","t":"GameEvent","s":"ID = \"BeforeTakeDamage\"","c":[{"key":"ID","k":"sca","t":"string","v":"\"BeforeTakeDamage\""},{"key":"Parameters","k":"obj","t":"Dictionary<string,object>","s":"Count = 3","c":[{"key":"Target","k":"sca","t":"Entity","v":"creature #7"},{"key":"Source","k":"sca","t":"Entity","v":"attacker"},{"key":"Damage","k":"sca","t":"Damage","v":"Amount = 8  (ref #D1)"}]},{"key":"IntParameters","k":"obj","t":"Dictionary<string,int>","s":"Count = 0","c":[]}]}},"ctx":"<p><b>What you're looking at.</b> <code>StoneskinEffect</code> — PaperSkin's opposite — shown side-by-side so you can see the mutation pattern is identical.</p><p><b>Why it's here.</b> You said “the opposite of paper skin is stone skin; they both use OnBeforeTakeDamage.” Correct — and they mutate damage the <i>same</i> way. Stoneskin does <code>damage.Amount -= Reduction</code> (51); PaperSkin does <code>damage.Amount += Increase</code>. Mechanically one is as correct as the other.</p><p><b>The one real difference.</b> Stoneskin doesn't print confusing “from/to” lines around its write, so it never <i>looks</i> wrong. That's the whole gap between “Stoneskin works” and “PaperSkin seems not to.”</p><p><b>Note.</b> This effect isn't on our target in this trace — it's displayed purely for comparison. The hover values here illustrate Stoneskin's own fields, not the live hit.</p>"},{"file":"CombatSystem.cs","path":"Assets/Scripts/Gameplay/Combat/CombatSystem.cs","crumb":"CavesOfOoo.Core › CombatSystem › ApplyDamage()","node":"n_premut","bug":false,"start":756,"ln":773,"bps":[770,773],"code":"// — the post-event re-read covers both this hook and the\n// TakeDamage event below.\nint amountBeforeMutation = damage.Amount;\nvar beforeTakeDamage = GameEvent.New(\"BeforeTakeDamage\");\nbeforeTakeDamage.SetParameter(\"Target\", (object)target);\nbeforeTakeDamage.SetParameter(\"Source\", (object)source);\nbeforeTakeDamage.SetParameter(\"Damage\", (object)damage);\nbool damageProceeded = target.FireEventAndRelease(beforeTakeDamage);\n\n// PreDamageMutation diag — surfaces the net delta from\n// BeforeTakeDamage event listeners (Stoneskin, etc.).\n// Fires whenever the Amount changed during the event\n// OR the event was vetoed. Lets observability answer\n// \"did Stoneskin reduce this hit by N?\" without grep.\nif (Diag.IsChannelEnabled(\"damage\") &&\n    (amountBeforeMutation != damage.Amount || !damageProceeded))\n{\n    Diag.Record(\n        category: \"damage\",\n        kind: \"PreDamageMutation\",\n        target: target,\n        payload: new\n        {\n            amountBefore = amountBeforeMutation,\n            amountAfter = damage.Amount,\n            delta = damage.Amount - amountBeforeMutation,\n            vetoed = !damageProceeded\n        });\n}\n\nif (!damageProceeded)\n{\n    // Veto — surface as fully-resisted so observers see the attempt.\n    //\n    // Contract for the Damage object on a vetoed DamageFullyResisted:\n    //   • Amount is left unchanged (the value the attack WOULD have\n    //     dealt before resistance, with any pre-veto listener\n    //     mutations applied). Listeners that want to know \"how","stack":[{"ty":"CombatSystem","fn":"ApplyDamage(...) [resumed after the event]","loc":"CombatSystem.cs:773"}],"vars":[{"n":"amountBeforeMutation","ty":"int","v":"3"},{"n":"damage.Amount","ty":"int","v":"8","ch":true},{"n":"delta","ty":"int","v":"+5","ch":true},{"n":"damageProceeded","ty":"bool","v":"true","cls":"b"}],"out":[{"type":"diag","cat":"damage","kind":"PreDamageMutation","target":"creature","pay":"amountBefore=3 amountAfter=8 delta=5 vetoed=false"}],"note":"<span class=\"ph\">damage</span><b>The ground truth that settles the argument.</b> Control is back in <code>ApplyDamage</code> after the event. Because <code>amountBeforeMutation (3) ≠ damage.Amount (8)</code>, it emits a <code>PreDamageMutation</code> diag (770-784) recording <code>amountBefore=3, amountAfter=8, delta=+5</code>. That delta is exactly PaperSkin's <code>Increase</code> — mechanical proof the mutation landed on the shared object. To check this on your machine: <code>diag_query category=damage kind=PreDamageMutation</code>.","hover":{"amountBeforeMutation":{"k":"sca","t":"int","v":"3"},"delta":{"k":"sca","t":"int","v":"+5"},"damageProceeded":{"k":"sca","t":"bool","v":"true"},"target":{"k":"obj","t":"Entity","s":"creature #7  (the target)","c":[{"key":"ID","k":"sca","t":"int","v":"7"},{"key":"BlueprintName","k":"sca","t":"string","v":"\"Creature\""},{"key":"DisplayName","k":"sca","t":"string","v":"\"creature\""},{"key":"Statistics","k":"obj","t":"Dictionary<string,Stat>","s":"Count = 4","c":[{"key":"Hitpoints","k":"obj","t":"Stat","s":"Value = 20","c":[{"key":"BaseValue","k":"sca","t":"int","v":"20"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"20"}]},{"key":"Strength","k":"obj","t":"Stat","s":"Value = 16","c":[{"key":"BaseValue","k":"sca","t":"int","v":"16"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"16"}]},{"key":"Agility","k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"12"}]}]},{"key":"Parts","k":"obj","t":"List<Part>","s":"Count = 6","c":[{"key":"[0]","k":"sca","t":"RenderPart","v":"glyph \"c\""},{"key":"[1]","k":"sca","t":"Body","v":"6 parts"},{"key":"[2]","k":"sca","t":"StatsPart","v":"4 stats"},{"key":"[3]","k":"sca","t":"DamageFlashPart","v":"_flashFramesRemaining=0"},{"key":"[4]","k":"obj","t":"StatusEffectsPart","s":"_effects.Count = 1","c":[{"key":"_effects","k":"obj","t":"List<Effect>","s":"Count = 1","c":[{"key":"[0]","k":"obj","t":"PaperSkinEffect","s":"paperskin  (Increase=5)  🐞","c":[{"key":"DisplayName","k":"sca","t":"string","v":"\"paperskin\""},{"key":"Increase","k":"sca","t":"int","v":"5"},{"key":"Duration","k":"sca","t":"int","v":"5"}]}]}]},{"key":"[5]","k":"sca","t":"…","v":"…"}]}]},"damage":{"k":"obj","t":"Damage","s":"Amount = 8   (ref #D1)","c":[{"key":"_Amount","k":"sca","t":"int","v":"8"},{"key":"Amount","k":"sca","t":"int","v":"8"},{"key":"Attributes","k":"obj","t":"List<string>","s":"Count = 2","c":[{"key":"[0]","k":"sca","t":"string","v":"\"Melee\""},{"key":"[1]","k":"sca","t":"string","v":"\"Cutting\""}]},{"key":"AttributeFlags","k":"sca","t":"DamageAttributeFlags","v":"None"}]},"beforeTakeDamage":{"k":"obj","t":"GameEvent","s":"ID = \"BeforeTakeDamage\"","c":[{"key":"ID","k":"sca","t":"string","v":"\"BeforeTakeDamage\""},{"key":"Parameters","k":"obj","t":"Dictionary<string,object>","s":"Count = 3","c":[{"key":"Target","k":"sca","t":"Entity","v":"creature #7"},{"key":"Source","k":"sca","t":"Entity","v":"attacker"},{"key":"Damage","k":"sca","t":"Damage","v":"Amount = 8  (ref #D1)"}]},{"key":"IntParameters","k":"obj","t":"Dictionary<string,int>","s":"Count = 0","c":[]}]}},"ctx":"<p><b>What you're looking at.</b> Back in <code>ApplyDamage</code>, right after the event returned — the engine's own self-check that records whether the damage changed.</p><p><b>Why it's decisive.</b> It compares the snapshot from the first step (<code>amountBeforeMutation = 3</code>) against the current <code>damage.Amount</code> (now <b>8</b>). They differ, so it writes a <code>PreDamageMutation</code> diagnostic: <code>before=3, after=8, delta=+5</code>. That <code>delta</code> equals PaperSkin's <code>Increase</code> exactly — hard, queryable proof the mutation reached the shared object.</p><p><b>Do this on your machine.</b> Run <code>diag_query category=damage kind=PreDamageMutation</code> after a paper-skinned hit. If you see <code>delta=+5</code>, the effect is working and the bug is purely cosmetic (the logs).</p><p><b>Terms.</b> A <b>diagnostic (diag)</b> is a structured record the game writes as it runs so tools can query “what happened and why” without adding print statements.</p>"},{"file":"CombatSystem.cs","path":"Assets/Scripts/Gameplay/Combat/CombatSystem.cs","crumb":"CavesOfOoo.Core › CombatSystem › ApplyDamage()","node":"n_resist","bug":false,"start":795,"ln":808,"bps":[807,808],"code":"    //   • Attributes reflect any pre-veto listener mutations.\n    var fullyResistedVeto = GameEvent.New(\"DamageFullyResisted\");\n    fullyResistedVeto.SetParameter(\"Target\", (object)target);\n    fullyResistedVeto.SetParameter(\"Source\", (object)source);\n    fullyResistedVeto.SetParameter(\"Damage\", (object)damage);\n    target.FireEventAndRelease(fullyResistedVeto);\n    return;\n}\n\n// Phase E: apply elemental resistances based on damage attributes.\n// Mirrors XRL.World.Parts.Physics.cs:3351-3417. Damage with the\n// \"IgnoreResist\" attribute bypasses all resistance entirely.\nif (!damage.HasAttribute(\"IgnoreResist\"))\n    ApplyResistances(target, damage);\n\nif (damage.Amount <= 0)\n{\n    // Resistance fully absorbed. Surface a \"fully resisted\" event so\n    // listeners (UI, AI retaliation, achievements) still see the attack\n    // attempt even though no HP was lost. (Self-review Finding 4.)\n    var fullyResisted = GameEvent.New(\"DamageFullyResisted\");\n    fullyResisted.SetParameter(\"Target\", (object)target);\n    fullyResisted.SetParameter(\"Source\", (object)source);\n    fullyResisted.SetParameter(\"Damage\", (object)damage);\n    target.FireEventAndRelease(fullyResisted);\n    return;\n}\n\n// Phase C/E: fire TakeDamage with the typed Damage object BEFORE\n// capturing amount, so listeners can mutate damage.Amount in-flight\n// (e.g., a \"StoneSkin\" effect that subtracts 2 from incoming damage).\n// The captured amount is read AFTER the event so listener mutations\n// propagate to the HP decrement. (Self-review Finding 1.)\n// (Listeners read damage.Amount via the Damage object directly,\n// not via event parameters, so the event itself can be released\n// immediately after firing.)","stack":[{"ty":"CombatSystem","fn":"ApplyResistances(target, damage)","loc":"CombatSystem.cs:987"},{"ty":"CombatSystem","fn":"ApplyDamage(...) — line 808","loc":"CombatSystem.cs:808","fade":true}],"vars":[{"n":"damage.Attributes","ty":"List","v":"[Melee, Cutting]","cls":"o"},{"n":"isElemental","ty":"bool","v":"false","cls":"b","ch":true},{"n":"damage.Amount","ty":"int","v":"8 (unchanged)"}],"out":[],"note":"<span class=\"ph\">damage</span><b>ApplyResistances</b> only scales damage carrying an elemental tag (Heat/Cold/Acid/Electric) against the matching <code>*Resistance</code> stat. Our hit is physical (<code>Melee, Cutting</code>), so nothing applies and the amount stays <b>8</b>. <i>Branch: if resistance (or an over-reducing effect) drove <code>damage.Amount</code> to &le; 0, line 810-821 fires <code>DamageFullyResisted</code> and returns — another damage-taking event, used when the blow is fully absorbed.</i>","hover":{"target":{"k":"obj","t":"Entity","s":"creature #7  (the target)","c":[{"key":"ID","k":"sca","t":"int","v":"7"},{"key":"BlueprintName","k":"sca","t":"string","v":"\"Creature\""},{"key":"DisplayName","k":"sca","t":"string","v":"\"creature\""},{"key":"Statistics","k":"obj","t":"Dictionary<string,Stat>","s":"Count = 4","c":[{"key":"Hitpoints","k":"obj","t":"Stat","s":"Value = 20","c":[{"key":"BaseValue","k":"sca","t":"int","v":"20"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"20"}]},{"key":"Strength","k":"obj","t":"Stat","s":"Value = 16","c":[{"key":"BaseValue","k":"sca","t":"int","v":"16"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"16"}]},{"key":"Agility","k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"12"}]}]},{"key":"Parts","k":"obj","t":"List<Part>","s":"Count = 6","c":[{"key":"[0]","k":"sca","t":"RenderPart","v":"glyph \"c\""},{"key":"[1]","k":"sca","t":"Body","v":"6 parts"},{"key":"[2]","k":"sca","t":"StatsPart","v":"4 stats"},{"key":"[3]","k":"sca","t":"DamageFlashPart","v":"_flashFramesRemaining=0"},{"key":"[4]","k":"obj","t":"StatusEffectsPart","s":"_effects.Count = 1","c":[{"key":"_effects","k":"obj","t":"List<Effect>","s":"Count = 1","c":[{"key":"[0]","k":"obj","t":"PaperSkinEffect","s":"paperskin  (Increase=5)  🐞","c":[{"key":"DisplayName","k":"sca","t":"string","v":"\"paperskin\""},{"key":"Increase","k":"sca","t":"int","v":"5"},{"key":"Duration","k":"sca","t":"int","v":"5"}]}]}]},{"key":"[5]","k":"sca","t":"…","v":"…"}]}]},"damage":{"k":"obj","t":"Damage","s":"Amount = 8   (ref #D1)","c":[{"key":"_Amount","k":"sca","t":"int","v":"8"},{"key":"Amount","k":"sca","t":"int","v":"8"},{"key":"Attributes","k":"obj","t":"List<string>","s":"Count = 2","c":[{"key":"[0]","k":"sca","t":"string","v":"\"Melee\""},{"key":"[1]","k":"sca","t":"string","v":"\"Cutting\""}]},{"key":"AttributeFlags","k":"sca","t":"DamageAttributeFlags","v":"None"}]}},"ctx":"<p><b>What you're looking at.</b> <code>ApplyResistances</code> — the stage that scales damage by element (fire/cold/acid/electric) against the target's resistances.</p><p><b>When it runs.</b> Inside <code>ApplyDamage</code>, after the BeforeTakeDamage hook, before HP changes.</p><p><b>In this code.</b> Our hit is physical (tags <code>Melee, Cutting</code>), not elemental, so this stage does nothing and the amount stays <b>8</b>. (A cold bite would be reduced here by ColdResistance.)</p><p><b>The branch worth knowing.</b> If damage had been reduced to 0 or below (by resistance, or by an over-reducing effect like a strong Stoneskin), lines 810-821 fire <code>DamageFullyResisted</code> and return — that's another damage-related event, used when a blow is completely absorbed and no HP is lost.</p>"},{"file":"CombatSystem.cs","path":"Assets/Scripts/Gameplay/Combat/CombatSystem.cs","crumb":"CavesOfOoo.Core › CombatSystem › ApplyDamage()","node":"n_takedamage","bug":false,"start":814,"ln":834,"bps":[831,834],"code":"    // attempt even though no HP was lost. (Self-review Finding 4.)\n    var fullyResisted = GameEvent.New(\"DamageFullyResisted\");\n    fullyResisted.SetParameter(\"Target\", (object)target);\n    fullyResisted.SetParameter(\"Source\", (object)source);\n    fullyResisted.SetParameter(\"Damage\", (object)damage);\n    target.FireEventAndRelease(fullyResisted);\n    return;\n}\n\n// Phase C/E: fire TakeDamage with the typed Damage object BEFORE\n// capturing amount, so listeners can mutate damage.Amount in-flight\n// (e.g., a \"StoneSkin\" effect that subtracts 2 from incoming damage).\n// The captured amount is read AFTER the event so listener mutations\n// propagate to the HP decrement. (Self-review Finding 1.)\n// (Listeners read damage.Amount via the Damage object directly,\n// not via event parameters, so the event itself can be released\n// immediately after firing.)\nvar takeDamage = GameEvent.New(\"TakeDamage\");\ntakeDamage.SetParameter(\"Target\", (object)target);\ntakeDamage.SetParameter(\"Source\", (object)source);\ntakeDamage.SetParameter(\"Amount\", damage.Amount);\ntakeDamage.SetParameter(\"Damage\", (object)damage);\ntarget.FireEventAndRelease(takeDamage);\n\n// Re-read damage.Amount after listeners — it may have been mutated.\n// Clamp at 0 so over-mutation can't heal the target.\nint amount = Math.Max(0, damage.Amount);\nif (amount <= 0) return;\n\nhpStat.BaseValue -= amount;\n\nStat hpAlias = target.GetStat(\"HP\");","stack":[{"ty":"CombatSystem","fn":"ApplyDamage(...)","loc":"CombatSystem.cs:834"}],"vars":[{"n":"takeDamage","ty":"GameEvent","v":"\"TakeDamage\"","cls":"o","ch":true},{"n":"SetParameter(\"Amount\", 8)","ty":"int","v":"8  (VALUE COPY → IntParameters)","ch":true},{"n":"damage  (object)","ty":"Damage","v":"Amount=8  (ref #D1)","cls":"o"}],"out":[{"type":"event","name":"TakeDamage","on":"creature (the TARGET)"}],"note":"<span class=\"ph\">damage</span>The <b>second damage-taking event</b>, <code>\"TakeDamage\"</code> (831-836), fired on the target so effects can react to the finalized hit. Note the subtlety: <code>SetParameter(\"Amount\", damage.Amount)</code> (834) copies the int <b>8</b> into the event's <code>IntParameters</code> — a <b>value copy</b>, frozen at this instant. The <code>Damage</code> <i>object</i> is also attached (835) for anything that wants the live value. The HP decrement (next-but-one) re-reads the <i>object</i>, not this copy.","hover":{"takeDamage":{"k":"obj","t":"GameEvent","s":"ID = \"TakeDamage\"","c":[{"key":"ID","k":"sca","t":"string","v":"\"TakeDamage\""},{"key":"Parameters","k":"obj","t":"Dictionary<string,object>","s":"Count = 3","c":[{"key":"Target","k":"sca","t":"Entity","v":"creature #7"},{"key":"Source","k":"sca","t":"Entity","v":"attacker"},{"key":"Damage","k":"sca","t":"Damage","v":"Amount = 8  (ref #D1)"}]},{"key":"IntParameters","k":"obj","t":"Dictionary<string,int>","s":"Count = 1","c":[{"key":"Amount","k":"sca","t":"int","v":"8  (value copy)"}]}]},"target":{"k":"obj","t":"Entity","s":"creature #7  (the target)","c":[{"key":"ID","k":"sca","t":"int","v":"7"},{"key":"BlueprintName","k":"sca","t":"string","v":"\"Creature\""},{"key":"DisplayName","k":"sca","t":"string","v":"\"creature\""},{"key":"Statistics","k":"obj","t":"Dictionary<string,Stat>","s":"Count = 4","c":[{"key":"Hitpoints","k":"obj","t":"Stat","s":"Value = 20","c":[{"key":"BaseValue","k":"sca","t":"int","v":"20"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"20"}]},{"key":"Strength","k":"obj","t":"Stat","s":"Value = 16","c":[{"key":"BaseValue","k":"sca","t":"int","v":"16"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"16"}]},{"key":"Agility","k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"12"}]}]},{"key":"Parts","k":"obj","t":"List<Part>","s":"Count = 6","c":[{"key":"[0]","k":"sca","t":"RenderPart","v":"glyph \"c\""},{"key":"[1]","k":"sca","t":"Body","v":"6 parts"},{"key":"[2]","k":"sca","t":"StatsPart","v":"4 stats"},{"key":"[3]","k":"sca","t":"DamageFlashPart","v":"_flashFramesRemaining=0"},{"key":"[4]","k":"obj","t":"StatusEffectsPart","s":"_effects.Count = 1","c":[{"key":"_effects","k":"obj","t":"List<Effect>","s":"Count = 1","c":[{"key":"[0]","k":"obj","t":"PaperSkinEffect","s":"paperskin  (Increase=5)  🐞","c":[{"key":"DisplayName","k":"sca","t":"string","v":"\"paperskin\""},{"key":"Increase","k":"sca","t":"int","v":"5"},{"key":"Duration","k":"sca","t":"int","v":"5"}]}]}]},{"key":"[5]","k":"sca","t":"…","v":"…"}]}]},"damage":{"k":"obj","t":"Damage","s":"Amount = 8   (ref #D1)","c":[{"key":"_Amount","k":"sca","t":"int","v":"8"},{"key":"Amount","k":"sca","t":"int","v":"8"},{"key":"Attributes","k":"obj","t":"List<string>","s":"Count = 2","c":[{"key":"[0]","k":"sca","t":"string","v":"\"Melee\""},{"key":"[1]","k":"sca","t":"string","v":"\"Cutting\""}]},{"key":"AttributeFlags","k":"sca","t":"DamageAttributeFlags","v":"None"}]},"hpStat":{"k":"obj","t":"Stat","s":"Value = 20","c":[{"key":"BaseValue","k":"sca","t":"int","v":"20"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"20"}]}},"ctx":"<p><b>What you're looking at.</b> The engine firing its <i>second</i> damage hook, <code>\"TakeDamage\"</code> — “the hit is now finalized; react to it.”</p><p><b>The subtlety that matters.</b> Line 834 does <code>SetParameter(\"Amount\", damage.Amount)</code>, copying the integer <b>8</b> into the event. That's a <b>value copy</b> frozen at this instant — unlike the <code>Damage</code> <i>object</i> (also attached), changing the object later would not change this copied int. The real HP subtraction two steps from now deliberately re-reads the <i>object</i>, not this frozen copy.</p><p><b>Why two hooks?</b> <code>BeforeTakeDamage</code> is the “you may still change it” hook; <code>TakeDamage</code> is the “it's settled, respond” hook (flashing, sounds, on-damaged triggers). Different jobs, fired at different moments.</p><p><b>Terms.</b> <b>Value copy</b> = copying the number itself, so later edits to the original don't propagate — the opposite of the shared-object behaviour that made PaperSkin's edit stick.</p>"},{"file":"DamageFlashPart.cs","path":"Assets/Scripts/Gameplay/Entities/DamageFlashPart.cs","crumb":"CavesOfOoo.Core › DamageFlashPart › HandleEvent()","node":"n_flash","bug":false,"start":22,"ln":41,"bps":[33,41],"code":"/// The presentation layer subscribes to trigger a lighter screen shake.\n/// </summary>\npublic static Action<int> OnPlayerDealtDamage;\n\nprivate int _flashFramesRemaining;\n\nprivate const int FlashDuration = 3;\nprivate const string FlashColor = \"&R\";\n\npublic override bool HandleEvent(GameEvent e)\n{\n    if (e.ID == \"TakeDamage\")\n    {\n        _flashFramesRemaining = FlashDuration;\n\n        // Notify presentation layer if this is the player\n        if (ParentEntity != null && ParentEntity.HasTag(\"Player\"))\n        {\n            int amount = e.GetIntParameter(\"Amount\", 1);\n            OnPlayerDamaged?.Invoke(amount);\n        }\n        return true;\n    }\n\n    if (e.ID == \"DamageDealt\")\n    {\n        if (ParentEntity != null && ParentEntity.HasTag(\"Player\"))\n        {\n            int amount = e.GetIntParameter(\"Amount\", 1);\n            OnPlayerDealtDamage?.Invoke(amount);\n        }\n        return true;\n    }\n\n    if (e.ID == \"Render\" && _flashFramesRemaining > 0)\n    {\n        e.SetParameter(\"ColorString\", FlashColor);\n        _flashFramesRemaining--;\n        return true;\n    }\n\n    return true;","stack":[{"ty":"DamageFlashPart","fn":"HandleEvent(GameEvent e)","loc":"DamageFlashPart.cs:31"},{"ty":"Entity","fn":"FireEvent(...) — TakeDamage","loc":"Entity.cs:259","fade":true}],"vars":[{"n":"e.ID","ty":"string","v":"\"TakeDamage\"","cls":"s","ch":true},{"n":"e.GetIntParameter(\"Amount\",1)","ty":"int","v":"8","ch":true},{"n":"_flashFramesRemaining","ty":"int","v":"3","ch":true}],"out":[{"type":"event","name":"OnPlayerDamaged","on":"presentation layer (shake), amount=8"}],"note":"<span class=\"ph\">event</span>A concrete consumer of <code>\"TakeDamage\"</code>. <b>DamageFlashPart</b> flashes the sprite red for 3 frames (35) and, if the target is the player, fires <code>OnPlayerDamaged(amount)</code> for the screen-shake (41). It reads <code>e.GetIntParameter(\"Amount\", 1)</code> — the <b>value copy</b> from the previous step, <b>8</b>. So the flash/shake magnitude correctly reflects the post-mutation amount too. (It reads the int param, not the object — fine here because both are 8.)","hover":{"_flashFramesRemaining":{"k":"sca","t":"int","v":"3"},"ParentEntity":{"k":"obj","t":"Entity","s":"creature #7  (the target)","c":[{"key":"ID","k":"sca","t":"int","v":"7"},{"key":"BlueprintName","k":"sca","t":"string","v":"\"Creature\""},{"key":"DisplayName","k":"sca","t":"string","v":"\"creature\""},{"key":"Statistics","k":"obj","t":"Dictionary<string,Stat>","s":"Count = 4","c":[{"key":"Hitpoints","k":"obj","t":"Stat","s":"Value = 20","c":[{"key":"BaseValue","k":"sca","t":"int","v":"20"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"20"}]},{"key":"Strength","k":"obj","t":"Stat","s":"Value = 16","c":[{"key":"BaseValue","k":"sca","t":"int","v":"16"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"16"}]},{"key":"Agility","k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"12"}]}]},{"key":"Parts","k":"obj","t":"List<Part>","s":"Count = 6","c":[{"key":"[0]","k":"sca","t":"RenderPart","v":"glyph \"c\""},{"key":"[1]","k":"sca","t":"Body","v":"6 parts"},{"key":"[2]","k":"sca","t":"StatsPart","v":"4 stats"},{"key":"[3]","k":"sca","t":"DamageFlashPart","v":"_flashFramesRemaining=0"},{"key":"[4]","k":"obj","t":"StatusEffectsPart","s":"_effects.Count = 1","c":[{"key":"_effects","k":"obj","t":"List<Effect>","s":"Count = 1","c":[{"key":"[0]","k":"obj","t":"PaperSkinEffect","s":"paperskin  (Increase=5)  🐞","c":[{"key":"DisplayName","k":"sca","t":"string","v":"\"paperskin\""},{"key":"Increase","k":"sca","t":"int","v":"5"},{"key":"Duration","k":"sca","t":"int","v":"5"}]}]}]},{"key":"[5]","k":"sca","t":"…","v":"…"}]}]},"e":{"k":"obj","t":"GameEvent","s":"ID = \"TakeDamage\"","c":[{"key":"ID","k":"sca","t":"string","v":"\"TakeDamage\""},{"key":"Parameters","k":"obj","t":"Dictionary<string,object>","s":"Count = 3","c":[{"key":"Target","k":"sca","t":"Entity","v":"creature #7"},{"key":"Source","k":"sca","t":"Entity","v":"attacker"},{"key":"Damage","k":"sca","t":"Damage","v":"Amount = 8  (ref #D1)"}]},{"key":"IntParameters","k":"obj","t":"Dictionary<string,int>","s":"Count = 1","c":[{"key":"Amount","k":"sca","t":"int","v":"8  (value copy)"}]}]}},"ctx":"<p><b>What you're looking at.</b> <code>DamageFlashPart</code> — a concrete part that reacts to <code>\"TakeDamage\"</code> by flashing the sprite red and (for the player) shaking the screen.</p><p><b>When it runs.</b> During the <code>TakeDamage</code> fire from the previous step, as the FireEvent loop reaches this part.</p><p><b>In this code.</b> It reads <code>e.GetIntParameter(\"Amount\", 1)</code> — the value copy, <b>8</b> — and uses it for the shake strength (41), and sets a 3-frame red flash (35). So the visual feedback also reflects the post-mutation 8.</p><p><b>Nuance.</b> This part reads the <i>int parameter</i>, not the Damage object. Here both are 8, so it's fine — but it's a reminder that some consumers read the frozen copy and some read the live object. (The HP math reads the object, on purpose.)</p>"},{"file":"CombatSystem.cs","path":"Assets/Scripts/Gameplay/Combat/CombatSystem.cs","crumb":"CavesOfOoo.Core › CombatSystem › ApplyDamage()","node":"n_hp","bug":false,"start":829,"ln":843,"bps":[840,843],"code":"// not via event parameters, so the event itself can be released\n// immediately after firing.)\nvar takeDamage = GameEvent.New(\"TakeDamage\");\ntakeDamage.SetParameter(\"Target\", (object)target);\ntakeDamage.SetParameter(\"Source\", (object)source);\ntakeDamage.SetParameter(\"Amount\", damage.Amount);\ntakeDamage.SetParameter(\"Damage\", (object)damage);\ntarget.FireEventAndRelease(takeDamage);\n\n// Re-read damage.Amount after listeners — it may have been mutated.\n// Clamp at 0 so over-mutation can't heal the target.\nint amount = Math.Max(0, damage.Amount);\nif (amount <= 0) return;\n\nhpStat.BaseValue -= amount;\n\nStat hpAlias = target.GetStat(\"HP\");\nif (hpAlias != null && !ReferenceEquals(hpAlias, hpStat))\n    hpAlias.BaseValue -= amount;\n\n// D2.2 diag hook (Docs/D2-HOOKS-PLAN.md §4 D2.2).\n// Records damage AFTER it lands. Broader than the\n// DamageDealt event below — that event only fires when\n// source != null, but environmental damage (traps,\n// status DoT) also writes to the diag buffer. Payload\n// captures post-damage HP and the lethal flag for\n// turn-by-turn combat reconstruction.\nif (Diag.IsChannelEnabled(\"damage\"))","stack":[{"ty":"CombatSystem","fn":"ApplyDamage(...)","loc":"CombatSystem.cs:843"}],"vars":[{"n":"amount  (re-read)","ty":"int","v":"8  = Math.Max(0, damage.Amount)","ch":true},{"n":"hpStat.BaseValue","ty":"int","v":"12  (was 20)","ch":true}],"out":[{"type":"hp","text":"creature HP  20 → 12   (−8, the PaperSkin-increased hit)"},{"type":"diag","cat":"damage","kind":"DamageDealt","actor":"source","target":"creature","pay":"amount=8 hpAfter=12 lethal=false attributes=\"Melee,Cutting\""}],"note":"<span class=\"ph\">damage</span><b>The real HP change — and the answer to \"before/after HP looks unmutated\".</b> Line 840 <b>re-reads the object</b>: <code>amount = Math.Max(0, damage.Amount) = 8</code> (not the pre-mutation 3). Then <code>hpStat.BaseValue -= 8</code> takes the target <b>20 → 12</b>. The HP delta is 8 — the increased value. If you expected 13 (from the buggy log) and saw −8, that's the log lying, not the mutation failing.","hover":{"target":{"k":"obj","t":"Entity","s":"creature #7  (the target)","c":[{"key":"ID","k":"sca","t":"int","v":"7"},{"key":"BlueprintName","k":"sca","t":"string","v":"\"Creature\""},{"key":"DisplayName","k":"sca","t":"string","v":"\"creature\""},{"key":"Statistics","k":"obj","t":"Dictionary<string,Stat>","s":"Count = 4","c":[{"key":"Hitpoints","k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"12"}]},{"key":"Strength","k":"obj","t":"Stat","s":"Value = 16","c":[{"key":"BaseValue","k":"sca","t":"int","v":"16"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"16"}]},{"key":"Agility","k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"12"}]}]},{"key":"Parts","k":"obj","t":"List<Part>","s":"Count = 6","c":[{"key":"[0]","k":"sca","t":"RenderPart","v":"glyph \"c\""},{"key":"[1]","k":"sca","t":"Body","v":"6 parts"},{"key":"[2]","k":"sca","t":"StatsPart","v":"4 stats"},{"key":"[3]","k":"sca","t":"DamageFlashPart","v":"_flashFramesRemaining=0"},{"key":"[4]","k":"obj","t":"StatusEffectsPart","s":"_effects.Count = 1","c":[{"key":"_effects","k":"obj","t":"List<Effect>","s":"Count = 1","c":[{"key":"[0]","k":"obj","t":"PaperSkinEffect","s":"paperskin  (Increase=5)  🐞","c":[{"key":"DisplayName","k":"sca","t":"string","v":"\"paperskin\""},{"key":"Increase","k":"sca","t":"int","v":"5"},{"key":"Duration","k":"sca","t":"int","v":"5"}]}]}]},{"key":"[5]","k":"sca","t":"…","v":"…"}]}]},"damage":{"k":"obj","t":"Damage","s":"Amount = 8   (ref #D1)","c":[{"key":"_Amount","k":"sca","t":"int","v":"8"},{"key":"Amount","k":"sca","t":"int","v":"8"},{"key":"Attributes","k":"obj","t":"List<string>","s":"Count = 2","c":[{"key":"[0]","k":"sca","t":"string","v":"\"Melee\""},{"key":"[1]","k":"sca","t":"string","v":"\"Cutting\""}]},{"key":"AttributeFlags","k":"sca","t":"DamageAttributeFlags","v":"None"}]},"hpStat":{"k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"12"}]},"takeDamage":{"k":"obj","t":"GameEvent","s":"ID = \"TakeDamage\"","c":[{"key":"ID","k":"sca","t":"string","v":"\"TakeDamage\""},{"key":"Parameters","k":"obj","t":"Dictionary<string,object>","s":"Count = 3","c":[{"key":"Target","k":"sca","t":"Entity","v":"creature #7"},{"key":"Source","k":"sca","t":"Entity","v":"attacker"},{"key":"Damage","k":"sca","t":"Damage","v":"Amount = 8  (ref #D1)"}]},{"key":"IntParameters","k":"obj","t":"Dictionary<string,int>","s":"Count = 1","c":[{"key":"Amount","k":"sca","t":"int","v":"8  (value copy)"}]}]}},"ctx":"<p><b>What you're looking at.</b> The actual subtraction of hit points — and the direct answer to “before/after HP looked unmutated.”</p><p><b>The crucial line.</b> Line 840 <b>re-reads the object</b>: <code>amount = Math.Max(0, damage.Amount)</code>, which is <b>8</b> — not the pre-mutation 3, and not the phantom 13. Then <code>hpStat.BaseValue -= 8</code> takes the target from <b>20 to 12</b>.</p><p><b>So what did you actually see?</b> An 8-point HP drop. If you were expecting 13 (because the log said “to 13”), an 8-point drop looks like “the increase didn't apply.” But 8 = 3 + Increase(5) is precisely the increase applying. The mismatch is the log's fault, every time.</p><p><b>Terms.</b> A <b>Stat</b> holds <code>BaseValue</code> (the raw number combat edits) and a clamped <code>Value</code> the UI shows. Damage writes <code>BaseValue</code> directly.</p>"},{"file":"CombatSystem.cs","path":"Assets/Scripts/Gameplay/Combat/CombatSystem.cs","crumb":"CavesOfOoo.Core › CombatSystem › ApplyDamage()","node":"n_dealt","bug":false,"start":847,"ln":880,"bps":[860,875,880],"code":"    hpAlias.BaseValue -= amount;\n\n// D2.2 diag hook (Docs/D2-HOOKS-PLAN.md §4 D2.2).\n// Records damage AFTER it lands. Broader than the\n// DamageDealt event below — that event only fires when\n// source != null, but environmental damage (traps,\n// status DoT) also writes to the diag buffer. Payload\n// captures post-damage HP and the lethal flag for\n// turn-by-turn combat reconstruction.\nif (Diag.IsChannelEnabled(\"damage\"))\n{\n    Diag.Record(\n        category: \"damage\",\n        kind: \"DamageDealt\",\n        actor: source,\n        target: target,\n        payload: new\n        {\n            amount = amount,\n            hpAfter = hpStat.BaseValue,\n            lethal = hpStat.BaseValue <= 0,\n            attributes = damage.Attributes\n        });\n}\n\n// Notify the attacker that damage was dealt (for on-hit effects like poison)\nif (source != null)\n{\n    var damageDealt = GameEvent.New(\"DamageDealt\");\n    damageDealt.SetParameter(\"Attacker\", (object)source);\n    damageDealt.SetParameter(\"Defender\", (object)target);\n    damageDealt.SetParameter(\"Amount\", amount);\n    damageDealt.SetParameter(\"Damage\", (object)damage); // Phase C\n    source.FireEventAndRelease(damageDealt);\n}\n\n// Floating damage number — emit at the target's cell so EVERY\n// damage path (melee swings, traps, effect ticks, mutations,\n// future content) produces consistent visual feedback. Uses\n// min(amount, hpBefore) so over-kill damage shows the actual\n// HP delta the player observes on the HUD. Centralizing this\n// here removes the duplicate emit that used to live in\n// PerformSingleAttack — every ApplyDamage call now emits once,\n// including the prior trap-damage path which silently dropped","stack":[{"ty":"CombatSystem","fn":"ApplyDamage(...)","loc":"CombatSystem.cs:880"}],"vars":[{"n":"source","ty":"Entity","v":"\"attacker\" (deals the hit)","cls":"o"},{"n":"amount","ty":"int","v":"8"}],"out":[{"type":"event","name":"DamageDealt","on":"source (the ATTACKER, not the target)"}],"note":"<span class=\"ph\">damage</span>The <b>third damage-taking-related event</b>, but note <i>who</i> it fires on: <code>\"DamageDealt\"</code> is fired on the <b>source/attacker</b> (875-880), carrying <code>amount=8</code> — this is the hook for attacker-side on-hit abilities (poison, lifesteal). Contrast with <code>BeforeTakeDamage</code>/<code>TakeDamage</code>, which fire on the <b>target</b>. A <code>DamageDealt</code> diag also records to the buffer (856-870) even for sourceless environmental damage.","hover":{"source":{"k":"sca","t":"Entity","v":"\"attacker\" (deals the hit)"},"amount":{"k":"sca","t":"int","v":"8"},"target":{"k":"obj","t":"Entity","s":"creature #7  (the target)","c":[{"key":"ID","k":"sca","t":"int","v":"7"},{"key":"BlueprintName","k":"sca","t":"string","v":"\"Creature\""},{"key":"DisplayName","k":"sca","t":"string","v":"\"creature\""},{"key":"Statistics","k":"obj","t":"Dictionary<string,Stat>","s":"Count = 4","c":[{"key":"Hitpoints","k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"12"}]},{"key":"Strength","k":"obj","t":"Stat","s":"Value = 16","c":[{"key":"BaseValue","k":"sca","t":"int","v":"16"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"16"}]},{"key":"Agility","k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"12"}]}]},{"key":"Parts","k":"obj","t":"List<Part>","s":"Count = 6","c":[{"key":"[0]","k":"sca","t":"RenderPart","v":"glyph \"c\""},{"key":"[1]","k":"sca","t":"Body","v":"6 parts"},{"key":"[2]","k":"sca","t":"StatsPart","v":"4 stats"},{"key":"[3]","k":"sca","t":"DamageFlashPart","v":"_flashFramesRemaining=0"},{"key":"[4]","k":"obj","t":"StatusEffectsPart","s":"_effects.Count = 1","c":[{"key":"_effects","k":"obj","t":"List<Effect>","s":"Count = 1","c":[{"key":"[0]","k":"obj","t":"PaperSkinEffect","s":"paperskin  (Increase=5)  🐞","c":[{"key":"DisplayName","k":"sca","t":"string","v":"\"paperskin\""},{"key":"Increase","k":"sca","t":"int","v":"5"},{"key":"Duration","k":"sca","t":"int","v":"5"}]}]}]},{"key":"[5]","k":"sca","t":"…","v":"…"}]}]},"damage":{"k":"obj","t":"Damage","s":"Amount = 8   (ref #D1)","c":[{"key":"_Amount","k":"sca","t":"int","v":"8"},{"key":"Amount","k":"sca","t":"int","v":"8"},{"key":"Attributes","k":"obj","t":"List<string>","s":"Count = 2","c":[{"key":"[0]","k":"sca","t":"string","v":"\"Melee\""},{"key":"[1]","k":"sca","t":"string","v":"\"Cutting\""}]},{"key":"AttributeFlags","k":"sca","t":"DamageAttributeFlags","v":"None"}]},"hpStat":{"k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"12"}]}},"ctx":"<p><b>What you're looking at.</b> A third damage-related event, <code>\"DamageDealt\"</code> — but notice it fires on the <b>attacker</b>, not the target.</p><p><b>Why that direction.</b> Attacker-side abilities (poison-on-hit, lifesteal, weapon procs) need to know “I just dealt N damage.” They listen for <code>DamageDealt</code> on the source. It carries <code>amount = 8</code> — the post-mutation value — so a lifesteal would heal based on 8, not 3.</p><p><b>Contrast to keep straight.</b> <code>BeforeTakeDamage</code> and <code>TakeDamage</code> fire on the <i>defender</i> (“I am being hit”). <code>DamageDealt</code> fires on the <i>attacker</i> (“I hit something”). Same hit, opposite ends.</p><p><b>Also.</b> A <code>DamageDealt</code> diagnostic is recorded here too (856-870), even for environmental damage with no attacker, so combat can be reconstructed after the fact.</p>"},{"file":"CombatSystem.cs","path":"Assets/Scripts/Gameplay/Combat/CombatSystem.cs","crumb":"CavesOfOoo.Core › CombatSystem › ApplyDamage()","node":"n_float","bug":false,"start":874,"ln":901,"bps":[896,901],"code":"{\n    var damageDealt = GameEvent.New(\"DamageDealt\");\n    damageDealt.SetParameter(\"Attacker\", (object)source);\n    damageDealt.SetParameter(\"Defender\", (object)target);\n    damageDealt.SetParameter(\"Amount\", amount);\n    damageDealt.SetParameter(\"Damage\", (object)damage); // Phase C\n    source.FireEventAndRelease(damageDealt);\n}\n\n// Floating damage number — emit at the target's cell so EVERY\n// damage path (melee swings, traps, effect ticks, mutations,\n// future content) produces consistent visual feedback. Uses\n// min(amount, hpBefore) so over-kill damage shows the actual\n// HP delta the player observes on the HUD. Centralizing this\n// here removes the duplicate emit that used to live in\n// PerformSingleAttack — every ApplyDamage call now emits once,\n// including the prior trap-damage path which silently dropped\n// numbers (PressurePlate / TripWire / SpikeTrap / FireTrap /\n// BearTrap, plus per-turn DOT ticks from BleedingEffect /\n// BurningEffect / etc.).\nif (zone != null)\n{\n    int displayedAmount = Math.Min(amount, hpBefore);\n    if (displayedAmount > 0)\n    {\n        var targetCellForFx = zone.GetEntityCell(target);\n        if (targetCellForFx != null)\n            AsciiFxBus.EmitFloatingNumber(\n                zone, targetCellForFx.X, targetCellForFx.Y,\n                displayedAmount, \"&R\");\n    }\n}\n\nif (hpStat.BaseValue <= 0)\n{\n    HandleDeath(target, source, zone);\n}\nelse if (zone != null)\n{\n    // Mark the target's cell dirty so on-hit visual effects\n    // (damage flash, color change from new status effect,","stack":[{"ty":"CombatSystem","fn":"ApplyDamage(...)","loc":"CombatSystem.cs:901"}],"vars":[{"n":"amount","ty":"int","v":"8"},{"n":"hpBefore","ty":"int","v":"20"},{"n":"displayedAmount","ty":"int","v":"8  = min(8, 20)","ch":true}],"out":[{"type":"event","name":"AsciiFxBus.EmitFloatingNumber","on":"\"8\" @ target cell, red"}],"note":"<span class=\"ph\">aftermath</span><b>The number above the sprite — and the final answer to your third symptom.</b> There is exactly one emit (901): <code>displayedAmount = Math.Min(amount, hpBefore) = min(8, 20) = 8</code> (896), then <code>EmitFloatingNumber(…, 8, \"&R\")</code>. So the floating number is <b>8 — the POST-mutation value</b>, not the pre-mutation 3. What looked like \"the pre-mutated amount\" is actually the correctly-increased amount; it only seemed wrong next to the log's phantom 13. <b style=\"color:var(--red)\">Verdict: PaperSkin works; fix the two log lines and the confusion disappears.</b>","hover":{"amount":{"k":"sca","t":"int","v":"8"},"hpBefore":{"k":"sca","t":"int","v":"20"},"displayedAmount":{"k":"sca","t":"int","v":"8  = min(8, 20)"},"target":{"k":"obj","t":"Entity","s":"creature #7  (the target)","c":[{"key":"ID","k":"sca","t":"int","v":"7"},{"key":"BlueprintName","k":"sca","t":"string","v":"\"Creature\""},{"key":"DisplayName","k":"sca","t":"string","v":"\"creature\""},{"key":"Statistics","k":"obj","t":"Dictionary<string,Stat>","s":"Count = 4","c":[{"key":"Hitpoints","k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"12"}]},{"key":"Strength","k":"obj","t":"Stat","s":"Value = 16","c":[{"key":"BaseValue","k":"sca","t":"int","v":"16"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"16"}]},{"key":"Agility","k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"30"},{"key":"Value","k":"sca","t":"int","v":"12"}]}]},{"key":"Parts","k":"obj","t":"List<Part>","s":"Count = 6","c":[{"key":"[0]","k":"sca","t":"RenderPart","v":"glyph \"c\""},{"key":"[1]","k":"sca","t":"Body","v":"6 parts"},{"key":"[2]","k":"sca","t":"StatsPart","v":"4 stats"},{"key":"[3]","k":"sca","t":"DamageFlashPart","v":"_flashFramesRemaining=0"},{"key":"[4]","k":"obj","t":"StatusEffectsPart","s":"_effects.Count = 1","c":[{"key":"_effects","k":"obj","t":"List<Effect>","s":"Count = 1","c":[{"key":"[0]","k":"obj","t":"PaperSkinEffect","s":"paperskin  (Increase=5)  🐞","c":[{"key":"DisplayName","k":"sca","t":"string","v":"\"paperskin\""},{"key":"Increase","k":"sca","t":"int","v":"5"},{"key":"Duration","k":"sca","t":"int","v":"5"}]}]}]},{"key":"[5]","k":"sca","t":"…","v":"…"}]}]},"damage":{"k":"obj","t":"Damage","s":"Amount = 8   (ref #D1)","c":[{"key":"_Amount","k":"sca","t":"int","v":"8"},{"key":"Amount","k":"sca","t":"int","v":"8"},{"key":"Attributes","k":"obj","t":"List<string>","s":"Count = 2","c":[{"key":"[0]","k":"sca","t":"string","v":"\"Melee\""},{"key":"[1]","k":"sca","t":"string","v":"\"Cutting\""}]},{"key":"AttributeFlags","k":"sca","t":"DamageAttributeFlags","v":"None"}]},"hpStat":{"k":"obj","t":"Stat","s":"Value = 12","c":[{"key":"BaseValue","k":"sca","t":"int","v":"12"},{"key":"Bonus","k":"sca","t":"int","v":"0"},{"key":"Penalty","k":"sca","t":"int","v":"0"},{"key":"Min","k":"sca","t":"int","v":"0"},{"key":"Max","k":"sca","t":"int","v":"20"},{"key":"Value","k":"sca","t":"int","v":"12"}]}},"ctx":"<p><b>What you're looking at.</b> The floating damage number that pops above the target — the third thing you said looked “pre-mutation.” This is where it's created, and it's the <i>only</i> place that creates it.</p><p><b>The math.</b> Line 896 computes <code>displayedAmount = Math.Min(amount, hpBefore) = min(8, 20) = 8</code>, and line 901 emits that 8. (The <code>min</code> with <code>hpBefore</code> only matters on over-kill, so the number never exceeds the HP actually lost.)</p><p><b>The resolution.</b> The number above the sprite is <b>8 — the post-mutation amount</b>. It only seemed like “the pre-mutated amount” because the buggy log told you to expect 13, making the honest 8 look too small. Fix the two log lines and all three symptoms — “log says mutated,” “HP looks unmutated,” “number looks pre-mutation” — collapse into one consistent story: <b>+5 applied, 8 dealt.</b></p>"}];
+
+const NODES = [{"id":"n_entry","ph":"damage","ttl":"ApplyDamage entry","sub":"guard · amountBeforeMutation=3"},{"id":"n_fire_btd","ph":"damage","ttl":"Fire BeforeTakeDamage","sub":"SetParameter Damage=ref · fire","branch":{"ttl":"VETO","sub":"listener false → DamageFullyResisted"}},{"id":"n_fireevent","ph":"event","ttl":"Dispatch to Parts","sub":"Entity.FireEvent → HandleEvent"},{"id":"n_sep_route","ph":"event","ttl":"StatusEffectsPart routes","sub":"e.ID==\"BeforeTakeDamage\""},{"id":"n_sep_loop","ph":"event","ttl":"Loop active effects","sub":"→ OnBeforeTakeDamage (oldest first)"},{"id":"n_effect_base","ph":"event","ttl":"Effect hook contract","sub":"virtual no-op — override to mutate"},{"id":"n_paper","ph":"damage","ttl":"PaperSkin mutates","sub":"damage.Amount += 5  → 3→8  ✅"},{"id":"n_paperbug","ph":"bug","ttl":"🐞 Misleading logs","sub":"shows \"8\" then phantom \"13\"","bug":true},{"id":"n_stone","ph":"combat","ttl":"Stoneskin (sibling)","sub":"damage.Amount −= 2 · same pattern"},{"id":"n_premut","ph":"damage","ttl":"PreDamageMutation diag","sub":"GROUND TRUTH before=3 after=8 Δ+5"},{"id":"n_resist","ph":"damage","ttl":"ApplyResistances","sub":"non-elemental → stays 8","branch":{"ttl":"FULLY RESISTED","sub":"amount≤0 → DamageFullyResisted"}},{"id":"n_takedamage","ph":"damage","ttl":"Fire TakeDamage","sub":"Amount=8 copied to IntParameters"},{"id":"n_flash","ph":"event","ttl":"DamageFlashPart reacts","sub":"reads Amount=8 → flash/shake"},{"id":"n_hp","ph":"damage","ttl":"HP −= amount","sub":"re-read object 8 · HP 20→12"},{"id":"n_dealt","ph":"damage","ttl":"Fire DamageDealt","sub":"on the SOURCE · on-hit hook"},{"id":"n_float","ph":"aftermath","ttl":"Floating number","sub":"min(8,20)=8 — POST-mutation"}];
+
+const DEFS = {"GetStat":[{"crumb":"Entity.GetStat()","file":"Entity.cs","path":"Assets/Scripts/Gameplay/Entities/Entity.cs","start":94,"code":"public Stat GetStat(string name)\n{\n    Statistics.TryGetValue(name, out Stat stat);\n    return stat;\n}"}],"New":[{"crumb":"GameEvent.New()","file":"GameEvent.cs","path":"Assets/Scripts/Gameplay/Events/GameEvent.cs","start":76,"code":"public static GameEvent New(string id)\n{\n    return Rent(id);\n}"},{"crumb":"GameEvent.New()","file":"GameEvent.cs","path":"Assets/Scripts/Gameplay/Events/GameEvent.cs","start":81,"code":"public static GameEvent New(string id, string name1, object value1)\n{\n    var e = Rent(id);\n    e.SetParameter(name1, value1);\n    return e;\n}"},{"crumb":"GameEvent.New()","file":"GameEvent.cs","path":"Assets/Scripts/Gameplay/Events/GameEvent.cs","start":88,"code":"public static GameEvent New(string id, string name1, string value1)\n{\n    var e = Rent(id);\n    e.SetParameter(name1, value1);\n    return e;\n}"},{"crumb":"GameEvent.New()","file":"GameEvent.cs","path":"Assets/Scripts/Gameplay/Events/GameEvent.cs","start":95,"code":"public static GameEvent New(string id, string name1, int value1)\n{\n    var e = Rent(id);\n    e.SetParameter(name1, value1);\n    return e;\n}"}],"SetParameter":[{"crumb":"GameEvent.SetParameter()","file":"GameEvent.cs","path":"Assets/Scripts/Gameplay/Events/GameEvent.cs","start":112,"code":"public GameEvent SetParameter(string name, object value)\n{\n    Parameters[name] = value;\n    return this;\n}"},{"crumb":"GameEvent.SetParameter()","file":"GameEvent.cs","path":"Assets/Scripts/Gameplay/Events/GameEvent.cs","start":118,"code":"public GameEvent SetParameter(string name, string value)\n{\n    StringParameters[name] = value;\n    return this;\n}"},{"crumb":"GameEvent.SetParameter()","file":"GameEvent.cs","path":"Assets/Scripts/Gameplay/Events/GameEvent.cs","start":124,"code":"public GameEvent SetParameter(string name, int value)\n{\n    IntParameters[name] = value;\n    return this;\n}"}],"FireEventAndRelease":[{"crumb":"Entity.FireEventAndRelease()","file":"Entity.cs","path":"Assets/Scripts/Gameplay/Entities/Entity.cs","start":271,"code":"public bool FireEventAndRelease(GameEvent e)\n{\n    bool result = FireEvent(e);\n    e.Release();\n    return result;\n}"}],"FireEvent":[{"crumb":"Entity.FireEvent()","file":"Entity.cs","path":"Assets/Scripts/Gameplay/Entities/Entity.cs","start":255,"code":"public bool FireEvent(GameEvent e)\n{\n    for (int i = 0; i < Parts.Count; i++)\n    {\n        if (!Parts[i].HandleEvent(e))\n            return false;\n        if (e.Handled)\n            return false;\n    }\n    return true;\n}"},{"crumb":"Entity.FireEvent()","file":"Entity.cs","path":"Assets/Scripts/Gameplay/Entities/Entity.cs","start":281,"code":"public bool FireEvent(string eventID)\n{\n    return FireEventAndRelease(GameEvent.New(eventID));\n}"},{"crumb":"Part.FireEvent()","file":"Part.cs","path":"Assets/Scripts/Gameplay/Entities/Part.cs","start":80,"code":"protected bool FireEvent(GameEvent e)\n{\n    return ParentEntity?.FireEvent(e) ?? true;\n}"}],"HandleEvent":[{"crumb":"StatusEffectsPart.HandleEvent()","file":"StatusEffectsPart.cs","path":"Assets/Scripts/Gameplay/Effects/StatusEffectsPart.cs","start":318,"code":"public override bool HandleEvent(GameEvent e)\n{\n    if (e.ID == \"BeginTakeAction\")\n        return HandleBeginTakeAction(e);\n\n    // Back-compat: some systems still drive effect start-of-turn on TakeTurn.\n    if (e.ID == \"TakeTurn\")\n    {\n        if (e.GetParameter<bool>(\"BeginTakeActionProcessed\"))\n            return true;\n        return HandleBeginTakeAction(e);\n    }\n\n    // Block movement when any active effect denies action. Defense in\n    // depth against paths that call MovementSystem.TryMove directly\n    // (e.g. InputHandler's player-move path) without first going\n    // through the TurnManager's BeginTakeAction gate.\n    //\n    // Without this, a frozen player could still press a direction\n    // key and move — the \"X is frozen and cannot act!\" log from\n    // HandleBeginTakeAction would appear on their skipped turn,\n    // but the next input frame would slip through because\n    // BeforeMove has no AllowAction consultation upstream.\n    if (e.ID == \"BeforeMove\")\n        return HandleBeforeMove(e);\n\n    if (e.ID == \"EndTurn\")\n    {\n        HandleEndTurn(e);\n        return true;\n    }\n\n    if (e.ID == \"BeforeTakeDamage\")\n    {\n        HandleBeforeTakeDamage(e);\n        return true;\n    }\n\n    if (e.ID == \"TakeDamage\")\n    {\n        HandleTakeDamage(e);\n        return true;\n    }\n\n    if (e.ID == \"Died\")\n    {\n        RemoveAllEffects();\n        return true;\n    }\n\n    if (e.ID == \"Render\")\n        return HandleRender(e);\n\n    return true;\n}"},{"crumb":"DamageFlashPart.HandleEvent()","file":"DamageFlashPart.cs","path":"Assets/Scripts/Gameplay/Entities/DamageFlashPart.cs","start":31,"code":"public override bool HandleEvent(GameEvent e)\n{\n    if (e.ID == \"TakeDamage\")\n    {\n        _flashFramesRemaining = FlashDuration;\n\n        // Notify presentation layer if this is the player\n        if (ParentEntity != null && ParentEntity.HasTag(\"Player\"))\n        {\n            int amount = e.GetIntParameter(\"Amount\", 1);\n            OnPlayerDamaged?.Invoke(amount);\n        }\n        return true;\n    }\n\n    if (e.ID == \"DamageDealt\")\n    {\n        if (ParentEntity != null && ParentEntity.HasTag(\"Player\"))\n        {\n            int amount = e.GetIntParameter(\"Amount\", 1);\n            OnPlayerDealtDamage?.Invoke(amount);\n        }\n        return true;\n    }\n\n    if (e.ID == \"Render\" && _flashFramesRemaining > 0)\n    {\n        e.SetParameter(\"ColorString\", FlashColor);\n        _flashFramesRemaining--;\n        return true;\n    }\n\n    return true;\n}"},{"crumb":"Part.HandleEvent()","file":"Part.cs","path":"Assets/Scripts/Gameplay/Entities/Part.cs","start":49,"code":"public virtual bool HandleEvent(GameEvent e)\n{\n    return true;\n}"}],"Release":[{"crumb":"GameEvent.Release()","file":"GameEvent.cs","path":"Assets/Scripts/Gameplay/Events/GameEvent.cs","start":40,"code":"public void Release()\n{\n    ID = null;\n    Handled = false;\n    Parameters.Clear();\n    StringParameters.Clear();\n    IntParameters.Clear();\n    if (Pool.Count < 64)\n        Pool.Push(this);\n}"}],"GetRenderColorOverride":[{"crumb":"StatusEffectsPart.GetRenderColorOverride()","file":"StatusEffectsPart.cs","path":"Assets/Scripts/Gameplay/Effects/StatusEffectsPart.cs","start":307,"code":"public string GetRenderColorOverride()\n{\n    for (int i = 0; i < _effects.Count; i++)\n    {\n        string color = _effects[i].GetRenderColorOverride();\n        if (color != null)\n            return color;\n    }\n    return null;\n}"},{"crumb":"Effect.GetRenderColorOverride()","file":"Effect.cs","path":"Assets/Scripts/Gameplay/Effects/Effect.cs","start":232,"code":"public virtual string GetRenderColorOverride() => null;"}],"HandleBeginTakeAction":[{"crumb":"StatusEffectsPart.HandleBeginTakeAction()","file":"StatusEffectsPart.cs","path":"Assets/Scripts/Gameplay/Effects/StatusEffectsPart.cs","start":398,"code":"private bool HandleBeginTakeAction(GameEvent e)\n{\n    // Fire OnTurnStart FIRST so damage-tick effects (poison, burn,\n    // bleed, acidic, electrified) deal their per-turn damage BEFORE\n    // the action-block check. Bodily processes don't pause for\n    // mental effects — bleeding still bleeds while you're stunned.\n    //\n    // Pre-fix, BearTrap's Stun(1) + Bleeding pairing gave the\n    // player NO visible feedback during the stunned turn (no\n    // \"takes X bleed damage\" message), making bleeding appear\n    // to never tick. Players reported \"bleeding finishes the\n    // same turn it gets applied\" — actually it was still active\n    // but ticked silently. This restores the expected roguelike\n    // semantic: damage-tick effects always tick at start of turn,\n    // and the action-block check only governs whether the entity\n    // can take a willed action (move/attack).\n    //\n    // Reverse iteration so an effect removing itself or another\n    // effect during OnTurnStart doesn't skip iterations.\n    for (int i = _effects.Count - 1; i >= 0; i--)\n    {\n        if (i < _effects.Count)\n            _effects[i].OnTurnStart(ParentEntity, e);\n    }\n\n    // After damage ticks, check if any effect blocks the action\n    // (stun, freeze, paralysis). If so, log the skipped-turn\n    // message and return false so TurnManager skips the actor's\n    // willed action. The damage ticks above have already fired.\n    for (int i = 0; i < _effects.Count; i++)\n    {\n        if (!_effects[i].AllowAction(ParentEntity))\n        {\n            string name = ParentEntity.GetDisplayName();\n            string effectName = _effects[i].DisplayName;\n            MessageLog.Add(name + \" is \" + effectName + \" and cannot act!\");\n            e.Handled = true;\n            return false;\n        }\n    }\n\n    return true;\n}"}],"HandleBeforeMove":[{"crumb":"StatusEffectsPart.HandleBeforeMove()","file":"StatusEffectsPart.cs","path":"Assets/Scripts/Gameplay/Effects/StatusEffectsPart.cs","start":374,"code":"private bool HandleBeforeMove(GameEvent e)\n{\n    // Movement-only blocking is via AllowMovement; full action-\n    // blocking via AllowAction (its default makes AllowMovement\n    // return AllowAction's result, so existing effects like\n    // Stunned/Frozen continue to block movement without changes).\n    // RootedEffect overrides AllowMovement => false but leaves\n    // AllowAction at its true default — actor can still attack\n    // / cast / use abilities, just not change cells.\n    //\n    // We DON'T re-log here because HandleBeginTakeAction already\n    // logged on the turn gate; a second \"cannot act\" per skipped-\n    // input key-press would spam the log.\n    for (int i = 0; i < _effects.Count; i++)\n    {\n        if (!_effects[i].AllowMovement(ParentEntity))\n        {\n            e.Handled = true;\n            return false;\n        }\n    }\n    return true;\n}"}],"HandleEndTurn":[{"crumb":"StatusEffectsPart.HandleEndTurn()","file":"StatusEffectsPart.cs","path":"Assets/Scripts/Gameplay/Effects/StatusEffectsPart.cs","start":442,"code":"private void HandleEndTurn(GameEvent e)\n{\n    // Tick each effect — but skip any effect that was JustApplied\n    // during this same owner-turn cycle. Without this skip, an\n    // effect added mid-action (e.g., StunnedEffect(1) from a\n    // BearTrap step) would tick its OnTurnEnd in the very EndTurn\n    // that wraps the move, decrementing Duration 1 → 0 and being\n    // cleaned up before the next turn even starts. The flag is\n    // single-shot: cleared on the first tick attempt so the\n    // second EndTurn ticks normally.\n    for (int i = _effects.Count - 1; i >= 0; i--)\n    {\n        if (i < _effects.Count)\n        {\n            var effect = _effects[i];\n            if (effect.JustApplied)\n            {\n                effect.JustApplied = false;\n                continue;\n            }\n            effect.OnTurnEnd(ParentEntity, e);\n        }\n    }\n\n    // Clean up expired effects\n    for (int i = _effects.Count - 1; i >= 0; i--)\n    {\n        if (_effects[i].Duration == 0)\n            RemoveEffectAt(i);\n    }\n}"}],"HandleBeforeTakeDamage":[{"crumb":"StatusEffectsPart.HandleBeforeTakeDamage()","file":"StatusEffectsPart.cs","path":"Assets/Scripts/Gameplay/Effects/StatusEffectsPart.cs","start":491,"code":"private void HandleBeforeTakeDamage(GameEvent e)\n{\n    for (int i = 0; i < _effects.Count; i++)\n    {\n        _effects[i].OnBeforeTakeDamage(ParentEntity, e);\n    }\n}"}],"HandleTakeDamage":[{"crumb":"StatusEffectsPart.HandleTakeDamage()","file":"StatusEffectsPart.cs","path":"Assets/Scripts/Gameplay/Effects/StatusEffectsPart.cs","start":474,"code":"private void HandleTakeDamage(GameEvent e)\n{\n    for (int i = _effects.Count - 1; i >= 0; i--)\n    {\n        if (i < _effects.Count)\n            _effects[i].OnTakeDamage(ParentEntity, e);\n    }\n}"}],"OnBeforeTakeDamage":[{"crumb":"PaperSkin.OnBeforeTakeDamage()","file":"PaperSkin.cs","path":"Assets/Scripts/Gameplay/Effects/Concrete/PaperSkin.cs","start":25,"code":"public override void OnBeforeTakeDamage(Entity target, GameEvent e)\n{\n    if (e.GetParameter(\"Damage\") is Damage damage)\n    {\n        damage.Amount += Increase;\n        MessageLog.Add(\"Original damage: \" + damage.Amount);\n        MessageLog.Add($\"Damage increased from {damage.Amount} to {damage.Amount + Increase}.\");\n    }\n    \n}"},{"crumb":"StoneskinEffect.OnBeforeTakeDamage()","file":"StoneskinEffect.cs","path":"Assets/Scripts/Gameplay/Effects/Concrete/StoneskinEffect.cs","start":44,"code":"public override void OnBeforeTakeDamage(Entity target, GameEvent e)\n{\n    if (e.GetParameter(\"Damage\") is Damage damage)\n    {\n        // Damage.Amount setter clamps to ≥ 0 — over-reduction is safe.\n        damage.Amount -= Reduction;\n    }\n}"},{"crumb":"Effect.OnBeforeTakeDamage()","file":"Effect.cs","path":"Assets/Scripts/Gameplay/Effects/Effect.cs","start":209,"code":"public virtual void OnBeforeTakeDamage(Entity target, GameEvent e) { }"}],"HandleRender":[{"crumb":"StatusEffectsPart.HandleRender()","file":"StatusEffectsPart.cs","path":"Assets/Scripts/Gameplay/Effects/StatusEffectsPart.cs","start":499,"code":"private bool HandleRender(GameEvent e)\n{\n    for (int i = 0; i < _effects.Count; i++)\n    {\n        if (!_effects[i].Render(e))\n            return false;\n    }\n\n    string effectColor = GetRenderColorOverride();\n    if (!string.IsNullOrEmpty(effectColor))\n        e.SetParameter(\"ColorString\", effectColor);\n\n    return true;\n}"}],"Render":[{"crumb":"Effect.Render()","file":"Effect.cs","path":"Assets/Scripts/Gameplay/Effects/Effect.cs","start":245,"code":"public virtual bool Render(GameEvent e) => true;"}],"OnTurnEnd":[{"crumb":"Effect.OnTurnEnd()","file":"Effect.cs","path":"Assets/Scripts/Gameplay/Effects/Effect.cs","start":176,"code":"public virtual void OnTurnEnd(Entity target)\n{\n    if (Duration > 0)\n        Duration--;\n}"},{"crumb":"Effect.OnTurnEnd()","file":"Effect.cs","path":"Assets/Scripts/Gameplay/Effects/Effect.cs","start":185,"code":"public virtual void OnTurnEnd(Entity target, GameEvent context)\n{\n    OnTurnEnd(target);\n}"}],"OnTakeDamage":[{"crumb":"Effect.OnTakeDamage()","file":"Effect.cs","path":"Assets/Scripts/Gameplay/Effects/Effect.cs","start":193,"code":"public virtual void OnTakeDamage(Entity target, GameEvent e) { }"}],"AllowAction":[{"crumb":"Effect.AllowAction()","file":"Effect.cs","path":"Assets/Scripts/Gameplay/Effects/Effect.cs","start":214,"code":"public virtual bool AllowAction(Entity target) => true;"}],"Add":[{"crumb":"MessageLog.Add()","file":"MessageLog.cs","path":"Assets/Scripts/Gameplay/Events/MessageLog.cs","start":52,"code":"public static void Add(string message)\n{\n    Messages.Add(message);\n    Ticks.Add(TickProvider != null ? TickProvider() : 0);\n    Serials.Add(NextSerial++);\n    OnMessage?.Invoke(message);\n}"}],"GetDisplayName":[{"crumb":"Entity.GetDisplayName()","file":"Entity.cs","path":"Assets/Scripts/Gameplay/Entities/Entity.cs","start":391,"code":"public string GetDisplayName()\n{\n    var render = GetPart(\"Render\");\n    string name;\n    if (render is RenderPart rp && !string.IsNullOrEmpty(rp.DisplayName))\n        name = rp.DisplayName;\n    else\n        name = BlueprintName ?? ID ?? \"unknown\";\n\n    var stacker = GetPart<StackerPart>();\n    if (stacker != null && stacker.StackCount > 1)\n        name += $\" (x{stacker.StackCount})\";\n\n    return name;\n}"}],"OnRemove":[{"crumb":"PaperSkin.OnRemove()","file":"PaperSkin.cs","path":"Assets/Scripts/Gameplay/Effects/Concrete/PaperSkin.cs","start":20,"code":"public override void OnRemove(Entity target)\n{\n    MessageLog.Add(target.GetDisplayName() + \"'s skin thickens.\");\n}"},{"crumb":"StoneskinEffect.OnRemove()","file":"StoneskinEffect.cs","path":"Assets/Scripts/Gameplay/Effects/Concrete/StoneskinEffect.cs","start":39,"code":"public override void OnRemove(Entity target)\n{\n    MessageLog.Add(target.GetDisplayName() + \"'s stoneskin fades.\");\n}"},{"crumb":"Effect.OnRemove()","file":"Effect.cs","path":"Assets/Scripts/Gameplay/Effects/Effect.cs","start":155,"code":"public virtual void OnRemove(Entity target) { }"}],"GetParameter":[{"crumb":"GameEvent.GetParameter()","file":"GameEvent.cs","path":"Assets/Scripts/Gameplay/Events/GameEvent.cs","start":161,"code":"public object GetParameter(string name)\n{\n    if (Parameters.TryGetValue(name, out object value))\n        return value;\n    if (StringParameters.TryGetValue(name, out string str))\n        return str;\n    if (IntParameters.TryGetValue(name, out int i))\n        return i;\n    return null;\n}"}],"HasAttribute":[{"crumb":"Damage.HasAttribute()","file":"Damage.cs","path":"Assets/Scripts/Gameplay/Combat/Damage.cs","start":99,"code":"public bool HasAttribute(string name)\n{\n    if (Attributes == null) return false;\n    return Attributes.Contains(name);\n}"}],"ApplyResistances":[{"crumb":"CombatSystem.ApplyResistances()","file":"CombatSystem.cs","path":"Assets/Scripts/Gameplay/Combat/CombatSystem.cs","start":987,"code":"private static void ApplyResistances(Entity target, Damage damage)\n{\n    if (damage.IsAcidDamage())     ApplyResistanceFor(target, damage, \"AcidResistance\");\n    if (damage.IsHeatDamage())     ApplyResistanceFor(target, damage, \"HeatResistance\");\n    if (damage.IsColdDamage())     ApplyResistanceFor(target, damage, \"ColdResistance\");\n    if (damage.IsElectricDamage()) ApplyResistanceFor(target, damage, \"ElectricResistance\");\n}"}],"HasTag":[{"crumb":"Entity.HasTag()","file":"Entity.cs","path":"Assets/Scripts/Gameplay/Entities/Entity.cs","start":178,"code":"public bool HasTag(string name)\n{\n    return Tags.ContainsKey(name);\n}"}],"GetIntParameter":[{"crumb":"GameEvent.GetIntParameter()","file":"GameEvent.cs","path":"Assets/Scripts/Gameplay/Events/GameEvent.cs","start":132,"code":"public int GetIntParameter(string name, int defaultValue = 0)\n{\n    if (IntParameters.TryGetValue(name, out int value))\n        return value;\n    if (Parameters.TryGetValue(name, out object obj))\n        return Convert.ToInt32(obj);\n    if (StringParameters.TryGetValue(name, out string str))\n        return Convert.ToInt32(str);\n    return defaultValue;\n}"}],"HandleDeath":[{"crumb":"CombatSystem.HandleDeath()","file":"CombatSystem.cs","path":"Assets/Scripts/Gameplay/Combat/CombatSystem.cs","start":1046,"code":"public static void HandleDeath(Entity target, Entity killer, Zone zone)\n{\n    string targetName = target.GetDisplayName();\n    string killerName = killer?.GetDisplayName() ?? \"something\";\n    MessageLog.Add($\"{targetName} is killed by {killerName}!\");\n\n    // Award XP to the killer\n    if (killer != null && killer.HasTag(\"Player\"))\n        LevelingSystem.AwardKillXP(killer, target, zone);\n\n    // Drop equipment from body parts\n    if (zone != null)\n    {\n        var body = target.GetPart<Body>();\n        if (body != null)\n            body.DropAllEquipment(zone);\n\n        // Drop carried inventory\n        var inventory = target.GetPart<InventoryPart>();\n        if (inventory != null)\n            DropInventoryOnDeath(target, inventory, zone);\n    }\n\n    // Death splatter FX (before entity removal so position is still valid)\n    DeathSplatterFx.Emit(target, killer, zone);\n\n    var died = GameEvent.New(\"Died\");\n    died.SetParameter(\"Target\", (object)target);\n    died.SetParameter(\"Killer\", (object)killer);\n    // Zone is threaded through so handlers that spawn entities at the\n    // death cell (M5: CorpsePart) don't need to couple to BrainPart to\n    // resolve the zone. Non-spawner handlers (StatusEffectsPart,\n    // GivesRepPart) ignore the extra parameter.\n    died.SetParameter(\"Zone\", (object)zone);\n    target.FireEventAndRelease(died);\n\n    // M2.3: broadcast the death to nearby Passive NPCs so they can\n    // visibly react (wander-pace for 20 turns). Fires AFTER the Died\n    // event so any handlers that mutate the zone have already run,\n    // and BEFORE RemoveEntity so the death cell is still resolvable\n    // via GetEntityCell(target).\n    if (zone != null)\n        BroadcastDeathWitnessed(target, killer, zone, WitnessRadius);\n\n    // Capture the death cell BEFORE RemoveEntity so the renderer can\n    // be told to repaint it (corpse/blood splatter glyph, or simply\n    // \"entity gone, show what's underneath\"). Player death triggers\n    // a full redraw — the death screen UI may stomp arbitrary cells.\n    int? deathX = null, deathY = null;\n    if (zone != null)\n    {\n        var deathCell = zone.GetEntityCell(target);\n        if (deathCell != null)\n        {\n            deathX = deathCell.X;\n            deathY = deathCell.Y;\n        }\n    }\n\n    if (zone != null)\n        zone.RemoveEntity(target);\n\n    // De-list the dead entity from the turn queue so it doesn't\n    // get scheduled for another turn. Without this, dead actors\n    // cycle through the turn loop with hp=0 (visible in the diag\n    // stream as turn/Begin records on hp:0 entities — the May\n    // 2026 live-run review surfaced this as Finding 3). The\n    // subsequent BeginTakeAction event is wasted work and the\n    // diag emission is noise.\n    //\n    // TurnManager.Active is null in tests + boot, so the ?.\n    // guard makes this safe pre-game and in synthetic fixtures\n    // that never set up a TurnManager. The instance method is\n    // idempotent (no-op if entity isn't in the queue) so calling\n    // it on entities that were never registered is fine.\n    TurnManager.Active?.RemoveEntity(target);\n\n    if (target != null && target.HasTag(\"Player\"))\n        ZoneRenderHooks.MarkFullDirty(\"Death.Player\");\n    else if (deathX.HasValue && deathY.HasValue)\n        ZoneRenderHooks.MarkCellDirty(deathX.Value, deathY.Value, \"Death\");\n}"}]};
+
+/* ===================== Rendering ===================== */
+let cur = 0;
+let HOVERSET = new Set(), HOVERMAP = {};
+const $ = s => document.querySelector(s);
+
+function tokenize(line, linkOnly){
+  // returns HTML with span classes; comment wins whole-line
+  const ci = line.indexOf("//");
+  let codePart = line, comment = "";
+  if(ci>=0){ codePart = line.slice(0,ci); comment = line.slice(ci); }
+  // split keeping delimiters
+  const out = [];
+  const re = /("(?:[^"\\]|\\.)*"|\b\d+(?:d\d+)?\b|[A-Za-z_][A-Za-z0-9_]*|\s+|[^\sA-Za-z0-9_"]+)/g;
+  let m;
+  while((m = re.exec(codePart))){
+    const t = m[0];
+    if(/^\s+$/.test(t)){ out.push(esc(t)); continue; }
+    if(/^"/.test(t)){ out.push(`<span class="ts">${esc(t)}</span>`); continue; }
+    if(/^\d/.test(t)){ out.push(`<span class="tn">${esc(t)}</span>`); continue; }
+    if(/^[A-Za-z_]/.test(t)){
+      if(KW.includes(t)) out.push(`<span class="tk">${esc(t)}</span>`);
+      else if(TYPES.includes(t)) out.push(`<span class="tt">${esc(t)}</span>`);
+      else {
+        // function call if followed by (
+        const rest = codePart.slice(re.lastIndex);
+        if(/^\s*\(/.test(rest)){
+          if(typeof DEFS!=="undefined" && DEFS[t]) out.push(`<span class="tf lnk" data-def="${esc(t)}" title="⌘/Ctrl-click: peek ${esc(t)}()">${esc(t)}</span>`);
+          else out.push(`<span class="tf">${esc(t)}</span>`);
+        }
+        else if(!linkOnly && HOVERSET.has(t)) out.push(`<span class="hv" data-h="${esc(t)}">${esc(t)}</span>`);
+        else out.push(esc(t));
+      }
+      continue;
+    }
+    out.push(esc(t));
+  }
+  let html = out.join("");
+  if(comment) html += `<span class="tc">${esc(comment)}</span>`;
+  return html;
+}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+/* ---------- IDE-style hover datatips (expandable, nested) ---------- */
+let _tip=null, _hideT=null, _anchor=null;
+function tipEl(){
+  if(!_tip){
+    _tip=document.createElement("div"); _tip.className="datatip"; _tip.style.display="none";
+    document.body.appendChild(_tip);
+    _tip.addEventListener("mouseenter", ()=>{ if(_hideT){clearTimeout(_hideT);_hideT=null;} });
+    _tip.addEventListener("mouseleave", hideTip);
+  }
+  return _tip;
+}
+function valClass(t){ t=(t||"").toLowerCase();
+  if(t==="string")return"s"; if(t==="int"||t==="float"||t==="double"||t==="long")return"n";
+  if(t==="bool")return"b"; return "o"; }
+const sca=(t,v)=>({k:"sca",t:t||"",v:String(v)});
+// shared expandable tree. openDepth: levels auto-open. onToggle: callback after expand/collapse.
+function buildTree(name, node, depth, openDepth, onToggle){
+  const box=document.createElement("div");
+  const row=document.createElement("div"); row.className="dt-row"; row.style.paddingLeft=(4+depth*14)+"px";
+  const tw=document.createElement("span"); tw.className="tw"; row.appendChild(tw);
+  const key=document.createElement("span"); key.className="dt-key"; key.textContent=name; row.appendChild(key);
+  const eq=document.createElement("span"); eq.className="dt-eq"; eq.textContent=" = "; row.appendChild(eq);
+  if(node.k==="sca"){
+    const val=document.createElement("span"); val.className="dt-val "+valClass(node.t); val.textContent=node.v;
+    const ty=document.createElement("span"); ty.className="dt-type"; ty.textContent="   "+node.t;
+    row.appendChild(val); row.appendChild(ty); box.appendChild(row); return box;
+  }
+  const summ=document.createElement("span"); summ.className="dt-summary"; summ.textContent="{"+node.s+"}";
+  const ty=document.createElement("span"); ty.className="dt-type"; ty.textContent="   "+node.t;
+  row.appendChild(summ); row.appendChild(ty);
+  row.classList.add("obj");
+  const kids=document.createElement("div");
+  (node.c||[]).forEach(c=> kids.appendChild(buildTree(c.key, c, depth+1, openDepth, onToggle)));
+  let open = depth<openDepth;
+  tw.textContent = open ? "▾" : "▸"; kids.style.display = open ? "block" : "none";
+  row.onclick=(ev)=>{ ev.stopPropagation(); open=!open; kids.style.display=open?"block":"none"; tw.textContent=open?"▾":"▸"; if(onToggle) onToggle(); };
+  box.appendChild(row); box.appendChild(kids); return box;
+}
+function positionTip(){
+  if(!_tip||!_anchor||_tip.style.display==="none") return;
+  const r=_anchor.getBoundingClientRect();
+  const tw=_tip.offsetWidth, th=_tip.offsetHeight;
+  let left=r.left, top=r.bottom+5;
+  if(left+tw>window.innerWidth-8) left=Math.max(8, window.innerWidth-8-tw);
+  if(top+th>window.innerHeight-8) top=Math.max(8, r.top-5-th);
+  _tip.style.left=left+"px"; _tip.style.top=top+"px";
+}
+function showTip(el){
+  if(_hideT){clearTimeout(_hideT);_hideT=null;}
+  const id=el.dataset.h, node=HOVERMAP[id]; if(!node) return;
+  _anchor=el;
+  const tip=tipEl(); tip.innerHTML=""; tip.appendChild(buildTree(id, node, 0, 1, positionTip));
+  tip.style.display="block"; positionTip();
+}
+function hideTip(){ if(_hideT)clearTimeout(_hideT); _hideT=setTimeout(()=>{ if(_tip)_tip.style.display="none"; _anchor=null; }, 160); }
+(function initTips(){
+  const code=$("#code");
+  code.addEventListener("mouseover", e=>{ const el=e.target.closest(".hv"); if(el) showTip(el); });
+  code.addEventListener("mouseout",  e=>{ const el=e.target.closest(".hv"); if(el) hideTip(); });
+})();
+
+function renderCode(step){
+  HOVERMAP = step.hover || {};
+  HOVERSET = new Set(Object.keys(HOVERMAP));
+  $("#fileTab").textContent = step.file;
+  const lines = step.code.split("\n");
+  const endLn = step.start + lines.length - 1;
+  $("#editorRange").textContent = "lines " + step.start + "–" + endLn;
+  // breadcrumb: repo path  ›  namespace › Class › method()  (method emphasised)
+  const segs = (step.crumb || "").split(" › ");
+  const crumbHtml = segs.map((s,i)=> i===segs.length-1 ? "<b>"+esc(s)+"</b>" : esc(s)).join('<span class="sep">›</span>');
+  $("#breadcrumb").innerHTML =
+    '<span class="pth">'+esc(step.path||step.file)+'</span><span class="sep">›</span><span class="crm">'+crumbHtml+'</span>';
+  const wrap = $("#code");
+  wrap.innerHTML = "";
+  lines.forEach((ln, i)=>{
+    const lineNo = step.start + i;
+    const row = document.createElement("div");
+    row.className = "cline" + (lineNo===step.ln?" active":"");
+    const g = document.createElement("div");
+    g.className = "gutter";
+    if(step.bps && step.bps.includes(lineNo)){
+      const bp = document.createElement("span"); bp.className="bp"; g.appendChild(bp);
+    }
+    g.appendChild(document.createTextNode(lineNo));
+    g.title="copy breakpoint  "+step.file+":"+lineNo;
+    g.onclick=()=>copyBp(step.file+":"+lineNo);
+    if(lineNo===step.ln){ const a=document.createElement("span"); a.className="arrow"; a.textContent="▶"; g.appendChild(a); }
+    const t = document.createElement("div");
+    t.className="txt"; t.innerHTML = tokenize(ln) || "&nbsp;";
+    row.appendChild(g); row.appendChild(t);
+    wrap.appendChild(row);
+  });
+  const active = wrap.querySelector(".cline.active");
+  if(active) active.scrollIntoView({block:"center", behavior:"smooth"});
+}
+
+function renderStack(step){
+  const el = $("#callstack"); el.innerHTML="";
+  step.stack.forEach((f,i)=>{
+    const d = document.createElement("div");
+    d.className = "frame" + (i===0?" top":"") + (f.fade?" fade":"");
+    const fn = document.createElement("span"); fn.className="fn";
+    if(f.ty) fn.innerHTML = `<span class="ty">${esc(f.ty)}</span>.${esc(f.fn)}`;
+    else fn.textContent = f.fn;
+    d.appendChild(fn);
+    if(f.loc){ const l=document.createElement("span"); l.className="loc"; l.textContent=f.loc; d.appendChild(l);
+      const m=f.loc.match(/[\w.]+\.cs:\d+/);
+      if(m){ d.style.cursor="pointer"; d.title="copy breakpoint  "+m[0]; d.onclick=()=>copyBp(m[0]); } }
+    el.appendChild(d);
+  });
+}
+
+let VAR_OPEN=false;   // expand-all state for the Variables panel
+function buildVarRow(name, node, changed){
+  const box=buildTree(name, node, 0, VAR_OPEN?99:0, null);
+  const row=box.querySelector(".dt-row");
+  if(row){
+    if(changed) row.classList.add("var-changed");
+    if(/^[A-Za-z_]\w*$/.test(name)){
+      row.addEventListener("mouseenter",()=>document.querySelectorAll('#code .hv[data-h="'+name+'"]').forEach(x=>x.classList.add("xhl")));
+      row.addEventListener("mouseleave",()=>document.querySelectorAll('#code .hv.xhl').forEach(x=>x.classList.remove("xhl")));
+    }
+  }
+  return box;
+}
+function renderVars(step){
+  const el=$("#vars"); el.innerHTML="";
+  const hov=step.hover||{};
+  const shown=new Set();
+  const hdr=(t)=>{ const g=document.createElement("div"); g.className="vargroup-h"; g.textContent=t; el.appendChild(g); };
+  hdr("Locals");
+  step.vars.forEach(v=>{
+    shown.add(v.n);
+    const plain=/^[A-Za-z_]\w*$/.test(v.n);
+    const node=(plain && hov[v.n] && hov[v.n].k==="obj") ? hov[v.n] : sca(v.ty, v.v);
+    el.appendChild(buildVarRow(v.n, node, v.ch));
+  });
+  const extra=Object.keys(hov).filter(k=>!shown.has(k) && hov[k] && hov[k].k==="obj");
+  if(extra.length){
+    hdr("In scope");
+    extra.forEach(k=> el.appendChild(buildVarRow(k, hov[k], false)));
+  }
+  const singleIdx=STEPS.findIndex(s=>s.node==="n_single");
+  $("#causeId").textContent=(singleIdx>=0 && cur>=singleIdx)?"cause: a7f3c1d9":"";
+}
+function toggleVarsOpen(){ VAR_OPEN=!VAR_OPEN;
+  const b=$("#varToggle"); if(b) b.textContent=VAR_OPEN?"⊟ collapse all":"⊞ expand all";
+  renderVars(STEPS[cur]); }
+
+/* console accumulation */
+let conFilter="all";
+function consoleRows(uptoStep){
+  const rows=[];
+  for(let i=0;i<=uptoStep;i++){
+    (STEPS[i].out||[]).forEach(o=> rows.push({...o, step:i}));
+  }
+  return rows;
+}
+function renderConsole(){
+  const rows = consoleRows(cur);
+  const counts={all:rows.length,diag:0,event:0,log:0};
+  rows.forEach(r=>{ if(r.type==="diag")counts.diag++; else if(r.type==="event")counts.event++; else if(r.type==="log"||r.type==="hp")counts.log++; });
+  $("#b-all").textContent=counts.all; $("#b-diag").textContent=counts.diag;
+  $("#b-event").textContent=counts.event; $("#b-log").textContent=counts.log;
+  const el=$("#console"); el.innerHTML="";
+  let shown=0;
+  rows.forEach(r=>{
+    if(conFilter!=="all"){
+      if(conFilter==="diag" && r.type!=="diag") return;
+      if(conFilter==="event" && r.type!=="event") return;
+      if(conFilter==="log" && !(r.type==="log"||r.type==="hp")) return;
+    }
+    shown++;
+    const d=document.createElement("div");
+    d.className="cl "+r.type+(r.step===cur?" fresh":"");
+    const tag=document.createElement("span"); tag.className="tag";
+    const body=document.createElement("span"); body.className="body";
+    if(r.type==="diag"){
+      tag.textContent="DIAG";
+      body.innerHTML=`<span class="k">${r.cat}/${r.kind}</span>  `+
+        (r.actor?`actor=<span class="vs">${esc(r.actor)}</span> `:"")+
+        (r.target?`target=<span class="vs">${esc(r.target)}</span> `:"")+
+        `{ ${esc(r.pay)} }`;
+    } else if(r.type==="event"){
+      tag.textContent="EVENT";
+      body.innerHTML=`<span class="k">${esc(r.name)}</span>  →  <span class="vs">${esc(r.on)}</span>`;
+    } else if(r.type==="hp"){
+      tag.textContent="HP"; body.textContent=r.text;
+    } else {
+      tag.textContent="LOG"; body.textContent='"'+r.text+'"';
+    }
+    d.appendChild(tag); d.appendChild(body); el.appendChild(d);
+  });
+  if(shown===0){ const e=document.createElement("div"); e.className="console-empty"; e.textContent="(no "+conFilter+" output yet)"; el.appendChild(e); }
+  el.scrollTop=el.scrollHeight;
+}
+
+const PHASE_COLORS={turn:"#5a8fc7",ai:"#8fb45a",combat:"#4aa3d6",damage:"#d68f5a",
+  aftermath:"#c77ab0",event:"#5ac7c7",provenance:"#b0b05a",bug:"#ff6b5e"};
+function phaseColor(s){ s=(s||"").toLowerCase(); if(s.indexOf("bug")>=0)return PHASE_COLORS.bug;
+  return PHASE_COLORS[s]||"#8a9aa6"; }
+
+let _nodePhase=null;
+function renderTimeline(){
+  if(!_nodePhase){ _nodePhase={}; NODES.forEach(n=>_nodePhase[n.id]=n.bug?"bug":n.ph); }
+  const el=$("#timeline"); if(!el) return; el.innerHTML="";
+  STEPS.forEach((s,i)=>{
+    const t=document.createElement("div");
+    t.className="tick"+(i<=cur?" done":"")+(i===cur?" cur":"");
+    t.style.background=phaseColor(_nodePhase[s.node]||"");
+    t.title="Step "+(i+1)+" — "+(s.crumb||s.file);
+    t.onclick=()=>{ cur=i; render(); };
+    el.appendChild(t);
+  });
+}
+let _toastT=null;
+function showToast(msg){ const el=$("#toast"); if(!el)return; el.textContent=msg; el.classList.add("show");
+  if(_toastT)clearTimeout(_toastT); _toastT=setTimeout(()=>el.classList.remove("show"),1400); }
+function copyBp(text){ try{ if(navigator.clipboard) navigator.clipboard.writeText(text); }catch(e){} showToast("📋 copied  "+text); }
+
+function renderFiles(step){
+  const el=$("#filelist"); el.innerHTML="";
+  const order=[], cnt={};
+  STEPS.forEach(s=>{ if(!(s.file in cnt)){cnt[s.file]=0; order.push(s.file);} cnt[s.file]++; });
+  $("#fileCount").textContent="("+order.length+")";
+  order.forEach(f=>{
+    const d=document.createElement("div"); d.className="filerow"+(f===step.file?" cur":"");
+    d.innerHTML=`<span class="fn">${esc(f)}</span><span class="ct">${cnt[f]}</span>`;
+    d.title="jump to first step in "+f;
+    d.onclick=()=>{ const idx=STEPS.findIndex(s=>s.file===f); if(idx>=0){cur=idx;render();} };
+    el.appendChild(d);
+  });
+}
+
+function renderGraph(){
+  const sp=$("#spine"); sp.innerHTML="";
+  const curNode = STEPS[cur].node;
+  // mark nodes that have been reached
+  const reached = new Set(STEPS.slice(0,cur+1).map(s=>s.node));
+  NODES.forEach((n,i)=>{
+    const node=document.createElement("div");
+    node.className="gnode"+(n.bug?" bug":"")+(n.id===curNode?" current": (reached.has(n.id)?" done":""));
+    node.innerHTML=`<div class="ph" style="color:${phaseColor(n.ph)}">${n.ph}</div><div class="ttl">${esc(n.ttl)}</div><div class="sub">${esc(n.sub)}</div>`;
+    if(!n.bug && n.id!==curNode) node.style.borderLeft="3px solid "+phaseColor(n.ph);
+    node.onclick=()=>{ const idx=STEPS.findIndex(s=>s.node===n.id); if(idx>=0){cur=idx;render();switchView("debugView");} };
+    sp.appendChild(node);
+    if(i<NODES.length-1){
+      const c=document.createElement("div"); c.className="connector"+(reached.has(NODES[i+1].id)?" done":""); sp.appendChild(c);
+    }
+    if(n.branch){
+      const b=document.createElement("div"); b.className="branch";
+      b.innerHTML=`<span class="barrow">└▶</span><div class="bnode"><div class="ttl">⨯ ${esc(n.branch.ttl)}</div><div class="sub">${esc(n.branch.sub)}</div></div>`;
+      sp.appendChild(b);
+    }
+  });
+}
+
+function render(){
+  const step=STEPS[cur];
+  renderCode(step); renderStack(step); renderFiles(step); renderVars(step); renderConsole(); renderGraph();
+  $("#note").innerHTML=step.note;
+  $("#note").className="step-note"+(step.bug?" bug":"");
+  const phb=$("#note").querySelector(".ph"); if(phb) phb.style.background=phaseColor(phb.textContent);
+  $("#ctxbody").innerHTML = step.ctx || "<i>(no extra context for this step)</i>";
+  $("#stepNum").textContent=cur+1;
+  renderTimeline();
+  $("#btnBack").disabled=cur===0;
+  $("#btnStep").disabled=cur===STEPS.length-1;
+  $("#btnRun").disabled=cur===STEPS.length-1;
+  if(history.replaceState) history.replaceState(null,"","#s"+(cur+1));
+}
+
+/* ===================== Controls ===================== */
+function step(){ if(cur<STEPS.length-1){cur++;render();} }
+function back(){ if(cur>0){cur--;render();} }
+function restart(){ cur=0; render(); }
+let runTimer=null;
+function run(){
+  if(runTimer){clearInterval(runTimer);runTimer=null;$("#btnRun").innerHTML='<span class="ico">⏩</span>Continue';return;}
+  $("#btnRun").innerHTML='<span class="ico">⏸</span>Pause';
+  runTimer=setInterval(()=>{ if(cur>=STEPS.length-1){clearInterval(runTimer);runTimer=null;$("#btnRun").innerHTML='<span class="ico">⏩</span>Continue';return;} step(); },900);
+}
+function switchView(id){
+  document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id===id));
+  document.querySelectorAll(".seg .tabbtn").forEach(b=>b.classList.toggle("active",b.dataset.view===id));
+}
+
+/* ---------- newcomer context box ---------- */
+let CTX_OPEN=true;
+function toggleCtx(){ CTX_OPEN=!CTX_OPEN; $("#ctxbox").classList.toggle("collapsed",!CTX_OPEN); $("#ctxtog").textContent=CTX_OPEN?"▾":"▸"; }
+$("#ctxhead").onclick=toggleCtx;
+
+/* ---------- peek / go-to-definition ---------- */
+let peekStack=[];
+function peekCode(codeStr, startLine){
+  const wrap=document.createElement("div");
+  codeStr.split("\n").forEach((ln,i)=>{
+    const row=document.createElement("div"); row.className="cline";
+    const g=document.createElement("div"); g.className="gutter"; g.textContent=startLine+i;
+    const t=document.createElement("div"); t.className="txt"; t.innerHTML=tokenize(ln,true)||"&nbsp;";
+    row.appendChild(g); row.appendChild(t); wrap.appendChild(row);
+  });
+  return wrap;
+}
+function renderPeek(){
+  const name=peekStack[peekStack.length-1]; const defs=(typeof DEFS!=="undefined")?DEFS[name]:null; if(!defs) return;
+  $("#peekTitle").innerHTML="Definition · <b>"+esc(name)+"()</b>"+(defs.length>1?"  — "+defs.length+" matches":"");
+  const body=$("#peekBody"); body.innerHTML="";
+  defs.forEach(d=>{
+    const fh=document.createElement("div"); fh.className="peek-file";
+    fh.innerHTML="<b>"+esc(d.crumb)+"</b> &nbsp; "+esc(d.path)+":"+d.start;
+    body.appendChild(fh); body.appendChild(peekCode(d.code, d.start));
+  });
+  body.scrollTop=0;
+  $("#peekBack").style.visibility = peekStack.length>1?"visible":"hidden";
+}
+function openPeek(name){ if(typeof DEFS==="undefined"||!DEFS[name]) return;
+  peekStack.push(name); $("#peek").classList.add("show"); $("#peekBackdrop").classList.add("show"); renderPeek(); }
+function closePeek(){ peekStack=[]; $("#peek").classList.remove("show"); $("#peekBackdrop").classList.remove("show"); }
+function backPeek(){ if(peekStack.length>1){ peekStack.pop(); renderPeek(); } else closePeek(); }
+$("#peekClose").onclick=closePeek; $("#peekBack").onclick=backPeek; $("#peekBackdrop").onclick=closePeek;
+$("#peekBody").addEventListener("click", e=>{ const el=e.target.closest(".lnk"); if(el){ e.preventDefault(); openPeek(el.dataset.def); } });
+$("#code").addEventListener("click", e=>{ const el=e.target.closest(".lnk"); if(el && (e.metaKey||e.ctrlKey)){ e.preventDefault(); openPeek(el.dataset.def); } });
+
+$("#btnStep").onclick=step; $("#btnBack").onclick=back;
+$("#btnRestart").onclick=restart; $("#btnRun").onclick=run;
+$("#varToggle").onclick=toggleVarsOpen;
+document.querySelectorAll(".seg .tabbtn").forEach(b=> b.onclick=()=>switchView(b.dataset.view));
+document.querySelectorAll(".console-tab").forEach(t=> t.onclick=()=>{
+  conFilter=t.dataset.con;
+  document.querySelectorAll(".console-tab").forEach(x=>x.classList.toggle("active",x===t));
+  renderConsole();
+});
+document.addEventListener("keydown",e=>{
+  const typing=/^(INPUT|TEXTAREA)$/.test((e.target&&e.target.tagName)||"")||(e.target&&e.target.isContentEditable);
+  if(e.key==="Escape"){
+    if($("#askPanel").classList.contains("show")){ e.preventDefault(); xpClose(); return; }
+    if($("#peek").classList.contains("show")){ e.preventDefault(); closePeek(); return; }
+    hidePop(); return;
+  }
+  if(typing) return;
+  if(e.key==="ArrowRight"||e.key==="F11"){e.preventDefault();step();}
+  else if(e.key==="ArrowLeft"){e.preventDefault();back();}
+  else if(e.key==="Home"){e.preventDefault();cur=0;render();}
+  else if(e.key==="End"){e.preventDefault();cur=STEPS.length-1;render();}
+  else if(e.key.toLowerCase()==="c"){run();}
+  else if(e.key.toLowerCase()==="r"){restart();}
+  else if(e.key.toLowerCase()==="g"){
+    const onDbg=$("#debugView").classList.contains("active");
+    switchView(onDbg?"graphView":"debugView");
+  }
+});
+// deep-link: open at #sN if present
+(function(){ const m=(location.hash||"").match(/^#s(\d+)$/);
+  if(m){ const n=parseInt(m[1],10)-1; if(n>=0 && n<STEPS.length) cur=n; } })();
+
+/* scenario chips */
+(function(){
+  const el=$("#scenario");
+  SCENARIO.forEach(c=>{
+    if(c.l==="·"){ const s=document.createElement("span"); s.style.color="#666"; s.style.alignSelf="center"; s.textContent="vs"; el.appendChild(s); return; }
+    const d=document.createElement("span"); d.className="chip";
+    d.innerHTML=`${esc(c.l)}: <b>${esc(c.v)}</b>`+(c.t?` <span style="color:var(--type)">${esc(c.t)}</span>`:"");
+    el.appendChild(d);
+  });
+  $("#stepTot").textContent=STEPS.length;
+})();
+
+/* ===================== Explain / Ask (Claude, citations-grounded) ===================== */
+const XP_MODEL = "claude-opus-4-8";
+const XP_URL = "https://api.anthropic.com/v1/messages";
+const XP_LS = "coo_explain_key";
+const XP_SYS = "You are a code explainer embedded in a step-through debugger for the Caves of Ooo (Unity / C#) codebase. Answer ONLY from the provided documents, which contain verbatim source code. Cite the exact lines you rely on. Refer only to identifiers, types, methods, parameters, and fields that actually appear in the documents. If something needed to answer is not present in the documents, say \"not shown in the provided context\" — never guess and never describe an API, field, or behavior that does not appear in the documents. If the question cannot be answered from the documents, say so plainly. Be concise and concrete: name the exact method and line rather than speaking generally. Finish with a short \"Unknowns:\" line listing anything you could not determine from the provided context (write \"Unknowns: none\" if nothing).";
+const xpGetKey = ()=>{ try{return localStorage.getItem(XP_LS)||"";}catch(e){return "";} };
+const xpSetKey = (k)=>{ try{localStorage.setItem(XP_LS,k);}catch(e){} };
+const xpClearKey = ()=>{ try{localStorage.removeItem(XP_LS);}catch(e){} };
+let POP_GROUND=null, askConvo=[];
+
+function xpDocBlock(title, code){
+  return {type:"document", source:{type:"text", media_type:"text/plain", data:code},
+          title:String(title).slice(0,95), citations:{enabled:true}};
+}
+function currentGround(){
+  const sel=window.getSelection();
+  if(!sel || sel.isCollapsed) return null;
+  const text=sel.toString().trim();
+  if(text.length<2) return null;
+  const a=sel.anchorNode; if(!a) return null;
+  const inCode=$("#code").contains(a), inPeek=$("#peekBody").contains(a);
+  if(!inCode && !inPeek) return null;
+  let code, title;
+  if(inPeek && peekStack.length){ const d=DEFS[peekStack[peekStack.length-1]][0]; code=d.code; title=d.crumb+"  "+d.file+":"+d.start; }
+  else { const s=STEPS[cur]; code=s.code; const end=s.start+s.code.split("\n").length-1; title=s.file+":"+s.start+"-"+end+"  "+s.crumb; }
+  const docs=[ xpDocBlock(title, code) ];
+  // include verbatim bodies of methods the selection calls (deep grounding)
+  if(typeof DEFS!=="undefined"){
+    let added=0;
+    for(const nm of Object.keys(DEFS)){
+      if(added>=5) break;
+      if(new RegExp("\\b"+nm+"\\b").test(text)){ const d=DEFS[nm][0]; docs.push(xpDocBlock(d.crumb+"  "+d.file+":"+d.start, d.code)); added++; }
+    }
+  }
+  return {selText:text, docs};
+}
+function xpUserTurn(mode, question, selText){
+  const base="The highlighted selection (taken from the first document) is:\n\n<selection>\n"+selText+"\n</selection>\n\n";
+  return mode==="explain"
+    ? base+"Explain what this selection does and how it relates to the surrounding code in the provided documents. Cite the exact lines you rely on."
+    : base+"Question: "+question+"\n\nAnswer using only the provided documents, and cite the exact lines you rely on.";
+}
+function renderAnswer(ansEl, citesEl, blocks){
+  let n=0; const foot=[]; let html="";
+  for(const b of blocks){
+    html += esc(b.text||"");
+    if(b.citations && b.citations.length){
+      let sup=""; for(const c of b.citations){ n++; foot.push({n,c}); sup+="["+n+"]"; }
+      html += "<sup>"+sup+"</sup>";
+    }
+  }
+  ansEl.innerHTML = html || "…";
+  if(foot.length){
+    citesEl.innerHTML = '<div class="ask-cites-h">Citations (verbatim quoted source)</div>' + foot.map(f=>{
+      const c=f.c, loc=esc(c.document_title||("document "+c.document_index));
+      const rng=(c.start_char_index!=null)?(" @"+c.start_char_index+"–"+c.end_char_index):"";
+      return '<div class="ask-cite"><span class="n">['+f.n+']</span><span class="loc">'+loc+rng+'</span><span class="q">'+esc((c.cited_text||"").trim())+'</span></div>';
+    }).join("");
+  } else citesEl.innerHTML="";
+}
+async function xpStream(ansEl, citesEl){
+  const blocks=[];
+  const res = await fetch(XP_URL, {
+    method:"POST",
+    headers:{ "content-type":"application/json", "x-api-key":xpGetKey(),
+              "anthropic-version":"2023-06-01", "anthropic-dangerous-direct-browser-access":"true" },
+    body: JSON.stringify({ model:XP_MODEL, max_tokens:2000, stream:true, system:XP_SYS, messages:askConvo })
+  });
+  if(!res.ok){ let m; try{ m=(await res.json()).error?.message; }catch(e){} throw new Error("API "+res.status+(m?": "+m:"")); }
+  const reader=res.body.getReader(), dec=new TextDecoder(); let buf="";
+  ansEl.classList.add("ask-stream-cursor");
+  while(true){
+    const {value,done}=await reader.read(); if(done) break;
+    buf += dec.decode(value,{stream:true});
+    let i;
+    while((i=buf.indexOf("\n"))>=0){
+      const line=buf.slice(0,i).trim(); buf=buf.slice(i+1);
+      if(!line.startsWith("data:")) continue;
+      const data=line.slice(5).trim(); if(!data||data==="[DONE]") continue;
+      let ev; try{ ev=JSON.parse(data); }catch(e){ continue; }
+      if(ev.type==="content_block_start") blocks[ev.index]={text:"",citations:[]};
+      else if(ev.type==="content_block_delta"){
+        const b=blocks[ev.index]||(blocks[ev.index]={text:"",citations:[]});
+        if(ev.delta.type==="text_delta") b.text+=ev.delta.text;
+        else if(ev.delta.type==="citations_delta" && ev.delta.citation) b.citations.push(ev.delta.citation);
+        renderAnswer(ansEl, citesEl, blocks);
+      } else if(ev.type==="error") throw new Error(ev.error?.message||"stream error");
+    }
+  }
+  ansEl.classList.remove("ask-stream-cursor");
+  renderAnswer(ansEl, citesEl, blocks);
+  return blocks.map(b=>b.text||"").join("");
+}
+function xpFileHint(){
+  if(location.protocol!=="file:") return "";
+  return '<div class="ask-note ask-file-hint">⚠ You opened this from <code>file://</code>. The Explain / Ask call should still work, but if it fails with a <b>network / "Failed to fetch" / CORS</b> error (not a <code>401</code>), serve the file over a real localhost origin instead:'+
+    '<pre class="ask-cmd">cd '+esc(location.pathname.replace(/[^/]*$/,"")||".")+' \&\& python3 -m http.server 8000</pre>'+
+    'then open <code>http://localhost:8000/'+esc(location.pathname.replace(/^.*\//,""))+'</code>. (A <code>401</code> just means a bad key &mdash; re-paste it.)</div>';
+}
+function xpKeyPrompt(targetEl, retry){
+  targetEl.innerHTML =
+    '<div class="ask-note">Set your Anthropic API key to use Explain / Ask. It is stored <b>only in this browser</b> (localStorage) and sent directly to api.anthropic.com from your machine. Use on a trusted device only.</div>'+
+    '<div class="ask-key-row"><input id="askKeyInput" type="password" placeholder="sk-ant-..." /><button class="xp-btn primary" id="askKeySave">Save key</button></div>'+
+    xpFileHint();
+  $("#askKeySave").onclick=()=>{ const v=$("#askKeyInput").value.trim(); if(v){ xpSetKey(v); retry(); } };
+  const ki=$("#askKeyInput"); if(ki){ ki.focus(); ki.addEventListener("keydown",e=>{ if(e.key==="Enter"){e.preventDefault(); $("#askKeySave").click();} }); }
+}
+function xpOpen(){ $("#askPanel").classList.add("show"); $("#askBackdrop").classList.add("show"); }
+function xpClose(){ $("#askPanel").classList.remove("show"); $("#askBackdrop").classList.remove("show"); }
+function xpAppendTurn(qLabel){
+  const turn=document.createElement("div"); turn.className="ask-turn";
+  const q=document.createElement("div"); q.className="ask-q"; q.textContent=qLabel;
+  const ans=document.createElement("div"); ans.className="ask-ans";
+  const cites=document.createElement("div"); cites.className="ask-cites";
+  turn.appendChild(q); turn.appendChild(ans); turn.appendChild(cites);
+  $("#askBody").appendChild(turn); $("#askBody").scrollTop=$("#askBody").scrollHeight;
+  return {ans,cites};
+}
+async function xpDrive(refs){
+  if(!xpGetKey()){ xpKeyPrompt(refs.ans, ()=>xpDrive(refs)); return; }
+  refs.ans.textContent="…";
+  try{
+    const text=await xpStream(refs.ans, refs.cites);
+    askConvo.push({role:"assistant", content:[{type:"text", text}]});
+    $("#askBody").scrollTop=$("#askBody").scrollHeight;
+  }catch(err){
+    refs.ans.classList.remove("ask-stream-cursor");
+    const msg=String(err.message||err);
+    refs.ans.innerHTML='<span class="ask-err">'+esc(msg)+'</span>';
+    if(msg.indexOf("401")>=0){ const p=document.createElement("div"); refs.ans.appendChild(p); xpKeyPrompt(p, ()=>xpDrive(refs)); }
+    else if(/Failed to fetch|NetworkError|CORS/i.test(msg)){ const h=xpFileHint(); if(h){ const p=document.createElement("div"); p.innerHTML=h; refs.ans.appendChild(p); } }
+  }
+}
+function runExplainAsk(mode, question){
+  const g=POP_GROUND; if(!g) return;
+  if(mode==="ask" && !question) return;
+  hidePop(); xpOpen(); $("#askBody").innerHTML="";
+  $("#askTitle").textContent = mode==="explain" ? "✦ Explain selection" : "✦ Ask about selection";
+  askConvo=[{ role:"user", content:[ ...g.docs, {type:"text", text:xpUserTurn(mode, question, g.selText)} ] }];
+  xpDrive(xpAppendTurn(mode==="explain" ? "Explain this selection" : question));
+}
+function xpFollow(){
+  const q=$("#askFollow").value.trim(); if(!q || !askConvo.length) return;
+  $("#askFollow").value="";
+  askConvo.push({ role:"user", content:[{type:"text", text:q}] });
+  xpDrive(xpAppendTurn(q));
+}
+function xpKeyStatus(){
+  xpOpen(); $("#askBody").innerHTML=""; $("#askTitle").textContent="✦ API key";
+  const has=!!xpGetKey();
+  const d=document.createElement("div");
+  d.innerHTML='<div class="ask-note">'+(has?"A key is set (stored in this browser).":"No key set.")+' Keys live only in localStorage and are sent directly to api.anthropic.com.</div>'+
+    '<div class="ask-key-row"><input id="askKeyInput" type="password" placeholder="sk-ant-..." /><button class="xp-btn primary" id="askKeySave">Save</button>'+(has?'<button class="xp-btn" id="askKeyClear">Clear</button>':'')+'</div>';
+  $("#askBody").appendChild(d);
+  $("#askKeySave").onclick=()=>{ const v=$("#askKeyInput").value.trim(); if(v){ xpSetKey(v); $("#askBody").innerHTML='<div class="ask-note">Key saved. Highlight code and press Explain or ask a question.</div>'; } };
+  const cl=$("#askKeyClear"); if(cl) cl.onclick=()=>{ xpClearKey(); $("#askBody").innerHTML='<div class="ask-note">Key cleared.</div>'; };
+}
+function maybeShowPop(){
+  const g=currentGround();
+  if(!g){ hidePop(); return; }
+  POP_GROUND=g;
+  const sel=window.getSelection(); const rect=sel.getRangeAt(0).getBoundingClientRect();
+  $("#xpSel").textContent="“"+g.selText.replace(/\s+/g," ").slice(0,64)+(g.selText.length>64?"…":"")+"”";
+  $("#xpAsk").value="";
+  const pop=$("#xpPop"); pop.classList.add("show");
+  const pw=pop.offsetWidth, ph=pop.offsetHeight;
+  let left=rect.left, top=rect.bottom+6;
+  if(left+pw>window.innerWidth-8) left=window.innerWidth-8-pw;
+  if(left<8) left=8;
+  if(top+ph>window.innerHeight-8) top=Math.max(8, rect.top-6-ph);
+  pop.style.left=left+"px"; pop.style.top=top+"px";
+}
+function hidePop(){ $("#xpPop").classList.remove("show"); }
+
+$("#xpExplain").onclick=()=>runExplainAsk("explain");
+$("#xpSend").onclick=()=>runExplainAsk("ask", $("#xpAsk").value.trim());
+$("#xpAsk").addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); runExplainAsk("ask", $("#xpAsk").value.trim()); } });
+$("#askClose").onclick=xpClose; $("#askBackdrop").onclick=xpClose;
+$("#askKeyBtn").onclick=xpKeyStatus;
+$("#askFollowBtn").onclick=xpFollow;
+$("#askFollow").addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); xpFollow(); } });
+document.addEventListener("mouseup", e=>{ if(e.target.closest && e.target.closest("#xpPop")) return; setTimeout(maybeShowPop, 0); });
+document.addEventListener("mousedown", e=>{ if(e.target.closest && e.target.closest("#xpPop")) return; hidePop(); });
+window.addEventListener("scroll", hidePop, true);
+
+render();
+</script>
+</body>
+</html>
