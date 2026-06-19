@@ -35,6 +35,37 @@ namespace CavesOfOoo.Core
             Duration = duration;
         }
 
+        public override void OnApply(Entity target)
+        {
+            var str = target.GetStat("Strength");
+            if (str == null) return;
+            str.Penalty += StrPenalty;
+            MessageLog.Add($"Strength of {target.GetDisplayName()} weakened from {str.BaseValue} to {str.BaseValue - StrPenalty} for {Duration} turns.");
+        }
+
+        public override void OnRemove(Entity target)
+        {
+            var str = target.GetStat("Strength");
+            if (str == null) return;
+            str.Penalty -= StrPenalty;
+            MessageLog.Add($"Strength of {target.GetDisplayName()} reset to  {str.BaseValue}.");
+        }
+
+        public override bool OnStack(Effect incoming)
+        {
+            if (incoming is WeakenedEffect weakenedEffect)
+            {
+                if (weakenedEffect.StrPenalty > StrPenalty)
+                {
+                    StrPenalty = weakenedEffect.StrPenalty;
+                }
+                return true;
+            }
+            return false;
+        }
+        
+        public override string GetRenderColorOverride() => "&Y";
+
         // TODO (Challenge 3):
         //   public override void OnApply(Entity target)  -> target.GetStat("Strength").Penalty += StrPenalty;
         //   public override void OnRemove(Entity target) -> ... -= StrPenalty;  (guard for null)

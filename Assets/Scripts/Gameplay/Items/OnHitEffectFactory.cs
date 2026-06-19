@@ -96,6 +96,15 @@ namespace CavesOfOoo.Core
                     return new StoneskinEffect(
                         reduction: spec.Magnitude > 0f ? (int)spec.Magnitude : 2,
                         duration: spec.DurationTurns > 0 ? spec.DurationTurns : 30);
+                case "weakened":
+                    return new WeakenedEffect(
+                        strPenalty: spec.Magnitude > 0f ? (int)spec.Magnitude : 1,
+                        duration: spec.DurationTurns > 0 ? spec.DurationTurns : 30
+                    );
+                case "paperskin":
+                    return new PaperSkinEffect(
+                        increase: spec.Magnitude > 0f ? (int)spec.Magnitude : 2,
+                        duration: spec.DurationTurns > 0 ? spec.DurationTurns : 30);
             }
 
             return null;  // Unknown EffectName — silently skip.

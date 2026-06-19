@@ -83,7 +83,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "4" }] },
-        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "MaxStrengthBonus", "Value": "3" }, { "Key": "Attributes", "Value": "Piercing" }] },
+        { "Name": "MeleeWeapon", "Params": [{ "Key": "BaseDamage", "Value": "1d4" }, { "Key": "PenBonus", "Value": "1" }, { "Key": "MaxStrengthBonus", "Value": "3" }, { "Key": "Attributes", "Value": "Piercing" }, { "Key": "OnHitEffectsRaw", "Value": "Paperskin,100,,2,1" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "10" }] },
         { "Name": "Material", "Params": [
           { "Key": "MaterialID", "Value": "Steel" },
@@ -160,8 +160,7 @@
         { "Name": "Corpse", "Params": [
           { "Key": "CorpseChance", "Value": "70" },
           { "Key": "CorpseBlueprint", "Value": "SnapjawCorpse" }
-        ]},
-        { "Name": "Lifesteal", "Params": [{"Key": "HealPercent", "Value": "50"}] }
+        ]}
       ],
       "Stats": [
         { "Name": "Hitpoints", "Value": 15, "Min": 0, "Max": 15 },
