@@ -1,9 +1,11 @@
 # Emergent Alchemy / Brewing — Design Exploration
 
-**Status:** 🟦 DESIGN / NOT YET IMPLEMENTED — direction confirmed
-(emergent alchemy), phasing confirmed (M1 Build-Alongside → M2
-Layer-On-Top), **M1 design questions LOCKED (§6)**. Ready to build M1
-once weapon/spell-crafting scope (§7) is folded in.
+**Status:** 🟦 DESIGN / NOT YET IMPLEMENTED — alchemy direction confirmed,
+phasing confirmed (M1 Build-Alongside → M2 Layer-On-Top), **M1 design
+questions LOCKED (§6)**. **§7 added: sibling pillars — weapon crafting
+(modular + temper + saga) & spell crafting (rune-composition grammar),
+all grounded in real seams.** Build order in §7.4. Awaiting greenlight to
+start M1 (alchemy property engine).
 **Branch:** `claude/rpg-crafting-system-8gbflx`
 **Origin:** user — *"If this is an RPG there should be a more in-depth
 crafting system. It shouldn't be tedious for the sake of false depth,
@@ -334,3 +336,187 @@ creature kills (monster parts), harvesting biome features (brine pools,
 glow-caves), and looting. **No** "disassemble item → reagent" step — that
 would re-import the cutting-system feel we're moving away from. Reagents
 are found, not shredded.
+
+---
+
+## 7. Sibling pillars — Weapon crafting & Spell crafting
+
+> The user's follow-up: *"besides alchemy how can we make weapon and
+> spell crafting unique and deep and creative?"* Confirmed scope:
+> weapon = **all three layers**, spell = **full grammar**, **design
+> only** (no code yet). The governing principle: **each pillar needs its
+> own distinct creative *verb*** so the three don't collapse into "merge
+> buckets of stuff" (which would be the false depth we're avoiding).
+
+| Pillar | Creative verb | Feel | Reuses |
+|---|---|---|---|
+| **Alchemy** | **Combine** properties | Chemistry — fuzzy, organic | Effect system, liquid physics |
+| **Weaponcraft** | **Assemble + temper** | Engineering — physical, persistent, historied | `MeleeWeaponPart`, `IItemEnhancement`, liquid quench |
+| **Spellcraft** | **Compose** a grammar | Programming — abstract, structural, executable | `BaseMutation`, `ActivatedAbilitiesPart`, `MutationDamageHelpers` |
+
+The three interlock through one **material economy** (§7.3) without
+sharing a mechanic, so each stays distinct.
+
+---
+
+### 7.1 Weapon crafting — Modular forging + tempering + saga
+
+Three stacked layers. The seams below are all real (from the
+weapon/combat system map).
+
+#### Layer 1 — Modular structure (the *assemble* verb)
+A weapon is forged from **components**, each contributing part of the
+final `MeleeWeaponPart` plus one quirk:
+
+| Component | Drives (`MeleeWeaponPart` field) | Quirk slot |
+|---|---|---|
+| **Blade / head** | `BaseDamage` dice + `Attributes` damage-class (Cutting/Piercing/Bludgeoning) | primary on-hit (`OnHitEffectsRaw` entry) |
+| **Haft / grip** | `MaxStrengthBonus`, hands, an implied speed/reach tag | handling quirk |
+| **Binding / edge** | `PenBonus`, `HitBonus` | an `IItemEnhancement` (e.g. Serrated) |
+
+- A new **`WeaponAssemblyPart`** records the installed component
+  blueprints so the weapon can be **re-forged** — swap the blade, keep
+  the haft. Your favorite sword *evolves* instead of being replaced
+  (RPG identity, not loot churn — `PROJECT-IDENTITY.md`).
+- Assembling = compute `MeleeWeaponPart` fields from the component set +
+  attach each component's quirk (on-hit spec / enhancement Part). The
+  combat path (`CombatSystem.PerformSingleAttack`) already consumes all
+  of these, so **no combat code changes** — forging just *writes* the
+  fields the engine already reads.
+- Components themselves are found/looted/alchemy-made → crafting becomes
+  a reason to chase *better parts*, not to grind identical mats.
+
+#### Layer 2 — Tempering / quench (the *process* verb + the alchemy bridge)
+A **temper** is a process applied to an assembled weapon at the forge,
+using a **quench medium** — and the quench media *are alchemy outputs*
+(essences/coatings) + world liquids (reuses the shipped liquid system's
+per-liquid knobs: FlameTemperature, FreezeTemperature, Conductivity…):
+
+| Quench medium | Gain | Trade-off (the depth) |
+|---|---|---|
+| Frost-brine essence | `+Cold` on-hit (`OnHitEffectsRaw: Frozen`) | `Brittle` tag → lower weapon Hitpoints max |
+| Lava / ember essence | `+Heat` on-hit (Burning) | heavier → handling penalty |
+| Galvanic draught | `+Electric` on-hit | needs a charge source to keep proccing |
+
+- Tempering writes to `OnHitEffectsRaw` / attaches an `IItemEnhancement`
+  and adjusts stats — **every effect it produces already has a runtime
+  consumer.** Trade-offs are real stat deltas, not flavor text.
+- **Folding / pattern-welding:** repeated tempers stack with *diminishing
+  returns* (each fold adds a smaller bonus) + a signature render string.
+  This is the "deep but not grindy" knob — folding has a soft cap.
+- This is the concrete **alchemy → weaponcraft bridge**: a brewed
+  essence is the quench medium. The two pillars touch through *material*,
+  not through a shared mechanic.
+
+#### Layer 3 — The weapon remembers (the *saga* hook — the novel part)
+A new **`WeaponSagaPart`** accumulates history via combat events the
+engine already fires:
+- Increments tag-keyed kill counters off the `Died`/`OnAttackerHit`
+  path (the same hooks `EnhancementSerrated.OnAttackerHit` uses).
+- Counts temperings, records the forger's name, the first-blood zone.
+- At **thresholds**, a **latent property awakens**: a blade that has
+  slain 50 `Fungal` things *wants* to become anti-fungal → auto-attaches
+  the matching `IItemEnhancement` (reusing the enhancement apply path,
+  which fires `OnEquipped` correctly per the E.5.1 audit).
+- Persists via save/load reflection (public fields, like `RentalPart` /
+  `MaterialPart`). This is the part Qud does **not** have — a weapon with
+  a saga is uniquely an RPG-with-a-persistent-character idea.
+
+**Diag:** `category=craft`, kinds `WeaponForged` / `WeaponTempered` /
+`SagaAwakened`, payload = components, temper history, awakened property.
+
+---
+
+### 7.2 Spell crafting — Rune composition (the *compose* verb)
+
+A spell is built like a **sentence**: `[Form] + [Essence] + [Modifiers]`.
+This maps almost 1:1 onto the existing mutation/ability infra — the win
+is replacing **one C# class per spell** with **one data-driven
+`ComposedSpellMutation`** parameterized by a rune composition.
+
+| Rune kind | Picks | Maps onto (real seam) |
+|---|---|---|
+| **Form** (delivery/shape) | bolt · beam · nova · touch · aura · ward · summon | `ActivatedAbilitiesPart.AddAbility(..., targetingMode, range)` + a Cast strategy (generalizes `DirectionalProjectileMutationBase.Cast`) |
+| **Essence** (the verb) | fire · frost · shock · acid · light · vital(heal) · force · drain · bind | `DamageDice` + `ElementAttribute` + the on-hit `ApplyOnHitEffect` (reuses the `Effect` system: Burning/Frozen/Acidic…) |
+| **Modifier** (inflection) | amplify · extend · chain · pierce · split · **trigger(condition)** | wraps the cast: amplify→damage/magnitude, extend→duration, chain→re-target adjacent, trigger→deferred cast on `BeforeTakeDamage`/turn events |
+
+**How composition materializes:**
+1. Player **learns runes** from the world (spellbooks, defeating casters,
+   ley sites) into a `RuneKnowledgePart` (mirrors `BitLockerPart.Knows…`).
+2. At an inscription seam, composes a spell from known runes → produces a
+   **`ComposedSpellMutation`** instance (a single `BaseMutation` subclass
+   that reads its composition data instead of hard-coding behavior).
+3. It self-registers an activated ability via `AddMyActivatedAbility(...)`
+   — so it slots into the existing cast pipeline (`SkillsPart`
+   command routing, cooldown, FX) with **zero new casting code**.
+4. **Cost & cooldown derive from the composition** — more/stronger runes
+   → higher `CooldownTurns` + SP cost. This is the natural balance lever
+   and the anti-spam guardrail (you can't stack five modifiers for free).
+
+**Worked examples (same small vocabulary, huge space):**
+- `Bolt + Fire + Chain` → a firebolt that arcs to an adjacent enemy
+  (Chain modifier re-invokes the essence on a neighbor).
+- `Ward + Frost + Trigger(on-hit)` → a frost-retaliation shield (Trigger
+  defers the Frost essence onto the caster's `BeforeTakeDamage`).
+- `Nova + Acid + Amplify` → a corrosive burst, bigger magnitude, shorter
+  range — composition-priced higher.
+
+**Relationship to the existing magic trees** (`MAGIC-SKILLS-DESIGN.md`):
+the 8 trees (Pyromancy, Cryomancy…) stay as the **passive mastery /
+modifier layer**. `SpellcraftSkill.OnGetSpellDamageModifier` already
+sums across owned skills — composed spells flow through
+`MutationDamageHelpers.ApplySpellDamage`, so tree bonuses apply to
+*crafted* spells automatically. Existing actives
+(`Spellcraft_Empower`/`ArcaneSurge`/`LeyTap`) become composition boosters
+rather than fixed spells. **Composition = what a spell *is*; trees = how
+good you are at it.** No conflict, clean layering.
+
+**Diag:** `category=spellcraft`, kinds `RuneLearned` / `SpellInscribed` /
+`SpellCast`, payload = rune composition, derived cost, derived cooldown.
+
+---
+
+### 7.3 The interlocking material economy (keeps pillars distinct)
+
+```
+                 ┌────────────────────────────┐
+   forage /      │        ALCHEMY             │
+   butcher /     │  combine reagent           │
+   harvest  ───▶ │  PROPERTIES → brews        │
+                 └──────┬──────────┬──────────┘
+                        │          │
+         quench media   │          │  distilled rune-ink /
+         (essences) ────┘          └──── mana-reagents
+                        │                       │
+                        ▼                       ▼
+              ┌──────────────────┐    ┌──────────────────┐
+              │   WEAPONCRAFT    │    │   SPELLCRAFT     │
+              │ assemble+temper  │    │ compose grammar  │
+              │  +saga (gear)    │    │  (abilities)     │
+              └──────────────────┘    └──────────────────┘
+              also sockets stones/sigils (shipped enhancement system)
+```
+
+Alchemy is the **chemistry feedstock**; weaponcraft the **physical
+output**; spellcraft the **abstract output**. Three creative verbs, one
+shared material flow — depth from interlock, not from a single bloated
+mechanic.
+
+---
+
+### 7.4 Suggested build order (still design-only)
+
+1. **M1 — Alchemy property engine** (already locked, §1–§6). Proves the
+   property/discovery core with zero risk to shipped suites. *Build this
+   first.*
+2. **M2 — Alchemy → Layer-On-Top** (gear-target path; §4).
+3. **M3 — Weaponcraft L1+L2** (modular `WeaponAssemblyPart` + tempering;
+   consumes M1 essences as quench).
+4. **M4 — Weaponcraft L3** (`WeaponSagaPart` latent-awakening).
+5. **M5 — Spellcraft grammar** (`ComposedSpellMutation` + runes +
+   inscription); biggest magic-system change, so last + its own
+   verification sweep against `MAGIC-SKILLS-DESIGN.md`.
+
+Each milestone is independently shippable, TDD per `CLAUDE.md`, emits its
+own diag category, and gets the cold-eye + adversarial gates. Nothing
+here is built until you greenlight a milestone.
