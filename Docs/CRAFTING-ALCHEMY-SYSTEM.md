@@ -1,7 +1,9 @@
 # Emergent Alchemy / Brewing — Design Exploration
 
-**Status:** 🟦 DESIGN / NOT YET IMPLEMENTED — direction confirmed with
-user (2026-06-24), integration approach still open.
+**Status:** 🟦 DESIGN / NOT YET IMPLEMENTED — direction confirmed
+(emergent alchemy), phasing confirmed (M1 Build-Alongside → M2
+Layer-On-Top), **M1 design questions LOCKED (§6)**. Ready to build M1
+once weapon/spell-crafting scope (§7) is folded in.
 **Branch:** `claude/rpg-crafting-system-8gbflx`
 **Origin:** user — *"If this is an RPG there should be a more in-depth
 crafting system. It shouldn't be tedious for the sake of false depth,
@@ -286,17 +288,49 @@ not by code).
 
 ---
 
-## 6. Open questions before M1 locks
+## 6. M1 design lockdowns (DECIDED — pin before code)
 
-1. **Discovery framing:** fully blind ("just try combos") vs hinted
-   (reagent examine text names its properties)? Recommend *hinted* —
-   legibility is the anti-tedium guardrail.
-2. **Station vs anywhere:** require a still/workbench, or brew from the
-   inventory anywhere? Recommend a station for tonics/gear, allow rough
-   field-brewing for simple foods.
-3. **Failure outcomes:** should a contradictory mix (e.g. heat+cold)
-   fizzle, produce inert sludge, or a small mishap (mild damage)? A
-   *legible* mishap is more fun than a silent fizzle.
-4. **Quantity/potency:** does 3× a reagent scale potency, or just the
-   property-set matter? Recommend property-set + a single potency tier
-   from highest-potency reagent, to avoid stack-grinding.
+These were the open questions; now locked with rationale. Any change
+after this point is a scope divergence and gets noted per `CLAUDE.md`.
+
+### 6.1 Discovery framing → **Hinted (LOCKED)**
+Reagent examine text **names its properties** (e.g. *"Fire-moss —
+smells of heat; brittle and volatile."*). Combos are still discovered by
+trying, but the *atoms* are legible, so a player can *reason* toward an
+outcome instead of brute-forcing. Legibility is the core anti-tedium
+guardrail — blind discovery degrades into a wiki-lookup chore, which is
+exactly the "false depth" the user rejected. A first-time resolved combo
+emits a discovery message + logs to the knowledge store.
+
+### 6.2 Station vs anywhere → **Station for tonics/coatings, field-brew for foods (LOCKED)**
+A **still/alchemy bench** (furniture, mirrors the tinkering access seam)
+is required for tonics, coatings, and throwables — the "real" brews.
+**Simple foods** (single- or dual-reagent, gentle buffs) can be made
+anywhere from the inventory, so the cozy Adventure-Time cooking angle has
+no friction. Rationale: gates the powerful outputs behind a place you
+return to (gives the world texture) without taxing the low-stakes ones.
+
+### 6.3 Failure outcomes → **Legible mishap, never silent (LOCKED)**
+A contradictory or unresolved mix produces **"inert sludge"** (a junk
+item) by default, and a *small, telegraphed* mishap only when a
+`volatile` property is present with no stabilizing partner (e.g. minor
+self-damage + a "the flask cracks!" message). Never a silent fizzle —
+the player must always learn *why* it failed. The mishap is capped and
+non-lethal (RPG, not roguelike — no run-ending punishment for
+experimenting).
+
+### 6.4 Quantity / potency → **Property-set + single potency tier (LOCKED)**
+The **set** of properties determines *which* effects fire. Potency
+(effect magnitude) comes from the **highest-potency contributing
+reagent**, not the count — so dropping 3× FireMoss does **not** out-scale
+1× FireMoss + a better heat reagent. This kills stack-grinding dead: you
+improve a brew by finding *better reagents*, not by hoarding quantity. A
+later content tier may add a `concentrate` station upgrade for +1 tier,
+but base M1 is count-insensitive.
+
+### 6.5 Reagent acquisition → **Forage / butcher / harvest, no bit-disassembly (LOCKED)**
+Reagents come from *playing the world*: forage nodes (plants), butchering
+creature kills (monster parts), harvesting biome features (brine pools,
+glow-caves), and looting. **No** "disassemble item → reagent" step — that
+would re-import the cutting-system feel we're moving away from. Reagents
+are found, not shredded.
