@@ -1,0 +1,74 @@
+{
+  "Rules": [
+    {
+      "ID": "brew_burning",
+      "RequireAll": "heat combustible",
+      "ForbidAny": "",
+      "Effect": "Burning",
+      "Form": "Coating",
+      "Priority": 10,
+      "MagnitudeScale": 1.0,
+      "Description": "Heat meets fuel — it catches fire."
+    },
+    {
+      "ID": "brew_frost",
+      "RequireAll": "cold",
+      "ForbidAny": "heat",
+      "Effect": "Frozen",
+      "Form": "Coating",
+      "Priority": 5,
+      "MagnitudeScale": 1.0,
+      "Description": "A biting chill. Any heat in the mix ruins it."
+    },
+    {
+      "ID": "brew_acid",
+      "RequireAll": "corrosive",
+      "ForbidAny": "",
+      "Effect": "Acidic",
+      "Form": "Tonic",
+      "Priority": 5,
+      "MagnitudeScale": 1.0,
+      "Description": "A corrosive solvent that eats at flesh and armor."
+    },
+    {
+      "ID": "brew_shock",
+      "RequireAll": "conductive",
+      "ForbidAny": "",
+      "Effect": "Electrified",
+      "Form": "Tonic",
+      "Priority": 5,
+      "MagnitudeScale": 1.0,
+      "Description": "A charged tincture. Pair with corrosive for a galvanic draught."
+    },
+    {
+      "ID": "brew_poison",
+      "RequireAll": "toxic",
+      "ForbidAny": "",
+      "Effect": "Poison",
+      "Form": "Tonic",
+      "Priority": 5,
+      "MagnitudeScale": 1.0,
+      "Description": "A toxic distillate."
+    },
+    {
+      "ID": "brew_ward",
+      "RequireAll": "binding",
+      "ForbidAny": "",
+      "Effect": "Stoneskin",
+      "Form": "Tonic",
+      "Priority": 5,
+      "MagnitudeScale": 1.0,
+      "Description": "A binding tonic that hardens the skin to stone."
+    },
+    {
+      "ID": "brew_slick",
+      "RequireAll": "viscous",
+      "ForbidAny": "",
+      "Effect": "Wet",
+      "Form": "Coating",
+      "Priority": 1,
+      "MagnitudeScale": 1.0,
+      "Description": "A clinging, watery slick."
+    }
+  ]
+}

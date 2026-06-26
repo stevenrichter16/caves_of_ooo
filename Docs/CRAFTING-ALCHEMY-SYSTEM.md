@@ -520,3 +520,52 @@ mechanic.
 Each milestone is independently shippable, TDD per `CLAUDE.md`, emits its
 own diag category, and gets the cold-eye + adversarial gates. Nothing
 here is built until you greenlight a milestone.
+
+---
+
+## 8. Implementation log
+
+### M1.1 — Pure brew-resolution core ✅ written (⚠️ unverified in this env)
+
+The dependency-root sub-milestone: a deterministic, side-effect-free
+resolver that turns a set of reagents into a brew outcome. No inventory,
+no zone, no RNG — purely `reagents → BrewResult`. Everything else in M1
+(the service, discovery store, station, content) builds on this.
+
+**Files (NEW):**
+- `Assets/Scripts/Gameplay/Alchemy/BrewProperty.cs` — `BrewPropertyAmount`
+  (one (property, potency) pair) + `BrewProperties` vocabulary constants.
+- `Assets/Scripts/Gameplay/Alchemy/BrewRule.cs` — `[Serializable]` rule DTO
+  (RequireAll / ForbidAny / Effect / Form / Priority / MagnitudeScale).
+- `Assets/Scripts/Gameplay/Alchemy/BrewResult.cs` — `BrewOutcomeKind`
+  (Invalid / InertSludge / Mishap / Brew) + `BrewEffect` + `BrewResult`.
+- `Assets/Scripts/Gameplay/Alchemy/BrewRuleRegistry.cs` — static JSON
+  registry mirroring `TinkerRecipeRegistry`
+  (EnsureInitialized / InitializeFromJson / ResetForTests).
+- `Assets/Scripts/Gameplay/Alchemy/BrewResolver.cs` — the pure resolver.
+- `Assets/Resources/Content/Data/Alchemy/BrewRules.json` — 7 starter
+  rules using only effects the existing `StatusTonicPart.CreateEffect`
+  dispatch already supports (Burning / Frozen / Acidic / Electrified /
+  Poison / Stoneskin / Wet).
+- `Assets/Tests/EditMode/Gameplay/Alchemy/BrewResolverTests.cs` — 18
+  tests, each positive assertion paired with a §3.4 counter-check.
+
+**Locked-decision conformance:**
+- §6.4 potency = **MAX** across reagents, never summed →
+  `Potency_DoesNotScaleWithDuplicateReagents` pins it.
+- §6.3 failure never silent → `Mishap` (volatile, unstabilized) vs
+  `InertSludge` (no reaction) are distinct, both carry a `Reason`.
+- Combinatorial emergence → `CorrosivePlusConductive_ProducesBothAcidAndShock`
+  (two rules fire on one mix = a galvanic draught).
+
+**Honesty bound (CLAUDE.md §6.3):** this code was authored in a remote
+container with **no Unity editor / dotnet** — so RED→GREEN was **NOT
+observed here**. The tests are written to fail-without / pass-with the
+implementation, but the TDD cadence (confirm RED, confirm GREEN) and the
+full EditMode suite must be run in Unity before this is considered green.
+`.meta` files are not committed (Unity generates them on first import).
+
+**Deferred to M1.2+:** `ReagentPart` (the in-world carrier), `BrewingService`
+(validate inventory + consume atomically + create item + emit
+`category=alchemy` diag records, mirroring `TinkeringService`), the
+discovery/knowledge store, the still furniture + UI, and reagent content.
