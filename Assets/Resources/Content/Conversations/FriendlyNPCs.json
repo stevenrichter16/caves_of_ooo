@@ -1075,13 +1075,20 @@
       "Nodes": [
         {
           "ID": "Start",
-          "Text": "I copy texts for the village. Bring me a grimoire and I'll make a copy — useful if you want to teach someone else what's in it.",
+          "Text": "I copy texts for the village, and I keep a shelf of copied volumes for sale. Bring me a grimoire and I'll make a copy — useful if you want to teach someone else what's in it.",
           "Choices": [
             {
               "Text": "I'd like a copy of this grimoire.",
               "Target": "CopyConfirm",
               "Predicates": [{ "Key": "IfHaveItemWithTag", "Value": "Grimoire" }]
             },
+        {
+          "Text": "May I browse your copied volumes?",
+          "Target": "End",
+          "Actions": [
+            { "Key": "StartTrade", "Value": "" }
+          ]
+        },
             {
               "Text": "What exactly do you do?",
               "Target": "Explain"

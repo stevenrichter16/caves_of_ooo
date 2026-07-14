@@ -69,9 +69,10 @@ namespace CavesOfOoo.Core
             RepairableSiteState lanternSite = settlement?.GetSite(SettlementSiteDefinitions.VillageLanternSiteId);
             PlaceLantern(zone, factory, rng, openCells, settlementId, lanternSite);
 
-            // Place a chest with grimoires.
-            if (grimoireChest == null)
-                grimoireChest = PlaceGrimoireChest(zone, factory, rng, openCells);
+            // FUN-P0 M2.a: no grimoire chest outside the starting village —
+            // the magic-discovery arc lives in the world now (scribes sell by
+            // biome, lair boss chests hold element grimoires, ambassadors
+            // gift the rest; see GrimoireDistribution).
 
             // Place deterministic wooden barrel layouts to demonstrate fire propagation
             PlaceBarrelLayouts(zone, factory, rng, openCells);
@@ -136,6 +137,7 @@ namespace CavesOfOoo.Core
             // 1 Scribe (always)
             Entity scribe = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Scribe", settlementId);
             SetConversation(scribe, "Scribe_1");
+            StockScribeGrimoires(scribe, factory);
 
             // 1 Innkeeper (always, if blueprint available) — assigned ownership of
             // the nearest chair so no other NPC can use it. Tier 3d: per-NPC chair ownership.
@@ -218,79 +220,48 @@ namespace CavesOfOoo.Core
             var container = chest.GetPart<ContainerPart>();
             if (container == null) return chest;
 
-            Entity grimoire = TryCreateEntity(factory, "PurifyWaterGrimoire");
-            if (grimoire != null)
-                container.AddItem(grimoire);
+            // FUN-P0 M2.a: the teaching trio only (damage / utility / rite).
+            // AddItem's return is CHECKED — pre-M2 the 18-grimoire stuffing
+            // silently dropped 8 on the container's MaxItems=10 cap.
+            foreach (string blueprintName in GrimoireDistribution.StartingChest)
+            {
+                Entity grimoire = TryCreateEntity(factory, blueprintName);
+                if (grimoire == null)
+                {
+                    UnityEngine.Debug.LogWarning(
+                        $"[VillagePopulation] Starting-chest grimoire '{blueprintName}' failed to create.");
+                    continue;
+                }
 
-            Entity mendingGrimoire = TryCreateEntity(factory, "MendingRiteGrimoire");
-            if (mendingGrimoire != null)
-                container.AddItem(mendingGrimoire);
-
-            Entity kindleGrimoire = TryCreateEntity(factory, "KindleRiteGrimoire");
-            if (kindleGrimoire != null)
-                container.AddItem(kindleGrimoire);
-
-            Entity kindleSpell = TryCreateEntity(factory, "KindleGrimoire");
-            if (kindleSpell != null)
-                container.AddItem(kindleSpell);
-
-            Entity quenchSpell = TryCreateEntity(factory, "QuenchGrimoire");
-            if (quenchSpell != null)
-                container.AddItem(quenchSpell);
-
-            Entity conflagrationSpell = TryCreateEntity(factory, "ConflagrationGrimoire");
-            if (conflagrationSpell != null)
-                container.AddItem(conflagrationSpell);
-
-            Entity iceLanceSpell = TryCreateEntity(factory, "IceLanceGrimoire");
-            if (iceLanceSpell != null)
-                container.AddItem(iceLanceSpell);
-
-            Entity acidSpraySpell = TryCreateEntity(factory, "AcidSprayGrimoire");
-            if (acidSpraySpell != null)
-                container.AddItem(acidSpraySpell);
-
-            Entity arcBoltSpell = TryCreateEntity(factory, "ArcBoltGrimoire");
-            if (arcBoltSpell != null)
-                container.AddItem(arcBoltSpell);
-
-            Entity rimeNovaSpell = TryCreateEntity(factory, "RimeNovaGrimoire");
-            if (rimeNovaSpell != null)
-                container.AddItem(rimeNovaSpell);
-
-            Entity thunderclapSpell = TryCreateEntity(factory, "ThunderclapGrimoire");
-            if (thunderclapSpell != null)
-                container.AddItem(thunderclapSpell);
-
-            Entity emberVeinSpell = TryCreateEntity(factory, "EmberVeinGrimoire");
-            if (emberVeinSpell != null)
-                container.AddItem(emberVeinSpell);
-
-            Entity kindleFlameSpell = TryCreateEntity(factory, "KindleFlameGrimoire");
-            if (kindleFlameSpell != null)
-                container.AddItem(kindleFlameSpell);
-
-            Entity dryingBreezeSpell = TryCreateEntity(factory, "DryingBreezeGrimoire");
-            if (dryingBreezeSpell != null)
-                container.AddItem(dryingBreezeSpell);
-
-            Entity hearthwarmSpell = TryCreateEntity(factory, "HearthwarmGrimoire");
-            if (hearthwarmSpell != null)
-                container.AddItem(hearthwarmSpell);
-
-            Entity conjureWaterSpell = TryCreateEntity(factory, "ConjureWaterGrimoire");
-            if (conjureWaterSpell != null)
-                container.AddItem(conjureWaterSpell);
-
-            Entity chillDraftSpell = TryCreateEntity(factory, "ChillDraftGrimoire");
-            if (chillDraftSpell != null)
-                container.AddItem(chillDraftSpell);
-
-            Entity wardGleamSpell = TryCreateEntity(factory, "WardGleamGrimoire");
-            if (wardGleamSpell != null)
-                container.AddItem(wardGleamSpell);
+                if (!container.AddItem(grimoire))
+                    UnityEngine.Debug.LogWarning(
+                        $"[VillagePopulation] Starting chest rejected '{blueprintName}' (container full?).");
+            }
 
             return chest;
+        }
+
+        /// <summary>
+        /// FUN-P0 M2.a: the village Scribe is the bookseller — carries the
+        /// biome-keyed grimoire pool (GrimoireDistribution) for sale via the
+        /// Scribe_1 browse choice (StartTrade). Faction comes from the POI;
+        /// unknown/absent factions fall back to the Villagers pool.
+        /// </summary>
+        private void StockScribeGrimoires(Entity scribe, EntityFactory factory)
+        {
+            if (scribe == null || factory == null)
+                return;
+
+            var inventory = scribe.GetPart<InventoryPart>();
+            if (inventory == null)
+                return;
+
+            foreach (string blueprintName in GrimoireDistribution.ScribeStockForFaction(_poi?.Faction))
+            {
+                Entity grimoire = TryCreateEntity(factory, blueprintName);
+                if (grimoire != null)
+                    inventory.AddObject(grimoire);
+            }
         }
 
         private Entity PlaceEntityNearVillageSquare(
