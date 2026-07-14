@@ -182,7 +182,7 @@ The thread inherits from CoO's existing universe (the Choir / Palimpsest / Pale 
 
 The Spirits are **mechanically rivals.** High affinity with one suppresses the others. Pacts at full affinity offer permanent class-locks.
 
-**Urqu.** Named hostile cosmic actor, *third entity class* (distinct from Spirits and factions). Sourced from Ye'kwana legend of an evil spirit on Sarisariñama caves making the *sari... sari...* sound. **Cosmologically opposed to the Root.** Urqu wants the Root unmade. Manifests as *consequence not trigger* — appears during catastrophic events. Most players experience Urqu only as the long shadow of an active period.
+**Urqu.** Named hostile cosmic actor, *third entity class* (distinct from Spirits and factions). Sourced from Ye'kwana legend of an evil spirit on Sarisariñama caves making the *sari... sari...* sound. **Cosmologically opposed to the Root.** The incarnation-pressure runs toward the Root's unmaking *(phrasing corrected per Phase 11 C1 — pressure, not want)*. Manifests as *consequence not trigger* — appears during catastrophic events. Most players experience Urqu only as the long shadow of an active period.
 
 **The First Root.** Cosmologically central; the sleeping organism beneath the Root of the World. **Not currently treated as an actor** — it sleeps, it dreams, but it does not act. *(Whether it could/does act is open and central to Phase 1.)*
 

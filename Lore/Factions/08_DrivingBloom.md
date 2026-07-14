@@ -30,7 +30,7 @@ A god, in CoO's cosmology, is a *Naming* — a held inheritance, a function with
 This makes the Bloom the structural inverse of two things at once:
 
 - **Inverse of the Choir.** The Choir holds; the Bloom drives. The Choir remembers; the Bloom forgets by design. Same body, opposite soul — except the Bloom has no soul, which is the whole disagreement.
-- **Inverse of Urqu (the cosmic rhyme).** Urqu (per Phase 1 v2) is the *unborn* seventh — a would-be mind *trying to incarnate*, a consciousness reaching toward being. **The Bloom is the opposite vector: a consciousness that was already alive and threw itself away.** Urqu wants in; the Bloom opted out. *(See §V, Urqu, for the agriculture connection — the darkest thread in this doc.)*
+- **Inverse of Urqu (the cosmic rhyme).** Urqu (per Phase 1 v2) is the *unborn* seventh — a would-be mind *trying to incarnate*, a consciousness reaching toward being. **The Bloom is the opposite vector: a consciousness that was already alive and threw itself away.** Urqu presses inward; the Bloom opted out. *(Phrasing per Phase 11 C1: pressure, not want.)* *(See §V, Urqu, for the agriculture connection — the darkest thread in this doc.)*
 
 ---
 

@@ -2,6 +2,15 @@
 
 > **Authority:** Phase-history document. `Lore/10_Bible.md` is the current canon authority; this file is current only where it aligns with the Bible or is explicitly marked canonical/current.
 >
+> **⚠ Phase-11 revision notice (2026-07-14).** Four commits in
+> `Lore/11_SecondSpine.md` and `Lore/Design/NaroReadings.md` supersede
+> parts of this document on bare fact:
+> 1. **C1** — Urqu is pressure, never agent; intent-language about Urqu below is superseded (mouthpieces carry intent).
+> 2. **C4** — the completion-ratio (§X) is replaced by the **closure-ledger** (closed / refused / abandoned; a spoken no is a closure); "incompletion" below reads as "abandonment."
+> 3. **C3** — no ending is "canonical best"; the practice-path carries three permanent costs (the gods end; the work never finishes; the Root ends as itself).
+> 4. **C5** — "Naro was right" is design-canon only, never witnessable in-game; §II's truth-claims are the *design* layer, and the finale asks the player to commit to a reading, not retrieve an answer (see `Lore/Design/V1-DramaticCore.md` for the revised climaxes).
+> The development trail below is otherwise preserved as written.
+>
 > Phase 6 of the lore project. The **synthesis phase.** Everything the earlier phases deferred with "Phase 6 commits" is decided here, and the pieces are assembled into a navigable main quest spine. This is the capstone narrative document; Phase 7 (Characters) and Phase 10 (Lore Bible) hang off it.
 >
 > Inherits *all* prior phases. The load-bearing inheritances: Phase 1 (the Felling; the Six; Urqu as the unborn seventh; the three endings), Phase 3 (the Thinning as inciting situation; four candidate causes; the player starts at Sill treating cosmology as myth), Phase 4 (every faction's ending-stance and turn-point), Phase 5 (the world predates the Tree; the Spirits as pre-Tree drives; incompletion as Urqu's substrate; the Root's one volitional act).
@@ -124,7 +133,7 @@ The empty seventh position must be addressed in the Renewal ritual or "Urqu will
 
 4. **Establish mortal Naming as the world's naming-function.** No vessel. The Tent-Right oath (per `07`) universalized: the renewed world's binding-function becomes *the continuous mutual naming of mortals* — hospitality, memory, the oath, the choice to recognize each other as what-they-are. **Urqu is not defeated but answered** — given a way to *be* (as a distributed practice rather than a failed godhood). This is the most complete Renewal, the least pyrrhic, and the one Naro died (socially) to make possible. **It requires the deepest play:** high Tent-Right standing, understanding Naro (the Sealed Library truth or the Reader's confession), and convincing the world's factions to adopt a naming-practice — a coordination feat no other ending demands.
 
-*This is the canonical "best" ending — and earning it requires assembling the whole game's threads: the Naro-truth (Palimpsest/Libraries), the oath (Tent-Right), the Root's consent (the Rooted), the Six's agreements, and a high completion-ratio (a world the player has been *finishing*, not abandoning, §X).*
+*~~This is the canonical "best" ending~~ **[REVISED, Phase 11 C3: no ending is best — the practice-path pays three permanent costs; see the Bible §V.]** Earning it requires assembling the whole game's threads: the Naro-commitment (the Recension archives/Libraries — a reading staked, not a truth retrieved), the oath (Tent-Right), the Root's consent (the Rooted), the Six's agreements, and a clean closure-ledger (a world whose endings the player has been *speaking*, not abandoning, §X).*
 
 ---
 

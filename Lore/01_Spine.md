@@ -119,7 +119,7 @@ The cosmological position reserved for the seventh god is therefore **empty.** N
 This refinement is load-bearing. It explains:
 - Why Urqu's manifestations are *patterns* of slippage rather than direct destruction — they are *failed births* of a divine substrate
 - Why bargaining with Urqu's mouthpieces is structurally weird — Urqu has no continuous self, but moments of *near-incarnation* produce mouthpieces who briefly speak with proto-divine voice
-- Why Urqu wants the Root unmade — *unmaking the Root completes the original act in the only way available now*, allowing Urqu to fill the seventh position by default (six positions filled + one missing = a pantheon; six positions filled + one absence-where-everything-flows = Urqu as the *negative space* god, which is still a kind of incarnation)
+- Why the pressure runs toward the Root's unmaking *(phrasing corrected per Phase 11 C1 — Urqu is gradient, not will)* — *unmaking the Root completes the original act in the only way available now*, allowing Urqu to fill the seventh position by default (six positions filled + one missing = a pantheon; six positions filled + one absence-where-everything-flows = Urqu as the *negative space* god, which is still a kind of incarnation)
 - Why three endings exist with different Urqu-resolutions — see Section VII
 
 ---
