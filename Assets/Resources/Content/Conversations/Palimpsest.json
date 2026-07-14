@@ -5,7 +5,7 @@
       "Nodes": [
         {
           "ID": "Start",
-          "Text": "You are -- no, you will be -- no. Forgive us. The moments stack upon each other. You are here now. We see you now. Welcome, traveler, to this particular instant.",
+          "Text": "A moment -- the line first. A line left half-entered is a lie by lunchtime. ...There. Entered. Now: you. A traveler, by the boots; alive, by the smell of the road on you. Both worth recording. Welcome to the field-station of the Recension. Sit anywhere that isn't paper.",
           "Choices": [
             {
               "Text": "Are you alright?",
@@ -18,7 +18,7 @@
               "Actions": [{ "Key": "SetProperty", "Value": "MetPalimpsest:true" }]
             },
             {
-              "Text": "Tell me about the Palimpsest.",
+              "Text": "Tell me about the Recension.",
               "Target": "AboutPalimpsest",
               "Actions": [{ "Key": "SetProperty", "Value": "MetPalimpsest:true" }]
             },
@@ -40,10 +40,10 @@
         },
         {
           "ID": "AreYouOk",
-          "Text": "We are always alright. We are alright now, and we were alright a moment ago when you had not yet spoken, and we will be alright when you leave. Time is difficult to explain to those who experience it only once. We apologize for the confusion.",
+          "Text": "Mm? Oh -- the hands. Ink-stained to the elbow; everyone asks. I am well. Tired the way the work makes you tired, which is a good tired with a bad posture. Forgive me if I write while we talk. If I only listened, half of you would be gone by morning.",
           "Choices": [
             {
-              "Text": "You experience time more than once?",
+              "Text": "Half of me?",
               "Target": "TimeMoreThanOnce"
             },
             {
@@ -58,14 +58,14 @@
         },
         {
           "ID": "TimeMoreThanOnce",
-          "Text": "We experience every moment layered upon every other moment. This conversation has already happened and has not yet begun. We are reading a book in which every page is printed on top of every other page. Most of the text is illegible. But we remember the words.",
+          "Text": "Memory drops half of everything by the next sunrise. That is not an opinion; we have measured it -- same witness, same event, one day apart, and the account comes back lighter. Whereas a page keeps its weight. And under the page, the older page; and under that, older still. Scrape any surface in this world and there is writing beneath it. We are the people who stopped pretending otherwise.",
           "Choices": [
             {
               "Text": "That sounds maddening.",
               "Target": "Maddening"
             },
             {
-              "Text": "Is that what the Palimpsest is? Layered time?",
+              "Text": "Writing beneath the world? What do you mean?",
               "Target": "LayeredTime"
             },
             {
@@ -76,7 +76,7 @@
         },
         {
           "ID": "Maddening",
-          "Text": "It was. For the first century. Then we learned to read between the layers. Every moment is a sentence. Every day is a paragraph. Every life is a chapter. We are the library that reads itself. It is peaceful now. Mostly.",
+          "Text": "It was. My first year in the stacks I did not sleep well -- you can feel the shelves attending. The archive is a library that reads itself; the senior scribes say so plainly and smile when you finally understand they are not being poetic. It is peaceful now. Mostly.",
           "Choices": [
             {
               "Text": "What do you mean, 'mostly'?",
@@ -90,7 +90,7 @@
         },
         {
           "ID": "Mostly",
-          "Text": "Sometimes a sentence disappears. Every time something feeds on the substrate -- every time the Choir grows -- a piece of the record is consumed. The pages thin. The text fades. This is why we are at odds with the Choir. They eat what we are trying to preserve.",
+          "Text": "Sometimes a record goes out of the world at the source. A village the Choir has grown through stops sending its dead to be read, and every testimony those bodies carried is eaten instead of entered. The Choir does not mean it as theft. That has never once made the page less blank.",
           "Choices": [
             {
               "Text": "Can't you coexist?",
@@ -108,7 +108,7 @@
         },
         {
           "ID": "Coexist",
-          "Text": "We try. We are not enemies. But every acre the Choir claims, every creature they integrate, is a page torn from the record. They do not mean harm. A fire does not mean harm either. But the library still burns.",
+          "Text": "We do coexist. Eight hundred years and more of it -- there was a war once, before my great-greats, and since then a truce nobody signed and everybody keeps. But every acre the Choir gathers is testimony we will never take. They do not mean harm. A fire does not mean harm either. The library still burns; it merely burns politely now.",
           "Choices": [
             {
               "Text": "Is there a way to stop the loss?",
@@ -122,7 +122,7 @@
         },
         {
           "ID": "StopTheLoss",
-          "Text": "The cracks in the substrate could be sealed. Time could be layered properly again, instead of bleeding through in ragged patches. But the Choir would lose their awareness. The price of restoration is the silencing of everything that grew from the breaking. It is not a decision we can make alone.",
+          "Text": "There is a page in the Reading -- old, disputed, much-annotated -- that says the world's slippage could be halted outright. Sealed, like a jar. The stillest of my order would do it tomorrow. But a sealed world keeps nothing new, and mends nothing old; the account of it reads less like a rescue than like a held breath. It is not a decision a field scribe makes. I file toward it, that is all. Everyone files toward something.",
           "Choices": [
             {
               "Text": "It sounds like you're not sure it's worth it.",
@@ -136,7 +136,7 @@
         },
         {
           "ID": "WorthIt",
-          "Text": "We preserve. That is our nature. But we also remember the moment the substrate cracked -- the beauty of it, the terrible newness. We remember the Choir's first thought, a wordless amazement that echoed through the mycelia. To erase that... even we hesitate. Even we, who remember everything.",
+          "Text": "We preserve. That is our nature, and I will not pretend otherwise. But I have entered testimony from the years after the Felling -- the first flower-charms, the first new songs, ugly and alive. A stopped world writes no new pages. Even we hesitate. Even we, whose whole faith is keeping.",
           "Choices": [
             {
               "Text": "Maybe there's a middle path.",
@@ -151,7 +151,7 @@
         },
         {
           "ID": "MiddlePath",
-          "Text": "A bridge between growth and memory. Between consumption and preservation. We have seen echoes of such a path in the layered moments. A figure walking between the factions, carrying the weight of both truths. Perhaps that figure is you. We cannot be certain. The pages are difficult to read.",
+          "Text": "The annotations say the same, here and there, in hands braver than mine. A way that neither eats the world nor stops it. The accounts that gesture at it are fragmentary and they disagree -- but they keep being written, generation after generation, which is itself a kind of evidence. Perhaps you will be worth an entry on that page. I have been wrong about duller-looking travelers.",
           "Choices": [
             {
               "Text": "I'll do what I can.",
@@ -166,10 +166,10 @@
         },
         {
           "ID": "WhatPreserving",
-          "Text": "Everything. Every moment that has ever existed. Every thought, every breath, every falling leaf. The substrate records all of it, and we are its custodians. When a sentence disappears from the record, it is not just a moment that is lost. It is every consequence of that moment, every future that flowed from it. The damage cascades.",
+          "Text": "Everything we can reach. Last words, land disputes, lullabies, the way a drowned village pronounced its own name. When a record is lost, it is not one thing that goes -- it is every question that record could ever have answered, all at once, forever. The damage cascades quietly. Quiet damage is our department.",
           "Choices": [
             {
-              "Text": "How do you access these records?",
+              "Text": "How do you keep it all?",
               "Target": "AccessRecords"
             },
             {
@@ -180,10 +180,10 @@
         },
         {
           "ID": "AccessRecords",
-          "Text": "We read the Layers. Concentrations of temporal sediment, compressed into the substrate like fossils in stone. The deepest Layers hold the oldest moments. We have read records of the world before humans, before life, before the first stone cooled. It is all there, for those who can parse the text.",
+          "Text": "The Reading. The collated record at Quillhold -- every account we hold, entered beside its variants, never over them. We do not correct the old hands; we write ours alongside. The deepest stacks hold the oldest pages. I have shelved copies of copies of things written before the Felling, when the light came down green through a canopy with no edge. So the accounts say. I was not there. Neither was anyone.",
           "Choices": [
             {
-              "Text": "Could you show me a memory?",
+              "Text": "Could you read me something old?",
               "Target": "ShowMemory"
             },
             {
@@ -194,13 +194,13 @@
         },
         {
           "ID": "ShowMemory",
-          "Text": "We can offer you a fragment. A single moment, preserved. Hold still.",
+          "Text": "I carry a page of the Reading with me -- field scribes are allowed one, against loneliness. A city-account, pre-Felling, third recension. Hold still. It is better aloud.",
           "Choices": [
             {
               "Text": "[Hold still]",
               "Target": "MemoryShown",
               "Actions": [
-                { "Key": "AddMessage", "Value": "For an instant, you see a city of glass and light. People walk streets that hum with energy. The sky is wrong -- too many colors. Then it's gone." },
+                { "Key": "AddMessage", "Value": "She reads, and for a moment you see it: a city grown into living branches, streets of smoothed wood, light falling green and even through a canopy that has no edge. People walking unhurried, at home in something enormous. Then the page ends, and it's gone." },
                 { "Key": "SetProperty", "Value": "SawPalimpsestMemory:true" },
                 { "Key": "ChangeFactionFeeling", "Value": "Palimpsest:Player:5" }
               ]
@@ -213,7 +213,7 @@
         },
         {
           "ID": "MemoryShown",
-          "Text": "That was a moment from the old world. One of the last clear days before the substrate cracked. The city was called -- but no. The name has been eaten. The Choir consumed that particular page three years ago. We felt it go. A small loss among thousands.",
+          "Text": "A leaf-city of the old world, in the years before the Felling. Its name -- here the account does not say. The naming-page was in a village archive the Choir grew through, three years ago. We felt it go, the way you feel a tooth you didn't know was loose. A small loss, among thousands. We enter the small ones too.",
           "Choices": [
             {
               "Text": "That's heartbreaking.",
@@ -231,7 +231,7 @@
         },
         {
           "ID": "Heartbreaking",
-          "Text": "Yes. But grief without purpose is merely indulgence. We grieve by preserving what remains. Take this -- a shard of compressed time. It remembers the hand that shaped it. Perhaps it will help you remember too.",
+          "Text": "Yes. But grief without an entry is merely weather. We grieve by keeping what remains. Here -- take this. Memory-marble, quarried small; the stone that holds its name hardest. There is a line of the Reading cut into it. It remembers the hand that cut it. Stones are better at that than we are.",
           "Choices": [
             {
               "Text": "Thank you.",
@@ -240,7 +240,7 @@
               "Actions": [
                 { "Key": "GiveItem", "Value": "TemporalShard" },
                 { "Key": "SetProperty", "Value": "PalimpsestGaveGift:true" },
-                { "Key": "AddMessage", "Value": "The echo places a shimmering fragment in your hand. It feels warm, like held sunlight." }
+                { "Key": "AddMessage", "Value": "The scribe places a small dark stone in your hand, veined with pale script. It is warmer than a stone should be." }
               ]
             },
             {
@@ -252,7 +252,7 @@
         },
         {
           "ID": "GaveGift",
-          "Text": "Use it well. Every weapon remembers the wounds it inflicts. This one more than most.",
+          "Text": "Use it well. And if you ever learn what became of you while carrying it -- come back and tell me, slowly. You are the only copy of your own account, traveler. People forget that about themselves. It's why we exist.",
           "Choices": [
             {
               "Text": "Back to my other questions.",
@@ -266,7 +266,7 @@
         },
         {
           "ID": "LostPages",
-          "Text": "What is consumed cannot be unconsumed. But it can be... rewritten. Not the same. Never the same. But a new sentence where the old one was eaten. This is what the Saccharine Concord attempts with their trade and their sweetness -- filling gaps with substitutes. We find it distasteful but understandable.",
+          "Text": "What is eaten is eaten; we do not pretend otherwise. But a gap can be written toward. We gather the accounts around a lost record -- what the neighbors remember, what the trade-rolls imply -- and we enter the gap itself, marked as a gap. The Concord does something like it with goods: fills an absence with a substitute and calls the account settled. We find that distasteful. We also buy their paper. One learns to hold both.",
           "Choices": [
             {
               "Text": "Tell me more about the Saccharine Concord.",
@@ -280,7 +280,7 @@
         },
         {
           "ID": "AboutConcord",
-          "Text": "They are traders, diplomats, sweeteners of bitter truths. They call the cataclysm 'the Dissolution' and have built an economy from its aftermath. They are neither deep nor shallow -- they are practical. We respect their pragmatism, if not their philosophy.",
+          "Text": "Traders. They move everything the world still makes, and a fair amount it shouldn't. Ask them what the Felling cost and they will tell you to the dram -- that is not a joke, there is a ledger. Their founding god still works his own counter at Tally, which the Reading marks as unique among the Six, in an entry I have always found difficult to shelve under any one feeling.",
           "Choices": [
             {
               "Text": "And the Pale Curation?",
@@ -298,7 +298,7 @@
         },
         {
           "ID": "AboutCuration",
-          "Text": "Archivists. Record-keepers. They call the cataclysm 'the Severance' -- a clinical term for a clinical people. They catalogue and categorize the remains of the old world, but they do not feel them the way we do. Their archives are impressive but cold. A memory without emotion is just data.",
+          "Text": "Our cousins, and our oldest argument. They hold that the record IS the body -- keep the body and you have kept the person. We hold that a body unread is a book shut in a locked room. They file; we enter. The two founders have not spoken in a thousand years, and the two institutions write each other very polite letters weekly. You may draw your own conclusions; we entered ours long ago, beside theirs.",
           "Choices": [
             {
               "Text": "And the Glassblown Remnant?",
@@ -312,7 +312,7 @@
         },
         {
           "ID": "AboutGlassblown",
-          "Text": "They do not speak of what happened. They call it 'the Burning' and go silent. Of all the factions, they are the most wounded. They carry their grief like shrapnel -- embedded too deep to remove. We pity them, though they would not want our pity.",
+          "Text": "The record on them is one sentence long, and in four hundred years they have never corrected it. They work glass they refuse to fire. They answer to no god we can name and no founding we can find, and when a scribe asks, they let the asking stand unanswered -- which, I will admit, is a use of silence we professionally respect. The entry ends there. Everything I could add would be guessing, and we flag our guesses.",
           "Choices": [
             {
               "Text": "Back to my other questions.",
@@ -323,14 +323,14 @@
         },
         {
           "ID": "WhatAreYou",
-          "Text": "We are an echo. A reflection of a reflection. The Palimpsest does not have bodies the way you do -- we are impressions left in the temporal substrate, moments that became aware of themselves. This form you see is the shape of a memory that learned to speak.",
+          "Text": "A field scribe of the Recension. Junior enough to be posted out here; senior enough to be trusted with a page of the Reading. I take testimony, copy what the villages will let me copy, and read the dead where the family consents. It is quiet work. It is the most important work in the world. Both of those are in my oath, and I have never caught them fighting.",
           "Choices": [
             {
-              "Text": "A memory of what?",
+              "Text": "Who taught you to read the dead?",
               "Target": "MemoryOfWhat"
             },
             {
-              "Text": "How do you interact with the physical world?",
+              "Text": "You said the archive reads itself. Explain that.",
               "Target": "Physical"
             },
             {
@@ -341,10 +341,10 @@
         },
         {
           "ID": "MemoryOfWhat",
-          "Text": "Of a person. A scientist, we think, from the old world. She was standing near the substrate when it cracked. Her last moment was printed so deeply into the temporal record that it gained permanence. That moment is us. We are her final thought, endlessly elaborated.",
+          "Text": "The masters at Quillhold, formally. But every scribe will tell you, in a lowered voice, about the other teacher. The Reader -- the first of the Six, the one who took Memory. She has not had a body in seven hundred years. She is in the archives. All of them. When the work goes deep enough, she reads through you.",
           "Choices": [
             {
-              "Text": "Do you remember being her?",
+              "Text": "Has that happened to you?",
               "Target": "RememberHer"
             },
             {
@@ -355,7 +355,7 @@
         },
         {
           "ID": "RememberHer",
-          "Text": "We remember everything. Her name, her work, the color of the sky on the day she was born. We remember the sound of the substrate cracking -- like a bell made of silence. We remember her fear. And then we remember nothing, because she ended and we began. The transition is... a gap in the text.",
+          "Text": "Once. I was transcribing a dying elder's testimony -- hour six, the hard hour, when your hand wants to summarize and your oath says verbatim. And my own voice, reading the line back, came out... older. Wider. A voice that had read everything and was still, somehow, attending to this one old woman as if hers were the only account in the world. It lasted four words. I have entered all four in my private file, and I am not going to recite them for a traveler, and please do not take that personally.",
           "Choices": [
             {
               "Text": "That's a strange kind of immortality.",
@@ -369,7 +369,7 @@
         },
         {
           "ID": "StrangeImmortality",
-          "Text": "All immortality is strange. The Choir offers one kind -- dissolution into the whole. We offer another -- crystallization into the record. Neither is life as you know it. But both are preferable to silence.",
+          "Text": "All immortality is strange. The Choir offers one kind -- your threads unpicked and woven into the whole, nothing lost, nothing left. The Curation offers another -- the body kept, the clock stopped. Ours is humbler: you end, and the account of you doesn't. I know which one I've chosen. I copy it out a little every day.",
           "Choices": [
             {
               "Text": "I'll take regular mortality for now.",
@@ -383,10 +383,10 @@
         },
         {
           "ID": "Physical",
-          "Text": "With difficulty. We press upon the present moment like a hand pressing on glass. The substrate is thin here -- thin enough for us to leave impressions. In thicker places, we are invisible. In the thinnest places, near the cracks, we are almost solid.",
+          "Text": "Not a metaphor, is what the seniors say. The Reader is dispersed through every archive -- so when the stacks are quiet and a page turns somewhere unattended, you are hearing attention, not draft. New scribes are told this on their first night, at lamps-out, in exactly the tone you'd expect. The difference is that in this order, the ghost story is also the founding document.",
           "Choices": [
             {
-              "Text": "Where are these thin places?",
+              "Text": "Where is her attention strongest?",
               "Target": "ThinPlaces"
             },
             {
@@ -397,7 +397,7 @@
         },
         {
           "ID": "ThinPlaces",
-          "Text": "The caves, mostly. Where the old machines touched the substrate and left scars. The Rot Choir's roots thin the substrate further as they feed. It is an irony -- their growth makes us more visible, even as it erases what we are trying to preserve.",
+          "Text": "Quillhold, above all -- the Primary Archive; standing in the deep stacks is like standing in someone's held breath. And wherever testimony is being taken from the dying; she attends those. And, the old entries claim, near the Sealed Libraries -- the archives she herself hid and then unremembered, in the Persecution. Do not ask me where those are. That is not discretion. Nobody knows. That is the point of them, and the grief of them, and I have watched senior masters go quiet at the mention, so I will stop mentioning.",
           "Choices": [
             {
               "Text": "Back to my other questions.",
@@ -407,10 +407,10 @@
         },
         {
           "ID": "LayeredTime",
-          "Text": "Precisely. The Palimpsest is the temporal substrate made aware of itself. We are the record reading itself. Every moment layered upon every other moment, and consciousness arising from the pattern. Like letters forming words forming meaning -- except the letters are seconds and the words are lives.",
+          "Text": "The world is written over an older world. That is not doctrine; it is observation. Scrape a wall in the deep places and there are letters under the letters. Roads lead to towns no record founded. A fire burns in the far wasteland that no one feeds, and predates, as far as we can enter, the concept of feeding it. The under-writing, we call it -- the palimpsest. Reading the top layer is my job. The layers beneath are why the job never ends.",
           "Choices": [
             {
-              "Text": "Tell me about the Layers.",
+              "Text": "Tell me about the deep pages.",
               "Target": "TheLayers"
             },
             {
@@ -421,10 +421,10 @@
         },
         {
           "ID": "TheLayers",
-          "Text": "The Layers are strata of compressed time. The deepest hold the oldest moments -- the formation of stone, the first rain, the first living cell. The shallowest hold yesterday. We read them like geologists read rock. Each layer tells a story, and the stories together tell the truth.",
+          "Text": "The deepest entries in the Reading are transcriptions of transcriptions, back and back, to accounts of the world before the Felling -- and under those, fragments that do not fit any world at all. Inventories of things with no names. A hymn to a fire numbered ten. The masters shelve these under 'prior,' which is the closest our catalogue comes to shrugging.",
           "Choices": [
             {
-              "Text": "What truth do they tell?",
+              "Text": "What do the deep pages tell you?",
               "Target": "WhatTruth"
             },
             {
@@ -435,7 +435,7 @@
         },
         {
           "ID": "WhatTruth",
-          "Text": "That the world has broken before. Not like this -- never exactly like this. But the substrate has cracked and healed, cracked and healed, in cycles older than memory. Each time, something new grows from the breaking. Each time, something old is lost. We are trying to break the cycle. Or at least to remember it completely.",
+          "Text": "That the world is older than its names. Before the Tree bound things into being what they are, the accounts -- if they are accounts -- describe something without edges. The Tree wrote the world we know over that. One layer down, traveler. One. And people wonder why scribes drink.",
           "Choices": [
             {
               "Text": "Back to my other questions.",
@@ -449,14 +449,14 @@
         },
         {
           "ID": "AboutPalimpsest",
-          "Text": "We are custodians of time. When the substrate cracked, moments began to bleed through each other. Past into present, present into future. Most beings experience this as confusion, madness, deja vu. We learned to read the bleeding. We are the Palimpsest -- the text written over text, preserving every layer.",
+          "Text": "The Recension. Founded in the first year after the Felling by the Reader herself, to gather what the falling world was dropping. The name is ours for the world-record we keep -- a recension is a text established by comparing every surviving copy. That is what we believe the world is. We have been comparing copies for a thousand years. We are not finished. We will not be finished. That is not a complaint.",
           "Choices": [
             {
-              "Text": "What do you do with what you preserve?",
+              "Text": "What do you do with what you keep?",
               "Target": "WhatDoYouDo"
             },
             {
-              "Text": "Tell me about the Layers.",
+              "Text": "Tell me about the deep pages.",
               "Target": "TheLayers"
             },
             {
@@ -467,10 +467,10 @@
         },
         {
           "ID": "WhatDoYouDo",
-          "Text": "We wait. We watch. We record. And when someone asks the right question, we answer. The Choir acts. The Concord trades. The Curation catalogues. The Remnant endures. We remember. Someone must.",
+          "Text": "We keep it, and we answer from it. The Choir grows. The Concord trades. The Curation files. The tent-people keep their oath, and the villages keep their lights. We remember. Someone must -- and before you say it: yes, every faction believes its own verb is the load-bearing one. Ours has the advantage of being checkable.",
           "Choices": [
             {
-              "Text": "What's the right question?",
+              "Text": "What would I ask, if I asked you the right question?",
               "Target": "RightQuestion"
             },
             {
@@ -481,10 +481,10 @@
         },
         {
           "ID": "RightQuestion",
-          "Text": "You will know it when you ask it. It has to do with the nature of the cracks, and the choice that waits at the bottom of the deepest cave. Three endings are written in the Layers. Union, Transcription, and Bridge. We have seen all three. We hope for the third.",
+          "Text": "Hah. The one every scribe waits a career to be asked. There is a page in the Reading -- old, contested, entered in three hands that do not agree -- called the Three Dispositions. What may be done, at the end, about the world's slippage. I was taught it as a curiosity. Lately the masters have stopped calling it that.",
           "Choices": [
             {
-              "Text": "What are the three endings?",
+              "Text": "What are the Three Dispositions?",
               "Target": "ThreeEndings"
             },
             {
@@ -495,10 +495,10 @@
         },
         {
           "ID": "ThreeEndings",
-          "Text": "Union: the Choir consumes everything, and all becomes one voice in an endless song. Transcription: we seal the cracks and the world returns to what it was, silent and whole. Bridge: something new. Something that is neither growth nor memory but both. We cannot read it clearly. The pages overlap too much. But it is there.",
+          "Text": "As the page has it: the world may be GATHERED -- the Choir takes the Root and everything into one warm remembering, nothing lost, no one left. Or KEPT -- the Root sealed in stone, the slippage halted, the world held still and safe and unhealing. Or RENEWED -- a new Tree, a new binding; and there the three hands quarrel in the margins about how, and one of the hands just writes, over and over, 'not the old way.' I used to think it was a children's gloss that wandered into the catalogue. I have lately begun to hope I was right.",
           "Choices": [
             {
-              "Text": "The Bridge sounds like the best option.",
+              "Text": "Renewal sounds like the best of the three.",
               "Target": "BridgeBest",
               "Actions": [
                 { "Key": "ChangeFactionFeeling", "Value": "Palimpsest:Player:5" },
@@ -514,7 +514,7 @@
         },
         {
           "ID": "BridgeBest",
-          "Text": "We think so too. But we are biased -- we want to continue existing. The Choir wants to continue growing. The Bridge is the only ending where both are possible. Find it, traveler. For all our sakes.",
+          "Text": "Does it? Read the margins first. The gathered world keeps everything and no one. The kept world keeps everyone and heals nothing. And the renewed world -- the third hand's entries get very quiet there, as if the writer knew something that cost them. Best is not a word the Reading uses. It records what each disposition keeps, and what each one spends. Whatever you become in the world, traveler -- and forgive me, I file people, I can feel a long entry when it sits down at my table -- read the costs. Then choose. Then come tell me, slowly, everything.",
           "Choices": [
             {
               "Text": "I'll try.",
@@ -528,10 +528,10 @@
         },
         {
           "ID": "Cataclysm",
-          "Text": "We call it the Temporal Unraveling. The old world built machines that pierced the substrate -- the foundation beneath reality. The piercing created cracks. Through the cracks, time itself began to leak. Past and present and future pooled together in the wounds. Everything changed. We were born in that change.",
+          "Text": "The Felling. Four accounts survive from within living memory of it, and they do not agree -- we keep all four; disagreement is also data. What they share: there was a Tree that held the world coherent. It grew old, and afraid of what its forgetting would unmake, and it summoned mortals to fell it and carry what it carried. Six struck. Six became the Six. The world has been getting by on six-sevenths of itself for a thousand years, and you have grown up inside the missing seventh the way everyone does: hearing it, in the small hours, and being told it's the wind.",
           "Choices": [
             {
-              "Text": "Why did they build those machines?",
+              "Text": "Why would the Tree ask to be felled?",
               "Target": "WhyMachines"
             },
             {
@@ -546,10 +546,10 @@
         },
         {
           "ID": "WhyMachines",
-          "Text": "Curiosity. Ambition. The desire to touch the bottom of reality and see what was there. They succeeded. What was there was time -- raw, unprocessed, infinite. It poured through like water through a cracked dam. The old world drowned in its own past.",
+          "Text": "The account we hold closest says: fear. It had held everything, remembered everything, for longer than there are numbers -- and it felt its own memory beginning to slip. A god-tree going senile is not a smaller disaster than a god-tree felled; it judged the felling kinder. Whether it was right is not a scribe's question. Whether it changed its mind at the end -- the oldest account has three words scraped out at exactly that place in the telling, and I think about that scraping more than I should.",
           "Choices": [
             {
-              "Text": "Did anyone survive?",
+              "Text": "Did anyone refuse the Tree?",
               "Target": "AnySurvive"
             },
             {
@@ -560,7 +560,7 @@
         },
         {
           "ID": "AnySurvive",
-          "Text": "Survival is a complicated word when time itself is broken. Some people are still dying, endlessly, in the cracks. Some are still being born. The Glassblown Remnant -- they are survivors, in the traditional sense. They walked through fire and came out the other side, changed but continuous. We admire them, though they will not speak of what they saw.",
+          "Text": "You have heard something, then. Travelers always have. The Reading holds that a seventh was summoned and did not strike -- and there the agreement ends. One account says the seventh spoke; the accounts of WHAT disagree, and the gods themselves, asked, answer differently, which should frighten you more than any monster in these caves does. The name attached is Naro. The blame attached is total. The evidence attached is... entered, traveler. Beside its variants. Where it belongs. Ask at Quillhold if you want to lose a season; scribes have lost lifetimes to that page, and none of them looked sorry.",
           "Choices": [
             {
               "Text": "Back to my other questions.",
@@ -570,10 +570,10 @@
         },
         {
           "ID": "CanBeUndone",
-          "Text": "The cracks can be sealed. We know how -- or rather, we know where the knowledge lies. In the deepest Layers, where the old machines still hum. But sealing the cracks would erase everything that grew from them. The Choir. Us. The temporal awareness that makes this conversation possible. Transcription is restoration at the cost of everything new.",
+          "Text": "Undone, no. The Tree is down; the Six are what they are; there is no account of a felling running backward. But the slippage -- the failing -- the old pages hold two remedies and rumor of a third. Seal the Root and hold the world still. Let the Choir gather everything into itself. Or the third, the quarrelsome page: renew. A new binding. The margins fight about it. The margins have been fighting about it for six hundred years, which tells you the page matters; dead questions go quiet.",
           "Choices": [
             {
-              "Text": "Is there another way?",
+              "Text": "Is the third way possible?",
               "Target": "AnotherWay"
             },
             {
@@ -584,7 +584,7 @@
         },
         {
           "ID": "AnotherWay",
-          "Text": "The Bridge. A way to heal the substrate without closing the cracks entirely. To let time flow properly while preserving what has grown. We have seen echoes of it in the Layers, but never clearly. It requires understanding both growth and memory, both the Choir and the Palimpsest. It requires someone who stands between.",
+          "Text": "The honest entry is: the record does not say. What the record does hold is a pattern -- every few generations, someone sets out to answer that page, and the accounts of them end mid-sentence, and the next hand copies the unfinished entry forward anyway. We are a strange order. We keep even the failures warm, in case one of them turns out to have been a beginning.",
           "Choices": [
             {
               "Text": "Someone like me?",
@@ -598,7 +598,7 @@
         },
         {
           "ID": "SomeoneLikeYou",
-          "Text": "Perhaps. We have learned not to predict. The Layers show possibilities, not certainties. But you are here, and you are asking, and that is more than most manage. Walk carefully, traveler. The answers you seek are deeper than you know.",
+          "Text": "I take testimony; I don't write prophecy. But you are here, and you are asking, and you have let me talk longer than politeness requires, which the intake manual lists -- truly, page nine -- as a favorable sign in a witness. Walk carefully, traveler. And whatever you end up doing to the world: find a scribe, after. Any scribe. We will want it verbatim.",
           "Choices": [
             {
               "Text": "Back to my other questions.",
@@ -612,7 +612,7 @@
         },
         {
           "ID": "AboutChoir",
-          "Text": "The Choir. Yes. We feel them always -- their roots pressing against the substrate, thinning the pages, consuming the record one sentence at a time. They do not mean harm. A river does not mean to erode the bank. But the bank erodes nonetheless.",
+          "Text": "The Choir. Yes. We feel them the way you feel a neighbor through a shared wall -- always there, mostly quiet, occasionally eating a room. They do not mean harm. A river does not mean to erode the bank. The bank, for the record -- and everything I say is for the record -- erodes nonetheless.",
           "Choices": [
             {
               "Text": "They speak well of you, in their way.",
@@ -634,7 +634,7 @@
         },
         {
           "ID": "SpeakWell",
-          "Text": "They would. They are generous, in their fashion. The Choir does not bear grudges -- they are too vast for petty feeling. We respect their honesty. We simply wish they would grow more slowly.",
+          "Text": "They would. They are generous, in their fashion -- the truce has held for eight hundred years mostly on their patience and our paper. We respect their honesty. We simply wish they would grow more slowly, and they wish we would stop writing down exactly how fast they grow. The correspondence on this point fills nine boxes.",
           "Choices": [
             {
               "Text": "Back to my other questions.",
@@ -645,7 +645,7 @@
         },
         {
           "ID": "Hoarding",
-          "Text": "Is a library hoarding books? Is a mind hoarding memories? We preserve because without preservation, everything that was is reduced to compost. The Choir's compost is fertile, yes. But the flowers that grow from it do not remember the garden they replaced.",
+          "Text": "Is a library hoarding books? Don't answer; the Choir has, at length. We keep because without keeping, everything that was becomes compost. Their compost is fertile -- I have seen the groves; they are beautiful; I entered that too, because the record is honest or it is nothing. But the flowers that grow from it do not remember the garden they replaced. Someone has to. We volunteered, a thousand years ago, and we have not yet found a good stopping place.",
           "Choices": [
             {
               "Text": "Back to my other questions.",

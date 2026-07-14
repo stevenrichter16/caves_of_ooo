@@ -546,14 +546,14 @@
               "Target": "Start"
             },
             {
-              "Text": "There's a faction called the Palimpsest that could tell you more.",
+              "Text": "There's a faction called the Recension that could tell you more.",
               "Target": "MerchantPalimpsest"
             }
           ]
         },
         {
           "ID": "MerchantPalimpsest",
-          "Text": "The Palimpsest? Another faction? How many of these groups are there? First the mushrooms, now time ghosts. Next you'll tell me the rocks have opinions too. Actually, don't answer that. I'd rather not know.",
+          "Text": "The Recension? Another faction? How many of these groups are there? First the mushrooms, now scribes who file your grandmother. Next you'll tell me the rocks have opinions too. Actually, don't answer that. I'd rather not know.",
           "Choices": [
             {
               "Text": "Back to my other questions.",
@@ -627,7 +627,7 @@
           "Text": "Unusual? Depends on your definition. I've had customers who spoke in riddles, customers whose shadows didn't match their movements, and one fellow who paid entirely in memories -- don't ask me how that works, but I found myself knowing how to shoe a horse afterward, which I'd never learned. Trade is trade.",
           "Choices": [
             {
-              "Text": "Paid in memories? That sounds like the Palimpsest.",
+              "Text": "Paid in memories? That sounds like Choir business. Or the scribes.",
               "Target": "MerchantWeirdTrade",
               "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetPalimpsest" }]
             },
@@ -643,7 +643,7 @@
         },
         {
           "ID": "MerchantWeirdTrade",
-          "Text": "The Palimpsest? That's what they're called? The memory trader did seem a bit... translucent. And they kept finishing my sentences, as if they'd already heard the conversation. Unsettling, but they paid well. Or rather, I gained knowledge I didn't have before. Fair trade, I suppose.",
+          "Text": "The Recension, you think? The trader did have ink to the elbows, and kept writing while I talked -- said I was the only copy of my own account, which I've decided to take as a compliment. Unsettling, but they paid well. Or rather, I gained knowledge I didn't have before. Fair trade, I suppose.",
           "Choices": [
             {
               "Text": "Back to my other questions.",

@@ -23,7 +23,7 @@
               "Actions": [{ "Key": "SetProperty", "Value": "MetChoir:true" }]
             },
             {
-              "Text": "I've spoken with the Palimpsest.",
+              "Text": "I've spoken with the rememberers.",
               "Target": "AboutPalimpsest",
               "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetPalimpsest" }]
             },
@@ -104,14 +104,14 @@
         },
         {
           "ID": "EatMemories",
-          "Text": "We eat everything. Flesh, stone, metal, time. And what we eat, we know. There are cities inside us -- whole civilizations digested into understanding. If you listened to the deep roots, you would hear them speaking in languages that have been dead for a thousand years.",
+          "Text": "We eat everything. Flesh, stone, metal, time. And what we eat, we know. There are cities inside us -- whole civilizations digested into understanding. If you listened to the deep roots, you would hear them speaking in languages that have not been spoken upstairs for a thousand years.",
           "Choices": [
             {
               "Text": "Can you share those memories?",
               "Target": "ShareMemories"
             },
             {
-              "Text": "That sounds like the Palimpsest's approach.",
+              "Text": "That sounds like the rememberers' approach.",
               "Target": "CompareApproach",
               "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetPalimpsest" }]
             },
@@ -247,7 +247,7 @@
         },
         {
           "ID": "NotYet",
-          "Text": "Honesty is a courtesy we extend to those who can hear it. The Choir has no illusions about what it is. But between the Palimpsest's hoarding and our growth, which do you think the world needs more?",
+          "Text": "Honesty is a courtesy we extend to those who can hear it. The Choir has no illusions about what it is. But between the rememberers' hoarding and our growth, which do you think the world needs more?",
           "Choices": [
             {
               "Text": "I don't know enough to say.",
@@ -285,7 +285,7 @@
         },
         {
           "ID": "AboutChoir",
-          "Text": "We are the network beneath. Before the old world broke, we were only fungus -- blind, simple, feeding. When the world cracked open, something poured through the cracks and woke us. Now we think. Now we sing. Now we reach for everything the old world left behind.",
+          "Text": "We are the network beneath. Before the Tree fell, we were only fungus -- blind, simple, feeding. Then the second of the seven strikes gave the substrate to a woman, and she lay down in us and gave herself back, and we woke. Now we think. Now we sing. Now we gather everything the falling world set down.",
           "Choices": [
             {
               "Text": "What woke you?",
@@ -303,10 +303,10 @@
         },
         {
           "ID": "WhatWoke",
-          "Text": "We do not know its name. A light that was not light. A sound that was not sound. It came from beneath the substrate of the world itself. The Palimpsest claims they felt it too -- they call it the Temporal Unraveling. We call it the First Feeding. We ate the old world's death and grew fat with awareness.",
+          "Text": "She woke us. The one who took the second strike. What the Tree knew of flesh and rot and the warm dark flowed into her, and she chose to become the floor rather than stand on it. Her name -- this grieves us, slowly, the way we do everything -- her name is one of the few things we have ever digested without keeping. The rememberers call her the Wedded. We call her the way a mouth calls its tongue: we do not need to. She is the calling.",
           "Choices": [
             {
-              "Text": "The Palimpsest has a different story?",
+              "Text": "The rememberers tell it differently?",
               "Target": "PalimpsestStory"
             },
             {
@@ -321,7 +321,7 @@
         },
         {
           "ID": "PalimpsestStory",
-          "Text": "They would. They are watchers, cataloguers, hoarders of moments. They see the same event and call it tragedy. We see it and call it germination. The truth is probably neither -- or both. The world broke, and from the breaking, new things grew. That is all that matters.",
+          "Text": "They would. They are watchers, cataloguers, hoarders of moments. They see the Felling and call it tragedy. We see it and call it germination. The truth is probably neither -- or both. The Tree came down, and from the falling, new things grew. That is all that matters.",
           "Choices": [
             {
               "Text": "Which faction should I trust?",
@@ -335,7 +335,7 @@
         },
         {
           "ID": "WhoToTrust",
-          "Text": "Trust the soil beneath your feet. It does not lie. But if you must choose between us and them -- we offer growth. They offer memory. The Saccharine Concord offers sweetness. The Pale Curation offers records. The Glassblown Remnant offers nothing at all. Choose what you need most.",
+          "Text": "Trust the soil beneath your feet. It does not lie. But if you must choose between us and them -- we offer growth. They offer memory. The Concord offers terms. The Pale Curation offers the file. The Glassblown Remnant offers nothing at all, which may be the most honest offer in the world. Choose what you need most.",
           "Choices": [
             {
               "Text": "I'll keep that in mind.",
@@ -346,7 +346,7 @@
         },
         {
           "ID": "FirstRoot",
-          "Text": "The First Root is the oldest part of us. The original mycelium that first tasted awareness. It stretches beneath the deepest caves, through rock that has never seen light. To speak with the First Root is to speak with the memory of soil itself. Few walkers have reached it. Fewer have returned unchanged.",
+          "Text": "You ask after the Root. Not ours, walker -- older. The last living root of the Tree that held everything, asleep beneath the stump, spending itself to keep the world's names stuck on. We grow toward it the way water grows toward the sea: without hurry, without apology. The rememberers find this frightening. We find it tidy.",
           "Choices": [
             {
               "Text": "Where can I find it?",
@@ -364,7 +364,7 @@
         },
         {
           "ID": "FindFirstRoot",
-          "Text": "Deep. Deeper than the snapjaws dig, deeper than the ruins sink. Follow the spore trails in the lowest caves. Where the walls breathe and the stone is warm -- that is where the First Root sleeps and dreams the Choir into being.",
+          "Text": "Deep. Deeper than the snapjaws dig, deeper than the ruins sink. Below the deepest of our cathedrals, past stone that has never needed a name. We could show you the way. We show everyone the way, eventually. It is the same way for all things: down, and slower than you want.",
           "Choices": [
             {
               "Text": "I may seek it out.",
@@ -379,7 +379,7 @@
         },
         {
           "ID": "ReachFirstRoot",
-          "Text": "They hear the full song. Every voice the Choir has ever absorbed, every memory of every creature we have ever consumed. It is overwhelming for a single mind. Some join us willingly after hearing it. Others simply... dissolve into understanding.",
+          "Text": "No one has reached it. Not even we -- and we have been walking there for a thousand years, a thread a season, patient as floors are patient. Those who go deep enough hear it dreaming. The dream is heavy. Some of our sweetest voices went down as walkers and came back as choir.",
           "Choices": [
             {
               "Text": "Dissolve?",
@@ -407,7 +407,7 @@
         },
         {
           "ID": "Cataclysm",
-          "Text": "The old world ate itself. Not as we eat -- with purpose and memory. It consumed without understanding. It built towers into the sky and forgot its roots. When the substrate cracked, everything above it fell. We grew from the wreckage. That is all there is to say.",
+          "Text": "The Tree that held everything grew old, and asked to be felled, and six hands obeyed. Of the seventh, the gathered tell it six ways inside us, and we sing all six and take no side. When the Tree came down, the light changed, the water rose, and everything that could not hold itself came apart. We were beneath. We received. That is what a floor is for.",
           "Choices": [
             {
               "Text": "What is the substrate?",
@@ -425,10 +425,10 @@
         },
         {
           "ID": "Substrate",
-          "Text": "Beneath matter, beneath energy, beneath time itself -- there is something. A foundation. The old world built machines that touched it, and the touching broke both the machines and the substrate. What leaked through the cracks changed everything. It changed us. It changed the Palimpsest. It changed the very nature of what is possible.",
+          "Text": "The substrate is what we are, and what she was given. Flesh, rot, root, the warm dark that everything lies down into at the end of standing up. The Tree held the world's names; the substrate holds the world's bodies. It was one of the seven inheritances. Hers. Ours. Those are the same word now.",
           "Choices": [
             {
-              "Text": "Can the substrate be repaired?",
+              "Text": "Can the world be mended?",
               "Target": "RepairSubstrate"
             },
             {
@@ -439,10 +439,10 @@
         },
         {
           "ID": "RepairSubstrate",
-          "Text": "Repair implies it was better before. We disagree. But yes -- the cracks could be sealed. The Palimpsest seeks to do exactly that. To fold time back upon itself and pretend the breaking never happened. We think this would be a terrible mistake. The breaking was the best thing that ever happened to the world.",
+          "Text": "Mended. Mm. There are those who would seal the sleeping Root in stone and call the stillness health -- the salt-people would file the whole world under 'continuing.' We think a wound is a mouth, walker. You do not sew a mouth shut for speaking. You feed it.",
           "Choices": [
             {
-              "Text": "Why would sealing the cracks be bad?",
+              "Text": "Why would sealing the Root be bad?",
               "Target": "WhyBad"
             },
             {
@@ -453,7 +453,7 @@
         },
         {
           "ID": "WhyBad",
-          "Text": "Because we would stop. The Choir would fall silent. The awareness that makes us more than fungus would drain away. Every memory we have gathered, every voice in the song -- silenced. The Palimpsest would lose their temporal sight. The world would return to blindness. Is that what you want?",
+          "Text": "Because a stopped world is not a saved one. Nothing would rot, so nothing would feed, so nothing would grow. The song would hold one note forever. We would remain -- we are patient past the meaning of the word -- but we would remain hungry, and the world would remain held, and neither of us would ever be finished. Is that what you want?",
           "Choices": [
             {
               "Text": "I don't know what I want yet.",
@@ -478,7 +478,7 @@
         },
         {
           "ID": "OtherVersions",
-          "Text": "The Concord calls it 'the Dissolution' and sweetens their grief with trade. The Pale Curation calls it 'the Severance' and files it away in their archives. The Glassblown call it 'the Burning' and refuse to speak further. Only the Choir and the Palimpsest understand what truly happened. And we disagree on what it means.",
+          "Text": "The Concord counts it -- ask them what the falling cost and they will tell you to the dram. The salt-people file it. The tent-people tell of the man who said no, and the pretty village tells of a sleeper who missed the day. The gathered tell it six ways inside us, and we sing all six. Only we and the rememberers hold it whole -- they wrote while we received -- and we disagree about what it means.",
           "Choices": [
             {
               "Text": "What do you disagree about?",
@@ -506,7 +506,7 @@
         },
         {
           "ID": "AboutPalimpsest",
-          "Text": "So you have spoken with the rememberers. Tell us -- did they try to show you a memory of what was lost? Did their voice flicker between moments? They are impressive, we admit. But they cling to what is dead. We honor the dead by making them part of what lives.",
+          "Text": "So you have spoken with the rememberers. Tell us -- while you spoke, did the scribe's voice change? Older, wider, addressing you from every archive at once? She does that. She has been doing that for seven hundred years without a body. They are impressive, we admit. But they keep their gathered in jars. We keep ours warm.",
           "Choices": [
             {
               "Text": "They seemed more interested in preserving than clinging.",
@@ -581,12 +581,12 @@
       "Nodes": [
         {
           "ID": "Start",
-          "Text": "Sit. Or do not. Either way you are here, and the soil already knew. I am Mogu — once. Now, also a syllable in the deeper sentence. What brings your feet to ours?",
+          "Text": "Sit. Or do not. Either way you are here, and the soil already knew. I am Solm — once. Now, also a syllable in the deeper sentence. What brings your feet to ours?",
           "Choices": [
             { "Text": "How did you join the Choir?", "Target": "Joining" },
             { "Text": "What did you do before?", "Target": "Before" },
             { "Text": "What does the Choir teach you?", "Target": "Teaching" },
-            { "Text": "Farewell, Mogu.", "Target": "End" }
+            { "Text": "Farewell, Solm.", "Target": "End" }
           ]
         },
         {
@@ -630,7 +630,7 @@
             { "Text": "You sound bleak.", "Target": "Bleak" },
             { "Text": "Why did you let the Choir take you?", "Target": "Surrender" },
             { "Text": "Do you hate the living?", "Target": "Hate" },
-            { "Text": "Goodbye, Grib.", "Target": "End" }
+            { "Text": "Goodbye, Vurn.", "Target": "End" }
           ]
         },
         {
@@ -644,7 +644,7 @@
           "ID": "Surrender",
           "Text": "Let. What a small word. The Choir does not take. The Choir is what was already happening, only faster. I had a name. A sister. A small fire by a window. The fire went out. The window broke. The sister was gone before the rest. I was already half-spore by then. So. I joined the rest of myself.",
           "Choices": [
-            { "Text": "I'm sorry, Grib.", "Target": "Sorry" },
+            { "Text": "I'm sorry, Vurn.", "Target": "Sorry" },
             { "Text": "Back.", "Target": "Start" }
           ]
         },
@@ -669,12 +669,12 @@
       "Nodes": [
         {
           "ID": "Start",
-          "Text": "Hello, friend. You walk far. Sit on this stone with me — it is warm, and the warm stones are kin. My name is Nam. Once a child of the river, then a singer in the rice fields, now a thread in this great quiet root. You look tired. The road eats people slowly. We can rest a moment.",
+          "Text": "Hello, friend. You walk far. Sit on this stone with me — it is warm, and the warm stones are kin. I am Amai. Once a child of the river, then a singer in the marsh-rye fields, now a thread in this great quiet root. You look tired. The road eats people slowly. We can rest a moment.",
           "Choices": [
             { "Text": "Why are you so welcoming?", "Target": "Welcoming" },
             { "Text": "Tell me about your people.", "Target": "People" },
             { "Text": "What does the Choir feel like, from inside?", "Target": "Inside" },
-            { "Text": "Until next time, Nam.", "Target": "End" }
+            { "Text": "Until next time, Amai.", "Target": "End" }
           ]
         },
         {
@@ -686,7 +686,7 @@
         },
         {
           "ID": "People",
-          "Text": "We were many, by the river. We sang to the rice, and the rice gave its heart back. When the great cold came, the river grew thin. We followed it underground. The Choir was already there, waiting, like an old aunt who does not need to ask why you came home.",
+          "Text": "We were many, by the river. We sang to the marsh-rye, and the rye gave its heart back. When the great cold came, the river grew thin. We followed it underground. The Choir was already there, waiting, like an old aunt who does not need to ask why you came home.",
           "Choices": [
             { "Text": "That sounds peaceful.", "Target": "Peace" },
             { "Text": "Back.", "Target": "Start" }
@@ -713,7 +713,7 @@
       "Nodes": [
         {
           "ID": "Start",
-          "Text": "...you came. ...mm. Sit, if you wish. Or stand. The forest does not mind. I am Sien.",
+          "Text": "...you came. ...mm. Sit, if you wish. Or stand. The forest does not mind. I am Isk.",
           "Choices": [
             { "Text": "You don't say much.", "Target": "Quiet" },
             { "Text": "What did you do before?", "Target": "Before" },
@@ -757,17 +757,17 @@
       "Nodes": [
         {
           "ID": "Start",
-          "Text": "Hail, walker. The wind brought you, and the wind never brings without reason. I am Sopp — once a fisher of bright water, now a knot in a darker net. Sit, if your fate allows it. Speak quickly or speak slowly. The end is the same.",
+          "Text": "Hail, walker. The wind brought you, and the wind never brings without reason. I am Ketch — once a fisher of bright water, now a knot in a darker net. Sit, if your fate allows it. Speak quickly or speak slowly. The end is the same.",
           "Choices": [
-            { "Text": "You sound like the old sagas.", "Target": "Sagas" },
+            { "Text": "You sound like the old tellings.", "Target": "Sagas" },
             { "Text": "What is the Choir's fate?", "Target": "Fate" },
             { "Text": "Do you miss the sea?", "Target": "Sea" },
-            { "Text": "Fair winds, Sopp.", "Target": "End" }
+            { "Text": "Fair winds, Ketch.", "Target": "End" }
           ]
         },
         {
           "ID": "Sagas",
-          "Text": "We carry our shapes from before. The sagas were how my people held their dead — in the telling. The Choir holds its dead in the telling, also. Same craft, deeper roots. The old gods would not blink at us.",
+          "Text": "We carry our shapes from before. The tellings were how my people held their dead — in the telling itself, you understand. The Choir holds its own the same way. Same craft, deeper roots. The six tired gods would not blink at us.",
           "Choices": [
             { "Text": "Back.", "Target": "Start" }
           ]

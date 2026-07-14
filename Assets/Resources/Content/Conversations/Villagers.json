@@ -26,7 +26,7 @@
               "Predicates": [{ "Key": "IfHaveProperty", "Value": "HeardFactionSummary" }]
             },
             {
-              "Text": "I've learned about something called the substrate.",
+              "Text": "I've learned about something called the Thinning.",
               "Target": "ElderSubstrate",
               "Predicates": [{ "Key": "IfHaveProperty", "Value": "KnowsThreeEndings" }]
             },
@@ -130,7 +130,7 @@
           "Text": "I need time to absorb this. But I am grateful you told me, wanderer. Knowledge, even frightening knowledge, is better than ignorance. The village will need to... adjust its understanding of the ground we stand on.",
           "Choices": [
             {
-              "Text": "There are other factions too. The Palimpsest, the Concord, others.",
+              "Text": "There are other factions too. The Recension, the Concord, others.",
               "Target": "ElderMoreFactions"
             },
             {
@@ -196,11 +196,11 @@
           "Text": "Temporal distortions? You speak of things beyond an old man's understanding. But I have seen what you describe. Time moving strangely in the deeper tunnels. A miner once went down for an hour and came back insisting he'd been gone for a week. His beard agreed with him. If you know what causes this, I would hear it.",
           "Choices": [
             {
-              "Text": "The substrate of reality is cracked. Time leaks through the cracks.",
+              "Text": "The world's binding is thinning. Names slip loose in the deep places.",
               "Target": "ElderSubstrateSimple"
             },
             {
-              "Text": "There's a consciousness made of layered time. They call themselves the Palimpsest.",
+              "Text": "There's an order of scribes who keep the world's memory. They call themselves the Recension.",
               "Target": "ElderPalimpsest"
             },
             {
@@ -226,10 +226,10 @@
         },
         {
           "ID": "ElderPalimpsest",
-          "Text": "A consciousness made of time? That is... I don't have a word for what that is. Wonderful? Terrible? Both? If time itself thinks, then every moment we have ever lived is being watched by something that experiences all moments at once. I find that both comforting and deeply unsettling.",
+          "Text": "Scribes who keep everything? That is... I don't have a word for what that is. Wonderful? Terrible? Both? If everything we have ever done is written down somewhere, then every moment of this village is on a shelf a stranger can take down and read. I find that both comforting and deeply unsettling.",
           "Choices": [
             {
-              "Text": "They're not watching, exactly. More like... remembering.",
+              "Text": "They're not spying, exactly. More like... remembering.",
               "Target": "Start",
               "Actions": [{ "Key": "SetProperty", "Value": "ElderInformed:true" }]
             },
@@ -375,10 +375,10 @@
         },
         {
           "ID": "ElderSubstrate",
-          "Text": "The substrate... I have heard the word before. My grandmother spoke of it -- she was a miner before the village was a village. She said the old-timers called it 'the floor beneath the floor.' The thing that holds everything else up. If that has cracked, as you say... no wonder the world has been strange.",
+          "Text": "The Thinning... I have heard the word before. My grandmother spoke of the world's holding -- she was a miner before the village was a village. She said the old-timers called the deep root 'the floor beneath the floor.' The thing that holds everything else up. If that is failing, as you say... no wonder the world has been strange.",
           "Choices": [
             {
-              "Text": "There are three possible endings to all of this. Union, Transcription, or the Bridge.",
+              "Text": "There are three ways this is said to end. The world gathered, the world kept, or the world renewed.",
               "Target": "ElderThreeEndings"
             },
             {
@@ -389,10 +389,10 @@
         },
         {
           "ID": "ElderThreeEndings",
-          "Text": "Three endings? You speak of the fate of the world as though it hangs in the balance. And perhaps it does. Union... Transcription... the Bridge. Tell me -- which do you intend to pursue?",
+          "Text": "Three endings? You speak of the fate of the world as though it hangs in the balance. And perhaps it does. Gathered... kept... renewed. Tell me -- which do you intend to pursue?",
           "Choices": [
             {
-              "Text": "The Bridge. A path where nothing is lost.",
+              "Text": "Renewal. A new binding -- and no one left holding the world alone.",
               "Target": "ElderBridge"
             },
             {
