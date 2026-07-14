@@ -55,7 +55,7 @@ For a new contributor, read in this order:
 | Doc | Faction | God | One-line |
 |---|---|---|---|
 | `01_RotChoir` | Rot Choir | the Wedded (Selen) | patient hunger; substrate-kindness; consumption-that-keeps-the-threads |
-| `02_Palimpsest` | Palimpsest | the Reader (Maeleth) | tired grief; memory-as-record; the Naro cover-up |
+| `02_Recension` | the Recension (renamed from "Palimpsest," Phase 11 C8 — the word returns to its cosmic under-text sense, `TERMS.md`) | the Reader (Maeleth) | tired grief; memory-as-record; the Naro cover-up |
 | `03_PaleCuration` | Pale Curation | the Salted (Othren) | memory-in-the-preserved-body; the file; the Salted's guilt |
 | `04_SaccharineConcord` | Saccharine Concord | the Counter (Tovreth) | completion in an incompletable world; keeps Selen's name |
 | `05_BowerFolk` | Bower-Folk | the Bower (Ylaes) | beauty-as-composition; the staged living; the Resin-Cast as the extreme |
@@ -96,7 +96,7 @@ For a new contributor, read in this order:
 ### Timeline
 
 - Current era: **Thirty-Sixth Generation, ~1,080 years post-Felling.** (Phase 1, 3)
-- Founding dates: Palimpsest ~year 1; catacomb-villagers ~2–15; Choir ~3–40; Concord ~5; Bower-Folk ~20 (cast ~year 100 / **~980 years ago**); Pale Curation Schism Gen 3 / ~year 70. (Phase 3, faction docs)
+- Founding dates: the Recension (then unnamed; "Palimpsest" until Phase 11 — see TERMS.md) ~year 1; catacomb-villagers ~2–15; Choir ~3–40; Concord ~5; Bower-Folk ~20 (cast ~year 100 / **~980 years ago**); Pale Curation Schism Gen 3 / ~year 70. (Phase 3, faction docs)
 - The Salted self-preserved ~Gen 16 / ~year 480 (→ "Status: continuing" for ~600 years). Reader-Salted estrangement: ~1010 years. (Phase 3, `03`)
 - The Great Manifestation: Gen 25 / ~year 750 (worst Urqu event). Imminent Archive founded: Gen 27 / ~year 810. Driving Bloom breakaway: Gen 32 / ~year 960 (~120-year Choir-Bloom war). (Phase 3, `08`, `09`)
 - **The Thinning: Gen 34–36** — the inciting situation; the millennium stalemate breaking. (Phase 3, 6)

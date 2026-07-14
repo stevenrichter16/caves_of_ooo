@@ -12,8 +12,8 @@
 
 **Scope.** One doc per major faction, ~5000-6000 words each. **Recommended order**, by load-bearingness for the rest of the lore work:
 
-1. **Rot Choir** *(this doc)* — central cosmic-rival to the Palimpsest; the player's deepest existential antagonist on most paths; the Consume ending lives here.
-2. **Palimpsest** — the other side of the central rivalry; the Re-Membering ritual lives here; the Reader and the Salted's estrangement lives here.
+1. **Rot Choir** *(this doc)* — central cosmic-rival to the Recension; the player's deepest existential antagonist on most paths; the Consume ending lives here.
+2. **Recension** — the other side of the central rivalry; the Re-Membering ritual lives here; the Reader and the Salted's estrangement lives here.
 3. **Pale Curation** — Salted-founded; Salt-Vault; preservation infrastructure for the world; the parent of the Imminent Archive.
 4. **Saccharine Concord** — the Counter; Tally as the traversal hub; the world's pragmatic spine.
 5. **Catacomb-villagers** — already deeply documented in `catacomb_village_design.md`; this Phase 4 doc will be the *thin* one (canonical pointer to the design doc + faction-tier supplements).
@@ -21,7 +21,7 @@
 7. **Tent-Right** — wasteland survivor culture; not god-founded; the three-day oath.
 8. **Driving Bloom** — Choir heresy; written *after* the Choir doc so its internal logic lands harder.
 9. **Imminent Archive Catchers** — Pale Curation splinter; written after Pale Curation so its theology lands harder.
-10. **Inkbound** — committed in `10_Inkbound.md` as a Palimpsest sub-sect, not a separate faction.
+10. **Inkbound** — committed in `10_Inkbound.md` as a Recension sub-sect, not a separate faction.
 
 **Per-doc structure** (committed here for consistency):
 - **Founding** — the god, the ascension moment, the immediate post-Felling work
@@ -38,7 +38,7 @@
 
 ## I. Founding
 
-The Rot Choir is the **second-ascended faction** by Strike-order (the Second Strike delivered Substrate to the Wedded) and roughly the **second-organized** by chronological emergence (the Palimpsest, founded by the Reader, organized first in year 1; the Choir's coherent-collective form is dated to ~year 40).
+The Rot Choir is the **second-ascended faction** by Strike-order (the Second Strike delivered Substrate to the Wedded) and roughly the **second-organized** by chronological emergence (the Recension, founded by the Reader, organized first in year 1; the Choir's coherent-collective form is dated to ~year 40).
 
 ### The Wedded — the founding god
 
@@ -68,7 +68,7 @@ Phrased as the Choir would phrase it to a sympathetic listener:
 Five doctrinal positions follow from this:
 
 1. **Dissolution is salvation.** The dissolution of an individual into the substrate is not death; it is *expansion.* The encased are not gone; they are *everyone, slowly.* This is offered to mortals as comfort. *Some mortals accept it.*
-2. **Memory must be living.** Written memory hardens; hardening is dying; the Palimpsest's archives are *embalming.* The Choir's mode — memory dissolved into substrate, able to grow, change, be re-tasted across generations — is the *only* sustainable form of memory. (This is the doctrinal basis of the First Persecution; the Wedded has not formally renounced it, only *paused* its pursuit.)
+2. **Memory must be living.** Written memory hardens; hardening is dying; the Recension's archives are *embalming.* The Choir's mode — memory dissolved into substrate, able to grow, change, be re-tasted across generations — is the *only* sustainable form of memory. (This is the doctrinal basis of the First Persecution; the Wedded has not formally renounced it, only *paused* its pursuit.)
 3. **Bodies are substrate.** A body is *food and kin simultaneously*; consuming the dead is not desecration, it is *recognition.* The catacomb-villager Stone Burial tradition (giving the body to subterranean fauna) is theologically adjacent to Choir consumption; some Spore-Wedded villages treat the two as the same practice.
 4. **Time is patient.** The Choir does not need to act quickly. The world will come to the substrate. *(This was the post-First-Persecution settlement; it has held for ~870 years; the Thinning is testing it — see §V.)*
 5. **The Felling's failure was the seventh's absence; the Choir's project is the fix.** Consuming the Root and becoming the new Tree is *completion* of what the Tree wanted. The empty Naming-inheritance is replaced by *collective naming* — the substrate names things by consensus, slowly, plurally. This is the doctrinal justification for the Consume ending.
@@ -132,13 +132,13 @@ Per Phase 2 v2's place-network:
 
 ## V. Inter-faction relationships
 
-### Palimpsest — mortal enemies (the central rivalry)
+### Recension — mortal enemies (the central rivalry)
 
 The longest, deepest enmity in the world. ~870 years since the First Persecution; ~1010 years since the Wedded and the Reader first disagreed about whether memory should be living or recorded.
 
 - **Status now:** détente; substrate-archive cold war; the Reader continues archiving and the Choir continues consuming around the edges of what is not yet sealed; neither pushes for direct confrontation.
 - **What would change it:** the Thinning. If the substrate-collective concludes the Root is consumable *now*, the détente may end. The Stirring Faction (§II) argues exactly this.
-- **The Reader's distributed consciousness is, at any given moment, partly *watching* the Choir** through any Palimpsest scribe near substrate. The Wedded is, in the substrate, *constantly aware* of the archives' accumulated weight. They have not communicated directly since the First Persecution. They are, in a profound way, *the same fact* (memory) experienced through opposite organs.
+- **The Reader's distributed consciousness is, at any given moment, partly *watching* the Choir** through any Recension scribe near substrate. The Wedded is, in the substrate, *constantly aware* of the archives' accumulated weight. They have not communicated directly since the First Persecution. They are, in a profound way, *the same fact* (memory) experienced through opposite organs.
 
 ### Pale Curation — adversarial
 
@@ -187,9 +187,9 @@ The Choir's ~120-year internal war. The Bloom is, biologically, *Choir* — same
 - **Most of the war is invisible to the surface.** Two substrate-networks fighting in the dark, in the deep catacombs, by competitive growth, by enzyme deployment, by encasement-of-Bloomed-bodies (the Choir consumes Bloom infections preferentially, treating them as the highest-priority substrate-material).
 - **The Choir-Bloom war is one of the few situations where the Choir cooperates openly with surface factions.** The Choir will *help* a Pale Curation party clean out a Bloomed village — Choir tendrils handle the substrate-rot; Pale Curation handles the surviving humans (some of whom they preserve, some of whom they evacuate). This is the rare "good guy" Choir moment that complicates player loyalties.
 
-### Inkbound — even more enemy than Palimpsest
+### Inkbound — even more enemy than Recension
 
-The Inkbound are not a separate faction; `10_Inkbound.md` commits them as a Palimpsest sub-sect. They are still *more* offensive to the Choir than ordinary Palimpsest practice. The Inkbound's skin-page scribes (Ink-Bathed bodies that *are* the manuscript) are an especially hard form of memory-hardening — *living substrate willingly turned into permanent record.* The Choir's response is quiet but absolute hostility.
+The Inkbound are not a separate faction; `10_Inkbound.md` commits them as a Recension sub-sect. They are still *more* offensive to the Choir than ordinary Recension practice. The Inkbound's skin-page scribes (Ink-Bathed bodies that *are* the manuscript) are an especially hard form of memory-hardening — *living substrate willingly turned into permanent record.* The Choir's response is quiet but absolute hostility.
 
 ---
 
@@ -309,4 +309,4 @@ The Choir's rewards are doctrinally consistent — *substrate-integration*, in e
 
 ---
 
-*Phase 4.01 — Rot Choir — status: complete as phase history. Foundation set for Palimpsest doc (4.02) as the structural mirror.*
+*Phase 4.01 — Rot Choir — status: complete as phase history. Foundation set for Recension doc (4.02) as the structural mirror.*

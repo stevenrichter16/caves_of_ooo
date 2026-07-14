@@ -97,7 +97,7 @@ Tent-Right is **clan-based and decentralized.** There is no central authority �
 
 ### Authority
 
-**The oath is supreme.** No elder, no well-keeper, no clan can override it. A dispute between clans is resolved by appeal to the oath's principles. *Tent-Right is the only major faction whose ultimate authority is a practice rather than a person or a god.* (Pale Curation's authority is the Salted, however silent; the Choir's is the substrate; the Palimpsest's is the Reader; Tent-Right's is *the oath itself* — an idea, held by everyone, owned by no one.)
+**The oath is supreme.** No elder, no well-keeper, no clan can override it. A dispute between clans is resolved by appeal to the oath's principles. *Tent-Right is the only major faction whose ultimate authority is a practice rather than a person or a god.* (Pale Curation's authority is the Salted, however silent; the Choir's is the substrate; the Recension's is the Reader; Tent-Right's is *the oath itself* — an idea, held by everyone, owned by no one.)
 
 ### Crime
 

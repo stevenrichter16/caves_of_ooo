@@ -78,7 +78,7 @@ Per `03_PaleCuration.md` and later canon: **her silence is not indecision; it is
 - She cannot **endorse** them: what they do to the unwilling is monstrous, and she — rigid, theologically certain, but not cruel — knows it.
 - So she is **silent.** For ~270 years (since the Catchers emerged), the annual file-update ceremony has not produced a ruling on the Imminent Archive. The mainline waits. The Catchers take the silence as permission. The silence holds.
 
-**The structural parallel to the Reader.** The Salted's silence on the Catchers and the Reader's silence on the Palimpsest's parallel question (the Catchers preserve before final-memory can be archived, which the Palimpsest doctrinally opposes — yet the Reader has also never ruled) is *the closest thing to coordination the two estranged gods have managed in a thousand years* (per `02` and `03`). **Both ancient comrades are refusing to settle a matter that involves both their factions.** They are not speaking. They are not cooperating. And yet, on this one matter, *they are synchronized in their refusal* — as if grief had taught them the same silence. A player who notices this is noticing something profound about the two gods: even estranged, they move together.
+**The structural parallel to the Reader.** The Salted's silence on the Catchers and the Reader's silence on the Recension's parallel question (the Catchers preserve before final-memory can be archived, which the Recension doctrinally opposes — yet the Reader has also never ruled) is *the closest thing to coordination the two estranged gods have managed in a thousand years* (per `02` and `03`). **Both ancient comrades are refusing to settle a matter that involves both their factions.** They are not speaking. They are not cooperating. And yet, on this one matter, *they are synchronized in their refusal* — as if grief had taught them the same silence. A player who notices this is noticing something profound about the two gods: even estranged, they move together.
 
 **What the player can do with the silence.** Quest-design candidates:
 - The player can attempt to *make the Salted rule.* This would require forcing her to confront her guilt — possibly the hardest single conversation in the Pale Curation arc. If she ruled *against* the Catchers, the sect would lose its only theological cover and the mainline could finally evict them. If she ruled *for* them, the Catchers would become a sanctioned Pale Curation practice — a horror.
@@ -122,9 +122,9 @@ Covered in `03`. The mainline officially condemns and excommunicates the Catcher
 
 Per `01_RotChoir.md`: the Catchers are the Choir's **most loathed mortal faction.** Pre-mortem preservation is the *opposite* of the Choir's offer (encasement *after* willing death). A Catcher cell in Choir territory would be eradicated; a Catcher in mixed territory is suffered only because the Choir cannot extend openly. **The Catchers, for their part, consider the Choir the ultimate proof of why they exist** — the Choir *consumes* the dead; the Catchers *save* the dying from ever reaching the Choir. The two factions are perfect inverse-enemies.
 
-### Palimpsest — doctrinally opposed
+### Recension — doctrinally opposed
 
-Per `02`: the Palimpsest opposes pre-mortem preservation (a living person's memory isn't final yet; archiving requires death). But the Reader has not ruled either (the silence-synchrony with the Salted). Palimpsest scribes complain about Catchers, avoid Catcher-preservations, refuse to Re-Member a Catcher subject — institutional cold-shoulder.
+Per `02`: the Recension opposes pre-mortem preservation (a living person's memory isn't final yet; archiving requires death). But the Reader has not ruled either (the silence-synchrony with the Salted). Recension scribes complain about Catchers, avoid Catcher-preservations, refuse to Re-Member a Catcher subject — institutional cold-shoulder.
 
 ### Saccharine Concord — cynical service
 

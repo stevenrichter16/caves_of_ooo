@@ -114,7 +114,7 @@ There are humans who *side with* the Bloom — not Bloomed (compelled) but *will
 3. **The Bloomed village.** Mid-late. A formerly-civilized catacomb-village made compulsive; the hearth-patch colonized; the bio-light wrong. The signature set-piece.
 4. **The substrate war-front.** The player witnesses (or is caught in) the Choir-Bloom war — and learns the Choir winning is the good outcome.
 5. **The Bloom-aligned humans.** The Driven-by-choice and the Bloom-brokers — the only conversations the Bloom affords, and the route to understanding what the Bloom *is* (a function with no one home) and what it *does* (multiplies incompletion).
-6. **The Urqu connection (late).** The deepest Bloom content: a player who has pieced together the incompletion-pattern realizes the Bloom is feeding Urqu — that the youngest faction and the unborn god are the same accelerating curve. *This is a Phase 6 cosmology-revelation, available through Choir Quiet-Faction lore, Palimpsest research, and the Rooted.*
+6. **The Urqu connection (late).** The deepest Bloom content: a player who has pieced together the incompletion-pattern realizes the Bloom is feeding Urqu — that the youngest faction and the unborn god are the same accelerating curve. *This is a Phase 6 cosmology-revelation, available through Choir Quiet-Faction lore, Recension research, and the Rooted.*
 
 ### No reputation system
 
@@ -145,7 +145,7 @@ There are humans who *side with* the Bloom — not Bloomed (compelled) but *will
 ### Late-game
 
 - **The Bloom-broker network.** Tracing the Concord's scandalous trade (per `04`) to its Bloom-aligned human interface. The player can expose it, exploit it, or sever it.
-- **The Urqu agriculture.** The cosmology revelation: the Bloom feeds Urqu; the 120-year-old engine of incompletion and the unborn seventh are one curve. Assembled from Choir Quiet-Faction lore, Palimpsest research, and the Rooted.
+- **The Urqu agriculture.** The cosmology revelation: the Bloom feeds Urqu; the 120-year-old engine of incompletion and the unborn seventh are one curve. Assembled from Choir Quiet-Faction lore, Recension research, and the Rooted.
 
 ### Ending-aligned arcs
 

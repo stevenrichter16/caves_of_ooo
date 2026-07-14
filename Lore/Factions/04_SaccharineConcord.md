@@ -12,7 +12,7 @@
 
 ## I. Founding
 
-The Saccharine Concord is the **fifth-ascended faction** by Strike-order (the Fifth Strike delivered Exchange to the Counter) and the **third-organized** chronologically (~year 5, the first inter-region caravan — after the Palimpsest's year-1 archive and ahead of the slow-growing Choir).
+The Saccharine Concord is the **fifth-ascended faction** by Strike-order (the Fifth Strike delivered Exchange to the Counter) and the **third-organized** chronologically (~year 5, the first inter-region caravan — after the Recension's year-1 archive and ahead of the slow-growing Choir).
 
 ### The Counter — the founding god
 
@@ -49,8 +49,8 @@ This is the Counter's secret, and it is the deepest tragedy among the Six:
 Five doctrinal positions:
 
 1. **Trade is the world's circulation.** In the Tree's absence, exchange is what keeps the broken pieces of the world connected. The Concord is the world's bloodstream.
-2. **Neutrality is sacred — and necessary.** The Concord trades with everyone: Choir, Palimpsest, Pale Curation, Bower-Folk, Tent-Right, catacomb-villagers, Catchers, *and the Driving Bloom.* Neutrality requires not refusing business on moral grounds. *This is the Concord's deepest principle and its deepest compromise.*
-3. **Everything has a price.** Including beauty (the centuries-long argument with the Bower). Including bodies (the gray-market trade). Including memory (the Concord brokers Palimpsest transcription and Choir consumption alike). *The Concord's claim that everything has a price is the inverse of Tent-Right's claim that some things — the guest, the oath — are priceless.*
+2. **Neutrality is sacred — and necessary.** The Concord trades with everyone: Choir, Recension, Pale Curation, Bower-Folk, Tent-Right, catacomb-villagers, Catchers, *and the Driving Bloom.* Neutrality requires not refusing business on moral grounds. *This is the Concord's deepest principle and its deepest compromise.*
+3. **Everything has a price.** Including beauty (the centuries-long argument with the Bower). Including bodies (the gray-market trade). Including memory (the Concord brokers Recension transcription and Choir consumption alike). *The Concord's claim that everything has a price is the inverse of Tent-Right's claim that some things — the guest, the oath — are priceless.*
 4. **Debt is the world's deep structure.** Value-flowing-between, owed and owing. The Counter sees the world as a ledger. *He does not say that the ledger never balances. That is the part the Concord does not speak of.*
 5. **The Concord is officially neutral on the three endings.** Privately: the Counter prefers Preserve (the economy continues). The Counter *fears* Consume (the Choir absorbs Exchange). The Counter's *true* relationship to Renewal is the contradiction (§I) — it is what he wants and what would end him.
 
@@ -106,7 +106,7 @@ Per Phase 2 v2:
 **The Concord trades with everyone. That is its defining trait and its deepest compromise.**
 
 - **Rot Choir** — the Concord delivers bodies for dissolution and sends the Choir invoices (per `01`). The Choir pays. The Wedded considers the Counter the most pitiable of the Six (her old kindness remembering him). *The Concord-Choir trade relationship is one of the most morally-fraught in the world, and the Concord conducts it without flinching.*
-- **Palimpsest** — the Counter quietly funds them (transcription contracts at premium; per `02`). *He does not say it is funding. He calls it a service contract. Everyone who looks at the numbers knows.* The Reader spoke with the Counter privately once (per `02` open question; sealed-file findable late).
+- **Recension** — the Counter quietly funds them (transcription contracts at premium; per `02`). *He does not say it is funding. He calls it a service contract. Everyone who looks at the numbers knows.* The Reader spoke with the Counter privately once (per `02` open question; sealed-file findable late).
 - **Pale Curation** — the logistics partner. Salt transport, body transport, preservation-supply distribution, the gray-market preserved-body trade (which Pale Curation condemns and cannot stop). *The Concord's most operationally-intertwined relationship.*
 - **Bower-Folk** — the centuries-long argument: *does beauty have a price?* The Counter says yes (everything does). The Bower says some beauty is priceless. They speak occasionally; their conversations are sparkling and exhausting (per `01`). Concord agents and Bower-Folk artisans trade endlessly with this divine argument echoing through every transaction.
 - **Tent-Right** — salt-trade partner. **The Concord operates in the Beating under *guest-rights*, not authority** (per `07`). Tent-Right is the political authority of the wasteland; the Concord operates with hospitality, scrupulously honoring the three-day oath (the salt-supply depends on it). *The Concord's claim that everything has a price runs directly into Tent-Right's claim that the oath is priceless — and in the Beating, Tent-Right's claim wins.*
@@ -131,7 +131,7 @@ Per Phase 2 v2:
 **The Concord is the player's universal merchant.** More than any other faction, the Concord is *present everywhere* — the player can buy, sell, hire, and contract at nearly any place. This makes the Concord the player's most-frequent faction interaction by volume.
 
 1. **First trade-post** (Sill, Gantry, anywhere). Buy and sell. The Concord's ubiquity established early.
-2. **First delivery contract.** Early-game paid work. The Concord's quest-giving is the most conventional in CoO alongside the Palimpsest — delivery jobs, debt-collection, route-protection, supply runs.
+2. **First delivery contract.** Early-game paid work. The Concord's quest-giving is the most conventional in CoO alongside the Recension — delivery jobs, debt-collection, route-protection, supply runs.
 3. **Tally.** Mid-game. The Central Exchange; the traversal hub; the scale of the Concord's operation. The player will route through Tally repeatedly.
 4. **Meeting the Counter.** *The most accessible of the Six.* The player can meet the Counter at Tally with a meeting-fee. He is exhausted, cynical, sharp, and — if the player pays attention — *desperately tired in a way that goes deeper than overwork.* The conversation is transactional on the surface; underneath, the player can begin to glimpse the contradiction.
 5. **The internal-sect politics.** Mid-late. The Open Ledger / Closed Accounts / Rising Market conflict. The player can align with a sect, each unlocking different content.

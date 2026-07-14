@@ -18,7 +18,7 @@ The deepest pattern of the Six (established across the faction docs) is that **e
 
 | God | Function | Mortal name | Its fate | How the player learns it |
 |---|---|---|---|---|
-| The Reader | Memory | **Maeleth** (commonly *Mael*) | **Remembered everywhere.** The god of Memory remembers itself. | Free; public; in every Palimpsest archive. The player knows it early. |
+| The Reader | Memory | **Maeleth** (commonly *Mael*) | **Remembered everywhere.** The god of Memory remembers itself. | Free; public; in every Recension archive. The player knows it early. |
 | The Wedded | Substrate | **Selen** | **Forgotten by all** — even the substrate, even the Reader. A thousand years dissolved even the name of a god. | Recoverable from *one source only*: **the Counter**, who knew her before and kept the one account everyone else lost (§ below). |
 | The Salted | Preservation | **Othren** | **Filed.** The name is known and on her file; it is her *last words* that are unrecorded ("[unrecorded]"). | Readable at high Pale Curation standing — on her file, of course. |
 | The Bower | Beauty | **Ylaes** | **Never written.** She found written names inelegant; the name exists only as spoken sound. *(The CP437 spelling "Ylaes" is an approximation; the true sound is only ever heard.)* | The player **hears** it spoken in Posy; it never appears as readable text in the game. |
@@ -93,7 +93,7 @@ Committed in Phase 6, **re-tiered in Phase 11 (C5):** Naro was real and refused 
 
 - **Who Naro was.** A pre-Felling scholar of *Naming* specifically — the only one of the seven chosen who studied the cornerstone function deeply enough to understand it. Phonically, **Naro's name is the odd one out** (ends in *-o*, where the Six end in *-en / -eth / -a / -aes / -ren*) — a small, deliberate mark that the seventh was always outside the pattern.
 - **What Naro did.** Understood that a Naming-god made by a Strike would fail worse than no god (you cannot name the namer); refused the Strike to spare the world; walked away. *The most responsible act in the history of the world, blamed for everything for a thousand years.*
-- **What the world thinks Naro was.** The Palimpsest's betrayer; the Bower-Folk's sleeper-who-forgot-the-day; the folk-demon that, mythologized, fed the *idea* of Urqu. None of these is the truth, and the Reader (Maeleth) has hidden the truth for ~1010 years (Phase 6 §II).
+- **What the world thinks Naro was.** The Recension's betrayer; the Bower-Folk's sleeper-who-forgot-the-day; the folk-demon that, mythologized, fed the *idea* of Urqu. None of these is the truth, and the Reader (Maeleth) has hidden the truth for ~1010 years (Phase 6 §II).
 - **Naro's lineage — the Declined.** Naro's descendants survive as a small tradition (working name: **the Declined**) — people who *refuse inheritances*, who name by choice and reject being named-from-above. They are kin to (or the seed of) Tent-Right's **Namers** (per `07`). They keep no titles, take no thrones, decline grandeur even in their own names.
 - **The named living descendant: *Saedis*.** A quiet keeper of the Declined tradition, findable late-game (soft location: a hidden settlement, or among the Namers in the Beating). **Saedis carries the family memory that Naro refused out of understanding** — Reading A, held as testimony, not proof; the oral counter-history to the official record (Phase 11 C5: Saedis *believes*; the game never confirms). Saedis is the player's human door into the practice-path: the descendant of the one who — by the family's own account — understood Naming, teaching the player that Naming is something you *do.* Saedis's teaching stands on its own evidence (the oath binds; the discipline works) whether or not the family memory is true — *and Saedis knows this, and says so, which is why the teaching is trustworthy.* *(Saedis does not want to be important; helping the player is itself a small act of the practice — naming the player as worthy of the question.)*
 
@@ -103,11 +103,11 @@ Committed in Phase 6, **re-tiered in Phase 11 (C5):** Naro was real and refused 
 
 The anchor cast — quest-givers and arc-anchors. One to three per faction.
 
-### Palimpsest
+### Recension
 
-- **Archive-Master Telleth** (Quillhold) — senior institutional authority; gatekeeper to the deep archives and the Reader's channeled voice; assigns the major Palimpsest arc (the Sealed Libraries, the Naro-truth).
-- **Field Scribe Iren** — the player's *first* Palimpsest contact; mobile, young, earnest; the conventional early quest-giver (delivery-of-records, transcription jobs) who later becomes the player's tie to the Body-Reader / Inkbound content.
-- *(The Reader, Maeleth, speaks through any scribe — so any Palimpsest NPC can, at a major beat, suddenly be the god.)*
+- **Archive-Master Dassun** (Quillhold) — senior institutional authority; gatekeeper to the deep archives and the Reader's channeled voice; assigns the major Recension arc (the Sealed Libraries, the Naro-truth).
+- **Field Scribe Iren** — the player's *first* Recension contact; mobile, young, earnest; the conventional early quest-giver (delivery-of-records, transcription jobs) who later becomes the player's tie to the Body-Reader / Inkbound content.
+- *(The Reader, Maeleth, speaks through any scribe — so any Recension NPC can, at a major beat, suddenly be the god.)*
 
 ### Rot Choir
 
@@ -116,7 +116,7 @@ The anchor cast — quest-givers and arc-anchors. One to three per faction.
 ### Pale Curation
 
 - **Curator Hesh** — reads the Salted's file aloud at the annual ceremony; the most procedure-bound officer in the world; the player's interface to the Salted's chamber and the file-update ritual. Bureaucratic-comedy anchor (per `03`).
-- **Sorter Vael** — pursues the Sorters' grail: the seventh's-body (per `03`). Vael has spent decades on a body that may never have existed; the player's tie to the seventh's-body quest and its Renewal-Naming implications.
+- **Sorter Ilsun** — pursues the Sorters' grail: the seventh's-body (per `03`). Ilsun has spent decades on a body that may never have existed; the player's tie to the seventh's-body quest and its Renewal-Naming implications.
 
 ### Saccharine Concord
 
@@ -136,8 +136,8 @@ The anchor cast — quest-givers and arc-anchors. One to three per faction.
 
 ### Tent-Right
 
-- **Namer Oreth** — lead of the emerging Namers (`07`); the one who has gone furthest toward the truth (the oath is mortal Naming; Tent-Right and Urqu are the two unnamed). The player's guide to the Urqu-as-kin dialogue path and the practice-path Renewal.
-- **Tent-Mother Saren** — Oath-Keeper authority of Wellmeet; enforces the three-day oath as law; the player's interface to Tent-Right hospitality-sanctuary and standing.
+- **Namer Korrai** — lead of the emerging Namers (`07`); the one who has gone furthest toward the truth (the oath is mortal Naming; Tent-Right and Urqu are the two unnamed). The player's guide to the Urqu-as-kin dialogue path and the practice-path Renewal.
+- **Tent-Mother Vess-Mara** — Oath-Keeper authority of Wellmeet; enforces the three-day oath as law; the player's interface to Tent-Right hospitality-sanctuary and standing.
 
 ### Catacomb-villagers
 
@@ -171,7 +171,7 @@ Committed origins (five; a sixth is the special case):
 
 1. **River-Child of Sill** — the default / recommended start (per Phase 3). Grew up where the Tree is a children's story and the river-god gets the offerings. The purest disillusionment arc; no head-start, maximum re-enchantment.
 2. **Concord Ledger-Hand** — apprenticed to a Factor; numerate, well-traveled, cynical. Head-start on the Concord and on trade/economy systems; begins *most* disbelieving (commerce has no use for cosmology).
-3. **Failed Scribe** — washed out of a Palimpsest field-station; literate, knows the official histories (including the Palimpsest's lie about Naro, which the player will later learn was a lie). Head-start on the Palimpsest and on the Seventh thread; the most painful re-enchantment (your education was partly propaganda).
+3. **Failed Scribe** — washed out of a Recension field-station; literate, knows the official histories (including the Recension's lie about Naro, which the player will later learn was a lie). Head-start on the Recension and on the Seventh thread; the most painful re-enchantment (your education was partly propaganda).
 4. **Wasteland Guest** — grew up under the oath in a Tent-Right settlement; knows hospitality as law, distrusts inherited authority. Head-start on Tent-Right, the Namers, and the practice-path; *least* surprised when the cosmology turns out real (the oath always felt larger than survival).
 5. **Catacomb Apostate** — left a catacomb-village for the surface (an apostate, per `catacomb_village_design.md`); knows bio-light, the Sealed Dim, the Root-Traditions as lived faith, not myth. Head-start on the villagers, the Rooted, and Urqu-defense; the *least* disbelieving (you grew up in the dark the surface forgot).
 
@@ -181,8 +181,34 @@ Committed origins (five; a sixth is the special case):
 
 ## VI. Cultural sources & credits — additions
 
-- **The Six's names, Naro, the Declined, and all invented NPC names** (Maeleth, Selen, Othren, Ylaes, Tovreth, Dohren, Naro, Saedis, Telleth, Iren, Vesh, Hesh, Vael, Brenn, Liss, Oel, Oreth, Saren, Riane, and the Catchers Wenil/Kavin/Pais): **wholly invented for CoO.** No real-world personal names were borrowed. The pre-Felling phonaesthetic (soft consonants; -en / -eth / -a / -aes / -ren endings) is a constructed style. *If any invented name turns out to closely match a real-world name or a culturally-loaded term, it is coincidental and should be changed at ship-review.*
-- **Tent-Right names** (Oreth, Saren, the Namers) deliberately carry **no Arabic vocabulary**, honoring the `07` constraint that Tent-Right's Bedouin inspiration is *structural only.*
+- **The Six's names, Naro, the Declined, and all invented NPC names** (Maeleth, Selen, Othren, Ylaes, Tovreth, Dohren, Naro, Saedis, Dassun, Iren, Vesh, Hesh, Ilsun, Brenn, Liss, Oel, Korrai, Vess-Mara, Riane, and the Catchers Wenil/Kavin/Pais): **wholly invented for CoO.** No real-world personal names were borrowed. *If any invented name turns out to closely match a real-world name or a culturally-loaded term, it is coincidental and should be changed at ship-review.*
+
+### Diachronic naming (Phase 11, C8 — committed rules)
+
+The Phase-7 phonaesthetic (soft consonants; -en / -eth / -a / -aes /
+-ren endings) is re-scoped as **archaic** — it marks the pre-Felling
+generation only. Thirty-six generations of drift give the modern era
+a shifted phonology, so the gods' names *sound a thousand years old*,
+which is characterization for free, and the mortal cast stops
+colliding with the divine one.
+
+1. **Archaic register** (the Six, Naro, pre-Felling figures only):
+   soft onsets, -eth/-en/-aes endings. Reserved; no modern character
+   may take it.
+2. **Modern register** (living mortals): harder onsets, clipped one-
+   and two-syllable forms, endings in -is/-un/-ai/-ok/-a. Office-names
+   may hyphenate (Tent-Mothers take a bond-name: *Vess-Mara*).
+3. **Collision rule:** no two named characters may share both initial
+   letter and ending. Renames applied under this rule (2026-07-14):
+   Telleth → **Dassun**, Oreth → **Korrai**, Vael → **Ilsun**,
+   Tent-Mother Saren → **Vess-Mara** (each collided with Maeleth /
+   Othren-Oel / Vesh / Selen-Saedis respectively).
+4. **Title diction:** first mention in any document or scene is
+   name + title ("Maeleth the Reader"); bare titles only where
+   unambiguous. In-world speakers use what their culture would say —
+   Curators say "the Salted"; Concord clerks say "Tov" and are
+   corrected by seniors, who are ignored.
+- **Tent-Right names** (Korrai, Vess-Mara, the Namers) deliberately carry **no Arabic vocabulary**, honoring the `07` constraint that Tent-Right's Bedouin inspiration is *structural only.*
 - **Riane** is reused from `catacomb_village_design.md`'s own example lineage (already a CoO-native invented name), for continuity.
 - **Stoicism / Apatheia, bowerbirds, Physarum, Cordyceps, Ye'kwana Sarisariñama legend** — all already in the IDEAS.md ledger and the relevant phase docs; no new real-source borrowing is introduced by the cast.
 
@@ -193,7 +219,7 @@ Committed origins (five; a sixth is the special case):
 - **Whether learning a god's true name has mechanical effect** (§I) — esp. Selen's, in the Renewal/anti-Urqu naming-practice. Soft lean: yes. Phase 8 / level-design.
 - **Dohren's and Selen's pre-Felling specialties** (§I) — left as soft seeds. Phase 8 if needed.
 - **The child-arc's bond-partner** (§IV) — one canonical NPC or a choice; pacing. Level-design.
-- **The full Namer theory's completeness** (`07` / Phase 6) — how much Oreth and the Namers actually figure out before the finale. Level-design / writing.
+- **The full Namer theory's completeness** (`07` / Phase 6) — how much Korrai and the Namers actually figure out before the finale. Level-design / writing.
 - **Per-character deep-dives** — if any anchor NPC needs a full file (dialogue trees, arc states), it goes in `Lore/Characters/`. None required at the lore-tier; this is engineering/writing.
 - **Procedural & minor NPCs** — villager role-holders, generic faction members, the lesser-numen voices (Phase 5 §IX). Level-design.
 

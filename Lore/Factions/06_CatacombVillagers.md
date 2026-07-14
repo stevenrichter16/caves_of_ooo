@@ -39,7 +39,7 @@ The villager *theologies* about him are already authored — the Listening / Ten
 - **Language & dialect** (§VI) — drift-in-isolation, the vocabulary table, cave-quiet sign language.
 - **Non-villager fauna** (§VII) — kept / hunted / tolerated / feared species.
 - **Trade & commerce** (§VIII) — the full goods table, services, what villages refuse to sell, what they buy.
-- **Five archetypal villages** (§IX) — Patch-Bright (Concord), Wall-of-Names (Palimpsest), Spore-Wedded (Choir), The Quiet (isolationist), The Wardward (Warden-specialty).
+- **Five archetypal villages** (§IX) — Patch-Bright (Concord), Wall-of-Names (Recension), Spore-Wedded (Choir), The Quiet (isolationist), The Wardward (Warden-specialty).
 - **Conflict & politics** (§X), open design questions (§XI), cross-links (§XII), cultural-source credits (§XIII).
 
 **If a question is answered there, it is answered. Do not re-decide it here.**
@@ -74,7 +74,7 @@ Per Phase 3, the Thinning (Gens 34-36) is the Root's holding-field weakening and
 ## IV. Cross-references into the rest of Phase 4
 
 - **Rot Choir (`01`)** — the Spore-Wedded archetype is Choir-integrated; Choir tendrils growing into a non-Choir village is an emergency event (design file §VII "Feared"). The Choir's substrate-kindness reads very differently to a villager whose god *is* the substrate.
-- **Palimpsest (`02`)** — the Wall-of-Names archetype hosts a Palimpsest sub-station; villager plaque-tending and Palimpsest re-membering are kindred crafts; Re-Membering hosting is a major village service (design file §VIII).
+- **Recension (`02`)** — the Wall-of-Names archetype hosts a Recension sub-station; villager plaque-tending and Recension re-membering are kindred crafts; Re-Membering hosting is a major village service (design file §VIII).
 - **Pale Curation (`03`)** — village preservation traditions (Salt-Cure, Honey-Seal) intersect Pale Curation supply contracts; the unwanted-Catcher-cell quest hook (Patch-Bright archetype) is the village-side of the `09` faction.
 - **Saccharine Concord (`04`)** — the Patch-Bright archetype is Concord-aligned; the Concord runs the longest surface-to-catacomb supply lines and the largest Glow-Quartz mine (per `04`, IDEAS.md:801). Light-economy trade is the villager-Concord spine.
 - **Bower-Folk (`05`)** — they treasure the most beautiful patches and rare-spectrum strains; Bower-Folk installations and Glow-moth displays appear inside aesthetically-rich villages; the villager Cleaner and Bower-Folk Cleaner are kin crafts.
