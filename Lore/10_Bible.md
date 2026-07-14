@@ -157,7 +157,18 @@ Cold-eye pass (CLAUDE.md Q1–Q4) over the whole corpus, run at completion:
 - **Q3 — Counter-check / bidirectional references.** Phase-4 cold-eye fixed the two found issues (Bower cast-date → ~980 yrs; Tent-Right sanctuary generalized to name the Caster). The Counter↔Wedded name-thread (Phase 7) is consistent with `01` and `04`'s open-question seeds. The Naro→Reader cover-up (Phase 6) is consistent with `02`'s Reader-grief and `03`'s sealed-file. ✓
 - **Q4 — Doc-vs-canon drift.** The Phase-9 magic revision (everyday/whimsical) was checked against the rest of the corpus — no other doc asserted magic-rarity, so no contradictions were introduced. Dates reconcile against ~year 1080 (verified in the Phase-4 pass; unchanged since). ✓
 
-**Result: cold-eye pass complete, 0 outstanding findings.** The two findings from the Phase-4 pass were fixed in commit `8cf4cdc`. The corpus is internally consistent against the §IV canon lock.
+**Result: the pass is recorded in the findings log below.** Consistency is a log, not a claim — a corpus this size always carries drift, and the honest artifact is the running record of what was found and fixed. *(The original Phase-10 text here claimed "0 outstanding findings"; that claim was itself a finding — see entry 2.)*
+
+### Findings log
+
+| # | Date | Finding | Status |
+|---|---|---|---|
+| 1 | Phase-4 pass | Bower cast-date drift; Tent-Right sanctuary over-specific | fixed, commit `8cf4cdc` |
+| 2 | 2026-07-14 | Bible §IV says the Reader has been bodiless ~700 yrs; `01_Spine.md` §VI said ~800. Bible wins; Spine corrected. Found *after* the pass above claimed zero findings — the claim overstated. | fixed |
+| 3 | 2026-07-14 | `ROTCHOIR_VOICES.md` / shipped `RotChoir.json` use real-language personal names with explicit living-tradition labels, against §IX's naming rule. | fixed in revision M4/M6 (player-facing names replaced; internal IDs retained for save-compat) |
+| 4 | 2026-07-14 | Shipped `Factions.json` registers the Glassblown Remnant from the superseded cosmology. | resolved by canonization as under-text relic (`Lore/MYSTERY-LEDGER.md` §6) |
+
+*Future passes append here. A revision that adds zero entries is a finding.*
 
 ---
 
@@ -202,6 +213,17 @@ Every structural borrowing, with the standing rule: **inherit structural shapes 
 | Falmer (Skyrim), Kenshi (kidnapping) | villager visual basis; preserved-player displacement | n/a (fiction) | structural inspiration; CoO-original execution |
 
 All invented names (the Six, Naro, the Declined, the named cast) are wholly constructed for CoO; flagged for ship-review against accidental real-world collision.
+
+### Literary ancestry (genre-fiction debts)
+
+The ledger above credits cultures and biology; this section credits the corpus's nearest *literary* relatives, so the debts are owned before a reader names them for us. No crediting obligation applies to fiction the way it does to living traditions — this is positioning honesty.
+
+| Ancestor | What it anticipates here | How CoO diverges |
+|---|---|---|
+| Ursula K. Le Guin, *Earthsea* (esp. *The Farthest Shore*) | Naming-as-binding; true names as the substance of magic; an un-naming that drains the world | In Earthsea naming is a mage's art; in CoO it is (or must become) *everyone's* practice — the divergence is the whole thesis of the practice-path |
+| Cordwainer Smith's Instrumentality / *End of Evangelion* | Consume's shape: humanity dissolved into one warm remembering whole | CoO's version is opt-in-able, faction-mediated, and *kind on purpose* — the horror is the inclusion, not the coercion |
+| *Outer Wilds*, *Undertale* | The finale that answers the antagonist rather than defeating it | CoO's "answer" is a permanent civic practice with maintenance costs, not a moment of understanding |
+| *Caves of Qud* | The structural chassis throughout: factions, reputation, depth-by-travel, myth-density | CoO is RPG-framed (persistent world, permanent choices) and its cosmology is authored, not procedurally mythologized |
 
 ---
 
