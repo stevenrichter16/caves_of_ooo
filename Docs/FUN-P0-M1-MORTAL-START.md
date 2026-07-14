@@ -103,4 +103,28 @@ No per-frame paths touched. `UpdateBodyParts` at spawn is once-per-entity-creati
 - Skill costs use CoO scale (1/2/3-4) not Qud SP economy — CoO earns ~1 SP/level.
 
 ## Implementation log
-(filled per sub-milestone)
+
+### M1.a — shipped (6a61374)
+StartingLoadout class + gate + statline as planned. One breakage as
+predicted by sweep (PlayerBuilder SetHp absolute-100 vs new Max 40) fixed
+in-commit. Flakes observed and cleared across runs: DiagPerf (204 vs
+200 ns post-compile), FungalInfectionContagion (RNG), LightSourceFlicker
+(RNG) — rotating singletons, each passed in adjacent runs, none
+correlated with the diff.
+
+### M1.b — shipped
+- Engine: `EntityFactory.InitializeAnatomy` now materializes default
+  behaviors via `body.UpdateBodyParts()` — **scoped inside the
+  NaturalWeapon-prop branch** (divergence from the original plan's
+  materialize-always: prop-less entities like the Player and villagers
+  keep the legacy single-punch path, bounding the two-swing blast radius
+  to creatures the content pass explicitly arms).
+- RED→GREEN: `Snapjaw_MaterializesDeclaredClaw_AtSpawn` failed pre-fix
+  (pinning the every-creature-attacks-at-1d2 latent bug), passed
+  post-fix; `Villager_WithoutNaturalWeaponProp_StaysUnmaterialized`
+  counter-check green on both sides.
+- Content: 20 hostiles gained `NaturalWeapon` props (incl. all four
+  bosses; SnapjawChieftain upgraded to SnapjawHunterClaw); 19 new
+  factory cases with dice budgeted for the two-swing anatomy.
+- Tests: 5212 → 5234 (+22). Failures = exactly the 10 pre-existing
+  baseline. Zero perturbation in AI/scenario suites.

@@ -499,6 +499,16 @@ namespace CavesOfOoo.Data
                     if (parts[i].Type == "Hand" && !string.IsNullOrEmpty(parts[i].DefaultBehaviorBlueprint))
                         parts[i].DefaultBehaviorBlueprint = naturalWeapon;
                 }
+
+                // FUN-P0 M1.b: materialize the declared weapon at spawn.
+                // RegenerateDefaultEquipment otherwise never runs on the
+                // factory path, leaving _DefaultBehavior null on every hand —
+                // GatherMeleeWeapons then finds nothing and the creature
+                // punches at the hardcoded 1d2 forever. Scoped to
+                // NaturalWeapon-prop carriers deliberately: prop-less
+                // entities (Player, villagers) keep the legacy single-punch
+                // path so this fix cannot change their combat shape.
+                body.UpdateBodyParts();
             }
         }
     }
