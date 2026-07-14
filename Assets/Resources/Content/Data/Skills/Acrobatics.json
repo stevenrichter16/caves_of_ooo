@@ -3,7 +3,7 @@
     {
       "Name": "Acrobatics",
       "Class": "AcrobaticsSkill",
-      "Cost": 100,
+      "Cost": 1,
       "Description": "Athletic finesse — the foundation of evasive movement. Owning this tree unlocks individual acrobatic powers.",
       "Foreground": "g",
       "Detail": "G",
@@ -11,7 +11,7 @@
         {
           "Name": "Dodge",
           "Class": "AcrobaticsDodgePower",
-          "Cost": 50,
+          "Cost": 2,
           "Attribute": "Agility",
           "Minimum": "15",
           "Description": "+2 DV — always alert; harder to land a hit on you.",
@@ -21,7 +21,8 @@
         {
           "Name": "Tumble",
           "Class": "Acrobatics_Tumble",
-          "Cost": 50,
+          "Cost": 2,
+          "Requires": "AcrobaticsDodgePower",
           "Attribute": "Agility",
           "Minimum": "15",
           "Description": "Active ability: swap positions with an adjacent creature. Hostile targets get dazed (Confused 1T); allies just trade places. No weapon required. 20-turn cooldown.",
@@ -31,7 +32,8 @@
         {
           "Name": "Evasive Roll",
           "Class": "Acrobatics_EvasiveRoll",
-          "Cost": 50,
+          "Cost": 3,
+          "Requires": "Acrobatics_Tumble",
           "Attribute": "Agility",
           "Minimum": "15",
           "Description": "Active ability: roll free of one negative status effect on yourself (priority: Stunned > Frozen > Paralyzed > Bleeding > others). 60-turn cooldown.",
@@ -41,7 +43,8 @@
         {
           "Name": "Vault",
           "Class": "Acrobatics_Vault",
-          "Cost": 50,
+          "Cost": 2,
+          "Requires": "AcrobaticsDodgePower",
           "Attribute": "Agility",
           "Minimum": "15",
           "Description": "Active ability: leap 2 cells in a chosen direction, skipping over the cell at distance 1 (wall, creature, or open). 15-turn cooldown.",

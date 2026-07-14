@@ -298,18 +298,18 @@ namespace CavesOfOoo.Tests
         public void Wsp72CrossoverPowers_AllRegisteredInSkillRegistryFromJson()
         {
             SkillRegistry.EnsureInitialized();
-            string[] powers = new[]
+            (string className, int cost)[] powers =
             {
-                "Cryomancy_BrittleStrike",
-                "Galvanism_GroundStrike",
-                "Pyromancy_Charsplit",
-                "Corrosion_Etch",
+                ("Cryomancy_BrittleStrike", 1),
+                ("Galvanism_GroundStrike", 1),
+                ("Pyromancy_Charsplit", 2),
+                ("Corrosion_Etch", 1),
             };
-            foreach (var className in powers)
+            foreach (var (className, expectedCost) in powers)
             {
                 Assert.IsTrue(SkillRegistry.TryGetPowerByClass(className, out var power),
                     $"WSP7.2 power '{className}' must register from JSON.");
-                Assert.AreEqual(1, power.Cost);
+                Assert.AreEqual(expectedCost, power.Cost, $"'{className}' M1.e economy cost.");
                 Assert.IsFalse(string.IsNullOrEmpty(power.Description));
             }
         }

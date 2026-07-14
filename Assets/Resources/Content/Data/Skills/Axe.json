@@ -19,7 +19,7 @@
         {
           "Name": "Expertise",
           "Class": "Axe_Expertise",
-          "Cost": 1,
+          "Cost": 2,
           "Description": "+2 to-hit while wielding an Axe-class weapon (Battleaxe / Hatchet).",
           "Foreground": "r",
           "Detail": "R"
@@ -27,7 +27,8 @@
         {
           "Name": "Berserk",
           "Class": "Axe_Berserk",
-          "Cost": 1,
+          "Cost": 2,
+          "Requires": "Axe_Cleave",
           "Description": "Active ability: enter a 5-turn blood frenzy — +5 Strength, -2 DV. 100-turn cooldown. Requires an Axe weapon equipped.",
           "Foreground": "r",
           "Detail": "R"
@@ -35,7 +36,8 @@
         {
           "Name": "Dismember",
           "Class": "Axe_Dismember",
-          "Cost": 1,
+          "Cost": 2,
+          "Requires": "Axe_Cleave",
           "Description": "Axe hits have a small chance to dismember a non-vital body part (arm, leg, hand, foot, etc.) — the target loses the limb and starts bleeding. Mortal parts (head, heart) are safe from this passive; that's Decapitate's territory.",
           "Foreground": "r",
           "Detail": "R"
@@ -43,7 +45,8 @@
         {
           "Name": "Decapitate",
           "Class": "Axe_Decapitate",
-          "Cost": 1,
+          "Cost": 4,
+          "Requires": "Axe_Dismember",
           "Description": "Marker skill that opens up vital anatomy (head, heart) to your Dismember procs. Without this skill your axe spares the head; with it, an unlucky enemy may lose theirs. Requires Dismember to actually fire.",
           "Foreground": "r",
           "Detail": "R"
@@ -51,7 +54,7 @@
         {
           "Name": "Hook and Drag",
           "Class": "Axe_HookAndDrag",
-          "Cost": 1,
+          "Cost": 2,
           "Description": "Active ability: swing at an adjacent enemy and bury the axe — they're hooked. Each turn, hooked targets are dragged 1 cell toward you (Strength save to break free, vs target 20). Lasts up to 9 turns. 50-turn cooldown. Requires an Axe weapon equipped.",
           "Foreground": "r",
           "Detail": "R"
@@ -59,7 +62,8 @@
         {
           "Name": "Whirlwind",
           "Class": "Axe_Whirlwind",
-          "Cost": 1,
+          "Cost": 3,
+          "Requires": "Axe_Berserk",
           "Description": "Active ability: spin once, striking every adjacent creature with a full weapon swing. On-hit procs (Cleave, Dismember) fire per target. 50-turn cooldown. Requires an Axe weapon equipped.",
           "Foreground": "r",
           "Detail": "R"
@@ -67,7 +71,8 @@
         {
           "Name": "Rend Armor",
           "Class": "Axe_RendArmor",
-          "Cost": 1,
+          "Cost": 2,
+          "Requires": "Axe_Expertise",
           "Description": "Active ability: a deliberate cleave that bypasses damage and applies 3 stacks of ShatterArmor directly — defender's effective AV drops by 6. 30-turn cooldown. Requires an Axe weapon equipped.",
           "Foreground": "r",
           "Detail": "R"

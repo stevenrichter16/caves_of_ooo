@@ -19,7 +19,7 @@
         {
           "Name": "Bloodletter",
           "Class": "ShortBlades_Bloodletter",
-          "Cost": 1,
+          "Cost": 2,
           "Description": "Frequent light Bleed proc on every Piercing hit. Light dice but stacks aggressively with longer-blade Bleeds.",
           "Foreground": "r",
           "Detail": "C"
@@ -27,7 +27,7 @@
         {
           "Name": "Expertise",
           "Class": "ShortBlades_Expertise",
-          "Cost": 1,
+          "Cost": 2,
           "Description": "+1 to-hit while wielding a Piercing-class weapon (Dagger / Spear / ChoirSpine).",
           "Foreground": "c",
           "Detail": "C"
@@ -35,7 +35,8 @@
         {
           "Name": "Hobble",
           "Class": "ShortBlades_Hobble",
-          "Cost": 1,
+          "Cost": 2,
+          "Requires": "ShortBlades_Jab",
           "Description": "Piercing hits have a chance to apply Hobbled — the target is harder to hit while limping.",
           "Foreground": "c",
           "Detail": "C"
@@ -43,7 +44,7 @@
         {
           "Name": "Rejoinder",
           "Class": "ShortBlades_Rejoinder",
-          "Cost": 1,
+          "Cost": 2,
           "Description": "When an enemy attack misses you and you have a Piercing weapon equipped, you have a chance to immediately counter-attack.",
           "Foreground": "c",
           "Detail": "C"
@@ -51,7 +52,8 @@
         {
           "Name": "Puncture",
           "Class": "ShortBlades_Puncture",
-          "Cost": 1,
+          "Cost": 2,
+          "Requires": "ShortBlades_Jab",
           "Description": "+2 penetration on every melee swing made with a Piercing weapon. Slips past armor that would otherwise stop the blade.",
           "Foreground": "c",
           "Detail": "C"
@@ -59,7 +61,8 @@
         {
           "Name": "Shank",
           "Class": "ShortBlades_Shank",
-          "Cost": 1,
+          "Cost": 3,
+          "Requires": "ShortBlades_Puncture",
           "Description": "Active ability: a vicious melee strike against a status-ridden adjacent foe. +2 penetration per negative status effect they suffer (Bleeding, Stunned, Confused, etc.). 10-turn cooldown. Requires a Piercing weapon equipped.",
           "Foreground": "c",
           "Detail": "C"
@@ -67,7 +70,8 @@
         {
           "Name": "Flurry",
           "Class": "ShortBlades_Flurry",
-          "Cost": 1,
+          "Cost": 3,
+          "Requires": "ShortBlades_Expertise",
           "Description": "Active ability: 3 quick weapon strikes against one adjacent foe in a single turn. Each strike rolls hit + damage + on-hit procs independently — Bloodletter / Jab / Hobble can stack 3 times from one Flurry. 35-turn cooldown. Requires a Piercing weapon equipped.",
           "Foreground": "c",
           "Detail": "C"
@@ -75,7 +79,8 @@
         {
           "Name": "Backstab",
           "Class": "ShortBlades_Backstab",
-          "Cost": 1,
+          "Cost": 4,
+          "Requires": "ShortBlades_Shank",
           "Description": "Active ability: strike an adjacent target. If a creature stands directly opposite you (target is flanked), the strike deals +100% bonus damage. 20-turn cooldown. Requires a Piercing weapon equipped.",
           "Foreground": "c",
           "Detail": "C"
@@ -83,7 +88,7 @@
         {
           "Name": "Disengage",
           "Class": "ShortBlades_Disengage",
-          "Cost": 1,
+          "Cost": 2,
           "Description": "Active ability: move up to 3 cells in a chosen direction without attacking. Stops at the first solid cell or creature. 25-turn cooldown. Requires a Piercing weapon equipped.",
           "Foreground": "c",
           "Detail": "C"

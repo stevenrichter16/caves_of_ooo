@@ -264,7 +264,8 @@ namespace CavesOfOoo.Tests
             {
                 Assert.IsTrue(SkillRegistry.TryGetPowerByClass(className, out var power),
                     $"WSP7.3 retort '{className}' must register from JSON.");
-                Assert.AreEqual(1, power.Cost);
+                Assert.AreEqual(2, power.Cost,
+                    $"'{className}' — retorts cost 2 in the M1.e skill economy.");
                 Assert.IsFalse(string.IsNullOrEmpty(power.Description));
             }
         }

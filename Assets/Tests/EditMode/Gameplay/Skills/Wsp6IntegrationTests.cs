@@ -719,17 +719,19 @@ namespace CavesOfOoo.Tests
             // wrong cost, this test fails — players couldn't see/buy the skill.
             SkillRegistry.EnsureInitialized();
 
-            string[] wsp6PowerClasses = new[]
+            // FUN-P0 M1.e re-costed the skill economy (mid powers 2,
+            // capstones 3-4) so the +1 SP/level grant buys felt choices.
+            (string className, int cost)[] wsp6PowerClasses =
             {
-                "Cudgel_Slam",
-                "ShortBlades_Puncture",
-                "ShortBlades_Shank",
-                "Axe_Dismember",
-                "Axe_Decapitate",
-                "Axe_HookAndDrag",
+                ("Cudgel_Slam", 3),
+                ("ShortBlades_Puncture", 2),
+                ("ShortBlades_Shank", 3),
+                ("Axe_Dismember", 2),
+                ("Axe_Decapitate", 4),
+                ("Axe_HookAndDrag", 2),
             };
 
-            foreach (var className in wsp6PowerClasses)
+            foreach (var (className, expectedCost) in wsp6PowerClasses)
             {
                 // WSP6 skills are POWERS (children of weapon-tree
                 // tree-roots like CudgelSkill / AxeSkill / ShortBladesSkill),
@@ -741,9 +743,9 @@ namespace CavesOfOoo.Tests
                     $"WSP6 power '{className}' must be registered in SkillRegistry " +
                     $"after loading content blueprints. If this fails, the JSON " +
                     $"entry's Class field is missing / typo'd / malformed.");
-                Assert.AreEqual(1, power.Cost,
-                    $"WSP6 weapon-tree power '{className}' must cost 1 SP per the " +
-                    $"established convention.");
+                Assert.AreEqual(expectedCost, power.Cost,
+                    $"WSP6 weapon-tree power '{className}' cost drifted from the " +
+                    $"M1.e skill-economy table.");
                 Assert.IsFalse(string.IsNullOrEmpty(power.Description),
                     $"WSP6 power '{className}' must have a non-empty Description " +
                     $"so the player sees something in the skills menu.");

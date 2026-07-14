@@ -19,7 +19,7 @@
         {
           "Name": "Expertise",
           "Class": "Cudgel_Expertise",
-          "Cost": 1,
+          "Cost": 2,
           "Description": "+2 to-hit while wielding a Cudgel-class weapon (Mace / Warhammer / Cudgel / OldWorldPipe).",
           "Foreground": "y",
           "Detail": "Y"
@@ -27,7 +27,8 @@
         {
           "Name": "Hammer",
           "Class": "Cudgel_Hammer",
-          "Cost": 1,
+          "Cost": 2,
+          "Requires": "Cudgel_Bludgeon",
           "Description": "Cudgel hits have a small chance to apply Broken to one of the defender's equipped items.",
           "Foreground": "y",
           "Detail": "Y"
@@ -35,7 +36,8 @@
         {
           "Name": "Shattering Blows",
           "Class": "Cudgel_ShatteringBlows",
-          "Cost": 1,
+          "Cost": 3,
+          "Requires": "Cudgel_Hammer",
           "Description": "Cudgel hits have a chance to apply ShatterArmor — the defender's effective AV drops while their armor is cracked.",
           "Foreground": "y",
           "Detail": "Y"
@@ -43,7 +45,8 @@
         {
           "Name": "Backswing",
           "Class": "Cudgel_Backswing",
-          "Cost": 1,
+          "Cost": 2,
+          "Requires": "Cudgel_Bludgeon",
           "Description": "When a Cudgel-weapon swing misses, you have a chance to immediately re-attack with the same weapon.",
           "Foreground": "y",
           "Detail": "Y"
@@ -51,7 +54,7 @@
         {
           "Name": "Conk",
           "Class": "Cudgel_Conk",
-          "Cost": 1,
+          "Cost": 2,
           "Description": "Active ability: targeted strike on an adjacent creature. The conk applies Stunned regardless of swing outcome. 10-turn cooldown. Requires a Cudgel weapon equipped.",
           "Foreground": "y",
           "Detail": "Y"
@@ -59,7 +62,8 @@
         {
           "Name": "Slam",
           "Class": "Cudgel_Slam",
-          "Cost": 1,
+          "Cost": 3,
+          "Requires": "Cudgel_Conk",
           "Description": "Active ability: slam an adjacent creature, knocking them back up to 3 cells in a straight line. Cells blocked by walls or creatures stop the push and add bonus weapon damage; the target is Stunned. 50-turn cooldown. Requires a Cudgel weapon equipped.",
           "Foreground": "y",
           "Detail": "Y"
@@ -67,7 +71,7 @@
         {
           "Name": "Charging Strike",
           "Class": "Cudgel_ChargingStrike",
-          "Cost": 1,
+          "Cost": 2,
           "Description": "Active ability: charge up to 3 cells in a chosen direction and strike the first creature in your path with +50% bonus damage. 30-turn cooldown. Requires a Cudgel weapon equipped.",
           "Foreground": "y",
           "Detail": "Y"
@@ -75,7 +79,8 @@
         {
           "Name": "Ground Pound",
           "Class": "Cudgel_GroundPound",
-          "Cost": 1,
+          "Cost": 3,
+          "Requires": "Cudgel_Slam",
           "Description": "Active ability: smash the ground — every adjacent creature takes 75% weapon damage, gets Stunned for 1 turn, and is knocked back 1 cell. 40-turn cooldown. Requires a Cudgel weapon equipped.",
           "Foreground": "y",
           "Detail": "Y"
@@ -83,7 +88,7 @@
         {
           "Name": "Disarm",
           "Class": "Cudgel_Disarm",
-          "Cost": 1,
+          "Cost": 2,
           "Description": "Active ability: smack an adjacent target's equipped weapon out of their hand. The weapon drops on their cell. 50-turn cooldown. Requires a Cudgel weapon equipped.",
           "Foreground": "y",
           "Detail": "Y"

@@ -414,13 +414,13 @@ namespace CavesOfOoo.Tests
             }
 
             // Powers (in _powersByClass).
-            string[] powers = new[] { "Pyromancy_Cinder", "Spellcraft_Empower" };
-            foreach (var className in powers)
+            (string className, int cost)[] powers = { ("Pyromancy_Cinder", 1), ("Spellcraft_Empower", 2) };
+            foreach (var (className, expectedCost) in powers)
             {
                 Assert.IsTrue(SkillRegistry.TryGetPowerByClass(className, out var power),
                     $"WSP7.1 power '{className}' must register from JSON. " +
                     $"If missing, the JSON edit didn't include the Powers entry.");
-                Assert.AreEqual(1, power.Cost, $"'{className}' must cost 1 SP.");
+                Assert.AreEqual(expectedCost, power.Cost, $"'{className}' M1.e economy cost.");
                 Assert.IsFalse(string.IsNullOrEmpty(power.Description));
             }
         }
