@@ -1,6 +1,18 @@
 # Lore Revision Plan — fixing the literary-technical flaws
 
-> **Status:** planned (M0–M8 not yet started).
+> **Status:** **EXECUTED — M0 through M8 complete** (2026-07-14, user
+> authorization: "Go ahead with all your changes, without my
+> intervention"; the five taste checkpoints were resolved with this
+> plan's stated defaults). Traceability: F1→M2 ✓, F2→M1 ✓, F3→M1 ✓,
+> F4→M3 ✓, F5→M1 ✓, F6→M5+M6 ✓ (blind gate: 10/10 attribution, 3
+> findings fixed), F7→M4 ✓, F8→M0+M8 ✓ (findings log now 6 entries),
+> F9→M0 ✓, F10→M7 ✓. Deferred beyond this revision: full voice-card
+> rewrite of remaining minor NPC small-talk in Villagers/FriendlyNPCs
+> (canon-correct after M6's re-grounding; register polish is writing
+> work), the AT-era content's final disposition (user decision), and
+> EditMode content-test run (requires a Unity session; all touched
+> JSON parses and the rewritten conversation graph has zero dangling
+> targets).
 > **Authority:** This plan governs the revision. Where it amends canon,
 > the amendments land in `Lore/10_Bible.md` (which remains the canon
 > authority) in the same milestone that commits them.

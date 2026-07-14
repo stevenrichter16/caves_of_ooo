@@ -19,15 +19,15 @@ A god-tree that held the world together grew old and afraid of its own senility,
 For a new contributor, read in this order:
 
 1. **`10_Bible.md`** (this file) — orientation + the canon lock (§IV).
-2. **`01_Spine.md`** — the cosmological foundation (the Felling, the Six, Urqu). The single most load-bearing doc.
-3. **`00_Canon.md`** — the Phase-0 audit/layer-map (useful as a cross-index; predates some commits, so defer to later phases on conflicts).
-4. **`02_Geography.md`** → **`03_History.md`** — where and when.
+2. **`History/01_Spine.md`** — the cosmological foundation (the Felling, the Six, Urqu). The single most load-bearing doc.
+3. **`History/00_Canon.md`** — the Phase-0 audit/layer-map (useful as a cross-index; predates some commits, so defer to later phases on conflicts).
+4. **`History/02_Geography.md`** → **`History/03_History.md`** — where and when.
 5. **`Factions/01`–`10`** — the ten faction deep-dives (read `01` Rot Choir first; it sets the per-faction template).
-6. **`05_Spirits.md`** → **`06_Plot.md`** — the cosmic actors and the main quest synthesis (the Big commits live in `06`).
-7. **`07_Characters.md`** → **`08_MaterialCulture.md`** → **`09_Magic.md`** — the cast, the stuff, and how power works.
+6. **`History/05_Spirits.md`** → **`History/06_Plot.md`** — the cosmic actors and the main quest synthesis (the Big commits live in `06`).
+7. **`History/07_Characters.md`** → **`History/08_MaterialCulture.md`** → **`History/09_Magic.md`** — the cast, the stuff, and how power works.
 8. **Companion design files** (`catacomb_village_design.md`, `sarisarinama_bestiary_design.md`, `sarisarinama_drosera_design.md`, `LINEAGE-DESIGN.md`) — the deep mechanical/content layers the phase docs build on. Read `IDEAS.md` as raw backlog and source ledger, not as canon authority.
 
-*Conflict rule: later phases supersede earlier ones; the faction docs supersede the Spine's faction-stubs; this Bible's §IV supersedes all on matters of bare fact. `00_Canon.md` is an audit map, not an authority, where it predates a later commit.*
+*Conflict rule: later phases supersede earlier ones; the faction docs supersede the Spine's faction-stubs; this Bible's §IV supersedes all on matters of bare fact. `History/00_Canon.md` is an audit map, not an authority, where it predates a later commit.*
 
 ---
 
@@ -37,15 +37,15 @@ For a new contributor, read in this order:
 
 | Doc | Phase | Covers | Status |
 |---|---|---|---|
-| `00_Canon.md` | 0 | Layer-map audit of all canon; open-question register | complete (audit) |
-| `01_Spine.md` | 1 | The Felling; the Six ascended; Urqu as unborn seventh; the three endings; ~1080-yr timeline | complete (v2) |
-| `02_Geography.md` | 2 | Place-network of ~30 places; Strangeness Tiers; Sill→inward; Urqu as place-infection | complete (v2) |
-| `03_History.md` | 3 | Pre-Felling unity; founding dates; the Persecution; the Great Manifestation; the Thinning | complete |
-| `05_Spirits.md` | 5 | Pre-Tree chaos; Spirits as pre-Tree drives; Urqu deepened; Root agency; Branchwork; numina | complete |
-| `06_Plot.md` | 6 | The Thinning's cause; Naro; the Sealed Libraries; the three endings detailed; the main spine | complete |
-| `07_Characters.md` | 7 | The Six's names; Naro & the Declined; the named cast; child-arc; origin menu | complete |
-| `08_MaterialCulture.md` | 8 | The material grammar; currency; food; dress; art; per-faction material culture | complete |
-| `09_Magic.md` | 9 | Unified binding/unbinding magic; **everyday + deep scale spectrum**; self-as-Naming | complete (revised) |
+| `History/00_Canon.md` | 0 | Layer-map audit of all canon; open-question register | complete (audit) |
+| `History/01_Spine.md` | 1 | The Felling; the Six ascended; Urqu as unborn seventh; the three endings; ~1080-yr timeline | complete (v2) |
+| `History/02_Geography.md` | 2 | Place-network of ~30 places; Strangeness Tiers; Sill→inward; Urqu as place-infection | complete (v2) |
+| `History/03_History.md` | 3 | Pre-Felling unity; founding dates; the Persecution; the Great Manifestation; the Thinning | complete |
+| `History/05_Spirits.md` | 5 | Pre-Tree chaos; Spirits as pre-Tree drives; Urqu deepened; Root agency; Branchwork; numina | complete |
+| `History/06_Plot.md` | 6 | The Thinning's cause; Naro; the Sealed Libraries; the three endings detailed; the main spine | complete |
+| `History/07_Characters.md` | 7 | The Six's names; Naro & the Declined; the named cast; child-arc; origin menu | complete |
+| `History/08_MaterialCulture.md` | 8 | The material grammar; currency; food; dress; art; per-faction material culture | complete |
+| `History/09_Magic.md` | 9 | Unified binding/unbinding magic; **everyday + deep scale spectrum**; self-as-Naming | complete (revised) |
 | `10_Bible.md` | 10 | This file — master index, canon lock, epilogues, final consistency pass | complete |
 
 *(There is no `04_*.md` at root; Phase 4 is the `Factions/` directory.)*
@@ -114,7 +114,7 @@ For a new contributor, read in this order:
 
 ### The Six — emotional keys (Phase 11, C7)
 
-Grief is load-bearing **only for Maeleth and Othren** (the estrangement is the story). The others are re-keyed: **Selen = joy** (the all-including delight is the horror), **Ylaes = appetite-of-the-eye** (thrilled looking, shading into cruelty-of-delight; she does not grieve, which unsettles the other five), **Tovreth = wit** (the funny one; the exhaustion lives under the jokes), **Dohren = contentment** (a love with no lack — until the finale asks him to want the Root's ending for the Root). Sample lines: `07_Characters.md` §I.
+Grief is load-bearing **only for Maeleth and Othren** (the estrangement is the story). The others are re-keyed: **Selen = joy** (the all-including delight is the horror), **Ylaes = appetite-of-the-eye** (thrilled looking, shading into cruelty-of-delight; she does not grieve, which unsettles the other five), **Tovreth = wit** (the funny one; the exhaustion lives under the jokes), **Dohren = contentment** (a love with no lack — until the finale asks him to want the Root's ending for the Root). Sample lines: `History/07_Characters.md` §I.
 
 ### The Seventh
 
@@ -175,9 +175,12 @@ Cold-eye pass (CLAUDE.md Q1–Q4) over the whole corpus, run at completion:
 | # | Date | Finding | Status |
 |---|---|---|---|
 | 1 | Phase-4 pass | Bower cast-date drift; Tent-Right sanctuary over-specific | fixed, commit `8cf4cdc` |
-| 2 | 2026-07-14 | Bible §IV says the Reader has been bodiless ~700 yrs; `01_Spine.md` §VI said ~800. Bible wins; Spine corrected. Found *after* the pass above claimed zero findings — the claim overstated. | fixed |
+| 2 | 2026-07-14 | Bible §IV says the Reader has been bodiless ~700 yrs; `History/01_Spine.md` §VI said ~800. Bible wins; Spine corrected. Found *after* the pass above claimed zero findings — the claim overstated. | fixed |
 | 3 | 2026-07-14 | `ROTCHOIR_VOICES.md` / shipped `RotChoir.json` use real-language personal names with explicit living-tradition labels, against §IX's naming rule. | fixed in revision M4/M6 (player-facing names replaced; internal IDs retained for save-compat) |
 | 4 | 2026-07-14 | Shipped `Factions.json` registers the Glassblown Remnant from the superseded cosmology. | resolved by canonization as under-text relic (`Lore/MYSTERY-LEDGER.md` §6) |
+
+| 5 | 2026-07-14 (M8) | Five faction docs still carried the pre-C3 value-words ("true practice-path" / "flawed vessel-path") after M1 struck the hierarchy language; found by the M8 grep gate, fixed with marked corrections. | fixed |
+| 6 | 2026-07-14 (M8) | The `06_Plot.md` §V line originally gating the practice-path on the "Naro-truth" survived M2's demotion pass in one spot; caught and reworded during M1's strike-through edit (see the line's revision marker). Logged here for completeness. | fixed |
 
 *Future passes append here. A revision that adds zero entries is a finding.*
 

@@ -73,7 +73,7 @@ And the vow works both ways. **Living Inkbound of sufficient seniority carry cor
 
 - **The skin-page vow as player content.** Can the player take the Inkbound vow — commit their own eventual death-body to Ink-Bath and the archive? Treat as a Lineage-tier end-of-run choice.
 - **Whether an Inkbound's read-aloud voice is the Reader's.** `02` §279 leaves the voice-shift ambiguous (the Body-Reader's voice "may or may not be the Reader's"). For the Inkbound specifically — a scribe reading *another Inkbound's* skin-page — does the Reader speak doubly? This is god-voice authoring work.
-- **Naming-adjacency payoff.** If the Inkbound are the Recension's partial-Naming-heirs (§I), they can matter as a potent variant of the flawed vessel-path Renewal: an Ink-Bathed, fully-read, perfectly-named body is a natural candidate vessel for the seventh Naming, but still a vessel, and therefore still cracked.
+- **Naming-adjacency payoff.** If the Inkbound are the Recension's partial-Naming-heirs (§I), they can matter as a potent variant of the vessel-path Renewal: an Ink-Bathed, fully-read, perfectly-named body is a natural candidate vessel for the seventh Naming, but still a vessel, and therefore still cracked.
 
 ---
 

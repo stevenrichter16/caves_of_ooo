@@ -1,46 +1,64 @@
 # Caves of Ooo — Lore
 
-This directory holds the complete lore, worldbuilding, and social-systems
-design for *Caves of Ooo*: a felled god-tree, six grieving gods, an unborn
-seventh, a world bound over older chaos, and an ordinary person deciding how a
-millennium-long stalemate breaks. Biological horror, cosmic horror, and the
-small whimsy of conjuring a field of flowers because it's pretty — held in
-balance.
+This directory holds the complete lore, worldbuilding, and
+social-systems design for *Caves of Ooo*: a felled god-tree, six
+gods re-keyed from a monotone of grief into joy, appetite, wit,
+contentment, and one load-bearing estrangement; an unborn seventh
+that is pressure, never will; a world bound over older chaos; and an
+ordinary person deciding how a millennium-long stalemate breaks.
+Biological horror, cosmic horror, and the small whimsy of conjuring
+a field of flowers because it's pretty — held in balance. The
+flowers matter because the Thinning is coming for them.
 
 ## Start here
 
-**→ Read [`10_Bible.md`](10_Bible.md) first.** It is the master reference: the
-one-paragraph pitch, the canonical reading order, the full document index, the
-**canon lock** (the spine of facts everything else must agree with), the ending
-epilogues, and the consolidated cultural-sources ledger.
+**→ Read [`10_Bible.md`](10_Bible.md) first** — the canon lock, the
+epilogues, the ledgers, the findings log. Then
+[`11_SecondSpine.md`](11_SecondSpine.md) — the Phase-11 revision
+(pressure-model Urqu, the chooser mechanism, the ending costs, the
+closure-ledger). Those two files are the whole of current bare-fact
+authority.
 
-Then, if you want the foundation in depth, read [`01_Spine.md`](01_Spine.md) —
-the single most load-bearing document (the Felling, the Six, Urqu).
+## The current layer (`Lore/` root)
 
-## What's here
+- **`10_Bible.md`** — canon lock; supersedes everything on bare fact.
+- **`11_SecondSpine.md`** — the Phase-11 amendments (C1–C4).
+- **`MYSTERY-LEDGER.md`** — the questions the canon promises never to
+  answer, and the under-text relic policy. Protected.
+- **`TERMS.md`** — the cross-strata vocabulary map (what "Palimpsest,"
+  "First Root," and "Ink" mean where), plus the frozen-ID policy.
+- **`Factions/`** — the ten current faction deep-dives (`01` Rot
+  Choir … `10` Inkbound; `02` is **the Recension**, renamed in
+  Phase 11).
+- **`Voices/`** — the ten voice cards every in-world line is written
+  from. The design-doc register is banned from in-world text.
+- **`Codex/`** — in-world artifacts (the oath, the Salted's file, the
+  three incompatible Felling tellings…). Gated by blind external
+  review; the gate record is in its README.
+- **`Design/`** — `NaroReadings.md` (the three readings and the
+  two-tier truth policy) and `V1-DramaticCore.md` (the enactment
+  climaxes and the v1 scope triage).
 
-- **`00`–`09`** — phase-history documents (Spine, Geography, History, Spirits,
-  Plot, Characters, Material Culture, Magic, plus the Phase-0 Canon audit).
-  *(There is no `04_*.md` at root — Phase 4 is the `Factions/` directory.)*
-- **`Factions/`** — phase-history faction deep-dives (`01` Rot Choir … `10` Inkbound).
-- **`Characters/`** — reserved for future per-character deep-dives.
+## The development trail (`Lore/History/`)
 
-Companion design files live in the repo root: `catacomb_village_design.md`,
-`sarisarinama_bestiary_design.md`, `sarisarinama_drosera_design.md`,
-`LINEAGE-DESIGN.md`. `IDEAS.md` is a raw backlog and source ledger; its entries
-are canon only where adopted by a phase document or `10_Bible.md`.
+Phases 0–9 — the phase-history documents. Superseded on bare fact by
+the Bible, still the detailed source for geography, history, the
+cast, material culture, and magic. See `History/README.md` for the
+authority rule.
 
 ## Conflict rule
 
-The Bible's canon lock (`10_Bible.md` §IV) supersedes all on matters of bare
-fact. Phase documents and faction docs are development history unless explicitly
-marked current. `00_Canon.md` is an audit map, not an authority, where it
-predates a later commit; `IDEAS.md` is backlog, not canon authority.
+`10_Bible.md` §IV (as amended by `11_SecondSpine.md`) supersedes all
+on bare fact. `MYSTERY-LEDGER.md` overrides everything in the other
+direction: ledgered questions may never be closed, by any document,
+at the witnessable tier. Phase-history files are development record.
+`IDEAS.md` (repo root) is backlog, not canon.
 
 ## Status
 
-Complete across all eleven phases (0–10). Internally consistent (final cold-eye
-pass: 0 outstanding findings), tonally coherent, respectful in its borrowings
-(structural-only, credited, CoO-native naming throughout), and buildable atop
-existing CoO systems with no new architecture. What remains is engineering,
-level-design, and writing — handed off in `10_Bible.md` §VII.
+Canon complete through Phase 11 (the literary revision: epistemic
+re-opening, ending costs, closure-ledger, de-symmetrization, naming
+repairs, the prose layer, the climax redesigns, and this
+restructure). Consistency is tracked as a **findings log** in the
+Bible §VI — a log, not a claim. What remains is engineering,
+level-design, and writing, scoped by `Design/V1-DramaticCore.md`.

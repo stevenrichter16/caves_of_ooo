@@ -67,7 +67,7 @@ Per Phase 3, the Thinning (Gens 34-36) is the Root's holding-field weakening and
 
 - **Consume.** The Choir consumes the Root; the Rooted *fades* (per Phase 1 v2). The bio-light — his dream — would go out across every village at once. **The Spore-Wedded archetype welcomes this; every other village experiences it as the death of their god and their light.** This is among the most affecting Consume-path consequences.
 - **Preserve.** The Root is sealed; the Rooted holds his pose, holds the field, *forever.* The villages continue as they are. The Asleep Tradition's ideal.
-- **Renewal.** **The Rooted is the gatekeeper.** His agreement requires the player to convince him the Root will not be destroyed in waking (per Phase 1 v2 / Spine §348). Because he is the only one who can speak with the Root directly, **a player who has reached the Rooted in Olderdeep knows what the Root itself wants** — the single most load-bearing piece of information for the Renewal choice. Later canon settles the true practice-path: the Root wakes without fear only when the world no longer asks it to hold alone.
+- **Renewal.** **The Rooted is the gatekeeper.** His agreement requires the player to convince him the Root will not be destroyed in waking (per Phase 1 v2 / Spine §348). Because he is the only one who can speak with the Root directly, **a player who has reached the Rooted in Olderdeep knows what the Root itself wants** — the single most load-bearing piece of information for the Renewal choice. Later canon settles the practice-path: the Root wakes without fear only when the world no longer asks it to hold alone.
 
 ---
 

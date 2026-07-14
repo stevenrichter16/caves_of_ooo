@@ -227,7 +227,7 @@ Lost by:
 ### Late-game arc
 
 - **The Reader-Salted reconciliation (Pale Curation side).** The player builds trust with the Salted. The first messenger between the two gods in a thousand years (the Recension side has the Estrangement-Bearers; the Pale Curation side has *no one* — the Salted has no equivalent sub-sect because she ordered none; *the player is the first to even attempt it from her side*).
-- **The seventh's-body quest.** If the Sorters' grail is pursued to its end, the player may find — or definitively fail to find — a body they believe could serve as the seventh vessel. Later canon frames any such use as a **flawed vessel-path** Renewal, not the true answer Naro understood.
+- **The seventh's-body quest.** If the Sorters' grail is pursued to its end, the player may find — or definitively fail to find — a body they believe could serve as the seventh vessel. Later canon frames any such use as a **vessel-path** Renewal — it works, and cracks in a far generation, per the chooser mechanism (Phase 11 C2); whether Naro understood this is a ledgered question (Mystery Ledger §1).
 
 ### Ending-aligned arcs
 
@@ -241,7 +241,7 @@ Lost by:
 
 - **The Salted's mortal name.** Later canon names her **Othren**. Her name is filed; her last words remain "[unrecorded]."
 - **Why exactly the Salted will not rule on the Catchers.** Settled as guilt: they are her reflection. Whether a player can force a ruling, and what it costs her, remains a quest-design choice.
-- **Whether the seventh's body exists and can be found.** Keep this genuinely uncertain until very late. If the player uses a found/preserved vessel for Renewal, it belongs to the flawed vessel-path, not the true practice-path.
+- **Whether the seventh's body exists and can be found.** Keep this genuinely uncertain until very late. If the player uses a found/preserved vessel for Renewal, it belongs to the vessel-path, not the practice-path (the distinction is mechanical, not moral — Phase 11 C3).
 - **The contents of the Salted's rare non-"continuing" file-lines.** Over ~600 years, the annual ceremony has *occasionally* recorded something other than "Status: continuing." What those lines say is open. *(Soft recommendation: the player can read the full file at high reputation; the rare deviating lines, read in sequence, tell a fragmentary thousand-year story of the Salted's grief — and at least one of them is, unmistakably, about the Reader.)*
 - **Whether Stone Burial and Pale Curation can ever reconcile.** Open. Probably not; the doctrinal opposition is total.
 

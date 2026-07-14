@@ -181,7 +181,7 @@ Lost by: **breaking hospitality (catastrophic — the single worst reputation lo
 
 - **The cosmological discovery.** The player and the Namers piece it together: the oath is mortal Naming; Tent-Right is Urqu's mirror; the unnamed people reinvented the missing seventh inheritance. **One of the most satisfying lore-revelations in the game** — and it recontextualizes the humble wasteland faction as cosmologically central.
 - **The First Tent.** The pilgrimage; the monument to the choice; the deepest expression of Tent-Right's culture.
-- **The Urqu-kinship encounter.** A player who has understood the mirror may approach Urqu differently — not as the other factions do (defense, dread, bargaining-with-mouthpieces) but as *kin.* Later canon makes this the true practice-path's deepest insight: Tent-Right does not defeat Urqu, it answers the unnamed sibling.
+- **The Urqu-kinship encounter.** A player who has understood the mirror may approach Urqu differently — not as the other factions do (defense, dread, bargaining-with-mouthpieces) but as *kin.* Later canon makes this the practice-path's deepest insight: Tent-Right does not defeat Urqu, it answers the unnamed sibling.
 
 ### Ending-aligned arcs
 
