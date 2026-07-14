@@ -253,12 +253,24 @@ namespace CavesOfOoo
 
                     var playerBody = _player.GetPart<Body>();
                     Debug.Log($"[Bootstrap] Player created. Has Body part: {playerBody != null}, Body initialized: {playerBody?.GetBody() != null}");
-                    GrantShowcaseSpellMutations();
-                    InitializePlayerStartingTinkering();
-                    GivePlayerStartingTonics();
+                    // FUN-P0 M1.a: the mortal start. The kit (dagger, two
+                    // tonics, empty BitLocker) always applies; the legacy
+                    // showcase grants are debug-only. PlacePlayerInOpenCell
+                    // must stay outside the gate — the debug spawns below
+                    // read the player's placed position.
+                    StartingLoadout.ApplyStarterKit(_player, _factory);
+                    if (StartingLoadout.DebugGrantsEnabled)
+                    {
+                        GrantShowcaseSpellMutations();
+                        InitializePlayerStartingTinkering();
+                        GivePlayerStartingTonics();
+                    }
                     PlacePlayerInOpenCell();
-                    SpawnDebugWeaponNearPlayer();
-                    SpawnDebugNPCNearPlayer();
+                    if (StartingLoadout.DebugGrantsEnabled)
+                    {
+                        SpawnDebugWeaponNearPlayer();
+                        SpawnDebugNPCNearPlayer();
+                    }
                     return true;
                 });
                 if (!playerCreated)

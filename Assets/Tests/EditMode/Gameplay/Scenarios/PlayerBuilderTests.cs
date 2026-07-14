@@ -65,9 +65,13 @@ namespace CavesOfOoo.Tests.Scenarios
         [Test]
         public void SetHp_SetsAbsoluteBaseValue()
         {
+            // Value chosen strictly below the blueprint's Max so this pins the
+            // absolute-set semantics independent of statline tuning (FUN-P0
+            // M1.a dropped Player Max HP 500 -> 40; over-Max behavior is
+            // SetHp_ClampsToMax's contract, not this test's).
             var (ctx, _, player) = BuildContext();
-            ctx.Player.SetHp(100);
-            Assert.AreEqual(100, player.GetStatValue("Hitpoints", -1));
+            ctx.Player.SetHp(25);
+            Assert.AreEqual(25, player.GetStatValue("Hitpoints", -1));
         }
 
         [Test]
