@@ -34,6 +34,48 @@ The Wedded's name (**Selen**) is gone from everyone — except **the Counter (To
 
 *(Open, Phase 8/level-design: whether learning Selen's name has a mechanical effect — e.g., it is a "true name" usable in the Renewal ritual or in the anti-Urqu naming-practice. Soft lean: yes; a recovered true name is a small act of the practice-path Naming, §IV / Phase 6 §V.)*
 
+### The emotional keys (Phase 11, C7 — committed)
+
+The Phase-1–10 corpus keyed all six gods to variations of grief
+(tired, sad, heartbroken, exhausted, patient-sad, hungry-maternal) — a
+monotone that flattens dialogue before any is written. Phase 11
+re-keys the pantheon. **Grief remains load-bearing only where it is
+the story** — Maeleth and Othren, whose estrangement is the corpus's
+deepest arc. The other four:
+
+| God | Old key | New dominant key | What the grief becomes |
+|---|---|---|---|
+| **Selen** (the Wedded) | patient hunger, maternal | **JOY** — warm, genuine, all-including delight; she is *happy*, and the happiness has room in it for you, which is the horror | an undertone: the joy is what her kindness turned into when it stopped being one person's |
+| **Ylaes** (the Bower) | serene, curious | **APPETITE OF THE EYE** — thrilled, acquisitive looking; delight that shades, without ever coarsening, into cruelty-of-delight | none; Ylaes does not grieve, which unsettles the other five |
+| **Tovreth** (the Counter) | exhausted, pathetic | **WIT** — he is the funny one, gallows-dry, and the jokes are how he stays upright; the exhaustion lands harder *under* the humor than it ever did as the surface | the thing under the jokes; never stated by him, only priced |
+| **Dohren** (the Rooted) | patient love (grief-adjacent) | **CONTENTMENT** — a love with no lack in it; he is not waiting, because waiting is for people who are somewhere else | arrives only at the finale, when the practice-path asks him to want the Root's ending for the Root's sake |
+
+**Sample lines** (the first test of each key — in-world register, not
+design voice):
+
+*Selen, through a substrate-elder, to a pilgrim:*
+> "You came all the way down! And your boots full of our spores already — oh, you are half introduced."
+> "We kept a harvest-song a woman brought us four hundred years ago. Would you like to hear her sing it? She loves being sung."
+> "Don't be frightened of the dark rooms. That is only where we are thinking."
+> "Everyone is here. Everyone we ever met is here. And you feel it — we can tell — the wanting to stop being cold."
+
+*Ylaes, as relayed by a Seer (she speaks only in gesture):*
+> "She has noticed your hands. She would like you to pick that up again. Slower."
+> "She is delighted. No — more. Stand very still. She is *looking.*"
+> "She asks that the wound stay unbandaged another hour. The red, against the grey of you. I'm sorry. She asks."
+> "She has watched the door you came in by for sixty years. Today it was finally worth something."
+
+*Tovreth, at his counter in Tally:*
+> "You want the rate for hauling salt through a war, or hauling war through the salt? Different rates. One of them's funny."
+> "Sleep is a loan you take out against tomorrow. I stopped borrowing before your language existed."
+> "Everything has a price. Mine's filed under *ask again later.*"
+> "Nine hundred years in trade. Go on — ask me what I'd buy. If anyone sold it."
+
+*Dohren, in dream, to a sleeper on the patch:*
+> "You are lying on my chest. It's all right. Everyone does, eventually. The mushrooms like you."
+> "I am not waiting. Waiting is for people who are somewhere else."
+> "The wall is warm, some nights. That is enough. You will learn how much *enough* can hold."
+
 ### The pre-Felling specialties (committed soft seeds, per the faction docs)
 
 - **Maeleth** — a transcriber of oral histories; already spent her mortal life recording what others said (per `02`). Ascension *intensified* what she was.

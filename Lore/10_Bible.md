@@ -58,12 +58,12 @@ For a new contributor, read in this order:
 | `02_Palimpsest` | Palimpsest | the Reader (Maeleth) | tired grief; memory-as-record; the Naro cover-up |
 | `03_PaleCuration` | Pale Curation | the Salted (Othren) | memory-in-the-preserved-body; the file; the Salted's guilt |
 | `04_SaccharineConcord` | Saccharine Concord | the Counter (Tovreth) | completion in an incompletable world; keeps Selen's name |
-| `05_BowerFolk` | Bower-Folk | the Bower (Ylaes) | beauty-as-stillness; the Resin-Cast; completion-is-death |
+| `05_BowerFolk` | Bower-Folk | the Bower (Ylaes) | beauty-as-composition; the staged living; the Resin-Cast as the extreme |
 | `06_CatacombVillagers` | Catacomb-villagers | the Rooted (Dohren) | the god you live inside; bio-light as his dream (thin doc) |
 | `07_TentRight` | Tent-Right | (the unnamed) | the oath as mortal Naming; the Urqu mirror; the practice-path |
 | `08_DrivingBloom` | Driving Bloom | *none* | the headless faction; the Choir's discarded will; Urqu's agriculture |
-| `09_ImminentArchive` | Imminent Archive (Catchers) | (Pale Curation splinter) | preservation out of fear; the Salted's reflection |
-| `10_Inkbound` | Inkbound | (Palimpsest sub-sect) | the body-as-permanent-text; the skin-page vow (decision record) |
+| `09_ImminentArchive` | Imminent Archive (Catchers) | (Pale Curation splinter) | preservation out of fear; the practice preceded the doctrine |
+| `10_Inkbound` | Inkbound | (sub-sect of the archivists) | the body-as-text; the skin-page vow; the annotation horror (a text can be edited) |
 
 ### Companion design files (`/`)
 
@@ -111,6 +111,10 @@ For a new contributor, read in this order:
 | The Bower | Beauty | **Ylaes** | Resin-Cast in life (~980 yrs); name never written, only heard | Posy |
 | The Counter | Exchange | **Tovreth** | the most mortal-looking; ~900 yrs sleepless; name on every contract, read by none; keeps Selen's name | Tally |
 | The Rooted | Roots | **Dohren** | a fungal-plumed body embracing the Root-wall; his dream = bio-light everywhere; name buried deepest | Olderdeep |
+
+### The Six — emotional keys (Phase 11, C7)
+
+Grief is load-bearing **only for Maeleth and Othren** (the estrangement is the story). The others are re-keyed: **Selen = joy** (the all-including delight is the horror), **Ylaes = appetite-of-the-eye** (thrilled looking, shading into cruelty-of-delight; she does not grieve, which unsettles the other five), **Tovreth = wit** (the funny one; the exhaustion lives under the jokes), **Dohren = contentment** (a love with no lack — until the finale asks him to want the Root's ending for the Root). Sample lines: `07_Characters.md` §I.
 
 ### The Seventh
 

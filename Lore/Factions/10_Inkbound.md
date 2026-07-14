@@ -50,6 +50,12 @@ A clarifying distinction the fold-in makes explicit:
 
 This is a vow within the sect, not a new institution. An Inkbound is a Silent-Order-or-Body-Reader who has signed their own body into the archive.
 
+### The annotation horror (Phase 11, C7 — the Inkbound's own register)
+
+The fold-in originally left the Inkbound sharing Pale Curation's horror-mode (the preserved body). Phase 11 gives them their own: **a text can be edited.** A body that has become a manuscript is subject to everything a manuscript is subject to — glossing, correction, marginalia. The practice is real and sanctioned: when a senior Body-Reader finds an error in a read skin-page — a mistranscribed memory, a name the dying scribe got wrong — the correction is entered *in the margin of the body*, in the corrector's own hand, in permanent ink.
+
+And the vow works both ways. **Living Inkbound of sufficient seniority carry corrections in their own skin, in other people's handwriting** — emendations to the text they are becoming, entered while they are still writing it. An Inkbound elder's forearms are a history of colleagues' judgments about which parts of their life were recorded wrongly. They submit to this. It is the vow's deepest clause: *a text that cannot be corrected is not a text; it is a scar.* The horror is not being preserved. The horror is being **legible** — revisable by anyone qualified to hold the pen, forever, including before you are finished. (Pale Curation files you; the Bower-Folk compose you; the Choir absorbs you. Only the Inkbound *edit* you — and only the Inkbound volunteered.)
+
 ---
 
 ## III. Cross-references
@@ -75,7 +81,7 @@ This is a vow within the sect, not a new institution. An Inkbound is a Silent-Or
 
 (Inherited from `02_Palimpsest.md` §312-314; the Inkbound do not change the Palimpsest's tonal profile, they intensify it.)
 
-- **Biological horror.** Concentrated here: ink-saturated skin opened like book-pages; a person who arranged in life to become a corpse-manuscript; the read-aloud where the dead speak through the living scribe.
+- **Biological horror.** Concentrated here: ink-saturated skin opened like book-pages; a person who arranged in life to become a corpse-manuscript; the read-aloud where the dead speak through the living scribe; the marginal corrections entered in a living elder's skin, in someone else's hand (the annotation horror, §II — the body not merely preserved but *revisable*).
 - **Cosmic horror.** The Reader's distributed attention present in the read; the Inkbound's vow as the most extreme answer to memory-loss (*make yourself a book so you cannot be forgotten*) — and the unbearable question of whether it works, whether anything of the scribe is *in* the text or whether it is only ink.
 - **Comedy.** Quiet, inherited (`02` §314): the Silent Order's stubborn refusal to speak through anything but ink. *The Inkbound themselves are not comic — they are the Palimpsest's solemn extreme — but the Silent Order's eccentric purity carries the faint thread of it.*
 
