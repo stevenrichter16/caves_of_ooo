@@ -117,13 +117,49 @@ none will. Some things in a world are just true.
 **Forbidden from answering:** everything. Especially anything
 tempted to make them load-bearing.
 
+### 9. How many layers down does the writing go (Phase 12)
+
+The Tree scraped a world and wrote over it (Bible §IV, Phase 12). Is
+what lies beneath the first page, or the residue of a page scraped so
+many times it reads as chaos? Did something write *that*? The canon
+commits the question and forecloses every answer: no bleed, relic,
+recovered text, god, numen, Spirit, or ending may count the layers,
+date them, or bottom them out. *A page scraped often enough looks
+blank. It isn't. That is the entire visible truth, forever.*
+
+**Forbidden from answering:** everything, at both tiers — including
+design documents. There is no design-canon answer. The regress is
+real and unterminated.
+
 ---
 
-## The under-text policy (restraint clause)
+## The under-text policy (amended, Phase 12)
 
-Entries 4–6 execute the strata-bleed move: the repo's superseded lore
-generations are canonized *as the world's under-writing* — the
-palimpsest made real at the corpus level. **The quota is these three.**
-The policy is a seasoning, not a license; no further material from the
-older strata may be imported as relics without amending this clause
-in writing. What makes a relic work is scarcity.
+**Original clause (Phase 11, preserved for the record):** entries 4–6
+canonized three relics from the repo's superseded lore strata as the
+world's under-writing, with a hard quota — "the quota is these
+three... What makes a relic work is scarcity."
+
+**Amendment (Phase 12, reasoned per this ledger's own rule):** user
+direction of 2026-07-15 makes the palimpsest integral, and the
+canonization of the spine (`Lore/Design/PALIMPSEST-INTEGRATION.md`
+§VII) promotes the under-text from relic-seasoning to **structural
+stratum**: the world is canonically an overwriting; bleed-through is
+a general phenomenon (the Overwrit is its showcase; small authored
+bleed-sites may exist at Tier 3+). The protection therefore
+**inverts**: mystery is no longer guarded by *scarcity* of under-text
+but by its **permanent illegibility in aggregate.** Hard rules:
+
+1. **No under-text content may ever resolve into a coherent,
+   mappable prior world.** Fragments only, forever. The bleeds are
+   phenomena, not lore deliveries; no explainer NPC exists or will.
+2. **No in-game source may date, name, count, or systematize the
+   layers** (see §9).
+3. **The named relics (§§4–6) remain individually unexplained**, on
+   their original terms.
+4. **New bleed-sites are authored one at a time, hand-placed, never
+   procedural.** Generated bleeds are wallpaper; wallpaper is
+   forbidden.
+5. **Recovered under-text yields ambiguity at equal-or-higher
+   resolution, never adjudication.** The First Account is the type
+   specimen (Bible §IV).

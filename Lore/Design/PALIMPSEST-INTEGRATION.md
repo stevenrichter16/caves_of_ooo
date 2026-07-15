@@ -1,13 +1,13 @@
 # The Palimpsest Integration — an exploration
 
-> **Authority:** Design study (Phase 12 candidate). Explores avenues
-> for making the palimpsest — the physical object and the structural
-> idea — integral to the game, per user direction (2026-07-15: "I do
-> want a palimpsest, or the idea of a palimpsest, as an integral part
-> of the game"). Nothing here is canon until a canonization milestone
-> adopts it; §VIII proposes that milestone. Where an avenue would
-> touch the Mystery Ledger, the required amendment is drafted, not
-> assumed.
+> **Authority:** Design study — **§VII spine CANONIZED as Phase 12**
+> (user: "canonize the spine," 2026-07-15). Executed: A1 → Bible §IV
+> + Mystery Ledger §9; B1 → `FIRST-ACCOUNT.md` + `Codex/13`; D1 →
+> `UNDERREADING.md`; C1 → `THE-OVERWRIT.md`; B2 → `02_Recension.md`
+> §III (the knife-tithe) + `Codex/06` (clause the eighth); VI → the
+> ledger's amended under-text policy. The non-spine avenues (A4
+> person-recovery, D3's palimpsest body, E2's lineage-trace loop,
+> B3/C2 texture) remain explored-not-canonized, deferred per §VII.
 
 ---
 
