@@ -287,3 +287,308 @@ Estimated: item content ≈ 2h (blueprints + CommercePart values +
 demand table); StallPart + tick + ledger ≈ engineering, Unity-side;
 orders/closure integration rides the ledger work already handed off.
 One user checkpoint: this document.
+
+---
+---
+
+# PART II — The Strange Shop (the get-more-creative pass)
+
+> Part I is the floor: goods, prices, a ledger. Part II is what only
+> this game can build on that floor. Everything here obeys the canon
+> locks (pressure-model Urqu, the Mystery Ledger, the voice cards);
+> in-world text samples below are **drafts, ungated** — they run the
+> blind review before shipping, like everything else.
+
+## IX. The immaterial counter — selling things that aren't things
+
+The deepest shelf in the shop sells no objects at all. In a world
+whose physics is Naming and whose sickness is abandonment, the
+premium goods are *speech acts*:
+
+### The no-smith ★
+
+Canon: a swallowed no is a seed of the Hush; refusal must be spoken
+to close (`04_TentRightOath`: "go *spoken*, guest"). But most people
+**cannot say their no's** — to the Choir's standing offer, to a
+Catcher's gentle insistence, to a debt-holder, to a dead parent's
+unreasonable last wish. So they hire the player to say it for them.
+
+The no-smith service: the client tells you the refusal they cannot
+utter; you deliver it — to the tendril, the creditor, the shrine —
+formally, aloud, in their name. Design questions with teeth: *does a
+proxy no close the client's ledger, or the smith's?* The Namers
+split on it (live doctrinal content); the closure-ledger's answer is
+committed here: **it closes if and only if the client stands within
+hearing.** So the service is really escort-plus-courage: you bring
+them to the brink and say the hard sentence, and they must witness
+their own refusal. Every job is a micro-drama with a walk, and the
+client roster writes itself: the widow refusing the Choir her
+husband's body; the apprentice refusing a Curation intake officer;
+the village refusing, at last, a god.
+
+*(Cheap to build: dialogue-driven, no new systems — a storylet
+family hung on existing faction content. The single best
+creativity-per-engineering-hour ratio in this document.)*
+
+### The name-counter
+
+Naming is the world's binding-function; a naming service is
+retail cosmology. Tiers: **naming boats, tools, and babies**
+(villagers pay; each naming is a small real binding — a named tool
+gets the tiniest durability edge, which blacksmiths deny and
+quietly rely on); **naming the nameless** (a foundling, a new
+sinkhole, a dish you invented); and the gray market — **selling
+names**: a dead debtor's name to their creditor, a disgraced name
+laundered into a new one, *your own* name (once; never buy it back
+at the price you got). Tent-Right watches this counter very
+closely: to the Namers, a name *enacted* at a counter is practice —
+a name *priced* is the Concord's oldest error wearing new clothes.
+Whether the player's name-counter is holy or corrosive is decided
+by conduct, not category, and both factions will tell them so, at
+length, while buying.
+
+### The unfinishable shelf (grief-storage)
+
+A pawnshop for things people can neither keep nor discard: the dead
+husband's boots, the letter never sent, the child-sized First
+Plaque that was never cut. The service is not storage — it is
+**display**. The item sits on a public shelf, visible, tended,
+*still in the world*, while its owner learns to walk past the
+window. Fees are nominal; some owners pay for decades; some, one
+day, come in and take the thing home, and that transaction (drams:
+zero) is logged by the closure-ledger as one of the largest closure
+events retail can produce. The shelf also slowly turns the shop
+into something the Curation cannot classify — an archive where
+everything is still owned by the living — and their attempts to
+file it are a running comedy with a knife inside.
+
+## X. The Under-Shop ★ — the shop's own palimpsest
+
+Premises come with under-text. The moment the player takes a
+building (model B), Phase 12 applies to the *floor*:
+
+- Customers occasionally reach for shelves that aren't yours. Ask
+  for goods you never stocked — always the same few items. Leave,
+  once, a coin whose face is worn to nothing.
+- Underread the floorboards and the counter, and the previous shop
+  bleeds up: shelf-shadows, a price-board in an older hand, and a
+  **scraped sign** — the last keeper erased their own shop's name
+  before leaving. (First-position knife-work. They scraped only
+  what was theirs.)
+- The mystery-line: who scrapes their own sign? The answer is never
+  fully given (ledger discipline), but the *orders* are: the old
+  shop's order-book bleeds through page by page, and it ends
+  mid-line — a special order taken and never filled, seventy years
+  dangling. **The player can fill it.** Track down the customer's
+  descendants (lineage system), deliver the impossible late order,
+  and close *someone else's abandonment* — the rarest closure type
+  in the game, and the moment the shop stops being haunted and
+  starts being *yours*. The doorbell sounds different afterward.
+  Nobody comments.
+
+## XI. Customers only this game could seat
+
+### The Six, shopping
+
+Each god visits at most once per game, unannounced, in the grammar
+of their function — six scripted vignettes, each a reward for
+world-state the player built:
+
+- **Tovreth** comes for the tea brick. Stands in line. Pays exact
+  change. The comedy runs for months — the god of Exchange as your
+  most punctual regular — until the day he pays with *three minutes
+  of undivided attention* instead of coin, which the canon prices
+  as his entire annual allowance of rest, and asks you one question
+  about your ledger, and leaves before you understand what you
+  answered. *(His question seeds the charter arc, §VI.)*
+- **Ylaes** never enters. She rearranges your window — one item per
+  night, for a week, via a Seer who apologizes at dawn. Sales
+  double. Sleep suffers. On the seventh morning the window is
+  *finished*, and moving any item feels like vandalism, and the
+  Seer's last relay is: *"She says: now leave it until it isn't."*
+- **Selen** sends customers. Tendrils, buying gifts *for the people
+  inside her* — "the one who sang by the ford would like the blue
+  ribbon." Payment is always exact, always slightly damp, and
+  once, terribly, includes the coin the Under-Shop customer left
+  (§X), which means she has been shopping here longer than you
+  have.
+- **Maeleth** buys nothing; requests receipts. For everything —
+  purchases she didn't make, conversation, the weather. A scribe
+  follows her writing it all down, until you realize (voice-shift)
+  that the scribe stopped writing minutes ago and the pen is still
+  moving.
+- **Othren's** officers file purchase-requisitions in triplicate
+  for one measure of salt, annually. Year three, the requisition
+  carries a second signature line, unexplained: "[reviewed]." Your
+  shop has a file now. The file says: *continuing.*
+- **Dohren** cannot come. The deep villages buy on his dream's
+  instruction — "the light wants dark-wicks this month" — and once
+  a decade, every catacomb order on one night is the same single
+  item, and no Tender will say what the patch is dreaming, and the
+  item is never anything alarming, and that is somehow worse.
+
+### The standing invitations
+
+- **A mouthpiece** becomes a regular: pays triple, in scraped coins
+  (underread them at your peril), always buying one category —
+  *things with names on them*. Serving it is legal, profitable, and
+  feeds the gradient; the arc ends when the player either bars it
+  (a spoken refusal to something that cannot want) or follows the
+  coins. Pressure-model discipline throughout: the hunger has no
+  face; the *courtesy* is all the mouthpiece's own, which is the
+  unsettling part.
+- **The Branchwork rents a shelf.** Payment: routes. Give the
+  world's one disinterested mind a nutrient tray in the corner and
+  it becomes your supply-chain consultant — restock paths, caravan
+  timing, once a warning ("do not order honey this month") that it
+  declines to explain and that proves correct. The slime mold is
+  the best employee the player will ever have, and it asks only
+  lunch.
+- **The Spirits browse.** Inquiry asks about every item and buys
+  nothing (answering patiently raises affinity — the shop as a
+  Spirit-shrine nobody built on purpose). Apatheia stands in the
+  corner for an afternoon, purchasing nothing, and the whole day's
+  customers linger longer and haggle less. Bloodlust never comes
+  inside. It waits, politely, by the weapons rack you keep meaning
+  to move indoors.
+- **The dead shop by proxy.** Plaque-Tenders relay orders from the
+  niches: "Grandmother, third row, wants the river told toward her
+  wall — and she left credit." Memorial goods, delivered down, on
+  standing accounts opened by people who died before your
+  grandmother was born and *kept in good standing since*. The
+  catacomb ledger pages are the oldest accounts receivable in the
+  world, and the villages pay them without irony, and so will you.
+
+## XII. Strange money
+
+- **Memory-payment** (Choir-brokered): a customer pays with the
+  memory of the item's origin — provenance transfers to the player
+  as *knowledge* (KnowledgePart), and knowledge is margin at the
+  curiosity counter (§II.E). The Choir takes its brokerage in the
+  usual coin: a little more of the customer.
+- **Word-barter:** a customer who cannot pay teaches you a **true
+  word** — an old-world name for a thing you stock. Items sold
+  under their true names bind a little better (the charm family
+  gets a quality tier that literally cannot be bought, only
+  bartered). The Recension will pay handsomely for the words; the
+  Namers will pay more attention.
+- **The tab is a binding.** Extending credit is a promise with
+  physics: a defaulted tab manifests as a hairline Slip at the
+  defaulter's threshold — nothing dangerous, just *noticeable*,
+  and known, which is why village tabs are paid. The player's own
+  supplier tabs obey the same law. (Design note: this is the
+  closure-ledger's teeth, made municipal.)
+- **Warm coins.** Some coins arrive warm. The Shopkeeper's Rules
+  (§XIII) address this. The Rules do not explain it. Neither do we.
+
+## XIII. The Shopkeeper's Rules — folk-horror retail
+
+Every trade-culture in the world runs on procedure; the player's
+shop inherits a hand-me-down rule-sheet from the previous keeper
+(via the Under-Shop bleed, or a Concord starter-pamphlet, or a
+villager aunt — origin varies by shop model). The rules are
+half-superstition and half load-bearing, and the game *never marks
+which half is which* — some rules, tested, are just lint; one or
+two are the Sealed Dim in retail clothing. Draft artifact
+*(ungated)*:
+
+> **THE KEEPER'S RULES** *(as passed down; annotations in three
+> different hands)*
+> 1. Open with the sun or a lamp, never with neither.
+> 2. First customer of the day buys cheap. Argue with the custom,
+>    not the customer.
+> 3. If the coins are warm, count them twice. If they are warm the
+>    second time, the price was wrong. Not the coins. The price.
+> 4. The till answers to its name. Never teach it another.
+> 5. Sell nothing after the third dim. *(second hand: "nothing" is
+>    strong — bread is fine)* *(third hand: bread is not fine. Ask
+>    Wett's boy. You can't. That's the point.)*
+> 6. A customer who asks for an item twice in the same words is not
+>    asking twice. Wrap it quickly and do not touch their hand.
+> 7. Sweep toward the door. Everything you sweep toward the counter
+>    stays in the shop. Everything.
+> 8. *(scraped — first-position knife-work)*
+> 9. Greet the shop when you open it and thank it when you close
+>    it. This one is not superstition. This one is the whole trick.
+
+Rule 9 is §XIV.
+
+## XIV. The genius loci — the shop grows a soul
+
+Canon: numina pool where the old writing pools; meaning accretes.
+A **named, tended, greeted place** where promises are kept daily is
+exactly the kind of vessel small presence collects in. Over a long
+game, the shop develops — not a ghost, not an NPC — *disposition*:
+
+- Stage 1 (quiet): the door sticks for people the shop has reason
+  to dislike. The till drawer opens a half-second before you reach
+  it, on good days.
+- Stage 2 (habits): items the shop "approves of" don't gather dust;
+  the display window resists arrangements Ylaes would score poorly
+  (the shop has *taste* now, and it is derivative, and the Seer
+  finds this hilarious).
+- Stage 3 (one opinion): the shop becomes capable of exactly one
+  small opinion, expressed once — the canonical numen scale, "too
+  incoherent to be a god, too place-bound to be Urqu." What the
+  opinion is depends on the whole game's conduct at that counter
+  (the closure record, the no-smith jobs, the shelf of the
+  unfinishable). It might be about a customer. It might be about
+  you. The shop says it the only way a building can — a door held
+  open, or held shut, at one load-bearing moment — and then it is
+  just a shop again, forever, and you will keep greeting it anyway.
+  *(Rule 9.)*
+
+## XV. The shop and the endings
+
+- **Consume:** the Choir offers a consignment corner — their goods
+  never run out and are never restocked by anyone you see. Late
+  Thinning, the corner's offer sharpens: the whole shop, absorbed
+  as a *remembered place* — "we will keep it exactly. Every shelf.
+  Every kept promise. There is room." The kindest buyout offer in
+  history.
+- **Preserve:** the Curation offers to file the shop *as is* — a
+  perpetual heritage designation: "Status: continuing." Nothing may
+  ever change, be sold, or be moved again. It is meant with total
+  sincerity as the highest honor they can pay a place, and it is a
+  death sentence with a plaque, and refusing it aloud is one of the
+  game's great small scenes.
+- **The practice-path:** Saedis, visiting, points at the ledger and
+  declines to say anything grand — but at the Staking, if the
+  player's shop has a deep closure record, **the ledger is
+  admissible**: the world's fate argued, in part, from a grocery
+  book in which every no was spoken and every order was filled or
+  refused and nothing — check the margins — was ever left to
+  dangle. The humblest exhibit at the end of the world. This is
+  the whole project's thesis (the flowers, the small acts) with a
+  till.
+- **The free counter** (any path): a player may, at any point, stop
+  charging. The gift-economy shop is economically ruinous,
+  cosmologically pristine (every gift closes), doctrinally
+  catastrophic for the Concord — and Tovreth *must* come see it,
+  because "nothing is free" is his function's floor, and your
+  counter is standing on it. What he does there depends on his arc.
+  The strongest version: he buys one item, insists on paying,
+  and the player's refusal — *aloud, formal, complete* — is the
+  only spoken no in the game addressed to the god of Exchange. The
+  ledger records it as a closure. His face records it as something
+  the design does not caption.
+
+## XVI. Grafting order (what strangeness costs)
+
+| Idea | Rides on | Cost |
+|---|---|---|
+| The no-smith | dialogue + storylets | **cheap ★** — build first |
+| Shopkeeper's Rules | flavor + a few event triggers | cheap ★ |
+| God-customer vignettes | scripted events, arc-gated | mid, one at a time |
+| Strange money (word-barter, memory-pay, tab-binding) | KnowledgePart + closure-ledger | mid |
+| The Under-Shop | premises (v2) + Phase-12 underread hooks | mid-heavy, flagship of v2 |
+| Dead-customer standing accounts | catacomb content | mid |
+| Branchwork shelf / Spirit browsing | existing actor systems | mid |
+| The unfinishable shelf | display slots + storylets | mid |
+| Genius loci | long-arc world-state | v3; write nothing until stages 1–2 can be felt |
+| Ending integrations / the ledger at the Staking | ending scenes | rides V1-DramaticCore work |
+
+The v1 slice (§VIII) stands — but adopt the **no-smith** and the
+**Keeper's Rules** into it immediately: they are nearly free, and
+they are the difference between "a shop opened in the world" and
+"a shop that could only have opened in this one."
