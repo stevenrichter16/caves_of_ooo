@@ -60,3 +60,24 @@ design-document register.
 Future codex additions run the same gate: intent card before
 drafting; blind attribution + honesty questions after; failures are
 rewritten, never re-graded.
+
+**Run of 2026-07-15 (Phase 12 pieces: `13_FirstAccount_ConditionReport`
++ the clause-the-eighth insert in `06`):**
+
+- Attribution correct; rated 8/10 and 7/10 against the same bar;
+  three specific emotional hits reported unprompted (the shaking-hand
+  forensics, the closing prayer, the dust-surcharge punchline); the
+  withholding of the erasures' content judged "craft, not tease" —
+  "the refusal *is* the theme, not a curtain in front of it."
+- **Findings fixed:** two self-admiring lines in the condition report
+  dried out ("recoverable is not the same as *ours to recover*" →
+  "it is recoverable, and it is not ours"; the binding-condition wit
+  cut); one spelled-out inference trimmed (the shaking-hand
+  conclusion now rests on the physical evidence alone); the
+  contract-clause bracket lost its over-explained paradox ("even the
+  blank is a copy of a blank").
+- **Finding noted, not actioned:** the reviewer flagged the bracketed
+  frame in the contract as diegesis-breaking; the full artifact
+  (which the blind reviewer did not see) already established that
+  bracket device at the counter-signature line, so the frame is
+  internally consistent. Recorded here per the honesty rule.

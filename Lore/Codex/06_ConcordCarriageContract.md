@@ -41,6 +41,12 @@ high desk, before the Counter himself, who has heard every dispute
 there has ever been, and who is so very tired, signatory. Consider,
 before you dispute, how strong your case truly is. He will.
 
+**Clause the eighth.** *[The vellum here is worn thin and burnished
+smooth — scraped on every printing plate since the form's third
+revision. Clerks asked about clause the eighth direct the signatory
+to clause the first. Clerks asked twice have the dust-surcharge
+recalculated.]*
+
 SIGNED at the mark: ________________
 
 COUNTER-SIGNED in the standing hand: *[a name, small and even,

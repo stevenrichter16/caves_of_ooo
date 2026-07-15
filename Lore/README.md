@@ -36,8 +36,11 @@ authority.
   three incompatible Felling tellings…). Gated by blind external
   review; the gate record is in its README.
 - **`Design/`** — `NaroReadings.md` (the three readings and the
-  two-tier truth policy) and `V1-DramaticCore.md` (the enactment
-  climaxes and the v1 scope triage).
+  two-tier truth policy); `V1-DramaticCore.md` (the enactment
+  climaxes and the v1 scope triage); and the Phase-12 palimpsest
+  spine: `PALIMPSEST-INTEGRATION.md` (the study), `FIRST-ACCOUNT.md`
+  (the flagship physical palimpsest), `UNDERREADING.md` (the
+  practice), `THE-OVERWRIT.md` (the scraped region).
 
 ## The development trail (`Lore/History/`)
 

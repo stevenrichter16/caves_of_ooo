@@ -75,6 +75,21 @@ For a new contributor, read in this order:
 | `sarisarinama_drosera_design.md` | the carnivorous flora + enzymes |
 | `LINEAGE-DESIGN.md` | the generational/lineage system |
 
+### Phase 11–12 canonical documents (`Lore/` + `Lore/Design/`)
+
+| File | Covers |
+|---|---|
+| `11_SecondSpine.md` | Phase-11 amendments C1–C4 (pressure-model Urqu; the chooser; ending costs; closure-ledger) |
+| `MYSTERY-LEDGER.md` | the protected questions + the amended under-text policy |
+| `TERMS.md` | cross-strata vocabulary; frozen-ID policy; the under/bleed/scraped lexicon |
+| `Voices/VOICE-CARDS.md`, `Codex/` | the voice cards and in-world texts (blind-gated) |
+| `Design/NaroReadings.md` | the three readings; two-tier truth policy |
+| `Design/V1-DramaticCore.md` | the enactment climaxes; v1 scope triage |
+| `Design/PALIMPSEST-INTEGRATION.md` | the Phase-12 study (spine canonized) |
+| `Design/FIRST-ACCOUNT.md` | the flagship physical palimpsest + recovery design |
+| `Design/UNDERREADING.md` | the practice (targets, teachers, moral edge, diag) |
+| `Design/THE-OVERWRIT.md` | the scraped region + bleed mechanics |
+
 ---
 
 ## IV. The canon lock — the spine everything must agree with

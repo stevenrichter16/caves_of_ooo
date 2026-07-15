@@ -120,6 +120,51 @@ In matters of doctrine or major decisions: **the Reader's channeled voice supers
 
 There is *no* crime around personal property within Recension (scribes hold property collectively in archives), or around personal speech outside the Reader's voice. The Recension is *narrow* in what it polices — it polices *memory*, and almost nothing else.
 
+### The knife-tithe (Phase 12 — the material contradiction)
+
+The post-Felling world is **short of vellum.** True writing material
+is scarce and dear; nearly every document in the world is written
+over something older (see `Lore/TERMS.md` — *the under*), and the
+order whose deepest law is *never correct the old hands* must,
+therefore, scrape something. Its answer, formalized in the Settling
+Centuries and kept ever since:
+
+**A scribe may scrape only their own words.** Every Recension scribe
+tithes their own past writing to the knife — journals, juvenilia,
+letters, early drafts — surrendering their words so the world's
+words can be kept. The tithe is voluntary in principle and universal
+in practice; a scribe's seniority is quietly measurable in how much
+of themselves they have scraped. The order that keeps everything is
+staffed entirely by people who have erased themselves, and they do
+not consider this a paradox. They consider it the fee.
+
+Attendant customs and textures:
+
+- **First-position tithe-custom:** the phrase conservators use when
+  verifying that a scraping removed the scraper's *own* words. A
+  scraping in first position is lawful; a scraping of another's hand
+  is the crime of destroying memory (§ above), whoever holds the
+  knife.
+- **The tithe-book:** each archive keeps a register of what was
+  scraped — not the words (that would defeat the tithe) but the
+  *shape* of the sacrifice: "Iren, year 1077: four years of field
+  journals, surrendered." Read at funerals. The most affecting
+  entries are the shortest.
+- **Underreading a colleague's tithe** (`Lore/Design/UNDERREADING.md`)
+  is the order's ugliest internal breach — not a crime against
+  memory but against *sacrifice*, and the order polices it with a
+  ferocity outsiders find disproportionate until it is explained,
+  which it is not.
+- **The founder's tithe.** The custom is centuries younger than the
+  two scrapings in the First Account (`Lore/Design/FIRST-ACCOUNT.md`)
+  — and the order has always quietly understood whose example it
+  retro-fitted. Maeleth scraped twice, both times her own words, in
+  the most important document there is. The knife-tithe is the whole
+  Recension learning to carry what she carries: that keeping
+  everything requires giving up something, and the only honest thing
+  to give up is yourself. No sermon says this. The tithe-books say
+  it annually, in aggregate, better.
+
 ---
 
 ## IV. Geographic anchors
