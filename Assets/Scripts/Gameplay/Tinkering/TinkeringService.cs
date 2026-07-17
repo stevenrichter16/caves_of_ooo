@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using CavesOfOoo.Data;
 
 namespace CavesOfOoo.Core
@@ -94,6 +95,7 @@ namespace CavesOfOoo.Core
                 Entity created = factory.CreateEntity(recipe.Blueprint);
                 if (created == null)
                 {
+                    RollbackCraftOutputs(inventory, crafted);
                     bitLocker.AddBits(cost);
                     RestoreIngredient(inventory, consumedIngredient);
                     reason = "Failed to create crafted item blueprint '" + recipe.Blueprint + "'.";
@@ -102,6 +104,7 @@ namespace CavesOfOoo.Core
 
                 if (!inventory.AddObject(created))
                 {
+                    RollbackCraftOutputs(inventory, crafted);
                     bitLocker.AddBits(cost);
                     RestoreIngredient(inventory, consumedIngredient);
                     reason = "Cannot add crafted item to inventory.";
@@ -356,7 +359,7 @@ namespace CavesOfOoo.Core
                     return false;
                 }
 
-                bits = BitCost.Normalize(tinkerItem.BuildCost);
+                bits = ResolvePartialYield(tinkerItem.BuildCost, tinkerItem.NumberMade);
                 if (!string.IsNullOrEmpty(bits))
                     return true;
             }
@@ -366,13 +369,71 @@ namespace CavesOfOoo.Core
             if (item.HasPart<MeleeWeaponPart>()
                 && TinkerRecipeRegistry.TryGetBuildRecipeForBlueprint(item.BlueprintName, out TinkerRecipe buildRecipe))
             {
-                bits = BitCost.Normalize(buildRecipe.Cost);
+                bits = ResolvePartialYield(buildRecipe.Cost, buildRecipe.NumberMade);
                 if (!string.IsNullOrEmpty(bits))
                     return true;
             }
 
             reason = "Item has no disassembly yield.";
             return false;
+        }
+
+        /// <summary>
+        /// Disassembly yields a strict subset of the build cost so that a
+        /// craft->disassemble cycle is always lossy: per-item share of the
+        /// cost (for NumberMade>1 recipes), then every other bit of that
+        /// share, minimum one. A full refund made crafting reversible for
+        /// free and turned any NumberMade>1 recipe into a bit printer.
+        /// </summary>
+        private static string ResolvePartialYield(string fullCost, int numberMade)
+        {
+            string normalized = BitCost.Normalize(fullCost);
+            if (string.IsNullOrEmpty(normalized))
+                return string.Empty;
+
+            int perItem = numberMade > 1
+                ? Math.Max(1, normalized.Length / numberMade)
+                : normalized.Length;
+
+            var builder = new StringBuilder((perItem + 1) / 2);
+            for (int i = 0; i < perItem; i += 2)
+                builder.Append(normalized[i]);
+
+            return builder.ToString();
+        }
+
+        /// <summary>
+        /// Batch atomicity for TryCraft: a failed craft must leave no partial
+        /// output behind. Items that merged into an existing stack on add are
+        /// undone by decrementing a matching stack instead.
+        /// </summary>
+        private static void RollbackCraftOutputs(InventoryPart inventory, List<Entity> crafted)
+        {
+            for (int i = crafted.Count - 1; i >= 0; i--)
+            {
+                Entity item = crafted[i];
+                if (inventory.RemoveObject(item))
+                    continue;
+
+                for (int j = 0; j < inventory.Objects.Count; j++)
+                {
+                    Entity candidate = inventory.Objects[j];
+                    if (!string.Equals(candidate.BlueprintName, item.BlueprintName, StringComparison.OrdinalIgnoreCase))
+                        continue;
+
+                    StackerPart stacker = candidate.GetPart<StackerPart>();
+                    if (stacker == null)
+                        continue;
+
+                    if (stacker.StackCount > 1)
+                        stacker.StackCount -= 1;
+                    else
+                        inventory.RemoveObject(candidate);
+                    break;
+                }
+            }
+
+            crafted.Clear();
         }
 
         private static bool TryConsumeIngredient(

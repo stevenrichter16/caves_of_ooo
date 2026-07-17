@@ -35,6 +35,14 @@ namespace CavesOfOoo.Tests
       ""NumberMade"": 1
     },
     {
+      ""ID"": ""craft_torch_pair"",
+      ""DisplayName"": ""Craft Torch Pair"",
+      ""Blueprint"": ""Torch"",
+      ""Type"": ""Build"",
+      ""Cost"": ""CC"",
+      ""NumberMade"": 2
+    },
+    {
       ""ID"": ""mod_sharp_melee"",
       ""DisplayName"": ""Apply Sharp"",
       ""Blueprint"": ""mod_sharp"",
@@ -169,6 +177,30 @@ namespace CavesOfOoo.Tests
           ""Params"": [
             { ""Key"": ""CanDisassemble"", ""Value"": ""true"" },
             { ""Key"": ""BuildCost"", ""Value"": ""C"" }
+          ]
+        }
+      ],
+      ""Stats"": [],
+      ""Tags"": [ { ""Key"": ""Item"", ""Value"": """" } ]
+    },
+    {
+      ""Name"": ""BoltBundle"",
+      ""Inherits"": ""Item"",
+      ""Parts"": [
+        {
+          ""Name"": ""Render"",
+          ""Params"": [
+            { ""Key"": ""DisplayName"", ""Value"": ""bolt bundle"" },
+            { ""Key"": ""RenderString"", ""Value"": ""="" },
+            { ""Key"": ""ColorString"", ""Value"": ""&w"" }
+          ]
+        },
+        {
+          ""Name"": ""TinkerItem"",
+          ""Params"": [
+            { ""Key"": ""CanDisassemble"", ""Value"": ""true"" },
+            { ""Key"": ""BuildCost"", ""Value"": ""BBCC"" },
+            { ""Key"": ""NumberMade"", ""Value"": ""2"" }
           ]
         }
       ],
@@ -382,11 +414,13 @@ namespace CavesOfOoo.Tests
                 out string yieldedBits,
                 out string reason);
 
+            // Disassembly yields a strict subset of the build cost (every
+            // other bit, min 1) so craft->disassemble is always lossy.
             Assert.IsTrue(success, reason);
-            Assert.AreEqual("BC", yieldedBits);
+            Assert.AreEqual("B", yieldedBits);
             Assert.AreEqual(0, inventory.Objects.Count);
             Assert.AreEqual(1, bits.GetBitCount('B'));
-            Assert.AreEqual(1, bits.GetBitCount('C'));
+            Assert.AreEqual(0, bits.GetBitCount('C'));
         }
 
         [Test]
@@ -426,11 +460,108 @@ namespace CavesOfOoo.Tests
                 out string yieldedBits,
                 out string reason);
 
+            // Fallback path yields the same strict subset as TinkerItem items.
             Assert.IsTrue(success, reason);
-            Assert.AreEqual("BR", yieldedBits);
+            Assert.AreEqual("B", yieldedBits);
             Assert.AreEqual(0, inventory.Objects.Count);
             Assert.AreEqual(1, bits.GetBitCount('B'));
-            Assert.AreEqual(1, bits.GetBitCount('R'));
+            Assert.AreEqual(0, bits.GetBitCount('R'));
+        }
+
+        [Test]
+        public void Craft_NumberMadeTwo_CreatesTwoItems()
+        {
+            var factory = CreateFactory();
+            var player = CreatePlayer();
+            var inventory = player.GetPart<InventoryPart>();
+            var bits = player.GetPart<BitLockerPart>();
+
+            bits.LearnRecipe("craft_torch_pair");
+            bits.AddBits("CC");
+
+            bool success = TinkeringService.TryCraft(
+                player, factory, "craft_torch_pair",
+                out var crafted, out string reason);
+
+            Assert.IsTrue(success, reason);
+            Assert.AreEqual(2, crafted.Count);
+            Assert.AreEqual(2, inventory.Objects.Count);
+            Assert.AreEqual(0, bits.GetBitCount('C'));
+        }
+
+        [Test]
+        public void Craft_BatchFailure_LeavesNoPartialOutput_AndRefundsFully()
+        {
+            var factory = CreateFactory();
+            var player = CreatePlayer();
+            var inventory = player.GetPart<InventoryPart>();
+            var bits = player.GetPart<BitLockerPart>();
+
+            bits.LearnRecipe("craft_torch_pair");
+            bits.AddBits("CC");
+
+            // Room for exactly one torch (weight 1): the second AddObject
+            // fails mid-batch. Atomicity: NO partial output may remain, and
+            // the full cost must come back. A buggy impl leaves torch #1 in
+            // inventory while also refunding the bits (duplication).
+            inventory.MaxWeight = 1;
+
+            bool success = TinkeringService.TryCraft(
+                player, factory, "craft_torch_pair",
+                out var crafted, out string reason);
+
+            Assert.IsFalse(success);
+            Assert.AreEqual(0, crafted.Count, "Failed craft must not report outputs.");
+            Assert.AreEqual(0, inventory.Objects.Count, "Failed craft must not leave partial output in inventory.");
+            Assert.AreEqual(2, bits.GetBitCount('C'), "Failed craft must refund the full bit cost.");
+        }
+
+        [Test]
+        public void Disassemble_MultiMadeTinkerItem_DividesYieldPerItem()
+        {
+            var factory = CreateFactory();
+            var player = CreatePlayer();
+            var inventory = player.GetPart<InventoryPart>();
+            var bits = player.GetPart<BitLockerPart>();
+
+            var bundle = factory.CreateEntity("BoltBundle");
+            Assert.NotNull(bundle);
+            Assert.IsTrue(inventory.AddObject(bundle));
+
+            bool success = TinkeringService.TryDisassemble(
+                player, bundle, out string yieldedBits, out string reason);
+
+            // BuildCost BBCC over NumberMade 2 = per-item share "BB",
+            // then every other bit = "B". One item of a batch must never
+            // refund the whole batch's cost (the bit-printer exploit).
+            Assert.IsTrue(success, reason);
+            Assert.AreEqual("B", yieldedBits);
+            Assert.AreEqual(1, bits.GetBitCount('B'));
+            Assert.AreEqual(0, bits.GetBitCount('C'));
+        }
+
+        [Test]
+        public void CraftThenDisassemble_CycleIsLossy()
+        {
+            var factory = CreateFactory();
+            var player = CreatePlayer();
+            var bits = player.GetPart<BitLockerPart>();
+
+            bits.LearnRecipe("craft_thorn_dagger");
+            bits.AddBits("BC");
+
+            Assert.IsTrue(TinkeringService.TryCraft(
+                player, factory, "craft_thorn_dagger", out var crafted, out string craftReason), craftReason);
+
+            Assert.IsTrue(TinkeringService.TryDisassemble(
+                player, crafted[0], out _, out string disReason), disReason);
+
+            // Economic counter-check: the full cycle must end with strictly
+            // fewer bits than it started with, or crafting is reversible for
+            // free and bits stop being a resource.
+            int totalAfter = bits.GetBitCount('B') + bits.GetBitCount('C');
+            Assert.Less(totalAfter, 2, "Craft->disassemble must be lossy.");
+            Assert.AreEqual(1, bits.GetBitCount('B'));
         }
 
         [Test]

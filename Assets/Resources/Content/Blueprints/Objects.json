@@ -5202,6 +5202,81 @@
       ]
     },
     {
+      "Name": "SchematicHonedEdge",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "schematic: honed edge" },
+          { "Key": "RenderString", "Value": "?" },
+          { "Key": "ColorString", "Value": "&c" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Takeable", "Value": "true" },
+          { "Key": "Weight", "Value": "1" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "25" }] },
+        { "Name": "Schematic", "Params": [
+          { "Key": "RecipeID", "Value": "mod_sharp_melee" },
+          { "Key": "LearnMessage", "Value": "The whetstone angles, the draw-stroke counts -- the honing pattern settles into your hands." }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "Schematic", "Value": "" }
+      ]
+    },
+    {
+      "Name": "SchematicReinforcedPlating",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "schematic: reinforced plating" },
+          { "Key": "RenderString", "Value": "?" },
+          { "Key": "ColorString", "Value": "&c" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Takeable", "Value": "true" },
+          { "Key": "Weight", "Value": "1" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "25" }] },
+        { "Name": "Schematic", "Params": [
+          { "Key": "RecipeID", "Value": "mod_reinforced_plating_armor" },
+          { "Key": "LearnMessage", "Value": "Overlap the plates like river-scale, the notes say. You see how it carries the blow." }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "Schematic", "Value": "" }
+      ]
+    },
+    {
+      "Name": "SchematicDuelistCut",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "schematic: duelist's cut" },
+          { "Key": "RenderString", "Value": "?" },
+          { "Key": "ColorString", "Value": "&c" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [
+          { "Key": "Takeable", "Value": "true" },
+          { "Key": "Weight", "Value": "1" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "35" }] },
+        { "Name": "Schematic", "Params": [
+          { "Key": "RecipeID", "Value": "mod_duelist_cut_armor" },
+          { "Key": "LearnMessage", "Value": "The tailoring lines are drawn for someone who plans to be missed. You take the pattern." }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "Schematic", "Value": "" }
+      ]
+    },
+    {
       "Name": "LanternOilRecipe",
       "Inherits": "Item",
       "Parts": [
