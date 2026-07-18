@@ -518,6 +518,253 @@
       ]
     },
     {
+      "Name": "AlchemyStill",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "alchemy still" },
+          { "Key": "RenderString", "Value": "&" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "false" }] },
+        { "Name": "AlchemyStill", "Params": [] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Furniture", "Value": "" },
+        { "Key": "Alchemy", "Value": "" }
+      ]
+    },
+    {
+      "Name": "ReagentItem",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "reagent" },
+          { "Key": "RenderString", "Value": "%" },
+          { "Key": "ColorString", "Value": "&g" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "6" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "Alchemy", "Value": "" },
+        { "Key": "Reagent", "Value": "" }
+      ]
+    },
+    {
+      "Name": "FireMoss",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "fire-moss" },
+          { "Key": "ColorString", "Value": "&R" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "heat:2, volatile:1" },
+          { "Key": "FlavorText", "Value": "Warm to the touch; crumbles with a spark. (heat, volatile)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "LampOil",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "lamp oil" },
+          { "Key": "ColorString", "Value": "&w" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "combustible:3, viscous:1" },
+          { "Key": "FlavorText", "Value": "Slow, greasy, eager to burn. (combustible, viscous)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "EmberFruit",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "ember-fruit" },
+          { "Key": "ColorString", "Value": "&r" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "heat:1, sweet:1" },
+          { "Key": "FlavorText", "Value": "A candied warmth lingers on the tongue. (heat, sweet)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "FrostLichen",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "frost lichen" },
+          { "Key": "ColorString", "Value": "&c" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "cold:2" },
+          { "Key": "FlavorText", "Value": "Rimed fronds that ache the fingertips. (cold)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "GlacierSalt",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "glacier salt" },
+          { "Key": "ColorString", "Value": "&C" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "cold:3, binding:1" },
+          { "Key": "FlavorText", "Value": "Cracks with a deep, patient chill; sets like mortar. (cold, binding)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "GlimmerBrine",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "glimmer-brine" },
+          { "Key": "ColorString", "Value": "&G" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "corrosive:2, conductive:2" },
+          { "Key": "FlavorText", "Value": "Stings the nose; hums faintly against the jar. (corrosive, conductive)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "SparkRoot",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "spark-root" },
+          { "Key": "ColorString", "Value": "&Y" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "conductive:3" },
+          { "Key": "FlavorText", "Value": "Hairs rise near its severed end. (conductive)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "VenomGland",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "venom gland" },
+          { "Key": "ColorString", "Value": "&g" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "toxic:2" },
+          { "Key": "FlavorText", "Value": "Harvested from something that bit first. (toxic)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "BogSap",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "bog sap" },
+          { "Key": "ColorString", "Value": "&y" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "toxic:1, viscous:2" },
+          { "Key": "FlavorText", "Value": "Clinging tar with a sour reek. (toxic, viscous)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "CandyHeartRoot",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "candy-heart root" },
+          { "Key": "ColorString", "Value": "&M" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "vital:2, sweet:1" },
+          { "Key": "FlavorText", "Value": "Beats faintly. Tastes of pink. (vital, sweet)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "MendleafSprig",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "mendleaf sprig" },
+          { "Key": "ColorString", "Value": "&G" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "vital:1" },
+          { "Key": "FlavorText", "Value": "Bruised leaves knit themselves closed. (vital)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "StoneburrSeed",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "stoneburr seed" },
+          { "Key": "ColorString", "Value": "&w" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "binding:2" },
+          { "Key": "FlavorText", "Value": "Hard as a knuckle; sets like mortar. (binding)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "BlastcapSpore",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "blastcap spore" },
+          { "Key": "ColorString", "Value": "&O" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "volatile:2, combustible:1" },
+          { "Key": "FlavorText", "Value": "Do not shake. Do not warm. (volatile, combustible)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "BrewedTonic",
       "Inherits": "TonicItem",
       "Parts": [

@@ -1,12 +1,13 @@
 # Emergent Alchemy / Brewing — Design Exploration
 
-**Status:** 🟨 M1 IN PROGRESS — M1.1 resolver core + M1.2 brewing
-service/parts/knowledge/diag **authored** (§8), M1.1 cold-eye review run
-with 5 findings fixed/pinned + plan critique (§9). ⚠️ **57 tests
-authored, NONE yet run** — this session has no Unity; first
-Unity-connected session must run the EditMode suite before anything
-merges. Next: M1.3 (command/UI surface + reagent content + mishap
-damage). Weapon/spell pillars (§7) remain design-only.
+**Status:** 🟨 M1 CODE-COMPLETE (unverified) — M1.1 resolver + M1.2
+brewing service/parts/knowledge/diag + M1.3 command/still/reagent
+catalog all **authored** (§8); M1.1 cold-eye review run with 5 findings
+fixed/pinned + plan critique (§9). ⚠️ **69 tests authored, NONE yet
+run** — the user will run the EditMode suite in Unity later; treat any
+failure there as a real finding. Remaining M1 polish: reagent world
+placement, brewing UI panel, throwable shatter wiring, Food rules.
+Weapon/spell pillars (§7) remain design-only.
 **Branch:** `claude/rpg-crafting-system-8gbflx`
 **Origin:** user — *"If this is an RPG there should be a more in-depth
 crafting system. It shouldn't be tedious for the sake of false depth,
@@ -641,6 +642,50 @@ production reagent blueprints + forage/butcher placement, mishap
 self-damage at the command layer, throwable-brew wiring, per-effect
 potency→duration mapping, and the save/load round-trip test through
 `SaveGraphSerializer` (needs Unity to run — flagged 🧪).
+
+### M1.3 — Player-facing surface: command, still, reagent catalog ✅ written (⚠️ unverified in this env)
+
+**Files (NEW):**
+- `Assets/Scripts/Gameplay/Alchemy/AlchemyStillPart.cs` — furniture marker
+  part (ChairPart/BedPart shape) + static `IsNearStill(actor, zone)`
+  3×3-box adjacency check (`Zone.GetEntityPosition` + `GetCell` +
+  `Cell.Objects`).
+- `Assets/Scripts/Gameplay/Inventory/Commands/Actions/BrewReagentsCommand.cs`
+  — mirrors `CraftFromRecipeCommand`; runs through
+  `InventorySystem.ExecuteCommand`. Owns the two rules that need zone
+  context: **still gating** (§6.2 — the mix is resolved *purely* at
+  Validate time; any outcome except a pure-Food brew requires an adjacent
+  still) and **mishap self-damage** (§6.3 — `MishapDamageMax = 2` via
+  `CombatSystem.ApplyDamage`, clamped so Hitpoints can never drop below
+  1: experimenting never kills outright).
+- 13 reagent blueprints + `ReagentItem` base + `AlchemyStill` furniture
+  in `Objects.json`. Profiles deliberately overlap (§9.2 C1 mitigation):
+  FireMoss+LampOil → burning coating; FireMoss+BlastcapSpore → burning
+  **throwable** (volatile joins in); BlastcapSpore alone → mishap
+  (volatile+combustible but no heat — "do not shake, do not warm");
+  GlimmerBrine alone → galvanic draught (acid+shock); GlacierSalt →
+  Frozen+Stoneskin coating (two rules fire); CandyHeartRoot+VenomGland →
+  mending vetoed by toxic → poison tonic. Blueprint inheritance merges
+  parent tags/parts (`BlueprintLoader.cs:158-204`), so reagents inherit
+  Physics/Commerce/tags from `ReagentItem` and override only
+  Render + Reagent params. FlavorText names each reagent's properties
+  in-fiction per §6.1 hinted discovery.
+- `Assets/Tests/EditMode/Gameplay/Alchemy/BrewReagentsCommandTests.cs` —
+  12 tests: still gating (adjacent/diagonal/same-cell pass; absent/
+  distance-2 reject with nothing consumed), Food-form field-brewing
+  allowed, mishap damage applied + capped + never-below-1-HP +
+  not-applied-on-success counter-check, validation plumbing, and the
+  `IsNearStill` helper directly.
+
+**M1 cumulative: 69 authored tests** (all ⚠️ unrun — user will run the
+EditMode suite in Unity later, per explicit instruction).
+
+**Still open after M1.3:** world *placement* of reagents (forage nodes /
+loot tables / merchant stock — content-pass work; the blueprints exist
+and merchants can price them via Commerce), a brewing UI panel (the
+command surface is UI-ready; the panel itself is presentation work),
+throwable-brew shatter wiring, Food rules content, per-effect
+potency→duration mapping, save/load round-trip test (Unity-gated 🧪).
 
 ---
 
