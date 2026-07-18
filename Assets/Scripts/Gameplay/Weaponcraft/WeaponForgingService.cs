@@ -217,6 +217,13 @@ namespace CavesOfOoo.Core
                 return RejectDiag(crafter, reason);
             }
 
+            // Re-forging melts the temper away: TryRecomputeStats already
+            // rebuilt OnHitEffectsRaw + DisplayName from components (wiping
+            // temper specs and the quench prefix); ClearTemper restores the
+            // Hitpoints-max penalty so no orphaned fatigue lingers on a
+            // weapon whose specs no longer justify it.
+            WeaponTemperingService.ClearTemper(weapon);
+
             returnedComponent = displaced;
             MessageLog.Add(crafter.GetDisplayName() + " re-forges " + weapon.GetDisplayName() + ".");
 

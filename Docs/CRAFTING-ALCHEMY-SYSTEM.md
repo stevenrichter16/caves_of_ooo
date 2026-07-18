@@ -786,6 +786,50 @@ the alchemy bridge), component drop/merchant placement, and the
 adversarial sweep for weaponcraft (gate applies: atomicity + parser
 (OnHitEffectSpec) + cross-instance surfaces).
 
+### M3-L2 — Tempering: the alchemy→weaponcraft bridge ✅ written (⚠️ unverified in this env)
+
+The §7.1 Layer-2 quench, plus its safety coupling and the weaponcraft
+adversarial sweep.
+
+**Files (NEW):**
+- `WeaponTemperPart.cs` — temper state (count, HP penalty applied,
+  specs) in plain public fields for save-layer reflection.
+- `WeaponTemperingService.cs` — **a brewed COATING is the quench
+  medium** (BrewItemPart, Form "Coating" — Tonic/Throwable rejected):
+  quenching consumes the coating and writes its effects onto the weapon
+  as on-hit specs (`Burning:2` → `"Burning,40,,0,2"` — potency scales
+  chance 20+10·p capped 50, and magnitude) in the exact
+  `OnHitEffectsRaw` grammar combat already consumes. **Real trade-off:**
+  each temper fatigues the metal (Hitpoints max −2, floored at 1, and
+  the RECORDED penalty equals what was actually applied so the refund
+  can't over-heal); the metal holds at most **2 tempers**. Name gains a
+  quench prefix ("flame-quenched oak-hafted serrated steel blade").
+  Diag: `WeaponTempered` / `TemperRejected`.
+- `WeaponcraftAdversarialTests.cs` — **14 tests** across: temper
+  mechanics + cap + form gating + empty-coating + self-quench gate +
+  stacked-coating consumption + HP floor boundary; **temper↔reforge
+  cross-system consistency** (see below); forge stacking; the
+  swap-loop anti-dupe probe (reforge out + immediately back in must not
+  mint components); diag contracts incl. channel-off.
+
+**Files (MOD):**
+- `WeaponForgingService.TryReforge` now calls
+  `WeaponTemperingService.ClearTemper` after recompute — **the
+  consistency coupling**: recompute already wipes temper on-hit specs +
+  the quench name prefix (stats rebuild from components), so without the
+  melt, the HP penalty would linger on a weapon whose specs no longer
+  justify it. Fiction: *re-forging melts the temper away.* Re-tempering
+  after a re-forge starts fresh from zero (pinned).
+
+**Cumulative authored: 128 tests (97 alchemy + 31 weaponcraft), 0 run.**
+
+**Scope divergence from the M3-L2 sketch:** forge furniture + the
+forge/temper inventory commands are deferred to M3-L3 (they're
+mechanical mirrors of the still/brew-command pattern and belong with
+the UI pass); shipping furniture with no command consuming it would be
+dead content. Component world-placement shares the reagent-placement
+design decision (no spawn-table system exists).
+
 ---
 
 ## 9. M1.1 cold-eye review + critical plan analysis (2026-07-18)
