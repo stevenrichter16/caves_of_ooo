@@ -59,10 +59,15 @@ namespace CavesOfOoo.Core
                 result.Effects.Add(new BrewEffect
                 {
                     Effect = rule.Effect,
-                    Potency = ComputeMagnitude(rule, profile)
+                    Potency = ComputeMagnitude(rule, profile),
+                    RuleId = rule.ID
                 });
 
-                if (rule.Priority >= bestFormPriority)
+                // Strict '>' so the FIRST-listed rule wins priority ties:
+                // JSON file order is the author's precedence order.
+                // (M1.1 cold-eye finding F4 — '>=' made the LAST rule win,
+                // which no author would predict from reading the file.)
+                if (rule.Priority > bestFormPriority)
                 {
                     bestFormPriority = rule.Priority;
                     form = rule.Form;

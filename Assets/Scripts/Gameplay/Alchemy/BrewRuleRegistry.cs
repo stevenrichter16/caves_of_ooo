@@ -105,8 +105,26 @@ namespace CavesOfOoo.Core
                 if (rule == null || string.IsNullOrWhiteSpace(rule.ID))
                     continue;
 
-                if (!RulesById.ContainsKey(rule.ID))
+                // Duplicate IDs are last-wins in BOTH access paths. Without the
+                // in-place replacement below, RulesInOrder would keep serving
+                // the FIRST instance while RulesById serves the LAST — the two
+                // public surfaces would disagree about what the rule is.
+                // (M1.1 cold-eye finding F1.)
+                if (RulesById.ContainsKey(rule.ID))
+                {
+                    for (int j = 0; j < RulesInOrder.Count; j++)
+                    {
+                        if (string.Equals(RulesInOrder[j].ID, rule.ID, StringComparison.OrdinalIgnoreCase))
+                        {
+                            RulesInOrder[j] = rule;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
                     RulesInOrder.Add(rule);
+                }
 
                 RulesById[rule.ID] = rule;
             }

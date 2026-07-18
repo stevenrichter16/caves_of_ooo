@@ -247,6 +247,65 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(result.HasEffect("Burning"));
         }
 
+        // ════════════════ M1.1 cold-eye findings, pinned ════════════════
+
+        [Test]
+        public void Registry_DuplicateRuleId_LastDefinitionWins_InBothAccessPaths()
+        {
+            // Cold-eye F1: with duplicate IDs, TryGetRule served the LAST
+            // definition while GetAllRules served the FIRST — two public
+            // surfaces disagreeing about what the rule is. Pin last-wins in
+            // BOTH paths.
+            BrewRuleRegistry.InitializeFromJson(@"{
+                ""Rules"": [
+                    { ""ID"":""r_dup"", ""RequireAll"":""heat"", ""Effect"":""Burning"", ""Form"":""Tonic"", ""Priority"":1 },
+                    { ""ID"":""r_dup"", ""RequireAll"":""heat"", ""Effect"":""Frozen"",  ""Form"":""Tonic"", ""Priority"":1 }
+                ]
+            }");
+
+            Assert.IsTrue(BrewRuleRegistry.TryGetRule("r_dup", out BrewRule byId));
+            Assert.AreEqual("Frozen", byId.Effect, "TryGetRule must serve the last definition.");
+
+            var all = BrewRuleRegistry.GetAllRules();
+            Assert.AreEqual(1, all.Count, "duplicate IDs must not produce two iteration entries.");
+            Assert.AreEqual("Frozen", all[0].Effect, "GetAllRules must serve the SAME definition as TryGetRule.");
+        }
+
+        [Test]
+        public void Form_EqualPriority_FirstListedRuleWins()
+        {
+            // Cold-eye F4: '>=' made the LAST-listed rule win priority ties,
+            // which no author would predict from reading the JSON. Pin
+            // first-listed-wins (file order = precedence order).
+            BrewRuleRegistry.InitializeFromJson(@"{
+                ""Rules"": [
+                    { ""ID"":""r_first"",  ""RequireAll"":""heat"", ""Effect"":""Burning"",     ""Form"":""Coating"", ""Priority"":5 },
+                    { ""ID"":""r_second"", ""RequireAll"":""heat"", ""Effect"":""Electrified"", ""Form"":""Tonic"",   ""Priority"":5 }
+                ]
+            }");
+
+            BrewResult result = BrewResolver.Resolve(Reagent(("heat", 2)));
+
+            Assert.AreEqual(BrewOutcomeKind.Brew, result.Kind);
+            Assert.AreEqual("Coating", result.Form,
+                "On a priority tie, the first-listed rule's form must win.");
+        }
+
+        [Test]
+        public void Effects_CarryTheMatchedRuleId()
+        {
+            // Discovery is keyed on rule ID (learn the RULE, not the reagent
+            // pair) — the resolver must report which rule contributed each
+            // effect.
+            BrewResult result = BrewResolver.Resolve(
+                Reagent(("heat", 2)),
+                Reagent(("combustible", 3)));
+
+            Assert.AreEqual(BrewOutcomeKind.Brew, result.Kind);
+            Assert.AreEqual(1, result.Effects.Count);
+            Assert.AreEqual("r_burn", result.Effects[0].RuleId);
+        }
+
         // ════════════════ Production content load ════════════════
 
         [Test]

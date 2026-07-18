@@ -32,6 +32,14 @@ namespace CavesOfOoo.Core
     {
         public string Effect;
         public int Potency;
+
+        /// <summary>
+        /// ID of the <see cref="BrewRule"/> that contributed this effect.
+        /// Discovery is keyed on this (you learn the RULE — "heat +
+        /// combustible = fire" — not the reagent pair), so knowledge
+        /// transfers to every reagent combination that satisfies it.
+        /// </summary>
+        public string RuleId;
     }
 
     /// <summary>

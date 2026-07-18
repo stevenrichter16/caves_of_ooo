@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace CavesOfOoo.Core
 {
@@ -28,6 +29,61 @@ namespace CavesOfOoo.Core
         {
             Property = property;
             Potency = potency;
+        }
+
+        /// <summary>
+        /// Parse a raw blueprint-friendly list like "heat:2, volatile" into
+        /// (name, potency) pairs. Shared by <c>ReagentPart.PropertiesRaw</c>
+        /// (lowercased names — resolver property atoms) and
+        /// <c>BrewItemPart.EffectsRaw</c> (case-preserved names — effect
+        /// display/dispatch keys).
+        ///
+        /// Grammar: entries split on ',' / ';' / '|'; each entry is
+        /// "name:potency" or bare "name" (potency defaults to 1). Malformed
+        /// potency or potency &lt;= 0 drops the entry — a parse failure must
+        /// never masquerade as a valid potency (the int.TryParse-writes-0
+        /// pitfall from CLAUDE.md).
+        /// </summary>
+        public static List<BrewPropertyAmount> ParseList(string raw, bool lowerCaseNames)
+        {
+            var result = new List<BrewPropertyAmount>();
+            if (string.IsNullOrWhiteSpace(raw))
+                return result;
+
+            string[] entries = raw.Split(new[] { ',', ';', '|' }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < entries.Length; i++)
+            {
+                string entry = entries[i].Trim();
+                if (entry.Length == 0)
+                    continue;
+
+                string name;
+                int potency;
+
+                int colon = entry.IndexOf(':');
+                if (colon < 0)
+                {
+                    name = entry;
+                    potency = 1;
+                }
+                else
+                {
+                    name = entry.Substring(0, colon).Trim();
+                    string potencyRaw = entry.Substring(colon + 1).Trim();
+                    if (!int.TryParse(potencyRaw, out potency))
+                        continue;
+                }
+
+                if (name.Length == 0 || potency <= 0)
+                    continue;
+
+                if (lowerCaseNames)
+                    name = name.ToLowerInvariant();
+
+                result.Add(new BrewPropertyAmount(name, potency));
+            }
+
+            return result;
         }
     }
 

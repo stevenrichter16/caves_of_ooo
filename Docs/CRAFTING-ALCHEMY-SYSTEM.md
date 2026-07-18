@@ -1,11 +1,12 @@
 # Emergent Alchemy / Brewing — Design Exploration
 
-**Status:** 🟦 DESIGN / NOT YET IMPLEMENTED — alchemy direction confirmed,
-phasing confirmed (M1 Build-Alongside → M2 Layer-On-Top), **M1 design
-questions LOCKED (§6)**. **§7 added: sibling pillars — weapon crafting
-(modular + temper + saga) & spell crafting (rune-composition grammar),
-all grounded in real seams.** Build order in §7.4. Awaiting greenlight to
-start M1 (alchemy property engine).
+**Status:** 🟨 M1 IN PROGRESS — M1.1 resolver core + M1.2 brewing
+service/parts/knowledge/diag **authored** (§8), M1.1 cold-eye review run
+with 5 findings fixed/pinned + plan critique (§9). ⚠️ **57 tests
+authored, NONE yet run** — this session has no Unity; first
+Unity-connected session must run the EditMode suite before anything
+merges. Next: M1.3 (command/UI surface + reagent content + mishap
+damage). Weapon/spell pillars (§7) remain design-only.
 **Branch:** `claude/rpg-crafting-system-8gbflx`
 **Origin:** user — *"If this is an RPG there should be a more in-depth
 crafting system. It shouldn't be tedious for the sake of false depth,
@@ -323,9 +324,13 @@ experimenting).
 
 ### 6.4 Quantity / potency → **Property-set + single potency tier (LOCKED)**
 The **set** of properties determines *which* effects fire. Potency
-(effect magnitude) comes from the **highest-potency contributing
-reagent**, not the count — so dropping 3× FireMoss does **not** out-scale
-1× FireMoss + a better heat reagent. This kills stack-grinding dead: you
+(effect magnitude) is the **max potency among the rule's required
+properties** in the merged profile (precisely: profiles merge by MAX per
+property across reagents, then each fired rule reads the max over its
+own RequireAll set) — never a count or a sum. Dropping 3× FireMoss does
+**not** out-scale 1× FireMoss + a better heat reagent. *(Wording
+tightened in the M1.1 cold-eye pass — finding F3 — to match the shipped
+`BrewResolver.ComputeMagnitude` exactly.)* This kills stack-grinding dead: you
 improve a brew by finding *better reagents*, not by hoarding quantity. A
 later content tier may add a `concentrate` station upgrade for +1 tier,
 but base M1 is count-insensitive.
@@ -547,8 +552,11 @@ no zone, no RNG — purely `reagents → BrewResult`. Everything else in M1
   rules using only effects the existing `StatusTonicPart.CreateEffect`
   dispatch already supports (Burning / Frozen / Acidic / Electrified /
   Poison / Stoneskin / Wet).
-- `Assets/Tests/EditMode/Gameplay/Alchemy/BrewResolverTests.cs` — 18
+- `Assets/Tests/EditMode/Gameplay/Alchemy/BrewResolverTests.cs` — **17**
   tests, each positive assertion paired with a §3.4 counter-check.
+  *(Record correction: the M1.1 commit body claimed 18; the actual count
+  in that commit was 17 — cold-eye finding F2. The M1.2 pass added 3
+  more, bringing this file to 20.)*
 
 **Locked-decision conformance:**
 - §6.4 potency = **MAX** across reagents, never summed →
@@ -569,3 +577,178 @@ full EditMode suite must be run in Unity before this is considered green.
 (validate inventory + consume atomically + create item + emit
 `category=alchemy` diag records, mirroring `TinkeringService`), the
 discovery/knowledge store, the still furniture + UI, and reagent content.
+
+### M1.2 — Brewing service + world integration ✅ written (⚠️ unverified in this env)
+
+Everything between the pure resolver and a playable command surface.
+Shipped in the same pass as the M1.1 cold-eye review (§9), whose F1/F4
+fixes landed here.
+
+**Files (NEW):**
+- `Assets/Scripts/Gameplay/Items/TonicEffectFactory.cs` — the name→Effect
+  switch extracted verbatim from `StatusTonicPart.CreateEffect` so tonics
+  AND brews share ONE canonical dispatch table (they can never drift).
+- `Assets/Scripts/Gameplay/Alchemy/ReagentPart.cs` — blueprint-authorable
+  `PropertiesRaw` ("heat:2, volatile:1") + snapshot-cached parse
+  (mirrors `MeleeWeaponPart.OnHitEffectsRaw`), plus `FlavorText` for §6.1
+  hinted discovery. EntityFactory resolves blueprint part name "Reagent"
+  automatically (name + "Part" convention, `EntityFactory.cs:230-249`).
+- `Assets/Scripts/Gameplay/Alchemy/BrewItemPart.cs` — the multi-effect
+  consumable carrier; listens for the same `ApplyTonic` event
+  `StatusTonicPart` uses, applies every entry via `TonicEffectFactory`.
+  A galvanic draught is `EffectsRaw = "Acidic:2;Electrified:1"`.
+- `Assets/Scripts/Gameplay/Alchemy/BrewKnowledgePart.cs` — permanent
+  discovery log **keyed by rule ID** (learn the RULE, not the reagent
+  pair); storage + restore shim mirror `BitLockerPart`.
+- `Assets/Scripts/Gameplay/Alchemy/BrewingService.cs` — validate-first,
+  atomic multi-reagent consume with rollback, output creation
+  (`BrewedTonic` / `InertSludge` blueprints), "Healing" → instant
+  `TonicPart.Healing` dice mapping, discovery recording, and full
+  `category=alchemy` diag coverage (`BrewResolved` / `BrewRejected` /
+  `BrewDiscovered`) — the instrumentation tinkering never got.
+- Tests: `ReagentPartTests` (8) · `BrewItemPartTests` (7) ·
+  `BrewKnowledgePartTests` (5) · `TonicEffectFactoryTests` (4) ·
+  `BrewingServiceTests` (13) · +3 in `BrewResolverTests` (F1/F4 pins +
+  RuleId). **M1 cumulative: 57 authored tests** (all ⚠️ unverified here —
+  Unity run required).
+
+**Files (MOD):**
+- `StatusTonicPart.cs` — `CreateEffect` now delegates to
+  `TonicEffectFactory` (behavior-preserving; existing tonic suites are
+  the regression net).
+- `BrewProperty.cs` — shared `ParseList` grammar (drops malformed
+  potency entries rather than treating `int.TryParse`'s 0 as a value —
+  the CLAUDE.md pitfall).
+- `BrewResult.cs` / `BrewResolver.cs` — `BrewEffect.RuleId` provenance;
+  F4 tiebreak fix (first-listed rule wins).
+- `BrewRuleRegistry.cs` — F1 duplicate-ID fix (last-wins in BOTH access
+  paths).
+- `Diag.cs` — "alchemy" added to `DefaultOnCategories`.
+- `Objects.json` — `BrewedTonic` (inherits TonicItem, Drink=true) +
+  `InertSludge` (inherits Item) blueprints.
+- `BrewRules.json` — `brew_mending` (vital → Healing, vetoed by toxic).
+
+**Service contract:** `TryBrew` returns TRUE when the brewing ACT
+completed — including Mishap (reagents consumed, no item) and
+InertSludge (junk item) outcomes; the caller reads `BrewResult.Kind`.
+FALSE = validation/execution failure with NOTHING consumed. Mishap
+self-damage is applied at the command/UI layer where zone context lives
+(M1.3), not in the service.
+
+**Still deferred to M1.3:** the player-facing command/UI surface (still
+furniture + inventory command mirroring `CraftFromRecipeCommand`),
+production reagent blueprints + forage/butcher placement, mishap
+self-damage at the command layer, throwable-brew wiring, per-effect
+potency→duration mapping, and the save/load round-trip test through
+`SaveGraphSerializer` (needs Unity to run — flagged 🧪).
+
+---
+
+## 9. M1.1 cold-eye review + critical plan analysis (2026-07-18)
+
+Run per CLAUDE.md §Post-implementation cold-eye review, with extra
+weight because M1.1 was authored in an environment with **no Unity/test
+runner** — code that was never run deserves a harsher read.
+
+### 9.1 Code findings (all fixed in M1.2 unless noted)
+
+**🟡 F1 — Registry duplicate-ID divergence.**
+`BrewRuleRegistry.LoadFromJson` kept the FIRST instance of a
+duplicate-ID rule in `RulesInOrder` while `RulesById` stored the LAST —
+`GetAllRules()` (the resolver's path) and `TryGetRule()` would disagree
+about what the rule is. **Fixed:** in-place replacement → last-wins in
+both paths; pinned by
+`Registry_DuplicateRuleId_LastDefinitionWins_InBothAccessPaths`.
+
+**🟡 F2 — Test-count honesty slip.**
+The M1.1 commit body claimed "Tests: +18"; the file contained **17**.
+The pushed commit can't be amended; the record is corrected in §8 and
+here. Process note: count test methods with a grep before writing the
+commit body, don't recall the number.
+
+**🔵 F3 — Doc-vs-impl drift on §6.4 potency wording** ("highest-potency
+contributing reagent" vs the implemented max-over-required-properties).
+**Fixed:** §6.4 rewritten to match `ComputeMagnitude` exactly.
+
+**🔵 F4 — Form tiebreak surprise.**
+`>=` in the form-priority scan made the LAST-listed rule win priority
+ties — nothing an author reading the JSON top-down would predict.
+**Fixed:** strict `>`; file order = precedence order; pinned by
+`Form_EqualPriority_FirstListedRuleWins`.
+
+**🧪 F5 — Unpinned effect-name seam.**
+Nothing verified that the effect names brew rules emit are actually
+creatable by the tonic dispatch — a typo'd rule would silently produce
+nothing. **Closed structurally** (TonicEffectFactory extraction = one
+canonical table) **and pinned** by
+`Production_BrewRuleEffectNames_AreAllDispatchable`.
+
+### 9.2 Plan-level critique (the honest read)
+
+**C1 — The "emergence" is currently thinner than the pitch.** With
+mostly single-property rules, 8 rules ≈ 8 recipes wearing a trench coat.
+What makes it *feel* emergent is (a) multi-property rules
+(`heat+combustible`), (b) multi-property REAGENTS whose combinations
+produce non-obvious unions, (c) veto interactions (heat spoils frost,
+toxic spoils mending), and (d) multi-rule firings (galvanic draught).
+The engine supports all four; **the content burden is real and lands on
+M1.3** — it must ship 12+ reagents with overlapping 2-property profiles,
+or the system plays like a recipe list. This is the single biggest risk
+to the design's promise.
+
+**C2 — Five vocabulary properties are dead ends in M1.** `numbing`,
+`bitter`, `sweet`, `luminous`, `binding`* have no (or only placeholder)
+rule outcomes because the effect layer they need doesn't exist yet
+(no Nauseated-tier debuff mapping, no light-radius consumable, no
+food-buff effect). (*binding → Stoneskin shipped; the other four are
+genuinely dead.) Honest choice made: keep them in the vocabulary as
+**documented reserved atoms** — they parse, they merge, they match no
+rule → inert sludge, which is correct forward-compatible behavior — and
+M1.3+ adds their outcomes. The alternative (trimming the vocabulary)
+would churn reagent content twice.
+
+**C3 — Discovery is keyed by rule, pinned now.** A discovery model keyed
+by reagent-pair would make knowledge non-transferable and grindy. Locked
+in M1.2: `BrewKnowledgePart` stores RULE IDs; `BrewEffect.RuleId`
+carries provenance. This is now architecture, not intention.
+
+**C4 — Potency→duration mapping is a stub.** Potency feeds the
+magnitude slot only; duration-style effects (Poisoned, Stoneskin) get
+defaults regardless of potency. Documented in `BrewItemPart`; M1.3
+refines per-effect. Not a bug — a declared simplification.
+
+**C5 — No progression gate on brewing yet.** Any reagents, anywhere,
+full-strength output. For an RPG this is thin: M1's implicit gate is
+world placement (better reagents live in harder biomes), which is
+content, not code. An Alchemy skill gate (mirroring how skills gate
+tinker tiers) is the natural M2+ layer — flagged as an open design
+question, deliberately NOT built now.
+
+**C6 — Existing-system gap surfaced: tinkering has ZERO diag
+instrumentation.** `TinkeringService` emits only MessageLog lines — a
+standing violation of the CLAUDE.md observability rule, discovered while
+mirroring it. Alchemy shipped fully instrumented
+(`BrewResolved`/`BrewRejected`/`BrewDiscovered`); backfilling
+`category=tinker` records into TinkeringService is a good standalone
+fix-branch candidate. **Not done here** — out of this feature's blast
+radius.
+
+**C7 — The unverified-authoring risk is concentrated, not eliminated.**
+Everything here compiles against APIs read from source (`Diag.Record`,
+`DiagQuery.Filter`, `EntityFactory.LoadBlueprints`, `TonicPart.ApplyTo`
+event params, `StatusEffectsPart.HasEffect<T>`), and test fixtures
+mirror shipped suites line-for-line. But until the Unity EditMode run
+happens, RED→GREEN discipline is suspended and every "pinned" claim in
+§9.1 is provisional. **First action on a Unity-connected session: run
+the full suite; treat any failure as a real finding, not test noise.**
+
+### 9.3 What the review did NOT find
+
+No atomicity holes in the service flow (validate → consume-with-ledger →
+create → add → rollback-on-any-failure mirrors the audited
+TinkeringService shape), no iterator-over-mutation hazards (all loops
+index concrete lists), no stringly-typed seam without a pin (F5 closed).
+The hypothesis-driven deep-audit pass (CLAUDE.md) still applies once the
+suite is green in Unity — player-flow hypotheses like "brew with the
+knowledge part already present from an old save" and "drink a brew whose
+effect name was removed from the factory" are the M1.3 candidates.
