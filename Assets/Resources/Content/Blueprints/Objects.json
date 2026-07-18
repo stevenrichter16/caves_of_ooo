@@ -518,6 +518,157 @@
       ]
     },
     {
+      "Name": "ForgedWeapon",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "forged weapon" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "6" }] },
+        { "Name": "MeleeWeapon", "Params": [
+          { "Key": "BaseDamage", "Value": "1d2" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "25" }] },
+        { "Name": "TinkerItem", "Params": [{ "Key": "CanBuild", "Value": "false" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "Forged", "Value": "" }
+      ]
+    },
+    {
+      "Name": "WeaponComponentItem",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "weapon component" },
+          { "Key": "RenderString", "Value": "]" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "3" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "8" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "WeaponComponent", "Value": "" }
+      ]
+    },
+    {
+      "Name": "SteelBladeComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "steel blade" },
+          { "Key": "ColorString", "Value": "&C" }
+        ]},
+        { "Name": "WeaponComponent", "Params": [
+          { "Key": "Slot", "Value": "Blade" },
+          { "Key": "BaseDamage", "Value": "1d6" },
+          { "Key": "Attributes", "Value": "Cutting" },
+          { "Key": "NameFragment", "Value": "steel blade" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "IronSpikeComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "iron spike" },
+          { "Key": "ColorString", "Value": "&w" }
+        ]},
+        { "Name": "WeaponComponent", "Params": [
+          { "Key": "Slot", "Value": "Blade" },
+          { "Key": "BaseDamage", "Value": "1d4" },
+          { "Key": "PenBonus", "Value": "1" },
+          { "Key": "Attributes", "Value": "Piercing" },
+          { "Key": "NameFragment", "Value": "iron spike" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "OakHaftComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "oak haft" },
+          { "Key": "ColorString", "Value": "&y" }
+        ]},
+        { "Name": "WeaponComponent", "Params": [
+          { "Key": "Slot", "Value": "Haft" },
+          { "Key": "MaxStrengthBonus", "Value": "3" },
+          { "Key": "NameFragment", "Value": "oak-hafted" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "WillowHaftComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "willow haft" },
+          { "Key": "ColorString", "Value": "&g" }
+        ]},
+        { "Name": "WeaponComponent", "Params": [
+          { "Key": "Slot", "Value": "Haft" },
+          { "Key": "MaxStrengthBonus", "Value": "2" },
+          { "Key": "HitBonus", "Value": "1" },
+          { "Key": "NameFragment", "Value": "willow-hafted" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "LeatherBindingComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "leather binding" },
+          { "Key": "ColorString", "Value": "&y" }
+        ]},
+        { "Name": "WeaponComponent", "Params": [
+          { "Key": "Slot", "Value": "Binding" },
+          { "Key": "HitBonus", "Value": "1" },
+          { "Key": "NameFragment", "Value": "leather-bound" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "SerratedEdgeComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "serrated edge kit" },
+          { "Key": "ColorString", "Value": "&R" }
+        ]},
+        { "Name": "WeaponComponent", "Params": [
+          { "Key": "Slot", "Value": "Binding" },
+          { "Key": "PenBonus", "Value": "1" },
+          { "Key": "OnHitEffectSpec", "Value": "Bleeding,20,1d2,15,0" },
+          { "Key": "NameFragment", "Value": "serrated" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "AlchemyStill",
       "Inherits": "PhysicalObject",
       "Parts": [

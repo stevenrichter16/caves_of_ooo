@@ -5,9 +5,13 @@ brewing service/parts/knowledge/diag + M1.3 command/still/reagent
 catalog all **authored** (§8); M1.1 cold-eye review run with 5 findings
 fixed/pinned + plan critique (§9). ⚠️ **97 tests authored, NONE yet
 run** — the user will run the EditMode suite in Unity later; treat any
-failure there as a real finding. Remaining M1 polish: reagent world
-placement, brewing UI panel, throwable shatter wiring, Food rules.
-Weapon/spell pillars (§7) remain design-only.
+failure there as a real finding. M1.4 added the adversarial sweep (which
+caught + fixed the thrown-brew gate bug) and Food content. Remaining M1
+polish: reagent world placement (needs a design decision — no spawn-table
+system exists), brewing UI panel. **M3-L1 (modular weapon forging) now in
+progress** — sequenced ahead of M2 because M2 touches the enhancement
+suite's runtime seams, the riskiest thing to modify without a test
+runner; M3-L1 is additive-only (§8 M3 log).
 **Branch:** `claude/rpg-crafting-system-8gbflx`
 **Origin:** user — *"If this is an RPG there should be a more in-depth
 crafting system. It shouldn't be tedious for the sake of false depth,
@@ -733,6 +737,54 @@ deferred again: CoO has NO loot/spawn-table system (minerals arrive via
 scenarios/merchants), so placement means either merchant stock wiring or
 a new forage-node system — a design decision worth its own sub-milestone
 rather than an invented-blind spawn hack.
+
+### M3-L1 — Modular weapon forging ✅ written (⚠️ unverified in this env)
+
+First slice of the weapon pillar (§7.1 Layer 1). **Sequencing note
+(scope divergence from §7.4):** built before M2 (alchemy gear-target)
+because M2 must route through the 322-test enhancement suite's runtime
+seams — the riskiest thing to modify with no test runner — while M3-L1
+is purely additive: new parts + a service that WRITES `MeleeWeaponPart`
+fields the combat path already READS. Zero combat-code changes.
+
+**Files (NEW):**
+- `Assets/Scripts/Gameplay/Weaponcraft/WeaponComponentPart.cs` —
+  blueprint-authorable component: Slot (Blade/Haft/Binding) +
+  contributions (BaseDamage, Pen/Hit bonuses, MaxStrengthBonus,
+  Attributes, OnHitEffectSpec quirk, NameFragment).
+- `Assets/Scripts/Gameplay/Weaponcraft/WeaponAssemblyPart.cs` — records
+  the installed component blueprints (plain string fields → save-layer
+  friendly) so the weapon can be **re-forged**: the RPG-identity hook
+  where a favorite weapon evolves instead of being replaced.
+- `Assets/Scripts/Gameplay/Weaponcraft/WeaponForgingService.cs` —
+  TryForge (validate → consume 3 components w/ rollback ledger → create
+  `ForgedWeapon` → compute stats → record assembly) and TryReforge
+  (swap ONE component; the displaced one is re-created from its
+  blueprint and returned — components are stateless; stats recomputed
+  deterministically so forge(A)→reforge(B)→reforge(A) ≡ forge(A)).
+  Combination math: blade drives dice; bonuses SUM; strength cap is
+  MAX; attributes union de-duplicated; quirks concatenate into
+  `OnHitEffectsRaw`; name = haft + binding + blade fragments
+  ("oak-hafted serrated steel blade"). Diag `category=craft`:
+  WeaponForged / WeaponReforged / ForgeRejected (added to
+  `DefaultOnCategories`).
+- Content: `ForgedWeapon` base (inherits MeleeWeapon) +
+  `WeaponComponentItem` base + 6 components (SteelBlade/IronSpike
+  blades, Oak/Willow hafts, Leather/SerratedEdge bindings — the
+  serrated kit carries a `Bleeding,20,1d2,15,0` on-hit quirk).
+- `WeaponForgingServiceTests.cs` — **17 tests**: assembly math (dice /
+  sum / max / union-dedupe / quirk / naming), validation (wrong slot,
+  non-component, unowned — nothing consumed), 3-component rollback,
+  re-forge swap + determinism + non-forged-loot rejection, diag pins,
+  production content pins.
+
+**Cumulative authored: 114 tests (97 alchemy + 17 weaponcraft), 0 run.**
+
+**Deferred to M3-L2:** forge furniture + inventory command (mirror the
+still/brew-command pattern), tempering/quench (consumes M1 essences —
+the alchemy bridge), component drop/merchant placement, and the
+adversarial sweep for weaponcraft (gate applies: atomicity + parser
+(OnHitEffectSpec) + cross-instance surfaces).
 
 ---
 
