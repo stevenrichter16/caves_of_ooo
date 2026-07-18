@@ -138,6 +138,97 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// Pure, read-only preview: the largest number of IDENTICAL weapons
+        /// this exact blade/haft/binding selection could forge — the
+        /// smallest available quantity across the three slots
+        /// (StackerPart.StackCount when present, else 1). Consumes
+        /// nothing; <see cref="TryForgeBatch"/> is the authority.
+        /// </summary>
+        public static int GetMaxBatchCount(Entity blade, Entity haft, Entity binding)
+        {
+            int bladeCount = AvailableCount(blade);
+            int haftCount = AvailableCount(haft);
+            int bindingCount = AvailableCount(binding);
+            if (bladeCount == 0 || haftCount == 0 || bindingCount == 0)
+                return 0;
+
+            int min = bladeCount;
+            if (haftCount < min) min = haftCount;
+            if (bindingCount < min) min = bindingCount;
+            return min;
+        }
+
+        /// <summary>
+        /// Repeat <see cref="TryForge"/> up to <paramref name="requestedCount"/>
+        /// times against the SAME three component references — mirrors
+        /// BrewingService.TryBrewBatch exactly. Each iteration re-validates
+        /// and consumes via the existing stack-aware TryConsumeComponent, so
+        /// passing the same entities repeatedly naturally exhausts whichever
+        /// slot runs out first; no new bookkeeping needed.
+        ///
+        /// Return contract: TRUE if at least one weapon was forged (a
+        /// partial batch is a smaller success). FALSE only when the FIRST
+        /// iteration fails.
+        /// </summary>
+        public static bool TryForgeBatch(
+            Entity crafter,
+            EntityFactory factory,
+            Entity blade,
+            Entity haft,
+            Entity binding,
+            int requestedCount,
+            out List<Entity> producedWeapons,
+            out int madeCount,
+            out string reason)
+        {
+            producedWeapons = new List<Entity>();
+            madeCount = 0;
+            reason = string.Empty;
+
+            if (crafter == null)
+            {
+                reason = "Crafter is missing.";
+                return false;
+            }
+
+            if (requestedCount <= 0)
+            {
+                reason = "Requested forge count must be positive.";
+                return RejectDiag(crafter, reason);
+            }
+
+            for (int i = 0; i < requestedCount; i++)
+            {
+                bool ok = TryForge(crafter, factory, blade, haft, binding, out Entity weapon, out string iterationReason);
+                if (!ok)
+                {
+                    if (madeCount == 0)
+                    {
+                        reason = iterationReason;
+                        return false;
+                    }
+
+                    reason = "Ran out of components after " + madeCount + ": " + iterationReason;
+                    break;
+                }
+
+                producedWeapons.Add(weapon);
+                madeCount++;
+            }
+
+            return true;
+        }
+
+        private static int AvailableCount(Entity item)
+        {
+            if (item == null)
+                return 0;
+
+            StackerPart stacker = item.GetPart<StackerPart>();
+            return (stacker != null && stacker.StackCount > 0) ? stacker.StackCount : 1;
+        }
+
+        /// <summary>
         /// Swap ONE component of a forged weapon. The new component is
         /// consumed; the displaced component is re-created from its recorded
         /// blueprint and added to the crafter's inventory; the weapon's

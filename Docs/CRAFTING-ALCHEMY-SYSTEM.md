@@ -1,17 +1,17 @@
 # Emergent Alchemy / Brewing — Design Exploration
 
-**Status:** 🟨 M1 CODE-COMPLETE (unverified) — M1.1 resolver + M1.2
-brewing service/parts/knowledge/diag + M1.3 command/still/reagent
-catalog all **authored** (§8); M1.1 cold-eye review run with 5 findings
-fixed/pinned + plan critique (§9). ⚠️ **97 tests authored, NONE yet
-run** — the user will run the EditMode suite in Unity later; treat any
-failure there as a real finding. M1.4 added the adversarial sweep (which
-caught + fixed the thrown-brew gate bug) and Food content. Remaining M1
-polish: reagent world placement (needs a design decision — no spawn-table
-system exists), brewing UI panel. **M3-L1 (modular weapon forging) now in
-progress** — sequenced ahead of M2 because M2 touches the enhancement
-suite's runtime seams, the riskiest thing to modify without a test
-runner; M3-L1 is additive-only (§8 M3 log).
+**Status:** 🟨 M1–M3-L2 CODE-COMPLETE + batch crafting (unverified) —
+alchemy (M1.1–M1.4) and weapon forging + tempering (M3-L1/L2) fully
+authored (§8); M1.1 cold-eye review run with 5 findings fixed/pinned +
+plan critique (§9). **M1.5/M3-L3-partial** added batch crafting for both
+pillars — gathering a stack of one ingredient no longer means repeating
+a craft action once per unit (user-reported gap; §8 M1.5). ⚠️ **155
+tests authored, NONE yet run** — the user will run the EditMode suite in
+Unity later; treat any failure there as a real finding. Remaining
+polish: reagent/component world placement (needs a design decision — no
+spawn-table system exists), a crafting UI panel, the still-deferred
+M3-L3 forge furniture + forge command. Weapon saga (M4) and spell
+grammar (M5) remain design-only (§7).
 **Branch:** `claude/rpg-crafting-system-8gbflx`
 **Origin:** user — *"If this is an RPG there should be a more in-depth
 crafting system. It shouldn't be tedious for the sake of false depth,
@@ -829,6 +829,82 @@ mechanical mirrors of the still/brew-command pattern and belong with
 the UI pass); shipping furniture with no command consuming it would be
 dead content. Component world-placement shares the reagent-placement
 design decision (no spawn-table system exists).
+
+### M1.5 / M3-L3-partial — Batch crafting: don't punish gathering ✅ written (⚠️ unverified in this env)
+
+**Origin:** user question — *"I don't want to punish the player for
+gathering lots of items by not letting them make multiple if they have
+multiple of one ingredient. Is this what the game currently does?"*
+Answer at the time (verified by reading the code, not assumed): repeated
+crafting was **never blocked** — nothing capped how many times a player
+could invoke a brew/forge — but there was **no batch convenience**:
+each command call consumed exactly the entities you handed it and
+produced exactly one output, so a player with a 5-unit stack had to
+repeat the action 5 times. Not a restriction; a missing feature, and one
+that reintroduces the "repeat an action N times for no reason" tedium
+the whole system was built to avoid. This milestone closes that gap.
+
+**The elegant part:** batching required **zero changes to the
+already-authored, most-carefully-tested code** (`TryBrew`, `TryForge`,
+their consume/rollback ledgers — 145 tests across M1–M3-L2 that stay
+untouched). The atomic consume logic already decrements a
+`StackerPart.StackCount` per call and falls through to
+`InventoryPart.RemoveObject` once the stack reaches 1 — so **calling the
+existing single-shot method in a loop against the same entity
+references naturally decrements stacks and naturally stops the moment
+any one of them is exhausted** (the next iteration's ownership check
+fails on its own). No new "how much is left" bookkeeping to keep in
+sync with the ledger — the exhaustion IS the ledger.
+
+**Files (MOD — additive only, no existing method bodies touched):**
+- `BrewingService.cs` — `GetMaxBatchCount(reagentItems)` (pure preview:
+  smallest available quantity across the selection, unstacked = 1) +
+  `TryBrewBatch(..., requestedCount, out producedItems, out results, out
+  madeCount, out reason)` (loops `TryBrew`; **a partial batch — asked
+  for 5, got 3 — returns TRUE**, because running out partway through is
+  a smaller success, not a failure; only a FIRST-iteration failure
+  returns false, matching `TryBrew`'s own contract exactly).
+- `WeaponForgingService.cs` — the identical pair, `GetMaxBatchCount(blade,
+  haft, binding)` + `TryForgeBatch(...)`, same shape, same reasoning.
+  Ships ahead of its command wrapper (M3-L3 still owns
+  forge furniture + the forge command) — the service is ready when
+  that lands.
+- `BrewReagentsCommand.cs` — new `count` constructor param (**defaults
+  to 1**, so every existing call site is unaffected); `Execute` now
+  calls `TryBrewBatch` and applies mishap self-damage **once per mishap
+  iteration in the batch** — each application still re-reads current HP
+  and floors at 1, so a run of several mishaps converges safely to "you
+  end at 1 HP" rather than compounding into a kill (pinned:
+  `Batch_MultipleMishaps_DamageAppliesPerIteration_NeverLethal`, HP=4,
+  3×potential-2-damage mishaps, asserts HP never drops below 1). A
+  partial batch logs `"Requested N, made M — ran out of reagents."`;
+  batches >1 log a `"finishes a batch of M"` summary line.
+
+**Deliberate design choices (so they're not "fixed" away later by
+accident):**
+- **Diag stays per-unit, not aggregated.** A batch of 3 emits 3
+  `BrewResolved` records, independently traceable via `diag_query` —
+  pinned explicitly (`Batch_EmitsOneBrewResolvedRecordPerIteration`).
+- **Discovery is idempotent across a batch.** 3 identical brews in one
+  batch discover the underlying rule **once**, not 3 times (already
+  guaranteed by `BrewKnowledgePart.Discover`'s existing idempotency —
+  pinned as a batch-specific regression, not re-implemented).
+- **Still-gating checks the whole batch once**, not per unit (the
+  resolved form is deterministic and count-independent — a batch either
+  needs a still or it doesn't).
+- **Potency is still never affected by batch size** (§6.4 stands
+  untouched): batching changes how many outputs you get, never how
+  strong any one of them is.
+
+**Tests: +27 (12 `BrewingBatchTests` + 7 `BrewReagentsBatchCommandTests`
++ 8 `WeaponForgingBatchTests`), all grep-verified.** **Cumulative
+authored: 155 tests (alchemy + weaponcraft combined), 0 run.**
+
+**Honesty bound, unchanged:** still no Unity/dotnet in this container —
+RED→GREEN not observed for any of the 27. The design is lower-risk than
+prior milestones specifically *because* it reuses already-authored
+atomic logic via composition rather than modifying it, but "lower risk"
+is not "verified" — the Unity run remains the gate before this merges.
 
 ---
 

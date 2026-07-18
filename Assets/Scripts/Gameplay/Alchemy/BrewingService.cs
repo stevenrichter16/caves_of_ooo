@@ -190,6 +190,113 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// Pure, read-only preview: the largest batch size a UI could offer
+        /// for this exact reagent selection — the smallest available
+        /// quantity across all selected reagents (StackerPart.StackCount
+        /// when present, else 1, since an unstacked item is "1 unit").
+        /// Consumes nothing; <see cref="TryBrewBatch"/> is the authority on
+        /// what actually happens.
+        /// </summary>
+        public static int GetMaxBatchCount(IReadOnlyList<Entity> reagentItems)
+        {
+            if (reagentItems == null || reagentItems.Count == 0)
+                return 0;
+
+            int max = int.MaxValue;
+            for (int i = 0; i < reagentItems.Count; i++)
+            {
+                Entity item = reagentItems[i];
+                if (item == null)
+                    return 0;
+
+                StackerPart stacker = item.GetPart<StackerPart>();
+                int available = (stacker != null && stacker.StackCount > 0) ? stacker.StackCount : 1;
+                if (available < max)
+                    max = available;
+            }
+
+            return max;
+        }
+
+        /// <summary>
+        /// Repeat <see cref="TryBrew"/> up to <paramref name="requestedCount"/>
+        /// times against the SAME reagent selection — the answer to "let me
+        /// make several at once from a stack I gathered" without punishing
+        /// the player for having gathered a lot. No new consumption logic:
+        /// each call to TryBrew independently re-validates ownership and
+        /// consumes one unit from each reagent's stack (or removes the
+        /// whole entity once its stack reaches 1), so passing the same
+        /// entity references repeatedly naturally decrements stacks and
+        /// naturally STOPS once any reagent runs out (the next iteration's
+        /// ownership check fails) — no separate "how many are left" logic
+        /// to keep in sync with TryBrew's consume/rollback ledger.
+        ///
+        /// Return contract: TRUE if at least one iteration succeeded — a
+        /// partial batch (asked for 5, only had mats for 3) is a smaller
+        /// SUCCESS, not a failure. FALSE only when the FIRST iteration
+        /// fails, matching TryBrew's own failure contract exactly.
+        /// <paramref name="madeCount"/> may be less than requestedCount;
+        /// when it is, <paramref name="reason"/> explains why the batch
+        /// stopped early (informational — the caller decides how to show
+        /// it, e.g. a "ran out of lamp oil" message).
+        ///
+        /// Deliberately per-iteration, not aggregated: each successful
+        /// iteration still runs the full TryBrew path (its own MessageLog
+        /// line, its own "alchemy" diag record, its own discovery check —
+        /// which is already idempotent, so brewing the same rule 5 times in
+        /// one batch discovers it exactly once).
+        /// </summary>
+        public static bool TryBrewBatch(
+            Entity crafter,
+            EntityFactory factory,
+            IReadOnlyList<Entity> reagentItems,
+            int requestedCount,
+            out List<Entity> producedItems,
+            out List<BrewResult> results,
+            out int madeCount,
+            out string reason)
+        {
+            producedItems = new List<Entity>();
+            results = new List<BrewResult>();
+            madeCount = 0;
+            reason = string.Empty;
+
+            if (crafter == null)
+            {
+                reason = "Crafter is missing.";
+                return false;
+            }
+
+            if (requestedCount <= 0)
+            {
+                reason = "Requested brew count must be positive.";
+                return RejectDiag(crafter, reason);
+            }
+
+            for (int i = 0; i < requestedCount; i++)
+            {
+                bool ok = TryBrew(crafter, factory, reagentItems, out Entity produced, out BrewResult result, out string iterationReason);
+                if (!ok)
+                {
+                    if (madeCount == 0)
+                    {
+                        reason = iterationReason;
+                        return false;
+                    }
+
+                    reason = "Ran out of reagents after " + madeCount + ": " + iterationReason;
+                    break;
+                }
+
+                producedItems.Add(produced);
+                results.Add(result);
+                madeCount++;
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// Write the resolved effects onto the created brew entity:
         /// "Healing" entries become instant TonicPart healing dice (potency
         /// d4); everything else becomes BrewItemPart status entries. The

@@ -17,6 +17,15 @@ namespace CavesOfOoo.Core.Inventory.Commands
     ///     a SMALL, telegraphed, NON-LETHAL amount — clamped so it can never
     ///     reduce Hitpoints below 1 (RPG, not roguelike: experimenting must
     ///     never kill outright).
+    ///
+    ///  3. Batch count: gathering a stack of reagents must not punish the
+    ///     player with having to repeat the action once per unit — <see
+    ///     cref="BrewingService.TryBrewBatch"/> does the looping; this
+    ///     command just plumbs the requested count through and applies
+    ///     mishap damage once PER mishap iteration in the batch (each
+    ///     application still floors at 1 HP, so a batch of mishaps still
+    ///     cannot kill — see BrewingAdversarialTests for the cumulative
+    ///     non-lethal pin).
     /// </summary>
     public sealed class BrewReagentsCommand : IInventoryCommand
     {
@@ -25,13 +34,22 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         private readonly IReadOnlyList<Entity> _reagents;
         private readonly EntityFactory _factory;
+        private readonly int _requestedCount;
 
         public string Name => "BrewReagents";
 
-        public BrewReagentsCommand(IReadOnlyList<Entity> reagents, EntityFactory factory)
+        /// <param name="count">
+        /// How many times to repeat this exact reagent selection. Defaults
+        /// to 1 so existing single-brew call sites are unaffected. Values
+        /// beyond what the selected stacks can supply are not an error —
+        /// the command makes as many as it can and reports the shortfall
+        /// via MessageLog (see Execute).
+        /// </param>
+        public BrewReagentsCommand(IReadOnlyList<Entity> reagents, EntityFactory factory, int count = 1)
         {
             _reagents = reagents;
             _factory = factory;
+            _requestedCount = count;
         }
 
         public InventoryValidationResult Validate(InventoryContext context)
@@ -64,6 +82,13 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "No reagents selected.");
             }
 
+            if (_requestedCount <= 0)
+            {
+                return InventoryValidationResult.Invalid(
+                    InventoryValidationErrorCode.BlockedByRule,
+                    "Requested brew count must be positive.");
+            }
+
             // Resolve the mix purely (no side effects) to learn its FORM —
             // the still requirement depends on what would be brewed.
             var properties = new List<IReadOnlyList<BrewPropertyAmount>>(_reagents.Count);
@@ -94,23 +119,42 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
-            bool ok = BrewingService.TryBrew(
+            bool any = BrewingService.TryBrewBatch(
                 context.Actor,
                 _factory,
                 _reagents,
-                out _,
-                out BrewResult result,
+                _requestedCount,
+                out List<Entity> produced,
+                out List<BrewResult> results,
+                out int madeCount,
                 out string reason);
 
-            if (!ok)
+            if (!any)
             {
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
                     reason);
             }
 
-            if (result.Kind == BrewOutcomeKind.Mishap)
-                ApplyMishapDamage(context.Actor, context.Zone);
+            // One mishap application PER mishap iteration in the batch —
+            // each call re-reads current HP and floors at 1, so a run of
+            // several mishaps converges safely to "you end at 1 HP, no
+            // further damage" rather than compounding into a kill.
+            for (int i = 0; i < results.Count; i++)
+            {
+                if (results[i].Kind == BrewOutcomeKind.Mishap)
+                    ApplyMishapDamage(context.Actor, context.Zone);
+            }
+
+            if (madeCount > 1)
+                MessageLog.Add(context.Actor.GetDisplayName() + " finishes a batch of " + madeCount + ".");
+
+            if (madeCount < _requestedCount)
+            {
+                MessageLog.Add(
+                    "(Requested " + _requestedCount + ", made " + madeCount
+                    + " — ran out of reagents.)");
+            }
 
             return InventoryCommandResult.Ok();
         }
