@@ -3,7 +3,7 @@
 **Status:** 🟨 M1 CODE-COMPLETE (unverified) — M1.1 resolver + M1.2
 brewing service/parts/knowledge/diag + M1.3 command/still/reagent
 catalog all **authored** (§8); M1.1 cold-eye review run with 5 findings
-fixed/pinned + plan critique (§9). ⚠️ **69 tests authored, NONE yet
+fixed/pinned + plan critique (§9). ⚠️ **97 tests authored, NONE yet
 run** — the user will run the EditMode suite in Unity later; treat any
 failure there as a real finding. Remaining M1 polish: reagent world
 placement, brewing UI panel, throwable shatter wiring, Food rules.
@@ -686,6 +686,53 @@ and merchants can price them via Commerce), a brewing UI panel (the
 command surface is UI-ready; the panel itself is presentation work),
 throwable-brew shatter wiring, Food rules content, per-effect
 potency→duration mapping, save/load round-trip test (Unity-gated 🧪).
+
+### M1.4 — Adversarial sweep + throwable-brew fix + Food content ✅ written (⚠️ unverified in this env)
+
+The CLAUDE.md adversarial-sweep gate (alchemy hits 4+ taxonomy
+surfaces: state atomicity, parser, stacking, diag dispatch contracts).
+
+**🔴→fixed: the sweep caught a REAL latent bug while being designed.**
+`TonicPart.HasThrowablePayload` (the gate `ThrowItemCommand` uses to
+decide shatter-vs-inert-landing) checked Healing/StatBoost/
+CureTonicPart/StatusTonicPart — but not `BrewItemPart`. A volatile
+"Throwable"-form brew **landed like an inert rock** instead of
+shattering into its 3×3 AoE. One-line fix in `TonicPart.cs` (add the
+BrewItemPart check); the whole downstream chain
+(`ApplyTonicAoe` → `tonic.ApplyTo` → `ApplyTonic` event →
+`BrewItemPart.HandleEvent`) was verified already-correct by read — only
+the gate was missing. Pinned by 3 tests (positive + bare-tonic
+counter-check + healing-path regression guard).
+
+**Files:**
+- MOD `TonicPart.cs` — the one-line throwable gate fix.
+- NEW `BrewingAdversarialTests.cs` — **28 tests** across: parser
+  malformed inputs (double-colon, ±signs, unicode, 2×10⁹ potency),
+  resolver rule-table degenerates (missing fields, unknown properties,
+  MagnitudeScale 0 / fractional rounding, case-insensitive veto, empty
+  table), atomicity rollback shapes (stack+plain restored together on
+  sludge-blueprint failure; stack-of-1 boundary; empty-property reagent
+  = sludge-not-invalid), cross-instance same-blueprint reagents, diag
+  contract invariants (success≠Rejected, rejection≠Resolved, mishap
+  outcome in payload, channel-off changes nothing), throwable pins,
+  discovery abuse (pre-existing knowledge merged not clobbered;
+  sludge/mishap teach nothing), live EffectsRaw mutation, and **content
+  integrity pins** (all 13 production reagents parse to the known
+  14-atom vocabulary + carry FlavorText; all production rule forms and
+  properties are valid — content typos become test failures instead of
+  silent runtime no-ops).
+- MOD `BrewRules.json` — `brew_snack` (sweet → Healing, **Form Food**,
+  vetoed by toxic): field-brewing is now real content. EmberFruit alone
+  → field-brewable snack; CandyHeartRoot (vital+sweet) → mending tonic
+  (higher-priority rule wins the form → still required), healing potency
+  maxed across both rules.
+
+**M1 cumulative: 97 authored tests, 0 run** (user instruction: suite
+runs later). World placement of reagents investigated and consciously
+deferred again: CoO has NO loot/spawn-table system (minerals arrive via
+scenarios/merchants), so placement means either merchant stock wiring or
+a new forage-node system — a design decision worth its own sub-milestone
+rather than an invented-blind spawn hack.
 
 ---
 
