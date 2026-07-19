@@ -688,6 +688,25 @@
       ]
     },
     {
+      "Name": "TinkersForge",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "tinker's forge" },
+          { "Key": "RenderString", "Value": "n" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "false" }] },
+        { "Name": "Forge", "Params": [] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Furniture", "Value": "" },
+        { "Key": "Weaponcraft", "Value": "" }
+      ]
+    },
+    {
       "Name": "ReagentItem",
       "Inherits": "Item",
       "Parts": [

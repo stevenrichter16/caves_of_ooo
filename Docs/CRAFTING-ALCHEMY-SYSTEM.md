@@ -906,6 +906,71 @@ prior milestones specifically *because* it reuses already-authored
 atomic logic via composition rather than modifying it, but "lower risk"
 is not "verified" — the Unity run remains the gate before this merges.
 
+### M3-L3 — Player-exercisable crafting at spawn: stations, marking, commands, kit
+
+**Goal (user request, 2026-07-18):** *"ensure there are ways for the
+player to do all crafting in spawn area. give players all ingredients
+and ensure crafting/alchemy/weapon creation world objects are in spawn
+area."* After this ships, a new game starts with an alchemy still and a
+tinker's forge beside the starting-village square, every reagent and
+weapon component in the player's pack, and a complete input path —
+no debug keys — for brew, forge, re-forge and quench. (Tinkering was
+already fully provisioned: InventoryUI tab + bootstrap bit/recipe
+grant, `GameBootstrap.cs:833-862`.)
+
+**Pre-impl verification sweep (corrections table):**
+
+| # | Premise checked | Result |
+|---|---|---|
+| 1 | Brew command exists + still-gates | ✅ `BrewReagentsCommand(reagents, factory, count)`, 3×3 `IsNearStill` in Validate |
+| 2 | Forge/temper have NO player path | ✅ zero non-test callers of either service |
+| 3 | Temper requires a forged weapon | ❌ **false premise** — `TryTemper` needs only `MeleeWeaponPart` (auto-adds `WeaponTemperPart`); any melee weapon quenches |
+| 4 | World-action event carries Zone | ❌ **false premise** — item-action path sets Zone (`PerformInventoryActionCommand.cs:75`), the world-menu path sets only Command+Actor (`InputHandler.cs:2304-2309`) — must add |
+| 5 | Parts can't reach EntityFactory | ❌ — static-field-at-bootstrap precedent exists (`CorpsePart.Factory`, wired `GameBootstrap.cs:206,750`) |
+| 6 | Item popup rows require Part edits | ❌ — `OpenItemActionPopup` already hardcodes eligibility rows (Disassemble checks `HasPart<MeleeWeaponPart>`); "Set aside" follows that pattern, zero gameplay-part churn for the UI row |
+| 7 | Village-square placement helper exists | ✅ `PlaceEntityNearVillageSquare(zone, factory, openCells, blueprint, offsets)`; chest occupies east offsets (dx 2–4) |
+| 8 | Ingredient weight fits capacity | ✅ reagents weigh 1, components 3; full kit ≈ 50 vs 240 capacity |
+
+**Design — mark-then-use, zero new UI surfaces:**
+- `CraftingMarkPart` ("set aside for crafting"): a marker Part toggled
+  on items — save-safe per-item state, no statics. Toggled via a new
+  `ToggleCraftMarkCommand` from a hardcoded InventoryUI item-popup row
+  (eligibility: ReagentPart / WeaponComponentPart / BrewItemPart /
+  MeleeWeaponPart). `CollectMarked(actor)` partitions an actor's marked
+  items into reagents / components-by-slot / coating / weapon for the
+  stations.
+- Stations act through the existing look-mode world-action menu:
+  `AlchemyStillPart` gains GetInventoryActions rows (Brew ×1 / Brew a
+  full batch) + InventoryAction handlers that resolve marked reagents
+  and run `BrewReagentsCommand` via `InventorySystem.ExecuteCommand`.
+  New `ForgePart` (mirror of the still: marker + `IsNearForge`) offers
+  Forge / Forge batch / Re-forge / Quench, running the new commands.
+- New commands mirror `BrewReagentsCommand`'s shape (Validate gates on
+  station adjacency with a legible message; Execute delegates to the
+  already-tested services): `ForgeWeaponCommand` (+batch count),
+  `ReforgeWeaponCommand`, `TemperWeaponCommand` (temper gates on the
+  FORGE — the quench happens where the metal is worked).
+- `InputHandler.ExecuteWorldActionSelection` additionally sets a
+  `Zone` parameter on the InventoryAction event (additive; existing
+  handlers ignore it). Station gating reads the ACTOR's position, so
+  look-clicking a distant station correctly rejects.
+- Spawn: starting village only — `TinkersForge` blueprint (new) +
+  `AlchemyStill` placed at west-side village-square offsets (chest
+  owns the east block; compass stones own ±2 cardinals around it).
+- Kit: `CraftingStarterKit.GrantAll(player, factory)` static (testable,
+  bootstrap-called) grants all 13 reagents + all 6 components, ×2 each.
+
+**Sub-milestones (smallest blast radius first):** SM1 ForgePart+blueprint
+→ SM2 mark part+toggle command → SM3 forge/temper/reforge commands →
+SM4 station actions + UI row + Zone param → SM5 placement + kit →
+final compile-verify + self-review.
+
+**Honesty bound:** authored with offline dotnet compile-verification
+only (both assemblies build clean via corrected csprojs); the Unity
+editor defers domain reloads while unfocused, so the EditMode suite
+run — including the 155 pre-existing crafting tests — remains the gate
+before merge. RED for new tests = compile-error RED where noted.
+
 ---
 
 ## 9. M1.1 cold-eye review + critical plan analysis (2026-07-18)
