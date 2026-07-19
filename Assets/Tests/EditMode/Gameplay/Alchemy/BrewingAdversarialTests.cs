@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CavesOfOoo.Core;
+using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
 using NUnit.Framework;
 using UnityEngine;
@@ -683,7 +684,7 @@ namespace CavesOfOoo.Tests
             applyEvent.SetParameter("Actor", (object)target);
             applyEvent.SetParameter("Tonic", (object)brew);
             applyEvent.SetParameter("Zone", (object)null);
-            applyEvent.SetParameter("Random", (object)new Random(3));
+            applyEvent.SetParameter("Random", (object)new System.Random(3));
             applyEvent.SetParameter("Source", (object)target);
             brew.FireEventAndRelease(applyEvent);
         }

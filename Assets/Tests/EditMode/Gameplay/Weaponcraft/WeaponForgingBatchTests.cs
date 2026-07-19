@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CavesOfOoo.Core;
+using CavesOfOoo.Data;
 using NUnit.Framework;
 
 namespace CavesOfOoo.Tests

@@ -1,4 +1,5 @@
 using CavesOfOoo.Core;
+using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
 using NUnit.Framework;
 

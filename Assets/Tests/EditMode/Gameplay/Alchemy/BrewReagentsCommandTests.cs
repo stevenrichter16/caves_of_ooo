@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Core.Inventory.Commands;
+using CavesOfOoo.Data;
 using NUnit.Framework;
 
 namespace CavesOfOoo.Tests
