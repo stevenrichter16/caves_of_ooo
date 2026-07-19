@@ -26,9 +26,10 @@ namespace CavesOfOoo.Core
         {
             if (e.GetParameter("Damage") is Damage damage)
             {
-                damage.Amount += Increase;
                 MessageLog.Add("Original damage: " + damage.Amount);
                 MessageLog.Add($"Damage increased from {damage.Amount} to {damage.Amount + Increase}.");
+                damage.Amount += Increase;
+                
             }
             
         }

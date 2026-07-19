@@ -39,9 +39,13 @@ namespace CavesOfOoo.Core
             "Starapple", "Mushroom", "DriedMeat", "Starapple", "DriedMeat"
         };
 
-        public TradeStockBuilder(SettlementManager settlementManager = null)
+        private readonly PointOfInterest _poi;
+
+        public TradeStockBuilder(SettlementManager settlementManager = null,
+            PointOfInterest poi = null)
         {
             _settlementManager = settlementManager;
+            _poi = poi;
         }
 
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
@@ -52,10 +56,16 @@ namespace CavesOfOoo.Core
             var creatures = zone.GetEntitiesWithTag("Creature");
             foreach (var creature in creatures)
             {
-                // Only stock friendly NPCs (Villagers faction) that have inventories
+                // Only stock friendly village NPCs that have inventories.
+                // FUN-P0 M2.c: accept the village's own faction too —
+                // VillagePopulationBuilder.WireNPC stamps every village NPC
+                // with poi.Faction, so pre-M2.c the "Villagers"-only gate
+                // silently starved EVERY merchant in Desert (Concord),
+                // Jungle (RotChoir), and Ruins (Palimpsest) villages of
+                // trade stock entirely.
                 string faction;
                 if (!creature.Tags.TryGetValue("Faction", out faction)) continue;
-                if (faction != "Villagers") continue;
+                if (faction != "Villagers" && faction != _poi?.Faction) continue;
 
                 var inv = creature.GetPart<InventoryPart>();
                 if (inv == null) continue;

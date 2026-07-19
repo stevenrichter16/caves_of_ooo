@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Qud weapon (simple)",
+  "description": "Minimal Qud weapon: the core combat fields from MeleeWeapon/MissileWeapon. Field names match the decompiled Parts.",
+  "type": "object",
+  "required": ["name", "weaponType", "BaseDamage", "Skill"],
+  "properties": {
+    "name":        { "type": "string", "description": "Weapon display name / blueprint id." },
+    "weaponType":  { "enum": ["melee", "missile"] },
+    "BaseDamage":  { "type": "string", "description": "Die expression ('2d3') or flat integer ('5')." },
+    "Skill":       { "type": "string", "description": "Skill class, e.g. Cudgel, ShortBlades, Rifle." },
+    "Stat":        { "type": "string", "default": "Strength", "description": "Attribute for hit/damage (missile: Agility)." },
+    "PenBonus":    { "type": "integer", "default": 0, "description": "Penetration bonus." },
+    "HitBonus":    { "type": "integer", "default": 0, "description": "To-hit bonus." }
+  }
+}

@@ -186,7 +186,7 @@ namespace CavesOfOoo.Core
                 crossCenterOffset: 8,
                 clearSolidEntities: true));
             pipeline.AddBuilder(new VillagePopulationBuilder(poi, SettlementManager));
-            pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
+            pipeline.AddBuilder(new TradeStockBuilder(SettlementManager, poi));
 
             // Seed a House Drama into this village if any dramas are loaded.
             // Uses WorldSeed XOR'd with the zone string ID hash (matching ZoneManager's

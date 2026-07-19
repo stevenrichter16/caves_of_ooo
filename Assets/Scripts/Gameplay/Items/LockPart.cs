@@ -173,6 +173,19 @@ namespace CavesOfOoo.Core
                 succeeded = !IsLocked;
             }
 
+            // FUN-P0 M2.b: keep the container's own gate in sync. The
+            // open/loot flow (ContainerPart, the loot popup, Take/Put
+            // commands) checks ONLY ContainerPart.Locked and never
+            // consults LockPart — pre-M2.b a "locked" chest's Open action
+            // worked keyless. An open lock now opens the container; a
+            // still-locked lock leaves it shut.
+            if (!IsLocked)
+            {
+                var container = ParentEntity?.GetPart<ContainerPart>();
+                if (container != null && container.Locked)
+                    container.Locked = false;
+            }
+
             // Surface results on the event + log line + diag record.
             e.SetParameter("Unlocked", succeeded);
             if (keyUsed != null) e.SetParameter("KeyUsed", (object)keyUsed);

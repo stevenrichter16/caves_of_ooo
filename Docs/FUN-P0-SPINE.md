@@ -107,11 +107,11 @@ are never staged.
 
 | Move | Sub-milestone | Status | Commit |
 |---|---|---|---|
-| M1 | a. DebugLoadout flag + real statline | pending | |
-| M1 | b. Natural-weapon pass | pending | |
-| M1 | c. XPValue pass | pending | |
-| M1 | d. MP stat wire | pending | |
-| M1 | e. Skill re-costing + Requires | pending | |
+| M1 | a. DebugLoadout flag + real statline | ✅ shipped | 6a61374 |
+| M1 | b. Natural-weapon pass (+ spawn materialization engine fix) | ✅ shipped | afbdf44 |
+| M1 | c. XPValue pass | ✅ shipped | d416add |
+| M1 | d. MP stat wire | ✅ shipped | f9f50ec |
+| M1 | e. Skill re-costing + Requires | ✅ shipped | 354f8fb |
 | M2 | a. Starter chest cut + distribution | pending | |
 | M2 | b. Lair boss drops + LockedChest | pending | |
 | M2 | c. Ambassadors per village | pending | |

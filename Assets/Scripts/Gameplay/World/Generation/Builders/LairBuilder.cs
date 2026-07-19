@@ -79,7 +79,31 @@ namespace CavesOfOoo.Core
             {
                 var boss = factory.CreateEntity(_poi.BossBlueprint);
                 if (boss != null)
+                {
                     zone.AddEntity(boss, bossRoom.CenterX, bossRoom.CenterY);
+
+                    // FUN-P0 M2.b: lairs pay. The boss carries the chest key
+                    // (and any lore sidearm) — the existing death-drop
+                    // pipeline delivers both on kill. Kill boss → key →
+                    // chest is the loop that makes the walk worth it.
+                    var bossInventory = boss.GetPart<InventoryPart>();
+                    if (bossInventory != null)
+                    {
+                        var key = TryCreateTreasure(factory, "IronKey");
+                        if (key != null)
+                            bossInventory.AddObject(key);
+
+                        if (LairTreasure.BossSidearmByBlueprint.TryGetValue(
+                                _poi.BossBlueprint, out string sidearm))
+                        {
+                            var blade = TryCreateTreasure(factory, sidearm);
+                            if (blade != null)
+                                bossInventory.AddObject(blade);
+                        }
+                    }
+
+                    PlaceBossChest(zone, factory, bossRoom);
+                }
             }
 
             // 4. Carve 2-3 side rooms
@@ -107,6 +131,57 @@ namespace CavesOfOoo.Core
             }
 
             return rooms.Count >= 2;
+        }
+
+        /// <summary>
+        /// FUN-P0 M2.b: the locked boss chest, placed two cells east of the
+        /// chamber center (guaranteed in-room — the chamber is 12x8). The
+        /// BossChest blueprint ships Container.Locked=true; LockPart's
+        /// unlock success (iron key, carried by the boss) clears it.
+        /// Contents come from the LairTreasure + GrimoireDistribution
+        /// tables so reachability tests can pin the manifest.
+        /// </summary>
+        private void PlaceBossChest(Zone zone, EntityFactory factory, Room bossRoom)
+        {
+            var chest = TryCreateTreasure(factory, "BossChest");
+            if (chest == null)
+                return;
+
+            zone.AddEntity(chest, bossRoom.CenterX + 2, bossRoom.CenterY);
+
+            var container = chest.GetPart<ContainerPart>();
+            if (container == null)
+                return;
+
+            foreach (string blueprintName in LairTreasure.ChestManifest(_biome))
+            {
+                var item = TryCreateTreasure(factory, blueprintName);
+                if (item == null)
+                    continue;
+
+                if (!container.AddItem(item))
+                    UnityEngine.Debug.LogWarning(
+                        $"[LairBuilder] Boss chest rejected '{blueprintName}' (container full?).");
+            }
+        }
+
+        /// <summary>
+        /// Blueprint-existence-guarded create: minimal test fixtures (and
+        /// future mods) may not load treasure blueprints, and
+        /// EntityFactory.CreateEntity logs an ERROR for unknown names —
+        /// which fails any test that runs this pipeline. Missing treasure
+        /// degrades to a warning instead of an error.
+        /// </summary>
+        private static Entity TryCreateTreasure(EntityFactory factory, string blueprintName)
+        {
+            if (factory.GetBlueprint(blueprintName) == null)
+            {
+                UnityEngine.Debug.LogWarning(
+                    $"[LairBuilder] Treasure blueprint '{blueprintName}' not loaded; skipping.");
+                return null;
+            }
+
+            return factory.CreateEntity(blueprintName);
         }
 
         private void FillWithWalls(Zone zone, EntityFactory factory)

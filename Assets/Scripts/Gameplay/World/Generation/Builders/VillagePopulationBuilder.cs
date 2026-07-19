@@ -139,6 +139,14 @@ namespace CavesOfOoo.Core
             SetConversation(scribe, "Scribe_1");
             StockScribeGrimoires(scribe, factory);
 
+            // FUN-P0 M2.c: one faction ambassador per faction village. The
+            // blueprints carry their own conversations (147 authored nodes
+            // that previously had NO spawn path anywhere) and their own
+            // faction tags — placed via PlaceEntity, NOT WireNPC, so the
+            // ambassador keeps its identity instead of being stamped a
+            // villager.
+            PlaceFactionAmbassador(zone, factory, rng, openCells);
+
             // 1 Innkeeper (always, if blueprint available) — assigned ownership of
             // the nearest chair so no other NPC can use it. Tier 3d: per-NPC chair ownership.
             if (factory.Blueprints.ContainsKey("Innkeeper"))
@@ -239,6 +247,31 @@ namespace CavesOfOoo.Core
             }
 
             return chest;
+        }
+
+        /// <summary>
+        /// FUN-P0 M2.c: which ambassador NPC greets travelers in a faction
+        /// village. Villagers-faction villages (incl. the starting village)
+        /// have none — the cosmic factions come to you only once you leave
+        /// home. PaleCurator/GlassblownDrifter have no biome home yet (P1).
+        /// </summary>
+        public static readonly System.Collections.Generic.Dictionary<string, string>
+            AmbassadorBlueprintByFaction = new System.Collections.Generic.Dictionary<string, string>
+            {
+                ["RotChoir"] = "ChoirTendril",
+                ["Palimpsest"] = "PalimpsestEcho",
+                ["SaccharineConcord"] = "SaccharineEnvoy",
+            };
+
+        private void PlaceFactionAmbassador(Zone zone, EntityFactory factory,
+            System.Random rng, System.Collections.Generic.List<(int x, int y)> openCells)
+        {
+            if (_poi?.Faction == null)
+                return;
+            if (!AmbassadorBlueprintByFaction.TryGetValue(_poi.Faction, out string blueprint))
+                return;
+
+            PlaceEntity(zone, factory, rng, openCells, blueprint);
         }
 
         /// <summary>

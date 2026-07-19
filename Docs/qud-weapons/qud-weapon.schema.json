@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://caves-of-ooo.local/schemas/qud-weapon.schema.json",
+  "title": "Caves of Qud weapon",
+  "description": "Combat definition of a Caves of Qud weapon. Field names, types, and defaults are taken verbatim from the decompiled Part classes XRL.World.Parts.MeleeWeapon and XRL.World.Parts.MissileWeapon (see README.md for file:line provenance). A Qud weapon is a GameObject whose combat behavior lives in exactly one of these two Parts; 'name' here stands in for the GameObject's Render.DisplayName / blueprint id. NOTE: the decompile contains NO ObjectBlueprints XML, so the per-blueprint Render/Physics/Commerce values (glyph, weight, value) of named weapons are NOT represented here.",
+  "type": "object",
+  "required": ["name", "weaponType"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Display name / blueprint id of the weapon GameObject."
+    },
+    "weaponType": {
+      "type": "string",
+      "enum": ["melee", "missile"],
+      "description": "Which weapon Part defines this object: MeleeWeapon or MissileWeapon."
+    },
+    "melee": { "$ref": "#/$defs/meleeWeapon" },
+    "missile": { "$ref": "#/$defs/missileWeapon" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "weaponType": { "const": "melee" } } },
+      "then": { "required": ["melee"], "not": { "required": ["missile"] } }
+    },
+    {
+      "if": { "properties": { "weaponType": { "const": "missile" } } },
+      "then": { "required": ["missile"], "not": { "required": ["melee"] } }
+    }
+  ],
+  "$defs": {
+    "meleeWeapon": {
+      "type": "object",
+      "description": "XRL.World.Parts.MeleeWeapon — melee combat stats.",
+      "additionalProperties": false,
+      "properties": {
+        "BaseDamage": {
+          "type": "string",
+          "default": "5",
+          "description": "Base damage as a die expression (e.g. '2d3') or a flat integer string (e.g. '5', '1'). MeleeWeapon.cs:29."
+        },
+        "Skill": {
+          "type": "string",
+          "default": "Cudgel",
+          "description": "Weapon-skill class governing proficiency/specials. Values observed in the decompile: 'Cudgel', 'ShortBlades', 'LongBlades'. MeleeWeapon.cs:33."
+        },
+        "Stat": {
+          "type": "string",
+          "default": "Strength",
+          "description": "Attribute whose modifier feeds hit/damage. MeleeWeapon.cs:35."
+        },
+        "Slot": {
+          "type": "string",
+          "default": "Hand",
+          "description": "Body-part slot the weapon occupies. MeleeWeapon.cs:37 (natural weapons override this to their attachment body part at runtime)."
+        },
+        "PenBonus": {
+          "type": "integer",
+          "default": 0,
+          "description": "Flat penetration bonus. MeleeWeapon.cs:25."
+        },
+        "HitBonus": {
+          "type": "integer",
+          "default": 0,
+          "description": "Flat to-hit bonus. MeleeWeapon.cs:27."
+        },
+        "MaxStrengthBonus": {
+          "type": "integer",
+          "default": 0,
+          "description": "Cap on the Strength-derived damage bonus. The sentinel 999 (MeleeWeapon.BONUS_CAP_UNLIMITED, MeleeWeapon.cs:21) means uncapped. MeleeWeapon.cs:23."
+        },
+        "Ego": {
+          "type": "integer",
+          "default": 0,
+          "description": "Ego contribution (used by some weapon behaviors). MeleeWeapon.cs:31."
+        },
+        "Attributes": {
+          "type": ["string", "null"],
+          "default": null,
+          "description": "Space-separated attribute flags on the weapon. MeleeWeapon.cs:39."
+        }
+      }
+    },
+    "missileWeapon": {
+      "type": "object",
+      "description": "XRL.World.Parts.MissileWeapon — ranged combat stats.",
+      "additionalProperties": false,
+      "properties": {
+        "Skill": {
+          "type": "string",
+          "default": "Rifle",
+          "description": "Missile-weapon skill class. MissileWeapon.cs:59."
+        },
+        "Modifier": {
+          "type": "string",
+          "default": "Agility",
+          "description": "Attribute whose modifier feeds ranged accuracy. MissileWeapon.cs:57."
+        },
+        "MaxRange": {
+          "type": "integer",
+          "default": 999,
+          "description": "Maximum range in tiles. MissileWeapon.cs:37."
+        },
+        "VariableMaxRange": {
+          "type": ["string", "null"],
+          "default": null,
+          "description": "Optional expression overriding MaxRange. MissileWeapon.cs:39."
+        },
+        "RangeIncrement": {
+          "type": "integer",
+          "default": 3,
+          "description": "Tiles per accuracy-falloff increment. MissileWeapon.cs:55."
+        },
+        "EnergyCost": {
+          "type": "integer",
+          "default": 1000,
+          "description": "Energy (action) cost to fire. MissileWeapon.cs:53."
+        },
+        "ShotsPerAction": {
+          "type": "integer",
+          "default": 1,
+          "description": "Shots fired per use action. MissileWeapon.cs:27."
+        },
+        "AmmoPerAction": {
+          "type": "integer",
+          "default": 1,
+          "description": "Ammo consumed per use action. MissileWeapon.cs:29."
+        },
+        "ShotsPerAnimation": {
+          "type": "integer",
+          "default": 1,
+          "description": "Shots grouped per fire animation. MissileWeapon.cs:31."
+        },
+        "AnimationDelay": {
+          "type": "integer",
+          "default": 10,
+          "description": "Per-shot animation delay. MissileWeapon.cs:25."
+        },
+        "AimVarianceBonus": {
+          "type": "integer",
+          "default": 0,
+          "description": "Bonus to aim variance. MissileWeapon.cs:33."
+        },
+        "WeaponAccuracy": {
+          "type": "integer",
+          "default": 0,
+          "description": "Intrinsic weapon accuracy. MissileWeapon.cs:35."
+        },
+        "AmmoChar": {
+          "type": "string",
+          "default": "ù",
+          "description": "Glyph drawn for the projectile. MissileWeapon.cs:41."
+        },
+        "NoWildfire": {
+          "type": "boolean",
+          "default": false,
+          "description": "Suppresses wildfire spread behavior. MissileWeapon.cs:43."
+        },
+        "ShowShotsPerAction": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether the UI shows shots-per-action. MissileWeapon.cs:45."
+        },
+        "FiresManually": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether the player fires it manually. MissileWeapon.cs:47."
+        },
+        "ProjectilePenetrationStat": {
+          "type": ["string", "null"],
+          "default": null,
+          "description": "Stat used for projectile penetration, if any. MissileWeapon.cs:49."
+        },
+        "SlotType": {
+          "type": "string",
+          "default": "Missile Weapon",
+          "description": "Equip-slot type. MissileWeapon.cs:51."
+        }
+      }
+    }
+  }
+}
