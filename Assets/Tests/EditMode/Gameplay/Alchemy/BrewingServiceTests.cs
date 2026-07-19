@@ -369,6 +369,12 @@ namespace CavesOfOoo.Tests
             var moss = GiveItem(crafter, factory, "FireMoss");
             var oil = GiveItem(crafter, factory, "LampOil");
 
+            // The missing blueprint is the POINT of this test — expect the
+            // factory's error log or Unity's runner fails the test on it
+            // (first live run finding; precedent PlayerBuilderTests).
+            UnityEngine.TestTools.LogAssert.Expect(UnityEngine.LogType.Error,
+                "EntityFactory: unknown blueprint 'BrewedTonic'");
+
             bool ok = BrewingService.TryBrew(
                 crafter, factory, new List<Entity> { moss, oil },
                 out Entity produced, out _, out string reason);

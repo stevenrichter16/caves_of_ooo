@@ -96,17 +96,26 @@ namespace CavesOfOoo.Tests
         [Test]
         public void PotencyFlowsIntoEffectMagnitude()
         {
-            // Acidic exposes Corrosion — pin that brew potency reaches the
-            // effect's magnitude slot through TonicEffectFactory.
+            // First live Unity run (M3-L3) falsified this test's original
+            // Acidic-based expectation: Corrosion is a DESIGNED 0..1 coating
+            // fraction (AcidicEffect.cs:23 clamps), so integer potency always
+            // saturates it. Electrified.Charge is the unclamped magnitude
+            // slot — pin true potency flow there, and pin the acid
+            // saturation as the coating family's designed ceiling.
             var drinker = MakeDrinker();
-            var brew = MakeBrew("Acidic:3");
+            var brew = MakeBrew("Electrified:3;Acidic:3");
 
             FireApplyTonic(brew, drinker);
 
+            var shock = drinker.GetPart<StatusEffectsPart>().GetEffect<ElectrifiedEffect>();
+            Assert.IsNotNull(shock);
+            Assert.AreEqual(3f, shock.Charge, 0.001f,
+                "potency 3 must arrive as Charge 3 via the factory magnitude slot.");
+
             var acid = drinker.GetPart<StatusEffectsPart>().GetEffect<AcidicEffect>();
             Assert.IsNotNull(acid);
-            Assert.AreEqual(3f, acid.Corrosion, 0.001f,
-                "potency 3 must arrive as Corrosion 3 via the factory magnitude slot.");
+            Assert.AreEqual(1f, acid.Corrosion, 0.001f,
+                "potency 3 saturates the acid coating at its designed 1.0 clamp.");
         }
 
         [Test]

@@ -349,6 +349,11 @@ namespace CavesOfOoo.Tests
             var haft = GiveItem(crafter, factory, "OakHaft");
             var binding = GiveItem(crafter, factory, "LeatherBinding");
 
+            // The missing blueprint is the POINT — expect the factory's error
+            // log or the runner fails the test on it (first-live-run finding).
+            UnityEngine.TestTools.LogAssert.Expect(UnityEngine.LogType.Error,
+                "EntityFactory: unknown blueprint 'ForgedWeapon'");
+
             bool ok = WeaponForgingService.TryForge(
                 crafter, factory, blade, haft, binding, out _, out string reason);
 

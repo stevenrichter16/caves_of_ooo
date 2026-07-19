@@ -308,6 +308,11 @@ namespace CavesOfOoo.Tests
             stacked.AddPart(new StackerPart { StackCount = 3 });
             var plain = GiveItem(crafter, factory, "InertPebble");
 
+            // The missing blueprint is the POINT — expect the factory's error
+            // log or the runner fails the test on it (first-live-run finding).
+            UnityEngine.TestTools.LogAssert.Expect(UnityEngine.LogType.Error,
+                "EntityFactory: unknown blueprint 'InertSludge'");
+
             bool ok = BrewingService.TryBrew(
                 crafter, factory, new List<Entity> { stacked, plain },
                 out _, out _, out _);

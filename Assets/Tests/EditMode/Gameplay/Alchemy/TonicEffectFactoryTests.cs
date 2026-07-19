@@ -44,12 +44,38 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void MagnitudeFlowsThrough()
+        public void MagnitudeFlowsThrough_UnclampedFamily()
         {
-            var acid = TonicEffectFactory.Create("Acidic", 0, "", 3f, null) as AcidicEffect;
+            // First live Unity run (M3-L3) falsified the original version of
+            // this test: it asserted Corrosion==3, but AcidicEffect's ctor
+            // CLAMPS Corrosion to [0,1] by design (it's a coating fraction;
+            // tick damage = 1 + floor(Corrosion*4), AcidicEffect.cs:23).
+            // Magnitude flows UNCLAMPED only for the intensity-style effects:
+            var burn = TonicEffectFactory.Create("Burning", 0, "", 3f, null) as BurningEffect;
+            Assert.IsNotNull(burn);
+            Assert.AreEqual(3f, burn.Intensity, 0.001f, "Burning intensity is unclamped");
 
-            Assert.IsNotNull(acid);
-            Assert.AreEqual(3f, acid.Corrosion, 0.001f);
+            var shock = TonicEffectFactory.Create("Electrified", 0, "", 3f, null) as ElectrifiedEffect;
+            Assert.IsNotNull(shock);
+            Assert.AreEqual(3f, shock.Charge, 0.001f, "Electrified charge is unclamped above 0");
+        }
+
+        [Test]
+        public void Magnitude_CoatingFractionFamily_SaturatesAtFullCoating()
+        {
+            // Counter-pin to the above: Acidic/Wet/Frozen magnitudes are 0..1
+            // coating fractions — below 1 the magnitude flows, above 1 it
+            // saturates at full coating. Brew potency (integer ≥1) therefore
+            // always means "fully coated" for these effects; that is the
+            // designed ceiling, not a plumbing bug.
+            var acidLow = TonicEffectFactory.Create("Acidic", 0, "", 0.5f, null) as AcidicEffect;
+            Assert.IsNotNull(acidLow);
+            Assert.AreEqual(0.5f, acidLow.Corrosion, 0.001f, "sub-1 magnitude flows through");
+
+            var acidHigh = TonicEffectFactory.Create("Acidic", 0, "", 3f, null) as AcidicEffect;
+            Assert.IsNotNull(acidHigh);
+            Assert.AreEqual(1f, acidHigh.Corrosion, 0.001f,
+                "magnitude 3 saturates at the designed full-coating clamp (AcidicEffect.cs:23)");
         }
 
         [Test]

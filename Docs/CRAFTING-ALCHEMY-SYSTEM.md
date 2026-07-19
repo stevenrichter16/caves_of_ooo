@@ -6,10 +6,15 @@ now **M3-L3: the full player input path at spawn** (§8 M3-L3): forge
 furniture + forge/temper/re-forge commands, the set-aside marking flow,
 still/forge world-action menus, stations placed by the starting-village
 builder, and the complete ingredient starter kit granted at bootstrap.
-⚠️ **~200 tests authored across the feature, NONE yet run in Unity**
-(compile-verified offline via Scripts/verify_compile.sh; the editor
-defers domain reloads while unfocused) — run the EditMode suite on the
-next focused-editor session and treat any failure as a real finding.
+✅ **The full crafting test surface has now RUN GREEN in Unity**
+(2026-07-18, chunked EditMode runs): ~210 tests across 17 classes —
+all M1–M3-L2 suites (first execution ever) plus all 56 M3-L3 tests
+plus the 63-test tonic regression net the TonicEffectFactory
+extraction rides on. The first live run surfaced **5 real test-bug
+findings** (3 missing LogAssert.Expect on deliberate-missing-blueprint
+paths; 2 magnitude tests asserting Corrosion==3 against AcidicEffect's
+DESIGNED 0..1 coating-fraction clamp) — all fixed + re-run green; see
+§8 M3-L3 live-verification note. Production code needed zero changes.
 Remaining polish: reagent/component placement in the wider world
 (forage/merchants — spawn kit covers the spawn hub only), a dedicated
 crafting UI panel (the mark-then-use flow is the v1 surface). Weapon
@@ -1043,8 +1048,33 @@ status + this log updated in the same pass.
 - ⚪ A dedicated brewing/forging panel (richer than mark-then-use) is
   presentation polish for a later pass.
 - 🧪 Live PlayMode sweep (walk to the stations, mark, brew/forge/
-  quench through the real menus) — REQUIRED before merge to main,
-  alongside the full EditMode suite run (editor-focus-gated).
+  quench through the real menus) — still REQUIRED before merge to
+  main (the EditMode gate below is done; the in-Play menu flow is
+  what remains unobserved).
+
+**Live verification (2026-07-18, editor regained focus mid-session):**
+chunked EditMode runs (never the full 2181-suite — MCP-load rule)
+executed every crafting class: ForgePart 7 · CraftingMark 9 ·
+ForgeCommands 10 · StillActions 7 · ForgeStationActions 10 (incl. the
+cold-eye batch pin) · StarterKit 3 · VillagePopulationBuilder 9 ·
+alchemy core 58 · brew commands/batch 31 · BrewingAdversarial 28 ·
+weaponcraft services/batch/adversarial + Schematic 46 · tonic
+regression net 63. **First-ever execution of the M1–M3-L2 suites
+surfaced 5 findings — all TEST bugs, all fixed and re-run green:**
+1. 🟡×3 missing `LogAssert.Expect` on deliberate-missing-blueprint
+   tests (BrewedTonic / InertSludge / ForgedWeapon rollback paths) —
+   Unity's runner fails tests on unexpected error logs; the remote
+   author had no runner to see this.
+2. 🟡×2 `MagnitudeFlowsThrough` + `PotencyFlowsIntoEffectMagnitude`
+   asserted `Corrosion == 3`, but `AcidicEffect.Corrosion` is a
+   DESIGNED 0..1 coating fraction (ctor clamps, damage =
+   1+floor(C×4)) — the unclamped magnitude family is
+   Burning.Intensity / Electrified.Charge. Tests rewritten to pin
+   BOTH semantics (flow for the intensity family, saturation for the
+   coating family) instead of "fixing" a shipped combat contract.
+   Content note: integer brew potency always saturates acid/frost/wet
+   coatings — potency differentiation for those lands with the C4
+   per-effect mapping work, not by unclamping.
 
 ---
 
