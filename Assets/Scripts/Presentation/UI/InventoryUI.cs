@@ -1070,6 +1070,19 @@ namespace CavesOfOoo.Rendering
             if (HandlingService.CanThrow(PlayerEntity, item, out _))
                 actions.Add(new ItemAction { Label = "Throw", Command = "throw" });
 
+            // Crafting seam (M3-L3): toggle the set-aside-for-crafting mark
+            // the stations read via CraftingMarkPart.CollectMarked.
+            if (CraftingMarkPart.IsMarkable(item))
+            {
+                actions.Add(new ItemAction
+                {
+                    Label = CraftingMarkPart.IsMarked(item)
+                        ? "Take back (crafting)"
+                        : "Set aside for crafting",
+                    Command = "toggle_craftmark"
+                });
+            }
+
             // Container interaction seam: put selected item in a specific nearby container.
             if (CurrentZone != null)
             {
@@ -1228,6 +1241,14 @@ namespace CavesOfOoo.Rendering
                     Render();
                     break;
 
+                case "toggle_craftmark":
+                    TryToggleCraftMarkViaCommand(item);
+                    _itemActionPopup = null;
+                    Rebuild();
+                    ClampCursor();
+                    Render();
+                    break;
+
                 case "throw":
                 case "Throw": // HandlingPart.GetInventoryActions declares capital-T
                     _pendingThrowRequest = new PendingThrowRequest { Item = item };
@@ -1326,6 +1347,26 @@ namespace CavesOfOoo.Rendering
             if (result.Success)
                 return true;
             LogCommandFailure($"PerformAction[{actionCommand}]", result);
+            return false;
+        }
+
+        /// <summary>
+        /// Crafting seam (M3-L3): toggle the set-aside-for-crafting mark
+        /// through command execution.
+        /// </summary>
+        private bool TryToggleCraftMarkViaCommand(Entity item)
+        {
+            if (item == null)
+                return false;
+
+            var result = InventorySystem.ExecuteCommand(
+                new ToggleCraftMarkCommand(item),
+                PlayerEntity,
+                CurrentZone);
+
+            if (result.Success)
+                return true;
+            LogCommandFailure("ToggleCraftMark", result);
             return false;
         }
 

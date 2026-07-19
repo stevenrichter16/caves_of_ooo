@@ -15,7 +15,7 @@ namespace CavesOfOoo.Tests.Gameplay.Weaponcraft
     public class ForgePartTests
     {
         private const string TestBlueprintsJson = @"{
-  ""Blueprints"": [
+  ""Objects"": [
     {
       ""Name"": ""TinkersForge"",
       ""Parts"": [

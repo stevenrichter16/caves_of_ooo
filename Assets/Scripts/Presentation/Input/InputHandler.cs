@@ -2306,6 +2306,9 @@ namespace CavesOfOoo.Rendering
             var e = GameEvent.New("InventoryAction");
             e.SetParameter("Command", action.Command);
             e.SetParameter("Actor", (object)PlayerEntity);
+            // Zone context for handlers whose commands need adjacency gates
+            // (crafting stations, M3-L3). Additive: existing handlers ignore it.
+            e.SetParameter("Zone", (object)CurrentZone);
             target.FireEventAndRelease(e);
 
             // If Chat started a conversation, open the dialogue UI —

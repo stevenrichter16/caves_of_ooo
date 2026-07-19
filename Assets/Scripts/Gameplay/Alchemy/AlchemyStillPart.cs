@@ -1,3 +1,6 @@
+using CavesOfOoo.Core.Inventory.Commands;
+using CavesOfOoo.Data;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
@@ -6,10 +9,85 @@ namespace CavesOfOoo.Core
     /// tonics/coatings/throwables require a still; only simple Foods may be
     /// field-brewed. Same furniture shape as ChairPart/BedPart: a marker
     /// part on a PhysicalObject blueprint.
+    ///
+    /// M3-L3: the still is also the brew VERB — it declares "Brew" rows on
+    /// the look-mode world-action menu and, on selection, resolves the
+    /// player's set-aside reagents (<see cref="CraftingMarkPart"/>) into a
+    /// <see cref="BrewReagentsCommand"/> execution. All brew rules (still
+    /// gating, mishap damage, batching) stay in the command; this handler
+    /// only collects the selection and reports selection problems legibly.
     /// </summary>
     public class AlchemyStillPart : Part
     {
         public override string Name => "AlchemyStill";
+
+        /// <summary>
+        /// EntityFactory for brew output creation. Wired at bootstrap
+        /// (mirrors CorpsePart.Factory); when unwired the brew rows degrade
+        /// to a message instead of crashing mid-event.
+        /// </summary>
+        public static EntityFactory Factory;
+
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID == "GetInventoryActions")
+            {
+                var actions = e.GetParameter<InventoryActionList>("Actions");
+                if (actions != null)
+                {
+                    actions.AddAction("Brew", "brew set-aside reagents", "BrewMix", 'b', 20);
+                    actions.AddAction("BrewBatch", "brew a full batch", "BrewMixBatch", 'B', 19);
+                }
+                return true;
+            }
+
+            if (e.ID == "InventoryAction")
+            {
+                string command = e.GetStringParameter("Command");
+                if (command != "BrewMix" && command != "BrewMixBatch")
+                    return true;
+
+                var actor = e.GetParameter<Entity>("Actor");
+                if (actor == null)
+                    return true;
+
+                e.Handled = true;
+                HandleBrew(actor, e.GetParameter<Zone>("Zone"), batch: command == "BrewMixBatch");
+                return false;
+            }
+
+            return true;
+        }
+
+        private static void HandleBrew(Entity actor, Zone zone, bool batch)
+        {
+            if (Factory == null)
+            {
+                MessageLog.Add("The still gurgles, but nothing comes of it. (Brewing is not wired to a factory.)");
+                return;
+            }
+
+            var marked = CraftingMarkPart.CollectMarked(actor);
+            if (marked.Reagents.Count == 0)
+            {
+                MessageLog.Add("Nothing is set aside to brew. Set reagents aside for crafting from your pack first.");
+                return;
+            }
+
+            int count = 1;
+            if (batch)
+            {
+                count = BrewingService.GetMaxBatchCount(marked.Reagents);
+                if (count < 1)
+                    count = 1;
+            }
+
+            var result = InventorySystem.ExecuteCommand(
+                new BrewReagentsCommand(marked.Reagents, Factory, count), actor, zone);
+
+            if (!result.Success && !string.IsNullOrEmpty(result.ErrorMessage))
+                MessageLog.Add(result.ErrorMessage);
+        }
 
         /// <summary>
         /// True when <paramref name="actor"/> stands on or orthogonally/
