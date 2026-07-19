@@ -169,6 +169,54 @@ namespace CavesOfOoo.Tests.Gameplay.Alchemy
             CollectionAssert.Contains(commands, "BrewMixBatch");
         }
 
+        [Test]
+        public void GatherActions_WithActor_ListsCarriedReagentsAsToggleRows()
+        {
+            // Live-playtest finding (2026-07-18): mark-then-use alone made the
+            // still answer "go set things aside first" — the station menu must
+            // let the player build the mix RIGHT THERE. With an actor, the
+            // still appends one CraftToggle row per carried reagent, showing
+            // its in-mix state.
+            var brewer = CreateBrewer();
+            Entity moss = _factory.CreateEntity("FireMoss");
+            Assert.IsTrue(brewer.GetPart<InventoryPart>().AddObject(moss));
+            var oil = GiveMarked(brewer, "LampOil");
+            var comp = new Entity { ID = "blade-x", BlueprintName = "blade" };
+            comp.AddPart(new RenderPart { DisplayName = "steel blade" });
+            comp.AddPart(new WeaponComponentPart { Slot = "Blade" });
+            Assert.IsTrue(brewer.GetPart<InventoryPart>().AddObject(comp));
+            MakeZoneWithStill(brewer, out Entity still);
+
+            var actions = WorldInteractionSystem.GatherActions(still, brewer);
+
+            var mossRow = actions.Find(a => a.Command == "CraftToggle:" + moss.ID);
+            Assert.IsNotNull(mossRow, "unmarked carried reagent gets a toggle row");
+            StringAssert.Contains("add", mossRow.Display.ToLowerInvariant());
+
+            var oilRow = actions.Find(a => a.Command == "CraftToggle:" + oil.ID);
+            Assert.IsNotNull(oilRow, "marked reagent gets a toggle row too");
+            StringAssert.Contains("mix", oilRow.Display.ToLowerInvariant());
+
+            Assert.IsNull(actions.Find(a => a.Command == "CraftToggle:" + comp.ID),
+                "a weapon component gets NO row on the STILL — wrong station");
+        }
+
+        [Test]
+        public void GatherActions_WithoutActor_NoToggleRows()
+        {
+            // Back-compat counter-check: the actor-less gather (menus opened
+            // outside the world-action flow) keeps the verb rows only.
+            var brewer = CreateBrewer();
+            GiveMarked(brewer, "FireMoss");
+            MakeZoneWithStill(brewer, out Entity still);
+
+            var actions = WorldInteractionSystem.GatherActions(still);
+
+            Assert.IsNull(actions.Find(a => a.Command.StartsWith("CraftToggle:")),
+                "no toggle rows without an actor");
+            Assert.IsNotNull(actions.Find(a => a.Command == "BrewMix"), "verb rows remain");
+        }
+
         // ════════════════ BrewMix handler ════════════════
 
         [Test]

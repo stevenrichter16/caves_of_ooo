@@ -69,6 +69,44 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// Command prefix for the stations' in-menu toggle rows; the suffix
+        /// is the target item's Entity.ID. InputHandler intercepts these,
+        /// runs ToggleCraftMarkCommand, and reopens the menu so the station
+        /// acts as a multi-select picker (live-playtest finding, M3-L3).
+        /// </summary>
+        public const string ToggleCommandPrefix = "CraftToggle:";
+
+        /// <summary>
+        /// Append one toggle row per carried item matching
+        /// <paramref name="eligible"/>, showing its current set-aside state.
+        /// Shared by the still (reagents) and forge (components / weapons /
+        /// coatings). Rows sort below the station's verb rows via
+        /// <paramref name="basePriority"/> (descending from there).
+        /// </summary>
+        public static void AddToggleRows(InventoryActionList actions, Entity actor,
+            System.Predicate<Entity> eligible, int basePriority)
+        {
+            var inventory = actor?.GetPart<InventoryPart>();
+            if (actions == null || inventory == null || eligible == null)
+                return;
+
+            List<Entity> objects = inventory.Objects;
+            int priority = basePriority;
+            for (int i = 0; i < objects.Count; i++)
+            {
+                Entity item = objects[i];
+                if (item == null || string.IsNullOrEmpty(item.ID) || !eligible(item))
+                    continue;
+
+                string display = IsMarked(item)
+                    ? "[x] " + item.GetDisplayName() + " — in the mix"
+                    : "[ ] " + item.GetDisplayName() + " — add";
+                actions.AddAction("CraftToggle", display,
+                    ToggleCommandPrefix + item.ID, '\0', priority--);
+            }
+        }
+
+        /// <summary>
         /// Scan <paramref name="actor"/>'s inventory for marked items and
         /// partition them. Precedence order mirrors part specificity:
         /// Reagent → WeaponComponent → BrewItem (coating candidates) →

@@ -37,10 +37,18 @@ namespace CavesOfOoo.Core
                 var actions = e.GetParameter<InventoryActionList>("Actions");
                 if (actions != null)
                 {
-                    actions.AddAction("Forge", "forge set-aside components", "ForgeWeapon", 'f', 20);
+                    actions.AddAction("Forge", "forge the kit (blade+haft+binding)", "ForgeWeapon", 'f', 20);
                     actions.AddAction("ForgeBatch", "forge a full batch", "ForgeWeaponBatch", 'F', 19);
-                    actions.AddAction("Reforge", "re-forge set-aside weapon", "ReforgeWeapon", 'r', 18);
-                    actions.AddAction("Quench", "quench set-aside weapon in coating", "QuenchWeapon", 'q', 17);
+                    actions.AddAction("Reforge", "re-forge weapon with component", "ReforgeWeapon", 'r', 18);
+                    actions.AddAction("Quench", "quench weapon in coating", "QuenchWeapon", 'q', 17);
+
+                    // Actor-aware picker rows (live-playtest finding): build
+                    // the kit right in this menu — components, quenchable
+                    // weapons, and coatings. Reagents belong to the still.
+                    CraftingMarkPart.AddToggleRows(actions, e.GetParameter<Entity>("Actor"),
+                        item => item.HasPart<WeaponComponentPart>()
+                            || item.HasPart<MeleeWeaponPart>()
+                            || item.HasPart<BrewItemPart>(), basePriority: 10);
                 }
                 return true;
             }

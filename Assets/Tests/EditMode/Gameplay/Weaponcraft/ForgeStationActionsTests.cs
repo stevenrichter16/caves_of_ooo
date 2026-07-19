@@ -189,6 +189,36 @@ namespace CavesOfOoo.Tests.Gameplay.Weaponcraft
             CollectionAssert.Contains(commands, "QuenchWeapon");
         }
 
+        [Test]
+        public void GatherActions_WithActor_ListsComponentsWeaponsAndCoatings()
+        {
+            // Live-playtest finding (2026-07-18): the forge menu must offer
+            // its kit-building toggles in place, like the still's mix rows —
+            // components, quenchable weapons, and coatings; reagents belong
+            // to the still and get no row here.
+            var smith = CreateSmith();
+            Entity blade = _factory.CreateEntity("SteelBlade");
+            Assert.IsTrue(smith.GetPart<InventoryPart>().AddObject(blade));
+            var weapon = GiveMarked(smith, "ForgedWeapon");
+            var coating = GiveMarkedCoating(smith);
+            var reagent = new Entity { ID = "moss-x", BlueprintName = "moss" };
+            reagent.AddPart(new RenderPart { DisplayName = "fire moss" });
+            reagent.AddPart(new ReagentPart { PropertiesRaw = "heat:1" });
+            Assert.IsTrue(smith.GetPart<InventoryPart>().AddObject(reagent));
+            MakeZoneWithForge(smith, out Entity forge);
+
+            var actions = WorldInteractionSystem.GatherActions(forge, smith);
+
+            Assert.IsNotNull(actions.Find(a => a.Command == "CraftToggle:" + blade.ID),
+                "carried component gets a toggle row");
+            Assert.IsNotNull(actions.Find(a => a.Command == "CraftToggle:" + weapon.ID),
+                "carried melee weapon gets a toggle row (quench/re-forge target)");
+            Assert.IsNotNull(actions.Find(a => a.Command == "CraftToggle:" + coating.ID),
+                "carried coating gets a toggle row (quench medium)");
+            Assert.IsNull(actions.Find(a => a.Command == "CraftToggle:" + reagent.ID),
+                "a reagent gets NO row on the FORGE — wrong station");
+        }
+
         // ════════════════ ForgeWeapon handler ════════════════
 
         [Test]

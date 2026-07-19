@@ -76,11 +76,26 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static List<InventoryAction> GatherActions(Entity target)
         {
+            return GatherActions(target, null);
+        }
+
+        /// <summary>
+        /// Actor-aware overload (M3-L3): when <paramref name="actor"/> is
+        /// non-null it rides the event as the "Actor" parameter, letting
+        /// listeners declare actor-contextual rows (the crafting stations use
+        /// this to offer in-menu mix/kit toggles for the actor's carried
+        /// items). Declaring parts must tolerate a missing Actor — the
+        /// single-arg form remains actor-less.
+        /// </summary>
+        public static List<InventoryAction> GatherActions(Entity target, Entity actor)
+        {
             if (target == null) return new List<InventoryAction>(0);
 
             var list = new InventoryActionList();
             var e = GameEvent.New("GetInventoryActions");
             e.SetParameter("Actions", list);
+            if (actor != null)
+                e.SetParameter("Actor", (object)actor);
             // Listeners populate `list` directly; event object is safe to release.
             target.FireEventAndRelease(e);
             list.Sort();

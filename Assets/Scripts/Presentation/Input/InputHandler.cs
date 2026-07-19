@@ -2196,7 +2196,9 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            var actions = WorldInteractionSystem.GatherActions(target);
+            // Actor-aware gather: stations add in-menu crafting toggle rows
+            // for the player's carried items (M3-L3 live-playtest finding).
+            var actions = WorldInteractionSystem.GatherActions(target, PlayerEntity);
             UnityEngine.Debug.Log($"[ActionMenu:open] actions.Count={actions.Count}");
             if (actions.Count == 0)
             {
@@ -2270,6 +2272,32 @@ namespace CavesOfOoo.Rendering
             // loot UI, Throw → throw popup) re-enter the overlay view
             // themselves for their own popup.
             ExitCenteredPopupOverlayViewToGameplay();
+
+            // Special case: crafting-station toggle rows (M3-L3). Toggle the
+            // set-aside mark on the referenced carried item, then REOPEN the
+            // menu on the same cell so it behaves as a multi-select picker —
+            // the rebuilt rows show the updated [x]/[ ] state.
+            if (action.Command.StartsWith(CraftingMarkPart.ToggleCommandPrefix, StringComparison.Ordinal))
+            {
+                string itemId = action.Command.Substring(CraftingMarkPart.ToggleCommandPrefix.Length);
+                Entity carried = PlayerEntity?.GetPart<InventoryPart>()?.Objects
+                    .Find(it => it != null && it.ID == itemId);
+                if (carried != null)
+                {
+                    InventorySystem.ExecuteCommand(
+                        new ToggleCraftMarkCommand(carried), PlayerEntity, CurrentZone);
+                }
+
+                if (cell != null)
+                {
+                    OpenWorldActionMenu(cell.X, cell.Y); // re-enters overlay + state itself
+                }
+                else
+                {
+                    _inputState = InputState.LookMode;
+                }
+                return;
+            }
 
             // Special case: pile-cell Examine → cell description rather than
             // target's individual Examine.
