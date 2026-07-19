@@ -263,6 +263,26 @@ namespace CavesOfOoo.Tests.Gameplay.Weaponcraft
             Assert.AreEqual(3, Carried(smith).Count, "components untouched");
         }
 
+        [Test]
+        public void ForgeWeaponBatch_StackedComponents_ForgesFullBatch()
+        {
+            // Q3 cold-eye pin: the batch ROUTING (command string → batch=true)
+            // — a typo'd case label would silently forge one instead of the
+            // stack, and no other test would notice.
+            var smith = CreateSmith();
+            foreach (var bp in new[] { "SteelBlade", "OakHaft", "LeatherBinding" })
+            {
+                var item = GiveMarked(smith, bp);
+                item.AddPart(new StackerPart { StackCount = 2 });
+            }
+            var zone = MakeZoneWithForge(smith, out Entity forge);
+
+            FireWorldAction(forge, smith, zone, "ForgeWeaponBatch");
+
+            int weapons = Carried(smith).FindAll(e => e.HasPart<WeaponAssemblyPart>()).Count;
+            Assert.AreEqual(2, weapons, "batch forges down to the smallest stack");
+        }
+
         // ════════════════ QuenchWeapon handler ════════════════
 
         [Test]

@@ -1,17 +1,19 @@
 # Emergent Alchemy / Brewing — Design Exploration
 
-**Status:** 🟨 M1–M3-L2 CODE-COMPLETE + batch crafting (unverified) —
-alchemy (M1.1–M1.4) and weapon forging + tempering (M3-L1/L2) fully
-authored (§8); M1.1 cold-eye review run with 5 findings fixed/pinned +
-plan critique (§9). **M1.5/M3-L3-partial** added batch crafting for both
-pillars — gathering a stack of one ingredient no longer means repeating
-a craft action once per unit (user-reported gap; §8 M1.5). ⚠️ **155
-tests authored, NONE yet run** — the user will run the EditMode suite in
-Unity later; treat any failure there as a real finding. Remaining
-polish: reagent/component world placement (needs a design decision — no
-spawn-table system exists), a crafting UI panel, the still-deferred
-M3-L3 forge furniture + forge command. Weapon saga (M4) and spell
-grammar (M5) remain design-only (§7).
+**Status:** 🟨 M1–M3-L3 CODE-COMPLETE (unverified in Unity) — alchemy
+(M1.1–M1.5), weapon forging + tempering (M3-L1/L2), batch crafting, and
+now **M3-L3: the full player input path at spawn** (§8 M3-L3): forge
+furniture + forge/temper/re-forge commands, the set-aside marking flow,
+still/forge world-action menus, stations placed by the starting-village
+builder, and the complete ingredient starter kit granted at bootstrap.
+⚠️ **~200 tests authored across the feature, NONE yet run in Unity**
+(compile-verified offline via Scripts/verify_compile.sh; the editor
+defers domain reloads while unfocused) — run the EditMode suite on the
+next focused-editor session and treat any failure as a real finding.
+Remaining polish: reagent/component placement in the wider world
+(forage/merchants — spawn kit covers the spawn hub only), a dedicated
+crafting UI panel (the mark-then-use flow is the v1 surface). Weapon
+saga (M4) and spell grammar (M5) remain design-only (§7).
 **Branch:** `claude/rpg-crafting-system-8gbflx`
 **Origin:** user — *"If this is an RPG there should be a more in-depth
 crafting system. It shouldn't be tedious for the sake of false depth,
@@ -970,6 +972,79 @@ only (both assemblies build clean via corrected csprojs); the Unity
 editor defers domain reloads while unfocused, so the EditMode suite
 run — including the 155 pre-existing crafting tests — remains the gate
 before merge. RED for new tests = compile-error RED where noted.
+
+#### M3-L3 implementation log ✅ written (⚠️ compile-verified only)
+
+Shipped as 5 sub-milestone commits (SM1 `0fc88ba` → SM5 `02a3806`),
+each RED→GREEN at the compile level, preceded by the compile-fix
+commit `816db82` that made the merged branch build at all.
+
+- **SM1 — ForgePart + TinkersForge** (`0fc88ba`): station marker
+  mirroring `AlchemyStillPart` (3×3 `IsNearForge`), `TinkersForge`
+  blueprint (glyph `n`, `&R`, Solid=false, Furniture/Weaponcraft
+  tags). 7 tests incl. the cross-station counter-check (an adjacent
+  still does NOT satisfy the forge gate) + production content pin.
+  Also ships `Scripts/verify_compile.sh` (the offline compile gate).
+- **SM2 — CraftingMarkPart + ToggleCraftMarkCommand** (`f5899d7`):
+  the save-safe per-item "set aside" marker (no static selection
+  buffers), `CollectMarked` partitioning (reagents / components /
+  coatings / weapons, mutually exclusive), popup-row command with
+  eligibility validation. 9 tests.
+- **SM3 — Forge/Temper/Reforge commands** (`fdfd7a3`):
+  `ForgeWeaponCommand` (+batch), `TemperWeaponCommand`,
+  `ReforgeWeaponCommand` — BrewReagentsCommand's shape; the
+  command-layer rule is forge gating; services keep atomicity.
+  10 tests incl. away-from-forge nothing-consumed counter-checks.
+- **SM4 — Station world-actions** (`7f3028b`): the still declares
+  Brew / Brew-a-full-batch menu rows; the forge declares Forge /
+  Forge-batch / Re-forge / Quench. Handlers resolve the marked
+  selection, reject count problems legibly (naming what IS set
+  aside), delegate to the commands, and relay failure reasons to the
+  MessageLog. Static `Factory` fields wired at BOTH bootstrap sites;
+  factory-unwired degrades to a message (pinned). InputHandler's
+  world-action event now carries `Zone`; InventoryUI grows the
+  "Set aside for crafting"/"Take back" row + `toggle_craftmark`
+  case. 16 tests. **Two findings fixed mid-SM:** the SM1/SM3 test
+  fixtures used a `"Blueprints"` root key the loader doesn't read
+  (run-time null factories — corrected to `"Objects"`), and the
+  ForgePart rewrite briefly dropped `IsNearForge` (caught by the
+  compile gate).
+- **SM5 — Spawn placement + starter kit** (`02a3806`):
+  `PlaceCraftingStations` in the starting-village branch (west-side
+  offset tables mirroring the chest's east block; spiral fallback
+  means placement can't silently fail), `CraftingStarterKit` static
+  (13 reagents + 6 components ×2 as runtime stacks) called from
+  bootstrap after the tonic grant. 5 tests incl. the non-starting-
+  village counter-check and production-catalog pins.
+
+**Cold-eye pass (per CLAUDE.md, run after SM5):** Q1 symmetry — the
+quench handler intentionally skips the Factory guard (temper needs no
+factory); IsNearStill/IsNearForge are deliberate twins (extracting a
+shared scanner is a 🔵 deferred nicety). Q2 — command names, batch
+shortfall wording, and gating messages audited for consistency. Q3 —
+found ONE gap: the `ForgeWeaponBatch` routing had no test (a typo'd
+case label would silently forge 1 instead of the stack) — closed with
+`ForgeWeaponBatch_StackedComponents_ForgesFullBatch`. Q4 — header
+status + this log updated in the same pass.
+
+**Deliberate design choices:**
+- Marks clean themselves up — consumed items take their mark with
+  them; survivors (the weapon after a quench) stay marked for
+  convenient repeats. No unmark pass exists to drift.
+- The still/forge menu rows are declared UNCONDITIONALLY (the player
+  discovers the verbs; a bad selection explains itself) — GatherActions
+  carries no actor, so conditional rows aren't possible there anyway.
+- Ground items don't offer "Set aside" (the row is an inventory-popup
+  affordance) — pick it up first.
+
+**Deferred (🧪 / ⚪):**
+- 🧪 `GrantAll` overweight-failure path untested (tolerated per-item,
+  mirroring the tonic loop's tolerance).
+- ⚪ A dedicated brewing/forging panel (richer than mark-then-use) is
+  presentation polish for a later pass.
+- 🧪 Live PlayMode sweep (walk to the stations, mark, brew/forge/
+  quench through the real menus) — REQUIRED before merge to main,
+  alongside the full EditMode suite run (editor-focus-gated).
 
 ---
 
