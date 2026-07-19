@@ -518,6 +518,443 @@
       ]
     },
     {
+      "Name": "ForgedWeapon",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "forged weapon" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "6" }] },
+        { "Name": "MeleeWeapon", "Params": [
+          { "Key": "BaseDamage", "Value": "1d2" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "25" }] },
+        { "Name": "TinkerItem", "Params": [{ "Key": "CanBuild", "Value": "false" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "Forged", "Value": "" }
+      ]
+    },
+    {
+      "Name": "WeaponComponentItem",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "weapon component" },
+          { "Key": "RenderString", "Value": "]" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "3" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "8" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "WeaponComponent", "Value": "" }
+      ]
+    },
+    {
+      "Name": "SteelBladeComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "steel blade" },
+          { "Key": "ColorString", "Value": "&C" }
+        ]},
+        { "Name": "WeaponComponent", "Params": [
+          { "Key": "Slot", "Value": "Blade" },
+          { "Key": "BaseDamage", "Value": "1d6" },
+          { "Key": "Attributes", "Value": "Cutting" },
+          { "Key": "NameFragment", "Value": "steel blade" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "IronSpikeComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "iron spike" },
+          { "Key": "ColorString", "Value": "&w" }
+        ]},
+        { "Name": "WeaponComponent", "Params": [
+          { "Key": "Slot", "Value": "Blade" },
+          { "Key": "BaseDamage", "Value": "1d4" },
+          { "Key": "PenBonus", "Value": "1" },
+          { "Key": "Attributes", "Value": "Piercing" },
+          { "Key": "NameFragment", "Value": "iron spike" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "OakHaftComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "oak haft" },
+          { "Key": "ColorString", "Value": "&y" }
+        ]},
+        { "Name": "WeaponComponent", "Params": [
+          { "Key": "Slot", "Value": "Haft" },
+          { "Key": "MaxStrengthBonus", "Value": "3" },
+          { "Key": "NameFragment", "Value": "oak-hafted" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "WillowHaftComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "willow haft" },
+          { "Key": "ColorString", "Value": "&g" }
+        ]},
+        { "Name": "WeaponComponent", "Params": [
+          { "Key": "Slot", "Value": "Haft" },
+          { "Key": "MaxStrengthBonus", "Value": "2" },
+          { "Key": "HitBonus", "Value": "1" },
+          { "Key": "NameFragment", "Value": "willow-hafted" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "LeatherBindingComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "leather binding" },
+          { "Key": "ColorString", "Value": "&y" }
+        ]},
+        { "Name": "WeaponComponent", "Params": [
+          { "Key": "Slot", "Value": "Binding" },
+          { "Key": "HitBonus", "Value": "1" },
+          { "Key": "NameFragment", "Value": "leather-bound" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "SerratedEdgeComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "serrated edge kit" },
+          { "Key": "ColorString", "Value": "&R" }
+        ]},
+        { "Name": "WeaponComponent", "Params": [
+          { "Key": "Slot", "Value": "Binding" },
+          { "Key": "PenBonus", "Value": "1" },
+          { "Key": "OnHitEffectSpec", "Value": "Bleeding,20,1d2,15,0" },
+          { "Key": "NameFragment", "Value": "serrated" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "AlchemyStill",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "alchemy still" },
+          { "Key": "RenderString", "Value": "&" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "false" }] },
+        { "Name": "AlchemyStill", "Params": [] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Furniture", "Value": "" },
+        { "Key": "Alchemy", "Value": "" }
+      ]
+    },
+    {
+      "Name": "ReagentItem",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "reagent" },
+          { "Key": "RenderString", "Value": "%" },
+          { "Key": "ColorString", "Value": "&g" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "6" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "Alchemy", "Value": "" },
+        { "Key": "Reagent", "Value": "" }
+      ]
+    },
+    {
+      "Name": "FireMoss",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "fire-moss" },
+          { "Key": "ColorString", "Value": "&R" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "heat:2, volatile:1" },
+          { "Key": "FlavorText", "Value": "Warm to the touch; crumbles with a spark. (heat, volatile)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "LampOil",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "lamp oil" },
+          { "Key": "ColorString", "Value": "&w" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "combustible:3, viscous:1" },
+          { "Key": "FlavorText", "Value": "Slow, greasy, eager to burn. (combustible, viscous)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "EmberFruit",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "ember-fruit" },
+          { "Key": "ColorString", "Value": "&r" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "heat:1, sweet:1" },
+          { "Key": "FlavorText", "Value": "A candied warmth lingers on the tongue. (heat, sweet)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "FrostLichen",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "frost lichen" },
+          { "Key": "ColorString", "Value": "&c" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "cold:2" },
+          { "Key": "FlavorText", "Value": "Rimed fronds that ache the fingertips. (cold)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "GlacierSalt",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "glacier salt" },
+          { "Key": "ColorString", "Value": "&C" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "cold:3, binding:1" },
+          { "Key": "FlavorText", "Value": "Cracks with a deep, patient chill; sets like mortar. (cold, binding)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "GlimmerBrine",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "glimmer-brine" },
+          { "Key": "ColorString", "Value": "&G" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "corrosive:2, conductive:2" },
+          { "Key": "FlavorText", "Value": "Stings the nose; hums faintly against the jar. (corrosive, conductive)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "SparkRoot",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "spark-root" },
+          { "Key": "ColorString", "Value": "&Y" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "conductive:3" },
+          { "Key": "FlavorText", "Value": "Hairs rise near its severed end. (conductive)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "VenomGland",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "venom gland" },
+          { "Key": "ColorString", "Value": "&g" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "toxic:2" },
+          { "Key": "FlavorText", "Value": "Harvested from something that bit first. (toxic)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "BogSap",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "bog sap" },
+          { "Key": "ColorString", "Value": "&y" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "toxic:1, viscous:2" },
+          { "Key": "FlavorText", "Value": "Clinging tar with a sour reek. (toxic, viscous)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "CandyHeartRoot",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "candy-heart root" },
+          { "Key": "ColorString", "Value": "&M" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "vital:2, sweet:1" },
+          { "Key": "FlavorText", "Value": "Beats faintly. Tastes of pink. (vital, sweet)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "MendleafSprig",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "mendleaf sprig" },
+          { "Key": "ColorString", "Value": "&G" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "vital:1" },
+          { "Key": "FlavorText", "Value": "Bruised leaves knit themselves closed. (vital)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "StoneburrSeed",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "stoneburr seed" },
+          { "Key": "ColorString", "Value": "&w" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "binding:2" },
+          { "Key": "FlavorText", "Value": "Hard as a knuckle; sets like mortar. (binding)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "BlastcapSpore",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "blastcap spore" },
+          { "Key": "ColorString", "Value": "&O" }
+        ]},
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "volatile:2, combustible:1" },
+          { "Key": "FlavorText", "Value": "Do not shake. Do not warm. (volatile, combustible)" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "BrewedTonic",
+      "Inherits": "TonicItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "strange brew" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&M" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Tonic", "Params": [{ "Key": "Drink", "Value": "true" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "12" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "Alchemy", "Value": "" }
+      ]
+    },
+    {
+      "Name": "InertSludge",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "inert sludge" },
+          { "Key": "RenderString", "Value": "~" },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "1" }] }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "Alchemy", "Value": "" }
+      ]
+    },
+    {
       "Name": "AcidTonic",
       "Inherits": "TonicItem",
       "Parts": [

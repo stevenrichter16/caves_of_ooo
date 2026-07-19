@@ -34,84 +34,12 @@ namespace CavesOfOoo.Core
 
         private Effect CreateEffect(Entity source)
         {
-            string effectKey = EffectName.Trim().ToLowerInvariant();
-            switch (effectKey)
-            {
-                case "poison":
-                case "poisoned":
-                case "poisonedeffect":
-                    return new PoisonedEffect(
-                        duration: EffectDuration > 0 ? EffectDuration : 5,
-                        damageDice: string.IsNullOrWhiteSpace(EffectDamageDice) ? "1d3" : EffectDamageDice);
-
-                case "fire":
-                case "burn":
-                case "burning":
-                case "burningeffect":
-                    return new BurningEffect(
-                        intensity: EffectMagnitude > 0f ? EffectMagnitude : 1.0f,
-                        source: source);
-
-                case "wet":
-                case "water":
-                case "weteffect":
-                    return new WetEffect(
-                        moisture: EffectMagnitude > 0f ? EffectMagnitude : 1.0f);
-
-                case "acid":
-                case "acidic":
-                case "acidiceffect":
-                    return new AcidicEffect(
-                        corrosion: EffectMagnitude > 0f ? EffectMagnitude : 1.0f);
-
-                case "shock":
-                case "lightning":
-                case "electric":
-                case "electrified":
-                case "electrifiedeffect":
-                    return new ElectrifiedEffect(
-                        charge: EffectMagnitude > 0f ? EffectMagnitude : 1.0f);
-
-                case "ice":
-                case "frost":
-                case "frozen":
-                case "frozeneffect":
-                    return new FrozenEffect(
-                        cold: EffectMagnitude > 0f ? EffectMagnitude : 1.0f);
-
-                case "stoneskin":
-                case "stone":
-                case "stoneskineffect":
-                    return new StoneskinEffect(
-                        reduction: EffectMagnitude > 0f ? (int)EffectMagnitude : 2,
-                        duration: EffectDuration > 0 ? EffectDuration : 30);
-
-                case "bleed":
-                case "bleeding":
-                case "bleedingeffect":
-                    // BleedingEffect ctor is (saveTarget, damageDice, rng).
-                    // The blueprint's EffectDuration int slot maps to
-                    // saveTarget (the DC for the per-turn save-vs-bleed
-                    // roll) — re-using a numeric content-author field
-                    // rather than adding a new one. Default 15 matches
-                    // the effect's own ctor default.
-                    return new BleedingEffect(
-                        saveTarget: EffectDuration > 0 ? EffectDuration : 15,
-                        damageDice: string.IsNullOrWhiteSpace(EffectDamageDice) ? "1d2" : EffectDamageDice);
-
-                case "char":
-                case "charred":
-                case "charredeffect":
-                    // CharredEffect is parameterless — it sets Duration to
-                    // DURATION_INDEFINITE and reduces the target's
-                    // MaterialPart.Combustibility by 70% on apply (restores
-                    // on remove). EffectMagnitude / EffectDuration on the
-                    // blueprint are intentionally ignored — the Charred
-                    // state is binary (you're either charred or you aren't).
-                    return new CharredEffect();
-            }
-
-            return null;
+            // Dispatch table extracted to TonicEffectFactory (M1.2) so brew
+            // items share the same canonical name→Effect mapping. Behavior
+            // is unchanged — the factory is the verbatim switch that lived
+            // here, defaults included.
+            return TonicEffectFactory.Create(
+                EffectName, EffectDuration, EffectDamageDice, EffectMagnitude, source);
         }
     }
 }

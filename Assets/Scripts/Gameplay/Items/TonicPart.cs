@@ -72,10 +72,16 @@ namespace CavesOfOoo.Core
 
         public bool HasThrowablePayload()
         {
+            // BrewItemPart included since M1.3+: a status-effect brew is a
+            // shatterable payload exactly like a StatusTonic. Without this,
+            // a volatile "Throwable"-form brew landed like an inert rock —
+            // latent integration gap caught in the alchemy adversarial
+            // sweep (see BrewingAdversarialTests).
             return !string.IsNullOrWhiteSpace(Healing)
                 || !string.IsNullOrWhiteSpace(StatBoost)
                 || ParentEntity?.GetPart<CureTonicPart>() != null
-                || ParentEntity?.GetPart<StatusTonicPart>() != null;
+                || ParentEntity?.GetPart<StatusTonicPart>() != null
+                || ParentEntity?.GetPart<BrewItemPart>() != null;
         }
 
         public bool ApplyTo(
