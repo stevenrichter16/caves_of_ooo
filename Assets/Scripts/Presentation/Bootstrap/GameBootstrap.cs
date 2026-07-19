@@ -258,6 +258,7 @@ namespace CavesOfOoo
                     GrantShowcaseSpellMutations();
                     InitializePlayerStartingTinkering();
                     GivePlayerStartingTonics();
+                    GivePlayerCraftingStarterKit();
                     PlacePlayerInOpenCell();
                     SpawnDebugWeaponNearPlayer();
                     SpawnDebugNPCNearPlayer();
@@ -911,6 +912,18 @@ namespace CavesOfOoo
             }
 
             Debug.Log("[Bootstrap/Mutations] Granted " + granted + " showcase projectile mutation(s).");
+        }
+
+        /// <summary>
+        /// M3-L3: grant the crafting starter kit — every reagent + weapon
+        /// component (stacked ×2) — so the spawn-area still and forge are
+        /// usable from turn one. Catalog + grant logic live in
+        /// CraftingStarterKit (unit-tested); this is just the bootstrap call.
+        /// </summary>
+        private void GivePlayerCraftingStarterKit()
+        {
+            int granted = CraftingStarterKit.GrantAll(_player, _factory);
+            Debug.Log($"[Bootstrap/Crafting] Granted {granted} starter ingredient stack(s) to the player.");
         }
 
         private void GivePlayerStartingTonics()

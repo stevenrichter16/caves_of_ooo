@@ -49,7 +49,10 @@ namespace CavesOfOoo.Core
 
             Entity grimoireChest = null;
             if (zone.ZoneID == StartingVillageZoneId)
+            {
                 grimoireChest = PlaceGrimoireChest(zone, factory, rng, openCells);
+                PlaceCraftingStations(zone, factory, openCells);
+            }
 
             // Place decor after the well and starting chest so the spawn hub stays stable.
             var decorTable = PopulationTable.VillageDecor();
@@ -205,6 +208,43 @@ namespace CavesOfOoo.Core
 
             openCells.RemoveAt(idx);
             return entity;
+        }
+
+        // M3-L3 spawn-hub crafting corner: the alchemy still + tinker's forge
+        // west of the village square (the starting chest owns the east block
+        // at dx 2..4; the compass stones own the cardinals ±2 around it).
+        // Preferred offsets mirror StartingChestOffsets on the west side;
+        // PlaceEntityNearVillageSquare spirals outward if the block is
+        // occupied, so the stations always land somewhere near the square.
+        private static readonly (int dx, int dy)[] StillOffsets =
+        {
+            (-3, -1),
+            (-3, 0),
+            (-3, 1),
+            (-2, -1),
+            (-2, 1),
+            (-4, -1),
+            (-4, 0),
+            (-4, 1)
+        };
+
+        private static readonly (int dx, int dy)[] ForgeOffsets =
+        {
+            (-3, 2),
+            (-2, 2),
+            (-4, 2),
+            (-3, 3),
+            (-2, 3),
+            (-4, 3),
+            (-3, -2),
+            (-3, -3)
+        };
+
+        private void PlaceCraftingStations(Zone zone, EntityFactory factory,
+            List<(int x, int y)> openCells)
+        {
+            PlaceEntityNearVillageSquare(zone, factory, openCells, "AlchemyStill", StillOffsets);
+            PlaceEntityNearVillageSquare(zone, factory, openCells, "TinkersForge", ForgeOffsets);
         }
 
         private Entity PlaceGrimoireChest(Zone zone, EntityFactory factory, System.Random rng,

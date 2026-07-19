@@ -259,5 +259,55 @@ namespace CavesOfOoo.Tests
 
             return null;
         }
+
+        // ════════════════ M3-L3 SM5 — crafting stations at spawn ════════════════
+
+        [Test]
+        public void BuildZone_StartingVillage_PlacesStillAndForgeNearSquare()
+        {
+            // The spawn-hub crafting corner: one alchemy still + one tinker's
+            // forge, both close enough to the village square that a fresh
+            // character finds them without exploring.
+            BuildVillage("Overworld.10.10.0", out var zone);
+
+            Entity still = null, forge = null;
+            foreach (var e in zone.GetAllEntities())
+            {
+                if (e.HasPart<AlchemyStillPart>()) still = e;
+                if (e.HasPart<ForgePart>()) forge = e;
+            }
+
+            Assert.IsNotNull(still, "starting village must place an AlchemyStill");
+            Assert.IsNotNull(forge, "starting village must place a TinkersForge");
+
+            var (cx, cy) = VillageBuilder.GetVillageSquareCenter();
+            var stillCell = zone.GetEntityCell(still);
+            var forgeCell = zone.GetEntityCell(forge);
+            Assert.IsNotNull(stillCell);
+            Assert.IsNotNull(forgeCell);
+
+            Assert.LessOrEqual(
+                Math.Max(Math.Abs(stillCell.X - cx), Math.Abs(stillCell.Y - cy)), 8,
+                "still lands within 8 tiles of the village square");
+            Assert.LessOrEqual(
+                Math.Max(Math.Abs(forgeCell.X - cx), Math.Abs(forgeCell.Y - cy)), 8,
+                "forge lands within 8 tiles of the village square");
+        }
+
+        [Test]
+        public void BuildZone_NonStartingVillage_PlacesNoCraftingStations()
+        {
+            // Counter-check: the crafting corner is a starting-village spawn
+            // amenity, not generic village decor.
+            BuildVillage("Overworld.3.4.0", out var zone);
+
+            foreach (var e in zone.GetAllEntities())
+            {
+                Assert.IsFalse(e.HasPart<AlchemyStillPart>(),
+                    "non-starting village must not place a still");
+                Assert.IsFalse(e.HasPart<ForgePart>(),
+                    "non-starting village must not place a forge");
+            }
+        }
     }
 }
