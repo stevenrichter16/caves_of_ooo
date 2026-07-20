@@ -1027,6 +1027,12 @@ namespace CavesOfOoo.Rendering
 
             var equippable = item.GetPart<EquippablePart>();
 
+            // Consumable examine (reuses the AnnouncementUI modal): exact
+            // effect lines for tonics/brews, built through the real apply
+            // path by TonicExamineService.
+            if (TonicExamineService.TryDescribe(item, out _))
+                actions.Add(new ItemAction { Label = "Examine", Command = "examine_tonic" });
+
             if (itemDisplay.IsEquipped)
             {
                 actions.Add(new ItemAction { Label = "Unequip", Command = "unequip" });
@@ -1246,6 +1252,16 @@ namespace CavesOfOoo.Rendering
                     _itemActionPopup = null;
                     Rebuild();
                     ClampCursor();
+                    Render();
+                    break;
+
+                case "examine_tonic":
+                    // Queue the description as an announcement — InputHandler
+                    // pops the AnnouncementUI modal OVER the open inventory
+                    // (same flow as reading a grimoire from the pack).
+                    if (TonicExamineService.TryDescribe(item, out string tonicText))
+                        MessageLog.AddAnnouncement(tonicText);
+                    _itemActionPopup = null;
                     Render();
                     break;
 
