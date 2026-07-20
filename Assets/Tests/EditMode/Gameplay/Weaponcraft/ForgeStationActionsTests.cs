@@ -266,6 +266,35 @@ namespace CavesOfOoo.Tests.Gameplay.Weaponcraft
         }
 
         [Test]
+        public void GatherActions_QuenchesSection_ListsOnlyCoatingFormBrews()
+        {
+            // Live-play finding (2026-07-19): a volatile mix resolves as a
+            // THROWABLE (molotov), and the Quenches section listed it anyway
+            // — the player picked it and got rejected at temper time. Only
+            // Form=Coating brews may appear as quench candidates.
+            var smith = CreateSmith();
+            var coating = GiveMarkedCoating(smith);
+            var molotov = new Entity { ID = "molotov", BlueprintName = "molotov" };
+            molotov.AddPart(new RenderPart { DisplayName = "burning & wet flask" });
+            molotov.AddPart(new BrewItemPart { Form = "Throwable", EffectsRaw = "Burning:2;Wet:1" });
+            Assert.IsTrue(smith.GetPart<InventoryPart>().AddObject(molotov));
+            var tonic = new Entity { ID = "tonic", BlueprintName = "tonic" };
+            tonic.AddPart(new RenderPart { DisplayName = "galvanic draught" });
+            tonic.AddPart(new BrewItemPart { Form = "Tonic", EffectsRaw = "Electrified:1" });
+            Assert.IsTrue(smith.GetPart<InventoryPart>().AddObject(tonic));
+            MakeZoneWithForge(smith, out Entity forge);
+
+            var actions = WorldInteractionSystem.GatherActions(forge, smith);
+
+            Assert.IsNotNull(actions.Find(a => a.Command == "CraftToggle:" + coating.ID),
+                "a real coating lists under Quenches");
+            Assert.IsNull(actions.Find(a => a.Command == "CraftToggle:" + molotov.ID),
+                "a Throwable-form brew must NOT be offered as a quench");
+            Assert.IsNull(actions.Find(a => a.Command == "CraftToggle:" + tonic.ID),
+                "a Tonic-form brew must NOT be offered as a quench");
+        }
+
+        [Test]
         public void CraftKit_FullKit_ForgesTheWeapon()
         {
             var smith = CreateSmith();

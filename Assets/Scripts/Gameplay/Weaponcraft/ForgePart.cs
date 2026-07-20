@@ -50,8 +50,18 @@ namespace CavesOfOoo.Core
                             item => item.GetPart<WeaponComponentPart>()?.Slot == "Haft");
                         AddSection(actions, actor, "Bindings", 140,
                             item => item.GetPart<WeaponComponentPart>()?.Slot == "Binding");
+                        // Only Coating-form brews are quench media (TryTemper
+                        // rejects the rest) — a volatile mix resolves as a
+                        // Throwable and must not be offered here as bait
+                        // (live-play finding, 2026-07-19).
                         AddSection(actions, actor, "Quenches", 110,
-                            item => item.GetPart<BrewItemPart>() != null);
+                            item =>
+                            {
+                                var brewItem = item.GetPart<BrewItemPart>();
+                                return brewItem != null && string.Equals(
+                                    brewItem.Form, "Coating",
+                                    System.StringComparison.OrdinalIgnoreCase);
+                            });
                         AddSection(actions, actor, "Weapon (re-forge / temper)", 80,
                             item => item.HasPart<MeleeWeaponPart>()
                                 && !item.HasPart<WeaponComponentPart>());
