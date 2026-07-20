@@ -47,19 +47,23 @@ namespace CavesOfOoo.Core
             string summary = BuildSummary(primary, visibleObjects);
             List<string> details = new List<string>();
 
-            string contents = BuildContentsLine(visibleObjects);
-            if (!string.IsNullOrEmpty(contents))
-                details.Add(contents);
-
+            // Detail order = value order, because the sidebar FOCUS panel
+            // truncates on a line budget (live finding, 2026-07-19: the
+            // Afflicted block was built but the Contents line ate the
+            // budget first): vitals, then afflictions, then cell contents,
+            // then flags.
             string subjectDetail = BuildPrimaryDetail(player, primary);
             if (!string.IsNullOrEmpty(subjectDetail))
                 details.Add(subjectDetail);
 
             // Live afflictions on the hovered target: one exact line per
             // status effect (shared EffectDescriber wording, same as the
-            // tonic Examine popup). Renders in the sidebar FOCUS section;
-            // placed before the flags line because it matters more.
+            // tonic Examine popup).
             AppendEffectLines(primary, details);
+
+            string contents = BuildContentsLine(visibleObjects);
+            if (!string.IsNullOrEmpty(contents))
+                details.Add(contents);
 
             string flags = BuildFlagsLine(cell);
             if (!string.IsNullOrEmpty(flags))

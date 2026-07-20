@@ -204,7 +204,11 @@ namespace CavesOfOoo.Rendering
                 // inspector block isn't clipped to 6 lines.
                 bool inspectorActive = snapshot?.FocusSnapshot?.GoalStackLines != null
                     || snapshot?.FocusSnapshot?.LastThought != null;
-                int focusCeiling = inspectorActive ? 14 : 6;
+                // 6 → 11: header+summary+HP already cost ~4-5 wrapped lines,
+                // which starved the Afflicted block (live finding,
+                // 2026-07-19). FormatFocus returns only real content lines,
+                // so the extra ceiling costs nothing on effect-free targets.
+                int focusCeiling = inspectorActive ? 14 : 11;
                 int focusMaxLines = Mathf.Clamp(remainingAfterFocusHeader - 4, 2, focusCeiling);
                 List<string> focusLines = SidebarTextFormatter.FormatFocus(snapshot?.FocusSnapshot, contentWidth, focusMaxLines);
                 for (int i = 0; i < focusLines.Count && y >= bottomY; i++, y--)

@@ -168,6 +168,23 @@ namespace CavesOfOoo.Tests
                 "poison line carries the live dice");
             Assert.IsTrue(snapshot.DetailLines.Any(l => l.Contains("ablaze") && l.Contains("2")),
                 "burning line carries the live intensity");
+
+            // Budget-order pin (live finding: the FOCUS panel truncates on a
+            // line budget — afflictions must come right after the vitals
+            // line, ahead of anything expendable).
+            int hpIndex = IndexOfContaining(snapshot, "HP");
+            int afflictedIndex = IndexOfContaining(snapshot, "Afflicted");
+            Assert.GreaterOrEqual(hpIndex, 0);
+            Assert.AreEqual(hpIndex + 1, afflictedIndex,
+                "Afflicted follows the vitals line immediately");
+        }
+
+        private static int IndexOfContaining(LookSnapshot snapshot, string fragment)
+        {
+            for (int i = 0; i < snapshot.DetailLines.Count; i++)
+                if (snapshot.DetailLines[i].Contains(fragment))
+                    return i;
+            return -1;
         }
 
         [Test]
