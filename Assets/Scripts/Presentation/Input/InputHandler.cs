@@ -2680,7 +2680,7 @@ namespace CavesOfOoo.Rendering
             if (bgTilemap == null)
                 return;
 
-            var blockTile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+            var blockTile = CP437TilesetGenerator.GetUiTile(CP437TilesetGenerator.SolidBlock);
             if (blockTile == null)
                 return;
 
@@ -2716,7 +2716,7 @@ namespace CavesOfOoo.Rendering
             if (tilemap == null)
                 return;
 
-            var tile = CP437TilesetGenerator.GetTile(c);
+            var tile = CP437TilesetGenerator.GetUiTile(c);
             if (tile == null)
                 return;
 
@@ -3421,7 +3421,7 @@ namespace CavesOfOoo.Rendering
         {
             if (bgTilemap == null) return;
 
-            var blockTile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+            var blockTile = CP437TilesetGenerator.GetUiTile(CP437TilesetGenerator.SolidBlock);
             if (blockTile == null) return;
 
             for (int dy = 0; dy < _confirmH - 1; dy++)
@@ -3443,7 +3443,7 @@ namespace CavesOfOoo.Rendering
             int wx = _confirmOriginX + gx;
             int wy = _confirmTopY - gy;
             var tilePos = new Vector3Int(wx, wy, 0);
-            var tile = CP437TilesetGenerator.GetTile(c);
+            var tile = CP437TilesetGenerator.GetUiTile(c);
             if (tile == null) return;
             tilemap.SetTile(tilePos, tile);
             tilemap.SetTileFlags(tilePos, UnityEngine.Tilemaps.TileFlags.None);

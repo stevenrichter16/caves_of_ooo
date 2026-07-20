@@ -551,7 +551,7 @@ namespace CavesOfOoo.Rendering
                 for (int px = popupX; px < popupX + popupW; px++)
                 {
                     var tilePos = new Vector3Int(px, H - 1 - py, 0);
-                    Tilemap.SetTile(tilePos, CP437TilesetGenerator.GetTile(' '));
+                    Tilemap.SetTile(tilePos, CP437TilesetGenerator.GetUiTile(' '));
                     Tilemap.SetTileFlags(tilePos, TileFlags.None);
                     Tilemap.SetColor(tilePos, QudColorParser.Black);
                 }
@@ -606,7 +606,7 @@ namespace CavesOfOoo.Rendering
         {
             if (Tilemap == null || x < 0 || x >= W || y < 0 || y >= H) return;
             var tilePos = new Vector3Int(x, H - 1 - y, 0);
-            var tile = CP437TilesetGenerator.GetTile(c);
+            var tile = CP437TilesetGenerator.GetUiTile(c);
             if (tile == null) return;
             Tilemap.SetTile(tilePos, tile);
             Tilemap.SetTileFlags(tilePos, TileFlags.None);
@@ -621,7 +621,7 @@ namespace CavesOfOoo.Rendering
                 char c = text[i];
                 if (c == ' ') continue;
                 var tilePos = new Vector3Int(x + i, H - 1 - y, 0);
-                var tile = CP437TilesetGenerator.GetTile(c);
+                var tile = CP437TilesetGenerator.GetUiTile(c);
                 if (tile == null) continue;
                 Tilemap.SetTile(tilePos, tile);
                 Tilemap.SetTileFlags(tilePos, TileFlags.None);
@@ -631,7 +631,7 @@ namespace CavesOfOoo.Rendering
 
         private void DrawHLine(int x, int y, int width)
         {
-            var tile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.BoxHorizontal);
+            var tile = CP437TilesetGenerator.GetUiTile(CP437TilesetGenerator.BoxHorizontal);
             if (tile == null) return;
             for (int i = x; i < x + width && i < W; i++)
             {

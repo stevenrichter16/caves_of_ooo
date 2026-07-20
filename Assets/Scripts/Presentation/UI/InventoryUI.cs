@@ -3995,7 +3995,7 @@ namespace CavesOfOoo.Rendering
         {
             if (Tilemap == null || x < 0 || x >= W || y < 0 || y >= H) return;
             var tilePos = new Vector3Int(x, H - 1 - y, 0);
-            var tile = CP437TilesetGenerator.GetTile(c);
+            var tile = CP437TilesetGenerator.GetUiTile(c);
             if (tile == null) return;
             Tilemap.SetTile(tilePos, tile);
             Tilemap.SetTileFlags(tilePos, TileFlags.None);
@@ -4012,7 +4012,7 @@ namespace CavesOfOoo.Rendering
                 if (c == ' ') continue;
 
                 var tilePos = new Vector3Int(x + i, H - 1 - y, 0);
-                var tile = CP437TilesetGenerator.GetTile(c);
+                var tile = CP437TilesetGenerator.GetUiTile(c);
                 if (tile == null) continue;
 
                 Tilemap.SetTile(tilePos, tile);
@@ -4024,7 +4024,7 @@ namespace CavesOfOoo.Rendering
         private void DrawHLine(int x, int y, int width, Color color)
         {
             var tilePos = new Vector3Int(0, H - 1 - y, 0);
-            var tile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.BoxHorizontal);
+            var tile = CP437TilesetGenerator.GetUiTile(CP437TilesetGenerator.BoxHorizontal);
             if (tile == null) return;
 
             for (int i = x; i < x + width && i < W; i++)

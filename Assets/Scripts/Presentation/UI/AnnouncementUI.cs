@@ -200,7 +200,7 @@ namespace CavesOfOoo.Rendering
         private void DrawBgFill(int gx, int gy, int width, int height)
         {
             if (BgTilemap == null) return;
-            var blockTile = CP437TilesetGenerator.GetTile(CP437TilesetGenerator.SolidBlock);
+            var blockTile = CP437TilesetGenerator.GetUiTile(CP437TilesetGenerator.SolidBlock);
             if (blockTile == null) return;
 
             for (int dy = 0; dy < height; dy++)
@@ -268,7 +268,7 @@ namespace CavesOfOoo.Rendering
             int wx = _worldOriginX + gx;
             int wy = _worldTopY - gy;
             var tilePos = new Vector3Int(wx, wy, 0);
-            var tile = CP437TilesetGenerator.GetTile(c);
+            var tile = CP437TilesetGenerator.GetUiTile(c);
             if (tile == null) return;
             Tilemap.SetTile(tilePos, tile);
             Tilemap.SetTileFlags(tilePos, TileFlags.None);

@@ -69,6 +69,106 @@ namespace CavesOfOoo.Rendering
         {
             _tileCache = null;
             _atlasTexture = null;
+            _uiTileCache = null;
+            _uiAtlasTexture = null;
+        }
+
+        // --- UI text tiles: full-width (16x16) PURE FONT ---
+        // The game atlas overrides many characters with gameplay sprites
+        // ('s'=snapjaw, 'T'=tree, '/'=dagger, '-'=line, '.'=floor speck,
+        // apostrophe=pebble, '?'=unknown-blob, '<'/'>'=stairs, ...), which
+        // made popup TEXT render creatures and terrain mid-sentence. UI
+        // surfaces draw from this bank instead: the same hex font plus
+        // proper font forms for the punctuation the game bank repurposes,
+        // plus the shared box-drawing frame glyphs. Map rendering keeps
+        // GetTile so the world still shows sprites.
+
+        private static Dictionary<char, Tile> _uiTileCache;
+        private static Texture2D _uiAtlasTexture;
+
+        /// <summary>
+        /// Get a pure-font full-width tile for UI text. Falls back to the
+        /// font '?' for characters outside the atlas; like GetTextTile, a
+        /// miss never regenerates the atlas (perf rule — see GetTextTile).
+        /// </summary>
+        public static Tile GetUiTile(char c)
+        {
+            if (_uiTileCache == null || _uiAtlasTexture == null)
+                GenerateUiTileset();
+
+            if (_uiTileCache.TryGetValue(c, out Tile tile) && tile != null && tile.sprite != null)
+                return tile;
+
+            _uiTileCache.TryGetValue('?', out tile);
+            return tile;
+        }
+
+        private static void GenerateUiTileset()
+        {
+            _uiTileCache = new Dictionary<char, Tile>(256);
+
+            int texWidth = Columns * GlyphSize;
+            int texHeight = Rows * GlyphSize;
+            _uiAtlasTexture = new Texture2D(texWidth, texHeight, TextureFormat.RGBA32, false);
+            _uiAtlasTexture.filterMode = FilterMode.Point;
+            _uiAtlasTexture.wrapMode = TextureWrapMode.Clamp;
+
+            Color[] clearPixels = new Color[texWidth * texHeight];
+            _uiAtlasTexture.SetPixels(clearPixels);
+
+            // The letter/digit/punctuation font — NO gameplay overrides.
+            foreach (var kvp in GetFontData())
+                DrawFromHexTo(_uiAtlasTexture, kvp.Key, kvp.Value);
+
+            // Font forms for characters the game bank repurposes as sprites
+            // (these have no entry in GetFontData because the game atlas
+            // always drew them as gameplay glyphs).
+            foreach (var kvp in GetUiFontExtras())
+                DrawFromHexTo(_uiAtlasTexture, kvp.Key, kvp.Value);
+
+            // Popup frames + background fill, identical to the game bank.
+            DrawFrameGlyphs(_uiAtlasTexture);
+
+            _uiAtlasTexture.Apply();
+
+            for (int i = 0; i < 256; i++)
+            {
+                char c = (char)i;
+                int col = i % Columns;
+                int row = Rows - 1 - (i / Columns);
+
+                Rect spriteRect = new Rect(col * GlyphSize, row * GlyphSize, GlyphSize, GlyphSize);
+                Sprite sprite = Sprite.Create(_uiAtlasTexture, spriteRect, new Vector2(0.5f, 0.5f), GlyphSize);
+                sprite.name = $"UI_{i:X2}";
+
+                Tile tile = ScriptableObject.CreateInstance<Tile>();
+                tile.sprite = sprite;
+                tile.color = Color.white;
+                tile.name = sprite.name;
+
+                _uiTileCache[c] = tile;
+            }
+        }
+
+        /// <summary>
+        /// Hex font rows (same grammar as GetFontData) for punctuation that
+        /// exists ONLY as gameplay sprites in the game atlas.
+        /// </summary>
+        private static Dictionary<char, string> GetUiFontExtras()
+        {
+            return new Dictionary<char, string>
+            {
+                { '?', "3C66060C18001800" },
+                { '/', "060C183060C08000" },
+                { '\\', "C06030180C060300" },
+                { '>', "6030180C18306000" },
+                { '<', "060C1830180C0600" },
+                { '+', "0018187E18180000" },
+                { '|', "1818181818181800" },
+                { '~', "0076DC0000000000" },
+                { '@', "3C666E6E60623C00" },
+                { '#', "6C6CFE6CFE6C6C00" }
+            };
         }
 
         private static void GenerateTileset()
@@ -270,105 +370,9 @@ namespace CavesOfOoo.Rendering
                 "........",
                 "........"
             });
-            // Box-drawing characters for UI borders
-            DrawChar('\u00DA', new[] {  // ┌ (218) top-left corner
-                "........",
-                "........",
-                "........",
-                "...XXXXX",
-                "...X....",
-                "...X....",
-                "...X....",
-                "...X...."
-            });
-            DrawChar('\u00BF', new[] {  // ┐ (191) top-right corner
-                "........",
-                "........",
-                "........",
-                "XXXXX...",
-                "....X...",
-                "....X...",
-                "....X...",
-                "....X..."
-            });
-            DrawChar('\u00C0', new[] {  // └ (192) bottom-left corner
-                "...X....",
-                "...X....",
-                "...X....",
-                "...XXXXX",
-                "........",
-                "........",
-                "........",
-                "........"
-            });
-            DrawChar('\u00D9', new[] {  // ┘ (217) bottom-right corner
-                "....X...",
-                "....X...",
-                "....X...",
-                "XXXXX...",
-                "........",
-                "........",
-                "........",
-                "........"
-            });
-            DrawChar('\u00C4', new[] {  // ─ (196) horizontal line
-                "........",
-                "........",
-                "........",
-                "XXXXXXXX",
-                "........",
-                "........",
-                "........",
-                "........"
-            });
-            DrawChar('\u00B3', new[] {  // │ (179) vertical line
-                "...X....",
-                "...X....",
-                "...X....",
-                "...X....",
-                "...X....",
-                "...X....",
-                "...X....",
-                "...X...."
-            });
-            DrawChar('\u00C3', new[] {  // ├ (195) left T-junction
-                "...X....",
-                "...X....",
-                "...X....",
-                "...XXXXX",
-                "...X....",
-                "...X....",
-                "...X....",
-                "...X...."
-            });
-            DrawChar('\u00B4', new[] {  // ┤ (180) right T-junction
-                "....X...",
-                "....X...",
-                "....X...",
-                "XXXXX...",
-                "....X...",
-                "....X...",
-                "....X...",
-                "....X..."
-            });
-            DrawChar16('\u00DB', new[] {  // █ (219) Solid block for background fills
-                "XXXXXXXXXXXXXXXX",
-                "XXXXXXXXXXXXXXXX",
-                "XXXXXXXXXXXXXXXX",
-                "XXXXXXXXXXXXXXXX",
-                "XXXXXXXXXXXXXXXX",
-                "XXXXXXXXXXXXXXXX",
-                "XXXXXXXXXXXXXXXX",
-                "XXXXXXXXXXXXXXXX",
-                "XXXXXXXXXXXXXXXX",
-                "XXXXXXXXXXXXXXXX",
-                "XXXXXXXXXXXXXXXX",
-                "XXXXXXXXXXXXXXXX",
-                "XXXXXXXXXXXXXXXX",
-                "XXXXXXXXXXXXXXXX",
-                "XXXXXXXXXXXXXXXX",
-                "XXXXXXXXXXXXXXXX"
-            });
+            // Box-drawing characters for UI borders (+ solid block) —
+            // shared with the UI text bank via DrawFrameGlyphs.
+            DrawFrameGlyphs(_atlasTexture);
             // Floor variant glyphs — subtle specks at different positions
             // to break up visual monotony when used with GlyphVariants
             DrawChar16(',', new[] {  // Floor variant: low-left pebble
@@ -445,7 +449,119 @@ namespace CavesOfOoo.Rendering
             });
         }
 
+        /// <summary>
+        /// Box-drawing borders + the solid block, drawn into
+        /// <paramref name="tex"/>. Shared by the game atlas and the UI
+        /// text atlas so popup frames render identically from both.
+        /// </summary>
+        private static void DrawFrameGlyphs(Texture2D tex)
+        {
+            DrawCharTo(tex, '\u00DA', new[] {  // ┌ (218) top-left corner
+                "........",
+                "........",
+                "........",
+                "...XXXXX",
+                "...X....",
+                "...X....",
+                "...X....",
+                "...X...."
+            });
+            DrawCharTo(tex, '\u00BF', new[] {  // ┐ (191) top-right corner
+                "........",
+                "........",
+                "........",
+                "XXXXX...",
+                "....X...",
+                "....X...",
+                "....X...",
+                "....X..."
+            });
+            DrawCharTo(tex, '\u00C0', new[] {  // └ (192) bottom-left corner
+                "...X....",
+                "...X....",
+                "...X....",
+                "...XXXXX",
+                "........",
+                "........",
+                "........",
+                "........"
+            });
+            DrawCharTo(tex, '\u00D9', new[] {  // ┘ (217) bottom-right corner
+                "....X...",
+                "....X...",
+                "....X...",
+                "XXXXX...",
+                "........",
+                "........",
+                "........",
+                "........"
+            });
+            DrawCharTo(tex, '\u00C4', new[] {  // ─ (196) horizontal line
+                "........",
+                "........",
+                "........",
+                "XXXXXXXX",
+                "........",
+                "........",
+                "........",
+                "........"
+            });
+            DrawCharTo(tex, '\u00B3', new[] {  // │ (179) vertical line
+                "...X....",
+                "...X....",
+                "...X....",
+                "...X....",
+                "...X....",
+                "...X....",
+                "...X....",
+                "...X...."
+            });
+            DrawCharTo(tex, '\u00C3', new[] {  // ├ (195) left T-junction
+                "...X....",
+                "...X....",
+                "...X....",
+                "...XXXXX",
+                "...X....",
+                "...X....",
+                "...X....",
+                "...X...."
+            });
+            DrawCharTo(tex, '\u00B4', new[] {  // ┤ (180) right T-junction
+                "....X...",
+                "....X...",
+                "....X...",
+                "XXXXX...",
+                "....X...",
+                "....X...",
+                "....X...",
+                "....X..."
+            });
+            DrawChar16To(tex, '\u00DB', new[] {  // █ (219) Solid block for background fills
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX",
+                "XXXXXXXXXXXXXXXX"
+            });
+        }
+
         private static void DrawChar(char c, string[] pattern)
+        {
+            DrawCharTo(_atlasTexture, c, pattern);
+        }
+
+        private static void DrawCharTo(Texture2D tex, char c, string[] pattern)
         {
             int charIndex = (int)c;
             int col = charIndex % Columns;
@@ -463,10 +579,10 @@ namespace CavesOfOoo.Rendering
                         // Scale 2x
                         int tx = baseX + px * 2;
                         int ty = baseY + (7 - py) * 2;
-                        _atlasTexture.SetPixel(tx, ty, Color.white);
-                        _atlasTexture.SetPixel(tx + 1, ty, Color.white);
-                        _atlasTexture.SetPixel(tx, ty + 1, Color.white);
-                        _atlasTexture.SetPixel(tx + 1, ty + 1, Color.white);
+                        tex.SetPixel(tx, ty, Color.white);
+                        tex.SetPixel(tx + 1, ty, Color.white);
+                        tex.SetPixel(tx, ty + 1, Color.white);
+                        tex.SetPixel(tx + 1, ty + 1, Color.white);
                     }
                 }
             }
@@ -477,6 +593,11 @@ namespace CavesOfOoo.Rendering
         /// Each row is a 16-character string where 'X' = white pixel.
         /// </summary>
         private static void DrawChar16(char c, string[] pattern)
+        {
+            DrawChar16To(_atlasTexture, c, pattern);
+        }
+
+        private static void DrawChar16To(Texture2D tex, char c, string[] pattern)
         {
             int charIndex = (int)c;
             int col = charIndex % Columns;
@@ -493,7 +614,7 @@ namespace CavesOfOoo.Rendering
                     {
                         int tx = baseX + px;
                         int ty = baseY + (15 - py);
-                        _atlasTexture.SetPixel(tx, ty, Color.white);
+                        tex.SetPixel(tx, ty, Color.white);
                     }
                 }
             }
@@ -514,6 +635,11 @@ namespace CavesOfOoo.Rendering
         /// Scaled 2x to fill the 16x16 glyph cell.
         /// </summary>
         private static void DrawFromHex(char c, string hexRows)
+        {
+            DrawFromHexTo(_atlasTexture, c, hexRows);
+        }
+
+        private static void DrawFromHexTo(Texture2D tex, char c, string hexRows)
         {
             int charIndex = (int)c;
             int col = charIndex % Columns;
@@ -536,10 +662,10 @@ namespace CavesOfOoo.Rendering
                         // Scale 2x
                         int tx = baseX + px * 2;
                         int ty = baseY + (7 - py) * 2;
-                        _atlasTexture.SetPixel(tx, ty, Color.white);
-                        _atlasTexture.SetPixel(tx + 1, ty, Color.white);
-                        _atlasTexture.SetPixel(tx, ty + 1, Color.white);
-                        _atlasTexture.SetPixel(tx + 1, ty + 1, Color.white);
+                        tex.SetPixel(tx, ty, Color.white);
+                        tex.SetPixel(tx + 1, ty, Color.white);
+                        tex.SetPixel(tx, ty + 1, Color.white);
+                        tex.SetPixel(tx + 1, ty + 1, Color.white);
                     }
                 }
             }
