@@ -51,6 +51,29 @@ namespace CavesOfOoo.Core
             return item != null && item.HasPart<CraftingMarkPart>();
         }
 
+        /// <summary>
+        /// Radio-selection group for the sectioned forge menu: at most ONE
+        /// marked item per group. Weapon components are exclusive per slot
+        /// ("Slot:Blade" etc.), coatings and weapons each form one group,
+        /// and reagents return null — the brew mix is deliberately
+        /// multi-select. Precedence mirrors <see cref="CollectMarked"/>.
+        /// </summary>
+        public static string ExclusiveGroupOf(Entity item)
+        {
+            if (item == null)
+                return null;
+            if (item.HasPart<ReagentPart>())
+                return null;
+            var component = item.GetPart<WeaponComponentPart>();
+            if (component != null)
+                return "Slot:" + component.Slot;
+            if (item.HasPart<BrewItemPart>())
+                return "Quench";
+            if (item.HasPart<MeleeWeaponPart>())
+                return "Weapon";
+            return null;
+        }
+
         /// <summary>Flip the mark; returns the NEW marked state.</summary>
         public static bool Toggle(Entity item)
         {
@@ -99,7 +122,7 @@ namespace CavesOfOoo.Core
                     continue;
 
                 string display = IsMarked(item)
-                    ? "[x] " + item.GetDisplayName() + " — in the mix"
+                    ? "[x] " + item.GetDisplayName() + " — picked"
                     : "[ ] " + item.GetDisplayName() + " — add";
                 actions.AddAction("CraftToggle", display,
                     ToggleCommandPrefix + item.ID, '\0', priority--);

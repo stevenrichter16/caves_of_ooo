@@ -2273,6 +2273,17 @@ namespace CavesOfOoo.Rendering
             // themselves for their own popup.
             ExitCenteredPopupOverlayViewToGameplay();
 
+            // Special case: inert section-header rows in the crafting-station
+            // menus — selecting one just reopens the menu unchanged.
+            if (action.Command == "CraftNoop")
+            {
+                if (cell != null)
+                    OpenWorldActionMenu(cell.X, cell.Y);
+                else
+                    _inputState = InputState.LookMode;
+                return;
+            }
+
             // Special case: crafting-station toggle rows (M3-L3). Toggle the
             // set-aside mark on the referenced carried item, then REOPEN the
             // menu on the same cell so it behaves as a multi-select picker —

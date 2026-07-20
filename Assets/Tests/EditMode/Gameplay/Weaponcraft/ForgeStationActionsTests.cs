@@ -219,6 +219,143 @@ namespace CavesOfOoo.Tests.Gameplay.Weaponcraft
                 "a reagent gets NO row on the FORGE — wrong station");
         }
 
+        // ════════════════ Sectioned forge menu + Craft button (redesign) ════════════════
+
+        [Test]
+        public void GatherActions_WithActor_ShowsSectionsInOrderWithCraftAtBottom()
+        {
+            // Forge redesign (user spec): one section per part kind — Blades,
+            // Hafts, Bindings, Quenches — each listing the carried items,
+            // with ONE Craft button at the very bottom. Headers are inert
+            // rows; the old flat verb list is gone from the actor menu.
+            var smith = CreateSmith();
+            Entity blade = _factory.CreateEntity("SteelBlade");
+            Assert.IsTrue(smith.GetPart<InventoryPart>().AddObject(blade));
+            Entity haft = _factory.CreateEntity("OakHaft");
+            Assert.IsTrue(smith.GetPart<InventoryPart>().AddObject(haft));
+            var coating = GiveMarkedCoating(smith);
+            MakeZoneWithForge(smith, out Entity forge);
+
+            var actions = WorldInteractionSystem.GatherActions(forge, smith);
+
+            int iBlades = actions.FindIndex(a => a.Display.Contains("Blades"));
+            int iHafts = actions.FindIndex(a => a.Display.Contains("Hafts"));
+            int iBindings = actions.FindIndex(a => a.Display.Contains("Bindings"));
+            int iQuench = actions.FindIndex(a => a.Display.Contains("Quenches"));
+            int iCraft = actions.FindIndex(a => a.Command == "CraftKit");
+
+            Assert.GreaterOrEqual(iBlades, 0, "Blades header present");
+            Assert.GreaterOrEqual(iHafts, 0, "Hafts header present");
+            Assert.GreaterOrEqual(iBindings, 0, "Bindings header present");
+            Assert.GreaterOrEqual(iQuench, 0, "Quenches header present");
+            Assert.GreaterOrEqual(iCraft, 0, "Craft button present");
+
+            Assert.Less(iBlades, iHafts, "section order: Blades before Hafts");
+            Assert.Less(iHafts, iBindings, "Hafts before Bindings");
+            Assert.Less(iBindings, iQuench, "Bindings before Quenches");
+            Assert.AreEqual(actions.Count - 1, iCraft, "Craft is the LAST row");
+
+            int iBladeItem = actions.FindIndex(a => a.Command == "CraftToggle:" + blade.ID);
+            Assert.IsTrue(iBladeItem > iBlades && iBladeItem < iHafts,
+                "the carried blade lists inside the Blades section");
+            int iCoatItem = actions.FindIndex(a => a.Command == "CraftToggle:" + coating.ID);
+            Assert.IsTrue(iCoatItem > iQuench, "the coating lists inside the Quenches section");
+
+            Assert.IsNull(actions.Find(a => a.Command == "ForgeWeaponBatch"),
+                "the old flat verb rows are gone from the sectioned menu");
+        }
+
+        [Test]
+        public void CraftKit_FullKit_ForgesTheWeapon()
+        {
+            var smith = CreateSmith();
+            GiveMarked(smith, "SteelBlade");
+            GiveMarked(smith, "OakHaft");
+            GiveMarked(smith, "LeatherBinding");
+            var zone = MakeZoneWithForge(smith, out Entity forge);
+
+            FireWorldAction(forge, smith, zone, "CraftKit");
+
+            Entity weapon = Carried(smith).Find(e => e.HasPart<WeaponAssemblyPart>());
+            Assert.IsNotNull(weapon, "Craft with a full kit forges");
+            Assert.AreEqual("1d6", weapon.GetPart<MeleeWeaponPart>().BaseDamage);
+        }
+
+        [Test]
+        public void CraftKit_FullKitPlusQuench_ForgesAndTempersInOneGo()
+        {
+            // The composite the redesign exists for: pick the parts, pick a
+            // quench, press Craft — the fresh blade comes out tempered.
+            var smith = CreateSmith();
+            GiveMarked(smith, "SteelBlade");
+            GiveMarked(smith, "OakHaft");
+            GiveMarked(smith, "LeatherBinding");
+            var coating = GiveMarkedCoating(smith);
+            var zone = MakeZoneWithForge(smith, out Entity forge);
+
+            FireWorldAction(forge, smith, zone, "CraftKit");
+
+            Entity weapon = Carried(smith).Find(e => e.HasPart<WeaponAssemblyPart>());
+            Assert.IsNotNull(weapon);
+            Assert.IsFalse(Carried(smith).Contains(coating), "quench consumed");
+            var temper = weapon.GetPart<WeaponTemperPart>();
+            Assert.IsNotNull(temper, "the NEW weapon is tempered");
+            Assert.AreEqual(1, temper.TemperCount);
+            StringAssert.Contains("Burning", weapon.GetPart<MeleeWeaponPart>().OnHitEffectsRaw);
+        }
+
+        [Test]
+        public void CraftKit_WeaponPlusOneComponent_Reforges()
+        {
+            var smith = CreateSmith();
+            GiveMarked(smith, "SteelBlade");
+            GiveMarked(smith, "OakHaft");
+            GiveMarked(smith, "LeatherBinding");
+            var zone = MakeZoneWithForge(smith, out Entity forge);
+            FireWorldAction(forge, smith, zone, "CraftKit");
+            Entity weapon = Carried(smith).Find(e => e.HasPart<WeaponAssemblyPart>());
+            Assert.IsNotNull(weapon, "fixture: forge first");
+
+            Assert.IsTrue(CraftingMarkPart.Toggle(weapon));
+            GiveMarked(smith, "IronSpike");
+
+            FireWorldAction(forge, smith, zone, "CraftKit");
+
+            Assert.AreEqual("1d4", weapon.GetPart<MeleeWeaponPart>().BaseDamage,
+                "Craft with weapon + one part re-forges");
+        }
+
+        [Test]
+        public void CraftKit_WeaponPlusQuench_TempersTheExistingWeapon()
+        {
+            var smith = CreateSmith();
+            var weapon = GiveMarked(smith, "ForgedWeapon");
+            GiveMarkedCoating(smith);
+            var zone = MakeZoneWithForge(smith, out Entity forge);
+
+            FireWorldAction(forge, smith, zone, "CraftKit");
+
+            var temper = weapon.GetPart<WeaponTemperPart>();
+            Assert.IsNotNull(temper, "Craft with weapon + quench tempers it");
+            Assert.AreEqual(1, temper.TemperCount);
+        }
+
+        [Test]
+        public void CraftKit_NothingSelected_LegibleAndNothingConsumed()
+        {
+            var smith = CreateSmith();
+            Entity blade = _factory.CreateEntity("SteelBlade");
+            Assert.IsTrue(smith.GetPart<InventoryPart>().AddObject(blade));
+            var zone = MakeZoneWithForge(smith, out Entity forge);
+
+            FireWorldAction(forge, smith, zone, "CraftKit");
+
+            Assert.IsTrue(Carried(smith).Contains(blade), "unpicked blade untouched");
+            Assert.IsNull(Carried(smith).Find(e => e.HasPart<WeaponAssemblyPart>()));
+            StringAssert.Contains("blade", (MessageLog.GetLast() ?? string.Empty).ToLowerInvariant(),
+                "the guidance names what Craft needs");
+        }
+
         // ════════════════ ForgeWeapon handler ════════════════
 
         [Test]

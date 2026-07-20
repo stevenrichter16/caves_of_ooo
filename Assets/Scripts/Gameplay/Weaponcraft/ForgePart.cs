@@ -37,18 +37,36 @@ namespace CavesOfOoo.Core
                 var actions = e.GetParameter<InventoryActionList>("Actions");
                 if (actions != null)
                 {
-                    actions.AddAction("Forge", "forge the kit (blade+haft+binding)", "ForgeWeapon", 'f', 20);
-                    actions.AddAction("ForgeBatch", "forge a full batch", "ForgeWeaponBatch", 'F', 19);
-                    actions.AddAction("Reforge", "re-forge weapon with component", "ReforgeWeapon", 'r', 18);
-                    actions.AddAction("Quench", "quench weapon in coating", "QuenchWeapon", 'q', 17);
+                    var actor = e.GetParameter<Entity>("Actor");
+                    if (actor != null)
+                    {
+                        // Sectioned picker (forge redesign, user spec): one
+                        // section per part kind, each listing the carried
+                        // items with pick-marks, and ONE Craft button at the
+                        // bottom. Headers are inert (CraftNoop).
+                        AddSection(actions, actor, "Blades", 200,
+                            item => item.GetPart<WeaponComponentPart>()?.Slot == "Blade");
+                        AddSection(actions, actor, "Hafts", 170,
+                            item => item.GetPart<WeaponComponentPart>()?.Slot == "Haft");
+                        AddSection(actions, actor, "Bindings", 140,
+                            item => item.GetPart<WeaponComponentPart>()?.Slot == "Binding");
+                        AddSection(actions, actor, "Quenches", 110,
+                            item => item.GetPart<BrewItemPart>() != null);
+                        AddSection(actions, actor, "Weapon (re-forge / temper)", 80,
+                            item => item.HasPart<MeleeWeaponPart>()
+                                && !item.HasPart<WeaponComponentPart>());
 
-                    // Actor-aware picker rows (live-playtest finding): build
-                    // the kit right in this menu — components, quenchable
-                    // weapons, and coatings. Reagents belong to the still.
-                    CraftingMarkPart.AddToggleRows(actions, e.GetParameter<Entity>("Actor"),
-                        item => item.HasPart<WeaponComponentPart>()
-                            || item.HasPart<MeleeWeaponPart>()
-                            || item.HasPart<BrewItemPart>(), basePriority: 10);
+                        actions.AddAction("Craft", ">> Craft <<", "CraftKit", 'c', 1);
+                    }
+                    else
+                    {
+                        // Actor-less gather (non-menu callers): the flat verb
+                        // rows remain the stable programmatic surface.
+                        actions.AddAction("Forge", "forge the kit (blade+haft+binding)", "ForgeWeapon", 'f', 20);
+                        actions.AddAction("ForgeBatch", "forge a full batch", "ForgeWeaponBatch", 'F', 19);
+                        actions.AddAction("Reforge", "re-forge weapon with component", "ReforgeWeapon", 'r', 18);
+                        actions.AddAction("Quench", "quench weapon in coating", "QuenchWeapon", 'q', 17);
+                    }
                 }
                 return true;
             }
@@ -57,7 +75,8 @@ namespace CavesOfOoo.Core
             {
                 string command = e.GetStringParameter("Command");
                 if (command != "ForgeWeapon" && command != "ForgeWeaponBatch"
-                    && command != "ReforgeWeapon" && command != "QuenchWeapon")
+                    && command != "ReforgeWeapon" && command != "QuenchWeapon"
+                    && command != "CraftKit")
                 {
                     return true;
                 }
@@ -71,6 +90,9 @@ namespace CavesOfOoo.Core
 
                 switch (command)
                 {
+                    case "CraftKit":
+                        HandleCraftKit(actor, zone);
+                        break;
                     case "ForgeWeapon":
                         HandleForge(actor, zone, batch: false);
                         break;
@@ -89,6 +111,87 @@ namespace CavesOfOoo.Core
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// One menu section: an inert header row, then a toggle row per
+        /// carried item matching <paramref name="eligible"/> (or a dim
+        /// "(none carried)" row so the section still teaches the concept).
+        /// </summary>
+        private static void AddSection(InventoryActionList actions, Entity actor,
+            string title, int basePriority, System.Predicate<Entity> eligible)
+        {
+            actions.AddAction("Section", "── " + title + " ──", "CraftNoop", '\0', basePriority);
+
+            int before = actions.Actions.Count;
+            CraftingMarkPart.AddToggleRows(actions, actor, eligible, basePriority - 1);
+            if (actions.Actions.Count == before)
+                actions.AddAction("SectionEmpty", "    (none carried)", "CraftNoop", '\0', basePriority - 1);
+        }
+
+        /// <summary>
+        /// The one-button Craft dispatch (forge redesign): a full kit forges
+        /// (and quenches the fresh weapon when a quench is picked); a picked
+        /// weapon plus ONE component re-forges; a picked weapon plus a
+        /// quench tempers it. Anything else explains what Craft needs.
+        /// </summary>
+        private static void HandleCraftKit(Entity actor, Zone zone)
+        {
+            if (Factory == null)
+            {
+                MessageLog.Add("The forge is cold. (Forging is not wired to a factory.)");
+                return;
+            }
+
+            var marked = CraftingMarkPart.CollectMarked(actor);
+
+            Entity blade = null, haft = null, binding = null;
+            for (int i = 0; i < marked.Components.Count; i++)
+            {
+                var part = marked.Components[i].GetPart<WeaponComponentPart>();
+                if (part == null) continue;
+                if (part.Slot == "Blade") blade = marked.Components[i];
+                else if (part.Slot == "Haft") haft = marked.Components[i];
+                else if (part.Slot == "Binding") binding = marked.Components[i];
+            }
+
+            if (blade != null && haft != null && binding != null)
+            {
+                var forgeCommand = new ForgeWeaponCommand(blade, haft, binding, Factory);
+                var result = InventorySystem.ExecuteCommand(forgeCommand, actor, zone);
+                if (!result.Success)
+                {
+                    if (!string.IsNullOrEmpty(result.ErrorMessage))
+                        MessageLog.Add(result.ErrorMessage);
+                    return;
+                }
+
+                if (marked.Coatings.Count == 1 && forgeCommand.ForgedWeapons.Count > 0)
+                {
+                    var quenchResult = InventorySystem.ExecuteCommand(
+                        new TemperWeaponCommand(forgeCommand.ForgedWeapons[0], marked.Coatings[0]),
+                        actor, zone);
+                    if (!quenchResult.Success && !string.IsNullOrEmpty(quenchResult.ErrorMessage))
+                        MessageLog.Add(quenchResult.ErrorMessage);
+                }
+                return;
+            }
+
+            if (marked.Weapons.Count == 1 && marked.Components.Count == 1)
+            {
+                HandleReforge(actor, zone);
+                return;
+            }
+
+            if (marked.Weapons.Count == 1 && marked.Coatings.Count == 1)
+            {
+                HandleQuench(actor, zone);
+                return;
+            }
+
+            MessageLog.Add("Craft needs a blade, a haft, and a binding picked (add a quench to "
+                + "temper the fresh weapon) — or pick a weapon plus one part to re-forge, "
+                + "or a weapon plus a quench to temper it.");
         }
 
         private static void HandleForge(Entity actor, Zone zone, bool batch)

@@ -61,6 +61,30 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
+            // Radio semantics (sectioned forge menu): marking an item bumps
+            // any already-marked sibling in the same exclusive group (one
+            // blade, one haft, one binding, one quench, one weapon at a
+            // time). Reagents group as null — the brew mix stays multi-pick.
+            if (!CraftingMarkPart.IsMarked(_item))
+            {
+                string group = CraftingMarkPart.ExclusiveGroupOf(_item);
+                if (group != null)
+                {
+                    var objects = context.Inventory.Objects;
+                    for (int i = 0; i < objects.Count; i++)
+                    {
+                        Entity sibling = objects[i];
+                        if (sibling == null || ReferenceEquals(sibling, _item))
+                            continue;
+                        if (CraftingMarkPart.IsMarked(sibling)
+                            && CraftingMarkPart.ExclusiveGroupOf(sibling) == group)
+                        {
+                            CraftingMarkPart.Toggle(sibling);
+                        }
+                    }
+                }
+            }
+
             bool marked = CraftingMarkPart.Toggle(_item);
 
             MessageLog.Add(marked

@@ -195,7 +195,7 @@ namespace CavesOfOoo.Tests.Gameplay.Alchemy
 
             var oilRow = actions.Find(a => a.Command == "CraftToggle:" + oil.ID);
             Assert.IsNotNull(oilRow, "marked reagent gets a toggle row too");
-            StringAssert.Contains("mix", oilRow.Display.ToLowerInvariant());
+            StringAssert.Contains("picked", oilRow.Display.ToLowerInvariant());
 
             Assert.IsNull(actions.Find(a => a.Command == "CraftToggle:" + comp.ID),
                 "a weapon component gets NO row on the STILL — wrong station");

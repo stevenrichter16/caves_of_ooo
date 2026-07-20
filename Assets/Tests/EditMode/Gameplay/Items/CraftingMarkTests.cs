@@ -122,6 +122,65 @@ namespace CavesOfOoo.Tests.Gameplay.Items
             Assert.IsFalse(CraftingMarkPart.IsMarkable(null));
         }
 
+        // ════════════════ Radio selection (forge redesign) ════════════════
+
+        [Test]
+        public void Toggle_SecondBladeViaCommand_UnmarksTheFirst()
+        {
+            // Sectioned-forge semantics: one pick per slot. Marking a second
+            // blade through the command auto-unmarks the first — the "you
+            // have 2 blades set aside" error class stops existing.
+            var actor = CreateActor();
+            var blade1 = GiveItem(actor, "steel blade", new WeaponComponentPart { Slot = "Blade" });
+            var blade2 = GiveItem(actor, "iron spike", new WeaponComponentPart { Slot = "Blade" });
+            var haft = GiveItem(actor, "oak haft", new WeaponComponentPart { Slot = "Haft" });
+
+            Assert.IsTrue(Toggle(actor, blade1).Success);
+            Assert.IsTrue(Toggle(actor, haft).Success);
+            Assert.IsTrue(Toggle(actor, blade2).Success);
+
+            Assert.IsFalse(CraftingMarkPart.IsMarked(blade1), "first blade auto-unmarked");
+            Assert.IsTrue(CraftingMarkPart.IsMarked(blade2), "second blade takes the slot");
+            Assert.IsTrue(CraftingMarkPart.IsMarked(haft),
+                "a DIFFERENT slot is untouched — exclusivity is per-slot");
+        }
+
+        [Test]
+        public void Toggle_SecondCoatingOrWeapon_UnmarksTheFirst()
+        {
+            var actor = CreateActor();
+            var coat1 = GiveItem(actor, "flame coating", new BrewItemPart { Form = "Coating", EffectsRaw = "Burning:1" });
+            var coat2 = GiveItem(actor, "frost coating", new BrewItemPart { Form = "Coating", EffectsRaw = "Frozen:1" });
+            var sword1 = GiveItem(actor, "old sword", new MeleeWeaponPart());
+            var sword2 = GiveItem(actor, "new sword", new MeleeWeaponPart());
+
+            Assert.IsTrue(Toggle(actor, coat1).Success);
+            Assert.IsTrue(Toggle(actor, coat2).Success);
+            Assert.IsFalse(CraftingMarkPart.IsMarked(coat1), "one quench at a time");
+            Assert.IsTrue(CraftingMarkPart.IsMarked(coat2));
+
+            Assert.IsTrue(Toggle(actor, sword1).Success);
+            Assert.IsTrue(Toggle(actor, sword2).Success);
+            Assert.IsFalse(CraftingMarkPart.IsMarked(sword1), "one weapon at a time");
+            Assert.IsTrue(CraftingMarkPart.IsMarked(sword2));
+        }
+
+        [Test]
+        public void Toggle_MultipleReagents_AllStayMarked()
+        {
+            // Counter-check: the brew mix is deliberately MULTI-select —
+            // radio exclusivity must not leak into reagents.
+            var actor = CreateActor();
+            var moss = GiveItem(actor, "fire moss", new ReagentPart { PropertiesRaw = "heat:1" });
+            var oil = GiveItem(actor, "lamp oil", new ReagentPart { PropertiesRaw = "combustible:1" });
+
+            Assert.IsTrue(Toggle(actor, moss).Success);
+            Assert.IsTrue(Toggle(actor, oil).Success);
+
+            Assert.IsTrue(CraftingMarkPart.IsMarked(moss), "both reagents stay in the mix");
+            Assert.IsTrue(CraftingMarkPart.IsMarked(oil));
+        }
+
         // ════════════════ CollectMarked partitioning ════════════════
 
         [Test]

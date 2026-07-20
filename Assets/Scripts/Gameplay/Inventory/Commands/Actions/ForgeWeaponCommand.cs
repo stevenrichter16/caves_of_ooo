@@ -21,6 +21,13 @@ namespace CavesOfOoo.Core.Inventory.Commands
         private readonly EntityFactory _factory;
         private readonly int _requestedCount;
 
+        /// <summary>
+        /// Weapons produced by the last Execute, in forge order. Lets the
+        /// forge's one-button Craft flow quench the fresh weapon without
+        /// re-scanning the inventory.
+        /// </summary>
+        public List<Entity> ForgedWeapons { get; } = new List<Entity>();
+
         public string Name => "ForgeWeapon";
 
         public ForgeWeaponCommand(Entity blade, Entity haft, Entity binding,
@@ -89,9 +96,13 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 _haft,
                 _binding,
                 _requestedCount,
-                out List<Entity> _,
+                out List<Entity> produced,
                 out int madeCount,
                 out string reason);
+
+            ForgedWeapons.Clear();
+            if (produced != null)
+                ForgedWeapons.AddRange(produced);
 
             if (!any)
             {
