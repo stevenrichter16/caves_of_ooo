@@ -339,5 +339,60 @@ namespace CavesOfOoo.Tests
             var entity = _factory.CreateEntity(blueprintName);
             Assert.IsFalse(WorldInteractionSystem.IsTerrain(entity));
         }
+
+        // ════════════════ "What's here" picker (look-mode click) ════════════════
+
+        private Entity Place(string name, int x, int y, bool terrain = false)
+        {
+            var e = new Entity { ID = name + "-id", BlueprintName = name };
+            e.AddPart(new RenderPart { DisplayName = name });
+            if (terrain)
+                e.SetTag("Terrain");
+            Assert.IsTrue(_zone.AddEntity(e, x, y));
+            return e;
+        }
+
+        [Test]
+        public void BuildTargetPickerActions_ListsEveryObject_NonTerrainFirstTerrainLast()
+        {
+            // User request (2026-07-19): clicking a stacked tile in look
+            // mode must list ALL objects on it — each row picks that entity
+            // for its own action menu. Non-terrain objects lead (top-most
+            // first); terrain (the floor) is still reachable at the bottom.
+            var floor = Place("stone floor", 3, 3, terrain: true);
+            var corpse = Place("snapjaw corpse", 3, 3);
+            var hunter = Place("snapjaw hunter", 3, 3);
+            var cell = _zone.GetCell(3, 3);
+
+            var rows = WorldInteractionSystem.BuildTargetPickerActions(cell);
+
+            Assert.AreEqual(3, rows.Count, "every object gets a row");
+            Assert.AreEqual(WorldInteractionSystem.PickTargetCommandPrefix + hunter.ID,
+                rows[0].Command, "top-most non-terrain (added last) leads");
+            Assert.AreEqual(WorldInteractionSystem.PickTargetCommandPrefix + corpse.ID,
+                rows[1].Command);
+            Assert.AreEqual(WorldInteractionSystem.PickTargetCommandPrefix + floor.ID,
+                rows[2].Command, "terrain listed last");
+            StringAssert.Contains("snapjaw hunter", rows[0].Display);
+        }
+
+        [Test]
+        public void BuildTargetPickerActions_EmptyOrNullCell_EmptyList()
+        {
+            Assert.IsEmpty(WorldInteractionSystem.BuildTargetPickerActions(null));
+            Assert.IsEmpty(WorldInteractionSystem.BuildTargetPickerActions(
+                new Cell(0, 0, _zone)));
+        }
+
+        [Test]
+        public void FindInCell_ResolvesByIdAndRejectsUnknown()
+        {
+            var corpse = Place("snapjaw corpse", 4, 4);
+            var cell = _zone.GetCell(4, 4);
+
+            Assert.AreSame(corpse, WorldInteractionSystem.FindInCell(cell, corpse.ID));
+            Assert.IsNull(WorldInteractionSystem.FindInCell(cell, "nope"));
+            Assert.IsNull(WorldInteractionSystem.FindInCell(null, corpse.ID));
+        }
     }
 }

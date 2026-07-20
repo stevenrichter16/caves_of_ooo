@@ -178,6 +178,58 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// Command prefix for the look-mode "what's here" picker rows; the
+        /// suffix is the target entity's ID. InputHandler intercepts these
+        /// and reopens the menu showing THAT entity's actions.
+        /// </summary>
+        public const string PickTargetCommandPrefix = "PickTarget:";
+
+        /// <summary>Command that reopens the "what's here" picker.</summary>
+        public const string PickCellCommand = "PickCell";
+
+        /// <summary>
+        /// Build the "what's here" picker for a clicked cell: one row per
+        /// object, non-terrain first (top-most leading, matching what the
+        /// player visually clicked), terrain (the floor) last so it stays
+        /// reachable. Each row's command is PickTarget:&lt;ID&gt;.
+        /// </summary>
+        public static List<InventoryAction> BuildTargetPickerActions(Cell cell)
+        {
+            var rows = new List<InventoryAction>();
+            if (cell == null) return rows;
+
+            for (int pass = 0; pass < 2; pass++)
+            {
+                bool terrainPass = pass == 1;
+                for (int i = cell.Objects.Count - 1; i >= 0; i--)
+                {
+                    Entity e = cell.Objects[i];
+                    if (e == null || string.IsNullOrEmpty(e.ID)) continue;
+                    if (IsTerrain(e) != terrainPass) continue;
+
+                    rows.Add(new InventoryAction(
+                        "PickTarget", e.GetDisplayName(),
+                        PickTargetCommandPrefix + e.ID, '\0', 0));
+                }
+            }
+
+            return rows;
+        }
+
+        /// <summary>Resolve an entity in the cell by its ID (null-safe).</summary>
+        public static Entity FindInCell(Cell cell, string id)
+        {
+            if (cell == null || string.IsNullOrEmpty(id)) return null;
+            for (int i = 0; i < cell.Objects.Count; i++)
+            {
+                Entity e = cell.Objects[i];
+                if (e != null && e.ID == id)
+                    return e;
+            }
+            return null;
+        }
+
+        /// <summary>
         /// True for entities carrying the <c>Wall</c>, <c>Floor</c>, or
         /// <c>Terrain</c> tag. Matches the convention already used by
         /// ZoneBuilder for its cell-clearing safety rail.

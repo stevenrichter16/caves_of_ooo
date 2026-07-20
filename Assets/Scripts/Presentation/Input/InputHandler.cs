@@ -2196,20 +2196,53 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // Stacked cell → "what's here" picker: one row per object, each
+            // opening THAT entity's own action menu (user request,
+            // 2026-07-19). Single-object cells go straight to the actions.
+            if (WorldInteractionSystem.IsPileCell(cell))
+            {
+                var pickerRows = WorldInteractionSystem.BuildTargetPickerActions(cell);
+                if (pickerRows.Count > 0)
+                {
+                    WorldActionMenuUI.Open(PlayerEntity, target, cell, pickerRows);
+                    _inputState = InputState.WorldActionMenuOpen;
+                    EnterCenteredPopupOverlayView();
+                    return;
+                }
+            }
+
+            OpenWorldActionMenuFor(target, cell, includeBackRow: false);
+        }
+
+        /// <summary>
+        /// Open the world-action menu showing one entity's actions. When
+        /// <paramref name="includeBackRow"/> is true (entered from the
+        /// "what's here" picker), a bottom row returns to the picker.
+        /// </summary>
+        private void OpenWorldActionMenuFor(Entity target, Cell cell, bool includeBackRow)
+        {
+            if (WorldActionMenuUI == null || target == null) return;
+
             // Actor-aware gather: stations add in-menu crafting toggle rows
             // for the player's carried items (M3-L3 live-playtest finding).
             var actions = WorldInteractionSystem.GatherActions(target, PlayerEntity);
-            UnityEngine.Debug.Log($"[ActionMenu:open] actions.Count={actions.Count}");
             if (actions.Count == 0)
             {
                 MessageLog.Add(WorldInteractionSystem.DescribeCell(cell));
+                _inputState = InputState.LookMode;
                 return;
+            }
+
+            if (includeBackRow)
+            {
+                actions.Add(new InventoryAction(
+                    "PickCell", "<< everything here",
+                    WorldInteractionSystem.PickCellCommand, '\0', 0));
             }
 
             WorldActionMenuUI.Open(PlayerEntity, target, cell, actions);
             _inputState = InputState.WorldActionMenuOpen;
             EnterCenteredPopupOverlayView(); // swap to popup camera so the menu is actually visible
-            UnityEngine.Debug.Log($"[ActionMenu:open] opened menu — state=WorldActionMenuOpen");
         }
 
         /// <summary>
@@ -2273,12 +2306,43 @@ namespace CavesOfOoo.Rendering
             // themselves for their own popup.
             ExitCenteredPopupOverlayViewToGameplay();
 
+            // Special case: "what's here" picker row — open the picked
+            // entity's own action menu, with a back row to the picker.
+            if (action.Command.StartsWith(WorldInteractionSystem.PickTargetCommandPrefix, StringComparison.Ordinal))
+            {
+                string targetId = action.Command.Substring(WorldInteractionSystem.PickTargetCommandPrefix.Length);
+                Entity picked = WorldInteractionSystem.FindInCell(cell, targetId);
+                if (picked != null)
+                {
+                    OpenWorldActionMenuFor(picked, cell,
+                        includeBackRow: WorldInteractionSystem.IsPileCell(cell));
+                }
+                else
+                {
+                    _inputState = InputState.LookMode;
+                }
+                return;
+            }
+
+            // Special case: back row — return to the "what's here" picker.
+            if (action.Command == WorldInteractionSystem.PickCellCommand)
+            {
+                if (cell != null)
+                    OpenWorldActionMenu(cell.X, cell.Y);
+                else
+                    _inputState = InputState.LookMode;
+                return;
+            }
+
             // Special case: inert section-header rows in the crafting-station
             // menus — selecting one just reopens the menu unchanged.
             if (action.Command == "CraftNoop")
             {
-                if (cell != null)
-                    OpenWorldActionMenu(cell.X, cell.Y);
+                // Reopen the STATION's menu directly (not the cell picker —
+                // the station may share its cell with loot).
+                if (target != null && cell != null)
+                    OpenWorldActionMenuFor(target, cell,
+                        includeBackRow: WorldInteractionSystem.IsPileCell(cell));
                 else
                     _inputState = InputState.LookMode;
                 return;
@@ -2299,9 +2363,13 @@ namespace CavesOfOoo.Rendering
                         new ToggleCraftMarkCommand(carried), PlayerEntity, CurrentZone);
                 }
 
-                if (cell != null)
+                if (target != null && cell != null)
                 {
-                    OpenWorldActionMenu(cell.X, cell.Y); // re-enters overlay + state itself
+                    // Reopen the STATION's menu with refreshed [x]/[ ] rows —
+                    // directly, not via the cell picker (the station may
+                    // share its cell with dropped loot).
+                    OpenWorldActionMenuFor(target, cell,
+                        includeBackRow: WorldInteractionSystem.IsPileCell(cell));
                 }
                 else
                 {
