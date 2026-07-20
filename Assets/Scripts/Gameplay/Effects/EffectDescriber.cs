@@ -43,11 +43,64 @@ namespace CavesOfOoo.Core
                         + " damage a turn until staunched (save " + bl.SaveTarget + ").";
                 case CharredEffect _:
                     return "Charred - scorched, and far less combustible.";
+
+                // --- world / material afflictions (live-play finding:
+                //     "drenched" is LiquidCoveredEffect, not WetEffect) ---
+                case LiquidCoveredEffect lc:
+                    return "Drenched in "
+                        + (string.IsNullOrEmpty(lc.LiquidId) ? "liquid" : lc.LiquidId)
+                        + " (" + lc.Amount + ").";
+                case CoatedInPlasmaEffect _:
+                    return "Coated in plasma - heat and cold bite far deeper.";
+                case PoisonedByGasEffect pg:
+                    return "Choking - " + pg.DamagePerTurn + " damage a turn from "
+                        + pg.GasTypeKey.ToLowerInvariant() + " gas" + ForTurns(pg.Duration) + ".";
+                case AsleepByGasEffect asleep:
+                    return "Asleep - helpless until damaged or it wears off"
+                        + ForTurns(asleep.Duration) + ".";
+                case FungalInfectionEffect fi:
+                    return "Fungal infection - spreading (" + fi.TurnsInfected + " turns in).";
+                case SmolderingEffect sm:
+                    return "Smoldering - about to catch fire" + ForTurns(sm.Duration) + ".";
+
+                // --- control / combat afflictions ---
+                case StunnedEffect st:
+                    return "Stunned - can't act" + ForTurns(st.Duration) + ".";
+                case ParalyzedEffect pz:
+                    return "Paralyzed - can't move or act" + ForTurns(pz.Duration) + ".";
+                case ConfusedEffect cf:
+                    return "Confused - staggers unpredictably" + ForTurns(cf.Duration) + ".";
+                case RootedEffect rt:
+                    return "Rooted - held in place" + ForTurns(rt.Duration) + ".";
+                case HobbledEffect hb:
+                    return "Hobbled - slowed" + ForTurns(hb.Duration) + ".";
+                case WeakenedEffect wk:
+                    return "Weakened - -" + wk.StrPenalty + " Strength" + ForTurns(wk.Duration) + ".";
+                case HookedEffect hk:
+                    return "Hooked - dragged and held (save " + hk.SaveTarget + ").";
+                case ShatterArmorEffect sa:
+                    return "Armor shattered x" + sa.StackCount + " - protection reduced.";
+                case BerserkEffect bz:
+                    return "Berserk - lashing out at anything near" + ForTurns(bz.Duration) + ".";
+
                 case null:
                     return "Nothing.";
                 default:
-                    return CleanTypeName(effect) + " afflicts it.";
+                {
+                    // Presentable fallback for effects without bespoke
+                    // wording: cleaned type name + remaining duration.
+                    string label = CleanTypeName(effect);
+                    if (effect.Duration > 0)
+                        return label + " - " + effect.Duration + " turns left.";
+                    return label + ".";
+                }
             }
+        }
+
+        /// <summary>" for N turns" when finite; empty for indefinite.</summary>
+        private static string ForTurns(int duration)
+        {
+            return duration > 0 ? " for " + duration + " turns" : "";
         }
 
         /// <summary>"PoisonedEffect" -> "Poisoned" for unknown effect types.</summary>

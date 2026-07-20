@@ -25,7 +25,17 @@ namespace CavesOfOoo.Core
 
         /// <summary>
         /// Can this item stack with another entity?
-        /// Items stack if both have StackerPart and share the same BlueprintName.
+        /// Items stack if both have StackerPart, share the same
+        /// BlueprintName, AND look identical (same display name).
+        ///
+        /// The display-name check exists because identity items share a
+        /// blueprint: every brew is "BrewedTonic" and every forged weapon
+        /// is "ForgedWeapon", with the actual identity (effects, assembly)
+        /// living in per-instance parts and the display name. Blueprint-only
+        /// stacking merged a fresh "burning and wet flask" into an older
+        /// "burning coating" stack — the new item vanished and its payload
+        /// was silently replaced by the old one (live-play bug, 2026-07-19;
+        /// pinned by BrewStackingRegressionTests).
         /// </summary>
         public bool CanStackWith(Entity other)
         {
@@ -33,7 +43,11 @@ namespace CavesOfOoo.Core
             var otherStacker = other.GetPart<StackerPart>();
             if (otherStacker == null) return false;
             if (string.IsNullOrEmpty(ParentEntity.BlueprintName)) return false;
-            return ParentEntity.BlueprintName == other.BlueprintName;
+            if (ParentEntity.BlueprintName != other.BlueprintName) return false;
+
+            string mine = ParentEntity.GetPart<RenderPart>()?.DisplayName;
+            string theirs = other.GetPart<RenderPart>()?.DisplayName;
+            return mine == theirs;
         }
 
         /// <summary>
