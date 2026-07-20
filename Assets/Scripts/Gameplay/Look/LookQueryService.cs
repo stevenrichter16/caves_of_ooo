@@ -55,6 +55,12 @@ namespace CavesOfOoo.Core
             if (!string.IsNullOrEmpty(subjectDetail))
                 details.Add(subjectDetail);
 
+            // Live afflictions on the hovered target: one exact line per
+            // status effect (shared EffectDescriber wording, same as the
+            // tonic Examine popup). Renders in the sidebar FOCUS section;
+            // placed before the flags line because it matters more.
+            AppendEffectLines(primary, details);
+
             string flags = BuildFlagsLine(cell);
             if (!string.IsNullOrEmpty(flags))
                 details.Add(flags);
@@ -68,6 +74,29 @@ namespace CavesOfOoo.Core
             return new LookSnapshot(x, y, header, summary, details, primary, cell,
                 goalStackLines: goalLines,
                 lastThought: lastThought);
+        }
+
+        /// <summary>
+        /// Append "Afflicted:" plus one line per live status effect on the
+        /// primary entity. No-op for null primaries and clean targets, so
+        /// the common hover contributes zero lines.
+        /// </summary>
+        private static void AppendEffectLines(Entity primary, List<string> details)
+        {
+            var effectsPart = primary?.GetPart<StatusEffectsPart>();
+            if (effectsPart == null)
+                return;
+
+            IReadOnlyList<Effect> effects = effectsPart.GetAllEffects();
+            if (effects == null || effects.Count == 0)
+                return;
+
+            details.Add("Afflicted:");
+            for (int i = 0; i < effects.Count; i++)
+            {
+                if (effects[i] != null)
+                    details.Add("- " + EffectDescriber.Describe(effects[i]));
+            }
         }
 
         /// <summary>

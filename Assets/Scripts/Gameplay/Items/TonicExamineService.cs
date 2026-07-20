@@ -102,47 +102,16 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// One exact line per effect, read from the CONSTRUCTED instance so
-        /// clamps/defaults are reported as they truly apply.
+        /// One exact line per effect via the shared <see cref="EffectDescriber"/>
+        /// (the same lines the look-mode FOCUS panel shows), keeping the
+        /// honest label for names the factory cannot construct.
         /// </summary>
         private static string DescribeEffect(Effect effect, string rawName)
         {
-            switch (effect)
-            {
-                case PoisonedEffect p:
-                    return "Poisoned - " + p.DamageDice + " damage a turn for "
-                        + p.Duration + " turns.";
-                case BurningEffect b:
-                    return "Set ablaze - burning at intensity "
-                        + b.Intensity.ToString("0.#") + " until doused.";
-                case AcidicEffect a:
-                {
-                    int perTurn = 1 + (int)System.Math.Floor(a.Corrosion * 4f);
-                    return "Corroding acid - " + perTurn
-                        + " damage a turn while the coating lasts.";
-                }
-                case ElectrifiedEffect el:
-                    return "Electrified - charge " + el.Charge.ToString("0.#")
-                        + " for " + el.Duration + " turns.";
-                case WetEffect w:
-                    return "Soaked - " + (w.Moisture * 100f).ToString("0")
-                        + "% drenched (douses flame, conducts shock).";
-                case FrozenEffect fz:
-                    return "Frozen over - " + (fz.Cold * 100f).ToString("0")
-                        + "% iced until it thaws.";
-                case StoneskinEffect s:
-                    return "Stoneskin - incoming damage reduced by " + s.Reduction
-                        + " for " + s.Duration + " turns.";
-                case BleedingEffect bl:
-                    return "Bleeding - " + bl.DamageDice
-                        + " damage a turn until staunched (save " + bl.SaveTarget + ").";
-                case CharredEffect _:
-                    return "Charred - scorched, and far less combustible.";
-                case null:
-                    return "Carries '" + rawName + "' - nothing known comes of it.";
-                default:
-                    return effect.GetType().Name + " sets in.";
-            }
+            if (effect == null)
+                return "Carries '" + rawName + "' - nothing known comes of it.";
+
+            return EffectDescriber.Describe(effect);
         }
 
         private static string DescribeDelivery(TonicPart tonic, BrewItemPart brew)

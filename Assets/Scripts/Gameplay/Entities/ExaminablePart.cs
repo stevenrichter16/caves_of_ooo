@@ -94,8 +94,24 @@ namespace CavesOfOoo.Core
                 {
                     if (ParentEntity.Parts[i] is IItemEnhancement enh)
                     {
-                        baseLine += "\n  • " + enh.GetEffectDescription();
+                        // ASCII bullet — the bullet dot is not a CP437 glyph
+                        // and rendered as '?' in the log.
+                        baseLine += "\n  - " + enh.GetEffectDescription();
                     }
+                }
+            }
+
+            // Live afflictions: the same per-effect lines the look-mode
+            // FOCUS panel shows (shared EffectDescriber).
+            var effectsPart = ParentEntity?.GetPart<StatusEffectsPart>();
+            var effects = effectsPart?.GetAllEffects();
+            if (effects != null && effects.Count > 0)
+            {
+                baseLine += "\nAfflicted:";
+                for (int i = 0; i < effects.Count; i++)
+                {
+                    if (effects[i] != null)
+                        baseLine += "\n  - " + EffectDescriber.Describe(effects[i]);
                 }
             }
 

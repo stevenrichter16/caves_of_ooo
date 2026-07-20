@@ -143,6 +143,49 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(snapshot.DetailLines.Any(line => line.Contains("Contents:")));
         }
 
+        [Test]
+        public void CreatureWithStatusEffects_DetailLinesListEachEffect()
+        {
+            // Look-mode hover (sidebar FOCUS) must show WHAT afflicts the
+            // target and what that does — one exact line per live effect,
+            // via the same EffectDescriber the tonic Examine popup uses.
+            var zone = new Zone("LookZone");
+            var player = CreateCreature("Player", "@", "&Y", isPlayer: true);
+            var snapjaw = CreateCreature("Snapjaw", "s", "&g");
+            snapjaw.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 6, Min = 0, Max = 10 };
+
+            zone.AddEntity(player, 10, 10);
+            zone.AddEntity(snapjaw, 11, 10);
+
+            Assert.IsTrue(snapjaw.ApplyEffect(new PoisonedEffect(5, "1d3")));
+            Assert.IsTrue(snapjaw.ApplyEffect(new BurningEffect(2f)));
+
+            LookSnapshot snapshot = LookQueryService.BuildSnapshot(player, zone, 11, 10);
+
+            Assert.IsTrue(snapshot.DetailLines.Any(l => l.Contains("Afflicted")),
+                "an Afflicted header precedes the effect lines");
+            Assert.IsTrue(snapshot.DetailLines.Any(l => l.Contains("Poisoned") && l.Contains("1d3")),
+                "poison line carries the live dice");
+            Assert.IsTrue(snapshot.DetailLines.Any(l => l.Contains("ablaze") && l.Contains("2")),
+                "burning line carries the live intensity");
+        }
+
+        [Test]
+        public void CreatureWithoutEffects_NoAfflictedLine()
+        {
+            // Counter-check: a clean target adds zero affliction noise.
+            var zone = new Zone("LookZone");
+            var player = CreateCreature("Player", "@", "&Y", isPlayer: true);
+            var snapjaw = CreateCreature("Snapjaw", "s", "&g");
+
+            zone.AddEntity(player, 10, 10);
+            zone.AddEntity(snapjaw, 11, 10);
+
+            LookSnapshot snapshot = LookQueryService.BuildSnapshot(player, zone, 11, 10);
+
+            Assert.IsFalse(snapshot.DetailLines.Any(l => l.Contains("Afflicted")));
+        }
+
         private static Entity CreateCreature(string name, string glyph, string color, bool isPlayer = false)
         {
             var entity = new Entity { BlueprintName = name };

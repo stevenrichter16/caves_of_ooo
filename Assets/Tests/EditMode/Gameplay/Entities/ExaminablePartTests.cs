@@ -211,5 +211,40 @@ namespace CavesOfOoo.Tests
             e.SetParameter("Command", command);
             return e;
         }
+
+        [Test]
+        public void ExamineCommand_AfflictedEntity_ListsEachEffectLine()
+        {
+            // Examine must show the same affliction detail the look-mode
+            // FOCUS panel shows: one exact line per live effect.
+            var entity = new Entity { BlueprintName = "TestCritter" };
+            entity.AddPart(new RenderPart { DisplayName = "gnome" });
+            entity.AddPart(new ExaminablePart());
+            Assert.IsTrue(entity.ApplyEffect(new PoisonedEffect(5, "1d3")));
+
+            var e = GameEvent.New("InventoryAction");
+            e.SetParameter("Command", "Examine");
+            entity.FireEvent(e);
+
+            string last = MessageLog.GetLast() ?? string.Empty;
+            StringAssert.Contains("Afflicted", last);
+            StringAssert.Contains("Poisoned", last);
+            StringAssert.Contains("1d3", last);
+        }
+
+        [Test]
+        public void ExamineCommand_CleanEntity_NoAfflictedBlock()
+        {
+            // Counter-check: no effects, no affliction block.
+            var entity = new Entity { BlueprintName = "TestCritter" };
+            entity.AddPart(new RenderPart { DisplayName = "gnome" });
+            entity.AddPart(new ExaminablePart());
+
+            var e = GameEvent.New("InventoryAction");
+            e.SetParameter("Command", "Examine");
+            entity.FireEvent(e);
+
+            StringAssert.DoesNotContain("Afflicted", MessageLog.GetLast() ?? string.Empty);
+        }
     }
 }
