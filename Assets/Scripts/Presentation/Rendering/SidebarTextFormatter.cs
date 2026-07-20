@@ -92,7 +92,16 @@ namespace CavesOfOoo.Rendering
             }
 
             AppendWrapped(lines, snapshot.Header, safeWidth, safeMaxLines);
-            AppendWrapped(lines, snapshot.Summary, safeWidth, safeMaxLines);
+
+            // The summary ("You see X with N other object(s).") is redundant
+            // when detail lines exist — the header names the target and the
+            // Contents detail lists the rest. It renders only as a fallback
+            // for detail-less cells ("There is nothing there.") so the
+            // focus budget goes to vitals/afflictions instead
+            // (live-play finding, 2026-07-19).
+            bool hasDetails = snapshot.DetailLines != null && snapshot.DetailLines.Count > 0;
+            if (!hasDetails)
+                AppendWrapped(lines, snapshot.Summary, safeWidth, safeMaxLines);
 
             if (snapshot.DetailLines != null)
             {

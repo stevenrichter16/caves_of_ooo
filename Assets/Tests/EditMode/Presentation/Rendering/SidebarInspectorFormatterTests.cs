@@ -40,6 +40,45 @@ namespace CavesOfOoo.Tests
         // ========================
 
         [Test]
+        public void FormatFocus_WithDetailLines_SkipsRedundantSummary()
+        {
+            // Live-play finding (2026-07-19): "You see snapjaw hunter with 2
+            // other visible object(s)." wastes focus-budget lines — the
+            // header already names the target and the Contents detail line
+            // lists the rest. Summary renders ONLY when there are no
+            // details to subsume it.
+            var snap = new LookSnapshot(
+                5, 5,
+                "[5,5] snapjaw hunter",
+                "You see snapjaw hunter with 2 other visible object(s).",
+                new List<string> { "HP 25/25  hostile", "Contents: stone floor, corpse" },
+                null, null);
+
+            List<string> lines = SidebarTextFormatter.FormatFocus(snap, DefaultWidth, DefaultMaxLines);
+
+            Assert.IsTrue(lines.Exists(l => l.Contains("HP 25/25")), "details render");
+            Assert.IsFalse(lines.Exists(l => l.Contains("You see snapjaw hunter")),
+                "the redundant summary is skipped when details exist");
+        }
+
+        [Test]
+        public void FormatFocus_NoDetailLines_KeepsSummary()
+        {
+            // Counter-check: on an empty cell the summary IS the content.
+            var snap = new LookSnapshot(
+                5, 5,
+                "[5,5] empty ground",
+                "There is nothing there.",
+                new List<string>(),
+                null, null);
+
+            List<string> lines = SidebarTextFormatter.FormatFocus(snap, DefaultWidth, DefaultMaxLines);
+
+            Assert.IsTrue(lines.Exists(l => l.Contains("nothing there")),
+                "summary renders when it's the only content");
+        }
+
+        [Test]
         public void FormatFocus_InspectorOff_EmitsBaseLinesOnly()
         {
             // Baseline: when the toggle is off, FormatFocus should produce
