@@ -123,9 +123,18 @@ namespace CavesOfOoo.Core
                     case "Coating":
                         return "A quench medium - temper a weapon in it at the tinker's forge.";
                     case "Throwable":
-                        return "Made to be thrown - shatters over the target and adjacent tiles.";
+                        return "Made to be thrown - shatters over the target and adjacent tiles."
+                            + " Can also quench a blade at the tinker's forge.";
                     case "Food":
                         return "A simple ration - edible anywhere, no still needed.";
+                }
+
+                // Tonic-form brews fall through to the drink wording below,
+                // but they too can quench (user-directed change, 2026-07-19).
+                if (tonic != null && brew.GetEffects().Count > 0)
+                {
+                    return (tonic.Drink ? "Drunk when used." : "Applied when used.")
+                        + " Can be thrown to shatter, or quench a blade at the tinker's forge.";
                 }
             }
 

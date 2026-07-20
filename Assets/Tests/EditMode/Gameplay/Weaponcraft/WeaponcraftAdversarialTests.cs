@@ -176,20 +176,40 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Adversarial_Temper_TonicForm_Rejected()
+        public void Adversarial_Temper_AnyBrewForm_Quenches()
         {
-            // Only Coating-form brews quench. A drinkable tonic poured on a
-            // blade must not become a free weapon mod.
+            // User-directed contract (2026-07-19), REVERSING the original
+            // coating-only lockdown: any effect-carrying brew quenches —
+            // tonics and throwable flasks included.
             var factory = CreateFactory();
             var crafter = CreateCrafter();
             var weapon = ForgeWeapon(crafter, factory);
-            var tonic = GiveCoating(crafter, "Burning:2", form: "Tonic");
 
-            bool ok = WeaponTemperingService.TryTemper(crafter, weapon, tonic, out string reason);
+            var tonic = GiveCoating(crafter, "Burning:2", form: "Tonic");
+            Assert.IsTrue(WeaponTemperingService.TryTemper(crafter, weapon, tonic, out string r1), r1);
+            Assert.IsFalse(crafter.GetPart<InventoryPart>().Contains(tonic), "tonic consumed as quench");
+
+            var flask = GiveCoating(crafter, "Wet:1", form: "Throwable");
+            Assert.IsTrue(WeaponTemperingService.TryTemper(crafter, weapon, flask, out string r2), r2);
+
+            Assert.AreEqual(2, weapon.GetPart<WeaponTemperPart>().TemperCount);
+        }
+
+        [Test]
+        public void Adversarial_Temper_NonBrewItem_StillRejected()
+        {
+            // Counter-check: the gate that remains — the quench must be a
+            // BREW. An arbitrary item poured on a blade does nothing.
+            var factory = CreateFactory();
+            var crafter = CreateCrafter();
+            var weapon = ForgeWeapon(crafter, factory);
+            var haft = GiveItem(crafter, factory, "OakHaft");
+
+            bool ok = WeaponTemperingService.TryTemper(crafter, weapon, haft, out string reason);
 
             Assert.IsFalse(ok);
-            StringAssert.Contains("coating", reason);
-            Assert.IsTrue(crafter.GetPart<InventoryPart>().Contains(tonic));
+            StringAssert.Contains("brew", reason.ToLowerInvariant());
+            Assert.IsTrue(crafter.GetPart<InventoryPart>().Contains(haft));
         }
 
         [Test]

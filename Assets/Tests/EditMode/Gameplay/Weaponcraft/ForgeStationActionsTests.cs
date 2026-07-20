@@ -266,12 +266,12 @@ namespace CavesOfOoo.Tests.Gameplay.Weaponcraft
         }
 
         [Test]
-        public void GatherActions_QuenchesSection_ListsOnlyCoatingFormBrews()
+        public void GatherActions_QuenchesSection_ListsEveryEffectCarryingBrew()
         {
-            // Live-play finding (2026-07-19): a volatile mix resolves as a
-            // THROWABLE (molotov), and the Quenches section listed it anyway
-            // — the player picked it and got rejected at temper time. Only
-            // Form=Coating brews may appear as quench candidates.
+            // User-directed contract (2026-07-19): ALL effect-carrying brews
+            // quench — coatings, tonics, and throwable flasks list under
+            // Quenches. Only an effect-less brew stays hidden (TryTemper
+            // would reject it as carrying nothing).
             var smith = CreateSmith();
             var coating = GiveMarkedCoating(smith);
             var molotov = new Entity { ID = "molotov", BlueprintName = "molotov" };
@@ -282,16 +282,22 @@ namespace CavesOfOoo.Tests.Gameplay.Weaponcraft
             tonic.AddPart(new RenderPart { DisplayName = "galvanic draught" });
             tonic.AddPart(new BrewItemPart { Form = "Tonic", EffectsRaw = "Electrified:1" });
             Assert.IsTrue(smith.GetPart<InventoryPart>().AddObject(tonic));
+            var dud = new Entity { ID = "dud", BlueprintName = "dud" };
+            dud.AddPart(new RenderPart { DisplayName = "empty vial" });
+            dud.AddPart(new BrewItemPart { Form = "Coating", EffectsRaw = "" });
+            Assert.IsTrue(smith.GetPart<InventoryPart>().AddObject(dud));
             MakeZoneWithForge(smith, out Entity forge);
 
             var actions = WorldInteractionSystem.GatherActions(forge, smith);
 
             Assert.IsNotNull(actions.Find(a => a.Command == "CraftToggle:" + coating.ID),
-                "a real coating lists under Quenches");
-            Assert.IsNull(actions.Find(a => a.Command == "CraftToggle:" + molotov.ID),
-                "a Throwable-form brew must NOT be offered as a quench");
-            Assert.IsNull(actions.Find(a => a.Command == "CraftToggle:" + tonic.ID),
-                "a Tonic-form brew must NOT be offered as a quench");
+                "coating lists under Quenches");
+            Assert.IsNotNull(actions.Find(a => a.Command == "CraftToggle:" + molotov.ID),
+                "throwable flask lists under Quenches now");
+            Assert.IsNotNull(actions.Find(a => a.Command == "CraftToggle:" + tonic.ID),
+                "tonic lists under Quenches now");
+            Assert.IsNull(actions.Find(a => a.Command == "CraftToggle:" + dud.ID),
+                "an effect-less brew is not offered");
         }
 
         [Test]

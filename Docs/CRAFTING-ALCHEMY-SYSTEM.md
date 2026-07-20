@@ -1042,6 +1042,22 @@ status + this log updated in the same pass.
 - Ground items don't offer "Set aside" (the row is an inventory-popup
   affordance) — pick it up first.
 
+**Post-ship user-directed changes (2026-07-19, live playtest):**
+- The forge menu became a SECTIONED form (Blades / Hafts / Bindings /
+  Quenches / Weapon + one Craft button, radio picks per slot) — the
+  flat verb list remains only on the actor-less programmatic gather.
+- **SCOPE DIVERGENCE from the M3-L2 lockdown:** quenching now accepts
+  ANY effect-carrying brew (tonics and throwable flasks included),
+  not just Form=Coating — explicit user request ("burning and wet
+  flask should be able to coat my weapon too"). The remaining gates:
+  the quench must be a brew, must carry effects, temper cap 2, forge
+  adjacency. Old coating-only pins rewritten to the new contract
+  (WeaponcraftAdversarialTests.Adversarial_Temper_AnyBrewForm_Quenches).
+- Stacking identity fix: CanStackWith now also requires an identical
+  display name (a new brew no longer vanishes into an older stack).
+- UI text draws from a pure-font tile bank; all crafting strings
+  swept to CP437-safe ASCII.
+
 **Deferred (🧪 / ⚪):**
 - 🧪 `GrantAll` overweight-failure path untested (tolerated per-item,
   mirroring the tonic loop's tolerance).

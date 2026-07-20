@@ -289,6 +289,29 @@ namespace CavesOfOoo.Tests.Gameplay.Weaponcraft
         }
 
         [Test]
+        public void Quench_ThrowableFlask_TempersWeapon()
+        {
+            // User-directed contract (2026-07-19): a throwable flask (e.g.
+            // the volatile burning & wet brew) is a valid quench medium too.
+            var factory = CreateFactory();
+            var smith = CreateSmith();
+            var weapon = GiveItem(smith, factory, "ForgedWeapon");
+            var flask = new Entity { ID = "flask", BlueprintName = "flask" };
+            flask.AddPart(new RenderPart { DisplayName = "burning & wet flask" });
+            flask.AddPart(new BrewItemPart { Form = "Throwable", EffectsRaw = "Burning:2;Wet:1" });
+            Assert.IsTrue(smith.GetPart<InventoryPart>().AddObject(flask));
+            var zone = MakeZone(smith, factory, withForge: true);
+
+            var result = InventorySystem.ExecuteCommand(
+                new TemperWeaponCommand(weapon, flask), smith, zone);
+
+            Assert.IsTrue(result.Success, result.ErrorMessage);
+            Assert.IsFalse(Carried(smith).Contains(flask), "flask consumed as quench");
+            Assert.AreEqual(1, weapon.GetPart<WeaponTemperPart>().TemperCount);
+            StringAssert.Contains("Burning", weapon.GetPart<MeleeWeaponPart>().OnHitEffectsRaw);
+        }
+
+        [Test]
         public void Quench_NullWeaponOrCoating_Rejected()
         {
             var factory = CreateFactory();

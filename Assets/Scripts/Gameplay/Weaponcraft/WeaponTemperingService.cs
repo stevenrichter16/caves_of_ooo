@@ -70,10 +70,14 @@ namespace CavesOfOoo.Core
                 return RejectDiag(crafter, reason);
             }
 
+            // User-directed design change (2026-07-19), superseding the
+            // M3-L2 coating-only lockdown: ANY brewed mixture that carries
+            // effects can quench a blade — coatings, tonics, and throwable
+            // flasks alike. The empty-payload rejection below still holds.
             BrewItemPart brew = quench.GetPart<BrewItemPart>();
-            if (brew == null || !string.Equals(brew.Form, "Coating", StringComparison.OrdinalIgnoreCase))
+            if (brew == null)
             {
-                reason = quench.GetDisplayName() + " is not a coating - only coatings can quench a blade.";
+                reason = quench.GetDisplayName() + " is not a brewed mixture - only brews can quench a blade.";
                 return RejectDiag(crafter, reason);
             }
 
