@@ -5,7 +5,7 @@ using CavesOfOoo.Data;
 namespace CavesOfOoo.Core
 {
     /// <summary>
-    /// Furniture part marking a tinker's forge — the weaponcraft station.
+    /// Furniture part marking a tinker's forge - the weaponcraft station.
     /// Per M3-L3 (Docs/CRAFTING-ALCHEMY-SYSTEM.md), forging, re-forging and
     /// quenching all happen where the metal is worked: the forge/temper
     /// commands gate on this adjacency the same way brewing gates on
@@ -121,7 +121,7 @@ namespace CavesOfOoo.Core
         private static void AddSection(InventoryActionList actions, Entity actor,
             string title, int basePriority, System.Predicate<Entity> eligible)
         {
-            actions.AddAction("Section", "── " + title + " ──", "CraftNoop", '\0', basePriority);
+            actions.AddAction("Section", "== " + title + " ==", "CraftNoop", '\0', basePriority);
 
             int before = actions.Actions.Count;
             CraftingMarkPart.AddToggleRows(actions, actor, eligible, basePriority - 1);
@@ -190,7 +190,7 @@ namespace CavesOfOoo.Core
             }
 
             MessageLog.Add("Craft needs a blade, a haft, and a binding picked (add a quench to "
-                + "temper the fresh weapon) — or pick a weapon plus one part to re-forge, "
+                + "temper the fresh weapon) - or pick a weapon plus one part to re-forge, "
                 + "or a weapon plus a quench to temper it.");
         }
 

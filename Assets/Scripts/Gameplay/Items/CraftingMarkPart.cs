@@ -7,7 +7,7 @@ namespace CavesOfOoo.Core
     /// The player toggles this on carried items via the inventory popup's
     /// "Set aside" row (ToggleCraftMarkCommand); the crafting stations read
     /// the marked set back through <see cref="CollectMarked"/> and feed it to
-    /// the brew/forge/temper commands. State is a plain per-item marker Part —
+    /// the brew/forge/temper commands. State is a plain per-item marker Part -
     /// save-safe via reflection, no static selection buffers to go stale
     /// across Play sessions.
     /// </summary>
@@ -31,7 +31,7 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// True for the item kinds a crafting flow can consume: reagents
         /// (brew), weapon components (forge/re-forge), brew items (quench
-        /// medium — form is validated at quench time, not here, so the
+        /// medium - form is validated at quench time, not here, so the
         /// rejection message stays specific), and melee weapons (quench /
         /// re-forge target).
         /// </summary>
@@ -55,7 +55,7 @@ namespace CavesOfOoo.Core
         /// Radio-selection group for the sectioned forge menu: at most ONE
         /// marked item per group. Weapon components are exclusive per slot
         /// ("Slot:Blade" etc.), coatings and weapons each form one group,
-        /// and reagents return null — the brew mix is deliberately
+        /// and reagents return null - the brew mix is deliberately
         /// multi-select. Precedence mirrors <see cref="CollectMarked"/>.
         /// </summary>
         public static string ExclusiveGroupOf(Entity item)
@@ -122,8 +122,8 @@ namespace CavesOfOoo.Core
                     continue;
 
                 string display = IsMarked(item)
-                    ? "[x] " + item.GetDisplayName() + " — picked"
-                    : "[ ] " + item.GetDisplayName() + " — add";
+                    ? "[x] " + item.GetDisplayName() + " - picked"
+                    : "[ ] " + item.GetDisplayName() + " - add";
                 actions.AddAction("CraftToggle", display,
                     ToggleCommandPrefix + item.ID, '\0', priority--);
             }

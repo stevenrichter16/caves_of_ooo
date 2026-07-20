@@ -5,17 +5,17 @@ using CavesOfOoo.Diagnostics;
 namespace CavesOfOoo.Core
 {
     /// <summary>
-    /// Tempering / quenching (§7.1 Layer 2) — THE alchemy→weaponcraft
+    /// Tempering / quenching (§7.1 Layer 2) - THE alchemy→weaponcraft
     /// bridge: a brewed COATING (BrewItemPart, Form "Coating") is the quench
     /// medium. Quenching consumes the coating and writes its effects onto
-    /// the weapon as on-hit specs in MeleeWeaponPart.OnHitEffectsRaw — the
+    /// the weapon as on-hit specs in MeleeWeaponPart.OnHitEffectsRaw - the
     /// grammar OnHitWeaponEffects already consumes in combat.
     ///
     /// The trade-off (§7.1: "trade-offs are real stat deltas, not flavor
-    /// text"): each temper fatigues the metal — Hitpoints max −2 (floored at
-    /// 1) — and the metal holds at most <see cref="MaxTempers"/> quenches.
+    /// text"): each temper fatigues the metal - Hitpoints max −2 (floored at
+    /// 1) - and the metal holds at most <see cref="MaxTempers"/> quenches.
     /// Re-forging melts the temper away entirely (specs recomputed from
-    /// components; HP penalty restored) — see
+    /// components; HP penalty restored) - see
     /// WeaponForgingService.TryReforge + <see cref="ClearTemper"/>.
     /// </summary>
     public static class WeaponTemperingService
@@ -73,7 +73,7 @@ namespace CavesOfOoo.Core
             BrewItemPart brew = quench.GetPart<BrewItemPart>();
             if (brew == null || !string.Equals(brew.Form, "Coating", StringComparison.OrdinalIgnoreCase))
             {
-                reason = quench.GetDisplayName() + " is not a coating — only coatings can quench a blade.";
+                reason = quench.GetDisplayName() + " is not a coating - only coatings can quench a blade.";
                 return RejectDiag(crafter, reason);
             }
 
@@ -144,7 +144,7 @@ namespace CavesOfOoo.Core
 
             MessageLog.Add(
                 crafter.GetDisplayName() + " quenches " + weapon.GetDisplayName()
-                + " — the metal drinks the coating.");
+                + " - the metal drinks the coating.");
 
             if (Diag.IsChannelEnabled(DiagCategory))
             {
@@ -165,7 +165,7 @@ namespace CavesOfOoo.Core
         /// penalty and reset the temper record. Called by
         /// WeaponForgingService.TryReforge AFTER stats are recomputed from
         /// components (which already wipes temper on-hit specs and resets
-        /// the display name) — without this, the HP penalty would linger on
+        /// the display name) - without this, the HP penalty would linger on
         /// a weapon whose specs no longer justify it.
         /// </summary>
         public static void ClearTemper(Entity weapon)

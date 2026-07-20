@@ -4,13 +4,13 @@ using CavesOfOoo.Data;
 namespace CavesOfOoo.Core
 {
     /// <summary>
-    /// Furniture part marking an alchemy still — the brewing station.
+    /// Furniture part marking an alchemy still - the brewing station.
     /// Per the M1 design lockdown (Docs/CRAFTING-ALCHEMY-SYSTEM.md §6.2),
     /// tonics/coatings/throwables require a still; only simple Foods may be
     /// field-brewed. Same furniture shape as ChairPart/BedPart: a marker
     /// part on a PhysicalObject blueprint.
     ///
-    /// M3-L3: the still is also the brew VERB — it declares "Brew" rows on
+    /// M3-L3: the still is also the brew VERB - it declares "Brew" rows on
     /// the look-mode world-action menu and, on selection, resolves the
     /// player's set-aside reagents (<see cref="CraftingMarkPart"/>) into a
     /// <see cref="BrewReagentsCommand"/> execution. All brew rules (still
@@ -39,7 +39,7 @@ namespace CavesOfOoo.Core
                     actions.AddAction("BrewBatch", "brew a full batch", "BrewMixBatch", 'B', 19);
 
                     // Actor-aware picker rows (live-playtest finding): build
-                    // the mix right in this menu — one toggle per carried
+                    // the mix right in this menu - one toggle per carried
                     // reagent. Actor is absent on actor-less gathers.
                     CraftingMarkPart.AddToggleRows(actions, e.GetParameter<Entity>("Actor"),
                         item => item.HasPart<ReagentPart>(), basePriority: 10);
@@ -76,7 +76,7 @@ namespace CavesOfOoo.Core
             var marked = CraftingMarkPart.CollectMarked(actor);
             if (marked.Reagents.Count == 0)
             {
-                MessageLog.Add("The mix is empty — pick reagents from this menu (or set them aside in your pack) first.");
+                MessageLog.Add("The mix is empty - pick reagents from this menu (or set them aside in your pack) first.");
                 return;
             }
 

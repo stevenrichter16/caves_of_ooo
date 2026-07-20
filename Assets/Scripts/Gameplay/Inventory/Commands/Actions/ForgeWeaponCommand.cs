@@ -7,7 +7,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
     /// Command wrapper for assembling Blade + Haft + Binding into a weapon
     /// through the inventory command pipeline (M3-L3). Mirrors
     /// BrewReagentsCommand: the rule that lives at the command layer (needs
-    /// zone context the service deliberately doesn't take) is FORGE GATING —
+    /// zone context the service deliberately doesn't take) is FORGE GATING -
     /// forging happens at a tinker's forge, checked via
     /// <see cref="ForgePart.IsNearForge"/> in Validate. Batch semantics ride
     /// <see cref="WeaponForgingService.TryForgeBatch"/>: a partial batch
@@ -118,7 +118,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             {
                 MessageLog.Add(
                     "(Requested " + _requestedCount + ", made " + madeCount
-                    + " — ran out of components.)");
+                    + " - ran out of components.)");
             }
 
             return InventoryCommandResult.Ok();

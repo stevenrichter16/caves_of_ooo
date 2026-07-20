@@ -7,14 +7,14 @@ namespace CavesOfOoo.Core
     /// Builds the inventory-Examine popup text for consumables: succinct but
     /// EXACT lines describing what the item does to whoever drinks it or is
     /// caught in its shatter. Drift-proof by construction: every status
-    /// effect is built through <see cref="TonicEffectFactory"/> — the same
-    /// path the drink/throw pipeline uses — and the lines read the RESULTING
+    /// effect is built through <see cref="TonicEffectFactory"/> - the same
+    /// path the drink/throw pipeline uses - and the lines read the RESULTING
     /// effect fields, so clamps and defaults (e.g. acid's 0..1 coating
     /// fraction) are reported as they will actually land, not as the raw
     /// blueprint numbers suggest.
     ///
     /// Presentation: the text is shown through the existing AnnouncementUI
-    /// modal (MessageLog.AddAnnouncement), which pops over the inventory —
+    /// modal (MessageLog.AddAnnouncement), which pops over the inventory -
     /// the same popup grimoire-learning uses.
     /// </summary>
     public static class TonicExamineService
@@ -47,7 +47,7 @@ namespace CavesOfOoo.Core
                 int colon = tonic.StatBoost.IndexOf(':');
                 if (colon > 0 && int.TryParse(tonic.StatBoost.Substring(colon + 1), out int amount))
                 {
-                    lines.Add("Stat surge — +" + amount + " "
+                    lines.Add("Stat surge - +" + amount + " "
                         + tonic.StatBoost.Substring(0, colon) + ".");
                 }
             }
@@ -110,36 +110,36 @@ namespace CavesOfOoo.Core
             switch (effect)
             {
                 case PoisonedEffect p:
-                    return "Poisoned — " + p.DamageDice + " damage a turn for "
+                    return "Poisoned - " + p.DamageDice + " damage a turn for "
                         + p.Duration + " turns.";
                 case BurningEffect b:
-                    return "Set ablaze — burning at intensity "
+                    return "Set ablaze - burning at intensity "
                         + b.Intensity.ToString("0.#") + " until doused.";
                 case AcidicEffect a:
                 {
                     int perTurn = 1 + (int)System.Math.Floor(a.Corrosion * 4f);
-                    return "Corroding acid — " + perTurn
+                    return "Corroding acid - " + perTurn
                         + " damage a turn while the coating lasts.";
                 }
                 case ElectrifiedEffect el:
-                    return "Electrified — charge " + el.Charge.ToString("0.#")
+                    return "Electrified - charge " + el.Charge.ToString("0.#")
                         + " for " + el.Duration + " turns.";
                 case WetEffect w:
-                    return "Soaked — " + (w.Moisture * 100f).ToString("0")
+                    return "Soaked - " + (w.Moisture * 100f).ToString("0")
                         + "% drenched (douses flame, conducts shock).";
                 case FrozenEffect fz:
-                    return "Frozen over — " + (fz.Cold * 100f).ToString("0")
+                    return "Frozen over - " + (fz.Cold * 100f).ToString("0")
                         + "% iced until it thaws.";
                 case StoneskinEffect s:
-                    return "Stoneskin — incoming damage reduced by " + s.Reduction
+                    return "Stoneskin - incoming damage reduced by " + s.Reduction
                         + " for " + s.Duration + " turns.";
                 case BleedingEffect bl:
-                    return "Bleeding — " + bl.DamageDice
+                    return "Bleeding - " + bl.DamageDice
                         + " damage a turn until staunched (save " + bl.SaveTarget + ").";
                 case CharredEffect _:
-                    return "Charred — scorched, and far less combustible.";
+                    return "Charred - scorched, and far less combustible.";
                 case null:
-                    return "Carries '" + rawName + "' — nothing known comes of it.";
+                    return "Carries '" + rawName + "' - nothing known comes of it.";
                 default:
                     return effect.GetType().Name + " sets in.";
             }
@@ -152,11 +152,11 @@ namespace CavesOfOoo.Core
                 switch (brew.Form)
                 {
                     case "Coating":
-                        return "A quench medium — temper a weapon in it at the tinker's forge.";
+                        return "A quench medium - temper a weapon in it at the tinker's forge.";
                     case "Throwable":
-                        return "Made to be thrown — shatters over the target and adjacent tiles.";
+                        return "Made to be thrown - shatters over the target and adjacent tiles.";
                     case "Food":
-                        return "A simple ration — edible anywhere, no still needed.";
+                        return "A simple ration - edible anywhere, no still needed.";
                 }
             }
 
@@ -165,7 +165,7 @@ namespace CavesOfOoo.Core
                 : "Applied when used.";
 
             if (tonic != null && tonic.HasThrowablePayload())
-                use += " Can be thrown — shatters over the target and adjacent tiles.";
+                use += " Can be thrown - shatters over the target and adjacent tiles.";
 
             return use;
         }

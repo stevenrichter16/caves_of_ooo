@@ -6,7 +6,7 @@ namespace CavesOfOoo.Core
     /// <summary>
     /// The pure heart of emergent alchemy: given a set of reagents (each a
     /// bag of <see cref="BrewPropertyAmount"/>), deterministically resolve
-    /// what they brew into. NO world side effects — no inventory, no zone, no
+    /// what they brew into. NO world side effects - no inventory, no zone, no
     /// RNG. The M1.2 BrewingService wraps this with validation, consumption,
     /// item creation, and diag emission.
     ///
@@ -65,7 +65,7 @@ namespace CavesOfOoo.Core
 
                 // Strict '>' so the FIRST-listed rule wins priority ties:
                 // JSON file order is the author's precedence order.
-                // (M1.1 cold-eye finding F4 — '>=' made the LAST rule win,
+                // (M1.1 cold-eye finding F4 - '>=' made the LAST rule win,
                 // which no author would predict from reading the file.)
                 if (rule.Priority > bestFormPriority)
                 {
@@ -81,12 +81,12 @@ namespace CavesOfOoo.Core
                 if (volatileMix)
                 {
                     result.Kind = BrewOutcomeKind.Mishap;
-                    result.Reason = "The volatile mix has nothing to stabilize it — it cracks and spits.";
+                    result.Reason = "The volatile mix has nothing to stabilize it - it cracks and spits.";
                 }
                 else
                 {
                     result.Kind = BrewOutcomeKind.InertSludge;
-                    result.Reason = "These reagents don't react into anything — inert sludge.";
+                    result.Reason = "These reagents don't react into anything - inert sludge.";
                 }
 
                 return result;
@@ -131,7 +131,7 @@ namespace CavesOfOoo.Core
 
                     string key = pa.Property.Trim().ToLowerInvariant();
 
-                    // Combine by MAX, never sum — quantity must not scale potency.
+                    // Combine by MAX, never sum - quantity must not scale potency.
                     if (!profile.TryGetValue(key, out int current) || pa.Potency > current)
                         profile[key] = pa.Potency;
                 }

@@ -14,17 +14,17 @@ namespace CavesOfOoo.Core.Inventory.Commands
     ///     time; any outcome except a pure-Food brew requires standing on or
     ///     adjacent to an alchemy still. Food brews may be made anywhere.
     ///  2. Mishap self-damage (§6.3): a Mishap outcome singes the crafter for
-    ///     a SMALL, telegraphed, NON-LETHAL amount — clamped so it can never
+    ///     a SMALL, telegraphed, NON-LETHAL amount - clamped so it can never
     ///     reduce Hitpoints below 1 (RPG, not roguelike: experimenting must
     ///     never kill outright).
     ///
     ///  3. Batch count: gathering a stack of reagents must not punish the
-    ///     player with having to repeat the action once per unit — <see
+    ///     player with having to repeat the action once per unit - <see
     ///     cref="BrewingService.TryBrewBatch"/> does the looping; this
     ///     command just plumbs the requested count through and applies
     ///     mishap damage once PER mishap iteration in the batch (each
     ///     application still floors at 1 HP, so a batch of mishaps still
-    ///     cannot kill — see BrewingAdversarialTests for the cumulative
+    ///     cannot kill - see BrewingAdversarialTests for the cumulative
     ///     non-lethal pin).
     /// </summary>
     public sealed class BrewReagentsCommand : IInventoryCommand
@@ -41,7 +41,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
         /// <param name="count">
         /// How many times to repeat this exact reagent selection. Defaults
         /// to 1 so existing single-brew call sites are unaffected. Values
-        /// beyond what the selected stacks can supply are not an error —
+        /// beyond what the selected stacks can supply are not an error -
         /// the command makes as many as it can and reports the shortfall
         /// via MessageLog (see Execute).
         /// </param>
@@ -89,7 +89,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Requested brew count must be positive.");
             }
 
-            // Resolve the mix purely (no side effects) to learn its FORM —
+            // Resolve the mix purely (no side effects) to learn its FORM -
             // the still requirement depends on what would be brewed.
             var properties = new List<IReadOnlyList<BrewPropertyAmount>>(_reagents.Count);
             for (int i = 0; i < _reagents.Count; i++)
@@ -136,7 +136,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     reason);
             }
 
-            // One mishap application PER mishap iteration in the batch —
+            // One mishap application PER mishap iteration in the batch -
             // each call re-reads current HP and floors at 1, so a run of
             // several mishaps converges safely to "you end at 1 HP, no
             // further damage" rather than compounding into a kill.
@@ -153,7 +153,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             {
                 MessageLog.Add(
                     "(Requested " + _requestedCount + ", made " + madeCount
-                    + " — ran out of reagents.)");
+                    + " - ran out of reagents.)");
             }
 
             return InventoryCommandResult.Ok();
