@@ -224,5 +224,48 @@ namespace CavesOfOoo.Tests
                 return true;
             }
         }
+
+        // ====================================================================
+        // Death / cure-all cleanup must NOT masquerade as natural expiry
+        // (live diag-forensics finding, 2026-07-19: a bandit died mid-hit
+        // and its stripped effects logged cause=duration_expired with
+        // durations still un-ticked, muddying a stun investigation).
+        // ====================================================================
+
+        [Test]
+        public void DiedEvent_StripsEffects_WithOwnerDiedCause()
+        {
+            var entity = MakeEntity();
+            var sep = entity.GetPart<StatusEffectsPart>();
+            var probe = new RemovalCauseProbe();
+            entity.AddPart(probe);
+
+            sep.ApplyEffect(new StunnedEffect(duration: 2));
+            Assert.IsTrue(sep.HasEffect<StunnedEffect>());
+
+            entity.FireEvent(GameEvent.New("Died"));
+
+            Assert.IsFalse(sep.HasEffect<StunnedEffect>(), "death strips effects");
+            Assert.AreEqual(Effect.CAUSE_OWNER_DIED, probe.LastCapturedCause,
+                "death cleanup must be labeled owner_died, not duration_expired");
+        }
+
+        [Test]
+        public void RemoveAllEffects_Direct_DefaultsToExternalCause()
+        {
+            // The cure-all tonic path: a full strip by an outside agent.
+            var entity = MakeEntity();
+            var sep = entity.GetPart<StatusEffectsPart>();
+            var probe = new RemovalCauseProbe();
+            entity.AddPart(probe);
+
+            sep.ApplyEffect(new StunnedEffect(duration: 2));
+            sep.RemoveAllEffects();
+
+            Assert.IsFalse(sep.HasEffect<StunnedEffect>());
+            Assert.AreEqual(Effect.CAUSE_EXTERNAL, probe.LastCapturedCause,
+                "a direct full strip is external, not natural expiry");
+        }
+
     }
 }

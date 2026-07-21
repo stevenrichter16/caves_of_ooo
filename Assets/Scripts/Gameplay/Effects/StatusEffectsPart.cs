@@ -291,12 +291,21 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Remove all effects, calling OnRemove on each.
+        /// Remove all effects, calling OnRemove on each. The removal cause
+        /// defaults to CAUSE_EXTERNAL (a full strip is an outside act — the
+        /// cure-all tonic path); death cleanup passes CAUSE_OWNER_DIED.
+        /// Without an explicit cause these removals inherited the field's
+        /// duration_expired default, making corpse-stripped effects
+        /// masquerade as natural expiries in the diag stream (live
+        /// forensics finding, 2026-07-19).
         /// </summary>
-        public void RemoveAllEffects()
+        public void RemoveAllEffects(string cause = Effect.CAUSE_EXTERNAL)
         {
             for (int i = _effects.Count - 1; i >= 0; i--)
+            {
+                _effects[i].LastRemovalCause = cause;
                 RemoveEffectAt(i);
+            }
         }
 
         /// <summary>
@@ -361,7 +370,7 @@ namespace CavesOfOoo.Core
 
             if (e.ID == "Died")
             {
-                RemoveAllEffects();
+                RemoveAllEffects(Effect.CAUSE_OWNER_DIED);
                 return true;
             }
 

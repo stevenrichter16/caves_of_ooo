@@ -43,6 +43,7 @@ namespace CavesOfOoo.Core
         public const string CAUSE_DURATION_EXPIRED = "duration_expired";
         public const string CAUSE_SAVE_SUCCEEDED = "save_succeeded";
         public const string CAUSE_EXTERNAL = "external";
+        public const string CAUSE_OWNER_DIED = "owner_died";
 
         /// <summary>
         /// The entity this effect is currently on.
