@@ -205,6 +205,7 @@ namespace CavesOfOoo
                 MaterialReactionResolver.Factory = _factory;
                 CorpsePart.Factory = _factory;
                 LayRuneGoal.Factory = _factory;
+                GatherHarvestFactory.Factory = _factory;
 
                 Debug.Log("[Bootstrap] Step 5/9: Generating starting zone...");
                 bool zoneGenerated = PerformanceDiagnostics.MeasureStartupPhase("GenerateZone", PerformanceMarkers.Bootstrap.GenerateZone, () =>
@@ -749,6 +750,7 @@ namespace CavesOfOoo
             MaterialReactionResolver.Factory = _factory;
             CorpsePart.Factory = _factory;
             LayRuneGoal.Factory = _factory;
+            GatherHarvestFactory.Factory = _factory;
             ConversationManager.EndConversation();
 
             if (_zoneManager != null)
