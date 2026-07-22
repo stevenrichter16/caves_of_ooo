@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -79,6 +81,17 @@ namespace CavesOfOoo.Core
         /// Mirrors Qud's <c>Corpse.BuildCorpseChance</c>.
         /// </summary>
         public int BuildCorpseChance = 100;
+
+        /// <summary>
+        /// Optional loot table (see <see cref="LootTableRegistry"/>) rolled
+        /// when the corpse spawns. Empty/null = no butcherable drops (the
+        /// M5.1 default behavior, unchanged). When set, a
+        /// <see cref="ContainerPart"/> is attached to the spawned corpse
+        /// (created if the corpse blueprint doesn't already have one) and
+        /// populated with the roll — reusing the existing Open/Loot
+        /// inventory action, no new UI.
+        /// </summary>
+        public string LootTableID = null;
 
         // ====================================================================
         // Test injection hooks.
@@ -209,7 +222,60 @@ namespace CavesOfOoo.Core
                 render.DisplayName = $"{creatureName} corpse";
             }
 
+            if (!string.IsNullOrEmpty(LootTableID))
+                RollLootOntoCorpse(corpse, factory, rng);
+
             zone.AddEntity(corpse, cell.X, cell.Y);
+        }
+
+        /// <summary>
+        /// Rolls <see cref="LootTableID"/> and deposits the result into the
+        /// corpse's ContainerPart (attached here if the corpse blueprint
+        /// doesn't already declare one). Failures (unknown table, item
+        /// creation failure) are logged and skipped, never thrown — a
+        /// content typo must still let the corpse spawn and the kill land.
+        /// </summary>
+        private void RollLootOntoCorpse(Entity corpse, EntityFactory factory, Random rng)
+        {
+            if (!LootTableRegistry.TryGetTable(LootTableID, out LootTable table))
+            {
+                Diag.Record("craft", "CorpseLootRollFailed", actor: ParentEntity, target: corpse,
+                    payload: new { lootTableId = LootTableID, reason = "UnknownTable" });
+                return;
+            }
+
+            List<string> blueprintNames = table.Roll(rng);
+            if (blueprintNames.Count == 0)
+            {
+                Diag.Record("craft", "CorpseLootRolled", actor: ParentEntity, target: corpse,
+                    payload: new { lootTableId = LootTableID, itemCount = 0 });
+                return;
+            }
+
+            ContainerPart container = corpse.GetPart<ContainerPart>();
+            if (container == null)
+            {
+                container = new ContainerPart { Preposition = "on" };
+                corpse.AddPart(container);
+            }
+
+            int added = 0;
+            for (int i = 0; i < blueprintNames.Count; i++)
+            {
+                Entity item = factory.CreateEntity(blueprintNames[i]);
+                if (item == null)
+                {
+                    UnityEngine.Debug.LogWarning(
+                        $"[CorpsePart] Loot table '{LootTableID}' referenced unknown blueprint '{blueprintNames[i]}'.");
+                    continue;
+                }
+
+                if (container.AddItem(item))
+                    added++;
+            }
+
+            Diag.Record("craft", "CorpseLootRolled", actor: ParentEntity, target: corpse,
+                payload: new { lootTableId = LootTableID, itemCount = added });
         }
     }
 }

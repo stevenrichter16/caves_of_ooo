@@ -52,9 +52,41 @@ namespace CavesOfOoo.Tests
                     ""Tags"": [
                         { ""Key"": ""Corpse"", ""Value"": """" }
                     ]
+                },
+                {
+                    ""Name"": ""TestFang"",
+                    ""Inherits"": ""PhysicalObject"",
+                    ""Parts"": [
+                        { ""Name"": ""Render"", ""Params"": [
+                            { ""Key"": ""DisplayName"", ""Value"": ""test fang"" },
+                            { ""Key"": ""RenderString"", ""Value"": ""^"" }
+                        ]},
+                        { ""Name"": ""Physics"", ""Params"": [
+                            { ""Key"": ""Takeable"", ""Value"": ""true"" },
+                            { ""Key"": ""Weight"", ""Value"": ""1"" }
+                        ]}
+                    ],
+                    ""Tags"": []
                 }
             ]
         }";
+
+        private const string TestLootTablesJson = @"{
+  ""Tables"": [
+    {
+      ""ID"": ""test_snapjaw_drops"",
+      ""Entries"": [
+        { ""BlueprintName"": ""TestFang"", ""Weight"": 100, ""MinCount"": 2, ""MaxCount"": 2 }
+      ]
+    },
+    {
+      ""ID"": ""test_empty_drops"",
+      ""Entries"": [
+        { ""BlueprintName"": ""TestFang"", ""Weight"": 0, ""MinCount"": 1, ""MaxCount"": 1 }
+      ]
+    }
+  ]
+}";
 
         private EntityFactory _factory;
 
@@ -65,6 +97,8 @@ namespace CavesOfOoo.Tests
             _factory = new EntityFactory();
             _factory.LoadBlueprints(TestBlueprintsJson);
             CorpsePart.Factory = _factory;
+            LootTableRegistry.ResetForTests();
+            LootTableRegistry.InitializeFromJson(TestLootTablesJson);
         }
 
         [TearDown]
@@ -74,6 +108,7 @@ namespace CavesOfOoo.Tests
             // static Factory reference. Mirrors MaterialReactionResolver.Factory
             // hygiene in other test fixtures.
             CorpsePart.Factory = null;
+            LootTableRegistry.ResetForTests();
         }
 
         // ====================================================================
@@ -88,7 +123,8 @@ namespace CavesOfOoo.Tests
         private Entity CreateCreatureWithCorpsePart(
             Zone zone, int x, int y,
             int corpseChance, string corpseBlueprint,
-            string blueprintName = "TestSnapjaw")
+            string blueprintName = "TestSnapjaw",
+            string lootTableId = null)
         {
             var entity = new Entity { BlueprintName = blueprintName, ID = "TestSnapjaw-1" };
             entity.Tags["Creature"] = "";
@@ -98,6 +134,7 @@ namespace CavesOfOoo.Tests
             {
                 CorpseChance = corpseChance,
                 CorpseBlueprint = corpseBlueprint,
+                LootTableID = lootTableId,
                 TestRng = new Random(0)
             });
             zone.AddEntity(entity, x, y);
@@ -263,6 +300,77 @@ namespace CavesOfOoo.Tests
             Assert.IsNotNull(corpse,
                 "CorpsePart must have spawned during the Died event's cell-still-valid window " +
                 "(regression pin for HandleDeath ordering: Died fires BEFORE zone.RemoveEntity).");
+        }
+
+        // ====================================================================
+        // Loot table wiring (additive — M2 of the gather/loot system).
+        // ====================================================================
+
+        [Test]
+        public void CorpsePart_WithLootTableID_PopulatesContainerOnCorpse()
+        {
+            var zone = new Zone("TestZone");
+            var snapjaw = CreateCreatureWithCorpsePart(
+                zone, 10, 10, corpseChance: 100, corpseBlueprint: "SnapjawCorpse",
+                lootTableId: "test_snapjaw_drops");
+
+            FireDied(snapjaw, killer: null, zone);
+
+            var corpse = FindCorpseAt(zone, 10, 10);
+            Assert.IsNotNull(corpse);
+            var container = corpse.GetPart<ContainerPart>();
+            Assert.IsNotNull(container, "Corpse must gain a ContainerPart when LootTableID is set.");
+            Assert.AreEqual(2, container.Contents.Count, "test_snapjaw_drops rolls exactly 2 TestFang.");
+            Assert.AreEqual("TestFang", container.Contents[0].BlueprintName);
+        }
+
+        [Test]
+        public void CorpsePart_WithoutLootTableID_NoContainerAdded()
+        {
+            // Counter-check for the wiring above: the existing (M5.1)
+            // no-loot-table path must be completely unaffected — a corpse
+            // with LootTableID unset gets no ContainerPart at all.
+            var zone = new Zone("TestZone");
+            var snapjaw = CreateCreatureWithCorpsePart(
+                zone, 10, 10, corpseChance: 100, corpseBlueprint: "SnapjawCorpse");
+
+            FireDied(snapjaw, killer: null, zone);
+
+            var corpse = FindCorpseAt(zone, 10, 10);
+            Assert.IsNotNull(corpse);
+            Assert.IsNull(corpse.GetPart<ContainerPart>(),
+                "No LootTableID means no ContainerPart — default M5.1 behavior must be unchanged.");
+        }
+
+        [Test]
+        public void CorpsePart_LootTableRollsEmpty_ContainerAddedButEmpty()
+        {
+            var zone = new Zone("TestZone");
+            var snapjaw = CreateCreatureWithCorpsePart(
+                zone, 10, 10, corpseChance: 100, corpseBlueprint: "SnapjawCorpse",
+                lootTableId: "test_empty_drops");
+
+            FireDied(snapjaw, killer: null, zone);
+
+            var corpse = FindCorpseAt(zone, 10, 10);
+            Assert.IsNotNull(corpse);
+            var container = corpse.GetPart<ContainerPart>();
+            Assert.IsNotNull(container, "A configured (even if zero-weight) table still attaches a Container.");
+            Assert.AreEqual(0, container.Contents.Count);
+        }
+
+        [Test]
+        public void CorpsePart_UnknownLootTableID_DoesNotThrow_CorpseStillSpawns()
+        {
+            var zone = new Zone("TestZone");
+            var snapjaw = CreateCreatureWithCorpsePart(
+                zone, 10, 10, corpseChance: 100, corpseBlueprint: "SnapjawCorpse",
+                lootTableId: "no_such_table_at_all");
+
+            Assert.DoesNotThrow(() => FireDied(snapjaw, killer: null, zone));
+
+            var corpse = FindCorpseAt(zone, 10, 10);
+            Assert.IsNotNull(corpse, "A misconfigured LootTableID must not prevent the corpse from spawning.");
         }
     }
 
