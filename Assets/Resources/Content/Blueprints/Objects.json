@@ -159,7 +159,8 @@
         { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "1" }] },
         { "Name": "Corpse", "Params": [
           { "Key": "CorpseChance", "Value": "70" },
-          { "Key": "CorpseBlueprint", "Value": "SnapjawCorpse" }
+          { "Key": "CorpseBlueprint", "Value": "SnapjawCorpse" },
+          { "Key": "LootTableID", "Value": "loot_snapjaw_drops" }
         ]}
       ],
       "Stats": [
@@ -6096,12 +6097,134 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
-        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "15" }] }
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "15" }] },
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "conductive:2, binding:1" },
+          { "Key": "FlavorText", "Value": "Light sleeps in it. Tap it and the light turns over." }
+        ]}
       ],
       "Stats": [],
       "Tags": [
         { "Key": "Mineral", "Value": "" },
         { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "PaleReed",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "pale reed pith" },
+          { "Key": "RenderString", "Value": "\"" },
+          { "Key": "ColorString", "Value": "&g" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "3" }] },
+        { "Name": "Reagent", "Params": [
+          { "Key": "PropertiesRaw", "Value": "vital:1, viscous:1" },
+          { "Key": "FlavorText", "Value": "River pith, wet and mild. Grandmothers bind scraped knees with it." }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "SnapjawFangPoint",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "snapjaw fang point" },
+          { "Key": "RenderString", "Value": "^" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "6" }] },
+        { "Name": "WeaponComponent", "Params": [
+          { "Key": "Slot", "Value": "Blade" },
+          { "Key": "BaseDamage", "Value": "1d4" },
+          { "Key": "PenBonus", "Value": "1" },
+          { "Key": "Attributes", "Value": "Piercing" },
+          { "Key": "NameFragment", "Value": "fang-tipped" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "PaleReedNode",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "reed bank" },
+          { "Key": "RenderString", "Value": "\"" },
+          { "Key": "ColorString", "Value": "&g" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "false" }] },
+        { "Name": "GatherNode", "Params": [
+          { "Key": "LootTableID", "Value": "loot_pale_reed_bank" },
+          { "Key": "MaxUses", "Value": "2" },
+          { "Key": "RegrowTurns", "Value": "300" },
+          { "Key": "DepletedDisplayName", "Value": "cut reed bank" },
+          { "Key": "HarvestMessage", "Value": "You cut a length of pale reed from the bank." },
+          { "Key": "AlreadyDepletedMessage", "Value": "The reeds here are cut down to the waterline. Give them time." }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "FireMossPatch",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "fire-moss patch" },
+          { "Key": "RenderString", "Value": "\"" },
+          { "Key": "ColorString", "Value": "&R" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "false" }] },
+        { "Name": "GatherNode", "Params": [
+          { "Key": "LootTableID", "Value": "loot_firemoss_patch" },
+          { "Key": "MaxUses", "Value": "1" },
+          { "Key": "RegrowTurns", "Value": "400" },
+          { "Key": "DepletedDisplayName", "Value": "scorched moss patch" },
+          { "Key": "HarvestMessage", "Value": "You strip a handful of fire-moss free. It stays warm in your grip." },
+          { "Key": "AlreadyDepletedMessage", "Value": "This patch is spent and cool to the touch." }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "GlowQuartzSeam",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "glow-quartz seam" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "true" }] },
+        { "Name": "GatherNode", "Params": [
+          { "Key": "LootTableID", "Value": "loot_glowquartz_seam" },
+          { "Key": "MaxUses", "Value": "1" },
+          { "Key": "RegrowTurns", "Value": "800" },
+          { "Key": "DepletedDisplayName", "Value": "worked-out quartz seam" },
+          { "Key": "HarvestMessage", "Value": "You pry a shard of glow-quartz free of the wall." },
+          { "Key": "AlreadyDepletedMessage", "Value": "The seam is worked out here. The wall is dark." }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Solid", "Value": "" }
       ]
     }
   ]

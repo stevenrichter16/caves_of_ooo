@@ -97,6 +97,9 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "Dagger", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "Stalagmite", Weight = 4, MinCount = 3, MaxCount = 8 },
+                    // Gather nodes (Docs/GATHER-LOOT-SYSTEM.md M4 — first content slice).
+                    new PopulationEntry { BlueprintName = "FireMossPatch", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "PaleReedNode", Weight = 2, MinCount = 0, MaxCount = 2 },
                 }
             };
         }
@@ -167,6 +170,8 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 2, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "LeatherArmor", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "Stalagmite", Weight = 3, MinCount = 2, MaxCount = 6 },
+                    // Gather node (Docs/GATHER-LOOT-SYSTEM.md M4 — first content slice).
+                    new PopulationEntry { BlueprintName = "GlowQuartzSeam", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }
