@@ -65,9 +65,10 @@ namespace CavesOfOoo.Core
                 }
             }
 
-            Diagnostics.Diag.Record("gas", "GrenadeDetonated", actor, ParentEntity,
-                new { gasId = GasId, density = Density, level = Level,
-                      centerX = center.X, centerY = center.Y, cellsSpawned = spawned });
+            if (Diagnostics.Diag.IsChannelEnabled("gas"))
+                Diagnostics.Diag.Record("gas", "GrenadeDetonated", actor, ParentEntity,
+                    new { gasId = GasId, density = Density, level = Level,
+                          centerX = center.X, centerY = center.Y, cellsSpawned = spawned });
             return spawned;
         }
     }

@@ -66,10 +66,11 @@ namespace CavesOfOoo.Core
             target.GetPart<StatusEffectsPart>()?.RemoveEffect<FrozenEffect>();
             target.ApplyEffect(new FrozenEffect(cold: coldIntensity), BaseGas.Creator, zone);
 
-            Diag.Record("gas", "Applied", BaseGas.Creator, target,
-                new { gasId = BaseGas.GasId, gasType = BaseGas.GasType,
-                      gasLevel = BaseGas.Level, density = BaseGas.Density,
-                      coldDamage, coldIntensity });
+            if (Diag.IsChannelEnabled("gas"))
+                Diag.Record("gas", "Applied", BaseGas.Creator, target,
+                    new { gasId = BaseGas.GasId, gasType = BaseGas.GasType,
+                          gasLevel = BaseGas.Level, density = BaseGas.Density,
+                          coldDamage, coldIntensity });
             return true;
         }
     }

@@ -60,16 +60,18 @@ namespace CavesOfOoo.Core
             var zone = context?.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone;
             if (zone != null && IsInMatchingGasCell(target, zone))
             {
-                Diag.Record("gas", "PoisonTickSkipped", Owner, target,
-                    new { reason = "InMatchingGasCell", gasTypeKey = GasTypeKey });
+                if (Diag.IsChannelEnabled("gas"))
+                    Diag.Record("gas", "PoisonTickSkipped", Owner, target,
+                        new { reason = "InMatchingGasCell", gasTypeKey = GasTypeKey });
                 return;
             }
 
             var dmg = new Damage(DamagePerTurn);
             dmg.AddAttribute("Poison");
             CombatSystem.ApplyDamage(target, dmg, Owner, zone);
-            Diag.Record("gas", "PoisonTick", Owner, target,
-                new { damage = DamagePerTurn, gasTypeKey = GasTypeKey });
+            if (Diag.IsChannelEnabled("gas"))
+                Diag.Record("gas", "PoisonTick", Owner, target,
+                    new { damage = DamagePerTurn, gasTypeKey = GasTypeKey });
         }
 
         public override bool OnStack(Effect incoming)

@@ -65,8 +65,9 @@ namespace CavesOfOoo.Core
             // "rolled and failed").
             if (target.GetEffect<FungalInfectionEffect>() != null)
             {
-                Diag.Record("gas", "InfectionAlreadyPresent", BaseGas.Creator, target,
-                    new { gasId = BaseGas.GasId, gasType = BaseGas.GasType });
+                if (Diag.IsChannelEnabled("gas"))
+                    Diag.Record("gas", "InfectionAlreadyPresent", BaseGas.Creator, target,
+                        new { gasId = BaseGas.GasId, gasType = BaseGas.GasType });
                 return false;
             }
 
@@ -79,18 +80,19 @@ namespace CavesOfOoo.Core
             int roll = rng.Next(100);
             bool infected = roll < chance;
 
-            Diag.Record("gas", "Applied", BaseGas.Creator, target,
-                new
-                {
-                    gasId = BaseGas.GasId,
-                    gasType = BaseGas.GasType,
-                    gasLevel = BaseGas.Level,
-                    intake,
-                    targetToughness = toughness,
-                    chance,
-                    roll,
-                    infected,
-                });
+            if (Diag.IsChannelEnabled("gas"))
+                Diag.Record("gas", "Applied", BaseGas.Creator, target,
+                    new
+                    {
+                        gasId = BaseGas.GasId,
+                        gasType = BaseGas.GasType,
+                        gasLevel = BaseGas.Level,
+                        intake,
+                        targetToughness = toughness,
+                        chance,
+                        roll,
+                        infected,
+                    });
 
             if (infected)
             {

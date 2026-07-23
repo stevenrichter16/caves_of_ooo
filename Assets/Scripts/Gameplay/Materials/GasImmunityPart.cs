@@ -41,8 +41,9 @@ namespace CavesOfOoo.Core
             string eventType = e.GetParameter<string>("GasType");
             if (eventType == GasType)
             {
-                Diag.Record("gas", "ImmunityVeto", ParentEntity, null,
-                    new { immuneTo = GasType });
+                if (Diag.IsChannelEnabled("gas"))
+                    Diag.Record("gas", "ImmunityVeto", ParentEntity, null,
+                        new { immuneTo = GasType });
                 return false; // veto: target is immune
             }
             return true;

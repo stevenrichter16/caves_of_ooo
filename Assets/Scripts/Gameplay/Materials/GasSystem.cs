@@ -126,8 +126,9 @@ namespace CavesOfOoo.Core
                 int rate = GetDispersalRate(pool);
                 int before = pool.Density;
                 pool.Density = before - rate; // setter clamps + fires GasDensityChange
-                Diag.Record("gas", "Dispersed", pool.Creator, gas,
-                    new { gasId = pool.GasId, before, after = pool.Density, rate });
+                if (Diag.IsChannelEnabled("gas"))
+                    Diag.Record("gas", "Dispersed", pool.Creator, gas,
+                        new { gasId = pool.GasId, before, after = pool.Density, rate });
             }
 
             // Spread roll — Qud Gas.cs:226 ("25 + windSpeed").
@@ -204,14 +205,15 @@ namespace CavesOfOoo.Core
                 // mismatched types through would show donorType !=
                 // receiverType in the record (impossible if the gate is
                 // working — used by GasSystemTests assertions).
-                Diag.Record("gas", "Merged", pool.Creator, gas,
-                    new { gasId = pool.GasId, fromX = x, fromY = y,
-                          toX = nx, toY = ny, chunk,
-                          donorAfter = pool.Density,
-                          receiverBefore = before, receiverAfter = existing.Density,
-                          donorType = pool.GasType, receiverType = existing.GasType,
-                          donorColor = pool.ColorString, receiverColor = existing.ColorString,
-                          windSpeed, dir, windBiased = (windDirIndex >= 0 && dir == windDirIndex) });
+                if (Diag.IsChannelEnabled("gas"))
+                    Diag.Record("gas", "Merged", pool.Creator, gas,
+                        new { gasId = pool.GasId, fromX = x, fromY = y,
+                              toX = nx, toY = ny, chunk,
+                              donorAfter = pool.Density,
+                              receiverBefore = before, receiverAfter = existing.Density,
+                              donorType = pool.GasType, receiverType = existing.GasType,
+                              donorColor = pool.ColorString, receiverColor = existing.ColorString,
+                              windSpeed, dir, windBiased = (windDirIndex >= 0 && dir == windDirIndex) });
                 // Receiver grew — resync its glyph + repaint its cell.
                 GasVisuals.Refresh(existing.ParentEntity, existing, zone);
                 return;
@@ -234,10 +236,11 @@ namespace CavesOfOoo.Core
                 newPool.GasType = pool.GasType; // already set by factory from def, but re-pin from source
             }
             pool.Density -= chunk;
-            Diag.Record("gas", "Spread", pool.Creator, gas,
-                new { gasId = pool.GasId, fromX = x, fromY = y,
-                      toX = nx, toY = ny, chunk, donorAfter = pool.Density,
-                      windSpeed, dir, windBiased = (windDirIndex >= 0 && dir == windDirIndex) });
+            if (Diag.IsChannelEnabled("gas"))
+                Diag.Record("gas", "Spread", pool.Creator, gas,
+                    new { gasId = pool.GasId, fromX = x, fromY = y,
+                          toX = nx, toY = ny, chunk, donorAfter = pool.Density,
+                          windSpeed, dir, windBiased = (windDirIndex >= 0 && dir == windDirIndex) });
         }
 
         /// <summary>Decay rate per tick. Listens to
@@ -292,8 +295,9 @@ namespace CavesOfOoo.Core
         {
             if (gas == null || zone == null) return;
             var pos = zone.GetEntityPosition(gas); // capture before removal
-            Diag.Record("gas", "Dissipated", pool?.Creator, gas,
-                new { gasId = pool?.GasId, density = pool?.Density ?? 0, cause });
+            if (Diag.IsChannelEnabled("gas"))
+                Diag.Record("gas", "Dissipated", pool?.Creator, gas,
+                    new { gasId = pool?.GasId, density = pool?.Density ?? 0, cause });
             zone.RemoveEntity(gas);
             // Repaint the now-gas-free cell (it falls back to floor/contents).
             if (pos.x >= 0)

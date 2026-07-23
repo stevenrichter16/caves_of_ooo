@@ -52,9 +52,10 @@ namespace CavesOfOoo.Core
                 int adjusted = intake - reduction;
                 if (adjusted < 0) adjusted = 0;
                 e.SetParameter("Intake", (object)adjusted);
-                Diag.Record("gas", "MaskIntakeReduced", ParentEntity, null,
-                    new { power = Power, intakeBefore = intake,
-                          intakeAfter = adjusted, reduction });
+                if (Diag.IsChannelEnabled("gas"))
+                    Diag.Record("gas", "MaskIntakeReduced", ParentEntity, null,
+                        new { power = Power, intakeBefore = intake,
+                              intakeAfter = adjusted, reduction });
                 return true;
             }
 
@@ -67,8 +68,9 @@ namespace CavesOfOoo.Core
                 int after = (before * (100 - Power)) / 100;
                 if (after < 0) after = 0;
                 damage.Amount = after;
-                Diag.Record("gas", "MaskDamageReduced", ParentEntity, null,
-                    new { power = Power, before, after, reduction = before - after });
+                if (Diag.IsChannelEnabled("gas"))
+                    Diag.Record("gas", "MaskDamageReduced", ParentEntity, null,
+                        new { power = Power, before, after, reduction = before - after });
                 return true;
             }
 

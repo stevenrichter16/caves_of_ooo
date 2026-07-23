@@ -84,9 +84,10 @@ namespace CavesOfOoo.Core
         {
             if (target == null || !target.Tags.ContainsKey("Creature"))
             {
-                Diag.Record("gas", "ApplyVetoed", BaseGas?.Creator, target,
-                    new { gasId = BaseGas?.GasId, gasType = BaseGas?.GasType,
-                          reason = "NotACreature" });
+                if (Diag.IsChannelEnabled("gas"))
+                    Diag.Record("gas", "ApplyVetoed", BaseGas?.Creator, target,
+                        new { gasId = BaseGas?.GasId, gasType = BaseGas?.GasType,
+                              reason = "NotACreature" });
                 return false;
             }
             return true;
@@ -107,9 +108,10 @@ namespace CavesOfOoo.Core
             bool canAffect = target.FireEventAndRelease(e);
             if (!canAffect)
             {
-                Diag.Record("gas", "ApplyVetoed", BaseGas.Creator, target,
-                    new { gasId = BaseGas.GasId, gasType = BaseGas.GasType,
-                          reason = "GasImmunity" });
+                if (Diag.IsChannelEnabled("gas"))
+                    Diag.Record("gas", "ApplyVetoed", BaseGas.Creator, target,
+                        new { gasId = BaseGas.GasId, gasType = BaseGas.GasType,
+                              reason = "GasImmunity" });
                 return false;
             }
             return true;
@@ -158,9 +160,10 @@ namespace CavesOfOoo.Core
             int intake = GetRespiratoryPerformance(target, baseIntake);
             if (intake <= 0)
             {
-                Diag.Record("gas", "ApplyVetoed", BaseGas.Creator, target,
-                    new { gasId = BaseGas.GasId, gasType = BaseGas.GasType,
-                          reason = "ZeroIntake" });
+                if (Diag.IsChannelEnabled("gas"))
+                    Diag.Record("gas", "ApplyVetoed", BaseGas.Creator, target,
+                        new { gasId = BaseGas.GasId, gasType = BaseGas.GasType,
+                              reason = "ZeroIntake" });
                 return -1;
             }
             return intake;

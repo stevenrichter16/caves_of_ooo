@@ -81,10 +81,11 @@ namespace CavesOfOoo.Core
             dmg.AddAttribute("Gas");
             CombatSystem.ApplyDamage(target, dmg, BaseGas.Creator, zone);
 
-            Diag.Record("gas", "Applied", BaseGas.Creator, target,
-                new { gasId = BaseGas.GasId, gasType = BaseGas.GasType,
-                      gasLevel = BaseGas.Level, intake, immediateDamage = immediate,
-                      effectDuration = duration, effectDamagePerTurn = damage });
+            if (Diag.IsChannelEnabled("gas"))
+                Diag.Record("gas", "Applied", BaseGas.Creator, target,
+                    new { gasId = BaseGas.GasId, gasType = BaseGas.GasType,
+                          gasLevel = BaseGas.Level, intake, immediateDamage = immediate,
+                          effectDuration = duration, effectDamagePerTurn = damage });
             return true;
         }
 

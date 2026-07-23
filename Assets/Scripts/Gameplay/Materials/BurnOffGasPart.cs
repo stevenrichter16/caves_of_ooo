@@ -95,8 +95,9 @@ namespace CavesOfOoo.Core
 
                 if (rng.Next(100) >= Chance)
                 {
-                    Diag.Record("gas", "BurnOffChanceFailed", ParentEntity, null,
-                        new { gasId = GasId, chance = Chance, damagePer = DamagePer });
+                    if (Diag.IsChannelEnabled("gas"))
+                        Diag.Record("gas", "BurnOffChanceFailed", ParentEntity, null,
+                            new { gasId = GasId, chance = Chance, damagePer = DamagePer });
                     continue;
                 }
                 if (string.IsNullOrEmpty(GasId)) continue;
@@ -118,9 +119,10 @@ namespace CavesOfOoo.Core
                 if (ParentEntity != null)
                     MessageLog.Add(ParentEntity.GetDisplayName() + " burns off a cloud of gas.");
 
-                Diag.Record("gas", "BurnOff", ParentEntity, null,
-                    new { gasId = GasId, count, x = pos.x, y = pos.y,
-                          damagePer = DamagePer, triggerAttribute = trigger });
+                if (Diag.IsChannelEnabled("gas"))
+                    Diag.Record("gas", "BurnOff", ParentEntity, null,
+                        new { gasId = GasId, count, x = pos.x, y = pos.y,
+                              damagePer = DamagePer, triggerAttribute = trigger });
             }
             return true;
         }

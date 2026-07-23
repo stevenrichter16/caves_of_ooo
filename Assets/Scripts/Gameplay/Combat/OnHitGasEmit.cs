@@ -68,18 +68,19 @@ namespace CavesOfOoo.Core
                     }
                 }
 
-                Diag.Record("gas", "EmitOnHit", attacker, defender,
-                    new
-                    {
-                        gasId = spec.GasId,
-                        chance = spec.ChancePercent,
-                        cellDensity = spec.CellDensity,
-                        adjacentDensity = spec.AdjacentDensity,
-                        gasLevel = spec.GasLevel,
-                        spawnedCenter,
-                        spawnedAdjacent,
-                        totalSpawned = spawnedCenter + spawnedAdjacent,
-                    });
+                if (Diag.IsChannelEnabled("gas"))
+                    Diag.Record("gas", "EmitOnHit", attacker, defender,
+                        new
+                        {
+                            gasId = spec.GasId,
+                            chance = spec.ChancePercent,
+                            cellDensity = spec.CellDensity,
+                            adjacentDensity = spec.AdjacentDensity,
+                            gasLevel = spec.GasLevel,
+                            spawnedCenter,
+                            spawnedAdjacent,
+                            totalSpawned = spawnedCenter + spawnedAdjacent,
+                        });
             }
         }
     }

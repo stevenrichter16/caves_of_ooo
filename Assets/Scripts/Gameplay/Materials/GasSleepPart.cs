@@ -28,9 +28,10 @@ namespace CavesOfOoo.Core
             target.GetPart<StatusEffectsPart>()?.RemoveEffect<AsleepByGasEffect>();
             target.ApplyEffect(new AsleepByGasEffect(duration: duration), BaseGas.Creator, zone);
 
-            Diagnostics.Diag.Record("gas", "Applied", BaseGas.Creator, target,
-                new { gasId = BaseGas.GasId, gasType = BaseGas.GasType,
-                      gasLevel = BaseGas.Level, intake, effectDuration = duration });
+            if (Diagnostics.Diag.IsChannelEnabled("gas"))
+                Diagnostics.Diag.Record("gas", "Applied", BaseGas.Creator, target,
+                    new { gasId = BaseGas.GasId, gasType = BaseGas.GasType,
+                          gasLevel = BaseGas.Level, intake, effectDuration = duration });
             return true;
         }
     }

@@ -42,9 +42,10 @@ namespace CavesOfOoo.Core
             target.GetPart<StatusEffectsPart>()?.RemoveEffect<StunnedEffect>();
             target.ApplyEffect(new StunnedEffect(duration: duration), BaseGas.Creator, zone);
 
-            Diag.Record("gas", "Applied", BaseGas.Creator, target,
-                new { gasId = BaseGas.GasId, gasType = BaseGas.GasType,
-                      gasLevel = BaseGas.Level, intake, effectDuration = duration });
+            if (Diag.IsChannelEnabled("gas"))
+                Diag.Record("gas", "Applied", BaseGas.Creator, target,
+                    new { gasId = BaseGas.GasId, gasType = BaseGas.GasType,
+                          gasLevel = BaseGas.Level, intake, effectDuration = duration });
             return true;
         }
     }

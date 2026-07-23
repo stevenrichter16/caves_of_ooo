@@ -54,10 +54,11 @@ namespace CavesOfOoo.Core
             target.ApplyEffect(new CoatedInPlasmaEffect(duration, target),
                 BaseGas.Creator, zone);
 
-            Diag.Record("gas", "Applied", BaseGas.Creator, target,
-                new { gasId = BaseGas.GasId, gasType = BaseGas.GasType,
-                      density = BaseGas.Density, gasLevel = BaseGas.Level,
-                      intake, coatDuration = duration });
+            if (Diag.IsChannelEnabled("gas"))
+                Diag.Record("gas", "Applied", BaseGas.Creator, target,
+                    new { gasId = BaseGas.GasId, gasType = BaseGas.GasType,
+                          density = BaseGas.Density, gasLevel = BaseGas.Level,
+                          intake, coatDuration = duration });
             return true;
         }
 

@@ -212,16 +212,17 @@ namespace CavesOfOoo.Core
             GasFactory.SpawnGas(zone, pos.x, pos.y, CONTAGION_GAS_ID,
                 density: density, level: CONTAGION_GAS_LEVEL, creator: host);
 
-            Diag.Record("gas", "Contagion", host, null,
-                new
-                {
-                    stage = stage.ToString(),
-                    turnsInfected = TurnsInfected,
-                    cadence,
-                    spawnDensity = density,
-                    spawnX = pos.x,
-                    spawnY = pos.y,
-                });
+            if (Diag.IsChannelEnabled("gas"))
+                Diag.Record("gas", "Contagion", host, null,
+                    new
+                    {
+                        stage = stage.ToString(),
+                        turnsInfected = TurnsInfected,
+                        cadence,
+                        spawnDensity = density,
+                        spawnX = pos.x,
+                        spawnY = pos.y,
+                    });
         }
 
         public override bool OnStack(Effect incoming)
@@ -231,12 +232,13 @@ namespace CavesOfOoo.Core
                 // CRITICAL invariant: re-exposure does NOT reset the
                 // stage clock. The incoming fresh infection is consumed
                 // (return true) but TurnsInfected is preserved.
-                Diag.Record("gas", "InfectionAlreadyPresent", null, Owner,
-                    new
-                    {
-                        currentStage = CurrentStage.ToString(),
-                        turnsInfected = TurnsInfected,
-                    });
+                if (Diag.IsChannelEnabled("gas"))
+                    Diag.Record("gas", "InfectionAlreadyPresent", null, Owner,
+                        new
+                        {
+                            currentStage = CurrentStage.ToString(),
+                            turnsInfected = TurnsInfected,
+                        });
                 return true;
             }
             return false;

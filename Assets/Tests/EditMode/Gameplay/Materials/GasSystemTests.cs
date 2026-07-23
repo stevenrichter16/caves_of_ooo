@@ -576,6 +576,39 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void OnTickEnd_GasChannelDisabled_EmitsNoDispersedDiag_AndDoesNotThrow()
+        {
+            // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM14/E4 -- every
+            // Diag.Record("gas", ...) call site across the codebase was
+            // wrapped in `if (Diag.IsChannelEnabled("gas"))` to skip the
+            // payload-allocation when the channel is off (Diag.Record
+            // itself already no-ops in that case, so this is pure perf --
+            // but a wrong guard, e.g. an inverted condition, would either
+            // suppress records when the channel IS on, or -- as pinned
+            // here -- fail to suppress them when it's off). "gas" is in
+            // DefaultOnCategories, so this explicitly disables it first.
+            var zone = new Zone("GasChannelOffDiag");
+            GasFactory.SpawnGas(zone, 5, 5, "poison-vapor", density: 100);
+            Diag.ResetAll(); // NOTE: ResetAll restores default channels (re-enables "gas") --
+                              // SetChannel(false) must come AFTER this, not before.
+            try
+            {
+                Diag.SetChannel("gas", false);
+
+                Assert.DoesNotThrow(() => GasSystem.OnTickEnd(zone));
+
+                var recs = DiagQuery.Apply(new DiagQuery.Filter
+                { Category = "gas", Kind = "Dispersed", Limit = 5 }).Records;
+                Assert.AreEqual(0, recs.Count,
+                    "gas channel disabled -- no Dispersed record should be written");
+            }
+            finally
+            {
+                Diag.SetChannel("gas", true); // restore default for other tests
+            }
+        }
+
+        [Test]
         public void OnTickEnd_NewlySpawnedGas_DoesNotProcessSameTick()
         {
             // Iteration safety: new gases spawned via spread during this

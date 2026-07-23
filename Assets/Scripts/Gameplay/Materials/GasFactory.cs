@@ -49,23 +49,26 @@ namespace CavesOfOoo.Core
         {
             if (!GasRegistry.IsInitialized)
             {
-                Diag.Record("gas", "SpawnRejected", creator, null,
-                    new { reason = "RegistryUninitialized", gasId, x, y });
+                if (Diag.IsChannelEnabled("gas"))
+                    Diag.Record("gas", "SpawnRejected", creator, null,
+                        new { reason = "RegistryUninitialized", gasId, x, y });
                 return null;
             }
 
             var def = GasRegistry.Get(gasId);
             if (def == null)
             {
-                Diag.Record("gas", "SpawnRejected", creator, null,
-                    new { reason = "UnknownGas", gasId, x, y });
+                if (Diag.IsChannelEnabled("gas"))
+                    Diag.Record("gas", "SpawnRejected", creator, null,
+                        new { reason = "UnknownGas", gasId, x, y });
                 return null;
             }
 
             if (zone == null)
             {
-                Diag.Record("gas", "SpawnRejected", creator, null,
-                    new { reason = "NullZone", gasId, x, y });
+                if (Diag.IsChannelEnabled("gas"))
+                    Diag.Record("gas", "SpawnRejected", creator, null,
+                        new { reason = "NullZone", gasId, x, y });
                 return null;
             }
 
@@ -118,8 +121,9 @@ namespace CavesOfOoo.Core
 
             if (!zone.AddEntity(entity, x, y))
             {
-                Diag.Record("gas", "SpawnRejected", creator, null,
-                    new { reason = "CellOutOfBounds", gasId, x, y });
+                if (Diag.IsChannelEnabled("gas"))
+                    Diag.Record("gas", "SpawnRejected", creator, null,
+                        new { reason = "CellOutOfBounds", gasId, x, y });
                 return null;
             }
 
@@ -128,10 +132,11 @@ namespace CavesOfOoo.Core
             // otherwise never flagged for repaint).
             GasVisuals.Refresh(entity, pool, zone);
 
-            Diag.Record("gas", "Created", creator, entity,
-                new { gasId, density = useDensity, level = useLevel, x, y,
-                      gasType = pool.GasType, seeping = pool.Seeping, stable = pool.Stable,
-                      behaviorKind = def.BehaviorKind });
+            if (Diag.IsChannelEnabled("gas"))
+                Diag.Record("gas", "Created", creator, entity,
+                    new { gasId, density = useDensity, level = useLevel, x, y,
+                          gasType = pool.GasType, seeping = pool.Seeping, stable = pool.Stable,
+                          behaviorKind = def.BehaviorKind });
 
             return entity;
         }
