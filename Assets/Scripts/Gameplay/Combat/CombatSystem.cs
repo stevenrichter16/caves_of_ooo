@@ -869,6 +869,22 @@ namespace CavesOfOoo.Core
                         });
                 }
 
+                // Docs/THROWN-MUTATION-COMBAT-PLAN.md SM5b/D13. Generic
+                // retaliation hook — BrainPart.SetPersonallyHostile previously
+                // had exactly one live call site (InputHandler's pre-swing
+                // melee call, firing even on a miss), so thrown-weapon and
+                // mutation damage never provoked hostility. This fires at
+                // damage-landed time instead — complementary to, not a
+                // replacement for, InputHandler's existing call, since
+                // SetPersonallyHostile/HashSet.Add is idempotent.
+                // V1-scoped to player-sourced damage only (mirrors today's
+                // only live trigger); NPC-on-NPC incidental damage is
+                // deliberately not covered yet.
+                if (source != null && source != target && source.HasTag("Player"))
+                {
+                    target.GetPart<BrainPart>()?.SetPersonallyHostile(source);
+                }
+
                 // Notify the attacker that damage was dealt (for on-hit effects like poison)
                 if (source != null)
                 {
