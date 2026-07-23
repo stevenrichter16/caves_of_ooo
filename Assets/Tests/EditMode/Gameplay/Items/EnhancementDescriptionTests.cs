@@ -138,7 +138,11 @@ namespace CavesOfOoo.Tests
 
             FireExamine(weapon);
             string msg = GetLastMessage();
-            StringAssert.Contains("•", msg, "Bullet appended.");
+            // ASCII dash bullet, not "•" — the bullet dot is not a CP437
+            // glyph and rendered as '?' in the log (see ExaminablePart.cs,
+            // fixed in commit 714be798). "•" doesn't appear anywhere else
+            // in the codebase's UI conventions.
+            StringAssert.Contains("\n  - ", msg, "Dash bullet appended.");
             StringAssert.Contains("Serrated", msg);
             StringAssert.Contains("20%", msg, "Tier-2 chance shown.");
         }
@@ -158,9 +162,15 @@ namespace CavesOfOoo.Tests
 
             FireExamine(weapon);
             string msg = GetLastMessage();
+            // ASCII dash bullet ("\n  - "), not "•" — see comment above.
+            const string marker = "\n  - ";
             int bulletCount = 0;
-            for (int i = 0; i < msg.Length - 1; i++)
-                if (msg[i] == '•') bulletCount++;
+            int idx = 0;
+            while ((idx = msg.IndexOf(marker, idx, System.StringComparison.Ordinal)) >= 0)
+            {
+                bulletCount++;
+                idx += marker.Length;
+            }
             Assert.AreEqual(2, bulletCount,
                 "Two enhancements → two bullet lines.");
             StringAssert.Contains("Serrated", msg);
