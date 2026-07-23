@@ -1,6 +1,7 @@
 using System;
 using NUnit.Framework;
 using CavesOfOoo.Core;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Tests
 {
@@ -20,6 +21,7 @@ namespace CavesOfOoo.Tests
         {
             AsciiFxBus.Clear();
             MessageLog.Clear();
+            Diag.ResetAll();
             FactionManager.Initialize();
         }
 
@@ -119,6 +121,52 @@ namespace CavesOfOoo.Tests
             Assert.IsNotNull(goal, "Original NoFightGoal must still be present.");
             Assert.AreEqual(10, goal.Duration,
                 "Existing pacification duration must not be replaced or extended by a second cast.");
+        }
+
+        [Test]
+        public void CalmMutation_Cast_ZeroDamage_NoDamageLogLine_NoMutationDamageDiag_HpUnchanged()
+        {
+            // Docs/THROWN-MUTATION-COMBAT-PLAN.md SM11/D11. CalmMutation.cs's
+            // own xml-doc documents DamageDice="0" as a deliberate no-op via
+            // DiceRoller's invalid-pattern fallthrough (Cast's damage-roll
+            // never matches the NdS regex, returns 0, so the `damage > 0`
+            // branch never executes). SM6 (message-log fix) and SM7 (diag
+            // observability) both touch code inside that same branch --
+            // this pin confirms neither change accidentally "wakes it up"
+            // for Calm: no damage message, no MutationDamage diag record,
+            // no HP change. The pacification message/goal (a separate,
+            // unconditional branch) must still fire.
+            var zone = new Zone("CalmZone.ZeroDamage");
+            var caster = CreateCaster();
+            var target = CreateTargetWithBrain();
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(target, 7, 5);
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new CalmMutation(), 1);
+            var calm = mutations.GetMutation<CalmMutation>();
+
+            int hpBefore = target.GetStatValue("Hitpoints", 20);
+
+            bool cast = calm.Cast(zone, zone.GetCell(5, 5), 1, 0, new Random(42));
+
+            Assert.IsTrue(cast);
+            Assert.AreEqual(hpBefore, target.GetStatValue("Hitpoints", 20),
+                "Calm must deal zero damage.");
+            Assert.IsFalse(MessageLog.GetMessages().Exists(m => m.Contains("damage")),
+                $"No damage message should be logged for a zero-damage cast. Messages: {string.Join(" | ", MessageLog.GetMessages())}");
+
+            var mutationDamageRecs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "damage", Kind = "MutationDamage", Limit = 5 }).Records;
+            Assert.AreEqual(0, mutationDamageRecs.Count,
+                "No MutationDamage diag record should fire for a zero-damage cast.");
+
+            // The unconditional pacification branch still runs.
+            var brain = target.GetPart<BrainPart>();
+            Assert.IsTrue(brain.HasGoal<NoFightGoal>(),
+                "Pacification is a separate, unconditional branch and must still apply.");
+            Assert.IsTrue(MessageLog.GetMessages().Exists(m => m.Contains("becomes peaceful")));
         }
 
         // ===== Helpers =====
