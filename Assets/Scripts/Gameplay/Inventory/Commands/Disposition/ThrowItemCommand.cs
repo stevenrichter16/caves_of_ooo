@@ -1,4 +1,6 @@
 using System;
+using CavesOfOoo.Core.Anatomy;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core.Inventory.Commands
 {
@@ -160,7 +162,6 @@ namespace CavesOfOoo.Core.Inventory.Commands
             if (trace.Path.Count > 0)
                 AsciiFxBus.EmitProjectile(zone, trace.Path, AsciiFxTheme.ThrownObject, trail: true, blocksTurnAdvance: true);
 
-            int strengthBonus = Math.Max(0, StatUtils.GetModifier(actor, "Strength"));
             Entity hitTarget = trace.HitEntity;
             Cell landingCell;
             bool consumedOnImpact = false;
@@ -190,7 +191,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     consumedOnImpact = true;
                     landingCell = null;
                 }
-                else if (!RollThrowAccuracy(actor, rng))
+                else if (!RollThrowAccuracy(actor, itemToThrow, hitTarget, rng))
                 {
                     // SM5/D3+D4 (Docs/THROWN-MUTATION-COMBAT-PLAN.md): a
                     // missed throw folds into the same landing behavior as
@@ -201,7 +202,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 }
                 else
                 {
-                    int rawDamage = GetThrownDamage(actor, itemToThrow, strengthBonus, rng);
+                    int rawDamage = GetThrownDamage(actor, itemToThrow, hitTarget, rng);
                     if (rawDamage > 0)
                     {
                         // SM1/D1 (Docs/THROWN-MUTATION-COMBAT-PLAN.md): wrap in
@@ -244,6 +245,15 @@ namespace CavesOfOoo.Core.Inventory.Commands
                             ItemEnhancementDispatch.DispatchOnHit(
                                 itemToThrow, hitTarget, actor, thrownDamage, actualDamage, zone, rng);
                         }
+                    }
+                    else
+                    {
+                        // SM5c/D3-Layer3: hit the target but failed to
+                        // penetrate its armor -- a NEW failure mode distinct
+                        // from an accuracy miss (D3/D4 above), needing its
+                        // own message so it isn't a silent no-op (mirrors
+                        // melee's "hits {defender} but fails to penetrate!").
+                        MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()} at {hitTarget.GetDisplayName()}, but it fails to penetrate!");
                     }
 
                     landingCell = trace.ImpactCell;
@@ -466,20 +476,103 @@ namespace CavesOfOoo.Core.Inventory.Commands
         /// AimVariance trajectory-wobble layer (excluded per explicit user
         /// confirmation -- no drift-to-the-wrong-cell mechanic in CoO).
         /// </summary>
-        private static bool RollThrowAccuracy(Entity actor, Random rng)
+        private static bool RollThrowAccuracy(Entity actor, Entity item, Entity target, Random rng)
         {
             int agilityScore = actor.GetStatValue("Agility", 10);
-            return DiceRoller.Roll("1d" + agilityScore, rng) >= 3;
+            bool landed = DiceRoller.Roll("1d" + agilityScore, rng) >= 3;
+
+            // Docs/THROWN-MUTATION-COMBAT-PLAN.md SM5c/D7 -- ThrowHitRoll.
+            // The accuracy roll (SM5) never had diag coverage; fires exactly
+            // once per throw attempt (hit or miss), matching melee's HitRoll
+            // shape so `diag_query category=damage` stays one unified
+            // surface for "why did this attack/throw miss?"
+            if (Diag.IsChannelEnabled("damage"))
+            {
+                Diag.Record(
+                    category: "damage",
+                    kind: "ThrowHitRoll",
+                    actor: actor,
+                    target: target,
+                    payload: new
+                    {
+                        weapon = item?.GetDisplayName() ?? "(improvised)",
+                        agilityScore = agilityScore,
+                        target = 3,
+                        landed = landed
+                    });
+            }
+
+            return landed;
         }
 
-        private static int GetThrownDamage(Entity actor, Entity item, int strengthBonus, Random rng)
+        /// <summary>
+        /// SM5c/D3-Layer3 (Docs/THROWN-MUTATION-COMBAT-PLAN.md), corrected
+        /// 2026-07-22: rolls damage severity through
+        /// <see cref="CombatSystem.RollPenetrations"/> against the target's
+        /// AV, exactly like melee -- previously this method never touched
+        /// AV/armor at all (a real Qud-parity gap the original plan draft
+        /// incorrectly asserted was "already effectively ported"). Bonus
+        /// inputs mirror melee's non-crit, non-skill terms
+        /// (<c>StatUtils.GetModifier(actor, weapon.Stat)</c> + weapon
+        /// <c>PenBonus</c>/<c>MaxStrengthBonus</c>) -- deliberately excludes
+        /// <c>SkillEventDispatcher.GetSkillPenetrationModifier</c> and
+        /// crit/AutoPen, for the same reason D2 defers the on-hit skill
+        /// hooks: "do skills fire off a thrown weapon the same as a
+        /// wielded one?" is an open design question, so no skill hook gets
+        /// partial wiring while it's unresolved.
+        /// </summary>
+        private static int GetThrownDamage(Entity actor, Entity item, Entity target, Random rng)
         {
             var weapon = item?.GetPart<MeleeWeaponPart>();
+            string statName = weapon?.Stat ?? "Strength";
+            int weaponPenBonus = weapon?.PenBonus ?? 0;
+            int maxStrBonus = weapon?.MaxStrengthBonus ?? -1;
+
+            int strMod = StatUtils.GetModifier(actor, statName);
+            int effectiveMaxStrBonus = (maxStrBonus < 0) ? CombatSystem.LEGACY_UNCAPPED_MAX_STR_BONUS : maxStrBonus;
+            int bonus = strMod + weaponPenBonus;
+            int maxBonus = effectiveMaxStrBonus + weaponPenBonus;
+
+            Body targetBody = target?.GetPart<Body>();
+            BodyPart hitPart = targetBody != null ? CombatSystem.SelectHitLocation(targetBody, rng) : null;
+            int av = hitPart != null ? CombatSystem.GetPartAV(target, hitPart) : CombatSystem.GetAV(target);
+
+            int penetrations = CombatSystem.RollPenetrations(av, bonus, maxBonus, rng);
+
+            // ThrowPenetration diag -- mirrors melee's Penetration diag shape.
+            if (Diag.IsChannelEnabled("damage"))
+            {
+                Diag.Record(
+                    category: "damage",
+                    kind: "ThrowPenetration",
+                    actor: actor,
+                    target: target,
+                    payload: new
+                    {
+                        weapon = item?.GetDisplayName() ?? "(improvised)",
+                        av = av,
+                        weaponPenBonus = weaponPenBonus,
+                        strMod = strMod,
+                        totalBonus = bonus,
+                        maxBonus = maxBonus,
+                        penetrations = penetrations
+                    });
+            }
+
+            if (penetrations == 0)
+                return 0;
+
             if (weapon != null && !string.IsNullOrWhiteSpace(weapon.BaseDamage))
-                return DiceRoller.Roll(weapon.BaseDamage, rng) + strengthBonus;
+            {
+                int total = 0;
+                for (int i = 0; i < penetrations; i++)
+                    total += DiceRoller.Roll(weapon.BaseDamage, rng);
+                return total;
+            }
 
             int weight = HandlingService.GetWeight(item);
-            return Math.Max(1, (int)Math.Ceiling(weight / 2.0)) + strengthBonus;
+            int perPenetration = Math.Max(1, (int)Math.Ceiling(weight / 2.0));
+            return perPenetration * penetrations;
         }
 
         /// <summary>

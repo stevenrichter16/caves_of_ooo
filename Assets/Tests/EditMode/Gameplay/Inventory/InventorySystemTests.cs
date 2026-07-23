@@ -6,6 +6,7 @@ using CavesOfOoo.Core.Anatomy;
 using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Tests
 {
@@ -15,6 +16,7 @@ namespace CavesOfOoo.Tests
         public void Setup()
         {
             MessageLog.Clear();
+            Diag.ResetAll();
         }
 
         // ========================
@@ -644,7 +646,11 @@ namespace CavesOfOoo.Tests
                 zone);
 
             Assert.IsTrue(result.Success);
-            Assert.AreEqual(8, target.GetStatValue("Hitpoints"));
+            // SM5c/D3-Layer3: damage severity now rolls penetrations against
+            // the target's AV (0 here -- CreateTargetDummy has no ArmorPart)
+            // instead of a flat dice+strength formula; re-pinned to the new
+            // deterministic value for this seed.
+            Assert.AreEqual(7, target.GetStatValue("Hitpoints"));
             Assert.AreEqual(zone.GetCell(7, 5), zone.GetEntityCell(weapon));
         }
 
@@ -766,8 +772,13 @@ namespace CavesOfOoo.Tests
                 new ThrowItemCommand(item, 7, 5, new Random(1)), actor, zone);
 
             Assert.IsTrue(result.Success, result.ErrorMessage);
-            Assert.AreEqual(6, target.GetStatValue("Hitpoints"),
-                "improvised throw (weight 6 -> 3 dmg + strength mod 1 = 4) still lands unresisted, unchanged by SM1");
+            // SM5c/D3-Layer3: improvised throws now roll penetrations
+            // against AV (0 here) too, each penetration awarding a flat
+            // Max(1, Ceil(weight/2)) instead of the old flat
+            // weight-formula + strength-bonus; re-pinned to this seed's
+            // new deterministic value.
+            Assert.AreEqual(1, target.GetStatValue("Hitpoints"),
+                "improvised throw at 0 AV still lands unresisted, unchanged by SM1's attribute-tagging fix");
         }
 
         /// <summary>Deterministic test double: always fires, no chance roll,
@@ -817,7 +828,10 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(enhancement.Fired,
                 "a thrown weapon's IItemEnhancement.OnAttackerHit must fire, same as melee");
             Assert.AreSame(target, enhancement.LastDefender);
-            Assert.AreEqual(2, enhancement.LastActualDamage, "1d1 + strength mod 1 = 2");
+            // SM5c/D3-Layer3: damage now depends on RollPenetrations against
+            // the target's AV (0 here) rather than a flat dice+strength
+            // formula; re-pinned to this seed's new deterministic value.
+            Assert.AreEqual(3, enhancement.LastActualDamage);
         }
 
         [Test]
@@ -1004,6 +1018,221 @@ namespace CavesOfOoo.Tests
                 "the missed weapon still lands at the traced impact cell");
         }
 
+        // ════════════════════════════════════════════════════════════
+        //   SM5c (Docs/THROWN-MUTATION-COMBAT-PLAN.md) -- damage severity
+        //   via RollPenetrations + AV (D3 Layer 3, corrected). Previously
+        //   GetThrownDamage never touched the target's AV at all.
+        // ════════════════════════════════════════════════════════════
+
+        [Test]
+        public void ThrowItemCommand_Execute_HighAvTarget_TakesLessDamageThanZeroAvTarget_SameSeed()
+        {
+            // Same seed => identical underlying die draws up to the
+            // RollPenetrations call (the accuracy roll consumes exactly
+            // one draw regardless of target's AV), so a higher AV can
+            // only produce fewer-or-equal penetrations -- a mathematically
+            // guaranteed monotonic property, not a statistical fluke.
+            // AV=1000 against a realistic bonus (~6) makes 0 penetrations
+            // a practical certainty for any real seed.
+            var zoneLow = new Zone("ThrowAV.Low");
+            var actorLow = CreateCreatureWithInventory();
+            zoneLow.AddEntity(actorLow, 5, 5);
+            var weaponLow = CreateThrowableWeapon("3d6", 3);
+            actorLow.GetPart<InventoryPart>().AddObject(weaponLow);
+            var targetLow = CreateTargetDummy(1000); // 0 AV -- no ArmorPart
+            zoneLow.AddEntity(targetLow, 7, 5);
+
+            var resultLow = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(weaponLow, 7, 5, new Random(1)), actorLow, zoneLow);
+            int damageAgainstZeroAv = 1000 - targetLow.GetStatValue("Hitpoints", 1000);
+
+            var zoneHigh = new Zone("ThrowAV.High");
+            var actorHigh = CreateCreatureWithInventory();
+            zoneHigh.AddEntity(actorHigh, 5, 5);
+            var weaponHigh = CreateThrowableWeapon("3d6", 3);
+            actorHigh.GetPart<InventoryPart>().AddObject(weaponHigh);
+            var targetHigh = CreateTargetDummy(1000);
+            targetHigh.AddPart(new ArmorPart { AV = 1000 });
+            zoneHigh.AddEntity(targetHigh, 7, 5);
+
+            var resultHigh = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(weaponHigh, 7, 5, new Random(1)), actorHigh, zoneHigh);
+            int damageAgainstHighAv = 1000 - targetHigh.GetStatValue("Hitpoints", 1000);
+
+            Assert.IsTrue(resultLow.Success, resultLow.ErrorMessage);
+            Assert.IsTrue(resultHigh.Success, resultHigh.ErrorMessage);
+            Assert.Greater(damageAgainstZeroAv, 0, "0-AV target must take real damage.");
+            Assert.AreEqual(0, damageAgainstHighAv, "AV=1000 must fail every penetration roll.");
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_FailsToPenetrate_LogsDistinctMessage_NotSilent()
+        {
+            // Counter-check: "hits but fails to penetrate" is a NEW failure
+            // mode distinct from an accuracy miss (D3/D4) -- it must not be
+            // a silent no-op (the pre-SM5c code's `if (rawDamage > 0)` had
+            // no else branch at all, since a 0-damage roll was previously
+            // an unreachable edge case, not a real, common outcome).
+            var zone = new Zone("ThrowAV.FailPenetrate");
+            var actor = CreateCreatureWithInventory();
+            zone.AddEntity(actor, 5, 5);
+            var weapon = CreateThrowableWeapon("3d6", 3);
+            actor.GetPart<InventoryPart>().AddObject(weapon);
+            var target = CreateTargetDummy(1000);
+            target.AddPart(new ArmorPart { AV = 1000 });
+            zone.AddEntity(target, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(weapon, 7, 5, new Random(1)), actor, zone);
+
+            Assert.IsTrue(result.Success, result.ErrorMessage);
+            Assert.AreEqual(1000, target.GetStatValue("Hitpoints", 1000));
+            Assert.IsTrue(MessageLog.GetMessages().Exists(m => m.Contains("fails to penetrate")),
+                $"Messages: {string.Join(" | ", MessageLog.GetMessages())}");
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_StrongerPenBonus_PenetratesMoreThanWeakPenBonus_SameAvAndSeed()
+        {
+            // Counter-check: the weapon's PenBonus must genuinely feed the
+            // penetration roll, not just AV -- a broken implementation that
+            // rolled penetrations using AV alone (ignoring bonus) would
+            // still pass the AV test above but fail this one. Both actors
+            // keep the same default Strength (16, modifier 0) so only
+            // PenBonus differs -- varying Strength instead would confound
+            // this with HandlingService.CanThrow's separate lift-strength
+            // gate (a low-Strength actor can fail to even attempt the
+            // throw at all, unrelated to penetration math).
+            var zoneWeak = new Zone("ThrowAV.WeakBonus");
+            var weakActor = CreateCreatureWithInventory();
+            zoneWeak.AddEntity(weakActor, 5, 5);
+            var weakWeapon = CreateThrowableWeapon("3d6", -20);
+            weakActor.GetPart<InventoryPart>().AddObject(weakWeapon);
+            var weakTarget = CreateTargetDummy(1000);
+            weakTarget.AddPart(new ArmorPart { AV = 8 });
+            zoneWeak.AddEntity(weakTarget, 7, 5);
+
+            var weakResult = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(weakWeapon, 7, 5, new Random(1)), weakActor, zoneWeak);
+            int weakDamage = 1000 - weakTarget.GetStatValue("Hitpoints", 1000);
+
+            var zoneStrong = new Zone("ThrowAV.StrongBonus");
+            var strongActor = CreateCreatureWithInventory();
+            zoneStrong.AddEntity(strongActor, 5, 5);
+            var strongWeapon = CreateThrowableWeapon("3d6", 20);
+            strongActor.GetPart<InventoryPart>().AddObject(strongWeapon);
+            var strongTarget = CreateTargetDummy(1000);
+            strongTarget.AddPart(new ArmorPart { AV = 8 });
+            zoneStrong.AddEntity(strongTarget, 7, 5);
+
+            var strongResult = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(strongWeapon, 7, 5, new Random(1)), strongActor, zoneStrong);
+            int strongDamage = 1000 - strongTarget.GetStatValue("Hitpoints", 1000);
+
+            Assert.IsTrue(weakResult.Success, weakResult.ErrorMessage);
+            Assert.IsTrue(strongResult.Success, strongResult.ErrorMessage);
+            Assert.AreEqual(0, weakDamage, "PenBonus=-20 against AV=8 should fail every penetration.");
+            Assert.Greater(strongDamage, weakDamage,
+                "PenBonus=+20 against the same AV=8 must penetrate more than PenBonus=-20.");
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_ImprovisedItem_RoutesThroughSamePenetrationMechanism()
+        {
+            // An item with no MeleeWeaponPart (thrown "improvised") still
+            // rolls penetrations against AV -- it just uses a flat
+            // per-penetration value (Max(1, Ceil(weight/2))) instead of a
+            // dice expression, since it has none.
+            var zoneLow = new Zone("ThrowAV.ImprovisedLow");
+            var actorLow = CreateCreatureWithInventory();
+            actorLow.SetStatValue("Strength", 18);
+            zoneLow.AddEntity(actorLow, 5, 5);
+            var itemLow = CreateHandledItem(physicsWeight: 6);
+            actorLow.GetPart<InventoryPart>().AddObject(itemLow);
+            var targetLow = CreateTargetDummy(1000);
+            zoneLow.AddEntity(targetLow, 7, 5);
+
+            var resultLow = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(itemLow, 7, 5, new Random(1)), actorLow, zoneLow);
+            int damageAgainstZeroAv = 1000 - targetLow.GetStatValue("Hitpoints", 1000);
+
+            var zoneHigh = new Zone("ThrowAV.ImprovisedHigh");
+            var actorHigh = CreateCreatureWithInventory();
+            actorHigh.SetStatValue("Strength", 18);
+            zoneHigh.AddEntity(actorHigh, 5, 5);
+            var itemHigh = CreateHandledItem(physicsWeight: 6);
+            actorHigh.GetPart<InventoryPart>().AddObject(itemHigh);
+            var targetHigh = CreateTargetDummy(1000);
+            targetHigh.AddPart(new ArmorPart { AV = 1000 });
+            zoneHigh.AddEntity(targetHigh, 7, 5);
+
+            var resultHigh = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(itemHigh, 7, 5, new Random(1)), actorHigh, zoneHigh);
+            int damageAgainstHighAv = 1000 - targetHigh.GetStatValue("Hitpoints", 1000);
+
+            Assert.IsTrue(resultLow.Success, resultLow.ErrorMessage);
+            Assert.IsTrue(resultHigh.Success, resultHigh.ErrorMessage);
+            Assert.Greater(damageAgainstZeroAv, 0, "improvised throw at 0 AV must still deal damage.");
+            Assert.AreEqual(0, damageAgainstHighAv, "improvised throw at AV=1000 must fail every penetration.");
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_EmitsThrowPenetrationDiag_WithExpectedPayload()
+        {
+            // Docs/THROWN-MUTATION-COMBAT-PLAN.md SM5c/D7. Mirrors melee's
+            // Penetration diag shape (CombatSystem.cs kind="Penetration").
+            var zone = new Zone("ThrowAV.PenetrationDiag");
+            var actor = CreateCreatureWithInventory();
+            zone.AddEntity(actor, 5, 5);
+            var weapon = CreateThrowableWeapon("3d6", 3);
+            actor.GetPart<InventoryPart>().AddObject(weapon);
+            var target = CreateTargetDummy(1000);
+            zone.AddEntity(target, 7, 5);
+
+            Diag.ResetAll();
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(weapon, 7, 5, new Random(1)), actor, zone);
+
+            Assert.IsTrue(result.Success, result.ErrorMessage);
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "damage", Kind = "ThrowPenetration", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"av\":0", recs[0].PayloadJson);
+            StringAssert.Contains("\"weaponPenBonus\":3", recs[0].PayloadJson);
+            Assert.AreEqual(actor.ID, recs[0].ActorId);
+            Assert.AreEqual(target.ID, recs[0].TargetId);
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_EmitsThrowHitRollDiag_OnBothHitAndMiss()
+        {
+            // Docs/THROWN-MUTATION-COMBAT-PLAN.md SM5c/D7. The accuracy
+            // roll (SM5) never emitted a diag record before this -- fires
+            // exactly once per throw attempt, hit or miss, so
+            // "diag_query kind=ThrowHitRoll" answers "why did this throw
+            // miss?" without grep.
+            var zone = new Zone("ThrowAV.HitRollDiag");
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Agility", 1); // guaranteed miss
+            zone.AddEntity(actor, 5, 5);
+            var weapon = CreateThrowableWeapon("1d1", 0);
+            actor.GetPart<InventoryPart>().AddObject(weapon);
+            var target = CreateTargetDummy(10);
+            zone.AddEntity(target, 7, 5);
+
+            Diag.ResetAll();
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(weapon, 7, 5, new Random(1)), actor, zone);
+
+            Assert.IsTrue(result.Success, result.ErrorMessage);
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "damage", Kind = "ThrowHitRoll", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"agilityScore\":1", recs[0].PayloadJson);
+            StringAssert.Contains("\"target\":3", recs[0].PayloadJson);
+            StringAssert.Contains("\"landed\":false", recs[0].PayloadJson);
+        }
+
         [Test]
         public void ThrowItemCommand_Execute_InjectedRng_ProducesRepeatableDamage()
         {
@@ -1061,7 +1290,10 @@ namespace CavesOfOoo.Tests
                 zone);
 
             Assert.IsTrue(result.Success);
-            Assert.AreEqual(6, target.GetStatValue("Hitpoints"));
+            // SM5c/D3-Layer3: re-pinned to the new penetration-based formula's
+            // deterministic value for this seed (0 AV -- CreateTargetDummy
+            // has no ArmorPart).
+            Assert.AreEqual(1, target.GetStatValue("Hitpoints"));
         }
 
         [Test]
@@ -1221,8 +1453,10 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(result.Success);
             // Weapon should land at the target cell (creature stops it there).
             Assert.AreEqual(zone.GetCell(7, 5), zone.GetEntityCell(weapon));
-            // Target should have taken weapon damage (1d1 + Str bonus 1 = 2 damage → 8 HP).
-            Assert.AreEqual(8, target.GetStatValue("Hitpoints"));
+            // Target should have taken weapon damage. SM5c/D3-Layer3:
+            // re-pinned to the new penetration-based formula's deterministic
+            // value for this seed (0 AV -- CreateTargetDummy has no ArmorPart).
+            Assert.AreEqual(7, target.GetStatValue("Hitpoints"));
             // No "unequips" message should have been emitted.
             var logMessages = MessageLog.GetMessages();
             foreach (var msg in logMessages)
