@@ -10,11 +10,14 @@ namespace CavesOfOoo.Scenarios.Custom
     ///     reduces incoming damage by 2 and logs the reduction. Each hit's
     ///     log line shows raw → reduced damage.
     ///
-    ///   - **G (MultiWeaponSkillBonus)**: the player gets +5 to off-hand
-    ///     swings. Without a control fighter to compare against (we're not
-    ///     spawning a no-stat-bonus copy of the player), the demonstration is
-    ///     "hit reliability against off-hand-targeted dummies." The stat
-    ///     value is logged so a human can read it back via execute_code.
+    ///   - **G (MultiWeaponSkillBonus)**: the player gets +5 percentage
+    ///     points to the off-hand's per-turn attack-chance roll (Docs/
+    ///     COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM9 — Qud parity: a chance
+    ///     to swing at all, not a to-hit penalty once swinging). Without a
+    ///     control fighter to compare against, the demonstration is
+    ///     "off-hand attempt frequency against off-hand-targeted dummies."
+    ///     The stat value is logged so a human can read it back via
+    ///     execute_code.
     ///
     ///   - **H (CanBeDismembered)**: a Snapjaw with <see cref="ShowcaseIndestructiblePart"/>
     ///     vetoes every dismemberment attempt. The "[Showcase] Indestructible: vetoed"
@@ -88,7 +91,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 indestructible.AddPart(new ShowcaseIndestructiblePart());
 
             ctx.Log("=== Combat Hooks Showcase (Phases F/G/H) ===");
-            ctx.Log("Player: MultiWeaponSkillBonus = +5 (off-hand swings hit more reliably).");
+            ctx.Log("Player: MultiWeaponSkillBonus = +5 (off-hand swings more often, +5% chance).");
             ctx.Log("StoneSkin Snapjaw NW — every hit reduced by 2. Look for '[Showcase] StoneSkin: X -> Y'.");
             ctx.Log("Control Snapjaw E — no probes; reference for off-hand swing rate.");
             ctx.Log("Indestructible Snapjaw NE — limbs never sever. Look for '[Showcase] Indestructible: vetoed'.");

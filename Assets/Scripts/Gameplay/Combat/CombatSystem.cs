@@ -13,35 +13,51 @@ namespace CavesOfOoo.Core
     /// Attack flow (body-part-aware):
     /// 1. Fire BeforeMeleeAttack event (can cancel)
     /// 2. Gather all weapons from hand body parts
-    /// 3. For each weapon: hit roll → penetration → damage
-    /// 4. Primary hand gets full stats; off-hands get penalty
+    /// 3. Off-hand weapons roll a per-turn chance to attack at all (Qud
+    ///    parity, SM9/B3) — primary always attempts
+    /// 4. For each attempted weapon: hit roll → penetration → damage, all
+    ///    at full accuracy (no separate off-hand to-hit penalty)
     ///
     /// Defense: armor from Body body part + equipped armor items.
     /// </summary>
     public static class CombatSystem
     {
         /// <summary>
-        /// Penalty to hit for off-hand (non-primary) attacks.
-        /// Mirrors Qud's secondary weapon hit penalty.
+        /// Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM9/B3. Base percent
+        /// chance an off-hand (non-primary) weapon attacks at all this turn.
+        /// Mirrors Qud's real secondary-weapon mechanic
+        /// (<c>RuleSettings.BASE_SECONDARY_ATTACK_CHANCE = 15</c>) — a
+        /// per-turn roll for whether the off-hand swings, NOT a flat to-hit
+        /// penalty applied to a guaranteed swing. CoO previously always
+        /// swung the off-hand at a flat -2 to-hit, with a comment claiming
+        /// this "mirrors Qud's secondary weapon hit penalty" — that
+        /// overclaimed the parity; Qud's off-hand can attack MORE than once
+        /// per turn's worth of primary swings with enough dual-wield
+        /// investment (chance can exceed 100%), and once it does attack, no
+        /// separate accuracy penalty applies.
         /// </summary>
-        public const int OFF_HAND_HIT_PENALTY = -2;
+        public const int BASE_SECONDARY_ATTACK_CHANCE_PERCENT = 15;
 
         /// <summary>
-        /// Compute the hit-bonus adjustment applied to an off-hand (non-primary)
-        /// melee swing for the given attacker. Mirrors Qud's pattern of letting
+        /// Compute the percent chance the attacker's off-hand (non-primary)
+        /// weapon attacks at all this turn. Mirrors Qud's pattern of letting
         /// skills modify per-weapon attack chance via <c>GetMeleeAttackChanceEvent</c>
         /// (Combat.cs:775); we approximate with a stat-driven hook since we don't
         /// have a skill system yet.
         ///
-        /// Returns <see cref="OFF_HAND_HIT_PENALTY"/> + the attacker's
-        /// <c>MultiWeaponSkillBonus</c> stat (default 0). A future skill system
-        /// would set this stat per-skill-rank; equipment passives could also
-        /// modify it via stat shifts.
+        /// Returns <see cref="BASE_SECONDARY_ATTACK_CHANCE_PERCENT"/> + the
+        /// attacker's <c>MultiWeaponSkillBonus</c> stat (default 0), floored
+        /// at 0. Deliberately NOT capped at 100 — matches Qud, where enough
+        /// dual-wield investment can push the chance past 100% (an
+        /// off-hand that always swings, same as the primary). A future
+        /// skill system would set this stat per-skill-rank; equipment
+        /// passives could also modify it via stat shifts.
         /// </summary>
-        public static int GetOffHandHitBonus(Entity attacker)
+        public static int GetOffHandAttackChancePercent(Entity attacker)
         {
-            if (attacker == null) return OFF_HAND_HIT_PENALTY;
-            return OFF_HAND_HIT_PENALTY + attacker.GetStatValue("MultiWeaponSkillBonus", 0);
+            if (attacker == null) return BASE_SECONDARY_ATTACK_CHANCE_PERCENT;
+            int chance = BASE_SECONDARY_ATTACK_CHANCE_PERCENT + attacker.GetStatValue("MultiWeaponSkillBonus", 0);
+            return Math.Max(0, chance);
         }
 
         /// <summary>
@@ -111,6 +127,19 @@ namespace CavesOfOoo.Core
                     break; // Target already dead
 
                 bool isPrimary = weapons[i].IsPrimary;
+
+                // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM9/B3. Off-hand
+                // weapons roll a per-turn chance to attack at all (Qud
+                // parity), rather than always swinging at a flat to-hit
+                // penalty. A failed roll means the hand simply never swung
+                // this turn — no message, no attempt, distinct from a miss.
+                if (!isPrimary)
+                {
+                    int chance = GetOffHandAttackChancePercent(attacker);
+                    if (rng.Next(100) >= chance)
+                        continue;
+                }
+
                 string weaponName = weapons[i].Weapon?.ParentEntity?.GetDisplayName()
                     ?? weapons[i].Weapon?.BaseDamage ?? "fist";
                 string handName = weapons[i].BodyPart?.GetDisplayName() ?? "hand";
@@ -165,9 +194,10 @@ namespace CavesOfOoo.Core
             int maxStrBonus = weapon?.MaxStrengthBonus ?? -1;
             string statName = weapon?.Stat ?? "Strength";
 
-            // Off-hand penalty (Phase G: stat-modulated via GetOffHandHitBonus)
-            if (!isPrimary)
-                hitBonus += GetOffHandHitBonus(attacker);
+            // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM9/B3. No separate
+            // off-hand to-hit penalty — once the off-hand's per-turn
+            // attack-chance roll (in PerformBodyPartAwareAttack) succeeds,
+            // it swings at full accuracy, matching Qud's real mechanic.
 
             string attackerName = attacker.GetDisplayName();
             string defenderName = defender.GetDisplayName();
