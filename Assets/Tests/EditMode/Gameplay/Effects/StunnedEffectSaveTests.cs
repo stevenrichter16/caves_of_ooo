@@ -116,6 +116,44 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(18, stun.SaveTarget, "the harder save wins the merge");
         }
 
+        [Test]
+        public void Stack_DeterministicStunFirst_ThenSaveableProc_StaysDeterministic()
+        {
+            // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM3/C1. SaveTarget=0
+            // is a distinct "no save" sentinel (per this class's own
+            // docstring), not the numerically weakest DC. A Cudgel_Slam-style
+            // guaranteed stun (saveTarget=0, the default nearly every call
+            // site uses) landing first must NOT become saveable just
+            // because a later, unrelated saveTarget=16 proc (mirroring
+            // OnHitClassEffects.TryApplyStunned's passive Bludgeoning hook)
+            // stacks onto the same target.
+            var victim = MakeVictim(toughness: 10);
+            Assert.IsTrue(victim.ApplyEffect(new StunnedEffect(duration: 2, saveTarget: 0)));
+            Assert.IsTrue(victim.ApplyEffect(new StunnedEffect(duration: 1, saveTarget: 16)));
+
+            var stun = victim.GetPart<StatusEffectsPart>().GetEffect<StunnedEffect>();
+            Assert.AreEqual(0, stun.SaveTarget,
+                "The guaranteed (saveTarget=0) stun must not become saveable as a side effect "
+                + "of an unrelated passive proc stacking onto the same target.");
+        }
+
+        [Test]
+        public void Stack_SaveableProcFirst_ThenDeterministicStun_BecomesDeterministic()
+        {
+            // Counter-check, opposite order: a saveable stun landing first,
+            // then a guaranteed (saveTarget=0) stun stacking on top, must
+            // ALSO collapse to the deterministic sentinel -- 0 wins
+            // regardless of which side of the merge it's on.
+            var victim = MakeVictim(toughness: 10);
+            Assert.IsTrue(victim.ApplyEffect(new StunnedEffect(duration: 1, saveTarget: 16)));
+            Assert.IsTrue(victim.ApplyEffect(new StunnedEffect(duration: 2, saveTarget: 0)));
+
+            var stun = victim.GetPart<StatusEffectsPart>().GetEffect<StunnedEffect>();
+            Assert.AreEqual(0, stun.SaveTarget,
+                "A guaranteed (saveTarget=0) stun stacking onto an existing saveable one "
+                + "must also collapse the merge to the deterministic sentinel.");
+        }
+
         /// <summary>Captures the Cause of EffectRemoved events.</summary>
         private class CauseProbe : Part
         {

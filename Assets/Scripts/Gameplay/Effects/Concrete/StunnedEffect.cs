@@ -77,8 +77,21 @@ namespace CavesOfOoo.Core
             if (incoming is StunnedEffect stun)
             {
                 Duration += stun.Duration;
-                if (stun.SaveTarget > SaveTarget)
-                    SaveTarget = stun.SaveTarget;
+
+                // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM3/C1.
+                // SaveTarget=0 is its own "no save, deterministic countdown"
+                // sentinel (see this class's docstring), not the
+                // numerically weakest DC. Treating it as a magnitude let a
+                // guaranteed (saveTarget=0) stun -- e.g. Cudgel_Slam's --
+                // become saveable purely because an unrelated saveable proc
+                // (e.g. OnHitClassEffects.TryApplyStunned's passive
+                // Bludgeoning hook, saveTarget=16) stacked onto the same
+                // target. 0 always wins the merge, from either side.
+                if (SaveTarget == 0 || stun.SaveTarget == 0)
+                    SaveTarget = 0;
+                else
+                    SaveTarget = System.Math.Max(SaveTarget, stun.SaveTarget);
+
                 return true;
             }
             return false;
