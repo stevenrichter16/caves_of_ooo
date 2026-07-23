@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using CavesOfOoo.Core;
 using CavesOfOoo.Core.Anatomy;
+using CavesOfOoo.Skills;
 
 namespace CavesOfOoo.Tests
 {
@@ -462,6 +463,67 @@ namespace CavesOfOoo.Tests
                 if (all[i].Type == "Hand") hands.Add(all[i]);
             return hands;
         }
+
+        // ====================================================================
+        // SM7 (Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md) -- weapon-mod-style
+        // on-hit effects (class/weapon/gas/enhancement) fire on a killing
+        // blow too; skill-level dispatch + dismemberment stay survival-gated,
+        // matching Qud's actual split (WeaponHit fires before Penetrations
+        // is even finalized; the safely-portable subset here is "not gated
+        // on hpAfter>0", since OnHitClassEffects/OnHitWeaponEffects already
+        // self-gate on actualDamage<=0 and the method's own earlier
+        // penetrations==0/damage.Amount<=0 early-returns already prevent
+        // reaching this point with zero pre-resistance damage).
+        // ====================================================================
+
+        [Test]
+        public void PerformSingleAttack_KillingBlow_StillDispatchesItemEnhancement()
+        {
+            var zone = new Zone("SM7.KillDispatch");
+            var attacker = CreateCreatureWithBody();
+            var weaponItem = new Entity();
+            var weaponPart = new MeleeWeaponPart { BaseDamage = "100d6", PenBonus = 50, HitBonus = 50 };
+            weaponItem.AddPart(weaponPart);
+            var enhancement = new AlwaysFiresEnhancementProbe();
+            weaponItem.AddPart(enhancement);
+            zone.AddEntity(attacker, 5, 5);
+
+            var defender = CreateCreatureWithBody();
+            defender.GetStat("Hitpoints").BaseValue = 1;
+            zone.AddEntity(defender, 6, 5);
+
+            CombatSystem.PerformSingleAttack(attacker, defender, weaponPart, true, zone, new Random(42));
+
+            Assert.LessOrEqual(defender.GetStatValue("Hitpoints", 1), 0, "sanity: this must be a lethal hit.");
+            Assert.IsTrue(enhancement.Fired, "IItemEnhancement.OnAttackerHit must fire even on a killing blow.");
+        }
+
+        [Test]
+        public void PerformSingleAttack_KillingBlow_SkillDispatchAndDismembermentStayGated()
+        {
+            // Counter-check: unlike the weapon-mod dispatchers above,
+            // skill-level dispatch (AttackerAfterAttack/WeaponMadeCriticalHit)
+            // and dismemberment remain survival-gated -- this is the "keep
+            // skill-level dispatch and dismemberment gated on survival"
+            // half of the plan's design decision.
+            var zone = new Zone("SM7.KillGatedSkills");
+            var attacker = CreateCreatureWithBody();
+            attacker.AddPart(new SkillsPart());
+            var probe = new AfterAttackCountingSkillProbe();
+            attacker.GetPart<SkillsPart>().AddSkill(probe, source: "test");
+            var weaponPart = new MeleeWeaponPart { BaseDamage = "100d6", PenBonus = 50, HitBonus = 50 };
+            zone.AddEntity(attacker, 5, 5);
+
+            var defender = CreateCreatureWithBody();
+            defender.GetStat("Hitpoints").BaseValue = 1;
+            zone.AddEntity(defender, 6, 5);
+
+            CombatSystem.PerformSingleAttack(attacker, defender, weaponPart, true, zone, new Random(42));
+
+            Assert.LessOrEqual(defender.GetStatValue("Hitpoints", 1), 0, "sanity: this must be a lethal hit.");
+            Assert.AreEqual(0, probe.AfterAttackCount,
+                "AttackerAfterAttack must stay gated on survival -- must NOT fire on a killing blow.");
+        }
     }
 
     /// <summary>
@@ -479,5 +541,32 @@ namespace CavesOfOoo.Tests
                 OnDied?.Invoke();
             return true;
         }
+    }
+
+    /// <summary>
+    /// SM7 test double: an IItemEnhancement that always fires, no chance
+    /// roll, so the dispatch-timing test doesn't depend on RNG luck.
+    /// </summary>
+    public class AlwaysFiresEnhancementProbe : IItemEnhancement
+    {
+        public bool Fired;
+
+        public override void OnAttackerHit(
+            Entity defender, Entity attacker, Damage damage,
+            int actualDamage, Zone zone, System.Random rng)
+        {
+            Fired = true;
+        }
+    }
+
+    /// <summary>
+    /// SM7 test double: a skill that counts OnAttackerAfterAttack calls,
+    /// mirroring SkillEventDispatcherTests.CountingSkillA.
+    /// </summary>
+    public class AfterAttackCountingSkillProbe : BaseSkillPart
+    {
+        public int AfterAttackCount;
+
+        public override void OnAttackerAfterAttack(SkillEventContext ctx) => AfterAttackCount++;
     }
 }

@@ -423,36 +423,49 @@ namespace CavesOfOoo.Core
             // matches the actualDamage value this code previously computed
             // for melee, so the on-screen number is identical.
 
+            // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM7/B1. Weapon-mod-style
+            // effects (class/weapon/gas/enhancement) fire on ANY landed hit,
+            // independent of whether the defender survived — matching Qud's
+            // WeaponHit timing (Combat.cs:1175-1186, fires before Penetrations
+            // is even finalized). The safely-portable subset here is "not
+            // gated on hpAfter>0": OnHitClassEffects/OnHitWeaponEffects
+            // already self-gate on actualDamage<=0 internally, and this
+            // method's own earlier penetrations==0/damage.Amount<=0
+            // early-returns already prevent reaching this point with zero
+            // pre-resistance damage — so removing the survivor requirement
+            // changes exactly one thing: these 4 dispatchers now also fire
+            // on a killing blow, where previously a dead target could never
+            // bleed, stun, emit gas, or proc an item enhancement.
+            //
+            // On-hit class effects (Tier-2: Bludgeoning→Stunned, Cutting→Bleeding,
+            // Piercing→Confused). Reads damage attributes; rolls per-class
+            // probabilities; applies via target.ApplyEffect.
+            OnHitClassEffects.Apply(damage, actualDamage, defender, attacker, zone, rng);
+
+            // Per-weapon on-hit overrides (FlamingSword→Burning, IceSword→Frozen, etc.).
+            // Stacks ON TOP of class effects: a Bludgeoning ThunderHammer can both
+            // stun AND electrify on the same hit, since the chance rolls are independent.
+            OnHitWeaponEffects.Apply(weapon, damage, actualDamage, defender, attacker, zone, rng);
+
+            // G.7b: per-weapon on-hit gas emission. Independent chance rolls
+            // per spec parallel to OnHitWeaponEffects. Spawns a 3×3 gas
+            // cloud centered on the defender's cell. Stacks with the above
+            // (a poisonous-fang sword that's also FlamingSword could fire
+            // Burning AND emit poison gas on the same hit).
+            OnHitGasEmit.Apply(weapon, defender, attacker, zone, rng);
+
+            // Item-enhancement on-hit hook (E.2.1). Iterates the weapon Entity's
+            // IItemEnhancement Parts (e.g. EnhancementSerrated → on-hit bleed)
+            // and calls each one's OnAttackerHit. Parallel to OnHitWeaponEffects.Apply
+            // above but distinct: per-weapon effects are blueprint-declared
+            // (OnHitEffectsRaw), enhancements are player-applied at runtime via
+            // ItemEnhancing.Apply. Mirrors Qud's IMeleeModification dispatch from
+            // XRL.World.Combat.MeleeAttack.
+            ItemEnhancementDispatch.DispatchOnHit(
+                weapon?.ParentEntity, defender, attacker, damage, actualDamage, zone, rng);
+
             if (hpAfter > 0)
             {
-                // On-hit class effects (Tier-2: Bludgeoning→Stunned, Cutting→Bleeding,
-                // Piercing→Confused). Reads damage attributes; rolls per-class
-                // probabilities; applies via target.ApplyEffect. Only fires on
-                // survivors — corpses don't bleed or get stunned.
-                OnHitClassEffects.Apply(damage, actualDamage, defender, attacker, zone, rng);
-
-                // Per-weapon on-hit overrides (FlamingSword→Burning, IceSword→Frozen, etc.).
-                // Stacks ON TOP of class effects: a Bludgeoning ThunderHammer can both
-                // stun AND electrify on the same hit, since the chance rolls are independent.
-                OnHitWeaponEffects.Apply(weapon, damage, actualDamage, defender, attacker, zone, rng);
-
-                // G.7b: per-weapon on-hit gas emission. Independent chance rolls
-                // per spec parallel to OnHitWeaponEffects. Spawns a 3×3 gas
-                // cloud centered on the defender's cell. Stacks with the above
-                // (a poisonous-fang sword that's also FlamingSword could fire
-                // Burning AND emit poison gas on the same hit).
-                OnHitGasEmit.Apply(weapon, defender, attacker, zone, rng);
-
-                // Item-enhancement on-hit hook (E.2.1). Iterates the weapon Entity's
-                // IItemEnhancement Parts (e.g. EnhancementSerrated → on-hit bleed)
-                // and calls each one's OnAttackerHit. Parallel to OnHitWeaponEffects.Apply
-                // above but distinct: per-weapon effects are blueprint-declared
-                // (OnHitEffectsRaw), enhancements are player-applied at runtime via
-                // ItemEnhancing.Apply. Mirrors Qud's IMeleeModification dispatch from
-                // XRL.World.Combat.MeleeAttack.
-                ItemEnhancementDispatch.DispatchOnHit(
-                    weapon?.ParentEntity, defender, attacker, damage, actualDamage, zone, rng);
-
                 // Skill-driven on-hit effects (Cudgel_Bludgeon→Stun,
                 // LongBlades_Lacerate→Bleed, etc.). WSP3.3 — the previous
                 // OnHitSkillEffects.Apply central switch was deleted; each
@@ -460,6 +473,8 @@ namespace CavesOfOoo.Core
                 // (OnAttackerAfterAttack / OnWeaponMadeCriticalHit) and
                 // SkillEventDispatcher routes the events to all owned skills.
                 // Tree-root WeaponMadeCriticalHit fires only on Critical hits.
+                // Kept survival-gated (unlike the 4 dispatchers above),
+                // matching Qud's actual split per the plan doc.
                 var hitCtx = new CavesOfOoo.Skills.SkillEventContext
                 {
                     Attacker = attacker, Defender = defender,
