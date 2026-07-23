@@ -78,6 +78,44 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void Hibernating_OnRemove_RestoresBaseValue_NotCompositeWithBonus()
+        {
+            // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM2/A2. OnApply must
+            // capture stat.BaseValue directly, not GetStatValue's composite
+            // (BaseValue+Bonus-Penalty+Boost) -- otherwise any Bonus present
+            // at apply-time gets permanently baked into BaseValue on
+            // OnRemove, even after the buff that granted the Bonus expires.
+            var actor = MakeBodied();
+            var heatStat = actor.GetStat("HeatResistance");
+            heatStat.BaseValue = 20;
+            heatStat.Bonus = 15; // composite Value = 35, but BaseValue is 20
+
+            actor.ApplyEffect(new HibernatingEffect(10), actor, null);
+            Assert.AreEqual(100, heatStat.BaseValue, "OnApply still bumps BaseValue to the buff value.");
+
+            actor.GetPart<StatusEffectsPart>().RemoveEffect<HibernatingEffect>();
+
+            Assert.AreEqual(20, heatStat.BaseValue,
+                "OnRemove must restore the original BaseValue (20), not the pre-apply composite (35) "
+                + "that would double-count the Bonus forever.");
+        }
+
+        [Test]
+        public void Hibernating_NoResistanceBonus_StillRestoresCorrectly()
+        {
+            // Counter-check: the fix must not break the already-working
+            // zero-Bonus case (the only case any existing fixture exercised).
+            var actor = MakeBodied();
+            var heatStat = actor.GetStat("HeatResistance");
+            Assert.AreEqual(0, heatStat.Bonus, "sanity: fixture has no Bonus by default.");
+
+            actor.ApplyEffect(new HibernatingEffect(10), actor, null);
+            actor.GetPart<StatusEffectsPart>().RemoveEffect<HibernatingEffect>();
+
+            Assert.AreEqual(25, heatStat.BaseValue);
+        }
+
+        [Test]
         public void Hibernating_NonStacking()
         {
             var first = new HibernatingEffect(10);

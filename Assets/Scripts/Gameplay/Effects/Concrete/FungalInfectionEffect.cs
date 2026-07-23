@@ -98,7 +98,14 @@ namespace CavesOfOoo.Core
         public override void OnApply(Entity target)
         {
             if (target == null) return;
-            PriorToughness = target.GetStatValue("Toughness", 0);
+            // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM2/A2. Capture
+            // stat.BaseValue directly, NOT GetStatValue's composite
+            // (BaseValue+Bonus-Penalty+Boost) -- OnRemove/ApplyStageStatShift
+            // write this back into BaseValue alone, so capturing the
+            // composite would permanently bake in whatever Bonus/Penalty
+            // existed at infection-time. Mirrors CoatedInPlasmaEffect's
+            // already-correct ApplyStats/UnapplyStats pattern.
+            PriorToughness = target.GetStat("Toughness")?.BaseValue ?? 0;
             MessageLog.Add(target.GetDisplayName() + "'s skin itches strangely.");
         }
 

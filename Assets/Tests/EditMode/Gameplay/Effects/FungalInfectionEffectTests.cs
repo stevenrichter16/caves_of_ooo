@@ -128,6 +128,30 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void OnApply_CapturesBaseValue_NotCompositeWithBonus()
+        {
+            // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM2/A2. OnApply must
+            // capture stat.BaseValue directly, not GetStatValue's composite
+            // (BaseValue+Bonus-Penalty+Boost) -- otherwise a Bonus present
+            // at infection time gets permanently baked into BaseValue on
+            // OnRemove, even after the buff granting the Bonus expires.
+            var creature = MakeCreature(toughness: 14);
+            var toughStat = creature.GetStat("Toughness");
+            toughStat.Bonus = 5; // composite Value = 19, but BaseValue is 14
+
+            var fx = new FungalInfectionEffect();
+            creature.ApplyEffect(fx);
+
+            Assert.AreEqual(14, fx.PriorToughness,
+                "PriorToughness must be the raw BaseValue (14), not the composite (19).");
+
+            creature.GetPart<StatusEffectsPart>().RemoveEffect<FungalInfectionEffect>();
+            Assert.AreEqual(14, toughStat.BaseValue,
+                "OnRemove must restore the original BaseValue (14), not the pre-infection composite (19) "
+                + "that would double-count the Bonus forever.");
+        }
+
+        [Test]
         public void OnRemove_NoPriorToughness_SkipsRestore_Defensive()
         {
             // Counter / defensive: if OnApply somehow didn't run (which

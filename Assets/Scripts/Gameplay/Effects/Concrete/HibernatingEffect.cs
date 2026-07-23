@@ -69,16 +69,20 @@ namespace CavesOfOoo.Core
 
         public override void OnApply(Entity target)
         {
-            PriorHeatResistance = target.GetStatValue("HeatResistance", 0);
-            PriorColdResistance = target.GetStatValue("ColdResistance", 0);
-
-            // Bump resistances to 100. Use SetStatValue if available —
-            // fall back to direct stat manipulation. We re-read via
-            // Statistics.TryGetValue so the test fixtures' synthetic
-            // entities also get the buff applied.
+            // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM2/A2. Capture
+            // stat.BaseValue directly, NOT GetStatValue's composite
+            // (BaseValue+Bonus-Penalty+Boost) -- OnRemove writes this back
+            // into BaseValue alone, so capturing the composite would
+            // permanently bake in whatever Bonus/Penalty existed at
+            // apply-time. Mirrors CoatedInPlasmaEffect's already-correct
+            // ApplyStats/UnapplyStats pattern in the same folder.
             var heatStat = target.GetStat("HeatResistance");
-            if (heatStat != null) heatStat.BaseValue = RESISTANCE_BUFF;
             var coldStat = target.GetStat("ColdResistance");
+            PriorHeatResistance = heatStat?.BaseValue ?? 0;
+            PriorColdResistance = coldStat?.BaseValue ?? 0;
+
+            // Bump resistances to 100.
+            if (heatStat != null) heatStat.BaseValue = RESISTANCE_BUFF;
             if (coldStat != null) coldStat.BaseValue = RESISTANCE_BUFF;
 
             MessageLog.Add(target.GetDisplayName() + " enters hibernation.");
