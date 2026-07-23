@@ -15,14 +15,23 @@ namespace CavesOfOoo.Core.Inventory.Commands
         private readonly Entity _item;
         private readonly int _targetX;
         private readonly int _targetY;
+        private readonly Random _rng;
 
         public string Name => "Throw";
 
-        public ThrowItemCommand(Entity item, int targetX, int targetY)
+        /// <param name="rng">
+        /// SM4/D6 (Docs/THROWN-MUTATION-COMBAT-PLAN.md): injected RNG,
+        /// mirroring melee's InputHandler._combatRng convention. Defaults
+        /// to a fresh Random() so existing callers keep compiling, but
+        /// production call sites should thread a real combat RNG for
+        /// determinism/diag-replay parity with melee.
+        /// </param>
+        public ThrowItemCommand(Entity item, int targetX, int targetY, Random rng = null)
         {
             _item = item;
             _targetX = targetX;
             _targetY = targetY;
+            _rng = rng ?? new Random();
         }
 
         public InventoryValidationResult Validate(InventoryContext context)
@@ -137,7 +146,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Unable to ready that item to throw.");
             }
 
-            var rng = new Random();
+            var rng = _rng;
 
             LineTraceResult trace = LineTargeting.TraceFirstImpactToTarget(
                 zone,

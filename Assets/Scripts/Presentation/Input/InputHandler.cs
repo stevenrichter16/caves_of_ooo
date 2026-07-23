@@ -2070,7 +2070,7 @@ namespace CavesOfOoo.Rendering
                 return;
 
             var result = InventorySystem.ExecuteCommand(
-                new ThrowItemCommand(_pendingThrowTarget.Item, _worldCursorState.X, _worldCursorState.Y),
+                new ThrowItemCommand(_pendingThrowTarget.Item, _worldCursorState.X, _worldCursorState.Y, _combatRng),
                 PlayerEntity,
                 CurrentZone);
 

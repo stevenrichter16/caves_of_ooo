@@ -771,6 +771,43 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void ThrowItemCommand_Execute_InjectedRng_ProducesRepeatableDamage()
+        {
+            // Docs/THROWN-MUTATION-COMBAT-PLAN.md SM4/D6: ThrowItemCommand
+            // must accept an injected Random (mirroring melee's
+            // InputHandler._combatRng convention) instead of an unseeded
+            // `new Random()` -- otherwise nothing downstream (SM5's
+            // accuracy roll, on-hit dispatch chance rolls) is testable.
+            // Proof: the SAME seed run twice must produce IDENTICAL
+            // damage -- if Execute still used a fresh internal Random
+            // instead of the injected one, two runs would essentially
+            // never coincidentally match on a d20.
+            int RunOnce(int seed)
+            {
+                var zone = new Zone();
+                var actor = CreateCreatureWithInventory();
+                actor.SetStatValue("Strength", 20);
+                zone.AddEntity(actor, 5, 5);
+                var weapon = CreateThrowableWeapon("1d20", 0);
+                actor.GetPart<InventoryPart>().AddObject(weapon);
+                var target = CreateTargetDummy(1000);
+                zone.AddEntity(target, 7, 5);
+
+                InventorySystem.ExecuteCommand(
+                    new ThrowItemCommand(weapon, 7, 5, new Random(seed)), actor, zone);
+
+                return 1000 - target.GetStatValue("Hitpoints");
+            }
+
+            int first = RunOnce(seed: 42);
+            int second = RunOnce(seed: 42);
+
+            Assert.AreEqual(first, second,
+                "same seed must produce the same damage -- proves the injected Random drives the roll");
+            Assert.Greater(first, 0, "sanity: a real hit landed and dealt damage");
+        }
+
+        [Test]
         public void ThrowItemCommand_Execute_UsesImprovisedWeightDamage()
         {
             var zone = new Zone();
