@@ -727,6 +727,19 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// Pass-through for BodyPart.GetEquippedParts, so hot call sites
+        /// (GetDV/GetAV) can iterate equipped body parts with a plain
+        /// for-loop over a reused scratch list instead of a closure-capturing
+        /// ForeachEquippedObject lambda. Non-clearing -- caller owns Clear().
+        /// </summary>
+        public List<BodyPart> GetEquippedParts(List<BodyPart> result)
+        {
+            if (result == null) result = new List<BodyPart>();
+            if (_body == null) return result;
+            return _body.GetEquippedParts(result);
+        }
+
+        /// <summary>
         /// Get a summary of missing/dismembered body parts.
         /// Mirrors Qud's Body.GetMissingLimbsDescription.
         /// </summary>

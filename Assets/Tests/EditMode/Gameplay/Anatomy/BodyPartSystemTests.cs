@@ -576,6 +576,58 @@ namespace CavesOfOoo.Tests
         }
 
         // ========================
+        // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM12/E2 -- Body.GetEquippedParts(result)
+        // pass-through overload, exposing BodyPart.GetEquippedParts (previously
+        // dead code with zero callers) so GetDV/GetAV can replace a per-call
+        // closure-capturing ForeachEquippedObject lambda with a plain for-loop.
+        // ========================
+
+        [Test]
+        public void Body_GetEquippedParts_WithProvidedList_ReturnsSameListReference()
+        {
+            var entity = CreateCreatureWithBody();
+            var body = entity.GetPart<Body>();
+            var scratch = new List<BodyPart>();
+
+            var returned = body.GetEquippedParts(scratch);
+
+            Assert.AreSame(scratch, returned);
+        }
+
+        [Test]
+        public void Body_GetEquippedParts_ReturnsOnlyPartsWithEquippedItems()
+        {
+            var entity = CreateCreatureWithBody();
+            var body = entity.GetPart<Body>();
+            var inv = entity.GetPart<InventoryPart>();
+            var weapon = CreateWeapon();
+            inv.AddObject(weapon);
+            var leftHand = body.FindFreeSlot("Hand", Laterality.LEFT);
+            inv.EquipToBodyPart(weapon, leftHand);
+
+            var scratch = new List<BodyPart>();
+            body.GetEquippedParts(scratch);
+
+            Assert.AreEqual(1, scratch.Count);
+            Assert.AreSame(leftHand, scratch[0]);
+            Assert.AreSame(weapon, scratch[0]._Equipped);
+        }
+
+        [Test]
+        public void Body_GetEquippedParts_NoEquippedItems_ReturnsEmptyList()
+        {
+            // Counter-check: an unequipped humanoid must yield zero entries,
+            // not every Hand part regardless of equip state.
+            var entity = CreateCreatureWithBody();
+            var body = entity.GetPart<Body>();
+            var scratch = new List<BodyPart>();
+
+            body.GetEquippedParts(scratch);
+
+            Assert.AreEqual(0, scratch.Count);
+        }
+
+        // ========================
         // Body - Dismemberment
         // ========================
 

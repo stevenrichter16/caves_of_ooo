@@ -629,6 +629,8 @@ namespace CavesOfOoo.Core
         /// Get defender's Dodge Value.
         /// Body-part-aware: checks all equipped armor across body parts.
         /// </summary>
+        private static readonly List<BodyPart> _getDVEquippedScratch = new List<BodyPart>(8);
+
         public static int GetDV(Entity entity)
         {
             int baseDV = 6;
@@ -638,12 +640,14 @@ namespace CavesOfOoo.Core
             if (body != null)
             {
                 int bestDV = 0;
-                body.ForeachEquippedObject((item, bp) =>
+                _getDVEquippedScratch.Clear();
+                var equipped = body.GetEquippedParts(_getDVEquippedScratch);
+                for (int i = 0; i < equipped.Count; i++)
                 {
-                    var armor = item.GetPart<ArmorPart>();
+                    var armor = equipped[i]._Equipped.GetPart<ArmorPart>();
                     if (armor != null && armor.DV != 0)
                         bestDV += armor.DV;
-                });
+                }
                 baseDV += bestDV;
             }
             else
@@ -661,6 +665,8 @@ namespace CavesOfOoo.Core
         /// Get defender's Armor Value.
         /// Body-part-aware: sums AV from all equipped armor.
         /// </summary>
+        private static readonly List<BodyPart> _getAVEquippedScratch = new List<BodyPart>(8);
+
         public static int GetAV(Entity entity)
         {
             int totalAV;
@@ -668,12 +674,14 @@ namespace CavesOfOoo.Core
             if (body != null)
             {
                 totalAV = 0;
-                body.ForeachEquippedObject((item, bp) =>
+                _getAVEquippedScratch.Clear();
+                var equipped = body.GetEquippedParts(_getAVEquippedScratch);
+                for (int i = 0; i < equipped.Count; i++)
                 {
-                    var armor = item.GetPart<ArmorPart>();
+                    var armor = equipped[i]._Equipped.GetPart<ArmorPart>();
                     if (armor != null)
                         totalAV += armor.AV;
-                });
+                }
 
                 // Also check natural armor on the entity itself
                 var naturalArmor = entity.GetPart<ArmorPart>();
