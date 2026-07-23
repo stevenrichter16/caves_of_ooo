@@ -176,6 +176,20 @@ namespace CavesOfOoo.Tests
                 return false;
             }
 
+            // Mirrors TinkerRecipeRegistry.IsCraftableMeleeWeaponBlueprint's
+            // CanBuild gate: blueprints like ForgedWeapon are intentionally
+            // NOT generic-Tinker-buildable — they're assembled exclusively
+            // via WeaponForgingService's Blade+Haft+Binding component flow
+            // (see ForgedWeapon's TinkerItem.CanBuild=false in Objects.json
+            // and WeaponForgingService.TryForge). Without this check this
+            // test's craftability predicate diverges from production's and
+            // flags ForgedWeapon as a false-positive "missing recipe".
+            if (TryGetPartParam(blueprint, "TinkerItem", "CanBuild", out string canBuildRaw)
+                && !ParseBoolOrDefault(canBuildRaw, defaultValue: true))
+            {
+                return false;
+            }
+
             return true;
         }
 

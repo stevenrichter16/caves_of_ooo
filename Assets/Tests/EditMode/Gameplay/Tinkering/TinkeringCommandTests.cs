@@ -216,10 +216,14 @@ namespace CavesOfOoo.Tests
 
             var result = InventorySystem.ExecuteCommand(new DisassembleCommand(dagger), player);
 
+            // Disassembly yields a strict subset of the build cost (every
+            // other bit, min 1) so craft->disassemble is always lossy —
+            // see TinkeringService.ResolvePartialYield and the identical
+            // pin in TinkeringServiceTests.Disassemble_Succeeds_AddsBits_AndRemovesItem.
             Assert.IsTrue(result.Success, result.ErrorMessage);
             Assert.AreEqual(0, inventory.Objects.Count);
             Assert.AreEqual(1, bits.GetBitCount('B'));
-            Assert.AreEqual(1, bits.GetBitCount('C'));
+            Assert.AreEqual(0, bits.GetBitCount('C'));
         }
 
         [Test]
@@ -236,10 +240,14 @@ namespace CavesOfOoo.Tests
 
             var result = InventorySystem.ExecuteCommand(new DisassembleCommand(knife), player);
 
+            // Fallback path yields the same strict lossy subset as
+            // TinkerItem items — see TinkeringServiceTests
+            // .Disassemble_MeleeWeaponWithoutTinkerItem_UsesBuildRecipeCost
+            // which pins the identical PlainKnife scenario one layer down.
             Assert.IsTrue(result.Success, result.ErrorMessage);
             Assert.AreEqual(0, inventory.Objects.Count);
             Assert.AreEqual(1, bits.GetBitCount('B'));
-            Assert.AreEqual(1, bits.GetBitCount('R'));
+            Assert.AreEqual(0, bits.GetBitCount('R'));
         }
 
         [Test]
