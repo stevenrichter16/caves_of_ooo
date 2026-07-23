@@ -1,4 +1,5 @@
 using System;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -110,6 +111,30 @@ namespace CavesOfOoo.Core
                     MessageLog.Add(
                         ParentEntity.GetDisplayName() + " " + ImpactVerb + " " +
                         target.GetDisplayName() + " for " + actualDamage + " damage!");
+
+                    // Docs/THROWN-MUTATION-COMBAT-PLAN.md SM7/D10. Distinct
+                    // kind from HitRoll/Penetration -- those imply an accuracy
+                    // gate that doesn't exist for mutations (guaranteed hit
+                    // if traced). Captures what a "why didn't my fire bolt
+                    // hurt them?" debugging session needs: which mutation,
+                    // the raw dice expression + roll, the element attribute,
+                    // and what actually landed after resistance/skill bonus.
+                    if (Diag.IsChannelEnabled("damage"))
+                    {
+                        Diag.Record(
+                            category: "damage",
+                            kind: "MutationDamage",
+                            actor: ParentEntity,
+                            target: target,
+                            payload: new
+                            {
+                                mutationClass = GetType().Name,
+                                diceRolled = DamageDice,
+                                rawRoll = damage,
+                                elementAttribute = ElementAttribute,
+                                actualDamage = actualDamage
+                            });
+                    }
                 }
 
                 if (target.GetStatValue("Hitpoints", 0) > 0)

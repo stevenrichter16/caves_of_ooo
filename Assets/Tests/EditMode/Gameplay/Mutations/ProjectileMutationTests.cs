@@ -1,6 +1,7 @@
 using System;
 using NUnit.Framework;
 using CavesOfOoo.Core;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Tests
 {
@@ -11,6 +12,7 @@ namespace CavesOfOoo.Tests
         {
             AsciiFxBus.Clear();
             MessageLog.Clear();
+            Diag.ResetAll();
         }
 
         [Test]
@@ -222,6 +224,48 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(20 - rawRoll, hpAfter);
             Assert.IsTrue(MessageLog.GetMessages().Exists(m => m.Contains($"for {rawRoll} damage")),
                 $"Messages: {string.Join(" | ", MessageLog.GetMessages())}");
+        }
+
+        [Test]
+        public void FireBolt_Cast_EmitsMutationDamageDiag_WithMutationClassDiceElementAndActualAmount()
+        {
+            // Docs/THROWN-MUTATION-COMBAT-PLAN.md SM7/D10. A dedicated
+            // category="damage" kind="MutationDamage" record -- distinct
+            // from HitRoll/Penetration, which imply an accuracy gate that
+            // doesn't exist for mutations. Payload must carry enough for
+            // "why didn't my fire bolt hurt them?" debugging: which
+            // mutation, what dice, what element, what actually landed.
+            var zone = new Zone("ProjectileZone");
+            var caster = CreateCreatureWithMutationSupport();
+            var target = CreateCreature("snapjaw", 20);
+            target.Statistics["HeatResistance"] = new Stat
+            {
+                Name = "HeatResistance", BaseValue = 50, Min = -100, Max = 100
+            };
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(target, 7, 5);
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new FireBoltMutation(), 1);
+            var fireBolt = mutations.GetMutation<FireBoltMutation>();
+
+            int rawRoll = DiceRoller.Roll("2d4", new Random(42));
+            int expectedActual = rawRoll / 2; // 50% HeatResistance, matches ApplyResistanceFor's formula
+
+            bool cast = fireBolt.Cast(zone, zone.GetCell(5, 5), 1, 0, new Random(42));
+
+            Assert.IsTrue(cast);
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "damage", Kind = "MutationDamage", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"mutationClass\":\"FireBoltMutation\"", recs[0].PayloadJson);
+            StringAssert.Contains("\"diceRolled\":\"2d4\"", recs[0].PayloadJson);
+            StringAssert.Contains($"\"rawRoll\":{rawRoll}", recs[0].PayloadJson);
+            StringAssert.Contains("\"elementAttribute\":\"Fire\"", recs[0].PayloadJson);
+            StringAssert.Contains($"\"actualDamage\":{expectedActual}", recs[0].PayloadJson);
+            Assert.AreEqual(caster.ID, recs[0].ActorId);
+            Assert.AreEqual(target.ID, recs[0].TargetId);
         }
 
         [Test]
