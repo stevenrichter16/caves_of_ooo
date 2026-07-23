@@ -299,6 +299,68 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void GatherMeleeWeapons_NeitherHandFlaggedPrimary_FirstSortedWeaponForcedPrimary()
+        {
+            // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM13/E3 -- pins the
+            // "at least one weapon must always be primary" force-branch
+            // (GatherMeleeWeapons's `if (!result[0].IsPrimary) result[0].IsPrimary = true;`).
+            // This is the one in-place-mutation call site at risk when
+            // WeaponSlot converts from class to struct: with a struct,
+            // `result[0].IsPrimary = true` no longer compiles as a direct
+            // list-indexer mutation and must become a read-modify-write.
+            // If that rewrite silently dropped the force, NEITHER hand would
+            // be guaranteed to swing every turn -- both would be subject to
+            // the off-hand chance roll instead of one being guaranteed primary.
+            var zone = new Zone();
+            var attacker = CreateCreatureWithBody();
+            zone.AddEntity(attacker, 5, 5);
+
+            var hands = GetHands(attacker);
+            Assert.AreEqual(2, hands.Count);
+            hands[0].Primary = false;
+            hands[0].DefaultPrimary = false;
+            hands[1].Primary = false;
+            hands[1].DefaultPrimary = false;
+
+            var weaponA = CreateWeapon("forced_primary_mace", "1d6", penBonus: 2);
+            var weaponB = CreateWeapon("possibly_offhand_knife", "1d4", penBonus: 1);
+            var inv = attacker.GetPart<InventoryPart>();
+            inv.EquipToBodyPart(weaponA, hands[0]);
+            inv.EquipToBodyPart(weaponB, hands[1]);
+
+            var defender = CreateCreatureWithBody();
+            zone.AddEntity(defender, 6, 5);
+
+            // The body-part-tree-first weapon (hands[0]'s) must attack on
+            // EVERY trial, since one slot is always forced primary and a
+            // primary hand always attempts (never subject to the off-hand
+            // chance roll). The other hand attacks only some trials.
+            int trials = 15;
+            int forcedPrimaryHits = 0;
+            int otherHandHits = 0;
+            for (int seed = 0; seed < trials; seed++)
+            {
+                MessageLog.Clear();
+                defender.GetStat("Hitpoints").BaseValue = 50;
+                CombatSystem.PerformMeleeAttack(attacker, defender, zone, new Random(seed));
+                var msgs = MessageLog.GetRecent(20);
+                bool sawForced = false, sawOther = false;
+                foreach (var msg in msgs)
+                {
+                    if (msg.Contains("forced_primary_mace")) sawForced = true;
+                    if (msg.Contains("possibly_offhand_knife")) sawOther = true;
+                }
+                if (sawForced) forcedPrimaryHits++;
+                if (sawOther) otherHandHits++;
+            }
+
+            Assert.AreEqual(trials, forcedPrimaryHits,
+                "One hand MUST be forced primary and attack every trial when neither hand is flagged");
+            Assert.Less(otherHandHits, trials,
+                "The other hand must be gated by the off-hand chance roll, not also guaranteed");
+        }
+
+        [Test]
         public void GatherMeleeWeapons_NoEquipped_FallsBackToDefaultBehavior()
         {
             // Empty hands: PerformBodyPartAwareAttack with no weapons → punch path,

@@ -618,9 +618,16 @@ namespace CavesOfOoo.Core
                 return 0;
             });
 
-            // If we found weapons, ensure at least one is marked primary
+            // If we found weapons, ensure at least one is marked primary.
+            // WeaponSlot is a struct (SM13/E3) -- list-indexer mutation isn't
+            // a variable, so this is a read-modify-write instead of an
+            // in-place field set.
             if (result.Count > 0 && !result[0].IsPrimary)
-                result[0].IsPrimary = true;
+            {
+                var forcedPrimary = result[0];
+                forcedPrimary.IsPrimary = true;
+                result[0] = forcedPrimary;
+            }
 
             return result;
         }
@@ -1578,8 +1585,11 @@ namespace CavesOfOoo.Core
 
         /// <summary>
         /// Tracks a weapon and which body part it's on for multi-weapon combat.
+        /// Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM13/E3: struct (was class)
+        /// to avoid a heap allocation per weapon slot on every melee attack --
+        /// short-lived, value-copied data with no identity semantics needed.
         /// </summary>
-        private class WeaponSlot
+        private struct WeaponSlot
         {
             public MeleeWeaponPart Weapon;
             public BodyPart BodyPart;
