@@ -244,6 +244,85 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
+        // 6. Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM6/A4 -- already-dead
+        //    defender must not dismember or re-fire HandleDeath
+        // ====================================================================
+
+        [Test]
+        public void CheckCombatDismemberment_AlreadyDeadDefender_DoesNotDismemberOrFireEvent()
+        {
+            // Simulates the concrete, currently-shippable trigger: an on-hit
+            // item enhancement (EnhancementTagBonusBase-backed
+            // EnhancementPaleSalt/EnhancementChoirIron) independently kills
+            // the defender via a synchronous bonus-damage ApplyDamage call
+            // earlier in the SAME attack's on-hit dispatch block, before
+            // CheckCombatDismemberment runs. Dismembering a corpse would log
+            // a nonsensical "X's arm is severed!" message, drop a duplicate
+            // severed limb, and (for a Mortal part) re-invoke HandleDeath.
+            var defender = MakeFighterWithBody(hp: 100);
+            var hand = GetHand(defender, primary: false);
+            int handsBefore = defender.GetPart<Body>().CountParts("Hand");
+            int eventFires = 0;
+            defender.AddPart(new EventCaptureProbe
+            {
+                OnEvent = e => { if (e.ID == "CanBeDismembered") eventFires++; }
+            });
+
+            defender.SetStatValue("Hitpoints", 0); // already dead before this runs
+
+            CombatSystem.CheckCombatDismemberment(
+                defender, defender.GetPart<Body>(), hand, defender.GetStat("Hitpoints").Max * 2,
+                zone: null, rng: new Random(1));
+
+            int handsAfter = defender.GetPart<Body>().CountParts("Hand");
+            Assert.AreEqual(handsBefore, handsAfter,
+                "An already-dead defender's body part must not be dismembered.");
+            Assert.AreEqual(0, eventFires,
+                "CanBeDismembered must not even fire for an already-dead defender.");
+        }
+
+        [Test]
+        public void Dismember_MortalPart_OnAlreadyDeadEntity_DoesNotReFireHandleDeath()
+        {
+            // End-to-end complement to the synthetic
+            // HandleDeath_CalledTwiceOnSameTarget_SecondCallIsNoOp test --
+            // this goes through the REAL Body.Dismember path (the actual
+            // production trigger), not a direct double-call.
+            var zone = new Zone();
+            var creature = MakeFighterWithBody(hp: 30);
+            zone.AddEntity(creature, 5, 5);
+            MessageLog.Clear();
+
+            CombatSystem.HandleDeath(creature, null, zone); // first, legitimate death
+            int messagesAfterFirstDeath = MessageLog.GetMessages().Count;
+            Assert.Greater(messagesAfterFirstDeath, 0, "sanity: the first death must log a message.");
+
+            var body = creature.GetPart<Body>();
+            BodyPart mortalPart = null;
+            foreach (var p in body.GetParts())
+            {
+                if (p.Type == "Head") { mortalPart = p; break; }
+            }
+            Assert.IsNotNull(mortalPart, "test setup: humanoid must have a Head part.");
+            Assert.IsTrue(mortalPart.Mortal, "test setup: Head must be Mortal.");
+
+            body.Dismember(mortalPart, zone);
+
+            // Dismember still logs its own "severed" message (+1), but must
+            // NOT re-fire the full HandleDeath kill lifecycle (no duplicate
+            // "is killed by" message -- HandleDeath's own guard makes the
+            // second invocation from Body.Dismember's Mortal-part branch a
+            // no-op).
+            var messagesAfter = MessageLog.GetMessages();
+            int killMessageCount = 0;
+            foreach (var m in messagesAfter)
+                if (m.Contains("is killed by")) killMessageCount++;
+            Assert.AreEqual(1, killMessageCount,
+                "Exactly one 'is killed by' message must exist across both HandleDeath invocations -- "
+                + "the second (via Body.Dismember) must be a no-op, not a duplicate kill.");
+        }
+
+        // ====================================================================
         // Helpers
         // ====================================================================
 

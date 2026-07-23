@@ -1070,12 +1070,32 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// Sentinel tag marking an entity's death lifecycle as already
+        /// processed. Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM6/A4 --
+        /// re-entrancy guard mirroring ApplyDamage's already-dead guard.
+        /// Body.Dismember can invoke HandleDeath a SECOND time on the same
+        /// target: an on-hit item enhancement (EnhancementPaleSalt/
+        /// EnhancementChoirIron's bonus damage, dispatched earlier in the
+        /// same attack's on-hit block) can independently kill the defender;
+        /// PerformSingleAttack's stale hpAfter>0 gate then still reaches
+        /// CheckCombatDismemberment, whose chance roll can hit a Mortal part
+        /// and unconditionally re-invoke HandleDeath via Body.Dismember --
+        /// duplicate XP award, duplicate loot drop, duplicate Died event,
+        /// duplicate witness broadcast. No resurrection mechanic exists in
+        /// this codebase, so a permanent per-entity marker is safe.
+        /// </summary>
+        private const string DEATH_HANDLED_TAG = "_DeathHandled";
+
+        /// <summary>
         /// Handle entity death: drop loot, fire Died event, remove from zone.
         /// Mirrors Qud's BeforeDeathRemovalEvent: equipment and inventory drop
         /// to the ground before the entity is removed.
         /// </summary>
         public static void HandleDeath(Entity target, Entity killer, Zone zone)
         {
+            if (target.Tags.ContainsKey(DEATH_HANDLED_TAG)) return;
+            target.Tags[DEATH_HANDLED_TAG] = "";
+
             string targetName = target.GetDisplayName();
             string killerName = killer?.GetDisplayName() ?? "something";
             MessageLog.Add($"{targetName} is killed by {killerName}!");
@@ -1321,6 +1341,15 @@ namespace CavesOfOoo.Core
         public static void CheckCombatDismemberment(Entity defender, Body body,
             BodyPart hitPart, int damage, Zone zone, Random rng)
         {
+            // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM6/A4. An on-hit item
+            // enhancement dispatched earlier in the same attack's on-hit
+            // block (e.g. EnhancementPaleSalt/EnhancementChoirIron's bonus
+            // damage) can independently kill the defender before this runs --
+            // dismembering an already-dead target would still unequip/drop a
+            // severed limb and log a nonsensical message, and (for a Mortal
+            // part) re-invoke HandleDeath via Body.Dismember.
+            if (defender.GetStatValue("Hitpoints", 0) <= 0) return;
+
             if (!hitPart.IsSeverable()) return;
 
             float threshold = DISMEMBER_DAMAGE_THRESHOLD;

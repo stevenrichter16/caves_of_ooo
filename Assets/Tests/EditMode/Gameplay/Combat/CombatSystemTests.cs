@@ -493,6 +493,36 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void HandleDeath_CalledTwiceOnSameTarget_SecondCallIsNoOp()
+        {
+            // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM6/A4. Body.Dismember
+            // can invoke HandleDeath a SECOND time on the same target: an
+            // on-hit item enhancement (EnhancementPaleSalt/EnhancementChoirIron's
+            // bonus damage, dispatched inside the same attack's on-hit block)
+            // can independently kill the defender; PerformSingleAttack's
+            // stale hpAfter>0 gate then still reaches CheckCombatDismemberment,
+            // whose chance roll can hit a Mortal part and unconditionally
+            // re-invoke HandleDeath via Body.Dismember -- duplicate XP award,
+            // duplicate loot drop, duplicate Died event, duplicate witness
+            // broadcast. A guarded second call must be a complete no-op.
+            var zone = new Zone();
+            var creature = CreateCreature(16, 16, 30);
+            creature.AddPart(new InventoryPart { MaxWeight = 150 });
+            zone.AddEntity(creature, 5, 5);
+            MessageLog.Clear();
+
+            CombatSystem.HandleDeath(creature, null, zone);
+            int messageCountAfterFirst = MessageLog.GetMessages().Count;
+            Assert.Greater(messageCountAfterFirst, 0, "sanity: the first call must log the kill message.");
+
+            Assert.DoesNotThrow(() => CombatSystem.HandleDeath(creature, null, zone),
+                "a second call must not crash even though the entity is already removed from the zone.");
+            Assert.AreEqual(messageCountAfterFirst, MessageLog.GetMessages().Count,
+                "second HandleDeath call must not add a duplicate 'is killed by' message -- "
+                + "it must be a complete no-op.");
+        }
+
+        [Test]
         public void HandleDeath_DropsEquipmentAndInventory()
         {
             var zone = new Zone();
