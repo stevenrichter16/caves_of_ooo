@@ -37,6 +37,9 @@ namespace CavesOfOoo.Core
         // making 15% Bludgeoning hooks feel too punishing.
         public const int BLUDGEONING_STUN_DURATION = 2;
 
+        /// <summary>Stun save DC: 1d20 + Toughness mod vs this, per turn.</summary>
+        public const int BLUDGEONING_STUN_SAVE_TARGET = 16;
+
         // ---- Cutting → Bleeding ----
         public const int CUTTING_BLEED_CHANCE_PERCENT = 25;
         public const int CUTTING_BLEED_SAVE_TARGET = 15;
@@ -87,7 +90,11 @@ namespace CavesOfOoo.Core
         private static void TryApplyStunned(Entity defender, Entity source, Zone zone, Random rng)
         {
             if (rng.Next(100) >= BLUDGEONING_STUN_CHANCE_PERCENT) return;
-            defender.ApplyEffect(new StunnedEffect(BLUDGEONING_STUN_DURATION), source, zone);
+            // Toughness save each turn to shake off early (user-directed,
+            // 2026-07-19); the duration stays the hard ceiling.
+            defender.ApplyEffect(
+                new StunnedEffect(BLUDGEONING_STUN_DURATION, BLUDGEONING_STUN_SAVE_TARGET, rng),
+                source, zone);
         }
 
         private static void TryApplyBleeding(Entity defender, Entity source, Zone zone, Random rng)

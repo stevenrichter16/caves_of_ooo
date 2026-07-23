@@ -65,7 +65,10 @@ namespace CavesOfOoo.Core
 
                 // --- control / combat afflictions ---
                 case StunnedEffect st:
-                    return "Stunned - can't act" + ForTurns(st.Duration) + ".";
+                    return st.SaveTarget > 0
+                        ? "Stunned - can't act" + ForTurns(st.Duration)
+                            + " (Toughness may shake it off, save " + st.SaveTarget + ")."
+                        : "Stunned - can't act" + ForTurns(st.Duration) + ".";
                 case ParalyzedEffect pz:
                     return "Paralyzed - can't move or act" + ForTurns(pz.Duration) + ".";
                 case ConfusedEffect cf:

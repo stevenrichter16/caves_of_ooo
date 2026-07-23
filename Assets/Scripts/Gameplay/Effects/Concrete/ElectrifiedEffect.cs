@@ -15,6 +15,12 @@ namespace CavesOfOoo.Core
         /// <summary>Joules-equivalent charge. Higher = longer chain and stronger zap.</summary>
         public float Charge;
 
+        /// <summary>Contact-stun ceiling (turns); Toughness saves shorten it.</summary>
+        public const int CONTACT_STUN_DURATION = 2;
+
+        /// <summary>Contact-stun save DC: 1d20 + Toughness mod vs this, per turn.</summary>
+        public const int CONTACT_STUN_SAVE_TARGET = 16;
+
         public ElectrifiedEffect(float charge = 1.0f)
         {
             Charge = charge < 0f ? 0f : charge;
@@ -51,10 +57,18 @@ namespace CavesOfOoo.Core
                 Duration += 1;
             }
 
-            // Stun creatures briefly on contact. Non-creatures (props) ignore the stun
+            // Stun creatures on contact. Non-creatures (props) ignore the stun
             // but still carry the Electrified state for propagation.
+            // User-directed retune (2026-07-19): 2-turn ceiling with a
+            // Toughness save each turn to shake it off early — tough
+            // creatures recover fast, frail ones convulse the full ride.
+            // Fires on APPLY only (not per tick), so no stun-lock.
             if (target.HasTag("Creature"))
-                target.ApplyEffect(new StunnedEffect(duration: 1), null, null);
+            {
+                target.ApplyEffect(new StunnedEffect(
+                    duration: CONTACT_STUN_DURATION,
+                    saveTarget: CONTACT_STUN_SAVE_TARGET), null, null);
+            }
         }
 
         /// <summary>
