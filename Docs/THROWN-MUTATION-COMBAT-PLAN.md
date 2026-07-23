@@ -2,11 +2,12 @@
 
 > Living plan for fixing the gap `COMBAT-SYSTEM-AUDIT-2026-07.md` §1 flagged as
 > the single highest-leverage finding: thrown weapons and mutation/spell
-> line-attacks bypass the combat depth melee gets. **Plan only — nothing
-> implemented yet.** Sub-milestones execute in order once this plan is
-> confirmed.
+> line-attacks bypass the combat depth melee gets.
 
-**Status:** 📋 PLANNED, NOT STARTED.
+**Status:** ✅ SHIPPED, 2026-07-22. All sub-milestones (SM1-SM7, SM5b, SM5c,
+SM11) landed, individually committed, adversarial sweep complete (17
+tests, 0 production bugs — see §4.1). D12 (mutation area-of-effect
+widening) remains explicitly deferred/out-of-scope per §5.
 **Origin:** user directive, 2026-07-22 — "fix and amend the lack of depth for
 thrown weapons and mutations... create a comprehensive plan."
 **Verification method:** a 6-agent read-only research pass (exact current
@@ -467,6 +468,66 @@ SM5b (retaliation):
   `ThrowPenetration`, `MutationDamage`) need "fires exactly once per
   landed hit, never on a miss/veto" pins, matching the existing melee
   diag contract tests' shape.
+
+### 4.1 Results — 2026-07-22
+
+**`Assets/Tests/EditMode/Gameplay/Combat/ThrownMutationCombatAdversarialTests.cs`,
+17 tests, 0 production bugs found on first pass (1 test-authoring bug
+caught and fixed in the same pass — a duplicate `ArmorPart` add that
+`GetPart&lt;ArmorPart&gt;()` silently ignored, an adversarial-sweep-catches-
+adversarial-sweep-bugs moment, not a production finding).**
+
+Surfaces covered, grouped by taxonomy row:
+- **RNG/probability boundaries:** Agility=3 exact-third (statistical),
+  Agility=0 (deterministic "1d0" edge, no crash).
+- **Thrown penetration/AV wiring (SM5c, zero prior coverage):**
+  `MaxStrengthBonus` genuinely caps Strength's contribution but not the
+  weapon's own `PenBonus`; improvised (no-`MeleeWeaponPart`) throws are
+  never accidentally capped; a **Body-having target** exercises
+  `SelectHitLocation`/`GetPartAV` for the first time in this whole
+  feature (every SM1-SM5c test before this used the Body-less
+  `TargetDummy`/`CreateTargetDummy` fixture) — passes clean.
+- **Mutation edge cases:** 100%-resistance zeroes `actualDamage` and the
+  log/diag correctly show 0 (not the stale raw roll, not silence);
+  `Spellcraft_Empower`'s +2 flat bonus is genuinely reflected in the
+  SM6 message-log fix and the SM7 diag — the previously-untested other
+  half of SM6's own "closes both discrepancies" claim; `mutationClass`
+  diag field genuinely reflects `GetType().Name` per concrete subclass.
+- **Cross-system integration (the highest-value category):** real
+  `ThrowItemCommand`/`Cast()` production pipelines — not just the
+  synthetic `ApplyDamage(int,...)` calls `RetaliationHookTests.cs` used
+  — provoke retaliation end-to-end, including on a lethal thrown blow;
+  a thrown/mutation hit that deals **zero landed damage** (fails to
+  penetrate armor, or is 100%-resisted) does **not** provoke retaliation,
+  confirmed as consistent with D13's explicit "damage-landed-time, not
+  attack-attempt-time" design rather than a gap.
+- **Diag emission contracts:** tonic throws never emit either new kind
+  (properly scoped to the plain-damage path only); a miss emits
+  `ThrowHitRoll` but never `ThrowPenetration`; a hit emits both, exactly
+  once each.
+
+**Corroborated, NOT fixed here (explicitly out of this feature's scope
+— already named in the user's separately-authorized upcoming
+audit-findings bug-fix plan):** `CombatSystem.GetPartAV`
+(`CombatSystem.cs:1275-1292`) has neither the `ShatterArmorEffect`
+subtraction nor the `Math.Max(0, ...)` non-negative clamp that
+`CombatSystem.GetAV` applies — a real, **pre-existing** Q1-symmetry gap
+that already affected melee against Body-having, Shattered-armor
+targets before this feature existed. SM5c's thrown-weapon damage-
+severity fix now *also* routes through `GetPartAV` for Body-having
+targets, inheriting the same gap (does not introduce a new one). This
+is the exact "ShatterArmorEffect/GetPartAV bug" already on the next
+phase's fix list — flagged here for cross-reference, left unfixed in
+this commit to avoid scope creep into that separately-scoped plan.
+
+**Honesty bound:** 0 bugs found does not prove the feature is bug-free
+— these 17 tests are bounded by the hypotheses this author generated.
+Two genuine gaps (D3 Layer 3 / damage severity, D7 diag) were already
+found and fixed earlier in this same session, during ordinary
+verification-sweep reading rather than this dedicated adversarial
+pass — the adversarial pass's honest contribution here is confirming
+those fixes hold under boundary/cross-system probing, plus creating
+permanent regression infrastructure, not discovering further bugs.
 
 ## 5. Open decisions
 
