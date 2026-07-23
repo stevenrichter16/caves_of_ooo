@@ -197,8 +197,18 @@ namespace CavesOfOoo.Core.Inventory.Commands
                         if (thrownWeaponPart != null && !string.IsNullOrEmpty(thrownWeaponPart.Attributes))
                             thrownDamage.AddAttributes(thrownWeaponPart.Attributes);
 
-                        MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()} at {hitTarget.GetDisplayName()} for {rawDamage} damage!");
+                        // SM2/D5: log the TRUE post-resistance landed damage
+                        // (hpBefore/hpAfter delta), mirroring melee's fix at
+                        // CombatSystem.cs:378-399 -- rawDamage is the
+                        // pre-resistance dice roll and would misreport the
+                        // number on any resistant target ("the HP bar told
+                        // the truth, the log lied").
+                        int hpBefore = hitTarget.GetStatValue("Hitpoints", 0);
                         CombatSystem.ApplyDamage(hitTarget, thrownDamage, actor, zone);
+                        int hpAfter = hitTarget.GetStatValue("Hitpoints", 0);
+                        int actualDamage = Math.Max(0, hpBefore - hpAfter);
+
+                        MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()} at {hitTarget.GetDisplayName()} for {actualDamage} damage!");
                     }
 
                     landingCell = trace.ImpactCell;

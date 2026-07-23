@@ -685,6 +685,38 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void ThrowItemCommand_Execute_ResistedHit_LogsActualPostResistanceDamage()
+        {
+            // Docs/THROWN-MUTATION-COMBAT-PLAN.md SM2/D5: mirror melee's
+            // hpBefore/hpAfter fix (CombatSystem.cs:378-399) -- the log
+            // must show the true landed damage (1), not the raw pre-
+            // resistance dice roll (3).
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 20);
+            zone.AddEntity(actor, 5, 5);
+
+            var weapon = CreateThrowableWeapon("1d1", 0);
+            weapon.GetPart<MeleeWeaponPart>().Attributes = "Fire";
+            actor.GetPart<InventoryPart>().AddObject(weapon);
+
+            var target = CreateTargetDummy(20);
+            target.Statistics["HeatResistance"] = new Stat
+            {
+                Name = "HeatResistance", BaseValue = 50, Min = -100, Max = 100
+            };
+            zone.AddEntity(target, 7, 5);
+            MessageLog.Clear();
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(weapon, 7, 5), actor, zone);
+
+            Assert.IsTrue(result.Success, result.ErrorMessage);
+            StringAssert.Contains("for 1 damage", MessageLog.GetLast(),
+                "log must report the true post-resistance damage (1), not the raw pre-resistance roll (3)");
+        }
+
+        [Test]
         public void ThrowItemCommand_Execute_NoResistanceStat_TakesFullDamage()
         {
             // Counter-check: the fix must not silently reduce ALL thrown
