@@ -1051,18 +1051,18 @@ namespace CavesOfOoo.Tests
             e.ApplyEffect(new PoisonedEffect(5));
 
             var sep = e.GetPart<StatusEffectsPart>();
-            Assert.AreEqual("&G", sep.GetRenderColorOverride());
+            Assert.AreEqual("&*G", sep.GetRenderColorOverride());
         }
 
         [Test]
         public void Effect_FirstEffectColorWins()
         {
             var e = CreateCreature();
-            e.ApplyEffect(new PoisonedEffect(5)); // &G
+            e.ApplyEffect(new PoisonedEffect(5)); // &*G
             e.ApplyEffect(new BurningEffect(intensity: 1.0f));   // &R
 
             var sep = e.GetPart<StatusEffectsPart>();
-            Assert.AreEqual("&G", sep.GetRenderColorOverride(), "First effect's color should take priority");
+            Assert.AreEqual("&*G", sep.GetRenderColorOverride(), "First effect's color should take priority");
         }
 
         [Test]
