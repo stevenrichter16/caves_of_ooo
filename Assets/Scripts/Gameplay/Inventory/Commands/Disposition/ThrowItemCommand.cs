@@ -183,11 +183,22 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 }
                 else
                 {
-                    int damage = GetThrownDamage(actor, itemToThrow, strengthBonus, rng);
-                    if (damage > 0)
+                    int rawDamage = GetThrownDamage(actor, itemToThrow, strengthBonus, rng);
+                    if (rawDamage > 0)
                     {
-                        MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()} at {hitTarget.GetDisplayName()} for {damage} damage!");
-                        CombatSystem.ApplyDamage(hitTarget, damage, actor, zone);
+                        // SM1/D1 (Docs/THROWN-MUTATION-COMBAT-PLAN.md): wrap in
+                        // a real, attribute-tagged Damage object (parallel to
+                        // melee's CombatSystem.cs "Melee"/weapon.Attributes
+                        // tagging) instead of the raw-int ApplyDamage overload,
+                        // so ApplyResistances actually runs for thrown weapons.
+                        var thrownDamage = new Damage(rawDamage);
+                        thrownDamage.AddAttribute("Thrown");
+                        var thrownWeaponPart = itemToThrow.GetPart<MeleeWeaponPart>();
+                        if (thrownWeaponPart != null && !string.IsNullOrEmpty(thrownWeaponPart.Attributes))
+                            thrownDamage.AddAttributes(thrownWeaponPart.Attributes);
+
+                        MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()} at {hitTarget.GetDisplayName()} for {rawDamage} damage!");
+                        CombatSystem.ApplyDamage(hitTarget, thrownDamage, actor, zone);
                     }
 
                     landingCell = trace.ImpactCell;

@@ -649,6 +649,96 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void ThrowItemCommand_Execute_FireAttributedWeapon_RespectsTargetHeatResistance()
+        {
+            // Thrown-combat depth plan (Docs/THROWN-MUTATION-COMBAT-PLAN.md)
+            // SM1/D1: thrown damage must be a real, attribute-tagged Damage
+            // object so ApplyResistances actually runs — today's raw-int
+            // ApplyDamage overload wraps a zero-attribute Damage, so a
+            // thrown Fire weapon deals fully unresisted flat damage
+            // regardless of the target's HeatResistance. This is the RED
+            // test: Strength 20 (+2 mod) + "1d1" base = 3 damage pre-resist;
+            // 50% HeatResistance must truncate that to 1 (3*0.5=1.5 -> 1).
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 20);
+            zone.AddEntity(actor, 5, 5);
+
+            var weapon = CreateThrowableWeapon("1d1", 0);
+            weapon.GetPart<MeleeWeaponPart>().Attributes = "Fire";
+            actor.GetPart<InventoryPart>().AddObject(weapon);
+
+            var target = CreateTargetDummy(20);
+            target.Statistics["HeatResistance"] = new Stat
+            {
+                Name = "HeatResistance", BaseValue = 50, Min = -100, Max = 100
+            };
+            zone.AddEntity(target, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(weapon, 7, 5), actor, zone);
+
+            Assert.IsTrue(result.Success, result.ErrorMessage);
+            Assert.AreEqual(19, target.GetStatValue("Hitpoints"),
+                "50% HeatResistance must reduce the 3-damage Fire throw to 1 (19 HP left of 20) " +
+                "-- today's raw-int ApplyDamage bypasses resistance entirely, leaving 17.");
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_NoResistanceStat_TakesFullDamage()
+        {
+            // Counter-check: the fix must not silently reduce ALL thrown
+            // damage -- a target with no HeatResistance stat at all takes
+            // the full 3 damage, proving resistance is genuinely read from
+            // the target, not just hard-coded away.
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 20);
+            zone.AddEntity(actor, 5, 5);
+
+            var weapon = CreateThrowableWeapon("1d1", 0);
+            weapon.GetPart<MeleeWeaponPart>().Attributes = "Fire";
+            actor.GetPart<InventoryPart>().AddObject(weapon);
+
+            var target = CreateTargetDummy(20);
+            zone.AddEntity(target, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(weapon, 7, 5), actor, zone);
+
+            Assert.IsTrue(result.Success, result.ErrorMessage);
+            Assert.AreEqual(17, target.GetStatValue("Hitpoints"),
+                "no HeatResistance stat present -> full 3 damage lands unresisted");
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_ImprovisedItem_HasNoAttributes_StillDealsFullDamage()
+        {
+            // Counter-check: an improvised (non-MeleeWeaponPart) thrown
+            // item has no Attributes to copy -- the Damage-object fix must
+            // not accidentally zero out or crash on items with no weapon
+            // part at all. Mirrors the existing improvised-weight test's
+            // fixture but re-asserted after the SM1 change.
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 18);
+            zone.AddEntity(actor, 5, 5);
+
+            var item = CreateHandledItem(physicsWeight: 6);
+            actor.GetPart<InventoryPart>().AddObject(item);
+
+            var target = CreateTargetDummy(10);
+            zone.AddEntity(target, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(item, 7, 5), actor, zone);
+
+            Assert.IsTrue(result.Success, result.ErrorMessage);
+            Assert.AreEqual(6, target.GetStatValue("Hitpoints"),
+                "improvised throw (weight 6 -> 3 dmg + strength mod 1 = 4) still lands unresisted, unchanged by SM1");
+        }
+
+        [Test]
         public void ThrowItemCommand_Execute_UsesImprovisedWeightDamage()
         {
             var zone = new Zone();
