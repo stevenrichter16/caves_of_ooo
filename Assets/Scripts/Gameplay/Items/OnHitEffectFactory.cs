@@ -67,8 +67,18 @@ namespace CavesOfOoo.Core
 
                 case "stunned":
                 case "stun":
+                    // Use Magnitude as the save-target DC, mirroring the
+                    // Bleeding case immediately below (same bug class, same
+                    // fix): a future "Stunned,20,,2,16" spec expects 16 to
+                    // be the save DC, matching the spec format's own
+                    // canonical docstring example
+                    // ("Burning,30,,5,1.0;Stunned,5,,1,0"). Default 0 keeps
+                    // every existing blueprint's deterministic/unsaveable
+                    // stun unchanged.
                     return new StunnedEffect(
-                        duration: spec.DurationTurns > 0 ? spec.DurationTurns : 1);
+                        duration: spec.DurationTurns > 0 ? spec.DurationTurns : 1,
+                        saveTarget: spec.Magnitude > 0f ? (int)spec.Magnitude : 0,
+                        rng: rng);
 
                 case "bleeding":
                 case "bleed":

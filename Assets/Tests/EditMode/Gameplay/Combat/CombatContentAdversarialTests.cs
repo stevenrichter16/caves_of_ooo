@@ -612,6 +612,45 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void OnHitEffectFactory_StunnedSpec_UsesMagnitude_AsSaveTarget()
+        {
+            // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM4/C2. The exact same
+            // bug class as OnHitEffectFactory_BleedingSpec_UsesMagnitude_
+            // NotDurationAsSaveTarget above, three lines down in the same
+            // switch, never fixed: the "stunned" case only ever forwards
+            // Duration, silently dropping Magnitude -- so a future weapon
+            // blueprint authoring "Stunned,20,,2,16" (intending a DC-16
+            // saveable stun, mirroring how Bleeding specs use Magnitude)
+            // gets a fully deterministic, unsaveable stun instead, silently.
+            //
+            // Spec format: EffectName,Chance,Dice,Duration,Magnitude
+            var spec = OnHitEffectSpec.Parse("Stunned,20,,2,16")[0];
+            var effect = OnHitEffectFactory.Create(spec, source: null, rng: new Random(1)) as StunnedEffect;
+            Assert.IsNotNull(effect, "factory must create StunnedEffect for spec");
+            Assert.AreEqual(2, effect.Duration, "sanity: DurationTurns still wires correctly.");
+            Assert.AreEqual(16, effect.SaveTarget,
+                "Stunned's saveTarget must come from Magnitude (16), matching the Bleeding case's "
+                + "already-fixed pattern. Pre-fix the factory never read Magnitude at all -> saveTarget "
+                + "silently stayed 0 (deterministic/unsaveable) regardless of the authored spec.");
+        }
+
+        [Test]
+        public void OnHitEffectFactory_StunnedSpec_NoMagnitude_DefaultsToDeterministic()
+        {
+            // Counter-check: a spec with no Magnitude (the common case --
+            // every current in-game weapon blueprint using "Stunned" in
+            // OnHitEffectsRaw omits Magnitude) must still produce the
+            // existing deterministic (saveTarget=0) behavior, not some
+            // new default that would change today's shipped content.
+            var spec = OnHitEffectSpec.Parse("Stunned,20,,2,0")[0];
+            var effect = OnHitEffectFactory.Create(spec, source: null, rng: new Random(1)) as StunnedEffect;
+            Assert.IsNotNull(effect);
+            Assert.AreEqual(0, effect.SaveTarget,
+                "No Magnitude specified -> saveTarget stays 0 (deterministic), matching pre-fix "
+                + "behavior for every existing blueprint.");
+        }
+
+        [Test]
         public void OnHitEffectFactory_UnknownEffectName_ReturnsNull()
         {
             var spec = new OnHitEffectSpec
