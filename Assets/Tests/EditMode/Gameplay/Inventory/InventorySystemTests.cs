@@ -770,6 +770,120 @@ namespace CavesOfOoo.Tests
                 "improvised throw (weight 6 -> 3 dmg + strength mod 1 = 4) still lands unresisted, unchanged by SM1");
         }
 
+        /// <summary>Deterministic test double: always fires, no chance roll,
+        /// so dispatch-wiring tests don't depend on RNG luck.</summary>
+        private sealed class AlwaysFiresEnhancement : IItemEnhancement
+        {
+            public bool Fired;
+            public Entity LastDefender;
+            public int LastActualDamage;
+
+            public override void OnAttackerHit(
+                Entity defender, Entity attacker, Damage damage,
+                int actualDamage, Zone zone, Random rng)
+            {
+                Fired = true;
+                LastDefender = defender;
+                LastActualDamage = actualDamage;
+            }
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_DispatchesItemEnhancementOnHit()
+        {
+            // Docs/THROWN-MUTATION-COMBAT-PLAN.md SM3/D2: thrown weapons
+            // must route through ItemEnhancementDispatch.DispatchOnHit just
+            // like melee -- today a thrown Serrated/Lifesteal/etc. weapon's
+            // enhancement never fires at all. Test double sidesteps the
+            // enhancement's own chance roll entirely (fires unconditionally)
+            // so this proves the DISPATCH CALL itself, independent of RNG.
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 18);
+            zone.AddEntity(actor, 5, 5);
+
+            var weapon = CreateThrowableWeapon("1d1", 0);
+            var enhancement = new AlwaysFiresEnhancement();
+            weapon.AddPart(enhancement);
+            actor.GetPart<InventoryPart>().AddObject(weapon);
+
+            var target = CreateTargetDummy(10);
+            zone.AddEntity(target, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(weapon, 7, 5, new Random(1)), actor, zone);
+
+            Assert.IsTrue(result.Success, result.ErrorMessage);
+            Assert.IsTrue(enhancement.Fired,
+                "a thrown weapon's IItemEnhancement.OnAttackerHit must fire, same as melee");
+            Assert.AreSame(target, enhancement.LastDefender);
+            Assert.AreEqual(2, enhancement.LastActualDamage, "1d1 + strength mod 1 = 2");
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_DispatchesOnHitWeaponEffects_GuaranteedSpec()
+        {
+            // Same dispatch gap, different dispatcher: a thrown weapon's own
+            // blueprint-declared OnHitEffectsRaw spec must fire. Uses a
+            // ChancePercent=100 spec so the assertion is deterministic
+            // regardless of the RNG's actual draws (rng.Next(100) is always
+            // in [0,99], so ">= 100" can never be true).
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 18);
+            zone.AddEntity(actor, 5, 5);
+
+            var weapon = CreateThrowableWeapon("1d1", 0);
+            weapon.GetPart<MeleeWeaponPart>().OnHitEffectsRaw = "Burning,100,,5,2.0";
+            actor.GetPart<InventoryPart>().AddObject(weapon);
+
+            var target = CreateTargetDummy(10);
+            zone.AddEntity(target, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(weapon, 7, 5, new Random(1)), actor, zone);
+
+            Assert.IsTrue(result.Success, result.ErrorMessage);
+            Assert.IsTrue(target.GetPart<StatusEffectsPart>()?.HasEffect<BurningEffect>() ?? false,
+                "a thrown weapon's own on-hit spec must apply, same as melee");
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_NoDamageDealt_DoesNotDispatchOnHitEffects()
+        {
+            // Counter-check: the actualDamage>0 gate must hold for thrown
+            // weapons exactly like melee -- a weapon with a 100%-chance spec
+            // must NOT apply it when the item deals zero damage (weight-0
+            // improvised item, no MeleeWeaponPart, produces damage>0 via the
+            // Ceiling/Max(1,...) formula though -- so directly exercise the
+            // gate by giving the target 100% resistance instead, which zeroes
+            // the post-resistance actualDamage while a hit still "lands").
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Strength", 18);
+            zone.AddEntity(actor, 5, 5);
+
+            var weapon = CreateThrowableWeapon("1d1", 0);
+            weapon.GetPart<MeleeWeaponPart>().Attributes = "Fire";
+            weapon.GetPart<MeleeWeaponPart>().OnHitEffectsRaw = "Poisoned,100,,5,1.0";
+            actor.GetPart<InventoryPart>().AddObject(weapon);
+
+            var target = CreateTargetDummy(10);
+            target.Statistics["HeatResistance"] = new Stat
+            {
+                Name = "HeatResistance", BaseValue = 100, Min = -100, Max = 100
+            };
+            zone.AddEntity(target, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(weapon, 7, 5, new Random(1)), actor, zone);
+
+            Assert.IsTrue(result.Success, result.ErrorMessage);
+            Assert.AreEqual(10, target.GetStatValue("Hitpoints"), "100% Fire resistance -> zero damage lands");
+            Assert.IsFalse(target.GetPart<StatusEffectsPart>()?.HasEffect<PoisonedEffect>() ?? false,
+                "zero actual damage must gate off on-hit effects, same as melee's actualDamage>0 check");
+        }
+
         [Test]
         public void ThrowItemCommand_Execute_InjectedRng_ProducesRepeatableDamage()
         {

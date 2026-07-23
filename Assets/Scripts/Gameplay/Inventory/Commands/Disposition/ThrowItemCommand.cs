@@ -218,6 +218,23 @@ namespace CavesOfOoo.Core.Inventory.Commands
                         int actualDamage = Math.Max(0, hpBefore - hpAfter);
 
                         MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()} at {hitTarget.GetDisplayName()} for {actualDamage} damage!");
+
+                        // SM3/D2: route thrown hits through the same on-hit
+                        // dispatch chain melee uses, gated the same way melee
+                        // gates it (CombatSystem.cs's `if (hpAfter > 0)`
+                        // survivor-only block) -- a thrown Serrated dagger or
+                        // Lifesteal weapon should bleed/heal the same as a
+                        // melee-swung one. Each dispatcher self-gates on
+                        // actualDamage<=0 internally (matching melee exactly,
+                        // not duplicating the check at the call site).
+                        if (hpAfter > 0)
+                        {
+                            OnHitClassEffects.Apply(thrownDamage, actualDamage, hitTarget, actor, zone, rng);
+                            OnHitWeaponEffects.Apply(thrownWeaponPart, thrownDamage, actualDamage, hitTarget, actor, zone, rng);
+                            OnHitGasEmit.Apply(thrownWeaponPart, hitTarget, actor, zone, rng);
+                            ItemEnhancementDispatch.DispatchOnHit(
+                                itemToThrow, hitTarget, actor, thrownDamage, actualDamage, zone, rng);
+                        }
                     }
 
                     landingCell = trace.ImpactCell;
