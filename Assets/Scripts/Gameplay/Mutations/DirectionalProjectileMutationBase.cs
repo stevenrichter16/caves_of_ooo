@@ -91,9 +91,6 @@ namespace CavesOfOoo.Core
                 int damage = DiceRoller.Roll(DamageDice, rng);
                 if (damage > 0)
                 {
-                    MessageLog.Add(
-                        ParentEntity.GetDisplayName() + " " + ImpactVerb + " " +
-                        target.GetDisplayName() + " for " + damage + " damage!");
                     // WSP7.0 — Route through the spell-damage helper so:
                     //   1. Damage is tagged "Spell" + element attribute
                     //      (so HeatResistance / ColdResistance / etc. fire
@@ -103,8 +100,16 @@ namespace CavesOfOoo.Core
                     //   2. Skill-driven damage modifiers (Spellcraft_Empower,
                     //      Pyromancy_Conflagration, etc.) fold in via
                     //      SkillEventDispatcher.GetSpellDamageModifier.
-                    MutationDamageHelpers.ApplySpellDamage(
+                    int actualDamage = MutationDamageHelpers.ApplySpellDamage(
                         target, damage, ElementAttribute, ParentEntity, zone);
+
+                    // Docs/THROWN-MUTATION-COMBAT-PLAN.md SM6/D9: log the
+                    // true post-resistance, post-skill-bonus delta (mirrors
+                    // melee's hpBefore/hpAfter pattern, CombatSystem.cs:389-399)
+                    // instead of the raw pre-resistance dice roll.
+                    MessageLog.Add(
+                        ParentEntity.GetDisplayName() + " " + ImpactVerb + " " +
+                        target.GetDisplayName() + " for " + actualDamage + " damage!");
                 }
 
                 if (target.GetStatValue("Hitpoints", 0) > 0)

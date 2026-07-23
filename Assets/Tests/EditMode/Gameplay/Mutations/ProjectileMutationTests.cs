@@ -146,6 +146,85 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void FireBolt_Cast_ResistedHit_LogsActualPostResistanceDamage_NotRawRoll()
+        {
+            // Docs/THROWN-MUTATION-COMBAT-PLAN.md SM6/D9: mirror melee's
+            // hpBefore/hpAfter fix (CombatSystem.cs:378-399) and the thrown-
+            // weapon SM2 fix -- the log must report the true post-resistance
+            // damage, not the raw pre-resistance dice roll.
+            // DirectionalProjectileMutationBase.Cast() currently logs the
+            // raw `damage` local BEFORE MutationDamageHelpers.ApplySpellDamage
+            // ever applies resistance (or skill bonus).
+            var zone = new Zone("ProjectileZone");
+            var caster = CreateCreatureWithMutationSupport();
+            var target = CreateCreature("snapjaw", 20);
+            target.Statistics["HeatResistance"] = new Stat
+            {
+                Name = "HeatResistance", BaseValue = 50, Min = -100, Max = 100
+            };
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(target, 7, 5);
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new FireBoltMutation(), 1);
+            var fireBolt = mutations.GetMutation<FireBoltMutation>();
+
+            // FireBolt's very first RNG consumption inside Cast() is
+            // `DiceRoller.Roll(DamageDice, rng)` -- a fresh Random with the
+            // same seed reproduces that exact roll deterministically,
+            // independent of any RNG usage further downstream (BurningEffect
+            // application, FX, etc.).
+            int rawRoll = DiceRoller.Roll("2d4", new Random(42));
+            int hpBefore = target.GetStatValue("Hitpoints", 20);
+            MessageLog.Clear();
+
+            bool cast = fireBolt.Cast(zone, zone.GetCell(5, 5), 1, 0, new Random(42));
+
+            Assert.IsTrue(cast);
+            int hpAfter = target.GetStatValue("Hitpoints", 20);
+            int actualDamage = hpBefore - hpAfter;
+
+            Assert.Less(actualDamage, rawRoll,
+                "50% HeatResistance must actually reduce the landed damage below the raw roll, or this test can't distinguish the fix from the bug");
+            // Search all messages logged during this Cast (not just the
+            // last one) -- ApplyOnHitEffect's BurningEffect ignition message
+            // ("catches fire!") logs AFTER the damage line, so GetLast()
+            // would inspect the wrong entry.
+            Assert.IsTrue(MessageLog.GetMessages().Exists(m => m.Contains($"for {actualDamage} damage")),
+                $"log must report the true post-resistance damage ({actualDamage}), not the raw pre-resistance roll ({rawRoll}). Messages: {string.Join(" | ", MessageLog.GetMessages())}");
+        }
+
+        [Test]
+        public void FireBolt_Cast_NoResistanceStat_LogsFullRawDamage()
+        {
+            // Counter-check for the test above: an unresisted hit must log
+            // the FULL raw roll, proving the fix reads the real resistance-
+            // adjusted delta rather than applying some hardcoded reduction.
+            var zone = new Zone("ProjectileZone");
+            var caster = CreateCreatureWithMutationSupport();
+            var target = CreateCreature("snapjaw", 20);
+
+            zone.AddEntity(caster, 5, 5);
+            zone.AddEntity(target, 7, 5);
+
+            var mutations = caster.GetPart<MutationsPart>();
+            mutations.AddMutation(new FireBoltMutation(), 1);
+            var fireBolt = mutations.GetMutation<FireBoltMutation>();
+
+            int rawRoll = DiceRoller.Roll("2d4", new Random(42));
+            MessageLog.Clear();
+
+            bool cast = fireBolt.Cast(zone, zone.GetCell(5, 5), 1, 0, new Random(42));
+
+            Assert.IsTrue(cast);
+            int hpAfter = target.GetStatValue("Hitpoints", 20);
+            Assert.AreEqual(20 - rawRoll, hpAfter);
+            Assert.IsTrue(MessageLog.GetMessages().Exists(m => m.Contains($"for {rawRoll} damage")),
+                $"Messages: {string.Join(" | ", MessageLog.GetMessages())}");
+        }
+
+        [Test]
         public void PoisonSpit_Cast_AppliesPoison()
         {
             var zone = new Zone("ProjectileZone");
