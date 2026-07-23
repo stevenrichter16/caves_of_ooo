@@ -153,3 +153,56 @@ The post-M6 backlog still has Tier S targets:
 Tier A targets are now reasonable to consider (`MutationsPart.cs`,
 `MovementSystem.cs`, `InventoryPart.cs`, `BrainPart.cs`,
 `FactionManager.cs`).
+
+---
+
+## 2026-07-23 correction: the "16/16, 0 bugs" result above was wrong for 6 tests
+
+An unrelated full-EditMode-suite run surfaced 6 of these 16 tests
+failing on current HEAD: #2, #5, #11, #13, #14, #15 in the table
+above (`Adversarial_SpeedMaxValue_...`, `Adversarial_AddEntityTwice_...`,
+`Adversarial_IdenticalSpeed_...`, `Adversarial_NonDivisorSpeed_...`,
+`Adversarial_EndTurnTwice_...`, `Adversarial_DeadEntityDoesNotKeepTakingTurns`).
+
+**Before assuming a later commit regressed something, verified directly:**
+`git show 59c747c3:Assets/Scripts/Gameplay/Turns/TurnManager.cs` diffed
+against current HEAD shows `AddEntity`, `RemoveEntity`, `SpendEnergy`,
+and `FindNextActor`'s core loop are **byte-identical** to this commit —
+every commit since only ADDED unrelated features (diag hooks,
+`AdvanceClock`, the freeze-guard, `TickEnd` firing). The test file
+itself is also byte-identical (confirmed via diff against
+`git show 59c747c3:...TurnManagerAdversarialTests.cs`). **There is no
+regressing commit to bisect — this doc's own "0 failures" table was
+inaccurate for these 6 tests at the time it was written**, not
+something that broke later. Each failure was independently confirmed
+by hand-tracing the exact arithmetic/control-flow against the CURRENT
+(= 59c747c3) code, and every hand-derived prediction matched the
+actual reported failure number exactly (21 turns, 1036 leftover
+energy, 0 turns for the identical-speed second entity, -1000 energy
+after a double `EndTurn`, 50 turns at Speed=MaxValue) — strong
+confirmation these are deterministic, not order-dependent flukes.
+
+**Corrected classification (per-test):**
+
+| # | Test | Corrected verdict | Fix |
+|---:|---|---|---|
+| 2 | Speed=int.MaxValue | 🔴 **Real production bug.** `Tick()`'s `Energy += speed` used plain `int` addition — Speed=int.MaxValue overflows the accumulator every other tick, wrapping negative and causing the entity to act on only alternating ticks (50/100) instead of every tick. | `TurnManager.cs`: `Tick()` now calls a new `SaturatingAdd(int,int)` helper (clamps to int.MinValue/MaxValue instead of wrapping) for the energy increment. |
+| 5 | AddEntity twice | 🟡 **Test-harness flaw, no production bug.** `AddEntity`'s duplicate-prevention (reference-equality via `FindEntry`) was already correct. The test's own loop called raw `Tick()` in isolation without ever calling the paired `EndTurn()` — `Tick()` only reports who's ready, it does not spend energy (that's `EndTurn`'s job, called separately by `ProcessUntilPlayerTurn` in real gameplay). Without spending, the actor's energy never resets, so it's returned by every tick once it first qualifies (21 of 30) — nothing to do with duplication. | Test fixed: loop now calls `tm.EndTurn(who)` whenever `who != null`, mirroring real usage. |
+| 11 | Identical Speed | 🟡 **Test-harness flaw**, same root cause as #5. `FindNextActor`'s tie-break (equal energy + equal speed keeps whichever was already `best`) means the first-inserted entity wins every tie forever once energy is never spent — the second entity never gets picked at all. | Test fixed: same `EndTurn` call added; once energy resets after each turn, the tie legitimately alternates between the two entities. |
+| 13 | Speed=37 (non-divisor) | 🟡 **Test-harness flaw**, same root cause. `GetEnergy(a)` reported the raw un-spent accumulation (37×28=1036); the assertion "leftover in [0,100)" implicitly assumed spending happened automatically, but it never did. | Test fixed: `EndTurn` added; leftover after one real spend is 36, matching the test's own doc-comment prediction. |
+| 14 | EndTurn called twice | 🔴 **Real production bug.** `SpendEnergy` had zero idempotency guard — every call unconditionally deducted `ActionThreshold`, so a second (redundant/erroneous) `EndTurn` call for the same actor drove Energy to -1000. | `TurnManager.cs`: `SpendEnergy` now only deducts when `entry.Energy >= ActionThreshold` — matches the exact gate `FindNextActor` used to select the actor in the first place, so normal single-call flow is unaffected and a second call becomes a true no-op. |
+| 15 | Dead entity stops acting | 🟡 **Test-harness flaw** (two parts): same missing-`EndTurn` root cause PLUS a wrong assumption that TurnManager has some built-in HP-based auto-removal (per the test's own comment, "the TurnManager either removes them automatically OR a sweep does" — neither exists; `IsRegistered`'s doc-comment says removal is the CALLER's job, done by `CombatSystem.HandleDeath` calling `RemoveEntity`). | Test fixed: `EndTurn` added, plus an explicit `tm.RemoveEntity(dying)` call at the simulated death, mirroring what `CombatSystem.HandleDeath` actually does in production. |
+
+Also fixed while in this file: `AddEntity(null)` (test #4 in the
+table above, originally rated "high confidence, PASS") had **zero**
+null-guard in production — confirmed genuinely broken (not test
+drift), fixed with a one-line guard.
+
+**Lesson for future adversarial-audit docs:** the discipline's own
+step 2 ("Run tests; tabulate pass/fail") is only as trustworthy as
+the actual run behind it. If a future audit's "0 bugs" result looks
+suspicious relative to the LOW-confidence predictions it's paired
+with (3 of these 6 were explicitly flagged LOW-confidence by the
+original author — exactly the ones most likely to surprise), that's
+a signal to re-run and hand-verify rather than trust the table at
+face value.

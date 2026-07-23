@@ -131,6 +131,17 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Adversarial_AddEntityTwice_DoesNotProduceDoubleTurns()
         {
+            // Test-harness fix (2026-07-23): this loop never called
+            // tm.EndTurn(who) after a Tick() returned an actor. Tick()
+            // ONLY reports who's ready and grants energy -- it does NOT
+            // spend it (that's EndTurn's job, called separately by
+            // ProcessUntilPlayerTurn in real gameplay). Without EndTurn,
+            // the actor's energy never resets, so once it first crosses
+            // the threshold it's returned by EVERY subsequent tick for
+            // the rest of the loop -- 21 of 30 ticks, nothing to do with
+            // AddEntity's (already-correct) duplicate-prevention. Fixed
+            // by calling EndTurn each time an actor is returned, mirroring
+            // real usage.
             var tm = new TurnManager();
             var actor = MakeEntity("Doubled", speed: 100);
             tm.AddEntity(actor);
@@ -140,7 +151,9 @@ namespace CavesOfOoo.Tests
             for (int i = 0; i < 30; i++)
             {
                 Entity who = tm.Tick();
+                if (who == null) continue;
                 if (who == actor) turns++;
+                tm.EndTurn(who);
             }
 
             // Speed=100, Threshold=1000, so 1 turn every 10 ticks.
@@ -272,6 +285,15 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Adversarial_IdenticalSpeed_BothEntitiesProgress()
         {
+            // Test-harness fix (2026-07-23): same missing-EndTurn flaw as
+            // Adversarial_AddEntityTwice above. Without spending energy,
+            // FindNextActor's tie-break (equal energy + equal speed keeps
+            // whichever was already `best`) means the FIRST-inserted
+            // entity (a) wins every tie forever once both cross threshold
+            // together -- b never gets picked, 0 turns. Calling EndTurn
+            // resets the acting entity's energy each time, so the tie
+            // alternates: once a acts and resets, b's energy overtakes
+            // a's on the next tick, and vice versa.
             var tm = new TurnManager();
             var a = MakeEntity("A", speed: 100);
             var b = MakeEntity("B", speed: 100);
@@ -282,8 +304,10 @@ namespace CavesOfOoo.Tests
             for (int i = 0; i < 100; i++)
             {
                 Entity who = tm.Tick();
+                if (who == null) continue;
                 if (who == a) aTurns++;
                 else if (who == b) bTurns++;
+                tm.EndTurn(who);
             }
 
             // Both should get roughly equal turns (~10 each).
@@ -319,6 +343,13 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Adversarial_NonDivisorSpeed_EnergyCarriesLeftover()
         {
+            // Test-harness fix (2026-07-23): same missing-EndTurn flaw.
+            // Without it, GetEnergy(a) reports the raw un-spent
+            // accumulation (37*28=1036) since nothing ever subtracts
+            // ActionThreshold -- that's not "no leftover-carry," it's
+            // "energy was never spent at all." Calling EndTurn once the
+            // turn fires is what actually exercises the leftover-carry
+            // question the test means to probe.
             var tm = new TurnManager();
             var a = MakeEntity("A", speed: 37);
             tm.AddEntity(a);
@@ -330,7 +361,9 @@ namespace CavesOfOoo.Tests
             for (int i = 0; i < 28; i++)
             {
                 Entity who = tm.Tick();
+                if (who == null) continue;
                 if (who == a) turns++;
+                tm.EndTurn(who);
             }
             Assert.AreEqual(1, turns, "Should get exactly 1 turn in 28 ticks at Speed=37");
 
@@ -386,6 +419,21 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Adversarial_DeadEntityDoesNotKeepTakingTurns()
         {
+            // Test-harness fix (2026-07-23), two parts:
+            //  1. Same missing-EndTurn flaw as the tests above -- without
+            //     it, `alive` (added first) wins every energy tie against
+            //     `dying` forever (both speed=100, always crossing
+            //     threshold together), so `dying` never gets picked at
+            //     all: dyingTurnsBeforeDeath was 0, not 1.
+            //  2. TurnManager has NO built-in HP-based auto-removal --
+            //     that's the CALLER's job in real gameplay
+            //     (CombatSystem.HandleDeath calls RemoveEntity; see
+            //     TurnManager.IsRegistered's doc-comment). The test's own
+            //     comment guessed "the TurnManager either removes them
+            //     automatically OR a sweep does" -- neither exists. Fixed
+            //     by explicitly calling RemoveEntity at the simulated
+            //     death, mirroring what CombatSystem.HandleDeath actually
+            //     does in production.
             var tm = new TurnManager();
             var alive = MakeEntity("Alive", speed: 100);
             var dying = MakeEntity("Dying", speed: 100);
@@ -399,6 +447,7 @@ namespace CavesOfOoo.Tests
             for (int i = 0; i < 100; i++)
             {
                 Entity who = tm.Tick();
+                if (who == null) continue;
                 if (who == dying)
                 {
                     if (!died)
@@ -407,11 +456,18 @@ namespace CavesOfOoo.Tests
                         dying.GetStat("Hitpoints").BaseValue = 0;
                         died = true;
                         dyingTurnsBeforeDeath = 1;
+                        tm.EndTurn(who);
+                        tm.RemoveEntity(dying); // mirrors CombatSystem.HandleDeath
                     }
                     else
                     {
                         dyingTurnsAfterDeath++;
+                        tm.EndTurn(who);
                     }
+                }
+                else
+                {
+                    tm.EndTurn(who);
                 }
             }
 

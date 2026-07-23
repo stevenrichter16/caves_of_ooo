@@ -113,6 +113,7 @@ namespace CavesOfOoo.Core
         /// </summary>
         public void AddEntity(Entity entity)
         {
+            if (entity == null) return;
             if (FindEntry(entity) != null) return;
             _entries.Add(new TurnEntry { Entity = entity, Energy = 0 });
         }
@@ -174,11 +175,19 @@ namespace CavesOfOoo.Core
             {
                 TickCount++;
 
-                // Grant energy to all entities
+                // Grant energy to all entities. Saturating add — an
+                // extreme Speed value (buffs stacking, a malformed
+                // blueprint, or literally int.MaxValue) must not silently
+                // WRAP the accumulator negative via plain int overflow.
+                // A wrapped-negative Energy value falls below
+                // ActionThreshold and skips that entity's turn on the very
+                // next tick, then wraps back positive the tick after —
+                // entities alternate acting/not-acting every other tick
+                // instead of acting every tick as their Speed implies.
                 for (int i = 0; i < _entries.Count; i++)
                 {
                     int speed = GetSpeed(_entries[i].Entity);
-                    _entries[i].Energy += speed;
+                    _entries[i].Energy = SaturatingAdd(_entries[i].Energy, speed);
                 }
 
                 // Find the entity with the most energy that meets the threshold
@@ -388,11 +397,19 @@ namespace CavesOfOoo.Core
 
         /// <summary>
         /// Spend the action threshold worth of energy from an entity.
+        /// Idempotency guard: only deducts if the entry currently holds
+        /// enough energy to justify it (matches the exact gate
+        /// <see cref="FindNextActor"/> uses to have selected this actor in
+        /// the first place). Without this, a second <see cref="EndTurn"/>
+        /// call for the same actor's already-spent turn silently deducts
+        /// another ActionThreshold, driving Energy deeply negative and
+        /// stalling that actor for many subsequent ticks — a real
+        /// exploitable/rogue-call-path bug, not just a synthetic double-call.
         /// </summary>
         private void SpendEnergy(Entity entity)
         {
             var entry = FindEntry(entity);
-            if (entry != null)
+            if (entry != null && entry.Energy >= ActionThreshold)
                 entry.Energy -= ActionThreshold;
         }
 
@@ -433,6 +450,20 @@ namespace CavesOfOoo.Core
                     return _entries[i];
             }
             return null;
+        }
+
+        /// <summary>
+        /// Add two ints, clamping to int.MinValue/MaxValue instead of
+        /// silently wrapping on overflow. Used for Energy accumulation,
+        /// where a pathological Speed value must not wrap the accumulator
+        /// negative.
+        /// </summary>
+        private static int SaturatingAdd(int a, int b)
+        {
+            long sum = (long)a + b;
+            if (sum > int.MaxValue) return int.MaxValue;
+            if (sum < int.MinValue) return int.MinValue;
+            return (int)sum;
         }
 
         /// <summary>
