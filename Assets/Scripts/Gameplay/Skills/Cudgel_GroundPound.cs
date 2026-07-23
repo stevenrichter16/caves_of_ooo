@@ -115,7 +115,11 @@ namespace CavesOfOoo.Skills
                     : 0;
                 int dmg = (rolled * GROUND_POUND_DAMAGE_PERCENT) / 100;
                 if (dmg < 1) dmg = 1;
-                CombatSystem.ApplyDamage(target, dmg, actor, ctx.Zone);
+                // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM8/B2 -- routes
+                // through the on-hit dispatch chain instead of the raw
+                // ApplyDamage(int) overload, which skipped it entirely.
+                SkillCombatHelpers.DealGuaranteedHitDamage(
+                    actor, target, weapon, dmg, ctx.Zone, ctx.Rng);
 
                 // Stun + knockback (only if defender survived).
                 if (target.GetStatValue("Hitpoints") > 0)

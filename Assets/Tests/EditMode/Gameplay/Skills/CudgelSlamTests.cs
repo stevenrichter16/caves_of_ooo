@@ -444,6 +444,43 @@ namespace CavesOfOoo.Tests
         }
 
         // ════════════════════════════════════════════════════════════════
+        // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM8/B2 -- Slam's damage
+        // must route through the on-hit dispatch chain, not the raw
+        // ApplyDamage(int) overload that skips it entirely.
+        // ════════════════════════════════════════════════════════════════
+
+        [Test]
+        public void Slam_WallHitDamage_DispatchesItemEnhancement()
+        {
+            // Guaranteed 1 wall-hit (wall immediately behind the defender)
+            // -> guaranteed bonus damage -> the on-hit dispatch chain must
+            // fire, same as it would for a normal weapon swing.
+            var attacker = MakeBodiedCreature("attacker");
+            var weaponEntity = MakeWeaponEntity("mace", "1d8+1", "Bludgeoning Cudgel");
+            var enhancement = new AlwaysFiresEnhancementProbe();
+            weaponEntity.AddPart(enhancement);
+            EquipInPrimary(attacker, weaponEntity);
+            var slam = new Cudgel_Slam();
+            attacker.GetPart<SkillsPart>().AddSkill(slam, source: "test");
+
+            var defender = MakeBodiedCreature("defender");
+            var zone = new Zone();
+            zone.AddEntity(attacker, 5, 5);
+            zone.AddEntity(defender, 6, 5);
+            zone.AddEntity(MakeWall(), 7, 5);
+
+            slam.OnCommand(new SkillEventContext
+            {
+                Attacker = attacker, Defender = attacker,
+                Zone = zone, Rng = new Random(0),
+            });
+
+            Assert.IsTrue(enhancement.Fired,
+                "Slam's wall-hit damage must dispatch IItemEnhancement.OnAttackerHit, "
+                + "same as a normal weapon swing -- the raw ApplyDamage(int) overload skips this entirely.");
+        }
+
+        // ════════════════════════════════════════════════════════════════
         // Adversarial: edge of map counts as a wall hit
         // ════════════════════════════════════════════════════════════════
 

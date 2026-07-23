@@ -157,7 +157,14 @@ namespace CavesOfOoo.Skills
                     dmgRoll += DiceRoller.Roll(weapon.BaseDamage, ctx.Rng);
                 }
                 if (dmgRoll > 0)
-                    CombatSystem.ApplyDamage(target, dmgRoll, actor, ctx.Zone);
+                {
+                    // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM8/B2 --
+                    // routes through the on-hit dispatch chain instead of
+                    // the raw ApplyDamage(int) overload, which skipped it
+                    // entirely.
+                    SkillCombatHelpers.DealGuaranteedHitDamage(
+                        actor, target, weapon, dmgRoll, ctx.Zone, ctx.Rng);
+                }
             }
 
             // Stun duration: floor 1, ceiling MAX_STUN_DURATION.

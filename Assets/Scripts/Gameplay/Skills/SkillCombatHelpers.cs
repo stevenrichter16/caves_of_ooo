@@ -97,5 +97,77 @@ namespace CavesOfOoo.Skills
             });
             return found;
         }
+
+        /// <summary>
+        /// Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM8/B2. Deals guaranteed
+        /// (no to-hit roll) damage exactly like <c>Cudgel_Slam</c>/
+        /// <c>Cudgel_GroundPound</c>'s own custom damage formulas, but routes
+        /// the landed hit through the same on-hit dispatch chain
+        /// <see cref="CombatSystem.PerformSingleAttack"/> uses for a normal
+        /// weapon swing -- previously both skills called the raw
+        /// <c>CombatSystem.ApplyDamage(Entity,int,Entity,Zone)</c> overload
+        /// directly, which wraps the amount in a zero-attribute
+        /// <see cref="Damage"/> and skips <see cref="OnHitClassEffects"/>,
+        /// <see cref="OnHitWeaponEffects"/>, <see cref="OnHitGasEmit"/>,
+        /// <see cref="ItemEnhancementDispatch"/>, and skill
+        /// <c>AttackerAfterAttack</c> dispatch entirely.
+        ///
+        /// <para>Deliberately does NOT replace either skill's custom
+        /// guaranteed-hit/scaled-damage mechanic with a
+        /// <see cref="CombatSystem.PerformSingleAttack"/> call (that would
+        /// add a to-hit roll and normal weapon-dice damage, changing the
+        /// core mechanic both skills are designed around — Slam's
+        /// wall-hit-count-scaled damage, GroundPound's reduced-damage/
+        /// AOE-knockback trade-off per its own doc-comment). This helper
+        /// only threads the missing on-hit pipeline through the EXISTING
+        /// guaranteed-hit path.</para>
+        ///
+        /// <para>Weapon-mod dispatchers (class/weapon/gas/enhancement) fire
+        /// regardless of survival, mirroring SM7's fix to the normal melee
+        /// pipeline. Skill dispatch (<c>AttackerAfterAttack</c>) stays
+        /// gated on <c>hpAfter &gt; 0</c>, matching the same split.
+        /// <c>WeaponMadeCriticalHit</c> and dismemberment are intentionally
+        /// not wired here — neither skill has a crit-roll or hit-location
+        /// concept (no to-hit roll exists in this guaranteed-hit design).
+        /// </para>
+        /// </summary>
+        /// <returns>The actual post-resistance HP delta (0 if the hit was
+        /// vetoed or fully resisted).</returns>
+        public static int DealGuaranteedHitDamage(
+            Entity attacker, Entity target, MeleeWeaponPart weapon,
+            int rawDamage, Zone zone, System.Random rng)
+        {
+            if (target == null || rawDamage <= 0) return 0;
+
+            var damage = new Damage(rawDamage);
+            damage.AddAttribute("Melee");
+            if (weapon != null && !string.IsNullOrEmpty(weapon.Attributes))
+                damage.AddAttributes(weapon.Attributes);
+
+            int hpBefore = target.GetStatValue("Hitpoints", 0);
+            CombatSystem.ApplyDamage(target, damage, attacker, zone);
+            int hpAfter = target.GetStatValue("Hitpoints", 0);
+            int actualDamage = System.Math.Max(0, hpBefore - hpAfter);
+
+            OnHitClassEffects.Apply(damage, actualDamage, target, attacker, zone, rng);
+            OnHitWeaponEffects.Apply(weapon, damage, actualDamage, target, attacker, zone, rng);
+            OnHitGasEmit.Apply(weapon, target, attacker, zone, rng);
+            ItemEnhancementDispatch.DispatchOnHit(
+                weapon?.ParentEntity, target, attacker, damage, actualDamage, zone, rng);
+
+            if (hpAfter > 0)
+            {
+                var hitCtx = new SkillEventContext
+                {
+                    Attacker = attacker, Defender = target,
+                    Weapon = weapon, WeaponEntity = weapon?.ParentEntity,
+                    Damage = damage, ActualDamage = actualDamage,
+                    Zone = zone, Rng = rng,
+                };
+                SkillEventDispatcher.AttackerAfterAttack(attacker, hitCtx);
+            }
+
+            return actualDamage;
+        }
     }
 }

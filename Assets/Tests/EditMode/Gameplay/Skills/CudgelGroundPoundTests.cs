@@ -161,5 +161,35 @@ namespace CavesOfOoo.Tests
             Assert.DoesNotThrow(() =>
                 skill.OnCommand(new SkillEventContext { Attacker = atk, Defender = atk, Zone = null, Rng = new Random(7) }));
         }
+
+        // ════════════════════════════════════════════════════════════════
+        // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM8/B2 -- GroundPound's
+        // damage must route through the on-hit dispatch chain, not the raw
+        // ApplyDamage(int) overload that skips it entirely.
+        // ════════════════════════════════════════════════════════════════
+
+        [Test]
+        public void GroundPound_Damage_DispatchesItemEnhancement()
+        {
+            var attacker = MakeBodiedCreature("attacker");
+            var weaponEntity = MakeWeapon("mace", "1d8+2", "Bludgeoning Cudgel");
+            var enhancement = new AlwaysFiresEnhancementProbe();
+            weaponEntity.AddPart(enhancement);
+            Equip(attacker, weaponEntity);
+            var skill = new Cudgel_GroundPound();
+            attacker.GetPart<SkillsPart>().AddSkill(skill, source: "test");
+
+            var zone = new Zone();
+            var defender = MakeBodiedCreature("def");
+            zone.AddEntity(attacker, 5, 5);
+            zone.AddEntity(defender, 6, 5);
+
+            skill.OnCommand(new SkillEventContext
+            { Attacker = attacker, Defender = attacker, Zone = zone, Rng = new Random(7) });
+
+            Assert.IsTrue(enhancement.Fired,
+                "GroundPound's damage must dispatch IItemEnhancement.OnAttackerHit, "
+                + "same as a normal weapon swing -- the raw ApplyDamage(int) overload skips this entirely.");
+        }
     }
 }
