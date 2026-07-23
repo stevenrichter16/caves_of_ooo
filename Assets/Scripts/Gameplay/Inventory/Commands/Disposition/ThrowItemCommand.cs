@@ -190,6 +190,15 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     consumedOnImpact = true;
                     landingCell = null;
                 }
+                else if (!RollThrowAccuracy(actor, rng))
+                {
+                    // SM5/D3+D4 (Docs/THROWN-MUTATION-COMBAT-PLAN.md): a
+                    // missed throw folds into the same landing behavior as
+                    // the "no HitEntity" case -- it sails past and lands at
+                    // the traced impact cell, dealing no damage.
+                    MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()} at {hitTarget.GetDisplayName()}, but misses!");
+                    landingCell = trace.ImpactCell;
+                }
                 else
                 {
                     int rawDamage = GetThrownDamage(actor, itemToThrow, strengthBonus, rng);
@@ -434,6 +443,33 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 splitStacker.StackCount = 0;
             if (source == ThrowSourceKind.Carried && inventory != null)
                 inventory.RefreshHandlingCarryPenalty();
+        }
+
+        /// <summary>
+        /// SM5/D3 (Docs/THROWN-MUTATION-COMBAT-PLAN.md), LOCKED 2026-07-22
+        /// Option A: a near-literal port of Qud's real thrown-weapon
+        /// accuracy check (verified directly against
+        /// XRL.Rules/Stat.cs:1090-1159 and
+        /// XRL.World/GameObject.cs:14869) -- NOT melee's DV roll. Qud rolls
+        /// <c>RollPenetratingSuccesses("1d" + Agility, 3)</c>: a single die
+        /// whose SIZE equals the thrower's Agility score, success if the
+        /// roll is &gt;= 3. For Agility &gt;= 3 this collapses to
+        /// <c>P(hit) = (Agility-2)/Agility</c> -- 50% at 4, 87.5% at 16,
+        /// asymptotically approaching but never reaching 100%.
+        ///
+        /// Deliberately does NOT read the defender's DV or AV -- thrown
+        /// accuracy checks the thrower's aim, not the target's armor or
+        /// dodge, and Qud's own thrown weapons never check DV either. Also
+        /// deliberately drops Qud's rare "explode on max roll" re-roll
+        /// clause (only ever matters below Agility 3, where the outcome is
+        /// already a guaranteed miss with or without it) and its separate
+        /// AimVariance trajectory-wobble layer (excluded per explicit user
+        /// confirmation -- no drift-to-the-wrong-cell mechanic in CoO).
+        /// </summary>
+        private static bool RollThrowAccuracy(Entity actor, Random rng)
+        {
+            int agilityScore = actor.GetStatValue("Agility", 10);
+            return DiceRoller.Roll("1d" + agilityScore, rng) >= 3;
         }
 
         private static int GetThrownDamage(Entity actor, Entity item, int strengthBonus, Random rng)

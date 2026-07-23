@@ -639,7 +639,7 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(target, 7, 5);
 
             var result = InventorySystem.ExecuteCommand(
-                new ThrowItemCommand(weapon, 7, 5),
+                new ThrowItemCommand(weapon, 7, 5, new Random(1)),
                 actor,
                 zone);
 
@@ -676,7 +676,7 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(target, 7, 5);
 
             var result = InventorySystem.ExecuteCommand(
-                new ThrowItemCommand(weapon, 7, 5), actor, zone);
+                new ThrowItemCommand(weapon, 7, 5, new Random(1)), actor, zone);
 
             Assert.IsTrue(result.Success, result.ErrorMessage);
             Assert.AreEqual(19, target.GetStatValue("Hitpoints"),
@@ -709,7 +709,7 @@ namespace CavesOfOoo.Tests
             MessageLog.Clear();
 
             var result = InventorySystem.ExecuteCommand(
-                new ThrowItemCommand(weapon, 7, 5), actor, zone);
+                new ThrowItemCommand(weapon, 7, 5, new Random(1)), actor, zone);
 
             Assert.IsTrue(result.Success, result.ErrorMessage);
             StringAssert.Contains("for 1 damage", MessageLog.GetLast(),
@@ -736,7 +736,7 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(target, 7, 5);
 
             var result = InventorySystem.ExecuteCommand(
-                new ThrowItemCommand(weapon, 7, 5), actor, zone);
+                new ThrowItemCommand(weapon, 7, 5, new Random(1)), actor, zone);
 
             Assert.IsTrue(result.Success, result.ErrorMessage);
             Assert.AreEqual(17, target.GetStatValue("Hitpoints"),
@@ -763,7 +763,7 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(target, 7, 5);
 
             var result = InventorySystem.ExecuteCommand(
-                new ThrowItemCommand(item, 7, 5), actor, zone);
+                new ThrowItemCommand(item, 7, 5, new Random(1)), actor, zone);
 
             Assert.IsTrue(result.Success, result.ErrorMessage);
             Assert.AreEqual(6, target.GetStatValue("Hitpoints"),
@@ -885,6 +885,126 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void ThrowItemCommand_Execute_Agility1_AlwaysMisses()
+        {
+            // Docs/THROWN-MUTATION-COMBAT-PLAN.md SM5/D3 (LOCKED, Option A):
+            // accuracy = DiceRoller.Roll("1d" + agility, rng) >= 3. Agility 1
+            // rolls a 1d1, which can only ever produce 1 -- deterministically
+            // < 3 regardless of seed. Strong pin: guaranteed miss, no DV/AV
+            // read, no crash on a degenerate 1-sided die.
+            for (int seed = 0; seed < 5; seed++)
+            {
+                var zone = new Zone();
+                var actor = CreateCreatureWithInventory();
+                actor.SetStatValue("Agility", 1);
+                zone.AddEntity(actor, 5, 5);
+
+                var weapon = CreateThrowableWeapon("1d1", 0);
+                actor.GetPart<InventoryPart>().AddObject(weapon);
+
+                var target = CreateTargetDummy(10);
+                zone.AddEntity(target, 7, 5);
+
+                var result = InventorySystem.ExecuteCommand(
+                    new ThrowItemCommand(weapon, 7, 5, new Random(seed)), actor, zone);
+
+                Assert.IsTrue(result.Success, result.ErrorMessage);
+                Assert.AreEqual(10, target.GetStatValue("Hitpoints"),
+                    $"Agility 1 must always miss (seed {seed})");
+            }
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_Agility2_AlwaysMisses()
+        {
+            // Same degenerate-low-end pin at Agility 2: max roll on a 1d2 is
+            // 2, still < 3 -- deterministic miss (the simplified port
+            // intentionally drops Qud's rare re-roll-on-max clause, which
+            // only ever matters below Agility 3; confirmed with the user).
+            for (int seed = 0; seed < 5; seed++)
+            {
+                var zone = new Zone();
+                var actor = CreateCreatureWithInventory();
+                actor.SetStatValue("Agility", 2);
+                zone.AddEntity(actor, 5, 5);
+
+                var weapon = CreateThrowableWeapon("1d1", 0);
+                actor.GetPart<InventoryPart>().AddObject(weapon);
+
+                var target = CreateTargetDummy(10);
+                zone.AddEntity(target, 7, 5);
+
+                var result = InventorySystem.ExecuteCommand(
+                    new ThrowItemCommand(weapon, 7, 5, new Random(seed)), actor, zone);
+
+                Assert.IsTrue(result.Success, result.ErrorMessage);
+                Assert.AreEqual(10, target.GetStatValue("Hitpoints"),
+                    $"Agility 2 must always miss (seed {seed})");
+            }
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_Agility20_HitsMostOfTheTime()
+        {
+            // Statistical sanity check (no Agility value guarantees a 100%
+            // hit under this mechanic -- rolling 1 or 2 always fails). P(hit)
+            // at Agility 20 = (20-2)/20 = 90%. Loose bound (>=70/100) to
+            // avoid flakiness while still proving hits actually happen and
+            // the roll isn't silently inverted or always-miss.
+            int hits = 0;
+            const int trials = 100;
+            for (int seed = 0; seed < trials; seed++)
+            {
+                var zone = new Zone();
+                var actor = CreateCreatureWithInventory();
+                actor.SetStatValue("Agility", 20);
+                zone.AddEntity(actor, 5, 5);
+
+                var weapon = CreateThrowableWeapon("1d1", 0);
+                actor.GetPart<InventoryPart>().AddObject(weapon);
+
+                var target = CreateTargetDummy(10);
+                zone.AddEntity(target, 7, 5);
+
+                InventorySystem.ExecuteCommand(
+                    new ThrowItemCommand(weapon, 7, 5, new Random(seed)), actor, zone);
+
+                if (target.GetStatValue("Hitpoints") < 10)
+                    hits++;
+            }
+
+            Assert.GreaterOrEqual(hits, 70,
+                $"expected ~90% hit rate at Agility 20, observed {hits}/{trials}");
+            Assert.Less(hits, trials, "sanity: not every roll can hit -- 1/20 and 2/20 always miss");
+        }
+
+        [Test]
+        public void ThrowItemCommand_Execute_Miss_LandsAtImpactCellInsteadOfDamaging()
+        {
+            // Counter-check (D4): a missed throw must not silently vanish or
+            // still deal damage -- it lands at the traced impact cell,
+            // exactly like the existing "no HitEntity" landing path.
+            var zone = new Zone();
+            var actor = CreateCreatureWithInventory();
+            actor.SetStatValue("Agility", 1); // guaranteed miss
+            zone.AddEntity(actor, 5, 5);
+
+            var weapon = CreateThrowableWeapon("1d1", 0);
+            actor.GetPart<InventoryPart>().AddObject(weapon);
+
+            var target = CreateTargetDummy(10);
+            zone.AddEntity(target, 7, 5);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(weapon, 7, 5, new Random(1)), actor, zone);
+
+            Assert.IsTrue(result.Success, result.ErrorMessage);
+            Assert.AreEqual(10, target.GetStatValue("Hitpoints"), "miss deals no damage");
+            Assert.AreEqual(zone.GetCell(7, 5), zone.GetEntityCell(weapon),
+                "the missed weapon still lands at the traced impact cell");
+        }
+
+        [Test]
         public void ThrowItemCommand_Execute_InjectedRng_ProducesRepeatableDamage()
         {
             // Docs/THROWN-MUTATION-COMBAT-PLAN.md SM4/D6: ThrowItemCommand
@@ -936,7 +1056,7 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(target, 7, 5);
 
             var result = InventorySystem.ExecuteCommand(
-                new ThrowItemCommand(item, 7, 5),
+                new ThrowItemCommand(item, 7, 5, new Random(1)),
                 actor,
                 zone);
 
@@ -1094,7 +1214,7 @@ namespace CavesOfOoo.Tests
             MessageLog.Clear();
 
             var result = InventorySystem.ExecuteCommand(
-                new ThrowItemCommand(weapon, 7, 5),
+                new ThrowItemCommand(weapon, 7, 5, new Random(1)),
                 actor,
                 zone);
 
