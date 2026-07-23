@@ -624,18 +624,33 @@ namespace CavesOfOoo.Core
                 totalAV = legacyArmor?.AV ?? 0;
             }
 
-            // WSP2.1: ShatterArmorEffect subtracts AV per stack while active.
-            // Each stack contributes ShatterArmorEffect.AV_REDUCTION to the
-            // total reduction (Cudgel_ShatteringBlows applies one stack per proc).
-            // Clamp to non-negative — armor can be reduced to zero but not below.
+            return ApplyShatterArmorReduction(entity, totalAV);
+        }
+
+        /// <summary>
+        /// Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM5/A3. Shared by both
+        /// GetAV and GetPartAV so ShatterArmorEffect applies regardless of
+        /// which path a given attack takes -- GetPartAV (used for virtually
+        /// all real combat, since SelectHitLocation returns non-null for any
+        /// normal Body) previously never called this reduction at all, so
+        /// Cudgel_ShatteringBlows procs had zero effect on ~all real combat
+        /// despite the UI showing the effect active.
+        ///
+        /// WSP2.1: ShatterArmorEffect subtracts AV per stack while active.
+        /// Each stack contributes AV_REDUCTION to the total reduction
+        /// (Cudgel_ShatteringBlows applies one stack per proc). Clamp to
+        /// non-negative — armor can be reduced to zero but not below.
+        /// </summary>
+        private static int ApplyShatterArmorReduction(Entity entity, int rawAV)
+        {
             var statusEffects = entity.GetPart<StatusEffectsPart>();
             if (statusEffects != null)
             {
                 var shatter = statusEffects.GetEffect<ShatterArmorEffect>();
                 if (shatter != null)
-                    totalAV -= ShatterArmorEffect.AV_REDUCTION * shatter.StackCount;
+                    rawAV -= ShatterArmorEffect.AV_REDUCTION * shatter.StackCount;
             }
-            return System.Math.Max(0, totalAV);
+            return System.Math.Max(0, rawAV);
         }
 
         /// <summary>
@@ -1288,7 +1303,7 @@ namespace CavesOfOoo.Core
             if (naturalArmor != null)
                 av += naturalArmor.AV;
 
-            return av;
+            return ApplyShatterArmorReduction(entity, av);
         }
 
         /// <summary>
