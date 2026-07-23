@@ -562,12 +562,14 @@ namespace CavesOfOoo.Core
         /// <c>MovementSystem._enteredCellScratch</c>).</para>
         /// </summary>
         private static readonly List<WeaponSlot> _gatherWeaponsScratch = new List<WeaponSlot>(8);
+        private static readonly List<BodyPart> _gatherWeaponsBodyPartsScratch = new List<BodyPart>(16);
 
         private static List<WeaponSlot> GatherMeleeWeapons(Entity attacker, Body body)
         {
             var result = _gatherWeaponsScratch;
             result.Clear();
-            var parts = body.GetParts();
+            _gatherWeaponsBodyPartsScratch.Clear();
+            var parts = body.GetParts(_gatherWeaponsBodyPartsScratch);
 
             // Find weapons in Hand body parts.
             // Equipped weapons take priority; fall back to DefaultBehavior (natural weapons).
@@ -1410,9 +1412,12 @@ namespace CavesOfOoo.Core
         /// Excludes abstract parts and parts with TargetWeight &lt;= 0.
         /// Returns null if no valid targets (fallback to global AV).
         /// </summary>
+        private static readonly List<BodyPart> _selectHitLocationScratch = new List<BodyPart>(16);
+
         public static BodyPart SelectHitLocation(Body body, Random rng)
         {
-            var parts = body.GetParts();
+            _selectHitLocationScratch.Clear();
+            var parts = body.GetParts(_selectHitLocationScratch);
             int totalWeight = 0;
 
             for (int i = 0; i < parts.Count; i++)

@@ -77,6 +77,20 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// Pass-through overload so hot call sites (combat's per-attack body
+        /// part scans) can reuse a scratch list instead of allocating a
+        /// fresh List&lt;BodyPart&gt; every call. Mirrors
+        /// BodyPart.GetParts(result)'s non-clearing contract -- the caller
+        /// owns Clear()-ing <paramref name="result"/> before reuse.
+        /// </summary>
+        public List<BodyPart> GetParts(List<BodyPart> result)
+        {
+            if (result == null) result = new List<BodyPart>();
+            if (_body == null) return result;
+            return _body.GetParts(result);
+        }
+
+        /// <summary>
         /// Find the first body part of a given type.
         /// </summary>
         public BodyPart GetPartByType(string type)

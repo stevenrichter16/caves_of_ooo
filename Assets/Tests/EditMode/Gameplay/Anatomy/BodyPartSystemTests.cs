@@ -511,6 +511,71 @@ namespace CavesOfOoo.Tests
         }
 
         // ========================
+        // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM11/E1 -- Body.GetParts(result)
+        // pass-through overload, so hot combat call sites can reuse a scratch
+        // list instead of allocating a fresh List<BodyPart> every call.
+        // ========================
+
+        [Test]
+        public void Body_GetParts_WithProvidedList_ReturnsSameListReference()
+        {
+            var entity = CreateCreatureWithBody();
+            var body = entity.GetPart<Body>();
+            var scratch = new List<BodyPart>();
+
+            var returned = body.GetParts(scratch);
+
+            Assert.AreSame(scratch, returned, "Must return the caller's list, not a fresh allocation");
+        }
+
+        [Test]
+        public void Body_GetParts_WithProvidedList_ContentsMatchNoArgOverload()
+        {
+            var entity = CreateCreatureWithBody();
+            var body = entity.GetPart<Body>();
+            var scratch = new List<BodyPart>();
+
+            body.GetParts(scratch);
+            var viaNoArg = body.GetParts();
+
+            Assert.AreEqual(viaNoArg.Count, scratch.Count);
+            for (int i = 0; i < viaNoArg.Count; i++)
+                Assert.AreSame(viaNoArg[i], scratch[i]);
+        }
+
+        [Test]
+        public void Body_GetParts_WithProvidedList_DoesNotClearPreExistingEntries()
+        {
+            // Counter-check: the overload mirrors BodyPart.GetParts's own
+            // non-clearing contract. Callers (e.g. CombatSystem's scratch
+            // lists) are responsible for Clear()-ing before reuse -- if this
+            // silently cleared instead, that would mask a caller bug rather
+            // than surface it.
+            var entity = CreateCreatureWithBody();
+            var body = entity.GetPart<Body>();
+            var sentinel = new BodyPart { Type = "SentinelFromPriorCall" };
+            var scratch = new List<BodyPart> { sentinel };
+
+            body.GetParts(scratch);
+
+            Assert.AreSame(sentinel, scratch[0], "Pre-existing entries must survive -- caller owns Clear()");
+        }
+
+        [Test]
+        public void Body_GetParts_WithProvidedList_NoBodyAttached_ReturnsListUnchanged()
+        {
+            var entity = new Entity();
+            var body = new Body();
+            entity.AddPart(body); // SetBody never called -- _body stays null
+            var scratch = new List<BodyPart>();
+
+            var returned = body.GetParts(scratch);
+
+            Assert.AreSame(scratch, returned);
+            Assert.AreEqual(0, returned.Count);
+        }
+
+        // ========================
         // Body - Dismemberment
         // ========================
 
