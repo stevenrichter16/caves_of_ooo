@@ -93,7 +93,22 @@ namespace CavesOfOoo.Core
                 beforeAttack.SetParameter("Attacker", (object)attacker);
                 beforeAttack.SetParameter("Defender", (object)defender);
                 if (!attacker.FireEventAndRelease(beforeAttack))
+                {
+                    // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D1. The
+                    // FIRST gate in the whole pipeline — a veto here means
+                    // the entire downstream diag chain for this attack never
+                    // exists, not even a stub, without this record.
+                    if (Diag.IsChannelEnabled("damage"))
+                    {
+                        Diag.Record(
+                            category: "damage",
+                            kind: "MeleeAttackVetoed",
+                            actor: attacker,
+                            target: defender,
+                            payload: new { });
+                    }
                     return false;
+                }
 
                 var body = attacker.GetPart<Body>();
 
@@ -776,7 +791,22 @@ namespace CavesOfOoo.Core
         {
             using (PerformanceMarkers.Combat.ApplyDamage.Auto())
             {
-                if (target == null || damage == null || damage.Amount <= 0) return;
+                if (target == null || damage == null) return;
+
+                if (damage.Amount <= 0)
+                {
+                    // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D3.
+                    if (Diag.IsChannelEnabled("damage"))
+                    {
+                        Diag.Record(
+                            category: "damage",
+                            kind: "ApplyDamageRejected",
+                            actor: source,
+                            target: target,
+                            payload: new { reason = "zero_or_negative_amount", amount = damage.Amount });
+                    }
+                    return;
+                }
 
                 // Two guards rolled into one: targets without a Hitpoints
                 // stat aren't damageable creatures (statues, props), and
@@ -795,7 +825,20 @@ namespace CavesOfOoo.Core
                 // CR-01 because it isn't gated on co-location — any
                 // second damage call on a dying target trips it.
                 var hpStat = target.GetStat("Hitpoints");
-                if (hpStat == null || hpStat.BaseValue <= 0) return;
+                if (hpStat == null || hpStat.BaseValue <= 0)
+                {
+                    // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D3.
+                    if (Diag.IsChannelEnabled("damage"))
+                    {
+                        Diag.Record(
+                            category: "damage",
+                            kind: "ApplyDamageRejected",
+                            actor: source,
+                            target: target,
+                            payload: new { reason = hpStat == null ? "no_hitpoints_stat" : "already_dead" });
+                    }
+                    return;
+                }
                 // Capture pre-decrement HP so the floating number we emit
                 // post-decrement uses the real player-visible delta (clamped
                 // at hpBefore so a 10-damage attack on a 3-HP target shows "3"
@@ -853,6 +896,21 @@ namespace CavesOfOoo.Core
                     //     mutations applied). Listeners that want to know "how
                     //     much was blocked" can read damage.Amount.
                     //   • Attributes reflect any pre-veto listener mutations.
+                    //
+                    // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D2. A single
+                    // kind answers "was this attack fully resisted" — the
+                    // `reason` field distinguishes this veto case from the
+                    // resistance-zeroed case below, without requiring a
+                    // CauseTraceId correlation across two different records.
+                    if (Diag.IsChannelEnabled("damage"))
+                    {
+                        Diag.Record(
+                            category: "damage",
+                            kind: "DamageFullyResisted",
+                            actor: source,
+                            target: target,
+                            payload: new { reason = "vetoed", amount = damage.Amount });
+                    }
                     var fullyResistedVeto = GameEvent.New("DamageFullyResisted");
                     fullyResistedVeto.SetParameter("Target", (object)target);
                     fullyResistedVeto.SetParameter("Source", (object)source);
@@ -864,6 +922,7 @@ namespace CavesOfOoo.Core
                 // Phase E: apply elemental resistances based on damage attributes.
                 // Mirrors XRL.World.Parts.Physics.cs:3351-3417. Damage with the
                 // "IgnoreResist" attribute bypasses all resistance entirely.
+                int amountBeforeResistance = damage.Amount;
                 if (!damage.HasAttribute("IgnoreResist"))
                     ApplyResistances(target, damage);
 
@@ -872,6 +931,16 @@ namespace CavesOfOoo.Core
                     // Resistance fully absorbed. Surface a "fully resisted" event so
                     // listeners (UI, AI retaliation, achievements) still see the attack
                     // attempt even though no HP was lost. (Self-review Finding 4.)
+                    // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D2.
+                    if (Diag.IsChannelEnabled("damage"))
+                    {
+                        Diag.Record(
+                            category: "damage",
+                            kind: "DamageFullyResisted",
+                            actor: source,
+                            target: target,
+                            payload: new { reason = "resisted_to_zero", amountBeforeResistance = amountBeforeResistance });
+                    }
                     var fullyResisted = GameEvent.New("DamageFullyResisted");
                     fullyResisted.SetParameter("Target", (object)target);
                     fullyResisted.SetParameter("Source", (object)source);
@@ -1198,6 +1267,28 @@ namespace CavesOfOoo.Core
                 }
             }
 
+            // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D4. HandleDeath's
+            // whole kill lifecycle (XP award, loot drop, Died event, witness
+            // broadcast) was previously silent — the only external signal was
+            // DamageDealt.lethal=true, which tells you HP hit 0, not what
+            // happened after.
+            if (Diag.IsChannelEnabled("damage"))
+            {
+                Diag.Record(
+                    category: "damage",
+                    kind: "DeathHandled",
+                    actor: killer,
+                    target: target,
+                    payload: new
+                    {
+                        killerIsPlayer = killer != null && killer.HasTag("Player"),
+                        hadBody = target.GetPart<Body>() != null,
+                        hadInventory = target.GetPart<InventoryPart>() != null,
+                        deathX = deathX,
+                        deathY = deathY
+                    });
+            }
+
             if (zone != null)
                 zone.RemoveEntity(target);
 
@@ -1395,7 +1486,11 @@ namespace CavesOfOoo.Core
             // part) re-invoke HandleDeath via Body.Dismember.
             if (defender.GetStatValue("Hitpoints", 0) <= 0) return;
 
-            if (!hitPart.IsSeverable()) return;
+            if (!hitPart.IsSeverable())
+            {
+                EmitDismembermentDiag(defender, hitPart, "not_severable", 0f, 0f, 0, 0);
+                return;
+            }
 
             float threshold = DISMEMBER_DAMAGE_THRESHOLD;
             if (hitPart.Mortal)
@@ -1403,14 +1498,23 @@ namespace CavesOfOoo.Core
 
             int maxHP = defender.GetStat("Hitpoints")?.Max ?? 1;
             float damageRatio = (float)damage / maxHP;
-            if (damageRatio < threshold) return;
+            if (damageRatio < threshold)
+            {
+                EmitDismembermentDiag(defender, hitPart, "below_threshold", damageRatio, threshold, 0, 0);
+                return;
+            }
 
             float excessRatio = damageRatio - threshold;
             int chance = DISMEMBER_BASE_CHANCE + (int)(excessRatio * 50);
             chance = Math.Min(chance, 50);
 
             int roll = rng.Next(100);
-            if (roll >= chance) return;  // chance roll failed — no event, no dismember
+            if (roll >= chance)
+            {
+                // chance roll failed — no event, no dismember
+                EmitDismembermentDiag(defender, hitPart, "roll_failed", damageRatio, threshold, chance, roll);
+                return;
+            }
 
             // Phase H: fire CanBeDismembered to give listeners a chance to veto.
             // Vetoing leaves the body part intact even though the chance roll
@@ -1420,9 +1524,42 @@ namespace CavesOfOoo.Core
             canBeDismembered.SetParameter("BodyPart", (object)hitPart);
             canBeDismembered.SetParameter("Damage", damage);
             if (!defender.FireEventAndRelease(canBeDismembered))
-                return;  // veto — skip the actual dismemberment
+            {
+                // veto — skip the actual dismemberment
+                EmitDismembermentDiag(defender, hitPart, "vetoed", damageRatio, threshold, chance, roll);
+                return;
+            }
 
+            EmitDismembermentDiag(defender, hitPart, "fired", damageRatio, threshold, chance, roll);
             body.Dismember(hitPart, zone);
+        }
+
+        /// <summary>
+        /// Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D5. Single unified
+        /// diag kind for all 4 CheckCombatDismemberment outcomes (previously
+        /// the single largest observability gap this project's own
+        /// COMBAT-BRANCH-MAP.md had flagged) — a debugger can answer "why
+        /// didn't my crit dismember that arm" with one query instead of
+        /// re-deriving the threshold/chance math by hand.
+        /// </summary>
+        private static void EmitDismembermentDiag(Entity defender, BodyPart hitPart,
+            string outcome, float damageRatio, float threshold, int chance, int roll)
+        {
+            if (!Diag.IsChannelEnabled("damage")) return;
+            Diag.Record(
+                category: "damage",
+                kind: "Dismemberment",
+                target: defender,
+                payload: new
+                {
+                    bodyPart = hitPart?.GetDisplayName() ?? "(unknown)",
+                    outcome = outcome,
+                    damageRatio = damageRatio,
+                    threshold = threshold,
+                    chance = chance,
+                    roll = roll,
+                    fired = outcome == "fired"
+                });
         }
 
 

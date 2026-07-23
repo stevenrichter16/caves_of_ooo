@@ -2,6 +2,7 @@ using System;
 using NUnit.Framework;
 using CavesOfOoo.Core;
 using CavesOfOoo.Core.Anatomy;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Tests
 {
@@ -37,6 +38,7 @@ namespace CavesOfOoo.Tests
         public void Setup()
         {
             MessageLog.Clear();
+            Diag.ResetAll();
         }
 
         // ====================================================================
@@ -320,6 +322,124 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(1, killMessageCount,
                 "Exactly one 'is killed by' message must exist across both HandleDeath invocations -- "
                 + "the second (via Body.Dismember) must be a no-op, not a duplicate kill.");
+        }
+
+        // ====================================================================
+        // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D5 -- a single
+        // unified Dismemberment diag kind for all 4 outcomes, previously
+        // this project's own COMBAT-BRANCH-MAP.md-flagged single largest
+        // observability gap.
+        // ====================================================================
+
+        [Test]
+        public void Dismemberment_NotSeverable_EmitsDiagWithThatOutcome()
+        {
+            var defender = MakeFighterWithBody(hp: 100);
+            var body = defender.GetPart<Body>();
+            BodyPart nonSeverable = null;
+            foreach (var p in body.GetParts())
+                if (!p.IsSeverable()) { nonSeverable = p; break; }
+            Assert.IsNotNull(nonSeverable, "test setup: humanoid must have a non-severable part.");
+
+            CombatSystem.CheckCombatDismemberment(
+                defender, body, nonSeverable, damage: 9999, zone: null, rng: new Random(42));
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "damage", Kind = "Dismemberment", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"outcome\":\"not_severable\"", recs[0].PayloadJson);
+            StringAssert.Contains("\"fired\":false", recs[0].PayloadJson);
+        }
+
+        [Test]
+        public void Dismemberment_BelowThreshold_EmitsDiagWithThatOutcome()
+        {
+            var defender = MakeFighterWithBody(hp: 100);
+            var hand = GetHand(defender, primary: false);
+
+            CombatSystem.CheckCombatDismemberment(
+                defender, defender.GetPart<Body>(), hand, damage: 1, zone: null, rng: new Random(42));
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "damage", Kind = "Dismemberment", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"outcome\":\"below_threshold\"", recs[0].PayloadJson);
+        }
+
+        [Test]
+        public void Dismemberment_VetoedByListener_EmitsDiagWithThatOutcome()
+        {
+            int dismemberedCount = 0;
+            int vetoedRecords = 0;
+            for (int seed = 0; seed < 50 && dismemberedCount == 0 && vetoedRecords == 0; seed++)
+            {
+                Diag.ResetAll();
+                var defender = MakeFighterWithBody(hp: 100);
+                defender.AddPart(new CanBeDismemberedVetoProbe());
+                var hand = GetHand(defender, primary: false);
+
+                CombatSystem.CheckCombatDismemberment(
+                    defender, defender.GetPart<Body>(), hand, defender.GetStat("Hitpoints").Max * 2,
+                    zone: null, rng: new Random(seed));
+
+                var recs = DiagQuery.Apply(new DiagQuery.Filter
+                { Category = "damage", Kind = "Dismemberment", Limit = 5 }).Records;
+                foreach (var r in recs)
+                    if (r.PayloadJson.Contains("\"outcome\":\"vetoed\"")) vetoedRecords++;
+            }
+
+            Assert.Greater(vetoedRecords, 0,
+                "At least one seed (across 50 tries, chance saturated at 50%) must produce a vetoed outcome.");
+        }
+
+        [Test]
+        public void Dismemberment_RollFailed_EmitsDiagWithThatOutcome()
+        {
+            bool foundRollFailed = false;
+            for (int seed = 0; seed < 50 && !foundRollFailed; seed++)
+            {
+                Diag.ResetAll();
+                var defender = MakeFighterWithBody(hp: 100);
+                var hand = GetHand(defender, primary: false);
+
+                CombatSystem.CheckCombatDismemberment(
+                    defender, defender.GetPart<Body>(), hand, defender.GetStat("Hitpoints").Max * 2,
+                    zone: null, rng: new Random(seed));
+
+                var recs = DiagQuery.Apply(new DiagQuery.Filter
+                { Category = "damage", Kind = "Dismemberment", Limit = 5 }).Records;
+                foreach (var r in recs)
+                    if (r.PayloadJson.Contains("\"outcome\":\"roll_failed\""))
+                        foundRollFailed = true;
+            }
+
+            Assert.IsTrue(foundRollFailed,
+                "At least one seed (across 50 tries, chance saturated at 50%) must produce a roll_failed outcome.");
+        }
+
+        [Test]
+        public void Dismemberment_Fires_EmitsDiagWithThatOutcome()
+        {
+            bool foundFired = false;
+            for (int seed = 0; seed < 50 && !foundFired; seed++)
+            {
+                Diag.ResetAll();
+                var defender = MakeFighterWithBody(hp: 100);
+                var hand = GetHand(defender, primary: false);
+
+                CombatSystem.CheckCombatDismemberment(
+                    defender, defender.GetPart<Body>(), hand, defender.GetStat("Hitpoints").Max * 2,
+                    zone: null, rng: new Random(seed));
+
+                var recs = DiagQuery.Apply(new DiagQuery.Filter
+                { Category = "damage", Kind = "Dismemberment", Limit = 5 }).Records;
+                foreach (var r in recs)
+                    if (r.PayloadJson.Contains("\"outcome\":\"fired\"") && r.PayloadJson.Contains("\"fired\":true"))
+                        foundFired = true;
+            }
+
+            Assert.IsTrue(foundFired,
+                "At least one seed (across 50 tries, chance saturated at 50%) must produce a fired outcome.");
         }
 
         // ====================================================================

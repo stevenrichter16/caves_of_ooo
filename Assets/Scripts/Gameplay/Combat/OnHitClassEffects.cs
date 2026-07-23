@@ -1,4 +1,5 @@
 using System;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -89,7 +90,10 @@ namespace CavesOfOoo.Core
 
         private static void TryApplyStunned(Entity defender, Entity source, Zone zone, Random rng)
         {
-            if (rng.Next(100) >= BLUDGEONING_STUN_CHANCE_PERCENT) return;
+            int roll = rng.Next(100);
+            bool fired = roll < BLUDGEONING_STUN_CHANCE_PERCENT;
+            EmitClassEffectRollDiag(defender, source, "Stunned", roll, BLUDGEONING_STUN_CHANCE_PERCENT, fired);
+            if (!fired) return;
             // Toughness save each turn to shake off early (user-directed,
             // 2026-07-19); the duration stays the hard ceiling.
             defender.ApplyEffect(
@@ -99,7 +103,10 @@ namespace CavesOfOoo.Core
 
         private static void TryApplyBleeding(Entity defender, Entity source, Zone zone, Random rng)
         {
-            if (rng.Next(100) >= CUTTING_BLEED_CHANCE_PERCENT) return;
+            int roll = rng.Next(100);
+            bool fired = roll < CUTTING_BLEED_CHANCE_PERCENT;
+            EmitClassEffectRollDiag(defender, source, "Bleeding", roll, CUTTING_BLEED_CHANCE_PERCENT, fired);
+            if (!fired) return;
             defender.ApplyEffect(
                 new BleedingEffect(CUTTING_BLEED_SAVE_TARGET, CUTTING_BLEED_DAMAGE_DICE, rng),
                 source, zone);
@@ -107,8 +114,29 @@ namespace CavesOfOoo.Core
 
         private static void TryApplyConfused(Entity defender, Entity source, Zone zone, Random rng)
         {
-            if (rng.Next(100) >= PIERCING_CONFUSE_CHANCE_PERCENT) return;
+            int roll = rng.Next(100);
+            bool fired = roll < PIERCING_CONFUSE_CHANCE_PERCENT;
+            EmitClassEffectRollDiag(defender, source, "Confused", roll, PIERCING_CONFUSE_CHANCE_PERCENT, fired);
+            if (!fired) return;
             defender.ApplyEffect(new ConfusedEffect(PIERCING_CONFUSE_DURATION), source, zone);
+        }
+
+        /// <summary>
+        /// Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D6. This file had
+        /// zero Diag usage anywhere — "my Cudgel never stuns" had no
+        /// diagnostic path. One shared emission for all 3 class-effect
+        /// rolls, distinguished by the `effect` field.
+        /// </summary>
+        private static void EmitClassEffectRollDiag(Entity defender, Entity source,
+            string effect, int roll, int chancePercent, bool fired)
+        {
+            if (!Diag.IsChannelEnabled("damage")) return;
+            Diag.Record(
+                category: "damage",
+                kind: "ClassEffectRolled",
+                actor: source,
+                target: defender,
+                payload: new { effect = effect, roll = roll, chancePercent = chancePercent, fired = fired });
         }
     }
 }

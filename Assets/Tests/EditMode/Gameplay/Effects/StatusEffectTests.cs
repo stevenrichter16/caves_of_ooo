@@ -1,6 +1,7 @@
 using System;
 using NUnit.Framework;
 using CavesOfOoo.Core;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Tests
 {
@@ -10,6 +11,7 @@ namespace CavesOfOoo.Tests
         public void Setup()
         {
             MessageLog.Clear();
+            Diag.ResetAll();
         }
 
         private Entity CreateCreature(int hp = 100, int dv = 4, int toughness = 16, int agility = 16)
@@ -63,6 +65,78 @@ namespace CavesOfOoo.Tests
 
             Assert.IsFalse(applied);
             Assert.IsFalse(e.HasEffect<StunnedEffect>());
+        }
+
+        // ====================================================================
+        // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D8 -- 23 concrete
+        // effects override OnStack with materially different behavior
+        // (extend/ignore/refresh); the 2 pre-apply reject gates + the
+        // OnStack absorb path were all silent before this.
+        // ====================================================================
+
+        [Test]
+        public void ApplyEffect_BeforeApplyVetoed_EmitsApplyEffectRejectedDiag()
+        {
+            var e = CreateCreature();
+            var probe = new EffectEventProbePart { BlockBeforeApply = true };
+            e.AddPart(probe);
+
+            e.ApplyEffect(new StunnedEffect(2));
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "effect", Kind = "ApplyEffectRejected", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"reason\":\"before_apply_vetoed\"", recs[0].PayloadJson);
+        }
+
+        [Test]
+        public void ApplyEffect_CanBeAppliedToFalse_EmitsApplyEffectRejectedDiag()
+        {
+            // ConfusedEffect.CanApply rejects a second application while
+            // already confused -- exercises the OTHER pre-apply gate
+            // (CanBeAppliedTo), distinct from the BeforeApplyEffect veto above.
+            var e = CreateCreature();
+            e.ApplyEffect(new ConfusedEffect());
+            Diag.ResetAll(); // isolate the record from the second (rejected) call only
+
+            e.ApplyEffect(new ConfusedEffect());
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "effect", Kind = "ApplyEffectRejected", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"reason\":\"can_be_applied_to_false\"", recs[0].PayloadJson);
+        }
+
+        [Test]
+        public void ApplyEffect_Stacks_EmitsOnStackAbsorbedDiag()
+        {
+            var e = CreateCreature();
+            e.ApplyEffect(new StunnedEffect(2));
+            Diag.ResetAll(); // isolate the record from the stacking call only
+
+            e.ApplyEffect(new StunnedEffect(3));
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "effect", Kind = "OnStackAbsorbed", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"effect\":\"StunnedEffect\"", recs[0].PayloadJson);
+        }
+
+        [Test]
+        public void ApplyEffect_NormalApply_DoesNotEmitRejectedOrAbsorbedDiag()
+        {
+            // Counter-check: an ordinary, successful first-time apply must
+            // not emit either of the new gate records.
+            var e = CreateCreature();
+
+            e.ApplyEffect(new StunnedEffect(2));
+
+            var rejected = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "effect", Kind = "ApplyEffectRejected", Limit = 5 }).Records;
+            var absorbed = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "effect", Kind = "OnStackAbsorbed", Limit = 5 }).Records;
+            Assert.AreEqual(0, rejected.Count);
+            Assert.AreEqual(0, absorbed.Count);
         }
 
         [Test]

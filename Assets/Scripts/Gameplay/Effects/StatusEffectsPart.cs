@@ -55,10 +55,18 @@ namespace CavesOfOoo.Core
                 return false;
 
             if (!forced && !effect.CanBeAppliedTo(ParentEntity))
+            {
+                // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D8.
+                EmitApplyEffectRejectedDiag(effect, source, forced, "can_be_applied_to_false");
                 return false;
+            }
 
             if (!CheckBeforeApply(effect, source, forced))
+            {
+                // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D8.
+                EmitApplyEffectRejectedDiag(effect, source, forced, "before_apply_vetoed");
                 return false;
+            }
 
             // Check for stacking with existing effects of the same type
             Type incomingType = effect.GetType();
@@ -67,7 +75,22 @@ namespace CavesOfOoo.Core
                 if (_effects[i].GetType() == incomingType)
                 {
                     if (_effects[i].OnStack(effect))
+                    {
+                        // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D8.
+                        // 23 concrete effects override OnStack with
+                        // materially different behavior (extend/ignore/
+                        // refresh) — none of it was queryable before this.
+                        if (Diag.IsChannelEnabled("effect"))
+                        {
+                            Diag.Record(
+                                category: "effect",
+                                kind: "OnStackAbsorbed",
+                                target: ParentEntity,
+                                actor: source,
+                                payload: new { effect = incomingType.Name, forced = forced });
+                        }
                         return true; // stacking handled, don't add duplicate
+                    }
                 }
             }
 
@@ -141,6 +164,22 @@ namespace CavesOfOoo.Core
 
             SendApplied(effect, source, zone, forced);
             return true;
+        }
+
+        /// <summary>
+        /// Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D8. Shared emission
+        /// for ApplyEffectInternal's 2 pre-apply reject gates
+        /// (CanBeAppliedTo / CheckBeforeApply), distinguished by `reason`.
+        /// </summary>
+        private void EmitApplyEffectRejectedDiag(Effect effect, Entity source, bool forced, string reason)
+        {
+            if (!Diag.IsChannelEnabled("effect")) return;
+            Diag.Record(
+                category: "effect",
+                kind: "ApplyEffectRejected",
+                target: ParentEntity,
+                actor: source,
+                payload: new { effect = effect.GetType().Name, reason = reason, forced = forced });
         }
 
         /// <summary>

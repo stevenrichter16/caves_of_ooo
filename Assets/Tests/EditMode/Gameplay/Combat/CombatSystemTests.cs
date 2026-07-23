@@ -2,6 +2,7 @@ using System;
 using NUnit.Framework;
 using CavesOfOoo.Core;
 using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Tests
 {
@@ -11,6 +12,7 @@ namespace CavesOfOoo.Tests
         public void Setup()
         {
             MessageLog.Clear();
+            Diag.ResetAll();
         }
 
         // ========================
@@ -390,6 +392,47 @@ namespace CavesOfOoo.Tests
             var rng = new Random(42);
             bool result = CombatSystem.PerformMeleeAttack(attacker, defender, zone, rng);
             Assert.IsFalse(result, "Attack should be cancelled by BeforeMeleeAttack handler");
+        }
+
+        [Test]
+        public void MeleeAttack_BeforeMeleeAttackVeto_EmitsMeleeAttackVetoedDiag()
+        {
+            // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D1. The FIRST
+            // gate in the whole pipeline -- a veto here previously meant the
+            // entire downstream diag chain for this attack never existed,
+            // not even a stub.
+            var zone = new Zone();
+            var attacker = CreateCreature(20, 20);
+            attacker.AddPart(new CancelAttackPart());
+            zone.AddEntity(attacker, 5, 5);
+            var defender = CreateCreature(16, 16);
+            zone.AddEntity(defender, 6, 5);
+
+            CombatSystem.PerformMeleeAttack(attacker, defender, zone, new Random(42));
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "damage", Kind = "MeleeAttackVetoed", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            Assert.AreEqual(attacker.ID, recs[0].ActorId);
+            Assert.AreEqual(defender.ID, recs[0].TargetId);
+        }
+
+        [Test]
+        public void MeleeAttack_NoVeto_DoesNotEmitMeleeAttackVetoedDiag()
+        {
+            // Counter-check: an ordinary, non-vetoed attack must not emit
+            // MeleeAttackVetoed.
+            var zone = new Zone();
+            var attacker = CreateCreature(20, 20);
+            zone.AddEntity(attacker, 5, 5);
+            var defender = CreateCreature(16, 16);
+            zone.AddEntity(defender, 6, 5);
+
+            CombatSystem.PerformMeleeAttack(attacker, defender, zone, new Random(42));
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "damage", Kind = "MeleeAttackVetoed", Limit = 5 }).Records;
+            Assert.AreEqual(0, recs.Count);
         }
 
         [Test]

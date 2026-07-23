@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -11,11 +12,12 @@ namespace CavesOfOoo.Core
     /// effect via <see cref="OnHitEffectFactory"/>.
     ///
     /// Called from <c>CombatSystem.PerformSingleAttack</c> immediately
-    /// after <see cref="OnHitClassEffects.Apply"/>, inside the same
-    /// <c>if (hpAfter > 0)</c> block. Stack ordering: class hooks fire
-    /// first, then per-weapon overrides — so a Bludgeoning ThunderHammer
-    /// rolls the 15% Stun chance first, then independently rolls the
-    /// 30% Electrified chance from its per-weapon spec.
+    /// after <see cref="OnHitClassEffects.Apply"/> — both fire on any
+    /// landed hit regardless of whether the defender survived, per
+    /// Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM7. Stack ordering: class
+    /// hooks fire first, then per-weapon overrides — so a Bludgeoning
+    /// ThunderHammer rolls the 15% Stun chance first, then independently
+    /// rolls the 30% Electrified chance from its per-weapon spec.
     ///
     /// Reads the parsed-spec list via <see cref="MeleeWeaponPart.OnHitEffectsCachedSpecs"/>
     /// which lazily parses the raw string and caches the result per weapon
@@ -40,10 +42,46 @@ namespace CavesOfOoo.Core
 
                 // Independent chance roll per spec — each effect can fire
                 // independently of others on the same weapon.
-                if (rng.Next(100) >= spec.ChancePercent) continue;
+                int roll = rng.Next(100);
+                bool rolledSuccess = roll < spec.ChancePercent;
+
+                // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D7.
+                if (Diag.IsChannelEnabled("damage"))
+                {
+                    Diag.Record(
+                        category: "damage",
+                        kind: "WeaponEffectRolled",
+                        actor: attacker,
+                        target: defender,
+                        payload: new
+                        {
+                            effectName = spec.EffectName,
+                            roll = roll,
+                            chancePercent = spec.ChancePercent,
+                            fired = rolledSuccess
+                        });
+                }
+
+                if (!rolledSuccess) continue;
 
                 Effect effect = OnHitEffectFactory.Create(spec, attacker, rng);
-                if (effect == null) continue;  // Unknown EffectName — skip silently.
+                if (effect == null)
+                {
+                    // Unknown EffectName — a typo'd EffectName in a weapon
+                    // blueprint previously failed silently forever: not a
+                    // compile error, not a warning, not a diag record.
+                    // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D7.
+                    if (Diag.IsChannelEnabled("damage"))
+                    {
+                        Diag.Record(
+                            category: "damage",
+                            kind: "WeaponEffectUnknownName",
+                            actor: attacker,
+                            target: defender,
+                            payload: new { effectName = spec.EffectName, weaponRaw = weapon.OnHitEffectsRaw });
+                    }
+                    continue;
+                }
 
                 defender.ApplyEffect(effect, attacker, zone);
             }

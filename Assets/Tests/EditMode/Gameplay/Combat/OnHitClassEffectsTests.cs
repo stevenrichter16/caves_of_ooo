@@ -1,6 +1,7 @@
 using System;
 using NUnit.Framework;
 using CavesOfOoo.Core;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Tests
 {
@@ -23,7 +24,11 @@ namespace CavesOfOoo.Tests
     public class OnHitClassEffectsTests
     {
         [SetUp]
-        public void Setup() => MessageLog.Clear();
+        public void Setup()
+        {
+            MessageLog.Clear();
+            Diag.ResetAll();
+        }
 
         // ====================================================================
         // 1. Positive: each class applies its effect across many seeds
@@ -270,6 +275,55 @@ namespace CavesOfOoo.Tests
             Assert.Greater(durationAfterSecond, durationAfterFirst,
                 $"Stacking Bludgeoning Stun should extend duration. " +
                 $"Got {durationAfterFirst} → {durationAfterSecond}.");
+        }
+
+        // ====================================================================
+        // 5. Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D6 -- this file
+        // had zero Diag usage anywhere; "my Cudgel never stuns" had no
+        // diagnostic path.
+        // ====================================================================
+
+        [Test]
+        public void BludgeoningHit_EmitsClassEffectRolledDiag_RegardlessOfOutcome()
+        {
+            // Both a fired and a not-fired roll must emit the record --
+            // find one seed of each across a bounded search.
+            bool foundFired = false, foundMissed = false;
+            for (int seed = 0; seed < 300 && !(foundFired && foundMissed); seed++)
+            {
+                Diag.ResetAll();
+                var defender = MakeFighter();
+                var damage = new Damage(10);
+                damage.AddAttribute("Bludgeoning");
+                OnHitClassEffects.Apply(damage, actualDamage: 10, defender,
+                    attacker: null, zone: null, rng: new Random(seed));
+
+                var recs = DiagQuery.Apply(new DiagQuery.Filter
+                { Category = "damage", Kind = "ClassEffectRolled", Limit = 5 }).Records;
+                Assert.AreEqual(1, recs.Count, $"seed {seed}: exactly one roll record expected.");
+                StringAssert.Contains("\"effect\":\"Stunned\"", recs[0].PayloadJson);
+                if (recs[0].PayloadJson.Contains("\"fired\":true")) foundFired = true;
+                if (recs[0].PayloadJson.Contains("\"fired\":false")) foundMissed = true;
+            }
+
+            Assert.IsTrue(foundFired, "At least one seed must show fired:true.");
+            Assert.IsTrue(foundMissed, "At least one seed must show fired:false.");
+        }
+
+        [Test]
+        public void OnHitClassEffects_OnZeroDamage_DoesNotEmitClassEffectRolledDiag()
+        {
+            // Counter-check: the actualDamage<=0 early-return happens
+            // BEFORE any roll, so no roll record should exist at all.
+            var defender = MakeFighter();
+            var damage = new Damage(10);
+            damage.AddAttribute("Bludgeoning");
+            OnHitClassEffects.Apply(damage, actualDamage: 0, defender,
+                attacker: null, zone: null, rng: new Random(0));
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "damage", Kind = "ClassEffectRolled", Limit = 5 }).Records;
+            Assert.AreEqual(0, recs.Count);
         }
 
         // ====================================================================

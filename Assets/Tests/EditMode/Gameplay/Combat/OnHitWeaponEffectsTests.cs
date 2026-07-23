@@ -1,6 +1,7 @@
 using System;
 using NUnit.Framework;
 using CavesOfOoo.Core;
+using CavesOfOoo.Diagnostics;
 using CavesOfOoo.Tests.TestSupport;
 
 namespace CavesOfOoo.Tests
@@ -32,7 +33,11 @@ namespace CavesOfOoo.Tests
         }
 
         [SetUp]
-        public void Setup() => MessageLog.Clear();
+        public void Setup()
+        {
+            MessageLog.Clear();
+            Diag.ResetAll();
+        }
 
         // ====================================================================
         // 1. Blueprint-shape: each elemental weapon declares its OnHitEffectsRaw
@@ -271,6 +276,58 @@ namespace CavesOfOoo.Tests
             Assert.DoesNotThrow(() =>
                 OnHitWeaponEffects.Apply(weapon: null, damage, actualDamage: 10, defender,
                     attacker: null, zone: null, rng: new Random(0)));
+        }
+
+        // ====================================================================
+        // 6. Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D7 -- the chance
+        // roll + the unknown-EffectName drop previously failed silently
+        // forever: not a compile error, not a warning, not a diag record.
+        // ====================================================================
+
+        [Test]
+        public void FlamingSword_OnHit_EmitsWeaponEffectRolledDiag_RegardlessOfOutcome()
+        {
+            var w = _harness.Factory.CreateEntity("FlamingSword").GetPart<MeleeWeaponPart>();
+            bool foundFired = false, foundMissed = false;
+            for (int seed = 0; seed < 200 && !(foundFired && foundMissed); seed++)
+            {
+                Diag.ResetAll();
+                var defender = MakeFighter();
+                var damage = new Damage(10);
+                damage.AddAttributes("Cutting Fire LongBlades");
+                OnHitWeaponEffects.Apply(w, damage, actualDamage: 10, defender,
+                    attacker: null, zone: null, rng: new Random(seed));
+
+                var recs = DiagQuery.Apply(new DiagQuery.Filter
+                { Category = "damage", Kind = "WeaponEffectRolled", Limit = 5 }).Records;
+                Assert.AreEqual(1, recs.Count, $"seed {seed}: exactly one roll record expected.");
+                StringAssert.Contains("\"effectName\":\"Burning\"", recs[0].PayloadJson);
+                if (recs[0].PayloadJson.Contains("\"fired\":true")) foundFired = true;
+                if (recs[0].PayloadJson.Contains("\"fired\":false")) foundMissed = true;
+            }
+
+            Assert.IsTrue(foundFired, "At least one seed must show fired:true.");
+            Assert.IsTrue(foundMissed, "At least one seed must show fired:false.");
+        }
+
+        [Test]
+        public void UnknownEffectName_EmitsWeaponEffectUnknownNameDiag()
+        {
+            // A typo'd EffectName in a weapon blueprint (e.g. "Stuned" instead
+            // of "Stunned") previously failed silently forever. 100% chance
+            // guarantees the roll succeeds so the unknown-name branch is
+            // reached deterministically.
+            var w = new MeleeWeaponPart { OnHitEffectsRaw = "NotARealEffect,100,,5,1.0" };
+            var defender = MakeFighter();
+            var damage = new Damage(10);
+
+            OnHitWeaponEffects.Apply(w, damage, actualDamage: 10, defender,
+                attacker: null, zone: null, rng: new Random(0));
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "damage", Kind = "WeaponEffectUnknownName", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"effectName\":\"NotARealEffect\"", recs[0].PayloadJson);
         }
 
         // ====================================================================

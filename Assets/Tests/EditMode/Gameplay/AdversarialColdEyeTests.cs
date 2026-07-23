@@ -1,6 +1,7 @@
 using System;
 using NUnit.Framework;
 using CavesOfOoo.Core;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Tests
 {
@@ -31,6 +32,7 @@ namespace CavesOfOoo.Tests
         {
             FactionManager.Initialize();
             MessageLog.Clear();
+            Diag.ResetAll();
         }
 
         // ============================================================
@@ -247,6 +249,100 @@ namespace CavesOfOoo.Tests
                 "ApplyDamage on an already-dead target must NOT re-fire HandleDeath. " +
                 "Otherwise the M6 CR-01 bug pattern (double-kill messages, double " +
                 "Died event, potential double corpse drop) recurs.");
+        }
+
+        // ============================================================
+        // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D3 -- ApplyDamage's
+        // 2 rejection guards emit ApplyDamageRejected with a distinguishing
+        // reason, closing a gap that previously guarded a real,
+        // adversarial-test-caught double-death bug (above) with zero trace.
+        // ============================================================
+
+        [Test]
+        public void ApplyDamage_ZeroAmount_EmitsApplyDamageRejectedDiag()
+        {
+            var zone = new Zone("AdvZone");
+            var target = CreateTarget(zone, 5, 5);
+            var source = CreateSource(zone, 4, 5);
+
+            CombatSystem.ApplyDamage(target, new Damage(0), source, zone);
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "damage", Kind = "ApplyDamageRejected", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"reason\":\"zero_or_negative_amount\"", recs[0].PayloadJson);
+        }
+
+        [Test]
+        public void ApplyDamage_NoHitpointsStat_EmitsApplyDamageRejectedDiag()
+        {
+            var zone = new Zone("AdvZone");
+            var target = new Entity { BlueprintName = "Statue" };
+            target.Tags["Creature"] = "";
+            target.AddPart(new RenderPart { DisplayName = "statue" });
+            target.AddPart(new PhysicsPart { Solid = false });
+            zone.AddEntity(target, 5, 5);
+
+            CombatSystem.ApplyDamage(target, 100, null, zone);
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "damage", Kind = "ApplyDamageRejected", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"reason\":\"no_hitpoints_stat\"", recs[0].PayloadJson);
+        }
+
+        [Test]
+        public void ApplyDamage_AlreadyDeadTarget_EmitsApplyDamageRejectedDiag()
+        {
+            var zone = new Zone("AdvZone");
+            var target = CreateTarget(zone, 5, 5, hp: 10);
+            var source = CreateSource(zone, 4, 5);
+            CombatSystem.ApplyDamage(target, 999, source, zone); // kill it first
+            Diag.ResetAll(); // isolate the record from the second call only
+
+            CombatSystem.ApplyDamage(target, 5, source, zone);
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "damage", Kind = "ApplyDamageRejected", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"reason\":\"already_dead\"", recs[0].PayloadJson);
+        }
+
+        [Test]
+        public void ApplyDamage_NormalHit_DoesNotEmitApplyDamageRejectedDiag()
+        {
+            // Counter-check: an ordinary, successful hit must not emit any
+            // rejection record.
+            var zone = new Zone("AdvZone");
+            var target = CreateTarget(zone, 5, 5);
+            var source = CreateSource(zone, 4, 5);
+
+            CombatSystem.ApplyDamage(target, 5, source, zone);
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "damage", Kind = "ApplyDamageRejected", Limit = 5 }).Records;
+            Assert.AreEqual(0, recs.Count);
+        }
+
+        [Test]
+        public void HandleDeath_EmitsDeathHandledDiag_WithExpectedPayload()
+        {
+            // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D4. HandleDeath's
+            // whole kill lifecycle was previously silent -- the only
+            // external signal was DamageDealt.lethal=true.
+            var zone = new Zone("AdvZone");
+            var target = CreateTarget(zone, 5, 5, hp: 10);
+            var source = CreateSource(zone, 4, 5);
+            source.Tags["Player"] = "";
+
+            CombatSystem.ApplyDamage(target, 999, source, zone);
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "damage", Kind = "DeathHandled", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            Assert.AreEqual(source.ID, recs[0].ActorId);
+            Assert.AreEqual(target.ID, recs[0].TargetId);
+            StringAssert.Contains("\"killerIsPlayer\":true", recs[0].PayloadJson);
         }
 
         // ============================================================
