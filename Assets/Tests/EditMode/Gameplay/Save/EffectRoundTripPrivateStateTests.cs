@@ -33,11 +33,21 @@ namespace CavesOfOoo.Tests
     ///         -1 sentinel because it wasn't persisted). <b>Fix in
     ///         the same commit:</b> convert to public fields with a
     ///         note that they're persistence-managed.</item>
-    ///   <item>⚪ <c>CharredEffect._originalCombustibility</c>,
-    ///         <c>_hasStoredOriginal</c> — fully private. Intentional
-    ///         per source (OnApply re-captures on load; design
-    ///         choice). Pin it as ⚪ so a future contributor doesn't
-    ///         "fix" the dropped state.</item>
+    ///   <item>🔴 <b>CORRECTED 2026-07-23, was wrongly classified ⚪.</b>
+    ///         <c>CharredEffect._originalCombustibility</c>,
+    ///         <c>_hasStoredOriginal</c> — were fully private. The
+    ///         original comment here claimed "OnApply re-captures on
+    ///         load" as the reason this was safe to drop — traced the
+    ///         actual load path
+    ///         (<c>StatusEffectsPart.RestoreEffectsForLoad</c>) and
+    ///         confirmed nothing calls <c>OnApply</c> again post-load;
+    ///         that justification was simply wrong. A Charred creature
+    ///         that persists across any save/load never has its
+    ///         <c>Combustibility</c> restored when the effect wears
+    ///         off. <b>Fixed in the same commit as this doc-comment
+    ///         correction:</b> both fields are now public, mirroring
+    ///         <c>HibernatingEffect</c>'s existing SL.6.4 pattern
+    ///         above.</item>
     /// </list>
     /// </summary>
     public class EffectRoundTripPrivateStateTests
@@ -154,36 +164,52 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(0.85f, effect.Cold, 0.0001f);
         }
 
-        // ── D. CharredEffect: private state intentionally not preserved ──
+        // ── D. CharredEffect: original Combustibility round-trips and restores ──
 
         [Test]
-        public void CharredEffect_PrivateState_IntentionallyNotPersisted()
+        public void CharredEffect_OriginalCombustibility_RoundTrips_AndOnRemoveRestoresIt()
         {
-            // CharredEffect tracks `_originalCombustibility` and
-            // `_hasStoredOriginal` as fully private fields. By design
-            // (per source comment), OnApply re-captures these on load
-            // — they're NOT meant to round-trip. Pin the contract so
-            // a future contributor doesn't "fix" the dropped state
-            // and break the OnApply re-capture logic.
+            // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM1/A1. Was:
+            // CharredEffect_PrivateState_IntentionallyNotPersisted, which
+            // asserted the dropped state as an intentional ⚪ design choice.
+            // That premise was traced and found false — nothing re-runs
+            // OnApply post-load, so the pre-fix behavior permanently
+            // corrupted a Charred creature's Combustibility after any
+            // save/load. This test proves the fix: apply (reduces
+            // Combustibility to 30%), round-trip, THEN remove — the
+            // restore must land on the ORIGINAL pre-Charred value, not
+            // silently no-op (which would leave Combustibility stuck at
+            // its charred-reduced value forever).
             var actor = NewActor();
+            actor.AddPart(new MaterialPart { Combustibility = 1.0f });
             actor.ForceApplyEffect(new CharredEffect());
+            Assert.AreEqual(0.3f, actor.GetPart<MaterialPart>().Combustibility, 0.0001f,
+                "sanity: OnApply must have reduced Combustibility to 30% before the round-trip.");
 
             var loaded = PartRoundTripHelper.RoundTripEntityViaTokenGraph(actor);
             var effect = loaded.GetEffect<CharredEffect>();
             Assert.IsNotNull(effect, "CharredEffect itself round-trips.");
 
-            // The private fields were not serialized → they're at
-            // GetUninitializedObject defaults (false / 0).
-            // Probe via reflection to PIN the contract.
-            bool hasStored = (bool)typeof(CharredEffect)
-                .GetField("_hasStoredOriginal",
-                    System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
-                .GetValue(effect);
-            Assert.IsFalse(hasStored,
-                "CharredEffect._hasStoredOriginal stays false on load — "
-                + "intentional. OnApply re-captures original combustibility "
-                + "post-load. If this changes to true, the OnApply re-capture "
-                + "would be skipped (treating saved garbage as 'already captured').");
+            loaded.RemoveEffect<CharredEffect>();
+
+            Assert.AreEqual(1.0f, loaded.GetPart<MaterialPart>().Combustibility, 0.0001f,
+                "Post-load OnRemove must restore the original Combustibility (1.0), not "
+                + "silently no-op because _hasStoredOriginal failed to persist.");
+        }
+
+        [Test]
+        public void CharredEffect_NoRoundTrip_StillRestoresCorrectly()
+        {
+            // Counter-check: the fix must not break the already-working
+            // same-session (no save/load) restore path.
+            var actor = NewActor();
+            actor.AddPart(new MaterialPart { Combustibility = 0.8f });
+            actor.ForceApplyEffect(new CharredEffect());
+            Assert.AreEqual(0.24f, actor.GetPart<MaterialPart>().Combustibility, 0.0001f);
+
+            actor.RemoveEffect<CharredEffect>();
+
+            Assert.AreEqual(0.8f, actor.GetPart<MaterialPart>().Combustibility, 0.0001f);
         }
 
     }
