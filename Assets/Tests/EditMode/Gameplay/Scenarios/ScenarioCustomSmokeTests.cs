@@ -317,5 +317,15 @@ namespace CavesOfOoo.Tests.Scenarios
             // Docs/QUEST-PLAYABLE-CINNAMONBUN.md.
             Assert.DoesNotThrow(() => new QuestCinnamonBunPlayable().Apply(FreshContext()));
         }
+
+        [Test]
+        public void CropFarmShowcase_Applies_WithoutThrowing()
+        {
+            // Crops + Watering Grimoire showcase (Docs/CROPS-WATERING-
+            // GRIMOIRE.md). Smoke proves the grass plot + pre-planted
+            // crops + player loadout spawn cleanly; the rain/soil visuals
+            // are the manual-playtest half per the plan's honesty bounds.
+            Assert.DoesNotThrow(() => new CropFarmShowcase().Apply(FreshContext()));
+        }
     }
 }

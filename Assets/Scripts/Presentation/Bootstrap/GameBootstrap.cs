@@ -207,6 +207,8 @@ namespace CavesOfOoo
                 LayRuneGoal.Factory = _factory;
                 AlchemyStillPart.Factory = _factory;
                 ForgePart.Factory = _factory;
+                SeedPart.Factory = _factory;
+                CropSystem.Factory = _factory;
 
                 Debug.Log("[Bootstrap] Step 5/9: Generating starting zone...");
                 bool zoneGenerated = PerformanceDiagnostics.MeasureStartupPhase("GenerateZone", PerformanceMarkers.Bootstrap.GenerateZone, () =>
@@ -243,6 +245,10 @@ namespace CavesOfOoo
                 // the actual work; this Part is just the event router.
                 _world.AddPart(new GasSystemPart());
 
+                // Crops — same shape as gas: TickEnd router forwarding to
+                // CropSystem.OnTickEnd. See Docs/CROPS-WATERING-GRIMOIRE.md.
+                _world.AddPart(new CropSystemPart());
+
                 Debug.Log("[Bootstrap] Step 6/9: Creating player...");
                 bool playerCreated = PerformanceDiagnostics.MeasureStartupPhase("SetupPlayer", PerformanceMarkers.Bootstrap.SetupPlayer, () =>
                 {
@@ -259,6 +265,7 @@ namespace CavesOfOoo
                     InitializePlayerStartingTinkering();
                     GivePlayerStartingTonics();
                     GivePlayerCraftingStarterKit();
+                    GivePlayerFarmingStarterKit();
                     PlacePlayerInOpenCell();
                     SpawnDebugWeaponNearPlayer();
                     SpawnDebugNPCNearPlayer();
@@ -754,6 +761,16 @@ namespace CavesOfOoo
             LayRuneGoal.Factory = _factory;
             AlchemyStillPart.Factory = _factory;
             ForgePart.Factory = _factory;
+            SeedPart.Factory = _factory;
+            CropSystem.Factory = _factory;
+
+            // Defensive re-attach for saves that predate the crop system
+            // (StoryletPart's exact pattern above): a pre-feature save's
+            // world entity has no CropSystemPart, so crops planted after
+            // loading such a save would never tick.
+            if (_world != null && _world.GetPart<CropSystemPart>() == null)
+                _world.AddPart(new CropSystemPart());
+
             ConversationManager.EndConversation();
 
             if (_zoneManager != null)
@@ -924,6 +941,44 @@ namespace CavesOfOoo
         {
             int granted = CraftingStarterKit.GrantAll(_player, _factory);
             Debug.Log($"[Bootstrap/Crafting] Granted {granted} starter ingredient stack(s) to the player.");
+        }
+
+        /// <summary>
+        /// Farming starter kit: the Watering Grimoire plus a handful of
+        /// seeds, so the crop loop (plant → conjure rain → grow →
+        /// harvest) is player-exercisable from turn one. Mirrors the
+        /// tonic-grant shape. See Docs/CROPS-WATERING-GRIMOIRE.md.
+        /// </summary>
+        private void GivePlayerFarmingStarterKit()
+        {
+            if (_player == null || _factory == null)
+                return;
+
+            var inventory = _player.GetPart<InventoryPart>();
+            if (inventory == null)
+            {
+                Debug.LogWarning("[Bootstrap/Farming] Player has no InventoryPart; farming kit skipped.");
+                return;
+            }
+
+            int granted = 0;
+            string[] kit = { "WateringGrimoire", "CandyCarrotSeed", "EmberwheatSeed" };
+            int[] counts = { 1, 4, 2 };
+            for (int i = 0; i < kit.Length; i++)
+            {
+                var item = _factory.CreateEntity(kit[i]);
+                if (item == null)
+                {
+                    Debug.LogWarning($"[Bootstrap/Farming] Failed to create '{kit[i]}'.");
+                    continue;
+                }
+                var stacker = item.GetPart<StackerPart>();
+                if (stacker != null && counts[i] > 1)
+                    stacker.StackCount = counts[i];
+                if (inventory.AddObject(item))
+                    granted++;
+            }
+            Debug.Log($"[Bootstrap/Farming] Granted {granted} farming kit item stack(s) to the player.");
         }
 
         private void GivePlayerStartingTonics()

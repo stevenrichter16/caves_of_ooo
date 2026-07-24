@@ -197,7 +197,7 @@ Moisture bookkeeping lives ONLY here — no double-decrement paths.
 | SM1 | Content blueprints + `crop` diag category + `CropPart` + `SeedPart` + planting flow | ✅ 2026-07-23 |
 | SM2 | `CropSystem` + `CropSystemPart`: moisture-gated growth, stage swap, dry-out bg clear, maturity produce-replace | ✅ 2026-07-23 |
 | SM3 | `ConjureRainMutation` + `WateringGrimoire` content + rain FX + watering/darkening | ✅ 2026-07-23 |
-| SM4 | Bootstrap wiring + starter kit + save/load round-trip pins + showcase scenario + smoke test | ⏳ |
+| SM4 | Bootstrap wiring + starter kit + save/load round-trip pins + showcase scenario + smoke test | ✅ 2026-07-23 |
 | SM5 | Adversarial sweep (dedicated file — CSV parser malformed inputs, top-up stacking semantics, save/load reach, boundary radius, diag contracts, Factory-null paths) + cold-eye review + close-out | ⏳ |
 
 ## 4. Test plan sketch
@@ -282,3 +282,25 @@ Moisture bookkeeping lives ONLY here — no double-decrement paths.
   consumed + no duplicate on re-read, ability registered as
   SelfCentered "Grimoire Spells". 38/38 GREEN across all three farming
   suites.
+
+### SM4 — bootstrap wiring + save/load + showcase (shipped 2026-07-23)
+- GameBootstrap (new-game): `SeedPart.Factory`/`CropSystem.Factory`
+  beside the existing Factory statics; `CropSystemPart` attached to the
+  world entity beside `GasSystemPart`; `GivePlayerFarmingStarterKit()`
+  (grimoire + 4 CandyCarrot seeds + 2 Emberwheat seeds) beside the
+  crafting kit.
+- GameBootstrap (load path): same Factory statics, PLUS a defensive
+  `CropSystemPart` re-attach (StoryletPart's exact pattern) — a
+  pre-feature save's world entity has no CropSystemPart, and without
+  this, crops planted after loading such a save would never tick.
+- Tests: `CropRoundTripTests.cs` — 4 pins: CropPart mid-growth/
+  mid-moisture + blueprint params round-trip; wet-soil bg survives a
+  round-trip AND still dries out correctly after load; a sprouted
+  crop's swapped glyph/color round-trips; CropSystemPart survives on a
+  saved world entity. Plus the showcase smoke in
+  `ScenarioCustomSmokeTests` (54/54).
+- Showcase: `Scenarios/Custom/CropFarmShowcase.cs` ("World Systems"
+  category) — 5×3 grass plot, 4 pre-planted dry crops mid-growth,
+  ConjureRain pre-taught + full kit in inventory, with an explicit
+  "what to verify visually" checklist covering exactly the things
+  EditMode cannot (rain motion, wet-soil readability, glyph swap).
