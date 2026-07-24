@@ -66,6 +66,18 @@ worse shape than melee:
   A recruited companion standing next to its fighting leader will not
   engage the leader's attacker — "assist my leader" is simply
   unimplemented.
+
+  **Status: FIXED (minimal tier).** See `Docs/FOLLOWERS.md` "Phase
+  F.3.7 — Leader-target combat assist" (shipped 2026-07-23). A deeper
+  scoping pass found this was worse than "uncoordinated" — a recruited
+  follower didn't fight AT ALL while under `FollowLeaderGoal`, since
+  that goal permanently occupies the goal stack and blocks the only
+  two places (`BoredGoal`/`GuardGoal`) that ever push a `KillGoal`.
+  Fixed minimally: if the leader has a live `KillGoal` in the same
+  zone, the follower joins in against the same target. Explicitly
+  deferred to a future tier: threat-aware target selection,
+  friendly-fire avoidance, formation/positioning, and F.4's separate
+  damage-reactive "mutual defense" trigger.
 - **Retaliation/aggro-on-hit has exactly one call site in the entire
   game.** `SetPersonallyHostile`/`AddPersonalEnemy` is called from
   precisely one place: `InputHandler.ExecuteAttackOnNPC` (the player's

@@ -13,6 +13,18 @@ namespace CavesOfOoo.Core
     /// primitive for a moving target — A* would need to re-plan
     /// every tick since the leader can move.</para>
     ///
+    /// <para><b>Combat assist (Docs/FOLLOWERS.md "Phase F.3.7"):</b>
+    /// if the leader is actively mid-fight (has a live <see cref="KillGoal"/>
+    /// targeting a hostile in the same zone), <see cref="TakeAction"/>
+    /// pushes a <see cref="KillGoal"/> against that same target instead
+    /// of idling or following. Takes priority over the close-enough
+    /// idle check. When the assist fight ends, the pushed
+    /// <see cref="KillGoal"/> pops naturally (its own
+    /// <c>Finished()</c> logic) and this goal resumes on the next tick
+    /// — no extra bookkeeping needed. No threat-model, friendly-fire, or
+    /// formation logic — see the phase doc for what's deliberately out
+    /// of scope.</para>
+    ///
     /// <para><b>Termination cases (<see cref="Finished"/>):</b></para>
     /// <list type="bullet">
     ///   <item>Leader is null.</item>
@@ -135,6 +147,25 @@ namespace CavesOfOoo.Core
             if (leaderZone != CurrentZone)
             {
                 Age = 0;
+                return;
+            }
+
+            // Docs/FOLLOWERS.md "Phase F.3.7 -- Leader-target combat
+            // assist". If the leader is actively mid-fight (has a live
+            // KillGoal, not just a possibly-stale Target field -- see the
+            // phase's verification-sweep note on why HasGoal<KillGoal>()
+            // is checked rather than trusting Target alone), join the
+            // fight against the same hostile instead of idling/following
+            // passively. Takes priority over the close-enough idle check
+            // below -- a follower standing right next to its fighting
+            // leader must jump in, not just idle because it's "close
+            // enough." No re-check of faction hostility here: trusts the
+            // leader's own target legitimacy (documented, accepted
+            // limitation -- see the phase doc).
+            if (leaderBrain.HasGoal<KillGoal>() && leaderBrain.Target != null
+                && CurrentZone.GetEntityCell(leaderBrain.Target) != null)
+            {
+                PushChildGoal(new KillGoal(leaderBrain.Target));
                 return;
             }
 

@@ -403,5 +403,161 @@ namespace CavesOfOoo.Tests
                 "CloseEnoughDistance public field round-trips.");
             Assert.AreEqual(99, lg.MaxAgeBeforeGiveUp);
         }
+
+        // ── F.3.7: leader-target combat assist ───────────────────
+        // Docs/FOLLOWERS.md "Phase F.3.7 -- Leader-target combat assist".
+        // If the leader is actively fighting something (has a live
+        // KillGoal + Target in the same zone), the follower joins in
+        // instead of idling/following passively.
+
+        private static Entity PushLeaderKillGoal(Entity leader, Entity hostile)
+        {
+            var brain = leader.GetPart<BrainPart>();
+            brain.Target = hostile;
+            brain.PushGoal(new KillGoal(hostile));
+            return hostile;
+        }
+
+        [Test]
+        public void TakeAction_LeaderFighting_FollowerPushesKillGoalOnSameTarget()
+        {
+            var zone = new Zone("z");
+            var follower = CreateCreature(zone, 5, 5, "f");
+            var leader = CreateCreature(zone, 6, 5, "l");
+            var hostile = CreateCreature(zone, 7, 5, "h");
+            PushLeaderKillGoal(leader, hostile);
+
+            var goal = PushGoal(follower, leader);
+            goal.TakeAction();
+
+            var followerBrain = follower.GetPart<BrainPart>();
+            var top = followerBrain.PeekGoal() as KillGoal;
+            Assert.IsNotNull(top,
+                "Follower must push a KillGoal when the leader is actively fighting.");
+            Assert.AreSame(hostile, top.Target,
+                "Follower's KillGoal must target the SAME hostile the leader is fighting.");
+        }
+
+        [Test]
+        public void TakeAction_LeaderNotFighting_FollowerDoesNotPushKillGoal()
+        {
+            // Counter-check: leader has no KillGoal (e.g. just wandering) —
+            // follower must not invent a fight. Confirms the assist branch
+            // doesn't fire on Target alone (Target defaults to null here,
+            // but this also guards against a future bug where Target is
+            // set without a live KillGoal).
+            var zone = new Zone("z");
+            var follower = CreateCreature(zone, 5, 5, "f");
+            var leader = CreateCreature(zone, 6, 5, "l");
+
+            var goal = PushGoal(follower, leader);
+            goal.TakeAction();
+
+            var followerBrain = follower.GetPart<BrainPart>();
+            Assert.IsFalse(followerBrain.HasGoal<KillGoal>(),
+                "Follower must not push a KillGoal when the leader isn't fighting anything.");
+            Assert.IsFalse(goal.Finished(),
+                "FollowLeaderGoal itself must still be on the stack (idling), not popped.");
+        }
+
+        [Test]
+        public void TakeAction_LeaderFightingInDifferentZone_FollowerDoesNotAssist()
+        {
+            // Counter-check: leader is mid-fight, but the follower is in a
+            // different (not-yet-realigned) zone. The existing cross-zone
+            // idle branch must still take priority -- no attempt to push a
+            // KillGoal against a target the follower can't even reach.
+            var followerZone = new Zone("follower-zone");
+            var leaderZone = new Zone("leader-zone");
+            var follower = CreateCreature(followerZone, 5, 5, "f");
+            var leader = CreateCreature(leaderZone, 6, 5, "l");
+            var hostile = CreateCreature(leaderZone, 7, 5, "h");
+            PushLeaderKillGoal(leader, hostile);
+
+            var goal = PushGoal(follower, leader);
+            goal.TakeAction();
+
+            var followerBrain = follower.GetPart<BrainPart>();
+            Assert.IsFalse(followerBrain.HasGoal<KillGoal>(),
+                "Follower in a different zone must not push a KillGoal against a target it can't reach.");
+            Assert.IsFalse(goal.Finished(), "Goal stays on the stack (cross-zone idle), not popped.");
+        }
+
+        [Test]
+        public void TakeAction_LeaderFightingWhileFollowerAlreadyCloseEnough_AssistTakesPriority()
+        {
+            // The assist check must run BEFORE the close-enough idle
+            // check -- a follower standing right next to its leader
+            // must join the fight, not just idle because it's "close enough."
+            var zone = new Zone("z");
+            var follower = CreateCreature(zone, 5, 5, "f");
+            var leader = CreateCreature(zone, 6, 5, "l"); // adjacent -- within default CloseEnoughDistance
+            var hostile = CreateCreature(zone, 8, 5, "h");
+            PushLeaderKillGoal(leader, hostile);
+
+            var goal = PushGoal(follower, leader);
+            goal.TakeAction();
+
+            var followerBrain = follower.GetPart<BrainPart>();
+            Assert.IsTrue(followerBrain.HasGoal<KillGoal>(),
+                "Assist must take priority over the close-enough idle branch.");
+        }
+
+        [Test]
+        public void TakeAction_MultipleFollowers_AllAssistSameTarget()
+        {
+            // Two followers, same leader, same fight -- both should join
+            // in on the same hostile (Qud-parity "dogpile," no
+            // coordination/threat-splitting logic in this phase).
+            var zone = new Zone("z");
+            var followerA = CreateCreature(zone, 4, 5, "fa");
+            var followerB = CreateCreature(zone, 4, 6, "fb");
+            var leader = CreateCreature(zone, 6, 5, "l");
+            var hostile = CreateCreature(zone, 7, 5, "h");
+            PushLeaderKillGoal(leader, hostile);
+
+            var goalA = PushGoal(followerA, leader);
+            var goalB = PushGoal(followerB, leader);
+            goalA.TakeAction();
+            goalB.TakeAction();
+
+            var killA = followerA.GetPart<BrainPart>().PeekGoal() as KillGoal;
+            var killB = followerB.GetPart<BrainPart>().PeekGoal() as KillGoal;
+            Assert.IsNotNull(killA);
+            Assert.IsNotNull(killB);
+            Assert.AreSame(hostile, killA.Target);
+            Assert.AreSame(hostile, killB.Target);
+        }
+
+        [Test]
+        public void TakeAction_AssistFightEnds_FollowerResumesFollowingNextTick()
+        {
+            // Once the follower's own KillGoal finishes (target dies/leaves),
+            // it pops naturally (existing KillGoal.Finished() logic -- no
+            // new code), and FollowLeaderGoal is back on top to resume
+            // following on the next tick. Simulated here by directly
+            // popping the KillGoal (mirrors what HandleTakeTurn's
+            // finished-goal cleanup does) rather than driving full combat.
+            var zone = new Zone("z");
+            var follower = CreateCreature(zone, 5, 5, "f");
+            var leader = CreateCreature(zone, 6, 5, "l");
+            var hostile = CreateCreature(zone, 7, 5, "h");
+            PushLeaderKillGoal(leader, hostile);
+
+            var goal = PushGoal(follower, leader);
+            goal.TakeAction();
+            var followerBrain = follower.GetPart<BrainPart>();
+            var killGoal = followerBrain.PeekGoal() as KillGoal;
+            Assert.IsNotNull(killGoal, "Sanity: follower joined the fight.");
+
+            // Target dies and leaves the zone -- KillGoal.Finished() now true.
+            zone.RemoveEntity(hostile);
+            Assert.IsTrue(killGoal.Finished());
+            followerBrain.RemoveGoal(killGoal);
+
+            Assert.AreSame(goal, followerBrain.PeekGoal(),
+                "FollowLeaderGoal is back on top once the assist KillGoal pops.");
+            Assert.IsFalse(goal.Finished(), "FollowLeaderGoal itself never finished during the assist.");
+        }
     }
 }

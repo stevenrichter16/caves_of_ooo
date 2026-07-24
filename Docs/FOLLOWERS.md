@@ -417,6 +417,152 @@ side-by-side with Qud source, flag every drift. 14 findings surfaced;
 
 ---
 
+# Phase F.3.7 — Leader-target combat assist ✅ SHIPPED 2026-07-23
+
+**Origin:** `Docs/COMBAT-SYSTEM-AUDIT-2026-07.md:63-68` (completeness-critic
+finding): "Followers never assist their leader in combat... 'assist my
+leader' is simply unimplemented." A 2026-07-23 scoping pass confirmed
+this is worse than "uncoordinated" — a recruited follower does not fight
+**at all** while under `FollowLeaderGoal`, because that goal never
+finishes (F.2.6 persistent-follow fix) and permanently occupies the top
+of the goal stack, so `BoredGoal`/`GuardGoal` — the only two places that
+ever push a `KillGoal` (confirmed via grep) — never run again for a
+follower once recruited.
+
+**Distinct from F.4's planned "mutual defense."** F.4's own plan (below)
+describes a *reactive* trigger: "when a party member is DAMAGED, other
+party members push a KillGoal at the attacker." This phase is a
+*proactive* trigger: "when my leader already HAS a combat target, join
+in." Different trigger conditions, different edge cases (a follower
+could be idle while its leader is fighting something that hasn't hit
+anyone yet) — shipping this first doesn't block or conflict with F.4's
+mutual-defense work landing later; the two are complementary, not
+sequential.
+
+## Goal
+
+Give followers a minimal combat-assist behavior: if the party leader is
+actively fighting something (has a live `KillGoal` targeting a hostile
+in the same zone), the follower interrupts following and joins the
+fight against that same target. When the fight ends (target dies or
+leaves the zone), the follower's `KillGoal` pops naturally and
+`FollowLeaderGoal` resumes on the next tick — zero extra code needed for
+"return to following," since that falls out of the existing goal-stack
+architecture.
+
+**Explicitly out of scope for this phase** (per the 2026-07-23 scoping
+pass's own size analysis — these belong to the "ambitious" tier, not
+this one):
+- Threat-aware target selection / focus-fire prioritization among
+  multiple followers or multiple hostiles.
+- Friendly-fire avoidance (thrown weapons, AoE).
+- Formation/positioning logic.
+- Coordinated group retreat (a follower still only flees on its own HP
+  via the existing `ShouldFlee()`/`FleeThreshold` mechanism, unchanged).
+- F.4's mutual-defense (damage-reactive) trigger — separate phase.
+
+## Verification sweep (2026-07-23, before writing code)
+
+Read in full: `FollowLeaderGoal.cs`, `GoalHandler.cs`, `KillGoal.cs`,
+`BoredGoal.cs`, and `BrainPart.cs`'s goal-stack + `Target`-lifecycle
+sections (`HandleTakeTurn`, `HasGoal<T>`, `PeekGoal`).
+
+| # | Claim (from the scoping pass) | Verification result |
+|---|---|---|
+| 1 | `GoalHandler.CanFight()` is dead interrupt machinery | Confirmed — 9 goal classes override it, zero call sites read it anywhere. Not building on it; a bespoke check inside `FollowLeaderGoal.TakeAction()` is smaller blast radius than wiring up a shared interrupt mechanism nobody else uses yet. |
+| 2 | `BrainPart.Target` could go stale after a fight ends for reasons OTHER than target-death/departure (e.g. leader breaks off to flee) | Confirmed as a real, narrow edge case: `HandleTakeTurn` nulls `Target` when the target dies/leaves (every tick, before goals run), but does NOT null it when a `KillGoal` pops via `FailToParent()` (e.g. leader fled). **Design decision:** use `leaderBrain.HasGoal<KillGoal>()` (precise "is currently mid-fight" signal, confirmed via `BrainPart.cs:516-522`) AS WELL AS `Target != null`, not `Target` alone — sidesteps the staleness question entirely, since `HasGoal<KillGoal>()` is false the instant the leader's `KillGoal` pops for any reason. |
+| 3 | Pushing a `KillGoal` with a target outside the follower's current zone is safe (no crash) | Confirmed — `KillGoal.Finished()` checks `CurrentZone?.GetEntityCell(Target) == null`, so a not-in-this-zone target pops the goal immediately next tick without ever calling `TakeAction()`. Gated anyway (placed after the existing cross-zone early-return) to avoid the pointless churn. |
+| 4 | Followers currently have zero combat participation, so there's no pre-existing independent-KillGoal state to conflict with | Confirmed — `FollowLeaderGoal` permanently blocks `BoredGoal`/`GuardGoal` from ever running for a follower (per the origin finding above), so a follower can never already have its own KillGoal running underneath. |
+
+## Design
+
+`FollowLeaderGoal.TakeAction()` gets one new branch, inserted after the
+existing cross-zone early-return and before the existing close-enough
+idle-check (so assist takes priority over both "idle, already close"
+and "keep walking toward leader"):
+
+```csharp
+if (leaderBrain.HasGoal<KillGoal>() && leaderBrain.Target != null
+    && CurrentZone.GetEntityCell(leaderBrain.Target) != null)
+{
+    PushChildGoal(new KillGoal(leaderBrain.Target));
+    return;
+}
+```
+
+Reuses `KillGoal`, `PushChildGoal`, `HasGoal<T>`, and `BrainPart.Target`
+entirely as-is — no new Part, Effect, or event needed. A follower's
+pushed `KillGoal` inherits `ShouldFlee()` automatically (base-class
+behavior), so a follower that joins a fight and then drops low on HP
+still breaks off and flees on its own, same as any other `KillGoal`
+user.
+
+**Known accepted limitation (documented, not fixed here):** if the
+leader is fighting something the follower's own faction alignment
+wouldn't normally consider hostile (a `PersonallyHostile`-only target),
+the follower will still pile on, trusting the leader's target
+legitimacy rather than re-deriving hostility. This matches the
+"assist my leader" framing literally and avoids scope creep into
+friendly-fire/threat-model territory (explicitly deferred above).
+
+## Sub-milestones
+
+- F.3.7.1 — `FollowLeaderGoal` assist branch + tests
+- F.3.7.2 — Cold-eye review + adversarial sweep (cross-actor flow: leader/follower/hostile is exactly the taxonomy surface this repo's methodology flags for a dedicated sweep)
+
+## Implementation log
+
+**F.3.7.1 shipped.** `FollowLeaderGoal.TakeAction()` gained the
+`HasGoal<KillGoal>() && Target != null && GetEntityCell != null` branch
+exactly as designed above, placed after the cross-zone early-return and
+before the close-enough idle check. RED-first: 4 of 6 new tests failed
+before the fix (no assist branch existed to push a KillGoal), 2
+counter-checks (leader-not-fighting, different-zone) passed trivially
+pre-fix as expected. 6 new tests in `FollowLeaderGoalTests.cs`: happy
+path (follower joins leader's exact target), counter-check (no leader
+KillGoal → no assist), counter-check (leader fighting in a different
+zone → no assist, cross-zone idle still wins), assist-takes-priority
+(follower already close-enough but leader fighting → still joins, not
+just idles), multiple-followers-dogpile-same-target, and
+resume-following-after-the-assist-fight-ends (KillGoal pops naturally,
+FollowLeaderGoal is back on top, never itself finished).
+
+**F.3.7.2 — cold-eye review, 0 findings.** Q1 symmetry: no
+apply/remove pair to check (single behavioral branch, not a
+lifecycle hook). Q2 cross-feature consistency: the new branch mirrors
+`BoredGoal`'s existing `PushChildGoal(new KillGoal(hostile)); return;`
+pattern exactly — same call shape, same early-return convention. Q3
+counter-check completeness: both branches (assist fires / doesn't
+fire) have a dedicated test; the "doesn't fire" side has two
+independent reasons tested (no leader KillGoal; leader KillGoal but
+wrong zone). Q4 doc-vs-impl: this section's code snippet matches the
+shipped `FollowLeaderGoal.cs` verbatim.
+
+**Adversarial angle (cross-actor flow, the one taxonomy surface that
+applies here) — folded into the 6 tests above rather than a separate
+dedicated file**, given the feature's total surface is one ~10-line
+branch reusing only already-adversarially-tested primitives
+(`KillGoal`, `PushChildGoal`, `HasGoal<T>`) — no new stacking
+semantics, no new save/load surface (pushing a child goal doesn't
+change `FollowLeaderGoal`'s own serialization shape), no RNG, no
+multi-step transaction. Traced (not tested, since unreachable by
+construction — see verification sweep item 2) the
+`Target != null`-but-stale scenario: `BrainPart.HandleTakeTurn` nulls
+`Target` and pops a `Finished()` `KillGoal` in the same tick whenever
+the target dies/leaves, so `HasGoal<KillGoal>() && Target != null`
+can't observe a contradiction — confirmed by reading the exact
+tick-order in `BrainPart.cs`, not by writing a test for an
+unreachable state.
+
+**Tests: 6 new, all green. 210/210 across the full follower/AI
+regression sweep (FollowerSystemTests, FollowerSystemAdversarialTests,
+GoalStackTests, FactionAITests, AIBehaviorPartTests,
+RecruitedEffectTests, RecruitedEffectAdversarialTests,
+FollowLeaderGoalTests). 5607/5607 full EditMode suite, zero
+regressions.**
+
+---
+
 # Phase F.4 — Cross-zone polish + mutual defense ⏳
 
 **Not started.** F.2.7 already ships the default-follow path (followers come along through zone transitions). F.4 covers the OPT-OUT case + combat-rules surface.
