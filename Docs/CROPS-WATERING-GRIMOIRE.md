@@ -195,7 +195,7 @@ Moisture bookkeeping lives ONLY here — no double-decrement paths.
 | # | Scope | Status |
 |---|---|---|
 | SM1 | Content blueprints + `crop` diag category + `CropPart` + `SeedPart` + planting flow | ✅ 2026-07-23 |
-| SM2 | `CropSystem` + `CropSystemPart`: moisture-gated growth, stage swap, dry-out bg clear, maturity produce-replace | ⏳ |
+| SM2 | `CropSystem` + `CropSystemPart`: moisture-gated growth, stage swap, dry-out bg clear, maturity produce-replace | ✅ 2026-07-23 |
 | SM3 | `ConjureRainMutation` + `WateringGrimoire` content + rain FX + watering/darkening | ⏳ |
 | SM4 | Bootstrap wiring + starter kit + save/load round-trip pins + showcase scenario + smoke test | ⏳ |
 | SM5 | Adversarial sweep (dedicated file — CSV parser malformed inputs, top-up stacking semantics, save/load reach, boundary radius, diag contracts, Factory-null paths) + cold-eye review + close-out | ⏳ |
@@ -242,3 +242,20 @@ Moisture bookkeeping lives ONLY here — no double-decrement paths.
   the top-up semantics were verified by real Unity runs before commit.
   One real harness catch during the run: Unity fails tests on
   unexpected [Error] logs — the unknown-blueprint test now Expects it.
+
+### SM2 — growth system (shipped 2026-07-23)
+- New: `CropSystem.cs` (static tick pass; snapshot via `Crop` tag; the
+  single moisture-decrement + growth path; stage advance swaps glyph/
+  color from CSVs; sprout completion converts crop → produce; factory-
+  null/unknown-blueprint HOLD the crop at the boundary and retry — a
+  harvest is never silently deleted, diag `MatureBlocked{reason}`),
+  `CropSystemPart.cs` (GasSystemPart byte-for-byte mirror; wired to the
+  world entity in SM4).
+- Tests: `CropGrowthTests.cs` — 12 tests, RED-first (CS0103 on
+  CropSystem before implementation): dry-never-advances (counter-check),
+  exact-threshold advance (19 vs 20 ticks), glyph/color swap, moisture
+  drain + pause-when-dry, dry-out clears bg exactly once + single
+  SoilDried record, CandyCarrot 40-tick full cycle → 1 produce,
+  Emberwheat 69-vs-70-tick boundary → 2 produce, StageAdvanced diag,
+  null-zone/no-crop robustness, factory-null hold-and-retry, two crops
+  tick independently. 27/27 GREEN with SM1's suite.
