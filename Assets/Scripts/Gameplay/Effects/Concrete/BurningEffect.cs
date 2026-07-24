@@ -172,6 +172,15 @@ namespace CavesOfOoo.Core
             if (incoming is BurningEffect burn)
             {
                 Intensity = System.Math.Min(Intensity + burn.Intensity * 0.5f, 5.0f);
+
+                // Docs/COMBAT-SYSTEM-AUDIT-2026-07.md — "most recent igniter
+                // wins". Per-turn fire damage (OnTurnStart) attributes to
+                // IgnitionSource; without this reassignment, re-igniting an
+                // already-burning target with a different attacker left tick
+                // damage (and any burn-tick kill) credited to the stale
+                // original igniter instead of whoever is currently burning
+                // the target.
+                IgnitionSource = burn.IgnitionSource;
                 return true;
             }
             return false;
