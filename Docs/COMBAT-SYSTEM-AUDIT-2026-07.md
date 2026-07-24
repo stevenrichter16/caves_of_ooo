@@ -79,6 +79,25 @@ worse shape than melee:
   Not confirmed broken — confirmed *unchecked*, which for an RPG with
   persistent death (this project's own stated identity) is itself a gap.
 
+  **Status: STALE — substantively closed by two more-recent, dedicated
+  audits.** `Docs/SAVE-LOAD-AUDIT.md` (effects/Parts, all tiers) and
+  `Docs/TURNMANAGER-ADVERSARIAL-AUDIT.md` (TurnManager specifically,
+  dated 2026-07-23) each already cover this ground and found/fixed real
+  bugs along the way (2 TurnManager scheduling bugs, 1 HibernatingEffect
+  save/load bug). A 2026-07-23 scoping pass cross-checked every item a
+  fresh audit would have checked — TurnManager energy/tick state,
+  `StatusEffectsPart` active effects, sentinel `Tags` (`DEATH_HANDLED_TAG`
+  etc.), `ShatterArmorEffect.StackCount`, `PersonalEnemies`, `GasPoolPart`
+  density — and found all of them already citably tested. The **only**
+  genuinely unpinned field was `TurnManager.WaitingForInput` (mechanically
+  wired correctly, just never asserted) — closed via
+  `Spec_TurnManager_WaitingForInput_True_Preserved` /
+  `_False_Preserved` in `SaveSystemSpecTests.cs`. No production bug found;
+  this finding is now fully addressed. Do not re-commission a fresh
+  save/load audit on this basis — see `SAVESYSTEM-DEEP-DIVE-AUDIT.md`'s
+  own note on diminishing returns from repeated adversarial passes on
+  this surface.
+
 **Bottom line: if "improve the combat system" means highest leverage per
 hour, the thrown-weapon/mutation-line-attack accuracy gap and the
 single-call-site retaliation gap are both bigger than anything in §2-§7.**

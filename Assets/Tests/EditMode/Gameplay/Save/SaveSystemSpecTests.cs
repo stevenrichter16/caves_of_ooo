@@ -476,6 +476,45 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
         }
 
         /// <summary>
+        /// Docs/COMBAT-SYSTEM-AUDIT-2026-07.md's completeness-critic flagged
+        /// mid-combat save/load as unchecked; a follow-up scoping pass found
+        /// every specific item already covered EXCEPT this one field --
+        /// TurnManager.WaitingForInput is written+read (SaveSystem.cs) but
+        /// no existing test asserted it round-trips. Pin both true and
+        /// false explicitly (not just one value) so a hardcoded/inverted
+        /// write path can't accidentally pass.
+        /// </summary>
+        [Test]
+        public void Spec_TurnManager_WaitingForInput_True_Preserved()
+        {
+            var (player, zone, mgr, turns) = MakeMinimalState();
+            turns.RestoreSavedState(tickCount: 10, waitingForInput: true, currentActor: player,
+                new List<TurnManager.SavedTurnEntry>
+                {
+                    new TurnManager.SavedTurnEntry { Entity = player, Energy = 100 }
+                });
+
+            var loaded = RoundTrip(player, zone, mgr, turns);
+
+            Assert.IsTrue(loaded.TurnManager.WaitingForInput);
+        }
+
+        [Test]
+        public void Spec_TurnManager_WaitingForInput_False_Preserved()
+        {
+            var (player, zone, mgr, turns) = MakeMinimalState();
+            turns.RestoreSavedState(tickCount: 10, waitingForInput: false, currentActor: player,
+                new List<TurnManager.SavedTurnEntry>
+                {
+                    new TurnManager.SavedTurnEntry { Entity = player, Energy = 100 }
+                });
+
+            var loaded = RoundTrip(player, zone, mgr, turns);
+
+            Assert.IsFalse(loaded.TurnManager.WaitingForInput);
+        }
+
+        /// <summary>
         /// PRED: Per-entity energy in the turn queue round-trips with
         /// values intact. CONFIDENCE: HIGH.
         /// </summary>
