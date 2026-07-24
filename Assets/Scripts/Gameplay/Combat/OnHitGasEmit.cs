@@ -26,13 +26,25 @@ namespace CavesOfOoo.Core
     /// (EmitGasOnHit.cs:132-188): center cell at CellDensity, 8
     /// adjacents at AdjacentDensity each, attacker credited as
     /// Creator on every spawned cloud.</para>
+    ///
+    /// <para>Docs/COMBAT-SYSTEM-AUDIT-2026-07.md: takes <c>damage</c> +
+    /// <c>actualDamage</c> and gates on <c>actualDamage &lt;= 0</c>,
+    /// mirroring <see cref="OnHitClassEffects.Apply"/> and
+    /// <see cref="OnHitWeaponEffects.Apply"/>'s "no damage = no on-hit"
+    /// contract — a fully-resisted/vetoed 0-damage hit must not spawn a
+    /// gas cloud, same as it must not stun/bleed/confuse or proc a
+    /// weapon effect. Currently unreachable in shipped content (no
+    /// blueprint sets <c>EmitGasOnHitRaw</c> yet), but fixed now while
+    /// touching this pipeline so a future gas-weapon blueprint doesn't
+    /// inherit the gap.</para>
     /// </summary>
     public static class OnHitGasEmit
     {
-        public static void Apply(MeleeWeaponPart weapon, Entity defender,
-            Entity attacker, Zone zone, Random rng)
+        public static void Apply(MeleeWeaponPart weapon, Damage damage, int actualDamage,
+            Entity defender, Entity attacker, Zone zone, Random rng)
         {
             if (weapon == null || defender == null || zone == null || rng == null) return;
+            if (actualDamage <= 0) return;
             if (string.IsNullOrWhiteSpace(weapon.EmitGasOnHitRaw)) return;
 
             // The impact cell is the defender's current cell — that's

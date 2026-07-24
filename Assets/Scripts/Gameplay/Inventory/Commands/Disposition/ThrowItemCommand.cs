@@ -241,7 +241,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                         {
                             OnHitClassEffects.Apply(thrownDamage, actualDamage, hitTarget, actor, zone, rng);
                             OnHitWeaponEffects.Apply(thrownWeaponPart, thrownDamage, actualDamage, hitTarget, actor, zone, rng);
-                            OnHitGasEmit.Apply(thrownWeaponPart, hitTarget, actor, zone, rng);
+                            OnHitGasEmit.Apply(thrownWeaponPart, thrownDamage, actualDamage, hitTarget, actor, zone, rng);
                             ItemEnhancementDispatch.DispatchOnHit(
                                 itemToThrow, hitTarget, actor, thrownDamage, actualDamage, zone, rng);
                         }

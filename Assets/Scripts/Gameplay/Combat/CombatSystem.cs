@@ -496,8 +496,11 @@ namespace CavesOfOoo.Core
             // per spec parallel to OnHitWeaponEffects. Spawns a 3×3 gas
             // cloud centered on the defender's cell. Stacks with the above
             // (a poisonous-fang sword that's also FlamingSword could fire
-            // Burning AND emit poison gas on the same hit).
-            OnHitGasEmit.Apply(weapon, defender, attacker, zone, rng);
+            // Burning AND emit poison gas on the same hit). Now takes
+            // damage/actualDamage and self-gates on actualDamage<=0, same
+            // as OnHitClassEffects/OnHitWeaponEffects above — a fully
+            // resisted hit no longer spawns gas. Docs/COMBAT-SYSTEM-AUDIT-2026-07.md.
+            OnHitGasEmit.Apply(weapon, damage, actualDamage, defender, attacker, zone, rng);
 
             // Item-enhancement on-hit hook (E.2.1). Iterates the weapon Entity's
             // IItemEnhancement Parts (e.g. EnhancementSerrated → on-hit bleed)
@@ -986,11 +989,18 @@ namespace CavesOfOoo.Core
                 int amount = Math.Max(0, damage.Amount);
                 if (amount <= 0) return;
 
-                hpStat.BaseValue -= amount;
+                // Floor at hpStat.Min. .Value already clamps to [Min, Max] for
+                // every existing "is it dead" read, so this doesn't change
+                // shipped behavior today -- but any FUTURE code reading
+                // .BaseValue directly (already true of several call sites,
+                // e.g. LifestealPart.cs) would otherwise see a deeply
+                // negative number on an overkill hit instead of a floored
+                // one. Docs/COMBAT-SYSTEM-AUDIT-2026-07.md.
+                hpStat.BaseValue = Math.Max(hpStat.Min, hpStat.BaseValue - amount);
 
                 Stat hpAlias = target.GetStat("HP");
                 if (hpAlias != null && !ReferenceEquals(hpAlias, hpStat))
-                    hpAlias.BaseValue -= amount;
+                    hpAlias.BaseValue = Math.Max(hpAlias.Min, hpAlias.BaseValue - amount);
 
                 // D2.2 diag hook (Docs/D2-HOOKS-PLAN.md §4 D2.2).
                 // Records damage AFTER it lands. Broader than the

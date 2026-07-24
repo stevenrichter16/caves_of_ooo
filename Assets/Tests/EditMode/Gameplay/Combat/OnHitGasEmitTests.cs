@@ -165,13 +165,20 @@ namespace CavesOfOoo.Tests
         //   PART III — OnHitGasEmit.Apply dispatcher
         // ════════════════════════════════════════════════════════════
 
+        // A generic positive-damage fixture for tests that don't care about
+        // the damage/actualDamage gate itself, just that spawn behavior is
+        // unaffected by it (Docs/COMBAT-SYSTEM-AUDIT-2026-07.md).
+        private static Damage PositiveDamage => new Damage(10);
+        private const int POSITIVE_ACTUAL_DAMAGE = 10;
+
         [Test]
         public void Apply_NullWeapon_NoCrash()
         {
             var zone = new Zone("NullWeapon");
             var defender = MakeCreature(zone, 5, 5);
             Assert.DoesNotThrow(() =>
-                OnHitGasEmit.Apply(weapon: null, defender, attacker: null, zone, new System.Random(42)));
+                OnHitGasEmit.Apply(weapon: null, PositiveDamage, POSITIVE_ACTUAL_DAMAGE,
+                    defender, attacker: null, zone, new System.Random(42)));
         }
 
         [Test]
@@ -180,7 +187,7 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("EmptyRaw");
             var defender = MakeCreature(zone, 5, 5);
             var weapon = new MeleeWeaponPart { EmitGasOnHitRaw = "" };
-            OnHitGasEmit.Apply(weapon, defender, null, zone, new System.Random(42));
+            OnHitGasEmit.Apply(weapon, PositiveDamage, POSITIVE_ACTUAL_DAMAGE, defender, null, zone, new System.Random(42));
             Assert.AreEqual(0, zone.GetEntitiesWithTag("Gas").Count);
         }
 
@@ -191,7 +198,7 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("FullChance");
             var defender = MakeCreature(zone, 10, 10);
             var weapon = new MeleeWeaponPart { EmitGasOnHitRaw = "poison-vapor,100,40,15,1" };
-            OnHitGasEmit.Apply(weapon, defender, null, zone, new System.Random(42));
+            OnHitGasEmit.Apply(weapon, PositiveDamage, POSITIVE_ACTUAL_DAMAGE, defender, null, zone, new System.Random(42));
             Assert.AreEqual(9, zone.GetEntitiesWithTag("Gas").Count);
         }
 
@@ -203,7 +210,7 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("DensityCheck");
             var defender = MakeCreature(zone, 10, 10);
             var weapon = new MeleeWeaponPart { EmitGasOnHitRaw = "poison-vapor,100,40,15,1" };
-            OnHitGasEmit.Apply(weapon, defender, null, zone, new System.Random(42));
+            OnHitGasEmit.Apply(weapon, PositiveDamage, POSITIVE_ACTUAL_DAMAGE, defender, null, zone, new System.Random(42));
 
             int centerDensity = -1;
             int adjacentTotal = 0;
@@ -234,7 +241,7 @@ namespace CavesOfOoo.Tests
             int firstRoll = new System.Random(42).Next(100);
             if (firstRoll < 1)
                 Assert.Inconclusive("seed produced a lucky <1% roll; pick another seed");
-            OnHitGasEmit.Apply(weapon, defender, null, zone, new System.Random(42));
+            OnHitGasEmit.Apply(weapon, PositiveDamage, POSITIVE_ACTUAL_DAMAGE, defender, null, zone, new System.Random(42));
             Assert.AreEqual(0, zone.GetEntitiesWithTag("Gas").Count);
         }
 
@@ -245,7 +252,7 @@ namespace CavesOfOoo.Tests
             var defender = MakeCreature(zone, 10, 10);
             var attacker = new Entity { ID = "attacker", BlueprintName = "Attacker" };
             var weapon = new MeleeWeaponPart { EmitGasOnHitRaw = "poison-vapor,100,40,15,1" };
-            OnHitGasEmit.Apply(weapon, defender, attacker, zone, new System.Random(42));
+            OnHitGasEmit.Apply(weapon, PositiveDamage, POSITIVE_ACTUAL_DAMAGE, defender, attacker, zone, new System.Random(42));
             foreach (var g in zone.GetEntitiesWithTag("Gas"))
                 Assert.AreSame(attacker, g.GetPart<GasPoolPart>().Creator,
                     "attacker carried through to every spawned gas");
@@ -258,7 +265,7 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("EdgeApply");
             var defender = MakeCreature(zone, 0, 0);
             var weapon = new MeleeWeaponPart { EmitGasOnHitRaw = "poison-vapor,100,40,15,1" };
-            OnHitGasEmit.Apply(weapon, defender, null, zone, new System.Random(42));
+            OnHitGasEmit.Apply(weapon, PositiveDamage, POSITIVE_ACTUAL_DAMAGE, defender, null, zone, new System.Random(42));
             Assert.AreEqual(4, zone.GetEntitiesWithTag("Gas").Count);
         }
 
@@ -272,7 +279,7 @@ namespace CavesOfOoo.Tests
             {
                 EmitGasOnHitRaw = "poison-vapor,100,40,15,1;cryo-mist,100,25,10,1"
             };
-            OnHitGasEmit.Apply(weapon, defender, null, zone, new System.Random(42));
+            OnHitGasEmit.Apply(weapon, PositiveDamage, POSITIVE_ACTUAL_DAMAGE, defender, null, zone, new System.Random(42));
             // 9 poison + 9 cryo = 18.
             Assert.AreEqual(18, zone.GetEntitiesWithTag("Gas").Count);
         }
@@ -284,7 +291,7 @@ namespace CavesOfOoo.Tests
             var defender = MakeCreature(zone, 10, 10);
             var weapon = new MeleeWeaponPart { EmitGasOnHitRaw = "poison-vapor,100,40,15,2" };
             Diag.ResetAll();
-            OnHitGasEmit.Apply(weapon, defender, null, zone, new System.Random(42));
+            OnHitGasEmit.Apply(weapon, PositiveDamage, POSITIVE_ACTUAL_DAMAGE, defender, null, zone, new System.Random(42));
             var recs = DiagQuery.Apply(new DiagQuery.Filter
             { Category = "gas", Kind = "EmitOnHit", Limit = 5 }).Records;
             Assert.AreEqual(1, recs.Count);
@@ -309,7 +316,7 @@ namespace CavesOfOoo.Tests
             var orphanDefender = new Entity { ID = "orphan", BlueprintName = "Orphan" };
             var weapon = new MeleeWeaponPart { EmitGasOnHitRaw = "poison-vapor,100,40,15,1" };
             Assert.DoesNotThrow(() =>
-                OnHitGasEmit.Apply(weapon, orphanDefender, null, zone, new System.Random(42)));
+                OnHitGasEmit.Apply(weapon, PositiveDamage, POSITIVE_ACTUAL_DAMAGE, orphanDefender, null, zone, new System.Random(42)));
             Assert.AreEqual(0, zone.GetEntitiesWithTag("Gas").Count);
         }
 
@@ -320,7 +327,7 @@ namespace CavesOfOoo.Tests
             var defender = MakeCreature(zone, 10, 10);
             var weapon = new MeleeWeaponPart { EmitGasOnHitRaw = "phantom-gas,100,40,15,1" };
             Assert.DoesNotThrow(() =>
-                OnHitGasEmit.Apply(weapon, defender, null, zone, new System.Random(42)));
+                OnHitGasEmit.Apply(weapon, PositiveDamage, POSITIVE_ACTUAL_DAMAGE, defender, null, zone, new System.Random(42)));
             Assert.AreEqual(0, zone.GetEntitiesWithTag("Gas").Count);
             // Diag still fires with totalSpawned=0 (the dispatcher rolled
             // the spec, factory rejected each cell).
@@ -337,7 +344,7 @@ namespace CavesOfOoo.Tests
             var defender = MakeCreature(zone, 10, 10);
             var weapon = new MeleeWeaponPart { EmitGasOnHitRaw = "poison-vapor,100,40,15,1" };
             Assert.DoesNotThrow(() =>
-                OnHitGasEmit.Apply(weapon, defender, null, zone, rng: null));
+                OnHitGasEmit.Apply(weapon, PositiveDamage, POSITIVE_ACTUAL_DAMAGE, defender, null, zone, rng: null));
             // No spawns — Apply early-outs on null rng (defensive).
             Assert.AreEqual(0, zone.GetEntitiesWithTag("Gas").Count);
         }
@@ -350,11 +357,96 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("NoRaw");
             var defender = MakeCreature(zone, 10, 10);
             var weapon = new MeleeWeaponPart(); // EmitGasOnHitRaw = "" by default
-            OnHitGasEmit.Apply(weapon, defender, null, zone, new System.Random(42));
+            OnHitGasEmit.Apply(weapon, PositiveDamage, POSITIVE_ACTUAL_DAMAGE, defender, null, zone, new System.Random(42));
             Assert.AreEqual(0, zone.GetEntitiesWithTag("Gas").Count);
             var recs = DiagQuery.Apply(new DiagQuery.Filter
             { Category = "gas", Kind = "EmitOnHit", Limit = 5 }).Records;
             Assert.AreEqual(0, recs.Count);
+        }
+
+        // ════════════════════════════════════════════════════════════
+        //   PART V — actualDamage gate (Docs/COMBAT-SYSTEM-AUDIT-2026-07.md)
+        //
+        //   OnHitGasEmit.Apply previously had NO damage parameter at all,
+        //   unlike its siblings OnHitClassEffects.Apply / OnHitWeaponEffects
+        //   .Apply, which both take actualDamage and gate on
+        //   "actualDamage <= 0" ("vetoed/fully-resisted hits don't trigger
+        //   on-hit effects"). A fully-resisted 0-damage hit could still
+        //   spawn an on-hit gas cloud. These two tests pin the fix:
+        //     (a) counter-check — a normal positive-damage hit still
+        //         emits gas exactly as before (must not regress the
+        //         currently-unreachable-but-someday-live path).
+        //     (b) a hit with actualDamage <= 0 must NOT emit gas, even
+        //         with a 100%-chance spec.
+        // ════════════════════════════════════════════════════════════
+
+        [Test]
+        public void Apply_PositiveActualDamage_CounterCheck_StillEmitsGasAtFullChance()
+        {
+            // Same shape as Apply_FullChance_SpawnsNineGases, but framed
+            // explicitly as the counter-check for the new actualDamage
+            // gate: a landed, non-resisted hit (actualDamage > 0) must
+            // still spawn gas exactly as it did before this fix.
+            var zone = new Zone("GateCounterCheck");
+            var defender = MakeCreature(zone, 10, 10);
+            var weapon = new MeleeWeaponPart { EmitGasOnHitRaw = "poison-vapor,100,40,15,1" };
+            OnHitGasEmit.Apply(weapon, new Damage(10), actualDamage: 10,
+                defender, attacker: null, zone, new System.Random(42));
+            Assert.AreEqual(9, zone.GetEntitiesWithTag("Gas").Count,
+                "a landed hit (actualDamage > 0) must still emit gas as before the fix");
+        }
+
+        [Test]
+        public void Apply_ZeroActualDamage_FullyResisted_NoGasSpawned()
+        {
+            // The bug this fix closes: a fully-resisted hit (actualDamage
+            // <= 0) must NOT spawn gas, even at a guaranteed 100% chance
+            // spec. Mirrors OnHitClassEffectsTests.OnHitClassEffects_OnZeroDamage_NoOp
+            // and OnHitWeaponEffects's identical gate.
+            var zone = new Zone("GateZeroDamage");
+            var defender = MakeCreature(zone, 10, 10);
+            var weapon = new MeleeWeaponPart { EmitGasOnHitRaw = "poison-vapor,100,40,15,1" };
+            // damage.Amount is nonzero (10) but actualDamage (the
+            // post-resistance value CombatSystem computes) is 0 --
+            // simulates a hit fully absorbed by resistance/armor.
+            OnHitGasEmit.Apply(weapon, new Damage(10), actualDamage: 0,
+                defender, attacker: null, zone, new System.Random(42));
+            Assert.AreEqual(0, zone.GetEntitiesWithTag("Gas").Count,
+                "a fully-resisted hit (actualDamage <= 0) must not spawn gas");
+        }
+
+        [Test]
+        public void Apply_NegativeActualDamage_NoGasSpawned()
+        {
+            // Boundary: actualDamage should never be negative in practice
+            // (CombatSystem clamps via Math.Max(0, ...) before calling),
+            // but the gate uses "<= 0" specifically so a negative value
+            // is defensively covered too, matching the sibling dispatchers.
+            var zone = new Zone("GateNegativeDamage");
+            var defender = MakeCreature(zone, 10, 10);
+            var weapon = new MeleeWeaponPart { EmitGasOnHitRaw = "poison-vapor,100,40,15,1" };
+            OnHitGasEmit.Apply(weapon, new Damage(10), actualDamage: -5,
+                defender, attacker: null, zone, new System.Random(42));
+            Assert.AreEqual(0, zone.GetEntitiesWithTag("Gas").Count);
+        }
+
+        [Test]
+        public void Apply_ZeroActualDamage_NoDiagEmitted()
+        {
+            // Counter-check on the diag side: a vetoed hit must not even
+            // roll/record the spec attempt, matching how
+            // Adversarial_NoEmitGasOnHitRaw_NoSpawn_NoDiag pins the
+            // no-raw-string gate.
+            var zone = new Zone("GateZeroDamageDiag");
+            var defender = MakeCreature(zone, 10, 10);
+            var weapon = new MeleeWeaponPart { EmitGasOnHitRaw = "poison-vapor,100,40,15,1" };
+            Diag.ResetAll();
+            OnHitGasEmit.Apply(weapon, new Damage(10), actualDamage: 0,
+                defender, attacker: null, zone, new System.Random(42));
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "gas", Kind = "EmitOnHit", Limit = 5 }).Records;
+            Assert.AreEqual(0, recs.Count,
+                "a vetoed/fully-resisted hit must not emit an EmitOnHit diag record");
         }
     }
 }

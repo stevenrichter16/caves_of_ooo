@@ -151,7 +151,7 @@ namespace CavesOfOoo.Skills
 
             OnHitClassEffects.Apply(damage, actualDamage, target, attacker, zone, rng);
             OnHitWeaponEffects.Apply(weapon, damage, actualDamage, target, attacker, zone, rng);
-            OnHitGasEmit.Apply(weapon, target, attacker, zone, rng);
+            OnHitGasEmit.Apply(weapon, damage, actualDamage, target, attacker, zone, rng);
             ItemEnhancementDispatch.DispatchOnHit(
                 weapon?.ParentEntity, target, attacker, damage, actualDamage, zone, rng);
 
