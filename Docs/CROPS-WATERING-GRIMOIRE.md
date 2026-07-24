@@ -5,7 +5,12 @@
 > Conjure Rain spell — rain falls over nearby crop tiles, watering them
 > and visibly darkening the soil until the moisture dries out.
 
-**Status:** 📋 IN PROGRESS.
+**Status:** ✅ SHIPPED 2026-07-23. All 5 sub-milestones landed; 66 new
+tests (15 planting + 12 growth + 11 watering + 4 round-trip + 21
+adversarial + 1 scenario smoke + 2 cold-eye pins folded into the
+adversarial file); full EditMode suite 5671/5671, zero regressions.
+Manual-playtest half (rain motion, wet-soil readability) is carried by
+the CropFarmShowcase scenario per §2.9's honesty bounds.
 **Origin:** user directive 2026-07-23 — "plan a feature where you can
 plant crops and water them with a 'watering grimoire', where it spawns
 rain above the crop tiles and waters them and darkens the dirt. after
@@ -198,7 +203,7 @@ Moisture bookkeeping lives ONLY here — no double-decrement paths.
 | SM2 | `CropSystem` + `CropSystemPart`: moisture-gated growth, stage swap, dry-out bg clear, maturity produce-replace | ✅ 2026-07-23 |
 | SM3 | `ConjureRainMutation` + `WateringGrimoire` content + rain FX + watering/darkening | ✅ 2026-07-23 |
 | SM4 | Bootstrap wiring + starter kit + save/load round-trip pins + showcase scenario + smoke test | ✅ 2026-07-23 |
-| SM5 | Adversarial sweep (dedicated file — CSV parser malformed inputs, top-up stacking semantics, save/load reach, boundary radius, diag contracts, Factory-null paths) + cold-eye review + close-out | ⏳ |
+| SM5 | Adversarial sweep (dedicated file — CSV parser malformed inputs, top-up stacking semantics, save/load reach, boundary radius, diag contracts, Factory-null paths) + cold-eye review + close-out | ✅ 2026-07-23 |
 
 ## 4. Test plan sketch
 - Plant on Plantable grass succeeds / on plain `Floor` rejects
@@ -304,3 +309,46 @@ Moisture bookkeeping lives ONLY here — no double-decrement paths.
   ConjureRain pre-taught + full kit in inventory, with an explicit
   "what to verify visually" checklist covering exactly the things
   EditMode cannot (rain motion, wet-soil readability, glyph swap).
+
+### SM5 — adversarial sweep + cold-eye + close-out (shipped 2026-07-23)
+
+**Adversarial sweep:** `CropsWateringAdversarialTests.cs`, 21 tests
+across 6 groups. **0 production bugs found**; every hostile input hit
+an intentional guard: CSV parser (empty/only-commas/whitespace/negative
+index → sentinels, glyph never corrupted), Water(0/-40) no-op,
+re-watering mid-stage preserves progress, no-RenderPart crop tolerated,
+int.MaxValue moisture no-overflow, negative moisture (corrupted save) =
+dry, TicksPerStage=0 rushes-but-terminates, YieldCount=0 and empty/
+unknown YieldBlueprint all HOLD the crop loudly (MatureBlocked) rather
+than silently deleting a harvest, zone-corner rain cast (off-map sky
+FX silently dropped by EmitParticle's own InBounds guard; splash
+lands), edge-cell maturity, two-crops-one-cell first-only-watered
+(pins the by-design one-crop-per-cell assumption), full lifecycle diag
+pipeline (CropPlanted→RainConjured→CropWatered→StageAdvanced→
+CropMatured in one integration run), produce-isn't-a-crop re-cast,
+exact diag cardinality (1 RainConjured/cast, 1 CropWatered/crop),
+extreme field values round-trip. **One test-authoring fix during the
+sweep:** the unknown-yield retry cadence made an exact expected-error-
+log count brittle — switched to ignoreFailingMessages around the tick
+loop; the behavioral assertion (held, not deleted) is the contract.
+
+**Cold-eye review (Q1-Q4):**
+- Q1 symmetry: `Water()`/`OnDriedOut()` are a clean set/clear pair —
+  both idempotent, both dirty-mark only on actual change, both diag.
+  ✓ no findings.
+- Q2 cross-feature payload consistency: all 8 crop-category records
+  use camelCase payload fields, IDs in top-level actor/target only,
+  reject reasons in a `reason` field (combat-diag convention). ✓.
+- Q3 counter-check completeness: found 2 unpinned branches —
+  `MatureBlocked{no_yield_blueprint}` and `PlantRejected{no_zone}` —
+  both now pinned (added to the adversarial file during the pass).
+- Q4 doc-vs-impl: constants (radius 3, cooldown 5, 40 moisture ticks),
+  record names, and gate reasons all match this doc. ✓.
+
+**Final gate: full EditMode suite 5671/5671 — zero regressions from
+the entire feature.**
+
+**Honesty bounds (final):** everything script-observable is pinned by
+66 tests. NOT machine-verified: how the falling rain reads in motion,
+whether `^w` renders as convincing wet earth, sprout-glyph legibility
+— that's the CropFarmShowcase checklist, to be eyeballed in Play mode.
