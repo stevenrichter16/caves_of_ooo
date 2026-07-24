@@ -175,6 +175,19 @@ A even though B contributed more and may have landed the actual kill.
 **Fix:** update `IgnitionSource` on stack (either "most recent igniter"
 or "larger contribution wins" — pick one and pin it with a test).
 
+**Status: FIXED.** Chose "most recent igniter wins" (simpler than
+tracking cumulative per-source contribution, matches the intuitive
+convention that whoever is currently burning you is credited).
+`OnStack` now reassigns `IgnitionSource = burn.IgnitionSource`
+unconditionally, right after the existing Intensity-merge line — the
+Intensity formula itself is untouched. Tests in
+`Assets/Tests/EditMode/Gameplay/Effects/BurningEffectTests.cs` (new
+file, 4 tests): re-ignition by a different source reassigns
+IgnitionSource; counter-check that same-source re-ignition needs no
+special casing; counter-check that the Intensity-merge formula is
+unaffected; counter-check that stacking still absorbs into one
+instance rather than duplicating.
+
 ### 🟡 `ConfusedEffect`'s non-stacking guard is bypassable via `ForceApplyEffect`
 **File:** `ConfusedEffect.cs:22-29`; `StatusEffectsPart.cs:52-72`.
 Unlike every other non-stacking effect in the codebase (`Hibernating`,
@@ -188,6 +201,19 @@ today (nothing calls `ForceApplyEffect` with `Confused`), but silent the
 moment any content does.
 **Fix:** move the guard into `OnStack` (mirroring the sibling effects),
 so it applies regardless of forced/unforced.
+
+**Status: FIXED.** Added `public override bool OnStack(Effect incoming)
+=> true;` to `ConfusedEffect.cs`, mirroring `HibernatingEffect`'s
+identical pattern exactly — unconditionally absorbs a stacked/forced
+re-apply instead of adding a duplicate instance. The pre-existing
+`CanApply` gate on the non-forced path is untouched. Tests in
+`Assets/Tests/EditMode/Gameplay/Effects/StatusEffectTests.cs`:
+`Confused_ForceApply_DoesNotDuplicateInstance` (RED before fix — a
+forced re-apply doubled the DV/Agility penalty) and
+`Confused_NormalDoubleApply_StillBlockedAndStillLogsRejectionPath`
+(counter-check — the normal non-forced path is still rejected via
+`CanBeAppliedTo` before ever reaching the stacking loop, not silently
+rerouted through the new `OnStack` override).
 
 ### 🔵 `PaperSkinEffect`'s combat-log math double-counts its own increase, and it has zero test coverage anywhere
 **File:** `PaperSkin.cs:25-34`.
@@ -240,6 +266,15 @@ the mechanism but pushed back that the practical risk is speculative
 without a concrete heal-an-ally mechanic that reads `BaseValue` today.
 **Read as:** a real sharp edge worth a defensive one-line fix
 (`Math.Max(hpStat.Min, hpStat.BaseValue - amount)`), not an active bug.
+
+**Status: FIXED.** `CombatSystem.cs`'s `ApplyDamage` now does
+`hpStat.BaseValue = Math.Max(hpStat.Min, hpStat.BaseValue - amount)`,
+and the same for the `hpAlias` ("HP") stat a few lines below when one
+exists and isn't the same `Stat` object. RED-first coverage in
+`Assets/Tests/EditMode/Gameplay/Combat/ApplyDamageHpFloorClampTests.cs`:
+massive-overkill floor pin (both `Hitpoints` and the `HP` alias) +
+counter-check that a normal, non-overkill hit still decrements by the
+exact amount.
 
 ---
 
@@ -303,6 +338,25 @@ deliberate simplification; ChargingStrike's does not.
 damage-multiplier hook, or document the trade-off in ChargingStrike to
 match Backstab's existing comment.
 
+**Status: FIXED** (real fix, not the documentation fallback — both call
+sites already had a validated `MeleeWeaponPart weapon` and a
+`System.Random rng` in scope, threaded through the preceding
+`PerformSingleAttack` call a few lines earlier). Both skills' bonus-
+damage call sites now use `SkillCombatHelpers.DealGuaranteedHitDamage`
+(the same helper built for the `Cudgel_Slam`/`Cudgel_GroundPound` fix,
+SM8/B2) instead of the raw `ApplyDamage(int)` overload — the bonus
+damage now gets its own on-hit dispatch roll, same as the base swing.
+Updated both skills' doc-comments (ChargingStrike's class summary;
+Backstab's `_isFlanked` field comment and its bonus-damage call-site
+comment, which previously described the old raw-`ApplyDamage`
+approach) so the two skills' documentation is consistent. Tests: new
+`ChargingStrike_BonusDamage_DispatchesItemEnhancementTwice` /
+`Backstab_FlankedBonusDamage_DispatchesItemEnhancementTwice`, using a
+new `CountingEnhancementProbe` test double (a boolean "fired" probe
+can't distinguish one dispatch from two, which is exactly the
+distinction this fix needs a test to make) — both assert
+`FireCount == 2` (base swing + bonus damage each dispatch once).
+
 ### 🟡 `OnHitGasEmit` can't enforce "no damage → no on-hit effect," unlike its 3 siblings
 **File:** `OnHitGasEmit.cs:32-47`.
 `OnHitClassEffects.Apply` and `OnHitWeaponEffects.Apply` both take
@@ -316,6 +370,19 @@ cloud. Currently unreachable in shipped content (no blueprint sets
 **Fix:** add `Damage damage, int actualDamage` to `OnHitGasEmit.Apply`
 and gate it identically to its siblings — both are already in scope at
 the call site.
+
+**Status: FIXED.** `OnHitGasEmit.Apply` now takes `Damage damage, int
+actualDamage` (matching `OnHitWeaponEffects.Apply`'s parameter order)
+and gates on `actualDamage <= 0` as its first check, mirroring the
+siblings' wording/placement exactly. All 3 real call sites now pass
+both args: `CombatSystem.cs`'s melee dispatch, `SkillCombatHelpers
+.DealGuaranteedHitDamage`, and `ThrowItemCommand.cs`'s thrown-weapon
+on-hit dispatch (the last of these had `actualDamage` in scope but
+previously wasn't threading it into `OnHitGasEmit.Apply` at all).
+Tests in `OnHitGasEmitTests.cs` §PART V: counter-check that a landed,
+non-resisted hit still spawns gas as before, plus new coverage that
+`actualDamage <= 0` (fully-resisted or negative) spawns none and
+emits no diag record.
 
 ### 🔵 `ItemEnhancementDispatch`'s docstring names the wrong predecessor
 **File:** `ItemEnhancementDispatch.cs:38-40`.

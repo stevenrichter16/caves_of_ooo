@@ -177,5 +177,84 @@ namespace CavesOfOoo.Tests
                     DirectionX = 1, DirectionY = 0,
                 }));
         }
+
+        // ════════════════════════════════════════════════════════════════
+        // Docs/COMBAT-SYSTEM-AUDIT-2026-07.md -- ChargingStrike's bonus
+        // (+50% momentum) damage must route through the on-hit dispatch
+        // chain (SkillCombatHelpers.DealGuaranteedHitDamage), not the raw
+        // ApplyDamage(int) overload that skips it entirely. Mirrors the
+        // SM8/B2 fix already applied to Cudgel_Slam / Cudgel_GroundPound.
+        // ════════════════════════════════════════════════════════════════
+
+        [Test]
+        public void ChargingStrike_BonusDamage_DispatchesItemEnhancementTwice()
+        {
+            // The BASE swing already dispatches IItemEnhancement.OnAttackerHit
+            // once via CombatSystem.PerformSingleAttack -- a boolean "did it
+            // fire" probe can't distinguish "base swing only" from "base
+            // swing + bonus damage also dispatched." This test counts
+            // dispatches instead: 1 = bug (bonus momentum damage bypassed
+            // the on-hit chain via the raw ApplyDamage(int) overload), 2 =
+            // fixed (bonus damage got its own proc roll, same as the base
+            // swing gets).
+            var atk = MakeBodied("atk");
+            var hand = atk.GetPart<Body>().GetParts().Find(p => p.Type == "Hand");
+            var weaponEntity = new Entity { ID = "mace", BlueprintName = "mace" };
+            weaponEntity.Tags["Item"] = "";
+            weaponEntity.AddPart(new RenderPart { DisplayName = "mace" });
+            weaponEntity.AddPart(new PhysicsPart { Takeable = true, Weight = 5 });
+            weaponEntity.AddPart(new MeleeWeaponPart
+            {
+                // Large guaranteed-hit, guaranteed-heavy-damage weapon so
+                // both the base swing AND the +50% bonus clear the bonus
+                // >= 1 gate deterministically (mirrors the "killing blow"
+                // fixture in CombatSystemSpecTests.cs).
+                BaseDamage = "100d6", PenBonus = 50, HitBonus = 50,
+                Attributes = "Bludgeoning Cudgel",
+            });
+            weaponEntity.AddPart(new EquippablePart { Slot = "Hand" });
+            weaponEntity.AddPart(new StatusEffectsPart());
+            var probe = new CountingEnhancementProbe();
+            weaponEntity.AddPart(probe);
+            atk.GetPart<InventoryPart>().EquipToBodyPart(weaponEntity, hand);
+            var skill = new Cudgel_ChargingStrike();
+            atk.GetPart<SkillsPart>().AddSkill(skill, source: "test");
+
+            var def = MakeBodied("def", hp: 10000); // survives base + bonus comfortably
+            var zone = new Zone();
+            zone.AddEntity(atk, 5, 5);
+            zone.AddEntity(def, 8, 5); // 3 cells East = max charge distance
+
+            skill.OnCommand(new SkillEventContext
+            {
+                Attacker = atk, Defender = atk, Zone = zone, Rng = new Random(42),
+                DirectionX = 1, DirectionY = 0,
+            });
+
+            Assert.AreEqual(2, probe.FireCount,
+                "ChargingStrike must dispatch IItemEnhancement.OnAttackerHit TWICE -- once "
+                + "for the base swing (PerformSingleAttack) and once for the +50% momentum "
+                + "bonus damage. The bonus is a second hit-sized chunk of damage and deserves "
+                + "its own on-hit proc roll (e.g. a Serrated weapon's bleed chance, a "
+                + "Lifesteal mace's heal) -- not just a silent, un-procced HP subtraction.");
+        }
+    }
+
+    /// <summary>
+    /// Counting variant of CombatSystemSpecTests' AlwaysFiresEnhancementProbe
+    /// -- a boolean "Fired" flag can't distinguish one dispatch from two,
+    /// which is exactly the distinction the ChargingStrike bonus-damage
+    /// dispatch bug needs a test to make.
+    /// </summary>
+    public class CountingEnhancementProbe : IItemEnhancement
+    {
+        public int FireCount;
+
+        public override void OnAttackerHit(
+            Entity defender, Entity attacker, Damage damage,
+            int actualDamage, Zone zone, System.Random rng)
+        {
+            FireCount++;
+        }
     }
 }

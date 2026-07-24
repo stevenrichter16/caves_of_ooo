@@ -26,6 +26,13 @@ namespace CavesOfOoo.Skills
     /// mirrors Qud's <c>Cudgel_ChargingStrike</c>. The "charge then
     /// swing" is distinct from Slam (push at distance 1) and Lunge
     /// (extend reach without moving).</para>
+    ///
+    /// <para>Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM8/B2: the base
+    /// swing routes through <see cref="CombatSystem.PerformSingleAttack"/>
+    /// (full on-hit dispatch chain), and the +50% momentum bonus damage
+    /// routes through <see cref="SkillCombatHelpers.DealGuaranteedHitDamage"/>
+    /// so it gets its own on-hit proc roll too -- same fix already applied
+    /// to <see cref="Cudgel_Slam"/> / <see cref="Cudgel_GroundPound"/>.</para>
     /// </summary>
     public class Cudgel_ChargingStrike : BaseSkillPart
     {
@@ -129,7 +136,13 @@ namespace CavesOfOoo.Skills
                 int bonus = (dmg * CHARGE_DAMAGE_BONUS_PERCENT) / 100;
                 if (bonus >= 1)
                 {
-                    CombatSystem.ApplyDamage(hitTarget, bonus, actor, ctx.Zone);
+                    // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM8/B2 -- routes
+                    // through the on-hit dispatch chain instead of the raw
+                    // ApplyDamage(int) overload, which skipped it entirely (the
+                    // momentum bonus is a second hit-sized chunk of damage and
+                    // deserves its own on-hit proc roll, same as the base swing).
+                    SkillCombatHelpers.DealGuaranteedHitDamage(
+                        actor, hitTarget, weapon, bonus, ctx.Zone, ctx.Rng);
                     MessageLog.Add(actor.GetDisplayName() + "'s charge adds +" + bonus + " momentum damage!");
                 }
             }

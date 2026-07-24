@@ -138,5 +138,66 @@ namespace CavesOfOoo.Tests
             Assert.DoesNotThrow(() =>
                 skill.OnCommand(new SkillEventContext { Attacker = atk, Defender = atk, Zone = zone, Rng = null }));
         }
+
+        // ════════════════════════════════════════════════════════════════
+        // Docs/COMBAT-SYSTEM-AUDIT-2026-07.md -- Backstab's flank bonus
+        // (+100%) damage must route through the on-hit dispatch chain
+        // (SkillCombatHelpers.DealGuaranteedHitDamage), not the raw
+        // ApplyDamage(int) overload that skips it entirely. Mirrors the
+        // SM8/B2 fix already applied to Cudgel_Slam / Cudgel_GroundPound.
+        // ════════════════════════════════════════════════════════════════
+
+        [Test]
+        public void Backstab_FlankedBonusDamage_DispatchesItemEnhancementTwice()
+        {
+            // The BASE swing already dispatches IItemEnhancement.OnAttackerHit
+            // once via CombatSystem.PerformSingleAttack -- a boolean "did it
+            // fire" probe can't distinguish "base swing only" from "base
+            // swing + flank bonus also dispatched." This test counts
+            // dispatches instead: 1 = bug (flank bonus bypassed the on-hit
+            // chain via the raw ApplyDamage(int) overload), 2 = fixed (the
+            // flank bonus got its own proc roll, same as the base swing).
+            var atk = MakeBodied("atk");
+            var hand = atk.GetPart<Body>().GetParts().Find(p => p.Type == "Hand");
+            var weaponEntity = new Entity { ID = "dagger", BlueprintName = "dagger" };
+            weaponEntity.Tags["Item"] = "";
+            weaponEntity.AddPart(new RenderPart { DisplayName = "dagger" });
+            weaponEntity.AddPart(new PhysicsPart { Takeable = true, Weight = 1 });
+            weaponEntity.AddPart(new MeleeWeaponPart
+            {
+                // Large guaranteed-hit, guaranteed-heavy-damage weapon so
+                // both the base swing AND the +100% flank bonus clear the
+                // bonus >= 1 gate deterministically (mirrors the "killing
+                // blow" fixture in CombatSystemSpecTests.cs).
+                BaseDamage = "100d6", PenBonus = 50, HitBonus = 50,
+                Attributes = "Piercing",
+            });
+            weaponEntity.AddPart(new EquippablePart { Slot = "Hand" });
+            weaponEntity.AddPart(new StatusEffectsPart());
+            var probe = new CountingEnhancementProbe();
+            weaponEntity.AddPart(probe);
+            atk.GetPart<InventoryPart>().EquipToBodyPart(weaponEntity, hand);
+            var skill = new ShortBlades_Backstab();
+            atk.GetPart<SkillsPart>().AddSkill(skill, source: "test");
+
+            var def = MakeBodied("def", hp: 10000); // survives base + bonus comfortably
+            var flanker = MakeBodied("flanker");
+            var zone = new Zone();
+            zone.AddEntity(atk, 5, 5);
+            zone.AddEntity(def, 6, 5);
+            zone.AddEntity(flanker, 7, 5); // opposite cell from atk through def -> flanked
+
+            skill.OnCommand(new SkillEventContext
+            {
+                Attacker = atk, Defender = atk, Zone = zone, Rng = new Random(42),
+            });
+
+            Assert.AreEqual(2, probe.FireCount,
+                "Backstab must dispatch IItemEnhancement.OnAttackerHit TWICE when flanked -- "
+                + "once for the base swing (PerformSingleAttack) and once for the +100% flank "
+                + "bonus damage. The bonus is a second hit-sized chunk of damage and deserves "
+                + "its own on-hit proc roll (e.g. a Serrated weapon's bleed chance, a Lifesteal "
+                + "mace's heal) -- not just a silent, un-procced HP subtraction.");
+        }
     }
 }

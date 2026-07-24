@@ -42,8 +42,9 @@ namespace CavesOfOoo.Skills
         // damage multiplier applies via a temporary CombatSystem hook
         // (BeforeTakeDamage) that this skill registers — but to keep the
         // change small for v1, we apply the bonus AFTER the swing as a
-        // synthetic ApplyDamage call, summing with the swing's natural
-        // damage.
+        // guaranteed-hit follow-up via SkillCombatHelpers.DealGuaranteedHitDamage
+        // (Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM8/B2), summing with
+        // the swing's natural damage.
         [System.NonSerialized]
         private bool _isFlanked = false;
 
@@ -138,10 +139,16 @@ namespace CavesOfOoo.Skills
             }
 
             // Normal swing first. If flanked, apply bonus damage as a
-            // direct ApplyDamage AFTER the swing — this is simpler than
-            // threading a multiplier through PerformSingleAttack and
+            // guaranteed-hit follow-up AFTER the swing — this is simpler
+            // than threading a multiplier through PerformSingleAttack and
             // works whether the swing hit or missed (a flanked target
             // takes the bonus damage as a "you turned your back" tax).
+            // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM8/B2 -- routes
+            // through the on-hit dispatch chain (SkillCombatHelpers.
+            // DealGuaranteedHitDamage) instead of the raw ApplyDamage(int)
+            // overload, which skipped it entirely (the flank bonus is a
+            // second hit-sized chunk of damage and deserves its own
+            // on-hit proc roll, same as the base swing).
             int hpBefore = target.GetStatValue("Hitpoints");
             CombatSystem.PerformSingleAttack(
                 attacker: actor, defender: target,
@@ -157,7 +164,8 @@ namespace CavesOfOoo.Skills
                 int bonus = (damageDealt * (BACKSTAB_DAMAGE_PERCENT - 100)) / 100;
                 if (bonus >= 1)
                 {
-                    CombatSystem.ApplyDamage(target, bonus, actor, ctx.Zone);
+                    SkillCombatHelpers.DealGuaranteedHitDamage(
+                        actor, target, weapon, bonus, ctx.Zone, ctx.Rng);
                     MessageLog.Add(actor.GetDisplayName() + " strikes from a flank! +" + bonus + " damage.");
                 }
             }
