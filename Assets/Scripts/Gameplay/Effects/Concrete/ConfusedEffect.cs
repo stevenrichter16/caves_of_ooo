@@ -50,6 +50,19 @@ namespace CavesOfOoo.Core
             MessageLog.Add(target.GetDisplayName() + " is no longer confused.");
         }
 
+        public override bool OnStack(Effect incoming)
+        {
+            // Non-stacking: re-applying Confused is a no-op. CanApply already
+            // rejects a duplicate on the normal ApplyEffect path, but
+            // StatusEffectsPart.ApplyEffectInternal only consults CanApply
+            // when NOT forced -- ForceApplyEffect skips straight to the
+            // stacking loop. Without this override the base Effect.OnStack
+            // default (false = "don't absorb, add a second instance") would
+            // let a forced re-apply double the DV/Agility penalty. Mirrors
+            // HibernatingEffect's identical non-stacking guard.
+            return true;
+        }
+
         public override string GetRenderColorOverride() => "&W";
     }
 }

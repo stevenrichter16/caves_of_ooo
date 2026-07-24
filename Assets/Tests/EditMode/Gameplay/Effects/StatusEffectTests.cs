@@ -921,6 +921,68 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(2, e.GetStat("DV").Penalty);
         }
 
+        [Test]
+        public void Confused_ForceApply_DoesNotDuplicateInstance()
+        {
+            // Docs/COMBAT-SYSTEM-AUDIT-2026-07.md: ConfusedEffect's non-stacking
+            // guard lives in CanApply, which StatusEffectsPart.ApplyEffectInternal
+            // only consults on the non-forced path. ForceApplyEffect skips
+            // CanBeAppliedTo entirely, so without an OnStack override the
+            // stacking loop falls through and adds a SECOND independent
+            // ConfusedEffect instance -- doubling the DV/Agility penalty.
+            var e = CreateCreature(dv: 10, agility: 20);
+            e.ApplyEffect(new ConfusedEffect(4));
+
+            e.ForceApplyEffect(new ConfusedEffect(4));
+
+            var sep = e.GetPart<StatusEffectsPart>();
+            int count = 0;
+            foreach (var eff in sep.GetAllEffects())
+                if (eff is ConfusedEffect) count++;
+            Assert.AreEqual(1, count, "ForceApplyEffect must not create a second ConfusedEffect instance");
+            Assert.IsTrue(e.HasEffect<ConfusedEffect>());
+
+            // Penalties must not double up either.
+            Assert.AreEqual(2, e.GetStat("DV").Penalty);
+            Assert.AreEqual(2, e.GetStat("Agility").Penalty);
+        }
+
+        [Test]
+        public void Confused_NormalDoubleApply_StillBlockedAndStillLogsRejectionPath()
+        {
+            // Counter-check for Confused_ForceApply_DoesNotDuplicateInstance:
+            // the pre-existing non-forced double-apply path (blocked via
+            // CanApply/CanBeAppliedTo) must keep working exactly as before --
+            // the OnStack override added for the forced path must not change
+            // behavior when the OnStack branch is never reached (the second
+            // non-forced ApplyEffect call is rejected upstream at
+            // CanBeAppliedTo, before the stacking loop runs).
+            var e = CreateCreature(dv: 10, agility: 20);
+            e.ApplyEffect(new ConfusedEffect(4));
+            Diag.ResetAll();
+
+            bool secondApply = e.ApplyEffect(new ConfusedEffect(4));
+
+            Assert.IsFalse(secondApply, "Non-forced re-apply should still be rejected by CanApply");
+            var sep = e.GetPart<StatusEffectsPart>();
+            int count = 0;
+            foreach (var eff in sep.GetAllEffects())
+                if (eff is ConfusedEffect) count++;
+            Assert.AreEqual(1, count);
+
+            // Rejection is still routed through CanBeAppliedTo (not OnStack) --
+            // the diag record must be ApplyEffectRejected/can_be_applied_to_false,
+            // not OnStackAbsorbed.
+            var rejected = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "effect", Kind = "ApplyEffectRejected", Limit = 5 }).Records;
+            Assert.AreEqual(1, rejected.Count);
+            StringAssert.Contains("\"reason\":\"can_be_applied_to_false\"", rejected[0].PayloadJson);
+
+            var absorbed = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "effect", Kind = "OnStackAbsorbed", Limit = 5 }).Records;
+            Assert.AreEqual(0, absorbed.Count);
+        }
+
         // ========================
         // Stun/Paralysis — Stat Mods Apply/Restore
         // ========================
