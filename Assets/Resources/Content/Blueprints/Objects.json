@@ -935,6 +935,132 @@
       "Tags": []
     },
     {
+      "Name": "CandyCarrotSeed",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "candy carrot seed" },
+          { "Key": "RenderString", "Value": "," },
+          { "Key": "ColorString", "Value": "&O" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "0" }] },
+        { "Name": "Seed", "Params": [{ "Key": "CropBlueprint", "Value": "CandyCarrotCrop" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "3" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A sugar-glazed seed that smells faintly of orange frosting. Plant it in soft ground." }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "EmberwheatSeed",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "emberwheat seed" },
+          { "Key": "RenderString", "Value": "," },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "0" }] },
+        { "Name": "Seed", "Params": [{ "Key": "CropBlueprint", "Value": "EmberwheatCrop" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "5" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A warm golden grain that never quite cools. Plant it in soft ground." }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "CandyCarrotCrop",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "candy carrot crop" },
+          { "Key": "RenderString", "Value": "." },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "false" }, { "Key": "Takeable", "Value": "false" }] },
+        { "Name": "Crop", "Params": [
+          { "Key": "TicksPerStage", "Value": "20" },
+          { "Key": "StageGlyphsRaw", "Value": ".,t" },
+          { "Key": "StageColorsRaw", "Value": "&w,&g" },
+          { "Key": "YieldBlueprint", "Value": "CandyCarrot" },
+          { "Key": "YieldCount", "Value": "1" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Crop", "Value": "" }
+      ]
+    },
+    {
+      "Name": "EmberwheatCrop",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "emberwheat crop" },
+          { "Key": "RenderString", "Value": "." },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Solid", "Value": "false" }, { "Key": "Takeable", "Value": "false" }] },
+        { "Name": "Crop", "Params": [
+          { "Key": "TicksPerStage", "Value": "35" },
+          { "Key": "StageGlyphsRaw", "Value": ".,i" },
+          { "Key": "StageColorsRaw", "Value": "&w,&y" },
+          { "Key": "YieldBlueprint", "Value": "Emberwheat" },
+          { "Key": "YieldCount", "Value": "2" }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Crop", "Value": "" }
+      ]
+    },
+    {
+      "Name": "CandyCarrot",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "candy carrot" },
+          { "Key": "RenderString", "Value": "%" },
+          { "Key": "ColorString", "Value": "&O" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "8" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Crisp, sweet, and impossibly orange. Grown, not made." }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "Emberwheat",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "emberwheat sheaf" },
+          { "Key": "RenderString", "Value": "%" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "10" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A sheaf of grain that glows faintly warm, even at night." }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "BrewedTonic",
       "Inherits": "TonicItem",
       "Parts": [
@@ -1316,7 +1442,9 @@
         ]}
       ],
       "Stats": [],
-      "Tags": []
+      "Tags": [
+        { "Key": "Plantable", "Value": "" }
+      ]
     },
     {
       "Name": "VineWall",
