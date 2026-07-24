@@ -196,7 +196,7 @@ Moisture bookkeeping lives ONLY here — no double-decrement paths.
 |---|---|---|
 | SM1 | Content blueprints + `crop` diag category + `CropPart` + `SeedPart` + planting flow | ✅ 2026-07-23 |
 | SM2 | `CropSystem` + `CropSystemPart`: moisture-gated growth, stage swap, dry-out bg clear, maturity produce-replace | ✅ 2026-07-23 |
-| SM3 | `ConjureRainMutation` + `WateringGrimoire` content + rain FX + watering/darkening | ⏳ |
+| SM3 | `ConjureRainMutation` + `WateringGrimoire` content + rain FX + watering/darkening | ✅ 2026-07-23 |
 | SM4 | Bootstrap wiring + starter kit + save/load round-trip pins + showcase scenario + smoke test | ⏳ |
 | SM5 | Adversarial sweep (dedicated file — CSV parser malformed inputs, top-up stacking semantics, save/load reach, boundary radius, diag contracts, Factory-null paths) + cold-eye review + close-out | ⏳ |
 
@@ -259,3 +259,26 @@ Moisture bookkeeping lives ONLY here — no double-decrement paths.
   Emberwheat 69-vs-70-tick boundary → 2 produce, StageAdvanced diag,
   null-zone/no-crop robustness, factory-null hold-and-retry, two crops
   tick independently. 27/27 GREEN with SM1's suite.
+
+### SM3 — Conjure Rain + the grimoire (shipped 2026-07-23)
+- New: `ConjureRainMutation.cs` (DryingBreeze's exact ability shape:
+  COMMAND/COOLDOWN 5/RADIUS 3, SelfCentered "Grimoire Spells" ability,
+  Chebyshev-clamped double loop; waters each crop via
+  `CropPart.Water(40)` — which also darkens the soil — and emits the
+  rain FX per watered cell: 3 staggered falling drops (dy:+1, the same
+  moving-particle mechanism floating damage numbers use upward) + a
+  Water-theme splash. Always-succeeds/cooldown convention matches
+  DryingBreeze; rain FX only over tiles actually watered, per spec).
+- Content: `WateringGrimoire` (GrimoirePart teaching ConjureRainMutation
+  — pure content, zero new item code, consistent with every other
+  grimoire in the game); `ConjureRain` entry in Mutations.json
+  (ExcludeFromPool, like DryingBreeze).
+- Tests: `CropWateringTests.cs` — 12 tests, RED-first (CS0246 on
+  ConjureRainMutation): water-in-radius + wet bg, exact radius-3/4
+  boundary counter-pair, multi-crop diag count, double-cast top-up,
+  no-crops cast (succeeds, cropsWatered=0, zero FX), null-zone/cell
+  guards, FX shape (exactly 3 falling dy>0 particles + 1 Water burst
+  per watered cell; scales per cell), grimoire teaches on read + not
+  consumed + no duplicate on re-read, ability registered as
+  SelfCentered "Grimoire Spells". 38/38 GREEN across all three farming
+  suites.

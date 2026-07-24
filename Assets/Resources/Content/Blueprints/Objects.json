@@ -1042,6 +1042,30 @@
       "Tags": []
     },
     {
+      "Name": "WateringGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "watering grimoire" },
+          { "Key": "RenderString", "Value": "\"" },
+          { "Key": "ColorString", "Value": "&B" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "Grimoire", "Params": [
+          { "Key": "MutationClassName", "Value": "ConjureRainMutation" },
+          { "Key": "MutationLevel", "Value": "1" },
+          { "Key": "LearnMessage", "Value": "Cool mist rises from the pages. You learn Conjure Rain." }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "30" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A damp-smelling tome whose ink never quite dries. Its pages describe how to call small, polite rainclouds down onto growing things." }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "Emberwheat",
       "Inherits": "Item",
       "Parts": [
