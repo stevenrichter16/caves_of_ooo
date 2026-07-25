@@ -11,6 +11,8 @@ adversarial + 1 scenario smoke + 2 cold-eye pins folded into the
 adversarial file); full EditMode suite 5671/5671, zero regressions.
 Manual-playtest half (rain motion, wet-soil readability) is carried by
 the CropFarmShowcase scenario per §2.9's honesty bounds.
+**Follow-up SM6 (2026-07-25):** FarmPlotSeeder — guaranteed plantable
+grass at spawn in every biome. +12 tests; full suite 5683/5683.
 **Origin:** user directive 2026-07-23 — "plan a feature where you can
 plant crops and water them with a 'watering grimoire', where it spawns
 rain above the crop tiles and waters them and darkens the dirt. after
@@ -204,6 +206,7 @@ Moisture bookkeeping lives ONLY here — no double-decrement paths.
 | SM3 | `ConjureRainMutation` + `WateringGrimoire` content + rain FX + watering/darkening | ✅ 2026-07-23 |
 | SM4 | Bootstrap wiring + starter kit + save/load round-trip pins + showcase scenario + smoke test | ✅ 2026-07-23 |
 | SM5 | Adversarial sweep (dedicated file — CSV parser malformed inputs, top-up stacking semantics, save/load reach, boundary radius, diag contracts, Factory-null paths) + cold-eye review + close-out | ✅ 2026-07-23 |
+| SM6 | Follow-up (user directive 2026-07-25 "make sure grass and everything else needed for planting is at spawn"): `FarmPlotSeeder` — guaranteed plantable plot near spawn regardless of biome | ✅ 2026-07-25 |
 
 ## 4. Test plan sketch
 - Plant on Plantable grass succeeds / on plain `Floor` rejects
@@ -352,3 +355,57 @@ the entire feature.**
 66 tests. NOT machine-verified: how the falling rain reads in motion,
 whether `^w` renders as convincing wet earth, sprout-glyph legibility
 — that's the CropFarmShowcase checklist, to be eyeballed in Play mode.
+
+### SM6 — FarmPlotSeeder: plantable ground guaranteed at spawn (shipped 2026-07-25)
+
+**Origin:** user directive 2026-07-25 — "make sure grass and everything
+else needed for planting is at spawn." SM4 grants the starter kit
+unconditionally, but only the Jungle and Village builders place
+`Grass`; a Ruins/stone start left the seeds unusable (every plant
+attempt → `PlantRejected{not_plantable}`).
+
+**Verification mini-sweep (references read before code):**
+- Builder survey: only `JungleBuilder`/`VillageBuilder` place Grass;
+  Ruins-family builders lay the Floor/stone family.
+- `Bank` (riverbank) inherits `Terrain` — Terrain-tagged but special;
+  must never be paved.
+- River water = `WaterPuddle` entities carrying `LiquidPoolPart` —
+  detectable via `cell.HasObjectWithPart<LiquidPoolPart>()`.
+- `Cell.IsInterior` marks building interiors; `Cell.IsSolid()` covers
+  walls/trees.
+
+**Design — `FarmPlotSeeder.EnsurePlantablePlot(zone, x, y, factory)`
+(static, called once from `GameBootstrap.EnsureFarmPlotAtSpawn()`
+AFTER `PlacePlayerInOpenCell()` so the plot hugs the final player
+position):**
+- Counts existing Plantable cells within Chebyshev radius
+  `PLOT_RADIUS = 2`; **no-ops when ≥ `MIN_PLANTABLE_CELLS = 6`** —
+  grassy biomes are untouched.
+- Otherwise converts cells nearest-first (ring by ring), each guarded:
+  in-bounds, not `IsInterior`, not `IsSolid()`, no `LiquidPoolPart`,
+  not already plantable, and ALL terrain in the cell on the explicit
+  `ReplaceableFloors` allowlist (Floor/Rubble/stone family). Anything
+  else — `Bank`, future special terrain — vetoes the cell.
+- Conversion removes the old floor(s), adds one `Grass`, calls
+  `ZoneRenderHooks.MarkCellDirty`. Converted cells end with exactly
+  ONE terrain entity.
+- Emits `crop/FarmPlotSeeded{converted, plantableTotal, x, y}` only
+  when it actually converted something.
+- Null zone/factory → returns 0, no crash. Second call is idempotent.
+
+**TDD:** strict RED-first — `FarmPlotSeederTests.cs` (12 tests)
+written against the nonexistent class, CS0103 confirmed RED, then
+implemented. Coverage: grassy no-op (counter-check to conversion),
+bare-floor + empty-cell + stone-family conversion, exactly-one-terrain
+invariant, wall/interior/water/Bank veto pins, null-args, idempotency,
+diag emission, and an end-to-end integration test that plants a real
+`CandyCarrotSeed` on a seeded cell via `InventorySystem` command
+routing.
+
+**Tests: 5671 → 5683 (+12). Full EditMode suite green, zero
+regressions.**
+
+**Honesty bounds:** the seeder's contract is fully script-observable
+(no new visuals). NOT machine-verified: which biome the live
+bootstrap actually rolls — the `[Bootstrap/Farming] Plantable cells
+near spawn: N` log line is the live-run confirmation channel.

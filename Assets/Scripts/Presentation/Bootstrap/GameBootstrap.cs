@@ -267,6 +267,7 @@ namespace CavesOfOoo
                     GivePlayerCraftingStarterKit();
                     GivePlayerFarmingStarterKit();
                     PlacePlayerInOpenCell();
+                    EnsureFarmPlotAtSpawn();
                     SpawnDebugWeaponNearPlayer();
                     SpawnDebugNPCNearPlayer();
                     return true;
@@ -941,6 +942,25 @@ namespace CavesOfOoo
         {
             int granted = CraftingStarterKit.GrantAll(_player, _factory);
             Debug.Log($"[Bootstrap/Crafting] Granted {granted} starter ingredient stack(s) to the player.");
+        }
+
+        /// <summary>
+        /// Guarantee plantable ground near the spawn point — the seeds
+        /// in the farming kit are useless in biomes that don't generate
+        /// Grass (Ruins/stone starts). Runs AFTER PlacePlayerInOpenCell
+        /// so the plot hugs the player's final position. Conservative:
+        /// no-ops in grassy biomes; never paves interiors, walls, water,
+        /// or special terrain (see FarmPlotSeeder's contract).
+        /// </summary>
+        private void EnsureFarmPlotAtSpawn()
+        {
+            if (_player == null || _zone == null || _factory == null)
+                return;
+            var pos = _zone.GetEntityPosition(_player);
+            if (pos.x < 0)
+                return;
+            int plantable = FarmPlotSeeder.EnsurePlantablePlot(_zone, pos.x, pos.y, _factory);
+            Debug.Log($"[Bootstrap/Farming] Plantable cells near spawn: {plantable}.");
         }
 
         /// <summary>
