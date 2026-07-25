@@ -207,6 +207,7 @@ Moisture bookkeeping lives ONLY here — no double-decrement paths.
 | SM4 | Bootstrap wiring + starter kit + save/load round-trip pins + showcase scenario + smoke test | ✅ 2026-07-23 |
 | SM5 | Adversarial sweep (dedicated file — CSV parser malformed inputs, top-up stacking semantics, save/load reach, boundary radius, diag contracts, Factory-null paths) + cold-eye review + close-out | ✅ 2026-07-23 |
 | SM6 | Follow-up (user directive 2026-07-25 "make sure grass and everything else needed for planting is at spawn"): `FarmPlotSeeder` — guaranteed plantable plot near spawn regardless of biome | ✅ 2026-07-25 |
+| SM7 | Audit fixes (user directive 2026-07-25 "fix any issues you see"): 14-agent multi-lens audit → 8 confirmed findings fixed across SM7a-d | ✅ 2026-07-25 |
 
 ## 4. Test plan sketch
 - Plant on Plantable grass succeeds / on plain `Floor` rejects
@@ -409,3 +410,42 @@ regressions.**
 (no new visuals). NOT machine-verified: which biome the live
 bootstrap actually rolls — the `[Bootstrap/Farming] Plantable cells
 near spawn: N` log line is the live-run confirmation channel.
+
+### SM7 — post-ship audit fixes (shipped 2026-07-25)
+
+**Origin:** user directive 2026-07-25 — "fix any issues you see with
+the current farming implementation." A 14-agent multi-lens audit
+workflow (6 finder lenses × adversarial verification, per the
+hypothesis-driven deep-audit directive — SM5's cold-eye had declared
+0 production bugs, exactly the state that directive targets) produced
+**8 confirmed findings (1 critical, 7 yellow), 0 refuted, 14
+blue/note**. Fixes land as SM7a-d, smallest blast radius first.
+
+#### SM7a — ground-seed exploit (F1 🔴 critical, F2 🟡)
+
+The world-action menu fires `GetInventoryActions` / `InventoryAction`
+directly on zone-resident entities (`WorldInteractionSystem.
+GatherActions` → `InputHandler.ExecuteWorldActionSelection`, which
+bypasses `PerformInventoryActionCommand`). A seed lying on the ground
+therefore offered "Plant"; all gates checked the ACTOR's cell, so the
+crop spawned at the player's feet (even for a seed 10 tiles away),
+and `ConsumeOneSeed`'s `InventoryPart.RemoveObject` silently no-oped
+for the zone-resident seed — **one dropped seed planted infinitely**
+(a ground stack of N decremented to 1, then the last unit was free
+forever). RED tests reproduced both the phantom plant and the
+stack-decrement-at-range before the fix.
+
+Fix (SeedPart.cs):
+- **`not_carried` gate first in DoPlant** — the seed must be in the
+  acting entity's own inventory; distinct diag reason + message.
+- **Action-row gate** — `GetInventoryActions` only offers Plant when
+  the seed is carried (actor's inventory, or any `PhysicsPart.
+  InInventory` for actor-less callers), so ground seeds show no dead
+  row in the world menu.
+- **Reason split** (audit note): the three early-outs that shared
+  `no_zone` now emit `no_zone` / `actor_not_in_zone` / `no_cell`.
+
+Counter-checks: carried seed via the SAME raw world-menu event shape
+still plants + consumes (gate keys on possession, not dispatch path);
+inventory-screen path still offers the Plant row. Tests:
+`FarmingAuditFixTests.cs` SM7a section (6 tests).

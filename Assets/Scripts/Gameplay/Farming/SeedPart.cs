@@ -32,8 +32,14 @@ namespace CavesOfOoo.Core
         {
             if (e.ID == "GetInventoryActions")
             {
+                // The world-action menu fires this same event on
+                // zone-resident items (WorldInteractionSystem.GatherActions),
+                // so a seed lying on the ground would otherwise offer a
+                // dead "Plant" row. Planting is defined only for a
+                // carried seed — DoPlant's not_carried gate is the
+                // enforcement; this keeps the row out of the menu.
                 var actions = e.GetParameter<InventoryActionList>("Actions");
-                if (actions != null)
+                if (actions != null && IsCarried(e.GetParameter<Entity>("Actor")))
                     actions.AddAction("Plant", "plant", "PlantSeed", 'p', 20);
                 return true;
             }
@@ -56,6 +62,19 @@ namespace CavesOfOoo.Core
 
         private void DoPlant(Entity actor, GameEvent e)
         {
+            // Anti-exploit gate: the seed must be in the ACTOR's inventory.
+            // The world-action menu dispatches InventoryAction directly on
+            // zone-resident items (InputHandler.ExecuteWorldActionSelection),
+            // where consumption via InventoryPart.RemoveObject silently
+            // no-ops — without this gate one dropped seed planted
+            // infinitely. Audit finding SM7-F1 (2026-07-25).
+            var carrierInv = actor.GetPart<InventoryPart>();
+            if (carrierInv == null || !carrierInv.Objects.Contains(ParentEntity))
+            {
+                Reject(actor, "not_carried", "You aren't carrying that seed.");
+                return;
+            }
+
             Zone zone = e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone;
             if (zone == null)
             {
@@ -66,14 +85,14 @@ namespace CavesOfOoo.Core
             var pos = zone.GetEntityPosition(actor);
             if (pos.x < 0)
             {
-                Reject(actor, "no_zone", "There is no ground here to plant in.");
+                Reject(actor, "actor_not_in_zone", "There is no ground here to plant in.");
                 return;
             }
 
             Cell cell = zone.GetCell(pos.x, pos.y);
             if (cell == null)
             {
-                Reject(actor, "no_zone", "There is no ground here to plant in.");
+                Reject(actor, "no_cell", "There is no ground here to plant in.");
                 return;
             }
 
@@ -133,8 +152,21 @@ namespace CavesOfOoo.Core
                     payload: new { reason = reason, cropBlueprint = CropBlueprint });
         }
 
+        /// <summary>True when this seed is carried — in the given actor's
+        /// inventory (authoritative), or in ANY inventory per PhysicsPart
+        /// (fallback for actor-less GetInventoryActions callers).</summary>
+        private bool IsCarried(Entity actor)
+        {
+            var inv = actor?.GetPart<InventoryPart>();
+            if (inv != null && inv.Objects.Contains(ParentEntity))
+                return true;
+            return ParentEntity?.GetPart<PhysicsPart>()?.InInventory != null;
+        }
+
         /// <summary>StackerPart-aware single-seed consumption —
-        /// TonicPart.ConsumeItem's exact pattern.</summary>
+        /// TonicPart.ConsumeItem's exact pattern. Callers must have
+        /// passed the not_carried gate: for a zone-resident seed the
+        /// RemoveObject branch would silently no-op (the SM7-F1 exploit).</summary>
         private void ConsumeOneSeed(Entity actor)
         {
             var stacker = ParentEntity.GetPart<StackerPart>();
