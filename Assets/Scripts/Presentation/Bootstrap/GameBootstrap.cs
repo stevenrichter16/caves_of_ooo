@@ -772,6 +772,19 @@ namespace CavesOfOoo
             if (_world != null && _world.GetPart<CropSystemPart>() == null)
                 _world.AddPart(new CropSystemPart());
 
+            // SM7c (farming audit F4): pre-farming saves have NO source of
+            // seeds or the grimoire anywhere in the game — without this,
+            // farming stays permanently inaccessible on persistent
+            // characters. One-shot: FarmingAccessGrant's property pin +
+            // already-owns checks keep post-feature saves from ever
+            // double-granting.
+            if (FarmingAccessGrant.ShouldGrantOnLoad(_player))
+            {
+                GivePlayerFarmingStarterKit();
+                EnsureFarmPlotAtSpawn();
+            }
+            FarmingAccessGrant.MarkGranted(_player);
+
             ConversationManager.EndConversation();
 
             if (_zoneManager != null)
@@ -998,6 +1011,9 @@ namespace CavesOfOoo
                 if (inventory.AddObject(item))
                     granted++;
             }
+            // Pin the grant so the SM7c load path never re-grants this
+            // character (the pin rides the save via entity Properties).
+            FarmingAccessGrant.MarkGranted(_player);
             Debug.Log($"[Bootstrap/Farming] Granted {granted} farming kit item stack(s) to the player.");
         }
 

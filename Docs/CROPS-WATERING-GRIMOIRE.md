@@ -476,3 +476,31 @@ ZoneRenderer + Tilemap fixture drives `RenderZone` → toggle →
 just the field): dry-out erases, entity-removal erases, still-wet
 counter-check keeps the block. RED reproduced the stale `CP437_DB`
 block on both erase paths before the fix.
+
+#### SM7c — farming access for pre-farming saves (F4 🟡)
+
+The kit + plot were new-game-only, and NO other source of seeds or
+the grimoire exists (no trade stock, no drops, produce yields no
+seeds) — so a format-4 save from before 2026-07-23 loaded into a
+character for whom farming was silently, permanently inaccessible.
+That contradicts PROJECT-IDENTITY's persistent-character framing,
+and it made SM4's defensive CropSystemPart re-attach protect a
+scenario that couldn't occur (pre-feature saves could never plant).
+
+Fix: new `FarmingAccessGrant` (static, testable) + `ApplyLoadedGame`
+wiring. On load: `ShouldGrantOnLoad(player)` → one-shot
+`GivePlayerFarmingStarterKit()` + `EnsureFarmPlotAtSpawn()` at the
+loaded position. One-shot contract: a `FarmingKitGranted` player
+Property pins the grant (set by BOTH grant paths, rides the save
+graph); belt-and-suspenders already-owns checks (any Seed item,
+the WateringGrimoire, or knowing Conjure Rain) protect post-SM4
+saves made before the pin existed from double-granting.
+
+Tests: `FarmingAuditFixTests.cs` SM7c section (7) — fresh
+pre-farming player grants; pinned player never re-grants (dropping
+the kit later included); grimoire-carrier / seed-carrier /
+spell-knower each suppress the grant; null-safe; the pin survives a
+token-graph save round-trip. Honesty bound: the ApplyLoadedGame
+wiring itself is play-path (MonoBehaviour) — the decision logic is
+fully pinned, the two calls it makes are the same ones the new-game
+path already exercises live.

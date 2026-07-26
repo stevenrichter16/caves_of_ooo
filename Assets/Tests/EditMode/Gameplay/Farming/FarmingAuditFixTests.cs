@@ -194,6 +194,92 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(hasPlant, "carried seeds keep the Plant action");
         }
 
+        // ════════════════════════════════════════════════════════════
+        //   SM7c — load-path farming access (audit finding F4 yellow:
+        //   pre-farming saves had NO source of seeds or the grimoire —
+        //   the kit was new-game-only and no trade/drop source exists,
+        //   so the feature was permanently inaccessible on persistent
+        //   characters, contradicting the RPG identity)
+        // ════════════════════════════════════════════════════════════
+
+        private static Entity MakeLoadedPlayer()
+        {
+            var player = new Entity { ID = "player", BlueprintName = "Player" };
+            player.Tags["Player"] = "";
+            player.AddPart(new RenderPart { DisplayName = "you" });
+            player.AddPart(new InventoryPart { MaxWeight = 500 });
+            player.AddPart(new ActivatedAbilitiesPart());
+            player.AddPart(new MutationsPart());
+            return player;
+        }
+
+        [Test]
+        public void Sm7c_FreshPreFarmingPlayer_ShouldGrantOnLoad()
+        {
+            var player = MakeLoadedPlayer();
+            Assert.IsTrue(FarmingAccessGrant.ShouldGrantOnLoad(player),
+                "a pre-farming save's player (no kit, no pin) gets the one-shot grant");
+        }
+
+        [Test]
+        public void Sm7c_MarkedPlayer_ShouldNotGrantAgain()
+        {
+            var player = MakeLoadedPlayer();
+            FarmingAccessGrant.MarkGranted(player);
+            Assert.IsFalse(FarmingAccessGrant.ShouldGrantOnLoad(player),
+                "the pin makes the grant one-shot — discarding the kit later never re-grants");
+        }
+
+        [Test]
+        public void Sm7c_PlayerCarryingGrimoire_ShouldNotGrant()
+        {
+            // A post-SM4 save made BEFORE this fix existed: has the kit
+            // but no pin. Must not double-grant.
+            var player = MakeLoadedPlayer();
+            var grimoire = _factory.CreateEntity("WateringGrimoire");
+            player.GetPart<InventoryPart>().AddObject(grimoire);
+            Assert.IsFalse(FarmingAccessGrant.ShouldGrantOnLoad(player));
+        }
+
+        [Test]
+        public void Sm7c_PlayerCarryingSeeds_ShouldNotGrant()
+        {
+            var player = MakeLoadedPlayer();
+            var seed = _factory.CreateEntity("EmberwheatSeed");
+            player.GetPart<InventoryPart>().AddObject(seed);
+            Assert.IsFalse(FarmingAccessGrant.ShouldGrantOnLoad(player));
+        }
+
+        [Test]
+        public void Sm7c_PlayerKnowingConjureRain_ShouldNotGrant()
+        {
+            // Kit consumed/discarded but the spell already learned —
+            // farming access exists (rain + any future seed source), and
+            // re-granting a free grimoire would dupe its trade value.
+            var player = MakeLoadedPlayer();
+            player.GetPart<MutationsPart>().AddMutation(new ConjureRainMutation(), 1);
+            Assert.IsFalse(FarmingAccessGrant.ShouldGrantOnLoad(player));
+        }
+
+        [Test]
+        public void Sm7c_NullPlayer_ShouldNotGrant_NoCrash()
+        {
+            Assert.IsFalse(FarmingAccessGrant.ShouldGrantOnLoad(null));
+            Assert.DoesNotThrow(() => FarmingAccessGrant.MarkGranted(null));
+        }
+
+        [Test]
+        public void Sm7c_GrantedPin_SurvivesSaveRoundTrip()
+        {
+            var player = MakeLoadedPlayer();
+            FarmingAccessGrant.MarkGranted(player);
+
+            var loaded = PartRoundTripHelper.RoundTripEntityViaTokenGraph(player);
+
+            Assert.IsFalse(FarmingAccessGrant.ShouldGrantOnLoad(loaded),
+                "the one-shot pin must survive save/load or every load re-grants the kit");
+        }
+
         [Test]
         public void Sm7a_PlantReject_ActorNotInZone_DistinctReason()
         {
