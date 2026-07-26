@@ -818,6 +818,19 @@ namespace CavesOfOoo.Rendering
                 {
                     int x = key % Zone.Width;
                     int y = key / Zone.Width;
+                    // Bg hygiene for the incremental path: RenderZone
+                    // starts from ClearAllTiles, but this path repaints in
+                    // place — and RenderCellCore only WRITES bg tiles,
+                    // never erases them. A cell whose BackgroundColor was
+                    // toggled off between repaints (dried soil, matured
+                    // crop, dissipated gas) would keep its stale block
+                    // forever for a stationary player. Erase first;
+                    // RenderCell re-writes when the top entity still has a
+                    // bg. Ambient water tints self-heal next frame (their
+                    // per-frame passes re-create missing tiles). SM7b,
+                    // farming audit 2026-07-25.
+                    if (_bgTilemap != null)
+                        _bgTilemap.SetTile(new Vector3Int(x, Zone.Height - 1 - y, 0), null);
                     RenderCell(x, y);
                 }
             }

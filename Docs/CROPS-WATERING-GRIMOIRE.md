@@ -449,3 +449,30 @@ Counter-checks: carried seed via the SAME raw world-menu event shape
 still plants + consumes (gate keys on possession, not dispatch path);
 inventory-screen path still offers the Plant row. Tests:
 `FarmingAuditFixTests.cs` SM7a section (6 tests).
+
+#### SM7b — stale wet-soil block on the incremental repaint (F6/F7 🟡)
+
+`ZoneRenderer.RenderCellCore` only ever WRITES bg tiles; nothing on
+the dirty-cell path erased them (the bg tilemap was cleared solely by
+`RenderZone`'s full `ClearAllTiles`, which fires on player movement /
+UI close — NOT on waiting in place). So the feature's primary visual
+feedback inverted for a stationary player: dry-out cleared the STATE
+but the dark wet-earth block stayed painted indefinitely; maturity
+removed the still-wet crop and stranded the block under the produce;
+this also predated farming (dissipated gas left the same stale tint —
+farming was just the first stand-and-watch flow to expose it).
+
+Fix (ZoneRenderer.cs `RenderDirtyCells`): erase each dirty cell's bg
+tile before repainting; `RenderCellCore` re-writes it when the top
+entity still has a `BackgroundColor`. Perf: dirty cells only (the
+full-redraw path is untouched — it already starts from
+`ClearAllTiles`); ambient water tints self-heal because their
+per-frame passes re-create missing tiles. This corrects §2's C2 claim
+("shows dry immediately") from paper-true to actually-true.
+
+Tests: `ZoneRendererStaleBgTests.cs` (3) — a real EditMode
+ZoneRenderer + Tilemap fixture drives `RenderZone` → toggle →
+`MarkCellDirty` → `RenderDirtyCells` and asserts the bg TILE (not
+just the field): dry-out erases, entity-removal erases, still-wet
+counter-check keeps the block. RED reproduced the stale `CP437_DB`
+block on both erase paths before the fix.
