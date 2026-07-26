@@ -18,8 +18,13 @@ plant crops and water them with a 'watering grimoire', where it spawns
 rain above the crop tiles and waters them and darkens the dirt. after
 planning, implement fully without my intervention."
 **Genre note (PROJECT-IDENTITY):** RPG framing — crops persist across
-save/load and sessions; a field you plant today is still growing when
-you come back. Dry crops pause, they don't die.
+save/load and sessions; a field you plant today is still there,
+exactly as you left it, when you come back (ticking is active-zone
+only, mirroring the gas system — crops FREEZE while you're elsewhere;
+moisture doesn't drain in your absence, which is player-favorable).
+Dry crops pause, they don't die. (SM7d doc-drift fix: the earlier
+"still growing when you come back" phrasing invited an offline-growth
+reading the implementation deliberately does not deliver.)
 
 ---
 
@@ -111,13 +116,17 @@ corrections table below):
 - `string CropBlueprint`; `public static EntityFactory Factory`
   (CorpsePart convention).
 - `GetInventoryActions` → `("Plant", "plant", "PlantSeed", 'p', 20)`.
-- `InventoryAction` "PlantSeed" gates, each with diag reject reason:
-  zone/position resolvable (`no_zone`); cell has `Terrain`-tagged
-  entity that also has tag `Plantable` (`not_plantable`); no entity
-  with `CropPart` already in cell (`already_planted`); Factory +
-  blueprint resolve (`no_factory`). Success: spawn crop (stage 0, dry),
+- `InventoryAction` "PlantSeed" gates, each with a DISTINCT diag
+  reject reason (SM7a expanded these): seed carried by the actor
+  (`not_carried` — the anti-exploit gate, first); zone resolvable
+  (`no_zone`); actor present in the zone (`actor_not_in_zone`); cell
+  exists (`no_cell`); cell has `Terrain`-tagged entity that also has
+  tag `Plantable` (`not_plantable`); no entity with `CropPart` already
+  in cell (`already_planted`); Factory set (`no_factory`); blueprint
+  resolves (`unknown_blueprint`). Success: spawn crop (stage 0, dry),
   consume one seed (StackerPart-aware), message + diag `CropPlanted`,
-  `MarkCellDirty`.
+  `MarkCellDirty`. The Plant action row is only offered for carried
+  seeds (SM7a).
 
 ### 2.3 `CropSystem` (new static) + `CropSystemPart` (GasSystemPart clone)
 `CropSystem.OnTickEnd(zone)`: null-guard; snapshot
@@ -143,26 +152,41 @@ Moisture bookkeeping lives ONLY here — no double-decrement paths.
   cell, find entity with `CropPart` → `crop.Water(MOISTURE_TICKS)` +
   rain FX for that cell. Always succeeds + cooldown (DryingBreeze
   convention); message varies: crops watered → "Rain patters down over
-  your crops." else "The conjured rain finds no crops to nourish."
+  the crops." else "The conjured rain finds no crops to nourish."
   Diag `RainConjured {cropsWatered, radius}` + per-crop `CropWatered`.
 - Rain FX per watered cell (EditMode-safe enqueues):
   - 3 falling drops: `(x, y-2)` delay 0, `(x, y-1)` delay 0.12,
     `(x, y-2)` delay 0.24 — glyphs `'|'`, `'''`, `'.'`, colors
-    `&B`/`&b`, `dy:+1`, `moveInterval 0.1`, `lifetime 0.45`.
+    `&B`/`&b`, `dy:+1`, `moveInterval 0.1`. Lifetime = travel budget
+    (SM7d): 0.25 for the y-2 drops, 0.15 for the y-1 drop, so every
+    drop dies AT the crop row (the original 0.45 gave 4 moves — drops
+    rained visibly through the soil).
   - `EmitBurst(zone, x, y, AsciiFxTheme.Water, false, delay 0.3)`.
+- Deliberate v1 scope (audit-reviewed, kept): rain has no
+  line-of-sight/interior gating (waters through walls — benign,
+  purely helpful); Drying Breeze does NOT dry crop moisture (the
+  spells operate on disjoint state; extending DryingBreeze is a
+  design decision deferred, not an oversight).
 
 ### 2.5 Content (Objects.json)
 - `Grass` gains tag `Plantable` (only change to existing content).
 - `CandyCarrotSeed`/`EmberwheatSeed` — Items with `SeedPart` + Stacker.
 - `CandyCarrotCrop` — `Terrain`-independent entity: RenderLayer 1,
-  non-solid, NOT takeable, tag `Crop`; CropPart params (20/`".,τ"`/
-  `"&w,&g"`/`CandyCarrot`×1).
-- `EmberwheatCrop` — 35/`".,ι"`/`"&w,&y"`/`Emberwheat`×2.
+  non-solid, NOT takeable, tag `Crop`; CropPart params (20/`".,t"`/
+  `"&w,&g"`/`CandyCarrot`×1). (ASCII stage glyphs — the Greek τ/ι
+  from the draft were an atlas-miss risk, substituted in SM1.)
+- `EmberwheatCrop` — 35/`".,i"`/`"&w,&y"`/`Emberwheat`×2.
 - `CandyCarrot`/`Emberwheat` — produce Items (Takeable, Commerce,
   flavor).
 - `WateringGrimoire` — Item, glyph `"` color `&B`, `GrimoirePart`
   params: `MutationClassName ConjureRainMutation`, `MutationLevel 1`,
-  LearnMessage. Commerce ~30.
+  LearnMessage, bespoke AlreadyKnownMessage. Commerce ~30. SM7d
+  aligned it with the sibling-grimoire contract: Physics Category
+  `Books`, tags `Grimoire` + `Tier 1` (the scribe's copy service
+  selects by `HasTag("Grimoire")`).
+- Seeds circulate in trade (SM7d): `CandyCarrotSeed`/`EmberwheatSeed`
+  in TradeStockBuilder's villager pools — without a renewable source
+  the starter kit's 6 seeds were the character's lifetime supply.
 - Mutation registration: wherever mutations map name→type (check
   `MutationsPart.AddMutation` resolution — likely reflection by class
   name; verify in SM3).
@@ -177,10 +201,28 @@ Moisture bookkeeping lives ONLY here — no double-decrement paths.
   2×EmberwheatSeed) beside `GivePlayerCraftingStarterKit`.
 
 ### 2.7 Observability
-`crop` category added to `Diag.DefaultOnCategories`. Records:
-`CropPlanted`, `PlantRejected{reason}`, `RainConjured{cropsWatered}`,
-`CropWatered{moistureTicks}`, `StageAdvanced{stage}`,
-`CropMatured{yieldBlueprint,yieldCount}`, `SoilDried`. All test-pinned.
+`crop` category added to `Diag.DefaultOnCategories`. Records (the
+COMPLETE contract — SM7d folded in the two kinds that previously
+lived only in SM-log entries, plus SM7's additions):
+- `CropPlanted{cropBlueprint,x,y}`
+- `PlantRejected{reason: not_carried | no_zone | actor_not_in_zone |
+  no_cell | not_plantable | already_planted | no_factory |
+  unknown_blueprint, cropBlueprint}`
+- `RainConjured{cropsWatered, radius}`
+- `CropWatered{moistureTicks}`
+- `StageAdvanced{stage, cropBlueprint}` (field renamed from
+  `blueprint` in SM7d — one name per referent)
+- `CropMatured{yieldBlueprint, yieldCount, x, y}`
+- `MatureBlocked{reason: no_factory | no_yield_blueprint |
+  no_yield_count | unknown_yield_blueprint}` (crop HELD, never
+  deleted)
+- `SoilDried`
+- `FarmPlotSeeded{converted, plantableTotal, x, y}` (seeder converted
+  something)
+- `FarmPlotSeedingFailed{plantableTotal, needed, converted, x, y}`
+  (seeder ran and could not meet the guarantee — distinct from the
+  silent grassy no-op)
+All test-pinned.
 
 ### 2.8 Performance (per-turn path checklist)
 - `OnTickEnd` mirrors gas exactly (same snapshot allocation profile,
@@ -504,3 +546,65 @@ token-graph save round-trip. Honesty bound: the ApplyLoadedGame
 wiring itself is play-path (MonoBehaviour) — the decision logic is
 fully pinned, the two calls it makes are the same ones the new-game
 path already exercises live.
+
+#### SM7d — content/UX polish batch (F3, F5, F8 🟡 + blue/note items)
+
+- **F3 — Conjure Rain invisible to the grimoire picker:** the picker
+  filters "learned grimoires" via `GrimoireTooltipData.
+  IsGrimoireMutation`; Conjure Rain had no row, so it never appeared —
+  and reassigning its auto-bound hotbar slot stranded the spell with
+  only the M-key ability manager as recovery. Added the entry (+
+  load-bearing warning in the class doc). The six older utility
+  spells (DryingBreeze, ConjureWater, …) share the hole — tracked as
+  a separate task, out of farming scope.
+- **F8 — WateringGrimoire off-contract:** added Physics Category
+  `Books`, tags `Grimoire`/`Tier 1`, bespoke AlreadyKnownMessage
+  (siblings all have them; the missing Grimoire tag hid the item from
+  the scribe's tag-gated copy service and filed it under
+  Miscellaneous in the inventory). **Rider:** `CopyGrimoire` copied
+  only the knowledge-property fields, so a copy of ANY spell-teaching
+  grimoire read as blank pages — latent until the tag fix exposed the
+  WateringGrimoire to the service; now copies `MutationClassName`/
+  `MutationLevel`.
+- **F5 — Sand missing from the seeder allowlist:** DesertBuilder
+  floors whole zones with Sand (desert Village/Lair palettes use it
+  for floor AND path); every cell vetoed → the "regardless of biome"
+  guarantee failed on the whole desert family, silently. Latent today
+  (spawn is pinned to the Cave-biome starting village) but
+  contract-breaking. Added Sand + a desert-plot test.
+- **Seeder failure now loud (blue):** `FarmPlotSeedingFailed
+  {plantableTotal, needed}` on the guarantee-not-met branch +
+  bootstrap warning log; counter-check pins the grassy no-op emitting
+  NEITHER kind.
+- **`no_yield_count` (blue):** YieldCount<=0 previously fell through
+  to `unknown_yield_blueprint` (a lie — the factory was never
+  called); distinct reason + pre-check before the spawn loop.
+- **StageAdvanced payload rename (note):** `blueprint` →
+  `cropBlueprint` — one name per referent across the record family
+  (Q2 convention).
+- **Rain overshoot (blue):** drop lifetime = travel budget (0.25/
+  0.15/0.25 for spawns 2/1/2 cells above), so drops die AT the crop
+  row instead of raining 2-3 tiles through the soil after the splash.
+  Property-pinned: `y + floor(lifetime/moveInterval)·dy ≤ crop row`
+  for every falling drop.
+- **Seed economy (note):** the kit's 6 seeds were a character's
+  LIFETIME supply (no trade/drop/harvest source). Seeds added to
+  TradeStockBuilder's villager pools (base + improved-well) — the
+  Commerce values on seeds always implied trade circulation.
+- **Doc drift fixed in-place:** §2.2 reason list, §2.4 message
+  wording + FX lifetimes + deliberate-scope notes (rain through
+  walls, DryingBreeze asymmetry), §2.5 ASCII glyphs + grimoire
+  contract + trade note, §2.7 complete 10-kind diag table, genre-note
+  active-zone-only phrasing, CropSystem.Factory hold-contract comment
+  (dry-hold does NOT convert on factory return until re-watered — the
+  code comment now matches TryMature's actual behavior).
+- **Recorded, deliberately NOT changed:** two-crops-one-cell waters
+  the renderer-hidden (first-added) crop — unreachable via the
+  planting gate, pinned by the SM5 adversarial test; scenario
+  scripts/spawners that bypass the gate own the risk.
+
+Tests: SM7d adds 6 to `FarmingAuditFixTests.cs` + 3 to
+`FarmPlotSeederTests.cs` (Sand, failed-diag, no-op counter).
+Sequencing disclosure: this slice's production edits were written
+before its tests (content/polish batch); the SM7a/b/c fixes above
+were strict RED-first. All 97 farming-suite tests green post-batch.

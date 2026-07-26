@@ -21,7 +21,13 @@ namespace CavesOfOoo.Core
             "Cudgel", "Buckler", "LeatherArmor", "ChainMail", "IronHelmet",
             "LeatherBoots", "LeatherGloves", "Cloak",
             "HealingTonic", "PoisonTonic", "FireTonic", "SpeedTonic", "StrengthTonic",
-            "Starapple", "Mushroom", "DriedMeat"
+            "Starapple", "Mushroom", "DriedMeat",
+            // SM7d (farming audit): the starter kit's 6 seeds were the
+            // character's LIFETIME supply — no drop/trade/harvest source
+            // existed, so farming went permanently inert after 6 plants.
+            // Villager traders are the renewable source (seed Commerce
+            // values 3/5 always implied trade circulation).
+            "CandyCarrotSeed", "EmberwheatSeed"
         };
 
         private static readonly string[] FouledWellTradeGoods =
@@ -36,7 +42,8 @@ namespace CavesOfOoo.Core
             "Dagger", "ShortSword", "LongSword", "Mace", "Spear", "Hatchet",
             "Buckler", "LeatherArmor", "ChainMail", "Cloak",
             "HealingTonic", "PoisonTonic", "FireTonic", "SpeedTonic", "StrengthTonic",
-            "Starapple", "Mushroom", "DriedMeat", "Starapple", "DriedMeat"
+            "Starapple", "Mushroom", "DriedMeat", "Starapple", "DriedMeat",
+            "CandyCarrotSeed", "EmberwheatSeed"
         };
 
         public TradeStockBuilder(SettlementManager settlementManager = null)

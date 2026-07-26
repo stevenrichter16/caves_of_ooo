@@ -148,6 +148,61 @@ namespace CavesOfOoo.Tests
             Assert.GreaterOrEqual(ensured, FarmPlotSeeder.MIN_PLANTABLE_CELLS);
         }
 
+        [Test]
+        public void SandFloors_AreReplaceable_DesertBiomeGetsItsPlot()
+        {
+            // SM7 audit finding F5: Sand was missing from the allowlist,
+            // yet DesertBuilder floors whole zones with it and the
+            // desert Village/Lair palettes use it for floor AND path —
+            // the "regardless of biome" guarantee failed on the entire
+            // desert family (silently: 0 conversions, no diag).
+            var zone = new Zone("z");
+            FillTerrain(zone, "Sand", 10, 10, 2);
+
+            int ensured = FarmPlotSeeder.EnsurePlantablePlot(zone, 10, 10, _factory);
+
+            Assert.GreaterOrEqual(ensured, FarmPlotSeeder.MIN_PLANTABLE_CELLS,
+                "a desert (all-Sand) spawn must still get its plantable plot");
+        }
+
+        [Test]
+        public void GuaranteeNotMet_EmitsFarmPlotSeedingFailedDiag()
+        {
+            // SM7 audit note: the failure branch was uninstrumented — a
+            // diag query could not tell "healthy grassy no-op" from
+            // "seeder ran and failed its guarantee".
+            var zone = new Zone("z");
+            FillTerrain(zone, "Floor", 10, 10, 2);
+            for (int y = 8; y <= 12; y++)
+                for (int x = 8; x <= 12; x++)
+                    zone.GetCell(x, y).IsInterior = true; // nothing convertible
+
+            FarmPlotSeeder.EnsurePlantablePlot(zone, 10, 10, _factory);
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "crop", Kind = "FarmPlotSeedingFailed", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count, "underdelivery must be loud");
+            StringAssert.Contains("\"plantableTotal\":0", recs[0].PayloadJson);
+            StringAssert.Contains($"\"needed\":{FarmPlotSeeder.MIN_PLANTABLE_CELLS}", recs[0].PayloadJson);
+        }
+
+        [Test]
+        public void GrassyNoOp_EmitsNeitherSeededNorFailedDiag()
+        {
+            // Counter-check: the healthy no-op path stays silent on BOTH
+            // kinds — FarmPlotSeeded means "converted something",
+            // FarmPlotSeedingFailed means "guarantee not met".
+            var zone = new Zone("z");
+            FillTerrain(zone, "Grass", 10, 10, 2);
+
+            FarmPlotSeeder.EnsurePlantablePlot(zone, 10, 10, _factory);
+
+            Assert.AreEqual(0, DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "crop", Kind = "FarmPlotSeeded", Limit = 5 }).Records.Count);
+            Assert.AreEqual(0, DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "crop", Kind = "FarmPlotSeedingFailed", Limit = 5 }).Records.Count);
+        }
+
         // ── Protected cells are never touched ────────────────────
 
         [Test]

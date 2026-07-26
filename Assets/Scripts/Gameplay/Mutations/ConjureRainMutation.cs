@@ -114,15 +114,25 @@ namespace CavesOfOoo.Core
         /// particle mechanism floating damage numbers use upward), then
         /// a Water-theme splash on the tile itself. Pure enqueues on
         /// AsciiFxBus — EditMode-safe, renderer drains them.
+        ///
+        /// <para><b>Lifetime = travel budget.</b> The renderer moves a
+        /// particle floor(lifetime / moveInterval) cells over its life
+        /// (AsciiFxRenderer.UpdateParticles), so each drop's lifetime is
+        /// sized to die ON the crop row: spawn N cells above → N moves.
+        /// The original 0.45f gave every drop 4 moves — drops visibly
+        /// rained 2-3 tiles THROUGH the soil below the splash (SM7d,
+        /// farming audit note).</para>
         /// </summary>
         private static void EmitRainFx(Zone zone, int x, int y)
         {
+            // 2 cells above → 2 moves (0.2s) + margin, dies at the crop row.
             AsciiFxBus.EmitParticle(zone, x, y - 2, '|', "&B",
-                lifetime: 0.45f, dy: 1, moveInterval: 0.1f, delay: 0f);
+                lifetime: 0.25f, dy: 1, moveInterval: 0.1f, delay: 0f);
+            // 1 cell above → 1 move.
             AsciiFxBus.EmitParticle(zone, x, y - 1, '\'', "&b",
-                lifetime: 0.45f, dy: 1, moveInterval: 0.1f, delay: 0.12f);
+                lifetime: 0.15f, dy: 1, moveInterval: 0.1f, delay: 0.12f);
             AsciiFxBus.EmitParticle(zone, x, y - 2, '.', "&B",
-                lifetime: 0.45f, dy: 1, moveInterval: 0.1f, delay: 0.24f);
+                lifetime: 0.25f, dy: 1, moveInterval: 0.1f, delay: 0.24f);
             AsciiFxBus.EmitBurst(zone, x, y, AsciiFxTheme.Water,
                 blocksTurnAdvance: false, delay: 0.3f);
         }

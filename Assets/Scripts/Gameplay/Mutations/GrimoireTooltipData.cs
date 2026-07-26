@@ -40,10 +40,19 @@ namespace CavesOfOoo.Core
     }
 
     /// <summary>
-    /// Static lookup of inline tooltip text for the nine grimoire-granted
+    /// Static lookup of inline tooltip text for the grimoire-granted
     /// activated mutations. Keys match the mutation class name exactly so that
     /// <see cref="ActivatedAbility.SourceMutationClass"/> can be used as the
     /// lookup key directly.
+    ///
+    /// <para><b>Load-bearing beyond tooltips:</b> InventoryUI's grimoire
+    /// picker filters the "learned grimoires" list with
+    /// <see cref="IsGrimoireMutation"/> — a grimoire-taught mutation
+    /// missing from this table is INVISIBLE in the picker, and once its
+    /// hotbar slot is reassigned it can only be re-bound through the
+    /// M-key ability manager. Every new grimoire spell must add a row
+    /// here (SM7d, farming audit F3 — Conjure Rain shipped without one;
+    /// the older utility spells still lack rows, tracked separately).</para>
     /// </summary>
     public static class GrimoireTooltipData
     {
@@ -112,6 +121,13 @@ namespace CavesOfOoo.Core
                 Flavor      = "A vein of fire traces the path.",
                 Mechanics   = "2d6 fire beam \u2022 Range 7 \u2022 CD 12",
                 Signature   = "Heat pulse ignites every combustible in line"
+            } },
+            { nameof(ConjureRainMutation), new GrimoireTooltip {
+                DisplayName = "Conjure Rain",
+                ColorCode   = "&B",
+                Flavor      = "Clouds gather at your quiet call.",
+                Mechanics   = "Waters crops \u2022 Radius 3 \u2022 CD 5",
+                Signature   = "Soaks soil for 40 ticks \u2022 darkens wet earth"
             } },
         };
 

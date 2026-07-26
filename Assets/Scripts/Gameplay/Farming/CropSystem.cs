@@ -26,8 +26,11 @@ namespace CavesOfOoo.Core
         /// Global factory for spawning produce at maturity — set once by
         /// GameBootstrap (CorpsePart.Factory convention). When null, a
         /// matured crop is NOT deleted: it holds at the completion
-        /// boundary and converts on the first tick the factory is back,
-        /// so produce is never silently lost.
+        /// boundary and converts on the next MOIST tick after the
+        /// factory is back (retry ticks still consume moisture, and a
+        /// crop that dries during the hold sits paused until re-watered
+        /// — produce is never lost, but recovery is not instantaneous;
+        /// SM7d doc-drift fix).
         /// </summary>
         public static EntityFactory Factory;
 
@@ -84,7 +87,7 @@ namespace CavesOfOoo.Core
 
             if (Diag.IsChannelEnabled("crop"))
                 Diag.Record("crop", "StageAdvanced", target: entity,
-                    payload: new { stage = crop.GrowthStage, blueprint = entity.BlueprintName });
+                    payload: new { stage = crop.GrowthStage, cropBlueprint = entity.BlueprintName });
         }
 
         private static void TryMature(Zone zone, Entity entity, CropPart crop)
@@ -98,6 +101,19 @@ namespace CavesOfOoo.Core
                 if (Diag.IsChannelEnabled("crop"))
                     Diag.Record("crop", "MatureBlocked", target: entity,
                         payload: new { reason = Factory == null ? "no_factory" : "no_yield_blueprint" });
+                return;
+            }
+
+            // Distinct reason for a zero/negative yield COUNT: the spawn
+            // loop below never runs, so without this pre-check the
+            // spawned==0 branch misattributed it as unknown_yield_blueprint
+            // and sent debuggers hunting a blueprint that resolves fine
+            // (SM7d, audit note).
+            if (crop.YieldCount <= 0)
+            {
+                if (Diag.IsChannelEnabled("crop"))
+                    Diag.Record("crop", "MatureBlocked", target: entity,
+                        payload: new { reason = "no_yield_count" });
                 return;
             }
 

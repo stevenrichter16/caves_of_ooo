@@ -280,6 +280,166 @@ namespace CavesOfOoo.Tests
                 "the one-shot pin must survive save/load or every load re-grants the kit");
         }
 
+        // ════════════════════════════════════════════════════════════
+        //   SM7d — content/UX polish (F3 picker entry, F8 grimoire
+        //   content + copy fix, blue/note diag + FX items)
+        // ════════════════════════════════════════════════════════════
+
+        [Test]
+        public void Sm7d_ConjureRain_HasGrimoirePickerEntry()
+        {
+            // F3: the grimoire picker filters by IsGrimoireMutation — a
+            // missing row made Conjure Rain invisible and strandable
+            // (reassign its hotbar slot once and only the M-key ability
+            // manager could re-bind it).
+            Assert.IsTrue(GrimoireTooltipData.IsGrimoireMutation("ConjureRainMutation"),
+                "Conjure Rain must be visible to the grimoire picker");
+            Assert.IsTrue(GrimoireTooltipData.TryGet("ConjureRainMutation", out var tip));
+            Assert.AreEqual("Conjure Rain", tip.DisplayName);
+            Assert.IsFalse(string.IsNullOrEmpty(tip.Mechanics));
+            Assert.IsFalse(string.IsNullOrEmpty(tip.ColorCode));
+            // Counter-check: the filter still rejects unknown classes.
+            Assert.IsFalse(GrimoireTooltipData.IsGrimoireMutation("NoSuchMutation"));
+        }
+
+        [Test]
+        public void Sm7d_WateringGrimoire_MatchesSiblingGrimoireContract()
+        {
+            // F8: every sibling grimoire ships Category=Books + the
+            // Grimoire/Tier tags + a bespoke AlreadyKnownMessage; the
+            // WateringGrimoire had none — miscategorized in the
+            // inventory and invisible to the scribe's tag-gated
+            // grimoire-copy service.
+            var grimoire = _factory.CreateEntity("WateringGrimoire");
+            Assert.IsTrue(grimoire.HasTag("Grimoire"),
+                "the scribe copy service selects by HasTag(\"Grimoire\")");
+            Assert.IsTrue(grimoire.HasTag("Tier"));
+            Assert.AreEqual("Books", grimoire.GetPart<PhysicsPart>().Category,
+                "files under Books with every other grimoire");
+            Assert.AreEqual("The rite of rain is already yours.",
+                grimoire.GetPart<GrimoirePart>().AlreadyKnownMessage);
+        }
+
+        [Test]
+        public void Sm7d_CopyGrimoire_CopiesMutationTeachingFields()
+        {
+            // F8 rider: CopyGrimoire copied only the knowledge-property
+            // fields — a copy of a spell-teaching grimoire read as
+            // "blank pages". Latent until the Grimoire tag fix exposed
+            // the WateringGrimoire to the copy service.
+            ConversationActions.Reset();
+            ConversationActions.Factory = _factory;
+            try
+            {
+                var player = MakeLoadedPlayer();
+                var grimoire = _factory.CreateEntity("WateringGrimoire");
+                player.GetPart<InventoryPart>().AddObject(grimoire);
+
+                ConversationActions.Execute("CopyGrimoire", null, player, null);
+
+                Entity copy = null;
+                var inv = player.GetPart<InventoryPart>();
+                for (int i = 0; i < inv.Objects.Count; i++)
+                    if (inv.Objects[i].BlueprintName == "GrimoireCopy") copy = inv.Objects[i];
+                Assert.IsNotNull(copy, "the scribe produced a copy");
+                var copyPart = copy.GetPart<GrimoirePart>();
+                Assert.AreEqual("ConjureRainMutation", copyPart.MutationClassName,
+                    "the copy must teach the same spell, not read as blank pages");
+                Assert.AreEqual(1, copyPart.MutationLevel);
+            }
+            finally
+            {
+                ConversationActions.Factory = null;
+                ConversationActions.Reset();
+            }
+        }
+
+        [Test]
+        public void Sm7d_ZeroYieldCount_MatureBlocked_WithDistinctReason()
+        {
+            // Blue finding: YieldCount<=0 fell into the spawned==0 branch
+            // and was misattributed as unknown_yield_blueprint, sending a
+            // debugger hunting a blueprint that resolves fine.
+            var zone = new Zone("z");
+            var cropEntity = _factory.CreateEntity("CandyCarrotCrop");
+            zone.AddEntity(cropEntity, 5, 5);
+            var crop = cropEntity.GetPart<CropPart>();
+            crop.GrowthStage = 1;
+            crop.TicksInStage = crop.TicksPerStage;
+            crop.MoistureTicks = 5;
+            crop.YieldCount = 0;
+
+            CropSystem.Factory = _factory;
+            try { CropSystem.OnTickEnd(zone); }
+            finally { CropSystem.Factory = null; }
+
+            Assert.IsNotNull(zone.GetEntityCell(cropEntity), "crop held, not deleted");
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "crop", Kind = "MatureBlocked", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"reason\":\"no_yield_count\"", recs[0].PayloadJson);
+        }
+
+        [Test]
+        public void Sm7d_StageAdvanced_PayloadUsesCropBlueprintField()
+        {
+            // Note finding: CropPlanted/PlantRejected carry the crop's
+            // blueprint as `cropBlueprint`; StageAdvanced called the same
+            // referent `blueprint`, so a lifecycle grep silently missed
+            // stage advances. One name per referent (Q2 convention).
+            var zone = new Zone("z");
+            var cropEntity = _factory.CreateEntity("CandyCarrotCrop");
+            zone.AddEntity(cropEntity, 5, 5);
+            var crop = cropEntity.GetPart<CropPart>();
+            crop.TicksInStage = crop.TicksPerStage - 1;
+            crop.MoistureTicks = 5;
+
+            CropSystem.OnTickEnd(zone);
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "crop", Kind = "StageAdvanced", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"cropBlueprint\":\"CandyCarrotCrop\"", recs[0].PayloadJson);
+        }
+
+        [Test]
+        public void Sm7d_RainDrops_NeverTravelBelowTheCropRow()
+        {
+            // Blue finding: lifetime 0.45 / moveInterval 0.1 gave every
+            // drop 4 moves — drops rained 2-3 tiles THROUGH the soil
+            // after the splash landed. Lifetime is the travel budget:
+            // spawn N cells above the crop → at most N moves.
+            AsciiFxBus.Clear();
+            var zone = new Zone("z");
+            var caster = new Entity { ID = "caster", BlueprintName = "TestCaster" };
+            caster.Tags["Creature"] = "";
+            caster.AddPart(new RenderPart { DisplayName = "caster" });
+            caster.AddPart(new PhysicsPart { Solid = true });
+            caster.AddPart(new ActivatedAbilitiesPart());
+            caster.AddPart(new MutationsPart());
+            zone.AddEntity(caster, 10, 10);
+            var rain = new ConjureRainMutation();
+            caster.GetPart<MutationsPart>().AddMutation(rain, 1);
+            int cropY = 10;
+            var cropEntity = _factory.CreateEntity("CandyCarrotCrop");
+            zone.AddEntity(cropEntity, 12, cropY);
+
+            rain.Cast(zone, zone.GetCell(10, 10));
+
+            var requests = AsciiFxBus.Drain();
+            int fallingDrops = 0;
+            for (int i = 0; i < requests.Count; i++)
+            {
+                var req = requests[i];
+                if (req.Type != AsciiFxRequestType.Particle || req.DY <= 0) continue;
+                fallingDrops++;
+                int maxMoves = (int)(req.Lifetime / req.MoveInterval);
+                Assert.LessOrEqual(req.Y + maxMoves * req.DY, cropY,
+                    $"drop spawned at y={req.Y} (lifetime {req.Lifetime}) must die at or above the crop row");
+            }
+            Assert.AreEqual(3, fallingDrops, "sanity: the three staggered drops were emitted");
+        }
+
         [Test]
         public void Sm7a_PlantReject_ActorNotInZone_DistinctReason()
         {

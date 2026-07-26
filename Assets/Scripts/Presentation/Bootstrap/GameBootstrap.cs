@@ -973,7 +973,10 @@ namespace CavesOfOoo
             if (pos.x < 0)
                 return;
             int plantable = FarmPlotSeeder.EnsurePlantablePlot(_zone, pos.x, pos.y, _factory);
-            Debug.Log($"[Bootstrap/Farming] Plantable cells near spawn: {plantable}.");
+            if (plantable < FarmPlotSeeder.MIN_PLANTABLE_CELLS)
+                Debug.LogWarning($"[Bootstrap/Farming] Plot guarantee NOT met: {plantable}/{FarmPlotSeeder.MIN_PLANTABLE_CELLS} plantable cells near spawn (see crop/FarmPlotSeedingFailed diag).");
+            else
+                Debug.Log($"[Bootstrap/Farming] Plantable cells near spawn: {plantable}.");
         }
 
         /// <summary>

@@ -1051,11 +1051,12 @@
           { "Key": "ColorString", "Value": "&B" },
           { "Key": "RenderLayer", "Value": "5" }
         ]},
-        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Category", "Value": "Books" }, { "Key": "Weight", "Value": "2" }] },
         { "Name": "Grimoire", "Params": [
           { "Key": "MutationClassName", "Value": "ConjureRainMutation" },
           { "Key": "MutationLevel", "Value": "1" },
-          { "Key": "LearnMessage", "Value": "Cool mist rises from the pages. You learn Conjure Rain." }
+          { "Key": "LearnMessage", "Value": "Cool mist rises from the pages. You learn Conjure Rain." },
+          { "Key": "AlreadyKnownMessage", "Value": "The rite of rain is already yours." }
         ]},
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "30" }] },
         { "Name": "Examinable", "Params": [
@@ -1063,7 +1064,10 @@
         ]}
       ],
       "Stats": [],
-      "Tags": []
+      "Tags": [
+        { "Key": "Grimoire", "Value": "" },
+        { "Key": "Tier", "Value": "1" }
+      ]
     },
     {
       "Name": "Emberwheat",

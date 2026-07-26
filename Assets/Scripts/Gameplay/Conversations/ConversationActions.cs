@@ -263,6 +263,12 @@ namespace CavesOfOoo.Core
                     copyPart.KnowledgeProperty = grimoirePart.KnowledgeProperty;
                     copyPart.LearnMessage = grimoirePart.LearnMessage;
                     copyPart.AlreadyKnownMessage = grimoirePart.AlreadyKnownMessage;
+                    // Spell-granting grimoires teach via MutationClassName,
+                    // not KnowledgeProperty — without copying these, a copy
+                    // of e.g. the Watering Grimoire read as "blank pages"
+                    // (SM7d, farming audit F8 rider).
+                    copyPart.MutationClassName = grimoirePart.MutationClassName;
+                    copyPart.MutationLevel = grimoirePart.MutationLevel;
                 }
 
                 var copyRender = copy.GetPart<RenderPart>();

@@ -36,13 +36,19 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Plain generator floors that may be swapped for Grass. An
         /// explicit allowlist — anything not listed (Bank, future
-        /// special terrains) is preserved. Mirrors the floor-family
-        /// blueprints in Objects.json.
+        /// special terrains) is preserved. Covers every open-ground
+        /// floor the builders actually lay: Floor/Rubble/stone family
+        /// (Cave, Ruins) and Sand (DesertBuilder floors whole zones
+        /// with it; VillageBuilder/LairBuilder desert palettes use it
+        /// for floor AND path — its omission failed the "regardless of
+        /// biome" contract on the entire desert family; SM7d, farming
+        /// audit F5).
         /// </summary>
         private static readonly HashSet<string> ReplaceableFloors = new HashSet<string>
         {
             "Floor", "Rubble", "StoneFloor", "SandstoneFloor", "LimestoneFloor",
-            "ShaleFloor", "SlateFloor", "QuartziteFloor", "ObsidianFloor"
+            "ShaleFloor", "SlateFloor", "QuartziteFloor", "ObsidianFloor",
+            "Sand"
         };
 
         /// <summary>
@@ -86,6 +92,18 @@ namespace CavesOfOoo.Core
                 if (Diag.IsChannelEnabled("crop"))
                     Diag.Record("crop", "FarmPlotSeeded",
                         payload: new { converted = converted, plantableTotal = plantable, x = centerX, y = centerY });
+            }
+
+            // Loud failure branch (SM7d, audit note): a seeder that ran
+            // and could NOT meet its guarantee (all-interior spawn,
+            // heavily walled area) was previously indistinguishable from
+            // the healthy grassy no-op in a diag query. Every gate that
+            // can fail emits a record on the failure branch too.
+            if (plantable < MIN_PLANTABLE_CELLS)
+            {
+                if (Diag.IsChannelEnabled("crop"))
+                    Diag.Record("crop", "FarmPlotSeedingFailed",
+                        payload: new { plantableTotal = plantable, needed = MIN_PLANTABLE_CELLS, converted = converted, x = centerX, y = centerY });
             }
 
             return plantable;
