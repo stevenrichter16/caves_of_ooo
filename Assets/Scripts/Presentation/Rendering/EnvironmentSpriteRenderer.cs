@@ -87,6 +87,17 @@ namespace CavesOfOoo.Rendering
         // Pass 11 — round-out per-blueprint disambiguation
         private Sprite _bedSprite;        // = when blueprint contains "Bed"
         private Sprite _corpseSprite;     // % when blueprint contains "Corpse"/"Body"
+        // Pass 12 — blueprint-keyed terrain identity, farming, fixtures
+        private Sprite _grassSprite;           // Grass ('.', was generic floor)
+        private Sprite _sandSprite;            // Sand ('.', was generic floor)
+        private Sprite _bankSprite;            // Bank ('.', riverbank, was generic floor)
+        private Sprite _cropSeedSprite;        // any *Crop at stage 0
+        private Sprite _candyCarrotCropSprite; // CandyCarrotCrop stage 1 ('t' collided with cactus)
+        private Sprite _emberwheatCropSprite;  // EmberwheatCrop stage 1 ('i' uncovered)
+        private Sprite _wellSprite;            // Well ('O' uncovered)
+        private Sprite _marketStallSprite;     // MarketStall ('=' collided with bed)
+        private Sprite _forgeSprite;           // TinkersForge ('n' uncovered)
+        private Sprite _alchemyStillSprite;    // AlchemyStill ('&' uncovered)
 
         // Per-glyph cached Tile assets (TileBase wrapping each Sprite).
         // Reused across paints to avoid allocating Tile objects per cell.
@@ -117,6 +128,17 @@ namespace CavesOfOoo.Rendering
         private Tile _lanternTile;
         private Tile _bedTile;
         private Tile _corpseTile;
+        // Pass 12 tiles
+        private Tile _grassTile;
+        private Tile _sandTile;
+        private Tile _bankTile;
+        private Tile _cropSeedTile;
+        private Tile _candyCarrotCropTile;
+        private Tile _emberwheatCropTile;
+        private Tile _wellTile;
+        private Tile _marketStallTile;
+        private Tile _forgeTile;
+        private Tile _alchemyStillTile;
 
         private Tilemap _overlayTilemap;
         private Tilemap _mainTilemap;
@@ -173,6 +195,17 @@ namespace CavesOfOoo.Rendering
             // Pass 11
             _bedSprite        = LoadSingle("Assets/Sprites/Environment/bed.png");
             _corpseSprite     = LoadSingle("Assets/Sprites/Environment/corpse.png");
+            // Pass 12
+            _grassSprite           = LoadSingle("Assets/Sprites/Environment/grass.png");
+            _sandSprite            = LoadSingle("Assets/Sprites/Environment/sand.png");
+            _bankSprite            = LoadSingle("Assets/Sprites/Environment/bank.png");
+            _cropSeedSprite        = LoadSingle("Assets/Sprites/Environment/crop_seed.png");
+            _candyCarrotCropSprite = LoadSingle("Assets/Sprites/Environment/candycarrot_crop.png");
+            _emberwheatCropSprite  = LoadSingle("Assets/Sprites/Environment/emberwheat_crop.png");
+            _wellSprite            = LoadSingle("Assets/Sprites/Environment/well.png");
+            _marketStallSprite     = LoadSingle("Assets/Sprites/Environment/market_stall.png");
+            _forgeSprite           = LoadSingle("Assets/Sprites/Environment/forge.png");
+            _alchemyStillSprite    = LoadSingle("Assets/Sprites/Environment/alchemy_still.png");
 #endif
         }
 
@@ -260,6 +293,17 @@ namespace CavesOfOoo.Rendering
             _lanternTile    = MakeTile(_lanternSprite,    "Lantern");
             _bedTile        = MakeTile(_bedSprite,        "Bed");
             _corpseTile     = MakeTile(_corpseSprite,     "Corpse");
+            // Pass 12
+            _grassTile           = MakeTile(_grassSprite,           "Grass");
+            _sandTile            = MakeTile(_sandSprite,            "Sand");
+            _bankTile            = MakeTile(_bankSprite,            "Bank");
+            _cropSeedTile        = MakeTile(_cropSeedSprite,        "CropSeed");
+            _candyCarrotCropTile = MakeTile(_candyCarrotCropSprite, "CandyCarrotCrop");
+            _emberwheatCropTile  = MakeTile(_emberwheatCropSprite,  "EmberwheatCrop");
+            _wellTile            = MakeTile(_wellSprite,            "Well");
+            _marketStallTile     = MakeTile(_marketStallSprite,     "MarketStall");
+            _forgeTile           = MakeTile(_forgeSprite,           "TinkersForge");
+            _alchemyStillTile    = MakeTile(_alchemyStillSprite,    "AlchemyStill");
         }
 
         public void PostRender(Zone zone, int width, int height)
@@ -351,8 +395,85 @@ namespace CavesOfOoo.Rendering
             return bp.EndsWith("Corpse", System.StringComparison.OrdinalIgnoreCase);
         }
 
+        /// <summary>Pass 12 — exact-blueprint-name terrain/fixture kinds.
+        /// Exact match ONLY: near-miss names (SandstoneFloor, SilverSand,
+        /// WellGroundMarker, WellKeeper) must keep their own rendering.
+        /// Contract pinned by EnvironmentSpriteRendererBlueprintTests.</summary>
+        public enum EnvFixtureKind { None, Grass, Sand, Bank, Well, MarketStall, TinkersForge, AlchemyStill }
+
+        /// <summary>Pass 12 — stage-aware crop sprite kinds. Stage 0 is a
+        /// generic tilled mound (safe for ANY *Crop blueprint, including
+        /// future ones); stage 1+ maps only KNOWN crops so an unknown
+        /// sprout keeps its CP437 glyph instead of borrowing a look.
+        /// Stage -1 = entity had no CropPart → None.</summary>
+        public enum CropSpriteKind { None, Seed, CandyCarrot, Emberwheat }
+
+        public static EnvFixtureKind ResolveFixtureKind(string blueprintName)
+        {
+            switch (blueprintName)
+            {
+                case "Grass":        return EnvFixtureKind.Grass;
+                case "Sand":         return EnvFixtureKind.Sand;
+                case "Bank":         return EnvFixtureKind.Bank;
+                case "Well":         return EnvFixtureKind.Well;
+                case "MarketStall":  return EnvFixtureKind.MarketStall;
+                case "TinkersForge": return EnvFixtureKind.TinkersForge;
+                case "AlchemyStill": return EnvFixtureKind.AlchemyStill;
+                default:             return EnvFixtureKind.None;
+            }
+        }
+
+        public static CropSpriteKind ResolveCropKind(string blueprintName, int growthStage)
+        {
+            if (string.IsNullOrEmpty(blueprintName)) return CropSpriteKind.None;
+            if (!blueprintName.EndsWith("Crop", System.StringComparison.Ordinal))
+                return CropSpriteKind.None;
+            if (growthStage < 0) return CropSpriteKind.None; // no CropPart
+            if (growthStage == 0) return CropSpriteKind.Seed;
+            switch (blueprintName)
+            {
+                case "CandyCarrotCrop": return CropSpriteKind.CandyCarrot;
+                case "EmberwheatCrop":  return CropSpriteKind.Emberwheat;
+                default:                return CropSpriteKind.None;
+            }
+        }
+
         private Tile ChooseTile(Zone zone, int x, int y, char glyph)
         {
+            // Pass 12 — blueprint-keyed resolution FIRST. Three families
+            // whose glyphs are ambiguous or collide with earlier claims:
+            //  - terrain identity: Grass/Sand/Bank all paint '.' and were
+            //    swallowed by the generic stone floor atlas;
+            //  - farming crops: stage-0 '.' vanished into the floor, and
+            //    the CandyCarrot sprout 't' rendered as a CACTUS;
+            //  - village fixtures: Well 'O' / TinkersForge 'n' /
+            //    AlchemyStill '&' were uncovered, MarketStall '=' rendered
+            //    as a bed. Null tiles (missing PNG) fall through to the
+            //    original glyph handling below.
+            {
+                var topEntity = TopEntityAt(zone, x, y);
+                string bpName = topEntity?.BlueprintName;
+
+                int stage = topEntity?.GetPart<CropPart>()?.GrowthStage ?? -1;
+                switch (ResolveCropKind(bpName, stage))
+                {
+                    case CropSpriteKind.Seed:        if (_cropSeedTile != null) return _cropSeedTile; break;
+                    case CropSpriteKind.CandyCarrot: if (_candyCarrotCropTile != null) return _candyCarrotCropTile; break;
+                    case CropSpriteKind.Emberwheat:  if (_emberwheatCropTile != null) return _emberwheatCropTile; break;
+                }
+
+                switch (ResolveFixtureKind(bpName))
+                {
+                    case EnvFixtureKind.Grass:        if (_grassTile != null) return _grassTile; break;
+                    case EnvFixtureKind.Sand:         if (_sandTile != null) return _sandTile; break;
+                    case EnvFixtureKind.Bank:         if (_bankTile != null) return _bankTile; break;
+                    case EnvFixtureKind.Well:         if (_wellTile != null) return _wellTile; break;
+                    case EnvFixtureKind.MarketStall:  if (_marketStallTile != null) return _marketStallTile; break;
+                    case EnvFixtureKind.TinkersForge: if (_forgeTile != null) return _forgeTile; break;
+                    case EnvFixtureKind.AlchemyStill: if (_alchemyStillTile != null) return _alchemyStillTile; break;
+                }
+            }
+
             // Walls
             for (int i = 0; i < WallGlyphs.Length; i++)
             {
@@ -428,6 +549,15 @@ namespace CavesOfOoo.Rendering
             var c = zone.GetCell(x, y);
             var top = c?.GetTopVisibleObject();
             return top?.BlueprintName;
+        }
+
+        /// <summary>Pass 12 — top visible entity itself (the crop resolver
+        /// needs its CropPart, not just the blueprint name).</summary>
+        private static Entity TopEntityAt(Zone zone, int x, int y)
+        {
+            if (zone == null) return null;
+            var c = zone.GetCell(x, y);
+            return c?.GetTopVisibleObject();
         }
 
         private static bool BlueprintIsChest(string bp)

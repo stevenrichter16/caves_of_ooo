@@ -152,6 +152,127 @@ namespace CavesOfOoo.Tests
             Assert.IsFalse(InvokeIsCorpse(""));
         }
 
+        // ══════════════════════════════════════════════════════════
+        //   Pass 12 — blueprint-keyed terrain identity + farming +
+        //   village fixtures (10 new tiles). Public static resolvers
+        //   so the contract is pinned without reflection.
+        // ══════════════════════════════════════════════════════════
+
+        // ── ResolveFixtureKind: EXACT blueprint name → kind ──────
+
+        [Test]
+        public void Fixture_TerrainIdentity_Matches()
+        {
+            Assert.AreEqual(EnvironmentSpriteRenderer.EnvFixtureKind.Grass,
+                EnvironmentSpriteRenderer.ResolveFixtureKind("Grass"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.EnvFixtureKind.Sand,
+                EnvironmentSpriteRenderer.ResolveFixtureKind("Sand"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.EnvFixtureKind.Bank,
+                EnvironmentSpriteRenderer.ResolveFixtureKind("Bank"));
+        }
+
+        [Test]
+        public void Fixture_VillageStations_Match()
+        {
+            Assert.AreEqual(EnvironmentSpriteRenderer.EnvFixtureKind.Well,
+                EnvironmentSpriteRenderer.ResolveFixtureKind("Well"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.EnvFixtureKind.MarketStall,
+                EnvironmentSpriteRenderer.ResolveFixtureKind("MarketStall"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.EnvFixtureKind.TinkersForge,
+                EnvironmentSpriteRenderer.ResolveFixtureKind("TinkersForge"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.EnvFixtureKind.AlchemyStill,
+                EnvironmentSpriteRenderer.ResolveFixtureKind("AlchemyStill"));
+        }
+
+        [Test]
+        public void Fixture_NearMissNames_DoNotMatch()
+        {
+            // Exact-name contract: prefix/superstring blueprints must NOT
+            // inherit the tile. SandstoneFloor is a stone floor, not sand;
+            // SilverSand is a carried ITEM; WellGroundMarker is a placement
+            // helper; WellKeeper is a creature.
+            var none = EnvironmentSpriteRenderer.EnvFixtureKind.None;
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveFixtureKind("SandstoneFloor"));
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveFixtureKind("SilverSand"));
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveFixtureKind("WellGroundMarker"));
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveFixtureKind("WellKeeper"));
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveFixtureKind("StoneFloor"));
+        }
+
+        [Test]
+        public void Fixture_NullOrEmpty_DoesNotMatch()
+        {
+            var none = EnvironmentSpriteRenderer.EnvFixtureKind.None;
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveFixtureKind(null));
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveFixtureKind(""));
+        }
+
+        // ── ResolveCropKind: *Crop suffix + growth stage ─────────
+
+        [Test]
+        public void Crop_SeedStage_AnyCropBlueprint_GetsSeedMound()
+        {
+            // Stage 0 is a generic tilled mound — safe for ANY crop,
+            // including future ones this table doesn't know.
+            Assert.AreEqual(EnvironmentSpriteRenderer.CropSpriteKind.Seed,
+                EnvironmentSpriteRenderer.ResolveCropKind("CandyCarrotCrop", 0));
+            Assert.AreEqual(EnvironmentSpriteRenderer.CropSpriteKind.Seed,
+                EnvironmentSpriteRenderer.ResolveCropKind("EmberwheatCrop", 0));
+            Assert.AreEqual(EnvironmentSpriteRenderer.CropSpriteKind.Seed,
+                EnvironmentSpriteRenderer.ResolveCropKind("SomeFutureCrop", 0));
+        }
+
+        [Test]
+        public void Crop_SproutStage_KnownCrops_GetTheirTile()
+        {
+            Assert.AreEqual(EnvironmentSpriteRenderer.CropSpriteKind.CandyCarrot,
+                EnvironmentSpriteRenderer.ResolveCropKind("CandyCarrotCrop", 1));
+            Assert.AreEqual(EnvironmentSpriteRenderer.CropSpriteKind.Emberwheat,
+                EnvironmentSpriteRenderer.ResolveCropKind("EmberwheatCrop", 1));
+        }
+
+        [Test]
+        public void Crop_SproutStage_UnknownCrop_KeepsGlyph()
+        {
+            // A future crop with no sprite keeps its CP437 glyph rather
+            // than borrowing another crop's look.
+            Assert.AreEqual(EnvironmentSpriteRenderer.CropSpriteKind.None,
+                EnvironmentSpriteRenderer.ResolveCropKind("SomeFutureCrop", 1));
+        }
+
+        [Test]
+        public void Crop_ProduceAndNonCrops_DoNotMatch()
+        {
+            // CandyCarrot is the harvested PRODUCE item — the sprout tile
+            // must not claim it (glyph '%' → existing mushroom handling).
+            Assert.AreEqual(EnvironmentSpriteRenderer.CropSpriteKind.None,
+                EnvironmentSpriteRenderer.ResolveCropKind("CandyCarrot", 1));
+            Assert.AreEqual(EnvironmentSpriteRenderer.CropSpriteKind.None,
+                EnvironmentSpriteRenderer.ResolveCropKind("Grass", 0));
+            Assert.AreEqual(EnvironmentSpriteRenderer.CropSpriteKind.None,
+                EnvironmentSpriteRenderer.ResolveCropKind(null, 0));
+            Assert.AreEqual(EnvironmentSpriteRenderer.CropSpriteKind.None,
+                EnvironmentSpriteRenderer.ResolveCropKind("", 1));
+        }
+
+        [Test]
+        public void Crop_NoCropPart_SentinelStage_DoesNotMatch()
+        {
+            // Stage -1 = the entity had no CropPart (name ends in Crop but
+            // isn't a real crop). Keep the glyph.
+            Assert.AreEqual(EnvironmentSpriteRenderer.CropSpriteKind.None,
+                EnvironmentSpriteRenderer.ResolveCropKind("CandyCarrotCrop", -1));
+        }
+
+        [Test]
+        public void Crop_CorruptHighStage_TreatedAsSprout()
+        {
+            // Defensive: stage 2+ (corrupt save) renders as the sprout,
+            // not a crash or a fallthrough to None.
+            Assert.AreEqual(EnvironmentSpriteRenderer.CropSpriteKind.CandyCarrot,
+                EnvironmentSpriteRenderer.ResolveCropKind("CandyCarrotCrop", 7));
+        }
+
         // ── Reflection helpers (the matchers are private static) ──
 
         private static bool InvokeIsChest(string bp)
