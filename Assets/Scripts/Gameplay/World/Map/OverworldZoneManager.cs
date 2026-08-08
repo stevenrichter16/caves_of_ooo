@@ -55,8 +55,11 @@ namespace CavesOfOoo.Core
                     case POIType.Lair:
                         return CreateLairPipeline(biome, poi);
                     case POIType.MerchantCamp:
-                        // Merchant camps use normal biome pipeline + trade stock
-                        break;
+                        // BIOME-OVERHAUL B1: the $ on the map is now a
+                        // real camp — biome pipeline + a GUARANTEED camp
+                        // stamp (previously this fell through to plain
+                        // wilderness and the camp POI meant nothing).
+                        return CreateMerchantCampPipeline(biome, GetTierForCoords(wx, wy));
                     case POIType.RiverChunk:
                         return CreateRiverChunkPipeline();
                 }
@@ -77,6 +80,30 @@ namespace CavesOfOoo.Core
                 default:
                     return CreateCavePipeline(tier);
             }
+        }
+
+        /// <summary>
+        /// BIOME-OVERHAUL B1 — a MerchantCamp POI zone is its biome's
+        /// normal wilderness PLUS a guaranteed camp stamp (second
+        /// LandmarkBuilder with a catalog override; the ambient one
+        /// still runs from the biome pipeline). TradeStockBuilder in
+        /// the biome pipeline auto-stocks the camp's Villagers-faction
+        /// NPCs, so the Merchant arrives with goods and a wallet.
+        /// </summary>
+        private ZoneGenerationPipeline CreateMerchantCampPipeline(BiomeType biome, int tier)
+        {
+            ZoneGenerationPipeline pipeline;
+            switch (biome)
+            {
+                case BiomeType.Desert: pipeline = CreateDesertPipeline(tier); break;
+                case BiomeType.Jungle: pipeline = CreateJunglePipeline(tier); break;
+                case BiomeType.Ruins: pipeline = CreateRuinsPipeline(tier); break;
+                case BiomeType.Cave:
+                default: pipeline = CreateCavePipeline(tier); break;
+            }
+            pipeline.AddBuilder(new LandmarkBuilder(biome, tier,
+                new[] { StampCatalog.MerchantCamp(biome) }));
+            return pipeline;
         }
 
         private int GetTierForCoords(int wx, int wy)

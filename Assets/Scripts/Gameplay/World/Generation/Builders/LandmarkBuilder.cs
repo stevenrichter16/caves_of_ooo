@@ -62,6 +62,51 @@ namespace CavesOfOoo.Core
             }
         }
 
+        /// <summary>
+        /// BIOME-OVERHAUL B1 — the guaranteed camp stamp for a
+        /// MerchantCamp POI zone (NOT part of the ambient wilderness
+        /// catalogs above — POI routing places it via a catalogOverride).
+        /// Shared layout, per-biome walls and name: tent, campfire
+        /// (restable — the wilderness reprieve node), a Merchant and a
+        /// Warden guard (Villagers faction → auto-stocked by
+        /// TradeStockBuilder, wallets from A6), and a supply chest.
+        /// </summary>
+        public static StructureStamp MerchantCamp(BiomeType biome)
+        {
+            string wall, name;
+            switch (biome)
+            {
+                case BiomeType.Desert: wall = "SandstoneWall"; name = "Caravanserai"; break;
+                case BiomeType.Jungle: wall = "VineWall"; name = "TrapperCamp"; break;
+                case BiomeType.Ruins: wall = "StoneWall"; name = "SalvageCamp"; break;
+                case BiomeType.Cave:
+                default: wall = "Wall"; name = "ProspectorCamp"; break;
+            }
+            return new StructureStamp
+            {
+                Name = name,
+                Chance = 100,
+                MinTier = 1,
+                Rows = new[]
+                {
+                    "##.##",
+                    "#M.c#",
+                    "#...#",
+                    "##.##",
+                    ".W...",
+                    "..f..",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', wall },
+                    { 'M', "spawn:Merchant" },
+                    { 'W', "spawn:Warden" },
+                    { 'c', "chest:CampGoodsT1" },
+                    { 'f', "Campfire" },
+                },
+            };
+        }
+
         private static readonly StructureStamp[] Cave =
         {
             // A dead prospector's camp: supply crate inside, the vein
