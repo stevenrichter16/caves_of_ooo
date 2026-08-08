@@ -297,6 +297,70 @@ namespace CavesOfOoo.Core
         private static readonly StructureStamp[] Jungle =
         {
             HermitHut("VineWall", "JungleHermit"),
+            // Phase E: the vine-choked ziggurat — jungle uniques behind
+            // an 80-HP tendril and a lock.
+            new StructureStamp
+            {
+                Name = "Ziggurat",
+                Chance = 25,
+                MinTier = 2,
+                Rows = new[]
+                {
+                    "######",
+                    "#T..L#",
+                    "#..k.#",
+                    "###+##",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', "VineWall" },
+                    { 'T', "spawn:ChoirTendril" },
+                    { 'L', "lockedchest:ZigguratVaultT2" },
+                    { 'k', "IronKey" },
+                    { '+', "" },
+                },
+            },
+            // Phase E: the Rot Choir's grove — the five NAMED choir
+            // NPCs (authored dialogue, never placed until now) gathered
+            // around their congregation fire.
+            new StructureStamp
+            {
+                Name = "GroveShrine",
+                Chance = 20,
+                MinTier = 1,
+                Rows = new[]
+                {
+                    ".m.g.",
+                    ".nfo.",
+                    "..i..",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { 'm', "spawn:Mogu" },
+                    { 'g', "spawn:Grib" },
+                    { 'n', "spawn:Nam" },
+                    { 'i', "spawn:Sien" },
+                    { 'o', "spawn:Sopp" },
+                    { 'f', "Campfire" },
+                },
+            },
+            // Phase E: a wild mendleaf patch — the healing herb gets a
+            // harvest source beyond trade.
+            new StructureStamp
+            {
+                Name = "MendleafGarden",
+                Chance = 15,
+                MinTier = 1,
+                Rows = new[]
+                {
+                    "pp.p",
+                    ".pp.",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { 'p', "MendleafPlant" },
+                },
+            },
             // A hunter's blind, long abandoned — dried stores and a
             // venom-worked blade if you're lucky.
             new StructureStamp

@@ -297,6 +297,9 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "Viper", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "SporeShambler", Weight = 3, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "ChoirTendril", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    // Phase E: swarms below, stranglers above.
+                    new PopulationEntry { BlueprintName = "Rotling", Weight = 3, MinCount = 0, MaxCount = 4 },
+                    new PopulationEntry { BlueprintName = "CanopyStrangler", Weight = 2, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "Dagger", Weight = 1, MinCount = 0, MaxCount = 2 },
                 }
             };
