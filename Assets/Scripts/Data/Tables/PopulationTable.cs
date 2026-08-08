@@ -58,6 +58,20 @@ namespace CavesOfOoo.Data
         /// </summary>
         public static PopulationTable GetBiomeTable(BiomeType biome, int tier)
         {
+            // BIOME-OVERHAUL A5: tier 3 was silently aliased to tier 2,
+            // making the far ring of the world map no harder than the
+            // middle ring (verified: only a `tier >= 2` branch existed).
+            if (tier >= 3)
+            {
+                switch (biome)
+                {
+                    case BiomeType.Cave: return CaveTier3();
+                    case BiomeType.Desert: return DesertTier3();
+                    case BiomeType.Jungle: return JungleTier3();
+                    case BiomeType.Ruins: return RuinsTier3();
+                }
+            }
+
             if (tier >= 2)
             {
                 switch (biome)
@@ -216,6 +230,86 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "RuinScavenger", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 2, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "LeatherArmor", Weight = 2, MinCount = 0, MaxCount = 1 },
+                }
+            };
+        }
+
+        // ── Tier 3 Tables (BIOME-OVERHAUL A5) ──────────────────────────
+        // The far ring (Manhattan dist > 8). Hostile backbone comes from
+        // Beasts/Snapjaws-faction bruisers; the faction-tagged mutants
+        // (GlassScorpion/SporeShambler/BrassHusk/PalimpsestEcho/
+        // ChoirTendril) spawn as ECOLOGY — their factions start at rep 0,
+        // so they are neutral until provoked, same as the Elemental
+        // Crossroads set pieces. Attacking them is a player choice with
+        // rep consequences, not a free kill.
+
+        public static PopulationTable CaveTier3()
+        {
+            return new PopulationTable
+            {
+                Name = "CaveTier3",
+                Entries = new List<PopulationEntry>
+                {
+                    new PopulationEntry { BlueprintName = "CaveBear", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 4, MinCount = 2, MaxCount = 4 },
+                    new PopulationEntry { BlueprintName = "Glowmaw", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "CaveSlime", Weight = 2, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = 3, MinCount = 2, MaxCount = 4 },
+                    new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "ChainMail", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Stalagmite", Weight = 3, MinCount = 2, MaxCount = 6 },
+                }
+            };
+        }
+
+        public static PopulationTable DesertTier3()
+        {
+            return new PopulationTable
+            {
+                Name = "DesertTier3",
+                Entries = new List<PopulationEntry>
+                {
+                    new PopulationEntry { BlueprintName = "SandWurm", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "DesertBandit", Weight = 4, MinCount = 2, MaxCount = 4 },
+                    new PopulationEntry { BlueprintName = "Scorpion", Weight = 2, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "GlassScorpion", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Rock", Weight = 2, MinCount = 1, MaxCount = 4 },
+                }
+            };
+        }
+
+        public static PopulationTable JungleTier3()
+        {
+            return new PopulationTable
+            {
+                Name = "JungleTier3",
+                Entries = new List<PopulationEntry>
+                {
+                    new PopulationEntry { BlueprintName = "JungleApe", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "GiantSpider", Weight = 3, MinCount = 2, MaxCount = 4 },
+                    new PopulationEntry { BlueprintName = "Viper", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "SporeShambler", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "ChoirTendril", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Dagger", Weight = 1, MinCount = 0, MaxCount = 2 },
+                }
+            };
+        }
+
+        public static PopulationTable RuinsTier3()
+        {
+            return new PopulationTable
+            {
+                Name = "RuinsTier3",
+                Entries = new List<PopulationEntry>
+                {
+                    new PopulationEntry { BlueprintName = "SkeletalSentry", Weight = 4, MinCount = 2, MaxCount = 4 },
+                    new PopulationEntry { BlueprintName = "StoneGolem", Weight = 2, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "CharredHusk", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "BrassHusk", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "PalimpsestEcho", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "ChainMail", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }

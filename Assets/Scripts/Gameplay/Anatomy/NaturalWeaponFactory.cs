@@ -76,12 +76,26 @@ namespace CavesOfOoo.Core.Anatomy
                 case "BanditBlade":
                     return CreateWeapon("blade", "1d6", 1, "&w", "Cutting");
 
+                // BIOME-OVERHAUL A5: the last five 1d2-fist hostiles get
+                // real natural weapons. HuskFist arcs on touch (same
+                // Electrified spec ThunderHammer ships); SporeTouch puffs
+                // fungal spores through the EmitGasOnHitRaw channel
+                // (gas id from Content/Data/GasDefinitions).
+                case "HuskFist":
+                    return CreateWeapon("brass fist", "1d6", 1, "&y", "Bludgeoning", "Electrified,20,,3,1.0");
+                case "GlassSting":
+                    return CreateWeapon("glass stinger", "1d4", 2, "&W", "Piercing Animal");
+                case "SporeTouch":
+                    return CreateWeapon("spored touch", "1d4", 0, "&g", "Bludgeoning Animal", "", "fungal-spores,25");
+                case "CultistKnife":
+                    return CreateWeapon("ritual knife", "1d4", 1, "&M", "Cutting");
+
                 default:
                     return CreateWeapon(blueprintName, "1d2", 0, "&y", "");
             }
         }
 
-        private static Entity CreateWeapon(string name, string damage, int penBonus, string color, string attributes, string onHitEffectsRaw = "")
+        private static Entity CreateWeapon(string name, string damage, int penBonus, string color, string attributes, string onHitEffectsRaw = "", string emitGasOnHitRaw = "")
         {
             var entity = new Entity();
             entity.BlueprintName = "NaturalWeapon_" + name;
@@ -99,7 +113,8 @@ namespace CavesOfOoo.Core.Anatomy
                 MaxStrengthBonus = -1,
                 Stat = "Strength",
                 Attributes = attributes,
-                OnHitEffectsRaw = onHitEffectsRaw
+                OnHitEffectsRaw = onHitEffectsRaw,
+                EmitGasOnHitRaw = emitGasOnHitRaw
             });
             return entity;
         }
