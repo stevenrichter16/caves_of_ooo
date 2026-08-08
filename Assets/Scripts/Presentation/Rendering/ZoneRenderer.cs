@@ -699,6 +699,12 @@ namespace CavesOfOoo.Rendering
                 if (CurrentZone == null || _tilemap == null) return;
 
                 _tilemap.ClearAllTiles();
+                // Pass 15 R3: the sprite overlay's claims remember
+                // displaced glyphs for restore-on-release — after a
+                // full clear those memories are STALE and must be
+                // dropped, not restored over the fresh repaint.
+                if (_envSpriteRenderer != null)
+                    _envSpriteRenderer.NotifyMainTilemapCleared();
                 PerformanceDiagnostics.RecordTilemapClear();
                 if (_bgTilemap != null)
                 {

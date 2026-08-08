@@ -182,7 +182,26 @@ namespace CavesOfOoo.Rendering
 
         private Tilemap _overlayTilemap;
         private Tilemap _mainTilemap;
-        private readonly List<Vector3Int> _claimedThisFrame = new List<Vector3Int>(256);
+
+        /// <summary>
+        /// PASS 15 R3 — a claim remembers the main-tilemap tile + color
+        /// it displaced so releasing RESTORES the glyph instead of
+        /// leaving a hole. The Pass 13 dirty-path blanking bug: release
+        /// nulled the overlay while the main tile had already been
+        /// nulled at claim time, so every non-dirty claimed cell
+        /// rendered as nothing.
+        /// </summary>
+        private struct Claim
+        {
+            public Vector3Int Pos;
+            public TileBase MainTile;
+            public Color MainColor;
+        }
+        private readonly List<Claim> _claimedThisFrame = new List<Claim>(2048);
+
+        // PASS 15 R5 — this scan was invisible to the perf budget table.
+        private static readonly Unity.Profiling.ProfilerMarker s_PostRenderMarker =
+            new Unity.Profiling.ProfilerMarker("COO.EnvSprites.PostRender");
 
         public bool IsInitialized { get; private set; }
 
@@ -203,70 +222,76 @@ namespace CavesOfOoo.Rendering
             IsInitialized = true;
         }
 
+        // PASS 15 R1 — sprites load via Resources (the assets live at
+        // Assets/Resources/Sprites/Environment/). The old loader was
+        // wrapped in #if UNITY_EDITOR and used AssetDatabase: in ANY
+        // player build every sprite was null, PostRender no-opped on
+        // every cell, and with no scene reference the PNGs were
+        // build-stripping candidates. Resources.Load works identically
+        // in editor, EditMode tests, and builds.
+        private const string SpriteRoot = "Sprites/Environment/";
+
         private void LoadSprites()
         {
-#if UNITY_EDITOR
-            // Wall atlas: 4 variants horizontal slice
-            _wallSprites = LoadAtlasSprites("Assets/Sprites/Environment/wall_atlas.png");
-            _floorSprites = LoadAtlasSprites("Assets/Sprites/Environment/floor_atlas.png");
-            _waterSprite = LoadSingle("Assets/Sprites/Environment/water_tile.png");
-            _doorClosedSprite = LoadSingle("Assets/Sprites/Environment/door_closed.png");
-            _doorOpenSprite = LoadSingle("Assets/Sprites/Environment/door_open.png");
+            _wallSprites = LoadAtlasSprites(SpriteRoot + "wall_atlas");
+            _floorSprites = LoadAtlasSprites(SpriteRoot + "floor_atlas");
+            _waterSprite = LoadSingle(SpriteRoot + "water_tile");
+            _doorClosedSprite = LoadSingle(SpriteRoot + "door_closed");
+            _doorOpenSprite = LoadSingle(SpriteRoot + "door_open");
 
             // Pass 8 sprites
-            _stalagmiteSprite = LoadSingle("Assets/Sprites/Environment/stalagmite.png");
-            _boulderSprite    = LoadSingle("Assets/Sprites/Environment/boulder.png");
-            _stalactiteSprite = LoadSingle("Assets/Sprites/Environment/stalactite.png");
-            _bushSprite       = LoadSingle("Assets/Sprites/Environment/bush.png");
-            _cactusSprite     = LoadSingle("Assets/Sprites/Environment/cactus.png");
-            _treeSprite       = LoadSingle("Assets/Sprites/Environment/tree.png");
-            _campfireSprite   = LoadSingle("Assets/Sprites/Environment/campfire.png");
-            _shrineSprite     = LoadSingle("Assets/Sprites/Environment/shrine.png");
-            _stairsDownSprite = LoadSingle("Assets/Sprites/Environment/stairs_down.png");
-            _stairsUpSprite   = LoadSingle("Assets/Sprites/Environment/stairs_up.png");
-            _bonesSprite      = LoadSingle("Assets/Sprites/Environment/bones.png");
-            _barrelSprite     = LoadSingle("Assets/Sprites/Environment/barrel.png");
-            _mushroomSprite   = LoadSingle("Assets/Sprites/Environment/mushroom.png");
-            _goldPileSprite   = LoadSingle("Assets/Sprites/Environment/gold_pile.png");
-            _chairSprite      = LoadSingle("Assets/Sprites/Environment/chair.png");
+            _stalagmiteSprite = LoadSingle(SpriteRoot + "stalagmite");
+            _boulderSprite    = LoadSingle(SpriteRoot + "boulder");
+            _stalactiteSprite = LoadSingle(SpriteRoot + "stalactite");
+            _bushSprite       = LoadSingle(SpriteRoot + "bush");
+            _cactusSprite     = LoadSingle(SpriteRoot + "cactus");
+            _treeSprite       = LoadSingle(SpriteRoot + "tree");
+            _campfireSprite   = LoadSingle(SpriteRoot + "campfire");
+            _shrineSprite     = LoadSingle(SpriteRoot + "shrine");
+            _stairsDownSprite = LoadSingle(SpriteRoot + "stairs_down");
+            _stairsUpSprite   = LoadSingle(SpriteRoot + "stairs_up");
+            _bonesSprite      = LoadSingle(SpriteRoot + "bones");
+            _barrelSprite     = LoadSingle(SpriteRoot + "barrel");
+            _mushroomSprite   = LoadSingle(SpriteRoot + "mushroom");
+            _goldPileSprite   = LoadSingle(SpriteRoot + "gold_pile");
+            _chairSprite      = LoadSingle(SpriteRoot + "chair");
             // Pass 10
-            _chestSprite      = LoadSingle("Assets/Sprites/Environment/chest.png");
-            _lanternSprite    = LoadSingle("Assets/Sprites/Environment/lantern.png");
+            _chestSprite      = LoadSingle(SpriteRoot + "chest");
+            _lanternSprite    = LoadSingle(SpriteRoot + "lantern");
             // Pass 11
-            _bedSprite        = LoadSingle("Assets/Sprites/Environment/bed.png");
-            _corpseSprite     = LoadSingle("Assets/Sprites/Environment/corpse.png");
+            _bedSprite        = LoadSingle(SpriteRoot + "bed");
+            _corpseSprite     = LoadSingle(SpriteRoot + "corpse");
             // Pass 12
-            _grassSprite           = LoadSingle("Assets/Sprites/Environment/grass.png");
-            _sandSprite            = LoadSingle("Assets/Sprites/Environment/sand.png");
-            _bankSprite            = LoadSingle("Assets/Sprites/Environment/bank.png");
-            _cropSeedSprite        = LoadSingle("Assets/Sprites/Environment/crop_seed.png");
-            _candyCarrotCropSprite = LoadSingle("Assets/Sprites/Environment/candycarrot_crop.png");
-            _emberwheatCropSprite  = LoadSingle("Assets/Sprites/Environment/emberwheat_crop.png");
-            _wellSprite            = LoadSingle("Assets/Sprites/Environment/well.png");
-            _marketStallSprite     = LoadSingle("Assets/Sprites/Environment/market_stall.png");
-            _forgeSprite           = LoadSingle("Assets/Sprites/Environment/forge.png");
-            _alchemyStillSprite    = LoadSingle("Assets/Sprites/Environment/alchemy_still.png");
+            _grassSprite           = LoadSingle(SpriteRoot + "grass");
+            _sandSprite            = LoadSingle(SpriteRoot + "sand");
+            _bankSprite            = LoadSingle(SpriteRoot + "bank");
+            _cropSeedSprite        = LoadSingle(SpriteRoot + "crop_seed");
+            _candyCarrotCropSprite = LoadSingle(SpriteRoot + "candycarrot_crop");
+            _emberwheatCropSprite  = LoadSingle(SpriteRoot + "emberwheat_crop");
+            _wellSprite            = LoadSingle(SpriteRoot + "well");
+            _marketStallSprite     = LoadSingle(SpriteRoot + "market_stall");
+            _forgeSprite           = LoadSingle(SpriteRoot + "forge");
+            _alchemyStillSprite    = LoadSingle(SpriteRoot + "alchemy_still");
             // Pass 13
-            _playerSprite          = LoadSingle("Assets/Sprites/Environment/player.png");
-            _snapjawSprite         = LoadSingle("Assets/Sprites/Environment/snapjaw.png");
-            _pillarSprite          = LoadSingle("Assets/Sprites/Environment/pillar.png");
+            _playerSprite          = LoadSingle(SpriteRoot + "player");
+            _snapjawSprite         = LoadSingle(SpriteRoot + "snapjaw");
+            _pillarSprite          = LoadSingle(SpriteRoot + "pillar");
             // Pass 14
-            _villagerSprite        = LoadSingle("Assets/Sprites/Environment/villager.png");
-            _merchantSprite        = LoadSingle("Assets/Sprites/Environment/merchant.png");
-            _elderSprite           = LoadSingle("Assets/Sprites/Environment/elder.png");
-            _wardenSprite          = LoadSingle("Assets/Sprites/Environment/warden.png");
-            _childSprite           = LoadSingle("Assets/Sprites/Environment/village_child.png");
-            _sporeShamblerSprite   = LoadSingle("Assets/Sprites/Environment/spore_shambler.png");
-            _iceWightSprite        = LoadSingle("Assets/Sprites/Environment/ice_wight.png");
-            _rubbleSprite          = LoadSingle("Assets/Sprites/Environment/rubble.png");
-            _ovenSprite            = LoadSingle("Assets/Sprites/Environment/oven.png");
-            _iceStalactiteSprite   = LoadSingle("Assets/Sprites/Environment/ice_stalactite.png");
-            _weaponGroundSprite    = LoadSingle("Assets/Sprites/Environment/weapon_ground.png");
-            _oilSeepSprite         = LoadSingle("Assets/Sprites/Environment/oil_seep.png");
-            _acidPondSprite        = LoadSingle("Assets/Sprites/Environment/acid_pond.png");
-            _vineWallSprite        = LoadSingle("Assets/Sprites/Environment/vine_wall.png");
-            _sandstoneWallSprite   = LoadSingle("Assets/Sprites/Environment/sandstone_wall.png");
-#endif
+            _villagerSprite        = LoadSingle(SpriteRoot + "villager");
+            _merchantSprite        = LoadSingle(SpriteRoot + "merchant");
+            _elderSprite           = LoadSingle(SpriteRoot + "elder");
+            _wardenSprite          = LoadSingle(SpriteRoot + "warden");
+            _childSprite           = LoadSingle(SpriteRoot + "village_child");
+            _sporeShamblerSprite   = LoadSingle(SpriteRoot + "spore_shambler");
+            _iceWightSprite        = LoadSingle(SpriteRoot + "ice_wight");
+            _rubbleSprite          = LoadSingle(SpriteRoot + "rubble");
+            _ovenSprite            = LoadSingle(SpriteRoot + "oven");
+            _iceStalactiteSprite   = LoadSingle(SpriteRoot + "ice_stalactite");
+            _weaponGroundSprite    = LoadSingle(SpriteRoot + "weapon_ground");
+            _oilSeepSprite         = LoadSingle(SpriteRoot + "oil_seep");
+            _acidPondSprite        = LoadSingle(SpriteRoot + "acid_pond");
+            _vineWallSprite        = LoadSingle(SpriteRoot + "vine_wall");
+            _sandstoneWallSprite   = LoadSingle(SpriteRoot + "sandstone_wall");
         }
 
         private static Tile MakeTile(Sprite s, string name)
@@ -278,22 +303,19 @@ namespace CavesOfOoo.Rendering
             return t;
         }
 
-#if UNITY_EDITOR
-        private static Sprite[] LoadAtlasSprites(string path)
+        private static Sprite[] LoadAtlasSprites(string resourcePath)
         {
-            var assets = UnityEditor.AssetDatabase.LoadAllAssetsAtPath(path);
-            var list = new List<Sprite>();
-            foreach (var a in assets) if (a is Sprite s) list.Add(s);
+            var assets = Resources.LoadAll<Sprite>(resourcePath);
+            var list = new List<Sprite>(assets);
             // Sort by name suffix to ensure stable ordering (..._00, _01, ...)
             list.Sort((a, b) => string.Compare(a.name, b.name, System.StringComparison.Ordinal));
             return list.ToArray();
         }
 
-        private static Sprite LoadSingle(string path)
+        private static Sprite LoadSingle(string resourcePath)
         {
-            return UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>(path);
+            return Resources.Load<Sprite>(resourcePath);
         }
-#endif
 
         private void BuildTiles()
         {
@@ -386,13 +408,41 @@ namespace CavesOfOoo.Rendering
             _sandstoneWallTile   = MakeTile(_sandstoneWallSprite,   "SandstoneWall");
         }
 
+        /// <summary>
+        /// PASS 15 R3 — ZoneRenderer calls this right after
+        /// <c>ClearAllTiles</c> on the full-repaint path. The main
+        /// tilemap is already blank, so restoring remembered glyphs
+        /// would resurrect STALE tiles over the fresh repaint; instead
+        /// we just drop the overlay claims and forget them.
+        /// </summary>
+        public void NotifyMainTilemapCleared()
+        {
+            if (!IsInitialized) return;
+            for (int i = 0; i < _claimedThisFrame.Count; i++)
+                _overlayTilemap.SetTile(_claimedThisFrame[i].Pos, null);
+            _claimedThisFrame.Clear();
+        }
+
         public void PostRender(Zone zone, int width, int height)
         {
             if (!IsInitialized || _mainTilemap == null) return;
+            using var _ = s_PostRenderMarker.Auto();
 
-            // Clear last frame's claims first.
+            // PASS 15 R3 — release last frame's claims by RESTORING the
+            // displaced glyphs. On the dirty path only a handful of
+            // cells were repainted; every other claimed cell needs its
+            // glyph back so the rescan below can re-resolve it (the old
+            // code left them null → the environment blanked out around
+            // the dirty cells). This also fixes the toggle-off hole:
+            // disabling sprite mode now restores the full ASCII view
+            // immediately instead of waiting for a full redraw.
             for (int i = 0; i < _claimedThisFrame.Count; i++)
-                _overlayTilemap.SetTile(_claimedThisFrame[i], null);
+            {
+                var claim = _claimedThisFrame[i];
+                _overlayTilemap.SetTile(claim.Pos, null);
+                _mainTilemap.SetTile(claim.Pos, claim.MainTile);
+                _mainTilemap.SetColor(claim.Pos, claim.MainColor);
+            }
             _claimedThisFrame.Clear();
 
             if (!RenderingEnabled || zone == null) return;
@@ -403,6 +453,22 @@ namespace CavesOfOoo.Rendering
                 {
                     var pos = new Vector3Int(x, y, 0);
 
+                    // PASS 15 R2 — the tilemap is painted VERTICALLY
+                    // FLIPPED relative to zone space (ZoneRenderer
+                    // paints zone cell (x, zy) at tile row
+                    // Height-1-zy). Every zone lookup below must use
+                    // the flipped row or the blueprint tier resolves
+                    // sprites from the MIRRORED cell — the audit's
+                    // "player renders reflected across the midline"
+                    // defect.
+                    int zoneY = height - 1 - y;
+
+                    // PASS 15 R5 — ONE top-entity fetch per cell,
+                    // shared by the pre-pass and every resolver tier
+                    // (previously fetched twice, plus a third
+                    // GetPart<CropPart> scan on every cell).
+                    Entity topEntity = TopEntityAt(zone, x, zoneY);
+
                     // Pass 10 — entity-based pre-pass. Chest + lantern
                     // entities don't always paint their RenderString
                     // glyph to the main tilemap (they share cells with
@@ -410,14 +476,10 @@ namespace CavesOfOoo.Rendering
                     // glyph-only scan misses them. Look directly at
                     // the cell's top entity and force-paint when its
                     // blueprint matches a sprite-emitting kind.
-                    Tile entityTile = TryEntityBasedTile(zone, x, y);
+                    Tile entityTile = TryEntityBasedTile(topEntity);
                     if (entityTile != null)
                     {
-                        var c2 = _mainTilemap.GetColor(pos);
-                        _overlayTilemap.SetTile(pos, entityTile);
-                        _overlayTilemap.SetColor(pos, c2);
-                        _mainTilemap.SetTile(pos, null);
-                        _claimedThisFrame.Add(pos);
+                        ClaimCell(pos, entityTile, _mainTilemap.GetColor(pos));
                         continue;
                     }
 
@@ -427,7 +489,7 @@ namespace CavesOfOoo.Rendering
                     char glyph = ExtractGlyph(existingTile);
                     if (glyph == '\0') continue;
 
-                    Tile target = ChooseTile(zone, x, y, glyph, out bool authoredColor);
+                    Tile target = ChooseTile(zone, x, zoneY, glyph, topEntity, out bool authoredColor);
                     if (target == null) continue;
 
                     var color = _mainTilemap.GetColor(pos);
@@ -440,22 +502,33 @@ namespace CavesOfOoo.Rendering
                         float v = Mathf.Max(color.r, Mathf.Max(color.g, color.b));
                         color = new Color(v, v, v, color.a);
                     }
-                    _overlayTilemap.SetTile(pos, target);
-                    _overlayTilemap.SetColor(pos, color);
-                    _mainTilemap.SetTile(pos, null);
-                    _claimedThisFrame.Add(pos);
+                    ClaimCell(pos, target, color);
                 }
             }
+        }
+
+        private void ClaimCell(Vector3Int pos, Tile target, Color color)
+        {
+            _claimedThisFrame.Add(new Claim
+            {
+                Pos = pos,
+                MainTile = _mainTilemap.GetTile(pos),
+                MainColor = _mainTilemap.GetColor(pos),
+            });
+            _overlayTilemap.SetTile(pos, target);
+            _overlayTilemap.SetColor(pos, color);
+            _mainTilemap.SetTile(pos, null);
         }
 
         /// <summary>
         /// Pass 10 — entity-based override. Returns a Tile when the
         /// cell hosts a chest / lantern blueprint, regardless of which
         /// glyph the cell currently paints. Returns null otherwise.
+        /// (Pass 15 R5: takes the already-fetched top entity.)
         /// </summary>
-        private Tile TryEntityBasedTile(Zone zone, int x, int y)
+        private Tile TryEntityBasedTile(Entity topEntity)
         {
-            string bp = TopBlueprintNameAt(zone, x, y);
+            string bp = topEntity?.BlueprintName;
             if (string.IsNullOrEmpty(bp)) return null;
             if (BlueprintIsChest(bp))   return _chestTile;
             if (BlueprintIsLantern(bp)) return _lanternTile;
@@ -586,7 +659,7 @@ namespace CavesOfOoo.Rendering
             }
         }
 
-        private Tile ChooseTile(Zone zone, int x, int y, char glyph, out bool authoredColor)
+        private Tile ChooseTile(Zone zone, int x, int y, char glyph, Entity topEntity, out bool authoredColor)
         {
             authoredColor = false;
             // Pass 12 — blueprint-keyed resolution FIRST. Three families
@@ -599,8 +672,9 @@ namespace CavesOfOoo.Rendering
             //    AlchemyStill '&' were uncovered, MarketStall '=' rendered
             //    as a bed. Null tiles (missing PNG) fall through to the
             //    original glyph handling below.
+            // (Pass 15 R5: topEntity arrives pre-fetched; x/y are ZONE
+            // coordinates — the caller has already un-flipped them.)
             {
-                var topEntity = TopEntityAt(zone, x, y);
                 string bpName = topEntity?.BlueprintName;
 
                 // Pass 13 — actor tier runs before everything: the
@@ -638,7 +712,12 @@ namespace CavesOfOoo.Rendering
                         break;
                 }
 
-                int stage = topEntity?.GetPart<CropPart>()?.GrowthStage ?? -1;
+                // Pass 15 R5: only crops pay for the CropPart scan —
+                // previously every cell ran a full Parts walk for a
+                // near-always-null result.
+                int stage = -1;
+                if (bpName != null && bpName.EndsWith("Crop", System.StringComparison.Ordinal))
+                    stage = topEntity?.GetPart<CropPart>()?.GrowthStage ?? -1;
                 switch (ResolveCropKind(bpName, stage))
                 {
                     case CropSpriteKind.Seed:        if (_cropSeedTile != null) return _cropSeedTile; break;
@@ -733,20 +812,12 @@ namespace CavesOfOoo.Rendering
             // look like a lantern.
             if (glyph == '[' || glyph == '!')
             {
-                string bp = TopBlueprintNameAt(zone, x, y);
+                string bp = topEntity?.BlueprintName;
                 if (bp == null) return null;
                 if (glyph == '[' && BlueprintIsChest(bp)) return _chestTile;
                 if (glyph == '!' && BlueprintIsLantern(bp)) return _lanternTile;
             }
             return null;
-        }
-
-        private static string TopBlueprintNameAt(Zone zone, int x, int y)
-        {
-            if (zone == null) return null;
-            var c = zone.GetCell(x, y);
-            var top = c?.GetTopVisibleObject();
-            return top?.BlueprintName;
         }
 
         /// <summary>Pass 12 — top visible entity itself (the crop resolver

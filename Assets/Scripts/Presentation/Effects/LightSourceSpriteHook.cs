@@ -264,12 +264,16 @@ namespace CavesOfOoo.Presentation.Effects
                 _playerTorchLight.falloffIntensity = 0.55f;
             }
 
-            // Reposition to player's current cell (cell-center offset)
+            // Reposition to player's current cell (cell-center offset).
+            // Pass 15 R2: the tilemap is painted vertically flipped
+            // relative to zone space — use the same Height-y-0.5
+            // convention CameraFollow uses, or the torch floats at the
+            // player's MIRRORED row.
             var (px, py) = _activeZone.GetEntityPosition(_playerEntity);
             if (px >= 0 && py >= 0)
             {
                 _playerTorchGo.transform.localPosition =
-                    new Vector3(px + 0.5f, py + 0.5f, 0f);
+                    new Vector3(px + 0.5f, Zone.Height - py - 0.5f, 0f);
             }
         }
 

@@ -1,6 +1,18 @@
 # GRAPHICS PASS 15 — Sprite Reintegration: Flowing Ground, Honest Objects, Verified by Eye
 
-> Status: PROPOSED — awaiting user go-ahead.
+> Status: APPROVED + IN PROGRESS (user sign-off 2026-08-08; monsters
+> stay ASCII). Brainstorm additions folded in: **wall top-face**
+> (lighter 3-4px top band where no wall above — walls read as solid
+> blocks), **overlap skirts + priority stacking** for ground fringes
+> (soft material overhangs hard: grass laps sand laps stone),
+> **tall 16×20 actors** (bottom pivot, overhang the cell above —
+> actors break the tile plane dimensionally), **value zoning**
+> (terrain 30-60% brightness, actors get the extremes; enforced by
+> generator gate), and an **automated squint test** in the V-loop
+> (downscale 4×, assert actor-vs-neighborhood contrast). Deferred to
+> Pass 16: dual-grid rendering, day/night light curve, wall-edge AO,
+> drop-shadow bg pass, monster token plates, zone fade + POI banners,
+> per-biome ambient particles.
 > Sources: (a) full audit of the dormant Pass 7-14 sprite system,
 > (b) deep study of the farming project
 > (`/Users/steven/farming/.claude/worktrees/farming-sim-sprite-setup-d2ab60`),
@@ -28,7 +40,26 @@
    (Point/uncompressed/no-mips/FullRect/extrude-0), atlas padding,
    integer sorting bands, snap-to-pixel camera.
 
-## 1. Phase R — repair the substrate (blockers found by audit)
+## 1. Phase R — repair the substrate (blockers found by audit) — ✅ SHIPPED
+
+R1-R5 all landed (2026-08-08): sprites moved to
+`Assets/Resources/Sprites/Environment/` (git mv — GUIDs intact) with a
+runtime `Resources.Load` path; the vertical-mirror fix (`zoneY =
+Height-1-y` feeds every zone lookup, plus the player-torch fix in
+LightSourceSpriteHook); release-restores-glyph claims (struct Claim
+remembers displaced tile+color; `NotifyMainTilemapCleared` handles the
+full-repaint path so stale glyphs never resurrect); the
+SpriteImportPostprocessor (enforced pixel-perfect settings, kills the
+24 stale per-platform compression overrides, preserves atlas Multiple
+mode); single top-entity fetch per cell + crop scan only on `*Crop` +
+`COO.EnvSprites.PostRender` ProfilerMarker + claim capacity 2048.
+Verified by 5 NEW harness tests driving the real component end-to-end
+(real Resources sprites, real tilemaps, real zone) — the class of test
+whose absence hid all three defects. Suite 5915 → 5920.
+
+NEXT: Phase G art generation (macro fields, fringes, wall top-face) →
+Phase S (outlines, false-identity guards, tall actors) → Phase V
+(screenshot loop; gate flips ON only after live checklist passes).
 
 | # | Defect | Fix |
 |---|---|---|
