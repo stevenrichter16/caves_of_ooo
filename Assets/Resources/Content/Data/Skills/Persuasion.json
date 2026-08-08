@@ -1,0 +1,34 @@
+{
+  "Skills": [
+    {
+      "Name": "Persuasion",
+      "Class": "PersuasionSkill",
+      "Cost": 100,
+      "Description": "The art of turning strangers into companions. Owning this tree unlocks recruitment powers.",
+      "Foreground": "M",
+      "Detail": "m",
+      "Powers": [
+        {
+          "Name": "Recruit",
+          "Class": "Persuasion_Recruit",
+          "Cost": 100,
+          "Attribute": "Ego",
+          "Minimum": "16",
+          "Description": "Active ability: persuade an adjacent non-hostile creature to join you (d20 + Ego mod vs their level). One companion follows you, fights beside you, and crosses zones with you. 25-turn cooldown.",
+          "Foreground": "M",
+          "Detail": "m"
+        },
+        {
+          "Name": "Dismiss",
+          "Class": "Persuasion_Dismiss",
+          "Cost": 25,
+          "Attribute": "Ego",
+          "Minimum": "14",
+          "Description": "Active ability: release an adjacent companion you recruited. They keep no grudge; the slot frees immediately.",
+          "Foreground": "M",
+          "Detail": "m"
+        }
+      ]
+    }
+  ]
+}
