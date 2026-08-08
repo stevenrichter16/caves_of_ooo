@@ -57,9 +57,43 @@ Verified by 5 NEW harness tests driving the real component end-to-end
 (real Resources sprites, real tilemaps, real zone) — the class of test
 whose absence hid all three defects. Suite 5915 → 5920.
 
-NEXT: Phase G art generation (macro fields, fringes, wall top-face) →
-Phase S (outlines, false-identity guards, tall actors) → Phase V
-(screenshot loop; gate flips ON only after live checklist passes).
+## V-loop round 1 (2026-08-08) — three live-screenshot fixes
+
+The eyeball loop immediately earned its existence. Three defects no
+test saw, each found in a screenshot, diagnosed with read-only
+execute_code queries against the RUNNING game, fixed, and re-verified:
+
+1. **The river was still ASCII** — the animated-water renderer strips
+   water glyphs off the main tilemap before our pass, so the
+   glyph-keyed water branch never fired. → Water claims by BLUEPRINT
+   in the pre-pass.
+2. **"Specks" — scattered dark holes across the ground** — same root
+   cause generalized: the animated env also claims grass/floor
+   glyphs; overlay-tile census (execute_code) showed the holes were
+   exactly its claimed cells. → ALL ground claims are now
+   blueprint-driven and glyph-independent; our overlay (order 3)
+   covers its layers (order 2).
+3. **Objects floating in dark boxes** — sprites' transparent margins
+   revealed the bg contrast box. → Every claim also paints the cell's
+   ground material into the BG tilemap; ASCII actor letters likewise
+   stand on terrain now.
+
+Live result (zoomed screenshots, starting town): continuous flowing
+ground, river with scalloped shoreline lips, wall runs reading as
+solid capped blocks, objects/actors sitting directly ON the ground.
+
+**Punch list for round 2 (Phase S):**
+- FOV/lighting: ground claims tint with Color.white — fog-of-war
+  dimming doesn't reach sprite terrain yet (sample the bg box color
+  instead).
+- Claims ignore Explored — chests/water may reveal through fog
+  (pre-existing from Pass 10, now wider; gate claims on cell.Explored).
+- Ink outlines on all object/actor sprites; player highlight.
+- False-identity guards (traps/viper/troll/veins/grimoires).
+- 9 shopkeeper/hermit sprites; bush sprite restyle (reads as popcorn).
+- Automated squint test on saved screenshots.
+GraphicsPolish gate: ON in working tree for the loop; ships committed
+only after the full checklist passes.
 
 | # | Defect | Fix |
 |---|---|---|

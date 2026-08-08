@@ -253,9 +253,20 @@ namespace CavesOfOoo.Rendering
 
         public bool IsInitialized { get; private set; }
 
-        public void Init(Transform gridParent, Tilemap mainTilemap)
+        // PASS 15 V-loop fix #1: cells still rendered as ASCII (actors,
+        // items) kept their opaque dark background boxes — white
+        // letters on floating black squares punching holes across the
+        // flowing terrain (screenshot evidence, first live run). When
+        // the cell's terrain resolves a ground material, we now paint
+        // that ground sprite INTO the bg tilemap so the letter sits
+        // directly on grass/stone.
+        private Tilemap _bgTilemap;
+        private readonly List<Claim> _bgClaimedThisFrame = new List<Claim>(512);
+
+        public void Init(Transform gridParent, Tilemap mainTilemap, Tilemap bgTilemap = null)
         {
             _mainTilemap = mainTilemap;
+            _bgTilemap = bgTilemap;
 
             // Make overlay tilemap
             var go = new GameObject("EnvironmentSpriteTilemap");
@@ -512,6 +523,7 @@ namespace CavesOfOoo.Rendering
             for (int i = 0; i < _claimedThisFrame.Count; i++)
                 _overlayTilemap.SetTile(_claimedThisFrame[i].Pos, null);
             _claimedThisFrame.Clear();
+            _bgClaimedThisFrame.Clear(); // bg was cleared with the rest
         }
 
         public void PostRender(Zone zone, int width, int height)
@@ -535,6 +547,16 @@ namespace CavesOfOoo.Rendering
                 _mainTilemap.SetColor(claim.Pos, claim.MainColor);
             }
             _claimedThisFrame.Clear();
+            if (_bgTilemap != null)
+            {
+                for (int i = 0; i < _bgClaimedThisFrame.Count; i++)
+                {
+                    var claim = _bgClaimedThisFrame[i];
+                    _bgTilemap.SetTile(claim.Pos, claim.MainTile);
+                    _bgTilemap.SetColor(claim.Pos, claim.MainColor);
+                }
+                _bgClaimedThisFrame.Clear();
+            }
 
             if (!RenderingEnabled || zone == null) return;
 
@@ -571,17 +593,70 @@ namespace CavesOfOoo.Rendering
                     if (entityTile != null)
                     {
                         ClaimCell(pos, entityTile, _mainTilemap.GetColor(pos));
+                        // Object sprites have transparent margins — put
+                        // the ground in the bg box behind them too.
+                        PaintGroundUnderAscii(zone, x, zoneY, pos);
                         continue;
                     }
 
+                    // PASS 15 V-loop fix #2 (round 2): ALL ground
+                    // claims are blueprint-driven, glyph-independent —
+                    // the animated env renderer strips water AND grass/
+                    // floor glyphs off the main tilemap before this
+                    // pass runs, which left scattered claim-holes (the
+                    // "specks" in the first live screenshots) wherever
+                    // it had claimed a cell. Our overlay (order 3) sits
+                    // above its layers (order 2), so claiming here
+                    // fully covers the duplicated glyph.
+                    var topGround = ResolveGroundMaterial(topEntity?.BlueprintName);
+                    if (topGround == GroundMaterial.Water)
+                    {
+                        var shoreline = PickShorelineTile(zone, x, zoneY);
+                        if (shoreline != null)
+                        {
+                            ClaimCell(pos, shoreline, Color.white);
+                            continue;
+                        }
+                    }
+                    else if (topGround != GroundMaterial.None
+                        && _groundMacroTiles.TryGetValue(topGround, out var topMacro)
+                        && topMacro.Length == 16)
+                    {
+                        var mt = topMacro[MacroIndex(x, zoneY)];
+                        if (mt != null)
+                        {
+                            ClaimCell(pos, mt, Color.white);
+                            continue;
+                        }
+                    }
+
                     var existingTile = _mainTilemap.GetTile(pos);
-                    if (existingTile == null) continue;
+                    if (existingTile == null)
+                    {
+                        // Animated-env-claimed cell with a non-ground
+                        // top entity (item on grass): still put the
+                        // ground under the floating glyph.
+                        PaintGroundUnderAscii(zone, x, zoneY, pos);
+                        continue;
+                    }
 
                     char glyph = ExtractGlyph(existingTile);
-                    if (glyph == '\0') continue;
+                    if (glyph == '\0')
+                    {
+                        PaintGroundUnderAscii(zone, x, zoneY, pos);
+                        continue;
+                    }
 
                     Tile target = ChooseTile(zone, x, zoneY, glyph, topEntity, out bool authoredColor);
-                    if (target == null) continue;
+                    if (target == null)
+                    {
+                        // The cell stays ASCII (an actor letter, an
+                        // unmapped item) — put the GROUND under it so
+                        // the glyph sits on terrain, not on a floating
+                        // dark box.
+                        PaintGroundUnderAscii(zone, x, zoneY, pos);
+                        continue;
+                    }
 
                     var color = _mainTilemap.GetColor(pos);
                     if (authoredColor)
@@ -594,8 +669,48 @@ namespace CavesOfOoo.Rendering
                         color = new Color(v, v, v, color.a);
                     }
                     ClaimCell(pos, target, color);
+                    // Actors/fixtures/items have transparent margins;
+                    // ground/water/wall tiles are opaque and cover the
+                    // bg anyway — painting under every claim is safe
+                    // and puts terrain behind every sprite edge.
+                    PaintGroundUnderAscii(zone, x, zoneY, pos);
                 }
             }
+        }
+
+        /// <summary>
+        /// PASS 15 V-loop fix #1 — for a cell that keeps its ASCII
+        /// glyph: find the cell's ground-material TERRAIN entity (not
+        /// the top entity — that's the actor/item) and paint its macro
+        /// slice into the BG tilemap, replacing the dark contrast box.
+        /// The white letter then reads as standing ON the ground.
+        /// </summary>
+        private void PaintGroundUnderAscii(Zone zone, int x, int zoneY, Vector3Int pos)
+        {
+            if (_bgTilemap == null) return;
+            var cell = zone.GetCell(x, zoneY);
+            if (cell == null) return;
+
+            GroundMaterial ground = GroundMaterial.None;
+            for (int i = 0; i < cell.Objects.Count; i++)
+            {
+                ground = ResolveGroundMaterial(cell.Objects[i].BlueprintName);
+                if (ground != GroundMaterial.None) break;
+            }
+            if (ground == GroundMaterial.None || ground == GroundMaterial.Water) return;
+            if (!_groundMacroTiles.TryGetValue(ground, out var macro) || macro.Length != 16) return;
+
+            var mt = macro[MacroIndex(x, zoneY)];
+            if (mt == null) return;
+
+            _bgClaimedThisFrame.Add(new Claim
+            {
+                Pos = pos,
+                MainTile = _bgTilemap.GetTile(pos),
+                MainColor = _bgTilemap.GetColor(pos),
+            });
+            _bgTilemap.SetTile(pos, mt);
+            _bgTilemap.SetColor(pos, Color.white);
         }
 
         private void ClaimCell(Vector3Int pos, Tile target, Color color)

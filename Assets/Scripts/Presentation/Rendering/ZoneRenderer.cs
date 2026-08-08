@@ -322,7 +322,10 @@ namespace CavesOfOoo.Rendering
                 envSpriteObj.transform.SetParent(gridParent, false);
                 GameplayRenderLayers.SetLayerRecursive(envSpriteObj, GameplayRenderLayers.WorldLayer);
                 _envSpriteRenderer = envSpriteObj.AddComponent<EnvironmentSpriteRenderer>();
-                _envSpriteRenderer.Init(gridParent, _tilemap);
+                // Pass 15: the bg tilemap lets the sprite pass replace
+                // ASCII cells' dark contrast boxes with the ground
+                // sprite — letters stand ON terrain, not on black tiles.
+                _envSpriteRenderer.Init(gridParent, _tilemap, _bgTilemap);
 
                 // Pass 8 §8E.1: Light2D point lights on campfire `*` and
                 // shrine `_` cells; biome-based ambient dim for dungeons;
