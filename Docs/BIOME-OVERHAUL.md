@@ -175,7 +175,7 @@ middle between "empty biome" and "full village".
 - Optional guard: first-spawn placement ≥ 10 cells from the player's
   arrival edge in tier-1 zones (cheap fairness fix; verify feasibility).
 
-### A6 — Economy plumbing 🟢 (data + wiring)
+### A6 — Economy plumbing 🟢 (data + wiring) — ✅ SHIPPED (see LOG §6)
 
 - **Wallets** for Quartermaster (150), Scribe (100), Elder (120),
   WellKeeper/Farmer/Warden (80) — they already carry sellable stock; now

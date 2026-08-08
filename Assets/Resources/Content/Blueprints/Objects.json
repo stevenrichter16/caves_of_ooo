@@ -33,6 +33,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "1" }] },
         { "Name": "Handling", "Params": [
           { "Key": "Carryable", "Value": "true" },
           { "Key": "Throwable", "Value": "true" },
@@ -52,12 +53,33 @@
           { "Key": "ColorString", "Value": "&Y" },
           { "Key": "RenderLayer", "Value": "5" }
         ]},
-        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] }
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "1" }] }
       ],
       "Stats": [],
       "Tags": [
         { "Key": "Shiny", "Value": "" }
       ]
+    },
+    {
+      "Name": "InkVial",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "vial of ink" },
+          { "Key": "RenderString", "Value": "!" },
+          { "Key": "ColorString", "Value": "&B" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "10" }] },
+        { "Name": "InkVial", "Params": [{ "Key": "InkAmount", "Value": "25" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Stoppered squid-dark ink. The quartermasters take payment in it; the scribes never seem to run out." }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": []
     },
     {
       "Name": "MeleeWeapon",
@@ -1027,7 +1049,7 @@
     },
     {
       "Name": "CandyCarrot",
-      "Inherits": "Item",
+      "Inherits": "FoodItem",
       "Parts": [
         { "Name": "Render", "Params": [
           { "Key": "DisplayName", "Value": "candy carrot" },
@@ -1075,7 +1097,7 @@
     },
     {
       "Name": "Emberwheat",
-      "Inherits": "Item",
+      "Inherits": "FoodItem",
       "Parts": [
         { "Name": "Render", "Params": [
           { "Key": "DisplayName", "Value": "emberwheat sheaf" },
@@ -1902,6 +1924,9 @@
         { "Name": "Intelligence", "Value": 18 },
         { "Name": "Ego", "Value": 16 }
       ],
+      "IntProps": [
+        { "Key": "Drams", "Value": 120 }
+      ],
       "Tags": [
         { "Key": "Faction", "Value": "Villagers" },
         { "Key": "Tier", "Value": "1" },
@@ -2560,6 +2585,9 @@
         { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 },
         { "Name": "Strength", "Value": 14 },
         { "Name": "Ego", "Value": 14 }
+      ],
+      "IntProps": [
+        { "Key": "Drams", "Value": 150 }
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Villagers" },
@@ -4359,6 +4387,9 @@
         { "Name": "Agility", "Value": 16 },
         { "Name": "Toughness", "Value": 16 }
       ],
+      "IntProps": [
+        { "Key": "Drams", "Value": 80 }
+      ],
       "Tags": [
         { "Key": "Faction", "Value": "Villagers" },
         { "Key": "Tier", "Value": "2" },
@@ -5366,6 +5397,9 @@
         { "Name": "Hitpoints", "Value": 20, "Min": 0, "Max": 20 },
         { "Name": "Intelligence", "Value": 16 },
         { "Name": "Ego", "Value": 14 }
+      ],
+      "IntProps": [
+        { "Key": "Drams", "Value": 100 }
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Villagers" },

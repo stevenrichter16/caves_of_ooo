@@ -88,8 +88,8 @@ Legend: ☐ not started · ◐ in progress · ☑ done (commit hash) · ✖ drop
 ### Phase A — Foundations
 - ☑ **A5** spawn repairs: tier-3 tables ×4 biomes, boss XP fixes,
   natural weapons for the five 1d2-fist hostiles (see §6 entry)
-- ☐ **A6** economy plumbing: NPC wallets, InkVial, food inheritance
-  fixes, GoldCoin/Bone commerce
+- ☑ **A6** economy plumbing: NPC wallets, InkVial, food inheritance
+  fixes, GoldCoin/Bone commerce (see §6 entry)
 - ☐ **A1** loot-table system: registry + JSON + ChestStockBuilder +
   lair retrofit
 - ☐ **A3** harvest/butchery: HarvestablePart, corpse yields, MineralVein
@@ -129,11 +129,45 @@ plan cites agent-report line numbers that MUST be re-verified before use.)
 | A5 | On-hit `Electrified` spec is valid | ✅ confirmed | ThunderHammer precedent: `Electrified,30,,3,1.0` |
 | A5 | A spore gas exists for EmitGasOnHitRaw | ✅ confirmed | gas id `fungal-spores` (Content/Data/GasDefinitions); spec format `GasId,Chance[,CellDensity,AdjDensity,Level]`, defaults fill missing fields |
 | A5 | GlassScorpion/SporeShambler/BrassHusk aggro like monsters | ❌ **false** | their factions (SaccharineConcord/RotChoir/Palimpsest) start at rep 0 → neutral-until-provoked. Tier-3 tables treat them as ECOLOGY; the hostile backbone is Beasts/Snapjaws-faction. Same behavior as the existing crossroads set pieces. |
+| A6 | "WellKeeper/Farmer/… have no Drams wallet" | ❌ **partly false** | IntProps INHERIT through `BlueprintLoader.Bake` — WellKeeper/Farmer already carry Villager's 100. Only the four Creature-lineage NPCs (Quartermaster/Scribe/Elder/Warden) needed wallets. Pinned in `VillagerLineage_InheritsWallet_Pin`. |
+| A6 | "GoldCoin/Bone need Stacker added" | ❌ **false** | the `Item` BASE blueprint already carries `Stacker` — every item inherits it. Only `Commerce` was missing. |
 
 ## 6. Per-SM implementation log
 
 (One subsection per completed SM: what shipped, files, tests before→after,
 divergences, self-review findings. Newest at top.)
+
+### A6 — economy plumbing (2026-08-08)
+
+**Shipped:**
+1. Wallets: Quartermaster 150 / Scribe 100 / Elder 120 / Warden 80
+   drams (IntProps). They can now BUY from the player and are covered
+   by `TraderRestockSystem` (its is-a-trader test = "carries Drams").
+2. `InkVial` blueprint (Commerce 10, stacks via inherited Item Stacker)
+   + `InkVialPart` ("use" → `RentalSystem.AddInk(actor, 25)`, message,
+   `trade/InkRefilled` diag, TonicPart-style stack consume). Sources:
+   Scribe guaranteed ×2 per village (`ScribeStock`/`StockScribe`) +
+   the general `TradeStockBuilder` pool.
+3. GoldCoin/Bone gain `Commerce` 1 → tradeable (chest-treasure /
+   butchery-yield ready for A1/A3).
+4. CandyCarrot/Emberwheat now inherit `FoodItem` → Food tag + Food
+   inventory category; own Food params survive the bake merge (pinned).
+
+**Files:** NEW `Assets/Scripts/Gameplay/Items/InkVialPart.cs`,
+`Assets/Tests/EditMode/Gameplay/Biomes/BiomeEconomyPlumbingTests.cs` (9);
+MOD `Objects.json` (InkVial chunk + 4 IntProps blocks + 2 Commerce +
+2 Inherits), `VillagePopulationBuilder.cs` (ScribeStock + StockScribe),
+`TradeStockBuilder.cs` (pool + InkVial).
+
+**Tests:** 5790 → 5799 (+9). All 5799 green (flake included this run).
+RED evidence: CS0246 `InkVialPart`. ⚠ compressed step: the data-only
+assertions (wallets/commerce/inheritance) never ran individually RED —
+the compile error blocked the suite and the data edits landed in the
+same compile window. Noted per §2.1.
+
+**Self-review:** 🔵 RED compression noted above. 🔵 InkVial's 'u'
+hotkey shares priority 20 with tonic actions — the action list handles
+key assignment; no observed collision. No 🟡/🔴.
 
 ### A5 — spawn & difficulty repairs (2026-08-08)
 

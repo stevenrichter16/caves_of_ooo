@@ -40,7 +40,10 @@ namespace CavesOfOoo.Core
             "SerratedEdgeComponent", "SteelBladeComponent", "WillowHaftComponent",
             // SM4 redistribution: two attack grimoires circulate in trade
             // instead of being free village-chest loot.
-            "KindleGrimoire", "QuenchGrimoire"
+            "KindleGrimoire", "QuenchGrimoire",
+            // BIOME-OVERHAUL A6: ink circulates so the rental economy
+            // stays renewable beyond the Scribe's guaranteed two vials.
+            "InkVial"
         };
 
         private static readonly string[] FouledWellTradeGoods =

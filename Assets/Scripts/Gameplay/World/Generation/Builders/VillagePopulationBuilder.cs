@@ -142,6 +142,7 @@ namespace CavesOfOoo.Core
             // 1 Scribe (always)
             Entity scribe = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Scribe", settlementId);
             SetConversation(scribe, "Scribe_1");
+            StockScribe(scribe, factory);
 
             // 1 Innkeeper (always, if blueprint available) — assigned ownership of
             // the nearest chair so no other NPC can use it. Tier 3d: per-NPC chair ownership.
@@ -816,6 +817,16 @@ namespace CavesOfOoo.Core
             "HealingTonic"
         };
 
+        // BIOME-OVERHAUL A6: the Scribe is the diegetic ink source —
+        // they copy grimoires for a living. Two vials per village makes
+        // the rental currency renewable (previously the starting 50 Ink
+        // was a lifetime supply).
+        private static readonly string[] ScribeStock =
+        {
+            "InkVial",
+            "InkVial"
+        };
+
         private void StockMerchant(Entity merchant, EntityFactory factory)
         {
             if (merchant == null)
@@ -828,6 +839,26 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < MerchantRepairStock.Length; i++)
             {
                 Entity item = TryCreateEntity(factory, MerchantRepairStock[i]);
+                if (item != null)
+                    inventory.AddObject(item);
+            }
+        }
+
+        // BIOME-OVERHAUL A6 — see ScribeStock. Mirrors StockMerchant's
+        // null-tolerant shape (a village without a Scribe blueprint just
+        // skips).
+        private void StockScribe(Entity scribe, EntityFactory factory)
+        {
+            if (scribe == null)
+                return;
+
+            var inventory = scribe.GetPart<InventoryPart>();
+            if (inventory == null)
+                return;
+
+            for (int i = 0; i < ScribeStock.Length; i++)
+            {
+                Entity item = TryCreateEntity(factory, ScribeStock[i]);
                 if (item != null)
                     inventory.AddObject(item);
             }
