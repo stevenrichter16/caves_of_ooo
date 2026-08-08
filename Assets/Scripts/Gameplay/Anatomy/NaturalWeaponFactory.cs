@@ -25,12 +25,63 @@ namespace CavesOfOoo.Core.Anatomy
                     return CreateWeapon("claw", "1d4", 1, "&w", "Cutting Animal");
                 case "SnapjawHunterClaw":
                     return CreateWeapon("claw", "1d6", 2, "&w", "Cutting Animal");
+
+                // ALPHA-READINESS combat-stakes SM3: natural weapons for
+                // the bruisers stuck on the 1d2 default fist (see
+                // Docs/ALPHA-READINESS.md item 1). Venomous species carry
+                // Poisoned on-hit specs via the shipped spec format.
+                case "BatBite":
+                    return CreateWeapon("bite", "1d2", 0, "&y", "Piercing Animal");
+                case "SlimePseudopod":
+                    return CreateWeapon("pseudopod", "1d3", 0, "&g", "Bludgeoning Animal");
+                case "CaveBearClaw":
+                    return CreateWeapon("claw", "2d4", 1, "&w", "Cutting Animal");
+                case "ScorpionSting":
+                    return CreateWeapon("sting", "1d3", 1, "&g", "Piercing Animal", "Poisoned,50,1d4,6,0");
+                case "WurmBite":
+                    return CreateWeapon("maw", "2d6+1", 1, "&y", "Piercing Cutting Animal");
+                case "SpiderBite":
+                    return CreateWeapon("fangs", "1d4", 0, "&g", "Piercing Animal", "Poisoned,35,1d4,6,0");
+                case "ViperBite":
+                    return CreateWeapon("fangs", "1d3", 1, "&G", "Piercing Animal", "Poisoned,75,1d6,8,0");
+                case "ApeFist":
+                    return CreateWeapon("fist", "1d6+1", 0, "&w", "Bludgeoning Animal");
+                case "ScavengerClaw":
+                    return CreateWeapon("claw", "1d4", 1, "&w", "Cutting Animal");
+                case "BoneBlade":
+                    return CreateWeapon("bone blade", "1d6+1", 1, "&Y", "Cutting");
+                case "GolemFist":
+                    return CreateWeapon("stone fist", "2d6", 2, "&w", "Bludgeoning");
+                case "ProwlerClaw":
+                    return CreateWeapon("claw", "2d4", 1, "&y", "Cutting Animal");
+                case "StalkerClaw":
+                    return CreateWeapon("claw", "2d4", 1, "&g", "Cutting Animal");
+                case "GuardianFist":
+                    return CreateWeapon("ancient fist", "2d6+2", 2, "&W", "Bludgeoning");
+                case "ChoirLash":
+                    return CreateWeapon("tendril", "2d4", 0, "&m", "Bludgeoning Animal");
+                case "WightTouch":
+                    return CreateWeapon("frozen touch", "1d6", 1, "&C", "Bludgeoning");
+                case "HuskTouch":
+                    return CreateWeapon("charred touch", "1d6", 1, "&r", "Bludgeoning");
+                // Conversions of the four DEAD entity-level MeleeWeapon
+                // parts the body-part-aware path never read (verifier
+                // finding — these four also punched 1d2):
+                case "GlowmawBite":
+                    return CreateWeapon("maw", "2d4", 1, "&r", "Piercing Cutting Animal");
+                case "TrollFist":
+                    return CreateWeapon("fist", "2d6", 1, "&w", "Bludgeoning");
+                case "MimicBite":
+                    return CreateWeapon("maw", "1d8", 1, "&y", "Piercing Cutting");
+                case "BanditBlade":
+                    return CreateWeapon("blade", "1d6", 1, "&w", "Cutting");
+
                 default:
                     return CreateWeapon(blueprintName, "1d2", 0, "&y", "");
             }
         }
 
-        private static Entity CreateWeapon(string name, string damage, int penBonus, string color, string attributes)
+        private static Entity CreateWeapon(string name, string damage, int penBonus, string color, string attributes, string onHitEffectsRaw = "")
         {
             var entity = new Entity();
             entity.BlueprintName = "NaturalWeapon_" + name;
@@ -47,7 +98,8 @@ namespace CavesOfOoo.Core.Anatomy
                 PenBonus = penBonus,
                 MaxStrengthBonus = -1,
                 Stat = "Strength",
-                Attributes = attributes
+                Attributes = attributes,
+                OnHitEffectsRaw = onHitEffectsRaw
             });
             return entity;
         }

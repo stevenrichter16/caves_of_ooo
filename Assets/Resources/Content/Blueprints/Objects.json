@@ -244,7 +244,7 @@
         ]}
       ],
       "Stats": [
-        { "Name": "Hitpoints", "Value": 500, "Min": 0, "Max": 500 },
+        { "Name": "Hitpoints", "Value": 40, "Min": 0, "Max": 40 },
         { "Name": "Strength", "Value": 18 },
         { "Name": "Agility", "Value": 18 },
         { "Name": "Toughness", "Value": 18 },
@@ -3287,8 +3287,10 @@
         { "Name": "Strength", "Value": 20 },
         { "Name": "Toughness", "Value": 22 },
         { "Name": "Willpower", "Value": 18 },
-        { "Name": "Ego", "Value": 20 }
+        { "Name": "Ego", "Value": 20 },
+        { "Name": "XPValue", "Value": 70 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "ChoirLash" }],
       "Tags": [
         { "Key": "Faction", "Value": "RotChoir" },
         { "Key": "Tier", "Value": "3" },
@@ -3315,7 +3317,8 @@
         { "Name": "Hitpoints", "Value": 40, "Min": 0, "Max": 40 },
         { "Name": "Intelligence", "Value": 24 },
         { "Name": "Willpower", "Value": 20 },
-        { "Name": "Ego", "Value": 22 }
+        { "Name": "Ego", "Value": 22 },
+        { "Name": "XPValue", "Value": 50 }
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Palimpsest" },
@@ -3342,7 +3345,8 @@
       "Stats": [
         { "Name": "Hitpoints", "Value": 35, "Min": 0, "Max": 35 },
         { "Name": "Intelligence", "Value": 18 },
-        { "Name": "Ego", "Value": 20 }
+        { "Name": "Ego", "Value": 20 },
+        { "Name": "XPValue", "Value": 35 }
       ],
       "Tags": [
         { "Key": "Faction", "Value": "SaccharineConcord" },
@@ -3372,7 +3376,8 @@
         { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 },
         { "Name": "Intelligence", "Value": 22 },
         { "Name": "Willpower", "Value": 16 },
-        { "Name": "Ego", "Value": 14 }
+        { "Name": "Ego", "Value": 14 },
+        { "Name": "XPValue", "Value": 30 }
       ],
       "Tags": [
         { "Key": "Faction", "Value": "PaleCuration" },
@@ -3403,7 +3408,8 @@
         { "Name": "Strength", "Value": 18 },
         { "Name": "Agility", "Value": 20 },
         { "Name": "Toughness", "Value": 18 },
-        { "Name": "Ego", "Value": 12 }
+        { "Name": "Ego", "Value": 12 },
+        { "Name": "XPValue", "Value": 40 }
       ],
       "Tags": [
         { "Key": "Faction", "Value": "GlassblownRemnant" },
@@ -3438,8 +3444,10 @@
       "Stats": [
         { "Name": "Hitpoints", "Value": 6, "Min": 0, "Max": 6 },
         { "Name": "Agility", "Value": 20 },
-        { "Name": "Speed", "Value": 120 }
+        { "Name": "Speed", "Value": 120 },
+        { "Name": "XPValue", "Value": 5 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "BatBite" }],
       "Tags": [
         { "Key": "Tier", "Value": "1" }
       ]
@@ -3469,8 +3477,10 @@
         { "Name": "Hitpoints", "Value": 18, "Min": 0, "Max": 18 },
         { "Name": "Strength", "Value": 12 },
         { "Name": "Speed", "Value": 70 },
-        { "Name": "AcidResistance", "Value": 50, "Min": -100, "Max": 200 }
+        { "Name": "AcidResistance", "Value": 50, "Min": -100, "Max": 200 },
+        { "Name": "XPValue", "Value": 12 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "SlimePseudopod" }],
       "Tags": [
         { "Key": "Tier", "Value": "1" },
         { "Key": "BloodColor", "Value": "&g" }
@@ -3500,8 +3510,10 @@
       "Stats": [
         { "Name": "Hitpoints", "Value": 35, "Min": 0, "Max": 35 },
         { "Name": "Strength", "Value": 22 },
-        { "Name": "Toughness", "Value": 18 }
+        { "Name": "Toughness", "Value": 18 },
+        { "Name": "XPValue", "Value": 35 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "CaveBearClaw" }],
       "Tags": [
         { "Key": "Tier", "Value": "2" }
       ]
@@ -3552,6 +3564,7 @@
         { "Name": "XPValue", "Value": 20 },
         { "Name": "HeatResistance", "Value": 50, "Min": -100, "Max": 200 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "GlowmawBite" }],
       "Tags": [
         { "Key": "Tier", "Value": "1" },
         { "Key": "BloodColor", "Value": "&Y" }
@@ -3583,8 +3596,10 @@
         { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 },
         { "Name": "Agility", "Value": 16 },
         { "Name": "Speed", "Value": 110 },
-        { "Name": "AcidResistance", "Value": -50, "Min": -100, "Max": 200 }
+        { "Name": "AcidResistance", "Value": -50, "Min": -100, "Max": 200 },
+        { "Name": "XPValue", "Value": 12 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "ScorpionSting" }],
       "Tags": [
         { "Key": "Tier", "Value": "1" },
         { "Key": "BloodColor", "Value": "&G" }
@@ -3604,7 +3619,8 @@
       "Stats": [
         { "Name": "Hitpoints", "Value": 16, "Min": 0, "Max": 16 },
         { "Name": "Strength", "Value": 16 },
-        { "Name": "Agility", "Value": 16 }
+        { "Name": "Agility", "Value": 16 },
+        { "Name": "XPValue", "Value": 15 }
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Snapjaws" },
@@ -3636,8 +3652,10 @@
         { "Name": "Hitpoints", "Value": 40, "Min": 0, "Max": 40 },
         { "Name": "Strength", "Value": 24 },
         { "Name": "Toughness", "Value": 20 },
-        { "Name": "Speed", "Value": 80 }
+        { "Name": "Speed", "Value": 80 },
+        { "Name": "XPValue", "Value": 45 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "WurmBite" }],
       "Tags": [
         { "Key": "Tier", "Value": "2" },
         { "Key": "BloodColor", "Value": "&y" }
@@ -3668,8 +3686,10 @@
       "Stats": [
         { "Name": "Hitpoints", "Value": 12, "Min": 0, "Max": 12 },
         { "Name": "Agility", "Value": 18 },
-        { "Name": "Speed", "Value": 115 }
+        { "Name": "Speed", "Value": 115 },
+        { "Name": "XPValue", "Value": 15 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "SpiderBite" }],
       "Tags": [
         { "Key": "Tier", "Value": "1" },
         { "Key": "BloodColor", "Value": "&G" }
@@ -3689,8 +3709,10 @@
       "Stats": [
         { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 },
         { "Name": "Agility", "Value": 22 },
-        { "Name": "Speed", "Value": 130 }
+        { "Name": "Speed", "Value": 130 },
+        { "Name": "XPValue", "Value": 12 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "ViperBite" }],
       "Tags": [
         { "Key": "Tier", "Value": "1" },
         { "Key": "BloodColor", "Value": "&G" }
@@ -3721,8 +3743,10 @@
         { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 },
         { "Name": "Strength", "Value": 22 },
         { "Name": "Agility", "Value": 16 },
-        { "Name": "Toughness", "Value": 16 }
+        { "Name": "Toughness", "Value": 16 },
+        { "Name": "XPValue", "Value": 30 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "ApeFist" }],
       "Tags": [
         { "Key": "Tier", "Value": "2" }
       ]
@@ -3741,8 +3765,10 @@
       "Stats": [
         { "Name": "Hitpoints", "Value": 14, "Min": 0, "Max": 14 },
         { "Name": "Strength", "Value": 14 },
-        { "Name": "Agility", "Value": 16 }
+        { "Name": "Agility", "Value": 16 },
+        { "Name": "XPValue", "Value": 15 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "ScavengerClaw" }],
       "Tags": [
         { "Key": "Tier", "Value": "1" }
       ]
@@ -3772,8 +3798,10 @@
       "Stats": [
         { "Name": "Hitpoints", "Value": 25, "Min": 0, "Max": 25 },
         { "Name": "Strength", "Value": 18 },
-        { "Name": "Toughness", "Value": 20 }
+        { "Name": "Toughness", "Value": 20 },
+        { "Name": "XPValue", "Value": 30 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "BoneBlade" }],
       "Tags": [
         { "Key": "Tier", "Value": "2" },
         { "Key": "GhostDeath", "Value": "" }
@@ -3806,8 +3834,10 @@
         { "Name": "Strength", "Value": 26 },
         { "Name": "Toughness", "Value": 24 },
         { "Name": "Speed", "Value": 60 },
-        { "Name": "ElectricResistance", "Value": 50, "Min": -100, "Max": 200 }
+        { "Name": "ElectricResistance", "Value": 50, "Min": -100, "Max": 200 },
+        { "Name": "XPValue", "Value": 60 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "GolemFist" }],
       "Tags": [
         { "Key": "Tier", "Value": "3" },
         { "Key": "BloodColor", "Value": "&w" }
@@ -3861,8 +3891,10 @@
         { "Name": "Hitpoints", "Value": 35, "Min": 0, "Max": 35 },
         { "Name": "Strength", "Value": 18 },
         { "Name": "Agility", "Value": 22 },
-        { "Name": "Speed", "Value": 120 }
+        { "Name": "Speed", "Value": 120 },
+        { "Name": "XPValue", "Value": 45 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "ProwlerClaw" }],
       "Tags": [
         { "Key": "Tier", "Value": "2" },
         { "Key": "Boss", "Value": "" }
@@ -3883,8 +3915,10 @@
         { "Name": "Hitpoints", "Value": 35, "Min": 0, "Max": 35 },
         { "Name": "Strength", "Value": 20 },
         { "Name": "Agility", "Value": 24 },
-        { "Name": "Speed", "Value": 115 }
+        { "Name": "Speed", "Value": 115 },
+        { "Name": "XPValue", "Value": 45 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "StalkerClaw" }],
       "Tags": [
         { "Key": "Tier", "Value": "2" },
         { "Key": "Boss", "Value": "" }
@@ -3916,8 +3950,10 @@
         { "Name": "Hitpoints", "Value": 50, "Min": 0, "Max": 50 },
         { "Name": "Strength", "Value": 24 },
         { "Name": "Toughness", "Value": 22 },
-        { "Name": "Speed", "Value": 70 }
+        { "Name": "Speed", "Value": 70 },
+        { "Name": "XPValue", "Value": 65 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "GuardianFist" }],
       "Tags": [
         { "Key": "Tier", "Value": "3" },
         { "Key": "Boss", "Value": "" },
@@ -4221,6 +4257,7 @@
         { "Name": "ColdResistance", "Value": 100, "Min": -100, "Max": 200 },
         { "Name": "HeatResistance", "Value": -50, "Min": -100, "Max": 200 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "WightTouch" }],
       "Tags": [
         { "Key": "Tier", "Value": "2" },
         { "Key": "BloodColor", "Value": "&C" }
@@ -4259,6 +4296,7 @@
         { "Name": "HeatResistance", "Value": 100, "Min": -100, "Max": 200 },
         { "Name": "ColdResistance", "Value": -50, "Min": -100, "Max": 200 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "HuskTouch" }],
       "Tags": [
         { "Key": "Tier", "Value": "2" },
         { "Key": "BloodColor", "Value": "&K" }
@@ -5953,6 +5991,7 @@
         { "Name": "Toughness", "Value": 18 },
         { "Name": "XPValue", "Value": 40 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "TrollFist" }],
       "Tags": [
         { "Key": "Faction", "Value": "Snapjaws" },
         { "Key": "Tier", "Value": "2" }
@@ -5989,6 +6028,7 @@
         { "Name": "Toughness", "Value": 16 },
         { "Name": "XPValue", "Value": 25 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "MimicBite" }],
       "Tags": [
         { "Key": "Faction", "Value": "Snapjaws" },
         { "Key": "Tier", "Value": "1" },
@@ -6026,6 +6066,7 @@
         { "Name": "Toughness", "Value": 12 },
         { "Name": "XPValue", "Value": 20 }
       ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "BanditBlade" }],
       "Tags": [
         { "Key": "Faction", "Value": "Snapjaws" },
         { "Key": "Tier", "Value": "1" }

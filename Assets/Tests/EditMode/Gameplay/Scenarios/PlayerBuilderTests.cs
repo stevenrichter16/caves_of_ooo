@@ -65,9 +65,12 @@ namespace CavesOfOoo.Tests.Scenarios
         [Test]
         public void SetHp_SetsAbsoluteBaseValue()
         {
+            // (Value kept below the alpha-tuned blueprint Max of 40 —
+            // SetHp clamps to Max by contract; SetHpMax raises the
+            // ceiling. See AlphaCombatStakesTests for the 40 HP pin.)
             var (ctx, _, player) = BuildContext();
-            ctx.Player.SetHp(100);
-            Assert.AreEqual(100, player.GetStatValue("Hitpoints", -1));
+            ctx.Player.SetHp(30);
+            Assert.AreEqual(30, player.GetStatValue("Hitpoints", -1));
         }
 
         [Test]

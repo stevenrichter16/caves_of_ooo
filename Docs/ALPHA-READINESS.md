@@ -304,3 +304,35 @@ verdicts:
 
 (One section per plan item as it ships — status, tests, divergences,
 commit. Appended in-commit per CLAUDE.md living-doc rules.)
+
+### 1. combat-stakes — SHIPPED
+
+- **SM1 mortal player:** Player Hitpoints 500→40/40 (Objects.json).
+  Pin: `AlphaCombatStakesTests.Player_Hitpoints_AlphaTuned…`.
+- **SM2 tier-scaled XP:** 20 creatures gain XPValue overrides
+  (CaveBat 5 → ChoirTendril 70); ordering pins
+  (StoneGolem > SnapjawHunter, AncientGuardian > StoneGolem, …).
+- **SM3 natural weapons:** 21 new NaturalWeaponFactory entries + 21
+  `NaturalWeapon` blueprint Props — including the four DEAD-CODE
+  MeleeWeapon-part creatures the verifier flagged (Glowmaw 2d4,
+  SleepingTroll 2d6, MimicChest 1d8, AmbushBandit 1d6, converted via
+  props; their inert entity-level MeleeWeapon parts left in place
+  deliberately — several content tests pin them, and they remain
+  harmless dead data). End-to-end pins walk the real Body →
+  RegenerateDefaultEquipment → `_DefaultBehavior` path; counter-check:
+  Villager still resolves the 1d2 default fist.
+- **SM4 venom:** ViperBite `Poisoned,75,1d6,8,0`, ScorpionSting
+  `…50,1d4,6,0`, SpiderBite `…35,1d4,6,0` via the shipped
+  OnHitEffectsRaw spec format (factory gained an onHit param);
+  counter-check: CaveBearClaw carries no spec.
+- **SM5 lethality sweep:** NOT live-verified (Play mode resets the
+  user's scene) — honesty bound: tuning is arithmetic-verified
+  (CaveBear 2d4+Str vs 40 HP + 4d4 tonics is a real fight; base
+  Creature XP 10 preserved for unlisted creatures). Live retune pass
+  on first playtest.
+- **Ripple:** `PlayerBuilderTests.SetHp_SetsAbsoluteBaseValue` used
+  100 HP — only valid under the old 500 Max (SetHp clamps by
+  contract; SetHpMax raises). Re-pinned at 30 with a comment.
+
+Tests: 9 new (7 RED→GREEN reproducing every gap + 2 counter-checks
+green by design).
