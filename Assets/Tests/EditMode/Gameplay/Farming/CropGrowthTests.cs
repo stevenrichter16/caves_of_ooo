@@ -171,8 +171,8 @@ namespace CavesOfOoo.Tests
 
             Assert.IsNull(zone.GetEntityCell(cropEntity),
                 "crop entity removed from the zone at maturity");
-            Assert.AreEqual(1, CountInCell(zone, 5, 5, "CandyCarrot"),
-                "exactly YieldCount(1) produce in the cell");
+            Assert.AreEqual(2, CountInCell(zone, 5, 5, "CandyCarrot"),
+                "exactly YieldCount(2) produce in the cell (ALPHA economy: yield bumped 1->2)");
 
             var recs = DiagQuery.Apply(new DiagQuery.Filter
             { Category = "crop", Kind = "CropMatured", Limit = 5 }).Records;
@@ -249,7 +249,7 @@ namespace CavesOfOoo.Tests
             CropSystem.Factory = _factory;
             Tick(zone, 1);
             Assert.IsNull(zone.GetEntityCell(cropEntity), "converts once factory is back");
-            Assert.AreEqual(1, CountInCell(zone, 5, 5, "CandyCarrot"));
+            Assert.AreEqual(2, CountInCell(zone, 5, 5, "CandyCarrot")); // ALPHA economy: yield 1->2
         }
 
         [Test]

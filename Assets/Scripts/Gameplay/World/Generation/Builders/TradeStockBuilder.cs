@@ -27,7 +27,20 @@ namespace CavesOfOoo.Core
             // existed, so farming went permanently inert after 6 plants.
             // Villager traders are the renewable source (seed Commerce
             // values 3/5 always implied trade circulation).
-            "CandyCarrotSeed", "EmberwheatSeed"
+            "CandyCarrotSeed", "EmberwheatSeed",
+            // ALPHA economy-renewables SM1: crafting inputs were a
+            // one-time dev kit — traders are now the renewable source
+            // for brew reagents and forge components (same rationale as
+            // the seeds above).
+            "BlastcapSpore", "BogSap", "CandyHeartRoot", "EmberFruit",
+            "FireMoss", "FrostLichen", "GlacierSalt", "GlimmerBrine",
+            "LampOil", "MendleafSprig", "SparkRoot", "StoneburrSeed",
+            "VenomGland",
+            "IronSpikeComponent", "LeatherBindingComponent", "OakHaftComponent",
+            "SerratedEdgeComponent", "SteelBladeComponent", "WillowHaftComponent",
+            // SM4 redistribution: two attack grimoires circulate in trade
+            // instead of being free village-chest loot.
+            "KindleGrimoire", "QuenchGrimoire"
         };
 
         private static readonly string[] FouledWellTradeGoods =

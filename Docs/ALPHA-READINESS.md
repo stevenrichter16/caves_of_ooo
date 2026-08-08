@@ -466,3 +466,32 @@ counter-check).
 
 Tests: +5 (missing-content fallback, existing-content stamp
 counter-check, accept-once, complete, rejected-stays-quiet).
+
+### 7. economy-renewables — SHIPPED (P0 set COMPLETE)
+
+- **SM1:** 13 brew reagents + 6 forge components appended to
+  `TradeStockBuilder.TradeGoods` (the SM7d seed-fix pattern) — the
+  brew/forge loops are renewable. Two attack grimoires
+  (Kindle/Quench) circulate in trade.
+- **SM2:** `CreatureCorpse` Commerce 2, `SnapjawCorpse` 3 — kills
+  finally pay. (MimicChest inventory rolls deferred 🔵 — no clean
+  blueprint-inventory-roll pattern exists yet.)
+- **SM3:** `TraderRestockSystem` — on zone entry, villager-faction
+  entities carrying a Drams property get topped to a 100-dram floor
+  every 300+ turns; per-trader stamp lives in int properties
+  (save-safe). Divergence: FLOOR top-up, not blueprint-value restore
+  (that needs factory plumbing through the input layer; the alpha
+  need is "traders can buy again"). Counter-checks: recent stamp
+  no-ops; non-traders untouched.
+- **SM4:** the grimoire chest trimmed from ~10 grimoires to the three
+  utility rites — the ~1000-dram-per-village faucet is closed; attack
+  grimoires now cost money; the rest await the P1 lair rare pool.
+- **SM5:** Player Ego 16 (activates the shipped Qud-exact pricing
+  lever); CandyCarrot/Emberwheat gain Food parts (1d4/2d4 healing);
+  CandyCarrotCrop yields 2 — farming output is edible AND profitable.
+
+Tests: +9. **All seven P0 items are now implemented.** P1/P2 remain
+planned above (frontier-rewards, dv-wiring, skill-mp-economy,
+followers-live, input-correctness, dormant-content,
+persistence-polish) — each with verified evidence and scoped
+sub-milestones, ready for the next session.

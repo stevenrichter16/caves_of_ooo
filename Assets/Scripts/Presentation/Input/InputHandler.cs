@@ -841,6 +841,12 @@ namespace CavesOfOoo.Rendering
             if (SaveGameService.QuickSave())
                 MessageLog.Add("Autosaved.");
 
+            // ALPHA economy-renewables SM3: traders the player sold out
+            // regain buying power over time (floor top-up, save-safe
+            // per-entity turn stamp).
+            TraderRestockSystem.RestockZone(result.NewZone,
+                TurnManager != null ? TurnManager.TickCount : 0);
+
             Debug.Log($"[Zone] Transitioned to {result.NewZone.ZoneID}");
         }
 

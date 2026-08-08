@@ -51,7 +51,7 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(23, loadedPart.MoistureTicks, "remaining moisture survives");
             Assert.AreEqual(20, loadedPart.TicksPerStage, "blueprint params survive");
             Assert.AreEqual("CandyCarrot", loadedPart.YieldBlueprint);
-            Assert.AreEqual(1, loadedPart.YieldCount);
+            Assert.AreEqual(2, loadedPart.YieldCount); // ALPHA economy: yield bumped 1->2
         }
 
         [Test]

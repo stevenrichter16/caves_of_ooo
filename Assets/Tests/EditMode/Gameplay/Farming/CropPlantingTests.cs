@@ -121,7 +121,7 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(20, cc.TicksPerStage);
             Assert.AreEqual(35, wc.TicksPerStage);
             Assert.AreEqual("CandyCarrot", cc.YieldBlueprint);
-            Assert.AreEqual(1, cc.YieldCount);
+            Assert.AreEqual(2, cc.YieldCount); // ALPHA economy: yield bumped 1->2
             Assert.AreEqual("Emberwheat", wc.YieldBlueprint);
             Assert.AreEqual(2, wc.YieldCount);
             Assert.AreEqual(0, cc.GrowthStage, "crops start at seed stage");

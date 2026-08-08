@@ -273,66 +273,12 @@ namespace CavesOfOoo.Core
             if (kindleGrimoire != null)
                 container.AddItem(kindleGrimoire);
 
-            Entity kindleSpell = TryCreateEntity(factory, "KindleGrimoire");
-            if (kindleSpell != null)
-                container.AddItem(kindleSpell);
-
-            Entity quenchSpell = TryCreateEntity(factory, "QuenchGrimoire");
-            if (quenchSpell != null)
-                container.AddItem(quenchSpell);
-
-            Entity conflagrationSpell = TryCreateEntity(factory, "ConflagrationGrimoire");
-            if (conflagrationSpell != null)
-                container.AddItem(conflagrationSpell);
-
-            Entity iceLanceSpell = TryCreateEntity(factory, "IceLanceGrimoire");
-            if (iceLanceSpell != null)
-                container.AddItem(iceLanceSpell);
-
-            Entity acidSpraySpell = TryCreateEntity(factory, "AcidSprayGrimoire");
-            if (acidSpraySpell != null)
-                container.AddItem(acidSpraySpell);
-
-            Entity arcBoltSpell = TryCreateEntity(factory, "ArcBoltGrimoire");
-            if (arcBoltSpell != null)
-                container.AddItem(arcBoltSpell);
-
-            Entity rimeNovaSpell = TryCreateEntity(factory, "RimeNovaGrimoire");
-            if (rimeNovaSpell != null)
-                container.AddItem(rimeNovaSpell);
-
-            Entity thunderclapSpell = TryCreateEntity(factory, "ThunderclapGrimoire");
-            if (thunderclapSpell != null)
-                container.AddItem(thunderclapSpell);
-
-            Entity emberVeinSpell = TryCreateEntity(factory, "EmberVeinGrimoire");
-            if (emberVeinSpell != null)
-                container.AddItem(emberVeinSpell);
-
-            Entity kindleFlameSpell = TryCreateEntity(factory, "KindleFlameGrimoire");
-            if (kindleFlameSpell != null)
-                container.AddItem(kindleFlameSpell);
-
-            Entity dryingBreezeSpell = TryCreateEntity(factory, "DryingBreezeGrimoire");
-            if (dryingBreezeSpell != null)
-                container.AddItem(dryingBreezeSpell);
-
-            Entity hearthwarmSpell = TryCreateEntity(factory, "HearthwarmGrimoire");
-            if (hearthwarmSpell != null)
-                container.AddItem(hearthwarmSpell);
-
-            Entity conjureWaterSpell = TryCreateEntity(factory, "ConjureWaterGrimoire");
-            if (conjureWaterSpell != null)
-                container.AddItem(conjureWaterSpell);
-
-            Entity chillDraftSpell = TryCreateEntity(factory, "ChillDraftGrimoire");
-            if (chillDraftSpell != null)
-                container.AddItem(chillDraftSpell);
-
-            Entity wardGleamSpell = TryCreateEntity(factory, "WardGleamGrimoire");
-            if (wardGleamSpell != null)
-                container.AddItem(wardGleamSpell);
-
+            // ALPHA economy-renewables SM4: the chest used to give away
+            // ~10 grimoires — the game's priciest items — free in EVERY
+            // village (a ~1000-dram faucet). It now holds only the three
+            // utility rites; the attack grimoires circulate in trade
+            // (TradeStockBuilder) with the rest reserved for the lair
+            // rare pool (P1 frontier-rewards).
             return chest;
         }
 

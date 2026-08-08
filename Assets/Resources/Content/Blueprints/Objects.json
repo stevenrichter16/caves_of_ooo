@@ -186,6 +186,7 @@
           { "Key": "ColorString", "Value": "&r" },
           { "Key": "RenderLayer", "Value": "3" }
         ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "2" }] },
         { "Name": "Physics", "Params": [
           { "Key": "Takeable", "Value": "true" },
           { "Key": "Weight", "Value": "10" }
@@ -210,6 +211,7 @@
           { "Key": "ColorString", "Value": "&r" },
           { "Key": "RenderLayer", "Value": "3" }
         ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "3" }] },
         { "Name": "Physics", "Params": [
           { "Key": "Takeable", "Value": "true" },
           { "Key": "Weight", "Value": "10" }
@@ -251,7 +253,8 @@
         { "Name": "Level", "Value": 1, "Min": 1, "Max": 50 },
         { "Name": "Experience", "Value": 0, "Min": 0, "Max": 999999 },
         { "Name": "SP", "Value": 0, "Min": 0, "Max": 999 },
-        { "Name": "DV", "Value": 0, "Min": -50, "Max": 200 }
+        { "Name": "DV", "Value": 0, "Min": -50, "Max": 200 },
+        { "Name": "Ego", "Value": 16 }
       ],
       "Tags": [
         { "Key": "Player", "Value": "" },
@@ -990,7 +993,7 @@
           { "Key": "StageGlyphsRaw", "Value": ".,t" },
           { "Key": "StageColorsRaw", "Value": "&w,&g" },
           { "Key": "YieldBlueprint", "Value": "CandyCarrot" },
-          { "Key": "YieldCount", "Value": "1" }
+          { "Key": "YieldCount", "Value": "2" }
         ]}
       ],
       "Stats": [],
@@ -1033,6 +1036,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Food", "Params": [{ "Key": "Healing", "Value": "1d4" }, { "Key": "Cooking", "Value": "Meal" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "8" }] },
         { "Name": "Examinable", "Params": [
           { "Key": "Description", "Value": "Crisp, sweet, and impossibly orange. Grown, not made." }
@@ -1080,6 +1084,7 @@
           { "Key": "RenderLayer", "Value": "5" }
         ]},
         { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Food", "Params": [{ "Key": "Healing", "Value": "2d4" }, { "Key": "Cooking", "Value": "Meal" }] },
         { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "10" }] },
         { "Name": "Examinable", "Params": [
           { "Key": "Description", "Value": "A sheaf of grain that glows faintly warm, even at night." }
