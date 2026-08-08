@@ -786,7 +786,11 @@ namespace CavesOfOoo.Core
         private void SetupCampfire(Zone zone, EntityFactory factory, Entity campfire,
             List<(int x, int y)> openCells)
         {
-            campfire.AddPart(new CampfirePart());
+            // BIOME-OVERHAUL A4: the Campfire blueprint now carries the
+            // Campfire part itself (so stamp/scenario campfires get the
+            // rest action too) — guard against double-adding here.
+            if (campfire.GetPart<CampfirePart>() == null)
+                campfire.AddPart(new CampfirePart());
 
             Cell cell = zone.GetEntityCell(campfire);
             if (cell == null)

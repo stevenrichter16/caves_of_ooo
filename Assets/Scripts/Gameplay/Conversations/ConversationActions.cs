@@ -666,6 +666,32 @@ namespace CavesOfOoo.Core
                 MessageLog.Add($"You receive {amt} ink.");
             });
 
+            // RestAtInn(costDrams) — BIOME-OVERHAUL A4. The inn's paid
+            // room: charge the listener, run the shared RestSystem rest
+            // (full heal + 60-turn clock advance, hostile-gated), and
+            // add WellRested on top — a real bed beats a campfire nap.
+            // Self-contained refusal paths (no charge on any failure),
+            // same defensive shape as RentItem.
+            Register("RestAtInn", (speaker, listener, arg) =>
+            {
+                if (listener == null) return;
+                if (!int.TryParse(arg, out int cost) || cost < 0) cost = 10;
+
+                int drams = listener.GetIntProperty(TradeSystem.CURRENCY_PROP, 0);
+                if (drams < cost)
+                {
+                    MessageLog.Add($"A room is {cost} drams — you can't cover it.");
+                    return;
+                }
+
+                if (!RestSystem.TryRest(listener, SettlementRuntime.ActiveZone, "inn", out _))
+                    return; // TryRest already messaged + diag'd; no charge.
+
+                listener.SetIntProperty(TradeSystem.CURRENCY_PROP, drams - cost);
+                listener.GetPart<StatusEffectsPart>()?.ForceApplyEffect(new WellRestedEffect());
+                MessageLog.Add($"You pay {cost} drams for the room.");
+            });
+
             // RentItem(blueprintName) — find the first item in the
             // speaker's inventory whose blueprint matches `arg` and
             // route through RentalSystem.TryRent. Silently no-ops if

@@ -1,0 +1,38 @@
+{
+  "Conversations": [
+    {
+      "ID": "Innkeeper_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Warm hearth, dry beds, and no questions about the mud on your boots. A room is ten drams — best sleep in the village, and the world keeps turning while you get it.",
+          "Choices": [
+            {
+              "Text": "[10 drams] Take a room and rest.",
+              "Target": "Start",
+              "Actions": [{ "Key": "RestAtInn", "Value": "10" }]
+            },
+            {
+              "Text": "What do you hear around the hearth?",
+              "Target": "Rumors"
+            },
+            {
+              "Text": "Just passing through.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Rumors",
+          "Text": "Travelers talk. They say the far ring of the world has grown teeth lately — and that the old veins under the caves still carry quartz, salt, and darker ore, if you bring a strong arm and a sack. The scribes buy what the tinkers don't.",
+          "Choices": [
+            {
+              "Text": "Good to know.",
+              "Target": "Start"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

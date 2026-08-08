@@ -143,7 +143,7 @@ middle between "empty biome" and "full village".
 - `Bone` and `GoldCoin` get `CommercePart` (1 each) + `Stacker`; GoldCoin
   stacks become chest treasure.
 
-### A4 — Rest & reprieve mechanics 🔴 (new system — the "points of reprieve" core)
+### A4 — Rest & reprieve mechanics 🔴 (new system — the "points of reprieve" core) — ✅ SHIPPED (see LOG §6)
 
 - **Campfire rest**: "rest" world action on `CampfirePart`. Preconditions:
   no visible hostile (FOV check), not starving/burning. Effect: heal to

@@ -19,6 +19,27 @@ namespace CavesOfOoo.Core
                 return HandleRender(e);
             if (e.ID == "EndTurn")
                 return HandleEndTurn(e);
+
+            // BIOME-OVERHAUL A4: campfires are the field reprieve —
+            // free rest, gated only on nearby hostiles (RestSystem).
+            if (e.ID == "GetInventoryActions")
+            {
+                var actions = e.GetParameter<InventoryActionList>("Actions");
+                actions?.AddAction("Rest", "rest", "RestAtCampfire", 'r', 20);
+                return true;
+            }
+            if (e.ID == "InventoryAction")
+            {
+                if (e.GetStringParameter("Command") != "RestAtCampfire") return true;
+                var actor = e.GetParameter<Entity>("Actor");
+                if (actor == null) return true;
+
+                Zone zone = e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone;
+                RestSystem.TryRest(actor, zone, "campfire", out _);
+                e.Handled = true;
+                return false;
+            }
+
             return true;
         }
 

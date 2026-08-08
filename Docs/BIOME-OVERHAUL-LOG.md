@@ -94,8 +94,8 @@ Legend: ☐ not started · ◐ in progress · ☑ done (commit hash) · ✖ drop
   lair/chest retrofits (see §6 entry)
 - ☑ **A3** harvest/butchery: HarvestablePart, corpse yields, mineral
   veins in the strata tables (see §6 entry)
-- ☐ **A4** rest: campfire rest action, Innkeeper_1 + inn room, shrine
-  donation
+- ☑ **A4** rest: campfire rest action, Innkeeper_1 + inn room, shrine
+  donation (see §6 entry)
 - ☐ **A2** structure stamps: StructureStamp + catalog + LandmarkBuilder
   + reserved-cell handoff
 - ☐ **A-close** adversarial sweep + cold-eye review + phase commit,
@@ -137,6 +137,46 @@ plan cites agent-report line numbers that MUST be re-verified before use.)
 
 (One subsection per completed SM: what shipped, files, tests before→after,
 divergences, self-review findings. Newest at top.)
+
+### A4 — rest & reprieve (2026-08-08)
+
+**Shipped:**
+1. `RestSystem.TryRest(actor, zone, site, out reason)` — the shared
+   rest primitive: full heal + Bleeding cure + `AdvanceClock(60)` (the
+   same pure counter bump world-map travel uses; relapse/restock/crop
+   checks key off TickCount so time genuinely passes). Blocked when a
+   hostile (BrainPart + FactionManager.IsHostile) is within Chebyshev 8
+   of the actor. Diag: `furniture/Rested` and `furniture/RestBlocked`.
+2. Campfire "rest" world action — the Campfire BLUEPRINT now carries
+   its Campfire part (it never did! the runtime attach in
+   VillagePopulationBuilder was the only source — behavioral RED caught
+   the gap); the builder's attach is now double-add-guarded.
+3. Inn: `RestAtInn` conversation action (charge → TryRest → WellRested;
+   every refusal path is charge-free) + `Innkeeper.json` authoring
+   `Innkeeper_1` — closing the dangling ConversationID that left an
+   Innkeeper mute in EVERY village. First real dram sink.
+4. `WellRestedEffect` — +10 Speed, 100 turns, refresh-not-stack.
+5. Shrine donation world action on SanctuaryPart — 5 drams →
+   `StoneskinEffect(1, 150)` (reused, no new effect); the flee-waypoint
+   marker contract untouched. Diag `furniture/Blessed`.
+
+**Files:** NEW `Settlements/RestSystem.cs`,
+`Effects/Concrete/WellRestedEffect.cs`,
+`Resources/Content/Conversations/Innkeeper.json`,
+`Tests/.../BiomeRestTests.cs` (11); MOD `CampfirePart.cs`,
+`SanctuaryPart.cs`, `ConversationActions.cs` (RestAtInn),
+`VillagePopulationBuilder.cs` (guarded attach), `Objects.json`
+(Campfire part in blueprint).
+
+**Tests:** 5822 → 5833 (+11). RED: CS0103 RestSystem ×5 + CS0246
+WellRestedEffect ×3, then a REAL behavioral failure — campfire rest
+no-opped because the blueprint had no Campfire part. Full suite green.
+
+**Self-review:** 🔵 hostile scan is radius-based, not LOS (documented
+in RestSystem docstring — sleeping near a circling snapjaw should be
+risky even through a wall). 🔵 AdvanceClock is a counter bump: duration
+effects do NOT tick during rest (same semantics as world-map travel;
+documented). No 🟡/🔴.
 
 ### A3 — harvest & butchery (2026-08-08)
 
