@@ -1,0 +1,35 @@
+{
+  "Tables": [
+    {
+      "Name": "LairLoot",
+      "PickOne": true,
+      "MinPicks": 1,
+      "MaxPicks": 2,
+      "Entries": [
+        { "Blueprint": "LongSword", "Weight": 3 },
+        { "Blueprint": "LeatherArmor", "Weight": 3 },
+        { "Blueprint": "ChainMail", "Weight": 2 },
+        { "Blueprint": "IronHelmet", "Weight": 2 },
+        { "Blueprint": "HealingTonic", "Weight": 3 }
+      ]
+    },
+    {
+      "Name": "VillageGrimoireChest",
+      "Entries": [
+        { "Blueprint": "PurifyWaterGrimoire" },
+        { "Blueprint": "MendingRiteGrimoire" },
+        { "Blueprint": "KindleRiteGrimoire" }
+      ]
+    },
+    {
+      "Name": "CaveSupplyT1",
+      "Entries": [
+        { "Blueprint": "Torch", "MinCount": 1, "MaxCount": 2 },
+        { "Blueprint": "LampOil", "Chance": 60 },
+        { "Blueprint": "HealingTonic", "Chance": 50 },
+        { "Blueprint": "DriedMeat", "MinCount": 1, "MaxCount": 2, "Chance": 60 },
+        { "Blueprint": "GoldCoin", "MinCount": 3, "MaxCount": 8, "Chance": 80 }
+      ]
+    }
+  ]
+}

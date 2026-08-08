@@ -88,7 +88,7 @@ looted-stays-looted holds and a container economy is safe.
 
 These ship first; every biome pass consumes them.
 
-### A1 — Loot-table system 🔴 (new system)
+### A1 — Loot-table system 🔴 (new system) — ✅ SHIPPED (see LOG §6)
 
 `Assets/Resources/Content/Data/LootTables.json` + `LootTableRegistry` /
 `LootTable.Roll(rng)` in `CavesOfOoo.Data`.

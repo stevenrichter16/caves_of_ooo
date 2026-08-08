@@ -34,13 +34,26 @@ namespace CavesOfOoo.Core
                 PlaceEntity(zone, factory, rng, openCells, blueprint);
             }
 
-            // Scatter 1-2 loot items near center (boss area)
-            int lootCount = rng.Next(1, 3);
-            string[] lootPool = { "LongSword", "LeatherArmor", "ChainMail", "IronHelmet", "HealingTonic" };
-            for (int i = 0; i < lootCount; i++)
+            // Scatter loot near center (boss area). BIOME-OVERHAUL A1:
+            // table-driven ("LairLoot", pick 1-2 weighted) so biome
+            // passes can extend the pool in content instead of code.
+            // Hardcoded fallback kept for contexts that run without the
+            // loot registry (scenario harnesses, older tests).
+            if (CavesOfOoo.Data.LootTableRegistry.Get("LairLoot") != null)
             {
-                string loot = lootPool[rng.Next(lootPool.Length)];
-                PlaceEntity(zone, factory, rng, openCells, loot);
+                var lootRoll = CavesOfOoo.Data.LootTableRegistry.Roll("LairLoot", rng);
+                foreach (var loot in lootRoll)
+                    PlaceEntity(zone, factory, rng, openCells, loot);
+            }
+            else
+            {
+                int lootCount = rng.Next(1, 3);
+                string[] lootPool = { "LongSword", "LeatherArmor", "ChainMail", "IronHelmet", "HealingTonic" };
+                for (int i = 0; i < lootCount; i++)
+                {
+                    string loot = lootPool[rng.Next(lootPool.Length)];
+                    PlaceEntity(zone, factory, rng, openCells, loot);
+                }
             }
 
             // Biome-specific ambush creatures — dormant until disturbed.

@@ -90,8 +90,8 @@ Legend: ☐ not started · ◐ in progress · ☑ done (commit hash) · ✖ drop
   natural weapons for the five 1d2-fist hostiles (see §6 entry)
 - ☑ **A6** economy plumbing: NPC wallets, InkVial, food inheritance
   fixes, GoldCoin/Bone commerce (see §6 entry)
-- ☐ **A1** loot-table system: registry + JSON + ChestStockBuilder +
-  lair retrofit
+- ☑ **A1** loot-table system: registry + JSON + LootStocker +
+  lair/chest retrofits (see §6 entry)
 - ☐ **A3** harvest/butchery: HarvestablePart, corpse yields, MineralVein
 - ☐ **A4** rest: campfire rest action, Innkeeper_1 + inn room, shrine
   donation
@@ -136,6 +136,51 @@ plan cites agent-report line numbers that MUST be re-verified before use.)
 
 (One subsection per completed SM: what shipped, files, tests before→after,
 divergences, self-review findings. Newest at top.)
+
+### A1 — loot-table system (2026-08-08)
+
+**Shipped:**
+1. `LootTableRegistry` (`Assets/Scripts/Data/Loot/LootTables.cs`) —
+   GasRegistry loader shape + StoryletRegistry validation posture.
+   Two roll modes: independent (per-entry Chance + Min..Max count) and
+   weighted pick (`PickOne` + MinPicks..MaxPicks, Weight>0 only).
+   TableRef nesting to any ACYCLIC depth; `Validate(blueprintExists)`
+   flags unknown blueprints/refs, both/neither targets, bad ranges,
+   weightless pick tables, and cycles; `Roll` carries a runtime cycle
+   guard as belt-and-braces.
+2. `LootStocker.StockContainer(container, table, factory, rng)` —
+   fills a ContainerPart, skips unknown blueprints, emits
+   `loot/TableRolled` diag (new "loot" category in DefaultOnCategories).
+3. `Content/Data/Loot/LootTables.json` — `LairLoot` (pick 1-2, the old
+   5-item pool weighted), `VillageGrimoireChest` (the exact three
+   utility rites — player contract preserved and pinned),
+   `CaveSupplyT1` (first supply-crate table, ready for A2 stamps).
+4. Retrofits: LairPopulationBuilder ground drops + village grimoire
+   chest roll from tables when the registry is loaded; both keep their
+   hardcoded arrays as REGISTRY-LESS FALLBACKS (scenario harnesses and
+   older tests run without boot). Both branches are covered: old tests
+   exercise the fallback, new tests the table path.
+5. Boot wiring: GameBootstrap Step 4b loads `Content/Data/Loot/*` after
+   blueprints (so validation can check them) and before zone gen (so
+   builders can roll); every validation problem is a LogError.
+
+**Files:** NEW `Data/Loot/LootTables.cs`, `World/Generation/LootStocker.cs`,
+`Resources/Content/Data/Loot/LootTables.json`,
+`Tests/.../BiomeLootTableTests.cs` (14); MOD `Diag.cs` (+"loot"),
+`LairPopulationBuilder.cs`, `VillagePopulationBuilder.cs`,
+`GameBootstrap.cs`.
+
+**Tests:** 5799 → 5813 (+14). RED: CS0103 ×10. Full suite green.
+
+**Divergences:** plan said "one level of TableRef nesting" — shipped
+acyclic ARBITRARY depth (validation rejects cycles at any depth,
+runtime guards them too). Strictly more useful, no consumer of the
+one-level restriction existed.
+
+**Self-review:** 🔵 shipped-content integrity test
+(`ShippedLootTables_ValidateAgainstShippedBlueprints`) is the standing
+gate for all future table content. 🔵 GoldCoin 3-8 rolls arrive as
+separate entities and stack-merge via ContainerPart.AddItem. No 🟡/🔴.
 
 ### A6 — economy plumbing (2026-08-08)
 

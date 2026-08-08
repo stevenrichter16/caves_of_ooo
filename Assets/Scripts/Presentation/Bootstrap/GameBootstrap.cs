@@ -213,6 +213,32 @@ namespace CavesOfOoo
                 SeedPart.Factory = _factory;
                 CropSystem.Factory = _factory;
 
+                // BIOME-OVERHAUL A1: loot tables load after blueprints so
+                // validation can check every referenced blueprint, and
+                // before zone gen so village/lair builders can roll them.
+                Debug.Log("[Bootstrap] Step 4b/9: Loading loot tables...");
+                {
+                    TextAsset[] lootAssets = Resources.LoadAll<TextAsset>("Content/Data/Loot");
+                    if (lootAssets != null && lootAssets.Length > 0)
+                    {
+                        var lootSources = new System.Collections.Generic.List<string>(lootAssets.Length);
+                        for (int i = 0; i < lootAssets.Length; i++)
+                            lootSources.Add(lootAssets[i].text);
+                        Data.LootTableRegistry.InitializeFromJsonSources(lootSources);
+
+                        var lootProblems = Data.LootTableRegistry.Validate(
+                            bp => _factory.Blueprints.ContainsKey(bp));
+                        foreach (var problem in lootProblems)
+                            Debug.LogError($"[Bootstrap] Loot table problem: {problem}");
+                        Debug.Log($"[Bootstrap] Loaded {Data.LootTableRegistry.Count} loot table(s), {lootProblems.Count} problem(s).");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("[Bootstrap] No loot table files found; builders use hardcoded fallbacks.");
+                        Data.LootTableRegistry.InitializeFromJsonSources(null);
+                    }
+                }
+
                 Debug.Log("[Bootstrap] Step 5/9: Generating starting zone...");
                 bool zoneGenerated = PerformanceDiagnostics.MeasureStartupPhase("GenerateZone", PerformanceMarkers.Bootstrap.GenerateZone, () =>
                 {

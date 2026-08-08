@@ -262,24 +262,32 @@ namespace CavesOfOoo.Core
             var container = chest.GetPart<ContainerPart>();
             if (container == null) return chest;
 
-            Entity grimoire = TryCreateEntity(factory, "PurifyWaterGrimoire");
-            if (grimoire != null)
-                container.AddItem(grimoire);
-
-            Entity mendingGrimoire = TryCreateEntity(factory, "MendingRiteGrimoire");
-            if (mendingGrimoire != null)
-                container.AddItem(mendingGrimoire);
-
-            Entity kindleGrimoire = TryCreateEntity(factory, "KindleRiteGrimoire");
-            if (kindleGrimoire != null)
-                container.AddItem(kindleGrimoire);
-
             // ALPHA economy-renewables SM4: the chest used to give away
             // ~10 grimoires — the game's priciest items — free in EVERY
-            // village (a ~1000-dram faucet). It now holds only the three
-            // utility rites; the attack grimoires circulate in trade
-            // (TradeStockBuilder) with the rest reserved for the lair
-            // rare pool (P1 frontier-rewards).
+            // village (a ~1000-dram faucet). It holds only the three
+            // utility rites; the attack grimoires circulate in trade.
+            // BIOME-OVERHAUL A1: contents now come from the
+            // "VillageGrimoireChest" loot table (same three rites —
+            // player contract pinned in BiomeLootTableTests), with the
+            // hardcoded adds as a registry-less fallback.
+            if (CavesOfOoo.Data.LootTableRegistry.Get("VillageGrimoireChest") != null)
+            {
+                LootStocker.StockContainer(chest, "VillageGrimoireChest", factory, rng);
+            }
+            else
+            {
+                Entity grimoire = TryCreateEntity(factory, "PurifyWaterGrimoire");
+                if (grimoire != null)
+                    container.AddItem(grimoire);
+
+                Entity mendingGrimoire = TryCreateEntity(factory, "MendingRiteGrimoire");
+                if (mendingGrimoire != null)
+                    container.AddItem(mendingGrimoire);
+
+                Entity kindleGrimoire = TryCreateEntity(factory, "KindleRiteGrimoire");
+                if (kindleGrimoire != null)
+                    container.AddItem(kindleGrimoire);
+            }
             return chest;
         }
 
