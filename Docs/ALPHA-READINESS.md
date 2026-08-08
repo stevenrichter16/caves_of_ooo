@@ -441,3 +441,28 @@ null-safety, F8-no-op when off + still-works counter-check when on).
 Tests: +8 (bindings coverage, help volume, boot-summary shape,
 4-item menu, Controls/Quit dispatch, Esc open+close, Tab
 counter-check).
+
+### 6. narrative-feedback — SHIPPED
+
+- **SM1 mute-NPC guard:** `HouseDramaZoneBuilder` only overrides
+  `ConversationID` when `ConversationLoader.Get` finds the drama
+  conversation — the never-authored `Drama_Vex_*` set had been
+  hijacking four NPCs per affected village into total muteness
+  (including a non-functional merchant). They now fall back to their
+  blueprints' working dialogue. Counter-check: existing content still
+  stamps (superseded pin in HouseDramaZoneBuilderNpcTests updated to
+  register content first).
+- **SM2:** failed conversation start logs "{name} has nothing to
+  say." instead of a silent no-op (InputHandler talk path).
+- **SM3 quest lifecycle feedback:** MessageLog lines on StartQuest
+  (new quests only — re-starts stay quiet, pinned), CompleteQuest,
+  and FailQuest; `DisplayNameFor` seam returns the quest id today
+  (QuestData carries no display name — the seam keeps the emit sites
+  stable if one is added).
+- **SM4 Vex authoring: DEFERRED** — with the guard in place the Vex
+  NPCs are no longer broken (they speak blueprint dialogue); the four
+  bespoke conversation trees are content work for a narrative pass,
+  no longer a P0.
+
+Tests: +5 (missing-content fallback, existing-content stamp
+counter-check, accept-once, complete, rejected-stays-quiet).

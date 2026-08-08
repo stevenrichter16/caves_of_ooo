@@ -89,7 +89,13 @@ namespace CavesOfOoo.Storylets
             _quests[state.QuestId] = state;
             // Q6: re-taking a previously-failed quest clears its failed flag.
             _failedQuests.Remove(state.QuestId);
-            if (isNew) FireQuestEvent("QuestStarted", state.QuestId);
+            if (isNew)
+            {
+                FireQuestEvent("QuestStarted", state.QuestId);
+                // ALPHA narrative-feedback SM3: quest lifecycle must be
+                // visible on screen, not just in diag records.
+                MessageLog.Add($"Quest accepted: {DisplayNameFor(state.QuestId)}.");
+            }
         }
 
         public IReadOnlyList<QuestState> GetActiveQuests()
@@ -160,6 +166,16 @@ namespace CavesOfOoo.Storylets
         /// No-op (returns false) on unknown / already-completed quests
         /// so callers don't double-fire.
         /// </summary>
+        /// <summary>Display text for quest lifecycle messages: the
+        /// registry quest's Name when known, else the raw id.</summary>
+        private static string DisplayNameFor(string questId)
+        {
+            // QuestData carries no display name today — the id doubles as
+            // the display string (seam kept so a future Name field slots
+            // in here without touching the emit sites).
+            return questId;
+        }
+
         public bool CompleteQuest(string questId, Entity actor = null)
         {
             if (string.IsNullOrEmpty(questId)) return false;
@@ -170,6 +186,7 @@ namespace CavesOfOoo.Storylets
             int totalStages = quest?.Stages?.Count ?? 0;
 
             MarkQuestCompleted(questId);
+            MessageLog.Add($"Quest complete: {DisplayNameFor(questId)}.");
 
             if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
             {
@@ -210,6 +227,7 @@ namespace CavesOfOoo.Storylets
             { EmitQuestRejected("FailQuest", "quest_not_active", questId, actor: actor); return false; }
             RemoveActiveQuest(questId);
             _failedQuests.Add(questId); // Q6: track the failure
+            MessageLog.Add($"Quest failed: {DisplayNameFor(questId)}.");
             if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
             {
                 CavesOfOoo.Diagnostics.Diag.Record(

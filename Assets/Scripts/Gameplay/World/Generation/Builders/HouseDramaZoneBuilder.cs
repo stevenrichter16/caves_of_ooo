@@ -92,7 +92,17 @@ namespace CavesOfOoo.Core
 
                 var conv = npc.GetPart<ConversationPart>();
                 if (conv != null)
-                    conv.ConversationID = $"Drama_{_dramaId}_{role.Role}";
+                {
+                    // ALPHA narrative-feedback SM1: only hijack the NPC's
+                    // dialogue when the drama conversation actually EXISTS.
+                    // Drama_Vex_* was never authored, which left four NPCs
+                    // per affected village completely mute (including a
+                    // non-functional merchant). Missing content now falls
+                    // back to the blueprint's working dialogue.
+                    string dramaConvId = $"Drama_{_dramaId}_{role.Role}";
+                    if (ConversationLoader.Get(dramaConvId) != null)
+                        conv.ConversationID = dramaConvId;
+                }
             }
 
             Debug.Log($"[HouseDramaZoneBuilder] Seeded drama '{_dramaId}' into zone '{zone.ZoneID}'.");

@@ -3227,7 +3227,14 @@ namespace CavesOfOoo.Rendering
             {
                 // Start conversation
                 bool started = ConversationManager.StartConversation(talkTarget, PlayerEntity);
-                if (!started) return;
+                if (!started)
+                {
+                    // ALPHA narrative-feedback SM2: a failed conversation
+                    // start used to be a silent no-op — indistinguishable
+                    // from a dead key.
+                    MessageLog.Add($"{talkTarget.GetDisplayName()} has nothing to say.");
+                    return;
+                }
                 OpenDialogue();
                 return;
             }

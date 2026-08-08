@@ -64,26 +64,44 @@ namespace CavesOfOoo.Tests
         [Test]
         public void BuildZone_SilencedHelperRole_StampsConversationId()
         {
-            var drama = new HouseDramaData
+            // (Superseded pin, ALPHA narrative-feedback: stamping is now
+            // conditional on the drama conversation EXISTING — the old
+            // unconditional stamp muted every NPC whose Drama_* content
+            // was never authored. This pin's intent — existing content
+            // stamps — now registers the conversation first. The
+            // missing-content fallback is pinned in
+            // AlphaNarrativeFeedbackTests.)
+            ConversationLoader.Register(new ConversationData
             {
-                ID = DramaId,
-                NpcRoles = new List<NpcRoleData>
+                ID = $"Drama_{DramaId}_SilencedHelper",
+            });
+            try
+            {
+                var drama = new HouseDramaData
                 {
-                    new NpcRoleData { Id = "scribe1", Role = "SilencedHelper", Alive = true }
-                }
-            };
-            HouseDramaLoader.Register(drama);
+                    ID = DramaId,
+                    NpcRoles = new List<NpcRoleData>
+                    {
+                        new NpcRoleData { Id = "scribe1", Role = "SilencedHelper", Alive = true }
+                    }
+                };
+                HouseDramaLoader.Register(drama);
 
-            var zone = new Zone("T");
-            new HouseDramaZoneBuilder(DramaId)
-                .BuildZone(zone, _factory, new System.Random(42));
+                var zone = new Zone("T");
+                new HouseDramaZoneBuilder(DramaId)
+                    .BuildZone(zone, _factory, new System.Random(42));
 
-            Entity spawnedNpc = FindDramaNpc(zone);
-            Assert.IsNotNull(spawnedNpc, "Expected a drama NPC to be placed in the zone.");
+                Entity spawnedNpc = FindDramaNpc(zone);
+                Assert.IsNotNull(spawnedNpc, "Expected a drama NPC to be placed in the zone.");
 
-            var conv = spawnedNpc.GetPart<ConversationPart>();
-            Assert.IsNotNull(conv, "Spawned NPC should have ConversationPart.");
-            Assert.AreEqual($"Drama_{DramaId}_SilencedHelper", conv.ConversationID);
+                var conv = spawnedNpc.GetPart<ConversationPart>();
+                Assert.IsNotNull(conv, "Spawned NPC should have ConversationPart.");
+                Assert.AreEqual($"Drama_{DramaId}_SilencedHelper", conv.ConversationID);
+            }
+            finally
+            {
+                ConversationLoader.Reset();
+            }
         }
 
         // ── NamedAntagonist → Merchant blueprint ──────────────────────────────
