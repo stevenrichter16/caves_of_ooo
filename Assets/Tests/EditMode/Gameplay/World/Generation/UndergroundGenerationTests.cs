@@ -191,7 +191,10 @@ namespace CavesOfOoo.Tests
               ],
               ""Stats"": [],
               ""Tags"": [{ ""Key"": ""Solid"", ""Value"": """" }]
-            }
+            },
+            { ""Name"": ""GlowQuartzVein"", ""Inherits"": ""Stalagmite"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""glowquartz vein"" }, { ""Key"": ""RenderString"", ""Value"": ""*"" }]}] },
+            { ""Name"": ""PaleSaltVein"", ""Inherits"": ""Stalagmite"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""pale salt vein"" }, { ""Key"": ""RenderString"", ""Value"": ""*"" }]}] },
+            { ""Name"": ""ChoirIronVein"", ""Inherits"": ""Stalagmite"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""choir iron vein"" }, { ""Key"": ""RenderString"", ""Value"": ""*"" }]}] }
           ]
         }";
 

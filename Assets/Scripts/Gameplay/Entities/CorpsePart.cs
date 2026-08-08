@@ -81,6 +81,24 @@ namespace CavesOfOoo.Core
         public int BuildCorpseChance = 100;
 
         // ====================================================================
+        // BIOME-OVERHAUL A3 — butchery config. Rides the CREATURE's Corpse
+        // part (per-creature blueprint params) and transfers to the spawned
+        // corpse as a HarvestablePart, so ~40 creatures can share the
+        // CreatureCorpse blueprint instead of each needing its own.
+        // ====================================================================
+
+        /// <summary>Blueprint yielded when the corpse is harvested.
+        /// Null/empty = the corpse is not butcherable.</summary>
+        public string HarvestBlueprint = null;
+
+        /// <summary>Harvest count rolled uniformly in [HarvestMin, HarvestMax].</summary>
+        public int HarvestMin = 1;
+        public int HarvestMax = 1;
+
+        /// <summary>Percent chance the harvest yields anything (0-100).</summary>
+        public int HarvestChance = 100;
+
+        // ====================================================================
         // Test injection hooks.
         // ====================================================================
 
@@ -207,6 +225,21 @@ namespace CavesOfOoo.Core
                 && render.DisplayName == "corpse")
             {
                 render.DisplayName = $"{creatureName} corpse";
+            }
+
+            // BIOME-OVERHAUL A3: attach the butchery surface when this
+            // creature declares a yield. Runtime-attached (not a corpse-
+            // blueprint part) so the shared CreatureCorpse blueprint can
+            // carry per-species yields.
+            if (!string.IsNullOrEmpty(HarvestBlueprint))
+            {
+                corpse.AddPart(new HarvestablePart
+                {
+                    YieldBlueprint = HarvestBlueprint,
+                    YieldMin = HarvestMin,
+                    YieldMax = HarvestMax,
+                    YieldChance = HarvestChance,
+                });
             }
 
             zone.AddEntity(corpse, cell.X, cell.Y);

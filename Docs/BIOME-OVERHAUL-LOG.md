@@ -92,7 +92,8 @@ Legend: ☐ not started · ◐ in progress · ☑ done (commit hash) · ✖ drop
   fixes, GoldCoin/Bone commerce (see §6 entry)
 - ☑ **A1** loot-table system: registry + JSON + LootStocker +
   lair/chest retrofits (see §6 entry)
-- ☐ **A3** harvest/butchery: HarvestablePart, corpse yields, MineralVein
+- ☑ **A3** harvest/butchery: HarvestablePart, corpse yields, mineral
+  veins in the strata tables (see §6 entry)
 - ☐ **A4** rest: campfire rest action, Innkeeper_1 + inn room, shrine
   donation
 - ☐ **A2** structure stamps: StructureStamp + catalog + LandmarkBuilder
@@ -136,6 +137,50 @@ plan cites agent-report line numbers that MUST be re-verified before use.)
 
 (One subsection per completed SM: what shipped, files, tests before→after,
 divergences, self-review findings. Newest at top.)
+
+### A3 — harvest & butchery (2026-08-08)
+
+**Shipped:**
+1. `HarvestablePart` (`Items/HarvestablePart.cs`) — "harvest" action
+   (TonicPart/SeedPart event shape, works on ground targets AND carried
+   items). Yield rolls [YieldMin,YieldMax] at YieldChance into the
+   actor's inventory; the target is CONSUMED even on a failed roll (no
+   re-roll farming); zone removal marks the cell dirty; `loot/Harvested`
+   diag on every path. Static `Factory` per codebase convention, wired
+   in GameBootstrap.
+2. `CorpsePart` gained Harvest{Blueprint,Min,Max,Chance} — butchery
+   config rides the CREATURE blueprint and transfers to the spawned
+   corpse as a runtime-attached HarvestablePart, so ~40 species share
+   CreatureCorpse instead of each needing a corpse blueprint.
+3. Butchery table (Objects.json Corpse params): Viper/GiantSpider/
+   Scorpion→VenomGland 75% · CaveBear/SandWurm/JungleApe→RawMeat 2-3 ·
+   CaveSlime→BogSap · Glowmaw→EmberFruit · StoneGolem→GlowQuartz 35% ·
+   SkeletalSentry/CharredHusk→Bone 1-2. First non-purchase reagent
+   sources in the game.
+4. Mineral veins: GlowQuartzVein/PaleSaltVein/ChoirIronVein blueprints
+   (solid, `*`, harvest 1-2 of their mineral) + UndergroundTier entries
+   by strata band (quartz t1+, salt t2+, choir iron t3+). First spawn
+   sources for the three dead tinker-infusion minerals.
+
+**Files:** NEW `Items/HarvestablePart.cs`, `Tests/.../BiomeHarvestTests.cs`
+(9); MOD `Entities/CorpsePart.cs`, `Objects.json` (3 veins + 11 Corpse
+configs), `PopulationTable.cs` (vein entries), `GameBootstrap.cs`
+(factory wire), `UndergroundGenerationTests.cs` (3 fixture stubs — §7
+gotcha applies).
+
+**Tests:** 5813 → 5822 (+9). RED: CS0246 HarvestablePart + CS1061
+CorpsePart.Harvest*. Full suite green.
+
+**Gotcha hit:** GlowQuartz is Objects.json's FINAL chunk (carries the
+file's closing brackets) — the first edit script inserted after it and
+json.loads caught the corruption BEFORE write (the validate-then-write
+script shape is load-bearing; keep it). Veins inserted before PaleSalt
+instead.
+
+**Self-review:** 🔵 harvest-consumes-even-on-failure is a design choice
+(documented in the part docstring + pinned by counter-check). 🔵 A5's
+AllPopulationTables integrity test auto-covers the new vein entries.
+No 🟡/🔴.
 
 ### A1 — loot-table system (2026-08-08)
 

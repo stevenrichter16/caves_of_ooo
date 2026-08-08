@@ -121,7 +121,7 @@ middle between "empty biome" and "full village".
   in the hermit's bedroom (pass a reserved-cell set through the pipeline).
 - Diag: `category=worldgen, kind=StructurePlaced` {stamp, zone, anchor}.
 
-### A3 — Harvest & butchery 🟡 (small system, big economy unlock)
+### A3 — Harvest & butchery 🟡 (small system, big economy unlock) — ✅ SHIPPED (see LOG §6)
 
 - `HarvestablePart { YieldBlueprint, YieldCount, YieldChance }` +
   "harvest" world action (via `GetInventoryActions`, same pattern as

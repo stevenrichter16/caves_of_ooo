@@ -432,6 +432,20 @@ namespace CavesOfOoo.Data
                 table.Entries.Add(new PopulationEntry { BlueprintName = "LeatherArmor", Weight = 1, MinCount = 0, MaxCount = 1 });
             }
 
+            // BIOME-OVERHAUL A3: harvestable mineral veins by strata band
+            // (quartz from the first shaft, salt in the limestone band,
+            // choir iron from shale down). The only spawn source for the
+            // three tinker-infusion minerals.
+            table.Entries.Add(new PopulationEntry { BlueprintName = "GlowQuartzVein", Weight = 1, MinCount = 0, MaxCount = 1 });
+            if (tier >= 2)
+            {
+                table.Entries.Add(new PopulationEntry { BlueprintName = "PaleSaltVein", Weight = 1, MinCount = 0, MaxCount = 1 });
+            }
+            if (tier >= 3)
+            {
+                table.Entries.Add(new PopulationEntry { BlueprintName = "ChoirIronVein", Weight = 1, MinCount = 0, MaxCount = 1 });
+            }
+
             return table;
         }
     }

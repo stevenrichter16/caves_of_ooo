@@ -212,6 +212,7 @@ namespace CavesOfOoo
                 ForgePart.Factory = _factory;
                 SeedPart.Factory = _factory;
                 CropSystem.Factory = _factory;
+                HarvestablePart.Factory = _factory;
 
                 // BIOME-OVERHAUL A1: loot tables load after blueprints so
                 // validation can check every referenced blueprint, and
