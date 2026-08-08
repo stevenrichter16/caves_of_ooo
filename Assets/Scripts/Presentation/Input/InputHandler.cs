@@ -821,6 +821,13 @@ namespace CavesOfOoo.Rendering
             if (ScreenFade != null)
                 ScreenFade.FadeFromBlack(0.3f);
 
+            // ALPHA save-lifeline SM4: autosave on every successful zone
+            // transition (this method only runs for successful results —
+            // both call sites gate on the transition succeeding). Death
+            // is now recoverable even for a player who never learned F5.
+            if (SaveGameService.QuickSave())
+                MessageLog.Add("Autosaved.");
+
             Debug.Log($"[Zone] Transitioned to {result.NewZone.ZoneID}");
         }
 

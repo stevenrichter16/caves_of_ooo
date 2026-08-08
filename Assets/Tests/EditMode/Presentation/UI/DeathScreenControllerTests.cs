@@ -216,9 +216,48 @@ namespace CavesOfOoo.Tests.EditMode.Presentation.UI
         {
             public int QuickLoadCalls;
             public bool HasQuickSaveResult;
+            public bool QuickLoadResult = true;
             public bool QuickSave() => true;
-            public bool QuickLoad() { QuickLoadCalls++; return true; }
+            public bool QuickLoad() { QuickLoadCalls++; return QuickLoadResult; }
             public bool HasQuickSave() => HasQuickSaveResult;
+        }
+
+        // ════════════════════════════════════════════════════════
+        //   ALPHA-READINESS save-lifeline SM1: a FAILED load (real
+        //   corruption now surfaces as a false return, not an
+        //   unhandled exception) must tell the player and leave the
+        //   modal active so [R] still works.
+        // ════════════════════════════════════════════════════════
+
+        [Test]
+        public void Load_Failure_ReportsCorruption_AndStaysActive()
+        {
+            _service.HasQuickSaveResult = true;
+            _service.QuickLoadResult = false;
+            _controller.Activate(_log.Add);
+            _input.PressKey(_controller.LoadKey);
+
+            _controller.Tick(_input, _service, _restarter, _log.Add);
+
+            Assert.IsTrue(_controller.IsActive,
+                "a failed load must keep the modal active so [R] remains available");
+            Assert.IsTrue(_log.Exists(l => l.Contains("corrupted")),
+                "the player must be told the load failed instead of a silent no-op");
+        }
+
+        [Test]
+        public void Load_Success_Deactivates_WithNoFailureLine()
+        {
+            // Counter-check: the success path stays clean.
+            _service.HasQuickSaveResult = true;
+            _service.QuickLoadResult = true;
+            _controller.Activate(_log.Add);
+            _input.PressKey(_controller.LoadKey);
+
+            _controller.Tick(_input, _service, _restarter, _log.Add);
+
+            Assert.IsFalse(_controller.IsActive);
+            Assert.IsFalse(_log.Exists(l => l.Contains("corrupted")));
         }
 
         private sealed class FakeSceneRestarter : ISceneRestarter

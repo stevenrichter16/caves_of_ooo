@@ -77,6 +77,9 @@ namespace CavesOfOoo
             using (PerformanceMarkers.Bootstrap.DoStart.Auto())
             {
                 AsciiFxBus.Clear();
+                // ALPHA save-lifeline SM2: a restarted run must not open
+                // with the previous life's "You are dead" spam.
+                MessageLog.Clear();
 
                 Debug.Log("[Bootstrap] Step 1/9: Initializing factions...");
                 PerformanceDiagnostics.MeasureStartupPhase("LoadFactions", PerformanceMarkers.Bootstrap.LoadFactions, () =>
@@ -581,6 +584,13 @@ namespace CavesOfOoo
                 // Phase 4c: if a save exists, offer the boot menu so the player
                 // can choose between continuing from the save or starting fresh
                 // with the world we just generated. No-op when no save exists.
+                // ALPHA save-lifeline SM3: point the active game ID at the
+                // newest existing save BEFORE asking whether one exists —
+                // every boot previously minted a fresh GUID game ID, so
+                // every prior save was invisible (SetActiveGameID had zero
+                // production callers) and Continue/QuickLoad dead-ended.
+                SaveGameService.ResolveActiveGameIDOnBoot();
+
                 var inputHandlerForBoot = GetComponent<InputHandler>();
                 if (inputHandlerForBoot != null)
                 {

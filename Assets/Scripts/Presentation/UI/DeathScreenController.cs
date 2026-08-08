@@ -74,7 +74,15 @@ namespace CavesOfOoo.Rendering
                     return;  // stay active so the player can pick Restart
                 }
 
-                service.QuickLoad();
+                // ALPHA save-lifeline SM1: a failed load (corrupted
+                // file surfaces as false since LoadSlot's try/catch)
+                // must tell the player and keep the modal alive so [R]
+                // still works.
+                if (!service.QuickLoad())
+                {
+                    log?.Invoke("Load failed — save may be corrupted. Press [R] to restart.");
+                    return;
+                }
                 IsActive = false;
                 return;
             }

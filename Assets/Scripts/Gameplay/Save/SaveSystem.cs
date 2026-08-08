@@ -422,6 +422,78 @@ namespace CavesOfOoo.Core
                 _activeGameID = gameID;
         }
 
+        /// <summary>PlayerPrefs key holding the last game ID a save was
+        /// written under — the fast path for boot-time rediscovery.</summary>
+        public const string LastGameIDPrefsKey = "CavesOfOoo.LastGameID";
+
+        /// <summary>
+        /// ALPHA save-lifeline: scan a saves root for the game directory
+        /// whose Quick save is newest. Every boot used to mint a fresh
+        /// GUID game ID and nothing ever called SetActiveGameID, so
+        /// every save was orphaned after an app restart. Returns the
+        /// directory name (game ID) or null when nothing loadable
+        /// exists. Directories with metadata but no actual .sav.gz
+        /// (crash mid-save) and malformed metadata are skipped.
+        /// </summary>
+        public static string DiscoverLatestGameID(string savesRoot)
+        {
+            if (string.IsNullOrEmpty(savesRoot) || !Directory.Exists(savesRoot))
+                return null;
+
+            string bestID = null;
+            DateTime bestStamp = DateTime.MinValue;
+            foreach (string dir in Directory.GetDirectories(savesRoot))
+            {
+                string meta = Path.Combine(dir, QuickName + ".json");
+                string save = Path.Combine(dir, QuickName + ".sav.gz");
+                if (!File.Exists(meta) || !File.Exists(save))
+                    continue;
+                try
+                {
+                    var info = JsonUtility.FromJson<SaveGameInfo>(File.ReadAllText(meta));
+                    if (info == null) continue;
+                    DateTime stamp;
+                    if (!DateTime.TryParse(info.SaveTimestampUtc, null,
+                        System.Globalization.DateTimeStyles.RoundtripKind, out stamp))
+                        continue;
+                    if (stamp > bestStamp)
+                    {
+                        bestStamp = stamp;
+                        bestID = Path.GetFileName(dir);
+                    }
+                }
+                catch
+                {
+                    // Malformed metadata must not break discovery.
+                }
+            }
+            return bestID;
+        }
+
+        /// <summary>
+        /// Boot-time wiring: point the active game ID at the most recent
+        /// save so Continue/QuickLoad find it. PlayerPrefs fast path
+        /// first (written on every save), full directory scan as the
+        /// fallback (prefs cleared, dir deleted, first run after this
+        /// fix). No-op when no save exists anywhere.
+        /// </summary>
+        public static void ResolveActiveGameIDOnBoot()
+        {
+            string root = Path.Combine(Application.persistentDataPath, "Saves");
+
+            string pref = PlayerPrefs.GetString(LastGameIDPrefsKey, null);
+            if (!string.IsNullOrEmpty(pref)
+                && File.Exists(Path.Combine(root, pref, QuickName + ".sav.gz")))
+            {
+                SetActiveGameID(pref);
+                return;
+            }
+
+            string discovered = DiscoverLatestGameID(root);
+            if (!string.IsNullOrEmpty(discovered))
+                SetActiveGameID(discovered);
+        }
+
         public static bool SavePrimary() => SaveSlot(PrimaryName);
         public static bool QuickSave() => SaveSlot(QuickName);
         public static bool LoadPrimary() => LoadSlot(PrimaryName);
@@ -464,6 +536,11 @@ namespace CavesOfOoo.Core
             });
 
             WriteTextAtomically(metadataPath, JsonUtility.ToJson(state.CreateInfo(), prettyPrint: true));
+
+            // ALPHA save-lifeline: remember where we saved so the next
+            // boot rediscovers this game without a directory scan.
+            PlayerPrefs.SetString(LastGameIDPrefsKey, state.GameID);
+            PlayerPrefs.Save();
             return true;
         }
 
@@ -476,11 +553,28 @@ namespace CavesOfOoo.Core
             if (!File.Exists(path))
                 return false;
 
-            EntityFactory factory = _captureCurrent?.Invoke()?.ZoneManager?.Factory;
-            GameSessionState state = LoadState(path, factory);
-            _activeGameID = string.IsNullOrEmpty(state.GameID) ? _activeGameID : state.GameID;
-            _applyLoaded(state);
-            return true;
+            // ALPHA save-lifeline (verifier finding): without this
+            // try/catch, a genuinely corrupted save file was an UNHANDLED
+            // exception inside InputHandler.Update — the "save may be
+            // corrupted" messaging downstream was unreachable. A failed
+            // deserialize now reports false so callers can tell the
+            // player. (A failure inside _applyLoaded can leave partially
+            // applied state; that is still strictly better than an
+            // exception escaping the input loop, and the death screen
+            // keeps [R] available.)
+            try
+            {
+                EntityFactory factory = _captureCurrent?.Invoke()?.ZoneManager?.Factory;
+                GameSessionState state = LoadState(path, factory);
+                _activeGameID = string.IsNullOrEmpty(state.GameID) ? _activeGameID : state.GameID;
+                _applyLoaded(state);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[Save] Load of slot '{name}' failed: {ex.Message}");
+                return false;
+            }
         }
 
         public static GameSessionState LoadState(string path, EntityFactory factory)

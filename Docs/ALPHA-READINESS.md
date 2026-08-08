@@ -356,3 +356,37 @@ green by design).
 
 Tests: 4 new (3 RED→GREEN incl. the exact neutrality repro + 1
 friendly-roster counter-check).
+
+### 3. save-lifeline — SHIPPED
+
+- **SM3 boot discovery:** `SaveGameService.DiscoverLatestGameID(root)`
+  (pure, test-driven scan of `Saves/*/Quick.json` newest
+  `SaveTimestampUtc`, skipping ghost dirs and malformed metadata) +
+  `ResolveActiveGameIDOnBoot()` (PlayerPrefs fast path written on
+  every save, scan fallback) called in `DoStart` BEFORE the boot-menu
+  `HasQuickSave` gate. The per-boot GUID orphaning is closed: old
+  saves are rediscovered across app restarts.
+- **SM1 corruption safety [CORRECTED per verifier]:** `LoadSlot` wraps
+  deserialize+apply in try/catch → LogError + `false` (previously a
+  corrupted file was an UNHANDLED exception in `InputHandler.Update`
+  and every "load failed" message downstream was unreachable). Pinned
+  with a real garbage `.sav.gz` on disk. Death screen consumes
+  QuickLoad's bool: failure logs "Load failed — save may be
+  corrupted. Press [R] to restart." and keeps the modal alive.
+- **SM2:** `MessageLog.Clear()` at the top of `DoStart` — a restarted
+  run no longer opens with the previous life's death spam.
+- **SM4 autosave:** `QuickSave()` + "Autosaved." at the end of
+  `HandleZoneTransition` (runs only for successful transitions — both
+  call sites gate on the result). Death is recoverable for a player
+  who never learned F5. SM5's separate autosave slot was collapsed:
+  autosave writes the SAME Quick slot the death screen already loads.
+- **Honesty bounds:** the restart-flow MessageLog clear and the live
+  autosave cadence are play-path (MonoBehaviour boot / zone walk) —
+  decision logic and failure paths are unit-pinned; a live
+  die-without-F5 → [L] restore walk is the playtest check.
+
+Tests: +7 (4 discovery incl. malformed-metadata tolerance, 1
+corruption round-trip on disk, 2 death-screen failure/success pins).
+Sequencing note: the two death-screen pins compiled alongside the
+production edit (a fixture API mismatch blocked their isolated RED
+run); the discovery/corruption tests were strict compile-RED first.
