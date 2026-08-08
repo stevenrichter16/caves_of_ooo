@@ -96,10 +96,11 @@ Legend: ☐ not started · ◐ in progress · ☑ done (commit hash) · ✖ drop
   veins in the strata tables (see §6 entry)
 - ☑ **A4** rest: campfire rest action, Innkeeper_1 + inn room, shrine
   donation (see §6 entry)
-- ☐ **A2** structure stamps: StructureStamp + catalog + LandmarkBuilder
-  + reserved-cell handoff
-- ☐ **A-close** adversarial sweep + cold-eye review + phase commit,
-  then STOP for user checkpoint
+- ☑ **A2** structure stamps: StructureStamp + catalog + LandmarkBuilder
+  + reserved-cell handoff (see §6 entry)
+- ☑ **A-close** adversarial sweep (10 tests, 0 bugs — §8.1 container
+  round-trip CONFIRMED safe) + phase commit. **PHASE A COMPLETE —
+  awaiting user checkpoint before Phase B.**
 
 (Order within phase = smallest blast radius first: A5→A6→A1→A3→A4→A2.)
 
@@ -137,6 +138,53 @@ plan cites agent-report line numbers that MUST be re-verified before use.)
 
 (One subsection per completed SM: what shipped, files, tests before→after,
 divergences, self-review findings. Newest at top.)
+
+### A2 + A-close — structure stamps & phase adversarial sweep (2026-08-08)
+
+**A2 shipped:**
+1. `StructureStamp` — ASCII rows + legend (blueprint / `chest:Table` /
+   `spawn:Blueprint` / "" for claimed gaps); ragged rows supported.
+2. `StampCatalog` — one proving stamp per biome: Cave ProspectorsCache
+   (crate + GlowQuartzVein), Desert BanditDugout (2 AmbushBandits +
+   cache, tier 2+), Jungle HuntersBlind (VenomDagger chance — dead
+   unique activated), Ruins **CollapsedLibrary** — the ONLY circulation
+   source for the six no-source utility grimoires (LibraryShelfT1,
+   pick 1-2). Biome passes C-F grow these lists.
+3. `LandmarkBuilder` (priority 3800, wired into all 4 biome pipelines
+   with tier): ≤2 stamps/zone, per-stamp Chance + MinTier, 80-attempt
+   all-passable anchor search, footprint claimed in NEW
+   `Zone.GenReservedCells` (runtime-only, not serialized) which
+   `PopulationBuilder` now excludes — no random spawns inside authored
+   interiors. Stamps naming unknown blueprints are skipped WHOLE
+   (minimal test fixtures stay safe); the shipped catalog has its own
+   content-integrity gate. Diag: `worldgen/StructurePlaced`.
+4. +3 loot tables: BanditCacheT2, HunterCacheT1, LibraryShelfT1.
+
+**A-close adversarial sweep** (`BiomePhaseAAdversarialTests.cs`, 10):
+surfaces probed = save/load reach (**§8.1 CONFIRMED: stocked-chest
+contents round-trip exactly via RoundTripEntityWithBodies; runtime-
+attached HarvestableParts serialize**), boundary inputs (null
+container/table/factory, inventory-less harvester, null-zone rest,
+zone-sized stamp), parser garbage (malformed loot JSON, anonymous
+tables), stacking (1-stack vial never lingers at 0), RNG boundaries
+(MinPicks > entry count stays bounded). **0 bugs found** — honesty
+bound: bounded by imagined bug classes; value = regression pins.
+
+**Tests:** 5833 → 5853 (+10 A2, +10 adversarial). RED for A2: CS0246
+StructureStamp ×2. Full suite green.
+
+**Cold-eye (4-question pass, all six SMs read together):** Q1 symmetry
+— InkVial/Harvestable/Campfire/Sanctuary all follow the same
+GetInventoryActions/InventoryAction shape as TonicPart/SeedPart ✓.
+Q2 cross-feature — all four new diag kinds carry actor + payload with
+consistent casing; "loot"/"worldgen" categories registered ✓.
+Q3 counter-check completeness — every boolean branch has a pinned twin
+(chance-0, tier-gate, no-wallet, refusal-no-charge, distant-hostile,
+plain-corpse) ✓. Q4 doc-vs-impl — plan §2 A-sections all stamped
+SHIPPED with divergences logged (boss-XP ladder, acyclic nesting,
+WellRested duration wording) ✓. Findings: 0 new; the two compressed-RED
+notes (A6, A3 data pins) remain documented process debts, not code
+defects.
 
 ### A4 — rest & reprieve (2026-08-08)
 

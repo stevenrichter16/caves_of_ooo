@@ -6,29 +6,156 @@
       "MinPicks": 1,
       "MaxPicks": 2,
       "Entries": [
-        { "Blueprint": "LongSword", "Weight": 3 },
-        { "Blueprint": "LeatherArmor", "Weight": 3 },
-        { "Blueprint": "ChainMail", "Weight": 2 },
-        { "Blueprint": "IronHelmet", "Weight": 2 },
-        { "Blueprint": "HealingTonic", "Weight": 3 }
+        {
+          "Blueprint": "LongSword",
+          "Weight": 3
+        },
+        {
+          "Blueprint": "LeatherArmor",
+          "Weight": 3
+        },
+        {
+          "Blueprint": "ChainMail",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "IronHelmet",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "HealingTonic",
+          "Weight": 3
+        }
       ]
     },
     {
       "Name": "VillageGrimoireChest",
       "Entries": [
-        { "Blueprint": "PurifyWaterGrimoire" },
-        { "Blueprint": "MendingRiteGrimoire" },
-        { "Blueprint": "KindleRiteGrimoire" }
+        {
+          "Blueprint": "PurifyWaterGrimoire"
+        },
+        {
+          "Blueprint": "MendingRiteGrimoire"
+        },
+        {
+          "Blueprint": "KindleRiteGrimoire"
+        }
       ]
     },
     {
       "Name": "CaveSupplyT1",
       "Entries": [
-        { "Blueprint": "Torch", "MinCount": 1, "MaxCount": 2 },
-        { "Blueprint": "LampOil", "Chance": 60 },
-        { "Blueprint": "HealingTonic", "Chance": 50 },
-        { "Blueprint": "DriedMeat", "MinCount": 1, "MaxCount": 2, "Chance": 60 },
-        { "Blueprint": "GoldCoin", "MinCount": 3, "MaxCount": 8, "Chance": 80 }
+        {
+          "Blueprint": "Torch",
+          "MinCount": 1,
+          "MaxCount": 2
+        },
+        {
+          "Blueprint": "LampOil",
+          "Chance": 60
+        },
+        {
+          "Blueprint": "HealingTonic",
+          "Chance": 50
+        },
+        {
+          "Blueprint": "DriedMeat",
+          "MinCount": 1,
+          "MaxCount": 2,
+          "Chance": 60
+        },
+        {
+          "Blueprint": "GoldCoin",
+          "MinCount": 3,
+          "MaxCount": 8,
+          "Chance": 80
+        }
+      ]
+    },
+    {
+      "Name": "BanditCacheT2",
+      "Entries": [
+        {
+          "Blueprint": "GoldCoin",
+          "MinCount": 5,
+          "MaxCount": 12
+        },
+        {
+          "Blueprint": "ShortSword",
+          "Chance": 50
+        },
+        {
+          "Blueprint": "SpeedTonic",
+          "Chance": 40
+        },
+        {
+          "Blueprint": "HealingTonic",
+          "Chance": 50
+        },
+        {
+          "Blueprint": "Cloak",
+          "Chance": 30
+        }
+      ]
+    },
+    {
+      "Name": "HunterCacheT1",
+      "Entries": [
+        {
+          "Blueprint": "DriedMeat",
+          "MinCount": 1,
+          "MaxCount": 3
+        },
+        {
+          "Blueprint": "VenomDagger",
+          "Chance": 25
+        },
+        {
+          "Blueprint": "HealingTonic",
+          "Chance": 40
+        },
+        {
+          "Blueprint": "Antidote",
+          "Chance": 40
+        }
+      ]
+    },
+    {
+      "Name": "LibraryShelfT1",
+      "PickOne": true,
+      "MinPicks": 1,
+      "MaxPicks": 2,
+      "Entries": [
+        {
+          "Blueprint": "KindleFlameGrimoire",
+          "Weight": 3
+        },
+        {
+          "Blueprint": "DryingBreezeGrimoire",
+          "Weight": 3
+        },
+        {
+          "Blueprint": "ChillDraftGrimoire",
+          "Weight": 3
+        },
+        {
+          "Blueprint": "HearthwarmGrimoire",
+          "Weight": 3
+        },
+        {
+          "Blueprint": "ConjureWaterGrimoire",
+          "Weight": 3
+        },
+        {
+          "Blueprint": "WardGleamGrimoire",
+          "Weight": 3
+        },
+        {
+          "Blueprint": "GoldCoin",
+          "Weight": 2,
+          "MinCount": 3,
+          "MaxCount": 6
+        }
       ]
     }
   ]

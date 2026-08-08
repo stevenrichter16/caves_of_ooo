@@ -74,6 +74,16 @@ namespace CavesOfOoo.Core
         private readonly Dictionary<string, HashSet<Entity>> _tagIndex
             = new Dictionary<string, HashSet<Entity>>();
 
+        /// <summary>
+        /// BIOME-OVERHAUL A2 — generation-time cell claims. Builders
+        /// that hand-place structures (LandmarkBuilder stamps) add
+        /// their footprint here; PopulationBuilder skips these cells so
+        /// random spawns don't land inside authored interiors. Runtime-
+        /// only: NOT serialized (population has already run by save
+        /// time) and irrelevant to loaded zones.
+        /// </summary>
+        public readonly HashSet<(int x, int y)> GenReservedCells = new HashSet<(int x, int y)>();
+
         public Zone(string zoneID = null)
         {
             ZoneID = zoneID ?? "Zone";

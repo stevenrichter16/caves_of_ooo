@@ -1,6 +1,8 @@
 # BIOME OVERHAUL — Regions, Structures, Loot & Reprieve
 
-> **Status: PROPOSED — awaiting user sign-off. No implementation started.**
+> **Status: ✅ Phase A COMPLETE (all 6 foundations + adversarial sweep,
+> seven commits, 5853/5853 tests green, 2026-08-08). Phases B-G planned,
+> awaiting user checkpoint. Implementation log: `BIOME-OVERHAUL-LOG.md`.**
 > Branch: `claude/game-lore-analysis-jqa7ur` · Drafted 2026-08-08
 > Analysis basis: five parallel deep-explorations of worldgen, bestiary,
 > structures, economy, and narrative systems (file:line citations below
@@ -105,7 +107,7 @@ These ship first; every biome pass consumes them.
   (the promised lair rare pool).
 - Diag: `category=loot, kind=TableRolled` payload {table, results, zone}.
 
-### A2 — Structure-stamp system 🔴 (new system)
+### A2 — Structure-stamp system 🔴 (new system) — ✅ SHIPPED (see LOG §6)
 
 Small hand-authored ASCII stamps placed into wilderness zones — the missing
 middle between "empty biome" and "full village".

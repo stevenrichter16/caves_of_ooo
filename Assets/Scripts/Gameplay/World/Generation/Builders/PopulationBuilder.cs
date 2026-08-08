@@ -25,11 +25,14 @@ namespace CavesOfOoo.Core
         {
             if (Table == null) return true;
 
-            // Categorize open cells (passable and not already occupied by a solid entity)
+            // Categorize open cells (passable and not already occupied by a solid entity).
+            // BIOME-OVERHAUL A2: cells claimed by structure stamps
+            // (Zone.GenReservedCells) are excluded — no random spawns
+            // inside authored interiors.
             var openCells = new List<(int x, int y)>();
             zone.ForEachCell((cell, x, y) =>
             {
-                if (cell.IsPassable())
+                if (cell.IsPassable() && !zone.GenReservedCells.Contains((x, y)))
                     openCells.Add((x, y));
             });
 
