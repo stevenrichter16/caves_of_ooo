@@ -242,6 +242,10 @@ namespace CavesOfOoo.Rendering
                     _pauseMenuUI.Controller = _pauseMenuController;
                     _pauseMenuUI.SaveLoadService = _saveLoadService;
                     _pauseMenuUI.Log = MessageLog.Add;
+                    // ALPHA onboarding: the menu's new entries.
+                    _pauseMenuController.ShowControls =
+                        () => ControlsReference.PrintHelp(MessageLog.Add);
+                    _pauseMenuController.RequestQuit = Application.Quit;
                 }
             }
         }
@@ -589,6 +593,15 @@ namespace CavesOfOoo.Rendering
             {
                 OpenFaction();
                 _lastMoveTime = Time.time;
+                return;
+            }
+
+            // ALPHA onboarding SM2: the controls list, on the two keys
+            // players actually try. '?' is Shift+Slash on most layouts,
+            // so bare Slash counts too (unbound elsewhere in this state).
+            if (InputHelper.GetKeyDown(KeyCode.F1) || InputHelper.GetKeyDown(KeyCode.Slash))
+            {
+                ControlsReference.PrintHelp(MessageLog.Add);
                 return;
             }
 

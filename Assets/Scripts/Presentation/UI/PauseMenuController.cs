@@ -34,9 +34,25 @@ namespace CavesOfOoo.Rendering
     {
         public const int SaveIndex = 0;
         public const int LoadIndex = 1;
-        public const int ItemCount = 2;
+        // ALPHA-READINESS onboarding: two new entries.
+        public const int ControlsIndex = 2;
+        public const int QuitIndex = 3;
+        public const int ItemCount = 4;
+
+        /// <summary>Invoked by the Controls entry (host wires this to
+        /// the ControlsReference help dump).</summary>
+        public Action ShowControls;
+
+        /// <summary>Invoked by the Quit entry (host wires this to
+        /// Application.Quit; no-ops in the editor by Unity contract).</summary>
+        public Action RequestQuit;
 
         public KeyCode OpenCloseKey = KeyCode.Tab;
+        /// <summary>ALPHA onboarding: Escape aliases open/close. This
+        /// RESPECTS the project's Esc-closes-the-active-modal
+        /// convention (see class docstring) and adds the industry-
+        /// standard Esc-opens-the-menu gesture in normal play.</summary>
+        public KeyCode AltOpenCloseKey = KeyCode.Escape;
         public KeyCode ConfirmKey = KeyCode.Return;
         public KeyCode UpKey = KeyCode.UpArrow;
         public KeyCode DownKey = KeyCode.DownArrow;
@@ -100,7 +116,7 @@ namespace CavesOfOoo.Rendering
             // Closed → only the open/close key (default Tab) is meaningful.
             if (!IsOpen)
             {
-                if (input.GetKeyDown(OpenCloseKey))
+                if (input.GetKeyDown(OpenCloseKey) || input.GetKeyDown(AltOpenCloseKey))
                 {
                     Open();
                     return true;
@@ -108,8 +124,8 @@ namespace CavesOfOoo.Rendering
                 return false;
             }
 
-            // Open → handle close key (close), arrows (navigate), Enter (confirm).
-            if (input.GetKeyDown(OpenCloseKey))
+            // Open → handle close keys (close), arrows (navigate), Enter (confirm).
+            if (input.GetKeyDown(OpenCloseKey) || input.GetKeyDown(AltOpenCloseKey))
             {
                 Close();
                 return true;
@@ -142,6 +158,16 @@ namespace CavesOfOoo.Rendering
         {
             switch (SelectedIndex)
             {
+                case ControlsIndex:
+                    Close();
+                    ShowControls?.Invoke();
+                    break;
+
+                case QuitIndex:
+                    Close();
+                    RequestQuit?.Invoke();
+                    break;
+
                 case SaveIndex:
                     bool saveOk = service.QuickSave();
                     log?.Invoke(saveOk ? "Game saved." : "Save failed — see console.");

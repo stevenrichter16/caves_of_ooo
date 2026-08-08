@@ -614,6 +614,12 @@ namespace CavesOfOoo
                     inputHandlerForBoot.TryActivateBootMenu(SaveGameService.HasQuickSave());
                 }
 
+                // ALPHA onboarding SM1: the game used to open in total
+                // silence — the only controls hint was a Debug.Log no
+                // player ever sees. Three glanceable lines + the
+                // call-to-adventure, in the visible message log.
+                CavesOfOoo.Rendering.ControlsReference.PrintBootSummary(MessageLog.Add);
+
                 Debug.Log($"[Bootstrap] DONE. Zone has {_zone.EntityCount} entities. WASD/arrows to move.");
             }
 

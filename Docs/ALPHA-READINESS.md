@@ -415,3 +415,29 @@ run); the discovery/corruption tests were strict compile-RED first.
 
 Tests: +6 (DevMode default pin, loadout-exact pin, stack-aware grant,
 null-safety, F8-no-op when off + still-works counter-check when on).
+
+### 5. onboarding — SHIPPED
+
+- **ControlsReference** (new): the single DISPLAY table of ~15
+  bindings feeding all three surfaces — the F1/'?' help dump, the
+  3-line boot summary (with the "[Q] for your quest log"
+  call-to-adventure), and the pause menu's Controls entry.
+  Display-only by design (verifier honesty note: a rebind UI needs a
+  dispatch refactor — out of alpha scope).
+- **Boot text:** `PrintBootSummary` into the visible MessageLog at
+  the end of DoStart (the only prior hint was a Debug.Log).
+- **F1 / '?':** full controls dump to the scrollable sidebar log.
+- **Pause menu:** grew to 4 entries (Save/Load/Controls/Quit) with
+  `ShowControls`/`RequestQuit` action seams; **Escape** now aliases
+  open AND close (honors the project's Esc-closes-modals convention
+  while adding the standard Esc-opens gesture); Tab counter-checked.
+- **Divergences:** SM2's centered help POPUP became a MessageLog dump
+  (same discoverability, 5% of the UI risk; popup is polish). SM4
+  (boot/death modals as popups) deferred — both prompts are already
+  visible in the sidebar log; pure presentation.
+- **Superseded pin:** pause-menu no-wrap-at-bottom re-pinned from
+  LoadIndex to QuitIndex (the menu grew).
+
+Tests: +8 (bindings coverage, help volume, boot-summary shape,
+4-item menu, Controls/Quit dispatch, Esc open+close, Tab
+counter-check).

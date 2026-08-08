@@ -29,12 +29,12 @@ namespace CavesOfOoo.Rendering
 
         // ---- Layout constants ----
         private const int POPUP_W = 28;
-        private const int CONTENT_ROWS = 2;          // Save, Load
+        private const int CONTENT_ROWS = 4;          // Save, Load, Controls, Quit
         private const int BORDER_H = CONTENT_ROWS + 4;  // top + title + sep + content + bottom
         private const int POPUP_H = BORDER_H + 1;       // +1 for hint line
         private static readonly Color PopupBgColor = new Color(0f, 0f, 0f, 1f);
 
-        private static readonly string[] LABELS = { "Save game", "Load game" };
+        private static readonly string[] LABELS = { "Save game", "Load game", "Controls", "Quit" };
 
         // The controller is owned externally (InputHandler creates one).
         // We accept a reference so this UI is testable independently

@@ -121,15 +121,18 @@ namespace CavesOfOoo.Tests.EditMode.Presentation.UI
         }
 
         [Test]
-        public void Tick_WhenOpen_DownArrow_FromLoad_StaysAtLoad_NoWrap()
+        public void Tick_WhenOpen_DownArrow_FromBottom_Clamps_NoWrap()
         {
+            // (Superseded pin: originally jumped to LoadIndex, the bottom
+            // of the 2-item menu. ALPHA onboarding grew the menu to 4
+            // items — the intent, no-wrap-at-bottom, now pins QuitIndex.)
             _controller.Open();
-            _controller.MoveSelectionForTest(PauseMenuController.LoadIndex);  // jump to bottom
+            _controller.MoveSelectionForTest(PauseMenuController.QuitIndex);  // jump to bottom
             _input.PressKey(_controller.DownKey);
 
             _controller.Tick(_input, _service, _log.Add);
 
-            Assert.AreEqual(PauseMenuController.LoadIndex, _controller.SelectedIndex,
+            Assert.AreEqual(PauseMenuController.QuitIndex, _controller.SelectedIndex,
                 "Down at bottom must clamp to bottom (no wrap).");
         }
 
