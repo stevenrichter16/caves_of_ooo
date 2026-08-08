@@ -52,6 +52,8 @@ opaque or empty.
 | wall front  | `#393F34` / `#31372E`, seam `#282D26` | wall face checker |
 | water base  | `#1A4242` | pool fill |
 | water bands | `#204E4C` `#16383A`, sparkle `#3C6E68` | 3px-gap stripes |
+| oil (Pass 14) | base `#201A12`, bands `#2E2418`/`#16120C`, sheen `#6B5A2E`, glint `#C89A50` | OilSeep — glints are the only warm pixels |
+| acid (Pass 14) | base `#2E4A1C`, bands `#3E661F`/`#243A16`, glint `#86C22E` | AcidPond — the glint is arcane, hence bright |
 
 ### Body family ramps (dark → base → light)
 
@@ -64,6 +66,9 @@ opaque or empty.
 | Bone       | `#1E201C` (dark) | `#AA9E7E` | `#C4B896` | skin, teeth, stems |
 | Rust fur   | `#583A22` | `#A06A3A` | — | mid `#7A4E2C` |
 | Boot/leather | — | `#463E30` | — | |
+| Frost (Pass 14) | `#3A4A58` | `#7A93A8` | `#AECBD8` | pale `#E2F2F8` — undead cold, ice |
+| Sandstone (Pass 14) | `#605032` | `#8A7448` | `#A89060` | mid `#786440` — desert masonry |
+| Steel (Pass 14) | — | `#A8B0AC` | `#D8DCD8` | ground weapons; near-gray ON PURPOSE so the glyph-color tint supplies identity |
 
 ### Accents (the saturated ≤10%)
 

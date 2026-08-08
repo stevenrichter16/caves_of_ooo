@@ -102,6 +102,22 @@ namespace CavesOfOoo.Rendering
         private Sprite _playerSprite;          // Player ('@'), authored-color
         private Sprite _snapjawSprite;         // Snapjaw family ('s'/'S'), authored-color
         private Sprite _pillarSprite;          // Pillar 'I' / BrokenColumn ','
+        // Pass 14 — 15-sprite expansion (STYLE-GUIDE.md; GRAPHICS-PASS14.md)
+        private Sprite _villagerSprite;        // Villager/Innkeeper/WellKeeper/Scribe
+        private Sprite _merchantSprite;        // Merchant
+        private Sprite _elderSprite;           // Elder
+        private Sprite _wardenSprite;          // Warden
+        private Sprite _childSprite;           // VillageChild
+        private Sprite _sporeShamblerSprite;   // SporeShambler
+        private Sprite _iceWightSprite;        // IceWight
+        private Sprite _rubbleSprite;          // Rubble (',' rendered as BONES before)
+        private Sprite _ovenSprite;            // Oven ('#' rendered as WALL before)
+        private Sprite _iceStalactiteSprite;   // IceStalactite ('|' was generic stone)
+        private Sprite _weaponGroundSprite;    // glyph '/' dropped blades (color-copy tinted)
+        private Sprite _oilSeepSprite;         // OilSeep ('~' rendered as WATER before)
+        private Sprite _acidPondSprite;        // AcidPond ('~' rendered as WATER before)
+        private Sprite _vineWallSprite;        // VineWall themed wall
+        private Sprite _sandstoneWallSprite;   // SandstoneWall themed wall
 
         // Per-glyph cached Tile assets (TileBase wrapping each Sprite).
         // Reused across paints to avoid allocating Tile objects per cell.
@@ -147,6 +163,22 @@ namespace CavesOfOoo.Rendering
         private Tile _playerTile;
         private Tile _snapjawTile;
         private Tile _pillarTile;
+        // Pass 14 tiles
+        private Tile _villagerTile;
+        private Tile _merchantTile;
+        private Tile _elderTile;
+        private Tile _wardenTile;
+        private Tile _childTile;
+        private Tile _sporeShamblerTile;
+        private Tile _iceWightTile;
+        private Tile _rubbleTile;
+        private Tile _ovenTile;
+        private Tile _iceStalactiteTile;
+        private Tile _weaponGroundTile;
+        private Tile _oilSeepTile;
+        private Tile _acidPondTile;
+        private Tile _vineWallTile;
+        private Tile _sandstoneWallTile;
 
         private Tilemap _overlayTilemap;
         private Tilemap _mainTilemap;
@@ -218,6 +250,22 @@ namespace CavesOfOoo.Rendering
             _playerSprite          = LoadSingle("Assets/Sprites/Environment/player.png");
             _snapjawSprite         = LoadSingle("Assets/Sprites/Environment/snapjaw.png");
             _pillarSprite          = LoadSingle("Assets/Sprites/Environment/pillar.png");
+            // Pass 14
+            _villagerSprite        = LoadSingle("Assets/Sprites/Environment/villager.png");
+            _merchantSprite        = LoadSingle("Assets/Sprites/Environment/merchant.png");
+            _elderSprite           = LoadSingle("Assets/Sprites/Environment/elder.png");
+            _wardenSprite          = LoadSingle("Assets/Sprites/Environment/warden.png");
+            _childSprite           = LoadSingle("Assets/Sprites/Environment/village_child.png");
+            _sporeShamblerSprite   = LoadSingle("Assets/Sprites/Environment/spore_shambler.png");
+            _iceWightSprite        = LoadSingle("Assets/Sprites/Environment/ice_wight.png");
+            _rubbleSprite          = LoadSingle("Assets/Sprites/Environment/rubble.png");
+            _ovenSprite            = LoadSingle("Assets/Sprites/Environment/oven.png");
+            _iceStalactiteSprite   = LoadSingle("Assets/Sprites/Environment/ice_stalactite.png");
+            _weaponGroundSprite    = LoadSingle("Assets/Sprites/Environment/weapon_ground.png");
+            _oilSeepSprite         = LoadSingle("Assets/Sprites/Environment/oil_seep.png");
+            _acidPondSprite        = LoadSingle("Assets/Sprites/Environment/acid_pond.png");
+            _vineWallSprite        = LoadSingle("Assets/Sprites/Environment/vine_wall.png");
+            _sandstoneWallSprite   = LoadSingle("Assets/Sprites/Environment/sandstone_wall.png");
 #endif
         }
 
@@ -320,6 +368,22 @@ namespace CavesOfOoo.Rendering
             _playerTile          = MakeTile(_playerSprite,          "Player");
             _snapjawTile         = MakeTile(_snapjawSprite,         "Snapjaw");
             _pillarTile          = MakeTile(_pillarSprite,          "Pillar");
+            // Pass 14
+            _villagerTile        = MakeTile(_villagerSprite,        "Villager");
+            _merchantTile        = MakeTile(_merchantSprite,        "Merchant");
+            _elderTile           = MakeTile(_elderSprite,           "Elder");
+            _wardenTile          = MakeTile(_wardenSprite,          "Warden");
+            _childTile           = MakeTile(_childSprite,           "VillageChild");
+            _sporeShamblerTile   = MakeTile(_sporeShamblerSprite,   "SporeShambler");
+            _iceWightTile        = MakeTile(_iceWightSprite,        "IceWight");
+            _rubbleTile          = MakeTile(_rubbleSprite,          "Rubble");
+            _ovenTile            = MakeTile(_ovenSprite,            "Oven");
+            _iceStalactiteTile   = MakeTile(_iceStalactiteSprite,   "IceStalactite");
+            _weaponGroundTile    = MakeTile(_weaponGroundSprite,    "WeaponGround");
+            _oilSeepTile         = MakeTile(_oilSeepSprite,         "OilSeep");
+            _acidPondTile        = MakeTile(_acidPondSprite,        "AcidPond");
+            _vineWallTile        = MakeTile(_vineWallSprite,        "VineWall");
+            _sandstoneWallTile   = MakeTile(_sandstoneWallSprite,   "SandstoneWall");
         }
 
         public void PostRender(Zone zone, int width, int height)
@@ -424,14 +488,24 @@ namespace CavesOfOoo.Rendering
         /// Exact match ONLY: near-miss names (SandstoneFloor, SilverSand,
         /// WellGroundMarker, WellKeeper) must keep their own rendering.
         /// Contract pinned by EnvironmentSpriteRendererBlueprintTests.</summary>
-        public enum EnvFixtureKind { None, Grass, Sand, Bank, Well, MarketStall, TinkersForge, AlchemyStill, Pillar }
+        public enum EnvFixtureKind
+        {
+            None, Grass, Sand, Bank, Well, MarketStall, TinkersForge, AlchemyStill, Pillar,
+            // Pass 14
+            OilSeep, AcidPond, Rubble, Oven, IceStalactite, VineWall, SandstoneWall
+        }
 
         /// <summary>Pass 13 — actor sprites (STYLE-GUIDE.md §6). The
         /// player plus the living Snapjaw family; corpses are excluded
         /// (they keep Pass 11 corpse handling). Actor sprites are
         /// AUTHORED-COLOR: the renderer applies only lighting value,
         /// never the glyph hue — a &amp;Y player must not render yellow.</summary>
-        public enum ActorSpriteKind { None, Player, Snapjaw }
+        public enum ActorSpriteKind
+        {
+            None, Player, Snapjaw,
+            // Pass 14
+            Villager, Merchant, Elder, Warden, Child, SporeShambler, IceWight
+        }
 
         public static ActorSpriteKind ResolveActorKind(string blueprintName)
         {
@@ -440,7 +514,22 @@ namespace CavesOfOoo.Rendering
             if (blueprintName.StartsWith("Snapjaw", System.StringComparison.Ordinal)
                 && !blueprintName.EndsWith("Corpse", System.StringComparison.OrdinalIgnoreCase))
                 return ActorSpriteKind.Snapjaw;
-            return ActorSpriteKind.None;
+            switch (blueprintName)
+            {
+                // Robed townsfolk share one sprite; role NPCs with a
+                // distinct read get their own.
+                case "Villager":
+                case "Innkeeper":
+                case "WellKeeper":
+                case "Scribe":        return ActorSpriteKind.Villager;
+                case "Merchant":      return ActorSpriteKind.Merchant;
+                case "Elder":         return ActorSpriteKind.Elder;
+                case "Warden":        return ActorSpriteKind.Warden;
+                case "VillageChild":  return ActorSpriteKind.Child;
+                case "SporeShambler": return ActorSpriteKind.SporeShambler;
+                case "IceWight":      return ActorSpriteKind.IceWight;
+                default:              return ActorSpriteKind.None;
+            }
         }
 
         /// <summary>Pass 12 — stage-aware crop sprite kinds. Stage 0 is a
@@ -466,6 +555,18 @@ namespace CavesOfOoo.Rendering
                 // to the BONES glyph mapping.
                 case "Pillar":       return EnvFixtureKind.Pillar;
                 case "BrokenColumn": return EnvFixtureKind.Pillar;
+                // Pass 14 — wrong-visual fixes: OilSeep/AcidPond
+                // rendered as WATER, Rubble as BONES, Oven as a bare
+                // WALL before the blueprint tier claimed them.
+                case "OilSeep":       return EnvFixtureKind.OilSeep;
+                case "AcidPond":      return EnvFixtureKind.AcidPond;
+                case "Rubble":        return EnvFixtureKind.Rubble;
+                case "Oven":          return EnvFixtureKind.Oven;
+                case "IceStalactite": return EnvFixtureKind.IceStalactite;
+                // Themed walls trade the 4-variant auto-tile for
+                // identity; Wall/StoneWall stay on the generic atlas.
+                case "VineWall":      return EnvFixtureKind.VineWall;
+                case "SandstoneWall": return EnvFixtureKind.SandstoneWall;
                 default:             return EnvFixtureKind.None;
             }
         }
@@ -513,6 +614,28 @@ namespace CavesOfOoo.Rendering
                     case ActorSpriteKind.Snapjaw:
                         if (_snapjawTile != null) { authoredColor = true; return _snapjawTile; }
                         break;
+                    // Pass 14 actors
+                    case ActorSpriteKind.Villager:
+                        if (_villagerTile != null) { authoredColor = true; return _villagerTile; }
+                        break;
+                    case ActorSpriteKind.Merchant:
+                        if (_merchantTile != null) { authoredColor = true; return _merchantTile; }
+                        break;
+                    case ActorSpriteKind.Elder:
+                        if (_elderTile != null) { authoredColor = true; return _elderTile; }
+                        break;
+                    case ActorSpriteKind.Warden:
+                        if (_wardenTile != null) { authoredColor = true; return _wardenTile; }
+                        break;
+                    case ActorSpriteKind.Child:
+                        if (_childTile != null) { authoredColor = true; return _childTile; }
+                        break;
+                    case ActorSpriteKind.SporeShambler:
+                        if (_sporeShamblerTile != null) { authoredColor = true; return _sporeShamblerTile; }
+                        break;
+                    case ActorSpriteKind.IceWight:
+                        if (_iceWightTile != null) { authoredColor = true; return _iceWightTile; }
+                        break;
                 }
 
                 int stage = topEntity?.GetPart<CropPart>()?.GrowthStage ?? -1;
@@ -533,6 +656,14 @@ namespace CavesOfOoo.Rendering
                     case EnvFixtureKind.TinkersForge: if (_forgeTile != null) return _forgeTile; break;
                     case EnvFixtureKind.AlchemyStill: if (_alchemyStillTile != null) return _alchemyStillTile; break;
                     case EnvFixtureKind.Pillar:       if (_pillarTile != null) return _pillarTile; break;
+                    // Pass 14 fixtures/terrain
+                    case EnvFixtureKind.OilSeep:       if (_oilSeepTile != null) return _oilSeepTile; break;
+                    case EnvFixtureKind.AcidPond:      if (_acidPondTile != null) return _acidPondTile; break;
+                    case EnvFixtureKind.Rubble:        if (_rubbleTile != null) return _rubbleTile; break;
+                    case EnvFixtureKind.Oven:          if (_ovenTile != null) return _ovenTile; break;
+                    case EnvFixtureKind.IceStalactite: if (_iceStalactiteTile != null) return _iceStalactiteTile; break;
+                    case EnvFixtureKind.VineWall:      if (_vineWallTile != null) return _vineWallTile; break;
+                    case EnvFixtureKind.SandstoneWall: if (_sandstoneWallTile != null) return _sandstoneWallTile; break;
                 }
             }
 
@@ -586,6 +717,11 @@ namespace CavesOfOoo.Rendering
                 case '%':  return _mushroomTile;   // mushroom (also corpse — overload)
                 case '$':  return _goldPileTile;   // gold pile
                 case 'h':  return _chairTile;      // chair, stool
+                // Pass 14: dropped blades (Dagger/ShortSword/LongSword/
+                // Spear/Cudgel all paint '/'). Near-gray art — the
+                // color-copy tint keeps each weapon's glyph color as
+                // its identity.
+                case '/':  return _weaponGroundTile;
             }
 
             // Pass 10 — per-blueprint disambiguation for shared glyphs.

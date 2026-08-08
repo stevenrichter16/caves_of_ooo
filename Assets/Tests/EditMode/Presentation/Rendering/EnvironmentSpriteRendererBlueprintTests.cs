@@ -312,11 +312,14 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Actor_OtherCreaturesAndNulls_DoNotMatch()
+        public void Actor_UnmappedBlueprintsAndNulls_DoNotMatch()
         {
+            // (Originally pinned Villager/WellKeeper as refusals; Pass 14
+            // moved them into the villager sprite family, so this pin now
+            // uses blueprints that REMAIN unmapped.)
             var none = EnvironmentSpriteRenderer.ActorSpriteKind.None;
-            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveActorKind("Villager"));
-            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveActorKind("WellKeeper"));
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveActorKind("SandWurm"));
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveActorKind("IceStalactite"));
             Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveActorKind(null));
             Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveActorKind(""));
         }
@@ -331,6 +334,93 @@ namespace CavesOfOoo.Tests
                 EnvironmentSpriteRenderer.ResolveFixtureKind("Pillar"));
             Assert.AreEqual(EnvironmentSpriteRenderer.EnvFixtureKind.Pillar,
                 EnvironmentSpriteRenderer.ResolveFixtureKind("BrokenColumn"));
+        }
+
+        // ══════════════════════════════════════════════════════════
+        //   Pass 14 — 15-sprite expansion: village actors, monsters,
+        //   wrong-visual fixes (oil/acid/rubble/oven), themed walls.
+        // ══════════════════════════════════════════════════════════
+
+        [Test]
+        public void Actor14_VillagerFamily_SharesTheVillagerSprite()
+        {
+            // Robed townsfolk: the base Villager plus the role NPCs
+            // that read as "a villager with a job".
+            var v = EnvironmentSpriteRenderer.ActorSpriteKind.Villager;
+            Assert.AreEqual(v, EnvironmentSpriteRenderer.ResolveActorKind("Villager"));
+            Assert.AreEqual(v, EnvironmentSpriteRenderer.ResolveActorKind("Innkeeper"));
+            Assert.AreEqual(v, EnvironmentSpriteRenderer.ResolveActorKind("WellKeeper"));
+            Assert.AreEqual(v, EnvironmentSpriteRenderer.ResolveActorKind("Scribe"));
+        }
+
+        [Test]
+        public void Actor14_DistinctRoles_GetTheirOwnSprites()
+        {
+            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.Merchant,
+                EnvironmentSpriteRenderer.ResolveActorKind("Merchant"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.Elder,
+                EnvironmentSpriteRenderer.ResolveActorKind("Elder"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.Warden,
+                EnvironmentSpriteRenderer.ResolveActorKind("Warden"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.Child,
+                EnvironmentSpriteRenderer.ResolveActorKind("VillageChild"));
+        }
+
+        [Test]
+        public void Actor14_Monsters_Match()
+        {
+            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.SporeShambler,
+                EnvironmentSpriteRenderer.ResolveActorKind("SporeShambler"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.IceWight,
+                EnvironmentSpriteRenderer.ResolveActorKind("IceWight"));
+        }
+
+        [Test]
+        public void Actor14_MarkersAndCorpses_StillRefuse()
+        {
+            var none = EnvironmentSpriteRenderer.ActorSpriteKind.None;
+            // WellGroundMarker must not inherit WellKeeper's sprite;
+            // corpses keep Pass 11 handling.
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveActorKind("WellGroundMarker"));
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveActorKind("SnapjawCorpse"));
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveActorKind("SandWurm"));
+        }
+
+        [Test]
+        public void Fixture14_WrongVisualFixes_Match()
+        {
+            // Before Pass 14: OilSeep and AcidPond rendered as WATER,
+            // Rubble as BONES, Oven as a bare WALL — all glyph
+            // collisions the blueprint tier now resolves.
+            Assert.AreEqual(EnvironmentSpriteRenderer.EnvFixtureKind.OilSeep,
+                EnvironmentSpriteRenderer.ResolveFixtureKind("OilSeep"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.EnvFixtureKind.AcidPond,
+                EnvironmentSpriteRenderer.ResolveFixtureKind("AcidPond"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.EnvFixtureKind.Rubble,
+                EnvironmentSpriteRenderer.ResolveFixtureKind("Rubble"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.EnvFixtureKind.Oven,
+                EnvironmentSpriteRenderer.ResolveFixtureKind("Oven"));
+        }
+
+        [Test]
+        public void Fixture14_ThemedPieces_Match()
+        {
+            Assert.AreEqual(EnvironmentSpriteRenderer.EnvFixtureKind.IceStalactite,
+                EnvironmentSpriteRenderer.ResolveFixtureKind("IceStalactite"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.EnvFixtureKind.VineWall,
+                EnvironmentSpriteRenderer.ResolveFixtureKind("VineWall"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.EnvFixtureKind.SandstoneWall,
+                EnvironmentSpriteRenderer.ResolveFixtureKind("SandstoneWall"));
+        }
+
+        [Test]
+        public void Fixture14_GenericWalls_StayOnTheAutoTileAtlas()
+        {
+            // Wall/StoneWall keep the 4-variant connectedness atlas —
+            // only THEMED walls trade auto-tiling for identity.
+            var none = EnvironmentSpriteRenderer.EnvFixtureKind.None;
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveFixtureKind("Wall"));
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveFixtureKind("StoneWall"));
         }
 
         // ── Reflection helpers (the matchers are private static) ──
