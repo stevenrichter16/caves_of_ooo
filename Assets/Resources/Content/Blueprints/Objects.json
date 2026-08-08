@@ -4367,6 +4367,48 @@
     },
 
     {
+      "Name": "VaultSentinel",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "vault sentinel" },
+          { "Key": "RenderString", "Value": "V" },
+          { "Key": "ColorString", "Value": "&W" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "8" }, { "Key": "DV", "Value": "0" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "10" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" },
+          { "Key": "Staying", "Value": "true" }
+        ]},
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Stone" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "MaterialTagsRaw", "Value": "Mineral,Stone,Ancient" }
+        ]},
+        { "Name": "Corpse", "Params": [
+          { "Key": "HarvestBlueprint", "Value": "GlowQuartz" },
+          { "Key": "HarvestMin", "Value": "1" },
+          { "Key": "HarvestMax", "Value": "1" },
+          { "Key": "HarvestChance", "Value": "35" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 60, "Min": 0, "Max": 60 },
+        { "Name": "Strength", "Value": 24 },
+        { "Name": "Toughness", "Value": 22 },
+        { "Name": "Speed", "Value": 60 },
+        { "Name": "XPValue", "Value": 110 }
+      ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "SentinelHalberd" }],
+      "Tags": [
+        { "Key": "Faction", "Value": "Beasts" },
+        { "Key": "Tier", "Value": "3" },
+        { "Key": "BloodColor", "Value": "&w" }
+      ]
+    },
+    {
       "Name": "BrassHusk",
       "Inherits": "Creature",
       "Parts": [

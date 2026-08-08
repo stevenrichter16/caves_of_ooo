@@ -387,6 +387,100 @@ namespace CavesOfOoo.Core
         private static readonly StructureStamp[] Ruins =
         {
             HermitHut("StoneWall", "RuinsHermit"),
+            // Phase F: the sealed vault — the game's treasure room.
+            // First placed LockedDoor; the sentinel carries no key
+            // because the key lies in the antechamber — the FIGHT is
+            // the lock.
+            new StructureStamp
+            {
+                Name = "SealedVault",
+                Chance = 25,
+                MinTier = 2,
+                Rows = new[]
+                {
+                    "#######",
+                    "#L...V#",
+                    "###D###",
+                    "#.k...+",
+                    "#######",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', "StoneWall" },
+                    { 'V', "spawn:VaultSentinel" },
+                    { 'L', "lockedchest:SealedVaultT3" },
+                    { 'D', "LockedDoor" },
+                    { 'k', "IronKey" },
+                    { '+', "" },
+                },
+            },
+            // Phase F: a clockwork workshop — the three dead schematics
+            // (and with them four unlearnable tinker mods) circulate.
+            new StructureStamp
+            {
+                Name = "ClockworkWorkshop",
+                Chance = 25,
+                MinTier = 2,
+                Rows = new[]
+                {
+                    "######",
+                    "#B..c#",
+                    "#..B.+",
+                    "######",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', "StoneWall" },
+                    { 'B', "spawn:BrassHusk" },
+                    { 'c', "chest:WorkshopCacheT2" },
+                    { '+', "" },
+                },
+            },
+            // Phase F: a rune-cult dig site — RuneCultists arrive with
+            // their complete AILayRune AI, so the world's first live
+            // trap-laying happens here.
+            new StructureStamp
+            {
+                Name = "RuneCultSite",
+                Chance = 20,
+                MinTier = 2,
+                Rows = new[]
+                {
+                    ".u.u.",
+                    "u.c.u",
+                    ".u.u.",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { 'u', "spawn:RuneCultist" },
+                    { 'c', "chest:CultCacheT2" },
+                },
+            },
+            // Phase F: the Palimpsest Archive — the Recension's Echo
+            // (the game's largest authored conversation, 42 nodes)
+            // finally gets a place to stand, with a scholar's fire.
+            new StructureStamp
+            {
+                Name = "PalimpsestArchive",
+                Chance = 20,
+                MinTier = 1,
+                Rows = new[]
+                {
+                    "######",
+                    "#p.IE#",
+                    "#..f.+",
+                    "######",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', "StoneWall" },
+                    { 'E', "spawn:PalimpsestEcho" },
+                    { 'p', "Pillar" },
+                    { 'I', "Pillar" },
+                    { 'f', "Campfire" },
+                    { '+', "" },
+                },
+            },
             // A collapsed library — the ONLY circulation source for the
             // six utility grimoires that shipped with no source at all.
             new StructureStamp
