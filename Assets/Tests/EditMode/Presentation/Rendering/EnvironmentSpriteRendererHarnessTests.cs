@@ -722,6 +722,96 @@ namespace CavesOfOoo.Tests
                 "counter-check: the campfire's static marker claims stone as before");
         }
 
+        // ── ROUND 4: incremental claims (perf) ───────────────────
+
+        private static int Key(int x, int zoneY) => zoneY * Zone.Width + x;
+
+        [Test]
+        public void IncrementalPath_TouchesOnlyTheDirtyNeighborhood()
+        {
+            // The audit measured the full release/rescan at ~13-15k
+            // tilemap writes per NPC step. The incremental path must
+            // resolve ONLY the dirty cell + its 8-neighborhood and
+            // leave every other claim untouched.
+            var zone = new Zone("T");
+            zone.AddEntity(TerrainEntity("Grass", "."), 5, 3);
+            zone.AddEntity(TerrainEntity("Grass", "."), 20, 10);
+            Reveal(zone);
+            var posA = PaintFloorGlyph(5, 3, Color.white);
+            var posB = PaintFloorGlyph(20, 10, Color.white);
+            _renderer.PostRender(zone, Zone.Width, Zone.Height); // full
+
+            long cellsBefore = EnvironmentSpriteRenderer.Perf.CellsResolved;
+            var dirty = new System.Collections.Generic.HashSet<int> { Key(20, 10) };
+            _renderer.PostRender(zone, Zone.Width, Zone.Height, dirty);
+            long resolved = EnvironmentSpriteRenderer.Perf.CellsResolved - cellsBefore;
+
+            Assert.LessOrEqual(resolved, 9,
+                "one dirty cell resolves at most its 9-cell neighborhood — not 2000");
+            StringAssert.StartsWith("grass", FindOverlay().GetTile(posA)?.name,
+                "the untouched claim across the map was never released");
+            StringAssert.StartsWith("grass", FindOverlay().GetTile(posB)?.name,
+                "the dirty cell re-resolved to the same correct claim");
+        }
+
+        [Test]
+        public void IncrementalPath_ReresolvesADirtyCellHonestly()
+        {
+            // A viper steps onto a claimed grass cell; the dirty-path
+            // repaint painted its '~'. The incremental release must
+            // honor the fresh glyph (round-3 clobber guard) and the
+            // re-resolve must go honest-ASCII.
+            var zone = ZoneWithGrassAt(5, 3);
+            Reveal(zone);
+            var tilePos = PaintFloorGlyph(5, 3, Color.white);
+            _renderer.PostRender(zone, Zone.Width, Zone.Height); // grass claimed
+
+            var viper = new Entity { ID = "v", BlueprintName = "Viper" };
+            viper.AddPart(new RenderPart { DisplayName = "viper", RenderString = "~", RenderLayer = 5 });
+            zone.AddEntity(viper, 5, 3);
+            var viperGlyph = ScriptableObject.CreateInstance<Tile>();
+            viperGlyph.name = "CP437_7E";
+            _mainTilemap.SetTile(tilePos, viperGlyph);
+
+            var dirty = new System.Collections.Generic.HashSet<int> { Key(5, 3) };
+            _renderer.PostRender(zone, Zone.Width, Zone.Height, dirty);
+
+            Assert.AreEqual("CP437_7E", _mainTilemap.GetTile(tilePos)?.name,
+                "the viper's fresh glyph survives the targeted release");
+            Assert.IsNull(FindOverlay().GetTile(tilePos),
+                "and the re-resolve keeps it honest ASCII");
+            Object.DestroyImmediate(viperGlyph);
+        }
+
+        [Test]
+        public void IncrementalPath_NeighborShorelineUpdates()
+        {
+            // Wall variants and shoreline edges are functions of their
+            // NEIGHBORS — a dirty cell must re-resolve its neighborhood
+            // or a terrain change leaves stale edges beside it.
+            var zone = new Zone("T");
+            var north = TerrainEntity("WaterPuddle", "~");
+            for (int dx = -1; dx <= 1; dx++)
+                for (int dy = -1; dy <= 1; dy++)
+                {
+                    if (dx == 0 && dy == -1) { zone.AddEntity(north, 10, 9); continue; }
+                    zone.AddEntity(TerrainEntity("WaterPuddle", "~"), 10 + dx, 10 + dy);
+                }
+            Reveal(zone);
+            _renderer.PostRender(zone, Zone.Width, Zone.Height); // full: center = open water
+            var centerPos = new Vector3Int(10, Zone.Height - 1 - 10, 0);
+            StringAssert.StartsWith("water_m", FindOverlay().GetTile(centerPos)?.name,
+                "precondition: fully surrounded by water = open-water macro");
+
+            // The NORTH cell's water drains (terrain change) → land.
+            zone.RemoveEntity(north);
+            var dirty = new System.Collections.Generic.HashSet<int> { Key(10, 9) };
+            _renderer.PostRender(zone, Zone.Width, Zone.Height, dirty);
+
+            Assert.AreEqual("water_e_n", FindOverlay().GetTile(centerPos)?.name,
+                "the CENTER (a neighbor of the dirty cell) re-resolves to the north shore lip");
+        }
+
         // ── ROUND 2: player ground highlight (S4) ────────────────
 
         [Test]

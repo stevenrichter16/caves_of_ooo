@@ -101,7 +101,14 @@ namespace CavesOfOoo.Presentation.Effects
             public float Seed; // for per-light Perlin offset
         }
 
-        private enum LightKind { Campfire, Shrine, Lantern }
+        private enum LightKind { Campfire, Shrine, Lantern, None }
+
+        // ROUND 4 perf — per-tile-instance light classification cache
+        // (bounded by the small fixed set of tile instances) + reused
+        // per-frame scratch set.
+        private readonly System.Collections.Generic.Dictionary<UnityEngine.Tilemaps.TileBase, LightKind> _tileKindCache =
+            new System.Collections.Generic.Dictionary<UnityEngine.Tilemaps.TileBase, LightKind>(64);
+        private readonly HashSet<Vector3Int> _seenScratch = new HashSet<Vector3Int>();
 
         // ── Init ───────────────────────────────────────────────────
 
@@ -151,8 +158,10 @@ namespace CavesOfOoo.Presentation.Effects
             // position state.
             UpdatePlayerTorch(isDungeon);
 
-            // Track which cells currently host light-sources
-            var seenThisFrame = new HashSet<Vector3Int>(_spawned.Count);
+            // Track which cells currently host light-sources.
+            // ROUND 4 perf — reused scratch set (was a per-call alloc).
+            _seenScratch.Clear();
+            var seenThisFrame = _seenScratch;
 
             for (int x = 0; x < width; x++)
             {
@@ -161,11 +170,21 @@ namespace CavesOfOoo.Presentation.Effects
                     var pos = new Vector3Int(x, y, 0);
                     var t = _overlayTilemap.GetTile(pos);
                     if (t == null) continue;
-                    LightKind kind;
-                    if (t.name == "Campfire") kind = LightKind.Campfire;
-                    else if (t.name == "Shrine") kind = LightKind.Shrine;
-                    else if (t.name == "Lantern") kind = LightKind.Lantern;
-                    else continue;
+                    // ROUND 4 perf — `t.name` allocates a managed string
+                    // PER ACCESS; with Pass 15 claim density this scan
+                    // generated thousands of allocs per repaint. Tile
+                    // instances are a small fixed set: classify each
+                    // ONCE, then it's a zero-alloc dictionary hit.
+                    if (!_tileKindCache.TryGetValue(t, out var kind))
+                    {
+                        var n = t.name; // one alloc per UNIQUE tile, ever
+                        kind = n == "Campfire" ? LightKind.Campfire
+                             : n == "Shrine" ? LightKind.Shrine
+                             : n == "Lantern" ? LightKind.Lantern
+                             : LightKind.None;
+                        _tileKindCache[t] = kind;
+                    }
+                    if (kind == LightKind.None) continue;
 
                     seenThisFrame.Add(pos);
                     if (!_spawned.ContainsKey(pos))

@@ -252,6 +252,71 @@ the river bank (red cross gone), plaza NPCs with rings, BMO honest,
 shoreline lips under fog. Jungle save restored from backup after the
 new-game test runs.
 
+## V-loop round 4 (2026-08-08) — the perf pass (profile-first)
+
+**Instrumentation first** (per PERF-FOUNDATION): permanent live
+counters `EnvironmentSpriteRenderer.Perf` (frames by path, cells
+resolved, claims, tilemap writes, avg/max ms) — readable via
+execute_code, reset per measurement window. They stay as the sprite
+pass's observability surface.
+
+**Baseline measured live** (jungle save, walking): the full pass
+costs **~2000 cells, ~1300-1600 claims, 5300-6400 tilemap writes,
+avg 2.7-3.0 ms, max 3.4 ms per repaint** — and the pre-round-4 code
+paid exactly that on EVERY repaint, including NPC-only turns while
+the player stood still. (The audit's 13-15k-writes estimate was ~2×
+pessimistic; the real number is still the dominant per-step cost.)
+
+**The fix — incremental claims:**
+- Claims moved from per-frame lists to persistent
+  `Dictionary<Vector3Int, Claim>`; the per-cell resolution body
+  extracted into `ResolveCell`.
+- `PostRender(zone, w, h, dirtyKeys)`: FULL path (null) releases +
+  rescans everything (player moves, zone changes — unchanged
+  semantics); INCREMENTAL path releases + re-resolves ONLY the dirty
+  cells **plus their 8-neighborhoods** (wall top-face variants and
+  shoreline masks are functions of neighbors).
+- ZoneRenderer's dirty path passes `_dirtyCells` (cleared AFTER the
+  sprite pass now).
+- Round-3's clobber guard + snapshot-preservation carried into the
+  targeted release helpers; re-claim without release keeps the
+  ORIGINAL displaced snapshot (never captures our own macro).
+- Also: LightSourceSpriteHook classifies tiles ONCE per instance
+  (was 3 `t.name` string allocs per lit-scan cell) + reuses its
+  scratch set; ExtractGlyph caches per-tile parses (was
+  name+Substring per ASCII cell per rescan).
+
+**Measured after:** stationary turns (70 waits, no visible movement)
+→ **0 passes, 0 writes, 0 ms** — the pass simply doesn't run.
+Player-move repaints unchanged (~3 ms full pass — same work as
+before, now only when actually needed).
+
+**Honesty bounds:** a live NPC-move incremental frame was NOT
+captured (the cave zone the walk reached has stationary camp
+merchants; no wanderer crossed the FOV during the windows). The
+NPC-turn claim rests on (a) branch equivalence — the incremental
+path rides the exact dirty-set branch RenderDirtyCells uses, the
+branch the round-3 invisible-monster bug proved NPC moves take —
+and (b) three unit pins: ≤9 cells resolved per dirty cell (vs 2000),
+honest re-resolution under the clobber guard, and neighbor shoreline
+updates. Expected NPC-turn cost: ~9-45 cells ≈ tens of writes ≈
+~0.05 ms — roughly two orders of magnitude below a full pass.
+
+Bonus: the measurement walk crossed into a cave zone
+(Overworld.9.10.0) — the checklist's "cave wilderness" screenshot
+item, verified visually in passing (flowing dark stone, capped wall
+runs, outlined rubble/boulders, fog correct). Checklist still open:
+a deep strata zone.
+
+Tests 5948 → 5951 (+3 incremental pins). Save restored from backup
+after the measurement session (autosaves had moved the player).
+
+**Still deferred:** bg ping-pong fine-tuning (largely mooted — bg
+writes now happen only on resolved cells), AnimatedEnvironmentRenderer
+pause behavior (pre-existing), ghost decay per-time normalization,
+strata-zone checklist screenshot, committing the GraphicsPolish gate
+ON (awaiting user's call that the pass looks done).
+
 | # | Defect | Fix |
 |---|---|---|
 | R1 | `LoadSprites` is `#if UNITY_EDITOR` + `AssetDatabase` — null in any build, assets strippable | Move PNGs to `Assets/Resources/Sprites/Environment/`, load via `Resources.Load`; keep paths in one manifest |

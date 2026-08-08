@@ -327,7 +327,10 @@ namespace CavesOfOoo.Rendering
             // token so a ZoneRenderer bg repaint is never clobbered.
             public TileBase Written;
         }
-        private readonly List<Claim> _claimedThisFrame = new List<Claim>(2048);
+        // ROUND 4 — claims persist across frames (keyed by tile pos);
+        // the incremental path releases/re-resolves only dirty cells.
+        private readonly Dictionary<Vector3Int, Claim> _claims =
+            new Dictionary<Vector3Int, Claim>(2048);
 
         // PASS 15 R5 — this scan was invisible to the perf budget table.
         private static readonly Unity.Profiling.ProfilerMarker s_PostRenderMarker =
@@ -343,7 +346,8 @@ namespace CavesOfOoo.Rendering
         // that ground sprite INTO the bg tilemap so the letter sits
         // directly on grass/stone.
         private Tilemap _bgTilemap;
-        private readonly List<Claim> _bgClaimedThisFrame = new List<Claim>(512);
+        private readonly Dictionary<Vector3Int, Claim> _bgClaims =
+            new Dictionary<Vector3Int, Claim>(512);
 
         public void Init(Transform gridParent, Tilemap mainTilemap, Tilemap bgTilemap = null)
         {
@@ -618,174 +622,219 @@ namespace CavesOfOoo.Rendering
         public void NotifyMainTilemapCleared()
         {
             if (!IsInitialized) return;
-            for (int i = 0; i < _claimedThisFrame.Count; i++)
-                _overlayTilemap.SetTile(_claimedThisFrame[i].Pos, null);
-            _claimedThisFrame.Clear();
-            _bgClaimedThisFrame.Clear(); // bg was cleared with the rest
+            foreach (var kvp in _claims)
+                _overlayTilemap.SetTile(kvp.Key, null);
+            _claims.Clear();
+            _bgClaims.Clear(); // bg was cleared with the rest
         }
 
         public void PostRender(Zone zone, int width, int height)
+            => PostRender(zone, width, height, null);
+
+        /// <summary>
+        /// ROUND 4 (perf) — two paths:
+        /// <para>FULL (dirtyKeys == null): release every claim, rescan
+        /// every cell. Runs on RenderZone (player moved, zone changed).</para>
+        /// <para>INCREMENTAL (dirtyKeys != null): release + re-resolve
+        /// ONLY the dirty cells and their 8-neighborhoods (wall
+        /// variants and shoreline edges read neighbors). The audit
+        /// measured the old always-full design at ~13-15k tilemap
+        /// writes per NPC-step repaint; claims now persist across
+        /// frames and untouched cells cost nothing.</para>
+        /// </summary>
+        public void PostRender(Zone zone, int width, int height, HashSet<int> dirtyKeys)
         {
             if (!IsInitialized || _mainTilemap == null) return;
             using var _ = s_PostRenderMarker.Auto();
+            long t0 = System.Diagnostics.Stopwatch.GetTimestamp();
+            Perf.Frames++;
 
-            // PASS 15 R3 — release last frame's claims by RESTORING the
-            // displaced glyphs. On the dirty path only a handful of
-            // cells were repainted; every other claimed cell needs its
-            // glyph back so the rescan below can re-resolve it (the old
-            // code left them null → the environment blanked out around
-            // the dirty cells). This also fixes the toggle-off hole:
-            // disabling sprite mode now restores the full ASCII view
-            // immediately instead of waiting for a full redraw.
-            ReleaseClaims();
-
-            if (!RenderingEnabled || zone == null) return;
-
-            for (int x = 0; x < width; x++)
+            if (!RenderingEnabled || zone == null || dirtyKeys == null)
             {
-                for (int y = 0; y < height; y++)
+                Perf.FullPasses++;
+                // PASS 15 R3 — release by RESTORING displaced glyphs
+                // (toggle-off shows ASCII at once; the rescan below
+                // re-resolves everything).
+                ReleaseClaims();
+                if (RenderingEnabled && zone != null)
                 {
-                    var pos = new Vector3Int(x, y, 0);
+                    for (int x = 0; x < width; x++)
+                        for (int y = 0; y < height; y++)
+                            ResolveCell(zone, x, height - 1 - y, new Vector3Int(x, y, 0));
+                }
+                Perf.Accumulate(t0);
+                return;
+            }
 
-                    // PASS 15 R2 — the tilemap is painted VERTICALLY
-                    // FLIPPED relative to zone space (ZoneRenderer
-                    // paints zone cell (x, zy) at tile row
-                    // Height-1-zy). Every zone lookup below must use
-                    // the flipped row or the blueprint tier resolves
-                    // sprites from the MIRRORED cell — the audit's
-                    // "player renders reflected across the midline"
-                    // defect.
-                    int zoneY = height - 1 - y;
-
-                    // PASS 15 round 2 — FOG OF WAR. Unexplored cells
-                    // are never claimed (the solid unexplored block
-                    // stays untouched — sprite claims were revealing
-                    // chests and rivers through fog). Remembered-but-
-                    // not-visible cells claim TERRAIN ONLY, dimmed,
-                    // mirroring RenderRememberedCell's contract that
-                    // creatures/items hide in the fog.
-                    var cell = zone.GetCell(x, zoneY);
-                    if (cell == null || !cell.Explored) continue;
-                    bool visible = cell.IsVisible;
-                    Color tint = visible ? Color.white : RememberedTint;
-
-                    // PASS 15 R5 — ONE top-entity fetch per cell,
-                    // shared by the pre-pass and every resolver tier.
-                    // In remembered fog the "top entity" is the cell's
-                    // TERRAIN, so actors never resolve there.
-                    Entity topEntity = visible
-                        ? cell.GetTopVisibleObject()
-                        : TerrainEntityOf(cell);
-
-                    // Pass 10 — entity-based pre-pass. Chest + lantern
-                    // entities don't always paint their RenderString
-                    // glyph to the main tilemap (they share cells with
-                    // a Floor entity that wins the paint race), so the
-                    // glyph-only scan misses them. Look directly at
-                    // the cell's top entity and force-paint when its
-                    // blueprint matches a sprite-emitting kind.
-                    Tile entityTile = visible ? TryEntityBasedTile(topEntity) : null;
-                    if (entityTile != null)
+            // INCREMENTAL — expand each dirty cell to its 8-neighborhood
+            // (wall top-face variants + shoreline masks are functions of
+            // neighbors), then release + re-resolve only those.
+            Perf.IncrementalPasses++;
+            _incrScratch.Clear();
+            foreach (int key in dirtyKeys)
+            {
+                int cx = key % Zone.Width;
+                int cy = key / Zone.Width;
+                for (int dx = -1; dx <= 1; dx++)
+                {
+                    for (int dy = -1; dy <= 1; dy++)
                     {
-                        ClaimCell(pos, entityTile, _mainTilemap.GetColor(pos));
-                        // Object sprites have transparent margins — put
-                        // the ground in the bg box behind them too.
-                        PaintGroundUnderAscii(zone, x, zoneY, pos, tint);
-                        continue;
+                        int nx = cx + dx, ny = cy + dy;
+                        if (nx < 0 || nx >= width || ny < 0 || ny >= height) continue;
+                        _incrScratch.Add(ny * Zone.Width + nx);
                     }
-
-                    // PASS 15 V-loop fix #2 (round 2): ALL ground
-                    // claims are blueprint-driven, glyph-independent —
-                    // the animated env renderer strips water AND grass/
-                    // floor glyphs off the main tilemap before this
-                    // pass runs, which left scattered claim-holes (the
-                    // "specks" in the first live screenshots) wherever
-                    // it had claimed a cell. Our overlay (order 3) sits
-                    // above its layers (order 2), so claiming here
-                    // fully covers the duplicated glyph.
-                    var topGround = ResolveGroundMaterial(topEntity?.BlueprintName);
-                    if (topGround == GroundMaterial.Water)
-                    {
-                        var shoreline = PickShorelineTile(zone, x, zoneY);
-                        if (shoreline != null)
-                        {
-                            ClaimCell(pos, shoreline, tint);
-                            continue;
-                        }
-                    }
-                    else if (topGround != GroundMaterial.None
-                        && _groundMacroTiles.TryGetValue(topGround, out var topMacro)
-                        && topMacro.Length == 16)
-                    {
-                        var mt = topMacro[MacroIndex(x, zoneY)];
-                        if (mt != null)
-                        {
-                            ClaimCell(pos, mt, tint);
-                            continue;
-                        }
-                    }
-
-                    var existingTile = _mainTilemap.GetTile(pos);
-                    char glyph = existingTile != null ? ExtractGlyph(existingTile) : '\0';
-                    if (glyph == '\0')
-                    {
-                        // Animated-env-claimed cell (its renderer strips
-                        // the main glyph) or unreadable tile. Round 3:
-                        // still run the BLUEPRINT tiers — the animated
-                        // env claims '=' too, which blanked the
-                        // MarketStall back to ASCII-with-no-glyph. Only
-                        // glyph-keyed tiers need the glyph.
-                        // ('_' would collide with the profiler-marker
-                        // using variable above — named discard.)
-                        Tile blindTarget = ChooseTile(zone, x, zoneY, '\0', topEntity, out bool _blindAuthored);
-                        if (blindTarget != null)
-                            ClaimCell(pos, blindTarget, tint);
-                        PaintGroundUnderAscii(zone, x, zoneY, pos, tint);
-                        continue;
-                    }
-
-                    Tile target = ChooseTile(zone, x, zoneY, glyph, topEntity, out bool authoredColor);
-                    if (target == null)
-                    {
-                        // The cell stays ASCII (an actor letter, an
-                        // unmapped item) — put the GROUND under it so
-                        // the glyph sits on terrain, not on a floating
-                        // dark box.
-                        PaintGroundUnderAscii(zone, x, zoneY, pos, tint);
-                        continue;
-                    }
-
-                    var color = _mainTilemap.GetColor(pos);
-                    if (!visible)
-                    {
-                        // Round 3 audit 🔵 fix — one dim, every tier.
-                        // Glyph-tier fog claims copied the remembered
-                        // glyph's ~0.2 gray while blueprint-tier used
-                        // RememberedTint (0.4): a remembered room read
-                        // as two different fog depths.
-                        color = tint;
-                    }
-                    else if (authoredColor)
-                    {
-                        // Pass 13: actor sprites carry their own palette —
-                        // apply only the cell's LIGHTING (max channel of
-                        // the glyph color, which already includes the
-                        // lightmap) as a gray tint, never the glyph hue.
-                        float v = Mathf.Max(color.r, Mathf.Max(color.g, color.b));
-                        color = new Color(v, v, v, color.a);
-                    }
-                    ClaimCell(pos, target, color);
-                    // Actors/fixtures/items have transparent margins;
-                    // ground/water/wall tiles are opaque and cover the
-                    // bg anyway — painting under every claim is safe
-                    // and puts terrain behind every sprite edge. The
-                    // PLAYER'S cell gets a brightened ground patch —
-                    // the round-2 findability highlight.
-                    PaintGroundUnderAscii(zone, x, zoneY, pos,
-                        target == _playerTile ? PlayerHighlightTint : tint);
                 }
             }
+            foreach (int key in _incrScratch)
+            {
+                int zx = key % Zone.Width;
+                int zy = key / Zone.Width;
+                var pos = new Vector3Int(zx, height - 1 - zy, 0);
+                ReleaseClaimAt(pos);
+                ReleaseBgClaimAt(pos);
+                ResolveCell(zone, zx, zy, pos);
+            }
+            Perf.Accumulate(t0);
         }
+
+        /// <summary>One cell through every tier — the body of the old
+        /// full-scan loop, extracted so the incremental path can run it
+        /// per dirty cell. (x, zoneY) are ZONE coordinates; pos is the
+        /// flipped TILE position (R2 mirror contract).</summary>
+        private void ResolveCell(Zone zone, int x, int zoneY, Vector3Int pos)
+        {
+            Perf.CellsResolved++;
+            // PASS 15 round 2 — FOG OF WAR. Unexplored cells are never
+            // claimed. Remembered-not-visible cells claim TERRAIN ONLY,
+            // dimmed, mirroring RenderRememberedCell's contract.
+            var cell = zone.GetCell(x, zoneY);
+            if (cell == null || !cell.Explored) return;
+            bool visible = cell.IsVisible;
+            Color tint = visible ? Color.white : RememberedTint;
+
+            // PASS 15 R5 — ONE top-entity fetch per cell. In remembered
+            // fog the "top entity" is the cell's TERRAIN, so actors
+            // never resolve there.
+            Entity topEntity = visible
+                ? cell.GetTopVisibleObject()
+                : TerrainEntityOf(cell);
+
+            // Pass 10 — entity-based pre-pass (chest/lantern/bed/corpse
+            // + campfire): blueprint-keyed, glyph-independent.
+            Tile entityTile = visible ? TryEntityBasedTile(topEntity) : null;
+            if (entityTile != null)
+            {
+                ClaimCell(pos, entityTile, _mainTilemap.GetColor(pos));
+                PaintGroundUnderAscii(zone, x, zoneY, pos, tint);
+                return;
+            }
+
+            // PASS 15 V-loop fix #2 (round 2): ALL ground claims are
+            // blueprint-driven, glyph-independent — the animated env
+            // renderer strips water/grass/floor glyphs before this pass.
+            var topGround = ResolveGroundMaterial(topEntity?.BlueprintName);
+            if (topGround == GroundMaterial.Water)
+            {
+                var shoreline = PickShorelineTile(zone, x, zoneY);
+                if (shoreline != null)
+                {
+                    ClaimCell(pos, shoreline, tint);
+                    return;
+                }
+            }
+            else if (topGround != GroundMaterial.None
+                && _groundMacroTiles.TryGetValue(topGround, out var topMacro)
+                && topMacro.Length == 16)
+            {
+                var mt = topMacro[MacroIndex(x, zoneY)];
+                if (mt != null)
+                {
+                    ClaimCell(pos, mt, tint);
+                    return;
+                }
+            }
+
+            var existingTile = _mainTilemap.GetTile(pos);
+            char glyph = existingTile != null ? ExtractGlyph(existingTile) : '\0';
+            if (glyph == '\0')
+            {
+                // Animated-env-claimed cell (glyph stripped) — round 3:
+                // still run the BLUEPRINT tiers (MarketStall etc.).
+                Tile blindTarget = ChooseTile(zone, x, zoneY, '\0', topEntity, out bool _blindAuthored);
+                if (blindTarget != null)
+                    ClaimCell(pos, blindTarget, tint);
+                PaintGroundUnderAscii(zone, x, zoneY, pos, tint);
+                return;
+            }
+
+            Tile target = ChooseTile(zone, x, zoneY, glyph, topEntity, out bool authoredColor);
+            if (target == null)
+            {
+                // Honest ASCII — put the GROUND under the letter.
+                PaintGroundUnderAscii(zone, x, zoneY, pos, tint);
+                return;
+            }
+
+            var color = _mainTilemap.GetColor(pos);
+            if (!visible)
+            {
+                // Round 3 audit 🔵 — one dim, every tier.
+                color = tint;
+            }
+            else if (authoredColor)
+            {
+                // Pass 13: authored palettes take only the LIGHTING
+                // value (max channel), never the glyph hue.
+                float v = Mathf.Max(color.r, Mathf.Max(color.g, color.b));
+                color = new Color(v, v, v, color.a);
+            }
+            ClaimCell(pos, target, color);
+            // The PLAYER's cell gets the round-2 findability highlight.
+            PaintGroundUnderAscii(zone, x, zoneY, pos,
+                target == _playerTile ? PlayerHighlightTint : tint);
+        }
+
+        /// <summary>
+        /// ROUND 4 — live perf counters for the sprite pass, readable
+        /// via execute_code and reset per measurement window. The A/B
+        /// evidence for the incremental-claims change lives here.
+        /// </summary>
+        public static class Perf
+        {
+            public static long Frames, FullPasses, IncrementalPasses;
+            public static long CellsResolved, ClaimsMade, TilemapWrites;
+            public static long TotalTicks, MaxTicks;
+
+            public static void Reset()
+            {
+                Frames = FullPasses = IncrementalPasses = 0;
+                CellsResolved = ClaimsMade = TilemapWrites = 0;
+                TotalTicks = MaxTicks = 0;
+            }
+
+            internal static void Accumulate(long t0)
+            {
+                long dt = System.Diagnostics.Stopwatch.GetTimestamp() - t0;
+                TotalTicks += dt;
+                if (dt > MaxTicks) MaxTicks = dt;
+            }
+
+            public static string Snapshot()
+            {
+                double toMs = 1000.0 / System.Diagnostics.Stopwatch.Frequency;
+                long f = Frames > 0 ? Frames : 1;
+                return "frames=" + Frames
+                    + " (full=" + FullPasses + " incr=" + IncrementalPasses + ")"
+                    + " cells/frame=" + (CellsResolved / f)
+                    + " claims/frame=" + (ClaimsMade / f)
+                    + " writes/frame=" + (TilemapWrites / f)
+                    + " avgMs=" + (TotalTicks * toMs / f).ToString("F2")
+                    + " maxMs=" + (MaxTicks * toMs).ToString("F2");
+            }
+        }
+
+        // Incremental-path scratch (expanded dirty neighborhood).
+        private readonly HashSet<int> _incrScratch = new HashSet<int>();
 
         /// <summary>
         /// PASS 15 V-loop fix #1 — for a cell that keeps its ASCII
@@ -812,13 +861,25 @@ namespace CavesOfOoo.Rendering
             var mt = macro[MacroIndex(x, zoneY)];
             if (mt == null) return;
 
-            _bgClaimedThisFrame.Add(new Claim
+            if (_bgClaims.TryGetValue(pos, out var existingBg))
             {
-                Pos = pos,
-                MainTile = _bgTilemap.GetTile(pos),
-                MainColor = _bgTilemap.GetColor(pos),
-                Written = mt,
-            });
+                // Re-claim without release (defensive): KEEP the
+                // original displaced snapshot — capturing our own
+                // macro as "original" would leak it on release.
+                existingBg.Written = mt;
+                _bgClaims[pos] = existingBg;
+            }
+            else
+            {
+                _bgClaims[pos] = new Claim
+                {
+                    Pos = pos,
+                    MainTile = _bgTilemap.GetTile(pos),
+                    MainColor = _bgTilemap.GetColor(pos),
+                    Written = mt,
+                };
+            }
+            Perf.TilemapWrites += 3;
             _bgTilemap.SetTile(pos, mt);
             _bgTilemap.SetTileFlags(pos, TileFlags.None);
             // Round 2: the tint carries fog dimming (RememberedTint) and
@@ -837,34 +898,56 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private void ReleaseClaims()
         {
-            for (int i = 0; i < _claimedThisFrame.Count; i++)
-            {
-                var claim = _claimedThisFrame[i];
-                _overlayTilemap.SetTile(claim.Pos, null);
-                if (_mainTilemap.GetTile(claim.Pos) != null) continue;
-                _mainTilemap.SetTile(claim.Pos, claim.MainTile);
-                // SetTile resets the cell's flags to the TILE asset's —
-                // clear them or the color restore below can silently
-                // no-op on a LockColor'd tile (round 2's root-cause
-                // lesson applied to the restore path too).
-                _mainTilemap.SetTileFlags(claim.Pos, TileFlags.None);
-                _mainTilemap.SetColor(claim.Pos, claim.MainColor);
-            }
-            _claimedThisFrame.Clear();
+            foreach (var kvp in _claims)
+                RestoreMainClaim(kvp.Value);
+            _claims.Clear();
             if (_bgTilemap != null)
             {
-                for (int i = 0; i < _bgClaimedThisFrame.Count; i++)
-                {
-                    var claim = _bgClaimedThisFrame[i];
-                    // bg flavor of the same guard: only restore if the
-                    // bg still shows the tile WE wrote.
-                    if (_bgTilemap.GetTile(claim.Pos) != claim.Written) continue;
-                    _bgTilemap.SetTile(claim.Pos, claim.MainTile);
-                    _bgTilemap.SetTileFlags(claim.Pos, TileFlags.None);
-                    _bgTilemap.SetColor(claim.Pos, claim.MainColor);
-                }
-                _bgClaimedThisFrame.Clear();
+                foreach (var kvp in _bgClaims)
+                    RestoreBgClaim(kvp.Value);
             }
+            _bgClaims.Clear();
+        }
+
+        /// <summary>ROUND 4 — targeted release for the incremental path.</summary>
+        private void ReleaseClaimAt(Vector3Int pos)
+        {
+            if (!_claims.TryGetValue(pos, out var claim)) return;
+            RestoreMainClaim(claim);
+            _claims.Remove(pos);
+        }
+
+        private void ReleaseBgClaimAt(Vector3Int pos)
+        {
+            if (_bgTilemap == null || !_bgClaims.TryGetValue(pos, out var claim)) return;
+            RestoreBgClaim(claim);
+            _bgClaims.Remove(pos);
+        }
+
+        private void RestoreMainClaim(in Claim claim)
+        {
+            _overlayTilemap.SetTile(claim.Pos, null);
+            Perf.TilemapWrites++;
+            if (_mainTilemap.GetTile(claim.Pos) != null) return;
+            _mainTilemap.SetTile(claim.Pos, claim.MainTile);
+            // SetTile resets the cell's flags to the TILE asset's —
+            // clear them or the color restore below can silently
+            // no-op on a LockColor'd tile (round 2's root-cause
+            // lesson applied to the restore path too).
+            _mainTilemap.SetTileFlags(claim.Pos, TileFlags.None);
+            _mainTilemap.SetColor(claim.Pos, claim.MainColor);
+            Perf.TilemapWrites += 3;
+        }
+
+        private void RestoreBgClaim(in Claim claim)
+        {
+            // bg flavor of the round-3 guard: only restore if the bg
+            // still shows the tile WE wrote.
+            if (_bgTilemap.GetTile(claim.Pos) != claim.Written) return;
+            _bgTilemap.SetTile(claim.Pos, claim.MainTile);
+            _bgTilemap.SetTileFlags(claim.Pos, TileFlags.None);
+            _bgTilemap.SetColor(claim.Pos, claim.MainColor);
+            Perf.TilemapWrites += 3;
         }
 
         /// <summary>
@@ -882,12 +965,19 @@ namespace CavesOfOoo.Rendering
 
         private void ClaimCell(Vector3Int pos, Tile target, Color color)
         {
-            _claimedThisFrame.Add(new Claim
+            Perf.ClaimsMade++;
+            if (!_claims.ContainsKey(pos))
             {
-                Pos = pos,
-                MainTile = _mainTilemap.GetTile(pos),
-                MainColor = _mainTilemap.GetColor(pos),
-            });
+                _claims[pos] = new Claim
+                {
+                    Pos = pos,
+                    MainTile = _mainTilemap.GetTile(pos),
+                    MainColor = _mainTilemap.GetColor(pos),
+                };
+            }
+            // else: re-claim without release (defensive) — keep the
+            // ORIGINAL displaced snapshot; the main cell is null.
+            Perf.TilemapWrites += 4;
             _overlayTilemap.SetTile(pos, target);
             // Guard against LockColor'd tiles from any future source —
             // without None flags the SetColor below silently no-ops.
@@ -1537,23 +1627,34 @@ namespace CavesOfOoo.Rendering
         /// Extract the CP437 glyph from a Tile asset. Same convention
         /// as AnimatedEnvironmentRenderer.
         /// </summary>
+        // ROUND 4 perf — tile.name + Substring allocated per ASCII cell
+        // per rescan (audit: ~0.3-0.6MB/s of garbage in wall-heavy
+        // zones). Tile instances are a small fixed set (CP437 generator
+        // caches them): parse each ONCE.
+        private static readonly Dictionary<TileBase, char> s_glyphCache =
+            new Dictionary<TileBase, char>(512);
+
         private static char ExtractGlyph(TileBase tile)
         {
             if (tile == null) return '\0';
+            if (s_glyphCache.TryGetValue(tile, out char cached)) return cached;
+
+            char result = '\0';
             string n = tile.name;
-            if (string.IsNullOrEmpty(n)) return '\0';
             const string PREFIX = "CP437_";
-            if (n.Length == PREFIX.Length + 2 && n.StartsWith(PREFIX))
+            if (!string.IsNullOrEmpty(n)
+                && n.Length == PREFIX.Length + 2 && n.StartsWith(PREFIX))
             {
                 if (int.TryParse(n.Substring(PREFIX.Length),
                     System.Globalization.NumberStyles.HexNumber,
                     System.Globalization.CultureInfo.InvariantCulture, out int code)
                     && code >= 0 && code < 256)
                 {
-                    return (char)code;
+                    result = (char)code;
                 }
             }
-            return '\0';
+            s_glyphCache[tile] = result;
+            return result;
         }
     }
 }

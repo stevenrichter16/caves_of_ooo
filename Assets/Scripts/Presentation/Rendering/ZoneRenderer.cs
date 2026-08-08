@@ -669,18 +669,15 @@ namespace CavesOfOoo.Rendering
                     else if (_dirtyCells.Count > 0)
                     {
                         RenderDirtyCells();
-                        _dirtyCells.Clear();
-                        // Pass 13: the sprite pass must also run on the
-                        // incremental path — actor sprites (player,
-                        // snapjaw) and stage-changing crops repaint via
-                        // dirty cells while the player waits in place;
-                        // without this rescan a moved NPC leaves its
-                        // sprite at the old cell and paints a bare glyph
-                        // at the new one until the next full redraw.
-                        // Same O(cells) scan PostRender already runs on
-                        // every player-move frame.
+                        // Pass 13 + ROUND 4: the sprite pass runs on the
+                        // incremental path too, but now receives the
+                        // DIRTY SET and re-resolves only those cells
+                        // (plus neighbors) — the audit measured the old
+                        // full release/rescan at ~13-15k tilemap writes
+                        // per NPC step. Clear AFTER the sprite pass.
                         if (_envSpriteRenderer != null)
-                            _envSpriteRenderer.PostRender(CurrentZone, Zone.Width, Zone.Height);
+                            _envSpriteRenderer.PostRender(CurrentZone, Zone.Width, Zone.Height, _dirtyCells);
+                        _dirtyCells.Clear();
                     }
                 }
 
