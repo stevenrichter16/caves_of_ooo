@@ -99,6 +99,88 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void Ghost_IsTheMoversGlyph_NotTheRepaintedTerrain()
+        {
+            // AUDIT 🟡 — SpawnGhost used to sample the previous cell
+            // AFTER the repaint: the ghost duplicated the terrain '.'
+            // instead of the mover. The tile is now CAPTURED before the
+            // move.
+            var zone = new Zone("G");
+            var mover = Mover("m1");
+            zone.AddEntity(mover, 5, 5);
+            var moverTile = PaintGlyphAtZoneCell(5, 5); // 's' seen here
+            _ghosts.SetZone(zone);
+            _ghosts.PostRender(_mainTilemap);           // capture 's'
+
+            zone.MoveEntity(mover, 6, 5);
+            // The dirty repaint replaces the old cell with FLOOR:
+            var floorTile = ScriptableObject.CreateInstance<Tile>();
+            floorTile.name = "CP437_2E";
+            _mainTilemap.SetTile(new Vector3Int(5, Zone.Height - 1 - 5, 0), floorTile);
+            _ghosts.PostRender(_mainTilemap);           // spawn from capture
+
+            Tilemap ghostTm = null;
+            foreach (Transform child in _gridGo.transform)
+                if (child.name == "GlyphGhostTilemap")
+                    ghostTm = child.GetComponent<Tilemap>();
+            var pos = new Vector3Int(5, Zone.Height - 1 - 5, 0);
+            Assert.AreEqual("CP437_73", ghostTm.GetTile(pos)?.name,
+                "the ghost is the MOVER's 's' — not the '.' the repaint left behind");
+            Assert.AreEqual(moverTile.name, "CP437_73", "fixture sanity");
+            Object.DestroyImmediate(floorTile);
+        }
+
+        [Test]
+        public void Ghost_ActuallyFades()
+        {
+            // AUDIT 🟡 — the ghost tilemap never cleared TileFlags, so
+            // every SetColor (spawn AND decay fade) was a LockColor
+            // no-op: ghosts rendered full-bright then popped out. Same
+            // root cause round 2 found in MakeTile.
+            var zone = new Zone("G");
+            var mover = Mover("m1");
+            zone.AddEntity(mover, 5, 5);
+            PaintGlyphAtZoneCell(5, 5);
+            _ghosts.SetZone(zone);
+            _ghosts.PostRender(_mainTilemap);
+            zone.MoveEntity(mover, 6, 5);
+            _ghosts.PostRender(_mainTilemap);           // spawn
+
+            Tilemap ghostTm = null;
+            foreach (Transform child in _gridGo.transform)
+                if (child.name == "GlyphGhostTilemap")
+                    ghostTm = child.GetComponent<Tilemap>();
+            var pos = new Vector3Int(5, Zone.Height - 1 - 5, 0);
+            float a0 = ghostTm.GetColor(pos).a;
+            _ghosts.PostRender(_mainTilemap);           // decay tick
+            _ghosts.PostRender(_mainTilemap);           // decay tick
+            float a2 = ghostTm.GetColor(pos).a;
+
+            Assert.Less(a2, a0,
+                "alpha falls across decay ticks — LockColor no longer eats the fade");
+        }
+
+        [Test]
+        public void LastKnown_PrunesEntitiesThatLeftTheZone()
+        {
+            // AUDIT ⚪ — dead/removed entities stayed in _lastKnown
+            // forever, pinning their object graphs until zone change.
+            var zone = new Zone("G");
+            var mover = Mover("m1");
+            zone.AddEntity(mover, 5, 5);
+            PaintGlyphAtZoneCell(5, 5);
+            _ghosts.SetZone(zone);
+            _ghosts.PostRender(_mainTilemap);
+            Assert.IsTrue(_ghosts.TestOnly_HasLastKnown(mover), "tracked while present");
+
+            zone.RemoveEntity(mover);
+            _ghosts.PostRender(_mainTilemap);
+
+            Assert.IsFalse(_ghosts.TestOnly_HasLastKnown(mover),
+                "gone from the zone → gone from tracking");
+        }
+
+        [Test]
         public void DecayLoop_ManySimultaneousGhosts_AllExpire()
         {
             // The live failure had a jungle full of movers — many

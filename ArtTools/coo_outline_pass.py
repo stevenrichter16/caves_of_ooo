@@ -54,10 +54,21 @@ ROLE_TRIADS = {
     "desert_hermit": ((168, 138, 92),  (124, 98, 62),  (196, 168, 120)),  # sand
     "jungle_hermit": ((58, 104, 66),   (38, 72, 46),   (80, 132, 88)),    # jungle
     "ruins_hermit":  ((150, 144, 132), (108, 102, 92), (180, 174, 162)),  # ash
+    # Round 3 — the remaining townsfolk
+    "farmer":        ((124, 112, 64),  (88, 80, 44),   (152, 140, 88)),   # loam
+    "undertaker":    ((70, 70, 76),    (48, 48, 54),   (92, 92, 100)),    # charcoal
+    "marceline":     ((58, 44, 72),    (38, 28, 50),   (80, 64, 98)),     # night violet
+}
+
+# Round 3 — skin overrides for non-parchment folk (Marceline is a
+# vampire: pale gray skin, not villager tan).
+SKIN_OVERRIDES = {
+    "marceline": (168, 170, 178),
 }
 
 # The villager base's robe triad (mid, dark, light) — measured.
 VILLAGER_ROBE = ((74, 94, 72), (52, 72, 46), (96, 118, 92))
+VILLAGER_SKIN = (196, 184, 150)
 
 
 def outline(im, ink, diag=False):
@@ -124,6 +135,8 @@ def make_role_npc(name, triad):
     base = Image.open(os.path.join(ROOT, "villager.png")).convert("RGBA")
     px = base.load()
     mapping = {VILLAGER_ROBE[i]: triad[i] for i in range(3)}
+    if name in SKIN_OVERRIDES:
+        mapping[VILLAGER_SKIN] = SKIN_OVERRIDES[name]
     for y in range(base.size[1]):
         for x in range(base.size[0]):
             p = px[x, y]

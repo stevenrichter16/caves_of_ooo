@@ -480,11 +480,13 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("T");
             zone.AddEntity(TerrainEntity("Grass", "."), 4, 4);
             var smith = new Entity { ID = "ws", BlueprintName = "Weaponsmith" };
-            smith.AddPart(new RenderPart { DisplayName = "weaponsmith", RenderString = "v", RenderLayer = 5 });
+            // '@' — the canonical townsfolk glyph (the reskin guard
+            // denies the sprite for any OTHER glyph, by design).
+            smith.AddPart(new RenderPart { DisplayName = "weaponsmith", RenderString = "@", RenderLayer = 5 });
             zone.AddEntity(smith, 4, 4);
             Reveal(zone);
             var vGlyph = ScriptableObject.CreateInstance<Tile>();
-            vGlyph.name = "CP437_76"; // 'v'
+            vGlyph.name = "CP437_40"; // '@'
             var tilePos = new Vector3Int(4, Zone.Height - 1 - 4, 0);
             _mainTilemap.SetTile(tilePos, vGlyph);
             _mainTilemap.SetTileFlags(tilePos, TileFlags.None);
@@ -494,8 +496,230 @@ namespace CavesOfOoo.Tests
 
             Assert.AreEqual("Weaponsmith", FindOverlay().GetTile(tilePos)?.name,
                 "the shopkeeper renders as its role sprite, not a letter");
-            Assert.AreEqual(9, EnvironmentSpriteRenderer.NamedActorSprites.Length,
-                "roster pin: 5 shopkeepers + 4 hermits");
+            Assert.AreEqual(12, EnvironmentSpriteRenderer.NamedActorSprites.Length,
+                "roster pin: 5 shopkeepers + 4 hermits + Farmer/Undertaker/Marceline");
+        }
+
+        // ── ROUND 3: town live-sweep fixes ───────────────────────
+
+        [Test]
+        public void Campfire_ClaimsItsSprite_OnAnyFlickerFrame()
+        {
+            // The campfire uses GlyphVariants — the painted glyph is
+            // often NOT '*' (the live town showed a red 'z' frame).
+            // The blueprint-keyed pre-pass must claim it regardless.
+            var zone = new Zone("T");
+            var fire = new Entity { ID = "cf", BlueprintName = "Campfire" };
+            fire.AddPart(new RenderPart { DisplayName = "campfire", RenderString = "*", RenderLayer = 2 });
+            zone.AddEntity(fire, 8, 8);
+            Reveal(zone);
+            var zGlyph = ScriptableObject.CreateInstance<Tile>();
+            zGlyph.name = "CP437_7A"; // 'z' — a flicker frame, not '*'
+            var tilePos = new Vector3Int(8, Zone.Height - 1 - 8, 0);
+            _mainTilemap.SetTile(tilePos, zGlyph);
+
+            _renderer.PostRender(zone, Zone.Width, Zone.Height);
+
+            Assert.AreEqual("Campfire", FindOverlay().GetTile(tilePos)?.name,
+                "campfire resolves by BLUEPRINT — flicker frames must not break the sprite " +
+                "(or the tile-name-keyed fire light)");
+            Object.DestroyImmediate(zGlyph);
+        }
+
+        [Test]
+        public void FloorMacro_IgnoresTheGlyphHue()
+        {
+            // The town's CampfireGroundMarkers paint a warm '.' — the
+            // color-copy tinted the plaza's stone macro RED (the
+            // red-cross finding). Ground families carry their own
+            // palette; only the lighting VALUE may come through.
+            var zone = new Zone("T");
+            zone.AddEntity(TerrainEntity("Floor", "."), 9, 4);
+            Reveal(zone);
+            var tilePos = PaintFloorGlyph(9, 4, new Color(1f, 0.25f, 0.25f, 1f)); // red '.'
+
+            _renderer.PostRender(zone, Zone.Width, Zone.Height);
+
+            var overlay = FindOverlay();
+            StringAssert.StartsWith("floor_m", overlay.GetTile(tilePos)?.name);
+            var c = overlay.GetColor(tilePos);
+            Assert.AreEqual(c.r, c.g, 0.001f, "no hue leaks into ground tiles");
+            Assert.AreEqual(c.g, c.b, 0.001f, "gray = lighting only");
+        }
+
+        [Test]
+        public void MarketStall_ClaimsEvenWhenAnimatedEnvStrippedTheGlyph()
+        {
+            // The animated-environment renderer claims '=' glyphs off
+            // the main tilemap before this pass runs — the stall
+            // blanked back to nothing. Blueprint tiers must run even
+            // with no readable glyph.
+            var zone = new Zone("T");
+            zone.AddEntity(TerrainEntity("MarketStall", "="), 11, 6);
+            Reveal(zone);
+            // NO main tile painted at the stall's position — stripped.
+
+            _renderer.PostRender(zone, Zone.Width, Zone.Height);
+
+            var tilePos = new Vector3Int(11, Zone.Height - 1 - 6, 0);
+            Assert.AreEqual("MarketStall", FindOverlay().GetTile(tilePos)?.name,
+                "fixtures resolve by blueprint even when the glyph is gone");
+        }
+
+        [Test]
+        public void Tinker_IsVillagerKin()
+        {
+            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.Villager,
+                EnvironmentSpriteRenderer.ResolveActorKind("Tinker"),
+                "the town tinker renders as villager-kin, not a bare letter");
+        }
+
+        // ── ROUND 3: audit-confirmed fixes ───────────────────────
+
+        [Test]
+        public void Release_NeverClobbersAFreshRepaint()
+        {
+            // AUDIT 🔴 — RenderDirtyCells runs BEFORE PostRender on the
+            // incremental path. Pre-fix, the release loop restored last
+            // frame's '.' snapshot over the freshly painted monster
+            // glyph, then re-claimed the cell as floor: a spriteless
+            // monster walking toward a stationary player was INVISIBLE.
+            var zone = ZoneWithGrassAt(5, 3);
+            Reveal(zone);
+            var tilePos = PaintFloorGlyph(5, 3, Color.white);
+            _renderer.PostRender(zone, Zone.Width, Zone.Height); // grass claimed, main nulled
+
+            // A viper steps in: the dirty-path repaint puts ITS glyph
+            // on the main tilemap (fresher than our snapshot).
+            var viper = new Entity { ID = "v", BlueprintName = "Viper" };
+            viper.AddPart(new RenderPart { DisplayName = "viper", RenderString = "~", RenderLayer = 5 });
+            zone.AddEntity(viper, 5, 3);
+            var viperGlyph = ScriptableObject.CreateInstance<Tile>();
+            viperGlyph.name = "CP437_7E";
+            _mainTilemap.SetTile(tilePos, viperGlyph);
+
+            _renderer.PostRender(zone, Zone.Width, Zone.Height);
+
+            Assert.AreEqual("CP437_7E", _mainTilemap.GetTile(tilePos)?.name,
+                "the fresh repaint SURVIVES the claim release — the monster is visible");
+            Assert.IsNull(FindOverlay().GetTile(tilePos),
+                "and no terrain sprite is claimed over the honest viper glyph");
+            Object.DestroyImmediate(viperGlyph);
+        }
+
+        [Test]
+        public void ReleaseAllClaims_RestoresTheWorldForFullscreenUIs()
+        {
+            // AUDIT 🟡 — the overlay (order 3) kept last frame's sprites
+            // above the main tilemap fullscreen UIs paint on (order 0).
+            // ZoneRenderer calls this on its Paused transition.
+            var zone = ZoneWithGrassAt(5, 3);
+            Reveal(zone);
+            var tilePos = PaintFloorGlyph(5, 3, Color.white);
+            _renderer.PostRender(zone, Zone.Width, Zone.Height);
+            Assert.IsNotNull(FindOverlay().GetTile(tilePos), "precondition: claimed");
+
+            _renderer.ReleaseAllClaims();
+
+            Assert.IsNull(FindOverlay().GetTile(tilePos), "overlay cleared for the UI");
+            Assert.IsNotNull(_mainTilemap.GetTile(tilePos), "glyph handed back");
+        }
+
+        [Test]
+        public void Shoreline_IgnoresActorsStandingInWater()
+        {
+            // AUDIT 🟡 — IsLandAt keyed off the TOP entity: a viper
+            // swimming the river flipped its cell to 'land' and dragged
+            // shoreline scallops along with it (through fog, that
+            // tracked an unseen enemy). Terrain decides, not actors.
+            var zone = new Zone("T");
+            for (int dx = -1; dx <= 1; dx++)
+                for (int dy = -1; dy <= 1; dy++)
+                    zone.AddEntity(TerrainEntity("WaterPuddle", "~"), 10 + dx, 10 + dy);
+            var swimmer = new Entity { ID = "v", BlueprintName = "Viper" };
+            swimmer.AddPart(new RenderPart { DisplayName = "viper", RenderString = "~", RenderLayer = 5 });
+            zone.AddEntity(swimmer, 10, 9); // in the NORTH water cell
+            Reveal(zone);
+            var waterGlyph = ScriptableObject.CreateInstance<Tile>();
+            waterGlyph.name = "CP437_7E";
+            var tilePos = new Vector3Int(10, Zone.Height - 1 - 10, 0);
+            _mainTilemap.SetTile(tilePos, waterGlyph);
+
+            _renderer.PostRender(zone, Zone.Width, Zone.Height);
+
+            StringAssert.StartsWith("water_m", FindOverlay().GetTile(tilePos)?.name,
+                "open water stays open water — the swimming viper is not a shore");
+            Object.DestroyImmediate(waterGlyph);
+        }
+
+        [Test]
+        public void ReskinnedQuestNPC_KeepsItsHonestGlyph()
+        {
+            // AUDIT 🟡 — quest builders reskin base blueprints by
+            // mutating RenderString (BMO is a Villager reskinned to
+            // 'b'). The sprite tier must notice the glyph is no longer
+            // canonical and stand down.
+            var zone = new Zone("T");
+            zone.AddEntity(TerrainEntity("Grass", "."), 6, 6);
+            var bmo = new Entity { ID = "bmo", BlueprintName = "Villager" };
+            bmo.AddPart(new RenderPart { DisplayName = "BMO", RenderString = "b", RenderLayer = 5 });
+            zone.AddEntity(bmo, 6, 6);
+            Reveal(zone);
+            var bGlyph = ScriptableObject.CreateInstance<Tile>();
+            bGlyph.name = "CP437_62"; // 'b'
+            var tilePos = new Vector3Int(6, Zone.Height - 1 - 6, 0);
+            _mainTilemap.SetTile(tilePos, bGlyph);
+
+            _renderer.PostRender(zone, Zone.Width, Zone.Height);
+
+            Assert.IsNull(FindOverlay().GetTile(tilePos),
+                "BMO renders as its cyan 'b', not as a lookalike villager");
+            Object.DestroyImmediate(bGlyph);
+        }
+
+        [Test]
+        public void CanonicalVillager_StillClaimsItsSprite()
+        {
+            // Counter-check for the reskin guard: an UN-reskinned '@'
+            // villager keeps its sprite — the guard must not lock
+            // everyone out.
+            var zone = new Zone("T");
+            zone.AddEntity(TerrainEntity("Grass", "."), 7, 6);
+            var v = new Entity { ID = "vg", BlueprintName = "Villager" };
+            v.AddPart(new RenderPart { DisplayName = "villager", RenderString = "@", RenderLayer = 5 });
+            zone.AddEntity(v, 7, 6);
+            Reveal(zone);
+            var atGlyph = ScriptableObject.CreateInstance<Tile>();
+            atGlyph.name = "CP437_40";
+            var tilePos = new Vector3Int(7, Zone.Height - 1 - 6, 0);
+            _mainTilemap.SetTile(tilePos, atGlyph);
+
+            _renderer.PostRender(zone, Zone.Width, Zone.Height);
+
+            Assert.AreEqual("Villager", FindOverlay().GetTile(tilePos)?.name);
+            Object.DestroyImmediate(atGlyph);
+        }
+
+        [Test]
+        public void StageMarkers_KeepTheirColorSignal()
+        {
+            // AUDIT 🟡 — Well/Oven/Lantern GroundMarkers shift color by
+            // repair stage (quest feedback). They keep the honest
+            // colored dot; the campfire's static marker still claims.
+            var zone = new Zone("T");
+            zone.AddEntity(TerrainEntity("WellGroundMarker", "."), 3, 3);
+            zone.AddEntity(TerrainEntity("CampfireGroundMarker", "."), 4, 3);
+            Reveal(zone);
+            var wellPos = PaintFloorGlyph(3, 3, Color.yellow);
+            var campPos = PaintFloorGlyph(4, 3, Color.red);
+
+            _renderer.PostRender(zone, Zone.Width, Zone.Height);
+
+            var overlay = FindOverlay();
+            Assert.IsNull(overlay.GetTile(wellPos),
+                "the stage-colored dot survives — repair progress stays readable");
+            StringAssert.StartsWith("floor_m", overlay.GetTile(campPos)?.name,
+                "counter-check: the campfire's static marker claims stone as before");
         }
 
         // ── ROUND 2: player ground highlight (S4) ────────────────

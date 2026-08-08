@@ -150,6 +150,108 @@ sub-cases, Marceline/Farmer/Undertaker generic-villager mapping.
 GraphicsPolish gate: ON in working tree for the loop; ships committed
 only after the full checklist passes.
 
+## V-loop round 3 (2026-08-08) — town live sweep
+
+Setup: save directory backed up
+(`…/DefaultCompany/caves-of-ooo.backup-round3-*`), then NEW GAME into
+the Starting Town. A background multi-lens adversarial audit
+(fog state machine / claim lifecycle / guard census / perf hot path,
+each finding adversarially refuted) ran in parallel; findings folded
+in below when confirmed.
+
+**Live-verified working:** river with the full shoreline family
+(water_m* + e_n/e_s/e_e edges + ic_se inner corner resolving along
+the real bank), wall_v* top-faces, Apothecary teal role sprite in
+situ, player sprite + warm ground highlight visible, bushes/chest
+with ink rings, compass stones as tinted boulders, fog gating intact
+in town.
+
+**Three defects found by the claims-census (execute_code), all
+invisible to the 5935 tests:**
+1. **The red plaza cross** — the campfire's four CampfireGroundMarker
+   cells claimed the stone-floor macro TINTED RED (glyph-color copy
+   from the markers' warm '.'), and the campfire itself devolved to a
+   red ASCII flicker frame ('z') because its GlyphVariants defeat the
+   '*'-keyed glyph tier. → Campfire joined the blueprint-keyed entity
+   pre-pass (sprite on every flicker frame + fire light preserved);
+   ground/water families in the glyph tier now claim authoredColor
+   (lighting VALUE only — a macro carries its own palette, no hue
+   leak).
+2. **MarketStall blanked to nothing** — the animated-env renderer
+   claims '=' glyphs off the main tilemap, and the sprite pass's
+   null-glyph branch skipped ALL resolution. → The null-glyph branch
+   now runs the blueprint tiers (ChooseTile with '\0'), so fixtures
+   and actors survive glyph-stripping.
+3. **Tinker rendered as a bare letter** — blueprint missing from the
+   actor table. → villager-kin.
+
+Also shipped: Farmer/Undertaker/Marceline role sprites (Marceline
+gets pale vampire skin + night-violet robe via the new SKIN_OVERRIDES
+hook in coo_outline_pass.py); roster pin 9 → 12.
+
+Process note: the frozen-compile-pump editor deadlock struck TWICE
+this session (documented in auto-memory `unity-compile-verification`);
+the second occurrence was caught by the frozen-test-count check
+(5935 after adding 4 tests = stale assembly) — the suite had
+"passed" against the pre-fix binary. Editor restart cures it.
+
+### The background audit's verdict (26 agents, 17 confirmed / 5 refuted)
+
+Four lenses (fog state machine / claim lifecycle / guard census /
+perf hot path), every finding adversarially re-verified against
+source. Fixed this round:
+
+- 🔴 **Release-clobber** (found by TWO lenses independently): on the
+  incremental path RenderDirtyCells runs BEFORE PostRender, and the
+  release loop restored LAST frame's snapshots over its fresh paints
+  — a spriteless monster (Viper, DesertBandit…) walking toward a
+  stationary player was INVISIBLE until the player moved; dropped
+  loot never appeared. Fix: restore only when the main cell is still
+  null (our claim's own marker); bg claims carry a `Written` token
+  and restore only if unchanged. Pinned by
+  `Release_NeverClobbersAFreshRepaint`.
+- 🟡 **Overlay over fullscreen UIs**: the sprite overlay (order 3) and
+  ghost overlay kept the last gameplay frame's tiles above the main
+  tilemap the inventory/quest UIs paint on (order 0).
+  `ReleaseAllClaims()` + `ClearGhosts()` now run on ZoneRenderer's
+  Paused transition. (AnimatedEnvironmentRenderer has the same
+  pre-existing issue — deferred, noted below.)
+- 🟡 **Shoreline actor-tracking**: IsLandAt keyed off the top entity,
+  so a viper swimming the river dragged shore scallops with it —
+  through fog, that tracked an unseen enemy. Terrain-scan now.
+- 🟡 **Reskin guard**: quest builders reskin base blueprints via
+  RenderString (BMO = Villager as cyan 'b'; dirt gnomes = Snapjaws as
+  'g'). Actor tiers now require the CANONICAL glyph
+  (NamedActorSprites carries it; KindCanonicalGlyph for enum kinds) —
+  live-verified: BMO renders his honest 'b' in town.
+- 🟡 **Stage markers**: Well/Oven/Lantern GroundMarkers' repair-stage
+  color signal (ash → gold) was being replaced by gray macro stone —
+  they keep the colored dot now; CampfireGroundMarker still claims.
+- 🟡 **Ghost fixes ×3**: ghosts now capture the MOVER's tile+color
+  BEFORE the move (they duplicated the repainted terrain '.');
+  the ghost tilemap clears TileFlags so the fade actually fades
+  (the MakeTile LockColor root cause, third sighting); _lastKnown
+  prunes entities that left the zone (unbounded growth + pinned
+  object graphs).
+- 🔵 Fog-dim unified (glyph-tier fog claims used the ~0.2 remembered
+  gray while blueprint-tier used 0.4 RememberedTint — one tint now);
+  '/' guard comment corrected (26 painters) + polarity documented.
+
+**Deferred to a dedicated round-4 PERF pass** (profile-first per
+PERF-FOUNDATION; all confirmed by the audit's perf lens):
+release/reclaim tilemap churn (~13-15k writes/repaint — the big one),
+bg ping-pong on ASCII cells, LightSourceSpriteHook `t.name` string
+allocs, ExtractGlyph Substring allocs (pre-existing), shoreline
+re-classification of static water, AnimatedEnvironmentRenderer
+pause behavior, ghost decay per-redraw-vs-per-time normalization.
+
+Round-3 close: tests 5935 → 5948 (+13). Suite green (one documented
+pre-existing FungalInfectionContagion order-dependent flake, passes
+in isolation). Live re-verified in town: campfire sprite + light at
+the river bank (red cross gone), plaza NPCs with rings, BMO honest,
+shoreline lips under fog. Jungle save restored from backup after the
+new-game test runs.
+
 | # | Defect | Fix |
 |---|---|---|
 | R1 | `LoadSprites` is `#if UNITY_EDITOR` + `AssetDatabase` — null in any build, assets strippable | Move PNGs to `Assets/Resources/Sprites/Environment/`, load via `Resources.Load`; keep paths in one manifest |

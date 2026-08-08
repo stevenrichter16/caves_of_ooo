@@ -71,18 +71,60 @@ namespace CavesOfOoo.Rendering
         /// (5 shopkeepers + 4 hermits), palette-kin of the villager
         /// base. Public so tests pin the roster.
         /// </summary>
-        public static readonly (string Blueprint, string File)[] NamedActorSprites =
+        /// <summary>Glyph = the blueprint's canonical RenderString —
+        /// the reskin guard denies the sprite when a quest builder has
+        /// mutated the entity's glyph (it isn't that NPC anymore).</summary>
+        public static readonly (string Blueprint, string File, char Glyph)[] NamedActorSprites =
         {
-            ("Weaponsmith",  "weaponsmith"),
-            ("Armorer",      "armorer"),
-            ("Apothecary",   "apothecary"),
-            ("Arcanist",     "arcanist"),
-            ("Provisioner",  "provisioner"),
-            ("CaveHermit",   "cave_hermit"),
-            ("DesertHermit", "desert_hermit"),
-            ("JungleHermit", "jungle_hermit"),
-            ("RuinsHermit",  "ruins_hermit"),
+            ("Weaponsmith",  "weaponsmith",   '@'),
+            ("Armorer",      "armorer",       '@'),
+            ("Apothecary",   "apothecary",    '@'),
+            ("Arcanist",     "arcanist",      '@'),
+            ("Provisioner",  "provisioner",   '@'),
+            ("CaveHermit",   "cave_hermit",   '@'),
+            ("DesertHermit", "desert_hermit", '@'),
+            ("JungleHermit", "jungle_hermit", '@'),
+            ("RuinsHermit",  "ruins_hermit",  '@'),
+            // Round 3 — the remaining townsfolk
+            ("Farmer",       "farmer",        '@'),
+            ("Undertaker",   "undertaker",    'U'),
+            ("Marceline",    "marceline",     'M'),
         };
+
+        /// <summary>Round 3 — current render glyph of an entity, '\0'
+        /// when unreadable. The reskin guard's input.</summary>
+        private static char CurrentGlyphOf(Entity e)
+        {
+            var rs = e?.GetPart<RenderPart>()?.RenderString;
+            return string.IsNullOrEmpty(rs) ? '\0' : rs[0];
+        }
+
+        private static char NamedActorCanonicalGlyph(string blueprint)
+        {
+            for (int i = 0; i < NamedActorSprites.Length; i++)
+                if (NamedActorSprites[i].Blueprint == blueprint)
+                    return NamedActorSprites[i].Glyph;
+            return '\0';
+        }
+
+        /// <summary>Canonical glyphs per actor kind (from Objects.json):
+        /// humanoid townsfolk are '@'; the rest are species letters.</summary>
+        private static char KindCanonicalGlyph(ActorSpriteKind kind)
+        {
+            switch (kind)
+            {
+                case ActorSpriteKind.Player:        return '@';
+                case ActorSpriteKind.Snapjaw:       return 's';
+                case ActorSpriteKind.Villager:      return '@';
+                case ActorSpriteKind.Merchant:      return '@';
+                case ActorSpriteKind.Elder:         return '@';
+                case ActorSpriteKind.Warden:        return '@';
+                case ActorSpriteKind.Child:         return 'c';
+                case ActorSpriteKind.SporeShambler: return 'f';
+                case ActorSpriteKind.IceWight:      return 'W';
+                default:                            return '\0';
+            }
+        }
 
         private readonly Dictionary<string, Tile> _namedActorTiles =
             new Dictionary<string, Tile>(16);
@@ -281,6 +323,9 @@ namespace CavesOfOoo.Rendering
             public Vector3Int Pos;
             public TileBase MainTile;
             public Color MainColor;
+            // Round 3 — the tile WE wrote (bg claims): restore-guard
+            // token so a ZoneRenderer bg repaint is never clobbered.
+            public TileBase Written;
         }
         private readonly List<Claim> _claimedThisFrame = new List<Claim>(2048);
 
@@ -548,7 +593,7 @@ namespace CavesOfOoo.Rendering
             // name. Adding a future named-NPC sprite = drop a PNG +
             // one row here; no enum/field/switch triple to extend.
             _namedActorTiles.Clear();
-            foreach (var (blueprint, file) in NamedActorSprites)
+            foreach (var (blueprint, file, _) in NamedActorSprites)
             {
                 var s = LoadSingle(SpriteRoot + file);
                 if (s != null) _namedActorTiles[blueprint] = MakeTile(s, blueprint);
@@ -592,30 +637,7 @@ namespace CavesOfOoo.Rendering
             // the dirty cells). This also fixes the toggle-off hole:
             // disabling sprite mode now restores the full ASCII view
             // immediately instead of waiting for a full redraw.
-            for (int i = 0; i < _claimedThisFrame.Count; i++)
-            {
-                var claim = _claimedThisFrame[i];
-                _overlayTilemap.SetTile(claim.Pos, null);
-                _mainTilemap.SetTile(claim.Pos, claim.MainTile);
-                // SetTile resets the cell's flags to the TILE asset's —
-                // clear them or the color restore below can silently
-                // no-op on a LockColor'd tile (round 2's root-cause
-                // lesson applied to the restore path too).
-                _mainTilemap.SetTileFlags(claim.Pos, TileFlags.None);
-                _mainTilemap.SetColor(claim.Pos, claim.MainColor);
-            }
-            _claimedThisFrame.Clear();
-            if (_bgTilemap != null)
-            {
-                for (int i = 0; i < _bgClaimedThisFrame.Count; i++)
-                {
-                    var claim = _bgClaimedThisFrame[i];
-                    _bgTilemap.SetTile(claim.Pos, claim.MainTile);
-                    _bgTilemap.SetTileFlags(claim.Pos, TileFlags.None);
-                    _bgTilemap.SetColor(claim.Pos, claim.MainColor);
-                }
-                _bgClaimedThisFrame.Clear();
-            }
+            ReleaseClaims();
 
             if (!RenderingEnabled || zone == null) return;
 
@@ -704,18 +726,20 @@ namespace CavesOfOoo.Rendering
                     }
 
                     var existingTile = _mainTilemap.GetTile(pos);
-                    if (existingTile == null)
-                    {
-                        // Animated-env-claimed cell with a non-ground
-                        // top entity (item on grass): still put the
-                        // ground under the floating glyph.
-                        PaintGroundUnderAscii(zone, x, zoneY, pos, tint);
-                        continue;
-                    }
-
-                    char glyph = ExtractGlyph(existingTile);
+                    char glyph = existingTile != null ? ExtractGlyph(existingTile) : '\0';
                     if (glyph == '\0')
                     {
+                        // Animated-env-claimed cell (its renderer strips
+                        // the main glyph) or unreadable tile. Round 3:
+                        // still run the BLUEPRINT tiers — the animated
+                        // env claims '=' too, which blanked the
+                        // MarketStall back to ASCII-with-no-glyph. Only
+                        // glyph-keyed tiers need the glyph.
+                        // ('_' would collide with the profiler-marker
+                        // using variable above — named discard.)
+                        Tile blindTarget = ChooseTile(zone, x, zoneY, '\0', topEntity, out bool _blindAuthored);
+                        if (blindTarget != null)
+                            ClaimCell(pos, blindTarget, tint);
                         PaintGroundUnderAscii(zone, x, zoneY, pos, tint);
                         continue;
                     }
@@ -732,7 +756,16 @@ namespace CavesOfOoo.Rendering
                     }
 
                     var color = _mainTilemap.GetColor(pos);
-                    if (authoredColor)
+                    if (!visible)
+                    {
+                        // Round 3 audit 🔵 fix — one dim, every tier.
+                        // Glyph-tier fog claims copied the remembered
+                        // glyph's ~0.2 gray while blueprint-tier used
+                        // RememberedTint (0.4): a remembered room read
+                        // as two different fog depths.
+                        color = tint;
+                    }
+                    else if (authoredColor)
                     {
                         // Pass 13: actor sprites carry their own palette —
                         // apply only the cell's LIGHTING (max channel of
@@ -784,12 +817,67 @@ namespace CavesOfOoo.Rendering
                 Pos = pos,
                 MainTile = _bgTilemap.GetTile(pos),
                 MainColor = _bgTilemap.GetColor(pos),
+                Written = mt,
             });
             _bgTilemap.SetTile(pos, mt);
             _bgTilemap.SetTileFlags(pos, TileFlags.None);
             // Round 2: the tint carries fog dimming (RememberedTint) and
             // the player's ground highlight — no more always-white.
             _bgTilemap.SetColor(pos, tint);
+        }
+
+        /// <summary>
+        /// Release every live claim: overlay cells clear; displaced
+        /// main/bg tiles restore UNLESS the ZoneRenderer repainted them
+        /// after we claimed (Round 3 audit 🔴 — RenderDirtyCells runs
+        /// before PostRender on the incremental path, and restoring a
+        /// stale snapshot over its fresh paint made spriteless movers
+        /// INVISIBLE to a stationary player: our ClaimCell leaves the
+        /// main cell null, so non-null means someone painted since).
+        /// </summary>
+        private void ReleaseClaims()
+        {
+            for (int i = 0; i < _claimedThisFrame.Count; i++)
+            {
+                var claim = _claimedThisFrame[i];
+                _overlayTilemap.SetTile(claim.Pos, null);
+                if (_mainTilemap.GetTile(claim.Pos) != null) continue;
+                _mainTilemap.SetTile(claim.Pos, claim.MainTile);
+                // SetTile resets the cell's flags to the TILE asset's —
+                // clear them or the color restore below can silently
+                // no-op on a LockColor'd tile (round 2's root-cause
+                // lesson applied to the restore path too).
+                _mainTilemap.SetTileFlags(claim.Pos, TileFlags.None);
+                _mainTilemap.SetColor(claim.Pos, claim.MainColor);
+            }
+            _claimedThisFrame.Clear();
+            if (_bgTilemap != null)
+            {
+                for (int i = 0; i < _bgClaimedThisFrame.Count; i++)
+                {
+                    var claim = _bgClaimedThisFrame[i];
+                    // bg flavor of the same guard: only restore if the
+                    // bg still shows the tile WE wrote.
+                    if (_bgTilemap.GetTile(claim.Pos) != claim.Written) continue;
+                    _bgTilemap.SetTile(claim.Pos, claim.MainTile);
+                    _bgTilemap.SetTileFlags(claim.Pos, TileFlags.None);
+                    _bgTilemap.SetColor(claim.Pos, claim.MainColor);
+                }
+                _bgClaimedThisFrame.Clear();
+            }
+        }
+
+        /// <summary>
+        /// ROUND 3 audit 🟡 fix — fullscreen UIs (inventory, quest log)
+        /// paint the MAIN tilemap (order 0) while this overlay (order 3)
+        /// kept the last gameplay frame's sprites on top of their lower
+        /// rows. ZoneRenderer calls this on its Paused transition so the
+        /// UI opens over a clean slate.
+        /// </summary>
+        public void ReleaseAllClaims()
+        {
+            if (!IsInitialized) return;
+            ReleaseClaims();
         }
 
         private void ClaimCell(Vector3Int pos, Tile target, Color color)
@@ -822,6 +910,12 @@ namespace CavesOfOoo.Rendering
             if (BlueprintIsLantern(bp)) return _lanternTile;
             if (BlueprintIsBed(bp))     return _bedTile;
             if (BlueprintIsCorpse(bp))  return _corpseTile;
+            // Round 3 — the campfire uses GlyphVariants (flicker
+            // frames), so the '*'-keyed glyph tier misses whenever the
+            // current frame isn't '*' (the town's red-cross-with-'z'
+            // finding). Blueprint-keyed = every frame; this also keeps
+            // the tile-name-keyed fire light alive.
+            if (bp == "Campfire")       return _campfireTile;
             return null;
         }
 
@@ -880,6 +974,7 @@ namespace CavesOfOoo.Rendering
                 // Robed townsfolk share one sprite; role NPCs with a
                 // distinct read get their own.
                 case "Villager":
+                case "Tinker": // Round 3 — the town tinker is villager-kin
                 case "Innkeeper":
                 case "WellKeeper":
                 case "Scribe":        return ActorSpriteKind.Villager;
@@ -971,14 +1066,27 @@ namespace CavesOfOoo.Rendering
                 // Round 2 (S3): blueprint-named role NPCs (shopkeepers
                 // + hermits) resolve first — they are not in the
                 // ActorSpriteKind enum.
+                // ROUND 3 audit 🟡 — the RESKIN GUARD: quest builders
+                // repurpose base blueprints by mutating RenderString
+                // (BMO is a Villager reskinned to 'b'; dirt gnomes are
+                // Snapjaws reskinned to 'g'). If the entity's CURRENT
+                // glyph is not the kind's canonical one, it is not
+                // that kind anymore — honest ASCII beats a lookalike
+                // villager.
+                char curGlyph = CurrentGlyphOf(topEntity);
                 if (bpName != null
                     && _namedActorTiles.TryGetValue(bpName, out var namedActor)
-                    && namedActor != null)
+                    && namedActor != null
+                    && curGlyph == NamedActorCanonicalGlyph(bpName))
                 {
                     authoredColor = true;
                     return namedActor;
                 }
-                switch (ResolveActorKind(bpName))
+                var actorKind = ResolveActorKind(bpName);
+                if (actorKind != ActorSpriteKind.None
+                    && curGlyph != KindCanonicalGlyph(actorKind))
+                    actorKind = ActorSpriteKind.None;
+                switch (actorKind)
                 {
                     case ActorSpriteKind.Player:
                         if (_playerTile != null) { authoredColor = true; return _playerTile; }
@@ -1088,19 +1196,35 @@ namespace CavesOfOoo.Rendering
             }
             // Floors — Pass 15 G: generic '.' with no ground-material
             // blueprint uses the generic stone macro field; the old
-            // hash-picked atlas is the fallback.
+            // hash-picked atlas is the fallback. Round 3: authoredColor
+            // — the macro carries the material's palette; copying the
+            // glyph hue tinted the plaza red around the campfire (the
+            // markers paint a warm '.') while lighting/fog still
+            // arrive via the gray max-channel.
             for (int i = 0; i < FloorGlyphs.Length; i++)
             {
                 if (FloorGlyphs[i] == glyph)
                 {
+                    // ROUND 3 audit 🟡 — Well/Oven/Lantern GroundMarkers
+                    // carry a STAGE-COLORED '.' (ash-gray fouled → warm
+                    // gold repaired: quest feedback). Claiming them as
+                    // gray macro stone erased the signal — they keep
+                    // their honest colored dot. The campfire's marker
+                    // is static decor and may claim.
+                    string floorBp = topEntity?.BlueprintName;
+                    if (floorBp != null
+                        && floorBp.EndsWith("GroundMarker", System.StringComparison.Ordinal)
+                        && floorBp != "CampfireGroundMarker")
+                        return null;
                     if (_groundMacroTiles.TryGetValue(GroundMaterial.Floor, out var stoneMacro)
                         && stoneMacro.Length == 16)
                     {
                         var mt = stoneMacro[MacroIndex(x, y)];
-                        if (mt != null) return mt;
+                        if (mt != null) { authoredColor = true; return mt; }
                     }
                     if (_floorTiles == null || _floorTiles.Length == 0) return null;
                     int variant = FloorVariantIndex(x, y);
+                    authoredColor = true;
                     return _floorTiles[variant % _floorTiles.Length];
                 }
             }
@@ -1108,13 +1232,15 @@ namespace CavesOfOoo.Rendering
             // fallback. Round 2 (S2): '~' is also the Viper, sludges
             // and gas clouds — only a real water blueprint may claim
             // the water family. A snake rendered as a pond is the
-            // worst possible lie.
+            // worst possible lie. Round 3: authoredColor for the same
+            // reason as floors.
             for (int i = 0; i < WaterGlyphs.Length; i++)
             {
                 if (WaterGlyphs[i] == glyph)
                 {
                     if (ResolveGroundMaterial(topEntity?.BlueprintName) != GroundMaterial.Water)
                         return null;
+                    authoredColor = true;
                     var shoreline = PickShorelineTile(zone, x, y);
                     if (shoreline != null) return shoreline;
                     return _waterTile;
@@ -1221,8 +1347,11 @@ namespace CavesOfOoo.Rendering
                 case '_': return blueprintName == "Shrine";
                 case '0': return blueprintName == "WoodenBarrel";
                 case '$': return blueprintName == "GoldCoin";
-                // '/' — 24 of the painters are genuine blades; deny the
-                // four known non-weapons.
+                // '/' — 26 painters, all but four genuine blades; deny
+                // the known non-weapons. Deny-list polarity is a
+                // deliberate tradeoff: a future non-weapon '/' painter
+                // needs a row here, but a future WEAPON works with no
+                // edit (weapons outnumber exceptions ~6:1).
                 case '/': return blueprintName != "Torch" && blueprintName != "IronKey"
                     && blueprintName != "OldWorldPipe" && blueprintName != "TemporalShard";
                 default: return true;
@@ -1378,10 +1507,19 @@ namespace CavesOfOoo.Rendering
             if (zone == null) return false;
             var c = zone.GetCell(x, zoneY);
             if (c == null) return false; // off-map continues as water
-            var top = c.GetTopVisibleObject();
-            if (top == null) return true; // bare cell = land
-            return ResolveGroundMaterial(top.BlueprintName) != GroundMaterial.Water
-                && top.GetPart<LiquidPoolPart>() == null;
+            // ROUND 3 audit 🟡 fix — classify by the cell's TERRAIN,
+            // not its top entity. Keyed off GetTopVisibleObject, a
+            // viper swimming the river flipped its cell to "land" and
+            // dragged a moving cluster of shoreline scallops along —
+            // through fog, that tracked an unseen enemy's position.
+            for (int i = 0; i < c.Objects.Count; i++)
+            {
+                var o = c.Objects[i];
+                if (ResolveGroundMaterial(o.BlueprintName) == GroundMaterial.Water
+                    || o.GetPart<LiquidPoolPart>() != null)
+                    return false;
+            }
+            return true; // no water object (incl. bare cell) = land
         }
 
         /// <summary>

@@ -614,6 +614,15 @@ namespace CavesOfOoo.Rendering
                     // Only clear auxiliary layers on the transition into paused state
                     if (!_wasPaused)
                     {
+                        // Round 3 audit fix — the sprite overlay (order 3)
+                        // and ghost overlay sort ABOVE the main tilemap
+                        // the fullscreen UIs paint on (order 0); without
+                        // this, last frame's terrain sprites covered the
+                        // lower UI rows. Release BEFORE the bg clear so
+                        // the restore guard sees pre-clear state.
+                        _envSpriteRenderer?.ReleaseAllClaims();
+                        _glyphGhostRenderer?.ClearGhosts();
+
                         if (_bgTilemap != null)
                         {
                             _bgTilemap.ClearAllTiles();

@@ -43,9 +43,25 @@ namespace CavesOfOoo.Rendering
         private Tilemap _ghostTilemap;
         private Zone _zone;
 
-        // Per-entity last-known cell position. Used to detect moves.
-        private readonly Dictionary<Entity, (int x, int y)> _lastKnown =
-            new Dictionary<Entity, (int x, int y)>();
+        // Per-entity last-known cell position PLUS the tile + color the
+        // main tilemap showed there — captured BEFORE the move, so the
+        // ghost is the MOVER's glyph. (Round 3 audit 🟡: sampling the
+        // cell AFTER the repaint duplicated the terrain glyph instead —
+        // floating CP437 dots over the flowing sprite ground.)
+        private struct LastSeen
+        {
+            public int X, Y;
+            public TileBase Tile;
+            public Color Color;
+        }
+        private readonly Dictionary<Entity, LastSeen> _lastKnown =
+            new Dictionary<Entity, LastSeen>();
+
+        // Round 3 — prune scratch: entities that vanished (died, were
+        // picked up, left the zone) exit _lastKnown instead of pinning
+        // their object graphs until zone change.
+        private readonly HashSet<Entity> _seenThisScan = new HashSet<Entity>();
+        private readonly List<Entity> _pruneScratch = new List<Entity>(32);
 
         // Per-cell ghost state. Each cell has at most one active ghost
         // at a time (overwriting). Tracks the tile + color + lifetime
@@ -134,35 +150,56 @@ namespace CavesOfOoo.Rendering
                 _ghosts.Remove(_keysToRemove[i]);
 
             // 2. Scan entities in zone. For each entity, compare its
-            //    current cell to last-known. If moved, spawn a ghost
-            //    at the previous cell using the entity's glyph + color.
+            //    current cell to last-known. If moved, spawn a ghost at
+            //    the previous cell using the tile + color CAPTURED
+            //    BEFORE the move (Round 3 — the post-repaint cell shows
+            //    the terrain, not the mover). Then re-capture.
+            _seenThisScan.Clear();
             foreach (var entity in _zone.GetReadOnlyEntities())
             {
                 var cell = _zone.GetEntityCell(entity);
                 if (cell == null) continue;
+                _seenThisScan.Add(entity);
 
-                if (_lastKnown.TryGetValue(entity, out var prev))
+                if (_lastKnown.TryGetValue(entity, out var prev)
+                    && (prev.X != cell.X || prev.Y != cell.Y))
                 {
-                    if (prev.x != cell.X || prev.y != cell.Y)
-                    {
-                        // Moved! Spawn ghost at previous position.
-                        SpawnGhost(mainTilemap, prev.x, prev.y, entity);
-                    }
+                    SpawnGhost(prev.X, prev.Y, prev.Tile, prev.Color);
                 }
-                _lastKnown[entity] = (cell.X, cell.Y);
+
+                // Capture what the main tilemap shows at the CURRENT
+                // cell this frame — next frame's ghost source. When the
+                // sprite pass claimed the cell (actor sprite → main is
+                // null) there is no glyph to ghost: Tile stays null and
+                // SpawnGhost skips.
+                var curPos = new Vector3Int(cell.X, Zone.Height - 1 - cell.Y, 0);
+                _lastKnown[entity] = new LastSeen
+                {
+                    X = cell.X,
+                    Y = cell.Y,
+                    Tile = mainTilemap.GetTile(curPos),
+                    Color = mainTilemap.GetColor(curPos),
+                };
             }
+
+            // Round 3 — prune entries for entities no longer in the
+            // zone (dead, consumed, transferred): unpinned memory + a
+            // scan set that stops growing monotonically.
+            _pruneScratch.Clear();
+            foreach (var kvp in _lastKnown)
+                if (!_seenThisScan.Contains(kvp.Key)) _pruneScratch.Add(kvp.Key);
+            for (int i = 0; i < _pruneScratch.Count; i++)
+                _lastKnown.Remove(_pruneScratch[i]);
         }
 
         /// <summary>
-        /// Spawn a ghost at (x, y) using the same tile + color as the
-        /// entity rendered at THIS cell on the main tilemap. Sourcing
-        /// the tile from the main tilemap (rather than recomputing the
-        /// glyph from the entity) ensures the ghost matches what the
-        /// player just saw at that cell — even after status effects /
-        /// damage flashes mutated the color.
+        /// Spawn a ghost at zone cell (x, y) with the pre-captured tile
+        /// + color the player last SAW there (the mover's own glyph —
+        /// including any status-effect color it wore).
         /// </summary>
-        private void SpawnGhost(Tilemap mainTilemap, int x, int y, Entity sourceEntity)
+        private void SpawnGhost(int x, int y, TileBase tile, Color color)
         {
+            if (tile == null) return;
             // Round 2 fix — the R2 mirror-bug class again: (x, y) are
             // ZONE coordinates, but ZoneRenderer paints zone row y at
             // tile row Height-1-y. Unflipped, every ghost spawned on
@@ -170,22 +207,14 @@ namespace CavesOfOoo.Rendering
             // glyph. Latent for the feature's whole life behind the
             // OFF gate; surfaced writing the round-2 decay pins.
             var pos = new Vector3Int(x, Zone.Height - 1 - y, 0);
-            // For the ghost we want the previous-frame tile + color at
-            // (x, y). On THIS frame's redraw, the main tilemap has
-            // either:
-            //   - the new top entity at that cell (if something is
-            //     still there), OR
-            //   - empty/floor (if the mover left it empty)
-            // Either way, sourcing from the main tilemap gives a
-            // sensible fallback. For a more accurate ghost we could
-            // cache the entity's glyph + color in _lastKnown, but
-            // that adds complexity for marginal visual gain.
-            var tile = mainTilemap.GetTile(pos);
-            if (tile == null) return;
-            var color = mainTilemap.GetColor(pos);
 
             _ghostTilemap.SetTile(pos, tile);
-            _ghostTilemap.SetTransformMatrix(pos, mainTilemap.GetTransformMatrix(pos));
+            // Round 3 audit 🟡 fix — fresh cells default to LockColor:
+            // without None flags every SetColor here (spawn tint AND
+            // the decay fade) was a silent no-op — ghosts rendered
+            // full-bright and popped out instead of fading. The same
+            // root cause round 2 found in MakeTile.
+            _ghostTilemap.SetTileFlags(pos, TileFlags.None);
             _ghostTilemap.SetColor(pos, color);
             _ghosts[pos] = new GhostCell
             {
@@ -194,6 +223,12 @@ namespace CavesOfOoo.Rendering
                 FramesRemaining = DefaultLifetimeFrames,
             };
         }
+
+        /// <summary>Round 3 — public pause hook: ghost glyphs sort above
+        /// the fullscreen UIs' tilemap; ZoneRenderer clears them on the
+        /// Paused transition. Movement tracking (_lastKnown) survives so
+        /// trails resume cleanly on unpause.</summary>
+        public void ClearGhosts() => ClearAllGhosts();
 
         private void ClearAllGhosts()
         {
