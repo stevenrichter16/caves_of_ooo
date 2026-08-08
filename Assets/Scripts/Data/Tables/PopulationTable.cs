@@ -441,6 +441,26 @@ namespace CavesOfOoo.Data
                 table.Entries.Add(new PopulationEntry { BlueprintName = "LeatherArmor", Weight = 1, MinCount = 0, MaxCount = 1 });
             }
 
+            // BIOME-OVERHAUL G: depth scales VARIETY, not just count.
+            // Limestone brings bears and rot; the shale band brings the
+            // burned and the pale; quartzite brings golems and the brute.
+            if (tier >= 2)
+            {
+                table.Entries.Add(new PopulationEntry { BlueprintName = "CaveBear", Weight = 2, MinCount = 0, MaxCount = 1 });
+                table.Entries.Add(new PopulationEntry { BlueprintName = "Rotling", Weight = 2, MinCount = 0, MaxCount = 2 });
+            }
+            if (tier >= 3)
+            {
+                table.Entries.Add(new PopulationEntry { BlueprintName = "SkeletalSentry", Weight = 2, MinCount = 0, MaxCount = 2 });
+                table.Entries.Add(new PopulationEntry { BlueprintName = "CharredHusk", Weight = 2, MinCount = 0, MaxCount = 1 });
+                table.Entries.Add(new PopulationEntry { BlueprintName = "PaleStalker", Weight = 2, MinCount = 0, MaxCount = 1 });
+            }
+            if (tier >= 4)
+            {
+                table.Entries.Add(new PopulationEntry { BlueprintName = "StoneGolem", Weight = 1, MinCount = 0, MaxCount = 1 });
+                table.Entries.Add(new PopulationEntry { BlueprintName = "ObsidianBrute", Weight = 1, MinCount = 0, MaxCount = 1 });
+            }
+
             // BIOME-OVERHAUL A3: harvestable mineral veins by strata band
             // (quartz from the first shaft, salt in the limestone band,
             // choir iron from shale down). The only spawn source for the

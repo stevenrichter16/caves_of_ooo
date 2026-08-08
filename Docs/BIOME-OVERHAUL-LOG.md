@@ -146,7 +146,43 @@ message pattern in `BiomeMerchantCampTests` is worth reusing.
   registered up front; 7 creature stubs added to WorldMapTests fixture
   (§7 gotcha). Watchtower stamp CUT (cave catalog already at 3 stamps).
   Quests deferred to a consolidated pass after G.
-- ☐ D Desert · ☐ E Jungle · ☐ F Ruins · ☐ G Strata
+- ☑ **D Desert** "Saccharine Barrens" (`2b258bd8`): DuneLurker (buried
+  AIAmbush, 2d6) + BrittleHound (120-spd glass pack, bleeding fangs)
+  in DesertTier3; SandstoneTomb = **PlateArmor's first-ever source**
+  (locked, sentry-guarded); GlassblownObelisk activates the
+  GlassblownDrifter (25-node tree); ConcordWaystation activates the
+  SaccharineEnvoy (21 nodes) with a restable fire.
+- ☑ **E Jungle** "Rotwood" (`9e1c32d0`): Rotling swarms (poison at
+  tier 1) + CanopyStrangler (AIAmbush 2d4 lash) in JungleTier3;
+  Ziggurat (ChoirTendril + locked ZigguratVaultT2: Sporeblade/
+  FirstRootGlaive/ChoirSpine); GroveShrine places the five NAMED Rot
+  Choir NPCs (Mogu/Grib/Nam/Sien/Sopp); MendleafGarden = wild
+  harvestable Mendleaf. Grove rest is plain-campfire, not rep-gated
+  (divergence — gated rest needs a mechanism).
+- ☑ **F Ruins** "Palimpsest Fields" (`c8cd662f`): VaultSentinel (60 HP
+  AV8 halberd); SealedVault = first placed **LockedDoor** + the SEVEN
+  dead attack grimoires + PalimpsestBlade/SeveranceEdge/PlateArmor
+  (SealedVaultT3, pick 2-3 weighted); ClockworkWorkshop circulates all
+  3 schematics; RuneCultSite fields RuneCultists (AILayRune live —
+  first natural trap-laying); PalimpsestArchive places the Echo
+  (42-node tree) with a rest fire. Corridor traps deferred (cult
+  runes deliver live traps; builder-placed traps need plan §8.3).
+- ☑ **G Strata** (this commit): depth bands scale VARIETY — limestone
+  (t2+): CaveBear/Rotling; shale (t3+): SkeletalSentry/CharredHusk/
+  PaleStalker (50 HP, 115 spd, 2d5); quartzite (t4+): StoneGolem/
+  ObsidianBrute (80 HP, AV10, 3d6, quartz butchery). Underground
+  LandmarkBuilder wired into CreateUndergroundPipeline with
+  StampCatalog.Underground: MineGallery (t1+), CurationGallery (t3+ —
+  PaleCurator's 22 nodes + mineral-buying wallet, finally placed,
+  with the deep's only rest fire), Reliquary (t4+ — sentinel +
+  SealedVaultT3). Fixture gotcha hit again: 8 creature stubs added to
+  UndergroundGenerationTests. GetZoneTier takes a zoneID string —
+  underground tier computed inline (depth/3+1 cap 8).
+- **Deferred from C-G (honest list):** the 6 per-biome quests
+  (storylet+conversation+villager wiring per quest — next arc);
+  rep-gated grove rest; RuinsBuilder corridor traps; mine-head
+  guaranteed-stairs stamp; Concord village-variant enclave (stamp
+  waystation shipped instead).
 - Phase H (fog-of-war render, map legend, rivers) is stretch ⚪.
 
 ## 4. Decisions made along the way

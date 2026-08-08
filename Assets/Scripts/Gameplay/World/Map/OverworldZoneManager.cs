@@ -153,6 +153,13 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new StairsUpBuilder(this));
             pipeline.AddBuilder(new StairsDownBuilder(this));
             pipeline.AddBuilder(new StairConnectorBuilder(floorBP));
+            // BIOME-OVERHAUL G: underground landmarks by depth band
+            // (galleries, the Curation's rest stop, reliquaries).
+            // Tier formula mirrors ZoneManager.GetZoneTier's depth
+            // band: depth/3 + 1, capped at 8.
+            int undergroundTier = System.Math.Min(depth / 3 + 1, 8);
+            pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Cave,
+                undergroundTier, StampCatalog.Underground(depth)));
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.UndergroundTier(depth)));
             return pipeline;
         }

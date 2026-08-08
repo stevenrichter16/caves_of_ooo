@@ -4015,6 +4015,66 @@
     },
 
     {
+      "Name": "PaleStalker",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "pale stalker" },
+          { "Key": "RenderString", "Value": "p" },
+          { "Key": "ColorString", "Value": "&C" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "3" }, { "Key": "DV", "Value": "5" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 50, "Min": 0, "Max": 50 },
+        { "Name": "Strength", "Value": 20 },
+        { "Name": "Agility", "Value": 24 },
+        { "Name": "Speed", "Value": 115 },
+        { "Name": "XPValue", "Value": 120 }
+      ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "StalkerTalon" }],
+      "Tags": [
+        { "Key": "Faction", "Value": "Beasts" },
+        { "Key": "Tier", "Value": "4" }
+      ]
+    },
+    {
+      "Name": "ObsidianBrute",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "obsidian brute" },
+          { "Key": "RenderString", "Value": "O" },
+          { "Key": "ColorString", "Value": "&m" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "10" }, { "Key": "DV", "Value": "0" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Stone" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "MaterialTagsRaw", "Value": "Mineral,Stone" }
+        ]},
+        { "Name": "Corpse", "Params": [
+          { "Key": "HarvestBlueprint", "Value": "GlowQuartz" },
+          { "Key": "HarvestMin", "Value": "1" },
+          { "Key": "HarvestMax", "Value": "2" },
+          { "Key": "HarvestChance", "Value": "35" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 80, "Min": 0, "Max": 80 },
+        { "Name": "Strength", "Value": 28 },
+        { "Name": "Toughness", "Value": 24 },
+        { "Name": "Speed", "Value": 55 },
+        { "Name": "XPValue", "Value": 160 }
+      ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "ObsidianFist" }],
+      "Tags": [
+        { "Key": "Faction", "Value": "Beasts" },
+        { "Key": "Tier", "Value": "5" },
+        { "Key": "BloodColor", "Value": "&m" }
+      ]
+    },
+    {
       "Name": "SnapjawChieftain",
       "Inherits": "Snapjaw",
       "Parts": [

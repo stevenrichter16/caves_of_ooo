@@ -75,6 +75,86 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// BIOME-OVERHAUL G — the underground landmark catalog by depth
+        /// band. MinTier here maps to the underground zone tier
+        /// (depth/3 + 1, capped 8): mine galleries from the first
+        /// shafts, the Pale Curation's lit gallery in the shale band
+        /// (the deep's only rest stop — PaleCurator's 22-node tree and
+        /// mineral-buying wallet finally placed), sentinel reliquaries
+        /// in the quartzite sharing the surface vaults' treasure table.
+        /// </summary>
+        public static IReadOnlyList<StructureStamp> Underground(int depth)
+        {
+            return UndergroundStamps;
+        }
+
+        private static readonly StructureStamp[] UndergroundStamps =
+        {
+            new StructureStamp
+            {
+                Name = "MineGallery",
+                Chance = 20,
+                MinTier = 1,
+                Rows = new[]
+                {
+                    "#####",
+                    "#c.v#",
+                    "#.v.+",
+                    "#####",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', "Wall" },
+                    { 'c', "chest:DeepSupplyT2" },
+                    { 'v', "GlowQuartzVein" },
+                    { '+', "" },
+                },
+            },
+            new StructureStamp
+            {
+                Name = "CurationGallery",
+                Chance = 25,
+                MinTier = 3,
+                Rows = new[]
+                {
+                    "######",
+                    "#u..c#",
+                    "#.f..+",
+                    "######",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', "Wall" },
+                    { 'u', "spawn:PaleCurator" },
+                    { 'c', "chest:DeepSupplyT2" },
+                    { 'f', "Campfire" },
+                    { '+', "" },
+                },
+            },
+            new StructureStamp
+            {
+                Name = "Reliquary",
+                Chance = 20,
+                MinTier = 4,
+                Rows = new[]
+                {
+                    "######",
+                    "#L..V#",
+                    "#..k.+",
+                    "######",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', "Wall" },
+                    { 'V', "spawn:VaultSentinel" },
+                    { 'L', "lockedchest:SealedVaultT3" },
+                    { 'k', "IronKey" },
+                    { '+', "" },
+                },
+            },
+        };
+
+        /// <summary>
         /// BIOME-OVERHAUL B1 — the guaranteed camp stamp for a
         /// MerchantCamp POI zone (NOT part of the ambient wilderness
         /// catalogs above — POI routing places it via a catalogOverride).

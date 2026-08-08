@@ -194,7 +194,15 @@ namespace CavesOfOoo.Tests
             },
             { ""Name"": ""GlowQuartzVein"", ""Inherits"": ""Stalagmite"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""glowquartz vein"" }, { ""Key"": ""RenderString"", ""Value"": ""*"" }]}] },
             { ""Name"": ""PaleSaltVein"", ""Inherits"": ""Stalagmite"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""pale salt vein"" }, { ""Key"": ""RenderString"", ""Value"": ""*"" }]}] },
-            { ""Name"": ""ChoirIronVein"", ""Inherits"": ""Stalagmite"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""choir iron vein"" }, { ""Key"": ""RenderString"", ""Value"": ""*"" }]}] }
+            { ""Name"": ""ChoirIronVein"", ""Inherits"": ""Stalagmite"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""choir iron vein"" }, { ""Key"": ""RenderString"", ""Value"": ""*"" }]}] },
+            { ""Name"": ""CaveBear"", ""Inherits"": ""Snapjaw"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""cave bear"" }, { ""Key"": ""RenderString"", ""Value"": ""B"" }]}] },
+            { ""Name"": ""Rotling"", ""Inherits"": ""Snapjaw"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""rotling"" }, { ""Key"": ""RenderString"", ""Value"": ""r"" }]}] },
+            { ""Name"": ""Glowmaw"", ""Inherits"": ""Snapjaw"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""glowmaw"" }, { ""Key"": ""RenderString"", ""Value"": ""g"" }]}] },
+            { ""Name"": ""SkeletalSentry"", ""Inherits"": ""Snapjaw"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""skeletal sentry"" }, { ""Key"": ""RenderString"", ""Value"": ""s"" }]}] },
+            { ""Name"": ""CharredHusk"", ""Inherits"": ""Snapjaw"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""charred husk"" }, { ""Key"": ""RenderString"", ""Value"": ""H"" }]}] },
+            { ""Name"": ""PaleStalker"", ""Inherits"": ""Snapjaw"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""pale stalker"" }, { ""Key"": ""RenderString"", ""Value"": ""p"" }]}] },
+            { ""Name"": ""StoneGolem"", ""Inherits"": ""Snapjaw"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""stone golem"" }, { ""Key"": ""RenderString"", ""Value"": ""G"" }]}] },
+            { ""Name"": ""ObsidianBrute"", ""Inherits"": ""Snapjaw"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""obsidian brute"" }, { ""Key"": ""RenderString"", ""Value"": ""O"" }]}] }
           ]
         }";
 
