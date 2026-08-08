@@ -11,10 +11,10 @@
 Verification state at commit: offline compile green; targeted suites
 36/36 green on the live editor (all 9 new resolver pins +
 EnvironmentSpriteRendererTests + SpriteEnvToggleControllerTests). The
-full-EditMode regression sweep did NOT re-run post-change — the
-editor session dropped mid-gate (see §6) — run it on next editor
-open; blast radius outside the sprite renderer is nil (no shared
-code touched). Live sprite-mode eyeball (backslash toggle) is the
+full-EditMode regression sweep did NOT re-run post-change at commit
+time — the editor session dropped mid-gate (see §6). CLOSED in Pass
+13 (2026-08-01): full suite 5723/5723 green with all Pass 12 code
+included. Live sprite-mode eyeball (backslash toggle) is the
 outstanding manual check — see Honesty bounds.
 
 ---

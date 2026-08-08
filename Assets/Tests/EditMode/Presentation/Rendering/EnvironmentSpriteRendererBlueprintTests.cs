@@ -273,6 +273,66 @@ namespace CavesOfOoo.Tests
                 EnvironmentSpriteRenderer.ResolveCropKind("CandyCarrotCrop", 7));
         }
 
+        // ══════════════════════════════════════════════════════════
+        //   Pass 13 — Muted Overgrowth actor sprites (player +
+        //   snapjaw family) and the ruined pillar fixtures.
+        //   Contract: STYLE-GUIDE.md §6.
+        // ══════════════════════════════════════════════════════════
+
+        [Test]
+        public void Actor_Player_Matches()
+        {
+            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.Player,
+                EnvironmentSpriteRenderer.ResolveActorKind("Player"));
+        }
+
+        [Test]
+        public void Actor_SnapjawFamily_AllLivingVariantsMatch()
+        {
+            // Content set: Snapjaw, SnapjawScavenger, SnapjawHunter,
+            // SnapjawChieftain — one sprite for the family.
+            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.Snapjaw,
+                EnvironmentSpriteRenderer.ResolveActorKind("Snapjaw"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.Snapjaw,
+                EnvironmentSpriteRenderer.ResolveActorKind("SnapjawScavenger"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.Snapjaw,
+                EnvironmentSpriteRenderer.ResolveActorKind("SnapjawHunter"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.Snapjaw,
+                EnvironmentSpriteRenderer.ResolveActorKind("SnapjawChieftain"));
+        }
+
+        [Test]
+        public void Actor_SnapjawCorpse_DoesNotMatch()
+        {
+            // The corpse is loot, not an actor — it keeps the Pass 11
+            // corpse-sprite handling. A live-actor sprite on a corpse
+            // would un-kill it visually.
+            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.None,
+                EnvironmentSpriteRenderer.ResolveActorKind("SnapjawCorpse"));
+        }
+
+        [Test]
+        public void Actor_OtherCreaturesAndNulls_DoNotMatch()
+        {
+            var none = EnvironmentSpriteRenderer.ActorSpriteKind.None;
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveActorKind("Villager"));
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveActorKind("WellKeeper"));
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveActorKind(null));
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveActorKind(""));
+        }
+
+        [Test]
+        public void Fixture_PillarAndBrokenColumn_ShareThePillarTile()
+        {
+            // BrokenColumn paints ',' — before Pass 13 it rendered as
+            // BONES via the glyph switch. The blueprint tier runs first
+            // and gives both ruin pieces the pillar sprite.
+            Assert.AreEqual(EnvironmentSpriteRenderer.EnvFixtureKind.Pillar,
+                EnvironmentSpriteRenderer.ResolveFixtureKind("Pillar"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.EnvFixtureKind.Pillar,
+                EnvironmentSpriteRenderer.ResolveFixtureKind("BrokenColumn"));
+        }
+
         // ── Reflection helpers (the matchers are private static) ──
 
         private static bool InvokeIsChest(string bp)

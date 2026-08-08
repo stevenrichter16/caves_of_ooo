@@ -98,6 +98,10 @@ namespace CavesOfOoo.Rendering
         private Sprite _marketStallSprite;     // MarketStall ('=' collided with bed)
         private Sprite _forgeSprite;           // TinkersForge ('n' uncovered)
         private Sprite _alchemyStillSprite;    // AlchemyStill ('&' uncovered)
+        // Pass 13 — Muted Overgrowth actor pilot + ruin fixtures
+        private Sprite _playerSprite;          // Player ('@'), authored-color
+        private Sprite _snapjawSprite;         // Snapjaw family ('s'/'S'), authored-color
+        private Sprite _pillarSprite;          // Pillar 'I' / BrokenColumn ','
 
         // Per-glyph cached Tile assets (TileBase wrapping each Sprite).
         // Reused across paints to avoid allocating Tile objects per cell.
@@ -139,6 +143,10 @@ namespace CavesOfOoo.Rendering
         private Tile _marketStallTile;
         private Tile _forgeTile;
         private Tile _alchemyStillTile;
+        // Pass 13 tiles
+        private Tile _playerTile;
+        private Tile _snapjawTile;
+        private Tile _pillarTile;
 
         private Tilemap _overlayTilemap;
         private Tilemap _mainTilemap;
@@ -206,6 +214,10 @@ namespace CavesOfOoo.Rendering
             _marketStallSprite     = LoadSingle("Assets/Sprites/Environment/market_stall.png");
             _forgeSprite           = LoadSingle("Assets/Sprites/Environment/forge.png");
             _alchemyStillSprite    = LoadSingle("Assets/Sprites/Environment/alchemy_still.png");
+            // Pass 13
+            _playerSprite          = LoadSingle("Assets/Sprites/Environment/player.png");
+            _snapjawSprite         = LoadSingle("Assets/Sprites/Environment/snapjaw.png");
+            _pillarSprite          = LoadSingle("Assets/Sprites/Environment/pillar.png");
 #endif
         }
 
@@ -304,6 +316,10 @@ namespace CavesOfOoo.Rendering
             _marketStallTile     = MakeTile(_marketStallSprite,     "MarketStall");
             _forgeTile           = MakeTile(_forgeSprite,           "TinkersForge");
             _alchemyStillTile    = MakeTile(_alchemyStillSprite,    "AlchemyStill");
+            // Pass 13
+            _playerTile          = MakeTile(_playerSprite,          "Player");
+            _snapjawTile         = MakeTile(_snapjawSprite,         "Snapjaw");
+            _pillarTile          = MakeTile(_pillarSprite,          "Pillar");
         }
 
         public void PostRender(Zone zone, int width, int height)
@@ -347,10 +363,19 @@ namespace CavesOfOoo.Rendering
                     char glyph = ExtractGlyph(existingTile);
                     if (glyph == '\0') continue;
 
-                    Tile target = ChooseTile(zone, x, y, glyph);
+                    Tile target = ChooseTile(zone, x, y, glyph, out bool authoredColor);
                     if (target == null) continue;
 
                     var color = _mainTilemap.GetColor(pos);
+                    if (authoredColor)
+                    {
+                        // Pass 13: actor sprites carry their own palette —
+                        // apply only the cell's LIGHTING (max channel of
+                        // the glyph color, which already includes the
+                        // lightmap) as a gray tint, never the glyph hue.
+                        float v = Mathf.Max(color.r, Mathf.Max(color.g, color.b));
+                        color = new Color(v, v, v, color.a);
+                    }
                     _overlayTilemap.SetTile(pos, target);
                     _overlayTilemap.SetColor(pos, color);
                     _mainTilemap.SetTile(pos, null);
@@ -399,7 +424,24 @@ namespace CavesOfOoo.Rendering
         /// Exact match ONLY: near-miss names (SandstoneFloor, SilverSand,
         /// WellGroundMarker, WellKeeper) must keep their own rendering.
         /// Contract pinned by EnvironmentSpriteRendererBlueprintTests.</summary>
-        public enum EnvFixtureKind { None, Grass, Sand, Bank, Well, MarketStall, TinkersForge, AlchemyStill }
+        public enum EnvFixtureKind { None, Grass, Sand, Bank, Well, MarketStall, TinkersForge, AlchemyStill, Pillar }
+
+        /// <summary>Pass 13 — actor sprites (STYLE-GUIDE.md §6). The
+        /// player plus the living Snapjaw family; corpses are excluded
+        /// (they keep Pass 11 corpse handling). Actor sprites are
+        /// AUTHORED-COLOR: the renderer applies only lighting value,
+        /// never the glyph hue — a &amp;Y player must not render yellow.</summary>
+        public enum ActorSpriteKind { None, Player, Snapjaw }
+
+        public static ActorSpriteKind ResolveActorKind(string blueprintName)
+        {
+            if (string.IsNullOrEmpty(blueprintName)) return ActorSpriteKind.None;
+            if (blueprintName == "Player") return ActorSpriteKind.Player;
+            if (blueprintName.StartsWith("Snapjaw", System.StringComparison.Ordinal)
+                && !blueprintName.EndsWith("Corpse", System.StringComparison.OrdinalIgnoreCase))
+                return ActorSpriteKind.Snapjaw;
+            return ActorSpriteKind.None;
+        }
 
         /// <summary>Pass 12 — stage-aware crop sprite kinds. Stage 0 is a
         /// generic tilled mound (safe for ANY *Crop blueprint, including
@@ -419,6 +461,11 @@ namespace CavesOfOoo.Rendering
                 case "MarketStall":  return EnvFixtureKind.MarketStall;
                 case "TinkersForge": return EnvFixtureKind.TinkersForge;
                 case "AlchemyStill": return EnvFixtureKind.AlchemyStill;
+                // Pass 13: both ruin pieces share the pillar sprite.
+                // BrokenColumn paints ',' and previously fell through
+                // to the BONES glyph mapping.
+                case "Pillar":       return EnvFixtureKind.Pillar;
+                case "BrokenColumn": return EnvFixtureKind.Pillar;
                 default:             return EnvFixtureKind.None;
             }
         }
@@ -438,8 +485,9 @@ namespace CavesOfOoo.Rendering
             }
         }
 
-        private Tile ChooseTile(Zone zone, int x, int y, char glyph)
+        private Tile ChooseTile(Zone zone, int x, int y, char glyph, out bool authoredColor)
         {
+            authoredColor = false;
             // Pass 12 — blueprint-keyed resolution FIRST. Three families
             // whose glyphs are ambiguous or collide with earlier claims:
             //  - terrain identity: Grass/Sand/Bank all paint '.' and were
@@ -453,6 +501,19 @@ namespace CavesOfOoo.Rendering
             {
                 var topEntity = TopEntityAt(zone, x, y);
                 string bpName = topEntity?.BlueprintName;
+
+                // Pass 13 — actor tier runs before everything: the
+                // player and snapjaw family render as authored-color
+                // Muted Overgrowth sprites (STYLE-GUIDE.md §6/§8).
+                switch (ResolveActorKind(bpName))
+                {
+                    case ActorSpriteKind.Player:
+                        if (_playerTile != null) { authoredColor = true; return _playerTile; }
+                        break;
+                    case ActorSpriteKind.Snapjaw:
+                        if (_snapjawTile != null) { authoredColor = true; return _snapjawTile; }
+                        break;
+                }
 
                 int stage = topEntity?.GetPart<CropPart>()?.GrowthStage ?? -1;
                 switch (ResolveCropKind(bpName, stage))
@@ -471,6 +532,7 @@ namespace CavesOfOoo.Rendering
                     case EnvFixtureKind.MarketStall:  if (_marketStallTile != null) return _marketStallTile; break;
                     case EnvFixtureKind.TinkersForge: if (_forgeTile != null) return _forgeTile; break;
                     case EnvFixtureKind.AlchemyStill: if (_alchemyStillTile != null) return _alchemyStillTile; break;
+                    case EnvFixtureKind.Pillar:       if (_pillarTile != null) return _pillarTile; break;
                 }
             }
 
