@@ -49,6 +49,43 @@ namespace CavesOfOoo.Rendering
         private static readonly char[] WallGlyphs  = { '#' };
         private static readonly char[] FloorGlyphs = { '.' };
         private static readonly char[] WaterGlyphs = { '~', '=', '-' };
+
+        /// <summary>
+        /// PASS 15 round 2 — remembered-but-not-visible cells claim
+        /// TERRAIN sprites tinted with this dim gray-blue, mirroring
+        /// ZoneRenderer's dark remembered glyphs. Public so tests pin
+        /// the fog contract against the exact value.
+        /// </summary>
+        public static readonly Color RememberedTint = new Color(0.40f, 0.42f, 0.50f, 1f);
+
+        /// <summary>
+        /// PASS 15 round 2 (S4) — the ground patch painted under the
+        /// player's cell warms toward candle-light so the player pops
+        /// against any terrain. Values stay ≤1 (vertex-color multiply
+        /// can't brighten past the sprite's own palette).
+        /// </summary>
+        public static readonly Color PlayerHighlightTint = new Color(1f, 0.97f, 0.76f, 1f);
+
+        /// <summary>
+        /// PASS 15 round 2 (S3) — blueprint-named role NPC sprites
+        /// (5 shopkeepers + 4 hermits), palette-kin of the villager
+        /// base. Public so tests pin the roster.
+        /// </summary>
+        public static readonly (string Blueprint, string File)[] NamedActorSprites =
+        {
+            ("Weaponsmith",  "weaponsmith"),
+            ("Armorer",      "armorer"),
+            ("Apothecary",   "apothecary"),
+            ("Arcanist",     "arcanist"),
+            ("Provisioner",  "provisioner"),
+            ("CaveHermit",   "cave_hermit"),
+            ("DesertHermit", "desert_hermit"),
+            ("JungleHermit", "jungle_hermit"),
+            ("RuinsHermit",  "ruins_hermit"),
+        };
+
+        private readonly Dictionary<string, Tile> _namedActorTiles =
+            new Dictionary<string, Tile>(16);
         // Note: AnimatedEnvironmentRenderer (Pass 5) already claims
         // water glyphs to scroll them. Pass 7 takes priority — if
         // sprite mode is on, water cells get sprite + Pass 5 shader
@@ -402,6 +439,13 @@ namespace CavesOfOoo.Rendering
             var t = ScriptableObject.CreateInstance<Tile>();
             t.sprite = s;
             t.name = name;
+            // ROUND 2 root-cause fix: a fresh Tile defaults to
+            // TileFlags.LockColor, which turns every later SetColor on
+            // a claimed cell into a SILENT NO-OP. This is why FOV
+            // dimming never reached sprite terrain — the claims were
+            // already copying the dim glyph color, and LockColor threw
+            // it away.
+            t.flags = TileFlags.None;
             return t;
         }
 
@@ -500,6 +544,15 @@ namespace CavesOfOoo.Rendering
             _childTile           = MakeTile(_childSprite,           "VillageChild");
             _sporeShamblerTile   = MakeTile(_sporeShamblerSprite,   "SporeShambler");
             _iceWightTile        = MakeTile(_iceWightSprite,        "IceWight");
+            // PASS 15 round 2 (S3) — role NPCs keyed by BLUEPRINT
+            // name. Adding a future named-NPC sprite = drop a PNG +
+            // one row here; no enum/field/switch triple to extend.
+            _namedActorTiles.Clear();
+            foreach (var (blueprint, file) in NamedActorSprites)
+            {
+                var s = LoadSingle(SpriteRoot + file);
+                if (s != null) _namedActorTiles[blueprint] = MakeTile(s, blueprint);
+            }
             _rubbleTile          = MakeTile(_rubbleSprite,          "Rubble");
             _ovenTile            = MakeTile(_ovenSprite,            "Oven");
             _iceStalactiteTile   = MakeTile(_iceStalactiteSprite,   "IceStalactite");
@@ -544,6 +597,11 @@ namespace CavesOfOoo.Rendering
                 var claim = _claimedThisFrame[i];
                 _overlayTilemap.SetTile(claim.Pos, null);
                 _mainTilemap.SetTile(claim.Pos, claim.MainTile);
+                // SetTile resets the cell's flags to the TILE asset's —
+                // clear them or the color restore below can silently
+                // no-op on a LockColor'd tile (round 2's root-cause
+                // lesson applied to the restore path too).
+                _mainTilemap.SetTileFlags(claim.Pos, TileFlags.None);
                 _mainTilemap.SetColor(claim.Pos, claim.MainColor);
             }
             _claimedThisFrame.Clear();
@@ -553,6 +611,7 @@ namespace CavesOfOoo.Rendering
                 {
                     var claim = _bgClaimedThisFrame[i];
                     _bgTilemap.SetTile(claim.Pos, claim.MainTile);
+                    _bgTilemap.SetTileFlags(claim.Pos, TileFlags.None);
                     _bgTilemap.SetColor(claim.Pos, claim.MainColor);
                 }
                 _bgClaimedThisFrame.Clear();
@@ -576,11 +635,25 @@ namespace CavesOfOoo.Rendering
                     // defect.
                     int zoneY = height - 1 - y;
 
+                    // PASS 15 round 2 — FOG OF WAR. Unexplored cells
+                    // are never claimed (the solid unexplored block
+                    // stays untouched — sprite claims were revealing
+                    // chests and rivers through fog). Remembered-but-
+                    // not-visible cells claim TERRAIN ONLY, dimmed,
+                    // mirroring RenderRememberedCell's contract that
+                    // creatures/items hide in the fog.
+                    var cell = zone.GetCell(x, zoneY);
+                    if (cell == null || !cell.Explored) continue;
+                    bool visible = cell.IsVisible;
+                    Color tint = visible ? Color.white : RememberedTint;
+
                     // PASS 15 R5 — ONE top-entity fetch per cell,
-                    // shared by the pre-pass and every resolver tier
-                    // (previously fetched twice, plus a third
-                    // GetPart<CropPart> scan on every cell).
-                    Entity topEntity = TopEntityAt(zone, x, zoneY);
+                    // shared by the pre-pass and every resolver tier.
+                    // In remembered fog the "top entity" is the cell's
+                    // TERRAIN, so actors never resolve there.
+                    Entity topEntity = visible
+                        ? cell.GetTopVisibleObject()
+                        : TerrainEntityOf(cell);
 
                     // Pass 10 — entity-based pre-pass. Chest + lantern
                     // entities don't always paint their RenderString
@@ -589,13 +662,13 @@ namespace CavesOfOoo.Rendering
                     // glyph-only scan misses them. Look directly at
                     // the cell's top entity and force-paint when its
                     // blueprint matches a sprite-emitting kind.
-                    Tile entityTile = TryEntityBasedTile(topEntity);
+                    Tile entityTile = visible ? TryEntityBasedTile(topEntity) : null;
                     if (entityTile != null)
                     {
                         ClaimCell(pos, entityTile, _mainTilemap.GetColor(pos));
                         // Object sprites have transparent margins — put
                         // the ground in the bg box behind them too.
-                        PaintGroundUnderAscii(zone, x, zoneY, pos);
+                        PaintGroundUnderAscii(zone, x, zoneY, pos, tint);
                         continue;
                     }
 
@@ -614,7 +687,7 @@ namespace CavesOfOoo.Rendering
                         var shoreline = PickShorelineTile(zone, x, zoneY);
                         if (shoreline != null)
                         {
-                            ClaimCell(pos, shoreline, Color.white);
+                            ClaimCell(pos, shoreline, tint);
                             continue;
                         }
                     }
@@ -625,7 +698,7 @@ namespace CavesOfOoo.Rendering
                         var mt = topMacro[MacroIndex(x, zoneY)];
                         if (mt != null)
                         {
-                            ClaimCell(pos, mt, Color.white);
+                            ClaimCell(pos, mt, tint);
                             continue;
                         }
                     }
@@ -636,14 +709,14 @@ namespace CavesOfOoo.Rendering
                         // Animated-env-claimed cell with a non-ground
                         // top entity (item on grass): still put the
                         // ground under the floating glyph.
-                        PaintGroundUnderAscii(zone, x, zoneY, pos);
+                        PaintGroundUnderAscii(zone, x, zoneY, pos, tint);
                         continue;
                     }
 
                     char glyph = ExtractGlyph(existingTile);
                     if (glyph == '\0')
                     {
-                        PaintGroundUnderAscii(zone, x, zoneY, pos);
+                        PaintGroundUnderAscii(zone, x, zoneY, pos, tint);
                         continue;
                     }
 
@@ -654,7 +727,7 @@ namespace CavesOfOoo.Rendering
                         // unmapped item) — put the GROUND under it so
                         // the glyph sits on terrain, not on a floating
                         // dark box.
-                        PaintGroundUnderAscii(zone, x, zoneY, pos);
+                        PaintGroundUnderAscii(zone, x, zoneY, pos, tint);
                         continue;
                     }
 
@@ -672,8 +745,11 @@ namespace CavesOfOoo.Rendering
                     // Actors/fixtures/items have transparent margins;
                     // ground/water/wall tiles are opaque and cover the
                     // bg anyway — painting under every claim is safe
-                    // and puts terrain behind every sprite edge.
-                    PaintGroundUnderAscii(zone, x, zoneY, pos);
+                    // and puts terrain behind every sprite edge. The
+                    // PLAYER'S cell gets a brightened ground patch —
+                    // the round-2 findability highlight.
+                    PaintGroundUnderAscii(zone, x, zoneY, pos,
+                        target == _playerTile ? PlayerHighlightTint : tint);
                 }
             }
         }
@@ -685,7 +761,7 @@ namespace CavesOfOoo.Rendering
         /// slice into the BG tilemap, replacing the dark contrast box.
         /// The white letter then reads as standing ON the ground.
         /// </summary>
-        private void PaintGroundUnderAscii(Zone zone, int x, int zoneY, Vector3Int pos)
+        private void PaintGroundUnderAscii(Zone zone, int x, int zoneY, Vector3Int pos, Color tint)
         {
             if (_bgTilemap == null) return;
             var cell = zone.GetCell(x, zoneY);
@@ -710,7 +786,10 @@ namespace CavesOfOoo.Rendering
                 MainColor = _bgTilemap.GetColor(pos),
             });
             _bgTilemap.SetTile(pos, mt);
-            _bgTilemap.SetColor(pos, Color.white);
+            _bgTilemap.SetTileFlags(pos, TileFlags.None);
+            // Round 2: the tint carries fog dimming (RememberedTint) and
+            // the player's ground highlight — no more always-white.
+            _bgTilemap.SetColor(pos, tint);
         }
 
         private void ClaimCell(Vector3Int pos, Tile target, Color color)
@@ -722,6 +801,9 @@ namespace CavesOfOoo.Rendering
                 MainColor = _mainTilemap.GetColor(pos),
             });
             _overlayTilemap.SetTile(pos, target);
+            // Guard against LockColor'd tiles from any future source —
+            // without None flags the SetColor below silently no-ops.
+            _overlayTilemap.SetTileFlags(pos, TileFlags.None);
             _overlayTilemap.SetColor(pos, color);
             _mainTilemap.SetTile(pos, null);
         }
@@ -886,6 +968,16 @@ namespace CavesOfOoo.Rendering
                 // Pass 13 — actor tier runs before everything: the
                 // player and snapjaw family render as authored-color
                 // Muted Overgrowth sprites (STYLE-GUIDE.md §6/§8).
+                // Round 2 (S3): blueprint-named role NPCs (shopkeepers
+                // + hermits) resolve first — they are not in the
+                // ActorSpriteKind enum.
+                if (bpName != null
+                    && _namedActorTiles.TryGetValue(bpName, out var namedActor)
+                    && namedActor != null)
+                {
+                    authoredColor = true;
+                    return namedActor;
+                }
                 switch (ResolveActorKind(bpName))
                 {
                     case ActorSpriteKind.Player:
@@ -1013,43 +1105,52 @@ namespace CavesOfOoo.Rendering
                 }
             }
             // Water — Pass 15 G: shoreline-aware; plain water sprite as
-            // fallback.
+            // fallback. Round 2 (S2): '~' is also the Viper, sludges
+            // and gas clouds — only a real water blueprint may claim
+            // the water family. A snake rendered as a pond is the
+            // worst possible lie.
             for (int i = 0; i < WaterGlyphs.Length; i++)
             {
                 if (WaterGlyphs[i] == glyph)
                 {
+                    if (ResolveGroundMaterial(topEntity?.BlueprintName) != GroundMaterial.Water)
+                        return null;
                     var shoreline = PickShorelineTile(zone, x, y);
                     if (shoreline != null) return shoreline;
                     return _waterTile;
                 }
             }
-            // Doors
-            if (glyph == '+') return _doorClosedTile;
-            if (glyph == '\'') return _doorOpenTile;
+            // Doors — Round 2 (S2): '+' is also 21 grimoires and the
+            // graveyard marker; only actual doors claim the door art.
+            if (glyph == '+') return GlyphClaimAllowed('+', topEntity?.BlueprintName) ? _doorClosedTile : null;
+            if (glyph == '\'') return GlyphClaimAllowed('\'', topEntity?.BlueprintName) ? _doorOpenTile : null;
 
-            // Pass 8 — direct glyph→sprite map. Each glyph claimed here
-            // is unambiguous in the typical zone. Where multiple
-            // entities share a glyph (e.g. `%` is also corpse, `=` is
-            // also bed), the sprite chosen here is the most common
-            // representation; refining via per-entity blueprint lookup
-            // is a Pass 9 follow-up.
+            // Pass 8 — direct glyph→sprite map. Round 2 (S2): every
+            // ambiguous glyph now verifies the top entity actually IS
+            // the thing the sprite depicts (GlyphClaimAllowed). A
+            // mismatch keeps the honest CP437 glyph — an honest letter
+            // beats a false sprite: SpikeTrap≠stalagmite,
+            // SleepingTroll≠tree, ore veins≠campfire (which even
+            // spawned fire lights via the tile-name-keyed light hook),
+            // DesertBandit≠chair, seeds≠bones, rations≠mushroom.
+            if (!GlyphClaimAllowed(glyph, topEntity?.BlueprintName)) return null;
             switch (glyph)
             {
-                case '^':  return _stalagmiteTile; // stalagmite, spike trap
-                case 'o':  return _boulderTile;    // rock, compass stone
-                case '|':  return _stalactiteTile; // stalactite, reed
-                case ';':  return _bushTile;       // bush
-                case 't':  return _cactusTile;     // cactus
-                case 'T':  return _treeTile;       // tree
-                case '*':  return _campfireTile;   // campfire, brazier, rune
-                case '_':  return _shrineTile;     // shrine, altar
-                case '>':  return _stairsDownTile; // stairs down
-                case '<':  return _stairsUpTile;   // stairs up
-                case ',':  return _bonesTile;      // bones, rubble
-                case '0':  return _barrelTile;     // barrel
-                case '%':  return _mushroomTile;   // mushroom (also corpse — overload)
-                case '$':  return _goldPileTile;   // gold pile
-                case 'h':  return _chairTile;      // chair, stool
+                case '^':  return _stalagmiteTile;
+                case 'o':  return _boulderTile;    // rock, compass stones
+                case '|':  return _stalactiteTile;
+                case ';':  return _bushTile;
+                case 't':  return _cactusTile;
+                case 'T':  return _treeTile;
+                case '*':  return _campfireTile;
+                case '_':  return _shrineTile;
+                case '>':  return _stairsDownTile;
+                case '<':  return _stairsUpTile;
+                case ',':  return _bonesTile;
+                case '0':  return _barrelTile;
+                case '%':  return _mushroomTile;
+                case '$':  return _goldPileTile;
+                case 'h':  return _chairTile;
                 // Pass 14: dropped blades (Dagger/ShortSword/LongSword/
                 // Spear/Cudgel all paint '/'). Near-gray art — the
                 // color-copy tint keeps each weapon's glyph color as
@@ -1074,6 +1175,60 @@ namespace CavesOfOoo.Rendering
             return null;
         }
 
+        /// <summary>
+        /// PASS 15 round 2 (S2) — the false-identity guard table. For
+        /// each glyph the Pass 8 map claims, answers: is this blueprint
+        /// actually the thing the sprite depicts? Built from a census
+        /// of every blueprint in Objects.json that paints the glyph
+        /// (inheritance-resolved). Unlisted glyphs return true — the
+        /// guard only exists where a collision exists. Public: pinned
+        /// by resolver tests.
+        /// </summary>
+        public static bool GlyphClaimAllowed(char glyph, string blueprintName)
+        {
+            if (string.IsNullOrEmpty(blueprintName)) return false;
+            switch (glyph)
+            {
+                // '^' — SpikeTrap/FireTrap/BearTrap/PressurePlate all
+                // paint it; a trap disguised as scenery is a lethal lie.
+                case '^': return blueprintName == "Stalagmite";
+                // 'T' — Warhammer, DissolutionMaul, SleepingTroll.
+                case 'T': return blueprintName == "Tree";
+                // 'h' — DesertBandit.
+                case 'h': return blueprintName == "Chair";
+                // '*' — runes, FireClay, capacitor, three ORE VEINS and
+                // their gems. Campfire-only also stops the tile-name-
+                // keyed LightSourceSpriteHook spawning fire lights on
+                // quartz veins.
+                case '*': return blueprintName == "Campfire";
+                // '+' / open-door — 21 grimoires + the graveyard marker.
+                case '+':
+                case '\'': return blueprintName.Contains("Door");
+                // ',' — seeds, ash piles (Rubble/SlateFloor/BrokenColumn
+                // resolve in earlier tiers).
+                case ',': return blueprintName == "Bone" || blueprintName == "Bones";
+                // '%' — corpses (entity pre-pass) + ~20 foods/reagents.
+                case '%': return blueprintName == "Mushroom";
+                // '|' — LoanerSpear + Reeds; no plain Stalactite
+                // blueprint exists today, so this is future-proofing.
+                case '|': return blueprintName == "Stalactite";
+                // 'o' — compass stones ARE stones; the color-copy tint
+                // keeps each one's directional glyph color.
+                case 'o': return blueprintName == "Rock"
+                    || blueprintName.StartsWith("CompassStone", System.StringComparison.Ordinal);
+                case ';': return blueprintName == "Bush";
+                case 't': return blueprintName == "Cactus";
+                case '_': return blueprintName == "Shrine";
+                case '0': return blueprintName == "WoodenBarrel";
+                case '$': return blueprintName == "GoldCoin";
+                // '/' — 24 of the painters are genuine blades; deny the
+                // four known non-weapons.
+                case '/': return blueprintName != "Torch" && blueprintName != "IronKey"
+                    && blueprintName != "OldWorldPipe" && blueprintName != "TemporalShard";
+                default: return true;
+            }
+        }
+
         /// <summary>Pass 12 — top visible entity itself (the crop resolver
         /// needs its CropPart, not just the blueprint name).</summary>
         private static Entity TopEntityAt(Zone zone, int x, int y)
@@ -1081,6 +1236,24 @@ namespace CavesOfOoo.Rendering
             if (zone == null) return null;
             var c = zone.GetCell(x, y);
             return c?.GetTopVisibleObject();
+        }
+
+        /// <summary>
+        /// PASS 15 round 2 — the remembered-fog counterpart of
+        /// GetTopVisibleObject: the first visible layer≤1 entity,
+        /// mirroring ZoneRenderer.RenderRememberedCell's predicate
+        /// exactly, so the sprite pass never shows an actor or item
+        /// that the glyph pass would hide in the fog.
+        /// </summary>
+        private static Entity TerrainEntityOf(Cell cell)
+        {
+            for (int i = 0; i < cell.Objects.Count; i++)
+            {
+                var rp = cell.Objects[i].GetPart<RenderPart>();
+                if (rp != null && rp.Visible && rp.RenderLayer <= 1)
+                    return cell.Objects[i];
+            }
+            return null;
         }
 
         private static bool BlueprintIsChest(string bp)
@@ -1246,3 +1419,4 @@ namespace CavesOfOoo.Rendering
         }
     }
 }
+

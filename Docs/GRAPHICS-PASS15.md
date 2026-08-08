@@ -82,16 +82,71 @@ Live result (zoomed screenshots, starting town): continuous flowing
 ground, river with scalloped shoreline lips, wall runs reading as
 solid capped blocks, objects/actors sitting directly ON the ground.
 
-**Punch list for round 2 (Phase S):**
-- FOV/lighting: ground claims tint with Color.white — fog-of-war
-  dimming doesn't reach sprite terrain yet (sample the bg box color
-  instead).
-- Claims ignore Explored — chests/water may reveal through fog
-  (pre-existing from Pass 10, now wider; gate claims on cell.Explored).
-- Ink outlines on all object/actor sprites; player highlight.
-- False-identity guards (traps/viper/troll/veins/grimoires).
-- 9 shopkeeper/hermit sprites; bush sprite restyle (reads as popcorn).
-- Automated squint test on saved screenshots.
+**Punch list for round 2 (Phase S):** — ✅ ALL SHIPPED (2026-08-08,
+V-loop round 2). Item-by-item record:
+
+1. **FOV dimming — ROOT CAUSE was deeper than the punch list knew.**
+   The tint plumbing was added (per-cell `tint` = white when visible,
+   `RememberedTint` gray-blue when remembered, threaded through every
+   blueprint-tier claim + `PaintGroundUnderAscii`), but the real
+   reason dimming never reached sprite terrain: **`MakeTile` never
+   cleared `Tile.flags`, and a fresh Tile defaults to
+   `TileFlags.LockColor` — every `SetColor` on a claimed cell was a
+   silent no-op.** The glyph-tier claims had been copying the dim
+   glyph color correctly all along; LockColor threw it away. Fixed in
+   MakeTile (+ defensive `SetTileFlags(None)` at every claim, paint,
+   and release-restore site).
+2. **Fog gating.** Unexplored cell → no claim of any kind (the
+   unexplored block stays). Remembered-not-visible → TERRAIN-ONLY
+   claims (`TerrainEntityOf` mirrors `RenderRememberedCell`'s
+   layer≤1 predicate exactly), dimmed; actors/items never resolve in
+   fog. Live census: claims=41, onUnexplored=0, actorInFog=0.
+3. **Ink outlines + player highlight.** `ArtTools/coo_outline_pass.py`
+   — idempotent 1px ink ring on 41 object/actor sprites (2247 ring
+   px), 8-connected near-black ring on the player (62 px). Player
+   cell's bg ground patch warms to `PlayerHighlightTint` (S4).
+4. **False-identity guards.** `GlyphClaimAllowed(glyph, blueprint)` —
+   census-built allow-lists over every colliding glyph (traps '^',
+   troll/warhammer 'T', bandit 'h', veins/runes '*', grimoires '+',
+   seeds ',', foods '%', torch '/'); the water-glyph branch now
+   requires a real water blueprint (Viper '~' stays a snake); doors
+   guard on "Door". The '*' guard also kills the phantom fire-lights
+   on ore veins (the light hook keys on the overlay tile literally
+   named "Campfire").
+5. **9 role NPCs.** Generated as palette-kin of the villager base
+   (robe triad swap): Weaponsmith/Armorer/Apothecary/Arcanist/
+   Provisioner + Cave/Desert/Jungle/Ruins hermits. Renderer side: a
+   blueprint-keyed `_namedActorTiles` dictionary — future named NPC =
+   drop a PNG + one table row, no enum/field/switch triple.
+6. **Bush restyle.** Flat dark mass + two flat mid-tone lobes + 3px
+   glint (variation by SHAPE, not speckle) + trunk peek + ink ring.
+7. **Automated squint test.** `ArtTools/coo_squint_test.py` — (a)
+   16px-periodicity autocorrelation spike detector (grid regression
+   alarm), (b) value-zoning bright-fraction gate. Live jungle frame:
+   grid spike x=-0.0003 y=-0.0012 (tol 0.06) PASS; bright
+   fraction=0.014 (max 0.18) PASS.
+
+**Two REAL bugs found by the round-2 live sweep, both in
+`GlyphGhostRenderer` (Pass 6 ghost trails — latent for the feature's
+entire life because the gate shipped OFF):**
+- **Iterator invalidation:** the decay loop wrote `_ghosts[pos] =
+  ghost` inside its foreach → `InvalidOperationException` EVERY
+  frame once any ghost decayed (spammed 10× within seconds of
+  loading a save into a jungle full of movers; aborts LateUpdate).
+  Fixed with the scratch-list snapshot pattern; pinned by
+  `GlyphGhostRendererDecayTests` (single + many-ghost shapes).
+- **Vertical mirror (the R2 bug class again):** `SpawnGhost` wrote
+  ghost tiles at raw zone coords — every ghost spawned on the
+  MIRRORED row and sampled the wrong cell's glyph. Same fix shape as
+  R2 (`Height-1-y`); pinned by the mirror assert in the decay test.
+
+Tests 5924 → 5935 (+11: 4 fog, 1 guard bank, viper, spike-trap,
+weaponsmith, player-highlight, 2 ghost pins). Suite green.
+
+**Deferred to round 3:** town live-check of the 9 NPC sprites +
+player highlight in situ (the test save was mid-jungle; both are
+unit-pinned), river shoreline re-verify under fog, '/' torch/key
+sub-cases, Marceline/Farmer/Undertaker generic-villager mapping.
 GraphicsPolish gate: ON in working tree for the loop; ships committed
 only after the full checklist passes.
 

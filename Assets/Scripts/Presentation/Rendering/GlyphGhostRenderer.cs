@@ -63,6 +63,15 @@ namespace CavesOfOoo.Rendering
         // modifying dictionary during enumeration).
         private readonly List<Vector3Int> _keysToRemove = new List<Vector3Int>(16);
 
+        // Round 2 fix — decay snapshot. Writing `_ghosts[pos] = ghost`
+        // INSIDE the foreach invalidates the enumerator in this
+        // runtime (InvalidOperationException every frame once any
+        // ghost decays; latent while the polish gate shipped OFF).
+        // Scratch list per PERF-FOUNDATION §Pattern 1 — no per-frame
+        // allocation.
+        private readonly List<KeyValuePair<Vector3Int, GhostCell>> _decayScratch =
+            new List<KeyValuePair<Vector3Int, GhostCell>>(32);
+
         public bool IsInitialized { get; private set; }
 
         public void Init(Transform gridParent)
@@ -96,11 +105,17 @@ namespace CavesOfOoo.Rendering
             //    zero, mark for removal. Apply alpha falloff to current
             //    color so the ghost visibly fades.
             _keysToRemove.Clear();
-            // Iterate via a stable list because we mutate values.
-            foreach (var kvp in _ghosts)
+            // Snapshot BEFORE mutating: `_ghosts[pos] = ghost` inside
+            // the foreach invalidated the enumerator — every-frame
+            // InvalidOperationException once any ghost was decaying
+            // (surfaced by the round-2 live sweep; latent while the
+            // polish gate shipped OFF).
+            _decayScratch.Clear();
+            foreach (var kvp in _ghosts) _decayScratch.Add(kvp);
+            for (int i = 0; i < _decayScratch.Count; i++)
             {
-                var pos = kvp.Key;
-                var ghost = kvp.Value;
+                var pos = _decayScratch[i].Key;
+                var ghost = _decayScratch[i].Value;
                 ghost.FramesRemaining--;
                 if (ghost.FramesRemaining <= 0)
                 {
@@ -148,7 +163,13 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private void SpawnGhost(Tilemap mainTilemap, int x, int y, Entity sourceEntity)
         {
-            var pos = new Vector3Int(x, y, 0);
+            // Round 2 fix — the R2 mirror-bug class again: (x, y) are
+            // ZONE coordinates, but ZoneRenderer paints zone row y at
+            // tile row Height-1-y. Unflipped, every ghost spawned on
+            // the vertically MIRRORED row and sampled the wrong cell's
+            // glyph. Latent for the feature's whole life behind the
+            // OFF gate; surfaced writing the round-2 decay pins.
+            var pos = new Vector3Int(x, Zone.Height - 1 - y, 0);
             // For the ghost we want the previous-frame tile + color at
             // (x, y). On THIS frame's redraw, the main tilemap has
             // either:
