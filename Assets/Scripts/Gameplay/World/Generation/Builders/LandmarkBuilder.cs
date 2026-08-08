@@ -206,6 +206,71 @@ namespace CavesOfOoo.Core
         private static readonly StructureStamp[] Desert =
         {
             HermitHut("SandstoneWall", "DesertHermit"),
+            // Phase D: the tomb — PlateArmor's first source, behind the
+            // dead and a lock.
+            new StructureStamp
+            {
+                Name = "SandstoneTomb",
+                Chance = 25,
+                MinTier = 2,
+                Rows = new[]
+                {
+                    "######",
+                    "#e..L#",
+                    "#.k..#",
+                    "#e...+",
+                    "######",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', "SandstoneWall" },
+                    { 'e', "spawn:SkeletalSentry" },
+                    { 'L', "lockedchest:TombVaultT2" },
+                    { 'k', "IronKey" },
+                    { '+', "" },
+                },
+            },
+            // Phase D: the Glassblown Remnant's obelisk — the Drifter's
+            // 25-node conversation tree goes live here.
+            new StructureStamp
+            {
+                Name = "GlassblownObelisk",
+                Chance = 20,
+                MinTier = 1,
+                Rows = new[]
+                {
+                    ".I.",
+                    ".g.",
+                    "...",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { 'I', "Pillar" },
+                    { 'g', "spawn:GlassblownDrifter" },
+                },
+            },
+            // Phase D: a Saccharine Concord waystation — envoy, fire,
+            // and a place to breathe between dunes.
+            new StructureStamp
+            {
+                Name = "ConcordWaystation",
+                Chance = 20,
+                MinTier = 1,
+                Rows = new[]
+                {
+                    "##.##",
+                    "#v..#",
+                    "#..f+",
+                    "#####",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', "SandstoneWall" },
+                    { 'v', "spawn:SaccharineEnvoy" },
+                    { 'f', "Campfire" },
+                    { '+', "" },
+                },
+            },
             // A bandit dugout — ambushers sleeping on their haul.
             new StructureStamp
             {

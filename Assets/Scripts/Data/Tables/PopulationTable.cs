@@ -275,6 +275,9 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "SandWurm", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "DesertBandit", Weight = 4, MinCount = 2, MaxCount = 4 },
                     new PopulationEntry { BlueprintName = "Scorpion", Weight = 2, MinCount = 1, MaxCount = 2 },
+                    // Phase D: the buried bruiser and the glass packs.
+                    new PopulationEntry { BlueprintName = "DuneLurker", Weight = 2, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "BrittleHound", Weight = 3, MinCount = 0, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "GlassScorpion", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "Rock", Weight = 2, MinCount = 1, MaxCount = 4 },

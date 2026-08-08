@@ -4153,6 +4153,70 @@
       ]
     },
     {
+      "Name": "DuneLurker",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "half-buried dune lurker" },
+          { "Key": "RenderString", "Value": "d" },
+          { "Key": "ColorString", "Value": "&y" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "5" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "Brain", "Params": [
+          { "Key": "SightRadius", "Value": "8" },
+          { "Key": "Wanders", "Value": "false" },
+          { "Key": "WandersRandomly", "Value": "false" },
+          { "Key": "Staying", "Value": "true" }
+        ]},
+        { "Name": "AIAmbush", "Params": [
+          { "Key": "WakeOnDamage", "Value": "true" },
+          { "Key": "WakeOnHostileInSight", "Value": "true" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 45, "Min": 0, "Max": 45 },
+        { "Name": "Strength", "Value": 22 },
+        { "Name": "Agility", "Value": 12 },
+        { "Name": "Speed", "Value": 90 },
+        { "Name": "XPValue", "Value": 85 }
+      ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "LurkerMaw" }],
+      "Tags": [
+        { "Key": "Faction", "Value": "Beasts" },
+        { "Key": "Tier", "Value": "3" }
+      ]
+    },
+    {
+      "Name": "BrittleHound",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "brittle hound" },
+          { "Key": "RenderString", "Value": "b" },
+          { "Key": "ColorString", "Value": "&W" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "4" }] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Glass" },
+          { "Key": "Brittleness", "Value": "0.6" },
+          { "Key": "MaterialTagsRaw", "Value": "Glass,Crystal,Brittle" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 20, "Min": 0, "Max": 20 },
+        { "Name": "Strength", "Value": 14 },
+        { "Name": "Agility", "Value": 20 },
+        { "Name": "Speed", "Value": 120 },
+        { "Name": "XPValue", "Value": 35 }
+      ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "BrittleFangs" }],
+      "Tags": [
+        { "Key": "Faction", "Value": "Beasts" },
+        { "Key": "Tier", "Value": "3" },
+        { "Key": "BloodColor", "Value": "&W" }
+      ]
+    },
+    {
       "Name": "JungleStalker",
       "Inherits": "Creature",
       "Parts": [
