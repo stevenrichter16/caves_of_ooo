@@ -13,6 +13,18 @@
       ]
     },
     {
+      "Name": "Beasts",
+      "DisplayName": "the wild beasts",
+      "Visible": true,
+      "InitialPlayerReputation": -100,
+      "Feelings": [
+        {
+          "Faction": "Villagers",
+          "Value": -100
+        }
+      ]
+    },
+    {
       "Name": "Villagers",
       "DisplayName": "the Villagers",
       "Visible": true,
@@ -20,6 +32,10 @@
       "Feelings": [
         {
           "Faction": "Snapjaws",
+          "Value": -100
+        },
+        {
+          "Faction": "Beasts",
           "Value": -100
         }
       ]

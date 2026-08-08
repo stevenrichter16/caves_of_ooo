@@ -336,3 +336,23 @@ commit. Appended in-commit per CLAUDE.md living-doc rules.)
 
 Tests: 9 new (7 RED→GREEN reproducing every gap + 2 counter-checks
 green by design).
+
+### 2. hostile-bestiary — SHIPPED
+
+- **SM1+SM2:** new `Beasts` faction (Factions.json:
+  InitialPlayerReputation −100, mutual −100 with Villagers); all 17
+  formerly-factionless creatures tagged `Faction=Beasts` — wildlife,
+  the three reachable lair bosses, and IceWight/CharredHusk. Single
+  faction chosen deliberately over per-family splits (alpha bar is
+  "they attack"; flavor splits are content polish).
+- **SM3:** GlowmawAmbushPart drop now calls
+  `brain.SetPersonallyHostile(player)` beside the Target assignment;
+  counter-check pins the PERSONAL channel only (verifier-corrected
+  phrasing — faction hostility rightly exists pre-drop after SM1).
+- **SM4 PlayMode sweep:** honesty bound — not live-run (Play resets
+  the user's scene); the KillGoal/bump-attack machinery is
+  already test-covered, and hostility now feeds it via the same
+  FactionManager.IsHostile path the tests pin.
+
+Tests: 4 new (3 RED→GREEN incl. the exact neutrality repro + 1
+friendly-roster counter-check).

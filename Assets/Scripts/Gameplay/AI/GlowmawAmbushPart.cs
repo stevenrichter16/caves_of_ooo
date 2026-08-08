@@ -102,8 +102,13 @@ namespace CavesOfOoo.Core
             if (light != null)
                 ParentEntity.RemovePart(light);
 
-            // 7. Set Brain's target so it chases immediately on next turn
+            // 7. Set Brain's target so it chases immediately on next turn.
+            // Also commit PERSONAL hostility (ALPHA-READINESS item 2 SM3,
+            // belt-and-braces): the ambush is a commitment that must
+            // survive any future faction-math change — a Target ref alone
+            // can be cleared by goal churn.
             brain.Target = player;
+            brain.SetPersonallyHostile(player);
 
             // Block BrainPart this turn — we already acted
             return false;
