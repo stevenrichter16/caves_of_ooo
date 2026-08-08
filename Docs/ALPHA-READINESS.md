@@ -12,7 +12,9 @@
 > honestly scoped; verifier corrections are folded into the
 > sub-milestones below and marked [CORRECTED].
 
-**Status:** 🚧 IN PROGRESS — implementing P0 set in order.
+**Status:** ✅ P0 SET COMPLETE (all 7 items shipped 2026-08-07, seven
+commits, 5778/5778 tests green). P1/P2 items remain planned below
+with verified evidence and scoped sub-milestones.
 
 ## Alpha verdict
 
