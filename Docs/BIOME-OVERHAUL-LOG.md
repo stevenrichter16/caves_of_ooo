@@ -104,8 +104,37 @@ Legend: ☐ not started · ◐ in progress · ☑ done (commit hash) · ✖ drop
 
 (Order within phase = smallest blast radius first: A5→A6→A1→A3→A4→A2.)
 
-### Phase B — Reprieve network (not started)
-B1 merchant camps real · B2 hermits ×4 · B3 Persuasion tree/followers
+### Phase B — Reprieve network
+- ☑ **B3** Persuasion tree (`c2d4f7f1`): `Persuasion.json` (Recruit
+  100 SP/Ego 16, Dismiss 25 SP) + `PersuasionSkill` tree-root marker.
+  Followers are now purchasable content. Gotcha: the companion-limit
+  bump is CHANNEL-scoped (`means == MEANS_RECRUIT`).
+- ☑ **B1** merchant camps (`fd5680b9` + fix in B2 commit): MerchantCamp
+  POI routing → biome pipeline + GUARANTEED camp stamp
+  (`StampCatalog.MerchantCamp`: per-biome walls/names, Merchant +
+  Warden + restable Campfire + `CampGoodsT1` chest; TradeStockBuilder
+  auto-stocks the NPCs).
+- ☑ **B2** hermits (see §6 entry): 4 Villager-lineage hermit
+  blueprints + hut stamps in every wilderness catalog + `Hermits.json`
+  (paid rest via generalized `RestAtInn cost[:site]`; the Herbalist's
+  free `CureEffect Poisoned` — new conversation action; rumor lines
+  seeding every biome's content).
+- ☑ **B-close** adversarial sweep (5 tests: RestAtInn malformed/negative
+  arg forms, CureEffect boundaries, 4-biome × 6-seed camp placement
+  robustness, walls-survive-clearing counter-check). 0 bugs beyond the
+  one the sweep was built from. **PHASE B COMPLETE — awaiting user
+  checkpoint before the biome passes (C-G).**
+
+**B's real find — guaranteed-stamp fragility:** adding hermit huts to
+the ambient catalogs shifted zone-gen RNG and the B1 end-to-end camp
+test failed: the camp's strict all-passable 5×6 footprint was a
+seed-lottery in tree-scattered jungle CA (it had passed at B1 commit
+by luck). Fix: `StructureStamp.ClearsVegetation` — guaranteed stamps
+accept non-WALL solids in their footprint and fell them at Apply
+(trees/rocks yes, walls never — pinned), plus a stairs guard for ALL
+stamps and a `priority` ctor param so guaranteed placements claim
+space at 3790 before ambient 3800. The diagnostic-census failure
+message pattern in `BiomeMerchantCampTests` is worth reusing.
 
 ### Phases C–G (not started)
 C Cave · D Desert · E Jungle · F Ruins · G Strata — per-biome passes per
@@ -138,6 +167,28 @@ plan cites agent-report line numbers that MUST be re-verified before use.)
 
 (One subsection per completed SM: what shipped, files, tests before→after,
 divergences, self-review findings. Newest at top.)
+
+### B2 — hermits ×4 (2026-08-08)
+
+**Shipped:** `CaveHermit` (Mosskeeper) / `DesertHermit` (Saltwalker) /
+`JungleHermit` (Rotwood Herbalist) / `RuinsHermit` (Lamplighter) —
+Villager-lineage blueprints (inherit wallet 100, Brain, faction) with
+own Render + ConversationID; `HermitHut` stamps (Chance 20, campfire
+by the door) in all four wilderness catalogs; `Hermits.json` with paid
+rest (`RestAtInn "8:hermit's fire"` — the action now parses
+`cost[:site]`), the Herbalist's free poison cure (new `CureEffect`
+action: matches type name ± "Effect" suffix or DisplayName,
+case-insensitive, polite both ways), and per-biome rumor lines.
+
+**Files:** MOD `Objects.json` (+4 hermits, 270 objects),
+`ConversationActions.cs` (RestAtInn cost:site + CureEffect),
+`LandmarkBuilder.cs` (HermitHut + catalog entries + the B1 fix above);
+NEW `Conversations/Hermits.json`, `Tests/.../BiomeHermitTests.cs` (6).
+
+**Tests:** 5860 → 5871 (+6 hermit, +5 adversarial). Full behavioral
+RED for all six (the old RestAtInn parsed "8:hermit's fire" as
+garbage → charged the default 10 — exactly the bug the new parser
+test pins). Full suite green.
 
 ### A2 + A-close — structure stamps & phase adversarial sweep (2026-08-08)
 

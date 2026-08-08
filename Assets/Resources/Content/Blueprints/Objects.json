@@ -2372,6 +2372,70 @@
       ]
     },
     {
+      "Name": "CaveHermit",
+      "Inherits": "Villager",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Mosskeeper" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&c" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Hermit_Mosskeeper" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "An old soul grown half into the moss. Keeps a kettle on for travelers." }
+        ]}
+      ]
+    },
+    {
+      "Name": "DesertHermit",
+      "Inherits": "Villager",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Saltwalker" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Hermit_Saltwalker" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Sun-cured and patient. They say the dunes talk to those who stop hurrying." }
+        ]}
+      ]
+    },
+    {
+      "Name": "JungleHermit",
+      "Inherits": "Villager",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Rotwood Herbalist" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&G" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Hermit_Herbalist" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Fingers stained green and black. Knows every leaf that kills and every leaf that saves." }
+        ]}
+      ]
+    },
+    {
+      "Name": "RuinsHermit",
+      "Inherits": "Villager",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "Lamplighter" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Hermit_Lamplighter" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Tends a lamp older than the ruins around it. Remembers what the stones forgot." }
+        ]}
+      ]
+    },
+    {
       "Name": "Marceline",
       "Inherits": "Villager",
       "Parts": [

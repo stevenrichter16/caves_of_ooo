@@ -121,8 +121,24 @@ namespace CavesOfOoo.Tests
 
             var zone = manager.GetZone($"Overworld.{campCell.Value.x}.{campCell.Value.y}.0");
             Assert.IsNotNull(zone);
+
+            // Diagnostic-rich failure: biome, reserved-cell count, and a
+            // blueprint census beat a bare "0".
+            var census = new Dictionary<string, int>();
+            foreach (var e in zone.GetAllEntities())
+            {
+                census.TryGetValue(e.BlueprintName, out int n);
+                census[e.BlueprintName] = n + 1;
+            }
+            var lines = new List<string>();
+            foreach (var kvp in census) lines.Add($"{kvp.Key}x{kvp.Value}");
+            lines.Sort();
+            string diag = $"biome={manager.WorldMap.GetBiome(campCell.Value.x, campCell.Value.y)} " +
+                $"cell={campCell.Value.x},{campCell.Value.y} reserved={zone.GenReservedCells.Count} " +
+                $"census=[{string.Join(" ", lines)}]";
+
             Assert.GreaterOrEqual(CountByBlueprint(zone, "Merchant"), 1,
-                "the $ on the map finally means a merchant");
+                "the $ on the map finally means a merchant — " + diag);
             Assert.AreEqual(1, CountByBlueprint(zone, "Campfire"), "camp hearth");
         }
 

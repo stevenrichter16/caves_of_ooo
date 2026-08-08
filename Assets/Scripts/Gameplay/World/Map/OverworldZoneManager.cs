@@ -101,8 +101,11 @@ namespace CavesOfOoo.Core
                 case BiomeType.Cave:
                 default: pipeline = CreateCavePipeline(tier); break;
             }
+            // Priority 3790: the guaranteed camp claims open space
+            // BEFORE the ambient wilderness stamps (3800) — see the
+            // LandmarkBuilder priority docstring.
             pipeline.AddBuilder(new LandmarkBuilder(biome, tier,
-                new[] { StampCatalog.MerchantCamp(biome) }));
+                new[] { StampCatalog.MerchantCamp(biome) }, priority: 3790));
             return pipeline;
         }
 

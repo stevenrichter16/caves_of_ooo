@@ -26,6 +26,18 @@ namespace CavesOfOoo.Core
         /// <summary>Minimum zone tier (1-3) this stamp appears at.</summary>
         public int MinTier = 1;
 
+        /// <summary>
+        /// BIOME-OVERHAUL B1 fix — when true, the anchor search accepts
+        /// cells blocked by NON-WALL solids (trees, rocks, stalagmites)
+        /// and Apply() clears them from the footprint before building.
+        /// GUARANTEED structures (the merchant camp) need this: a strict
+        /// all-passable 5x6 rect is a coin-flip in tree-scattered jungle
+        /// CA, and a POI camp that fails to place is a broken promise.
+        /// Ambient stamps leave it false — they're optional flavor and
+        /// shouldn't bulldoze the landscape.
+        /// </summary>
+        public bool ClearsVegetation = false;
+
         /// <summary>Widest row (rows may be ragged — see ProspectorsCache).</summary>
         public int Width
         {
@@ -87,6 +99,7 @@ namespace CavesOfOoo.Core
                 Name = name,
                 Chance = 100,
                 MinTier = 1,
+                ClearsVegetation = true,
                 Rows = new[]
                 {
                     "##.##",
@@ -107,8 +120,39 @@ namespace CavesOfOoo.Core
             };
         }
 
+        /// <summary>
+        /// BIOME-OVERHAUL B2 — the hermit hut shared by all four biome
+        /// catalogs (per-biome wall + resident). The hermit offers paid
+        /// rest, cures (Herbalist), rumors, and trade; the campfire by
+        /// the door is the free fallback.
+        /// </summary>
+        private static StructureStamp HermitHut(string wall, string hermit)
+        {
+            return new StructureStamp
+            {
+                Name = hermit + "Hut",
+                Chance = 20,
+                MinTier = 1,
+                Rows = new[]
+                {
+                    "#####",
+                    "#h..#",
+                    "#...+.f",
+                    "#####",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', wall },
+                    { 'h', "spawn:" + hermit },
+                    { '+', "" },
+                    { 'f', "Campfire" },
+                },
+            };
+        }
+
         private static readonly StructureStamp[] Cave =
         {
+            HermitHut("Wall", "CaveHermit"),
             // A dead prospector's camp: supply crate inside, the vein
             // they were working just outside the door.
             new StructureStamp
@@ -135,6 +179,7 @@ namespace CavesOfOoo.Core
 
         private static readonly StructureStamp[] Desert =
         {
+            HermitHut("SandstoneWall", "DesertHermit"),
             // A bandit dugout — ambushers sleeping on their haul.
             new StructureStamp
             {
@@ -160,6 +205,7 @@ namespace CavesOfOoo.Core
 
         private static readonly StructureStamp[] Jungle =
         {
+            HermitHut("VineWall", "JungleHermit"),
             // A hunter's blind, long abandoned — dried stores and a
             // venom-worked blade if you're lucky.
             new StructureStamp
@@ -185,6 +231,7 @@ namespace CavesOfOoo.Core
 
         private static readonly StructureStamp[] Ruins =
         {
+            HermitHut("StoneWall", "RuinsHermit"),
             // A collapsed library — the ONLY circulation source for the
             // six utility grimoires that shipped with no source at all.
             new StructureStamp
@@ -225,7 +272,7 @@ namespace CavesOfOoo.Core
     public class LandmarkBuilder : IZoneBuilder
     {
         public string Name => "LandmarkBuilder";
-        public int Priority => 3800;
+        public int Priority => _priority;
 
         public const int MaxStructuresPerZone = 2;
         private const int AnchorAttempts = 80;
@@ -234,13 +281,24 @@ namespace CavesOfOoo.Core
         private readonly BiomeType _biome;
         private readonly int _tier;
         private readonly IReadOnlyList<StructureStamp> _catalog;
+        private readonly int _priority;
 
+        /// <param name="priority">
+        /// Defaults to 3800 (ambient wilderness stamps). GUARANTEED
+        /// placements (the B1 merchant camp) pass a LOWER value so they
+        /// claim open space BEFORE the optional ambient stamps — in
+        /// cramped biomes (ruins rooms, jungle pockets) an ambient hut
+        /// grabbing the one large clearing first can leave the
+        /// must-place structure with no valid anchor (caught by the B2
+        /// regression on the B1 end-to-end test).
+        /// </param>
         public LandmarkBuilder(BiomeType biome, int tier,
-            IReadOnlyList<StructureStamp> catalogOverride = null)
+            IReadOnlyList<StructureStamp> catalogOverride = null, int priority = 3800)
         {
             _biome = biome;
             _tier = tier;
             _catalog = catalogOverride ?? StampCatalog.For(biome);
+            _priority = priority;
         }
 
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
@@ -310,11 +368,28 @@ namespace CavesOfOoo.Core
                 for (int x = 0; x < row.Length; x++)
                 {
                     var cell = zone.GetCell(ax + x, ay + y);
-                    if (cell == null || !cell.IsPassable()) return false;
+                    if (cell == null) return false;
                     if (zone.GenReservedCells.Contains((ax + x, ay + y))) return false;
+                    if (HasStairs(cell)) return false; // never bury a stairway
+                    if (cell.IsPassable()) continue;
+                    // Blocked cell: acceptable only for vegetation-
+                    // clearing stamps, and only when nothing wall-like
+                    // stands there.
+                    if (!stamp.ClearsVegetation || cell.IsWall()) return false;
                 }
             }
             return true;
+        }
+
+        private static bool HasStairs(Cell cell)
+        {
+            for (int i = 0; i < cell.Objects.Count; i++)
+            {
+                if (cell.Objects[i].GetPart<StairsDownPart>() != null
+                    || cell.Objects[i].GetPart<StairsUpPart>() != null)
+                    return true;
+            }
+            return false;
         }
 
         private static void Apply(Zone zone, EntityFactory factory, System.Random rng,
@@ -327,6 +402,9 @@ namespace CavesOfOoo.Core
                 {
                     int wx = ax + x, wy = ay + y;
                     zone.GenReservedCells.Add((wx, wy));
+
+                    if (stamp.ClearsVegetation)
+                        ClearSolidNonWalls(zone, wx, wy);
 
                     char ch = row[x];
                     if (ch == '.') continue;
@@ -349,6 +427,22 @@ namespace CavesOfOoo.Core
                     if (entity != null)
                         zone.AddEntity(entity, wx, wy);
                 }
+            }
+        }
+
+        /// <summary>Fell the trees, roll away the rocks — clear every
+        /// solid non-wall entity from a footprint cell (see
+        /// <see cref="StructureStamp.ClearsVegetation"/>).</summary>
+        private static void ClearSolidNonWalls(Zone zone, int x, int y)
+        {
+            var cell = zone.GetCell(x, y);
+            if (cell == null || cell.IsWall()) return;
+            for (int i = cell.Objects.Count - 1; i >= 0; i--)
+            {
+                var e = cell.Objects[i];
+                bool solid = e.HasTag("Solid") || (e.GetPart<PhysicsPart>()?.Solid ?? false);
+                if (solid)
+                    zone.RemoveEntity(e);
             }
         }
     }

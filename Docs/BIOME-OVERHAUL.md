@@ -1,8 +1,10 @@
 # BIOME OVERHAUL — Regions, Structures, Loot & Reprieve
 
-> **Status: ✅ Phase A COMPLETE (all 6 foundations + adversarial sweep,
-> seven commits, 5853/5853 tests green, 2026-08-08). Phases B-G planned,
-> awaiting user checkpoint. Implementation log: `BIOME-OVERHAUL-LOG.md`.**
+> **Status: ✅ Phases A + B COMPLETE (2026-08-08, 5871/5871 tests
+> green). A = six foundations; B = reprieve network (real merchant
+> camps, hermits ×4, Persuasion/followers live). Phases C-G (biome
+> passes) planned, awaiting user checkpoint. Implementation log:
+> `BIOME-OVERHAUL-LOG.md`.**
 > Branch: `claude/game-lore-analysis-jqa7ur` · Drafted 2026-08-08
 > Analysis basis: five parallel deep-explorations of worldgen, bestiary,
 > structures, economy, and narrative systems (file:line citations below

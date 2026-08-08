@@ -666,30 +666,60 @@ namespace CavesOfOoo.Core
                 MessageLog.Add($"You receive {amt} ink.");
             });
 
-            // RestAtInn(costDrams) — BIOME-OVERHAUL A4. The inn's paid
-            // room: charge the listener, run the shared RestSystem rest
+            // RestAtInn(costDrams[:site]) — BIOME-OVERHAUL A4/B2. Paid
+            // rest: charge the listener, run the shared RestSystem rest
             // (full heal + 60-turn clock advance, hostile-gated), and
-            // add WellRested on top — a real bed beats a campfire nap.
-            // Self-contained refusal paths (no charge on any failure),
-            // same defensive shape as RentItem.
+            // add WellRested on top. Self-contained refusal paths (no
+            // charge on any failure), same defensive shape as RentItem.
+            // B2 generalized the arg: "10" (the inn) or "8:hermit's
+            // fire" — hermits reuse the whole flow at their own rate
+            // with their own site label in the rest message.
             Register("RestAtInn", (speaker, listener, arg) =>
             {
                 if (listener == null) return;
-                if (!int.TryParse(arg, out int cost) || cost < 0) cost = 10;
+                string site = "inn";
+                string costPart = arg ?? "";
+                int colon = costPart.IndexOf(':');
+                if (colon >= 0)
+                {
+                    string label = costPart.Substring(colon + 1).Trim();
+                    if (label.Length > 0) site = label;
+                    costPart = costPart.Substring(0, colon);
+                }
+                if (!int.TryParse(costPart, out int cost) || cost < 0) cost = 10;
 
                 int drams = listener.GetIntProperty(TradeSystem.CURRENCY_PROP, 0);
                 if (drams < cost)
                 {
-                    MessageLog.Add($"A room is {cost} drams — you can't cover it.");
+                    MessageLog.Add($"The rest costs {cost} drams — you can't cover it.");
                     return;
                 }
 
-                if (!RestSystem.TryRest(listener, SettlementRuntime.ActiveZone, "inn", out _))
+                if (!RestSystem.TryRest(listener, SettlementRuntime.ActiveZone, site, out _))
                     return; // TryRest already messaged + diag'd; no charge.
 
                 listener.SetIntProperty(TradeSystem.CURRENCY_PROP, drams - cost);
                 listener.GetPart<StatusEffectsPart>()?.ForceApplyEffect(new WellRestedEffect());
-                MessageLog.Add($"You pay {cost} drams for the room.");
+                MessageLog.Add($"You pay {cost} drams.");
+            });
+
+            // CureEffect(effectName) — BIOME-OVERHAUL B2. Remove the
+            // named status effect from the listener; matches the effect
+            // type name with or without the "Effect" suffix, or its
+            // DisplayName, case-insensitive. The hermit healer's verb —
+            // polite message on both branches.
+            Register("CureEffect", (speaker, listener, arg) =>
+            {
+                if (listener == null || string.IsNullOrWhiteSpace(arg)) return;
+                string want = arg.Trim();
+                var effects = listener.GetPart<StatusEffectsPart>();
+                bool removed = effects != null && effects.RemoveEffect(eff =>
+                    eff.GetType().Name.Equals(want, System.StringComparison.OrdinalIgnoreCase)
+                    || eff.GetType().Name.Equals(want + "Effect", System.StringComparison.OrdinalIgnoreCase)
+                    || (eff.DisplayName != null && eff.DisplayName.Equals(want, System.StringComparison.OrdinalIgnoreCase)));
+                MessageLog.Add(removed
+                    ? "The sickness is drawn out of you."
+                    : "There is nothing in you that needs curing.");
             });
 
             // RentItem(blueprintName) — find the first item in the

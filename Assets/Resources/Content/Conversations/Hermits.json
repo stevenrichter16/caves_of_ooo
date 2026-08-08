@@ -1,0 +1,133 @@
+{
+  "Conversations": [
+    {
+      "ID": "Hermit_Mosskeeper",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "The moss keeps its own time out here. Sit, if you're weary — the fire takes eight drams and asks no questions.",
+          "Choices": [
+            {
+              "Text": "[8 drams] Rest by the fire.",
+              "Target": "Start",
+              "Actions": [{ "Key": "RestAtInn", "Value": "8:hermit's fire" }]
+            },
+            {
+              "Text": "What grows down in the caves?",
+              "Target": "Rumor"
+            },
+            {
+              "Text": "Peace to you, keeper.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Rumor",
+          "Text": "Quartz that hums, down past the sandstone. Miners cracked veins of it before the snapjaws took the shafts back. Bring a strong arm; the veins give to anyone patient.",
+          "Choices": [
+            { "Text": "Good to know.", "Target": "Start" }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Hermit_Saltwalker",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "You walk loud for someone so far from water. Rest is eight drams. The dunes will still be here after.",
+          "Choices": [
+            {
+              "Text": "[8 drams] Rest a while.",
+              "Target": "Start",
+              "Actions": [{ "Key": "RestAtInn", "Value": "8:hermit's fire" }]
+            },
+            {
+              "Text": "What should I fear out here?",
+              "Target": "Rumor"
+            },
+            {
+              "Text": "Walk lightly, Saltwalker.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Rumor",
+          "Text": "The sand moves where nothing walks — wurms below, and worse things sleeping in the old tombs. The bandits dig little dens and think the desert doesn't notice. It notices.",
+          "Choices": [
+            { "Text": "I'll keep my eyes down.", "Target": "Start" }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Hermit_Herbalist",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Hold still. You've been walking through my garden and half of it walks back. If something bit you, I can draw it out — no charge; the Rotwood poisons enough on its own. A proper rest is eight drams.",
+          "Choices": [
+            {
+              "Text": "Draw out the poison.",
+              "Target": "Start",
+              "Actions": [{ "Key": "CureEffect", "Value": "Poisoned" }]
+            },
+            {
+              "Text": "[8 drams] Rest here a while.",
+              "Target": "Start",
+              "Actions": [{ "Key": "RestAtInn", "Value": "8:hermit's fire" }]
+            },
+            {
+              "Text": "What's safe to eat out there?",
+              "Target": "Rumor"
+            },
+            {
+              "Text": "Thank you, herbalist.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Rumor",
+          "Text": "Mendleaf, if you find it before the rotlings do. Never the pale caps. And if the choir's tendrils start humming at you — walk away slow. They remember faces.",
+          "Choices": [
+            { "Text": "Noted.", "Target": "Start" }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Hermit_Lamplighter",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Mind the rubble. The lamp stays lit so the old streets remember someone still walks them. Eight drams buys you a rest in its circle.",
+          "Choices": [
+            {
+              "Text": "[8 drams] Rest in the lamplight.",
+              "Target": "Start",
+              "Actions": [{ "Key": "RestAtInn", "Value": "8:hermit's fire" }]
+            },
+            {
+              "Text": "What's buried in these ruins?",
+              "Target": "Rumor"
+            },
+            {
+              "Text": "Keep the light, Lamplighter.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Rumor",
+          "Text": "Libraries, mostly collapsed. Shelves still holding books nobody living can price. The brass husks patrol like the city never fell — and the cultists scratch their runes where the old words used to be. Both will kill you; only one will mean it.",
+          "Choices": [
+            { "Text": "I'll tread carefully.", "Target": "Start" }
+          ]
+        }
+      ]
+    }
+  ]
+}
