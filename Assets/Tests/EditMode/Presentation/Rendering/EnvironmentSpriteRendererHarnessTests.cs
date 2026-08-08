@@ -97,7 +97,7 @@ namespace CavesOfOoo.Tests
             var overlayTile = FindOverlay().GetTile(tilePos);
             Assert.IsNotNull(overlayTile,
                 "the grass cell's tile row must be claimed by the sprite pass");
-            Assert.AreEqual("Grass", overlayTile.name,
+            StringAssert.StartsWith("grass", overlayTile.name,
                 "and resolved as GRASS from the un-flipped zone row — " +
                 "pre-fix this resolved the MIRRORED row and painted a generic floor");
         }
@@ -118,7 +118,7 @@ namespace CavesOfOoo.Tests
             _renderer.PostRender(zone, Zone.Width, Zone.Height);
             _renderer.PostRender(zone, Zone.Width, Zone.Height); // dirty-path shape
 
-            Assert.AreEqual("Grass", FindOverlay().GetTile(tilePos)?.name,
+            StringAssert.StartsWith("grass", FindOverlay().GetTile(tilePos)?.name,
                 "the environment survives a rescan without a main repaint");
         }
 
@@ -164,6 +164,109 @@ namespace CavesOfOoo.Tests
                     return child.GetComponent<Tilemap>();
             Assert.Fail("overlay tilemap not created");
             return null;
+        }
+
+        // ── PASS 15 G: flowing ground ────────────────────────────
+
+        private static Entity TerrainEntity(string blueprint, string glyph)
+        {
+            var e = new Entity { ID = blueprint + "-t", BlueprintName = blueprint };
+            e.AddPart(new RenderPart { DisplayName = blueprint, RenderString = glyph, RenderLayer = 0 });
+            return e;
+        }
+
+        [Test]
+        public void GrassRegion_AssemblesTheMacroField_NotOneRepeatingTile()
+        {
+            // A 2×2 grass patch must show FOUR DIFFERENT macro slices in
+            // field-adjacent order — that is the whole trick: variation
+            // larger than the tile, so the grid disappears.
+            var zone = new Zone("T");
+            foreach (var (x, y) in new[] { (5, 3), (6, 3), (5, 4), (6, 4) })
+            {
+                zone.AddEntity(TerrainEntity("Grass", "."), x, y);
+                PaintFloorGlyph(x, y, Color.white);
+            }
+
+            _renderer.PostRender(zone, Zone.Width, Zone.Height);
+
+            string NameAt(int x, int zy) =>
+                FindOverlay().GetTile(new Vector3Int(x, Zone.Height - 1 - zy, 0))?.name;
+
+            Assert.AreEqual($"grass_m{EnvironmentSpriteRenderer.MacroIndex(5, 3):D2}".Replace("_m", "_m"),
+                NameAt(5, 3));
+            var names = new[] { NameAt(5, 3), NameAt(6, 3), NameAt(5, 4), NameAt(6, 4) };
+            foreach (var n in names)
+                StringAssert.StartsWith("grass_m", n, "every cell resolves the grass macro");
+            CollectionAssert.AllItemsAreUnique(names,
+                "adjacent cells show DIFFERENT slices of the source field");
+        }
+
+        [Test]
+        public void WaterWithLandToTheNorth_GetsTheNorthShorelineLip()
+        {
+            // A realistic riverbank neighborhood: the target water cell
+            // surrounded by water on every side EXCEPT grass to the
+            // zone-north. (Bare cells deliberately count as land, so an
+            // unpopulated test zone would read as a puddle in a field.)
+            var zone = new Zone("T");
+            for (int dx = -1; dx <= 1; dx++)
+                for (int dy = -1; dy <= 1; dy++)
+                {
+                    int cx = 10 + dx, cy = 10 + dy;
+                    if (dx == 0 && dy == -1)
+                        zone.AddEntity(TerrainEntity("Grass", "."), cx, cy);
+                    else
+                        zone.AddEntity(TerrainEntity("WaterPuddle", "~"), cx, cy);
+                }
+
+            var waterGlyph = ScriptableObject.CreateInstance<Tile>();
+            waterGlyph.name = "CP437_7E"; // '~'
+            var tilePos = new Vector3Int(10, Zone.Height - 1 - 10, 0);
+            _mainTilemap.SetTile(tilePos, waterGlyph);
+
+            _renderer.PostRender(zone, Zone.Width, Zone.Height);
+
+            Assert.AreEqual("water_e_n", FindOverlay().GetTile(tilePos)?.name,
+                "the shoreline family resolves by neighbor mask — the river gets edges");
+            Object.DestroyImmediate(waterGlyph);
+        }
+
+        [Test]
+        public void SlateFloor_FinallyRendersAsSlate_NotBones()
+        {
+            // The audit's absurdity champion: SlateFloor paints ',' and
+            // the glyph tier claimed it with the BONES sprite.
+            var zone = new Zone("T");
+            zone.AddEntity(TerrainEntity("SlateFloor", ","), 7, 7);
+            var commaGlyph = ScriptableObject.CreateInstance<Tile>();
+            commaGlyph.name = "CP437_2C"; // ','
+            var tilePos = new Vector3Int(7, Zone.Height - 1 - 7, 0);
+            _mainTilemap.SetTile(tilePos, commaGlyph);
+
+            _renderer.PostRender(zone, Zone.Width, Zone.Height);
+
+            var name = FindOverlay().GetTile(tilePos)?.name;
+            StringAssert.StartsWith("slate_m", name,
+                "a floor material renders as FLOOR — the ground tier outranks the glyph map");
+            Object.DestroyImmediate(commaGlyph);
+        }
+
+        [Test]
+        public void GroundMaterialResolver_StrataFinallyDiffer()
+        {
+            Assert.AreEqual(EnvironmentSpriteRenderer.GroundMaterial.Sandstone,
+                EnvironmentSpriteRenderer.ResolveGroundMaterial("SandstoneFloor"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.GroundMaterial.Obsidian,
+                EnvironmentSpriteRenderer.ResolveGroundMaterial("ObsidianFloor"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.GroundMaterial.Slate,
+                EnvironmentSpriteRenderer.ResolveGroundMaterial("SlateFloor"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.GroundMaterial.Sand,
+                EnvironmentSpriteRenderer.ResolveGroundMaterial("SilverSand"),
+                "silver sand belongs to the sand family, not the generic floor");
+            Assert.AreEqual(EnvironmentSpriteRenderer.GroundMaterial.None,
+                EnvironmentSpriteRenderer.ResolveGroundMaterial("Wall"),
+                "counter-check: walls are not ground");
         }
     }
 }

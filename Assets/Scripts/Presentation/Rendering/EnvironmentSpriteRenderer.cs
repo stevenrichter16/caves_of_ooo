@@ -180,6 +180,54 @@ namespace CavesOfOoo.Rendering
         private Tile _vineWallTile;
         private Tile _sandstoneWallTile;
 
+        // ── PASS 15 G — flowing ground ───────────────────────────
+        // Macro-field ground: each material is a seamless toroidal
+        // 64×64 field sliced 4×4; the game reassembles it by tilemap
+        // position, so variation lives LARGER than the tile and the
+        // grid disappears. Shorelines are a complete 12-piece scallop
+        // family; walls carry the top-face treatment.
+
+        /// <summary>Blueprint-keyed ground material. This is ALSO the
+        /// fix for five strata floors collapsing into one ochre atlas
+        /// and SlateFloor (glyph ',') rendering as the BONES sprite.</summary>
+        public enum GroundMaterial
+        {
+            None, Grass, Sand, Floor, Bank,
+            Sandstone, Limestone, Shale, Slate, Quartzite, Obsidian,
+            Water
+        }
+
+        public static GroundMaterial ResolveGroundMaterial(string blueprintName)
+        {
+            switch (blueprintName)
+            {
+                case "Grass":          return GroundMaterial.Grass;
+                case "Sand":           return GroundMaterial.Sand;
+                case "SilverSand":     return GroundMaterial.Sand;
+                case "Bank":           return GroundMaterial.Bank;
+                case "Floor":          return GroundMaterial.Floor;
+                case "StoneFloor":     return GroundMaterial.Floor;
+                case "SandstoneFloor": return GroundMaterial.Sandstone;
+                case "LimestoneFloor": return GroundMaterial.Limestone;
+                case "ShaleFloor":     return GroundMaterial.Shale;
+                case "SlateFloor":     return GroundMaterial.Slate;
+                case "QuartziteFloor": return GroundMaterial.Quartzite;
+                case "ObsidianFloor":  return GroundMaterial.Obsidian;
+                case "WaterPuddle":    return GroundMaterial.Water;
+                default:               return GroundMaterial.None;
+            }
+        }
+
+        private readonly Dictionary<GroundMaterial, Tile[]> _groundMacroTiles =
+            new Dictionary<GroundMaterial, Tile[]>();
+        private Tile[] _waterMacroTiles;
+        private Tile[] _shoreEdgeTiles;   // n, e, s, w
+        private Tile[] _shoreOuterTiles;  // ne, se, sw, nw
+        private Tile[] _shoreInnerTiles;  // ne, se, sw, nw
+        private Tile[] _wallTopTiles;          // generic wall, 4 variants
+        private Tile[] _vineWallTopTiles;
+        private Tile[] _sandstoneWallTopTiles;
+
         private Tilemap _overlayTilemap;
         private Tilemap _mainTilemap;
 
@@ -218,6 +266,7 @@ namespace CavesOfOoo.Rendering
 
             LoadSprites();
             BuildTiles();
+            LoadGroundSets();
 
             IsInitialized = true;
         }
@@ -292,6 +341,48 @@ namespace CavesOfOoo.Rendering
             _acidPondSprite        = LoadSingle(SpriteRoot + "acid_pond");
             _vineWallSprite        = LoadSingle(SpriteRoot + "vine_wall");
             _sandstoneWallSprite   = LoadSingle(SpriteRoot + "sandstone_wall");
+        }
+
+        // PASS 15 G — macro/shoreline/wall-set loaders. Missing files
+        // return empty arrays and the resolver falls back to the old
+        // singles/atlas, so a partial art drop never blanks the world.
+        private Tile[] LoadTileSet(string prefix, string[] suffixes)
+        {
+            var tiles = new Tile[suffixes.Length];
+            bool any = false;
+            for (int i = 0; i < suffixes.Length; i++)
+            {
+                var s = LoadSingle(SpriteRoot + prefix + suffixes[i]);
+                if (s != null) { tiles[i] = MakeTile(s, prefix + suffixes[i]); any = true; }
+            }
+            return any ? tiles : System.Array.Empty<Tile>();
+        }
+
+        private static readonly string[] MacroSuffixes =
+        {
+            "_m00","_m01","_m02","_m03","_m04","_m05","_m06","_m07",
+            "_m08","_m09","_m10","_m11","_m12","_m13","_m14","_m15",
+        };
+        private static readonly string[] SideSuffixes   = { "_e_n", "_e_e", "_e_s", "_e_w" };
+        private static readonly string[] OuterSuffixes  = { "_oc_ne", "_oc_se", "_oc_sw", "_oc_nw" };
+        private static readonly string[] InnerSuffixes  = { "_ic_ne", "_ic_se", "_ic_sw", "_ic_nw" };
+        private static readonly string[] WallVarSuffixes = { "_v0", "_v1", "_v2", "_v3" };
+
+        private void LoadGroundSets()
+        {
+            foreach (GroundMaterial mat in System.Enum.GetValues(typeof(GroundMaterial)))
+            {
+                if (mat == GroundMaterial.None || mat == GroundMaterial.Water) continue;
+                var set = LoadTileSet(mat.ToString().ToLowerInvariant(), MacroSuffixes);
+                if (set.Length > 0) _groundMacroTiles[mat] = set;
+            }
+            _waterMacroTiles = LoadTileSet("water", MacroSuffixes);
+            _shoreEdgeTiles = LoadTileSet("water", SideSuffixes);
+            _shoreOuterTiles = LoadTileSet("water", OuterSuffixes);
+            _shoreInnerTiles = LoadTileSet("water", InnerSuffixes);
+            _wallTopTiles = LoadTileSet("wall", WallVarSuffixes);
+            _vineWallTopTiles = LoadTileSet("vine_wall", WallVarSuffixes);
+            _sandstoneWallTopTiles = LoadTileSet("sandstone_wall", WallVarSuffixes);
         }
 
         private static Tile MakeTile(Sprite s, string name)
@@ -725,6 +816,25 @@ namespace CavesOfOoo.Rendering
                     case CropSpriteKind.Emberwheat:  if (_emberwheatCropTile != null) return _emberwheatCropTile; break;
                 }
 
+                // PASS 15 G — ground-material tier: macro-field ground
+                // and shoreline water resolve by blueprint BEFORE the
+                // legacy fixture singles. This is also where the five
+                // strata floors stop collapsing into one atlas and
+                // SlateFloor stops rendering as bones.
+                var ground = ResolveGroundMaterial(bpName);
+                if (ground == GroundMaterial.Water)
+                {
+                    var shoreline = PickShorelineTile(zone, x, y);
+                    if (shoreline != null) return shoreline;
+                }
+                else if (ground != GroundMaterial.None
+                    && _groundMacroTiles.TryGetValue(ground, out var macro)
+                    && macro.Length == 16)
+                {
+                    var mt = macro[MacroIndex(x, y)];
+                    if (mt != null) return mt;
+                }
+
                 switch (ResolveFixtureKind(bpName))
                 {
                     case EnvFixtureKind.Grass:        if (_grassTile != null) return _grassTile; break;
@@ -741,34 +851,63 @@ namespace CavesOfOoo.Rendering
                     case EnvFixtureKind.Rubble:        if (_rubbleTile != null) return _rubbleTile; break;
                     case EnvFixtureKind.Oven:          if (_ovenTile != null) return _ovenTile; break;
                     case EnvFixtureKind.IceStalactite: if (_iceStalactiteTile != null) return _iceStalactiteTile; break;
-                    case EnvFixtureKind.VineWall:      if (_vineWallTile != null) return _vineWallTile; break;
-                    case EnvFixtureKind.SandstoneWall: if (_sandstoneWallTile != null) return _sandstoneWallTile; break;
+                    case EnvFixtureKind.VineWall:
+                        // Pass 15 G: themed walls use their top-face
+                        // variant sets when the art exists.
+                        if (_vineWallTopTiles.Length == 4)
+                            return _vineWallTopTiles[WallVariantIndex(zone, x, y)];
+                        if (_vineWallTile != null) return _vineWallTile;
+                        break;
+                    case EnvFixtureKind.SandstoneWall:
+                        if (_sandstoneWallTopTiles.Length == 4)
+                            return _sandstoneWallTopTiles[WallVariantIndex(zone, x, y)];
+                        if (_sandstoneWallTile != null) return _sandstoneWallTile;
+                        break;
                 }
             }
 
-            // Walls
+            // Walls — Pass 15 G: the top-face set (lighter top band +
+            // ink seam over a flat front) makes walls read as solid
+            // blocks; the old 4-slot atlas remains the fallback.
             for (int i = 0; i < WallGlyphs.Length; i++)
             {
                 if (WallGlyphs[i] == glyph)
                 {
-                    if (_wallTiles == null || _wallTiles.Length == 0) return null;
                     int variant = WallVariantIndex(zone, x, y);
+                    if (_wallTopTiles.Length == 4) return _wallTopTiles[variant];
+                    if (_wallTiles == null || _wallTiles.Length == 0) return null;
                     return _wallTiles[variant % _wallTiles.Length];
                 }
             }
-            // Floors
+            // Floors — Pass 15 G: generic '.' with no ground-material
+            // blueprint uses the generic stone macro field; the old
+            // hash-picked atlas is the fallback.
             for (int i = 0; i < FloorGlyphs.Length; i++)
             {
                 if (FloorGlyphs[i] == glyph)
                 {
+                    if (_groundMacroTiles.TryGetValue(GroundMaterial.Floor, out var stoneMacro)
+                        && stoneMacro.Length == 16)
+                    {
+                        var mt = stoneMacro[MacroIndex(x, y)];
+                        if (mt != null) return mt;
+                    }
                     if (_floorTiles == null || _floorTiles.Length == 0) return null;
                     int variant = FloorVariantIndex(x, y);
                     return _floorTiles[variant % _floorTiles.Length];
                 }
             }
-            // Water
+            // Water — Pass 15 G: shoreline-aware; plain water sprite as
+            // fallback.
             for (int i = 0; i < WaterGlyphs.Length; i++)
-                if (WaterGlyphs[i] == glyph) return _waterTile;
+            {
+                if (WaterGlyphs[i] == glyph)
+                {
+                    var shoreline = PickShorelineTile(zone, x, y);
+                    if (shoreline != null) return shoreline;
+                    return _waterTile;
+                }
+            }
             // Doors
             if (glyph == '+') return _doorClosedTile;
             if (glyph == '\'') return _doorOpenTile;
@@ -887,6 +1026,74 @@ namespace CavesOfOoo.Rendering
             if (zone == null) return false;
             var c = zone.GetCell(x, y);
             return c != null && c.IsWall();
+        }
+
+        /// <summary>
+        /// PASS 15 G — macro-field slice index. The field was authored
+        /// with image row 0 at the TOP; zone row 0 also renders at the
+        /// top of the screen, so zone coordinates index the field
+        /// directly: adjacent zone cells always show adjacent slices
+        /// and the 64×64 source reassembles seamlessly across the map.
+        /// </summary>
+        public static int MacroIndex(int x, int zoneY)
+        {
+            int cx = ((x % 4) + 4) % 4;
+            int cy = ((zoneY % 4) + 4) % 4;
+            return cy * 4 + cx;
+        }
+
+        /// <summary>
+        /// PASS 15 G — shoreline resolution for a water cell (zone
+        /// coords). Land on one side → that edge tile; two adjacent
+        /// land sides → outer corner; land only at a diagonal → inner
+        /// corner nub; open water → macro slice. Out-of-bounds counts
+        /// as water so rivers run cleanly off the map edge.
+        /// </summary>
+        private Tile PickShorelineTile(Zone zone, int x, int zoneY)
+        {
+            if (_shoreEdgeTiles.Length != 4 || _shoreOuterTiles.Length != 4
+                || _shoreInnerTiles.Length != 4)
+                return null;
+
+            bool n = IsLandAt(zone, x, zoneY - 1);
+            bool e = IsLandAt(zone, x + 1, zoneY);
+            bool s = IsLandAt(zone, x, zoneY + 1);
+            bool w = IsLandAt(zone, x - 1, zoneY);
+
+            // Outer corners (two adjacent land sides). Suffix order:
+            // ne, se, sw, nw.
+            if (n && e) return _shoreOuterTiles[0];
+            if (s && e) return _shoreOuterTiles[1];
+            if (s && w) return _shoreOuterTiles[2];
+            if (n && w) return _shoreOuterTiles[3];
+            // Single edges. Suffix order: n, e, s, w.
+            if (n) return _shoreEdgeTiles[0];
+            if (e) return _shoreEdgeTiles[1];
+            if (s) return _shoreEdgeTiles[2];
+            if (w) return _shoreEdgeTiles[3];
+            // Diagonal-only land → inner corner nub.
+            if (IsLandAt(zone, x + 1, zoneY - 1)) return _shoreInnerTiles[0];
+            if (IsLandAt(zone, x + 1, zoneY + 1)) return _shoreInnerTiles[1];
+            if (IsLandAt(zone, x - 1, zoneY + 1)) return _shoreInnerTiles[2];
+            if (IsLandAt(zone, x - 1, zoneY - 1)) return _shoreInnerTiles[3];
+            // Open water.
+            if (_waterMacroTiles.Length == 16)
+            {
+                var mt = _waterMacroTiles[MacroIndex(x, zoneY)];
+                if (mt != null) return mt;
+            }
+            return null;
+        }
+
+        private static bool IsLandAt(Zone zone, int x, int zoneY)
+        {
+            if (zone == null) return false;
+            var c = zone.GetCell(x, zoneY);
+            if (c == null) return false; // off-map continues as water
+            var top = c.GetTopVisibleObject();
+            if (top == null) return true; // bare cell = land
+            return ResolveGroundMaterial(top.BlueprintName) != GroundMaterial.Water
+                && top.GetPart<LiquidPoolPart>() == null;
         }
 
         /// <summary>
