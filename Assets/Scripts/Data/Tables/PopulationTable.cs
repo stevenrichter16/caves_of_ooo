@@ -253,6 +253,9 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "CaveBear", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 4, MinCount = 2, MaxCount = 4 },
                     new PopulationEntry { BlueprintName = "Glowmaw", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    // Phase C: the far ring's leadership and its grazers.
+                    new PopulationEntry { BlueprintName = "SnapjawWarlord", Weight = 2, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Mosshulk", Weight = 2, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "CaveSlime", Weight = 2, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Snapjaw", Weight = 3, MinCount = 2, MaxCount = 4 },
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 },

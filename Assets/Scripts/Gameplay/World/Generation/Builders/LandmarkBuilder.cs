@@ -153,6 +153,32 @@ namespace CavesOfOoo.Core
         private static readonly StructureStamp[] Cave =
         {
             HermitHut("Wall", "CaveHermit"),
+            // Phase C: a warband camp — the game's first world-placed
+            // LockedChest. The key lies somewhere in camp (always
+            // obtainable); the warlord and his raiders are the real lock.
+            new StructureStamp
+            {
+                Name = "WarbandCamp",
+                Chance = 25,
+                MinTier = 2,
+                Rows = new[]
+                {
+                    "#######",
+                    "#s...L#",
+                    "#..X..#",
+                    "#s..k.+",
+                    "#######",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', "Wall" },
+                    { 'X', "spawn:SnapjawWarlord" },
+                    { 's', "spawn:Snapjaw" },
+                    { 'L', "lockedchest:WarbandLootT2" },
+                    { 'k', "IronKey" },
+                    { '+', "" },
+                },
+            },
             // A dead prospector's camp: supply crate inside, the vein
             // they were working just outside the door.
             new StructureStamp
@@ -329,6 +355,11 @@ namespace CavesOfOoo.Core
                     if (!factory.Blueprints.ContainsKey("Chest")) return false;
                     continue;
                 }
+                if (marker.StartsWith("lockedchest:"))
+                {
+                    if (!factory.Blueprints.ContainsKey("LockedChest")) return false;
+                    continue;
+                }
                 string bp = marker.StartsWith("spawn:") ? marker.Substring(6) : marker;
                 if (!factory.Blueprints.ContainsKey(bp)) return false;
             }
@@ -418,6 +449,16 @@ namespace CavesOfOoo.Core
                         {
                             zone.AddEntity(chest, wx, wy);
                             LootStocker.StockContainer(chest, marker.Substring(6), factory, rng);
+                        }
+                        continue;
+                    }
+                    if (marker.StartsWith("lockedchest:"))
+                    {
+                        var locked = factory.CreateEntity("LockedChest");
+                        if (locked != null)
+                        {
+                            zone.AddEntity(locked, wx, wy);
+                            LootStocker.StockContainer(locked, marker.Substring(12), factory, rng);
                         }
                         continue;
                     }

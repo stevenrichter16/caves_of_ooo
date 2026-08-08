@@ -136,9 +136,18 @@ stamps and a `priority` ctor param so guaranteed placements claim
 space at 3790 before ambient 3800. The diagnostic-census failure
 message pattern in `BiomeMerchantCampTests` is worth reusing.
 
-### Phases C–G (not started)
-C Cave · D Desert · E Jungle · F Ruins · G Strata — per-biome passes per
-plan §3. Phase H (fog-of-war render, map legend, rivers) is stretch ⚪.
+### Phases C–G (biome passes — in progress)
+- ☑ **C Cave** "Mossveil Reach": SnapjawWarlord (45 HP, XP 90, 2d5
+  cleaver) + Mosshulk (55 HP tank, butchers into MendleafSprig ×2) in
+  CaveTier3; WarbandCamp stamp (tier 2+) with the game's FIRST placed
+  LockedChest (`lockedchest:` marker added to LandmarkBuilder) +
+  IronKey in camp + WarlordCleaver item (1d10 pen2 trophy) via
+  WarbandLootT2. All nine biome-pass natural-weapon factory cases
+  registered up front; 7 creature stubs added to WorldMapTests fixture
+  (§7 gotcha). Watchtower stamp CUT (cave catalog already at 3 stamps).
+  Quests deferred to a consolidated pass after G.
+- ☐ D Desert · ☐ E Jungle · ☐ F Ruins · ☐ G Strata
+- Phase H (fog-of-war render, map legend, rivers) is stretch ⚪.
 
 ## 4. Decisions made along the way
 

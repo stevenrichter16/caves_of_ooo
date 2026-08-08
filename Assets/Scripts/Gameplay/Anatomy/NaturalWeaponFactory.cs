@@ -90,6 +90,28 @@ namespace CavesOfOoo.Core.Anatomy
                 case "CultistKnife":
                     return CreateWeapon("ritual knife", "1d4", 1, "&M", "Cutting");
 
+                // BIOME-OVERHAUL C-G: the nine biome-pass creatures
+                // (Docs/BIOME-OVERHAUL.md §4.1). Registered together so
+                // each phase's blueprint drop-in finds its case waiting.
+                case "WarlordCleaver":
+                    return CreateWeapon("cleaver", "2d5", 2, "&M", "Cutting Axe");
+                case "MosshulkSlam":
+                    return CreateWeapon("mossy fist", "2d5", 2, "&g", "Bludgeoning Animal");
+                case "LurkerMaw":
+                    return CreateWeapon("maw", "2d6", 2, "&y", "Piercing Cutting Animal");
+                case "BrittleFangs":
+                    return CreateWeapon("glass fangs", "1d6", 1, "&W", "Piercing Animal", "Bleeding,25,1d2,10,0");
+                case "RotlingClaw":
+                    return CreateWeapon("rotted claw", "1d3", 0, "&g", "Cutting Animal", "Poisoned,10,1d2,4,0");
+                case "StranglerLash":
+                    return CreateWeapon("strangling vine", "2d4", 2, "&G", "Bludgeoning Animal");
+                case "SentinelHalberd":
+                    return CreateWeapon("vault halberd", "2d6", 3, "&W", "Cutting Piercing");
+                case "StalkerTalon":
+                    return CreateWeapon("pale talon", "2d5", 2, "&C", "Cutting Animal");
+                case "ObsidianFist":
+                    return CreateWeapon("obsidian fist", "3d6", 3, "&m", "Bludgeoning");
+
                 default:
                     return CreateWeapon(blueprintName, "1d2", 0, "&y", "");
             }

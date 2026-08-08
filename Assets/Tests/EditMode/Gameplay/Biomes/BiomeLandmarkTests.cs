@@ -212,6 +212,11 @@ namespace CavesOfOoo.Tests
                             Assert.IsNotNull(LootTableRegistry.Get(marker.Substring(6)),
                                 $"{stamp.Name}: loot table '{marker}'");
                         }
+                        else if (marker.StartsWith("lockedchest:"))
+                        {
+                            Assert.IsNotNull(LootTableRegistry.Get(marker.Substring(12)),
+                                $"{stamp.Name}: loot table '{marker}'");
+                        }
                         else
                         {
                             string bp = marker.StartsWith("spawn:") ? marker.Substring(6) : marker;

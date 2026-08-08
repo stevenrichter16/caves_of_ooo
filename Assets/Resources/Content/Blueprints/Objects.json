@@ -4038,6 +4038,86 @@
       ]
     },
     {
+      "Name": "SnapjawWarlord",
+      "Inherits": "Snapjaw",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "snapjaw warlord" },
+          { "Key": "RenderString", "Value": "S" },
+          { "Key": "ColorString", "Value": "&M" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "4" }, { "Key": "DV", "Value": "3" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 45, "Min": 0, "Max": 45 },
+        { "Name": "Strength", "Value": 24 },
+        { "Name": "Agility", "Value": 18 },
+        { "Name": "Toughness", "Value": 18 },
+        { "Name": "XPValue", "Value": 90 }
+      ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "WarlordCleaver" }],
+      "Tags": [
+        { "Key": "Tier", "Value": "3" }
+      ]
+    },
+    {
+      "Name": "Mosshulk",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "mosshulk" },
+          { "Key": "RenderString", "Value": "M" },
+          { "Key": "ColorString", "Value": "&g" }
+        ]},
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "6" }, { "Key": "DV", "Value": "0" }] },
+        { "Name": "Corpse", "Params": [
+          { "Key": "HarvestBlueprint", "Value": "MendleafSprig" },
+          { "Key": "HarvestMin", "Value": "2" },
+          { "Key": "HarvestMax", "Value": "2" },
+          { "Key": "HarvestChance", "Value": "100" }
+        ]}
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 55, "Min": 0, "Max": 55 },
+        { "Name": "Strength", "Value": 24 },
+        { "Name": "Agility", "Value": 8 },
+        { "Name": "Speed", "Value": 70 },
+        { "Name": "XPValue", "Value": 80 }
+      ],
+      "Props": [{ "Key": "NaturalWeapon", "Value": "MosshulkSlam" }],
+      "Tags": [
+        { "Key": "Faction", "Value": "Beasts" },
+        { "Key": "Tier", "Value": "3" },
+        { "Key": "BloodColor", "Value": "&g" }
+      ]
+    },
+    {
+      "Name": "WarlordCleaver",
+      "Inherits": "MeleeWeapon",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "warlord's cleaver" },
+          { "Key": "RenderString", "Value": ")" },
+          { "Key": "ColorString", "Value": "&M" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "8" }] },
+        { "Name": "MeleeWeapon", "Params": [
+          { "Key": "BaseDamage", "Value": "1d10" },
+          { "Key": "PenBonus", "Value": "2" },
+          { "Key": "Attributes", "Value": "Cutting Axe" }
+        ]},
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "35" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A snapjaw warband banner-blade, notched from a hundred raids. Heavier than it looks; meaner than it needs to be." }
+        ]}
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
       "Name": "DesertProwler",
       "Inherits": "Creature",
       "Parts": [
