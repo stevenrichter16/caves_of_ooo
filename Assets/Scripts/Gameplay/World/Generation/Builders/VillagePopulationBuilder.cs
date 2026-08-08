@@ -14,7 +14,9 @@ namespace CavesOfOoo.Core
     {
         public string Name => "VillagePopulationBuilder";
         public int Priority => 4000;
-        private const string StartingVillageZoneId = "Overworld.10.10.0";
+        // Public since STARTING TOWN: OverworldZoneManager gates the
+        // shop-stamp pipeline on this ID.
+        public const string StartingVillageZoneId = "Overworld.10.10.0";
 
         private PointOfInterest _poi;
         private SettlementManager _settlementManager;
@@ -1201,7 +1203,11 @@ namespace CavesOfOoo.Core
             var cells = new List<(int x, int y)>();
             zone.ForEachCell((cell, x, y) =>
             {
-                if (cell.IsPassable())
+                // STARTING TOWN: cells claimed by shop stamps
+                // (Zone.GenReservedCells) are off-limits — the oven,
+                // compass stones, and NPCs must not land inside a shop.
+                // Mirrors PopulationBuilder's A2 fix.
+                if (cell.IsPassable() && !zone.GenReservedCells.Contains((x, y)))
                     cells.Add((x, y));
             });
             return cells;

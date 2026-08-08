@@ -23,11 +23,16 @@ namespace CavesOfOoo.Core
         private string _wallBlueprint;
         private string _pathBlueprint;
 
-        public VillageBuilder(BiomeType biome, PointOfInterest poi, SettlementManager settlementManager = null)
+        // STARTING TOWN: the starting village builds large — more
+        // organic houses for the shop stamps to scatter among.
+        private readonly bool _largeTown;
+
+        public VillageBuilder(BiomeType biome, PointOfInterest poi, SettlementManager settlementManager = null, bool largeTown = false)
         {
             _biome = biome;
             _poi = poi;
             _settlementManager = settlementManager;
+            _largeTown = largeTown;
             SetBiomePalette(biome);
         }
 
@@ -74,8 +79,9 @@ namespace CavesOfOoo.Core
             // 2. Define the village square in the center
             GetVillageSquareBounds(out int sqX, out int sqY, out int sqW, out int sqH);
 
-            // 3. Place 3-5 buildings around the square
-            int buildingCount = rng.Next(3, 6);
+            // 3. Place 3-5 buildings around the square (6-9 for the
+            // starting TOWN — Docs/STARTING-TOWN.md).
+            int buildingCount = _largeTown ? rng.Next(6, 10) : rng.Next(3, 6);
             var buildings = new List<Room>();
             int maxAttempts = buildingCount * 30;
 

@@ -185,6 +185,18 @@ message pattern in `BiomeMerchantCampTests` is worth reusing.
   waystation shipped instead).
 - Phase H (fog-of-war render, map legend, rivers) is stretch ⚪.
 
+### STARTING TOWN (playtest-driven follow-up, 2026-08-08)
+Full plan + rationale: `Docs/STARTING-TOWN.md`. Five themed shops
+(Smithy w/ forge, Bulwark, Alembic w/ still, Inkwell, Larder) as
+guaranteed stamps scattered through a larger (6-9 house) starting
+town; five keeper blueprints (`NoRandomStock`, wallets 200-400, own
+conversations); the §4.3 armor ladder finally shipped (LeatherCap /
+IronshodBoots / WardedCloak / IronBuckler); `shop:BP:Table` marker;
+water guard for ALL stamp footprints (pre-existing river exposure);
+VillagePopulationBuilder now respects GenReservedCells;
+TraderRestockSystem.Factory + shelf refill (< 3 items re-rolls the
+keeper's table on the 300-turn tick). Tests 5904 → 5915.
+
 ## 4. Decisions made along the way
 
 | # | Decision | Why |

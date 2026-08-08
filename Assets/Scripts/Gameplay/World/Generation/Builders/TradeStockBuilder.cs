@@ -80,6 +80,10 @@ namespace CavesOfOoo.Core
                 if (!creature.Tags.TryGetValue("Faction", out faction)) continue;
                 if (faction != "Villagers") continue;
 
+                // STARTING TOWN: shopkeepers carry THEMED stock rolled
+                // from their own tables — no random junk on the shelves.
+                if (creature.HasTag("NoRandomStock")) continue;
+
                 var inv = creature.GetPart<InventoryPart>();
                 if (inv == null) continue;
 

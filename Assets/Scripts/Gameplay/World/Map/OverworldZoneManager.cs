@@ -206,7 +206,17 @@ namespace CavesOfOoo.Core
         private ZoneGenerationPipeline CreateVillagePipeline(BiomeType biome, PointOfInterest poi, string zoneID)
         {
             var pipeline = new ZoneGenerationPipeline();
-            pipeline.AddBuilder(new VillageBuilder(biome, poi, SettlementManager));
+            bool isStartingTown = zoneID == VillagePopulationBuilder.StartingVillageZoneId;
+            pipeline.AddBuilder(new VillageBuilder(biome, poi, SettlementManager, largeTown: isStartingTown));
+            // STARTING TOWN (Docs/STARTING-TOWN.md): five guaranteed
+            // shop stamps at priority 3860 — AFTER the river (3850) so
+            // water is on the map before footprint checks, before
+            // population (4000) which now respects the claimed cells.
+            if (isStartingTown)
+            {
+                pipeline.AddBuilder(new LandmarkBuilder(biome, 1,
+                    StampCatalog.Town(), priority: 3860, maxStructures: 5));
+            }
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
             // Narrow HTML-style water channel running west → east along the

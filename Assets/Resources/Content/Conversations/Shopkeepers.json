@@ -1,0 +1,104 @@
+{
+  "Conversations": [
+    {
+      "ID": "Shop_Weaponsmith",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Mind the sparks. Everything on the rack holds an edge, and the forge in the corner is mine — but for a paying customer I'll let you work it. Looking to buy?",
+          "Choices": [
+            { "Text": "What should I carry out there?", "Target": "Advice" },
+            { "Text": "Just browsing.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Advice",
+          "Text": "Snapjaws die to anything sharp. The big things in the far ring — bring penetration or bring friends. A forged blade beats a bought one if you've got the parts; I sell those too.",
+          "Choices": [
+            { "Text": "Noted.", "Target": "Start" }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Shop_Armorer",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Turn around. Hm. You're one good bite from a bad day. Caps, boots, cloaks, bucklers — and if you've the drams, I keep a plate cuirass for serious people.",
+          "Choices": [
+            { "Text": "What do you recommend?", "Target": "Advice" },
+            { "Text": "Just looking.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Advice",
+          "Text": "Armor value stops teeth; dodge value stops everything else. Heavy plate slows you — pair it with light everything else, or go quick and warded. Dead adventurers bought neither.",
+          "Choices": [
+            { "Text": "Fair enough.", "Target": "Start" }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Shop_Apothecary",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Don't touch the blue ones. Tonics, cures, and raw reagents — and the still by the window works if you'd rather brew your own. What ails you?",
+          "Choices": [
+            { "Text": "What should I keep stocked?", "Target": "Advice" },
+            { "Text": "Nothing today.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Advice",
+          "Text": "Two healing tonics minimum — one for the fight, one for the walk home. Antidote before the jungle, burn salve before the ruins. The panacea is expensive because it works.",
+          "Choices": [
+            { "Text": "Wise.", "Target": "Start" }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Shop_Arcanist",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Careful with your hands — half these shelves bite back. Grimoires, tinker schematics, worked minerals, and ink for the quartermaster's ledger. Knowledge has a price; I keep the receipts.",
+          "Choices": [
+            { "Text": "Where does real power come from?", "Target": "Advice" },
+            { "Text": "Another time.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Advice",
+          "Text": "The rites I sell keep you alive. The war-grimoires — Conflagration, the Nova, the Thunderclap — those the old world locked in its vaults, and the vaults keep them still. Bring a key and a strong arm.",
+          "Choices": [
+            { "Text": "I'll find them.", "Target": "Start" }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Shop_Provisioner",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Welcome, welcome. Food that keeps, torches that light, oil that burns, and seeds if you'd rather grow than wander. Everything weighed fair.",
+          "Choices": [
+            { "Text": "What sells best?", "Target": "Advice" },
+            { "Text": "Just passing.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Advice",
+          "Text": "Dried meat — heals a working wound and never spoils. Torches for the shafts under the caves. And carrot seed; plant a row before you leave and you'll come home to dinner.",
+          "Choices": [
+            { "Text": "Sensible.", "Target": "Start" }
+          ]
+        }
+      ]
+    }
+  ]
+}

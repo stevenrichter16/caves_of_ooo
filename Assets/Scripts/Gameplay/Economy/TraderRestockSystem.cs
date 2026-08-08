@@ -23,6 +23,19 @@ namespace CavesOfOoo.Core
         public const int DramsFloor = 100;
         public const string LastRestockProp = "LastRestockTurn";
 
+        /// <summary>STARTING TOWN — shop-shelf restock threshold: a
+        /// keeper whose inventory has fewer items than this re-rolls
+        /// their stock table on the restock tick.</summary>
+        public const int ShelfLowWaterMark = 3;
+        public const string ShopStockTableProp = "ShopStockTable";
+
+        /// <summary>
+        /// STARTING TOWN — factory for shelf refills, wired by
+        /// GameBootstrap (CorpsePart.Factory convention). Null = the
+        /// original drams-only restock (documented A6 behavior).
+        /// </summary>
+        public static CavesOfOoo.Data.EntityFactory Factory;
+
         /// <summary>Restock eligible traders in the zone. Returns the
         /// number of traders whose drams were topped up.</summary>
         public static int RestockZone(Zone zone, int currentTurn)
@@ -52,6 +65,28 @@ namespace CavesOfOoo.Core
                     TradeSystem.SetDrams(e, DramsFloor);
                     restocked++;
                 }
+
+                // STARTING TOWN: a shopkeeper whose shelf has run low
+                // re-rolls their themed stock table (Factory-gated —
+                // contexts without the factory keep drams-only).
+                string stockTable = e.GetProperty(ShopStockTableProp);
+                if (Factory != null && !string.IsNullOrEmpty(stockTable))
+                {
+                    var inv = e.GetPart<InventoryPart>();
+                    if (inv != null && inv.Objects.Count < ShelfLowWaterMark)
+                    {
+                        var rng = new System.Random(
+                            unchecked(currentTurn * 31 + e.ID.GetHashCode()));
+                        foreach (var bp in CavesOfOoo.Data.LootTableRegistry.Roll(stockTable, rng))
+                        {
+                            if (!Factory.Blueprints.ContainsKey(bp)) continue;
+                            var item = Factory.CreateEntity(bp);
+                            if (item != null) inv.AddObject(item);
+                        }
+                        restocked++;
+                    }
+                }
+
                 e.SetIntProperty(LastRestockProp, currentTurn);
             }
             return restocked;

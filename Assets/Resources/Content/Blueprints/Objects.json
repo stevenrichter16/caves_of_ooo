@@ -2187,6 +2187,94 @@
       ]
     },
     {
+      "Name": "LeatherCap",
+      "Inherits": "ArmorItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "leather cap" },
+          { "Key": "RenderString", "Value": "[" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" }] },
+        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Head" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "1" }, { "Key": "DV", "Value": "0" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "8" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "IronshodBoots",
+      "Inherits": "ArmorItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "ironshod boots" },
+          { "Key": "RenderString", "Value": "[" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "4" }] },
+        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Feet" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "0" }, { "Key": "SpeedPenalty", "Value": "5" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "28" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "WardedCloak",
+      "Inherits": "ArmorItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "warded cloak" },
+          { "Key": "RenderString", "Value": "[" },
+          { "Key": "ColorString", "Value": "&M" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" }] },
+        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Back" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "0" }, { "Key": "DV", "Value": "2" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "40" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "IronBuckler",
+      "Inherits": "ArmorItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "iron buckler" },
+          { "Key": "RenderString", "Value": "[" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ]},
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "5" }] },
+        { "Name": "Equippable", "Params": [{ "Key": "Slot", "Value": "Hand" }] },
+        { "Name": "Armor", "Params": [{ "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "1" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "45" }] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 }
+      ],
+      "Tags": [
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
       "Name": "PlateArmor",
       "Inherits": "ArmorItem",
       "Parts": [
@@ -2369,6 +2457,116 @@
       ],
       "IntProps": [
         { "Key": "Drams", "Value": 100 }
+      ]
+    },
+    {
+      "Name": "Weaponsmith",
+      "Inherits": "Villager",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "weaponsmith" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&r" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Shop_Weaponsmith" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Forearms like bridge cables. The ring of the forge follows them around." }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "NoRandomStock", "Value": "" }
+      ],
+      "IntProps": [
+        { "Key": "Drams", "Value": 300 }
+      ]
+    },
+    {
+      "Name": "Armorer",
+      "Inherits": "Villager",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "armorer" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Shop_Armorer" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Measures you with a glance and starts thinking in buckles and plates." }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "NoRandomStock", "Value": "" }
+      ],
+      "IntProps": [
+        { "Key": "Drams", "Value": 300 }
+      ]
+    },
+    {
+      "Name": "Apothecary",
+      "Inherits": "Villager",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "apothecary" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&G" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Shop_Apothecary" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Smells of forty herbs at once. Knows which twelve could kill you." }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "NoRandomStock", "Value": "" }
+      ],
+      "IntProps": [
+        { "Key": "Drams", "Value": 250 }
+      ]
+    },
+    {
+      "Name": "Arcanist",
+      "Inherits": "Villager",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "arcanist" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&M" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Shop_Arcanist" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Ink-stained fingers, a shelf of humming grimoires, and prices to match." }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "NoRandomStock", "Value": "" }
+      ],
+      "IntProps": [
+        { "Key": "Drams", "Value": 400 }
+      ]
+    },
+    {
+      "Name": "Provisioner",
+      "Inherits": "Villager",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "provisioner" },
+          { "Key": "RenderString", "Value": "@" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ]},
+        { "Name": "Conversation", "Params": [{ "Key": "ConversationID", "Value": "Shop_Provisioner" }] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Sacks, jars, bundles, barrels. If it keeps on a shelf, they stock it." }
+        ]}
+      ],
+      "Tags": [
+        { "Key": "NoRandomStock", "Value": "" }
+      ],
+      "IntProps": [
+        { "Key": "Drams", "Value": 200 }
       ]
     },
     {

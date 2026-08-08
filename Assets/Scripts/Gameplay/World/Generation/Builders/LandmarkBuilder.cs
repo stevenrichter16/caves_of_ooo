@@ -75,6 +75,72 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// STARTING TOWN — the five guaranteed shop stamps for the
+        /// starting village (Docs/STARTING-TOWN.md). Each is a real
+        /// building with its keeper (shop: marker = spawn + themed
+        /// stock + restock table memory), a MarketStall counter, and —
+        /// where it fits the trade — the crafting station under the
+        /// same roof: the smith owns the forge, the apothecary the
+        /// still. Placed at priority 3860 (after the river) with
+        /// maxStructures 5.
+        /// </summary>
+        public static IReadOnlyList<StructureStamp> Town()
+        {
+            return TownStamps;
+        }
+
+        private static StructureStamp ShopStamp(string name, string keeperMarker,
+            string stationOrNull)
+        {
+            var legend = new Dictionary<char, string>
+            {
+                { '#', "StoneWall" },
+                { 'K', keeperMarker },
+                { 'm', "MarketStall" },
+                { '+', "" },
+            };
+            string[] rows;
+            if (stationOrNull != null)
+            {
+                legend['S'] = stationOrNull;
+                rows = new[]
+                {
+                    "######",
+                    "#K..S#",
+                    "#m...+",
+                    "######",
+                };
+            }
+            else
+            {
+                rows = new[]
+                {
+                    "#####",
+                    "#K.m#",
+                    "#...+",
+                    "#####",
+                };
+            }
+            return new StructureStamp
+            {
+                Name = name,
+                Chance = 100,
+                MinTier = 1,
+                Rows = rows,
+                Legend = legend,
+            };
+        }
+
+        private static readonly StructureStamp[] TownStamps =
+        {
+            ShopStamp("TheSmithy", "shop:Weaponsmith:WeaponsmithStock", "TinkersForge"),
+            ShopStamp("TheBulwark", "shop:Armorer:ArmorerStock", null),
+            ShopStamp("TheAlembic", "shop:Apothecary:ApothecaryStock", "AlchemyStill"),
+            ShopStamp("TheInkwell", "shop:Arcanist:ArcanistStock", null),
+            ShopStamp("TheLarder", "shop:Provisioner:ProvisionerStock", null),
+        };
+
+        /// <summary>
         /// BIOME-OVERHAUL G — the underground landmark catalog by depth
         /// band. MinTier here maps to the underground zone tier
         /// (depth/3 + 1, capped 8): mine galleries from the first
@@ -621,13 +687,17 @@ namespace CavesOfOoo.Core
         /// must-place structure with no valid anchor (caught by the B2
         /// regression on the B1 end-to-end test).
         /// </param>
+        private readonly int _maxStructures;
+
         public LandmarkBuilder(BiomeType biome, int tier,
-            IReadOnlyList<StructureStamp> catalogOverride = null, int priority = 3800)
+            IReadOnlyList<StructureStamp> catalogOverride = null, int priority = 3800,
+            int maxStructures = MaxStructuresPerZone)
         {
             _biome = biome;
             _tier = tier;
             _catalog = catalogOverride ?? StampCatalog.For(biome);
             _priority = priority;
+            _maxStructures = maxStructures;
         }
 
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
@@ -635,7 +705,7 @@ namespace CavesOfOoo.Core
             int placed = 0;
             foreach (var stamp in _catalog)
             {
-                if (placed >= MaxStructuresPerZone) break;
+                if (placed >= _maxStructures) break;
                 if (stamp == null || stamp.Height == 0) continue;
                 if (_tier < stamp.MinTier) continue;
                 if (stamp.Chance < 100 && rng.Next(100) >= stamp.Chance) continue;
@@ -661,6 +731,12 @@ namespace CavesOfOoo.Core
                 if (marker.StartsWith("lockedchest:"))
                 {
                     if (!factory.Blueprints.ContainsKey("LockedChest")) return false;
+                    continue;
+                }
+                if (marker.StartsWith("shop:"))
+                {
+                    var parts = marker.Split(':');
+                    if (parts.Length < 3 || !factory.Blueprints.ContainsKey(parts[1])) return false;
                     continue;
                 }
                 string bp = marker.StartsWith("spawn:") ? marker.Substring(6) : marker;
@@ -705,6 +781,7 @@ namespace CavesOfOoo.Core
                     if (cell == null) return false;
                     if (zone.GenReservedCells.Contains((ax + x, ay + y))) return false;
                     if (HasStairs(cell)) return false; // never bury a stairway
+                    if (HasLiquid(cell)) return false; // never build in the river
                     if (cell.IsPassable()) continue;
                     // Blocked cell: acceptable only for vegetation-
                     // clearing stamps, and only when nothing wall-like
@@ -721,6 +798,19 @@ namespace CavesOfOoo.Core
             {
                 if (cell.Objects[i].GetPart<StairsDownPart>() != null
                     || cell.Objects[i].GetPart<StairsUpPart>() != null)
+                    return true;
+            }
+            return false;
+        }
+
+        // STARTING TOWN fix (pre-existing exposure): a stamp footprint
+        // could straddle a river — water cells are passable, so nothing
+        // vetoed them. Liquid now rejects the anchor for ALL stamps.
+        private static bool HasLiquid(Cell cell)
+        {
+            for (int i = 0; i < cell.Objects.Count; i++)
+            {
+                if (cell.Objects[i].GetPart<LiquidPoolPart>() != null)
                     return true;
             }
             return false;
@@ -762,6 +852,34 @@ namespace CavesOfOoo.Core
                         {
                             zone.AddEntity(locked, wx, wy);
                             LootStocker.StockContainer(locked, marker.Substring(12), factory, rng);
+                        }
+                        continue;
+                    }
+                    // STARTING TOWN: shop:Blueprint:Table — spawn the
+                    // keeper, roll their themed stock into inventory,
+                    // and remember the table so TraderRestockSystem can
+                    // refill a shelf that runs low.
+                    if (marker.StartsWith("shop:"))
+                    {
+                        var parts = marker.Split(':');
+                        if (parts.Length >= 3)
+                        {
+                            var shopkeeper = factory.CreateEntity(parts[1]);
+                            if (shopkeeper != null)
+                            {
+                                zone.AddEntity(shopkeeper, wx, wy);
+                                shopkeeper.Properties["ShopStockTable"] = parts[2];
+                                var inv = shopkeeper.GetPart<InventoryPart>();
+                                if (inv != null)
+                                {
+                                    foreach (var bpName in LootTableRegistry.Roll(parts[2], rng))
+                                    {
+                                        if (!factory.Blueprints.ContainsKey(bpName)) continue;
+                                        var item = factory.CreateEntity(bpName);
+                                        if (item != null) inv.AddObject(item);
+                                    }
+                                }
+                            }
                         }
                         continue;
                     }
