@@ -264,15 +264,32 @@ namespace CavesOfOoo
 
                     var playerBody = _player.GetPart<Body>();
                     Debug.Log($"[Bootstrap] Player created. Has Body part: {playerBody != null}, Body initialized: {playerBody?.GetBody() != null}");
-                    GrantShowcaseSpellMutations();
-                    InitializePlayerStartingTinkering();
-                    GivePlayerStartingTonics();
-                    GivePlayerCraftingStarterKit();
+                    // ALPHA strip-debug SM2/SM3: the dev sandbox (free
+                    // spells, full tinkering, 19-stack crafting kit,
+                    // one-of-each tonics, debug spawns) exists only in
+                    // DevMode; normal play gets the small designed
+                    // NewGameLoadout. The farming kit stays in both —
+                    // it is a designed feature loop, not a debug grant.
+                    if (DevMode.Enabled)
+                    {
+                        GrantShowcaseSpellMutations();
+                        InitializePlayerStartingTinkering();
+                        GivePlayerStartingTonics();
+                        GivePlayerCraftingStarterKit();
+                    }
+                    else
+                    {
+                        int granted = NewGameLoadout.Grant(_player, _factory);
+                        Debug.Log($"[Bootstrap] New-game loadout granted ({granted} entries).");
+                    }
                     GivePlayerFarmingStarterKit();
                     PlacePlayerInOpenCell();
                     EnsureFarmPlotAtSpawn();
-                    SpawnDebugWeaponNearPlayer();
-                    SpawnDebugNPCNearPlayer();
+                    if (DevMode.Enabled)
+                    {
+                        SpawnDebugWeaponNearPlayer();
+                        SpawnDebugNPCNearPlayer();
+                    }
                     return true;
                 });
                 if (!playerCreated)

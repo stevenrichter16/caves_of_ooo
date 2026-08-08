@@ -592,44 +592,44 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Debug: grant a random mutation from the current mutate pool.
-            if (InputHelper.GetKeyDown(KeyCode.F6))
+            // ALPHA strip-debug SM1: dev keys exist only in DevMode.
+            // (The old F6 grant-random-mutation branch was DEAD CODE —
+            // SaveLoadInputController consumes F6 first — and has been
+            // deleted outright.) The in-method guards below are
+            // defense-in-depth for any other caller.
+            if (DevMode.Enabled)
             {
-                TryDebugGrantRandomMutation();
-                _lastMoveTime = Time.time;
-                return;
-            }
+                // Debug: dump body part tree to console.
+                if (InputHelper.GetKeyDown(KeyCode.F7))
+                {
+                    TryDebugDumpBodyParts();
+                    _lastMoveTime = Time.time;
+                    return;
+                }
 
-            // Debug: dump body part tree to console.
-            if (InputHelper.GetKeyDown(KeyCode.F7))
-            {
-                TryDebugDumpBodyParts();
-                _lastMoveTime = Time.time;
-                return;
-            }
+                // Debug: dismember a random non-mortal appendage.
+                if (InputHelper.GetKeyDown(KeyCode.F8))
+                {
+                    TryDebugDismember();
+                    _lastMoveTime = Time.time;
+                    return;
+                }
 
-            // Debug: dismember a random non-mortal appendage.
-            if (InputHelper.GetKeyDown(KeyCode.F8))
-            {
-                TryDebugDismember();
-                _lastMoveTime = Time.time;
-                return;
-            }
+                // Debug: craft one known recipe through the command pipeline.
+                if (InputHelper.GetKeyDown(KeyCode.F9))
+                {
+                    TryDebugCraftKnownRecipe();
+                    _lastMoveTime = Time.time;
+                    return;
+                }
 
-            // Debug: craft one known recipe through the command pipeline.
-            if (InputHelper.GetKeyDown(KeyCode.F9))
-            {
-                TryDebugCraftKnownRecipe();
-                _lastMoveTime = Time.time;
-                return;
-            }
-
-            // Debug: cycle well repair stage (Fouled → Purified → Repaired → Maintained → Fouled).
-            if (InputHelper.GetKeyDown(KeyCode.P))
-            {
-                TryDebugCycleWellState();
-                _lastMoveTime = Time.time;
-                return;
+                // Debug: cycle well repair stage (Fouled → Purified → Repaired → Maintained → Fouled).
+                if (InputHelper.GetKeyDown(KeyCode.P))
+                {
+                    TryDebugCycleWellState();
+                    _lastMoveTime = Time.time;
+                    return;
+                }
             }
 
             // Interact with an adjacent entity (C key + direction).
@@ -905,43 +905,6 @@ namespace CavesOfOoo.Rendering
         /// <summary>
         /// Debug utility: grant one random valid mutation to the player and log details.
         /// </summary>
-        private void TryDebugGrantRandomMutation()
-        {
-            var mutations = PlayerEntity.GetPart<MutationsPart>();
-            if (mutations == null)
-            {
-                Debug.LogWarning("[Mutations/Debug] F6 pressed, but player has no MutationsPart.");
-                return;
-            }
-
-            var pool = mutations.GetMutatePool();
-            Debug.Log($"[Mutations/Debug] F6 pressed. Pool size: {pool.Count}. Current mutations: {GetMutationListSummary(mutations)}");
-
-            var granted = mutations.RandomlyMutate(_combatRng);
-            if (granted == null)
-            {
-                Debug.LogWarning("[Mutations/Debug] No mutation granted. Pool may be empty or all options may be blocked by exclusions/ownership.");
-                return;
-            }
-
-            var grantedPart = mutations.GetMutation(granted.ClassName);
-            int level = grantedPart?.Level ?? 0;
-            bool affectsBody = grantedPart?.AffectsBodyParts ?? false;
-            bool generatesEquipment = grantedPart?.GeneratesEquipment ?? false;
-
-            Debug.Log(
-                "[Mutations/Debug] Granted mutation: " +
-                $"{granted.DisplayName} ({granted.ClassName}), " +
-                $"Level={level}, Category={granted.Category}, Cost={granted.Cost}, " +
-                $"AffectsBodyParts={affectsBody}, GeneratesEquipment={generatesEquipment}");
-
-            Debug.Log(
-                "[Mutations/Debug] Post-grant state: " +
-                $"Mutations={GetMutationListSummary(mutations)} | " +
-                $"GeneratedEquipmentTracked={mutations.MutationGeneratedEquipment.Count}");
-
-            RequestZoneRedraw("Debug.GrantMutation");
-        }
 
         /// <summary>
         /// Debug utility: dump the player's full body part tree to the console.
@@ -949,6 +912,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private void TryDebugDumpBodyParts()
         {
+            if (!DevMode.Enabled) return; // ALPHA strip-debug: dev-only tool
             var body = PlayerEntity.GetPart<Body>();
             if (body == null)
             {
@@ -997,6 +961,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private void TryDebugDismember()
         {
+            if (!DevMode.Enabled) return; // ALPHA strip-debug: dev-only tool
             var body = PlayerEntity.GetPart<Body>();
             if (body == null)
             {
@@ -1048,6 +1013,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private void TryDebugCraftKnownRecipe()
         {
+            if (!DevMode.Enabled) return; // ALPHA strip-debug: dev-only tool
             if (PlayerEntity == null)
             {
                 Debug.LogWarning("[Tinkering/Debug] F9 pressed, but PlayerEntity is null.");
@@ -1138,21 +1104,22 @@ namespace CavesOfOoo.Rendering
 
         /// <summary>
         /// Debug utility: cycle the main well through all repair stages.
-        /// F10 advances: Fouled → TemporarilyPurified → StableRepair → ImprovedWithCaretaker → Fouled.
+        /// P (DevMode only) advances: Fouled → TemporarilyPurified → StableRepair → ImprovedWithCaretaker → Fouled.
         /// Updates all related state: site stage, settlement conditions, visuals, auras, and ground markers.
         /// </summary>
         private void TryDebugCycleWellState()
         {
+            if (!DevMode.Enabled) return; // ALPHA strip-debug: dev-only tool
             if (CurrentZone == null)
             {
-                Debug.LogWarning("[Settlement/Debug] F10 pressed, but CurrentZone is null.");
+                Debug.LogWarning("[Settlement/Debug] P pressed, but CurrentZone is null.");
                 return;
             }
 
             string settlementId = CurrentZone.ZoneID;
             if (SettlementManager.Current == null)
             {
-                Debug.LogWarning("[Settlement/Debug] F10 pressed, but no SettlementManager active.");
+                Debug.LogWarning("[Settlement/Debug] P pressed, but no SettlementManager active.");
                 return;
             }
 
@@ -1160,7 +1127,7 @@ namespace CavesOfOoo.Rendering
                 settlementId, SettlementSiteDefinitions.MainWellSiteId);
             if (site == null)
             {
-                Debug.LogWarning("[Settlement/Debug] F10 pressed, but no MainWell site in this zone.");
+                Debug.LogWarning("[Settlement/Debug] P pressed, but no MainWell site in this zone.");
                 return;
             }
 
@@ -1233,7 +1200,7 @@ namespace CavesOfOoo.Rendering
             SettlementRuntime.MarkZoneDirty();
 
             MessageLog.Add($"[Debug] Well stage set to: {nextStage}");
-            Debug.Log($"[Settlement/Debug] F10: Cycled well to {nextStage} " +
+            Debug.Log($"[Settlement/Debug] P: Cycled well to {nextStage} " +
                 $"(OutcomeTier={site.OutcomeTier}, Method={site.ResolvedByMethod}, " +
                 $"RelapseAt={site.RelapseAtTurn?.ToString() ?? "none"}, " +
                 $"Condition:ImprovedWell={isImproved})");

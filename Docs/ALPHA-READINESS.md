@@ -390,3 +390,28 @@ corruption round-trip on disk, 2 death-screen failure/success pins).
 Sequencing note: the two death-screen pins compiled alongside the
 production edit (a fixture API mismatch blocked their isolated RED
 run); the discovery/corruption tests were strict compile-RED first.
+
+### 4. strip-debug — SHIPPED
+
+- **DevMode gate** (`Assets/Scripts/Shared/DevMode.cs`, default OFF,
+  a FIELD not a const so tests/dev tooling can toggle+restore).
+- **SM1 keys:** F7/F8/F9/P branches gated + in-method
+  `!DevMode.Enabled` guards (defense-in-depth); the DEAD F6
+  grant-random-mutation branch and its method deleted outright
+  (verifier: always shadowed by SaveLoadInputController); the stale
+  "F10" docstring/log labels in TryDebugCycleWellState corrected to P.
+- **SM2:** GrantShowcaseSpellMutations, InitializePlayerStartingTinkering
+  (all recipes + all bits), GivePlayerStartingTonics (8 one-of-each),
+  GivePlayerCraftingStarterKit (19 stacks), SpawnDebugWeapon/NPC — all
+  DevMode-only. Counter-check: DevMode on restores the full sandbox.
+- **SM3 designed loadout:** `NewGameLoadout` (Dagger ×1, HealingTonic
+  ×2, DriedMeat ×2 — pinned exactly). Decision recorded per the
+  verifier's demand: the crafting kit + tonic spread are DEV-only;
+  the FARMING kit stays in both modes (designed feature loop).
+- **SM4:** barrel demos + material sandbox DevMode-only; compass
+  stones kept (navigation content). Divergence: the plan's "keep one
+  barrel layout as a fire tutorial" was dropped — all-or-nothing is
+  simpler and a tutorial belongs to a designed-content pass.
+
+Tests: +6 (DevMode default pin, loadout-exact pin, stack-aware grant,
+null-safety, F8-no-op when off + still-works counter-check when on).

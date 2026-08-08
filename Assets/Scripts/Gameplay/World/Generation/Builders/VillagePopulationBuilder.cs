@@ -76,13 +76,16 @@ namespace CavesOfOoo.Core
             if (grimoireChest == null)
                 grimoireChest = PlaceGrimoireChest(zone, factory, rng, openCells);
 
-            // Place deterministic wooden barrel layouts to demonstrate fire propagation
-            PlaceBarrelLayouts(zone, factory, rng, openCells);
+            // ALPHA strip-debug SM4: the barrel fire-propagation demos and
+            // the material sandbox are dev fixtures, not village decor —
+            // DevMode only. Compass stones stay (navigation content).
+            if (CavesOfOoo.Core.DevMode.Enabled)
+                PlaceBarrelLayouts(zone, factory, rng, openCells);
 
-            // Phase E integration sandbox: only in the starting zone to avoid cluttering all villages.
             if (zone.ZoneID == "Overworld.10.10.0")
             {
-                PlaceDebugMaterialSandbox(zone, factory, rng, openCells);
+                if (CavesOfOoo.Core.DevMode.Enabled)
+                    PlaceDebugMaterialSandbox(zone, factory, rng, openCells);
                 PlaceCompassStones(zone, factory, openCells, grimoireChest);
             }
 
