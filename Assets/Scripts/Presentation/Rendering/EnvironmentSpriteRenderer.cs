@@ -170,6 +170,15 @@ namespace CavesOfOoo.Rendering
             ("BerryBush", "berry_bush"), ("Beehive", "beehive"),
             ("HollowStump", "hollow_stump"), ("MushroomRing", "mushroom_ring"),
             ("Signpost", "signpost"),
+            // LOOT OVERHAUL SM4 — the container family. Blueprint-keyed
+            // like every other fixture, so they resolve glyph-independently
+            // through the entity pre-pass.
+            ("Crate", "cont_crate"), ("Sack", "cont_sack"),
+            ("Urn", "cont_urn"), ("StrongBox", "cont_strongbox"),
+            ("OreCache", "cont_ore_cache"), ("BoneCache", "cont_bone_cache"),
+            ("WovenBasket", "cont_woven_basket"), ("HollowLog", "cont_hollow_log"),
+            ("Reliquary", "cont_reliquary"), ("Bookshelf", "cont_bookshelf"),
+            ("WeaponRack", "cont_weapon_rack"), ("AlchemyShelf", "cont_alchemy_shelf"),
         };
 
         private readonly Dictionary<string, Tile> _namedActorTiles =

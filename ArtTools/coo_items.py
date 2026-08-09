@@ -249,12 +249,163 @@ def signpost():
     save(im, "signpost")
 
 
+# ── Round 7 (loot overhaul SM4) container family ─────────────────
+
+def _lid_box(body, dark, light, lid=None):
+    """Shared chest-ish body: slab + lid band + shadow."""
+    im = blank(); px = im.load()
+    px_rows(px, {5: range(3, 13), 6: range(2, 14), 7: range(2, 14),
+                 8: range(2, 14), 9: range(2, 14), 10: range(2, 14),
+                 11: range(3, 13)}, body)
+    px_rows(px, {6: [2, 3], 7: [2], 8: [2], 9: [2], 10: [2, 3], 11: range(3, 6)}, dark)
+    px_rows(px, {5: range(4, 10)}, light)
+    px_rows(px, {7: range(2, 14)}, lid or dark)          # lid seam
+    return im, px
+
+
+def crate():
+    body, dark, light = (150, 116, 62, 255), (104, 78, 40, 255), (184, 150, 92, 255)
+    im, px = _lid_box(body, dark, light)
+    px_rows(px, {8: [7, 8], 9: [7, 8]}, dark)            # plank cross
+    px_rows(px, {6: range(6, 10), 10: range(6, 10)}, dark)
+    save(im, "cont_crate")
+
+
+def sack():
+    body, dark, light = (168, 152, 116, 255), (118, 104, 78, 255), (198, 184, 150, 255)
+    im = blank(); px = im.load()
+    px_rows(px, {6: [7, 8], 7: range(6, 10), 8: range(5, 11), 9: range(4, 12),
+                 10: range(4, 12), 11: range(4, 12), 12: range(5, 11)}, body)
+    px_rows(px, {9: [4, 5], 10: [4], 11: [4, 5], 12: range(5, 8)}, dark)
+    px_rows(px, {8: range(6, 9), 9: range(6, 9)}, light)
+    px_rows(px, {5: [7, 8]}, dark)                        # tied neck
+    save(im, "cont_sack")
+
+
+def urn():
+    body, dark, light = (176, 128, 84, 255), (124, 88, 56, 255), (206, 166, 118, 255)
+    im = blank(); px = im.load()
+    px_rows(px, {4: range(6, 10), 5: range(5, 11)}, dark)  # rim
+    px_rows(px, {6: range(5, 11), 7: range(4, 12), 8: range(4, 12),
+                 9: range(4, 12), 10: range(5, 11), 11: range(6, 10)}, body)
+    px_rows(px, {7: [4, 5], 8: [4], 9: [4, 5], 10: [5]}, dark)
+    px_rows(px, {6: range(6, 9), 7: range(6, 8)}, light)
+    px_rows(px, {8: range(6, 10)}, dark)                   # painted band
+    save(im, "cont_urn")
+
+
+def strongbox():
+    body, dark, light = (128, 132, 140, 255), (84, 88, 96, 255), (170, 176, 186, 255)
+    im, px = _lid_box(body, dark, light)
+    px_rows(px, {8: [7, 8], 9: [7, 8]}, (224, 196, 96, 255))   # brass lock
+    px_rows(px, {6: [4, 11], 10: [4, 11]}, dark)               # corner bands
+    save(im, "cont_strongbox")
+
+
+def ore_cache():
+    rock, dark, light = (112, 108, 104, 255), (74, 72, 70, 255), (146, 142, 138, 255)
+    im = blank(); px = im.load()
+    px_rows(px, {6: range(5, 11), 7: range(3, 13), 8: range(3, 13),
+                 9: range(3, 13), 10: range(3, 13), 11: range(4, 12)}, rock)
+    px_rows(px, {7: [3, 4], 8: [3], 9: [3], 10: range(3, 6)}, dark)
+    px_rows(px, {6: range(6, 9)}, light)
+    for x, y in [(6, 8), (9, 7), (7, 10), (11, 9)]:
+        px[x, y] = (150, 220, 235, 255)                    # crystal glints
+    save(im, "cont_ore_cache")
+
+
+def bone_cache():
+    b, bd, bl = (206, 198, 180, 255), (160, 152, 136, 255), (232, 226, 212, 255)
+    im = blank(); px = im.load()
+    px_rows(px, {9: range(3, 13), 10: range(3, 13), 11: range(4, 12)}, bd)
+    px_rows(px, {7: range(5, 11), 8: range(4, 12)}, b)
+    px_rows(px, {7: range(6, 9)}, bl)
+    px_rows(px, {6: [5, 6, 10, 11]}, b)                    # rib tips
+    px_rows(px, {5: [5, 11]}, bd)
+    save(im, "cont_bone_cache")
+
+
+def woven_basket():
+    body, dark, light = (152, 132, 78, 255), (108, 92, 52, 255), (186, 168, 112, 255)
+    im = blank(); px = im.load()
+    px_rows(px, {6: range(4, 12), 7: range(3, 13), 8: range(3, 13),
+                 9: range(3, 13), 10: range(4, 12), 11: range(5, 11)}, body)
+    px_rows(px, {7: [3, 4], 8: [3], 9: [3, 4], 10: [4, 5]}, dark)
+    px_rows(px, {6: range(5, 9)}, light)
+    px_rows(px, {8: range(3, 13), 10: range(4, 12)}, dark)  # weave rows
+    save(im, "cont_woven_basket")
+
+
+def hollow_log():
+    w, wd, wl = (128, 96, 60, 255), (88, 66, 40, 255), (158, 126, 84, 255)
+    im = blank(); px = im.load()
+    px_rows(px, {7: range(2, 14), 8: range(2, 14), 9: range(2, 14),
+                 10: range(2, 14)}, w)
+    px_rows(px, {10: range(2, 14)}, wd)
+    px_rows(px, {7: range(3, 13)}, wl)
+    px_rows(px, {8: range(3, 7), 9: range(3, 7)}, (40, 30, 20, 255))  # hollow end
+    px_rows(px, {8: [10, 11], 9: [10, 11]}, wd)             # bark knot
+    save(im, "cont_hollow_log")
+
+
+def reliquary():
+    body, dark, light = (128, 96, 152, 255), (86, 62, 104, 255), (168, 138, 190, 255)
+    im, px = _lid_box(body, dark, light)
+    px_rows(px, {8: [7, 8], 9: [7, 8]}, (232, 214, 250, 255))  # ward sigil
+    px_rows(px, {6: [5, 10], 10: [5, 10]}, light)
+    save(im, "cont_reliquary")
+
+
+def bookshelf():
+    w, wd = (122, 92, 58, 255), (86, 62, 40, 255)
+    im = blank(); px = im.load()
+    px_rows(px, {4: range(3, 13), 5: range(3, 13), 6: range(3, 13),
+                 7: range(3, 13), 8: range(3, 13), 9: range(3, 13),
+                 10: range(3, 13), 11: range(3, 13)}, wd)
+    for row, cols in {5: [(4, (176, 72, 60)), (6, (72, 108, 168)), (8, (188, 160, 80))],
+                      8: [(4, (96, 148, 96)), (7, (150, 92, 168)), (10, (176, 72, 60))]}.items():
+        for x, c in cols:
+            px_rows(px, {row: [x, x + 1], row + 1: [x, x + 1]}, c + (255,))
+    px_rows(px, {7: range(3, 13), 10: range(3, 13)}, w)     # shelf boards
+    save(im, "cont_bookshelf")
+
+
+def weapon_rack():
+    w, wd = (122, 92, 58, 255), (86, 62, 40, 255)
+    steel, steel_l = (140, 146, 156, 255), (192, 198, 208, 255)
+    im = blank(); px = im.load()
+    px_rows(px, {11: range(2, 14), 12: range(2, 14)}, wd)   # base
+    px_rows(px, {3: range(2, 14)}, w)                        # top bar
+    for x in (4, 7, 10):                                     # hung blades
+        px_rows(px, {4: [x], 5: [x], 6: [x], 7: [x], 8: [x], 9: [x]}, steel)
+        px[x, 4] = steel_l
+        px_rows(px, {10: [x - 1, x, x + 1]}, wd)             # crossguard
+    save(im, "cont_weapon_rack")
+
+
+def alchemy_shelf():
+    w, wd = (100, 116, 88, 255), (70, 84, 62, 255)
+    im = blank(); px = im.load()
+    px_rows(px, {4: range(3, 13), 5: range(3, 13), 6: range(3, 13),
+                 7: range(3, 13), 8: range(3, 13), 9: range(3, 13),
+                 10: range(3, 13), 11: range(3, 13)}, wd)
+    px_rows(px, {7: range(3, 13), 10: range(3, 13)}, w)      # boards
+    for x, c in [(4, (176, 72, 60)), (7, (96, 180, 200)), (10, (188, 160, 80))]:
+        px_rows(px, {5: [x], 6: [x, x + 1]}, c + (255,))     # vials
+    for x, c in [(5, (150, 200, 120)), (9, (170, 110, 190))]:
+        px_rows(px, {8: [x], 9: [x, x + 1]}, c + (255,))
+    save(im, "cont_alchemy_shelf")
+
+
 def main():
     for f in (vial, book, gem, key, torch, meat, fruit, seed_pouch,
               armor_piece, bone_item, vein, scroll, grenade,
-              berry_bush, beehive, hollow_stump, mushroom_ring, signpost):
+              berry_bush, beehive, hollow_stump, mushroom_ring, signpost,
+              crate, sack, urn, strongbox, ore_cache, bone_cache,
+              woven_basket, hollow_log, reliquary, bookshelf,
+              weapon_rack, alchemy_shelf):
         f()
-    print("items+fixtures: 18 bodies generated")
+    print("items+fixtures+containers: 30 bodies generated")
 
 
 if __name__ == "__main__":

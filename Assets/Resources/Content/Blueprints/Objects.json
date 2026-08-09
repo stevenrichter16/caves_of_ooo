@@ -16930,6 +16930,15 @@
               "Value": "AshPile"
             }
           ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "6"
+            }
+          ]
         }
       ],
       "Stats": [
@@ -21855,6 +21864,15 @@
               "Value": "0"
             }
           ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "8"
+            }
+          ]
         }
       ],
       "Stats": [
@@ -23729,6 +23747,674 @@
             {
               "Key": "HeatCapacity",
               "Value": "2.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "Crate",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "wooden crate"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "0"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Wood"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.7"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Solid,Organic,Combustible"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "Sack",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "burlap sack"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "u"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "Urn",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "clay urn"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "8"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "StrongBox",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "iron strongbox"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Lock",
+          "Params": [
+            {
+              "Key": "KeyId",
+              "Value": "iron"
+            },
+            {
+              "Key": "IsLocked",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "OreCache",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "ore cache"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "*"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "BoneCache",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "bone cache"
+            },
+            {
+              "Key": "RenderString",
+              "Value": ","
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "WovenBasket",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "woven basket"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "u"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&G"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "6"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Wood"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.7"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Solid,Organic,Combustible"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "HollowLog",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "hollow log"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "6"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Wood"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.7"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Solid,Organic,Combustible"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "Reliquary",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "sealed reliquary"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&M"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Lock",
+          "Params": [
+            {
+              "Key": "KeyId",
+              "Value": "iron"
+            },
+            {
+              "Key": "IsLocked",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "Bookshelf",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "toppled bookshelf"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "n"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Wood"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.7"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Solid,Organic,Combustible"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "WeaponRack",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "weapon rack"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "T"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "6"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Wood"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.7"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Solid,Organic,Combustible"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "AlchemyShelf",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "alchemy shelf"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "n"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&G"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "6"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Wood"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.7"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Solid,Organic,Combustible"
             }
           ]
         }

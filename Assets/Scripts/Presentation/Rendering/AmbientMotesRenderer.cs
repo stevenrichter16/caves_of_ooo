@@ -19,7 +19,7 @@ namespace CavesOfOoo.Rendering
     /// </summary>
     public class AmbientMotesRenderer : MonoBehaviour
     {
-        public enum MoteKind { Drip, Spore, Leaf, Bee }
+        public enum MoteKind { Drip, Spore, Leaf, Bee, Glint }
 
         private const int MaxMotes = 40;
         private const int SortingOrder = 1;
@@ -64,6 +64,16 @@ namespace CavesOfOoo.Rendering
             new Color(0.65f, 0.6f, 0.25f, 1f),
             new Color(0.55f, 0.7f, 0.35f, 1f),
         };
+        // LOOT OVERHAUL SM4 — "gear glint" (user call). Dropped loot
+        // is easy to walk past on a busy floor; a slow warm sparkle on
+        // item cells says "there is something here" without adding a
+        // UI layer. Anchors are REFRESHED per redraw (unlike the static
+        // fixture anchors) because loot appears mid-play.
+        private static readonly Color[] GlintColors =
+        {
+            new Color(1f, 0.94f, 0.62f, 1f),
+            new Color(1f, 1f, 0.85f, 1f),
+        };
         private static readonly Color[] BeeColors =
         {
             new Color(0.9f, 0.75f, 0.2f, 1f),
@@ -87,6 +97,21 @@ namespace CavesOfOoo.Rendering
         }
 
         public int AnchorCount => _anchors.Count;
+
+        /// <summary>
+        /// LOOT OVERHAUL SM4 — replace the GLINT anchors (loot cells)
+        /// while leaving the static fixture anchors alone. Called from
+        /// ZoneRenderer's full-redraw path, so gear dropped this turn
+        /// glints on the very next frame.
+        /// </summary>
+        public void SetGlintCells(List<Vector2Int> cells)
+        {
+            _anchors.RemoveAll(a => a.Kind == MoteKind.Glint);
+            if (cells == null) return;
+            int cap = cells.Count < 24 ? cells.Count : 24;   // budget
+            for (int i = 0; i < cap; i++)
+                RegisterAnchor(MoteKind.Glint, cells[i].x, cells[i].y);
+        }
 
         private void Awake()
         {
@@ -137,6 +162,11 @@ namespace CavesOfOoo.Rendering
                         y = m.StartY - m.Age * 0.55f;
                         x = m.StartX + Mathf.Sin(m.Age * 1.6f * Mathf.PI + m.DriftPhase) * 0.6f;
                         break;
+                    case MoteKind.Glint:
+                        // Barely moves — it twinkles in place, just off
+                        // the item, so it never hides the sprite.
+                        y = m.StartY + m.Age * 0.18f;
+                        break;
                     case MoteKind.Bee:
                         // Tight orbit wobble around the hive.
                         x = m.StartX + Mathf.Cos(m.Age * 4f + m.DriftPhase) * 0.45f;
@@ -163,6 +193,7 @@ namespace CavesOfOoo.Rendering
                 case MoteKind.Drip:  pool = DripColors;  life = 0.5f; scale = 0.35f; break;
                 case MoteKind.Spore: pool = SporeColors; life = 2.6f; scale = 0.3f; break;
                 case MoteKind.Leaf:  pool = LeafColors;  life = 2.2f; scale = 0.45f; break;
+                case MoteKind.Glint: pool = GlintColors; life = 1.1f; scale = 0.28f; break;
                 default:             pool = BeeColors;   life = 1.8f; scale = 0.3f; break;
             }
 

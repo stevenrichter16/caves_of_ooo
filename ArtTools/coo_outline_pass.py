@@ -58,6 +58,11 @@ OUTLINE_4 = [
     "item_meat", "item_fruit", "item_seed", "item_armor", "item_bone",
     "item_vein", "item_scroll", "item_grenade",
     "berry_bush", "beehive", "hollow_stump", "mushroom_ring", "signpost",
+    # Round 7 (loot overhaul SM4) — the container family
+    "cont_crate", "cont_sack", "cont_urn", "cont_strongbox",
+    "cont_ore_cache", "cont_bone_cache", "cont_woven_basket",
+    "cont_hollow_log", "cont_reliquary", "cont_bookshelf",
+    "cont_weapon_rack", "cont_alchemy_shelf",
 ]
 
 # blueprint-named role NPCs -> (mid, dark, light) robe triads

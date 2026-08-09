@@ -358,11 +358,60 @@ null-factory / null-zone / not-in-zone graceful no-ops.
 
 **Suite: 5971 → 5981 (+10). Green, flake included.**
 
-### SM4–SM8 — pending
+### SM4–SM6 — containers, glint, placement ✅ SHIPPED
 
-Next up per the plan: container blueprints + gear glint (SM4), the
-kind × tier tables (SM5), then `ContainerPlacementService` (SM6) — the
-half that puts lootable objects in every zone type.
+**SM4 — 12 container blueprints + 2 fixes + sprites + glint.**
+Crate, Sack, Urn, StrongBox (locked), OreCache, BoneCache,
+WovenBasket, HollowLog, Reliquary (locked), Bookshelf, WeaponRack,
+AlchemyShelf. `WoodenBarrel` finally got a Container part (it was
+pure scenery, audit finding 4) — and since it was already flammable,
+"torch the barrels" is now emergent with the Materials system.
+`MimicChest` got one too, so it looks lootable until it bites.
+Sprites via the round-5 pipeline; all 12 registered in the renderer's
+blueprint-keyed `FixtureSprites` table.
+
+**Gear glint** (user call): a new `Glint` mote kind in
+`AmbientMotesRenderer` — a slow warm twinkle over cells holding
+takeable items. Unlike the static fixture anchors, glint anchors are
+*refreshed per full redraw* (which every player move triggers), so
+loot dropped this turn glints on the next frame. Capped at 24 cells;
+scratch-list per PERF-FOUNDATION §Pattern 1.
+
+**SM5 — 36 kind × tier tables**, sharing the SM3 `ReagentCommon` /
+`ReagentRare` / `ComponentAny` sub-tables via `TableRef`.
+
+**SM6 — `ContainerPlacementService` + `ContainerBuilder`.**
+Budget = base(zoneKind) + (tier−1) + jitter, clamped [1,6]. Kind pools
+per biome so containers read as *place* (urns in the desert, ore
+caches underground, reliquaries and bookshelves in ruins). Placement
+prefers wall-adjacent and interior cells, refuses stairs / reserved
+cells / liquids / occupied cells, keeps Chebyshev spacing 3, and is
+deterministic from the zone seed. Mimics: 1-in-12, ruins only, never
+in a settlement (user call). Hooked into **all 7 pipelines** —
+including lairs and the fallback cave pipeline, which got zero
+containers before.
+
+**Two defects the live sweep caught that tests had not:**
+1. `ReliquaryT1` did not exist, so a tier-1 ruins zone rolling a
+   reliquary would spawn it EMPTY. Added, plus an audit asserting all
+   12 kind-prefixes × 3 tiers resolve.
+2. ~1 container in 5 rolled up empty anyway, because every entry in
+   the low-tier tables is chance-gated. An empty chest spends the
+   player's walk and their expectation — added a pocket-change
+   fallback and a 25-seed regression test.
+
+**Live verification** (new game, then generated zones directly):
+town = Chest + a stocked WoodenBarrel; jungle wilderness = HollowLog
++ WovenBasket, both stocked; cave = 2 OreCaches; desert = 2 Urns + a
+Sack. Every zone type that previously had zero now has loot.
+
+**Suite: 5981 → 5993 (+12). Green.** Save backed up before the live
+run and restored after.
+
+### SM7–SM8 — pending
+
+Supply-gap fills (wider loose-gear pools, orphan reagents into biome
+tables) and the adversarial sweep + economy census.
 
 ---
 

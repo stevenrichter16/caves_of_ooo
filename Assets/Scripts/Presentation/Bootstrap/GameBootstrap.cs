@@ -212,6 +212,8 @@ namespace CavesOfOoo
                 // death, through the (unchanged) existing drop path.
                 LoadoutPart.Factory = _factory;
                 LootDropSystem.Factory = _factory;
+            ContainerPlacementService.Factory = _factory;
+                ContainerPlacementService.Factory = _factory;
                 LayRuneGoal.Factory = _factory;
                 AlchemyStillPart.Factory = _factory;
                 ForgePart.Factory = _factory;

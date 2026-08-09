@@ -125,6 +125,9 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
             pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Cave, tier));
             pipeline.AddBuilder(new StartingNeighborhoodBuilder());
+            // LOOT OVERHAUL SM6 — every zone type gets containers now.
+            pipeline.AddBuilder(new ContainerBuilder(BiomeType.Cave, tier,
+                ContainerPlacementService.ZoneKind.Wilderness));
             return pipeline;
         }
 
@@ -161,6 +164,8 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Cave,
                 undergroundTier, StampCatalog.Underground(depth)));
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.UndergroundTier(depth)));
+            pipeline.AddBuilder(new ContainerBuilder(BiomeType.Cave, undergroundTier,
+                ContainerPlacementService.ZoneKind.Underground));
             return pipeline;
         }
 
@@ -171,6 +176,8 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
             pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Desert, tier));
+            pipeline.AddBuilder(new ContainerBuilder(BiomeType.Desert, tier,
+                ContainerPlacementService.ZoneKind.Wilderness));
             pipeline.AddBuilder(new StartingNeighborhoodBuilder());
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Desert, tier)));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
@@ -184,6 +191,8 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
             pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Jungle, tier));
+            pipeline.AddBuilder(new ContainerBuilder(BiomeType.Jungle, tier,
+                ContainerPlacementService.ZoneKind.Wilderness));
             pipeline.AddBuilder(new StartingNeighborhoodBuilder());
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Jungle, tier)));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
@@ -197,6 +206,8 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
             pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Ruins, tier));
+            pipeline.AddBuilder(new ContainerBuilder(BiomeType.Ruins, tier,
+                ContainerPlacementService.ZoneKind.Wilderness));
             pipeline.AddBuilder(new StartingNeighborhoodBuilder());
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Ruins, tier)));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
@@ -238,6 +249,8 @@ namespace CavesOfOoo.Core
                 clearSolidEntities: true));
             pipeline.AddBuilder(new VillagePopulationBuilder(poi, SettlementManager));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
+            pipeline.AddBuilder(new ContainerBuilder(BiomeType.Cave, 1,
+                ContainerPlacementService.ZoneKind.Village));
 
             // Seed a House Drama into this village if any dramas are loaded.
             // Uses WorldSeed XOR'd with the zone string ID hash (matching ZoneManager's
@@ -259,6 +272,8 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new LairBuilder(biome, poi));
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new LairPopulationBuilder(biome, poi));
+            // Lairs previously got ZERO containers of any kind.
+            pipeline.AddBuilder(new ContainerBuilder(biome, 2, ContainerPlacementService.ZoneKind.Lair));
             return pipeline;
         }
 

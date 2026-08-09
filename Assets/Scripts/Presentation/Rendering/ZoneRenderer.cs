@@ -551,9 +551,45 @@ namespace CavesOfOoo.Rendering
                                 break;
                         }
                     }
+                    RefreshGearGlints(zone);
                 }
             }
         }
+
+        /// <summary>
+        /// LOOT OVERHAUL SM4 — "gear glint" (user call). Collect cells
+        /// holding takeable items so the mote renderer can twinkle over
+        /// dropped loot. Refreshed on every full redraw (which a player
+        /// move always triggers), so gear dropped this turn glints on
+        /// the next frame. Capped inside SetGlintCells.
+        /// </summary>
+        private void RefreshGearGlints(Zone zone)
+        {
+            if (_ambientMotesRenderer == null || zone == null) return;
+            _glintScratch.Clear();
+            for (int x = 0; x < Zone.Width; x++)
+            {
+                for (int y = 0; y < Zone.Height; y++)
+                {
+                    var cell = zone.GetCell(x, y);
+                    if (cell == null || !cell.IsVisible) continue;
+                    for (int i = 0; i < cell.Objects.Count; i++)
+                    {
+                        var phys = cell.Objects[i].GetPart<PhysicsPart>();
+                        if (phys != null && phys.Takeable)
+                        {
+                            _glintScratch.Add(new Vector2Int(x, y));
+                            break;   // one glint per cell
+                        }
+                    }
+                }
+            }
+            _ambientMotesRenderer.SetGlintCells(_glintScratch);
+        }
+
+        // Scratch reused per refresh (PERF-FOUNDATION §Pattern 1).
+        private readonly System.Collections.Generic.List<Vector2Int> _glintScratch =
+            new System.Collections.Generic.List<Vector2Int>(32);
 
         /// <summary>
         /// Mark the display as needing a refresh.
