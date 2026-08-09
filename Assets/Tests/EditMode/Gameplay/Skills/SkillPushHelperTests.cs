@@ -210,6 +210,148 @@ namespace CavesOfOoo.Tests
                 "stopped one short of the wall, keeping the ground it gained");
         }
 
+        // ── Pull (SM5: Undertow drags a back-line caster to you) ──
+
+        [Test]
+        public void TryPull_DragsTheTargetOneCellCloser()
+        {
+            var actor = Creature("actor", 5, 5);
+            var target = Creature("target", 8, 5);
+
+            bool moved = SkillCombatHelpers.TryPull(actor, target, _zone);
+
+            Assert.IsTrue(moved);
+            Assert.AreEqual(7, _zone.GetEntityPosition(target).x,
+                "dragged one cell toward the caster");
+        }
+
+        [Test]
+        public void TryPull_StopsAdjacent_NeverIntoTheCaster()
+        {
+            // The critical guard. A pull that kept going would end with
+            // the target standing on top of the caster, which no other
+            // movement in the game allows.
+            var actor = Creature("actor", 5, 5);
+            var target = Creature("target", 8, 5);
+
+            Assert.IsTrue(SkillCombatHelpers.TryPull(actor, target, _zone, cells: 10));
+
+            var pos = _zone.GetEntityPosition(target);
+            Assert.AreEqual(6, pos.x, "it stops one cell short");
+            Assert.AreEqual(5, pos.y);
+            Assert.AreEqual(5, _zone.GetEntityPosition(actor).x,
+                "and the caster has not been displaced");
+        }
+
+        [Test]
+        public void TryPull_AlreadyAdjacentIsANoOp()
+        {
+            var actor = Creature("actor", 5, 5);
+            var target = Creature("target", 6, 5);
+
+            Assert.IsFalse(SkillCombatHelpers.TryPull(actor, target, _zone),
+                "there is nowhere closer to drag them");
+            Assert.AreEqual(6, _zone.GetEntityPosition(target).x);
+        }
+
+        [Test]
+        public void TryPull_BlockedByAWallBetween()
+        {
+            var actor = Creature("actor", 5, 5);
+            var target = Creature("target", 8, 5);
+            Wall(7, 5);
+
+            Assert.IsFalse(SkillCombatHelpers.TryPull(actor, target, _zone, cells: 3),
+                "you cannot drag someone through stone");
+            Assert.AreEqual(8, _zone.GetEntityPosition(target).x);
+        }
+
+        [Test]
+        public void TryPull_BlockedByACreatureBetween()
+        {
+            var actor = Creature("actor", 5, 5);
+            var target = Creature("target", 8, 5);
+            Creature("interposed", 7, 5);
+
+            Assert.IsFalse(SkillCombatHelpers.TryPull(actor, target, _zone, cells: 3),
+                "a body in the way stops the drag");
+        }
+
+        [Test]
+        public void TryPull_StopsAdjacentEvenWhenThePullerIsNotACreature()
+        {
+            // Makes the stop-adjacent guard load-bearing. With a CREATURE
+            // puller the occupancy check already refuses the final step,
+            // so mutation-testing found the guard unreachable. A puller
+            // WITHOUT the Creature tag — a future whirlpool fixture or
+            // tentacle prop — is the case the guard actually exists for.
+            var fixture = new Entity { ID = "whirlpool", BlueprintName = "Whirlpool" };
+            fixture.AddPart(new RenderPart { DisplayName = "whirlpool", RenderString = "o" });
+            _zone.AddEntity(fixture, 5, 5);
+            var target = Creature("target", 9, 5);
+
+            Assert.IsTrue(SkillCombatHelpers.TryPull(fixture, target, _zone, cells: 10));
+
+            var pos = _zone.GetEntityPosition(target);
+            Assert.AreEqual(6, pos.x,
+                "it stops beside the puller, not inside it");
+            Assert.AreEqual(5, pos.y);
+        }
+
+        [Test]
+        public void TryPull_PullsAlongDiagonals()
+        {
+            var actor = Creature("actor", 5, 5);
+            var target = Creature("target", 8, 8);
+
+            Assert.IsTrue(SkillCombatHelpers.TryPull(actor, target, _zone, cells: 2));
+            var pos = _zone.GetEntityPosition(target);
+            Assert.AreEqual(6, pos.x);
+            Assert.AreEqual(6, pos.y);
+        }
+
+        [Test]
+        public void TryPull_NullOrCoincidentIsGracefulFalse()
+        {
+            var actor = Creature("actor", 5, 5);
+            var target = Creature("target", 8, 5);
+            var onTop = Creature("onTop", 5, 5);
+
+            Assert.IsFalse(SkillCombatHelpers.TryPull(null, target, _zone));
+            Assert.IsFalse(SkillCombatHelpers.TryPull(actor, null, _zone));
+            Assert.IsFalse(SkillCombatHelpers.TryPull(actor, target, null));
+            Assert.IsFalse(SkillCombatHelpers.TryPull(actor, target, _zone, cells: 0));
+            Assert.IsFalse(SkillCombatHelpers.TryPull(actor, onTop, _zone),
+                "no direction means no pull");
+        }
+
+        [Test]
+        public void TryPull_RunsTheMovementPipeline_LikePushDoes()
+        {
+            // Symmetry with TryPush: a drag is a move. If it skipped the
+            // pipeline, a creature yanked into a pool would not get wet
+            // and the renderer would never repaint.
+            var actor = Creature("actor", 5, 5);
+            var target = Creature("target", 8, 5);
+            bool afterMove = false;
+            target.AddPart(new PullWatcherPart(() => afterMove = true));
+
+            Assert.IsTrue(SkillCombatHelpers.TryPull(actor, target, _zone));
+            Assert.IsTrue(afterMove, "a pull must run the movement pipeline too");
+        }
+
+        private class PullWatcherPart : Part
+        {
+            public override string Name => "PullWatcher";
+            private readonly System.Action _onMove;
+            public PullWatcherPart(System.Action onMove) { _onMove = onMove; }
+            public override bool HandleEvent(GameEvent e)
+            {
+                if (e.ID == "AfterMove") _onMove?.Invoke();
+                return true;
+            }
+        }
+
         [Test]
         public void TryPush_ZeroOrNegativeCellsIsANoOp()
         {

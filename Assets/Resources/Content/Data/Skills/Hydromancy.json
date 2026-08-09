@@ -1,0 +1,38 @@
+{
+  "Skills": [
+    {
+      "Name": "Hydromancy",
+      "Class": "HydromancySkill",
+      "Cost": 1,
+      "Description": "Water mastery. Your soakings run 0.25 deeper, so targets stay above the thresholds that matter: 0.2 for lightning's doubled charge, 0.35 for shrugging off fire. Water deals almost no damage — it makes everything else lethal.",
+      "Foreground": "B",
+      "Detail": "C",
+      "Powers": [
+        {
+          "Name": "Jet Blast",
+          "Class": "Hydromancy_JetBlast",
+          "Cost": 1,
+          "Description": "Cone 2: soaks and shoves. Sets up lightning.",
+          "Foreground": "B",
+          "Detail": "C"
+        },
+        {
+          "Name": "Drench Lob",
+          "Class": "Hydromancy_DrenchLob",
+          "Cost": 1,
+          "Description": "Range 6, bursts radius 2. Soaks a clump early.",
+          "Foreground": "B",
+          "Detail": "C"
+        },
+        {
+          "Name": "Undertow",
+          "Class": "Hydromancy_Undertow",
+          "Cost": 1,
+          "Description": "Line 3: soaks and DRAGS them toward you.",
+          "Foreground": "B",
+          "Detail": "C"
+        }
+      ]
+    }
+  ]
+}

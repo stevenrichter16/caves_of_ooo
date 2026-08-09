@@ -654,3 +654,78 @@ without a human:* whether the 8/25/35 cooldown spread feels right, and
 whether the cone's width reads clearly on screen.
 
 Tests: 6090 → 6113 (+23).
+
+### SM5 — Hydromancy, the fifth tree ✅
+
+The milestone where the soak-then-shock loop becomes self-serve.
+
+| Power | Shape | Damage | Moisture | Movement |
+|---|---|---|---|---|
+| **Jet Blast** | cone 2 | 2 (untyped) | 0.8 | push 1 |
+| **Drench Lob** | flies to 6, bursts radius 2 | **none** | 0.6 | none |
+| **Undertow** | line 3 | 2 (untyped) | 0.5 | **pull 1** |
+
+**Root passive: your water sticks.** Rather than a fourth
+element-damage modifier (the Pyromancy / Cryomancy / Galvanism pattern),
+`HydromancySkill` deepens every soaking its owner applies by 0.25. That
+is the mechanically honest bonus for a tree whose job is priming: it
+keeps a target above the thresholds that matter — **0.2** for
+`ElectrifiedEffect`'s charge doubling and **0.35** for fire suppression
+— for more turns, since moisture only evaporates a little each turn.
+Every water power calls `ApplyMoistureBonus`, so a future power cannot
+forget the bonus.
+
+**Why water is its own tree.** Galvanism's identity is a *conditional*
+bonus against Wet or Electrified targets. If a lightning mage could soak
+for free, that condition would always hold and the tree would collapse
+into a flat damage bonus. Keeping water separate means soak-then-shock
+costs a real investment — two trees, or two characters.
+
+**Damage is deliberately negligible, and deliberately untyped.**
+`"Water"` maps to `DamageAttributeFlags.None` (Damage.cs:144-173), so no
+elemental resistance touches it. That is pinned by a test rather than
+left to chance: if `"Water"` ever becomes a real flag, the decision has
+to be made on purpose.
+
+**Undertow is the only pull in the game.** Every other movement power in
+every tree shoves things away. Pulling is not a reversed push: you end
+the turn closer to what you dragged, and to everything near it, so it is
+a build decision rather than a strictly better shove. `TryPull` shares
+its step loop with `TryPush` via `DragAlong`, because the destination
+guards are exactly the thing that must not drift apart.
+
+**Pull ordering is the mirror of shove ordering.** Undertow drags
+NEAREST-first so each target vacates the cell the one behind it needs;
+Jet Blast shoves FURTHEST-first for the same reason in reverse. Both are
+pinned.
+
+**Mutation-testing found dead code — in my own new code.** Removing the
+pull's stop-adjacent guard killed *no* tests: for a Creature puller the
+occupancy check already refuses that step. The guard was kept (a future
+whirlpool fixture or tentacle prop would otherwise drag its victim
+inside itself) and is now pinned by a test using a **non-Creature**
+puller, which is the only case it is reachable in. Untestable dead code
+became tested code rather than being quietly deleted or quietly kept.
+
+**SCOPE DIVERGENCE.** The plan specified Drench Lob as "lobbed, radius 2
+at range 6" with a freely chosen impact point. `AbilityTargetingMode` has
+exactly three values — AdjacentCell, DirectionLine, SelfCentered — and
+none lets a player pick an arbitrary cell at range. Rather than grow the
+input/UI layer inside a content milestone, the lob flies along an aimed
+line and bursts where it stops: on the first creature it meets, or at
+maximum range. Same radius, same reach, aimed the way every other ranged
+power is aimed. A true free-cell targeting mode is worth doing, but as
+its own change.
+
+**Honesty bounds.** *Can verify:* cone and line coverage, moisture
+values and that they clear BOTH interaction thresholds, the tree
+passive reaching the powers end-to-end, soak-then-shock doubling the
+charge across three systems, soak-protects-from-fire, pull stop-adjacent
+(incl. the non-Creature case), pull/push ordering in a packed rank,
+water damage being unresisted, diag reasons on every reject path, and
+live discovery of an entirely new JSON tree file. *Cannot verify without
+a human:* whether 0.25 is the right passive, whether the lob's
+fly-and-burst reads as intended on screen, and whether pulling feels as
+good as it sounds.
+
+Tests: 6113 → 6150 (+37).

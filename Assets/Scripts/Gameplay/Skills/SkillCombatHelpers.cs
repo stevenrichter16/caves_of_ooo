@@ -215,6 +215,69 @@ namespace CavesOfOoo.Skills
             // along. Decline rather than pick one arbitrarily.
             if (dx == 0 && dy == 0) return false;
 
+            return DragAlong(target, zone, dx, dy, cells, stopBefore: null);
+        }
+
+        /// <summary>
+        /// Drags <paramref name="target"/> TOWARD <paramref name="actor"/>,
+        /// up to <paramref name="cells"/> cells, stopping adjacent — never
+        /// onto the puller.
+        ///
+        /// <para>SPELLCRAFT SM5. The mirror of <see cref="TryPush"/>, for
+        /// Hydromancy's Undertow: yank a back-line caster out of its
+        /// rank and into your melee. Same guards, same movement
+        /// pipeline; only the direction and the stop condition
+        /// differ.</para>
+        ///
+        /// <para>The stop-adjacent rule is the one thing a pull needs
+        /// that a push does not. Without it a long drag ends with the
+        /// target standing in the caster's own cell, which no other
+        /// movement in the game permits.</para>
+        /// </summary>
+        public static bool TryPull(Entity actor, Entity target, Zone zone, int cells = 1)
+        {
+            if (actor == null || target == null || zone == null) return false;
+            if (cells <= 0) return false;
+
+            var actorPos = zone.GetEntityPosition(actor);
+            var targetPos = zone.GetEntityPosition(target);
+            if (actorPos.x < 0 || targetPos.x < 0) return false;
+
+            // Toward the actor — the sign is inverted relative to TryPush.
+            int dx = System.Math.Sign(actorPos.x - targetPos.x);
+            int dy = System.Math.Sign(actorPos.y - targetPos.y);
+            if (dx == 0 && dy == 0) return false;
+
+            return DragAlong(target, zone, dx, dy, cells,
+                stopBefore: new Point(actorPos.x, actorPos.y));
+        }
+
+        /// <summary>
+        /// The shared step loop behind <see cref="TryPush"/> and
+        /// <see cref="TryPull"/>: walk the target one cell at a time
+        /// along (dx, dy), refusing any step into stone, another
+        /// creature, the zone edge, or <paramref name="stopBefore"/>.
+        /// Stops at the first refusal and keeps the ground gained.
+        ///
+        /// <para>Extracted so the two directions cannot drift apart —
+        /// the destination guards are exactly the thing that must stay
+        /// identical, and SM3's audit showed how quickly a duplicated
+        /// guard becomes a different guard.</para>
+        ///
+        /// <para>Movement goes through
+        /// <see cref="MovementSystem.ForceMoveTo"/>, not a raw
+        /// <c>Zone.MoveEntity</c>: a shove or a drag IS a move, so the
+        /// target must fire AfterMove, run cell-entry (a creature
+        /// dragged into a pool actually gets wet — the setup this whole
+        /// feature is built around) and mark its cells dirty. ForceMoveTo
+        /// rather than TryMoveTo because BeforeMove asks "may this
+        /// creature move ITSELF", which Stunned answers no — routing
+        /// through it let GroundPound's own stun cancel GroundPound's own
+        /// knockback.</para>
+        /// </summary>
+        private static bool DragAlong(
+            Entity target, Zone zone, int dx, int dy, int cells, Point? stopBefore)
+        {
             bool movedAny = false;
             for (int step = 0; step < cells; step++)
             {
@@ -224,24 +287,25 @@ namespace CavesOfOoo.Skills
 
                 int nx = from.x + dx;
                 int ny = from.y + dy;
+
+                // A pull must never deposit the target on the puller.
+                //
+                // For a CREATURE puller the occupancy guard below would
+                // already refuse this step, so mutation-testing showed
+                // this line was unreachable in every existing caller.
+                // It is kept because the invariant must not depend on
+                // the puller happening to be tagged Creature: a future
+                // whirlpool fixture or tentacle prop would otherwise
+                // drag its victim inside itself. Pinned by
+                // SkillPushHelperTests.TryPull_StopsAdjacentEvenWhenThePullerIsNotACreature.
+                if (stopBefore.HasValue
+                    && stopBefore.Value.X == nx && stopBefore.Value.Y == ny) break;
+
                 var dest = zone.GetCell(nx, ny);
                 if (dest == null) break;                       // zone edge
                 if (dest.IsSolid()) break;                     // wall
                 if (CellHasOtherCreature(dest, target)) break; // occupied
 
-                // Route through the movement pipeline, not a raw
-                // Zone.MoveEntity. A shove IS a move: the target must
-                // fire AfterMove, run cell-entry (so a creature shoved
-                // into a pool actually gets wet — the setup this whole
-                // feature is built around), and mark its cells dirty for
-                // the renderer. A raw MoveEntity teleports it silently.
-                // ForceMoveTo, not TryMoveTo: a shove must not be
-                // vetoed by BeforeMove. That event asks "may this
-                // creature move ITSELF", and Stunned answers no — so
-                // routing through it let GroundPound's own stun cancel
-                // GroundPound's own knockback.
-                // Latent bug surfaced by adversarial review — see
-                // GalvanismGroundSurgeTests.GroundSurge_PushingIntoALiquidPool_FiresCellEntry.
                 if (!MovementSystem.ForceMoveTo(target, zone, nx, ny)) break;
                 movedAny = true;
             }
