@@ -41,6 +41,23 @@ OUTLINE_4 = [
     "spore_shambler", "stairs_down", "stairs_up", "stalactite",
     "stalagmite", "tree", "village_child", "villager", "warden",
     "weapon_ground", "well",
+    # Round 5 — the bestiary (44)
+    "cave_bear", "brittle_hound", "desert_prowler", "pet_dog",
+    "jungle_stalker", "pale_stalker", "jungle_ape", "stone_golem",
+    "obsidian_brute", "mosshulk", "sleeping_troll", "ancient_guardian",
+    "charred_husk", "brass_husk", "desert_bandit", "ambush_bandit",
+    "rune_cultist", "ruin_scavenger", "pale_curator",
+    "saccharine_envoy", "glassblown_drifter", "palimpsest_echo",
+    "viper", "sand_wurm", "giant_spider", "scorpion", "glass_scorpion",
+    "cave_bat", "magpie", "cave_slime", "rotling", "glowmaw",
+    "skeletal_sentry", "vault_sentinel", "choir_tendril",
+    "canopy_strangler", "dune_lurker", "mogu", "grib", "nam", "sien",
+    "sopp", "snapjaw_chieftain", "snapjaw_warlord",
+    # Round 5 — item bodies + interactable fixtures
+    "item_vial", "item_book", "item_gem", "item_key", "item_torch",
+    "item_meat", "item_fruit", "item_seed", "item_armor", "item_bone",
+    "item_vein", "item_scroll", "item_grenade",
+    "berry_bush", "beehive", "hollow_stump", "mushroom_ring", "signpost",
 ]
 
 # blueprint-named role NPCs -> (mid, dark, light) robe triads

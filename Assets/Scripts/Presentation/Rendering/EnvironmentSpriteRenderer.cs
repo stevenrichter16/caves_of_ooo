@@ -99,11 +99,17 @@ namespace CavesOfOoo.Rendering
             return string.IsNullOrEmpty(rs) ? '\0' : rs[0];
         }
 
-        private static char NamedActorCanonicalGlyph(string blueprint)
+        /// <summary>Canonical glyph across BOTH blueprint tables (role
+        /// NPCs + bestiary). Instance code uses the _namedActorGlyphs
+        /// dict; this static scan exists for tests.</summary>
+        public static char NamedActorCanonicalGlyph(string blueprint)
         {
             for (int i = 0; i < NamedActorSprites.Length; i++)
                 if (NamedActorSprites[i].Blueprint == blueprint)
                     return NamedActorSprites[i].Glyph;
+            for (int i = 0; i < CreatureSprites.Length; i++)
+                if (CreatureSprites[i].Blueprint == blueprint)
+                    return CreatureSprites[i].Glyph;
             return '\0';
         }
 
@@ -126,7 +132,53 @@ namespace CavesOfOoo.Rendering
             }
         }
 
+        /// <summary>
+        /// ROUND 5 — the BESTIARY: 44 hostile/wild creatures, blueprint-
+        /// keyed like the role NPCs, canonical glyph for the reskin
+        /// guard (dirt-gnome-style reskins keep honest letters).
+        /// </summary>
+        public static readonly (string Blueprint, string File, char Glyph)[] CreatureSprites =
+        {
+            ("CaveBear", "cave_bear", 'B'), ("BrittleHound", "brittle_hound", 'b'),
+            ("DesertProwler", "desert_prowler", 'D'), ("PetDog", "pet_dog", 'd'),
+            ("JungleStalker", "jungle_stalker", 'J'), ("PaleStalker", "pale_stalker", 'p'),
+            ("JungleApe", "jungle_ape", 'A'), ("StoneGolem", "stone_golem", 'G'),
+            ("ObsidianBrute", "obsidian_brute", 'O'), ("Mosshulk", "mosshulk", 'M'),
+            ("SleepingTroll", "sleeping_troll", 'T'), ("AncientGuardian", "ancient_guardian", 'H'),
+            ("CharredHusk", "charred_husk", 'H'), ("BrassHusk", "brass_husk", 'H'),
+            ("DesertBandit", "desert_bandit", 'h'), ("AmbushBandit", "ambush_bandit", 'b'),
+            ("RuneCultist", "rune_cultist", 'c'), ("RuinScavenger", "ruin_scavenger", 'r'),
+            ("PaleCurator", "pale_curator", '@'), ("SaccharineEnvoy", "saccharine_envoy", '@'),
+            ("GlassblownDrifter", "glassblown_drifter", '@'), ("PalimpsestEcho", "palimpsest_echo", '@'),
+            ("Viper", "viper", '~'), ("SandWurm", "sand_wurm", 'W'),
+            ("GiantSpider", "giant_spider", 'S'), ("Scorpion", "scorpion", 'x'),
+            ("GlassScorpion", "glass_scorpion", 's'), ("CaveBat", "cave_bat", 'b'),
+            ("Magpie", "magpie", 'b'), ("CaveSlime", "cave_slime", 'j'),
+            ("Rotling", "rotling", 'r'), ("Glowmaw", "glowmaw", 'O'),
+            ("SkeletalSentry", "skeletal_sentry", 'Z'), ("VaultSentinel", "vault_sentinel", 'V'),
+            ("ChoirTendril", "choir_tendril", 'F'), ("CanopyStrangler", "canopy_strangler", 'C'),
+            ("DuneLurker", "dune_lurker", 'd'), ("Mogu", "mogu", 'M'),
+            ("Grib", "grib", 'G'), ("Nam", "nam", 'N'),
+            ("Sien", "sien", 'S'), ("Sopp", "sopp", 's'),
+            ("SnapjawChieftain", "snapjaw_chieftain", 'S'), ("SnapjawWarlord", "snapjaw_warlord", 'S'),
+        };
+
+        /// <summary>ROUND 5 — interactable fixtures resolved in the
+        /// entity pre-pass (blueprint-keyed, glyph-independent).</summary>
+        public static readonly (string Blueprint, string File)[] FixtureSprites =
+        {
+            ("BerryBush", "berry_bush"), ("Beehive", "beehive"),
+            ("HollowStump", "hollow_stump"), ("MushroomRing", "mushroom_ring"),
+            ("Signpost", "signpost"),
+        };
+
         private readonly Dictionary<string, Tile> _namedActorTiles =
+            new Dictionary<string, Tile>(80);
+        private readonly Dictionary<string, char> _namedActorGlyphs =
+            new Dictionary<string, char>(80);
+        private readonly Dictionary<string, Tile> _fixtureBlueprintTiles =
+            new Dictionary<string, Tile>(8);
+        private readonly Dictionary<string, Tile> _itemBodyTiles =
             new Dictionary<string, Tile>(16);
         // Note: AnimatedEnvironmentRenderer (Pass 5) already claims
         // water glyphs to scroll them. Pass 7 takes priority — if
@@ -597,10 +649,37 @@ namespace CavesOfOoo.Rendering
             // name. Adding a future named-NPC sprite = drop a PNG +
             // one row here; no enum/field/switch triple to extend.
             _namedActorTiles.Clear();
-            foreach (var (blueprint, file, _) in NamedActorSprites)
+            _namedActorGlyphs.Clear();
+            foreach (var (blueprint, file, glyph) in NamedActorSprites)
             {
                 var s = LoadSingle(SpriteRoot + file);
                 if (s != null) _namedActorTiles[blueprint] = MakeTile(s, blueprint);
+                _namedActorGlyphs[blueprint] = glyph;
+            }
+            // Round 5 — the bestiary rides the same blueprint-keyed
+            // actor mechanism (and the same reskin guard).
+            foreach (var (blueprint, file, glyph) in CreatureSprites)
+            {
+                var s = LoadSingle(SpriteRoot + file);
+                if (s != null) _namedActorTiles[blueprint] = MakeTile(s, blueprint);
+                _namedActorGlyphs[blueprint] = glyph;
+            }
+            // Round 5 — interactable fixtures (entity pre-pass).
+            _fixtureBlueprintTiles.Clear();
+            foreach (var (blueprint, file) in FixtureSprites)
+            {
+                var s = LoadSingle(SpriteRoot + file);
+                if (s != null) _fixtureBlueprintTiles[blueprint] = MakeTile(s, blueprint);
+            }
+            // Round 5 — item bodies (near-gray, tinted by glyph color
+            // at claim time — one vial serves every tonic).
+            _itemBodyTiles.Clear();
+            foreach (var body in new[] { "item_vial", "item_book", "item_gem",
+                "item_key", "item_torch", "item_meat", "item_fruit", "item_seed",
+                "item_armor", "item_bone", "item_vein", "item_scroll" })
+            {
+                var s = LoadSingle(SpriteRoot + body);
+                if (s != null) _itemBodyTiles[body] = MakeTile(s, body);
             }
             _rubbleTile          = MakeTile(_rubbleSprite,          "Rubble");
             _ovenTile            = MakeTile(_ovenSprite,            "Oven");
@@ -1006,6 +1085,10 @@ namespace CavesOfOoo.Rendering
             // finding). Blueprint-keyed = every frame; this also keeps
             // the tile-name-keyed fire light alive.
             if (bp == "Campfire")       return _campfireTile;
+            // Round 5 — interactable fixtures (berry bush, beehive,
+            // hollow stump, mushroom ring, signpost).
+            if (_fixtureBlueprintTiles.TryGetValue(bp, out var fixture))
+                return fixture;
             return null;
         }
 
@@ -1167,7 +1250,8 @@ namespace CavesOfOoo.Rendering
                 if (bpName != null
                     && _namedActorTiles.TryGetValue(bpName, out var namedActor)
                     && namedActor != null
-                    && curGlyph == NamedActorCanonicalGlyph(bpName))
+                    && _namedActorGlyphs.TryGetValue(bpName, out var canonGlyph)
+                    && curGlyph == canonGlyph)
                 {
                     authoredColor = true;
                     return namedActor;
@@ -1269,6 +1353,16 @@ namespace CavesOfOoo.Rendering
                         if (_sandstoneWallTile != null) return _sandstoneWallTile;
                         break;
                 }
+
+                // ROUND 5 — item-body tier: family bodies tinted by the
+                // glyph's color at claim time (authoredColor stays
+                // FALSE — the color copy IS the identity carrier).
+                // Also covers ore veins ('*'), whose guard previously
+                // forced honest ASCII — a tinted rock-face beats a
+                // letter for a mineable node.
+                string itemBody = ResolveItemBody(bpName);
+                if (itemBody != null && _itemBodyTiles.TryGetValue(itemBody, out var bodyTile))
+                    return bodyTile;
             }
 
             // Walls — Pass 15 G: the top-face set (lighter top band +
@@ -1387,6 +1481,13 @@ namespace CavesOfOoo.Rendering
                 if (bp == null) return null;
                 if (glyph == '[' && BlueprintIsChest(bp)) return _chestTile;
                 if (glyph == '!' && BlueprintIsLantern(bp)) return _lanternTile;
+                // Round 5 — glyph-family fallbacks: any other ground
+                // armor becomes the tinted cuirass; any other '!' the
+                // tinted vial. Color copy keeps each item's identity.
+                if (glyph == '[' && _itemBodyTiles.TryGetValue("item_armor", out var armorTile))
+                    return armorTile;
+                if (glyph == '!' && _itemBodyTiles.TryGetValue("item_vial", out var vialTile))
+                    return vialTile;
             }
             return null;
         }
@@ -1445,6 +1546,41 @@ namespace CavesOfOoo.Rendering
                 case '/': return blueprintName != "Torch" && blueprintName != "IronKey"
                     && blueprintName != "OldWorldPipe" && blueprintName != "TemporalShard";
                 default: return true;
+            }
+        }
+
+        /// <summary>
+        /// ROUND 5 — item BODY families: a few near-gray sprites cover
+        /// dozens of blueprints because the claim copies the glyph's
+        /// COLOR (FireTonic's red '!' → red vial; GlowQuartz's cyan
+        /// '*' → cyan gem). Public: pinned by tests.
+        /// </summary>
+        public static string ResolveItemBody(string bp)
+        {
+            if (string.IsNullOrEmpty(bp)) return null;
+            if (bp.EndsWith("Tonic", System.StringComparison.Ordinal)) return "item_vial";
+            if (bp.EndsWith("GasGrenade", System.StringComparison.Ordinal)) return "item_grenade";
+            if (bp.Contains("Grimoire")) return "item_book";
+            if (bp.EndsWith("Vein", System.StringComparison.Ordinal)) return "item_vein";
+            if (bp.EndsWith("Seed", System.StringComparison.Ordinal)) return "item_seed";
+            switch (bp)
+            {
+                case "PaleSalt":
+                case "ChoirIron":
+                case "GlowQuartz":
+                case "FireClay":        return "item_gem";
+                case "Torch":           return "item_torch";
+                case "IronKey":         return "item_key";
+                case "Bone":            return "item_bone";
+                case "DriedMeat":
+                case "RawMeat":
+                case "CookedMeat":      return "item_meat";
+                case "Starapple":
+                case "RoastedStarapple":
+                case "EmberFruit":
+                case "CandyCarrot":
+                case "CandyHeartRoot":  return "item_fruit";
+                default:                return null;
             }
         }
 

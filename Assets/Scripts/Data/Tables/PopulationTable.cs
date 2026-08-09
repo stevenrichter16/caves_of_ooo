@@ -111,6 +111,8 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "Dagger", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "Stalagmite", Weight = 4, MinCount = 3, MaxCount = 8 },
+                    // Round 5 — forageable interactable
+                    new PopulationEntry { BlueprintName = "MushroomRing", Weight = 2, MinCount = 0, MaxCount = 2 },
                 }
             };
         }
@@ -144,6 +146,10 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "Viper", Weight = 3, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Glowmaw", Weight = 2, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Dagger", Weight = 2, MinCount = 1, MaxCount = 2 },
+                    // Round 5 — forageable interactables
+                    new PopulationEntry { BlueprintName = "BerryBush", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "Beehive", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "HollowStump", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }
@@ -160,6 +166,8 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "RuinScavenger", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "LeatherArmor", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    // Round 5 — old road markers
+                    new PopulationEntry { BlueprintName = "Signpost", Weight = 1, MinCount = 0, MaxCount = 2 },
                 }
             };
         }
@@ -192,6 +200,8 @@ namespace CavesOfOoo.Data
                 Name = "DesertTier2",
                 Entries = new List<PopulationEntry>
                 {
+                    // Round 5 — buried-mechanic surfacing: heal-over-time spring
+                    new PopulationEntry { BlueprintName = "ConvalescencePool", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "SandWurm", Weight = 2, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "DesertBandit", Weight = 4, MinCount = 2, MaxCount = 4 },
                     new PopulationEntry { BlueprintName = "Scorpion", Weight = 3, MinCount = 1, MaxCount = 3 },
@@ -250,6 +260,8 @@ namespace CavesOfOoo.Data
                 Name = "CaveTier3",
                 Entries = new List<PopulationEntry>
                 {
+                    // Round 5 — buried-mechanic surfacing: heal-over-time spring
+                    new PopulationEntry { BlueprintName = "ConvalescencePool", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "CaveBear", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 4, MinCount = 2, MaxCount = 4 },
                     new PopulationEntry { BlueprintName = "Glowmaw", Weight = 3, MinCount = 1, MaxCount = 3 },

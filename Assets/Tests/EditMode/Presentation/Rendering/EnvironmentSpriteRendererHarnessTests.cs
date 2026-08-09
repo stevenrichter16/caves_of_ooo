@@ -442,11 +442,12 @@ namespace CavesOfOoo.Tests
 
             _renderer.PostRender(zone, Zone.Width, Zone.Height);
 
-            Assert.IsNull(FindOverlay().GetTile(tilePos),
-                "the viper keeps its honest '~' — no water claim");
-            Assert.IsNotNull(_mainTilemap.GetTile(tilePos), "glyph not displaced");
+            // Round 5: the viper now has its OWN sprite — the invariant
+            // is still "never the water family".
+            Assert.AreEqual("Viper", FindOverlay().GetTile(tilePos)?.name,
+                "the viper renders as a SNAKE, never as water");
             StringAssert.StartsWith("sand", _bgTilemap.GetTile(tilePos)?.name,
-                "but the ground still paints beneath the honest glyph");
+                "and the ground still paints beneath it");
             Object.DestroyImmediate(tildeGlyph);
         }
 
@@ -589,10 +590,12 @@ namespace CavesOfOoo.Tests
             var tilePos = PaintFloorGlyph(5, 3, Color.white);
             _renderer.PostRender(zone, Zone.Width, Zone.Height); // grass claimed, main nulled
 
-            // A viper steps in: the dirty-path repaint puts ITS glyph
-            // on the main tilemap (fresher than our snapshot).
-            var viper = new Entity { ID = "v", BlueprintName = "Viper" };
-            viper.AddPart(new RenderPart { DisplayName = "viper", RenderString = "~", RenderLayer = 5 });
+            // A spriteless '~' entity steps in (SteamCloud — the round-5
+            // bestiary gave the Viper a sprite): the dirty-path repaint
+            // puts ITS glyph on the main tilemap (fresher than our
+            // snapshot).
+            var viper = new Entity { ID = "v", BlueprintName = "SteamCloud" };
+            viper.AddPart(new RenderPart { DisplayName = "steam", RenderString = "~", RenderLayer = 5 });
             zone.AddEntity(viper, 5, 3);
             var viperGlyph = ScriptableObject.CreateInstance<Tile>();
             viperGlyph.name = "CP437_7E";
@@ -766,8 +769,8 @@ namespace CavesOfOoo.Tests
             var tilePos = PaintFloorGlyph(5, 3, Color.white);
             _renderer.PostRender(zone, Zone.Width, Zone.Height); // grass claimed
 
-            var viper = new Entity { ID = "v", BlueprintName = "Viper" };
-            viper.AddPart(new RenderPart { DisplayName = "viper", RenderString = "~", RenderLayer = 5 });
+            var viper = new Entity { ID = "v", BlueprintName = "SteamCloud" };
+            viper.AddPart(new RenderPart { DisplayName = "steam", RenderString = "~", RenderLayer = 5 });
             zone.AddEntity(viper, 5, 3);
             var viperGlyph = ScriptableObject.CreateInstance<Tile>();
             viperGlyph.name = "CP437_7E";
@@ -810,6 +813,137 @@ namespace CavesOfOoo.Tests
 
             Assert.AreEqual("water_e_n", FindOverlay().GetTile(centerPos)?.name,
                 "the CENTER (a neighbor of the dirty cell) re-resolves to the north shore lip");
+        }
+
+        // ── ROUND 5: bestiary, item bodies, interactables ────────
+
+        [Test]
+        public void JungleApe_ClaimsItsBestiarySprite()
+        {
+            var zone = new Zone("T");
+            zone.AddEntity(TerrainEntity("Grass", "."), 6, 6);
+            var ape = new Entity { ID = "ja", BlueprintName = "JungleApe" };
+            ape.AddPart(new RenderPart { DisplayName = "jungle ape", RenderString = "A", RenderLayer = 5 });
+            zone.AddEntity(ape, 6, 6);
+            Reveal(zone);
+            var aGlyph = ScriptableObject.CreateInstance<Tile>();
+            aGlyph.name = "CP437_41"; // 'A'
+            var tilePos = new Vector3Int(6, Zone.Height - 1 - 6, 0);
+            _mainTilemap.SetTile(tilePos, aGlyph);
+            _mainTilemap.SetTileFlags(tilePos, TileFlags.None);
+            _mainTilemap.SetColor(tilePos, Color.white);
+
+            _renderer.PostRender(zone, Zone.Width, Zone.Height);
+
+            Assert.AreEqual("JungleApe", FindOverlay().GetTile(tilePos)?.name,
+                "the bestiary resolves by blueprint through the actor tier");
+            Assert.AreEqual(44, EnvironmentSpriteRenderer.CreatureSprites.Length,
+                "roster pin: the full 44-creature bestiary");
+            Object.DestroyImmediate(aGlyph);
+        }
+
+        [Test]
+        public void ReskinnedCreature_KeepsItsHonestGlyph()
+        {
+            // Dirt gnomes are Snapjaws reskinned to 'g' — same guard,
+            // bestiary flavor: a JungleApe reskinned to 'x' stands down.
+            var zone = new Zone("T");
+            var ape = new Entity { ID = "rx", BlueprintName = "JungleApe" };
+            ape.AddPart(new RenderPart { DisplayName = "strange ape", RenderString = "x", RenderLayer = 5 });
+            zone.AddEntity(ape, 7, 7);
+            Reveal(zone);
+            var xGlyph = ScriptableObject.CreateInstance<Tile>();
+            xGlyph.name = "CP437_78";
+            var tilePos = new Vector3Int(7, Zone.Height - 1 - 7, 0);
+            _mainTilemap.SetTile(tilePos, xGlyph);
+
+            _renderer.PostRender(zone, Zone.Width, Zone.Height);
+
+            Assert.IsNull(FindOverlay().GetTile(tilePos),
+                "non-canonical glyph = not that creature anymore = honest ASCII");
+            Object.DestroyImmediate(xGlyph);
+        }
+
+        [Test]
+        public void FireTonic_BecomesARedTintedVial()
+        {
+            // One near-gray vial serves every tonic: the claim copies
+            // the glyph's COLOR, so identity rides the tint.
+            var zone = new Zone("T");
+            var tonic = new Entity { ID = "ft", BlueprintName = "FireTonic" };
+            tonic.AddPart(new RenderPart { DisplayName = "fire tonic", RenderString = "!", RenderLayer = 5 });
+            zone.AddEntity(tonic, 8, 8);
+            Reveal(zone);
+            var bangGlyph = ScriptableObject.CreateInstance<Tile>();
+            bangGlyph.name = "CP437_21"; // '!'
+            var tilePos = new Vector3Int(8, Zone.Height - 1 - 8, 0);
+            _mainTilemap.SetTile(tilePos, bangGlyph);
+            _mainTilemap.SetTileFlags(tilePos, TileFlags.None);
+            _mainTilemap.SetColor(tilePos, new Color(1f, 0.3f, 0.2f, 1f)); // red '!'
+
+            _renderer.PostRender(zone, Zone.Width, Zone.Height);
+
+            var overlay = FindOverlay();
+            Assert.AreEqual("item_vial", overlay.GetTile(tilePos)?.name);
+            var c = overlay.GetColor(tilePos);
+            Assert.Greater(c.r, c.g + 0.2f,
+                "the vial is TINTED RED by the glyph color — the tint IS the identity");
+            Object.DestroyImmediate(bangGlyph);
+        }
+
+        [Test]
+        public void OreVein_ClaimsTheTintedRockFace()
+        {
+            // Round 2 forced veins to honest ASCII ('*' guard); round 5
+            // gives the mineable node a real rock-face body, tinted.
+            var zone = new Zone("T");
+            var v = TerrainEntity("GlowQuartzVein", "*");
+            zone.AddEntity(v, 9, 9);
+            Reveal(zone);
+            var starGlyph = ScriptableObject.CreateInstance<Tile>();
+            starGlyph.name = "CP437_2A"; // '*'
+            var tilePos = new Vector3Int(9, Zone.Height - 1 - 9, 0);
+            _mainTilemap.SetTile(tilePos, starGlyph);
+            _mainTilemap.SetTileFlags(tilePos, TileFlags.None);
+            _mainTilemap.SetColor(tilePos, new Color(0.4f, 0.9f, 1f, 1f)); // cyan
+
+            _renderer.PostRender(zone, Zone.Width, Zone.Height);
+
+            Assert.AreEqual("item_vein", FindOverlay().GetTile(tilePos)?.name,
+                "the vein renders as a crystal-flecked rock face (cyan-tinted), not a letter");
+            Object.DestroyImmediate(starGlyph);
+        }
+
+        [Test]
+        public void BerryBush_ClaimsViaTheFixturePrePass()
+        {
+            var zone = new Zone("T");
+            zone.AddEntity(TerrainEntity("Grass", "."), 10, 5);
+            var bush = new Entity { ID = "bb", BlueprintName = "BerryBush" };
+            bush.AddPart(new RenderPart { DisplayName = "berry bush", RenderString = ";", RenderLayer = 4 });
+            zone.AddEntity(bush, 10, 5);
+            Reveal(zone);
+            var tilePos = PaintFloorGlyph(10, 5, Color.white);
+
+            _renderer.PostRender(zone, Zone.Width, Zone.Height);
+
+            Assert.AreEqual("BerryBush", FindOverlay().GetTile(tilePos)?.name,
+                "the new interactable resolves blueprint-keyed, glyph-independent");
+        }
+
+        [Test]
+        public void ResolveItemBody_FamilyPins()
+        {
+            Assert.AreEqual("item_vial", EnvironmentSpriteRenderer.ResolveItemBody("HealingTonic"));
+            Assert.AreEqual("item_book", EnvironmentSpriteRenderer.ResolveItemBody("ConflagrationGrimoire"));
+            Assert.AreEqual("item_vein", EnvironmentSpriteRenderer.ResolveItemBody("PaleSaltVein"));
+            Assert.AreEqual("item_gem", EnvironmentSpriteRenderer.ResolveItemBody("GlowQuartz"));
+            Assert.AreEqual("item_seed", EnvironmentSpriteRenderer.ResolveItemBody("CandyCarrotSeed"));
+            Assert.AreEqual("item_meat", EnvironmentSpriteRenderer.ResolveItemBody("DriedMeat"));
+            Assert.AreEqual("item_torch", EnvironmentSpriteRenderer.ResolveItemBody("Torch"));
+            Assert.IsNull(EnvironmentSpriteRenderer.ResolveItemBody("Wall"),
+                "counter-check: non-items resolve nothing");
+            Assert.IsNull(EnvironmentSpriteRenderer.ResolveItemBody(null));
         }
 
         // ── ROUND 2: player ground highlight (S4) ────────────────

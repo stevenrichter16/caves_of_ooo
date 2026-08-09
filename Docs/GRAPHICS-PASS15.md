@@ -317,6 +317,71 @@ pause behavior (pre-existing), ghost decay per-time normalization,
 strata-zone checklist screenshot, committing the GraphicsPolish gate
 ON (awaiting user's call that the pass looks done).
 
+## V-loop round 5 (2026-08-09) — THE BESTIARY + items + interactables + ambient + buried mechanics
+
+User direction: "still many sprites to go" (the monsters-stay-ASCII
+carve-out ends), plus mid-round additions: "environment additions
+with gameplay interactability", "more ambient motion (non-fire)",
+"continue surfacing mechanics that live deep in the code but aren't
+used".
+
+**A — The bestiary (44 creature sprites).** `ArtTools/coo_bestiary.py`
+— 12 body ARCHETYPES (quadruped, biped brute, cloaked rogue, serpent,
+arachnid, flyer, blob, skeletal, sentinel construct, tendril, buried
+lurker, imp, snapjaw-boss) so families share silhouettes while each
+creature keeps its ASCII color identity (census-driven palette per
+ColorString). Wired through the SAME blueprint-keyed actor mechanism
+as the role NPCs — `CreatureSprites` table with canonical glyphs, so
+the reskin guard still protects quest reskins (dirt gnomes stay
+honest 'g'). Live-verified: a GiantSpider claimed its sprite in the
+jungle save (claims census), and the player killed it.
+
+**B — Item bodies (13) + tint-carried identity.**
+`ArtTools/coo_items.py` — near-gray family bodies (vial, book, gem,
+key, torch, meat, fruit, seed, armor, bone, vein, scroll, grenade)
+claimed with the glyph's COLOR COPIED: one vial serves all 14 tonics,
+one gem all ores, one book all 21 grimoires. Ore veins ('*') get the
+crystal-flecked rock face (replacing round-2's honest-ASCII stance —
+a tinted mineable node beats a letter). Glyph fallbacks: '[' armor,
+'!' vial.
+
+**C — Interactables (5 new, zero new C#).** BerryBush→WildBerries,
+Beehive→Honeycomb (both new FoodItems), HollowStump→gold cache,
+MushroomRing→mushrooms (all HarvestablePart), Signpost (flavor solid).
+Placed in Cave/Jungle/Ruins tier-1 population tables; fixture-tier
+sprites (blueprint-keyed pre-pass); generation-test fixture stubs
+added (the 3×-bitten gotcha, pre-empted this time).
+
+**D — Ambient motion: AmbientMotesRenderer.** One component, four
+mote kinds — Drip (stalactites, fast cyan fall), Spore (mushroom
+rings, slow green rise), Leaf (jungle trees, sampled 1-in-6 capped
+24, wide sway fall), Bee (hives, tight gold orbit). Registered in
+ZoneRenderer's SetZone scan alongside the campfire embers; paused
+with them. Live: 24 leaf anchors registered in the jungle save.
+
+**E — Buried mechanics surfaced (27-agent audit: 21 confirmed).**
+Shipped this round (content-only): 3 GAS GRENADES
+(poison/sleep/stun — GasGrenadePart + the already-wired
+ThrowItemCommand detonation; loot rows in BanditCacheT2/WarbandLootT2/
+CultCacheT2 + Provisioner/Weaponsmith shop stock), BurnOffGas on
+SporeShambler (torch it → spore cloud) + GasImmunity (shambler
+immune to its own spores, Rotling to poison — AI gas-pathing changes
+too), ConvalescencePool (the heal-over-time liquid finally has a
+world source: rare Desert-T2/Cave-T3 spring), GiveInk on the Warren
+quest reward. **Round-6 content backlog from the audit:** knowledge
+tiers (Reveal/IfSpeakerKnows), HouseVex drama conversations, quest
+failure lifecycle (FailQuest/IfQuestFailed), PushNoFightGoal
+talk-down pacification, ParalyzedEffect inflictor, SteamEffect
+reaction row, exotic liquid pools (~20 more incl. memory-bath
+resurrection), GasMask equip-routing (needs a small code layer).
+
+Tests 5951 → 5957 (+6: ape claim + roster-44 pin, creature reskin
+guard, tonic tint, vein tint, berry-bush fixture, item-body family
+pins). Viper tests updated: the viper now legitimately claims its
+OWN snake sprite (never water); clobber/incremental tests use
+SteamCloud as the spriteless '~' stand-in. Save restored after the
+live session.
+
 | # | Defect | Fix |
 |---|---|---|
 | R1 | `LoadSprites` is `#if UNITY_EDITOR` + `AssetDatabase` — null in any build, assets strippable | Move PNGs to `Assets/Resources/Sprites/Environment/`, load via `Resources.Load`; keep paths in one manifest |

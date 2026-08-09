@@ -102,6 +102,7 @@ namespace CavesOfOoo.Rendering
         private Material _popupOverlayUiMaterial;
         private AsciiFxRenderer _asciiFxRenderer;
         private CampfireEmberRenderer _campfireEmberRenderer;
+        private AmbientMotesRenderer _ambientMotesRenderer;     // Round 5
         private WorldCursorRenderer _worldCursorRenderer;
         private GameplaySidebarRenderer _sidebarRenderer;
         private GameplayHotbarRenderer _hotbarRenderer;
@@ -357,6 +358,13 @@ namespace CavesOfOoo.Rendering
             GameplayRenderLayers.SetLayerRecursive(emberObj, GameplayRenderLayers.WorldLayer);
             _campfireEmberRenderer = emberObj.AddComponent<CampfireEmberRenderer>();
 
+            // Round 5 — ambient world motion beyond fires: drips,
+            // spores, leaves, bees (one renderer, kind per anchor).
+            var motesObj = new GameObject("AmbientMotes");
+            motesObj.transform.SetParent(gridParent, false);
+            GameplayRenderLayers.SetLayerRecursive(motesObj, GameplayRenderLayers.WorldLayer);
+            _ambientMotesRenderer = motesObj.AddComponent<AmbientMotesRenderer>();
+
             // Dedicated narrow-text grid for the persistent sidebar.
             var sidebarGridObj = new GameObject("SidebarGrid");
             _sidebarGridTransform = sidebarGridObj.transform;
@@ -507,6 +515,44 @@ namespace CavesOfOoo.Rendering
                     }
                 }
             }
+
+            // Round 5 — ambient mote anchors by blueprint (STATIC
+            // fixtures only; movers would leave stale anchors). Trees
+            // are sampled sparsely — a jungle has hundreds.
+            if (_ambientMotesRenderer != null)
+            {
+                _ambientMotesRenderer.SetZone(zone);
+                if (zone != null)
+                {
+                    int treeSkip = 0;
+                    foreach (var entity in zone.GetAllEntities())
+                    {
+                        var cell = zone.GetEntityCell(entity);
+                        if (cell == null) continue;
+                        switch (entity.BlueprintName)
+                        {
+                            case "IceStalactite":
+                            case "Stalagmite":
+                                _ambientMotesRenderer.RegisterAnchor(
+                                    AmbientMotesRenderer.MoteKind.Drip, cell.X, cell.Y);
+                                break;
+                            case "MushroomRing":
+                                _ambientMotesRenderer.RegisterAnchor(
+                                    AmbientMotesRenderer.MoteKind.Spore, cell.X, cell.Y);
+                                break;
+                            case "Beehive":
+                                _ambientMotesRenderer.RegisterAnchor(
+                                    AmbientMotesRenderer.MoteKind.Bee, cell.X, cell.Y);
+                                break;
+                            case "Tree":
+                                if ((treeSkip++ % 6) == 0 && _ambientMotesRenderer.AnchorCount < 24)
+                                    _ambientMotesRenderer.RegisterAnchor(
+                                        AmbientMotesRenderer.MoteKind.Leaf, cell.X, cell.Y);
+                                break;
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -637,6 +683,8 @@ namespace CavesOfOoo.Rendering
 
                         if (_campfireEmberRenderer != null)
                             _campfireEmberRenderer.gameObject.SetActive(false);
+                        if (_ambientMotesRenderer != null)
+                            _ambientMotesRenderer.gameObject.SetActive(false);
                         _worldCursorRenderer?.Clear();
                         _sidebarRenderer?.Clear();
                         _hotbarRenderer?.Clear();
@@ -654,6 +702,8 @@ namespace CavesOfOoo.Rendering
                 {
                     if (_campfireEmberRenderer != null)
                         _campfireEmberRenderer.gameObject.SetActive(true);
+                    if (_ambientMotesRenderer != null)
+                        _ambientMotesRenderer.gameObject.SetActive(true);
                     _wasPaused = false;
                     _fullDirty = true; // Force full redraw to restore bg/fx layers
                 }
