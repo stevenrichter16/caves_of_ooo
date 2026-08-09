@@ -213,7 +213,9 @@ namespace CavesOfOoo
                 LoadoutPart.Factory = _factory;
                 LootDropSystem.Factory = _factory;
             ContainerPlacementService.Factory = _factory;
+            TraderPart.Factory = _factory;
                 ContainerPlacementService.Factory = _factory;
+                TraderPart.Factory = _factory;
                 LayRuneGoal.Factory = _factory;
                 AlchemyStillPart.Factory = _factory;
                 ForgePart.Factory = _factory;

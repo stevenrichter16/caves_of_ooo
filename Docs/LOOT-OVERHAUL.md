@@ -489,3 +489,98 @@ Tests across the arc: 5958 → 6005 (+47).
    payoff, or the container half (SM4-6) first for the bigger visual
    change? *(Recommendation: SM1-3 first — smaller, and it makes every
    existing fight more rewarding immediately.)*
+
+---
+
+## 12. SM9 — the other half of supply: NPCs who actually trade
+
+**User report (2026-08-09):** *"merchants and saccharine envoys out in
+the world do not have inventory when you trade. these are the only two
+npcs i tested trading, so im sure many more npcs dont have items to
+trade. ensure every npc has relavent items to trade."*
+
+SM1–SM8 fixed supply from the world (kills, containers). This closes
+supply from *people* — the third source, and the only one the player
+can seek out deliberately.
+
+### Verification sweep — corrections before writing code
+
+| # | Assumption | Reality | Consequence |
+|---|---|---|---|
+| 1 | "Only shopkeepers offer trade" | `RefreshVisibleChoices` injected "[Let's trade.]" for any speaker with an `InventoryPart` — which **every** creature inherits from `Creature` | All 31 talkable NPCs offered trade; only the 5 town shops (`shop:` stamp) had stock. The user hit an empty window on the first two they tried. |
+| 2 | "`Entity.SetProperty` exists" | It does not — only `GetProperty` / `GetIntProperty` / `SetIntProperty` | String props are written straight into `Properties[key]`, matching `LandmarkBuilder.cs:871` |
+| 3 | "`TraderRestockSystem` will keep them stocked" | It **skips any entity whose drams < 0** | A trader without a purse never restocks *and* can never buy. `TraderPart` sets the purse before anything else, even when the factory is absent |
+| 4 | "A stock table means stock" | Every entry in 24 of 31 tables was chance-gated | Same defect class as `ReliquaryT1` — a table that rolls, validates and yields nothing |
+
+### What shipped
+
+- **`TraderPart`** — blueprint-authorable `StockTable` + `Drams`. Hooks
+  `ObjectCreated`, sets the purse, stamps the restock property, rolls
+  the opening shelf. Null factory = graceful no-op (the `CorpsePart`
+  convention).
+- **19 themed stock tables**, one per NPC archetype, assigned across all
+  31 talkable NPCs.
+- **`ConversationManager.CanTrade`** — the trade option must never lie.
+  True for a `TraderPart` holder, a stock-table carrier, anyone with
+  goods, or anyone with coin (a sold-out merchant can still *buy*, and
+  refusing there would strand the player's loot). False otherwise, so
+  runtime-spawned quest-givers simply don't offer it.
+
+### Two defects the unit tests could not see
+
+Both were found by **live spawn checks**, not by the suite — the V-loop
+pattern again.
+
+**(a) Shops that roll empty.** A live spawn of 20 NPCs found the
+Innkeeper and Scribe opening an empty window. The content audit test
+then showed it was near-universal: across 12 seeds, most traders could
+come up bare. *Fix:* every stock table now guarantees one **cheap,
+thematic staple** at 100% — the scribe always has ink, the innkeeper
+always has cooked meat, the well-keeper always has water. The good
+stuff stays rare, so guaranteeing a shelf does not inflate the economy.
+`EveryTraderTableGuaranteesAtLeastOneItem` pins it, and deliberately
+requires a direct `Blueprint` rather than a `TableRef` — a 100%
+`TableRef` can resolve into a sub-table that itself rolls empty, which
+would move the bug instead of fixing it.
+
+**(b) Town shops double-stocked (cold-eye Q1, symmetry).** `TraderPart`
+guards against double-stocking with `if (inv.Objects.Count > 0) return`
+— but that guard was on the wrong side of the ordering. The `shop:`
+marker calls `CreateEntity` (firing `ObjectCreated`, so `TraderPart`
+fills the bare shelf) and *then* rolled **the same table again**:
+`shop:Weaponsmith:WeaponsmithStock` names the exact table the
+Weaponsmith's own `TraderPart` had just rolled. Live evidence: the town
+Weaponsmith carried 11 goods against 8 from a single roll. *Fix:* the
+symmetric guard in `LandmarkBuilder` — the stamp stocks only a bare
+shelf, so keepers without a `TraderPart` still work.
+
+The regression test counts the **guaranteed staple**, not total items.
+Comparing totals against a standalone roll does not work: `TraderPart.Rng`
+is a shared static, so the in-zone keeper rolls at a different RNG
+position and a legitimately different total. `WeaponsmithStock` grants
+`Dagger` at 100%, so one roll leaves exactly one dagger and two rolls
+leave two — exact, whatever the RNG does with the chance-gated rest.
+
+### Honesty bounds
+
+**Can verify (script-observable, live):** all 31 talkable blueprints
+spawn with goods *and* a purse; all 22 talkable NPCs in the live
+starting town carry stock with **zero** duplicate stacks; town shops
+dropped from 11/10/8/10/10 goods to 7/5/3/7/7 after the symmetry fix.
+
+**Cannot verify (needs a human at the keyboard):** whether each shop's
+*mix* reads as thematically right, and whether prices feel fair at the
+new stock depth.
+
+### Files
+
+- NEW `Assets/Scripts/Gameplay/Economy/TraderPart.cs`
+- NEW `Assets/Tests/EditMode/Gameplay/Economy/TraderStockTests.cs` (9)
+- NEW `Assets/Tests/EditMode/Gameplay/Economy/TraderStockContentTests.cs` (7)
+- MOD `Assets/Scripts/Gameplay/Conversations/ConversationManager.cs` — `CanTrade` gate
+- MOD `Assets/Scripts/Gameplay/World/Generation/Builders/LandmarkBuilder.cs` — bare-shelf guard
+- MOD `Assets/Resources/Content/Data/Loot/LootTables.json` — 19 stock tables + staples
+- MOD `Assets/Resources/Content/Blueprints/Objects.json` — `TraderPart` on 31 NPCs
+- MOD `Assets/Scripts/GameBootstrap.cs` — `TraderPart.Factory` at both wiring sites
+
+Tests: 6005 → 6021 (+16). All green.

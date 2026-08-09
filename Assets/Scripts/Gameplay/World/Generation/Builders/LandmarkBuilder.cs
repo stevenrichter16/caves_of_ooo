@@ -870,7 +870,16 @@ namespace CavesOfOoo.Core
                                 zone.AddEntity(shopkeeper, wx, wy);
                                 shopkeeper.Properties["ShopStockTable"] = parts[2];
                                 var inv = shopkeeper.GetPart<InventoryPart>();
-                                if (inv != null)
+                                // Only stock a BARE shelf. CreateEntity
+                                // above fires ObjectCreated, so a keeper
+                                // carrying a TraderPart has already
+                                // rolled — and the markers name the very
+                                // same table (shop:Weaponsmith:Weapon-
+                                // smithStock), so re-rolling here would
+                                // silently double every town shop's
+                                // opening stock. Keepers without a
+                                // TraderPart still get filled here.
+                                if (inv != null && inv.Objects.Count == 0)
                                 {
                                     foreach (var bpName in LootTableRegistry.Roll(parts[2], rng))
                                     {

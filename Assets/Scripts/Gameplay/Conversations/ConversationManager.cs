@@ -148,6 +148,28 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Rebuild the list of visible choices for the current node.
         /// </summary>
+        /// <summary>
+        /// Can this speaker actually trade? A trader has a stock table
+        /// (so the restock system will keep them supplied), goods on
+        /// hand, or drams to buy with. Anything else offering "[Let's
+        /// trade.]" opens an empty window — the bug this replaced.
+        /// Public: pinned by tests.
+        /// </summary>
+        public static bool CanTrade(Entity speaker)
+        {
+            if (speaker == null) return false;
+            var inv = speaker.GetPart<InventoryPart>();
+            if (inv == null) return false;
+
+            if (speaker.GetPart<TraderPart>() != null) return true;
+            if (!string.IsNullOrEmpty(
+                speaker.GetProperty(TraderRestockSystem.ShopStockTableProp)))
+                return true;
+            if (inv.Objects.Count > 0) return true;
+            // A sold-out merchant with coin can still BUY from you.
+            return TradeSystem.GetDrams(speaker) > 0;
+        }
+
         public static void RefreshVisibleChoices()
         {
             _visibleChoices.Clear();
@@ -160,8 +182,15 @@ namespace CavesOfOoo.Core
                     _visibleChoices.Add(choice);
             }
 
-            // Auto-inject "[Let's trade.]" choice if speaker has an inventory
-            if (Speaker != null && Speaker.GetPart<InventoryPart>() != null)
+            // Auto-inject "[Let's trade.]" only when the speaker can
+            // ACTUALLY trade. This used to fire for any speaker with an
+            // InventoryPart — which every creature inherits from the
+            // Creature blueprint — so all 31 talkable NPCs offered
+            // trade while only the five town shopkeepers had stock.
+            // The option must never lie: a trader is someone with a
+            // stock table (TraderPart), goods on the shelf, or a purse
+            // to buy what the player is selling.
+            if (Speaker != null && CanTrade(Speaker))
             {
                 _visibleChoices.Add(new ChoiceData
                 {
@@ -175,6 +204,7 @@ namespace CavesOfOoo.Core
             }
 
             // Auto-inject "[Attack]" choice for all NPCs
+
             _visibleChoices.Add(new ChoiceData
             {
                 Text = "[Attack]",

@@ -43,6 +43,16 @@ namespace CavesOfOoo.Tests
             entity.AddPart(new BrainPart());
             entity.AddPart(new ConversationPart { ConversationID = conversationID });
             entity.AddPart(new InventoryPart());
+            // TRADE STOCK FIX: the "[Let's trade.]" choice is now gated
+            // on the speaker ACTUALLY being able to trade. Before, any
+            // InventoryPart sufficed — which every creature inherits —
+            // so all 31 talkable NPCs offered trade with nothing on the
+            // shelf (the user-reported bug). These tests still assert
+            // the choice's presence/order/behaviour; the fixture just
+            // has to be a real trader now, which a test NPC named
+            // "Test NPC" standing in a shop conversation always was in
+            // spirit.
+            TradeSystem.SetDrams(entity, 100);
             return entity;
         }
 
