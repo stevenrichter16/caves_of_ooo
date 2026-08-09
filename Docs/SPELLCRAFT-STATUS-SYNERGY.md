@@ -293,7 +293,7 @@ Mechanics alone will not make this a no-brainer. Four surfaces:
 
 | SM | Content | Ships |
 |---|---|---|
-| **SM1** | P1 push helper extracted + pinned | no behaviour change; `Cudgel_GroundPound` uses the helper |
+| **SM1** | P1 push helper extracted + pinned | `Cudgel_GroundPound` uses the helper — **charter corrected, see §14: this is no longer behaviour-neutral** |
 | **SM2** | P2 cone targeting + tests | shape primitive, no spells yet |
 | **SM3** | Galvanism *Ground Surge* family (3) | the user's shockwave, playable |
 | **SM4** | Pyromancy *Flame Jet* family (3) | the flamethrower, playable |
@@ -388,3 +388,193 @@ the sub-milestones above:
    already has a payoff to feed? *Recommendation: primers first.* They
    are independently fun, they de-risk the two new primitives, and the
    named asks land in the player's hands soonest.
+
+---
+
+## 14. Implementation log
+
+### SM1 — push becomes a primitive ✅
+### ⚠️ SM1 charter correction (SCOPE DIVERGENCE)
+
+The roadmap chartered SM1 as *"no behaviour change"*. **That is no
+longer true**, and the change was made deliberately during the SM3
+audit rather than accidentally.
+
+`TryPush` originally moved a creature with a raw `Zone.MoveEntity`,
+copying what `Cudgel_GroundPound` had always done. Adversarial review
+flagged that as a defect: a raw `MoveEntity` teleports. It fires no
+`AfterMove`, runs no cell-entry, and marks no cells dirty — so a
+creature shoved into a pool never gets wet, which directly undercuts
+the soak-then-shock premise this entire feature is built on, and the
+renderer is never told to repaint (CLAUDE.md perf rule 4).
+
+`TryPush` now calls the new `MovementSystem.ForceMoveTo`. **Every
+`TryPush` caller is affected, including `Cudgel_GroundPound`**, whose
+knockback now runs the post-move pipeline it never did before.
+
+`ForceMoveTo` exists rather than reusing `TryMoveTo` because the first
+attempt at this fix *did* use `TryMoveTo` and broke
+`GroundPound_KnocksbackAdjacentCreature`. `TryMoveTo` fires the
+vetoable `BeforeMove`, which `StatusEffectsPart.HandleBeforeMove`
+answers from `AllowMovement` — cleared by Stunned. Ground Pound stuns
+*then* pushes, so routing a shove through the voluntary-movement gate
+let the attack's own stun cancel the attack's own knockback. A forced
+move is not a voluntary move, and the two now have separate entry
+points.
+
+**Deliberately left undecided:** whether a Rooted creature should
+resist a shove. It arguably should — but answering it by reusing the
+voluntary-movement veto would have silently roped in Stunned too. That
+belongs in its own change.
+
+
+`SkillCombatHelpers.TryPush(actor, target, zone, cells = 1)`, extracted
+from `Cudgel_GroundPound` (the codebase's only knockback), which now
+routes through it. Multi-cell shoves stop at the first obstacle and keep
+the ground gained; `false` means nothing moved at all, which is what
+lets a caller tell "shoved into the open" from "slammed into a wall".
+Items on the floor never block — after the loot overhaul the ground is
+covered in them. 12 tests.
+
+### SM2 — the cone ✅
+
+`SpellTargeting.GetCreaturesInCone`. Step *n* is a band `2n-1` wide, so
+length 3 covers 9 cells. A wall occludes **its own ray only** — one
+pillar must not cancel a flamethrower. A wall at the one-cell **apex**
+does stop everything, which is intended, teachable positioning. 14 tests.
+
+### SM3 — the Ground Surge family ✅
+
+Three Galvanism actives, all primers, sharing `GalvanismLine.Collect`
+for the walk and differing entirely in what they do with the result.
+
+| Power | Shape | Damage | Status | Push |
+|---|---|---|---|---|
+| **Ground Surge** | line 4 | 6 Electric | 40% Electrified (1.0 charge) | 1 cell, all targets |
+| **Backlash Coil** | self ring | 4 Electric | **none, deliberately** | 2 cells, all adjacent |
+| **Rail Spike** | line 6, pierces | 5 Electric | Electrified 1.5 on **last target only** | none |
+
+**Why each exists.** Ground Surge is the request's shockwave and the
+family's default. Backlash Coil is the surrounded-with-no-time-to-aim
+button — it needs no direction, and it deliberately does **not** prime,
+because a power that both broke a surround *and* charged everyone would
+strictly dominate Ground Surge and collapse the family into one power.
+Rail Spike exists for one problem: the target worth priming is the
+caster at the back and there is a rank of bodies in the way. Its charge
+grounds in the last body reached, which makes it a positioning decision
+rather than a longer Ground Surge.
+
+**Collect-then-act.** Every power snapshots its targets before touching
+any of them. Acting during the walk would let a shoved creature land in
+a cell the walk had not reached yet and be hit twice from one cast —
+`GalvanismLine` returning a list makes that bug unrepresentable in the
+callers rather than merely absent from them.
+
+**Grammar pin.** `GroundSurge_DoesNotConsumeExistingStatuses` asserts a
+Wet target is still Wet after the cast. Skills prime; only rites spend.
+If a future edit lets a skill consume a status, the prime/detonate
+division collapses and grimoires lose the one thing that makes them
+distinct — so the contract is a test, not a comment.
+
+**A trap worth recording.** The resistance stat that
+`CombatSystem.ApplyResistances` reads for Electric/Lightning damage is
+**`ElectricResistance`** (CombatSystem.cs:1164). `LightningResistance`
+— which the pre-existing `GalvanismOverloadTests` fixture sets — is read
+by no production code at all. A test that sets it looks like it is
+establishing immunity and establishes nothing. Caught here because
+`AllThree_DealElectricDamage_SoGalvanismsBonusApplies` asserted a
+fully-resistant target takes zero and got 6.
+
+**Live verification.** All three resolve through the real
+`SkillsPart.AddSkill(string)` reflection path and register activated
+abilities alongside Overload:
+
+```
+Ground Surge  [CommandGroundSurge]  mode=DirectionLine  range=4
+Backlash Coil [CommandBacklashCoil] mode=SelfCentered   range=1
+Rail Spike    [CommandRailSpike]    mode=DirectionLine  range=6
+```
+
+**Honesty bounds.** *Can verify (script-observable):* shapes, damage
+typing, status application and its counter-check, push distances, wall
+and edge behaviour, diag reasons on every reject branch, JSON
+registration, live ability registration. *Cannot verify without a human
+at the keyboard:* whether 30/40/45-turn cooldowns feel right, whether
+the three read as distinct in play, and whether 40% Electrified is a
+satisfying rate.
+
+Tests: 6047 → 6078 (+31).
+
+### SM3 audit — what the review gates caught
+
+Both CLAUDE.md audit angles ran as an adversarial workflow (5 finder
+dimensions → 24 raw findings → 23 unique → skeptic-verified). Tests
+were green at 6078 before any of this; **green was not enough.**
+
+**🔴 CRITICAL — Ground Surge shoved only the furthest target.**
+Independently found by three of the five dimensions. `GalvanismLine`
+returns targets nearest-first and `TryPush` refuses a step into an
+occupied cell, so in a packed rank every target except the last shoved
+into the body behind it and did not move. In the canonical use of a
+line AoE — a corridor with enemies stacked up — the shockwave moved
+exactly one enemy while the JSON promised "knocks back 1". Fixed by
+splitting into two passes: damage and prime nearest-first, then shove
+**furthest-first** so each destination is vacated before the target
+behind it steps into it. The ordering is load-bearing and commented as
+such.
+
+**🔴 CRITICAL — a shove was a teleport.** See the SM1 charter
+correction above.
+
+**🟡 Rail Spike told the player it grounded a charge in a corpse.**
+The effect branch was right; the message was unconditional. A player
+who lined the shot up specifically to prime the back rank would read
+"grounds in the snapjaw!", plan the next turn around a charge that did
+not exist, and find nothing. The message now branches with the effect.
+
+**🟡 Backlash Coil reported movers, not victims.** Cornered in a
+corridor — the exact situation the power exists for — it printed
+"hurls 0 attackers clear!" after landing damage on two enemies. Now
+reports who was hit, and says plainly when nothing moved.
+
+**🟡 `push_blocked` blamed geometry when everyone had died.** Both
+push powers now track survivors and emit `all_targets_died` instead,
+so a future `diag_query` does not send a debugger hunting a wall that
+was never there.
+
+**🟡 Descriptions were invisible at the point of purchase.**
+`SkillsScreenUI` renders one row and hard-truncates at 55 chars
+(`POPUP_W - 4`). The originals ran 65–72 and lost their mechanic to
+the cut. Rewritten to 49–51 so the mechanic survives, and the limit is
+now asserted by a test. *(Noted, not fixed: the three pre-existing
+Galvanism entries run 89–185 chars and are equally truncated. Not SM3's
+to fix — its own change.)*
+
+**🔵 "2 bodys".** The siblings dodge this by stem luck ("targets",
+"conductors").
+
+**🧪 Five test-quality defects in my own tests**, all fixed:
+`GroundSurge_NeverHitsTheCaster` passed on an empty line and would
+have passed against a power that damaged its own caster;
+`AllThree_DealElectricDamage` cast only one of the three;
+`RailSpike_Spec_IsALongerLine` compared two constants and never read
+`spec.Range`; the 200-HP fixture made every lethality branch
+unreachable; and no test read `ElectrifiedEffect.Charge`, so
+`charge: 0f` would have satisfied the entire suite.
+
+### Deferred with reason
+
+- **Galvanism's +25% conductor bonus reaches none of its own actives.**
+  `GetSpellDamageModifier` is only consulted by
+  `MutationDamageHelpers.ApplySpellDamage`, and every Galvanism active
+  calls `CombatSystem.ApplyDamage` directly. **`Galvanism_Overload`
+  does the same**, so SM3 matched the established tree pattern rather
+  than deviating from it. This is a pre-existing tree-wide gap and
+  deserves its own fix covering all six powers — bolting a one-off onto
+  SM3 would leave the tree inconsistent.
+- **`SkillTreeShowcase` hotbar overflow.** `SlotCount` is 10 and the
+  scenario pre-buys 22 ability-declaring skills, so everything after
+  the tenth — including `Galvanism_Overload`, which shipped long before
+  SM3 — lands unbound. Pre-existing and scenario-only. The showcase now
+  says so explicitly instead of telling the player to press keys that
+  do nothing; properly fixing it means binding or raising the cap.

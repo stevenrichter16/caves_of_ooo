@@ -229,7 +229,20 @@ namespace CavesOfOoo.Skills
                 if (dest.IsSolid()) break;                     // wall
                 if (CellHasOtherCreature(dest, target)) break; // occupied
 
-                if (!zone.MoveEntity(target, nx, ny)) break;
+                // Route through the movement pipeline, not a raw
+                // Zone.MoveEntity. A shove IS a move: the target must
+                // fire AfterMove, run cell-entry (so a creature shoved
+                // into a pool actually gets wet — the setup this whole
+                // feature is built around), and mark its cells dirty for
+                // the renderer. A raw MoveEntity teleports it silently.
+                // ForceMoveTo, not TryMoveTo: a shove must not be
+                // vetoed by BeforeMove. That event asks "may this
+                // creature move ITSELF", and Stunned answers no — so
+                // routing through it let GroundPound's own stun cancel
+                // GroundPound's own knockback.
+                // Latent bug surfaced by adversarial review — see
+                // GalvanismGroundSurgeTests.GroundSurge_PushingIntoALiquidPool_FiresCellEntry.
+                if (!MovementSystem.ForceMoveTo(target, zone, nx, ny)) break;
                 movedAny = true;
             }
 

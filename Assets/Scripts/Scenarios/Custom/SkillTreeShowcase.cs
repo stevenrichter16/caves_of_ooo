@@ -87,12 +87,22 @@ namespace CavesOfOoo.Scenarios.Custom
                 skills.AddSkill("Cryomancy_Frostbind",     source: "scenario:prebuy");
                 skills.AddSkill("Cryomancy_Hibernate",     source: "scenario:prebuy");
                 skills.AddSkill("Galvanism_Overload",      source: "scenario:prebuy");
+                // SPELLCRAFT SM3 — the Ground Surge family. Without
+                // these three lines the powers exist but the showcase
+                // cannot demonstrate them, which is the reachability
+                // trap in miniature.
+                skills.AddSkill("Galvanism_GroundSurge",   source: "scenario:prebuy");
+                skills.AddSkill("Galvanism_BacklashCoil",  source: "scenario:prebuy");
+                skills.AddSkill("Galvanism_RailSpike",     source: "scenario:prebuy");
             }
 
             // === Walk-through ===
             ctx.Log("=== Skill Tree Showcase (WSP8.3) ===");
             ctx.Log("Press X to open the skills screen.");
-            ctx.Log("Press M to open the ability manager (19 actives pre-bought).");
+            ctx.Log("Press M to open the ability manager (22 actives pre-bought).");
+            ctx.Log("NOTE: the hotbar has 10 slots and auto-binds the first 10 only,");
+            ctx.Log("so the later trees (incl. the new Galvanism actives) start UNBOUND.");
+            ctx.Log("Rebind from the M screen before trying the 1-9 keys on them.");
             ctx.Log("");
             ctx.Log("Inventory: 9 weapons covering every type.");
             ctx.Log("  Cudgel:      Mace [equipped], ThunderHammer (Lightning), DissolutionMaul (Acid)");
@@ -100,7 +110,7 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.Log("  LongBlades:  LongSword, FlamingSword (Fire), IceSword (Cold)");
             ctx.Log("  ShortBlades: Dagger, AcidicDagger (Acid)");
             ctx.Log("");
-            ctx.Log("Active abilities by tree (M to view, 1-9 to fire):");
+            ctx.Log("Active abilities by tree (M to view/rebind, 1-9 to fire if bound):");
             ctx.Log("  Cudgel:      Slam, Conk, ChargingStrike, GroundPound, Disarm");
             ctx.Log("  Axe:         Berserk, HookAndDrag, Whirlwind, RendArmor");
             ctx.Log("  LongBlades:  Lunge");
@@ -109,13 +119,17 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.Log("  Spellcraft:  ArcaneSurge, LeyTap");
             ctx.Log("  Pyromancy:   Pyroclasm, HeartFlame");
             ctx.Log("  Cryomancy:   Frostbind, Hibernate");
-            ctx.Log("  Galvanism:   Overload");
+            ctx.Log("  Galvanism:   Overload, GroundSurge, BacklashCoil, RailSpike");
             ctx.Log("");
             ctx.Log("Suggested experiments:");
             ctx.Log("  - FlamingSword + Lunge: range 2 swing, +30% Burning on-hit chance");
             ctx.Log("  - Battleaxe + Whirlwind: every 8-adjacent gets a strike");
             ctx.Log("  - AcidicDagger + Flurry: 3 strikes, each rolling Acidic on-hit");
             ctx.Log("  - LeyTap then any spell: HP drained + spell deals bonus damage");
+            ctx.Log("  - GroundSurge into a pack: damage, knockback, and 40% left Electrified");
+            ctx.Log("  - Surge to prime, THEN Overload: the chain only travels through conductors");
+            ctx.Log("  - BacklashCoil when surrounded: everyone thrown 2 clear, nobody primed");
+            ctx.Log("  - RailSpike down a rank: only the LAST body reached takes the charge");
             ctx.Log("  - Hibernate: 10T self-stasis with 5%/turn heal");
         }
     }

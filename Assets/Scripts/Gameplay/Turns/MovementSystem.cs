@@ -154,6 +154,61 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// Move an entity that is being moved BY SOMETHING ELSE — a
+        /// knockback, a shove, a pull. Runs the full post-move pipeline
+        /// (<c>AfterMove</c>, cell-entry, render dirtying) but does NOT
+        /// fire the vetoable <c>BeforeMove</c> event.
+        ///
+        /// <para><b>Why BeforeMove is skipped.</b> That event asks "may
+        /// this creature move itself?", and
+        /// <see cref="StatusEffectsPart.HandleBeforeMove"/> answers it
+        /// from <c>AllowMovement</c> — which Stunned clears. A stunned
+        /// creature cannot walk, but it can certainly be thrown, and
+        /// gating a shove on the victim's own ability to act would let
+        /// every knockback in the game be cancelled by the stun the same
+        /// attack just applied. <see cref="Cudgel_GroundPound"/> does
+        /// exactly that: stun, then push.</para>
+        ///
+        /// <para>Callers are responsible for deciding whether the
+        /// destination is legal (solid, occupied); this method only
+        /// bounds-checks. See
+        /// <c>SkillCombatHelpers.TryPush</c>.</para>
+        ///
+        /// <para>Whether an anchored creature (Rooted) should be able to
+        /// resist a shove is a live design question, deliberately NOT
+        /// decided here — answering it by reusing the voluntary-movement
+        /// veto would have silently roped in Stunned too.</para>
+        /// </summary>
+        public static bool ForceMoveTo(Entity entity, Zone zone, int x, int y)
+        {
+            if (entity == null || zone == null) return false;
+            if (!zone.InBounds(x, y)) return false;
+
+            var currentCell = zone.GetEntityCell(entity);
+            var targetCell = zone.GetCell(x, y);
+            if (targetCell == null) return false;
+
+            int oldX = currentCell?.X ?? -1;
+            int oldY = currentCell?.Y ?? -1;
+            if (!zone.MoveEntity(entity, x, y)) return false;
+
+            DirtyForMove(entity, oldX, oldY, x, y);
+
+            var afterMove = GameEvent.New("AfterMove");
+            afterMove.SetParameter("Actor", (object)entity);
+            afterMove.SetParameter("Cell", (object)targetCell);
+            afterMove.SetParameter("OldX", oldX);
+            afterMove.SetParameter("OldY", oldY);
+            afterMove.SetParameter("NewX", x);
+            afterMove.SetParameter("NewY", y);
+            afterMove.SetParameter("Forced", true);
+            entity.FireEventAndRelease(afterMove);
+
+            FireCellEnteredEvents(entity, currentCell, targetCell);
+            return true;
+        }
+
+        /// <summary>
         /// Notify the renderer that an entity moved. For the player, we
         /// upgrade to a full-zone dirty flag because FOV / lightmap changes
         /// when the player moves can flip visibility of arbitrary cells —
