@@ -94,12 +94,17 @@ namespace CavesOfOoo.Scenarios.Custom
                 skills.AddSkill("Galvanism_GroundSurge",   source: "scenario:prebuy");
                 skills.AddSkill("Galvanism_BacklashCoil",  source: "scenario:prebuy");
                 skills.AddSkill("Galvanism_RailSpike",     source: "scenario:prebuy");
+                // SPELLCRAFT SM4 — the Flame Jet family (first users of
+                // the cone shape).
+                skills.AddSkill("Pyromancy_FlameJet",      source: "scenario:prebuy");
+                skills.AddSkill("Pyromancy_EmberSpit",     source: "scenario:prebuy");
+                skills.AddSkill("Pyromancy_Backdraft",     source: "scenario:prebuy");
             }
 
             // === Walk-through ===
             ctx.Log("=== Skill Tree Showcase (WSP8.3) ===");
             ctx.Log("Press X to open the skills screen.");
-            ctx.Log("Press M to open the ability manager (22 actives pre-bought).");
+            ctx.Log("Press M to open the ability manager (25 actives pre-bought).");
             ctx.Log("NOTE: the hotbar has 10 slots and auto-binds the first 10 only,");
             ctx.Log("so the later trees (incl. the new Galvanism actives) start UNBOUND.");
             ctx.Log("Rebind from the M screen before trying the 1-9 keys on them.");
@@ -117,7 +122,7 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.Log("  ShortBlades: Shank, Flurry, Backstab, Disengage");
             ctx.Log("  Acrobatics:  Tumble, EvasiveRoll, Vault");
             ctx.Log("  Spellcraft:  ArcaneSurge, LeyTap");
-            ctx.Log("  Pyromancy:   Pyroclasm, HeartFlame");
+            ctx.Log("  Pyromancy:   Pyroclasm, HeartFlame, FlameJet, EmberSpit, Backdraft");
             ctx.Log("  Cryomancy:   Frostbind, Hibernate");
             ctx.Log("  Galvanism:   Overload, GroundSurge, BacklashCoil, RailSpike");
             ctx.Log("");
@@ -130,6 +135,9 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.Log("  - Surge to prime, THEN Overload: the chain only travels through conductors");
             ctx.Log("  - BacklashCoil when surrounded: everyone thrown 2 clear, nobody primed");
             ctx.Log("  - RailSpike down a rank: only the LAST body reached takes the charge");
+            ctx.Log("  - FlameJet into a clump: the cone catches targets a line would miss");
+            ctx.Log("  - Soak a target THEN FlameJet it: it steams instead of catching");
+            ctx.Log("  - Backdraft when something closes: burns AND shoves it back");
             ctx.Log("  - Hibernate: 10T self-stasis with 5%/turn heal");
         }
     }

@@ -667,7 +667,7 @@ namespace CavesOfOoo.Tests
         public void GroundSurge_ShovesEveryTargetInAPackedRank_NotJustTheFurthest()
         {
             // ADVERSARIAL REVIEW, CRITICAL (converged from 3 independent
-            // reviewers). GalvanismLine.Collect returns targets
+            // reviewers). SkillLine.Collect returns targets
             // NEAREST-first, and TryPush refuses a step into a cell that
             // holds another creature. Pushing in collection order means
             // every target except the last shoves into the body behind

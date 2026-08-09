@@ -4,8 +4,13 @@ using CavesOfOoo.Core;
 namespace CavesOfOoo.Skills
 {
     /// <summary>
-    /// Shared line-walk for the Galvanism actives that hit everything in
-    /// a direction rather than chaining through conductors.
+    /// Shared line-walk for the actives that hit everything in a
+    /// direction rather than chaining through conductors.
+    ///
+    /// <para>Named for the shape, not a tree: it started inside
+    /// Galvanism but SM4's <see cref="Pyromancy_EmberSpit"/> needs the
+    /// identical walk, and a tree-specific name would have every future
+    /// caller look like it was borrowing someone else's code.</para>
     ///
     /// <para>SPELLCRAFT SM3. <see cref="Galvanism_GroundSurge"/> and
     /// <see cref="Galvanism_RailSpike"/> need the identical walk —
@@ -26,7 +31,7 @@ namespace CavesOfOoo.Skills
     /// empty cells. Merging the two would mean a walk with a behaviour
     /// flag, which is harder to read than two honest walks.</para>
     /// </summary>
-    internal static class GalvanismLine
+    internal static class SkillLine
     {
         /// <summary>
         /// Every Creature in the <paramref name="range"/> cells ahead of

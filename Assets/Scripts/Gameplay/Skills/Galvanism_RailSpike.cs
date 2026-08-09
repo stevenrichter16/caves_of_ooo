@@ -64,7 +64,7 @@ namespace CavesOfOoo.Skills
             if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return; }
 
             bool blockedByWall;
-            var targets = GalvanismLine.Collect(
+            var targets = SkillLine.Collect(
                 ctx.Zone, actor, actorPos.x, actorPos.y, dx, dy, SPIKE_RANGE,
                 out blockedByWall);
 

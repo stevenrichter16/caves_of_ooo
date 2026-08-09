@@ -70,7 +70,7 @@ namespace CavesOfOoo.Skills
             // target mid-walk would move it into a cell the walk has not
             // reached yet and hit it a second time from one cast.
             bool blockedByWall;
-            var targets = GalvanismLine.Collect(
+            var targets = SkillLine.Collect(
                 ctx.Zone, actor, actorPos.x, actorPos.y, dx, dy, SURGE_RANGE,
                 out blockedByWall);
 
