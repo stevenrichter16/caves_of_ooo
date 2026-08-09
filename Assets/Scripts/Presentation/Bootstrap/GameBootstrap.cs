@@ -207,6 +207,10 @@ namespace CavesOfOoo
                 ConversationActions.Factory = _factory;
                 MaterialReactionResolver.Factory = _factory;
                 CorpsePart.Factory = _factory;
+                // LOOT OVERHAUL SM1: creatures resolve their starting
+                // gear at spawn — which is what makes them drop gear at
+                // death, through the (unchanged) existing drop path.
+                LoadoutPart.Factory = _factory;
                 LayRuneGoal.Factory = _factory;
                 AlchemyStillPart.Factory = _factory;
                 ForgePart.Factory = _factory;
@@ -847,6 +851,7 @@ namespace CavesOfOoo
             ConversationActions.Factory = _factory;
             MaterialReactionResolver.Factory = _factory;
             CorpsePart.Factory = _factory;
+            LoadoutPart.Factory = _factory;
             LayRuneGoal.Factory = _factory;
             AlchemyStillPart.Factory = _factory;
             ForgePart.Factory = _factory;

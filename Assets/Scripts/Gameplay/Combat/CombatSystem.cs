@@ -1245,8 +1245,16 @@ namespace CavesOfOoo.Core
             if (killer != null && killer.HasTag("Player"))
                 LevelingSystem.AwardKillXP(killer, target, zone);
 
-            // Drop equipment from body parts
-            if (zone != null)
+            // Drop equipment from body parts.
+            // LOOT OVERHAUL SM2 — Qud-parity guards. Qud gates the same
+            // spill on `NoDropOnDeath` + `IsTemporary` (Body.cs:3163,
+            // Inventory.cs:2634 in the decompile); CoO had NEITHER. It was
+            // harmless while no creature owned anything — the moment
+            // LoadoutPart shipped, a summoned or conjured creature would
+            // have become an infinite gear fountain.
+            bool suppressDrops = target.HasTag("NoDropOnDeath")
+                || target.HasTag("Temporary");
+            if (zone != null && !suppressDrops)
             {
                 var body = target.GetPart<Body>();
                 if (body != null)

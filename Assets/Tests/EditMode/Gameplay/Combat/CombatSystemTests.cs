@@ -517,6 +517,58 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void HandleDeath_NoDropOnDeathTag_SuppressesTheSpill()
+        {
+            // LOOT OVERHAUL SM2 — Qud-parity guard (Body.cs:3163 in the
+            // decompile). Harmless while creatures owned nothing; the
+            // moment LoadoutPart shipped, a summoned/temporary creature
+            // would have been an infinite gear fountain.
+            var zone = new Zone();
+            var creature = CreateCreature(16, 16, 30);
+            creature.AddPart(new InventoryPart { MaxWeight = 150 });
+            creature.Tags["NoDropOnDeath"] = "";
+            zone.AddEntity(creature, 6, 6);
+
+            var sword = new Entity { BlueprintName = "Sword" };
+            sword.AddPart(new PhysicsPart { Takeable = true, Weight = 5 });
+            sword.AddPart(new MeleeWeaponPart { BaseDamage = "1d8" });
+            sword.AddPart(new EquippablePart { Slot = "Hand" });
+            var inv = creature.GetPart<InventoryPart>();
+            inv.AddObject(sword);
+            InventorySystem.Equip(creature, sword);
+
+            CombatSystem.HandleDeath(creature, null, zone);
+
+            Assert.IsFalse(zone.GetCell(6, 6).Objects.Contains(sword),
+                "a NoDropOnDeath creature's gear vanishes with it");
+        }
+
+        [Test]
+        public void HandleDeath_WithoutTheTag_StillDrops()
+        {
+            // Counter-check for the guard above: identical setup minus
+            // the tag must still spill, or the guard could be inverted
+            // (or unconditional) and both tests would pass vacuously.
+            var zone = new Zone();
+            var creature = CreateCreature(16, 16, 30);
+            creature.AddPart(new InventoryPart { MaxWeight = 150 });
+            zone.AddEntity(creature, 7, 7);
+
+            var sword = new Entity { BlueprintName = "Sword" };
+            sword.AddPart(new PhysicsPart { Takeable = true, Weight = 5 });
+            sword.AddPart(new MeleeWeaponPart { BaseDamage = "1d8" });
+            sword.AddPart(new EquippablePart { Slot = "Hand" });
+            var inv = creature.GetPart<InventoryPart>();
+            inv.AddObject(sword);
+            InventorySystem.Equip(creature, sword);
+
+            CombatSystem.HandleDeath(creature, null, zone);
+
+            Assert.IsTrue(zone.GetCell(7, 7).Objects.Contains(sword),
+                "an ordinary creature still drops everything it owns");
+        }
+
+        [Test]
         public void HandleDeath_DropsCarriedItems()
         {
             var zone = new Zone();
