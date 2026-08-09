@@ -60,7 +60,7 @@ namespace CavesOfOoo.Tests
             var warlord = _factory.CreateEntity("SnapjawWarlord");
             Assert.IsNotNull(warlord);
             Assert.AreEqual(45, warlord.GetStat("Hitpoints").Value);
-            Assert.AreEqual(90, warlord.GetStat("XPValue").Value,
+            Assert.AreEqual(450 /* round-6 beta audit: tier-scaled XP (t3 x5, t2 x3) */, warlord.GetStat("XPValue").Value,
                 "a warband leader outpays its chieftain cousin (65)");
             Assert.AreEqual("Snapjaws", warlord.Tags["Faction"]);
             Assert.AreEqual("2d5", HandWeapon(warlord).BaseDamage, "WarlordCleaver");

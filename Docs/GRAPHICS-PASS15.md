@@ -382,6 +382,64 @@ OWN snake sprite (never water); clobber/incremental tests use
 SteamCloud as the spriteless '~' stand-in. Save restored after the
 live session.
 
+## Round 6 (2026-08-09) — vignette removed, mechanics surfaced, BETA hardening
+
+**VIGNETTE REMOVED (user call):** the Pass 1-3 volume vignette +
+biome-driven intensities read as a smudge over the sprite world.
+Deactivated at the volume override in bootstrap, palette intensities
+zeroed, pinned by `NoBiomeHasAVignette` (replacing the old
+stronger-than-baseline pin).
+
+**Buried mechanics surfaced (round-6 slice of the audit backlog):**
+- ParalyzedEffect finally has an inflictor — the giant spider's bite
+  (`Paralyzed,20,0,2,0`; factory case + test).
+- SteamEffect + the dead `ApplyStatusEffect` reaction type — dousing
+  a burning entity now wreathes it in working steam
+  (water_plus_fire.json row).
+- PushNoFightGoal pacification — Ego-gated "Stand down" choice on the
+  warden (30-turn truce).
+- Quest FAILURE lifecycle — TheCandyTax can now be refused
+  (FailQuest) with an IfQuestFailed aftermath line.
+- Knowledge tiers — the Innkeeper carries KnowledgePart; asking for
+  gossip Reveals `town_gossip:2`, unlocking a deeper gated line.
+- Exotic liquid pools — MemoryBathPool (one-shot resurrection,
+  RuinsTier3) + MirrorMucilagePool (damage reflect, JungleTier3).
+- **HouseVex drama authored** (agent-delegated, format-verified
+  against the runtime): 4 conversations (Theron/Nyla/Kess/Sael)
+  covering all 4 pressure points + witness facts — the drama seeded
+  into ~half of all villages can finally advance. Vex even guards
+  its hinge against double-advance (Thresker doesn't).
+
+**BETA HARDENING (23-agent audit: 17 confirmed, 19 candidates → 11
+fixed this round):**
+- 🔴 Turn-loop softlock amplifier: try/catch + ForceYieldToPlayer —
+  a buggy NPC turn now costs a turn, not the session.
+- 🔴 SaveSlot exception guard (mirrors LoadSlot); Boot-menu Continue
+  honors load failure (no more silent new-game over a corrupt save).
+- 🔴 Gold coins ARE money now: pickup converts to drams (5/coin) —
+  the dungeon '$' loop finally pays.
+- 🔴 XP grants tier-scale (t2 ×3, t3 ×5, 35 creatures) — the cubic
+  level curve stays climbable past level 5.
+- 🔴 Silent-failure feedback: strength-gated pickups say why; quest
+  objectives/stages announce themselves; trade failures show ON the
+  trade screen (log is hidden behind it); "nothing here to pick up."
+- First-session autosave at bootstrap (death before the first zone
+  transition no longer loses everything); 4th candy citizen
+  (one death can't wedge TheCandyTax); HealingTonic 4d4→4d6+4;
+  dead NRE lambda deleted from FindNextActor; ActionMenu debug spam
+  removed.
+- **Deferred (documented):** hostile-quest-NPC death auto-fail
+  (pairs with the new FailQuest), rest LOS gate, half-applied-load
+  recovery copy, GasMask equip-routing.
+
+Stale pins superseded by design changes were updated with citations
+(5 XP pins, vignette pin, candy-citizen count).
+
+Tests 5957 → 5958. All green. Process note: the compile-pump
+deadlock hit twice more; editor restart remains the cure, and the
+MCP server needed a manual relaunch (memory updated earlier covers
+both).
+
 | # | Defect | Fix |
 |---|---|---|
 | R1 | `LoadSprites` is `#if UNITY_EDITOR` + `AssetDatabase` — null in any build, assets strippable | Move PNGs to `Assets/Resources/Sprites/Environment/`, load via `Resources.Load`; keep paths in one manifest |

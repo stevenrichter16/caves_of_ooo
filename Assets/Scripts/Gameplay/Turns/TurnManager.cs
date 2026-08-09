@@ -84,6 +84,19 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool WaitingForInput { get; private set; }
 
+        /// <summary>
+        /// BETA AUDIT 🔴 recovery hatch — if an exception escapes the
+        /// turn pipeline mid-processing, WaitingForInput is stuck
+        /// false and ALL input dies silently (the audit's #1 finding:
+        /// every latent turn-loop bug amplified into a session-killing
+        /// freeze). InputHandler's catch calls this so a buggy NPC
+        /// turn costs one turn, not the session.
+        /// </summary>
+        public void ForceYieldToPlayer()
+        {
+            WaitingForInput = true;
+        }
+
         private class TurnEntry
         {
             public Entity Entity;
@@ -421,7 +434,9 @@ namespace CavesOfOoo.Core
         {
             TurnEntry best = null;
             int bestEnergy = ActionThreshold - 1;
-            var you = _entries.Find(entry => entry.Entity.GetPart<RenderPart>().DisplayName == "you") ?? null;
+            // (Beta audit #9: a dead `you` lookup here NRE'd on any
+            // queue entity without a RenderPart and allocated a
+            // closure per call — deleted.)
 
             for (int i = 0; i < _entries.Count; i++)
             {

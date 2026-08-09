@@ -66,7 +66,15 @@ namespace CavesOfOoo.Rendering
                     return;  // stay active so the user can pick N
                 }
 
-                service.QuickLoad();
+                // BETA AUDIT 🔴 #3 — Continue ignored the load result:
+                // a corrupted save silently dropped the player into a
+                // fresh game (and the next autosave would overwrite
+                // their real save). Stay on the menu and say so.
+                if (!service.QuickLoad())
+                {
+                    log?.Invoke("Load failed — the save may be corrupted. Press [N] for a new game.");
+                    return;
+                }
                 IsActive = false;
                 return;
             }

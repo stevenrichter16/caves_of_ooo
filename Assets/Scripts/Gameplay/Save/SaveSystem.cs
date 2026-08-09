@@ -522,26 +522,40 @@ namespace CavesOfOoo.Core
                 state.GameID = _activeGameID;
             _activeGameID = state.GameID;
 
-            string savePath = GetSavePath(name, state.GameID);
-            string metadataPath = GetMetadataPath(name, state.GameID);
-            Directory.CreateDirectory(Path.GetDirectoryName(savePath));
-
-            WriteSaveAtomically(savePath, stream =>
+            // BETA AUDIT 🔴 #2 — the save side had NO exception
+            // handling while LoadSlot did (asymmetric): a disk-full /
+            // cloud-sync-lock IOException or a Part serialization bug
+            // threw INTO the input loop, and the callers' "Save
+            // failed" messages (keyed off the bool) were unreachable
+            // dead code. Mirror LoadSlot: catch, log, return false.
+            try
             {
-                using (var gzip = new GZipStream(stream, CompressionMode.Compress, leaveOpen: true))
+                string savePath = GetSavePath(name, state.GameID);
+                string metadataPath = GetMetadataPath(name, state.GameID);
+                Directory.CreateDirectory(Path.GetDirectoryName(savePath));
+
+                WriteSaveAtomically(savePath, stream =>
                 {
-                    var writer = new SaveWriter(gzip);
-                    state.Save(writer);
-                }
-            });
+                    using (var gzip = new GZipStream(stream, CompressionMode.Compress, leaveOpen: true))
+                    {
+                        var writer = new SaveWriter(gzip);
+                        state.Save(writer);
+                    }
+                });
 
-            WriteTextAtomically(metadataPath, JsonUtility.ToJson(state.CreateInfo(), prettyPrint: true));
+                WriteTextAtomically(metadataPath, JsonUtility.ToJson(state.CreateInfo(), prettyPrint: true));
 
-            // ALPHA save-lifeline: remember where we saved so the next
-            // boot rediscovers this game without a directory scan.
-            PlayerPrefs.SetString(LastGameIDPrefsKey, state.GameID);
-            PlayerPrefs.Save();
-            return true;
+                // ALPHA save-lifeline: remember where we saved so the next
+                // boot rediscovers this game without a directory scan.
+                PlayerPrefs.SetString(LastGameIDPrefsKey, state.GameID);
+                PlayerPrefs.Save();
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"[Save] Save of slot '{name}' failed: {ex}");
+                return false;
+            }
         }
 
         public static bool LoadSlot(string name)

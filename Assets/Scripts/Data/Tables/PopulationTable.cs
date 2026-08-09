@@ -304,6 +304,8 @@ namespace CavesOfOoo.Data
                 Name = "JungleTier3",
                 Entries = new List<PopulationEntry>
                 {
+                    // Round 6 — buried-mechanic surfacing: exotic liquid
+                    new PopulationEntry { BlueprintName = "MirrorMucilagePool", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "JungleApe", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "GiantSpider", Weight = 3, MinCount = 2, MaxCount = 4 },
                     new PopulationEntry { BlueprintName = "Viper", Weight = 3, MinCount = 1, MaxCount = 3 },
@@ -324,6 +326,8 @@ namespace CavesOfOoo.Data
                 Name = "RuinsTier3",
                 Entries = new List<PopulationEntry>
                 {
+                    // Round 6 — buried-mechanic surfacing: exotic liquid
+                    new PopulationEntry { BlueprintName = "MemoryBathPool", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "SkeletalSentry", Weight = 4, MinCount = 2, MaxCount = 4 },
                     new PopulationEntry { BlueprintName = "StoneGolem", Weight = 2, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "CharredHusk", Weight = 3, MinCount = 1, MaxCount = 2 },

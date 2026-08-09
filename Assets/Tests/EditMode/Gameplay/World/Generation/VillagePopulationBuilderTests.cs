@@ -171,7 +171,7 @@ namespace CavesOfOoo.Tests
                 var convo = e.GetPart<ConversationPart>();
                 if (convo != null && convo.ConversationID == "CandyCitizen") citizens++;
             }
-            Assert.AreEqual(3, citizens,
+            Assert.AreEqual(4 /* round-6 beta audit #13: 4 spawned, threshold stays 3 */, citizens,
                 "exactly 3 candy citizens (shared CandyCitizen convo) so IfFact:candy_taxes_collected:>=:3 is winnable");
         }
 

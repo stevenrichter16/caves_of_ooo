@@ -58,7 +58,7 @@ namespace CavesOfOoo.Tests
             var sentinel = _factory.CreateEntity("VaultSentinel");
             Assert.IsNotNull(sentinel);
             Assert.AreEqual(60, sentinel.GetStat("Hitpoints").Value);
-            Assert.AreEqual(110, sentinel.GetStat("XPValue").Value);
+            Assert.AreEqual(550 /* round-6 beta audit: tier-scaled XP (t3 x5, t2 x3) */, sentinel.GetStat("XPValue").Value);
             Assert.AreEqual("2d6", HandWeapon(sentinel).BaseDamage, "SentinelHalberd");
         }
 

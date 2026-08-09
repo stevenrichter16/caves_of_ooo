@@ -41,7 +41,9 @@ namespace CavesOfOoo.Core.Anatomy
                 case "WurmBite":
                     return CreateWeapon("maw", "2d6+1", 1, "&y", "Piercing Cutting Animal");
                 case "SpiderBite":
-                    return CreateWeapon("fangs", "1d4", 0, "&g", "Piercing Animal", "Poisoned,35,1d4,6,0");
+                    // Round 6 — audit-surfaced: ParalyzedEffect finally
+                    // has an inflictor (spiders paralyze prey).
+                    return CreateWeapon("fangs", "1d4", 0, "&g", "Piercing Animal", "Poisoned,35,1d4,6,0;Paralyzed,20,0,2,0");
                 case "ViperBite":
                     return CreateWeapon("fangs", "1d3", 1, "&G", "Piercing Animal", "Poisoned,75,1d6,8,0");
                 case "ApeFist":

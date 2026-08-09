@@ -1143,7 +1143,7 @@ namespace CavesOfOoo.Core
             var r = giver.GetPart<RenderPart>();
             if (r != null) { r.DisplayName = "Peppermint Butler"; r.RenderString = "P"; r.ColorString = "&W"; }
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)  // BETA AUDIT #13: 4 citizens, threshold stays 3 — one death no longer wedges the quest
             {
                 Entity citizen = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, "Villager", settlementId);
                 if (citizen == null) return;

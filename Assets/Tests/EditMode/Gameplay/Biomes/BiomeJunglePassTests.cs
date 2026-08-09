@@ -67,7 +67,7 @@ namespace CavesOfOoo.Tests
             var strangler = _factory.CreateEntity("CanopyStrangler");
             Assert.IsNotNull(strangler);
             Assert.AreEqual(40, strangler.GetStat("Hitpoints").Value);
-            Assert.AreEqual(80, strangler.GetStat("XPValue").Value);
+            Assert.AreEqual(400 /* round-6 beta audit: tier-scaled XP (t3 x5, t2 x3) */, strangler.GetStat("XPValue").Value);
             Assert.IsNotNull(strangler.GetPart<AIAmbushPart>(), "waits in the canopy");
             Assert.AreEqual("2d4", HandWeapon(strangler).BaseDamage, "StranglerLash");
         }

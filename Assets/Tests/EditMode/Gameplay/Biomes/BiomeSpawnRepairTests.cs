@@ -153,13 +153,14 @@ namespace CavesOfOoo.Tests
         [Test]
         public void BossXP_ScalesAboveTheirMinions()
         {
-            // Tier-2 lair bosses land at 65 (above SnapjawHunter's 40),
-            // the tier-3 boss at 100 (above non-boss ChoirTendril's 70).
-            // Chieftain previously INHERITED Snapjaw's 15.
-            Assert.AreEqual(65, XpOf("SnapjawChieftain"), "chieftain");
-            Assert.AreEqual(65, XpOf("DesertProwler"), "prowler");
-            Assert.AreEqual(65, XpOf("JungleStalker"), "stalker");
-            Assert.AreEqual(100, XpOf("AncientGuardian"), "guardian");
+            // Round-6 beta audit: XP grants tier-scale (t2 x3, t3 x5)
+            // so the cubic level curve stays climbable. Tier-2 lair
+            // bosses land at 195 (above SnapjawHunter's 120), the
+            // tier-3 boss at 500 (above non-boss ChoirTendril's 350).
+            Assert.AreEqual(195, XpOf("SnapjawChieftain"), "chieftain");
+            Assert.AreEqual(195, XpOf("DesertProwler"), "prowler");
+            Assert.AreEqual(195, XpOf("JungleStalker"), "stalker");
+            Assert.AreEqual(500, XpOf("AncientGuardian"), "guardian");
         }
 
         [Test]
@@ -168,8 +169,8 @@ namespace CavesOfOoo.Tests
             // Counter-check: the boss retune must not drift the rank
             // and file that AlphaCombatStakesTests already pinned.
             Assert.AreEqual(15, XpOf("Snapjaw"));
-            Assert.AreEqual(40, XpOf("SnapjawHunter"));
-            Assert.AreEqual(70, XpOf("ChoirTendril"));
+            Assert.AreEqual(120 /* round-6: t2 x3 scaling */, XpOf("SnapjawHunter"));
+            Assert.AreEqual(350 /* round-6: tier-scaled XP */, XpOf("ChoirTendril"));
         }
 
         // ── 4. The five 1d2-fist hostiles get real weapons ───────

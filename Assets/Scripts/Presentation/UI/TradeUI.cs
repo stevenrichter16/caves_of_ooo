@@ -225,6 +225,7 @@ namespace CavesOfOoo.Rendering
 
         private void SetCursor(int index)
         {
+            _statusMessage = null; // stale failure text clears on move
             if (_panel == 0)
             {
                 _leftCursor = index;
@@ -331,17 +332,27 @@ namespace CavesOfOoo.Rendering
             Render();
         }
 
+        // BETA AUDIT 🔴 #8 — TradeSystem's failure messages go to the
+        // MESSAGE LOG, which is invisible behind this fullscreen UI:
+        // a failed buy looked like a dead Enter key. Mirror
+        // PickupUI._statusMessage: capture the result, show the reason
+        // on the trade screen itself.
+        private string _statusMessage;
+
         private void ExecuteTrade()
         {
+            bool ok;
             if (_panel == 0)
             {
                 if (_leftRows.Count == 0) return;
-                TradeSystem.BuyFromTrader(PlayerEntity, _trader, _leftRows[_leftCursor].Item);
+                ok = TradeSystem.BuyFromTrader(PlayerEntity, _trader, _leftRows[_leftCursor].Item);
+                _statusMessage = ok ? null : "You can't afford that.";
             }
             else
             {
                 if (_rightRows.Count == 0) return;
-                TradeSystem.SellToTrader(PlayerEntity, _trader, _rightRows[_rightCursor].Item);
+                ok = TradeSystem.SellToTrader(PlayerEntity, _trader, _rightRows[_rightCursor].Item);
+                _statusMessage = ok ? null : "The trader can't afford that.";
             }
             Rebuild();
             Render();
@@ -455,11 +466,19 @@ namespace CavesOfOoo.Rendering
                 // Row 43: detail line for selected item
                 RenderDetailLine();
 
-                // Row 44: action bar
-                string actionBar = _panel == 0
-                    ? " [Enter]buy  [Tab]sell panel  [Esc]close"
-                    : " [Enter]sell  [Tab]buy panel  [Esc]close";
-                DrawText(0, H - 1, actionBar, QudColorParser.DarkGray);
+                // Row 44: action bar — or the trade-failure reason
+                // (audit #8: log messages are invisible behind this UI).
+                if (!string.IsNullOrEmpty(_statusMessage))
+                {
+                    DrawText(0, H - 1, " " + _statusMessage, QudColorParser.BrightRed);
+                }
+                else
+                {
+                    string actionBar = _panel == 0
+                        ? " [Enter]buy  [Tab]sell panel  [Esc]close"
+                        : " [Enter]sell  [Tab]buy panel  [Esc]close";
+                    DrawText(0, H - 1, actionBar, QudColorParser.DarkGray);
+                }
 
                 // Confirmation popup overlay
                 if (_confirmActive)

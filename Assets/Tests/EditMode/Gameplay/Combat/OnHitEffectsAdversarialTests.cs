@@ -331,6 +331,26 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void Factory_Paralyzed_CreatesParalyzedEffect()
+        {
+            // Round 6 — audit-surfaced inflictor: "Paralyzed,20,0,2,0"
+            // (the giant spider's bite). Pre-round-6 this name fell to
+            // the unknown-effect null path and the effect was
+            // unreachable for the game's whole life.
+            var spec = new OnHitEffectSpec
+            {
+                EffectName = "Paralyzed",
+                ChancePercent = 100,
+                DurationTurns = 2,
+            };
+            var e = OnHitEffectFactory.Create(spec, null, new Random(0));
+            Assert.IsInstanceOf<ParalyzedEffect>(e,
+                "the paralytic finally has a factory route");
+            Assert.AreEqual(2, ((ParalyzedEffect)e).Duration,
+                "spec duration is honored");
+        }
+
+        [Test]
         public void Adversarial_Factory_EmptyEffectName_ReturnsNull()
         {
             var spec = new OnHitEffectSpec { EffectName = "", ChancePercent = 100 };

@@ -328,6 +328,8 @@ namespace CavesOfOoo.Storylets
             int oldIndex = state.CurrentStageIndex;
             state.CurrentStageIndex = newIndex;
             state.EnteredStageAtTurn = currentTurn;
+            // BETA AUDIT 🔴 #7 — stage advancement was silent too.
+            MessageLog.Add($"Quest updated: {DisplayNameFor(questId)}.");
             // Q3: objectives are scoped to their stage — the new stage
             // starts with none finished.
             state.FinishedObjectives.Clear();
@@ -377,6 +379,12 @@ namespace CavesOfOoo.Storylets
 
             if (!state.FinishedObjectives.Add(objectiveId))
             { EmitQuestRejected("FinishObjective", "already_finished", questId, objectiveId, actor); return false; }
+
+            // BETA AUDIT 🔴 #7 — objective completion was completely
+            // SILENT; the player had no idea progress happened.
+            MessageLog.Add(string.IsNullOrEmpty(obj.Text)
+                ? "Objective complete."
+                : $"Objective complete: {obj.Text}");
 
             // Per-objective effects (Qud per-step reward parity). Player is
             // the listener so AwardXP/GiveDrams/GiveItem target the player.

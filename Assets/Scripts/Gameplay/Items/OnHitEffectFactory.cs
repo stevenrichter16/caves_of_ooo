@@ -65,6 +65,16 @@ namespace CavesOfOoo.Core
                         duration: spec.DurationTurns > 0 ? spec.DurationTurns : 5,
                         damageDice: string.IsNullOrWhiteSpace(spec.DamageDice) ? "1d3" : spec.DamageDice);
 
+                case "paralyzed":
+                case "paralyze":
+                    // Round 6 — audit-surfaced: ParalyzedEffect was fully
+                    // implemented (action-block + DV penalty + describer
+                    // entry) but NOTHING could inflict it. First
+                    // inflictor: the giant spider's bite
+                    // ("Paralyzed,20,0,2,0" in NaturalWeaponFactory).
+                    return new ParalyzedEffect(
+                        duration: spec.DurationTurns > 0 ? spec.DurationTurns : 2);
+
                 case "stunned":
                 case "stun":
                     // Use Magnitude as the save-target DC, mirroring the

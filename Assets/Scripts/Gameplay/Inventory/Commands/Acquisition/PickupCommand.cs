@@ -75,6 +75,21 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var zone = context.Zone;
             var inventory = context.Inventory;
 
+            // BETA AUDIT 🔴 #4 — gold coins were inventory clutter with
+            // no economic value (shops trade in Drams): the entire
+            // dungeon '$' reward loop was dead. Treat gold as MONEY:
+            // convert to drams at pickup, 5 drams per coin.
+            if (_item.BlueprintName == "GoldCoin")
+            {
+                int coins = _item.GetPart<CavesOfOoo.Core.StackerPart>()?.StackCount ?? 1;
+                if (coins < 1) coins = 1;
+                int drams = coins * 5;
+                TradeSystem.SetDrams(actor, TradeSystem.GetDrams(actor) + drams);
+                zone.RemoveEntity(_item);
+                MessageLog.Add($"You pocket {coins} gold ({drams} drams).");
+                return InventoryCommandResult.Ok();
+            }
+
             if (!HandlingService.CanLift(actor, _item, out string liftFailure))
             {
                 MessageLog.Add(liftFailure);

@@ -8,8 +8,21 @@
         "MinMoisture": 0.3
       },
       "Effects": [
-        { "Type": "ModifyBurnIntensity", "FloatValue": -1.0, "StringValue": "" },
-        { "Type": "SpawnEntity", "FloatValue": 0.0, "StringValue": "SteamCloud" }
+        {
+          "Type": "ModifyBurnIntensity",
+          "FloatValue": -1.0,
+          "StringValue": ""
+        },
+        {
+          "Type": "SpawnEntity",
+          "FloatValue": 0.0,
+          "StringValue": "SteamCloud"
+        },
+        {
+          "Type": "ApplyStatusEffect",
+          "FloatValue": 0.8,
+          "StringValue": "SteamEffect"
+        }
       ]
     }
   ]

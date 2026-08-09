@@ -78,27 +78,27 @@ namespace CavesOfOoo.Presentation.Rendering
             colorFilter: new Color(1.05f, 0.88f, 0.70f, 1f),
             contrast: -5f,
             saturation: -10f,
-            vignetteIntensity: 0.47f /* base 0.32 + 0.15 boost */);
+            vignetteIntensity: 0f /* round 6: vignette removed (user call) */);
 
         public static readonly BiomePalette Desert = new BiomePalette(
             BiomeType.Desert,
             colorFilter: new Color(1.10f, 1.05f, 0.85f, 1f),
             contrast: 12f,
             saturation: 15f,
-            vignetteIntensity: 0.32f /* base — no boost */);
+            vignetteIntensity: 0f /* round 6: vignette removed (user call) */);
 
         public static readonly BiomePalette Jungle = new BiomePalette(
             BiomeType.Jungle,
             colorFilter: new Color(0.85f, 1.05f, 0.90f, 1f),
             contrast: 5f,
             saturation: 12f,
-            vignetteIntensity: 0.32f);
+            vignetteIntensity: 0f /* round 6: vignette removed (user call) */);
 
         public static readonly BiomePalette Ruins = new BiomePalette(
             BiomeType.Ruins,
             colorFilter: new Color(0.95f, 0.95f, 1.00f, 1f),
             contrast: -8f,
             saturation: -25f,
-            vignetteIntensity: 0.47f);
+            vignetteIntensity: 0f /* round 6: vignette removed (user call) */);
     }
 }

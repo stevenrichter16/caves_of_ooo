@@ -852,8 +852,23 @@ namespace CavesOfOoo.Rendering
 
         private void EndTurnAndProcess()
         {
-            TurnManager.EndTurn(PlayerEntity, CurrentZone);
-            TurnManager.ProcessUntilPlayerTurn();
+            // BETA AUDIT 🔴 #1 — before this guard, ANY exception in
+            // the turn pipeline (an NPC goal, an effect tick, a combat
+            // handler) escaped to Unity's frame loop with
+            // WaitingForInput stuck false: every key dead, no message,
+            // no recovery — the single worst first-playtester bounce
+            // in the codebase. Now one buggy NPC turn costs a turn.
+            try
+            {
+                TurnManager.EndTurn(PlayerEntity, CurrentZone);
+                TurnManager.ProcessUntilPlayerTurn();
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"[Turn] Exception during turn processing (recovered): {ex}");
+                MessageLog.Add("Something went wrong this turn — it was skipped.");
+                TurnManager.ForceYieldToPlayer();
+            }
             MaterialSimSystem.TickMaterialEntities(CurrentZone);
             // No `RequestZoneRedraw("Turn.Advance")` — the per-cell dirty
             // hooks (MovementSystem, CombatSystem) flag exactly the cells
@@ -1291,7 +1306,8 @@ namespace CavesOfOoo.Rendering
                 var containers = InventorySystem.GetContainersAtFeet(PlayerEntity, CurrentZone);
                 if (containers.Count == 0)
                 {
-                    Debug.Log("[Inventory] Nothing to pick up here.");
+                    // BETA AUDIT #16 — feedback belongs in the GAME log.
+                    MessageLog.Add("There is nothing here to pick up.");
                 }
                 else
                 {
@@ -1344,6 +1360,12 @@ namespace CavesOfOoo.Rendering
             if (result.Success)
                 return true;
 
+            // BETA AUDIT #6 — a strength-gated pickup was a SILENT
+            // no-op (the reason only went to the editor console). The
+            // player must see WHY the G key did nothing.
+            MessageLog.Add(string.IsNullOrEmpty(result.ErrorMessage)
+                ? "You can't pick that up."
+                : result.ErrorMessage);
             Debug.LogWarning(
                 "[Inventory/Refactor] Pickup command failed. " +
                 $"Code={result.ErrorCode}, Message={result.ErrorMessage}");
@@ -1751,10 +1773,6 @@ namespace CavesOfOoo.Rendering
                 int clickX = -1, clickY = -1;
                 bool screenResolved = ZoneRenderer != null &&
                     ZoneRenderer.ScreenToZoneCell(Input.mousePosition, Camera.main, out clickX, out clickY);
-                UnityEngine.Debug.Log($"[ActionMenu:lookclick] ZoneRenderer={(ZoneRenderer != null)} " +
-                    $"screenResolved={screenResolved}" +
-                    (screenResolved ? $" -> ({clickX},{clickY})" : ""));
-
                 if (screenResolved)
                 {
                     _worldCursorState.SetPosition(clickX, clickY);
@@ -2167,22 +2185,16 @@ namespace CavesOfOoo.Rendering
         private void OpenWorldActionMenu(int tileX, int tileY)
         {
             // DIAG [Phase4d] — trace every decision branch.
-            UnityEngine.Debug.Log($"[ActionMenu:open] entry ({tileX},{tileY}) " +
-                $"UI={(WorldActionMenuUI != null ? "set" : "NULL")}");
-
             if (WorldActionMenuUI == null) return;
 
             Cell cell = CurrentZone?.GetCell(tileX, tileY);
             if (cell == null)
             {
-                UnityEngine.Debug.Log("[ActionMenu:open] BAIL: null cell");
                 MessageLog.Add("There's nothing there.");
                 return;
             }
 
             Entity target = WorldInteractionSystem.ResolveTarget(cell);
-            UnityEngine.Debug.Log($"[ActionMenu:open] cell.Objects.Count={cell.Objects.Count} " +
-                $"target={(target != null ? target.BlueprintName : "NULL")}");
             if (target == null)
             {
                 MessageLog.Add(WorldInteractionSystem.DescribeCell(cell));

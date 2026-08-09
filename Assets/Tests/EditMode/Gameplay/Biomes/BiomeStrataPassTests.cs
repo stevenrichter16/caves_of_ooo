@@ -59,7 +59,7 @@ namespace CavesOfOoo.Tests
             Assert.IsNotNull(stalker);
             Assert.AreEqual(50, stalker.GetStat("Hitpoints").Value);
             Assert.AreEqual(115, stalker.GetStat("Speed").Value);
-            Assert.AreEqual(120, stalker.GetStat("XPValue").Value);
+            Assert.AreEqual(600 /* round-6: tier-scaled XP */, stalker.GetStat("XPValue").Value);
             Assert.AreEqual("2d5", HandWeapon(stalker).BaseDamage, "StalkerTalon");
         }
 
@@ -69,7 +69,7 @@ namespace CavesOfOoo.Tests
             var brute = _factory.CreateEntity("ObsidianBrute");
             Assert.IsNotNull(brute);
             Assert.AreEqual(80, brute.GetStat("Hitpoints").Value);
-            Assert.AreEqual(160, brute.GetStat("XPValue").Value);
+            Assert.AreEqual(800 /* round-6: tier-scaled XP */, brute.GetStat("XPValue").Value);
             Assert.AreEqual("3d6", HandWeapon(brute).BaseDamage, "ObsidianFist");
             Assert.AreEqual("GlowQuartz", brute.GetPart<CorpsePart>().HarvestBlueprint,
                 "quartz in its bones — same butchery rule as the golem");

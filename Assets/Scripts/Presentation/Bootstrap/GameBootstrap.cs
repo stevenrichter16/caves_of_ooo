@@ -441,6 +441,22 @@ namespace CavesOfOoo
                         // pixel-art sprites instead of CP437 glyphs).
                         if (GetComponent<CavesOfOoo.Presentation.Effects.SpriteEnvToggleController>() == null)
                             gameObject.AddComponent<CavesOfOoo.Presentation.Effects.SpriteEnvToggleController>();
+
+                        // Round 6 (user call, 2026-08-09): NO VIGNETTE.
+                        // The Pass 1-3 volume profile ships a Vignette
+                        // override and the biome patcher used to drive
+                        // its intensity — the darkened screen corners
+                        // read as a smudge over the sprite world.
+                        // Deactivate the override on every volume;
+                        // writes to an inactive override are no-ops, so
+                        // the patcher needs no further guard.
+                        foreach (var v in UnityEngine.Object.FindObjectsByType<UnityEngine.Rendering.Volume>(
+                            FindObjectsInactive.Include, FindObjectsSortMode.None))
+                        {
+                            if (v.profile != null
+                                && v.profile.TryGet<UnityEngine.Rendering.Universal.Vignette>(out var vig))
+                                vig.active = false;
+                        }
                     }
                     else
                     {
@@ -640,6 +656,17 @@ namespace CavesOfOoo
                 if (inputHandlerForBoot != null)
                 {
                     inputHandlerForBoot.TryActivateBootMenu(SaveGameService.HasQuickSave());
+                }
+
+                // BETA AUDIT #10 — no autosave existed until the first
+                // zone transition: a first-session death in the starting
+                // town lost EVERYTHING. Seed one immediately for fresh
+                // games (when a save exists, the boot menu handles it —
+                // and Continue loads over this harmlessly).
+                if (!SaveGameService.HasQuickSave())
+                {
+                    if (!SaveGameService.QuickSave())
+                        Debug.LogWarning("[Bootstrap] Initial autosave failed (see earlier [Save] error).");
                 }
 
                 // ALPHA onboarding SM1: the game used to open in total

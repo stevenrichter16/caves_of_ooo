@@ -10,44 +10,78 @@
             {
               "Text": "What happened to the watch lantern?",
               "Target": "LanternTrouble",
-              "Predicates": [{ "Key": "IfSettlementSiteStage", "Value": "VillageLantern:Fouled" }]
+              "Predicates": [
+                {
+                  "Key": "IfSettlementSiteStage",
+                  "Value": "VillageLantern:Fouled"
+                }
+              ]
             },
             {
               "Text": "I know a rite that can relight the lantern.",
               "Target": "KindleRite",
               "Predicates": [
-                { "Key": "IfHaveProperty", "Value": "KnowsKindleRite" },
-                { "Key": "IfSettlementSiteStage", "Value": "VillageLantern:Fouled" }
+                {
+                  "Key": "IfHaveProperty",
+                  "Value": "KnowsKindleRite"
+                },
+                {
+                  "Key": "IfSettlementSiteStage",
+                  "Value": "VillageLantern:Fouled"
+                }
               ]
             },
             {
               "Text": "I can rekindle the lantern again.",
               "Target": "KindleRite",
               "Predicates": [
-                { "Key": "IfHaveProperty", "Value": "KnowsKindleRite" },
-                { "Key": "IfSettlementSiteStage", "Value": "VillageLantern:TemporarilyPurified" }
+                {
+                  "Key": "IfHaveProperty",
+                  "Value": "KnowsKindleRite"
+                },
+                {
+                  "Key": "IfSettlementSiteStage",
+                  "Value": "VillageLantern:TemporarilyPurified"
+                }
               ]
             },
             {
               "Text": "I have the oil recipe and ward oil to reforge the lantern properly.",
               "Target": "LanternReforge",
               "Predicates": [
-                { "Key": "IfHaveItem", "Value": "LanternOilRecipe" },
-                { "Key": "IfHaveItem", "Value": "WardOil" }
+                {
+                  "Key": "IfHaveItem",
+                  "Value": "LanternOilRecipe"
+                },
+                {
+                  "Key": "IfHaveItem",
+                  "Value": "WardOil"
+                }
               ]
             },
             {
               "Text": "Let me teach you how to maintain the lantern yourself.",
               "Target": "TeachWarden",
               "Predicates": [
-                { "Key": "IfSettlementSiteStage", "Value": "VillageLantern:StableRepair" },
-                { "Key": "IfHaveItemWithTag", "Value": "GrimoireCopy" }
+                {
+                  "Key": "IfSettlementSiteStage",
+                  "Value": "VillageLantern:StableRepair"
+                },
+                {
+                  "Key": "IfHaveItemWithTag",
+                  "Value": "GrimoireCopy"
+                }
               ]
             },
             {
               "Text": "How's the lantern these days?",
               "Target": "LanternGood",
-              "Predicates": [{ "Key": "IfSettlementSiteStage", "Value": "VillageLantern:ImprovedWithCaretaker" }]
+              "Predicates": [
+                {
+                  "Key": "IfSettlementSiteStage",
+                  "Value": "VillageLantern:ImprovedWithCaretaker"
+                }
+              ]
             },
             {
               "Text": "Are there any threats nearby?",
@@ -56,12 +90,28 @@
             {
               "Text": "Farewell.",
               "Target": "End"
+            },
+            {
+              "Text": "[Ego] Stand down, warden. This doesn't have to end in blood.",
+              "Target": "StandDown",
+              "Predicates": [
+                {
+                  "Key": "IfStatAtLeast",
+                  "Value": "Ego:16"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "PushNoFightGoal",
+                  "Value": "30"
+                }
+              ]
             }
           ]
         },
         {
           "ID": "LanternTrouble",
-          "Text": "The ward oil ran dry three weeks back. Without it the flame won't catch — it's not ordinary oil, it's mixed with cave-moss extract and something the old warden called 'bright salt.' The lantern kept the night creatures at a distance. Now they circle closer every evening.",
+          "Text": "The ward oil ran dry three weeks back. Without it the flame won't catch \u2014 it's not ordinary oil, it's mixed with cave-moss extract and something the old warden called 'bright salt.' The lantern kept the night creatures at a distance. Now they circle closer every evening.",
           "Choices": [
             {
               "Text": "The elder might know where to find a recipe.",
@@ -80,7 +130,12 @@
             {
               "Text": "I'll kindle it now.",
               "Target": "AfterKindle",
-              "Actions": [{ "Key": "ResolveSettlementSite", "Value": "VillageLantern:KindleRite" }]
+              "Actions": [
+                {
+                  "Key": "ResolveSettlementSite",
+                  "Value": "VillageLantern:KindleRite"
+                }
+              ]
             },
             {
               "Text": "Not yet.",
@@ -90,7 +145,7 @@
         },
         {
           "ID": "AfterKindle",
-          "Text": "Light! Faint, but light. I can see the tree line again. It won't last — I can tell by how the flame leans — but it's more than we've had in weeks. Thank you.",
+          "Text": "Light! Faint, but light. I can see the tree line again. It won't last \u2014 I can tell by how the flame leans \u2014 but it's more than we've had in weeks. Thank you.",
           "Choices": [
             {
               "Text": "It's temporary. I'll find a way to make it permanent.",
@@ -105,7 +160,12 @@
             {
               "Text": "Let's reforge the lantern.",
               "Target": "AfterReforge",
-              "Actions": [{ "Key": "ResolveSettlementSite", "Value": "VillageLantern:LanternReforge" }]
+              "Actions": [
+                {
+                  "Key": "ResolveSettlementSite",
+                  "Value": "VillageLantern:LanternReforge"
+                }
+              ]
             },
             {
               "Text": "Not yet.",
@@ -120,7 +180,12 @@
             {
               "Text": "Glad to help.",
               "Target": "Start",
-              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "Villagers:Player:10" }]
+              "Actions": [
+                {
+                  "Key": "ChangeFactionFeeling",
+                  "Value": "Villagers:Player:10"
+                }
+              ]
             }
           ]
         },
@@ -129,11 +194,17 @@
           "Text": "You want to teach me the old warden's craft? I've been guarding this village with a sword and a sharp eye, but I always wished I could do more than just watch the dark. If there's a way to keep this light burning, I'll learn every word.",
           "Choices": [
             {
-              "Text": "Here — this copy explains the oil mixture and wick trimming. Study it well.",
+              "Text": "Here \u2014 this copy explains the oil mixture and wick trimming. Study it well.",
               "Target": "AfterTeachWarden",
               "Actions": [
-                { "Key": "ResolveSettlementSite", "Value": "VillageLantern:TeachWarden" },
-                { "Key": "TakeItemWithTag", "Value": "GrimoireCopy" }
+                {
+                  "Key": "ResolveSettlementSite",
+                  "Value": "VillageLantern:TeachWarden"
+                },
+                {
+                  "Key": "TakeItemWithTag",
+                  "Value": "GrimoireCopy"
+                }
               ]
             },
             {
@@ -144,12 +215,17 @@
         },
         {
           "ID": "AfterTeachWarden",
-          "Text": "Oil ratios, wick trimming, the monthly re-warding... I can do this. From now on this lantern stays lit. You've made me more than a sword-arm — you've made me a true warden.",
+          "Text": "Oil ratios, wick trimming, the monthly re-warding... I can do this. From now on this lantern stays lit. You've made me more than a sword-arm \u2014 you've made me a true warden.",
           "Choices": [
             {
               "Text": "The village is in good hands.",
               "Target": "End",
-              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "Villagers:Player:15" }]
+              "Actions": [
+                {
+                  "Key": "ChangeFactionFeeling",
+                  "Value": "Villagers:Player:15"
+                }
+              ]
             }
           ]
         },
@@ -165,7 +241,7 @@
         },
         {
           "ID": "Threats",
-          "Text": "The usual — beasts from the wilds, bandits on the roads. Lately the creatures have been bolder. Something's stirring them up. I've doubled my patrols, but one warden can only do so much.",
+          "Text": "The usual \u2014 beasts from the wilds, bandits on the roads. Lately the creatures have been bolder. Something's stirring them up. I've doubled my patrols, but one warden can only do so much.",
           "Choices": [
             {
               "Text": "I could help deal with some of those threats.",
@@ -179,16 +255,31 @@
         },
         {
           "ID": "OfferHelp",
-          "Text": "A willing blade is always welcome. Clear out some of the beasts near the village and you'll have our gratitude — and maybe a reward from the elder.",
+          "Text": "A willing blade is always welcome. Clear out some of the beasts near the village and you'll have our gratitude \u2014 and maybe a reward from the elder.",
           "Choices": [
             {
               "Text": "Consider it done.",
               "Target": "End",
-              "Actions": [{ "Key": "AddMessage", "Value": "The warden nods with respect." }]
+              "Actions": [
+                {
+                  "Key": "AddMessage",
+                  "Value": "The warden nods with respect."
+                }
+              ]
             },
             {
               "Text": "I'll see what I can do.",
               "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "StandDown",
+          "Text": "The warden's grip loosens on the spear haft. \"...Thirty breaths. Use them to walk away.\"",
+          "Choices": [
+            {
+              "Text": "(leave)",
+              "Target": "__end__"
             }
           ]
         }
@@ -276,7 +367,12 @@
             {
               "Text": "Consider it done.",
               "Target": "End",
-              "Actions": [{ "Key": "AddMessage", "Value": "The warden nods with respect." }]
+              "Actions": [
+                {
+                  "Key": "AddMessage",
+                  "Value": "The warden nods with respect."
+                }
+              ]
             },
             {
               "Text": "I'll see what I can do.",

@@ -28,6 +28,6 @@ namespace CavesOfOoo.Presentation.Effects
         /// <summary>
         /// Master enable. <c>false</c> = pure CP437.
         /// </summary>
-        public const bool IsEnabled = false;
+        public const bool IsEnabled = true;
     }
 }

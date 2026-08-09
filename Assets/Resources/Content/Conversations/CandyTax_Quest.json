@@ -5,25 +5,160 @@
       "Nodes": [
         {
           "ID": "Start",
-          "Text": "Ahem. Peppermint Butler, at your service — and at the Princess's. The treasury is light this quarter and three citizens are dawdling on their candy tax. Would you collect it from them for me?",
+          "Text": "Ahem. Peppermint Butler, at your service \u2014 and at the Princess's. The treasury is light this quarter and three citizens are dawdling on their candy tax. Would you collect it from them for me?",
           "Choices": [
-            { "Text": "[Accept] I'll collect the tax.", "Target": "Accepted",
-              "Predicates": [ { "Key": "IfQuestNotStarted", "Value": "TheCandyTax" } ],
-              "Actions": [ { "Key": "StartQuest", "Value": "TheCandyTax" } ] },
-            { "Text": "[Status] Still collecting.", "Target": "Collecting",
-              "Predicates": [ { "Key": "IfQuestStage", "Value": "TheCandyTax:collect" } ] },
-            { "Text": "[Report] The tax is collected.", "Target": "Thanks",
-              "Predicates": [ { "Key": "IfQuestStage", "Value": "TheCandyTax:report" } ],
-              "Actions": [ { "Key": "CompleteQuest", "Value": "TheCandyTax" }, { "Key": "AwardXP", "Value": "140" }, { "Key": "GiveDrams", "Value": "70" } ] },
-            { "Text": "[Done] Treasury looking healthier?", "Target": "Done",
-              "Predicates": [ { "Key": "IfQuestCompleted", "Value": "TheCandyTax" } ] },
-            { "Text": "Goodbye.", "Target": "End" }
+            {
+              "Text": "[Accept] I'll collect the tax.",
+              "Target": "Accepted",
+              "Predicates": [
+                {
+                  "Key": "IfQuestNotStarted",
+                  "Value": "TheCandyTax"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "StartQuest",
+                  "Value": "TheCandyTax"
+                }
+              ]
+            },
+            {
+              "Text": "[Status] Still collecting.",
+              "Target": "Collecting",
+              "Predicates": [
+                {
+                  "Key": "IfQuestStage",
+                  "Value": "TheCandyTax:collect"
+                }
+              ]
+            },
+            {
+              "Text": "[Report] The tax is collected.",
+              "Target": "Thanks",
+              "Predicates": [
+                {
+                  "Key": "IfQuestStage",
+                  "Value": "TheCandyTax:report"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "CompleteQuest",
+                  "Value": "TheCandyTax"
+                },
+                {
+                  "Key": "AwardXP",
+                  "Value": "140"
+                },
+                {
+                  "Key": "GiveDrams",
+                  "Value": "70"
+                }
+              ]
+            },
+            {
+              "Text": "[Done] Treasury looking healthier?",
+              "Target": "Done",
+              "Predicates": [
+                {
+                  "Key": "IfQuestCompleted",
+                  "Value": "TheCandyTax"
+                }
+              ]
+            },
+            {
+              "Text": "Goodbye.",
+              "Target": "End"
+            },
+            {
+              "Text": "Your tax squabble isn't my problem. Handle it yourself.",
+              "Target": "Refused",
+              "Predicates": [
+                {
+                  "Key": "IfQuestActive",
+                  "Value": "TheCandyTax"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "FailQuest",
+                  "Value": "TheCandyTax"
+                }
+              ]
+            },
+            {
+              "Text": "About the tax business...",
+              "Target": "FailedAftermath",
+              "Predicates": [
+                {
+                  "Key": "IfQuestFailed",
+                  "Value": "TheCandyTax"
+                }
+              ]
+            }
           ]
         },
-        { "ID": "Accepted", "Text": "Splendid. There are three of them about town — you'll know them by their grumbling. A firm but polite word should do it. Bring back what they owe.", "Choices": [ { "Text": "Understood.", "Target": "End" } ] },
-        { "ID": "Collecting", "Text": "Still a citizen or two short, I take it. Do be thorough — the Princess notices these things.", "Choices": [ { "Text": "On it.", "Target": "End" } ] },
-        { "ID": "Thanks", "Text": "Every dram accounted for. The Princess will hear of your diligence — and here is your cut, fair and square.", "Choices": [ { "Text": "A pleasure.", "Target": "End" } ] },
-        { "ID": "Done", "Text": "The treasury thanks you, as do I. Good day.", "Choices": [ { "Text": "Bye.", "Target": "End" } ] }
+        {
+          "ID": "Accepted",
+          "Text": "Splendid. There are three of them about town \u2014 you'll know them by their grumbling. A firm but polite word should do it. Bring back what they owe.",
+          "Choices": [
+            {
+              "Text": "Understood.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Collecting",
+          "Text": "Still a citizen or two short, I take it. Do be thorough \u2014 the Princess notices these things.",
+          "Choices": [
+            {
+              "Text": "On it.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Thanks",
+          "Text": "Every dram accounted for. The Princess will hear of your diligence \u2014 and here is your cut, fair and square.",
+          "Choices": [
+            {
+              "Text": "A pleasure.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Done",
+          "Text": "The treasury thanks you, as do I. Good day.",
+          "Choices": [
+            {
+              "Text": "Bye.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Refused",
+          "Text": "\"...I see. Then we'll pay what they ask, and eat thinner for it. Good travels, stranger.\" The word lands like a door closing.",
+          "Choices": [
+            {
+              "Text": "(leave)",
+              "Target": "__end__"
+            }
+          ]
+        },
+        {
+          "ID": "FailedAftermath",
+          "Text": "\"There is no tax business. Not anymore. You made that plain.\" They turn back to their work.",
+          "Choices": [
+            {
+              "Text": "(leave)",
+              "Target": "__end__"
+            }
+          ]
+        }
       ]
     }
   ]

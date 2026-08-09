@@ -66,14 +66,17 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Cave_HasStrongerVignetteThanGlobalDefault()
+        public void NoBiomeHasAVignette()
         {
-            // Pass 1 set global vignette to 0.32. Cave should boost
-            // beyond that to pull eye toward player.
-            var p = BiomePalette.Cave;
-            Assert.Greater(p.VignetteIntensity, 0.32f,
-                "Cave vignette is stronger than the Pass 1 global "
-                + "baseline (0.32).");
+            // ROUND 6 SUPERSESSION (user call, 2026-08-09): the
+            // vignette is REMOVED game-wide — the darkened corners
+            // read as a smudge over the sprite world. This pin
+            // replaces Cave_HasStrongerVignetteThanGlobalDefault and
+            // guards against any palette quietly reintroducing one.
+            Assert.AreEqual(0f, BiomePalette.Cave.VignetteIntensity);
+            Assert.AreEqual(0f, BiomePalette.Desert.VignetteIntensity);
+            Assert.AreEqual(0f, BiomePalette.Jungle.VignetteIntensity);
+            Assert.AreEqual(0f, BiomePalette.Ruins.VignetteIntensity);
         }
 
         [Test]

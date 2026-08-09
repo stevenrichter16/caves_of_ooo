@@ -57,7 +57,7 @@ namespace CavesOfOoo.Tests
             var lurker = _factory.CreateEntity("DuneLurker");
             Assert.IsNotNull(lurker);
             Assert.AreEqual(45, lurker.GetStat("Hitpoints").Value);
-            Assert.AreEqual(85, lurker.GetStat("XPValue").Value);
+            Assert.AreEqual(425 /* round-6 beta audit: tier-scaled XP (t3 x5, t2 x3) */, lurker.GetStat("XPValue").Value);
             Assert.IsNotNull(lurker.GetPart<AIAmbushPart>(),
                 "the lurker waits under the sand — SleepingTroll's dormant pattern");
             Assert.AreEqual("2d6", HandWeapon(lurker).BaseDamage, "LurkerMaw");

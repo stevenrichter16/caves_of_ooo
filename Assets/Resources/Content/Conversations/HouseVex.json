@@ -1,0 +1,866 @@
+{
+  "Conversations": [
+
+    {
+      "ID": "Drama_Vex_DiminishedHead",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Theron Vex stands among racked essences, turning a sealed vial against the light. The distillery air is bitter with old work. 'Traveler. Mind the shelves — everything in here is labeled twice, and we keep it that way.'",
+          "Choices": [
+            {
+              "Text": "What does House Vex make here?",
+              "Target": "CraftExplain"
+            },
+            {
+              "Text": "You carry yourself like a man waiting for bad news.",
+              "Target": "TheronWeight"
+            },
+            {
+              "Text": "Tell me about Lyra.",
+              "Target": "LyraGrief",
+              "Predicates": [{ "Key": "IfDramaActive", "Value": "Vex" }]
+            },
+            {
+              "Text": "I have proof of where Kess's bottles end up.",
+              "Target": "WarlordTruth",
+              "Predicates": [
+                { "Key": "IfDramaActive",  "Value": "Vex" },
+                { "Key": "IfWitnessKnows", "Value": "Vex:theron:poisons_reach_warlords" }
+              ]
+            },
+            {
+              "Text": "It's time to choose, Theron. Kess, or Vorus's mission.",
+              "Target": "FinalChoice",
+              "Predicates": [
+                { "Key": "IfDramaActive",         "Value": "Vex" },
+                { "Key": "IfWitnessKnows",        "Value": "Vex:theron:poisons_reach_warlords" },
+                { "Key": "IfPathTaken",           "Value": "Vex:FounderLetter:LetterUncovered" },
+                { "Key": "IfPressurePointState",  "Value": "Vex:PoisonMerchant:active" }
+              ]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "CraftExplain",
+          "Text": "'Essences. Antivenins, febrifuges, dyes that hold their color for a lifetime. My father Vorus pulled medicine out of the most murderous things in this jungle.' He sets the vial down with exact care. 'Lately we bottle other orders.'",
+          "Choices": [
+            {
+              "Text": "Tell me about Vorus.",
+              "Target": "VorusLegacy"
+            },
+            {
+              "Text": "What other orders?",
+              "Target": "KessDemand"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "VorusLegacy",
+          "Text": "'He believed venom was medicine that hadn't been asked politely. Eighty-seven years old and he'd still walk the canopy paths for a green mamba. He thought the jungle would guard its own secrets from bad men.' A tired breath. 'The jungle did not.'",
+          "Choices": [
+            {
+              "Text": "He wrote his intent down somewhere, didn't he?",
+              "Target": "AskLetter",
+              "Predicates": [
+                { "Key": "IfDramaActive",        "Value": "Vex" },
+                { "Key": "IfWitnessKnows",       "Value": "Vex:theron:poisons_reach_warlords" },
+                { "Key": "IfPressurePointState", "Value": "Vex:FounderLetter:active" }
+              ]
+            },
+            {
+              "Text": "A better creed than most.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AskLetter",
+          "Text": "Theron studies you for a long moment — the way a distiller reads a label twice. 'There is a letter. Locked in my study. I've shown it to no one since Lyra died.' He weighs a small key in his palm. 'You brought me the truth about Kess. I'll trade you Vorus's.'",
+          "Choices": [
+            {
+              "Text": "Read it with me.",
+              "Target": "LetterShared",
+              "Actions": [
+                { "Key": "AdvancePressurePoint", "Value": "Vex:FounderLetter:resolved:LetterUncovered" },
+                { "Key": "AddMessage",           "Value": "Vorus's letter is plain: every essence of House Vex was meant to heal. It is dated the year the distillery was raised." }
+              ]
+            }
+          ]
+        },
+        {
+          "ID": "LetterShared",
+          "Text": "Theron reads it aloud, slowly, and his voice does not falter until the last line. ''To distill is to decide what a dangerous thing becomes.'' He folds the letter with both hands. 'Nyla should hear this. All of it.'",
+          "Choices": [
+            {
+              "Text": "She will.",
+              "Target": "End"
+            },
+            {
+              "Text": "What will you do now?",
+              "Target": "TheronResolve"
+            }
+          ]
+        },
+        {
+          "ID": "KessDemand",
+          "Text": "'Kess Ballow wants the entire monsoon harvest, early. Every gland, every fang, every specimen we can strip out of the wet season. If I give him that, the jungle gives us nothing next year.' His jaw sets. 'If I refuse, I find out what his patience is worth.'",
+          "Choices": [
+            {
+              "Text": "Refuse him. The jungle isn't his to empty.",
+              "Target": "HarvestRefused",
+              "Predicates": [
+                { "Key": "IfDramaActive",        "Value": "Vex" },
+                { "Key": "IfPressurePointState", "Value": "Vex:VenomVault:active" }
+              ],
+              "Actions": [
+                { "Key": "AdvancePressurePoint", "Value": "Vex:VenomVault:resolved:RespectfulHarvest" },
+                { "Key": "AddMessage",           "Value": "Theron will harvest with the old restraint and let Kess wait." }
+              ]
+            },
+            {
+              "Text": "Give him the harvest. Buy your family time.",
+              "Target": "HarvestStripped",
+              "Predicates": [
+                { "Key": "IfDramaActive",        "Value": "Vex" },
+                { "Key": "IfPressurePointState", "Value": "Vex:VenomVault:active" }
+              ],
+              "Actions": [
+                { "Key": "AdvancePressurePoint", "Value": "Vex:VenomVault:resolved:Overharvest" },
+                { "Key": "AddMessage",           "Value": "The vats will run full this season. The jungle will remember it." }
+              ]
+            },
+            {
+              "Text": "That's a hard ledger.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "HarvestRefused",
+          "Text": "'Then it's decided. We take what the jungle can spare and not a fang more.' Saying it seems to cost him something and pay him back at once. 'Kess will hear his no by monsoon's end.'",
+          "Choices": [
+            {
+              "Text": "Hold to it.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "HarvestStripped",
+          "Text": "'Full crates, then. I'll tell the harvesters to take the nests whole.' He does not look toward the jungle when he says it. 'Vorus walked those paths for sixty years and never once emptied one.'",
+          "Choices": [
+            {
+              "Text": "It buys you time.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "TheronWeight",
+          "Text": "'Waiting is most of what I do now. I meet Kess's orders with one hand and draft my refusal with the other, and I tell myself a man can do both.' He almost smiles. 'You don't have to say it. I know what half-measures distill down to.'",
+          "Choices": [
+            {
+              "Text": "Which hand wins?",
+              "Target": "PressTheron"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "PressTheron",
+          "Text": "'The one holding my family. Whichever that turns out to be.' He rubs his eyes. 'If you want to know what my hesitation costs, ask Sael. She loads the crates. She watches the road they leave on.' It is as close to asking for help as he will come.",
+          "Choices": [
+            {
+              "Text": "I'll speak with her.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "LyraGrief",
+          "Text": "'My granddaughter. Eleven years old. She wanted to learn the craft so badly she let herself into the distillery alone.' The words come level, worn smooth from repetition. 'One bottle was mislabeled. One. We mark everything twice now.'",
+          "Choices": [
+            {
+              "Text": "Does Nyla know how it happened?",
+              "Target": "LyraSecret"
+            },
+            {
+              "Text": "I'm sorry.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "LyraSecret",
+          "Text": "'Nyla knows her cousin died. Not the how of it. I couldn't put that in the house along with the grief.' He looks at the twice-marked shelves. 'Maybe the how is the part that would have kept her out of Kess's arithmetic.'",
+          "Choices": [
+            {
+              "Text": "Maybe she should hear it.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "WarlordTruth",
+          "Text": "You lay it out: the river route, the camps, the warcolors flying over crates Sael sealed with her own hands. Theron listens the way a man listens to a diagnosis he already suspected. 'Murder, then. Not commerce. I have suspected it since the second contract and called my suspicion caution.'",
+          "Choices": [
+            {
+              "Text": "It's certainty now. Use it.",
+              "Target": "TheronResolve",
+              "Actions": [
+                { "Key": "RevealWitnessFact", "Value": "Vex:theron:kess_uses_poisons_for_murder" },
+                { "Key": "AddMessage",        "Value": "Theron's suspicion has hardened into knowledge." }
+              ]
+            }
+          ]
+        },
+        {
+          "ID": "TheronResolve",
+          "Text": "'Then everything in this house changes, or nothing does.' He sets both hands flat on the workbench. 'Before I choose, I want Vorus's own words in front of me, and I want my daughter's eyes clear when I read them. Bring me those two things and I'll give you a decision.'",
+          "Choices": [
+            {
+              "Text": "You'll have them.",
+              "Target": "End"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "FinalChoice",
+          "Text": "Theron stands among the racked essences with the letter folded inside his coat and no more room left to wait. 'Say it plainly, traveler. You've seen every side of this house. What should House Vex become?'",
+          "Choices": [
+            {
+              "Text": "A healing house. Name Nyla co-leader on Vorus's terms.",
+              "Target": "ResolvedRebuild",
+              "Predicates": [{ "Key": "IfPathTaken", "Value": "Vex:TaintedHeir:NylaAwakens" }],
+              "Actions": [
+                { "Key": "AdvancePressurePoint", "Value": "Vex:PoisonMerchant:resolved:RebuildLegacy" },
+                { "Key": "AddMessage",           "Value": "House Vex returns to the founder's mission, with Nyla bound to it." }
+              ]
+            },
+            {
+              "Text": "Keep Kess's account. Pour his money into medicine.",
+              "Target": "ResolvedCompromise",
+              "Actions": [
+                { "Key": "AdvancePressurePoint", "Value": "Vex:PoisonMerchant:resolved:CompromisedSustenance" },
+                { "Key": "AddMessage",           "Value": "House Vex will heal with one hand and arm killers with the other." }
+              ]
+            },
+            {
+              "Text": "Cut Kess off entirely. Whatever it costs.",
+              "Target": "ResolvedSever",
+              "Actions": [
+                { "Key": "AdvancePressurePoint", "Value": "Vex:PoisonMerchant:resolved:SeverKess" },
+                { "Key": "AddMessage",           "Value": "House Vex severs the Ballow contract. The lean seasons begin." }
+              ]
+            },
+            {
+              "Text": "I can't make this choice for you.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "ResolvedRebuild",
+          "Text": "'Then it's done. Nyla takes the bench beside mine, and the first essence we rack under her name will be a cure.' For the first time he looks like a man whose craft still belongs to him. 'Vorus would have liked you.'",
+          "Choices": [
+            {
+              "Text": "Good luck, Theron.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "ResolvedCompromise",
+          "Text": "'Blood money for bandages.' He says it aloud to find out whether he can live with the taste. Apparently he can. 'Vorus kept this family fed through worse. I'll tell myself that until it's true.'",
+          "Choices": [
+            {
+              "Text": "It's survival.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "ResolvedSever",
+          "Text": "'I'll send the refusal with the next courier. No craft worth keeping is bought with what Kess pays.' He begins clearing Kess's standing order from the board, slowly, like a man taking down a fever chart. 'We'll be poorer by morning. Cleaner, too.'",
+          "Choices": [
+            {
+              "Text": "You chose well.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "End",
+          "Text": "Theron returns to his vials. The bitter smell of the distillery settles back around him.",
+          "Choices": []
+        }
+      ]
+    },
+
+    {
+      "ID": "Drama_Vex_RisingInheritor",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Nyla Vex is repricing a crate of stoppered vials, chalking figures onto slate faster than you can read them. 'If you're buying, antivenins are on the left. If you're selling, I set the price. If you're here to talk—' she finishes a sum, '—talk quickly.'",
+          "Choices": [
+            {
+              "Text": "What do the figures say?",
+              "Target": "Ambition"
+            },
+            {
+              "Text": "What's Kess Ballow to your house?",
+              "Target": "KessView"
+            },
+            {
+              "Text": "Do you know how your cousin Lyra died?",
+              "Target": "LyraTruth",
+              "Predicates": [{ "Key": "IfDramaActive", "Value": "Vex" }]
+            },
+            {
+              "Text": "Kess pays best. Take his contracts and don't look back.",
+              "Target": "Sideshift",
+              "Predicates": [
+                { "Key": "IfDramaActive",        "Value": "Vex" },
+                { "Key": "IfPressurePointState", "Value": "Vex:TaintedHeir:active" }
+              ]
+            },
+            {
+              "Text": "You need to see where Kess's bottles actually go.",
+              "Target": "Confrontation",
+              "Predicates": [
+                { "Key": "IfDramaActive",        "Value": "Vex" },
+                { "Key": "IfPressurePointState", "Value": "Vex:TaintedHeir:active" },
+                { "Key": "IfWitnessKnows",       "Value": "Vex:theron:poisons_reach_warlords" },
+                { "Key": "IfWitnessKnows",       "Value": "Vex:theron:competing_merchant_valdris" }
+              ]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Ambition",
+          "Text": "'They say we're the finest venom house in the basin and priced like a village apothecary. My grandfather gave essences away to anyone with a cough.' She taps the slate. 'I intend for House Vex to be worth what it's worth. Call that greed if you like. Greed with clean labels.'",
+          "Choices": [
+            {
+              "Text": "And if the buyers aren't clean?",
+              "Target": "KessDoubt"
+            },
+            {
+              "Text": "What's wrong with being a village apothecary?",
+              "Target": "AmbitionDeep"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AmbitionDeep",
+          "Text": "'Nothing — if you want your life's work to fit inside one village and die there.' Something that isn't quite anger crosses her face. 'I've watched my father shrink every season since Lyra. I won't spend my life measuring doses in a place the maps forget.'",
+          "Choices": [
+            {
+              "Text": "Respect and wealth aren't the same purchase.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "KessView",
+          "Text": "'Our best customer. He pays triple rate, in advance, in coin that doesn't bounce.' She recites it like a defense she has given before. 'High-value compounds for discreet buyers. That isn't crime, it's commerce. Every trade house in the basin would take his contract.'",
+          "Choices": [
+            {
+              "Text": "Do you know what his buyers do with it?",
+              "Target": "KessDoubt"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "KessDoubt",
+          "Text": "'What buyers do with their purchases is their ledger, not mine.' The chalk stops for half a line. 'Father says the same thing about Kess in the opposite direction, so one of us is lying to ourselves. I've decided it's him.'",
+          "Choices": [
+            {
+              "Text": "You don't sound decided.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "LyraTruth",
+          "Text": "You tell her what Theron never did: the mislabeled bottle, the symbols an eleven-year-old trusted, how fast it was. Nyla puts the chalk down with exaggerated care. 'I was told it was an accident. A vague one. Nobody ever said the label lied.'",
+          "Choices": [
+            {
+              "Text": "Labels are the whole craft. That's the point.",
+              "Target": "LyraAfter",
+              "Actions": [
+                { "Key": "RevealWitnessFact", "Value": "Vex:nyla:lyra_tragedy_details" },
+                { "Key": "AddMessage",        "Value": "Nyla knows how Lyra really died now." }
+              ]
+            }
+          ]
+        },
+        {
+          "ID": "LyraAfter",
+          "Text": "'One wrong word on a bottle.' She looks at the crate of vials she has been pricing as if it has just changed species. 'And I've been telling myself that what's written on ours is somebody else's ledger.'",
+          "Choices": [
+            {
+              "Text": "Think on it.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Sideshift",
+          "Text": "'Finally. Somebody in this village who can count.' Her chin lifts; whatever had been undecided in her settles the profitable way. 'Kess wants a standing contract and Father won't sign it. I'll manage the account myself, and House Vex can thank me when the roof doesn't leak.'",
+          "Choices": [
+            {
+              "Text": "Now you're talking sense.",
+              "Target": "SideshiftAfter",
+              "Actions": [
+                { "Key": "AdvancePressurePoint", "Value": "Vex:TaintedHeir:resolved:NylaSideshifts" },
+                { "Key": "AddMessage",           "Value": "Nyla has committed to Kess's coin. Theron has lost his ally." }
+              ]
+            },
+            {
+              "Text": "Wait. Forget I said that.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "SideshiftAfter",
+          "Text": "'Tell Kess his next order ships on schedule.' The slate fills with new figures — bigger ones. She does not look up again.",
+          "Choices": [
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Confrontation",
+          "Text": "You spread it in front of her: the river route, the warcolor camps, Vex seals broken open on spear racks. And beside it, Valdris's standing offer — healing compounds, open ledgers, the same margins. She reads all of it twice. 'These numbers are real,' she says finally. Quietly. 'Both sets.'",
+          "Choices": [
+            {
+              "Text": "Kess's coin is murder with good bookkeeping. Valdris's isn't. Choose.",
+              "Target": "Awakened",
+              "Actions": [
+                { "Key": "AdvancePressurePoint", "Value": "Vex:TaintedHeir:resolved:NylaAwakens" },
+                { "Key": "RevealWitnessFact",    "Value": "Vex:nyla:kess_assassination_use" },
+                { "Key": "RevealWitnessFact",    "Value": "Vex:nyla:competing_merchant_valdris" },
+                { "Key": "AddMessage",           "Value": "Nyla has seen the proof, and the alternative. Something fundamental has shifted." }
+              ]
+            }
+          ]
+        },
+        {
+          "ID": "Awakened",
+          "Text": "For a long moment she is very still — the stillness of a sum that will not come out any other way. 'I priced those shipments. I chalked margins on dead villages and called it commerce.' She wipes the slate clean with her sleeve. 'Get me my father. House Vex is renegotiating.'",
+          "Choices": [
+            {
+              "Text": "He'll want you beside him.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "End",
+          "Text": "Nyla goes back to her figures, chalk clicking against the slate.",
+          "Choices": []
+        }
+      ]
+    },
+
+    {
+      "ID": "Drama_Vex_NamedAntagonist",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Kess Ballow keeps his table at the village edge with his back to the buildings and his eyes on the road — never on the treeline. Rings on every finger, ledger squared to the table's corner. 'The traveler. Sit, don't sit. Everyone is somebody's customer eventually.'",
+          "Choices": [
+            {
+              "Text": "What's your business with House Vex?",
+              "Target": "Business"
+            },
+            {
+              "Text": "You sit a long way from the jungle for a jungle trader.",
+              "Target": "JungleFear"
+            },
+            {
+              "Text": "I know what your buyers do with Vex essences.",
+              "Target": "Confronted",
+              "Predicates": [
+                { "Key": "IfDramaActive",  "Value": "Vex" },
+                { "Key": "IfWitnessKnows", "Value": "Vex:theron:poisons_reach_warlords" }
+              ],
+              "Actions": [
+                { "Key": "RevealWitnessFact", "Value": "Vex:kess:player_knows_his_crimes" }
+              ]
+            },
+            {
+              "Text": "I have a proposition worth more than your poison trade.",
+              "Target": "ValdrisOffer",
+              "Predicates": [
+                { "Key": "IfDramaActive",        "Value": "Vex" },
+                { "Key": "IfWitnessKnows",       "Value": "Vex:theron:competing_merchant_valdris" },
+                { "Key": "IfPressurePointState", "Value": "Vex:PoisonMerchant:active" }
+              ]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Business",
+          "Text": "'Supply. The Vex family distills the finest concentrates in the basin — nothing on the market approaches their purity. I provide them a demand worthy of the product.' He smiles the way a ledger balances. 'Simple, wholesome commerce.'",
+          "Choices": [
+            {
+              "Text": "Theron doesn't seem to find it wholesome.",
+              "Target": "BusinessPressed"
+            },
+            {
+              "Text": "What kind of demand?",
+              "Target": "BusinessPressed"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "BusinessPressed",
+          "Text": "'Theron.' The name earns an indulgent sigh. 'Theron has been refusing me more often lately, which is how family men negotiate. His no is a slower yes with sentiment attached. I can wait.' He straightens the ledger a quarter inch. 'Though not indefinitely.'",
+          "Choices": [
+            {
+              "Text": "And if his no is a no?",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "JungleFear",
+          "Text": "For an instant the merchant polish thins. 'A professional respects his supply chain. What lives in there kills you in the time it takes to notice the color of the thing that bit you.' He turns a ring on his finger. 'Civilized men buy the jungle in bottles. That is what House Vex is for.'",
+          "Choices": [
+            {
+              "Text": "You're afraid of it.",
+              "Target": "JungleDeep"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "JungleDeep",
+          "Text": "'Afraid.' He tastes the word and does not spit it out. 'I once watched a man die of a scratch he had laughed at. Fear is just accounting, applied to creatures. Yes — I do not enter the trees, and I never will. That is why House Vex will always have my coin.' The admission costs him nothing, which is somehow worse.",
+          "Choices": [
+            {
+              "Text": "Every dependency is a weakness.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Confronted",
+          "Text": "The friendliness closes like a ledger. 'Careful, traveler. Finish that thought and we are in a different kind of conversation.' His thumb finds the largest of his rings. 'What is it you think you know — and more to the point, what do you intend to do with it?'",
+          "Choices": [
+            {
+              "Text": "Everyone in the basin is going to learn what your buyers are.",
+              "Target": "Burned",
+              "Predicates": [{ "Key": "IfPressurePointState", "Value": "Vex:FounderLetter:active" }],
+              "Actions": [
+                { "Key": "AdvancePressurePoint", "Value": "Vex:FounderLetter:failed:LetterBurned" },
+                { "Key": "AddMessage",           "Value": "Kess moves quickly after your threat. Word reaches you that a locked drawer in Theron's study was forced and its papers fed to a lamp flame." }
+              ]
+            },
+            {
+              "Text": "I intend to make you a richer offer.",
+              "Target": "ValdrisOffer",
+              "Predicates": [
+                { "Key": "IfWitnessKnows",       "Value": "Vex:theron:competing_merchant_valdris" },
+                { "Key": "IfPressurePointState", "Value": "Vex:PoisonMerchant:active" }
+              ]
+            },
+            {
+              "Text": "Nothing, yet. Consider it leverage.",
+              "Target": "Standoff"
+            }
+          ]
+        },
+        {
+          "ID": "Burned",
+          "Text": "'Then our business is concluded. And so is some other business you were not aware was pending.' He rises, unhurried, and signals his porter. By nightfall his wagons are gone from the village edge — and you learn, too late, that Vorus's letter is ash.",
+          "Choices": [
+            {
+              "Text": "This isn't over.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Standoff",
+          "Text": "'Leverage.' He turns the word over and almost approves. 'Then we understand each other. Spend it carefully — I audit my debts.' He returns to his ledger, but his eyes stay on you until you are well away from the table.",
+          "Choices": [
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "ValdrisOffer",
+          "Text": "You name the merchant: Valdris, of the southern routes. Healing compounds, legitimate channels, standing contracts — a monopoly on his lines at Kess's current margins, and House Vex's essences go back to medicine. 'And in exchange?' In exchange, he never touches the jungle trade again — and the jungle never touches him. His thumb stops on the ring. You watched him fear the trees; you watch him do arithmetic now.",
+          "Choices": [
+            {
+              "Text": "Same margins. No warlords. No jungle. Decide.",
+              "Target": "DealStruck",
+              "Actions": [
+                { "Key": "AdvancePressurePoint", "Value": "Vex:PoisonMerchant:resolved:SeverKess" },
+                { "Key": "RevealWitnessFact",    "Value": "Vex:kess:competing_merchant_valdris" },
+                { "Key": "AddMessage",           "Value": "Kess will release House Vex from his contracts in exchange for the Valdris arrangement. The kill-trade loses its finest supplier." }
+              ]
+            },
+            {
+              "Text": "Think it over.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "DealStruck",
+          "Text": "'Bring Theron the release papers and tell Valdris to expect my factor within the month.' He squares the ledger a final time. 'For the record, traveler — I was never in the poison business. I was in the margin business.' It is the closest thing to a confession the man will ever sign.",
+          "Choices": [
+            {
+              "Text": "The margins just got cleaner.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "End",
+          "Text": "Kess Ballow returns to his ledger — back to the buildings, eyes anywhere but the trees.",
+          "Choices": []
+        }
+      ]
+    },
+
+    {
+      "ID": "Drama_Vex_SilencedHelper",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Sael is roping crates onto a cart by the storehouse — wax-sealed, stenciled, corners squared. She works fast and does not look at what she is sealing. 'Manifest's full. If you're after cargo space, there isn't any.'",
+          "Choices": [
+            {
+              "Text": "You handle all of House Vex's shipments?",
+              "Target": "Deflects"
+            },
+            {
+              "Text": "You seal those crates like you're angry at them.",
+              "Target": "Nervous"
+            },
+            {
+              "Text": "Theron already suspects what Kess does with these bottles.",
+              "Target": "Opening",
+              "Predicates": [{ "Key": "IfDramaActive", "Value": "Vex" }]
+            },
+            {
+              "Text": "Vorus meant all of this for healing. I've read his own words.",
+              "Target": "VorusBeat",
+              "Predicates": [
+                { "Key": "IfDramaActive", "Value": "Vex" },
+                { "Key": "IfPathTaken",   "Value": "Vex:FounderLetter:LetterUncovered" }
+              ]
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Nervous",
+          "Text": "'I'm not angry, I'm behind schedule.' She is not behind schedule; the cart is half-empty and the sun is high. She glances down the river road. 'Is Kess's factor still at the village edge?'",
+          "Choices": [
+            {
+              "Text": "Why does it matter where Kess's man is?",
+              "Target": "Watching"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Watching",
+          "Text": "'It doesn't. Schedules, that's all.' She cinches a rope that was already tight. 'Kess never threatens anyone, you know. He itemizes. There's a difference, and I would rather not be a line item.'",
+          "Choices": [
+            {
+              "Text": "What would he itemize you for?",
+              "Target": "Edge"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Deflects",
+          "Text": "'I carry crates. What's in them is the house's business. Where they go is the buyer's business. That's the whole arrangement, and it feeds my family, so no — I don't have opinions about it.' The recitation is smooth. Too smooth, like a road worn by the same cart every day.",
+          "Choices": [
+            {
+              "Text": "That's not belief. That's a toll you pay.",
+              "Target": "Edge"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Edge",
+          "Text": "She lowers her voice without meaning to. 'I've been down the river route more times than anyone in this village. I've seen where the crates land. You learn very quickly which questions cost you your route, your wages, and your family's winter.' She looks at the wax seals. 'So you stop asking them. Mostly.'",
+          "Choices": [
+            {
+              "Text": "What if the truth cost you nothing?",
+              "Target": "Opening"
+            },
+            {
+              "Text": "I understand. Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Opening",
+          "Text": "'Cost nothing?' A short, bitter laugh. 'Everything on my routes has a price and a carrier. Somebody always hauls it.' But her hands have gone still on the rope.",
+          "Choices": [
+            {
+              "Text": "Theron is one honest answer away from acting. Your silence isn't protecting the house — it's protecting Kess.",
+              "Target": "Breaks",
+              "Actions": [{ "Key": "AddMessage", "Value": "Sael looks toward the distillery for a long moment." }]
+            },
+            {
+              "Text": "Maybe this load is worth hauling.",
+              "Target": "Breaks"
+            }
+          ]
+        },
+        {
+          "ID": "Breaks",
+          "Text": "'The crates go upriver.' She says it fast, like lancing a wound. 'Past the trade posts, to camps flying warcolors. I've watched them break Vex seals open on spear racks and laugh about which village is next. Three seasons I've watched.' She breathes out. 'There. Said. That is what my manifests feed.'",
+          "Choices": [
+            {
+              "Text": "Thank you, Sael. That took courage.",
+              "Target": "After",
+              "Actions": [
+                { "Key": "RevealWitnessFact", "Value": "Vex:theron:poisons_reach_warlords" },
+                { "Key": "AddMessage",        "Value": "You now have proof: Kess's shipments arm warlords who target villages." }
+              ]
+            }
+          ]
+        },
+        {
+          "ID": "After",
+          "Text": "'Courage.' She reties the same knot, slower now. 'One more thing, since I'm spending honesty today. A southern merchant — Valdris — stopped my cart twice this season asking whether House Vex would sell healing draughts. Open ledgers, honest rates. I told him nothing.' A pause. 'Maybe you shouldn't tell him nothing.'",
+          "Choices": [
+            {
+              "Text": "That's worth knowing. Thank you.",
+              "Target": "End",
+              "Actions": [{ "Key": "RevealWitnessFact", "Value": "Vex:theron:competing_merchant_valdris" }]
+            }
+          ]
+        },
+        {
+          "ID": "VorusBeat",
+          "Text": "You tell her what the founder's letter says — medicine, all of it, dated the year the distillery was raised. Sael listens with the stillness of someone being handed back something she did not know was taken. 'Healing. From the start.' She looks at the sealed crates as if rereading their stencils. 'Then it isn't the house that's rotten. Just the road it got put on.'",
+          "Choices": [
+            {
+              "Text": "Roads can be changed.",
+              "Target": "SaelPeace",
+              "Actions": [
+                { "Key": "RevealWitnessFact", "Value": "Vex:sael:vorus_original_intent" },
+                { "Key": "AddMessage",        "Value": "Sael knows the founder's true intent now." }
+              ]
+            }
+          ]
+        },
+        {
+          "ID": "SaelPeace",
+          "Text": "'My mother took Vex febrifuge the winter I was born. I forgot that somewhere along the route.' She squares a crate that was already square, gently this time. 'If Theron turns this house back toward medicine, I'll haul every crate myself. Uphill. Tell him that.'",
+          "Choices": [
+            {
+              "Text": "I will.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "End",
+          "Text": "Sael goes back to her ropes and seals. She checks the stencils twice now.",
+          "Choices": []
+        }
+      ]
+    }
+
+  ]
+}
