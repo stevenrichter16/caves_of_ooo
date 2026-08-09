@@ -107,7 +107,7 @@ reader will think one of them is a bug.
 Each is independently shippable and independently testable. Any phase
 can be the last one without leaving the game broken.
 
-### P1 — TileState layer (the bridge) 🔑
+### P1 — TileState layer (the bridge) 🔑 ✅ SHIPPED
 
 Sparse per-zone store; read/write API; save/load round-trip; per-turn
 decay of durations; `ZoneRenderHooks.MarkCellDirty` on every write.
@@ -115,6 +115,23 @@ Adapter so existing pool entities mirror in.
 
 *No gameplay yet.* **POC test:** write a coating, read it back, save,
 load, confirm it decayed on schedule.
+
+**Shipped 2026-08-09.** `ZoneTileState` — sparse `Dictionary<int,
+TileState>` keyed `y*Width+x`. Coatings and residues as separate layer
+lists with per-layer durations; coarse 0..2 Heat/Cold/Charge with
+opposed-energy cancellation; one cloud per tile; `Tick()` returns the
+number of tiles visited so the sparse claim stays testable; `Clear`/
+`CountLayers` agree by test because P7's Scrape refunds on that number;
+JSON round-trip that tolerates garbage and pre-feature saves. 21 tests.
+
+**Mutation-verified:** deleting the emptied-tile reclamation — the whole
+justification for a sparse store — was killed by exactly
+`ATileWithNothingLeft_IsReclaimed` and
+`EnergyDecaysToo_SoAChargeDoesNotSitForever`, and nothing else.
+
+**Not yet wired:** nothing calls `Tick()` and no ability writes here.
+That is P2's job, and keeping P1 inert is what made it independently
+testable.
 
 ### P2 — Abilities write to tiles (spec POC 2)
 
