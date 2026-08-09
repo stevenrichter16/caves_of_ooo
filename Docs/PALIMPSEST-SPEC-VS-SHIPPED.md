@@ -48,16 +48,56 @@ harvesting, layered tiles) have no substrate to stand on yet.
 
 | Spec | In code? | Reachable? | Reality |
 |---|---|---|---|
-| **Stamina** (max 6, +2/turn, skills cost 1–3) | ❌ **No such stat anywhere** | — | Skills are gated **only by cooldowns** (8–45 turns). There is no per-encounter tactical resource at all |
+| **Stamina** (max 6, +2/turn, skills cost 1–3) | ❌ **No such stat anywhere** — and **REJECTED by decision** (2026-08-09) | — | Skills stay **cooldown-gated**. See §2.1 |
 | **Ink pool** (max 8, +1 per 4 turns, grimoires cost 2–4) | 🟡 Different shape | ✅ Yes | `GrimoireChargePart`: **10 charges on each book**, 1 per cast, refilled by `InkVial`. A per-item resource, not a pooled regenerating one |
 | Skill cooldowns 1–4 turns | ❌ | — | Shipped cooldowns are **8–45 turns**, an order of magnitude longer |
 
-**This is the single biggest gameplay difference.** The spec's loop
-assumes you cast several skills per fight and are limited by Stamina.
-The shipped game assumes you cast *one* power every several turns and
-are limited by cooldown. Those produce very different combat rhythms,
-and the spec's Stamina economy is not a tweak — it is a new system that
-would change every one of the 12 primer skills.
+**This was the single biggest gameplay difference.** It is now settled.
+
+### 2.1 DECISION — skills stay cooldown-based (user, 2026-08-09)
+
+> *"i want skills to stay cooldown base"*
+
+**Stamina is rejected. It will not be built.** Cooldowns are the only
+gate on a skill; ink is the only additional gate on a rite. Any future
+proposal to add a per-encounter skill resource has to argue against this
+decision explicitly.
+
+**What this decides in the spec's favour, and what it costs:**
+
+*In favour.* It keeps every one of the 12 primer skills exactly as
+shipped, keeps the ink economy meaningful as the *only* consumable (a
+second resource would dilute it), and it means the way you stack
+statuses is **investing across trees** rather than spamming one skill.
+Soak with Hydromancy, then shock with Galvanism — that is a build
+decision, and it is a better one than "cast Douse twice".
+
+*What it costs, stated plainly.* Stamina was doing real work in the
+spec: it is what made the write→react→transform loop fast. Under
+cooldowns the loop is slower, and that puts weight on the **cooldown
+spread** to create rhythm instead. The current spread:
+
+| | Cooldowns |
+|---|---|
+| Primers | 8, 20, 25, 25, 30, 30, 30, 35, 35, 40, 40, 45 |
+| Rites | 25, 30, 30, 35 |
+
+Only **Ember Spit at 8** is genuinely repeatable. Everything else is
+20–45, so within one fight a player realistically casts **two or three
+powers total**. That is enough for *prime → detonate*, and enough for
+*prime → prime → detonate* only if the two primers come from different
+trees.
+
+**The consequence worth acting on:** resonance's 2-slot default is
+correct, and the 3-status tier (×5.50) is currently **aspirational**
+rather than reachable in a normal fight. Either that is fine — a rare
+peak worth chasing across a long encounter — or the cooldown band needs
+a second cheap filler per tree, the way Ember Spit is Pyromancy's. That
+is a tuning question for the SM13 damage bench, not a design flaw, and
+it is recorded here so the bench knows to measure it.
+
+**Not affected:** ink stays a per-book charge rather than a pool. That
+is a separate question from Stamina and remains as shipped.
 
 ---
 

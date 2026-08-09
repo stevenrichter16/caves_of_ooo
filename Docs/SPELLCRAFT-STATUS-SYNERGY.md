@@ -365,6 +365,20 @@ the sub-milestones above:
    capstone per tree only after the grammar has landed.
 4. **Primers first (SM1–SM6)**, then resonance + rites.
 
+### Later decision — skills stay cooldown-based (2026-08-09)
+
+Prompted by the Palimpsest v0.1 spec, which proposes a Stamina economy
+for skills. **Rejected.** Skills remain gated only by cooldowns; ink
+remains the only additional cost, and only on rites.
+
+The consequence to carry into SM13: with cooldowns of 20–45 (Ember
+Spit's 8 being the sole outlier), a player casts two or three powers in
+a fight. Resonance's 2-slot default is right; the 3-status ×5.50 tier is
+aspirational rather than routine. The damage bench should measure
+whether that peak is reachable often enough to be worth having, or
+whether each tree needs its own cheap filler the way Pyromancy has Ember
+Spit. Full reasoning in `PALIMPSEST-SPEC-VS-SHIPPED.md` §2.1.
+
 ### Original wording of the questions
 
 1. **Ink cost harshness.** Should a rite be *precious* (3–5 charges per
