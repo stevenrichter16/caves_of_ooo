@@ -864,3 +864,63 @@ payoff worth two setup turns, and whether 10 charges is rhythmic or
 stingy in practice.
 
 Tests: 6176 → 6189 (+13).
+
+### SM8 — three more rites ✅
+
+Now that resonance exists, rites can differ from each other in kind
+rather than in numbers.
+
+| Rite | Shape | Element | What it does with the marks |
+|---|---|---|---|
+| **Hanging Bolt** | line 6, single | Electric | converts each mark into **2 turns of no-save Paralysis** instead of damage |
+| **Rendered Steam** | radius 2 | Heat | wants **Wet AND Burning on the same body**; the pair adds ×1.5 and blinds |
+| **Scalding Veil** | self | Heat | spends **your own** Wet for a retaliation aura |
+
+**Hanging Bolt is the argument for building resonance as a shared
+system.** It reads the *identical* Electric table Storm Anvil does and
+spends the same statuses — then converts them into control rather than
+damage. Storm Anvil removes a pack; Hanging Bolt removes one elite from
+the fight. Two rites, one table, opposite purposes, and neither knows
+anything about the other.
+
+**Rendered Steam is the clearest "two beats one" lesson in the game.**
+Water and fire cancel everywhere else — moisture suppresses ignition
+(`PyroIgnition`), burning boils moisture off — so a target carrying both
+at once is a deliberate, awkward, short-lived arrangement. This is the
+reward for arranging it. Either status alone still resonates and still
+hurts; only the **pair** detonates and blinds. Live: `Wet + Burning` on
+the Heat table reads ×3.50 spending both, before the pair bonus.
+
+**Scalding Veil is the only rite that reads the caster.** Being soaked
+is normally a liability — it is exactly what sets you up to be shocked
+and frozen — and this is the one way to cash your own debuff in. It
+fires on `OnTakeDamage`, so it answers attackers rather than ticking on
+bystanders: you have to actually be hit for the steam to bite.
+
+**Two refusal invariants, both tested.** A rite with no target and a
+Scalding Veil cast while dry both refuse **without spending ink**.
+Burning a charge to accomplish nothing would be the most infuriating
+possible bug in a resource-costed spell, so it is pinned rather than
+assumed.
+
+**Obtainable:** all four rite grimoires spawn inked (10 charges) and are
+stocked across the Arcanist, Scribe, Pale Curator and Palimpsest Echo. A
+test asserts each names a mutation class that actually resolves, and
+another asserts each appears somewhere in the loot tables — a rite
+nobody can obtain does not exist.
+
+**Honesty bounds.** *Can verify:* ink spent per cast, refusal without
+spending on no-target and on dry-caster, marks converting to paralysis
+and scaling with count, cast-cold paralysing nothing, the pair
+detonating while either half alone does not, the pair out-damaging a
+single, the veil consuming the caster's own water, the veil scalding and
+confusing an attacker, the veil NOT firing on sourceless damage, and all
+four grimoires spawning inked with resolvable mutations. Live: every
+grimoire spawns with 10 ink and teaches a real class; `Wet + Burning`
+reads ×3.50 on Heat while the same Wet reads ×2.00 on Electric — the
+tables genuinely disagree. *Cannot verify without a human:* whether
+paralysis-instead-of-damage is a trade players will actually want, and
+whether arranging Wet+Burning is achievable often enough in practice to
+be worth a whole rite.
+
+Tests: 6189 → 6205 (+16).
