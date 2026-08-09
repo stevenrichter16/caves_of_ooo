@@ -106,12 +106,17 @@ namespace CavesOfOoo.Scenarios.Custom
                 skills.AddSkill("Hydromancy_JetBlast",     source: "scenario:prebuy");
                 skills.AddSkill("Hydromancy_DrenchLob",    source: "scenario:prebuy");
                 skills.AddSkill("Hydromancy_Undertow",     source: "scenario:prebuy");
+                // SPELLCRAFT SM6 — the Rime Grip family closes the
+                // skill-primer half of the plan.
+                skills.AddSkill("Cryomancy_RimeGrip",      source: "scenario:prebuy");
+                skills.AddSkill("Cryomancy_GlacialWall",   source: "scenario:prebuy");
+                skills.AddSkill("Cryomancy_ColdSnap",      source: "scenario:prebuy");
             }
 
             // === Walk-through ===
             ctx.Log("=== Skill Tree Showcase (WSP8.3) ===");
             ctx.Log("Press X to open the skills screen.");
-            ctx.Log("Press M to open the ability manager (28 actives pre-bought).");
+            ctx.Log("Press M to open the ability manager (31 actives pre-bought).");
             ctx.Log("NOTE: the hotbar has 10 slots and auto-binds the first 10 only,");
             ctx.Log("so the later trees (incl. the new Galvanism actives) start UNBOUND.");
             ctx.Log("Rebind from the M screen before trying the 1-9 keys on them.");
@@ -131,7 +136,7 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.Log("  Spellcraft:  ArcaneSurge, LeyTap");
             ctx.Log("  Pyromancy:   Pyroclasm, HeartFlame, FlameJet, EmberSpit, Backdraft");
             ctx.Log("  Hydromancy:  JetBlast, DrenchLob, Undertow");
-            ctx.Log("  Cryomancy:   Frostbind, Hibernate");
+            ctx.Log("  Cryomancy:   Frostbind, Hibernate, RimeGrip, GlacialWall, ColdSnap");
             ctx.Log("  Galvanism:   Overload, GroundSurge, BacklashCoil, RailSpike");
             ctx.Log("");
             ctx.Log("Suggested experiments:");
@@ -149,6 +154,9 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.Log("  - THE LOOP: JetBlast to soak, THEN GroundSurge — double charge");
             ctx.Log("  - DrenchLob a clump at range, then Overload chains through them all");
             ctx.Log("  - Undertow hauls a back-line caster into your melee, soaked");
+            ctx.Log("  - Soak THEN RimeGrip: wet targets freeze deeper, same rule as shock");
+            ctx.Log("  - GlacialWall a corridor to buy turns; the ice melts after 8");
+            ctx.Log("  - ColdSnap first, then set up at leisure while they hobble");
             ctx.Log("  - Hibernate: 10T self-stasis with 5%/turn heal");
         }
     }

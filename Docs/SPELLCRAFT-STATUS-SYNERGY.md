@@ -729,3 +729,60 @@ fly-and-burst reads as intended on screen, and whether pulling feels as
 good as it sounds.
 
 Tests: 6113 → 6150 (+37).
+
+### SM6 — the Rime Grip family ✅ (skill half complete)
+
+| Power | Shape | Damage | Effect |
+|---|---|---|---|
+| **Rime Grip** | single, range 5 | 4 Cold | Frozen 0.5 — **deeper on a wet target** |
+| **Glacial Wall** | line 3 | **none** | raises `IceWall`, melts after 8 turns |
+| **Cold Snap** | nova 2, self-centred | **none** | Hobbled 6 turns on everything but you |
+
+**The symmetry fix, and it is the important part.**
+`ElectrifiedEffect.OnApply` has always doubled its charge on a target
+with `Moisture > 0.2`. `CryomancySkill`'s own bonus already keys on Wet.
+But `FrozenEffect` did **not** amplify — so soaking made a target better
+to shock and no better to freeze, for no reason a player could infer.
+`FrozenEffect` now amplifies on the *same* 0.2 threshold, so the player
+learns one rule ("wet enough to matter") instead of two.
+
+The multiplier is ×1.5, not Electrified's ×2, because `Cold` is capped
+at 1.0 and *any* positive value already blocks action — the gain is
+**duration** (it thaws from higher), not a stronger state. Three tests
+cover it: amplified on a soaked target, **not** amplified on a barely
+damp one (the counter-check that makes the threshold real), and still
+clamped at 1.0. It broke zero existing tests despite touching an effect
+four shipped powers already use.
+
+**Glacial Wall is the only power in any tree that edits the map.**
+Everything else damages, primes or moves a creature; this changes where
+creatures can walk. Hence no damage at all. The ice melts because a
+permanent wall would let a player brick a corridor and farm it — the
+power buys a few turns of tempo, not a solution. It never buries
+anyone: occupied cells are skipped so the wall forms *around* whatever
+is standing in the line, since raising solid rock onto a creature would
+either delete it from play or stack a solid on an occupied cell.
+
+**Cold Snap deals no damage on purpose.** What it buys is turns. A
+prime-then-detonate plan needs the pack to still be where you left it
+when the payoff lands.
+
+**Bootstrap cleanup.** The factory-wiring block had duplicated,
+mis-indented `ContainerPlacementService` / `TraderPart` assignments left
+from an earlier session, and the post-load re-attach site was missing
+several entries the boot site had. Both sites are now consistent and
+carry the new `Cryomancy_GlacialWall.Factory`.
+
+**Honesty bounds.** *Can verify:* freeze depth and the wet
+amplification with its counter-check and clamp, single-target
+non-piercing, Cold typing via a fully-resistant target, wall solidity /
+melting / not-burying / not-stacking / graceful null-factory, Cold Snap
+radius and caster exclusion, no-damage on both utility powers, diag
+reasons on every reject path. Live: all three register with correct
+modes and ranges, the factory is wired at boot, and `IceWall` spawns
+solid with an 8-turn lifespan. *Cannot verify without a human:* whether
+8 turns of ice is the right number, and whether Cold Snap's 6-turn
+hobble feels like tempo or like tedium.
+
+Tests: 6150 → 6176 (+26). **SM1–SM6 complete — the skill-primer half of
+the plan is done.** SM7 (resonance + rites) is next.

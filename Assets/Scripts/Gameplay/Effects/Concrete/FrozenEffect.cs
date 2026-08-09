@@ -27,8 +27,36 @@ namespace CavesOfOoo.Core
             Duration = DURATION_INDEFINITE;
         }
 
+        /// <summary>Moisture above which water deepens the freeze.
+        /// Deliberately the same threshold ElectrifiedEffect uses for
+        /// its charge doubling — one number for "wet enough to matter",
+        /// so the player learns a single rule instead of two.</summary>
+        public const float WET_AMPLIFY_THRESHOLD = 0.2f;
+
+        /// <summary>Multiplier applied to <see cref="Cold"/> on a soaked
+        /// target. Lower than Electrified's ×2 because Cold is capped at
+        /// 1.0 and any positive value already locks the target out — the
+        /// gain here is DURATION (it thaws from higher), not a stronger
+        /// state.</summary>
+        public const float WET_AMPLIFY_FACTOR = 1.5f;
+
         public override void OnApply(Entity target)
         {
+            // SYMMETRY (SPELLCRAFT SM6). ElectrifiedEffect.OnApply
+            // doubles its Charge on a wet target, and CryomancySkill's
+            // own bonus already keys on Wet — but Frozen itself did not
+            // amplify, so soaking made a target better to shock and no
+            // better to freeze, for no reason a player could infer.
+            // Water freezes. The gain is duration: Cold is a 0..1 field
+            // where any positive value already blocks action, so a
+            // deeper freeze thaws from higher rather than biting harder.
+            var wet = target.GetEffect<WetEffect>();
+            if (wet != null && wet.Moisture > WET_AMPLIFY_THRESHOLD)
+            {
+                Cold *= WET_AMPLIFY_FACTOR;
+                if (Cold > 1.0f) Cold = 1.0f;
+            }
+
             MessageLog.Add(target.GetDisplayName() + " is frozen!");
 
             // Cold defeats fire, symmetric to how fire defeats wet.

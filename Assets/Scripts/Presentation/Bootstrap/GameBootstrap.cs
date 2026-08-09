@@ -212,10 +212,10 @@ namespace CavesOfOoo
                 // death, through the (unchanged) existing drop path.
                 LoadoutPart.Factory = _factory;
                 LootDropSystem.Factory = _factory;
-            ContainerPlacementService.Factory = _factory;
-            TraderPart.Factory = _factory;
                 ContainerPlacementService.Factory = _factory;
                 TraderPart.Factory = _factory;
+                // SPELLCRAFT SM6: Glacial Wall spawns IceWall entities.
+                Skills.Cryomancy_GlacialWall.Factory = _factory;
                 LayRuneGoal.Factory = _factory;
                 AlchemyStillPart.Factory = _factory;
                 ForgePart.Factory = _factory;
@@ -858,6 +858,9 @@ namespace CavesOfOoo
             CorpsePart.Factory = _factory;
             LoadoutPart.Factory = _factory;
             LootDropSystem.Factory = _factory;
+            ContainerPlacementService.Factory = _factory;
+            TraderPart.Factory = _factory;
+            Skills.Cryomancy_GlacialWall.Factory = _factory;
             LayRuneGoal.Factory = _factory;
             AlchemyStillPart.Factory = _factory;
             ForgePart.Factory = _factory;

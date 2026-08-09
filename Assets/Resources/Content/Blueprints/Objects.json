@@ -3720,7 +3720,7 @@
           "Params": [
             {
               "Key": "Message",
-              "Value": "Sharp pain blooms \u2014 your wounds reopen."
+              "Value": "Sharp pain blooms — your wounds reopen."
             }
           ]
         },
@@ -3798,7 +3798,7 @@
           "Params": [
             {
               "Key": "Message",
-              "Value": "Bitter ash coats your tongue \u2014 your skin hardens against future fire."
+              "Value": "Bitter ash coats your tongue — your skin hardens against future fire."
             }
           ]
         },
@@ -24822,6 +24822,44 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "IceWall",
+      "Inherits": "Wall",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "wall of ice"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "#"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&C"
+            },
+            {
+              "Key": "BackgroundColor",
+              "Value": "^b"
+            }
+          ]
+        },
+        {
+          "Name": "Lifespan",
+          "Params": [
+            {
+              "Key": "TurnsRemaining",
+              "Value": "8"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
     }
   ]
 }
