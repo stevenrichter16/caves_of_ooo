@@ -207,6 +207,101 @@ namespace CavesOfOoo.Core
             return best;
         }
 
+        /// <summary>
+        /// Every Creature inside a cone that opens from the cell in
+        /// front of (<paramref name="startX"/>, <paramref name="startY"/>)
+        /// along (<paramref name="dx"/>, <paramref name="dy"/>).
+        ///
+        /// <para>SPELLCRAFT SM2 (Docs/SPELLCRAFT-STATUS-SYNERGY.md §5,
+        /// P2). The fourth targeting shape, alongside
+        /// <see cref="TraceBeam"/> (line),
+        /// <see cref="GetCreaturesInRadius"/> (nova) and
+        /// <see cref="FindChainTargets"/> (chain). Flame Jet, Jet Blast
+        /// and Backdraft all need it.</para>
+        ///
+        /// <para><b>Shape.</b> Step <c>n</c> (1-based) is a band
+        /// <c>2n-1</c> cells wide, perpendicular to the facing, so
+        /// length 3 covers 1 + 3 + 5 = 9 cells. The caster's own cell is
+        /// never included.</para>
+        ///
+        /// <para><b>Occlusion.</b> A solid cell blocks the cone from
+        /// spreading further along <i>that ray</i> only — one pillar
+        /// must not cancel the whole spray, or a flamethrower would be
+        /// useless in any room with cover. Rays are walked outward from
+        /// the centre line so the reachable set stays connected: a cell
+        /// is only reachable if the cell one step closer to the caster
+        /// on the same ray was itself reachable.</para>
+        /// </summary>
+        /// <param name="length">Steps forward. Zero or negative returns
+        /// an empty list rather than throwing.</param>
+        public static List<Entity> GetCreaturesInCone(
+            Zone zone,
+            Entity caster,
+            int startX,
+            int startY,
+            int dx,
+            int dy,
+            int length)
+        {
+            var hits = new List<Entity>();
+            if (zone == null || length <= 0 || (dx == 0 && dy == 0))
+                return hits;
+
+            // Perpendicular to the facing, for the widening band.
+            int px = -dy;
+            int py = dx;
+
+            var seen = new HashSet<Entity>();
+            // Which lateral offsets were still reachable on the previous
+            // step. A cell is reachable only if its inward neighbour was
+            // — that is what makes a wall occlude rather than merely
+            // skip one cell.
+            var openPrev = new HashSet<int> { 0 };
+
+            for (int step = 1; step <= length; step++)
+            {
+                var openNow = new HashSet<int>();
+                int halfWidth = step - 1;
+
+                for (int off = -halfWidth; off <= halfWidth; off++)
+                {
+                    // Reachable if the ray behind it was open. The
+                    // centre-line cell of step 1 seeds from offset 0.
+                    bool fedFromBehind =
+                        openPrev.Contains(off) ||
+                        openPrev.Contains(off - 1) ||
+                        openPrev.Contains(off + 1);
+                    if (!fedFromBehind) continue;
+
+                    int x = startX + dx * step + px * off;
+                    int y = startY + dy * step + py * off;
+                    if (!zone.InBounds(x, y)) continue;
+
+                    Cell cell = zone.GetCell(x, y);
+                    if (cell == null) continue;
+
+                    // A solid cell is hit-tested for nothing and stops
+                    // the spread past it on this ray.
+                    if (HasBlockingSolid(cell, caster)) continue;
+                    openNow.Add(off);
+
+                    for (int i = 0; i < cell.Objects.Count; i++)
+                    {
+                        Entity entity = cell.Objects[i];
+                        if (entity == caster || !entity.HasTag("Creature"))
+                            continue;
+                        if (!seen.Add(entity)) continue;
+                        hits.Add(entity);
+                    }
+                }
+
+                if (openNow.Count == 0) break;   // fully walled off
+                openPrev = openNow;
+            }
+
+            return hits;
+        }
+
         private static bool HasBlockingSolid(Cell cell, Entity caster)
         {
             if (cell == null)
