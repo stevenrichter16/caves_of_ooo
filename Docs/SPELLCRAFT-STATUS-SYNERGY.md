@@ -1,6 +1,7 @@
 # Spellcraft & Status Synergy — the Prime → Detonate loop
 
-**Status:** PLAN — awaiting user review. Nothing implemented.
+**Status:** APPROVED 2026-08-09 — all four open questions answered
+(§13). Building SM1 onward.
 **Date:** 2026-08-09
 **Goal (user's words):** *"put more grimoires and skills in the game that
 directly deal damage and status effects… I want skills and grimoires
@@ -351,7 +352,20 @@ work," the first query answers it instantly.
 
 ---
 
-## 13. Open questions — please answer before SM1
+## 13. Open questions — ANSWERED 2026-08-09
+
+The user accepted all four recommendations. Decisions are binding on
+the sub-milestones above:
+
+1. **Ink cost: rhythmic**, ~10 charges, cheap re-ink. The combo should
+   be a habit, not a ration.
+2. **Hydromancy ships as a fifth elemental tree.** Galvanism's
+   conditional wet-bonus stays conditional.
+3. **Strict prime/detonate separation.** No skill detonates. Revisit a
+   capstone per tree only after the grammar has landed.
+4. **Primers first (SM1–SM6)**, then resonance + rites.
+
+### Original wording of the questions
 
 1. **Ink cost harshness.** Should a rite be *precious* (3–5 charges per
    book, re-ink costs a full InkVial) or *rhythmic* (10–15 charges,

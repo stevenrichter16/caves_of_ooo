@@ -127,37 +127,19 @@ namespace CavesOfOoo.Skills
                     target.ApplyEffect(new StunnedEffect(STUN_DURATION),
                         actor, ctx.Zone);
 
-                    // Push 1 cell away from actor. Direction-from-actor
-                    // is the dir lookup index (0..7); GetCellInDirection
-                    // works on absolute positions so we re-resolve from
-                    // the target's CURRENT position (they may have moved).
-                    var targetPos = ctx.Zone.GetEntityPosition(target);
-                    if (targetPos.x >= 0)
-                    {
-                        var pushTo = ctx.Zone.GetCellInDirection(
-                            targetPos.x, targetPos.y, dirFromActor);
-                        if (pushTo != null && !pushTo.IsSolid()
-                            && !CellHasOtherCreature(pushTo, target))
-                        {
-                            ctx.Zone.MoveEntity(target, pushTo.X, pushTo.Y);
-                        }
-                    }
+                    // Push 1 cell away from actor. SPELLCRAFT SM1
+                    // extracted this to SkillCombatHelpers.TryPush so the
+                    // new spell shapes (Ground Surge, Jet Blast, Undertow)
+                    // share one set of destination guards instead of four
+                    // copies. Behaviour is unchanged: same solid check,
+                    // same creature-occupancy check, same re-resolve of
+                    // the target's current position.
+                    SkillCombatHelpers.TryPush(actor, target, ctx.Zone);
                 }
             }
 
             MessageLog.Add(actor.GetDisplayName() + " pounds the ground!");
         }
 
-        private static bool CellHasOtherCreature(Cell cell, Entity exclude)
-        {
-            if (cell == null) return false;
-            for (int i = 0; i < cell.Objects.Count; i++)
-            {
-                var e = cell.Objects[i];
-                if (e == null || e == exclude) continue;
-                if (e.Tags.ContainsKey("Creature")) return true;
-            }
-            return false;
-        }
     }
 }

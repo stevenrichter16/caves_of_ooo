@@ -169,5 +169,89 @@ namespace CavesOfOoo.Skills
 
             return actualDamage;
         }
+
+        // ════════════════════════════════════════════════════════
+        // Knockback
+        // ════════════════════════════════════════════════════════
+
+        /// <summary>
+        /// Shoves <paramref name="target"/> directly away from
+        /// <paramref name="actor"/>, up to <paramref name="cells"/>
+        /// cells, and reports whether it actually moved.
+        ///
+        /// <para>SPELLCRAFT SM1 (Docs/SPELLCRAFT-STATUS-SYNERGY.md §5,
+        /// P1). Extracted verbatim in behaviour from
+        /// <see cref="Cudgel_GroundPound"/>, which was the codebase's
+        /// only knockback. The plan's Ground Surge, Jet Blast and
+        /// Undertow all push, and duplicating the destination guards
+        /// four times is how guards drift apart.</para>
+        ///
+        /// <para><b>Contract.</b> The push direction is resolved from
+        /// the target's CURRENT position each step — a multi-target
+        /// power may already have moved it. A step is refused by a solid
+        /// cell, by another <i>creature</i> (items on the floor never
+        /// block: after the loot overhaul the ground is covered in
+        /// them), or by the zone edge. A multi-cell push stops at the
+        /// first refusal and KEEPS the ground it gained, returning true
+        /// — partial movement is still movement. Returns false only when
+        /// nothing moved at all, which callers use to distinguish
+        /// "shoved into open ground" from "slammed against a wall".</para>
+        /// </summary>
+        /// <param name="cells">Cells to shove. Zero or negative is a
+        /// no-op returning false, so a caller may pass a computed
+        /// distance without pre-checking it.</param>
+        public static bool TryPush(Entity actor, Entity target, Zone zone, int cells = 1)
+        {
+            if (actor == null || target == null || zone == null) return false;
+            if (cells <= 0) return false;
+
+            var actorPos = zone.GetEntityPosition(actor);
+            var targetPos = zone.GetEntityPosition(target);
+            if (actorPos.x < 0 || targetPos.x < 0) return false;
+
+            int dx = System.Math.Sign(targetPos.x - actorPos.x);
+            int dy = System.Math.Sign(targetPos.y - actorPos.y);
+            // Coincident actor and target give no direction to push
+            // along. Decline rather than pick one arbitrarily.
+            if (dx == 0 && dy == 0) return false;
+
+            bool movedAny = false;
+            for (int step = 0; step < cells; step++)
+            {
+                // Re-resolve every step: the target is moving.
+                var from = zone.GetEntityPosition(target);
+                if (from.x < 0) break;
+
+                int nx = from.x + dx;
+                int ny = from.y + dy;
+                var dest = zone.GetCell(nx, ny);
+                if (dest == null) break;                       // zone edge
+                if (dest.IsSolid()) break;                     // wall
+                if (CellHasOtherCreature(dest, target)) break; // occupied
+
+                if (!zone.MoveEntity(target, nx, ny)) break;
+                movedAny = true;
+            }
+
+            return movedAny;
+        }
+
+        /// <summary>
+        /// True when <paramref name="cell"/> holds a Creature other than
+        /// <paramref name="exclude"/>. Non-creature occupants (dropped
+        /// loot, corpses, scenery without the Solid tag) never block a
+        /// shove.
+        /// </summary>
+        private static bool CellHasOtherCreature(Cell cell, Entity exclude)
+        {
+            if (cell == null) return false;
+            for (int i = 0; i < cell.Objects.Count; i++)
+            {
+                var e = cell.Objects[i];
+                if (e == null || e == exclude) continue;
+                if (e.Tags.ContainsKey("Creature")) return true;
+            }
+            return false;
+        }
     }
 }
