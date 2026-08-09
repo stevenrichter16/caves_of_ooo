@@ -113,6 +113,13 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "Stalagmite", Weight = 4, MinCount = 3, MaxCount = 8 },
                     // Round 5 — forageable interactable
                     new PopulationEntry { BlueprintName = "MushroomRing", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    // LOOT OVERHAUL SM7 — wider loose-gear pool.
+                    new PopulationEntry { BlueprintName = "ShortSword", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Cudgel", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Hatchet", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "LeatherCap", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "LeatherBoots", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "LeatherGloves", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }
@@ -129,6 +136,13 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "Scorpion", Weight = 4, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "DesertBandit", Weight = 2, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Rock", Weight = 4, MinCount = 2, MaxCount = 6 },
+                    // LOOT OVERHAUL SM7 — wider loose-gear pool.
+                    new PopulationEntry { BlueprintName = "ShortSword", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Cudgel", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Hatchet", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "LeatherCap", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "LeatherBoots", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "LeatherGloves", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }
@@ -150,6 +164,13 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "BerryBush", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "Beehive", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "HollowStump", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    // LOOT OVERHAUL SM7 — wider loose-gear pool.
+                    new PopulationEntry { BlueprintName = "ShortSword", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Cudgel", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Hatchet", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "LeatherCap", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "LeatherBoots", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "LeatherGloves", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }
@@ -168,6 +189,13 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "LeatherArmor", Weight = 1, MinCount = 0, MaxCount = 1 },
                     // Round 5 — old road markers
                     new PopulationEntry { BlueprintName = "Signpost", Weight = 1, MinCount = 0, MaxCount = 2 },
+                    // LOOT OVERHAUL SM7 — wider loose-gear pool.
+                    new PopulationEntry { BlueprintName = "ShortSword", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Cudgel", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Hatchet", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "LeatherCap", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "LeatherBoots", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "LeatherGloves", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }
@@ -189,6 +217,13 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 2, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "LeatherArmor", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "Stalagmite", Weight = 3, MinCount = 2, MaxCount = 6 },
+                    // LOOT OVERHAUL SM7 — wider loose-gear pool.
+                    new PopulationEntry { BlueprintName = "Mace", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Spear", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Battleaxe", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Buckler", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "IronHelmet", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Cloak", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }
@@ -207,6 +242,13 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "Scorpion", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 2, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "Rock", Weight = 3, MinCount = 1, MaxCount = 4 },
+                    // LOOT OVERHAUL SM7 — wider loose-gear pool.
+                    new PopulationEntry { BlueprintName = "Mace", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Spear", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Battleaxe", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Buckler", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "IronHelmet", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Cloak", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }
@@ -224,6 +266,13 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "Glowmaw", Weight = 2, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 2, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Dagger", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    // LOOT OVERHAUL SM7 — wider loose-gear pool.
+                    new PopulationEntry { BlueprintName = "Mace", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Spear", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Battleaxe", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Buckler", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "IronHelmet", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Cloak", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }
@@ -240,6 +289,13 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "RuinScavenger", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 2, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "LeatherArmor", Weight = 2, MinCount = 0, MaxCount = 1 },
+                    // LOOT OVERHAUL SM7 — wider loose-gear pool.
+                    new PopulationEntry { BlueprintName = "Mace", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Spear", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Battleaxe", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Buckler", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "IronHelmet", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Cloak", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }
@@ -273,6 +329,13 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "ChainMail", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "Stalagmite", Weight = 3, MinCount = 2, MaxCount = 6 },
+                    // LOOT OVERHAUL SM7 — wider loose-gear pool.
+                    new PopulationEntry { BlueprintName = "Greatsword", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Claymore", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Warhammer", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "IronBuckler", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "IronshodBoots", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "WardedCloak", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }
@@ -293,6 +356,13 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "GlassScorpion", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "Rock", Weight = 2, MinCount = 1, MaxCount = 4 },
+                    // LOOT OVERHAUL SM7 — wider loose-gear pool.
+                    new PopulationEntry { BlueprintName = "Greatsword", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Claymore", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Warhammer", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "IronBuckler", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "IronshodBoots", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "WardedCloak", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }
@@ -315,6 +385,13 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "Rotling", Weight = 3, MinCount = 0, MaxCount = 4 },
                     new PopulationEntry { BlueprintName = "CanopyStrangler", Weight = 2, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "Dagger", Weight = 1, MinCount = 0, MaxCount = 2 },
+                    // LOOT OVERHAUL SM7 — wider loose-gear pool.
+                    new PopulationEntry { BlueprintName = "Greatsword", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Claymore", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Warhammer", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "IronBuckler", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "IronshodBoots", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "WardedCloak", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }
@@ -335,6 +412,13 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "PalimpsestEcho", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "ChainMail", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    // LOOT OVERHAUL SM7 — wider loose-gear pool.
+                    new PopulationEntry { BlueprintName = "Greatsword", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Claymore", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Warhammer", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "IronBuckler", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "IronshodBoots", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "WardedCloak", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }

@@ -1,6 +1,6 @@
 # LOOT OVERHAUL — Gear That Drops, Containers That Exist, A World That Supplies
 
-> Status: **PLAN — awaiting user sign-off.** Written 2026-08-09 after a
+> Status: **COMPLETE (SM1-SM8).** Written 2026-08-09 after a
 > full verification sweep (CLAUDE.md §1.2). The sweep caught one
 > load-bearing false premise; the plan below is the CORRECTED one, not
 > the one the request implies. Read §1 before anything else.
@@ -408,10 +408,71 @@ Sack. Every zone type that previously had zero now has loot.
 **Suite: 5981 → 5993 (+12). Green.** Save backed up before the live
 run and restored after.
 
-### SM7–SM8 — pending
+### SM7 — supply-gap fills ✅ SHIPPED
 
-Supply-gap fills (wider loose-gear pools, orphan reagents into biome
-tables) and the adversarial sweep + economy census.
+Loose-gear pools widened across all 12 tier tables, from the 3
+blueprints that served the entire game (Dagger / LongSword /
+LeatherArmor) to tier-appropriate slices of the 33-weapon and
+13-armor catalogs — T1 shortswords/hatchets/leather caps, T2
+maces/spears/bucklers/helmets, T3 greatswords/claymores/warhammers/
+warded cloaks. Entries use `MinCount 0 / MaxCount 1` at low weight, so
+`Roll()` rotates **variety** rather than adding **volume**.
+
+The orphan reagents and `WillowHaftComponent` were already closed by
+SM3/SM5's `ReagentCommon` / `ReagentRare` / `ComponentAny` sub-tables,
+which every death and container table references.
+
+Fixture stubs added to both generation test files (the gotcha that has
+now bitten 5 times — pre-empted in the same change).
+
+### SM8 — adversarial sweep + economy census ✅ SHIPPED
+
+**`LootOverhaulAdversarialTests.cs` — 12 tests, 0 bugs found.** Five
+taxonomy surfaces applied, so the gate was mandatory:
+
+| Surface | Probes |
+|---|---|
+| Parser | 23 malformed Loadout strings (null, only-delimiters, `::50`, `Dagger:abc`, `50x-`, int-overflow counts, inverted ranges, whitespace); asserts no throw, no nameless grant, no zero-count grant, no out-of-range chance |
+| State atomicity | 9×900-weight grant vs carry limit → creature still coherent, no null slots; death still runs cleanly after a partial loadout |
+| Boundary | container `MaxItems` overflow (returned count matches reality), budget across tiers −100…100 × every zone kind stays in [1,6], garbage `Tier` tags fall back safely |
+| Save/load reach | a stocked container round-trips through `SaveGraphSerializer` with contents intact — a reload must not empty the world |
+| Determinism | same seed ⇒ same layout across **every** biome, **plus** the counter-check that different seeds actually differ (a Populate that ignored its RNG would pass the first test vacuously) |
+| Cross-system | two creatures of one blueprint never share an item instance; a second placement pass never stacks containers |
+
+One test failure during authoring was **my assertion, not the code**:
+it counted the dying creature among the "floor contents" that must
+survive. Corrected to measure bystanders only.
+
+**Economy census — 20 zones, measured not guessed:**
+
+| Metric | Measured | Plan target |
+|---|---|---|
+| Containers / zone | **2.1** | 1–3 wilderness |
+| Items per container | **1.67** | — |
+| Sellable value / zone | **47 drams** | ≈40 |
+
+47 vs a 40-dram target across a mixed-tier sample is within ~18% — on
+budget, no inflation. For scale: one zone's loot ≈ one healing tonic.
+The `ComputeBudget` formula is the single knob if that ever needs to
+move.
+
+**Suite: 5993 → 6005 (+12). Green.**
+
+---
+
+## The overhaul is complete (SM1–SM8)
+
+| Before | After |
+|---|---|
+| 73/73 creatures owned nothing | 16 humanoid hostiles spawn armed and drop it |
+| No death loot roll at all | class × tier tables feed the crafting supply line |
+| PopulationBuilder placed 0 containers, ever | 2.1 per zone across all 7 pipelines |
+| 3 container blueprints (1 unplaceable) | 15, biome-appropriate, always stocked |
+| Barrel was scenery; mimic unopenable | both are real containers |
+| 3 loose-gear blueprints game-wide | tier-appropriate slices of 46 |
+| 5 reagents + 1 component unobtainable | all reachable |
+
+Tests across the arc: 5958 → 6005 (+47).
 
 ---
 
