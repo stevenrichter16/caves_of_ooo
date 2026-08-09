@@ -701,6 +701,277 @@
           "MaxCount": 2
         }
       ]
+    },
+    {
+      "Name": "ReagentCommon",
+      "Entries": [
+        {
+          "Blueprint": "FireMoss",
+          "Chance": 100,
+          "Weight": 3
+        },
+        {
+          "Blueprint": "BogSap",
+          "Chance": 100,
+          "Weight": 3
+        },
+        {
+          "Blueprint": "StoneburrSeed",
+          "Chance": 100,
+          "Weight": 3
+        },
+        {
+          "Blueprint": "SparkRoot",
+          "Chance": 100,
+          "Weight": 2
+        },
+        {
+          "Blueprint": "FrostLichen",
+          "Chance": 100,
+          "Weight": 2
+        }
+      ],
+      "PickOne": true,
+      "MinPicks": 1,
+      "MaxPicks": 1
+    },
+    {
+      "Name": "ReagentRare",
+      "Entries": [
+        {
+          "Blueprint": "GlacierSalt",
+          "Chance": 100,
+          "Weight": 2
+        },
+        {
+          "Blueprint": "GlimmerBrine",
+          "Chance": 100,
+          "Weight": 2
+        },
+        {
+          "Blueprint": "EmberFruit",
+          "Chance": 100,
+          "Weight": 2
+        },
+        {
+          "Blueprint": "VenomGland",
+          "Chance": 100,
+          "Weight": 2
+        },
+        {
+          "Blueprint": "BlastcapSpore",
+          "Chance": 100,
+          "Weight": 1
+        },
+        {
+          "Blueprint": "MendleafSprig",
+          "Chance": 100,
+          "Weight": 2
+        }
+      ],
+      "PickOne": true,
+      "MinPicks": 1,
+      "MaxPicks": 1
+    },
+    {
+      "Name": "ComponentAny",
+      "Entries": [
+        {
+          "Blueprint": "IronSpikeComponent",
+          "Chance": 100,
+          "Weight": 3
+        },
+        {
+          "Blueprint": "OakHaftComponent",
+          "Chance": 100,
+          "Weight": 3
+        },
+        {
+          "Blueprint": "WillowHaftComponent",
+          "Chance": 100,
+          "Weight": 2
+        },
+        {
+          "Blueprint": "LeatherBindingComponent",
+          "Chance": 100,
+          "Weight": 3
+        },
+        {
+          "Blueprint": "SteelBladeComponent",
+          "Chance": 100,
+          "Weight": 1
+        },
+        {
+          "Blueprint": "SerratedEdgeComponent",
+          "Chance": 100,
+          "Weight": 1
+        }
+      ],
+      "PickOne": true,
+      "MinPicks": 1,
+      "MaxPicks": 1
+    },
+    {
+      "Name": "DeathBeastT1",
+      "Entries": [
+        {
+          "Blueprint": "RawMeat",
+          "Chance": 35
+        },
+        {
+          "TableRef": "ReagentCommon",
+          "Chance": 25
+        }
+      ]
+    },
+    {
+      "Name": "DeathBeastT2",
+      "Entries": [
+        {
+          "Blueprint": "RawMeat",
+          "Chance": 45
+        },
+        {
+          "TableRef": "ReagentCommon",
+          "Chance": 40
+        },
+        {
+          "TableRef": "ReagentRare",
+          "Chance": 15
+        }
+      ]
+    },
+    {
+      "Name": "DeathBeastT3",
+      "Entries": [
+        {
+          "Blueprint": "RawMeat",
+          "Chance": 55
+        },
+        {
+          "TableRef": "ReagentRare",
+          "Chance": 45
+        },
+        {
+          "TableRef": "ComponentAny",
+          "Chance": 15
+        },
+        {
+          "Blueprint": "GoldCoin",
+          "Chance": 25,
+          "MinCount": 2,
+          "MaxCount": 6
+        }
+      ]
+    },
+    {
+      "Name": "DeathHumanoidT1",
+      "Entries": [
+        {
+          "Blueprint": "GoldCoin",
+          "Chance": 45,
+          "MinCount": 1,
+          "MaxCount": 4
+        },
+        {
+          "TableRef": "ReagentCommon",
+          "Chance": 20
+        },
+        {
+          "Blueprint": "DriedMeat",
+          "Chance": 20
+        }
+      ]
+    },
+    {
+      "Name": "DeathHumanoidT2",
+      "Entries": [
+        {
+          "Blueprint": "GoldCoin",
+          "Chance": 60,
+          "MinCount": 3,
+          "MaxCount": 9
+        },
+        {
+          "TableRef": "ReagentCommon",
+          "Chance": 30
+        },
+        {
+          "TableRef": "ComponentAny",
+          "Chance": 25
+        },
+        {
+          "Blueprint": "HealingTonic",
+          "Chance": 20
+        }
+      ]
+    },
+    {
+      "Name": "DeathHumanoidT3",
+      "Entries": [
+        {
+          "Blueprint": "GoldCoin",
+          "Chance": 75,
+          "MinCount": 6,
+          "MaxCount": 16
+        },
+        {
+          "TableRef": "ReagentRare",
+          "Chance": 40
+        },
+        {
+          "TableRef": "ComponentAny",
+          "Chance": 40
+        },
+        {
+          "Blueprint": "HealingTonic",
+          "Chance": 30
+        },
+        {
+          "Blueprint": "PoisonGasGrenade",
+          "Chance": 12
+        }
+      ]
+    },
+    {
+      "Name": "DeathConstructT2",
+      "Entries": [
+        {
+          "TableRef": "ComponentAny",
+          "Chance": 45
+        },
+        {
+          "Blueprint": "GlowQuartz",
+          "Chance": 25
+        },
+        {
+          "Blueprint": "PaleSalt",
+          "Chance": 20
+        }
+      ]
+    },
+    {
+      "Name": "DeathConstructT3",
+      "Entries": [
+        {
+          "TableRef": "ComponentAny",
+          "Chance": 60
+        },
+        {
+          "Blueprint": "ChoirIron",
+          "Chance": 30
+        },
+        {
+          "Blueprint": "GlowQuartz",
+          "Chance": 30
+        },
+        {
+          "Blueprint": "GoldCoin",
+          "Chance": 35,
+          "MinCount": 4,
+          "MaxCount": 10
+        }
+      ]
     }
   ]
 }

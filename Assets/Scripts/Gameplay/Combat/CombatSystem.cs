@@ -1264,6 +1264,13 @@ namespace CavesOfOoo.Core
                 var inventory = target.GetPart<InventoryPart>();
                 if (inventory != null)
                     DropInventoryOnDeath(target, inventory, zone);
+
+                // LOOT OVERHAUL SM3 — the second half of the ask:
+                // "random other loot calculated from a loot algorithm."
+                // Rolls one (class x tier) table and scatters it beside
+                // the creature's own gear. Feeds the crafting supply
+                // line, which had no world source at all.
+                LootDropSystem.RollDeathLoot(target, killer, zone);
             }
 
             // Death splatter FX (before entity removal so position is still valid)

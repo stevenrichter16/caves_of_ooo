@@ -330,7 +330,39 @@ pass vacuously.
 FungalInfectionContagion order-dependent flake, verified passing in
 isolation — 13/13).
 
-### SM3–SM8 — pending
+### SM3 — Death loot roll ✅ SHIPPED
+
+`Assets/Scripts/Gameplay/World/Generation/LootDropSystem.cs` + 11 new
+tables. One table per kill, chosen by (loot class × tier), scattered on
+the death cell beside the creature's own gear.
+
+**Loot class is DERIVED, not authored** — so none of the 73 creature
+blueprints needed editing: a creature with a Loadout is Humanoid, a
+stone/metal/glass/crystal one is Construct, everything else is Beast.
+An optional `LootClass` / `LootTable` tag overrides either.
+
+Tables deliberately carry the **supply line**, not weapons (those come
+from loadouts, where the player sees them before the kill — more
+legible): reagents, weapon components, coins, occasional tonics. This
+finally gives weaponcraft and alchemy a world source; before it, 5
+reagents and 1 component appeared in **zero** tables.
+
+`ReagentCommon` / `ReagentRare` / `ComponentAny` are shared sub-tables
+referenced via `TableRef` — the nesting feature that shipped
+implemented-and-unit-tested but with zero content using it.
+
+10 tests: class derivation ×3, table naming ×3, explicit-tag override,
+tier clamping (incl. the `int.TryParse` sentinel), roll-lands-on-cell,
+zero-chance counter-check, NoDropOnDeath suppression, unknown-table /
+null-factory / null-zone / not-in-zone graceful no-ops.
+
+**Suite: 5971 → 5981 (+10). Green, flake included.**
+
+### SM4–SM8 — pending
+
+Next up per the plan: container blueprints + gear glint (SM4), the
+kind × tier tables (SM5), then `ContainerPlacementService` (SM6) — the
+half that puts lootable objects in every zone type.
 
 ---
 

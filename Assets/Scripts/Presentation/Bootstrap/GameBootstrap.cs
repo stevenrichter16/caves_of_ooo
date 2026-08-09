@@ -211,6 +211,7 @@ namespace CavesOfOoo
                 // gear at spawn — which is what makes them drop gear at
                 // death, through the (unchanged) existing drop path.
                 LoadoutPart.Factory = _factory;
+                LootDropSystem.Factory = _factory;
                 LayRuneGoal.Factory = _factory;
                 AlchemyStillPart.Factory = _factory;
                 ForgePart.Factory = _factory;
@@ -852,6 +853,7 @@ namespace CavesOfOoo
             MaterialReactionResolver.Factory = _factory;
             CorpsePart.Factory = _factory;
             LoadoutPart.Factory = _factory;
+            LootDropSystem.Factory = _factory;
             LayRuneGoal.Factory = _factory;
             AlchemyStillPart.Factory = _factory;
             ForgePart.Factory = _factory;
