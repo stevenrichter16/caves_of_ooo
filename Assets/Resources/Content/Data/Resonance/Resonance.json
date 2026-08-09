@@ -1,0 +1,85 @@
+{
+  "QuadraticCoefficient": 0.25,
+  "Elements": [
+    {
+      "Element": "Electric",
+      "Entries": [
+        {
+          "Status": "Wet",
+          "Consume": true,
+          "Mult": 0.75,
+          "Rider": "Arc"
+        },
+        {
+          "Status": "Electrified",
+          "Consume": true,
+          "Mult": 0.75,
+          "Rider": "Stun"
+        },
+        {
+          "Status": "Frozen",
+          "Consume": true,
+          "Mult": 0.5,
+          "Rider": "Shatter"
+        }
+      ]
+    },
+    {
+      "Element": "Heat",
+      "Entries": [
+        {
+          "Status": "Burning",
+          "Consume": true,
+          "Mult": 0.75,
+          "Rider": "Flare"
+        },
+        {
+          "Status": "Wet",
+          "Consume": true,
+          "Mult": 0.75,
+          "Rider": "Steam"
+        },
+        {
+          "Status": "Frozen",
+          "Consume": true,
+          "Mult": 0.5,
+          "Rider": "Thaw"
+        }
+      ]
+    },
+    {
+      "Element": "Cold",
+      "Entries": [
+        {
+          "Status": "Wet",
+          "Consume": true,
+          "Mult": 0.75,
+          "Rider": "Encase"
+        },
+        {
+          "Status": "Frozen",
+          "Consume": true,
+          "Mult": 0.75,
+          "Rider": "Shatter"
+        }
+      ]
+    },
+    {
+      "Element": "Acid",
+      "Entries": [
+        {
+          "Status": "Acidic",
+          "Consume": true,
+          "Mult": 0.75,
+          "Rider": "Corrode"
+        },
+        {
+          "Status": "Wet",
+          "Consume": true,
+          "Mult": 0.5,
+          "Rider": "Spread"
+        }
+      ]
+    }
+  ]
+}

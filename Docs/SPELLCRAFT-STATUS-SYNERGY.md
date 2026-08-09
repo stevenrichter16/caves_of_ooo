@@ -786,3 +786,81 @@ hobble feels like tempo or like tedium.
 
 Tests: 6150 → 6176 (+26). **SM1–SM6 complete — the skill-primer half of
 the plan is done.** SM7 (resonance + rites) is next.
+
+### SM7 — resonance: the payoff verb ✅ (the keystone)
+
+The milestone the whole feature was built toward. Statuses can now be
+**spent**.
+
+**`ResonanceSystem`** — `Preview` (read-only) and `Spend` (mutating).
+A rite says only *"I am Electric, I have 2 slots"*; the **data** decides
+what that is worth. No combination logic lives in any spell, which is
+the architectural principle both this plan and the external design
+conversation (`STATUS-SYSTEM-MODULAR-LADDER.md` §2) independently
+arrived at.
+
+`Preview` exists so SM12's targeting overlay can show the payoff
+*before* the player commits a charge — and a test pins that previewing
+consumes nothing.
+
+**The scaling, live-verified:**
+
+| Statuses spent | Multiplier | Storm Anvil damage |
+|---|---|---|
+| 0 (cast cold) | ×1.00 | **4** |
+| 1 (Wet) | ×2.00 | 8 |
+| 2 (Wet + Electrified) | ×3.50 | **14** |
+| 3 (channelled, SM9) | ×5.50 | 22 |
+
+**A rite cast cold is deliberately weak** — this is the answer to the
+question raised in session ("doesn't that make rites much more powerful
+than skills?"). Yes, *when fed*. Storm Anvil's base 4 damage on an
+unprimed target is worse than a skill of the same cooldown, so a rite is
+a bad opener and only becomes worth casting once something is stacked.
+That is what creates the prime→prime→detonate rhythm instead of "always
+rite". The damage lives in what you spend, not in the spell.
+
+**Dead pairs are content.** `Burning` has no entry in the Electric table
+— fire does not conduct. A declined status is not eaten and not paid
+for, and it emits `ResonanceDeclined` with a reason that distinguishes
+*"not resonant with this element"* from *"resonant, but you were out of
+slots"*. "Why didn't my combo work?" is now a `diag_query`, not a
+debugging session.
+
+**Ink (pillar 3).** `GrimoireChargePart` puts ~10 charges on the book.
+`GrimoirePart` never destroyed a grimoire on reading, which turns out to
+be exactly right: reading **teaches** the rite, carrying the inked book
+lets you **cast** it. A grimoire becomes a physical thing you maintain,
+and a depleted one is a real inventory problem. Storm Anvil refuses —
+and says why — with no ink, and critically **checks for targets BEFORE
+spending a charge**, because burning a charge on empty air would be the
+most infuriating possible bug in a resource-costed spell.
+
+**Obtainable:** `StormAnvilGrimoire` is stocked by the Arcanist, Scribe,
+Pale Curator and Palimpsest Echo.
+
+**SCOPE DIVERGENCE (milestone boundary moved).** The roadmap put
+resonance in SM7 and the first rites in SM8. One rite was pulled forward
+so SM7 ships a system with a consumer: a `ResonanceSystem` that nothing
+calls is precisely the unreachable-mechanic trap this project keeps
+hitting (dead grimoires, unplaceable containers, empty shops). SM8 now
+adds the remaining rites to a proven system.
+
+**A silent-failure caught by its own test.** The new `spell` diag
+category was not in `Diag.DefaultOnCategories`, so every resonance
+record was being **dropped on the floor**. The observability tests
+failed and surfaced it. Any future new category needs that registration
+— the failure mode is total silence, not an error.
+
+**Honesty bounds.** *Can verify:* the multiplier curve and its
+super-linearity, that spending removes and previewing does not, dead
+pairs declining without being eaten, both decline reasons, slot limits,
+element tables valuing the same status differently, Wet resonating with
+every element, unknown elements eating nothing, null safety. Live: the
+table loads at boot, and the curve reads ×1.00 / ×2.00 / ×3.50 for
+0/1/2 statuses with the right riders. *Cannot verify without a human:*
+whether 4 base damage is the right floor, whether ×3.50 feels like a
+payoff worth two setup turns, and whether 10 charges is rhythmic or
+stingy in practice.
+
+Tests: 6176 → 6189 (+13).

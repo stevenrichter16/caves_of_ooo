@@ -224,6 +224,13 @@ namespace CavesOfOoo
                 HarvestablePart.Factory = _factory;
                 TraderRestockSystem.Factory = _factory;
 
+                // SPELLCRAFT SM7: the resonance table decides what a
+                // rite gets for spending a status. Loaded here so it is
+                // ready before any zone (and any caster) exists.
+                Core.ResonanceSystem.EnsureInitialized();
+                if (!Core.ResonanceSystem.IsInitialized)
+                    Debug.LogWarning("[Bootstrap] Resonance table missing — rites will resonate with nothing.");
+
                 // BIOME-OVERHAUL A1: loot tables load after blueprints so
                 // validation can check every referenced blueprint, and
                 // before zone gen so village/lair builders can roll them.
