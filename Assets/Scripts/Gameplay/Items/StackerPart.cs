@@ -36,6 +36,17 @@ namespace CavesOfOoo.Core
         /// "burning coating" stack — the new item vanished and its payload
         /// was silently replaced by the old one (live-play bug, 2026-07-19;
         /// pinned by BrewStackingRegressionTests).
+        ///
+        /// <para><b>Charged items never stack at all.</b> Same bug class,
+        /// found again by a hypothesis-driven audit: a grimoire's ink is
+        /// per-book, and display name does not encode it. A dry book and
+        /// a fresh one look identical, so picking up the fresh one merged
+        /// it into the dry stack and its ten charges vanished — leaving
+        /// the player holding "two" books and unable to cast. Even when
+        /// the counts happen to match, one shared counter across a stack
+        /// of N would sell N books' worth of ink for one book's worth of
+        /// casts. Individually-consumed state and stacking are simply
+        /// incompatible.</para>
         /// </summary>
         public bool CanStackWith(Entity other)
         {
@@ -44,6 +55,11 @@ namespace CavesOfOoo.Core
             if (otherStacker == null) return false;
             if (string.IsNullOrEmpty(ParentEntity.BlueprintName)) return false;
             if (ParentEntity.BlueprintName != other.BlueprintName) return false;
+
+            // Per-item consumable state cannot survive a merge.
+            if (ParentEntity.GetPart<GrimoireChargePart>() != null
+                || other.GetPart<GrimoireChargePart>() != null)
+                return false;
 
             string mine = ParentEntity.GetPart<RenderPart>()?.DisplayName;
             string theirs = other.GetPart<RenderPart>()?.DisplayName;

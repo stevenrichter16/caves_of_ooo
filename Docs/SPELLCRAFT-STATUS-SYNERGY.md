@@ -1214,3 +1214,68 @@ passes rather than one merged checklist — and for treating "0 bugs
 found" as the trigger for the next pass rather than the end of the work.
 
 Tests: 6332 → 6346 (+14 cold-eye regressions and payoff pins).
+
+### SM9 hypothesis-driven pass — the audit's own blind spot
+
+The cold-eye pass ran six re-reading lenses. CLAUDE.md mandates one more
+when a sweep declares few or no bugs, and it is deliberately *not* more
+re-reading: generate player-flow hypotheses, write a RED test for each,
+and classify the results honestly.
+
+The framing that produced results: **the grimoire is a physical object.**
+Every test in the suite builds one caster holding exactly one full book
+in a fresh Zone and casts once. Real play has the player carrying two
+books, running one dry, finding a duplicate in a chest, stacking them,
+selling one.
+
+**1 confirmed bug, 6 pinned-as-correct.**
+
+#### 🔴 Confirmed — a found duplicate was worthless
+
+Rite grimoires inherit `Stacker` from `Item`, and `CanStackWith` matches
+on blueprint + display name only. A dry book and a fresh one look
+identical, so picking up the fresh one merged it into the dry stack and
+its ten charges vanished. The player ends up holding "two" books and
+still unable to cast — and the single most likely reason to pick up a
+duplicate is that the first one ran dry.
+
+`StackerPart`'s own docstring already records this exact bug class biting
+brews in live play (2026-07-19): blueprint-only stacking merged a fresh
+flask into an older stack and the new item's payload silently vanished.
+That fix was per-case. This is the general rule it implied:
+**individually-consumed state and stacking are incompatible.** Charged
+items now never stack — even when counts match, one shared counter
+across a stack of N would sell N books' worth of ink for one book's
+worth of casts.
+
+Two RED tests pin it: total ink must rise by ten on pickup, and — the
+version that actually matters to a player — a dry book plus a found book
+must make the rite castable again.
+
+#### 🟢 Pinned as correct
+
+| Hypothesis | Outcome |
+|---|---|
+| A radius rite catching your own follower flips them into `PersonalEnemies`, which FactionManager ranks above party alignment — one AoE permanently turns your companion hostile | does not happen; pinned so a future targeting change cannot introduce it silently |
+| Splitting a stack of rite books duplicates ink | cannot occur now that charged items refuse to stack; kept as the guard |
+| Ink is drawn from whichever book is first in the pack, not the casting rite's own book | **true, and pinned as deliberate** — ink is fungible across grimoires. Now stated out loud so a future move to per-rite ink is a visible decision |
+| Re-casting Still Heart on a nearly-woken sleeper silently eats the charge | fixed as a side effect of the Hibernating→Asleep swap: `AsleepByGasEffect.OnStack` refreshes to the larger duration, where `HibernatingEffect` discarded the incoming effect |
+| A two-slot rite eats all three primed statuses, leaving nothing for the follow-up | eats exactly two; the third is the player's |
+| `GrimoireChargePart.Refill` works | the API works — **but nothing in the game calls it.** See below |
+
+#### ⚪ Reachability gap, documented not fixed
+
+`Refill(int)` has **zero production callers** and every rite blueprint
+sets `ChargesPerVial: 5`. That config is currently decoration: a rite
+book is a strictly finite ten casts and there is no way to re-ink one.
+Whether ink should be renewable is a design decision, not a bug fix, so
+this is flagged rather than resolved — but the eleven blueprints
+advertise a refill amount the game never honours, and one of the two has
+to change.
+
+**Honesty bound:** this methodology is bounded by the hypotheses the
+author generates. Six of seven were already correct, which is the
+expected shape — the value is the one that was not, plus six permanent
+regression pins for contracts nothing else asserted.
+
+Tests: 6346 → 6354 (+8).
