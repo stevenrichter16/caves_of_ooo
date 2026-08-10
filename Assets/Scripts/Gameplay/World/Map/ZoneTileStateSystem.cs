@@ -35,7 +35,7 @@ namespace CavesOfOoo.Core
             // P3: react BEFORE decaying. A coating on its last turn
             // should still get its chance — otherwise a puddle you
             // charged on the turn it expired would silently do nothing.
-            TileReactionSystem.ResolveZone(zone);
+            ResolveWorld(zone);
 
             zone.TileState.Tick();
         }
@@ -49,7 +49,49 @@ namespace CavesOfOoo.Core
         public static void ResolveAfterAbility(Zone zone, Entity caster = null)
         {
             if (zone == null) return;
+            ResolveWorld(zone, caster);
+        }
+
+        /// <summary>
+        /// The fixed resolution order (design §26), steps 4-6: local
+        /// reactions, then propagation, then ONE secondary reaction pass
+        /// over whatever the spread created.
+        ///
+        /// <para>The secondary pass is what makes the greenhouse work:
+        /// charge propagates along the grating into a puddle three
+        /// tiles away, and only then does that puddle electrify. Without
+        /// it, spread charge would sit inert until the next turn and the
+        /// chain would read as broken.</para>
+        ///
+        /// <para>Exactly one secondary pass, not a loop —
+        /// <see cref="TileReactionSystem"/>'s own guards bound the
+        /// reactions, and bounding the propagation/reaction alternation
+        /// here keeps the whole thing terminating by construction.</para>
+        /// </summary>
+        public static void ResolveWorld(Zone zone, Entity caster = null)
+        {
+            if (zone == null) return;
+
+            // PROPAGATE FIRST, then react. The spec's §26 puts local
+            // reactions before propagation, and that order is WRONG for
+            // this architecture: electrify_water CONSUMES the charge, so
+            // reacting first left nothing to spread and the charge never
+            // reached the far end of the puddle. Physically the spread
+            // comes first anyway — current fills the conductor, and THEN
+            // everything standing in it gets shocked at once.
+            TilePropagationSystem.PropagateCharge(zone, caster);
             TileReactionSystem.ResolveZone(zone, caster);
+
+            // One more round, for the other direction: a reaction can
+            // CREATE something that spreads (oil ignites -> embers ->
+            // embers crawl to the next oil). Exactly two rounds, not a
+            // loop: TileReactionSystem's own guards bound the reactions,
+            // and bounding the alternation here keeps the whole thing
+            // terminating by construction.
+            int spread = TilePropagationSystem.PropagateFire(zone, caster);
+            spread += TilePropagationSystem.PropagateCharge(zone, caster);
+            if (spread > 0)
+                TileReactionSystem.ResolveZone(zone, caster);
         }
 
         /// <summary>

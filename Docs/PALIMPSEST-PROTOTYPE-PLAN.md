@@ -261,13 +261,48 @@ one that never started.
 terrain, not a liquid. Worth stating so a future reader does not go
 looking for the missing file.
 
-### P4 — Propagation (spec POC 4)
+### P4 — Propagation (spec POC 4) ✅ SHIPPED
 
 Wet conduction (3 tiles), metal conduction (4 tiles), fire spread across
 flammable structures. Requires **Substrate** on tiles and the
 `MetalGrate` structure.
 
 **POC test:** one local action visibly changes another part of the room.
+
+**Shipped 2026-08-09. The greenhouse vignette works.** Live: a puddle at
+(5,5), a run of metal grating from (7,5) to (11,5), and a victim
+standing in a puddle on the grate at (10,5). Charge applied at (5,5) —
+**five tiles away** — travelled the water, crossed onto the grating, and
+shocked them for 5 damage plus Electrified. Nothing in that setup knows
+what a "combo" is; water conducts, metal conducts, and the charge finds
+its way.
+
+**No Substrate layer was built** — a deliberate divergence from spec §4.
+Conductivity and combustibility already exist as real numbers on two
+shipped systems: `LiquidDefinition` gives water and brine Conductivity
+100 and oil Combustibility 90, and `MaterialPart` carries both per
+entity. A parallel tile-substrate table would have restated data the
+game already has, and the two would have drifted. A metal grate is
+simply an entity whose material conducts, and `MetalGrate` is walkable
+because a grate you cannot stand on is scenery rather than
+infrastructure.
+
+**THE SPEC'S §26 RESOLUTION ORDER IS WRONG FOR THIS ARCHITECTURE, and
+the tests caught it.** §26 puts local reactions *before* propagation.
+But `electrify_water` **consumes** the charge — so reacting first left
+nothing to spread, and the charge never reached the far end of its own
+puddle. Both vignette tests failed on exactly that. The order is now
+propagate → react → (propagate → react once more, for the other
+direction: oil ignites, embers spread, more oil ignites). Physically
+this is also the more honest order — current fills the conductor, and
+*then* everything standing in it is shocked at once.
+
+**Bounded on purpose:** charge reaches 3 tiles through water and 4
+through metal — which is the entire reason to route a shot along grating
+— and fire crawls only 2, because fire that spread as fast as
+electricity would consume a room before a player could respond. A dry
+tile breaks a circuit and a firebreak stops a burn; both are things a
+player can arrange.
 
 ### P5 — Rites read tiles
 
