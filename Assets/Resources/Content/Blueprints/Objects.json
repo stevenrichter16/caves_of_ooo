@@ -19883,6 +19883,86 @@
       ]
     },
     {
+      "Name": "RiteGrimoire",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "rite grimoire"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "+"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&c"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Category",
+              "Value": "Books"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Grimoire",
+          "Params": [
+            {
+              "Key": "KnowledgeProperty",
+              "Value": ""
+            },
+            {
+              "Key": "LearnMessage",
+              "Value": ""
+            },
+            {
+              "Key": "AlreadyKnownMessage",
+              "Value": "You already know this."
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "20"
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Grimoire",
+          "Value": ""
+        },
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    },
+    {
       "Name": "Scribe",
       "Inherits": "Creature",
       "Parts": [
@@ -24863,7 +24943,7 @@
     },
     {
       "Name": "StormAnvilGrimoire",
-      "Inherits": "GrimoireCopy",
+      "Inherits": "RiteGrimoire",
       "Parts": [
         {
           "Name": "Render",
@@ -24926,7 +25006,7 @@
     },
     {
       "Name": "HangingBoltGrimoire",
-      "Inherits": "GrimoireCopy",
+      "Inherits": "RiteGrimoire",
       "Parts": [
         {
           "Name": "Render",
@@ -24989,7 +25069,7 @@
     },
     {
       "Name": "RenderedSteamGrimoire",
-      "Inherits": "GrimoireCopy",
+      "Inherits": "RiteGrimoire",
       "Parts": [
         {
           "Name": "Render",
@@ -25052,7 +25132,7 @@
     },
     {
       "Name": "ScaldingVeilGrimoire",
-      "Inherits": "GrimoireCopy",
+      "Inherits": "RiteGrimoire",
       "Parts": [
         {
           "Name": "Render",
@@ -25161,7 +25241,7 @@
     },
     {
       "Name": "FulminationGrimoire",
-      "Inherits": "GrimoireCopy",
+      "Inherits": "RiteGrimoire",
       "Parts": [
         {
           "Name": "Render",
@@ -25224,7 +25304,7 @@
     },
     {
       "Name": "ShatteredRimeGrimoire",
-      "Inherits": "GrimoireCopy",
+      "Inherits": "RiteGrimoire",
       "Parts": [
         {
           "Name": "Render",
@@ -25287,7 +25367,7 @@
     },
     {
       "Name": "StillHeartGrimoire",
-      "Inherits": "GrimoireCopy",
+      "Inherits": "RiteGrimoire",
       "Parts": [
         {
           "Name": "Render",
@@ -25350,7 +25430,7 @@
     },
     {
       "Name": "VerdigrisBloomGrimoire",
-      "Inherits": "GrimoireCopy",
+      "Inherits": "RiteGrimoire",
       "Parts": [
         {
           "Name": "Render",
@@ -25413,7 +25493,7 @@
     },
     {
       "Name": "HollowCoinGrimoire",
-      "Inherits": "GrimoireCopy",
+      "Inherits": "RiteGrimoire",
       "Parts": [
         {
           "Name": "Render",
@@ -25476,7 +25556,7 @@
     },
     {
       "Name": "SunderingWordGrimoire",
-      "Inherits": "GrimoireCopy",
+      "Inherits": "RiteGrimoire",
       "Parts": [
         {
           "Name": "Render",
@@ -25539,7 +25619,7 @@
     },
     {
       "Name": "BloodletterLedgerGrimoire",
-      "Inherits": "GrimoireCopy",
+      "Inherits": "RiteGrimoire",
       "Parts": [
         {
           "Name": "Render",

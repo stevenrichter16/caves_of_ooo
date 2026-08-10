@@ -7,10 +7,21 @@ namespace CavesOfOoo.Core
     ///
     /// <para>The only rite whose payoff is REMOVAL rather than damage.
     /// Consuming Frozen puts the target into
-    /// <see cref="HibernatingEffect"/> — a long sleep that breaks on
+    /// <see cref="AsleepByGasEffect"/> — a long sleep that breaks on
     /// damage. It does not kill an elite; it takes one out of the fight
     /// while you deal with everything else, and hands it back the moment
     /// anyone touches it.</para>
+    ///
+    /// <para><b>NOT <see cref="HibernatingEffect"/>.</b> This rite
+    /// shipped using it and ran exactly backwards, which a cold-eye
+    /// audit caught. Hibernating is a SELF-buff — its only other caller
+    /// is <c>Cryomancy_Hibernate</c> applying it to the caster — and it
+    /// heals 5% of max HP per turn, forces Heat AND Cold resistance to
+    /// 100, and has no wake-on-damage hook. Cast at an elite it healed
+    /// the elite most of the way back to full and made it immune to this
+    /// rite's own element. <see cref="AsleepByGasEffect"/> is the
+    /// hostile sleep: it blocks action, wakes on damage, and buffs
+    /// nothing. Its docstring says so in as many words.</para>
     ///
     /// <para>Deliberately low damage. Hitting it awake would defeat the
     /// entire purpose.</para>
@@ -43,7 +54,7 @@ namespace CavesOfOoo.Core
             // target sleeps far longer.
             if (res.Consumed.Count > 0)
                 target.ApplyEffect(
-                    new HibernatingEffect(duration: 8 * res.Consumed.Count),
+                    new AsleepByGasEffect(duration: 8 * res.Consumed.Count),
                     ParentEntity, zone);
         }
 
